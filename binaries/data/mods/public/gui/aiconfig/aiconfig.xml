@@ -8,7 +8,7 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" sprite="ModernFade"/>
 
-	<object type="image" style="ModernDialog" size="50%-230 50%-150 50%+230 50%+150">
+	<object type="image" style="ModernDialog" size="50%-230 50%-170 50%+230 50%+170">
 
 		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">AI Configuration</translatableAttribute>
@@ -29,11 +29,19 @@
 			</object>
 
 			<object name="aiDifficulty" type="dropdown" style="ModernDropDown" size="50%-24 35 50%+136 63">
+				<action on="SelectionChange">checkBehavior();</action>
 			</object>
 			<object name="aiDifficultyText" type="text" style="ModernLeftLabelText" size="50%-24 35 50%+136 63"/>
+
+			<object type="text" style="ModernRightLabelText" size="-10 70 90 50%+70">
+				<translatableAttribute id="caption">AI Behavior:</translatableAttribute>
+			</object>
+
+			<object name="aiBehavior" type="dropdown" style="ModernDropDown" size="50%-24 70 50%+136 98"/>
+			<object name="aiBehaviorText" type="text" style="ModernLeftLabelText" size="50%-24 70 50%+136 98"/>
 		</object>
 
-		<object name="aiDescription" type="text" style="ModernLabelText" size="8% 90 92% 100%-60"/>
+		<object name="aiDescription" type="text" style="ModernLabelText" size="8% 90 92% 100%-30"/>
 
 		<object type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>

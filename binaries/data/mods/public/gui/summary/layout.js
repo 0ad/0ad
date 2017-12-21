@@ -3,17 +3,17 @@ var getScorePanelsData = () => ({
 		"caption": translate("Score"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
+			{ "identifier": "totalScore", "caption": translate("Total score"), "yStart": 16, "width": 100 },
 			{ "identifier": "economyScore", "caption": translate("Economy score"), "yStart": 16, "width": 100 },
 			{ "identifier": "militaryScore", "caption": translate("Military score"), "yStart": 16, "width": 100 },
-			{ "identifier": "explorationScore", "caption": translate("Exploration score"), "yStart": 16, "width": 100 },
-			{ "identifier": "totalScore", "caption": translate("Total score"), "yStart": 16, "width": 100 }
+			{ "identifier": "explorationScore", "caption": translate("Exploration score"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [],
 		"counters": [
+			{ "width": 100, "fn": calculateScoreTotal, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateEconomyScore, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateMilitaryScore, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateExplorationScore, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateScoreTotal, "verticalOffset": 12 }
+			{ "width": 100, "fn": calculateExplorationScore, "verticalOffset": 12 }
 		],
 		"teamCounterFn": calculateScoreTeam
 	},
@@ -149,6 +149,8 @@ var getScorePanelsData = () => ({
 		"caption": translate("Market"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
+			{ "identifier": "tradeIncome", "caption": translate("Trade income"), "yStart": 16, "width": 100 },
+			{ "identifier": "barterEfficency", "caption": translate("Barter efficiency"), "yStart": 16, "width": 100 },
 			...g_ResourceData.GetResources().map(res => {
 				return {
 					"identifier": res.code,
@@ -161,19 +163,17 @@ var getScorePanelsData = () => ({
 					"yStart": 16,
 					"width": 100
 				};
-			}),
-			{ "identifier": "barterEfficency", "caption": translate("Barter efficiency"), "yStart": 16, "width": 100 },
-			{ "identifier": "tradeIncome", "caption": translate("Trade income"), "yStart": 16, "width": 100 }
+			})
 		],
 		"titleHeadings": [],
 		"counters": [
+			{ "width": 100, "fn": calculateTradeIncome, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateBarterEfficiency, "verticalOffset": 12 },
 			...g_ResourceData.GetCodes().map(code => ({
 				"width": 100,
 				"fn": calculateResourceExchanged,
 				"verticalOffset": 12
-			})),
-			{ "width": 100, "fn": calculateBarterEfficiency, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateTradeIncome, "verticalOffset": 12 }
+			}))
 		],
 		"teamCounterFn": calculateMarketTeam
 	},
@@ -181,9 +181,12 @@ var getScorePanelsData = () => ({
 		"caption": translate("Miscellaneous"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
+			{ "identifier": "killDeath", "caption": translate("Kill / Death ratio"), "yStart": 16, "width": 100 },
+			{ "identifier": "mapControlPeak", "caption": translate("Map control (peak)"), "yStart": 16, "width": 100 },
+			{ "identifier": "mapControl", "caption": translate("Map control (finish)"), "yStart": 16, "width": 100 },
+			{ "identifier": "mapExploration", "caption": translate("Map exploration"), "yStart": 16, "width": 100 },
 			{ "identifier": "vegetarianRatio", "caption": translate("Vegetarian ratio"), "yStart": 16, "width": 100 },
 			{ "identifier": "feminization", "caption": translate("Feminization"), "yStart": 16, "width": 100 },
-			{ "identifier": "killDeath", "caption": translate("Kill / Death ratio"), "yStart": 16, "width": 100 },
 			{
 				"identifier": "bribes",
 				"caption": sprintf(translate("Bribes\n(%(succeeded)s / %(failed)s)"),
@@ -193,20 +196,17 @@ var getScorePanelsData = () => ({
 					}),
 				"yStart": 16,
 				"width": 139
-			},
-			{ "identifier": "mapExploration", "caption": translate("Map exploration"), "yStart": 16, "width": 100 },
-			{ "identifier": "mapControlPeak", "caption": translate("Map control (peak)"), "yStart": 16, "width": 100 },
-			{ "identifier": "mapControl", "caption": translate("Map control (finish)"), "yStart": 16, "width": 100 }
+			}
 		],
 		"titleHeadings": [],
 		"counters": [
+			{ "width": 100, "fn": calculateKillDeathRatio, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateMapPeakControl, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateMapFinalControl, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateMapExploration, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateVegetarianRatio, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateFeminization, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateKillDeathRatio, "verticalOffset": 12 },
-			{ "width": 139, "fn": calculateBribes, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateMapExploration, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateMapPeakControl, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateMapFinalControl, "verticalOffset": 12 }
+			{ "width": 139, "fn": calculateBribes, "verticalOffset": 12 }
 		],
 		"teamCounterFn": calculateMiscellaneousTeam
 	}

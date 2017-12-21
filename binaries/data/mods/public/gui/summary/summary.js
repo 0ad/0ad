@@ -121,7 +121,7 @@ var g_ResourceData = new Resources();
 // Selected chart indexes
 var g_SelectedChart = {
 	"category": [0, 0],
-	"value": [0, 0],
+	"value": [0, 1],
 	"type": [0, 0]
 };
 

@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-11 09:05+0100\n"
-"PO-Revision-Date: 2017-12-17 23:11+0000\n"
-"Last-Translator: Rafael Cuevas Montero <rafcumon@hotmail.com>\n"
+"POT-Creation-Date: 2017-12-18 09:20+0100\n"
+"PO-Revision-Date: 2017-12-18 15:43+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,16 +157,16 @@ msgid "DELETE"
 msgstr "ELIMINAR"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
+#: gui/options/options.js:310 gui/options/options.js:363
+#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
 msgid "No"
 msgstr "No"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
+#: gui/options/options.js:310 gui/options/options.js:363
+#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
 msgid "Yes"
 msgstr "Sí"
 
@@ -1097,7 +1097,7 @@ msgstr "%(component)s %(loot)s"
 msgid "Loot:"
 msgstr "Saqueo:"
 
-#: gui/credits/credits.js:68
+#: gui/credits/credits.js:79
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1131,22 +1131,22 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valor: %(val)s (mín: %(min)s, max: %(max)s)"
 
-#: gui/options/options.js:295
+#: gui/options/options.js:308
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Restaurar los valores originales borrará tus ajustes. ¿Quieres continuar?"
 
-#: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:375
+#: gui/options/options.js:309 gui/options/options.js:362
+#: gui/options/options.js:388
 msgid "Warning"
 msgstr "Cuidado"
 
-#: gui/options/options.js:348
+#: gui/options/options.js:361
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "¡Algunos valores de configuración no son válidos! ¿Estás seguro de que quieres guardarlos?"
 
-#: gui/options/options.js:374
+#: gui/options/options.js:387
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Tienes cambios sin guardar. ¿Quieres cerrar la ventana?"
 
@@ -1224,7 +1224,7 @@ msgstr "Versión: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "¿Seguro que quieres salir de 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:388
+#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:425
 msgid "Confirmation"
 msgstr "Confirmar decisión"
 
@@ -1292,11 +1292,11 @@ msgstr "Repetición incompatible"
 msgid "No summary data available."
 msgstr "No se ha proporcionado ningún resumen."
 
-#: gui/replaymenu/replay_actions.js:167
+#: gui/replaymenu/replay_actions.js:168
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "¿Seguro que quieres eliminar permanentemente la repetición?"
 
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:170
 msgid "Delete replay"
 msgstr "Borrar repetición"
 
@@ -1379,30 +1379,30 @@ msgstr "Partidas clasificatorias"
 msgid "Unrated games"
 msgstr "Partidas sin clasificación"
 
-#: gui/replaymenu/replay_menu.js:193
+#: gui/replaymenu/replay_menu.js:201
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Filtra repeticiones escribiendo uno o varios nombres ,o nombres parciales, de jugador."
 
-#: gui/replaymenu/replay_menu.js:272
+#: gui/replaymenu/replay_menu.js:280
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Jugadores: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:299
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:329
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):54
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):73
 msgid "Score"
 msgstr "Puntuación"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:151
-#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):103
+#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):122
 msgid "Player name"
 msgstr "Nombre del jugador"
 
@@ -1422,7 +1422,7 @@ msgstr "Puntuación exploración"
 msgid "Total score"
 msgstr "Puntuación total"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):61
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):80
 msgid "Buildings"
 msgstr "Edificios"
 
@@ -1465,7 +1465,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Estadísticas de edificios (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):68
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):87
 msgid "Units"
 msgstr "Unidades"
 
@@ -1498,7 +1498,7 @@ msgstr "Comerciantes"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Estadísticas de unidades (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):75
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):94
 msgid "Resources"
 msgstr "Recursos"
 
@@ -1526,7 +1526,7 @@ msgstr "Ganado criado"
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Estadísticas de recursos (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):82
+#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):101
 msgid "Market"
 msgstr "Mercado"
 
@@ -1544,7 +1544,7 @@ msgstr "Habilidad de intercambio"
 msgid "Trade income"
 msgstr "Ganancias comerciales"
 
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):89
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Otros"
@@ -1654,44 +1654,44 @@ msgstr "Fracaso"
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:387
+#: gui/summary/summary.js:424
 msgid "Are you sure you want to quit the lobby?"
 msgstr "¿Seguro que quieres salir de la sala multijugador?"
 
-#: gui/summary/summary.js:442
+#: gui/summary/summary.js:487
 msgid "Current Scores"
 msgstr "Puntuación actual"
 
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:489
 msgid "Scores at the end of the game."
 msgstr "Puntuación al final de la partida."
 
-#: gui/summary/summary.js:446
+#: gui/summary/summary.js:491
 msgid "You have been disconnected."
 msgstr "Te han desconectado."
 
-#: gui/summary/summary.js:448
+#: gui/summary/summary.js:493
 msgid "You have left the game."
 msgstr "Has dejado la partida."
 
-#: gui/summary/summary.js:450
+#: gui/summary/summary.js:495
 msgid "You have won the battle!"
 msgstr "¡Has ganado la batalla!"
 
-#: gui/summary/summary.js:452
+#: gui/summary/summary.js:497
 msgid "You have been defeated..."
 msgstr "Has sido derrotado..."
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:498
 msgid "You have abandoned the game."
 msgstr "Has abandonado la partida."
 
-#: gui/summary/summary.js:456
+#: gui/summary/summary.js:501
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tiempo de partida transcurrido: %(time)s"
 
-#: gui/summary/summary.js:464
+#: gui/summary/summary.js:509
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1704,13 +1704,13 @@ msgstr "Civilizaciones"
 msgid "Civilization Selection"
 msgstr "Selección de civilización"
 
-#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):37
-#: gui/options/options.xml:(caption):60
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):45
+#: gui/options/options.xml:(caption):68
 #: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Cerrar"
 
-#: gui/credits/credits.xml:(caption):19
+#: gui/credits/credits.xml:(caption):27
 msgid "0 A.D. Credits"
 msgstr "Créditos de 0 A.D."
 
@@ -1742,35 +1742,35 @@ msgstr "Avanzado"
 msgid "Accept"
 msgstr "Aceptar"
 
-#: gui/options/options.xml:(caption):15
+#: gui/options/options.xml:(caption):23
 msgid "Game Options"
 msgstr "Opciones de juego"
 
-#: gui/options/options.xml:(caption):42
+#: gui/options/options.xml:(caption):50
 msgid "Reset"
 msgstr "Restablecer"
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):56
 msgid "Revert"
 msgstr "Revertir"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):62
 msgid "Save"
 msgstr "Guardar"
 
-#: gui/options/options.xml:(tooltip):43
+#: gui/options/options.xml:(tooltip):51
 msgid "Resets user settings to their game default"
 msgstr "Restablece los ajustes a su valor original"
 
-#: gui/options/options.xml:(tooltip):49
+#: gui/options/options.xml:(tooltip):57
 msgid "Reverts to previous saved settings"
 msgstr "Vuelve a los ajustes guardados anteriores"
 
-#: gui/options/options.xml:(tooltip):55
+#: gui/options/options.xml:(tooltip):63
 msgid "Saves changes"
 msgstr "Guarda los cambios"
 
-#: gui/options/options.xml:(tooltip):61
+#: gui/options/options.xml:(tooltip):69
 msgid "Unsaved changes affect this session only"
 msgstr "Los cambios no guardados sólo afectaran a la sesión actual"
 
@@ -2053,7 +2053,7 @@ msgid "Reload Cache"
 msgstr "Recargar caché"
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):14
+#: gui/summary/summary.xml:(caption):33
 msgid "Summary"
 msgstr "Resumen"
 
@@ -2107,44 +2107,44 @@ msgstr "Mostrar este mensaje en el futuro"
 msgid "Known Issues (web)"
 msgstr "Problemas conocidos (web)"
 
-#: gui/summary/summary.xml:(caption):96
+#: gui/summary/summary.xml:(caption):115
 msgid "Charts"
 msgstr "Gráficos"
 
-#: gui/summary/summary.xml:(caption):153
+#: gui/summary/summary.xml:(caption):172
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Categoría:"
 
-#: gui/summary/summary.xml:(caption):163
+#: gui/summary/summary.xml:(caption):182
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Valor:"
 
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):192
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Tipo:"
 
-#: gui/summary/summary.xml:(caption):192
+#: gui/summary/summary.xml:(caption):211
 msgid "Replay"
 msgstr "Repetición"
 
-#: gui/summary/summary.xml:(caption):197
+#: gui/summary/summary.xml:(caption):216
 msgid "Continue"
 msgstr "Continuar"
 
-#: gui/summary/summary.xml:(tooltip):159
+#: gui/summary/summary.xml:(tooltip):178
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Categoría"
 
-#: gui/summary/summary.xml:(tooltip):169
+#: gui/summary/summary.xml:(tooltip):188
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Valor"
 
-#: gui/summary/summary.xml:(tooltip):180
+#: gui/summary/summary.xml:(tooltip):199
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Tipo"
@@ -2466,40 +2466,50 @@ msgstr "Tamaño de reclutamiento por grupos."
 
 #: gui/options/options.json[0].options[14].tooltip
 msgid ""
+"The wounded unit hotkey considers the selected units as wounded if their "
+"health percentage falls below this number"
+msgstr ""
+
+#: gui/options/options.json[0].options[14].label
+msgid "Wounded Unit Health"
+msgstr ""
+
+#: gui/options/options.json[0].options[15].tooltip
+msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Muestra cuando se publicaron los mensajes en el chat de la Sala multijugador, en la formación de partida y durante el juego."
 
-#: gui/options/options.json[0].options[14].label
+#: gui/options/options.json[0].options[15].label
 msgid "Chat Timestamp"
 msgstr "Mostrar fecha y hora"
 
-#: gui/options/options.json[0].options[15].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "Mostrar el rango de ataque de las estructuras defensivas seleccionadas (también puede activarse en la partida con el atajo de teclado)."
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[16].label
 msgid "Attack Range Visualization"
 msgstr "Visualización del rango de ataque"
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "Muestra el rango de auras de las unidades y estructuras seleccionadas (también se puede alternar en el juego con la tecla de acceso directo)."
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[17].label
 msgid "Aura Range Visualization"
 msgstr "Ver distancia de aura"
 
-#: gui/options/options.json[0].options[17].tooltip
+#: gui/options/options.json[0].options[18].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "Muestra el rango de salud de las unidades seleccionadas (también se puede alternar en el juego con la tecla de acceso rápido)."
 
-#: gui/options/options.json[0].options[17].label
+#: gui/options/options.json[0].options[18].label
 msgid "Heal Range Visualization"
 msgstr "Ver distancia de curación"
 

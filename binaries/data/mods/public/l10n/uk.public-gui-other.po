@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-11 09:05+0100\n"
-"PO-Revision-Date: 2017-12-11 15:23+0000\n"
+"POT-Creation-Date: 2017-12-18 09:20+0100\n"
+"PO-Revision-Date: 2017-12-18 15:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -155,16 +155,16 @@ msgid "DELETE"
 msgstr "Видалити"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
+#: gui/options/options.js:310 gui/options/options.js:363
+#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
 msgid "No"
 msgstr "Ні"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
+#: gui/options/options.js:310 gui/options/options.js:363
+#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
 msgid "Yes"
 msgstr "Так"
 
@@ -1108,7 +1108,7 @@ msgstr "%(component)s %(loot)s"
 msgid "Loot:"
 msgstr "Здобич:"
 
-#: gui/credits/credits.js:68
+#: gui/credits/credits.js:79
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1142,22 +1142,22 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Значення:  %(val)s (мінімальне:  %(min)s, максимальне:  %(max)s)"
 
-#: gui/options/options.js:295
+#: gui/options/options.js:308
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Скидання параметрів призведе до видалення збережених налаштувань. Ви хочете продовжити?"
 
-#: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:375
+#: gui/options/options.js:309 gui/options/options.js:362
+#: gui/options/options.js:388
 msgid "Warning"
 msgstr "Увага"
 
-#: gui/options/options.js:348
+#: gui/options/options.js:361
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:374
+#: gui/options/options.js:387
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "У вас є незбережені зміни, ви дійсно хочете закрити це вікно?"
 
@@ -1235,7 +1235,7 @@ msgstr "Версія: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Ви дійсно бажаєте вийти з 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:388
+#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:425
 msgid "Confirmation"
 msgstr "Підтвердження"
 
@@ -1303,11 +1303,11 @@ msgstr "Несумісний повтор"
 msgid "No summary data available."
 msgstr "Недоступні зведені дані."
 
-#: gui/replaymenu/replay_actions.js:167
+#: gui/replaymenu/replay_actions.js:168
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Ви впевнені, що хочете видалити цей повтор назавжди?"
 
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:170
 msgid "Delete replay"
 msgstr "Видалити повтор"
 
@@ -1392,30 +1392,30 @@ msgstr "Оцінені ігри"
 msgid "Unrated games"
 msgstr "Ігри без оцінки"
 
-#: gui/replaymenu/replay_menu.js:193
+#: gui/replaymenu/replay_menu.js:201
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Фільтрувати повтори за набором одного чи декількох, повних чи часткових імен гравців."
 
-#: gui/replaymenu/replay_menu.js:272
+#: gui/replaymenu/replay_menu.js:280
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Гравці: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:299
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr "рррр-ММ-дд ГГ:хх"
 
-#: gui/replaymenu/replay_menu.js:329
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "рррр-ММ"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):54
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):73
 msgid "Score"
 msgstr "Рахунок"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:151
-#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):103
+#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):122
 msgid "Player name"
 msgstr "Ім'я гравця"
 
@@ -1435,7 +1435,7 @@ msgstr "Розвідка"
 msgid "Total score"
 msgstr "Загальний рахунок"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):61
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):80
 msgid "Buildings"
 msgstr "Будівлі"
 
@@ -1478,7 +1478,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Статистика будівель (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):68
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):87
 msgid "Units"
 msgstr "Юніти"
 
@@ -1511,7 +1511,7 @@ msgstr "Купці"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Статистика юнітів (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):75
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):94
 msgid "Resources"
 msgstr "Ресурси"
 
@@ -1539,7 +1539,7 @@ msgstr ""
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Статистика ресурсів (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):82
+#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):101
 msgid "Market"
 msgstr "Базар"
 
@@ -1557,7 +1557,7 @@ msgstr "Ефективність обміну"
 msgid "Trade income"
 msgstr "Торговельний дохід"
 
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):89
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Різне"
@@ -1667,44 +1667,44 @@ msgstr ""
 msgid "∞"
 msgstr ""
 
-#: gui/summary/summary.js:387
+#: gui/summary/summary.js:424
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Ви впевнені, що хочете вийти з кімнати?"
 
-#: gui/summary/summary.js:442
+#: gui/summary/summary.js:487
 msgid "Current Scores"
 msgstr "Поточні Результати"
 
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:489
 msgid "Scores at the end of the game."
 msgstr "Результати в кінці гри."
 
-#: gui/summary/summary.js:446
+#: gui/summary/summary.js:491
 msgid "You have been disconnected."
 msgstr "Ви були роз'єднані."
 
-#: gui/summary/summary.js:448
+#: gui/summary/summary.js:493
 msgid "You have left the game."
 msgstr "Ви покинули гру."
 
-#: gui/summary/summary.js:450
+#: gui/summary/summary.js:495
 msgid "You have won the battle!"
 msgstr "Ви перемогли у битві!"
 
-#: gui/summary/summary.js:452
+#: gui/summary/summary.js:497
 msgid "You have been defeated..."
 msgstr "Ви були переможені..."
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:498
 msgid "You have abandoned the game."
 msgstr "Ви відмовилися від гри."
 
-#: gui/summary/summary.js:456
+#: gui/summary/summary.js:501
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Тривалість гри: %(time)s"
 
-#: gui/summary/summary.js:464
+#: gui/summary/summary.js:509
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1717,13 +1717,13 @@ msgstr "Цивілізації"
 msgid "Civilization Selection"
 msgstr "Вибір цивілізацій"
 
-#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):37
-#: gui/options/options.xml:(caption):60
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):45
+#: gui/options/options.xml:(caption):68
 #: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Закрити"
 
-#: gui/credits/credits.xml:(caption):19
+#: gui/credits/credits.xml:(caption):27
 msgid "0 A.D. Credits"
 msgstr "0 A.D. Подяка"
 
@@ -1755,35 +1755,35 @@ msgstr "Покращений"
 msgid "Accept"
 msgstr "Приймати"
 
-#: gui/options/options.xml:(caption):15
+#: gui/options/options.xml:(caption):23
 msgid "Game Options"
 msgstr "Ігрові налаштування"
 
-#: gui/options/options.xml:(caption):42
+#: gui/options/options.xml:(caption):50
 msgid "Reset"
 msgstr "Скинути"
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):56
 msgid "Revert"
 msgstr "Повернути попереднє"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):62
 msgid "Save"
 msgstr "Зберегти"
 
-#: gui/options/options.xml:(tooltip):43
+#: gui/options/options.xml:(tooltip):51
 msgid "Resets user settings to their game default"
 msgstr "Скинути ігрові налаштування користувача до початкових"
 
-#: gui/options/options.xml:(tooltip):49
+#: gui/options/options.xml:(tooltip):57
 msgid "Reverts to previous saved settings"
 msgstr "Повернутись до попередньо збережених налаштувань"
 
-#: gui/options/options.xml:(tooltip):55
+#: gui/options/options.xml:(tooltip):63
 msgid "Saves changes"
 msgstr "Зберегти зміни"
 
-#: gui/options/options.xml:(tooltip):61
+#: gui/options/options.xml:(tooltip):69
 msgid "Unsaved changes affect this session only"
 msgstr "Незбережені зміни дійсні лише під час поточної сесії"
 
@@ -2066,7 +2066,7 @@ msgid "Reload Cache"
 msgstr "Перезавантажте кеш"
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):14
+#: gui/summary/summary.xml:(caption):33
 msgid "Summary"
 msgstr "Підсумок"
 
@@ -2120,44 +2120,44 @@ msgstr "Показувати це повідомлення у майбутньо
 msgid "Known Issues (web)"
 msgstr "Відомі проблеми (Web)"
 
-#: gui/summary/summary.xml:(caption):96
+#: gui/summary/summary.xml:(caption):115
 msgid "Charts"
 msgstr "Графіки"
 
-#: gui/summary/summary.xml:(caption):153
+#: gui/summary/summary.xml:(caption):172
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Категорія:"
 
-#: gui/summary/summary.xml:(caption):163
+#: gui/summary/summary.xml:(caption):182
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Значення:"
 
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):192
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Тип:"
 
-#: gui/summary/summary.xml:(caption):192
+#: gui/summary/summary.xml:(caption):211
 msgid "Replay"
 msgstr "Повтор"
 
-#: gui/summary/summary.xml:(caption):197
+#: gui/summary/summary.xml:(caption):216
 msgid "Continue"
 msgstr "Продовжити"
 
-#: gui/summary/summary.xml:(tooltip):159
+#: gui/summary/summary.xml:(tooltip):178
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Категорія"
 
-#: gui/summary/summary.xml:(tooltip):169
+#: gui/summary/summary.xml:(tooltip):188
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Значення"
 
-#: gui/summary/summary.xml:(tooltip):180
+#: gui/summary/summary.xml:(tooltip):199
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Тип"
@@ -2479,40 +2479,50 @@ msgstr "Розмір групи для тренування"
 
 #: gui/options/options.json[0].options[14].tooltip
 msgid ""
+"The wounded unit hotkey considers the selected units as wounded if their "
+"health percentage falls below this number"
+msgstr ""
+
+#: gui/options/options.json[0].options[14].label
+msgid "Wounded Unit Health"
+msgstr ""
+
+#: gui/options/options.json[0].options[15].tooltip
+msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Показувати час повідомлень в чатах"
 
-#: gui/options/options.json[0].options[14].label
+#: gui/options/options.json[0].options[15].label
 msgid "Chat Timestamp"
 msgstr "Час повідомлення у чаті"
 
-#: gui/options/options.json[0].options[15].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr ""
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[16].label
 msgid "Attack Range Visualization"
 msgstr ""
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "Відобразити радіус аури вибраних юнітів та структур (також може бути переключено в грі гарячою клавішею)."
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[17].label
 msgid "Aura Range Visualization"
 msgstr "Візуалізація радіусу аури"
 
-#: gui/options/options.json[0].options[17].tooltip
+#: gui/options/options.json[0].options[18].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "Відобразити радіус зцілення вибраних юнітів (також може бути переключено в грі гарячою клавішею)."
 
-#: gui/options/options.json[0].options[17].label
+#: gui/options/options.json[0].options[18].label
 msgid "Heal Range Visualization"
 msgstr "Візуалізація радіусу зцілення"
 

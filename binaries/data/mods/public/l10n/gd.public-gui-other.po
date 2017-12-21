@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-11 09:05+0100\n"
-"PO-Revision-Date: 2017-12-11 15:23+0000\n"
+"POT-Creation-Date: 2017-12-18 09:20+0100\n"
+"PO-Revision-Date: 2017-12-18 15:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -152,16 +152,16 @@ msgid "DELETE"
 msgstr "SGUAB ÀS"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
+#: gui/options/options.js:310 gui/options/options.js:363
+#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
 msgid "No"
 msgstr "Chan eil"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
+#: gui/options/options.js:310 gui/options/options.js:363
+#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
 msgid "Yes"
 msgstr "Tha"
 
@@ -1118,7 +1118,7 @@ msgstr "%(component)s %(loot)s"
 msgid "Loot:"
 msgstr "Spùinn:"
 
-#: gui/credits/credits.js:68
+#: gui/credits/credits.js:79
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s – %(name)s"
@@ -1152,22 +1152,22 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Luach: %(val)s (as lugha: %(min)s, as motha: %(max)s)"
 
-#: gui/options/options.js:295
+#: gui/options/options.js:308
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Ma dh’ath-shuidhicheas tu na roghainnean, thèid na roghainnean air an sàbhaladh agad atharrachadh. A bheil thu airson leantainn air adhart?"
 
-#: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:375
+#: gui/options/options.js:309 gui/options/options.js:362
+#: gui/options/options.js:388
 msgid "Warning"
 msgstr "Rabhadh"
 
-#: gui/options/options.js:348
+#: gui/options/options.js:361
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:374
+#: gui/options/options.js:387
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Tha atharraichean gun sàbhaladh agad, a bheil thu airson an uinneag seo a dhùnadh?"
 
@@ -1245,7 +1245,7 @@ msgstr "Togail: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "A bheil thu cinnteach gu bheil thu airson 0 A.D. fhàgail?"
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:388
+#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:425
 msgid "Confirmation"
 msgstr "Dearbhadh"
 
@@ -1313,11 +1313,11 @@ msgstr "Ath-chluiche neo-chòrdail"
 msgid "No summary data available."
 msgstr "Chan eil dàta gearr-chunntais ri fhaighinn."
 
-#: gui/replaymenu/replay_actions.js:167
+#: gui/replaymenu/replay_actions.js:168
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "A bheil thu cinnteach gu bheil thu airson an t-ath-chluiche seo a sguabadh às gu buan?"
 
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:170
 msgid "Delete replay"
 msgstr "Sguab às an t-ath-chluiche"
 
@@ -1404,30 +1404,30 @@ msgstr "Rangaichte"
 msgid "Unrated games"
 msgstr "Gun rangachadh"
 
-#: gui/replaymenu/replay_menu.js:193
+#: gui/replaymenu/replay_menu.js:201
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Sgrìobh pàirt dhe dh’ainm cluicheadair no cluicheadairean gus na h-ath-chluichean a chriathradh."
 
-#: gui/replaymenu/replay_menu.js:272
+#: gui/replaymenu/replay_menu.js:280
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Cluicheadairean: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:299
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:329
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):54
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):73
 msgid "Score"
 msgstr "Sgòr"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:151
-#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):103
+#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):122
 msgid "Player name"
 msgstr "Ainm a’ chluicheadair"
 
@@ -1447,7 +1447,7 @@ msgstr "Rùrachadh"
 msgid "Total score"
 msgstr "Iomlan"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):61
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):80
 msgid "Buildings"
 msgstr "Togalaichean"
 
@@ -1490,7 +1490,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Stadastaireachd nan togalach (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):68
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):87
 msgid "Units"
 msgstr "Aonadan"
 
@@ -1523,7 +1523,7 @@ msgstr "Fir-mhalairt"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Stadastaireachd nan aonadan (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):75
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):94
 msgid "Resources"
 msgstr "Stòrasan"
 
@@ -1551,7 +1551,7 @@ msgstr ""
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Stadastaireachd nan stòras (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):82
+#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):101
 msgid "Market"
 msgstr "Margaid"
 
@@ -1569,7 +1569,7 @@ msgstr "Èifeachdachd"
 msgid "Trade income"
 msgstr "Teachd a-steach"
 
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):89
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Eile"
@@ -1679,44 +1679,44 @@ msgstr ""
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:387
+#: gui/summary/summary.js:424
 msgid "Are you sure you want to quit the lobby?"
 msgstr "A bheil thu cinnteach gu bheil thu airson an lobaidh fhàgail?"
 
-#: gui/summary/summary.js:442
+#: gui/summary/summary.js:487
 msgid "Current Scores"
 msgstr "Na sgòran an-dràsta"
 
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:489
 msgid "Scores at the end of the game."
 msgstr "Sgòran air deireadh a’ gheama."
 
-#: gui/summary/summary.js:446
+#: gui/summary/summary.js:491
 msgid "You have been disconnected."
 msgstr "Chaidh do cheangal a bhriseadh."
 
-#: gui/summary/summary.js:448
+#: gui/summary/summary.js:493
 msgid "You have left the game."
 msgstr "Dh’fhàg thu an geama."
 
-#: gui/summary/summary.js:450
+#: gui/summary/summary.js:495
 msgid "You have won the battle!"
 msgstr "Thug thu buaidh air càch!"
 
-#: gui/summary/summary.js:452
+#: gui/summary/summary.js:497
 msgid "You have been defeated..."
 msgstr "Chaidh ruaig a chur ort…"
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:498
 msgid "You have abandoned the game."
 msgstr "Thrèig thu an geama."
 
-#: gui/summary/summary.js:456
+#: gui/summary/summary.js:501
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "An ùine a dh’fhalbh sa gheama: %(time)s"
 
-#: gui/summary/summary.js:464
+#: gui/summary/summary.js:509
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s – %(mapType)s"
@@ -1729,13 +1729,13 @@ msgstr "Sìobhaltasan"
 msgid "Civilization Selection"
 msgstr "Tagh sìobhaltasan"
 
-#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):37
-#: gui/options/options.xml:(caption):60
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):45
+#: gui/options/options.xml:(caption):68
 #: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Dùin"
 
-#: gui/credits/credits.xml:(caption):19
+#: gui/credits/credits.xml:(caption):27
 msgid "0 A.D. Credits"
 msgstr "Urram 0 A.D."
 
@@ -1767,35 +1767,35 @@ msgstr "Adhartach"
 msgid "Accept"
 msgstr "Gabh ris"
 
-#: gui/options/options.xml:(caption):15
+#: gui/options/options.xml:(caption):23
 msgid "Game Options"
 msgstr "Roghainnean a’ gheama"
 
-#: gui/options/options.xml:(caption):42
+#: gui/options/options.xml:(caption):50
 msgid "Reset"
 msgstr "Ath-shuidhich"
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):56
 msgid "Revert"
 msgstr "Till"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):62
 msgid "Save"
 msgstr "Sàbhail"
 
-#: gui/options/options.xml:(tooltip):43
+#: gui/options/options.xml:(tooltip):51
 msgid "Resets user settings to their game default"
 msgstr "Ath-shuidhichidh seo roghainnean a’ chleachdaiche air bun-roghainnean a’ gheama"
 
-#: gui/options/options.xml:(tooltip):49
+#: gui/options/options.xml:(tooltip):57
 msgid "Reverts to previous saved settings"
 msgstr "Till dha na roghainnean a shàbhail thu roimhe"
 
-#: gui/options/options.xml:(tooltip):55
+#: gui/options/options.xml:(tooltip):63
 msgid "Saves changes"
 msgstr "Sàbhailidh seo na dh’atharraich thu"
 
-#: gui/options/options.xml:(tooltip):61
+#: gui/options/options.xml:(tooltip):69
 msgid "Unsaved changes affect this session only"
 msgstr "Cha buaidh aig na dh’atharraich thu gun a shàbhaladh air an t-seisean seo a-mhàin"
 
@@ -2078,7 +2078,7 @@ msgid "Reload Cache"
 msgstr "Ath-luchdaich an tasgadan"
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):14
+#: gui/summary/summary.xml:(caption):33
 msgid "Summary"
 msgstr "Gearr-chunntas"
 
@@ -2132,44 +2132,44 @@ msgstr "Seall an teachdaireachd seo a-rithist"
 msgid "Known Issues (web)"
 msgstr "Duilgheadasan as aithne dhuinn (lìon)"
 
-#: gui/summary/summary.xml:(caption):96
+#: gui/summary/summary.xml:(caption):115
 msgid "Charts"
 msgstr "Cairtean"
 
-#: gui/summary/summary.xml:(caption):153
+#: gui/summary/summary.xml:(caption):172
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Roinn-seòrsa:"
 
-#: gui/summary/summary.xml:(caption):163
+#: gui/summary/summary.xml:(caption):182
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Luach:"
 
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):192
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Seòrsa:"
 
-#: gui/summary/summary.xml:(caption):192
+#: gui/summary/summary.xml:(caption):211
 msgid "Replay"
 msgstr "Ath-chluiche"
 
-#: gui/summary/summary.xml:(caption):197
+#: gui/summary/summary.xml:(caption):216
 msgid "Continue"
 msgstr "Lean air adhart"
 
-#: gui/summary/summary.xml:(tooltip):159
+#: gui/summary/summary.xml:(tooltip):178
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Roinn-seòrsa"
 
-#: gui/summary/summary.xml:(tooltip):169
+#: gui/summary/summary.xml:(tooltip):188
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Luach"
 
-#: gui/summary/summary.xml:(tooltip):180
+#: gui/summary/summary.xml:(tooltip):199
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Seòrsa"
@@ -2491,40 +2491,50 @@ msgstr "Meud ghrunnan trèanaidh"
 
 #: gui/options/options.json[0].options[14].tooltip
 msgid ""
+"The wounded unit hotkey considers the selected units as wounded if their "
+"health percentage falls below this number"
+msgstr ""
+
+#: gui/options/options.json[0].options[14].label
+msgid "Wounded Unit Health"
+msgstr ""
+
+#: gui/options/options.json[0].options[15].tooltip
+msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Seall an t-àm a thèid teachdaireachdan a phostadh gu cabadaich na lobaidh, suidheachadh a’ gheama is am broinn a’ gheama."
 
-#: gui/options/options.json[0].options[14].label
+#: gui/options/options.json[0].options[15].label
 msgid "Chat Timestamp"
 msgstr "Stampaichean-tìde na cabadaich"
 
-#: gui/options/options.json[0].options[15].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr ""
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[16].label
 msgid "Attack Range Visualization"
 msgstr ""
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "Seall astar nan aura airson nan aonadan is togalaichean a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[17].label
 msgid "Aura Range Visualization"
 msgstr "Samhlaidhean astar nan aura"
 
-#: gui/options/options.json[0].options[17].tooltip
+#: gui/options/options.json[0].options[18].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "Seall astar slànachaidh nan aonadan a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
 
-#: gui/options/options.json[0].options[17].label
+#: gui/options/options.json[0].options[18].label
 msgid "Heal Range Visualization"
 msgstr "Samhlaidhean astar an t-slànachaidh"
 
