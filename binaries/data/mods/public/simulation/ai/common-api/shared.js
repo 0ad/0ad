@@ -55,7 +55,7 @@ m.SharedScript.prototype.Deserialize = function(data)
 m.SharedScript.prototype.GetTemplate = function(name)
 {
 	if (this._templates[name] === undefined)
-		this._templates[name] = Engine.GetTemplate(name) || null
+		this._templates[name] = Engine.GetTemplate(name) || null;
 
 	return this._templates[name];
 };

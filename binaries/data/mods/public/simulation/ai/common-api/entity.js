@@ -155,9 +155,9 @@ m.Template = m.Class({
 		let left = this.get("Obstruction/Obstructions/Left");
 		if (left && right)
 		{
-			let w = +right["@x"] + +right["@width"]/2 - +left["@x"] + +left["@width"]/2;
-			let h = Math.max(+right["@z"] + +right["@depth"]/2, +left["@z"] + +left["@depth"]/2)
-			      - Math.min(+right["@z"] - +right["@depth"]/2, +left["@z"] - +left["@depth"]/2);
+			let w = +right["@x"] + right["@width"]/2 - left["@x"] + left["@width"]/2;
+			let h = Math.max(+right["@z"] + right["@depth"]/2, +left["@z"] + left["@depth"]/2)
+			      - Math.min(+right["@z"] - right["@depth"]/2, +left["@z"] - left["@depth"]/2);
 			return { "max": Math.sqrt(w*w + h*h) / 2, "min": Math.min(h, w) / 2 };
 		}
 
