@@ -1107,7 +1107,7 @@ function formatChatCommand(msg)
 
 		let userName = g_PlayerAssignments[Engine.GetPlayerGUID()].name;
 		if (userName != g_PlayerAssignments[msg.guid].name &&
-		    msg.text.toLowerCase().indexOf(splitRatingFromNick(userName)[0].toLowerCase()) != -1)
+		    msg.text.toLowerCase().indexOf(splitRatingFromNick(userName).nick.toLowerCase()) != -1)
 			soundNotification("nick");
 	}
 

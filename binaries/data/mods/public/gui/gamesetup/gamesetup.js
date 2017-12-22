@@ -1375,7 +1375,7 @@ function onClientJoin(newGUID, newAssignments)
 	{
 		let assignOption = Engine.ConfigDB_GetValue("user", "gui.gamesetup.assignplayers");
 		if (assignOption == "disabled" ||
-		    assignOption == "buddies" && g_Buddies.indexOf(splitRatingFromNick(playername)[0]) == -1)
+		    assignOption == "buddies" && g_Buddies.indexOf(splitRatingFromNick(playername).nick) == -1)
 			return;
 	}
 
@@ -2261,7 +2261,7 @@ function addChatMessage(msg)
 	{
 		let userName = g_PlayerAssignments[Engine.GetPlayerGUID()].name;
 		if (userName != g_PlayerAssignments[msg.guid].name &&
-		    msg.text.toLowerCase().indexOf(splitRatingFromNick(userName)[0].toLowerCase()) != -1)
+		    msg.text.toLowerCase().indexOf(splitRatingFromNick(userName).nick.toLowerCase()) != -1)
 			soundNotification("nick");
 	}
 
