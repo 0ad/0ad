@@ -5,15 +5,15 @@
 # Translators:
 # Balázs Meskó <meskobalazs@gmail.com>, 2016-2017
 # Balázs Úr <urbalazs@gmail.com>, 2015-2016
-# Gyuris Gellért <gellert.gyuris@protonmail.com>, 2014-2015
+# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2014-2015
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 # Nagy András <asd0707@freemail.hu>, 2017
 # Stew Den <stewden55@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-20 09:04+0100\n"
-"PO-Revision-Date: 2017-11-20 14:32+0000\n"
+"POT-Creation-Date: 2017-12-20 09:03+0100\n"
+"PO-Revision-Date: 2017-12-20 15:24+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgstr "Kincs"
 msgid "A treasure that can be quickly gathered."
 msgstr "Egy kincs, amely gyorsan begyűjthető."
 
-#: simulation/templates/template_structure.xml:60
+#: simulation/templates/template_structure.xml:59
 msgid "Structure"
 msgstr "Épület"
 
-#: simulation/templates/template_unit.xml:41
+#: simulation/templates/template_unit.xml:40
 msgid "Unit"
 msgstr "Egység"
 
@@ -360,6 +360,10 @@ msgstr "Hófarkas"
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
 msgstr "Zebra"
+
+#: simulation/templates/gaia/fauna_zebu.xml:9
+msgid "Zebu"
+msgstr ""
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"

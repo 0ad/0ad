@@ -6,6 +6,7 @@
 # lynx121 <adam.ostruszka@seznam.cz>, 2016
 # Ardenlax <ardenlax@gmail.com>, 2014
 # Filip Kružík <fildakr@gmail.com>, 2015
+# Jakub Jelen <jakuje@gmail.com>, 2017
 # Josef Hrdina <hrdinajosef11@gmail.com>, 2016
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
 # Ondřej Kolín <ondrej.kolin@gmail.com>, 2014
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-11-29 09:05+0100\n"
-"PO-Revision-Date: 2017-11-29 15:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-21 22:41+0000\n"
+"Last-Translator: Jakub Jelen <jakuje@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1070,7 +1071,7 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr ""
+msgstr "Tkalcovský stav dovolil výrobu jemných látek, kterými jsou obyvatelé sídliště ošaceni. Ženy v domácnosti se odmalička učily obsluze kalcovského stavu a strávily značnou část svého života prací s ním."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1555,7 +1556,7 @@ msgstr "Posílit základy v přípravě na útok."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "Zvyšuje stupeň ochrany obranné věže o 2 úrovně."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1595,7 +1596,7 @@ msgstr "Díry ve stropě umožňují zasáhnout nepřátele pod věží."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "Odstraní minimální dostřel u obranných věží."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1607,7 +1608,7 @@ msgstr "Střelci šípů zvýší největší dosah zapálených šípů."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "Zvyšuje největší dosah obranné věže o 8 metrů."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1619,7 +1620,7 @@ msgstr "Rozhledny dohlédnou dál."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Rozhledny dohlédnou o +50% dále."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1631,7 +1632,7 @@ msgstr "Noční hlídka zvyšuje bdělost."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Pošlete stráže na stanoviště, aby přidaly jeden šíp obranným věžím."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1857,7 +1858,7 @@ msgstr "Hlavní cíl obchodníků byl samozřejmě obchod, ale také získávali
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr ""
+msgstr "Umožňuje podplatit jednotky ostatních hráčů pro získání jejich výhledu."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
@@ -2418,7 +2419,7 @@ msgstr "Maurjové stavěli zdi svých měst ze dřeva, protože dřevo je v Indi
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr ""
+msgstr "Maurijské městské zdi mají o -20% méně zdraví, a k jejich postavení je potřeba o -20% méně času."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2450,7 +2451,7 @@ msgstr "Anusiyjská elitní pěchota prodělává výcvik dvakrát tak rychle, a
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Anusiyjská elitní pěchota -50% času na výcvik, ale i -10% zdraví."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2521,13 +2522,13 @@ msgstr "Odvod pěšího vojska"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "Veškerá jízda potřebuje o -20% méně času na výcvik, má ale také o -5% méně života. Odemkne Vojenskou Povinnost Jízdy."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "Veškerá pěchota potřebuje o -20% méně času na výcvik, má ale také o -5% méně života. Odemkne Vojenskou Povinnost Pěchoty."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
