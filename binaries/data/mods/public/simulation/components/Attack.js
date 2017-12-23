@@ -266,8 +266,9 @@ Attack.prototype.CanAttack = function(target, wantedTypes)
 	if (!cmpIdentity)
 		return false;
 
+	let cmpHealth = QueryMiragedInterface(target, IID_Health);
 	let targetClasses = cmpIdentity.GetClassesList();
-	if (targetClasses.indexOf("Domestic") != -1 && this.template.Slaughter &&
+	if (targetClasses.indexOf("Domestic") != -1 && this.template.Slaughter && cmpHealth && cmpHealth.GetHitpoints() &&
 	   (!wantedTypes || !wantedTypes.filter(wType => wType.indexOf("!") != 0).length))
 		return true;
 
@@ -288,7 +289,7 @@ Attack.prototype.CanAttack = function(target, wantedTypes)
 
 	for (let type of types)
 	{
-		if (type != "Capture" && !cmpEntityPlayer.IsEnemy(targetOwner))
+		if (type != "Capture" && (!cmpEntityPlayer.IsEnemy(targetOwner) || !cmpHealth || !cmpHealth.GetHitpoints()))
 			continue;
 
 		if (type == "Capture" && (!cmpCapturable || !cmpCapturable.CanCapture(entityOwner)))
