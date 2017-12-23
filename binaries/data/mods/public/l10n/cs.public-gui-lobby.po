@@ -3,7 +3,8 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Martin Kříž <liberte.czech@gmail.com>, 2015
+# Jakub Jelen <jakuje@gmail.com>, 2017
+# LiberteCzech <liberte.czech@gmail.com>, 2015
 # fri, 2014-2017
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-08-30 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-21 22:32+0000\n"
+"Last-Translator: Jakub Jelen <jakuje@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,7 +62,7 @@ msgstr "Odpojeno."
 #: gui/lobby/lobby.js:157
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "%(nick)s změnil předmět v místnosti na %(subject)s"
 
 #: gui/lobby/lobby.js:168
 #, javascript-format
@@ -116,23 +117,23 @@ msgstr "%(oldnick)s je od teď znám jako %(newnick)s."
 
 #: gui/lobby/lobby.js:258
 msgid "Notice"
-msgstr ""
+msgstr "Oznámení"
 
 #: gui/lobby/lobby.js:299
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "Nastavit Váš stav na 'Pryč'"
 
 #: gui/lobby/lobby.js:306
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "Nastavit Váš stav na 'Online'"
 
 #: gui/lobby/lobby.js:313
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "Vyhodit daného uživatele z místnosti. Použití: /kick nick důvod"
 
 #: gui/lobby/lobby.js:321
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "Zakázat přístup danému uživateli do místnosti. Použití: /ban nick důvod"
 
 #: gui/lobby/lobby.js:329
 msgid "Show this help."
@@ -140,27 +141,27 @@ msgstr "Ukázat tuto nápovědu."
 
 #: gui/lobby/lobby.js:332
 msgid "Chat commands:"
-msgstr ""
+msgstr "Příkazu chatu:"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:336
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:349
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "Poslat zprávu v chatu o sobě. Například: /me jde plavat."
 
 #: gui/lobby/lobby.js:353
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "Poslat text jako zprávu v chatu (i pokud začíná lomítkem). Například /say /help je výborní příkaz."
 
 #: gui/lobby/lobby.js:357
 msgid "Clear all chat scrollback."
-msgstr ""
+msgstr "Vymazat celou historii chatu."
 
 #: gui/lobby/lobby.js:364
 msgid "Return to the main menu."
@@ -287,7 +288,7 @@ msgstr "Příkaz '%(cmd)s' není podporován."
 #: gui/lobby/lobby.js:1254
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr ""
+msgstr "Příkaz '%(cmd)s' je vyhrazen pouze moderátorům."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:1327
@@ -371,17 +372,17 @@ msgstr "Zadejte, prosím, své uživatelské jméno"
 
 #: gui/lobby/prelobby.js:100
 msgid "Invalid username"
-msgstr ""
+msgstr "Neplatné uživatelské jméno"
 
 #: gui/lobby/prelobby.js:107
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Zadejte, prosím, své heslo"
 
 #: gui/lobby/prelobby.js:108
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Zadejte, prosím, své heslo"
 
 #: gui/lobby/prelobby.js:121
 msgid "Please enter your password again"
@@ -488,7 +489,7 @@ msgstr "Hlavní nabídka"
 
 #: gui/lobby/lobby.xml:(caption):259
 msgid "Show only open games"
-msgstr ""
+msgstr "Ukázat pouze otevřené hry"
 
 #: gui/lobby/lobby.xml:(caption):310 gui/lobby/lobby.xml:(caption):372
 msgid "Back"

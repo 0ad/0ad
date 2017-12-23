@@ -716,8 +716,7 @@ function selectGameFromPlayername()
 	for (let i = 0; i < g_GameList.length; ++i)
 		for (let player of stringifiedTeamListToPlayerData(g_GameList[i].players))
 		{
-			let nick = splitRatingFromNick(player.Name)[0];
-			if (g_SelectedPlayer != nick)
+			if (g_SelectedPlayer != splitRatingFromNick(player.Name).nick)
 				continue;
 
 			if (player.Team == "observer")
@@ -913,13 +912,13 @@ function updateGameList()
 
 		for (let player of stringifiedTeamListToPlayerData(game.players))
 		{
-			let [nick, rating] = splitRatingFromNick(player.Name);
+			let playerNickRating = splitRatingFromNick(player.Name);
 
 			if (player.Team != "observer")
-				playerRatings.push(rating || g_DefaultLobbyRating);
+				playerRatings.push(playerNickRating.rating || g_DefaultLobbyRating);
 
 			// Sort games with playing buddies above games with spectating buddies
-			if (game.hasBuddies < 2 && g_Buddies.indexOf(nick) != -1)
+			if (game.hasBuddies < 2 && g_Buddies.indexOf(playerNickRating.nick) != -1)
 				game.hasBuddies = player.Team == "observer" ? 1 : 2;
 		}
 
@@ -1144,9 +1143,9 @@ function getRejoinRating(game)
 {
 	for (let player of stringifiedTeamListToPlayerData(game.players))
 	{
-		let [nick, rating] = splitRatingFromNick(player.Name);
-		if (nick == g_Username)
-			return rating;
+		let playerNickRating = splitRatingFromNick(player.Name);
+		if (playerNickRating.nick == g_Username)
+			return playerNickRating.rating;
 	}
 	return g_UserRating;
 }

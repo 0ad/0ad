@@ -21,11 +21,7 @@ var g_BuddyListDelimiter = ",";
 function splitRatingFromNick(playerName)
 {
 	let result = /^(\S+)\ \((\d+)\)$/g.exec(playerName);
-
-	if (!result)
-		return [playerName, ""];
-
-	return [result[1], +result[2]];
+	return { "nick": result ? result[1] : playerName, "rating": result ? +result[2] : "" };
 }
 
 /**
@@ -152,13 +148,14 @@ function formatPlayerInfo(playerDataArray, playerStates)
 		if (!playerDescriptions[teamIdx])
 			playerDescriptions[teamIdx] = [];
 
+		let playerNick = splitRatingFromNick(playerData.Name).nick;
 		playerDescriptions[teamIdx].push(sprintf(playerDescription, {
 			"playerName":
 			coloredText(
-				(g_Buddies.indexOf(splitRatingFromNick(playerData.Name)[0]) != -1 ? g_BuddySymbol + " " : "") +
+				(g_Buddies.indexOf(playerNick) != -1 ? g_BuddySymbol + " " : "") +
 				escapeText(playerData.Name),
 				(typeof getPlayerColor == 'function' ?
-					(isAI ? "white" : getPlayerColor(splitRatingFromNick(playerData.Name)[0])) :
+					(isAI ? "white" : getPlayerColor(playerNick)) :
 					rgbToGuiColor(playerData.Color || g_Settings.PlayerDefaults[playerIdx].Color))),
 
 			"civ":
