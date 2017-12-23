@@ -387,10 +387,10 @@ public:
 		return m_Unit->GetObject().m_ProjectileModelName;
 	}
 
-	virtual CVector3D GetProjectileLaunchPoint() const
+	virtual CFixedVector3D GetProjectileLaunchPoint() const
 	{
 		if (!m_Unit)
-			return CVector3D();
+			return CFixedVector3D();
 
 		if (m_Unit->GetModel().ToCModel())
 		{
@@ -407,10 +407,13 @@ public:
 
 			CModelAbstract* ammo = m_Unit->GetModel().ToCModel()->FindFirstAmmoProp();
 			if (ammo)
-				return ammo->GetTransform().GetTranslation();
+			{
+				CVector3D vector = ammo->GetTransform().GetTranslation();
+				return CFixedVector3D(fixed::FromFloat(vector.X), fixed::FromFloat(vector.Y), fixed::FromFloat(vector.Z));
+			}
 		}
 
-		return CVector3D();
+		return CFixedVector3D();
 	}
 
 	virtual void SetVariant(const CStr& key, const CStr& selection)

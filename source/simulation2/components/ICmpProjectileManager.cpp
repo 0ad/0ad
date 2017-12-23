@@ -22,6 +22,6 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(ProjectileManager)
-DEFINE_INTERFACE_METHOD_4("LaunchProjectileAtPoint", uint32_t, ICmpProjectileManager, LaunchProjectileAtPoint, entity_id_t, CFixedVector3D, fixed, fixed)
+DEFINE_INTERFACE_METHOD_7("LaunchProjectileAtPoint", uint32_t, ICmpProjectileManager, LaunchProjectileAtPoint, CFixedVector3D, CFixedVector3D, fixed, fixed, std::wstring, std::wstring, fixed)
 DEFINE_INTERFACE_METHOD_1("RemoveProjectile", void, ICmpProjectileManager, RemoveProjectile, uint32_t)
 END_INTERFACE_WRAPPER(ProjectileManager)

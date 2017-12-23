@@ -81,6 +81,11 @@ Attack.prototype.Schema =
 					"<Multiplier>2</Multiplier>" +
 				"</Bonus1>" +
 			"</Bonuses>" +
+			"<Projectile>" +
+				"<ActorName>props/units/weapons/rock_flaming.xml</ActorName>" +
+				"<ImpactActorName>props/units/weapons/rock_explosion.xml</ImpactActorName>" +
+				"<ImpactAnimationLifetime>0.1</ImpactAnimationLifetime>" +
+			"</Projectile>" +
 			"<RestrictedClasses datatype=\"tokens\">Champion</RestrictedClasses>" +
 			"<Splash>" +
 				"<Shape>Circular</Shape>" +
@@ -150,6 +155,27 @@ Attack.prototype.Schema =
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
 				Attack.prototype.restrictedClassesSchema +
+				"<optional>" +
+					"<element name='Projectile'>" +
+						"<interleave>" +
+							"<oneOrMore>" +
+								"<choice>" +
+									"<element name='ActorName' a:help='actor of the projectile animation'>" +
+										"<text/>" +
+									"</element>" +
+									"<interleave>" +
+										"<element name='ImpactActorName' a:help='actor of the projectile impact animation'>" +
+											"<text/>" +
+										"</element>" +
+										"<element name='ImpactAnimationLifetime' a:help='length of the projectile impact animation'>" +
+											"<ref name='positiveDecimal'/>" +
+										"</element>" +
+									"</interleave>" +
+								"</choice>" +
+							"</oneOrMore>" +
+						"</interleave>" +
+					"</element>" +
+				"</optional>" +
 				"<optional>" +
 					"<element name='Splash'>" +
 						"<interleave>" +
@@ -503,7 +529,35 @@ Attack.prototype.PerformAttack = function(type, target)
 
 		// Launch the graphical projectile.
 		let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
-		let id = cmpProjectileManager.LaunchProjectileAtPoint(this.entity, realTargetPosition, horizSpeed, gravity);
+
+		let actorName = "";
+		let impactActorName = "";
+		let impactAnimationLifetime = 0;
+		if (this.template.Ranged.Projectile)
+		{
+			actorName = this.template.Ranged.Projectile.ActorName || "";
+			impactActorName = this.template.Ranged.Projectile.ImpactActorName || "";
+			impactAnimationLifetime = this.template.Ranged.Projectile.ImpactAnimationLifetime || 0;
+		}
+
+		let launchPoint = selfPosition.clone();
+		// TODO: remove this when all the ranged unit templates are updated with Projectile/Launchpoint
+		launchPoint.y += 3;
+		
+		let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+		if (cmpVisual)
+		{
+			// if the projectile definition is missing from the template
+			// then fallback to the projectile name and launchpoint in the visual actor
+			if (!actorName)
+				actorName = cmpVisual.GetProjectileActor();
+
+			let visualActorLaunchPoint = cmpVisual.GetProjectileLaunchPoint();
+			if (visualActorLaunchPoint.length() > 0)
+				launchPoint = visualActorLaunchPoint;
+		}
+
+		let id = cmpProjectileManager.LaunchProjectileAtPoint(launchPoint, realTargetPosition, horizSpeed, gravity, actorName, impactActorName, impactAnimationLifetime);
 
 		let attackImpactSound = "";
 		let cmpSound = Engine.QueryInterface(this.entity, IID_Sound);

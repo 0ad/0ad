@@ -24,6 +24,7 @@
 #include "maths/BoundingBoxOriented.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Fixed.h"
+#include "maths/FixedVector3D.h"
 #include "lib/file/vfs/vfs_path.h"
 
 class CUnit;
@@ -68,9 +69,10 @@ public:
 	/**
 	 * Return the exact position where a projectile should be launched from (based on the actor's
 	 * ammo prop points).
+	 * Return type is CFixedVector3D because it is exposed to the JS interface.
 	 * Returns (0,0,0) if no point can be found.
 	 */
-	virtual CVector3D GetProjectileLaunchPoint() const = 0;
+	virtual CFixedVector3D GetProjectileLaunchPoint() const = 0;
 
 	/**
 	 * Returns the underlying unit of this visual actor. May return NULL to indicate that no unit exists (e.g. may happen if the

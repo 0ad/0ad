@@ -5,8 +5,7 @@
     <variant frequency="1" name="rock">
       <mesh>props/onager_projectile.dae</mesh>
       <props>
-        <prop actor="particle/smoke_catapult.xml" attachpoint="root"/>
-        <prop actor="particle/flame_catapult.xml" attachpoint="root"/>
+        <prop actor="particle/flame_large.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="gaia/stone_temperate_granite.dds" name="baseTex"/>
