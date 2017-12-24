@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry">
+  <Armour>
+    <Hack op="add">1</Hack>
+    <Pierce op="add">1</Pierce>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>0</Hack>
+      <Pierce>0</Pierce>
+      <Crush>10.5</Crush>
+      <MaxRange>5.0</MaxRange>
+      <PrepareTime>375</PrepareTime>
+      <RepeatTime>750</RepeatTime>
+      <PreferredClasses datatype="tokens">Human Siege</PreferredClasses>
+    </Melee>
+  </Attack>
+  <Cost>
+    <Resources>
+      <wood>75</wood>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>200</Max>
+  </Health>
+  <Identity>
+    <VisibleClasses datatype="tokens">Melee Maceman</VisibleClasses>
+    <GenericName>Champion Maceman</GenericName>
+    <Formations datatype="tokens">
+      special/formations/phalanx
+      special/formations/testudo
+    </Formations>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.4</WalkSpeed>
+    <Run>
+      <Speed op="mul">1.4</Speed>
+    </Run>
+  </UnitMotion>
+</Entity>
