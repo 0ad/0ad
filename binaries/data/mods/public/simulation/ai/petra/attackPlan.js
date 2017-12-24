@@ -1783,30 +1783,31 @@ m.AttackPlan.prototype.UpdateWalking = function(gameState, events)
 	if (gameState.ai.playedTurn % 5 === 0)
 		this.position5TurnsAgo = this.position;
 
-	if (this.lastPosition && API3.SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0)
+	if (this.lastPosition && API3.SquareVectorDistance(this.position, this.lastPosition) < 16 && this.path.length > 0)
 	{
 		if (!this.path[0][0] || !this.path[0][1])
 			API3.warn("Start: Problem with path " + uneval(this.path));
-		// We're stuck, presumably. Check if there are no walls just close to us. If so, we're arrived, and we're gonna tear down some serious stone.
-		let nexttoWalls = false;
-		for (let ent of gameState.getEnemyStructures().filter(API3.Filters.byClass("StoneWall")).values())
+		// We're stuck, presumably. Check if there are no walls just close to us.
+		for (let ent of gameState.getEnemyStructures().filter(API3.Filters.byClass(["Palisade", "StoneWall"])).values())
 		{
-			if (!nexttoWalls && API3.SquareVectorDistance(this.position, ent.position()) < 800)
-				nexttoWalls = true;
-		}
-		// there are walls but we can attack
-		if (nexttoWalls && this.unitCollection.filter(API3.Filters.byCanAttackClass("StoneWall")).hasEntities())
-		{
-			if (this.Config.debug > 1)
-				API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and is not happy.");
-			this.state = "arrived";
-			return true;
-		}
-		else if (nexttoWalls)	// abort plan
-		{
-			if (this.Config.debug > 1)
-				API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
-			return false;
+			if (API3.SquareVectorDistance(this.position, ent.position()) > 800)
+				continue;
+			let enemyClass = ent.hasClass("StoneWall") ? "StoneWall" : "Palisade";
+			// there are walls, so check if we can attack
+			if (this.unitCollection.filter(API3.Filters.byCanAttackClass(enemyClass)).hasEntities())
+			{
+				if (this.Config.debug > 1)
+					API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and is not happy.");
+				this.state = "arrived";
+				return true;
+			}
+			else	// abort plan
+			{
+				if (this.Config.debug > 1)
+					API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
+				return false;
+			}
+			break;
 		}
 
 		//this.unitCollection.move(this.path[0][0], this.path[0][1]);
