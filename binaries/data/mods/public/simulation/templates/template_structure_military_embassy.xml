@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_special">
+<Entity parent="template_structure_military">
+  <Armour>
+    <Pierce>30</Pierce>
+    <Foundation>
+      <Hack>3</Hack>
+      <Pierce>10</Pierce>
+      <Crush>3</Crush>
+    </Foundation>
+  </Armour>
   <BuildRestrictions>
     <Category>Embassy</Category>
   </BuildRestrictions>
   <Cost>
+    <BuildTime>200</BuildTime>
     <PopulationBonus>0</PopulationBonus>
     <Resources>
+      <food>0</food>
       <wood>100</wood>
       <stone>100</stone>
+      <metal>200</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -16,14 +27,18 @@
   </Footprint>
   <GarrisonHolder>
     <Max>6</Max>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <List datatype="tokens">Support Infantry Cavalry</List>
+    <BuffHeal>1</BuffHeal>
+    <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>2000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_3x3</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>cart</Civ>
-    <VisibleClasses datatype="tokens">-City Town Embassy</VisibleClasses>
+    <VisibleClasses datatype="tokens">Town Embassy</VisibleClasses>
     <GenericName>Embassy</GenericName>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
@@ -47,7 +62,9 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
+    <Root>false</Root>
     <Radius>25</Radius>
+    <Weight>40000</Weight>
   </TerritoryInfluence>
   <Vision>
     <Range>24</Range>
