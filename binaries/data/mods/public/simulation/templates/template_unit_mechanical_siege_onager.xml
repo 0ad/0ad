@@ -13,6 +13,10 @@
       <RepeatTime>5000</RepeatTime>
       <Spread>4.0</Spread>
       <Delay>0</Delay>
+      <Projectile>
+        <ImpactActorName>props/units/weapons/rock_explosion.xml</ImpactActorName>
+        <ImpactAnimationLifetime>0.1</ImpactAnimationLifetime>
+      </Projectile>
       <Splash>
         <Shape>Circular</Shape>
         <Range>10</Range>

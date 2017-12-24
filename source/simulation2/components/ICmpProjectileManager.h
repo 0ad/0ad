@@ -38,9 +38,12 @@ public:
 	 * @param target target point
 	 * @param speed horizontal speed in m/s
 	 * @param gravity gravitational acceleration in m/s^2 (determines the height of the ballistic curve)
+	 * @param actorName name of the flying projectile actor
+	 * @param impactActorName name of the animation actor played when the projectile hits the target or the ground
+	 * @param impactAnimationLifetime animation lenth
 	 * @return id of the created projectile
 	 */
-	virtual uint32_t LaunchProjectileAtPoint(entity_id_t source, const CFixedVector3D& target, fixed speed, fixed gravity) = 0;
+	virtual uint32_t LaunchProjectileAtPoint(const CFixedVector3D& launchPoint, const CFixedVector3D& target, fixed speed, fixed gravity, const std::wstring& actorName, const std::wstring& impactActorName, fixed impactAnimationLifetime) = 0;
 
 	/**
      * Removes a projectile, used when the projectile has hit a target

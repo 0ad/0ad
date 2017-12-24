@@ -1872,9 +1872,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.order.data.target = target;
 					}
 					// Check the target is still alive and attackable
-					if (this.TargetIsAlive(target) &&
-					    this.CanAttack(target, this.order.data.forceResponse || null) &&
-					    !this.CheckTargetAttackRange(target, this.order.data.attackType))
+					if (this.CanAttack(target) && !this.CheckTargetAttackRange(target, this.order.data.attackType))
 					{
 						// Can't reach it - try to chase after it
 						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
@@ -1939,14 +1937,14 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						var thisObject = this;
 						var filter = function(t) {
-							return thisObject.TargetIsAlive(t) && thisObject.CanAttack(t, thisObject.order.data.forceResponse || null);
+							return thisObject.CanAttack(t);
 						};
 						this.order.data.formationTarget = target;
 						target = cmpFormation.GetClosestMember(this.entity, filter);
 						this.order.data.target = target;
 					}
 					// Check the target is still alive and attackable
-					if (this.TargetIsAlive(target) && this.CanAttack(target, this.order.data.forceResponse || null))
+					if (this.CanAttack(target))
 					{
 						// If we are hunting, first update the target position of the gather order so we know where will be the killed animal
 						if (this.order.data.hunting && this.orderQueue[1] && this.orderQueue[1].data.lastPos)
@@ -4643,13 +4641,13 @@ UnitAI.prototype.GetBestAttackAgainst = function(target, allowCapture)
  * and start attacking it.
  * Returns true if it found something to attack.
  */
-UnitAI.prototype.AttackVisibleEntity = function(ents, forceResponse)
+UnitAI.prototype.AttackVisibleEntity = function(ents)
 {
-	var target = ents.find(target => this.CanAttack(target, forceResponse));
+	var target = ents.find(target => this.CanAttack(target));
 	if (!target)
 		return false;
 
-	this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse, "allowCapture": true });
+	this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": true });
 	return true;
 };
 
@@ -4658,17 +4656,17 @@ UnitAI.prototype.AttackVisibleEntity = function(ents, forceResponse)
  * and which is close to the hold position, and start attacking it.
  * Returns true if it found something to attack.
  */
-UnitAI.prototype.AttackEntityInZone = function(ents, forceResponse)
+UnitAI.prototype.AttackEntityInZone = function(ents)
 {
 	var target = ents.find(target =>
-		this.CanAttack(target, forceResponse)
+		this.CanAttack(target)
 		&& this.CheckTargetDistanceFromHeldPosition(target, IID_Attack, this.GetBestAttackAgainst(target, true))
 		&& (this.GetStance().respondChaseBeyondVision || this.CheckTargetIsInVisionRange(target))
 	);
 	if (!target)
 		return false;
 
-	this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse, "allowCapture": true });
+	this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": true });
 	return true;
 };
 
@@ -4683,13 +4681,13 @@ UnitAI.prototype.RespondToTargetedEntities = function(ents)
 		return false;
 
 	if (this.GetStance().respondChase)
-		return this.AttackVisibleEntity(ents, true);
+		return this.AttackVisibleEntity(ents);
 
 	if (this.GetStance().respondStandGround)
-		return this.AttackVisibleEntity(ents, true);
+		return this.AttackVisibleEntity(ents);
 
 	if (this.GetStance().respondHoldGround)
-		return this.AttackEntityInZone(ents, true);
+		return this.AttackEntityInZone(ents);
 
 	if (this.GetStance().respondFlee)
 	{
@@ -5721,45 +5719,15 @@ UnitAI.prototype.WalkToHeldPosition = function()
 
 //// Helper functions ////
 
-UnitAI.prototype.CanAttack = function(target, forceResponse)
+UnitAI.prototype.CanAttack = function(target)
 {
 	// Formation controllers should always respond to commands
 	// (then the individual units can make up their own minds)
 	if (this.IsFormationController())
 		return true;
 
-	// Verify that we're able to respond to Attack commands
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	if (!cmpAttack)
-		return false;
-
-	if (!cmpAttack.CanAttack(target))
-		return false;
-
-	// Verify that the target is alive
-	if (!this.TargetIsAlive(target))
-		return false;
-
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() < 0)
-		return false;
-	var owner = cmpOwnership.GetOwner();
-
-	// Verify that the target is an attackable resource supply like a domestic animal
-	// or that it isn't owned by an ally of this entity's player or is responding to
-	// an attack.
-	if (this.MustKillGatherTarget(target))
-		return true;
-
-	var cmpCapturable = Engine.QueryInterface(target, IID_Capturable);
-	if (cmpCapturable && cmpCapturable.CanCapture(owner) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
-		return true;
-
-	if (IsOwnedByEnemyOfPlayer(owner, target))
-		return true;
-	if (forceResponse && !IsOwnedByAllyOfPlayer(owner, target))
-		return true;
-	return false;
+	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	return cmpAttack && cmpAttack.CanAttack(target);
 };
 
 UnitAI.prototype.CanGarrison = function(target)

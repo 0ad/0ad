@@ -2,12 +2,13 @@ Engine.LoadHelperScript("DamageBonus.js");
 Engine.LoadHelperScript("DamageTypes.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
-Engine.LoadComponentScript("interfaces/Auras.js");
-Engine.LoadComponentScript("interfaces/AuraManager.js");
-Engine.LoadComponentScript("interfaces/Capturable.js");
-Engine.LoadComponentScript("interfaces/TechnologyManager.js");
-Engine.LoadComponentScript("interfaces/Formation.js");
 Engine.LoadComponentScript("interfaces/Attack.js");
+Engine.LoadComponentScript("interfaces/AuraManager.js");
+Engine.LoadComponentScript("interfaces/Auras.js");
+Engine.LoadComponentScript("interfaces/Capturable.js");
+Engine.LoadComponentScript("interfaces/Formation.js");
+Engine.LoadComponentScript("interfaces/Health.js");
+Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("Attack.js");
 
 let entityID = 903;
@@ -115,6 +116,10 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 	AddMock(defender, IID_Position, {
 		"IsInWorld": () => true,
 		"GetHeightOffset": () => 0
+	});
+
+	AddMock(defender, IID_Health, {
+		"GetHitpoints": () => 100
 	});
 
 	test_function(attacker, cmpAttack, defender);
