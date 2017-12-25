@@ -14,30 +14,17 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="ModernFade"/>
 
-	<object hotkey="tab.next">
-		<action on="Press">selectNextTab(1);</action>
-	</object>
-
-	<object hotkey="tab.prev">
-		<action on="Press">selectNextTab(-1);</action>
-	</object>
-
 	<object type="image" style="ModernDialog" size="50%-473 24 50%+473 100%-24">
 		<object style="ModernLabelText" name="dialogTitle" type="text" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">0 A.D. Credits</translatableAttribute>
 		</object>
 
-		<object name="creditsPanelButtons" type="image" size="20 30 210 100%-54">
-			<repeat count="20">
-				<object name="creditsPanelButton[n]" type="button" style="ModernTabButtonVertical" size="0 0 190 30" hidden="true">
-					<object type="text" name="creditsPanelButtonText[n]" style="ModernLabelText" ghost="true">
-					</object>
-				</object>
-			</repeat>
-		</object>
-
 		<object type="image" sprite="ModernFade" size="220 30 100%-20 100%-54">
 			<object name="creditsText" type="text" style="ModernTextPanel" text_align="center" scroll_top="true"/>
+		</object>
+
+		<object size="20 30 210 100%-54">
+			<include file="gui/common/tab_buttons.xml"/>
 		</object>
 
 		<!-- Close dialog -->
