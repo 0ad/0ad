@@ -44,9 +44,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-18 09:20+0100\n"
-"PO-Revision-Date: 2017-12-19 16:10+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"POT-Creation-Date: 2017-12-22 09:02+0100\n"
+"PO-Revision-Date: 2017-12-22 15:06+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -208,7 +208,7 @@ msgstr "Halte %(hotkey)s zum Löschen ohne Nachfragen."
 msgid "A randomly selected map."
 msgstr "Eine zufällig ausgewählte Karte."
 
-#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:346
+#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:347
 msgid "Sorry, no description available."
 msgstr "Leider keine Beschreibung vorhanden."
 
@@ -216,29 +216,31 @@ msgstr "Leider keine Beschreibung vorhanden."
 #. savegame menu
 #: gui/common/gamedescription.js:105
 #, javascript-format
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
+msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:108
 #, javascript-format
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
+msgid ""
+"%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s, "
+"%(state)s)"
+msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:114
 #, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
+msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
+msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:117
 #, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
+msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
+msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -296,31 +298,31 @@ msgctxt "playerstate"
 msgid "won"
 msgstr "gewonnen"
 
-#: gui/common/gamedescription.js:196
+#: gui/common/gamedescription.js:197
 msgid "No Team"
 msgstr "Kein Team"
 
-#: gui/common/gamedescription.js:197
+#: gui/common/gamedescription.js:198
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Team %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:200 gui/common/gamedescription.js:207
+#: gui/common/gamedescription.js:201 gui/common/gamedescription.js:208
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s:\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:208
+#: gui/common/gamedescription.js:209
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Zuschauer"
 msgstr[1] "Zuschauer"
 
-#: gui/common/gamedescription.js:230
+#: gui/common/gamedescription.js:231
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -328,7 +330,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Wunder (%(min)s Minute)"
 msgstr[1] "Wunder (%(min)s Minuten)"
 
-#: gui/common/gamedescription.js:242
+#: gui/common/gamedescription.js:243
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -336,155 +338,155 @@ msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Relikt einnehmen (%(min)s Minute)"
 msgstr[1] "Relikt einnehmen (%(min)s Minuten)"
 
-#: gui/common/gamedescription.js:258
+#: gui/common/gamedescription.js:259
 msgid "Relic Count"
 msgstr "Reliktanzahl"
 
-#: gui/common/gamedescription.js:265
+#: gui/common/gamedescription.js:266
 msgid "Hero Garrison"
 msgstr "Heldengarnison"
 
-#: gui/common/gamedescription.js:266
+#: gui/common/gamedescription.js:267
 msgid "Heroes can be garrisoned."
 msgstr "Helden können einquartiert werden."
 
-#: gui/common/gamedescription.js:270
+#: gui/common/gamedescription.js:271
 msgid "Exposed Heroes"
 msgstr "Schutzlose Helden"
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:272
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
 msgstr "Helden können nicht einquartiert werden und sind verwundbar gegenüber Überfällen."
 
-#: gui/common/gamedescription.js:278
+#: gui/common/gamedescription.js:279
 msgid "Rated game"
 msgstr "Bewertetes Spiel"
 
-#: gui/common/gamedescription.js:279
+#: gui/common/gamedescription.js:280
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Wenn der Sieger dieser Runde feststeht, wird die Lobbypunktzahl angepasst."
 
-#: gui/common/gamedescription.js:284
+#: gui/common/gamedescription.js:285
 msgid "Locked Teams"
 msgstr "Feste Teams"
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:286
 msgid "Players can't change the initial teams."
 msgstr "Spieler können ihre anfänglichen Teams nicht mehr ändern."
 
-#: gui/common/gamedescription.js:289
+#: gui/common/gamedescription.js:290
 msgid "Diplomacy"
 msgstr "Diplomatie"
 
-#: gui/common/gamedescription.js:290
+#: gui/common/gamedescription.js:291
 msgid "Players can make alliances and declare war on allies."
 msgstr "Spieler können Allianzen schließen oder Verbündeten den Krieg erklären."
 
-#: gui/common/gamedescription.js:295
+#: gui/common/gamedescription.js:296
 msgid "Last Man Standing"
 msgstr "Last Man Standing"
 
-#: gui/common/gamedescription.js:296
+#: gui/common/gamedescription.js:297
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Nur ein Spieler kann das Spiel gewinnen. Falls die verbleibenden Spieler Verbündete sind, wird das Spiel fortgesetzt, bis nur ein Spieler verbleibt."
 
-#: gui/common/gamedescription.js:300
+#: gui/common/gamedescription.js:301
 msgid "Allied Victory"
 msgstr "Verbündetensieg"
 
-#: gui/common/gamedescription.js:301
+#: gui/common/gamedescription.js:302
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Wenn ein Spieler gewinnt, gewinnen seine Verbündeten ebenfalls. Wenn eine Gruppe an Verbündeten verbleibt, gewinnen sie."
 
-#: gui/common/gamedescription.js:307
+#: gui/common/gamedescription.js:308
 msgid "Ceasefire"
 msgstr "Waffenstillstand"
 
-#: gui/common/gamedescription.js:310 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:311 gui/pregame/mainmenu.js:86
 msgid "disabled"
 msgstr "deaktiviert"
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:312
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "In der ersten Minute bleiben andere Spieler neutral."
 msgstr[1] "In den ersten %(min)s Minuten bleiben andere Spieler neutral."
 
-#: gui/common/gamedescription.js:319
+#: gui/common/gamedescription.js:320
 msgid "Map Name"
 msgstr "Kartenname"
 
-#: gui/common/gamedescription.js:324
+#: gui/common/gamedescription.js:325
 msgid "Map Type"
 msgstr "Kartentyp"
 
-#: gui/common/gamedescription.js:333
+#: gui/common/gamedescription.js:334
 msgid "Map Size"
 msgstr "Kartengröße"
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:341
 msgid "Map Description"
 msgstr "Kartenbeschreibung"
 
-#: gui/common/gamedescription.js:343
+#: gui/common/gamedescription.js:344
 msgid "Randomly selects a map from the list"
 msgstr "Wählt zufällig eine Karte aus der Liste aus"
 
-#: gui/common/gamedescription.js:353
+#: gui/common/gamedescription.js:354
 msgid "Biome"
 msgstr "Biom"
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:355
 msgctxt "biome"
 msgid "Random"
 msgstr "Zufällig"
 
-#: gui/common/gamedescription.js:361
+#: gui/common/gamedescription.js:362
 msgid "Starting Resources"
 msgstr "Startressourcen"
 
-#: gui/common/gamedescription.js:362
+#: gui/common/gamedescription.js:363
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:372
+#: gui/common/gamedescription.js:373
 msgid "Population Limit"
 msgstr "Bevölkerungslimit"
 
-#: gui/common/gamedescription.js:380
+#: gui/common/gamedescription.js:381
 msgid "Treasures"
 msgstr "Schätze"
 
-#: gui/common/gamedescription.js:382
+#: gui/common/gamedescription.js:383
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:384
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Wie von der Karte vorgegeben."
 
-#: gui/common/gamedescription.js:387
+#: gui/common/gamedescription.js:388
 msgid "Revealed Map"
 msgstr "Aufgedeckte Karte"
 
-#: gui/common/gamedescription.js:392
+#: gui/common/gamedescription.js:393
 msgid "Explored Map"
 msgstr "Erkundete Karte"
 
-#: gui/common/gamedescription.js:397
+#: gui/common/gamedescription.js:398
 msgid "Cheats"
 msgstr "Cheats"
 
-#: gui/common/gamedescription.js:402 gui/common/tooltips.js:126
+#: gui/common/gamedescription.js:403 gui/common/tooltips.js:126
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:222
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:468
 #: gui/common/tooltips.js:758
@@ -492,21 +494,21 @@ msgstr "Cheats"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:405
+#: gui/common/gamedescription.js:406
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "aktiviert"
 
-#: gui/common/gamedescription.js:406
+#: gui/common/gamedescription.js:407
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "deaktiviert"
 
-#: gui/common/gamedescription.js:422
+#: gui/common/gamedescription.js:423
 msgid "Victorious"
 msgstr "Siegreich"
 
-#: gui/common/gamedescription.js:427
+#: gui/common/gamedescription.js:428
 msgid "Defeated"
 msgstr "Besiegt"
 
@@ -616,37 +618,57 @@ msgstr "Benutzer (%(num)s): %(users)s"
 msgid ", "
 msgstr ", "
 
-#: gui/common/settings.js:115
+#: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Sandkasten"
 
-#: gui/common/settings.js:119
+#: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Sehr leicht"
 
-#: gui/common/settings.js:123
+#: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Leicht"
 
-#: gui/common/settings.js:127
+#: gui/common/settings.js:128
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Mittel"
 
-#: gui/common/settings.js:132
+#: gui/common/settings.js:133
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Schwer"
 
-#: gui/common/settings.js:136
+#: gui/common/settings.js:137
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Sehr Schwer"
 
-#: gui/common/settings.js:158
+#: gui/common/settings.js:147
+msgctxt "aiBehavior"
+msgid "Random"
+msgstr "Zufällig"
+
+#: gui/common/settings.js:152
+msgctxt "aiBehavior"
+msgid "Balanced"
+msgstr ""
+
+#: gui/common/settings.js:156
+msgctxt "aiBehavior"
+msgid "Defensive"
+msgstr "Defensiv"
+
+#: gui/common/settings.js:160
+msgctxt "aiBehavior"
+msgid "Aggressive"
+msgstr "Aggressiv"
+
+#: gui/common/settings.js:182
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
@@ -654,12 +676,12 @@ msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s Minute"
 msgstr[1] "%(min)s Minuten"
 
-#: gui/common/settings.js:180
+#: gui/common/settings.js:204
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Kein Waffenstillstand"
 
-#: gui/common/settings.js:181
+#: gui/common/settings.js:205
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -667,76 +689,81 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s Minute"
 msgstr[1] "%(minutes)s Minuten"
 
-#: gui/common/settings.js:195
+#: gui/common/settings.js:219
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Scharmützel"
 
-#: gui/common/settings.js:196
+#: gui/common/settings.js:220
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr "Eine Karte mit einer vordefinierten Landschaft und Anzahl Spieler. Wähle die anderen Spieleinstellungen nach Belieben aus."
 
-#: gui/common/settings.js:201
+#: gui/common/settings.js:225
 msgctxt "map"
 msgid "Random"
 msgstr "Zufällig"
 
-#: gui/common/settings.js:202
+#: gui/common/settings.js:226
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "Erzeuge eine einzigartige Karte mit einer anderen Rohstoffverteilung. Die Anzahl der Spieler und Teams kann frei gewählt werden."
 
-#: gui/common/settings.js:206
+#: gui/common/settings.js:230
 msgctxt "map"
 msgid "Scenario"
 msgstr "Szenario"
 
-#: gui/common/settings.js:207
+#: gui/common/settings.js:231
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "Eine Karte mit vordefinierter Landschaft und Spieleinstellungen."
 
-#: gui/common/settings.js:250
+#: gui/common/settings.js:274
 msgctxt "victory condition"
 msgid "None"
 msgstr "Keine"
 
-#: gui/common/settings.js:251
+#: gui/common/settings.js:275
 msgid "Endless game."
 msgstr "Endlosspiel."
 
-#: gui/common/settings.js:292
+#: gui/common/settings.js:316
 msgid "Unlimited"
 msgstr "Unbeschränkt"
 
-#: gui/common/settings.js:345
+#: gui/common/settings.js:369
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: gui/common/settings.js:356
+#: gui/common/settings.js:380
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: gui/common/settings.js:368
+#: gui/common/settings.js:391
+msgctxt "AI behavior"
+msgid "Default"
+msgstr "Standard"
+
+#: gui/common/settings.js:403
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: gui/common/settings.js:380
+#: gui/common/settings.js:415
 msgctxt "map size"
 msgid "Default"
 msgstr "Standard"
 
-#: gui/common/settings.js:392
+#: gui/common/settings.js:427
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: gui/common/settings.js:404
+#: gui/common/settings.js:439
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Unbekannt"
@@ -1431,20 +1458,20 @@ msgid "Player name"
 msgstr "Spielername"
 
 #: gui/summary/layout.js:6
+msgid "Total score"
+msgstr "Gesamtpunktzahl"
+
+#: gui/summary/layout.js:7
 msgid "Economy score"
 msgstr "Wirtschaft"
 
-#: gui/summary/layout.js:7
+#: gui/summary/layout.js:8
 msgid "Military score"
 msgstr "Militär"
 
-#: gui/summary/layout.js:8
+#: gui/summary/layout.js:9
 msgid "Exploration score"
 msgstr "Erkundung"
-
-#: gui/summary/layout.js:9
-msgid "Total score"
-msgstr "Gesamtpunktzahl"
 
 #: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):80
 msgid "Buildings"
@@ -1554,19 +1581,19 @@ msgstr "Ressourcen Statistik (%(gathered)s / %(used)s)"
 msgid "Market"
 msgstr "Markt"
 
-#. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:157
-#, javascript-format
-msgid "%(resourceFirstWord)s exchanged"
-msgstr "%(resourceFirstWord)s getauscht"
+#: gui/summary/layout.js:152
+msgid "Trade income"
+msgstr "Handels- einkommen"
 
-#: gui/summary/layout.js:165
+#: gui/summary/layout.js:153
 msgid "Barter efficiency"
 msgstr "Tausch- effizienz"
 
-#: gui/summary/layout.js:166
-msgid "Trade income"
-msgstr "Handels- einkommen"
+#. Translation: use %(resourceWithinSentence)s if needed
+#: gui/summary/layout.js:159
+#, javascript-format
+msgid "%(resourceFirstWord)s exchanged"
+msgstr "%(resourceFirstWord)s getauscht"
 
 #: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
@@ -1574,35 +1601,35 @@ msgid "Miscellaneous"
 msgstr "Verschiedenes"
 
 #: gui/summary/layout.js:184
-msgid "Vegetarian ratio"
-msgstr "Vegetarieranteil"
-
-#: gui/summary/layout.js:185
-msgid "Feminization"
-msgstr "Feminisierung"
-
-#: gui/summary/layout.js:186
 msgid "Kill / Death ratio"
 msgstr "Verhältnis Getötet/Gestorben"
 
+#: gui/summary/layout.js:185
+msgid "Map control (peak)"
+msgstr "Kartenkontrolle (Spitzenwert)"
+
+#: gui/summary/layout.js:186
+msgid "Map control (finish)"
+msgstr "Kartenkontrolle (Ende)"
+
+#: gui/summary/layout.js:187
+msgid "Map exploration"
+msgstr "Kartenerkundung"
+
+#: gui/summary/layout.js:188
+msgid "Vegetarian ratio"
+msgstr "Vegetarieranteil"
+
 #: gui/summary/layout.js:189
+msgid "Feminization"
+msgstr "Feminisierung"
+
+#: gui/summary/layout.js:192
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "Bestechung\n(%(succeeded)s / %(failed)s)"
-
-#: gui/summary/layout.js:197
-msgid "Map exploration"
-msgstr "Kartenerkundung"
-
-#: gui/summary/layout.js:198
-msgid "Map control (peak)"
-msgstr "Kartenkontrolle (Spitzenwert)"
-
-#: gui/summary/layout.js:199
-msgid "Map control (finish)"
-msgstr "Kartenkontrolle (Ende)"
 
 #: gui/summary/layout.js:355
 msgid "Team total"
@@ -2448,17 +2475,17 @@ msgid "Ceasefire Time Overlay"
 msgstr "Waffenstillstandsdauer-Overlay"
 
 #: gui/options/options.json[0].options[11].list[0].label
-#: gui/options/options.json[3].options[3].list[0].label
+#: gui/options/options.json[3].options[4].list[0].label
 msgid "Everyone"
 msgstr "Jeder"
 
 #: gui/options/options.json[0].options[11].list[1].label
-#: gui/options/options.json[3].options[3].list[1].label
+#: gui/options/options.json[3].options[4].list[1].label
 msgid "Buddies"
 msgstr "Freunde"
 
 #: gui/options/options.json[0].options[11].list[2].label
-#: gui/options/options.json[3].options[3].list[2].label
+#: gui/options/options.json[3].options[4].list[2].label
 msgid "Disabled"
 msgstr "Deaktiviert"
 
@@ -2830,16 +2857,40 @@ msgid "Default difficulty of the AI."
 msgstr "Standardschwierigkeit der AI."
 
 #: gui/options/options.json[3].options[2].label
-msgid "Default AI difficulty"
-msgstr "Standard AI-Schwierigkeit"
+msgid "Default AI Difficulty"
+msgstr ""
+
+#: gui/options/options.json[3].options[3].list[0].label
+msgid "Random"
+msgstr "Zufällig"
+
+#: gui/options/options.json[3].options[3].list[1].label
+msgid "Balanced"
+msgstr ""
+
+#: gui/options/options.json[3].options[3].list[2].label
+msgid "Aggressive"
+msgstr "Aggressiv"
+
+#: gui/options/options.json[3].options[3].list[3].label
+msgid "Defensive"
+msgstr "Defensiv"
 
 #: gui/options/options.json[3].options[3].tooltip
+msgid "Default behavior of the AI."
+msgstr ""
+
+#: gui/options/options.json[3].options[3].label
+msgid "Default AI Behavior"
+msgstr ""
+
+#: gui/options/options.json[3].options[4].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Beitretenden Clients während der Spielvorbereitung automatisch einen freien Slot zuweisen."
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[3].options[4].label
 msgid "Assign Players"
 msgstr "Spieler zuweisen"
 
