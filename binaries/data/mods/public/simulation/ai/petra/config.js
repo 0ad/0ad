@@ -178,8 +178,8 @@ m.Config.prototype.setConfig = function(gameState)
 	}
 	else
 	{
-		this.Military.towerLapseTime += Math.round(20*(this.personality.defensive - 0.5));
-		this.Military.fortressLapseTime += Math.round(60*(this.personality.defensive - 0.5));
+		this.Military.towerLapseTime -= Math.round(20*(this.personality.defensive - 0.5));
+		this.Military.fortressLapseTime -= Math.round(60*(this.personality.defensive - 0.5));
 		if (this.difficulty == 3)
 			this.Military.numSentryTowers = 1;
 		else
@@ -189,7 +189,7 @@ m.Config.prototype.setConfig = function(gameState)
 		else if (this.personality.defensive < 0.33)
 			--this.Military.numSentryTowers;
 
-		if (this.personality.aggressive > 0.7)
+		if (this.personality.aggressive > this.personalityCut.strong)
 		{
 			this.Military.popForBarracks1 = 12;
 			this.Economy.popPhase2 = 50;

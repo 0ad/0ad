@@ -923,9 +923,9 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 	{
 		if (found.getMetadata(PlayerID, "base") != baseID || !found.hasClass("Field"))
 			continue;
-		let fieldTemplate = gameState.getBuiltTemplate(found.templateName());
 		let current = found.getBuildersNb();
-		if (current === undefined || current >= fieldTemplate.maxGatherers())
+		if (current === undefined ||
+		    current >= gameState.getBuiltTemplate(found.templateName()).maxGatherers())
 			continue;
 		let dist = API3.SquareVectorDistance(found.position(), pos);
 		if (dist > bestFarmDist)

@@ -12,6 +12,6 @@
 	"researchTime": 60,
 	"tooltip": "+20% Hack attack for all sword units.",
 	"modifications": [{ "value": "Attack/Melee/Hack", "multiply": 1.2 }],
-	"affects": ["Sword"],
+	"affects": ["Sword", "Maceman"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

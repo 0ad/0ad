@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_infantry_swordsman">
-  <Armour>
-    <Hack op="add">-1</Hack>
-    <Pierce op="add">-1</Pierce>
-  </Armour>
-  <Attack>
-    <Melee>
-      <Hack>0</Hack>
-      <Crush>10.5</Crush>
-    </Melee>
-  </Attack>
+<Entity parent="template_unit_champion_infantry_maceman">
   <Identity>
     <Civ>maur</Civ>
     <GenericName>Warrior</GenericName>
