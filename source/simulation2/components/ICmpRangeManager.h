@@ -199,6 +199,11 @@ public:
 	virtual std::vector<entity_id_t> GetNonGaiaEntities() const = 0;
 
 	/**
+	 * Returns a list of all entities owned by a player or gaia.
+	 */
+	virtual std::vector<entity_id_t> GetGaiaAndNonGaiaEntities() const = 0;
+
+	/**
 	 * Toggle the rendering of debug info.
 	 */
 	virtual void SetDebugOverlay(bool enabled) = 0;
