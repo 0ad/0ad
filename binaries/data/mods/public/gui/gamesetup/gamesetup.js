@@ -1444,14 +1444,13 @@ function getFilteredMaps(filterFunc)
 		return [];
 	}
 
-	let mapFiles = g_GameAttributes.mapType == "random" ?
-		getJSONFileList(g_GameAttributes.mapPath) :
-		getXMLFileList(g_GameAttributes.mapPath);
-
 	let maps = [];
 	// TODO: Should verify these are valid maps before adding to list
-	for (let mapFile of mapFiles)
+	for (let mapFile of listFiles(g_GameAttributes.mapPath, g_GameAttributes.mapType == "random" ? ".json" : ".xml", false))
 	{
+		if (mapFile.startsWith("_"))
+			continue;
+
 		let file = g_GameAttributes.mapPath + mapFile;
 		let mapData = loadMapData(file);
 

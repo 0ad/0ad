@@ -1,3 +1,18 @@
+/**
+ * Path to a file containing quotes of historical figures.
+ */
+var g_QuotesFile = "gui/text/quotes.txt";
+
+/**
+ * Directory storing txt files containing the gameplay tips.
+ */
+var g_TipsTextPath = "gui/text/tips/";
+
+/**
+ * Directory storing the PNG images with filenames corresponding to the tip text files.
+ */
+var g_TipsImagePath = "loading/tips/";
+
 var g_Data;
 var g_EndPieceWidth = 16;
 
@@ -7,29 +22,14 @@ function init(data)
 
 	Engine.SetCursor("cursor-wait");
 
-	// Get tip image and corresponding tip text
-	let tipTextLoadingArray = Engine.ListDirectoryFiles("gui/text/tips/", "*.txt", false);
+	let tipFile = pickRandom(listFiles(g_TipsTextPath, ".txt", false));
 
-	if (tipTextLoadingArray.length > 0)
+	if (tipFile)
 	{
-		// Set tip text
-		let tipTextFilePath = pickRandom(tipTextLoadingArray);
-		let tipText = Engine.TranslateLines(Engine.ReadFile(tipTextFilePath));
-
-		if (tipText)
-		{
-			let index = tipText.indexOf("\n");
-			let tipTextTitle = tipText.substring(0, index);
-			let tipTextMessage = tipText.substring(index);
-			Engine.GetGUIObjectByName("tipTitle").caption = tipTextTitle ? tipTextTitle : "";
-			Engine.GetGUIObjectByName("tipText").caption = tipTextMessage ? tipTextMessage : "";
-		}
-
-		// Set tip image
-		let fileName = tipTextFilePath.substring(tipTextFilePath.lastIndexOf("/") + 1).replace(".txt", ".png");
-		let tipImageFilePath = "loading/tips/" + fileName;
-		let sprite = "stretched:" + tipImageFilePath;
-		Engine.GetGUIObjectByName("tipImage").sprite = sprite ? sprite : "";
+			let tipText = Engine.TranslateLines(Engine.ReadFile(g_TipsTextPath + tipFile + ".txt")).split("\n");
+			Engine.GetGUIObjectByName("tipTitle").caption = tipText.shift();
+			Engine.GetGUIObjectByName("tipText").caption = tipText.join("\n");
+			Engine.GetGUIObjectByName("tipImage").sprite = "stretched:" + g_TipsImagePath + tipFile + ".png";
 	}
 	else
 		error("Failed to find any matching tips for the loading screen.");
@@ -51,18 +51,13 @@ function init(data)
 		case "random":
 			loadingMapName.caption = sprintf(translate("Generating “%(map)s”"), { "map": mapName });
 			break;
-
-		default:
-			error("Unknown map type: " + data.attribs.mapType);
 		}
 	}
 
 	Engine.GetGUIObjectByName("progressText").caption = "";
 	Engine.GetGUIObjectByName("progressbar").caption = 0;
 
-	// Pick a random quote of the day (each line is a separate tip).
-	let quoteArray = Engine.ReadFileLines("gui/text/quotes.txt").filter(line => line);
-	Engine.GetGUIObjectByName("quoteText").caption = translate(pickRandom(quoteArray));
+	Engine.GetGUIObjectByName("quoteText").caption = translate(pickRandom(Engine.ReadFileLines(g_QuotesFile).filter(line => line)));
 }
 
 function displayProgress()

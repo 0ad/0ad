@@ -462,12 +462,10 @@ var g_NotificationsTypes =
 function getCheatsData()
 {
 	let cheats = {};
-	for (let fileName of getJSONFileList("simulation/data/cheats/"))
+	for (let fileName of Engine.ListDirectoryFiles("simulation/data/cheats/", "*.json", false))
 	{
-		let currentCheat = Engine.ReadJSONFile("simulation/data/cheats/" + fileName + ".json");
-		if (!currentCheat)
-			continue;
-		if (Object.keys(cheats).indexOf(currentCheat.Name) !== -1)
+		let currentCheat = Engine.ReadJSONFile(fileName);
+		if (cheats[currentCheat.Name])
 			warn("Cheat name '" + currentCheat.Name + "' is already present");
 		else
 			cheats[currentCheat.Name] = currentCheat.Data;

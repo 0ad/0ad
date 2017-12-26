@@ -50,12 +50,12 @@ DataTemplateManager.prototype.GetAuraTemplate = function(template)
 
 DataTemplateManager.prototype.ListAllTechs = function()
 {
-	return Engine.ListDirectoryFiles(this.technologiesPath, "*.json", true).map(file => file.slice(this.technologiesPath.length, -".json".length));
+	return listFiles(this.technologiesPath, ".json", true);
 };
 
 DataTemplateManager.prototype.ListAllAuras = function()
 {
-	return Engine.ListDirectoryFiles(this.aurasPath, "*.json", true).map(file => file.slice(this.aurasPath.length, -".json".length));
+	return listFiles(this.aurasPath, ".json", true);
 };
 
 DataTemplateManager.prototype.GetAllTechs = function()
