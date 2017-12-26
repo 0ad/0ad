@@ -1,6 +1,6 @@
 const debugLog = false;
 
-var attackerTemplate = "trigger/fauna_wolf_snow_attack";
+var attackerTemplate = "trigger/fauna_arctic_wolf_attack";
 
 var minWaveSize = 1;
 var maxWaveSize = 3;

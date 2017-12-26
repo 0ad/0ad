@@ -19,7 +19,7 @@ const oStoneSmall = "gaia/geology_stone_alpine_a";
 const oMetalLarge = "gaia/geology_metal_alpine_slabs";
 const oFish = "gaia/fauna_fish";
 const oWalrus = "gaia/fauna_walrus";
-const oWolf = "gaia/fauna_wolf_snow";
+const oArcticWolf = "gaia/fauna_arctic_wolf";
 
 const aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 
@@ -294,7 +294,7 @@ Engine.SetProgress(75);
 
 log("Creating sheep...");
 group = new SimpleGroup(
-	[new SimpleObject(oWolf, 2,3, 0,2)],
+	[new SimpleObject(oArcticWolf, 2,3, 0,2)],
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,

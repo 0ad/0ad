@@ -12,7 +12,7 @@ var tShore = "polar_ice_snow";
 var tWater = "polar_ice_c";
 
 var oArcticFox = "gaia/fauna_fox_arctic";
-var oWolf = "trigger/fauna_wolf_snow_attack";
+var oArcticWolf = "trigger/fauna_arctic_wolf_attack";
 var oMuskox = "gaia/fauna_muskox";
 var oWalrus = "gaia/fauna_walrus";
 var oWhaleFin = "gaia/fauna_whale_fin";
@@ -41,7 +41,7 @@ var clMetal = createTileClass();
 var clHill = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clWolf = createTileClass();
+var clArcticWolf = createTileClass();
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
@@ -242,7 +242,7 @@ Engine.SetProgress(80);
 createFood(
 	[
 		[new SimpleObject(oArcticFox, 1, 2, 0, 3)],
-		[new SimpleObject(oWolf, 4, 6, 0, 4)],
+		[new SimpleObject(oArcticWolf, 4, 6, 0, 4)],
 		[new SimpleObject(oWalrus, 2, 3, 0, 2)],
 		[new SimpleObject(oMuskox, 2, 3, 0, 2)]
 	],
@@ -280,9 +280,9 @@ Engine.SetProgress(85);
 
 // Create trigger points where wolves spawn
 createObjectGroupsDeprecated(
-	new SimpleGroup([new SimpleObject("trigger/trigger_point_A", 1, 1, 0, 0)], true, clWolf),
+	new SimpleGroup([new SimpleObject("trigger/trigger_point_A", 1, 1, 0, 0)], true, clArcticWolf),
 	0,
-	avoidClasses(clWater, 2, clMetal, 4, clRock, 4, clPlayer, 15, clHill, 2, clWolf, 20),
+	avoidClasses(clWater, 2, clMetal, 4, clRock, 4, clPlayer, 15, clHill, 2, clArcticWolf, 20),
 	1000,
 	100);
 Engine.SetProgress(95);
