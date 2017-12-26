@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-18 09:20+0100\n"
-"PO-Revision-Date: 2017-12-18 15:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-12-22 09:02+0100\n"
+"PO-Revision-Date: 2017-12-23 16:15+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgstr "Tembus"
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr "Remuk"
+msgstr "Rempuh"
 
 #: gui/civinfo/civinfo.js:95
 #, javascript-format
@@ -168,7 +168,7 @@ msgstr "Tahan %(hotkey)s untuk memadam tanpa pengesahan."
 msgid "A randomly selected map."
 msgstr "Peta dipilih secara rawak."
 
-#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:346
+#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:347
 msgid "Sorry, no description available."
 msgstr "Maaf, tiada keterangan tersedia."
 
@@ -176,29 +176,31 @@ msgstr "Maaf, tiada keterangan tersedia."
 #. savegame menu
 #: gui/common/gamedescription.js:105
 #, javascript-format
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:108
 #, javascript-format
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
+msgid ""
+"%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s, "
+"%(state)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:114
 #, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
+msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:117
 #, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
+msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -256,191 +258,191 @@ msgctxt "playerstate"
 msgid "won"
 msgstr "menang"
 
-#: gui/common/gamedescription.js:196
+#: gui/common/gamedescription.js:197
 msgid "No Team"
 msgstr "Tiada Pasukan"
 
-#: gui/common/gamedescription.js:197
+#: gui/common/gamedescription.js:198
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Paukan %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:200 gui/common/gamedescription.js:207
+#: gui/common/gamedescription.js:201 gui/common/gamedescription.js:208
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s:\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:208
+#: gui/common/gamedescription.js:209
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Pemerhati"
 
-#: gui/common/gamedescription.js:230
+#: gui/common/gamedescription.js:231
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Keajaiban (%(min)s minit)"
 
-#: gui/common/gamedescription.js:242
+#: gui/common/gamedescription.js:243
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Tawan Relik (%(min)s minit)"
 
-#: gui/common/gamedescription.js:258
+#: gui/common/gamedescription.js:259
 msgid "Relic Count"
 msgstr "Kiraan Relik"
 
-#: gui/common/gamedescription.js:265
+#: gui/common/gamedescription.js:266
 msgid "Hero Garrison"
 msgstr "Garison Adiwira"
 
-#: gui/common/gamedescription.js:266
+#: gui/common/gamedescription.js:267
 msgid "Heroes can be garrisoned."
 msgstr "Hero boleh digarisonkan."
 
-#: gui/common/gamedescription.js:270
+#: gui/common/gamedescription.js:271
 msgid "Exposed Heroes"
 msgstr "Adiwira Terdedah"
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:272
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
 msgstr "Adiwira tidak boleh bergarison, dan mereka terdedah dengan serangan hendap."
 
-#: gui/common/gamedescription.js:278
+#: gui/common/gamedescription.js:279
 msgid "Rated game"
 msgstr "Permainan ditaraf"
 
-#: gui/common/gamedescription.js:279
+#: gui/common/gamedescription.js:280
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Bila pemenang perlawanan ini telah ditentukan, skor ruang legar akan dikemaskinikan."
 
-#: gui/common/gamedescription.js:284
+#: gui/common/gamedescription.js:285
 msgid "Locked Teams"
 msgstr "Pasukan Dikunci"
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:286
 msgid "Players can't change the initial teams."
 msgstr "Pemain tidak boleh ubah pasukan awal."
 
-#: gui/common/gamedescription.js:289
+#: gui/common/gamedescription.js:290
 msgid "Diplomacy"
 msgstr "Diplomasi"
 
-#: gui/common/gamedescription.js:290
+#: gui/common/gamedescription.js:291
 msgid "Players can make alliances and declare war on allies."
 msgstr "Pemain hanya boleh membuat pakatan dan isytihar perang bersama-sama sekutunya."
 
-#: gui/common/gamedescription.js:295
+#: gui/common/gamedescription.js:296
 msgid "Last Man Standing"
 msgstr "Tinggal Seorang Sahaja"
 
-#: gui/common/gamedescription.js:296
+#: gui/common/gamedescription.js:297
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Hanya satu pemain boleh memenangi permainan. Jika masih ada pemain lain yang sama-sama dalam pakatan, permainan masih berterusan sehingga tinggal seorang pemain sahaja."
 
-#: gui/common/gamedescription.js:300
+#: gui/common/gamedescription.js:301
 msgid "Allied Victory"
 msgstr "Kemenangan Bersekutu"
 
-#: gui/common/gamedescription.js:301
+#: gui/common/gamedescription.js:302
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Jika seorang pemain menang, rakan sekutunya juga menang. Jika hanya tinggal satu pakatan sahaja, mereka diisytiharkan sebagai pemenang."
 
-#: gui/common/gamedescription.js:307
+#: gui/common/gamedescription.js:308
 msgid "Ceasefire"
 msgstr "Genjatan Senjata"
 
-#: gui/common/gamedescription.js:310 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:311 gui/pregame/mainmenu.js:86
 msgid "disabled"
 msgstr "dilumpuhkan"
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:312
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Bagi %(min)s minit pertama, pemain dalam keadaan neutral."
 
-#: gui/common/gamedescription.js:319
+#: gui/common/gamedescription.js:320
 msgid "Map Name"
 msgstr "Nama Peta"
 
-#: gui/common/gamedescription.js:324
+#: gui/common/gamedescription.js:325
 msgid "Map Type"
 msgstr "Jenis Peta"
 
-#: gui/common/gamedescription.js:333
+#: gui/common/gamedescription.js:334
 msgid "Map Size"
 msgstr "Saiz Peta"
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:341
 msgid "Map Description"
 msgstr "Keterangan Peta"
 
-#: gui/common/gamedescription.js:343
+#: gui/common/gamedescription.js:344
 msgid "Randomly selects a map from the list"
 msgstr "Pilih peta secara rawak dari senarai"
 
-#: gui/common/gamedescription.js:353
+#: gui/common/gamedescription.js:354
 msgid "Biome"
 msgstr "Biome"
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:355
 msgctxt "biome"
 msgid "Random"
 msgstr "Rawak"
 
-#: gui/common/gamedescription.js:361
+#: gui/common/gamedescription.js:362
 msgid "Starting Resources"
 msgstr "Memulakan Sumber"
 
-#: gui/common/gamedescription.js:362
+#: gui/common/gamedescription.js:363
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:372
+#: gui/common/gamedescription.js:373
 msgid "Population Limit"
 msgstr "Had Populasi"
 
-#: gui/common/gamedescription.js:380
+#: gui/common/gamedescription.js:381
 msgid "Treasures"
 msgstr "Harta Karun"
 
-#: gui/common/gamedescription.js:382
+#: gui/common/gamedescription.js:383
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Dilumpuhkan"
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:384
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Sepertimana yang dijelaskan oleh peta."
 
-#: gui/common/gamedescription.js:387
+#: gui/common/gamedescription.js:388
 msgid "Revealed Map"
 msgstr "Peta Didedah"
 
-#: gui/common/gamedescription.js:392
+#: gui/common/gamedescription.js:393
 msgid "Explored Map"
 msgstr "Peta Dijelajah"
 
-#: gui/common/gamedescription.js:397
+#: gui/common/gamedescription.js:398
 msgid "Cheats"
 msgstr "Menipu"
 
-#: gui/common/gamedescription.js:402 gui/common/tooltips.js:126
+#: gui/common/gamedescription.js:403 gui/common/tooltips.js:126
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:222
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:468
 #: gui/common/tooltips.js:758
@@ -448,21 +450,21 @@ msgstr "Menipu"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:405
+#: gui/common/gamedescription.js:406
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "dibenarkan"
 
-#: gui/common/gamedescription.js:406
+#: gui/common/gamedescription.js:407
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "dilumpuhkan"
 
-#: gui/common/gamedescription.js:422
+#: gui/common/gamedescription.js:423
 msgid "Victorious"
 msgstr "Menang"
 
-#: gui/common/gamedescription.js:427
+#: gui/common/gamedescription.js:428
 msgid "Defeated"
 msgstr "Kalah"
 
@@ -572,125 +574,150 @@ msgstr "Pengguna (%(num)s): %(users)s"
 msgid ", "
 msgstr ", "
 
-#: gui/common/settings.js:115
+#: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Kotak Pasir"
 
-#: gui/common/settings.js:119
+#: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Sangat Mudah"
 
-#: gui/common/settings.js:123
+#: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Mudah"
 
-#: gui/common/settings.js:127
+#: gui/common/settings.js:128
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Sederhana"
 
-#: gui/common/settings.js:132
+#: gui/common/settings.js:133
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Sukar"
 
-#: gui/common/settings.js:136
+#: gui/common/settings.js:137
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Sangat Sukar"
 
-#: gui/common/settings.js:158
+#: gui/common/settings.js:147
+msgctxt "aiBehavior"
+msgid "Random"
+msgstr "Rawak"
+
+#: gui/common/settings.js:152
+msgctxt "aiBehavior"
+msgid "Balanced"
+msgstr "Seimbang"
+
+#: gui/common/settings.js:156
+msgctxt "aiBehavior"
+msgid "Defensive"
+msgstr "Pertahanan"
+
+#: gui/common/settings.js:160
+msgctxt "aiBehavior"
+msgid "Aggressive"
+msgstr "Agresif"
+
+#: gui/common/settings.js:182
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s minit"
 
-#: gui/common/settings.js:180
+#: gui/common/settings.js:204
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Tanpa genjatan senjata"
 
-#: gui/common/settings.js:181
+#: gui/common/settings.js:205
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s minit"
 
-#: gui/common/settings.js:195
+#: gui/common/settings.js:219
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Pertempuran"
 
-#: gui/common/settings.js:196
+#: gui/common/settings.js:220
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr "Peta dengan lanskap dipratakrif dan jumlah pemain cadangan. Anda bebas memilih tetapan permainan yang lain."
 
-#: gui/common/settings.js:201
+#: gui/common/settings.js:225
 msgctxt "map"
 msgid "Random"
 msgstr "Rawak"
 
-#: gui/common/settings.js:202
+#: gui/common/settings.js:226
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "Cipta satu peta unik dengan agihan sumber yang berbeza pada setiap masa. Anda bebas memilih bilangan pemain dan pasukan."
 
-#: gui/common/settings.js:206
+#: gui/common/settings.js:230
 msgctxt "map"
 msgid "Scenario"
 msgstr "Senario"
 
-#: gui/common/settings.js:207
+#: gui/common/settings.js:231
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "Peta dengan lanskap dipratakrif dan tetapan perlawanan."
 
-#: gui/common/settings.js:250
+#: gui/common/settings.js:274
 msgctxt "victory condition"
 msgid "None"
 msgstr "Tiada"
 
-#: gui/common/settings.js:251
+#: gui/common/settings.js:275
 msgid "Endless game."
 msgstr "Permainan tanpa penamat."
 
-#: gui/common/settings.js:292
+#: gui/common/settings.js:316
 msgid "Unlimited"
 msgstr "Tidak Terhad"
 
-#: gui/common/settings.js:345
+#: gui/common/settings.js:369
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Tidak Diketahui"
 
-#: gui/common/settings.js:356
+#: gui/common/settings.js:380
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Tidak Diketahui"
 
-#: gui/common/settings.js:368
+#: gui/common/settings.js:391
+msgctxt "AI behavior"
+msgid "Default"
+msgstr "Lalai"
+
+#: gui/common/settings.js:403
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Tidak Diketahui"
 
-#: gui/common/settings.js:380
+#: gui/common/settings.js:415
 msgctxt "map size"
 msgid "Default"
 msgstr "Lalai"
 
-#: gui/common/settings.js:392
+#: gui/common/settings.js:427
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Tidak Diketahui"
 
-#: gui/common/settings.js:404
+#: gui/common/settings.js:439
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Tidak Diketahui"
@@ -1376,20 +1403,20 @@ msgid "Player name"
 msgstr "Nama pemain"
 
 #: gui/summary/layout.js:6
+msgid "Total score"
+msgstr "Jumlah skor"
+
+#: gui/summary/layout.js:7
 msgid "Economy score"
 msgstr "Skor ekonomi"
 
-#: gui/summary/layout.js:7
+#: gui/summary/layout.js:8
 msgid "Military score"
 msgstr "Skor ketenteraan"
 
-#: gui/summary/layout.js:8
+#: gui/summary/layout.js:9
 msgid "Exploration score"
 msgstr "Skor penjelajahan"
-
-#: gui/summary/layout.js:9
-msgid "Total score"
-msgstr "Jumlah skor"
 
 #: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):80
 msgid "Buildings"
@@ -1499,19 +1526,19 @@ msgstr "Statistik Sumber (%(gathered)s / %(used)s)"
 msgid "Market"
 msgstr "Pasar"
 
-#. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:157
-#, javascript-format
-msgid "%(resourceFirstWord)s exchanged"
-msgstr "%(resourceFirstWord)s bertukar tangan"
+#: gui/summary/layout.js:152
+msgid "Trade income"
+msgstr "Pendapatan dagangan"
 
-#: gui/summary/layout.js:165
+#: gui/summary/layout.js:153
 msgid "Barter efficiency"
 msgstr "Kecekapan sistem Barter"
 
-#: gui/summary/layout.js:166
-msgid "Trade income"
-msgstr "Pendapatan dagangan"
+#. Translation: use %(resourceWithinSentence)s if needed
+#: gui/summary/layout.js:159
+#, javascript-format
+msgid "%(resourceFirstWord)s exchanged"
+msgstr "%(resourceFirstWord)s bertukar tangan"
 
 #: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
@@ -1519,35 +1546,35 @@ msgid "Miscellaneous"
 msgstr "Pelbagai"
 
 #: gui/summary/layout.js:184
-msgid "Vegetarian ratio"
-msgstr "Nisbah vegetarian"
-
-#: gui/summary/layout.js:185
-msgid "Feminization"
-msgstr "Feminisasi"
-
-#: gui/summary/layout.js:186
 msgid "Kill / Death ratio"
 msgstr "Nisbah Bunuh / Mati"
 
+#: gui/summary/layout.js:185
+msgid "Map control (peak)"
+msgstr "Kawalan peta (puncak)"
+
+#: gui/summary/layout.js:186
+msgid "Map control (finish)"
+msgstr "Kawalan peta (selesai)"
+
+#: gui/summary/layout.js:187
+msgid "Map exploration"
+msgstr "Penjelajahan peta"
+
+#: gui/summary/layout.js:188
+msgid "Vegetarian ratio"
+msgstr "Nisbah vegetarian"
+
 #: gui/summary/layout.js:189
+msgid "Feminization"
+msgstr "Feminisasi"
+
+#: gui/summary/layout.js:192
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "Rasuah\n(%(succeeded)s / %(failed)s)"
-
-#: gui/summary/layout.js:197
-msgid "Map exploration"
-msgstr "Penjelajahan peta"
-
-#: gui/summary/layout.js:198
-msgid "Map control (peak)"
-msgstr "Kawalan peta (puncak)"
-
-#: gui/summary/layout.js:199
-msgid "Map control (finish)"
-msgstr "Kawalan peta (selesai)"
 
 #: gui/summary/layout.js:355
 msgid "Team total"
@@ -2393,17 +2420,17 @@ msgid "Ceasefire Time Overlay"
 msgstr "Tindihan Atas Masa Genjatan Senjata"
 
 #: gui/options/options.json[0].options[11].list[0].label
-#: gui/options/options.json[3].options[3].list[0].label
+#: gui/options/options.json[3].options[4].list[0].label
 msgid "Everyone"
 msgstr "Semua Orang"
 
 #: gui/options/options.json[0].options[11].list[1].label
-#: gui/options/options.json[3].options[3].list[1].label
+#: gui/options/options.json[3].options[4].list[1].label
 msgid "Buddies"
 msgstr "Rakan"
 
 #: gui/options/options.json[0].options[11].list[2].label
-#: gui/options/options.json[3].options[3].list[2].label
+#: gui/options/options.json[3].options[4].list[2].label
 msgid "Disabled"
 msgstr "Dilumpuhkan"
 
@@ -2437,11 +2464,11 @@ msgstr "Saiz Latihan Berkelompok"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number"
-msgstr ""
+msgstr "Kekunci panas unit cedera menganggap unit terpilih sebagai cedera jika peratus hayat mereka jatuh di bawah nilai ini"
 
 #: gui/options/options.json[0].options[14].label
 msgid "Wounded Unit Health"
-msgstr ""
+msgstr "Hayat Unit Cedera"
 
 #: gui/options/options.json[0].options[15].tooltip
 msgid ""
@@ -2775,16 +2802,40 @@ msgid "Default difficulty of the AI."
 msgstr "Kesukaran lalai bagi AI iaitu kecerdasan buatan."
 
 #: gui/options/options.json[3].options[2].label
-msgid "Default AI difficulty"
-msgstr "Kesukaran lalai AI"
+msgid "Default AI Difficulty"
+msgstr "Kesukaran AI Lalai"
+
+#: gui/options/options.json[3].options[3].list[0].label
+msgid "Random"
+msgstr "Rawak"
+
+#: gui/options/options.json[3].options[3].list[1].label
+msgid "Balanced"
+msgstr "Seimbang"
+
+#: gui/options/options.json[3].options[3].list[2].label
+msgid "Aggressive"
+msgstr "Agresif"
+
+#: gui/options/options.json[3].options[3].list[3].label
+msgid "Defensive"
+msgstr "Pertahanan"
 
 #: gui/options/options.json[3].options[3].tooltip
+msgid "Default behavior of the AI."
+msgstr "Kelakuan lalai bagi AI iaitu kecerdasan buatan."
+
+#: gui/options/options.json[3].options[3].label
+msgid "Default AI Behavior"
+msgstr "Kelakuan AI Lalai"
+
+#: gui/options/options.json[3].options[4].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Umpuk klien yang menyertai secara automatik ke dalam slot tiada pemain ketika persediaan perlawanan."
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[3].options[4].label
 msgid "Assign Players"
 msgstr "Umpuk Pemain"
 
@@ -3113,7 +3164,7 @@ msgstr "- Susut ke pemilik wilayah bila dibina dalam wilayah bukan-sekutu"
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- Bina senjata pengepung dan latih askar-rakyat."
+msgstr "- Bina jentera pengepung dan latih askar-rakyat."
 
 #: gui/text/tips/army_camp.txt:8
 msgid ""
@@ -3181,7 +3232,7 @@ msgstr "- Kedua-duanya boleh dilatih dalam Kuil, selain dari Kubu sepertimana ke
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr "- Guna Askar Bertombak sebagai infantri berat melawan askar berkuda. Guna Aska Berkuda sebagai lawan terhadap senjata pengepung dan askar peninjau."
+msgstr "- Guna Askar Bertombak sebagai infantri berat melawan askar berkuda. Guna Aska Berkuda sebagai lawan terhadap jentera pengepung dan askar peninjau."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3299,7 +3350,7 @@ msgstr "- Kubu merupakan bangunan terkuat bagi setiap puak."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr "- Latih unit hebat seperti Pahlawan, Adiwira, dan Senjata Pengepung."
+msgstr "- Latih unit hebat seperti Pahlawan, Adiwira, dan Jentera Pengepung."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -3390,7 +3441,7 @@ msgstr "- Kebanyakan puak dapat membuatnya di dalam Fasa Kampung."
 msgid ""
 "- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
 " by siege weapons."
-msgstr "- Boleh diserang oleh askar musuh, tidak seperti Tembok Bandar, yang hanya boleh diserang oleh senjata pengepung."
+msgstr "- Boleh diserang oleh askar musuh, tidak seperti Tembok Bandar, yang hanya boleh diserang oleh jentera  pengepung."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"

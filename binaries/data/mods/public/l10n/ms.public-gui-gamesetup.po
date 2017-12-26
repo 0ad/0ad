@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-27 09:04+0100\n"
-"PO-Revision-Date: 2017-12-15 04:23+0000\n"
+"POT-Creation-Date: 2017-12-22 09:01+0100\n"
+"PO-Revision-Date: 2017-12-23 15:59+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -227,178 +227,178 @@ msgid ""
 "%(popCap)s population."
 msgstr "Amaran: Mungkin terdapat masalah prestasi jika semua %(players)s permain mempunyai %(popCap)s penduduk."
 
-#: gui/gamesetup/gamesetup.js:538
+#: gui/gamesetup/gamesetup.js:539
 msgid "Starting Resources"
 msgstr "Memulakan Sumber"
 
-#: gui/gamesetup/gamesetup.js:541
+#: gui/gamesetup/gamesetup.js:542
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Amaun awal bagi setiap sumber: %(resources)s."
 
-#: gui/gamesetup/gamesetup.js:544
+#: gui/gamesetup/gamesetup.js:545
 msgid "Select the game's starting resources."
 msgstr "Pilih sumber mula permainan."
 
-#: gui/gamesetup/gamesetup.js:559
+#: gui/gamesetup/gamesetup.js:560
 msgid "Ceasefire"
 msgstr "Genjatan Senjata"
 
-#: gui/gamesetup/gamesetup.js:560
+#: gui/gamesetup/gamesetup.js:561
 msgid "Set time where no attacks are possible."
 msgstr "Tetapkan masa yang mana tiada serangan dilakukan."
 
-#: gui/gamesetup/gamesetup.js:573
+#: gui/gamesetup/gamesetup.js:574
 msgid "Victory Condition"
 msgstr "Syarat Menang"
 
-#: gui/gamesetup/gamesetup.js:574
+#: gui/gamesetup/gamesetup.js:575
 msgid "Select victory condition."
 msgstr "Pilih syarat menang."
 
-#: gui/gamesetup/gamesetup.js:589
+#: gui/gamesetup/gamesetup.js:590
 msgid "Relic Count"
 msgstr "Kiraan Relik"
 
-#: gui/gamesetup/gamesetup.js:590
+#: gui/gamesetup/gamesetup.js:591
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "Bilangan relik yang muncul dalam peta. Kemenangan relik adalah lebih baik jika hanya satu atau dua relik. Jika banyak, relik penting ditawan kerana untuk dapatkan bonus aura."
 
-#: gui/gamesetup/gamesetup.js:604
+#: gui/gamesetup/gamesetup.js:605
 msgid "Relic Duration"
 msgstr "Jangkam asa Relik"
 
-#: gui/gamesetup/gamesetup.js:605
+#: gui/gamesetup/gamesetup.js:606
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Bilangan minit sehingga pemain diisytiharkan Pemenang Relik."
 
-#: gui/gamesetup/gamesetup.js:619
+#: gui/gamesetup/gamesetup.js:620
 msgid "Wonder Duration"
 msgstr "Jangkamasa Keajaiban"
 
-#: gui/gamesetup/gamesetup.js:620
+#: gui/gamesetup/gamesetup.js:621
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr "Bilangan minit sehingga pemain diisytiharkan Pemenang Keajaiban."
 
-#: gui/gamesetup/gamesetup.js:634
+#: gui/gamesetup/gamesetup.js:635
 msgid "Game Speed"
 msgstr "Kelajuan Permainan"
 
-#: gui/gamesetup/gamesetup.js:635
+#: gui/gamesetup/gamesetup.js:636
 msgid "Select game speed."
 msgstr "Pilih kelajuan permainan."
 
-#: gui/gamesetup/gamesetup.js:699
+#: gui/gamesetup/gamesetup.js:702
 msgid "Chose the civilization for this player"
 msgstr "Pilih tamadun untuk pemain ini"
 
-#: gui/gamesetup/gamesetup.js:739
+#: gui/gamesetup/gamesetup.js:742
 msgid "Hero Garrison"
 msgstr "Garison Adiwira"
 
-#: gui/gamesetup/gamesetup.js:740
+#: gui/gamesetup/gamesetup.js:743
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Togol sama ada  Adiwira boleh digarisonkan."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:754
+#: gui/gamesetup/gamesetup.js:757
 msgid "Revealed Map"
 msgstr "Peta Didedah"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:757
+#: gui/gamesetup/gamesetup.js:760
 msgid "Toggle revealed map (see everything)."
 msgstr "Togol peta didedah (lihat segalanya)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:773
+#: gui/gamesetup/gamesetup.js:776
 msgid "Explored Map"
 msgstr "Peta Dijelajah"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:776
+#: gui/gamesetup/gamesetup.js:779
 msgid "Toggle explored map (see initial map)."
 msgstr "Togol peta dijelajah (lihat peta sebelum ini)."
 
-#: gui/gamesetup/gamesetup.js:787
+#: gui/gamesetup/gamesetup.js:790
 msgid "Disable Treasures"
 msgstr "Lumpuhkan Khazanah"
 
-#: gui/gamesetup/gamesetup.js:788
+#: gui/gamesetup/gamesetup.js:791
 msgid "Disable all treasures on the map."
 msgstr "Sembunyikan semua khazanah di dalam peta."
 
-#: gui/gamesetup/gamesetup.js:799
+#: gui/gamesetup/gamesetup.js:802
 msgid "Disable Spies"
 msgstr "Lumpuhkan Perisik"
 
-#: gui/gamesetup/gamesetup.js:800
+#: gui/gamesetup/gamesetup.js:803
 msgid "Disable spies during the game."
 msgstr "Lumpuhkan perisik dalam permainan."
 
-#: gui/gamesetup/gamesetup.js:811
+#: gui/gamesetup/gamesetup.js:814
 msgid "Teams Locked"
 msgstr "Pasukan Dikunci"
 
-#: gui/gamesetup/gamesetup.js:812
+#: gui/gamesetup/gamesetup.js:815
 msgid "Toggle locked teams."
 msgstr "Togol pasukan dikunci."
 
-#: gui/gamesetup/gamesetup.js:826
+#: gui/gamesetup/gamesetup.js:829
 msgid "Last Man Standing"
 msgstr "Tinggal Seorang Sahaja"
 
-#: gui/gamesetup/gamesetup.js:827
+#: gui/gamesetup/gamesetup.js:830
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Togol sama ada pemain terakhir atau pakatan terakhir menang."
 
-#: gui/gamesetup/gamesetup.js:840
+#: gui/gamesetup/gamesetup.js:843
 msgid "Cheats"
 msgstr "Menipu"
 
-#: gui/gamesetup/gamesetup.js:841
+#: gui/gamesetup/gamesetup.js:844
 msgid "Toggle the usability of cheats."
 msgstr "Togol kebolehgunaan menipu."
 
-#: gui/gamesetup/gamesetup.js:854
+#: gui/gamesetup/gamesetup.js:857
 msgid "Rated Game"
 msgstr "Permainan Ditaraf"
 
-#: gui/gamesetup/gamesetup.js:855
+#: gui/gamesetup/gamesetup.js:858
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Togol jika permainan ini akan ditaraf untuk papan peneraju."
 
-#: gui/gamesetup/gamesetup.js:881
+#: gui/gamesetup/gamesetup.js:884
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr "Ketik %(hotkey)s untuk autolengkapkan nama pemain atau tetapan."
 
-#: gui/gamesetup/gamesetup.js:889
+#: gui/gamesetup/gamesetup.js:892
 msgid "Return to the lobby."
 msgstr "Kembali ke lobi."
 
-#: gui/gamesetup/gamesetup.js:890
+#: gui/gamesetup/gamesetup.js:893
 msgid "Return to the main menu."
 msgstr "Kembali ke menu utama."
 
-#: gui/gamesetup/gamesetup.js:894
+#: gui/gamesetup/gamesetup.js:897
 msgid "Start Game!"
 msgstr "Mula Permainan!"
 
-#: gui/gamesetup/gamesetup.js:900
+#: gui/gamesetup/gamesetup.js:903
 msgid "Start a new game with the current settings."
 msgstr "Mulakan permainan baharu dengan tetapan semasa."
 
-#: gui/gamesetup/gamesetup.js:901
+#: gui/gamesetup/gamesetup.js:904
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
@@ -406,79 +406,79 @@ msgstr "Mulakan permainan baharu dengan tetapan semasa (dilumpuhkan sehingga sem
 
 #: gui/gamesetup/gamesetup.js:958
 #, javascript-format
-msgid "Configure AI: %(name)s - %(difficulty)s."
-msgstr "Konfigur AI: %(name)s - %(difficulty)s."
+msgid "Configure AI: %(difficulty)s %(behavior)s %(name)s."
+msgstr "Konfigur AI: %(difficulty)s %(behavior)s %(name)s."
 
-#: gui/gamesetup/gamesetup.js:1490
+#: gui/gamesetup/gamesetup.js:1496
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rawak"
 
-#: gui/gamesetup/gamesetup.js:1492
+#: gui/gamesetup/gamesetup.js:1498
 msgid "Pick any of the given maps at random."
 msgstr "Pilih mana-mana peta yang disediakan secara rawak."
 
-#: gui/gamesetup/gamesetup.js:1515
+#: gui/gamesetup/gamesetup.js:1521
 msgctxt "biome"
 msgid "Random"
 msgstr "Rawak"
 
-#: gui/gamesetup/gamesetup.js:1516
+#: gui/gamesetup/gamesetup.js:1522
 msgid "Pick a biome at random."
 msgstr "Pilih satu biome secara rawak."
 
-#: gui/gamesetup/gamesetup.js:1801 gui/gamesetup/gamesetup.js:1843
+#: gui/gamesetup/gamesetup.js:1814 gui/gamesetup/gamesetup.js:1856
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1806
+#: gui/gamesetup/gamesetup.js:1819
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Tidak Diketahui"
 
-#: gui/gamesetup/gamesetup.js:1836
+#: gui/gamesetup/gamesetup.js:1849
 msgid "Yes"
 msgstr "Ya"
 
-#: gui/gamesetup/gamesetup.js:1836
+#: gui/gamesetup/gamesetup.js:1849
 msgid "No"
 msgstr "Tidak"
 
-#: gui/gamesetup/gamesetup.js:1930
+#: gui/gamesetup/gamesetup.js:1943
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2130
+#: gui/gamesetup/gamesetup.js:2146
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2138
+#: gui/gamesetup/gamesetup.js:2154
 msgid "Unassigned"
 msgstr "Tidak diumpuk"
 
-#: gui/gamesetup/gamesetup.js:2213
+#: gui/gamesetup/gamesetup.js:2230
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2220
+#: gui/gamesetup/gamesetup.js:2237
 msgid "Unknown Player"
 msgstr "Pemain Tidak Diketahui"
 
-#: gui/gamesetup/gamesetup.js:2259
+#: gui/gamesetup/gamesetup.js:2276
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2260
+#: gui/gamesetup/gamesetup.js:2277
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2261
+#: gui/gamesetup/gamesetup.js:2278
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -492,118 +492,122 @@ msgstr "Memuatkan “%(map)s”"
 msgid "Generating “%(map)s”"
 msgstr "Menjana “%(map)s”"
 
-#: gui/aiconfig/aiconfig.xml:(caption):16
+#: gui/aiconfig/aiconfig.xml:(caption):14
 msgid "AI Configuration"
 msgstr "Konfigurasi AI"
 
-#: gui/aiconfig/aiconfig.xml:(caption):21
+#: gui/aiconfig/aiconfig.xml:(caption):19
 msgid "AI Player:"
 msgstr "Pemain AI:"
 
-#: gui/aiconfig/aiconfig.xml:(caption):30
+#: gui/aiconfig/aiconfig.xml:(caption):28
 msgid "AI Difficulty:"
 msgstr "Kesukaran AI:"
 
-#: gui/aiconfig/aiconfig.xml:(caption):41
+#: gui/aiconfig/aiconfig.xml:(caption):37
+msgid "AI Behavior:"
+msgstr "Kelakuan AI:"
+
+#: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
 msgstr "Batal"
 
-#: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):321
+#: gui/aiconfig/aiconfig.xml:(caption):52
+#: gui/gamesetup/gamesetup.xml:(caption):314
 msgid "OK"
 msgstr "OK"
 
-#: gui/gamesetup/gamesetup.xml:(caption):20
+#: gui/gamesetup/gamesetup.xml:(caption):12
 msgid "Match Setup"
 msgstr "Persediaan Lawan"
 
-#: gui/gamesetup/gamesetup.xml:(caption):26
+#: gui/gamesetup/gamesetup.xml:(caption):18
 msgid "Loading"
 msgstr "Memuatkan"
 
-#: gui/gamesetup/gamesetup.xml:(caption):30
+#: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait..."
 msgstr "Memuatkan data peta. Tungga sebentar..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):46
+#: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Player Name"
 msgstr "Nama Pemain"
 
-#: gui/gamesetup/gamesetup.xml:(caption):50
+#: gui/gamesetup/gamesetup.xml:(caption):42
 msgid "Color"
 msgstr "Warna"
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Player Placement"
 msgstr "Penggantian Pemain"
 
-#: gui/gamesetup/gamesetup.xml:(caption):58
+#: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Civilization"
 msgstr "Tamadun"
 
-#: gui/gamesetup/gamesetup.xml:(caption):86
+#: gui/gamesetup/gamesetup.xml:(caption):78
 msgid "Team"
 msgstr "Pasukan"
 
-#: gui/gamesetup/gamesetup.xml:(caption):140
+#: gui/gamesetup/gamesetup.xml:(caption):132
 msgid "Show this message in the future"
 msgstr "Tunjuk mesej ini di masa akan datang"
 
-#: gui/gamesetup/gamesetup.xml:(caption):207
+#: gui/gamesetup/gamesetup.xml:(caption):199
 msgid "Send"
 msgstr "Hantar"
 
-#: gui/gamesetup/gamesetup.xml:(caption):224
+#: gui/gamesetup/gamesetup.xml:(caption):216
 msgid "Cheats enabled."
 msgstr "Menipu dibenarkan."
 
-#: gui/gamesetup/gamesetup.xml:(caption):252
+#: gui/gamesetup/gamesetup.xml:(caption):244
 msgid "Back"
 msgstr "Undur"
 
-#: gui/gamesetup/gamesetup.xml:(caption):266
-#: gui/gamesetup/gamesetup.xml:(caption):278
+#: gui/gamesetup/gamesetup.xml:(caption):258
+#: gui/gamesetup/gamesetup.xml:(caption):270
 msgid "More Options"
 msgstr "Lagi Pilihan"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):68
+#: gui/gamesetup/gamesetup.xml:(tooltip):60
 msgid "View civilization info"
 msgstr "Lihat maklumat tamadun"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):81
+#: gui/gamesetup/gamesetup.xml:(tooltip):73
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Tetap semula mana-mana tamadun yang dipilih ke nilai lalai (rawak)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):96
+#: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid "Reset all teams to the default."
 msgstr "Tetap semula semua pasukan ke nilai lalai."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):107
+#: gui/gamesetup/gamesetup.xml:(tooltip):99
 msgid "Pick a color."
 msgstr "Ambil satu warna."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):110
+#: gui/gamesetup/gamesetup.xml:(tooltip):102
 msgid "Select player."
 msgstr "Pilih pemain."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):120
+#: gui/gamesetup/gamesetup.xml:(tooltip):112
 msgid "Configure AI settings."
 msgstr "Konfigur tetapan AI."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):123
+#: gui/gamesetup/gamesetup.xml:(tooltip):115
 msgid "Select player's civilization."
 msgstr "Pilih tamadun pemain."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):127
+#: gui/gamesetup/gamesetup.xml:(tooltip):119
 msgid "Select player's team."
 msgstr "Pilih pasukan pemain."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):267
+#: gui/gamesetup/gamesetup.xml:(tooltip):259
 msgid "See more game options"
 msgstr "Lihat lagi pilihan permainan"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):322
+#: gui/gamesetup/gamesetup.xml:(tooltip):315
 msgid "Close more game options window"
 msgstr "Tutup lagi tetingkap pilihan permainan"
 
@@ -646,7 +650,7 @@ msgstr ""
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "\"Tuhan hanya membantu orang yang membantu dirinya sendiri.\" - Aesop (\"Kisah Hercules dengan Pemandu Gerabak Barang\")"
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -656,7 +660,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr ""
+msgstr "\"Kesatuan memberikan kekuatan.\" - Aesop, (\"Kisah Segenggam Lidi\")"
 
 #: gui/text/quotes.txt:10
 msgid ""
@@ -674,11 +678,11 @@ msgstr ""
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr ""
+msgstr "\"Sikap bongkak membawa kemudaratan diri.\" - Aesop (\"Kisah Katak dengan Seladang\")"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr ""
+msgstr "\"Yang perlahan tetapi istiqomah akan memenangi perlumbaan.\" - Aesop (\"Kisah Arnab dengan Kura-Kura\")"
 
 #: gui/text/quotes.txt:14
 msgid ""
@@ -690,11 +694,11 @@ msgstr ""
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr ""
+msgstr "Janji \"Pihak Musuh' sebenarnya tidak ditepati.\" - Aesop (\"Kisah Jururawat dengan Serigala\")"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr ""
+msgstr "\"Banyak helah akan mengundang kezaliman.\" - Aesop (\"Kisah Serigala dengan Biri-Biri\")"
 
 #: gui/text/quotes.txt:17
 msgid ""
@@ -707,7 +711,7 @@ msgstr ""
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr ""
+msgstr "\"Puak Sparta tidak tanya berapa ramai pihak musuh, tetapi dimana mereka berada.\" - Agis II Sparta (Plutarch, \"Moralia\", XVI. \"Bidalan Sparta\", 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
@@ -831,7 +835,7 @@ msgstr ""
 msgid ""
 "\"Man is by nature a political animal.\" - Aristotle (\"Politics\", I. "
 "1253a.2)"
-msgstr ""
+msgstr "\"Manusia secara fitrahnya ialah makhluk berpolitik.\" - Aristotle (\"Politics\", I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
@@ -946,7 +950,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:51
 msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
-msgstr ""
+msgstr "\"Perangkap si pencuri untuk menangkap si pencuri.\" - Callimachus (\"Puisi\", 44)"
 
 #: gui/text/quotes.txt:52
 msgid ""
@@ -1790,7 +1794,7 @@ msgstr ""
 msgid ""
 "\"Walls and ships are nothing without men living together inside them.\" - "
 "Sophocles (\"Oedipus Rex\")"
-msgstr ""
+msgstr "\"Tembok dan kapal tidak berfunsi tanpa pengendali di dalamnya yang saling bekerjasama.\" - Sophocles (\"Oedipus Rex\")"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -1811,7 +1815,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
-msgstr ""
+msgstr "\"Bersederhanalah dalam semua perkara.\" - Terence (\"Gadis dari Andros\", 61)"
 
 #: gui/text/quotes.txt:171
 msgid ""

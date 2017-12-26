@@ -8,14 +8,6 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" sprite="ModernFade"/>
 
-	<object hotkey="tab.next">
-		<action on="Press">selectNextTab(1);</action>
-	</object>
-
-	<object hotkey="tab.prev">
-		<action on="Press">selectNextTab(-1);</action>
-	</object>
-
 	<!-- Settings Window -->
 	<object name="options" type="image" style="ModernDialog" size="50%-350 50%-330 50%+350 50%+330">
 
@@ -24,12 +16,8 @@
 		</object>
 
 		<!-- Category Tabs -->
-		<object name="tabButtons" type="image" sprite="ModernDarkBoxGold" size="15 16 210 100%-52">
-			<repeat count="15">
-				<object name="tabButton[n]" type="button" style="ModernTabButtonVertical" size="0 0 195 30" hidden="true">
-					<object type="text" name="tabButtonText[n]" style="ModernLabelText" ghost="true"/>
-				</object>
-			</repeat>
+		<object size="15 16 210 100%-52">
+			<include file="gui/common/tab_buttons.xml"/>
 		</object>
 
 		<!-- Option Controls -->

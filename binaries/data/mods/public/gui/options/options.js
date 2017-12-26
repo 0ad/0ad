@@ -4,11 +4,6 @@
 var g_Options;
 
 /**
- * Numerical index of the chosen category.
- */
-var g_SelectedCategory;
-
-/**
  * Remember whether to unpause running singleplayer games.
  */
 var g_HasCallback;
@@ -142,63 +137,26 @@ var g_OptionType = {
 function init(data, hotloadData)
 {
 	g_HasCallback = hotloadData && hotloadData.callback || data && data.callback;
-	g_SelectedCategory = hotloadData ? hotloadData.selectedCategory : 0;
+	g_TabCategorySelected = hotloadData ? hotloadData.tabCategorySelected : 0;
 
 	g_Options = Engine.ReadJSONFile("gui/options/options.json");
 	translateObjectKeys(g_Options, ["label", "tooltip"]);
 	deepfreeze(g_Options);
 
-	placeTabButtons();
-	displayOptions();
+	placeTabButtons(
+		g_Options,
+		g_TabButtonHeight,
+		g_TabButtonDist,
+		selectPanel,
+		displayOptions);
 }
 
 function getHotloadData()
 {
 	return {
-		"selectedCategory": g_SelectedCategory,
+		"tabCategorySelected": g_TabCategorySelected,
 		"callback": g_HasCallback
 	};
-}
-
-/*
- * Show next/previous panel.
- * @param direction - 1/-1 forward, backward panel.
- */
-function selectNextTab(direction)
-{
-	g_SelectedCategory = (g_SelectedCategory + direction + Object.keys(g_Options).length) %
-		Object.keys(g_Options).length;
-	displayOptions();
-}
-
-function placeTabButtons()
-{
-	for (let category in g_Options)
-	{
-		let button = Engine.GetGUIObjectByName("tabButton[" + category + "]");
-		if (!button)
-		{
-			warn("Too few tab-buttons!");
-			break;
-		}
-
-		button.onMouseWheelUp = () => selectNextTab(1);
-		button.onMouseWheelDown = () => selectNextTab(-1);
-		button.hidden = false;
-
-		let size = button.size;
-		size.top = category * (g_TabButtonHeight + g_TabButtonDist);
-		size.bottom = size.top + g_TabButtonHeight;
-		button.size = size;
-		button.tooltip = g_Options[category].tooltip || "";
-
-		button.onPress = (category => function() {
-			g_SelectedCategory = category;
-			displayOptions();
-		})(category);
-
-		Engine.GetGUIObjectByName("tabButtonText[" + category + "]").caption = g_Options[category].label;
-	}
 }
 
 /**
@@ -206,11 +164,6 @@ function placeTabButtons()
  */
 function displayOptions()
 {
-	// Highlight the selected tab
-	Engine.GetGUIObjectByName("tabButtons").children.forEach((button, i) => {
-		button.sprite = i == g_SelectedCategory ? "ModernTabVerticalForeground" : "ModernTabVerticalBackground";
-	});
-
 	// Hide all controls
 	for (let body of Engine.GetGUIObjectByName("option_controls").children)
 	{
@@ -220,7 +173,7 @@ function displayOptions()
 	}
 
 	// Initialize label and control of each option for this category
-	for (let i = 0; i < g_Options[g_SelectedCategory].options.length; ++i)
+	for (let i = 0; i < g_Options[g_TabCategorySelected].options.length; ++i)
 	{
 		// Position vertically
 		let body = Engine.GetGUIObjectByName("option_control[" + i + "]");
@@ -231,7 +184,7 @@ function displayOptions()
 		body.hidden = false;
 
 		// Load option data
-		let option = g_Options[g_SelectedCategory].options[i];
+		let option = g_Options[g_TabCategorySelected].options[i];
 		let optionType = g_OptionType[option.type];
 		let value = optionType.configToValue(Engine.ConfigDB_GetValue("user", option.config));
 
@@ -286,7 +239,7 @@ function displayOptions()
  */
 function enableButtons()
 {
-	g_Options[g_SelectedCategory].options.forEach((option, i) => {
+	g_Options[g_TabCategorySelected].options.forEach((option, i) => {
 
 		let enabled =
 			!option.dependencies ||
@@ -353,7 +306,7 @@ function saveChanges()
 			if (value == optionType.sanitizeValue(value, control, option))
 				continue;
 
-			g_SelectedCategory = category;
+			g_TabCategorySelected = category;
 			displayOptions();
 
 			messageBox(

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-11 09:05+0200\n"
-"PO-Revision-Date: 2017-09-11 15:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-22 17:36+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -232,14 +232,14 @@ msgstr "Zurekin bat egingo dut, %(_player_)s, baino soilik %(_amount_)s %(_resou
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr "Bidal iezadazu %(_amount_)s %(_resource_)sen zerga zure kidetza onartzeko."
+msgstr "%(_player_)s, Bidal iezadazu  %(_amount_)s %(_resource_)s en zerga zure kidetza onartzeko."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr "%(_amount_)s %(_resource_)s bidali arte ez dut onartuko zure kidetza eskaintza."
+msgstr "%(_amount_)s %(_resource_)s bidali arte ez dut onartuko zure kidetza eskaintza.%(_player_)s,"
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -298,7 +298,7 @@ msgstr "Zure neutraltasun eskaera onartzen dut, %(_player_)s. Gure zibilizazioak
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr "%(_amount_)s %(_resource_)s zerga moduan ordaintzen badidazu, zure neutraltasun eskaera onartuko dut.."
+msgstr "%(_amount_)s %(_resource_)s,zerga moduan ordaintzen badidazu, zure neutraltasun eskaera onartuko dut, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
@@ -525,14 +525,14 @@ msgstr "Ez dago nahiko baliabide - %(resourceAmount1)s %(resourceType1)s"
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
+msgstr "Ez dago nahiko baliabide - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:308
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+msgstr "Ez dago nahiko baliabide - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:310
 #, javascript-format
@@ -540,7 +540,7 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+msgstr "Ez dago nahiko baliabide - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:401
 msgid "The production queue is full."

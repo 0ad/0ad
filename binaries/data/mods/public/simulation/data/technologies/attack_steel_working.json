@@ -10,8 +10,11 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "metalworker.png",
 	"researchTime": 60,
-	"tooltip": "+20% Hack attack for all sword units.",
-	"modifications": [{ "value": "Attack/Melee/Hack", "multiply": 1.2 }],
+	"tooltip": "+20% Hack attack for all swordsmen and macemen.",
+	"modifications": [
+		{ "value": "Attack/Melee/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Crush", "multiply": 1.2 }
+	],
 	"affects": ["Sword", "Maceman"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
