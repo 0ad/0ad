@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Gastraphetes">
+      <mesh>props/gastraphetes.dae</mesh>
+      <animations>
+        <animation event="0.92" file="mechanical/gastraphetes_attack.dae" load="0.75" name="attack_ranged" speed="100"/>
+        <animation file="mechanical/gastraphetes_idle.dae" name="idle" speed="100"/>
+      </animations>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-projectile"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

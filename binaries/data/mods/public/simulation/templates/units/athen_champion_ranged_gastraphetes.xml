@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_archer">
+  <Attack>
+    <Ranged>
+      <Hack>0</Hack>
+      <Pierce>6.5</Pierce>
+      <Crush>0</Crush>
+      <MaxRange>76</MaxRange>
+      <MinRange>0.0</MinRange>
+      <ProjectileSpeed>100.0</ProjectileSpeed>
+      <PrepareTime>2320</PrepareTime>
+      <RepeatTime>3000</RepeatTime>
+      <Spread>1.0</Spread>
+      <PreferredClasses datatype="tokens">Human</PreferredClasses>
+    </Ranged>
+  </Attack>
+  <Identity>
+    <Civ>athen</Civ>
+    <Lang>greek</Lang>
+    <GenericName>Greek Gastraphetes</GenericName>
+    <SpecificName>Toxótēs Skythikós</SpecificName>
+    <History></History>
+    <Icon>units/athen_champion_ranged.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/athenians/champion_unit_gastraphetes.xml</Actor>
+  </VisualActor>
+</Entity>
