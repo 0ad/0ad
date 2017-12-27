@@ -14,10 +14,10 @@ function coloredText(text, color)
  */
 function setStringTags(text, tags)
 {
-	let result = "";
+	let result = text;
 
 	for (let tag in tags)
-		result = '[' + tag + '="' + tags[tag] + '"]' + text + '[/' + tag + ']';
+		result = '[' + tag + '="' + tags[tag] + '"]' + result + '[/' + tag + ']';
 
 	return result;
 }
