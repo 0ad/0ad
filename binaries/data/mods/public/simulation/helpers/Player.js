@@ -38,9 +38,7 @@ function LoadPlayerSettings(settings, newPlayers)
 		while (settingsNumPlayers > numPlayers)
 		{
 			// Add player entity to engine
-			var civ = getSetting(playerData, playerDefaults, numPlayers, "Civ");
-			var template = cmpTemplateManager.TemplateExists("special/player_"+civ) ? "special/player_"+civ : "special/player";
-			var entID = Engine.AddEntity(template);
+			var entID = Engine.AddEntity(GetPlayerTemplateName(getSetting(playerData, playerDefaults, numPlayers, "Civ")));
 			var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
 			if (!cmpPlayer)
 				throw new Error("Player.js: Error creating player entity " + numPlayers);
@@ -59,8 +57,7 @@ function LoadPlayerSettings(settings, newPlayers)
 	// Even when no new player, we must check the template compatibility as player template may be civ dependent
 	for (var i = 0; i < numPlayers; ++i)
 	{
-		var civ = getSetting(playerData, playerDefaults, i, "Civ");
-		var template = cmpTemplateManager.TemplateExists("special/player_"+civ) ? "special/player_"+civ : "special/player";
+		var template = GetPlayerTemplateName(getSetting(playerData, playerDefaults, i, "Civ"));
 		var entID = cmpPlayerManager.GetPlayerByID(i);
 		if (cmpTemplateManager.GetCurrentTemplateName(entID) === template)
 			continue;
@@ -173,6 +170,16 @@ function getSetting(settings, defaults, idx, property)
 		return defaults[idx][property];
 
 	return undefined;
+}
+
+function GetPlayerTemplateName(civ)
+{
+	let path = "special/player/player";
+
+	if (Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).TemplateExists(path + "_" + civ))
+		return path + "_" + civ;
+
+	return path;
 }
 
 /**
