@@ -1,8 +1,8 @@
 var g_TooltipTextFormats = {
-	"unit": ['[font="sans-10"][color="orange"]', '[/color][/font]'],
-	"header": ['[font="sans-bold-13"]', '[/font]'],
-	"body": ['[font="sans-13"]', '[/font]'],
-	"comma": ['[font="sans-12"]', '[/font]']
+	"unit": { "font": "sans-10", "color": "orange" },
+	"header": { "font": "sans-bold-13" },
+	"body": { "font": "sans-13" },
+	"comma": { "font": "sans-12" }
 };
 
 var g_AttackTypes = {
@@ -84,22 +84,22 @@ function getLocalizedResourceAmounts(resources)
 
 function bodyFont(text)
 {
-	return g_TooltipTextFormats.body[0] + text + g_TooltipTextFormats.body[1];
+	return setStringTags(text, g_TooltipTextFormats.body);
 }
 
 function headerFont(text)
 {
-	return g_TooltipTextFormats.header[0] + text + g_TooltipTextFormats.header[1];
+	return setStringTags(text, g_TooltipTextFormats.header);
 }
 
 function unitFont(text)
 {
-	return g_TooltipTextFormats.unit[0] + text + g_TooltipTextFormats.unit[1];
+	return setStringTags(text, g_TooltipTextFormats.unit);
 }
 
 function commaFont(text)
 {
-	return g_TooltipTextFormats.comma[0] + text + g_TooltipTextFormats.comma[1];
+	return setStringTags(text, g_TooltipTextFormats.comma);
 }
 
 function getSecondsString(seconds)
