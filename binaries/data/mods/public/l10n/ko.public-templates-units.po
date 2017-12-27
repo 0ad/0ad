@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-22 09:04+0100\n"
-"PO-Revision-Date: 2017-11-22 14:41+0000\n"
+"POT-Creation-Date: 2017-12-25 09:04+0100\n"
+"PO-Revision-Date: 2017-12-25 14:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -31,15 +31,15 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/templates/template_unit_catafalque.xml:20
+#: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
 msgstr ""
 
-#: simulation/templates/template_unit_catafalque.xml:23
+#: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
 msgstr ""
 
-#: simulation/templates/template_unit_catafalque.xml:24
+#: simulation/templates/template_unit_catafalque.xml:22
 msgid "Relic"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgstr "군인"
 #: simulation/templates/template_unit_cavalry.xml:40
 #: simulation/templates/template_unit_dog.xml:46
 #: simulation/templates/template_unit_infantry.xml:65
-#: simulation/templates/template_unit_support_healer.xml:21
+#: simulation/templates/template_unit_support_healer.xml:26
 #: simulation/templates/units/brit_support_healer_b.xml:8
 #: simulation/templates/units/cart_support_healer_b.xml:9
 #: simulation/templates/units/gaul_support_healer_b.xml:8
@@ -82,6 +82,7 @@ msgstr "보통"
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
 #: simulation/templates/template_unit_champion_elephant_melee.xml:15
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:28
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:34
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
@@ -151,8 +152,8 @@ msgstr "원거리 기병"
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:61
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:51
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:47
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:46
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:50
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:50
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:55
 msgid "Ranged"
 msgstr "원거리"
 
@@ -243,6 +244,14 @@ msgstr "챔피언 궁병"
 msgid "Champion Skirmisher"
 msgstr "챔피언 척후병"
 
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:28
+msgid "Maceman"
+msgstr ""
+
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:29
+msgid "Champion Maceman"
+msgstr ""
+
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
@@ -324,13 +333,13 @@ msgstr "영웅 창기병"
 msgid "Hero Cavalry Swordsman"
 msgstr "영웅 검기병"
 
-#: simulation/templates/template_unit_hero_healer.xml:27
-#: simulation/templates/template_unit_support_healer.xml:24
-#: simulation/templates/template_unit_support_healer.xml:20
+#: simulation/templates/template_unit_hero_healer.xml:32
+#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:25
 msgid "Healer"
 msgstr "치유자"
 
-#: simulation/templates/template_unit_hero_healer.xml:27
+#: simulation/templates/template_unit_hero_healer.xml:32
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
@@ -414,7 +423,7 @@ msgstr "군함"
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:53
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:60
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:53
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:51
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:56
 msgid "Garrison units for transport and to increase firepower."
 msgstr "수송과 화력 증가를 위한 수비대"
 
@@ -482,11 +491,11 @@ msgstr "노포"
 msgid "BoltShooter"
 msgstr "노포"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:45
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:49
 msgid "Siege Catapult"
 msgstr "공성투석기"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:46
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:50
 msgid "Catapult"
 msgstr "투석기"
 
@@ -498,11 +507,11 @@ msgstr "파성추"
 msgid "Ram"
 msgstr "공성망치"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:49
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:54
 msgid "Siege Tower"
 msgstr "공성탑"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:50
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:55
 msgid "SiegeTower"
 msgstr "공성탑"
 
@@ -510,7 +519,7 @@ msgstr "공성탑"
 msgid "Female Citizen"
 msgstr "여성 시민"
 
-#: simulation/templates/template_unit_support_healer.xml:23
+#: simulation/templates/template_unit_support_healer.xml:28
 msgid "Heal units."
 msgstr "유닛을 치료합니다."
 
@@ -1595,11 +1604,11 @@ msgstr "인도 전투 코끼리"
 msgid "Gajendra"
 msgstr ""
 
-#: simulation/templates/units/maur_champion_infantry.xml:15
+#: simulation/templates/units/maur_champion_infantry.xml:5
 msgid "Warrior"
 msgstr "전사"
 
-#: simulation/templates/units/maur_champion_infantry.xml:16
+#: simulation/templates/units/maur_champion_infantry.xml:6
 msgid "Yōddha"
 msgstr ""
 
@@ -2230,7 +2239,7 @@ msgstr "마리우스 군단병"
 msgid "Marian Legionarius"
 msgstr ""
 
-#: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:32
+#: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:33
 msgid "Onager"
 msgstr ""
 

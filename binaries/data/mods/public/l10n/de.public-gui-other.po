@@ -45,8 +45,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-22 09:02+0100\n"
-"PO-Revision-Date: 2017-12-22 15:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-27 08:05+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -217,7 +217,7 @@ msgstr "Leider keine Beschreibung vorhanden."
 #: gui/common/gamedescription.js:105
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -226,21 +226,21 @@ msgstr ""
 msgid ""
 "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s, "
 "%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:114
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:117
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -656,7 +656,7 @@ msgstr "Zufällig"
 #: gui/common/settings.js:152
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Ausgewogen"
 
 #: gui/common/settings.js:156
 msgctxt "aiBehavior"
@@ -2858,7 +2858,7 @@ msgstr "Standardschwierigkeit der AI."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "Standard KI-Schwierigkeit"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Random"
@@ -2866,7 +2866,7 @@ msgstr "Zufällig"
 
 #: gui/options/options.json[3].options[3].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Ausgewogen"
 
 #: gui/options/options.json[3].options[3].list[2].label
 msgid "Aggressive"
@@ -2878,11 +2878,11 @@ msgstr "Defensiv"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "Standardverhalten der KI."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Behavior"
-msgstr ""
+msgstr "Standardverhalten der KI."
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid ""
