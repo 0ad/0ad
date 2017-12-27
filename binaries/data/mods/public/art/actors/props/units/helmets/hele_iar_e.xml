@@ -2,10 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="3" name="helmet-boeotian">
-      <mesh>props/helmet/hele_helmet_t.dae</mesh>
+    <variant frequency="3" name="Boeotian helmet">
+      <mesh>props/helmet/hele_boeotian.dae</mesh>
       <textures>
-        <texture file="props/helmet/hele_a1.dds" name="baseTex"/>
+        <texture file="props/helmet/hele_boeotian_bronze.png" name="baseTex"/>
         <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
       </textures>
     </variant>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Boeotian helmet with plume">
+      <mesh>props/helmet/hele_boeotian.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_boeotian_gold.png" name="baseTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/boeotian_crest.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Boeotian helmet">
+      <mesh>props/helmet/hele_boeotian.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_boeotian_gold.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Boeotian helmet tinned with laurels and high crest">
+      <mesh>props/helmet/hele_boeotian.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_boeotian_laurel.png" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/boeotian_highcrest.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="Boeotian helmet with plume tinned">
+      <mesh>props/helmet/hele_boeotian.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/boeotian_crest.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/helmet/hele_boeotian_tin.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Early">
+      <mesh>props/helmet/mace_helmet_g.dae</mesh>
+      <textures>
+        <texture file="props/helmet/mace_c.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Early-Plume">
+      <mesh>props/helmet/mace_helmet_h.dae</mesh>
+      <textures>
+        <texture file="props/helmet/mace_c.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Helmet-Thracian-Crested">
+      <mesh>props/helmet/helmet_thracian_4.dae</mesh>
+      <textures>
+        <texture file="props/helmet/mace_c.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Helmet-Chalcidean-Crested">
+      <mesh>props/helmet/mace_helmet_o.dae</mesh>
+      <textures>
+        <texture file="props/helmet/mace-g.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Helmet-Attic-Crested">
+      <mesh>props/helmet/hele_helmet_s.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_h1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Helmet-UnknownStyle-Crested">
+      <mesh>props/helmet/mace_helmet_m.dae</mesh>
+      <textures>
+        <texture file="props/helmet/mace-h.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

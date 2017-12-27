@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Boeotian plume">
+      <mesh>props/helmet/hele_boeotian_crest.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_a1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

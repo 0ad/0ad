@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="4" name="Boeotian high crest 01">
+      <mesh>props/helmet/hele_boeotian_highcrest.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_a2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="4" name="Boeotian high crest 02">
+      <mesh>props/helmet/hele_boeotian_highcrest_02.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_a2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

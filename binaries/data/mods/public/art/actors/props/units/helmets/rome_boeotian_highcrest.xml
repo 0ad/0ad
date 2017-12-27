@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="4" name="Roman boeotian helmet with high crest">
+      <mesh>props/helmet/hele_boeotian.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_boeotian_gold.png" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/helmets/props/boeotian_highcrest.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_spec_helmet.xml</material>
+</actor>
