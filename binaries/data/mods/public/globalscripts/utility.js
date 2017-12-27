@@ -59,3 +59,12 @@ function basename(path)
 {
 	return path.slice(path.lastIndexOf("/") + 1);
 }
+
+/**
+ * Returns names of files found in the given directory, stripping the directory path and file extension.
+ */
+function listFiles(path, extension, recurse)
+{
+	return Engine.ListDirectoryFiles(path, "*" + extension, recurse).map(filename => filename.slice(path.length, -extension.length));
+}
+

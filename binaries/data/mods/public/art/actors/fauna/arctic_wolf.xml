@@ -6,15 +6,15 @@
       <mesh>skeletal/wolf.dae</mesh>
         <animations>
           <animation file="quadraped/wolf_walk.dae" name="Walk" speed="75"/>
-          <animation file="quadraped/wolf_run.dae" name="Run" speed="10"/>   
+          <animation file="quadraped/wolf_run.dae" name="Run" speed="10"/>
           <animation file="quadraped/wolf_attack_01.dae" name="attack_melee" speed="165"/>
           <animation file="quadraped/wolf_attack_02.dae" name="attack_melee" speed="165"/>
-          <animation file="quadraped/wolf_idle_01.dae" name="Idle" speed="100"/>     
-          <animation file="quadraped/wolf_idle_02.dae" name="Idle" speed="100"/> 
+          <animation file="quadraped/wolf_idle_01.dae" name="Idle" speed="100"/>
+          <animation file="quadraped/wolf_idle_02.dae" name="Idle" speed="100"/>
           <animation file="quadraped/wolf_idle_03.dae" name="Idle" speed="100"/>
           <animation file="quadraped/wolf_death_01.dae" name="death" speed="100"/>
-          <animation file="quadraped/wolf_death_02.dae" name="death" speed="100"/>                                                                           
-        </animations>        
+          <animation file="quadraped/wolf_death_02.dae" name="death" speed="100"/>
+        </animations>
     </variant>
   </group>
   <group>

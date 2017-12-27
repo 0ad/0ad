@@ -38,6 +38,7 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBaobab, tForestFloor + TERR
 InitMap();
 
 const numPlayers = getNumPlayers();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -128,39 +129,28 @@ for (var i = 0; i < numPlayers; i++)
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
-
 Engine.SetProgress(20);
-
 log ("Creating rivers...");
-for (var m = 0; m < numPlayers; m++)
-{
-	var tang = startAngle + (m + 0.5) * TWO_PI / numPlayers;
 
+var riverStart = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.15), mapCenter.x, mapCenter.y);
+var riverEnd = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.49), mapCenter.x, mapCenter.y);
+
+for (let i = 0; i < numPlayers; ++i)
+{
+	let neighborID = (i + 1) % numPlayers;
+
+	log("Creating lake near the center...");
 	createArea(
-		new ClumpPlacer(
-			Math.floor(diskArea(scaleByMapSize(10, 50)) / 3),
-			0.95,
-			0.6,
-			10,
-			fractionToTiles(0.5 + 0.15 * Math.cos(tang)),
-			fractionToTiles(0.5 + 0.15 * Math.sin(tang))),
+		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 3), 0.95, 0.6, 10, riverStart[0][i], riverStart[1][i]),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, -4, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 5));
 
+	log("Creating the river between the players...");
 	createArea(
-		new PathPlacer(
-			fractionToTiles(0.5 + 0.15 * Math.cos(tang)),
-			fractionToTiles(0.5 + 0.15 * Math.sin(tang)),
-			fractionToTiles(0.5 + 0.49 * Math.cos(tang)),
-			fractionToTiles(0.5 + 0.49 * Math.sin(tang)),
-			scaleByMapSize(10, 50),
-			0.2,
-			3 * scaleByMapSize(1, 4),
-			0.2,
-			0.05),
+		new PathPlacer(riverStart[0][i], riverStart[1][i], riverEnd[0][i], riverEnd[1][i], scaleByMapSize(10, 50), 0.2, 3 * scaleByMapSize(1, 4), 0.2, 0.05),
 		[
 			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
 			new SmoothElevationPainter(ELEVATION_SET, -4, 4),
@@ -168,69 +158,45 @@ for (var m = 0; m < numPlayers; m++)
 		],
 		avoidClasses(clPlayer, 5));
 
+	log("Creating lake near the map border...");
 	createArea(
-		new ClumpPlacer(
-			Math.floor(diskArea(scaleByMapSize(10, 50)) / 5),
-			0.95,
-			0.6,
-			10,
-			fractionToTiles(0.5 + 0.49 * Math.cos(tang)),
-			fractionToTiles(0.5 + 0.49 * Math.sin(tang))),
+		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, riverEnd[0][i], riverEnd[1][i]),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, -4, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 5));
+
+	log("Creating shallows between neighbors...");
+	createShallowsPassage(
+		Math.round(fractionToTiles(playerX[i])),
+		Math.round(fractionToTiles(playerZ[i])),
+		Math.round(fractionToTiles(playerX[neighborID])),
+		Math.round(fractionToTiles(playerZ[neighborID])),
+		6,
+		-2,
+		-2,
+		4,
+		clShallows,
+		undefined,
+		-4);
+
+	log("Creating animals in shallows...");
+	let objects = [
+		new SimpleObject(oWildebeest, 5, 6, 0, 4),
+		new SimpleObject(oElephant, 2, 3, 0, 4)
+	];
+	for (let object of objects)
+		createObjectGroup(
+			new SimpleGroup(
+				[object],
+				true,
+				clFood,
+				Math.round(fractionToTiles(playerX[i] + playerX[neighborID]) / 2),
+				Math.round(fractionToTiles(playerZ[i] + playerZ[neighborID]) / 2)),
+			0);
 }
 
-for (var i = 0; i < numPlayers; i++)
-{
-	if (i+1 == numPlayers)
-	{
-		createShallowsPassage(
-			round(fractionToTiles(playerX[i])),
-			round(fractionToTiles(playerZ[i])),
-			round(fractionToTiles(playerX[0])),
-			round(fractionToTiles(playerZ[0])),
-			6, -2, -2, 4, clShallows, undefined, -4);
-
-		log("Creating animals in shallows...");
-		var group = new SimpleGroup(
-			[new SimpleObject(oElephant, 2,3, 0,4)],
-			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[0]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[0]))/2)
-		);
-		createObjectGroup(group, 0);
-
-		var group = new SimpleGroup(
-			[new SimpleObject(oWildebeest, 5,6, 0,4)],
-			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[0]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[0]))/2)
-		);
-		createObjectGroup(group, 0);
-	}
-	else
-	{
-		createShallowsPassage(
-			fractionToTiles(playerX[i]),
-			fractionToTiles(playerZ[i]),
-			fractionToTiles(playerX[i+1]),
-			fractionToTiles(playerZ[i+1]),
-			6, -2, -2, 4, clShallows, undefined, -4);
-
-		log("Creating animals in shallows...");
-		var group = new SimpleGroup(
-			[new SimpleObject(oElephant, 2,3, 0,4)],
-			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[i+1]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[i+1]))/2)
-		);
-		createObjectGroup(group, 0);
-
-		var group = new SimpleGroup(
-			[new SimpleObject(oWildebeest, 5,6, 0,4)],
-			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[i+1]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[i+1]))/2)
-		);
-		createObjectGroup(group, 0);
-
-	}
-}
 paintTerrainBasedOnHeight(-6, 2, 1, tWater);
 
 log("Creating bumps...");

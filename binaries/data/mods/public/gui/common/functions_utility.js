@@ -7,36 +7,6 @@ var g_SoundNotifications = {
 	"nick": { "soundfile": "audio/interface/ui/chat_alert.ogg", "threshold": 3000 }
 };
 
-// Get list of XML files in pathname with recursion, excepting those starting with _
-function getXMLFileList(pathname)
-{
-	var files = Engine.ListDirectoryFiles(pathname, "*.xml", true);
-
-	var result = [];
-
-	// Get only subpath from filename and discard extension
-	for (var i = 0; i < files.length; ++i)
-	{
-		var file = files[i];
-		file = file.substring(pathname.length, file.length - 4);
-
-		// Split path into directories so we can check for beginning _ character
-		var tokens = file.split("/");
-
-		if (tokens[tokens.length - 1][0] != "_")
-			result.push(file);
-	}
-
-	return result;
-}
-
-function getJSONFileList(pathname)
-{
-	// Remove the path and extension from each name, since we just want the filename
-	return Engine.ListDirectoryFiles(pathname, "*.json", false).map(
-		filename => filename.substring(pathname.length, filename.length - 5));
-}
-
 /**
  * Returns translated history and gameplay data of all civs, optionally including a mock gaia civ.
  */

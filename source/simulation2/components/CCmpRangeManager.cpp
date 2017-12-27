@@ -1053,6 +1053,11 @@ public:
 		return GetEntitiesByMask(~3); // bit 0 for owner=-1 and bit 1 for gaia
 	}
 
+	virtual std::vector<entity_id_t> GetGaiaAndNonGaiaEntities() const
+	{
+		return GetEntitiesByMask(~1); // bit 0 for owner=-1
+	}
+
 	std::vector<entity_id_t> GetEntitiesByMask(u32 ownerMask) const
 	{
 		std::vector<entity_id_t> entities;
