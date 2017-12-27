@@ -72,8 +72,6 @@ function InitGame(settings)
 	// Map or player data (handicap...) dependent initialisations of components (i.e. garrisoned units)
 	Engine.BroadcastMessage(MT_InitGame, {});
 
-	let seed = settings.AISeed ? settings.AISeed : 0;
-	cmpAIManager.SetRNGSeed(seed);
 	cmpAIManager.TryLoadSharedComponent();
 	cmpAIManager.RunGamestateInit();
 }
