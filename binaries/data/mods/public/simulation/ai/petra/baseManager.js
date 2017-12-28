@@ -734,7 +734,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			continue; // we do not build fields
 
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
-			if (!target.hasClass("CivCentre") && !target.hasClass("StoneWall") && (!target.hasClass("Wonder") || gameState.getGameType() !== "wonder"))
+			if (!target.hasClass("CivCentre") && !target.hasClass("StoneWall") &&
+			    (!target.hasClass("Wonder") || gameState.getGameType() != "wonder"))
 				continue;
 
 		// if our territory has shrinked since this foundation was positioned, do not build it
@@ -746,20 +747,25 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (maxTotalBuilders < 2 && workers.length > 1)
 			maxTotalBuilders = 2;
 		if (target.hasClass("House") && gameState.getPopulationLimit() < gameState.getPopulation() + 5 &&
-			gameState.getPopulationLimit() < gameState.getPopulationMax())
+		    gameState.getPopulationLimit() < gameState.getPopulationMax())
 			maxTotalBuilders = maxTotalBuilders + 2;
 		let targetNB = 2;
-		if (target.hasClass("House") || target.hasClass("DropsiteWood"))
-			targetNB = 3;
-		else if (target.hasClass("Barracks") || target.hasClass("DefenseTower") || target.hasClass("Market"))
-			targetNB = 4;
-		else if (target.hasClass("Fortress"))
+		if (target.hasClass("Fortress") || target.hasClass("Wonder") ||
+		    target.getMetadata(PlayerID, "phaseUp") == true)
 			targetNB = 7;
-		if (target.getMetadata(PlayerID, "baseAnchor") === true || target.hasClass("Wonder") && gameState.getGameType() === "wonder")
+		else if (target.hasClass("Barracks") || target.hasClass("DefenseTower") ||
+		         target.hasClass("Market"))
+			targetNB = 4;
+		else if (target.hasClass("House") || target.hasClass("DropsiteWood"))
+			targetNB = 3;
+
+		if (target.getMetadata(PlayerID, "baseAnchor") == true ||
+		    target.hasClass("Wonder") && gameState.getGameType() == "wonder")
 		{
 			targetNB = 15;
 			maxTotalBuilders = Math.max(maxTotalBuilders, 15);
 		}
+
 		// if no base yet, everybody should build
 		if (gameState.ai.HQ.numActiveBases() == 0)
 		{
@@ -767,67 +773,68 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			maxTotalBuilders = targetNB;
 		}
 
-		if (assigned < targetNB)
+		if (assigned >= targetNB)
+			continue;
+		idleBuilderWorkers.forEach(function(ent) {
+			if (ent.getMetadata(PlayerID, "target-foundation") !== undefined)
+				return;
+			if (assigned >= targetNB || !ent.position() ||
+			    API3.SquareVectorDistance(ent.position(), target.position()) > 40000)
+				return;
+			++assigned;
+			++builderTot;
+			ent.setMetadata(PlayerID, "target-foundation", target.id());
+		});
+		if (assigned >= targetNB || builderTot >= maxTotalBuilders)
+			continue;
+		let nonBuilderWorkers = workers.filter(function(ent) {
+			if (ent.getMetadata(PlayerID, "subrole") == "builder")
+				return false;
+			if (!ent.position())
+				return false;
+			if (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3)
+				return false;
+			if (ent.getMetadata(PlayerID, "transport"))
+				return false;
+			return true;
+		}).toEntityArray();
+		let time = target.buildTime();
+		nonBuilderWorkers.sort(function (workerA,workerB)
 		{
-			idleBuilderWorkers.forEach(function(ent) {
-				if (ent.getMetadata(PlayerID, "target-foundation") !== undefined)
-					return;
-				if (assigned >= targetNB || !ent.position() || API3.SquareVectorDistance(ent.position(), target.position()) > 40000)
-					return;
-				assigned++;
-				builderTot++;
-				ent.setMetadata(PlayerID, "target-foundation", target.id());
-			});
-			if (assigned < targetNB && builderTot < maxTotalBuilders)
-			{
-				let nonBuilderWorkers = workers.filter(function(ent) {
-					if (ent.getMetadata(PlayerID, "subrole") === "builder")
-						return false;
-					if (!ent.position())
-						return false;
-					if (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3)
-						return false;
-					if (ent.getMetadata(PlayerID, "transport"))
-						return false;
-					return true;
-				}).toEntityArray();
-				let time = target.buildTime();
-				nonBuilderWorkers.sort(function (workerA,workerB)
-				{
-					let coeffA = API3.SquareVectorDistance(target.position(),workerA.position());
-					// elephant moves slowly, so when far away they are only useful if build time is long
-					if (workerA.hasClass("Elephant"))
-						coeffA *= 0.5 * (1 + Math.sqrt(coeffA)/5/time);
-					else if (workerA.getMetadata(PlayerID, "gather-type") === "food")
-						coeffA *= 3;
-					let coeffB = API3.SquareVectorDistance(target.position(),workerB.position());
-					if (workerB.hasClass("Elephant"))
-						coeffB *= 0.5 * (1 + Math.sqrt(coeffB)/5/time);
-					else if (workerB.getMetadata(PlayerID, "gather-type") === "food")
-						coeffB *= 3;
-					return coeffA - coeffB;
-				});
-				let current = 0;
-				let nonBuilderTot = nonBuilderWorkers.length;
-				while (assigned < targetNB && builderTot < maxTotalBuilders && current < nonBuilderTot)
-				{
-					assigned++;
-					builderTot++;
-					let ent = nonBuilderWorkers[current++];
-					ent.stopMoving();
-					ent.setMetadata(PlayerID, "subrole", "builder");
-					ent.setMetadata(PlayerID, "target-foundation", target.id());
-				}
-			}
+			let coeffA = API3.SquareVectorDistance(target.position(),workerA.position());
+			// elephant moves slowly, so when far away they are only useful if build time is long
+			if (workerA.hasClass("Elephant"))
+				coeffA *= 0.5 * (1 + Math.sqrt(coeffA)/5/time);
+			else if (workerA.getMetadata(PlayerID, "gather-type") == "food")
+				coeffA *= 3;
+			let coeffB = API3.SquareVectorDistance(target.position(),workerB.position());
+			if (workerB.hasClass("Elephant"))
+				coeffB *= 0.5 * (1 + Math.sqrt(coeffB)/5/time);
+			else if (workerB.getMetadata(PlayerID, "gather-type") == "food")
+				coeffB *= 3;
+			return coeffA - coeffB;
+		});
+		let current = 0;
+		let nonBuilderTot = nonBuilderWorkers.length;
+		while (assigned < targetNB && builderTot < maxTotalBuilders && current < nonBuilderTot)
+		{
+			++assigned;
+			++builderTot;
+			let ent = nonBuilderWorkers[current++];
+			ent.stopMoving();
+			ent.setMetadata(PlayerID, "subrole", "builder");
+			ent.setMetadata(PlayerID, "target-foundation", target.id());
 		}
 	}
 
 	for (let target of damagedBuildings.values())
 	{
-		// don't repair if we're still under attack, unless it's a vital (civcentre or wall) building that's getting destroyed.
+		// Don't repair if we're still under attack, unless it's a vital (civcentre or wall) building 
+		// that's being destroyed.
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
 			if (target.healthLevel() > 0.5 ||
-				!target.hasClass("CivCentre") && !target.hasClass("StoneWall") && (!target.hasClass("Wonder") || gameState.getGameType() !== "wonder"))
+			    !target.hasClass("CivCentre") && !target.hasClass("StoneWall") &&
+			    (!target.hasClass("Wonder") || gameState.getGameType() != "wonder"))
 				continue;
 		else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
@@ -838,9 +845,10 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		let assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		let maxTotalBuilders = Math.ceil(workers.length * 0.2);
 		let targetNB = 1;
-		if (target.hasClass("Fortress"))
+		if (target.hasClass("Fortress") || target.hasClass("Wonder"))
 			targetNB = 3;
-		if (target.getMetadata(PlayerID, "baseAnchor") === true || target.hasClass("Wonder") && gameState.getGameType() === "wonder")
+		if (target.getMetadata(PlayerID, "baseAnchor") == true ||
+		    target.hasClass("Wonder") && gameState.getGameType() == "wonder")
 		{
 			maxTotalBuilders = Math.ceil(workers.length * 0.3);
 			targetNB = 5;
@@ -852,42 +860,41 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 
 		}
 
-		if (assigned < targetNB)
-		{
-			idleBuilderWorkers.forEach(function(ent) {
-				if (ent.getMetadata(PlayerID, "target-foundation") !== undefined)
-					return;
-				if (assigned >= targetNB || !ent.position() || API3.SquareVectorDistance(ent.position(), target.position()) > 40000)
-					return;
-				assigned++;
-				builderTot++;
-				ent.setMetadata(PlayerID, "target-foundation", target.id());
-			});
-			if (assigned < targetNB && builderTot < maxTotalBuilders)
-			{
-				let nonBuilderWorkers = workers.filter(function(ent) {
-					if (ent.getMetadata(PlayerID, "subrole") === "builder")
-						return false;
-					if (!ent.position())
-						return false;
-					if (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3)
-						return false;
-					if (ent.getMetadata(PlayerID, "transport"))
-						return false;
-					return true;
-				});
-				let num = Math.min(nonBuilderWorkers.length, targetNB-assigned);
-				let nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), num);
+		if (assigned >= targetNB)
+			continue;
+		idleBuilderWorkers.forEach(function(ent) {
+			if (ent.getMetadata(PlayerID, "target-foundation") !== undefined)
+				return;
+			if (assigned >= targetNB || !ent.position() ||
+			    API3.SquareVectorDistance(ent.position(), target.position()) > 40000)
+				return;
+			++assigned;
+			++builderTot;
+			ent.setMetadata(PlayerID, "target-foundation", target.id());
+		});
+		if (assigned >= targetNB || builderTot >= maxTotalBuilders)
+			continue;
+		let nonBuilderWorkers = workers.filter(function(ent) {
+			if (ent.getMetadata(PlayerID, "subrole") == "builder")
+				return false;
+			if (!ent.position())
+				return false;
+			if (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3)
+				return false;
+			if (ent.getMetadata(PlayerID, "transport"))
+				return false;
+			return true;
+		});
+		let num = Math.min(nonBuilderWorkers.length, targetNB-assigned);
+		let nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), num);
 
-				nearestNonBuilders.forEach(function(ent) {
-					assigned++;
-					builderTot++;
-					ent.stopMoving();
-					ent.setMetadata(PlayerID, "subrole", "builder");
-					ent.setMetadata(PlayerID, "target-foundation", target.id());
-				});
-			}
-		}
+		nearestNonBuilders.forEach(function(ent) {
+			++assigned;
+			++builderTot;
+			ent.stopMoving();
+			ent.setMetadata(PlayerID, "subrole", "builder");
+			ent.setMetadata(PlayerID, "target-foundation", target.id());
+		});
 	}
 };
 

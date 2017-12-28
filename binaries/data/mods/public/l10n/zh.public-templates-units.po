@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-22 09:04+0100\n"
-"PO-Revision-Date: 2017-11-22 14:41+0000\n"
+"POT-Creation-Date: 2017-12-25 09:04+0100\n"
+"PO-Revision-Date: 2017-12-25 14:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -26,15 +26,15 @@ msgstr ""
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/templates/template_unit_catafalque.xml:20
+#: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
 msgstr ""
 
-#: simulation/templates/template_unit_catafalque.xml:23
+#: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
 msgstr ""
 
-#: simulation/templates/template_unit_catafalque.xml:24
+#: simulation/templates/template_unit_catafalque.xml:22
 msgid "Relic"
 msgstr ""
 
@@ -61,7 +61,7 @@ msgstr "士兵"
 #: simulation/templates/template_unit_cavalry.xml:40
 #: simulation/templates/template_unit_dog.xml:46
 #: simulation/templates/template_unit_infantry.xml:65
-#: simulation/templates/template_unit_support_healer.xml:21
+#: simulation/templates/template_unit_support_healer.xml:26
 #: simulation/templates/units/brit_support_healer_b.xml:8
 #: simulation/templates/units/cart_support_healer_b.xml:9
 #: simulation/templates/units/gaul_support_healer_b.xml:8
@@ -77,6 +77,7 @@ msgstr "基本"
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
 #: simulation/templates/template_unit_champion_elephant_melee.xml:15
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:28
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:34
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
@@ -146,8 +147,8 @@ msgstr "远程骑兵"
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:61
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:51
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:47
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:46
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:50
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:50
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:55
 msgid "Ranged"
 msgstr "远程的"
 
@@ -238,6 +239,14 @@ msgstr "精英射手"
 msgid "Champion Skirmisher"
 msgstr "精英散兵"
 
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:28
+msgid "Maceman"
+msgstr ""
+
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:29
+msgid "Champion Maceman"
+msgstr ""
+
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
@@ -319,13 +328,13 @@ msgstr "英雄长矛骑兵"
 msgid "Hero Cavalry Swordsman"
 msgstr "英雄骑兵剑士"
 
-#: simulation/templates/template_unit_hero_healer.xml:27
-#: simulation/templates/template_unit_support_healer.xml:24
-#: simulation/templates/template_unit_support_healer.xml:20
+#: simulation/templates/template_unit_hero_healer.xml:32
+#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:25
 msgid "Healer"
 msgstr "治疗师"
 
-#: simulation/templates/template_unit_hero_healer.xml:27
+#: simulation/templates/template_unit_hero_healer.xml:32
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
@@ -409,7 +418,7 @@ msgstr "战舰"
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:53
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:60
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:53
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:51
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:56
 msgid "Garrison units for transport and to increase firepower."
 msgstr "用于运输和增加火力的驻军单位。"
 
@@ -477,11 +486,11 @@ msgstr "弩炮"
 msgid "BoltShooter"
 msgstr "机关射手"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:45
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:49
 msgid "Siege Catapult"
 msgstr "攻城投石車"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:46
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:50
 msgid "Catapult"
 msgstr "石弩"
 
@@ -493,11 +502,11 @@ msgstr "攻城槌"
 msgid "Ram"
 msgstr "攻城槌"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:49
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:54
 msgid "Siege Tower"
 msgstr "攻城塔"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:50
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:55
 msgid "SiegeTower"
 msgstr "攻城塔"
 
@@ -505,7 +514,7 @@ msgstr "攻城塔"
 msgid "Female Citizen"
 msgstr "女市民"
 
-#: simulation/templates/template_unit_support_healer.xml:23
+#: simulation/templates/template_unit_support_healer.xml:28
 msgid "Heal units."
 msgstr "治疗单位"
 
@@ -1590,11 +1599,11 @@ msgstr "印度战象"
 msgid "Gajendra"
 msgstr "Gajendra"
 
-#: simulation/templates/units/maur_champion_infantry.xml:15
+#: simulation/templates/units/maur_champion_infantry.xml:5
 msgid "Warrior"
 msgstr "战士"
 
-#: simulation/templates/units/maur_champion_infantry.xml:16
+#: simulation/templates/units/maur_champion_infantry.xml:6
 msgid "Yōddha"
 msgstr "Yōddha"
 
@@ -2225,7 +2234,7 @@ msgstr "Marian Legionaire"
 msgid "Marian Legionarius"
 msgstr "Marian Legionarius"
 
-#: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:32
+#: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:33
 msgid "Onager"
 msgstr ""
 

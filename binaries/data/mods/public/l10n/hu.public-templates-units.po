@@ -6,8 +6,8 @@
 # Balázs Meskó <meskobalazs@gmail.com>, 2016-2017
 # Balázs Úr <urbalazs@gmail.com>, 2015-2017
 # Boross Péter <borosspet@web.de>, 2015
-# Gyuris Gellért <gellert.gyuris@protonmail.com>, 2014
-# Gyuris Gellért <gellert.gyuris@protonmail.com>, 2017
+# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2014
+# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2017
 # István Norbert Péter <peter.norbert.istvan@gmail.com>, 2015
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2014
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-22 09:04+0100\n"
-"PO-Revision-Date: 2017-12-01 19:17+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-12-25 09:04+0100\n"
+"PO-Revision-Date: 2017-12-25 14:32+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,15 +29,15 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/templates/template_unit_catafalque.xml:20
+#: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
 msgstr "Ravatal"
 
-#: simulation/templates/template_unit_catafalque.xml:23
+#: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
 msgstr "Ravatal, egy nagy vezető földi maradványaival."
 
-#: simulation/templates/template_unit_catafalque.xml:24
+#: simulation/templates/template_unit_catafalque.xml:22
 msgid "Relic"
 msgstr "Ereklye"
 
@@ -64,7 +64,7 @@ msgstr "Katona"
 #: simulation/templates/template_unit_cavalry.xml:40
 #: simulation/templates/template_unit_dog.xml:46
 #: simulation/templates/template_unit_infantry.xml:65
-#: simulation/templates/template_unit_support_healer.xml:21
+#: simulation/templates/template_unit_support_healer.xml:26
 #: simulation/templates/units/brit_support_healer_b.xml:8
 #: simulation/templates/units/cart_support_healer_b.xml:9
 #: simulation/templates/units/gaul_support_healer_b.xml:8
@@ -80,6 +80,7 @@ msgstr "Alap"
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
 #: simulation/templates/template_unit_champion_elephant_melee.xml:15
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:28
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:34
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
@@ -149,8 +150,8 @@ msgstr "Távolsági lovas"
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:61
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:51
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:47
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:46
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:50
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:50
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:55
 msgid "Ranged"
 msgstr "Távolsági"
 
@@ -241,6 +242,14 @@ msgstr "Bajnok íjász"
 msgid "Champion Skirmisher"
 msgstr "Bajnok csatár"
 
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:28
+msgid "Maceman"
+msgstr ""
+
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:29
+msgid "Champion Maceman"
+msgstr ""
+
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
@@ -322,13 +331,13 @@ msgstr "Hős lándzsás lovas"
 msgid "Hero Cavalry Swordsman"
 msgstr "Hős lovas kardforgató"
 
-#: simulation/templates/template_unit_hero_healer.xml:27
-#: simulation/templates/template_unit_support_healer.xml:24
-#: simulation/templates/template_unit_support_healer.xml:20
+#: simulation/templates/template_unit_hero_healer.xml:32
+#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:25
 msgid "Healer"
 msgstr "Gyógyító"
 
-#: simulation/templates/template_unit_hero_healer.xml:27
+#: simulation/templates/template_unit_hero_healer.xml:32
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
@@ -412,7 +421,7 @@ msgstr "Hadihajó"
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:53
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:60
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:53
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:51
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:56
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Egységek beszállásolása szállításhoz, és a tűzerő növeléséhez."
 
@@ -480,11 +489,11 @@ msgstr "Nyílvető"
 msgid "BoltShooter"
 msgstr "Nyílvető"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:45
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:49
 msgid "Siege Catapult"
 msgstr "Ostrom katapult"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:46
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:50
 msgid "Catapult"
 msgstr "Katapult"
 
@@ -496,11 +505,11 @@ msgstr "Faltörő kos"
 msgid "Ram"
 msgstr "Faltörő kos"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:49
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:54
 msgid "Siege Tower"
 msgstr "Ostromtorony"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:50
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:55
 msgid "SiegeTower"
 msgstr "Ostromtorony"
 
@@ -508,7 +517,7 @@ msgstr "Ostromtorony"
 msgid "Female Citizen"
 msgstr "Női polgár"
 
-#: simulation/templates/template_unit_support_healer.xml:23
+#: simulation/templates/template_unit_support_healer.xml:28
 msgid "Heal units."
 msgstr "Egységek gyógyítása."
 
@@ -1593,11 +1602,11 @@ msgstr "Indiai harci elefánt"
 msgid "Gajendra"
 msgstr "Gajendra"
 
-#: simulation/templates/units/maur_champion_infantry.xml:15
+#: simulation/templates/units/maur_champion_infantry.xml:5
 msgid "Warrior"
 msgstr "Harcos"
 
-#: simulation/templates/units/maur_champion_infantry.xml:16
+#: simulation/templates/units/maur_champion_infantry.xml:6
 msgid "Yōddha"
 msgstr "Yōddha"
 
@@ -2228,7 +2237,7 @@ msgstr "Máriuszi legionárius"
 msgid "Marian Legionarius"
 msgstr "Marian Legionarius"
 
-#: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:32
+#: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:33
 msgid "Onager"
 msgstr "Onager"
 

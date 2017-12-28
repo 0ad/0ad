@@ -62,6 +62,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clDirt = createTileClass();
 var clLush = createTileClass();
@@ -84,9 +85,8 @@ var clWater = createTileClass();
 const baseHeight = -6;
 setWaterHeight(8);
 
-// let's choose the angle of the pyreneans
 var MoutainAngle = randFloat(0,TWO_PI);
-var lololo = randFloat(-PI/12,-PI/12);	// used by oceans
+var oceanAngle = MoutainAngle + randFloat(-1, 1) * Math.PI / 12;
 
 var baseHeights = [];
 for (var ix = 0; ix < mapSize; ix++)
@@ -106,21 +106,11 @@ for (var ix = 0; ix < mapSize; ix++)
 }
 
 var playerIDs = primeSortAllPlayers();
-
-// place players
-var playerX = [];
-var playerZ = [];
-var playerAngle = [];
-
-for (var i = 0; i < numPlayers; i++)
-{
-	if ( i%2 == 1)
-		playerAngle[i] = MoutainAngle+lololo + PI/2 + i/numPlayers*(PI/3) + (1-i/numPlayers)*(-PI/3);
-	else
-		playerAngle[i] = MoutainAngle + lololo - PI/2 + (i+1)/numPlayers*(PI/3) + (1-(i+1)/numPlayers)*(-PI/3);
-	playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-}
+var [playerX, playerZ] = playerPlacementCustomAngle(
+	0.35,
+	tilesToFraction(mapCenter.x),
+	tilesToFraction(mapCenter.y),
+	i => oceanAngle + Math.PI * (i % 2 ? 1 : -1) * ((1/2 + 1/3 * (2/numPlayers * (i + 1 - i % 2) - 1))));
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -201,13 +191,13 @@ for (var i = 0; i < numPlayers; i++)
 Engine.SetProgress(30);
 
 log ("Creating the pyreneans...");
+var MountainStartX = mapCenter.x + Math.cos(MoutainAngle) * fractionToTiles(0.34);
+var MountainStartZ = mapCenter.y + Math.sin(MoutainAngle) * fractionToTiles(0.34);
+var MountainEndX = mapCenter.x - Math.cos(MoutainAngle) * fractionToTiles(0.34);
+var MountainEndZ = mapCenter.y - Math.sin(MoutainAngle) * fractionToTiles(0.34);
 
-// This is the basic orientation of the pyreneans
-var MountainStartX = fractionToTiles(0.5) + cos(MoutainAngle)*fractionToTiles(0.34);
-var MountainStartZ = fractionToTiles(0.5) + sin(MoutainAngle)*fractionToTiles(0.34);
-var MountainEndX = fractionToTiles(0.5) - cos(MoutainAngle)*fractionToTiles(0.34);
-var MountainEndZ = fractionToTiles(0.5) - sin(MoutainAngle)*fractionToTiles(0.34);
 var MountainHeight = scaleByMapSize(50,65);
+
 // Number of peaks
 var NumOfIterations = scaleByMapSize(100,1000);
 
@@ -284,7 +274,6 @@ Engine.SetProgress(50);
 
 // Smoothing the mountains
 for (var ix = 1; ix < mapSize-1; ix++)
-{
 	for (var iz = 1; iz < mapSize-1; iz++)
 	{
 		if ( g_Map.inMapBounds(ix,iz) && checkIfInClass(ix,iz,clPyrenneans) ) {
@@ -294,32 +283,16 @@ for (var ix = 1; ix < mapSize-1; ix++)
 			baseHeights[ix][iz] = (getHeight(ix,iz)*(9-index) + NB*index)/9;
 		}
 	}
-}
 
-log ("creating Oceans");
-// ALlright for hacky reasons I can't use a smooth Elevation Painter, that wouldn't work.
-// I'll use a harsh one, and then smooth it out
-var OceanX = fractionToTiles(0.5) + cos(MoutainAngle + lololo)*fractionToTiles(0.48);
-var OceanZ = fractionToTiles(0.5) + sin(MoutainAngle + lololo)*fractionToTiles(0.48);
-
-createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, OceanX, OceanZ),
-	[
-		paintClass(clWater),
-		new ElevationPainter(-22)
-	],
-	null);
-
-OceanX = fractionToTiles(0.5) + cos(PI + MoutainAngle + lololo)*fractionToTiles(0.48);
-OceanZ = fractionToTiles(0.5) + sin(PI + MoutainAngle + lololo)*fractionToTiles(0.48);
-
-createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, OceanX, OceanZ),
-	[
-		new ElevationPainter(-22),
-		paintClass(clWater)
-	],
-	null);
+log("Creating oceans...");
+let [oceanX, oceanZ] = distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48), mapCenter.x, mapCenter.y);
+for (let i in oceanX)
+	createArea(
+		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, oceanX[i], oceanZ[i]),
+		[
+			new ElevationPainter(-22),
+			paintClass(clWater)
+		]);
 
 // Smoothing around the water, then going a bit random
 for (var ix = 1; ix < mapSize-1; ix++)
@@ -327,8 +300,6 @@ for (var ix = 1; ix < mapSize-1; ix++)
 	for (var iz = 1; iz < mapSize-1; iz++)
 	{
 		if ( g_Map.inMapBounds(ix,iz) && getTileClass(clWater).countInRadius(ix,iz,5,true) > 0 ) {
-			// Allright smoothing
-			// I'll have to hack again.
 
 			var averageHeight = 0;
 			var size = 5;
@@ -391,77 +362,60 @@ var num = scaleByMapSize(80,400);
 var group = new SimpleGroup([new SimpleObject(oPine, 1,2, 1,3),new SimpleObject(oBeech, 1,2, 1,3)], true, clForest);
 createObjectGroupsDeprecated(group, 0,  avoidClasses(clWater, 3, clForest, 1, clPlayer, 8,clPyrenneans, 1), num, 20 );
 
-log("Painting the map");
+log("Painting the map...");
+for (let x = 0; x < mapSize; ++x)
+	for (let z = 0; z < mapSize; ++z)
+	{
+		let height = getHeight(x, z);
+		let heightDiff = getHeightDifference(x, z);
 
-var terrainGrass = createTerrain(tGrass);
-var terrainGrassMidRange = createTerrain(tGrassMidRange);
-var terrainGrassHighRange = createTerrain(tGrassHighRange);
-var terrainRocks = createTerrain(tHighRocks);
-var terrainRocksSnow = createTerrain(tSnowedRocks);
-var terrainTopSnow = createTerrain(tTopSnow);
-var terrainTopSnowOnly = createTerrain(tTopSnowOnly);
-var terrainMidRangeCliff = createTerrain(tMidRangeCliffs);
-var terrainHighRangeCliff = createTerrain(tHighRangeCliffs);
-var terrainPass = createTerrain(tPass);
-var terrainSand = createTerrain(tSand);
-var terrainSandTransition = createTerrain(tSandTransition);
-var terrainWater = createTerrain(tWater);
+		if (getTileClass(clPyrenneans).countInRadius(x, z, 2, true))
+		{
+			createTerrain(getPyreneansTerrain(height, heightDiff)).place(x, z);
 
-for (var x = 0; x < mapSize; x++) {
-	for (var z = 0; z < mapSize; z++) {
-		var height = getHeight(x,z);
-		var heightDiff = getHeightDifference(x,z);
-		if (getTileClass(clPyrenneans).countInRadius(x,z,2,true) > 0) {
-			if (height < 6) {
-				if (heightDiff < 5)
-					terrainGrass.place(x,z);
-				else
-					terrainMidRangeCliff.place(x,z);
-			} else if (height >= 6 && height < 18) {
-				if (heightDiff < 8)
-					terrainGrassMidRange.place(x,z);
-				else
-					terrainMidRangeCliff.place(x,z);
-			} else if (height >= 18 && height < 30) {
-				if (heightDiff < 8)
-					terrainGrassHighRange.place(x,z);
-				else
-					terrainMidRangeCliff.place(x,z);
-			} else if (height >= 30 && height < MountainHeight-20) {
-				if (heightDiff < 8)
-					terrainRocks.place(x,z);
-				else
-					terrainHighRangeCliff.place(x,z);
-			} else if (height >= MountainHeight-20 && height < MountainHeight-10) {
-				if (heightDiff < 7)
-					terrainRocksSnow.place(x,z);
-				else
-					terrainHighRangeCliff.place(x,z);
-			} else if (height >= MountainHeight-10) {
-				if (heightDiff < 6)
-					terrainTopSnowOnly.place(x,z);
-				else
-					terrainTopSnow.place(x,z);
-			}
-			if (height >= 30 && getTileClass(clPass).countInRadius(x,z,2,true) > 0)
-				if (heightDiff < 5)
-					terrainPass.place(x,z);
+			if (height >= 30 && heightDiff < 5 && getTileClass(clPass).countInRadius(x, z, 2, true))
+				createTerrain(tPass).place(x,z);
 		}
-		if (height > -14 &&  height <= -2 && getTileClass(clWater).countInRadius(x,z,2,true) > 0) {
-			if (heightDiff < 2.5)
-				terrainSand.place(x,z);
-			else
-				terrainMidRangeCliff.place(x,z);
-		} else if (height > -14 && height <= 0 && getTileClass(clWater).countInRadius(x,z,3,true) > 0) {
-			if (heightDiff < 2.5)
-				terrainSandTransition.place(x,z);
-			else
-				terrainMidRangeCliff.place(x,z);
-		} else if (height <= -14) {
-			terrainWater.place(x,z);
-		}
+
+		let terrainShore = getShoreTerrain(height, heightDiff, x, z);
+		if (terrainShore)
+			createTerrain(terrainShore).place(x, z);
 	}
+
+function getPyreneansTerrain(height, heightDiff)
+{
+	if (height < 6)
+		return heightDiff < 5 ? tGrass : tMidRangeCliffs;
+
+	if (height < 18)
+		return heightDiff < 8 ? tGrassMidRange : tMidRangeCliffs;
+
+	if (height < 30)
+		return heightDiff < 8 ? tGrassHighRange : tMidRangeCliffs;
+
+	if (height < MountainHeight - 20)
+		return heightDiff < 8 ? tHighRocks : tHighRangeCliffs;
+
+	if (height < MountainHeight - 10)
+		return heightDiff < 7 ? tSnowedRocks : tHighRangeCliffs;
+
+	return heightDiff < 6 ? tTopSnowOnly : tTopSnow;
 }
+
+function getShoreTerrain(height, heightDiff, x, z)
+{
+	if (height <= -14)
+		return tWater;
+
+	if (height <= -2 && getTileClass(clWater).countInRadius(x, z, 2, true))
+		return heightDiff < 2.5 ? tSand : tMidRangeCliffs;
+
+	if (height <= 0 && getTileClass(clWater).countInRadius(x, z, 3, true))
+		return heightDiff < 2.5 ? tSandTransition : tMidRangeCliffs;
+
+	return undefined;
+}
+
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 20), scaleByMapSize(5, 40), scaleByMapSize(8, 60)])
 	createAreas(

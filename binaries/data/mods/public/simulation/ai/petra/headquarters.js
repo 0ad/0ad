@@ -489,27 +489,27 @@ m.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 				if (!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities() &&
 				    this.canBuild(gameState, "structures/{civ}_market"))
 				{
-					plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
+					plan = new m.ConstructionPlan(gameState, "structures/{civ}_market", { "phaseUp": true });
 					queue = "economicBuilding";
 					break;
 				}
 				if (!gameState.getOwnEntitiesByClass("Temple", true).hasEntities() &&
 				    this.canBuild(gameState, "structures/{civ}_temple"))
 				{
-					plan = new m.ConstructionPlan(gameState, "structures/{civ}_temple");
+					plan = new m.ConstructionPlan(gameState, "structures/{civ}_temple", { "phaseUp": true });
 					queue = "economicBuilding";
 					break;
 				}
 				if (!gameState.getOwnEntitiesByClass("Blacksmith", true).hasEntities() &&
 				    this.canBuild(gameState, "structures/{civ}_blacksmith"))
 				{
-					plan = new m.ConstructionPlan(gameState, "structures/{civ}_blacksmith");
+					plan = new m.ConstructionPlan(gameState, "structures/{civ}_blacksmith", { "phaseUp": true });
 					queue = "militaryBuilding";
 					break;
 				}
 				if (this.canBuild(gameState, "structures/{civ}_defense_tower"))
 				{
-					plan = new m.ConstructionPlan(gameState, "structures/{civ}_defense_tower");
+					plan = new m.ConstructionPlan(gameState, "structures/{civ}_defense_tower", { "phaseUp": true });
 					queue = "defenseBuilding";
 					break;
 				}
@@ -523,7 +523,7 @@ m.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 			{
 				let structure = this.buildManager.findStructureWithClass(gameState, [entityReq.class]);
 				if (structure && this.canBuild(gameState, structure))
-					plan = new m.ConstructionPlan(gameState, structure);
+					plan = new m.ConstructionPlan(gameState, structure, { "phaseUp": true });
 			}
 		}
 
@@ -531,12 +531,12 @@ m.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 		{
 			if (queue == "wonder")
 			{
-				gameState.ai.queueManager.changePriority("majorTech", 400);
+				gameState.ai.queueManager.changePriority("majorTech", 400, { "phaseUp": true });
 				plan.queueToReset = "majorTech";
 			}
 			else
 			{
-				gameState.ai.queueManager.changePriority(queue, 1000);
+				gameState.ai.queueManager.changePriority(queue, 1000, { "phaseUp": true });
 				plan.queueToReset = queue;
 			}
 			queues[queue].addPlan(plan);

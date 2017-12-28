@@ -161,6 +161,9 @@ public:
 		SerializationTestState* primaryStateBefore, SerializationTestState* primaryStateAfter,
 		SerializationTestState* secondaryStateBefore, SerializationTestState* secondaryStateAfter);
 
+	void InitRNGSeedSimulation();
+	void InitRNGSeedAI();
+
 	static std::vector<SimulationCommand> CloneCommandsFromOtherContext(const ScriptInterface& oldScript, const ScriptInterface& newScript,
 		const std::vector<SimulationCommand>& commands)
 	{
@@ -332,6 +335,28 @@ void CSimulation2Impl::ReportSerializationFailure(
 		DumpSerializationTestState(*secondaryStateAfter, path, L"after.b");
 
 	debug_warn(L"Serialization test failure");
+}
+
+void CSimulation2Impl::InitRNGSeedSimulation()
+{
+	u32 seed = 0;
+	if (!m_ComponentManager.GetScriptInterface().HasProperty(m_MapSettings, "Seed") ||
+	    !m_ComponentManager.GetScriptInterface().GetProperty(m_MapSettings, "Seed", seed))
+		LOGWARNING("CSimulation2Impl::InitRNGSeedSimulation: No seed value specified - using %d", seed);
+
+	m_ComponentManager.SetRNGSeed(seed);
+}
+
+void CSimulation2Impl::InitRNGSeedAI()
+{
+	u32 seed = 0;
+	if (!m_ComponentManager.GetScriptInterface().HasProperty(m_MapSettings, "AISeed") ||
+	    !m_ComponentManager.GetScriptInterface().GetProperty(m_MapSettings, "AISeed", seed))
+		LOGWARNING("CSimulation2Impl::InitRNGSeedAI: No seed value specified - using %d", seed);
+
+	CmpPtr<ICmpAIManager> cmpAIManager(m_SimContext, SYSTEM_ENTITY);
+	if (cmpAIManager)
+		cmpAIManager->SetRNGSeed(seed);
 }
 
 void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationCommand>& commands)
@@ -793,12 +818,8 @@ void CSimulation2::SetMapSettings(JS::HandleValue settings)
 {
 	m->m_MapSettings = settings;
 
-	u32 seed = 0;
-	if (!m->m_ComponentManager.GetScriptInterface().HasProperty(m->m_MapSettings, "Seed") ||
-	    !m->m_ComponentManager.GetScriptInterface().GetProperty(m->m_MapSettings, "Seed", seed))
-		LOGWARNING("CSimulation2::SetInitAttributes: No seed value specified - using %d", seed);
-
-	m->m_ComponentManager.SetRNGSeed(seed);
+	m->InitRNGSeedSimulation();
+	m->InitRNGSeedAI();
 }
 
 std::string CSimulation2::GetMapSettingsString()

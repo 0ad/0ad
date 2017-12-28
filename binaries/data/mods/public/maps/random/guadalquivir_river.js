@@ -58,14 +58,15 @@ var shallowHeight = -1.5;
 var waterHeight = -3;
 
 log("Create the continent body");
+var continentCenter = new Vector2D(0.5, 0.7);
 createArea(
 	new ChainPlacer(
 		2,
 		Math.floor(scaleByMapSize(5, 12)),
 		Math.floor(scaleByMapSize(60, 700)),
 		1,
-		Math.floor(fractionToTiles(0.5)),
-		Math.floor(fractionToTiles(0.7)),
+		Math.floor(fractionToTiles(continentCenter.x)),
+		Math.floor(fractionToTiles(continentCenter.y)),
 		0,
 		[Math.floor(mapSize * 0.49)]),
 	[
@@ -76,19 +77,11 @@ createArea(
 	null);
 
 var playerIDs = primeSortAllPlayers();
-
-// place players
-var playerX = [];
-var playerZ = [];
-var playerAngle = [];
-
-var startAngle = 0;
-for (var i = 0; i < numPlayers; i++)
-{
-	playerAngle[i] = startAngle - 0.23*(i+(i%2))*TWO_PI/numPlayers - (i%2)*PI/2;
-	playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-	playerZ[i] = 0.7 + 0.35*sin(playerAngle[i]);
-}
+var [playerX, playerZ] = playerPlacementCustomAngle(
+	0.35,
+	continentCenter.x,
+	continentCenter.y,
+	i => Math.PI * (-0.46 / numPlayers * (i + i % 2) - (i % 2) / 2));
 
 for (var i = 0; i < numPlayers; i++)
 {

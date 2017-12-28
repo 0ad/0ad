@@ -131,6 +131,28 @@ function radialPlayerPlacement(radius = 0.35, startingAngle = undefined, centerX
 }
 
 /**
+ * Determine player starting positions on a circular pattern, with a custom angle for each player.
+ * Commonly used for gulf terrains.
+ */
+function playerPlacementCustomAngle(radius, centerX, centerZ, playerAngleFunc)
+{
+	let playerX = [];
+	let playerZ = [];
+	let playerAngle = [];
+
+	let numPlayers = getNumPlayers();
+
+	for (let i = 0; i < numPlayers; ++i)
+	{
+		playerAngle[i] = playerAngleFunc(i);
+		playerX[i] = centerX + radius * Math.cos(playerAngle[i]);
+		playerZ[i] = centerZ + radius * Math.sin(playerAngle[i]);
+	}
+
+	return [playerX, playerZ, playerAngle];
+}
+
+/**
  * Returns player starting positions located on two parallel lines, typically used by central river maps.
  * If there are two teams with an equal number of players, each team will occupy exactly one line.
  * Angle 0 means the players are placed in north to south direction, i.e. along the Z axis.
