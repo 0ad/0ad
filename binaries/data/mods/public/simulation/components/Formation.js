@@ -470,7 +470,7 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		positions.push(pos);
 	}
 
-	var avgpos = Vector2D.avg(positions);
+	var avgpos = Vector2D.average(positions);
 
 	// Reposition the formation if we're told to or if we don't already have a position
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
@@ -547,7 +547,7 @@ Formation.prototype.MoveToMembersCenter = function()
 		positions.push(cmpPosition.GetPosition2D());
 	}
 
-	var avgpos = Vector2D.avg(positions);
+	var avgpos = Vector2D.average(positions);
 
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var inWorld = cmpPosition.IsInWorld();
@@ -737,7 +737,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	// make sure the average offset is zero, as the formation is centered around that
 	// calculating offset distances without a zero average makes no sense, as the formation
 	// will jump to a different position any time
-	var avgoffset = Vector2D.avg(offsets);
+	var avgoffset = Vector2D.average(offsets);
 	offsets.forEach(function (o) {o.sub(avgoffset);});
 
 	// sort the available places in certain ways

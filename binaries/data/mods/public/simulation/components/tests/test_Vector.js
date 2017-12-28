@@ -134,6 +134,24 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v3.angleTo(v2), -Math.PI / 4);
 }
 
+// Test Vector2D list functions
+{
+	let list = [
+		new Vector2D(),
+		new Vector2D(-1, 5),
+		new Vector2D(89, -123),
+		new Vector2D(55, 66),
+	];
+
+	let sum = Vector2D.sum(list);
+	TS_ASSERT_EQUALS(sum.x, 143);
+	TS_ASSERT_EQUALS(sum.y, -52);
+
+	let avg = Vector2D.average(list);
+	TS_ASSERT_EQUALS(avg.x, 35.75);
+	TS_ASSERT_EQUALS(avg.y, -13);
+}
+
 // Test Vector3D distance and compareLength
 {
 	let v1 = new Vector3D(2, 5, 14);

@@ -8,12 +8,9 @@
 // TODO: Type errors if v not instanceof Vector classes
 // TODO: Possibly implement in C++
 
-function Vector2D(x, y)
+function Vector2D(x = 0, y = 0)
 {
-	if (arguments.length == 2)
-		this.set(x, y);
-	else
-		this.set(0, 0);
+	this.set(x, y);
 }
 
 Vector2D.prototype.clone = function()
@@ -96,7 +93,7 @@ Vector2D.prototype.rotateAround = function(angle, center)
 // These methods serve to get numeric info on the vector, they don't modify the vector
 
 /**
- * Return the vector that forms a right angle with this one.
+ * Returns a vector that forms a right angle with this one.
  */
 Vector2D.prototype.perpendicular = function()
 {
@@ -115,8 +112,8 @@ Vector2D.prototype.dot = function(v)
 
 /**
  * Computes the non-zero coordinate of the cross product of the two vectors.
- * Geometrically, the cross of the vectors is the 3D vector perpendicular to the two 2D vectors.
- * This returned length of that vector equals the area of the parallelogram that the vectors span.
+ * Geometrically, the cross of the vectors is a 3D vector perpendicular to the two 2D vectors.
+ * The returned number corresponds to the area of the parallelogram with the vectors for sides.
  */
 Vector2D.prototype.cross = function(v)
 {
@@ -134,7 +131,7 @@ Vector2D.prototype.length = function()
 };
 
 /**
- * Compare this length to the length of v,
+ * Compare this length to the length of v.
  * @return 0 if the lengths are equal
  * @return 1 if this is longer than v
  * @return -1 if this is shorter than v
@@ -194,15 +191,19 @@ Vector2D.div = function(v, f)
 	return new Vector2D(v.x / f, v.y / f);
 };
 
-Vector2D.avg = function(vectorList)
+Vector2D.average = function(vectorList)
 {
 	return Vector2D.sum(vectorList).div(vectorList.length);
 };
 
 Vector2D.sum = function(vectorList)
 {
-	var sum = new Vector2D();
-	vectorList.forEach(v => sum.add(v));
+	// Do not use for...of nor array functions for performance
+	let sum = new Vector2D();
+
+	for (let i = 0; i < vectorList.length; ++i)
+		sum.add(vectorList[i]);
+
 	return sum;
 };
 
@@ -213,12 +214,9 @@ Vector2D.sum = function(vectorList)
 //
 /////////////////////////////////////////////////////////////////////
 
-function Vector3D(x, y, z)
+function Vector3D(x = 0, y = 0, z = 0)
 {
-	if (arguments.length == 3)
-		this.set(x, y, z);
-	else
-		this.set(0, 0, 0);
+	this.set(x, y, z);
 }
 
 Vector3D.prototype.clone = function()
