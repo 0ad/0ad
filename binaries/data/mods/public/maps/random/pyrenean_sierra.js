@@ -362,77 +362,60 @@ var num = scaleByMapSize(80,400);
 var group = new SimpleGroup([new SimpleObject(oPine, 1,2, 1,3),new SimpleObject(oBeech, 1,2, 1,3)], true, clForest);
 createObjectGroupsDeprecated(group, 0,  avoidClasses(clWater, 3, clForest, 1, clPlayer, 8,clPyrenneans, 1), num, 20 );
 
-log("Painting the map");
+log("Painting the map...");
+for (let x = 0; x < mapSize; ++x)
+	for (let z = 0; z < mapSize; ++z)
+	{
+		let height = getHeight(x, z);
+		let heightDiff = getHeightDifference(x, z);
 
-var terrainGrass = createTerrain(tGrass);
-var terrainGrassMidRange = createTerrain(tGrassMidRange);
-var terrainGrassHighRange = createTerrain(tGrassHighRange);
-var terrainRocks = createTerrain(tHighRocks);
-var terrainRocksSnow = createTerrain(tSnowedRocks);
-var terrainTopSnow = createTerrain(tTopSnow);
-var terrainTopSnowOnly = createTerrain(tTopSnowOnly);
-var terrainMidRangeCliff = createTerrain(tMidRangeCliffs);
-var terrainHighRangeCliff = createTerrain(tHighRangeCliffs);
-var terrainPass = createTerrain(tPass);
-var terrainSand = createTerrain(tSand);
-var terrainSandTransition = createTerrain(tSandTransition);
-var terrainWater = createTerrain(tWater);
+		if (getTileClass(clPyrenneans).countInRadius(x, z, 2, true))
+		{
+			createTerrain(getPyreneansTerrain(height, heightDiff)).place(x, z);
 
-for (var x = 0; x < mapSize; x++) {
-	for (var z = 0; z < mapSize; z++) {
-		var height = getHeight(x,z);
-		var heightDiff = getHeightDifference(x,z);
-		if (getTileClass(clPyrenneans).countInRadius(x,z,2,true) > 0) {
-			if (height < 6) {
-				if (heightDiff < 5)
-					terrainGrass.place(x,z);
-				else
-					terrainMidRangeCliff.place(x,z);
-			} else if (height >= 6 && height < 18) {
-				if (heightDiff < 8)
-					terrainGrassMidRange.place(x,z);
-				else
-					terrainMidRangeCliff.place(x,z);
-			} else if (height >= 18 && height < 30) {
-				if (heightDiff < 8)
-					terrainGrassHighRange.place(x,z);
-				else
-					terrainMidRangeCliff.place(x,z);
-			} else if (height >= 30 && height < MountainHeight-20) {
-				if (heightDiff < 8)
-					terrainRocks.place(x,z);
-				else
-					terrainHighRangeCliff.place(x,z);
-			} else if (height >= MountainHeight-20 && height < MountainHeight-10) {
-				if (heightDiff < 7)
-					terrainRocksSnow.place(x,z);
-				else
-					terrainHighRangeCliff.place(x,z);
-			} else if (height >= MountainHeight-10) {
-				if (heightDiff < 6)
-					terrainTopSnowOnly.place(x,z);
-				else
-					terrainTopSnow.place(x,z);
-			}
-			if (height >= 30 && getTileClass(clPass).countInRadius(x,z,2,true) > 0)
-				if (heightDiff < 5)
-					terrainPass.place(x,z);
+			if (height >= 30 && heightDiff < 5 && getTileClass(clPass).countInRadius(x, z, 2, true))
+				createTerrain(tPass).place(x,z);
 		}
-		if (height > -14 &&  height <= -2 && getTileClass(clWater).countInRadius(x,z,2,true) > 0) {
-			if (heightDiff < 2.5)
-				terrainSand.place(x,z);
-			else
-				terrainMidRangeCliff.place(x,z);
-		} else if (height > -14 && height <= 0 && getTileClass(clWater).countInRadius(x,z,3,true) > 0) {
-			if (heightDiff < 2.5)
-				terrainSandTransition.place(x,z);
-			else
-				terrainMidRangeCliff.place(x,z);
-		} else if (height <= -14) {
-			terrainWater.place(x,z);
-		}
+
+		let terrainShore = getShoreTerrain(height, heightDiff, x, z);
+		if (terrainShore)
+			createTerrain(terrainShore).place(x, z);
 	}
+
+function getPyreneansTerrain(height, heightDiff)
+{
+	if (height < 6)
+		return heightDiff < 5 ? tGrass : tMidRangeCliffs;
+
+	if (height < 18)
+		return heightDiff < 8 ? tGrassMidRange : tMidRangeCliffs;
+
+	if (height < 30)
+		return heightDiff < 8 ? tGrassHighRange : tMidRangeCliffs;
+
+	if (height < MountainHeight - 20)
+		return heightDiff < 8 ? tHighRocks : tHighRangeCliffs;
+
+	if (height < MountainHeight - 10)
+		return heightDiff < 7 ? tSnowedRocks : tHighRangeCliffs;
+
+	return heightDiff < 6 ? tTopSnowOnly : tTopSnow;
 }
+
+function getShoreTerrain(height, heightDiff, x, z)
+{
+	if (height <= -14)
+		return tWater;
+
+	if (height <= -2 && getTileClass(clWater).countInRadius(x, z, 2, true))
+		return heightDiff < 2.5 ? tSand : tMidRangeCliffs;
+
+	if (height <= 0 && getTileClass(clWater).countInRadius(x, z, 3, true))
+		return heightDiff < 2.5 ? tSandTransition : tMidRangeCliffs;
+
+	return undefined;
+}
+
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 20), scaleByMapSize(5, 40), scaleByMapSize(8, 60)])
 	createAreas(
