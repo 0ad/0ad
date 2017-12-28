@@ -402,7 +402,9 @@ function updatePanelData(panelInfo)
 
 		setOutcomeIcon(playerState.state, playerOutcome);
 
-		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.sim.playerStates[i + 1].name;
+		playerNameColumn = Engine.GetGUIObjectByName(playerNameColumn);
+		playerNameColumn.caption = g_GameData.sim.playerStates[i + 1].name;
+		playerNameColumn.tooltip = translateAISettings(g_GameData.sim.mapSettings.PlayerData[i + 1]);
 
 		let civIcon = Engine.GetGUIObjectByName(playerCivicBoxColumn);
 		civIcon.sprite = "stretched:" + g_CivData[playerState.civ].Emblem;

@@ -431,7 +431,10 @@ function diplomacySetupTexts(i, rowsize)
 
 	setOutcomeIcon(g_Players[i].state, "diplomacyPlayerOutcome[" + (i - 1) + "]");
 
-	Engine.GetGUIObjectByName("diplomacyPlayerName[" + (i - 1) + "]").caption = colorizePlayernameByID(i);
+	let diplomacyPlayerName = Engine.GetGUIObjectByName("diplomacyPlayerName[" + (i - 1) + "]");
+	diplomacyPlayerName.caption = colorizePlayernameByID(i);
+	diplomacyPlayerName.tooltip = translateAISettings(g_GameAttributes.settings.PlayerData[i]);
+
 	Engine.GetGUIObjectByName("diplomacyPlayerCiv[" + (i - 1) + "]").caption = g_CivData[g_Players[i].civ].Name;
 
 	Engine.GetGUIObjectByName("diplomacyPlayerTeam[" + (i - 1) + "]").caption =
