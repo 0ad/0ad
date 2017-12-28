@@ -114,6 +114,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -127,19 +128,13 @@ var clBaseResource = createTileClass();
 
 initTerrain(tPrimary);
 
-var playerIDs = sortAllPlayers();
-var playerX = [];
-var playerZ = [];
 var startAngle = -Math.PI / 6;
-
-for (let i = 0; i < numPlayers; ++i)
-{
-	let playerAngle = startAngle + 2/3 * Math.PI *
-		(numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1));
-
-	playerX[i] = 0.5 + 0.35 * Math.cos(playerAngle);
-	playerZ[i] = 0.5 + 0.35 * Math.sin(playerAngle);
-}
+var playerIDs = sortAllPlayers();
+var [playerX, playerZ] = playerPlacementCustomAngle(
+	0.35,
+	tilesToFraction(mapCenter.x),
+	tilesToFraction(mapCenter.y),
+	i => startAngle + 2/3 * Math.PI * (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1)));
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -237,7 +232,7 @@ for (let [numCircles, z, firstRadius] of gulfLocations)
 			Math.floor(scaleByMapSize(5, 16)),
 			Math.floor(scaleByMapSize(35, numCircles)),
 			1,
-			Math.round(fractionToTiles(0.5)),
+			mapCenter.x,
 			z,
 			0,
 			[Math.floor(mapSize * firstRadius)]),

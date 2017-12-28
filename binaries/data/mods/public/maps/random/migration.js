@@ -61,19 +61,13 @@ var clLand = createTileClass();
 
 var landHeight = 3;
 
-var playerIDs = sortAllPlayers();
-
-var playerX = [];
-var playerZ = [];
-var playerAngle = [];
-
 var startAngle = 4/7 * Math.PI;
-for (let i = 0; i < numPlayers; ++i)
-{
-	playerAngle[i] = startAngle - (i+1)*(PI+ PI/7)/(numPlayers+1);
-	playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-}
+var playerIDs = sortAllPlayers();
+var [playerX, playerZ, playerAngle] = playerPlacementCustomAngle(
+	0.35,
+	tilesToFraction(mapCenter.x),
+	tilesToFraction(mapCenter.y),
+	i => startAngle - 8/7 * Math.PI * (i + 1) / (numPlayers + 1));
 
 log("Creating player islands and docks...");
 for (let i = 0; i < numPlayers; ++i)

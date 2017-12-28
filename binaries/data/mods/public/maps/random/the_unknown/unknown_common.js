@@ -60,6 +60,7 @@ InitMap();
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = getMapArea();
+const mapCenter = getMapCenter();
 const lSize = Math.pow(scaleByMapSize(1, 6), 1/8);
 
 var clPlayer = createTileClass();
@@ -545,12 +546,13 @@ function unknownGulf()
 	if (g_PlayerBases)
 	{
 		log("Determining player locations...");
-		for (let i = 0; i < numPlayers; ++i)
-		{
-			let playerAngle = startAngle + 2/3 * Math.PI * (-1 + (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1)));
-			playerX[i] = 0.5 + 0.35 * Math.cos(playerAngle);
-			playerZ[i] = 0.5 + 0.35 * Math.sin(playerAngle);
-		}
+
+		[playerX, playerZ] = playerPlacementCustomAngle(
+			0.35,
+			tilesToFraction(mapCenter.x),
+			tilesToFraction(mapCenter.y),
+			i => startAngle + 2/3 * Math.PI * (-1 + (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1))));
+
 		markPlayerArea("large");
 	}
 
