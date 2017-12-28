@@ -228,9 +228,9 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 	let ravine = createAreas(
 		new ClumpPlacer(size, 0.1, 0.2, 0.1),
 		[
-			painter,
-			paintClass(clHill),
-			new SmoothElevationPainter(ELEVATION_SET, 10, 2)
+			new LayeredPainter([tCliff, tForestFloor], [2]),
+			new SmoothElevationPainter(ELEVATION_SET, 10, 2),
+			paintClass(clHill)
 		],
 		avoidClasses(clPlayer, 6, clBaseResource, 2, clHill, 5),
 		scaleByMapSize(1, 3));
