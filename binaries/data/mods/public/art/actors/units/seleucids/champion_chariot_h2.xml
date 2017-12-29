@@ -2,32 +2,41 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="48"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="115"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="95"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_ranged" speed="125"/>
-        <animation file="quadraped/horse_attack_b.psa" name="attack_ranged" speed="115"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
-        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="111"/>
+        <animation file="quadraped/horse_idle.dae" name="Idle" id="idle1" speed="60"/>
+        <animation file="quadraped/horse_idle_b.dae" name="Idle" id="idle2" speed="60"/>
+        <animation file="quadraped/horse_idle_c.dae" name="Idle" id="idle3" speed="60"/>
+        <animation file="quadraped/horse_idle.dae" name="attack_capture" speed="60"/>
+        <animation file="quadraped/horse_idle.dae" name="promotion" speed="60"/>
+        <animation file="quadraped/horse_idle.dae" name="attack_ranged" speed="60"/>
+        <animation file="quadraped/horse_attack_short.dae" name="attack_slaughter" id="attack1" speed="60"/>
+        <animation file="quadraped/horse_attack_short_b.dae" name="attack_slaughter" id="attack2" speed="60"/>
+        <animation file="quadraped/horse_walk.dae" name="carry_meat" event="0.94" speed="7"/>
+        <animation file="quadraped/horse_idle.dae" name="gather_meat" speed="60"/>
+        <animation file="quadraped/horse_walk.dae" name="Walk" event="0.94" speed="7"/>
+        <animation file="quadraped/horse_gallop.dae" name="Run" speed="11"/>
+        <animation file="quadraped/horse_death_a.dae" name="death" id="death1" speed="140"/>
+        <animation file="quadraped/horse_death_b.dae" name="death" id="death2" speed="140"/>
       </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+      <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
-        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse_back_blanket_cavalry.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/crest_1.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="horse2a">
-      <textures><texture file="skeletal/horse_pers_csw_e_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_pers_csw_e_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="horse2b">
-      <textures><texture file="skeletal/horse_pers_csw_e_3.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_pers_csw_e_3.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
