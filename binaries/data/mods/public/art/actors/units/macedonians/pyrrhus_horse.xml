@@ -2,17 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="30"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_melee" speed="150"/>
-        <animation file="quadraped/horse_attack_b.psa" name="attack_melee" speed="150"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
-      </animations>
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
       <color>0 0 0</color>
-      <mesh>skeletal/horse.pmd</mesh>
+      <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/macedonians/pyrrhus_r.xml" attachpoint="rider"/>
       </props>

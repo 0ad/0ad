@@ -2,21 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="quadraped/elephant_rider_idle.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/elephant_rider_idle.psa" name="Walk" speed="50"/>
-        <animation file="quadraped/elephant_rider_idle.psa" name="Run" speed="40"/>
-        <animation event="0.6" file="biped/rider_archer_atk_a.psa" load="0" name="attack_ranged" speed="50"/>
-        <animation event="0.5" file="quadraped/elephant_rider_idle.psa" name="gather_meat" speed="300"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
-      </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+    <variant file="biped/base_elephant_archer_ready_2.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/bow_bamboo_long.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/heads/new/head_indian_a.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/bow_bamboo_long.xml" attachpoint="weapon_bow"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
       </props>
       <textures>
@@ -26,10 +17,11 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
+    <variant file="biped/attack_ranged_elephant_archer_back_2.xml" name="attack_ranged"/>
     <variant name="carry_meat">
       <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="weapon_R"/>
+        <prop attachpoint="weapon_bow"/>
         <prop attachpoint="shield"/>
       </props>
     </variant>

@@ -2,17 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="30"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_melee" speed="20"/>
-        <animation file="quadraped/horse_attack_b.psa" name="attack_melee" speed="20"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
-      </animations>
+    <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
       <color>0 0 0</color>
-      <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/celts/cunobelin_r.xml" attachpoint="rider"/>
       </props>

@@ -2,25 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
-        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_melee" speed="405"/>
-        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_melee" speed="395"/>
-        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_slaughter" speed="395"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
-        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="400"/>
-        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="gather_meat" speed="400"/>
-      </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/mace_bronzeshield_a.xml" attachpoint="helmet"/>
-        <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/ptol_champion_cav.xml" attachpoint="shield"/>
+        <prop actor="props/units/cape_cav_animated_champ_ptol_spear.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/spart_phalangite_officer.dds" name="baseTex"/>

@@ -2,17 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="quadraped/elephant_rider_idle.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/elephant_rider_idle.psa" name="Walk" speed="18"/>
-        <animation file="quadraped/elephant_rider_idle.psa" name="Run" speed="8"/>
-        <animation file="quadraped/elephant_rider_idle.psa" name="attack_melee" speed="50"/>
-      </animations>
-      <mesh>skeletal/m_tights.dae</mesh>
+    <variant file="biped/base_elephant_rider_ready_shield.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/axe_sagaris.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_indian_a.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/axe_sagaris.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/maur_small_b.xml" attachpoint="shield"/>
       </props>
     </variant>

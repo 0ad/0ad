@@ -2,21 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="25"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="25"/>
-        <animation file="cavalry/rider_gallop.psa" name="Run" speed="35"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_melee" speed="400"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_melee" speed="400"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
-      </animations>
-      <mesh>skeletal/m_pants_celt.dae</mesh>
+    <variant file="biped/base_cavalry_swordsman_shield_ready.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/celt_vercingentorix.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_round_swirl.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/csword.xml" attachpoint="r_hand"/>
-        <prop actor="props/temp/l_sheath.xml" attachpoint="l_hip"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
+        <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
       </props>
       <textures><texture file="skeletal/celt_vercingetorix.dds" name="baseTex"/></textures>
     </variant>

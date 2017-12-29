@@ -2,21 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="700"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="700"/>
-      </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+    <variant frequency="1" file="quadraped/base_horse.xml" name="fauna horse">
+      <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="props/special/pegasus_wings.xml" attachpoint="rider"/>
       </props>
+      <textures>
+        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <group>
-    <variant name="white">
-      <textures><texture file="skeletal/horse_white_a.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
+  <material>basic_trans.xml</material>
 </actor>

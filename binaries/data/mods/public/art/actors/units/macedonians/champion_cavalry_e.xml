@@ -2,26 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="800"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="400"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="350"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="600"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="666"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="333"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="222"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="250"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="400"/>
-        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="300"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="100"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="30"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_melee" speed="20"/>
-        <animation file="quadraped/horse_attack_b.psa" name="attack_melee" speed="22"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="235"/>
-      </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/macedonians/champion_cavalry_e_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
@@ -68,10 +50,6 @@
     <variant frequency="1" name="saddle-leopard-a">
       <props>
         <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>
-        <prop actor="props/units/horse/hele_saddle_fr1.xml" attachpoint="fr_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_fl1.xml" attachpoint="fl_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_rr1.xml" attachpoint="rr_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_rl1.xml" attachpoint="rl_quarter"/>
       </props>
       <textures>
         <texture file="skeletal/horse_hele_j.dds" name="baseTex"/>
@@ -80,10 +58,6 @@
     <variant frequency="2" name="saddle-leopard-b">
       <props>
         <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>
-        <prop actor="props/units/horse/hele_saddle_fr1.xml" attachpoint="fr_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_fl1.xml" attachpoint="fl_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_rr1.xml" attachpoint="rr_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_rl1.xml" attachpoint="rl_quarter"/>
       </props>
       <textures>
         <texture file="skeletal/horse_hele_h.dds" name="baseTex"/>
@@ -92,10 +66,6 @@
     <variant frequency="1" name="saddle-lion-a">
       <props>
         <prop actor="props/units/horse/hele_saddle_h2.xml" attachpoint="chest"/>
-        <prop actor="props/units/horse/hele_saddle_fr2.xml" attachpoint="fr_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_fl2.xml" attachpoint="fl_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_rr2.xml" attachpoint="rr_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_rl2.xml" attachpoint="rl_quarter"/>
       </props>
       <textures>
         <texture file="skeletal/horse_hele_i.dds" name="baseTex"/>
@@ -104,10 +74,6 @@
     <variant frequency="2" name="saddle-lion-b">
       <props>
         <prop actor="props/units/horse/hele_saddle_h2.xml" attachpoint="chest"/>
-        <prop actor="props/units/horse/hele_saddle_fr2.xml" attachpoint="fr_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_fl2.xml" attachpoint="fl_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_rr2.xml" attachpoint="rr_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_rl2.xml" attachpoint="rl_quarter"/>
       </props>
       <textures>
         <texture file="skeletal/horse_hele_g.dds" name="baseTex"/>

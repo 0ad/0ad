@@ -2,30 +2,19 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="female/f_cav_idle_01.dae" name="Idle" speed="50"/>
-        <animation file="female/f_cav_idle_01.dae" name="Walk" speed="50"/>
-        <animation file="female/f_cav_run_01.dae" name="Run" speed="30"/>
-        <animation file="female/f_cav_death_01.dae" name="Death" speed="230"/>
-        <animation event=".5" file="female/f_cav_jav_atk_01.dae" load="0" name="attack_ranged" speed="50"/>
-      </animations>
-      <mesh>skeletal/f_tunic.dae</mesh>
+    <variant file="biped/base_cavalry_javelin_ready_shield.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_celt_boudicca.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/jav_gold.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_celt_boudicca.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/jav_gold.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
       </props>
       <textures><texture file="skeletal/celt_boudicca.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
-    <variant name="attack_ranged">
-      <props>
-        <prop actor="props/units/weapons/jav_gold.xml" attachpoint="loaded-r_hand"/>
-        <prop attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
-      </props>
-    </variant>
+    <variant frequency="100" name="Idle"/>
+    <variant file="biped/attack_ranged_cavalry_javelin.xml" name="attack_ranged"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

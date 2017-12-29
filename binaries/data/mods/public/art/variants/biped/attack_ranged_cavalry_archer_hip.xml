@@ -1,0 +1,10 @@
+<variant name="attack_ranged">
+  <animations>
+    <animation file="biped/rider_archer_attack_hip.dae" event="0.35" name="attack_ranged" load="0.75" speed="200"/>
+  </animations>
+  <props>
+    <prop actor="" attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+    <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-projectile"/>
+  </props>
+</variant>

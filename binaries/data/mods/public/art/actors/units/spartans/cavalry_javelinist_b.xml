@@ -2,18 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
-        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
-        <animation event=".5" file="quadraped/horse_attack_a.psa" name="attack_ranged" speed="20"/>
-        <animation event=".5" file="quadraped/horse_attack_b.psa" name="attack_ranged" speed="20"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_slaughter" speed="20"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
-      </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/spartans/cavalry_javelinist_b_r.xml" attachpoint="rider"/>
       </props>
@@ -21,19 +11,29 @@
   </group>
   <group>
     <variant frequency="3" name="horse texture black">
-      <textures><texture file="skeletal/horse_black_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="horse texture brown">
-      <textures><texture file="skeletal/horse_brown_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_brown_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="4" name="horse texture chestnut">
-      <textures><texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="horse texture dun">
-      <textures><texture file="skeletal/horse_dun_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_dun_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="horse texture white">
-      <textures><texture file="skeletal/horse_white_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

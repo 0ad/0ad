@@ -2,22 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_melee" speed="400"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_slaughter" speed="400"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="gather_meat" speed="400"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
-      </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant file="biped/base_cavalry_spearman_ready_shield.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/samnite_test.xml" attachpoint="helmet"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/kart_round_isp_basic.xml" attachpoint="shield"/>
+        <prop actor="props/units/heads/samnite_test.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
@@ -37,10 +28,11 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
+    <variant file="biped/rider_promotion_shield.xml" name="promotion"/>
+    <variant file="biped/attack_slaughter_spear_shield_cavalry.xml" name="attack_slaughter"/>
     <variant name="carry_meat">
       <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
         <prop attachpoint="shield"/>
       </props>
     </variant>

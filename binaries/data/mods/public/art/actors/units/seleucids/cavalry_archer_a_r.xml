@@ -2,26 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
-        <animation event="0.84" file="cavalry/arch/attack/rider_archer_atk_a.psa" load="0.16" name="attack_ranged" speed="100"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_slaughter" speed="400"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="350"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="gather_meat" speed="350"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
-      </animations>
-      <mesh>skeletal/m_pants.dae</mesh>
+    <variant file="biped/base_cavalry_archer_ready.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_pants.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_kidaris_loose_yellow.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/pers_pelta_e_reverse.xml" attachpoint="back"/>
-        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/pers_quiver_hip.xml" attachpoint="l_hip"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
+        <prop actor="props/units/pers_quiver_hip.xml" attachpoint="sheath_L"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
   </group>
@@ -35,10 +24,33 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
+    <variant file="biped/attack_ranged_cavalry_archer_hip.xml" frequency="100" name="attack_ranged"/>
+    <variant file="biped/attack_slaughter_shield_cavalry.xml" name="attack_slaughter">
+      <props>
+        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+    <variant file="biped/rider_promotion.xml" name="promotion">
+      <props>
+        <prop attachpoint="weapon_bow"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+    <variant name="attack_capture">
+      <props>
+        <prop attachpoint="weapon_bow"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
     <variant name="carry_meat">
       <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
+        <prop attachpoint="weapon_bow"/>
         <prop attachpoint="shield"/>
       </props>
     </variant>

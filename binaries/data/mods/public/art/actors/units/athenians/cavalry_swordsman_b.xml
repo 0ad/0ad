@@ -2,40 +2,37 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
-        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
-        <animation file="quadraped/horse_walk.psa" name="carry_food" speed="120"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_melee" speed="20"/>
-        <animation file="quadraped/horse_attack_b.psa" name="attack_melee" speed="20"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_slaughter" speed="20"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
-      </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+    <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/hellenes/cavalry_swordsman_b_r.xml" attachpoint="rider"/>
+        <prop actor="units/athenians/cavalry_swordsman_b_r.xml" attachpoint="rider"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="2" name="horse-color-palamino">
       <color>206 199 147</color>
-      <textures><texture file="skeletal/horse_hele_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_hele_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="horse-color-strawberryroan">
       <color>210 166 136</color>
-      <textures><texture file="skeletal/horse_hele_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_hele_c.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="horse-color-dun">
       <color>196 145 111</color>
-      <textures><texture file="skeletal/horse_hele_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_hele_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="horse-color-gray">
       <color>212 212 212</color>
-      <textures><texture file="skeletal/horse_hele_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_hele_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

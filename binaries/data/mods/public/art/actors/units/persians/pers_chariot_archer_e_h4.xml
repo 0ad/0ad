@@ -2,22 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="52"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="112"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_ranged" speed="100"/>
-        <animation file="quadraped/horse_attack_b.psa" name="attack_ranged" speed="100"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
-        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="111"/>
-      </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+    <variant frequency="1" file="quadraped/base_horse_chariot.xml" name="Chariot Horse">
+      <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
-        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse_back_blanket_chariot.xml" attachpoint="rider"/>
       </props>
     </variant>
   </group>

@@ -2,39 +2,39 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_melee" speed="400"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_slaughter" speed="400"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="240"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="400"/>
-      </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant file="biped/base_cavalry_swordsman_relax.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/hele_helmet_csw_e.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/xiphos.xml" attachpoint="r_hand"/>
-        <prop actor="props/temp/l_sheath.xml" attachpoint="l_hip"/>
+        <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/xiphos.xml" attachpoint="weapon_R"/>
+        <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="armour-scale">
-      <textures><texture file="skeletal/hele_linothorax_scale.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_linothorax_scale.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="armour-cuirass">
-      <textures><texture file="skeletal/hele_isp_e_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_isp_e_1.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
+    <variant file="biped/rider_promotion.xml" name="promotion"/>
+    <variant file="biped/attack_slaughter_cavalry.xml" name="attack_slaughter">
+      <props>
+        <prop actor="props/units/weapons/knife.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
     <variant name="carry_meat">
       <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
         <prop attachpoint="shield"/>
       </props>
     </variant>
