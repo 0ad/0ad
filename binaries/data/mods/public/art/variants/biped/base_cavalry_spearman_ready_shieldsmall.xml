@@ -1,0 +1,16 @@
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/rider_idle_shieldsmall_ready.dae" name="idle" speed="98"/>
+    <animation file="biped/rider_idle_carry_meat.dae" name="carry_meat_idle" speed="12"/>
+    <animation file="biped/rider_walk_shieldsmall_ready.dae" name="Walk" event="0.94" speed="7"/>
+    <animation file="biped/rider_run_shield.dae" name="Run" speed="11"/>
+    <animation file="biped/rider_carry_meat.dae" name="carry_meat" event="0.94" speed="7"/>
+    <animation file="biped/rider_gather_meat_shield.dae" name="gather_meat" speed="70"/>
+    <animation file="biped/rider_attack_capture_shield_spear.dae" name="attack_capture" speed="100"/>
+    <animation file="biped/rider_attack_shield_stab_long.dae" event="0.5" name="attack_melee" id="attack1" speed="350"/>
+    <animation file="biped/rider_attack_shield_stab.dae" event="0.5" name="attack_melee" id="attack2" speed="350"/>
+    <animation file="biped/rider_attack_shield_stab.dae" event="0.5" name="attack_melee" id="attack3" speed="350"/>
+    <animation file="biped/rider_death_shield.dae" name="death" id="death1" speed="120"/>
+    <animation file="biped/rider_death_shield_b.dae" name="death" id="death2" speed="120"/>
+  </animations>
+</variant>

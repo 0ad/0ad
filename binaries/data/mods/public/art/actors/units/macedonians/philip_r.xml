@@ -2,20 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="100"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="17"/>
-        <animation file="biped/rider_gallop.psa" name="run" speed="8"/>
-        <animation file="biped/rider_sword_death_a.psa" name="Death" speed="240"/>
-        <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="attack_melee" speed="200"/>
-      </animations>
-      <mesh>skeletal/m_tunic_long.dae</mesh>
+    <variant file="biped/base_cavalry_spearman_ready.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_philip.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_philip.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_lance.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/mace_philip.xml" attachpoint="helmet"/>
-        <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
       </props>
       <textures><texture file="skeletal/hele_philip_3.dds" name="baseTex"/></textures>
     </variant>

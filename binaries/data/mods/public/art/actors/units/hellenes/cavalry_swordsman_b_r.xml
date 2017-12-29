@@ -2,20 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_melee" speed="400"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_slaughter" speed="400"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="240"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="400"/>
-      </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant file="biped/base_cavalry_swordsman_relax.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/xiphos.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/xiphos.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
       </props>
     </variant>
@@ -27,17 +18,15 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="carry_meat">
+    <variant file="biped/rider_promotion.xml" name="promotion"/>
+    <variant file="biped/attack_slaughter_cavalry.xml" name="attack_slaughter">
       <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-        <prop attachpoint="shield"/>
+        <prop actor="props/units/weapons/knife.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
-    <variant name="carry_food">
+    <variant name="carry_meat">
       <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
         <prop attachpoint="shield"/>
       </props>
     </variant>

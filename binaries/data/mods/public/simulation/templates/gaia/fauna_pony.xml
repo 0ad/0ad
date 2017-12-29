@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="gaia/fauna_horse">
+  <Identity>
+    <SpecificName>Pony</SpecificName>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed op="mul">0.8</WalkSpeed>
+    <Run>
+      <Speed op="mul">0.8</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>fauna/pony.xml</Actor>
+  </VisualActor>
+</Entity>

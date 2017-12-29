@@ -2,19 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_melee" speed="20"/>
-        <animation file="quadraped/horse_attack_b.psa" name="attack_melee" speed="20"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
-      </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/celts/champion_unit_2_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/celt_cav_heads.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/celt_cav_heads.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>

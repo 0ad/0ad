@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_cavalry_spearman_ready_shield.xml" frequency="100" name="Base">
+      <mesh>props/new/capes/m_cape_medium.dae</mesh>
+      <textures>
+        <texture file="props/cape_kart_maharbal.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

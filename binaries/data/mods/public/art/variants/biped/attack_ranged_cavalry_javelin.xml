@@ -1,0 +1,10 @@
+<variant name="attack_ranged">
+  <animations>
+    <animation file="biped/rider_attack_javelin_shield.dae" event="0.42" name="attack_ranged" load="0.75" speed="100"/>
+  </animations>
+  <props>
+    <prop attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-weapon_R"/>
+    <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+  </props>
+</variant>

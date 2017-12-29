@@ -8,7 +8,7 @@
         <animation file="mechanical/pers_chariot_e_move.dae" name="Walk" speed="12"/>
         <animation file="mechanical/pers_chariot_e_move.dae" name="Run" speed="20"/>
       </animations>
-      <mesh>structural/pers_chariot_e.dae</mesh>
+      <mesh>structural/sele_champion_chariot.dae</mesh>
       <props>
         <prop actor="units/seleucids/champion_chariot_h1.xml" attachpoint="horse1"/>
         <prop actor="units/seleucids/champion_chariot_h2.xml" attachpoint="horse2"/>
@@ -17,16 +17,25 @@
         <prop actor="units/seleucids/champion_chariot_rider.xml" attachpoint="rider1"/>
         <prop actor="units/seleucids/champion_chariot_driver.xml" attachpoint="rider2"/>
       </props>
-      <textures><texture file="structural/pers_chariot_e.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/sele_chariot_playercolor.png" name="baseTex"/>
+        <texture file="props/sele_chariot_spec.png" name="specTex"/>
+        <texture file="props/sele_chariot_norm.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
     <variant name="Run">
       <props>
         <prop actor="particle/dust_cav.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

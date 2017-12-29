@@ -2,22 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_melee" speed="250"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_melee" speed="250"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
-      </animations>
-      <mesh>skeletal/m_pants_armor.dae</mesh>
+    <variant file="biped/base_cavalry_2_handed_spearman_ready.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_pers_b.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_pers_b.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_conical_champcav.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/pers_neckguard_champ.xml" attachpoint="helmet"/>
-        <prop actor="props/units/weapons/spear_lance_persian.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/pers_quiver_hip.xml" attachpoint="l_hip"/>
+        <prop actor="props/units/weapons/spear_lance_persian.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/pers_quiver_hip.xml" attachpoint="sheath_L"/>
       </props>
     </variant>
   </group>
@@ -38,14 +30,14 @@
   <group>
     <variant frequency="1" name="Arm Guards Iron">
       <props>
-        <prop actor="props/units/pers_bactrian_arm_left_iron.xml" attachpoint="l_shoulder"/>
-        <prop actor="props/units/pers_bactrian_arm_right_iron.xml" attachpoint="r_shoulder"/>
+        <prop actor="props/units/pers_bactrian_arm_left_iron.xml" attachpoint="shoulderpad_L"/>
+        <prop actor="props/units/pers_bactrian_arm_right_iron.xml" attachpoint="shoulderpad_R"/>
       </props>
     </variant>
     <variant frequency="1" name="Arm Guards Bronze">
       <props>
-        <prop actor="props/units/pers_bactrian_arm_left_bronze.xml" attachpoint="l_shoulder"/>
-        <prop actor="props/units/pers_bactrian_arm_right_bronze.xml" attachpoint="r_shoulder"/>
+        <prop actor="props/units/pers_bactrian_arm_left_bronze.xml" attachpoint="shoulderpad_L"/>
+        <prop actor="props/units/pers_bactrian_arm_right_bronze.xml" attachpoint="shoulderpad_R"/>
       </props>
     </variant>
   </group>

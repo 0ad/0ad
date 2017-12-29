@@ -2,28 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="800"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="400"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="350"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="600"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="666"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="333"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="222"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="250"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
-        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="400"/>
-        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="300"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="100"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_melee" speed="202"/>
-        <animation file="quadraped/horse_attack_b.psa" name="attack_melee" speed="215"/>
-        <animation file="quadraped/horse_attack_a.psa" name="attack_slaughter" speed="202"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
-      </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/spartans/cavalry_spearman_e_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>

@@ -1,0 +1,12 @@
+<variant name="attack_ranged">
+  <animations>
+    <animation file="biped/rider_archer_attack_hip_right.dae" event="0.35" name="attack_ranged" id="attack1" load="0.75" speed="200"/>
+    <animation file="biped/rider_archer_attack_fast.dae" event="0.35" name="attack_ranged" id="attack2" load="0.75" speed="200"/>
+    <animation file="biped/rider_archer_attack_fast.dae" event="0.35" name="attack_ranged" id="attack3" load="0.75" speed="200"/>
+  </animations>
+  <props>
+    <prop actor="" attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/Xion_arrow_front.xml" attachpoint="projectile"/>
+    <prop actor="props/units/weapons/Xion_arrow_back.xml" attachpoint="loaded-projectile"/>
+  </props>
+</variant>

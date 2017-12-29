@@ -2,21 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_melee" speed="400"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_slaughter" speed="400"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="240"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="400"/>
-      </animations>
-      <mesh>skeletal/m_pants_celt.dae</mesh>
+    <variant file="biped/base_cavalry_swordsman_shield_relax.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_pants.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/celt_round_b.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/csword.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
@@ -36,10 +27,11 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
+    <variant file="biped/rider_promotion_shield.xml" name="promotion"/>
+    <variant file="biped/attack_slaughter_shield_cavalry.xml" name="attack_slaughter"/>
     <variant name="carry_meat">
       <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
         <prop attachpoint="helmet"/>
         <prop attachpoint="shield"/>
       </props>

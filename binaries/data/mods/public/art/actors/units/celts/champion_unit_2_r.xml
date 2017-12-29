@@ -2,20 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="35"/>
-        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" load="0.5" name="attack_melee" speed="400"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
-      </animations>
-      <mesh>skeletal/m_pants_celt.dae</mesh>
+    <variant file="biped/base_cavalry_spearman_ready_shield.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/celt_helmet_a.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_dip.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
   </group>

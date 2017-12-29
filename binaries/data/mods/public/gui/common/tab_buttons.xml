@@ -12,8 +12,8 @@
 		<repeat count="20">
 			<object name="tabButton[n]" type="button" style="ModernTabButtonVertical" size="0 0 100% 30" hidden="true">
 				<object type="text" name="tabButtonText[n]" style="ModernLabelText" ghost="true"/>
-				<action on="MouseWheelUp">selectNextTab(1);</action>
-				<action on="MouseWheelDown">selectNextTab(-1);</action>
+				<action on="MouseWheelUp">selectNextTab(-1);</action>
+				<action on="MouseWheelDown">selectNextTab(1);</action>
 			</object>
 		</repeat>
 	</object>

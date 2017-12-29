@@ -2,21 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="25"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="25"/>
-        <animation file="cavalry/rider_gallop.psa" name="Run" speed="30"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_melee" speed="400"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_melee" speed="400"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
-      </animations>
-      <mesh>skeletal/m_hero_cape.dae</mesh>
+    <variant file="biped/base_cavalry_swordsman_shield_ready.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_hero_pants_tunic.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_cunobelin.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_cunobelin.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_cunobelin.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/csword.xml" attachpoint="r_hand"/>
-        <prop actor="props/temp/l_sheath.xml" attachpoint="l_hip"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
+        <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
         <prop actor="props/units/heads/celt_hood_priest.xml" attachpoint="helmet"/>
       </props>
       <textures><texture file="skeletal/celt_cunobelin.dds" name="baseTex"/></textures>

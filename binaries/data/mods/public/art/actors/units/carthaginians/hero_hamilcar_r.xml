@@ -2,22 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
-        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_melee" speed="405"/>
-        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_melee" speed="395"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
-      </animations>
-      <mesh>skeletal/m_tunic_long.dae</mesh>
+    <variant file="biped/base_cavalry_swordsman_shield_ready.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_kart_hannibal.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_kart_hannibal.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/kart_hero_hamilcar.xml" attachpoint="shield"/>
         <prop actor="props/units/heads/kart_hero_2.xml" attachpoint="helmet"/>
-        <prop actor="props/units/cape_m_med.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/cape_cav_animated_kart_hannibal.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

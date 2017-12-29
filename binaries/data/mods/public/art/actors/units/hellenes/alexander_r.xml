@@ -2,21 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="10"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="10"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_melee" speed="100"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_melee" speed="100"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="240"/>
-      </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant file="biped/base_cavalry_swordsman_relax.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/hele_alexander.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_alexander.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/cape_hd_cav_white.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/heads/new/head_alexander.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/cape_cav_animated_alexander.xml" attachpoint="root"/>
       </props>
       <textures><texture file="skeletal/hele_alexander.dds" name="baseTex"/></textures>
     </variant>

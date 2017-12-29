@@ -2,17 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
-        <animation event="0.84" file="cavalry/arch/attack/rider_archer_atk_a.psa" load="0.16" name="attack_ranged" speed="100"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_slaughter" speed="400"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="350"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="gather_meat" speed="350"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
-      </animations>
+    <variant frequency="100" file="biped/base_camel_archer.xml">
       <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>

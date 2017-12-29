@@ -2,16 +2,16 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="200"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="150"/>
-        <animation file="quadraped/horse_walk.psa" name="Run" speed="100"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="250"/>
+        <animation file="quadraped/horse_idle.dae" name="Idle" id="idle1" speed="60"/>
+        <animation file="quadraped/horse_idle_b.dae" name="Idle" id="idle2" speed="60"/>
+        <animation file="quadraped/horse_idle_c.dae" name="Idle" id="idle3" speed="60"/>
+        <animation file="quadraped/horse_walk_relax.dae" name="Walk" event="0.94" speed="20"/>
+        <animation file="quadraped/horse_gallop.dae" name="Run" speed="11"/>
+        <animation file="quadraped/horse_death_b.dae" name="death" speed="140"/>
       </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+      <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
@@ -20,13 +20,19 @@
   </group>
   <group>
     <variant frequency="1" name="horse 01">
-      <textures><texture file="skeletal/horse_rome_csp_01.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_rome_csp_01.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="horse 03">
-      <textures><texture file="skeletal/horse_rome_csp_03.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_rome_csp_03.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="horse 04">
-      <textures><texture file="skeletal/horse_rome_csp_04.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_rome_csp_04.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
