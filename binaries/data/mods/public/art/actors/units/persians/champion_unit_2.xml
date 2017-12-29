@@ -2,31 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="300"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="290"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="280"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="275"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="200"/>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
-        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="350"/>
-        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="375"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="45"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="122"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="130"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="118"/>
-        <animation event="0.5" file="quadraped/horse_attack_a.psa" name="attack_melee" speed="200"/>
-        <animation event="0.5" file="quadraped/horse_attack_b.psa" name="attack_melee" speed="200"/>
-        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
-      </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/persians/champion_unit_2_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
         <prop actor="props/units/heads/pers_cav_knot.xml" attachpoint="head"/>
-        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse_back_blanket_cavalry.xml" attachpoint="rider"/>
       </props>
     </variant>
   </group>

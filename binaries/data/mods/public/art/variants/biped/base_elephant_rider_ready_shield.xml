@@ -1,0 +1,10 @@
+<variant name="Base" frequency="1">
+	<animations>
+		<animation file="biped/elephant_rider_idle_ready_shield.dae" name="idle" speed="25"/>
+		<animation file="biped/elephant_rider_walk_ready_shield.dae" name="Walk" speed="20"/>
+		<animation file="biped/elephant_rider_walk_ready_shield.dae" name="Run" speed="20"/>
+		<animation file="biped/elephant_rider_attack_ready_shield.dae" name="attack_melee" speed="20"/>
+		<animation file="biped/elephant_rider_attack_ready_shield.dae" name="attack_ranged" speed="20"/>
+		<animation file="biped/elephant_rider_death_ready_shield.dae" name="Death" speed="75"/>
+	</animations>
+</variant>

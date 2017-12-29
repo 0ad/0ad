@@ -2,27 +2,48 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant file="biped/pikeman_base.xml">
       <animations>
-        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/inf_salute_d.psa" name="Walk" speed="50"/>
-        <animation file="biped/inf_salute_e.psa" name="Walk" speed="50"/>
-        <animation file="biped/inf_salute_e.psa" name="run" speed="65"/>
-        <animation file="infantry/general/dude/dudeidle.psa" name="attack_melee" speed="1"/>
-        <animation file="biped/rider_sword_death_a.psa" name="death" speed="200"/>
+        <animation file="biped/new/inf_sarissa_rest.dae" name="Idle" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/armor/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/shields/ptol_ptolemy_I.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/sele_perseus_brass.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_kart_hannibal.xml" attachpoint="head"/>
-        <prop actor="props/units/cape_kart_hannibal.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/heads/new/head_kart_hannibal.xml" attachpoint="head"/>
+        <prop actor="props/units/cape_animated_hoplite.xml" attachpoint="root"/>
       </props>
-      <textures>         <texture file="skeletal/mace_su1_hypaspist_1.dds" name="baseTex"/>
+      <textures>
+        <texture file="skeletal/mace_su1_hypaspist_1.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
   <material>player_trans.xml</material>
 </actor>
-

@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="100"/>
-        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
-        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="infantry/general/dude/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_01.psa" name="attack_melee" speed="200"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_02.psa" name="attack_melee" speed="200"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_03.psa" name="attack_melee" speed="200"/>
-      </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant frequency="1" name="Base" file="biped/base_swordsman_shield_ready.xml">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/rome_scutum_su.xml" attachpoint="shield"/>
       </props>
-      <textures><texture file="skeletal/rome_hero_marcellus.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/rome_hero_marcellus.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
   <material>player_trans.xml</material>
-
 </actor>
