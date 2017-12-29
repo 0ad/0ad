@@ -2,11 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_spearman_ready_shield.xml" frequency="100" name="Base">
+    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="100" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_numid_elite.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/kart_buckler_maharbal.xml" attachpoint="shield"/>
         <prop actor="props/units/heads/kart_hero_1.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
