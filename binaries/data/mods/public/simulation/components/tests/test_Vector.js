@@ -152,6 +152,23 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(avg.y, -13);
 }
 
+// Test Vector2D round
+{
+	let v1 = new Vector2D(-4.5, 8.2).round();
+	TS_ASSERT_EQUALS(v1.x, -4);
+	TS_ASSERT_EQUALS(v1.y, 8);
+
+	let v2 = new Vector2D(NaN, NaN).round();
+	TS_ASSERT(isNaN(v2.x));
+	TS_ASSERT(isNaN(v2.y));
+
+	let v3 = new Vector2D().round();
+	TS_ASSERT_EQUALS(v3.x, 0);
+	TS_ASSERT_EQUALS(v3.y, 0);
+}
+
+// Vector3D tests
+
 // Test Vector3D distance and compareLength
 {
 	let v1 = new Vector3D(2, 5, 14);
@@ -197,4 +214,27 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v1.horizAngleTo(v2), 0);
 	TS_ASSERT_EQUALS(v1.horizAngleTo(v3), Math.PI / 2);
 	TS_ASSERT_EQUALS(v3.horizAngleTo(v2), -Math.PI / 4);
+}
+
+// Test Vector3D round
+{
+	let v1 = new Vector3D(-1.1, 2.2, 3.3).round();
+	TS_ASSERT_EQUALS(v1.x, -1);
+	TS_ASSERT_EQUALS(v1.y, 2);
+	TS_ASSERT_EQUALS(v1.z, 3);
+
+	let v2 = new Vector3D(NaN, NaN, NaN).round();
+	TS_ASSERT(isNaN(v2.x));
+	TS_ASSERT(isNaN(v2.y));
+	TS_ASSERT(isNaN(v2.z));
+
+	let v3 = new Vector3D().round();
+	TS_ASSERT_EQUALS(v3.x, 0);
+	TS_ASSERT_EQUALS(v3.y, 0);
+	TS_ASSERT_EQUALS(v3.z, 0);
+
+	let v4 = new Vector3D(71.8, 73.4, 73.89).round();
+	TS_ASSERT_EQUALS(v4.x, 72);
+	TS_ASSERT_EQUALS(v4.y, 73);
+	TS_ASSERT_EQUALS(v4.z, 74);
 }
