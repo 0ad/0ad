@@ -2,8 +2,16 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in 'Village Phase' and ultimately, your goal will be to develop and expand your empire, often by evolving to 'Town Phase' and 'City Phase' afterward.\n"),
-			markForTranslation("\nBefore starting, you can toggle between fullscreen and windowed mode using Alt+Enter. You can also change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"),
-			markForTranslation("Adjust the game window to your preferences.\n")
+			{
+				"text": markForTranslation("\nBefore starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."),
+				"hotkey": ["togglefullscreen"]
+			},
+			markForTranslation("You can change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"),
+			markForTranslation("Adjust the game window to your preferences.\n"),
+			{
+				"text": markForTranslation("\nYou may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"),
+				"hotkey": ["session.gui.tutorial.toggle"]
+			}
 		]
 	},
 	{
