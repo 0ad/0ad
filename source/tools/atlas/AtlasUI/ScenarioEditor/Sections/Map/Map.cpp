@@ -271,6 +271,9 @@ AtObj MapSettingsControl::UpdateSettingsObject()
 	// teams locked
 	m_MapSettings.setBool("LockTeams", wxDynamicCast(FindWindow(ID_MapTeams), wxCheckBox)->GetValue());
 
+	// default AI RNG seed
+	m_MapSettings.setInt("AISeed", 0);
+
 	return m_MapSettings;
 }
 
