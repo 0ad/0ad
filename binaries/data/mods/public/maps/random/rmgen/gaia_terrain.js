@@ -586,6 +586,62 @@ function createShallowsPassage(x1, z1, x2, z2, width, maxHeight, shallowHeight, 
 }
 
 /**
+ * Creates a smooth, passable path between between (startX, startZ) and (endX, endZ) with the given startWidth and endWidth.
+ * Paints the given tileclass and terrain.
+ *
+ * @property {Vector2D} start - Location of the passage.
+ * @property {Vector2D} end
+ * @property {number} startWidth - Size of the passage (perpendicular to the direction of the passage).
+ * @property {number} endWidth
+ * @property {number} [startHeight] - Fixed height to be used if the height at the location shouldn't be used.
+ * @property {number} [endHeight]
+ * @property {number} smoothWidth - Number of tiles at the passage border to apply height interpolation.
+ * @property {number} [tileClass] - Marks the passage with this tile class.
+ * @property {string} [terrain] - Texture to be painted on the passage area.
+ */
+function createPassage(args)
+{
+	let bound = x => Math.max(0, Math.min(Math.round(x), getMapSize()));
+
+	let startHeight = args.startHeight !== undefined ? args.startHeight : getHeight(bound(args.start.x), bound(args.start.y));
+	let endHeight = args.endHeight !== undefined ? args.endHeight : getHeight(bound(args.end.x), bound(args.end.y));
+
+	let passageVec = Vector2D.sub(args.end, args.start);
+	let widthDirection = passageVec.perpendicular().normalize();
+	let lengthStep = 1 / (2 * passageVec.length());
+
+	for (let lengthFraction = 0; lengthFraction <= 1; lengthFraction += lengthStep)
+	{
+		let locationLength = Vector2D.add(args.start, Vector2D.mult(passageVec, lengthFraction));
+		let halfPassageWidth = (args.startWidth + (args.endWidth - args.startWidth) * lengthFraction) / 2;
+		let passageHeight = startHeight + (endHeight - startHeight) * lengthFraction;
+
+		for (let stepWidth = -halfPassageWidth; stepWidth <= halfPassageWidth; stepWidth += 0.5)
+		{
+			let location = Vector2D.add(locationLength, Vector2D.mult(widthDirection, stepWidth)).round();
+
+			if (!g_Map.inMapBounds(location.x, location.y))
+				continue;
+
+			let smoothDistance = args.smoothWidth + Math.abs(stepWidth) - halfPassageWidth;
+
+			g_Map.setHeight(
+				location.x,
+				location.y,
+				smoothDistance > 0 ?
+					(getHeight(location.x, location.y) * smoothDistance + passageHeight / smoothDistance) / (smoothDistance + 1 / smoothDistance) :
+					passageHeight);
+
+			if (args.tileClass)
+				addToClass(location.x, location.y, args.tileClass);
+
+			if (args.terrain)
+				placeTerrain(location.x, location.y, args.terrain);
+		}
+	}
+}
+
+/**
  * Creates a ramp from (x1, y1) to (x2, y2).
  */
 function createRamp(x1, y1, x2, y2, minHeight, maxHeight, width, smoothLevel, mainTerrain, edgeTerrain, tileClass)
