@@ -1801,13 +1801,10 @@ m.AttackPlan.prototype.UpdateWalking = function(gameState, events)
 				this.state = "arrived";
 				return true;
 			}
-			else	// abort plan
-			{
-				if (this.Config.debug > 1)
-					API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
-				return false;
-			}
-			break;
+			// abort plan
+			if (this.Config.debug > 1)
+				API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
+			return false;
 		}
 
 		//this.unitCollection.move(this.path[0][0], this.path[0][1]);

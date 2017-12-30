@@ -88,6 +88,14 @@ Vector2D.prototype.rotateAround = function(angle, center)
 	return this.sub(center).rotate(angle).add(center);
 };
 
+/**
+ * Convert to integer coordinates.
+ */
+Vector2D.prototype.round = function()
+{
+	return this.set(Math.round(this.x), Math.round(this.y));
+};
+
 // Numeric 2D info functions (non-mutating)
 //
 // These methods serve to get numeric info on the vector, they don't modify the vector
@@ -276,6 +284,14 @@ Vector3D.prototype.normalize = function()
 		return this;
 
 	return this.div(magnitude);
+};
+
+/**
+ * Convert to integer coordinates.
+ */
+Vector3D.prototype.round = function()
+{
+	return this.set(Math.round(this.x), Math.round(this.y), Math.round(this.z));
 };
 
 // Numeric 3D info functions (non-mutating)

@@ -5,6 +5,7 @@
 # Translators:
 # B2D <book2doc@gmail.com>, 2014
 # Martin Plávala <martinplavala@gmail.com>, 2014
+# LeviTaule <levi.taule@gmail.com>, 2017
 # LeviTaule <levi.taule@gmail.com>, 2015-2016
 # Marián Mižik <inactive+marian.mizik@transifex.com>, 2015
 # Mário Bulejko, 2015
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-22 09:01+0100\n"
-"PO-Revision-Date: 2017-12-22 14:19+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-28 16:07+0000\n"
+"Last-Translator: LeviTaule <levi.taule@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -139,7 +140,7 @@ msgstr "Námorné mapy"
 #: gui/gamesetup/gamesetup.js:171
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Mapy, na ktorých sú potrebné lode, pre presun k nepriateľovi."
+msgstr "Mapy vyžadujúce lode na presun k nepriateľovi."
 
 #: gui/gamesetup/gamesetup.js:176
 msgid "Demo Maps"
@@ -157,7 +158,7 @@ msgstr "Nové mapy"
 #: gui/gamesetup/gamesetup.js:183
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr "Mapy, ktoré sú nové v tomto vidaní hry."
+msgstr "Mapy pridané v tejto verzii hry."
 
 #: gui/gamesetup/gamesetup.js:188
 msgid "Trigger Maps"
@@ -166,7 +167,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:189
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Mapy, ktoré obsahujú naprogramované eventy a potenciálne umiestňujú nepriateľské jednotky."
+msgstr "Mapy obsahujúce manuálne predprogramované udalosti a potenciálne vytvárajúce nové nepriateľské jednotky na mape."
 
 #: gui/gamesetup/gamesetup.js:194
 msgid "All Maps"
@@ -175,7 +176,7 @@ msgstr "Všetky mapy"
 #: gui/gamesetup/gamesetup.js:195
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr "Každá mapa z vybraného typu máp."
+msgstr "Všetky mapy vybraného typu."
 
 #: gui/gamesetup/gamesetup.js:404
 msgid "Map Type"
@@ -187,7 +188,7 @@ msgstr "Vyberte typ mapy."
 
 #: gui/gamesetup/gamesetup.js:428
 msgid "Map Filter"
-msgstr "Filter mapy"
+msgstr "Filter máp"
 
 #: gui/gamesetup/gamesetup.js:429
 msgid "Select a map filter."
@@ -342,7 +343,7 @@ msgstr "Povoliť preskúmanú mapu (uvidíte pôvodnú mapu)"
 
 #: gui/gamesetup/gamesetup.js:790
 msgid "Disable Treasures"
-msgstr "Znemožni poklady"
+msgstr "Zakázať poklady"
 
 #: gui/gamesetup/gamesetup.js:791
 msgid "Disable all treasures on the map."
@@ -350,15 +351,15 @@ msgstr "Zakázať všetky poklady na mape."
 
 #: gui/gamesetup/gamesetup.js:802
 msgid "Disable Spies"
-msgstr "Znemožni špehov"
+msgstr "Zakázať špehov"
 
 #: gui/gamesetup/gamesetup.js:803
 msgid "Disable spies during the game."
-msgstr "Znemožni špehov počas hry"
+msgstr "Zakázať špehov počas hry"
 
 #: gui/gamesetup/gamesetup.js:814
 msgid "Teams Locked"
-msgstr "Zamkni tými"
+msgstr "Tímy sú zmrazené"
 
 #: gui/gamesetup/gamesetup.js:815
 msgid "Toggle locked teams."
@@ -372,7 +373,7 @@ msgstr ""
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Zvoľte, či vyhráva posledný zostávajúcu hráč, alebo posledná zostávajúca koalícia spojencov."
+msgstr "Zvoľte, či vyhráva posledný zostávajúci hráč, alebo posledná zostávajúca koalícia spojencov."
 
 #: gui/gamesetup/gamesetup.js:843
 msgid "Cheats"
@@ -393,7 +394,7 @@ msgstr "Prepnúť, či bude hra hodnotená a umiestnená v rebríčku."
 #: gui/gamesetup/gamesetup.js:884
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr "Stlačte %(hotkey)s pre automatické dolnenie hráčskych mien alebo nastavení."
+msgstr "Stlačte %(hotkey)s pre automatické doplnenie hráčskych mien alebo nastavení."
 
 #: gui/gamesetup/gamesetup.js:892
 msgid "Return to the lobby."
@@ -415,7 +416,7 @@ msgstr "Začať novú hru so súčasnými nastaveniami."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr "Začať novú hru s aktuálnymi nastaveniami (znemožnené kým nebudú všetci hráči pripravené)"
+msgstr "Začať novú hru s aktuálnymi nastaveniami (nemožné kým všetci hráči nie sú pripravení)"
 
 #: gui/gamesetup/gamesetup.js:958
 #, javascript-format
@@ -429,7 +430,7 @@ msgstr "Náhodné"
 
 #: gui/gamesetup/gamesetup.js:1498
 msgid "Pick any of the given maps at random."
-msgstr "Vybrať náhodne akúkoľvek mapu."
+msgstr "Náhodne vybrať ľubovoľnú mapu."
 
 #: gui/gamesetup/gamesetup.js:1521
 msgctxt "biome"
@@ -594,7 +595,7 @@ msgstr "Vrátiť všetky nastavenia civilizácií na predvolenú hodnotu (náhod
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid "Reset all teams to the default."
-msgstr "Nastaviť všetky tímy na východzie."
+msgstr "Vrátiť všetky tímy na predvolenú hodnotu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):99
 msgid "Pick a color."

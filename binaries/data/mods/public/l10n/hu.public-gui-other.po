@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-22 09:02+0100\n"
-"PO-Revision-Date: 2017-12-22 15:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-27 18:30+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,7 +191,7 @@ msgstr "Sajnos nem érhető el leírás."
 #: gui/common/gamedescription.js:105
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -200,21 +200,21 @@ msgstr ""
 msgid ""
 "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s, "
 "%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:114
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:117
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -630,7 +630,7 @@ msgstr "Véletlenszerű"
 #: gui/common/settings.js:152
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Kiegyensúlyozott"
 
 #: gui/common/settings.js:156
 msgctxt "aiBehavior"
@@ -2832,7 +2832,7 @@ msgstr "Az MI alapértelmezett nehézségi szintje."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "Alapértelmezett MI nehézség"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Random"
@@ -2840,7 +2840,7 @@ msgstr "Véletlenszerű"
 
 #: gui/options/options.json[3].options[3].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Kiegyensúlyozott"
 
 #: gui/options/options.json[3].options[3].list[2].label
 msgid "Aggressive"
@@ -2852,11 +2852,11 @@ msgstr "Védekező"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "Az MI alapértelmezett viselkedése."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Behavior"
-msgstr ""
+msgstr "Alapértelmezett MI viselkedés."
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid ""

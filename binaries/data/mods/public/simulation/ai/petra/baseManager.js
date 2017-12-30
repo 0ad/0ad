@@ -829,7 +829,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 
 	for (let target of damagedBuildings.values())
 	{
-		// Don't repair if we're still under attack, unless it's a vital (civcentre or wall) building 
+		// Don't repair if we're still under attack, unless it's a vital (civcentre or wall) building
 		// that's being destroyed.
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
 			if (target.healthLevel() > 0.5 ||
