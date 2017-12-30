@@ -135,9 +135,8 @@ function loadGame()
 	let engineInfo = Engine.GetEngineInfo();
 	let sameMods = hasSameMods(metadata, engineInfo);
 	let sameEngineVersion = hasSameEngineVersion(metadata, engineInfo);
-	let sameSavegameVersion = hasSameSavegameVersion(metadata, engineInfo);
 
-	if (sameEngineVersion && sameSavegameVersion && sameMods)
+	if (sameEngineVersion && sameMods)
 	{
 		reallyLoadGame(gameId);
 		return;
@@ -154,12 +153,6 @@ function loadGame()
 			});
 		else
 			message += "\n" + translate("It needs an older version of 0 A.D.");
-
-	if (!sameSavegameVersion)
-		message += "\n" + sprintf(translate("It needs 0 A.D. savegame version %(requiredVersion)s, while you have savegame version %(currentVersion)s."), {
-			"requiredVersion": metadata.version_major,
-			"currentVersion": engineInfo.version_major
-		});
 
 	if (!sameMods)
 	{

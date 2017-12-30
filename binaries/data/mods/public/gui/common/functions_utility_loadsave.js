@@ -5,8 +5,7 @@ function sortDecreasingDate(a, b)
 
 function isCompatibleSavegame(metadata, engineInfo)
 {
-	return engineInfo && hasSameSavegameVersion(metadata, engineInfo) &&
-		hasSameEngineVersion(metadata, engineInfo) & hasSameMods(metadata, engineInfo);
+	return engineInfo && hasSameEngineVersion(metadata, engineInfo) & hasSameMods(metadata, engineInfo);
 }
 
 function generateSavegameDateString(metadata, engineInfo)
@@ -28,14 +27,6 @@ function generateSavegameLabel(metadata, engineInfo)
 			"description": metadata.description || ""
 		}
 	);
-}
-
-/**
- * Check the version compatibility between the saved game to be loaded and the engine
- */
-function hasSameSavegameVersion(metadata, engineInfo)
-{
-	return metadata.version_major == engineInfo.version_major;
 }
 
 /**

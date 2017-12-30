@@ -33,11 +33,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
-static const int SAVED_GAME_VERSION_MAJOR = 1; // increment on incompatible changes to the format
-static const int SAVED_GAME_VERSION_MINOR = 0; // increment on compatible changes to the format
-
 // TODO: we ought to check version numbers when loading files
-
 
 Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadataClone)
 {
@@ -85,8 +81,6 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 	JS::RootedValue metadata(cx);
 	JS::RootedValue initAttributes(cx, simulation.GetInitAttributes());
 	simulation.GetScriptInterface().Eval("({})", &metadata);
-	simulation.GetScriptInterface().SetProperty(metadata, "version_major", SAVED_GAME_VERSION_MAJOR);
-	simulation.GetScriptInterface().SetProperty(metadata, "version_minor", SAVED_GAME_VERSION_MINOR);
 	simulation.GetScriptInterface().SetProperty(metadata, "engine_version", std::string(engine_version));
 	simulation.GetScriptInterface().SetProperty(metadata, "mods", g_modsLoaded);
 	simulation.GetScriptInterface().SetProperty(metadata, "time", (double)now);
@@ -301,8 +295,6 @@ JS::Value SavedGames::GetEngineInfo(const ScriptInterface& scriptInterface)
 
 	JS::RootedValue metainfo(cx);
 	scriptInterface.Eval("({})", &metainfo);
-	scriptInterface.SetProperty(metainfo, "version_major", SAVED_GAME_VERSION_MAJOR);
-	scriptInterface.SetProperty(metainfo, "version_minor", SAVED_GAME_VERSION_MINOR);
 	scriptInterface.SetProperty(metainfo, "engine_version", std::string(engine_version));
 	scriptInterface.SetProperty(metainfo, "mods", g_modsLoaded);
 
