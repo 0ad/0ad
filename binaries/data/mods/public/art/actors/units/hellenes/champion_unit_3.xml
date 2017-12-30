@@ -13,14 +13,14 @@
   <group>
     <variant frequency="5" name="Armour-Linen-Linothorax">
       <props>
-        <prop actor="props/units/heads/hele_su3.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
       </props>
       <textures><texture file="skeletal/hele_pezhetairoi_3.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="Armour-Reinforced Linothorax">
       <props>
-        <prop actor="props/units/heads/hele_su3.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
       </props>
       <textures><texture file="skeletal/hele_pezhetairoi.dds" name="baseTex"/></textures>
