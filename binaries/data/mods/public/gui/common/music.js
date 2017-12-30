@@ -24,7 +24,8 @@ function Music()
 		"PEACE": "peace",
 		"BATTLE": "battle",
 		"VICTORY": "victory",
-		"DEFEAT": "defeat"
+		"DEFEAT": "defeat",
+		"CUSTOM": "custom"
 	};
 
 	this.resetTracks();
@@ -35,11 +36,13 @@ function Music()
 		"PEACE": 2,
 		"BATTLE": 3,
 		"VICTORY": 4,
-		"DEFEAT": 5
+		"DEFEAT": 5,
+		"CUSTOM": 6
 	};
 
 	this.musicGain = 0.3;
 
+	this.locked = false;
 	this.currentState = 0;
 	this.oldState = 0;
 
@@ -63,13 +66,17 @@ Music.prototype.resetTracks = function()
 		],
 		"BATTLE": ["Taiko_1.ogg", "Taiko_2.ogg"],
 		"VICTORY": ["You_are_Victorious!.ogg"],
-		"DEFEAT": ["Dried_Tears.ogg"]
+		"DEFEAT": ["Dried_Tears.ogg"],
+		"CUSTOM": []
 	};
 };
 
 // "reference" refers to this instance of Music (needed if called from the timer)
 Music.prototype.setState = function(state)
 {
+	if (this.locked)
+		return;
+
 	this.reference.currentState = state;
 	this.updateState();
 };
@@ -104,6 +111,10 @@ Music.prototype.updateState = function()
 
 		case this.states.DEFEAT:
 			this.startPlayList(shuffleArray(this.tracks.DEFEAT), 2.0, true);
+			break;
+
+		case this.states.CUSTOM:
+			this.startPlayList(shuffleArray(this.tracks.CUSTOM), 2.0, true);
 			break;
 
 		default:
@@ -160,4 +171,10 @@ Music.prototype.stop = function()
 {
 	this.setState(this.states.OFF);
 };
-
+/**
+* Play the custom playlist when locked, otherwise plays the civ music according to the battle state.
+*/
+Music.prototype.setLocked = function(locked)
+{
+	this.locked = locked;
+};

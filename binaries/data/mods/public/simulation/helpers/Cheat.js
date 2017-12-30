@@ -158,6 +158,16 @@ function Cheat(input)
 		for (let i=0; i<2; ++i)
 			Cheat({ "player": input.player, "action": "changephase", "selected": input.selected });
 		return;
+	case "playRetro":
+		let play = input.parameter.toLowerCase() != "off";
+		cmpGuiInterface.PushNotification({
+			"type": "play-tracks",
+			"tracks": play && input.parameter.split(" "),
+			"lock": play,
+			"players": [input.player]
+		});
+		return;
+
 	default:
 		warn("Cheat '" + input.action + "' is not implemented");
 		return;

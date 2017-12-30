@@ -463,6 +463,16 @@ var g_NotificationsTypes =
 		// Allow gaia in selection when gathering
 		g_Selection.reset();
 		g_Selection.addList(selection, false, cmd.type == "gather");
+	},
+	"play-tracks": function (notification, player)
+	{
+		if (notification.lock)
+		{
+			global.music.storeTracks(notification.tracks.map(track => ({ "Type": "custom", "File": track })));
+			global.music.setState(global.music.states.CUSTOM);
+		}
+
+		global.music.setLocked(notification.lock);
 	}
 };
 
