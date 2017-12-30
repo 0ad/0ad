@@ -501,11 +501,11 @@ function executeCheat(text)
 
 	let cheat = g_Cheats[cheatCode];
 
-	let parameter = text.substr(cheatCode.length);
+	let parameter = text.substr(cheatCode.length + 1);
 	if (cheat.isNumeric)
 		parameter = +parameter;
 
-	if (cheat.DefaultParameter && (isNaN(parameter) || parameter <= 0))
+	if (cheat.DefaultParameter && !parameter)
 		parameter = cheat.DefaultParameter;
 
 	Engine.PostNetworkCommand({
