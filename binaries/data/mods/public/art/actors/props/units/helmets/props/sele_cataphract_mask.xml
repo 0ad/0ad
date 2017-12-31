@@ -5,9 +5,21 @@
     <variant frequency="1" name="Seleucid Cataphract mask">
       <mesh>props/helmet/cataphract_mask.dae</mesh>
       <textures>
+        <texture file="props/helmet/cataphract_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="50" name="Seleucid Cataphract mask A">
+      <textures>
         <texture file="props/helmet/cataphract_diffuse.png" name="baseTex"/>
         <texture file="props/helmet/cataphract_norm.png" name="normTex"/>
-        <texture file="props/helmet/cataphract_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="50" name="Seleucid Cataphract mask B">
+      <textures>
+        <texture file="props/helmet/cataphract_diffuse_2.png" name="baseTex"/>
+        <texture file="props/helmet/cataphract_diffuse_2_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
