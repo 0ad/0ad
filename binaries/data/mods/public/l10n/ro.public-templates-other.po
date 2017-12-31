@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-20 09:03+0100\n"
-"PO-Revision-Date: 2017-12-20 15:24+0000\n"
+"POT-Creation-Date: 2017-12-29 09:08+0100\n"
+"PO-Revision-Date: 2017-12-29 15:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -177,6 +177,10 @@ msgstr "Sanctuar Religios"
 msgid "Greek Religious Sanctuary"
 msgstr "Sanctuar Religios Grecesc"
 
+#: simulation/templates/gaia/fauna_arctic_wolf.xml:4
+msgid "Arctic Wolf"
+msgstr ""
+
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
 msgstr "Urs"
@@ -307,6 +311,10 @@ msgstr "Porc incendiar"
 msgid "Sus scrofa domesticus igne"
 msgstr "Sus scrofa domesticus igne"
 
+#: simulation/templates/gaia/fauna_pony.xml:4
+msgid "Pony"
+msgstr ""
+
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
 msgstr "Iepure"
@@ -350,10 +358,6 @@ msgstr "Connochaetes"
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
 msgstr "Lup"
-
-#: simulation/templates/gaia/fauna_wolf_snow.xml:4
-msgid "Snow Wolf"
-msgstr "Lup de zăpadă"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
@@ -853,10 +857,6 @@ msgid ""
 " other civs"
 msgstr "Schimbările la o casă cu 5-pop pentru civilizațiile cu acele case, sunt eliminate pentru alte civilizații. "
 
-#: simulation/templates/special/player.xml:57
-msgid "Player"
-msgstr "Jucător"
-
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Spion"
@@ -944,3 +944,7 @@ msgstr "Necesită 6 unități de cavalerie"
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
 msgstr "Pană"
+
+#: simulation/templates/special/player/player.xml:57
+msgid "Player"
+msgstr "Jucător"

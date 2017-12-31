@@ -5,16 +5,16 @@
 # Translators:
 # Balázs Meskó <meskobalazs@gmail.com>, 2016-2017
 # Balázs Úr <urbalazs@gmail.com>, 2015-2016
-# Gyuris Gellért <gellert.gyuris@gmail.com>, 2015-2016
-# Gyuris Gellért <gellert.gyuris@gmail.com>, 2017
+# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2015-2016
+# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2017
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 # Pista Joska <jojoskapi@freemail.hu>, 2015
 # Tibor Buzási, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-11 09:05+0200\n"
-"PO-Revision-Date: 2017-09-11 15:01+0000\n"
+"POT-Creation-Date: 2017-12-27 09:05+0100\n"
+"PO-Revision-Date: 2017-12-27 14:30+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -491,28 +491,28 @@ msgstr "%(time)s múlva támadhatsz"
 msgid "You can attack now!"
 msgstr "Most már támadhatsz!"
 
-#: simulation/components/EndGameManager.js:173
+#: simulation/components/EndGameManager.js:159
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] "%(lastPlayer)s nyert (utolsó életben lévő játékos)."
 msgstr[1] "%(players)s és %(lastPlayer)s nyertek (utolsó életben lévő játékosok)."
 
-#: simulation/components/EndGameManager.js:181
+#: simulation/components/EndGameManager.js:167
 msgid "Last remaining player wins."
 msgstr "Az utolsó megmaradt játékos nyer."
 
-#: simulation/components/EntityLimits.js:166
+#: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s építési korlátja elérve: %(limit)s"
 
-#: simulation/components/EntityLimits.js:168
+#: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s kiképzési korlátja elérve: %(limit)s"
 
-#: simulation/components/EntityLimits.js:172
+#: simulation/components/EntityLimits.js:171
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s korlátja elérve: %(limit)s"
@@ -544,11 +544,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Nincs elegendő nyersanyag - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:401
+#: simulation/components/ProductionQueue.js:415
 msgid "The production queue is full."
 msgstr "A termelési sor tele van."
 
-#: simulation/components/ProductionQueue.js:783
+#: simulation/components/ProductionQueue.js:801
 msgid "Can't find free space to spawn trained units"
 msgstr "Nem található szabad hely a kiképzett egységek elhelyezéséhez"
 
@@ -561,51 +561,51 @@ msgstr "%(player)s vesztett (csalás)."
 msgid "You need to select a building that trains units."
 msgstr "Ki kell választanod egy épületet, amely egységeket képez ki."
 
-#: simulation/helpers/Commands.js:133
+#: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
 msgstr "(Csalás - összes egység irányítása)"
 
-#: simulation/helpers/Commands.js:148
+#: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
 msgstr "(Csalás - térkép felfedése)"
 
-#: simulation/helpers/Commands.js:453
+#: simulation/helpers/Commands.js:449
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s feladta."
 
-#: simulation/helpers/Commands.js:595
+#: simulation/helpers/Commands.js:591
 msgid "(Cheat - promoted units)"
 msgstr "(Csalás - előléptetett egységek)"
 
-#: simulation/helpers/Commands.js:709
+#: simulation/helpers/Commands.js:705
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Nem fejleszthető, mivel a távolsági követelmények nincsenek ellenőrizve, vagy a terep akadályozza."
 
-#: simulation/helpers/Commands.js:719
+#: simulation/helpers/Commands.js:715
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "A beszállásolt egység nem fejleszthető."
 
-#: simulation/helpers/Commands.js:765
+#: simulation/helpers/Commands.js:758
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s ellen támadást kértek."
 
-#: simulation/helpers/Commands.js:801
+#: simulation/helpers/Commands.js:797
 msgid "There are no bribable units"
 msgstr "Nincsenek lefizethető egységek."
 
-#: simulation/helpers/Commands.js:847
+#: simulation/helpers/Commands.js:843
 msgid "Unable to ungarrison unit(s)"
 msgstr "Nem lehet kiengedni az egységeket"
 
-#: simulation/helpers/Commands.js:861
+#: simulation/helpers/Commands.js:857
 msgid "Some unit(s) can't go back to work"
 msgstr "Néhány egység nem tud visszamenni dolgozni"
 
-#: simulation/helpers/Commands.js:1115
+#: simulation/helpers/Commands.js:1111
 msgid "The building's technology requirements are not met."
 msgstr "Az épület technológiai követelményei nincsenek teljesítve."
 
@@ -733,9 +733,10 @@ msgstr "Királygyilkosság"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
-"Be the first to build or capture a wonder and keep it for a certain time to "
-"win the game."
-msgstr "Légy az első aki felépít vagy elfoglal egy csodát, és megtartja egy bizonyos ideig, hogy megnyerje a játékot."
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured or in allied victory when the owners alliances change."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"

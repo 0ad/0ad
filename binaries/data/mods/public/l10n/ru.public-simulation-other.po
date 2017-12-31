@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-11 09:05+0200\n"
-"PO-Revision-Date: 2017-10-05 05:42+0000\n"
-"Last-Translator: Валерий Дмиртиевич Степанов <valera1111@yandex.ru>\n"
+"POT-Creation-Date: 2017-12-27 09:05+0100\n"
+"PO-Revision-Date: 2017-12-27 14:30+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -510,7 +510,7 @@ msgstr "Вы сможете атаковать через %(time)s"
 msgid "You can attack now!"
 msgstr "Вы можете атаковать прямо сейчас!"
 
-#: simulation/components/EndGameManager.js:173
+#: simulation/components/EndGameManager.js:159
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
@@ -519,21 +519,21 @@ msgstr[1] "%(lastPlayer)s победили (последние игроки ос
 msgstr[2] "%(players)s и %(lastPlayer)s победили (последние игроки остались в живых)."
 msgstr[3] "%(players)s и %(lastPlayer)s победили (последние игроки остались в живых)."
 
-#: simulation/components/EndGameManager.js:181
+#: simulation/components/EndGameManager.js:167
 msgid "Last remaining player wins."
 msgstr "Последний оставшийся игрок выигрывает."
 
-#: simulation/components/EntityLimits.js:166
+#: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s лимит зданий в количестве %(limit)s достигнут"
 
-#: simulation/components/EntityLimits.js:168
+#: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s лимит обучения в количестве %(limit)s достигнут"
 
-#: simulation/components/EntityLimits.js:172
+#: simulation/components/EntityLimits.js:171
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s лимит в количестве %(limit)s достигнут"
@@ -565,11 +565,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:401
+#: simulation/components/ProductionQueue.js:415
 msgid "The production queue is full."
 msgstr "Очередь заполнена."
 
-#: simulation/components/ProductionQueue.js:783
+#: simulation/components/ProductionQueue.js:801
 msgid "Can't find free space to spawn trained units"
 msgstr "Невозможно найти свободное место для подготовленных юнитов"
 
@@ -582,51 +582,51 @@ msgstr "%(player)s потерпел поражение (использовани
 msgid "You need to select a building that trains units."
 msgstr "Вам нужно выбрать здание, тренирующее юнитов."
 
-#: simulation/helpers/Commands.js:133
+#: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
 msgstr "(Обман - управлять всеми юнитами)"
 
-#: simulation/helpers/Commands.js:148
+#: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
 msgstr "(Обман - открыть всю карту)"
 
-#: simulation/helpers/Commands.js:453
+#: simulation/helpers/Commands.js:449
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s сдался."
 
-#: simulation/helpers/Commands.js:595
+#: simulation/helpers/Commands.js:591
 msgid "(Cheat - promoted units)"
 msgstr "(Обман - помогать юнитам)"
 
-#: simulation/helpers/Commands.js:709
+#: simulation/helpers/Commands.js:705
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Не удаётся улучшить, так как требования к расстоянию неверны или имеются препятствия на местности. "
 
-#: simulation/helpers/Commands.js:719
+#: simulation/helpers/Commands.js:715
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Невозможно добавить гарнизон"
 
-#: simulation/helpers/Commands.js:765
+#: simulation/helpers/Commands.js:758
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Запрос атаки на %(_player_)s."
 
-#: simulation/helpers/Commands.js:801
+#: simulation/helpers/Commands.js:797
 msgid "There are no bribable units"
 msgstr "Нет юнитов, которых можно было бы подкупить"
 
-#: simulation/helpers/Commands.js:847
+#: simulation/helpers/Commands.js:843
 msgid "Unable to ungarrison unit(s)"
 msgstr "Невозможно вывести гарнизон"
 
-#: simulation/helpers/Commands.js:861
+#: simulation/helpers/Commands.js:857
 msgid "Some unit(s) can't go back to work"
 msgstr "Некоторые юниты не могут вернуться к работе"
 
-#: simulation/helpers/Commands.js:1115
+#: simulation/helpers/Commands.js:1111
 msgid "The building's technology requirements are not met."
 msgstr "Технологии, необходимые для здания, отсутствуют."
 
@@ -754,9 +754,10 @@ msgstr "Цареубийство"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
-"Be the first to build or capture a wonder and keep it for a certain time to "
-"win the game."
-msgstr "Чтобы выиграть, будьте первым, кто построит или захватит чудо и удержит его в течение определенного времени."
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured or in allied victory when the owners alliances change."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"

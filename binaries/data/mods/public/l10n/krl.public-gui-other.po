@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-22 09:02+0100\n"
-"PO-Revision-Date: 2017-12-22 15:05+0000\n"
+"POT-Creation-Date: 2017-12-29 09:06+0100\n"
+"PO-Revision-Date: 2017-12-29 15:30+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Karelian (http://www.transifex.com/wildfire-games/0ad/language/krl/)\n"
 "MIME-Version: 1.0\n"
@@ -98,20 +98,20 @@ msgstr ""
 msgid "Loading Aborted"
 msgstr ""
 
-#: gui/common/functions_utility.js:50
+#: gui/common/functions_utility.js:20
 msgid "Gaia"
 msgstr ""
 
-#: gui/common/functions_utility.js:126
+#: gui/common/functions_utility.js:96
 msgctxt "map selection"
 msgid "Random"
 msgstr ""
 
-#: gui/common/functions_utility.js:137
+#: gui/common/functions_utility.js:107
 msgid "mm:ss"
 msgstr ""
 
-#: gui/common/functions_utility.js:137
+#: gui/common/functions_utility.js:107
 msgid "HH:mm:ss"
 msgstr ""
 
@@ -143,16 +143,16 @@ msgid "DELETE"
 msgstr ""
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:310 gui/options/options.js:363
-#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
+#: gui/options/options.js:263 gui/options/options.js:316
+#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:428
 msgid "No"
 msgstr "Ei"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:310 gui/options/options.js:363
-#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
+#: gui/options/options.js:263 gui/options/options.js:316
+#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:428
 msgid "Yes"
 msgstr "Jo"
 
@@ -166,125 +166,123 @@ msgstr ""
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr ""
 
-#: gui/common/gamedescription.js:48
+#: gui/common/gamedescription.js:44
 msgid "A randomly selected map."
 msgstr ""
 
-#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:347
+#: gui/common/gamedescription.js:51 gui/common/gamedescription.js:342
 msgid "Sorry, no description available."
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:105
+#: gui/common/gamedescription.js:101
 #, javascript-format
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
+msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:108
+#: gui/common/gamedescription.js:104
 #, javascript-format
-msgid ""
-"%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s, "
-"%(state)s)"
+msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:114
+#: gui/common/gamedescription.js:110
 #, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
+msgid "%(playerName)s (%(AIdescription)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:117
+#: gui/common/gamedescription.js:113
 #, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
+msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:127
+#: gui/common/gamedescription.js:123
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:130
+#: gui/common/gamedescription.js:126
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:137
+#: gui/common/gamedescription.js:133
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:140
+#: gui/common/gamedescription.js:136
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:144
+#: gui/common/gamedescription.js:140
 #, javascript-format
 msgid "%(playerName)s"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:147
+#: gui/common/gamedescription.js:143
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr ""
 
-#: gui/common/gamedescription.js:166
+#: gui/common/gamedescription.js:163
 msgid "Unknown Civilization"
 msgstr ""
 
-#: gui/common/gamedescription.js:173
+#: gui/common/gamedescription.js:170
 msgctxt "playerstate"
 msgid "defeated"
 msgstr ""
 
-#: gui/common/gamedescription.js:174
+#: gui/common/gamedescription.js:171
 msgctxt "playerstate"
 msgid "won"
 msgstr ""
 
-#: gui/common/gamedescription.js:197
+#: gui/common/gamedescription.js:192
 msgid "No Team"
 msgstr ""
 
-#: gui/common/gamedescription.js:198
+#: gui/common/gamedescription.js:193
 #, javascript-format
 msgid "Team %(team)s"
 msgstr ""
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:201 gui/common/gamedescription.js:208
+#: gui/common/gamedescription.js:196 gui/common/gamedescription.js:203
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:209
+#: gui/common/gamedescription.js:204
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/gamedescription.js:231
+#: gui/common/gamedescription.js:226
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -292,7 +290,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/gamedescription.js:243
+#: gui/common/gamedescription.js:238
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -300,155 +298,155 @@ msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:254
 msgid "Relic Count"
 msgstr ""
 
-#: gui/common/gamedescription.js:266
+#: gui/common/gamedescription.js:261
 msgid "Hero Garrison"
 msgstr ""
 
-#: gui/common/gamedescription.js:267
+#: gui/common/gamedescription.js:262
 msgid "Heroes can be garrisoned."
 msgstr ""
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:266
 msgid "Exposed Heroes"
 msgstr ""
 
-#: gui/common/gamedescription.js:272
+#: gui/common/gamedescription.js:267
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
 msgstr ""
 
-#: gui/common/gamedescription.js:279
+#: gui/common/gamedescription.js:274
 msgid "Rated game"
 msgstr ""
 
-#: gui/common/gamedescription.js:280
+#: gui/common/gamedescription.js:275
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr ""
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:280
 msgid "Locked Teams"
 msgstr ""
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:281
 msgid "Players can't change the initial teams."
 msgstr ""
 
-#: gui/common/gamedescription.js:290
+#: gui/common/gamedescription.js:285
 msgid "Diplomacy"
 msgstr ""
 
-#: gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:286
 msgid "Players can make alliances and declare war on allies."
 msgstr ""
 
-#: gui/common/gamedescription.js:296
+#: gui/common/gamedescription.js:291
 msgid "Last Man Standing"
 msgstr ""
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:292
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr ""
 
-#: gui/common/gamedescription.js:301
+#: gui/common/gamedescription.js:296
 msgid "Allied Victory"
 msgstr ""
 
-#: gui/common/gamedescription.js:302
+#: gui/common/gamedescription.js:297
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr ""
 
-#: gui/common/gamedescription.js:308
+#: gui/common/gamedescription.js:303
 msgid "Ceasefire"
 msgstr ""
 
-#: gui/common/gamedescription.js:311 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:306 gui/pregame/mainmenu.js:86
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:312
+#: gui/common/gamedescription.js:307
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/gamedescription.js:320
+#: gui/common/gamedescription.js:315
 msgid "Map Name"
 msgstr ""
 
-#: gui/common/gamedescription.js:325
+#: gui/common/gamedescription.js:320
 msgid "Map Type"
 msgstr ""
 
-#: gui/common/gamedescription.js:334
+#: gui/common/gamedescription.js:329
 msgid "Map Size"
 msgstr ""
 
-#: gui/common/gamedescription.js:341
+#: gui/common/gamedescription.js:336
 msgid "Map Description"
 msgstr ""
 
-#: gui/common/gamedescription.js:344
+#: gui/common/gamedescription.js:339
 msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:349
 msgid "Biome"
 msgstr ""
 
-#: gui/common/gamedescription.js:355
+#: gui/common/gamedescription.js:350
 msgctxt "biome"
 msgid "Random"
 msgstr ""
 
-#: gui/common/gamedescription.js:362
+#: gui/common/gamedescription.js:357
 msgid "Starting Resources"
 msgstr ""
 
-#: gui/common/gamedescription.js:363
+#: gui/common/gamedescription.js:358
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr ""
 
-#: gui/common/gamedescription.js:373
+#: gui/common/gamedescription.js:368
 msgid "Population Limit"
 msgstr ""
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:376
 msgid "Treasures"
 msgstr ""
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:378
 msgctxt "treasures"
 msgid "Disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:384
+#: gui/common/gamedescription.js:379
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr ""
 
-#: gui/common/gamedescription.js:388
+#: gui/common/gamedescription.js:383
 msgid "Revealed Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:388
 msgid "Explored Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:398
+#: gui/common/gamedescription.js:393
 msgid "Cheats"
 msgstr ""
 
-#: gui/common/gamedescription.js:403 gui/common/tooltips.js:126
+#: gui/common/gamedescription.js:398 gui/common/tooltips.js:126
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:222
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:468
 #: gui/common/tooltips.js:758
@@ -456,22 +454,27 @@ msgstr ""
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:406
+#: gui/common/gamedescription.js:401
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:407
+#: gui/common/gamedescription.js:402
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:423
+#: gui/common/gamedescription.js:418
 msgid "Victorious"
 msgstr ""
 
-#: gui/common/gamedescription.js:428
+#: gui/common/gamedescription.js:423
 msgid "Defeated"
+msgstr ""
+
+#: gui/common/gamedescription.js:432
+#, javascript-format
+msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr ""
 
 #: gui/common/network.js:17
@@ -1110,7 +1113,7 @@ msgstr ""
 msgid "Loot:"
 msgstr ""
 
-#: gui/credits/credits.js:79
+#: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr ""
@@ -1120,46 +1123,46 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: gui/options/options.js:97
+#: gui/options/options.js:92
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
 msgstr ""
 
-#: gui/options/options.js:99
+#: gui/options/options.js:94
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
 msgstr ""
 
-#: gui/options/options.js:101
+#: gui/options/options.js:96
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr ""
 
-#: gui/options/options.js:134
+#: gui/options/options.js:129
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr ""
 
-#: gui/options/options.js:308
+#: gui/options/options.js:261
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:309 gui/options/options.js:362
-#: gui/options/options.js:388
+#: gui/options/options.js:262 gui/options/options.js:315
+#: gui/options/options.js:341
 msgid "Warning"
 msgstr ""
 
-#: gui/options/options.js:361
+#: gui/options/options.js:314
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:387
+#: gui/options/options.js:340
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -1237,7 +1240,7 @@ msgstr ""
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:425
+#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:427
 msgid "Confirmation"
 msgstr ""
 
@@ -1667,44 +1670,44 @@ msgstr ""
 msgid "∞"
 msgstr ""
 
-#: gui/summary/summary.js:424
+#: gui/summary/summary.js:426
 msgid "Are you sure you want to quit the lobby?"
 msgstr ""
 
-#: gui/summary/summary.js:487
+#: gui/summary/summary.js:489
 msgid "Current Scores"
 msgstr ""
 
-#: gui/summary/summary.js:489
+#: gui/summary/summary.js:491
 msgid "Scores at the end of the game."
 msgstr ""
 
-#: gui/summary/summary.js:491
+#: gui/summary/summary.js:493
 msgid "You have been disconnected."
 msgstr ""
 
-#: gui/summary/summary.js:493
+#: gui/summary/summary.js:495
 msgid "You have left the game."
 msgstr ""
 
-#: gui/summary/summary.js:495
+#: gui/summary/summary.js:497
 msgid "You have won the battle!"
 msgstr ""
 
-#: gui/summary/summary.js:497
+#: gui/summary/summary.js:499
 msgid "You have been defeated..."
 msgstr ""
 
-#: gui/summary/summary.js:498
+#: gui/summary/summary.js:500
 msgid "You have abandoned the game."
 msgstr ""
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:503
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr ""
 
-#: gui/summary/summary.js:509
+#: gui/summary/summary.js:511
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr ""
@@ -1717,13 +1720,13 @@ msgstr ""
 msgid "Civilization Selection"
 msgstr ""
 
-#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):45
-#: gui/options/options.xml:(caption):68
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):32
+#: gui/options/options.xml:(caption):56
 #: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr ""
 
-#: gui/credits/credits.xml:(caption):27
+#: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
 msgstr ""
 
@@ -1755,35 +1758,35 @@ msgstr ""
 msgid "Accept"
 msgstr ""
 
-#: gui/options/options.xml:(caption):23
+#: gui/options/options.xml:(caption):15
 msgid "Game Options"
 msgstr ""
 
-#: gui/options/options.xml:(caption):50
+#: gui/options/options.xml:(caption):38
 msgid "Reset"
 msgstr ""
 
-#: gui/options/options.xml:(caption):56
+#: gui/options/options.xml:(caption):44
 msgid "Revert"
 msgstr ""
 
-#: gui/options/options.xml:(caption):62
+#: gui/options/options.xml:(caption):50
 msgid "Save"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):51
+#: gui/options/options.xml:(tooltip):39
 msgid "Resets user settings to their game default"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):57
+#: gui/options/options.xml:(tooltip):45
 msgid "Reverts to previous saved settings"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):63
+#: gui/options/options.xml:(tooltip):51
 msgid "Saves changes"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):69
+#: gui/options/options.xml:(tooltip):57
 msgid "Unsaved changes affect this session only"
 msgstr ""
 

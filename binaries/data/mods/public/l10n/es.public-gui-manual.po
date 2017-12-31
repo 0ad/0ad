@@ -11,6 +11,7 @@
 # Emilio Romero <milioe25@yahoo.es>, 2017
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
 # Javier Rojas <hekeine@gmail.com>, 2017
+# Jesus A <jasenjot@gmail.com>, 2017
 # juanda097 <juanda097@protonmail.ch>, 2014
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-18 09:20+0100\n"
-"PO-Revision-Date: 2017-12-18 14:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-29 11:01+0000\n"
+"Last-Translator: Jesus A <jasenjot@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -243,11 +244,11 @@ msgstr "Mayús + F2: Realiza una captura de pantalla enorme (6400x4800, en forma
 
 #: gui/manual/intro.txt:52
 msgid "Alt + S: Switch to the next tab."
-msgstr ""
+msgstr "Alt + S: Cambia a la pestaña siguiente."
 
 #: gui/manual/intro.txt:53
 msgid "Alt + W: Switch to the previous tab."
-msgstr ""
+msgstr "Alt + W: Cambia a la pestaña anterior."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -329,7 +330,7 @@ msgstr "/ (barra diagonal): Selecciona a un guerrero inactivo"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr ""
+msgstr "Mayús + / : Añade un guerrero inactivo a la selección."
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
@@ -341,7 +342,7 @@ msgstr ". (punto): Selecciona a un trabajador inactivo (incluyendo a ciudadanos 
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Mayús + . : Añade un trabajador inactivo a la selección."
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
@@ -349,11 +350,11 @@ msgstr "Alt + .: Selecciona trabajadores inactivos (incluyendo a ciudadanos sold
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr ""
+msgstr "\\ (barra inversa): Selecciona una unidad inactiva."
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr ""
+msgstr "Mayús + \\: Añade una unidad inactiva a la selección"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
@@ -423,7 +424,7 @@ msgstr "Tab: Ver todas las barras de estado (incluyendo el progreso de construcc
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
-msgstr ""
+msgstr "Ctrl + Tab: Alterna la ventana resumen"
 
 #: gui/manual/intro.txt:94
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -478,7 +479,7 @@ msgstr "I + Selección rectangular sobre unidades en el mapa: Selecciona únicam
 
 #: gui/manual/intro.txt:105
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr ""
+msgstr "O + Arrastre izquierdo sobre unidades en el mapa: Selecciona únicamente unidades heridas"
 
 #: gui/manual/intro.txt:106
 msgid ""
@@ -529,13 +530,13 @@ msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + Mayús + W: Alterna el modo malla (presiona una vez para sobreponer la malla sobre los modelos texturizados, dos veces para mostrar solo la malla coloreada por texturas, tres veces para volver al modo de texturizado normal)"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr "Alt + Mayús + S: Activa o desactiva las siluetas de unidades (desactivarlas puede mejorar ligeramente el rendimiento)"
 
 #: gui/manual/intro.txt:118
 msgid "Alt + Z: Toggle sky"
@@ -544,7 +545,7 @@ msgstr "Alt + Z: Mostar u ocultar el cielo"
 #: gui/manual/intro.txt:119
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
+msgstr "Alt + C: Activa o desactiva la visualización del rango de ataque de las estructuras defensivas seleccionadas"
 
 #: gui/manual/intro.txt:120
 msgid ""

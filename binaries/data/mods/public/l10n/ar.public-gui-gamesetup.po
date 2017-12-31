@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-22 09:01+0100\n"
-"PO-Revision-Date: 2017-12-22 14:19+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-12-29 09:06+0100\n"
+"PO-Revision-Date: 2017-12-30 11:27+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -418,79 +418,79 @@ msgstr "ابدأ لعبة جديدة بالإعدادات الحاليّة (مع
 
 #: gui/gamesetup/gamesetup.js:958
 #, javascript-format
-msgid "Configure AI: %(difficulty)s %(behavior)s %(name)s."
+msgid "Configure AI: %(description)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1496
+#: gui/gamesetup/gamesetup.js:1493
 msgctxt "map selection"
 msgid "Random"
 msgstr "عشوائيّة"
 
-#: gui/gamesetup/gamesetup.js:1498
+#: gui/gamesetup/gamesetup.js:1495
 msgid "Pick any of the given maps at random."
 msgstr "انتقِ أيًّا من الخرائط عشوائيًّا."
 
-#: gui/gamesetup/gamesetup.js:1521
+#: gui/gamesetup/gamesetup.js:1518
 msgctxt "biome"
 msgid "Random"
 msgstr "عشوائي"
 
-#: gui/gamesetup/gamesetup.js:1522
+#: gui/gamesetup/gamesetup.js:1519
 msgid "Pick a biome at random."
 msgstr "إختر حياة حيوية عشوائياً."
 
-#: gui/gamesetup/gamesetup.js:1814 gui/gamesetup/gamesetup.js:1856
+#: gui/gamesetup/gamesetup.js:1811 gui/gamesetup/gamesetup.js:1853
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1819
+#: gui/gamesetup/gamesetup.js:1816
 msgctxt "option value"
 msgid "Unknown"
 msgstr "مجهول"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1846
 msgid "Yes"
 msgstr "نعم"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1846
 msgid "No"
 msgstr "لا"
 
-#: gui/gamesetup/gamesetup.js:1943
+#: gui/gamesetup/gamesetup.js:1940
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2146
+#: gui/gamesetup/gamesetup.js:2143
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "الذّكاء الاصطناعيّ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2154
+#: gui/gamesetup/gamesetup.js:2151
 msgid "Unassigned"
 msgstr "غير معيّن"
 
-#: gui/gamesetup/gamesetup.js:2230
+#: gui/gamesetup/gamesetup.js:2227
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2237
+#: gui/gamesetup/gamesetup.js:2234
 msgid "Unknown Player"
 msgstr "لاعب مجهول"
 
-#: gui/gamesetup/gamesetup.js:2276
+#: gui/gamesetup/gamesetup.js:2273
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2277
+#: gui/gamesetup/gamesetup.js:2274
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2278
+#: gui/gamesetup/gamesetup.js:2275
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -662,17 +662,17 @@ msgstr ""
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "”تساعد الآلهة من يساعدون أنفسهم“. إيسوب (”هرقل وواغونر“)"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr ""
+msgstr "”من الاقتصاد تجهيز اليوم لمتطلّبات الغدّ.“ - إيسوب (”النملة والجندب“)"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr ""
+msgstr "”الاتّحاد يعطي القوّة“. - إيسوب (”حزمة العصيّ“)"
 
 #: gui/text/quotes.txt:10
 msgid ""
@@ -690,7 +690,7 @@ msgstr ""
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr ""
+msgstr "”يؤدّي الغرور إلى تدمير الذّات.“ - إيسوب (”الضفدع والثّور“)"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
@@ -710,14 +710,14 @@ msgstr ""
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr ""
+msgstr "”أيَّ عذر سيخدم الطّاغية.“ - إيسوب (”الثّعلب والحَمل“)"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaos"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "”إن فعلتُ نبلًا ما، فستكون تلك ذكرى كافية، وإن لم أفعل فلن تخلّد كل تماثيل العالم ذكراي.“ - أجيسيلاوس الثاني لإسبرطا (فلوطرخس، ”موراليا“، السادس عشر. ”أحاديث الإسبرطيّون“، ٢١٥أ)"
 
 #: gui/text/quotes.txt:18
 msgid ""

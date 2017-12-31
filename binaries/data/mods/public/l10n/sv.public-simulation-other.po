@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-11 09:05+0200\n"
-"PO-Revision-Date: 2017-09-11 15:01+0000\n"
+"POT-Creation-Date: 2017-12-27 09:05+0100\n"
+"PO-Revision-Date: 2017-12-27 14:30+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -494,28 +494,28 @@ msgstr "Du kan attackera om %(time)s"
 msgid "You can attack now!"
 msgstr "Du kan attackera nu!"
 
-#: simulation/components/EndGameManager.js:173
+#: simulation/components/EndGameManager.js:159
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] "%(lastPlayer)s har vunnit (sista levande spelare)"
 msgstr[1] "%(players)s och %(lastPlayer)s har vunnit (sista levande spelare)"
 
-#: simulation/components/EndGameManager.js:181
+#: simulation/components/EndGameManager.js:167
 msgid "Last remaining player wins."
 msgstr "Sista spelaren kvar vinner."
 
-#: simulation/components/EntityLimits.js:166
+#: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s maximalt antal %(limit)s nått"
 
-#: simulation/components/EntityLimits.js:168
+#: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s maximalt träningsantal %(limit)s nått"
 
-#: simulation/components/EntityLimits.js:172
+#: simulation/components/EntityLimits.js:171
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s begränsning av %(limit)s nått"
@@ -547,11 +547,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Otillräckliga resurser - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:401
+#: simulation/components/ProductionQueue.js:415
 msgid "The production queue is full."
 msgstr "Produktionskön är full"
 
-#: simulation/components/ProductionQueue.js:783
+#: simulation/components/ProductionQueue.js:801
 msgid "Can't find free space to spawn trained units"
 msgstr "Kan inte hitta ledigt utrymme att placera tränade enheter"
 
@@ -564,51 +564,51 @@ msgstr "%(player)s har blivit besegrad (fusk)."
 msgid "You need to select a building that trains units."
 msgstr "Du måste markera en byggnad som kan träna enheter."
 
-#: simulation/helpers/Commands.js:133
+#: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
 msgstr "(Fusk - kontrollera alla enheter)"
 
-#: simulation/helpers/Commands.js:148
+#: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
 msgstr "(Fusk - visa karta)"
 
-#: simulation/helpers/Commands.js:453
+#: simulation/helpers/Commands.js:449
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s has gett upp."
 
-#: simulation/helpers/Commands.js:595
+#: simulation/helpers/Commands.js:591
 msgid "(Cheat - promoted units)"
 msgstr "(Fusk - befordrade enheter)"
 
-#: simulation/helpers/Commands.js:709
+#: simulation/helpers/Commands.js:705
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Kan inte uppgradera eftersom distanskrav inte kan verifieras eller terrängen är skymd."
 
-#: simulation/helpers/Commands.js:719
+#: simulation/helpers/Commands.js:715
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Kan inte uppgradera en garnisonerad enhet."
 
-#: simulation/helpers/Commands.js:765
+#: simulation/helpers/Commands.js:758
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Attack mot %(_player_)s begärs."
 
-#: simulation/helpers/Commands.js:801
+#: simulation/helpers/Commands.js:797
 msgid "There are no bribable units"
 msgstr "Det finns inga mutbara enheter"
 
-#: simulation/helpers/Commands.js:847
+#: simulation/helpers/Commands.js:843
 msgid "Unable to ungarrison unit(s)"
 msgstr "Kan inte ogarnisonera enhet(er)"
 
-#: simulation/helpers/Commands.js:861
+#: simulation/helpers/Commands.js:857
 msgid "Some unit(s) can't go back to work"
 msgstr "Några enhet(er) kan ej gå tillbaka till arbetet"
 
-#: simulation/helpers/Commands.js:1115
+#: simulation/helpers/Commands.js:1111
 msgid "The building's technology requirements are not met."
 msgstr "Byggnadens teknologikrav är inte uppfyllda"
 
@@ -736,9 +736,10 @@ msgstr "Regicid"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
-"Be the first to build or capture a wonder and keep it for a certain time to "
-"win the game."
-msgstr "Bli först med att bygga eller erövra ett under och hålla den under en viss tid för att vinna spelet."
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured or in allied victory when the owners alliances change."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
