@@ -330,8 +330,6 @@ void main()
 	 color = get_fog(color);
 #endif
 
-gl_FragColor.rgb = color;
-
 #if USE_FANCY_EFFECTS
 	vec4 FoamEffects = texture2D(waterEffectsTexOther, gl_FragCoord.xy/screenSize);
 	
@@ -344,18 +342,19 @@ gl_FragColor.rgb = color;
 	
 	foam1.x = foaminterp.x * WindCosSin.x - foaminterp.z * WindCosSin.y;
 	
-	gl_FragColor.rgb += FoamEffects.r * FoamEffects.a * 0.4 + pow(foam1.x * (5.0 + waviness), 2.6 - waviness / 5.5);
+	color += FoamEffects.r * FoamEffects.a * 0.4 + pow(foam1.x * (5.0 + waviness), 2.6 - waviness / 5.5);
 #endif
 
-gl_FragColor.rgb *= losMod;
-gl_FragColor.a = 1.0;
+	float alpha = 1.0;
 
 #if !USE_REFRACTION
-gl_FragColor.a = 1.4-extFact;
+	alpha = 1.4 - extFact;
 #endif
 	
 #if USE_FANCY_EFFECTS
 	if (fancyeffects.a < 0.05 && waterDepth < -1.0 )
-		gl_FragColor.a = 0.0;
+		alpha = 0.0;
 #endif
+
+	gl_FragColor = vec4(color * losMod, alpha);
 }

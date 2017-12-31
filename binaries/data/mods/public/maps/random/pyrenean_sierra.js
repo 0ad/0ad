@@ -191,14 +191,16 @@ for (var i = 0; i < numPlayers; i++)
 Engine.SetProgress(30);
 
 log ("Creating the pyreneans...");
-var MountainStartX = mapCenter.x + Math.cos(MoutainAngle) * fractionToTiles(0.34);
-var MountainStartZ = mapCenter.y + Math.sin(MoutainAngle) * fractionToTiles(0.34);
-var MountainEndX = mapCenter.x - Math.cos(MoutainAngle) * fractionToTiles(0.34);
-var MountainEndZ = mapCenter.y - Math.sin(MoutainAngle) * fractionToTiles(0.34);
+var mountainLength = fractionToTiles(0.68);
 
-var MountainHeight = scaleByMapSize(50,65);
+var mountainVec = new Vector2D(mountainLength, 0).rotate(-MoutainAngle);
+var mountainVecHalf = Vector2D.mult(mountainVec, 1/2);
+
+var mountainStart = Vector2D.add(mapCenter, mountainVecHalf);
+var mountainEnd = Vector2D.sub(mapCenter, mountainVecHalf);
 
 // Number of peaks
+var MountainHeight = scaleByMapSize(50, 65);
 var NumOfIterations = scaleByMapSize(100,1000);
 
 var randomNess = randFloat(-scaleByMapSize(1,12),scaleByMapSize(1,12));
@@ -215,10 +217,10 @@ for (var i = 0; i < NumOfIterations; i++)
 	for (var dist = 0; dist < width*3; dist++)
 	{
 		var okDist = dist/3;
-		var S1x = round((MountainStartX * (1-position) + MountainEndX*position) + randomNess*cos(position*3.14*4) + cos(MoutainAngle+PI/2)*okDist);
-		var S1z = round((MountainStartZ * (1-position) + MountainEndZ*position) + randomNess*sin(position*3.14*4) + sin(MoutainAngle+PI/2)*okDist);
-		var S2x = round((MountainStartX * (1-position) + MountainEndX*position) + randomNess*cos(position*3.14*4) + cos(MoutainAngle-PI/2)*okDist);
-		var S2z = round((MountainStartZ * (1-position) + MountainEndZ*position) + randomNess*sin(position*3.14*4) + sin(MoutainAngle-PI/2)*okDist);
+		var S1x = round((mountainStart.x * (1-position) + mountainEnd.x*position) + randomNess*cos(position*3.14*4) + cos(MoutainAngle+PI/2)*okDist);
+		var S1z = round((mountainStart.y * (1-position) + mountainEnd.y*position) + randomNess*sin(position*3.14*4) + sin(MoutainAngle+PI/2)*okDist);
+		var S2x = round((mountainStart.x * (1-position) + mountainEnd.x*position) + randomNess*cos(position*3.14*4) + cos(MoutainAngle-PI/2)*okDist);
+		var S2z = round((mountainStart.y * (1-position) + mountainEnd.y*position) + randomNess*sin(position*3.14*4) + sin(MoutainAngle-PI/2)*okDist);
 
 		// complicated sigmoid
 		// Ranges is 0-1, FormX is 0-1 too.
@@ -254,21 +256,28 @@ for (var ix = 1; ix < mapSize-1; ix++)
 }
 Engine.SetProgress(48);
 
-// Okay so the mountains are pretty much here.
-// Making the passes
+log("Creating passages...");
+var passageLocation = 0.35;
+var passageHeight = MountainHeight - 25;
+var passageLength = scaleByMapSize(8, 50);
+var passageVec = mountainVec.perpendicular().normalize().mult(passageLength);
 
-var passWidth = scaleByMapSize(15,100) /1.8;
-var S1x = round((MountainStartX * (0.35) + MountainEndX*0.65) + cos(MoutainAngle+PI/2)*passWidth);
-var S1z = round((MountainStartZ * (0.35) + MountainEndZ*0.65) + sin(MoutainAngle+PI/2)*passWidth);
-var S2x = round((MountainStartX * (0.35) + MountainEndX*0.65) + cos(MoutainAngle-PI/2)*passWidth);
-var S2z = round((MountainStartZ * (0.35) + MountainEndZ*0.65) + sin(MoutainAngle-PI/2)*passWidth);
-PassMaker(S1x, S1z, S2x, S2z, 4, 7, (getHeight(S1x,S1z) + getHeight(S2x,S2z))/2.0, MountainHeight-25, 2, clPass);
+for (let passLoc of [passageLocation, 1 - passageLocation])
+	for (let direction of [1, -1])
+	{
+		let passageStart = Vector2D.add(mountainEnd, Vector2D.mult(mountainVec, passLoc));
+		let passageEnd = Vector2D.add(passageStart, Vector2D.mult(passageVec, direction));
 
-S1x = round((MountainStartX * (0.65) + MountainEndX*0.35) + cos(MoutainAngle+PI/2)*passWidth);
-S1z = round((MountainStartZ * (0.65) + MountainEndZ*0.35) + sin(MoutainAngle+PI/2)*passWidth);
-S2x = round((MountainStartX * (0.65) + MountainEndX*0.35) + cos(MoutainAngle-PI/2)*passWidth);
-S2z = round((MountainStartZ * (0.65) + MountainEndZ*0.35) + sin(MoutainAngle-PI/2)*passWidth);
-PassMaker(S1x, S1z, S2x, S2z, 4, 7, (getHeight(S1x,S1z) + getHeight(S2x,S2z))/2.0, MountainHeight-25, 2, clPass);
+		createPassage({
+			"start": passageStart,
+			"end": passageEnd,
+			"startHeight": passageHeight,
+			"startWidth": 7,
+			"endWidth": 7,
+			"smoothWidth": 2,
+			"tileClass": clPass
+		});
+	}
 
 Engine.SetProgress(50);
 
@@ -525,64 +534,7 @@ function getNeighborsHeight(x1, z1)
 	height /= 8;
 	return height;
 }
-// Taken from Corsica vs Sardinia with tweaks
-function PassMaker(x1, z1, x2, z2, startWidth, centerWidth, startElevation, centerElevation, smooth, tileclass, terrain)
-{
-	var mapSize = g_Map.size;
-	var stepNB = sqrt((x2-x1)*(x2-x1) + (z2-z1)*(z2-z1)) + 2;
 
-	var startHeight = startElevation;
-	var finishHeight = centerElevation;
-
-	for (var step = 0; step <= stepNB; step+=0.5)
-	{
-		var ix = ((stepNB-step)*x1 + x2*step) / stepNB;
-		var iz = ((stepNB-step)*z1 + z2*step) / stepNB;
-
-		var width = (abs(step - stepNB/2.0) *startWidth + (stepNB/2 - abs(step - stepNB/2.0)) * centerWidth ) / (stepNB/2);
-
-		var oldDirection = [x2-x1, z2-z1];
-		// let's get the perpendicular direction
-		var direction = [ -oldDirection[1],oldDirection[0] ];
-		if (abs(direction[0]) > abs(direction[1]))
-		{
-			direction[1] = direction[1] / abs(direction[0]);
-			if (direction[0] > 0)
-				direction[0] = 1;
-			else
-				direction[0] = -1;
-		} else {
-			direction[0] = direction[0] / abs(direction[1]);
-			if (direction[1] > 0)
-				direction[1] = 1;
-			else
-				direction[1] = -1;
-		}
-		for (var po = -Math.floor(width/2.0); po <= Math.floor(width/2.0); po+=0.5)
-		{
-			var rx = po*direction[0];
-			var rz = po*direction[1];
-
-			var targetHeight = (abs(step - stepNB/2.0) *startHeight + (stepNB/2 - abs(step - stepNB/2.0)) * finishHeight ) / (stepNB/2);
-			if (round(ix + rx) < mapSize && round(iz + rz) < mapSize && round(ix + rx) >= 0 && round(iz + rz) >= 0)
-			{
-				// smoothing the sides
-				if ( abs(abs(po) - abs(Math.floor(width/2.0))) < smooth)
-				{
-					var localHeight = getHeight(round(ix + rx), round(iz + rz));
-					var localPart = smooth - abs(abs(po) - abs(Math.floor(width/2.0)));
-					var targetHeight = (localHeight * localPart + targetHeight * (1/localPart) )/ (localPart + 1/localPart);
-				}
-
-				g_Map.setHeight(round(ix + rx), round(iz + rz), targetHeight);
-				if (tileclass != null)
-					addToClass(round(ix + rx), round(iz + rz), tileclass);
-				if (terrain != null)
-					placeTerrain(round(ix + rx), round(iz + rz), terrain);
-			}
-		}
-	}
-}
 // no need for preliminary rounding
 function getHeightDifference(x1, z1)
 {
@@ -610,4 +562,3 @@ function getHeightDifference(x1, z1)
 		diff /= todiv;
 	return diff;
 }
-

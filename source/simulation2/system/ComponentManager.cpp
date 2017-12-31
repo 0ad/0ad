@@ -63,7 +63,6 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 
 	m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
 	m_ScriptInterface.ReplaceNondeterministicRNG(m_RNG);
-	m_ScriptInterface.LoadGlobalScripts();
 
 	// For component script tests, the test system sets up its own scripted implementation of
 	// these functions, so we skip registering them here in those cases
@@ -86,6 +85,9 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
 		m_ScriptInterface.RegisterFunction<void, CComponentManager::Script_FlushDestroyedEntities> ("FlushDestroyedEntities");
 	}
+
+	// Globalscripts may use VFS script functions
+	m_ScriptInterface.LoadGlobalScripts();
 
 	// Define MT_*, IID_* as script globals, and store their names
 #define MESSAGE(name) m_ScriptInterface.SetGlobal("MT_" #name, (int)MT_##name);

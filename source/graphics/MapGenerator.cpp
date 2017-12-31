@@ -97,7 +97,6 @@ bool CMapGeneratorWorker::Run()
 
 	// Replace RNG with a seeded deterministic function
 	m_ScriptInterface->ReplaceNondeterministicRNG(m_MapGenRNG);
-	m_ScriptInterface->LoadGlobalScripts();
 
 	// Functions for RMS
 	JSI_VFS::RegisterScriptFunctions_Maps(*m_ScriptInterface);
@@ -109,6 +108,9 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
 	m_ScriptInterface->RegisterFunction<int, CMapGeneratorWorker::GetTerrainTileSize>("GetTerrainTileSize");
+
+	// Globalscripts may use VFS script functions
+	m_ScriptInterface->LoadGlobalScripts();
 
 	// Parse settings
 	JS::RootedValue settingsVal(cx);

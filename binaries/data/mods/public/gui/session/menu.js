@@ -997,6 +997,13 @@ function toggleTrade()
 		openTrade();
 }
 
+function toggleTutorial()
+{
+	let tutorialPanel = Engine.GetGUIObjectByName("tutorialPanel");
+	tutorialPanel.hidden = !tutorialPanel.hidden ||
+	                       !Engine.GetGUIObjectByName("tutorialText").caption;
+}
+
 function updateGameSpeedControl()
 {
 	let player = g_Players[Engine.GetPlayerID()];

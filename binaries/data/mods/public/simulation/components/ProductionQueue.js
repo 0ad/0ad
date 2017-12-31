@@ -163,22 +163,20 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 	var techs = string.split(/\s+/);
 
 	// Replace the civ specific technologies
-	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
 	for (let i = 0; i < techs.length; ++i)
 	{
 		let tech = techs[i];
 		if (tech.indexOf("{civ}") == -1)
 			continue;
 		let civTech = tech.replace("{civ}", cmpPlayer.GetCiv());
-		techs[i] = cmpDataTemplateManager.TechnologyExists(civTech) ?
-		           civTech : tech.replace("{civ}", "generic");
+		techs[i] = TechnologyTemplates.Has(civTech) ? civTech : tech.replace("{civ}", "generic");
 	}
 
 	// Remove any technologies that can't be researched by this civ
-	techs = techs.filter(tech => {
-		let reqs = DeriveTechnologyRequirements(cmpTechnologyManager.GetTechnologyTemplate(tech), cmpPlayer.GetCiv());
-		return cmpTechnologyManager.CheckTechnologyRequirements(reqs, true);
-	});
+	techs = techs.filter(tech =>
+		cmpTechnologyManager.CheckTechnologyRequirements(
+			DeriveTechnologyRequirements(TechnologyTemplates.Get(tech), cmpPlayer.GetCiv()),
+			true));
 
 	var techList = [];
 	var superseded = {}; // Stores the tech which supersedes the key
@@ -192,7 +190,8 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		var tech = techs[i];
 		if (disabledTechnologies && disabledTechnologies[tech])
 			continue;
-		var template = cmpTechnologyManager.GetTechnologyTemplate(tech);
+
+		let template = TechnologyTemplates.Get(tech);
 		if (!template.supersedes || techs.indexOf(template.supersedes) === -1)
 			techList.push(tech);
 		else
@@ -223,7 +222,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 			continue;
 		}
 
-		var template = cmpTechnologyManager.GetTechnologyTemplate(tech);
+		let template = TechnologyTemplates.Get(tech);
 		if (template.top)
 			ret[i] = {"pair": true, "top": template.top, "bottom": template.bottom};
 		else
@@ -248,7 +247,7 @@ ProductionQueue.prototype.IsTechnologyResearchedOrInProgress = function(tech)
 
 	var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 
-	var template = cmpTechnologyManager.GetTechnologyTemplate(tech);
+	let template = TechnologyTemplates.Get(tech);
 	if (template.top)
 	{
 		return (cmpTechnologyManager.IsTechnologyResearched(template.top) || cmpTechnologyManager.IsInProgress(template.top)
@@ -346,10 +345,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 		}
 		else if (type == "technology")
 		{
-			// Load the technology template
-			var cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
-			var template = cmpDataTemplateManager.GetTechnologyTemplate(templateName);
-			if (!template)
+			if (!TechnologyTemplates.Has(templateName))
 				return;
 
 			if (!this.GetTechnologiesList().some(tech =>
@@ -362,6 +358,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				return;
 			}
 
+			let template = TechnologyTemplates.Get(templateName);
 			let techCostMultiplier = this.GetTechCostMultiplier();
 			let time =  techCostMultiplier.time * template.researchTime * cmpPlayer.GetCheatTimeMultiplier();
 
@@ -811,7 +808,7 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 			cmpTechnologyManager.ResearchTechnology(item.technologyTemplate);
 
-			var template = cmpTechnologyManager.GetTechnologyTemplate(item.technologyTemplate);
+			let template = TechnologyTemplates.Get(item.technologyTemplate);
 
 			if (template && template.soundComplete)
 			{

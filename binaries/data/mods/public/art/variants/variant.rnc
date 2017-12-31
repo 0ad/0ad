@@ -7,6 +7,7 @@ namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 element variant {
 	attribute name { text }? &
 	attribute frequency { xsd:nonNegativeInteger }? &
+	attribute file { text }? &	
 	element mesh {
 		text
 	}? &

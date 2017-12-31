@@ -8,14 +8,11 @@ Auras.prototype.Schema =
 
 Auras.prototype.Init = function()
 {
-	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
-	this.auras = {};
 	this.affectedPlayers = {};
+
 	for (let name of this.GetAuraNames())
-	{
 		this.affectedPlayers[name] = [];
-		this.auras[name] = cmpDataTemplateManager.GetAuraTemplate(name);
-	}
+
 	// In case of autogarrisoning, this component can be called before ownership is set.
 	// So it needs to be completely initialised from the start.
 	this.Clean();
@@ -24,7 +21,7 @@ Auras.prototype.Init = function()
 // We can modify identifier if we want stackable auras in some case.
 Auras.prototype.GetModifierIdentifier = function(name)
 {
-	if (this.auras[name].stackable)
+	if (AuraTemplates.Get(name).stackable)
 		return name + this.entity;
 	return name;
 };
@@ -34,7 +31,7 @@ Auras.prototype.GetDescriptions = function()
 	var ret = {};
 	for (let auraID of this.GetAuraNames())
 	{
-		let aura = this.auras[auraID];
+		let aura = AuraTemplates.Get(auraID);
 		ret[auraID] = {
 			"name": aura.auraName,
 			"description": aura.auraDescription || null,
@@ -51,7 +48,7 @@ Auras.prototype.GetAuraNames = function()
 
 Auras.prototype.GetOverlayIcon = function(name)
 {
-	return this.auras[name].overlayIcon || "";
+	return AuraTemplates.Get(name).overlayIcon || "";
 };
 
 Auras.prototype.GetAffectedEntities = function(name)
@@ -62,18 +59,18 @@ Auras.prototype.GetAffectedEntities = function(name)
 Auras.prototype.GetRange = function(name)
 {
 	if (this.IsRangeAura(name))
-		return +this.auras[name].radius;
+		return +AuraTemplates.Get(name).radius;
 	return undefined;
 };
 
 Auras.prototype.GetClasses = function(name)
 {
-	return this.auras[name].affects;
+	return AuraTemplates.Get(name).affects;
 };
 
 Auras.prototype.GetModifications = function(name)
 {
-	return this.auras[name].modifications;
+	return AuraTemplates.Get(name).modifications;
 };
 
 Auras.prototype.GetAffectedPlayers = function(name)
@@ -90,13 +87,15 @@ Auras.prototype.GetRangeOverlays = function()
 		if (!this.IsRangeAura(name) || !this[name].isApplied)
 			continue;
 
+		let rangeOverlay = AuraTemplates.Get(name).rangeOverlay;
+
 		rangeOverlays.push(
-			this.auras[name].rangeOverlay ?
+			rangeOverlay ?
 				{
 					"radius": this.GetRange(name),
-					"texture":  this.auras[name].rangeOverlay.lineTexture,
-					"textureMask":  this.auras[name].rangeOverlay.lineTextureMask,
-					"thickness":  this.auras[name].rangeOverlay.lineThickness
+					"texture": rangeOverlay.lineTexture,
+					"textureMask": rangeOverlay.lineTextureMask,
+					"thickness": rangeOverlay.lineThickness
 				} :
 				// Specify default in order not to specify it in about 40 auras
 				{
@@ -112,7 +111,7 @@ Auras.prototype.GetRangeOverlays = function()
 
 Auras.prototype.CalculateAffectedPlayers = function(name)
 {
-	var affectedPlayers = this.auras[name].affectedPlayers || ["Player"];
+	var affectedPlayers = AuraTemplates.Get(name).affectedPlayers || ["Player"];
 	this.affectedPlayers[name] = [];
 
 	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
@@ -137,12 +136,14 @@ Auras.prototype.CalculateAffectedPlayers = function(name)
 
 Auras.prototype.CanApply = function(name)
 {
-	if (!this.auras[name].requiredTechnology)
+	if (!AuraTemplates.Get(name).requiredTechnology)
 		return true;
+
 	let cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	if (!cmpTechnologyManager)
 		return false;
-	return cmpTechnologyManager.IsTechnologyResearched(this.auras[name].requiredTechnology);
+
+	return cmpTechnologyManager.IsTechnologyResearched(AuraTemplates.Get(name).requiredTechnology);
 };
 
 Auras.prototype.HasFormationAura = function()
@@ -162,7 +163,7 @@ Auras.prototype.HasGarrisonedUnitsAura = function()
 
 Auras.prototype.GetType = function(name)
 {
-	return this.auras[name].type;
+	return AuraTemplates.Get(name).type;
 };
 
 Auras.prototype.IsFormationAura = function(name)
@@ -470,7 +471,7 @@ Auras.prototype.OnGlobalResearchFinished = function(msg)
 		return;
 	for (let name of this.GetAuraNames())
 	{
-		let requiredTech = this.auras[name].requiredTechnology;
+		let requiredTech = AuraTemplates.Get(name).requiredTechnology;
 		if (requiredTech && requiredTech == msg.tech)
 		{
 			this.Clean();

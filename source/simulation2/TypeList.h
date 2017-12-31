@@ -165,9 +165,6 @@ COMPONENT(SoundManager)
 INTERFACE(ValueModificationManager)
 COMPONENT(ValueModificationManagerScripted)
 
-INTERFACE(DataTemplateManager)
-COMPONENT(DataTemplateManagerScripted)
-
 INTERFACE(Terrain)
 COMPONENT(Terrain)
 

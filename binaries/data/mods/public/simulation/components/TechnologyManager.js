@@ -46,8 +46,8 @@ TechnologyManager.prototype.Init = function()
 	// Some technologies are automatically researched when their conditions are met.  They have no cost and are
 	// researched instantly.  This allows civ bonuses and more complicated technologies.
 	this.unresearchedAutoResearchTechs = new Set();
-	var allTechs = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager).GetAllTechs();
-	for (var key in allTechs)
+	let allTechs = TechnologyTemplates.GetAll();
+	for (let key in allTechs)
 		if (allTechs[key].autoResearch || allTechs[key].top)
 			this.unresearchedAutoResearchTechs.add(key);
 };
@@ -61,10 +61,9 @@ TechnologyManager.prototype.OnUpdate = function()
 // This function checks if the requirements of any autoresearch techs are met and if they are it researches them
 TechnologyManager.prototype.UpdateAutoResearch = function()
 {
-	var cmpDataTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
 	for (let key of this.unresearchedAutoResearchTechs)
 	{
-		var tech = cmpDataTempMan.GetTechnologyTemplate(key);
+		let tech = TechnologyTemplates.Get(key);
 		if ((tech.autoResearch && this.CanResearch(key))
 			|| (tech.top && (this.IsTechnologyResearched(tech.top) || this.IsTechnologyResearched(tech.bottom))))
 		{
@@ -73,11 +72,6 @@ TechnologyManager.prototype.UpdateAutoResearch = function()
 			return; // We will have recursively handled any knock-on effects so can just return
 		}
 	}
-};
-
-TechnologyManager.prototype.GetTechnologyTemplate = function(tech)
-{
-	return Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager).GetTechnologyTemplate(tech);
 };
 
 // Checks an entity template to see if its technology requirements have been met
@@ -110,7 +104,7 @@ TechnologyManager.prototype.IsTechnologyStarted = function(tech)
 // Checks the requirements for a technology to see if it can be researched at the current time
 TechnologyManager.prototype.CanResearch = function(tech)
 {
-	let template = this.GetTechnologyTemplate(tech);
+	let template = TechnologyTemplates.Get(tech);
 
 	if (!template)
 	{
@@ -270,17 +264,10 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 {
 	this.StoppedResearch(tech, false);
 
-	var template = this.GetTechnologyTemplate(tech);
-
-	if (!template)
-	{
-		error("Tried to research invalid technology: " + uneval(tech));
-		return;
-	}
-
 	var modifiedComponents = {};
 	this.researchedTechs.add(tech);
 	// store the modifications in an easy to access structure
+	let template = TechnologyTemplates.Get(tech);
 	if (template.modifications)
 	{
 		let derivedModifiers = DeriveModificationsFromTech(template);

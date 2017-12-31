@@ -9,7 +9,6 @@ m.SharedScript = function(settings)
 
 	this._players = Object.keys(settings.players).map(key => settings.players[key]); // TODO SM55 Object.values(settings.players)
 	this._templates = settings.templates;
-	this._techTemplates = settings.techTemplates;
 
 	this._entityMetadata = {};
 	for (let player of this._players)
@@ -30,7 +29,6 @@ m.SharedScript.prototype.Serialize = function()
 {
 	return {
 		"players": this._players,
-		"techTemplates": this._techTemplates,
 		"templatesModifications": this._templatesModifications,
 		"entitiesModifications": this._entitiesModifications,
 		"metadata": this._entityMetadata
@@ -44,7 +42,6 @@ m.SharedScript.prototype.Serialize = function()
 m.SharedScript.prototype.Deserialize = function(data)
 {
 	this._players = data.players;
-	this._techTemplates = data.techTemplates;
 	this._templatesModifications = data.templatesModifications;
 	this._entitiesModifications = data.entitiesModifications;
 	this._entityMetadata = data.metadata;

@@ -643,26 +643,17 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	if (!template.Auras)
 		return GetTemplateDataHelper(template, player, aurasTemplate, Resources, DamageTypes);
 
-	// Add aura name and description loaded from JSON file
 	let auraNames = template.Auras._string.split(/\s+/);
-	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
+
 	for (let name of auraNames)
-		aurasTemplate[name] = cmpDataTemplateManager.GetAuraTemplate(name);
+		aurasTemplate[name] = AuraTemplates.Get(name);
+
 	return GetTemplateDataHelper(template, player, aurasTemplate, Resources, DamageTypes);
 };
 
 GuiInterface.prototype.GetTechnologyData = function(player, data)
 {
-	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
-	let template = cmpDataTemplateManager.GetTechnologyTemplate(data.name);
-
-	if (!template)
-	{
-		warn("Tried to get data for invalid technology: " + data.name);
-		return null;
-	}
-
-	return GetTechnologyDataHelper(template, data.civ, Resources);
+	return GetTechnologyDataHelper(TechnologyTemplates.Get(data.name), data.civ, Resources);
 };
 
 GuiInterface.prototype.IsTechnologyResearched = function(player, data)

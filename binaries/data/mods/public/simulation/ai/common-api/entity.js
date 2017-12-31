@@ -347,7 +347,7 @@ m.Template = m.Class({
 			if (tech.indexOf("{civ}") == -1)
 				continue;
 			let civTech = tech.replace("{civ}", civ);
-			techs[i] = gameState.techTemplates[civTech] ?
+			techs[i] = TechnologyTemplates.Has(civTech) ?
 			           civTech : tech.replace("{civ}", "generic");
 		}
 		return techs;

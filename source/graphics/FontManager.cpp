@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -125,7 +125,7 @@ bool CFontManager::ReadFont(CFont* font, CStrIntern fontName)
 	// Load glyph texture
 	const VfsPath imgName(fontName.string() + ".png");
 	CTextureProperties textureProps(path / imgName);
-	textureProps.SetFilter(GL_NEAREST);
+	textureProps.SetFilter(GL_LINEAR);
 	if (!font->m_HasRGB)
 		textureProps.SetFormatOverride(GL_ALPHA);
 	font->m_Texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);

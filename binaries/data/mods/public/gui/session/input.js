@@ -379,6 +379,12 @@ var unitFilters = {
 		return entState &&
 			g_MilitaryTypes.some(c => hasClass(entState, c));
 	},
+	"isNonMilitary": entity => {
+		var entState = GetEntityState(entity);
+		return entState &&
+			hasClass(entState, "Unit") &&
+			!g_MilitaryTypes.some(c => hasClass(entState, c));
+	},
 	"isIdle": entity => {
 		var entState = GetEntityState(entity);
 
@@ -408,8 +414,10 @@ function getPreferredEntities(ents)
 	var filters = [unitFilters.isUnit, unitFilters.isDefensive, unitFilters.isAnything];
 
 	// Handle hotkeys
-	if (Engine.HotkeyIsPressed("selection.milonly"))
+	if (Engine.HotkeyIsPressed("selection.militaryonly"))
 		filters = [unitFilters.isMilitary];
+	if (Engine.HotkeyIsPressed("selection.nonmilitaryonly"))
+		filters = [unitFilters.isNonMilitary];
 	if (Engine.HotkeyIsPressed("selection.idleonly"))
 		filters = [unitFilters.isIdle];
 	if (Engine.HotkeyIsPressed("selection.woundedonly"))
