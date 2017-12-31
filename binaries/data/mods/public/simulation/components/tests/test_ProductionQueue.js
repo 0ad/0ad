@@ -7,6 +7,11 @@ Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/ProductionQueue.js");
 Engine.LoadComponentScript("ProductionQueue.js");
 
+global.TechnologyTemplates = {
+	"Has": name => name == "phase_town_athen" || name == "phase_city_athen",
+	"Get": () => ({})
+};
+
 const productionQueueId = 6;
 const playerId = 1;
 const playerEntityID = 2;
@@ -32,10 +37,6 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	"GetPlayerByID": id => playerEntityID
 });
 
-AddMock(SYSTEM_ENTITY, IID_DataTemplateManager, {
-	"TechnologyExists": name => name == "phase_town_athen" || name == "phase_city_athen"
-});
-
 AddMock(playerEntityID, IID_Player, {
 	"GetCiv": () => "iber",
 	"GetDisabledTechnologies": () => ({}),
@@ -45,7 +46,6 @@ AddMock(playerEntityID, IID_Player, {
 
 AddMock(playerEntityID, IID_TechnologyManager, {
 	"CheckTechnologyRequirements": () => true,
-	"GetTechnologyTemplate": tech => tech,
 	"IsInProgress": () => false,
 	"IsTechnologyResearched": () => false
 });
@@ -125,7 +125,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetTechnologiesList(), ["phase_town_a
 
 AddMock(playerEntityID, IID_TechnologyManager, {
 	"CheckTechnologyRequirements": () => true,
-	"GetTechnologyTemplate": tech => tech,
 	"IsInProgress": () => false,
 	"IsTechnologyResearched": tech => tech == "phase_town_athen"
 });

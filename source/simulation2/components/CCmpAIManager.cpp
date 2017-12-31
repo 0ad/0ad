@@ -37,7 +37,6 @@
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTemplateManager.h"
-#include "simulation2/components/ICmpDataTemplateManager.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
 #include "simulation2/helpers/LongPathfinder.h"
 #include "simulation2/serialization/DebugSerializer.h"
@@ -216,14 +215,12 @@ public:
 		m_HasSharedComponent(false),
 		m_SerializablePrototypes(new ObjectIdCache<std::wstring>(g_ScriptRuntime)),
 		m_EntityTemplates(g_ScriptRuntime->m_rt),
-		m_TechTemplates(g_ScriptRuntime->m_rt),
 		m_SharedAIObj(g_ScriptRuntime->m_rt),
 		m_PassabilityMapVal(g_ScriptRuntime->m_rt),
 		m_TerritoryMapVal(g_ScriptRuntime->m_rt)
 	{
 
 		m_ScriptInterface->ReplaceNondeterministicRNG(m_RNG);
-		m_ScriptInterface->LoadGlobalScripts();
 
 		m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
@@ -240,6 +237,9 @@ public:
 		m_ScriptInterface->RegisterFunction<CParamNode, std::string, CAIWorker::GetTemplate>("GetTemplate");
 
 		JSI_VFS::RegisterScriptFunctions_Simulation(*(m_ScriptInterface.get()));
+
+		// Globalscripts may use VFS script functions
+		m_ScriptInterface->LoadGlobalScripts();
 	}
 
 	~CAIWorker()
@@ -400,7 +400,7 @@ public:
 		m_RNG.seed(seed);
 	}
 
-	bool TryLoadSharedComponent(bool hasTechs)
+	bool TryLoadSharedComponent()
 	{
 		JSContext* cx = m_ScriptInterface->GetContext();
 		JSAutoRequest rq(cx);
@@ -454,18 +454,6 @@ public:
 		m_ScriptInterface->SetProperty(settings, "players", playersID);
 		ENSURE(m_HasLoadedEntityTemplates);
 		m_ScriptInterface->SetProperty(settings, "templates", m_EntityTemplates, false);
-
-		if (hasTechs)
-		{
-			m_ScriptInterface->SetProperty(settings, "techTemplates", m_TechTemplates, false);
-		}
-		else
-		{
-			// won't get the tech templates directly.
-			JS::RootedValue fakeTech(cx);
-			m_ScriptInterface->Eval("({})", &fakeTech);
-			m_ScriptInterface->SetProperty(settings, "techTemplates", fakeTech, false);
-		}
 
 		JS::AutoValueVector argv(cx);
 		argv.append(settings);
@@ -627,11 +615,6 @@ public:
 		}
 	}
 
-	void RegisterTechTemplates(const shared_ptr<ScriptInterface::StructuredClone>& techTemplates)
-	{
-		m_ScriptInterface->ReadStructuredClone(techTemplates, &m_TechTemplates);
-	}
-
 	void LoadEntityTemplates(const std::vector<std::pair<std::string, const CParamNode*> >& templates)
 	{
 		JSContext* cx = m_ScriptInterface->GetContext();
@@ -754,8 +737,7 @@ public:
 		deserializer.Bool("useSharedScript", m_HasSharedComponent);
 		if (m_HasSharedComponent)
 		{
-			TryLoadSharedComponent(false);
-
+			TryLoadSharedComponent();
 			JS::RootedValue sharedData(cx);
 			deserializer.ScriptVal("sharedData", &sharedData);
 			if (!m_ScriptInterface->CallFunctionVoid(m_SharedAIObj, "Deserialize", sharedData))
@@ -922,7 +904,6 @@ private:
 
 	JS::PersistentRootedValue m_EntityTemplates;
 	bool m_HasLoadedEntityTemplates;
-	JS::PersistentRootedValue m_TechTemplates;
 
 	std::map<VfsPath, JS::Heap<JS::Value> > m_PlayerMetadata;
 	std::vector<shared_ptr<CAIPlayer> > m_Players; // use shared_ptr just to avoid copying
@@ -1026,19 +1007,7 @@ public:
 
 	virtual void TryLoadSharedComponent()
 	{
-		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
-
-		// load the technology templates
-		CmpPtr<ICmpDataTemplateManager> cmpDataTemplateManager(GetSystemEntity());
-		ENSURE(cmpDataTemplateManager);
-
-		JS::RootedValue techTemplates(cx);
-		cmpDataTemplateManager->GetAllTechs(&techTemplates);
-		m_Worker.RegisterTechTemplates(scriptInterface.WriteStructuredClone(techTemplates));
-
-		m_Worker.TryLoadSharedComponent(true);
+		m_Worker.TryLoadSharedComponent();
 	}
 
 	virtual void RunGamestateInit()

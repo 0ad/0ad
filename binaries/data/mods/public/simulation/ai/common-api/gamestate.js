@@ -9,13 +9,13 @@ m.GameState = function() {
 	this.ai = null; // must be updated by the AIs.
 };
 
-m.GameState.prototype.init = function(SharedScript, state, player) {
+m.GameState.prototype.init = function(SharedScript, state, player)
+{
 	this.sharedScript = SharedScript;
 	this.EntCollecNames = SharedScript._entityCollectionsName;
 	this.timeElapsed = SharedScript.timeElapsed;
 	this.circularMap = SharedScript.circularMap;
 	this.templates = SharedScript._templates;
-	this.techTemplates = SharedScript._techTemplates;
 	this.entities = SharedScript.entities;
 	this.player = player;
 	this.playerData = SharedScript.playersData[this.player];
@@ -150,8 +150,8 @@ m.GameState.prototype.isCeasefireActive = function()
 
 m.GameState.prototype.getTemplate = function(type)
 {
-	if (this.techTemplates[type] !== undefined)
-		return new m.Technology(this.techTemplates, type);
+	if (TechnologyTemplates.Has(type))
+		return new m.Technology(type);
 
 	if (this.templates[type] === undefined)
 		this.sharedScript.GetTemplate(type);

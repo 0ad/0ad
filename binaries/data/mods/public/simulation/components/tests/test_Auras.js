@@ -7,6 +7,22 @@ Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("Auras.js");
 Engine.LoadComponentScript("AuraManager.js");
 
+global.AuraTemplates = {
+	"Get": name => {
+		let template = {
+			"type": name,
+			"affectedPlayers": ["Ally"],
+			"affects": ["CorrectClass"],
+			"modifications": [{ "value": "Component/Value", "add": 10 }],
+			"auraName": "name",
+			"auraDescription": "description"
+		};
+		if (name == "range")
+			template.radius = auraRange;
+		return template;
+	}
+};
+
 let playerID = [0, 1, 2];
 let playerEnt = [10, 11, 12];
 let playerState = "active";
@@ -32,22 +48,6 @@ function testAuras(name, test_function)
 		"DestroyActiveQuery": id => {},
 		"GetEntityFlagMask": identifier => {},
 		"GetEntitiesByPlayer": id => [30, 31, 32]
-	});
-
-	AddMock(SYSTEM_ENTITY, IID_DataTemplateManager, {
-		"GetAuraTemplate": (name) => {
-			let template = {
-				"type": name,
-				"affectedPlayers": ["Ally"],
-				"affects": ["CorrectClass"],
-				"modifications": [{ "value": "Component/Value", "add": 10 }],
-				"auraName": "name",
-				"auraDescription": "description"
-			};
-			if (name == "range")
-				template.radius = auraRange;
-			return template;
-		}
 	});
 
 	AddMock(playerEnt[1], IID_Player, {

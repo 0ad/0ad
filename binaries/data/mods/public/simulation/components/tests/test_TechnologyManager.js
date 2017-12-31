@@ -1,9 +1,9 @@
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("TechnologyManager.js");
 
-	AddMock(SYSTEM_ENTITY, IID_DataTemplateManager, {
-		"GetAllTechs": () => {}
-	});
+global.TechnologyTemplates = {
+	"GetAll": () => []
+};
 
 let cmpTechnologyManager = ConstructComponent(SYSTEM_ENTITY, "TechnologyManager", {});
 

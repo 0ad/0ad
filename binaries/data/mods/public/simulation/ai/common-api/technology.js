@@ -1,26 +1,26 @@
+LoadModificationTemplates();
+
 var API3 = function(m)
 {
 
 /** Wrapper around a technology template */
 
-m.Technology = function(allTemplates, templateName)
+m.Technology = function(templateName)
 {
 	this._templateName = templateName;
-	let template = allTemplates[templateName];
+	let template = TechnologyTemplates.Get(templateName);
 
 	// check if this is one of two paired technologies.
 	this._isPair = template.pair !== undefined;
 	if (this._isPair)
 	{
-		if (allTemplates[template.pair].top == templateName)
-			this._pairedWith = allTemplates[template.pair].bottom;
-		else
-			this._pairedWith = allTemplates[template.pair].top;
+		let pairTech = TechnologyTemplates.Get(template.pair);
+		this._pairedWith = pairTech.top == templateName ? pairTech.bottom : pairTech.top;
 	}
+
 	// check if it only defines a pair:
 	this._definesPair = template.top !== undefined;
 	this._template = template;
-	this._techTemplates = allTemplates;
 };
 
 /** returns generic, or specific if civ provided. */
@@ -45,10 +45,10 @@ m.Technology.prototype.getPairedTechs = function()
 	if (!this._definesPair)
 		return undefined;
 
-	let techOne = new m.Technology(this._techTemplates, this._template.top);
-	let techTwo = new m.Technology(this._techTemplates, this._template.bottom);
-
-	return [techOne,techTwo];
+	return [
+		new m.Technology(this._template.top),
+		new m.Technology(this._template.bottom)
+	];
 };
 
 m.Technology.prototype.pair = function()

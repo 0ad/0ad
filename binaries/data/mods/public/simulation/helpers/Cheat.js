@@ -88,9 +88,7 @@ function Cheat(input)
 		else
 			return;
 
-		// check if specialised tech exists (like phase_town_athen)
-		var cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
-		if (cmpDataTemplateManager.ListAllTechs().indexOf(parameter + "_" + cmpPlayer.civ) > -1)
+		if (TechnologyTemplates.Has(parameter + "_" + cmpPlayer.civ))
 			parameter += "_" + cmpPlayer.civ;
 		else
 			parameter += "_generic";
@@ -140,13 +138,8 @@ function Cheat(input)
 			}
 		}
 
-		// check, if technology exists
-		var template = cmpTechnologyManager.GetTechnologyTemplate(techname);
-		if (!template)
-			return;
-
-		// check, if technology is already researched
-		if (!cmpTechnologyManager.IsTechnologyResearched(techname))
+		if (TechnologyTemplates.Has(techname) &&
+		    !cmpTechnologyManager.IsTechnologyResearched(techname))
 			cmpTechnologyManager.ResearchTechnology(techname);
 		return;
 	case "metaCheat":
