@@ -514,7 +514,7 @@ template = {
 	"modifications": [{
 		"value": "ResourceGatherer/Rates/food.grain",
 		"multiply": 15,
-		"affects": "Spearman Swordman"
+		"affects": "Spear Sword"
 	},
 	{
 		"value": "ResourceGatherer/Rates/food.meat",
@@ -525,8 +525,8 @@ template = {
 let techMods = {
 	"ResourceGatherer/Rates/food.grain": [{
 		"affects": [
-			["Female", "Spearman", "Swordman"],
-			["CitizenSoldier", "Melee", "Spearman", "Swordman"]
+			["Female", "Spear", "Sword"],
+			["CitizenSoldier", "Melee", "Spear", "Sword"]
 		],
 		"multiply": 15
 	}],
@@ -544,12 +544,12 @@ template = {
 	"modifications": [{
 		"value": "ResourceGatherer/Rates/food.grain",
 		"multiply": 15,
-		"affects": "Spearman"
+		"affects": "Spear"
 	},
 	{
 		"value": "ResourceGatherer/Rates/food.grain",
 		"multiply": 15,
-		"affects": "Swordman"
+		"affects": "Sword"
 	},
 	{
 		"value": "ResourceGatherer/Rates/food.meat",
@@ -560,15 +560,15 @@ template = {
 techMods = {
 	"ResourceGatherer/Rates/food.grain": [{
 		"affects": [
-			["Female", "Spearman"],
-			["CitizenSoldier", "Melee", "Spearman"]
+			["Female", "Spear"],
+			["CitizenSoldier", "Melee", "Spear"]
 		],
 		"multiply": 15
 	},
 	{
 		"affects": [
-			["Female", "Swordman"],
-			["CitizenSoldier", "Melee", "Swordman"]
+			["Female", "Sword"],
+			["CitizenSoldier", "Melee", "Sword"]
 		],
 		"multiply": 15
 	}],
