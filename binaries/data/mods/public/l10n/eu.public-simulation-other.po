@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-11 09:05+0200\n"
-"PO-Revision-Date: 2017-12-22 17:36+0000\n"
+"POT-Creation-Date: 2017-12-27 09:05+0100\n"
+"PO-Revision-Date: 2017-12-28 11:09+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -489,28 +489,28 @@ msgstr "%(time)s-(t)an eraso dezakezu"
 msgid "You can attack now!"
 msgstr "Eraso dezakezu, orain!"
 
-#: simulation/components/EndGameManager.js:173
+#: simulation/components/EndGameManager.js:159
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] "%(lastPlayer)s irabazi du (azken Jokalaria bizirik)."
 msgstr[1] "%(players)s eta %(lastPlayer)s irabazi dute (azken Jokalariak bizirik)."
 
-#: simulation/components/EndGameManager.js:181
+#: simulation/components/EndGameManager.js:167
 msgid "Last remaining player wins."
 msgstr "Geratzen den azken jokalariak irabazten du."
 
-#: simulation/components/EntityLimits.js:166
+#: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s gehienezko eraikuntzetara iritsi da %(limit)s"
 
-#: simulation/components/EntityLimits.js:168
+#: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s %(limit)sen gehienezko erreklutatzera iritsi da "
 
-#: simulation/components/EntityLimits.js:172
+#: simulation/components/EntityLimits.js:171
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s %(limit)sen gehienezko mugara iritsi da "
@@ -542,11 +542,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Ez dago nahiko baliabide - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:401
+#: simulation/components/ProductionQueue.js:415
 msgid "The production queue is full."
 msgstr "Produkzio ilara beterik dago"
 
-#: simulation/components/ProductionQueue.js:783
+#: simulation/components/ProductionQueue.js:801
 msgid "Can't find free space to spawn trained units"
 msgstr "Erreklutatutako unitateak ea daukate agertzeko nahikoa toki"
 
@@ -559,51 +559,51 @@ msgstr "%(player)s garaitua izan da (amarrua)."
 msgid "You need to select a building that trains units."
 msgstr "Unitateak entrenatzen dituen eraikin bat aukeratu behar da."
 
-#: simulation/helpers/Commands.js:133
+#: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
 msgstr "(Amarrua: Kontrolatu unitate guztiak)"
 
-#: simulation/helpers/Commands.js:148
+#: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
 msgstr "(Amarrua: mapa erakutsi)"
 
-#: simulation/helpers/Commands.js:453
+#: simulation/helpers/Commands.js:449
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s amore eman du."
 
-#: simulation/helpers/Commands.js:595
+#: simulation/helpers/Commands.js:591
 msgid "(Cheat - promoted units)"
 msgstr "(Amarrua: Unitateak igo)"
 
-#: simulation/helpers/Commands.js:709
+#: simulation/helpers/Commands.js:705
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Ezin duzu hobetu ezin bai dituzu zoruaren distantzia edo traba baldintzak bete."
 
-#: simulation/helpers/Commands.js:719
+#: simulation/helpers/Commands.js:715
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Ezin duzu babestutako unitatea hobetu."
 
-#: simulation/helpers/Commands.js:765
+#: simulation/helpers/Commands.js:758
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)sen kontrako erasoa eskatu da."
 
-#: simulation/helpers/Commands.js:801
+#: simulation/helpers/Commands.js:797
 msgid "There are no bribable units"
 msgstr "Ez dago erosi daiteken unitaterik."
 
-#: simulation/helpers/Commands.js:847
+#: simulation/helpers/Commands.js:843
 msgid "Unable to ungarrison unit(s)"
 msgstr "Ezin izan dira unitateak azaleratu"
 
-#: simulation/helpers/Commands.js:861
+#: simulation/helpers/Commands.js:857
 msgid "Some unit(s) can't go back to work"
 msgstr "Unitateren bat(zu)ek ezin izan du(te) lanera itzuli"
 
-#: simulation/helpers/Commands.js:1115
+#: simulation/helpers/Commands.js:1111
 msgid "The building's technology requirements are not met."
 msgstr "Oraindik ez dira bete eraikinaren baldintza teknologikoak."
 
@@ -731,9 +731,10 @@ msgstr "Errege-hilketa"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
-"Be the first to build or capture a wonder and keep it for a certain time to "
-"win the game."
-msgstr "Ziurtatu lehena izaten miragarri bat eraiki eta zutik mantentzen partida irabazteko."
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured or in allied victory when the owners alliances change."
+msgstr "Izan zaitez lehena Miragarri bat atzeman edo eraikitzen eta denbora batez mantendu jokoa irabazteko. Denbora neurgailua berrekingo da Miragarria suntsitzean edo atzematean edo aliatuen garaipen batean nagusien aliantzak aldatzen direnean."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"

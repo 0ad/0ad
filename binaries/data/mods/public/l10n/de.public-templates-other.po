@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-20 09:03+0100\n"
-"PO-Revision-Date: 2017-12-25 21:23+0000\n"
+"POT-Creation-Date: 2017-12-29 09:08+0100\n"
+"PO-Revision-Date: 2017-12-31 14:47+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -181,6 +181,10 @@ msgstr "Religiöses Heiligtum"
 msgid "Greek Religious Sanctuary"
 msgstr "Griechisches religiöses Heiligtum"
 
+#: simulation/templates/gaia/fauna_arctic_wolf.xml:4
+msgid "Arctic Wolf"
+msgstr "Polarwolf"
+
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
 msgstr "Bär"
@@ -311,6 +315,10 @@ msgstr "Brennendes Schwein"
 msgid "Sus scrofa domesticus igne"
 msgstr "Sus scrofa domesticus igne"
 
+#: simulation/templates/gaia/fauna_pony.xml:4
+msgid "Pony"
+msgstr "Pony"
+
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
 msgstr "Kaninchen"
@@ -354,10 +362,6 @@ msgstr "Gnu"
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
 msgstr "Wolf"
-
-#: simulation/templates/gaia/fauna_wolf_snow.xml:4
-msgid "Snow Wolf"
-msgstr "Schneewolf"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
@@ -857,10 +861,6 @@ msgid ""
 " other civs"
 msgstr "Änderungen in einem 5er Wohnhaus für Zivilisationen mit diesen Häusern. Ist in anderen Zivilisationen gelöscht."
 
-#: simulation/templates/special/player.xml:57
-msgid "Player"
-msgstr "Spieler"
-
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Spion"
@@ -948,3 +948,7 @@ msgstr "6 Kavallerieeinheiten benötigt"
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
 msgstr "Keil"
+
+#: simulation/templates/special/player/player.xml:57
+msgid "Player"
+msgstr "Spieler"

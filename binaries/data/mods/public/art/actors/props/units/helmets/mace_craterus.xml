@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="helmets/hele_chalcidean_base_crested.xml" name="Base">
+      <textures>
+        <texture file="props/helmet/hele_chalcidean_silver_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

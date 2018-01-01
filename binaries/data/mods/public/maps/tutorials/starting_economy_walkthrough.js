@@ -27,7 +27,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("You have two main types of starting units: Female Citizens and Citizen Soldiers. Female Citizens are purely economic units; they have low HP, no armor, and little to no attack. Citizen Soldiers are workers by default, but in times of need, can utilize a weapon to fight. You have two categories of Citizen Soldiers: Infantry and Cavalry. Female Citizens and Infantry Citizen Soldiers can gather any land resources while Cavalry Citizen Soldiers can only gather meat from hunted animals.\n")
+			markForTranslation("You have two main types of starting units: female citizens and citizen soldiers. Female citizens are purely economic units; they have low HP, no armor, and little to no attack. Citizen soldiers are workers by default, but in times of need, can utilize a weapon to fight. You have two categories of citizen soldiers: infantry and cavalry. Female citizens and infantry citizen soldiers can gather any land resources while cavalry citizen soldiers can only gather meat from hunted animals.\n")
 		]
 	},
 	{
@@ -37,12 +37,12 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("At this point, Food and Wood are the most important resources for developing your economy, so let's start with gathering food. Females gather non-meat food faster than their male counterparts.\n"),
+			markForTranslation("At this point, food and wood are the most important resources for developing your economy, so let's start with gathering food. Female citizens gather vegetables faster than other units.\n"),
 			markForTranslation("There are primarily three ways to select units:\n"),
 			markForTranslation("1) Hold the left mouse button and drag a selection rectangle that encloses the units you want to select.\n"),
 			markForTranslation("2) Click on one of them and then add additional units to your selection by shift-clicking each additional unit (or also via the above selection rectangle).\n"),
 			markForTranslation("3) Double-click on a unit. This will select every unit of the same type as the specified unit in your visible window. Triple-click will select all units of the same type on the entire map.\n"),
-			markForTranslation("You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your Female Citizens to gather the grapes to the southeast of your Civic Center by right-clicking on the grapes when you have all the Female Citizens selected.")
+			markForTranslation("You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your female citizens to gather the grapes to the southeast of your Civic Center by right-clicking on the grapes when you have all the female citizens selected.")
 		],
 		"OnPlayerCommand": function(msg)
 		{
@@ -95,7 +95,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("Now that the rally-point is set, we can produce additional units and they will do their assigned task automatically.\n"),
-			markForTranslation("As Citizen Soldiers are better than Female Citizens for gathering Wood, select the Civic Center and shift-click on the second unit icon, the hoplites (shift-clicking produces a batch of five units). You can also train units individually by simply clicking, but training 5 units together takes less time than training 5 units individually.")
+			markForTranslation("Citizen soldiers gather wood faster than female citizens. Select the Civic Center and, while holding Shift, click on the second unit icon, the hoplites (holding Shift trains a batch of five units). You can also train units individually by simply clicking, but training 5 units together takes less time than training 5 units individually.")
 		],
 		"OnTrainingQueued": function(msg)
 		{
@@ -105,7 +105,7 @@ Trigger.prototype.tutorialGoals = [
 				let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
-					markForTranslation("Do not forget to shift-click to produce several units.") :
+					markForTranslation("Do not forget to hold Shift while clicking to train several units.") :
 					markForTranslation("Shift-click on the HOPLITE icon.");
 				this.WarningMessage(txt);
 				return;
@@ -138,7 +138,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("The selected workers will automatically start constructing the building once you place the foundation.")
+			markForTranslation("The selected citizens will automatically start constructing the building once you place the foundation.")
 		],
 		"OnStructureBuilt": function(msg)
 		{
@@ -150,7 +150,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("When construction finishes, the builders default to gathering Wood automatically.\n"),
-			markForTranslation("Let's train some female workers to gather more food. Select the Civic Center and shift-click on the female citizen icon to train 5.")
+			markForTranslation("Let's train some female citizens to gather more food. Select the Civic Center, hold Shift and click on the female citizen icon to train 5 female citizens.")
 		],
 		"Init": function()
 		{
@@ -165,7 +165,7 @@ Trigger.prototype.tutorialGoals = [
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
 					markForTranslation("Do not forget to shift-click to produce several units.") :
-					markForTranslation("Shift-click on the FEMALE CITIZEN icon.");
+					markForTranslation("Hold shift and click on the female citizen icon.");
 				this.WarningMessage(txt);
 				return;
 			}
@@ -209,8 +209,8 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("Select two of your newly trained Female Citizens and ask them to build these houses in the empty space to the east of the Civic Center. To do so, after selecting the Female Citizens, click on the house icon in the bottom right panel and shift-click on the position in the map where you want to build the first house followed by a shift-click on the position of the second house (when giving orders, shift-click put the order in the queue and the units will automatically switch to the next order in their queue when they finish their work). Press Escape to get rid of the house cursor so you don't spam houses all over the map.\n"),
-			markForTranslation("Reminder: to select only two Female Citizens, click on the first one and then shift-click on the second one to add her to the selection.")
+			markForTranslation("Select two of your newly-trained female citizens and ask them to build these houses in the empty space to the east of the Civic Center. To do so, after selecting the female citizens, click on the house icon in the bottom right panel and, while holding Shift, click first on the position in the map where you want to build the first house, and then click on the position where you want to build the second house (when you give a command while holding Shift, you put the command in a queue; units automatically switch to the next command in their queue when they finish their current command). Press Escape to get rid of the house cursor so you don't spam houses all over the map.\n"),
+			markForTranslation("Reminder: to select only two female citizens, click on the first one and then hold Shift and click on the second one.")
 		],
 		"Init": function()
 		{
@@ -255,13 +255,13 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("Select the three remaining (idle) Female Citizens and order them to build a farmstead in the center of the large open area to the west of the Civic Center.\n"),
+			markForTranslation("Select the three remaining (idle) female citizens and order them to build a farmstead in the center of the large open area to the west of the Civic Center.\n"),
 			markForTranslation("We will need a decent chunk of space around the farmstead to build fields. In addition, we can see goats on the west side to further improve our food gathering efficiency should we ever decide to hunt them.\n"),
-			markForTranslation("If you try to select the three idle Female Citizens by selection rectangle them, there is a high chance that one or more additional gatherers are included in your selection rectangle. To prevent that, hold the 'i' key while grabing: only idle units are then selected. If during your selection you select the cavalry which may now be idle, you can remove it by pressing the control key while clicking on its corresponding portrait in the selection panel on the bottom.")
+			markForTranslation("If you try to select the three idle female citizens by clicking and dragging a selection rectangle over them, you might accidentally select additional units. To avoid that, hold the I key while selecting so that only idle units are selected. If you accidentally select a cavalry unit, hold Ctrl and click on the cavalry unit icon of the selection panel at the bottom of the screen to remove the cavalry unit from the current selection.")
 		],
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen_farmstead")
+			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen_farmstead")g
 				this.NextGoal();
 		},
 		"OnOwnershipChanged": function(msg)
@@ -289,7 +289,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("When both houses are built, select your two Female Citizens and order them to build a field as close as possible to the farmstead, which is a dropsite for all types of food.")
+			markForTranslation("When both houses are built, select your two female citizens and order them to build a field as close as possible to the farmstead, which is a dropsite for all types of food.")
 		],
 		"OnPlayerCommand": function(msg)
 		{
@@ -327,7 +327,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("Now click three times on the female icon in the bottom right panel to train three additional farmers.")
+			markForTranslation("Now click three times on the female citizen icon in the bottom right panel to train three additional farmers.")
 		],
 		"Init": function(msg)
 		{
@@ -342,7 +342,7 @@ Trigger.prototype.tutorialGoals = [
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count != 1 ?
 					markForTranslation("Do not shift-click to produce a single unit.") :
-					markForTranslation("Click on the FEMALE CITIZEN icon.");
+					markForTranslation("Click on the female citizen icon.");
 				this.WarningMessage(txt);
 				return;
 			}

@@ -3,7 +3,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("Welcome to the 0 A.D. tutorial."),
 	},
 	{
-		"instructions": markForTranslation("First left-click on a female citizen, then Right-click on a berry bush nearby to make the unit collect food. Female citizens gather food faster than other units."),
+		"instructions": markForTranslation("Left-click on a female citizen and then right-click on a berry bush to make that female citizen gather food. Female citizens gather vegetables faster than other units."),
 		"OnPlayerCommand": function(msg)
 		{
 			if (msg.cmd.type == "gather" && msg.cmd.target &&
@@ -225,7 +225,7 @@ Trigger.prototype.tutorialGoals = [
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
 					markForTranslation("Do not forget to shift-click to produce several units.") :
-					markForTranslation("Shift-click on the FEMALE icon.");
+					markForTranslation("Hold shift and click on the female citizen icon.");
 				this.WarningMessage(txt);
 				return;
 			}

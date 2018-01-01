@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-22 09:02+0100\n"
-"PO-Revision-Date: 2017-12-22 15:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-12-29 09:06+0100\n"
+"PO-Revision-Date: 2017-12-29 20:52+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,20 +110,20 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Φόρτωση Εγκαταλείφθηκε"
 
-#: gui/common/functions_utility.js:50
+#: gui/common/functions_utility.js:20
 msgid "Gaia"
 msgstr "Γαία"
 
-#: gui/common/functions_utility.js:126
+#: gui/common/functions_utility.js:96
 msgctxt "map selection"
 msgid "Random"
 msgstr "Τυχαίος"
 
-#: gui/common/functions_utility.js:137
+#: gui/common/functions_utility.js:107
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:137
+#: gui/common/functions_utility.js:107
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -155,16 +155,16 @@ msgid "DELETE"
 msgstr "ΔΙΑΓΡΑΦΗ"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:310 gui/options/options.js:363
-#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
+#: gui/options/options.js:263 gui/options/options.js:316
+#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:428
 msgid "No"
 msgstr "Όχι"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:310 gui/options/options.js:363
-#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
+#: gui/options/options.js:263 gui/options/options.js:316
+#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:428
 msgid "Yes"
 msgstr "Ναι"
 
@@ -178,125 +178,123 @@ msgstr "Διαγραφή της επιλεγμένης καταχώρισης χ
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "Κράτα πατημένο το πλήκτρο %(hotkey)s για διαγράφη χωρίς επιβαιβέωση."
 
-#: gui/common/gamedescription.js:48
+#: gui/common/gamedescription.js:44
 msgid "A randomly selected map."
 msgstr "Ένας τυχαία επιλεγμένος χάρτης."
 
-#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:347
+#: gui/common/gamedescription.js:51 gui/common/gamedescription.js:342
 msgid "Sorry, no description available."
 msgstr "Δυστυχώς, δεν υπάρχει περιγραφή."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:105
+#: gui/common/gamedescription.js:101
 #, javascript-format
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
-msgstr ""
+msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:108
+#: gui/common/gamedescription.js:104
 #, javascript-format
-msgid ""
-"%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s, "
-"%(state)s)"
-msgstr ""
+msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:114
+#: gui/common/gamedescription.js:110
 #, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s)"
-msgstr ""
+msgid "%(playerName)s (%(AIdescription)s)"
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:117
+#: gui/common/gamedescription.js:113
 #, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)"
-msgstr ""
+msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:127
+#: gui/common/gamedescription.js:123
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr "%(playerName)s (ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:130
+#: gui/common/gamedescription.js:126
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr "%(playerName)s (ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:137
+#: gui/common/gamedescription.js:133
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:140
+#: gui/common/gamedescription.js:136
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:144
+#: gui/common/gamedescription.js:140
 #, javascript-format
 msgid "%(playerName)s"
 msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:147
+#: gui/common/gamedescription.js:143
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s (%(state)s)"
 
-#: gui/common/gamedescription.js:166
+#: gui/common/gamedescription.js:163
 msgid "Unknown Civilization"
 msgstr "Άγνωστος Πολιτισμός"
 
-#: gui/common/gamedescription.js:173
+#: gui/common/gamedescription.js:170
 msgctxt "playerstate"
 msgid "defeated"
 msgstr "ηττήθηκε"
 
-#: gui/common/gamedescription.js:174
+#: gui/common/gamedescription.js:171
 msgctxt "playerstate"
 msgid "won"
 msgstr "νίκη"
 
-#: gui/common/gamedescription.js:197
+#: gui/common/gamedescription.js:192
 msgid "No Team"
 msgstr "Χωρίς Ομάδα"
 
-#: gui/common/gamedescription.js:198
+#: gui/common/gamedescription.js:193
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Ομάδα %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:201 gui/common/gamedescription.js:208
+#: gui/common/gamedescription.js:196 gui/common/gamedescription.js:203
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s:\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:209
+#: gui/common/gamedescription.js:204
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Παρατηρητής"
 msgstr[1] "Παρατηρητές"
 
-#: gui/common/gamedescription.js:231
+#: gui/common/gamedescription.js:226
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -304,7 +302,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Θαύμα ( %(min)s λεπτό)"
 msgstr[1] "Θαύμα (%(min)s λεπτά)"
 
-#: gui/common/gamedescription.js:243
+#: gui/common/gamedescription.js:238
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -312,155 +310,155 @@ msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Αρπαγή του Ιερού Λειψάνου (%(min)s λεπτό)"
 msgstr[1] "Αρπαγή του Ιερού Λειψάνου (%(min)s λεπτά)"
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:254
 msgid "Relic Count"
 msgstr "Πλήθος Ιερών Λειψάνων"
 
-#: gui/common/gamedescription.js:266
+#: gui/common/gamedescription.js:261
 msgid "Hero Garrison"
 msgstr "Οχύρωση Ήρωα"
 
-#: gui/common/gamedescription.js:267
+#: gui/common/gamedescription.js:262
 msgid "Heroes can be garrisoned."
 msgstr "Οι ήρωες μπορούν να οχυρωθούν."
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:266
 msgid "Exposed Heroes"
 msgstr "Εκτεθειμένοι Ήρωες"
 
-#: gui/common/gamedescription.js:272
+#: gui/common/gamedescription.js:267
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
 msgstr "Οι ήρωες δεν μπορούν να οχυρωθούν και είναι ευάλωτοι σε επιδρομές."
 
-#: gui/common/gamedescription.js:279
+#: gui/common/gamedescription.js:274
 msgid "Rated game"
 msgstr "Βαθμολογημένο παιχνίδι"
 
-#: gui/common/gamedescription.js:280
+#: gui/common/gamedescription.js:275
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Όταν καθοριστεί ο νικητής αυτού του αγώνα, η βαθμολογία του λόμπι θα αναπροσαρμοστεί."
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:280
 msgid "Locked Teams"
 msgstr "Κλειδωμένες Ομάδες"
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:281
 msgid "Players can't change the initial teams."
 msgstr "Οι παίκτες δεν μπορούν να αλλάξουν τις αρχικές ομάδες."
 
-#: gui/common/gamedescription.js:290
+#: gui/common/gamedescription.js:285
 msgid "Diplomacy"
 msgstr "Διπλωματία"
 
-#: gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:286
 msgid "Players can make alliances and declare war on allies."
 msgstr "Οι παίχτες μπορούν να κάνουν συμμαχίες και να κηρύξουν πόλεμο στους συμμάχους."
 
-#: gui/common/gamedescription.js:296
+#: gui/common/gamedescription.js:291
 msgid "Last Man Standing"
 msgstr "Ο Τελευταίος Επιζών"
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:292
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Μόνο ένας παίχτης μπορεί να κερδίσει το παιχνίδι. Αν οι εναπομείναντες παίχτες είναι σύμμαχοι, το παιχνίδι συνεχίζεται μέχρι να μείνει μόνο ένας."
 
-#: gui/common/gamedescription.js:301
+#: gui/common/gamedescription.js:296
 msgid "Allied Victory"
 msgstr "Συμμαχική Νίκη"
 
-#: gui/common/gamedescription.js:302
+#: gui/common/gamedescription.js:297
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Αν ένας παίχτης κερδίσει, αυτός ή οι σύμμαχοί του κερδίζουν επίσης. Αν εναπομείνει μία ομάδα συμμάχων, κερδίζουν."
 
-#: gui/common/gamedescription.js:308
+#: gui/common/gamedescription.js:303
 msgid "Ceasefire"
 msgstr "Παύση Πυρός"
 
-#: gui/common/gamedescription.js:311 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:306 gui/pregame/mainmenu.js:86
 msgid "disabled"
 msgstr "απενεργοπ."
 
-#: gui/common/gamedescription.js:312
+#: gui/common/gamedescription.js:307
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Για το πρώτο λεπτό, οι άλλοι παίχτες παραμένουν ουδέτεροι."
 msgstr[1] "Για τα πρώτα %(min)s λεπτά, οι άλλοι παίχτες παραμένουν ουδέτεροι."
 
-#: gui/common/gamedescription.js:320
+#: gui/common/gamedescription.js:315
 msgid "Map Name"
 msgstr "Όνομα Χάρτη"
 
-#: gui/common/gamedescription.js:325
+#: gui/common/gamedescription.js:320
 msgid "Map Type"
 msgstr "Τύπος Χάρτη"
 
-#: gui/common/gamedescription.js:334
+#: gui/common/gamedescription.js:329
 msgid "Map Size"
 msgstr "Μέγεθος Χάρτη"
 
-#: gui/common/gamedescription.js:341
+#: gui/common/gamedescription.js:336
 msgid "Map Description"
 msgstr "Περιγραφή Χάρτη"
 
-#: gui/common/gamedescription.js:344
+#: gui/common/gamedescription.js:339
 msgid "Randomly selects a map from the list"
 msgstr "Επιλέγει έναν τυχαίο χάρτη από τη λίστα"
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:349
 msgid "Biome"
 msgstr "Οικοσύστημα"
 
-#: gui/common/gamedescription.js:355
+#: gui/common/gamedescription.js:350
 msgctxt "biome"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/common/gamedescription.js:362
+#: gui/common/gamedescription.js:357
 msgid "Starting Resources"
 msgstr "Πόροι Κατά Την Έναρξη"
 
-#: gui/common/gamedescription.js:363
+#: gui/common/gamedescription.js:358
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:373
+#: gui/common/gamedescription.js:368
 msgid "Population Limit"
 msgstr "Όριο Πληθυσμού"
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:376
 msgid "Treasures"
 msgstr "Θησαυροί"
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:378
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Απενεργοποιήθηκε"
 
-#: gui/common/gamedescription.js:384
+#: gui/common/gamedescription.js:379
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Όπως ορίζεται από το χάρτη."
 
-#: gui/common/gamedescription.js:388
+#: gui/common/gamedescription.js:383
 msgid "Revealed Map"
 msgstr "Αποκαλυμμένος Χάρτης"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:388
 msgid "Explored Map"
 msgstr "Εξερευνημένος Χάρτης"
 
-#: gui/common/gamedescription.js:398
+#: gui/common/gamedescription.js:393
 msgid "Cheats"
 msgstr "Ζαβολιές"
 
-#: gui/common/gamedescription.js:403 gui/common/tooltips.js:126
+#: gui/common/gamedescription.js:398 gui/common/tooltips.js:126
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:222
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:468
 #: gui/common/tooltips.js:758
@@ -468,23 +466,28 @@ msgstr "Ζαβολιές"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:406
+#: gui/common/gamedescription.js:401
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "ενεργοποιήθηκε"
 
-#: gui/common/gamedescription.js:407
+#: gui/common/gamedescription.js:402
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "απενεργοποιήθηκε"
 
-#: gui/common/gamedescription.js:423
+#: gui/common/gamedescription.js:418
 msgid "Victorious"
 msgstr "Νικηφόρος"
 
-#: gui/common/gamedescription.js:428
+#: gui/common/gamedescription.js:423
 msgid "Defeated"
 msgstr "Ηττήθηκε"
+
+#: gui/common/gamedescription.js:432
+#, javascript-format
+msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
+msgstr ""
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -1122,7 +1125,7 @@ msgstr "%(component)s %(loot)s"
 msgid "Loot:"
 msgstr "Λάφυρα:"
 
-#: gui/credits/credits.js:79
+#: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1132,46 +1135,46 @@ msgstr "%(nick)s - %(name)s"
 msgid "OK"
 msgstr "ΟΚ"
 
-#: gui/options/options.js:97
+#: gui/options/options.js:92
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
 msgstr "Ελάχιστο: %(min)s, Μέγιστο: %(max)s"
 
-#: gui/options/options.js:99
+#: gui/options/options.js:94
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
 msgstr "Ελάχιστο: %(min)s"
 
-#: gui/options/options.js:101
+#: gui/options/options.js:96
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr "Μέγιστο: %(max)s"
 
-#: gui/options/options.js:134
+#: gui/options/options.js:129
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Τιμή: %(val)s (ελάχιστη: %(min)s, μέγιστη: %(max)s)"
 
-#: gui/options/options.js:308
+#: gui/options/options.js:261
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Επαναφέροντας τις ρυθμίσεις θα διαγραφούν οι αποθηκευμένες ρυθμίσεις. Να συνεχιστεί;"
 
-#: gui/options/options.js:309 gui/options/options.js:362
-#: gui/options/options.js:388
+#: gui/options/options.js:262 gui/options/options.js:315
+#: gui/options/options.js:341
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: gui/options/options.js:361
+#: gui/options/options.js:314
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Μερικές τιμές των ρυθμίσεων είναι εσφαλμένες. Σίγουρα θέλεις να κάνεις αποθήκευση;"
 
-#: gui/options/options.js:387
+#: gui/options/options.js:340
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Δεν έχετε αποθηκεύσει όλες τις αλλαγές, θέλετε να κλείσετε αυτό το παράθυρο;"
 
@@ -1249,7 +1252,7 @@ msgstr "Έκδοση: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D.;"
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:425
+#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:427
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
@@ -1679,44 +1682,44 @@ msgstr "Αποτυχημένες"
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:424
+#: gui/summary/summary.js:426
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Θέλετε σίγουρα να βγείτε από το λόμπι;"
 
-#: gui/summary/summary.js:487
+#: gui/summary/summary.js:489
 msgid "Current Scores"
 msgstr "Τρέχων Βαθμολογία"
 
-#: gui/summary/summary.js:489
+#: gui/summary/summary.js:491
 msgid "Scores at the end of the game."
 msgstr "Βαθμολογίες με τη λήξη του παιχνιδιού."
 
-#: gui/summary/summary.js:491
+#: gui/summary/summary.js:493
 msgid "You have been disconnected."
 msgstr "Αποσυνδεθήκατε."
 
-#: gui/summary/summary.js:493
+#: gui/summary/summary.js:495
 msgid "You have left the game."
 msgstr "Αποχώρησες από το παιχνίδι."
 
-#: gui/summary/summary.js:495
+#: gui/summary/summary.js:497
 msgid "You have won the battle!"
 msgstr "Κερδίσατε τη μάχη!"
 
-#: gui/summary/summary.js:497
+#: gui/summary/summary.js:499
 msgid "You have been defeated..."
 msgstr "Ηττηθήκατε..."
 
-#: gui/summary/summary.js:498
+#: gui/summary/summary.js:500
 msgid "You have abandoned the game."
 msgstr "Εγκαταλείψατε το παιχνίδι."
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:503
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Χρόνος παιχνιδιού που έχει παρέλθει: %(time)s"
 
-#: gui/summary/summary.js:509
+#: gui/summary/summary.js:511
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1729,13 +1732,13 @@ msgstr "Πολιτισμοί"
 msgid "Civilization Selection"
 msgstr "Επιλογή Πολιτισμού"
 
-#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):45
-#: gui/options/options.xml:(caption):68
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):32
+#: gui/options/options.xml:(caption):56
 #: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Κλείσιμο"
 
-#: gui/credits/credits.xml:(caption):27
+#: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
 msgstr "Συντελεστές του 0 A.D."
 
@@ -1767,35 +1770,35 @@ msgstr "Προηγμένο"
 msgid "Accept"
 msgstr "Αποδοχή"
 
-#: gui/options/options.xml:(caption):23
+#: gui/options/options.xml:(caption):15
 msgid "Game Options"
 msgstr "Επιλογές Παιχνιδιού"
 
-#: gui/options/options.xml:(caption):50
+#: gui/options/options.xml:(caption):38
 msgid "Reset"
 msgstr "Επαναφορά"
 
-#: gui/options/options.xml:(caption):56
+#: gui/options/options.xml:(caption):44
 msgid "Revert"
 msgstr "Επαναφορά"
 
-#: gui/options/options.xml:(caption):62
+#: gui/options/options.xml:(caption):50
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: gui/options/options.xml:(tooltip):51
+#: gui/options/options.xml:(tooltip):39
 msgid "Resets user settings to their game default"
 msgstr "Επαναφορά τον ρυθμίσεων του χρήστη στις προεπιλογές του παιχνιδιού"
 
-#: gui/options/options.xml:(tooltip):57
+#: gui/options/options.xml:(tooltip):45
 msgid "Reverts to previous saved settings"
 msgstr "Επαναφορά στις προηγούμενες αποθηκευμένες ρυθμίσεις"
 
-#: gui/options/options.xml:(tooltip):63
+#: gui/options/options.xml:(tooltip):51
 msgid "Saves changes"
 msgstr "Αποθήκευση αλλαγών"
 
-#: gui/options/options.xml:(tooltip):69
+#: gui/options/options.xml:(tooltip):57
 msgid "Unsaved changes affect this session only"
 msgstr "Οι μη αποθηκευμένες αλλαγές επηρεάζουν αυτή τη συνεδρία μόνο"
 

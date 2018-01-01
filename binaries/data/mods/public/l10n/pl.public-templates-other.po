@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-20 09:03+0100\n"
-"PO-Revision-Date: 2017-12-20 15:24+0000\n"
+"POT-Creation-Date: 2017-12-29 09:08+0100\n"
+"PO-Revision-Date: 2017-12-29 15:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -189,6 +189,10 @@ msgstr "Sanktuarium religijne"
 msgid "Greek Religious Sanctuary"
 msgstr "Greckie sanktuarium religijne"
 
+#: simulation/templates/gaia/fauna_arctic_wolf.xml:4
+msgid "Arctic Wolf"
+msgstr ""
+
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
 msgstr "Niedźwiedź"
@@ -319,6 +323,10 @@ msgstr "Płonąca świnia"
 msgid "Sus scrofa domesticus igne"
 msgstr "Świnia domowa"
 
+#: simulation/templates/gaia/fauna_pony.xml:4
+msgid "Pony"
+msgstr ""
+
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
 msgstr "Królik"
@@ -362,10 +370,6 @@ msgstr "Antylopa Gnu"
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
 msgstr "Wilk"
-
-#: simulation/templates/gaia/fauna_wolf_snow.xml:4
-msgid "Snow Wolf"
-msgstr "Wilk śnieżny"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
@@ -865,10 +869,6 @@ msgid ""
 " other civs"
 msgstr "Zmiany w domach dodających 5 do limitu populacji dla cywilizacji posiadających te domy, usunięty dla pozostałych cywilizacji"
 
-#: simulation/templates/special/player.xml:57
-msgid "Player"
-msgstr "Gracz"
-
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Szpieg"
@@ -956,3 +956,7 @@ msgstr "Wymagane są 6 jednostki jazdy"
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
 msgstr "Klin"
+
+#: simulation/templates/special/player/player.xml:57
+msgid "Player"
+msgstr "Gracz"

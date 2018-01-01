@@ -8,6 +8,7 @@
 # Camilo Zuluaga <czuluagaz@gmail.com>, 2017
 # dreogan dreogan <garikoitz.bv@gmail.com>, 2017
 # Ghenadi Avricenco <gplushentr@gmx.us>, 2014
+# Jesus A <jasenjot@gmail.com>, 2017
 # Jhon Valencia <jhonvalencia314@gmail.com>, 2017
 # Joaquin Cubelli <jcubellidl@gmail.com>, 2017
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-29 09:05+0100\n"
-"PO-Revision-Date: 2017-12-17 23:16+0000\n"
-"Last-Translator: Rafael Cuevas Montero <rafcumon@hotmail.com>\n"
+"POT-Creation-Date: 2017-12-27 09:05+0100\n"
+"PO-Revision-Date: 2017-12-29 11:35+0000\n"
+"Last-Translator: Jesus A <jasenjot@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -706,8 +707,8 @@ msgid ""
 msgstr "Las técnicas de artesanía secretas proporcionan a las espadas unas preciosas y distintivas marcas. Y lo que es mejor, la dureza de su acero no conoce igual."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "+20% Hack attack for all sword units."
-msgstr "Un +20% de daño por corte para todas las unidades de espadachines."
+msgid "+20% Hack attack for all swordsmen and macemen."
+msgstr "Un +20% de daño por corte para todos los espadachines y mazeros."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -1221,7 +1222,7 @@ msgstr "Fase urbana"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "Tecnología de prueba para usar en los requerimientos de plantillas, reemplazar por phase_city_generic o phase_city_{civ}."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1272,7 +1273,7 @@ msgstr "Fase intermedia"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "Tecnología de prueba para usar en los requerimientos de plantillas, reemplazar por phase_town_generic o phase_town_{civ}."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""

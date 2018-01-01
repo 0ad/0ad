@@ -10,10 +10,11 @@
       <mesh>props/helmet/hele_helmet_k.dae</mesh>
       <textures><texture file="props/helmet/hele_b1.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="1" name="Helmet-Chalcidean-Crested">
-      <mesh>props/helmet/hele_helmet_q.dae</mesh>
-      <textures><texture file="props/helmet/hele_f1.dds" name="baseTex"/></textures>
-    </variant>
+    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_01.xml" name="chalcidean-crested-bronze-a"/>
+    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_02.xml" name="chalcidean-crested-bronze-b"/>
+    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_03.xml" name="chalcidean-crested-bronze-c"/>
+    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_04.xml" name="chalcidean-crested-bronze-d"/>
+    <variant frequency="1" file="helmets/hele_chalcidean_crested_gold_01.xml" name="chalcidean-crested-gold_a"/>
     <variant frequency="1" name="Helmet-Pilos-Crested">
       <mesh>props/helmet/hele_helmet_j.dae</mesh>
       <textures><texture file="props/helmet/hele_a3.dds" name="baseTex"/></textures>

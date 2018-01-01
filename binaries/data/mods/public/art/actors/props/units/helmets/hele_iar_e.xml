@@ -9,13 +9,11 @@
         <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="helmet-chalcidean">
-      <mesh>props/helmet/hele_helmet_g.dae</mesh>
-      <textures>
-        <texture file="props/helmet/hele_f1.dds" name="baseTex"/>
-        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
-      </textures>
-    </variant>
+    <variant frequency="2" file="helmets/hele_chalcidean_bronze_01.xml" name="chalcidean-bronze-a"/>
+    <variant frequency="2" file="helmets/hele_chalcidean_bronze_02.xml" name="chalcidean-bronze-b"/>
+    <variant frequency="2" file="helmets/hele_chalcidean_bronze_03.xml" name="chalcidean-bronze-c"/>
+    <variant frequency="2" file="helmets/hele_chalcidean_bronze_04.xml" name="chalcidean-bronze-d"/>
+    <variant frequency="2" file="helmets/hele_chalcidean_gold_01.xml" name="chalcidean-gold_a"/>
     <variant frequency="2" name="helmet-illyrian">
       <mesh>props/helmet/hele_helmet_c.dae</mesh>
       <textures>

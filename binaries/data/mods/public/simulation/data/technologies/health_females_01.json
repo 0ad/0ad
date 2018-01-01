@@ -6,7 +6,7 @@
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "loom.png",
 	"researchTime": 40,
-	"tooltip": "Female Citizens +50% Health.",
+	"tooltip": "+50% health for female citizens.",
 	"modifications": [{"value": "Health/Max", "multiply": 1.50}],
 	"affects": ["FemaleCitizen"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

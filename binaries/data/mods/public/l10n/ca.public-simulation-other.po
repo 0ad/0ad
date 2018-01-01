@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-11 09:05+0200\n"
-"PO-Revision-Date: 2017-11-30 17:33+0000\n"
-"Last-Translator: Maria Acero-Allo <maria.acero@e-campus.uab.cat>\n"
+"POT-Creation-Date: 2017-12-27 09:05+0100\n"
+"PO-Revision-Date: 2017-12-27 14:30+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -493,28 +493,28 @@ msgstr "Podreu atacar d'aquí a %(time)s"
 msgid "You can attack now!"
 msgstr "Ja podeu atacar!"
 
-#: simulation/components/EndGameManager.js:173
+#: simulation/components/EndGameManager.js:159
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] "%(lastPlayer)s ha vençut (últim jugador viu)."
 msgstr[1] "%(players)s i %(lastPlayer)s han vençut (últims jugadors vius)."
 
-#: simulation/components/EndGameManager.js:181
+#: simulation/components/EndGameManager.js:167
 msgid "Last remaining player wins."
 msgstr "L'últim jugador que romangui, guanya."
 
-#: simulation/components/EntityLimits.js:166
+#: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s s'ha arribat al límit de construcció de %(limit)s"
 
-#: simulation/components/EntityLimits.js:168
+#: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s s'ha arribat al límit de Recluteument de %(limit)s"
 
-#: simulation/components/EntityLimits.js:172
+#: simulation/components/EntityLimits.js:171
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s s'ha arribat al límit de %(limit)s"
@@ -546,11 +546,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Recursos insuficients - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:401
+#: simulation/components/ProductionQueue.js:415
 msgid "The production queue is full."
 msgstr "La cua de producció està plena."
 
-#: simulation/components/ProductionQueue.js:783
+#: simulation/components/ProductionQueue.js:801
 msgid "Can't find free space to spawn trained units"
 msgstr "No hi ha espai al punt de sortida per a les noves unitats"
 
@@ -563,51 +563,51 @@ msgstr "%(player)s ha estat vençut (truc)."
 msgid "You need to select a building that trains units."
 msgstr "Cal seleccionar un edifici que formi unitats."
 
-#: simulation/helpers/Commands.js:133
+#: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
 msgstr "(Truc - controleu totes les unitats)"
 
-#: simulation/helpers/Commands.js:148
+#: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
 msgstr "(Truc - reveleu mapa)"
 
-#: simulation/helpers/Commands.js:453
+#: simulation/helpers/Commands.js:449
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s ha renunciat."
 
-#: simulation/helpers/Commands.js:595
+#: simulation/helpers/Commands.js:591
 msgid "(Cheat - promoted units)"
 msgstr "(Truc - unitats ascendides)"
 
-#: simulation/helpers/Commands.js:709
+#: simulation/helpers/Commands.js:705
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "No es pot millorar perquè els requisits de distància no estan verificats o el terreny està obstruït."
 
-#: simulation/helpers/Commands.js:719
+#: simulation/helpers/Commands.js:715
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "No es pot millorar una entitat refugiada."
 
-#: simulation/helpers/Commands.js:765
+#: simulation/helpers/Commands.js:758
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Heu sol·licitat un atac contra %(_player_)s."
 
-#: simulation/helpers/Commands.js:801
+#: simulation/helpers/Commands.js:797
 msgid "There are no bribable units"
 msgstr "No hi ha unitats subornables"
 
-#: simulation/helpers/Commands.js:847
+#: simulation/helpers/Commands.js:843
 msgid "Unable to ungarrison unit(s)"
 msgstr "No es poden expulsar les unitats"
 
-#: simulation/helpers/Commands.js:861
+#: simulation/helpers/Commands.js:857
 msgid "Some unit(s) can't go back to work"
 msgstr "Algunes unitats no poden tornar a la feina"
 
-#: simulation/helpers/Commands.js:1115
+#: simulation/helpers/Commands.js:1111
 msgid "The building's technology requirements are not met."
 msgstr "No s'han aconseguit totes les tecnologies necessàries."
 
@@ -735,9 +735,10 @@ msgstr "Regicidi"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
-"Be the first to build or capture a wonder and keep it for a certain time to "
-"win the game."
-msgstr "Sigueu el primer a construir o capturar una meravella i conservar-la durant un temps per a guanyar la partida."
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured or in allied victory when the owners alliances change."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"

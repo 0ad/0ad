@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-20 09:03+0100\n"
-"PO-Revision-Date: 2017-12-20 15:24+0000\n"
+"POT-Creation-Date: 2017-12-29 09:08+0100\n"
+"PO-Revision-Date: 2017-12-29 15:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -183,6 +183,10 @@ msgstr "Святилище"
 msgid "Greek Religious Sanctuary"
 msgstr "Греческое святилище"
 
+#: simulation/templates/gaia/fauna_arctic_wolf.xml:4
+msgid "Arctic Wolf"
+msgstr ""
+
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
 msgstr "Медведь"
@@ -313,6 +317,10 @@ msgstr "Горящая свинья"
 msgid "Sus scrofa domesticus igne"
 msgstr "Домашняя свинья"
 
+#: simulation/templates/gaia/fauna_pony.xml:4
+msgid "Pony"
+msgstr ""
+
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
 msgstr "Кролик"
@@ -356,10 +364,6 @@ msgstr "Гну"
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
 msgstr "Волк"
-
-#: simulation/templates/gaia/fauna_wolf_snow.xml:4
-msgid "Snow Wolf"
-msgstr "Снежный волк"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
@@ -859,10 +863,6 @@ msgid ""
 " other civs"
 msgstr "Меняется в дом с 5 жителями для цивилизаций с такими домами; уничтожается для прочих цивилизаций."
 
-#: simulation/templates/special/player.xml:57
-msgid "Player"
-msgstr "Игрок"
-
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Шпион"
@@ -950,3 +950,7 @@ msgstr "Необходимо 6 кавалеристов"
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
 msgstr "Клин"
+
+#: simulation/templates/special/player/player.xml:57
+msgid "Player"
+msgstr "Игрок"

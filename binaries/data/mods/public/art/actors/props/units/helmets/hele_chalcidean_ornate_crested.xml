@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" file="helmets/hele_chalcidean_base_crested.xml" name="base">
+      <mesh>props/helmet/hele_chalcidean_ornated.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="50" name="bronze-a">
+      <textures>
+        <texture file="props/helmet/hele_chalcidean_gold_ornate_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="50" name="bronze-b">
+      <textures>
+        <texture file="props/helmet/hele_chalcidean_gold_ornate_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

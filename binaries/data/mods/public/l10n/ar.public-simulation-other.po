@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-11 09:05+0200\n"
-"PO-Revision-Date: 2017-12-21 03:38+0000\n"
+"POT-Creation-Date: 2017-12-27 09:05+0100\n"
+"PO-Revision-Date: 2017-12-30 11:06+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "لقد أرسلت لتوّي جيشًا ضدّ %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr "دعنى أجمع جيشي وأنا سوف انضم إليك ضد %(_player_)s"
+msgstr "دعني أجمع جيشي وسأنضم إليك ضدّ %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
@@ -102,7 +102,7 @@ msgstr "أحتاج %(resource)s، أيمكنك المساعدة؟ سأعوّضك
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr "انا سوف اساعدك اكثر فعالية فى جهد الحرب إذا استطعت أن توفر لى بعض  %(resource)s."
+msgstr "سأستطيع المشاركة بفاعليّة أكثر في حربنا المشتركة إن أمكنك تزويدي ببعض %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
@@ -178,7 +178,7 @@ msgstr "لن أكون حليفًا لك ثانيةً يا %(_player_)s!"
 #: simulation/ai/petra/chatHelper.js:71
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
-msgstr "لا مزيد من التحالف بيننا،  %(_player_)s!"
+msgstr "لا تحالفات بعد الآن بيننا يا %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
@@ -259,7 +259,7 @@ msgstr "ما زلت أنتظر %(_amount_)s من %(_resource_)s قبل قبول 
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr "%(_player_)s، إذا لم ترسل لى جزء من  %(_amount_)s %(_resource_)s الجزية قريباً، انا سوف الغي مفاوضاتنا."
+msgstr "يا %(_player_)s، إن لم تُرسل إلي جزءًا من الجزية (%(_amount_)s من %(_resource_)s) قريبًا، فسأُلغي كل مفاوضاتنا."
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
@@ -496,7 +496,7 @@ msgstr "يمكنك الهجوم خلال %(time)s"
 msgid "You can attack now!"
 msgstr "يمكنك الهجوم الآن!"
 
-#: simulation/components/EndGameManager.js:173
+#: simulation/components/EndGameManager.js:159
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
@@ -507,21 +507,21 @@ msgstr[3] "فاز %(players)s و%(lastPlayer)s لاعبين آخرين (آخر �
 msgstr[4] "فاز %(players)s و%(lastPlayer)s لاعبًا آخر (آخر مَن بقوا)."
 msgstr[5] "فاز %(players)s و%(lastPlayer)s لاعب آخر (آخر مَن بقوا)."
 
-#: simulation/components/EndGameManager.js:181
+#: simulation/components/EndGameManager.js:167
 msgid "Last remaining player wins."
 msgstr "آخر مَن يبقى يفوز."
 
-#: simulation/components/EntityLimits.js:166
+#: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s بناء الحد الأقصى من %(limit)s بلغ"
 
-#: simulation/components/EntityLimits.js:168
+#: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s الحد الأقصى تدريب %(limit)s بلغ"
 
-#: simulation/components/EntityLimits.js:172
+#: simulation/components/EntityLimits.js:171
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "بلغت الحدّ الأقصى (%(limit)s) من %(category)s"
@@ -553,11 +553,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "موارد غير كافية -  %(resourceAmount1)s %(resourceType1)s،  %(resourceAmount2)s %(resourceType2)s،  %(resourceAmount3)s %(resourceType3)s،  %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:401
+#: simulation/components/ProductionQueue.js:415
 msgid "The production queue is full."
 msgstr "صفّ الإنتاج ممتلئ."
 
-#: simulation/components/ProductionQueue.js:783
+#: simulation/components/ProductionQueue.js:801
 msgid "Can't find free space to spawn trained units"
 msgstr "لا يمكن إيجاد مساحة حرة لتنزيل الوحدات المدربة"
 
@@ -570,51 +570,51 @@ msgstr "هُزم %(player)s (لقد غشّ)."
 msgid "You need to select a building that trains units."
 msgstr "عليك اختيار مبنًى يدرّب الوحدات."
 
-#: simulation/helpers/Commands.js:133
+#: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
 msgstr "(غشّ - التّحكّم بكلّ الوحدات)"
 
-#: simulation/helpers/Commands.js:148
+#: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
 msgstr "(غشّ - كُشفت الخريطة)"
 
-#: simulation/helpers/Commands.js:453
+#: simulation/helpers/Commands.js:449
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr ""
 
-#: simulation/helpers/Commands.js:595
+#: simulation/helpers/Commands.js:591
 msgid "(Cheat - promoted units)"
 msgstr "(غشّ - رُقّيت وحدات)"
 
-#: simulation/helpers/Commands.js:709
+#: simulation/helpers/Commands.js:705
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "لا يمكن التطوير اذ ان متطلبات المساحة ليس مؤكدة او ان التربة غير مستوية."
 
-#: simulation/helpers/Commands.js:719
+#: simulation/helpers/Commands.js:715
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "لا يمكن تطوير كيان فى ثكنة."
 
-#: simulation/helpers/Commands.js:765
+#: simulation/helpers/Commands.js:758
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "طُلب الهجوم على %(_player_)s."
 
-#: simulation/helpers/Commands.js:801
+#: simulation/helpers/Commands.js:797
 msgid "There are no bribable units"
 msgstr "ليست هناك وحدات يمكن رشوتها"
 
-#: simulation/helpers/Commands.js:847
+#: simulation/helpers/Commands.js:843
 msgid "Unable to ungarrison unit(s)"
 msgstr "غير قادر على إخراج الوحدة(الوحدات)"
 
-#: simulation/helpers/Commands.js:861
+#: simulation/helpers/Commands.js:857
 msgid "Some unit(s) can't go back to work"
 msgstr "بعض الوحدات(وحدة) لا يمكنها الرجوع الى العمل"
 
-#: simulation/helpers/Commands.js:1115
+#: simulation/helpers/Commands.js:1111
 msgid "The building's technology requirements are not met."
 msgstr "تقنية المبنى غير متوافرة بعد."
 
@@ -742,9 +742,10 @@ msgstr "قتل الملك"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
-"Be the first to build or capture a wonder and keep it for a certain time to "
-"win the game."
-msgstr "كُن أوّل من يبني أو يسيطر على عجيبة وأبقها عندك لوقت محدّد لتفوز باللعبة."
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured or in allied victory when the owners alliances change."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
