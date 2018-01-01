@@ -11,7 +11,9 @@
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_L"/>
         <prop actor="props/temp/quiver.xml" attachpoint="back"/>
       </props>
-      <textures><texture file="skeletal/hele_iar_e.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_iar_e.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

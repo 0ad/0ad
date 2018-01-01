@@ -10,7 +10,9 @@
         <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="skeletal/hele_iar_e.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_iar_e.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
