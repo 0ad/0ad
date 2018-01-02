@@ -235,10 +235,10 @@ function loadMapTypes()
 
 function loadBiomes()
 {
-	return Engine.ListDirectoryFiles(g_BiomesDirectory, "*.json", false).map(file => {
-		let description = Engine.ReadJSONFile(file).Description;
+	return listFiles(g_BiomesDirectory, ".json", false).map(biomeID => {
+		let description = Engine.ReadJSONFile(g_BiomesDirectory + biomeID + ".json").Description;
 		return {
-			"Id": file.substr(g_BiomesDirectory.length).slice(0, -".json".length),
+			"Id": biomeID,
 			"Title": translateWithContext("biome definition", description.Title),
 			"Description": translateWithContext("biome definition", description.Description)
 		};
@@ -254,13 +254,10 @@ function loadVictoryConditions()
 {
 	let subdir = "victory_conditions/";
 
-	let files = Engine.ListDirectoryFiles(g_SettingsDirectory + subdir, "*.json", false).map(
-		file => file.substr(g_SettingsDirectory.length));
-
-	let victoryConditions = files.map(file => {
-		let vc = loadSettingValuesFile(file);
+	let victoryConditions = listFiles(g_SettingsDirectory + subdir, ".json", false).map(victoryScriptName => {
+		let vc = loadSettingValuesFile(subdir + victoryScriptName + ".json");
 		if (vc)
-			vc.Name = file.substr(subdir.length, file.length - (subdir + ".json").length);
+			vc.Name = victoryScriptName;
 		return vc;
 	});
 
