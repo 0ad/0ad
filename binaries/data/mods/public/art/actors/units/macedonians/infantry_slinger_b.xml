@@ -1,3 +1,4 @@
+  
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
@@ -9,7 +10,21 @@
         <prop actor="props/units/weapons/sling.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="skeletal/hele_tunic.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_tunic.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Heaband">
+      <props>
+        <prop actor="props/units/heads/headband_color.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Kausia cap">
+      <props>
+        <prop actor="props/units/helmets/hele_kausia_cap.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>
