@@ -596,7 +596,7 @@ g_SelectionPanels.Queue = {
 		if (queuedItem.unitTemplate)
 			template = GetTemplateData(queuedItem.unitTemplate);
 		else if (queuedItem.technologyTemplate)
-			template = GetTechnologyData(queuedItem.technologyTemplate, data.player);
+			template = GetTechnologyData(queuedItem.technologyTemplate, GetSimState().players[data.player].civ);
 		else
 		{
 			warning("Unknown production queue template " + uneval(queuedItem));
