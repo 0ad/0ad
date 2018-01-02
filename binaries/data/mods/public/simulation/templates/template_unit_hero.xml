@@ -54,8 +54,19 @@
   </Selectable>
   <Sound>
     <SoundGroups>
+      <select>voice/{lang}/civ/civ_{gender}_select.xml</select>
+      <trained>interface/alarm/alarm_create_infantry.xml</trained>
+      <order_heal>voice/{lang}/civ/civ_{gender}_heal.xml</order_heal>
+      <order_walk>voice/{lang}/civ/civ_{gender}_walk.xml</order_walk>
+      <order_attack>voice/{lang}/civ/civ_{gender}_attack.xml</order_attack>
+      <order_gather>voice/{lang}/civ/civ_{gender}_gather.xml</order_gather>
+      <order_repair>voice/{lang}/civ/civ_{gender}_repair.xml</order_repair>
+      <order_garrison>voice/{lang}/civ/civ_{gender}_garrison.xml</order_garrison>
+      <attack_melee>attack/weapon/sword.xml</attack_melee>
       <attack_impact_ranged>attack/impact/arrow_metal.xml</attack_impact_ranged>
       <attack_ranged>attack/weapon/arrowfly.xml</attack_ranged>
+      <walk>actor/human/movement/walk.xml</walk>
+      <run>actor/human/movement/walk.xml</run>
       <death>actor/human/death/{gender}_death.xml</death>
     </SoundGroups>
   </Sound>

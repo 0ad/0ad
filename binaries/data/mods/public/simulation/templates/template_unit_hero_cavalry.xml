@@ -32,16 +32,10 @@
   </Position>
   <Sound>
     <SoundGroups>
-      <select>voice/{lang}/civ/civ_{gender}_select.xml</select>
-      <order_walk>voice/{lang}/civ/civ_{gender}_walk.xml</order_walk>
-      <order_attack>voice/{lang}/civ/civ_{gender}_attack.xml</order_attack>
-      <order_gather>voice/{lang}/civ/civ_{gender}_gather.xml</order_gather>
-      <order_garrison>voice/{lang}/civ/civ_{gender}_garrison.xml</order_garrison>
+      <trained>interface/alarm/alarm_create_cav.xml</trained>
       <walk>actor/mounted/movement/walk.xml</walk>
       <run>actor/mounted/movement/walk.xml</run>
-      <attack_melee>attack/weapon/sword.xml</attack_melee>
       <death>actor/fauna/death/death_horse.xml</death>
-      <trained>interface/alarm/alarm_create_cav.xml</trained>
     </SoundGroups>
   </Sound>
   <StatusBars>
