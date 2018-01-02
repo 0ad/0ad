@@ -117,51 +117,6 @@ function getPhaseOfTemplate(template)
 }
 
 /**
- * Determine order of phases.
- *
- * @param {object} phases - The current available store of phases.
- * @return {array} List of phases
- */
-function unravelPhases(phases)
-{
-	let phaseList = [];
-
-	for (let phaseName in phases)
-	{
-		let phaseData = phases[phaseName];
-		if (!phaseData.reqs.length || !phaseData.reqs[0].techs)
-			continue;
-
-		let myPhase = phaseData.actualPhase;
-		let reqPhase = phaseData.reqs[0].techs[0];
-		if (phases[reqPhase])
-			reqPhase = phases[reqPhase].actualPhase;
-
-		let reqPhasePos = phaseList.indexOf(reqPhase);
-		let myPhasePos = phaseList.indexOf(myPhase);
-
-		// Sort the phases in the order they can be researched
-		if (!phaseList.length)
-			phaseList = [reqPhase, myPhase];
-		else if (reqPhasePos < 0 && myPhasePos != -1)
-			phaseList.splice(myPhasePos, 0, reqPhase);
-		else if (myPhasePos < 0 && reqPhasePos != -1)
-			phaseList.splice(reqPhasePos+1, 0, myPhase);
-		else if (reqPhasePos > myPhasePos)
-		{
-			phaseList.splice(reqPhasePos+1, 0, myPhase);
-			phaseList.splice(myPhasePos, 1);
-		}
-		else if (reqPhasePos < 0 && myPhasePos < 0)
-			// If neither phase is in the list, then add them both to the end and
-			// rely on later iterations relocating them to their correct place.
-			phaseList.push(reqPhase, myPhase);
-	}
-
-	return phaseList;
-}
-
-/**
  * This is needed because getEntityCostTooltip in tooltip.js needs to get
  * the template data of the different wallSet pieces. In the session this
  * function does some caching, but here we do that in loadTemplate already.

@@ -322,12 +322,11 @@ function findAllAutoResearchedTechs()
  */
 function loadPhase(phaseCode)
 {
-	let template = loadTechData(phaseCode);
 	let phase = loadTechnology(phaseCode);
 
 	phase.actualPhase = phaseCode;
-	if (template.replaces !== undefined)
-		phase.actualPhase = template.replaces[0];
+	if (phase.replaces !== undefined)
+		phase.actualPhase = phase.replaces[0];
 
 	return phase;
 }

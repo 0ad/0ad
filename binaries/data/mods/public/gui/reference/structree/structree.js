@@ -81,7 +81,7 @@ function selectCiv(civCode)
 			g_ParsedData.techs[civCode][techcode] = loadTechnology(techcode);
 
 	// Establish phase order
-	g_ParsedData.phaseList = unravelPhases(g_ParsedData.phases);
+	g_ParsedData.phaseList = UnravelPhases(g_ParsedData.phases);
 
 	// Load any required generic phases that aren't already loaded
 	for (let phasecode of g_ParsedData.phaseList)
