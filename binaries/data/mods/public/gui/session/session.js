@@ -242,7 +242,7 @@ function GetTechnologyData(technologyName, civ)
 
 	if (!(technologyName in g_TechnologyData[civ]))
 	{
-		let template = Engine.GuiInterfaceCall("GetTechnologyData", { "name": technologyName, "civ": civ });
+		let template = GetTechnologyDataHelper(TechnologyTemplates.Get(technologyName), civ, g_ResourceData);
 		translateObjectKeys(template, ["specific", "generic", "description", "tooltip", "requirementsTooltip"]);
 		g_TechnologyData[civ][technologyName] = deepfreeze(template);
 	}
@@ -274,6 +274,8 @@ function init(initData, hotloadData)
 	}
 	else if (g_IsReplay)// Needed for autostart loading option
 		g_PlayerAssignments.local.player = -1;
+
+	LoadModificationTemplates();
 
 	updatePlayerData();
 
