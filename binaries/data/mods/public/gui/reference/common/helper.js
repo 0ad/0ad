@@ -119,31 +119,23 @@ function getPhaseOfTemplate(template)
 /**
  * Determine order of phases.
  *
- * @param {object} techs - The current available store of techs.
+ * @param {object} phases - The current available store of phases.
  * @return {array} List of phases
  */
-function unravelPhases(techs)
+function unravelPhases(phases)
 {
 	let phaseList = [];
 
-	for (let techcode in techs)
+	for (let phaseName in phases)
 	{
-		let techdata = techs[techcode];
-
-		if (!techdata.reqs || !techdata.reqs.length || !techdata.reqs[0].techs || techdata.reqs[0].techs.length < 2)
+		let phaseData = phases[phaseName];
+		if (!phaseData.reqs.length || !phaseData.reqs[0].techs)
 			continue;
 
-		let reqTech = techs[techcode].reqs[0].techs[1];
-
-		if (!techs[reqTech] || !techs[reqTech].reqs.length)
-			continue;
-
-		// Assume the first tech to be a phase
-		let reqPhase = techs[reqTech].reqs[0].techs[0];
-		let myPhase = techs[techcode].reqs[0].techs[0];
-
-		if (reqPhase == myPhase || !basename(reqPhase).startsWith("phase") || !basename(myPhase).startsWith("phase"))
-			continue;
+		let myPhase = phaseData.actualPhase;
+		let reqPhase = phaseData.reqs[0].techs[0];
+		if (phases[reqPhase])
+			reqPhase = phases[reqPhase].actualPhase;
 
 		let reqPhasePos = phaseList.indexOf(reqPhase);
 		let myPhasePos = phaseList.indexOf(myPhase);
@@ -182,7 +174,7 @@ function GetTemplateData(templateName)
 
 function isPairTech(technologyCode)
 {
-	return basename(technologyCode).startsWith("pair") || basename(technologyCode).indexOf("_pair") > -1;
+	return !!loadTechData(technologyCode).top;
 }
 
 function mergeRequirements(reqsA, reqsB)
