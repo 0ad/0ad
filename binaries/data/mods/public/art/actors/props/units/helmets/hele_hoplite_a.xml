@@ -23,13 +23,8 @@
         <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Helmet-Illyrian-Early-NoCrest">
-      <mesh>props/helmet/hele_helmet_b.dae</mesh>
-      <textures>
-        <texture file="props/helmet/hele_b1.dds" name="baseTex"/>
-        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
-      </textures>
-    </variant>
+    <variant frequency="1" file="helmets/hele_illyrian_bronze_01.xml" name="illyrian-no-crest-bronze-a"/>
+    <variant frequency="1" file="helmets/hele_illyrian_bronze_02.xml" name="illyrian-no-crest-bronze-b"/>
   </group>
   <material>player_trans_spec_helmet.xml</material>
 </actor>

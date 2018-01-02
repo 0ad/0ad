@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="helmets/hele_illyrian_base.xml" name="Base"/>
+  </group>
+  <group>
+    <variant frequency="1" name="black">
+      <textures>
+        <texture file="props/helmet/hele_illyrian_black_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" file="helmets/hele_illyrian_bronze_01.xml" name="illyrian-no-crest-bronze-a"/>
+    <variant frequency="1" file="helmets/hele_illyrian_bronze_02.xml" name="illyrian-no-crest-bronze-b"/>
+    <variant frequency="1" name="tin">
+      <textures>
+        <texture file="props/helmet/hele_illyrian_tin_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="gold">
+      <textures>
+        <texture file="props/helmet/hele_illyrian_gold_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
