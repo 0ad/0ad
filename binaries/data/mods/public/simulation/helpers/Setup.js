@@ -43,7 +43,7 @@ function LoadMapSettings(settings)
 			cmpObstructionManager.SetPassabilityCircular(true);
 	}
 
-	if (settings.TriggerDifficulty)
+	if (settings.TriggerDifficulty != undefined)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger).SetDifficulty(settings.TriggerDifficulty);
 	else if (settings.SupportedTriggerDifficulties)	// used by Atlas and autostart games
 	{

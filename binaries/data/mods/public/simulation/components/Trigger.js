@@ -31,7 +31,8 @@ Trigger.prototype.eventNames =
 Trigger.prototype.Init = function()
 {
 	// Difficulty used by trigger scripts (as defined in data/settings/trigger_difficulties.json).
-	this.difficulty = 3;
+	this.difficulty = undefined;
+
 	this.triggerPoints = {};
 
 	// Each event has its own set of actions determined by the map maker.
@@ -335,7 +336,7 @@ Trigger.prototype.DoAction = function(msg)
 /**
  * Level of difficulty used by trigger scripts.
  */
-Trigger.prototype.GetDifficulty = function(diff)
+Trigger.prototype.GetDifficulty = function()
 {
 	return this.difficulty;
 };
