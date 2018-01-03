@@ -32,71 +32,34 @@ function distributePointsOnCircle(pointCount, startAngle, radius, centerX, cente
 }
 
 /**
- * Returns the distance of a point from a line.
+ * Returns the shortest distance from a point to a line.
+ * The sign of the return value determines the direction!
+ *
+ * @param {Vector2D} - lineStart, lineEnd, point
  */
-function distanceOfPointFromLine(line_x1, line_y1, line_x2, line_y2, point_x, point_y)
+function distanceOfPointFromLine(lineStart, lineEnd, point)
 {
-	let width_x = line_x1 - line_x2;
-	if (!width_x)
-		return Math.abs(point_x - line_x1);
-
-	let width_y = line_y1 - line_y2;
-	if (!width_y)
-		return Math.abs(point_y - line_y1);
-
-	let inclination = width_y / width_x;
-	let intercept = line_y1 - inclination * line_x1;
-
-	return Math.abs((point_y - point_x * inclination - intercept) / Math.sqrt(1 + Math.square(inclination)));
+	// Since the cross product is the area of the parallelogram with the vectors for sides and
+	// one of the two vectors having length one, that area equals the distance between the points.
+	return Vector2D.sub(lineStart, lineEnd).normalize().cross(Vector2D.sub(point, lineEnd));
 }
 
 /**
- * Determines whether two lines with the given width intersect.
+ * Returns whether the two lines of the given width going through the given Vector2D intersect.
  */
-function checkIfIntersect(line1_x1, line1_y1, line1_x2, line1_y2, line2_x1, line2_y1, line2_x2, line2_y2, width)
+function testLineIntersection(start1, end1, start2, end2, width)
 {
-	if (line1_x1 == line1_x2)
-	{
-		if (line2_x1 - line1_x1 < width || line2_x2 - line1_x2 < width)
-			return true;
-	}
-	else
-	{
-		let m = (line1_y1 - line1_y2) / (line1_x1 - line1_x2);
-		let b = line1_y1 - m * line1_x1;
-		let m2 = Math.sqrt(1 + Math.square(m));
+	let start1end1 = Vector2D.sub(start1, end1);
+	let start2end2 = Vector2D.sub(start2, end2);
+	let start1start2 = Vector2D.sub(start1, start2);
 
-		if (Math.abs((line2_y1 - line2_x1 * m - b) / m2) < width || Math.abs((line2_y2 - line2_x2 * m - b) / m2) < width)
-			return true;
-
-		if (line2_x1 == line2_x2)
-		{
-			if (line1_x1 - line2_x1 < width || line1_x2 - line2_x2 < width)
-				return true;
-		}
-		else
-		{
-			let m = (line2_y1 - line2_y2) / (line2_x1 - line2_x2);
-			let b = line2_y1 - m * line2_x1;
-			let m2 = Math.sqrt(1 + Math.square(m));
-			if (Math.abs((line1_y1 - line1_x1 * m - b) / m2) < width || Math.abs((line1_y2 - line1_x2 * m - b) / m2) < width)
-				return true;
-		}
-	}
-
-	let s = (line1_x1 - line1_x2) * (line2_y1 - line1_y1) - (line1_y1 - line1_y2) * (line2_x1 - line1_x1);
-	let p = (line1_x1 - line1_x2) * (line2_y2 - line1_y1) - (line1_y1 - line1_y2) * (line2_x2 - line1_x1);
-
-	if (s * p <= 0)
-	{
-		s = (line2_x1 - line2_x2) * (line1_y1 - line2_y1) - (line2_y1 - line2_y2) * (line1_x1 - line2_x1);
-		p = (line2_x1 - line2_x2) * (line1_y2 - line2_y1) - (line2_y1 - line2_y2) * (line1_x2 - line2_x1);
-
-		if (s * p <= 0)
-			return true;
-	}
-
-	return false;
+	return (
+		Math.abs(distanceOfPointFromLine(start1, end1, start2)) < width ||
+		Math.abs(distanceOfPointFromLine(start1, end1, end2)) < width ||
+		Math.abs(distanceOfPointFromLine(start2, end2, start1)) < width ||
+		Math.abs(distanceOfPointFromLine(start2, end2, end1)) < width ||
+		start1end1.cross(start1start2) * start1end1.cross(Vector2D.sub(start1, end2)) <= 0 &&
+		start2end2.cross(start1start2) * start2end2.cross(Vector2D.sub(start2, end1)) >= 0);
 }
 
 /**

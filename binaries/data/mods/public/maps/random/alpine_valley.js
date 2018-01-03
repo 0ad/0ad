@@ -309,13 +309,16 @@ while (possibleEdges.length)
 
 	for (var i = 0; i < possibleEdges.length; ++i)
 	{
+		let p0 = new Vector2D(points[possibleEdges[index][0]][0], points[possibleEdges[index][0]][1]);
+		let p1 = new Vector2D(points[possibleEdges[index][1]][0], points[possibleEdges[index][1]][1]);
+		let p2 = new Vector2D(points[possibleEdges[i][0]][0], points[possibleEdges[i][0]][1]);
+		let p3 = new Vector2D(points[possibleEdges[i][1]][0], points[possibleEdges[i][1]][1]);
+
 		if (possibleEdges[index][0] != possibleEdges[i][0] && possibleEdges[index][1] != possibleEdges[i][0] &&
 			possibleEdges[index][0] != possibleEdges[i][1] && possibleEdges[index][1] != possibleEdges[i][1])
 		{
 
-			if (checkIfIntersect (points[possibleEdges[index][0]][0], points[possibleEdges[index][0]][1],
-				points[possibleEdges[index][1]][0], points[possibleEdges[index][1]][1], points[possibleEdges[i][0]][0],
-				points[possibleEdges[i][0]][1], points[possibleEdges[i][1]][0], points[possibleEdges[i][1]][1], scaleByMapSize(9,15) + scaleByMapSize(10,15)))
+			if (testLineIntersection(p0, p1, p2, p3, scaleByMapSize(9,15) + scaleByMapSize(10,15)))
 			{
 				possibleEdges.splice(i,1);
 				--i;
@@ -325,8 +328,7 @@ while (possibleEdges.length)
 		}
 		else if (((possibleEdges[index][0] == possibleEdges[i][0] && possibleEdges[index][1] != possibleEdges[i][1]) ||
 			(possibleEdges[index][1] == possibleEdges[i][0] && possibleEdges[index][0] != possibleEdges[i][1])) &&
-			distanceOfPointFromLine(points[possibleEdges[index][0]][0],points[possibleEdges[index][0]][1],
-			points[possibleEdges[index][1]][0], points[possibleEdges[index][1]][1],points[possibleEdges[i][1]][0], points[possibleEdges[i][1]][1])
+			Math.abs(distanceOfPointFromLine(p0, p1, p3))
 			< scaleByMapSize(9,15) + scaleByMapSize(10,15))
 		{
 			possibleEdges.splice(i,1);
@@ -336,8 +338,7 @@ while (possibleEdges.length)
 		}
 		else if (((possibleEdges[index][0] == possibleEdges[i][1] && possibleEdges[index][1] != possibleEdges[i][0]) ||
 			(possibleEdges[index][1] == possibleEdges[i][1] && possibleEdges[index][0] != possibleEdges[i][0])) &&
-			distanceOfPointFromLine(points[possibleEdges[index][0]][0],points[possibleEdges[index][0]][1],
-			points[possibleEdges[index][1]][0], points[possibleEdges[index][1]][1],points[possibleEdges[i][0]][0], points[possibleEdges[i][0]][1])
+			Math.abs(distanceOfPointFromLine(p0, p1, p2))
 			< scaleByMapSize(9,15) + scaleByMapSize(10,15))
 		{
 			possibleEdges.splice(i,1);

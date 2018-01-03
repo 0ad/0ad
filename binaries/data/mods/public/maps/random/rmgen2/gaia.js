@@ -103,7 +103,10 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 		for (var p = 0; p < points.length; ++p)
 		{
 			var pt = points[p];
-			var dist = distanceOfPointFromLine(baseLine.x1, baseLine.z1, baseLine.x2, baseLine.z2, pt.x, pt.z);
+			var dist = Math.abs(distanceOfPointFromLine(
+				new Vector2D(baseLine.x1, baseLine.z1),
+				new Vector2D(baseLine.x2, baseLine.z2),
+				new Vector2D(pt.x, pt.z)));
 
 			var curHeight = g_Map.getHeight(pt.x, pt.z);
 			var newHeight = curHeight - curHeight * (dist / slopeLength) - 2;
