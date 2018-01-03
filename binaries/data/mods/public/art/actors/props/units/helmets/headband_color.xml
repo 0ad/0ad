@@ -3,8 +3,10 @@
   <castshadow/>
   <group>
     <variant>
-      <mesh>props/helmet/headband_1.dae</mesh>
-      <textures><texture file="props/helmet/mace_a2.dds" name="baseTex"/></textures>
+      <mesh>props/helmet/headband_01.dae</mesh>
+      <textures>
+        <texture file="props/helmet/mace_a2.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

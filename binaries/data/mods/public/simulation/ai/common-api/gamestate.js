@@ -26,51 +26,41 @@ m.GameState.prototype.init = function(SharedScript, state, player)
 
 	// get the list of possible phases for this civ:
 	// we assume all of them are researchable from the civil centre
-	this.phases = [{ name: "phase_village" }, { name: "phase_town" }, { name: "phase_city" }];
+	this.phases = [];
 	let cctemplate = this.getTemplate(this.applyCiv("structures/{civ}_civil_centre"));
 	if (!cctemplate)
 		return;
 	let civ = this.getPlayerCiv();
 	let techs = cctemplate.researchableTechs(this, civ);
-	for (let phase of this.phases)
+
+	let phaseData = {};
+	let phaseMap = {};
+	for (let techName of techs)
 	{
-		phase.requirements = [];
-		let k = techs.indexOf(phase.name);
-		if (k !== -1)
-		{
-			let reqs = DeriveTechnologyRequirements(this.getTemplate(techs[k])._template, civ);
-			if (reqs)
-			{
-				phase.requirements = reqs;
-				continue;
-			}
-		}
-		for (let tech of techs)
-		{
-			let template = this.getTemplate(tech)._template;
-			if (template.replaces && template.replaces.indexOf(phase.name) != -1)
-			{
-				let reqs = DeriveTechnologyRequirements(template, civ);
-				if (reqs)
-				{
-					phase.name = tech;
-					phase.requirements = reqs;
-					break;
-				}
-			}
-		}
-	}
-	// Then check if this mod has an additionnal phase
-	for (let tech of techs)
-	{
-		let template = this.getTemplate(tech)._template;
-		if (!template.supersedes || template.supersedes != this.phases[2].name)
+		if (!techName.startsWith("phase"))
 			continue;
-		let reqs = DeriveTechnologyRequirements(template, civ);
-		if (reqs)
-			this.phases.push({ "name": tech, "requirements": reqs });
-		break;
+		let techData = this.getTemplate(techName);
+
+		if (techData._definesPair)
+		{
+			// Randomly pick a non-disabled choice from the phase-pair.
+			techName = pickRandom([techData._template.top, techData._template.bottom].filter(tech => !this.playerData.disabledTechnologies[tech])) || techData._template.top;
+
+			let supersedes = techData._template.supersedes;
+			techData = clone(this.getTemplate(techName));
+			if (supersedes)
+				techData._template.supersedes = supersedes;
+		}
+
+		phaseData[techName] = GetTechnologyBasicDataHelper(techData._template, civ);
+		if (phaseData[techName].replaces)
+			phaseMap[phaseData[techName].replaces[0]] = techName;
 	}
+
+	this.phases = UnravelPhases(phaseData).map(phaseName => ({
+		"name": phaseMap[phaseName] || phaseName,
+		"requirements": phaseMap[phaseName] ? phaseData[phaseMap[phaseName]].reqs : []
+	}));
 };
 
 m.GameState.prototype.update = function(SharedScript)

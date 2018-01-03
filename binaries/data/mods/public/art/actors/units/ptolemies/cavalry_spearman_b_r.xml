@@ -7,12 +7,22 @@
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
-        <prop actor="props/units/cape_cav_animated_pers_spearman_e.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/hele_tunic.dds" name="baseTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Straw hat">
+      <props>
+        <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Kausia cap">
+      <props>
+        <prop actor="props/units/helmets/hele_kausia_cap.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>

@@ -651,11 +651,6 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	return GetTemplateDataHelper(template, player, aurasTemplate, Resources, DamageTypes);
 };
 
-GuiInterface.prototype.GetTechnologyData = function(player, data)
-{
-	return GetTechnologyDataHelper(TechnologyTemplates.Get(data.name), data.civ, Resources);
-};
-
 GuiInterface.prototype.IsTechnologyResearched = function(player, data)
 {
 	if (!data.tech)
@@ -1967,7 +1962,6 @@ let exposedFunctions = {
 	"GetExtendedEntityState": 1,
 	"GetAverageRangeForBuildings": 1,
 	"GetTemplateData": 1,
-	"GetTechnologyData": 1,
 	"IsTechnologyResearched": 1,
 	"CheckTechnologyRequirements": 1,
 	"GetStartedResearch": 1,

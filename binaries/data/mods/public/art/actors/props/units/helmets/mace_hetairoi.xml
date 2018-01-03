@@ -2,40 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Boeotian helmet with plume">
-      <mesh>props/helmet/hele_boeotian.dae</mesh>
-      <textures>
-        <texture file="props/helmet/hele_boeotian_gold.png" name="baseTex"/>
-      </textures>
-      <props>
-        <prop actor="props/units/helmets/props/boeotian_crest.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Boeotian helmet">
-      <mesh>props/helmet/hele_boeotian.dae</mesh>
-      <textures>
-        <texture file="props/helmet/hele_boeotian_gold.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="Boeotian helmet tinned with laurels and high crest">
-      <mesh>props/helmet/hele_boeotian.dae</mesh>
-      <textures>
-        <texture file="props/helmet/hele_boeotian_laurel.png" name="baseTex"/>
-        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
-      </textures>
-      <props>
-        <prop actor="props/units/helmets/props/boeotian_highcrest.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant frequency="2" name="Boeotian helmet with plume tinned">
-      <mesh>props/helmet/hele_boeotian.dae</mesh>
-      <props>
-        <prop actor="props/units/helmets/props/boeotian_crest.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="props/helmet/hele_boeotian_tin.png" name="baseTex"/>
-      </textures>
-    </variant>
+    <variant file="helmets/hele_boeotian_gold_01.xml"/>
+    <variant file="helmets/hele_boeotian_plumed_gold_01.xml"/>
+    <variant file="helmets/hele_boeotian_laurel_tinned.xml" frequency="2"/>
+    <variant file="helmets/hele_boeotian_plumed_tin_01.xml" frequency="2"/>
+    <variant file="helmets/hele_chalcidean_crested_bronze_01.xml" name="chalcidean-crested-bronze-a"/>
+    <variant file="helmets/hele_chalcidean_crested_bronze_02.xml" name="chalcidean-crested-bronze-b"/>
+    <variant file="helmets/hele_chalcidean_crested_bronze_03.xml" name="chalcidean-crested-bronze-c"/>
+    <variant file="helmets/hele_chalcidean_crested_bronze_04.xml" name="chalcidean-crested-bronze-d"/>
+    <variant file="helmets/hele_chalcidean_crested_gold_01.xml" name="chalcidean-crested-gold_a"/>
     <variant frequency="1" name="Helmet-Thracian-Early">
       <mesh>props/helmet/mace_helmet_g.dae</mesh>
       <textures>
@@ -54,11 +29,6 @@
         <texture file="props/helmet/mace_c.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_01.xml" name="chalcidean-crested-bronze-a"/>
-    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_02.xml" name="chalcidean-crested-bronze-b"/>
-    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_03.xml" name="chalcidean-crested-bronze-c"/>
-    <variant frequency="1" file="helmets/hele_chalcidean_crested_bronze_04.xml" name="chalcidean-crested-bronze-d"/>
-    <variant frequency="1" file="helmets/hele_chalcidean_crested_gold_01.xml" name="chalcidean-crested-gold_a"/>
     <variant frequency="1" name="Helmet-Attic-Crested">
       <mesh>props/helmet/hele_helmet_s.dae</mesh>
       <textures>

@@ -381,7 +381,7 @@ function paintRiver(args)
 			let vecPoint = new Vector2D(ix, iz);
 
 			// Compute the shortest distance to the river.
-			let distanceToRiver = unitVecRiver.cross(Vector2D.sub(vecPoint, vecEnd));
+			let distanceToRiver = distanceOfPointFromLine(vecStart, vecEnd, vecPoint);
 
 			// Closest point on the river (i.e the foot of the perpendicular).
 			let river = Vector2D.sub(vecPoint, unitVecRiver.perpendicular().mult(distanceToRiver));
@@ -648,19 +648,11 @@ function createRamp(x1, y1, x2, y2, minHeight, maxHeight, width, smoothLevel, ma
 {
 	let halfWidth = width / 2;
 
-	let x3;
-	let y3;
-
-	if (y1 == y2)
-	{
-		x3 = x2;
-		y3 = y2 + halfWidth;
-	}
-	else
-	{
-		x3 = x2 + halfWidth;
-		y3 = (x1 - x2) / (y1 - y2) * (x2 - x3) + y2;
-	}
+	let rampStart = new Vector2D(x1, y1);
+	let rampEnd = new Vector2D(x2, y2);
+	let ramp = Vector2D.sub(rampStart, rampEnd);
+	let rampLength = ramp.length();
+	let rampX = Vector2D.add(rampEnd, ramp.perpendicular());
 
 	let minBoundX = Math.max(Math.min(x1, x2) - halfWidth, 0);
 	let minBoundY = Math.max(Math.min(y1, y2) - halfWidth, 0);
@@ -670,14 +662,14 @@ function createRamp(x1, y1, x2, y2, minHeight, maxHeight, width, smoothLevel, ma
 	for (let x = minBoundX; x < maxBoundX; ++x)
 		for (let y = minBoundY; y < maxBoundY; ++y)
 		{
-			let lDist = distanceOfPointFromLine(x3, y3, x2, y2, x, y);
-			let sDist = distanceOfPointFromLine(x1, y1, x2, y2, x, y);
-			let rampLength = Math.euclidDistance2D(x1, y1, x2, y2);
+			let point = new Vector2D(x, y);
+			let lDist = Math.abs(distanceOfPointFromLine(rampX, rampEnd, point));
+			let sDist = Math.abs(distanceOfPointFromLine(rampStart, rampEnd, point));
 
 			if (lDist > rampLength || sDist > halfWidth)
 				continue;
 
-			let height = ((rampLength - lDist) * maxHeight + lDist * minHeight) / rampLength;
+			let height = maxHeight - lDist / rampLength * (maxHeight - minHeight);
 
 			if (sDist >= halfWidth - smoothLevel)
 			{

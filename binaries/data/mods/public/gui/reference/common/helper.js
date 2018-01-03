@@ -117,59 +117,6 @@ function getPhaseOfTemplate(template)
 }
 
 /**
- * Determine order of phases.
- *
- * @param {object} techs - The current available store of techs.
- * @return {array} List of phases
- */
-function unravelPhases(techs)
-{
-	let phaseList = [];
-
-	for (let techcode in techs)
-	{
-		let techdata = techs[techcode];
-
-		if (!techdata.reqs || !techdata.reqs.length || !techdata.reqs[0].techs || techdata.reqs[0].techs.length < 2)
-			continue;
-
-		let reqTech = techs[techcode].reqs[0].techs[1];
-
-		if (!techs[reqTech] || !techs[reqTech].reqs.length)
-			continue;
-
-		// Assume the first tech to be a phase
-		let reqPhase = techs[reqTech].reqs[0].techs[0];
-		let myPhase = techs[techcode].reqs[0].techs[0];
-
-		if (reqPhase == myPhase || !basename(reqPhase).startsWith("phase") || !basename(myPhase).startsWith("phase"))
-			continue;
-
-		let reqPhasePos = phaseList.indexOf(reqPhase);
-		let myPhasePos = phaseList.indexOf(myPhase);
-
-		// Sort the phases in the order they can be researched
-		if (!phaseList.length)
-			phaseList = [reqPhase, myPhase];
-		else if (reqPhasePos < 0 && myPhasePos != -1)
-			phaseList.splice(myPhasePos, 0, reqPhase);
-		else if (myPhasePos < 0 && reqPhasePos != -1)
-			phaseList.splice(reqPhasePos+1, 0, myPhase);
-		else if (reqPhasePos > myPhasePos)
-		{
-			phaseList.splice(reqPhasePos+1, 0, myPhase);
-			phaseList.splice(myPhasePos, 1);
-		}
-		else if (reqPhasePos < 0 && myPhasePos < 0)
-			// If neither phase is in the list, then add them both to the end and
-			// rely on later iterations relocating them to their correct place.
-			phaseList.push(reqPhase, myPhase);
-	}
-
-	return phaseList;
-}
-
-/**
  * This is needed because getEntityCostTooltip in tooltip.js needs to get
  * the template data of the different wallSet pieces. In the session this
  * function does some caching, but here we do that in loadTemplate already.
@@ -182,7 +129,7 @@ function GetTemplateData(templateName)
 
 function isPairTech(technologyCode)
 {
-	return basename(technologyCode).startsWith("pair") || basename(technologyCode).indexOf("_pair") > -1;
+	return !!loadTechData(technologyCode).top;
 }
 
 function mergeRequirements(reqsA, reqsB)

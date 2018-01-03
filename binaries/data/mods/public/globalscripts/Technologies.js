@@ -353,3 +353,34 @@ function InterpretTechRequirements(civ, operator, value)
 
 	return requirements;
 }
+
+/**
+ * Determine order of phases.
+ *
+ * @param {object} phases - The current available store of phases.
+ * @return {array} List of phases
+ */
+function UnravelPhases(phases)
+{
+	let phaseMap = {};
+	for (let phaseName in phases)
+	{
+		let phaseData = phases[phaseName];
+		if (!phaseData.reqs.length || !phaseData.reqs[0].techs || !phaseData.replaces)
+			continue;
+
+		let myPhase = phaseData.replaces[0];
+		let reqPhase = phaseData.reqs[0].techs[0];
+		if (phases[reqPhase] && phases[reqPhase].replaces)
+			reqPhase = phases[reqPhase].replaces[0];
+
+		phaseMap[myPhase] = reqPhase;
+		if (!phaseMap[reqPhase])
+			phaseMap[reqPhase] = undefined;
+	}
+
+	let phaseList = Object.keys(phaseMap);
+	phaseList.sort((a, b) => phaseList.indexOf(a) - phaseList.indexOf(phaseMap[b]));
+
+	return phaseList;
+}

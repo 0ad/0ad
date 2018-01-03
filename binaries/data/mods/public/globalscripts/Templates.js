@@ -483,7 +483,8 @@ function GetTechnologyBasicDataHelper(template, civ)
 		"description": template.description,
 		"reqs": DeriveTechnologyRequirements(template, civ),
 		"modifications": template.modifications,
-		"affects": template.affects
+		"affects": template.affects,
+		"replaces": template.replaces
 	};
 }
 
