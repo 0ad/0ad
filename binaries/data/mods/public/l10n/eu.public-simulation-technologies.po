@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Thadah D. Denyse <juchuf@gmail.com>, 2015-2016
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2018
 # Osoitz <oelkoro@gmail.com>, 2015
 # Thadah D. Denyse <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-27 09:05+0100\n"
-"PO-Revision-Date: 2017-12-28 11:11+0000\n"
+"POT-Creation-Date: 2017-12-31 21:35+0100\n"
+"PO-Revision-Date: 2018-01-01 18:41+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -1067,8 +1067,8 @@ msgid ""
 msgstr "Ehungailuak kolonoentzako arropa finagoa egiteko aukera eman zuen. Etxeko andreak  ehuna ehungailutan lantzeko trebatzen ziren. eta horregatik beren bizitza gehiena bertan lanean igarotzen zuten."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
-msgid "Female Citizens +50% Health."
-msgstr "Emakume hiritarrak %50+ lortzen dute osasunean."
+msgid "+50% health for female citizens."
+msgstr "%50+ hiritar emakumeen osasunean."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1159,9 +1159,12 @@ msgid "Garrison Healing vs. Self-Healing"
 msgstr "Babestean Sendatzea vs. Berez  Sendatzea"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
-#: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Females vs. Population"
 msgstr "Emakumeak vs. Biztanleria"
+
+#: simulation/data/technologies/pair_house_02.jsongenericName
+msgid "Female Citizens vs Population"
+msgstr "Hiritar Emakumeak vs Biztanleria"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"

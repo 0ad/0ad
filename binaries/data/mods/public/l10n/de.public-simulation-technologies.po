@@ -14,14 +14,14 @@
 # Paul Friedrig <george.2juggernaut@gmail.com>, 2016
 # Paul Müller <paulbochynek@web.de>, 2015
 # qwertz, 2015
-# Raymond Vetter, 2014-2017
+# Raymond Vetter, 2014-2018
 # Tilo S, 2016-2017
 # xtother90, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-27 09:05+0100\n"
-"PO-Revision-Date: 2017-12-28 09:58+0000\n"
+"POT-Creation-Date: 2017-12-31 21:35+0100\n"
+"PO-Revision-Date: 2018-01-02 12:22+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1077,8 +1077,8 @@ msgid ""
 msgstr "Der Webstuhl erlaubte die Herstellung feinerer Stoffe, um die Siedler zu bekleiden. Frauen wurden im Haushalt von Kindesbeinen an in der Bedienung des Webstuhls unterrichtet und verbrachten einen großen Teil ihres Lebens bei der Arbeit damit."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
-msgid "Female Citizens +50% Health."
-msgstr "Bürgerinnen +50% Gesundheit."
+msgid "+50% health for female citizens."
+msgstr "+50% Gesundheit für weibliche Bürger."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1169,9 +1169,12 @@ msgid "Garrison Healing vs. Self-Healing"
 msgstr "Heilung einquartierter Einheiten vs. Selbstheilung"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
-#: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Females vs. Population"
 msgstr "Frauen versus Bevölkerung"
+
+#: simulation/data/technologies/pair_house_02.jsongenericName
+msgid "Female Citizens vs Population"
+msgstr "Weibliche Bürger vs. Bevölkerung"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"

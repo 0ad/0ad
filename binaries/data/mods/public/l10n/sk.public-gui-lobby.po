@@ -12,13 +12,13 @@
 # SuroX <peter.surovcik@gmail.com>, 2016
 # Peter Tuharsky <peter.tuharsky@gmail.com>, 2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2017
+# Angen <slavomir.slovenkai@gmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-12-28 17:39+0000\n"
-"Last-Translator: LeviTaule <levi.taule@gmail.com>\n"
+"PO-Revision-Date: 2018-01-02 19:12+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,7 +57,7 @@ msgstr "Hráč"
 
 #: gui/lobby/lobby.js:54
 msgid "Muted Player"
-msgstr ""
+msgstr "Stíšený hráč "
 
 #: gui/lobby/lobby.js:138
 msgid "Disconnected."
@@ -80,39 +80,39 @@ msgstr "%(nick)s sa odpojil."
 
 #: gui/lobby/lobby.js:199
 msgid "You have been muted."
-msgstr ""
+msgstr "Bol si stíšený."
 
 #: gui/lobby/lobby.js:200
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "%(nick)s bol stmený."
 
 #: gui/lobby/lobby.js:203
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Teraz si moderátor."
 
 #: gui/lobby/lobby.js:204
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "%(nick)s je moderátor."
 
 #: gui/lobby/lobby.js:207
 msgid "You have been unmuted."
-msgstr ""
+msgstr "Už nie si stíšený."
 
 #: gui/lobby/lobby.js:208
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "%(nick)s už nie je stíšený."
 
 #: gui/lobby/lobby.js:210
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "Už viac nie si moderátor."
 
 #: gui/lobby/lobby.js:211
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)s už viac nie je moderátor."
 
 #: gui/lobby/lobby.js:226
 #, javascript-format
@@ -121,23 +121,23 @@ msgstr "%(oldnick)s sa odteraz volá %(newnick)s."
 
 #: gui/lobby/lobby.js:258
 msgid "Notice"
-msgstr ""
+msgstr "Poznámka"
 
 #: gui/lobby/lobby.js:299
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "Nastav svoj stav 'Preč'"
 
 #: gui/lobby/lobby.js:306
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "Nastav svoj stav 'Online'."
 
 #: gui/lobby/lobby.js:313
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "Vyhoď konkrétneho hráča z lobby. Použitie: /kick nick dôvod"
 
 #: gui/lobby/lobby.js:321
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "Zablokuj kontrkétneho hráča v lobby. Použitie: /ban nick dôvod"
 
 #: gui/lobby/lobby.js:329
 msgid "Show this help."
@@ -151,17 +151,17 @@ msgstr "Príkazy chatu:"
 #: gui/lobby/lobby.js:336
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:349
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "Pošli správu o sebe. Príklad: /me idem plávať."
 
 #: gui/lobby/lobby.js:353
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "Pošli text ako správu (aj keď začína s lomítkom). Príklad: /say /help je super príkaz"
 
 #: gui/lobby/lobby.js:357
 msgid "Clear all chat scrollback."
@@ -169,7 +169,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:364
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Návrat do hlavného menu."
 
 #: gui/lobby/lobby.js:438
 msgctxt "map size"
@@ -190,13 +190,13 @@ msgstr "Ľubovoľná"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr "> %(rating)s"
 
 #: gui/lobby/lobby.js:456
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr ""
+msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:529
 msgid "You have been banned from the lobby!"

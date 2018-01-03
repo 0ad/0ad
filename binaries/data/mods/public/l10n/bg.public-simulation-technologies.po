@@ -8,12 +8,12 @@
 # Любомир Василев, 2016
 # Radoslav Mitev <darkinaatrox@gmail.com>, 2016
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2015
-# Любомир Василев, 2016-2017
+# Любомир Василев, 2016-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-27 09:05+0100\n"
-"PO-Revision-Date: 2017-12-27 17:01+0000\n"
+"POT-Creation-Date: 2017-12-31 21:35+0100\n"
+"PO-Revision-Date: 2018-01-01 12:48+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -1069,8 +1069,8 @@ msgid ""
 msgstr "Тъкачният стан позволявал направата на по-хубави дрехи за заселниците. Жените в домакинството били обучавани от ранна възраст как да тъкат на стана и в последствие прекарвали голяма част от живота си, работейки на него."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
-msgid "Female Citizens +50% Health."
-msgstr "Здравето на жените се увеличава с +50%."
+msgid "+50% health for female citizens."
+msgstr "+50% здраве за жените."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1161,8 +1161,11 @@ msgid "Garrison Healing vs. Self-Healing"
 msgstr "Лечение в гарнизон срещу собствено лечение"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
-#: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Females vs. Population"
+msgstr "Жени срещу население"
+
+#: simulation/data/technologies/pair_house_02.jsongenericName
+msgid "Female Citizens vs Population"
 msgstr "Жени срещу население"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
