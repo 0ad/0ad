@@ -2,33 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Boeotian helmet">
-      <mesh>props/helmet/hele_boeotian.dae</mesh>
-      <textures>
-        <texture file="props/helmet/hele_boeotian_gold.png" name="baseTex"/>
-        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="100" name="Boeotian helmet with plume">
-      <mesh>props/helmet/hele_boeotian.dae</mesh>
-      <textures>
-        <texture file="props/helmet/hele_boeotian_gold.png" name="baseTex"/>
-        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
-      </textures>
-      <props>
-        <prop actor="props/units/helmets/props/boeotian_crest.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant frequency="100" name="Boeotian helmet with high crest">
-      <mesh>props/helmet/hele_boeotian.dae</mesh>
-      <textures>
-        <texture file="props/helmet/hele_boeotian_gold.png" name="baseTex"/>
-        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
-      </textures>
-      <props>
-        <prop actor="props/units/helmets/props/boeotian_highcrest.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="helmets/hele_boeotian_gold_01.xml"/>
+    <variant file="helmets/hele_boeotian_plumed_gold_01.xml"/>
+    <variant file="helmets/hele_boeotian_high_crested_gold_01.xml"/>
   </group>
-  <material>player_trans_spec_helmet.xml</material>
+  <material>player_trans_parallax_spec_helmet.xml</material>
 </actor>

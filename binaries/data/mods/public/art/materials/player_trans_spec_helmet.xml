@@ -10,7 +10,7 @@
 	 Second value: Specular power.
 	 Third value: Parallax scale.
 	 Fourth value: AO amount. -->
-    <uniform name="effectSettings" value="1.0 20.0 0.0075 0.85"/>
+    <uniform name="effectSettings" value="1.0 10.0 0.0075 0.85"/>
 	
 	<required_texture name="baseTex"/>
 	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>

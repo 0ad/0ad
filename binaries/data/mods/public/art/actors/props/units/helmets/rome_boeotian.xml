@@ -2,23 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>props/helmet/hele_boeotian.dae</mesh>
-      <textures>
-        <texture file="props/helmet/hele_boeotian_gold.png" name="baseTex"/>
-        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
-      </textures>
-    </variant>
+    <variant file="helmets/hele_boeotian_gold_01.xml"/>
+    <variant file="helmets/hele_boeotian_plumed_gold_01.xml"/>
   </group>
-  <group>
-    <variant frequency="50" name="Boeotian helmet">
-      <props/>
-    </variant>
-    <variant frequency="50" name="Boeotian roman helmet with plume">
-      <props>
-        <prop actor="props/units/helmets/props/boeotian_crest.xml" attachpoint="root"/>
-      </props>
-    </variant>
-  </group>
-  <material>player_trans_spec_helmet.xml</material>
+  <material>player_trans_parallax_spec_helmet.xml</material>
 </actor>

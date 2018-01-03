@@ -2,26 +2,21 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="3" name="Boeotian helmet">
-      <mesh>props/helmet/hele_boeotian.dae</mesh>
-      <textures>
-        <texture file="props/helmet/hele_boeotian_bronze.png" name="baseTex"/>
-        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" file="helmets/hele_chalcidean_bronze_01.xml" name="chalcidean-bronze-a"/>
-    <variant frequency="2" file="helmets/hele_chalcidean_bronze_02.xml" name="chalcidean-bronze-b"/>
-    <variant frequency="2" file="helmets/hele_chalcidean_bronze_03.xml" name="chalcidean-bronze-c"/>
-    <variant frequency="2" file="helmets/hele_chalcidean_bronze_04.xml" name="chalcidean-bronze-d"/>
-    <variant frequency="2" file="helmets/hele_chalcidean_gold_01.xml" name="chalcidean-gold_a"/>
-    <variant frequency="2" file="helmets/hele_illyrian_crested_bronze_01.xml" name="illyrian-crested-bronze-a"/>
-    <variant frequency="2" file="helmets/hele_illyrian_crested_bronze_02.xml" name="illyrian-crested-bronze-b"/>
-    <variant frequency="2" file="helmets/hele_illyrian_crested_tin_01.xml" name="illyrian-crested-tin-a"/>
-    <variant frequency="2" file="helmets/hele_illyrian_crested_black_01.xml" name="illyrian-crested-black-a"/>
-    <variant frequency="2" file="helmets/hele_illyrian_crested_gold_01.xml" name="illyrian-crested-gold-a"/>
-    <variant frequency="3" file="helmets/hele_pilos_base_bronze_01.xml" name="bronze-a"/>
-    <variant frequency="3" file="helmets/hele_pilos_base_bronze_02.xml" name="bronze-b" />
-    <variant frequency="3" file="helmets/hele_pilos_base_gold.xml" name="gold"/>
+    <variant file="helmets/hele_boeotian_gold_01.xml" frequency="3"/>
+    <variant file="helmets/hele_boeotian_bronze_01.xml" frequency="3"/>
+    <variant file="helmets/hele_chalcidean_bronze_01.xml" frequency="2" name="chalcidean-bronze-a"/>
+    <variant file="helmets/hele_chalcidean_bronze_02.xml" frequency="2" name="chalcidean-bronze-b"/>
+    <variant file="helmets/hele_chalcidean_bronze_03.xml" frequency="2" name="chalcidean-bronze-c"/>
+    <variant file="helmets/hele_chalcidean_bronze_04.xml" frequency="2" name="chalcidean-bronze-d"/>
+    <variant file="helmets/hele_chalcidean_gold_01.xml" frequency="2" name="chalcidean-gold_a"/>
+    <variant file="helmets/hele_illyrian_crested_bronze_01.xml" frequency="2" name="illyrian-crested-bronze-a"/>
+    <variant file="helmets/hele_illyrian_crested_bronze_02.xml" frequency="2" name="illyrian-crested-bronze-b"/>
+    <variant file="helmets/hele_illyrian_crested_tin_01.xml" frequency="2" name="illyrian-crested-tin-a"/>
+    <variant file="helmets/hele_illyrian_crested_black_01.xml" frequency="2" name="illyrian-crested-black-a"/>
+    <variant file="helmets/hele_illyrian_crested_gold_01.xml" frequency="2" name="illyrian-crested-gold-a"/>
+    <variant file="helmets/hele_pilos_base_bronze_01.xml" frequency="3" name="bronze-a"/>
+    <variant file="helmets/hele_pilos_base_bronze_02.xml" frequency="3" name="bronze-b" />
+    <variant file="helmets/hele_pilos_base_gold.xml" frequency="3" name="gold"/>
   </group>
-  <material>player_trans_spec_helmet.xml</material>
+  <material>player_trans_parallax_spec_helmet.xml</material>
 </actor>
