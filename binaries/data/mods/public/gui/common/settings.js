@@ -47,7 +47,8 @@ function loadSettingsValues()
 		"PlayerDefaults": loadPlayerDefaults(),
 		"PopulationCapacities": loadPopulationCapacities(),
 		"StartingResources": loadSettingValuesFile("starting_resources.json"),
-		"VictoryConditions": loadVictoryConditions()
+		"VictoryConditions": loadVictoryConditions(),
+		"TriggerDifficulties": loadSettingValuesFile("trigger_difficulties.json")
 	};
 
 	if (Object.keys(settings).some(key => settings[key] === undefined))

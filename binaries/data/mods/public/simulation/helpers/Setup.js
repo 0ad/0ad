@@ -43,6 +43,15 @@ function LoadMapSettings(settings)
 			cmpObstructionManager.SetPassabilityCircular(true);
 	}
 
+	if (settings.TriggerDifficulty)
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger).SetDifficulty(settings.TriggerDifficulty);
+	else if (settings.SupportedTriggerDifficulties)	// used by Atlas and autostart games
+	{
+		let difficulties = Engine.ReadJSONFile("simulation/data/settings/trigger_difficulties.json").Data;
+		let defaultDiff = difficulties.find(d => d.Name == settings.SupportedTriggerDifficulties.Default).Difficulty;
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger).SetDifficulty(defaultDiff);
+	}
+
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	let gameTypeSettings = {};
 	if (settings.GameType && settings.GameType == "capture_the_relic")
