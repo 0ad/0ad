@@ -57,43 +57,34 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
+var playerHillRadius = scaleByMapSize(15, 25);
 var playerHillElevation = 20;
-
-var rampDist = scaleByMapSize(15, 25);
-var rampLength = 15;
-var rampWidth = 12;
-var rampOffset = 3;
 
 var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
 
 log("Creating player hills and ramps...");
 for (let i = 0; i < numPlayers; ++i)
 {
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
-
+	let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize);
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.95, 0.6, 10, Math.round(fx), Math.round(fz)),
+		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.95, 0.6, 10, Math.round(playerPos.x), Math.round(playerPos.y)),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, playerHillElevation, 2),
 			paintClass(clPlayer)
-		],
-		null);
+		]);
 
-	let rampAngle = playerAngle[i] + Math.PI * (1 + randFloat(-1, 1) / 8);
-	createRamp(
-		Math.round(fx + (rampDist + rampLength) * Math.cos(rampAngle)),
-		Math.round(fz + (rampDist + rampLength) * Math.sin(rampAngle)),
-		Math.round(fx + (rampDist - rampOffset) * Math.cos(rampAngle)),
-		Math.round(fz + (rampDist - rampOffset) * Math.sin(rampAngle)),
-		3,
-		playerHillElevation,
-		rampWidth,
-		2,
-		tHill,
-		tCliff,
-		clPlayer);
+	let angle = playerAngle[i] + Math.PI * (1 + randFloat(-1, 1) / 8);
+	createPassage({
+		"start": Vector2D.add(playerPos, new Vector2D(playerHillRadius + 15, 0).rotate(-angle)),
+		"end": Vector2D.add(playerPos, new Vector2D(playerHillRadius - 3, 0).rotate(-angle)),
+		"startWidth": 10,
+		"endWidth": 10,
+		"smoothWidth": 2,
+		"tileClass": clPlayer,
+		"terrain": tHill,
+		"edgeTerrain": tCliff
+	});
 }
 
 for (var i = 0; i < numPlayers; i++)
@@ -101,7 +92,7 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	var radius = scaleByMapSize(15,25);
+	var radius = playerHillRadius;
 
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
