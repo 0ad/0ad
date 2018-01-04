@@ -196,7 +196,7 @@ void MapDialog::SaveFile()
 		return;
 
 	// TODO: this test would work better outside the VFS
-	AtlasMessage::qVFSFileExists qry(filename.wc_str());
+	AtlasMessage::qVFSFileExists qry(static_cast<const wchar_t*>(filename.wc_str()));
 	qry.Post();
 	if (qry.exists)
 	{
