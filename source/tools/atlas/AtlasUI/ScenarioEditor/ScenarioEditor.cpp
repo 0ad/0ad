@@ -723,7 +723,7 @@ bool ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 	wxBusyInfo busy(_("Loading ") + name);
 	wxBusyCursor busyc;
 
-	AtlasMessage::qVFSFileExists qry(filename.wc_str());
+	AtlasMessage::qVFSFileExists qry(static_cast<const wchar_t*>(filename.wc_str()));
 	qry.Post();
 	if (!qry.exists)
 		return false;
