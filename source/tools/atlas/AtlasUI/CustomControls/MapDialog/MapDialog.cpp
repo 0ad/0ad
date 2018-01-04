@@ -181,7 +181,7 @@ void MapDialog::OpenFile()
 	if (filename.empty())
 		return;
 
-	AtlasMessage::qVFSFileExists qry(filename.wc_str());
+	AtlasMessage::qVFSFileExists qry(static_cast<const wchar_t*>(filename.wc_str()));
 	qry.Post();
 	if (!qry.exists)
 		return;
