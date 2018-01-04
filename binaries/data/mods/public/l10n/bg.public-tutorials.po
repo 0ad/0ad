@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2017
+# Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2017
 # Любомир Василев <lyubomirv@abv.bg>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-09-01 09:05+0200\n"
-"PO-Revision-Date: 2017-09-01 09:05+0200\n"
+"POT-Creation-Date: 2017-12-31 21:36+0100\n"
+"PO-Revision-Date: 2017-12-31 21:36+0100\n"
 "Last-Translator: Любомир Василев <lyubomirv@abv.bg>, 2017\n"
 "Language-Team: Bulgarian (https://www.transifex.com/wildfire-games/teams/17418/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -24,13 +24,13 @@ msgstr "Добре дошли в обучението на 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
-"First left-click on a female citizen, then Right-click on a berry bush "
-"nearby to make the unit collect food. Female citizens gather food faster "
+"Left-click on a female citizen and then right-click on a berry bush to make "
+"that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
-"Първо изберете някоя от жените с левия бутон на мишката, а след това "
-"щракнете с десния бутон върху някой близък боровинков храст, за да накарате "
-"единицата да събира храна. Жените събират храна по-бързо от другите единици."
+"Изберете някоя от жените с левия бутон на мишката, а след това щракнете с "
+"десния бутон върху някой боровинков храст, за да накарате жената да събира "
+"храна. Жените събират храна от растенията по-бързо от другите единици."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -55,14 +55,13 @@ msgstr ""
 #: maps/tutorials/Introductory_Tutorial.js:69
 #: maps/tutorials/Introductory_Tutorial.js:151
 #: maps/tutorials/Introductory_Tutorial.js:227
-#: maps/tutorials/starting_economy_walkthrough.js:100
-#: maps/tutorials/starting_economy_walkthrough.js:159
+#: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to shift-click to produce several units."
 msgstr "Не забравяйте да задържите Shift, за да създадете няколко единици."
 
 #: maps/tutorials/Introductory_Tutorial.js:33
 #: maps/tutorials/Introductory_Tutorial.js:152
-#: maps/tutorials/starting_economy_walkthrough.js:101
+#: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Shift-click on the HOPLITE icon."
 msgstr "Задръжте Shift и натиснете иконката с ХОПЛИТ."
 
@@ -185,8 +184,9 @@ msgstr ""
 "точка върху фермата (като щракнете с десен бутон върху нея)."
 
 #: maps/tutorials/Introductory_Tutorial.js:228
-msgid "Shift-click on the FEMALE icon."
-msgstr "Задръжте Shift и натиснете иконката с ЖЕНА."
+#: maps/tutorials/starting_economy_walkthrough.js:168
+msgid "Hold shift and click on the female citizen icon."
+msgstr "Задръжте Shift и щракнете върху иконката с жена."
 
 #: maps/tutorials/Introductory_Tutorial.js:248
 msgid ""
@@ -286,19 +286,37 @@ msgstr ""
 "което често се налага да преминете през „Градската фаза“ и „Мегаполисната "
 "фаза“.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:5
+#: maps/tutorials/starting_economy_walkthrough.js:6
+#, javascript-format
 msgid ""
 "\n"
-"Before starting, you can toggle between fullscreen and windowed mode using Alt+Enter. You can also change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"
+"Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
 "\n"
-"Преди да започнете, имайте предвид, че можете да превключвате между режим на цял екран и в прозорец чрез Alt+Enter. Можете също така да променяте нивото на приближение чрез колелото на мишката, и ъгъла на камерата чрез стрелките на клавиатурата.\n"
+"Преди да започнете, запомнете, че можете да превключвате между режимите на цял екран и в прозорец чрез %(hotkey)s."
 
-#: maps/tutorials/starting_economy_walkthrough.js:6
+#: maps/tutorials/starting_economy_walkthrough.js:9
+msgid ""
+"You can change the level of zoom using the mouse wheel and the camera view "
+"using any of your keyboard's arrow keys.\n"
+msgstr ""
+"Можете да променяте нивото на приближение чрез колелото на мишката, и ъгъла "
+"на камерата чрез стрелките на клавиатурата.\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
 msgstr "Настройте игралния прозорец според предпочитанията си.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:11
+#: maps/tutorials/starting_economy_walkthrough.js:12
+#, javascript-format
+msgid ""
+"\n"
+"You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
+msgstr ""
+"\n"
+"Можете също така да показвате и скривате този панел с обучението във всеки момент чрез %(hotkey)s.\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
 "To start off, select your building, the Civic Center, by clicking on it. A "
 "selection ring in the color of your civilization will be displayed after "
@@ -307,7 +325,7 @@ msgstr ""
 "Започнете, като изберете селищния център с мишката. Около него ще се появи "
 "окръжност в цвета на цивилизацията Ви, която показва, че той е избран."
 
-#: maps/tutorials/starting_economy_walkthrough.js:16
+#: maps/tutorials/starting_economy_walkthrough.js:24
 msgid ""
 "Now that the Civic Center is selected, you will notice that a production "
 "panel will appear on the lower right of your screen detailing the actions "
@@ -325,7 +343,7 @@ msgstr ""
 "достатъчно ресурси, за да го изпълните. Освен това, ако посочите иконките с "
 "мишката, ще се появи съобщение с повече подробности.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:17
+#: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
 "The top row of buttons contains portraits of units that may be trained at "
 "the building while the bottom one or two rows will have researchable "
@@ -339,15 +357,15 @@ msgstr ""
 "Съобщението ни показва, че за да преминем към „Градската фаза“, трябва да "
 "имаме повече построени сгради, както и повече храна и дърва."
 
-#: maps/tutorials/starting_economy_walkthrough.js:22
+#: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
-"You have two main types of starting units: Female Citizens and Citizen "
-"Soldiers. Female Citizens are purely economic units; they have low HP, no "
-"armor, and little to no attack. Citizen Soldiers are workers by default, but"
+"You have two main types of starting units: female citizens and citizen "
+"soldiers. Female citizens are purely economic units; they have low HP, no "
+"armor, and little to no attack. Citizen soldiers are workers by default, but"
 " in times of need, can utilize a weapon to fight. You have two categories of"
-" Citizen Soldiers: Infantry and Cavalry. Female Citizens and Infantry "
-"Citizen Soldiers can gather any land resources while Cavalry Citizen "
-"Soldiers can only gather meat from hunted animals.\n"
+" citizen soldiers: infantry and cavalry. Female citizens and infantry "
+"citizen soldiers can gather any land resources while cavalry citizen "
+"soldiers can only gather meat from hunted animals.\n"
 msgstr ""
 "Имате два основни вида начални единици: жени и граждани-во̀ини. Жените са "
 "чисто икономическа единица — те имат малко здраве, нямат защита и никаква "
@@ -357,7 +375,7 @@ msgstr ""
 "събират всякакви земни ресурси, докато конниците могат да събират само месо "
 "от животните, които ловуват.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:27
+#: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
 "As a general rule of thumb, left-clicking represents selection while right-"
 "clicking with an entity selected represents an order (gather, build, fight, "
@@ -366,21 +384,21 @@ msgstr ""
 "Общото правило е: с левия бутон на мишката се избира, а при избрана единица,"
 " с десния се дава команда (събиране, строене, нападение и т.н.).\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:32
+#: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
-"At this point, Food and Wood are the most important resources for developing"
-" your economy, so let's start with gathering food. Females gather non-meat "
-"food faster than their male counterparts.\n"
+"At this point, food and wood are the most important resources for developing"
+" your economy, so let's start with gathering food. Female citizens gather "
+"vegetables faster than other units.\n"
 msgstr ""
 "На този етап храната и дървата са най-важните ресурси за развиване на "
-"икономиката Ви, така че да започнем с добива на храна. Жените събират не-"
-"месна храна по-бързо от мъжете."
+"икономиката Ви, така че да започнем с добива на храна. Жените събират храна "
+"от растенията по-бързо от другите единици."
 
-#: maps/tutorials/starting_economy_walkthrough.js:33
+#: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
 msgstr "Има три основни начина за избор на единици:"
 
-#: maps/tutorials/starting_economy_walkthrough.js:34
+#: maps/tutorials/starting_economy_walkthrough.js:42
 msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
@@ -388,7 +406,7 @@ msgstr ""
 "1) Задръжте левия бутон на мишката и завлачете, докато опишете правоъгълник,"
 " който обгражда единиците, които искате да изберете.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:35
+#: maps/tutorials/starting_economy_walkthrough.js:43
 msgid ""
 "2) Click on one of them and then add additional units to your selection by "
 "shift-clicking each additional unit (or also via the above selection "
@@ -399,7 +417,7 @@ msgstr ""
 "единица (или като направите още един правоъгълник за избор, както по-"
 "горе).\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:36
+#: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
 "3) Double-click on a unit. This will select every unit of the same type as "
 "the specified unit in your visible window. Triple-click will select all "
@@ -409,19 +427,19 @@ msgstr ""
 " вид, които се виждат на екрана. Ако щракнете три пъти, ще изберете всички "
 "единици от същия вид на цялата карта.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:37
+#: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
 "You can click on an empty space on the map to reset the selection. Try each "
-"of these methods before tasking all of your Female Citizens to gather the "
+"of these methods before tasking all of your female citizens to gather the "
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
-" when you have all the Female Citizens selected."
+" when you have all the female citizens selected."
 msgstr ""
 "Можете да щракнете върху празно място на картата, за да отмените избора си. "
 "Опитайте всички тези начини за избор, а след това накарайте всичките си жени"
 " да събират плодчетата на югоизток от селищния център, като изберете всички "
 "жени и щракнете с десния бутон на мишката върху плодчетата."
 
-#: maps/tutorials/starting_economy_walkthrough.js:48
+#: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
 "Now, let's gather some Wood with your Infantry Citizen Soldiers. Select your"
 " Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
@@ -431,7 +449,7 @@ msgstr ""
 "пехотинците и им наредете да събират дърва като щракнете с десен бутон върху"
 " най-близкото дърво."
 
-#: maps/tutorials/starting_economy_walkthrough.js:59
+#: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
@@ -439,13 +457,13 @@ msgstr ""
 "Конните граждани-во̀ини са добри ловци. Изберете конника си и му наредете да"
 " убие пилетата около селищния център."
 
-#: maps/tutorials/starting_economy_walkthrough.js:70
+#: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
 "Всичките Ви единици сега събират ресурси. Трябва да обучим още единици!\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:71
+#: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
 "First, let's set a rally-point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
@@ -461,12 +479,12 @@ msgstr ""
 "селищния център като щракнете върху него с ляв бутон и след това щракнете с "
 "десен бутон върху едно от дърветата.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:72
+#: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally-Points are indicated by a small flag at the end of the blue line."
 msgstr "Сборните точки се виждат като малко флагче на края на синята линия."
 
-#: maps/tutorials/starting_economy_walkthrough.js:80
+#: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover your mouse over a tree and right-click "
 "when you see the cursor change into a Wood icon."
@@ -475,7 +493,7 @@ msgstr ""
 "щракнете с десния бутон, когато видите, че курсорът се превърне в иконка с "
 "дърво."
 
-#: maps/tutorials/starting_economy_walkthrough.js:89
+#: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
 "Now that the rally-point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
@@ -483,27 +501,33 @@ msgstr ""
 "След като сборната точка вече е определена, можем да създадем допълнителни "
 "единици и те ще започнат да изпълняват определената си задача автоматично.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:90
+#: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
-"As Citizen Soldiers are better than Female Citizens for gathering Wood, "
-"select the Civic Center and shift-click on the second unit icon, the "
-"hoplites (shift-clicking produces a batch of five units). You can also train"
-" units individually by simply clicking, but training 5 units together takes "
-"less time than training 5 units individually."
+"Citizen soldiers gather wood faster than female citizens. Select the Civic "
+"Center and, while holding Shift, click on the second unit icon, the hoplites"
+" (holding Shift trains a batch of five units). You can also train units "
+"individually by simply clicking, but training 5 units together takes less "
+"time than training 5 units individually."
 msgstr ""
-"Тъй като гражданите-во̀ини са по-добри от жените в събирането на дърва, "
-"изберете селищния център и, задържайки клавиша Shift, натиснете втората "
-"иконка на единица, хоплита (натискането на иконка при задържан Shift създава"
-" партида от пет единици). Можете да обучавате единиците и една по една, като"
-" просто натискате иконките им, но обучаването на 5 единици едновременно "
-"отнема по-малко време от обучаването им отделно."
+"Гражданите-во̀ини са по-добри от жените в събирането на дърва. Изберете "
+"селищния център и, задържайки клавиша Shift, натиснете втората иконка на "
+"единица, хоплита (натискането на иконка при задържан Shift създава партида "
+"от пет единици). Можете да обучавате единиците и една по една, като просто "
+"натискате иконките им, но обучаването на 5 единици едновременно отнема по-"
+"малко време от обучаването им отделно."
 
-#: maps/tutorials/starting_economy_walkthrough.js:110
-#: maps/tutorials/starting_economy_walkthrough.js:169
+#: maps/tutorials/starting_economy_walkthrough.js:108
+msgid "Do not forget to hold Shift while clicking to train several units."
+msgstr ""
+"Не забравяйте да задържите Shift докато щраквате, за да създадете няколко "
+"единици."
+
+#: maps/tutorials/starting_economy_walkthrough.js:118
+#: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
 msgstr "Да почакаме докато единиците бъдат създадени.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:111
+#: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
 "While waiting, direct your attention to the panel at the top of your screen."
 " On the upper left, you will see your current resource supply (Food, Wood, "
@@ -517,7 +541,7 @@ msgstr ""
 " център (или друго сборно място), ще видите как количеството на съответния "
 "ресурс се увеличава.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:112
+#: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
 "This is a very important concept to keep in mind: gathered resources have to"
 " be brought back to a dropsite to be accounted, and you should always try to"
@@ -529,7 +553,7 @@ msgstr ""
 "разстоянието за пренасяне на ресурсите да бъде възможно най-малко, за да "
 "събирате ресурсите по-бързо."
 
-#: maps/tutorials/starting_economy_walkthrough.js:121
+#: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
@@ -537,7 +561,7 @@ msgstr ""
 "Новообучените единици отиват автоматично при дърветата и започват да събират"
 " дърва.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:122
+#: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
 "But as they have to bring it back to the Civic Center to deposit it, their "
 "gathering efficiency suffers from the distance. To fix that, we can build a "
@@ -556,7 +580,7 @@ msgstr ""
 " по-близо до дърветата, които искате да добивате и щракнете върху подходящо "
 "място за строеж на склада.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:123
+#: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
@@ -564,15 +588,15 @@ msgstr ""
 "Ще разберете кои места са неподходящи (блокирани), тъй като изображението на"
 " сградата ще стане червено, когато сте върху тях."
 
-#: maps/tutorials/starting_economy_walkthrough.js:133
+#: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
-"The selected workers will automatically start constructing the building once"
-" you place the foundation."
+"The selected citizens will automatically start constructing the building "
+"once you place the foundation."
 msgstr ""
-"Избраните работници ще започнат автоматично да строят сградата, след като "
+"Избраните граждани ще започнат автоматично да строят сградата, след като "
 "поставите основите."
 
-#: maps/tutorials/starting_economy_walkthrough.js:144
+#: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
 "When construction finishes, the builders default to gathering Wood "
 "automatically.\n"
@@ -580,19 +604,16 @@ msgstr ""
 "След като строежът завърши, строителите автоматично ще се върнат към "
 "събирането на дърва.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:145
+#: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
-"Let's train some female workers to gather more food. Select the Civic Center"
-" and shift-click on the female citizen icon to train 5."
+"Let's train some female citizens to gather more food. Select the Civic "
+"Center, hold Shift and click on the female citizen icon to train 5 female "
+"citizens."
 msgstr ""
 "Да обучим още жени, които да събират още храна. Изберете селищния център, "
-"задръжте Shift и натиснете иконката с жена, за да обучите 5."
+"задръжте Shift и натиснете иконката с жена, за да обучите 5 жени."
 
-#: maps/tutorials/starting_economy_walkthrough.js:160
-msgid "Shift-click on the FEMALE CITIZEN icon."
-msgstr "Задръжте Shift и натиснете иконката с ЖЕНА."
-
-#: maps/tutorials/starting_economy_walkthrough.js:170
+#: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
 "In the meantime, we seem to have enough workers gathering Wood. We should "
 "remove the current rally-point of the Civic Center away from gathering Wood."
@@ -605,11 +626,11 @@ msgstr ""
 "център и щракнете с десния бутон върху него (иконката с флагче ще бъде "
 "зачертана)."
 
-#: maps/tutorials/starting_economy_walkthrough.js:184
+#: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
 msgstr "Единиците би трябвало скоро да станат готови.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:185
+#: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
 "In the meantime, direct your attention to your population count on the top "
 "panel. It is the fifth item from the left, after the resources. It would be "
@@ -623,7 +644,7 @@ msgstr ""
 "които се обучават в момента) и текущото ограничение на населението, което се"
 " определя от построените сгради."
 
-#: maps/tutorials/starting_economy_walkthrough.js:198
+#: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
 "As you have nearly reached the population limit, you must increase it by "
 "building some new structures if you want to train more units. The most cost "
@@ -633,43 +654,45 @@ msgstr ""
 "като построим нови сгради, за да можем да обучаваме още единици. Най-"
 "евтината сграда, която увеличава ограничението на населението, е къщата.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:199
+#: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
 msgstr "След като единиците вече са готови, да построим две къщи."
 
-#: maps/tutorials/starting_economy_walkthrough.js:204
+#: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
-"Select two of your newly trained Female Citizens and ask them to build these"
+"Select two of your newly-trained female citizens and ask them to build these"
 " houses in the empty space to the east of the Civic Center. To do so, after "
-"selecting the Female Citizens, click on the house icon in the bottom right "
-"panel and shift-click on the position in the map where you want to build the"
-" first house followed by a shift-click on the position of the second house "
-"(when giving orders, shift-click put the order in the queue and the units "
-"will automatically switch to the next order in their queue when they finish "
-"their work). Press Escape to get rid of the house cursor so you don't spam "
-"houses all over the map.\n"
+"selecting the female citizens, click on the house icon in the bottom right "
+"panel and, while holding Shift, click first on the position in the map where"
+" you want to build the first house, and then click on the position where you"
+" want to build the second house (when you give a command while holding "
+"Shift, you put the command in a queue; units automatically switch to the "
+"next command in their queue when they finish their current command). Press "
+"Escape to get rid of the house cursor so you don't spam houses all over the "
+"map.\n"
 msgstr ""
 "Изберете две от новообучените си жени и ги накарайте да построят къщите на "
 "празното пространство на изток от селищния център. За да направите това, "
 "след като изберете жените, натиснете иконката с къща в долния десен панел и,"
 " задържайки клавиша Shift, щракнете върху позицията на картата, където "
-"искате да построите първата къща, след което, отново задържайки Shift, "
-"щракнете върху друга позиция, където да бъде построена втората къща (когато "
-"давате команди, задържането на Shift поставя командата в опашка, така че "
-"единиците автоматично да преминат към следващата задача в опашката си, след "
-"като свършат зададената им работа).\n"
+"искате да построите първата къща, след което, продължавайки да задържате "
+"Shift, щракнете върху друга позиция, където да бъде построена втората къща "
+"(когато давате команди, задържането на Shift поставя командата в опашка, "
+"така че единиците автоматично да преминат към следващата задача в опашката "
+"си, след като свършат зададената им работа). Накрая натиснете Escape, за да "
+"може курсорът да спре да бъде къща и за излезете от този режим.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:205
+#: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
-"Reminder: to select only two Female Citizens, click on the first one and "
-"then shift-click on the second one to add her to the selection."
+"Reminder: to select only two female citizens, click on the first one and "
+"then hold Shift and click on the second one."
 msgstr ""
 "Напомняне: за да изберете само две жени, щракнете върху първата и след това "
 "задръжте Shift и щракнете върху втората."
 
-#: maps/tutorials/starting_economy_walkthrough.js:238
+#: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
 "You may notice that berries are a finite supply of food. We will need a more"
 " lasting food source. Fields produce an unlimited food resource, but are "
@@ -680,7 +703,7 @@ msgstr ""
 "произвеждат храна безкрайно, но храната от тях се събира по-бавно от "
 "диворастящите плодове.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:239
+#: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a farmstead."
@@ -688,16 +711,16 @@ msgstr ""
 "За да намалим разстоянието между нивата и съответното ѝ място за събиране на"
 " продукцията, първо ще построим Ферма."
 
-#: maps/tutorials/starting_economy_walkthrough.js:250
+#: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
-"Select the three remaining (idle) Female Citizens and order them to build a "
+"Select the three remaining (idle) female citizens and order them to build a "
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
 "Изберете останалите три (бездействащи) жени и ги накарайте да построят ферма"
 " в средата на голямото свободно пространство на запад от селищния център.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:251
+#: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
 "We will need a decent chunk of space around the farmstead to build fields. "
 "In addition, we can see goats on the west side to further improve our food "
@@ -707,25 +730,24 @@ msgstr ""
 "Освен това, на запад има няколко кози, които могат да повишат скоростта ни "
 "на събиране на храна, ако решим да ги хванем.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:252
+#: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
-"If you try to select the three idle Female Citizens by selection rectangle "
-"them, there is a high chance that one or more additional gatherers are "
-"included in your selection rectangle. To prevent that, hold the 'i' key "
-"while grabing: only idle units are then selected. If during your selection "
-"you select the cavalry which may now be idle, you can remove it by pressing "
-"the control key while clicking on its corresponding portrait in the "
-"selection panel on the bottom."
+"If you try to select the three idle female citizens by clicking and dragging"
+" a selection rectangle over them, you might accidentally select additional "
+"units. To avoid that, hold the I key while selecting so that only idle units"
+" are selected. If you accidentally select a cavalry unit, hold Ctrl and "
+"click on the cavalry unit icon of the selection panel at the bottom of the "
+"screen to remove the cavalry unit from the current selection."
 msgstr ""
-"Ако се опитате да изберете трите бездействащи жени чрез правоъгълник за "
-"избор, има голяма вероятност да хванете и някой от заетите работници. За да "
-"предотвратите това, задръжте клавиша „I“, докато ги избирате — така ще "
-"изберете само бездействащите единици. Ако по време на избирането хванете и "
-"конника, който в момента също може да не прави нищо, можете да го изключите "
-"от избора си като задържите клавиша Ctrl и натиснете портрета му в списъка с"
-" избраните единици в долния панел."
+"Ако се опитате да изберете трите бездействащи жени като щракнете и завлачите"
+" правоъгълник за избор над тях, може без да искате да хванете и някоя друга "
+"единица. За да избегнете това, задръжте клавиша I, докато избирате, така че "
+"да хванете само бездействащите единици. Ако без да искате изберете и някой "
+"конник, задръжте Ctrl и щракнете върху иконката с конника в панела с "
+"избраните единици в долната част на екрана, за да премахнете конника от "
+"избора."
 
-#: maps/tutorials/starting_economy_walkthrough.js:267
+#: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
@@ -733,7 +755,7 @@ msgstr ""
 "Когато строежът на фермата приключи, строителите ѝ автоматично ще започнат "
 "да търсят храна, и в този случай ще се насочат към близките кози.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:268
+#: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
@@ -741,9 +763,9 @@ msgstr ""
 "Но строителите на къщите Ви ще търсят само нещо друго за строене, и ако не "
 "намерят нищо, ще бездействат. Нека почакаме да завършат строежа на къщите."
 
-#: maps/tutorials/starting_economy_walkthrough.js:284
+#: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
-"When both houses are built, select your two Female Citizens and order them "
+"When both houses are built, select your two female citizens and order them "
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
@@ -751,7 +773,7 @@ msgstr ""
 "построят нива колкото може по-близо до фермата, която е сборно място за "
 "всякакъв вид храна."
 
-#: maps/tutorials/starting_economy_walkthrough.js:294
+#: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the field is constructed, the builders will automatically start "
 "gathering it.\n"
@@ -759,7 +781,7 @@ msgstr ""
 "Когато строежът на фермата приключи, строителите ѝ автоматично ще започнат "
 "да събират храна от нея.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:295
+#: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
 "The cavalry unit should have slaughtered all chickens by now. Select it and "
 "explore the south-west area: there is a lake with some camels around. Move "
@@ -772,7 +794,7 @@ msgstr ""
 "отиде, а когато видите камилите, щракнете с десния бутон върху някоя от тях,"
 " за да я убие и да започне да събира храна от нея."
 
-#: maps/tutorials/starting_economy_walkthrough.js:306
+#: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
 "A field can have up to five farmers working on it. To add additional "
 "gatherers, select the Civic Center and setup a rally-point on a field by "
@@ -787,27 +809,27 @@ msgstr ""
 "поставената сборна точка, първо ще помогнат за строежа ѝ, а след това ще "
 "започнат да събират храна от нея."
 
-#: maps/tutorials/starting_economy_walkthrough.js:314
+#: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
 msgstr "Изберете селищния център и щракнете с десния бутон върху нивата."
 
-#: maps/tutorials/starting_economy_walkthrough.js:322
+#: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
-"Now click three times on the female icon in the bottom right panel to train "
-"three additional farmers."
+"Now click three times on the female citizen icon in the bottom right panel "
+"to train three additional farmers."
 msgstr ""
 "Сега щракнете три пъти върху иконката с жена в долния десен панел, за да "
 "обучите още три фермерки."
 
-#: maps/tutorials/starting_economy_walkthrough.js:336
+#: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Do not shift-click to produce a single unit."
 msgstr "Не задържайте Shift, за да създадете само една единица."
 
-#: maps/tutorials/starting_economy_walkthrough.js:337
-msgid "Click on the FEMALE CITIZEN icon."
-msgstr "Натиснете иконката с ЖЕНА."
+#: maps/tutorials/starting_economy_walkthrough.js:345
+msgid "Click on the female citizen icon."
+msgstr "Щракнете върху иконката с жена."
 
-#: maps/tutorials/starting_economy_walkthrough.js:347
+#: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
@@ -815,7 +837,7 @@ msgstr ""
 "Можете да увеличите бързината на събиране на ресурси на работниците си, като"
 " проучите нови технологии в някои сгради.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:348
+#: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
 "The farming rate, for example, can be improved with a researchable "
 "technology in the farmstead. Select the farmstead and look at its production"
@@ -830,7 +852,7 @@ msgstr ""
 "видите цените и ефектите им и след това щракнете върху тази, която искате да"
 " проучите."
 
-#: maps/tutorials/starting_economy_walkthrough.js:363
+#: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
 "We should start preparing to phase up into 'Town Phase', which will unlock "
 "many more units and buildings. Select the Civic Center and hover the mouse "
@@ -841,7 +863,7 @@ msgstr ""
 "посочете с мишката върху иконката на „Градската фаза“, за да видите от какво"
 " още имаме нужда.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:364
+#: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
 "We now have enough resources, but one structure is missing. Although this is"
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
@@ -851,7 +873,7 @@ msgstr ""
 "обучение се концентрира върху икономиката, все пак не вреди да бъдем "
 "подготвени, в случай че някой ни нападне, така че да построим казарма.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:365
+#: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
 "Select four of your soldiers and ask them to build a barracks: as before, "
 "start selecting the soldiers, click on the barracks icon in the production "
@@ -862,7 +884,7 @@ msgstr ""
 "преди, изберете во̀ините, щракнете върху иконката на казармата в панела със "
 "сградите и поставете основите ѝ някъде около селищния център."
 
-#: maps/tutorials/starting_economy_walkthrough.js:376
+#: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
 "Let's wait for the barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
@@ -877,7 +899,7 @@ msgstr ""
 "превърне в чук), след което произведете още двама строители като натиснете "
 "два пъти иконката с хоплит."
 
-#: maps/tutorials/starting_economy_walkthrough.js:386
+#: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
 "You should now be able to research 'Town Phase'. Select the Civic Center and"
 " click on the technology icon.\n"
@@ -885,7 +907,7 @@ msgstr ""
 "Сега вече трябва да можете да проучите „Градската фаза“. Изберете селищния "
 "център и натиснете иконката на технологията.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:387
+#: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
@@ -893,7 +915,7 @@ msgstr ""
 "Ако все още имате нужда от някои ресурси (тоест иконката е червена), "
 "изчакайте докато работниците Ви ги съберат."
 
-#: maps/tutorials/starting_economy_walkthrough.js:401
+#: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
 "In later phases, you need usually Stone and Metal to build bigger structures"
 " and train better soldiers. Hence, while waiting for the research to be "
@@ -906,7 +928,7 @@ msgstr ""
 "(онези, които приключиха със строежа на казармата) да събират камъни, а "
 "другата половина — за метал.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:402
+#: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
 "To do so, we could select three Citizen Soldiers and right-click on the "
 "Stone mine on the west of the Civic Center (a Stone cursor is shown when you"
@@ -921,7 +943,7 @@ msgstr ""
 "дървата, когато ги изпратите да събират други ресурси. Дървата, които те "
 "носят, ще бъдат загубени."
 
-#: maps/tutorials/starting_economy_walkthrough.js:407
+#: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
 "Thus, we should order them to deposit their Wood in the Civic Center along "
 "the way. To do so, we will queue orders with shift-click: select your "
@@ -935,7 +957,7 @@ msgstr ""
 "това, все още държейки клавиша Shift, щракнете с десния бутон върху "
 "каменната мина, за да започнат да събират камъни оттам.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:408
+#: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
@@ -943,7 +965,7 @@ msgstr ""
 "Направете същото и с останалите во̀ини, само че ги изпратете към мината за "
 "метал на запад."
 
-#: maps/tutorials/starting_economy_walkthrough.js:442
+#: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."

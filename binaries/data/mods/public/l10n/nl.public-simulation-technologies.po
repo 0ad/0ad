@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-27 09:05+0100\n"
-"PO-Revision-Date: 2017-12-27 15:57+0000\n"
+"POT-Creation-Date: 2017-12-31 21:35+0100\n"
+"PO-Revision-Date: 2018-01-01 03:13+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -1074,8 +1074,8 @@ msgid ""
 msgstr "Het weefgetouw maakte het mogelijk om fijnere kleren te maken. Vrouwen van het huishouden werden al van jonge leeftijd geleerd om met het weefgetouw te werken. Daarna spendeerden ze een groot deel van hun leven aan het weefgetouw."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
-msgid "Female Citizens +50% Health."
-msgstr "Vrouwelijke burgers 50% hogere gezondheid."
+msgid "+50% health for female citizens."
+msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1166,9 +1166,12 @@ msgid "Garrison Healing vs. Self-Healing"
 msgstr "Genezing v/d bemanning vs automatisch"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
-#: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Females vs. Population"
 msgstr "Vrouwen vs. bevolking"
+
+#: simulation/data/technologies/pair_house_02.jsongenericName
+msgid "Female Citizens vs Population"
+msgstr ""
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"

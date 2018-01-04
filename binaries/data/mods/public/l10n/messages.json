@@ -596,10 +596,11 @@
                     "context": "startingResources"
                  }
              },
-            {
+             {
                 "extractor": "json",
                 "filemasks": [
-                    "simulation/data/settings/map_sizes.json"
+                    "simulation/data/settings/map_sizes.json",
+                    "simulation/data/settings/trigger_difficulties.json"
                 ],
                 "options": {
                     "keywords": [

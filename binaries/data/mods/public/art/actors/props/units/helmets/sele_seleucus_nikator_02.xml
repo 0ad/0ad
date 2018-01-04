@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Seleucus'Nikator helmet">
+      <mesh>props/helmet/sele_hero_seleucus_nikator_02.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+        <texture file="props/helmet/hero_helmet_seleucus_nikator_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="gold">
+      <textures>
+        <texture file="props/helmet/hero_helmet_seleucus_nikator_dif1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="metal + gold">
+      <textures>
+        <texture file="props/helmet/hero_helmet_seleucus_nikator_dif2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="metal">
+      <textures>
+        <texture file="props/helmet/hero_helmet_seleucus_nikator_dif3.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="blue">
+      <textures>
+        <texture file="props/helmet/hero_helmet_seleucus_nikator_dif4.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="red">
+      <textures>
+        <texture file="props/helmet/hero_helmet_seleucus_nikator_dif5.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="tiger">
+      <textures>
+        <texture file="props/helmet/hero_helmet_seleucus_nikator_dif6.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec_helmet.xml</material>
+</actor>

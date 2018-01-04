@@ -4,6 +4,7 @@ const g_MatchSettings_MP = "config/matchsettings.mp.json";
 const g_Ceasefire = prepareForDropdown(g_Settings && g_Settings.Ceasefire);
 const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
+const g_TriggerDifficulties = prepareForDropdown(g_Settings && g_Settings.TriggerDifficulties);
 const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
 const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.StartingResources);
 const g_VictoryConditions = prepareForDropdown(g_Settings && g_Settings.VictoryConditions);
@@ -208,6 +209,11 @@ var g_MapFilterList;
 var g_BiomeList;
 
 /**
+ * Array of trigger difficulties identifiers supported by the currently selected map.
+ */
+var g_TriggerDifficultyList;
+
+/**
  * Whether this is a single- or multiplayer match.
  */
 var g_IsNetworked;
@@ -356,6 +362,7 @@ var g_OptionOrderGUI = {
 		"mapSize"
 	],
 	"more": [
+		"triggerDifficulty",
 		"biome",
 		"gameSpeed",
 		"victoryCondition",
@@ -644,6 +651,21 @@ var g_Dropdowns = {
 		"select": (itemIdx) => {
 			g_GameAttributes.gameSpeed = g_GameSpeeds.Speed[itemIdx];
 		},
+		"initOrder": 1000
+	},
+	"triggerDifficulty": {
+		"title": () => translate("Difficulty"),
+		"tooltip": (hoverIdx) => g_TriggerDifficultyList && g_TriggerDifficultyList.Description[hoverIdx] ||
+			translate("Select the difficulty of this scenario."),
+		"labels": () => g_TriggerDifficultyList ? g_TriggerDifficultyList.Title : [],
+		"ids": () => g_TriggerDifficultyList ? g_TriggerDifficultyList.Id : [],
+		"default": () => g_TriggerDifficultyList ? g_TriggerDifficultyList.Default : 0,
+		"defined": () => g_GameAttributes.settings.TriggerDifficulty !== undefined,
+		"get": () => g_GameAttributes.settings.TriggerDifficulty,
+		"select": (itemIdx) => {
+			g_GameAttributes.settings.TriggerDifficulty = g_TriggerDifficultyList && g_TriggerDifficultyList.Id[itemIdx];
+		},
+		"hidden": () => !g_TriggerDifficultyList,
 		"initOrder": 1000
 	},
 };
@@ -1499,6 +1521,15 @@ function reloadMapList()
 	initDropdown("mapSelection");
 }
 
+/**
+ * Initialize the dropdowns specific to each map.
+ */
+function reloadMapSpecific()
+{
+	reloadBiomeList();
+	reloadTriggerDifficulties();
+}
+
 function reloadBiomeList()
 {
 	let biomeList;
@@ -1526,6 +1557,35 @@ function reloadBiomeList()
 		}))));
 
 	initDropdown("biome");
+}
+
+function reloadTriggerDifficulties()
+{
+	g_TriggerDifficultyList = undefined;
+
+	if (!g_GameAttributes.settings.SupportedTriggerDifficulties)
+		return;
+
+	let triggerDifficultyList;
+	if (g_GameAttributes.settings.SupportedTriggerDifficulties.Values === true)
+		triggerDifficultyList = g_Settings.TriggerDifficulties;
+	else
+	{
+		triggerDifficultyList = g_Settings.TriggerDifficulties.filter(
+			diff => g_GameAttributes.settings.SupportedTriggerDifficulties.Values.indexOf(diff.Name) != -1);
+		if (!triggerDifficultyList.length)
+			return;
+	}
+
+	g_TriggerDifficultyList = prepareForDropdown(
+		triggerDifficultyList.map(diff => ({
+			"Id": diff.Difficulty,
+			"Title": diff.Name,
+			"Description": diff.Tooltip,
+			"Default": diff.Name == g_GameAttributes.settings.SupportedTriggerDifficulties.Default
+		})));
+
+	initDropdown("triggerDifficulty");
 }
 
 function reloadGameSpeedChoices()
@@ -1600,7 +1660,7 @@ function loadPersistMatchSettings()
 
 	// Reload, as the maptype or mapfilter might have changed
 	reloadMapFilterList();
-	reloadBiomeList();
+	reloadMapSpecific();
 
 	g_GameAttributes.settings.RatingEnabled = Engine.HasXmppClient();
 	Engine.SetRankedGame(g_GameAttributes.settings.RatingEnabled);
@@ -1735,7 +1795,7 @@ function ensureUniquePlayerColors(playerData)
 function selectMap(name)
 {
 	// Reset some map specific properties which are not necessarily redefined on each map
-	for (let prop of ["TriggerScripts", "CircularMap", "Garrison", "DisabledTemplates", "Biome", "SupportedBiomes"])
+	for (let prop of ["TriggerScripts", "CircularMap", "Garrison", "DisabledTemplates", "Biome", "SupportedBiomes", "SupportedTriggerDifficulties", "TriggerDifficulty"])
 		g_GameAttributes.settings[prop] = undefined;
 
 	let mapData = loadMapData(name);
@@ -1767,7 +1827,7 @@ function selectMap(name)
 		for (let prop in mapSettings)
 			g_GameAttributes.settings[prop] = mapSettings[prop];
 
-	reloadBiomeList();
+	reloadMapSpecific();
 	unassignInvalidPlayers(g_GameAttributes.settings.PlayerData.length);
 	supplementDefaults();
 }
@@ -2000,7 +2060,7 @@ function updateGUIObjects()
 	g_IsInGuiUpdate = true;
 
 	reloadMapFilterList();
-	reloadBiomeList();
+	reloadMapSpecific();
 	reloadGameSpeedChoices();
 	reloadPlayerAssignmentChoices();
 

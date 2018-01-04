@@ -30,6 +30,9 @@ Trigger.prototype.eventNames =
 
 Trigger.prototype.Init = function()
 {
+	// Difficulty used by trigger scripts (as defined in data/settings/trigger_difficulties.json).
+	this.difficulty = undefined;
+
 	this.triggerPoints = {};
 
 	// Each event has its own set of actions determined by the map maker.
@@ -328,6 +331,19 @@ Trigger.prototype.DoAction = function(msg)
 		this[msg.action](msg.data || null);
 	else
 		warn("Trigger.js: called a trigger action '" + msg.action + "' that wasn't found");
+};
+
+/**
+ * Level of difficulty used by trigger scripts.
+ */
+Trigger.prototype.GetDifficulty = function()
+{
+	return this.difficulty;
+};
+
+Trigger.prototype.SetDifficulty = function(diff)
+{
+	this.difficulty = diff;
 };
 
 Engine.RegisterSystemComponentType(IID_Trigger, "Trigger", Trigger);

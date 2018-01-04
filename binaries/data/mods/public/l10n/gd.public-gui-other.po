@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-29 09:06+0100\n"
-"PO-Revision-Date: 2017-12-29 15:30+0000\n"
+"POT-Creation-Date: 2017-12-31 21:35+0100\n"
+"PO-Revision-Date: 2018-01-01 03:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -124,53 +124,53 @@ msgstr "mm:ss"
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
-#: gui/common/functions_utility_loadsave.js:15
+#: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
 msgstr "yyyy-MM-dd HH:mm:ss"
 
-#: gui/common/functions_utility_loadsave.js:23
+#: gui/common/functions_utility_loadsave.js:22
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
 msgstr "%(dateString)s %(map)s – %(description)s"
 
-#: gui/common/functions_utility_loadsave.js:24
+#: gui/common/functions_utility_loadsave.js:23
 #, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:85
+#: gui/common/functions_utility_loadsave.js:76
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "“%(label)s”"
 
-#: gui/common/functions_utility_loadsave.js:87
+#: gui/common/functions_utility_loadsave.js:78
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Thèid an geama air a shàbhaladh a sguabadh às gu buan, a bheil thu cinnteach?"
 
-#: gui/common/functions_utility_loadsave.js:88
+#: gui/common/functions_utility_loadsave.js:79
 msgid "DELETE"
 msgstr "SGUAB ÀS"
 
-#: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
+#: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
 #: gui/options/options.js:263 gui/options/options.js:316
 #: gui/options/options.js:342 gui/pregame/mainmenu.js:252
 #: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:428
 msgid "No"
 msgstr "Chan eil"
 
-#: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
+#: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
 #: gui/options/options.js:263 gui/options/options.js:316
 #: gui/options/options.js:342 gui/pregame/mainmenu.js:252
 #: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:428
 msgid "Yes"
 msgstr "Tha"
 
-#: gui/common/functions_utility_loadsave.js:106
+#: gui/common/functions_utility_loadsave.js:97
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
 msgstr "Sguab às an nì a thagh thu le %(hotkey)s."
 
-#: gui/common/functions_utility_loadsave.js:111
+#: gui/common/functions_utility_loadsave.js:102
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "Cum %(hotkey)s sìos gus nì a sguabadh às gun dearbhadh."
@@ -3346,8 +3346,8 @@ msgid "CIVIC CENTERS"
 msgstr "IONADAN SÌOBHALTA"
 
 #: gui/text/tips/civic_centres.txt:2
-msgid "- The \"foundation\" of your new colony."
-msgstr "• Seo “bunait” an tuineachaidh ùir agad."
+msgid "- The foundation of your new colony."
+msgstr ""
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -3358,8 +3358,10 @@ msgid "- Can be built in friendly and neutral territory."
 msgstr "• ’S urrainn dhut fear a thogail air ranntair càirdeil no neo-phàirteach."
 
 #: gui/text/tips/civic_centres.txt:8
-msgid "- Train Female Citizens and basic Citizen-Soldiers."
-msgstr "• Trèanaich saoranaich bhoireann is saighdearan-dùthcha bunasach."
+msgid ""
+"- Train citizens: female citizens, infantry citizen soldiers and cavalry "
+"citizen soldiers."
+msgstr ""
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3424,26 +3426,26 @@ msgid "RESOURCE GATHERING"
 msgstr "CRUINNEACHADH STÒRASAN"
 
 #: gui/text/tips/gathering.txt:2
-msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
-msgstr "• Cleachd saighdearan-dùthcha is saoranaich bhoireann gus stòrasan a chruinneachadh."
+msgid "- Use citizen soldiers and female citizens to gather resources."
+msgstr ""
 
 #: gui/text/tips/gathering.txt:4
-msgid "- Female Citizens are bonused with Farming and Foraging."
-msgstr "• Gheibh saoranaich boireann buannachd le àiteach is cruinneachadh."
+msgid "- Female citizens are faster gathering vegetable resources."
+msgstr ""
 
 #: gui/text/tips/gathering.txt:6
-msgid "- Citizen-Soldiers are bonused with Mining."
-msgstr "• Gheibh saighdearan-dùthcha buannachd le tochladh."
+msgid "- Infantry citizen soldiers are faster gathering minerals."
+msgstr ""
 
 #: gui/text/tips/gathering.txt:8
-msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
-msgstr "• Gheibh eachraidh-dùthcha buannachd le sealg."
+msgid "- Cavalry citizen soldiers are faster gathering meat."
+msgstr ""
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
-"- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
-"fights, but the less efficient he is at gathering."
-msgstr "• Mar as àirde an rang aig saighdear-dùthcha (adhartach, seann-ghaisgeach) ’s ann nas fhearr an t‑sabaid a nì e ach cha bhi e cho math air stòrasan a chruinneachadh."
+"- The higher the level of a citizen soldier (advanced, elite), the better he"
+" fights, but the less efficient he is at gathering resources."
+msgstr ""
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
