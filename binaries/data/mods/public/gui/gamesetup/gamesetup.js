@@ -242,7 +242,7 @@ var g_StunEndpoint;
 /**
  * Current username. Cannot contain whitespace.
  */
-var g_Username = Engine.LobbyGetNick();
+var g_Username = Engine.hasOwnProperty('LobbyGetNick') ? Engine.LobbyGetNick() : undefined;
 
 /**
  * States whether the GUI is currently updated in response to network messages instead of user input
