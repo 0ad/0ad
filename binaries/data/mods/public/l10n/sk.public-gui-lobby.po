@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# LeviTaule <levi.taule@gmail.com>, 2017
+# LeviTaule <levi.taule@gmail.com>, 2017-2018
 # LeviTaule <levi.taule@gmail.com>, 2015-2016
 # Marián Mižik <inactive+marian.mizik@transifex.com>, 2015
 # Mário Bulejko, 2015
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2018-01-02 19:12+0000\n"
-"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
+"PO-Revision-Date: 2018-01-03 13:34+0000\n"
+"Last-Translator: LeviTaule <levi.taule@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,7 +57,7 @@ msgstr "Hráč"
 
 #: gui/lobby/lobby.js:54
 msgid "Muted Player"
-msgstr "Stíšený hráč "
+msgstr "Stlmený hráč"
 
 #: gui/lobby/lobby.js:138
 msgid "Disconnected."
@@ -80,7 +80,7 @@ msgstr "%(nick)s sa odpojil."
 
 #: gui/lobby/lobby.js:199
 msgid "You have been muted."
-msgstr "Bol si stíšený."
+msgstr "Bol si stlmený."
 
 #: gui/lobby/lobby.js:200
 #, javascript-format
@@ -89,30 +89,30 @@ msgstr "%(nick)s bol stmený."
 
 #: gui/lobby/lobby.js:203
 msgid "You are now a moderator."
-msgstr "Teraz si moderátor."
+msgstr "Odteraz si moderátor."
 
 #: gui/lobby/lobby.js:204
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr "%(nick)s je moderátor."
+msgstr "%(nick)s je odteraz moderátor."
 
 #: gui/lobby/lobby.js:207
 msgid "You have been unmuted."
-msgstr "Už nie si stíšený."
+msgstr "Už nie si stlmený."
 
 #: gui/lobby/lobby.js:208
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr "%(nick)s už nie je stíšený."
+msgstr "%(nick)s už nie je stlmený."
 
 #: gui/lobby/lobby.js:210
 msgid "You are not a moderator anymore."
-msgstr "Už viac nie si moderátor."
+msgstr "Už nie si moderátor."
 
 #: gui/lobby/lobby.js:211
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr "%(nick)s už viac nie je moderátor."
+msgstr "%(nick)s už nie je moderátor."
 
 #: gui/lobby/lobby.js:226
 #, javascript-format
@@ -125,11 +125,11 @@ msgstr "Poznámka"
 
 #: gui/lobby/lobby.js:299
 msgid "Set your state to 'Away'."
-msgstr "Nastav svoj stav 'Preč'"
+msgstr "Nastav svoj stav na 'Som preč'."
 
 #: gui/lobby/lobby.js:306
 msgid "Set your state to 'Online'."
-msgstr "Nastav svoj stav 'Online'."
+msgstr "Nastav svoj stav na 'Online'."
 
 #: gui/lobby/lobby.js:313
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
@@ -137,7 +137,7 @@ msgstr "Vyhoď konkrétneho hráča z lobby. Použitie: /kick nick dôvod"
 
 #: gui/lobby/lobby.js:321
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "Zablokuj kontrkétneho hráča v lobby. Použitie: /ban nick dôvod"
+msgstr "Zablokuj konkrétneho hráča v lobby. Použitie: /ban nick dôvod"
 
 #: gui/lobby/lobby.js:329
 msgid "Show this help."
@@ -155,13 +155,13 @@ msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:349
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "Pošli správu o sebe. Príklad: /me idem plávať."
+msgstr "Pošli správu o sebe. Príklad: /me ide plávať."
 
 #: gui/lobby/lobby.js:353
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr "Pošli text ako správu (aj keď začína s lomítkom). Príklad: /say /help je super príkaz"
+msgstr "Pošli text ako správu (aj keď začína lomkou). Príklad: /say /help je super príkaz."
 
 #: gui/lobby/lobby.js:357
 msgid "Clear all chat scrollback."

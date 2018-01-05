@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Ender Türsen <ado.ender@gmail.com>, 2014
+# ali topçu <ali134636@gmail.com>, 2018
 # Cengizhan Asıliskender <ceas08@gmail.com>, 2016
 # coolland, 2014
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
@@ -25,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-01 03:13+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-04 19:54+0000\n"
+"Last-Translator: ali topçu <ali134636@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -712,7 +713,7 @@ msgstr "Gizli çelik işleme teknikleri kılıç bıçaklarına ayırt edici ve 
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "Tüm kılıçlı piyadeler ve topuzlu birlikler için %+20 çentik saldırısı."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -1082,7 +1083,7 @@ msgstr "Tezgah yerleşimciler için daha iyi giysiler üretilmesini sağladı. Y
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
-msgstr ""
+msgstr "Kadın vatandaşlar için +50% sağlık."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1178,7 +1179,7 @@ msgstr "Nüfusa karşı Kadınlar"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr ""
+msgstr "Nüfusa karşı Kadınlar"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1229,7 +1230,7 @@ msgstr "Şehir Durumu"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "Dummy technology for use in templates requirements, replaced by phase_city_generic or phase_city_{civ}."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1280,7 +1281,7 @@ msgstr "Kasaba Aşaması"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "Dummy technology for use in templates requirements, replaced by phase_town_generic or phase_town_{civ}."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1566,7 +1567,7 @@ msgstr "Saldırılara karşı yapıları güçlendir."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "Savunma kulesi zırh seviyesini 2 seviye arttırır."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1594,7 +1595,7 @@ msgstr "Karakollar tarafsız bölgede iki kat daha uzun hayatta kalır."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "İleri karakollar için -50% bölge çürümek oranı."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1606,7 +1607,7 @@ msgstr "Kale Mazgalları kulenin dibinde düşman vurmaya izin verir."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "Savunma kulesi asgari menzil aralığını kaldırır."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1618,7 +1619,7 @@ msgstr "Ok atıcılar ateşli okların azami menzilini arttırır."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "Savunma kulelerinin azami menzili 8 metre artar"
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1630,7 +1631,7 @@ msgstr "Karakollar gözcülük için büyük görüş alanı alırlar."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "İleri karakollar için +50% görüş alanı."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1642,7 +1643,7 @@ msgstr "bir gece vakti uyanıklık artar."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Karakol kulelerinden bir ok savunma kulelerine ekleyin."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -2331,7 +2332,7 @@ msgstr "Spartalılar dünyanın en büyük ordusuna sahip değillerdi, ama kendi
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population."
-msgstr "Spartalılar %10 daha az maximum nufüs limitine sahiptir."
+msgstr "Spartalı lar %10 daha az azami nufüs limitine sahiptir."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2429,7 +2430,7 @@ msgstr "Mauryalılar şehir duvarlarını Hindistan'da çok bulunan bir kaynak o
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Mauryan şehir surlarının -20% daha az dayanıklılığı ve -20% daha az üretim süresi vardır."
+msgstr "Mauryan şehir surlarının -20% daha az sağlık ve -20% daha az üretim süresi vardır."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2532,7 +2533,7 @@ msgstr "Piyade Askere Çağırma"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "Tüm süvari -20% eğitim süresi, aynı zamanda% -5 sağlık. Süvari Aboneliğin kilidini açar."
+msgstr "Tüm süvari -20% eğitmek süresi, aynı zamanda% -5 sağlık. Süvari Aboneliğin kilidini açar."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""

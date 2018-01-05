@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-01 10:56+0000\n"
+"PO-Revision-Date: 2018-01-05 05:17+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -2641,7 +2641,7 @@ msgstr "عدد تأثيرات المظلّلات. إعادة تشغيل اللع
 
 #: gui/options/options.json[1].options[3].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "تأثيرات المظلّلات"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Enable shadows"
@@ -2676,11 +2676,11 @@ msgstr ""
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "ميز خريطة الظّلال. القيم العالية قد تسبّب انهيار اللعبة إن كنت تستخدم بطاقة رسوميّات ذاكرتها قليلة!"
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "جودة الظّلال"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Smooth shadows"
@@ -2710,17 +2710,17 @@ msgstr "الجسيمات"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "إن عُطّل فاستخدم أدنى الإعدادات الممكنة لتصيير المياه. يجعل هذا بقية الإعدادات ليست ذا قيمة."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Water Effects"
-msgstr ""
+msgstr "تأثيرات المياه"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "استخدم تأثيرات عالية الجودة للمياه لتصيير الموجات والرغوة على الشاطئ، ومسارات السفن."
 
 #: gui/options/options.json[1].options[10].label
 msgid "HQ Water Effects"
@@ -2901,7 +2901,7 @@ msgstr ""
 
 #: gui/options/options.json[3].options[2].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "صعوبة الذّكاء الاصطناعيّ المبدئيّة"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Random"
@@ -2921,7 +2921,7 @@ msgstr "دفاعيّة"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "سلوك الذّكاء الاصطناعيّ المبدئيّ."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Behavior"
@@ -3216,7 +3216,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "مع أنّه سهل نسبيًّا للاعبين المتمرّسين، مستوى الذّكاء الاصطناعيّ المبدئيّ يخلق نوعًا من التّحدّي لللاعبين الجدد الذي لن يُتقنوا أساسيّات اللعبة الرّئيسيّة. يُنصح بأن يبدأ المبتدئين اللعب ضدّ ذكاء اصطناعيّ منخفض المستوى (معزول أو سهل جدًّا). غيّر مستوى الذّكاء الاصطناعيّ بنقر أيقونة التّرس بجانب اللاعب الذي تريد تعديله في لوحة التّحديد أعلاه."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3254,21 +3254,21 @@ msgid ""
 "- Build anywhere on the map, even in enemy territory. Good for building a "
 "secret base behind enemy lines or to consolidate gains within enemy "
 "territory."
-msgstr "- ابنِ في أيّ مكان على الخريطة، حتّى في إقليم العدوّ. جيّد لبناء قاعدة سريّة خلف حدود العدوّ أو تعزيز المكاسب في إقليمه."
+msgstr "- ابنِه في أيّ مكان على الخريطة، حتّى في إقليم العدوّ. مناسبٌ لبناء قاعدة سريّة خلف حدود العدوّ أو تعزيز المكاسب في إقليمه."
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr ""
+msgstr "- ينتقل لحوزة مالك الإقيلم إن بُني في إقليم غير حليف"
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "-بناء اسلحة الحصار وتطوير المجندين."
+msgstr "-اصنع فيه أسلحة الحصار ودرّب الجنود المواطنين."
 
 #: gui/text/tips/army_camp.txt:8
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "- يحمي ما أقصاه ٤٠ وحدة لمعالجة الوحدات وحماية مخيّم الجيش من الهجومات وانتقال الملكيّة."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3278,17 +3278,17 @@ msgstr "الثّكنة"
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "- درّب فيها كلّ الجنود المواطنين. يمكن أن تفتح بعض الفصائل تدريب الأبطال أيضًا."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr ""
+msgstr "- ابحث في التّقنيّات العسكريّة الفريدة لكلّ فصيل."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "- ابنِ واحدًا منها مبكّرًا لتدريب الجنود المواطنين وأنت تتقدّم بمستوطنتك."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
@@ -3304,13 +3304,13 @@ msgstr ""
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "- ابحث في ترقيات الأسلحة والدّروع لوحداتك."
 
 #: gui/text/tips/blacksmith.txt:6
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- احمِ فيه جنديّ مواطن للبحث بسرعة (لم تُنجز بعد)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3318,7 +3318,7 @@ msgstr "فرقة القرطاجيّون المقدّسة"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "- الرّمّاحون الأبطال والرّمّاحون الخيّالة الأبطال لقرطاج."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
@@ -3338,7 +3338,7 @@ msgstr "المنجنيق"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "- محرّكات حصار مسافيّة جيّدة ضدّ المباني."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""

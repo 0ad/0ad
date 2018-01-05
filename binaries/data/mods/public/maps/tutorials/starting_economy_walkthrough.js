@@ -261,7 +261,7 @@ Trigger.prototype.tutorialGoals = [
 		],
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen_farmstead")g
+			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen_farmstead")
 				this.NextGoal();
 		},
 		"OnOwnershipChanged": function(msg)

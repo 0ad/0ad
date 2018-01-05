@@ -240,11 +240,6 @@ var g_ServerPort;
 var g_StunEndpoint;
 
 /**
- * Current username. Cannot contain whitespace.
- */
-var g_Username = Engine.LobbyGetNick();
-
-/**
  * States whether the GUI is currently updated in response to network messages instead of user input
  * and therefore shouldn't send further messages to the network.
  */
@@ -2450,7 +2445,7 @@ function sendRegisterGameStanzaImmediate()
 	let stanza = {
 		"name": g_ServerName,
 		"port": g_ServerPort,
-		"hostUsername": g_Username,
+		"hostUsername": Engine.LobbyGetNick(),
 		"mapName": g_GameAttributes.map,
 		"niceMapName": getMapDisplayName(g_GameAttributes.map),
 		"mapSize": g_GameAttributes.mapType == "random" ? g_GameAttributes.settings.Size : "Default",

@@ -32,6 +32,10 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Klicke zuerst mit der linken Maustaste auf eine Bürgerin, dann mit der "
+"rechten Maustaste auf einen Beerenstrauch in der Nähe, um sie Nahrung "
+"sammeln zu lassen. Bürgerinnen können pflanzliche Nahrung schneller sammeln "
+"als andere Einheiten."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -190,6 +194,8 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the female citizen icon."
 msgstr ""
+"Halten die Umschalttaste gedrückt und klicke auf das Symbol für den "
+"weiblichen Bürger."
 
 #: maps/tutorials/Introductory_Tutorial.js:248
 msgid ""
@@ -303,6 +309,8 @@ msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Sie können die Zoomstufe mit dem Mausrad und der Kameraansicht mit den "
+"Pfeiltasten der Tastatur ändern.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
@@ -369,6 +377,13 @@ msgid ""
 "citizen soldiers can gather any land resources while cavalry citizen "
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Du hast bei den Einheiten zu Anfang zwei Haupttypen: Bürgerinnen und "
+"Bürgersoldaten. Bürgerinnen sind rein wirtschaftliche Einheiten; sie haben "
+"wenige TP, keine Rüstung und wenig bis gar keinen Angriff. Bürgersoldaten "
+"sind standardmäßig Arbeiter, aber sie können Waffen zum Kämpfen benutzen, "
+"wenn sie gebraucht werden. Es gibt zwei Kategorien von Bürgersoldaten: "
+"Infanterie und Kavallerie. Bürgerinnen und Infanterie können alle Ressourcen"
+" abbauen, während berittene Bürger nur Fleisch von Tieren jagen können.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -386,6 +401,10 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"Derzeit sind Nahrung und Holz die wichtigsten Ressourcen, um deine "
+"Wirtschaft zu entwickeln, also fangen wir an, Nahrung zu sammeln. "
+"Bürgerinnen sammeln pflanzliche Nahrung schneller als ihre männlichen "
+"Gegenparts.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -426,6 +445,11 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"Du kannst auf einen leeren Bereich der Karte klicken, um die Auswahl "
+"zurückzusetzen. Versuche jede dieser Methoden, bevor du alle deinen "
+"Bürgerinnen aufträgst, die Trauben südöstlich deines Verwaltungssitzes zu "
+"sammeln, indem du auf die Trauben rechtsklickst, während du alle Bürgerinnen"
+" ausgewählt hast."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -499,10 +523,16 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Da Bürgersoldaten im Holzsammeln besser als Bürgerinnen sind, wähle den "
+"Verwaltungssitz aus, halte die Umschalttaste gedrückt und klicke auf das "
+"zweite Einheiten-Symbol, die Hopliten (Umschalt+Klick bildet fünf Einheiten "
+"auf einmal aus). Du kannst Einheiten auch mit einfachen Klicks einzeln "
+"ausbilden, aber 5 Einheiten auf einmal dauern weniger lange als sie einzeln "
+"auszubilden."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
-msgstr ""
+msgstr "Vergiss nicht, mit Umschalt+Klick mehrere Einheiten auszubilden."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
@@ -572,6 +602,8 @@ msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"Die ausgewählten Arbeiter beginnen automatisch das Gebäude zu bauen, wenn du"
+" das Fundament platziert hast."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
@@ -587,6 +619,9 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
+"Bilden wir noch ein paar Bürgerinnen aus, um mehr Nahrung zu sammeln. Wähle "
+"den Verwaltungssitz aus und Umschalt+Klick auf das Bürgerinnen-Symbol, um 5 "
+"auszubilden."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -651,12 +686,23 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Wähle zwei deiner neu ausgebildeten Bürgerinnen aus und befiehl ihnen, diese"
+" Häuser in dem freien Raum östlich des Verwaltungssitzes zu bauen. Wähle "
+"dafür die Bürgerinnen aus, klicke auf das Haussymbol im unteren rechten Feld"
+" und Umschalt+Klick auf die Position auf der Karte, wo du das erste Haus "
+"bauen willst, und Umschalt+Klick dann auf die Position des zweiten Hauses "
+"(beim Erteilen der Befehle reiht ein Umschaltklick den Befehl in die "
+"Warteschlange ein und die Einheiten wechseln automatisch zum nächsten Befehl"
+" in der Warteschlange, wenn fertig sind). Drücke Escape, um den Haus-Cursor "
+"loszuwerden, damit du nicht die ganze Karte mit Häusern zustellst.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two female citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"Achtung: Um nur zwei Bürgerinnen auszuwählen, klicke auf die Erste und "
+"Umschalt+Klick dann auf die Zweite, um sie der Auswahl hinzuzufügen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -682,6 +728,9 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Wähle die drei übrigen (untätigen) Bürgerinnen und befiehl ihnen, einen "
+"Bauernhof in die Mitte des großen, offenen Gebiets westlich des "
+"Verwaltungssitzes zu bauen.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -702,6 +751,14 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Wenn du versuchst, die drei untätigen weiblichen Bürger durch Klicken und "
+"Ziehen eines Auswahlrechtecks auszuwählen, können versehentlich zusätzliche "
+"Einheiten auswählt werden. Um dies zu vermeiden, halten die Taste I beim "
+"auswählen gedrückt, so dass nur freie Einheiten ausgewählt werden. Wenn du "
+"versehentlich eine Kavallerie-Einheit auswählst, halte Strg gedrückt und "
+"klicke auf das Kavallerie-Einheitensymbol des Auswahlfensters unten auf dem "
+"Bildschirm, um die Kavallerie-Einheit aus der aktuellen Auswahl zu "
+"entfernen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
@@ -726,6 +783,9 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Wenn beide Häuser gebaut sind, wähle deine zwei Bürgerinnen aus und befiehl "
+"ihnen, so nahe wie möglich beim Bauernhof, der ein Lager für alle Arten von "
+"Nahrung ist, ein Feld zu bauen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
@@ -770,6 +830,8 @@ msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Klicke jetzt dreimal auf das Bürgerinnen-Symbol rechts unten, um drei "
+"weitere Bäuerinnen auszubilden."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Do not shift-click to produce a single unit."
@@ -777,7 +839,7 @@ msgstr "Klicken ohne Umschalt produziert eine einzelne Einheit."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the female citizen icon."
-msgstr ""
+msgstr "Klicke auf das Symbol für den weiblichen Bürger."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""

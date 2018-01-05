@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-21 09:03+0200\n"
-"PO-Revision-Date: 2018-01-01 10:54+0000\n"
+"PO-Revision-Date: 2018-01-05 08:11+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "مبنى مدني"
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr "مدني"
+msgstr "مدنيّ"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Civic Center"
@@ -88,7 +88,7 @@ msgstr "بلدة"
 
 #: simulation/templates/template_structure_civic_house.xml:35
 msgid "Increase the population limit."
-msgstr "يزيد حد السكان."
+msgstr "يزيد حدّ السّكانّيّة."
 
 #: simulation/templates/template_structure_civic_house.xml:37
 #: simulation/templates/template_structure_defense_outpost.xml:65
@@ -129,7 +129,7 @@ msgstr "برج دفاعيّ"
 msgid ""
 "Shoots arrows. Garrison to provide extra defense. Needs the murder holes "
 "tech to protect its foot."
-msgstr "يطلق السهام. ادخل القوات لتمنحه دفاع أكثر. يحتاج تقنيه \"ثقوب القتل\" لحمايه قاعدته."
+msgstr "يُطلق السّهام. احمِ فيه لتوفير دفاع أقوى. يحتاج تقنيّة ”murder holes“ لحماية قاعدته."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
@@ -260,7 +260,7 @@ msgstr "مبنى العسكرية"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr "الجيش"
+msgstr "عسكريّ"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
@@ -374,7 +374,7 @@ msgstr "مسرح يوناني"
 
 #: simulation/templates/template_structure_special_theatron.xml:26
 msgid "Théātron"
-msgstr "ثِيَاْتْرُوْن"
+msgstr "ثِيَاتْرُون"
 
 #: simulation/templates/template_structure_wonder.xml:51
 msgid ""
@@ -391,38 +391,38 @@ msgstr "عجيبة"
 #: simulation/templates/structures/mace_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
 msgid "Stratēgeîon"
-msgstr "ستراتيجيون"
+msgstr "سْتْرَاتِيجْيُون"
 
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
 msgid "Khalkeṓn"
-msgstr "خالكيون"
+msgstr "خَالْكْيُون"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
 #: simulation/templates/structures/spart_civil_centre.xml:8
 msgid "Agorá"
-msgstr "أغورا"
+msgstr "أَغُورَا"
 
 #: simulation/templates/structures/athen_corral.xml:12
 #: simulation/templates/structures/mace_corral.xml:12
 #: simulation/templates/structures/sele_corral.xml:12
 #: simulation/templates/structures/spart_corral.xml:12
 msgid "Épaulos"
-msgstr "إپاولوس"
+msgstr "إِپَاوْلُوس"
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
 #: simulation/templates/structures/mace_defense_tower.xml:9
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgíon"
-msgstr "پيرجيون"
+msgstr "پِيرْجْيُون"
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
 #: simulation/templates/structures/spart_dock.xml:12
 msgid "Limḗn"
-msgstr "ليمين"
+msgstr "لِيمِين"
 
 #: simulation/templates/structures/athen_farmstead.xml:12
 #: simulation/templates/structures/mace_farmstead.xml:12
@@ -435,7 +435,7 @@ msgstr "سيتابليون"
 #: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agrós"
-msgstr "أجروس"
+msgstr "أَغْرُوس"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
@@ -447,7 +447,7 @@ msgstr "أبنى الات حصار. دعمها بالجنود من اجل دفا
 
 #: simulation/templates/structures/athen_gymnasion.xml:23
 msgid "Gymnasium"
-msgstr "جينازيوم"
+msgstr "مبنى رياضة"
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnásion"
@@ -499,7 +499,7 @@ msgstr "درّب الأشاوس. ابحث في التقنيات الخاصة."
 #: simulation/templates/structures/sele_storehouse.xml:5
 #: simulation/templates/structures/spart_storehouse.xml:5
 msgid "Apothḗkē"
-msgstr "أپوثيكي"
+msgstr "أَپُوثِيكِي"
 
 #: simulation/templates/structures/athen_temple.xml:9
 msgid "Naṓs"
@@ -510,7 +510,7 @@ msgstr "ناووس"
 #: simulation/templates/structures/sele_wall_gate.xml:9
 #: simulation/templates/structures/spart_wall_gate.xml:9
 msgid "Pýlai"
-msgstr "پيلاي"
+msgstr "پِيلَاي"
 
 #: simulation/templates/structures/athen_wall_long.xml:10
 #: simulation/templates/structures/athen_wall_medium.xml:10
@@ -529,14 +529,14 @@ msgstr "پيلاي"
 #: simulation/templates/structures/spart_wall_short.xml:10
 #: simulation/templates/structures/spart_wallset_stone.xml:5
 msgid "Teîkhos"
-msgstr "تيخوس"
+msgstr "تِيخُوس"
 
 #: simulation/templates/structures/athen_wall_tower.xml:9
 #: simulation/templates/structures/mace_wall_tower.xml:9
 #: simulation/templates/structures/sele_wall_tower.xml:9
 #: simulation/templates/structures/spart_wall_tower.xml:9
 msgid "Pýrgos"
-msgstr "بيّرچوس"
+msgstr "بِيّرغُوس"
 
 #: simulation/templates/structures/athen_wonder.xml:15
 #: simulation/templates/structures/mace_wonder.xml:15
@@ -552,7 +552,7 @@ msgstr "ناووس بارثينون"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr "تحضر المجد الى حضارتنا وتضيف مناطق واسعه من الارض الى امبراطوريتك. دعم بالجنود ليتم معالجتهم فى سرعه فائقه."
+msgstr "اجلب المجد إلى حضارتك ووسّعها بأراضٍ كبيرة لتعظُم إمبراطوريّتك. احمِ فيها الوحدات لمعالجتهم بسرعة فائقة."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -567,12 +567,12 @@ msgstr "أموريداس"
 #: simulation/templates/structures/brit_civil_centre.xml:12
 #: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Caer"
-msgstr "كير"
+msgstr "كِير"
 
 #: simulation/templates/structures/brit_corral.xml:9
 #: simulation/templates/structures/gaul_corral.xml:9
 msgid "Cavalidos"
-msgstr "كاڤاليدوس"
+msgstr "كَاڤَالِيدُوس"
 
 #: simulation/templates/structures/brit_crannog.xml:13
 msgid "Island Settlement"
@@ -603,7 +603,7 @@ msgstr "فرمدي"
 #: simulation/templates/structures/brit_field.xml:5
 #: simulation/templates/structures/gaul_field.xml:5
 msgid "Varmo"
-msgstr "ڤارمو"
+msgstr "ڤَارْمُو"
 
 #: simulation/templates/structures/brit_fortress.xml:21
 msgid "Brythonic Broch"
@@ -616,7 +616,7 @@ msgstr "درِّب خارقين وأبطال بريطانيين، وأنشئ م�
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
 msgid "Annedd"
-msgstr "أنّد"
+msgstr "أَنِّدّ"
 
 #: simulation/templates/structures/brit_kennel.xml:37
 msgid "Kennel"
@@ -686,7 +686,7 @@ msgstr "درِّب جنودًا مواطنين شمال أفريقيين، وط�
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
-msgstr "مِركَاز"
+msgstr "مِرْكَاز"
 
 #: simulation/templates/structures/cart_corral.xml:12
 msgid "Rēfet"
@@ -695,11 +695,11 @@ msgstr "رفت"
 #: simulation/templates/structures/cart_defense_tower.xml:9
 #: simulation/templates/structures/cart_wall_tower.xml:12
 msgid "Mijdil"
-msgstr "مجدل"
+msgstr "مِجْدَل"
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
-msgstr "ميناء تجاري"
+msgstr "ميناء تجاريّ"
 
 #: simulation/templates/structures/cart_dock.xml:18
 msgid "Namel"
@@ -745,7 +745,7 @@ msgstr "أحوزاه"
 
 #: simulation/templates/structures/cart_field.xml:5
 msgid "Šadd"
-msgstr "شادّ"
+msgstr "شَدّ"
 
 #: simulation/templates/structures/cart_fortress.xml:9
 msgid "Blockhouse Fort"
@@ -777,27 +777,27 @@ msgstr "جدار منخفض"
 
 #: simulation/templates/structures/cart_storehouse.xml:9
 msgid "Maḥṣabah"
-msgstr "محصبة"
+msgstr "مَحْصَبَة"
 
 #: simulation/templates/structures/cart_super_dock.xml:37
 msgid "Naval Shipyard"
-msgstr "مرفأ حربي"
+msgstr "مَسفن حربيّ"
 
 #: simulation/templates/structures/cart_super_dock.xml:38
 msgid "Cothon"
-msgstr "كوثون"
+msgstr "كُوثُون"
 
 #: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Shipyard"
-msgstr "مرفأ سفن"
+msgstr "مَسفن"
 
 #: simulation/templates/structures/cart_super_dock.xml:41
 msgid "Construct and repair mighty warships."
-msgstr "أنشئ سفن حرب قوية ورممها."
+msgstr "اصنع فيه سفن حرب قويّة ورمّمها."
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
-msgstr "مقدش"
+msgstr "مَقْدَش"
 
 #: simulation/templates/structures/cart_temple.xml:16
 msgid ""
@@ -849,11 +849,11 @@ msgstr "جند متعصبون خالصون."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:9
 msgid "Duro"
-msgstr "دورو"
+msgstr "دُورُو"
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
-msgstr "كاسيرنا"
+msgstr "كَاسِيرْنَا"
 
 #: simulation/templates/structures/iber_blacksmith.xml:5
 msgid "Harotz"
@@ -924,18 +924,18 @@ msgstr "أُلّا"
 
 #: simulation/templates/structures/iber_temple.xml:12
 msgid "Loki"
-msgstr "لوكي"
+msgstr "لُوكِي"
 
 #: simulation/templates/structures/iber_wall_gate.xml:9
 msgid "Biko Sarbide"
-msgstr "بوابه مزدوجه"
+msgstr ""
 
 #: simulation/templates/structures/iber_wall_long.xml:29
 #: simulation/templates/structures/iber_wall_medium.xml:23
 #: simulation/templates/structures/iber_wall_short.xml:10
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
-msgstr "جدار واسع"
+msgstr ""
 
 #: simulation/templates/structures/iber_wonder.xml:9
 msgid "Cancho Roano"
@@ -952,12 +952,12 @@ msgstr "تيكيزما"
 #: simulation/templates/structures/mace_fortress.xml:10
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr "درب الابطال والمغاوير. عزز بالجنود من اجل دفاع صلب."
+msgstr "درّب الأبطال والأشاوس. احمِ فيه الجنود لدفاع سميك."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
-msgstr "مكتبه او كتاب مقدس"
+msgstr "بِبليوثييك"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
@@ -969,7 +969,7 @@ msgstr "ورشة حصار"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr "يبنى ادوات الحصار. يطور تقنيات الحصار."
+msgstr "تبني محرّكات الحصار. استخدمها للبحث في تقنيّات الحصار."
 
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
@@ -990,7 +990,7 @@ msgstr "رَاجَادَانْكَا"
 
 #: simulation/templates/structures/maur_corral.xml:12
 msgid "Gotra"
-msgstr "عشيرة"
+msgstr "غُوتْرَا"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
 msgid "Udarka"
@@ -1010,7 +1010,7 @@ msgstr "ڤَارَانَاسَالَا"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:28
 msgid "Train elephant units."
-msgstr "درِّب وحدات فيلة."
+msgstr "درّب فيها وحدات فيلة."
 
 #: simulation/templates/structures/maur_farmstead.xml:12
 msgid "Kantu"
@@ -1018,11 +1018,11 @@ msgstr "كَانْتُو"
 
 #: simulation/templates/structures/maur_field.xml:5
 msgid "Kshetra"
-msgstr "كشيترا"
+msgstr "كَشِيتْرَا"
 
 #: simulation/templates/structures/maur_fortress.xml:5
 msgid "Durg"
-msgstr "دورج"
+msgstr "دُورْغ"
 
 #: simulation/templates/structures/maur_fortress.xml:6
 msgid "Train heroes and champion units."
@@ -1034,7 +1034,7 @@ msgstr "جرهام"
 
 #: simulation/templates/structures/maur_market.xml:12
 msgid "Vipana"
-msgstr "فابانا"
+msgstr "ڤِيپَانَا"
 
 #: simulation/templates/structures/maur_outpost.xml:5
 msgid "Uparaksana"
@@ -1060,7 +1060,7 @@ msgstr "المرسوم العمودى المشهور من أشوكا. يزيد �
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
-msgstr "خالا"
+msgstr "خَالّا"
 
 #: simulation/templates/structures/maur_temple.xml:12
 msgid "Devalaya"
@@ -1068,7 +1068,7 @@ msgstr "ديفلايا"
 
 #: simulation/templates/structures/maur_wall_gate.xml:9
 msgid "Dwara"
-msgstr "دوارا"
+msgstr "دُوَارَا"
 
 #: simulation/templates/structures/maur_wall_long.xml:35
 #: simulation/templates/structures/maur_wall_medium.xml:29
@@ -1127,7 +1127,7 @@ msgstr "جنّد وحدات مشاة مواطنين."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
-msgstr "أرشتيشتا"
+msgstr "أَرْشَتِيشْتَا"
 
 #: simulation/templates/structures/pers_civil_centre.xml:8
 msgid "Provincial Governor"
@@ -1148,11 +1148,11 @@ msgstr "پَايَاوْد"
 
 #: simulation/templates/structures/pers_dock.xml:12
 msgid "Nāvašta"
-msgstr "نافستى"
+msgstr "نَاڤَاسْتَا"
 
 #: simulation/templates/structures/pers_farmstead.xml:12
 msgid "Kaštašta"
-msgstr "كاستاستا"
+msgstr "كَاشْتَاشْتَا"
 
 #: simulation/templates/structures/pers_field.xml:5
 msgid "Kaštrya"
@@ -1180,7 +1180,7 @@ msgstr "درّب فيلة حرب ومرتزقة كردكيّون."
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
-msgstr "هوڤادا"
+msgstr "هُوڤَادَا"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "Persian Special Building"
@@ -1214,15 +1214,15 @@ msgstr "پَارَاسْپَا"
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
-msgstr "أسطبلات"
+msgstr "إسطبلات"
 
 #: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
-msgstr "درِّب وحدات خيالة مواطنين."
+msgstr "درّب وحدات خيّالة مواطنين."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
-msgstr "أسياه"
+msgstr "أَسْيَاه"
 
 #: simulation/templates/structures/pers_tacara.xml:27
 msgid "Taçara"
@@ -1241,7 +1241,7 @@ msgstr "ديفتاربانام"
 #: simulation/templates/structures/pers_wall_short.xml:10
 #: simulation/templates/structures/pers_wallset_stone.xml:5
 msgid "Para"
-msgstr "پارا"
+msgstr "پَارَا"
 
 #: simulation/templates/structures/pers_wonder.xml:12
 msgid "Hanging Gardens of Babylon"
@@ -1289,7 +1289,7 @@ msgstr ""
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr "زيادة الحد السكانى. لانها مصنوعة من قوالب الطين، المنازل المصرية مجانية للبناء، لكنها فى المقابل ضعيفة جدا."
+msgstr "يزيد حدّ السّكّانيّة. لأنّها مصنوعة من الأحجار الطّينيّة، المنازل المصريّة رخيصة البناء، إلّا أنّها ضعيفة جدًّا."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1311,7 +1311,7 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
-msgstr "مخيم المرتزقة"
+msgstr "مخيّم المرتزقة"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeía Misthophórōn"
@@ -1321,7 +1321,7 @@ msgstr "ستربوديا مستفون"
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "ثكنات رخيصة مثل المبنى الذى يبنى فى منطقة طبيعية، لكن لا يتطلب سيطره مكانية. يدرب المرتزقة."
+msgstr "مباني رخيصة تشبه الثّكنات يمكن بناؤها في الأقاليم المحايدة، ولكنّها لا تشكّل تأثيرًا إقليميًّا. درّب فيها المرتزقة."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
@@ -1437,7 +1437,7 @@ msgstr "برج السور"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
-msgstr "بوابة سور الحصار"
+msgstr "بوّابة سور حصار"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummunitionis"
@@ -1477,7 +1477,7 @@ msgstr "رِسِپْتَاكُولُوم"
 
 #: simulation/templates/structures/rome_temple.xml:9
 msgid "Aedes"
-msgstr "إيديس"
+msgstr "إِيدِيس"
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
@@ -1493,7 +1493,7 @@ msgstr "يدرب المعالجين. ادخل الوحدات لكي تعالجه
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
-msgstr "معبد فيستا"
+msgstr "معبد ڤِستا"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "Aedes Vestae"
@@ -1552,7 +1552,7 @@ msgstr "ليمنس"
 
 #: simulation/templates/structures/sele_farmstead.xml:12
 msgid "Sītobólion"
-msgstr "سيتوبوليون"
+msgstr "سِيتُوبُولْيُون"
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
@@ -1562,7 +1562,7 @@ msgstr "فيوريون"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr "يبنى آلات الحصار ويدرب الابطال. حصن بالجنود للدفاع اقوى."
+msgstr "يبني محرّكات الحصار ويدرّب الأبطال. احمِ فيه الجنود لدفاع متين."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1570,7 +1570,7 @@ msgstr "بيبليثكون"
 
 #: simulation/templates/structures/sele_market.xml:5
 msgid "Empórion"
-msgstr "إمپوريون"
+msgstr "إِمْپُورْيُون"
 
 #: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
@@ -1598,7 +1598,7 @@ msgstr "تيكشيما"
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "بناء آلات الحصار، تسع حتى 20 جندي داخلها لدفاع متين."
+msgstr "يبني محرّكات الحصار. احمِ فيه ما يصل ٢٠ جنديًّا لدفاع متين."
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
@@ -1610,7 +1610,7 @@ msgstr "جيرونتيا"
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
-msgstr "درِّب أبطال."
+msgstr "درّب فيه الأشواس."
 
 #: simulation/templates/structures/spart_syssiton.xml:24
 msgid "Military Mess Hall"
@@ -1628,4 +1628,4 @@ msgstr "درِّب الخارقين الأسبارطيين وهوبليت أبط
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr "يحضر العظمة إلى حضارتنا ويضيف مناطق شاسعة من الأرض إلى امبراطوريتنا. حصن بالوحدات لكى تعالجهم بسرعه."
+msgstr "اجلب المجد إلى حضارتك ووسّعها بأراضٍ كبيرة لتعظُم إمبراطوريّتك. احمِ فيها الوحدات لمعالجتهم بسرعة."
