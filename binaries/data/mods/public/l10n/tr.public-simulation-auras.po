@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# ali topçu <ali134636@gmail.com>, 2018
 # Cengizhan Asıliskender <ceas08@gmail.com>, 2016
 # Emre Yildirim <sendtoemre@gmail.com>, 2017
 # Ender Türsen <ado.ender@gmail.com>, 2017
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-17 08:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-04 20:11+0000\n"
+"Last-Translator: ali topçu <ali134636@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr "Tersane Onarımı"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "Tersaneye yerleştirilen gemiler her saniye 10 CP yeniler."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -129,11 +130,11 @@ msgstr "Sahip olduğu harikada 40 kişi tarafından nüfus sınırını daha da 
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
-msgstr ""
+msgstr "Atölye Onarımı"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr ""
+msgstr "Atölyeye yerleştirilen kuşatma üniteleri her saniye 3 can yeniler."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -153,7 +154,7 @@ msgstr "Müttefik şifacılar için -20% kaynak masrafı."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr "Ticariustalar\n"
+msgstr "Ticaret ustaları"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
@@ -253,7 +254,7 @@ msgstr "Ekonomik Reformlar"
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "+15% gather rate for workers."
-msgstr ""
+msgstr "Hakim birkaç ekonomik yenilik yaparak ticaret ve tarım teşvikini artırır.İşçiler için +15% toplama oranı."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -263,7 +264,7 @@ msgstr "Ekonomik Servet"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "-10% cost for economic technologies."
-msgstr ""
+msgstr "Hakim ağırlık ve uzunluk ölçülerine yeni bir sistem getirir,babalar oğullarını esnaf olmaya teşvik ederler.Ekonomik teknoloji araştırmalarının bedeli -10% azalır."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
@@ -274,17 +275,17 @@ msgstr "Gerilla Taktikleri"
 msgid ""
 "Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
 "+15% movement speed and vision range for all soldiers."
-msgstr ""
+msgstr "Yerleşik savunmanın Romalı ordu üzerinde etkisiz olduğunu gören Cassivellaunus gerilla taktiklerine başvurur.Sonradan bu yöntem diğer kabile reisleri tarafından da uygulanır.Tüm askerler için +15% hareket hızı ve görüş alanı."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
-msgstr ""
+msgstr "Öncü Birlik Taciz Ateşi"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "+20% attack range for skirmisher javelins."
-msgstr ""
+msgstr "Cassivellaunus, Romalı birlikleri ve toplayıcıları taciz etmesi için süratli öncü birlikler görevlendirir.Öncü birlik için +20% saldırı menzili."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -294,17 +295,17 @@ msgstr "Ağır Süvari Komutanlığı"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "+1 armor, +10% health for melee cavalry."
-msgstr ""
+msgstr "Trebia ve Cannae'de ki Kartacalı ağır süvari liderinin üçlü hücumu düşman üzerinde ezici etki yaratır.Yakın yakın dövüş süvari için +1 zırh, +10% sağlık."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
-msgstr ""
+msgstr "Pusu Katliamı"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers require 25% less experience to promote and gain a 5% attack bonus."
-msgstr ""
+msgstr "Ambiorix, Romalılar ile mücadele ederken açık arazide savaşmanın boşuna olduğunu farkeder ve hemen pusu taktiğine başvurur. Galyalılar nereden ve ne zamanda sürpriz saldırılar düzenleneceğini çabucak öğrendiler. Askerlerin terfi etmesi 25% daha az tecrübe gerekir ve kazanç olarak saldırıdan %5 ödül."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -314,7 +315,7 @@ msgstr "Roma'ya övgüler"
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "-10% farming rate."
-msgstr ""
+msgstr "Romalı ordu yiyecek kaynakları azalınca, Galya ile ilgili, Galyalı kabileler zaten az olan ürünlerinden bir kısmını vermeyi teklif eder. Ambiorix emrindeki Eburonlar bu konuda isteksizdir. Sezar ürünleri zorla alması için birlikler gönderir. -10% çiftçilik oranı."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -324,7 +325,7 @@ msgstr "Paralı komutan"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "-25% metal cost for all allied citizen-soldier mercenaries."
-msgstr ""
+msgstr "Mandonius kardeşi Indibil ile birlikte, Pön Savaşları nda yer alan İberyalı acemileri ve paralı askerleri komuta etti.Müttefik vatandaş-paralı asker için -25% metal bedeli."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -368,7 +369,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
-msgstr ""
+msgstr "Büyük Mimar"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
@@ -378,7 +379,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
-msgstr "Harika Kütüphaneci"
+msgstr "Büyük Kütüphaneci"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
@@ -388,7 +389,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
-msgstr ""
+msgstr "Lucretia'nın İntikamcısı"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraDescription
 msgid ""
@@ -428,7 +429,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
 msgid "Basileus Megas"
-msgstr ""
+msgstr "Büyük Kral\nBüyük İmparator"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
@@ -439,7 +440,7 @@ msgstr ""
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
 msgid "Lycurgan Military Reforms"
-msgstr ""
+msgstr "Likurgus Askeri Reformları"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraDescription
 msgid ""
@@ -449,17 +450,17 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "-5% resource cost for spear infantry champions."
-msgstr ""
+msgstr "mızrak piyade şampiyonları için -5% kaynak bedeli."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
-msgstr ""
+msgstr "Demir Pelanorlar"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
 "To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
 "+15% metal gather rate for workers."
-msgstr ""
+msgstr "Eşitliği daha da desteklemek adına Likurgus altın ve gümüş kullanımını yasakladı,pelanor adı verilen yeni demir parayı tanıttı. İşçiler için +15% metal toplama oranı."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -467,7 +468,7 @@ msgstr "Formasyon Reformları"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "All soldiers in his formation +15% speed and +3 armor."
-msgstr ""
+msgstr "Formasyonundaki tüm askerlere +15% hız ve +3 zırh."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -479,19 +480,19 @@ msgstr "Tüm mızraklı piyadeler +15% daha hızlı."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
-msgstr ""
+msgstr "Perikles İnşa Programı"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "+15% build and repair rate for workers."
-msgstr ""
+msgstr "işçilere+15% toplama ve inşa oranı"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple to Athena"
-msgstr ""
+msgstr "Athena'ya Tapınak"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
-msgstr ""
+msgstr "Tapınak için -25% taş bedeli ve tapınağa yerleştirilenler için +2 iyileşme oranı."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -501,7 +502,7 @@ msgstr "Donanma Komutanı"
 msgid ""
 "When garrisoned in a ship, the ship is +50% faster and trains batches of "
 "units faster."
-msgstr ""
+msgstr "Gemi de garnizon bulunduğunda, gemi hızı +50% artar ve grup birlikleri daha hızlı eğitilir."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
@@ -529,7 +530,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
-msgstr ""
+msgstr "Britanyalılar ın Kralı"
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
@@ -538,7 +539,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
 msgid "Lightning General"
-msgstr ""
+msgstr "Şimşek gibi General"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
@@ -562,7 +563,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
-msgstr ""
+msgstr "Romalı Yağmacı"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+15 Metal loot for every enemy unit killed."
@@ -570,7 +571,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
-msgstr "Kelt Reisi"
+msgstr "Kelt Kumandan"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
@@ -606,15 +607,15 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
-msgstr ""
+msgstr "Savaş Şevki"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "+1 armor for soldiers."
-msgstr ""
+msgstr "Askerler için +1 zırh."
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
-msgstr ""
+msgstr "Seferberlik"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "-20% training time and -15% resources cost for soldiers."
@@ -626,7 +627,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
-msgstr ""
+msgstr "Yağma"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
 msgid ""
@@ -652,7 +653,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
-msgstr "Taxiarchès"
+msgstr "mızraklı asker subayı"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid "+20% attack and +20% capture for pikemen."
@@ -660,7 +661,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
-msgstr ""
+msgstr "Kuşatmacı"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
 msgid "+10% attack, +10% range and +1 armor for siege engines."
@@ -668,7 +669,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
-msgstr "Makedonya'nın Yükselişi"
+msgstr "Makedonun Yükselişi"
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
@@ -676,7 +677,7 @@ msgstr "Şampiyon birimleri için +20 % saldırı ve +2 yakalama."
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraName
 msgid "Pyrrhic Victory"
-msgstr "Büyük Kayıplı Zafer"
+msgstr "Pirus Zaferi"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraDescription
 msgid ""
@@ -699,19 +700,19 @@ msgstr "Öğretmen"
 msgid ""
 "Empower a building with -20% cost and -50% research time while he is "
 "garrisoned in it."
-msgstr ""
+msgstr "İçinde bulunduğu binaya -20% bedel ve -50% da az araştırma zamanı sağlar."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
-msgstr ""
+msgstr "Yenilenme"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
 msgid "Forefront Leader"
-msgstr ""
+msgstr "Ön Cephe Lideri"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for cavalry soldiers."
-msgstr ""
+msgstr "Süvari birlikleri için +20% saldırı ve +1 ele geçirme."
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
@@ -719,7 +720,7 @@ msgstr "Liderlik"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+10% movement speed for all soldiers, siege engines and traders."
-msgstr ""
+msgstr "Tüm askerler, kuşatma araçları ve tüccarlar için  +10% hareket hızı."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -727,7 +728,7 @@ msgstr "Yönetici"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
 msgid "+15% gather rate and build rate for workers."
-msgstr ""
+msgstr "İşçilere +15% toplama ve inşa oranı."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot"
@@ -735,7 +736,7 @@ msgstr "Yurtsever"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "-20% attack repeat time for soldiers and siege engines."
-msgstr ""
+msgstr " Tüm askerler ve kuşatma araçları için -20% saldırı tekrarlama zamanı."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -744,11 +745,11 @@ msgstr "Eş"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "+10% health for allied heroes."
-msgstr ""
+msgstr "Müttefik kahramanlar için +10% sağlık."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "-10% health for enemy heroes."
-msgstr ""
+msgstr "Düşman kahramanlar için -10% sağlık."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"
@@ -756,19 +757,19 @@ msgstr "Rafya"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "O hayattayken Teberciler 40% daha fazla sağlık kazanırlar."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
-msgstr ""
+msgstr "İnşaat Müdavimi"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "+10% build and repair rate for workers."
-msgstr ""
+msgstr "İşçiler için +10% inşa ve tamir oranı."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron"
-msgstr "Paralı Asker"
+msgstr "Paralı Asker Müdavimi"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -50% resources during his lifetime."
@@ -777,23 +778,23 @@ msgstr "Paralı askerler yaşamları boyunca kaynaklara %-50 oranında etki eder
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
 msgid "Sword of Rome"
-msgstr "Roma'nın Kılıcı"
+msgstr "Romalı Kılıç"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "+15% attack for cavalry."
-msgstr ""
+msgstr "Süvari ler için +15% saldırı."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "-10% attack for enemy infantry."
-msgstr ""
+msgstr "Düşman piyade için -10% saldırı."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
-msgstr "Roma Kalkanı"
+msgstr "Romalı Kalkan"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "+2 armor for all units and structures."
-msgstr ""
+msgstr "Tüm birimler ve yapılar için +2 zırh."
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
@@ -801,11 +802,11 @@ msgstr "Zafer"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
 msgid "+20% attack and +2 capture for soldiers and siege engines."
-msgstr ""
+msgstr " Tüm askerler ve kuşatma araçları için +20% saldırı ve +2 ele geçirme."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
-msgstr "Ilarchès"
+msgstr "Süvari Komutanı"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "All cavalry gains +2 levels of all armor types."
@@ -821,7 +822,7 @@ msgstr "Düşman binaları, mancınıkları ve gemileri için -20% can."
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"
-msgstr "Zooiarchos"
+msgstr "Fil Komutanı"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
 msgid "+20% attack and movement speed for war elephants."
@@ -833,12 +834,12 @@ msgstr "Köle Reformları"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr "Cirit piyade askerleri için +25% saldırı ve +1 zırh."
+msgstr "Cirit piyade askerleri için +25% saldırı ve +1 Zırh."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"
-msgstr "Son Kale"
+msgstr "Son Direniş"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "+25% attack and +1 capture for spear soldiers."
-msgstr "Mızrak akserleri için +25% saldırı ve +1 ele geçirme."
+msgstr "Mızrak askerleriiçin +25% saldırı ve +1 ele geçirme."

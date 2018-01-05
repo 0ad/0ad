@@ -16,7 +16,7 @@
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # Leonardo Tada Antunes <leonardo_tada@hotmail.com>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
-# Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015-2016
+# Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015-2016,2018
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-01 03:13+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-05 02:54+0000\n"
+"Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -714,7 +714,7 @@ msgstr "Técnicas secretas de trabalho em aço fornecem distintas e bonitas marc
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "+20% Dano de Corte para todos os soldados com espada ou maça."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -1084,7 +1084,7 @@ msgstr "O tear permitiu a criação de roupas mais finas para colonos. As mulher
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
-msgstr ""
+msgstr "+50% de saúde para as aldeãs."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1180,7 +1180,7 @@ msgstr "Fêmeas vs. População"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr ""
+msgstr "Aldeãs vs População"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1568,7 +1568,7 @@ msgstr "Reforce as fundações para se precaver de um ataque."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "Aumenta a armadura de torres defensivas em 2 níveis."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1608,7 +1608,7 @@ msgstr "Brechas Defensivas permitem acertar inimigos na base da torre."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "Remove o alcance mínimo para torres defensivas."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1620,7 +1620,7 @@ msgstr "Aumente o alcance máximo das flechas de fogo dos atiradores de flecha."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "Aumenta o alcance máximo de torres defensivas em 8 metros."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1632,7 +1632,7 @@ msgstr "Aumento de campo de visão para os postos avançados."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Postos avançados têm +50% de campo de visão."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1644,7 +1644,7 @@ msgstr "Uma ronda noturna aumenta a vigilância."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Posicione sentinelas para adicionar mais 1 flecha às torres defensivas."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
