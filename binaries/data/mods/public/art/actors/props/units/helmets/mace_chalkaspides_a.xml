@@ -2,26 +2,21 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="helmet-thracian-plume">
-      <mesh>props/helmet/mace_helmet_h.dae</mesh>
+    <variant file="helmets/sele_chalkaspides_base.xml">
+      <props>
+        <prop actor="props/units/helmets/props/chalkaspides_high_crest.xml" attachpoint="root"/>
+      </props>
     </variant>
-    <variant frequency="1" name="helmet-thracian-crested">
-      <mesh>props/helmet/helmet_thracian_4.dae</mesh>
-    </variant>
-    <variant frequency="5" name="helmet-thracian-ridge">
-      <mesh>props/helmet/helmet_thracian_6.dae</mesh>
-    </variant>
-    <variant frequency="3" name="helmet-hellenistic-thracian-crest">
-      <mesh>props/helmet/mace_helmet_hellenistic_a.dae</mesh>
+    <variant file="helmets/sele_chalkaspides_base.xml" frequency="1" name="high-crest">
+      <mesh>props/helmet/sele_officer_chalkaspides_metal_crested.dae</mesh>
     </variant>
   </group>
   <group>
-    <variant>
+    <variant frequency="1" name="bronze">
       <textures>
-        <texture file="props/helmet/mace_c.dds" name="baseTex"/>
-        <texture file="props/helmet/mace_c_spec.png" name="specTex"/>
+        <texture file="props/helmet/sele_officer_helmet_metal_bronze.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_spec_helmet.xml</material>
+  <material>player_trans_parallax_spec_helmet.xml</material>
 </actor>

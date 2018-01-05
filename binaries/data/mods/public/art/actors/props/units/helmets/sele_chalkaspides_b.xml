@@ -2,13 +2,21 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="helmet-thracian-ridge">
-      <mesh>props/helmet/helmet_thracian_6.dae</mesh>
+    <variant file="helmets/sele_chalkaspides_base.xml">
+      <mesh>props/helmet/sele_officer_chalkaspides_metal_crested.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="chalkaspides-iron-a">
       <textures>
-        <texture file="props/helmet/mace_c.dds" name="baseTex"/>
-        <texture file="props/helmet/mace_c_spec.png" name="specTex"/>
+        <texture file="props/helmet/sele_officer_helmet_metal_metal.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="chalkaspides-bronze-a">
+      <textures>
+        <texture file="props/helmet/sele_officer_helmet_metal_bronze.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_spec_helmet.xml</material>
+  <material>player_trans_parallax_spec_helmet.xml</material>
 </actor>
