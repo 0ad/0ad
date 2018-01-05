@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Chakalspides high crest">
+      <mesh>props/helmet/sele_officer_crested_neckguard.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_a3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

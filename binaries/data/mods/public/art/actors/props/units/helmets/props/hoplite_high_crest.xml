@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="3" name="hoplite high crest">
+      <mesh>props/helmet/hele_hoplite_high_crest_01.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_a3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="hoplite high crest 2">
+      <mesh>props/helmet/hele_hoplite_high_crest_02.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_a3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="hoplite high crest 3">
+      <mesh>props/helmet/hele_hoplite_high_crest_03.dae</mesh>
+      <textures>
+        <texture file="props/helmet/hele_a3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
