@@ -72,19 +72,18 @@ var [playerX, playerZ, playerAngle] = playerPlacementCustomAngle(
 log("Creating player islands and docks...");
 for (let i = 0; i < numPlayers; ++i)
 {
-	let ix = Math.round(fractionToTiles(playerX[i]));
-	let iz = Math.round(fractionToTiles(playerZ[i]));
+	let playerPosition = new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round();
 
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.8, 0.1, 10, ix, iz),
+		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.8, 0.1, 10, playerPosition.x, playerPosition.y),
 		[
 			new LayeredPainter([tWater, tShore, tMainTerrain], [1, 4]),
 			new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
 			paintClass(clPlayer)
 		]);
 
-	let dockLocation = getTIPIADBON([ix, iz], [mapCenter.x, mapCenter.y], [-3 , 2.6], 0.5, 3);
-	placeObject(dockLocation[0], dockLocation[1], oDock, playerIDs[i], playerAngle[i] + Math.PI);
+	let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition, mapCenter, -3 , 2.6, 3);
+	placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
 }
 Engine.SetProgress(10);
 

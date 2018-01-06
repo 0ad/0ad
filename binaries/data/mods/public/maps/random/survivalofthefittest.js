@@ -74,13 +74,12 @@ var [passageX, passageZ] = distributePointsOnCircle(numPlayers, startAngle + Mat
 log("Creating player bases and attacker points...");
 for (let  i = 0; i < numPlayers; ++i)
 {
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
+	let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round();
 
-	placeStartingEntities(fx, fz, playerIDs[i], getStartingEntities(playerIDs[i]).filter(ent =>
+	placeStartingEntities(playerPos.x, playerPos.y, playerIDs[i], getStartingEntities(playerIDs[i]).filter(ent =>
 		ent.Template.indexOf("civil_centre") != -1 || ent.Template.indexOf("infantry") != -1));
 
-	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, scaleByMapSize(15, 25));
+	placeDefaultDecoratives(playerPos.x, playerPos.y, aGrassShort, clBaseResource, scaleByMapSize(15, 25));
 
 	log("Creating passage separating players...");
 	createArea(
@@ -91,16 +90,16 @@ for (let  i = 0; i < numPlayers; ++i)
 		]);
 
 	log("Placing treasure seeker woman...");
-	let femaleLocation = getTIPIADBON([fx, fz], [mapCenter.x, mapCenter.y], [-3 , 3.5], 1, 3);
-	placeObject(femaleLocation[0], femaleLocation[1], oTreasureSeeker, playerIDs[i], playerAngle[i] + Math.PI);
-	addToClass(Math.floor(femaleLocation[0]), Math.floor(femaleLocation[1]), clWomen);
+	let femaleLocation = findLocationInDirectionBasedOnHeight(playerPos, mapCenter, -3 , 3.5, 3).round();
+	addToClass(femaleLocation.x, femaleLocation.y, clWomen);
+	placeObject(femaleLocation.x, femaleLocation.y, oTreasureSeeker, playerIDs[i], playerAngle[i] + Math.PI);
 
 	log("Placing attacker spawn point....");
 	placeObject(attackerX[i], attackerZ[i], aWaypointFlag, 0, Math.PI / 2);
 	placeObject(attackerX[i], attackerZ[i], triggerPointAttacker, playerIDs[i], Math.PI / 2);
 
 	log("Preventing mountains in the area between player and attackers...");
-	addCivicCenterAreaToClass(Math.round(fx), Math.round(fz), clPlayer);
+	addCivicCenterAreaToClass(playerPos.x, playerPos.y, clPlayer);
 	addToClass(Math.round(attackerX[i]), Math.round(attackerZ[i]), clPlayer);
 	addToClass(Math.round(halfwayX[i]), Math.round(halfwayZ[i]), clPlayer);
 }
