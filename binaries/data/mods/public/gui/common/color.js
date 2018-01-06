@@ -146,7 +146,9 @@ function colorizeHotkey(text, hotkey)
 	let key = Engine.ConfigDB_GetValue("user", "hotkey." + hotkey);
 
 	if (!key || key.toLowerCase() == "unused")
-		return "";
+		key = sprintf(translate("Unassigned hotkey: %(hotkeyName)s"), {
+			"hotkeyName": hotkey
+		});
 
 	return sprintf(text, {
 		"hotkey": coloredText("\\[" + key + "]", g_HotkeyColor)
