@@ -38,6 +38,7 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBaobab, tForestFloor + TERR
 InitMap();
 
 const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
 const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
@@ -52,6 +53,9 @@ var clBaseResource = createTileClass();
 var clShallows = createTileClass();
 
 var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement();
+
+var waterHeight = -4;
+var shallowHeight = -2;
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -143,7 +147,7 @@ for (let i = 0; i < numPlayers; ++i)
 	createArea(
 		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 3), 0.95, 0.6, 10, riverStart[0][i], riverStart[1][i]),
 		[
-			new SmoothElevationPainter(ELEVATION_SET, -4, 4),
+			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 5));
@@ -153,7 +157,7 @@ for (let i = 0; i < numPlayers; ++i)
 		new PathPlacer(riverStart[0][i], riverStart[1][i], riverEnd[0][i], riverEnd[1][i], scaleByMapSize(10, 50), 0.2, 3 * scaleByMapSize(1, 4), 0.2, 0.05),
 		[
 			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
-			new SmoothElevationPainter(ELEVATION_SET, -4, 4),
+			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 5));
@@ -162,24 +166,23 @@ for (let i = 0; i < numPlayers; ++i)
 	createArea(
 		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, riverEnd[0][i], riverEnd[1][i]),
 		[
-			new SmoothElevationPainter(ELEVATION_SET, -4, 4),
+			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 5));
 
 	log("Creating shallows between neighbors...");
-	createShallowsPassage(
-		Math.round(fractionToTiles(playerX[i])),
-		Math.round(fractionToTiles(playerZ[i])),
-		Math.round(fractionToTiles(playerX[neighborID])),
-		Math.round(fractionToTiles(playerZ[neighborID])),
-		6,
-		-2,
-		-2,
-		4,
-		clShallows,
-		undefined,
-		-4);
+	createPassage({
+		"start": new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round(),
+		"end": new Vector2D(playerX[neighborID], playerZ[neighborID]).mult(mapSize).round(),
+		"startWidth": 10,
+		"endWidth": 10,
+		"smoothWidth": 4,
+		"startHeight": shallowHeight,
+		"endHeight": shallowHeight,
+		"maxHeight": shallowHeight,
+		"tileClass": clShallows
+	});
 
 	log("Creating animals in shallows...");
 	let objects = [

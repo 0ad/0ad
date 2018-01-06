@@ -466,6 +466,7 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 	let smoothness = scaleByMapSize(3, 12);
 	let offset = 0.1;
 	let tapering = 0.05;
+	let shallowHeight = -2;
 	let riverAngle = horizontal ? 0 : Math.PI / 2;
 
 	let mapSize = getMapSize();
@@ -521,65 +522,17 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 	// Create shallows
 	if (shallowTileClass)
 		for (let z of [0.25, 0.75])
-		{
-			let m1 = [Math.round(fractionToTiles(0.2)), Math.round(fractionToTiles(z))];
-			let m2 = [Math.round(fractionToTiles(0.8)), Math.round(fractionToTiles(z))];
-
-			if (!horizontal)
-			{
-				m1.reverse();
-				m2.reverse();
-			}
-
-			createShallowsPassage(...m1, ...m2, scaleByMapSize(4, 8), -2, -2, 2, shallowTileClass, undefined, waterHeight);
-		}
-}
-
-/**
- * Create shallow water between (x1, z1) and (x2, z2) of tiles below maxHeight.
- */
-function createShallowsPassage(x1, z1, x2, z2, width, maxHeight, shallowHeight, smooth, tileClass, terrain, riverHeight)
-{
-	let a = z1 - z2;
-	let b = x2 - x1;
-
-	let distance = Math.euclidDistance2D(x1, z1, x2, z2);
-	let mapSize = getMapSize();
-
-	for (let ix = 0; ix < mapSize; ++ix)
-		for (let iz = 0; iz < mapSize; ++iz)
-		{
-			let c = a * (ix - x1) + b * (iz - z1);
-			let my = iz - b * c / Math.square(distance);
-			let inline = 0;
-
-			let dis;
-			if (b == 0)
-			{
-				dis = Math.abs(ix - x1);
-				if (iz >= Math.min(z1, z2) && iz <= Math.max(z1, z2))
-					inline = 1;
-			}
-			else if (my >= Math.min(z1, z2) && my <= Math.max(z1, z2))
-			{
-				dis = Math.abs(c) / distance;
-				inline = 1;
-			}
-
-			if (dis > width || !inline || getHeight(ix, iz) > maxHeight)
-				continue;
-
-			if (dis > width - smooth)
-				setHeight(ix, iz, ((width - dis) * shallowHeight + riverHeight * (smooth - width + dis)) / smooth);
-			else if (dis <= width - smooth)
-				setHeight(ix, iz, shallowHeight);
-
-			if (tileClass !== undefined)
-				addToClass(ix, iz, tileClass);
-
-			if (terrain !== undefined)
-				placeTerrain(ix, iz, terrain);
-		}
+			createPassage({
+				"start": new Vector2D(0, z).mult(mapSize).rotateAround(riverAngle, mapCenter),
+				"end": new Vector2D(1, z).mult(mapSize).rotateAround(riverAngle, mapCenter),
+				"startWidth": scaleByMapSize(8, 12),
+				"endWidth": scaleByMapSize(8, 12),
+				"smoothWidth": 2,
+				"startHeight": shallowHeight,
+				"endHeight": shallowHeight,
+				"maxHeight": shallowHeight,
+				"tileClass": shallowTileClass
+			});
 }
 
 /**
@@ -592,6 +545,7 @@ function createShallowsPassage(x1, z1, x2, z2, width, maxHeight, shallowHeight, 
  * @property {number} endWidth
  * @property {number} [startHeight] - Fixed height to be used if the height at the location shouldn't be used.
  * @property {number} [endHeight]
+ * @property {number} [maxHeight] - If given, do not touch any terrain above this height.
  * @property {number} smoothWidth - Number of tiles at the passage border to apply height interpolation.
  * @property {number} [tileClass] - Marks the passage with this tile class.
  * @property {string} [terrain] - Texture to be painted on the passage area.
@@ -618,7 +572,8 @@ function createPassage(args)
 		{
 			let location = Vector2D.add(locationLength, Vector2D.mult(widthDirection, stepWidth)).round();
 
-			if (!g_Map.inMapBounds(location.x, location.y))
+			if (!g_Map.inMapBounds(location.x, location.y) ||
+			    args.maxHeight !== undefined && getHeight(location.x, location.y) > args.maxHeight)
 				continue;
 
 			let smoothDistance = args.smoothWidth + Math.abs(stepWidth) - halfPassageWidth;

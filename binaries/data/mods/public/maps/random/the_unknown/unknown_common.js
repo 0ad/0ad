@@ -354,10 +354,11 @@ function unknownCentralSea()
 function unknownCentralRiver()
 {
 	let waterHeight = -4;
-
+	let shallowHeight = -2;
 	initHeight(landHeight);
 
 	let horizontal = randBool();
+	let riverAngle = horizontal ? 0 : Math.PI / 2;
 
 	if (g_PlayerBases)
 	{
@@ -384,15 +385,18 @@ function unknownCentralRiver()
 		log("Creating the shallows of the main river...");
 		for (let i = 0; i <= randIntInclusive(1, scaleByMapSize(4, 8)); ++i)
 		{
-			let cLocation = randFloat(0.15, 0.85);
-			let x1 = [fractionToTiles(cLocation), fractionToTiles(0.35)];
-			let x2 = [fractionToTiles(cLocation), fractionToTiles(0.65)];
-			if (!horizontal)
-			{
-				x1.reverse();
-				x2.reverse();
-			}
-			createShallowsPassage(...x1, ...x2, scaleByMapSize(4, 8), -2, -2, 2, clShallow, undefined, waterHeight);
+			let location = randFloat(0.15, 0.85);
+			createPassage({
+				"start": new Vector2D(location, 0).mult(mapSize).rotateAround(riverAngle, mapCenter),
+				"end": new Vector2D(location, 1).mult(mapSize).rotateAround(riverAngle, mapCenter),
+				"startWidth": scaleByMapSize(8, 12),
+				"endWidth": scaleByMapSize(8, 12),
+				"smoothWidth": 2,
+				"startHeight": shallowHeight,
+				"endHeight": shallowHeight,
+				"maxHeight": shallowHeight,
+				"tileClass": clShallow
+			});
 		}
 	}
 
