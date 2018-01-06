@@ -568,22 +568,6 @@ function updateTutorial(notification)
 		return;
 	}
 
-	// TODO temporary should be removed once D1180 is done
-	for (let i = 0; i < notification.instructions.length; ++i)
-	{
-		let item = notification.instructions[i];
-		if (typeof item == "string")
-			continue;
-		if (item.hotkey.length == 1)
-		{
-			let key = Engine.ConfigDB_GetValue("user", "hotkey." + item.hotkey[0]);
-			if (!key || key.toLowerCase() == "unused")
-				notification.instructions[i]= item.text.replace("%(hotkey)s", "{hotkey " + item.hotkey[0] + " undefined}");
-		}
-		else
-			error("Several hotkeys per instruction item is not yet supported, needs D1180.");
-	}
-	// end of temporary
 	let notificationText =
 		notification.instructions.reduce((instructions, item) =>
 			instructions + (typeof item == "string" ? translate(item) : colorizeHotkey(translate(item.text), item.hotkey)),

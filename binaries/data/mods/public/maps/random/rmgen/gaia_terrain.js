@@ -466,6 +466,10 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 	let smoothness = scaleByMapSize(3, 12);
 	let offset = 0.1;
 	let tapering = 0.05;
+	let riverAngle = horizontal ? 0 : Math.PI / 2;
+
+	let mapSize = getMapSize();
+	let mapCenter = getMapCenter();
 
 	let riverConstraint = avoidClasses(tributaryRiverTileClass, 3);
 	if (shallowTileClass)
@@ -473,35 +477,28 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 
 	for (let i = 0; i < riverCount; ++i)
 	{
-		// Determining tributary start point
-		let location = randFloat(tapering, 1 - tapering);
+		// Determining tributary river location
+		let searchCenter = new Vector2D(randFloat(tapering, 1 - tapering), 0.5);
 		let sign = randBool() ? 1 : -1;
-		let angle = sign * randFloat(maxAngle, 2 * Math.PI - maxAngle);
-		let distance = sign * tapering;
+		let distanceVec = new Vector2D(0, sign * tapering);
 
-		let searchStart = [fractionToTiles(location), fractionToTiles(0.5 + distance)];
-		let searchEnd = [fractionToTiles(location), fractionToTiles(0.5 - distance)];
+		let searchStart = Vector2D.add(searchCenter, distanceVec).mult(mapSize).rotateAround(riverAngle, mapCenter);
+		let searchEnd = Vector2D.sub(searchCenter, distanceVec).mult(mapSize).rotateAround(riverAngle, mapCenter);
 
-		if (!horizontal)
-		{
-			searchStart.reverse();
-			searchEnd.reverse();
-		}
-
-		let start = getTIPIADBON(searchStart, searchEnd, heightRange, 0.5, 4);
+		let start = findLocationInDirectionBasedOnHeight(searchStart, searchEnd, heightRange[0], heightRange[1], 4);
 		if (!start)
 			continue;
 
-		let endX = fractionToTiles(0.5 + 0.5 * Math.cos(angle));
-		let endZ = fractionToTiles(0.5 + 0.5 * Math.sin(angle));
+		start.round();
+		let end = Vector2D.add(mapCenter, new Vector2D(mapSize, 0).rotate(riverAngle - sign * randFloat(maxAngle, 2 * Math.PI - maxAngle))).round();
 
 		// Create river
 		if (!createArea(
 			new PathPlacer(
-				Math.floor(start[0]),
-				Math.floor(start[1]),
-				Math.floor(endX),
-				Math.floor(endZ),
+				start.x,
+				start.y,
+				end.x,
+				end.y,
 				riverWidth,
 				waviness,
 				smoothness,
@@ -516,7 +513,7 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 
 		// Create small puddles at the map border to ensure players being separated
 		createArea(
-			new ClumpPlacer(Math.floor(diskArea(riverWidth / 2)), 0.95, 0.6, 10, endX, endZ),
+			new ClumpPlacer(Math.floor(diskArea(riverWidth / 2)), 0.95, 0.6, 10, end.x, end.y),
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 3),
 			constraint);
 	}
@@ -645,57 +642,23 @@ function createPassage(args)
 }
 
 /**
- * Get The Intended Point In A Direction Based On Height.
- * Retrieves the N'th point with a specific height in a line and returns it as a [x, y] array.
- *
- * @param startPoint - [x, y] array defining the start point
- * @param endPoint - [x, y] array defining the ending point
- * @param heightRange - [min, max] array defining the range which the height of the intended point can be. includes both "min" and "max"
- * @param step - how much tile units per turn should the search go. more value means faster but less accurate
- * @param n - how many points to skip before ending the search. skips """n-1 points""".
+ * Returns the first location between startPoint and endPoint that lies within the given heightrange.
  */
-function getTIPIADBON(startPoint, endPoint, heightRange, step, n)
+function findLocationInDirectionBasedOnHeight(startPoint, endPoint, minHeight, maxHeight, offset = 0)
 {
-	let X = endPoint[0] - startPoint[0];
-	let Y = endPoint[1] - startPoint[1];
+	let stepVec = Vector2D.sub(endPoint, startPoint);
+	let distance = Math.ceil(stepVec.length());
+	stepVec.normalize();
 
-	if (!X && !Y)
+	for (let i = 0; i < distance; ++i)
 	{
-		error("getTIPIADBON startPoint and endPoint are identical! " + new Error().stack);
-		return undefined;
-	}
+		let pos = Vector2D.add(startPoint, Vector2D.mult(stepVec, i));
+		let ipos = pos.clone().round();
 
-	let M = Math.sqrt(Math.square(X) + step * Math.square(Y));
-	let stepX = step * X / M;
-	let stepY = step * Y / M;
-
-	let y = startPoint[1];
-	let checked = 0;
-
-	let mapSize = getMapSize();
-
-	for (let x = startPoint[0]; true; x += stepX)
-	{
-		let ix = Math.floor(x);
-		let iy = Math.floor(y);
-
-		if (ix < mapSize || iy < mapSize)
-		{
-			if (getHeight(ix, iy) <= heightRange[1] &&
-			    getHeight(ix, iy) >= heightRange[0])
-				++checked;
-
-			if (checked >= n)
-				return [x, y];
-		}
-
-		y += stepY;
-
-		if (y > endPoint[1] && stepY > 0 ||
-		    y < endPoint[1] && stepY < 0 ||
-		    x > endPoint[1] && stepX > 0 ||
-		    x < endPoint[1] && stepX < 0)
-			return undefined;
+		if (g_Map.validH(ipos.x, ipos.y) &&
+		    getHeight(ipos.x, ipos.y) >= minHeight &&
+		    getHeight(ipos.x, ipos.y) <= maxHeight)
+			return pos.add(stepVec.mult(offset));
 	}
 
 	return undefined;

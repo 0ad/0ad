@@ -76,8 +76,8 @@ for (let i = 0; i < numPlayers; i++)
 			paintClass(clPlayer)
 		]);
 
-	let dockLocation = getTIPIADBON([playerPos.x, playerPos.y], [mapCenter.x, mapCenter.y], [-3 , 2.6], 0.5, 3);
-	placeObject(dockLocation[0], dockLocation[1], oDock, playerIDs[i], playerAngle[i] + Math.PI);
+	let dockLocation = findLocationInDirectionBasedOnHeight(playerPos, mapCenter, -3 , 2.6, 3);
+	placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
 }
 
 for (var i = 0; i < numPlayers; i++)

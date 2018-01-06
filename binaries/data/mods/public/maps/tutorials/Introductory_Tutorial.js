@@ -21,7 +21,12 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Select the Civil Center building, and shift-click on the Hoplite icon (2nd in the row) once to begin training 5 Hoplites."),
+		"instructions": [
+			{
+				"text": markForTranslation("Select the Civil Center building and hold %(hotkey)s while clicking on the Hoplite icon once to begin training a batch of Hoplites."),
+				"hotkey": "session.batchtrain"
+			}
+		],
 		"OnTrainingQueued": function(msg)
 		{
 			if (msg.unitTemplate != "units/spart_infantry_spearman_b" || +msg.count == 1)
@@ -29,8 +34,8 @@ Trigger.prototype.tutorialGoals = [
 				let cmpProductionQueue = Engine.QueryInterface(msg.trainerEntity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
-					markForTranslation("Do not forget to shift-click to produce several units.") :
-					markForTranslation("Shift-click on the HOPLITE icon.");
+					markForTranslation("Do not forget to press the batch training hotkey while clicking to produce multiple units.") :
+					markForTranslation("Click on the HOPLITE icon.");
 				this.WarningMessage(txt);
 				return;
 			}
@@ -54,7 +59,12 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd in the row) in the Civil Center."),
+		"instructions": [
+			{
+				"text": markForTranslation("Build a batch of Skirmishers by holding %(hotkey)s and clicking on the Skirmisher icon in the Civil Center."),
+				"hotkey": "session.batchtrain"
+			}
+		],
 		"Init": function()
 		{
 			this.trainingDone = false;
@@ -66,8 +76,8 @@ Trigger.prototype.tutorialGoals = [
 				let cmpProductionQueue = Engine.QueryInterface(msg.trainerEntity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
-					markForTranslation("Do not forget to shift-click to produce several units.") :
-					markForTranslation("Shift-click on the SKIRMISHER icon.");
+					markForTranslation("Do not forget to press the batch training hotkey while clicking to produce multiple units.") :
+					markForTranslation("Click on the SKIRMISHER icon.");
 				this.WarningMessage(txt);
 				return;
 			}
@@ -131,7 +141,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Train 5 Hoplites from the Civil Center. Select the Civil Center and with it selected right click on a tree nearby. Units from the Civil Center will now automatically gather wood."),
+		"instructions": markForTranslation("Train a batch of Hoplites at the Civil Center. Select the Civil Center and with it selected right click on a tree nearby. Units from the Civil Center will now automatically gather wood."),
 		"Init": function()
 		{
 			this.rallyPointSet = false;
@@ -148,8 +158,8 @@ Trigger.prototype.tutorialGoals = [
 				let cmpProductionQueue = Engine.QueryInterface(msg.trainerEntity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
-					markForTranslation("Do not forget to shift-click to produce several units.") :
-					markForTranslation("Shift-click on the HOPLITE icon.");
+					markForTranslation("Do not forget to press the batch training hotkey while clicking to produce multiple units.") :
+					markForTranslation("Click on the HOPLITE icon.");
 				this.WarningMessage(txt);
 				return;
 			}
@@ -207,7 +217,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Start building 5 female citizens in the Civil Center and set its rally point to the farm (right click on it)."),
+		"instructions": markForTranslation("Start building a batch of female citizens in the Civil Center and set its rally point to the farm (right click on it)."),
 		"Init": function()
 		{
 			this.rallyPointSet = false;
@@ -224,8 +234,8 @@ Trigger.prototype.tutorialGoals = [
 				let cmpProductionQueue = Engine.QueryInterface(msg.trainerEntity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
-					markForTranslation("Do not forget to shift-click to produce several units.") :
-					markForTranslation("Hold shift and click on the female citizen icon.");
+					markForTranslation("Do not forget to press the batch training hotkey while clicking to produce multiple units.") :
+					markForTranslation("Click on the female citizen icon.");
 				this.WarningMessage(txt);
 				return;
 			}
