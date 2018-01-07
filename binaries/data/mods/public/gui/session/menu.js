@@ -1088,6 +1088,7 @@ function openGameSummary()
 			"timeElapsed": extendedSimState.timeElapsed
 		},
 		"gui": {
+			"dialog": true,
 			"isInGame": true
 		},
 		"selectedData": g_SummarySelectedData,

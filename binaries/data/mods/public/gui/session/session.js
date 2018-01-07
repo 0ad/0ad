@@ -681,6 +681,7 @@ function leaveGame(willRejoin)
 	Engine.SwitchGuiPage("page_summary.xml", {
 		"sim": simData,
 		"gui": {
+			"dialog": false,
 			"assignedPlayer": Engine.GetPlayerID(),
 			"disconnected": g_Disconnected,
 			"isReplay": g_IsReplay,

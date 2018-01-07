@@ -153,6 +153,7 @@ function init(data)
 	calculateTeamCounterDataHelper();
 
 	// Output globals
+	initGUIWindow();
 	initPlayerBoxPositions();
 	initGUICharts();
 	initGUILabelsAndButtons();
@@ -165,7 +166,18 @@ function init(data)
 	}
 }
 
-/*
+/**
+ * Sets the style and title of the page.
+ */
+function initGUIWindow()
+{
+	let summaryWindow = Engine.GetGUIObjectByName("summaryWindow");
+	summaryWindow.sprite = g_GameData.gui.dialog ? "ModernDialog" : "ModernWindow";
+	summaryWindow.size = g_GameData.gui.dialog ? "16 24 100%-16 100%-24" : "0 0 100% 100%";
+	Engine.GetGUIObjectByName("summaryWindowTitle").size = g_GameData.gui.dialog ? "50%-128 -16 50%+128 16" : "50%-128 4 50%+128 36";
+}
+
+/**
  * Show next/previous panel.
  * @param direction - 1/-1 forward, backward panel.
  */
@@ -443,6 +455,8 @@ function continueButton()
 			"explicitResume": 0,
 			"summarySelectedData": summarySelectedData
 		});
+	else if (g_GameData.gui.dialog)
+		Engine.PopGuiPage();
 	else if (g_GameData.gui.isReplay)
 		Engine.SwitchGuiPage("page_replaymenu.xml", {
 			"replaySelectionData": g_GameData.gui.replaySelectionData,
