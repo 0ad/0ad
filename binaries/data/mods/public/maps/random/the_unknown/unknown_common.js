@@ -705,11 +705,11 @@ function unknownLowlands()
 
 	log("Creating valleys enclosed by the mountain...");
 	let valleys = numPlayers;
-	if (mapSize <= 128 && numPlayers <= 2 ||
-	    mapSize <= 192 && numPlayers <= 3 ||
-	    mapSize <= 320 && numPlayers <= 4 ||
-	    mapSize <= 384 && numPlayers <= 5 ||
-	    mapSize <= 448 && numPlayers <= 6)
+	if (mapSize >= 128 && numPlayers <= 2 ||
+	    mapSize >= 192 && numPlayers <= 3 ||
+	    mapSize >= 320 && numPlayers <= 4 ||
+	    mapSize >= 384 && numPlayers <= 5 ||
+	    mapSize >= 448 && numPlayers <= 6)
 		valleys *= 2;
 
 	let mid = Math.round(fractionToTiles(0.5));
