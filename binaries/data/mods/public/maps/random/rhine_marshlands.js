@@ -62,8 +62,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	var ix = round(fx);
-	var iz = round(fz);
+	var ix = Math.round(fx);
+	var iz = Math.round(fz);
 	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// create the city patch
@@ -79,8 +79,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(oBerryBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
@@ -94,8 +94,8 @@ for (var i = 0; i < numPlayers; i++)
 		mAngle = randFloat(0, TWO_PI);
 	}
 	var mDist = radius - 4;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oMetalLarge, 1,1, 0,0)],
 		true, clBaseResource, mX, mZ
@@ -104,8 +104,8 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStoneLarge, 1,1, 0,2)],
 		true, clBaseResource, mX, mZ
@@ -116,8 +116,8 @@ for (var i = 0; i < numPlayers; i++)
 	var num = Math.floor(hillSize / 100);
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = 12;
-	var tX = round(fx + tDist * cos(tAngle));
-	var tZ = round(fz + tDist * sin(tAngle));
+	var tX = Math.round(fx + tDist * cos(tAngle));
+	var tZ = Math.round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oBeech, num, num, 0,5)],
 		false, clBaseResource, tX, tZ
@@ -145,7 +145,7 @@ for (let i = 0; i < 7; ++i)
 			new SmoothElevationPainter(ELEVATION_SET, -2, 3),
 			paintClass(clWater)
 		],
-		avoidClasses(clPlayer, 20, clWater, round(scaleByMapSize(7,16)*randFloat(0.8,1.35))),
+		avoidClasses(clPlayer, 20, clWater, Math.round(scaleByMapSize(7,16)*randFloat(0.8,1.35))),
 		scaleByMapSize(4,20));
 
 log("Creating reeds...");

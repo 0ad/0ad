@@ -63,11 +63,6 @@ function sin(x)
 	return Math.sin(x);
 }
 
-function round(x)
-{
-	return Math.round(x);
-}
-
 /**
  * Retries the given function with those arguments as often as specified.
  */

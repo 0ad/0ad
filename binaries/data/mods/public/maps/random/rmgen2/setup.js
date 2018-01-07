@@ -169,8 +169,8 @@ function createBase(player, walls = true)
 	// Get the x and z in tiles
 	var fx = fractionToTiles(player.x);
 	var fz = fractionToTiles(player.z);
-	var ix = round(fx);
-	var iz = round(fz);
+	var ix = Math.round(fx);
+	var iz = Math.round(fz);
 
 	addCivicCenterAreaToClass(ix, iz, g_TileClasses.player);
 
@@ -191,8 +191,8 @@ function createBase(player, walls = true)
 	// Create initial berry bushes at random angle
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 10;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(g_Gaia.fruitBush, 5, 5, 0, 3)],
 		true, g_TileClasses.baseResource, bbX, bbZ
@@ -205,8 +205,8 @@ function createBase(player, walls = true)
 		mAngle = randFloat(0, TWO_PI);
 
 	var mDist = 12;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(g_Gaia.metalLarge, 1, 1, 0, 0)],
 		true, g_TileClasses.baseResource, mX, mZ
@@ -215,8 +215,8 @@ function createBase(player, walls = true)
 
 	// Create stone mine beside metal
 	mAngle += randFloat(PI / 8, PI / 4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(g_Gaia.stoneLarge, 1, 1, 0, 2)],
 		true, g_TileClasses.baseResource, mX, mZ
@@ -237,8 +237,8 @@ function createBase(player, walls = true)
 	{
 		var tAngle = randFloat(0, TWO_PI);
 		var tDist = randFloat(12, 13);
-		var tX = round(fx + tDist * cos(tAngle));
-		var tZ = round(fz + tDist * sin(tAngle));
+		var tX = Math.round(fx + tDist * cos(tAngle));
+		var tZ = Math.round(fz + tDist * sin(tAngle));
 
 		group = new SimpleGroup(
 			[new SimpleObject(g_Gaia.tree1, num, num, 1, 3)],

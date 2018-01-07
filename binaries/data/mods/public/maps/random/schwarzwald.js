@@ -170,8 +170,8 @@ for (var i=0; i < numPlayers; i++)
 {
 	playerAngle[i] = (playerAngleStart + i*playerAngleAddAvrg + randFloat(0, playerAngleMaxOff))%(2*PI);
 
-	var x = round(mapCenterX + randFloat(minPlayerRadius, maxPlayerRadius)*cos(playerAngle[i]));
-	var z = round(mapCenterZ + randFloat(minPlayerRadius, maxPlayerRadius)*sin(playerAngle[i]));
+	var x = Math.round(mapCenterX + randFloat(minPlayerRadius, maxPlayerRadius)*cos(playerAngle[i]));
+	var z = Math.round(mapCenterZ + randFloat(minPlayerRadius, maxPlayerRadius)*sin(playerAngle[i]));
 
 	playerStartLocX[i] = x;
 	playerStartLocZ[i] = z;
@@ -195,7 +195,7 @@ for (var i=0; i < numPlayers; i++)
 		var placeX = x + distToSL*cos(resStartAngle + rIndex*resAddAngle + angleOff);
 		var placeZ = z + distToSL*sin(resStartAngle + rIndex*resAddAngle + angleOff);
 		placeObject(placeX, placeZ, startingResources[rIndex], 0, randFloat(0, 2*PI));
-		addToClass(round(placeX), round(placeZ), clBaseResource);
+		addToClass(Math.round(placeX), Math.round(placeZ), clBaseResource);
 	}
 }
 
@@ -268,8 +268,8 @@ for (var i = 0; i < maxI; i++)
 
 		// Prepare path placement
 		var angle = getAngle(x, z, targetX, targetZ);
-		x += round(pathSucsessRadius*cos(angle));
-		z += round(pathSucsessRadius*sin(angle));
+		x += Math.round(pathSucsessRadius*cos(angle));
+		z += Math.round(pathSucsessRadius*sin(angle));
 
 		var targetReached = false;
 		var tries = 0;
@@ -286,13 +286,13 @@ for (var i = 0; i < maxI; i++)
 			angle = getAngle(x, z, targetX, targetZ);
 			if (doublePaths === true) // Bended paths
 			{
-				x += round(cos(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
-				z += round(sin(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
+				x += Math.round(cos(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
+				z += Math.round(sin(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
 			}
 			else // Straight paths
 			{
-				x += round(cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
-				z += round(sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
+				x += Math.round(cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
+				z += Math.round(sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
 			}
 
 			if (Math.euclidDistance2D(x, z, targetX, targetZ) < pathSucsessRadius)

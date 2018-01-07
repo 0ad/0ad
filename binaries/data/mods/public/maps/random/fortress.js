@@ -76,8 +76,8 @@ for (var i=0; i < numPlayers; i++)
 	// Create treasure
 	var bbAngle = BUILDING_ORIENTATION;
 	var bbDist = 10;
-	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
-	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
+	var bbX = Math.round(playerX[i] + bbDist * cos(bbAngle));
+	var bbZ = Math.round(playerZ[i] + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(oFoodTreasure, 5,5, 0,2)],
 		true, clBaseResource, bbX, bbZ
@@ -85,8 +85,8 @@ for (var i=0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 
 	bbAngle += PI/2;
-	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
-	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
+	var bbX = Math.round(playerX[i] + bbDist * cos(bbAngle));
+	var bbZ = Math.round(playerZ[i] + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oWoodTreasure, 5,5, 0,2)],
 		true, clBaseResource, bbX, bbZ
@@ -94,8 +94,8 @@ for (var i=0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 
 	bbAngle += PI/2;
-	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
-	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
+	var bbX = Math.round(playerX[i] + bbDist * cos(bbAngle));
+	var bbZ = Math.round(playerZ[i] + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oMetalTreasure, 3,3, 0,2)],
 		true, clBaseResource, bbX, bbZ
@@ -103,8 +103,8 @@ for (var i=0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 
 	bbAngle += PI/2;
-	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
-	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
+	var bbX = Math.round(playerX[i] + bbDist * cos(bbAngle));
+	var bbZ = Math.round(playerZ[i] + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStoneTreasure, 2,2, 0,2)],
 		true, clBaseResource, bbX, bbZ
@@ -152,7 +152,7 @@ for (var i=0; i < numPlayers; i++)
 }
 
 log("Creating lakes...");
-var numLakes = round(scaleByMapSize(1,4) * numPlayers);
+var numLakes = Math.round(scaleByMapSize(1,4) * numPlayers);
 var waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(100,250), 0.8, 0.1, 10),
 	[

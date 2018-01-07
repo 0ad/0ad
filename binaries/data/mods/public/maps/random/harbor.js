@@ -307,8 +307,8 @@ function addHarbors(players)
 
 	for (let i = 0; i < players.length; ++i)
 	{
-		let ix = round(fractionToTiles(players[i].x));
-		let iz = round(fractionToTiles(players[i].z));
+		let ix = Math.round(fractionToTiles(players[i].x));
+		let iz = Math.round(fractionToTiles(players[i].z));
 
 		let offsetX = Math.round((center - ix) / 2.5);
 		let offsetZ = Math.round((center - iz) / 2.5);

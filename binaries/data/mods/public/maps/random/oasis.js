@@ -66,8 +66,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get the x and z in tiles
 	fx = fractionToTiles(playerX[i]);
 	fz = fractionToTiles(playerZ[i]);
-	ix = round(fx);
-	iz = round(fz);
+	ix = Math.round(fx);
+	iz = Math.round(fz);
 	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// create the city patch
@@ -83,8 +83,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(eBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
@@ -98,15 +98,15 @@ for (var i = 0; i < numPlayers; i++)
 		mAngle = randFloat(0, TWO_PI);
 	}
 	var mDist = radius*1.3;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(eMetalMine, 1,1, 0,0),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3),new SimpleObject(ePalmShort, 2,2, 2,3),new SimpleObject(ePalmTall, 1,1, 2,2)],
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	mX = round(fx + mDist*1.5 * cos(mAngle + PI/1.578));
-	mZ = round(fz + mDist*1.5 * sin(mAngle + PI/1.578));
+	mX = Math.round(fx + mDist*1.5 * cos(mAngle + PI/1.578));
+	mZ = Math.round(fz + mDist*1.5 * sin(mAngle + PI/1.578));
 	group = new SimpleGroup(
 							[new SimpleObject(eMetalMine, 1,1, 0,0),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3),new SimpleObject(ePalmShort, 2,2, 2,3),new SimpleObject(ePalmTall, 1,1, 2,2)],
 							true, clBaseResource, mX, mZ
@@ -115,15 +115,15 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(eStoneMine, 1,1, 0,2),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3),new SimpleObject(ePalmShort, 2,2, 2,3),new SimpleObject(ePalmTall, 1,1, 2,2)],
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	mX = round(fx + mDist * 1.4 * cos(mAngle - PI /2.46));
-	mZ = round(fz + mDist * 1.4 * sin(mAngle - PI /2.46));
+	mX = Math.round(fx + mDist * 1.4 * cos(mAngle - PI /2.46));
+	mZ = Math.round(fz + mDist * 1.4 * sin(mAngle - PI /2.46));
 	group = new SimpleGroup(
 							[new SimpleObject(eStoneMine, 1,1, 0,2),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 3,3),new SimpleObject(ePalmShort, 2,2, 3,3),new SimpleObject(ePalmTall, 1,1, 3,3)],
 							true, clBaseResource, mX, mZ
@@ -159,8 +159,8 @@ for (let i = 0; i < numPlayers; ++i)
 	// Creating the water patch explaining the forest
 	do {
 		var watAngle = forestAngle + randFloat((PI/3), (5*PI/3));
-		var watX = round(forestX + 6 * cos(watAngle));
-		var watY = round(forestY + 6 * sin(watAngle));
+		var watX = Math.round(forestX + 6 * cos(watAngle));
+		var watY = Math.round(forestY + 6 * sin(watAngle));
 
 		createObjectGroup(
 			new SimpleGroup(
@@ -232,10 +232,10 @@ if (mapSize > 150 && randBool())
 {
 	log("Creating path though the oasis...");
 	var pAngle = randFloat(0, TWO_PI);
-	var px = round(fx) + round(fractionToTiles(0.13 * cos(pAngle)));
-	var py = round(fz) + round(fractionToTiles(0.13 * sin(pAngle)));
-	var pex = round(fx) + round(fractionToTiles(0.13 * -cos(pAngle)));
-	var pey = round(fz) + round(fractionToTiles(0.13 * sin(pAngle + PI)));
+	var px = Math.round(fx) + Math.round(fractionToTiles(0.13 * cos(pAngle)));
+	var py = Math.round(fz) + Math.round(fractionToTiles(0.13 * sin(pAngle)));
+	var pex = Math.round(fx) + Math.round(fractionToTiles(0.13 * -cos(pAngle)));
+	var pey = Math.round(fz) + Math.round(fractionToTiles(0.13 * sin(pAngle + PI)));
 	createArea(
 		new PathPlacer(px, py, pex, pey, scaleByMapSize(7, 18), 0.4, 1, 0.2, 0),
 		[
@@ -299,8 +299,8 @@ for (var p = 0; p < scaleByMapSize(5,30); p++)
 {
 	var aAngle = randFloat(0, TWO_PI);
 	var aDist = fractionToTiles(0.11);
-	var animX = round(fx + aDist * cos(aAngle));
-	var animY = round(fz + aDist * sin(aAngle));
+	var animX = Math.round(fx + aDist * cos(aAngle));
+	var animY = Math.round(fz + aDist * sin(aAngle));
 	group = new RandomGroup(
 		[new SimpleObject(eLion, 1,2, 0,4),new SimpleObject(eLioness, 1,2, 2,4),new SimpleObject(eGazelle, 4,6, 1,5),new SimpleObject(eCamel, 1,2, 1,5)], true, clFood, animX,animY);
 	createObjectGroup(group, 0);

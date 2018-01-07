@@ -301,10 +301,10 @@ function globalSmoothHeightmap(strength = 0.8, heightmap = g_Map.height, smoothM
  */
 function rectangularSmoothToHeight(center, dx, dy, targetHeight, strength = 0.8, heightmap = g_Map.height)
 {
-	let x = round(center.x);
-	let y = round(center.y);
-	dx = round(dx);
-	dy = round(dy);
+	let x = Math.round(center.x);
+	let y = Math.round(center.y);
+	dx = Math.round(dx);
+	dy = Math.round(dy);
 
 	let heightmapWin = [];
 	for (let wx = 0; wx < 2 * dx + 1; ++wx)

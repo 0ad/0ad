@@ -8,7 +8,7 @@ function getPlayerTileCoordinates(playerIdx, teamIdx, fractionX, fractionZ)
 	let fx = fractionToTiles(fractionX + 0.05 * cos(playerAngle));
 	let fz = fractionToTiles(fractionZ + 0.05 * sin(playerAngle));
 
-	return [playerAngle, fx, fz, round(fx), round(fz)];
+	return [playerAngle, fx, fz, Math.round(fx), Math.round(fz)];
 }
 
 Engine.LoadLibrary("rmgen");
@@ -123,8 +123,8 @@ for (let i = 0; i < teams.length; ++i)
 		let mAngle = randFloat(playerAngle - PI / teams[i].length, playerAngle + PI / teams[i].length);
 
 		// Metal
-		let mX = round(fx + g_InitialMineDistance * cos(mAngle));
-		let mZ = round(fz + g_InitialMineDistance * sin(mAngle));
+		let mX = Math.round(fx + g_InitialMineDistance * cos(mAngle));
+		let mZ = Math.round(fz + g_InitialMineDistance * sin(mAngle));
 		let group = new SimpleGroup(
 			[new SimpleObject(oMetalLarge, g_InitialMines, g_InitialMines, 0, 4)],
 			true, clBaseResource, mX, mZ
@@ -132,8 +132,8 @@ for (let i = 0; i < teams.length; ++i)
 		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 4), stayClasses(clLand, 2)]);
 
 		// Stone
-		let sX = round(fx + g_InitialMineDistance * cos(mAngle + PI/4));
-		let sZ = round(fz + g_InitialMineDistance * sin(mAngle + PI/4));
+		let sX = Math.round(fx + g_InitialMineDistance * cos(mAngle + PI/4));
+		let sZ = Math.round(fz + g_InitialMineDistance * sin(mAngle + PI/4));
 		group = new SimpleGroup(
 			[new SimpleObject(oStoneLarge, g_InitialMines, g_InitialMines, 0, 4)],
 			true, clBaseResource, sX, sZ
@@ -151,8 +151,8 @@ for (let i = 0; i < teams.length; ++i)
 		// create initial berry bushes
 		let bbAngle = randFloat(PI, PI*1.5);
 		let bbDist = 10;
-		let bbX = round(fx + bbDist * cos(bbAngle));
-		let bbZ = round(fz + bbDist * sin(bbAngle));
+		let bbX = Math.round(fx + bbDist * cos(bbAngle));
+		let bbZ = Math.round(fz + bbDist * sin(bbAngle));
 		let group = new SimpleGroup(
 			[new SimpleObject(oFruitBush, 5, 5, 0, 3)],
 			true, clBaseResource, bbX, bbZ
@@ -167,8 +167,8 @@ for (let i = 0; i < teams.length; ++i)
 			let tAngle = randFloat(playerAngle - TWO_PI/teams[i].length,
 			                       playerAngle + TWO_PI/teams[i].length);
 
-			let tX = round(fx + tDist * cos(tAngle));
-			let tZ = round(fz + tDist * sin(tAngle));
+			let tX = Math.round(fx + tDist * cos(tAngle));
+			let tZ = Math.round(fz + tDist * sin(tAngle));
 
 			group = new SimpleGroup(
 				[new SimpleObject(oTree2, g_InitialTrees, g_InitialTrees, 0, 7)],

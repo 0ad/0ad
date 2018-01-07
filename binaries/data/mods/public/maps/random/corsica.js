@@ -245,8 +245,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create berry bushes
 	var bbAngle = randFloat(0, 2 * PI);
 	var bbDist = 11;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(eBush, 5,5, 1,2)],
 		true, clBaseResource, bbX, bbZ
@@ -257,15 +257,15 @@ for (var i = 0; i < numPlayers; i++)
 	// this makes sure it's created on the same level as the player.
 	var mAngle = randFloat(playerAngle[i] + PI/2,playerAngle[i] + PI/3);
 	var mDist = 18;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(eMetalMine, 1,1, 0,0),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3), new SimpleObject(ePine, 0,1, 3,3)], true, clBaseResource, mX, mZ );
 	createObjectGroup(group, 0);
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/5);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(eStoneMine, 1,1, 0,2),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3), new SimpleObject(ePine, 0,1, 3,3)], true, clBaseResource, mX, mZ );
 	createObjectGroup(group, 0);
@@ -553,23 +553,23 @@ ExportMap();
 // no need for preliminary rounding
 function getHeightDiff(x1, z1)
 {
-	var height = getHeight(round(x1),round(z1));
+	var height = getHeight(Math.round(x1),Math.round(z1));
 	var diff = 0;
 	if (z1 + 1 < mapSize)
-		diff += Math.abs(getHeight(round(x1),round(z1+1)) - height);
+		diff += Math.abs(getHeight(Math.round(x1),Math.round(z1+1)) - height);
 	if (x1 + 1 < mapSize && z1 + 1 < mapSize)
-		diff += Math.abs(getHeight(round(x1+1),round(z1+1)) - height);
+		diff += Math.abs(getHeight(Math.round(x1+1),Math.round(z1+1)) - height);
 	if (x1 + 1 < mapSize)
-		diff += Math.abs(getHeight(round(x1+1),round(z1)) - height);
+		diff += Math.abs(getHeight(Math.round(x1+1),Math.round(z1)) - height);
 	if (x1 + 1 < mapSize && z1 - 1 >= 0)
-		diff += Math.abs(getHeight(round(x1+1),round(z1-1)) - height);
+		diff += Math.abs(getHeight(Math.round(x1+1),Math.round(z1-1)) - height);
 	if (z1 - 1 >= 0)
-		diff += Math.abs(getHeight(round(x1),round(z1-1)) - height);
+		diff += Math.abs(getHeight(Math.round(x1),Math.round(z1-1)) - height);
 	if (x1 - 1 >= 0 && z1 - 1 >= 0)
-		diff += Math.abs(getHeight(round(x1-1),round(z1-1)) - height);
+		diff += Math.abs(getHeight(Math.round(x1-1),Math.round(z1-1)) - height);
 	if (x1 - 1 >= 0)
-		diff += Math.abs(getHeight(round(x1-1),round(z1)) - height);
+		diff += Math.abs(getHeight(Math.round(x1-1),Math.round(z1)) - height);
 	if (x1 - 1 >= 0 && z1 + 1 < mapSize)
-		diff += Math.abs(getHeight(round(x1-1),round(z1+1)) - height);
+		diff += Math.abs(getHeight(Math.round(x1-1),Math.round(z1+1)) - height);
 	return diff;
 }

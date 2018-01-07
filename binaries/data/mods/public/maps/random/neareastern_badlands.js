@@ -75,8 +75,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	var ix = round(fx);
-	var iz = round(fz);
+	var ix = Math.round(fx);
+	var iz = Math.round(fz);
 
 	// create the city patch
 	var cityRadius = 10;
@@ -91,8 +91,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(oBerryBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
@@ -105,8 +105,8 @@ for (var i = 0; i < numPlayers; i++)
 		mAngle = randFloat(0, TWO_PI);
 
 	var mDist = 11;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oMetalLarge, 1,1, 0,0), new RandomObject(aBushes, 2,4, 0,2)],
 		true, clBaseResource, mX, mZ
@@ -115,8 +115,8 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStoneLarge, 1,1, 0,2), new RandomObject(aBushes, 2,4, 0,2)],
 		true, clBaseResource, mX, mZ
@@ -128,8 +128,8 @@ for (var i = 0; i < numPlayers; i++)
 	var num = Math.floor(hillSize / 100);
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(12, 14);
-	var tX = round(fx + tDist * cos(tAngle));
-	var tZ = round(fz + tDist * sin(tAngle));
+	var tX = Math.round(fx + tDist * cos(tAngle));
+	var tZ = Math.round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oDatePalm, num, num, 0,5)],
 		false, clBaseResource, tX, tZ
@@ -179,7 +179,7 @@ createArea(
 Engine.SetProgress(30);
 
 log("Creating oasis wildlife...");
-var num = round(PI * oRadius / 8);
+var num = Math.round(PI * oRadius / 8);
 var constraint = new AndConstraint([borderClasses(clForest, 0, 3), avoidClasses(clForest, 0)]);
 var halfSize = mapSize/2;
 for (var i = 0; i < num; ++i)
@@ -188,8 +188,8 @@ for (var i = 0; i < num; ++i)
 	var angle = TWO_PI / num * i;
 	do {
 		// Work outward until constraint met
-		var gx = round(halfSize + r * cos(angle));
-		var gz = round(halfSize + r * sin(angle));
+		var gx = Math.round(halfSize + r * cos(angle));
+		var gz = Math.round(halfSize + r * sin(angle));
 		++r;
 	} while (!constraint.allows(gx,gz) && r < halfSize);
 
@@ -207,15 +207,15 @@ for (var i = 0; i < num; ++i)
 }
 
 constraint = new AndConstraint([borderClasses(clForest, 15, 0), avoidClasses(clFood, 5)]);
-num = round(PI * oRadius / 16);
+num = Math.round(PI * oRadius / 16);
 for (var i = 0; i < num; ++i)
 {
 	var r = 0;
 	var angle = TWO_PI / num * i;
 	do {
 		// Work outward until constraint met
-		var gx = round(halfSize + r * cos(angle));
-		var gz = round(halfSize + r * sin(angle));
+		var gx = Math.round(halfSize + r * cos(angle));
+		var gz = Math.round(halfSize + r * sin(angle));
 		++r;
 	} while (!constraint.allows(gx,gz) && r < halfSize);
 

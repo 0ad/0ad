@@ -90,8 +90,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	var ix = round(fx);
-	var iz = round(fz);
+	var ix = Math.round(fx);
+	var iz = Math.round(fz);
 
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
 
@@ -100,8 +100,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(oFruitBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
@@ -111,8 +111,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create woods
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 13;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oWoodTreasure, 14,14, 0,3)],
 		true, clBaseResource, bbX, bbZ
@@ -126,8 +126,8 @@ for (var i = 0; i < numPlayers; i++)
 		mAngle = randFloat(0, TWO_PI);
 	}
 	var mDist = 12;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oMetalLarge, 1,1, 0,0)],
 		true, clBaseResource, mX, mZ
@@ -136,8 +136,8 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStoneLarge, 1,1, 0,2)],
 		true, clBaseResource, mX, mZ
@@ -148,8 +148,8 @@ for (var i = 0; i < numPlayers; i++)
 	var num = 5;
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(12, 13);
-	var tX = round(fx + tDist * cos(tAngle));
-	var tZ = round(fz + tDist * sin(tAngle));
+	var tX = Math.round(fx + tDist * cos(tAngle));
+	var tZ = Math.round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oTree1, num, num, 0,3)],
 		false, clBaseResource, tX, tZ
@@ -260,8 +260,8 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	var ix = round(fx);
-	var iz = round(fz);
+	var ix = Math.round(fx);
+	var iz = Math.round(fz);
 	// create the city patch
 	var placer = new ClumpPlacer(diskArea(playerIslandRadius / 3), 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);

@@ -91,8 +91,8 @@ for (let i = 0; i < numPlayers; ++i)
 	// Get the x and z in tiles
 	let fx = fractionToTiles(playerX[i]);
 	let fz = fractionToTiles(playerZ[i]);
-	let ix = round(fx);
-	let iz = round(fz);
+	let ix = Math.round(fx);
+	let iz = Math.round(fz);
 
 	let hillSize = PI * radius * radius * 2;
 
@@ -126,8 +126,8 @@ for (let i = 0; i < numPlayers; ++i)
 	// Create berry bushes
 	let bbAngle = randFloat(0, TWO_PI);
 	let bbDist = 12;
-	let bbX = round(fx + bbDist * cos(bbAngle));
-	let bbZ = round(fz + bbDist * sin(bbAngle));
+	let bbX = Math.round(fx + bbDist * cos(bbAngle));
+	let bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	let group = new SimpleGroup(
 		[new SimpleObject(oFruitBush, 5, 5, 0, 3)],
 		true, clBaseResource, bbX, bbZ
@@ -140,8 +140,8 @@ for (let i = 0; i < numPlayers; ++i)
 		mAngle = randFloat(0, TWO_PI);
 
 	let mDist = 12;
-	let mX = round(fx + mDist * cos(mAngle));
-	let mZ = round(fz + mDist * sin(mAngle));
+	let mX = Math.round(fx + mDist * cos(mAngle));
+	let mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oMetalLarge, 1, 1, 0, 0)],
 		true, clBaseResource, mX, mZ
@@ -150,8 +150,8 @@ for (let i = 0; i < numPlayers; ++i)
 
 	// Create stone mines
 	mAngle += randFloat(PI/8, PI/4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStoneLarge, 1, 1, 0, 2)],
 		true, clBaseResource, mX, mZ
@@ -165,8 +165,8 @@ for (let i = 0; i < numPlayers; ++i)
 	for (let x = 0; x < tries; ++x)
 	{
 		let tAngle = randFloat(0, TWO_PI);
-		let tX = round(fx + tDist * cos(tAngle));
-		let tZ = round(fz + tDist * sin(tAngle));
+		let tX = Math.round(fx + tDist * cos(tAngle));
+		let tZ = Math.round(fz + tDist * sin(tAngle));
 		group = new SimpleGroup(
 			[new SimpleObject(oTree2, num, num, 0, 7)],
 			true, clBaseResource, tX, tZ

@@ -8,8 +8,8 @@ function placeDefaultChicken(playerX, playerZ, tileClass, constraint = undefined
 			// Roman and ptolemian civic centers have a big footprint!
 			let aDist = 9;
 
-			let aX = round(playerX + aDist * cos(aAngle));
-			let aZ = round(playerZ + aDist * sin(aAngle));
+			let aX = Math.round(playerX + aDist * cos(aAngle));
+			let aZ = Math.round(playerZ + aDist * sin(aAngle));
 
 			let group = new SimpleGroup(
 				[new SimpleObject(template, 5,5, 0,2)],
