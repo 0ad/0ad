@@ -68,7 +68,7 @@ for (let i = 0; i < numPlayers; ++i)
 	placeDefaultChicken(fx, fz, clBaseResource, undefined, oMuskox);
 
 	// Create metal mine
-	let mAngle = randFloat(0, TWO_PI);
+	let mAngle = randFloat(0, 2 * Math.PI);
 	let mDist = 12;
 	let mX = Math.round(fx + mDist * Math.cos(mAngle));
 	let mZ = Math.round(fz + mDist * Math.sin(mAngle));
@@ -301,7 +301,7 @@ else
 	setSunElevation(randFloat(PI/9, PI/7));
 }
 
-setSunRotation(randFloat(0, TWO_PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 
 setWaterColor(0.3, 0.3, 0.4);
 setWaterTint(0.75, 0.75, 0.75);

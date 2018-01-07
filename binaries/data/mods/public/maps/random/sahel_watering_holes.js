@@ -84,7 +84,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 12;
 	var bbX = Math.round(fx + bbDist * cos(bbAngle));
 	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
@@ -98,7 +98,7 @@ for (var i = 0; i < numPlayers; i++)
 	var mAngle = bbAngle;
 	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 	{
-		mAngle = randFloat(0, TWO_PI);
+		mAngle = randFloat(0, 2 * Math.PI);
 	}
 	var mDist = 12;
 	var mX = Math.round(fx + mDist * cos(mAngle));
@@ -423,7 +423,7 @@ createObjectGroupsDeprecated(group, 0,
 
 setSkySet("sunny");
 
-setSunRotation(randFloat(0, TWO_PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(randFloat(PI/ 5, PI / 4));
 setWaterColor(0.478,0.42,0.384);				// greyish
 setWaterTint(0.58,0.22,0.067);				// reddish

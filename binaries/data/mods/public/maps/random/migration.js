@@ -126,7 +126,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 12;
 	var bbX = Math.round(fx + bbDist * cos(bbAngle));
 	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
@@ -137,7 +137,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 
 	// create woods
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 13;
 	var bbX = Math.round(fx + bbDist * cos(bbAngle));
 	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
@@ -150,7 +150,7 @@ for (var i = 0; i < numPlayers; i++)
 	// create metal mine
 	var mAngle = bbAngle;
 	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
-		mAngle = randFloat(0, TWO_PI);
+		mAngle = randFloat(0, 2 * Math.PI);
 
 	var mDist = radius - 4;
 	var mX = Math.round(fx + mDist * cos(mAngle));
@@ -423,7 +423,7 @@ createObjectGroupsDeprecated(group, 0,
 Engine.SetProgress(98);
 
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
-setSunRotation(randFloat(0, TWO_PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
 setWaterWaviness(2);
 

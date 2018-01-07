@@ -3,7 +3,7 @@
  */
 function getPlayerTileCoordinates(playerIdx, teamIdx, fractionX, fractionZ)
 {
-	let playerAngle = startAngle + (playerIdx+1) * TWO_PI / teams[teamIdx].length;
+	let playerAngle = startAngle + (playerIdx+1) * 2 * Math.PI / teams[teamIdx].length;
 
 	let fx = fractionToTiles(fractionX + 0.05 * cos(playerAngle));
 	let fz = fractionToTiles(fractionZ + 0.05 * sin(playerAngle));
@@ -91,7 +91,7 @@ for (let i = 0; i < teams.length; ++i)
 		continue;
 
 	++teamNo;
-	let teamAngle = startAngle + teamNo*TWO_PI/numTeams;
+	let teamAngle = startAngle + teamNo * 2 * Math.PI / numTeams;
 	let fractionX = 0.5 + 0.3 * cos(teamAngle);
 	let fractionZ = 0.5 + 0.3 * sin(teamAngle);
 	let teamX = fractionToTiles(fractionX);
@@ -164,9 +164,7 @@ for (let i = 0; i < teams.length; ++i)
 		let tDist = 16;
 		for (let x = 0; x < tries; ++x)
 		{
-			let tAngle = randFloat(playerAngle - TWO_PI/teams[i].length,
-			                       playerAngle + TWO_PI/teams[i].length);
-
+			let tAngle = playerAngle + randFloat(-1, 1) * 2 * Math.PI / teams[i].length;
 			let tX = Math.round(fx + tDist * cos(tAngle));
 			let tZ = Math.round(fz + tDist * sin(tAngle));
 
@@ -477,7 +475,7 @@ paintTerrainBasedOnHeight(1, 2, 0, tShore);
 paintTerrainBasedOnHeight(getMapBaseHeight(), 1, 3, tWater);
 
 setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
-setSunRotation(randFloat(0, TWO_PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(randFloat(PI/5, PI/3));
 setWaterWaviness(2);
 

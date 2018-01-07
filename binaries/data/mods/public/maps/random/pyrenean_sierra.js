@@ -85,7 +85,7 @@ var clWater = createTileClass();
 const baseHeight = -6;
 setWaterHeight(8);
 
-var MoutainAngle = randFloat(0,TWO_PI);
+var MoutainAngle = randFloat(0,2 * Math.PI);
 var oceanAngle = MoutainAngle + randFloat(-1, 1) * Math.PI / 12;
 
 var baseHeights = [];
@@ -139,7 +139,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 12;
 	var bbX = Math.round(fx + bbDist * cos(bbAngle));
 	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
@@ -153,7 +153,7 @@ for (var i = 0; i < numPlayers; i++)
 	var mAngle = bbAngle;
 	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 	{
-		mAngle = randFloat(0, TWO_PI);
+		mAngle = randFloat(0, 2 * Math.PI);
 	}
 	var mDist = 12;
 	var mX = Math.round(fx + mDist * cos(mAngle));
@@ -507,7 +507,7 @@ group = new SimpleGroup( [new SimpleObject(oFish, 2,3, 0,2)], true, clFood );
 createObjectGroupsDeprecated(group, 0, [avoidClasses(clFood, 15), stayClasses(clWater, 6)], 20 * numPlayers, 60 );
 
 setSunElevation(randFloat(PI/5, PI / 3));
-setSunRotation(randFloat(0, TWO_PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 
 setSkySet("cumulus");
 setSunColor(0.73,0.73,0.65);

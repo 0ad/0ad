@@ -76,7 +76,7 @@ for (var i = 0; i < numPlayers; ++i)
 	playerZ[i] = tilesToFraction(playerZ[i]);
 
 	var civEntities = getStartingEntities(playerIDs[i]);
-	var angle = randFloat(0, TWO_PI);
+	var angle = randFloat(0, 2 * Math.PI);
 	for (var j = 0; j < civEntities.length; ++j)
 	{
 		// TODO: Make an rmlib function to get only non-structure starting entities and loop over those
@@ -86,10 +86,10 @@ for (var i = 0; i < numPlayers; ++i)
 		var count = civEntities[j].Count || 1;
 		var jx = ix + 2 * cos(angle);
 		var jz = iz + 2 * sin(angle);
-		var kAngle = randFloat(0, TWO_PI);
+		var kAngle = randFloat(0, 2 * Math.PI);
 		for (var k = 0; k < count; ++k)
-			placeObject(jx + cos(kAngle + k*TWO_PI/count), jz + sin(kAngle + k*TWO_PI/count), civEntities[j].Template, id, randFloat(0, TWO_PI));
-		angle += TWO_PI / 3;
+			placeObject(jx + cos(kAngle + k*2 * Math.PI/count), jz + sin(kAngle + k*2 * Math.PI/count), civEntities[j].Template, id, randFloat(0, 2 * Math.PI));
+		angle += 2 * Math.PI / 3;
 	}
 
 	{
@@ -98,21 +98,21 @@ for (var i = 0; i < numPlayers; ++i)
 			var loop = (g_MapSettings.StartingResources < 200) ? 2 : 1;
 			for (let l = 0; l < loop; ++l)
 			{
-				var angle = randFloat(0, TWO_PI);
+				var angle = randFloat(0, 2 * Math.PI);
 				var rad = randFloat(3, 5);
 				var jx = ix + rad * cos(angle);
 				var jz = iz + rad * sin(angle);
-				placeObject(jx, jz, "gaia/special_treasure_wood", 0, randFloat(0, TWO_PI));
-				var angle = randFloat(0, TWO_PI);
+				placeObject(jx, jz, "gaia/special_treasure_wood", 0, randFloat(0, 2 * Math.PI));
+				var angle = randFloat(0, 2 * Math.PI);
 				var rad = randFloat(3, 5);
 				var jx = ix + rad * cos(angle);
 				var jz = iz + rad * sin(angle);
-				placeObject(jx, jz, "gaia/special_treasure_stone", 0, randFloat(0, TWO_PI));
-				var angle = randFloat(0, TWO_PI);
+				placeObject(jx, jz, "gaia/special_treasure_stone", 0, randFloat(0, 2 * Math.PI));
+				var angle = randFloat(0, 2 * Math.PI);
 				var rad = randFloat(3, 5);
 				var jx = ix + rad * cos(angle);
 				var jz = iz + rad * sin(angle);
-				placeObject(jx, jz, "gaia/special_treasure_metal", 0, randFloat(0, TWO_PI));
+				placeObject(jx, jz, "gaia/special_treasure_metal", 0, randFloat(0, 2 * Math.PI));
 			}
 		}
 	}

@@ -163,7 +163,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 12;
 	var bbX = Math.round(fx + bbDist * cos(bbAngle));
 	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
@@ -177,7 +177,7 @@ for (var i = 0; i < numPlayers; i++)
 	var mAngle = bbAngle;
 	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 	{
-		mAngle = randFloat(0, TWO_PI);
+		mAngle = randFloat(0, 2 * Math.PI);
 	}
 	var mDist = 12;
 	var mX = Math.round(fx + mDist * cos(mAngle));
@@ -361,7 +361,7 @@ createStragglerTrees(
 	stragglerTrees);
 
 setSkySet("stormy");
-setSunRotation(randFloat(0, TWO_PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(randFloat(PI/ 6, PI / 4));
 
 setWaterColor(0.035,0.098,0.314);

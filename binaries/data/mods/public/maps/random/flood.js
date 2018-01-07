@@ -124,7 +124,7 @@ for (let i = 0; i < numPlayers; ++i)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// Create berry bushes
-	let bbAngle = randFloat(0, TWO_PI);
+	let bbAngle = randFloat(0, 2 * Math.PI);
 	let bbDist = 12;
 	let bbX = Math.round(fx + bbDist * cos(bbAngle));
 	let bbZ = Math.round(fz + bbDist * sin(bbAngle));
@@ -137,7 +137,7 @@ for (let i = 0; i < numPlayers; ++i)
 	// Create metal mine
 	let mAngle = bbAngle;
 	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
-		mAngle = randFloat(0, TWO_PI);
+		mAngle = randFloat(0, 2 * Math.PI);
 
 	let mDist = 12;
 	let mX = Math.round(fx + mDist * cos(mAngle));
@@ -164,7 +164,7 @@ for (let i = 0; i < numPlayers; ++i)
 	let num = 50;
 	for (let x = 0; x < tries; ++x)
 	{
-		let tAngle = randFloat(0, TWO_PI);
+		let tAngle = randFloat(0, 2 * Math.PI);
 		let tX = Math.round(fx + tDist * cos(tAngle));
 		let tZ = Math.round(fz + tDist * sin(tAngle));
 		group = new SimpleGroup(

@@ -81,7 +81,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 12;
 	var bbX = Math.round(fx + bbDist * cos(bbAngle));
 	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
@@ -95,7 +95,7 @@ for (var i = 0; i < numPlayers; i++)
 	var mAngle = bbAngle;
 	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 	{
-		mAngle = randFloat(0, TWO_PI);
+		mAngle = randFloat(0, 2 * Math.PI);
 	}
 	var mDist = 12;
 	var mX = Math.round(fx + mDist * cos(mAngle));
@@ -118,7 +118,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create starting trees
 	var num = 5;
-	var tAngle = randFloat(0, TWO_PI);
+	var tAngle = randFloat(0, 2 * Math.PI);
 	var tDist = randFloat(12, 13);
 	var tX = Math.round(fx + tDist * cos(tAngle));
 	var tZ = Math.round(fz + tDist * sin(tAngle));

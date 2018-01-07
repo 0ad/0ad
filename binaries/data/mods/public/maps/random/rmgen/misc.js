@@ -3,7 +3,7 @@ function placeDefaultChicken(playerX, playerZ, tileClass, constraint = undefined
 	for (let j = 0; j < 2; ++j)
 		for (var tries = 0; tries < 10; ++tries)
 		{
-			let aAngle = randFloat(0, TWO_PI);
+			let aAngle = randFloat(0, 2 * Math.PI);
 
 			// Roman and ptolemian civic centers have a big footprint!
 			let aDist = 9;

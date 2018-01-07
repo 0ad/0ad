@@ -1053,7 +1053,7 @@ function createUnknownPlayerBases()
 		placeDefaultChicken(fx, fz, clBaseResource);
 
 		// create berry bushes
-		var bbAngle = randFloat(0, TWO_PI);
+		var bbAngle = randFloat(0, 2 * Math.PI);
 		var bbDist = 12;
 		var bbX = Math.round(fx + bbDist * cos(bbAngle));
 		var bbZ = Math.round(fz + bbDist * sin(bbAngle));
@@ -1066,7 +1066,7 @@ function createUnknownPlayerBases()
 		if (g_StartingTreasures)
 		{
 			// create woods
-			var bbAngle = randFloat(0, TWO_PI);
+			var bbAngle = randFloat(0, 2 * Math.PI);
 			var bbDist = 13;
 			var bbX = Math.round(fx + bbDist * cos(bbAngle));
 			var bbZ = Math.round(fz + bbDist * sin(bbAngle));
@@ -1081,7 +1081,7 @@ function createUnknownPlayerBases()
 		var mAngle = bbAngle;
 		while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 		{
-			mAngle = randFloat(0, TWO_PI);
+			mAngle = randFloat(0, 2 * Math.PI);
 		}
 		var mDist = 12;
 		var mX = Math.round(fx + mDist * cos(mAngle));

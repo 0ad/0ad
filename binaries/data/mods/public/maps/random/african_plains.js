@@ -80,7 +80,7 @@ for (var i = 0; i < numPlayers; ++i)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 12;
 	var bbX = Math.round(fx + bbDist * cos(bbAngle));
 	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
@@ -93,7 +93,7 @@ for (var i = 0; i < numPlayers; ++i)
 	// create metal mine
 	var mAngle = bbAngle;
 	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
-		mAngle = randFloat(0, TWO_PI);
+		mAngle = randFloat(0, 2 * Math.PI);
 
 	var mDist = 12;
 	var mX = Math.round(fx + mDist * cos(mAngle));
@@ -313,7 +313,7 @@ setFogFactor(0.25);
 setFogColor(0.8, 0.7, 0.5);
 
 setSkySet("sunny");
-setSunRotation(randFloat(0, TWO_PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(randFloat(PI/ 4, PI / 2));
 
 setWaterColor(0.223, 0.247, 0.2); // dark majestic blue
