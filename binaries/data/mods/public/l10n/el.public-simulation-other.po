@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-27 09:05+0100\n"
-"PO-Revision-Date: 2017-12-27 14:30+0000\n"
+"POT-Creation-Date: 2018-01-05 09:06+0100\n"
+"PO-Revision-Date: 2018-01-05 15:33+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -548,11 +548,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:415
+#: simulation/components/ProductionQueue.js:412
 msgid "The production queue is full."
 msgstr "Η σειρά παραγωγής είναι πλήρης."
 
-#: simulation/components/ProductionQueue.js:801
+#: simulation/components/ProductionQueue.js:798
 msgid "Can't find free space to spawn trained units"
 msgstr "Δεν μπορεί να βρεθεί ελεύθερος χώρος για να βγουν οι εκπαιδευμένες μονάδες"
 
@@ -795,6 +795,7 @@ msgid ""
 msgstr "Οι μικροί χάρτες είναι κατάλληλοι για αγώνες 1ος εναντίων 1ος, καθώς οι παίκτες μπορούν να βρουν γρήγορα τον εχθρό, ενώ παράλληλα έχουν περιορισμένη περιοχή για επέκταση."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Name
 msgid "Medium"
 msgstr "Μεσαίος"
 
@@ -838,6 +839,43 @@ msgstr "Πολύ μεγάλοι χάρτες δεν συνιστώνται κα�
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
 msgstr "Τεράστιος"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Name
+msgid "Very Easy"
+msgstr "Πολύ εύκολο"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Name
+msgid "Easy"
+msgstr "Εύκολο"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Name
+msgid "Hard"
+msgstr "Δύσκολο"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Name
+msgid "Very Hard"
+msgstr "Πολύ δύσκολο"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr ""
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"

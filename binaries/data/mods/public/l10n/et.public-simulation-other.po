@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-27 09:05+0100\n"
-"PO-Revision-Date: 2017-12-27 14:30+0000\n"
+"POT-Creation-Date: 2018-01-05 09:06+0100\n"
+"PO-Revision-Date: 2018-01-05 15:33+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/wildfire-games/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -538,11 +538,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:415
+#: simulation/components/ProductionQueue.js:412
 msgid "The production queue is full."
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:801
+#: simulation/components/ProductionQueue.js:798
 msgid "Can't find free space to spawn trained units"
 msgstr ""
 
@@ -785,6 +785,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Name
 msgid "Medium"
 msgstr "Keskmine"
 
@@ -828,6 +829,43 @@ msgstr ""
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
 msgstr "Hiiglaslik"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Name
+msgid "Very Easy"
+msgstr "Väga lihtne"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Name
+msgid "Easy"
+msgstr "Lihtne"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Name
+msgid "Hard"
+msgstr "Keeruline"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Name
+msgid "Very Hard"
+msgstr "Väga keeruline"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr ""
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"

@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Osoitz <oelkoro@gmail.com>, 2015
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-27 09:05+0100\n"
-"PO-Revision-Date: 2017-12-28 11:09+0000\n"
+"POT-Creation-Date: 2018-01-05 09:06+0100\n"
+"PO-Revision-Date: 2018-01-05 17:16+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -542,11 +542,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Ez dago nahiko baliabide - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:415
+#: simulation/components/ProductionQueue.js:412
 msgid "The production queue is full."
 msgstr "Produkzio ilara beterik dago"
 
-#: simulation/components/ProductionQueue.js:801
+#: simulation/components/ProductionQueue.js:798
 msgid "Can't find free space to spawn trained units"
 msgstr "Erreklutatutako unitateak ea daukate agertzeko nahikoa toki"
 
@@ -789,6 +789,7 @@ msgid ""
 msgstr "Mapa txikiak egokiak dira 1v1 partidetarako, jokalariek azkar iritsi daitezkeelako artean horrek hedatzeko toki zerbait duelako."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Name
 msgid "Medium"
 msgstr "Erdikoa"
 
@@ -832,6 +833,43 @@ msgstr "Mapa handiak ez dira gomendatzen etsaiarengana iristea luze egiten delak
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
 msgstr "Erraldoia"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Name
+msgid "Very Easy"
+msgstr "Oso erraza"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr "Aukeratu zailtasun hau 0 A.D. aztertzen ari bazara"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Name
+msgid "Easy"
+msgstr "Erraza"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr "Aukeratu zailtasun hori ez baduzu gustuko lurrera bota zautzaten."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr "Aukeratu zailtasun hau dagoeneko 0 A.D. esperientzia ona baduzu."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Name
+msgid "Hard"
+msgstr "Zaila"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr "Aukeratu zailtasun hau benetan erronka botatzerik nahi baduzu."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Name
+msgid "Very Hard"
+msgstr "Oso zaila"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr "Aukeratu zailtasun hau ez badizu axola arrastaka eraman zautzaten."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"

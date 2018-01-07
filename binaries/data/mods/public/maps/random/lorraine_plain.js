@@ -38,6 +38,7 @@ const pForestR = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest, tGr
 InitMap();
 
 const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -51,6 +52,8 @@ var clBaseResource = createTileClass();
 var clShallow = createTileClass();
 
 var waterHeight = -4;
+var shallowHeight = -2;
+var shallowWidth = scaleByMapSize(8, 12);
 
 var [playerIDs, playerX, playerZ] = playerPlacementRiver(Math.PI / 2, 0.5);
 
@@ -133,6 +136,7 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }
+Engine.SetProgress(20);
 
 log("Creating the main river...");
 var river1 = [1, fractionToTiles(0.5)];
@@ -141,6 +145,7 @@ createArea(
 	new PathPlacer(...river1, ...river2, scaleByMapSize(10, 20), 0.5, 3 * scaleByMapSize(1, 4), 0.1, 0.01),
 	new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 	avoidClasses(clPlayer, 4));
+Engine.SetProgress(25);
 
 log("Creating small puddles at the map border to ensure players being separated...");
 for (let [fx, fz] of [river1, river2])
@@ -148,24 +153,25 @@ for (let [fx, fz] of [river1, river2])
 		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(5, 10))), 0.95, 0.6, 10, fx, fz),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2),
 		avoidClasses(clPlayer, 8));
+Engine.SetProgress(30);
 
 log("Creating the shallows of the main river...");
 for (let i = 0; i <= randIntInclusive(3, scaleByMapSize(4, 6)); ++i)
 {
-	let cLocation = Math.floor(fractionToTiles(randFloat(0.15, 0.85)));
-	createShallowsPassage(
-		cLocation,
-		Math.floor(fractionToTiles(0.35)),
-		cLocation,
-		Math.floor(fractionToTiles(0.65)),
-		scaleByMapSize(4, 8),
-		-2,
-		-2,
-		2,
-		clShallow,
-		undefined,
-		waterHeight);
+	let location = randFloat(0.15, 0.85);
+	createPassage({
+		"start": new Vector2D(location, 0).mult(mapSize),
+		"end": new Vector2D(location, 1).mult(mapSize),
+		"startWidth": shallowWidth,
+		"endWidth": shallowWidth,
+		"smoothWidth": 2,
+		"startHeight": shallowHeight,
+		"endHeight": shallowHeight,
+		"maxHeight": shallowHeight,
+		"tileClass": clShallow
+	});
 }
+Engine.SetProgress(35);
 
 createTributaryRivers(
 	true,
@@ -177,6 +183,8 @@ createTributaryRivers(
 	clWater,
 	clShallow,
 	avoidClasses(clPlayer, 3, clBaseResource, 4));
+
+Engine.SetProgress(40);
 
 paintTerrainBasedOnHeight(-5, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2, 1, pForestR);

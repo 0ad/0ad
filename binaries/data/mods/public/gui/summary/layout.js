@@ -108,7 +108,8 @@ var getScorePanelsData = () => ({
 			})),
 			{
 				"identifier": "tributes",
-				"caption": sprintf(translate("Tributes \n(%(sent)s / %(received)s)"),
+				"caption": translate("Tributes"),
+				"headerCaption": sprintf(translate("Tributes \n(%(sent)s / %(received)s)"),
 					{
 						"sent": getColoredTypeTranslation("sent"),
 						"received": getColoredTypeTranslation("received")
@@ -189,7 +190,8 @@ var getScorePanelsData = () => ({
 			{ "identifier": "feminization", "caption": translate("Feminization"), "yStart": 16, "width": 100 },
 			{
 				"identifier": "bribes",
-				"caption": sprintf(translate("Bribes\n(%(succeeded)s / %(failed)s)"),
+				"caption": translate("Bribes"),
+				"headerCaption": sprintf(translate("Bribes\n(%(succeeded)s / %(failed)s)"),
 					{
 						"succeeded": getColoredTypeTranslation("succeeded"),
 						"failed": getColoredTypeTranslation("failed")
@@ -247,7 +249,7 @@ function updateGeneralPanelHeadings(headings)
 			headerGUIName = "Heading[" + (h - 1) + "]";
 
 		let headerGUI = Engine.GetGUIObjectByName(headerGUIName);
-		headerGUI.caption = headings[h].caption;
+		headerGUI.caption = headings[h].headerCaption || headings[h].caption;
 		headerGUI.size = left + " " + headings[h].yStart + " " + (left + headings[h].width) + " 100%";
 		headerGUI.hidden = false;
 

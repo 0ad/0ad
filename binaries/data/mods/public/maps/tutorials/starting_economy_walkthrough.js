@@ -21,8 +21,8 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings supports. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover your mouse over any icon to show a tooltip with more details.\n"),
-			markForTranslation("The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover your mouse over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources.")
+			markForTranslation("Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings supports. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover the cursor over any icon to show a tooltip with more details.\n"),
+			markForTranslation("The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover the cursor over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources.")
 		]
 	},
 	{
@@ -40,7 +40,7 @@ Trigger.prototype.tutorialGoals = [
 			markForTranslation("At this point, food and wood are the most important resources for developing your economy, so let's start with gathering food. Female citizens gather vegetables faster than other units.\n"),
 			markForTranslation("There are primarily three ways to select units:\n"),
 			markForTranslation("1) Hold the left mouse button and drag a selection rectangle that encloses the units you want to select.\n"),
-			markForTranslation("2) Click on one of them and then add additional units to your selection by shift-clicking each additional unit (or also via the above selection rectangle).\n"),
+			markForTranslation("2) Click on one of them and then add additional units to your selection by holding Shift and clicking each additional unit (or also via the above selection rectangle).\n"),
 			markForTranslation("3) Double-click on a unit. This will select every unit of the same type as the specified unit in your visible window. Triple-click will select all units of the same type on the entire map.\n"),
 			markForTranslation("You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your female citizens to gather the grapes to the southeast of your Civic Center by right-clicking on the grapes when you have all the female citizens selected.")
 		],
@@ -85,7 +85,7 @@ Trigger.prototype.tutorialGoals = [
 			   !msg.cmd.data.command || msg.cmd.data.command != "gather" ||
 			   !msg.cmd.data.resourceType || msg.cmd.data.resourceType.specific != "tree")
 			{
-				this.WarningMessage(markForTranslation("Select the Civic Center, then hover your mouse over a tree and right-click when you see the cursor change into a Wood icon."));
+				this.WarningMessage(markForTranslation("Select the Civic Center, then hover the cursor over a tree and right-click when you see the cursor change into a Wood icon."));
 				return;
 			}
 			this.NextGoal();
@@ -106,7 +106,7 @@ Trigger.prototype.tutorialGoals = [
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
 					markForTranslation("Do not forget to hold Shift while clicking to train several units.") :
-					markForTranslation("Shift-click on the HOPLITE icon.");
+					markForTranslation("Hold Shift and click on the Hoplite icon.");
 				this.WarningMessage(txt);
 				return;
 			}
@@ -127,7 +127,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("The newly trained units automatically go to the trees and start gathering Wood.\n"),
-			markForTranslation("But as they have to bring it back to the Civic Center to deposit it, their gathering efficiency suffers from the distance. To fix that, we can build a storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do so, select your five newly trained Citizen Soldiers and look for the construction panel on the bottom right, click on the storehouse icon, move the mouse as close as possible to the trees you want to collect and click on a valid place to build the dropsite.\n"),
+			markForTranslation("But as they have to bring it back to the Civic Center to deposit it, their gathering efficiency suffers from the distance. To fix that, we can build a storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do so, select your five newly trained Citizen Soldiers and look for the construction panel on the bottom right, click on the storehouse icon, move the mouse as close as possible to the trees you want to gather and click on a valid place to build the dropsite.\n"),
 			markForTranslation("Invalid (obstructed) positions will show the building preview overlay in red.")
 		],
 		"OnPlayerCommand": function(msg)
@@ -164,8 +164,8 @@ Trigger.prototype.tutorialGoals = [
 				let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
-					markForTranslation("Do not forget to shift-click to produce several units.") :
-					markForTranslation("Hold shift and click on the female citizen icon.");
+					markForTranslation("Do not forget to hold Shift and click to train several units.") :
+					markForTranslation("Hold shift and click on the Female Citizen icon.");
 				this.WarningMessage(txt);
 				return;
 			}
@@ -341,8 +341,8 @@ Trigger.prototype.tutorialGoals = [
 				let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count != 1 ?
-					markForTranslation("Do not shift-click to produce a single unit.") :
-					markForTranslation("Click on the female citizen icon.");
+					markForTranslation("Click without holding Shift to train a single unit.") :
+					markForTranslation("Click on the Female Citizen icon.");
 				this.WarningMessage(txt);
 				return;
 			}
@@ -353,7 +353,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("You can increase the gather rates of your workers by researching new technologies available in some buildings.\n"),
-			markForTranslation("The farming rate, for example, can be improved with a researchable technology in the farmstead. Select the farmstead and look at its production panel on the bottom right. You will see several researchable technologies. Hover the mouse over them to see their costs and effects and click on the one you want to research.")
+			markForTranslation("The farming rate, for example, can be improved with a researchable technology in the farmstead. Select the farmstead and look at its production panel on the bottom right. You will see several researchable technologies. Hover the cursor over them to see their costs and effects and click on the one you want to research.")
 		],
 		"IsDone": function()
 		{
@@ -368,7 +368,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("We should start preparing to phase up into 'Town Phase', which will unlock many more units and buildings. Select the Civic Center and hover the mouse over the 'Town Phase' icon to see what is still needed.\n"),
+			markForTranslation("We should start preparing to phase up into 'Town Phase', which will unlock many more units and buildings. Select the Civic Center and hover the cursor over the 'Town Phase' icon to see what is still needed.\n"),
 			markForTranslation("We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build barracks.\n"),
 			markForTranslation("Select four of your soldiers and ask them to build a barracks: as before, start selecting the soldiers, click on the barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build.")
 		],
@@ -407,12 +407,12 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("In later phases, you need usually Stone and Metal to build bigger structures and train better soldiers. Hence, while waiting for the research to be done, you will send half of your idle Citizen Soldiers (who have finished building the Barracks) to gather Stone and the other half to gather Metal.\n"),
-			markForTranslation("To do so, we could select three Citizen Soldiers and right-click on the Stone mine on the west of the Civic Center (a Stone cursor is shown when you hover the mouse over it while your soldiers are selected). However, these soldiers were gathering Wood, so they may still carry some Wood which would be lost when starting to gather another resource.")
+			markForTranslation("To do so, we could select three Citizen Soldiers and right-click on the Stone mine on the west of the Civic Center (the cursor changes when hovering the Stone mine while your soldiers are selected). However, these soldiers were gathering Wood, so they may still carry some Wood which would be lost when starting to gather another resource.")
 		],
 	},
 	{
 		"instructions": [
-			markForTranslation("Thus, we should order them to deposit their Wood in the Civic Center along the way. To do so, we will queue orders with shift-click: select your soldiers, shift-right-click on the Civic Center to deposit their Wood and then shift-right-click on the Stone mine to gather it.\n"),
+			markForTranslation("Thus, we should order them to deposit their Wood in the Civic Center along the way. To do so, we will hold Shift while clicking to queue orders: select your soldiers, hold Shift and right-click on the Civic Center to deposit their Wood and then hold Shift and right-click on the Stone mine to gather it.\n"),
 			markForTranslation("Perform a similar order queue with the remaining soldiers and the Metal mine in the west.")
 		],
 		"Init": function()

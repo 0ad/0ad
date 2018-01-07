@@ -4,6 +4,7 @@
 # 
 # Translators:
 # kecer <adam@kecer.net>, 2016
+# LeviTaule <levi.taule@gmail.com>, 2018
 # LeviTaule <levi.taule@gmail.com>, 2015-2016
 # Marián Mižik <inactive+marian.mizik@transifex.com>, 2015
 # Mário Bulejko, 2015
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-01 03:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-06 15:08+0000\n"
+"Last-Translator: LeviTaule <levi.taule@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1720,15 +1721,15 @@ msgstr "Odišli ste z hry."
 
 #: gui/summary/summary.js:497
 msgid "You have won the battle!"
-msgstr "Vyhrali ste bitku!"
+msgstr "Vyhral si bitku!"
 
 #: gui/summary/summary.js:499
 msgid "You have been defeated..."
-msgstr "Boli ste porazení..."
+msgstr "Bol si porazený..."
 
 #: gui/summary/summary.js:500
 msgid "You have abandoned the game."
-msgstr "Hru ste opustili"
+msgstr "Opustil si hru."
 
 #: gui/summary/summary.js:503
 #, javascript-format
@@ -1756,7 +1757,7 @@ msgstr "Zavrieť"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr "0 A.D. Poďakovanie"
+msgstr "Poďakovanie 0 A.D."
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):338
 msgid "Language"
@@ -1954,7 +1955,7 @@ msgstr "Prezrite si strom stavieb civilizácii zastúpených v 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):195
 msgid "Learn about the many civilizations featured in 0 A.D."
-msgstr "Dozveďte sa viac o civilizáciach v 0 A.D."
+msgstr "Zistite niečo viac o civilizáciach v 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):218
 msgid "Click here to start a new single player game."
@@ -2050,7 +2051,7 @@ msgstr "Kliknutím otvoríte vo svojom prehliadači stránku s informáciami o p
 
 #: gui/pregame/mainmenu.xml:(tooltip):593
 msgid "Click to see the 0 A.D. credits."
-msgstr "Kliknutím si pozriete poďakovania 0 A.D."
+msgstr "Kliknutím si pozrieš poďakovania 0 A.D."
 
 #: gui/reference/structree/structree.xml:(caption):25
 msgid "Civilization:"
@@ -2378,19 +2379,19 @@ msgstr "Prekladatelia"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
-msgstr "Ako vás majú volať počas hier s jedným hráčom."
+msgstr "Ako vás majú volať počas hier jedného hráča."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
-msgstr "Hráčske meno (jeden hráč)"
+msgstr "Hráčske meno (Hra jedného hráča)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr "Ako vás majú volať počas hier s viacerými hráčmi (okrem lobby)."
+msgstr "Ako vás majú volať počas multiplayer-u (okrem lobby)."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
-msgstr "Hráčske meno (viacero hráčov)"
+msgstr "Hráčske meno (v multiplayer-i)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Start 0 A.D. in a window"
@@ -2490,7 +2491,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[11].label
 msgid "Late Observer Joins"
-msgstr "Oneskorený pozorovateľ sa pripojil"
+msgstr "Pripojil sa oneskorený pozorovateľ"
 
 #: gui/options/options.json[0].options[12].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
@@ -2498,7 +2499,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[12].label
 msgid "Observer Limit"
-msgstr "Limit pozorovateľov"
+msgstr "Limit počtu pozorovateľov"
 
 #: gui/options/options.json[0].options[13].tooltip
 msgid "Number of units trained per batch"
@@ -2660,7 +2661,7 @@ msgstr "Čiastočky"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr "Keď je vypnuté, použije sa pre vykreslenie vody to najnižšie možné nastavenie. Týmto sa ostatné nastavenia stávajú neúčinnými."
+msgstr "Keď sa vypne, pre vykreslenie vody sa použije to najnižšie možné nastavenie. Týmto sa ostatné nastavenia stávajú neúčinnými."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Water Effects"
@@ -2802,7 +2803,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick"
-msgstr "Zvukový signál keď niekto napíše vašu prezývku"
+msgstr "Zvukový signál, keď niekto napíše vašu prezývku"
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"

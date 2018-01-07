@@ -1093,7 +1093,7 @@ std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res
 #define DEBUG_CASE(X, Y) case gloox::X: return g_L10n.Translate("Error") + " (" + Y + ")"
 	switch (res)
 	{
-	CASE(RegistrationSuccess, g_L10n.Translate("Success"));
+	CASE(RegistrationSuccess, g_L10n.Translate("Your account has been successfully registered"));
 	CASE(RegistrationNotAcceptable, g_L10n.Translate("Not all necessary information provided"));
 	CASE(RegistrationConflict, g_L10n.Translate("Username already exists"));
 	DEBUG_CASE(RegistrationNotAuthorized, "Account removal timeout or insufficiently secure channel for password change");

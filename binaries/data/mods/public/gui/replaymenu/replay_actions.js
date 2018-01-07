@@ -124,6 +124,7 @@ function showReplaySummary()
 	Engine.SwitchGuiPage("page_summary.xml", {
 		"sim": simData,
 		"gui": {
+			"dialog": false,
 			"isReplay": true,
 			"replayDirectory": g_ReplaysFiltered[selected].directory,
 			"replaySelectionData": createReplaySelectionData(g_ReplaysFiltered[selected].directory)

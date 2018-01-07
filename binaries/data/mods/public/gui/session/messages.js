@@ -155,7 +155,7 @@ var g_StatusMessageTypes = {
 			"reason": getDisconnectReason(msg.reason, true)
 		}),
 	"waiting_for_players": msg => translate("Waiting for players to connect:"),
-	"join_syncing": msg => translate("Synchronising gameplay with other players..."),
+	"join_syncing": msg => translate("Synchronising gameplay with other players…"),
 	"active": msg => ""
 };
 
