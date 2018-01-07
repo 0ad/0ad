@@ -36,7 +36,7 @@ ClumpPlacer.prototype.place = function(constraint)
 
 	var size = getMapSize();
 	var gotRet = new Array(size).fill(0).map(p => new Uint8Array(size)); // booleans
-	var radius = sqrt(this.size / PI);
+	var radius = Math.sqrt(this.size / Math.PI);
 	var perim = 4 * radius * 2 * PI;
 	var intPerim = Math.ceil(perim);
 

@@ -72,11 +72,6 @@ function round(x)
 	return Math.round(x);
 }
 
-function sqrt(x)
-{
-	return Math.sqrt(x);
-}
-
 function floor(x)
 {
 	return Math.floor(x);

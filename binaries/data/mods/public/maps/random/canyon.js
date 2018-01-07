@@ -210,7 +210,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 		var p2 = 0;
 
 		for (let i = 0; i < numPlayers; ++i)
-			distances.push(sqrt((tx-mapSize*playerX[i])*(tx-mapSize*playerX[i])+(tz-mapSize*playerZ[i])*(tz-mapSize*playerZ[i])));
+			distances.push(Math.euclidDistance2D(tx, tz, fractionToTiles(playerX[i]), fractionToTiles(playerZ[i])));
 
 		for (let a = 0; a < numPlayers; ++a)
 		{
