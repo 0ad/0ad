@@ -136,8 +136,8 @@ for (var i = 0; i < numPlayers; i++)
 Engine.SetProgress(20);
 log ("Creating rivers...");
 
-var riverStart = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.15), mapCenter.x, mapCenter.y);
-var riverEnd = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.49), mapCenter.x, mapCenter.y);
+var riverStart = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.15), mapCenter)[0];
+var riverEnd = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.49), mapCenter)[0];
 
 for (let i = 0; i < numPlayers; ++i)
 {
@@ -145,7 +145,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	log("Creating lake near the center...");
 	createArea(
-		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 3), 0.95, 0.6, 10, riverStart[0][i], riverStart[1][i]),
+		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 3), 0.95, 0.6, 10, riverStart[i].x, riverStart[i].y),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 			paintClass(clWater)
@@ -154,7 +154,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	log("Creating the river between the players...");
 	createArea(
-		new PathPlacer(riverStart[0][i], riverStart[1][i], riverEnd[0][i], riverEnd[1][i], scaleByMapSize(10, 50), 0.2, 3 * scaleByMapSize(1, 4), 0.2, 0.05),
+		new PathPlacer(riverStart[i].x, riverStart[i].y, riverEnd[i].x, riverEnd[i].y, scaleByMapSize(10, 50), 0.2, 3 * scaleByMapSize(1, 4), 0.2, 0.05),
 		[
 			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
@@ -164,7 +164,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	log("Creating lake near the map border...");
 	createArea(
-		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, riverEnd[0][i], riverEnd[1][i]),
+		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, riverEnd[i].x, riverEnd[i].y),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 			paintClass(clWater)

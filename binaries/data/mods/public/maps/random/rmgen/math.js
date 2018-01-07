@@ -14,21 +14,20 @@ function getAngle(x1, z1, x2, z2)
 
 /**
  * Get pointCount points equidistantly located on a circle.
+ * @param {Vector2D} center
  */
-function distributePointsOnCircle(pointCount, startAngle, radius, centerX, centerZ)
+function distributePointsOnCircle(pointCount, startAngle, radius, center)
 {
-	let x = [];
-	let z = [];
+	let points = [];
 	let angle = [];
 
 	for (let i = 0; i < pointCount; ++i)
 	{
 		angle[i] = startAngle + 2 * Math.PI * i / pointCount;
-		x[i] = centerX + radius * Math.cos(angle[i]);
-		z[i] = centerZ + radius * Math.sin(angle[i]);
+		points[i] = Vector2D.add(center, new Vector2D(radius, 0).rotate(-angle[i]));
 	}
 
-	return [x, z, angle];
+	return [points, angle];
 }
 
 /**
