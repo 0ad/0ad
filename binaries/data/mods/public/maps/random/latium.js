@@ -78,7 +78,7 @@ function distanceToPlayers(x, z)
 	{
 		var dx = x - playerX[i];
 		var dz = z - playerZ[i];
-		r = min(r, dx*dx + dz*dz);
+		r = Math.min(r, Math.square(dx) + Math.square(dz));
 	}
 	return sqrt(r);
 }
@@ -123,9 +123,9 @@ for (var ix = 0; ix <= mapSize; ix++)
 
 		// add the rough shape of the water
 		if (x < WATER_WIDTH)
-			h = max(-16.0, -28.0*(WATER_WIDTH-x)/WATER_WIDTH);
+			h = Math.max(-16, -28 * (WATER_WIDTH - x) / WATER_WIDTH);
 		else if (x > 1.0-WATER_WIDTH)
-			h = max(-16.0, -28.0*(x-(1.0-WATER_WIDTH))/WATER_WIDTH);
+			h = Math.max(-16, -28 * (x - (1 - WATER_WIDTH)) / WATER_WIDTH);
 		else
 		{
 			distToWater = (0.5 - WATER_WIDTH - abs(x-0.5));
@@ -138,14 +138,14 @@ for (var ix = 0; ix <= mapSize; ix++)
 		if ( baseNoise < 0 )
 		{
 			baseNoise *= pn;
-			baseNoise *= max(0.1, distToWater / (0.5-WATER_WIDTH));
+			baseNoise *= Math.max(0.1, distToWater / (0.5 - WATER_WIDTH));
 		}
 		var oldH = h;
 		h += baseNoise;
 
 		// add some higher-frequency noise on land
 		if ( oldH > 0 )
-			h += (0.4*noise2a.get(x,z) + 0.2*noise2b.get(x,z)) * min(oldH/10.0, 1.0);
+			h += (0.4 * noise2a.get(x,z) + 0.2 * noise2b.get(x,z)) * Math.min(oldH / 10, 1);
 
 		// create cliff noise
 		if ( h > -10 )
@@ -166,7 +166,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 			cliffNoise -= 0.59;
 			cliffNoise *= pn;
 			if (cliffNoise > 0)
-				h += 19 * min(cliffNoise, 0.045) / 0.045;
+				h += 19 * Math.min(cliffNoise, 0.045) / 0.045;
 		}
 		setHeight(ix, iz, h);
 	}
@@ -201,11 +201,11 @@ for (var ix = 0; ix < mapSize; ix++)
 		var minAdjHeight = minH;
 		if (maxH > 15)
 		{
-			var maxNx = min(ix+2, mapSize);
-			var maxNz = min(iz+2, mapSize);
-			for (var nx = max(ix-1, 0); nx <= maxNx; nx++)
-				for (var nz = max(iz-1, 0); nz <= maxNz; nz++)
-					minAdjHeight = min(minAdjHeight, getHeight(nx, nz));
+			var maxNx = Math.min(ix + 2, mapSize);
+			var maxNz = Math.min(iz + 2, mapSize);
+			for (let nx = Math.max(ix - 1, 0); nx <= maxNx; ++nx)
+				for (let nz = Math.max(iz - 1, 0); nz <= maxNz; ++nz)
+					minAdjHeight = Math.min(minAdjHeight, getHeight(nx, nz));
 		}
 
 		// choose a terrain based on elevation

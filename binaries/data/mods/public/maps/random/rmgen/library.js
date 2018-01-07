@@ -50,6 +50,9 @@ function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
 	return min + (max - min) * (g_Map.size - minMapSize) / (maxMapSize - minMapSize);
 }
 
+/**
+ * DEPRECATED Math proxies
+ */
 function cos(x)
 {
 	return Math.cos(x);
@@ -77,16 +80,6 @@ function sqrt(x)
 function floor(x)
 {
 	return Math.floor(x);
-}
-
-function max(a, b)
-{
-	return a > b ? a : b;
-}
-
-function min(a, b)
-{
-	return a < b ? a : b;
 }
 
 /**

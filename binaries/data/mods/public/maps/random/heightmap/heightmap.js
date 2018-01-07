@@ -364,10 +364,10 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 		for (let y = minDistance; y < heightmap[0].length - minDistance; ++y)
 		{
 			if (avoidClass !== undefined && // Avoid adjecting tiles in avoidClass
-				(avoidMap[max(x - 1, 0)][y] > 0 ||
-				avoidMap[x][max(y - 1, 0)] > 0 ||
-				avoidMap[min(x + 1, avoidMap.length - 1)][y] > 0 ||
-				avoidMap[x][min(y + 1, avoidMap[0].length - 1)] > 0))
+				(avoidMap[Math.max(x - 1, 0)][y] > 0 ||
+				avoidMap[x][Math.max(y - 1, 0)] > 0 ||
+				avoidMap[Math.min(x + 1, avoidMap.length - 1)][y] > 0 ||
+				avoidMap[x][Math.min(y + 1, avoidMap[0].length - 1)] > 0))
 				continue;
 
 			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max && // Has correct height
@@ -514,7 +514,7 @@ function splashErodeMap(strength = 1, heightmap = g_Map.height)
 			{
 				drain.push(0);
 				if (slopes[i] > 0)
-					drain[i] += min(strength * slopes[i] / sumSlopes, slopes[i]);
+					drain[i] += Math.min(strength * slopes[i] / sumSlopes, slopes[i]);
 			}
 
 			let sumDrain = 0;

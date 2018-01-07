@@ -99,7 +99,7 @@ function distanceToPlayers(x, z)
 	{
 		var dx = x - playerX[i];
 		var dz = z - playerZ[i];
-		r = min(r, dx*dx + dz*dz);
+		r = Math.min(r, Math.square(dx) + Math.square(dz));
 	}
 	return sqrt(r);
 }

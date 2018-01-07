@@ -82,14 +82,15 @@ var tWater = ['dirt_brown_d'];
 var tWaterBorder = ['dirt_brown_d'];
 
 var mapSize = getMapSize();
+var mapArea = getMapArea();
 var mapRadius = mapSize/2;
 var mapCenterX = mapRadius;
 var mapCenterZ = mapRadius;
 
 var numPlayers = getNumPlayers();
 var baseRadius = 15;
-var minPlayerRadius = min(mapRadius-1.5*baseRadius, 5*mapRadius/8);
-var maxPlayerRadius = min(mapRadius-baseRadius, 3*mapRadius/4);
+var minPlayerRadius = Math.min(mapRadius - 1.5 * baseRadius, 5/8 * mapRadius);
+var maxPlayerRadius = Math.min(mapRadius - baseRadius, 3/4 * mapRadius);
 
 var playerStartLocX = [];
 var playerStartLocZ = [];
@@ -107,7 +108,7 @@ var resourceRadius = 2/3 * mapRadius;
 // Setup woods
 // For large maps there are memory errors with too many trees.  A density of 256*192/mapArea works with 0 players.
 // Around each player there is an area without trees so with more players the max density can increase a bit.
-var maxTreeDensity = min(256 * (192 + 8 * numPlayers) / (mapSize * mapSize), 1); // Has to be tweeked but works ok
+var maxTreeDensity = Math.min(256 * (192 + 8 * numPlayers) / mapArea, 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
 
 ////////////////
@@ -361,11 +362,11 @@ for (var x = 0; x < mapSize; x++)
 		var radius = Math.euclidDistance2D(x + 0.5, z + 0.5, mapCenterX, mapCenterZ);
 		var minDistToSL = mapSize;
 		for (var i=0; i < numPlayers; i++)
-			minDistToSL = min(minDistToSL, Math.euclidDistance2D(playerStartLocX[i], playerStartLocZ[i], x, z));
+			minDistToSL = Math.min(minDistToSL, Math.euclidDistance2D(playerStartLocX[i], playerStartLocZ[i], x, z));
 
 		// Woods tile based
-		var tDensFactSL = max(min((minDistToSL - baseRadius) / baseRadius, 1), 0);
-		var tDensFactRad = abs((resourceRadius - radius) / resourceRadius);
+		var tDensFactSL = Math.max(Math.min((minDistToSL - baseRadius) / baseRadius, 1), 0);
+		var tDensFactRad = Math.abs((resourceRadius - radius) / resourceRadius);
 		var tDensActual = (maxTreeDensity * tDensFactSL * tDensFactRad)*0.75;
 
 		if (!randBool(tDensActual))
