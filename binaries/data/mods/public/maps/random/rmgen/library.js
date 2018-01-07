@@ -69,19 +69,9 @@ function round(x)
 	return Math.round(x);
 }
 
-function lerp(a, b, t)
-{
-	return a + (b-a) * t;
-}
-
 function sqrt(x)
 {
 	return Math.sqrt(x);
-}
-
-function ceil(x)
-{
-	return Math.ceil(x);
 }
 
 function floor(x)

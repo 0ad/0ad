@@ -38,7 +38,7 @@ ClumpPlacer.prototype.place = function(constraint)
 	var gotRet = new Array(size).fill(0).map(p => new Uint8Array(size)); // booleans
 	var radius = sqrt(this.size / PI);
 	var perim = 4 * radius * 2 * PI;
-	var intPerim = ceil(perim);
+	var intPerim = Math.ceil(perim);
 
 	var ctrlPts = 1 + Math.floor(1.0/Math.max(this.smoothness,1.0/intPerim));
 
@@ -86,7 +86,7 @@ ClumpPlacer.prototype.place = function(constraint)
 		var xx = this.x;
 		var yy = this.z;
 
-		for (var k=0; k < ceil(r); k++)
+		for (var k = 0; k < Math.ceil(r); ++k)
 		{
 			var i = Math.floor(xx);
 			var j = Math.floor(yy);

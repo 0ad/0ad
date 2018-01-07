@@ -614,7 +614,7 @@ for (let p = 0; p < playerIDs.length; ++p)
 	placeStartLocationResources(point);
 }
 
-let mercenaryCamps = ceil(g_Map.size / 256);
+let mercenaryCamps = Math.ceil(g_Map.size / 256);
 log("Maximum number of mercenary camps: " + uneval(mercenaryCamps));
 for (let i = 0; i < resourceSpots.length; ++i)
 {
