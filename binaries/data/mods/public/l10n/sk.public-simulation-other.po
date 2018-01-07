@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-27 09:05+0100\n"
-"PO-Revision-Date: 2017-12-28 17:24+0000\n"
+"POT-Creation-Date: 2018-01-05 09:06+0100\n"
+"PO-Revision-Date: 2018-01-06 13:46+0000\n"
 "Last-Translator: LeviTaule <levi.taule@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -550,11 +550,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Chýbajúce suroviny - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:415
+#: simulation/components/ProductionQueue.js:412
 msgid "The production queue is full."
 msgstr "Produkčný front je plný."
 
-#: simulation/components/ProductionQueue.js:801
+#: simulation/components/ProductionQueue.js:798
 msgid "Can't find free space to spawn trained units"
 msgstr "Nie je možné nájsť voľné miesto na uloženie vytrénovaných jednotiek"
 
@@ -797,6 +797,7 @@ msgid ""
 msgstr "Menšie mapy sú vhodné pre 1vs1 hry, keďže hráči môžu rýchlo dosiahnuť nepriateľské územie, stále majúc dosť miesta na expanziu ríše."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Name
 msgid "Medium"
 msgstr "Stredný"
 
@@ -840,6 +841,43 @@ msgstr "Veľmi veľké mapy nie sú odporúčané, pretože trvá veľmi dlho do
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
 msgstr "Gigantický"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Name
+msgid "Very Easy"
+msgstr "Veľmi ľahká"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Name
+msgid "Easy"
+msgstr "Ľahká"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Name
+msgid "Hard"
+msgstr "Ťažká"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Name
+msgid "Very Hard"
+msgstr "Veľmi ťažká"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr ""
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"

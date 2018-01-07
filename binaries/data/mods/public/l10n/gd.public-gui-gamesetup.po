@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-29 09:06+0100\n"
-"PO-Revision-Date: 2017-12-29 15:18+0000\n"
+"POT-Creation-Date: 2018-01-05 09:04+0100\n"
+"PO-Revision-Date: 2018-01-05 14:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -29,458 +29,466 @@ msgstr "Gun IF"
 msgid "AI will be disabled for this player."
 msgstr "Thèid an IF a chur à comas airson a’ chluicheadair seo."
 
-#: gui/gamesetup/gamesetup.js:55
+#: gui/gamesetup/gamesetup.js:56
 msgctxt "team"
 msgid "None"
 msgstr "—"
 
-#: gui/gamesetup/gamesetup.js:71
+#: gui/gamesetup/gamesetup.js:72
 msgctxt "civilization"
 msgid "Random"
 msgstr "Tuaireamach"
 
-#: gui/gamesetup/gamesetup.js:72
+#: gui/gamesetup/gamesetup.js:73
 msgid "Picks one civilization at random when the game starts."
 msgstr "Taghaidh seo sìobhaltas air thuaiream nuair a thòisicheas an geama."
 
-#: gui/gamesetup/gamesetup.js:110
+#: gui/gamesetup/gamesetup.js:111
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* Chan eil %(username)s deiseil."
 
-#: gui/gamesetup/gamesetup.js:111
+#: gui/gamesetup/gamesetup.js:112
 msgid "I'm ready"
 msgstr "Tha mi deiseil"
 
-#: gui/gamesetup/gamesetup.js:112
+#: gui/gamesetup/gamesetup.js:113
 msgid "State that you are ready to play."
 msgstr "Innis gu bheil thu deiseil airson cluiche."
 
-#: gui/gamesetup/gamesetup.js:116
+#: gui/gamesetup/gamesetup.js:117
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* Tha %(username)s deiseil!"
 
-#: gui/gamesetup/gamesetup.js:117
+#: gui/gamesetup/gamesetup.js:118
 msgid "Stay ready"
 msgstr "Fan deiseil"
 
-#: gui/gamesetup/gamesetup.js:118
+#: gui/gamesetup/gamesetup.js:119
 msgid "Stay ready even when the game settings change."
 msgstr "Fan deiseil fiù ’s nuair a dh’atharraicheas roghainnean a’ gheama"
 
-#: gui/gamesetup/gamesetup.js:123
+#: gui/gamesetup/gamesetup.js:124
 msgid "I'm not ready!"
 msgstr "Chan eil mi deiseil!"
 
-#: gui/gamesetup/gamesetup.js:124
+#: gui/gamesetup/gamesetup.js:125
 msgid "State that you are not ready to play."
 msgstr "Innis nach eil thu deiseil airson cluiche."
 
-#: gui/gamesetup/gamesetup.js:147
+#: gui/gamesetup/gamesetup.js:148
 msgid "Game settings have been changed"
 msgstr "Chaidh roghainnean a’ gheama atharrachadh"
 
-#: gui/gamesetup/gamesetup.js:148
+#: gui/gamesetup/gamesetup.js:149
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "Thàinig %(username)s a-steach"
 
-#: gui/gamesetup/gamesetup.js:149
+#: gui/gamesetup/gamesetup.js:150
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "Dh’fhàg %(username)s"
 
-#: gui/gamesetup/gamesetup.js:150
+#: gui/gamesetup/gamesetup.js:151
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "Fhuair %(username)s a’ bhròg"
 
-#: gui/gamesetup/gamesetup.js:151
+#: gui/gamesetup/gamesetup.js:152
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "Chaidh %(username)s a thoirmeasg"
 
-#: gui/gamesetup/gamesetup.js:152
+#: gui/gamesetup/gamesetup.js:153
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:153
+#: gui/gamesetup/gamesetup.js:154
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:163
+#: gui/gamesetup/gamesetup.js:164
 msgctxt "map filter"
 msgid "Default"
 msgstr "Tùsail"
 
-#: gui/gamesetup/gamesetup.js:164
+#: gui/gamesetup/gamesetup.js:165
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
 msgstr "Gach mapa seach mapaichean-mara no taisbeanaidh."
 
-#: gui/gamesetup/gamesetup.js:170
+#: gui/gamesetup/gamesetup.js:171
 msgid "Naval Maps"
 msgstr "Mapaichean mara"
 
-#: gui/gamesetup/gamesetup.js:171
+#: gui/gamesetup/gamesetup.js:172
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "Mapaichean sa bhios feum air longan gus an nàmhaid a ruigsinn."
 
-#: gui/gamesetup/gamesetup.js:176
+#: gui/gamesetup/gamesetup.js:177
 msgid "Demo Maps"
 msgstr "Mapaichean taisbeanaidh"
 
-#: gui/gamesetup/gamesetup.js:177
+#: gui/gamesetup/gamesetup.js:178
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "Cha ghabh cluich air na mapaichean seo agus tha iad ann a chum taisbeanaidh a-mhàin."
 
-#: gui/gamesetup/gamesetup.js:182
+#: gui/gamesetup/gamesetup.js:183
 msgid "New Maps"
 msgstr "Mapaichean ùra"
 
-#: gui/gamesetup/gamesetup.js:183
+#: gui/gamesetup/gamesetup.js:184
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
 msgstr "Mapaichean ùra a chaidh a chur ris a’ gheama leis an sgaoileadh seo."
 
-#: gui/gamesetup/gamesetup.js:188
+#: gui/gamesetup/gamesetup.js:189
 msgid "Trigger Maps"
 msgstr "Mapaichean le trigearan"
 
-#: gui/gamesetup/gamesetup.js:189
+#: gui/gamesetup/gamesetup.js:190
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Mapaichean le tachartasan sgriobtaichte a dh’fhaodas aonadan nàimhdeil a ghintinn."
 
-#: gui/gamesetup/gamesetup.js:194
+#: gui/gamesetup/gamesetup.js:195
 msgid "All Maps"
 msgstr "A h‑uile mapa"
 
-#: gui/gamesetup/gamesetup.js:195
+#: gui/gamesetup/gamesetup.js:196
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr "Gach mapa dhen t-seòrsa a thagh thu."
 
-#: gui/gamesetup/gamesetup.js:404
+#: gui/gamesetup/gamesetup.js:411
 msgid "Map Type"
 msgstr "Seòrsa a’ mhapa"
 
-#: gui/gamesetup/gamesetup.js:405
+#: gui/gamesetup/gamesetup.js:412
 msgid "Select a map type."
 msgstr "Tagh seòrsa a’ mhapa."
 
-#: gui/gamesetup/gamesetup.js:428
+#: gui/gamesetup/gamesetup.js:435
 msgid "Map Filter"
 msgstr "Criathrag nam mapa"
 
-#: gui/gamesetup/gamesetup.js:429
+#: gui/gamesetup/gamesetup.js:436
 msgid "Select a map filter."
 msgstr "Tagh criathrag nam mapa."
 
-#: gui/gamesetup/gamesetup.js:444
+#: gui/gamesetup/gamesetup.js:451
 msgid "Select Map"
 msgstr "Tagh mapa"
 
-#: gui/gamesetup/gamesetup.js:445
+#: gui/gamesetup/gamesetup.js:452
 msgid "Select a map to play on."
 msgstr "Tagh mapa airson cluich air."
 
-#: gui/gamesetup/gamesetup.js:459
+#: gui/gamesetup/gamesetup.js:466
 msgid "Map Size"
 msgstr "Meud a’ mhapa"
 
-#: gui/gamesetup/gamesetup.js:460
+#: gui/gamesetup/gamesetup.js:467
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Tagh meud a’ mhapa. (Dh’fhaoidte gum bi an geama nas slaodaiche le mapa mòr.)"
 
-#: gui/gamesetup/gamesetup.js:474
+#: gui/gamesetup/gamesetup.js:481
 msgid "Biome"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:475
+#: gui/gamesetup/gamesetup.js:482
 msgid "Select the flora and fauna."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:490
+#: gui/gamesetup/gamesetup.js:497
 msgid "Number of Players"
 msgstr "Àireamh de chluicheadairean"
 
-#: gui/gamesetup/gamesetup.js:491
+#: gui/gamesetup/gamesetup.js:498
 msgid "Select number of players."
 msgstr "Tagh an àireamh de chluicheadairean."
 
-#: gui/gamesetup/gamesetup.js:511
+#: gui/gamesetup/gamesetup.js:518
 msgid "Population Cap"
 msgstr "Tomhas-sluaigh"
 
-#: gui/gamesetup/gamesetup.js:518
+#: gui/gamesetup/gamesetup.js:525
 msgid "Select population limit."
 msgstr "Tagh an tomhas-sluaigh as motha."
 
-#: gui/gamesetup/gamesetup.js:521
+#: gui/gamesetup/gamesetup.js:528
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Rabhadh: Dh’fhaoidte gun dig dàil air a’ gheama nuair a ruigeas a h-uile %(players)s cluicheadair(ean) sluagh dhe %(popCap)s."
 
-#: gui/gamesetup/gamesetup.js:539
+#: gui/gamesetup/gamesetup.js:546
 msgid "Starting Resources"
 msgstr "Stòrasan tòiseachaidh"
 
-#: gui/gamesetup/gamesetup.js:542
+#: gui/gamesetup/gamesetup.js:549
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Uiread tùsail gach stòrais: %(resources)s."
 
-#: gui/gamesetup/gamesetup.js:545
+#: gui/gamesetup/gamesetup.js:552
 msgid "Select the game's starting resources."
 msgstr "Tagh stòrasan tòiseachaidh a’ gheama."
 
-#: gui/gamesetup/gamesetup.js:560
+#: gui/gamesetup/gamesetup.js:567
 msgid "Ceasefire"
 msgstr "Fois-losgaidh"
 
-#: gui/gamesetup/gamesetup.js:561
+#: gui/gamesetup/gamesetup.js:568
 msgid "Set time where no attacks are possible."
 msgstr "Suidhich an ùine nach gabh ionnsaigh a thoirt."
 
-#: gui/gamesetup/gamesetup.js:574
+#: gui/gamesetup/gamesetup.js:581
 msgid "Victory Condition"
 msgstr "Cumha buaidhe"
 
-#: gui/gamesetup/gamesetup.js:575
+#: gui/gamesetup/gamesetup.js:582
 msgid "Select victory condition."
 msgstr "Tagh cumha na buaidhe."
 
-#: gui/gamesetup/gamesetup.js:590
+#: gui/gamesetup/gamesetup.js:597
 msgid "Relic Count"
 msgstr "Àireamh de thaisean"
 
-#: gui/gamesetup/gamesetup.js:591
+#: gui/gamesetup/gamesetup.js:598
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "An àireamh shlàn de thaisean a thèid a ghintinn air a’ mhapa. Bidh buaidh le taisean as coltaiche le aon no dhà dhiubh. Nuair a bhios barrachd dhiubh ann, bidh togail nan taisean cudromach air sàilleabh buannachdan an aurathan."
 
-#: gui/gamesetup/gamesetup.js:605
+#: gui/gamesetup/gamesetup.js:612
 msgid "Relic Duration"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:606
+#: gui/gamesetup/gamesetup.js:613
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:620
+#: gui/gamesetup/gamesetup.js:627
 msgid "Wonder Duration"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:621
+#: gui/gamesetup/gamesetup.js:628
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:635
+#: gui/gamesetup/gamesetup.js:642
 msgid "Game Speed"
 msgstr "Luaths a’ gheama"
 
-#: gui/gamesetup/gamesetup.js:636
+#: gui/gamesetup/gamesetup.js:643
 msgid "Select game speed."
 msgstr "Tagh luaths a’ gheama."
 
-#: gui/gamesetup/gamesetup.js:702
+#: gui/gamesetup/gamesetup.js:657
+msgid "Difficulty"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:659
+msgid "Select the difficulty of this scenario."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:724
 msgid "Chose the civilization for this player"
 msgstr "Tagh sìobhaltas dhan chluicheadair seo"
 
-#: gui/gamesetup/gamesetup.js:742
+#: gui/gamesetup/gamesetup.js:764
 msgid "Hero Garrison"
 msgstr "Gearastan churaidhean"
 
-#: gui/gamesetup/gamesetup.js:743
+#: gui/gamesetup/gamesetup.js:765
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Toglaich am faod curaidhean a dhol ’nan gearastan gus nach fhaod."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:757
+#: gui/gamesetup/gamesetup.js:779
 msgid "Revealed Map"
 msgstr "Mapa air fhoillseachadh"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:760
+#: gui/gamesetup/gamesetup.js:782
 msgid "Toggle revealed map (see everything)."
 msgstr "Toglaich am mapa air fhoillseachadh (faic a h-uile rud)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:776
+#: gui/gamesetup/gamesetup.js:798
 msgid "Explored Map"
 msgstr "Mapa air a rùrachadh"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:779
+#: gui/gamesetup/gamesetup.js:801
 msgid "Toggle explored map (see initial map)."
 msgstr "Toglaich mapa air a rùrachadh (seall am mapa tùsail)."
 
-#: gui/gamesetup/gamesetup.js:790
+#: gui/gamesetup/gamesetup.js:812
 msgid "Disable Treasures"
 msgstr "Cuir ulaidhean à comas"
 
-#: gui/gamesetup/gamesetup.js:791
+#: gui/gamesetup/gamesetup.js:813
 msgid "Disable all treasures on the map."
 msgstr "Cuir gach ulaidh air a’ mhapa à comas."
 
-#: gui/gamesetup/gamesetup.js:802
+#: gui/gamesetup/gamesetup.js:824
 msgid "Disable Spies"
 msgstr "Cuir brathadairean à comas"
 
-#: gui/gamesetup/gamesetup.js:803
+#: gui/gamesetup/gamesetup.js:825
 msgid "Disable spies during the game."
 msgstr "Cuir brathadairean à comas rè a’ gheama."
 
-#: gui/gamesetup/gamesetup.js:814
+#: gui/gamesetup/gamesetup.js:836
 msgid "Teams Locked"
 msgstr "Sgiobaidhean glaiste"
 
-#: gui/gamesetup/gamesetup.js:815
+#: gui/gamesetup/gamesetup.js:837
 msgid "Toggle locked teams."
 msgstr "Toglaich a bheil na sgiobaidhean glaiste."
 
-#: gui/gamesetup/gamesetup.js:829
+#: gui/gamesetup/gamesetup.js:851
 msgid "Last Man Standing"
 msgstr "Cò sheasas"
 
-#: gui/gamesetup/gamesetup.js:830
+#: gui/gamesetup/gamesetup.js:852
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Toglaich am buannaich an cluicheadair no an caidreachas mu dheireadh a sheasas thar càich."
 
-#: gui/gamesetup/gamesetup.js:843
+#: gui/gamesetup/gamesetup.js:865
 msgid "Cheats"
 msgstr "Cealgaireachd"
 
-#: gui/gamesetup/gamesetup.js:844
+#: gui/gamesetup/gamesetup.js:866
 msgid "Toggle the usability of cheats."
 msgstr "Toglaich an gabh cealgaireachd a chleachdadh."
 
-#: gui/gamesetup/gamesetup.js:857
+#: gui/gamesetup/gamesetup.js:879
 msgid "Rated Game"
 msgstr "Geama rangaichte"
 
-#: gui/gamesetup/gamesetup.js:858
+#: gui/gamesetup/gamesetup.js:880
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Toglaich an tèid an geama a chur ri clàr nan sgòr."
 
-#: gui/gamesetup/gamesetup.js:884
+#: gui/gamesetup/gamesetup.js:906
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr "Brùth air %(hotkey)s gus ainmean nan cluicheadairean no roghainnean fhèin-choileanadh."
 
-#: gui/gamesetup/gamesetup.js:892
+#: gui/gamesetup/gamesetup.js:914
 msgid "Return to the lobby."
 msgstr "Till dhan lobaidh."
 
-#: gui/gamesetup/gamesetup.js:893
+#: gui/gamesetup/gamesetup.js:915
 msgid "Return to the main menu."
 msgstr "Till dhan phrìomh chlàr-taice."
 
-#: gui/gamesetup/gamesetup.js:897
+#: gui/gamesetup/gamesetup.js:919
 msgid "Start Game!"
 msgstr "Tòisich air geama!"
 
-#: gui/gamesetup/gamesetup.js:903
+#: gui/gamesetup/gamesetup.js:925
 msgid "Start a new game with the current settings."
 msgstr "Tòisich air geama ùr leis na roghainnean làithreach."
 
-#: gui/gamesetup/gamesetup.js:904
+#: gui/gamesetup/gamesetup.js:926
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "Tòisich air geama ùr leis na roghainnean làithreach (à comas gus am bi na cluicheadairean uile deiseil)"
 
-#: gui/gamesetup/gamesetup.js:958
+#: gui/gamesetup/gamesetup.js:980
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1493
+#: gui/gamesetup/gamesetup.js:1515
 msgctxt "map selection"
 msgid "Random"
 msgstr "Tuaireamach"
 
-#: gui/gamesetup/gamesetup.js:1495
+#: gui/gamesetup/gamesetup.js:1517
 msgid "Pick any of the given maps at random."
 msgstr "Tagh gin dhe na mapaichean seo air thuaiream."
 
-#: gui/gamesetup/gamesetup.js:1518
+#: gui/gamesetup/gamesetup.js:1549
 msgctxt "biome"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1519
+#: gui/gamesetup/gamesetup.js:1550
 msgid "Pick a biome at random."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1811 gui/gamesetup/gamesetup.js:1853
+#: gui/gamesetup/gamesetup.js:1871 gui/gamesetup/gamesetup.js:1913
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1816
+#: gui/gamesetup/gamesetup.js:1876
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Chan eil fhios"
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1906
 msgid "Yes"
 msgstr "Tha"
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1906
 msgid "No"
 msgstr "Chan eil"
 
-#: gui/gamesetup/gamesetup.js:1940
+#: gui/gamesetup/gamesetup.js:2000
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2143
+#: gui/gamesetup/gamesetup.js:2203
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IF: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2151
+#: gui/gamesetup/gamesetup.js:2211
 msgid "Unassigned"
 msgstr "Gun chluicheadair"
 
-#: gui/gamesetup/gamesetup.js:2227
+#: gui/gamesetup/gamesetup.js:2287
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2234
+#: gui/gamesetup/gamesetup.js:2294
 msgid "Unknown Player"
 msgstr "Cluicheadair neo-aithnichte"
 
-#: gui/gamesetup/gamesetup.js:2273
+#: gui/gamesetup/gamesetup.js:2333
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2274
+#: gui/gamesetup/gamesetup.js:2334
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2275
+#: gui/gamesetup/gamesetup.js:2335
 msgid "HH:mm"
 msgstr "HH:mm"
 

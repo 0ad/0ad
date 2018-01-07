@@ -496,7 +496,7 @@ function initGUILabelsAndButtons()
 		assignedState.state == "won" ?
 			translate("You have won the battle!") :
 		assignedState.state == "defeated" ?
-			translate("You have been defeated...") :
+			translate("You have been defeated…") :
 			translate("You have abandoned the game.");
 
 	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(

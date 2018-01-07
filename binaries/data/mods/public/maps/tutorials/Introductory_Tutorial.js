@@ -12,7 +12,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Select the citizen-soldier, right-click on a tree near the Civil Center to begin collecting wood. Citizen-soldiers gather wood faster than female citizens."),
+		"instructions": markForTranslation("Select the citizen-soldier, right-click on a tree near the Civic Center to begin gathering Wood. Citizen Soldiers gather Wood faster than female citizens."),
 		"OnPlayerCommand": function(msg)
 		{
 			if (msg.cmd.type == "gather" && msg.cmd.target &&
@@ -23,7 +23,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			{
-				"text": markForTranslation("Select the Civil Center building and hold %(hotkey)s while clicking on the Hoplite icon once to begin training a batch of Hoplites."),
+				"text": markForTranslation("Select the Civic Center building and hold %(hotkey)s while clicking on the Hoplite icon once to begin training a batch of Hoplites."),
 				"hotkey": "session.batchtrain"
 			}
 		],
@@ -51,7 +51,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("When they are ready, select the newly trained Hoplites and assign them to build a storehouse beside some nearby trees. They will begin to gather wood when it's constructed."),
+		"instructions": markForTranslation("When they are ready, select the newly trained Hoplites and assign them to build a storehouse beside some nearby trees. They will begin to gather Wood when it's constructed."),
 		"OnPlayerCommand": function(msg)
 		{
 			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Storehouse"))
@@ -61,7 +61,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			{
-				"text": markForTranslation("Build a batch of Skirmishers by holding %(hotkey)s and clicking on the Skirmisher icon in the Civil Center."),
+				"text": markForTranslation("Build a batch of Skirmishers by holding %(hotkey)s and clicking on the Skirmisher icon in the Civic Center."),
 				"hotkey": "session.batchtrain"
 			}
 		],
@@ -77,7 +77,7 @@ Trigger.prototype.tutorialGoals = [
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
 					markForTranslation("Do not forget to press the batch training hotkey while clicking to produce multiple units.") :
-					markForTranslation("Click on the SKIRMISHER icon.");
+					markForTranslation("Click on the Skirmisher icon.");
 				this.WarningMessage(txt);
 				return;
 			}
@@ -85,7 +85,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Build a farmstead in an open space beside the Civil Center using any idle builders."),
+		"instructions": markForTranslation("Build a farmstead in an open space beside the Civic Center using any idle builders."),
 		"OnPlayerCommand": function(msg)
 		{
 			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Farmstead"))
@@ -133,7 +133,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("The field's builders will now automatically begin collecting food from the field. Using the newly created group of skirmishers, get them to build another house nearby."),
+		"instructions": markForTranslation("The field's builders will now automatically begin gathering food from the field. Using the newly created group of skirmishers, get them to build another house nearby."),
 		"OnPlayerCommand": function(msg)
 		{
 			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "House"))
@@ -141,7 +141,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Train a batch of Hoplites at the Civil Center. Select the Civil Center and with it selected right click on a tree nearby. Units from the Civil Center will now automatically gather wood."),
+		"instructions": markForTranslation("Train a batch of Hoplites at the Civic Center. Select the Civic Center and with it selected right-click on a tree nearby. Units from the Civic Center will now automatically gather Wood."),
 		"Init": function()
 		{
 			this.rallyPointSet = false;
@@ -159,7 +159,7 @@ Trigger.prototype.tutorialGoals = [
 				cmpProductionQueue.ResetQueue();
 				let txt = +msg.count == 1 ?
 					markForTranslation("Do not forget to press the batch training hotkey while clicking to produce multiple units.") :
-					markForTranslation("Click on the HOPLITE icon.");
+					markForTranslation("Click on the Hoplite icon.");
 				this.WarningMessage(txt);
 				return;
 			}
@@ -173,7 +173,7 @@ Trigger.prototype.tutorialGoals = [
 			   !msg.cmd.data.command || msg.cmd.data.command != "gather" ||
 			   !msg.cmd.data.resourceType || msg.cmd.data.resourceType.specific != "tree")
 			{
-				this.WarningMessage(markForTranslation("Select the Civic Center, then hover your mouse over the tree and right-click when you see your cursor change into a Wood icon."));
+				this.WarningMessage(markForTranslation("Select the Civic Center, then hover the cursor over the tree and right-click when you see your cursor change into a Wood icon."));
 				return;
 			}
 			this.rallyPointSet = true;
@@ -190,7 +190,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Select the Civil Center again and advance to Town Phase by clicking on the 'II' icon (you have to wait for the outpost to be built first). This will allow Town Phase buildings to be constructed."),
+		"instructions": markForTranslation("Select the Civic Center again and advance to Town Phase by clicking on the 'II' icon (you have to wait for the outpost to be built first). This will allow Town Phase buildings to be constructed."),
 		"IsDone": function()
 		{
 			return TriggerHelper.HasDealtWithTech(this.playerID, "phase_town_generic");
@@ -217,7 +217,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Start building a batch of female citizens in the Civil Center and set its rally point to the farm (right click on it)."),
+		"instructions": markForTranslation("Start building a batch of female citizens in the Civic Center and set its rally point to the farm (right click on it)."),
 		"Init": function()
 		{
 			this.rallyPointSet = false;
@@ -297,7 +297,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("The enemy's attack has been defeated. Now build a market and a temple while assigning new units to gather any required resources."),
+		"instructions": markForTranslation("The enemy attack has been thwarted. Now build a market and a temple while you assign new units to gather required resources."),
 		"Init": function()
 		{
 			this.marketStarted = false;
@@ -318,7 +318,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("When that City Phase requirements have been reached, select your Civil Center and advance to City Phase."),
+		"instructions": markForTranslation("Once you meet the City Phase requirements, select your Civic Center and advance to City Phase."),
 		"OnResearchQueued": function(msg)
 		{
 			if (msg.technologyTemplate && TriggerHelper.EntityMatchesClassList(msg.researcherEntity, "CivilCentre"))
@@ -356,7 +356,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("Stop all your soldiers gathering resources and instead task small groups to find the enemy Civil Center on the map. Once The enemy's base has been spotted, send your siege weapons and all remaining soldiers to destroy it.\n"),
+			markForTranslation("Stop all your soldiers gathering resources and instead task small groups to find the enemy Civic Center on the map. Once The enemy's base has been spotted, send your siege weapons and all remaining soldiers to destroy it.\n"),
 			markForTranslation("Female citizens should continue to gather resources.")
 		],
 		"OnOwnershipChanged": function(msg)

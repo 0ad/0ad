@@ -411,7 +411,7 @@ function updateDiplomacy(opening = false)
 
 	let diplomacyCeasefireCounter = Engine.GetGUIObjectByName("diplomacyCeasefireCounter");
 	diplomacyCeasefireCounter.caption = sprintf(
-		translateWithContext("ceasefire", "Time remaining until ceasefire is over: %(time)s."),
+		translateWithContext("ceasefire", "Remaining ceasefire time: %(time)s."),
 		{ "time": timeToString(simState.ceasefireTimeRemaining) }
 	);
 	diplomacyCeasefireCounter.hidden = !isCeasefireActive;

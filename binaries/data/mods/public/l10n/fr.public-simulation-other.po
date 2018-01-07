@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-27 09:05+0100\n"
-"PO-Revision-Date: 2017-12-27 14:30+0000\n"
+"POT-Creation-Date: 2018-01-05 09:06+0100\n"
+"PO-Revision-Date: 2018-01-05 15:33+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -557,11 +557,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:415
+#: simulation/components/ProductionQueue.js:412
 msgid "The production queue is full."
 msgstr "La file de production est pleine."
 
-#: simulation/components/ProductionQueue.js:801
+#: simulation/components/ProductionQueue.js:798
 msgid "Can't find free space to spawn trained units"
 msgstr "Pas assez de place pour produire les unités entrainées."
 
@@ -804,6 +804,7 @@ msgid ""
 msgstr "Les petites cartes conviennent aux parties 1c1, puisque les joueurs peuvent atteindre rapidement leur ennemi tout en ayant assez de place afin de s'étendre."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Name
 msgid "Medium"
 msgstr "Moyenne"
 
@@ -847,6 +848,43 @@ msgstr "Les très grandes cartes ne sont pas recommandées : l'ennemi est très 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
 msgstr "Géante"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Name
+msgid "Very Easy"
+msgstr "Très facile"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Name
+msgid "Easy"
+msgstr "Facile"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Name
+msgid "Hard"
+msgstr "Difficile"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Name
+msgid "Very Hard"
+msgstr "Très difficile"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr ""
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
