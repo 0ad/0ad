@@ -63,10 +63,6 @@ function sin(x)
 	return Math.sin(x);
 }
 
-function abs(x) {
-	return Math.abs(x);
-}
-
 function round(x)
 {
 	return Math.round(x);

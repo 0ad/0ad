@@ -151,7 +151,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create metal mine
 	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI/3)
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 	{
 		mAngle = randFloat(0, TWO_PI);
 	}
@@ -228,7 +228,7 @@ for (var i = 0; i < NumOfIterations; i++)
 		var Formula = (1/(1 + Math.exp(FormX)));
 
 		// If we're too far from the border, we flatten
-		Formula *= (0.2 - Math.max(0,abs(0.5 - position) - 0.3)) * 5;
+		Formula *= (0.2 - Math.max(0, Math.abs(0.5 - position) - 0.3)) * 5;
 
 		var randHeight = randFloat(-9,9) * Formula;
 
@@ -323,8 +323,8 @@ for (var ix = 1; ix < mapSize-1; ix++)
 			for (var xx = -size; xx <= size;xx++)
 				for (var yy = -size; yy <= size;yy++) {
 					if (g_Map.inMapBounds(ix + xx,iz + yy) && (xx != 0 || yy != 0)){
-						averageHeight += getHeight(ix + xx,iz + yy) / (abs(xx)+abs(yy));
-						todivide += 1/(abs(xx)+abs(yy));
+						averageHeight += getHeight(ix + xx,iz + yy) / (Math.abs(xx) + Math.abs(yy));
+						todivide += 1 / (Math.abs(xx) + Math.abs(yy));
 					}
 				}
 			averageHeight += getHeight(ix,iz)*2;
@@ -553,7 +553,7 @@ function getHeightDifference(x1, z1)
 		var xx = round(x1 + toCheck[i][0]);
 		var zz = round(z1 + toCheck[i][1]);
 		if (g_Map.inMapBounds(xx,zz)) {
-			diff += abs(getHeight(xx,zz) - height);
+			diff += Math.abs(getHeight(xx,zz) - height);
 			todiv++;
 		}
 	}

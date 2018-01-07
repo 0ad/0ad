@@ -556,20 +556,20 @@ function getHeightDiff(x1, z1)
 	var height = getHeight(round(x1),round(z1));
 	var diff = 0;
 	if (z1 + 1 < mapSize)
-		diff += abs(getHeight(round(x1),round(z1+1)) - height);
+		diff += Math.abs(getHeight(round(x1),round(z1+1)) - height);
 	if (x1 + 1 < mapSize && z1 + 1 < mapSize)
-		diff += abs(getHeight(round(x1+1),round(z1+1)) - height);
+		diff += Math.abs(getHeight(round(x1+1),round(z1+1)) - height);
 	if (x1 + 1 < mapSize)
-		diff += abs(getHeight(round(x1+1),round(z1)) - height);
+		diff += Math.abs(getHeight(round(x1+1),round(z1)) - height);
 	if (x1 + 1 < mapSize && z1 - 1 >= 0)
-		diff += abs(getHeight(round(x1+1),round(z1-1)) - height);
+		diff += Math.abs(getHeight(round(x1+1),round(z1-1)) - height);
 	if (z1 - 1 >= 0)
-		diff += abs(getHeight(round(x1),round(z1-1)) - height);
+		diff += Math.abs(getHeight(round(x1),round(z1-1)) - height);
 	if (x1 - 1 >= 0 && z1 - 1 >= 0)
-		diff += abs(getHeight(round(x1-1),round(z1-1)) - height);
+		diff += Math.abs(getHeight(round(x1-1),round(z1-1)) - height);
 	if (x1 - 1 >= 0)
-		diff += abs(getHeight(round(x1-1),round(z1)) - height);
+		diff += Math.abs(getHeight(round(x1-1),round(z1)) - height);
 	if (x1 - 1 >= 0 && z1 + 1 < mapSize)
-		diff += abs(getHeight(round(x1-1),round(z1+1)) - height);
+		diff += Math.abs(getHeight(round(x1-1),round(z1+1)) - height);
 	return diff;
 }

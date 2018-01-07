@@ -93,7 +93,7 @@ for (var i = 0; i < numPlayers; i++)
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
 	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI/3)
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 	{
 		mAngle = randFloat(0, TWO_PI);
 	}

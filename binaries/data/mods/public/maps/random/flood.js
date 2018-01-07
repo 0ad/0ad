@@ -136,7 +136,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	// Create metal mine
 	let mAngle = bbAngle;
-	while (abs(mAngle - bbAngle) < PI/3)
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 		mAngle = randFloat(0, TWO_PI);
 
 	let mDist = 12;

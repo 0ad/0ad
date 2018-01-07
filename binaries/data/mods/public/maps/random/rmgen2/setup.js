@@ -201,7 +201,7 @@ function createBase(player, walls = true)
 
 	// Create metal mine at a different angle
 	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI / 3)
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 		mAngle = randFloat(0, TWO_PI);
 
 	var mDist = 12;

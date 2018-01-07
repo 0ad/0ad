@@ -128,8 +128,8 @@ for (var ix = 0; ix <= mapSize; ix++)
 			h = Math.max(-16, -28 * (x - (1 - WATER_WIDTH)) / WATER_WIDTH);
 		else
 		{
-			distToWater = (0.5 - WATER_WIDTH - abs(x-0.5));
-			var u = 1 - abs(x-0.5) / (0.5-WATER_WIDTH);
+			distToWater = (0.5 - WATER_WIDTH - Math.abs(x - 0.5));
+			var u = 1 - Math.abs(x - 0.5) / (0.5 - WATER_WIDTH);
 			h = 12*u;
 		}
 
@@ -346,7 +346,7 @@ for (var i = 0; i < numPlayers; ++i)
 
 	// create metal mine
 	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI/3)
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 		mAngle = randFloat(0, TWO_PI);
 
 	var mDist = 12;

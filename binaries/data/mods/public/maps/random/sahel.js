@@ -74,7 +74,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create metal mine
 	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI/3)
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 	{
 		mAngle = randFloat(0, TWO_PI);
 	}
