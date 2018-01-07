@@ -2,9 +2,228 @@ Engine.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
-// late spring
+/**
+ * This class creates random mountainranges without enclosing any area completely.
+ *
+ * To determine their location, a graph is created where each vertex is a possible starting or
+ * ending location of a mountainrange and each edge a possible mountainrange.
+ *
+ * That graph starts nearly complete (i.e almost every vertex is connected to most other vertices).
+ * After a random edge was chosen and placed as a mountainrange,
+ * all edges that intersect, that leave a too small gap to another mountainrange or that are connected to
+ * too many other mountainranges are removed from the graph.
+ * This is repeated until all edges were removed.
+ */
+function MountainRangeBuilder(args)
+{
+	/**
+	 * These parameters paint the mountainranges after their location was determined.
+	 */
+	this.pathplacer = args.pathplacer;
+	this.painters = args.painters;
+	this.constraint = args.constraint;
+	this.mountainWidth = args.mountainWidth;
+
+	/**
+	 * Minimum geometric distance between two mountains that don't end in one place (disjoint edges).
+	 */
+	this.minDistance = args.mountainWidth + args.passageWidth;
+
+	/**
+	 * Array of Vector2D locations where a mountainrange can start or end.
+	 */
+	this.vertices = args.points;
+
+	/**
+	 * Number of mountainranges starting or ending at the given point.
+	 */
+	this.vertexDegree = this.vertices.map(p => 0);
+
+	/**
+	 * Highest number of mountainranges that can meet in one point (maximum degree of each vertex).
+	 */
+	this.maxDegree = args.maxDegree;
+
+	/**
+	 * Each possible edge is an array containing two vertex indices.
+	 * The algorithm adds possible edges consecutively and removes subsequently invalid edges.
+	 */
+	this.possibleEdges = [];
+	this.InitPossibleEdges();
+
+	/**
+	 * A two-dimensional array of booleans that are true if the two corresponding vertices may be connected by a new edge (mountainrange).
+	 * It is initialized with some points that should never be connected and updated with every placed edge.
+	 * The purpose is to rule out any cycles in the graph, i.e. prevent any territory enclosed by mountainranges.
+	 */
+	this.verticesConnectable = [];
+	this.InitConnectable();
+
+	/**
+	 * Currently iterated item of possibleEdges that is either used as a mountainrange or removed from the possibleEdges.
+	 */
+	this.index = undefined;
+
+	/**
+	 * These variables hold the indices of the two points of that edge and the location of them as a Vector2D.
+	 */
+	this.currentEdge = undefined;
+	this.currentEdgeStart = undefined;
+	this.currentEdgeEnd = undefined;
+}
+
+MountainRangeBuilder.prototype.InitPossibleEdges = function()
+{
+	for (let i = 0; i < this.vertices.length; ++i)
+		for (let j = numPlayers; j < this.vertices.length; ++j)
+			if (j > i)
+				this.possibleEdges.push([i, j]);
+};
+
+MountainRangeBuilder.prototype.InitConnectable = function()
+{
+	for (let i = 0; i < this.vertices.length; ++i)
+	{
+		this.verticesConnectable[i] = [];
+		for (let j = 0; j < this.vertices.length; ++j)
+			this.verticesConnectable[i][j] = i >= numPlayers || j >= numPlayers || i == j || i != j - 1 && i != j + 1;
+	}
+};
+
+MountainRangeBuilder.prototype.SetConnectable = function(isConnectable)
+{
+	this.verticesConnectable[this.currentEdge[0]][this.currentEdge[1]] = isConnectable;
+	this.verticesConnectable[this.currentEdge[1]][this.currentEdge[0]] = isConnectable;
+};
+
+MountainRangeBuilder.prototype.UpdateCurrentEdge = function()
+{
+	this.currentEdge = this.possibleEdges[this.index];
+	this.currentEdgeStart = this.vertices[this.currentEdge[0]];
+	this.currentEdgeEnd = this.vertices[this.currentEdge[1]];
+};
+
+/**
+ * Remove all edges that are too close to the current mountainrange or intersect.
+ */
+MountainRangeBuilder.prototype.RemoveInvalidEdges = function()
+{
+	for (let i = 0; i < this.possibleEdges.length; ++i)
+	{
+		this.UpdateCurrentEdge();
+
+		let comparedEdge = this.possibleEdges[i];
+		let comparedEdgeStart = this.vertices[comparedEdge[0]];
+		let comparedEdgeEnd = this.vertices[comparedEdge[1]];
+
+		let edge0Equal = this.currentEdgeStart == comparedEdgeStart;
+		let edge1Equal = this.currentEdgeStart == comparedEdgeEnd;
+		let edge2Equal = this.currentEdgeEnd == comparedEdgeEnd;
+		let edge3Equal = this.currentEdgeEnd == comparedEdgeStart;
+
+		if (!edge0Equal && !edge2Equal && !edge1Equal && !edge3Equal  && testLineIntersection(this.currentEdgeStart, this.currentEdgeEnd, comparedEdgeStart, comparedEdgeEnd, this.minDistance) ||
+		   ( edge0Equal && !edge2Equal || !edge1Equal &&  edge3Equal) && distanceOfPointFromLine(this.currentEdgeStart, this.currentEdgeEnd, comparedEdgeEnd) < this.minDistance ||
+		   (!edge0Equal &&  edge2Equal ||  edge1Equal && !edge3Equal) && distanceOfPointFromLine(this.currentEdgeStart, this.currentEdgeEnd, comparedEdgeStart) < this.minDistance)
+		{
+			this.possibleEdges.splice(i, 1);
+			--i;
+			if (this.index > i)
+				--this.index;
+		}
+	}
+};
+
+/**
+ * Tests using depth-first-search if the graph according to pointsConnectable contains a cycle,
+ * i.e. if adding the currentEdge would result in an area enclosed by mountainranges.
+ */
+MountainRangeBuilder.prototype.HasCycles = function()
+{
+	let tree = [];
+	let backtree = [];
+	let pointQueue = [this.currentEdge[0]];
+
+	while (pointQueue.length)
+	{
+		let selectedPoint = pointQueue.shift();
+
+		if (tree.indexOf(selectedPoint) == -1)
+		{
+			tree.push(selectedPoint);
+			backtree.push(-1);
+		}
+
+		for (let i = 0; i < this.vertices.length; ++i)
+		{
+			if (this.verticesConnectable[selectedPoint][i] || i == backtree[tree.lastIndexOf(selectedPoint)])
+				continue;
+
+			// If the current point was encountered already, then a cycle was identified.
+			if (tree.indexOf(i) != -1)
+				return true;
+
+			// Otherwise visit this point next
+			pointQueue.unshift(i);
+			tree.push(i);
+			backtree.push(selectedPoint);
+		}
+	}
+
+	return false;
+};
+
+MountainRangeBuilder.prototype.PaintCurrentEdge = function()
+{
+	this.pathplacer.x1 = this.currentEdgeStart.x;
+	this.pathplacer.z1 = this.currentEdgeStart.y;
+	this.pathplacer.x2 = this.currentEdgeEnd.x;
+	this.pathplacer.z2 = this.currentEdgeEnd.y;
+	this.pathplacer.width = this.mountainWidth;
+
+	log("Creating mountainrange...");
+	if (!createArea(this.pathplacer, this.painters, this.constraint))
+		return false;
+
+	log("Creating circular mountains at both ends of that mountainrange...");
+	for (let point of [this.currentEdgeStart, this.currentEdgeEnd])
+		createArea(
+			new ClumpPlacer(Math.floor(diskArea(this.mountainWidth / 2)), 0.95, 0.6, 10, point.x, point.y),
+			this.painters,
+			this.constraint);
+
+	return true;
+};
+
+/**
+ * This is the only function meant to be publicly accessible.
+ */
+MountainRangeBuilder.prototype.CreateMountainRanges = function()
+{
+	while (this.possibleEdges.length)
+	{
+		this.index = randIntExclusive(0, this.possibleEdges.length);
+		this.UpdateCurrentEdge();
+		this.SetConnectable(false);
+
+		if (this.vertexDegree[this.currentEdge[0]] < this.maxDegree &&
+		    this.vertexDegree[this.currentEdge[1]] < this.maxDegree &&
+		    !this.HasCycles() &&
+		    this.PaintCurrentEdge())
+		{
+			++this.vertexDegree[this.currentEdge[0]];
+			++this.vertexDegree[this.currentEdge[1]];
+			this.RemoveInvalidEdges();
+		}
+		else
+			this.SetConnectable(true);
+
+		this.possibleEdges.splice(this.index, 1);
+	}
+};
+
 if (randBool())
 {
+	log("Late spring biome...");
 	var tPrimary = ["alpine_dirt_grass_50"];
 	var tForestFloor = "alpine_forrestfloor";
 	var tCliff = ["alpine_cliff_a", "alpine_cliff_b", "alpine_cliff_c"];
@@ -31,8 +250,8 @@ if (randBool())
 	var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 }
 else
-//winter
 {
+	log("Winter biome...");
 	var tPrimary = ["alpine_snow_a", "alpine_snow_b"];
 	var tForestFloor = "alpine_forrestfloor_snow";
 	var tCliff = ["alpine_cliff_snow"];
@@ -64,8 +283,7 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapArea = getMapArea();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -75,6 +293,12 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
+
+/**
+ * Minimum distance between two mountainranges.
+ */
+var snowlineHeight = 29;
+var mountainHeight = 30;
 
 initTerrain(tPrimary);
 
@@ -92,8 +316,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	ix = round(fx);
-	iz = round(fz);
+	var ix = round(fx);
+	var iz = round(fz);
 	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// create the city patch
@@ -157,206 +381,31 @@ for (var i = 0; i < numPlayers; i++)
 }
 Engine.SetProgress(20);
 
-//place the mountains
-var points = [];
+new MountainRangeBuilder({
+	"pathplacer": new PathPlacer(undefined, undefined, undefined, undefined, undefined, 0.4, scaleByMapSize(3, 12), 0.1, 0.1, 0.1),
+	"painters":[
+		new LayeredPainter([tCliff, tPrimary], [3]),
+		new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 2),
+		paintClass(clHill)
+	],
+	"constraint": avoidClasses(clPlayer, 20),
+	"passageWidth": scaleByMapSize(10, 15),
+	"mountainWidth": scaleByMapSize(9, 15),
+	"maxDegree": 3,
+	"points": [
+		// Four points near each player
+		...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.49), mapCenter)[0],
+		...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers * 1.4, fractionToTiles(0.34), mapCenter)[0],
+		...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers * 0.6, fractionToTiles(0.34), mapCenter)[0],
+		...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.18), mapCenter)[0],
+		mapCenter
+	]
+}).CreateMountainRanges();
 
-var edgesConncetedToPoints = [];
+Engine.SetProgress(35);
 
-//we want the points near the start locations be the first ones. hence we use two "for" blocks
-for (var i = 0; i < numPlayers; ++i)
-{
-	playerAngle[i] = startAngle + (i+0.5)*TWO_PI/numPlayers;
-	points.push([round(fractionToTiles(0.5 + 0.49 * cos(playerAngle[i]))), round(fractionToTiles(0.5 + 0.49 * sin(playerAngle[i])))]);
-}
-
-//the order of the other points doesn't matter
-for (var i = 0; i < numPlayers; ++i)
-{
-	playerAngle[i] = startAngle + (i+0.7)*TWO_PI/numPlayers;
-	points.push([round(fractionToTiles(0.5 + 0.34 * cos(playerAngle[i]))), round(fractionToTiles(0.5 + 0.34 * sin(playerAngle[i])))]);
-	playerAngle[i] = startAngle + (i+0.3)*TWO_PI/numPlayers;
-	points.push([round(fractionToTiles(0.5 + 0.34 * cos(playerAngle[i]))), round(fractionToTiles(0.5 + 0.34 * sin(playerAngle[i])))]);
-	playerAngle[i] = startAngle + (i+0.5)*TWO_PI/numPlayers;
-	points.push([round(fractionToTiles(0.5 + 0.18 * cos(playerAngle[i]))), round(fractionToTiles(0.5 + 0.18 * sin(playerAngle[i])))]);
-}
-
-//add the center of the map
-points.push([round(fractionToTiles(0.5)), round(fractionToTiles(0.5))]);
-
-var numPoints = numPlayers * 4 + 1;
-
-for (var i = 0; i < numPoints; ++i)
-	edgesConncetedToPoints.push(0);
-
-//we are making a planar graph where every edge is a straight line.
-var possibleEdges = [];
-
-//add all of the possible combinations
-for (var i = 0; i < numPoints; ++i)
-	for (var j = numPlayers; j < numPoints; ++j)
-		if (j > i)
-			possibleEdges.push([i,j]);
-
-//we need a matrix so that we can prevent the mountain ranges from bocking a player
-var matrix = [];
-for (var i = 0; i < numPoints; ++i)
-{
-	matrix.push([]);
-	for (var j = 0; j < numPoints; ++j)
-		matrix[i].push(i < numPlayers && j < numPlayers && i != j && (i == j - 1 || i == j + 1))
-}
-
-//find and place the edges
-while (possibleEdges.length)
-{
-	var index = randIntExclusive(0, possibleEdges.length);
-
-	//ensure that a point is connected to a maximum of 3 others
-	if (edgesConncetedToPoints[possibleEdges[index][0]] > 2 || edgesConncetedToPoints[possibleEdges[index][1]] > 2)
-	{
-		possibleEdges.splice(index,1);
-		continue;
-	}
-
-	//we don't want ranges that are longer than half of the map's size
-	if ((((points[possibleEdges[index][0]][0] - points[possibleEdges[index][1]][0]) *
-		(points[possibleEdges[index][0]][0] - points[possibleEdges[index][1]][0])) +
-		((points[possibleEdges[index][0]][1] - points[possibleEdges[index][1]][1]) *
-		(points[possibleEdges[index][0]][1] - points[possibleEdges[index][1]][1]))) >
-		mapArea)
-	{
-		possibleEdges.splice(index,1);
-		continue;
-	}
-
-	//dfs
-	var q = [possibleEdges[index][0]];
-
-	matrix[possibleEdges[index][0]][possibleEdges[index][1]] = true;
-	matrix[possibleEdges[index][1]][possibleEdges[index][0]] = true;
-
-	let accept = true;
-	let tree = [];
-	let backtree = [];
-
-	while (q.length > 0)
-	{
-		let selected = q.shift();
-		if (tree.indexOf(selected) == -1)
-		{
-			tree.push(selected);
-			backtree.push(-1);
-		}
-
-		for (var i = 0; i < numPoints; ++i)
-			if (matrix[selected][i])
-			{
-				if (i == backtree[tree.lastIndexOf(selected)])
-					continue;
-
-				if (tree.indexOf(i) == -1)
-				{
-					tree.push(i);
-					backtree.push(selected);
-					q.unshift(i);
-				}
-				else
-				{
-					accept = false;
-					matrix[possibleEdges[index][0]][possibleEdges[index][1]] = false;
-					matrix[possibleEdges[index][1]][possibleEdges[index][0]] = false;
-					break;
-				}
-			}
-	}
-
-	if (!accept)
-	{
-		possibleEdges.splice(index,1);
-		continue;
-	}
-
-	var ix = points[possibleEdges[index][0]][0];
-	var iz = points[possibleEdges[index][0]][1];
-	var ix2 = points[possibleEdges[index][1]][0];
-	var iz2 = points[possibleEdges[index][1]][1];
-	accept = createArea(
-		new PathPlacer(ix, iz, ix2, iz2, scaleByMapSize(9,15), 0.4, 3 * scaleByMapSize(1, 4), 0.1, 0.1, 0.1),
-		[
-			new LayeredPainter([tCliff, tPrimary], [3]),
-			new SmoothElevationPainter(ELEVATION_SET, 30, 2),
-			paintClass(clHill)
-		],
-		avoidClasses(clPlayer, 20));
-
-	if (accept == null)
-	{
-		matrix[possibleEdges[index][0]][possibleEdges[index][1]] = false;
-		matrix[possibleEdges[index][1]][possibleEdges[index][0]] = false;
-		possibleEdges.splice(index,1);
-		continue;
-	}
-
-	for (let [x, z] of [[ix, iz], [ix2, iz2]])
-		createArea(
-			new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(4.5, 7.5))), 0.95, 0.6, 10, x, z),
-			[
-				new LayeredPainter([tCliff, tPrimary], [3]),
-				new SmoothElevationPainter(ELEVATION_SET, 30, 2),
-				paintClass(clHill)
-			],
-			avoidClasses(clPlayer, 5));
-
-	for (var i = 0; i < possibleEdges.length; ++i)
-	{
-		let p0 = new Vector2D(points[possibleEdges[index][0]][0], points[possibleEdges[index][0]][1]);
-		let p1 = new Vector2D(points[possibleEdges[index][1]][0], points[possibleEdges[index][1]][1]);
-		let p2 = new Vector2D(points[possibleEdges[i][0]][0], points[possibleEdges[i][0]][1]);
-		let p3 = new Vector2D(points[possibleEdges[i][1]][0], points[possibleEdges[i][1]][1]);
-
-		if (possibleEdges[index][0] != possibleEdges[i][0] && possibleEdges[index][1] != possibleEdges[i][0] &&
-			possibleEdges[index][0] != possibleEdges[i][1] && possibleEdges[index][1] != possibleEdges[i][1])
-		{
-
-			if (testLineIntersection(p0, p1, p2, p3, scaleByMapSize(9,15) + scaleByMapSize(10,15)))
-			{
-				possibleEdges.splice(i,1);
-				--i;
-				if (index > i)
-					--index;
-			}
-		}
-		else if (((possibleEdges[index][0] == possibleEdges[i][0] && possibleEdges[index][1] != possibleEdges[i][1]) ||
-			(possibleEdges[index][1] == possibleEdges[i][0] && possibleEdges[index][0] != possibleEdges[i][1])) &&
-			Math.abs(distanceOfPointFromLine(p0, p1, p3))
-			< scaleByMapSize(9,15) + scaleByMapSize(10,15))
-		{
-			possibleEdges.splice(i,1);
-			--i;
-			if (index > i)
-				--index;
-		}
-		else if (((possibleEdges[index][0] == possibleEdges[i][1] && possibleEdges[index][1] != possibleEdges[i][0]) ||
-			(possibleEdges[index][1] == possibleEdges[i][1] && possibleEdges[index][0] != possibleEdges[i][0])) &&
-			Math.abs(distanceOfPointFromLine(p0, p1, p2))
-			< scaleByMapSize(9,15) + scaleByMapSize(10,15))
-		{
-			possibleEdges.splice(i,1);
-			--i;
-			if (index > i)
-				--index;
-		}
-
-	}
-
-	edgesConncetedToPoints[possibleEdges[index][0]] += 1;
-	edgesConncetedToPoints[possibleEdges[index][1]] += 1;
-
-	possibleEdges.splice(index,1);
-}
-
-paintTerrainBasedOnHeight(3.1, 29, 0, tCliff);
-paintTerrainBasedOnHeight(29, 30, 3, tSnowLimited);
+paintTerrainBasedOnHeight(getMapBaseHeight() + 0.1, snowlineHeight, 0, tCliff);
+paintTerrainBasedOnHeight(snowlineHeight, mountainHeight, 3, tSnowLimited);
 
 log("Creating bumps...");
 createAreas(
@@ -371,7 +420,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tCliff, tSnowLimited], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 30, 2),
+		new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 2),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 20, clHill, 14),
