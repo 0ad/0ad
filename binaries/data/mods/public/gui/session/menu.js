@@ -59,9 +59,9 @@ var g_IsObjectivesOpen = false;
 var g_BribeButtonsWaiting = {};
 
 /**
- * Currently viewed summary panel.
+ * Remember last viewed summary panel and charts.
  */
-var g_SummarySelectedData = "";
+var g_SummarySelectedData;
 
 // Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
 var g_FlushTributing = function() {};
@@ -1142,8 +1142,8 @@ function resumeGame(explicit = false)
 
 function resumeGameAndSaveSummarySelectedData(data)
 {
-    g_SummarySelectedData = data.summarySelectedData;
-    resumeGame(data.explicitResume);
+	g_SummarySelectedData = data.summarySelectedData;
+	resumeGame(data.explicitResume);
 }
 
 /**

@@ -118,19 +118,21 @@ var g_PlayerCount = 0;
 var g_GameData;
 var g_ResourceData = new Resources();
 
-// Selected chart indexes
+/**
+ * Selected chart indexes.
+ */
 var g_SelectedChart = {
 	"category": [0, 0],
 	"value": [0, 1],
 	"type": [0, 0]
 };
 
-/*
+/**
  * Array of the panel button names.
  */
 var g_PanelButtons = [];
 
-/*
+/**
  * Remember the name of the currently opened view panel.
  */
 var g_SelectedPanel = "";

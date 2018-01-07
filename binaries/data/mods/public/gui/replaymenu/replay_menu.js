@@ -49,9 +49,9 @@ var g_SelectedReplayDirectory = "";
 var g_ReplaysLoaded = false;
 
 /**
- * Remember the name of the currently opened view panel.
+ * Remember last viewed summary panel and charts.
  */
-var g_SummarySelectedData = "";
+var g_SummarySelectedData;
 
 /**
  * Initializes globals, loads replays and displays the list.
