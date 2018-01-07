@@ -126,8 +126,8 @@ for (var i=0; i < numPlayers; i++)
 			var unboundSumOfXY = tx + ty - minBoundX - minBoundY;
 			if ((unboundSumOfXY > tilesSize) && (unboundSumOfXY < 3 * tilesSize) && (tx - ty + minBoundY - minBoundX < tilesSize) && (ty - tx - minBoundY + minBoundX < tilesSize))
 			{
-				placeTerrain(floor(tx), floor(ty), tRoad);
-				addToClass(floor(tx), floor(ty), clPlayer);
+				placeTerrain(Math.floor(tx), Math.floor(ty), tRoad);
+				addToClass(Math.floor(tx), Math.floor(ty), clPlayer);
 			}
 		}
 
@@ -203,7 +203,7 @@ var types = [
 	[[tForestFloor, tGrass, pForestP], [tForestFloor, pForestP]]
 ];
 var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
-var num = floor(size / types.length);
+var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / num, 0.5),

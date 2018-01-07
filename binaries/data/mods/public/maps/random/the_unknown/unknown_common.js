@@ -1103,7 +1103,7 @@ function createUnknownPlayerBases()
 		createObjectGroup(group, 0);
 		var hillSize = PI * radius * radius;
 		// create starting trees
-		var num = floor(hillSize / 100);
+		var num = Math.floor(hillSize / 100);
 		var tAngle = randFloat(-PI/3, 4*PI/3);
 		var tDist = randFloat(11, 13);
 		var tX = round(fx + tDist * cos(tAngle));

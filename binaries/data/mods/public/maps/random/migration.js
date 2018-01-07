@@ -172,7 +172,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	var hillSize = PI * radius * radius;
 	// create starting trees
-	var num = floor(hillSize / 60);
+	var num = Math.floor(hillSize / 60);
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = 11;
 	var tX = round(fx + tDist * cos(tAngle));
@@ -249,7 +249,7 @@ var types = [
 var size = forestTrees / (scaleByMapSize(2,8) * numPlayers) *
 	(currentBiome() == "savanna" ? 2 : 1);
 
-var num = floor(size / types.length);
+var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),

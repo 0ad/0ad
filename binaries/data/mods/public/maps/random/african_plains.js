@@ -149,8 +149,8 @@ createAreas(
 );
 Engine.SetProgress(45);
 
-paintTerrainBasedOnHeight(3, floor(scaleByMapSize(20, 40)), 0, tCliff);
-paintTerrainBasedOnHeight(floor(scaleByMapSize(20, 40)), 100, 3, tGrass);
+paintTerrainBasedOnHeight(3, Math.floor(scaleByMapSize(20, 40)), 0, tCliff);
+paintTerrainBasedOnHeight(Math.floor(scaleByMapSize(20, 40)), 100, 3, tGrass);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 

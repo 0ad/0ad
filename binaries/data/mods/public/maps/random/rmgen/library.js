@@ -72,11 +72,6 @@ function round(x)
 	return Math.round(x);
 }
 
-function floor(x)
-{
-	return Math.floor(x);
-}
-
 /**
  * Retries the given function with those arguments as often as specified.
  */

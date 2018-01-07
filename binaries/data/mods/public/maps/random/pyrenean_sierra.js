@@ -175,7 +175,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	var hillSize = PI * radius * radius;
 	// create starting trees
-	var num = floor(hillSize / 100);
+	var num = Math.floor(hillSize / 100);
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(11, 13);
 	var tX = round(fx + tDist * cos(tAngle));
@@ -352,7 +352,7 @@ createAreas(
 log("Creating forests...");
 var types = [[tForestTransition, pForestLandVeryLight, pForestLandLight, pForestLand]];
 var size = scaleByMapSize(40,115)*PI;
-var num = floor(scaleByMapSize(8,40) / types.length);
+var num = Math.floor(scaleByMapSize(8,40) / types.length);
 for (let type of types)
 	createAreas(
 		new ClumpPlacer(size, 0.2, 0.1, 1),

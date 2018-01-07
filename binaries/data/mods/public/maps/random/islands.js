@@ -160,8 +160,8 @@ for (var i = 0; i < numPlayers; i++)
 }
 
 var landAreas = [];
-var playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(12,16)));
-var landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(12,16)));
+var playerConstraint = new AvoidTileClassConstraint(clPlayer, Math.floor(scaleByMapSize(12,16)));
+var landConstraint = new AvoidTileClassConstraint(clLand, Math.floor(scaleByMapSize(12,16)));
 
 for (var x = 0; x < mapSize; ++x)
 	for (var z = 0; z < mapSize; ++z)
@@ -211,8 +211,8 @@ for (let i = 0; i < scaleByMapSize(4, 14); ++i)
 	}
 }
 
-playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(9,12)));
-landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(9,12)));
+playerConstraint = new AvoidTileClassConstraint(clPlayer, Math.floor(scaleByMapSize(9,12)));
+landConstraint = new AvoidTileClassConstraint(clLand, Math.floor(scaleByMapSize(9,12)));
 
 log("Creating small islands...");
 for (let i = 0; i < 6 * Math.square(scaleByMapSize(1, 3)); ++i)
@@ -296,7 +296,7 @@ var types = [
 if (currentBiome() != "savanna")
 {
 	var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
-	var num = floor(size / types.length);
+	var num = Math.floor(size / types.length);
 	for (let type of types)
 		createAreas(
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 5))), 0.5),

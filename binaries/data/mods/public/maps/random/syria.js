@@ -168,7 +168,7 @@ var types = [
 	[[tMainDirt, tForestFloor1, pForestT], [tForestFloor1, pForestT]]
 ];
 var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
-var num = floor(size / types.length);
+var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
 		new ChainPlacer(

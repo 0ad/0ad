@@ -106,7 +106,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	var hillSize = PI * radius * radius;
 	// create starting trees
-	var num = floor(hillSize / 100);
+	var num = Math.floor(hillSize / 100);
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(11, 13);
 	var tX = round(fx + tDist * cos(tAngle));
@@ -133,7 +133,7 @@ log("Creating forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(220, 1000, 0.65);
 var types = [[[tForestFloor, tGrass, pForest], [tForestFloor, pForest]]];
 var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
-var num = 4 * floor(size / types.length);
+var num = 4 * Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(2, 3)), 4, 1),

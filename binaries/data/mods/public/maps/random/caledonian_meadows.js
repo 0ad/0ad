@@ -135,7 +135,7 @@ function placeGrove(point)
 		let x = point.x + dist * Math.cos(angle);
 		let y = point.y + dist * Math.sin(angle);
 		placeObject(x, y, pickRandom(objectList), 0, randFloat(0, 2 * PI));
-		createArea(new ClumpPlacer(5, 1, 1, 1, floor(x), floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
+		createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
 	}
 }
 
@@ -185,7 +185,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 		x = point.x + dist * Math.cos(angle);
 		y = point.y + dist * Math.sin(angle);
 		placeObject(x, y, pickRandom(objectList), 0, randFloat(0, 2 * PI));
-		createArea(new ClumpPlacer(5, 1, 1, 1, floor(x), floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
+		createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
 		currentAngle += dAngle;
 	}
 

@@ -164,7 +164,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	var hillSize = PI * radius * radius;
 	// create starting trees
-	var num = floor(hillSize / 100);
+	var num = Math.floor(hillSize / 100);
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(11, 13);
 	var tX = round(fx + tDist * cos(tAngle));
@@ -181,7 +181,7 @@ for (var i = 0; i < numPlayers; i++)
 Engine.SetProgress(20);
 
 log("Creating hills...");
-createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMapSize(10, 40) * numPlayers, floor(scaleByMapSize(40, 60)), floor(scaleByMapSize(4, 5)), floor(scaleByMapSize(7, 15)), floor(scaleByMapSize(5, 15)));
+createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMapSize(10, 40) * numPlayers, Math.floor(scaleByMapSize(40, 60)), Math.floor(scaleByMapSize(4, 5)), Math.floor(scaleByMapSize(7, 15)), Math.floor(scaleByMapSize(5, 15)));
 
 Engine.SetProgress(30);
 
@@ -231,8 +231,8 @@ for (var i = 0; i < numLakes; ++i)
 	}
 
 }
-paintTerrainBasedOnHeight(3, floor(scaleByMapSize(20, 40)), 0, tCliff);
-paintTerrainBasedOnHeight(floor(scaleByMapSize(20, 40)), 100, 3, tSnowLimited);
+paintTerrainBasedOnHeight(3, Math.floor(scaleByMapSize(20, 40)), 0, tCliff);
+paintTerrainBasedOnHeight(Math.floor(scaleByMapSize(20, 40)), 100, 3, tSnowLimited);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 

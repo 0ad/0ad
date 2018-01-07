@@ -256,7 +256,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 	}
 
 	// Cut initialHeightmap to fit target width
-	let shift = [floor((newHeightmap.length - heightmap.length) / 2), floor((newHeightmap[0].length - heightmap[0].length) / 2)];
+	let shift = [Math.floor((newHeightmap.length - heightmap.length) / 2), Math.floor((newHeightmap[0].length - heightmap[0].length) / 2)];
 	for (let x = 0; x < heightmap.length; ++x)
 		for (let y = 0; y < heightmap[0].length; ++y)
 			heightmap[x][y] = newHeightmap[x + shift[0]][y + shift[1]];

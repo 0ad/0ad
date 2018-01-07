@@ -86,7 +86,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create starting trees
 	var hillSize = PI * radius * radius;
-	var num = floor(hillSize / 60);
+	var num = Math.floor(hillSize / 60);
 	var tries = 10;
 	for (var x = 0; x < tries; ++x)
 	{
@@ -126,7 +126,7 @@ var types = [
 	[[tGrassB, tGrassA, pForestP], [tGrassB, pForestP]]
 ];
 var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
-var num = floor(size / types.length);
+var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),

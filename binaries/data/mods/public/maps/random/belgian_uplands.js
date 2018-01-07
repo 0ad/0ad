@@ -408,8 +408,8 @@ for (var p = 0; p < numPlayers; p++)
 		var count = 4;
 		for (var numberofentities = 0; numberofentities < count; numberofentities++)
 		{
-			var ux = actualX + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
-			var uz = actualY + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
+			var ux = actualX + uDist * Math.cos(uAngle) + numberofentities * uSpace * Math.cos(uAngle + Math.PI/2) - (0.75 * uSpace * Math.floor(count / 2) * Math.cos(uAngle + Math.PI/2));
+			var uz = actualY + uDist * Math.sin(uAngle) + numberofentities * uSpace * Math.sin(uAngle + Math.PI/2) - (0.75 * uSpace * Math.floor(count / 2) * Math.sin(uAngle + Math.PI/2));
 
 			if (j % 2 == 0)
 				placeObject(ux, uz, "gaia/flora_bush_berry", 0, randFloat(0, 2*PI));

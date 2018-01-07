@@ -254,9 +254,9 @@ function placeGrove(point,
 		let y = point.y + dist * Math.sin(angle);
 		placeObject(x, y, pickRandom(objectList), 0, randFloat(0, 2 * PI));
 		if (groveTileClass)
-			createArea(new ClumpPlacer(5, 1, 1, 1, floor(x), floor(y)), [new TerrainPainter(groveTerrainTexture), paintClass(groveTileClass)]);
+			createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter(groveTerrainTexture), paintClass(groveTileClass)]);
 		else
-			createArea(new ClumpPlacer(5, 1, 1, 1, floor(x), floor(y)), [new TerrainPainter(groveTerrainTexture)]);
+			createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter(groveTerrainTexture)]);
 	}
 }
 
@@ -377,7 +377,7 @@ function placeStartLocationResources(
 		let x = point.x + dist * Math.cos(angle);
 		let y = point.y + dist * Math.sin(angle);
 		placeObject(x, y, pickRandom(objectList), 0, randFloat(0, 2 * PI));
-		createArea(new ClumpPlacer(5, 1, 1, 1, floor(x), floor(y)), [new TerrainPainter(groveTerrainTexture), paintClass(clGrove)]);
+		createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter(groveTerrainTexture), paintClass(clGrove)]);
 		currentAngle += dAngle;
 	}
 

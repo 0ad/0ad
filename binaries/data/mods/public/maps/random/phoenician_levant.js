@@ -70,8 +70,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	var ix = floor(fx);
-	var iz = floor(fz);
+	var ix = Math.floor(fx);
+	var iz = Math.floor(fz);
 	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// create the city patch

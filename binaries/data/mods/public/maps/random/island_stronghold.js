@@ -180,12 +180,12 @@ for (let i = 0; i < teams.length; ++i)
 
 		// create huntable animals
 		group = new SimpleGroup(
-			[new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, floor(mapSize * 0.2))],
+			[new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, Math.floor(mapSize * 0.2))],
 			true, clBaseResource, teamX, teamZ
 		);
 		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clHill, 1, clPlayer, 10), stayClasses(clLand, 5)]);
 		group = new SimpleGroup(
-			[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, floor(mapSize * 0.2))],
+			[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, Math.floor(mapSize * 0.2))],
 			true, clBaseResource, teamX, teamZ
 		);
 		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clHill, 1, clPlayer, 10), stayClasses(clLand, 5)]);
@@ -240,8 +240,8 @@ for (let i = 0; i < numIslands; ++i)
 	landAreas.length = n;
 }
 
-playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(9, 12)));
-landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(9, 12)));
+playerConstraint = new AvoidTileClassConstraint(clPlayer, Math.floor(scaleByMapSize(9, 12)));
+landConstraint = new AvoidTileClassConstraint(clLand, Math.floor(scaleByMapSize(9, 12)));
 
 log("Creating small islands...");
 numIslands = scaleByMapSize(6, 18) * scaleByMapSize(1, 3);

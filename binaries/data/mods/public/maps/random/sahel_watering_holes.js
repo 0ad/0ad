@@ -227,7 +227,7 @@ var types = [
 ];
 
 var size = forestTrees / (0.5 * scaleByMapSize(2,8) * numPlayers);
-var num = floor(size / types.length);
+var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),

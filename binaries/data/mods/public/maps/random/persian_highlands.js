@@ -206,11 +206,11 @@ Engine.SetProgress(30);
 log("Creating hills...");
 for (let i = 0; i < scaleByMapSize(20, 80); ++i)
 	createMountain(
-		floor(scaleByMapSize(40, 60)),
-		floor(scaleByMapSize(3, 4)),
-		floor(scaleByMapSize(6, 12)),
-		floor(scaleByMapSize(4, 10)),
-		avoidClasses(clPlayer, 7, clCP, 5, clHill, floor(scaleByMapSize(18, 25))),
+		Math.floor(scaleByMapSize(40, 60)),
+		Math.floor(scaleByMapSize(3, 4)),
+		Math.floor(scaleByMapSize(6, 12)),
+		Math.floor(scaleByMapSize(4, 10)),
+		avoidClasses(clPlayer, 7, clCP, 5, clHill, Math.floor(scaleByMapSize(18, 25))),
 		randIntExclusive(0, mapSize),
 		randIntExclusive(0, mapSize),
 		tCliff,
@@ -225,7 +225,7 @@ var types = [
 	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]]
 ];
 var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
-var num = floor(size / types.length);
+var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
 		new ChainPlacer(
