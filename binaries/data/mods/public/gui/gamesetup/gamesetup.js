@@ -1575,7 +1575,7 @@ function reloadTriggerDifficulties()
 	g_TriggerDifficultyList = prepareForDropdown(
 		triggerDifficultyList.map(diff => ({
 			"Id": diff.Difficulty,
-			"Title": diff.Name,
+			"Title": diff.Title,
 			"Description": diff.Tooltip,
 			"Default": diff.Name == g_GameAttributes.settings.SupportedTriggerDifficulties.Default
 		})));
