@@ -518,7 +518,9 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		{
 			// If enemies are in range of one of our defensive structures, garrison it for arrow multiplier
 			// (enemy non-defensive structure are not considered to stay in sync with garrisonManager)
-			if (attacker.position() && attacker.isGarrisonHolder() && attacker.getArrowMultiplier())
+			if (attacker.position() && attacker.isGarrisonHolder() && attacker.getArrowMultiplier() &&
+			    (target.owner() != 0 || !target.hasClass("Unit") ||
+			     target.unitAIState() && target.unitAIState().split(".")[1] == "COMBAT"))
 				this.garrisonUnitsInside(gameState, attacker, {"attacker": target});
 		}
 

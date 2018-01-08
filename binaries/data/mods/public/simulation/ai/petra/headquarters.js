@@ -866,10 +866,10 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	let dpEnts = gameState.getOwnDropsites().filter(API3.Filters.not(API3.Filters.byClassesOr(["CivCentre", "Elephant"])));
 	let ccList = [];
 	for (let cc of ccEnts.values())
-		ccList.push({"pos": cc.position(), "ally": gameState.isPlayerAlly(cc.owner())});
+		ccList.push({ "ent": cc, "pos": cc.position(), "ally": gameState.isPlayerAlly(cc.owner()) });
 	let dpList = [];
 	for (let dp of dpEnts.values())
-		dpList.push({"pos": dp.position()});
+		dpList.push({ "pos": dp.position() });
 
 	let bestIdx;
 	let bestVal;
@@ -891,6 +891,15 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 
 	let width = this.territoryMap.width;
 	let cellSize = this.territoryMap.cellSize;
+
+	// DistanceSquare cuts to other ccs (bigger or no cuts on inaccessible ccs to allow colonizing other islands).
+	let reduce = (template.hasClass("Colony") ? 30 : 0) + 30 * this.Config.personality.defensive;
+	let nearbyRejected = Math.square(120);			// Reject if too near from any cc
+	let nearbyAllyRejected = Math.square(200);		// Reject if too near from an allied cc
+	let nearbyAllyDisfavored = Math.square(250);		// Disfavor if quite near an allied cc
+	let maxAccessRejected = Math.square(410);		// Reject if too far from an accessible ally cc
+	let maxAccessDisfavored = Math.square(360 - reduce);	// Disfavor if quite far from an accessible ally cc
+	let maxNoAccessDisfavored = Math.square(500);		// Disfavor if quite far from an inaccessible ally cc
 
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
@@ -916,38 +925,41 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		else
 		{
 			let minDist = Math.min();
+			let accessible = false;
 
 			for (let cc of ccList)
 			{
 				let dist = API3.SquareVectorDistance(cc.pos, pos);
-				if (dist < 14000)    // Reject if too near from any cc
+				if (dist < nearbyRejected)
 				{
 					norm = 0;
 					break;
 				}
 				if (!cc.ally)
 					continue;
-				if (dist < 40000)    // Reject if too near from an allied cc
+				if (dist < nearbyAllyRejected)
 				{
 					norm = 0;
 					break;
 				}
-				if (dist < 62000)   // Disfavor if quite near an allied cc
+				if (dist < nearbyAllyDisfavored)
 					norm *= 0.5;
+
 				if (dist < minDist)
 					minDist = dist;
+				accessible = accessible || index == m.getLandAccess(gameState, cc.ent);
 			}
-			if (norm === 0)
+			if (norm == 0)
 				continue;
 
-			if (minDist > 170000 && !this.navalMap)	// Reject if too far from any allied cc (not connected)
+			if (accessible && minDist > maxAccessRejected)
 				continue;
 
-			if (minDist > 130000)     // Disfavor if quite far from any allied cc
+			if (minDist > maxAccessDisfavored)     // Disfavor if quite far from any allied cc
 			{
-				if (this.navalMap)
+				if (!accessible)
 				{
-					if (minDist > 250000)
+					if (minDist > maxNoAccessDisfavored)
 						norm *= 0.5;
 					else
 						norm *= 0.8;
@@ -1495,12 +1507,7 @@ m.HQ.prototype.buildWonder = function(gameState, queues, force = false)
 
 	if (!force)
 	{
-		let templateName = gameState.applyCiv("structures/{civ}_wonder");
-		if (gameState.isTemplateDisabled(templateName))
-			return;
-		let template = gameState.getTemplate(templateName);
-		if (!template)
-			return;
+		let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_wonder"));
 		// Check that we have enough resources to start thinking to build a wonder
 		let cost = template.cost();
 		let resources = gameState.getResources();
