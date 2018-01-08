@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-05 09:04+0100\n"
-"PO-Revision-Date: 2018-01-05 14:44+0000\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 04:01+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -187,329 +187,329 @@ msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr "Κάθε χάρτης του επιλεγμένου τύπου χάρτη."
 
-#: gui/gamesetup/gamesetup.js:411
+#: gui/gamesetup/gamesetup.js:406
 msgid "Map Type"
 msgstr "Τύπος Χάρτη"
 
-#: gui/gamesetup/gamesetup.js:412
+#: gui/gamesetup/gamesetup.js:407
 msgid "Select a map type."
 msgstr "Επιλογή τύπου χάρτη."
 
-#: gui/gamesetup/gamesetup.js:435
+#: gui/gamesetup/gamesetup.js:430
 msgid "Map Filter"
 msgstr "Φίλτρο Χάρτη"
 
-#: gui/gamesetup/gamesetup.js:436
+#: gui/gamesetup/gamesetup.js:431
 msgid "Select a map filter."
 msgstr "Επιλογή φίλτρου χάρτη."
 
-#: gui/gamesetup/gamesetup.js:451
+#: gui/gamesetup/gamesetup.js:446
 msgid "Select Map"
 msgstr "Επιλογή Χάρτη"
 
-#: gui/gamesetup/gamesetup.js:452
+#: gui/gamesetup/gamesetup.js:447
 msgid "Select a map to play on."
 msgstr "Επιλογή χάρτη για παιχνίδι."
 
-#: gui/gamesetup/gamesetup.js:466
+#: gui/gamesetup/gamesetup.js:461
 msgid "Map Size"
 msgstr "Μέγεθος Χάρτη"
 
-#: gui/gamesetup/gamesetup.js:467
+#: gui/gamesetup/gamesetup.js:462
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Επιλογή μεγέθους χάρτη. (τα μεγαλύτερα μεγέθη ίσως επηρεάσουν αρνητικά τις επιδόσεις)."
 
-#: gui/gamesetup/gamesetup.js:481
+#: gui/gamesetup/gamesetup.js:476
 msgid "Biome"
 msgstr "Οικοσύστημα"
 
-#: gui/gamesetup/gamesetup.js:482
+#: gui/gamesetup/gamesetup.js:477
 msgid "Select the flora and fauna."
 msgstr "Επιλέξτε την χλωρίδα και την πανίδα."
 
-#: gui/gamesetup/gamesetup.js:497
+#: gui/gamesetup/gamesetup.js:492
 msgid "Number of Players"
 msgstr "Αριθμός Παικτών"
 
-#: gui/gamesetup/gamesetup.js:498
+#: gui/gamesetup/gamesetup.js:493
 msgid "Select number of players."
 msgstr "Επιλογή αριθμού παικτών."
 
-#: gui/gamesetup/gamesetup.js:518
+#: gui/gamesetup/gamesetup.js:513
 msgid "Population Cap"
 msgstr "Ανώτατο Όριο Πληθυσμού"
 
-#: gui/gamesetup/gamesetup.js:525
+#: gui/gamesetup/gamesetup.js:520
 msgid "Select population limit."
 msgstr "Επιλογή ορίου πληθυσμού."
 
-#: gui/gamesetup/gamesetup.js:528
+#: gui/gamesetup/gamesetup.js:523
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Προειδοποίηση: Μπορεί να υπάρχουν επιπτώσεις στην απόδοση αν όλοι οι %(players)s παίχτες φτάσουν %(popCap)s πληθυσμό."
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:541
 msgid "Starting Resources"
 msgstr "Πόροι Κατά Την Έναρξη"
 
-#: gui/gamesetup/gamesetup.js:549
+#: gui/gamesetup/gamesetup.js:544
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Αρχικό ποσό κάθε πόρου: %(resources)s."
 
-#: gui/gamesetup/gamesetup.js:552
+#: gui/gamesetup/gamesetup.js:547
 msgid "Select the game's starting resources."
 msgstr "Επιλογή των διαθέσιμων πόρων κατά την έναρξη του παιχνιδιού."
 
-#: gui/gamesetup/gamesetup.js:567
+#: gui/gamesetup/gamesetup.js:562
 msgid "Ceasefire"
 msgstr "Παύση Πυρός"
 
-#: gui/gamesetup/gamesetup.js:568
+#: gui/gamesetup/gamesetup.js:563
 msgid "Set time where no attacks are possible."
 msgstr "Ρυθμίστε την ώρα όπου δεν είναι δυνατόν να γίνουν επιθέσεις."
 
-#: gui/gamesetup/gamesetup.js:581
+#: gui/gamesetup/gamesetup.js:576
 msgid "Victory Condition"
 msgstr "Προϋπόθεση Νίκης"
 
-#: gui/gamesetup/gamesetup.js:582
+#: gui/gamesetup/gamesetup.js:577
 msgid "Select victory condition."
 msgstr "Επιλογή συνθηκών/προϋποθέσεων νίκης."
 
-#: gui/gamesetup/gamesetup.js:597
+#: gui/gamesetup/gamesetup.js:592
 msgid "Relic Count"
 msgstr "Πλήθος Ιερών Λειψάνων"
 
-#: gui/gamesetup/gamesetup.js:598
+#: gui/gamesetup/gamesetup.js:593
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "Συνολικός αριθμός λειψάνων που θα εμφανιστούν στο χάρτη. Η νίκη λειψάνων είναι πιο ρεαλιστική με μόνο ένα ή δύο λείψανα. Με μεγαλύτερους αριθμούς, τα λείψανα είναι σημαντικό να κυριευτούν για να λάβετε μπόνους αύρας."
 
-#: gui/gamesetup/gamesetup.js:612
+#: gui/gamesetup/gamesetup.js:607
 msgid "Relic Duration"
 msgstr "Διάρκεια Ιερού Λειψάνου"
 
-#: gui/gamesetup/gamesetup.js:613
+#: gui/gamesetup/gamesetup.js:608
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Λεπτά μέχρι ο παίκτης να επιτύχει Νίκη Ιερού Λειψάνου."
 
-#: gui/gamesetup/gamesetup.js:627
+#: gui/gamesetup/gamesetup.js:622
 msgid "Wonder Duration"
 msgstr "Διάρκεια Θαύματος"
 
-#: gui/gamesetup/gamesetup.js:628
+#: gui/gamesetup/gamesetup.js:623
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr "Λεπτά μέχρι ο παίκτης να επιτύχει Νίκη Θαύματος."
 
-#: gui/gamesetup/gamesetup.js:642
+#: gui/gamesetup/gamesetup.js:637
 msgid "Game Speed"
 msgstr "Ταχύτητα Παιχνιδιού"
 
-#: gui/gamesetup/gamesetup.js:643
+#: gui/gamesetup/gamesetup.js:638
 msgid "Select game speed."
 msgstr "Επιλογή της ταχύτητας παιχνιδιού."
 
-#: gui/gamesetup/gamesetup.js:657
+#: gui/gamesetup/gamesetup.js:652
 msgid "Difficulty"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:659
+#: gui/gamesetup/gamesetup.js:654
 msgid "Select the difficulty of this scenario."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:724
+#: gui/gamesetup/gamesetup.js:719
 msgid "Chose the civilization for this player"
 msgstr "Επέλεξε πολιτισμό για αυτόν τον παίχτη"
 
-#: gui/gamesetup/gamesetup.js:764
+#: gui/gamesetup/gamesetup.js:759
 msgid "Hero Garrison"
 msgstr "Οχύρωση Ήρωα"
 
-#: gui/gamesetup/gamesetup.js:765
+#: gui/gamesetup/gamesetup.js:760
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Εναλλαγή εάν οι ήρωες μπορούν να οχυρωθούν."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:779
+#: gui/gamesetup/gamesetup.js:774
 msgid "Revealed Map"
 msgstr "Αποκαλυμμένος Χάρτης"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:782
+#: gui/gamesetup/gamesetup.js:777
 msgid "Toggle revealed map (see everything)."
 msgstr "Εναλλαγή σε φανερωμένο χάρτη (δείτε τα πάντα)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:798
+#: gui/gamesetup/gamesetup.js:793
 msgid "Explored Map"
 msgstr "Εξερευνημένος Χάρτης"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:801
+#: gui/gamesetup/gamesetup.js:796
 msgid "Toggle explored map (see initial map)."
 msgstr "Εναλλαγή σε εξερευνημένο χάρτη (δείτε αρχικό χάρτη)."
 
-#: gui/gamesetup/gamesetup.js:812
+#: gui/gamesetup/gamesetup.js:807
 msgid "Disable Treasures"
 msgstr "Απενεργοποίηση Θησαυρών"
 
-#: gui/gamesetup/gamesetup.js:813
+#: gui/gamesetup/gamesetup.js:808
 msgid "Disable all treasures on the map."
 msgstr "Απενεργοποίηση όλων των θυσαυρών."
 
-#: gui/gamesetup/gamesetup.js:824
+#: gui/gamesetup/gamesetup.js:819
 msgid "Disable Spies"
 msgstr "Απενεργοποίηση Κατασκόπων"
 
-#: gui/gamesetup/gamesetup.js:825
+#: gui/gamesetup/gamesetup.js:820
 msgid "Disable spies during the game."
 msgstr "Απενεργοποίηση κατασκόπων κατά τη διάρκεια του παιχνιδιού."
 
-#: gui/gamesetup/gamesetup.js:836
+#: gui/gamesetup/gamesetup.js:831
 msgid "Teams Locked"
 msgstr "Κλειδωμένες Ομάδες"
 
-#: gui/gamesetup/gamesetup.js:837
+#: gui/gamesetup/gamesetup.js:832
 msgid "Toggle locked teams."
 msgstr "Εναλλαγή κλειδωμένων ομάδων."
 
-#: gui/gamesetup/gamesetup.js:851
+#: gui/gamesetup/gamesetup.js:846
 msgid "Last Man Standing"
 msgstr "Ο Τελευταίος Επιζών"
 
-#: gui/gamesetup/gamesetup.js:852
+#: gui/gamesetup/gamesetup.js:847
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Εναλλάσσει στο αν είναι ο τελευταίος εναπομείναν παίχτης ή ο τελευταίος εναπομείναν στη συμμαχία που θα κερδίσει."
 
-#: gui/gamesetup/gamesetup.js:865
+#: gui/gamesetup/gamesetup.js:860
 msgid "Cheats"
 msgstr "Ζαβολιές"
 
-#: gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:861
 msgid "Toggle the usability of cheats."
 msgstr "Εναλλαγή χρήσης ζαβολιών."
 
-#: gui/gamesetup/gamesetup.js:879
+#: gui/gamesetup/gamesetup.js:874
 msgid "Rated Game"
 msgstr "Βαθμολογημένο Παιχνίδι"
 
-#: gui/gamesetup/gamesetup.js:880
+#: gui/gamesetup/gamesetup.js:875
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Εναλλάσσει στον αν το παιχνίδι βαθμολογείται για την κατάταξη."
 
-#: gui/gamesetup/gamesetup.js:906
+#: gui/gamesetup/gamesetup.js:901
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr "Πάτα το %(hotkey)s για να ολοκληρώσεις αυτόματα τα ονόματα των παικτών η τις ρυθμίσεις."
 
-#: gui/gamesetup/gamesetup.js:914
+#: gui/gamesetup/gamesetup.js:909
 msgid "Return to the lobby."
 msgstr "Επιστροφή στο λόμπι."
 
-#: gui/gamesetup/gamesetup.js:915
+#: gui/gamesetup/gamesetup.js:910
 msgid "Return to the main menu."
 msgstr "Επιστροφή στο κεντρικό μενού."
 
-#: gui/gamesetup/gamesetup.js:919
+#: gui/gamesetup/gamesetup.js:914
 msgid "Start Game!"
 msgstr "Έναρξη Παιχνιδιού!"
 
-#: gui/gamesetup/gamesetup.js:925
+#: gui/gamesetup/gamesetup.js:920
 msgid "Start a new game with the current settings."
 msgstr "Έναρξη νέου παιχνιδιού με τις τρέχουσες ρυθμίσεις."
 
-#: gui/gamesetup/gamesetup.js:926
+#: gui/gamesetup/gamesetup.js:921
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "Έναρξη νέου παιχνιδιού με τις τρέχουσες ρυθμίσεις (Απενεργοποιημένο μέχρι να είναι έτοιμοι όλοι οι παίκτες)"
 
-#: gui/gamesetup/gamesetup.js:980
+#: gui/gamesetup/gamesetup.js:975
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1515
+#: gui/gamesetup/gamesetup.js:1510
 msgctxt "map selection"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/gamesetup/gamesetup.js:1517
+#: gui/gamesetup/gamesetup.js:1512
 msgid "Pick any of the given maps at random."
 msgstr "Επιλέξτε τυχαία οποιονδήποτε από τους χάρτες."
 
-#: gui/gamesetup/gamesetup.js:1549
+#: gui/gamesetup/gamesetup.js:1544
 msgctxt "biome"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/gamesetup/gamesetup.js:1550
+#: gui/gamesetup/gamesetup.js:1545
 msgid "Pick a biome at random."
 msgstr "Διαλέξτε τυχαία ένα οικοσύστημα."
 
-#: gui/gamesetup/gamesetup.js:1871 gui/gamesetup/gamesetup.js:1913
+#: gui/gamesetup/gamesetup.js:1866 gui/gamesetup/gamesetup.js:1908
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1876
+#: gui/gamesetup/gamesetup.js:1871
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Άγνωστη"
 
-#: gui/gamesetup/gamesetup.js:1906
+#: gui/gamesetup/gamesetup.js:1901
 msgid "Yes"
 msgstr "Ναι"
 
-#: gui/gamesetup/gamesetup.js:1906
+#: gui/gamesetup/gamesetup.js:1901
 msgid "No"
 msgstr "Όχι"
 
-#: gui/gamesetup/gamesetup.js:2000
+#: gui/gamesetup/gamesetup.js:1995
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2203
+#: gui/gamesetup/gamesetup.js:2198
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2211
+#: gui/gamesetup/gamesetup.js:2206
 msgid "Unassigned"
 msgstr "Δεν ορίστηκε"
 
-#: gui/gamesetup/gamesetup.js:2287
+#: gui/gamesetup/gamesetup.js:2282
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2294
+#: gui/gamesetup/gamesetup.js:2289
 msgid "Unknown Player"
 msgstr "Άγνωστος παίκτης"
 
-#: gui/gamesetup/gamesetup.js:2333
+#: gui/gamesetup/gamesetup.js:2328
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2334
+#: gui/gamesetup/gamesetup.js:2329
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2335
+#: gui/gamesetup/gamesetup.js:2330
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -557,8 +557,8 @@ msgid "Loading"
 msgstr "Φόρτωση"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
-msgid "Loading map data. Please wait..."
-msgstr "Φόρτωση δεδομένων χάρτη. Παρακαλώ περιμένετε..."
+msgid "Loading map data. Please wait…"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Player Name"
@@ -644,10 +644,10 @@ msgstr "Κλείσιμο παραθύρου περισσότερων επιλο�
 
 #: gui/text/quotes.txt:1
 msgid ""
-"\"Zeus \\[...] established his law: wisdom comes through suffering. \\[...] "
-"So men against their will learn to practice moderation. \\[...] Such grace "
-"is harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr "\"Ο Δίας \\[..] θέσπισε το νόμο του: η σοφία έρχεται μέσα από τα βάσανα. \\[...] Έτσι οι άνδρες παρά τη θέλησή τους μαθαίνουν να συνηθίζουν στη μετριοπάθεια. \\[...] Αυτή η χάρη είναι σκληρή και βίαιη.\" - Αισχύλος (\"Ορέστεια\", Ι. 176-183)"
+"\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
+"men against their will learn to practice moderation. \\[…] Such grace is "
+"harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
+msgstr ""
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -759,11 +759,11 @@ msgstr "\"Ο έρωτας και το φαγητό με κάνουν να συν
 
 #: gui/text/quotes.txt:21
 msgid ""
-"\"It is very servile to live in luxury, but very royal to toil. \\[...] "
-"Don't you know that the end and object of conquest is to avoid the vices and"
-" infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
+"\"It is very servile to live in luxury, but very royal to toil. \\[…] Don't "
+"you know that the end and object of conquest is to avoid the vices and "
+"infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr "\"Είναι πολύ βολικό να ζείτε στην πολυτέλεια, αλλά πολύ βασιλικό να κοπιάζετε. \\[...] Δεν γνωρίζετε ότι το τέλος και ο σκοπός της κατάκτησης είναι να αποφύγετε τα ελαττώματα και τις αδυναμίες του υποταγμένου;\" - Μέγας Αλέξανδρος (Πλούταρχος, \"Βίοι Παράλληλοι\", \"Αλέξανδρος\", εδάφιο 40)"
+msgstr ""
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -891,24 +891,24 @@ msgstr "\"Θεωρώ πιο γενναίο αυτόν που υπερνικά τ
 #: gui/text/quotes.txt:40
 msgid ""
 "\"Alexander himself, plagued by thirst, with great pain and difficulty "
-"nevertheless led the army on foot \\[...]. At this time a few of the light-"
-"armed soldiers \\[...] found some water \\[...], poured the water into a "
-"helmet and carried it to him. He took it, and commending the men who brought"
-" it, immediately poured it upon the ground in the sight of all.\" - Arrian "
-"about Alexander's march through the Gedrosian desert (\"The Anabasis of "
+"nevertheless led the army on foot \\[…]. At this time a few of the light-"
+"armed soldiers \\[…] found some water \\[…], poured the water into a helmet "
+"and carried it to him. He took it, and commending the men who brought it, "
+"immediately poured it upon the ground in the sight of all.\" - Arrian about "
+"Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr "\"Ο ίδιος ο Αλέξανδρος, που υπέφερε από τη δίψα, με μεγάλο πόνο και δυσκολία, παρόλα αυτά οδήγησε τον στρατό του με τα πόδια \\[...]. Εκείνη τη στιγμή μερικοί από τους στρατιώτες του \\[...] βρήκαν λίγο νερό \\[...], έβαλαν το νερό σε ένα κράνος και τον έφεραν σε αυτόν. Αυτός το πήρε και ενώ ευχαρίστησε τους άνδρες που το έφεραν, αμέσως το έχυσε στο έδαφος εν όψει όλων\". - Αρριανός για την πορεία του Αλεξάνδρου μέσα από την έρημο της Γεδρωσίας (\"Αλεξάνδρου Ανάβασις\", 6.26)"
+msgstr ""
 
 #: gui/text/quotes.txt:41
 msgid ""
 "\"Thrusting his spear into Mithridates' face, he \\[Alexander] hurled him to"
-" the ground. Then Rhoesaces \\[a Persian] \\[...] struck him on the head "
-"with his sword. \\[...] Alexander hurled him too to the ground, piercing "
-"with his lance through his breastplate into his chest. Sphithridates \\[a "
-"Persian] had already raised his sword against Alexander from behind when "
-"Clitus \\[...] cut his arm off.\" - Arrian about the Battle of the Granicus "
-"(\"The Anabasis of Alexander\", 1.15)"
-msgstr "\"Μπήγοντας το δόρυ του στο πρόσωπο του Μιθριδάτη, ο \\[Αλέξανδρος] τον έριξε στο έδαφος. Στη συνέχεια ο Ροισάκης \\[ένας Πέρσης] \\[...] τον χτύπησε στο κεφάλι με το ξίφος του. \\[...] Ο Αλέξανδρος τον έριξε στο έδαφος, διατρυπώντας με τη λόγχη του μέσω του θώρακα το στήθος του. Ο Σπιθηδράτης \\[ένας Πέρσης] είχε ήδη εγείρει το σπαθί του εναντίον του Αλεξάνδρου από πίσω, όταν ο Κλείτος \\[...] του έκοψε το χέρι του.\" - Ο Αρριανός για τη μάχη του Γρανικού ( «Αλεξάνδρου Ανάβασης», 1.15)"
+" the ground. Then Rhoesaces \\[a Persian] \\[…] struck him on the head with "
+"his sword. \\[…] Alexander hurled him too to the ground, piercing with his "
+"lance through his breastplate into his chest. Sphithridates \\[a Persian] "
+"had already raised his sword against Alexander from behind when Clitus \\[…]"
+" cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
+"Anabasis of Alexander\", 1.15)"
+msgstr ""
 
 #: gui/text/quotes.txt:42
 msgid ""
@@ -1049,19 +1049,19 @@ msgstr "\"Είμαι ο Κύρος, ο οποίος κέρδισε για του
 #: gui/text/quotes.txt:61
 msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
-"of countries, \\[...] 23 lands in total.\" - Darius I. (Behistun "
-"inscription, column I, 1-6)"
-msgstr "«Είμαι ο Δαρείος, ο μεγάλος βασιλιάς, ο βασιλιάς των βασιλιάδων, ο βασιλιάς της Περσίας, ο βασιλιάς των χωρών, \\[...] εικοσιτριών χωρών συνολικά.» - Δαρείος Α. (Επιγραφή Μπεχιστούν, στήλη Ι, 1-6)"
+"of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
+"column I, 1-6)"
+msgstr ""
 
 #: gui/text/quotes.txt:62
 msgid ""
 "\"Phraortes was captured and brought before me. I cut off his nose, his "
 "ears, and his tongue, and I put out one eye, and he was kept in chains at my"
 " palace entrance, and all the people saw him. Then I crucified him in "
-"Ecbatana; and the men who were his foremost followers \\[...] I flayed and "
+"Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr "\"Ο Φραόρτης συνελήφθη και τον έφεραν μπροστά μου, του έκοψα τη μύτη, τα αυτιά και τη γλώσσα του και του έβγαλα το ένα μάτι και τον έβαλα αλυσοδεμένο στην είσοδο του παλατιού μου και τον είδαν όλοι. Έπειτα τον σταύρωσα στα Εκβάτανα· και τους άντρες που ήταν πρωτίστως οπαδοί του \\[...] τους έγδαρα και κρέμασα τα δέρματα τους γεμιστά με άχυρο\". - Δαρείος Α. (Επιγραφή Μπεχιστούν, στήλη ΙΙ, 32)"
+msgstr ""
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1223,14 +1223,13 @@ msgstr "\"Όλοι οι εκατόνταρχοι της τέταρτης κοό�
 
 #: gui/text/quotes.txt:86
 msgid ""
-"\"But the enemy \\[...] displayed such great courage, that when the front "
-"rank had fallen the men behind them stood on them and continue the fight "
-"from on top of the corpses; when these were killed the pile of bodies grew "
-"higher, while the survivors used the heap as a vantage point for throwing "
-"missiles at our men, or catching our spears and throwing them back.\" - "
-"Gaius Julius Caesar about the Battle of the Sabis (\"De Bello Gallico\", II."
-" 27)"
-msgstr "\"Αλλά ο εχθρός \\[...] εμφάνιζε τόσο μεγάλο θάρρος, που όταν oi πρώτες γραμμές έπεσαν οι άνδρες από πίσω στέκονταν επάνω τους και να συνέχιζαν τον αγώνα πάνω από τα πτώματα, όταν και αυτοί σκοτώθηκαν ο σωρός των πτωμάτων έγινε ψηλότερος, ενώ οι επιζώντες χρησιμοποίησαν το σωρό ως πλεονεκτικό σημείο για τη ρίψη βλημάτων στους άνδρες μας, ή για να μαζεύουν τις λόγχες μας και να τις ρίχνουν πάλι πίσω.\" - ο Ιούλιος Καίσαρας για τη Μάχη της Σάβις ( \"Απομνημονεύματα για το Γαλατικό Πόλεμο\", II. 27)"
+"\"But the enemy \\[…] displayed such great courage, that when the front rank"
+" had fallen the men behind them stood on them and continue the fight from on"
+" top of the corpses; when these were killed the pile of bodies grew higher, "
+"while the survivors used the heap as a vantage point for throwing missiles "
+"at our men, or catching our spears and throwing them back.\" - Gaius Julius "
+"Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
+msgstr ""
 
 #: gui/text/quotes.txt:87
 msgid ""
@@ -1334,14 +1333,14 @@ msgstr "\"Οι Λακεδαιμόνιοι \\[Σπαρτιάτες] πολέμη�
 
 #: gui/text/quotes.txt:102
 msgid ""
-"\"Being informed \\[...] that when the Barbarians discharged their arrows "
-"they obscured the light of the sun by the multitude of the arrows, he "
-"\\[Dienekes] \\[...] said that their guest \\[...] brought them very good "
-"news, for if the Medes obscured the light of the sun, the battle against "
-"them would be in the shade and not in the sun.\" - Herodotus describing "
-"Dienekes, reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
+"\"Being informed \\[…] that when the Barbarians discharged their arrows they"
+" obscured the light of the sun by the multitude of the arrows, he "
+"\\[Dienekes] \\[…] said that their guest \\[…] brought them very good news, "
+"for if the Medes obscured the light of the sun, the battle against them "
+"would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
+" reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr "\"Έχοντας ενημερωθεί \\[...] πως όταν οι Βάρβαροι ρίξουν τα βέλη τους, θα κρυφτεί το φως του ήλιου από το πλήθος των βέλων, ο \\[Διηνέκης] \\[...] είπε ότι οι επισκέπτες τους \\[...] τους έφεραν πολύ καλά νέα, γιατί αν οι Μήδες απέκρυπταν το φως του ήλιου, η μάχη εναντίον τους θα ήταν στη σκιά και όχι στον ήλιο.\" - Ο Ηρόδοτος περιγράφει τον Διηνέκη, τον πιο φημισμένο γενναίο στρατιώτη Σπαρτιάτη στις Θερμοπύλες (Πολύβιος, «Ιστορίες», VII.226)"
+msgstr ""
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1394,8 +1393,8 @@ msgid ""
 msgstr "\"Είναι γλυκό και τιμητικό να πεθάνει κανείς για τη χώρα του.\" - Οράτιος (\"Ωδές\", III., ωδή II., 13)"
 
 #: gui/text/quotes.txt:110
-msgid "\"I am Cyrus, king of the world...\" - Inscription (Cyrus Cylinder)"
-msgstr "\"Είμαι ο Κύρος, ο βασιλιάς του κόσμου...\" - Επιγραφή (Κύλινδρος του Κύρου)"
+msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
+msgstr ""
 
 #: gui/text/quotes.txt:111
 msgid ""
@@ -1430,12 +1429,12 @@ msgstr "\"Κάποιοι ανακαλύφθηκαν εκεί ζωντανοί, �
 
 #: gui/text/quotes.txt:115
 msgid ""
-"\"There lay thousands upon thousands of Romans \\[...]. Here and there "
-"amidst the slain rose a gory figure whose wounds had begun to throb with the"
-" chill of dawn, and was cut down by his enemies.\" - Livius, describing the "
+"\"There lay thousands upon thousands of Romans \\[…]. Here and there amidst "
+"the slain rose a gory figure whose wounds had begun to throb with the chill "
+"of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr "«Εκεί βρίσκονταν χιλιάδες των χιλιάδων Ρωμαίοι \\[...]. Εδώ κι εκεί μέσα στους δολοφονηθέντας σηκωνόταν μια αιματοβαμμένη φιγούρα του οποίου οι πληγές είχαν αρχίσει να σφύζουν από την ψύχρα της αυγής, και κόβονταν από τους εχθρούς του.» - Λίβιος, περιγράφοντας τα επακόλουθα της μάχης των Καννών, όπου ο Αννίβας προκάλεσε τη μεγαλύτερη ήττα στους Ρωμαίους σε όλη τους την ιστορία (\"Από Κτίσεως Πόλεως\", XXIII. 51)"
+msgstr ""
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1648,14 +1647,13 @@ msgstr "\"Αυτός \\[ο Αλέξανδρος] δεν σκέφτηκε τίπ�
 
 #: gui/text/quotes.txt:146
 msgid ""
-"\"One \\[...] shot an arrow at him with such accuracy and force that it "
-"pierced his breastplate and got stuck in his ribs. \\[...] Alexander "
-"recoiled and sank to his knees. \\[...] At last Alexander killed the "
-"barbarian. But he received many wounds, at last was struck on the neck with "
-"a mace, and leaned against the city wall, his eyes still fixed upon his "
-"foes.\" - Plutarch about the Mallian Campaign (\"Parallel Lives\", "
-"\"Alexander\", sec. 63)"
-msgstr "\"Ένας \\[...] έριξε ένα βέλος σε αυτόν με τέτοια ακρίβεια και δύναμη που διαπέρασε το θώρακα του και κόλλησε στα πλευρά του. \\[...] Ο Αλέξανδρος παραπάτησε και λύγισε στα γόνατά του. \\[...] Τελικά ο Αλέξανδρος σκότωσε τον βάρβαρο. Αλλά είχε πολλές πληγές, στο τέλος χτυπήθηκε στο λαιμό με ένα ρόπαλο, και στηρίχθηκε στο τοίχος της πόλης, με τα μάτια του ακόμα καρφωμένα πάνω τους εχθρούς του.\" - Ο Πλούταρχος για την Μαλλιανή Εκστρατεία (\"Βίοι Παράλληλοι\", \"Αλέξανδρος\", εδάφιο 63)"
+"\"One \\[…] shot an arrow at him with such accuracy and force that it "
+"pierced his breastplate and got stuck in his ribs. \\[…] Alexander recoiled "
+"and sank to his knees. \\[…] At last Alexander killed the barbarian. But he "
+"received many wounds, at last was struck on the neck with a mace, and leaned"
+" against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
+"about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
+msgstr ""
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1687,12 +1685,12 @@ msgstr "\"Η Ρωμαϊκή γραμμή μάχης είναι δύσκολο ν
 msgid ""
 "\"The Athenian people are always in the position of a ship without a "
 "commander. Fear of the enemy or a storm make the crew be of one mind and "
-"obey the helmsman, everything goes well; but if they recover \\[...] they "
-"quarrel with each other \\[...], and the result has often been that, after "
+"obey the helmsman, everything goes well; but if they recover \\[…] they "
+"quarrel with each other \\[…], and the result has often been that, after "
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr "\"Ο Αθηναϊκός λαός είναι πάντα στη θέση ενός πλοίου χωρίς καπετάνιο. Ο φόβος του εχθρού ή μια καταιγίδα κάνει το πλήρωμα να είναι συγκεντρωμένο και να υπακούει στον πηδαλιούχο, όλα πάνε καλά· αλλά αν ανακάμψουν \\[...] γκρινιάζουν μεταξύ τους \\[...], και το αποτέλεσμα είναι ότι, αφού ξεφεύγουν από τους κινδύνους των ανοικτών θαλασσών και των πιο βίαιων καταιγίδων, καταστρέφουν το πλοίο τους στο λιμάνι και κοντά στην ακτή.\" - Πολύβιος για το Αθηναϊκό πολίτευμα (\"Ιστορίες\", VI. 44)"
+msgstr ""
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1926,11 +1924,11 @@ msgstr "\"Καθώς ο κόσμος προχωρά, η δικαιοσύνη ε�
 #: gui/text/quotes.txt:181
 msgid ""
 "\"When the Lacedaemonians were no longer able to run after them, the "
-"skirmishers \\[...] all charged them at once, casting stones, arrows, and "
+"skirmishers \\[…] all charged them at once, casting stones, arrows, and "
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr "\"Όταν οι Λακεδαιμόνιοι δεν ήταν πλέον σε θέση να τρέξουν μετά από αυτούς, οι ακροβολιστές \\[...] όλοι έριχναν σαν ένας, ρίχνοντας πέτρες, βέλη και σαΐτες στον πλησιέστερο άνθρωπο.\" - Θουκυδίδης, που περιγράφει τη Σπαρτιατική καταστροφή στη μάχη των Σφακτηρίων («Ιστορία του Πελοποννησιακού Πολέμου», IV. 34.2)"
+msgstr ""
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -1985,11 +1983,11 @@ msgstr "«Οι Αιθίοπες κάνουν τους θεούς τους μαύ
 
 #: gui/text/quotes.txt:189
 msgid ""
-"\"These are the right questions to ask, in winter around the fire \\[...]: "
-"Who are you, friend? What is your land? And how old were you when the Medes "
+"\"These are the right questions to ask, in winter around the fire \\[…]: Who"
+" are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr "\"Αυτά είναι τα σωστά ερωτήματα που πρέπει να ρωτήσετε, το χειμώνα γύρω από τη φωτιά \\[...]: Ποιος είσαι εσύ φίλε; Ποια είναι η γη σου; και πόσο χρονών ήσουν όταν ήρθαν οι Μήδες \\[Πέρσες];\" - Ξενοφάνης, πιθανότατα αναφέρεται σε μια τιμωρητική εκστρατεία εναντίον των ελληνικών πόλεων της Ιωνίας (απόσπασμα 17)"
+msgstr ""
 
 #: gui/text/quotes.txt:190
 msgid ""

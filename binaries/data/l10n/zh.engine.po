@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-30 09:03+0100\n"
-"PO-Revision-Date: 2017-11-07 04:05+0000\n"
-"Last-Translator: 星臣 星域神族 <yuronglong1996@gmail.com>\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 02:40+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,114 +31,114 @@ msgstr "长字符串"
 msgid "unknown subtype (see logs)"
 msgstr "未知子类型（见日志）"
 
-#: lobby/XmppClient.cpp:1003 lobby/XmppClient.cpp:1047
-#: lobby/XmppClient.cpp:1086
+#: lobby/XmppClient.cpp:1010 lobby/XmppClient.cpp:1054
+#: lobby/XmppClient.cpp:1093
 msgid "Error"
 msgstr "错误"
 
-#: lobby/XmppClient.cpp:1006 lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1013 lobby/XmppClient.cpp:1057
 msgid "No error"
 msgstr "没有错误"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:1015
 msgid "Player already logged in"
 msgstr "用户已经登录"
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:1017
 msgid "Forbidden"
 msgstr "禁止"
 
-#: lobby/XmppClient.cpp:1012
+#: lobby/XmppClient.cpp:1019
 msgid "Internal server error"
 msgstr "内部服务器错误"
 
-#: lobby/XmppClient.cpp:1016
+#: lobby/XmppClient.cpp:1023
 msgid "Not allowed"
 msgstr "不允许"
 
-#: lobby/XmppClient.cpp:1017
+#: lobby/XmppClient.cpp:1024
 msgid "Not authorized"
 msgstr "未授权"
 
-#: lobby/XmppClient.cpp:1020
+#: lobby/XmppClient.cpp:1027
 msgid "Recipient temporarily unavailable"
 msgstr "收件人暂时不可用"
 
-#: lobby/XmppClient.cpp:1022
+#: lobby/XmppClient.cpp:1029
 msgid "Registration required"
 msgstr "允许注册"
 
-#: lobby/XmppClient.cpp:1026
+#: lobby/XmppClient.cpp:1033
 msgid "Service unavailable"
 msgstr "服务器不可用"
 
-#: lobby/XmppClient.cpp:1031 lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1038 lobby/XmppClient.cpp:1077
 msgid "Unknown error"
 msgstr "未知错误"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1058
 msgid "Stream error"
 msgstr "媒体流错误"
 
-#: lobby/XmppClient.cpp:1052
+#: lobby/XmppClient.cpp:1059
 msgid "The incoming stream version is unsupported"
 msgstr "传入的媒体流版本不受支持"
 
-#: lobby/XmppClient.cpp:1053
+#: lobby/XmppClient.cpp:1060
 msgid "The stream has been closed by the server"
 msgstr "服务器已关闭媒体流"
 
-#: lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1064
 msgid "An I/O error occurred"
 msgstr "发生了一个I/O错误"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1066
 msgid "The connection was refused by the server"
 msgstr "服务器拒绝连接"
 
-#: lobby/XmppClient.cpp:1060
+#: lobby/XmppClient.cpp:1067
 msgid "Resolving the server's hostname failed"
 msgstr "服务器主机名解析失败"
 
-#: lobby/XmppClient.cpp:1061
+#: lobby/XmppClient.cpp:1068
 msgid "This system is out of memory"
 msgstr "系统内存耗尽"
 
-#: lobby/XmppClient.cpp:1063
+#: lobby/XmppClient.cpp:1070
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "不能验证服务器证书或TLS握手未能成功完成"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1071
 msgid "The server did not offer required TLS encryption"
 msgstr "服务器没有提供必须的TLS加密"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1073
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "验证失败. 密码不正确或账户不存在"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1074
 msgid "The user or system requested a disconnect"
 msgstr "用户或系统请求断开连接"
 
-#: lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1075
 msgid "There is no active connection"
 msgstr "没有活动连接"
 
-#: lobby/XmppClient.cpp:1089
-msgid "Success"
-msgstr "成功"
+#: lobby/XmppClient.cpp:1096
+msgid "Your account has been successfully registered"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1090
+#: lobby/XmppClient.cpp:1097
 msgid "Not all necessary information provided"
 msgstr "没有提供所有必须的信息"
 
-#: lobby/XmppClient.cpp:1091
+#: lobby/XmppClient.cpp:1098
 msgid "Username already exists"
 msgstr "用户名已存在"
 
-#: ps/SavedGame.cpp:133
+#: ps/SavedGame.cpp:127
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "游戏保存为 '%s'"

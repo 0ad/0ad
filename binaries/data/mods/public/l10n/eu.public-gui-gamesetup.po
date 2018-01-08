@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-05 09:04+0100\n"
-"PO-Revision-Date: 2018-01-05 17:02+0000\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 09:51+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -169,329 +169,329 @@ msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr "Aukeratutako motetako mapa guztiak."
 
-#: gui/gamesetup/gamesetup.js:411
+#: gui/gamesetup/gamesetup.js:406
 msgid "Map Type"
 msgstr "Mapa Mota"
 
-#: gui/gamesetup/gamesetup.js:412
+#: gui/gamesetup/gamesetup.js:407
 msgid "Select a map type."
 msgstr "Hautatu mapa mota."
 
-#: gui/gamesetup/gamesetup.js:435
+#: gui/gamesetup/gamesetup.js:430
 msgid "Map Filter"
 msgstr "Maparen Iragazkia"
 
-#: gui/gamesetup/gamesetup.js:436
+#: gui/gamesetup/gamesetup.js:431
 msgid "Select a map filter."
 msgstr "Hautatu maparen iragazkia."
 
-#: gui/gamesetup/gamesetup.js:451
+#: gui/gamesetup/gamesetup.js:446
 msgid "Select Map"
 msgstr "Hautatu Mapa"
 
-#: gui/gamesetup/gamesetup.js:452
+#: gui/gamesetup/gamesetup.js:447
 msgid "Select a map to play on."
 msgstr "Hautatu mapa bat bertan jolasteko."
 
-#: gui/gamesetup/gamesetup.js:466
+#: gui/gamesetup/gamesetup.js:461
 msgid "Map Size"
 msgstr "Mapa Tamaina"
 
-#: gui/gamesetup/gamesetup.js:467
+#: gui/gamesetup/gamesetup.js:462
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Hautatu maparen tamaina. (Tamaina handiek errendimenduari eragin diezaiokete.)"
 
-#: gui/gamesetup/gamesetup.js:481
+#: gui/gamesetup/gamesetup.js:476
 msgid "Biome"
 msgstr "Bioma"
 
-#: gui/gamesetup/gamesetup.js:482
+#: gui/gamesetup/gamesetup.js:477
 msgid "Select the flora and fauna."
 msgstr "Flora eta fauna aukeratu."
 
-#: gui/gamesetup/gamesetup.js:497
+#: gui/gamesetup/gamesetup.js:492
 msgid "Number of Players"
 msgstr "Jokalari Kopurua"
 
-#: gui/gamesetup/gamesetup.js:498
+#: gui/gamesetup/gamesetup.js:493
 msgid "Select number of players."
 msgstr "Hautatu jokalari kopurua:"
 
-#: gui/gamesetup/gamesetup.js:518
+#: gui/gamesetup/gamesetup.js:513
 msgid "Population Cap"
 msgstr "Biztanleria-Muga"
 
-#: gui/gamesetup/gamesetup.js:525
+#: gui/gamesetup/gamesetup.js:520
 msgid "Select population limit."
 msgstr "Hautatu biztanleria-muga."
 
-#: gui/gamesetup/gamesetup.js:528
+#: gui/gamesetup/gamesetup.js:523
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Kontuz: errendimendu arazoak egon daitezke baldin eta %(players)s jokalari guztiak %(popCap)s herrira batera iristen badira."
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:541
 msgid "Starting Resources"
 msgstr "Hasierako Baliabideak"
 
-#: gui/gamesetup/gamesetup.js:549
+#: gui/gamesetup/gamesetup.js:544
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Baliabide bakoitzaren hasierako zenbatekoa: %(resources)s."
 
-#: gui/gamesetup/gamesetup.js:552
+#: gui/gamesetup/gamesetup.js:547
 msgid "Select the game's starting resources."
 msgstr "Hautatu jokoaren hasierako baliabideak."
 
-#: gui/gamesetup/gamesetup.js:567
+#: gui/gamesetup/gamesetup.js:562
 msgid "Ceasefire"
 msgstr "Su Etena"
 
-#: gui/gamesetup/gamesetup.js:568
+#: gui/gamesetup/gamesetup.js:563
 msgid "Set time where no attacks are possible."
 msgstr "Ezarri erasoak zilegi ez diren denbora tartea."
 
-#: gui/gamesetup/gamesetup.js:581
+#: gui/gamesetup/gamesetup.js:576
 msgid "Victory Condition"
 msgstr "Irabazteko Baldintza"
 
-#: gui/gamesetup/gamesetup.js:582
+#: gui/gamesetup/gamesetup.js:577
 msgid "Select victory condition."
 msgstr "Hautatu irabazteko baldintza."
 
-#: gui/gamesetup/gamesetup.js:597
+#: gui/gamesetup/gamesetup.js:592
 msgid "Relic Count"
 msgstr "Erlikia Zenbatekoa"
 
-#: gui/gamesetup/gamesetup.js:598
+#: gui/gamesetup/gamesetup.js:593
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "Mapetan sortutako erlikien zenbatekoa. Erlikia garaipena sinesgarriagoa da erlikia bat edo birekin. Zenbateko handiagoetan, erlikiak garrantzitsuak dira aura bonoak eskuratu eta jasotzeko."
 
-#: gui/gamesetup/gamesetup.js:612
+#: gui/gamesetup/gamesetup.js:607
 msgid "Relic Duration"
 msgstr "Erlikiaren Iraupena"
 
-#: gui/gamesetup/gamesetup.js:613
+#: gui/gamesetup/gamesetup.js:608
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Erlikiaren Garaipena lortzeko jokalariak behar dituen minutuak."
 
-#: gui/gamesetup/gamesetup.js:627
+#: gui/gamesetup/gamesetup.js:622
 msgid "Wonder Duration"
 msgstr "Miragarriaren Iraupena"
 
-#: gui/gamesetup/gamesetup.js:628
+#: gui/gamesetup/gamesetup.js:623
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr "Miragarriaren Garaipena lortzeko jokalariak behar dituen minutuak."
 
-#: gui/gamesetup/gamesetup.js:642
+#: gui/gamesetup/gamesetup.js:637
 msgid "Game Speed"
 msgstr "Jokoaren Abiadura"
 
-#: gui/gamesetup/gamesetup.js:643
+#: gui/gamesetup/gamesetup.js:638
 msgid "Select game speed."
 msgstr "Hautatu jokoaren abiadura."
 
-#: gui/gamesetup/gamesetup.js:657
+#: gui/gamesetup/gamesetup.js:652
 msgid "Difficulty"
 msgstr "Zailtasuna"
 
-#: gui/gamesetup/gamesetup.js:659
+#: gui/gamesetup/gamesetup.js:654
 msgid "Select the difficulty of this scenario."
 msgstr "Aukeratu eszenatoki honen zailtasuna."
 
-#: gui/gamesetup/gamesetup.js:724
+#: gui/gamesetup/gamesetup.js:719
 msgid "Chose the civilization for this player"
 msgstr "Aukeratu jokalari honentzako zibilizazioa."
 
-#: gui/gamesetup/gamesetup.js:764
+#: gui/gamesetup/gamesetup.js:759
 msgid "Hero Garrison"
 msgstr "Heroi Babeslea"
 
-#: gui/gamesetup/gamesetup.js:765
+#: gui/gamesetup/gamesetup.js:760
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Aukeratu heroiak babestu ahal badira."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:779
+#: gui/gamesetup/gamesetup.js:774
 msgid "Revealed Map"
 msgstr "Mapa Erakutsia"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:782
+#: gui/gamesetup/gamesetup.js:777
 msgid "Toggle revealed map (see everything)."
 msgstr "Mapa osoa ikusi (edo ez)"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:798
+#: gui/gamesetup/gamesetup.js:793
 msgid "Explored Map"
 msgstr "Mapa Esploratua"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:801
+#: gui/gamesetup/gamesetup.js:796
 msgid "Toggle explored map (see initial map)."
 msgstr "Ikusi edo ez ikusi miatutako mapa (hasierako mapa erakusten du) "
 
-#: gui/gamesetup/gamesetup.js:812
+#: gui/gamesetup/gamesetup.js:807
 msgid "Disable Treasures"
 msgstr "Altxorrak Ezgaitu"
 
-#: gui/gamesetup/gamesetup.js:813
+#: gui/gamesetup/gamesetup.js:808
 msgid "Disable all treasures on the map."
 msgstr "Mapako altxor guztiak ezgaitu."
 
-#: gui/gamesetup/gamesetup.js:824
+#: gui/gamesetup/gamesetup.js:819
 msgid "Disable Spies"
 msgstr "Espioiak Ezgaitu"
 
-#: gui/gamesetup/gamesetup.js:825
+#: gui/gamesetup/gamesetup.js:820
 msgid "Disable spies during the game."
 msgstr "Espioiak ezgaitu jokoaren bitartean."
 
-#: gui/gamesetup/gamesetup.js:836
+#: gui/gamesetup/gamesetup.js:831
 msgid "Teams Locked"
 msgstr "Taldeak Blokeatu"
 
-#: gui/gamesetup/gamesetup.js:837
+#: gui/gamesetup/gamesetup.js:832
 msgid "Toggle locked teams."
 msgstr "Taldeak blokeatu edo ez."
 
-#: gui/gamesetup/gamesetup.js:851
+#: gui/gamesetup/gamesetup.js:846
 msgid "Last Man Standing"
 msgstr "Bizirik Dirauen Azkena"
 
-#: gui/gamesetup/gamesetup.js:852
+#: gui/gamesetup/gamesetup.js:847
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Aukeratu nahi duzun bizirik dirauen azken jokalariak edo zutik gelditzen den azken aliatuen taldeak irabazten duen."
 
-#: gui/gamesetup/gamesetup.js:865
+#: gui/gamesetup/gamesetup.js:860
 msgid "Cheats"
 msgstr "Trikimailuak"
 
-#: gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:861
 msgid "Toggle the usability of cheats."
 msgstr "Trikimailuak erabiltzea baimendu edo ez."
 
-#: gui/gamesetup/gamesetup.js:879
+#: gui/gamesetup/gamesetup.js:874
 msgid "Rated Game"
 msgstr "Partida Puntuatua"
 
-#: gui/gamesetup/gamesetup.js:880
+#: gui/gamesetup/gamesetup.js:875
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Markatu aukera hau partida jokalarien sailkapen orokorrerako balio izatea nahi baduzu."
 
-#: gui/gamesetup/gamesetup.js:906
+#: gui/gamesetup/gamesetup.js:901
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr "Sakatu %(hotkey)s jokalariaren izena edo ezarpenak automatikoki betetzeko."
 
-#: gui/gamesetup/gamesetup.js:914
+#: gui/gamesetup/gamesetup.js:909
 msgid "Return to the lobby."
 msgstr "Itxaron gelara bueltatu."
 
-#: gui/gamesetup/gamesetup.js:915
+#: gui/gamesetup/gamesetup.js:910
 msgid "Return to the main menu."
 msgstr "Menu nagusira bueltatu."
 
-#: gui/gamesetup/gamesetup.js:919
+#: gui/gamesetup/gamesetup.js:914
 msgid "Start Game!"
 msgstr "Hasi jokoa!"
 
-#: gui/gamesetup/gamesetup.js:925
+#: gui/gamesetup/gamesetup.js:920
 msgid "Start a new game with the current settings."
 msgstr "Hasi jokaldi berria uneko ezarpenak erabiliz."
 
-#: gui/gamesetup/gamesetup.js:926
+#: gui/gamesetup/gamesetup.js:921
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "Hasi jokaldi berria uneko ezarpenak erabiliz (jokalari guztiak prest egon arte desgaitua)"
 
-#: gui/gamesetup/gamesetup.js:980
+#: gui/gamesetup/gamesetup.js:975
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "AA Konfiguratu: %(description)s."
 
-#: gui/gamesetup/gamesetup.js:1515
+#: gui/gamesetup/gamesetup.js:1510
 msgctxt "map selection"
 msgid "Random"
 msgstr "Ausazko"
 
-#: gui/gamesetup/gamesetup.js:1517
+#: gui/gamesetup/gamesetup.js:1512
 msgid "Pick any of the given maps at random."
 msgstr "Mapetako bat ausaz aukeratu."
 
-#: gui/gamesetup/gamesetup.js:1549
+#: gui/gamesetup/gamesetup.js:1544
 msgctxt "biome"
 msgid "Random"
 msgstr "Ausazko"
 
-#: gui/gamesetup/gamesetup.js:1550
+#: gui/gamesetup/gamesetup.js:1545
 msgid "Pick a biome at random."
 msgstr "Aukeratu bioma ausaz."
 
-#: gui/gamesetup/gamesetup.js:1871 gui/gamesetup/gamesetup.js:1913
+#: gui/gamesetup/gamesetup.js:1866 gui/gamesetup/gamesetup.js:1908
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1876
+#: gui/gamesetup/gamesetup.js:1871
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: gui/gamesetup/gamesetup.js:1906
+#: gui/gamesetup/gamesetup.js:1901
 msgid "Yes"
 msgstr "Bai"
 
-#: gui/gamesetup/gamesetup.js:1906
+#: gui/gamesetup/gamesetup.js:1901
 msgid "No"
 msgstr "Ez"
 
-#: gui/gamesetup/gamesetup.js:2000
+#: gui/gamesetup/gamesetup.js:1995
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2203
+#: gui/gamesetup/gamesetup.js:2198
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2211
+#: gui/gamesetup/gamesetup.js:2206
 msgid "Unassigned"
 msgstr "Esleitu gabea"
 
-#: gui/gamesetup/gamesetup.js:2287
+#: gui/gamesetup/gamesetup.js:2282
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2294
+#: gui/gamesetup/gamesetup.js:2289
 msgid "Unknown Player"
 msgstr "Jokalari ezezaguna"
 
-#: gui/gamesetup/gamesetup.js:2333
+#: gui/gamesetup/gamesetup.js:2328
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2334
+#: gui/gamesetup/gamesetup.js:2329
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2335
+#: gui/gamesetup/gamesetup.js:2330
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -539,7 +539,7 @@ msgid "Loading"
 msgstr "Kargatzen"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
-msgid "Loading map data. Please wait..."
+msgid "Loading map data. Please wait…"
 msgstr "Maparen datuak kargatzen. Itxaron mesedez..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
@@ -626,9 +626,9 @@ msgstr "Itxi aukera gehigarrien leihoa"
 
 #: gui/text/quotes.txt:1
 msgid ""
-"\"Zeus \\[...] established his law: wisdom comes through suffering. \\[...] "
-"So men against their will learn to practice moderation. \\[...] Such grace "
-"is harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
+"\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
+"men against their will learn to practice moderation. \\[…] Such grace is "
+"harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
 msgstr "\"Zeus \\[...] legea ezarri zuen: jakintza sufrimendutik dator. \\[...] Horrela gizonek gogoaren kontra ikasten dute zuhurtasuna praktikatzen. \\[...] Dohain hori zakarra eta bortitza da\" - Eskilo (\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
@@ -741,9 +741,9 @@ msgstr "\"Sexuak eta loak bakarrik mortala naizela gogorarazten didate.\" - Alex
 
 #: gui/text/quotes.txt:21
 msgid ""
-"\"It is very servile to live in luxury, but very royal to toil. \\[...] "
-"Don't you know that the end and object of conquest is to avoid the vices and"
-" infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
+"\"It is very servile to live in luxury, but very royal to toil. \\[…] Don't "
+"you know that the end and object of conquest is to avoid the vices and "
+"infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
 msgstr "\"Oparotasunean bizitzea oso morrontzakoa da. baino lanerako oso erreala. \\[...] Ea al dakizu konkistaren azkena garaituen bizio eta ahuldadeak ekiditea dela?\" - Alexander Handia (Plutarko, \"Bizi Paraleloak\", \"Alexander\", sek. 40)"
 
@@ -873,23 +873,23 @@ msgstr "\"Ausartagoa da bere nahiei aurre egiten diena etsaiak konkistatzen ditu
 #: gui/text/quotes.txt:40
 msgid ""
 "\"Alexander himself, plagued by thirst, with great pain and difficulty "
-"nevertheless led the army on foot \\[...]. At this time a few of the light-"
-"armed soldiers \\[...] found some water \\[...], poured the water into a "
-"helmet and carried it to him. He took it, and commending the men who brought"
-" it, immediately poured it upon the ground in the sight of all.\" - Arrian "
-"about Alexander's march through the Gedrosian desert (\"The Anabasis of "
+"nevertheless led the army on foot \\[…]. At this time a few of the light-"
+"armed soldiers \\[…] found some water \\[…], poured the water into a helmet "
+"and carried it to him. He took it, and commending the men who brought it, "
+"immediately poured it upon the ground in the sight of all.\" - Arrian about "
+"Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
 msgstr "\"Alexander bera, egarriaz itsuturik, hala ere, armada oinez eraman zuen \\[...]. Momentu horretan soldadu arin batzuek \\[...] ura aurkitu zuten \\[...], kasko batean ura bota eta bertan garbitu zen, eta hartu zuen, eta ekarri zuten soldaduak goraipatuz, berehala lurrera bota zuen denon aurrean.\" - Arrian Alexanderren Gedrosiako basamortuko ibilbideari buruz(\"Alexanderren Anabasia\", 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
 "\"Thrusting his spear into Mithridates' face, he \\[Alexander] hurled him to"
-" the ground. Then Rhoesaces \\[a Persian] \\[...] struck him on the head "
-"with his sword. \\[...] Alexander hurled him too to the ground, piercing "
-"with his lance through his breastplate into his chest. Sphithridates \\[a "
-"Persian] had already raised his sword against Alexander from behind when "
-"Clitus \\[...] cut his arm off.\" - Arrian about the Battle of the Granicus "
-"(\"The Anabasis of Alexander\", 1.15)"
+" the ground. Then Rhoesaces \\[a Persian] \\[…] struck him on the head with "
+"his sword. \\[…] Alexander hurled him too to the ground, piercing with his "
+"lance through his breastplate into his chest. Sphithridates \\[a Persian] "
+"had already raised his sword against Alexander from behind when Clitus \\[…]"
+" cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
+"Anabasis of Alexander\", 1.15)"
 msgstr "\"Bere lantza Mithridatesen aurpegiaren kontra bultzatuz, berak \\[Alexander] lurrera bota zuen. Orduan Rhoesacesek \\[Pertsiar bat] \\[...] bere ezpataz jo zuen buruan. \\[...] Alexander ere lurrera joan zen, bere lantzaz bularrekoa zulatuz eta bularrean sartuz. Sphithridates \\[Pertsiar bat] ezpata jasoa zuen Alexanderren kontra atzetik Clitusek orduan \\[...] besoa moztu zion\" - Arrian Granicusko borrokari buruz (\"Alexanderren Anabasia\", 1.15)"
 
 #: gui/text/quotes.txt:42
@@ -1031,8 +1031,8 @@ msgstr "\"Ziro naiz, Pertsiarrentzako inperioa irabazi zuena. Beraz, nire hezurr
 #: gui/text/quotes.txt:61
 msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
-"of countries, \\[...] 23 lands in total.\" - Darius I. (Behistun "
-"inscription, column I, 1-6)"
+"of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
+"column I, 1-6)"
 msgstr "\"Dario naiz, errege handia, erregeen errege, Pertsiako erregea, aberrien erregea, \\[...] 23 lurralde guztira.\" - Dario I. (Behistun inskripzioa, zutabea I, 1-6)"
 
 #: gui/text/quotes.txt:62
@@ -1040,7 +1040,7 @@ msgid ""
 "\"Phraortes was captured and brought before me. I cut off his nose, his "
 "ears, and his tongue, and I put out one eye, and he was kept in chains at my"
 " palace entrance, and all the people saw him. Then I crucified him in "
-"Ecbatana; and the men who were his foremost followers \\[...] I flayed and "
+"Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
 msgstr "\"Phraortes atzeman eta niregana ekarri zuten. Sudurra moztu nion, belarriak, eta mingaina, eta begia jarri nuen, eta nire jauregiaren sarreran lotua izan zen, eta herritar guztiak ikusi zuten. Orduan Ecbatanan gurutziltzatu nuen; eta bere jarraitzaile sutsuak ziren gizonak \\[...] zabaldu eta euren azal lastoz beteak zintzilikatu nituen.\" - Dario I. (Behistun inskripzioa, zutabea II, 32)"
@@ -1205,13 +1205,12 @@ msgstr "\"Laugarren kohorteko zenturioi denak erailak izan ziren, eta aitapontek
 
 #: gui/text/quotes.txt:86
 msgid ""
-"\"But the enemy \\[...] displayed such great courage, that when the front "
-"rank had fallen the men behind them stood on them and continue the fight "
-"from on top of the corpses; when these were killed the pile of bodies grew "
-"higher, while the survivors used the heap as a vantage point for throwing "
-"missiles at our men, or catching our spears and throwing them back.\" - "
-"Gaius Julius Caesar about the Battle of the Sabis (\"De Bello Gallico\", II."
-" 27)"
+"\"But the enemy \\[…] displayed such great courage, that when the front rank"
+" had fallen the men behind them stood on them and continue the fight from on"
+" top of the corpses; when these were killed the pile of bodies grew higher, "
+"while the survivors used the heap as a vantage point for throwing missiles "
+"at our men, or catching our spears and throwing them back.\" - Gaius Julius "
+"Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
 msgstr "\"Baino etsaiak \\[...] horrenbesteko ausardia erakutsi zuen, lehenengo mailakoak erori zirenean atzetik zetozenak euren gainean gelditu eta hilotzen gainetik jarraitu zuten borroka; eta hauek hiltzean gorputz mendia are handiagoa izan zen, bitartean bizirik jarraitzen zutenak gorputz mendia ikusmira gisa erabili zuten gure gizonei jaurtigaiak botatzeko, eta gure lantzak hartu eta bueltan bidaltzeko.\" - Kaio Julio Zesarr Sabisko borrokari buruz (\"De Bello Gallico\", II. 27)"
 
 #: gui/text/quotes.txt:87
@@ -1316,12 +1315,12 @@ msgstr "\"Lazedemoniarrek \\(Espartarrek) borroka paregabea burutu zuten: argi u
 
 #: gui/text/quotes.txt:102
 msgid ""
-"\"Being informed \\[...] that when the Barbarians discharged their arrows "
-"they obscured the light of the sun by the multitude of the arrows, he "
-"\\[Dienekes] \\[...] said that their guest \\[...] brought them very good "
-"news, for if the Medes obscured the light of the sun, the battle against "
-"them would be in the shade and not in the sun.\" - Herodotus describing "
-"Dienekes, reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
+"\"Being informed \\[…] that when the Barbarians discharged their arrows they"
+" obscured the light of the sun by the multitude of the arrows, he "
+"\\[Dienekes] \\[…] said that their guest \\[…] brought them very good news, "
+"for if the Medes obscured the light of the sun, the battle against them "
+"would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
+" reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
 msgstr "\"Jakin arazi ziotenean \\[...] Barbaroak geziak botatzean zerua iluntzen zutela botatzen zuten kopuru handiarengatik, berak \\[Dienekesek] \\[...] esan zuen bere ostalariak \\[...] albiste onak ekarri zizkiela, zeren Medesak eguzkiaren argia iluntzen bazuten, euren kontrako borroka itzalean izango zen eta ez eguzkitan.\" - Herodotusek Dienekes deskribatzen du, Thermopylaeko gudari ausartena bezala izendatua  (Polybius, \"Historiak\", VII. 226)"
 
@@ -1376,7 +1375,7 @@ msgid ""
 msgstr "\"Polita eta ohorea da norberaren aberriagatik hiltzea.\" - Horazio  (\"Odes\", III., ode II., 13)"
 
 #: gui/text/quotes.txt:110
-msgid "\"I am Cyrus, king of the world...\" - Inscription (Cyrus Cylinder)"
+msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
 msgstr "\"Ziro naiz, munduko erregea...\" - Inskripzioa (Cyrus Cylinder)"
 
 #: gui/text/quotes.txt:111
@@ -1412,9 +1411,9 @@ msgstr "\"Batzuk han aurkitu zituzten bizitzen, bizirik, izterrak eta tendoiak m
 
 #: gui/text/quotes.txt:115
 msgid ""
-"\"There lay thousands upon thousands of Romans \\[...]. Here and there "
-"amidst the slain rose a gory figure whose wounds had begun to throb with the"
-" chill of dawn, and was cut down by his enemies.\" - Livius, describing the "
+"\"There lay thousands upon thousands of Romans \\[…]. Here and there amidst "
+"the slain rose a gory figure whose wounds had begun to throb with the chill "
+"of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
 msgstr "\"Hor zeuden milaka eta milaka Erromatar \\[...]. Hemen eta han hildakoen artetik egunsentiaren hotzarekin zaurien taupadak bizkortu zuten irudi odoltsu bat jasotzen zen, eta etsaiek moztua izan zen.\" - Livio, Cannaeko Borrokako ondorioak kontatzean , non Anibalek Erromatarrei euren historiako porrotik handiena eragin zien (\"Ab Urbe Condita\", XXII. 51)"
@@ -1630,13 +1629,12 @@ msgstr "\"Berak \\[Alexanderrek] garaiezin ezer ausartarentzako, eta ziurtasun g
 
 #: gui/text/quotes.txt:146
 msgid ""
-"\"One \\[...] shot an arrow at him with such accuracy and force that it "
-"pierced his breastplate and got stuck in his ribs. \\[...] Alexander "
-"recoiled and sank to his knees. \\[...] At last Alexander killed the "
-"barbarian. But he received many wounds, at last was struck on the neck with "
-"a mace, and leaned against the city wall, his eyes still fixed upon his "
-"foes.\" - Plutarch about the Mallian Campaign (\"Parallel Lives\", "
-"\"Alexander\", sec. 63)"
+"\"One \\[…] shot an arrow at him with such accuracy and force that it "
+"pierced his breastplate and got stuck in his ribs. \\[…] Alexander recoiled "
+"and sank to his knees. \\[…] At last Alexander killed the barbarian. But he "
+"received many wounds, at last was struck on the neck with a mace, and leaned"
+" against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
+"about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
 msgstr "\"Batek \\[...] horrenbesteko indar eta zehaztasunez jaurti zion gezi bat bularrekoa zeharkatu eta saihets artean iltzatuta gelditu zitzaiola. \\[...] Alexander belauniko erori zen. \\[...] Azkenean barbaroa hil zuen, baino zauri asko jasan zituen, Azkenean lepoan jo zuten mazo batez eta hiriko paretaren kontra jarri zen, begiak etsaiean iltzaturik.\" - Plutarko Mallian Kanpainari buruz (\"Bizi Paraleloak\", \"Alexander\", sek. 63)"
 
 #: gui/text/quotes.txt:147
@@ -1669,8 +1667,8 @@ msgstr "\"Erromatarren borroka lerroa puskatzen zaila da, gizon bakoitza bakarka
 msgid ""
 "\"The Athenian people are always in the position of a ship without a "
 "commander. Fear of the enemy or a storm make the crew be of one mind and "
-"obey the helmsman, everything goes well; but if they recover \\[...] they "
-"quarrel with each other \\[...], and the result has often been that, after "
+"obey the helmsman, everything goes well; but if they recover \\[…] they "
+"quarrel with each other \\[…], and the result has often been that, after "
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
@@ -1908,7 +1906,7 @@ msgstr "\"Mundua doan bitartean, justizia berdinen arteko kontua da, indartsuek 
 #: gui/text/quotes.txt:181
 msgid ""
 "\"When the Lacedaemonians were no longer able to run after them, the "
-"skirmishers \\[...] all charged them at once, casting stones, arrows, and "
+"skirmishers \\[…] all charged them at once, casting stones, arrows, and "
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
@@ -1967,8 +1965,8 @@ msgstr "\"Etiopiakoek euren jainkoak beltzak egiten dituzte eta sudur motzak, Tr
 
 #: gui/text/quotes.txt:189
 msgid ""
-"\"These are the right questions to ask, in winter around the fire \\[...]: "
-"Who are you, friend? What is your land? And how old were you when the Medes "
+"\"These are the right questions to ask, in winter around the fire \\[…]: Who"
+" are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
 msgstr "\"Hauek neguan eta sutondoan egiteko galdera egokiak dira \\[...]: Nor zara, lagun? Nongoa zara? Eta zenbat urte zenituen Medakoak \\[Pertsiarrak] etorri zirenean?\" - Xenofanes, ziurrenik Ioniako hiri grekoen kontrako zigor espedizio bati buruz (zatiat 17)"

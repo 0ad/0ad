@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-30 09:03+0100\n"
-"PO-Revision-Date: 2018-01-06 21:06+0000\n"
-"Last-Translator: Facundo Abiega <abiegafacundo@gmail.com>\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 02:40+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,114 +29,114 @@ msgstr "Larga cadena de caracteres "
 msgid "unknown subtype (see logs)"
 msgstr "Subtipo desconocido (ver registro)"
 
-#: lobby/XmppClient.cpp:1003 lobby/XmppClient.cpp:1047
-#: lobby/XmppClient.cpp:1086
+#: lobby/XmppClient.cpp:1010 lobby/XmppClient.cpp:1054
+#: lobby/XmppClient.cpp:1093
 msgid "Error"
 msgstr "Error"
 
-#: lobby/XmppClient.cpp:1006 lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1013 lobby/XmppClient.cpp:1057
 msgid "No error"
 msgstr "Sin error"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:1015
 msgid "Player already logged in"
 msgstr "El jugador ya se encuentra conectado"
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:1017
 msgid "Forbidden"
 msgstr "Prohibido"
 
-#: lobby/XmppClient.cpp:1012
+#: lobby/XmppClient.cpp:1019
 msgid "Internal server error"
 msgstr "Problema interno del servidor"
 
-#: lobby/XmppClient.cpp:1016
+#: lobby/XmppClient.cpp:1023
 msgid "Not allowed"
 msgstr "No permitido "
 
-#: lobby/XmppClient.cpp:1017
+#: lobby/XmppClient.cpp:1024
 msgid "Not authorized"
 msgstr "No autorizado"
 
-#: lobby/XmppClient.cpp:1020
+#: lobby/XmppClient.cpp:1027
 msgid "Recipient temporarily unavailable"
 msgstr "Destinatario temporalmente no disponible"
 
-#: lobby/XmppClient.cpp:1022
+#: lobby/XmppClient.cpp:1029
 msgid "Registration required"
 msgstr "Registro requerido"
 
-#: lobby/XmppClient.cpp:1026
+#: lobby/XmppClient.cpp:1033
 msgid "Service unavailable"
 msgstr "Servicio no disponible"
 
-#: lobby/XmppClient.cpp:1031 lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1038 lobby/XmppClient.cpp:1077
 msgid "Unknown error"
 msgstr "Error desconocido"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1058
 msgid "Stream error"
 msgstr "Error de envío"
 
-#: lobby/XmppClient.cpp:1052
+#: lobby/XmppClient.cpp:1059
 msgid "The incoming stream version is unsupported"
 msgstr "La próxima versión stream no es soportada"
 
-#: lobby/XmppClient.cpp:1053
+#: lobby/XmppClient.cpp:1060
 msgid "The stream has been closed by the server"
 msgstr "La comunicación fue interrumpida por el servidor"
 
-#: lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1064
 msgid "An I/O error occurred"
 msgstr "Ha ocurrido un error I/O"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1066
 msgid "The connection was refused by the server"
 msgstr "La conexión fue rechazada por el servidor"
 
-#: lobby/XmppClient.cpp:1060
+#: lobby/XmppClient.cpp:1067
 msgid "Resolving the server's hostname failed"
 msgstr "Hubo una falla al resolver el nombre del servidor"
 
-#: lobby/XmppClient.cpp:1061
+#: lobby/XmppClient.cpp:1068
 msgid "This system is out of memory"
 msgstr "Falta de memoria en el sistema"
 
-#: lobby/XmppClient.cpp:1063
+#: lobby/XmppClient.cpp:1070
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "No se pudo verificar el certificado del servidor o el handshaking de TLS no se completó correctamente"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1071
 msgid "The server did not offer required TLS encryption"
 msgstr "El servidor no ofreció el cifrado TLS requerido"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1073
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Falló la autenticación. Contraseña incorrecta o la cuenta no existe"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1074
 msgid "The user or system requested a disconnect"
 msgstr "El usuario o el sistema solicitó la desconexión"
 
-#: lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1075
 msgid "There is no active connection"
 msgstr "No hay conexión activa"
 
-#: lobby/XmppClient.cpp:1089
-msgid "Success"
-msgstr "Éxito"
+#: lobby/XmppClient.cpp:1096
+msgid "Your account has been successfully registered"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1090
+#: lobby/XmppClient.cpp:1097
 msgid "Not all necessary information provided"
 msgstr "No se proveyó toda la información necesaria"
 
-#: lobby/XmppClient.cpp:1091
+#: lobby/XmppClient.cpp:1098
 msgid "Username already exists"
 msgstr "El nombre de usuario ya existe"
 
-#: ps/SavedGame.cpp:133
+#: ps/SavedGame.cpp:127
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Juego guardado a \"%s\""

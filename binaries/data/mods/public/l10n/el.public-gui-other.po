@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-06 13:34+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 02:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,12 +79,17 @@ msgstr "Ήρωες"
 msgid "History of the %(civilization)s"
 msgstr "Ιστορία των %(civilization)s"
 
-#: gui/common/color.js:162
+#: gui/common/color.js:149
+#, javascript-format
+msgid "Unassigned hotkey: %(hotkeyName)s"
+msgstr ""
+
+#: gui/common/color.js:164
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "Πάτα %(hotkey)s για να ολοκληρώσεις αυτόματα τα ονόματα των παικτών."
 
-#: gui/common/color.js:164
+#: gui/common/color.js:166
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
@@ -93,8 +98,8 @@ msgstr "Tab"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait..."
-msgstr "Άνοιγμα %(url)s\nστον προκαθορισμένο φυλλομετρητή. Παρακαλώ περιμένετε..."
+" in default web browser. Please wait…"
+msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -595,57 +600,57 @@ msgstr "Χρήστες (%(num)s): %(users)s"
 msgid ", "
 msgstr ", "
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:117
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Δοκιμαστικό"
 
-#: gui/common/settings.js:120
+#: gui/common/settings.js:121
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Πολύ εύκολο"
 
-#: gui/common/settings.js:124
+#: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Εύκολο"
 
-#: gui/common/settings.js:128
+#: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Μεσαίο"
 
-#: gui/common/settings.js:133
+#: gui/common/settings.js:134
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Δύσκολο"
 
-#: gui/common/settings.js:137
+#: gui/common/settings.js:138
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Πολύ δύσκολο"
 
-#: gui/common/settings.js:147
+#: gui/common/settings.js:148
 msgctxt "aiBehavior"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/common/settings.js:152
+#: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
 msgstr ""
 
-#: gui/common/settings.js:156
+#: gui/common/settings.js:157
 msgctxt "aiBehavior"
 msgid "Defensive"
 msgstr "Αμυντικός"
 
-#: gui/common/settings.js:160
+#: gui/common/settings.js:161
 msgctxt "aiBehavior"
 msgid "Aggressive"
 msgstr "Επιθετική στάση"
 
-#: gui/common/settings.js:182
+#: gui/common/settings.js:183
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
@@ -653,12 +658,12 @@ msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s λεπτό"
 msgstr[1] "%(min)s λεπτά"
 
-#: gui/common/settings.js:204
+#: gui/common/settings.js:205
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Χωρίς εκεχειρίες"
 
-#: gui/common/settings.js:205
+#: gui/common/settings.js:206
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -666,81 +671,81 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s λεπτά"
 msgstr[1] "%(minutes)s λεπτά"
 
-#: gui/common/settings.js:219
+#: gui/common/settings.js:220
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Αψιμαχία"
 
-#: gui/common/settings.js:220
+#: gui/common/settings.js:221
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr "Χάρτης με προκαθορισμένο τοπίο και αριθμό παικτών. Επιλέξτε ελεύθερα τις άλλες ρυθμίσεις του παιχνιδιού."
 
-#: gui/common/settings.js:225
+#: gui/common/settings.js:226
 msgctxt "map"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/common/settings.js:226
+#: gui/common/settings.js:227
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "Δημιουργήστε ένα μοναδικό χάρτη με διαφορετική κατανομή πόρων κάθε φορά. Επιλέξτε ελεύθερα τον αριθμό των παικτών και των ομάδων."
 
-#: gui/common/settings.js:230
+#: gui/common/settings.js:231
 msgctxt "map"
 msgid "Scenario"
 msgstr "Σενάριο"
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "Ένας χάρτης με προκαθορισμένο τοπίο και ρυθμίσεις."
 
-#: gui/common/settings.js:274
+#: gui/common/settings.js:272
 msgctxt "victory condition"
 msgid "None"
 msgstr "Καμία"
 
-#: gui/common/settings.js:275
+#: gui/common/settings.js:273
 msgid "Endless game."
 msgstr "Ατελείωτο παιχνίδι."
 
-#: gui/common/settings.js:316
+#: gui/common/settings.js:314
 msgid "Unlimited"
 msgstr "Απεριόριστο"
 
-#: gui/common/settings.js:369
+#: gui/common/settings.js:367
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: gui/common/settings.js:380
+#: gui/common/settings.js:378
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: gui/common/settings.js:391
+#: gui/common/settings.js:389
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "Προεπιλογή"
 
-#: gui/common/settings.js:403
+#: gui/common/settings.js:401
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Άγνωστος"
 
-#: gui/common/settings.js:415
+#: gui/common/settings.js:413
 msgctxt "map size"
 msgid "Default"
 msgstr "Προεπιλεγμένες "
 
-#: gui/common/settings.js:427
+#: gui/common/settings.js:425
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: gui/common/settings.js:439
+#: gui/common/settings.js:437
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Άγνωστη"
@@ -1429,8 +1434,8 @@ msgid "Score"
 msgstr "Βαθμολογία"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:151
-#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):122
+#: gui/summary/layout.js:101 gui/summary/layout.js:152
+#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):122
 msgid "Player name"
 msgstr "Όνομα παίκτη"
 
@@ -1531,84 +1536,92 @@ msgid "Resources"
 msgstr "Πόροι"
 
 #: gui/summary/layout.js:111
+msgid "Tributes"
+msgstr ""
+
+#: gui/summary/layout.js:112
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "Αφιερώματα\n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:119
+#: gui/summary/layout.js:120
 msgid "Treasures collected"
 msgstr "Θησαυροί που έχουν συλλεχθεί"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:121
 msgid "Loot"
 msgstr "Λεηλασία"
 
-#: gui/summary/layout.js:121
+#: gui/summary/layout.js:122
 msgid "Livestock bred"
 msgstr "Εκτροφή ζώων"
 
-#: gui/summary/layout.js:125
+#: gui/summary/layout.js:126
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Στατιστικά Πώρων (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):101
+#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):101
 msgid "Market"
 msgstr "Αγορά"
 
-#: gui/summary/layout.js:152
+#: gui/summary/layout.js:153
 msgid "Trade income"
 msgstr "Εμπορικό κέρδος"
 
-#: gui/summary/layout.js:153
+#: gui/summary/layout.js:154
 msgid "Barter efficiency"
 msgstr "Αποτελεσματικότητα ανταλλαγών"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:159
+#: gui/summary/layout.js:160
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s ανταλλάχθηκαν"
 
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Διάφορα"
 
-#: gui/summary/layout.js:184
+#: gui/summary/layout.js:185
 msgid "Kill / Death ratio"
 msgstr "Αναλογία Σκοτωμών / Θανάτων"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:186
 msgid "Map control (peak)"
 msgstr "Έλεγχος χάρτη (αιχμή)"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:187
 msgid "Map control (finish)"
 msgstr "Έλεγχος χάρτη (τέλος)"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:188
 msgid "Map exploration"
 msgstr "Εξερεύνηση χάρτη"
 
-#: gui/summary/layout.js:188
+#: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
 msgstr "Ποσοστό χορτοφαγίας"
 
-#: gui/summary/layout.js:189
+#: gui/summary/layout.js:190
 msgid "Feminization"
 msgstr "Θηλυκοποίηση"
 
-#: gui/summary/layout.js:192
+#: gui/summary/layout.js:193
+msgid "Bribes"
+msgstr ""
+
+#: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "Δωροδοκίες\n(%(succeeded)s / %(failed)s)"
 
-#: gui/summary/layout.js:355
+#: gui/summary/layout.js:357
 msgid "Team total"
 msgstr "Σύνολο ομάδας"
 
@@ -1707,8 +1720,8 @@ msgid "You have won the battle!"
 msgstr "Κερδίσατε τη μάχη!"
 
 #: gui/summary/summary.js:499
-msgid "You have been defeated..."
-msgstr "Ηττηθήκατε..."
+msgid "You have been defeated…"
+msgstr ""
 
 #: gui/summary/summary.js:500
 msgid "You have abandoned the game."

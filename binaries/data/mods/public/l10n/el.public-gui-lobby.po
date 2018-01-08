@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-11-16 10:22+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 03:52+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -244,446 +244,459 @@ msgstr "Ξεσημείωσε από φίλο."
 msgid "Mark as Buddy"
 msgstr "Σημείωσε ως φίλο."
 
-#: gui/lobby/lobby.js:795 gui/lobby/lobby.js:796 gui/lobby/lobby.js:797
-#: gui/lobby/lobby.js:798 gui/lobby/lobby.js:799 gui/lobby/lobby.js:800
+#: gui/lobby/lobby.js:790 gui/lobby/lobby.js:791 gui/lobby/lobby.js:792
+#: gui/lobby/lobby.js:793 gui/lobby/lobby.js:794 gui/lobby/lobby.js:795
 msgid "N/A"
 msgstr "N / A"
 
-#: gui/lobby/lobby.js:828
+#: gui/lobby/lobby.js:823
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr "Ο παίχτης \"%(nick)s\" δεν βρέθηκε."
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:1044
+#: gui/lobby/lobby.js:1039
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "Το παιχνίδι άρχισε στις %(time)s"
 
-#: gui/lobby/lobby.js:1045 gui/lobby/lobby.js:1406
+#: gui/lobby/lobby.js:1040 gui/lobby/lobby.js:1402
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/lobby.js:1049
+#: gui/lobby/lobby.js:1044
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Παίχτες: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1092
+#: gui/lobby/lobby.js:1087
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "Το παιχνίδι έχει ήδη αρχίσει. Θέλετε να συνδεθείτε ως θεατής;"
 
-#: gui/lobby/lobby.js:1093
+#: gui/lobby/lobby.js:1088
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
-#: gui/lobby/lobby.js:1094
+#: gui/lobby/lobby.js:1089
 msgid "No"
 msgstr "Όχι"
 
-#: gui/lobby/lobby.js:1094
+#: gui/lobby/lobby.js:1089
 msgid "Yes"
 msgstr "Ναι"
 
-#: gui/lobby/lobby.js:1126
+#: gui/lobby/lobby.js:1121
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Η διέυθυνση του παιχνιδιού  '%(ip)s' δέν φαίνεται να είναι έγκυρη."
 
-#: gui/lobby/lobby.js:1242
+#: gui/lobby/lobby.js:1237
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
 msgstr "Η εντολή '%(cmd)s' δεν υποστηρίζεται."
 
-#: gui/lobby/lobby.js:1254
+#: gui/lobby/lobby.js:1249
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
 msgstr "Η εντολή '%(cmd)s' είναι για τους διαχειριστές."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1327
+#: gui/lobby/lobby.js:1322
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1332
+#: gui/lobby/lobby.js:1327
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1341 gui/lobby/lobby.js:1362 gui/lobby/lobby.js:1388
+#: gui/lobby/lobby.js:1336 gui/lobby/lobby.js:1357 gui/lobby/lobby.js:1384
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:1346 gui/lobby/lobby.js:1367 gui/lobby/lobby.js:1393
+#: gui/lobby/lobby.js:1341 gui/lobby/lobby.js:1362 gui/lobby/lobby.js:1389
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:1356
+#: gui/lobby/lobby.js:1351
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/lobby/lobby.js:1382
+#: gui/lobby/lobby.js:1379
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr "(%(private)s) <%(sender)s>"
 
-#: gui/lobby/lobby.js:1384
+#: gui/lobby/lobby.js:1380
 msgid "Private"
 msgstr "Ιδιωτικό"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:1409
+#: gui/lobby/lobby.js:1405
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1414
+#: gui/lobby/lobby.js:1410
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1453
+#: gui/lobby/lobby.js:1449
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1468
+#: gui/lobby/lobby.js:1465
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1470
+#: gui/lobby/lobby.js:1467
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/lobby/prelobby.js:41
-msgid "Connecting..."
-msgstr "Συνδέεται..."
+#: gui/prelobby/prelobby.js:41
+msgid "Connecting…"
+msgstr ""
 
-#: gui/lobby/prelobby.js:64
-msgid "Registering..."
-msgstr "Εγγραφή..."
+#: gui/prelobby/prelobby.js:64
+msgid "Registering…"
+msgstr ""
 
-#: gui/lobby/prelobby.js:94
+#: gui/prelobby/prelobby.js:94
 msgid "Please enter your username"
 msgstr "Παρακαλώ, πληκτρολογήστε το όνομα χρήστη"
 
-#: gui/lobby/prelobby.js:100
+#: gui/prelobby/prelobby.js:100
 msgid "Invalid username"
 msgstr "Λανθασμένο όνομα χρήστη"
 
-#: gui/lobby/prelobby.js:107
+#: gui/prelobby/prelobby.js:107
 msgctxt "login"
 msgid "Please enter your password"
 msgstr "Παρακαλώ, πληκτρολόγησε το συνθηματικό σου"
 
-#: gui/lobby/prelobby.js:108
+#: gui/prelobby/prelobby.js:108
 msgctxt "register"
 msgid "Please enter your password"
 msgstr "Παρακαλώ, πληκτρολόγησε το συνθηματικό σου"
 
-#: gui/lobby/prelobby.js:121
+#: gui/prelobby/prelobby.js:121
 msgid "Please enter your password again"
 msgstr "Παρακαλώ, ξαναπληκτρολογήστε το συνθηματικό"
 
-#: gui/lobby/prelobby.js:127
+#: gui/prelobby/prelobby.js:127
 msgid "Passwords do not match"
 msgstr "Οι κωδικοί πρόσβασης δεν ταιριάζουν"
 
-#: gui/lobby/prelobby.js:133
+#: gui/prelobby/prelobby.js:133
 msgid "Please read the Terms of Service"
 msgstr "Παρακαλώ διαβάστε τους Όρους Παροχής Υπηρεσιών"
 
-#: gui/lobby/prelobby.js:139
+#: gui/prelobby/prelobby.js:139
 msgid "Please read the Terms of Use"
 msgstr "Παρακαλώ διαβάστε τους Όρους Χρήσης"
 
-#: gui/lobby/prelobby.js:145
+#: gui/prelobby/prelobby.js:145
 msgid "Please agree to the Terms of Service and Terms of Use"
 msgstr "Παρακαλώ συμφωνείστε με τους Όρους Χρήσης και Παροχής Υπηρεσιών"
 
-#: gui/lobby/prelobby.js:177
+#: gui/prelobby/prelobby.js:177
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
 msgstr "Άγνωστο σφάλμα. Αυτό συνήθως συμβαίνει επειδή η ίδια διεύθυνση IP δεν επιτρέπει να εγγράψετε περισσότερους από έναν λογαριασμό μέσα σε μία ώρα."
 
-#: gui/lobby/prelobby.js:183
+#: gui/prelobby/prelobby.js:183
 msgid "Registered"
 msgstr "Εγγεγραμένο."
 
-#: gui/lobby/prelobby.js:245
+#: gui/prelobby/prelobby.js:243
 msgid "Register"
 msgstr "Εγγράφη"
 
-#: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:(caption):101
+#: gui/prelobby/prelobby.js:249 gui/prelobby/prelobby.xml:(caption):101
 msgid "Connect"
 msgstr "Σύνδεση"
 
-#: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:(caption):78
+#: gui/prelobby/prelobby.js:259 gui/prelobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
 msgstr "Όροι Παροχής Υπηρεσιών"
 
-#: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:(caption):83
+#: gui/prelobby/prelobby.js:268 gui/prelobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
 msgstr "Όροι Χρήσης "
 
-#: gui/lobby/lobby.xml:(caption):18 gui/lobby/prelobby.xml:(caption):18
+#: gui/lobby/lobby.xml:(caption):11 gui/prelobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
 msgstr "Λόμπι πολλαπλών παικτών."
 
-#: gui/lobby/lobby.xml:(caption):66 gui/lobby/lobby.xml:(caption):342
-msgid "Current Rank:"
-msgstr "Τρέχουσα Βαθμίδα:"
-
-#: gui/lobby/lobby.xml:(caption):70 gui/lobby/lobby.xml:(caption):346
-msgid "Highest Rating:"
-msgstr "Υψηλότερη Βαθμολογία:"
-
-#: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):350
-msgid "Total Games:"
-msgstr "Συνολικά παιχνίδια:"
-
-#: gui/lobby/lobby.xml:(caption):78 gui/lobby/lobby.xml:(caption):354
-msgid "Wins:"
-msgstr "Νίκες:"
-
-#: gui/lobby/lobby.xml:(caption):82 gui/lobby/lobby.xml:(caption):358
-msgid "Losses:"
-msgstr "Ηττες:"
-
-#: gui/lobby/lobby.xml:(caption):86 gui/lobby/lobby.xml:(caption):362
-msgid "Win Rate:"
-msgstr "Αναλογία Νίκης:"
-
-#: gui/lobby/lobby.xml:(caption):100 gui/lobby/lobby.xml:(caption):290
-msgid "Leaderboard"
-msgstr "Πίνακας κατάταξης"
-
-#: gui/lobby/lobby.xml:(caption):106 gui/lobby/lobby.xml:(caption):325
-msgid "User Profile Lookup"
-msgstr "Αναζήτηση προφίλ χρήστη"
-
-#: gui/lobby/lobby.xml:(caption):134
-msgid "Map Type:"
-msgstr "Τύπος Χάρτη:"
-
-#: gui/lobby/lobby.xml:(caption):146
-msgid "Map Size:"
-msgstr "Μέγεθος Χάρτη:"
-
-#. Join the game currently selected in the list.
-#: gui/lobby/lobby.xml:(caption):171
-msgid "Join Game"
-msgstr "Συμμετοχή στο παιχνίδι"
-
-#: gui/lobby/lobby.xml:(caption):177
-msgid "Host Game"
-msgstr "Φιλοξενία παιχνιδιού"
-
-#: gui/lobby/lobby.xml:(caption):184
-msgid "Main Menu"
-msgstr "Κεντρικό μενού"
-
-#: gui/lobby/lobby.xml:(caption):259
-msgid "Show only open games"
-msgstr "Εμφάνιση μόνο διαθέσιμων παιχνιδιών"
-
-#: gui/lobby/lobby.xml:(caption):310 gui/lobby/lobby.xml:(caption):372
-msgid "Back"
-msgstr "Πίσω"
-
-#: gui/lobby/lobby.xml:(caption):316
-msgid "Update"
-msgstr "Ενημέρωση"
-
-#: gui/lobby/lobby.xml:(caption):328
-msgid "Enter username:"
-msgstr "Εισάγετε όνομα χρήστη"
-
-#: gui/lobby/lobby.xml:(caption):334
-msgid "View Profile"
-msgstr "Δείτε προφίλ:"
-
-#: gui/lobby/lobby.xml:(caption):367
-msgid "Please enter a player name."
-msgstr "Παρακαλώ, εισάγετε το όνομα του παίχτη."
-
-#: gui/lobby/lobby.xml:(heading):38
+#: gui/lobby/lobby_panels.xml:(heading):22
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: gui/lobby/lobby.xml:(heading):41 gui/lobby/lobby.xml:(heading):205
-#: gui/lobby/lobby.xml:(heading):300
+#: gui/lobby/lobby_panels.xml:(heading):25
+#: gui/lobby/lobby_panels.xml:(heading):189
+#: gui/lobby/lobby_panels.xml:(heading):284
 msgid "Name"
 msgstr "Όνομα"
 
-#: gui/lobby/lobby.xml:(heading):44 gui/lobby/lobby.xml:(heading):220
-#: gui/lobby/lobby.xml:(heading):303
+#: gui/lobby/lobby_panels.xml:(heading):28
+#: gui/lobby/lobby_panels.xml:(heading):204
+#: gui/lobby/lobby_panels.xml:(heading):287
 msgid "Rating"
 msgstr "Βαθμολογία"
 
-#: gui/lobby/lobby.xml:(heading):208
+#: gui/lobby/lobby_panels.xml:(heading):192
 msgid "Map Name"
 msgstr "Όνομα  Χάρτη"
 
-#: gui/lobby/lobby.xml:(heading):211
+#: gui/lobby/lobby_panels.xml:(heading):195
 msgctxt "map"
 msgid "Size"
 msgstr "Μέγεθος"
 
-#: gui/lobby/lobby.xml:(heading):214
+#: gui/lobby/lobby_panels.xml:(heading):198
 msgctxt "map"
 msgid "Type"
 msgstr "Τύπος"
 
-#: gui/lobby/lobby.xml:(heading):217
+#: gui/lobby/lobby_panels.xml:(heading):201
 msgid "Players"
 msgstr "Παίκτες"
 
-#: gui/lobby/lobby.xml:(heading):297
+#: gui/lobby/lobby_panels.xml:(heading):281
 msgid "Rank"
 msgstr "Βαθμός"
 
-#: gui/lobby/prelobby.xml:(caption):23
+#: gui/lobby/lobby_panels.xml:(caption):50
+#: gui/lobby/lobby_panels.xml:(caption):326
+msgid "Current Rank:"
+msgstr "Τρέχουσα Βαθμίδα:"
+
+#: gui/lobby/lobby_panels.xml:(caption):54
+#: gui/lobby/lobby_panels.xml:(caption):330
+msgid "Highest Rating:"
+msgstr "Υψηλότερη Βαθμολογία:"
+
+#: gui/lobby/lobby_panels.xml:(caption):58
+#: gui/lobby/lobby_panels.xml:(caption):334
+msgid "Total Games:"
+msgstr "Συνολικά παιχνίδια:"
+
+#: gui/lobby/lobby_panels.xml:(caption):62
+#: gui/lobby/lobby_panels.xml:(caption):338
+msgid "Wins:"
+msgstr "Νίκες:"
+
+#: gui/lobby/lobby_panels.xml:(caption):66
+#: gui/lobby/lobby_panels.xml:(caption):342
+msgid "Losses:"
+msgstr "Ηττες:"
+
+#: gui/lobby/lobby_panels.xml:(caption):70
+#: gui/lobby/lobby_panels.xml:(caption):346
+msgid "Win Rate:"
+msgstr "Αναλογία Νίκης:"
+
+#: gui/lobby/lobby_panels.xml:(caption):84
+#: gui/lobby/lobby_panels.xml:(caption):274
+msgid "Leaderboard"
+msgstr "Πίνακας κατάταξης"
+
+#: gui/lobby/lobby_panels.xml:(caption):90
+#: gui/lobby/lobby_panels.xml:(caption):309
+msgid "User Profile Lookup"
+msgstr "Αναζήτηση προφίλ χρήστη"
+
+#: gui/lobby/lobby_panels.xml:(caption):118
+msgid "Map Type:"
+msgstr "Τύπος Χάρτη:"
+
+#: gui/lobby/lobby_panels.xml:(caption):130
+msgid "Map Size:"
+msgstr "Μέγεθος Χάρτη:"
+
+#. Join the game currently selected in the list.
+#: gui/lobby/lobby_panels.xml:(caption):155
+msgid "Join Game"
+msgstr "Συμμετοχή στο παιχνίδι"
+
+#: gui/lobby/lobby_panels.xml:(caption):161
+msgid "Host Game"
+msgstr "Φιλοξενία παιχνιδιού"
+
+#: gui/lobby/lobby_panels.xml:(caption):168
+msgid "Main Menu"
+msgstr "Κεντρικό μενού"
+
+#: gui/lobby/lobby_panels.xml:(caption):243
+msgid "Show only open games"
+msgstr "Εμφάνιση μόνο διαθέσιμων παιχνιδιών"
+
+#: gui/lobby/lobby_panels.xml:(caption):294
+#: gui/lobby/lobby_panels.xml:(caption):356
+msgid "Back"
+msgstr "Πίσω"
+
+#: gui/lobby/lobby_panels.xml:(caption):300
+msgid "Update"
+msgstr "Ενημέρωση"
+
+#: gui/lobby/lobby_panels.xml:(caption):312
+msgid "Enter username:"
+msgstr "Εισάγετε όνομα χρήστη"
+
+#: gui/lobby/lobby_panels.xml:(caption):318
+msgid "View Profile"
+msgstr "Δείτε προφίλ:"
+
+#: gui/lobby/lobby_panels.xml:(caption):351
+msgid "Please enter a player name."
+msgstr "Παρακαλώ, εισάγετε το όνομα του παίχτη."
+
+#: gui/prelobby/prelobby.xml:(caption):23
 msgid "Create a new account"
 msgstr "Δημιουργήστε ένα νέο λογαριασμό"
 
-#: gui/lobby/prelobby.xml:(caption):27
+#: gui/prelobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
 msgstr "Σύνδεση σε έναν υπάρχοντα λογαριασμό"
 
-#: gui/lobby/prelobby.xml:(caption):33
+#: gui/prelobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
 msgstr "Συνδεθείτε στο λόμπι του παιχνιδιού"
 
-#: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
+#: gui/prelobby/prelobby.xml:(caption):36
+#: gui/prelobby/prelobby.xml:(caption):63
 msgid "Login:"
 msgstr "Σύνδεση:"
 
-#: gui/lobby/prelobby.xml:(caption):44 gui/lobby/prelobby.xml:(caption):68
+#: gui/prelobby/prelobby.xml:(caption):44
+#: gui/prelobby/prelobby.xml:(caption):68
 msgid "Password:"
 msgstr "Κωδικός:"
 
-#: gui/lobby/prelobby.xml:(caption):59
+#: gui/prelobby/prelobby.xml:(caption):59
 msgid "Registration"
 msgstr "Εγγραφή"
 
-#: gui/lobby/prelobby.xml:(caption):73
+#: gui/prelobby/prelobby.xml:(caption):73
 msgid "Password again:"
 msgstr "Κωδικός ξανά:"
 
-#: gui/lobby/prelobby.xml:(caption):88
+#: gui/prelobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
 msgstr "Έχω διαβάσει και συμφωνώ με τους Όρους Χρήσης και Υπηρεσιών:"
 
-#: gui/lobby/prelobby.xml:(caption):97
+#: gui/prelobby/prelobby.xml:(caption):97
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: gui/lobby/Terms_of_Service.txt:1
+#: gui/prelobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
 msgstr "0 A.D. Empires Ascendant Multiplayer Λόμπι Όροι Υπηρεσίας"
 
-#: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
+#: gui/prelobby/Terms_of_Service.txt:2 gui/prelobby/Terms_of_Use.txt:2
 msgid "Definitions:"
 msgstr "Ορισμοί:"
 
-#: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
+#: gui/prelobby/Terms_of_Service.txt:3 gui/prelobby/Terms_of_Use.txt:3
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
 msgstr "* Η \"υπηρεσία\" είναι το Multiplayer Λόμπι του 0 A.D. Empires Ascendant που παρέχεται από την Wildfire Games (WFG)."
 
-#: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
+#: gui/prelobby/Terms_of_Service.txt:4 gui/prelobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
 msgstr "*\"Εσείς\" είστε ο χρήστης της υπηρεσίασ."
 
-#: gui/lobby/Terms_of_Service.txt:5
+#: gui/prelobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
 msgstr "* «Εμείς» είναι το σύνολο όλων μελών της Wildfire Games (WFG)."
 
-#: gui/lobby/Terms_of_Service.txt:6
+#: gui/prelobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
 msgstr "* «Αξιολόγηση» αναφέρεται στη διαδικασία της ανάλυσης διαφόρων στατιστικών στοιχείων χρήσης για το σκοπό της δημιουργίας μίας ενιαίας και συνολικής βαθμολογίας."
 
-#: gui/lobby/Terms_of_Service.txt:7
+#: gui/prelobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
 msgstr "* \"Επίβλεψη\" αναφέρεται στη διαδικασία εφαρμογής των πολιτικών χρήσης."
 
-#: gui/lobby/Terms_of_Service.txt:8
+#: gui/prelobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
 msgstr "Χρησιμοποιώντας την υπηρεσία συμφωνείτε σε:"
 
-#: gui/lobby/Terms_of_Service.txt:9
+#: gui/prelobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
 msgstr "1. Ακολουθέιτε όλες τις πολιτικές χρήσης."
 
-#: gui/lobby/Terms_of_Service.txt:10
+#: gui/prelobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
 msgstr "2. Αφήστε αναγνωρίσιμα στατιστικά στοιχεία των χρηστών να συγκεντρώνονται για τους σκοπούς της αξιολόγησης,  των προφίλ των χρηστών, καθώς και στατιστικά κοινοτήτων."
 
-#: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
+#: gui/prelobby/Terms_of_Service.txt:11 gui/prelobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
 msgstr "Διατηρούμε επίσης το δικαίωμα να:"
 
-#: gui/lobby/Terms_of_Service.txt:12
+#: gui/prelobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
 msgstr "1. Επίβλεψη της υπηρεσίας."
 
-#: gui/lobby/Terms_of_Service.txt:13
+#: gui/prelobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
 msgstr "2. Διορισμός άλλων για επίβλεψη της υπηρεσίας."
 
-#: gui/lobby/Terms_of_Service.txt:14
+#: gui/prelobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
 msgstr "3. Αναστολή ή διακοπή της υπηρεσίας ανά πάσα στιγμή, με ή χωρίς προηγούμενη ανακοίνωση."
 
-#: gui/lobby/Terms_of_Service.txt:15
+#: gui/prelobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
 msgstr "4. Αλλαγή της υπηρεσίας ανά πάσα στιγμή, με ή χωρίς ανακοίνωση."
 
-#: gui/lobby/Terms_of_Service.txt:16
+#: gui/prelobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
 msgstr "5. Διαγραφή οποιαδήποτε και όλα τα δεδομένα των υπηρεσιών ανά πάσα στιγμή με ή χωρίς ανακοίνωση."
 
-#: gui/lobby/Terms_of_Service.txt:17
+#: gui/prelobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
 msgstr "6. Συλλέγει κάποια ή το σύνολο των αναγνωρίσιμων στατιστικών στοιχείων του χρήστη ανά πάσα στιγμή χωρίς την συγκατάθεση για:"
 
-#: gui/lobby/Terms_of_Service.txt:18
+#: gui/prelobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
 msgstr "α. Ιδιωτική ανάλυση από μέλη της ομάδας της Wildfire Games (WFG) και των συνεργατών τους."
 
-#: gui/lobby/Terms_of_Service.txt:19
+#: gui/prelobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
 msgstr "β. Ανώνυμα δημοσιοποίηση των μελών της ομάδας Wildfire Games (WFG)."
 
-#: gui/lobby/Terms_of_Service.txt:20
+#: gui/prelobby/Terms_of_Service.txt:20
 msgid ""
 " 7. Change this document in any way; at any time; on the condition that the "
 "user of the service is given adequate notice of the change (the definition "
@@ -691,66 +704,66 @@ msgid ""
 "Games (WFG) team members)."
 msgstr "7. Αλλαγή αυτού του εγγράφου με οποιονδήποτε τρόπο, ανά πάσα στιγμή, με την προϋπόθεση ότι ο χρήστης της υπηρεσίας έχει λάβει επαρκή προειδοποίηση για την αλλαγή αυτή (ο ορισμός της κατάλληλης ανακοίνωσης θα καθοριστεί από μια ομάδα μελών της Wildfire Games (WFG))."
 
-#: gui/lobby/Terms_of_Use.txt:1
+#: gui/prelobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
 msgstr "0 Α.D. Empires Ascendant Πολλοί Παίκτες Λόμπι - Όροι Υπηρεσίας"
 
-#: gui/lobby/Terms_of_Use.txt:5
+#: gui/prelobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
 msgstr "* «Προσποίηση» αναφέρεται στην πράξη με την οποία προσπαθείτε να εκμεταλλευτείτε την ταυτότητα του άλλου για τους δικούς σας σκοπούς."
 
-#: gui/lobby/Terms_of_Use.txt:6
+#: gui/prelobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
 msgstr "«Spam» αναφέρεται σε άσχετα ή ακατάλληλα μηνύματα που αποστέλλονται σε μεγάλο αριθμό παραληπτών."
 
-#: gui/lobby/Terms_of_Use.txt:7
+#: gui/prelobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
 msgstr "* «Αξιολόγηση» αναφέρεται στη συνολική βαθμολογία ανά χρήστη."
 
-#: gui/lobby/Terms_of_Use.txt:8
+#: gui/prelobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
 msgstr "* «Βαθμολογούμενα παιχνίδια\" αναφέρεται σε παιχνίδια στα οποία οι στατιστικές αξιολόγησης παρακολουθούνται."
 
-#: gui/lobby/Terms_of_Use.txt:9
+#: gui/prelobby/Terms_of_Use.txt:9
 msgid "You agree to:"
 msgstr "Συμφωνείτε να:"
 
-#: gui/lobby/Terms_of_Use.txt:10
+#: gui/prelobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
 msgstr "1. Δημιουργήσετε μόνο ένα λογαριασμό, ανά μοναδικό χρήστη στην υπηρεσία, εκτός αν σας επιτραπεί από ένα μέλος της ομάδας Wildfire Games (WFG)."
 
-#: gui/lobby/Terms_of_Use.txt:11
+#: gui/prelobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
 msgstr "2. Δεν δημοσιεύσετε βλάσφημο δηλώσεις, αγενής χιούμορ, πορνογραφικό περιεχόμενο, ή ρατσιστικά σχόλια στην υπηρεσία."
 
-#: gui/lobby/Terms_of_Use.txt:12
+#: gui/prelobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
 msgstr "3. Δεν υποβιβάζετε σκόπιμα την αξία των άλλων χρηστών της υπηρεσίας. "
 
-#: gui/lobby/Terms_of_Use.txt:13
+#: gui/prelobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
 msgstr "4. Δεν χρησιμοποιείτε την υπηρεσία για την προώθηση συγκεκριμένων αγαθών, υπηρεσιών ή προϊόντων. "
 
-#: gui/lobby/Terms_of_Use.txt:14
+#: gui/prelobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
 msgstr "5. Μήν υποδύεστε άλλους χρήστες της υπηρεσίας."
 
-#: gui/lobby/Terms_of_Use.txt:15
+#: gui/prelobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
 msgstr "6. Μην αποστέλλετε άσχετα ή ακατάλληλα μηνύματα σε μεγάλο αριθμό παραληπτών."
 
-#: gui/lobby/Terms_of_Use.txt:16
+#: gui/prelobby/Terms_of_Use.txt:16
 msgid ""
 " 7. Not attempt to artificially adjust any user of the service's rating or "
 "any of the statistics which impact it. (Examples of this are, but are not "
@@ -758,13 +771,13 @@ msgid ""
 "taking advantage of other users of the service.)"
 msgstr "7. Μην επιχειρήσετε να ρυθμίσετε τεχνητά την βαθμολογία οποιαδήποτε χρήστη ή οποιοδήποτε από τα στατιστικά στοιχεία που επηρεάζουν αυτό. (Παραδείγματα αυτού είναι, αλλά δεν περιορίζονται σε αυτά: εξαπάτησης σε βαθμολογούμενα παιχνίδια, εφαρμογή αντίστροφης μηχανικής της υπηρεσίας, και εκμετάλλευση άλλων χρηστών της υπηρεσίας.)"
 
-#: gui/lobby/Terms_of_Use.txt:17
+#: gui/prelobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
 msgstr "8. Αφήστε τον εαυτό σας να αφαιρεθεί από την υπηρεσία,  αν οποιαδήποτε  στιγμή ο συντονιστής θεωρεί ότι η συμπεριφορά σας δεν είναι σύμφωνη με τους κανόνες αυτούς."
 
-#: gui/lobby/Terms_of_Use.txt:19
+#: gui/prelobby/Terms_of_Use.txt:19
 msgid ""
 " 1. Change this document in any way; at any time; on the condition that the "
 "user of the service is given adequate notice of the change (the definition "

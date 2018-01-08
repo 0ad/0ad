@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-30 09:03+0100\n"
-"PO-Revision-Date: 2017-11-13 12:50+0000\n"
-"Last-Translator: Spijker <woartel@hotmail.com>\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 02:40+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,114 +39,114 @@ msgstr "Lange teksten"
 msgid "unknown subtype (see logs)"
 msgstr "Onbekend subtype (zie logs)"
 
-#: lobby/XmppClient.cpp:1003 lobby/XmppClient.cpp:1047
-#: lobby/XmppClient.cpp:1086
+#: lobby/XmppClient.cpp:1010 lobby/XmppClient.cpp:1054
+#: lobby/XmppClient.cpp:1093
 msgid "Error"
 msgstr "Foutmelding"
 
-#: lobby/XmppClient.cpp:1006 lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1013 lobby/XmppClient.cpp:1057
 msgid "No error"
 msgstr "Geen foutmelding"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:1015
 msgid "Player already logged in"
 msgstr "Speler is al ingelogd"
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:1017
 msgid "Forbidden"
 msgstr "Verboden"
 
-#: lobby/XmppClient.cpp:1012
+#: lobby/XmppClient.cpp:1019
 msgid "Internal server error"
 msgstr "Interne server fout"
 
-#: lobby/XmppClient.cpp:1016
+#: lobby/XmppClient.cpp:1023
 msgid "Not allowed"
 msgstr "Niet toegestaan"
 
-#: lobby/XmppClient.cpp:1017
+#: lobby/XmppClient.cpp:1024
 msgid "Not authorized"
 msgstr "Niet bevoegd"
 
-#: lobby/XmppClient.cpp:1020
+#: lobby/XmppClient.cpp:1027
 msgid "Recipient temporarily unavailable"
 msgstr "Ontvanger is tijdelijk niet beschikbaar"
 
-#: lobby/XmppClient.cpp:1022
+#: lobby/XmppClient.cpp:1029
 msgid "Registration required"
 msgstr "Registratie vereist"
 
-#: lobby/XmppClient.cpp:1026
+#: lobby/XmppClient.cpp:1033
 msgid "Service unavailable"
 msgstr "Service onbeschikbaar"
 
-#: lobby/XmppClient.cpp:1031 lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1038 lobby/XmppClient.cpp:1077
 msgid "Unknown error"
 msgstr "Onbekende foutmelding"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1058
 msgid "Stream error"
 msgstr "Foutmelding systeem"
 
-#: lobby/XmppClient.cpp:1052
+#: lobby/XmppClient.cpp:1059
 msgid "The incoming stream version is unsupported"
 msgstr "De inkomende streamversie wordt niet ondersteund"
 
-#: lobby/XmppClient.cpp:1053
+#: lobby/XmppClient.cpp:1060
 msgid "The stream has been closed by the server"
 msgstr "Het systeem is afgesloten door de server"
 
-#: lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1064
 msgid "An I/O error occurred"
 msgstr "Er is een I/O fout opgetreden"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1066
 msgid "The connection was refused by the server"
 msgstr "De verbinding is geweigerd door de server"
 
-#: lobby/XmppClient.cpp:1060
+#: lobby/XmppClient.cpp:1067
 msgid "Resolving the server's hostname failed"
 msgstr "Het ophalen van de server hostname is mislukt"
 
-#: lobby/XmppClient.cpp:1061
+#: lobby/XmppClient.cpp:1068
 msgid "This system is out of memory"
 msgstr "Dit systeem heeft geen geheugen meer over"
 
-#: lobby/XmppClient.cpp:1063
+#: lobby/XmppClient.cpp:1070
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Het certificaat van de server kan niet worden geverifieerd of de TLS handshake is niet succesvol voltooid"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1071
 msgid "The server did not offer required TLS encryption"
 msgstr "De server biedt niet de juiste TLS beveiliging"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1073
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Verificatie mislukt. Verkeerd wachtwoord of de gebruiker bestaat niet"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1074
 msgid "The user or system requested a disconnect"
 msgstr "De gebruiker of het systeem vroeg om de verbinding te verbreken"
 
-#: lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1075
 msgid "There is no active connection"
 msgstr "Er is geen actieve verbinding"
 
-#: lobby/XmppClient.cpp:1089
-msgid "Success"
-msgstr "Succes"
+#: lobby/XmppClient.cpp:1096
+msgid "Your account has been successfully registered"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1090
+#: lobby/XmppClient.cpp:1097
 msgid "Not all necessary information provided"
 msgstr "Niet alle noodzakelijke informatie is aanwezig"
 
-#: lobby/XmppClient.cpp:1091
+#: lobby/XmppClient.cpp:1098
 msgid "Username already exists"
 msgstr "Gebruikersnaam bestaat al"
 
-#: ps/SavedGame.cpp:133
+#: ps/SavedGame.cpp:127
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Spel opgeslagen als \"%s\""

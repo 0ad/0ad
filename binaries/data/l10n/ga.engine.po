@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-30 09:03+0100\n"
-"PO-Revision-Date: 2017-10-30 13:50+0000\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 02:40+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -25,114 +25,114 @@ msgstr "Teaghráin Fada"
 msgid "unknown subtype (see logs)"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1003 lobby/XmppClient.cpp:1047
-#: lobby/XmppClient.cpp:1086
+#: lobby/XmppClient.cpp:1010 lobby/XmppClient.cpp:1054
+#: lobby/XmppClient.cpp:1093
 msgid "Error"
 msgstr "Botún"
 
-#: lobby/XmppClient.cpp:1006 lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1013 lobby/XmppClient.cpp:1057
 msgid "No error"
 msgstr "Gan botún"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:1015
 msgid "Player already logged in"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:1017
 msgid "Forbidden"
 msgstr "Toirmiscthe"
 
-#: lobby/XmppClient.cpp:1012
+#: lobby/XmppClient.cpp:1019
 msgid "Internal server error"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1016
+#: lobby/XmppClient.cpp:1023
 msgid "Not allowed"
 msgstr "Ní Cheadaítear"
 
-#: lobby/XmppClient.cpp:1017
+#: lobby/XmppClient.cpp:1024
 msgid "Not authorized"
 msgstr "Gan údaraithe"
 
-#: lobby/XmppClient.cpp:1020
+#: lobby/XmppClient.cpp:1027
 msgid "Recipient temporarily unavailable"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1022
+#: lobby/XmppClient.cpp:1029
 msgid "Registration required"
 msgstr "Clárú ag teastáil"
 
-#: lobby/XmppClient.cpp:1026
+#: lobby/XmppClient.cpp:1033
 msgid "Service unavailable"
 msgstr "Níl seirbhís ar fáil"
 
-#: lobby/XmppClient.cpp:1031 lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1038 lobby/XmppClient.cpp:1077
 msgid "Unknown error"
 msgstr "Botún Anaithnid"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1058
 msgid "Stream error"
 msgstr "Botún Sruth"
 
-#: lobby/XmppClient.cpp:1052
+#: lobby/XmppClient.cpp:1059
 msgid "The incoming stream version is unsupported"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1053
+#: lobby/XmppClient.cpp:1060
 msgid "The stream has been closed by the server"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1064
 msgid "An I/O error occurred"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1066
 msgid "The connection was refused by the server"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1060
+#: lobby/XmppClient.cpp:1067
 msgid "Resolving the server's hostname failed"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1061
+#: lobby/XmppClient.cpp:1068
 msgid "This system is out of memory"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1063
+#: lobby/XmppClient.cpp:1070
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1071
 msgid "The server did not offer required TLS encryption"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1073
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1074
 msgid "The user or system requested a disconnect"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1075
 msgid "There is no active connection"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1089
-msgid "Success"
-msgstr "Rathúlacht"
+#: lobby/XmppClient.cpp:1096
+msgid "Your account has been successfully registered"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1090
+#: lobby/XmppClient.cpp:1097
 msgid "Not all necessary information provided"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1091
+#: lobby/XmppClient.cpp:1098
 msgid "Username already exists"
 msgstr "Ainm úsáideora ann cheana"
 
-#: ps/SavedGame.cpp:133
+#: ps/SavedGame.cpp:127
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Cluiche a shábháil chun '%s'"
