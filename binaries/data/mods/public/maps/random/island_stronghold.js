@@ -3,12 +3,12 @@
  */
 function getPlayerTileCoordinates(playerIdx, teamIdx, fractionX, fractionZ)
 {
-	let playerAngle = startAngle + (playerIdx+1) * TWO_PI / teams[teamIdx].length;
+	let playerAngle = startAngle + (playerIdx+1) * 2 * Math.PI / teams[teamIdx].length;
 
 	let fx = fractionToTiles(fractionX + 0.05 * cos(playerAngle));
 	let fz = fractionToTiles(fractionZ + 0.05 * sin(playerAngle));
 
-	return [playerAngle, fx, fz, round(fx), round(fz)];
+	return [playerAngle, fx, fz, Math.round(fx), Math.round(fz)];
 }
 
 Engine.LoadLibrary("rmgen");
@@ -91,7 +91,7 @@ for (let i = 0; i < teams.length; ++i)
 		continue;
 
 	++teamNo;
-	let teamAngle = startAngle + teamNo*TWO_PI/numTeams;
+	let teamAngle = startAngle + teamNo * 2 * Math.PI / numTeams;
 	let fractionX = 0.5 + 0.3 * cos(teamAngle);
 	let fractionZ = 0.5 + 0.3 * sin(teamAngle);
 	let teamX = fractionToTiles(fractionX);
@@ -123,8 +123,8 @@ for (let i = 0; i < teams.length; ++i)
 		let mAngle = randFloat(playerAngle - PI / teams[i].length, playerAngle + PI / teams[i].length);
 
 		// Metal
-		let mX = round(fx + g_InitialMineDistance * cos(mAngle));
-		let mZ = round(fz + g_InitialMineDistance * sin(mAngle));
+		let mX = Math.round(fx + g_InitialMineDistance * cos(mAngle));
+		let mZ = Math.round(fz + g_InitialMineDistance * sin(mAngle));
 		let group = new SimpleGroup(
 			[new SimpleObject(oMetalLarge, g_InitialMines, g_InitialMines, 0, 4)],
 			true, clBaseResource, mX, mZ
@@ -132,8 +132,8 @@ for (let i = 0; i < teams.length; ++i)
 		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 4), stayClasses(clLand, 2)]);
 
 		// Stone
-		let sX = round(fx + g_InitialMineDistance * cos(mAngle + PI/4));
-		let sZ = round(fz + g_InitialMineDistance * sin(mAngle + PI/4));
+		let sX = Math.round(fx + g_InitialMineDistance * cos(mAngle + PI/4));
+		let sZ = Math.round(fz + g_InitialMineDistance * sin(mAngle + PI/4));
 		group = new SimpleGroup(
 			[new SimpleObject(oStoneLarge, g_InitialMines, g_InitialMines, 0, 4)],
 			true, clBaseResource, sX, sZ
@@ -151,8 +151,8 @@ for (let i = 0; i < teams.length; ++i)
 		// create initial berry bushes
 		let bbAngle = randFloat(PI, PI*1.5);
 		let bbDist = 10;
-		let bbX = round(fx + bbDist * cos(bbAngle));
-		let bbZ = round(fz + bbDist * sin(bbAngle));
+		let bbX = Math.round(fx + bbDist * cos(bbAngle));
+		let bbZ = Math.round(fz + bbDist * sin(bbAngle));
 		let group = new SimpleGroup(
 			[new SimpleObject(oFruitBush, 5, 5, 0, 3)],
 			true, clBaseResource, bbX, bbZ
@@ -164,11 +164,9 @@ for (let i = 0; i < teams.length; ++i)
 		let tDist = 16;
 		for (let x = 0; x < tries; ++x)
 		{
-			let tAngle = randFloat(playerAngle - TWO_PI/teams[i].length,
-			                       playerAngle + TWO_PI/teams[i].length);
-
-			let tX = round(fx + tDist * cos(tAngle));
-			let tZ = round(fz + tDist * sin(tAngle));
+			let tAngle = playerAngle + randFloat(-1, 1) * 2 * Math.PI / teams[i].length;
+			let tX = Math.round(fx + tDist * cos(tAngle));
+			let tZ = Math.round(fz + tDist * sin(tAngle));
 
 			group = new SimpleGroup(
 				[new SimpleObject(oTree2, g_InitialTrees, g_InitialTrees, 0, 7)],
@@ -180,12 +178,12 @@ for (let i = 0; i < teams.length; ++i)
 
 		// create huntable animals
 		group = new SimpleGroup(
-			[new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, floor(mapSize * 0.2))],
+			[new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, Math.floor(mapSize * 0.2))],
 			true, clBaseResource, teamX, teamZ
 		);
 		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clHill, 1, clPlayer, 10), stayClasses(clLand, 5)]);
 		group = new SimpleGroup(
-			[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, floor(mapSize * 0.2))],
+			[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, Math.floor(mapSize * 0.2))],
 			true, clBaseResource, teamX, teamZ
 		);
 		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clHill, 1, clPlayer, 10), stayClasses(clLand, 5)]);
@@ -240,8 +238,8 @@ for (let i = 0; i < numIslands; ++i)
 	landAreas.length = n;
 }
 
-playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(9, 12)));
-landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(9, 12)));
+playerConstraint = new AvoidTileClassConstraint(clPlayer, Math.floor(scaleByMapSize(9, 12)));
+landConstraint = new AvoidTileClassConstraint(clLand, Math.floor(scaleByMapSize(9, 12)));
 
 log("Creating small islands...");
 numIslands = scaleByMapSize(6, 18) * scaleByMapSize(1, 3);
@@ -477,7 +475,7 @@ paintTerrainBasedOnHeight(1, 2, 0, tShore);
 paintTerrainBasedOnHeight(getMapBaseHeight(), 1, 3, tWater);
 
 setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
-setSunRotation(randFloat(0, TWO_PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(randFloat(PI/5, PI/3));
 setWaterWaviness(2);
 

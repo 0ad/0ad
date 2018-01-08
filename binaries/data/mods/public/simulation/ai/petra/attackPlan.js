@@ -682,7 +682,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	let num = 0;
 	let numbase = {};
 	let keep = this.type != "Rush" ?
-		6 + 4 * gameState.getNumPlayerEnemies() + 6 * this.Config.personality.defensive : 8;
+		6 + 4 * gameState.getNumPlayerEnemies() + 8 * this.Config.personality.defensive : 8;
 	keep = Math.round(this.Config.popScaling * keep);
 	for (let ent of gameState.getOwnEntitiesByRole("worker", true).values())
 	{
@@ -723,22 +723,18 @@ m.AttackPlan.prototype.isAvailableUnit = function(gameState, ent)
 /** Reassign one (at each turn) Cav unit to fasten raid preparation. */
 m.AttackPlan.prototype.reassignCavUnit = function(gameState)
 {
-	let found;
 	for (let ent of this.unitCollection.values())
 	{
 		if (!ent.position() || ent.getMetadata(PlayerID, "transport") !== undefined)
 			continue;
 		if (!ent.hasClass("Cavalry") || !ent.hasClass("CitizenSoldier"))
 			continue;
-		found = ent;
-		break;
-	}
-	if (!found)
+		let raid = gameState.ai.HQ.attackManager.getAttackInPreparation("Raid");
+		ent.setMetadata(PlayerID, "plan", raid.name);
+		this.unitCollection.updateEnt(ent);
+		raid.unitCollection.updateEnt(ent);
 		return;
-	let raid = gameState.ai.HQ.attackManager.getAttackInPreparation("Raid");
-	found.setMetadata(PlayerID, "plan", raid.name);
-	this.unitCollection.updateEnt(found);
-	raid.unitCollection.updateEnt(found);
+	}
 };
 
 m.AttackPlan.prototype.chooseTarget = function(gameState)

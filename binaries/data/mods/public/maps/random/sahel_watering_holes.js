@@ -69,8 +69,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	var ix = round(fx);
-	var iz = round(fz);
+	var ix = Math.round(fx);
+	var iz = Math.round(fz);
 	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// create the city patch
@@ -84,10 +84,10 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 12;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(oBerryBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
@@ -96,13 +96,13 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create metal mine
 	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI/3)
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 	{
-		mAngle = randFloat(0, TWO_PI);
+		mAngle = randFloat(0, 2 * Math.PI);
 	}
 	var mDist = 12;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oMetalLarge, 1,1, 0,0)],
 		true, clBaseResource, mX, mZ
@@ -111,8 +111,8 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStoneLarge, 1,1, 0,2)],
 		true, clBaseResource, mX, mZ
@@ -123,8 +123,8 @@ for (var i = 0; i < numPlayers; i++)
 	var num = 5;
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(12, 13);
-	var tX = round(fx + tDist * cos(tAngle));
-	var tZ = round(fz + tDist * sin(tAngle));
+	var tX = Math.round(fx + tDist * cos(tAngle));
+	var tZ = Math.round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oBaobab, num, num, 0,3)],
 		false, clBaseResource, tX, tZ
@@ -136,8 +136,8 @@ for (var i = 0; i < numPlayers; i++)
 Engine.SetProgress(20);
 log ("Creating rivers...");
 
-var riverStart = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.15), mapCenter.x, mapCenter.y);
-var riverEnd = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.49), mapCenter.x, mapCenter.y);
+var riverStart = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.15), mapCenter)[0];
+var riverEnd = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.49), mapCenter)[0];
 
 for (let i = 0; i < numPlayers; ++i)
 {
@@ -145,7 +145,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	log("Creating lake near the center...");
 	createArea(
-		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 3), 0.95, 0.6, 10, riverStart[0][i], riverStart[1][i]),
+		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 3), 0.95, 0.6, 10, riverStart[i].x, riverStart[i].y),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 			paintClass(clWater)
@@ -154,7 +154,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	log("Creating the river between the players...");
 	createArea(
-		new PathPlacer(riverStart[0][i], riverStart[1][i], riverEnd[0][i], riverEnd[1][i], scaleByMapSize(10, 50), 0.2, 3 * scaleByMapSize(1, 4), 0.2, 0.05),
+		new PathPlacer(riverStart[i].x, riverStart[i].y, riverEnd[i].x, riverEnd[i].y, scaleByMapSize(10, 50), 0.2, 3 * scaleByMapSize(1, 4), 0.2, 0.05),
 		[
 			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
@@ -164,7 +164,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	log("Creating lake near the map border...");
 	createArea(
-		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, riverEnd[0][i], riverEnd[1][i]),
+		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, riverEnd[i].x, riverEnd[i].y),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 			paintClass(clWater)
@@ -227,7 +227,7 @@ var types = [
 ];
 
 var size = forestTrees / (0.5 * scaleByMapSize(2,8) * numPlayers);
-var num = floor(size / types.length);
+var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
@@ -423,7 +423,7 @@ createObjectGroupsDeprecated(group, 0,
 
 setSkySet("sunny");
 
-setSunRotation(randFloat(0, TWO_PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(randFloat(PI/ 5, PI / 4));
 setWaterColor(0.478,0.42,0.384);				// greyish
 setWaterTint(0.58,0.22,0.067);				// reddish

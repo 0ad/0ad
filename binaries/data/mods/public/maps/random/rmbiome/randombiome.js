@@ -22,7 +22,7 @@ function setBiome(biomeID)
 	loadBiomeFile("defaultbiome");
 
 	setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
-	setSunRotation(randFloat(0, TWO_PI));
+	setSunRotation(randFloat(0, 2 * Math.PI));
 	setSunElevation(randFloat(PI/ 6, PI / 3));
 
 	g_BiomeID = biomeID;

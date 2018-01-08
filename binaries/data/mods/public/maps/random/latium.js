@@ -78,7 +78,7 @@ function distanceToPlayers(x, z)
 	{
 		var dx = x - playerX[i];
 		var dz = z - playerZ[i];
-		r = min(r, dx*dx + dz*dz);
+		r = Math.min(r, Math.square(dx) + Math.square(dz));
 	}
 	return sqrt(r);
 }
@@ -123,13 +123,13 @@ for (var ix = 0; ix <= mapSize; ix++)
 
 		// add the rough shape of the water
 		if (x < WATER_WIDTH)
-			h = max(-16.0, -28.0*(WATER_WIDTH-x)/WATER_WIDTH);
+			h = Math.max(-16, -28 * (WATER_WIDTH - x) / WATER_WIDTH);
 		else if (x > 1.0-WATER_WIDTH)
-			h = max(-16.0, -28.0*(x-(1.0-WATER_WIDTH))/WATER_WIDTH);
+			h = Math.max(-16, -28 * (x - (1 - WATER_WIDTH)) / WATER_WIDTH);
 		else
 		{
-			distToWater = (0.5 - WATER_WIDTH - abs(x-0.5));
-			var u = 1 - abs(x-0.5) / (0.5-WATER_WIDTH);
+			distToWater = (0.5 - WATER_WIDTH - Math.abs(x - 0.5));
+			var u = 1 - Math.abs(x - 0.5) / (0.5 - WATER_WIDTH);
 			h = 12*u;
 		}
 
@@ -138,14 +138,14 @@ for (var ix = 0; ix <= mapSize; ix++)
 		if ( baseNoise < 0 )
 		{
 			baseNoise *= pn;
-			baseNoise *= max(0.1, distToWater / (0.5-WATER_WIDTH));
+			baseNoise *= Math.max(0.1, distToWater / (0.5 - WATER_WIDTH));
 		}
 		var oldH = h;
 		h += baseNoise;
 
 		// add some higher-frequency noise on land
 		if ( oldH > 0 )
-			h += (0.4*noise2a.get(x,z) + 0.2*noise2b.get(x,z)) * min(oldH/10.0, 1.0);
+			h += (0.4 * noise2a.get(x,z) + 0.2 * noise2b.get(x,z)) * Math.min(oldH / 10, 1);
 
 		// create cliff noise
 		if ( h > -10 )
@@ -166,7 +166,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 			cliffNoise -= 0.59;
 			cliffNoise *= pn;
 			if (cliffNoise > 0)
-				h += 19 * min(cliffNoise, 0.045) / 0.045;
+				h += 19 * Math.min(cliffNoise, 0.045) / 0.045;
 		}
 		setHeight(ix, iz, h);
 	}
@@ -201,11 +201,11 @@ for (var ix = 0; ix < mapSize; ix++)
 		var minAdjHeight = minH;
 		if (maxH > 15)
 		{
-			var maxNx = min(ix+2, mapSize);
-			var maxNz = min(iz+2, mapSize);
-			for (var nx = max(ix-1, 0); nx <= maxNx; nx++)
-				for (var nz = max(iz-1, 0); nz <= maxNz; nz++)
-					minAdjHeight = min(minAdjHeight, getHeight(nx, nz));
+			var maxNx = Math.min(ix + 2, mapSize);
+			var maxNz = Math.min(iz + 2, mapSize);
+			for (let nx = Math.max(ix - 1, 0); nx <= maxNx; ++nx)
+				for (let nz = Math.max(iz - 1, 0); nz <= maxNz; ++nz)
+					minAdjHeight = Math.min(minAdjHeight, getHeight(nx, nz));
 		}
 
 		// choose a terrain based on elevation
@@ -314,8 +314,8 @@ for (var i = 0; i < numPlayers; ++i)
 	// get fractional locations in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	var ix = round(fx);
-	var iz = round(fz);
+	var ix = Math.round(fx);
+	var iz = Math.round(fz);
 	addToClass(ix, iz, clPlayer);
 
 	// create the city patch, flatten area under TC
@@ -334,10 +334,10 @@ for (var i = 0; i < numPlayers; ++i)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create starting berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 9;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(oBerryBush, 5,5, 0,2)],
 		true, clBaseResource, bbX, bbZ
@@ -346,12 +346,12 @@ for (var i = 0; i < numPlayers; ++i)
 
 	// create metal mine
 	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI/3)
-		mAngle = randFloat(0, TWO_PI);
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
+		mAngle = randFloat(0, 2 * Math.PI);
 
 	var mDist = 12;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oMetalLarge, 1,1, 0,0)],
 		true, clBaseResource, mX, mZ
@@ -360,8 +360,8 @@ for (var i = 0; i < numPlayers; ++i)
 
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStoneLarge, 1,1, 0,2)],
 		true, clBaseResource, mX, mZ
@@ -372,8 +372,8 @@ for (var i = 0; i < numPlayers; ++i)
 	var num = 5;
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(10, 11);
-	var tX = round(fx + tDist * cos(tAngle));
-	var tZ = round(fz + tDist * sin(tAngle));
+	var tX = Math.round(fx + tDist * cos(tAngle));
+	var tZ = Math.round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oPalm, num, num, 0,5)],
 		false, clBaseResource, tX, tZ

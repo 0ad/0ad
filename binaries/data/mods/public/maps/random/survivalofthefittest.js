@@ -67,9 +67,9 @@ createArea(
 Engine.SetProgress(10);
 
 var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement(0.3);
-var [halfwayX, halfwayZ] = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.375), mapCenter.x, mapCenter.y);
-var [attackerX, attackerZ] = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.45), mapCenter.x, mapCenter.y);
-var [passageX, passageZ] = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter.x, mapCenter.y);
+var halfway = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.375), mapCenter)[0].map(v => v.round());
+var attacker = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.45), mapCenter)[0].map(v => v.round());
+var passage = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0];
 
 log("Creating player bases and attacker points...");
 for (let  i = 0; i < numPlayers; ++i)
@@ -83,7 +83,7 @@ for (let  i = 0; i < numPlayers; ++i)
 
 	log("Creating passage separating players...");
 	createArea(
-		new PathPlacer(mapCenter.x, mapCenter.y, passageX[i], passageZ[i], scaleByMapSize(14, 24), 0.4, scaleByMapSize(3, 9), 0.2, 0.05),
+		new PathPlacer(mapCenter.x, mapCenter.y, passage[i].x, passage[i].y, scaleByMapSize(14, 24), 0.4, scaleByMapSize(3, 9), 0.2, 0.05),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [1]),
 			new SmoothElevationPainter(ELEVATION_SET, 3, 4)
@@ -95,13 +95,13 @@ for (let  i = 0; i < numPlayers; ++i)
 	placeObject(femaleLocation.x, femaleLocation.y, oTreasureSeeker, playerIDs[i], playerAngle[i] + Math.PI);
 
 	log("Placing attacker spawn point....");
-	placeObject(attackerX[i], attackerZ[i], aWaypointFlag, 0, Math.PI / 2);
-	placeObject(attackerX[i], attackerZ[i], triggerPointAttacker, playerIDs[i], Math.PI / 2);
+	placeObject(attacker[i].x, attacker[i].y, aWaypointFlag, 0, Math.PI / 2);
+	placeObject(attacker[i].x, attacker[i].y, triggerPointAttacker, playerIDs[i], Math.PI / 2);
 
 	log("Preventing mountains in the area between player and attackers...");
 	addCivicCenterAreaToClass(playerPos.x, playerPos.y, clPlayer);
-	addToClass(Math.round(attackerX[i]), Math.round(attackerZ[i]), clPlayer);
-	addToClass(Math.round(halfwayX[i]), Math.round(halfwayZ[i]), clPlayer);
+	addToClass(attacker[i].x, attacker[i].y, clPlayer);
+	addToClass(halfway[i].x, halfway[i].y, clPlayer);
 }
 Engine.SetProgress(20);
 

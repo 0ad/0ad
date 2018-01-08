@@ -1,5 +1,4 @@
 const PI = Math.PI;
-const TWO_PI = 2 * Math.PI;
 const TERRAIN_SEPARATOR = "|";
 const SEA_LEVEL = 20.0;
 const HEIGHT_UNITS_PER_METRE = 92;
@@ -50,6 +49,9 @@ function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
 	return min + (max - min) * (g_Map.size - minMapSize) / (maxMapSize - minMapSize);
 }
 
+/**
+ * DEPRECATED Math proxies
+ */
 function cos(x)
 {
 	return Math.cos(x);
@@ -58,45 +60,6 @@ function cos(x)
 function sin(x)
 {
 	return Math.sin(x);
-}
-
-function abs(x) {
-	return Math.abs(x);
-}
-
-function round(x)
-{
-	return Math.round(x);
-}
-
-function lerp(a, b, t)
-{
-	return a + (b-a) * t;
-}
-
-function sqrt(x)
-{
-	return Math.sqrt(x);
-}
-
-function ceil(x)
-{
-	return Math.ceil(x);
-}
-
-function floor(x)
-{
-	return Math.floor(x);
-}
-
-function max(a, b)
-{
-	return a > b ? a : b;
-}
-
-function min(a, b)
-{
-	return a < b ? a : b;
 }
 
 /**

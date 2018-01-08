@@ -169,8 +169,8 @@ function createBase(player, walls = true)
 	// Get the x and z in tiles
 	var fx = fractionToTiles(player.x);
 	var fz = fractionToTiles(player.z);
-	var ix = round(fx);
-	var iz = round(fz);
+	var ix = Math.round(fx);
+	var iz = Math.round(fz);
 
 	addCivicCenterAreaToClass(ix, iz, g_TileClasses.player);
 
@@ -189,10 +189,10 @@ function createBase(player, walls = true)
 	// TODO: retry loops are needed as resources might conflict with neighboring ones
 
 	// Create initial berry bushes at random angle
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 10;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(g_Gaia.fruitBush, 5, 5, 0, 3)],
 		true, g_TileClasses.baseResource, bbX, bbZ
@@ -201,12 +201,12 @@ function createBase(player, walls = true)
 
 	// Create metal mine at a different angle
 	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI / 3)
-		mAngle = randFloat(0, TWO_PI);
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
+		mAngle = randFloat(0, 2 * Math.PI);
 
 	var mDist = 12;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(g_Gaia.metalLarge, 1, 1, 0, 0)],
 		true, g_TileClasses.baseResource, mX, mZ
@@ -215,8 +215,8 @@ function createBase(player, walls = true)
 
 	// Create stone mine beside metal
 	mAngle += randFloat(PI / 8, PI / 4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(g_Gaia.stoneLarge, 1, 1, 0, 2)],
 		true, g_TileClasses.baseResource, mX, mZ
@@ -235,10 +235,10 @@ function createBase(player, walls = true)
 	var num = currentBiome() == "savanna" ? 5 : 15;
 	for (var tries = 0; tries < 10; ++tries)
 	{
-		var tAngle = randFloat(0, TWO_PI);
+		var tAngle = randFloat(0, 2 * Math.PI);
 		var tDist = randFloat(12, 13);
-		var tX = round(fx + tDist * cos(tAngle));
-		var tZ = round(fz + tDist * sin(tAngle));
+		var tX = Math.round(fx + tDist * cos(tAngle));
+		var tZ = Math.round(fz + tDist * sin(tAngle));
 
 		group = new SimpleGroup(
 			[new SimpleObject(g_Gaia.tree1, num, num, 1, 3)],
@@ -391,7 +391,7 @@ function placeRandom(playerIDs)
 
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
-		var playerAngle = randFloat(0, TWO_PI);
+		var playerAngle = randFloat(0, 2 * Math.PI);
 
 		// Distance from the center of the map in percent
 		// Mapsize being used as a diameter, so 0.5 is the edge of the map
@@ -573,7 +573,7 @@ function randomPlayerPlacementAt(teamsArray, singleBases, strongholdBases, heigh
 
 			for (let p = 0; p < team.length; ++p)
 			{
-				let angle = startAngle + (p + 1) * TWO_PI / team.length;
+				let angle = startAngle + (p + 1) * 2 * Math.PI / team.length;
 
 				players[p] = {
 					"id": team[p].id,

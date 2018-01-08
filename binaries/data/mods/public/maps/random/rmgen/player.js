@@ -127,7 +127,8 @@ function primeSortAllPlayers()
 function radialPlayerPlacement(radius = 0.35, startingAngle = undefined, centerX = 0.5, centerZ = 0.5)
 {
 	let startAngle = startingAngle !== undefined ? startingAngle : randFloat(0, 2 * Math.PI);
-	return [sortAllPlayers(), ...distributePointsOnCircle(getNumPlayers(), startAngle, radius, centerX, centerZ), startAngle];
+	let [locations, playerAngle] = distributePointsOnCircle(getNumPlayers(), startAngle, radius, new Vector2D(centerX, centerZ));
+	return [sortAllPlayers(), locations.map(l => l.x), locations.map(l => l.y), playerAngle, startAngle];
 }
 
 /**

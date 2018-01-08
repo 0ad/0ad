@@ -435,9 +435,7 @@ m.AttackManager.prototype.unpauseAllPlans = function()
 
 m.AttackManager.prototype.getAttackInPreparation = function(type)
 {
-	if (!this.upcomingAttacks[type].length)
-		return undefined;
-	return this.upcomingAttacks[type][0];
+	return this.upcomingAttacks[type].length ? this.upcomingAttacks[type][0] : undefined;
 };
 
 /**

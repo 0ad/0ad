@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,4 +22,5 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(Minimap)
+DEFINE_INTERFACE_METHOD_0("UpdateColor", void, ICmpMinimap, UpdateColor)
 END_INTERFACE_WRAPPER(Minimap)

@@ -256,7 +256,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 	}
 
 	// Cut initialHeightmap to fit target width
-	let shift = [floor((newHeightmap.length - heightmap.length) / 2), floor((newHeightmap[0].length - heightmap[0].length) / 2)];
+	let shift = [Math.floor((newHeightmap.length - heightmap.length) / 2), Math.floor((newHeightmap[0].length - heightmap[0].length) / 2)];
 	for (let x = 0; x < heightmap.length; ++x)
 		for (let y = 0; y < heightmap[0].length; ++y)
 			heightmap[x][y] = newHeightmap[x + shift[0]][y + shift[1]];
@@ -301,10 +301,10 @@ function globalSmoothHeightmap(strength = 0.8, heightmap = g_Map.height, smoothM
  */
 function rectangularSmoothToHeight(center, dx, dy, targetHeight, strength = 0.8, heightmap = g_Map.height)
 {
-	let x = round(center.x);
-	let y = round(center.y);
-	dx = round(dx);
-	dy = round(dy);
+	let x = Math.round(center.x);
+	let y = Math.round(center.y);
+	dx = Math.round(dx);
+	dy = Math.round(dy);
 
 	let heightmapWin = [];
 	for (let wx = 0; wx < 2 * dx + 1; ++wx)
@@ -364,10 +364,10 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 		for (let y = minDistance; y < heightmap[0].length - minDistance; ++y)
 		{
 			if (avoidClass !== undefined && // Avoid adjecting tiles in avoidClass
-				(avoidMap[max(x - 1, 0)][y] > 0 ||
-				avoidMap[x][max(y - 1, 0)] > 0 ||
-				avoidMap[min(x + 1, avoidMap.length - 1)][y] > 0 ||
-				avoidMap[x][min(y + 1, avoidMap[0].length - 1)] > 0))
+				(avoidMap[Math.max(x - 1, 0)][y] > 0 ||
+				avoidMap[x][Math.max(y - 1, 0)] > 0 ||
+				avoidMap[Math.min(x + 1, avoidMap.length - 1)][y] > 0 ||
+				avoidMap[x][Math.min(y + 1, avoidMap[0].length - 1)] > 0))
 				continue;
 
 			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max && // Has correct height
@@ -514,7 +514,7 @@ function splashErodeMap(strength = 1, heightmap = g_Map.height)
 			{
 				drain.push(0);
 				if (slopes[i] > 0)
-					drain[i] += min(strength * slopes[i] / sumSlopes, slopes[i]);
+					drain[i] += Math.min(strength * slopes[i] / sumSlopes, slopes[i]);
 			}
 
 			let sumDrain = 0;

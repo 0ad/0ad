@@ -51,7 +51,7 @@ function placeTabButtons(categoriesData, buttonHeight, spacing, onPress, onSelec
 	selectPanel(g_TabCategorySelected);
 }
 
-/*
+/**
  * Show next/previous panel.
  * @param direction - +1/-1 for forward/backward.
  */

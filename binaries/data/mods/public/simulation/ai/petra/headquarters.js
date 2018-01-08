@@ -1061,7 +1061,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	let cellSize = this.territoryMap.cellSize;
 	let currentVal, delta;
 	let distcc0, distcc1, distcc2;
-	let favoredDistance = template.hasClass("Colony") ? 220 : 280;
+	let favoredDistance = (template.hasClass("Colony") ? 220 : 280) - 40 * this.Config.personality.defensive;
 
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{

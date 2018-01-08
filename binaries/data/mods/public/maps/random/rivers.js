@@ -51,6 +51,7 @@ InitMap();
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = getMapArea();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -69,15 +70,14 @@ var shallowHeight = -1;
 initTerrain(tMainTerrain);
 
 log("Creating central lake...");
-var centralLake = [0.5, 0.5];
 createArea(
 	new ClumpPlacer(
 		mapArea / 100 * Math.pow(scaleByMapSize(1, 6), 1/8),
 		0.7,
 		0.1,
 		10,
-		fractionToTiles(centralLake[0]),
-		fractionToTiles(centralLake[1])),
+		mapCenter.x,
+		mapCenter.y),
 	[
 		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
@@ -99,8 +99,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	var ix = round(fx);
-	var iz = round(fz);
+	var ix = Math.round(fx);
+	var iz = Math.round(fz);
 	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// create the city patch
@@ -114,10 +114,10 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 12;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(oFruitBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
@@ -126,12 +126,12 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create metal mine
 	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI/3)
-		mAngle = randFloat(0, TWO_PI);
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
+		mAngle = randFloat(0, 2 * Math.PI);
 
 	var mDist = 12;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oMetalLarge, 1,1, 0,0)],
 		true, clBaseResource, mX, mZ
@@ -140,8 +140,8 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStoneLarge, 1,1, 0,2)],
 		true, clBaseResource, mX, mZ
@@ -152,8 +152,8 @@ for (var i = 0; i < numPlayers; i++)
 	var num = 2;
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(11, 13);
-	var tX = round(fx + tDist * cos(tAngle));
-	var tZ = round(fz + tDist * sin(tAngle));
+	var tX = Math.round(fx + tDist * cos(tAngle));
+	var tZ = Math.round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oTree1, num, num, 0,5)],
 		false, clBaseResource, tX, tZ
@@ -165,7 +165,7 @@ for (var i = 0; i < numPlayers; i++)
 Engine.SetProgress(20);
 
 log("Creating rivers between opponents...");
-var [riverX, riverZ] = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, 0.5, ...centralLake);
+let rivers = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0];
 for (let i = 0; i < numPlayers; ++i)
 {
 	if (areAllies(playerIDs[i], playerIDs[(i + 1) % numPlayers]))
@@ -176,10 +176,10 @@ for (let i = 0; i < numPlayers; ++i)
 
 	paintRiver({
 		"parallel": true,
-		"startX": riverX[i],
-		"startZ": riverZ[i],
-		"endX": centralLake[0],
-		"endZ": centralLake[1],
+		"startX": tilesToFraction(rivers[i].x),
+		"startZ": tilesToFraction(rivers[i].y),
+		"endX": tilesToFraction(mapCenter.x),
+		"endZ": tilesToFraction(mapCenter.y),
 		"width": tilesToFraction(scaleByMapSize(10, 30)),
 		"fadeDist": tilesToFraction(5),
 		"deviation": 0,

@@ -85,7 +85,7 @@ var clWater = createTileClass();
 const baseHeight = -6;
 setWaterHeight(8);
 
-var MoutainAngle = randFloat(0,TWO_PI);
+var MoutainAngle = randFloat(0,2 * Math.PI);
 var oceanAngle = MoutainAngle + randFloat(-1, 1) * Math.PI / 12;
 
 var baseHeights = [];
@@ -124,8 +124,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	ix = round(fx);
-	iz = round(fz);
+	ix = Math.round(fx);
+	iz = Math.round(fz);
 	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// create the city patch
@@ -139,10 +139,10 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * Math.PI);
 	var bbDist = 12;
-	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbZ = round(fz + bbDist * sin(bbAngle));
+	var bbX = Math.round(fx + bbDist * cos(bbAngle));
+	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(oBerryBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
@@ -151,13 +151,13 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create metal mine
 	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI/3)
+	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 	{
-		mAngle = randFloat(0, TWO_PI);
+		mAngle = randFloat(0, 2 * Math.PI);
 	}
 	var mDist = 12;
-	var mX = round(fx + mDist * cos(mAngle));
-	var mZ = round(fz + mDist * sin(mAngle));
+	var mX = Math.round(fx + mDist * cos(mAngle));
+	var mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oMetalLarge, 1,1, 0,0)],
 		true, clBaseResource, mX, mZ
@@ -166,8 +166,8 @@ for (var i = 0; i < numPlayers; i++)
 
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
-	mX = round(fx + mDist * cos(mAngle));
-	mZ = round(fz + mDist * sin(mAngle));
+	mX = Math.round(fx + mDist * cos(mAngle));
+	mZ = Math.round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStoneLarge, 1,1, 0,2)],
 		true, clBaseResource, mX, mZ
@@ -175,11 +175,11 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	var hillSize = PI * radius * radius;
 	// create starting trees
-	var num = floor(hillSize / 100);
+	var num = Math.floor(hillSize / 100);
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(11, 13);
-	var tX = round(fx + tDist * cos(tAngle));
-	var tZ = round(fz + tDist * sin(tAngle));
+	var tX = Math.round(fx + tDist * cos(tAngle));
+	var tZ = Math.round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oPine, num, num, 0,5)],
 		false, clBaseResource, tX, tZ
@@ -217,10 +217,10 @@ for (var i = 0; i < NumOfIterations; i++)
 	for (var dist = 0; dist < width*3; dist++)
 	{
 		var okDist = dist/3;
-		var S1x = round((mountainStart.x * (1-position) + mountainEnd.x*position) + randomNess*cos(position*3.14*4) + cos(MoutainAngle+PI/2)*okDist);
-		var S1z = round((mountainStart.y * (1-position) + mountainEnd.y*position) + randomNess*sin(position*3.14*4) + sin(MoutainAngle+PI/2)*okDist);
-		var S2x = round((mountainStart.x * (1-position) + mountainEnd.x*position) + randomNess*cos(position*3.14*4) + cos(MoutainAngle-PI/2)*okDist);
-		var S2z = round((mountainStart.y * (1-position) + mountainEnd.y*position) + randomNess*sin(position*3.14*4) + sin(MoutainAngle-PI/2)*okDist);
+		var S1x = Math.round((mountainStart.x * (1-position) + mountainEnd.x*position) + randomNess*cos(position*3.14*4) + cos(MoutainAngle+PI/2)*okDist);
+		var S1z = Math.round((mountainStart.y * (1-position) + mountainEnd.y*position) + randomNess*sin(position*3.14*4) + sin(MoutainAngle+PI/2)*okDist);
+		var S2x = Math.round((mountainStart.x * (1-position) + mountainEnd.x*position) + randomNess*cos(position*3.14*4) + cos(MoutainAngle-PI/2)*okDist);
+		var S2z = Math.round((mountainStart.y * (1-position) + mountainEnd.y*position) + randomNess*sin(position*3.14*4) + sin(MoutainAngle-PI/2)*okDist);
 
 		// complicated sigmoid
 		// Ranges is 0-1, FormX is 0-1 too.
@@ -228,7 +228,7 @@ for (var i = 0; i < NumOfIterations; i++)
 		var Formula = (1/(1 + Math.exp(FormX)));
 
 		// If we're too far from the border, we flatten
-		Formula *= (0.2 - Math.max(0,abs(0.5 - position) - 0.3)) * 5;
+		Formula *= (0.2 - Math.max(0, Math.abs(0.5 - position) - 0.3)) * 5;
 
 		var randHeight = randFloat(-9,9) * Formula;
 
@@ -294,10 +294,9 @@ for (var ix = 1; ix < mapSize-1; ix++)
 	}
 
 log("Creating oceans...");
-let [oceanX, oceanZ] = distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48), mapCenter.x, mapCenter.y);
-for (let i in oceanX)
+for (let ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48), mapCenter)[0])
 	createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, oceanX[i], oceanZ[i]),
+		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, ocean.x, ocean.y),
 		[
 			new ElevationPainter(-22),
 			paintClass(clWater)
@@ -324,8 +323,8 @@ for (var ix = 1; ix < mapSize-1; ix++)
 			for (var xx = -size; xx <= size;xx++)
 				for (var yy = -size; yy <= size;yy++) {
 					if (g_Map.inMapBounds(ix + xx,iz + yy) && (xx != 0 || yy != 0)){
-						averageHeight += getHeight(ix + xx,iz + yy) / (abs(xx)+abs(yy));
-						todivide += 1/(abs(xx)+abs(yy));
+						averageHeight += getHeight(ix + xx,iz + yy) / (Math.abs(xx) + Math.abs(yy));
+						todivide += 1 / (Math.abs(xx) + Math.abs(yy));
 					}
 				}
 			averageHeight += getHeight(ix,iz)*2;
@@ -353,7 +352,7 @@ createAreas(
 log("Creating forests...");
 var types = [[tForestTransition, pForestLandVeryLight, pForestLandLight, pForestLand]];
 var size = scaleByMapSize(40,115)*PI;
-var num = floor(scaleByMapSize(8,40) / types.length);
+var num = Math.floor(scaleByMapSize(8,40) / types.length);
 for (let type of types)
 	createAreas(
 		new ClumpPlacer(size, 0.2, 0.1, 1),
@@ -508,7 +507,7 @@ group = new SimpleGroup( [new SimpleObject(oFish, 2,3, 0,2)], true, clFood );
 createObjectGroupsDeprecated(group, 0, [avoidClasses(clFood, 15), stayClasses(clWater, 6)], 20 * numPlayers, 60 );
 
 setSunElevation(randFloat(PI/5, PI / 3));
-setSunRotation(randFloat(0, TWO_PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 
 setSkySet("cumulus");
 setSunColor(0.73,0.73,0.65);
@@ -529,7 +528,7 @@ function getNeighborsHeight(x1, z1)
 	for (var i in toCheck) {
 		var xx = x1 + toCheck[i][0];
 		var zz = z1 + toCheck[i][1];
-		height += getHeight(round(xx),round(zz));
+		height += getHeight(Math.round(xx), Math.round(zz));
 	}
 	height /= 8;
 	return height;
@@ -538,8 +537,8 @@ function getNeighborsHeight(x1, z1)
 // no need for preliminary rounding
 function getHeightDifference(x1, z1)
 {
-	x1 = round(x1);
-	z1 = round(z1);
+	x1 = Math.round(x1);
+	z1 = Math.round(z1);
 	var height = getHeight(x1,z1);
 
 	if (!g_Map.inMapBounds(x1,z1))
@@ -551,10 +550,10 @@ function getHeightDifference(x1, z1)
 	var diff = 0;
 	var todiv = 0;
 	for (var i in toCheck) {
-		var xx = round(x1 + toCheck[i][0]);
-		var zz = round(z1 + toCheck[i][1]);
+		var xx = Math.round(x1 + toCheck[i][0]);
+		var zz = Math.round(z1 + toCheck[i][1]);
 		if (g_Map.inMapBounds(xx,zz)) {
-			diff += abs(getHeight(xx,zz) - height);
+			diff += Math.abs(getHeight(xx,zz) - height);
 			todiv++;
 		}
 	}

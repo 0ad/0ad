@@ -146,8 +146,7 @@ function unknownArchipelago()
 	for (let i = 0; i < numPlayers; ++i)
 		createArea(
 			new ClumpPlacer(islandSize, 0.8, 0.1, 10, fractionToTiles(islandX[i]), fractionToTiles(islandZ[i])),
-			landElevationPainter,
-			null);
+			landElevationPainter);
 
 	let type = randIntInclusive(1, 3);
 	if (type == 1)
@@ -237,8 +236,7 @@ function unknownContinent()
 				[
 					landElevationPainter,
 					paintClass(clLand)
-				],
-				null);
+				]);
 	}
 
 	log("Creating continent...");
@@ -247,8 +245,7 @@ function unknownContinent()
 		[
 			landElevationPainter,
 			paintClass(clLand)
-		],
-		null);
+		]);
 
 	if (randBool(1/3))
 	{
@@ -265,8 +262,7 @@ function unknownContinent()
 			[
 				landElevationPainter,
 				paintClass(clLand)
-			],
-			null);
+			]);
 
 		log("Remembering to not paint shorelines into the peninsula...");
 		createArea(
@@ -277,8 +273,7 @@ function unknownContinent()
 				10,
 				Math.round(fractionToTiles(0.5 + 0.35 * Math.cos(angle))),
 				Math.round(fractionToTiles(0.5 + 0.35 * Math.sin(angle)))),
-			paintClass(clPeninsulaSteam),
-			null);
+			paintClass(clPeninsulaSteam));
 	}
 
 	createShoreJaggedness(waterHeight, clLand, 7);
@@ -340,8 +335,7 @@ function unknownCentralSea()
 				landElevationPainter,
 				paintClass(clLand),
 				unPaintClass(clWater)
-			],
-			null);
+			]);
 	}
 
 	createExtensionsOrIslands();
@@ -429,18 +423,16 @@ function unknownRiversAndLake()
 		markPlayerArea("small");
 	}
 
-	let mid = Math.round(fractionToTiles(0.5));
 	let lake = randBool(3/4);
 	if (lake)
 	{
 		log("Creating lake...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.09 * lSize, 0.7, 0.1, 10, mid, mid),
+			new ClumpPlacer(mapArea * 0.09 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 				paintClass(clWater)
-			],
-			null);
+			]);
 
 		createShoreJaggedness(waterHeight, clWater, 3);
 	}
@@ -449,12 +441,10 @@ function unknownRiversAndLake()
 	if (g_PlayerBases && (!lake || randBool(1/3)))
 	{
 		log("Creating small rivers separating players...");
-		let [riverX, riverZ, riverAngle] = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, 0.5, 0.5, 0.5);
-
-		for (let i = 0; i < numPlayers; ++i)
+		for (let river of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
 		{
 			createArea(
-				new PathPlacer(mid, mid, fractionToTiles(riverX[i]), fractionToTiles(riverZ[i]), scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
+				new PathPlacer(mapCenter.x, mapCenter.y, river.x, river.y, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 				[
 					new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 					paintClass(clWater)
@@ -462,7 +452,7 @@ function unknownRiversAndLake()
 				avoidClasses(clPlayer, 5));
 
 			createArea(
-				new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, fractionToTiles(riverX[i]), fractionToTiles(riverZ[i])),
+				new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, river.x, river.y),
 				[
 					new SmoothElevationPainter(ELEVATION_SET, waterHeight, 0),
 					paintClass(clWater)
@@ -472,24 +462,22 @@ function unknownRiversAndLake()
 
 		log("Creating lake...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.005, 0.7, 0.1, 10, mid, mid),
+			new ClumpPlacer(mapArea * 0.005, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 				paintClass(clWater)
-			],
-			null);
+			]);
 	}
 
 	if (lake && randBool())
 	{
 		log("Creating small central island...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.006 * lSize, 0.7, 0.1, 10, mid, mid),
+			new ClumpPlacer(mapArea * 0.006 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				landElevationPainter,
 				paintClass(clWater)
-			],
-			null);
+			]);
 	}
 }
 
@@ -621,15 +609,11 @@ function unknownPasses()
 	else
 		startAngle = Math.random(0, 2 * Math.PI);
 
-	let mid = Math.round(fractionToTiles(0.5));
-	let [mountainX, mountainZ] = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mid, mid);
-	let [passesX, passesZ] = distributePointsOnCircle(numPlayers * 2, startAngle, fractionToTiles(0.35), mid, mid);
-
-	for (let i = 0; i < numPlayers; ++i)
+	for (let mountain of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
 	{
 		log("Creating a mountain range between neighboring players...");
 		createArea(
-			new PathPlacer(mid, mid, mountainX[i], mountainZ[i], scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
+			new PathPlacer(mapCenter.x, mapCenter.y, mountain.x, mountain.y, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 			[
 				// More smoothing than this often results in the mountainrange becoming passable to one player.
 				new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 1),
@@ -639,47 +623,48 @@ function unknownPasses()
 
 		log("Creating small mountain at the map border between the players to ensure separation of players...");
 		createArea(
-			new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, mountainX[i], mountainZ[i]),
+			new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, mountain.x, mountain.y),
 			new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 0),
 			avoidClasses(clPlayer, 5));
+	}
 
+	let passes = distributePointsOnCircle(numPlayers * 2, startAngle, fractionToTiles(0.35), mapCenter)[0];
+	for (let i = 0; i < numPlayers; ++i)
+	{
 		log("Create passages between neighboring players...");
 		createArea(
 			new PathPlacer(
-				passesX[2 * i],
-				passesZ[2 * i],
-				passesX[2 * ((i + 1) % numPlayers)],
-				passesZ[2 * ((i + 1) % numPlayers)],
+				passes[2 * i].x,
+				passes[2 * i].y,
+				passes[2 * ((i + 1) % numPlayers)].x,
+				passes[2 * ((i + 1) % numPlayers)].y,
 				scaleByMapSize(14, 24),
 				0.4,
 				3 * scaleByMapSize(1, 3),
 				0.2,
 				0.05),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
-			null);
+			new SmoothElevationPainter(ELEVATION_SET, landHeight, 2));
 	}
 
 	if (randBool(2/5))
 	{
 		log("Create central lake...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.03 * lSize, 0.7, 0.1, 10, mid, mid),
+			new ClumpPlacer(mapArea * 0.03 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 3),
 				paintClass(clWater)
-			],
-			null);
+			]);
 	}
 	else
 	{
 		log("Fill area between the paths...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.005, 0.7, 0.1, 10, mid, mid),
+			new ClumpPlacer(mapArea * 0.005, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 4),
 				paintClass(clWater)
-			],
-			null);
+			]);
 	}
 }
 
@@ -705,42 +690,39 @@ function unknownLowlands()
 
 	log("Creating valleys enclosed by the mountain...");
 	let valleys = numPlayers;
-	if (mapSize <= 128 && numPlayers <= 2 ||
-	    mapSize <= 192 && numPlayers <= 3 ||
-	    mapSize <= 320 && numPlayers <= 4 ||
-	    mapSize <= 384 && numPlayers <= 5 ||
-	    mapSize <= 448 && numPlayers <= 6)
+	if (mapSize >= 128 && numPlayers <= 2 ||
+	    mapSize >= 192 && numPlayers <= 3 ||
+	    mapSize >= 320 && numPlayers <= 4 ||
+	    mapSize >= 384 && numPlayers <= 5 ||
+	    mapSize >= 448 && numPlayers <= 6)
 		valleys *= 2;
 
-	let mid = Math.round(fractionToTiles(0.5));
-	let [valleyX, valleyZ] = distributePointsOnCircle(valleys, startAngle, fractionToTiles(0.35), mid, mid);
-	for (let i = 0; i < valleys; ++i)
+	for (let valley of distributePointsOnCircle(valleys, startAngle, fractionToTiles(0.35), mapCenter)[0])
+	{
+		log("Creating player valley...");
 		createArea(
-			new ClumpPlacer(diskArea(scaleByMapSize(18, 32)), 0.65, 0.1, 10, valleyX[i], valleyZ[i]),
+			new ClumpPlacer(diskArea(scaleByMapSize(18, 32)), 0.65, 0.1, 10, valley.x, valley.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
 				paintClass(clLand)
-			],
-			null);
+			]);
 
-	log("Creating the big central area...");
-	createArea(
-		new ClumpPlacer(mapArea * 0.091 * lSize, 0.7, 0.1, 10, mid, mid),
-		[
-			landElevationPainter,
-			paintClass(clWater)
-		],
-		null);
-
-	log("Creating passes from player areas to the center...");
-	for (let i = 0; i < valleys; ++i)
+		log("Creating passes from player areas to the center...");
 		createArea(
-			new PathPlacer(mid, mid, valleyX[i], valleyZ[i], scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
+			new PathPlacer(mapCenter.x, mapCenter.y, valley.x, valley.y, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 			[
 				landElevationPainter,
 				paintClass(clWater)
-			],
-			null);
+			]);
+	}
+
+	log("Creating the big central area...");
+	createArea(
+		new ClumpPlacer(mapArea * 0.091 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+		[
+			landElevationPainter,
+			paintClass(clWater)
+		]);
 }
 
 /**
@@ -835,8 +817,7 @@ function markPlayerArea(size)
 		if (size == "large")
 			createArea(
 				new ClumpPlacer(diskArea(scaleByMapSize(17, 29) / 3), 0.6, 0.3, 10, fractionToTiles(playerX[i]), fractionToTiles(playerZ[i])),
-				paintClass(clPlayerTerritory),
-				null);
+				paintClass(clPlayerTerritory));
 	}
 }
 
@@ -1064,18 +1045,18 @@ function createUnknownPlayerBases()
 		// get the x and z in tiles
 		var fx = fractionToTiles(playerX[i]);
 		var fz = fractionToTiles(playerZ[i]);
-		var ix = round(fx);
-		var iz = round(fz);
+		var ix = Math.round(fx);
+		var iz = Math.round(fz);
 
 		placeCivDefaultEntities(fx, fz, id, { "iberWall": g_IberianWalls });
 
 		placeDefaultChicken(fx, fz, clBaseResource);
 
 		// create berry bushes
-		var bbAngle = randFloat(0, TWO_PI);
+		var bbAngle = randFloat(0, 2 * Math.PI);
 		var bbDist = 12;
-		var bbX = round(fx + bbDist * cos(bbAngle));
-		var bbZ = round(fz + bbDist * sin(bbAngle));
+		var bbX = Math.round(fx + bbDist * cos(bbAngle));
+		var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 		var group = new SimpleGroup(
 			[new SimpleObject(oFruitBush, 5,5, 0,3)],
 			true, clBaseResource, bbX, bbZ
@@ -1085,10 +1066,10 @@ function createUnknownPlayerBases()
 		if (g_StartingTreasures)
 		{
 			// create woods
-			var bbAngle = randFloat(0, TWO_PI);
+			var bbAngle = randFloat(0, 2 * Math.PI);
 			var bbDist = 13;
-			var bbX = round(fx + bbDist * cos(bbAngle));
-			var bbZ = round(fz + bbDist * sin(bbAngle));
+			var bbX = Math.round(fx + bbDist * cos(bbAngle));
+			var bbZ = Math.round(fz + bbDist * sin(bbAngle));
 			group = new SimpleGroup(
 				[new SimpleObject(oWoodTreasure, 14, 14, 0, 3)],
 				true, clBaseResource, bbX, bbZ
@@ -1098,13 +1079,13 @@ function createUnknownPlayerBases()
 
 		// create metal mine
 		var mAngle = bbAngle;
-		while (abs(mAngle - bbAngle) < PI/3)
+		while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
 		{
-			mAngle = randFloat(0, TWO_PI);
+			mAngle = randFloat(0, 2 * Math.PI);
 		}
 		var mDist = 12;
-		var mX = round(fx + mDist * cos(mAngle));
-		var mZ = round(fz + mDist * sin(mAngle));
+		var mX = Math.round(fx + mDist * cos(mAngle));
+		var mZ = Math.round(fz + mDist * sin(mAngle));
 		group = new SimpleGroup(
 			[new SimpleObject(oMetalLarge, 1,1, 0,0)],
 			true, clBaseResource, mX, mZ
@@ -1113,8 +1094,8 @@ function createUnknownPlayerBases()
 
 		// create stone mines
 		mAngle += randFloat(PI/8, PI/4);
-		mX = round(fx + mDist * cos(mAngle));
-		mZ = round(fz + mDist * sin(mAngle));
+		mX = Math.round(fx + mDist * cos(mAngle));
+		mZ = Math.round(fz + mDist * sin(mAngle));
 		group = new SimpleGroup(
 			[new SimpleObject(oStoneLarge, 1,1, 0,2)],
 			true, clBaseResource, mX, mZ
@@ -1122,11 +1103,11 @@ function createUnknownPlayerBases()
 		createObjectGroup(group, 0);
 		var hillSize = PI * radius * radius;
 		// create starting trees
-		var num = floor(hillSize / 100);
+		var num = Math.floor(hillSize / 100);
 		var tAngle = randFloat(-PI/3, 4*PI/3);
 		var tDist = randFloat(11, 13);
-		var tX = round(fx + tDist * cos(tAngle));
-		var tZ = round(fz + tDist * sin(tAngle));
+		var tX = Math.round(fx + tDist * cos(tAngle));
+		var tZ = Math.round(fz + tDist * sin(tAngle));
 		group = new SimpleGroup(
 			[new SimpleObject(oTree1, num, num, 0,5)],
 			false, clBaseResource, tX, tZ
