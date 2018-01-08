@@ -142,18 +142,18 @@ Engine.SetProgress(30);
 
 const riverTextures = [
 	{
-		"left": 0,
-		"right": 0.04,
+		"left": fractionToTiles(0),
+		"right": fractionToTiles(0.04),
 		"tileClass": tLush
 	},
 	{
-		"left": 0.04,
-		"right": 0.06,
+		"left": fractionToTiles(0.04),
+		"right": fractionToTiles(0.06),
 		"tileClass": tSLush
 	},
 	{
-		"left": 0.06,
-		"right": 0.09,
+		"left": fractionToTiles(0.06),
+		"right": fractionToTiles(0.09),
 		"tileClass": tSDry
 	}
 ];
@@ -192,13 +192,12 @@ paintRiver({
 	},
 	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
 
-		let x = ix / (mapSize + 1.0);
-		if (x < 0.25 || x > 0.75)
+		if (ix < fractionToTiles(0.25) || ix > fractionToTiles(0.75))
 			addToClass(ix, iz, clDesert);
 
 		for (let riv of riverTextures)
-			if (-shoreDist1 > -riv.right && -shoreDist1 < -riv.left ||
-				-shoreDist2 > riv.left && -shoreDist2 < riv.right)
+			if (riv.left < +shoreDist1 && +shoreDist1 < riv.right ||
+			    riv.left < -shoreDist2 && -shoreDist2 < riv.right)
 			{
 				placeTerrain(ix, iz, riv.tileClass);
 				addToClass(ix, iz, clShore);
