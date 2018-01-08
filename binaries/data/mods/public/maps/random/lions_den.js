@@ -323,6 +323,7 @@ addElements(shuffleArray([
 	{
 		"func": addStragglerTrees,
 		"avoid": [
+			g_TileClasses.player, 10,
 			g_TileClasses.baseResource, 5,
 			g_TileClasses.berries, 5,
 			g_TileClasses.forest, 3,
