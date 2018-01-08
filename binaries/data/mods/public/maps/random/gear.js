@@ -180,7 +180,7 @@ else if (mapSize == 448)
 		split = 2;
 }
 
-log ("Creating big circular lake...");
+log("Creating big circular lake...");
 var center = Math.round(fractionToTiles(0.5));
 createArea(
 	new ClumpPlacer(mapArea * 0.23, 1, 1, 10, center, center),

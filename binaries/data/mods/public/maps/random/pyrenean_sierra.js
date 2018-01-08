@@ -190,7 +190,7 @@ for (var i = 0; i < numPlayers; i++)
 }
 Engine.SetProgress(30);
 
-log ("Creating the pyreneans...");
+log("Creating the pyreneans...");
 var mountainLength = fractionToTiles(0.68);
 
 var mountainVec = new Vector2D(mountainLength, 0).rotate(-MoutainAngle);
@@ -339,7 +339,7 @@ for (var ix = 1; ix < mapSize-1; ix++)
 }
 Engine.SetProgress(55);
 
-log ("Creating hills...");
+log("Creating hills...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(60, 120), 0.3, 0.06, 5),
 	[
