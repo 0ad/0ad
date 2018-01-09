@@ -61,7 +61,7 @@ function getPhaseOfTechnology(techName)
 	{
 		let techData = loadTechnology(techName);
 		g_ParsedData.techs[g_SelectedCiv][techName] = techData;
-		warn("The \"" + techData.name.generic + "\" technology is not researchable in any structure buildable by the " +
+		warn("The \"" + techName + "\" technology is not researchable in any structure buildable by the " +
 			g_SelectedCiv + " civilisation, but is required by something that this civ can research, train or build!");
 	}
 
