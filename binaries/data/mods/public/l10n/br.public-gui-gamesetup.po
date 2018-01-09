@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-05 09:04+0100\n"
-"PO-Revision-Date: 2018-01-05 14:44+0000\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 04:01+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -171,329 +171,329 @@ msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr "An holl gartennoù eus ar seurt dibabet."
 
-#: gui/gamesetup/gamesetup.js:411
+#: gui/gamesetup/gamesetup.js:406
 msgid "Map Type"
 msgstr "Doare ar gartenn"
 
-#: gui/gamesetup/gamesetup.js:412
+#: gui/gamesetup/gamesetup.js:407
 msgid "Select a map type."
 msgstr "Diuzit un doare kartenn."
 
-#: gui/gamesetup/gamesetup.js:435
+#: gui/gamesetup/gamesetup.js:430
 msgid "Map Filter"
 msgstr "Sil kartennoù"
 
-#: gui/gamesetup/gamesetup.js:436
+#: gui/gamesetup/gamesetup.js:431
 msgid "Select a map filter."
 msgstr "Diuzit ur sil kartenn."
 
-#: gui/gamesetup/gamesetup.js:451
+#: gui/gamesetup/gamesetup.js:446
 msgid "Select Map"
 msgstr "Dibab ur gartenn"
 
-#: gui/gamesetup/gamesetup.js:452
+#: gui/gamesetup/gamesetup.js:447
 msgid "Select a map to play on."
 msgstr "Diuzit ur gartenn da c'hoari."
 
-#: gui/gamesetup/gamesetup.js:466
+#: gui/gamesetup/gamesetup.js:461
 msgid "Map Size"
 msgstr "Ment ar gartenn"
 
-#: gui/gamesetup/gamesetup.js:467
+#: gui/gamesetup/gamesetup.js:462
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Diuzit ment ar gartenn. (Ledanderioù brasañ a c'hallfe izelaat ar perzhioù.)"
 
-#: gui/gamesetup/gamesetup.js:481
+#: gui/gamesetup/gamesetup.js:476
 msgid "Biome"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:482
+#: gui/gamesetup/gamesetup.js:477
 msgid "Select the flora and fauna."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:497
+#: gui/gamesetup/gamesetup.js:492
 msgid "Number of Players"
 msgstr "Niver a C'hoarierien"
 
-#: gui/gamesetup/gamesetup.js:498
+#: gui/gamesetup/gamesetup.js:493
 msgid "Select number of players."
 msgstr "Diuzit an niver a c'hoarierien."
 
-#: gui/gamesetup/gamesetup.js:518
+#: gui/gamesetup/gamesetup.js:513
 msgid "Population Cap"
 msgstr "Bevenn ar Boblañs"
 
-#: gui/gamesetup/gamesetup.js:525
+#: gui/gamesetup/gamesetup.js:520
 msgid "Select population limit."
 msgstr "Dibab bevenn ar boblañs"
 
-#: gui/gamesetup/gamesetup.js:528
+#: gui/gamesetup/gamesetup.js:523
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:541
 msgid "Starting Resources"
 msgstr "Mammennoù el Loc'hañ"
 
-#: gui/gamesetup/gamesetup.js:549
+#: gui/gamesetup/gamesetup.js:544
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:552
+#: gui/gamesetup/gamesetup.js:547
 msgid "Select the game's starting resources."
 msgstr "Diuzit ar mammennoù hegerzus evit kregiñ gant ar c'hoariadenn."
 
-#: gui/gamesetup/gamesetup.js:567
+#: gui/gamesetup/gamesetup.js:562
 msgid "Ceasefire"
 msgstr "Harz-tennañ"
 
-#: gui/gamesetup/gamesetup.js:568
+#: gui/gamesetup/gamesetup.js:563
 msgid "Set time where no attacks are possible."
 msgstr "Dibabit e-pad pegeit amzer ez eo dibosupl d'ober tagadennoù."
 
-#: gui/gamesetup/gamesetup.js:581
+#: gui/gamesetup/gamesetup.js:576
 msgid "Victory Condition"
 msgstr "Amplegad an Trec'h"
 
-#: gui/gamesetup/gamesetup.js:582
+#: gui/gamesetup/gamesetup.js:577
 msgid "Select victory condition."
 msgstr "Dibabit amplegad an trec'h."
 
-#: gui/gamesetup/gamesetup.js:597
+#: gui/gamesetup/gamesetup.js:592
 msgid "Relic Count"
 msgstr "Niver a relegoù"
 
-#: gui/gamesetup/gamesetup.js:598
+#: gui/gamesetup/gamesetup.js:593
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:612
+#: gui/gamesetup/gamesetup.js:607
 msgid "Relic Duration"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:613
+#: gui/gamesetup/gamesetup.js:608
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:627
+#: gui/gamesetup/gamesetup.js:622
 msgid "Wonder Duration"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:628
+#: gui/gamesetup/gamesetup.js:623
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:642
+#: gui/gamesetup/gamesetup.js:637
 msgid "Game Speed"
 msgstr "Tizh ar c'hoari"
 
-#: gui/gamesetup/gamesetup.js:643
+#: gui/gamesetup/gamesetup.js:638
 msgid "Select game speed."
 msgstr "Diuzit tizh ar c'hoari."
 
-#: gui/gamesetup/gamesetup.js:657
+#: gui/gamesetup/gamesetup.js:652
 msgid "Difficulty"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:659
+#: gui/gamesetup/gamesetup.js:654
 msgid "Select the difficulty of this scenario."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:724
+#: gui/gamesetup/gamesetup.js:719
 msgid "Chose the civilization for this player"
 msgstr "Dibab sevenadurezh ar c'hoarier-mañ "
 
-#: gui/gamesetup/gamesetup.js:764
+#: gui/gamesetup/gamesetup.js:759
 msgid "Hero Garrison"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:765
+#: gui/gamesetup/gamesetup.js:760
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Hag-eñ e c'hell bezan lakaet e-barzh an harozed ."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:779
+#: gui/gamesetup/gamesetup.js:774
 msgid "Revealed Map"
 msgstr "Kartenn Dizoloet"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:782
+#: gui/gamesetup/gamesetup.js:777
 msgid "Toggle revealed map (see everything)."
 msgstr "Gwintañ pe get war-du dizoloiñ ar gartenn (gwelet kement-tra)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:798
+#: gui/gamesetup/gamesetup.js:793
 msgid "Explored Map"
 msgstr "Kartenn Ergerzhet"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:801
+#: gui/gamesetup/gamesetup.js:796
 msgid "Toggle explored map (see initial map)."
 msgstr "Gwintañ pe get war-du ur gartenn ergerzhet (gwelet ar gartenn deraouek)."
 
-#: gui/gamesetup/gamesetup.js:812
+#: gui/gamesetup/gamesetup.js:807
 msgid "Disable Treasures"
 msgstr "Diweredekaat an Teñzorioù"
 
-#: gui/gamesetup/gamesetup.js:813
+#: gui/gamesetup/gamesetup.js:808
 msgid "Disable all treasures on the map."
 msgstr "Diweredekaat holl deñzorioù ar gartenn."
 
-#: gui/gamesetup/gamesetup.js:824
+#: gui/gamesetup/gamesetup.js:819
 msgid "Disable Spies"
 msgstr "Diweredekaat ar Spierien"
 
-#: gui/gamesetup/gamesetup.js:825
+#: gui/gamesetup/gamesetup.js:820
 msgid "Disable spies during the game."
 msgstr "Diweredekaat spierien e-pad ar c'hoari."
 
-#: gui/gamesetup/gamesetup.js:836
+#: gui/gamesetup/gamesetup.js:831
 msgid "Teams Locked"
 msgstr "Skipailhoù Morailhet"
 
-#: gui/gamesetup/gamesetup.js:837
+#: gui/gamesetup/gamesetup.js:832
 msgid "Toggle locked teams."
 msgstr "Gwintañ pe get war-du skipailhoù morailhet."
 
-#: gui/gamesetup/gamesetup.js:851
+#: gui/gamesetup/gamesetup.js:846
 msgid "Last Man Standing"
 msgstr "An Den Diwezhañ War-Sav"
 
-#: gui/gamesetup/gamesetup.js:852
+#: gui/gamesetup/gamesetup.js:847
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Diskouez ma vez ar c'hoarier diwezhañ pe ar strollad tud kevredet da ziwezhañ o kaout ar maout ganto."
 
-#: gui/gamesetup/gamesetup.js:865
+#: gui/gamesetup/gamesetup.js:860
 msgid "Cheats"
 msgstr "Truchadurioù"
 
-#: gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:861
 msgid "Toggle the usability of cheats."
 msgstr "Gwintañ pe get ar gwir da implijout truchadurioù."
 
-#: gui/gamesetup/gamesetup.js:879
+#: gui/gamesetup/gamesetup.js:874
 msgid "Rated Game"
 msgstr "C'hoariadenn Renket"
 
-#: gui/gamesetup/gamesetup.js:880
+#: gui/gamesetup/gamesetup.js:875
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Dibab ma vo kemeret e kont ar c'hoariadenn-mañ e-barzh ar renkadur-hollek."
 
-#: gui/gamesetup/gamesetup.js:906
+#: gui/gamesetup/gamesetup.js:901
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:914
+#: gui/gamesetup/gamesetup.js:909
 msgid "Return to the lobby."
 msgstr "Distreiñ d'an hall."
 
-#: gui/gamesetup/gamesetup.js:915
+#: gui/gamesetup/gamesetup.js:910
 msgid "Return to the main menu."
 msgstr "Distreiñ d'al lañser pennañ."
 
-#: gui/gamesetup/gamesetup.js:919
+#: gui/gamesetup/gamesetup.js:914
 msgid "Start Game!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:925
+#: gui/gamesetup/gamesetup.js:920
 msgid "Start a new game with the current settings."
 msgstr "Kregiñ gant ur c'hoariadenn gant an arventennoù-red."
 
-#: gui/gamesetup/gamesetup.js:926
+#: gui/gamesetup/gamesetup.js:921
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:980
+#: gui/gamesetup/gamesetup.js:975
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1515
+#: gui/gamesetup/gamesetup.js:1510
 msgctxt "map selection"
 msgid "Random"
 msgstr "Dre-zegouezh"
 
-#: gui/gamesetup/gamesetup.js:1517
+#: gui/gamesetup/gamesetup.js:1512
 msgid "Pick any of the given maps at random."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1549
+#: gui/gamesetup/gamesetup.js:1544
 msgctxt "biome"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1550
+#: gui/gamesetup/gamesetup.js:1545
 msgid "Pick a biome at random."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1871 gui/gamesetup/gamesetup.js:1913
+#: gui/gamesetup/gamesetup.js:1866 gui/gamesetup/gamesetup.js:1908
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1876
+#: gui/gamesetup/gamesetup.js:1871
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Dianav"
 
-#: gui/gamesetup/gamesetup.js:1906
+#: gui/gamesetup/gamesetup.js:1901
 msgid "Yes"
 msgstr "Ya"
 
-#: gui/gamesetup/gamesetup.js:1906
+#: gui/gamesetup/gamesetup.js:1901
 msgid "No"
 msgstr "Ket"
 
-#: gui/gamesetup/gamesetup.js:2000
+#: gui/gamesetup/gamesetup.js:1995
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2203
+#: gui/gamesetup/gamesetup.js:2198
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "NA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2211
+#: gui/gamesetup/gamesetup.js:2206
 msgid "Unassigned"
 msgstr "Nann-dereet"
 
-#: gui/gamesetup/gamesetup.js:2287
+#: gui/gamesetup/gamesetup.js:2282
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2294
+#: gui/gamesetup/gamesetup.js:2289
 msgid "Unknown Player"
 msgstr "C'hoarier dianav"
 
-#: gui/gamesetup/gamesetup.js:2333
+#: gui/gamesetup/gamesetup.js:2328
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2334
+#: gui/gamesetup/gamesetup.js:2329
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2335
+#: gui/gamesetup/gamesetup.js:2330
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -541,8 +541,8 @@ msgid "Loading"
 msgstr "O kargañ"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
-msgid "Loading map data. Please wait..."
-msgstr "O kargañ roadennoù ar gartenn. Gortozit mar plij..."
+msgid "Loading map data. Please wait…"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Player Name"
@@ -628,9 +628,9 @@ msgstr "Serriñ prenestr dibarzhioù araokaet ar c'hoariadenn"
 
 #: gui/text/quotes.txt:1
 msgid ""
-"\"Zeus \\[...] established his law: wisdom comes through suffering. \\[...] "
-"So men against their will learn to practice moderation. \\[...] Such grace "
-"is harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
+"\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
+"men against their will learn to practice moderation. \\[…] Such grace is "
+"harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
 msgstr ""
 
 #: gui/text/quotes.txt:2
@@ -743,9 +743,9 @@ msgstr ""
 
 #: gui/text/quotes.txt:21
 msgid ""
-"\"It is very servile to live in luxury, but very royal to toil. \\[...] "
-"Don't you know that the end and object of conquest is to avoid the vices and"
-" infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
+"\"It is very servile to live in luxury, but very royal to toil. \\[…] Don't "
+"you know that the end and object of conquest is to avoid the vices and "
+"infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
 msgstr ""
 
@@ -875,23 +875,23 @@ msgstr ""
 #: gui/text/quotes.txt:40
 msgid ""
 "\"Alexander himself, plagued by thirst, with great pain and difficulty "
-"nevertheless led the army on foot \\[...]. At this time a few of the light-"
-"armed soldiers \\[...] found some water \\[...], poured the water into a "
-"helmet and carried it to him. He took it, and commending the men who brought"
-" it, immediately poured it upon the ground in the sight of all.\" - Arrian "
-"about Alexander's march through the Gedrosian desert (\"The Anabasis of "
+"nevertheless led the army on foot \\[…]. At this time a few of the light-"
+"armed soldiers \\[…] found some water \\[…], poured the water into a helmet "
+"and carried it to him. He took it, and commending the men who brought it, "
+"immediately poured it upon the ground in the sight of all.\" - Arrian about "
+"Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
 msgstr ""
 
 #: gui/text/quotes.txt:41
 msgid ""
 "\"Thrusting his spear into Mithridates' face, he \\[Alexander] hurled him to"
-" the ground. Then Rhoesaces \\[a Persian] \\[...] struck him on the head "
-"with his sword. \\[...] Alexander hurled him too to the ground, piercing "
-"with his lance through his breastplate into his chest. Sphithridates \\[a "
-"Persian] had already raised his sword against Alexander from behind when "
-"Clitus \\[...] cut his arm off.\" - Arrian about the Battle of the Granicus "
-"(\"The Anabasis of Alexander\", 1.15)"
+" the ground. Then Rhoesaces \\[a Persian] \\[…] struck him on the head with "
+"his sword. \\[…] Alexander hurled him too to the ground, piercing with his "
+"lance through his breastplate into his chest. Sphithridates \\[a Persian] "
+"had already raised his sword against Alexander from behind when Clitus \\[…]"
+" cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
+"Anabasis of Alexander\", 1.15)"
 msgstr ""
 
 #: gui/text/quotes.txt:42
@@ -1033,8 +1033,8 @@ msgstr ""
 #: gui/text/quotes.txt:61
 msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
-"of countries, \\[...] 23 lands in total.\" - Darius I. (Behistun "
-"inscription, column I, 1-6)"
+"of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
+"column I, 1-6)"
 msgstr ""
 
 #: gui/text/quotes.txt:62
@@ -1042,7 +1042,7 @@ msgid ""
 "\"Phraortes was captured and brought before me. I cut off his nose, his "
 "ears, and his tongue, and I put out one eye, and he was kept in chains at my"
 " palace entrance, and all the people saw him. Then I crucified him in "
-"Ecbatana; and the men who were his foremost followers \\[...] I flayed and "
+"Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
 msgstr ""
@@ -1207,13 +1207,12 @@ msgstr ""
 
 #: gui/text/quotes.txt:86
 msgid ""
-"\"But the enemy \\[...] displayed such great courage, that when the front "
-"rank had fallen the men behind them stood on them and continue the fight "
-"from on top of the corpses; when these were killed the pile of bodies grew "
-"higher, while the survivors used the heap as a vantage point for throwing "
-"missiles at our men, or catching our spears and throwing them back.\" - "
-"Gaius Julius Caesar about the Battle of the Sabis (\"De Bello Gallico\", II."
-" 27)"
+"\"But the enemy \\[…] displayed such great courage, that when the front rank"
+" had fallen the men behind them stood on them and continue the fight from on"
+" top of the corpses; when these were killed the pile of bodies grew higher, "
+"while the survivors used the heap as a vantage point for throwing missiles "
+"at our men, or catching our spears and throwing them back.\" - Gaius Julius "
+"Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
 msgstr ""
 
 #: gui/text/quotes.txt:87
@@ -1318,12 +1317,12 @@ msgstr ""
 
 #: gui/text/quotes.txt:102
 msgid ""
-"\"Being informed \\[...] that when the Barbarians discharged their arrows "
-"they obscured the light of the sun by the multitude of the arrows, he "
-"\\[Dienekes] \\[...] said that their guest \\[...] brought them very good "
-"news, for if the Medes obscured the light of the sun, the battle against "
-"them would be in the shade and not in the sun.\" - Herodotus describing "
-"Dienekes, reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
+"\"Being informed \\[…] that when the Barbarians discharged their arrows they"
+" obscured the light of the sun by the multitude of the arrows, he "
+"\\[Dienekes] \\[…] said that their guest \\[…] brought them very good news, "
+"for if the Medes obscured the light of the sun, the battle against them "
+"would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
+" reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
 msgstr ""
 
@@ -1378,7 +1377,7 @@ msgid ""
 msgstr ""
 
 #: gui/text/quotes.txt:110
-msgid "\"I am Cyrus, king of the world...\" - Inscription (Cyrus Cylinder)"
+msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
 msgstr ""
 
 #: gui/text/quotes.txt:111
@@ -1414,9 +1413,9 @@ msgstr ""
 
 #: gui/text/quotes.txt:115
 msgid ""
-"\"There lay thousands upon thousands of Romans \\[...]. Here and there "
-"amidst the slain rose a gory figure whose wounds had begun to throb with the"
-" chill of dawn, and was cut down by his enemies.\" - Livius, describing the "
+"\"There lay thousands upon thousands of Romans \\[…]. Here and there amidst "
+"the slain rose a gory figure whose wounds had begun to throb with the chill "
+"of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
 msgstr ""
@@ -1632,13 +1631,12 @@ msgstr ""
 
 #: gui/text/quotes.txt:146
 msgid ""
-"\"One \\[...] shot an arrow at him with such accuracy and force that it "
-"pierced his breastplate and got stuck in his ribs. \\[...] Alexander "
-"recoiled and sank to his knees. \\[...] At last Alexander killed the "
-"barbarian. But he received many wounds, at last was struck on the neck with "
-"a mace, and leaned against the city wall, his eyes still fixed upon his "
-"foes.\" - Plutarch about the Mallian Campaign (\"Parallel Lives\", "
-"\"Alexander\", sec. 63)"
+"\"One \\[…] shot an arrow at him with such accuracy and force that it "
+"pierced his breastplate and got stuck in his ribs. \\[…] Alexander recoiled "
+"and sank to his knees. \\[…] At last Alexander killed the barbarian. But he "
+"received many wounds, at last was struck on the neck with a mace, and leaned"
+" against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
+"about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
 msgstr ""
 
 #: gui/text/quotes.txt:147
@@ -1671,8 +1669,8 @@ msgstr ""
 msgid ""
 "\"The Athenian people are always in the position of a ship without a "
 "commander. Fear of the enemy or a storm make the crew be of one mind and "
-"obey the helmsman, everything goes well; but if they recover \\[...] they "
-"quarrel with each other \\[...], and the result has often been that, after "
+"obey the helmsman, everything goes well; but if they recover \\[…] they "
+"quarrel with each other \\[…], and the result has often been that, after "
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
@@ -1910,7 +1908,7 @@ msgstr ""
 #: gui/text/quotes.txt:181
 msgid ""
 "\"When the Lacedaemonians were no longer able to run after them, the "
-"skirmishers \\[...] all charged them at once, casting stones, arrows, and "
+"skirmishers \\[…] all charged them at once, casting stones, arrows, and "
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
@@ -1969,8 +1967,8 @@ msgstr ""
 
 #: gui/text/quotes.txt:189
 msgid ""
-"\"These are the right questions to ask, in winter around the fire \\[...]: "
-"Who are you, friend? What is your land? And how old were you when the Medes "
+"\"These are the right questions to ask, in winter around the fire \\[…]: Who"
+" are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
 msgstr ""

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-01 03:42+0000\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 02:46+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -69,12 +69,17 @@ msgstr "英雄"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s 歷史"
 
-#: gui/common/color.js:162
+#: gui/common/color.js:149
+#, javascript-format
+msgid "Unassigned hotkey: %(hotkeyName)s"
+msgstr ""
+
+#: gui/common/color.js:164
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "按 %(hotkey)s 以自動完成玩家名稱。"
 
-#: gui/common/color.js:164
+#: gui/common/color.js:166
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
@@ -83,8 +88,8 @@ msgstr "Tab"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait..."
-msgstr "正在開啟 %(url)s\n 於預設瀏覽器中。請稍候..."
+" in default web browser. Please wait…"
+msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -581,150 +586,150 @@ msgstr "使用者 (%(num)s)：%(users)s"
 msgid ", "
 msgstr "，"
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:117
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "測試區"
 
-#: gui/common/settings.js:120
+#: gui/common/settings.js:121
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "非常簡單"
 
-#: gui/common/settings.js:124
+#: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "簡易"
 
-#: gui/common/settings.js:128
+#: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "中等"
 
-#: gui/common/settings.js:133
+#: gui/common/settings.js:134
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "困難"
 
-#: gui/common/settings.js:137
+#: gui/common/settings.js:138
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "非常難"
 
-#: gui/common/settings.js:147
+#: gui/common/settings.js:148
 msgctxt "aiBehavior"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/common/settings.js:152
+#: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
 msgstr ""
 
-#: gui/common/settings.js:156
+#: gui/common/settings.js:157
 msgctxt "aiBehavior"
 msgid "Defensive"
 msgstr "防禦"
 
-#: gui/common/settings.js:160
+#: gui/common/settings.js:161
 msgctxt "aiBehavior"
 msgid "Aggressive"
 msgstr "積極的"
 
-#: gui/common/settings.js:182
+#: gui/common/settings.js:183
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s 分鐘"
 
-#: gui/common/settings.js:204
+#: gui/common/settings.js:205
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "無停火"
 
-#: gui/common/settings.js:205
+#: gui/common/settings.js:206
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s 分鐘"
 
-#: gui/common/settings.js:219
+#: gui/common/settings.js:220
 msgctxt "map"
 msgid "Skirmish"
 msgstr "小規模戰鬥"
 
-#: gui/common/settings.js:220
+#: gui/common/settings.js:221
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr "具有預先定義好的景觀與玩家人數的地圖。可自由選取其他遊戲設定。"
 
-#: gui/common/settings.js:225
+#: gui/common/settings.js:226
 msgctxt "map"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/common/settings.js:226
+#: gui/common/settings.js:227
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "每次都以不同的資源分佈建立一張獨特的地圖。可自由選擇玩家數與隊伍。"
 
-#: gui/common/settings.js:230
+#: gui/common/settings.js:231
 msgctxt "map"
 msgid "Scenario"
 msgstr "劇情"
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "具有預先定義好的景觀與比賽設定的地圖。"
 
-#: gui/common/settings.js:274
+#: gui/common/settings.js:272
 msgctxt "victory condition"
 msgid "None"
 msgstr "無"
 
-#: gui/common/settings.js:275
+#: gui/common/settings.js:273
 msgid "Endless game."
 msgstr "無盡的遊戲。"
 
-#: gui/common/settings.js:316
+#: gui/common/settings.js:314
 msgid "Unlimited"
 msgstr "無限制"
 
-#: gui/common/settings.js:369
+#: gui/common/settings.js:367
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:380
+#: gui/common/settings.js:378
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:391
+#: gui/common/settings.js:389
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "預設"
 
-#: gui/common/settings.js:403
+#: gui/common/settings.js:401
 msgctxt "map type"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:415
+#: gui/common/settings.js:413
 msgctxt "map size"
 msgid "Default"
 msgstr "預設"
 
-#: gui/common/settings.js:427
+#: gui/common/settings.js:425
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:439
+#: gui/common/settings.js:437
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "未知"
@@ -1404,8 +1409,8 @@ msgid "Score"
 msgstr "分數"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:151
-#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):122
+#: gui/summary/layout.js:101 gui/summary/layout.js:152
+#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):122
 msgid "Player name"
 msgstr "玩家名稱"
 
@@ -1506,84 +1511,92 @@ msgid "Resources"
 msgstr "資源"
 
 #: gui/summary/layout.js:111
+msgid "Tributes"
+msgstr ""
+
+#: gui/summary/layout.js:112
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "進貢 \n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:119
+#: gui/summary/layout.js:120
 msgid "Treasures collected"
 msgstr "收集的寶藏"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:121
 msgid "Loot"
 msgstr "戰利品"
 
-#: gui/summary/layout.js:121
+#: gui/summary/layout.js:122
 msgid "Livestock bred"
 msgstr ""
 
-#: gui/summary/layout.js:125
+#: gui/summary/layout.js:126
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "資源統計 (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):101
+#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):101
 msgid "Market"
 msgstr "市集"
 
-#: gui/summary/layout.js:152
+#: gui/summary/layout.js:153
 msgid "Trade income"
 msgstr "貿易收入"
 
-#: gui/summary/layout.js:153
+#: gui/summary/layout.js:154
 msgid "Barter efficiency"
 msgstr "貿易效率"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:159
+#: gui/summary/layout.js:160
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s 已交換"
 
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "雜項"
 
-#: gui/summary/layout.js:184
+#: gui/summary/layout.js:185
 msgid "Kill / Death ratio"
 msgstr "擊殺 / 被殺比例"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:186
 msgid "Map control (peak)"
 msgstr "地圖控制（揭露）"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:187
 msgid "Map control (finish)"
 msgstr "地圖控制（完成）"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:188
 msgid "Map exploration"
 msgstr "地圖探索"
 
-#: gui/summary/layout.js:188
+#: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
 msgstr "精英比例"
 
-#: gui/summary/layout.js:189
+#: gui/summary/layout.js:190
 msgid "Feminization"
 msgstr "女性化"
 
-#: gui/summary/layout.js:192
+#: gui/summary/layout.js:193
+msgid "Bribes"
+msgstr ""
+
+#: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr ""
 
-#: gui/summary/layout.js:355
+#: gui/summary/layout.js:357
 msgid "Team total"
 msgstr "隊伍總計"
 
@@ -1682,8 +1695,8 @@ msgid "You have won the battle!"
 msgstr "您已獲勝！"
 
 #: gui/summary/summary.js:499
-msgid "You have been defeated..."
-msgstr "您被擊敗..."
+msgid "You have been defeated…"
+msgstr ""
 
 #: gui/summary/summary.js:500
 msgid "You have abandoned the game."

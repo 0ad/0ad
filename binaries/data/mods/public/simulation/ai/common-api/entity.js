@@ -424,7 +424,7 @@ m.Template = m.Class({
 		// do not hunt retaliating animals (animals without UnitAI are dead animals)
 		let behaviour = this.get("UnitAI/NaturalBehaviour");
 		return !behaviour ||
-		       (behaviour != "violent" && behaviour != "aggressive" && behaviour != "defensive");
+		        behaviour != "violent" && behaviour != "aggressive" && behaviour != "defensive";
 	},
 
 	"walkSpeed": function() { return +this.get("UnitMotion/WalkSpeed"); },

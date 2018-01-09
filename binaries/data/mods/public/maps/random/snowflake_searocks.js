@@ -42,6 +42,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -64,8 +65,7 @@ var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlaceme
 
 var numIslands = 0;
 var isConnected = [];
-var islandX = [];
-var islandZ = [];
+var islandPos = [];
 
 function initIsConnected()
 {
@@ -80,7 +80,7 @@ function initIsConnected()
 function createIsland(islandID, size, tileClass)
 {
 	createArea(
-		new ClumpPlacer(size * diskArea(playerIslandRadius), 0.95, 0.6, 10, islandX[islandID], islandZ[islandID]),
+		new ClumpPlacer(size * diskArea(playerIslandRadius), 0.95, 0.6, 10, islandPos[islandID].x, islandPos[islandID].y),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, islandHeight, 2),
@@ -91,8 +91,7 @@ function createIsland(islandID, size, tileClass)
 function createIslandAtRadialLocation(playerID, islandID, playerIDOffset, distFromCenter, islandRadius)
 {
 	let angle = startAngle + (playerID * 2 + playerIDOffset) * Math.PI / numPlayers;
-	islandX[islandID] = Math.round(fractionToTiles(0.5 + distFromCenter * Math.cos(angle)));
-	islandZ[islandID] = Math.round(fractionToTiles(0.5 + distFromCenter * Math.sin(angle)));
+	islandPos[islandID] = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(distFromCenter), 0).rotate(-angle)).round();
 	createIsland(islandID, islandRadius, clLand);
 }
 
@@ -105,8 +104,7 @@ function createSnowflakeSearockWithCenter(sizeID)
 	initIsConnected();
 
 	log("Creating central island...");
-	islandX[islandID_center] = fractionToTiles(0.5);
-	islandZ[islandID_center] = fractionToTiles(0.5);
+	islandPos[islandID_center] = mapCenter;
 	createIsland(islandID_center, centralIslandRadius, clLand);
 
 	for (let playerID = 0; playerID < numPlayers; ++playerID)
@@ -170,8 +168,7 @@ function createSnowflakeSearockTiny()
 	let islandID_center = numPlayers;
 
 	log("Creating central island...");
-	islandX[islandID_center] = fractionToTiles(0.5);
-	islandZ[islandID_center] = fractionToTiles(0.5);
+	islandPos[islandID_center] = mapCenter;
 	createIsland(numPlayers, 1, clLand);
 
 	for (let playerID = 0; playerID < numPlayers; ++playerID)
@@ -217,8 +214,7 @@ else
 log("Creating player islands...");
 for (let i = 0; i < numPlayers; ++i)
 {
-	islandX[i] = Math.round(fractionToTiles(playerX[i]));
-	islandZ[i] = Math.round(fractionToTiles(playerZ[i]));
+	islandPos[i] = new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round();
 	createIsland(i, 1, clPlayer);
 }
 
@@ -295,49 +291,20 @@ for (var i = 0; i < numPlayers; ++i)
 Engine.SetProgress(30);
 
 log("Creating connectors...");
-for (let ix = 0; ix < mapSize; ++ix)
-	for (let iz = 0; iz < mapSize; ++iz)
-		for (let m = 0; m < numIslands; ++m)
-			for (let n = 0; n < numIslands; ++n)
-			{
-				if (isConnected[m][n] != 1)
-					continue;
-
-				let islandDistX = islandX[n] - islandX[m];
-				let islandDistZ = islandZ[m] - islandZ[n];
-
-				let d1 = islandDistX * (iz - islandZ[m]) + islandDistZ * (ix - islandX[m]);
-				let d2 = Math.square(islandDistX) + Math.square(islandDistZ);
-
-				let dis = Math.abs(d1) / Math.sqrt(d2);
-				let z = iz - islandDistX * d1 / d2;
-
-				if (dis >= 5 || z < Math.min(islandZ[m], islandZ[n]) || z > Math.max(islandZ[m], islandZ[n]))
-					continue;
-
-				addToClass(ix, iz, clLand);
-
-				let height;
-				let tileClass;
-
-				let f = 3 - dis;
-				if (f > 0)
-				{
-					height = islandHeight;
-					tileClass = dis < 2 ? tHill : tCliff;
-				}
-				else
-				{
-					height = islandHeight + 10 * f;
-					tileClass = tCliff;
-				}
-
-				if (getHeight(ix, iz) < height)
-				{
-					placeTerrain(ix, iz, tileClass);
-					setHeight(ix, iz, height);
-				}
-			}
+for (let i = 0; i < numIslands; ++i)
+	for (let j = 0; j < numIslands; ++j)
+		if (isConnected[i][j])
+			createPassage({
+				"start": islandPos[i],
+				"end": islandPos[j],
+				"startWidth": 11,
+				"endWidth": 11,
+				"smoothWidth": 3,
+				"maxHeight": islandHeight - 1,
+				"tileClass": clLand,
+				"terrain": tHill,
+				"edgeTerrain": tCliff
+			});
 
 log("Creating forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));

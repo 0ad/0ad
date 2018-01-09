@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-01 12:46+0000\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 08:09+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -75,12 +75,17 @@ msgstr "Герои"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s — малко история"
 
-#: gui/common/color.js:162
+#: gui/common/color.js:149
+#, javascript-format
+msgid "Unassigned hotkey: %(hotkeyName)s"
+msgstr "Неназначен клавиш или комбинация: %(hotkeyName)s"
+
+#: gui/common/color.js:164
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "Натиснете %(hotkey)s, за да довършите името на играча автоматично."
 
-#: gui/common/color.js:164
+#: gui/common/color.js:166
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
@@ -89,7 +94,7 @@ msgstr "Tab"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait..."
+" in default web browser. Please wait…"
 msgstr "Отваряне на %(url)s\nвъв Вашия браузър по подразбиране. Моля, изчакайте…"
 
 #: gui/common/functions_global_object.js:60
@@ -591,57 +596,57 @@ msgstr "Потребители (%(num)s): %(users)s"
 msgid ", "
 msgstr ", "
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:117
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Пясъчник"
 
-#: gui/common/settings.js:120
+#: gui/common/settings.js:121
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Много лесно"
 
-#: gui/common/settings.js:124
+#: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Лесно"
 
-#: gui/common/settings.js:128
+#: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Средно"
 
-#: gui/common/settings.js:133
+#: gui/common/settings.js:134
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Трудно"
 
-#: gui/common/settings.js:137
+#: gui/common/settings.js:138
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Много трудно"
 
-#: gui/common/settings.js:147
+#: gui/common/settings.js:148
 msgctxt "aiBehavior"
 msgid "Random"
 msgstr "Случайно"
 
-#: gui/common/settings.js:152
+#: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
 msgstr "Балансирано"
 
-#: gui/common/settings.js:156
+#: gui/common/settings.js:157
 msgctxt "aiBehavior"
 msgid "Defensive"
 msgstr "Защитно"
 
-#: gui/common/settings.js:160
+#: gui/common/settings.js:161
 msgctxt "aiBehavior"
 msgid "Aggressive"
 msgstr "Агресивно"
 
-#: gui/common/settings.js:182
+#: gui/common/settings.js:183
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
@@ -649,12 +654,12 @@ msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s минута"
 msgstr[1] "%(min)s минути"
 
-#: gui/common/settings.js:204
+#: gui/common/settings.js:205
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Без временно примирие"
 
-#: gui/common/settings.js:205
+#: gui/common/settings.js:206
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -662,81 +667,81 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s минута"
 msgstr[1] "%(minutes)s минути"
 
-#: gui/common/settings.js:219
+#: gui/common/settings.js:220
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Схватка"
 
-#: gui/common/settings.js:220
+#: gui/common/settings.js:221
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr "Карта с предварително определен релеф и брой играчи. Можете свободно да изберете останалите игрални настройки."
 
-#: gui/common/settings.js:225
+#: gui/common/settings.js:226
 msgctxt "map"
 msgid "Random"
 msgstr "Случайна"
 
-#: gui/common/settings.js:226
+#: gui/common/settings.js:227
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "Всеки път картата ще бъде уникална и с различно разпределение на ресурсите. Можете свободно да изберете броя на играчите и отборите."
 
-#: gui/common/settings.js:230
+#: gui/common/settings.js:231
 msgctxt "map"
 msgid "Scenario"
 msgstr "Сценарий"
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "Карта с предварително определен релеф и игрални настройки."
 
-#: gui/common/settings.js:274
+#: gui/common/settings.js:272
 msgctxt "victory condition"
 msgid "None"
 msgstr "Без"
 
-#: gui/common/settings.js:275
+#: gui/common/settings.js:273
 msgid "Endless game."
 msgstr "Безкрайна игра"
 
-#: gui/common/settings.js:316
+#: gui/common/settings.js:314
 msgid "Unlimited"
 msgstr "Без"
 
-#: gui/common/settings.js:369
+#: gui/common/settings.js:367
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: gui/common/settings.js:380
+#: gui/common/settings.js:378
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Неизвестна"
 
-#: gui/common/settings.js:391
+#: gui/common/settings.js:389
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "По подразбиране"
 
-#: gui/common/settings.js:403
+#: gui/common/settings.js:401
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Неизвестен"
 
-#: gui/common/settings.js:415
+#: gui/common/settings.js:413
 msgctxt "map size"
 msgid "Default"
 msgstr "По подразбиране"
 
-#: gui/common/settings.js:427
+#: gui/common/settings.js:425
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: gui/common/settings.js:439
+#: gui/common/settings.js:437
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Неизвестно"
@@ -1425,8 +1430,8 @@ msgid "Score"
 msgstr "Резултат"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:151
-#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):122
+#: gui/summary/layout.js:101 gui/summary/layout.js:152
+#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):122
 msgid "Player name"
 msgstr "Име на играч"
 
@@ -1527,84 +1532,92 @@ msgid "Resources"
 msgstr "Ресурси"
 
 #: gui/summary/layout.js:111
+msgid "Tributes"
+msgstr "Дарове"
+
+#: gui/summary/layout.js:112
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "Дарове\n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:119
+#: gui/summary/layout.js:120
 msgid "Treasures collected"
 msgstr "Събрани съкровища"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:121
 msgid "Loot"
 msgstr "Плячка"
 
-#: gui/summary/layout.js:121
+#: gui/summary/layout.js:122
 msgid "Livestock bred"
 msgstr "Развъден добитък"
 
-#: gui/summary/layout.js:125
+#: gui/summary/layout.js:126
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Статистика за ресурсите (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):101
+#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):101
 msgid "Market"
 msgstr "Пазар"
 
-#: gui/summary/layout.js:152
+#: gui/summary/layout.js:153
 msgid "Trade income"
 msgstr "Приход от търговия"
 
-#: gui/summary/layout.js:153
+#: gui/summary/layout.js:154
 msgid "Barter efficiency"
 msgstr "Полза от размените"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:159
+#: gui/summary/layout.js:160
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "Разменено: %(resourceFirstWord)s"
 
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Разни"
 
-#: gui/summary/layout.js:184
+#: gui/summary/layout.js:185
 msgid "Kill / Death ratio"
 msgstr "Съотношение убийства / смъртност"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:186
 msgid "Map control (peak)"
 msgstr "Контрол над картата (най-голям)"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:187
 msgid "Map control (finish)"
 msgstr "Контрол над картата (накрая)"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:188
 msgid "Map exploration"
 msgstr "Разузнаване на картата"
 
-#: gui/summary/layout.js:188
+#: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
 msgstr "Процент вегетарианци"
 
-#: gui/summary/layout.js:189
+#: gui/summary/layout.js:190
 msgid "Feminization"
 msgstr "Феминизация"
 
-#: gui/summary/layout.js:192
+#: gui/summary/layout.js:193
+msgid "Bribes"
+msgstr "Подкупи"
+
+#: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "Подкупи\n(%(succeeded)s / %(failed)s)"
 
-#: gui/summary/layout.js:355
+#: gui/summary/layout.js:357
 msgid "Team total"
 msgstr "Общо за отбора"
 
@@ -1703,8 +1716,8 @@ msgid "You have won the battle!"
 msgstr "Вие спечелихте битката!"
 
 #: gui/summary/summary.js:499
-msgid "You have been defeated..."
-msgstr "Вие бяхте загубихте…"
+msgid "You have been defeated…"
+msgstr "Вие загубихте…"
 
 #: gui/summary/summary.js:500
 msgid "You have abandoned the game."

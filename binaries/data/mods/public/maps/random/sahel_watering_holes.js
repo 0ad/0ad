@@ -134,8 +134,8 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 Engine.SetProgress(20);
-log ("Creating rivers...");
 
+log("Creating rivers...");
 var riverStart = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.15), mapCenter)[0];
 var riverEnd = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.49), mapCenter)[0];
 

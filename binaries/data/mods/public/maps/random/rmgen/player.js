@@ -51,10 +51,10 @@ function placeCivDefaultEntities(fx, fz, playerID, kwargs, dist = 6, orientation
 	placeStartingEntities(fx, fz, playerID, getStartingEntities(playerID), dist, orientation);
 
 	let civ = getCivCode(playerID);
-	if (civ == 'iber' && getMapSize() > 128)
+	if (civ == "iber" && getMapSize() > 128)
 	{
-		if (kwargs && kwargs.iberWall == 'towers')
-			placePolygonalWall(fx, fz, 15, ['entry'], 'tower', civ, playerID, orientation, 7);
+		if (kwargs && kwargs.iberWall == "towers")
+			placePolygonalWall(fx, fz, 15, ["entry"], "tower", civ, playerID, orientation, 7);
 		else if (!kwargs || kwargs.iberWall)
 			placeGenericFortress(fx, fz, 20, playerID);
 	}

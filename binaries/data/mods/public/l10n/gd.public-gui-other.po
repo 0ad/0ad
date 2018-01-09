@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-01 03:42+0000\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 02:46+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -76,12 +76,17 @@ msgstr "Curaidhean"
 msgid "History of the %(civilization)s"
 msgstr "An eachdraidh aig %(civilization)s"
 
-#: gui/common/color.js:162
+#: gui/common/color.js:149
+#, javascript-format
+msgid "Unassigned hotkey: %(hotkeyName)s"
+msgstr ""
+
+#: gui/common/color.js:164
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "Brùth air %(hotkey)s gus ainmean nan cluicheadairean fhèin-choileanadh."
 
-#: gui/common/color.js:164
+#: gui/common/color.js:166
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Taba"
@@ -90,8 +95,8 @@ msgstr "Taba"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait..."
-msgstr "A' fosgladh %(url)s\nsa bhrabhsair-lìn bhunaiteach. Fuirich ort..."
+" in default web browser. Please wait…"
+msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -600,57 +605,57 @@ msgstr "Cleachdaichean (%(num)s): %(users)s"
 msgid ", "
 msgstr ", "
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:117
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Bogsa-gainmhich"
 
-#: gui/common/settings.js:120
+#: gui/common/settings.js:121
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Glè fhurasta"
 
-#: gui/common/settings.js:124
+#: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Furasta"
 
-#: gui/common/settings.js:128
+#: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Meadhanach"
 
-#: gui/common/settings.js:133
+#: gui/common/settings.js:134
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Doirbh"
 
-#: gui/common/settings.js:137
+#: gui/common/settings.js:138
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Dùbhlanach"
 
-#: gui/common/settings.js:147
+#: gui/common/settings.js:148
 msgctxt "aiBehavior"
 msgid "Random"
 msgstr "Tuaireamach"
 
-#: gui/common/settings.js:152
+#: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
 msgstr ""
 
-#: gui/common/settings.js:156
+#: gui/common/settings.js:157
 msgctxt "aiBehavior"
 msgid "Defensive"
 msgstr "Dìonadach"
 
-#: gui/common/settings.js:160
+#: gui/common/settings.js:161
 msgctxt "aiBehavior"
 msgid "Aggressive"
 msgstr "Ionnsaigheach"
 
-#: gui/common/settings.js:182
+#: gui/common/settings.js:183
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
@@ -660,12 +665,12 @@ msgstr[1] "%(min)s mhionaid"
 msgstr[2] "%(min)s mionaidean"
 msgstr[3] "%(min)s mionaid"
 
-#: gui/common/settings.js:204
+#: gui/common/settings.js:205
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Gun fhois-losgaidh"
 
-#: gui/common/settings.js:205
+#: gui/common/settings.js:206
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -675,81 +680,81 @@ msgstr[1] "%(minutes)s mhionaid"
 msgstr[2] "%(minutes)s mionaidean"
 msgstr[3] "%(minutes)s mionaid"
 
-#: gui/common/settings.js:219
+#: gui/common/settings.js:220
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Streup"
 
-#: gui/common/settings.js:220
+#: gui/common/settings.js:221
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr "Chaidh an cruth-tìre agus àireamh nan cluicheadairean a shocrachadh dhan mhapa seo. Atharraich roghainn sam bith eile mar a thogras tu."
 
-#: gui/common/settings.js:225
+#: gui/common/settings.js:226
 msgctxt "map"
 msgid "Random"
 msgstr "Air thuaiream"
 
-#: gui/common/settings.js:226
+#: gui/common/settings.js:227
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "Cruthaich mapa àraidh le sgaoileadh stòrasan a bhios eadar-dhealaichte gach turas. Tagh àireamhan nan cluicheadairean agus na sgiobaidhean mar a thogras tu."
 
-#: gui/common/settings.js:230
+#: gui/common/settings.js:231
 msgctxt "map"
 msgid "Scenario"
 msgstr "Cnàmh-sgeul"
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "Chaidh an cruth-tìre agus roghainnean a’ gheama a shocrachadh dhan mhapa seo."
 
-#: gui/common/settings.js:274
+#: gui/common/settings.js:272
 msgctxt "victory condition"
 msgid "None"
 msgstr "Gun chumha"
 
-#: gui/common/settings.js:275
+#: gui/common/settings.js:273
 msgid "Endless game."
 msgstr "Geama gun chrìch."
 
-#: gui/common/settings.js:316
+#: gui/common/settings.js:314
 msgid "Unlimited"
 msgstr "Gun chrìoch"
 
-#: gui/common/settings.js:369
+#: gui/common/settings.js:367
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "IF nach aithne dhuinn"
 
-#: gui/common/settings.js:380
+#: gui/common/settings.js:378
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Duilgheas nach aithne dhuinn"
 
-#: gui/common/settings.js:391
+#: gui/common/settings.js:389
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "Tùsail"
 
-#: gui/common/settings.js:403
+#: gui/common/settings.js:401
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Seòrsa nach aithne dhuinn"
 
-#: gui/common/settings.js:415
+#: gui/common/settings.js:413
 msgctxt "map size"
 msgid "Default"
 msgstr "Bun-roghainn"
 
-#: gui/common/settings.js:427
+#: gui/common/settings.js:425
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Tomhas nach aithne dhuinn"
 
-#: gui/common/settings.js:439
+#: gui/common/settings.js:437
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Cumha nach aithne dhuinn"
@@ -1456,8 +1461,8 @@ msgid "Score"
 msgstr "Sgòr"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:151
-#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):122
+#: gui/summary/layout.js:101 gui/summary/layout.js:152
+#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):122
 msgid "Player name"
 msgstr "Ainm a’ chluicheadair"
 
@@ -1558,84 +1563,92 @@ msgid "Resources"
 msgstr "Stòrasan"
 
 #: gui/summary/layout.js:111
+msgid "Tributes"
+msgstr ""
+
+#: gui/summary/layout.js:112
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "Cìsean \n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:119
+#: gui/summary/layout.js:120
 msgid "Treasures collected"
 msgstr "Ulaidhean air an togail"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:121
 msgid "Loot"
 msgstr "Spùinn"
 
-#: gui/summary/layout.js:121
+#: gui/summary/layout.js:122
 msgid "Livestock bred"
 msgstr ""
 
-#: gui/summary/layout.js:125
+#: gui/summary/layout.js:126
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Stadastaireachd nan stòras (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):101
+#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):101
 msgid "Market"
 msgstr "Margaid"
 
-#: gui/summary/layout.js:152
+#: gui/summary/layout.js:153
 msgid "Trade income"
 msgstr "Teachd a-steach"
 
-#: gui/summary/layout.js:153
+#: gui/summary/layout.js:154
 msgid "Barter efficiency"
 msgstr "Èifeachdachd"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:159
+#: gui/summary/layout.js:160
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "Chaidh %(resourceFirstWord)s a mhalart"
 
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Eile"
 
-#: gui/summary/layout.js:184
+#: gui/summary/layout.js:185
 msgid "Kill / Death ratio"
 msgstr "Marbhadh / bàs"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:186
 msgid "Map control (peak)"
 msgstr "Smachd air a’  (as motha)"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:187
 msgid "Map control (finish)"
 msgstr "Smachd air a’ mhapa (deireannach)"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:188
 msgid "Map exploration"
 msgstr "Rùrachadh a’ mhapa"
 
-#: gui/summary/layout.js:188
+#: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
 msgstr "Co-mheas nan glasraichear"
 
-#: gui/summary/layout.js:189
+#: gui/summary/layout.js:190
 msgid "Feminization"
 msgstr "Boireannaich"
 
-#: gui/summary/layout.js:192
+#: gui/summary/layout.js:193
+msgid "Bribes"
+msgstr ""
+
+#: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr ""
 
-#: gui/summary/layout.js:355
+#: gui/summary/layout.js:357
 msgid "Team total"
 msgstr "Iomlan an sgioba"
 
@@ -1734,8 +1747,8 @@ msgid "You have won the battle!"
 msgstr "Thug thu buaidh air càch!"
 
 #: gui/summary/summary.js:499
-msgid "You have been defeated..."
-msgstr "Chaidh ruaig a chur ort…"
+msgid "You have been defeated…"
+msgstr ""
 
 #: gui/summary/summary.js:500
 msgid "You have abandoned the game."

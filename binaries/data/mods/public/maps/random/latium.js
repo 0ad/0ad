@@ -80,7 +80,7 @@ function distanceToPlayers(x, z)
 		var dz = z - playerZ[i];
 		r = Math.min(r, Math.square(dx) + Math.square(dz));
 	}
-	return sqrt(r);
+	return Math.sqrt(r);
 }
 
 function playerNearness(x, z)

@@ -863,7 +863,6 @@ function createUnknownObjects()
 
 	log("Creating forests...");
 	let [numForest, numStragglers] = getTreeCounts(...rBiomeTreeCount(1));
-
 	let types = [
 		[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
 		[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
@@ -878,7 +877,7 @@ function createUnknownObjects()
 				new LayeredPainter(type, [2]),
 				paintClass(clForest)
 			],
-			[avoidClasses(clPlayer, 20, clForest, randIntInclusive(5, 15), clHill, 0), stayClasses(clLand, 4)],
+			[avoidClasses(clPlayer, 20, clForest, randIntInclusive(5, 15), clHill, 2), stayClasses(clLand, 4)],
 			num);
 	Engine.SetProgress(50);
 
@@ -891,7 +890,7 @@ function createUnknownObjects()
 				new LayeredPainter([[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
 				paintClass(clDirt)
 			],
-			[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
+			[avoidClasses(clForest, 0, clHill, 2, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
 			patchCount);
 
 	log("Creating grass patches...");
@@ -899,7 +898,7 @@ function createUnknownObjects()
 		createAreas(
 				new ClumpPlacer(size, 0.3, 0.06, 0.5),
 			new TerrainPainter(tTier4Terrain),
-			[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
+			[avoidClasses(clForest, 0, clHill, 2, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
 			patchCount);
 
 	Engine.SetProgress(55);
@@ -908,7 +907,7 @@ function createUnknownObjects()
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
 		0,
-		[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1), stayClasses(clLand, 3)],
+		[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 2), stayClasses(clLand, 3)],
 		randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
 		100);
 
@@ -916,7 +915,7 @@ function createUnknownObjects()
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock),
 		0,
-		[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1), stayClasses(clLand, 3)],
+		[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 2), stayClasses(clLand, 3)],
 		randIntInclusive(scaleByMapSize(2, 9),scaleByMapSize(9, 40)),
 		100);
 
@@ -924,7 +923,7 @@ function createUnknownObjects()
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 		0,
-		[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 1), stayClasses(clLand, 3)],
+		[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 2), stayClasses(clLand, 3)],
 		randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
 		100);
 	Engine.SetProgress(65);
@@ -933,7 +932,7 @@ function createUnknownObjects()
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(aRockMedium, 1, 3, 0, 1)], true),
 		0,
-		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 3)],
+		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 2), stayClasses(clLand, 3)],
 		scaleByMapSize(16, 262),
 		50);
 
@@ -941,7 +940,7 @@ function createUnknownObjects()
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)], true),
 		0,
-		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 3)],
+		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 2), stayClasses(clLand, 3)],
 		scaleByMapSize(8, 131),
 		50);
 	Engine.SetProgress(70);
@@ -950,7 +949,7 @@ function createUnknownObjects()
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oMainHuntableAnimal, 5, 7, 0, 4)], true, clFood),
 		0,
-		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 2)],
+		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 2, clFood, 20), stayClasses(clLand, 2)],
 		randIntInclusive(numPlayers + 3, 5 * numPlayers + 4),
 		50);
 
@@ -958,7 +957,7 @@ function createUnknownObjects()
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oFruitBush, 5, 7, 0, 4)], true, clFood),
 		0,
-		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 2)],
+		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 2, clFood, 20), stayClasses(clLand, 2)],
 		randIntInclusive(1, 4) * numPlayers + 2,
 		50);
 	Engine.SetProgress(75);
@@ -967,7 +966,7 @@ function createUnknownObjects()
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oSecondaryHuntableAnimal, 2, 3, 0, 2)], true, clFood),
 		0,
-		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 2)],
+		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 2, clFood, 20), stayClasses(clLand, 2)],
 		randIntInclusive(numPlayers + 3, 5 * numPlayers + 4),
 		50);
 
@@ -975,7 +974,7 @@ function createUnknownObjects()
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oFish, 2, 3, 0, 2)], true, clFood),
 		0,
-		avoidClasses(clLand, 4, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20),
+		avoidClasses(clLand, 4, clForest, 0, clPlayer, 0, clHill, 2, clFood, 20),
 		randIntInclusive(15, 40) * numPlayers,
 		60);
 	Engine.SetProgress(85);
@@ -988,7 +987,7 @@ function createUnknownObjects()
 		createObjectGroupsDeprecated(
 			new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
 			0,
-			[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 0, clMetal, 6, clRock, 6, clBaseResource, 6), stayClasses(clLand, 4)],
+			[avoidClasses(clWater, 1, clForest, 1, clHill, 2, clPlayer, 0, clMetal, 6, clRock, 6, clBaseResource, 6), stayClasses(clLand, 4)],
 			num);
 
 	let planetm = currentBiome() == "tropic" ? 8 : 1;
@@ -1021,7 +1020,7 @@ function createUnknownObjects()
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]),
 		0,
-		[avoidClasses(clWater, 1, clHill, 1, clPlayer, 1, clDirt, 1), stayClasses(clLand, 3)],
+		[avoidClasses(clWater, 1, clHill, 2, clPlayer, 1, clDirt, 1), stayClasses(clLand, 3)],
 		planetm * scaleByMapSize(13, 200),
 		50);
 

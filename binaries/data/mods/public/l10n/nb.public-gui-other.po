@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-01 03:42+0000\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 02:46+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -73,12 +73,17 @@ msgstr "Helter"
 msgid "History of the %(civilization)s"
 msgstr "Historien om  %(civilization)s"
 
-#: gui/common/color.js:162
+#: gui/common/color.js:149
+#, javascript-format
+msgid "Unassigned hotkey: %(hotkeyName)s"
+msgstr ""
+
+#: gui/common/color.js:164
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "Trykk %(hotkey)s for å autofullføre spillernavn."
 
-#: gui/common/color.js:164
+#: gui/common/color.js:166
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Fane"
@@ -87,8 +92,8 @@ msgstr "Fane"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait..."
-msgstr "Åpner %(url)s\ni forvalgt nettleser. Vent…"
+" in default web browser. Please wait…"
+msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -589,57 +594,57 @@ msgstr "Brukere (%(num)s): %(users)s"
 msgid ", "
 msgstr ","
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:117
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Sandkasse"
 
-#: gui/common/settings.js:120
+#: gui/common/settings.js:121
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Veldig lett"
 
-#: gui/common/settings.js:124
+#: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Lett"
 
-#: gui/common/settings.js:128
+#: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Middels"
 
-#: gui/common/settings.js:133
+#: gui/common/settings.js:134
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Vanskelig"
 
-#: gui/common/settings.js:137
+#: gui/common/settings.js:138
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Veldig vanskelig"
 
-#: gui/common/settings.js:147
+#: gui/common/settings.js:148
 msgctxt "aiBehavior"
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: gui/common/settings.js:152
+#: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
 msgstr ""
 
-#: gui/common/settings.js:156
+#: gui/common/settings.js:157
 msgctxt "aiBehavior"
 msgid "Defensive"
 msgstr "Defensiv"
 
-#: gui/common/settings.js:160
+#: gui/common/settings.js:161
 msgctxt "aiBehavior"
 msgid "Aggressive"
 msgstr "Aggressiv"
 
-#: gui/common/settings.js:182
+#: gui/common/settings.js:183
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
@@ -647,12 +652,12 @@ msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s minutt"
 msgstr[1] "%(min)s minutter"
 
-#: gui/common/settings.js:204
+#: gui/common/settings.js:205
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Ingen våpenhvile"
 
-#: gui/common/settings.js:205
+#: gui/common/settings.js:206
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -660,81 +665,81 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s minutt"
 msgstr[1] "%(minutes)s minutter"
 
-#: gui/common/settings.js:219
+#: gui/common/settings.js:220
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Trefning"
 
-#: gui/common/settings.js:220
+#: gui/common/settings.js:221
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr "Et kart med forhåndsdefinert landskap og antall spillere. Velg andre spillinnstillinger fritt."
 
-#: gui/common/settings.js:225
+#: gui/common/settings.js:226
 msgctxt "map"
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: gui/common/settings.js:226
+#: gui/common/settings.js:227
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "Opprett et unikt kart med forskjellig ressursfordeling hver gang. Velg antall spillere og lag fritt."
 
-#: gui/common/settings.js:230
+#: gui/common/settings.js:231
 msgctxt "map"
 msgid "Scenario"
 msgstr "Scenario"
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "Et kart med forhåndsdefinert landskap og spillinnstillinger."
 
-#: gui/common/settings.js:274
+#: gui/common/settings.js:272
 msgctxt "victory condition"
 msgid "None"
 msgstr "Ingen"
 
-#: gui/common/settings.js:275
+#: gui/common/settings.js:273
 msgid "Endless game."
 msgstr "Endeløst spill"
 
-#: gui/common/settings.js:316
+#: gui/common/settings.js:314
 msgid "Unlimited"
 msgstr "Ubegrenset"
 
-#: gui/common/settings.js:369
+#: gui/common/settings.js:367
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: gui/common/settings.js:380
+#: gui/common/settings.js:378
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: gui/common/settings.js:391
+#: gui/common/settings.js:389
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "Forvalg"
 
-#: gui/common/settings.js:403
+#: gui/common/settings.js:401
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: gui/common/settings.js:415
+#: gui/common/settings.js:413
 msgctxt "map size"
 msgid "Default"
 msgstr "Standard"
 
-#: gui/common/settings.js:427
+#: gui/common/settings.js:425
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: gui/common/settings.js:439
+#: gui/common/settings.js:437
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Ukjent"
@@ -1423,8 +1428,8 @@ msgid "Score"
 msgstr "Poeng"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:151
-#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):122
+#: gui/summary/layout.js:101 gui/summary/layout.js:152
+#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):122
 msgid "Player name"
 msgstr "Spillernavn"
 
@@ -1525,84 +1530,92 @@ msgid "Resources"
 msgstr "Ressurser"
 
 #: gui/summary/layout.js:111
+msgid "Tributes"
+msgstr ""
+
+#: gui/summary/layout.js:112
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "Hyllester\n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:119
+#: gui/summary/layout.js:120
 msgid "Treasures collected"
 msgstr "Skatter samlet"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:121
 msgid "Loot"
 msgstr "Bytte"
 
-#: gui/summary/layout.js:121
+#: gui/summary/layout.js:122
 msgid "Livestock bred"
 msgstr ""
 
-#: gui/summary/layout.js:125
+#: gui/summary/layout.js:126
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Ressursstatistikk (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):101
+#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):101
 msgid "Market"
 msgstr "Marked"
 
-#: gui/summary/layout.js:152
+#: gui/summary/layout.js:153
 msgid "Trade income"
 msgstr "Handelsinntekt"
 
-#: gui/summary/layout.js:153
+#: gui/summary/layout.js:154
 msgid "Barter efficiency"
 msgstr "Byttehandel effektivitet"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:159
+#: gui/summary/layout.js:160
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s utvekslet"
 
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Diverse"
 
-#: gui/summary/layout.js:184
+#: gui/summary/layout.js:185
 msgid "Kill / Death ratio"
 msgstr "Drap / død-forhold"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:186
 msgid "Map control (peak)"
 msgstr "Kartkontroll (topp)"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:187
 msgid "Map control (finish)"
 msgstr "Kartkontroll (slutt)"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:188
 msgid "Map exploration"
 msgstr "Kartutforskning"
 
-#: gui/summary/layout.js:188
+#: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
 msgstr "Vegetarianerandel"
 
-#: gui/summary/layout.js:189
+#: gui/summary/layout.js:190
 msgid "Feminization"
 msgstr "Feminisering"
 
-#: gui/summary/layout.js:192
+#: gui/summary/layout.js:193
+msgid "Bribes"
+msgstr ""
+
+#: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "Bestikkelser\n(%(succeeded)s / %(failed)s)"
 
-#: gui/summary/layout.js:355
+#: gui/summary/layout.js:357
 msgid "Team total"
 msgstr "Totalt for lag"
 
@@ -1701,8 +1714,8 @@ msgid "You have won the battle!"
 msgstr "Du har vunnet slaget!"
 
 #: gui/summary/summary.js:499
-msgid "You have been defeated..."
-msgstr "Du har blitt beseiret…"
+msgid "You have been defeated…"
+msgstr ""
 
 #: gui/summary/summary.js:500
 msgid "You have abandoned the game."

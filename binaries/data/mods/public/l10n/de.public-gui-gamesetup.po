@@ -61,9 +61,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-05 09:04+0100\n"
-"PO-Revision-Date: 2018-01-06 09:36+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"POT-Creation-Date: 2018-01-07 00:33+0100\n"
+"PO-Revision-Date: 2018-01-07 04:01+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -217,329 +217,329 @@ msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr "Alle Karten des gewählten Kartentyps."
 
-#: gui/gamesetup/gamesetup.js:411
+#: gui/gamesetup/gamesetup.js:406
 msgid "Map Type"
 msgstr "Kartentyp"
 
-#: gui/gamesetup/gamesetup.js:412
+#: gui/gamesetup/gamesetup.js:407
 msgid "Select a map type."
 msgstr "Kartentyp wählen."
 
-#: gui/gamesetup/gamesetup.js:435
+#: gui/gamesetup/gamesetup.js:430
 msgid "Map Filter"
 msgstr "Kartenfilter"
 
-#: gui/gamesetup/gamesetup.js:436
+#: gui/gamesetup/gamesetup.js:431
 msgid "Select a map filter."
 msgstr "Kartenfilter wählen."
 
-#: gui/gamesetup/gamesetup.js:451
+#: gui/gamesetup/gamesetup.js:446
 msgid "Select Map"
 msgstr "Karte auswählen"
 
-#: gui/gamesetup/gamesetup.js:452
+#: gui/gamesetup/gamesetup.js:447
 msgid "Select a map to play on."
 msgstr "Karte zum Spielen wählen."
 
-#: gui/gamesetup/gamesetup.js:466
+#: gui/gamesetup/gamesetup.js:461
 msgid "Map Size"
 msgstr "Kartengröße"
 
-#: gui/gamesetup/gamesetup.js:467
+#: gui/gamesetup/gamesetup.js:462
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Kartengröße wählen. (Größere Karten können die Leistung reduzieren.)"
 
-#: gui/gamesetup/gamesetup.js:481
+#: gui/gamesetup/gamesetup.js:476
 msgid "Biome"
 msgstr "Biom"
 
-#: gui/gamesetup/gamesetup.js:482
+#: gui/gamesetup/gamesetup.js:477
 msgid "Select the flora and fauna."
 msgstr "Wählen Flora und Fauna."
 
-#: gui/gamesetup/gamesetup.js:497
+#: gui/gamesetup/gamesetup.js:492
 msgid "Number of Players"
 msgstr "Spieleranzahl"
 
-#: gui/gamesetup/gamesetup.js:498
+#: gui/gamesetup/gamesetup.js:493
 msgid "Select number of players."
 msgstr "Spieleranzahl wählen."
 
-#: gui/gamesetup/gamesetup.js:518
+#: gui/gamesetup/gamesetup.js:513
 msgid "Population Cap"
 msgstr "Bevölkerungslimit"
 
-#: gui/gamesetup/gamesetup.js:525
+#: gui/gamesetup/gamesetup.js:520
 msgid "Select population limit."
 msgstr "Bevölkerungslimit wählen."
 
-#: gui/gamesetup/gamesetup.js:528
+#: gui/gamesetup/gamesetup.js:523
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Warnung: Es könnte zu Leistungsproblemen kommen, wenn alle %(players)s Spieler eine Bevölkerungszahl von %(popCap)s erreichen."
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:541
 msgid "Starting Resources"
 msgstr "Startressourcen"
 
-#: gui/gamesetup/gamesetup.js:549
+#: gui/gamesetup/gamesetup.js:544
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Anfangsmenge jedes Rohstoffs: %(resources)s."
 
-#: gui/gamesetup/gamesetup.js:552
+#: gui/gamesetup/gamesetup.js:547
 msgid "Select the game's starting resources."
 msgstr "Startressourcen wählen."
 
-#: gui/gamesetup/gamesetup.js:567
+#: gui/gamesetup/gamesetup.js:562
 msgid "Ceasefire"
 msgstr "Waffenstillstand"
 
-#: gui/gamesetup/gamesetup.js:568
+#: gui/gamesetup/gamesetup.js:563
 msgid "Set time where no attacks are possible."
 msgstr "Bestimme die Zeit, in der keine Angriffe möglich sind."
 
-#: gui/gamesetup/gamesetup.js:581
+#: gui/gamesetup/gamesetup.js:576
 msgid "Victory Condition"
 msgstr "Siegbedingung"
 
-#: gui/gamesetup/gamesetup.js:582
+#: gui/gamesetup/gamesetup.js:577
 msgid "Select victory condition."
 msgstr "Siegbedingung wählen."
 
-#: gui/gamesetup/gamesetup.js:597
+#: gui/gamesetup/gamesetup.js:592
 msgid "Relic Count"
 msgstr "Reliktanzahl"
 
-#: gui/gamesetup/gamesetup.js:598
+#: gui/gamesetup/gamesetup.js:593
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "Gesamtzahl an Reliquien auf der Karte. Der Reliquien-Sieg ist am wahrscheinlichsten mit nur einer oder zwei Reliquien. Bei größeren Anzahlen ist es wichtig, die Reliquien zu erobern, um Aura-Boni zu erhalten."
 
-#: gui/gamesetup/gamesetup.js:612
+#: gui/gamesetup/gamesetup.js:607
 msgid "Relic Duration"
 msgstr "Reliktdauer"
 
-#: gui/gamesetup/gamesetup.js:613
+#: gui/gamesetup/gamesetup.js:608
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Minuten, bis der Spieler den Reliktsieg erringt."
 
-#: gui/gamesetup/gamesetup.js:627
+#: gui/gamesetup/gamesetup.js:622
 msgid "Wonder Duration"
 msgstr "Wunderdauer"
 
-#: gui/gamesetup/gamesetup.js:628
+#: gui/gamesetup/gamesetup.js:623
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr "Minuten, bis der Spieler den Wundersieg erringt."
 
-#: gui/gamesetup/gamesetup.js:642
+#: gui/gamesetup/gamesetup.js:637
 msgid "Game Speed"
 msgstr "Spielgeschwindigkeit"
 
-#: gui/gamesetup/gamesetup.js:643
+#: gui/gamesetup/gamesetup.js:638
 msgid "Select game speed."
 msgstr "Spielgeschwindigkeit wählen."
 
-#: gui/gamesetup/gamesetup.js:657
+#: gui/gamesetup/gamesetup.js:652
 msgid "Difficulty"
 msgstr "Schwierigkeitsgrad"
 
-#: gui/gamesetup/gamesetup.js:659
+#: gui/gamesetup/gamesetup.js:654
 msgid "Select the difficulty of this scenario."
 msgstr "Wähle die Schwierigkeit dieses Szenarios."
 
-#: gui/gamesetup/gamesetup.js:724
+#: gui/gamesetup/gamesetup.js:719
 msgid "Chose the civilization for this player"
 msgstr "Wähle die Zivilisation für diesen Spieler"
 
-#: gui/gamesetup/gamesetup.js:764
+#: gui/gamesetup/gamesetup.js:759
 msgid "Hero Garrison"
 msgstr "Heldengarnison"
 
-#: gui/gamesetup/gamesetup.js:765
+#: gui/gamesetup/gamesetup.js:760
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Umschalten, ob Helden einquartiert werden können."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:779
+#: gui/gamesetup/gamesetup.js:774
 msgid "Revealed Map"
 msgstr "Aufgedeckte Karte"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:782
+#: gui/gamesetup/gamesetup.js:777
 msgid "Toggle revealed map (see everything)."
 msgstr "Aufgedeckte Karte umschalten (alles sehen)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:798
+#: gui/gamesetup/gamesetup.js:793
 msgid "Explored Map"
 msgstr "Erkundete Karte"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
-#: gui/gamesetup/gamesetup.js:801
+#: gui/gamesetup/gamesetup.js:796
 msgid "Toggle explored map (see initial map)."
 msgstr "Entdeckte Karte umschalten (zeigt ursprüngliche Karte)."
 
-#: gui/gamesetup/gamesetup.js:812
+#: gui/gamesetup/gamesetup.js:807
 msgid "Disable Treasures"
 msgstr "Schätze deaktivieren"
 
-#: gui/gamesetup/gamesetup.js:813
+#: gui/gamesetup/gamesetup.js:808
 msgid "Disable all treasures on the map."
 msgstr "Deaktiviert alle Schätze auf der Karte."
 
-#: gui/gamesetup/gamesetup.js:824
+#: gui/gamesetup/gamesetup.js:819
 msgid "Disable Spies"
 msgstr "Spione deaktivieren"
 
-#: gui/gamesetup/gamesetup.js:825
+#: gui/gamesetup/gamesetup.js:820
 msgid "Disable spies during the game."
 msgstr "Spione während des Spiels deaktivieren."
 
-#: gui/gamesetup/gamesetup.js:836
+#: gui/gamesetup/gamesetup.js:831
 msgid "Teams Locked"
 msgstr "Feste Teams"
 
-#: gui/gamesetup/gamesetup.js:837
+#: gui/gamesetup/gamesetup.js:832
 msgid "Toggle locked teams."
 msgstr "Feste Teams umschalten."
 
-#: gui/gamesetup/gamesetup.js:851
+#: gui/gamesetup/gamesetup.js:846
 msgid "Last Man Standing"
 msgstr "Last Man Standing"
 
-#: gui/gamesetup/gamesetup.js:852
+#: gui/gamesetup/gamesetup.js:847
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Wähle, ob der letzte verbleibende Spieler, oder die letzte verbleibende Gruppe von Verbündeten gewinnt."
 
-#: gui/gamesetup/gamesetup.js:865
+#: gui/gamesetup/gamesetup.js:860
 msgid "Cheats"
 msgstr "Cheats"
 
-#: gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:861
 msgid "Toggle the usability of cheats."
 msgstr "Cheats aktivieren/deaktivieren."
 
-#: gui/gamesetup/gamesetup.js:879
+#: gui/gamesetup/gamesetup.js:874
 msgid "Rated Game"
 msgstr "Bewertetes Spiel"
 
-#: gui/gamesetup/gamesetup.js:880
+#: gui/gamesetup/gamesetup.js:875
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Umschalten, ob dieses Spiel für die Rangliste bewertet werden soll."
 
-#: gui/gamesetup/gamesetup.js:906
+#: gui/gamesetup/gamesetup.js:901
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr "Drücke %(hotkey)s, um die Autovervollständigung für Spielernamen oder Einstellungen anzuwenden."
 
-#: gui/gamesetup/gamesetup.js:914
+#: gui/gamesetup/gamesetup.js:909
 msgid "Return to the lobby."
 msgstr "Zurück zur Lobby."
 
-#: gui/gamesetup/gamesetup.js:915
+#: gui/gamesetup/gamesetup.js:910
 msgid "Return to the main menu."
 msgstr "Zurück zum Hauptmenü."
 
-#: gui/gamesetup/gamesetup.js:919
+#: gui/gamesetup/gamesetup.js:914
 msgid "Start Game!"
 msgstr "Spiel Starten!"
 
-#: gui/gamesetup/gamesetup.js:925
+#: gui/gamesetup/gamesetup.js:920
 msgid "Start a new game with the current settings."
 msgstr "Starte ein neues Spiel mit den aktuellen Einstellungen."
 
-#: gui/gamesetup/gamesetup.js:926
+#: gui/gamesetup/gamesetup.js:921
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "Ein neues Spiel mit den aktuellen Einstellungen starten (deaktiviert, bis alle Spieler bereit sind)"
 
-#: gui/gamesetup/gamesetup.js:980
+#: gui/gamesetup/gamesetup.js:975
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "KI konfigurieren: %(description)s."
 
-#: gui/gamesetup/gamesetup.js:1515
+#: gui/gamesetup/gamesetup.js:1510
 msgctxt "map selection"
 msgid "Random"
 msgstr "Zufällig"
 
-#: gui/gamesetup/gamesetup.js:1517
+#: gui/gamesetup/gamesetup.js:1512
 msgid "Pick any of the given maps at random."
 msgstr "Wählen eine zufällige Karte aus."
 
-#: gui/gamesetup/gamesetup.js:1549
+#: gui/gamesetup/gamesetup.js:1544
 msgctxt "biome"
 msgid "Random"
 msgstr "Zufällig"
 
-#: gui/gamesetup/gamesetup.js:1550
+#: gui/gamesetup/gamesetup.js:1545
 msgid "Pick a biome at random."
 msgstr "Wähle ein Biom zufällig."
 
-#: gui/gamesetup/gamesetup.js:1871 gui/gamesetup/gamesetup.js:1913
+#: gui/gamesetup/gamesetup.js:1866 gui/gamesetup/gamesetup.js:1908
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1876
+#: gui/gamesetup/gamesetup.js:1871
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: gui/gamesetup/gamesetup.js:1906
+#: gui/gamesetup/gamesetup.js:1901
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/gamesetup/gamesetup.js:1906
+#: gui/gamesetup/gamesetup.js:1901
 msgid "No"
 msgstr "Nein"
 
-#: gui/gamesetup/gamesetup.js:2000
+#: gui/gamesetup/gamesetup.js:1995
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s."
 
-#: gui/gamesetup/gamesetup.js:2203
+#: gui/gamesetup/gamesetup.js:2198
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "KI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2211
+#: gui/gamesetup/gamesetup.js:2206
 msgid "Unassigned"
 msgstr "Nicht zugewiesen"
 
-#: gui/gamesetup/gamesetup.js:2287
+#: gui/gamesetup/gamesetup.js:2282
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2294
+#: gui/gamesetup/gamesetup.js:2289
 msgid "Unknown Player"
 msgstr "Unbekannter Spieler"
 
-#: gui/gamesetup/gamesetup.js:2333
+#: gui/gamesetup/gamesetup.js:2328
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2334
+#: gui/gamesetup/gamesetup.js:2329
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2335
+#: gui/gamesetup/gamesetup.js:2330
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -587,8 +587,8 @@ msgid "Loading"
 msgstr "Wird geladen"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
-msgid "Loading map data. Please wait..."
-msgstr "Lade Karte. Bitte warten ..."
+msgid "Loading map data. Please wait…"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Player Name"
@@ -674,10 +674,10 @@ msgstr "Schließe das „Weitere Spieloptionen”-Fenster"
 
 #: gui/text/quotes.txt:1
 msgid ""
-"\"Zeus \\[...] established his law: wisdom comes through suffering. \\[...] "
-"So men against their will learn to practice moderation. \\[...] Such grace "
-"is harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr "„Zeus \\[...] stellte sein Gesetz auf: Weisheit erlangt man durch Leiden.\\[...] Dadurch lernen Menschen, gegen ihren WIllen, Bescheidenheit zu praktizieren. \\[...] Solch Eleganz ist rau und gewaltätig.“ – Aischylos („Orestie“, I. 176-183)"
+"\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
+"men against their will learn to practice moderation. \\[…] Such grace is "
+"harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
+msgstr ""
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -789,11 +789,11 @@ msgstr "„Sex und Schlaf alleine erinnern mich, dass ich sterblich bin.“ – 
 
 #: gui/text/quotes.txt:21
 msgid ""
-"\"It is very servile to live in luxury, but very royal to toil. \\[...] "
-"Don't you know that the end and object of conquest is to avoid the vices and"
-" infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
+"\"It is very servile to live in luxury, but very royal to toil. \\[…] Don't "
+"you know that the end and object of conquest is to avoid the vices and "
+"infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr "„Es ist sehr unterwürfig, im Luxus zu leben, aber sehr königlich, hart zu schuften. \\[…] Wisst ihr nicht, dass Zweck und Ziel der Eroberung es ist, die Laster und Schwächen der Unterworfenen zu vermeiden?” – Alexander der Große (Plutarch, „Parallelbiographien“, „Alexander”, 40. Abschnitt)"
+msgstr ""
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -921,24 +921,24 @@ msgstr "„Den, der seine Laster besiegt, nenne ich tapferer als den, der seine 
 #: gui/text/quotes.txt:40
 msgid ""
 "\"Alexander himself, plagued by thirst, with great pain and difficulty "
-"nevertheless led the army on foot \\[...]. At this time a few of the light-"
-"armed soldiers \\[...] found some water \\[...], poured the water into a "
-"helmet and carried it to him. He took it, and commending the men who brought"
-" it, immediately poured it upon the ground in the sight of all.\" - Arrian "
-"about Alexander's march through the Gedrosian desert (\"The Anabasis of "
+"nevertheless led the army on foot \\[…]. At this time a few of the light-"
+"armed soldiers \\[…] found some water \\[…], poured the water into a helmet "
+"and carried it to him. He took it, and commending the men who brought it, "
+"immediately poured it upon the ground in the sight of all.\" - Arrian about "
+"Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr "„Alexander selbst, gequält vom Durst, unter großem Schmerz und Schwierigkeiten führte er die Armee trotzdem zu Fuß \\[...]. Zu diesem Zeitpunkt ein paar der leicht bewaffneten Soldaten \\[...] fanden etwas Wasser \\[...], leerten das Wasser in einen Helm und trugen es zu ihm. Er nahm es, lobte die Männer, die es gebracht hatten und leerte es vor allen auf den Boden.“ – (Arrian, „Die Anabasis von Alexander“, 6.26)"
+msgstr ""
 
 #: gui/text/quotes.txt:41
 msgid ""
 "\"Thrusting his spear into Mithridates' face, he \\[Alexander] hurled him to"
-" the ground. Then Rhoesaces \\[a Persian] \\[...] struck him on the head "
-"with his sword. \\[...] Alexander hurled him too to the ground, piercing "
-"with his lance through his breastplate into his chest. Sphithridates \\[a "
-"Persian] had already raised his sword against Alexander from behind when "
-"Clitus \\[...] cut his arm off.\" - Arrian about the Battle of the Granicus "
-"(\"The Anabasis of Alexander\", 1.15)"
-msgstr "„Indem er einen Speer in Mithridates' Gesicht stieß, schleuderte er \\[Alexander] ihn zu Boden. Dann traf ihn Rhoesaces \\[ein Perser] \\[...] mit seinem Schwert am Kopf. \\[...] Alexander schleuderte auch ihn zu Boden und durchbohrte mit seiner Lanze durch dessen Brustharnisch seine Brust. Sphithridates \\[ein Perser] hatte bereits von hinten sein Schwert gegen Alexander erhoben, als Clitus \\[...] seinen Arm abhackte.“ – Arrian über die Schlacht am Granikos („Die Anabasis von Alexander“, 1.15)"
+" the ground. Then Rhoesaces \\[a Persian] \\[…] struck him on the head with "
+"his sword. \\[…] Alexander hurled him too to the ground, piercing with his "
+"lance through his breastplate into his chest. Sphithridates \\[a Persian] "
+"had already raised his sword against Alexander from behind when Clitus \\[…]"
+" cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
+"Anabasis of Alexander\", 1.15)"
+msgstr ""
 
 #: gui/text/quotes.txt:42
 msgid ""
@@ -1079,19 +1079,19 @@ msgstr "„Ich bin Kyros, der die Herrschaft der Perser begründete. Beneide dah
 #: gui/text/quotes.txt:61
 msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
-"of countries, \\[...] 23 lands in total.\" - Darius I. (Behistun "
-"inscription, column I, 1-6)"
-msgstr "„Ich bin Dareios, der große König, König der Könige, der König von Persien, der König der Länder, \\[...] 23 Länder insgesamt.“ – Dareios I. (Behistun-Inschrift, Spalte I, 1-6)"
+"of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
+"column I, 1-6)"
+msgstr ""
 
 #: gui/text/quotes.txt:62
 msgid ""
 "\"Phraortes was captured and brought before me. I cut off his nose, his "
 "ears, and his tongue, and I put out one eye, and he was kept in chains at my"
 " palace entrance, and all the people saw him. Then I crucified him in "
-"Ecbatana; and the men who were his foremost followers \\[...] I flayed and "
+"Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr "„Phraortes wurde gefangen genommen und zu mir gebracht. Ich schnitt ihm die Nase, die Ohren und die Zunge ab, stach ihm ein Auge aus und er wurde in Ketten beim Eingang meines Palastes belassen, und alle Leute sahen ihn. Dann kreuzigte ich ihn in Ekbatana; und den Männern, die seine treuesten Anhänger waren, \\[...] ließ ich die Haut abziehen und hing diese, ausgestopft mit Stroh, auf.“ – Dareios I. (Behistun-Inschrift, Spalte II, 32)"
+msgstr ""
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1253,14 +1253,13 @@ msgstr "„Alle Zenturios der vierten Kohorte waren erschlagen, und der Standart
 
 #: gui/text/quotes.txt:86
 msgid ""
-"\"But the enemy \\[...] displayed such great courage, that when the front "
-"rank had fallen the men behind them stood on them and continue the fight "
-"from on top of the corpses; when these were killed the pile of bodies grew "
-"higher, while the survivors used the heap as a vantage point for throwing "
-"missiles at our men, or catching our spears and throwing them back.\" - "
-"Gaius Julius Caesar about the Battle of the Sabis (\"De Bello Gallico\", II."
-" 27)"
-msgstr "„Aber der Feind \\[...] zeigte so großen Mut, dass, als die vorderste Reihe gefallen war, die Männer hinter ihnen auf jenen standen und den Kampf auf den Leichen stehend fortführten; als diese getötet waren, wurde der Leichenberg höher, während die Überlebenden den Haufen als günstige Stellung nutzten, um Geschosse auf unsere Männer zu werfen, oder unsere Speere zu fangen und zurückzuschleudern.“ – Gaius Julius Cäsar über die Schlacht an der Sambre („De Bello Galico“, II. 27)"
+"\"But the enemy \\[…] displayed such great courage, that when the front rank"
+" had fallen the men behind them stood on them and continue the fight from on"
+" top of the corpses; when these were killed the pile of bodies grew higher, "
+"while the survivors used the heap as a vantage point for throwing missiles "
+"at our men, or catching our spears and throwing them back.\" - Gaius Julius "
+"Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
+msgstr ""
 
 #: gui/text/quotes.txt:87
 msgid ""
@@ -1364,14 +1363,14 @@ msgstr "„Die Lakedämonier \\[Spartans] lieferten eine unvergessliche Schlacht
 
 #: gui/text/quotes.txt:102
 msgid ""
-"\"Being informed \\[...] that when the Barbarians discharged their arrows "
-"they obscured the light of the sun by the multitude of the arrows, he "
-"\\[Dienekes] \\[...] said that their guest \\[...] brought them very good "
-"news, for if the Medes obscured the light of the sun, the battle against "
-"them would be in the shade and not in the sun.\" - Herodotus describing "
-"Dienekes, reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
+"\"Being informed \\[…] that when the Barbarians discharged their arrows they"
+" obscured the light of the sun by the multitude of the arrows, he "
+"\\[Dienekes] \\[…] said that their guest \\[…] brought them very good news, "
+"for if the Medes obscured the light of the sun, the battle against them "
+"would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
+" reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr "„Als ihm erzählt wurde \\[...], dass die Barbaren die Sonne mit der Vielzahl ihrer abgeschossenen Pfeile die Sonne verdunkelten, sagte er \\[Dienekes] \\[...], dass ihr Gast \\[...] sehr gute Neuigkeiten brachte, denn wenn die Meder das Licht der Sonne verdunkelten, würde die Schlacht gegen sie im Schatten und nicht in der Sonne stattfinden.“ – Herodot über Dienekes, angeblich der tapferste spartanische Soldat bei den Thermopylen (Polybios, „Historien“, VII. 226)"
+msgstr ""
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1424,8 +1423,8 @@ msgid ""
 msgstr "„Es ist gut und recht, für sein Land zu sterben.“ – Horaz („Oden“, III., Ode II., 13)"
 
 #: gui/text/quotes.txt:110
-msgid "\"I am Cyrus, king of the world...\" - Inscription (Cyrus Cylinder)"
-msgstr "„Ich bin Kyros – der König des Weltreichs ...“ – Auszug der Inschrift des Kyros-Zylinder"
+msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
+msgstr ""
 
 #: gui/text/quotes.txt:111
 msgid ""
@@ -1460,12 +1459,12 @@ msgstr "„Einige wurden dort lebend entdeckt, mit durchschnittenen Schenkeln un
 
 #: gui/text/quotes.txt:115
 msgid ""
-"\"There lay thousands upon thousands of Romans \\[...]. Here and there "
-"amidst the slain rose a gory figure whose wounds had begun to throb with the"
-" chill of dawn, and was cut down by his enemies.\" - Livius, describing the "
+"\"There lay thousands upon thousands of Romans \\[…]. Here and there amidst "
+"the slain rose a gory figure whose wounds had begun to throb with the chill "
+"of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr "„Dort lagen abertausende Römer \\[...]. Hier und dort inmitten der Erschlagenen erhob sich eine blutige Gestalt, deren Wunden in der Kälte der Morgendämmerung zu schmerzen begannen, und wurde von ihren Feinden niedergemetzelt.“ – Livius, über die Nachwehen der Schlacht von Cannae, wo Hannibal den Römern die schwerste Niederlage in ihrer gesamten Geschichte beibrachte („Ab urbe condita“, XXII. 51)"
+msgstr ""
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1678,14 +1677,13 @@ msgstr "„Er \\[Alexander] fand, nichts ist unbesiegbar für den Tapferen, und 
 
 #: gui/text/quotes.txt:146
 msgid ""
-"\"One \\[...] shot an arrow at him with such accuracy and force that it "
-"pierced his breastplate and got stuck in his ribs. \\[...] Alexander "
-"recoiled and sank to his knees. \\[...] At last Alexander killed the "
-"barbarian. But he received many wounds, at last was struck on the neck with "
-"a mace, and leaned against the city wall, his eyes still fixed upon his "
-"foes.\" - Plutarch about the Mallian Campaign (\"Parallel Lives\", "
-"\"Alexander\", sec. 63)"
-msgstr "„Einer \\[...] schoss einen Pfeil mit solcher Präzision und Kraft auf ihn, dass er seinen Brustpanzer durchschlug und zwischen seinen Rippen stecken blieb.  \\[...] Alexander zuckte zurück und sank auf die Knie. \\[...] Am Ende tötete Alexander den Barbaren. Aber er erlitt viele Wunden, wurde mindestens von einer Keule im Genick getroffen, und lehnte an der Stadtmauer, seine Augen immer noch fixiert auf seine Feinde.“ – Plutarch über den Indienfeldzug („Parallelbiographien“, „Alexander“, 63. Abschnitt)"
+"\"One \\[…] shot an arrow at him with such accuracy and force that it "
+"pierced his breastplate and got stuck in his ribs. \\[…] Alexander recoiled "
+"and sank to his knees. \\[…] At last Alexander killed the barbarian. But he "
+"received many wounds, at last was struck on the neck with a mace, and leaned"
+" against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
+"about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
+msgstr ""
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1717,12 +1715,12 @@ msgstr "„Die römische Schlachtlinie ist schwer zu durchbrechen, da sie es jed
 msgid ""
 "\"The Athenian people are always in the position of a ship without a "
 "commander. Fear of the enemy or a storm make the crew be of one mind and "
-"obey the helmsman, everything goes well; but if they recover \\[...] they "
-"quarrel with each other \\[...], and the result has often been that, after "
+"obey the helmsman, everything goes well; but if they recover \\[…] they "
+"quarrel with each other \\[…], and the result has often been that, after "
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr "„Das athenische Volk ist immer in der Position eines Schiffes ohne Kapitän. Angst vor dem Feind oder ein Sturm machen aus der Mannschaft einen einzigen Geist, der dem Steuermann gehorcht, alles läuft gut; aber wenn sie sich erholen \\[...] zanken sie sich \\[...], und das Ergebnis war oft, dass, nachdem sie den Gefahren der weitesten Meere und der wildesten Stürme entkommen waren, sie ihr Schiff im Hafen oder nahe dem Ufer versenken.“ – Polybios über die athenische Verfassung („Historien“, VI. 44)"
+msgstr ""
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1956,11 +1954,11 @@ msgstr "„So wie die Welt funktioniert, ist Gerechtigkeit nur eine Angelegenhei
 #: gui/text/quotes.txt:181
 msgid ""
 "\"When the Lacedaemonians were no longer able to run after them, the "
-"skirmishers \\[...] all charged them at once, casting stones, arrows, and "
+"skirmishers \\[…] all charged them at once, casting stones, arrows, and "
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr "„Als die Lakedämonier ihnen nicht mehr nachlaufen konnten, stürmten die Plänkler \\[...] alle auf sie zu, warfen Steine, Pfeile und Wurfspieße auf den nächstbesten Mann.“ – Thukydides, über die spartanische Katastrophe in der Schlacht von Sphakteria („Der Peloponnesische Krieg“, IV. 34.2)"
+msgstr ""
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -2015,11 +2013,11 @@ msgstr "„Die Äthiopier machen ihre Götter schwarz und stupsnasig, die Thrake
 
 #: gui/text/quotes.txt:189
 msgid ""
-"\"These are the right questions to ask, in winter around the fire \\[...]: "
-"Who are you, friend? What is your land? And how old were you when the Medes "
+"\"These are the right questions to ask, in winter around the fire \\[…]: Who"
+" are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr "„Dies sind die richtigen Fragen im Winter rund um das Feuer \\[...]: Wer bist du, Freund? Was ist dein Land? Und wie alt warst du, als die Meder \\[Perser] kamen?“ – Xenophanes, wahrscheinlich über eine Strafexpedition gegen griechische Städte in Ionien (Fragment 17)"
+msgstr ""
 
 #: gui/text/quotes.txt:190
 msgid ""

@@ -315,7 +315,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 2, clHill, 1, clPlayer, 1, clPassage, 1),
 	scaleByMapSize(10, 40), 20
 );
-log ("Creating Sand blows and beautifications");
+log("Creating Sand blows and beautifications");
 for (var sandx = 0; sandx < mapSize; sandx += 4)
 	for (var sandz = 0; sandz < mapSize; sandz += 4)
 	{
