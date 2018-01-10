@@ -9,12 +9,13 @@
 # Ian Barboza <ianbarboza@gmail.com>, 2017
 # Romoaldo Cordeiro <Romoaldo.Cordeiro@gmail.com>, 2017
 # Tiago <tiago.henrique.cco@gmail.com>, 2018
+# José Hildë <jose-kurosaki@hotmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2018-01-07 00:34+0100\n"
 "PO-Revision-Date: 2018-01-07 00:34+0100\n"
-"Last-Translator: Tiago <tiago.henrique.cco@gmail.com>, 2018\n"
+"Last-Translator: José Hildë <jose-kurosaki@hotmail.com>, 2018\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/wildfire-games/teams/17418/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -32,6 +33,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Clique em uma cidadã e então, com o botão direto, em um arbusto frutífero "
+"para mandar a unidade coletar comida. Cidadãs apanham alimentos mais rápido "
+"do que outras unidades."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -39,6 +43,9 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
+"Selecione o cidadão-solado e clique com o botão direito, em uma árvore "
+"próxima ao Centro Cívico, para começar a coletar madeira. Cidadãos-soldados "
+"coletam madeira mais rápido do que as cidadãs."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -58,7 +65,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
-msgstr ""
+msgstr "Clique no ícone do HOPLITA."
 
 #: maps/tutorials/Introductory_Tutorial.js:46
 msgid ""
@@ -85,7 +92,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "Clique no ícone do Escaramuça."
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
@@ -370,6 +377,8 @@ msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"A cavalaria é boa para a caça. Selecione a sua cavalaria e ordene a caça das"
+" galinhas próximas ao Centro Cívico."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
@@ -443,12 +452,16 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Este é um conceito muito importante para se ter em mente: recursos coletados"
+" devem ser levados até um depósito para serem contabilizados, e você deve "
+"sempre tentar encurtar a distância entre o recurso e o depósito almejando "
+"aprimorar a eficiência da coleta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
-msgstr ""
+msgstr "As novas unidades treinadas irão automaticamente coletar madeira.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -624,6 +637,10 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"A Cavalaria já deve ter matado todas as galinhas. Selecione-a e explore o "
+"sudeste: lá há um lago com alguns camelos. Com o clique direito, mova a "
+"Cavalaria até onde desejas ir e, ao avistar uma cáfila, utilize o mesmo "
+"clique em um dos camelos a fim de o caçar por comida."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -633,6 +650,11 @@ msgid ""
 "sent by a rally-point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"Um campo pode ter até cinco agricultores trabalhando nele. Para adicionar "
+"coletores adicionais, selecione o Centro Cívico e configure um ponto de "
+"reunião em um campo, clicando com o botão direito do mouse sobre ele. "
+"Enquanto o campo não for construído, os novos trabalhadores enviados por um "
+"ponto de reunião ajudarão a construí-lo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -644,14 +666,16 @@ msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Agora clique três vezes no ícone da cidadã no painel inferior direito para "
+"treinar mais três fazendeiros."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "Clique sem o Shift para treinar uma única unidade,"
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Clique no ícone da Cidadã."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -716,6 +740,8 @@ msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"Se você precisa de alguns recursos (ícone avermelhado), aguarde eles serem "
+"coletados por seus trabalhadores."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -742,12 +768,19 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"Assim, devemos ordená-los a depositar sua Madeira no Centro Cívico ao longo "
+"do caminho. Para fazer isso, vamos ordenar uma fila de pedidos com shift-"
+"click: selecione seus soldados, shift-clique com o botão direito do mouse no"
+" Centro Cívico para depositar sua Madeira e, em seguida, shift-clique com o "
+"botão direito na Mina de pedra para reuni-la."
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
 msgstr ""
+"Execute uma fila de pedidos semelhante com os soldados restantes e a mina de"
+" metal ao oeste."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
