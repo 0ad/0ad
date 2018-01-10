@@ -668,6 +668,7 @@ function leaveGame(willRejoin)
 	// Before ending the game
 	let replayDirectory = Engine.GetCurrentReplayDirectory();
 	let simData = getReplayMetadata();
+	let playerID = Engine.GetPlayerID();
 
 	Engine.EndGame();
 
@@ -683,7 +684,7 @@ function leaveGame(willRejoin)
 		"sim": simData,
 		"gui": {
 			"dialog": false,
-			"assignedPlayer": Engine.GetPlayerID(),
+			"assignedPlayer": playerID,
 			"disconnected": g_Disconnected,
 			"isReplay": g_IsReplay,
 			"replayDirectory": !g_HasRejoined && replayDirectory,
