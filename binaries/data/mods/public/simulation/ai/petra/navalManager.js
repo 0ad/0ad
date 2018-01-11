@@ -608,7 +608,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 	if (!gameState.ai.HQ.navalMap || !gameState.ai.HQ.baseManagers[1])
 		return;
 
-	if (gameState.getPopulation() > this.Config.Economy.popForDock)
+	if (gameState.ai.HQ.getAccountedPopulation(gameState) > this.Config.Economy.popForDock)
 	{
 		if (queues.dock.countQueuedUnitsWithClass("NavalMarket") === 0 &&
 			!gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("NavalMarket"), API3.Filters.isFoundation())).hasEntities() &&
@@ -636,7 +636,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 		}
 	}
 
-	if (gameState.currentPhase() < 2 || gameState.getPopulation() < this.Config.Economy.popPhase2 + 15 ||
+	if (gameState.currentPhase() < 2 || gameState.ai.HQ.getAccountedPopulation(gameState) < this.Config.Economy.popPhase2 + 15 ||
 	    queues.militaryBuilding.hasQueuedUnits())
 		return;
 	if (!this.docks.filter(API3.Filters.byClass("Dock")).hasEntities() ||
