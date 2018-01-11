@@ -279,6 +279,5 @@ image =
 effect =
   element effect {
     attribute add_color { ccolor }?,
-    attribute multiply_color { ccolor }?,
     attribute grayscale { empty }?
   }
