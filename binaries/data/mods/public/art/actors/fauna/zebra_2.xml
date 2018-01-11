@@ -2,9 +2,17 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
-      <mesh>skeletal/horse.pmd</mesh>
-      <textures><texture file="skeletal/animal_zebra_2.png" name="baseTex"/></textures>
+    <variant file="quadraped/base_horse.xml" frequency="1" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
+      <textures>
+        <texture file="skeletal/animal_zebra_2.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>default.xml</material>
 </actor>
