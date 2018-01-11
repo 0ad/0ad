@@ -265,7 +265,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 setSunColor(0.6, 0.6, 0.6);
-setSunElevation(PI/ 6);
+setSunElevation(Math.PI/ 6);
 
 setWaterColor(0.02, 0.17, 0.52);
 setWaterTint(0.494, 0.682, 0.808);

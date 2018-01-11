@@ -32,9 +32,9 @@ function placeRandomPathToHeight(
 		if (Math.euclidDistance2D(position.x, position.y, target.x, target.y) < distance / 2)
 			break;
 		let angleToTarget = getAngle(position.x, position.y, target.x, target.y);
-		let angleOff = randFloat(-PI/2, PI/2);
-		position.x += distance * cos(angleToTarget + angleOff);
-		position.y += distance * sin(angleToTarget + angleOff);
+		let angleOff = randFloat(-1, 1) * Math.PI / 2;
+		position.x += distance * Math.cos(angleToTarget + angleOff);
+		position.y += distance * Math.sin(angleToTarget + angleOff);
 	}
 	return pathPoints;
 }
@@ -60,7 +60,7 @@ function placeMine(point, centerEntity)
 	{
 		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(2, 5);
-		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(decorations), 0, randFloat(0, 2 * PI));
+		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(decorations), 0, randFloat(0, 2 * Math.PI));
 	}
 }
 
@@ -122,7 +122,7 @@ let clGrove = createTileClass();
 
 function placeGrove(point)
 {
-	placeObject(point.x, point.y, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randFloat(0, 2 * PI));
+	placeObject(point.x, point.y, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randFloat(0, 2 * Math.PI));
 	let quantity = randIntInclusive(20, 30);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
@@ -134,7 +134,7 @@ function placeGrove(point)
 			objectList = groveActors;
 		let x = point.x + dist * Math.cos(angle);
 		let y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(objectList), 0, randFloat(0, 2 * PI));
+		placeObject(x, y, pickRandom(objectList), 0, randFloat(0, 2 * Math.PI));
 		createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
 	}
 }
@@ -155,7 +155,7 @@ function placeCamp(point,
 	{
 		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(1, 3);
-		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(otherEntities), 0, randFloat(0, 2 * PI));
+		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(otherEntities), 0, randFloat(0, 2 * Math.PI));
 	}
 }
 
@@ -184,7 +184,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 			objectList = groveActors;
 		x = point.x + dist * Math.cos(angle);
 		y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(objectList), 0, randFloat(0, 2 * PI));
+		placeObject(x, y, pickRandom(objectList), 0, randFloat(0, 2 * Math.PI));
 		createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
 		currentAngle += dAngle;
 	}
@@ -207,7 +207,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 		dist = randFloat(10, 15);
 		x = point.x + dist * Math.cos(angle);
 		y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(foodEntities), 0, randFloat(0, 2 * PI));
+		placeObject(x, y, pickRandom(foodEntities), 0, randFloat(0, 2 * Math.PI));
 		currentAngle += dAngle;
 	}
 }
@@ -443,7 +443,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 		g_Map.texture[x][y] = g_Map.getTextureID(texture);
 
 		if (actor)
-			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randFloat(0, 2 * PI));
+			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randFloat(0, 2 * Math.PI));
 	}
 }
 
@@ -468,7 +468,7 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	if (choice == 1)
 		placeMine(resourceSpots[i], "gaia/geology_metal_temperate_slabs");
 	if (choice == 2)
-		placeCustomFortress(resourceSpots[i].x, resourceSpots[i].y, pickRandom(fences), "other", 0, randFloat(0, 2 * PI));
+		placeCustomFortress(resourceSpots[i].x, resourceSpots[i].y, pickRandom(fences), "other", 0, randFloat(0, 2 * Math.PI));
 	if (choice == 3)
 		placeGrove(resourceSpots[i]);
 	if (choice == 4)

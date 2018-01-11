@@ -291,14 +291,14 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				t = (diffH > 1.2) ? tGrassCliff : tGrassDry;
 				if (diffH < 0.5 && randBool(0.02))
-					placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrassDry, 0, randFloat(0, 2 * PI));
+					placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrassDry, 0, randFloat(0, 2 * Math.PI));
 			}
 			else if (grassNoise > 0.61)
 			{
 				t = (diffH > 1.2 ? tGrassRock : tGrassShrubs);
 			}
 			else if (diffH < 0.5 && randBool(0.02))
-				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randFloat(0, 2 * PI));
+				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randFloat(0, 2 * Math.PI));
 		}
 
 		placeTerrain(ix, iz, t);

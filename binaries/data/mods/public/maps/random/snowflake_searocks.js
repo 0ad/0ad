@@ -399,7 +399,7 @@ if (currentBiome() == "tropic")
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(
-	[new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)]
+	[new SimpleObject(aGrassShort, 1,2, 0,1, -Math.PI / 8, Math.PI / 8)]
 );
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 4)],
@@ -410,7 +410,7 @@ Engine.SetProgress(90);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(
-	[new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)]
+	[new SimpleObject(aGrass, 2,4, 0,1.8, -Math.PI / 8, Math.PI / 8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -Math.PI / 8, Math.PI / 8)]
 );
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 4)],
@@ -429,6 +429,6 @@ createObjectGroupsDeprecated(group, 0,
 
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randFloat(0, 2 * Math.PI));
-setSunElevation(randFloat(PI/ 5, PI / 3));
+setSunElevation(Math.PI * randFloat(1/5, 1/3));
 
 ExportMap();

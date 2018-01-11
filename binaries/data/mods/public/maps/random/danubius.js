@@ -210,11 +210,11 @@ if (gallicCC)
 
 			// Create the meeting place near the shoreline at the end of the path
 			createArea(
-				new ClumpPlacer(mRadius * mRadius * PI, 0.6, 0.3, 10, mX, mZ),
+				new ClumpPlacer(mRadius * mRadius * Math.PI, 0.6, 0.3, 10, mX, mZ),
 				[new LayeredPainter([tShore, tShore], [1]), paintClass(clPath), paintClass(clRitualPlace)],
 				null);
 
-			placeObject(mX, mZ, aCampfire, 0, randFloat(0, 2 * PI));
+			placeObject(mX, mZ, aCampfire, 0, randFloat(0, 2 * Math.PI));
 
 			let femaleCount = Math.round(mRadius * 2);
 			let maleCount = Math.round(mRadius * 3);
@@ -252,11 +252,11 @@ if (gallicCC)
 			placeCustomFortress(mX, mZ, new Fortress("celt ritual goat", new Array(goatCount).fill("goat")), "celt_ritual", 0, 0);
 		}
 
-		placeObject(gX, gZ, oCivicCenter, 0, BUILDING_ORIENTATION + PI * 3/2 * i);
+		placeObject(gX, gZ, oCivicCenter, 0, BUILDING_ORIENTATION + Math.PI * 3/2 * i);
 
 		// Create the city patch
 		createArea(
-			new ClumpPlacer(gaulCityRadius * gaulCityRadius * PI, 0.6, 0.3, 10, gX, gZ),
+			new ClumpPlacer(gaulCityRadius * gaulCityRadius * Math.PI, 0.6, 0.3, 10, gX, gZ),
 			[new LayeredPainter([tShore, tShore], [1]), paintClass(clGauls)],
 			null);
 
@@ -300,7 +300,7 @@ if (gallicCC)
 			"spike_single"
 		];
 		spikes = spikes.concat(spikes);
-		placeCustomFortress(gX, gZ, new Fortress("spikes", spikes), "palisade", 0, PI);
+		placeCustomFortress(gX, gZ, new Fortress("spikes", spikes), "palisade", 0, Math.PI);
 
 		// Place treasure, potentially inside buildings
 		for (let i = 0; i < gallicCCTreasureCount; ++i)
@@ -309,7 +309,7 @@ if (gallicCC)
 				gZ + randFloat(-0.8, 0.8) * gaulCityRadius,
 				pickRandom(oTreasures),
 				0,
-				randFloat(0, 2 * PI));
+				randFloat(0, 2 * Math.PI));
 	}
 }
 Engine.SetProgress(10);
@@ -648,10 +648,10 @@ createDecoration(
 	[
 		[new SimpleObject(aBucket, 1, 1, 0, 1)],
 		[new SimpleObject(aBarrel, 1, 1, 0, 1)],
-		[new SimpleObject(aTartan, 3, 3, 4, 4, PI/4, PI/2)],
+		[new SimpleObject(aTartan, 3, 3, 4, 4, Math.PI/4, Math.PI/2)],
 		[new SimpleObject(aWheel, 2, 4, 1, 2)],
 		[new SimpleObject(aWell, 1, 1, 0, 2)],
-		[new SimpleObject(aWoodcord, 1, 2, 2, 2, PI/2, PI/2)]
+		[new SimpleObject(aWoodcord, 1, 2, 2, 2, Math.PI/2, Math.PI/2)]
 	],
 	[
 		scaleByMapSize(2, 10),

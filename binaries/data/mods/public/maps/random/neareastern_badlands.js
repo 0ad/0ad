@@ -133,7 +133,7 @@ createArea(
 Engine.SetProgress(30);
 
 log("Creating oasis wildlife...");
-var num = Math.round(PI * oRadius / 8);
+var num = Math.round(Math.PI * oRadius / 8);
 var constraint = new AndConstraint([borderClasses(clForest, 0, 3), avoidClasses(clForest, 0)]);
 var halfSize = mapSize/2;
 for (var i = 0; i < num; ++i)
@@ -142,8 +142,8 @@ for (var i = 0; i < num; ++i)
 	var angle = 2 * Math.PI / num * i;
 	do {
 		// Work outward until constraint met
-		var gx = Math.round(halfSize + r * cos(angle));
-		var gz = Math.round(halfSize + r * sin(angle));
+		var gx = Math.round(halfSize + r * Math.cos(angle));
+		var gz = Math.round(halfSize + r * Math.sin(angle));
 		++r;
 	} while (!constraint.allows(gx,gz) && r < halfSize);
 
@@ -161,15 +161,15 @@ for (var i = 0; i < num; ++i)
 }
 
 constraint = new AndConstraint([borderClasses(clForest, 15, 0), avoidClasses(clFood, 5)]);
-num = Math.round(PI * oRadius / 16);
+num = Math.round(Math.PI * oRadius / 16);
 for (var i = 0; i < num; ++i)
 {
 	var r = 0;
 	var angle = 2 * Math.PI / num * i;
 	do {
 		// Work outward until constraint met
-		var gx = Math.round(halfSize + r * cos(angle));
-		var gz = Math.round(halfSize + r * sin(angle));
+		var gx = Math.round(halfSize + r * Math.cos(angle));
+		var gz = Math.round(halfSize + r * Math.sin(angle));
 		++r;
 	} while (!constraint.allows(gx,gz) && r < halfSize);
 

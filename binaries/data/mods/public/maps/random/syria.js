@@ -247,7 +247,7 @@ createStragglerTrees(
 	stragglerTrees);
 
 setSkySet("sunny");
-setSunElevation(PI / 8);
+setSunElevation(Math.PI / 8);
 setSunRotation(randFloat(0, 2 * Math.PI));
 setSunColor(0.746, 0.718, 0.539);
 setWaterColor(0.292, 0.347, 0.691);

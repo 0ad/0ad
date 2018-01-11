@@ -268,7 +268,7 @@ for (var ix = 0; ix < mapSize; ix++)
 
 		if (h > 35 && randBool(0.1) ||
 		    h < 15 && randBool(0.05) && hillDecoClass.countMembersInRadius(ix, iz, 1) == 0)
-			placeObject(ix + randFloat(0, 1), iz + randFloat(0, 1), pickRandom(aTrees), 0, randFloat(0, 2 * PI));
+			placeObject(ix + randFloat(0, 1), iz + randFloat(0, 1), pickRandom(aTrees), 0, randFloat(0, 2 * Math.PI));
 	}
 }
 
@@ -445,7 +445,7 @@ Engine.SetProgress(95);
 
 log("Creating grass tufts...");
 group = new SimpleGroup(
-	[new SimpleObject(aGrassLarge, 1,2, 0,1, -PI/8,PI/8)]
+	[new SimpleObject(aGrassLarge, 1,2, 0,1, -Math.PI / 8, Math.PI / 8)]
 );
 createObjectGroupsByAreasDeprecated(group, 0,
 	avoidClasses(clHill, 2, clPlayer, 2),

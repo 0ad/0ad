@@ -1,4 +1,3 @@
-const PI = Math.PI;
 const TERRAIN_SEPARATOR = "|";
 const SEA_LEVEL = 20.0;
 const HEIGHT_UNITS_PER_METRE = 92;
@@ -19,8 +18,11 @@ const MIN_HEIGHT = - SEA_LEVEL;
 const TERRAIN_TILE_SIZE = Engine.GetTerrainTileSize();
 
 const MAX_HEIGHT = MAX_HEIGHT_RANGE - SEA_LEVEL;
-// Default angle for buildings
-const BUILDING_ORIENTATION = - PI / 4;
+
+/**
+ * Default angle for buildings.
+ */
+const BUILDING_ORIENTATION = -1/4 * Math.PI;
 
 const g_CivData = deepfreeze(loadCivFiles(false));
 
@@ -47,19 +49,6 @@ function sizeToFraction(s)
 function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
 {
 	return min + (max - min) * (g_Map.size - minMapSize) / (maxMapSize - minMapSize);
-}
-
-/**
- * DEPRECATED Math proxies
- */
-function cos(x)
-{
-	return Math.cos(x);
-}
-
-function sin(x)
-{
-	return Math.sin(x);
 }
 
 /**

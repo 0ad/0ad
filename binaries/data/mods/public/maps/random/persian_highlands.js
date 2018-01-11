@@ -310,7 +310,7 @@ createStragglerTrees(
 	stragglerTrees);
 
 setSunColor(1.0, 0.796, 0.374);
-setSunElevation(PI / 6);
+setSunElevation(Math.PI / 6);
 setSunRotation(-1.86532);
 
 setFogFactor(0.2);

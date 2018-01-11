@@ -314,7 +314,7 @@ Engine.SetProgress(85);
 
 log("Creating small grass tufts...");
 createObjectGroupsDeprecated(
-	new SimpleGroup([new SimpleObject(aGrassShort, 1, 2, 0, 1, -PI/8, PI/8)]),
+	new SimpleGroup([new SimpleObject(aGrassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]),
 	0,
 	avoidClasses(clWater, 2, clPlayer, 13, clDirt, 0),
 	scaleByMapSize(13, 200));
@@ -323,8 +323,8 @@ Engine.SetProgress(90);
 log("Creating large grass tufts...");
 createObjectGroupsDeprecated(
 	new SimpleGroup([
-		new SimpleObject(aGrass, 2, 4, 0, 1.8, -PI/8, PI/8),
-		new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5, -PI/8, PI/8)
+		new SimpleObject(aGrass, 2, 4, 0, 1.8, -Math.PI / 8, Math.PI / 8),
+		new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5, -Math.PI / 8, Math.PI / 8)
 	]),
 	0,
 	avoidClasses(clWater, 3, clPlayer, 13, clDirt, 1, clForest, 0),

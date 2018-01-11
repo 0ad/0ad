@@ -306,11 +306,11 @@ createStragglerTrees(
 	stragglerTrees);
 
 setSkySet("sunset 1");
-setSunRotation(randFloat(0, 2 * PI));
+setSunRotation(randFloat(0, 2 * Math.PI));
 setSunColor(0.8, 0.7, 0.6);
 setTerrainAmbientColor(0.7, 0.6, 0.7);
 setUnitsAmbientColor(0.6, 0.5, 0.6);
-setSunElevation(randFloat(PI/12, PI/7));
+setSunElevation(Math.PI * randFloat(1/12, 1/7));
 setWaterColor(0, 0.047, 0.286);
 setWaterTint(0.462, 0.756, 0.866);
 setWaterMurkiness(0.92);

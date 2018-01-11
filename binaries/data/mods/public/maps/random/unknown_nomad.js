@@ -84,11 +84,11 @@ for (var i = 0; i < numPlayers; ++i)
 			continue;
 
 		var count = civEntities[j].Count || 1;
-		var jx = ix + 2 * cos(angle);
-		var jz = iz + 2 * sin(angle);
+		var jx = ix + 2 * Math.cos(angle);
+		var jz = iz + 2 * Math.sin(angle);
 		var kAngle = randFloat(0, 2 * Math.PI);
 		for (var k = 0; k < count; ++k)
-			placeObject(jx + cos(kAngle + k*2 * Math.PI/count), jz + sin(kAngle + k*2 * Math.PI/count), civEntities[j].Template, id, randFloat(0, 2 * Math.PI));
+			placeObject(jx + Math.cos(kAngle + k*2 * Math.PI/count), jz + Math.sin(kAngle + k*2 * Math.PI/count), civEntities[j].Template, id, randFloat(0, 2 * Math.PI));
 		angle += 2 * Math.PI / 3;
 	}
 
@@ -100,18 +100,18 @@ for (var i = 0; i < numPlayers; ++i)
 			{
 				var angle = randFloat(0, 2 * Math.PI);
 				var rad = randFloat(3, 5);
-				var jx = ix + rad * cos(angle);
-				var jz = iz + rad * sin(angle);
+				var jx = ix + rad * Math.cos(angle);
+				var jz = iz + rad * Math.sin(angle);
 				placeObject(jx, jz, "gaia/special_treasure_wood", 0, randFloat(0, 2 * Math.PI));
 				var angle = randFloat(0, 2 * Math.PI);
 				var rad = randFloat(3, 5);
-				var jx = ix + rad * cos(angle);
-				var jz = iz + rad * sin(angle);
+				var jx = ix + rad * Math.cos(angle);
+				var jz = iz + rad * Math.sin(angle);
 				placeObject(jx, jz, "gaia/special_treasure_stone", 0, randFloat(0, 2 * Math.PI));
 				var angle = randFloat(0, 2 * Math.PI);
 				var rad = randFloat(3, 5);
-				var jx = ix + rad * cos(angle);
-				var jz = iz + rad * sin(angle);
+				var jx = ix + rad * Math.cos(angle);
+				var jz = iz + rad * Math.sin(angle);
 				placeObject(jx, jz, "gaia/special_treasure_metal", 0, randFloat(0, 2 * Math.PI));
 			}
 		}

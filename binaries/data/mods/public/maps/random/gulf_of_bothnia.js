@@ -310,7 +310,7 @@ createStragglerTrees(
 
 setSkySet("stormy");
 setSunRotation(randFloat(0, 2 * Math.PI));
-setSunElevation(randFloat(PI/ 6, PI / 4));
+setSunElevation(Math.PI * randFloat(1/6, 1/4));
 
 setWaterColor(0.035,0.098,0.314);
 setWaterTint(0.28, 0.3, 0.59);

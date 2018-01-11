@@ -212,7 +212,7 @@ createStragglerTrees(
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(
-	[new SimpleObject(aBush, 2,4, 0,1.8, -PI/8,PI/8)]
+	[new SimpleObject(aBush, 2,4, 0,1.8, -Math.PI / 8, Math.PI / 8)]
 );
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clPlayer, 2, clForest, 0),

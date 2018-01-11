@@ -229,7 +229,7 @@ createObjectGroupsDeprecated(
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(
-	[new SimpleObject(aBush1, 1,2, 0,1, -PI/8,PI/8)]
+	[new SimpleObject(aBush1, 1,2, 0,1, -Math.PI / 8, Math.PI / 8)]
 );
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0),
@@ -240,7 +240,7 @@ Engine.SetProgress(90);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(
-	[new SimpleObject(aBush2, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aBush1, 3,6, 1.2,2.5, -PI/8,PI/8)]
+	[new SimpleObject(aBush2, 2,4, 0,1.8, -Math.PI / 8, Math.PI / 8), new SimpleObject(aBush1, 3,6, 1.2,2.5, -Math.PI / 8, Math.PI / 8)]
 );
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
@@ -309,7 +309,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 setSunColor(0.6, 0.6, 0.6);
-setSunElevation(PI/ 3);
+setSunElevation(Math.PI / 3);
 
 setWaterColor(0.524,0.734,0.839);
 setWaterTint(0.369,0.765,0.745);

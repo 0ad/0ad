@@ -46,8 +46,8 @@ var maxPlayerRadius = Math.min(mapRadius - baseRadius, 3/4 * mapRadius);
 var playerStartLocX = [];
 var playerStartLocZ = [];
 var playerAngle = [];
-var playerAngleStart = randFloat(0, 2*PI);
-var playerAngleAddAvrg = 2*PI / numPlayers;
+var playerAngleStart = randFloat(0, 2 * Math.PI);
+var playerAngleAddAvrg = 2 * Math.PI / numPlayers;
 var playerAngleMaxOff = playerAngleAddAvrg/4;
 
 // Setup eyecandy
@@ -56,7 +56,7 @@ var radiusEC = Math.max(mapRadius/8, baseRadius/2);
 
 // Setup paths
 var pathSucsessRadius = baseRadius/2;
-var pathAngleOff = PI/2;
+var pathAngleOff = Math.PI / 2;
 var pathWidth = 5; // This is not really the path's sickness in tiles but the number of tiles in the clumbs of the path
 
 // Setup additional resources
@@ -73,7 +73,7 @@ var playerIDs = [];
 for (var i=0; i < numPlayers; i++)
 {
 	playerIDs[i] = i+1;
-	playerAngle[i] = (playerAngleStart + i*playerAngleAddAvrg + randFloat(0, playerAngleMaxOff))%(2*PI);
+	playerAngle[i] = (playerAngleStart + i * playerAngleAddAvrg + randFloat(0, playerAngleMaxOff)) % (2 * Math.PI);
 	playerStartLocX[i] = mapCenterX + Math.round(randFloat(minPlayerRadius, maxPlayerRadius) * Math.cos(playerAngle[i]));
 	playerStartLocZ[i] = mapCenterZ + Math.round(randFloat(minPlayerRadius, maxPlayerRadius) * Math.sin(playerAngle[i]));
 }
@@ -155,8 +155,8 @@ for (var i = 0; i < maxI; i++)
 
 		// Prepare path placement
 		var angle = getAngle(x, z, targetX, targetZ);
-		x += Math.round(pathSucsessRadius*cos(angle));
-		z += Math.round(pathSucsessRadius*sin(angle));
+		x += Math.round(pathSucsessRadius * Math.cos(angle));
+		z += Math.round(pathSucsessRadius * Math.sin(angle));
 		var targetReached = false;
 		var tries = 0;
 		// Placing paths
@@ -170,13 +170,13 @@ for (var i = 0; i < maxI; i++)
 			angle = getAngle(x, z, targetX, targetZ);
 			if (doublePaths == true) // Bended paths
 			{
-				x += Math.round(cos(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
-				z += Math.round(sin(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
+				x += Math.round(Math.cos(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
+				z += Math.round(Math.sin(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
 			}
 			else // Straight paths
 			{
-				x += Math.round(cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
-				z += Math.round(sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
+				x += Math.round(Math.cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
+				z += Math.round(Math.sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
 			}
 			if (Math.euclidDistance2D(x, z, targetX, targetZ) < pathSucsessRadius)
 				targetReached = true;
@@ -194,12 +194,12 @@ for (var i=0; i < numPlayers; i++)
 	for (var rIndex = 0; rIndex < resourcePerPlayer.length; rIndex++)
 	{
 		if (numPlayers > 1)
-			var angleDist = (playerAngle[(i+1)%numPlayers] - playerAngle[i] + 2*PI)%(2*PI);
+			var angleDist = (playerAngle[(i+1)%numPlayers] - playerAngle[i] + 2 * Math.PI) % (2 * Math.PI);
 		else
-			var angleDist = 2*PI;
-		var placeX = Math.round(mapCenterX + resourceRadius*cos(playerAngle[i] + (rIndex+1)*angleDist/(resourcePerPlayer.length+1)));
-		var placeZ = Math.round(mapCenterX + resourceRadius*sin(playerAngle[i] + (rIndex+1)*angleDist/(resourcePerPlayer.length+1)));
-		placeObject(placeX, placeZ, resourcePerPlayer[rIndex], 0, randFloat(0, 2*PI));
+			var angleDist = 2 * Math.PI;
+		var placeX = Math.round(mapCenterX + resourceRadius * Math.cos(playerAngle[i] + (rIndex+1)*angleDist/(resourcePerPlayer.length+1)));
+		var placeZ = Math.round(mapCenterX + resourceRadius * Math.sin(playerAngle[i] + (rIndex+1)*angleDist/(resourcePerPlayer.length+1)));
+		placeObject(placeX, placeZ, resourcePerPlayer[rIndex], 0, randFloat(0, 2 * Math.PI));
 		var placer = new ClumpPlacer(40, 1/2, 1/8, 1, placeX, placeZ);
 		var painter = [new LayeredPainter([terrainHillBorder, terrainHill], [1]), new ElevationPainter(randFloat(1, 2)), paintClass(clHill)];
 		createArea(placer, painter);
@@ -209,7 +209,7 @@ for (var i=0; i < numPlayers; i++)
 Engine.SetProgress(60);
 
 // Place eyecandy
-placeObject(mapCenterX, mapCenterZ, templateEC, 0, randFloat(0, 2*PI));
+placeObject(mapCenterX, mapCenterZ, templateEC, 0, randFloat(0, 2 * Math.PI));
 var placer = new ClumpPlacer(radiusEC*radiusEC, 1/2, 1/8, 1, mapCenterX, mapCenterZ);
 var painter = [new LayeredPainter([terrainHillBorder, terrainHill], [radiusEC/4]), new ElevationPainter(randFloat(1, 2)), paintClass(clHill)];
 createArea(placer, painter);
@@ -245,8 +245,8 @@ for (var x = 0; x < mapSize; x++)
 		}
 
 		// General hight map
-		var hVarMiddleHill = mapSize/64 * (1+cos(3*PI/2 * radius/mapRadius));
-		var hVarHills = 5*(1+sin(x/10)*sin(z/10));
+		var hVarMiddleHill = mapSize / 64 * (1 + Math.cos(3/2 * Math.PI * radius / mapRadius));
+		var hVarHills = 5 * (1 + Math.sin(x / 10) * Math.sin(z / 10));
 		setHeight(x, z, getHeight(x, z) + hVarMiddleHill + hVarHills + 1);
 	}
 }

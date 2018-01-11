@@ -286,8 +286,8 @@ function placeLine(teamsArray, distance, groupedDistance, startAngle)
 		{
 			players[teamsArray[i][p]] = {
 				"id": teamsArray[i][p],
-				"x": 0.5 + (safeDist + p * groupedDistance) * cos(teamAngle),
-				"z": 0.5 + (safeDist + p * groupedDistance) * sin(teamAngle)
+				"x": 0.5 + (safeDist + p * groupedDistance) * Math.cos(teamAngle),
+				"z": 0.5 + (safeDist + p * groupedDistance) * Math.sin(teamAngle)
 			};
 			createBase(players[teamsArray[i][p]], false);
 		}
@@ -313,8 +313,8 @@ function placeRadial(playerIDs, distance, startAngle)
 		let angle = startAngle + i * 2 * Math.PI / numPlayers;
 		players[i] = {
 			"id": playerIDs[i],
-			"x": 0.5 + distance * cos(angle),
-			"z": 0.5 + distance * sin(angle)
+			"x": 0.5 + distance * Math.cos(angle),
+			"z": 0.5 + distance * Math.sin(angle)
 		};
 		createBase(players[i]);
 	}
@@ -338,8 +338,8 @@ function placeRandom(playerIDs)
 		// Distance from the center of the map in percent
 		// Mapsize being used as a diameter, so 0.5 is the edge of the map
 		var distance = randFloat(0, 0.42);
-		var x = 0.5 + distance * cos(playerAngle);
-		var z = 0.5 + distance * sin(playerAngle);
+		var x = 0.5 + distance * Math.cos(playerAngle);
+		var z = 0.5 + distance * Math.sin(playerAngle);
 
 		// Minimum distance between initial bases must be a quarter of the map diameter
 		if (locations.some(loc => Math.euclidDistance2D(x, z, loc.x, loc.z) < 0.25))
@@ -447,8 +447,8 @@ function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 	for (let i = 0; i < teamsArray.length; ++i)
 	{
 		var teamAngle = startAngle + (i + 1) * 2 * Math.PI / teamsArray.length;
-		var fractionX = 0.5 + distance * cos(teamAngle);
-		var fractionZ = 0.5 + distance * sin(teamAngle);
+		var fractionX = 0.5 + distance * Math.cos(teamAngle);
+		var fractionZ = 0.5 + distance * Math.sin(teamAngle);
 		var teamGroupDistance = groupedDistance;
 
 		// If we have a team of above average size, make sure they're spread out
@@ -467,8 +467,8 @@ function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 			var angle = startAngle + (p + 1) * 2 * Math.PI / teamsArray[i].length;
 			players[teamsArray[i][p]] = {
 				"id": teamsArray[i][p],
-				"x": fractionX + teamGroupDistance * cos(angle),
-				"z": fractionZ + teamGroupDistance * sin(angle)
+				"x": fractionX + teamGroupDistance * Math.cos(angle),
+				"z": fractionZ + teamGroupDistance * Math.sin(angle)
 			};
 			createBase(players[teamsArray[i][p]], false);
 		}
@@ -519,8 +519,8 @@ function randomPlayerPlacementAt(teamsArray, singleBases, strongholdBases, heigh
 
 				players[p] = {
 					"id": team[p].id,
-					"x": x + groupedDistance * cos(angle),
-					"z": z + groupedDistance * sin(angle)
+					"x": x + groupedDistance * Math.cos(angle),
+					"z": z + groupedDistance * Math.sin(angle)
 				};
 
 				createBase(players[p], false);

@@ -267,12 +267,12 @@ if (randBool(1/3))
 	setSunColor(0.8, 0.7, 0.6);
 	setTerrainAmbientColor(0.7, 0.6, 0.7);
 	setUnitsAmbientColor(0.6, 0.5, 0.6);
-	setSunElevation(randFloat(PI/24, PI/7));
+	setSunElevation(Math.PI * randFloat(1/24, 1/7));
 }
 else
 {
 	setSkySet(pickRandom(["cumulus", "rain", "mountainous", "overcast", "rain", "stratus"]));
-	setSunElevation(randFloat(PI/9, PI/7));
+	setSunElevation(Math.PI * randFloat(1/9, 1/7));
 }
 
 setSunRotation(randFloat(0, 2 * Math.PI));

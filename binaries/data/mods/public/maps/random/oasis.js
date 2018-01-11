@@ -79,9 +79,9 @@ for (let i = 0; i < numPlayers; ++i)
 
 	// Creating the water patch explaining the forest
 	do {
-		var watAngle = forestAngle + randFloat((PI/3), (5*PI/3));
-		var watX = Math.round(forestX + 6 * cos(watAngle));
-		var watY = Math.round(forestY + 6 * sin(watAngle));
+		var watAngle = forestAngle + randFloat(1/3, 5/3) * Math.PI;
+		var watX = Math.round(forestX + 6 * Math.cos(watAngle));
+		var watY = Math.round(forestY + 6 * Math.sin(watAngle));
 
 		createObjectGroup(
 			new SimpleGroup(
@@ -134,7 +134,7 @@ placePlayerBases({
 			{ "template": eStoneMine },
 		],
 		"distance": defaultPlayerBaseRadius(),
-		"maxAngle": PI / 2,
+		"maxAngle": Math.PI *  / 2,
 		"groupElements": shuffleArray([aBushA, aBushB, ePalmShort, ePalmTall]).map(t => new SimpleObject(t, 1, 1, 3, 4))
 	}
 	// Starting trees were set above
@@ -183,10 +183,10 @@ if (mapSize > 150 && randBool())
 {
 	log("Creating path though the oasis...");
 	var pAngle = randFloat(0, 2 * Math.PI);
-	var px = Math.round(fx) + Math.round(fractionToTiles(0.13 * cos(pAngle)));
-	var py = Math.round(fz) + Math.round(fractionToTiles(0.13 * sin(pAngle)));
-	var pex = Math.round(fx) + Math.round(fractionToTiles(0.13 * -cos(pAngle)));
-	var pey = Math.round(fz) + Math.round(fractionToTiles(0.13 * sin(pAngle + PI)));
+	var px = Math.round(fx) + Math.round(fractionToTiles(0.13 * Math.cos(pAngle)));
+	var py = Math.round(fz) + Math.round(fractionToTiles(0.13 * Math.sin(pAngle)));
+	var pex = Math.round(fx) + Math.round(fractionToTiles(0.13 * -Math.cos(pAngle)));
+	var pey = Math.round(fz) + Math.round(fractionToTiles(0.13 * Math.sin(pAngle + Math.PI)));
 	createArea(
 		new PathPlacer(px, py, pex, pey, scaleByMapSize(7, 18), 0.4, 1, 0.2, 0),
 		[
@@ -250,8 +250,8 @@ for (var p = 0; p < scaleByMapSize(5,30); p++)
 {
 	var aAngle = randFloat(0, 2 * Math.PI);
 	var aDist = fractionToTiles(0.11);
-	var animX = Math.round(fx + aDist * cos(aAngle));
-	var animY = Math.round(fz + aDist * sin(aAngle));
+	var animX = Math.round(fx + aDist * Math.cos(aAngle));
+	var animY = Math.round(fz + aDist * Math.sin(aAngle));
 	group = new RandomGroup(
 		[new SimpleObject(eLion, 1,2, 0,4),new SimpleObject(eLioness, 1,2, 2,4),new SimpleObject(eGazelle, 4,6, 1,5),new SimpleObject(eCamel, 1,2, 1,5)], true, clFood, animX,animY);
 	createObjectGroup(group, 0);
@@ -308,7 +308,7 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 
 setSkySet("sunny");
 setSunColor(0.914,0.827,0.639);
-setSunRotation(PI/3);
+setSunRotation(Math.PI/3);
 setSunElevation(0.5);
 setWaterColor(0, 0.227, 0.843);
 setWaterTint(0, 0.545, 0.859);

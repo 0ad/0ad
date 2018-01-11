@@ -92,12 +92,12 @@ var maxPlayerRadius = Math.min(mapRadius - baseRadius, 3/4 * mapRadius);
 
 var playerStartLocX = [];
 var playerStartLocZ = [];
-var playerAngleStart = randFloat(0, 2*PI);
-var playerAngleAddAvrg = 2*PI / numPlayers;
+var playerAngleStart = randFloat(0, 2 * Math.PI);
+var playerAngleAddAvrg = 2 * Math.PI / numPlayers;
 var playerAngleMaxOff = playerAngleAddAvrg/4;
 
 var pathSucsessRadius = baseRadius/2;
-var pathAngleOff = PI/2;
+var pathAngleOff = Math.PI/2;
 var pathWidth = 10; // This is not really the path's thickness in tiles but the number of tiles in the clumbs of the path
 
 var resourceRadius = 2/3 * mapRadius;
@@ -278,8 +278,8 @@ for (var i = 0; i < maxI; i++)
 
 		// Prepare path placement
 		var angle = getAngle(x, z, targetX, targetZ);
-		x += Math.round(pathSucsessRadius*cos(angle));
-		z += Math.round(pathSucsessRadius*sin(angle));
+		x += Math.round(pathSucsessRadius * Math.cos(angle));
+		z += Math.round(pathSucsessRadius * Math.sin(angle));
 
 		var targetReached = false;
 		var tries = 0;
@@ -296,13 +296,13 @@ for (var i = 0; i < maxI; i++)
 			angle = getAngle(x, z, targetX, targetZ);
 			if (doublePaths === true) // Bended paths
 			{
-				x += Math.round(cos(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
-				z += Math.round(sin(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
+				x += Math.round(Math.cos(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
+				z += Math.round(Math.sin(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
 			}
 			else // Straight paths
 			{
-				x += Math.round(cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
-				z += Math.round(sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
+				x += Math.round(Math.cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
+				z += Math.round(Math.sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
 			}
 
 			if (Math.euclidDistance2D(x, z, targetX, targetZ) < pathSucsessRadius)

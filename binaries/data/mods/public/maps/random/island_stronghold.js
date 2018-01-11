@@ -5,8 +5,8 @@ function getPlayerTileCoordinates(playerIdx, teamIdx, fractionX, fractionZ)
 {
 	let playerAngle = startAngle + (playerIdx+1) * 2 * Math.PI / teams[teamIdx].length;
 
-	let fx = fractionToTiles(fractionX + 0.05 * cos(playerAngle));
-	let fz = fractionToTiles(fractionZ + 0.05 * sin(playerAngle));
+	let fx = fractionToTiles(fractionX + 0.05 * Math.cos(playerAngle));
+	let fz = fractionToTiles(fractionZ + 0.05 * Math.sin(playerAngle));
 
 	return [playerAngle, fx, fz, Math.round(fx), Math.round(fz)];
 }
@@ -92,8 +92,8 @@ for (let i = 0; i < teams.length; ++i)
 
 	++teamNo;
 	let teamAngle = startAngle + teamNo * 2 * Math.PI / numTeams;
-	let fractionX = 0.5 + 0.3 * cos(teamAngle);
-	let fractionZ = 0.5 + 0.3 * sin(teamAngle);
+	let fractionX = 0.5 + 0.3 * Math.cos(teamAngle);
+	let fractionZ = 0.5 + 0.3 * Math.sin(teamAngle);
 	let teamX = fractionToTiles(fractionX);
 	let teamZ = fractionToTiles(fractionZ);
 
@@ -120,11 +120,11 @@ for (let i = 0; i < teams.length; ++i)
 	for (let p = 0; p < teams[i].length; ++p)
 	{
 		let [playerAngle, fx, fz, ix, iz] = getPlayerTileCoordinates(p, i, fractionX, fractionZ);
-		let mAngle = randFloat(playerAngle - PI / teams[i].length, playerAngle + PI / teams[i].length);
+		let mAngle = randFloat(playerAngle - Math.PI / teams[i].length, playerAngle + Math.PI / teams[i].length);
 
 		// Metal
-		let mX = Math.round(fx + g_InitialMineDistance * cos(mAngle));
-		let mZ = Math.round(fz + g_InitialMineDistance * sin(mAngle));
+		let mX = Math.round(fx + g_InitialMineDistance * Math.cos(mAngle));
+		let mZ = Math.round(fz + g_InitialMineDistance * Math.sin(mAngle));
 		let group = new SimpleGroup(
 			[new SimpleObject(oMetalLarge, g_InitialMines, g_InitialMines, 0, 4)],
 			true, clBaseResource, mX, mZ
@@ -132,8 +132,8 @@ for (let i = 0; i < teams.length; ++i)
 		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 4), stayClasses(clLand, 2)]);
 
 		// Stone
-		let sX = Math.round(fx + g_InitialMineDistance * cos(mAngle + PI/4));
-		let sZ = Math.round(fz + g_InitialMineDistance * sin(mAngle + PI/4));
+		let sX = Math.round(fx + g_InitialMineDistance * Math.cos(mAngle + Math.PI / 4));
+		let sZ = Math.round(fz + g_InitialMineDistance * Math.sin(mAngle + Math.PI / 4));
 		group = new SimpleGroup(
 			[new SimpleObject(oStoneLarge, g_InitialMines, g_InitialMines, 0, 4)],
 			true, clBaseResource, sX, sZ
@@ -155,10 +155,10 @@ for (let i = 0; i < teams.length; ++i)
 		});
 
 		// create initial berry bushes
-		let bbAngle = randFloat(PI, PI*1.5);
+		let bbAngle = Math.PI * randFloat(1, 1.5);
 		let bbDist = 10;
-		let bbX = Math.round(fx + bbDist * cos(bbAngle));
-		let bbZ = Math.round(fz + bbDist * sin(bbAngle));
+		let bbX = Math.round(fx + bbDist * Math.cos(bbAngle));
+		let bbZ = Math.round(fz + bbDist * Math.sin(bbAngle));
 		let group = new SimpleGroup(
 			[new SimpleObject(oFruitBush, 5, 5, 0, 3)],
 			true, clBaseResource, bbX, bbZ
@@ -171,8 +171,8 @@ for (let i = 0; i < teams.length; ++i)
 		for (let x = 0; x < tries; ++x)
 		{
 			let tAngle = playerAngle + randFloat(-1, 1) * 2 * Math.PI / teams[i].length;
-			let tX = Math.round(fx + tDist * cos(tAngle));
-			let tZ = Math.round(fz + tDist * sin(tAngle));
+			let tX = Math.round(fx + tDist * Math.cos(tAngle));
+			let tZ = Math.round(fz + tDist * Math.sin(tAngle));
 
 			group = new SimpleGroup(
 				[new SimpleObject(oTree2, g_InitialTrees, g_InitialTrees, 0, 7)],
@@ -459,7 +459,7 @@ createObjectGroupsDeprecated(group, 0,
 log("Creating small grass tufts...");
 let planetm = currentBiome() == "tropic" ? 8 : 1;
 group = new SimpleGroup(
-	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -PI / 8, PI / 8)]
+	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]
 );
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 3)],
@@ -470,7 +470,7 @@ Engine.SetProgress(95);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(
-	[new SimpleObject(aGrass, 2, 4, 0, 1.8, -PI / 8, PI / 8), new SimpleObject(aGrassShort, 3, 6, 1.2,2.5, -PI / 8, PI / 8)]
+	[new SimpleObject(aGrass, 2, 4, 0, 1.8, -Math.PI / 8, Math.PI / 8), new SimpleObject(aGrassShort, 3, 6, 1.2,2.5, -Math.PI / 8, Math.PI / 8)]
 );
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 5)],
@@ -482,7 +482,7 @@ paintTerrainBasedOnHeight(getMapBaseHeight(), 1, 3, tWater);
 
 setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
 setSunRotation(randFloat(0, 2 * Math.PI));
-setSunElevation(randFloat(PI/5, PI/3));
+setSunElevation(randFloat(1/5, 1/3) * Math.PI);
 setWaterWaviness(2);
 
 Engine.SetProgress(100);

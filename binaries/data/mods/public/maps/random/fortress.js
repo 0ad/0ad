@@ -76,35 +76,35 @@ for (var i=0; i < numPlayers; i++)
 	// Create treasure
 	var bbAngle = BUILDING_ORIENTATION;
 	var bbDist = 10;
-	var bbX = Math.round(playerX[i] + bbDist * cos(bbAngle));
-	var bbZ = Math.round(playerZ[i] + bbDist * sin(bbAngle));
+	var bbX = Math.round(playerX[i] + bbDist * Math.cos(bbAngle));
+	var bbZ = Math.round(playerZ[i] + bbDist * Math.sin(bbAngle));
 	var group = new SimpleGroup(
 		[new SimpleObject(oFoodTreasure, 5,5, 0,2)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
 
-	bbAngle += PI/2;
-	var bbX = Math.round(playerX[i] + bbDist * cos(bbAngle));
-	var bbZ = Math.round(playerZ[i] + bbDist * sin(bbAngle));
+	bbAngle += Math.PI / 2;
+	var bbX = Math.round(playerX[i] + bbDist * Math.cos(bbAngle));
+	var bbZ = Math.round(playerZ[i] + bbDist * Math.sin(bbAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oWoodTreasure, 5,5, 0,2)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
 
-	bbAngle += PI/2;
-	var bbX = Math.round(playerX[i] + bbDist * cos(bbAngle));
-	var bbZ = Math.round(playerZ[i] + bbDist * sin(bbAngle));
+	bbAngle += Math.PI / 2;
+	var bbX = Math.round(playerX[i] + bbDist * Math.cos(bbAngle));
+	var bbZ = Math.round(playerZ[i] + bbDist * Math.sin(bbAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oMetalTreasure, 3,3, 0,2)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
 
-	bbAngle += PI/2;
-	var bbX = Math.round(playerX[i] + bbDist * cos(bbAngle));
-	var bbZ = Math.round(playerZ[i] + bbDist * sin(bbAngle));
+	bbAngle += Math.PI / 2;
+	var bbX = Math.round(playerX[i] + bbDist * Math.cos(bbAngle));
+	var bbZ = Math.round(playerZ[i] + bbDist * Math.sin(bbAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStoneTreasure, 2,2, 0,2)],
 		true, clBaseResource, bbX, bbZ

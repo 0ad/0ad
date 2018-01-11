@@ -97,8 +97,9 @@ for (var ix = 0; ix < mapSize; ix++)
 		if (g_Map.inMapBounds(ix,iz))
 		{
 			placeTerrain(ix, iz, tGrass);
-			setHeight(ix,iz,baseHeight +randFloat(-1,1) + scaleByMapSize(1,3)*(cos(ix/scaleByMapSize(5,30))+sin(iz/scaleByMapSize(5,30))));
-			baseHeights[ix].push( baseHeight +randFloat(-1,1) + scaleByMapSize(1,3)*(cos(ix/scaleByMapSize(5,30))+sin(iz/scaleByMapSize(5,30)))  );
+			let height = baseHeight + randFloat(-1, 1) + scaleByMapSize(1, 3) * (Math.cos(ix / scaleByMapSize(5, 30)) + Math.sin(iz / scaleByMapSize(5, 30)));
+			setHeight(ix, iz, height);
+			baseHeights[ix].push(height);
 		}
 		else
 			baseHeights[ix].push(-100);
@@ -164,10 +165,10 @@ for (var i = 0; i < NumOfIterations; i++)
 	for (var dist = 0; dist < width*3; dist++)
 	{
 		var okDist = dist/3;
-		var S1x = Math.round((mountainStart.x * (1-position) + mountainEnd.x*position) + randomNess*cos(position*3.14*4) + cos(MoutainAngle+PI/2)*okDist);
-		var S1z = Math.round((mountainStart.y * (1-position) + mountainEnd.y*position) + randomNess*sin(position*3.14*4) + sin(MoutainAngle+PI/2)*okDist);
-		var S2x = Math.round((mountainStart.x * (1-position) + mountainEnd.x*position) + randomNess*cos(position*3.14*4) + cos(MoutainAngle-PI/2)*okDist);
-		var S2z = Math.round((mountainStart.y * (1-position) + mountainEnd.y*position) + randomNess*sin(position*3.14*4) + sin(MoutainAngle-PI/2)*okDist);
+		var S1x = Math.round((mountainStart.x * (1 - position) + mountainEnd.x * position) + randomNess * Math.cos(position * Math.PI * 4) + Math.cos(MoutainAngle + Math.PI / 2) * okDist);
+		var S1z = Math.round((mountainStart.y * (1 - position) + mountainEnd.y * position) + randomNess * Math.sin(position * Math.PI * 4) + Math.sin(MoutainAngle + Math.PI / 2) * okDist);
+		var S2x = Math.round((mountainStart.x * (1 - position) + mountainEnd.x * position) + randomNess * Math.cos(position * Math.PI * 4) + Math.cos(MoutainAngle - Math.PI / 2) * okDist);
+		var S2z = Math.round((mountainStart.y * (1 - position) + mountainEnd.y * position) + randomNess * Math.sin(position * Math.PI * 4) + Math.sin(MoutainAngle - Math.PI / 2) * okDist);
 
 		// complicated sigmoid
 		// Ranges is 0-1, FormX is 0-1 too.
@@ -298,7 +299,7 @@ createAreas(
 
 log("Creating forests...");
 var types = [[tForestTransition, pForestLandVeryLight, pForestLandLight, pForestLand]];
-var size = scaleByMapSize(40,115)*PI;
+var size = scaleByMapSize(40, 115) * Math.PI;
 var num = Math.floor(scaleByMapSize(8,40) / types.length);
 for (let type of types)
 	createAreas(
@@ -397,12 +398,12 @@ Engine.SetProgress(70);
 
 // making more in dirt areas so as to appear different
 log("Creating small grass tufts...");
-var group = new SimpleGroup( [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)] );
+var group = new SimpleGroup( [new SimpleObject(aGrassShort, 1,2, 0,1, -Math.PI / 8, Math.PI / 8)] );
 createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 2, clHill, 2, clPlayer, 5, clDirt, 0, clPyrenneans,2), scaleByMapSize(13, 200) );
 createObjectGroupsDeprecated(group, 0, stayClasses(clDirt,1), scaleByMapSize(13, 200),10);
 
 log("Creating large grass tufts...");
-group = new SimpleGroup( [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)] );
+group = new SimpleGroup( [new SimpleObject(aGrass, 2,4, 0,1.8, -Math.PI / 8, Math.PI / 8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -Math.PI / 8, Math.PI / 8)] );
 createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 3, clHill, 2, clPlayer, 5, clDirt, 1, clForest, 0, clPyrenneans,2), scaleByMapSize(13, 200) );
 createObjectGroupsDeprecated(group, 0, stayClasses(clDirt,1), scaleByMapSize(13, 200),10);
 Engine.SetProgress(75);
@@ -453,7 +454,7 @@ log("Creating fish...");
 group = new SimpleGroup( [new SimpleObject(oFish, 2,3, 0,2)], true, clFood );
 createObjectGroupsDeprecated(group, 0, [avoidClasses(clFood, 15), stayClasses(clWater, 6)], 20 * numPlayers, 60 );
 
-setSunElevation(randFloat(PI/5, PI / 3));
+setSunElevation(Math.PI * randFloat(1/5, 1/3));
 setSunRotation(randFloat(0, 2 * Math.PI));
 
 setSkySet("cumulus");
