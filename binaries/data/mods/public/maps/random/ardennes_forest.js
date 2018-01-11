@@ -90,7 +90,7 @@ for (var ix = 0; ix < mapSize; ix++)
 		}
 	}
 
-var [playerIDs, playerX, playerZ] = radialPlayerPlacement(0.3);
+var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.3);
 
 function distanceToPlayers(x, z)
 {
@@ -119,78 +119,37 @@ function playerNearness(x, z)
 
 Engine.SetProgress(10);
 
-for (var i=0; i < numPlayers; i++)
-{
-	var id = playerIDs[i];
-	log("Creating base for player " + id + "...");
-
-	// get the x and z in tiles
-	var fx = fractionToTiles(playerX[i]);
-	var fz = fractionToTiles(playerZ[i]);
-	var ix = Math.round(fx);
-	var iz = Math.round(fz);
-
-	placeCivDefaultEntities(fx, fz, id);
-
-	var citySize = 250;
-
-	// Create the city patch
-	var placer = new ClumpPlacer(citySize * 0.4, 0.6, 0.05, 10, ix, iz);
-	var painter = new TerrainPainter([tCity]);
-	createArea(placer, painter, null);
-
-	// Create starter animals
-	placeDefaultChicken(fx, fz, clBaseResource, undefined, oPig);
-
-	// Create starter berry bushes
-	var bbAngle = randFloat(0, 2 * Math.PI);
-	var bbDist = 12;
-	var bbX = Math.round(fx + bbDist * cos(bbAngle));
-	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oBerryBush, 3,3, 0,3)],
-		true, clBaseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0);
-
-	// Create starter metal mine
-	var mAngle = bbAngle;
-	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
-	{
-		mAngle = randFloat(0, 2 * Math.PI);
+placePlayerBases({
+	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"BaseResourceClass": clBaseResource,
+	// Playerclass marked below
+	"CityPatch": {
+		"outerTerrain": tCity,
+		"innerTerrain": tCity,
+		"radius": scaleByMapSize(5, 6),
+		"smoothness": 0.05
+	},
+	"Chicken": {
+		"template": oPig
+	},
+	"Berries": {
+		"template": oBerryBush,
+		"minCount": 3,
+		"maxCount": 3
+	},
+	"Mines": {
+		"types": [
+			{ "template": oMetalLarge },
+			{ "template": oStoneLarge }
+		],
+		"distance": 16
+	},
+	"Trees": {
+		"template": oOak,
+		"count": 2
 	}
-	var mDist = bbDist + 4;
-	var mX = Math.round(fx + mDist * cos(mAngle));
-	var mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oMetalLarge, 1,1, 0,0)],
-		true, clBaseResource, mX, mZ
-	);
-	createObjectGroup(group, 0);
-
-	// Create starter stone mines
-	mAngle += randFloat(PI/8, PI/4);
-	mX = Math.round(fx + mDist * cos(mAngle));
-	mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oStoneLarge, 1,1, 0,2)],
-		true, clBaseResource, mX, mZ
-	);
-	createObjectGroup(group, 0);
-
-	// create starting trees
-	var num = 2;
-	var tAngle = randFloat(-PI/3, 4*PI/3);
-	var tDist = randFloat(11, 13);
-	var tX = Math.round(fx + tDist * cos(tAngle));
-	var tZ = Math.round(fz + tDist * sin(tAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oOak, num, num, 0,5)],
-		false, clBaseResource, tX, tZ
-	);
-	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-
-}
+	// No decoratives
+});
 
 log("Marking player territory larger than the city patch...");
 for (let i = 0; i < numPlayers; ++i)

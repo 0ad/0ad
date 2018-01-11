@@ -397,7 +397,7 @@ for (var p = 0; p < numPlayers; p++)
 {
 	var actualX = possibleStartPositions[bestDerivation[p]][0];
 	var actualY = possibleStartPositions[bestDerivation[p]][1];
-	placeCivDefaultEntities(actualX, actualY, p + 1, { "iberWall": false });
+	placeCivDefaultStartingEntities(actualX, actualY, p + 1, false);
 
 	// Place some start resources
 	var uDist = 8;

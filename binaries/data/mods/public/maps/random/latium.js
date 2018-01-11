@@ -306,80 +306,40 @@ for (var ix = 0; ix < mapSize; ix++)
 
 Engine.SetProgress(30);
 
-for (var i = 0; i < numPlayers; ++i)
-{
-	var id = playerIDs[i];
-	log("Creating base for player " + id + "...");
-
-	// get fractional locations in tiles
-	var fx = fractionToTiles(playerX[i]);
-	var fz = fractionToTiles(playerZ[i]);
-	var ix = Math.round(fx);
-	var iz = Math.round(fz);
-	addToClass(ix, iz, clPlayer);
-
-	// create the city patch, flatten area under TC
-	var cityRadius = 11;
-	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
-	var painter = new LayeredPainter([tGrass, tCity], [4]);
-	var elevationPainter = new SmoothElevationPainter(
-		ELEVATION_SET,	// type
-		5,				// elevation
-		2				// blend radius
-	);
-	createArea(placer, [painter, elevationPainter], null);
-
-	placeCivDefaultEntities(fx, fz, id);
-
-	placeDefaultChicken(fx, fz, clBaseResource);
-
-	// create starting berry bushes
-	var bbAngle = randFloat(0, 2 * Math.PI);
-	var bbDist = 9;
-	var bbX = Math.round(fx + bbDist * cos(bbAngle));
-	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
-	var group = new SimpleGroup(
-		[new SimpleObject(oBerryBush, 5,5, 0,2)],
-		true, clBaseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0);
-
-	// create metal mine
-	var mAngle = bbAngle;
-	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
-		mAngle = randFloat(0, 2 * Math.PI);
-
-	var mDist = 12;
-	var mX = Math.round(fx + mDist * cos(mAngle));
-	var mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oMetalLarge, 1,1, 0,0)],
-		true, clBaseResource, mX, mZ
-	);
-	createObjectGroup(group, 0);
-
-	// create stone mines
-	mAngle += randFloat(PI/8, PI/4);
-	mX = Math.round(fx + mDist * cos(mAngle));
-	mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oStoneLarge, 1,1, 0,2)],
-		true, clBaseResource, mX, mZ
-	);
-	createObjectGroup(group, 0);
-
-	// create starting trees
-	var num = 5;
-	var tAngle = randFloat(-PI/3, 4*PI/3);
-	var tDist = randFloat(10, 11);
-	var tX = Math.round(fx + tDist * cos(tAngle));
-	var tZ = Math.round(fz + tDist * sin(tAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oPalm, num, num, 0,5)],
-		false, clBaseResource, tX, tZ
-	);
-	createObjectGroup(group, 0, avoidClasses(clBaseResource, 2, clCliff, 0));
-}
+placePlayerBases({
+	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerTileClass": clPlayer,
+	"BaseResourceClass": clBaseResource,
+	"baseResourceConstraint": avoidClasses(clCliff, 4),
+	"CityPatch": {
+		"radius": 11,
+		"outerTerrain": tGrass,
+		"innerTerrain": tCity,
+		"width": 4,
+		"painters": [
+			new SmoothElevationPainter(ELEVATION_SET, 5, 2)
+		]
+	},
+	"Chicken": {
+	},
+	"Berries": {
+		"template": oBerryBush,
+		"distance": 9
+	},
+	"Mines": {
+		"types": [
+			{ "template": oMetalLarge },
+			{ "template": oStoneLarge }
+		]
+	},
+	"Trees": {
+		"template": oPalm,
+		"count": 5,
+		"minDist": 10,
+		"maxDist": 11
+	}
+	// No decoratives
+});
 Engine.SetProgress(40);
 
 log("Creating bushes...");

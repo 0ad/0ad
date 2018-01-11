@@ -11,8 +11,6 @@ var clBaseResource = createTileClass();
 var templateStone = "gaia/geology_stone_temperate";
 var templateStoneMine = "gaia/geology_stonemine_temperate_quarry";
 var templateMetalMine = "gaia/geology_metal_temperate_slabs";
-var startingResourcees = ["gaia/flora_tree_oak_large", "gaia/flora_bush_temperate", templateStoneMine,
-	"gaia/flora_bush_grapes", "gaia/flora_tree_apple", "gaia/flora_bush_berry", templateMetalMine, "gaia/flora_bush_badlands"];
 
 var terrainWood = ['temp_grass_mossy|gaia/flora_tree_oak', 'temp_forestfloor_pine|gaia/flora_tree_pine', 'temp_mud_plants|gaia/flora_tree_dead',
 	'temp_plants_bog|gaia/flora_tree_oak_large', "temp_dirt_gravel_plants|gaia/flora_tree_aleppo_pine", 'temp_forestfloor_autumn|gaia/flora_tree_carob']; //'temp_forestfloor_autumn|gaia/flora_tree_fig'
@@ -71,38 +69,49 @@ var resourcePerPlayer = [templateStone, templateMetalMine];
 var maxTreeDensity = Math.min(256 * (192 + 8 * numPlayers) / mapArea, 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
 
-Engine.SetProgress(2);
-
-// Place bases
+var playerIDs = [];
 for (var i=0; i < numPlayers; i++)
 {
+	playerIDs[i] = i+1;
 	playerAngle[i] = (playerAngleStart + i*playerAngleAddAvrg + randFloat(0, playerAngleMaxOff))%(2*PI);
-	var x = Math.round(mapCenterX + randFloat(minPlayerRadius, maxPlayerRadius)*cos(playerAngle[i]));
-	var z = Math.round(mapCenterZ + randFloat(minPlayerRadius, maxPlayerRadius)*sin(playerAngle[i]));
-	playerStartLocX[i] = x;
-	playerStartLocZ[i] = z;
-
-	placeCivDefaultEntities(x, z, i+1);
-
-	// Place base texture
-	var placer = new ClumpPlacer(2*baseRadius*baseRadius, 2/3, 1/8, 10, x, z);
-	var painter = [new LayeredPainter([terrainBaseBorder, terrainBase, terrainBaseCenter], [baseRadius/4, baseRadius/4]), paintClass(clPlayer)];
-	createArea(placer, painter);
-
-	// Place starting resources
-	var distToSL = 10;
-	var resStartAngle = playerAngle[i] + PI;
-	var resAddAngle = 2*PI / startingResourcees.length;
-	for (var rIndex = 0; rIndex < startingResourcees.length; rIndex++)
-	{
-		var angleOff = randFloat(-resAddAngle/2, resAddAngle/2);
-		var placeX = x + distToSL*cos(resStartAngle + rIndex*resAddAngle + angleOff);
-		var placeZ = z + distToSL*sin(resStartAngle + rIndex*resAddAngle + angleOff);
-		placeObject(placeX, placeZ, startingResourcees[rIndex], 0, randFloat(0, 2*PI));
-		addToClass(Math.round(placeX), Math.round(placeZ), clBaseResource);
-	}
+	playerStartLocX[i] = mapCenterX + Math.round(randFloat(minPlayerRadius, maxPlayerRadius) * Math.cos(playerAngle[i]));
+	playerStartLocZ[i] = mapCenterZ + Math.round(randFloat(minPlayerRadius, maxPlayerRadius) * Math.sin(playerAngle[i]));
 }
+Engine.SetProgress(10);
 
+placePlayerBases({
+	"PlayerPlacement": [playerIDs, playerStartLocX.map(tilesToFraction), playerStartLocZ.map(tilesToFraction)],
+	"BaseResourceClass": clBaseResource,
+	// player class painted below
+	"CityPatch": {
+		"radius": 0.8 * baseRadius,
+		"smoothness": 1/8,
+		"painters": [
+			new LayeredPainter([terrainBaseBorder, terrainBase, terrainBaseCenter], [baseRadius/4, baseRadius/4]),
+			paintClass(clPlayer)
+		]
+	},
+	// Chicken already placed at the base terrain
+	"Berries": {
+		"template": "gaia/flora_bush_grapes",
+		"minCount": 2,
+		"maxCount": 2,
+		"minDist": 10,
+		"maxDist": 10
+	},
+	"Mines": {
+		"types": [
+			{ "template": templateMetalMine },
+			{ "template": templateStoneMine }
+		],
+		"minAngle": Math.PI / 2,
+		"maxAngle": Math.PI
+	},
+	"Trees": {
+		"template": "gaia/flora_tree_oak_large",
+		"count": 2
+	}
+});
 Engine.SetProgress(10);
 
 // Place paths

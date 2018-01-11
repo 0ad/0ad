@@ -66,7 +66,7 @@ createArea(
 	]);
 Engine.SetProgress(10);
 
-var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement(0.3);
+var [playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.3);
 var halfway = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.375), mapCenter)[0].map(v => v.round());
 var attacker = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.45), mapCenter)[0].map(v => v.round());
 var passage = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0];
@@ -79,7 +79,12 @@ for (let  i = 0; i < numPlayers; ++i)
 	placeStartingEntities(playerPos.x, playerPos.y, playerIDs[i], getStartingEntities(playerIDs[i]).filter(ent =>
 		ent.Template.indexOf("civil_centre") != -1 || ent.Template.indexOf("infantry") != -1));
 
-	placeDefaultDecoratives(playerPos.x, playerPos.y, aGrassShort, clBaseResource, scaleByMapSize(15, 25));
+	placePlayerBaseDecoratives({
+		"playerX": playerX[i],
+		"playerZ": playerZ[i],
+		"template": aGrassShort,
+		"BaseResourceClass": clBaseResource
+	});
 
 	log("Creating passage separating players...");
 	createArea(

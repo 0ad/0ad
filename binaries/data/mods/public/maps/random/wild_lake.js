@@ -610,7 +610,7 @@ Engine.SetProgress(55);
 for (let p = 0; p < playerIDs.length; ++p)
 {
 	let point = startLocations[p];
-	placeCivDefaultEntities(point.x, point.y, playerIDs[p], { "iberWall": g_Map.size > 192 });
+	placeCivDefaultStartingEntities(point.x, point.y, playerIDs[p], g_Map.size > 192);
 	placeStartLocationResources(point);
 }
 

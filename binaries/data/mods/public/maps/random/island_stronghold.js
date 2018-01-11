@@ -113,7 +113,7 @@ for (let i = 0; i < teams.length; ++i)
 			],
 			null);
 
-		placeCivDefaultEntities(fx, fz, teams[i][p], { "iberWall": false });
+		placeCivDefaultStartingEntities(fx, fz, teams[i][p], false);
 	}
 
 	log("Create initial mines for team " + i);
@@ -146,7 +146,13 @@ for (let i = 0; i < teams.length; ++i)
 	{
 		let [playerAngle, fx, fz, ix, iz] = getPlayerTileCoordinates(p, i, fractionX, fractionZ);
 
-		placeDefaultChicken(fx, fz, clBaseResource, [stayClasses(clLand, 5)]);
+		placePlayerBaseChicken({
+			"playerID": teams[i][p],
+			"playerX": tilesToFraction(fx),
+			"playerZ": tilesToFraction(fz),
+			"BaseResourceClass": clBaseResource,
+			"baseResourceConstraint": stayClasses(clLand, 5)
+		});
 
 		// create initial berry bushes
 		let bbAngle = randFloat(PI, PI*1.5);

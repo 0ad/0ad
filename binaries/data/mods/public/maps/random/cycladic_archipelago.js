@@ -61,8 +61,6 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var playerIDs = sortAllPlayers();
-
 //array holding starting islands based on number of players
 var startingPlaces=[[0],[0,3],[0,2,4],[0,1,3,4],[0,1,2,3,4],[0,1,2,3,4,5]];
 
@@ -138,84 +136,36 @@ for (let i = 0; i < nCenter; ++i)
 		2);
 }
 
-for (let i = 0; i < numPlayers; ++i)
-{
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
-
-	placeDefaultChicken(fx, fz, clBaseResource);
-
-	// create berry bushes
-	var bbAngle = randFloat(0, 2 * Math.PI);
-	var bbDist = 10;
-	var bbX = Math.round(fx + bbDist * cos(bbAngle));
-	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
-	var group = new SimpleGroup(
-		[new SimpleObject(oBerryBush, 5,5, 0,3)],
-		true, clBaseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0);
-
-	// create metal mine
-	var mAngle = bbAngle;
-	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
-		mAngle = randFloat(0, 2 * Math.PI);
-
-	var mDist = 12;
-	var mX = Math.round(fx + mDist * cos(mAngle));
-	var mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oMetalLarge, 1,1, 0,0)],
-		true, clBaseResource, mX, mZ
-	);
-	createObjectGroup(group, 0);
-
-	// create stone mines
-	mAngle += randFloat(PI/8, PI/4);
-	mX = Math.round(fx + mDist * cos(mAngle));
-	mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oStoneLarge, 1,1, 0,2)],
-		true, clBaseResource, mX, mZ
-	);
-	createObjectGroup(group, 0);
-
-	// create starting trees
-	var num = 2;
-	var tAngle = randFloat(-PI/3, 4*PI/3);
-	var tDist = randFloat(12, 13);
-	var tX = Math.round(fx + tDist * cos(tAngle));
-	var tZ = Math.round(fz + tDist * sin(tAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oPalm, num, num, 0,3)],
-		false, clBaseResource, tX, tZ
-	);
-	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-}
-
-log("Populating islands ...");
-var nPlayer = 0;
-for (let i = 0; i < numIslands; ++i)
-	if (numPlayers >= 6 || i == startingPlaces[numPlayers-1][nPlayer])
-	{
-		var id = playerIDs[nPlayer];
-
-		// Get the x and z in tiles
-		var fx = fractionToTiles(islandX[i]);
-		var fz = fractionToTiles(islandZ[i]);
-		var ix = Math.round(fx);
-		var iz = Math.round(fz);
-
-		// Create city patch
-		var cityRadius = 6;
-		var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
-		var painter = new LayeredPainter([tGrass, tCity], [1]);
-		createArea(placer, [painter,paintClass(clCity)], null);
-
-		placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
-
-		++nPlayer;
+placePlayerBases({
+	"PlayerPlacement": [sortAllPlayers(), playerX, playerZ],
+	// PlayerTileClass is clCity here and painted below
+	"BaseResourceClass": clBaseResource,
+	"Walls": "towers",
+	"CityPatch": {
+		"radius": 6,
+		"outerTerrain": tGrass,
+		"innerTerrain": tCity,
+		"painters": [
+			paintClass(clCity)
+		]
+	},
+	"Chicken": {
+	},
+	"Berries": {
+		"template": oBerryBush
+	},
+	"Mines": {
+		"types": [
+			{ "template": oMetalLarge },
+			{ "template": oStoneLarge }
+		]
+	},
+	"Trees": {
+		"template": oPalm,
+		"count": 2
 	}
+	// No decoratives
+});
 Engine.SetProgress(20);
 
 log("Creating bumps...");
@@ -269,7 +219,7 @@ for (let type of forestTypes)
 Engine.SetProgress(42);
 
 log("Creating stone mines...");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroupsByAreasDeprecated(group, 0,
 	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 6)],
 	scaleByMapSize(4,16), 200, areas

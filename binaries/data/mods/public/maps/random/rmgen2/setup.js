@@ -164,98 +164,40 @@ function addBases(type, distance, groupedDistance, startAngle)
  */
 function createBase(player, walls = true)
 {
-	var mapSize = getMapSize();
-
-	// Get the x and z in tiles
-	var fx = fractionToTiles(player.x);
-	var fz = fractionToTiles(player.z);
-	var ix = Math.round(fx);
-	var iz = Math.round(fz);
-
-	addCivicCenterAreaToClass(ix, iz, g_TileClasses.player);
-
-	if (walls && mapSize > 192)
-		placeCivDefaultEntities(fx, fz, player.id);
-	else
-		placeCivDefaultEntities(fx, fz, player.id, { 'iberWall': false });
-
-	// Create the city patch
-	var radius = scaleByMapSize(15, 25);
-	var cityRadius = radius / 3;
-	var placer = new ClumpPlacer(PI * cityRadius * cityRadius, 0.6, 0.3, 10, ix, iz);
-	var painter = new LayeredPainter([g_Terrains.roadWild, g_Terrains.road], [1]);
-	createArea(placer, painter, null);
-
-	// TODO: retry loops are needed as resources might conflict with neighboring ones
-
-	// Create initial berry bushes at random angle
-	var bbAngle = randFloat(0, 2 * Math.PI);
-	var bbDist = 10;
-	var bbX = Math.round(fx + bbDist * cos(bbAngle));
-	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
-	var group = new SimpleGroup(
-		[new SimpleObject(g_Gaia.fruitBush, 5, 5, 0, 3)],
-		true, g_TileClasses.baseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
-
-	// Create metal mine at a different angle
-	var mAngle = bbAngle;
-	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
-		mAngle = randFloat(0, 2 * Math.PI);
-
-	var mDist = 12;
-	var mX = Math.round(fx + mDist * cos(mAngle));
-	var mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(g_Gaia.metalLarge, 1, 1, 0, 0)],
-		true, g_TileClasses.baseResource, mX, mZ
-	);
-	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
-
-	// Create stone mine beside metal
-	mAngle += randFloat(PI / 8, PI / 4);
-	mX = Math.round(fx + mDist * cos(mAngle));
-	mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(g_Gaia.stoneLarge, 1, 1, 0, 2)],
-		true, g_TileClasses.baseResource, mX, mZ
-	);
-	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
-
-	placeDefaultChicken(
-		fx,
-		fz,
-		g_TileClasses.baseResource,
-		avoidClasses(g_TileClasses.baseResource, 4),
-		g_Gaia.chicken
-	);
-
-	// Create starting trees
-	var num = currentBiome() == "savanna" ? 5 : 15;
-	for (var tries = 0; tries < 10; ++tries)
-	{
-		var tAngle = randFloat(0, 2 * Math.PI);
-		var tDist = randFloat(12, 13);
-		var tX = Math.round(fx + tDist * cos(tAngle));
-		var tZ = Math.round(fz + tDist * sin(tAngle));
-
-		group = new SimpleGroup(
-			[new SimpleObject(g_Gaia.tree1, num, num, 1, 3)],
-			false, g_TileClasses.baseResource, tX, tZ
-		);
-
-		if (createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 4)))
-			break;
-	}
-
-	placeDefaultDecoratives(
-		fx,
-		fz,
-		g_Decoratives.grassShort,
-		g_TileClasses.baseResource,
-		radius,
-		avoidClasses(g_TileClasses.baseResource, 4));
+	placePlayerBase({
+		"playerID": player.id,
+		"playerX": player.x,
+		"playerZ": player.z,
+		"PlayerTileClass": g_TileClasses.player,
+		"BaseResourceClass": g_TileClasses.baseResource,
+		"Walls": getMapSize() > 192 && walls,
+		"CityPatch": {
+			"outerTerrain": g_Terrains.roadWild,
+			"innerTerrain": g_Terrains.road,
+			"painters": [
+				paintClass(g_TileClasses.player)
+			]
+		},
+		"Chicken": {
+			"template": g_Gaia.chicken
+		},
+		"Berries": {
+			"template": g_Gaia.fruitBush
+		},
+		"Mines": {
+			"types": [
+				{ "template": g_Gaia.metalLarge },
+				{ "template": g_Gaia.stoneLarge }
+			]
+		},
+		"Trees": {
+			"template": g_Gaia.tree1,
+			"count": currentBiome() == "savanna" ? 5 : 15
+		},
+		"Decoratives": {
+			"template": g_Decoratives.grassShort
+		}
+	});
 }
 
 /**

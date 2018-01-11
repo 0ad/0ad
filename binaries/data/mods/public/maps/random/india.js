@@ -35,78 +35,38 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
-
-for (let i = 0; i < numPlayers; ++i)
-{
-	let id = playerIDs[i];
-	log("Creating base for player " + id + "...");
-
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
-	let ix = Math.round(fx);
-	let iz = Math.round(fz);
-
-	addCivicCenterAreaToClass(ix, iz, clPlayer);
-
-	// Create the city patch
-	let radius = scaleByMapSize(15, 25);
-	let cityRadius = radius / 3;
-	createArea(
-		new ClumpPlacer(PI * cityRadius * cityRadius, 0.6, 0.3, 10, ix, iz),
-		new LayeredPainter([tDirt1, tCityTiles], [1]),
-		null);
-
-	placeCivDefaultEntities(fx, fz, id);
-	placeDefaultChicken(fx, fz, clBaseResource);
-
-	// Create berry bushes
-	var bbAngle = randFloat(0, 2 * PI);
-	var bbDist = 12;
-	var bbX = Math.round(fx + bbDist * Math.cos(bbAngle));
-	var bbZ = Math.round(fz + bbDist * Math.sin(bbAngle));
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oBerryBush, 5,5, 0,3)],
-			true, clBaseResource, bbX, bbZ
-		),
-		0);
-
-	// Create metal mine
-	var mAngle = bbAngle;
-	while (Math.abs(mAngle - bbAngle) < PI/3)
-		mAngle = randFloat(0, 2 * PI);
-	var mDist = 13;
-	var mX = Math.round(fx + mDist * Math.cos(mAngle));
-	var mZ = Math.round(fz + mDist * Math.sin(mAngle));
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oMetalLarge, 1, 1, 0, 0)],
-			true, clBaseResource, mX, mZ
-		),
-		0);
-
-	// Create stone mines
-	mAngle += randFloat(PI/8, PI/4);
-	mX = Math.round(fx + mDist * Math.cos(mAngle));
-	mZ = Math.round(fz + mDist * Math.sin(mAngle));
-	createStoneMineFormation(mX, mZ, oStoneSmall, tDirt4);
-	addToClass(mX, mZ, clPlayer);
-
-	// Create starting trees
-	var num = Math.floor(PI * radius * radius / 300);
-	var tAngle = randFloat(-PI/3, 4 * PI/3);
-	var tDist = randFloat(13, 15);
-	var tX = Math.round(fx + tDist * Math.cos(tAngle));
-	var tZ = Math.round(fz + tDist * Math.sin(tAngle));
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oTree, num, num, 4, 6)],
-			false, clBaseResource, tX, tZ
-		),
-		0,
-		avoidClasses(clBaseResource,2));
-}
+placePlayerBases({
+	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerTileClass": clPlayer,
+	"BaseResourceClass": clBaseResource,
+	// No city patch
+	"Chicken": {
+	},
+	"Berries": {
+		"template": oBerryBush
+	},
+	"Mines": {
+		"types": [
+			{
+				"template": oMetalLarge
+			},
+			{
+				"type": "stone_formation",
+				"template": oStoneSmall,
+				"terrain": tDirt1
+			}
+		]
+	},
+	"Trees": {
+		"template": oTree,
+		"count": scaleByMapSize(3, 7),
+		"minDist": 13,
+		"maxDist": 15,
+		"minDistGroup": 4,
+		"maxDistGroup": 6
+	}
+	// No decoratives
+});
 Engine.SetProgress(20);
 
 log("Creating bumps...");

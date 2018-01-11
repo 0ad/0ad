@@ -111,77 +111,34 @@ for (let i = 0; i < numPlayers; ++i)
 			paintClass(clPlayerTerritory)
 		]);
 
-for (let i = 0; i < numPlayers; ++i)
-{
-	log("Creating base for player " + playerIDs[i] + "...");
-	let radius = scaleByMapSize(12, 20);
-
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
-	let ix = Math.round(fx);
-	let iz = Math.round(fz);
-
-	addCivicCenterAreaToClass(ix, iz, clPlayer);
-
-	// Create the city patch
-	let cityRadius = radius / 3;
-	createArea(
-		new ClumpPlacer(PI * cityRadius * cityRadius, 0.6, 0.3, 10, ix, iz),
-		new LayeredPainter([tRoadWild, tRoad], [1]),
-		null);
-
-	placeCivDefaultEntities(fx, fz, playerIDs[i],  { 'iberWall': 'towers' });
-
-	placeDefaultChicken(fx, fz, clBaseResource, undefined, oPeacock);
-
-	// Create berry bushes
-	let angle = randFloat(0, 2 * PI);
-	let dist = 12;
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oBush, 5, 5, 0, 3)],
-			true,
-			clBaseResource,
-			Math.round(fx + dist * Math.cos(angle)),
-			Math.round(fz + dist * Math.sin(angle))),
-		0);
-
-	// Create metal mine
-	angle += randFloat(PI/8, PI/4);
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oMetalLarge, 1, 1, 0, 0)],
-			true,
-			clBaseResource,
-			Math.round(fx + dist * Math.cos(angle)),
-			Math.round(fz + dist * Math.sin(angle))),
-		0);
-
-	// Create stone mines
-	angle += randFloat(PI/8, PI/4);
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oStoneLarge, 1, 1, 0, 2)],
-			true,
-			clBaseResource,
-			Math.round(fx + dist * Math.cos(angle)),
-			Math.round(fz + dist * Math.sin(angle))),
-		0);
-
-	// Create starting trees
-	let num = 40;
-	let tAngle = randFloat(-PI/3, 4*PI/3);
-	let tDist = randFloat(12, 13);
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oTree, num, num, 0, 3)],
-			false,
-			clBaseResource,
-			Math.round(fx + tDist * Math.cos(tAngle)),
-			Math.round(fz + tDist * Math.sin(tAngle))),
-		0,
-		avoidClasses(clBaseResource, 2));
-}
+placePlayerBases({
+	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerTileClass": clPlayer,
+	"BaseResourceClass": clBaseResource,
+	"Walls": "towers",
+	"CityPatch": {
+		"outerTerrain": tRoadWild,
+		"innerTerrain": tRoad,
+		"radius": playerRadius / 3
+	},
+	"Chicken": {
+		"template": oPeacock
+	},
+	"Berries": {
+		"template": oBush
+	},
+	"Mines": {
+		"types": [
+			{ "template": oMetalLarge },
+			{ "template": oStoneLarge }
+		]
+	},
+	"Trees": {
+		"template": oTree,
+		"count": 40
+	}
+	// No decoratives
+});
 Engine.SetProgress(35);
 
 log("Creating gaia...");

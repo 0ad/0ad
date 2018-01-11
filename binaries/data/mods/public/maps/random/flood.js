@@ -48,7 +48,6 @@ const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TE
 
 InitMap();
 
-const radius = scaleByMapSize(15, 25);
 const clPlayer = createTileClass();
 const clHill = createTileClass();
 const clMountain = createTileClass();
@@ -80,25 +79,13 @@ createArea(
 	],
 	avoidClasses(clPlayer, 5));
 
-var [playerIDs, playerX, playerZ] = radialPlayerPlacement(0.38);
-
 log("Creating player islands...")
+var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.38);
+
 for (let i = 0; i < numPlayers; ++i)
-{
-	let id = playerIDs[i];
-	log("Creating base for player " + id + "...");
-
-	// Get the x and z in tiles
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
-	let ix = Math.round(fx);
-	let iz = Math.round(fz);
-
-	let hillSize = PI * radius * radius * 2;
-
 	createArea(
 		new ClumpPlacer(
-			hillSize,
+			2 * diskArea(defaultPlayerBaseRadius()),
 			0.8,
 			0.1,
 			10,
@@ -111,73 +98,36 @@ for (let i = 0; i < numPlayers; ++i)
 		],
 		null);
 
-	addCivicCenterAreaToClass(ix, iz, clPlayer);
-
-	placeCivDefaultEntities(fx, fz, id, { "iberWall": false });
-
-	// Create the city patch
-	let cityRadius = radius/3;
-	let placer = new ClumpPlacer(PI * cityRadius * cityRadius, 0.6, 0.3, 10, ix, iz);
-	let painter = new LayeredPainter([tRoadWild, tRoad], [1]);
-	createArea(placer, painter, null);
-
-	placeDefaultChicken(fx, fz, clBaseResource);
-
-	// Create berry bushes
-	let bbAngle = randFloat(0, 2 * Math.PI);
-	let bbDist = 12;
-	let bbX = Math.round(fx + bbDist * cos(bbAngle));
-	let bbZ = Math.round(fz + bbDist * sin(bbAngle));
-	let group = new SimpleGroup(
-		[new SimpleObject(oFruitBush, 5, 5, 0, 3)],
-		true, clBaseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0);
-
-	// Create metal mine
-	let mAngle = bbAngle;
-	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
-		mAngle = randFloat(0, 2 * Math.PI);
-
-	let mDist = 12;
-	let mX = Math.round(fx + mDist * cos(mAngle));
-	let mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oMetalLarge, 1, 1, 0, 0)],
-		true, clBaseResource, mX, mZ
-	);
-	createObjectGroup(group, 0);
-
-	// Create stone mines
-	mAngle += randFloat(PI/8, PI/4);
-	mX = Math.round(fx + mDist * cos(mAngle));
-	mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oStoneLarge, 1, 1, 0, 2)],
-		true, clBaseResource, mX, mZ
-	);
-	createObjectGroup(group, 0);
-
-	// Create starting trees, should avoid mines and bushes
-	let tries = 50;
-	let tDist = 16;
-	let num = 50;
-	for (let x = 0; x < tries; ++x)
-	{
-		let tAngle = randFloat(0, 2 * Math.PI);
-		let tX = Math.round(fx + tDist * cos(tAngle));
-		let tZ = Math.round(fz + tDist * sin(tAngle));
-		group = new SimpleGroup(
-			[new SimpleObject(oTree2, num, num, 0, 7)],
-			true, clBaseResource, tX, tZ
-		);
-		if (createObjectGroup(group, 0, avoidClasses(clBaseResource, 5)))
-			break;
+placePlayerBases({
+	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerTileClass": clPlayer,
+	"BaseResourceClass": clBaseResource,
+	"Walls": false,
+	"CityPatch": {
+		"outerTerrain": tRoadWild,
+		"innerTerrain": tRoad
+	},
+	"Chicken": {
+	},
+	"Berries": {
+		"template": oFruitBush
+	},
+	"Mines": {
+		"types": [
+			{ "template": oMetalLarge },
+			{ "template": oStoneLarge }
+		]
+	},
+	"Trees": {
+		"template": oTree2,
+		"count": 50,
+		"maxDist": 16,
+		"maxDistGroup": 7
+	},
+	"Decoratives": {
+		"template": aGrassShort
 	}
-
-	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
-}
-
+});
 Engine.SetProgress(40);
 
 log("Creating central island...");
