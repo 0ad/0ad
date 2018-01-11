@@ -29,5 +29,10 @@
       <color>181 181 181</color>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
   <material>objectcolor.xml</material>
 </actor>
