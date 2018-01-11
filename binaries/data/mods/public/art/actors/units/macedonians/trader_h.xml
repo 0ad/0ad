@@ -2,18 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle.dae" name="Idle" id="idle1" speed="60"/>
-        <animation file="quadraped/horse_idle_b.dae" name="Idle" id="idle2" speed="60"/>
-        <animation file="quadraped/horse_idle_c.dae" name="Idle" id="idle3" speed="60"/>
-        <animation file="quadraped/horse_walk_relax.dae" name="Walk" event="0.94" speed="20"/>
-        <animation file="quadraped/horse_gallop.dae" name="Run" speed="11"/>
-        <animation file="quadraped/horse_death_b.dae" name="death" speed="200"/>
-      </animations>
+    <variant frequency="1" file="quadraped/base_horse_trader.xml" name="Trader Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse_back_blanket_cavalry.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
