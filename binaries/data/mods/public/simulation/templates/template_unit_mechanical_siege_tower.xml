@@ -66,11 +66,11 @@
   <Sound>
     <SoundGroups>
       <select>attack/siege/siege_select.xml</select>
+      <order_attack>attack/siege/ram_move.xml</order_attack>
       <order_walk>attack/siege/ram_move.xml</order_walk>
-      <order_attack>attack/siege/ram_attack.xml</order_attack>
       <attack_impact_ranged>attack/impact/arrow_metal.xml</attack_impact_ranged>
       <attack_ranged>attack/weapon/arrowfly.xml</attack_ranged>
-      <trained>attack/siege/ram_move.xml</trained>
+      <trained>attack/siege/ram_trained.xml</trained>
     </SoundGroups>
   </Sound>
   <StatusBars>

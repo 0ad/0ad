@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
-	<Distanceless>1</Distanceless>
+	<Omnipresent>1</Omnipresent>
+	<HeardBy>owner</HeardBy>
 	<Gain>1</Gain>
 	<Priority>100</Priority>
 	<ConeGain>1</ConeGain>
@@ -10,5 +11,5 @@
 	<RandPitch>1</RandPitch>
 	<Threshold>1</Threshold>
 	<Path>audio/attack/siege</Path>
-	<Sound>ram_attack_order.ogg</Sound>
+	<Sound>ram_move.ogg</Sound>
 </SoundGroup>

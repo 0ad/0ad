@@ -20,10 +20,10 @@
   </Position>
   <Sound>
     <SoundGroups>
-      <select>actor/fauna/animal/pig.xml</select>
-      <order_walk>actor/fauna/animal/pig.xml</order_walk>
+      <select>actor/fauna/animal/pig_select.xml</select>
+      <order_walk>actor/fauna/animal/pig_order.xml</order_walk>
       <death>actor/fauna/animal/pig.xml</death>
-      <trained>actor/fauna/animal/pig.xml</trained>
+      <trained>actor/fauna/animal/pig_trained.xml</trained>
     </SoundGroups>
   </Sound>
   <StatusBars>

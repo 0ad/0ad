@@ -25,10 +25,10 @@
   </ResourceSupply>
   <Sound>
     <SoundGroups>
-      <select>actor/fauna/animal/goat.xml</select>
-      <order_walk>actor/fauna/animal/goat.xml</order_walk>
+      <select>actor/fauna/animal/goat_select.xml</select>
+      <order_walk>actor/fauna/animal/goat_order.xml</order_walk>
       <death>actor/fauna/animal/goat.xml</death>
-      <trained>actor/fauna/animal/goat.xml</trained>
+      <trained>actor/fauna/animal/goat_trained.xml</trained>
     </SoundGroups>
   </Sound>
   <UnitMotion>

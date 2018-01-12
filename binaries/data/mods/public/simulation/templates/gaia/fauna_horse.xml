@@ -18,8 +18,8 @@
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/horse_select.xml</select>
+      <order_attack>actor/fauna/animal/horse_attack_order.xml</order_attack>
       <order_walk>actor/fauna/animal/horse_order.xml</order_walk>
-      <order_attack>actor/fauna/animal/horse_attack.xml</order_attack>
       <attack_melee>actor/fauna/animal/horse_attack.xml</attack_melee>
       <death>actor/fauna/animal/horse_death.xml</death>
       <trained>actor/fauna/animal/horse_trained.xml</trained>
