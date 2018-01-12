@@ -2,21 +2,20 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Mesh">
+    <variant frequency="1" name="Base">
       <mesh>skeletal/muskox.dae</mesh>
+      <textures>
+        <texture file="skeletal/animal_muskox.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="texture">
-      <textures><texture file="skeletal/animal_muskox.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="Idle"/>
+    <variant frequency="1" name="Idle"/>
     <variant name="death">
       <props>
         <prop actor="props/units/blood_01.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
+  <material>basic_trans.xml</material>
 </actor>
