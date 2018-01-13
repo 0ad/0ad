@@ -25,6 +25,8 @@ var clPlayer = createTileClass();
 var clPath = createTileClass();
 var clForest = createTileClass();
 var clWater = createTileClass();
+var clMetal = createTileClass();
+var clRock = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clOpen = createTileClass();
@@ -209,9 +211,19 @@ placePlayerBases({
 	}
 });
 
-// Add further stone and metal mines
-distributeEntitiesByHeight({ 'min': heighLimits[3], 'max': ((heighLimits[4] + heighLimits[3]) / 2) }, startLocations, 40, [templateStoneMine, templateMetalMine]);
-distributeEntitiesByHeight({ 'min': ((heighLimits[5] + heighLimits[6]) / 2), 'max': heighLimits[7] }, startLocations, 40, [templateStoneMine, templateMetalMine]);
+log("Creating mines...");
+for (let [minHeight, maxHeight] of [[heighLimits[3], (heighLimits[4] + heighLimits[3]) / 2], [(heighLimits[5] + heighLimits[6]) / 2, heighLimits[7]]])
+	for (let [template, tileClass] of [[templateStoneMine, clRock], [templateMetalMine, clMetal]])
+		createObjectGroups(
+			new SimpleGroup([new SimpleObject(template, 1, 1, 0, 4)], true, tileClass),
+			0,
+			[
+				new HeightConstraint(minHeight, maxHeight),
+				avoidClasses(clForest, 4, clPlayer, 20, clMetal, 40, clRock, 40)
+			],
+			scaleByMapSize(2, 8),
+			100,
+			false);
 
 Engine.SetProgress(50);
 
@@ -362,7 +374,6 @@ Engine.SetProgress(90);
 
 log("Planting trees...");
 for (var x = 0; x < mapSize; x++)
-{
 	for (var z = 0;z < mapSize;z++)
 	{
 		if (!g_Map.validT(x, z))
@@ -390,10 +401,9 @@ for (var x = 0; x < mapSize; x++)
 				paintClass(clForest)
 			],
 			border ?
-				avoidClasses(clPath, 1, clOpen, 2, clWater, 3) :
-				avoidClasses(clPath, 2, clOpen, 3, clWater, 4));
+				avoidClasses(clPath, 1, clOpen, 2, clWater, 3, clMetal, 4, clRock, 4) :
+				avoidClasses(clPath, 2, clOpen, 3, clWater, 4, clMetal, 4, clRock, 4));
 	}
-}
 
 Engine.SetProgress(100);
 

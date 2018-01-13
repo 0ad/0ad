@@ -99,67 +99,6 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
 }
 
 /**
- * Meant to place e.g. resource spots within a height range
- *
- * @param {array} heightRange - The height range in which to place the entities (An associative array with keys "min" and "max" each containing a float)
- * @param {array} avoidPoints - An array of 2D points (arrays of length 2), points that will be avoided in the given minDistance e.g. start locations
- * @param {number} minDistance - How many tile widths the entities to place have to be away from each other, start locations and the map border
- * @param {array} entityList - Entity/actor strings to be placed with placeObject()
- * @param {array} [heightmap=g_Map.height] - The reliefmap the entities should be distributed on
- * @param {number} [playerID=0] - Index of the player the entities should be placed for. Gaia is 0.
- * @param {number} [maxTries=1000] - How often random player distributions are rolled to be compared
- * @param {boolean} [isCircular=g_MapSettings.CircularMap] - If the map is circular or rectangular
- * @return {array} [placements] Array of points where entities were placed
- */
-function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance, entityList,
-	playerID = 0, maxTries = 1000, heightmap = g_Map.height, isCircular = g_MapSettings.CircularMap)
-{
-	let validPoints = [];
-	let r = 0.5 * (heightmap.length - 1); // Map center x/y as well as radius
-	for (let x = minDistance; x < heightmap.length - minDistance; ++x)
-	{
-		for (let y = minDistance; y < heightmap[0].length - minDistance; ++y)
-		{
-			if (heightmap[x][y] < heightRange.min || heightmap[x][y] > heightRange.max)
-				continue; // Out of height range
-			let checkpoint = { "x" : x + 0.5, "y" : y + 0.5 };
-			if (isCircular && r - Math.euclidDistance2D(checkpoint.x, checkpoint.y, r, r) < minDistance)
-				continue; // Too close to map border
-			// Avoid points by minDistance, else add to validPoints
-			if (avoidPoints.every(ap => Math.euclidDistance2D(checkpoint.x, checkpoint.y, ap.x, ap.y) > minDistance))
-				validPoints.push(checkpoint);
-		}
-	}
-
-	let placements = [];
-	if (!validPoints.length)
-	{
-		log("No placement points found for the given arguments (entityList=" + uneval(entityList) + "):\n" + new Error().stack);
-		return placements;
-	}
-
-	for (let tries = 0; tries < maxTries; ++tries)
-	{
-		let checkPointIndex = randIntExclusive(0, validPoints.length);
-		let checkPoint = validPoints[checkPointIndex];
-		if (placements.every(p => Math.euclidDistance2D(p.x, p.y, checkPoint.x, checkPoint.y) > minDistance))
-		{
-			placeObject(checkPoint.x, checkPoint.y, pickRandom(entityList), playerID, randFloat(0, 2 * Math.PI));
-			placements.push(checkPoint);
-		}
-
-		validPoints.splice(checkPointIndex);
-		if (!validPoints.length)
-			break; // No more valid points left
-	}
-
-	if (!placements.length)
-		log("Nothing was placed:\n" + new Error().stack);
-
-	return placements;
-}
-
-/**
  * Sets a given heightmap to entirely random values within a given range
  * @param {float} [minHeight=MIN_HEIGHT] - Lower limit of the random height to be rolled
  * @param {float} [maxHeight=MAX_HEIGHT] - Upper limit of the random height to be rolled
