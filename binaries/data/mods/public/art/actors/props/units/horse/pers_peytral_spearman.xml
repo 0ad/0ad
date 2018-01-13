@@ -2,30 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="horse armor peytral ">
-      <mesh>props/horse_peytral_large.dae</mesh>
-      <textures>
-        <texture file="props/helmet/pers_h1.dds" name="baseTex"/>
-      </textures>
+    <variant file="quadraped/props/peytral_base.xml" name="horse-armor-peytral-bronze-spearman">
       <animations>
-        <animation file="other/horse_peytral_idle.dae" name="Idle" id="idle1" speed="60"/>
-        <animation file="other/horse_peytral_idle.dae" name="Idle" id="idle2" speed="60"/>
-        <animation file="other/horse_peytral_idle.dae" name="Idle" id="idle3" speed="60"/>
-        <animation file="other/horse_peytral_idle.dae" name="attack_ranged" speed="60"/>
-        <animation file="other/horse_peytral_walk.dae" name="Walk" event="0.94" speed="7"/>
-        <animation file="other/horse_peytral_galop.dae" name="Run" speed="11"/>
-        <animation file="other/horse_peytral_death_b.dae" name="death" id="death1" speed="140"/>
-        <animation file="other/horse_peytral_death_b.dae" name="death" id="death2" speed="140"/>
-        <animation file="other/horse_peytral_idle.dae" event="0.5" name="attack_slaughter" id="attack1" speed="350"/>
-        <animation file="other/horse_peytral_idle.dae" event="0.5" name="attack_slaughter" id="attack2" speed="350"/>
-        <animation file="other/horse_peytral_idle.dae" name="attack_capture" speed="60"/>
-        <animation file="other/horse_peytral_promotion.dae" name="promotion" speed="160"/>
-        <animation file="other/horse_peytral_idle.dae" name="attack_ranged" speed="60"/>
         <animation file="other/horse_peytral_attack_long.dae" event="0.5" name="attack_melee" id="attack1" speed="300"/>
         <animation file="other/horse_peytral_attack_short.dae" event="0.5" name="attack_melee" id="attack2" speed="350"/>
         <animation file="other/horse_peytral_attack_short.dae" event="0.5" name="attack_melee" id="attack3" speed="350"/>
       </animations>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>
