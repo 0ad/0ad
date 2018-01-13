@@ -103,13 +103,13 @@ paintRiver({
 			placeTerrain(ix, iz, tWater);
 		else
 			placeTerrain(ix, iz, tShore);
-	},
-	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
-		addToClass(ix, iz, clHighlands);
 	}
 });
-
 Engine.SetProgress(20);
+
+createArea(
+	new RectPlacer(fractionToTiles(0), fractionToTiles(0), fractionToTiles(1), fractionToTiles(0.25)),
+	paintClass(clHighlands));
 
 log("Creating fish...");
 for (let i = 0; i < scaleByMapSize(10, 20); ++i)

@@ -384,7 +384,7 @@ for (var x = 0; x < mapSize; x++)
 
 		let border = tDensActual < randFloat(0, bushChance * maxTreeDensity);
 		createArea(
-			new ClumpPlacer(1, 1, 1, 1, x, z),
+			new RectPlacer(x, z, x, z),
 			[
 				new TerrainPainter(border ? terrainWoodBorder : terrainWood),
 				paintClass(clForest)

@@ -5,32 +5,27 @@
  */
 
 /**
- * The RectPlacer provides the points between (x1, z1) and (x2, z2) if they meet the Constraint.
+ * The RectPlacer provides the points on the tilegrid between (x1, z1) and (x2, z2) that meet the Constraint.
  */
 function RectPlacer(x1, z1, x2, z2)
 {
-	this.x1 = x1;
-	this.z1 = z1;
-	this.x2 = x2;
-	this.z2 = z2;
+	let mapSize = getMapSize();
 
-	if (x1 > x2 || z1 > z2)
-		throw new Error("RectPlacer: invalid bounds");
+	this.x1 = Math.round(Math.max(Math.min(x1, x2), 0));
+	this.x2 = Math.round(Math.min(Math.max(x1, x2), mapSize - 1));
+
+	this.z1 = Math.round(Math.max(Math.min(z1, z2), 0));
+	this.z2 = Math.round(Math.min(Math.max(z1, z2), mapSize - 1));
 }
 
 RectPlacer.prototype.place = function(constraint)
 {
-	if (!g_Map.inMapBounds(this.x1, this.z1) || !g_Map.inMapBounds(this.x2, this.z2))
-		return undefined;
-
 	let points = [];
 
 	for (let x = this.x1; x <= this.x2; ++x)
 		for (let z = this.z1; z <= this.z2; ++z)
 			if (constraint.allows(x, z))
 				points.push({ "x": x, "z": z });
-			else
-				return undefined;
 
 	return points;
 };

@@ -97,12 +97,12 @@ paintRiver({
 	"meanderLong": 0,
 	"waterFunc": (ix, iz, height, riverFraction) => {
 		addToClass(ix, iz, clWater);
-	},
-	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
-		if (ix > fractionToTiles(mountainPos))
-			addToClass(ix, iz, clMountains)
 	}
 });
+
+createArea(
+	new RectPlacer(fractionToTiles(mountainPos), fractionToTiles(0), fractionToTiles(1), fractionToTiles(1)),
+	paintClass(clMountains));
 
 log("Creating shores...");
 for (let i = 0; i < scaleByMapSize(20, 120); ++i)
