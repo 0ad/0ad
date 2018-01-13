@@ -162,10 +162,15 @@ for (var i = 0; i < maxI; i++)
 		// Placing paths
 		while (targetReached == false && tries < 2*mapSize)
 		{
-			var placer = new ClumpPlacer(pathWidth, 1, 1, 1, x, z);
-			var painter = [new TerrainPainter(terrainPath), new ElevationPainter(randFloat(-1, 0)), paintClass(clPath)];
-			createArea(placer, painter, avoidClasses(clHill, 0, clBaseResource, 4));
-			// addToClass(x, z, clPath); // Not needed...
+			createArea(
+				new ClumpPlacer(pathWidth, 1, 1, 1, x, z),
+				[
+					new TerrainPainter(terrainPath),
+					new ElevationPainter(randFloat(-1, 0)),
+					paintClass(clPath)
+				],
+				avoidClasses(clHill, 0, clBaseResource, 4));
+
 			// Set vars for next loop
 			angle = getAngle(x, z, targetX, targetZ);
 			if (doublePaths == true) // Bended paths
@@ -197,12 +202,19 @@ for (var i=0; i < numPlayers; i++)
 			var angleDist = (playerAngle[(i+1)%numPlayers] - playerAngle[i] + 2 * Math.PI) % (2 * Math.PI);
 		else
 			var angleDist = 2 * Math.PI;
+
 		var placeX = Math.round(mapCenterX + resourceRadius * Math.cos(playerAngle[i] + (rIndex+1)*angleDist/(resourcePerPlayer.length+1)));
 		var placeZ = Math.round(mapCenterX + resourceRadius * Math.sin(playerAngle[i] + (rIndex+1)*angleDist/(resourcePerPlayer.length+1)));
+
 		placeObject(placeX, placeZ, resourcePerPlayer[rIndex], 0, randFloat(0, 2 * Math.PI));
-		var placer = new ClumpPlacer(40, 1/2, 1/8, 1, placeX, placeZ);
-		var painter = [new LayeredPainter([terrainHillBorder, terrainHill], [1]), new ElevationPainter(randFloat(1, 2)), paintClass(clHill)];
-		createArea(placer, painter);
+
+		createArea(
+			new ClumpPlacer(40, 1/2, 1/8, 1, placeX, placeZ),
+			[
+				new LayeredPainter([terrainHillBorder, terrainHill], [1]),
+				new ElevationPainter(randFloat(1, 2)),
+				paintClass(clHill)
+			]);
 	}
 }
 
@@ -210,9 +222,13 @@ Engine.SetProgress(60);
 
 // Place eyecandy
 placeObject(mapCenterX, mapCenterZ, templateEC, 0, randFloat(0, 2 * Math.PI));
-var placer = new ClumpPlacer(radiusEC*radiusEC, 1/2, 1/8, 1, mapCenterX, mapCenterZ);
-var painter = [new LayeredPainter([terrainHillBorder, terrainHill], [radiusEC/4]), new ElevationPainter(randFloat(1, 2)), paintClass(clHill)];
-createArea(placer, painter);
+createArea(
+	new ClumpPlacer(Math.square(radiusEC), 1/2, 1/8, 1, mapCenterX, mapCenterZ),
+	[
+		new LayeredPainter([terrainHillBorder, terrainHill], [radiusEC/4]),
+		new ElevationPainter(randFloat(1, 2)),
+		paintClass(clHill)
+	]);
 
 // Woods and general hight map
 for (var x = 0; x < mapSize; x++)
