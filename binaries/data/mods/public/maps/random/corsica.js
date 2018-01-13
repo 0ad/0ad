@@ -264,10 +264,7 @@ createAreas(
 	5);
 
 log("Painting water...");
-for (let mapX = 0; mapX < mapSize; ++mapX)
-	for (let mapZ = 0; mapZ < mapSize; ++mapZ)
-		if (getHeight(mapX, mapZ) < 0)
-			addToClass(mapX, mapZ, clWater);
+paintTileClassBasedOnHeight(-Infinity, 0, Elevation_ExcludeMin_ExcludeMax, clWater);
 
 log("Painting land...");
 for (let mapX = 0; mapX < mapSize; ++mapX)

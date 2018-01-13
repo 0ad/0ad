@@ -191,10 +191,7 @@ createAreasInAreas(
 
 Engine.SetProgress(38);
 
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
-		if (getHeight(ix,iz) < 0)
-			addToClass(ix,iz,clWater);
+paintTileClassBasedOnHeight(-Infinity, 0, Elevation_ExcludeMin_ExcludeMax, clWater);
 
 log("Creating forests...");
 var forestTypes = [

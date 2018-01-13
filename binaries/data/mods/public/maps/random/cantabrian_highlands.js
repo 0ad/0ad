@@ -66,7 +66,7 @@ for (let i = 0; i < numPlayers; ++i)
 {
 	let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize);
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.95, 0.6, 10, Math.round(playerPos.x), Math.round(playerPos.y)),
+		new ClumpPlacer(diskArea(playerHillRadius), 0.95, 0.6, 10, Math.round(playerPos.x), Math.round(playerPos.y)),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, playerHillElevation, 2),
