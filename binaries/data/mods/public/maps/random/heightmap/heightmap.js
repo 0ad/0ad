@@ -384,8 +384,6 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 			points.push(point);
 			placements.push(point);
 		}
-		if (tries != 0 && tries % 100 == 0) // Time Check
-			log(points.length + " points found after " + tries + " tries after " + ((Date.now() - genStartTime) / 1000) + "s");
 	}
 
 	return points;

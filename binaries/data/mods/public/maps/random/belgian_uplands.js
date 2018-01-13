@@ -1,8 +1,3 @@
-// Prepare progress calculation
-var timeArray = [];
-timeArray.push(Date.now());
-
-// Importing rmgen libraries
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("heightmap");
 
@@ -89,8 +84,6 @@ textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 6/6 * (heightRang
 
 var minTerrainDistToBorder = 3;
 
-// Time check 1
-timeArray.push(Date.now());
 Engine.SetProgress(5);
 
 // - Generate Heightmap
@@ -251,8 +244,6 @@ while (!goodStartPositionsFound)
 	}
 }
 
-// Time check 2
-timeArray.push(Date.now());
 Engine.SetProgress(60);
 
 log("Painting terrain by height and add props...");
@@ -376,8 +367,6 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 	}
 }
 
-// Time check 3
-timeArray.push(Date.now());
 Engine.SetProgress(90);
 
 // Place players and start resources
@@ -408,17 +397,3 @@ for (var p = 0; p < numPlayers; p++)
 }
 
 ExportMap();
-
-// Time check 7
-timeArray.push(Date.now());
-
-// Calculate progress percentage with the time checks
-var generationTime = timeArray[timeArray.length - 1] - timeArray[0];
-log("Total generation time (ms): " + generationTime);
-
-for (var i = 0; i < timeArray.length; i++)
-{
-	var timeSinceStart = timeArray[i] - timeArray[0];
-	var progressPercentage = 100 * timeSinceStart / generationTime;
-	log("Time check " + i + ": Progress (%): " + progressPercentage);
-}

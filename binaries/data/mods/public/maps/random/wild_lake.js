@@ -4,8 +4,6 @@ Engine.LoadLibrary("heightmap");
 
 InitMap();
 
-let genStartTime = Date.now();
-
 /**
  * getArray - To ensure a terrain texture is contained within an array
  */
@@ -399,8 +397,6 @@ function placeStartLocationResources(
 	}
 }
 
-log("Functions loaded after " + ((Date.now() - genStartTime) / 1000) + "s");
-
 /**
  * Base terrain shape generation and settings
  */
@@ -480,11 +476,9 @@ let playerHeightRange = { "min" : heighLimits[3], "max" : heighLimits[4] };
 let resourceSpotHeightRange = { "min" : (heighLimits[2] + heighLimits[3]) / 2, "max" : (heighLimits[4] + heighLimits[5]) / 2 };
 let playerHeight = (playerHeightRange.min + playerHeightRange.max) / 2; // Average player height
 
-log("Terrain shape generation and biome presets after " + ((Date.now() - genStartTime) / 1000) + "s");
-
+log("Chosing starting locations...");
 let [playerIDs, startLocations] = sortPlayersByLocation(getStartLocationsByHeightmap(playerHeightRange, 1000, 30));
 
-log("Start location chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(30);
 
 /**
@@ -585,8 +579,6 @@ for (let h = 0; h < heighLimits.length; ++h)
 		if (actor)
 			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randFloat(0, 2 * Math.PI));
 	}
-
-log("Terrain texture placement finished after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(80);
 
 log("Placing resources...");
@@ -594,8 +586,6 @@ let avoidPoints = clone(startLocations);
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
 let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints, clPath);
-
-log("Resource spots chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(55);
 
 /**
@@ -639,7 +629,5 @@ for (let i = 0; i < resourceSpots.length; ++i)
 		}
 	}
 }
-
-log("Map generation finished after " + ((Date.now() - genStartTime) / 1000) + "s");
 
 ExportMap();

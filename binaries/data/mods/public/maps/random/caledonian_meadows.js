@@ -4,8 +4,6 @@ Engine.LoadLibrary("heightmap");
 
 InitMap();
 
-let genStartTime = Date.now();
-
 /**
  * Drags a path to a target height smoothing it at the edges and return some points along the path.
  */
@@ -212,8 +210,6 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 	}
 }
 
-log("Functions loaded after " + ((Date.now() - genStartTime) / 1000) + "s");
-
 /**
  * Environment settings
  */
@@ -321,11 +317,7 @@ myBiome.push({ // 10 Hilltop
 	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|geology/highland1.xml"], 0.0]
 });
 
-log("Terrain shape generation and texture presets after " + ((Date.now() - genStartTime) / 1000) + "s");
-
 let [playerIDs, startLocations] = sortPlayersByLocation(getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
-
-log("Start location chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(30);
 
 log("Smooth player locations...");
@@ -342,8 +334,6 @@ for (let i = 0; i < startLocations.length; ++i)
 	let target = startLocations[(i + 1) % startLocations.length];
 	pathPoints = pathPoints.concat(placeRandomPathToHeight(start, target, playerHeight, clPath));
 }
-
-log("Paths placed after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(45);
 
 log("Determining resource locations...");
@@ -351,8 +341,6 @@ let avoidPoints = clone(startLocations);
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
 let resourceSpots = getPointsByHeight({ "min": (heighLimits[3] + heighLimits[4]) / 2, "max": (heighLimits[5] + heighLimits[6]) / 2 }, avoidPoints, clPath);
-
-log("Resource spots chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(55);
 
 /**
@@ -431,8 +419,6 @@ for (let h = 0; h < heighLimits.length; ++h)
 		if (actor)
 			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randFloat(0, 2 * Math.PI));
 	}
-
-log("Terrain texture placement finished after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(80);
 
 /**
@@ -460,7 +446,5 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	if (choice == 4)
 		placeCamp(resourceSpots[i]);
 }
-
-log("Map generation finished after " + ((Date.now() - genStartTime) / 1000) + "s");
 
 ExportMap();
