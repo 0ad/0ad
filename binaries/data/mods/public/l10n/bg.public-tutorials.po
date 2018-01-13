@@ -38,6 +38,9 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
+"Изберете гражданина-во̀ин и щракнете с десния бутон върху някое дърво близо "
+"до селищния център, за да започне да събира дървесина. Гражданите-во̀ини "
+"събират дървесина по-бързо от жените."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -45,6 +48,8 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"Изберете селищния център. Задържайки %(hotkey)s, щракнете веднъж с ляв бутон"
+" върху иконката на хоплит, за да започне обучаването на партида хоплити."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -54,10 +59,12 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
+"Не забравяйте да задържите клавиша за обучаване на партида, докато щраквате,"
+" за да създадете няколко единици."
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
-msgstr ""
+msgstr "Натиснете иконката с ХОПЛИТ."
 
 #: maps/tutorials/Introductory_Tutorial.js:46
 msgid ""
@@ -74,6 +81,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"Когато станат готови, изберете новообучените хоплити и им дайте задача да "
+"построят склад до близките дървета. След като бъде построен, те ще започнат "
+"да събират дървесина."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -81,16 +91,20 @@ msgid ""
 "Build a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Обучете група от 5 копиехвъргачи като щракнете, задържайки %(hotkey)s, върху"
+" иконката на стрелец в селищния център."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "Натиснете иконката с копиехвъргач."
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Постройте ферма някъде около селищния център като използвате свободните "
+"строители."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
@@ -112,6 +126,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"Строителите на полето ще започнат автоматично да събират храна от него. "
+"Използвайте току-що обучената група стрелци, за да построите още една къща "
+"наблизо."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -119,16 +136,21 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"Обучете партида хоплити от селищния център. Изберете градския център, и "
+"докато е избран, щракнете с десен бутон върху някое близко дърво. Така "
+"единиците, излизащи от градския център, автоматично ще събират дървесина."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr ""
+msgstr "Натиснете иконката с хоплит."
 
 #: maps/tutorials/Introductory_Tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Изберете селищния център, а след това посочете дървото с мишката и щракнете "
+"с десния бутон, когато видите, че курсорът се превърне в иконка с дърво."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -147,6 +169,9 @@ msgid ""
 "'II' icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Изберете селищния център отново и преминете към Градската фаза, като "
+"щракнете върху иконката „II“ (трябва да изчакате първо аванпостът да бъде "
+"построен). Това ще Ви позволи да строите сгради от тази фаза."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
@@ -161,6 +186,8 @@ msgid ""
 "Start building a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Започнете обучаването на партида жени в селищния център и поставете сборната"
+" му точка върху фермата (като щракнете с десен бутон върху нея)."
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
@@ -204,12 +231,16 @@ msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"Врагът беше отблъснат. Сега постройте пазар и храм, и същевременно наредете "
+"на новите единици да събират нужните ресурси."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"След като всички изисквания за Мегаполисната фаза бъдат изпълнени, изберете "
+"селищния център и преминете към новата фаза."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
@@ -234,6 +265,10 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Спрете всички войници, които събират ресурси, и ги разделете на малки групи,"
+" които да потърсят вражеския селищен център на картата. След като забележите"
+" вражеската база, изпратете обсадните си оръжия и всички останали войници, "
+"за да я унищожите.\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
@@ -305,6 +340,13 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Сега, след като селищният център е избран, ще забележите, че в долния десен "
+"ъгъл на екрана ще се появи панел с продукцията, показващ дейностите, които "
+"могат да бъдат извършвани в тази сграда. Достъпните действия са показани в "
+"нормални цветове, но ако някоя от иконките е в сиво или червено, това "
+"означава съответно, че действието все още не е отключено, или че нямате "
+"достатъчно ресурси, за да го изпълните. Освен това, ако посочите иконките с "
+"мишката, ще се появи съобщение с повече подробности.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -314,6 +356,11 @@ msgid ""
 "that advancing to 'Town Phase' requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"Горният ред с бутони съдържа портретите на единиците, които могат да бъдат "
+"обучени в сградата, а долният (или долните два) ще съдържат технологии, "
+"които могат да бъдат проучени. Посочете с мишката иконката със знак „II“. "
+"Съобщението ни показва, че за да преминем към „Градската фаза“, трябва да "
+"имаме повече построени сгради, както и повече храна и дърва."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -370,6 +417,10 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Щракнете върху една от тях и след това добавете още единици към "
+"избраните, като задържите клавиша Shift и щракнете върху всяка отделна "
+"единица (или като направите още един правоъгълник за избор, както по-"
+"горе).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -443,6 +494,9 @@ msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Изберете селищния център, а след това посочете някое дърво с мишката и "
+"щракнете с десния бутон, когато видите, че курсорът се превърне в иконка с "
+"дърво."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
@@ -475,7 +529,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Задръжте Shift и щракнете върху иконката с хоплит."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
@@ -526,6 +580,14 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Но тъй като те трябва да занесат дървата до селищния център, разстоянието, "
+"което трябва да изминат, намалява производителността им. За да подобрим "
+"това, можем да построим близо до дърветата Склад — място за събиране на "
+"дърва, камък и метал. За да направим това, изберете петте новосъздадени "
+"граждани-во̀ини и потърсете панела за строителството в долната дясна част на"
+" екрана. Натиснете иконката на склада, преместете мишката колкото е възможно"
+" по-близо до дърветата, които искате да добивате и щракнете върху подходящо "
+"място за строеж на склада.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -563,10 +625,12 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
+"Не забравяйте да задържите Shift докато щраквате, за да създадете няколко "
+"единици."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "Задръжте Shift и щракнете върху иконката с жена."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -778,11 +842,11 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "Щракнете без да задържате Shift, за да създадете само една единица."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Щракнете върху иконката с жена."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -800,6 +864,12 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Бързината на добиване на реколтата от нивите, например, може да бъде "
+"увеличена чрез проучването на технология във фермата. Изберете фермата и "
+"разгледайте панела в долната дясна част на екрана. Ще видите няколко "
+"технологии, които могат да бъдат проучени. Посочете ги с мишката, за да "
+"видите цените и ефектите им и след това щракнете върху тази, която искате да"
+" проучите."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -807,6 +877,10 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the 'Town Phase' icon to see what is still needed.\n"
 msgstr ""
+"Трябва да започнем да се подготвяме за преминаване към „Градската фаза“, "
+"която ще отключи много нови единици и сгради. Изберете селищния център и "
+"посочете с мишката върху иконката на „Градската фаза“, за да видите от какво"
+" още имаме нужда.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -881,6 +955,12 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"За да направите това, можете да изберете трима граждани-во̀ини и да щракнете"
+" с десния бутон върху каменната мина на запад от селищния център (когато "
+"посочите с мишката върху нея и сте избрали во̀ините, курсорът ще се "
+"промени). Тези во̀ини в момента събират дърва, така че може все още да носят"
+" дървата, когато ги изпратите да събират други ресурси. Дървата, които те "
+"носят, ще бъдат загубени."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -890,6 +970,12 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"Затова трябва да ги накараме да оставят събраните дърва в селищния център по"
+" пътя към камъните. За да направим това, можем да създадем опашка от команди"
+" за тях, задържайки клавиша Shift: задръжте го и щракнете с десния бутон "
+"върху селищния център, за да ги накарате да оставят дървата там, а след "
+"това, все още държейки клавиша Shift, щракнете с десния бутон върху "
+"каменната мина, за да започнат да събират камъни оттам.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""

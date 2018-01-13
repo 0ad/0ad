@@ -210,11 +210,11 @@ if (gallicCC)
 
 			// Create the meeting place near the shoreline at the end of the path
 			createArea(
-				new ClumpPlacer(mRadius * mRadius * PI, 0.6, 0.3, 10, mX, mZ),
+				new ClumpPlacer(mRadius * mRadius * Math.PI, 0.6, 0.3, 10, mX, mZ),
 				[new LayeredPainter([tShore, tShore], [1]), paintClass(clPath), paintClass(clRitualPlace)],
 				null);
 
-			placeObject(mX, mZ, aCampfire, 0, randFloat(0, 2 * PI));
+			placeObject(mX, mZ, aCampfire, 0, randFloat(0, 2 * Math.PI));
 
 			let femaleCount = Math.round(mRadius * 2);
 			let maleCount = Math.round(mRadius * 3);
@@ -252,11 +252,11 @@ if (gallicCC)
 			placeCustomFortress(mX, mZ, new Fortress("celt ritual goat", new Array(goatCount).fill("goat")), "celt_ritual", 0, 0);
 		}
 
-		placeObject(gX, gZ, oCivicCenter, 0, BUILDING_ORIENTATION + PI * 3/2 * i);
+		placeObject(gX, gZ, oCivicCenter, 0, BUILDING_ORIENTATION + Math.PI * 3/2 * i);
 
 		// Create the city patch
 		createArea(
-			new ClumpPlacer(gaulCityRadius * gaulCityRadius * PI, 0.6, 0.3, 10, gX, gZ),
+			new ClumpPlacer(gaulCityRadius * gaulCityRadius * Math.PI, 0.6, 0.3, 10, gX, gZ),
 			[new LayeredPainter([tShore, tShore], [1]), paintClass(clGauls)],
 			null);
 
@@ -300,7 +300,7 @@ if (gallicCC)
 			"spike_single"
 		];
 		spikes = spikes.concat(spikes);
-		placeCustomFortress(gX, gZ, new Fortress("spikes", spikes), "palisade", 0, PI);
+		placeCustomFortress(gX, gZ, new Fortress("spikes", spikes), "palisade", 0, Math.PI);
 
 		// Place treasure, potentially inside buildings
 		for (let i = 0; i < gallicCCTreasureCount; ++i)
@@ -309,92 +309,42 @@ if (gallicCC)
 				gZ + randFloat(-0.8, 0.8) * gaulCityRadius,
 				pickRandom(oTreasures),
 				0,
-				randFloat(0, 2 * PI));
+				randFloat(0, 2 * Math.PI));
 	}
 }
 Engine.SetProgress(10);
 
-var [playerIDs, playerX, playerZ] = playerPlacementRiver(0, 0.6);
-
-for (let i = 0; i < numPlayers; ++i)
-{
-	let id = playerIDs[i];
-	log("Creating base for player " + id + "...");
-
-	let radius = scaleByMapSize(15, 25);
-
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
-	let ix = Math.floor(fx);
-	let iz = Math.floor(fz);
-	addToClass(ix, iz, clPlayer);
-
-	// Create the city patch
-	let cityRadius = radius / 3;
-	createArea(
-		new ClumpPlacer(PI * cityRadius * cityRadius, 0.6, 0.3, 10, ix, iz),
-		new LayeredPainter([tShore, tRoad], [1]),
-		null);
-
-	placeCivDefaultEntities(fx, fz, id, { 'iberWall': false });
-
-	placeDefaultChicken(fx, fz, clBaseResource);
-
-	// Create berry bushes
-	let angle = randFloat(0, 2 * PI);
-	let dist = 10;
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oBerryBush, 5, 5, 0, 3)],
-			true,
-			clBaseResource,
-			Math.round(fx + dist * Math.cos(angle)),
-			Math.round(fz + dist * Math.sin(angle))
-		),
-		0);
-
-	// Create metal mine
-	dist = scaleByMapSize(9, 14);
-	angle += randFloat(PI/4, PI/3);
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oMetalLarge, 1, 1, 0, 0)],
-			true,
-			clBaseResource,
-			Math.round(fx + dist * Math.cos(angle)),
-			Math.round(fz + dist * Math.sin(angle))
-		),
-		0);
-
-	// Create stone mines
-	angle += randFloat(PI/3, PI/2);
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oStoneLarge, 1, 1, 0, 2)],
-			true,
-			clBaseResource,
-			Math.round(fx + dist * Math.cos(angle)),
-			Math.round(fz + dist * Math.sin(angle))
-		),
-		0);
-
-	// Create starting trees
-	let num = 20;
-	angle += randFloat(-PI/3, PI * 4/3);
-	dist = randFloat(10, 14);
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oOak, num, num, 0, 5)],
-			false,
-			clBaseResource,
-			Math.round(fx + dist * Math.cos(angle)),
-			Math.round(fz + dist * Math.sin(angle))
-		),
-		0,
-		avoidClasses(clBaseResource, 4));
-
-	placeDefaultDecoratives(fx, fz, aBush1, clBaseResource, radius);
-}
+placePlayerBases({
+	"PlayerPlacement": playerPlacementRiver(0, 0.6),
+	"PlayerTileClass": clPlayer,
+	"BaseResourceClass": clBaseResource,
+	"Walls": false,
+	"CityPatch": {
+		"outerTerrain": tShore,
+		"innerTerrain": tRoad
+	},
+	"Chicken": {
+	},
+	"Berries": {
+		"template": aBush1
+	},
+	"Mines": {
+		"types": [
+			{ "template": oMetalLarge },
+			{ "template": oStoneLarge }
+		],
+		"distance": scaleByMapSize(9, 14)
+	},
+	"Trees": {
+		"template": oOak,
+		"count": 20,
+		"minDist": 10,
+		"maxDist": 14
+	},
+	"Decoratives": {
+		"template": aBush1
+	}
+});
 Engine.SetProgress(20);
 
 paintRiver({
@@ -698,10 +648,10 @@ createDecoration(
 	[
 		[new SimpleObject(aBucket, 1, 1, 0, 1)],
 		[new SimpleObject(aBarrel, 1, 1, 0, 1)],
-		[new SimpleObject(aTartan, 3, 3, 4, 4, PI/4, PI/2)],
+		[new SimpleObject(aTartan, 3, 3, 4, 4, Math.PI/4, Math.PI/2)],
 		[new SimpleObject(aWheel, 2, 4, 1, 2)],
 		[new SimpleObject(aWell, 1, 1, 0, 2)],
-		[new SimpleObject(aWoodcord, 1, 2, 2, 2, PI/2, PI/2)]
+		[new SimpleObject(aWoodcord, 1, 2, 2, 2, Math.PI/2, Math.PI/2)]
 	],
 	[
 		scaleByMapSize(2, 10),

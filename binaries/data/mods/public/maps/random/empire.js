@@ -16,13 +16,13 @@ addBases("stronghold", 0.37, 0.04, startAngle);
 Engine.SetProgress(20);
 
 // Change the starting angle and add the players again
-var rotation = PI;
+var rotation = Math.PI;
 
 if (teamsArray.length == 2)
-	rotation = PI / 2;
+	rotation = Math.PI / 2;
 
 if (teamsArray.length == 4)
-	rotation = PI + PI / 4;
+	rotation = 5/4 * Math.PI;
 
 addBases("stronghold", 0.15, 0.04, startAngle + rotation);
 Engine.SetProgress(40);

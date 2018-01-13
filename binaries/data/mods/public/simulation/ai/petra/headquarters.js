@@ -1466,7 +1466,7 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 		}
 		return;
 	}
-	if (gameState.getPopulation() < this.Config.Economy.popForMarket)
+	if (this.getAccountedPopulation(gameState) < this.Config.Economy.popForMarket)
 		return;
 
 	gameState.ai.queueManager.changePriority("economicBuilding", 3*this.Config.priorities.economicBuilding);
@@ -1637,7 +1637,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 	let house = gameState.applyCiv("structures/{civ}_house");
 	let HouseNb = gameState.getOwnFoundations().filter(API3.Filters.byClass("House")).length;
 	let popBonus = gameState.getTemplate(house).getPopulationBonus();
-	let freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
+	let freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - this.getAccountedPopulation(gameState);
 	let priority;
 	if (freeSlots < 5)
 	{
@@ -1785,7 +1785,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 
 m.HQ.prototype.buildBlacksmith = function(gameState, queues)
 {
-	if (gameState.getPopulation() < this.Config.Military.popForBlacksmith ||
+	if (this.getAccountedPopulation(gameState) < this.Config.Military.popForBlacksmith ||
 		queues.militaryBuilding.hasQueuedUnits() || gameState.getOwnEntitiesByClass("Blacksmith", true).length)
 		return;
 	// build a market before the blacksmith
@@ -1810,7 +1810,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.saveResources && numBarracks != 0)
 		return;
 
-	if (gameState.getPopulation() > this.Config.Military.popForBarracks1 ||
+	if (this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks1 ||
 	    this.phasing == 2 && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)
 	{
 		// first barracks and stables.
@@ -1829,24 +1829,24 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 		}
 
 		// Second barracks and stables
-		if (numBarracks == 1 && gameState.getPopulation() > this.Config.Military.popForBarracks2)
+		if (numBarracks == 1 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2)
 		{
 			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "militaryBase": true }));
 			return;
 		}
-		if (numStables == 1 && gameState.getPopulation() > this.Config.Military.popForBarracks2)
+		if (numStables == 1 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2)
 		{
 			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", { "militaryBase": true }));
 			return;
 		}
 
 		// Then 3rd barracks/stables if needed
-		if (numBarracks == 2 && numStables == -1 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 30)
+		if (numBarracks == 2 && numStables == -1 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2 + 30)
 		{
 			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "militaryBase": true }));
 			return;
 		}
-		if (numBarracks == -1 && numStables == 2 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 30)
+		if (numBarracks == -1 && numStables == 2 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2 + 30)
 		{
 			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", { "militaryBase": true }));
 			return;
@@ -1871,7 +1871,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 		return;
 	}
 
-	if (gameState.getPopulation() < 80 || !this.bAdvanced.length)
+	if (this.getAccountedPopulation(gameState) < 80 || !this.bAdvanced.length)
 		return;
 
 	//build advanced military buildings
@@ -1879,7 +1879,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	for (let advanced of this.bAdvanced)
 		nAdvanced += gameState.countEntitiesAndQueuedByType(advanced, true);
 
-	if (!nAdvanced || nAdvanced < this.bAdvanced.length && gameState.getPopulation() > 110)
+	if (!nAdvanced || nAdvanced < this.bAdvanced.length && this.getAccountedPopulation(gameState) > 110)
 	{
 		for (let advanced of this.bAdvanced)
 		{
@@ -2427,6 +2427,52 @@ m.HQ.prototype.isDefendable = function(ent)
 	if (this.turnCache.numAround[ent.id()] === undefined)
 		this.turnCache.numAround[ent.id()] = this.attackManager.numAttackingUnitsAround(ent.position(), 130);
 	return +this.turnCache.numAround[ent.id()] > 8;
+};
+
+/**
+ * Get the number of population already accounted for
+ */
+m.HQ.prototype.getAccountedPopulation = function(gameState)
+{
+	if (this.turnCache.accountedPopulation == undefined)
+	{
+		let pop = gameState.getPopulation();
+		for (let ent of gameState.getOwnTrainingFacilities().values())
+		{
+			for (let item of ent.trainingQueue())
+			{
+				if (!item.unitTemplate)
+					continue;
+				let unitPop = gameState.getTemplate(item.unitTemplate).get("Cost/Population");
+				if (unitPop)
+					pop += item.count * unitPop;
+			}
+		}
+		this.turnCache.accountedPopulation = pop;
+	}
+	return this.turnCache.accountedPopulation;
+};
+
+/**
+ * Get the number of workers already accounted for
+ */
+m.HQ.prototype.getAccountedWorkers = function(gameState)
+{
+	if (this.turnCache.accountedWorkers == undefined)
+	{
+		let workers = gameState.getOwnEntitiesByRole("worker", true).length;
+		for (let ent of gameState.getOwnTrainingFacilities().values())
+		{
+			for (let item of ent.trainingQueue())
+			{
+				if (!item.metadata || !item.metadata.role || item.metadata.role != "worker")
+					continue;
+				workers += item.count;
+			}
+		}
+		this.turnCache.accountedWorkers = workers;
+	}
+	return this.turnCache.accountedWorkers;
 };
 
 /**

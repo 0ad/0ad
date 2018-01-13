@@ -7,7 +7,7 @@
 # Wuzzy <almikes@aol.com>, 2015-2017
 # Benny <benediktwindolph@posteo.de>, 2014
 # Benny <benediktwindolph@posteo.de>, 2014
-# xtother90, 2017
+# xtother90, 2017-2018
 # Enno Holz <eh@idh20.de>, 2017
 # Maximilian Wagenbach <foaly.f@web.de>, 2016
 # SteinQuadrat, 2017
@@ -45,8 +45,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:46+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-08 20:24+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,7 +108,7 @@ msgstr "Geschichte der %(civilization)s"
 #: gui/common/color.js:149
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Unbenutzter Hotkey:%(hotkeyName)s"
 
 #: gui/common/color.js:164
 #, javascript-format
@@ -125,7 +125,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "%(url)s wird geöffnet\nim Standardbrowser. Bitte warten..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -1563,7 +1563,7 @@ msgstr "Ressourcen"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr ""
+msgstr "Tribute"
 
 #: gui/summary/layout.js:112
 #, javascript-format
@@ -1638,7 +1638,7 @@ msgstr "Feminisierung"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr ""
+msgstr "Bestechungsgelder"
 
 #: gui/summary/layout.js:194
 #, javascript-format
@@ -1747,7 +1747,7 @@ msgstr "Du hast die Schlacht gewonnen!"
 
 #: gui/summary/summary.js:499
 msgid "You have been defeated…"
-msgstr ""
+msgstr "Du wurdest besiegt…"
 
 #: gui/summary/summary.js:500
 msgid "You have abandoned the game."

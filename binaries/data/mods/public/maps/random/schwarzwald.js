@@ -31,8 +31,6 @@ var clOpen = createTileClass();
 
 var templateStoneMine = 'gaia/geology_stonemine_alpine_quarry';
 var templateMetalMine = 'gaia/geology_metal_alpine_slabs';
-var startingResources = ['gaia/flora_tree_pine', 'gaia/flora_tree_pine','gaia/flora_tree_pine', templateStoneMine,
-	'gaia/flora_bush_grapes', 'gaia/flora_tree_aleppo_pine','gaia/flora_tree_aleppo_pine','gaia/flora_tree_aleppo_pine', 'gaia/flora_bush_berry', templateMetalMine];
 var aGrass = 'actor|props/flora/grass_soft_small_tall.xml';
 var aGrassShort = 'actor|props/flora/grass_soft_large.xml';
 var aRockLarge = 'actor|geology/stone_granite_med.xml';
@@ -94,13 +92,12 @@ var maxPlayerRadius = Math.min(mapRadius - baseRadius, 3/4 * mapRadius);
 
 var playerStartLocX = [];
 var playerStartLocZ = [];
-var playerAngle = [];
-var playerAngleStart = randFloat(0, 2*PI);
-var playerAngleAddAvrg = 2*PI / numPlayers;
+var playerAngleStart = randFloat(0, 2 * Math.PI);
+var playerAngleAddAvrg = 2 * Math.PI / numPlayers;
 var playerAngleMaxOff = playerAngleAddAvrg/4;
 
 var pathSucsessRadius = baseRadius/2;
-var pathAngleOff = PI/2;
+var pathAngleOff = Math.PI/2;
 var pathWidth = 10; // This is not really the path's thickness in tiles but the number of tiles in the clumbs of the path
 
 var resourceRadius = 2/3 * mapRadius;
@@ -137,8 +134,6 @@ for (var i = 0; i < 5; i++)
 	globalSmoothHeightmap();
 rescaleHeightmap(heightRange.min, heightRange.max);
 
-Engine.SetProgress(50);
-
 //////////
 // Setup height limit
 //////////
@@ -168,36 +163,51 @@ var playerHeight = (heighLimits[4] + heighLimits[5]) / 2;
 
 for (var i=0; i < numPlayers; i++)
 {
-	playerAngle[i] = (playerAngleStart + i*playerAngleAddAvrg + randFloat(0, playerAngleMaxOff))%(2*PI);
-
-	var x = Math.round(mapCenterX + randFloat(minPlayerRadius, maxPlayerRadius)*cos(playerAngle[i]));
-	var z = Math.round(mapCenterZ + randFloat(minPlayerRadius, maxPlayerRadius)*sin(playerAngle[i]));
+	let playerAngle = (playerAngleStart + i * playerAngleAddAvrg + randFloat(0, playerAngleMaxOff)) % (2* Math.PI);
+	let x = Math.round(mapCenterX + randFloat(minPlayerRadius, maxPlayerRadius) * Math.cos(playerAngle));
+	let z = Math.round(mapCenterZ + randFloat(minPlayerRadius, maxPlayerRadius) * Math.sin(playerAngle));
 
 	playerStartLocX[i] = x;
 	playerStartLocZ[i] = z;
 
 	rectangularSmoothToHeight({"x": x,"y": z} , 20, 20, playerHeight, 0.8);
-
-	placeCivDefaultEntities(x, z, i+1, { 'iberWall': false });
-
-	// Place base texture
-	var placer = new ClumpPlacer(2*baseRadius*baseRadius, 2/3, 1/8, 10, x, z);
-	var painter = [new TerrainPainter([baseTex], [baseRadius/4, baseRadius/4]), paintClass(clPlayer)];
-	createArea(placer, painter);
-
-	// Place starting resources
-	var distToSL = 15;
-	var resStartAngle = playerAngle[i] + PI;
-	var resAddAngle = 2*PI / startingResources.length;
-	for (var rIndex = 0; rIndex < startingResources.length; rIndex++)
-	{
-		var angleOff = randFloat(-resAddAngle/2, resAddAngle/2);
-		var placeX = x + distToSL*cos(resStartAngle + rIndex*resAddAngle + angleOff);
-		var placeZ = z + distToSL*sin(resStartAngle + rIndex*resAddAngle + angleOff);
-		placeObject(placeX, placeZ, startingResources[rIndex], 0, randFloat(0, 2*PI));
-		addToClass(Math.round(placeX), Math.round(placeZ), clBaseResource);
-	}
 }
+
+placePlayerBases({
+	"PlayerPlacement": [sortAllPlayers(), playerStartLocX.map(tilesToFraction), playerStartLocZ.map(tilesToFraction)],
+	"BaseResourceClass": clBaseResource,
+	"Walls": false,
+	// player class painted below
+	"CityPatch": {
+		"radius": 0.8 * baseRadius,
+		"smoothness": 1/8,
+		"painters": [
+			new TerrainPainter([baseTex], [baseRadius/4, baseRadius/4]),
+			paintClass(clPlayer)
+		]
+	},
+	// No chicken
+	"Berries": {
+		"template": "gaia/flora_bush_berry",
+		"minCount": 2,
+		"maxCount": 2,
+		"minDist": 10,
+		"maxDist": 10
+	},
+	"Mines": {
+		"types": [
+			{ "template": templateMetalMine },
+			{ "template": templateStoneMine }
+		],
+		"distance": 15,
+		"minAngle": Math.PI / 2,
+		"maxAngle": Math.PI
+	},
+	"Trees": {
+		"template": "gaia/flora_tree_oak_large",
+		"count": 2
+	}
+});
 
 // Add further stone and metal mines
 distributeEntitiesByHeight({ 'min': heighLimits[3], 'max': ((heighLimits[4] + heighLimits[3]) / 2) }, startLocations, 40, [templateStoneMine, templateMetalMine]);
@@ -268,8 +278,8 @@ for (var i = 0; i < maxI; i++)
 
 		// Prepare path placement
 		var angle = getAngle(x, z, targetX, targetZ);
-		x += Math.round(pathSucsessRadius*cos(angle));
-		z += Math.round(pathSucsessRadius*sin(angle));
+		x += Math.round(pathSucsessRadius * Math.cos(angle));
+		z += Math.round(pathSucsessRadius * Math.sin(angle));
 
 		var targetReached = false;
 		var tries = 0;
@@ -286,13 +296,13 @@ for (var i = 0; i < maxI; i++)
 			angle = getAngle(x, z, targetX, targetZ);
 			if (doublePaths === true) // Bended paths
 			{
-				x += Math.round(cos(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
-				z += Math.round(sin(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
+				x += Math.round(Math.cos(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
+				z += Math.round(Math.sin(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
 			}
 			else // Straight paths
 			{
-				x += Math.round(cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
-				z += Math.round(sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
+				x += Math.round(Math.cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
+				z += Math.round(Math.sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
 			}
 
 			if (Math.euclidDistance2D(x, z, targetX, targetZ) < pathSucsessRadius)

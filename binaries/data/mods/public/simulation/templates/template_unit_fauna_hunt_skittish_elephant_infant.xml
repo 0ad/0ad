@@ -24,8 +24,8 @@
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/elephant_select.xml</select>
+      <order_attack>actor/fauna/animal/elephant_attack_order.xml</order_attack>
       <order_walk>actor/fauna/animal/elephant_order.xml</order_walk>
-      <order_attack>actor/fauna/animal/elephant_attack.xml</order_attack>
       <attack_melee>actor/fauna/animal/elephant_attack.xml</attack_melee>
       <death>actor/fauna/animal/elephant_death.xml</death>
       <trained>actor/fauna/animal/elephant_trained.xml</trained>

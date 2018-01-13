@@ -27,9 +27,9 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 		return;
 
 	let petraRequirements =
-		currentPhaseIndex == 1 && gameState.getPopulation() >= this.Config.Economy.popPhase2 ||
-		currentPhaseIndex == 2 && gameState.getOwnEntitiesByRole("worker", true).length > this.Config.Economy.workPhase3 ||
-		currentPhaseIndex >= 3 && gameState.getOwnEntitiesByRole("worker", true).length > this.Config.Economy.workPhase4;
+		currentPhaseIndex == 1 && gameState.ai.HQ.getAccountedPopulation(gameState) >= this.Config.Economy.popPhase2 ||
+		currentPhaseIndex == 2 && gameState.ai.HQ.getAccountedWorkers(gameState) > this.Config.Economy.workPhase3 ||
+		currentPhaseIndex >= 3 && gameState.ai.HQ.getAccountedWorkers(gameState) > this.Config.Economy.workPhase4;
 	if (petraRequirements && gameState.hasResearchers(nextPhaseName, true))
 	{
 		gameState.ai.HQ.phasing = currentPhaseIndex + 1;

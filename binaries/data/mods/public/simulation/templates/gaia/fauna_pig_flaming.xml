@@ -22,10 +22,10 @@
   <ResourceSupply disable=""/>
   <Sound>
     <SoundGroups>
-      <select>actor/fauna/animal/pig_flaming_order.xml</select>
+      <select>actor/fauna/animal/pig_flaming_select.xml</select>
       <order_walk>actor/fauna/animal/pig_flaming_order.xml</order_walk>
       <death>actor/fauna/animal/pig_death.xml</death>
-      <trained>actor/fauna/animal/pig_flaming_order.xml</trained>
+      <trained>actor/fauna/animal/pig_flaming_trained.xml</trained>
     </SoundGroups>
   </Sound>
   <UnitMotion>

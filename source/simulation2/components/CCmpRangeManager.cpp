@@ -1101,14 +1101,13 @@ public:
 			if (!query.enabled)
 				continue;
 
-			CmpPtr<ICmpPosition> cmpSourcePosition(query.source);
-			if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
-				continue;
-
 			results.clear();
-			results.reserve(query.lastMatch.size());
-			CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
-			PerformQuery(query, results, pos);
+			CmpPtr<ICmpPosition> cmpSourcePosition(query.source);
+			if (cmpSourcePosition && cmpSourcePosition->IsInWorld())
+			{
+				results.reserve(query.lastMatch.size());
+				PerformQuery(query, results, cmpSourcePosition->GetPosition2D());
+			}
 
 			// Compute the changes vs the last match
 			added.clear();
@@ -1122,7 +1121,8 @@ public:
 			if (added.empty() && removed.empty())
 				continue;
 
-			std::stable_sort(added.begin(), added.end(), EntityDistanceOrdering(m_EntityData, cmpSourcePosition->GetPosition2D()));
+			if (cmpSourcePosition && cmpSourcePosition->IsInWorld())
+				std::stable_sort(added.begin(), added.end(), EntityDistanceOrdering(m_EntityData, cmpSourcePosition->GetPosition2D()));
 
 			messages.resize(messages.size() + 1);
 			std::pair<entity_id_t, CMessageRangeUpdate>& back = messages.back();
@@ -1130,7 +1130,7 @@ public:
 			back.second.tag = it->first;
 			back.second.added.swap(added);
 			back.second.removed.swap(removed);
-			it->second.lastMatch.swap(results);
+			query.lastMatch.swap(results);
 		}
 
 		CComponentManager& cmpMgr = GetSimContext().GetComponentManager();

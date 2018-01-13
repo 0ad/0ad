@@ -56,102 +56,32 @@ var clForest = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
-
-for (let i = 0; i < numPlayers; ++i)
-{
-	let id = playerIDs[i];
-	log("Creating base for player " + id + "...");
-	let radius = scaleByMapSize(15, 25);
-
-	// Get the x and z in tiles
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
-	let ix = Math.round(fx);
-	let iz = Math.round(fz);
-
-	addCivicCenterAreaToClass(ix, iz, clPlayer);
-
-	// Create the city patch
-	let cityRadius = radius / 3;
-	createArea(
-		new ClumpPlacer(PI * cityRadius * cityRadius, 0.6, 0.3, 10, ix, iz),
-		new LayeredPainter([tCityTile, tCityTile], [1]),
-		null);
-
-	placeCivDefaultEntities(fx, fz, id);
-
-	placeDefaultChicken(fx, fz, clBaseResource);
-
-	// Create berry bushes
-	let bbAngle = randFloat(0, 2 * PI);
-	let bbDist = 12;
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oBerryBush, 5, 5, 0, 3)],
-			true,
-			clBaseResource,
-			Math.round(fx + bbDist * Math.cos(bbAngle)),
-			Math.round(fz + bbDist * Math.sin(bbAngle))),
-		0);
-
-	// Create metal mine
-	let mAngle = bbAngle;
-	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
-		mAngle = randFloat(0, 2 * PI);
-
-	let mDist = radius - 4;
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oMetalLarge, 1, 1, 0, 0)],
-			true,
-			clBaseResource,
-			Math.round(fx + mDist * Math.cos(mAngle)),
-			Math.round(fz + mDist * Math.sin(mAngle))),
-		0);
-
-	// Create stone mine
-	mAngle += randFloat(PI/8, PI/4);
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oStoneLarge, 1, 1, 0, 2)],
-			true,
-			clBaseResource,
-			Math.round(fx + mDist * Math.cos(mAngle)),
-			Math.round(fz + mDist * Math.sin(mAngle))),
-		0);
-
-	// Create starting trees
-	let hillSize = PI * radius * radius;
-	let num = Math.floor(hillSize / 100);
-	let tAngle = randFloat(-PI/3, 4 * PI/3);
-	let tDist = 12;
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oBaobab, num, num, 0, 5)],
-			false,
-			clBaseResource,
-			Math.round(fx + tDist * Math.cos(tAngle)),
-			Math.round(fz + tDist * Math.sin(tAngle))),
-		0,
-		avoidClasses(clBaseResource, 2));
-
-	// Create grass tufts
-	num = hillSize / 250;
-	for (let j = 0; j < num; ++j)
-	{
-		let gAngle = randFloat(0, 2 * PI);
-		let gDist = radius - randIntInclusive(5, 11);
-		createObjectGroup(
-			new SimpleGroup(
-				[new SimpleObject(aGrassShort, 2, 5, 0, 1, -PI/8, PI/8)],
-				false,
-				clBaseResource,
-				Math.round(fx + gDist * Math.cos(gAngle)),
-				Math.round(fz + gDist * Math.sin(gAngle))),
-			0);
+placePlayerBases({
+	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerTileClass": clPlayer,
+	"BaseResourceClass": clBaseResource,
+	"CityPatch": {
+		"outerTerrain": tCityTile,
+		"innerTerrain": tCityTile
+	},
+	"Chicken": {
+	},
+	"Berries": {
+		"template": oBerryBush
+	},
+	"Mines": {
+		"types": [
+			{ "template": oMetalLarge },
+			{ "template": oStoneLarge }
+		]
+	},
+	"Trees": {
+		"template": oBaobab
+	},
+	"Decoratives": {
+		"template": aGrassShort
 	}
-}
+});
 Engine.SetProgress(15);
 
 log("Creating bumps...");
@@ -384,7 +314,7 @@ Engine.SetProgress(85);
 
 log("Creating small grass tufts...");
 createObjectGroupsDeprecated(
-	new SimpleGroup([new SimpleObject(aGrassShort, 1, 2, 0, 1, -PI/8, PI/8)]),
+	new SimpleGroup([new SimpleObject(aGrassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]),
 	0,
 	avoidClasses(clWater, 2, clPlayer, 13, clDirt, 0),
 	scaleByMapSize(13, 200));
@@ -393,8 +323,8 @@ Engine.SetProgress(90);
 log("Creating large grass tufts...");
 createObjectGroupsDeprecated(
 	new SimpleGroup([
-		new SimpleObject(aGrass, 2, 4, 0, 1.8, -PI/8, PI/8),
-		new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5, -PI/8, PI/8)
+		new SimpleObject(aGrass, 2, 4, 0, 1.8, -Math.PI / 8, Math.PI / 8),
+		new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5, -Math.PI / 8, Math.PI / 8)
 	]),
 	0,
 	avoidClasses(clWater, 3, clPlayer, 13, clDirt, 1, clForest, 0),

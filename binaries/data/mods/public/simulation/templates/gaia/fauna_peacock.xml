@@ -16,10 +16,10 @@
   </ResourceSupply>
   <Sound>
     <SoundGroups>
-      <select>actor/fauna/animal/peacock_call.xml</select>
-      <order_walk>actor/fauna/animal/peacock_call.xml</order_walk>
+      <select>actor/fauna/animal/peacock_select.xml</select>
+      <order_walk>actor/fauna/animal/peacock_order.xml</order_walk>
       <death>actor/fauna/animal/peacock_call.xml</death>
-      <trained>actor/fauna/animal/peacock_call.xml</trained>
+      <trained>actor/fauna/animal/peacock_trained.xml</trained>
     </SoundGroups>
   </Sound>
   <UnitAI>

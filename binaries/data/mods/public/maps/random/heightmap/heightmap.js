@@ -144,7 +144,7 @@ function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance, entit
 		let checkPoint = validPoints[checkPointIndex];
 		if (placements.every(p => Math.euclidDistance2D(p.x, p.y, checkPoint.x, checkPoint.y) > minDistance))
 		{
-			placeObject(checkPoint.x, checkPoint.y, pickRandom(entityList), playerID, randFloat(0, 2*PI));
+			placeObject(checkPoint.x, checkPoint.y, pickRandom(entityList), playerID, randFloat(0, 2 * Math.PI));
 			placements.push(checkPoint);
 		}
 

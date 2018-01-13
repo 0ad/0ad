@@ -728,6 +728,20 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 
 	let builderTot = builderWorkers.length - idleBuilderWorkers.length;
 
+	// Make the limit on number of builders depends on the available resources
+	let availableResources = gameState.ai.queueManager.getAvailableResources(gameState);
+	let builderRatio = 1;
+	for (let res of Resources.GetCodes())
+	{
+		if (availableResources[res] < 200)
+		{
+			builderRatio = 0.2;
+			break;
+		}
+		else if (availableResources[res] < 1000)
+			builderRatio = Math.min(builderRatio, availableResources[res] / 1000);
+	}
+
 	for (let target of foundations.values())
 	{
 		if (target.hasClass("Field"))
@@ -743,7 +757,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			continue;
 
 		let assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
-		let maxTotalBuilders = Math.ceil(workers.length * 0.2);
+		let maxTotalBuilders = Math.ceil(workers.length * builderRatio);
 		if (maxTotalBuilders < 2 && workers.length > 1)
 			maxTotalBuilders = 2;
 		if (target.hasClass("House") && gameState.getPopulationLimit() < gameState.getPopulation() + 5 &&
@@ -843,18 +857,18 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			continue;
 
 		let assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
-		let maxTotalBuilders = Math.ceil(workers.length * 0.2);
+		let maxTotalBuilders = Math.ceil(workers.length * builderRatio);
 		let targetNB = 1;
 		if (target.hasClass("Fortress") || target.hasClass("Wonder"))
 			targetNB = 3;
 		if (target.getMetadata(PlayerID, "baseAnchor") == true ||
 		    target.hasClass("Wonder") && gameState.getGameType() == "wonder")
 		{
-			maxTotalBuilders = Math.ceil(workers.length * 0.3);
+			maxTotalBuilders = Math.ceil(workers.length * Math.max(0.3, builderRatio));
 			targetNB = 5;
 			if (target.healthLevel() < 0.3)
 			{
-				maxTotalBuilders = Math.ceil(workers.length * 0.6);
+				maxTotalBuilders = Math.ceil(workers.length * Math.max(0.6, builderRatio));
 				targetNB = 7;
 			}
 

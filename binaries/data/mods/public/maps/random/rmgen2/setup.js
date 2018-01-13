@@ -164,98 +164,40 @@ function addBases(type, distance, groupedDistance, startAngle)
  */
 function createBase(player, walls = true)
 {
-	var mapSize = getMapSize();
-
-	// Get the x and z in tiles
-	var fx = fractionToTiles(player.x);
-	var fz = fractionToTiles(player.z);
-	var ix = Math.round(fx);
-	var iz = Math.round(fz);
-
-	addCivicCenterAreaToClass(ix, iz, g_TileClasses.player);
-
-	if (walls && mapSize > 192)
-		placeCivDefaultEntities(fx, fz, player.id);
-	else
-		placeCivDefaultEntities(fx, fz, player.id, { 'iberWall': false });
-
-	// Create the city patch
-	var radius = scaleByMapSize(15, 25);
-	var cityRadius = radius / 3;
-	var placer = new ClumpPlacer(PI * cityRadius * cityRadius, 0.6, 0.3, 10, ix, iz);
-	var painter = new LayeredPainter([g_Terrains.roadWild, g_Terrains.road], [1]);
-	createArea(placer, painter, null);
-
-	// TODO: retry loops are needed as resources might conflict with neighboring ones
-
-	// Create initial berry bushes at random angle
-	var bbAngle = randFloat(0, 2 * Math.PI);
-	var bbDist = 10;
-	var bbX = Math.round(fx + bbDist * cos(bbAngle));
-	var bbZ = Math.round(fz + bbDist * sin(bbAngle));
-	var group = new SimpleGroup(
-		[new SimpleObject(g_Gaia.fruitBush, 5, 5, 0, 3)],
-		true, g_TileClasses.baseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
-
-	// Create metal mine at a different angle
-	var mAngle = bbAngle;
-	while (Math.abs(mAngle - bbAngle) < Math.PI / 3)
-		mAngle = randFloat(0, 2 * Math.PI);
-
-	var mDist = 12;
-	var mX = Math.round(fx + mDist * cos(mAngle));
-	var mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(g_Gaia.metalLarge, 1, 1, 0, 0)],
-		true, g_TileClasses.baseResource, mX, mZ
-	);
-	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
-
-	// Create stone mine beside metal
-	mAngle += randFloat(PI / 8, PI / 4);
-	mX = Math.round(fx + mDist * cos(mAngle));
-	mZ = Math.round(fz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(g_Gaia.stoneLarge, 1, 1, 0, 2)],
-		true, g_TileClasses.baseResource, mX, mZ
-	);
-	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
-
-	placeDefaultChicken(
-		fx,
-		fz,
-		g_TileClasses.baseResource,
-		avoidClasses(g_TileClasses.baseResource, 4),
-		g_Gaia.chicken
-	);
-
-	// Create starting trees
-	var num = currentBiome() == "savanna" ? 5 : 15;
-	for (var tries = 0; tries < 10; ++tries)
-	{
-		var tAngle = randFloat(0, 2 * Math.PI);
-		var tDist = randFloat(12, 13);
-		var tX = Math.round(fx + tDist * cos(tAngle));
-		var tZ = Math.round(fz + tDist * sin(tAngle));
-
-		group = new SimpleGroup(
-			[new SimpleObject(g_Gaia.tree1, num, num, 1, 3)],
-			false, g_TileClasses.baseResource, tX, tZ
-		);
-
-		if (createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 4)))
-			break;
-	}
-
-	placeDefaultDecoratives(
-		fx,
-		fz,
-		g_Decoratives.grassShort,
-		g_TileClasses.baseResource,
-		radius,
-		avoidClasses(g_TileClasses.baseResource, 4));
+	placePlayerBase({
+		"playerID": player.id,
+		"playerX": player.x,
+		"playerZ": player.z,
+		"PlayerTileClass": g_TileClasses.player,
+		"BaseResourceClass": g_TileClasses.baseResource,
+		"Walls": getMapSize() > 192 && walls,
+		"CityPatch": {
+			"outerTerrain": g_Terrains.roadWild,
+			"innerTerrain": g_Terrains.road,
+			"painters": [
+				paintClass(g_TileClasses.player)
+			]
+		},
+		"Chicken": {
+			"template": g_Gaia.chicken
+		},
+		"Berries": {
+			"template": g_Gaia.fruitBush
+		},
+		"Mines": {
+			"types": [
+				{ "template": g_Gaia.metalLarge },
+				{ "template": g_Gaia.stoneLarge }
+			]
+		},
+		"Trees": {
+			"template": g_Gaia.tree1,
+			"count": currentBiome() == "savanna" ? 5 : 15
+		},
+		"Decoratives": {
+			"template": g_Decoratives.grassShort
+		}
+	});
 }
 
 /**
@@ -344,8 +286,8 @@ function placeLine(teamsArray, distance, groupedDistance, startAngle)
 		{
 			players[teamsArray[i][p]] = {
 				"id": teamsArray[i][p],
-				"x": 0.5 + (safeDist + p * groupedDistance) * cos(teamAngle),
-				"z": 0.5 + (safeDist + p * groupedDistance) * sin(teamAngle)
+				"x": 0.5 + (safeDist + p * groupedDistance) * Math.cos(teamAngle),
+				"z": 0.5 + (safeDist + p * groupedDistance) * Math.sin(teamAngle)
 			};
 			createBase(players[teamsArray[i][p]], false);
 		}
@@ -371,8 +313,8 @@ function placeRadial(playerIDs, distance, startAngle)
 		let angle = startAngle + i * 2 * Math.PI / numPlayers;
 		players[i] = {
 			"id": playerIDs[i],
-			"x": 0.5 + distance * cos(angle),
-			"z": 0.5 + distance * sin(angle)
+			"x": 0.5 + distance * Math.cos(angle),
+			"z": 0.5 + distance * Math.sin(angle)
 		};
 		createBase(players[i]);
 	}
@@ -396,8 +338,8 @@ function placeRandom(playerIDs)
 		// Distance from the center of the map in percent
 		// Mapsize being used as a diameter, so 0.5 is the edge of the map
 		var distance = randFloat(0, 0.42);
-		var x = 0.5 + distance * cos(playerAngle);
-		var z = 0.5 + distance * sin(playerAngle);
+		var x = 0.5 + distance * Math.cos(playerAngle);
+		var z = 0.5 + distance * Math.sin(playerAngle);
 
 		// Minimum distance between initial bases must be a quarter of the map diameter
 		if (locations.some(loc => Math.euclidDistance2D(x, z, loc.x, loc.z) < 0.25))
@@ -505,8 +447,8 @@ function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 	for (let i = 0; i < teamsArray.length; ++i)
 	{
 		var teamAngle = startAngle + (i + 1) * 2 * Math.PI / teamsArray.length;
-		var fractionX = 0.5 + distance * cos(teamAngle);
-		var fractionZ = 0.5 + distance * sin(teamAngle);
+		var fractionX = 0.5 + distance * Math.cos(teamAngle);
+		var fractionZ = 0.5 + distance * Math.sin(teamAngle);
 		var teamGroupDistance = groupedDistance;
 
 		// If we have a team of above average size, make sure they're spread out
@@ -525,8 +467,8 @@ function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 			var angle = startAngle + (p + 1) * 2 * Math.PI / teamsArray[i].length;
 			players[teamsArray[i][p]] = {
 				"id": teamsArray[i][p],
-				"x": fractionX + teamGroupDistance * cos(angle),
-				"z": fractionZ + teamGroupDistance * sin(angle)
+				"x": fractionX + teamGroupDistance * Math.cos(angle),
+				"z": fractionZ + teamGroupDistance * Math.sin(angle)
 			};
 			createBase(players[teamsArray[i][p]], false);
 		}
@@ -577,8 +519,8 @@ function randomPlayerPlacementAt(teamsArray, singleBases, strongholdBases, heigh
 
 				players[p] = {
 					"id": team[p].id,
-					"x": x + groupedDistance * cos(angle),
-					"z": z + groupedDistance * sin(angle)
+					"x": x + groupedDistance * Math.cos(angle),
+					"z": z + groupedDistance * Math.sin(angle)
 				};
 
 				createBase(players[p], false);

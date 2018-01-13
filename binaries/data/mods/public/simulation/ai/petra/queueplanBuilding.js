@@ -809,9 +809,8 @@ m.ConstructionPlan.prototype.Deserialize = function(gameState, data)
 	for (let key in data)
 		this[key] = data[key];
 
-	let cost = new API3.Resources();
-	cost.Deserialize(data.cost);
-	this.cost = cost;
+	this.cost = new API3.Resources();
+	this.cost.Deserialize(data.cost);
 };
 
 return m;
