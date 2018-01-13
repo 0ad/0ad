@@ -60,6 +60,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clLand = createTileClass();
 
+var landHeight = 3;
 var playerIslandRadius = scaleByMapSize(20, 29);
 
 var [playerIDs, playerX, playerZ, playerAngle] = playerPlacementCircle(0.35);
@@ -72,108 +73,45 @@ for (let i = 0; i < numPlayers; i++)
 		new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, 10, playerPos.x, playerPos.y),
 		[
 			new LayeredPainter([tMainTerrain , tMainTerrain, tMainTerrain], [1, 6]),
-			new SmoothElevationPainter(ELEVATION_SET, 3, 6),
+			new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+			paintClass(clLand),
 			paintClass(clPlayer)
 		]);
 
-	let dockLocation = findLocationInDirectionBasedOnHeight(playerPos, mapCenter, -3 , 2.6, 3);
+	let dockLocation = findLocationInDirectionBasedOnHeight(playerPos, mapCenter, -3 , landHeight - 0.5, landHeight);
 	placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
 }
 
-var landAreas = [];
-var playerConstraint = new AvoidTileClassConstraint(clPlayer, Math.floor(scaleByMapSize(12,16)));
-var landConstraint = new AvoidTileClassConstraint(clLand, Math.floor(scaleByMapSize(12,16)));
-
-for (var x = 0; x < mapSize; ++x)
-	for (var z = 0; z < mapSize; ++z)
-		if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-			landAreas.push([x, z]);
-
-var chosenPoint;
-var landAreaLen;
-
 log("Creating big islands...");
-for (let i = 0; i < scaleByMapSize(4, 14); ++i)
-{
-	landAreaLen = landAreas.length;
-	if (!landAreaLen)
-		break;
-
-	chosenPoint = pickRandom(landAreas);
-
-	var newIsland = createAreas(
-		new ChainPlacer(
-			Math.floor(scaleByMapSize(4, 8)),
-			Math.floor(scaleByMapSize(8, 14)),
-			Math.floor(scaleByMapSize(25, 60)),
-			0.07,
-			chosenPoint[0],
-			chosenPoint[1],
-			scaleByMapSize(30, 70)),
-		[
-			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, 3, 6),
-			paintClass(clLand)
-		],
-		avoidClasses(clLand, 3, clPlayer, 3),
-		1,
-		1);
-
-	if (newIsland && newIsland.length)
-	{
-		var n = 0;
-		for (var j = 0; j < landAreas.length; ++j)
-		{
-			let [x, z] = landAreas[j];
-			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-				landAreas[n++] = landAreas[j];
-		}
-		landAreas.length = n;
-	}
-}
-
-playerConstraint = new AvoidTileClassConstraint(clPlayer, Math.floor(scaleByMapSize(9,12)));
-landConstraint = new AvoidTileClassConstraint(clLand, Math.floor(scaleByMapSize(9,12)));
+createAreas(
+	new ChainPlacer(
+		Math.floor(scaleByMapSize(4, 8)),
+		Math.floor(scaleByMapSize(8, 14)),
+		Math.floor(scaleByMapSize(25, 60)),
+		0.07),
+	[
+		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+		new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+		paintClass(clLand)
+	],
+	avoidClasses(clLand, scaleByMapSize(8, 12)),
+	scaleByMapSize(4, 14));
 
 log("Creating small islands...");
-for (let i = 0; i < 6 * Math.square(scaleByMapSize(1, 3)); ++i)
-{
-	landAreaLen = landAreas.length;
-	if (!landAreaLen)
-		break;
+createAreas(
+	new ChainPlacer(
+		Math.floor(scaleByMapSize(4, 7)),
+		Math.floor(scaleByMapSize(7, 10)),
+		Math.floor(scaleByMapSize(16, 40)),
+		0.07),
+	[
+		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+		new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+		paintClass(clLand)
+	],
+	avoidClasses(clLand, scaleByMapSize(8, 12)),
+	scaleByMapSize(6, 54));
 
-	chosenPoint = pickRandom(landAreas);
-
-	createAreas(
-		new ChainPlacer(
-			Math.floor(scaleByMapSize(4, 7)),
-			Math.floor(scaleByMapSize(7, 10)),
-			Math.floor(scaleByMapSize(16, 40)),
-			0.07,
-			chosenPoint[0],
-			chosenPoint[1],
-			scaleByMapSize(22, 40)),
-		[
-			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, 3, 6),
-			paintClass(clLand)
-		],
-		avoidClasses(clLand, 3, clPlayer, 3),
-		1,
-		1);
-
-	if (newIsland !== undefined)
-	{
-		var temp = [];
-		for (var j = 0; j < landAreaLen; ++j)
-		{
-			let [x, z] = landAreas[j];
-			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-					temp.push([x, z]);
-		}
-		landAreas = temp;
-	}
-}
 paintTerrainBasedOnHeight(1, 3, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
