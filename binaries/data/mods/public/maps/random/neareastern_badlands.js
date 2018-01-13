@@ -40,15 +40,24 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill1 = createTileClass();
+var clOasis = createTileClass();
 var clForest = createTileClass();
 var clPatch = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
+
+var oasisRadius = scaleByMapSize(14, 40);
+var oasisHeight = -11;
+
+var hillHeight1 = 16;
+var hillHeight2 = 16;
+var hillHeight3 = 16;
 
 var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
 
@@ -92,48 +101,52 @@ placePlayerBases({
 Engine.SetProgress(10);
 
 log("Creating dune patches...");
-placer = new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, 0);
-painter = new TerrainPainter(tDunes);
-createAreas(placer, [painter, paintClass(clPatch)],
+createAreas(
+	new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, 0),
+	[
+		new TerrainPainter(tDunes),
+		paintClass(clPatch)
+	],
 	avoidClasses(clPatch, 2, clPlayer, 0),
-	scaleByMapSize(5, 20)
-);
+	scaleByMapSize(5, 20));
 Engine.SetProgress(15);
 
 log("Creating sand patches...");
-var placer = new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0);
-var painter = new TerrainPainter([tSand, tFineSand]);
-createAreas(placer, [painter, paintClass(clPatch)],
+createAreas(
+	new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0),
+	[
+		new TerrainPainter([tSand, tFineSand]),
+		paintClass(clPatch)
+	],
 	avoidClasses(clPatch, 2, clPlayer, 0),
-	scaleByMapSize(15, 50)
-);
+	scaleByMapSize(15, 50));
 Engine.SetProgress(20);
 
 log("Creating dirt patches...");
-placer = new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0);
-painter = new TerrainPainter([tDirt]);
-createAreas(placer, [painter, paintClass(clPatch)],
+createAreas(
+	new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0),
+	[
+		new TerrainPainter([tDirt]),
+		paintClass(clPatch)
+	],
 	avoidClasses(clPatch, 2, clPlayer, 0),
-	scaleByMapSize(15, 50)
-);
+	scaleByMapSize(15, 50));
 Engine.SetProgress(25);
 
 log("Creating oasis...");
-var oRadius = scaleByMapSize(14, 40);
 createArea(
-	new ClumpPlacer(diskArea(oRadius), 0.6, 0.15, 0, mapSize / 2, mapSize / 2),
+	new ClumpPlacer(diskArea(oasisRadius), 0.6, 0.15, 0, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([[tSand, pForest], [tGrassSand25, pForestOasis], tGrassSand25, tShore, tWaterDeep], [2, 3, 1, 1]),
-		new SmoothElevationPainter(ELEVATION_MODIFY, -11, 8),
-		paintClass(clForest)
-	],
-	null);
+		new SmoothElevationPainter(ELEVATION_MODIFY, oasisHeight, 8),
+		paintClass(clOasis)
+	]);
 
 Engine.SetProgress(30);
 
 log("Creating oasis wildlife...");
-var num = Math.round(Math.PI * oRadius / 8);
-var constraint = new AndConstraint([borderClasses(clForest, 0, 3), avoidClasses(clForest, 0)]);
+var num = Math.round(Math.PI * oasisRadius / 8);
+var constraint = new AndConstraint([borderClasses(clOasis, 0, 3), avoidClasses(clOasis, 0)]);
 var halfSize = mapSize/2;
 for (var i = 0; i < num; ++i)
 {
@@ -159,8 +172,8 @@ for (var i = 0; i < num; ++i)
 		0);
 }
 
-constraint = new AndConstraint([borderClasses(clForest, 15, 0), avoidClasses(clFood, 5)]);
-num = Math.round(Math.PI * oRadius / 16);
+constraint = new AndConstraint([borderClasses(clOasis, 15, 0), avoidClasses(clFood, 5)]);
+num = Math.round(Math.PI * oasisRadius / 16);
 for (var i = 0; i < num; ++i)
 {
 	var r = 0;
@@ -185,10 +198,10 @@ var hillAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(50,300), 0.25, 0.1, 0.5),
 	[
 		new LayeredPainter([tCliff, tSand], [1]),
-		new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1),
+		new SmoothElevationPainter(ELEVATION_MODIFY, hillHeight1, 1),
 		paintClass(clHill1)
 	],
-	avoidClasses(clForest, 3, clPlayer, 0, clHill1, 10),
+	avoidClasses(clOasis, 3, clPlayer, 0, clHill1, 10),
 	scaleByMapSize(10,20), 100
 );
 Engine.SetProgress(40);
@@ -199,10 +212,10 @@ hillAreas = hillAreas.concat(
 		new ClumpPlacer(scaleByMapSize(25,150), 0.25, 0.1, 0.5),
 		[
 			new LayeredPainter([tCliff, tSand], [1]),
-			new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1),
+			new SmoothElevationPainter(ELEVATION_MODIFY, hillHeight2, 1),
 			paintClass(clHill1)
 		],
-		avoidClasses(clForest, 3, clPlayer, 0, clHill1, 3),
+		avoidClasses(clOasis, 3, clPlayer, 0, clHill1, 3),
 		scaleByMapSize(15,25),
 		100));
 
@@ -225,7 +238,7 @@ createAreasInAreas(
 	new ClumpPlacer(scaleByMapSize(25, 150), 0.25, 0.1, 0),
 	[
 		new LayeredPainter([tCliff, tSand], [1]),
-		new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1)
+		new SmoothElevationPainter(ELEVATION_MODIFY, hillHeight2, 1)
 	],
 	[stayClasses(clHill1, 0)],
 	scaleByMapSize(15, 25),
@@ -239,7 +252,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(12, 75), 0.25, 0.1, 0),
 	[
 		new LayeredPainter([tCliff, tSand], [1]),
-		new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1)
+		new SmoothElevationPainter(ELEVATION_MODIFY, hillHeight3, 1)
 	],
 	[stayClasses(clHill1, 0)],
 	scaleByMapSize(15,25),
@@ -251,7 +264,7 @@ log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 0),
 	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
-	avoidClasses(clForest, 0, clPlayer, 0, clHill1, 2),
+	avoidClasses(clOasis, 0, clPlayer, 0, clHill1, 2),
 	scaleByMapSize(100, 200)
 );
 
@@ -260,32 +273,35 @@ Engine.SetProgress(65);
 log("Creating forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.5);
 var num = scaleByMapSize(10,30);
-placer = new ClumpPlacer(forestTrees / num, 0.15, 0.1, 0.5);
-painter = new TerrainPainter([tSand, pForest]);
-createAreas(placer, [painter, paintClass(clForest)],
-	avoidClasses(clPlayer, 1, clForest, 10, clHill1, 1),
-	num, 50
-);
+createAreas(
+	new ClumpPlacer(forestTrees / num, 0.15, 0.1, 0.5),
+	[
+		new TerrainPainter([tSand, pForest]),
+		paintClass(clForest)
+	],
+	avoidClasses(clPlayer, 1, clOasis, 10, clForest, 10, clHill1, 1),
+	num,
+	50);
 
 Engine.SetProgress(70);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill1, 1)],
+	[avoidClasses(clOasis, 1, clForest, 1, clPlayer, 10, clRock, 10, clHill1, 1)],
 	scaleByMapSize(4,16), 100
 );
 
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill1, 1)],
+	[avoidClasses(clOasis, 1, clForest, 1, clPlayer, 10, clRock, 10, clHill1, 1)],
 	scaleByMapSize(4,16), 100
 );
 
 log("Creating metal mines...");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill1, 1)],
+	[avoidClasses(clOasis, 1, clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill1, 1)],
 	scaleByMapSize(4,16), 100
 );
 
@@ -294,28 +310,28 @@ Engine.SetProgress(80);
 log("Creating gazelles...");
 group = new SimpleGroup([new SimpleObject(oGazelle, 5,7, 0,4)], true, clFood);
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
+	avoidClasses(clOasis, 1, clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
 	scaleByMapSize(5,20), 50
 );
 
 log("Creating goats...");
 group = new SimpleGroup([new SimpleObject(oGoat, 2,4, 0,3)], true, clFood);
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
+	avoidClasses(clOasis, 1, clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
 	scaleByMapSize(5,20), 50
 );
 
 log("Creating camels...");
 group = new SimpleGroup([new SimpleObject(oCamel, 2,4, 0,2)], true, clFood);
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
+	avoidClasses(clOasis, 1, clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
 	scaleByMapSize(5,20), 50
 );
 Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oDatePalm, oSDatePalm],
-	avoidClasses(clForest, 0, clHill1, 1, clPlayer, 4, clMetal, 6, clRock, 6),
+	avoidClasses(clOasis, 1, clForest, 0, clHill1, 1, clPlayer, 4, clMetal, 6, clRock, 6),
 	clForest,
 	stragglerTrees);
 Engine.SetProgress(90);
@@ -323,14 +339,14 @@ Engine.SetProgress(90);
 log("Creating bushes...");
 group = new SimpleGroup([new RandomObject(aBushes, 2,3, 0,2)]);
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clHill1, 1, clPlayer, 0, clForest, 0),
+	avoidClasses(clOasis, 1, clHill1, 1, clPlayer, 0, clForest, 0),
 	scaleByMapSize(16, 262)
 );
 
 log("Creating more decorative rocks...");
 group = new SimpleGroup([new SimpleObject(aDecorativeRock, 1,2, 0,2)]);
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clHill1, 1, clPlayer, 0, clForest, 0),
+	avoidClasses(clOasis, 1, clHill1, 1, clPlayer, 0, clForest, 0),
 	scaleByMapSize(16, 262)
 );
 
