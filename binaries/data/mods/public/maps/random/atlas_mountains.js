@@ -46,7 +46,6 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clTreasure = createTileClass();
-var clGrass = createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(0.35),
@@ -106,7 +105,7 @@ createLayeredPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  [tGrass2,tGrassPatch],
  [1],
- avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10, clGrass, 15),
+ avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10),
  scaleByMapSize(15, 45),
  clDirt);
 

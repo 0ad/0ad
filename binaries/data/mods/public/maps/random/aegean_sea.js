@@ -60,7 +60,6 @@ var clBaseResource = createTileClass();
 var clGrass = createTileClass();
 var clHill = createTileClass();
 var clIsland = createTileClass();
-var clCorals = createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementRiver(0, 0.6),
@@ -156,10 +155,7 @@ Engine.SetProgress(60);
 log("Creating undersea bumps...");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
-	[
-		new SmoothElevationPainter(ELEVATION_SET, -2.5, 3),
-		paintClass(clCorals)
-	],
+	new SmoothElevationPainter(ELEVATION_SET, -2.5, 3),
 	stayClasses(clWater, 6),
 	scaleByMapSize(10, 50)
 );

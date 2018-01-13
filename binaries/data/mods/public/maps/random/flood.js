@@ -52,7 +52,6 @@ const clPlayer = createTileClass();
 const clHill = createTileClass();
 const clMountain = createTileClass();
 const clForest = createTileClass();
-const clWater = createTileClass();
 const clDirt = createTileClass();
 const clRock = createTileClass();
 const clMetal = createTileClass();
@@ -74,8 +73,7 @@ createArea(
 	new ClumpPlacer(getMapArea(), 1, 1, 1, Math.round(fractionToTiles(0.5)), Math.round(fractionToTiles(0.5))),
 	[
 		new LayeredPainter([tWater, tWater, tShore], [1, 4]),
-		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2),
-		paintClass(clWater)
+		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2)
 	],
 	avoidClasses(clPlayer, 5));
 
@@ -211,16 +209,6 @@ createObjectGroup(
 		0,
 		[avoidClasses(clBaseResource, 20, clPlayer, 40, clMountain, 4), stayClasses(clHill, 10)]);
 
-createObjectGroup(
-	new SimpleGroup(
-		[new SimpleObject(oMainHuntableAnimal, Math.floor(6 * numPlayers), Math.floor(6 * numPlayers), 2, Math.floor(mapSize * 0.1))],
-		true,
-		clBaseResource,
-		centerOfMap,
-		centerOfMap),
-	0,
-	[avoidClasses(clBaseResource, 2, clMountain, 4, clPlayer, 40, clWater, 2), stayClasses(clHill, 10)]);
-
 log("Creating fish...");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oFish, 2, 3, 0, 2)], true, clFood),
@@ -275,7 +263,7 @@ createFood(
 		[new SimpleObject(oSecondaryHuntableAnimal, 2, 3, 0, 2)]
 	],
 	[3 * numPlayers, 3 * numPlayers],
-	[avoidClasses(clForest, 0, clPlayer, 20, clMountain, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clHill, 2)],
+	[avoidClasses(clForest, 0, clPlayer, 20, clMountain, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clHill, 6)],
 	clFood);
 
 Engine.SetProgress(75);
@@ -285,16 +273,10 @@ createFood(
 		[new SimpleObject(oFruitBush, 5, 7, 0, 4)]
 	],
 	[3 * numPlayers],
-	[avoidClasses(clForest, 0, clPlayer, 15, clMountain, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clHill, 2)],
+	[avoidClasses(clForest, 0, clPlayer, 15, clMountain, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clHill, 6)],
 	clFood);
 
 Engine.SetProgress(85);
-
-createStragglerTrees(
-	types,
-	avoidClasses(clWater, 5, clForest, 7, clMountain, 1, clPlayer, 30, clMetal, 6, clRock, 3),
-	clForest,
-	stragglerTrees);
 
 log("Creating decoration...");
 var planetm = currentBiome() == "tropic" ? 8 : 1;

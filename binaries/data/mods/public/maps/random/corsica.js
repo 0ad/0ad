@@ -53,7 +53,6 @@ var clShore = createTileClass();
 var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
 var clPassage = createTileClass();
-var clWater = createTileClass();
 var clSettlement = createTileClass();
 
 initTerrain(tVeryDeepWater);

@@ -41,7 +41,6 @@ const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 
 var clPlayer = createTileClass();
-var clHill = createTileClass();
 var clForest = createTileClass();
 var clDirt = createTileClass();
 var clRock = createTileClass();
@@ -147,7 +146,7 @@ createBumps([avoidClasses(clPlayer, 20, clRiver, 1), stayClasses(clLand, 3)]);
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tGrass, tForestFloorP, tForestFloorC, pForestC, pForestP],
- [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clRiver, 1), stayClasses(clLand, 7)],
+ [avoidClasses(clPlayer, 20, clForest, 17, clRiver, 1), stayClasses(clLand, 7)],
  clForest,
  forestTrees);
 
@@ -158,7 +157,7 @@ createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tGrass,tGrassA],[tGrassA,tGrassB], [tGrassB,tGrassC]],
  [1,1],
- [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 8, clRiver, 1), stayClasses(clLand, 7)],
+ [avoidClasses(clForest, 0, clDirt, 3, clPlayer, 8, clRiver, 1), stayClasses(clLand, 7)],
  scaleByMapSize(15, 45),
  clDirt);
 
@@ -166,7 +165,7 @@ log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tGrassPatch,
- [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 8, clRiver, 1), stayClasses(clLand, 7)],
+ [avoidClasses(clForest, 0, clDirt, 3, clPlayer, 8, clRiver, 1), stayClasses(clLand, 7)],
  scaleByMapSize(15, 45),
  clDirt);
 Engine.SetProgress(55);
@@ -177,7 +176,7 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- [avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1, clRiver, 1), stayClasses(clLand, 5)],
+ [avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clRiver, 1), stayClasses(clLand, 5)],
  clRock);
 
 log("Creating metal mines...");
@@ -185,7 +184,7 @@ createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
  ],
- [avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1, clRiver, 1), stayClasses(clLand, 5)],
+ [avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clRiver, 1), stayClasses(clLand, 5)],
  clMetal
 );
 Engine.SetProgress(65);
@@ -205,7 +204,7 @@ createDecoration(
 		scaleByMapSize(13, 200),
 		scaleByMapSize(13, 200)
 	],
-	[avoidClasses(clHill, 1, clPlayer, 1, clDirt, 1, clRiver, 1), stayClasses(clLand, 6)]);
+	[avoidClasses(clPlayer, 1, clDirt, 1, clRiver, 1), stayClasses(clLand, 6)]);
 
 log("Create water decoration in the shallow parts");
 createDecoration(
@@ -230,7 +229,7 @@ createFood(
 		3 * numPlayers,
 		3 * numPlayers
 	],
-	[avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20, clRiver, 1), stayClasses(clLand, 3)],
+	[avoidClasses(clForest, 0, clPlayer, 20, clFood, 20, clRiver, 1), stayClasses(clLand, 3)],
 	clFood);
 
 createFood(
@@ -240,7 +239,7 @@ createFood(
 	[
 		randIntInclusive(1, 4) * numPlayers + 2
 	],
-	[avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clRiver, 1), stayClasses(clLand, 3)],
+	[avoidClasses(clForest, 0, clPlayer, 20, clFood, 10, clRiver, 1), stayClasses(clLand, 3)],
 	clFood);
 
 createFood(
@@ -257,7 +256,7 @@ Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oPoplar, oCarob, oApple],
-	[avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 6, clRock, 6, clRiver, 1), stayClasses(clLand, 7)],
+	[avoidClasses(clForest, 1, clPlayer, 9, clMetal, 6, clRock, 6, clRiver, 1), stayClasses(clLand, 7)],
 	clForest,
 	stragglerTrees);
 

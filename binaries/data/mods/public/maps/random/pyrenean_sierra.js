@@ -65,14 +65,12 @@ const mapSize = getMapSize();
 const mapCenter = getMapCenter();
 
 var clDirt = createTileClass();
-var clLush = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clPass = createTileClass();
 var clPyrenneans = createTileClass();
-var clPass = createTileClass();
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -387,10 +385,7 @@ log("Creating grass patches...");
 for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
-		[
-			new TerrainPainter(tLushGrass),
-			paintClass(clLush)
-		],
+		new TerrainPainter(tLushGrass),
 		avoidClasses(clWater, 3, clForest, 0, clPyrenneans,5, clHill, 0, clDirt, 5, clPlayer, 6),
 		scaleByMapSize(15, 45));
 

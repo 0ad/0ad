@@ -39,7 +39,6 @@ InitMap();
 const numPlayers = getNumPlayers();
 
 var clPlayer = createTileClass();
-var clHill = createTileClass();
 var clForest = createTileClass();
 var clWater = createTileClass();
 var clDirt = createTileClass();
@@ -125,7 +124,7 @@ for (let type of types)
 			new LayeredPainter(type, [2]),
 			paintClass(clForest)
 		],
-		avoidClasses(clPlayer, 20, clWater, 0, clForest, 10, clHill, 1),
+		avoidClasses(clPlayer, 20, clWater, 0, clForest, 10),
 		num);
 Engine.SetProgress(50);
 
@@ -137,27 +136,27 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 			new LayeredPainter([tGrassA, tGrassB, tMud], [1, 1]),
 			paintClass(clDirt)
 		],
-		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 8),
+		avoidClasses(clWater, 1, clForest, 0, clDirt, 5, clPlayer, 8),
 		scaleByMapSize(15, 45));
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1)],
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10)],
 	scaleByMapSize(4,16), 100
 );
 
 log("Creating small stone quarries...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1)],
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10)],
 	scaleByMapSize(4,16), 100
 );
 
 log("Creating metal mines...");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1)],
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5)],
 	scaleByMapSize(4,16), 100
 );
 
@@ -170,7 +169,7 @@ group = new SimpleGroup(
 );
 createObjectGroupsDeprecated(
 	group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0),
 	scaleByMapSize(16, 262), 50
 );
 
@@ -183,7 +182,7 @@ group = new SimpleGroup(
 );
 createObjectGroupsDeprecated(
 	group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0),
 	scaleByMapSize(8, 131), 50
 );
 
@@ -195,7 +194,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 1, clFood, 13),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clFood, 13),
 	6 * numPlayers, 50
 );
 
@@ -205,7 +204,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 1, clFood, 13),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clFood, 13),
 	3 * numPlayers, 50
 );
 
@@ -217,7 +216,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 1, clFood, 13),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clFood, 13),
 	6 * numPlayers, 50
 );
 
@@ -227,7 +226,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 1, clFood, 13),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clFood, 13),
 	3 * numPlayers, 50
 );
 
@@ -237,7 +236,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clFood, 10),
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
@@ -245,7 +244,7 @@ Engine.SetProgress(80);
 
 createStragglerTrees(
 	[oOak, oBeech],
-	avoidClasses(clForest, 1, clHill, 1, clPlayer, 13, clMetal, 6, clRock, 6, clWater, 0),
+	avoidClasses(clForest, 1, clPlayer, 13, clMetal, 6, clRock, 6, clWater, 0),
 	clForest,
 	stragglerTrees);
 
@@ -255,7 +254,7 @@ log("Creating small grass tufts...");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(aGrassShort, 1, 2, 0, 1)]),
 	0,
-	avoidClasses(clWater, 2, clHill, 2, clPlayer, 13, clDirt, 0),
+	avoidClasses(clWater, 2, clPlayer, 13, clDirt, 0),
 	scaleByMapSize(13, 200));
 
 Engine.SetProgress(90);
@@ -268,7 +267,7 @@ createObjectGroupsDeprecated(
 			new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5)
 		]),
 	0,
-	avoidClasses(clWater, 3, clHill, 2, clPlayer, 13, clDirt, 1, clForest, 0),
+	avoidClasses(clWater, 3, clPlayer, 13, clDirt, 1, clForest, 0),
 	scaleByMapSize(13, 200));
 
 Engine.SetProgress(95);
@@ -281,7 +280,7 @@ createObjectGroupsDeprecated(
 			new SimpleObject(aBushSmall, 2, 4, 0, 2)
 		]),
 	0,
-	avoidClasses(clWater, 1, clHill, 1, clPlayer, 13, clDirt, 1),
+	avoidClasses(clWater, 1, clPlayer, 13, clDirt, 1),
 	scaleByMapSize(13, 200),
 	50);
 

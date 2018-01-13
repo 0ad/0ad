@@ -55,7 +55,6 @@ var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
 var clForestJoin = createTileClass();
-var clWater = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
@@ -406,7 +405,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 4, clFood, 20),
+	avoidClasses(clForest, 0, clPlayer, 20, clHill, 4, clFood, 20),
 	randIntInclusive(3, 12) * numPlayers + 2, 50
 );
 

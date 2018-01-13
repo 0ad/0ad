@@ -187,12 +187,12 @@ for (let i = 0; i < teams.length; ++i)
 			[new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, Math.floor(mapSize * 0.2))],
 			true, clBaseResource, teamX, teamZ
 		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clHill, 1, clPlayer, 10), stayClasses(clLand, 5)]);
+		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 		group = new SimpleGroup(
 			[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, Math.floor(mapSize * 0.2))],
 			true, clBaseResource, teamX, teamZ
 		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clHill, 1, clPlayer, 10), stayClasses(clLand, 5)]);
+		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 	}
 }
 
@@ -300,7 +300,7 @@ createMines(
 [
 	[new SimpleObject(oMetalLarge, 1, 1, 3, (numPlayers * 2) + 1)]
 ],
-[avoidClasses(clForest, 1, clPlayer, 40, clRock, 20, clHill, 5), stayClasses(clLand, 4)],
+[avoidClasses(clForest, 1, clPlayer, 40, clRock, 20), stayClasses(clLand, 4)],
 clMetal
 );
 
@@ -308,14 +308,14 @@ createMines(
 [
 	[new SimpleObject(oStoneLarge, 1, 1, 3, (numPlayers * 2) + 1)], [new SimpleObject(oStoneSmall, 2, 2, 2, (numPlayers * 2) + 1)]
 ],
-[avoidClasses(clForest, 1, clPlayer, 40, clMetal, 20, clHill, 5), stayClasses(clLand, 4)],
+[avoidClasses(clForest, 1, clPlayer, 40, clMetal, 20), stayClasses(clLand, 4)],
 clRock
 );
 
 var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
- [avoidClasses(clPlayer, 10, clForest, 20, clHill, 10, clBaseResource, 5, clRock, 6, clMetal, 6), stayClasses(clLand, 3)],
+ [avoidClasses(clPlayer, 10, clForest, 20, clBaseResource, 5, clRock, 6, clMetal, 6), stayClasses(clLand, 3)],
  clForest,
  forestTrees);
 

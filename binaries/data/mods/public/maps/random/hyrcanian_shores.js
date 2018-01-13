@@ -50,9 +50,7 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSea = createTileClass();
 var clHighlands = createTileClass();
-var clFlatlands = createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementLine(true, 0.5, 0.2),
@@ -140,7 +138,7 @@ createAreas(
 		new SmoothElevationPainter(ELEVATION_SET, 15, 2),
 		paintClass(clHill)
 	],
-	avoidClasses(clSea, 5, clPlayer, 20, clWater, 5, clHill, 15, clHighlands, 5),
+	avoidClasses(clPlayer, 20, clWater, 5, clHill, 15, clHighlands, 5),
 	scaleByMapSize(1, 4) * numPlayers);
 
 Engine.SetProgress(35);
@@ -159,7 +157,7 @@ for (let type of types)
 			new LayeredPainter(type, [2]),
 			paintClass(clForest)
 		],
-		avoidClasses(clPlayer, 20, clWater, 3, clForest, 10, clHill, 0, clSea, 6, clBaseResource, 3),
+		avoidClasses(clPlayer, 20, clWater, 3, clForest, 10, clHill, 0, clBaseResource, 3),
 		num);
 Engine.SetProgress(45);
 
@@ -176,7 +174,7 @@ for (let type of types)
 			new LayeredPainter(type, [2]),
 			paintClass(clForest)
 		],
-		avoidClasses(clPlayer, 20, clWater, 3, clForest, 2, clHill, 0, clSea, 6, clFlatlands, 3),
+		avoidClasses(clPlayer, 20, clWater, 3, clForest, 2, clHill, 0),
 		num);
 Engine.SetProgress(70);
 
@@ -188,7 +186,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 			new LayeredPainter([[tGrass, tGrassA], [tGrassA, tGrassB], [tGrassB, tGrassC]], [1, 1]),
 			paintClass(clDirt)
 		],
-		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 4, clSea, 0),
+		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 4),
 		scaleByMapSize(15, 45));
 Engine.SetProgress(75);
 
@@ -197,7 +195,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		new LayeredPainter([tGrassC, tGrassPatch], [2]),
-		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6, clSea, 0, clBaseResource, 6),
+		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6, clBaseResource, 6),
 		scaleByMapSize(15, 45));
 
 Engine.SetProgress(80);
@@ -205,21 +203,21 @@ Engine.SetProgress(80);
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10, clSea, 2, clHill, 2)],
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10, clHill, 2)],
 	scaleByMapSize(4,16), 100
 );
 
 log("Creating small stone quarries...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10, clSea, 2, clHill, 2)],
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10, clHill, 2)],
 	scaleByMapSize(4,16), 100
 );
 
 log("Creating metal mines...");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clSea, 0, clHill, 2)],
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2)],
 	scaleByMapSize(4,16), 100
 );
 
@@ -232,7 +230,7 @@ group = new SimpleGroup(
 );
 createObjectGroupsDeprecated(
 	group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0, clSea, 0),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0),
 	scaleByMapSize(16, 262), 50
 );
 Engine.SetProgress(90);
@@ -244,7 +242,7 @@ group = new SimpleGroup(
 );
 createObjectGroupsDeprecated(
 	group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0, clSea, 0),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0),
 	scaleByMapSize(8, 131), 50
 );
 
@@ -254,7 +252,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 0, clFood, 5, clSea, 0, clFlatlands, 0),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 0, clFood, 5),
 	6 * numPlayers, 50
 );
 
@@ -264,7 +262,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 0, clFood, 20, clSea, 0),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 0, clFood, 20),
 	3 * numPlayers, 50
 );
 
@@ -284,13 +282,13 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 0, clFood, 20, clSea, 0, clFlatlands, 0),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 0, clFood, 20),
 	2 * numPlayers, 50
 );
 
 createStragglerTrees(
 	[oPoplar, oPalm, oApple],
-	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clSea, 1, clHighlands, 25),
+	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6),
 	clForest,
 	stragglerTrees);
 
@@ -299,7 +297,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1,2, 0,1, -Math.PI / 8, Math.PI / 8)]
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0, clSea, 1),
+	avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0),
 	scaleByMapSize(13, 200)
 );
 
@@ -308,7 +306,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aGrass, 2,4, 0,1.8, -Math.PI / 8, Math.PI / 8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -Math.PI / 8, Math.PI / 8)]
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0, clSea, 1),
+	avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
 	scaleByMapSize(13, 200)
 );
 Engine.SetProgress(95);
@@ -318,7 +316,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 1, clHill, 1, clPlayer, 1, clDirt, 1, clSea, 1),
+	avoidClasses(clWater, 1, clHill, 1, clPlayer, 1, clDirt, 1),
 	scaleByMapSize(13, 200), 50
 );
 
