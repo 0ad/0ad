@@ -369,29 +369,32 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 
 Engine.SetProgress(90);
 
-// Place players and start resources
-for (var p = 0; p < numPlayers; p++)
 {
-	var actualX = possibleStartPositions[bestDerivation[p]][0];
-	var actualY = possibleStartPositions[bestDerivation[p]][1];
-	placeCivDefaultStartingEntities(actualX, actualY, p + 1, false);
+	log("Placing players and starting resources...");
+	let playerIDs = sortAllPlayers();
+	let resourceDistance = 8;
+	let resourceSpacing = 1;
+	let resourceCount = 4;
 
-	// Place some start resources
-	var uDist = 8;
-	var uSpace = 1;
-	for (var j = 1; j <= 4; ++j)
+	for (let i = 0; i < numPlayers; ++i)
 	{
-		var uAngle = BUILDING_ORIENTATION - Math.PI * (2-j) / 2;
-		var count = 4;
-		for (var numberofentities = 0; numberofentities < count; numberofentities++)
-		{
-			var ux = actualX + uDist * Math.cos(uAngle) + numberofentities * uSpace * Math.cos(uAngle + Math.PI/2) - (0.75 * uSpace * Math.floor(count / 2) * Math.cos(uAngle + Math.PI/2));
-			var uz = actualY + uDist * Math.sin(uAngle) + numberofentities * uSpace * Math.sin(uAngle + Math.PI/2) - (0.75 * uSpace * Math.floor(count / 2) * Math.sin(uAngle + Math.PI/2));
+		let playerPos = new Vector2D(possibleStartPositions[bestDerivation[i]][0], possibleStartPositions[bestDerivation[i]][1]);
+		placeCivDefaultStartingEntities(playerPos.x, playerPos.y, playerIDs[i], false);
 
-			if (j % 2 == 0)
-				placeObject(ux, uz, "gaia/flora_bush_berry", 0, randFloat(0, 2 * Math.PI));
-			else
-				placeObject(ux, uz, "gaia/flora_tree_cypress", 0, randFloat(0, 2 * Math.PI));
+		for (let j = 1; j <= 4; ++j)
+		{
+			let uAngle = BUILDING_ORIENTATION - Math.PI * (2-j) / 2;
+			for (let k = 0; k < resourceCount; ++k)
+			{
+				let pos = Vector2D.sum([
+					playerPos,
+					new Vector2D(resourceDistance, 0).rotate(-uAngle),
+					new Vector2D(k * resourceSpacing, 0).rotate(-uAngle - Math.PI/2),
+					new Vector2D(-0.75 * resourceSpacing * Math.floor(resourceCount / 2), 0).rotate(-uAngle - Math.PI/2)
+				]);
+
+				placeObject(pos.x, pos.y, j % 2 ? "gaia/flora_tree_cypress" : "gaia/flora_bush_berry", 0, randFloat(0, 2 * Math.PI));
+			}
 		}
 	}
 }
