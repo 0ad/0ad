@@ -247,17 +247,12 @@ function getTileClass(id)
 }
 
 /**
- * Constructs a new Area shaped by the Placer meeting the Constraint and calls the Painters there.
+ * Constructs a new Area shaped by the Placer meeting the Constraints and calls the Painters there.
  * Supports both Centered and Non-Centered Placers.
  */
-function createArea(placer, painter, constraint)
+function createArea(placer, painter, constraints)
 {
-	if (!constraint)
-		constraint = new NullConstraint();
-	else if (constraint instanceof Array)
-		constraint = new AndConstraint(constraint);
-
-	let points = placer.place(constraint);
+	let points = placer.place(new AndConstraint(constraints));
 	if (!points)
 		return undefined;
 
@@ -296,17 +291,12 @@ function unPaintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
 }
 
 /**
- * Places the Entities of the given Group if they meet the Constraint
+ * Places the Entities of the given Group if they meet the Constraints
  * and sets the given player as the owner.
  */
-function createObjectGroup(group, player, constraint)
+function createObjectGroup(group, player, constraints)
 {
-	if (!constraint)
-		constraint = new NullConstraint();
-	else if (constraint instanceof Array)
-		constraint = new AndConstraint(constraint);
-
-	return group.place(player, constraint);
+	return group.place(player, new AndConstraint(constraints));
 }
 
 function getMapSize()

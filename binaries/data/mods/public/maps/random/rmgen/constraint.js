@@ -17,7 +17,12 @@ NullConstraint.prototype.allows = function(x, z)
  */
 function AndConstraint(constraints)
 {
-	this.constraints = constraints;
+	if (constraints instanceof Array)
+		this.constraints = constraints
+	else if (!constraints)
+		this.constraints = [];
+	else
+		this.constraints = [constraints];
 }
 
 AndConstraint.prototype.allows = function(x, z)

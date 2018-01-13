@@ -65,10 +65,9 @@ function createMountains(terrain, constraint, tileClass, count, maxHeight, minRa
 /**
  * Create a mountain using a technique very similar to ChainPlacer.
  */
-function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint, x, z, terrain, tileClass, fcc = 0, q = [])
+function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints, x, z, terrain, tileClass, fcc = 0, q = [])
 {
-	if (constraint instanceof Array)
-		constraint = new AndConstraint(constraint);
+	let constraint = new AndConstraint(constraints);
 
 	if (!g_Map.inMapBounds(x, z) || !constraint.allows(x, z))
 		return;
