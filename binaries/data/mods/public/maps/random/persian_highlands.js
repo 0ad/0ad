@@ -2,8 +2,9 @@ Engine.LoadLibrary("rmgen");
 
 const tCity = "desert_city_tile_pers_dirt";
 
-if (randBool()) // summer
+if (randBool())
 {
+	log("Summer biome...");
 	var tDirtMain = ["desert_dirt_persia_1", "desert_dirt_persia_2", "grass_field_dry"];
 	var tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
 	var tLakebed2 = ["desert_lakebed_dry_b", "desert_lakebed_dry", "desert_shore_stones", "desert_shore_stones"];
@@ -13,8 +14,9 @@ if (randBool()) // summer
 	var tRocks = "desert_dirt_persia_rocks";
 	var tGrass = "grass_field_dry";
 }
-else //spring
+else
 {
+	log("Spring biome...");
 	var tDirtMain = ["desert_grass_a", "desert_grass_a", "desert_grass_a", "desert_plants_a"];
 	var tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
 	var tLakebed2 = "desert_grass_a_sand";
@@ -43,7 +45,6 @@ const aBush4 = "actor|props/flora/plant_desert_a.xml";
 const aBushes = [aBush1, aBush2, aBush3, aBush4];
 const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
-// terrain + entity (for painting)
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor, tDirtMain, tDirtMain];
 
 InitMap();

@@ -225,7 +225,6 @@ g_Environment.Water.WaterBody.Murkiness = 0.4;
 /**
  * Base terrain shape generation and settings
  */
- // Height range by map size
 let heightScale = (g_Map.size + 256) / 768 / 4;
 let heightRange = { "min": MIN_HEIGHT * heightScale, "max": MAX_HEIGHT * heightScale };
 
@@ -235,23 +234,19 @@ let waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (height
 let waterHeightAdjusted = waterHeight + MIN_HEIGHT; // Water height in RMGEN
 setWaterHeight(waterHeight);
 
-// Generate base terrain shape
+log("Generating terrain using diamon-square...");
 let medH = (heightRange.min + heightRange.max) / 2;
 let initialHeightmap = [[medH, medH], [medH, medH]];
 setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialHeightmap, 0.8);
 
-// Apply simple erosion
+log("Apply erosion...");
 for (let i = 0; i < 5; ++i)
 	splashErodeMap(0.1);
 
-// Final rescale
 rescaleHeightmap(heightRange.min, heightRange.max);
 
 Engine.SetProgress(25);
 
-/**
- * Prepare terrain texture placement
- */
 let heighLimits = [
 	heightRange.min + 1/3 * (waterHeightAdjusted - heightRange.min), // 0 Deep water
 	heightRange.min + 2/3 * (waterHeightAdjusted - heightRange.min), // 1 Medium Water
@@ -264,8 +259,10 @@ let heighLimits = [
 	waterHeightAdjusted + 6/8 * (heightRange.max - waterHeightAdjusted), // 8 Forest
 	waterHeightAdjusted + 7/8 * (heightRange.max - waterHeightAdjusted), // 9 Upper forest border
 	waterHeightAdjusted + (heightRange.max - waterHeightAdjusted)]; // 10 Hilltop
+
 let playerHeight = (heighLimits[4] + heighLimits[5]) / 2; // Average player height
 
+log("Determining height-dependent biome...");
 // Texture and actor presets
 let myBiome = [];
 myBiome.push({ // 0 Deep water
@@ -331,15 +328,11 @@ let [playerIDs, startLocations] = sortPlayersByLocation(getStartLocationsByHeigh
 log("Start location chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(30);
 
-/**
- * Smooth Start Locations before height region calculation
- */
+log("Smooth player locations...");
 for (let p = 0; p < playerIDs.length; ++p)
 	rectangularSmoothToHeight(startLocations[p], 35, 35, playerHeight, 0.7);
 
-/**
- * Add paths
- */
+log("Creating paths...");
 let tchm = getTileCenteredHeightmap(); // Calculate tileCenteredHeightMap (This has nothing to to with TILE_CENTERED_HEIGHT_MAP which should be false)
 let pathPoints = [];
 let clPath = createTileClass();
@@ -353,9 +346,7 @@ for (let i = 0; i < startLocations.length; ++i)
 log("Paths placed after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(45);
 
-/**
- * Get resource spots after players start locations calculation
- */
+log("Determining resource locations...");
 let avoidPoints = clone(startLocations);
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
@@ -372,7 +363,6 @@ for (let h = 0; h < heighLimits.length; ++h)
 	areas.push([]);
 
 for (let x = 0; x < tchm.length; ++x)
-{
 	for (let y = 0; y < tchm[0].length; ++y)
 	{
 		if (g_Map.tileClasses[clPath].inclusionCount[x][y] > 0) // Avoid paths
@@ -390,7 +380,6 @@ for (let x = 0; x < tchm.length; ++x)
 				minHeight = heighLimits[h];
 		}
 	}
-}
 
 /**
  * Get max slope of each area
@@ -416,11 +405,8 @@ for (let h = 0; h < heighLimits.length; ++h)
 	}
 }
 
-/**
- * Paint areas by height and slope
- */
+log("Painting areas by height and slope...");
 for (let h = 0; h < heighLimits.length; ++h)
-{
 	for (let t = 0; t < areas[h].length; ++t)
 	{
 		let x = areas[h][t].x;
@@ -445,7 +431,6 @@ for (let h = 0; h < heighLimits.length; ++h)
 		if (actor)
 			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randFloat(0, 2 * Math.PI));
 	}
-}
 
 log("Terrain texture placement finished after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(80);
@@ -460,6 +445,7 @@ for (let p = 0; p < playerIDs.length; ++p)
 	placeStartLocationResources(startLocations[p]);
 }
 
+log("Placing resources, farmsteads, groves and camps...");
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let choice = i % 5;

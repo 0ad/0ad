@@ -16,7 +16,6 @@ const tShoreBlend = "cliff volcanic light";
 const tShore = "ocean_rock_a";
 const tWater = "ocean_rock_b";
 
-// Gaia entities
 const oTree = "gaia/flora_tree_dead";
 const oTree2 = "gaia/flora_tree_euro_beech";
 const oTree3 = "gaia/flora_tree_oak";
@@ -31,7 +30,6 @@ const oStoneSmall = "gaia/geology_stone_temperate";
 const oMetalLarge = "gaia/geology_metal_temperate_slabs";
 const oTower = "other/palisades_rocks_fort";
 
-// Decorative props
 const aRockLarge = "actor|geology/stone_granite_med.xml";
 const aRockMedium = "actor|geology/stone_granite_med.xml";
 const aBushMedium = "actor|props/flora/bush_tempe_me.xml";

@@ -37,7 +37,6 @@ const aBush3 = "actor|props/flora/bush_medit_la.xml";
 const aBush4 = "actor|props/flora/bush_medit_me.xml";
 const aDecorativeRock = "actor|geology/stone_granite_med.xml";
 
-// terrain + entity (for painting)
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor, tForestFloor];
 
 InitMap();

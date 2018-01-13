@@ -32,10 +32,7 @@ var waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (height
 var waterHeightAdjusted = waterHeight + MIN_HEIGHT;
 setWaterHeight(waterHeight);
 
-//////////
 // Prepare terrain texture by height placement
-//////////
-
 var textueByHeight = [];
 
 // Deep water
@@ -96,7 +93,6 @@ var minTerrainDistToBorder = 3;
 timeArray.push(Date.now());
 Engine.SetProgress(5);
 
-// START THE GIANT WHILE LOOP:
 // - Generate Heightmap
 // - Search valid start position tiles
 // - Choose a good start position derivation (largest distance between closest players)
@@ -162,7 +158,6 @@ while (!goodStartPositionsFound)
 	{
 		if (Math.euclidDistance2D(...possibleStartPositions[i], mapSize / 2, mapSize / 2) < maxDistToCenter)
 			possibleStartPositionsTemp.push(possibleStartPositions[i]);
-			// placeTerrain(possibleStartPositions[i][0], possibleStartPositions[i][1], "purple"); // Only works properly for 1 loop
 	}
 	possibleStartPositions = clone(possibleStartPositionsTemp);
 	// Reduce to tiles near low and high ground (Rectangular check since faster) to make sure each player has access to all resource types.
@@ -195,7 +190,6 @@ while (!goodStartPositionsFound)
 		}
 		if (numLowTiles > minNumLowTiles && numHighTiles > minNumHighTiles)
 			possibleStartPositionsTemp.push(possibleStartPositions[i]);
-			// placeTerrain(possibleStartPositions[i][0], possibleStartPositions[i][1], "red"); // Only works properly for 1 loop
 	}
 
 	possibleStartPositions = clone(possibleStartPositionsTemp);
@@ -254,17 +248,14 @@ while (!goodStartPositionsFound)
 		}
 		else
 			log("maxMinDist <= " + minDistBetweenPlayers + ", maxMinDist = " + maxMinDist);
-	} // End of derivation check
-} // END THE GIANT WHILE LOOP
+	}
+}
 
 // Time check 2
 timeArray.push(Date.now());
 Engine.SetProgress(60);
 
-////////
-// Paint terrain by height and add props
-////////
-
+log("Painting terrain by height and add props...");
 var propDensity = 1; // 1 means as determined in the loop, less for large maps as set below
 if (mapSize > 500)
 	propDensity = 1/4;
@@ -389,10 +380,7 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 timeArray.push(Date.now());
 Engine.SetProgress(90);
 
-////////
 // Place players and start resources
-////////
-
 for (var p = 0; p < numPlayers; p++)
 {
 	var actualX = possibleStartPositions[bestDerivation[p]][0];

@@ -30,7 +30,6 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const aCarob = "actor|flora/trees/carob.xml";
 const aAleppoPine = "actor|flora/trees/aleppo_pine.xml";
 
-// terrain + entity (for painting)
 const pForest1 = [tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor];
 const pForest2 = [tForestFloor + TERRAIN_SEPARATOR + oAleppoPine, tForestFloor];
 

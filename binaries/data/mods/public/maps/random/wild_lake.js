@@ -515,7 +515,6 @@ for (let h = 0; h < heighLimits.length; ++h)
 	areas.push([]);
 
 for (let x = 0; x < tchm.length; ++x)
-{
 	for (let y = 0; y < tchm[0].length; ++y)
 	{
 		if (g_Map.tileClasses[clPath].inclusionCount[x][y] > 0) // Avoid paths
@@ -533,7 +532,6 @@ for (let x = 0; x < tchm.length; ++x)
 				minHeight = heighLimits[h];
 		}
 	}
-}
 
 /**
  * Get max slope of each area
@@ -563,7 +561,6 @@ for (let h = 0; h < heighLimits.length; ++h)
  * Paint areas by height and slope
  */
 for (let h = 0; h < heighLimits.length; ++h)
-{
 	for (let t = 0; t < areas[h].length; ++t)
 	{
 		let x = areas[h][t].x;
@@ -588,14 +585,11 @@ for (let h = 0; h < heighLimits.length; ++h)
 		if (actor)
 			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randFloat(0, 2 * Math.PI));
 	}
-}
 
 log("Terrain texture placement finished after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(80);
 
-/**
- * Get resource spots after players start locations calculation and paths
- */
+log("Placing resources...");
 let avoidPoints = clone(startLocations);
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;

@@ -1,8 +1,9 @@
 Engine.LoadLibrary("rmgen");
 
-// late spring
 if (randBool())
 {
+	log("Late spring biome...");
+
 	setFogThickness(0.26);
 	setFogFactor(0.4);
 
@@ -23,7 +24,6 @@ if (randBool())
 	var tShore = "alpine_shore_rocks_grass_50";
 	var tWater = "alpine_shore_rocks";
 
-	// gaia entities
 	var oPine = "gaia/flora_tree_pine";
 	var oBerryBush = "gaia/flora_bush_berry";
 	var oDeer = "gaia/fauna_deer";
@@ -33,7 +33,6 @@ if (randBool())
 	var oStoneSmall = "gaia/geology_stone_alpine_a";
 	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
 
-	// decorative props
 	var aGrass = "actor|props/flora/grass_soft_small_tall.xml";
 	var aGrassShort = "actor|props/flora/grass_soft_large.xml";
 	var aRockLarge = "actor|geology/stone_granite_med.xml";
@@ -42,8 +41,9 @@ if (randBool())
 	var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 }
 else
-//winter
 {
+	log("Winter biome...");
+
 	setFogFactor(0.35);
 	setFogThickness(0.19);
 	setPPSaturation(0.37);
@@ -61,7 +61,6 @@ else
 	var tShore = "alpine_shore_rocks_icy";
 	var tWater = "alpine_shore_rocks";
 
-	// gaia entities
 	var oPine = "gaia/flora_tree_pine_w";
 	var oBerryBush = "gaia/flora_bush_berry";
 	var oDeer = "gaia/fauna_deer";
@@ -71,7 +70,6 @@ else
 	var oStoneSmall = "gaia/geology_stone_alpine_a";
 	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
 
-	// decorative props
 	var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
 	var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
 	var aRockLarge = "actor|geology/stone_granite_med.xml";
@@ -80,7 +78,6 @@ else
 	var aBushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 }
 
-//other constants
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
 InitMap();
