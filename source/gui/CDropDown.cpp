@@ -352,7 +352,7 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 					int diff = 0;
 					for (size_t j = 0; j < m_InputBuffer.length(); ++j)
 					{
-						diff = std::abs(pList->m_Items[i].GetRawString().LowerCase()[j] - (int)m_InputBuffer[j]);
+						diff = std::abs((int)(pList->m_Items[i].GetRawString().LowerCase()[j]) - (int)m_InputBuffer[j]);
 						if (diff == 0)
 							indexOfDifference = j+1;
 						else
