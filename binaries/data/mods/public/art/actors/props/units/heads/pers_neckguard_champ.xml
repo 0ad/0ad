@@ -4,11 +4,11 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/helmet/pers_neckguard.dae</mesh>
-    </variant>
-    <textures>
+      <textures>
         <texture file="props/horse/peytral_spec.png" name="specTex"/>
         <texture file="props/horse/peytral_norm.png" name="normTex"/>
-    </textures>
+      </textures>
+    </variant>
   </group>
   <group>
     <variant frequency="1" name="Neck Guard Bronze">
@@ -18,7 +18,7 @@
     </variant>
     <variant frequency="1" name="Neck Guard Iron">
       <textures>
-        <texture file="props/helmet/peytral_iron.png" name="baseTex"/>
+        <texture file="props/horse/peytral_iron.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
