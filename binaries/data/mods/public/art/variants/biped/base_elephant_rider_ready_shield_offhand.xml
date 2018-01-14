@@ -5,6 +5,7 @@
     <animation file="biped/elephant_rider_walk_ready_shield_offhand.dae" name="Run" speed="20"/>
     <animation file="biped/elephant_rider_attack_ready_shield_offhand.dae" name="attack_melee" speed="20"/>
     <animation file="biped/elephant_rider_attack_ready_shield_offhand.dae" name="attack_ranged" speed="20"/>
-    <animation file="biped/elephant_rider_death_ready_shield_offhand.dae" name="Death" speed="75"/>
+    <animation file="biped/elephant_rider_death_ready_shield_offhand.dae" id="death1" name="Death" speed="75"/>
+    <animation file="biped/elephant_rider_death_ready_shield_offhand.dae" id="death2" name="Death" speed="75"/>
   </animations>
 </variant>
