@@ -65,21 +65,24 @@ var playerIslandRadius = scaleByMapSize(20, 29);
 
 var [playerIDs, playerX, playerZ, playerAngle] = playerPlacementCircle(0.35);
 
-log("Creating player islands and docks...");
-for (let i = 0; i < numPlayers; i++)
+if (!isNomad())
 {
-	let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize);
-	createArea(
-		new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, 10, playerPos.x, playerPos.y),
-		[
-			new LayeredPainter([tMainTerrain , tMainTerrain, tMainTerrain], [1, 6]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
-			paintClass(clLand),
-			paintClass(clPlayer)
-		]);
+	log("Creating player islands and docks...");
+	for (let i = 0; i < numPlayers; i++)
+	{
+		let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize);
+		createArea(
+			new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, 10, playerPos.x, playerPos.y),
+			[
+				new LayeredPainter([tMainTerrain , tMainTerrain, tMainTerrain], [1, 6]),
+				new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+				paintClass(clLand),
+				paintClass(clPlayer)
+			]);
 
-	let dockLocation = findLocationInDirectionBasedOnHeight(playerPos, mapCenter, -3 , landHeight - 0.5, landHeight);
-	placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
+		let dockLocation = findLocationInDirectionBasedOnHeight(playerPos, mapCenter, -3 , landHeight - 0.5, landHeight);
+		placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
+	}
 }
 
 log("Creating big islands...");
@@ -347,6 +350,8 @@ createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clHill, 1, clPlayer, 1, clDirt, 1), stayClasses(clLand, 6)],
 	planetm * scaleByMapSize(13, 200), 50
 );
+
+placePlayersNomad(clPlayer, [stayClasses(clLand, 4), avoidClasses(clHill, 2, clForest, 1, clMetal, 4, clRock, 4, clFood, 2)]);
 
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randFloat(0, 2 * Math.PI));

@@ -206,6 +206,8 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees / 5);
 
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 setFogFactor(0.2);
 setFogThickness(0.14);
 

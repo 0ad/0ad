@@ -500,6 +500,8 @@ createObjectGroupsDeprecated(
 
 Engine.SetProgress(95);
 
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clBaseResource, 4, clCliffs, 4));
+
 setSkySet(pickRandom(["cumulus", "sunny"]));
 
 setSunColor(0.8, 0.66, 0.48);

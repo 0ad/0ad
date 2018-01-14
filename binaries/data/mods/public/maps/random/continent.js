@@ -245,6 +245,10 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
+placePlayersNomad(
+	clPlayer,
+	[stayClasses(clLand, 4), avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2)]);
+
 setWaterWaviness(1.0);
 setWaterType("ocean");
 

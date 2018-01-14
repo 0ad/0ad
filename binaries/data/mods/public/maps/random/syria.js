@@ -52,13 +52,22 @@ for (let i = 0; i < numPlayers; ++i)
 	let iz = Math.round(fractionToTiles(playerZ[i]));
 
 	log("Marking player territory larger than the city patch...");
-	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.9, 0.5, 10, ix, iz),
-		paintClass(clPlayer));
+	if (!isNomad())
+		createArea(
+			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, ix, iz),
+			paintClass(clPlayer));
 
 	log("Creating big grass patches surrounding the city patches...");
 	createArea(
-		new ChainPlacer(2, Math.floor(scaleByMapSize(5, 12)), Math.floor(scaleByMapSize(25, 60)), 1, ix, iz, 0, [Math.floor(scaleByMapSize(16, 30))]),
+		new ChainPlacer(
+			2,
+			Math.floor(scaleByMapSize(5, 12)),
+			Math.floor(scaleByMapSize(25, 60)) / (isNomad() ? 2 : 1),
+			1,
+			ix,
+			iz,
+			0,
+			[Math.floor(scaleByMapSize(16, 30))]),
 		[
 			new LayeredPainter([tGrassSands, tGrass], [3]),
 			paintClass(clGrass)
@@ -243,7 +252,9 @@ createStragglerTrees(
 	[oPalm, oTamarix, oPine],
 	[avoidClasses(clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6), stayClasses(clGrass, 3)],
 	clForest,
-	stragglerTrees);
+	stragglerTrees * (isNomad() ? 3 : 1));
+
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 setSkySet("sunny");
 setSunElevation(Math.PI / 8);

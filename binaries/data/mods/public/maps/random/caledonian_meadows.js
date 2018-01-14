@@ -421,15 +421,16 @@ for (let h = 0; h < heighLimits.length; ++h)
 	}
 Engine.SetProgress(80);
 
-/**
- * Add start locations and resource spots after terrain texture and path painting
- */
-for (let p = 0; p < playerIDs.length; ++p)
-{
-	let point = startLocations[p];
-	placeCivDefaultStartingEntities(point.x, point.y, playerIDs[p], "walls");
-	placeStartLocationResources(startLocations[p]);
-}
+log("Placing players...");
+if (isNomad())
+	placePlayersNomad(createTileClass(), new HeightConstraint(heighLimits[4], heighLimits[5]));
+else
+	for (let p = 0; p < playerIDs.length; ++p)
+	{
+		let point = startLocations[p];
+		placeCivDefaultStartingEntities(point.x, point.y, playerIDs[p], true);
+		placeStartLocationResources(startLocations[p]);
+	}
 
 log("Placing resources, farmsteads, groves and camps...");
 for (let i = 0; i < resourceSpots.length; ++i)

@@ -312,6 +312,12 @@ createObjectGroupsDeprecated(
 	[avoidClasses(clMountain, 2, clPlayer, 2, clDirt, 0), stayClasses(clHill, 8)],
 	planetm * scaleByMapSize(13, 200));
 
+placePlayersNomad(
+	clPlayer,
+	new AndConstraint([
+		stayClasses(clHill, 2),
+		avoidClasses(clMountain, 2, clForest, 1, clMetal, 4, clRock, 4, clFood, 2)]));
+
 setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
 setWaterMurkiness(0.4);
 

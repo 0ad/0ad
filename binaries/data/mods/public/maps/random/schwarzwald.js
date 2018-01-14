@@ -405,6 +405,8 @@ for (var x = 0; x < mapSize; x++)
 				avoidClasses(clPath, 2, clOpen, 3, clWater, 4, clMetal, 4, clRock, 4));
 	}
 
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clFood, 2, clMetal, 4, clRock, 4));
+
 Engine.SetProgress(100);
 
 ExportMap();

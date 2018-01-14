@@ -452,6 +452,8 @@ createObjectGroupsByAreasDeprecated(group, 0,
 	[explorableArea]
 );
 
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 setTerrainAmbientColor(0.44,0.51,0.56);
 setUnitsAmbientColor(0.44,0.51,0.56);
 

@@ -2,8 +2,11 @@ Engine.LoadLibrary("rmgen");
 
 InitMap();
 
-placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.39)
-});
+if (isNomad())
+	placePlayersNomad(createTileClass());
+else
+	placePlayerBases({
+		"PlayerPlacement": playerPlacementCircle(0.39)
+	});
 
 ExportMap();

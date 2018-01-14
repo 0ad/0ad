@@ -308,6 +308,8 @@ createObjectGroupsDeprecated(group, 0,
 	25 * numPlayers, 60
 );
 
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clHill, 2, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
+
 setSunColor(0.6, 0.6, 0.6);
 setSunElevation(Math.PI / 3);
 

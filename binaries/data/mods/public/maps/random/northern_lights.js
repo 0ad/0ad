@@ -35,6 +35,7 @@ var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
 var clWater = createTileClass();
+var clIsland = createTileClass();
 var clDirt = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
@@ -108,6 +109,7 @@ createAreas(
 	[
 		new LayeredPainter([tSnowA, tSnowA], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, 3, 3),
+		paintClass(clIsland),
 		unPaintClass(clWater)
 	],
 	stayClasses(clWater, 7),
@@ -263,6 +265,8 @@ createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
 	25 * numPlayers, 60
 );
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2, clIsland, 4));
 
 setSunColor(0.6, 0.6, 0.6);
 setSunElevation(Math.PI/ 6);

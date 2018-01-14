@@ -2,6 +2,13 @@
  * @file These functions locate and place the starting entities of players.
  */
 
+var g_NomadTreasureTemplates = {
+	"food": "gaia/special_treasure_food_jars",
+	"wood": "gaia/special_treasure_wood",
+	"stone": "gaia/special_treasure_stone",
+	"metal": "gaia/special_treasure_metal"
+};
+
 /**
  * These are identifiers of functions that can generate parts of a player base.
  * There must be a function starting with placePlayerBase and ending with this name.
@@ -106,6 +113,9 @@ function placePlayerBases(playerBaseArgs)
  */
 function placePlayerBase(playerBaseArgs)
 {
+	if (isNomad())
+		return;
+
 	log("Creating base for player " + playerBaseArgs.playerID + "...");
 
 	let fx = fractionToTiles(playerBaseArgs.playerX);
@@ -398,6 +408,58 @@ function placePlayerBaseDecoratives(args)
 			// Don't warn since the decoratives are not important
 			return;
 	}
+}
+
+function placePlayersNomad(playerClass, constraints)
+{
+	if (!isNomad())
+		return;
+
+	let distance = scaleByMapSize(60, 240);
+	let constraint = new AndConstraint(constraints);
+
+	let numPlayers = getNumPlayers();
+	let playerIDs = shuffleArray(sortAllPlayers());
+	let playerX = [];
+	let playerZ = [];
+
+	for (let i = 0; i < numPlayers; ++i)
+	{
+		log("Determine starting units for player " + playerIDs[i] + "...");
+		let objects = getStartingEntities(playerIDs[i]).filter(ents => ents.Template.startsWith("units/")).map(
+			ents => new SimpleObject(ents.Template, ents.Count || 1, ents.Count || 1, 1, 3));
+
+		log("Ensure resources for a civic center...");
+		let ccCost = Engine.GetTemplate("structures/" + getCivCode(playerIDs[i]) + "_civil_centre").Cost.Resources;
+		for (let resourceType in ccCost)
+		{
+			let treasureTemplate = g_NomadTreasureTemplates[resourceType];
+
+			let count = Math.max(0, Math.ceil(
+				(ccCost[resourceType] - (g_MapSettings.StartingResources || 0)) /
+				Engine.GetTemplate(treasureTemplate).ResourceSupply.Amount));
+
+			objects.push(new SimpleObject(treasureTemplate, count, count, 3, 5));
+		}
+
+		log("Placing player units...");
+		let group = new SimpleGroup(objects, true, playerClass);
+		let success = false;
+		for (let distanceFactor of [1, 1/2, 1/4, 0])
+		{
+			if (createObjectGroups(group, playerIDs[i], new AndConstraint([constraint, avoidClasses(playerClass, distance * distanceFactor)]), 1, 200, false))
+			{
+				success = true;
+				playerX[i] = group.x;
+				playerZ[i] = group.z;
+				break;
+			}
+		}
+		if (!success)
+			throw new Error("Could not place starting units for player " + playerIDs[i] + "!");
+	}
+
+	return [playerIDs, playerX, playerZ];
 }
 
 /**

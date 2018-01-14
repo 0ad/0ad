@@ -55,7 +55,8 @@ const oCivicCenter = "structures/gaul_civil_centre";
 const oHouse = "structures/gaul_house";
 const oTemple = "structures/gaul_temple";
 const oTavern = "structures/gaul_tavern";
-const oTower= "structures/gaul_defense_tower";
+const oTower = "structures/gaul_defense_tower";
+const oSentryTower = "structures/gaul_sentry_tower";
 const oOutpost = "structures/gaul_outpost";
 
 const oHut = "other/celt_hut";
@@ -268,7 +269,7 @@ if (gallicCC)
 		g_WallStyles.gaul.longhouse = { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oLongHouse };
 		g_WallStyles.gaul.tavern = { "angle": Math.PI * 3/2, "length": 0, "indent": 4, "bend": 0, "templateName": oTavern };
 		g_WallStyles.gaul.temple = { "angle": Math.PI * 3/2, "length": 0, "indent": 4, "bend": 0, "templateName": oTemple };
-		g_WallStyles.gaul.defense_tower = { "angle": Math.PI / 2, "length": 0, "indent": 4, "bend": 0, "templateName": mapSize >= normalMapSize ? oTower : oPalisadeTower };
+		g_WallStyles.gaul.defense_tower = { "angle": Math.PI / 2, "length": 0, "indent": 4, "bend": 0, "templateName": mapSize >= normalMapSize ? (isNomad() ? oSentryTower : oTower) : oPalisadeTower };
 
 		// Replace stone walls with palisade walls
 		for (let element of ["gate", "long", "short", "cornerIn", "cornerOut", "tower"])
@@ -569,19 +570,20 @@ createFood(
 	clFood);
 
 log("Creating violent animals...");
-createFood(
-	[
-		[new SimpleObject(oWolf, 1, 3, 0, 4)],
-		[new SimpleObject(oBoar, 1, 1, 0, 4)],
-		[new SimpleObject(oBear, 1, 1, 0, 4)]
-	],
-	[
-		scaleByMapSize(5, 20),
-		scaleByMapSize(5, 20),
-		scaleByMapSize(5, 20)
-	],
-	avoidClasses(clIsland, 2, clFood, 10, clWater, 5, clPlayer, 24, clHill, 2, clGauls, 5, clPath, 1),
-	clFood);
+if (!isNomad())
+	createFood(
+		[
+			[new SimpleObject(oWolf, 1, 3, 0, 4)],
+			[new SimpleObject(oBoar, 1, 1, 0, 4)],
+			[new SimpleObject(oBear, 1, 1, 0, 4)]
+		],
+		[
+			scaleByMapSize(5, 20),
+			scaleByMapSize(5, 20),
+			scaleByMapSize(5, 20)
+		],
+		avoidClasses(clIsland, 2, clFood, 10, clWater, 5, clPlayer, 24, clHill, 2, clGauls, 5, clPath, 1),
+		clFood);
 
 Engine.SetProgress(85);
 
@@ -756,6 +758,8 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(15, 60),
 	100
 );
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clIsland, 4, clGauls, 20, clRitualPlace, 20, clForest, 1, clBaseResource, 4, clHill, 4, clFood, 2));
 
 if (randBool(2/3))
 {

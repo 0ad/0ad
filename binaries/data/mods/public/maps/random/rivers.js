@@ -116,10 +116,11 @@ createArea(
 	null);
 
 log("Creating rivers between opponents...");
-let rivers = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0];
-for (let i = 0; i < numPlayers; ++i)
+let numRivers = isNomad() ? randIntInclusive(4, 8) : numPlayers;
+let rivers = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numRivers, fractionToTiles(0.5), mapCenter)[0];
+for (let i = 0; i < numRivers; ++i)
 {
-	if (areAllies(playerIDs[i], playerIDs[(i + 1) % numPlayers]))
+	if (isNomad() ? randBool() : areAllies(playerIDs[i], playerIDs[(i + 1) % numPlayers]))
 		continue;
 
 	let shallowLocation = randFloat(0.2, 0.7);
@@ -290,6 +291,8 @@ createStragglerTrees(
 	avoidClasses(clWater, 5, clForest, 7, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
 	clForest,
 	stragglerTrees);
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
 
 setWaterWaviness(3.0);
 setWaterType("lake");

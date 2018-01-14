@@ -222,6 +222,19 @@ addElements(shuffleArray([
 ]));
 Engine.SetProgress(90);
 
+placePlayersNomad(
+	g_TileClasses.player,
+	avoidClasses(
+		g_TileClasses.bluff, 4,
+		g_TileClasses.water, 4,
+		g_TileClasses.spine, 4,
+		g_TileClasses.plateau, 4,
+		g_TileClasses.forest, 1,
+		g_TileClasses.metal, 4,
+		g_TileClasses.rock, 4,
+		g_TileClasses.mountain, 4,
+		g_TileClasses.animals, 2));
+
 ExportMap();
 
 function placeBarriers()
@@ -237,7 +250,9 @@ function placeBarriers()
 	if (currentBiome() == "autumn")
 		spineTerrain = g_Terrains.tier4Terrain;
 
-	for (let i = 0; i < teamsArray.length; ++i)
+	let spineCount = isNomad() ? randIntInclusive(1, 4) : teamsArray.length;
+
+	for (let i = 0; i < spineCount; ++i)
 	{
 		var mStartCo = 0.07;
 		var mStopCo = 0.42;
@@ -246,14 +261,14 @@ function placeBarriers()
 		var mOffset = 0.5;
 		var mTaper = -1.5;
 
-		if (teamsArray.length > 3 || getMapSize() <= 192)
+		if (spineCount > 3 || getMapSize() <= 192)
 		{
 			mWaviness = 0.2;
 			mOffset = 0.2;
 			mTaper = -1;
 		}
 
-		if (teamsArray.length >= 5)
+		if (spineCount >= 5)
 		{
 			mSize = 4;
 			mWaviness = 0.2;
@@ -261,7 +276,7 @@ function placeBarriers()
 			mTaper = -0.7;
 		}
 
-		let angle = startAngle + (i + 0.5) * 2 * Math.PI / teamsArray.length;
+		let angle = startAngle + (i + 0.5) * 2 * Math.PI / spineCount;
 		createArea(
 			new PathPlacer(
 				fractionToTiles(0.5 + mStartCo * Math.cos(angle)),

@@ -249,6 +249,19 @@ addElements([
 
 Engine.SetProgress(90);
 
+placePlayersNomad(
+	g_TileClasses.player,
+	avoidClasses(
+		g_TileClasses.bluff, 4,
+		g_TileClasses.water, 4,
+		g_TileClasses.spine, 4,
+		g_TileClasses.plateau, 4,
+		g_TileClasses.forest, 1,
+		g_TileClasses.metal, 4,
+		g_TileClasses.rock, 4,
+		g_TileClasses.mountain, 4,
+		g_TileClasses.animals, 2));
+
 ExportMap();
 
 function addCenterLake()

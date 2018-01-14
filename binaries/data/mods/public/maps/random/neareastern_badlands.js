@@ -61,16 +61,17 @@ var hillHeight3 = 16;
 
 var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
 
-for (let i = 0; i < numPlayers; ++i)
-	createArea(
-		new ClumpPlacer(
-			diskArea(defaultPlayerBaseRadius()),
-			0.9,
-			0.5,
-			10,
-			Math.round(fractionToTiles(playerX[i])),
-			Math.round(fractionToTiles(playerZ[i]))),
-		paintClass(clPlayer));
+if (!isNomad())
+	for (let i = 0; i < numPlayers; ++i)
+		createArea(
+			new ClumpPlacer(
+				diskArea(defaultPlayerBaseRadius()),
+				0.9,
+				0.5,
+				10,
+				Math.round(fractionToTiles(playerX[i])),
+				Math.round(fractionToTiles(playerZ[i]))),
+			paintClass(clPlayer));
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerX, playerZ],
@@ -349,6 +350,8 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clOasis, 1, clHill1, 1, clPlayer, 0, clForest, 0),
 	scaleByMapSize(16, 262)
 );
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill1, 4, clFood, 2));
 
 setWaterColor(0, 0.227, 0.843);
 setWaterTint(0, 0.545, 0.859);

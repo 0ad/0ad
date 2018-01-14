@@ -308,6 +308,9 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
+// Avoid the lake, even if frozen
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 setSkySet("stormy");
 setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(Math.PI * randFloat(1/6, 1/4));

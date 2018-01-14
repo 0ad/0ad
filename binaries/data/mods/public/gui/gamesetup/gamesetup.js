@@ -367,6 +367,7 @@ var g_OptionOrderGUI = {
 		"populationCap",
 		"startingResources",
 		"ceasefire",
+		"nomad",
 		"regicideGarrison",
 		"exploreMap",
 		"revealMap",
@@ -766,6 +767,18 @@ var g_Checkboxes = {
 		},
 		"hidden": () => g_GameAttributes.settings.GameType != "regicide",
 		"enabled": () => g_GameAttributes.mapType != "scenario",
+		"initOrder": 1000
+	},
+	"nomad": {
+		"title": () => translate("Nomad"),
+		"tooltip": () => translate("In Nomad mode, players start with only few units and have to find a suitable place to build their city. Ceasefire is recommended."),
+		"default": () => false,
+		"defined": () => g_GameAttributes.settings.Nomad !== undefined,
+		"get": () => g_GameAttributes.settings.Nomad,
+		"set": checked => {
+			g_GameAttributes.settings.Nomad = checked;
+		},
+		"hidden": () => g_GameAttributes.mapType != "random",
 		"initOrder": 1000
 	},
 	"revealMap": {
@@ -1796,9 +1809,10 @@ function selectMap(name)
 	let mapData = loadMapData(name);
 	let mapSettings = mapData && mapData.settings ? clone(mapData.settings) : {};
 
-	// Reset victory conditions
 	if (g_GameAttributes.mapType != "random")
 	{
+		delete g_GameAttributes.settings.Nomad;
+
 		let victoryIdx = g_VictoryConditions.Name.indexOf(mapSettings.GameType || "") != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
 		g_GameAttributes.settings.GameType = g_VictoryConditions.Name[victoryIdx];
 		g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[victoryIdx];

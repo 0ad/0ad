@@ -283,6 +283,8 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees * 10);
 
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clIsland, 10, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 setSkySet("cumulus");
 setSunColor(0.866667, 0.776471, 0.486275);
 setWaterColor(0, 0.501961, 1);

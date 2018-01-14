@@ -384,6 +384,8 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(2, 6), 50
 );
 
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
+
 setSkySet("sunny");
 setSunColor(0.711, 0.746, 0.574);
 setWaterColor(0.541,0.506,0.416);

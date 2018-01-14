@@ -408,6 +408,17 @@ addElements([
 ]);
 Engine.SetProgress(95);
 
+placePlayersNomad(
+	g_TileClasses.player,
+	[
+		new HeightConstraint(valleyHeight, pathHeight),
+		avoidClasses(
+			g_TileClasses.forest, 1,
+			g_TileClasses.metal, 4,
+			g_TileClasses.rock, 4,
+			g_TileClasses.animals, 2)
+	]);
+
 ExportMap();
 
 function createSunkenTerrain()
@@ -519,7 +530,7 @@ function createSunkenTerrain()
 
 		log("Creating the den of the player...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.03, 0.9, 0.3, 1, ...playerCoords),
+			new ClumpPlacer(mapArea * 0.03 / (isNomad() ? 2 : 1), 0.9, 0.3, 1, ...playerCoords),
 			[
 				new LayeredPainter([g_Terrains.cliff, base], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, denHeight, 3),

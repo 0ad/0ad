@@ -58,6 +58,7 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clLand = createTileClass();
+var clIsland = createTileClass();
 
 var landHeight = 3;
 
@@ -79,8 +80,12 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tWater, tShore, tMainTerrain], [1, 4]),
 			new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
-			paintClass(clPlayer)
+			paintClass(clIsland),
+			paintClass(isNomad() ? clLand : clPlayer)
 		]);
+
+	if (isNomad())
+		continue;
 
 	let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition, mapCenter, -3 , 2.6, 3);
 	placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
@@ -130,7 +135,7 @@ createArea(
 		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
 		paintClass(clLand)
 	],
-	avoidClasses(clPlayer, 8));
+	avoidClasses(clIsland, 8));
 Engine.SetProgress(20);
 
 log("Creating shore jaggedness...");
@@ -143,7 +148,7 @@ createAreas(
 	],
 	[
 		borderClasses(clLand, 6, 3),
-		avoidClasses(clPlayer, 8)
+		avoidClasses(clIsland, 8)
 	],
 	scaleByMapSize(2, 15) * 20,
 	150);
@@ -156,7 +161,7 @@ log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
 	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
-	[avoidClasses(clPlayer, 10), stayClasses(clLand, 3)],
+	[avoidClasses(clIsland, 10), stayClasses(clLand, 3)],
 	scaleByMapSize(100, 200)
 );
 Engine.SetProgress(30);
@@ -169,7 +174,7 @@ createAreas(
 		new SmoothElevationPainter(ELEVATION_SET, 18, 2),
 		paintClass(clHill)
 	],
-	[avoidClasses(clPlayer, 10, clHill, 15), stayClasses(clLand, 7)],
+	[avoidClasses(clIsland, 10, clHill, 15), stayClasses(clLand, 7)],
 	scaleByMapSize(1, 4) * numPlayers
 );
 Engine.SetProgress(34);
@@ -211,7 +216,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 				clForest, 0,
 				clHill, 0,
 				clDirt, 5,
-				clPlayer, 0),
+				clIsland, 0),
 			stayClasses(clLand, 7)
 		],
 		scaleByMapSize(15, 45));
@@ -223,7 +228,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		new TerrainPainter(tTier4Terrain),
-		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 7)],
+		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clIsland, 0), stayClasses(clLand, 7)],
 		scaleByMapSize(15, 45));
 Engine.SetProgress(46);
 
@@ -361,5 +366,7 @@ setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(randFloat(1/5, 1/3) * Math.PI);
 setWaterWaviness(2);
+
+placePlayersNomad(clPlayer, [stayClasses(clIsland, 4), avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2)]);
 
 ExportMap();

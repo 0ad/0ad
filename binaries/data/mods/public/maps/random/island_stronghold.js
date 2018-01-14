@@ -87,7 +87,7 @@ var numTeams = teams.filter(team => team).length;
 var teamNo = 0;
 for (let i = 0; i < teams.length; ++i)
 {
-	if (!teams[i])
+	if (!teams[i] || isNomad())
 		continue;
 
 	++teamNo;
@@ -209,7 +209,7 @@ for (let x = 0; x < mapSize; ++x)
 			landAreas.push([x, z]);
 
 log("Creating big islands...");
-let numIslands = scaleByMapSize(4, 14);
+let numIslands = scaleByMapSize(4, 14) * (isNomad() ? 2 : 1);
 for (let i = 0; i < numIslands; ++i)
 {
 	let landAreaLen = landAreas.length;
@@ -219,7 +219,14 @@ for (let i = 0; i < numIslands; ++i)
 	let chosenPoint = pickRandom(landAreas);
 
 	let newIsland = createAreas(
-		new ChainPlacer(Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(8, 14)), Math.floor(scaleByMapSize(25, 60)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(30, 70)),
+		new ChainPlacer(
+			Math.floor(scaleByMapSize(4, 8) * (isNomad() ? 2 : 1)),
+			Math.floor(scaleByMapSize(8, 16) * (isNomad() ? 2 : 1)),
+			Math.floor(scaleByMapSize(25, 60)),
+			0.07,
+			chosenPoint[0],
+			chosenPoint[1],
+			scaleByMapSize(30, 70)),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
@@ -479,6 +486,8 @@ createObjectGroupsDeprecated(group, 0,
 
 paintTerrainBasedOnHeight(1, 2, 0, tShore);
 paintTerrainBasedOnHeight(getMapBaseHeight(), 1, 3, tWater);
+
+placePlayersNomad(clPlayer, [stayClasses(clLand, 4), avoidClasses(clHill, 2, clForest, 1, clMetal, 4, clRock, 4, clFood, 2)]);
 
 setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
 setSunRotation(randFloat(0, 2 * Math.PI));

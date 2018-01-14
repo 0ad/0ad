@@ -177,7 +177,8 @@ createAreas(
 	[
 		new LayeredPainter([tShore, tHill], [12]),
 		new SmoothElevationPainter(ELEVATION_SET, 6, 8),
-		paintClass(clIsland)
+		paintClass(clIsland),
+		unPaintClass(clWater)
 	],
 	[stayClasses (clWater, 8)],
 	1,
@@ -317,5 +318,7 @@ setPPEffect("hdr");
 setPPContrast(0.53);
 setPPSaturation(0.47);
 setPPBloom(0.52);
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 ExportMap();

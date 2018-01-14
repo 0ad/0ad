@@ -3,11 +3,6 @@
  */
 
 /**
- * True if city centers should be placed or false for nomad.
- */
-var g_PlayerBases;
-
-/**
  * True if all players should be connected via land and false if river or islands can split some if not all the players.
  */
 var g_AllowNaval;
@@ -122,7 +117,9 @@ function createUnknownMap()
 
 	paintUnknownMapBasedOnHeight();
 
-	if (g_PlayerBases)
+	if (isNomad())
+		placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+	else
 		createUnknownPlayerBases();
 }
 
@@ -135,7 +132,7 @@ function unknownArchipelago()
 	g_StartingTreasures = true;
 
 	let [pIDs, islandX, islandZ] = playerPlacementCircle(0.35);
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		[playerIDs, playerX, playerZ] = [pIDs, islandX, islandZ];
 		markPlayerArea("large");
@@ -148,7 +145,7 @@ function unknownArchipelago()
 			new ClumpPlacer(islandSize, 0.8, 0.1, 10, fractionToTiles(islandX[i]), fractionToTiles(islandZ[i])),
 			landElevationPainter);
 
-	let type = randIntInclusive(1, 3);
+	let type = isNomad() ? randIntInclusive(1, 2) : randIntInclusive(1, 3);
 	if (type == 1)
 	{
 		log("Creating archipelago...");
@@ -216,7 +213,7 @@ function unknownContinent()
 {
 	let waterHeight = -5;
 
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		log("Ensuring player area...");
 		[playerIDs, playerX, playerZ] = playerPlacementCircle(0.25);
@@ -311,7 +308,7 @@ function unknownCentralSea()
 		}
 	});
 
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		[playerIDs, playerX, playerZ] = playerPlacementRiver(horizontal ? Math.PI / 2 : 0, 0.6);
 		markPlayerArea("small");
@@ -354,7 +351,7 @@ function unknownCentralRiver()
 	let horizontal = randBool();
 	let riverAngle = horizontal ? 0 : Math.PI / 2;
 
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		[playerIDs, playerX, playerZ] = playerPlacementRiver(horizontal ? Math.PI / 2 : 0, 0.5);
 		markPlayerArea("large");
@@ -416,7 +413,7 @@ function unknownRiversAndLake()
 	initHeight(landHeight);
 
 	let startAngle;
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		let playerAngle;
 		[playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
@@ -438,7 +435,7 @@ function unknownRiversAndLake()
 	}
 
 	// Don't do this on nomad because the imbalances on the different islands are too drastic
-	if (g_PlayerBases && (!lake || randBool(1/3)))
+	if (!isNomad() && (!lake || randBool(1/3)))
 	{
 		log("Creating small rivers separating players...");
 		for (let river of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
@@ -469,7 +466,7 @@ function unknownRiversAndLake()
 			]);
 	}
 
-	if (lake && randBool())
+	if (!isNomad && lake && randBool())
 	{
 		log("Creating small central island...");
 		createArea(
@@ -490,7 +487,7 @@ function unknownEdgeSeas()
 	initHeight(landHeight);
 
 	let horizontal = randBool();
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		[playerIDs, playerX, playerZ] = playerPlacementLine(horizontal, 0.5, 0.2);
 		// Don't place the shoreline inside the CC, but possibly into the players territory
@@ -535,7 +532,7 @@ function unknownGulf()
 	initHeight(landHeight);
 
 	let startAngle = randFloat(0, 2) * Math.PI;
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		log("Determining player locations...");
 
@@ -573,7 +570,7 @@ function unknownLakes()
 
 	initHeight(landHeight);
 
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		[playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
 		markPlayerArea("large");
@@ -601,7 +598,7 @@ function unknownPasses()
 
 	let playerAngle;
 	let startAngle;
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		[playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
 		markPlayerArea("small");
@@ -680,7 +677,7 @@ function unknownLowlands()
 
 	let playerAngle;
 	let startAngle;
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		[playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
 		markPlayerArea("small");
@@ -732,7 +729,7 @@ function unknownMainland()
 {
 	initHeight(3);
 
-	if (g_PlayerBases)
+	if (!isNomad())
 	{
 		[playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
 		markPlayerArea("small");

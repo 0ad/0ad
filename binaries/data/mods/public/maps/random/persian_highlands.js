@@ -323,4 +323,6 @@ setPPContrast(0.75);
 setPPSaturation(0.45);
 setPPBloom(0.3);
 
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 ExportMap();

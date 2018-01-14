@@ -94,6 +94,8 @@ var goodStartPositionsFound = false;
 var minDistBetweenPlayers = 16 + mapSize / 16; // Don't set this higher than 25 for tiny maps! It will take forever with 8 players!
 var enoughTiles = false;
 var tries = 0;
+var lowerHeightLimit = textueByHeight[3].upperHeightLimit;
+var upperHeightLimit = textueByHeight[6].upperHeightLimit;
 
 while (!goodStartPositionsFound)
 {
@@ -113,8 +115,6 @@ while (!goodStartPositionsFound)
 	var possibleStartPositions = [];
 	var neededDistance = 7;
 	var distToBorder = 2 * neededDistance; // Has to be greater than neededDistance! Otherwise the check if low/high ground is near will fail...
-	var lowerHeightLimit = textueByHeight[3].upperHeightLimit;
-	var upperHeightLimit = textueByHeight[6].upperHeightLimit;
 
 	// Check for valid points by height
 	for (var x = distToBorder + minTerrainDistToBorder; x < mapSize - distToBorder - minTerrainDistToBorder; x++)
@@ -369,8 +369,12 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 
 Engine.SetProgress(90);
 
+if (isNomad())
+	placePlayersNomad(createTileClass(), new HeightConstraint(lowerHeightLimit, upperHeightLimit));
+else
 {
 	log("Placing players and starting resources...");
+
 	let playerIDs = sortAllPlayers();
 	let resourceDistance = 8;
 	let resourceSpacing = 1;

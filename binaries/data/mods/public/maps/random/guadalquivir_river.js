@@ -260,6 +260,12 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
+placePlayersNomad(
+	clPlayer,
+	new AndConstraint([
+		stayClasses(clLand, 4),
+		avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clFood, 2)]));
+
 setSkySet("cumulus");
 setWaterColor(0.2,0.312,0.522);
 setWaterTint(0.1,0.1,0.8);

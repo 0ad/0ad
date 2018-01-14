@@ -214,7 +214,7 @@ log("Creating player islands...");
 for (let i = 0; i < numPlayers; ++i)
 {
 	islandPos[i] = new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round();
-	createIsland(i, 1, clPlayer);
+	createIsland(i, 1, isNomad() ? clLand : clPlayer);
 }
 
 placePlayerBases({
@@ -425,6 +425,13 @@ createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clPlayer, 1, clDirt, 1), stayClasses(clLand, 4)],
 	planetm * scaleByMapSize(13, 200), 50
 );
+
+placePlayersNomad(
+	clPlayer,
+	[
+		stayClasses(clLand, 8),
+		avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clFood, 2)
+	]);
 
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randFloat(0, 2 * Math.PI));

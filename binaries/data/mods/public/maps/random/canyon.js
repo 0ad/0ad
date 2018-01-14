@@ -80,9 +80,8 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
-			paintClass(j == 1 ? clLand : clPlayer)
-		],
-		null);
+			paintClass(j == 1 || isNomad() ? clLand : clPlayer)
+		]);
 
 log("Creating center area...");
 var center = Math.round(fractionToTiles(0.5));
@@ -369,5 +368,9 @@ log("Creating treasures...");
 for (let i = 0; i < randIntInclusive(3, 8); ++i)
 	for (let template of [oFoodTreasure, oWoodTreasure])
 		placeObject(center + randFloat(-7, 7), center + randFloat(-7, 7), template, 0, randFloat(0, 2 * Math.PI));
+
+placePlayersNomad(
+	clPlayer,
+	[stayClasses(clLand, 4), avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clHill2, 4, clFood, 2)]);
 
 ExportMap();

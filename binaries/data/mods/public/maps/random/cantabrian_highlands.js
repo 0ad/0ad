@@ -56,7 +56,7 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var playerHillRadius = defaultPlayerBaseRadius();
+var playerHillRadius = defaultPlayerBaseRadius() / (isNomad() ? 1.5 : 1);
 var playerHillElevation = 20;
 
 var [playerIDs, playerX, playerZ, playerAngle] = playerPlacementCircle(0.35);
@@ -258,6 +258,8 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 Engine.SetProgress(90);
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 setSkySet("cirrus");
 setWaterColor(0.447, 0.412, 0.322);			// muddy brown

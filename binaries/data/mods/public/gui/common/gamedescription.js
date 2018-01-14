@@ -342,6 +342,15 @@ function getGameDescription(extended = false)
 					translate("Sorry, no description available.")
 	});
 
+	if (extended || g_GameAttributes.settings.Nomad)
+		titles.push({
+			"label": g_GameAttributes.settings.Nomad ? translate("Nomad Mode") : translate("Civic Centers"),
+			"value":
+				g_GameAttributes.settings.Nomad ?
+					translate("Players start with only few units and have to find a suitable place to build their city.") :
+					translate("Players start with a Civic Center.")
+		});
+
 	if (g_GameAttributes.settings.Biome)
 	{
 		let biome = g_Settings.Biomes.find(b => b.Id == g_GameAttributes.settings.Biome);

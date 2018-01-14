@@ -74,34 +74,35 @@ var ccMountainSize = defaultPlayerBaseRadius();
 var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
 
 log("Creating CC mountains...");
-for (let i = 0; i < numPlayers; ++i)
-{
-	let ix = Math.round(fractionToTiles(playerX[i]));
-	let iz = Math.round(fractionToTiles(playerZ[i]));
+if (!isNomad())
+	for (let i = 0; i < numPlayers; ++i)
+	{
+		let ix = Math.round(fractionToTiles(playerX[i]));
+		let iz = Math.round(fractionToTiles(playerZ[i]));
 
-	// This one consists of many bumps, creating an omnidirectional ramp
-	createMountain(
-		ccMountainHeight,
-		Math.floor(scaleByMapSize(15, 15)),
-		Math.floor(scaleByMapSize(15, 15)),
-		Math.floor(scaleByMapSize(4, 10)),
-		avoidClasses(),
-		ix,
-		iz,
-		tHillDark,
-		clPlayer,
-		14);
+		// This one consists of many bumps, creating an omnidirectional ramp
+		createMountain(
+			ccMountainHeight,
+			ccMountainSize,
+			ccMountainSize,
+			Math.floor(scaleByMapSize(4, 10)),
+			undefined,
+			ix,
+			iz,
+			tHillDark,
+			clPlayer,
+			14);
 
-	// Flatten the initial CC area
-	createArea(
-		new ClumpPlacer(diskArea(ccMountainSize), 0.95, 0.6, 10, ix, iz),
-		[
-			new LayeredPainter([tHillVeryDark, tHillMedium1], [ccMountainSize]),
-			new SmoothElevationPainter(ELEVATION_SET, ccMountainHeight, ccMountainSize),
-			paintClass(clPlayer)
-		],
-		null);
-}
+		// Flatten the initial CC area
+		createArea(
+			new ClumpPlacer(diskArea(ccMountainSize), 0.95, 0.6, 10, ix, iz),
+			[
+				new LayeredPainter([tHillVeryDark, tHillMedium1], [ccMountainSize]),
+				new SmoothElevationPainter(ELEVATION_SET, ccMountainHeight, ccMountainSize),
+				paintClass(clPlayer)
+			]);
+	}
+
 Engine.SetProgress(8);
 
 placePlayerBases({
@@ -277,22 +278,25 @@ createObjectGroupsDeprecated(
 	100);
 Engine.SetProgress(65);
 
-log("Creating towers...");
-createObjectGroupsDeprecated(
-	new SimpleGroup([new SimpleObject(oTower, 1, 1, 0, 4)], true, clTower),
-	0,
-	[
-		stayClasses(clBumps, 3),
-		avoidClasses(
-			clMetal, 5,
-			clRock, 5,
-			clHill, 0,
-			clTower, 60,
-			clPlayer, 10,
-			clForest, 2)
-	],
-	500,
-	1);
+if (!isNomad())
+{
+	log("Creating towers...");
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(oTower, 1, 1, 0, 4)], true, clTower),
+		0,
+		[
+			stayClasses(clBumps, 3),
+			avoidClasses(
+				clMetal, 5,
+				clRock, 5,
+				clHill, 0,
+				clTower, 60,
+				clPlayer, 10,
+				clForest, 2)
+		],
+		500,
+		1);
+}
 Engine.SetProgress(67);
 
 createDecoration(
@@ -444,6 +448,8 @@ createObjectGroupsDeprecated(
 	avoidClasses(clRain, 5),
 	scaleByMapSize(80, 250));
 Engine.SetProgress(95);
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clHill, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 setSkySet("rain");
 setWaterType("lake");

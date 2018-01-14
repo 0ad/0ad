@@ -305,6 +305,8 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clWater, 4, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 setSkySet("sunset 1");
 setSunRotation(randFloat(0, 2 * Math.PI));
 setSunColor(0.8, 0.7, 0.6);

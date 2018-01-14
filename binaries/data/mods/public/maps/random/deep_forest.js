@@ -222,6 +222,7 @@ Engine.SetProgress(60);
 
 // Place eyecandy
 placeObject(mapCenterX, mapCenterZ, templateEC, 0, randFloat(0, 2 * Math.PI));
+addToClass(mapCenterX, mapCenterZ, clBaseResource);
 createArea(
 	new ClumpPlacer(Math.square(radiusEC), 1/2, 1/8, 1, mapCenterX, mapCenterZ),
 	[
@@ -267,5 +268,7 @@ for (var x = 0; x < mapSize; x++)
 	}
 }
 Engine.SetProgress(95);
+
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clBaseResource, 4));
 
 ExportMap();

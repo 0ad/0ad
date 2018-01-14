@@ -315,6 +315,8 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 		}
 	}
 
+placePlayersNomad(clPlayer, avoidClasses(clOasis, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 setSkySet("sunny");
 setSunColor(0.914,0.827,0.639);
 setSunRotation(Math.PI/3);

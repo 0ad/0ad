@@ -141,36 +141,39 @@ placePlayerBases({
 });
 Engine.SetProgress(35);
 
-log("Creating gaia...");
-for (let i = 0; i < 2; ++i)
-	for (let j = 0; j < scaleByMapSize(1, 8); ++j)
-		createObjectGroupsDeprecated(
-			new SimpleGroup(
-				[
-					new SimpleObject(oSpearman, 8, 12, 2, 3),
-					new SimpleObject(oArcher, 8, 12, 2, 3),
-					new SimpleObject(oArcherElephant, 2, 3, 4, 5)
-				],
-				true,
-				clGaia),
-			0,
-			[
-				avoidClasses(
-					clWater, 2,
-					clForest, 1,
-					clPlayerTerritory, 0,
-					clHill, 1,
-					clGaia, 15),
-				stayClasses(clStrip[i == 0 ? 0 : stripWidths.length - 1], 1)
-			],
-			scaleByMapSize(5, 10),
-			50);
-
 paintTerrainBasedOnHeight(-10, 0, 1, tWater);
 paintTileClassBasedOnHeight(-10, 0, 1, clWater);
 paintTerrainBasedOnHeight(1, 2.8, 1, tShoreBlend);
 paintTerrainBasedOnHeight(0, 1, 1, tShore);
 Engine.SetProgress(40);
+
+if (!isNomad())
+{
+	log("Creating gaia...");
+	for (let i = 0; i < 2; ++i)
+		for (let j = 0; j < scaleByMapSize(1, 8); ++j)
+			createObjectGroupsDeprecated(
+				new SimpleGroup(
+					[
+						new SimpleObject(oSpearman, 8, 12, 2, 3),
+						new SimpleObject(oArcher, 8, 12, 2, 3),
+						new SimpleObject(oArcherElephant, 2, 3, 4, 5)
+					],
+					true,
+					clGaia),
+				0,
+				[
+					avoidClasses(
+						clWater, 2,
+						clForest, 1,
+						clPlayerTerritory, 0,
+						clHill, 1,
+						clGaia, 15),
+					stayClasses(clStrip[i == 0 ? 0 : stripWidths.length - 1], 1)
+				],
+				scaleByMapSize(5, 10),
+				50);
+}
 
 log("Creating hills...");
 createAreas(
@@ -462,6 +465,8 @@ createObjectGroupsDeprecated(
 	[avoidClasses(clFood, 15), stayClasses(clWater, 4)],
 	200,
 	100);
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
 
 setSunColor(0.6, 0.6, 0.6);
 setSunElevation(Math.PI/ 3);

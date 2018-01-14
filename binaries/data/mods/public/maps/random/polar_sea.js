@@ -45,14 +45,19 @@ var clArcticWolf = createTileClass();
 
 var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
 
+var treasures = [{
+	"template": oWoodTreasure,
+	"count": isNomad() ? 16 : 14
+}];
+
 log("Creating player markets...");
-var marketDist = 12;
-for (let i = 0; i < numPlayers; ++i)
-{
-	let marketPos = Vector2D.add(new Vector2D(playerX[i], playerZ[i]).mult(mapSize), new Vector2D(marketDist, 0).rotate(randFloat(0, 2 * Math.PI))).round();
-	placeObject(marketPos.x, marketPos.y, oMarket, playerIDs[i], BUILDING_ORIENTATION);
-	addCivicCenterAreaToClass(marketPos.x, marketPos.y, clBaseResource);
-}
+if (!isNomad())
+	for (let i = 0; i < numPlayers; ++i)
+	{
+		let marketPos = Vector2D.add(new Vector2D(playerX[i], playerZ[i]).mult(mapSize), new Vector2D(12, 0).rotate(randFloat(0, 2 * Math.PI))).round();
+		placeObject(marketPos.x, marketPos.y, oMarket, playerIDs[i], BUILDING_ORIENTATION);
+		addCivicCenterAreaToClass(marketPos.x, marketPos.y, clBaseResource);
+	}
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerX, playerZ],
@@ -74,12 +79,7 @@ placePlayerBases({
 		]
 	},
 	"Treasures": {
-		"types": [
-			{
-				"template": oWoodTreasure,
-				"count": 14
-			}
-		]
+		"types": treasures
 	},
 });
 Engine.SetProgress(30);
@@ -216,7 +216,7 @@ Engine.SetProgress(80);
 createFood(
 	[
 		[new SimpleObject(oArcticFox, 1, 2, 0, 3)],
-		[new SimpleObject(oArcticWolf, 4, 6, 0, 4)],
+		[new SimpleObject(isNomad() ? oArcticFox : oArcticWolf, 4, 6, 0, 4)],
 		[new SimpleObject(oWalrus, 2, 3, 0, 2)],
 		[new SimpleObject(oMuskox, 2, 3, 0, 2)]
 	],
@@ -273,6 +273,22 @@ else
 {
 	setSkySet(pickRandom(["cumulus", "rain", "mountainous", "overcast", "rain", "stratus"]));
 	setSunElevation(Math.PI * randFloat(1/9, 1/7));
+}
+
+if (isNomad())
+{
+	let constraint = avoidClasses(clWater, 4, clMetal, 4, clRock, 4, clHill, 4, clFood, 2);
+	[playerIDs, playerX, playerZ] = placePlayersNomad(clPlayer, constraint);
+
+	for (let i = 0; i < numPlayers; ++i)
+		placePlayerBaseTreasures({
+			"playerID": playerIDs[i],
+			"playerX": tilesToFraction(playerX[i]),
+			"playerZ": tilesToFraction(playerZ[i]),
+			"BaseResourceClass": clBaseResource,
+			"baseResourceConstraint": constraint,
+			"types": treasures
+		});
 }
 
 setSunRotation(randFloat(0, 2 * Math.PI));

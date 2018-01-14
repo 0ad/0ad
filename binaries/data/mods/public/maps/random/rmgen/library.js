@@ -314,6 +314,11 @@ function getMapCenter()
 	return deepfreeze(new Vector2D(g_Map.size / 2, g_Map.size / 2));
 }
 
+function isNomad()
+{
+	return !!g_MapSettings.Nomad;
+}
+
 function getNumPlayers()
 {
 	return g_MapSettings.PlayerData.length - 1;

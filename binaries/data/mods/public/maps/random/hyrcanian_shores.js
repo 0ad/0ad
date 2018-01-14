@@ -320,6 +320,8 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(13, 200), 50
 );
 
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 setSkySet("cirrus");
 setWaterColor(0.114, 0.192, 0.463);
 setWaterTint(0.255, 0.361, 0.651);

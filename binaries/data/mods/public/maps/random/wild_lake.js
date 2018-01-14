@@ -588,18 +588,19 @@ for (let i = 0; i < avoidPoints.length; ++i)
 let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints, clPath);
 Engine.SetProgress(55);
 
-/**
- * Add start locations and resource spots after terrain texture and path painting
- */
-for (let p = 0; p < playerIDs.length; ++p)
-{
-	let point = startLocations[p];
-	placeCivDefaultStartingEntities(point.x, point.y, playerIDs[p], g_Map.size > 192);
-	placeStartLocationResources(point);
-}
+log("Placing players...");
+if (isNomad())
+	placePlayersNomad(createTileClass(), new HeightConstraint(playerHeightRange.min, playerHeightRange.max));
+else
+	for (let p = 0; p < playerIDs.length; ++p)
+	{
+		let point = startLocations[p];
+		placeCivDefaultStartingEntities(point.x, point.y, playerIDs[p], g_Map.size > 192);
+		placeStartLocationResources(point);
+	}
 
-let mercenaryCamps = Math.ceil(g_Map.size / 256);
-log("Maximum number of mercenary camps: " + uneval(mercenaryCamps));
+let mercenaryCamps = isNomad() ? 0 : Math.ceil(g_Map.size / 256);
+log("Maximum number of mercenary camps: " + mercenaryCamps);
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let choice = i % 5;

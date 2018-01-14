@@ -288,6 +288,8 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(Math.PI * randFloat(1/5, 1/3));

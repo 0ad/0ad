@@ -533,6 +533,8 @@ createObjectGroupsDeprecated(group, 0,
 	planetm * scaleByMapSize(13, 200), 50
 );
 
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randFloat(0, 2 * Math.PI));
 setSunElevation(Math.PI * randFloat(1/5, 1/3));
