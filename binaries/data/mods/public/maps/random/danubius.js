@@ -217,7 +217,7 @@ if (gallicCC)
 					paintClass(clRitualPlace)
 				]);
 
-			placeObject(mX, mZ, aCampfire, 0, randFloat(0, 2 * Math.PI));
+			placeObject(mX, mZ, aCampfire, 0, randomAngle());
 
 			let femaleCount = Math.round(mRadius * 2);
 			let maleCount = Math.round(mRadius * 3);
@@ -314,7 +314,7 @@ if (gallicCC)
 				gZ + randFloat(-0.8, 0.8) * gaulCityRadius,
 				pickRandom(oTreasures),
 				0,
-				randFloat(0, 2 * Math.PI));
+				randomAngle());
 	}
 }
 Engine.SetProgress(10);

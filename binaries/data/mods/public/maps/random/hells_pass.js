@@ -11,7 +11,7 @@ resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 Engine.SetProgress(10);
 
 const teamsArray = getTeamsArray();
-const startAngle = randFloat(0, 2 * Math.PI);
+const startAngle = randomAngle();
 addBases("line", 0.2, 0.08, startAngle);
 Engine.SetProgress(20);
 

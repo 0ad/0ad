@@ -79,7 +79,7 @@ const landHeight = 3;
 
 initTerrain(tWater);
 
-var startAngle = randFloat(0, 2 * Math.PI);
+var startAngle = randomAngle();
 
 var teams = getTeamsArray();
 var numTeams = teams.filter(team => team).length;
@@ -490,7 +490,7 @@ paintTerrainBasedOnHeight(getMapBaseHeight(), 1, 3, tWater);
 placePlayersNomad(clPlayer, [stayClasses(clLand, 4), avoidClasses(clHill, 2, clForest, 1, clMetal, 4, clRock, 4, clFood, 2)]);
 
 setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
-setSunRotation(randFloat(0, 2 * Math.PI));
+setSunRotation(randomAngle());
 setSunElevation(randFloat(1/5, 1/3) * Math.PI);
 setWaterWaviness(2);
 

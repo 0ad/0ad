@@ -367,7 +367,7 @@ createStragglerTrees(
 log("Creating treasures...");
 for (let i = 0; i < randIntInclusive(3, 8); ++i)
 	for (let template of [oFoodTreasure, oWoodTreasure])
-		placeObject(center + randFloat(-7, 7), center + randFloat(-7, 7), template, 0, randFloat(0, 2 * Math.PI));
+		placeObject(center + randFloat(-7, 7), center + randFloat(-7, 7), template, 0, randomAngle());
 
 placePlayersNomad(
 	clPlayer,

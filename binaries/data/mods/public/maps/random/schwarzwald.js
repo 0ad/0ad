@@ -94,7 +94,7 @@ var maxPlayerRadius = Math.min(mapRadius - baseRadius, 3/4 * mapRadius);
 
 var playerStartLocX = [];
 var playerStartLocZ = [];
-var playerAngleStart = randFloat(0, 2 * Math.PI);
+var playerAngleStart = randomAngle();
 var playerAngleAddAvrg = 2 * Math.PI / numPlayers;
 var playerAngleMaxOff = playerAngleAddAvrg/4;
 

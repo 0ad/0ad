@@ -13,7 +13,7 @@ resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 Engine.SetProgress(10);
 
 const mapSize = getMapSize();
-const startAngle = randFloat(0, 2 * Math.PI);
+const startAngle = randomAngle();
 const players = addBases("radial", 0.38, 0.05, startAngle);
 Engine.SetProgress(20);
 

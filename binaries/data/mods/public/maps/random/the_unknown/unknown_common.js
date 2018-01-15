@@ -250,7 +250,7 @@ function unknownContinent()
 	if (randBool(1/3))
 	{
 		log("Creating peninsula (i.e. half the map not being surrounded by water)...");
-		let angle = randFloat(0, 2 * Math.PI);
+		let angle = randomAngle();
 		createArea(
 			new ClumpPlacer(
 				mapArea * 0.45,
@@ -1011,7 +1011,7 @@ function createUnknownObjects()
 		50);
 
 	setSkySet(pickRandom(["cirrus", "cumulus", "sunny", "sunny 1", "mountainous", "stratus"]));
-	setSunRotation(randFloat(0, 2 * Math.PI));
+	setSunRotation(randomAngle());
 	setSunElevation(Math.PI * randFloat(1/5, 1/3));
 }
 

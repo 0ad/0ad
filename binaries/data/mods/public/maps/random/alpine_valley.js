@@ -536,7 +536,7 @@ createObjectGroupsDeprecated(group, 0,
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
-setSunRotation(randFloat(0, 2 * Math.PI));
+setSunRotation(randomAngle());
 setSunElevation(Math.PI * randFloat(1/5, 1/3));
 setWaterColor(0.0, 0.047, 0.286);				// dark majestic blue
 setWaterTint(0.471, 0.776, 0.863);				// light blue

@@ -91,7 +91,7 @@ function randomizeCoordinates(obj, passableOnly)
 		// Uniformly distributed on the disk
 		let halfMapSize = g_Map.size / 2 - border;
 		let r = halfMapSize * Math.sqrt(randFloat(0, 1));
-		let theta = randFloat(0, 2 * Math.PI);
+		let theta = randomAngle();
 		obj.x = Math.floor(r * Math.cos(theta)) + halfMapSize;
 		obj.z = Math.floor(r * Math.sin(theta)) + halfMapSize;
 	}

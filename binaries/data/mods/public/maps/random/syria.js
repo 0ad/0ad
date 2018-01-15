@@ -258,7 +258,7 @@ placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clH
 
 setSkySet("sunny");
 setSunElevation(Math.PI / 8);
-setSunRotation(randFloat(0, 2 * Math.PI));
+setSunRotation(randomAngle());
 setSunColor(0.746, 0.718, 0.539);
 setWaterColor(0.292, 0.347, 0.691);
 setWaterTint(0.550, 0.543, 0.437);

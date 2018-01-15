@@ -187,7 +187,7 @@ if (mapSize > 150 && randBool())
 {
 	log("Creating path though the oasis...");
 	let pathWidth = scaleByMapSize(7, 18);
-	let points = distributePointsOnCircle(2, randFloat(0, 2 * Math.PI), waterRadius + shoreDistance + forestDistance + pathWidth, mapCenter)[0];
+	let points = distributePointsOnCircle(2, randomAngle(), waterRadius + shoreDistance + forestDistance + pathWidth, mapCenter)[0];
 	createArea(
 		new PathPlacer(points[0].x, points[0].y, points[1].x, points[1].y, pathWidth, 0.4, 1, 0.2, 0),
 		[
@@ -248,7 +248,7 @@ Engine.SetProgress(85);
 log("Creating oasis animals...");
 for (let i = 0; i < scaleByMapSize(5, 30); ++i)
 {
-	let animalPos = Vector2D.add(mapCenter, new Vector2D(forestDistance + shoreDistance + waterRadius, 0).rotate(randFloat(0, 2 * Math.PI)));
+	let animalPos = Vector2D.add(mapCenter, new Vector2D(forestDistance + shoreDistance + waterRadius, 0).rotate(randomAngle()));
 
 	createObjectGroup(
 		new RandomGroup(

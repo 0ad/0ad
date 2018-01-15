@@ -10,7 +10,7 @@ initTileClasses();
 resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 Engine.SetProgress(20);
 
-addBases("stronghold", randFloat(0.2, 0.35), randFloat(0.05, 0.1), randFloat(0, 2 * Math.PI));
+addBases("stronghold", randFloat(0.2, 0.35), randFloat(0.05, 0.1), randomAngle());
 Engine.SetProgress(30);
 
 addElements(shuffleArray([

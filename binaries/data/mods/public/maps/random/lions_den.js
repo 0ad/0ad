@@ -16,7 +16,7 @@ const hillHeight = getMapBaseHeight();
 
 const mapArea = getMapArea();
 const numPlayers = getNumPlayers();
-const startAngle = randFloat(0, 2 * Math.PI);
+const startAngle = randomAngle();
 
 resetTerrain(topTerrain, g_TileClasses.land, hillHeight);
 Engine.SetProgress(10);

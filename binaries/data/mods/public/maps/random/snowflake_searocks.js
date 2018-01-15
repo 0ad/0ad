@@ -434,7 +434,7 @@ placePlayersNomad(
 	]);
 
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
-setSunRotation(randFloat(0, 2 * Math.PI));
+setSunRotation(randomAngle());
 setSunElevation(Math.PI * randFloat(1/5, 1/3));
 
 ExportMap();

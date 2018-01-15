@@ -11,7 +11,7 @@ resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 Engine.SetProgress(10);
 
 const pos = randomStartingPositionPattern(getTeamsArray());
-addBases(pos.setup, pos.distance, pos.separation, randFloat(0, 2 * Math.PI));
+addBases(pos.setup, pos.distance, pos.separation, randomAngle());
 Engine.SetProgress(20);
 
 addElements([

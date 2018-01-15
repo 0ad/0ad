@@ -20,7 +20,7 @@ function SimpleTerrain(texture, templateName = undefined)
 SimpleTerrain.prototype.place = function(x, z)
 {
 	if (g_Map.validT(x, z))
-		g_Map.terrainObjects[x][z] = this.templateName ? new Entity(this.templateName, 0, x + 0.5, z + 0.5, randFloat(0, 2 * Math.PI)) : undefined;
+		g_Map.terrainObjects[x][z] = this.templateName ? new Entity(this.templateName, 0, x + 0.5, z + 0.5, randomAngle()) : undefined;
 
 	g_Map.texture[x][z] = g_Map.getTextureID(this.texture);
 };

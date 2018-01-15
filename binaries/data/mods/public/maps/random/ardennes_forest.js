@@ -267,7 +267,7 @@ for (var ix = 0; ix < mapSize; ix++)
 
 		if (h > 35 && randBool(0.1) ||
 		    h < 15 && randBool(0.05) && hillDecoClass.countMembersInRadius(ix, iz, 1) == 0)
-			placeObject(ix + randFloat(0, 1), iz + randFloat(0, 1), pickRandom(aTrees), 0, randFloat(0, 2 * Math.PI));
+			placeObject(ix + randFloat(0, 1), iz + randFloat(0, 1), pickRandom(aTrees), 0, randomAngle());
 	}
 }
 

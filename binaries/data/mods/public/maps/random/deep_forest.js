@@ -46,7 +46,7 @@ var maxPlayerRadius = Math.min(mapRadius - baseRadius, 3/4 * mapRadius);
 var playerStartLocX = [];
 var playerStartLocZ = [];
 var playerAngle = [];
-var playerAngleStart = randFloat(0, 2 * Math.PI);
+var playerAngleStart = randomAngle();
 var playerAngleAddAvrg = 2 * Math.PI / numPlayers;
 var playerAngleMaxOff = playerAngleAddAvrg/4;
 
@@ -206,7 +206,7 @@ for (var i=0; i < numPlayers; i++)
 		var placeX = Math.round(mapCenterX + resourceRadius * Math.cos(playerAngle[i] + (rIndex+1)*angleDist/(resourcePerPlayer.length+1)));
 		var placeZ = Math.round(mapCenterX + resourceRadius * Math.sin(playerAngle[i] + (rIndex+1)*angleDist/(resourcePerPlayer.length+1)));
 
-		placeObject(placeX, placeZ, resourcePerPlayer[rIndex], 0, randFloat(0, 2 * Math.PI));
+		placeObject(placeX, placeZ, resourcePerPlayer[rIndex], 0, randomAngle());
 
 		createArea(
 			new ClumpPlacer(40, 1/2, 1/8, 1, placeX, placeZ),
@@ -221,7 +221,7 @@ for (var i=0; i < numPlayers; i++)
 Engine.SetProgress(60);
 
 // Place eyecandy
-placeObject(mapCenterX, mapCenterZ, templateEC, 0, randFloat(0, 2 * Math.PI));
+placeObject(mapCenterX, mapCenterZ, templateEC, 0, randomAngle());
 addToClass(mapCenterX, mapCenterZ, clBaseResource);
 createArea(
 	new ClumpPlacer(Math.square(radiusEC), 1/2, 1/8, 1, mapCenterX, mapCenterZ),

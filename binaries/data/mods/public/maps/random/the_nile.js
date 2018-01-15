@@ -139,7 +139,7 @@ paintRiver({
 		if (plantID % plantFrequency == 0)
 		{
 			plantID = 0;
-			placeObject(ix, iz, aPlants, 0, randFloat(0, 2 * Math.PI));
+			placeObject(ix, iz, aPlants, 0, randomAngle());
 		}
 		++plantID;
 	},

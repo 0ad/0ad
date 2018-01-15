@@ -452,7 +452,7 @@ createObjectGroupsDeprecated(group, 0, [avoidClasses(clFood, 15), stayClasses(cl
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clPyrenneans, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
 
 setSunElevation(Math.PI * randFloat(1/5, 1/3));
-setSunRotation(randFloat(0, 2 * Math.PI));
+setSunRotation(randomAngle());
 
 setSkySet("cumulus");
 setSunColor(0.73,0.73,0.65);

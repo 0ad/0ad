@@ -354,7 +354,7 @@ createObjectGroupsDeprecated(group, 0,
 placePlayersNomad(clPlayer, [stayClasses(clLand, 4), avoidClasses(clHill, 2, clForest, 1, clMetal, 4, clRock, 4, clFood, 2)]);
 
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
-setSunRotation(randFloat(0, 2 * Math.PI));
+setSunRotation(randomAngle());
 setSunElevation(randFloat(1/5, 1/3) * Math.PI);
 setWaterWaviness(2);
 

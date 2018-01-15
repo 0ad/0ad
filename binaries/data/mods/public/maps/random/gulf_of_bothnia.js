@@ -312,7 +312,7 @@ createStragglerTrees(
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 setSkySet("stormy");
-setSunRotation(randFloat(0, 2 * Math.PI));
+setSunRotation(randomAngle());
 setSunElevation(Math.PI * randFloat(1/6, 1/4));
 
 setWaterColor(0.035,0.098,0.314);

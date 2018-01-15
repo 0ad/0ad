@@ -54,7 +54,7 @@ log("Creating player markets...");
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let marketPos = Vector2D.add(new Vector2D(playerX[i], playerZ[i]).mult(mapSize), new Vector2D(12, 0).rotate(randFloat(0, 2 * Math.PI))).round();
+		let marketPos = Vector2D.add(new Vector2D(playerX[i], playerZ[i]).mult(mapSize), new Vector2D(12, 0).rotate(randomAngle())).round();
 		placeObject(marketPos.x, marketPos.y, oMarket, playerIDs[i], BUILDING_ORIENTATION);
 		addCivicCenterAreaToClass(marketPos.x, marketPos.y, clBaseResource);
 	}
@@ -291,7 +291,7 @@ if (isNomad())
 		});
 }
 
-setSunRotation(randFloat(0, 2 * Math.PI));
+setSunRotation(randomAngle());
 
 setWaterColor(0.3, 0.3, 0.4);
 setWaterTint(0.75, 0.75, 0.75);

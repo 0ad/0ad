@@ -32,7 +32,7 @@ function Noise2D(freq)
 		this.grads[i] = [];
 		for (var j=0; j < freq; ++j)
 		{
-			var a = randFloat(0, 2 * Math.PI);
+			var a = randomAngle();
 			this.grads[i][j] = new Vector2D(Math.cos(a), Math.sin(a));
 		}
 	}

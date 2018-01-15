@@ -215,7 +215,7 @@ function placePlayerBaseChicken(args)
 		let success = false;
 		for (let tries = 0; tries < get("maxTries", 30); ++tries)
 		{
-			let loc = new Vector2D(0, get("distance", 9)).rotate(randFloat(0, 2 * Math.PI)).add(basePosition);
+			let loc = new Vector2D(0, get("distance", 9)).rotate(randomAngle()).add(basePosition);
 			if (createObjectGroup(
 				new SimpleGroup(
 					[new SimpleObject(get("template", "gaia/fauna_chicken"), 5, 5, 0, get("count", 2))],
@@ -244,7 +244,7 @@ function placePlayerBaseBerries(args)
 	let [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
 	for (let tries = 0; tries < get("maxTries", 30); ++tries)
 	{
-		let loc = new Vector2D(0, get("distance", 12)).rotate(randFloat(0, 2 * Math.PI)).add(basePosition);
+		let loc = new Vector2D(0, get("distance", 12)).rotate(randomAngle()).add(basePosition);
 		if (createObjectGroup(
 			new SimpleGroup(
 				[new SimpleObject(args.template, get("minCount", 5), get("maxCount", 5), get("maxDist", 1), get("maxDist", 3))],
@@ -275,7 +275,7 @@ function placePlayerBaseMines(args)
 	{
 		// First find a place where all mines can be placed
 		let pos = [];
-		let startAngle = randFloat(0, 2 * Math.PI);
+		let startAngle = randomAngle();
 		for (let i = 0; i < mineCount; ++i)
 		{
 			let angle = startAngle + angleBetweenMines * (i + (mineCount - 1) / 2);
@@ -323,7 +323,7 @@ function placePlayerBaseTrees(args)
 
 	for (let x = 0; x < get("maxTries", 30); ++x)
 	{
-		let loc = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randFloat(0, 2 * Math.PI)).add(basePosition).round();
+		let loc = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randomAngle()).add(basePosition).round();
 
 		if (createObjectGroup(
 			new SimpleGroup(
@@ -352,7 +352,7 @@ function placePlayerBaseTreasures(args)
 
 		for (let tries = 0; tries < get("maxTries", 30); ++tries)
 		{
-			let loc = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randFloat(0, 2 * Math.PI)).add(basePosition).round();
+			let loc = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randomAngle()).add(basePosition).round();
 
 			if (createObjectGroup(
 				new SimpleGroup(
@@ -388,7 +388,7 @@ function placePlayerBaseDecoratives(args)
 		let success = false;
 		for (let x = 0; x < get("maxTries", 30); ++x)
 		{
-			let loc = new Vector2D(0, randIntInclusive(get("minDist", 8), get("maxDist", 11))).rotate(randFloat(0, 2 * Math.PI)).add(basePosition).round();
+			let loc = new Vector2D(0, randIntInclusive(get("minDist", 8), get("maxDist", 11))).rotate(randomAngle()).add(basePosition).round();
 
 			if (createObjectGroup(
 				new SimpleGroup(
@@ -513,7 +513,7 @@ function primeSortAllPlayers()
  */
 function playerPlacementCircle(radius, startingAngle = undefined, centerX = 0.5, centerZ = 0.5)
 {
-	let startAngle = startingAngle !== undefined ? startingAngle : randFloat(0, 2 * Math.PI);
+	let startAngle = startingAngle !== undefined ? startingAngle : randomAngle();
 	let [locations, playerAngle] = distributePointsOnCircle(getNumPlayers(), startAngle, radius, new Vector2D(centerX, centerZ));
 	return [sortAllPlayers(), locations.map(l => l.x), locations.map(l => l.y), playerAngle, startAngle];
 }

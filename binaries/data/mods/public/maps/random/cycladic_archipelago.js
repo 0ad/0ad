@@ -63,7 +63,7 @@ var clBaseResource = createTileClass();
 //array holding starting islands based on number of players
 var startingPlaces=[[0],[0,3],[0,2,4],[0,1,3,4],[0,1,2,3,4],[0,1,2,3,4,5]];
 
-var startAngle = randFloat(0, 2 * Math.PI);
+var startAngle = randomAngle();
 var numIslands = Math.max(6, numPlayers);
 var islandX = [];
 var islandZ = [];
