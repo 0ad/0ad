@@ -5,6 +5,5 @@ Engine.LoadLibrary("the_unknown");
 g_AllowNaval = false;
 
 createUnknownMap();
-createUnknownObjects();
 
 ExportMap();

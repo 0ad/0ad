@@ -56,6 +56,8 @@ const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = getMapArea();
 const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
+
 const lSize = Math.pow(scaleByMapSize(1, 6), 1/8);
 
 var clPlayer = createTileClass();
@@ -117,10 +119,11 @@ function createUnknownMap()
 
 	paintUnknownMapBasedOnHeight();
 
-	if (isNomad())
-		placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
-	else
-		createUnknownPlayerBases();
+	createUnknownPlayerBases();
+
+	createUnknownObjects();
+
+	placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2, clWater, 10));
 }
 
 /**
@@ -284,15 +287,13 @@ function unknownCentralSea()
 	let waterHeight = -3;
 	let horizontal = randBool();
 
-	let [start, end] = centralRiverCoordinates(horizontal);
+	let [riverStart, riverEnd] = centralRiverCoordinates(horizontal);
 	paintRiver({
 		"parallel": false,
-		"startX": tilesToFraction(start[0]),
-		"startZ": tilesToFraction(start[1]),
-		"endX": tilesToFraction(end[0]),
-		"endZ": tilesToFraction(end[1]),
-		"width": randFloat(0.22, 0.3) + scaleByMapSize(0.05, 0.2),
-		"fadeDist": 0.025,
+		"start": riverStart,
+		"end": riverEnd,
+		"width": fractionToTiles(scaleByMapSize(0.27, 0.42) + randFloat(0, 0.08)),
+		"fadeDist": scaleByMapSize(3, 12),
 		"deviation": 0,
 		"waterHeight": waterHeight,
 		"landHeight": landHeight,
@@ -317,13 +318,14 @@ function unknownCentralSea()
 	if (!g_AllowNaval || randBool())
 	{
 		log("Creating isthmus (i.e. connecting the two riversides with a big land passage)...");
-		let [coord1, coord2] = centralRiverCoordinates(!horizontal);
+		let [isthmusStart, isthmusEnd] = centralRiverCoordinates(!horizontal);
 		createArea(
 			new PathPlacer(
-				...coord1,
-				...coord2,
-				scaleByMapSize(randIntInclusive(16, 24),
-				randIntInclusive(100, 140)),
+				isthmusStart.x,
+				isthmusStart.y,
+				isthmusEnd.x,
+				isthmusEnd.y,
+				scaleByMapSize(randIntInclusive(16, 24), randIntInclusive(100, 140)),
 				0.5,
 				3 * scaleByMapSize(1, 4),
 				0.1,
@@ -360,7 +362,7 @@ function unknownCentralRiver()
 	log("Creating the main river...");
 	let [coord1, coord2] = centralRiverCoordinates(horizontal);
 	createArea(
-		new PathPlacer(...coord1, ...coord2, scaleByMapSize(14, 24), 0.5, scaleByMapSize(3, 12), 0.1, 0.01),
+		new PathPlacer(coord1.x, coord1.y, coord2.x, coord2.y, scaleByMapSize(14, 24), 0.5, scaleByMapSize(3, 12), 0.1, 0.01),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 		avoidClasses(clPlayerTerritory, 4));
 
@@ -494,22 +496,15 @@ function unknownEdgeSeas()
 		markPlayerArea("small");
 	}
 
-	for (let location of pickRandom([["first"], ["second"], ["first", "second"]]))
+	for (let side of pickRandom([[0], [Math.PI], [0, Math.PI]]))
 	{
-		let positionX = location == "first" ? [0, 0] : [1, 1];
-		let positionZ = [0, 1];
-
-		if (horizontal)
-			[positionX, positionZ] = [positionZ, positionX];
-
+		let angle = side + (horizontal ? 0 : Math.PI / 2);
 		paintRiver({
 			"parallel": true,
-			"startX": positionX[0],
-			"startZ": positionZ[0],
-			"endX": positionX[1],
-			"endZ": positionZ[1],
-			"width": 0.62 - randFloat(0, scaleByMapSize(0, 0.1)),
-			"fadeDist": 0.015,
+			"start": new Vector2D(mapBounds.left, mapBounds.top).rotateAround(angle, mapCenter),
+			"end": new Vector2D(mapBounds.left, mapBounds.bottom).rotateAround(angle, mapCenter),
+			"width": scaleByMapSize(80, randFloat(270, 320)),
+			"fadeDist": scaleByMapSize(2, 8),
 			"deviation": 0,
 			"waterHeight": waterHeight,
 			"landHeight": landHeight,
@@ -738,16 +733,10 @@ function unknownMainland()
 
 function centralRiverCoordinates(horizontal)
 {
-	let coord1 = [0, fractionToTiles(0.5)];
-	let coord2 = [fractionToTiles(1), fractionToTiles(0.5)];
-
-	if (!horizontal)
-	{
-		coord1.reverse();
-		coord2.reverse();
-	}
-
-	return [coord1, coord2];
+	return [
+		new Vector2D(mapBounds.left, mapCenter.y),
+		new Vector2D(mapBounds.right, mapCenter.y)
+	].map(v => v.rotateAround(horizontal ? 0 : Math.PI / 2, mapCenter));
 }
 
 function createShoreJaggedness(waterHeight, borderClass, shoreDist, inwards = true)

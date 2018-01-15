@@ -41,6 +41,8 @@ const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
 InitMap();
 
 const numPlayers = getNumPlayers();
+const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -87,12 +89,10 @@ Engine.SetProgress(10);
 
 paintRiver({
 	"parallel": false,
-	"startX": 0,
-	"startZ": 0.5,
-	"endX": 1,
-	"endZ": 0.5,
-	"width": 0.25,
-	"fadeDist": 0.01,
+	"start": new Vector2D(mapBounds.left, mapCenter.y),
+	"end": new Vector2D(mapBounds.right, mapCenter.y),
+	"width": fractionToTiles(0.25),
+	"fadeDist": scaleByMapSize(3, 10),
 	"deviation": 0,
 	"waterHeight": waterHeight,
 	"landHeight": landHeight,

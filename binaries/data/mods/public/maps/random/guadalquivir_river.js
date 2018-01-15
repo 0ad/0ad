@@ -39,6 +39,8 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -112,13 +114,11 @@ Engine.SetProgress(20);
 paintRiver({
 	"parallel": true,
 	"constraint": stayClasses(clLand, 0),
-	"startX": 0.5,
-	"startZ": 0,
-	"endX": 0.5,
-	"endZ": 1,
-	"width": 0.07,
-	"fadeDist": 0.025,
-	"deviation": 0.0025,
+	"start": new Vector2D(mapCenter.x, mapBounds.top),
+	"end": new Vector2D(mapCenter.x, mapBounds.bottom),
+	"width": fractionToTiles(0.07),
+	"fadeDist": scaleByMapSize(3, 12),
+	"deviation": 1,
 	"waterHeight": waterHeight,
 	"landHeight": shoreHeight,
 	"meanderShort": 12,
@@ -128,9 +128,9 @@ paintRiver({
 		placeTerrain(ix, iz, tWater);
 
 		if (height < shallowHeight && (
-				z > 0.3 && z < 0.4 ||
-				z > 0.5 && z < 0.6 ||
-				z > 0.7 && z < 0.8))
+		    z > 0.3 && z < 0.4 ||
+		    z > 0.5 && z < 0.6 ||
+		    z > 0.7 && z < 0.8))
 		{
 			setHeight(ix, iz, shallowHeight);
 			addToClass(ix, iz, clShallow);

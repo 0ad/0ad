@@ -42,6 +42,8 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TE
 InitMap();
 
 const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapBounds = getMapBounds();
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -54,6 +56,10 @@ var clBaseResource = createTileClass();
 var clGrass = createTileClass();
 var clHill = createTileClass();
 var clIsland = createTileClass();
+
+var waterHeight = -3;
+var shoreHeight = -1.5;
+var landHeight = getMapBaseHeight();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementLine(false, 0.76, 0.2),
@@ -86,30 +92,21 @@ Engine.SetProgress(30);
 
 paintRiver({
 	"parallel": true,
-	"startX": 0,
-	"startZ": 0,
-	"endX": 0,
-	"endZ": 1,
-	"width": 1,
-	"fadeDist": 0.05,
+	"start": new Vector2D(mapBounds.left, mapBounds.top),
+	"end": new Vector2D(mapBounds.left, mapBounds.bottom),
+	"width": mapSize,
+	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
-	"waterHeight": -3,
-	"landHeight": 1,
+	"waterHeight": waterHeight,
+	"landHeight": landHeight,
 	"meanderShort": 20,
-	"meanderLong": 0,
-	"waterFunc": (ix, iz, height, riverFraction) => {
-
-		if (height < 0)
-			addToClass(ix, iz, clWater);
-
-		if (height < -1.5)
-			placeTerrain(ix, iz, tWater);
-		else
-			placeTerrain(ix, iz, tShore);
-	}
+	"meanderLong": 0
 });
-
 Engine.SetProgress(40);
+
+paintTileClassBasedOnHeight(-Infinity, landHeight, Elevation_ExcludeMin_ExcludeMax, clWater);
+paintTerrainBasedOnHeight(-Infinity, shoreHeight, Elevation_ExcludeMin_ExcludeMax, tWater);
+paintTerrainBasedOnHeight(shoreHeight, landHeight, Elevation_ExcludeMin_ExcludeMax, tShore);
 
 log("Creating bumps...");
 createAreas(
@@ -173,7 +170,7 @@ Engine.SetProgress(60);
 
 log("Creating cyprus...");
 createAreas(
-	new ClumpPlacer(diskArea(getMapSize() / 13), 0.2, 0.1, 0.01),
+	new ClumpPlacer(diskArea(fractionToTiles(0.08)), 0.2, 0.1, 0.01),
 	[
 		new LayeredPainter([tShore, tHill], [12]),
 		new SmoothElevationPainter(ELEVATION_SET, 6, 8),
@@ -286,9 +283,10 @@ createObjectGroupsDeprecated(group, 0,
 Engine.SetProgress(90);
 
 var stragglerTreeConfig = [
-	[1, avoidClasses(clForest, 0, clWater, 1, clPlayer, 8, clMetal, 6, clHill, 1)],
+	[1, avoidClasses(clForest, 0, clWater, 4, clPlayer, 8, clMetal, 6, clHill, 1)],
 	[3, [stayClasses(clIsland, 9), avoidClasses(clRock, 4, clMetal, 4)]]
 ];
+
 for (let [amount, constraint] of stragglerTreeConfig)
 	createStragglerTrees(
 		[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],

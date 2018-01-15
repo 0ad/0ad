@@ -39,6 +39,8 @@ const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
 
 InitMap();
 
+const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 const numPlayers = getNumPlayers();
 
 var clPlayer = createTileClass();
@@ -51,6 +53,8 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clHighlands = createTileClass();
+
+var highlandsPosition = fractionToTiles(0.25);
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementLine(true, 0.5, 0.2),
@@ -83,12 +87,10 @@ Engine.SetProgress(10);
 
 paintRiver({
 	"parallel": true,
-	"startX": 0,
-	"startZ": 1,
-	"endX": 1,
-	"endZ": 1,
-	"width": 0.5,
-	"fadeDist": 0.05,
+	"start": new Vector2D(mapBounds.left, mapBounds.top),
+	"end": new Vector2D(mapBounds.right, mapBounds.top),
+	"width": fractionToTiles(0.5),
+	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
 	"waterHeight": -3,
 	"landHeight": 1,
@@ -107,10 +109,6 @@ paintRiver({
 });
 Engine.SetProgress(20);
 
-createArea(
-	new RectPlacer(fractionToTiles(0), fractionToTiles(0), fractionToTiles(1), fractionToTiles(0.25)),
-	paintClass(clHighlands));
-
 log("Creating fish...");
 for (let i = 0; i < scaleByMapSize(10, 20); ++i)
 	createObjectGroupsDeprecated(
@@ -120,6 +118,10 @@ for (let i = 0; i < scaleByMapSize(10, 20); ++i)
 		numPlayers,
 		50);
 Engine.SetProgress(25);
+
+createArea(
+	new RectPlacer(mapBounds.left, mapBounds.bottom + highlandsPosition, mapBounds.right, mapBounds.bottom),
+	paintClass(clHighlands));
 
 log("Creating bumps...");
 createAreas(

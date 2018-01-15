@@ -36,6 +36,8 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -48,8 +50,8 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clMountains = createTileClass();
 
-const waterPos = 0.31;
-const mountainPos = 0.69;
+var waterPosition = fractionToTiles(0.31);
+var mountainPosition = fractionToTiles(0.69);
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementLine(false, 0.55, 0.2),
@@ -84,12 +86,10 @@ Engine.SetProgress(15);
 
 paintRiver({
 	"parallel": true,
-	"startX": 0,
-	"startZ": 0,
-	"endX": 0,
-	"endZ": 1,
-	"width": 2 * waterPos,
-	"fadeDist": 0.025,
+	"start": new Vector2D(mapBounds.left, mapBounds.top),
+	"end": new Vector2D(mapBounds.left, mapBounds.bottom),
+	"width": 2 * waterPosition,
+	"fadeDist": 8,
 	"deviation": 0,
 	"waterHeight": -5,
 	"landHeight": 3,
@@ -101,7 +101,7 @@ paintRiver({
 });
 
 createArea(
-	new RectPlacer(fractionToTiles(mountainPos), fractionToTiles(0), fractionToTiles(1), fractionToTiles(1)),
+	new RectPlacer(mountainPosition, mapBounds.top, mapBounds.right, mapBounds.bottom),
 	paintClass(clMountains));
 
 log("Creating shores...");
@@ -112,14 +112,13 @@ for (let i = 0; i < scaleByMapSize(20, 120); ++i)
 			Math.floor(scaleByMapSize(4, 6)),
 			Math.floor(scaleByMapSize(16, 30)),
 			1,
-			randIntExclusive(0.28 * mapSize, 0.34 * mapSize),
-			randIntExclusive(0.1 * mapSize, 0.9 * mapSize)),
+			Math.floor(fractionToTiles(randFloat(0.28, 0.34))),
+			Math.floor(fractionToTiles(randFloat(0.1, 0.9)))),
 		[
 			new LayeredPainter([tGrass, tGrass], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, 3, 3),
 			unPaintClass(clWater)
-		],
-		null);
+		]);
 
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2.8, 1, tShoreBlend);

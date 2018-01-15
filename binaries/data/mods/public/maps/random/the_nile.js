@@ -40,7 +40,10 @@ var pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERR
 
 InitMap();
 
-var mapSize = getMapSize();
+const mapSize = getMapSize();
+const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
+
 var aPlants = mapSize < 256 ?
 	"actor|props/flora/grass_tropical.xml" :
 	"actor|props/flora/grass_tropic_field_tall.xml";
@@ -60,6 +63,8 @@ var clDesert = createTileClass();
 var clPond = createTileClass();
 var clShore = createTileClass();
 var clTreasure = createTileClass();
+
+var desertWidth = fractionToTiles(0.25);
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementRiver(0, 0.4),
@@ -113,13 +118,11 @@ var plantID = 0;
 
 paintRiver({
 	"parallel": true,
-	"startX": 0.5,
-	"startZ": 0,
-	"endX": 0.5,
-	"endZ": 1,
-	"width": 0.1,
-	"fadeDist": 0.025,
-	"deviation": 0.0025,
+	"start": new Vector2D(mapCenter.x, mapBounds.top),
+	"end": new Vector2D(mapCenter.x, mapBounds.bottom),
+	"width": fractionToTiles(0.1),
+	"fadeDist": scaleByMapSize(3, 12),
+	"deviation": 0.5,
 	"waterHeight": -3,
 	"landHeight": 2,
 	"meanderShort": 12,
@@ -142,9 +145,6 @@ paintRiver({
 	},
 	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
 
-		if (ix < fractionToTiles(0.25) || ix > fractionToTiles(0.75))
-			addToClass(ix, iz, clDesert);
-
 		for (let riv of riverTextures)
 			if (riv.left < +shoreDist1 && +shoreDist1 < riv.right ||
 			    riv.left < -shoreDist2 && -shoreDist2 < riv.right)
@@ -154,8 +154,13 @@ paintRiver({
 			}
 	}
 });
-
 Engine.SetProgress(40);
+
+log("Marking desert...");
+for (let [left, right] of [[mapBounds.left, mapBounds.left + desertWidth], [mapBounds.right - desertWidth, mapBounds.right]])
+	createArea(
+		new RectPlacer(left, mapBounds.top, right, mapBounds.bottom),
+		paintClass(clDesert));
 
 log("Creating bumps...");
 createAreas(
@@ -174,8 +179,7 @@ var waterAreas = createAreas(
 		paintClass(clPond)
 	],
 	avoidClasses(clPlayer, 25, clWater, 20, clPond, 10),
-	numLakes
-);
+	numLakes);
 
 log("Creating reeds...");
 createObjectGroupsByAreasDeprecated(
@@ -194,8 +198,6 @@ createObjectGroupsByAreasDeprecated(
 	numLakes,
 	100,
 	waterAreas);
-
-waterAreas = [];
 
 log("Creating forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(700, 3500, 0.5);

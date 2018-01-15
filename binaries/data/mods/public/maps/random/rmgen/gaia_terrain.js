@@ -317,9 +317,9 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
  * Optionally calls a function on the affected tiles.
  * Horizontal locations and widths (including fadeDist, meandering) are fractions of the mapsize.
  *
- * @property horizontal - Whether the river is horizontal or vertical
+ * @property start - A Vector2D in tile coordinates stating where the river starts.
+ * @property end - A Vector2D in tile coordinates stating where the river ends.
  * @property parallel - Whether the shorelines should be parallel or meander separately.
- * @property position - Location of the river.
  * @property width - Size between the two shorelines.
  * @property fadeDist - Size of the shoreline.
  * @property deviation - Fuzz effect on the shoreline if greater than 0.
@@ -354,23 +354,17 @@ function paintRiver(args)
 		meanderShort * rndRiver(startAngle + fractionToTiles(riverFraction) / 128, seed) +
 		meanderLong * rndRiver(startAngle + fractionToTiles(riverFraction) / 256, seed);
 
-	// Describe river width and length of the shoreline.
-	let halfWidth = fractionToTiles(args.width / 2);
-	let fadeDist = fractionToTiles(args.fadeDist);
-
 	// Describe river location in vectors.
-	let mapSize = getMapSize();
-	let vecStart = new Vector2D(args.startX, args.startZ).mult(mapSize);
-	let vecEnd = new Vector2D(args.endX, args.endZ).mult(mapSize);
-	let riverLength = vecStart.distanceTo(vecEnd);
-	let unitVecRiver = Vector2D.sub(vecStart, vecEnd).normalize();
+	let riverLength = args.start.distanceTo(args.end);
+	let unitVecRiver = Vector2D.sub(args.start, args.end).normalize();
 
 	// Describe river boundaries.
-	let riverMinX = Math.min(vecStart.x, vecEnd.x);
-	let riverMinZ = Math.min(vecStart.y, vecEnd.y);
-	let riverMaxX = Math.max(vecStart.x, vecEnd.x);
-	let riverMaxZ = Math.max(vecStart.y, vecEnd.y);
+	let riverMinX = Math.min(args.start.x, args.end.x);
+	let riverMinZ = Math.min(args.start.y, args.end.y);
+	let riverMaxX = Math.max(args.start.x, args.end.x);
+	let riverMaxZ = Math.max(args.start.y, args.end.y);
 
+	let mapSize = getMapSize();
 	for (let ix = 0; ix < mapSize; ++ix)
 		for (let iz = 0; iz < mapSize; ++iz)
 		{
@@ -380,7 +374,7 @@ function paintRiver(args)
 			let vecPoint = new Vector2D(ix, iz);
 
 			// Compute the shortest distance to the river.
-			let distanceToRiver = distanceOfPointFromLine(vecStart, vecEnd, vecPoint);
+			let distanceToRiver = distanceOfPointFromLine(args.start, args.end, vecPoint);
 
 			// Closest point on the river (i.e the foot of the perpendicular).
 			let river = Vector2D.sub(vecPoint, unitVecRiver.perpendicular().mult(distanceToRiver));
@@ -391,29 +385,29 @@ function paintRiver(args)
 				continue;
 
 			// Coordinate between 0 and 1 on the axis parallel to the river.
-			let riverFraction = river.distanceTo(vecStart) / riverLength;
+			let riverFraction = river.distanceTo(args.start) / riverLength;
 
 			// Amplitude of the river at this location.
 			let riverCurve1 = riverCurve(riverFraction, startingAngle1, seed1);
 			let riverCurve2 = args.parallel ? riverCurve1 : riverCurve(riverFraction, startingAngle2, seed2);
 
 			// Add noise.
-			let deviation = fractionToTiles(args.deviation) * randFloat(-1, 1);
+			let deviation = args.deviation * randFloat(-1, 1);
 
 			// Compute the distance to the shoreline.
 			let sign = Math.sign(distanceToRiver || 1);
-			let shoreDist1 = sign * riverCurve1 + Math.abs(distanceToRiver) - deviation - halfWidth;
-			let shoreDist2 = sign * riverCurve2 + Math.abs(distanceToRiver) - deviation + halfWidth;
+			let shoreDist1 = sign * riverCurve1 + Math.abs(distanceToRiver) - deviation - args.width / 2;
+			let shoreDist2 = sign * riverCurve2 + Math.abs(distanceToRiver) - deviation + args.width / 2;
 
 			// Create the elevation for the water and the slopy shoreline and call the user functions.
 			if (shoreDist1 < 0 && shoreDist2 > 0)
 			{
 				let height = args.waterHeight;
 
-				if (shoreDist1 > -fadeDist)
-					height += (args.landHeight - args.waterHeight) * (1 + shoreDist1 / fadeDist);
-				else if (shoreDist2 < fadeDist)
-					height += (args.landHeight - args.waterHeight) * (1 - shoreDist2 / fadeDist);
+				if (shoreDist1 > -args.fadeDist)
+					height += (args.landHeight - args.waterHeight) * (1 + shoreDist1 / args.fadeDist);
+				else if (shoreDist2 < args.fadeDist)
+					height += (args.landHeight - args.waterHeight) * (1 - shoreDist2 / args.fadeDist);
 
 				if (args.minHeight === undefined || height < args.minHeight)
 					setHeight(ix, iz, height);

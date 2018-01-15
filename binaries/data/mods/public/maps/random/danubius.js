@@ -121,6 +121,8 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
 var clMiddle = createTileClass();
 var clPlayer = createTileClass();
@@ -148,8 +150,10 @@ var clOutpost = createTileClass();
 var clPath = createTileClass();
 var clRitualPlace = createTileClass();
 
-// Percentage of the mapsize that the river takes up
-const waterWidth = 0.3;
+var waterWidth = fractionToTiles(0.3);
+var waterHeight = -3;
+var shoreHeight = 1;
+var landHeight = 2;
 
 // How many treasures will be placed near the gallic civic centers
 var gallicCCTreasureCount = randIntInclusive(8, 12);
@@ -171,19 +175,14 @@ if (gallicCC)
 	// One village left and right of the river
 	for (let i = 0; i < 2; ++i)
 	{
-		let gX = i == 0 ? gaulCityBorderDistance : mapSize - gaulCityBorderDistance;
-		let gZ = mapSize / 2;
+		let gX = i == 0 ? mapBounds.left + gaulCityBorderDistance : mapBounds.right - gaulCityBorderDistance;
+		let gZ = mapCenter.y;
 
 		if (addCelticRitual)
 		{
 			// Don't position the meeting place at the center of the map
-			let mLocation = randFloat(0.1, 0.4) * (randBool() ? 1 : -1);
-
-			// Center of the meeting place
-			let mX = i == 0 ?
-				mapSize * waterWidth :
-				mapSize * (1 - waterWidth);
-			let mZ = gZ + mapSize * mLocation;
+			let mX = i == 0 ? mapBounds.left + waterWidth : mapBounds.right - waterWidth;
+			let mZ = mapCenter.y + fractionToTiles(randFloat(0.1, 0.4)) * (randBool() ? 1 : -1);
 
 			// Radius of the meeting place
 			let mRadius = scaleByMapSize(4, 6);
@@ -212,8 +211,11 @@ if (gallicCC)
 			// Create the meeting place near the shoreline at the end of the path
 			createArea(
 				new ClumpPlacer(mRadius * mRadius * Math.PI, 0.6, 0.3, 10, mX, mZ),
-				[new LayeredPainter([tShore, tShore], [1]), paintClass(clPath), paintClass(clRitualPlace)],
-				null);
+				[
+					new LayeredPainter([tShore, tShore], [1]),
+					paintClass(clPath),
+					paintClass(clRitualPlace)
+				]);
 
 			placeObject(mX, mZ, aCampfire, 0, randFloat(0, 2 * Math.PI));
 
@@ -257,9 +259,11 @@ if (gallicCC)
 
 		// Create the city patch
 		createArea(
-			new ClumpPlacer(gaulCityRadius * gaulCityRadius * Math.PI, 0.6, 0.3, 10, gX, gZ),
-			[new LayeredPainter([tShore, tShore], [1]), paintClass(clGauls)],
-			null);
+			new ClumpPlacer(diskArea(gaulCityRadius), 0.6, 0.3, 10, gX, gZ),
+			[
+				new LayeredPainter([tShore, tShore], [1]),
+				paintClass(clGauls)
+			]);
 
 		// Place palisade fortress and some city buildings
 		// Use actors to avoid players capturing the buildings
@@ -350,25 +354,19 @@ Engine.SetProgress(20);
 
 paintRiver({
 	"parallel": true,
-	"startX": 0.5,
-	"startZ": 0,
-	"endX": 0.5,
-	"endZ": 1,
+	"start": new Vector2D(mapCenter.x, mapBounds.top),
+	"end": new Vector2D(mapCenter.x, mapBounds.bottom),
 	"width": waterWidth,
-	"fadeDist": 0.025,
+	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
-	"waterHeight": -3,
-	"landHeight": 2,
+	"waterHeight": waterHeight,
+	"landHeight": landHeight,
 	"meanderShort": 30,
 	"meanderLong": 0,
 	"waterFunc": (ix, iz, height, riverFraction) => {
-
-		if (height < 0.7)
-			addToClass(ix, iz, clWater);
-
 		// Distinguish left and right shoreline
 		if (0 < height && height < 1 && iz > ShorelineDistance && iz < mapSize - ShorelineDistance)
-			addToClass(ix, iz, clShore[ix < mapSize / 2 ? 0 : 1]);
+			addToClass(ix, iz, clShore[ix < mapCenter.x ? 0 : 1]);
 	},
 	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
 
@@ -379,12 +377,13 @@ paintRiver({
 			addToClass(ix, iz, clLand[1]);
 	}
 });
-
 Engine.SetProgress(30);
 
+paintTileClassBasedOnHeight(-Infinity, 0.7, Elevation_ExcludeMin_ExcludeMax, clWater);
+
 log("Creating shores...");
-paintTerrainBasedOnHeight(-20, 1, 0, tWater);
-paintTerrainBasedOnHeight(1, 2, 0, tShore);
+paintTerrainBasedOnHeight(-Infinity, shoreHeight, 0, tWater);
+paintTerrainBasedOnHeight(shoreHeight, landHeight, 0, tShore);
 Engine.SetProgress(35);
 
 log("Creating bumps...");

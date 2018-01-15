@@ -15,10 +15,10 @@ const tDirt = "medit_dirt_b";
 const tDirt2 = "medit_rocks_grass";
 const tDirt3 = "medit_rocks_shrubs";
 const tDirtCracks = "medit_dirt_c";
-const tShore = "medit_sand";
-const tWater = "medit_sand_wet";
-const tCorals1 = "medit_sea_coral_plants";
-const tCorals2 = "medit_sea_coral_deep";
+const tShoreUpper = "medit_sand";
+const tShoreLower = "medit_sand_wet";
+const tCoralsUpper = "medit_sea_coral_plants";
+const tCoralsLower = "medit_sea_coral_deep";
 const tSeaDepths = "medit_sea_depths";
 
 const oBerryBush = "gaia/flora_bush_berry";
@@ -47,7 +47,8 @@ const pForest = [tForestFloor, tForestFloor + TERRAIN_SEPARATOR + oCarob, tFores
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
+const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -60,6 +61,12 @@ var clBaseResource = createTileClass();
 var clGrass = createTileClass();
 var clHill = createTileClass();
 var clIsland = createTileClass();
+
+var waterHeight = -3;
+var corralsHeightLower = -2;
+var corralsHeightUpper = -1.5;
+var shoreHeight = 1;
+var landHeight = 2;
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementRiver(0, 0.6),
@@ -92,28 +99,23 @@ Engine.SetProgress(30);
 
 paintRiver({
 	"parallel": false,
-	"startX": 0.5,
-	"startZ": 0,
-	"endX": 0.5,
-	"endZ": 1,
-	"width": 0.35,
-	"fadeDist": 0.025,
+	"start": new Vector2D(mapCenter.x, mapBounds.top),
+	"end": new Vector2D(mapCenter.x, mapBounds.bottom),
+	"width": fractionToTiles(0.35),
+	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
-	"waterHeight": -3,
-	"landHeight": 2,
+	"waterHeight": waterHeight,
+	"landHeight": landHeight,
 	"meanderShort": 20,
-	"meanderLong": 0,
-	"waterFunc": (ix, iz, height, riverFraction) => {
-
-		if (height < 0.7)
-			addToClass(ix, iz, clWater);
-	}
+	"meanderLong": 0
 });
 
-paintTerrainBasedOnHeight(-20, 1, 0, tWater);
-paintTerrainBasedOnHeight(1, 2, 0, tShore);
+paintTileClassBasedOnHeight(-Infinity, 0.7, Elevation_ExcludeMin_ExcludeMax, clWater);
 
+paintTerrainBasedOnHeight(-Infinity, shoreHeight, Elevation_ExcludeMin_ExcludeMax, tShoreLower);
+paintTerrainBasedOnHeight(shoreHeight, landHeight, Elevation_ExcludeMin_ExcludeMax, tShoreUpper);
 Engine.SetProgress(40);
+
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
@@ -157,14 +159,13 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
 	new SmoothElevationPainter(ELEVATION_SET, -2.5, 3),
 	stayClasses(clWater, 6),
-	scaleByMapSize(10, 50)
-);
+	scaleByMapSize(10, 50));
 
 log("Creating islands...");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(30, 80)), 0.5),
 	[
-		new LayeredPainter([tWater, tShore, tHill], [2 ,1]),
+		new LayeredPainter([tShoreLower, tShoreUpper, tHill], [2 ,1]),
 		new SmoothElevationPainter(ELEVATION_SET, 6, 4),
 		paintClass(clIsland)
 	],
@@ -172,9 +173,9 @@ createAreas(
 	scaleByMapSize(1, 4) * numPlayers
 );
 
-paintTerrainBasedOnHeight(-20, -3, 3, tSeaDepths);
-paintTerrainBasedOnHeight(-3, -2, 2, tCorals2);
-paintTerrainBasedOnHeight(-2, -1.5, 2, tCorals1);
+paintTerrainBasedOnHeight(-Infinity, waterHeight, Elevation_IncludeMin_IncludeMax, tSeaDepths);
+paintTerrainBasedOnHeight(waterHeight, corralsHeightLower, Elevation_ExcludeMin_IncludeMax, tCoralsLower);
+paintTerrainBasedOnHeight(corralsHeightLower, corralsHeightUpper, Elevation_ExcludeMin_IncludeMax, tCoralsUpper);
 
 log("Creating island stone mines...");
 createMines(

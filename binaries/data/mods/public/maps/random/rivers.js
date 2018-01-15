@@ -117,7 +117,7 @@ createArea(
 
 log("Creating rivers between opponents...");
 let numRivers = isNomad() ? randIntInclusive(4, 8) : numPlayers;
-let rivers = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numRivers, fractionToTiles(0.5), mapCenter)[0];
+let rivers = distributePointsOnCircle(numRivers, startAngle + Math.PI / numRivers, fractionToTiles(0.5), mapCenter)[0];
 for (let i = 0; i < numRivers; ++i)
 {
 	if (isNomad() ? randBool() : areAllies(playerIDs[i], playerIDs[(i + 1) % numPlayers]))
@@ -128,17 +128,15 @@ for (let i = 0; i < numRivers; ++i)
 
 	paintRiver({
 		"parallel": true,
-		"startX": tilesToFraction(rivers[i].x),
-		"startZ": tilesToFraction(rivers[i].y),
-		"endX": tilesToFraction(mapCenter.x),
-		"endZ": tilesToFraction(mapCenter.y),
-		"width": tilesToFraction(scaleByMapSize(10, 30)),
-		"fadeDist": tilesToFraction(5),
+		"start": rivers[i],
+		"end": mapCenter,
+		"width": scaleByMapSize(10, 30),
+		"fadeDist": 5,
 		"deviation": 0,
 		"landHeight": getMapBaseHeight(),
 		"waterHeight": waterHeight,
 		"minHeight": waterHeight,
-		"meanderShort": tilesToFraction(scaleByMapSize(20, 60) * scaleByMapSize(35, 160)),
+		"meanderShort": 10,
 		"meanderLong": 0,
 		"waterFunc": (ix, iz, height, riverFraction) => {
 
