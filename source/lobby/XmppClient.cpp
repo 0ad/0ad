@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -75,7 +75,7 @@ IXmppClient* IXmppClient::create(const std::string& sUsername, const std::string
  * @param regOpt If we are just registering or not.
  */
 XmppClient::XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize, bool regOpt)
-	: m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_nick(sNick), m_initialLoadComplete(false), m_sessionManager()
+	: m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_nick(sNick), m_initialLoadComplete(false), m_isConnected(false), m_sessionManager()
 {
 	// Read lobby configuration from default.cfg
 	std::string sServer;
@@ -176,6 +176,11 @@ void XmppClient::disconnect()
 	m_client->disconnect();
 }
 
+bool XmppClient::isConnected()
+{
+	return m_isConnected;
+}
+
 void XmppClient::recv()
 {
 	m_client->recv(1);
@@ -200,6 +205,7 @@ void XmppClient::onConnect()
 {
 	if (m_mucRoom)
 	{
+		m_isConnected = true;
 		CreateGUIMessage("system", "connected");
 		m_mucRoom->join();
 	}
@@ -225,12 +231,14 @@ void XmppClient::onDisconnect(gloox::ConnectionError error)
 		glooxwrapper::Tag::free(t);
 	for (const glooxwrapper::Tag* const& t : m_Profile)
 		glooxwrapper::Tag::free(t);
+
 	m_BoardList.clear();
 	m_GameList.clear();
 	m_PlayerMap.clear();
 	m_Profile.clear();
 	m_HistoricGuiMessages.clear();
 
+	m_isConnected = false;
 	CreateGUIMessage("system", "disconnected", "reason", ConnectionErrorToString(error));
 }
 
