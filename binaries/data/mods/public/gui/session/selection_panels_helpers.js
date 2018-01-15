@@ -257,7 +257,7 @@ function performAllyCommand(entity, commandName)
 	if (!entity)
 		return;
 
-	let entState = GetExtendedEntityState(entity);
+	let entState = GetEntityState(entity);
 	let playerState = GetSimState().players[Engine.GetPlayerID()];
 	if (!playerState.isMutualAlly[entState.player] || g_IsObserver)
 		return;
@@ -381,7 +381,7 @@ function unloadSelection()
 	let ents = [];
 	for (let ent in g_Selection.selected)
 	{
-		let state = GetExtendedEntityState(+ent);
+		let state = GetEntityState(+ent);
 		if (!state || !state.turretParent)
 			continue;
 		if (!parent)

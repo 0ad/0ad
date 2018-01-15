@@ -60,7 +60,7 @@
 	</object>
 
 	<object hotkey="session.kill">
-		<action on="Press">performCommand(g_Selection.toList().map(ent => GetExtendedEntityState(ent)), "delete");</action>
+		<action on="Press">performCommand(g_Selection.toList().map(ent => GetEntityState(ent)), "delete");</action>
 	</object>
 
 	<object hotkey="session.unload">

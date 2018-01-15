@@ -561,79 +561,65 @@ AddMock(10, IID_Position, {
 
 AddMock(10, IID_ResourceTrickle, {
 	"GetTimer": () => 1250,
-	"GetRates": () => ({
-		"food": 2,
-		"wood": 3,
-		"stone": 5,
-		"metal": 9
-	})
+	"GetRates": () => ({ "food": 2, "wood": 3, "stone": 5, "metal": 9 })
 });
 
 // Note: property order matters when using TS_ASSERT_UNEVAL_EQUALS,
 //	because uneval preserves property order. So make sure this object
 //	matches the ordering in GuiInterface.
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
-	id: 10,
-	template: "example",
-	alertRaiser: null,
-	builder: true,
-	canGarrison: false,
-	identity: {
-		rank: "foo",
-		classes: ["class1", "class2"],
-		visibleClasses: ["class3", "class4"],
-		selectionGroupName: "Selection Group Name",
-		canDelete: true
+	"id": 10,
+	"template": "example",
+	"alertRaiser": null,
+	"armour": null,
+	"attack": null,
+	"builder": true,
+	"buildingAI": null,
+	"buildRate": null,
+	"buildTime": null,
+	"canGarrison": false,
+	"deathDamage": null,
+	"heal": null,
+	"identity": {
+		"rank": "foo",
+		"classes": ["class1", "class2"],
+		"visibleClasses": ["class3", "class4"],
+		"selectionGroupName": "Selection Group Name",
+		"canDelete": true
 	},
-	fogging: null,
-	foundation: null,
-	garrisonHolder: null,
-	gate: null,
-	guard: null,
-	market: null,
-	mirage: null,
-	pack: null,
-	upgrade: null,
-	player: -1,
-	position: {x:1, y:2, z:3},
-	production: null,
-	rallyPoint: null,
-	resourceCarrying: null,
-	rotation: {x:4, y:5, z:6},
-	trader: null,
-	unitAI: null,
-	visibility: "visible",
-	hitpoints: 50,
-	maxHitpoints: 60,
-	needsRepair: false,
-	needsHeal: true
-});
-
-TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {
-	armour: null,
-	attack: null,
-	buildingAI: null,
-	deathDamage:null,
-	heal: null,
-	isBarterMarket: true,
-	loot: null,
-	obstruction: null,
-	turretParent: null,
-	promotion: null,
-	repairRate: null,
-	buildRate: null,
-	buildTime: null,
-	resourceDropsite: null,
-	resourceGatherRates: null,
-	resourceSupply: null,
-	resourceTrickle: {
+	"isBarterMarket": true,
+	"fogging": null,
+	"foundation": null,
+	"garrisonHolder": null,
+	"gate": null,
+	"guard": null,
+	"loot": null,
+	"market": null,
+	"mirage": null,
+	"pack": null,
+	"promotion": null,
+	"upgrade" : null,
+	"player": -1,
+	"position": {x:1, y:2, z:3},
+	"production": null,
+	"rallyPoint": null,
+	"repairRate": null,
+	"resourceCarrying": null,
+	"resourceDropsite": null,
+	"resourceGatherRates": null,
+	"resourceSupply": null,
+	"resourceTrickle": {
 		"interval": 1250,
-		"rates": {
-			"food": 2,
-			"wood": 3,
-			"stone": 5,
-			"metal": 9
-		}
+		"rates": { "food": 2, "wood": 3, "stone": 5, "metal": 9 }
 	},
-	speed: null
+	"rotation": {x:4, y:5, z:6},
+	"speed": null,
+	"trader": null,
+	"turretParent":null,
+	"unitAI": null,
+	"visibility": "visible",
+	"hitpoints": 50,
+	"maxHitpoints": 60,
+	"needsRepair": false,
+	"needsHeal": true
 });
