@@ -83,26 +83,20 @@ var tWaterBorder = ['dirt_brown_d'];
 
 var mapSize = getMapSize();
 var mapArea = getMapArea();
+var mapCenter = getMapCenter();
 var mapRadius = mapSize/2;
-var mapCenterX = mapRadius;
-var mapCenterZ = mapRadius;
 
 var numPlayers = getNumPlayers();
 var baseRadius = 15;
 var minPlayerRadius = Math.min(mapRadius - 1.5 * baseRadius, 5/8 * mapRadius);
 var maxPlayerRadius = Math.min(mapRadius - baseRadius, 3/4 * mapRadius);
 
-var playerStartLocX = [];
-var playerStartLocZ = [];
+var playerPosition = [];
 var playerAngleStart = randomAngle();
 var playerAngleAddAvrg = 2 * Math.PI / numPlayers;
 var playerAngleMaxOff = playerAngleAddAvrg/4;
 
-var pathSucsessRadius = baseRadius/2;
-var pathAngleOff = Math.PI/2;
-var pathWidth = 10; // This is not really the path's thickness in tiles but the number of tiles in the clumbs of the path
-
-var resourceRadius = 2/3 * mapRadius;
+var resourceRadius = fractionToTiles(1/3);
 
 // Setup woods
 // For large maps there are memory errors with too many trees.  A density of 256*192/mapArea works with 0 players.
@@ -110,9 +104,7 @@ var resourceRadius = 2/3 * mapRadius;
 var maxTreeDensity = Math.min(256 * (192 + 8 * numPlayers) / mapArea, 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
 
-////////////////
 // Set height limits and water level by map size
-////////////////
 
 // Set target min and max height depending on map size to make average steepness about the same on all map sizes
 var heightRange = {'min': MIN_HEIGHT * (g_Map.size + 512) / 8192, 'max': MAX_HEIGHT * (g_Map.size + 512) / 8192, 'avg': (MIN_HEIGHT * (g_Map.size + 512) +MAX_HEIGHT * (g_Map.size + 512))/16384};
@@ -123,24 +115,16 @@ var waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (height
 var waterHeightAdjusted = waterHeight + MIN_HEIGHT;
 setWaterHeight(waterHeight);
 
-////////////////
-// Generate base terrain
-////////////////
-
 // Setting a 3x3 Grid as initial heightmap
 var initialReliefmap = [[heightRange.max, heightRange.max, heightRange.max], [heightRange.max, heightRange.min, heightRange.max], [heightRange.max, heightRange.max, heightRange.max]];
 
 setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialReliefmap);
-// Apply simple erosion
+
 for (var i = 0; i < 5; i++)
 	globalSmoothHeightmap();
+
 rescaleHeightmap(heightRange.min, heightRange.max);
 
-//////////
-// Setup height limit
-//////////
-
-// Height presets
 var heighLimits = [
 	heightRange.min + 1/3 * (waterHeightAdjusted - heightRange.min), // 0 Deep water
 	heightRange.min + 2/3 * (waterHeightAdjusted - heightRange.min), // 1 Medium Water
@@ -154,29 +138,21 @@ var heighLimits = [
 	waterHeightAdjusted + 7/8 * (heightRange.max - waterHeightAdjusted), // 9 Upper forest border
 	waterHeightAdjusted + (heightRange.max - waterHeightAdjusted)]; // 10 Hilltop
 
-//////////
-// Place start locations and apply terrain texture and decorative props
-//////////
-
-// Get start locations
 var startLocations = getStartLocationsByHeightmap({'min': heighLimits[4], 'max': heighLimits[5]});
-
 var playerHeight = (heighLimits[4] + heighLimits[5]) / 2;
 
-for (var i=0; i < numPlayers; i++)
+for (let i = 0; i < numPlayers; ++i)
 {
-	let playerAngle = (playerAngleStart + i * playerAngleAddAvrg + randFloat(0, playerAngleMaxOff)) % (2* Math.PI);
-	let x = Math.round(mapCenterX + randFloat(minPlayerRadius, maxPlayerRadius) * Math.cos(playerAngle));
-	let z = Math.round(mapCenterZ + randFloat(minPlayerRadius, maxPlayerRadius) * Math.sin(playerAngle));
+	playerPosition[i] = Vector2D.add(
+		mapCenter,
+		new Vector2D(randFloat(minPlayerRadius, maxPlayerRadius), 0).rotate(
+			-((playerAngleStart + i * playerAngleAddAvrg + randFloat(0, playerAngleMaxOff)) % (2 * Math.PI)))).round();
 
-	playerStartLocX[i] = x;
-	playerStartLocZ[i] = z;
-
-	rectangularSmoothToHeight({"x": x,"y": z} , 20, 20, playerHeight, 0.8);
+	rectangularSmoothToHeight(playerPosition[i], 20, 20, playerHeight, 0.8);
 }
 
 placePlayerBases({
-	"PlayerPlacement": [sortAllPlayers(), playerStartLocX.map(tilesToFraction), playerStartLocZ.map(tilesToFraction)],
+	"PlayerPlacement": [sortAllPlayers(), playerPosition.map(p => tilesToFraction(p.x)), playerPosition.map(p => tilesToFraction(p.y))],
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,
 	// player class painted below
@@ -227,9 +203,7 @@ for (let [minHeight, maxHeight] of [[heighLimits[3], (heighLimits[4] + heighLimi
 
 Engine.SetProgress(50);
 
-//place water & open terrain textures and assign TileClasses
 log("Painting textures...");
-
 var betweenShallowAndShore = (heighLimits[3] + heighLimits[2]) / 2;
 createArea(
 	new HeightPlacer(Elevation_IncludeMin_IncludeMax, heighLimits[2], betweenShallowAndShore),
@@ -242,89 +216,25 @@ createArea(
 	new LayeredPainter([tWaterBorder, tWater], [2]));
 
 paintTileClassBasedOnHeight(heightRange.min,  heighLimits[2], 1, clWater);
-
 Engine.SetProgress(60);
 
-log("Placing paths...");
-
-var doublePaths = true;
-if (numPlayers > 4)
-	doublePaths = false;
-
-if (doublePaths === true)
-	var maxI = numPlayers+1;
-else
-	var maxI = numPlayers;
-
-for (var i = 0; i < maxI; i++)
-{
-	if (doublePaths === true)
-		var minJ = 0;
-	else
-		var minJ = i+1;
-
-	for (var j = minJ; j < numPlayers+1; j++)
+log("Painting paths...");
+var pathBlending = numPlayers <= 4;
+for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
+	for (let j = pathBlending ? 0 : i + 1; j < numPlayers + 1; ++j)
 	{
-		// Setup start and target coordinates
-		if (i < numPlayers)
-		{
-			var x = playerStartLocX[i];
-			var z = playerStartLocZ[i];
-		}
-		else
-		{
-			var x = mapCenterX;
-			var z = mapCenterZ;
-		}
+		let pathStart = i < numPlayers ? playerPosition[i] : mapCenter;
+		let pathEnd = j < numPlayers ? playerPosition[j] : mapCenter;
 
-		if (j < numPlayers)
-		{
-			var targetX = playerStartLocX[j];
-			var targetZ = playerStartLocZ[j];
-		}
-		else
-		{
-			var targetX = mapCenterX;
-			var targetZ = mapCenterZ;
-		}
-
-		// Prepare path placement
-		var angle = getAngle(x, z, targetX, targetZ);
-		x += Math.round(pathSucsessRadius * Math.cos(angle));
-		z += Math.round(pathSucsessRadius * Math.sin(angle));
-
-		var targetReached = false;
-		var tries = 0;
-
-		// Placing paths
-		while (targetReached === false && tries < 2*mapSize)
-		{
-			var placer = new ClumpPlacer(pathWidth, 1, 1, 1, x, z);
-			var painter = [new TerrainPainter(terrainPath), new SmoothElevationPainter(ELEVATION_MODIFY, -0.1, 1.0), paintClass(clPath)];
-			createArea(placer, painter, avoidClasses(clPath, 0, clOpen, 0 ,clWater, 4, clBaseResource, 4));
-
-			// addToClass(x, z, clPath); // Not needed...
-			// Set vars for next loop
-			angle = getAngle(x, z, targetX, targetZ);
-			if (doublePaths === true) // Bended paths
-			{
-				x += Math.round(Math.cos(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
-				z += Math.round(Math.sin(angle + randFloat(-pathAngleOff/2, 3*pathAngleOff/2)));
-			}
-			else // Straight paths
-			{
-				x += Math.round(Math.cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
-				z += Math.round(Math.sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
-			}
-
-			if (Math.euclidDistance2D(x, z, targetX, targetZ) < pathSucsessRadius)
-				targetReached = true;
-
-			tries++;
-		}
+		createArea(
+			new RandomPathPlacer(pathStart, pathEnd, 1.75, baseRadius / 2, pathBlending),
+			[
+				new TerrainPainter(terrainPath),
+				new SmoothElevationPainter(ELEVATION_MODIFY, -0.1, 1),
+				paintClass(clPath)
+			],
+			avoidClasses(clPath, 0, clOpen, 0 ,clWater, 4, clBaseResource, 4));
 	}
-}
-
 Engine.SetProgress(75);
 
 log("Creating decoration...");
@@ -380,10 +290,10 @@ for (var x = 0; x < mapSize; x++)
 			continue;
 
 		// The 0.5 is a correction for the entities placed on the center of tiles
-		var radius = Math.euclidDistance2D(x + 0.5, z + 0.5, mapCenterX, mapCenterZ);
+		var radius = Math.euclidDistance2D(x + 0.5, z + 0.5, mapCenter.x, mapCenter.y);
 		var minDistToSL = mapSize;
 		for (var i=0; i < numPlayers; i++)
-			minDistToSL = Math.min(minDistToSL, Math.euclidDistance2D(playerStartLocX[i], playerStartLocZ[i], x, z));
+			minDistToSL = Math.min(minDistToSL, Math.euclidDistance2D(x, z, playerPosition[i].x, playerPosition[i].x));
 
 		// Woods tile based
 		var tDensFactSL = Math.max(Math.min((minDistToSL - baseRadius) / baseRadius, 1), 0);
