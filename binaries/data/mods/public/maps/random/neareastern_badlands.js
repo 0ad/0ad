@@ -351,7 +351,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(16, 262)
 );
 
-placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill1, 4, clFood, 2));
+placePlayersNomad(clPlayer, avoidClasses(clOasis, 4, clForest, 1, clMetal, 4, clRock, 4, clHill1, 4, clFood, 2));
 
 setWaterColor(0, 0.227, 0.843);
 setWaterTint(0, 0.545, 0.859);

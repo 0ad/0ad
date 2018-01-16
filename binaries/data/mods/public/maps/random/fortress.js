@@ -116,7 +116,7 @@ for (var i=0; i < numPlayers; i++)
 
 	// Base texture
 	var civ = getCivCode(playerIDs[i]);
-	var tilesSize = civ == "cart" ? 27 : 22;
+	var tilesSize = civ == "cart" ? 24 : 22;
 
 	const minBoundX = (playerX[i] > tilesSize ? playerX[i] - tilesSize : 0);
 	const minBoundY = (playerZ[i] > tilesSize ? playerZ[i] - tilesSize : 0);
