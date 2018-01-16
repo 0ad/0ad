@@ -57,7 +57,7 @@ var clHighlands = createTileClass();
 var highlandsPosition = fractionToTiles(0.25);
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementLine(true, 0.5, 0.2),
+	"PlayerPlacement": playerPlacementLine(true, mapCenter, fractionToTiles(0.2)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

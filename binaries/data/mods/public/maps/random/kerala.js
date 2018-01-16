@@ -54,7 +54,7 @@ var waterPosition = fractionToTiles(0.31);
 var mountainPosition = fractionToTiles(0.69);
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementLine(false, 0.55, 0.2),
+	"PlayerPlacement": playerPlacementLine(false, new Vector2D(fractionToTiles(0.55), mapCenter.y), fractionToTiles(0.2)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

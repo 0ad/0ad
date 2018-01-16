@@ -55,17 +55,21 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var treasures = [
+	{ "template": oFoodTreasure, "distance": 5 },
+	{ "template": oWoodTreasure, "distance": 5 },
+	{ "template": oMetalTreasure, "distance": 3 },
+	{ "template": oMetalTreasure, "distance": 2 },
+];
 
-for (var i=0; i < numPlayers; i++)
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+
+for (let i = 0; i < numPlayers; ++i)
 {
 	if (isNomad())
 		break;
 
 	log("Creating base for player " + playerIDs[i] + "...");
-	playerX[i] *= mapSize;
-	playerZ[i] *= mapSize;
-
 	for (let dist of [6, 8])
 	{
 		let ents = getStartingEntities(playerIDs[i]);
@@ -73,68 +77,41 @@ for (var i=0; i < numPlayers; i++)
 		if (dist == 8)
 			ents = ents.filter(ent => ent.Template.indexOf("female") != -1 || ent.Template.indexOf("infantry") != -1);
 
-		placeStartingEntities(playerX[i], playerZ[i], playerIDs[i], ents, dist);
+		placeStartingEntities(playerPosition[i], playerIDs[i], ents, dist);
 	}
 
-	// Create treasure
-	var bbAngle = BUILDING_ORIENTATION;
-	var bbDist = 10;
-	var bbX = Math.round(playerX[i] + bbDist * Math.cos(bbAngle));
-	var bbZ = Math.round(playerZ[i] + bbDist * Math.sin(bbAngle));
-	var group = new SimpleGroup(
-		[new SimpleObject(oFoodTreasure, 5,5, 0,2)],
-		true, clBaseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0);
+	log("Creating treasure for player " + playerIDs[i] + "...");
+	let bbAngle = BUILDING_ORIENTATION;
+	for (let treasure of treasures)
+	{
+		let position = Vector2D.add(playerPosition[i], new Vector2D(10, 0).rotate(-bbAngle))
+		createObjectGroup(new SimpleGroup([new SimpleObject(oFoodTreasure, 5, 5, 0, 2)], true, clBaseResource, position.x, position.y), 0);
+		bbAngle += Math.PI / 2;
+	}
 
-	bbAngle += Math.PI / 2;
-	var bbX = Math.round(playerX[i] + bbDist * Math.cos(bbAngle));
-	var bbZ = Math.round(playerZ[i] + bbDist * Math.sin(bbAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oWoodTreasure, 5,5, 0,2)],
-		true, clBaseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0);
-
-	bbAngle += Math.PI / 2;
-	var bbX = Math.round(playerX[i] + bbDist * Math.cos(bbAngle));
-	var bbZ = Math.round(playerZ[i] + bbDist * Math.sin(bbAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oMetalTreasure, 3,3, 0,2)],
-		true, clBaseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0);
-
-	bbAngle += Math.PI / 2;
-	var bbX = Math.round(playerX[i] + bbDist * Math.cos(bbAngle));
-	var bbZ = Math.round(playerZ[i] + bbDist * Math.sin(bbAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oStoneTreasure, 2,2, 0,2)],
-		true, clBaseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0);
-
-	// Base texture
+	log("Painting ground texture for player " + playerIDs[i] + "...");
 	var civ = getCivCode(playerIDs[i]);
 	var tilesSize = civ == "cart" ? 24 : 22;
-
-	const minBoundX = (playerX[i] > tilesSize ? playerX[i] - tilesSize : 0);
-	const minBoundY = (playerZ[i] > tilesSize ? playerZ[i] - tilesSize : 0);
-	const maxBoundX = (playerX[i] < mapSize - tilesSize ? playerX[i] + tilesSize : mapSize);
-	const maxBoundY = (playerZ[i] < mapSize - tilesSize ? playerZ[i] + tilesSize : mapSize);
+	const minBoundX = Math.max(0, playerPosition[i].x - tilesSize);
+	const minBoundY = Math.max(0, playerPosition[i].y - tilesSize);
+	const maxBoundX = Math.min(mapSize, playerPosition[i].x + tilesSize);
+	const maxBoundY = Math.min(mapSize, playerPosition[i].y + tilesSize);
 
 	for (var tx = minBoundX; tx < maxBoundX; ++tx)
 		for (var ty = minBoundY; ty < maxBoundY; ++ty)
 		{
 			var unboundSumOfXY = tx + ty - minBoundX - minBoundY;
-			if ((unboundSumOfXY > tilesSize) && (unboundSumOfXY < 3 * tilesSize) && (tx - ty + minBoundY - minBoundX < tilesSize) && (ty - tx - minBoundY + minBoundX < tilesSize))
+			if (unboundSumOfXY > tilesSize &&
+			    unboundSumOfXY < tilesSize * 3 &&
+			    tx - ty + minBoundY - minBoundX < tilesSize &&
+			    ty - tx - minBoundY + minBoundX < tilesSize)
 			{
-				placeTerrain(Math.floor(tx), Math.floor(ty), tRoad);
-				addToClass(Math.floor(tx), Math.floor(ty), clPlayer);
+				placeTerrain(tx, ty, tRoad);
+				addToClass(tx, ty, clPlayer);
 			}
 		}
 
-	// Place custom fortress
+	log("Placing fortress for player " + playerIDs[i] + "...");
 	if (civ == "brit" || civ == "gaul" || civ == "iber")
 	{
 		var wall = ["gate", "tower", "long",
@@ -151,7 +128,7 @@ for (var i=0; i < numPlayers; i++)
 			"cornerIn", "long", "house", "tower", "long", "tower", "long",
 			"cornerIn", "long", "house", "tower"];
 	}
-	placeCustomFortress(playerX[i], playerZ[i], new Fortress("Spahbod", wall), civ, playerIDs[i], -Math.PI/4);
+	placeCustomFortress(playerPosition[i].x, playerPosition[i].y, new Fortress("Spahbod", wall), civ, playerIDs[i], -Math.PI/4);
 }
 
 log("Creating lakes...");

@@ -46,6 +46,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clCoral = createTileClass();
 var clPlayer = createTileClass();
@@ -64,21 +65,27 @@ var clBaseResource = createTileClass();
 var startingPlaces=[[0],[0,3],[0,2,4],[0,1,3,4],[0,1,2,3,4],[0,1,2,3,4,5]];
 
 var startAngle = randomAngle();
-var numIslands = Math.max(6, numPlayers);
-var islandX = [];
-var islandZ = [];
+
+var islandRadius = scaleByMapSize(15, 40);
+var islandCount = Math.max(6, numPlayers);
+var islandPosition = distributePointsOnCircle(islandCount, startAngle, fractionToTiles(0.39), mapCenter)[0].map(position => position.round());
+
+var centralIslandRadius = scaleByMapSize(15, 30);
+var centralIslandCount = Math.floor(scaleByMapSize(1, 4));
+var centralIslandPosition = new Array(numPlayers).fill(0).map((v, i) =>
+	Vector2D.add(mapCenter, new Vector2D(fractionToTiles(randFloat(0.1, 0.16)), 0).rotate(
+		-startAngle - Math.PI * (i * 2 / centralIslandCount + randFloat(-1, 1) / 8)).round()));
 
 var areas = [];
 
 var nPlayer = 0;
-var playerX = [];
-var playerZ = [];
+var playerPosition = [];
 
-function createCycladicArchipelagoIsland(ix, iz, tileClass, radius, coralRadius)
+function createCycladicArchipelagoIsland(position, tileClass, radius, coralRadius)
 {
 	log("Creating deep ocean rocks...");
 	createArea(
-		new ClumpPlacer(diskArea(radius + coralRadius), 0.7, 0.1, 10, ix, iz),
+		new ClumpPlacer(diskArea(radius + coralRadius), 0.7, 0.1, 10, position.x, position.y),
 		[
 			new LayeredPainter([tOceanRockDeep, tOceanCoral], [5]),
 			paintClass(clCoral)
@@ -88,7 +95,7 @@ function createCycladicArchipelagoIsland(ix, iz, tileClass, radius, coralRadius)
 	log("Creating island...");
 	areas.push(
 		createArea(
-			new ClumpPlacer(diskArea(radius), 0.7, 0.1, 10, ix, iz),
+			new ClumpPlacer(diskArea(radius), 0.7, 0.1, 10, position.x, position.y),
 			[
 				new LayeredPainter([tOceanCoral, tBeachWet, tBeachDry, tBeach, tBeachBlend, tGrass], [1, 3, 1, 1, 2]),
 				new SmoothElevationPainter(ELEVATION_SET, 3, 5),
@@ -98,45 +105,23 @@ function createCycladicArchipelagoIsland(ix, iz, tileClass, radius, coralRadius)
 }
 
 log("Creating player islands...");
-for (let i = 0; i < numIslands; ++i)
+for (let i = 0; i < islandCount; ++i)
 {
-	let angle = startAngle + i * 2 * Math.PI / numIslands;
-	islandX[i] = 0.5 + 0.39 * Math.cos(angle);
-	islandZ[i] = 0.5 + 0.39 * Math.sin(angle);
-
-	// Determine which player resides on this island
 	let isPlayerIsland = numPlayers >= 6 || i == startingPlaces[numPlayers - 1][nPlayer];
 	if (isPlayerIsland)
 	{
-		[playerX[nPlayer], playerZ[nPlayer]] = [islandX[i], islandZ[i]];
+		playerPosition[nPlayer] = islandPosition[i];
 		++nPlayer;
 	}
-
-	createCycladicArchipelagoIsland(
-		Math.round(fractionToTiles(islandX[i])),
-		Math.round(fractionToTiles(islandZ[i])),
-		isPlayerIsland ? clPlayer : clIsland,
-		scaleByMapSize(15, 40),
-		scaleByMapSize(1, 5));
+	createCycladicArchipelagoIsland(islandPosition[i], isPlayerIsland ? clPlayer : clIsland, islandRadius, scaleByMapSize(1, 5));
 }
 
 log("Creating central islands...");
-var nCenter = Math.floor(scaleByMapSize(1, 4));
-for (let i = 0; i < nCenter; ++i)
-{
-	let radius = randFloat(0.1, 0.16);
-	let angle = startAngle + Math.PI * (i * 2 / nCenter + randFloat(-1, 1) / 8);
-
-	createCycladicArchipelagoIsland(
-		Math.round(fractionToTiles(0.5 + radius * Math.cos(angle))),
-		Math.round(fractionToTiles(0.5 + radius * Math.sin(angle))),
-		clIsland,
-		scaleByMapSize(15, 30),
-		2);
-}
+for (let position of centralIslandPosition)
+	createCycladicArchipelagoIsland(position, clIsland, centralIslandRadius, 2);
 
 placePlayerBases({
-	"PlayerPlacement": [sortAllPlayers(), playerX, playerZ],
+	"PlayerPlacement": [sortAllPlayers(), playerPosition],
 	// PlayerTileClass is clCity here and painted below
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",

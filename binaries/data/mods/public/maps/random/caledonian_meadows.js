@@ -428,7 +428,7 @@ else
 	for (let p = 0; p < playerIDs.length; ++p)
 	{
 		let point = startLocations[p];
-		placeCivDefaultStartingEntities(point.x, point.y, playerIDs[p], true);
+		placeCivDefaultStartingEntities(point, playerIDs[p], true);
 		placeStartLocationResources(startLocations[p]);
 	}
 

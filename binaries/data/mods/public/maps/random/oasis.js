@@ -54,15 +54,12 @@ var forestDistance = scaleByMapSize(6, 20);
 
 initTerrain(tSand);
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Creating small oasis near the players...")
 var forestDist = 1.2 * defaultPlayerBaseRadius();
 for (let i = 0; i < numPlayers; ++i)
 {
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
-
 	// Create starting batches of wood
 	let forestX = 0;
 	let forestY = 0;
@@ -70,8 +67,8 @@ for (let i = 0; i < numPlayers; ++i)
 
 	do {
 		forestAngle = Math.PI / 3 * randFloat(1, 2);
-		forestX = Math.round(fx + forestDist * Math.cos(forestAngle));
-		forestY = Math.round(fz + forestDist * Math.sin(forestAngle));
+		forestX = playerPosition[i].x + Math.round(forestDist * Math.cos(forestAngle));
+		forestY = playerPosition[i].y + Math.round(forestDist * Math.sin(forestAngle));
 	} while (
 		!createArea(
 			new ClumpPlacer(70, 1, 0.5, 10, forestX, forestY),
@@ -117,7 +114,7 @@ for (let i = 0; i < numPlayers; ++i)
 Engine.SetProgress(20);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

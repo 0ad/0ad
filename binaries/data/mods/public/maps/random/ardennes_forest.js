@@ -89,15 +89,15 @@ for (var ix = 0; ix < mapSize; ix++)
 		}
 	}
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.3);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.3));
 
 function distanceToPlayers(x, z)
 {
 	var r = 10000;
 	for (var i = 0; i < numPlayers; i++)
 	{
-		var dx = x - playerX[i];
-		var dz = z - playerZ[i];
+		var dx = x - playerPosition[i].x;
+		var dz = z - playerPosition[i].y;
 		r = Math.min(r, Math.square(dx) + Math.square(dz));
 	}
 	return Math.sqrt(r);
@@ -119,7 +119,7 @@ function playerNearness(x, z)
 Engine.SetProgress(10);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"BaseResourceClass": clBaseResource,
 	// Playerclass marked below
 	"CityPatch": {
@@ -153,7 +153,7 @@ placePlayerBases({
 log("Marking player territory larger than the city patch...");
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
-		new ClumpPlacer(250, 0.95, 0.3, 0.1, Math.floor(fractionToTiles(playerX[i])), Math.floor(fractionToTiles(playerZ[i]))),
+		new ClumpPlacer(250, 0.95, 0.3, 0.1, playerPosition[i].x, playerPosition[i].y),
 		paintClass(clPlayer));
 
 Engine.SetProgress(30);

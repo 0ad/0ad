@@ -72,7 +72,7 @@ createArea(
 	],
 	null);
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.25);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
 
 log("Ensuring initial player land...");
 for (let i = 0; i < numPlayers; ++i)
@@ -82,8 +82,8 @@ for (let i = 0; i < numPlayers; ++i)
 			Math.floor(scaleByMapSize(5, 9)),
 			Math.floor(scaleByMapSize(5, 20)),
 			1,
-			Math.round(fractionToTiles(playerX[i])),
-			Math.round(fractionToTiles(playerZ[i])),
+			playerPosition[i].x,
+			playerPosition[i].y,
 			0,
 			[Math.floor(scaleByMapSize(23, 50))]),
 		[
@@ -98,7 +98,7 @@ paintTerrainBasedOnHeight(1, 3, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

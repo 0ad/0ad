@@ -320,7 +320,7 @@ if (gallicCC)
 Engine.SetProgress(10);
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(0, 0.6),
+	"PlayerPlacement": playerPlacementRiver(0, fractionToTiles(0.6)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,

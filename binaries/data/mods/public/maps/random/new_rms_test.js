@@ -6,7 +6,7 @@ if (isNomad())
 	placePlayersNomad(createTileClass());
 else
 	placePlayerBases({
-		"PlayerPlacement": playerPlacementCircle(0.39)
+		"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.39))
 	});
 
 ExportMap();

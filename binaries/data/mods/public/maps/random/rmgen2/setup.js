@@ -166,8 +166,7 @@ function createBase(player, walls = true)
 {
 	placePlayerBase({
 		"playerID": player.id,
-		"playerX": player.x,
-		"playerZ": player.z,
+		"playerPosition": player.position,
 		"PlayerTileClass": g_TileClasses.player,
 		"BaseResourceClass": g_TileClasses.baseResource,
 		"Walls": getMapSize() > 192 && walls,
@@ -254,8 +253,8 @@ function randomStartingPositionPattern(teamsArray)
 
 	return {
 		"setup": pickRandom(formats),
-		"distance": randFloat(0.2, 0.35),
-		"separation": randFloat(0.05, 0.1)
+		"distance": fractionToTiles(randFloat(0.2, 0.35)),
+		"separation": fractionToTiles(randFloat(0.05, 0.1))
 	};
 }
 
@@ -271,23 +270,24 @@ function randomStartingPositionPattern(teamsArray)
  */
 function placeLine(teamsArray, distance, groupedDistance, startAngle)
 {
-	var players = [];
+	let players = [];
+	let mapCenter = getMapCenter();
+	let dist = fractionToTiles(0.45);
 
 	for (let i = 0; i < teamsArray.length; ++i)
 	{
 		var safeDist = distance;
-		if (distance + teamsArray[i].length * groupedDistance > 0.45)
-			safeDist = 0.45 - teamsArray[i].length * groupedDistance;
+		if (distance + teamsArray[i].length * groupedDistance > dist)
+			safeDist = dist - teamsArray[i].length * groupedDistance;
 
 		var teamAngle = startAngle + (i + 1) * 2 * Math.PI / teamsArray.length;
 
 		// Create player base
-		for (var p = 0; p < teamsArray[i].length; ++p)
+		for (let p = 0; p < teamsArray[i].length; ++p)
 		{
 			players[teamsArray[i][p]] = {
 				"id": teamsArray[i][p],
-				"x": 0.5 + (safeDist + p * groupedDistance) * Math.cos(teamAngle),
-				"z": 0.5 + (safeDist + p * groupedDistance) * Math.sin(teamAngle)
+				"position": Vector2D.add(mapCenter, new Vector2D(safeDist + p * groupedDistance, 0).rotate(-teamAngle)).round()
 			};
 			createBase(players[teamsArray[i][p]], false);
 		}
@@ -305,6 +305,7 @@ function placeLine(teamsArray, distance, groupedDistance, startAngle)
  */
 function placeRadial(playerIDs, distance, startAngle)
 {
+	let mapCenter = getMapCenter();
 	let players = [];
 	let numPlayers = getNumPlayers();
 
@@ -313,8 +314,7 @@ function placeRadial(playerIDs, distance, startAngle)
 		let angle = startAngle + i * 2 * Math.PI / numPlayers;
 		players[i] = {
 			"id": playerIDs[i],
-			"x": 0.5 + distance * Math.cos(angle),
-			"z": 0.5 + distance * Math.sin(angle)
+			"position": Vector2D.add(mapCenter, new Vector2D(distance, 0).rotate(-angle)).round()
 		};
 		createBase(players[i]);
 	}
@@ -330,19 +330,14 @@ function placeRandom(playerIDs)
 	var locations = [];
 	var attempts = 0;
 	var resets = 0;
+	var mapCenter = getMapCenter();
 
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
-		var playerAngle = randomAngle();
-
-		// Distance from the center of the map in percent
-		// Mapsize being used as a diameter, so 0.5 is the edge of the map
-		var distance = randFloat(0, 0.42);
-		var x = 0.5 + distance * Math.cos(playerAngle);
-		var z = 0.5 + distance * Math.sin(playerAngle);
+		let position = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(randFloat(0, 0.42)), 0).rotate(randomAngle())).round();
 
 		// Minimum distance between initial bases must be a quarter of the map diameter
-		if (locations.some(loc => Math.euclidDistance2D(x, z, loc.x, loc.z) < 0.25))
+		if (locations.some(loc => loc.distanceTo(position) < fractionToTiles(0.25)))
 		{
 			--i;
 			++attempts;
@@ -362,10 +357,7 @@ function placeRandom(playerIDs)
 			continue;
 		}
 
-		locations[i] = {
-			"x": x,
-			"z": z
-		};
+		locations[i] = position;
 	}
 
 	let players = groupPlayersByLocations(playerIDs, locations);
@@ -379,7 +371,7 @@ function placeRandom(playerIDs)
  *  Pick locations from the given set so that teams end up grouped.
  *
  *  @param {Array} playerIDs - sorted by teams.
- *  @param {Array} locations - array of x/z pairs of possible starting locations.
+ *  @param {Array} locations - array of Vector2D of possible starting locations.
  */
 function groupPlayersByLocations(playerIDs, locations)
 {
@@ -390,7 +382,7 @@ function groupPlayersByLocations(playerIDs, locations)
 
 	// Of all permutations of starting locations, find the one where
 	// the sum of the distances between allies is minimal, weighted by teamsize.
-	heapsPermute(shuffleArray(locations).slice(0, playerIDs.length), function(permutation)
+	heapsPermute(shuffleArray(locations).slice(0, playerIDs.length), v => v.clone(), permutation =>
 	{
 		let dist = 0;
 		let teamDist = 0;
@@ -401,9 +393,8 @@ function groupPlayersByLocations(playerIDs, locations)
 			let team1 = g_MapSettings.PlayerData[playerIDs[i - 1]].Team;
 			let team2 = g_MapSettings.PlayerData[playerIDs[i]].Team;
 			++teamSize;
-
 			if (team1 != -1 && team1 == team2)
-				teamDist += Math.euclidDistance2D(permutation[i - 1].x, permutation[i - 1].z, permutation[i].x, permutation[i].z);
+				teamDist += permutation[i - 1].distanceTo(permutation[i]);
 			else
 			{
 				dist += teamDist / teamSize;
@@ -424,11 +415,11 @@ function groupPlayersByLocations(playerIDs, locations)
 
 	let players = [];
 	for (let i = 0; i < playerIDs.length; ++i)
-	{
-		let player = minLocations[i];
-		player.id = playerIDs[i];
-		players.push(player);
-	}
+		players[i] = {
+			"id": playerIDs[i],
+			"position": minLocations[i]
+		};
+
 	return players;
 }
 
@@ -443,21 +434,21 @@ function groupPlayersByLocations(playerIDs, locations)
 function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 {
 	var players = [];
+	var mapCenter = getMapCenter();
 
 	for (let i = 0; i < teamsArray.length; ++i)
 	{
 		var teamAngle = startAngle + (i + 1) * 2 * Math.PI / teamsArray.length;
-		var fractionX = 0.5 + distance * Math.cos(teamAngle);
-		var fractionZ = 0.5 + distance * Math.sin(teamAngle);
+		var teamPosition = Vector2D.add(mapCenter, new Vector2D(distance, 0).rotate(-teamAngle));
 		var teamGroupDistance = groupedDistance;
 
 		// If we have a team of above average size, make sure they're spread out
 		if (teamsArray[i].length > 4)
-			teamGroupDistance = Math.max(0.08, groupedDistance);
+			teamGroupDistance = Math.max(fractionToTiles(0.08), groupedDistance);
 
 		// If we have a solo player, place them on the center of the team's location
 		if (teamsArray[i].length == 1)
-			teamGroupDistance = 0;
+			teamGroupDistance = fractionToTiles(0);
 
 		// TODO: Ensure players are not placed outside of the map area, similar to placeLine
 
@@ -467,8 +458,7 @@ function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 			var angle = startAngle + (p + 1) * 2 * Math.PI / teamsArray[i].length;
 			players[teamsArray[i][p]] = {
 				"id": teamsArray[i][p],
-				"x": fractionX + teamGroupDistance * Math.cos(angle),
-				"z": fractionZ + teamGroupDistance * Math.sin(angle)
+				"position": Vector2D.add(teamPosition, new Vector2D(teamGroupDistance, 0).rotate(-angle)).round()
 			};
 			createBase(players[teamsArray[i][p]], false);
 		}

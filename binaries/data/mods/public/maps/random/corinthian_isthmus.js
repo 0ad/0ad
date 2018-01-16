@@ -103,7 +103,7 @@ paintTerrainBasedOnHeight(2, 5, 1, tGrass);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(riverAngle, 0.6),
+	"PlayerPlacement": playerPlacementRiver(riverAngle, fractionToTiles(0.6)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",

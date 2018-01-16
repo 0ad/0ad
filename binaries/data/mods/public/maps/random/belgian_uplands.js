@@ -383,7 +383,7 @@ else
 	for (let i = 0; i < numPlayers; ++i)
 	{
 		let playerPos = new Vector2D(possibleStartPositions[bestDerivation[i]][0], possibleStartPositions[bestDerivation[i]][1]);
-		placeCivDefaultStartingEntities(playerPos.x, playerPos.y, playerIDs[i], false);
+		placeCivDefaultStartingEntities(playerPos, playerIDs[i], false);
 
 		for (let j = 1; j <= 4; ++j)
 		{

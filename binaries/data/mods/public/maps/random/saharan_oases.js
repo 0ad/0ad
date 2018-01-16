@@ -47,10 +47,10 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clTreasure = createTileClass();
 
-var [playerIDs, playerX, playerZ, playerAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

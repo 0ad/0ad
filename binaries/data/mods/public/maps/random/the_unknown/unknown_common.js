@@ -102,8 +102,7 @@ var unknownMapFunctions = {
  * The locations should only determined by the landscape functions to avoid placing bodies of water and resources into civic centers and the starting resources.
  */
 var playerIDs = sortAllPlayers();
-var playerX = [];
-var playerZ = [];
+var playerPosition = [];
 
 var g_StartingTreasures = false;
 var g_StartingWalls = true;
@@ -134,10 +133,10 @@ function unknownArchipelago()
 	g_StartingWalls = "towers";
 	g_StartingTreasures = true;
 
-	let [pIDs, islandX, islandZ] = playerPlacementCircle(0.35);
+	let [pIDs, islandPosition] = playerPlacementCircle(fractionToTiles(0.35));
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = [pIDs, islandX, islandZ];
+		[playerIDs, playerPosition] = [pIDs, islandPosition];
 		markPlayerArea("large");
 	}
 
@@ -145,7 +144,7 @@ function unknownArchipelago()
 	let islandSize = diskArea(scaleByMapSize(17, 29));
 	for (let i = 0; i < numPlayers; ++i)
 		createArea(
-			new ClumpPlacer(islandSize, 0.8, 0.1, 10, fractionToTiles(islandX[i]), fractionToTiles(islandZ[i])),
+			new ClumpPlacer(islandSize, 0.8, 0.1, 10, islandPosition[i].x, islandPosition[i].y),
 			landElevationPainter);
 
 	let type = isNomad() ? randIntInclusive(1, 2) : randIntInclusive(1, 3);
@@ -219,7 +218,7 @@ function unknownContinent()
 	if (!isNomad())
 	{
 		log("Ensuring player area...");
-		[playerIDs, playerX, playerZ] = playerPlacementCircle(0.25);
+		[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
 		markPlayerArea("small");
 
 		for (let i = 0; i < numPlayers; ++i)
@@ -229,8 +228,8 @@ function unknownContinent()
 					Math.floor(scaleByMapSize(5, 9)),
 					Math.floor(scaleByMapSize(5, 20)),
 					1,
-					Math.round(fractionToTiles(playerX[i])),
-					Math.round(fractionToTiles(playerZ[i])),
+					playerPosition[i].x,
+					playerPosition[i].y,
 					0,
 					[Math.floor(scaleByMapSize(23, 50))]),
 				[
@@ -311,7 +310,7 @@ function unknownCentralSea()
 
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = playerPlacementRiver(horizontal ? Math.PI / 2 : 0, 0.6);
+		[playerIDs, playerPosition] = playerPlacementRiver(horizontal ? Math.PI / 2 : 0, fractionToTiles(0.6));
 		markPlayerArea("small");
 	}
 
@@ -355,7 +354,7 @@ function unknownCentralRiver()
 
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = playerPlacementRiver(horizontal ? Math.PI / 2 : 0, 0.5);
+		[playerIDs, playerPosition] = playerPlacementRiver(horizontal ? Math.PI / 2 : 0, fractionToTiles(0.5));
 		markPlayerArea("large");
 	}
 
@@ -418,7 +417,7 @@ function unknownRiversAndLake()
 	if (!isNomad())
 	{
 		let playerAngle;
-		[playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+		[playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 		markPlayerArea("small");
 	}
 
@@ -491,7 +490,7 @@ function unknownEdgeSeas()
 	let horizontal = randBool();
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = playerPlacementLine(horizontal, 0.5, 0.2);
+		[playerIDs, playerPosition] = playerPlacementLine(horizontal, mapCenter, fractionToTiles(0.2));
 		// Don't place the shoreline inside the CC, but possibly into the players territory
 		markPlayerArea("small");
 	}
@@ -531,11 +530,10 @@ function unknownGulf()
 	{
 		log("Determining player locations...");
 
-		[playerX, playerZ] = playerPlacementCustomAngle(
-			0.35,
-			tilesToFraction(mapCenter.x),
-			tilesToFraction(mapCenter.y),
-			i => startAngle + 2/3 * Math.PI * (-1 + (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1))));
+		playerPosition = playerPlacementCustomAngle(
+			fractionToTiles(0.35),
+			mapCenter,
+			i => startAngle + 2/3 * Math.PI * (-1 + (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1))))[0];
 
 		markPlayerArea("large");
 	}
@@ -553,7 +551,7 @@ function unknownGulf()
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 				paintClass(clWater)
 			],
-			avoidClasses(clPlayerTerritory, scaleByMapSize(15, 25)));
+			avoidClasses(clPlayerTerritory, defaultPlayerBaseRadius()));
 }
 
 /**
@@ -567,7 +565,7 @@ function unknownLakes()
 
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+		[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 		markPlayerArea("large");
 	}
 
@@ -595,7 +593,7 @@ function unknownPasses()
 	let startAngle;
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+		[playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 		markPlayerArea("small");
 	}
 	else
@@ -674,7 +672,7 @@ function unknownLowlands()
 	let startAngle;
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+		[playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 		markPlayerArea("small");
 	}
 	else
@@ -726,7 +724,7 @@ function unknownMainland()
 
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+		[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 		markPlayerArea("small");
 	}
 }
@@ -795,14 +793,11 @@ function markPlayerArea(size)
 {
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		addCivicCenterAreaToClass(
-			Math.round(fractionToTiles(playerX[i])),
-			Math.round(fractionToTiles(playerZ[i])),
-			clPlayer);
+		addCivicCenterAreaToClass(playerPosition[i], clPlayer);
 
 		if (size == "large")
 			createArea(
-				new ClumpPlacer(diskArea(scaleByMapSize(17, 29) / 3), 0.6, 0.3, 10, fractionToTiles(playerX[i]), fractionToTiles(playerZ[i])),
+				new ClumpPlacer(diskArea(scaleByMapSize(17, 29) / 3), 0.6, 0.3, 10, playerPosition[i].x, playerPosition[i].y),
 				paintClass(clPlayerTerritory));
 	}
 }
@@ -1018,7 +1013,7 @@ function createUnknownObjects()
 function createUnknownPlayerBases()
 {
 	placePlayerBases({
-		"PlayerPlacement": [playerIDs, playerX, playerZ],
+		"PlayerPlacement": [playerIDs, playerPosition],
 		"BaseResourceClass": clBaseResource,
 		"Walls": g_StartingWalls,
 		"CityPatch": {

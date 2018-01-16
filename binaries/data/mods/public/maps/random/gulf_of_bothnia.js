@@ -132,9 +132,8 @@ var startAngle = -Math.PI / 6;
 
 placePlayerBases({
 	"PlayerPlacement": [sortAllPlayers(), ...playerPlacementCustomAngle(
-			0.35,
-			tilesToFraction(mapCenter.x),
-			tilesToFraction(mapCenter.y),
+			fractionToTiles(0.35),
+			mapCenter,
 			i => startAngle + 2/3 * Math.PI * (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1)))],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,

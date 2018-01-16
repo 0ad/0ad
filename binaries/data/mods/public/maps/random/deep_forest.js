@@ -67,7 +67,7 @@ for (var i=0; i < numPlayers; i++)
 Engine.SetProgress(10);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerPosition.map(p => tilesToFraction(p.x)), playerPosition.map(p => tilesToFraction(p.y))],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"BaseResourceClass": clBaseResource,
 	// player class painted below
 	"CityPatch": {

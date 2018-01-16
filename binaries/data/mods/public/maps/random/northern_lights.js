@@ -47,7 +47,7 @@ var clBaseResource = createTileClass();
 var landHeight = getMapBaseHeight();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementLine(true, 0.45, 0.2),
+	"PlayerPlacement": playerPlacementLine(true, new Vector2D(fractionToTiles(0.45), mapCenter.y), fractionToTiles(0.2)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

@@ -55,8 +55,8 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
-// Create classes
 var clWater = createTileClass();
 var clCliff = createTileClass();
 var clForest = createTileClass();
@@ -67,16 +67,15 @@ var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
 
 log("Creating players...");
-
-var [playerIDs, playerX, playerZ] = playerPlacementLine(false, 0.5, randFloat(0.42, 0.46));
+var [playerIDs, playerPosition] = playerPlacementLine(false, mapCenter, fractionToTiles(randFloat(0.42, 0.46)));
 
 function distanceToPlayers(x, z)
 {
 	var r = 10000;
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		var dx = x - playerX[i];
-		var dz = z - playerZ[i];
+		var dx = x - playerPosition[i].x;
+		var dz = z - playerPosition[i].y;
 		r = Math.min(r, Math.square(dx) + Math.square(dz));
 	}
 	return Math.sqrt(r);
@@ -306,7 +305,7 @@ for (var ix = 0; ix < mapSize; ix++)
 Engine.SetProgress(30);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"baseResourceConstraint": avoidClasses(clCliff, 4),

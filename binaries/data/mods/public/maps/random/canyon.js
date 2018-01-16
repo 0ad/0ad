@@ -44,7 +44,8 @@ InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+var mapArea = getMapArea();
+var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -64,7 +65,7 @@ var playerCanyonRadius = scaleByMapSize(18, 32);
 
 initTerrain(tMainTerrain);
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Reserving space for the players, their initial forests and some less space therein without trees...");
 for (let i = 0; i < numPlayers; ++i)
@@ -75,8 +76,8 @@ for (let i = 0; i < numPlayers; ++i)
 			0.65,
 			0.1,
 			10,
-			Math.round(fractionToTiles(playerX[i])),
-			Math.round(fractionToTiles(playerZ[i]))),
+			playerPosition[i].x,
+			playerPosition[i].y),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
@@ -143,7 +144,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 		var p2 = 0;
 
 		for (let i = 0; i < numPlayers; ++i)
-			distances.push(Math.euclidDistance2D(tx, tz, fractionToTiles(playerX[i]), fractionToTiles(playerZ[i])));
+			distances.push(Math.euclidDistance2D(tx, tz, playerPosition[i].x, playerPosition[i].y));
 
 		for (let a = 0; a < numPlayers; ++a)
 		{
@@ -162,7 +163,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 		}
 
 		createArea(
-			new PathPlacer(tx, tz, mapSize * playerX[p1], mapSize * playerZ[p1], scaleByMapSize(11, 17), 0.4, 3 * scaleByMapSize(1, 4), 0.1, 0.1),
+			new PathPlacer(tx, tz, playerPosition[p1].x, playerPosition[p1].y, scaleByMapSize(11, 17), 0.4, 3 * scaleByMapSize(1, 4), 0.1, 0.1),
 			[
 				new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
@@ -172,7 +173,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 
 		if (numPlayers > 1)
 			createArea(
-				new PathPlacer(tx, tz, mapSize * playerX[p2], mapSize * playerZ[p2], scaleByMapSize(11, 17), 0.4, 3 * scaleByMapSize(1, 4), 0.1, 0.1),
+				new PathPlacer(tx, tz, playerPosition[p2].x, playerPosition[p2].y, scaleByMapSize(11, 17), 0.4, 3 * scaleByMapSize(1, 4), 0.1, 0.1),
 				[
 					new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 					new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
@@ -186,13 +187,13 @@ for (let i = 0; i < numPlayers; ++i)
 {
 	log("Creating path from player to center and to neighbor...");
 	let neighbor = i + 1 < numPlayers ? i + 1 : 0;
-	for (let [x, z] of [[playerX[neighbor], playerZ[neighbor]], [0.5, 0.5]])
+	for (let position of [playerPosition[neighbor], mapCenter])
 		createArea(
 			new PathPlacer(
-				fractionToTiles(playerX[i]),
-				fractionToTiles(playerZ[i]),
-				fractionToTiles(x),
-				fractionToTiles(z),
+				playerPosition[i].x,
+				playerPosition[i].y,
+				position.x,
+				position.y,
 				scaleByMapSize(8, 13),
 				0.4,
 				3 * scaleByMapSize(1, 4),
@@ -214,7 +215,7 @@ createArea(
 	null);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass already marked above
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

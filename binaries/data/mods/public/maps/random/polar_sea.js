@@ -43,7 +43,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clArcticWolf = createTileClass();
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 var treasures = [{
 	"template": oWoodTreasure,
@@ -54,13 +54,13 @@ log("Creating player markets...");
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let marketPos = Vector2D.add(new Vector2D(playerX[i], playerZ[i]).mult(mapSize), new Vector2D(12, 0).rotate(randomAngle())).round();
+		let marketPos = Vector2D.add(playerPosition[i], new Vector2D(12, 0).rotate(randomAngle())).round();
 		placeObject(marketPos.x, marketPos.y, oMarket, playerIDs[i], BUILDING_ORIENTATION);
-		addCivicCenterAreaToClass(marketPos.x, marketPos.y, clBaseResource);
+		addCivicCenterAreaToClass(marketPos, clBaseResource);
 	}
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",
@@ -278,13 +278,12 @@ else
 if (isNomad())
 {
 	let constraint = avoidClasses(clWater, 4, clMetal, 4, clRock, 4, clHill, 4, clFood, 2);
-	[playerIDs, playerX, playerZ] = placePlayersNomad(clPlayer, constraint);
+	[playerIDs, playerPosition] = placePlayersNomad(clPlayer, constraint);
 
 	for (let i = 0; i < numPlayers; ++i)
 		placePlayerBaseTreasures({
 			"playerID": playerIDs[i],
-			"playerX": tilesToFraction(playerX[i]),
-			"playerZ": tilesToFraction(playerZ[i]),
+			"playerPosition": playerPosition[i],
 			"BaseResourceClass": clBaseResource,
 			"baseResourceConstraint": constraint,
 			"types": treasures

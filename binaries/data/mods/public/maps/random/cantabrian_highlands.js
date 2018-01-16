@@ -59,14 +59,13 @@ var clBaseResource = createTileClass();
 var playerHillRadius = defaultPlayerBaseRadius() / (isNomad() ? 1.5 : 1);
 var playerHillElevation = 20;
 
-var [playerIDs, playerX, playerZ, playerAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Creating player hills and ramps...");
 for (let i = 0; i < numPlayers; ++i)
 {
-	let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize);
 	createArea(
-		new ClumpPlacer(diskArea(playerHillRadius), 0.95, 0.6, 10, Math.round(playerPos.x), Math.round(playerPos.y)),
+		new ClumpPlacer(diskArea(playerHillRadius), 0.95, 0.6, 10, playerPosition[i].x, playerPosition[i].y),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, playerHillElevation, 2),
@@ -75,8 +74,8 @@ for (let i = 0; i < numPlayers; ++i)
 
 	let angle = playerAngle[i] + Math.PI * (1 + randFloat(-1, 1) / 8);
 	createPassage({
-		"start": Vector2D.add(playerPos, new Vector2D(playerHillRadius + 15, 0).rotate(-angle)),
-		"end": Vector2D.add(playerPos, new Vector2D(playerHillRadius - 3, 0).rotate(-angle)),
+		"start": Vector2D.add(playerPosition[i], new Vector2D(playerHillRadius + 15, 0).rotate(-angle)),
+		"end": Vector2D.add(playerPosition[i], new Vector2D(playerHillRadius - 3, 0).rotate(-angle)),
 		"startWidth": 10,
 		"endWidth": 10,
 		"smoothWidth": 2,
@@ -87,7 +86,7 @@ for (let i = 0; i < numPlayers; ++i)
 }
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,

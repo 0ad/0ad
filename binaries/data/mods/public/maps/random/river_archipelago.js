@@ -42,7 +42,7 @@ const pForestP2 = [tForestFloor + TERRAIN_SEPARATOR + oPalm2, tForestFloor];
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clPlayerTerritory = createTileClass();
@@ -84,8 +84,8 @@ for (let i = 0; i < stripWidths.length; ++i)
 				Math.floor(scaleByMapSize(3, connectPlayers && isPlayerStrip ? 8 : 7)),
 				Math.floor(scaleByMapSize(30, 60)),
 				1,
-				Math.floor(randFloat(...stripWidths[i]) * mapSize),
-				Math.floor(randFloat(0, 1) * mapSize)),
+				Math.floor(fractionToTiles(randFloat(...stripWidths[i]))),
+				Math.floor(fractionToTiles(randFloat(0, 1)))),
 			[
 				new LayeredPainter([tGrass, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, 3, 3),
@@ -95,7 +95,7 @@ for (let i = 0; i < stripWidths.length; ++i)
 }
 Engine.SetProgress(20);
 
-var [playerIDs, playerX, playerZ] = playerPlacementLine(false, 0.5, 1 - stripWidthsLeft[2][0] - stripWidthsLeft[2][1]);
+var [playerIDs, playerPosition] = playerPlacementLine(false, mapCenter, fractionToTiles(1 - stripWidthsLeft[2][0] - stripWidthsLeft[2][1]));
 
 // Either left vs right or top vs bottom
 playerIDs = randBool() ? sortAllPlayers() : primeSortAllPlayers();
@@ -104,7 +104,7 @@ log("Ensuring player territory...");
 var playerRadius = scaleByMapSize(12, 20);
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
-		new ChainPlacer(1, 6, 40, 1, Math.round(fractionToTiles(playerX[i])), Math.round(fractionToTiles(playerZ[i])), 0, [Math.floor(playerRadius)]),
+		new ChainPlacer(1, 6, 40, 1, playerPosition[i].x, playerPosition[i].y, 0, [Math.floor(playerRadius)]),
 		[
 			new LayeredPainter([tGrass, tGrass, tGrass], [1, 4]),
 			new SmoothElevationPainter(ELEVATION_SET, 3, 4),
@@ -112,7 +112,7 @@ for (let i = 0; i < numPlayers; ++i)
 		]);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",

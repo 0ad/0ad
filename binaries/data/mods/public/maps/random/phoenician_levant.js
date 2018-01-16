@@ -43,6 +43,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 const mapBounds = getMapBounds();
 
 var clPlayer = createTileClass();
@@ -62,7 +63,7 @@ var shoreHeight = -1.5;
 var landHeight = getMapBaseHeight();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementLine(false, 0.76, 0.2),
+	"PlayerPlacement": playerPlacementLine(false, new Vector2D(fractionToTiles(0.76), mapCenter.y), fractionToTiles(0.2)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

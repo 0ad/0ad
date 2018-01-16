@@ -57,14 +57,11 @@ var clBaseResource = createTileClass();
 
 initTerrain(tMainTerrain);
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Preventing water in player territory...");
 for (let i = 0; i < numPlayers; ++i)
-	addCivicCenterAreaToClass(
-		Math.round(fractionToTiles(playerX[i])),
-		Math.round(fractionToTiles(playerZ[i])),
-		clPlayer);
+	addCivicCenterAreaToClass(playerPosition[i], clPlayer);
 
 log("Creating the lake...")
 createArea(
@@ -100,7 +97,7 @@ paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 paintTileClassBasedOnHeight(-6, 0, 1, clWater);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass marked above
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

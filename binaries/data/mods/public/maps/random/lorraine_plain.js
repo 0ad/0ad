@@ -56,7 +56,7 @@ var shallowHeight = -2;
 var shallowWidth = scaleByMapSize(8, 12);
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(Math.PI / 2, 0.5),
+	"PlayerPlacement": playerPlacementRiver(Math.PI / 2, fractionToTiles(0.5)),
 	// PlayerTileClass marked below
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",

@@ -60,7 +60,7 @@ const islandBetweenPlayerAndCenterDist = 0.16;
 const islandBetweenPlayerAndCenterRadius = 0.81;
 const centralIslandRadius = 0.36;
 
-var [playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 var numIslands = 0;
 var isConnected = [];
@@ -213,12 +213,12 @@ else
 log("Creating player islands...");
 for (let i = 0; i < numPlayers; ++i)
 {
-	islandPos[i] = new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round();
+	islandPos[i] = playerPosition[i];
 	createIsland(i, 1, isNomad() ? clLand : clPlayer);
 }
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass already marked above
 	"BaseResourceClass": clBaseResource,
 	"baseResourceConstraint": stayClasses(clPlayer, 4),

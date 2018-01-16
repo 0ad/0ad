@@ -302,10 +302,10 @@ var mountainHeight = 30;
 
 initTerrain(tPrimary);
 
-var [playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

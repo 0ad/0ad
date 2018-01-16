@@ -152,7 +152,7 @@ for (let i = 0; i < numPlayers; ++i)
 }
 
 placePlayerBases({
-	"PlayerPlacement": [sortAllPlayers(), playerPosition.map(p => tilesToFraction(p.x)), playerPosition.map(p => tilesToFraction(p.y))],
+	"PlayerPlacement": [sortAllPlayers(), playerPosition],
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,
 	// player class painted below

@@ -63,16 +63,15 @@ var clLand = createTileClass();
 var landHeight = 3;
 var playerIslandRadius = scaleByMapSize(20, 29);
 
-var [playerIDs, playerX, playerZ, playerAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 if (!isNomad())
 {
 	log("Creating player islands and docks...");
 	for (let i = 0; i < numPlayers; i++)
 	{
-		let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize);
 		createArea(
-			new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, 10, playerPos.x, playerPos.y),
+			new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, 10, playerPosition[i].x, playerPosition[i].y),
 			[
 				new LayeredPainter([tMainTerrain , tMainTerrain, tMainTerrain], [1, 6]),
 				new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
@@ -80,7 +79,7 @@ if (!isNomad())
 				paintClass(clPlayer)
 			]);
 
-		let dockLocation = findLocationInDirectionBasedOnHeight(playerPos, mapCenter, -3 , landHeight - 0.5, landHeight);
+		let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , landHeight - 0.5, landHeight);
 		placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
 	}
 }
@@ -119,7 +118,7 @@ paintTerrainBasedOnHeight(1, 3, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass marked above
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",

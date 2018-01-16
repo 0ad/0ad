@@ -59,17 +59,17 @@ var shallowHeight = -1.5;
 var waterHeight = -3;
 
 log("Create the continent body");
-var continentCenter = new Vector2D(0.5, 0.7);
+var continentCenter = new Vector2D(fractionToTiles(0.5), fractionToTiles(0.7)).round();
 createArea(
 	new ChainPlacer(
 		2,
 		Math.floor(scaleByMapSize(5, 12)),
 		Math.floor(scaleByMapSize(60, 700)),
 		1,
-		Math.floor(fractionToTiles(continentCenter.x)),
-		Math.floor(fractionToTiles(continentCenter.y)),
+		continentCenter.x,
+		continentCenter.y,
 		0,
-		[Math.floor(mapSize * 0.49)]),
+		[Math.floor(fractionToTiles(0.49))]),
 	[
 		new LayeredPainter([tGrass, tGrass, tGrass], [4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
@@ -79,9 +79,8 @@ createArea(
 
 placePlayerBases({
 	"PlayerPlacement": [primeSortAllPlayers(), ...playerPlacementCustomAngle(
-			0.35,
-			continentCenter.x,
-			continentCenter.y,
+			fractionToTiles(0.35),
+			continentCenter,
 			i => Math.PI * (-0.46 / numPlayers * (i + i % 2) - (i % 2) / 2))],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,

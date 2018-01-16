@@ -71,15 +71,12 @@ var clRain = createTileClass();
 var ccMountainHeight = 25;
 var ccMountainSize = defaultPlayerBaseRadius();
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Creating CC mountains...");
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let ix = Math.round(fractionToTiles(playerX[i]));
-		let iz = Math.round(fractionToTiles(playerZ[i]));
-
 		// This one consists of many bumps, creating an omnidirectional ramp
 		createMountain(
 			ccMountainHeight,
@@ -87,15 +84,15 @@ if (!isNomad())
 			ccMountainSize,
 			Math.floor(scaleByMapSize(4, 10)),
 			undefined,
-			ix,
-			iz,
+			playerPosition[i].x,
+			playerPosition[i].y,
 			tHillDark,
 			clPlayer,
 			14);
 
 		// Flatten the initial CC area
 		createArea(
-			new ClumpPlacer(diskArea(ccMountainSize), 0.95, 0.6, 10, ix, iz),
+			new ClumpPlacer(diskArea(ccMountainSize), 0.95, 0.6, 10, playerPosition[i].x,playerPosition[i].y),
 			[
 				new LayeredPainter([tHillVeryDark, tHillMedium1], [ccMountainSize]),
 				new SmoothElevationPainter(ELEVATION_SET, ccMountainHeight, ccMountainSize),
@@ -106,7 +103,7 @@ if (!isNomad())
 Engine.SetProgress(8);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass already marked above
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",

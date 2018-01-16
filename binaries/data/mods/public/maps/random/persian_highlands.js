@@ -65,7 +65,7 @@ var clCP = createTileClass();
 initTerrain(tDirtMain);
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
 		"outerTerrain": tCity,

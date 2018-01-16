@@ -78,7 +78,7 @@ createArea(
 	avoidClasses(clPlayer, 5));
 
 log("Creating player islands...")
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.38);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));
 
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
@@ -87,17 +87,16 @@ for (let i = 0; i < numPlayers; ++i)
 			0.8,
 			0.1,
 			10,
-			Math.round(fractionToTiles(playerX[i])),
-			Math.round(fractionToTiles(playerZ[i]))),
+			playerPosition[i].x,
+			playerPosition[i].y),
 		[
 			new LayeredPainter([tShore, tMainTerrain], [shoreRadius]),
 			new SmoothElevationPainter(ELEVATION_SET, landHeight, shoreRadius),
 			paintClass(clHill)
-		],
-		null);
+		]);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,

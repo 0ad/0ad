@@ -198,8 +198,7 @@ Engine.SetProgress(30);
 
 log("Determining player locations...");
 var playerIDs = sortAllPlayers();
-var playerX = [];
-var playerZ = [];
+var playerPosition = [];
 var playerAngle = [];
 var p = 0;
 for (let island = 0; island < 2; ++island)
@@ -209,14 +208,13 @@ for (let island = 0; island < 2; ++island)
 	for (let i = 0; i < playersPerIsland; ++i)
 	{
 		playerAngle[p] = Math.PI * ((i + 0.5) / (2 * playersPerIsland) + island) + swapAngle;
-		let pos = Vector2D.add(islandLocations[island], new Vector2D(radiusPlayer).rotate(-playerAngle[p]));
-		[playerX[p], playerZ[p]] = [tilesToFraction(pos.x), tilesToFraction(pos.y)];
+		playerPosition[p] = Vector2D.add(islandLocations[island], new Vector2D(radiusPlayer).rotate(-playerAngle[p]));
 		++p;
 	}
 }
 
 placePlayerBases({
-	"PlayerPlacement": [sortAllPlayers(), playerX, playerZ],
+	"PlayerPlacement": [sortAllPlayers(), playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,

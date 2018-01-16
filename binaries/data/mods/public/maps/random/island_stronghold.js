@@ -101,19 +101,19 @@ for (let i = 0; i < teams.length; ++i)
 	for (let p = 0; p < teams[i].length; ++p)
 	{
 		let [playerAngle, fx, fz, ix, iz] = getPlayerTileCoordinates(p, i, fractionX, fractionZ);
+		let playerPosition = new Vector2D(ix, iz);
 
-		addCivicCenterAreaToClass(ix, iz, clPlayer);
+		addCivicCenterAreaToClass(playerPosition, clPlayer);
 
 		createArea(
-			new ChainPlacer(2, Math.floor(scaleByMapSize(5, 11)), Math.floor(scaleByMapSize(60, 250)), 1, ix, iz, 0, [Math.floor(mapSize * 0.01)]),
+			new ChainPlacer(2, Math.floor(scaleByMapSize(5, 11)), Math.floor(scaleByMapSize(60, 250)), 1, ix, iz, 0, [Math.floor(fractionToTiles(0.01))]),
 			[
 				new LayeredPainter([tMainTerrain, tMainTerrain, tMainTerrain], [1, shoreRadius]),
 				new SmoothElevationPainter(ELEVATION_SET, landHeight, shoreRadius),
 				paintClass(clLand)
-			],
-			null);
+			]);
 
-		placeCivDefaultStartingEntities(fx, fz, teams[i][p], false);
+		placeCivDefaultStartingEntities(playerPosition, teams[i][p], false);
 	}
 
 	log("Create initial mines for team " + i);
@@ -148,8 +148,7 @@ for (let i = 0; i < teams.length; ++i)
 
 		placePlayerBaseChicken({
 			"playerID": teams[i][p],
-			"playerX": tilesToFraction(fx),
-			"playerZ": tilesToFraction(fz),
+			"playerPosition": new Vector2D(fx, fz),
 			"BaseResourceClass": clBaseResource,
 			"baseResourceConstraint": stayClasses(clLand, 5)
 		});

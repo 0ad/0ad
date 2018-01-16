@@ -67,7 +67,7 @@ var clTreasure = createTileClass();
 var desertWidth = fractionToTiles(0.25);
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(0, 0.4),
+	"PlayerPlacement": playerPlacementRiver(0, fractionToTiles(0.4)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

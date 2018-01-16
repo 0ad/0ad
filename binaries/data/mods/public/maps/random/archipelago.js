@@ -62,7 +62,7 @@ var shoreHeight = 1;
 
 var islandRadius = scaleByMapSize(22, 31);
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Creating player islands...");
 for (let i = 0; i < numPlayers; ++i)
@@ -72,8 +72,8 @@ for (let i = 0; i < numPlayers; ++i)
 			Math.floor(scaleByMapSize(5, 10)),
 			Math.floor(scaleByMapSize(25, 60)),
 			1,
-			Math.floor(fractionToTiles(playerX[i])),
-			Math.floor(fractionToTiles(playerZ[i])),
+			playerPosition[i].x,
+			playerPosition[i].y,
 			0,
 			[Math.floor(islandRadius)]),
 		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4));
@@ -100,7 +100,7 @@ paintTerrainBasedOnHeight(shoreHeight, landHeight, 0, tShore);
 paintTerrainBasedOnHeight(getMapBaseHeight(), shoreHeight, 2, tWater);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass marked below
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",

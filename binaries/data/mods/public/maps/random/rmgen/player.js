@@ -36,17 +36,18 @@ function getStartingEntities(playerID)
 
 /**
  * Places the given entities at the given location (typically a civic center and starting units).
+ * @param location - A Vector2D specifying tile coordinates.
  * @param civEntities - An array of objects with the Template property and optionally a Count property.
  * The first entity is placed in the center, the other ones surround it.
  */
-function placeStartingEntities(fx, fz, playerID, civEntities, dist = 6, orientation = BUILDING_ORIENTATION)
+function placeStartingEntities(location, playerID, civEntities, dist = 6, orientation = BUILDING_ORIENTATION)
 {
 	// Place the central structure
 	let i = 0;
 	let firstTemplate = civEntities[i].Template;
 	if (firstTemplate.startsWith("structures/"))
 	{
-		placeObject(fx, fz, firstTemplate, playerID, orientation);
+		placeObject(location.x, location.y, firstTemplate, playerID, orientation);
 		++i;
 	}
 
@@ -59,8 +60,8 @@ function placeStartingEntities(fx, fz, playerID, civEntities, dist = 6, orientat
 
 		for (let num = 0; num < count; ++num)
 			placeObject(
-				fx + dist * Math.cos(angle) + space * (-num + 0.75 * Math.floor(count / 2)) * Math.sin(angle),
-				fz + dist * Math.sin(angle) + space * (num - 0.75 * Math.floor(count / 2)) * Math.cos(angle),
+				location.x + dist * Math.cos(angle) + space * (-num + 0.75 * Math.floor(count / 2)) * Math.sin(angle),
+				location.y + dist * Math.sin(angle) + space * (num - 0.75 * Math.floor(count / 2)) * Math.cos(angle),
 				civEntities[j].Template,
 				playerID,
 				angle);
@@ -70,10 +71,10 @@ function placeStartingEntities(fx, fz, playerID, civEntities, dist = 6, orientat
 /**
  * Places the default starting entities as defined by the civilization definition, optionally including city walls.
  */
-function placeCivDefaultStartingEntities(x, z, playerID, wallType, dist = 6, orientation = BUILDING_ORIENTATION)
+function placeCivDefaultStartingEntities(location, playerID, wallType, dist = 6, orientation = BUILDING_ORIENTATION)
 {
-	placeStartingEntities(x, z, playerID, getStartingEntities(playerID), dist, orientation);
-	placeStartingWalls(x, z, playerID, wallType, orientation);
+	placeStartingEntities(location, playerID, getStartingEntities(playerID), dist, orientation);
+	placeStartingWalls(location.x, location.y, playerID, wallType, orientation);
 }
 
 /**
@@ -97,13 +98,12 @@ function placeStartingWalls(x, z, playerID, wallType, orientation = BUILDING_ORI
  */
 function placePlayerBases(playerBaseArgs)
 {
-	let [playerIDs, playerX, playerZ] = playerBaseArgs.PlayerPlacement;
+	let [playerIDs, playerPosition] = playerBaseArgs.PlayerPlacement;
 
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
 		playerBaseArgs.playerID = playerIDs[i];
-		playerBaseArgs.playerX = playerX[i];
-		playerBaseArgs.playerZ = playerZ[i];
+		playerBaseArgs.playerPosition = playerPosition[i];
 		placePlayerBase(playerBaseArgs);
 	}
 }
@@ -118,13 +118,10 @@ function placePlayerBase(playerBaseArgs)
 
 	log("Creating base for player " + playerBaseArgs.playerID + "...");
 
-	let fx = fractionToTiles(playerBaseArgs.playerX);
-	let fz = fractionToTiles(playerBaseArgs.playerZ);
-
-	placeCivDefaultStartingEntities(fx, fz, playerBaseArgs.playerID, playerBaseArgs.Walls !== undefined ? playerBaseArgs.Walls : true);
+	placeCivDefaultStartingEntities(playerBaseArgs.playerPosition, playerBaseArgs.playerID, playerBaseArgs.Walls !== undefined ? playerBaseArgs.Walls : true);
 
 	if (playerBaseArgs.PlayerTileClass !== undefined)
-		addCivicCenterAreaToClass(Math.round(fx), Math.round(fz), playerBaseArgs.PlayerTileClass);
+		addCivicCenterAreaToClass(playerBaseArgs.playerPosition, playerBaseArgs.PlayerTileClass);
 
 	for (let functionID of g_PlayerBaseFunctions)
 	{
@@ -139,7 +136,7 @@ function placePlayerBase(playerBaseArgs)
 		let args = playerBaseArgs[functionID];
 
 		// Copy some global arguments to the arguments for each function
-		for (let prop of ["playerID", "playerX", "playerZ", "BaseResourceClass", "baseResourceConstraint"])
+		for (let prop of ["playerID", "playerPosition", "BaseResourceClass", "baseResourceConstraint"])
 			args[prop] = playerBaseArgs[prop];
 
 		func(args);
@@ -155,15 +152,17 @@ function defaultPlayerBaseRadius()
  * Marks the corner and center tiles of an area that is about the size of a Civic Center with the given TileClass.
  * Used to prevent resource collisions with the Civic Center.
  */
-function addCivicCenterAreaToClass(ix, iz, tileClass)
+function addCivicCenterAreaToClass(position, tileClass)
 {
-	addToClass(ix, iz, tileClass);
+	let pos = position.clone().round();
 
-	addToClass(ix, iz + 5, tileClass);
-	addToClass(ix, iz - 5, tileClass);
+	addToClass(pos.x, pos.y, tileClass);
 
-	addToClass(ix + 5, iz, tileClass);
-	addToClass(ix - 5, iz, tileClass);
+	addToClass(pos.x, pos.y + 5, tileClass);
+	addToClass(pos.x, pos.y - 5, tileClass);
+
+	addToClass(pos.x + 5, pos.y, tileClass);
+	addToClass(pos.x - 5, pos.y, tileClass);
 }
 
 /**
@@ -178,7 +177,7 @@ function getPlayerBaseArgs(playerBaseArgs)
 
 	return [
 		(property, defaultVal) => playerBaseArgs[property] === undefined ? defaultVal : playerBaseArgs[property],
-		new Vector2D(playerBaseArgs.playerX, playerBaseArgs.playerZ).mult(getMapSize()),
+		playerBaseArgs.playerPosition,
 		baseResourceConstraint
 	];
 }
@@ -420,8 +419,7 @@ function placePlayersNomad(playerClass, constraints)
 
 	let numPlayers = getNumPlayers();
 	let playerIDs = shuffleArray(sortAllPlayers());
-	let playerX = [];
-	let playerZ = [];
+	let playerPosition = [];
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
@@ -450,8 +448,7 @@ function placePlayersNomad(playerClass, constraints)
 			if (createObjectGroups(group, playerIDs[i], new AndConstraint([constraint, avoidClasses(playerClass, distance * distanceFactor)]), 1, 200, false))
 			{
 				success = true;
-				playerX[i] = group.x;
-				playerZ[i] = group.z;
+				playerPosition[i] = new Vector2D(group.x, group.z);
 				break;
 			}
 		}
@@ -459,7 +456,7 @@ function placePlayersNomad(playerClass, constraints)
 			throw new Error("Could not place starting units for player " + playerIDs[i] + "!");
 	}
 
-	return [playerIDs, playerX, playerZ];
+	return [playerIDs, playerPosition];
 }
 
 /**
@@ -511,21 +508,20 @@ function primeSortAllPlayers()
 /**
  * Determine player starting positions on a circular pattern.
  */
-function playerPlacementCircle(radius, startingAngle = undefined, centerX = 0.5, centerZ = 0.5)
+function playerPlacementCircle(radius, startingAngle = undefined, center = undefined)
 {
 	let startAngle = startingAngle !== undefined ? startingAngle : randomAngle();
-	let [locations, playerAngle] = distributePointsOnCircle(getNumPlayers(), startAngle, radius, new Vector2D(centerX, centerZ));
-	return [sortAllPlayers(), locations.map(l => l.x), locations.map(l => l.y), playerAngle, startAngle];
+	let [playerPosition, playerAngle] = distributePointsOnCircle(getNumPlayers(), startAngle, radius, center || getMapCenter());
+	return [sortAllPlayers(), playerPosition.map(p => p.round()), playerAngle, startAngle];
 }
 
 /**
  * Determine player starting positions on a circular pattern, with a custom angle for each player.
  * Commonly used for gulf terrains.
  */
-function playerPlacementCustomAngle(radius, centerX, centerZ, playerAngleFunc)
+function playerPlacementCustomAngle(radius, center, playerAngleFunc)
 {
-	let playerX = [];
-	let playerZ = [];
+	let playerPosition = [];
 	let playerAngle = [];
 
 	let numPlayers = getNumPlayers();
@@ -533,11 +529,10 @@ function playerPlacementCustomAngle(radius, centerX, centerZ, playerAngleFunc)
 	for (let i = 0; i < numPlayers; ++i)
 	{
 		playerAngle[i] = playerAngleFunc(i);
-		playerX[i] = centerX + radius * Math.cos(playerAngle[i]);
-		playerZ[i] = centerZ + radius * Math.sin(playerAngle[i]);
+		playerPosition[i] = Vector2D.add(center, new Vector2D(radius, 0).rotate(-playerAngle[i])).round();
 	}
 
-	return [playerX, playerZ, playerAngle];
+	return [playerPosition, playerAngle];
 }
 
 /**
@@ -545,14 +540,13 @@ function playerPlacementCustomAngle(radius, centerX, centerZ, playerAngleFunc)
  * If there are two teams with an equal number of players, each team will occupy exactly one line.
  * Angle 0 means the players are placed in north to south direction, i.e. along the Z axis.
  */
-function playerPlacementRiver(angle, width)
+function playerPlacementRiver(angle, width, center = undefined)
 {
-	let positions = [];
-
 	let numPlayers = getNumPlayers();
 	let numPlayersEven = numPlayers % 2 == 0;
-
-	let mapCenter = new Vector2D(0.5, 0.5);
+	let mapSize = getMapSize();
+	let centerPosition = center || getMapCenter();
+	let playerPosition = [];
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
@@ -561,12 +555,13 @@ function playerPlacementRiver(angle, width)
 		let offsetDivident = numPlayersEven || currentPlayerEven ? (i + 1) % 2 : 0;
 		let offsetDivisor = numPlayersEven ? 0 : currentPlayerEven ? +1 : -1;
 
-		positions[i] = new Vector2D(
-			width * (i % 2) + (1 - width) / 2,
-			((i - 1 + offsetDivident) / 2 + 1) / ((numPlayers + offsetDivisor) / 2 + 1)).rotateAround(angle, mapCenter);
+		playerPosition[i] = new Vector2D(
+			width * (i % 2) + (mapSize - width) / 2,
+			fractionToTiles(((i - 1 + offsetDivident) / 2 + 1) / ((numPlayers + offsetDivisor) / 2 + 1))
+		).rotateAround(angle, centerPosition).round();
 	}
 
-	return [primeSortAllPlayers(), positions.map(p => p.x), positions.map(p => p.y)];
+	return [primeSortAllPlayers(), playerPosition];
 }
 
 /***
@@ -576,20 +571,17 @@ function playerPlacementRiver(angle, width)
  */
 function playerPlacementLine(horizontal, center, width)
 {
-	let playerX = [];
-	let playerZ = [];
+	let playerPosition = [];
 	let numPlayers = getNumPlayers();
 
 	for (let i = 0; i < numPlayers; ++i)
-	{
-		playerX[i] = (i + 1) / (numPlayers + 1);
-		playerZ[i] = center + width * (i % 2 - 1/2);
+		playerPosition[i] = Vector2D.add(
+			center,
+			new Vector2D(
+				fractionToTiles((i + 1) / (numPlayers + 1) - 0.5),
+				width * (i % 2 - 1/2))).rotateAround(horizontal ? 0 : Math.PI / 2, center).round();
 
-		if (!horizontal)
-			[playerX[i], playerZ[i]] = [playerZ[i], playerX[i]];
-	}
-
-	return [sortAllPlayers(), playerX, playerZ];
+	return [sortAllPlayers(), playerPosition];
 }
 
 /**

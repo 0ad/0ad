@@ -69,7 +69,7 @@ var shoreHeight = 1;
 var landHeight = 2;
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(0, 0.6),
+	"PlayerPlacement": playerPlacementRiver(0, fractionToTiles(0.6)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

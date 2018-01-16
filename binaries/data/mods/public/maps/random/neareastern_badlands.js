@@ -59,7 +59,7 @@ var hillHeight1 = 16;
 var hillHeight2 = 16;
 var hillHeight3 = 16;
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
@@ -69,12 +69,12 @@ if (!isNomad())
 				0.9,
 				0.5,
 				10,
-				Math.round(fractionToTiles(playerX[i])),
-				Math.round(fractionToTiles(playerZ[i]))),
+				playerPosition[i].x,
+				playerPosition[i].y),
 			paintClass(clPlayer));
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

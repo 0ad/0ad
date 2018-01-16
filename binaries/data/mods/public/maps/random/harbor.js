@@ -14,7 +14,7 @@ Engine.SetProgress(10);
 
 const mapSize = getMapSize();
 const startAngle = randomAngle();
-const players = addBases("radial", 0.38, 0.05, startAngle);
+const players = addBases("radial", fractionToTiles(0.38), fractionToTiles(0.05), startAngle);
 Engine.SetProgress(20);
 
 addCenterLake();

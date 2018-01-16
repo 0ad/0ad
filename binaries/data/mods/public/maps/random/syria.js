@@ -33,6 +33,7 @@ const pForestT = [tForestFloor1 + TERRAIN_SEPARATOR + oTamarix,tForestFloor2];
 
 InitMap();
 
+const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();
 
 var clPlayer = createTileClass();
@@ -44,17 +45,14 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clGrass = createTileClass();
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 for (let i = 0; i < numPlayers; ++i)
 {
-	let ix = Math.round(fractionToTiles(playerX[i]));
-	let iz = Math.round(fractionToTiles(playerZ[i]));
-
 	log("Marking player territory larger than the city patch...");
 	if (!isNomad())
 		createArea(
-			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, ix, iz),
+			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i].x, playerPosition[i].y),
 			paintClass(clPlayer));
 
 	log("Creating big grass patches surrounding the city patches...");
@@ -64,8 +62,8 @@ for (let i = 0; i < numPlayers; ++i)
 			Math.floor(scaleByMapSize(5, 12)),
 			Math.floor(scaleByMapSize(25, 60)) / (isNomad() ? 2 : 1),
 			1,
-			ix,
-			iz,
+			playerPosition[i].x,
+			playerPosition[i].y,
 			0,
 			[Math.floor(scaleByMapSize(16, 30))]),
 		[
@@ -76,7 +74,7 @@ for (let i = 0; i < numPlayers; ++i)
 Engine.SetProgress(10);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass marked above
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

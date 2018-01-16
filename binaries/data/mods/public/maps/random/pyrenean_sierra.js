@@ -106,10 +106,9 @@ for (var ix = 0; ix < mapSize; ix++)
 
 placePlayerBases({
 	"PlayerPlacement": [primeSortAllPlayers(), ...playerPlacementCustomAngle(
-			0.35,
-			tilesToFraction(mapCenter.x),
-			tilesToFraction(mapCenter.y),
-			i => oceanAngle + Math.PI * (i % 2 ? 1 : -1) * ((1/2 + 1/3 * (2/numPlayers * (i + 1 - i % 2) - 1))))],
+		fractionToTiles(0.35),
+		mapCenter,
+		i => oceanAngle + Math.PI * (i % 2 ? 1 : -1) * ((1/2 + 1/3 * (2/numPlayers * (i + 1 - i % 2) - 1))))],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

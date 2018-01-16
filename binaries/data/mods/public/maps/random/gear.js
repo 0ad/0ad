@@ -60,7 +60,7 @@ var clBaseResource = createTileClass();
 
 initTerrain(tMainTerrain);
 
-var [playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Determining number of rivers between players...");
 var split = 1;
@@ -176,7 +176,7 @@ paintTerrainBasedOnHeight(2, 21, 1, tMainTerrain);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",

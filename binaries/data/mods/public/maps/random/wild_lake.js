@@ -619,13 +619,13 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	{
 		if (mercenaryCamps)
 		{
-			placeStartingEntities(resourceSpots[i].x, resourceSpots[i].y, 0, mercenaryCampGuards[currentBiome()]);
+			placeStartingEntities(resourceSpots[i], 0, mercenaryCampGuards[currentBiome()]);
 			rectangularSmoothToHeight(resourceSpots[i], 15, 15, g_Map.height[resourceSpots[i].x][resourceSpots[i].y], 0.5);
 			--mercenaryCamps;
 		}
 		else
 		{
-			placeCustomFortress(resourceSpots[i].x, resourceSpots[i].y, pickRandom(fences), "other", 0, randomAngle());
+			placeCustomFortress(resourceSpots[i], pickRandom(fences), "other", 0, randomAngle());
 			rectangularSmoothToHeight(resourceSpots[i], 10, 10, g_Map.height[resourceSpots[i].x][resourceSpots[i].y], 0.5);
 		}
 	}

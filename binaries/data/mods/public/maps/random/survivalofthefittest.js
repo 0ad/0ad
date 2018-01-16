@@ -66,7 +66,7 @@ createArea(
 	]);
 Engine.SetProgress(10);
 
-var [playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.3);
+var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.3));
 var halfway = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.375), mapCenter)[0].map(v => v.round());
 var attacker = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.45), mapCenter)[0].map(v => v.round());
 var passage = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0];
@@ -74,14 +74,11 @@ var passage = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPla
 log("Creating player bases and attacker points...");
 for (let  i = 0; i < numPlayers; ++i)
 {
-	let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round();
-
-	placeStartingEntities(playerPos.x, playerPos.y, playerIDs[i], getStartingEntities(playerIDs[i]).filter(ent =>
+	placeStartingEntities(playerPosition[i], playerIDs[i], getStartingEntities(playerIDs[i]).filter(ent =>
 		ent.Template.indexOf("civil_centre") != -1 || ent.Template.indexOf("infantry") != -1));
 
 	placePlayerBaseDecoratives({
-		"playerX": playerX[i],
-		"playerZ": playerZ[i],
+		"playerPosition": playerPosition[i],
 		"template": aGrassShort,
 		"BaseResourceClass": clBaseResource
 	});
@@ -95,7 +92,7 @@ for (let  i = 0; i < numPlayers; ++i)
 		]);
 
 	log("Placing treasure seeker woman...");
-	let femaleLocation = findLocationInDirectionBasedOnHeight(playerPos, mapCenter, -3 , 3.5, 3).round();
+	let femaleLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 3.5, 3).round();
 	addToClass(femaleLocation.x, femaleLocation.y, clWomen);
 	placeObject(femaleLocation.x, femaleLocation.y, oTreasureSeeker, playerIDs[i], playerAngle[i] + Math.PI);
 
@@ -104,7 +101,7 @@ for (let  i = 0; i < numPlayers; ++i)
 	placeObject(attacker[i].x, attacker[i].y, triggerPointAttacker, playerIDs[i], Math.PI / 2);
 
 	log("Preventing mountains in the area between player and attackers...");
-	addCivicCenterAreaToClass(playerPos.x, playerPos.y, clPlayer);
+	addCivicCenterAreaToClass(playerPosition[i], clPlayer);
 	addToClass(attacker[i].x, attacker[i].y, clPlayer);
 	addToClass(halfway[i].x, halfway[i].y, clPlayer);
 }

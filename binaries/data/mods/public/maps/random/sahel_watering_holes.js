@@ -55,10 +55,10 @@ var clShallows = createTileClass();
 var waterHeight = -4;
 var shallowHeight = -2;
 
-var [playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -124,8 +124,8 @@ for (let i = 0; i < numPlayers; ++i)
 
 	log("Creating shallows between neighbors...");
 	createPassage({
-		"start": new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round(),
-		"end": new Vector2D(playerX[neighborID], playerZ[neighborID]).mult(mapSize).round(),
+		"start": playerPosition[i],
+		"end": playerPosition[neighborID],
 		"startWidth": 10,
 		"endWidth": 10,
 		"smoothWidth": 4,
@@ -136,6 +136,7 @@ for (let i = 0; i < numPlayers; ++i)
 	});
 
 	log("Creating animals in shallows...");
+	let shallowPosition = Vector2D.average([playerPosition[i], playerPosition[neighbor]]).round();
 	let objects = [
 		new SimpleObject(oWildebeest, 5, 6, 0, 4),
 		new SimpleObject(oElephant, 2, 3, 0, 4)
@@ -146,8 +147,8 @@ for (let i = 0; i < numPlayers; ++i)
 				[object],
 				true,
 				clFood,
-				Math.round(fractionToTiles(playerX[i] + playerX[neighborID]) / 2),
-				Math.round(fractionToTiles(playerZ[i] + playerZ[neighborID]) / 2)),
+				shallowPosition.x,
+				shallowPosition.y),
 			0);
 }
 
