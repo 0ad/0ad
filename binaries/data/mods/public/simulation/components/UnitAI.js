@@ -2845,7 +2845,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					//   may cause problems for AIs (especially hunting fast animals), but avoid ugly hacks to fix that!
 					var nearby = this.FindNearbyResource(function (ent, type, template) {
 						return (types.indexOf(type.generic) != -1);
-					});
+					}, msg.data.newentity);
 					if (nearby)
 					{
 						this.PerformGather(nearby, true, false);
