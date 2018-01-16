@@ -858,6 +858,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.Stop": function(msg) {
 			if (!this.IsAttackingAsFormation())
 				this.CallMemberFunction("Stop", [false]);
+			this.StopMoving();
 			this.FinishOrder();
 		},
 
