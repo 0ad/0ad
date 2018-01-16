@@ -190,7 +190,7 @@ function onTick()
 		case "connected":
 		{
 			Engine.PopGuiPage();
-			Engine.SwitchGuiPage("page_lobby.xml");
+			Engine.SwitchGuiPage("page_lobby.xml", { "dialog": false });
 			Engine.ConfigDB_CreateValue("user", "playername.multiplayer", username);
 			Engine.ConfigDB_WriteValueToFile("user", "playername.multiplayer", username, "config/user.cfg");
 			Engine.ConfigDB_CreateValue("user", "lobby.login", username);

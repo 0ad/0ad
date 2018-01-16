@@ -26,6 +26,13 @@
 
 	<object type="image" sprite="ModernFade" name="fadeImage"/>
 
+	<object hotkey="lobby">
+		<action on="Press">
+			if (Engine.HasXmppClient())
+				Engine.PushGuiPage("page_lobby.xml", { "dialog": true });
+		</action>
+	</object>
+
 	<object name="summaryWindow"
 		type="image"
 		style="ModernWindow"

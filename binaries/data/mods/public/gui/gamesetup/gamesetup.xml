@@ -247,6 +247,17 @@
 
 			<!-- Options -->
 			<object name="gameOptionsBox" size="100%-425 529 100%-25 525">
+				<!-- View Lobby Button -->
+				<object name="lobbyButton"
+					type="button"
+					style="IconButton"
+					sprite="iconBubbleGold"
+					sprite_over="iconBubbleWhite"
+					size="100%-143 0 100%-127 16"
+					hotkey="lobby"
+				>
+					<translatableAttribute id="tooltip">Show the multiplayer lobby in a dialog window.</translatableAttribute>
+				</object>
 				<!-- More Options Button -->
 				<object
 					name="showMoreOptions"

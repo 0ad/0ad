@@ -53,11 +53,24 @@
 			<action on="Press">openGameSummary();</action>
 		</object>
 
+		<!-- Lobby button -->
+		<object type="button"
+			name="lobbyButton"
+			style="StoneButtonFancy"
+			size="0 128 100% 156"
+			tooltip_style="sessionToolTip"
+			hotkey="lobby"
+		>
+			<translatableAttribute id="caption">Lobby</translatableAttribute>
+			<translatableAttribute id="tooltip">Show the multiplayer lobby in a dialog window.</translatableAttribute>
+			<action on="Press">lobbyDialogButton();</action>
+		</object>
+
 		<!-- Options button -->
 		<object type="button"
 			name="optionsButton"
 			style="StoneButtonFancy"
-			size="0 128 100% 156"
+			size="0 160 100% 188"
 			tooltip_style="sessionToolTip"
 		>
 			<translatableAttribute id="caption">Options</translatableAttribute>
@@ -68,7 +81,7 @@
 		<object type="button"
 			name="pauseButton"
 			style="StoneButtonFancy"
-			size="0 160 100% 188"
+			size="0 192 100% 220"
 			tooltip_style="sessionToolTip"
 		>
 			<translatableAttribute id="caption">Pause</translatableAttribute>
@@ -79,7 +92,7 @@
 		<object type="button"
 			name="menuResignButton"
 			style="StoneButtonFancy"
-			size="0 192 100% 220"
+			size="0 224 100% 252"
 			tooltip_style="sessionToolTip"
 		>
 			<translatableAttribute id="caption">Resign</translatableAttribute>
@@ -90,7 +103,7 @@
 		<object type="button"
 			name="menuExitButton"
 			style="StoneButtonFancy"
-			size="0 224 100% 252"
+			size="0 256 100% 256+28"
 			tooltip_style="sessionToolTip"
 		>
 			<translatableAttribute id="caption">Exit</translatableAttribute>

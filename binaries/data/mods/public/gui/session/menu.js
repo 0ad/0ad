@@ -2,7 +2,7 @@
 var MARGIN = 4;
 
 // Includes the main menu button
-const NUM_BUTTONS = 9;
+const NUM_BUTTONS = 10;
 
 // Regular menu buttons
 var BUTTON_HEIGHT = 32;
@@ -119,6 +119,15 @@ function optionsMenuButton()
 {
 	closeOpenDialogs();
 	openOptions();
+}
+
+function lobbyDialogButton()
+{
+	if (!Engine.HasXmppClient())
+		return;
+
+	closeOpenDialogs();
+	Engine.PushGuiPage("page_lobby.xml", { "dialog": true });
 }
 
 function chatMenuButton()

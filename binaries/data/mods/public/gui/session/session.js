@@ -615,6 +615,7 @@ function updateTopPanel()
 
 	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked || g_IsController;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;
+	Engine.GetGUIObjectByName("lobbyButton").enabled = Engine.HasXmppClient();
 }
 
 function reportPerformance(time)

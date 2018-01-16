@@ -5,6 +5,13 @@
 	<script directory="gui/common/"/>
 	<script directory="gui/prelobby/"/>
 
+	<object hotkey="lobby">
+		<action on="Press">
+			lobbyStop();
+			Engine.PopGuiPage();
+		</action>
+	</object>
+
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="ModernFade"/>
 

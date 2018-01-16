@@ -177,6 +177,22 @@
 		/>
 	</sprite>
 
+	<sprite name="iconBubbleGold">
+		<effect add_color="237 227 167"/>
+		<image
+			texture="global/icon/bubble.png"
+			size="0 3 100% 100%+3"
+		/>
+	</sprite>
+
+	<sprite name="iconBubbleWhite">
+		<effect add_color="255 255 255"/>
+		<image
+			texture="global/icon/bubble.png"
+			size="0 3 100% 100%+3"
+		/>
+	</sprite>
+
 	<!--
 	==========================================
 	SCREENSHOT WATERMARK
