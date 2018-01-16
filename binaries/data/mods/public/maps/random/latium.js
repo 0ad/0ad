@@ -1,7 +1,5 @@
 Engine.LoadLibrary("rmgen");
 
-const WATER_WIDTH = 0.1;
-
 const tOceanDepths = "medit_sea_depths";
 const tOceanRockDeep = "medit_sea_coral_deep";
 const tOceanRockShallow = "medit_rocks_wet";
@@ -56,6 +54,7 @@ InitMap();
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
 var clWater = createTileClass();
 var clCliff = createTileClass();
@@ -65,6 +64,12 @@ var clRock = createTileClass();
 var clFood = createTileClass();
 var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
+
+var WATER_WIDTH = 0.1;
+
+var waterHeight = -16;
+var landHeight = getMapBaseHeight();
+var hillHeight = 12;
 
 log("Creating players...");
 var [playerIDs, playerPosition] = playerPlacementLine(false, mapCenter, fractionToTiles(randFloat(0.42, 0.46)));
@@ -94,8 +99,25 @@ function playerNearness(x, z)
 	return 1;
 }
 
-log("Painting elevation...");
+for (let x of [mapBounds.left, mapBounds.right])
+	paintRiver({
+		"parallel": true,
+		"start": new Vector2D(x, mapBounds.top),
+		"end": new Vector2D(x, mapBounds.bottom),
+		"width": 2 * fractionToTiles(WATER_WIDTH),
+		"fadeDist": 16,
+		"deviation": 0,
+		"waterHeight": waterHeight,
+		"landHeight": landHeight,
+		"meanderShort": 0,
+		"meanderLong": 0,
+		"waterFunc": (ix, iz, height, z) => {
+			addToClass(ix, iz, clWater);
+		}
+	});
+Engine.SetProgress(10);
 
+log("Painting elevation...");
 var noise0 = new Noise2D(scaleByMapSize(4, 16));
 var noise1 = new Noise2D(scaleByMapSize(8, 32));
 var noise2 = new Noise2D(scaleByMapSize(15, 60));
@@ -114,22 +136,8 @@ for (var ix = 0; ix <= mapSize; ix++)
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
 
-		var h = 0;
-		var distToWater = 0;
-
-		h = 32 * (x - 0.5);
-
-		// add the rough shape of the water
-		if (x < WATER_WIDTH)
-			h = Math.max(-16, -28 * (WATER_WIDTH - x) / WATER_WIDTH);
-		else if (x > 1.0-WATER_WIDTH)
-			h = Math.max(-16, -28 * (x - (1 - WATER_WIDTH)) / WATER_WIDTH);
-		else
-		{
-			distToWater = (0.5 - WATER_WIDTH - Math.abs(x - 0.5));
-			var u = 1 - Math.abs(x - 0.5) / (0.5 - WATER_WIDTH);
-			h = 12*u;
-		}
+		let distToWater = stayClasses(clWater, 1).allows(ix, iz) ? 0 : (0.5 - WATER_WIDTH - Math.abs(x - 0.5));
+		let h = distToWater ? hillHeight * (1 - Math.abs(x - 0.5) / (0.5 - WATER_WIDTH)) : getHeight(ix, iz);
 
 		// add some base noise
 		var baseNoise = 16*noise0.get(x,z) + 8*noise1.get(x,z) + 4*noise2.get(x,z) - (16+8+4)/2;
@@ -168,7 +176,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 		}
 		setHeight(ix, iz, h);
 	}
-Engine.SetProgress(15);
+Engine.SetProgress(20);
 
 log("Painting terrain...");
 var noise6 = new Noise2D(scaleByMapSize(10, 40));
