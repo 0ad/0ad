@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -293,21 +293,31 @@ bool PathGoal::RectContainsGoal(entity_pos_t x0, entity_pos_t z0, entity_pos_t x
 
 fixed PathGoal::DistanceToPoint(CFixedVector2D pos) const
 {
+	CFixedVector2D d(pos.X - x, pos.Y - z);
+
 	switch (type)
 	{
 	case POINT:
-		return (pos - CFixedVector2D(x, z)).Length();
+		return d.Length();
 
 	case CIRCLE:
+		return d.CompareLength(hw) <= 0 ? fixed::Zero() : d.Length() - hw;
+
 	case INVERTED_CIRCLE:
-		return ((pos - CFixedVector2D(x, z)).Length() - hw).Absolute();
+		return d.CompareLength(hw) >= 0 ? fixed::Zero() : hw - d.Length();
 
 	case SQUARE:
+	{
+		CFixedVector2D halfSize(hw, hh);
+		return Geometry::PointIsInSquare(d, u, v, halfSize) ?
+			fixed::Zero() : Geometry::DistanceToSquare(d, u, v, halfSize);
+	}
+
 	case INVERTED_SQUARE:
 	{
 		CFixedVector2D halfSize(hw, hh);
-		CFixedVector2D d(pos.X - x, pos.Y - z);
-		return Geometry::DistanceToSquare(d, u, v, halfSize);
+		return !Geometry::PointIsInSquare(d, u, v, halfSize) ?
+			fixed::Zero() : Geometry::DistanceToSquare(d, u, v, halfSize);
 	}
 
 	NODEFAULT;
@@ -324,9 +334,21 @@ CFixedVector2D PathGoal::NearestPointOnGoal(CFixedVector2D pos) const
 		return g;
 
 	case CIRCLE:
+	{
+		CFixedVector2D d(pos.X - x, pos.Y - z);
+		if (d.CompareLength(hw) <= 0)
+			return pos;
+
+		d.Normalize(hw);
+		return g + d;
+	}
+
 	case INVERTED_CIRCLE:
 	{
-		CFixedVector2D d = pos - g;
+		CFixedVector2D d(pos.X - x, pos.Y - z);
+		if (d.CompareLength(hw) >= 0)
+			return pos;
+
 		if (d.IsZero())
 			d = CFixedVector2D(fixed::FromInt(1), fixed::Zero()); // some arbitrary direction
 		d.Normalize(hw);
@@ -334,11 +356,19 @@ CFixedVector2D PathGoal::NearestPointOnGoal(CFixedVector2D pos) const
 	}
 
 	case SQUARE:
+	{
+		CFixedVector2D halfSize(hw, hh);
+		CFixedVector2D d(pos.X - x, pos.Y - z);
+		return Geometry::PointIsInSquare(d, u, v, halfSize) ?
+			pos : g + Geometry::NearestPointOnSquare(d, u, v, halfSize);
+	}
+
 	case INVERTED_SQUARE:
 	{
 		CFixedVector2D halfSize(hw, hh);
-		CFixedVector2D d = pos - g;
-		return g + Geometry::NearestPointOnSquare(d, u, v, halfSize);
+		CFixedVector2D d(pos.X - x, pos.Y - z);
+		return !Geometry::PointIsInSquare(d, u, v, halfSize) ?
+			pos : g + Geometry::NearestPointOnSquare(d, u, v, halfSize);
 	}
 
 	NODEFAULT;
