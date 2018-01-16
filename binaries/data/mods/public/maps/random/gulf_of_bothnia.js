@@ -1,9 +1,20 @@
 Engine.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
-var random_terrain = randIntInclusive(1, 3);
-if (random_terrain == 1)
+
+InitMap();
+
+var biome = pickRandom(["late_spring", "winter", "frozen_lake"]);
+
+if (biome == "late_spring")
 {
+	log("Late spring biome...");
+	var waterHeight = -3;
+	var shoreHeight = 1;
+
+	var fishCount = scaleByMapSize(20, 80);
+	var bushCount = scaleByMapSize(13, 200);
+
 	setFogThickness(0.26);
 	setFogFactor(0.4);
 
@@ -39,8 +50,15 @@ if (random_terrain == 1)
 	var aBushMedium = "actor|props/flora/bush_medit_me.xml";
 	var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 }
-else if (random_terrain == 2)
+else if (biome == "winter")
 {
+	log("Winter biome...");
+	var waterHeight = -3;
+	var shoreHeight = 1;
+
+	var fishCount = scaleByMapSize(20, 80);
+	var bushCount = scaleByMapSize(13, 200);
+
 	setFogFactor(0.35);
 	setFogThickness(0.19);
 	setPPSaturation(0.37);
@@ -73,8 +91,15 @@ else if (random_terrain == 2)
 	var aBushMedium = "actor|props/flora/bush_medit_me_dry.xml";
 	var aBushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 }
-else
+else if (biome == "frozen_lake")
 {
+	log("Frozen lake biome...");
+	var waterHeight = 0;
+	var shoreHeight = 2;
+
+	var fishCount = 0;
+	var bushCount = 0;
+
 	setFogFactor(0.41);
 	setFogThickness(0.23);
 	setPPSaturation(0.34);
@@ -109,8 +134,6 @@ else
 }
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
-
-InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -163,13 +186,11 @@ placePlayerBases({
 Engine.SetProgress(20);
 
 log("Creating the gulf...");
-var seaHeight = random_terrain == 3 ? 0 : -3;
-
 var lSize = Math.pow(scaleByMapSize(1, 6), 1/8);
 var gulfLocations = [
-	[200, Math.round(fractionToTiles(0.5)), 0.17],
-	[120, Math.round(fractionToTiles(0.3)), 0.18 * lSize],
-	[100, 1, 0.19 * lSize]
+	[200, Math.round(fractionToTiles(0.5)), fractionToTiles(0.17)],
+	[120, Math.round(fractionToTiles(0.3)), fractionToTiles(0.18) * lSize],
+	[100, Math.round(fractionToTiles(0.01)), fractionToTiles(0.19) * lSize]
 ];
 
 for (let [numCircles, z, firstRadius] of gulfLocations)
@@ -182,24 +203,16 @@ for (let [numCircles, z, firstRadius] of gulfLocations)
 			mapCenter.x,
 			z,
 			0,
-			[Math.floor(mapSize * firstRadius)]),
+			[Math.floor(firstRadius)]),
 		[
 			new LayeredPainter([tPrimary, tPrimary, tPrimary, tPrimary], [1, 4, 2]),
-			new SmoothElevationPainter(ELEVATION_SET, seaHeight, 4),
+			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer,scaleByMapSize(20, 28)));
 
-if (random_terrain == 3)
-{
-	paintTerrainBasedOnHeight(2, 3, 0, tShore);
-	paintTerrainBasedOnHeight(-1, 2, 2, tWater);
-}
-else
-{
-	paintTerrainBasedOnHeight(1, 3, 0, tShore);
-	paintTerrainBasedOnHeight(-8, 1, 2, tWater);
-}
+paintTerrainBasedOnHeight(shoreHeight, getMapBaseHeight(), Elevation_ExcludeMin_ExcludeMax, tShore);
+paintTerrainBasedOnHeight(-Infinity, shoreHeight, Elevation_ExcludeMin_IncludeMax, tWater);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 10));
 
@@ -252,10 +265,8 @@ createMines(
  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
  clMetal
 );
-
 Engine.SetProgress(70);
 
-var multiplier = random_terrain == 3 ? 0 : 1;
 createDecoration(
 	[
 		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],
@@ -267,9 +278,9 @@ createDecoration(
 	[
 		scaleByMapSize(16, 262),
 		scaleByMapSize(8, 131),
-		multiplier * scaleByMapSize(13, 200),
-		multiplier * scaleByMapSize(13, 200),
-		multiplier * scaleByMapSize(13, 200)
+		bushCount,
+		bushCount,
+		bushCount
 	 ],
 	 avoidClasses(clWater, 0, clForest, 0, clPlayer, 5, clHill, 0, clBaseResource, 5));
 Engine.SetProgress(75);
@@ -292,12 +303,11 @@ createFood(
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
 	clFood);
 
-if (random_terrain != 3)
-	createFood(
-		[[new SimpleObject(oFish, 2, 3, 0, 2)]],
-		[25 * numPlayers],
-		[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
-		clFood);
+createFood(
+	[[new SimpleObject(oFish, 2, 3, 0, 2)]],
+	[fishCount],
+	[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
+	clFood);
 
 Engine.SetProgress(85);
 
