@@ -858,6 +858,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.Stop": function(msg) {
 			if (!this.IsAttackingAsFormation())
 				this.CallMemberFunction("Stop", [false]);
+			this.StopMoving();
 			this.FinishOrder();
 		},
 
@@ -883,7 +884,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.FinishOrder();
 				return;
 			}
-			this.CallMemberFunction("Attack", [target, false, allowCapture]);
+			this.CallMemberFunction("Attack", [target, allowCapture, false]);
 			if (cmpAttack.CanAttackAsFormation())
 				this.SetNextState("COMBAT.ATTACKING");
 			else
@@ -1229,7 +1230,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"MoveCompleted": function(msg) {
 					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-					this.CallMemberFunction("Attack", [this.order.data.target, false, this.order.data.allowCapture]);
+					this.CallMemberFunction("Attack", [this.order.data.target, this.order.data.allowCapture, false]);
 					if (cmpAttack.CanAttackAsFormation())
 						this.SetNextState("COMBAT.ATTACKING");
 					else
@@ -2845,7 +2846,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					//   may cause problems for AIs (especially hunting fast animals), but avoid ugly hacks to fix that!
 					var nearby = this.FindNearbyResource(function (ent, type, template) {
 						return (types.indexOf(type.generic) != -1);
-					});
+					}, msg.data.newentity);
 					if (nearby)
 					{
 						this.PerformGather(nearby, true, false);

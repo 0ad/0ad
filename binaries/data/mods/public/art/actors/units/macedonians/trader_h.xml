@@ -5,7 +5,7 @@
     <variant frequency="1" file="quadraped/base_horse_trader.xml" name="Trader Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="props/units/horse_back_blanket_cavalry.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>

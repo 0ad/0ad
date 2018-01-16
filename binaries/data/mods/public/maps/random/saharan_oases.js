@@ -30,7 +30,6 @@ const aBush3 = "actor|props/flora/bush_medit_sm_dry.xml";
 const aBush4 = "actor|props/flora/plant_desert_a.xml";
 const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
-// terrain + entity (for painting)
 const pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATOR + oSDatePalm, tLush];
 
 InitMap();
@@ -46,8 +45,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clGrass = createTileClass();
-var clPond = createTileClass();
 var clTreasure = createTileClass();
 
 var [playerIDs, playerX, playerZ, playerAngle] = playerPlacementCircle(0.35);
@@ -110,7 +107,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 			),
 			paintClass(clDirt)
 		],
-		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 0, clWater, 1, clDirt, 5),
+		avoidClasses(clForest, 0, clPlayer, 0, clWater, 1, clDirt, 5),
 		scaleByMapSize(15, 45));
 Engine.SetProgress(55);
 
@@ -125,7 +122,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 			),
 			paintClass(clDirt)
 		],
-		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 0, clWater, 1, clGrass, 5),
+		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 0, clWater, 1),
 		scaleByMapSize(15, 45));
 Engine.SetProgress(60);
 
@@ -157,7 +154,7 @@ group = new SimpleGroup(
 );
 createObjectGroupsDeprecated(
 	group, 0,
-	avoidClasses(clWater, 1, clForest, 0, clPlayer, 0, clPond, 1),
+	avoidClasses(clWater, 1, clForest, 0, clPlayer, 0),
 	scaleByMapSize(16, 262), 50
 );
 
@@ -168,7 +165,7 @@ group = new SimpleGroup(
 );
 createObjectGroupsDeprecated(
 	group, 0,
-	avoidClasses(clWater, 1, clPlayer, 0, clPond, 1),
+	avoidClasses(clWater, 1, clPlayer, 0),
 	scaleByMapSize(10, 100), 50
 );
 
@@ -226,6 +223,8 @@ createObjectGroupsDeprecated(group, 0,
 	borderClasses(clWater, 14, 5),
 	5*scaleByMapSize(5,20), 50
 );
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2, clTreasure, 2));
 
 setSkySet("sunny");
 setSunColor(0.746, 0.718, 0.539);

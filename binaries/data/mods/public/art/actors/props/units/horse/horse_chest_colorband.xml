@@ -4,8 +4,12 @@
   <group>
     <variant frequency="1" name="horse chest color band">
       <mesh>props/horse_chest_colorband.dae</mesh>
-      <textures><texture file="props/helmet/pers_h1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/horse/peytral_spec.png" name="specTex"/>
+        <texture file="props/horse/peytral_bronze.png" name="baseTex"/>
+        <texture file="props/horse/peytral_norm.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -65,14 +65,12 @@ const mapSize = getMapSize();
 const mapCenter = getMapCenter();
 
 var clDirt = createTileClass();
-var clLush = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clPass = createTileClass();
 var clPyrenneans = createTileClass();
-var clPass = createTileClass();
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -387,10 +385,7 @@ log("Creating grass patches...");
 for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
-		[
-			new TerrainPainter(tLushGrass),
-			paintClass(clLush)
-		],
+		new TerrainPainter(tLushGrass),
 		avoidClasses(clWater, 3, clForest, 0, clPyrenneans,5, clHill, 0, clDirt, 5, clPlayer, 6),
 		scaleByMapSize(15, 45));
 
@@ -454,8 +449,10 @@ log("Creating fish...");
 group = new SimpleGroup( [new SimpleObject(oFish, 2,3, 0,2)], true, clFood );
 createObjectGroupsDeprecated(group, 0, [avoidClasses(clFood, 15), stayClasses(clWater, 6)], 20 * numPlayers, 60 );
 
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clPyrenneans, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
+
 setSunElevation(Math.PI * randFloat(1/5, 1/3));
-setSunRotation(randFloat(0, 2 * Math.PI));
+setSunRotation(randomAngle());
 
 setSkySet("cumulus");
 setSunColor(0.73,0.73,0.65);

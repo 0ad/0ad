@@ -59,6 +59,9 @@ var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
 
 for (var i=0; i < numPlayers; i++)
 {
+	if (isNomad())
+		break;
+
 	log("Creating base for player " + playerIDs[i] + "...");
 	playerX[i] *= mapSize;
 	playerZ[i] *= mapSize;
@@ -148,7 +151,7 @@ for (var i=0; i < numPlayers; i++)
 			"cornerIn", "long", "house", "tower", "long", "tower", "long",
 			"cornerIn", "long", "house", "tower"];
 	}
-	placeCustomFortress(playerX[i], playerZ[i], new Fortress("Spahbod", wall), civ, playerIDs[i]);
+	placeCustomFortress(playerX[i], playerZ[i], new Fortress("Spahbod", wall), civ, playerIDs[i], -Math.PI/4);
 }
 
 log("Creating lakes...");
@@ -303,6 +306,8 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 Engine.SetProgress(95);
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 2, clHill, 2, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 setSkySet("sunny");
 setWaterColor(0.157, 0.149, 0.443);

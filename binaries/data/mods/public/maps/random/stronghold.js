@@ -10,7 +10,7 @@ initTileClasses();
 resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 Engine.SetProgress(20);
 
-addBases("stronghold", randFloat(0.2, 0.35), randFloat(0.05, 0.1), randFloat(0, 2 * Math.PI));
+addBases("stronghold", randFloat(0.2, 0.35), randFloat(0.05, 0.1), randomAngle());
 Engine.SetProgress(30);
 
 addElements(shuffleArray([
@@ -238,5 +238,16 @@ addElements(shuffleArray([
 	}
 ]));
 Engine.SetProgress(90);
+
+placePlayersNomad(
+	g_TileClasses.player,
+	avoidClasses(
+		g_TileClasses.bluff, 4,
+		g_TileClasses.plateau, 4,
+		g_TileClasses.forest, 1,
+		g_TileClasses.metal, 4,
+		g_TileClasses.rock, 4,
+		g_TileClasses.mountain, 4,
+		g_TileClasses.animals, 2));
 
 ExportMap();

@@ -30,16 +30,21 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
 var clWater = createTileClass();
+var clIsland = createTileClass();
 var clDirt = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
+
+var landHeight = getMapBaseHeight();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementLine(true, 0.45, 0.2),
@@ -66,53 +71,46 @@ Engine.SetProgress(15);
 
 paintRiver({
 	"parallel": true,
-	"startX": 0,
-	"startZ": 1,
-	"endX": 1,
-	"endZ": 1,
-	"width": 0.62,
-	"fadeDist": tilesToFraction(8),
+	"start": new Vector2D(mapBounds.left, mapBounds.top),
+	"end": new Vector2D(mapBounds.right, mapBounds.top),
+	"width": 2 * fractionToTiles(0.31),
+	"fadeDist": 8,
 	"deviation": 0,
 	"waterHeight": -5,
-	"landHeight": 3,
+	"landHeight": landHeight,
 	"meanderShort": 0,
-	"meanderLong": 0,
-	"waterFunc": (ix, iz, height, riverFraction) => {
-		addToClass(ix, iz, clWater);
-	},
-	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
-		if (getHeight(ix, iz) < 0.5)
-			addToClass(ix, iz, clWater);
-	}
+	"meanderLong": 0
 });
 
+paintTileClassBasedOnHeight(-Infinity, 0.5, Elevation_ExcludeMin_ExcludeMax, clWater);
+
 log("Creating shores...");
-for (var i = 0; i < scaleByMapSize(20,120); i++)
+for (let i = 0; i < scaleByMapSize(20, 120); ++i)
 	createArea(
 		new ChainPlacer(
 			1,
 			Math.floor(scaleByMapSize(4, 6)),
 			Math.floor(scaleByMapSize(16, 30)),
 			1,
-			randIntExclusive(0.1 * mapSize, 0.9 * mapSize),
-			randIntExclusive(0.67 * mapSize, 0.74 * mapSize)),
+			Math.floor(fractionToTiles(randFloat(0.1, 0.9))),
+			Math.floor(fractionToTiles(randFloat(0.67, 0.74)))),
 		[
 			new LayeredPainter([tSnowA, tSnowA], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, 3, 3), unPaintClass(clWater)
-		],
-		null);
+			new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
+			unPaintClass(clWater)
+		]);
 
 log("Creating islands...");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.1),
 	[
 		new LayeredPainter([tSnowA, tSnowA], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, 3, 3),
+		new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
+		paintClass(clIsland),
 		unPaintClass(clWater)
 	],
 	stayClasses(clWater, 7),
-	scaleByMapSize(10, 80)
-);
+	scaleByMapSize(10, 80));
 
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 
@@ -263,6 +261,8 @@ createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
 	25 * numPlayers, 60
 );
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2, clIsland, 4));
 
 setSunColor(0.6, 0.6, 0.6);
 setSunElevation(Math.PI/ 6);

@@ -17,7 +17,12 @@ NullConstraint.prototype.allows = function(x, z)
  */
 function AndConstraint(constraints)
 {
-	this.constraints = constraints;
+	if (constraints instanceof Array)
+		this.constraints = constraints
+	else if (!constraints)
+		this.constraints = [];
+	else
+		this.constraints = [constraints];
 }
 
 AndConstraint.prototype.allows = function(x, z)
@@ -95,4 +100,19 @@ BorderTileClassConstraint.prototype.allows = function(x, z)
 {
 	return this.tileClass.countMembersInRadius(x, z, this.distanceOutside) > 0 &&
 	       this.tileClass.countNonMembersInRadius(x, z, this.distanceInside) > 0;
+};
+
+/**
+ * The HeightConstraint is met if the elevation of the tile is within the given range.
+ * One can pass Infinity to only test for one side.
+ */
+function HeightConstraint(minHeight, maxHeight)
+{
+	this.minHeight = minHeight;
+	this.maxHeight = maxHeight;
+}
+
+HeightConstraint.prototype.allows = function(x, z)
+{
+	return this.minHeight <= g_Map.height[x][z] && g_Map.height[x][z] <= this.maxHeight;
 };

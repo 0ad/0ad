@@ -463,7 +463,7 @@ function updateSelectionDetails()
 
 	for (let sel of g_Selection.toList())
 	{
-		let entState = GetExtendedEntityState(sel);
+		let entState = GetEntityState(sel);
 		if (!entState)
 			continue;
 		entStates.push(entState);

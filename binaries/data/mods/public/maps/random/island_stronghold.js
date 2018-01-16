@@ -79,7 +79,7 @@ const landHeight = 3;
 
 initTerrain(tWater);
 
-var startAngle = randFloat(0, 2 * Math.PI);
+var startAngle = randomAngle();
 
 var teams = getTeamsArray();
 var numTeams = teams.filter(team => team).length;
@@ -87,7 +87,7 @@ var numTeams = teams.filter(team => team).length;
 var teamNo = 0;
 for (let i = 0; i < teams.length; ++i)
 {
-	if (!teams[i])
+	if (!teams[i] || isNomad())
 		continue;
 
 	++teamNo;
@@ -187,12 +187,12 @@ for (let i = 0; i < teams.length; ++i)
 			[new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, Math.floor(mapSize * 0.2))],
 			true, clBaseResource, teamX, teamZ
 		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clHill, 1, clPlayer, 10), stayClasses(clLand, 5)]);
+		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 		group = new SimpleGroup(
 			[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, Math.floor(mapSize * 0.2))],
 			true, clBaseResource, teamX, teamZ
 		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clHill, 1, clPlayer, 10), stayClasses(clLand, 5)]);
+		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 	}
 }
 
@@ -209,7 +209,7 @@ for (let x = 0; x < mapSize; ++x)
 			landAreas.push([x, z]);
 
 log("Creating big islands...");
-let numIslands = scaleByMapSize(4, 14);
+let numIslands = scaleByMapSize(4, 14) * (isNomad() ? 2 : 1);
 for (let i = 0; i < numIslands; ++i)
 {
 	let landAreaLen = landAreas.length;
@@ -219,7 +219,14 @@ for (let i = 0; i < numIslands; ++i)
 	let chosenPoint = pickRandom(landAreas);
 
 	let newIsland = createAreas(
-		new ChainPlacer(Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(8, 14)), Math.floor(scaleByMapSize(25, 60)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(30, 70)),
+		new ChainPlacer(
+			Math.floor(scaleByMapSize(4, 8) * (isNomad() ? 2 : 1)),
+			Math.floor(scaleByMapSize(8, 16) * (isNomad() ? 2 : 1)),
+			Math.floor(scaleByMapSize(25, 60)),
+			0.07,
+			chosenPoint[0],
+			chosenPoint[1],
+			scaleByMapSize(30, 70)),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
@@ -300,7 +307,7 @@ createMines(
 [
 	[new SimpleObject(oMetalLarge, 1, 1, 3, (numPlayers * 2) + 1)]
 ],
-[avoidClasses(clForest, 1, clPlayer, 40, clRock, 20, clHill, 5), stayClasses(clLand, 4)],
+[avoidClasses(clForest, 1, clPlayer, 40, clRock, 20), stayClasses(clLand, 4)],
 clMetal
 );
 
@@ -308,14 +315,14 @@ createMines(
 [
 	[new SimpleObject(oStoneLarge, 1, 1, 3, (numPlayers * 2) + 1)], [new SimpleObject(oStoneSmall, 2, 2, 2, (numPlayers * 2) + 1)]
 ],
-[avoidClasses(clForest, 1, clPlayer, 40, clMetal, 20, clHill, 5), stayClasses(clLand, 4)],
+[avoidClasses(clForest, 1, clPlayer, 40, clMetal, 20), stayClasses(clLand, 4)],
 clRock
 );
 
 var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
- [avoidClasses(clPlayer, 10, clForest, 20, clHill, 10, clBaseResource, 5, clRock, 6, clMetal, 6), stayClasses(clLand, 3)],
+ [avoidClasses(clPlayer, 10, clForest, 20, clBaseResource, 5, clRock, 6, clMetal, 6), stayClasses(clLand, 3)],
  clForest,
  forestTrees);
 
@@ -480,8 +487,10 @@ createObjectGroupsDeprecated(group, 0,
 paintTerrainBasedOnHeight(1, 2, 0, tShore);
 paintTerrainBasedOnHeight(getMapBaseHeight(), 1, 3, tWater);
 
+placePlayersNomad(clPlayer, [stayClasses(clLand, 4), avoidClasses(clHill, 2, clForest, 1, clMetal, 4, clRock, 4, clFood, 2)]);
+
 setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
-setSunRotation(randFloat(0, 2 * Math.PI));
+setSunRotation(randomAngle());
 setSunElevation(randFloat(1/5, 1/3) * Math.PI);
 setWaterWaviness(2);
 

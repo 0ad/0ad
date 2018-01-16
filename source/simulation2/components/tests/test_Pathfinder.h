@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,6 +62,53 @@ public:
 		TS_ASSERT_EQUALS(Pathfinding::NAVCELL_SIZE.ToInt_RoundToNegInfinity(), Pathfinding::NAVCELL_SIZE.ToInt_RoundToInfinity());
 		TS_ASSERT_EQUALS(Pathfinding::NAVCELL_SIZE.ToInt_RoundToNearest(), Pathfinding::NAVCELL_SIZE_INT);
 		TS_ASSERT_EQUALS((Pathfinding::NAVCELL_SIZE >> 1).ToInt_RoundToZero(), Pathfinding::NAVCELL_SIZE_LOG2);
+	}
+
+	void test_pathgoal()
+	{
+		entity_pos_t i = Pathfinding::NAVCELL_SIZE;
+		CFixedVector2D u(i*1, i*0);
+		CFixedVector2D v(i*0, i*1);
+
+		{
+			PathGoal goal = { PathGoal::POINT, i*8, i*6 };
+			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*8 + v*4), u*8 + v*6);
+			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*8 + v*4), i*2);
+			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*0 + v*0), u*8 + v*6);
+			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*0 + v*0), i*10);
+		}
+
+		{
+			PathGoal goal = { PathGoal::CIRCLE, i*8, i*6, i*5 };
+			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*8 + v*4), u*8 + v*4);
+			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*8 + v*4), i*0);
+			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*0 + v*0), u*4 + v*3);
+			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*0 + v*0), i*5);
+		}
+
+		{
+			PathGoal goal = { PathGoal::INVERTED_CIRCLE, i*8, i*6, i*5 };
+			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*8 + v*4), u*8 + v*1);
+			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*8 + v*4), i*3);
+			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*0 + v*0), u*0 + v*0);
+			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*0 + v*0), i*0);
+		}
+
+		{
+			PathGoal goal = { PathGoal::SQUARE, i*8, i*6, i*4, i*3, u, v };
+			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*8 + v*4), u*8 + v*4);
+			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*8 + v*4), i*0);
+			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*0 + v*0), u*4 + v*3);
+			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*0 + v*0), i*5);
+		}
+
+		{
+			PathGoal goal = { PathGoal::INVERTED_SQUARE, i*8, i*6, i*4, i*3, u, v };
+			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*8 + v*4), u*8 + v*3);
+			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*8 + v*4), i*1);
+			TS_ASSERT_EQUALS(goal.NearestPointOnGoal(u*0 + v*0), u*0 + v*0);
+			TS_ASSERT_EQUALS(goal.DistanceToPoint(u*0 + v*0), i*0);
+		}
 	}
 
 	void test_performance_DISABLED()

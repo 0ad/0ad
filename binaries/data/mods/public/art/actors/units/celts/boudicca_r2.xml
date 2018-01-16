@@ -10,7 +10,9 @@
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
         <prop actor="props/units/cape_animated_celt_boudicca_chariot.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="skeletal/celt_boudicca_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_boudicca_2.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -18,7 +20,6 @@
     <variant file="biped/attack_ranged_javelinist.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/gather_praise.xml"/>
-    <variant name="carry_meat"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

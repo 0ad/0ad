@@ -34,7 +34,7 @@ SimpleObject.prototype.place = function(centerX, centerZ, player, avoidSelf, con
 		while (true)
 		{
 			let distance = randFloat(this.minDistance, this.maxDistance);
-			let angle = randFloat(0, 2 * Math.PI);
+			let angle = randomAngle();
 
 			let x = centerX + 0.5 + distance * Math.cos(angle);
 			let z = centerZ + 0.5 + distance * Math.sin(angle);

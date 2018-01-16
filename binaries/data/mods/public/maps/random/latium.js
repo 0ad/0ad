@@ -46,7 +46,6 @@ const aRockLarge = "actor|geology/stone_granite_large.xml";
 const aRockMed = "actor|geology/stone_granite_med.xml";
 const aRockSmall = "actor|geology/stone_granite_small.xml";
 
-// terrain + entity (for painting)
 const pPalmForest = [tForestFloor+TERRAIN_SEPARATOR+oPalm, tGrass];
 const pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
 const pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
@@ -291,14 +290,14 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				t = (diffH > 1.2) ? tGrassCliff : tGrassDry;
 				if (diffH < 0.5 && randBool(0.02))
-					placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrassDry, 0, randFloat(0, 2 * Math.PI));
+					placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrassDry, 0, randomAngle());
 			}
 			else if (grassNoise > 0.61)
 			{
 				t = (diffH > 1.2 ? tGrassRock : tGrassShrubs);
 			}
 			else if (diffH < 0.5 && randBool(0.02))
-				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randFloat(0, 2 * Math.PI));
+				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randomAngle());
 		}
 
 		placeTerrain(ix, iz, t);
@@ -454,6 +453,8 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 6, clRock, 6, clFood, 8),
 	1.5 * numPlayers, 100
 );
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clCliff, 2, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
 
 setSkySet("sunny");
 setWaterColor(0.024,0.262,0.224);

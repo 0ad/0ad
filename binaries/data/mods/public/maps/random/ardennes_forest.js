@@ -55,7 +55,6 @@ var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
 var clForestJoin = createTileClass();
-var clWater = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
@@ -268,7 +267,7 @@ for (var ix = 0; ix < mapSize; ix++)
 
 		if (h > 35 && randBool(0.1) ||
 		    h < 15 && randBool(0.05) && hillDecoClass.countMembersInRadius(ix, iz, 1) == 0)
-			placeObject(ix + randFloat(0, 1), iz + randFloat(0, 1), pickRandom(aTrees), 0, randFloat(0, 2 * Math.PI));
+			placeObject(ix + randFloat(0, 1), iz + randFloat(0, 1), pickRandom(aTrees), 0, randomAngle());
 	}
 }
 
@@ -406,7 +405,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 4, clFood, 20),
+	avoidClasses(clForest, 0, clPlayer, 20, clHill, 4, clFood, 20),
 	randIntInclusive(3, 12) * numPlayers + 2, 50
 );
 
@@ -452,6 +451,8 @@ createObjectGroupsByAreasDeprecated(group, 0,
 	scaleByMapSize(50, 300), 20,
 	[explorableArea]
 );
+
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 setTerrainAmbientColor(0.44,0.51,0.56);
 setUnitsAmbientColor(0.44,0.51,0.56);

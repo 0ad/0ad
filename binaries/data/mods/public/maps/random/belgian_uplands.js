@@ -1,8 +1,3 @@
-// Prepare progress calculation
-var timeArray = [];
-timeArray.push(Date.now());
-
-// Importing rmgen libraries
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("heightmap");
 
@@ -32,10 +27,7 @@ var waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (height
 var waterHeightAdjusted = waterHeight + MIN_HEIGHT;
 setWaterHeight(waterHeight);
 
-//////////
 // Prepare terrain texture by height placement
-//////////
-
 var textueByHeight = [];
 
 // Deep water
@@ -92,11 +84,8 @@ textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 6/6 * (heightRang
 
 var minTerrainDistToBorder = 3;
 
-// Time check 1
-timeArray.push(Date.now());
 Engine.SetProgress(5);
 
-// START THE GIANT WHILE LOOP:
 // - Generate Heightmap
 // - Search valid start position tiles
 // - Choose a good start position derivation (largest distance between closest players)
@@ -105,6 +94,8 @@ var goodStartPositionsFound = false;
 var minDistBetweenPlayers = 16 + mapSize / 16; // Don't set this higher than 25 for tiny maps! It will take forever with 8 players!
 var enoughTiles = false;
 var tries = 0;
+var lowerHeightLimit = textueByHeight[3].upperHeightLimit;
+var upperHeightLimit = textueByHeight[6].upperHeightLimit;
 
 while (!goodStartPositionsFound)
 {
@@ -124,8 +115,6 @@ while (!goodStartPositionsFound)
 	var possibleStartPositions = [];
 	var neededDistance = 7;
 	var distToBorder = 2 * neededDistance; // Has to be greater than neededDistance! Otherwise the check if low/high ground is near will fail...
-	var lowerHeightLimit = textueByHeight[3].upperHeightLimit;
-	var upperHeightLimit = textueByHeight[6].upperHeightLimit;
 
 	// Check for valid points by height
 	for (var x = distToBorder + minTerrainDistToBorder; x < mapSize - distToBorder - minTerrainDistToBorder; x++)
@@ -162,7 +151,6 @@ while (!goodStartPositionsFound)
 	{
 		if (Math.euclidDistance2D(...possibleStartPositions[i], mapSize / 2, mapSize / 2) < maxDistToCenter)
 			possibleStartPositionsTemp.push(possibleStartPositions[i]);
-			// placeTerrain(possibleStartPositions[i][0], possibleStartPositions[i][1], "purple"); // Only works properly for 1 loop
 	}
 	possibleStartPositions = clone(possibleStartPositionsTemp);
 	// Reduce to tiles near low and high ground (Rectangular check since faster) to make sure each player has access to all resource types.
@@ -195,7 +183,6 @@ while (!goodStartPositionsFound)
 		}
 		if (numLowTiles > minNumLowTiles && numHighTiles > minNumHighTiles)
 			possibleStartPositionsTemp.push(possibleStartPositions[i]);
-			// placeTerrain(possibleStartPositions[i][0], possibleStartPositions[i][1], "red"); // Only works properly for 1 loop
 	}
 
 	possibleStartPositions = clone(possibleStartPositionsTemp);
@@ -254,17 +241,12 @@ while (!goodStartPositionsFound)
 		}
 		else
 			log("maxMinDist <= " + minDistBetweenPlayers + ", maxMinDist = " + maxMinDist);
-	} // End of derivation check
-} // END THE GIANT WHILE LOOP
+	}
+}
 
-// Time check 2
-timeArray.push(Date.now());
 Engine.SetProgress(60);
 
-////////
-// Paint terrain by height and add props
-////////
-
+log("Painting terrain by height and add props...");
 var propDensity = 1; // 1 means as determined in the loop, less for large maps as set below
 if (mapSize > 500)
 	propDensity = 1/4;
@@ -285,97 +267,97 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 				if (i == 0) // ...deep water
 				{
 					if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/pond_lillies_large.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/pond_lillies_large.xml", 0, randomAngle());
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/water_lillies.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/water_lillies.xml", 0, randomAngle());
 				}
 				if (i == 1) // ...medium water (with fish)
 				{
 					if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/pond_lillies_large.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/pond_lillies_large.xml", 0, randomAngle());
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/water_lillies.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/water_lillies.xml", 0, randomAngle());
 				}
 				if (i == 2) // ...low water/mud
 				{
 					if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/water_log.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/water_log.xml", 0, randomAngle());
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/water_lillies.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/water_lillies.xml", 0, randomAngle());
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|geology/highland_c.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|geology/highland_c.xml", 0, randomAngle());
 					else if (randBool(propDensity / 20))
-						placeObject(x, y, "actor|props/flora/reeds_pond_lush_b.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/reeds_pond_lush_b.xml", 0, randomAngle());
 					else if (randBool(propDensity / 10))
-						placeObject(x, y, "actor|props/flora/reeds_pond_lush_a.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/reeds_pond_lush_a.xml", 0, randomAngle());
 				}
 				if (i == 3) // ...water suroundings/bog
 				{
 					if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/water_log.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/water_log.xml", 0, randomAngle());
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|geology/highland_c.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|geology/highland_c.xml", 0, randomAngle());
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/reeds_pond_lush_a.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/reeds_pond_lush_a.xml", 0, randomAngle());
 				}
 				if (i == 4) // ...low height grass
 				{
 					if (randBool(propDensity / 800))
-						placeObject(x, y, "actor|props/flora/grass_field_flowering_tall.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/grass_field_flowering_tall.xml", 0, randomAngle());
 					else if (randBool(propDensity / 400))
-						placeObject(x, y, "actor|geology/gray_rock1.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|geology/gray_rock1.xml", 0, randomAngle());
 					else if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/bush_tempe_sm_lush.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/bush_tempe_sm_lush.xml", 0, randomAngle());
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/bush_tempe_b.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/bush_tempe_b.xml", 0, randomAngle());
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/grass_soft_small_tall.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/grass_soft_small_tall.xml", 0, randomAngle());
 				}
 				if (i == 5) // ...medium height grass
 				{
 					if (randBool(propDensity / 800))
-						placeObject(x, y, "actor|geology/decal_stone_medit_a.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|geology/decal_stone_medit_a.xml", 0, randomAngle());
 					else if (randBool(propDensity / 400))
-						placeObject(x, y, "actor|props/flora/decals_flowers_daisies.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/decals_flowers_daisies.xml", 0, randomAngle());
 					else if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/bush_tempe_underbrush.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/bush_tempe_underbrush.xml", 0, randomAngle());
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/grass_soft_small_tall.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/grass_soft_small_tall.xml", 0, randomAngle());
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/grass_temp_field.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/grass_temp_field.xml", 0, randomAngle());
 				}
 				if (i == 6) // ...high height grass
 				{
 					if (randBool(propDensity / 400))
-						placeObject(x, y, "actor|geology/stone_granite_boulder.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|geology/stone_granite_boulder.xml", 0, randomAngle());
 					else if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/foliagebush.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/foliagebush.xml", 0, randomAngle());
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/bush_tempe_underbrush.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/bush_tempe_underbrush.xml", 0, randomAngle());
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/grass_soft_small_tall.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/grass_soft_small_tall.xml", 0, randomAngle());
 					else if (randBool(propDensity / 20))
-						placeObject(x, y, "actor|props/flora/ferns.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/ferns.xml", 0, randomAngle());
 				}
 				if (i == 7) // ...forest border (with wood/food plants/deer/rabits)
 				{
 					if (randBool(propDensity / 400))
-						placeObject(x, y, "actor|geology/highland_c.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|geology/highland_c.xml", 0, randomAngle());
 					else if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/bush_tempe_a.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/bush_tempe_a.xml", 0, randomAngle());
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/ferns.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/ferns.xml", 0, randomAngle());
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/grass_soft_tuft_a.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/grass_soft_tuft_a.xml", 0, randomAngle());
 				}
 				if (i == 8) // ...woods
 				{
 					if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|geology/highland2_moss.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|geology/highland2_moss.xml", 0, randomAngle());
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/grass_soft_tuft_a.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/grass_soft_tuft_a.xml", 0, randomAngle());
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/ferns.xml", 0, randFloat(0, 2 * Math.PI));
+						placeObject(x, y, "actor|props/flora/ferns.xml", 0, randomAngle());
 				}
 				break;
 			}
@@ -385,52 +367,40 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 	}
 }
 
-// Time check 3
-timeArray.push(Date.now());
 Engine.SetProgress(90);
 
-////////
-// Place players and start resources
-////////
-
-for (var p = 0; p < numPlayers; p++)
+if (isNomad())
+	placePlayersNomad(createTileClass(), new HeightConstraint(lowerHeightLimit, upperHeightLimit));
+else
 {
-	var actualX = possibleStartPositions[bestDerivation[p]][0];
-	var actualY = possibleStartPositions[bestDerivation[p]][1];
-	placeCivDefaultStartingEntities(actualX, actualY, p + 1, false);
+	log("Placing players and starting resources...");
 
-	// Place some start resources
-	var uDist = 8;
-	var uSpace = 1;
-	for (var j = 1; j <= 4; ++j)
+	let playerIDs = sortAllPlayers();
+	let resourceDistance = 8;
+	let resourceSpacing = 1;
+	let resourceCount = 4;
+
+	for (let i = 0; i < numPlayers; ++i)
 	{
-		var uAngle = BUILDING_ORIENTATION - Math.PI * (2-j) / 2;
-		var count = 4;
-		for (var numberofentities = 0; numberofentities < count; numberofentities++)
-		{
-			var ux = actualX + uDist * Math.cos(uAngle) + numberofentities * uSpace * Math.cos(uAngle + Math.PI/2) - (0.75 * uSpace * Math.floor(count / 2) * Math.cos(uAngle + Math.PI/2));
-			var uz = actualY + uDist * Math.sin(uAngle) + numberofentities * uSpace * Math.sin(uAngle + Math.PI/2) - (0.75 * uSpace * Math.floor(count / 2) * Math.sin(uAngle + Math.PI/2));
+		let playerPos = new Vector2D(possibleStartPositions[bestDerivation[i]][0], possibleStartPositions[bestDerivation[i]][1]);
+		placeCivDefaultStartingEntities(playerPos.x, playerPos.y, playerIDs[i], false);
 
-			if (j % 2 == 0)
-				placeObject(ux, uz, "gaia/flora_bush_berry", 0, randFloat(0, 2 * Math.PI));
-			else
-				placeObject(ux, uz, "gaia/flora_tree_cypress", 0, randFloat(0, 2 * Math.PI));
+		for (let j = 1; j <= 4; ++j)
+		{
+			let uAngle = BUILDING_ORIENTATION - Math.PI * (2-j) / 2;
+			for (let k = 0; k < resourceCount; ++k)
+			{
+				let pos = Vector2D.sum([
+					playerPos,
+					new Vector2D(resourceDistance, 0).rotate(-uAngle),
+					new Vector2D(k * resourceSpacing, 0).rotate(-uAngle - Math.PI/2),
+					new Vector2D(-0.75 * resourceSpacing * Math.floor(resourceCount / 2), 0).rotate(-uAngle - Math.PI/2)
+				]);
+
+				placeObject(pos.x, pos.y, j % 2 ? "gaia/flora_tree_cypress" : "gaia/flora_bush_berry", 0, randomAngle());
+			}
 		}
 	}
 }
 
 ExportMap();
-
-// Time check 7
-timeArray.push(Date.now());
-
-// Calculate progress percentage with the time checks
-var generationTime = timeArray[timeArray.length - 1] - timeArray[0];
-log("Total generation time (ms): " + generationTime);
-
-for (var i = 0; i < timeArray.length; i++)
-{
-	var timeSinceStart = timeArray[i] - timeArray[0];
-	var progressPercentage = 100 * timeSinceStart / generationTime;
-	log("Time check " + i + ": Progress (%): " + progressPercentage);
-}

@@ -4,8 +4,6 @@ Engine.LoadLibrary("heightmap");
 
 InitMap();
 
-let genStartTime = Date.now();
-
 /**
  * Drags a path to a target height smoothing it at the edges and return some points along the path.
  */
@@ -53,14 +51,14 @@ let decorations = [
 
 function placeMine(point, centerEntity)
 {
-	placeObject(point.x, point.y, centerEntity, 0, randFloat(0, 2 * Math.PI));
+	placeObject(point.x, point.y, centerEntity, 0, randomAngle());
 	let quantity = randIntInclusive(11, 23);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
 		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(2, 5);
-		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(decorations), 0, randFloat(0, 2 * Math.PI));
+		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(decorations), 0, randomAngle());
 	}
 }
 
@@ -122,7 +120,7 @@ let clGrove = createTileClass();
 
 function placeGrove(point)
 {
-	placeObject(point.x, point.y, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randFloat(0, 2 * Math.PI));
+	placeObject(point.x, point.y, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randomAngle());
 	let quantity = randIntInclusive(20, 30);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
@@ -134,7 +132,7 @@ function placeGrove(point)
 			objectList = groveActors;
 		let x = point.x + dist * Math.cos(angle);
 		let y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(objectList), 0, randFloat(0, 2 * Math.PI));
+		placeObject(x, y, pickRandom(objectList), 0, randomAngle());
 		createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
 	}
 }
@@ -148,20 +146,20 @@ function placeCamp(point,
 	]
 )
 {
-	placeObject(point.x, point.y, centerEntity, 0, randFloat(0, 2 * Math.PI));
+	placeObject(point.x, point.y, centerEntity, 0, randomAngle());
 	let quantity = randIntInclusive(5, 11);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
 		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(1, 3);
-		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(otherEntities), 0, randFloat(0, 2 * Math.PI));
+		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(otherEntities), 0, randomAngle());
 	}
 }
 
 function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_berry", "gaia/fauna_chicken", "gaia/fauna_chicken"])
 {
-	let currentAngle = randFloat(0, 2 * Math.PI);
+	let currentAngle = randomAngle();
 	// Stone and chicken
 	let dAngle = 4/9 * Math.PI;
 	let angle = currentAngle + randFloat(dAngle / 4, 3 * dAngle / 4);
@@ -184,7 +182,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 			objectList = groveActors;
 		x = point.x + dist * Math.cos(angle);
 		y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(objectList), 0, randFloat(0, 2 * Math.PI));
+		placeObject(x, y, pickRandom(objectList), 0, randomAngle());
 		createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
 		currentAngle += dAngle;
 	}
@@ -207,12 +205,10 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 		dist = randFloat(10, 15);
 		x = point.x + dist * Math.cos(angle);
 		y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(foodEntities), 0, randFloat(0, 2 * Math.PI));
+		placeObject(x, y, pickRandom(foodEntities), 0, randomAngle());
 		currentAngle += dAngle;
 	}
 }
-
-log("Functions loaded after " + ((Date.now() - genStartTime) / 1000) + "s");
 
 /**
  * Environment settings
@@ -225,7 +221,6 @@ g_Environment.Water.WaterBody.Murkiness = 0.4;
 /**
  * Base terrain shape generation and settings
  */
- // Height range by map size
 let heightScale = (g_Map.size + 256) / 768 / 4;
 let heightRange = { "min": MIN_HEIGHT * heightScale, "max": MAX_HEIGHT * heightScale };
 
@@ -235,23 +230,19 @@ let waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (height
 let waterHeightAdjusted = waterHeight + MIN_HEIGHT; // Water height in RMGEN
 setWaterHeight(waterHeight);
 
-// Generate base terrain shape
+log("Generating terrain using diamon-square...");
 let medH = (heightRange.min + heightRange.max) / 2;
 let initialHeightmap = [[medH, medH], [medH, medH]];
 setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialHeightmap, 0.8);
 
-// Apply simple erosion
+log("Apply erosion...");
 for (let i = 0; i < 5; ++i)
 	splashErodeMap(0.1);
 
-// Final rescale
 rescaleHeightmap(heightRange.min, heightRange.max);
 
 Engine.SetProgress(25);
 
-/**
- * Prepare terrain texture placement
- */
 let heighLimits = [
 	heightRange.min + 1/3 * (waterHeightAdjusted - heightRange.min), // 0 Deep water
 	heightRange.min + 2/3 * (waterHeightAdjusted - heightRange.min), // 1 Medium Water
@@ -264,8 +255,10 @@ let heighLimits = [
 	waterHeightAdjusted + 6/8 * (heightRange.max - waterHeightAdjusted), // 8 Forest
 	waterHeightAdjusted + 7/8 * (heightRange.max - waterHeightAdjusted), // 9 Upper forest border
 	waterHeightAdjusted + (heightRange.max - waterHeightAdjusted)]; // 10 Hilltop
+
 let playerHeight = (heighLimits[4] + heighLimits[5]) / 2; // Average player height
 
+log("Determining height-dependent biome...");
 // Texture and actor presets
 let myBiome = [];
 myBiome.push({ // 0 Deep water
@@ -324,22 +317,14 @@ myBiome.push({ // 10 Hilltop
 	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|geology/highland1.xml"], 0.0]
 });
 
-log("Terrain shape generation and texture presets after " + ((Date.now() - genStartTime) / 1000) + "s");
-
 let [playerIDs, startLocations] = sortPlayersByLocation(getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
-
-log("Start location chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(30);
 
-/**
- * Smooth Start Locations before height region calculation
- */
+log("Smooth player locations...");
 for (let p = 0; p < playerIDs.length; ++p)
 	rectangularSmoothToHeight(startLocations[p], 35, 35, playerHeight, 0.7);
 
-/**
- * Add paths
- */
+log("Creating paths...");
 let tchm = getTileCenteredHeightmap(); // Calculate tileCenteredHeightMap (This has nothing to to with TILE_CENTERED_HEIGHT_MAP which should be false)
 let pathPoints = [];
 let clPath = createTileClass();
@@ -349,19 +334,13 @@ for (let i = 0; i < startLocations.length; ++i)
 	let target = startLocations[(i + 1) % startLocations.length];
 	pathPoints = pathPoints.concat(placeRandomPathToHeight(start, target, playerHeight, clPath));
 }
-
-log("Paths placed after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(45);
 
-/**
- * Get resource spots after players start locations calculation
- */
+log("Determining resource locations...");
 let avoidPoints = clone(startLocations);
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
 let resourceSpots = getPointsByHeight({ "min": (heighLimits[3] + heighLimits[4]) / 2, "max": (heighLimits[5] + heighLimits[6]) / 2 }, avoidPoints, clPath);
-
-log("Resource spots chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(55);
 
 /**
@@ -372,7 +351,6 @@ for (let h = 0; h < heighLimits.length; ++h)
 	areas.push([]);
 
 for (let x = 0; x < tchm.length; ++x)
-{
 	for (let y = 0; y < tchm[0].length; ++y)
 	{
 		if (g_Map.tileClasses[clPath].inclusionCount[x][y] > 0) // Avoid paths
@@ -390,7 +368,6 @@ for (let x = 0; x < tchm.length; ++x)
 				minHeight = heighLimits[h];
 		}
 	}
-}
 
 /**
  * Get max slope of each area
@@ -416,11 +393,8 @@ for (let h = 0; h < heighLimits.length; ++h)
 	}
 }
 
-/**
- * Paint areas by height and slope
- */
+log("Painting areas by height and slope...");
 for (let h = 0; h < heighLimits.length; ++h)
-{
 	for (let t = 0; t < areas[h].length; ++t)
 	{
 		let x = areas[h][t].x;
@@ -443,23 +417,22 @@ for (let h = 0; h < heighLimits.length; ++h)
 		g_Map.texture[x][y] = g_Map.getTextureID(texture);
 
 		if (actor)
-			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randFloat(0, 2 * Math.PI));
+			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randomAngle());
 	}
-}
-
-log("Terrain texture placement finished after " + ((Date.now() - genStartTime) / 1000) + "s");
 Engine.SetProgress(80);
 
-/**
- * Add start locations and resource spots after terrain texture and path painting
- */
-for (let p = 0; p < playerIDs.length; ++p)
-{
-	let point = startLocations[p];
-	placeCivDefaultStartingEntities(point.x, point.y, playerIDs[p], "walls");
-	placeStartLocationResources(startLocations[p]);
-}
+log("Placing players...");
+if (isNomad())
+	placePlayersNomad(createTileClass(), new HeightConstraint(heighLimits[4], heighLimits[5]));
+else
+	for (let p = 0; p < playerIDs.length; ++p)
+	{
+		let point = startLocations[p];
+		placeCivDefaultStartingEntities(point.x, point.y, playerIDs[p], true);
+		placeStartLocationResources(startLocations[p]);
+	}
 
+log("Placing resources, farmsteads, groves and camps...");
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let choice = i % 5;
@@ -468,13 +441,11 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	if (choice == 1)
 		placeMine(resourceSpots[i], "gaia/geology_metal_temperate_slabs");
 	if (choice == 2)
-		placeCustomFortress(resourceSpots[i].x, resourceSpots[i].y, pickRandom(fences), "other", 0, randFloat(0, 2 * Math.PI));
+		placeCustomFortress(resourceSpots[i].x, resourceSpots[i].y, pickRandom(fences), "other", 0, randomAngle());
 	if (choice == 3)
 		placeGrove(resourceSpots[i]);
 	if (choice == 4)
 		placeCamp(resourceSpots[i]);
 }
-
-log("Map generation finished after " + ((Date.now() - genStartTime) / 1000) + "s");
 
 ExportMap();

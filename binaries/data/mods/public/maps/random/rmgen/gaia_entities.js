@@ -88,7 +88,7 @@ function createStoneMineFormation(x, z, templateName, terrain, radius = 2.5, cou
 		new TerrainPainter(terrain),
 		null);
 
-	let angle = startAngle !== undefined ? startAngle : randFloat(0, 2 * Math.PI);
+	let angle = startAngle !== undefined ? startAngle : randomAngle();
 
 	for (let i = 0; i < count; ++i)
 	{
@@ -97,7 +97,7 @@ function createStoneMineFormation(x, z, templateName, terrain, radius = 2.5, cou
 			Math.round(z + (radius + randFloat(0, maxOffset)) * Math.sin(angle)),
 			templateName,
 			0,
-			randFloat(0, 2 * Math.PI));
+			randomAngle());
 		angle += 3/2 * Math.PI / count;
 	}
 }

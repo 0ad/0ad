@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,9 +42,9 @@ public:
 
 	entity_pos_t x, z; // position of center
 
-	CFixedVector2D u, v; // if [INVERTED_]SQUARE, then orthogonal unit axes
-
 	entity_pos_t hw, hh; // if [INVERTED_]SQUARE, then half width & height; if [INVERTED_]CIRCLE, then hw is radius
+
+	CFixedVector2D u, v; // if [INVERTED_]SQUARE, then orthogonal unit axes
 
 	entity_pos_t maxdist; // maximum distance wanted between two path waypoints
 
@@ -70,13 +70,12 @@ public:
 	bool RectContainsGoal(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1) const;
 
 	/**
-	 * Returns the minimum distance from the point with the given @p pos
-	 * to any point on the outline of the goal shape.
+	 * Returns the minimum distance from the point pos to any point on the goal shape.
 	 */
 	fixed DistanceToPoint(CFixedVector2D pos) const;
 
 	/**
-	 * Returns the coordinates of the point on the goal that is closest to pos in a straight line.
+	 * Returns the coordinates of the point on the goal that is closest to the point pos.
 	 */
 	CFixedVector2D NearestPointOnGoal(CFixedVector2D pos) const;
 };

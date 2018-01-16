@@ -24,7 +24,7 @@ Trigger.prototype.InitCaptureTheRelic = function()
 		cmpDamageReceiver.SetInvulnerability(true);
 
 		let cmpPositionRelic = Engine.QueryInterface(this.relics[i], IID_Position);
-		cmpPositionRelic.SetYRotation(randFloat(0, 2 * Math.PI));
+		cmpPositionRelic.SetYRotation(randomAngle());
 	}
 };
 

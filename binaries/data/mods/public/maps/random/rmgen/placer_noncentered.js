@@ -5,32 +5,27 @@
  */
 
 /**
- * The RectPlacer provides the points between (x1, z1) and (x2, z2) if they meet the Constraint.
+ * The RectPlacer provides the points on the tilegrid between (x1, z1) and (x2, z2) that meet the Constraint.
  */
 function RectPlacer(x1, z1, x2, z2)
 {
-	this.x1 = x1;
-	this.z1 = z1;
-	this.x2 = x2;
-	this.z2 = z2;
+	let mapSize = getMapSize();
 
-	if (x1 > x2 || z1 > z2)
-		throw new Error("RectPlacer: invalid bounds");
+	this.x1 = Math.round(Math.max(Math.min(x1, x2), 0));
+	this.x2 = Math.round(Math.min(Math.max(x1, x2), mapSize - 1));
+
+	this.z1 = Math.round(Math.max(Math.min(z1, z2), 0));
+	this.z2 = Math.round(Math.min(Math.max(z1, z2), mapSize - 1));
 }
 
 RectPlacer.prototype.place = function(constraint)
 {
-	if (!g_Map.inMapBounds(this.x1, this.z1) || !g_Map.inMapBounds(this.x2, this.z2))
-		return undefined;
-
 	let points = [];
 
 	for (let x = this.x1; x <= this.x2; ++x)
 		for (let z = this.z1; z <= this.z2; ++z)
 			if (constraint.allows(x, z))
 				points.push({ "x": x, "z": z });
-			else
-				return undefined;
 
 	return points;
 };
@@ -272,3 +267,41 @@ PathPlacer.prototype.place = function(constraint)
 	return ((failed > this.width*this.failfraction*dist) ? undefined : retVec);
 };
 
+/**
+ * Creates a winded path between the given two vectors.
+ * Uses a random angle at each step, so it can be more random than the sin form of the PathPlacer.
+ * Omits the given offset after the start and before the end.
+ */
+function RandomPathPlacer(pathStart, pathEnd, pathWidth, offset, blended)
+{
+	this.pathStart = Vector2D.add(pathStart, Vector2D.sub(pathEnd, pathStart).normalize().mult(offset)).round();
+	this.pathEnd = pathEnd;
+	this.offset = offset;
+	this.blended = blended;
+	this.clumpPlacer = new ClumpPlacer(diskArea(pathWidth), 1, 1, 1);
+	this.maxPathLength = fractionToTiles(2);
+}
+
+RandomPathPlacer.prototype.place = function(constraint)
+{
+	let pathLength = 0;
+	let points = [];
+	let position = this.pathStart;
+
+	while (position.distanceTo(this.pathEnd) >= this.offset && pathLength++ < this.maxPathLength)
+	{
+		position.add(
+			new Vector2D(1, 0).rotate(
+				-getAngle(this.pathStart.x, this.pathStart.y, this.pathEnd.x, this.pathEnd.y) +
+				-Math.PI / 2 * (randFloat(-1, 1) + (this.blended ? 0.5 : 0)))).round();
+
+		this.clumpPlacer.x = position.x;
+		this.clumpPlacer.z = position.y;
+
+		for (let point of this.clumpPlacer.place(constraint) || [])
+			if (points.every(p => p.x != point.x || p.z != point.z))
+				points.push(point);
+	}
+
+	return points;
+};

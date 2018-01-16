@@ -38,7 +38,6 @@ const aRockMedium = "actor|geology/stone_granite_med.xml";
 const aBushMedium = "actor|props/flora/bush_medit_me.xml";
 const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
-// terrain + entity (for painting)
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oOak, tGrassDForest + TERRAIN_SEPARATOR + oOakLarge, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest + TERRAIN_SEPARATOR + oAleppoPine, tGrassPForest];
 
@@ -57,7 +56,7 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var playerHillRadius = defaultPlayerBaseRadius();
+var playerHillRadius = defaultPlayerBaseRadius() / (isNomad() ? 1.5 : 1);
 var playerHillElevation = 20;
 
 var [playerIDs, playerX, playerZ, playerAngle] = playerPlacementCircle(0.35);
@@ -67,7 +66,7 @@ for (let i = 0; i < numPlayers; ++i)
 {
 	let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize);
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.95, 0.6, 10, Math.round(playerPos.x), Math.round(playerPos.y)),
+		new ClumpPlacer(diskArea(playerHillRadius), 0.95, 0.6, 10, Math.round(playerPos.x), Math.round(playerPos.y)),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, playerHillElevation, 2),
@@ -259,6 +258,8 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 Engine.SetProgress(90);
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 setSkySet("cirrus");
 setWaterColor(0.447, 0.412, 0.322);			// muddy brown

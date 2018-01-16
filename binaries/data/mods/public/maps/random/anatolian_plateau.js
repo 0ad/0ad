@@ -231,6 +231,8 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(13, 200), 50
 );
 
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
+
 setFogThickness(0.1);
 setFogFactor(0.2);
 

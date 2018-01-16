@@ -11,7 +11,7 @@ resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 Engine.SetProgress(10);
 
 const pos = randomStartingPositionPattern(getTeamsArray());
-addBases(pos.setup, pos.distance, pos.separation, randFloat(0, 2 * Math.PI));
+addBases(pos.setup, pos.distance, pos.separation, randomAngle());
 Engine.SetProgress(20);
 
 addElements([
@@ -189,5 +189,16 @@ addElements(shuffleArray([
 	}
 ]));
 Engine.SetProgress(90);
+
+placePlayersNomad(
+	g_TileClasses.player,
+	avoidClasses(
+		g_TileClasses.bluff, 4,
+		g_TileClasses.water, 4,
+		g_TileClasses.forest, 1,
+		g_TileClasses.metal, 4,
+		g_TileClasses.rock, 4,
+		g_TileClasses.mountain, 4,
+		g_TileClasses.animals, 2));
 
 ExportMap();

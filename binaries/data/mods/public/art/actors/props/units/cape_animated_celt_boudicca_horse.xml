@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_cavalry_javelin_ready_shield.xml">
+      <mesh>props/new/capes/f_cape_long.dae</mesh>
+      <textures>
+        <texture file="props/cape_celt_boudicca.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_cavalry_javelin.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

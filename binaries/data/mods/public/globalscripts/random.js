@@ -60,3 +60,11 @@ function randBool(p = 0.5)
 {
 	return Math.random() < p;
 }
+
+/**
+ * Returns a random radians between 0 and 360 degrees.
+ */
+function randomAngle()
+{
+	return randFloat(0, 2 * Math.PI);
+}

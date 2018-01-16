@@ -468,7 +468,10 @@ const glooxwrapper::StanzaExtension* glooxwrapper::IQ::findExtension(int type) c
 
 gloox::StanzaError glooxwrapper::IQ::error_error() const
 {
-	return m_Wrapped->error()->error();
+	const gloox::Error* error = m_Wrapped->error();
+	if (!error)
+		return gloox::StanzaErrorInternalServerError;
+	return error->error();
 }
 
 glooxwrapper::Tag* glooxwrapper::IQ::tag() const

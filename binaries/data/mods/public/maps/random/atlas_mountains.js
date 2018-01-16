@@ -30,7 +30,6 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const aCarob = "actor|flora/trees/carob.xml";
 const aAleppoPine = "actor|flora/trees/aleppo_pine.xml";
 
-// terrain + entity (for painting)
 const pForest1 = [tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor];
 const pForest2 = [tForestFloor + TERRAIN_SEPARATOR + oAleppoPine, tForestFloor];
 
@@ -47,7 +46,6 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clTreasure = createTileClass();
-var clGrass = createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(0.35),
@@ -107,7 +105,7 @@ createLayeredPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  [tGrass2,tGrassPatch],
  [1],
- avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10, clGrass, 15),
+ avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10),
  scaleByMapSize(15, 45),
  clDirt);
 
@@ -207,6 +205,8 @@ createStragglerTrees(
 	stayClasses(clHill, 2),
 	clForest,
 	stragglerTrees / 5);
+
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 setFogFactor(0.2);
 setFogThickness(0.14);

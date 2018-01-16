@@ -192,33 +192,20 @@ function GetSimState()
 	return g_SimState;
 }
 
+function GetMultipleEntityStates(ents)
+{
+	if (!ents.length)
+		return null;
+	let entityStates = Engine.GuiInterfaceCall("GetMultipleEntityStates", ents);
+	for (let item of entityStates)
+		g_EntityStates[item.entId] = deepfreeze(item.state);
+	return entityStates;
+}
+
 function GetEntityState(entId)
 {
 	if (!g_EntityStates[entId])
-	{
-		g_EntityStates[entId] = Engine.GuiInterfaceCall("GetEntityState", entId);
-
-		// Freeze all existing properties, but allow GetExtendedEntityState to extend the object
-		if (g_EntityStates[entId])
-			for (let name of Object.getOwnPropertyNames(g_EntityStates[entId]))
-				if (typeof prop == 'object' && prop !== null)
-					deepfreeze(g_EntityStates[entId][name]);
-	}
-
-	return g_EntityStates[entId];
-}
-
-function GetExtendedEntityState(entId)
-{
-	let entState = GetEntityState(entId);
-	if (entState && !entState.extended)
-	{
-		let extension = Engine.GuiInterfaceCall("GetExtendedEntityState", entId);
-		for (let prop in extension)
-			entState[prop] = extension[prop];
-		entState.extended = true;
-		g_EntityStates[entId] = deepfreeze(entState);
-	}
+		g_EntityStates[entId] = deepfreeze(Engine.GuiInterfaceCall("GetEntityState", entId));
 
 	return g_EntityStates[entId];
 }
@@ -744,6 +731,8 @@ function onTick()
 	if (g_Selection.dirty)
 	{
 		g_Selection.dirty = false;
+		// When selection changed, get the entityStates of new entities
+		GetMultipleEntityStates(g_Selection.toList().filter(entId => !g_EntityStates[entId]));
 
 		updateGUIObjects();
 
@@ -797,6 +786,8 @@ function onSimulationUpdate()
 
 	if (!GetSimState())
 		return;
+
+	GetMultipleEntityStates(g_Selection.toList());
 
 	updateCinemaPath();
 	handleNotifications();
@@ -960,7 +951,7 @@ function updatePanelEntities()
 
 	for (let ent of panelEnts)
 	{
-		let panelEntState = GetExtendedEntityState(ent);
+		let panelEntState = GetEntityState(ent);
 		let template = GetTemplateData(panelEntState.template);
 
 		let panelEnt = g_PanelEntities.find(pEnt => ent == pEnt.ent);
@@ -1107,7 +1098,7 @@ function updateDebug()
 	let selection = g_Selection.toList();
 	if (selection.length)
 	{
-		let entState = GetExtendedEntityState(selection[0]);
+		let entState = GetEntityState(selection[0]);
 		if (entState)
 		{
 			let template = GetTemplateData(entState.template);

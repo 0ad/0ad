@@ -13,7 +13,8 @@
         <animation file="quadraped/elephant_asian_armor_walk.dae" name="Walk" speed="20"/>
         <animation file="quadraped/elephant_asian_armor_walk.dae" name="Run" speed="20"/>
         <animation event="0.5" file="quadraped/elephant_asian_armor_attack.dae" name="attack_melee" speed="75"/>
-        <animation file="quadraped/elephant_asian_armor_death.dae" name="Death" speed="75"/>
+        <animation file="quadraped/elephant_asian_armor_death.dae" id="death1" name="Death" speed="75"/>
+        <animation file="quadraped/elephant_asian_armor_death.dae" id="death2" name="Death" speed="75"/>
       </animations>
       <mesh>skeletal/sele_champion_elephant.dae</mesh>
       <props>

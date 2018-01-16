@@ -37,7 +37,6 @@ const aRockLarge = "actor|geology/stone_granite_large.xml";
 const aRockMed = "actor|geology/stone_granite_med.xml";
 const aRockSmall = "actor|geology/stone_granite_small.xml";
 
-// terrain + entity (for painting)
 const pPalmForest = [tForestFloor+TERRAIN_SEPARATOR+oPalm, tGrass];
 const pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
 const pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
@@ -64,7 +63,7 @@ var clBaseResource = createTileClass();
 //array holding starting islands based on number of players
 var startingPlaces=[[0],[0,3],[0,2,4],[0,1,3,4],[0,1,2,3,4],[0,1,2,3,4,5]];
 
-var startAngle = randFloat(0, 2 * Math.PI);
+var startAngle = randomAngle();
 var numIslands = Math.max(6, numPlayers);
 var islandX = [];
 var islandZ = [];
@@ -192,10 +191,7 @@ createAreasInAreas(
 
 Engine.SetProgress(38);
 
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
-		if (getHeight(ix,iz) < 0)
-			addToClass(ix,iz,clWater);
+paintTileClassBasedOnHeight(-Infinity, 0, Elevation_ExcludeMin_ExcludeMax, clWater);
 
 log("Creating forests...");
 var forestTypes = [
@@ -363,6 +359,8 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(10,20), 100
 );
 Engine.SetProgress(99);
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clBaseResource, 4, clHill, 4));
 
 setSkySet("sunny");
 setWaterColor(0.2,0.294,0.49);
