@@ -1,5 +1,5 @@
 /**
- * @file An Area is a set of points identified by an ID that was registered with the Map.
+ * @file An Area is a set of points identified by an ID that was registered with the RandomMap.
  */
 
 function Area(points, id)

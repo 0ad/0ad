@@ -15,7 +15,7 @@ var g_Camera = {
 function InitMap()
 {
 	log("Creating new map...");
-	g_Map = new Map(g_MapSettings.Size, g_MapSettings.BaseHeight);
+	g_Map = new RandomMap(g_MapSettings.Size, g_MapSettings.BaseHeight);
 	initTerrain(g_MapSettings.BaseTerrain);
 }
 
