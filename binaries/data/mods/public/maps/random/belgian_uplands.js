@@ -139,7 +139,6 @@ while (!goodStartPositionsFound)
 
 				if (isPossible)
 					possibleStartPositions.push([x, y]);
-					// placeTerrain(x, y, "blue"); // For debug reasons. Plz don't remove. // Only works properly for 1 loop
 			}
 		}
 
@@ -262,7 +261,8 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 		{
 			if (getHeight(x, y) >= textureMinHeight && getHeight(x, y) <= textueByHeight[i].upperHeightLimit)
 			{
-				placeTerrain(x, y, textueByHeight[i].terrain);
+				createTerrain(textueByHeight[i].terrain).place(x, y);
+
 				// Add some props at...
 				if (i == 0) // ...deep water
 				{

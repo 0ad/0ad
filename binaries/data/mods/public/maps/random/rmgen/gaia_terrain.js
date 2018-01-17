@@ -191,7 +191,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 					setHeight(ix, iz, newHeight + 4);
 
 				if (terrain !== undefined)
-					placeTerrain(ix, iz, terrain);
+					createTerrain(terrain).place(ix, iz);
 
 				if (tileClass !== undefined)
 					addToClass(ix, iz, tileClass);
@@ -578,9 +578,9 @@ function createPassage(args)
 				addToClass(location.x, location.y, args.tileClass);
 
 			if (args.edgeTerrain && smoothDistance > 0)
-				placeTerrain(location.x, location.y, args.edgeTerrain);
+				createTerrain(args.edgeTerrain).place(location.x, location.y);
 			else if (args.terrain)
-				placeTerrain(location.x, location.y, args.terrain);
+				createTerrain(args.terrain).place(location.x, location.y);
 		}
 	}
 }

@@ -94,7 +94,8 @@ for (var ix = 0; ix < mapSize; ix++)
 	{
 		if (g_Map.inMapBounds(ix,iz))
 		{
-			placeTerrain(ix, iz, tGrass);
+			createTerrain(tGrass).place(ix, iz);
+
 			let height = baseHeight + randFloat(-1, 1) + scaleByMapSize(1, 3) * (Math.cos(ix / scaleByMapSize(5, 30)) + Math.sin(iz / scaleByMapSize(5, 30)));
 			setHeight(ix, iz, height);
 			baseHeights[ix].push(height);

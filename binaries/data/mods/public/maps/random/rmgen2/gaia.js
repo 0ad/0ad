@@ -1258,7 +1258,7 @@ function paintHeightmap(mapName, func = undefined)
 			{
 				let i = hmTile.x * hmSize + hmTile.y;
 				let tile = mapData.pallet[mapData.tilemap[i]];
-				placeTerrain(x, y, tile);
+				createTerrain(tile).place(x, y);
 
 				if (func)
 					func(tile, x, y);

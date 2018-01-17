@@ -194,11 +194,6 @@ function placeObject(x, z, type, player, angle)
 		g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 
-function placeTerrain(x, z, terrainNames)
-{
-	createTerrain(terrainNames).place(x, z);
-}
-
 function isCircularMap()
 {
 	return !!g_MapSettings.CircularMap;
@@ -447,9 +442,4 @@ function checkIfInClass(x, z, id)
 		return 0;
 
 	return members;
-}
-
-function getTerrainTexture(x, y)
-{
-	return g_Map.getTexture(x, y);
 }

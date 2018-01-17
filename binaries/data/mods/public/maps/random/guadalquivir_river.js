@@ -123,7 +123,7 @@ paintRiver({
 	"meanderLong": 0,
 	"waterFunc": (ix, iz, height, z) => {
 		addToClass(ix, iz, clRiver);
-		placeTerrain(ix, iz, tWater);
+		createTerrain(tWater).place(ix, iz);
 
 		if (height < shallowHeight && (
 		    z > 0.3 && z < 0.4 ||

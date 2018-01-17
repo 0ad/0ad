@@ -142,7 +142,7 @@ for (let i = 0; i < numRivers; ++i)
 				return;
 
 			setHeight(ix, iz, newHeight);
-			placeTerrain(ix, iz, height >= 0 ? tShore : tWater);
+			createTerrain(height >= 0 ? tShore : tWater).place(ix, iz);
 
 			if (isShallow)
 				addToClass(ix, iz, clShallow);

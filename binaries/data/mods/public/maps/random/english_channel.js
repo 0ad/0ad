@@ -99,7 +99,7 @@ paintRiver({
 	"meanderShort": 20,
 	"meanderLong": 0,
 	"waterFunc": (ix, iz, height, riverFraction) => {
-		placeTerrain(ix, iz, height < -1.5 ? tWater : tShore);
+		createTerrain(height < -1.5 ? tWater : tShore).place(ix, iz);
 	},
 	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
 		setHeight(ix, iz, landHeight + 0.1);

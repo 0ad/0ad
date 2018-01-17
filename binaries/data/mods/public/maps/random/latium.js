@@ -307,7 +307,7 @@ for (var ix = 0; ix < mapSize; ix++)
 				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randomAngle());
 		}
 
-		placeTerrain(ix, iz, t);
+		createTerrain(t).place(ix, iz);
 	}
 
 Engine.SetProgress(30);

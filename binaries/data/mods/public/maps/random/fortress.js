@@ -106,7 +106,7 @@ for (let i = 0; i < numPlayers; ++i)
 			    tx - ty + minBoundY - minBoundX < tilesSize &&
 			    ty - tx - minBoundY + minBoundX < tilesSize)
 			{
-				placeTerrain(tx, ty, tRoad);
+				createTerrain(tRoad).place(tx, ty);
 				addToClass(tx, ty, clPlayer);
 			}
 		}

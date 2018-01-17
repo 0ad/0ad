@@ -101,10 +101,7 @@ paintRiver({
 		if (height < 0)
 			addToClass(ix, iz, clWater);
 
-		if (height < -1.5)
-			placeTerrain(ix, iz, tWater);
-		else
-			placeTerrain(ix, iz, tShore);
+		createTerrain(height < -1.5 ? tWater : tShore).place(ix, iz);
 	}
 });
 Engine.SetProgress(20);
