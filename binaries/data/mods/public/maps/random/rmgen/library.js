@@ -183,24 +183,9 @@ function createObjectGroupsByAreas(group, player, constraint, amount, retryFacto
 
 function createTerrain(terrain)
 {
-	if (!(terrain instanceof Array))
-		return createSimpleTerrain(terrain);
-
-	return new RandomTerrain(terrain.map(t => createTerrain(t)));
-}
-
-function createSimpleTerrain(terrain)
-{
-	if (typeof(terrain) != "string")
-		throw new Error("createSimpleTerrain expects string as input, received " + uneval(terrain));
-
-	// Split string by pipe | character, this allows specifying terrain + tree type in single string
-	let params = terrain.split(TERRAIN_SEPARATOR, 2);
-
-	if (params.length != 2)
-		return new SimpleTerrain(terrain);
-
-	return new SimpleTerrain(params[0], params[1]);
+	return typeof terrain == "string" ?
+		new SimpleTerrain(...terrain.split(TERRAIN_SEPARATOR)) :
+		new RandomTerrain(terrain.map(t => createTerrain(t)));
 }
 
 function placeObject(x, z, type, player, angle)
