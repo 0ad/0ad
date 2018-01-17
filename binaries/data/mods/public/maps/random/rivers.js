@@ -50,7 +50,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = getMapArea();
 const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
@@ -101,13 +100,7 @@ placePlayerBases({
 
 log("Creating central lake...");
 createArea(
-	new ClumpPlacer(
-		mapArea / 100 * Math.pow(scaleByMapSize(1, 6), 1/8),
-		0.7,
-		0.1,
-		10,
-		mapCenter.x,
-		mapCenter.y),
+	new ClumpPlacer(diskArea(fractionToTiles(0.075)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),

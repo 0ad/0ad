@@ -54,11 +54,8 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = getMapArea();
 const mapCenter = getMapCenter();
 const mapBounds = getMapBounds();
-
-const lSize = Math.pow(scaleByMapSize(1, 6), 1/8);
 
 var clPlayer = createTileClass();
 var clPlayerTerritory = createTileClass();
@@ -421,7 +418,7 @@ function unknownRiversAndLake()
 	{
 		log("Creating lake...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.09 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.17)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 				paintClass(clWater)
@@ -455,7 +452,7 @@ function unknownRiversAndLake()
 
 		log("Creating lake...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.005, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+			new ClumpPlacer(Math.square(mapSize) * 0.005, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 				paintClass(clWater)
@@ -466,7 +463,7 @@ function unknownRiversAndLake()
 	{
 		log("Creating small central island...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.006 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				landElevationPainter,
 				paintClass(clWater)
@@ -649,7 +646,7 @@ function unknownPasses()
 	{
 		log("Create central lake...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.03 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.1)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 3),
 				paintClass(clWater)
@@ -659,7 +656,7 @@ function unknownPasses()
 	{
 		log("Fill area between the paths...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.005, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 4),
 				paintClass(clWater)
@@ -719,7 +716,7 @@ function unknownLowlands()
 
 	log("Creating the big central area...");
 	createArea(
-		new ClumpPlacer(mapArea * 0.091 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 		[
 			landElevationPainter,
 			paintClass(clWater)

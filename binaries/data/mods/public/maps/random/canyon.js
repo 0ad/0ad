@@ -44,7 +44,6 @@ InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapArea = getMapArea();
 var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
@@ -85,9 +84,8 @@ for (let i = 0; i < numPlayers; ++i)
 		]);
 
 log("Creating center area...");
-var lSize = Math.pow(scaleByMapSize(1, 6), 1/8);
 createArea(
-	new ClumpPlacer(mapArea * 0.065 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(fractionToTiles(0.16)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
@@ -123,7 +121,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 	var tz = randIntInclusive(1, mapSize - 1);
 
 	var newarea = createArea(
-		new ClumpPlacer(mapArea * 0.01 * lSize, 0.7, 0.1, 10, tx, tz),
+		new ClumpPlacer(diskArea(fractionToTiles(0.06)), 0.7, 0.1, 10, tx, tz),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
@@ -158,22 +156,15 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 			}
 		}
 
-		createArea(
-			new PathPlacer(tx, tz, playerPosition[p1].x, playerPosition[p1].y, scaleByMapSize(11, 17), 0.4, 3 * scaleByMapSize(1, 4), 0.1, 0.1),
-			[
-				new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
-				paintClass(clLand)
-			]);
-
-		if (numPlayers > 1)
-			createArea(
-				new PathPlacer(tx, tz, playerPosition[p2].x, playerPosition[p2].y, scaleByMapSize(11, 17), 0.4, 3 * scaleByMapSize(1, 4), 0.1, 0.1),
-				[
-					new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-					new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
-					paintClass(clLand)
-				]);
+		for (let playerID of [p1, p2])
+			if (playerPosition[playerID])
+				createArea(
+					new PathPlacer(tx, tz, playerPosition[playerID].x, playerPosition[playerID].y, scaleByMapSize(11, 17), 0.4, scaleByMapSize(3, 12), 0.1, 0.1),
+					[
+						new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
+						new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
+						paintClass(clLand)
+					]);
 	}
 }
 

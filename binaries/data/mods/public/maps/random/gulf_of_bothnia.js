@@ -186,24 +186,23 @@ placePlayerBases({
 Engine.SetProgress(20);
 
 log("Creating the gulf...");
-var lSize = Math.pow(scaleByMapSize(1, 6), 1/8);
-var gulfLocations = [
-	[200, Math.round(fractionToTiles(0.5)), fractionToTiles(0.17)],
-	[120, Math.round(fractionToTiles(0.3)), fractionToTiles(0.18) * lSize],
-	[100, Math.round(fractionToTiles(0.01)), fractionToTiles(0.19) * lSize]
+var gulfLakePositions = [
+	{ "numCircles": 200, "z": Math.round(fractionToTiles(0.5)), "radius": fractionToTiles(0.175) },
+	{ "numCircles": 120, "z": Math.round(fractionToTiles(0.3)), "radius": fractionToTiles(0.2) },
+	{ "numCircles": 100, "z": Math.round(fractionToTiles(0.01)), "radius": fractionToTiles(0.225) }
 ];
 
-for (let [numCircles, z, firstRadius] of gulfLocations)
+for (let position of gulfLakePositions)
 	createArea(
 		new ChainPlacer(
 			2,
 			Math.floor(scaleByMapSize(5, 16)),
-			Math.floor(scaleByMapSize(35, numCircles)),
+			Math.floor(scaleByMapSize(35, position.numCircles)),
 			1,
 			mapCenter.x,
-			z,
+			position.z,
 			0,
-			[Math.floor(firstRadius)]),
+			[Math.floor(position.radius)]),
 		[
 			new LayeredPainter([tPrimary, tPrimary, tPrimary, tPrimary], [1, 4, 2]),
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),

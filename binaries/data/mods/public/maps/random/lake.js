@@ -74,7 +74,7 @@ createArea(
 		mapCenter.x,
 		mapCenter.y,
 		0,
-		[Math.floor(mapSize * 0.17 * Math.pow(scaleByMapSize(1, 6), 1/8))]),
+		[Math.floor(fractionToTiles(0.2))]),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, -3, 4),
 		paintClass(clWater)
