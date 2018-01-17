@@ -358,7 +358,7 @@ function unknownCentralRiver()
 	log("Creating small water spots at the map border to ensure separation of players...");
 	for (let coord of [coord1, coord2])
 		createArea(
-			new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(5, 10))), 0.95, 0.6, 10, ...coord),
+			new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(5, 10))), 0.95, 0.6, 10, coord.x, coord.y),
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2),
 			avoidClasses(clPlayerTerritory, 8));
 
@@ -742,8 +742,8 @@ function unknownMainland()
 function centralRiverCoordinates(horizontal)
 {
 	return [
-		new Vector2D(mapBounds.left, mapCenter.y),
-		new Vector2D(mapBounds.right, mapCenter.y)
+		new Vector2D(mapBounds.left + 1, mapCenter.y),
+		new Vector2D(mapBounds.right - 1, mapCenter.y)
 	].map(v => v.rotateAround(horizontal ? 0 : Math.PI / 2, mapCenter));
 }
 
