@@ -1,22 +1,8 @@
-/**
- * Returns starting position in tile coordinates for the given player.
- */
-function getPlayerTileCoordinates(playerIdx, teamIdx, fractionX, fractionZ)
-{
-	let playerAngle = startAngle + (playerIdx+1) * 2 * Math.PI / teams[teamIdx].length;
-
-	let fx = fractionToTiles(fractionX + 0.05 * Math.cos(playerAngle));
-	let fz = fractionToTiles(fractionZ + 0.05 * Math.sin(playerAngle));
-
-	return [playerAngle, fx, fz, Math.round(fx), Math.round(fz)];
-}
-
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("heightmap");
 
-const g_InitialMines = 1;
 const g_InitialMineDistance = 14;
 const g_InitialTrees = 50;
 
@@ -63,6 +49,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 const clPlayer = createTileClass();
 const clHill = createTileClass();
@@ -83,6 +70,8 @@ var startAngle = randomAngle();
 
 var teams = getTeamsArray();
 var numTeams = teams.filter(team => team).length;
+var teamPosition = distributePointsOnCircle(numTeams, startAngle, fractionToTiles(0.3), mapCenter)[0];
+var teamRadius = fractionToTiles(0.05);
 
 var teamNo = 0;
 for (let i = 0; i < teams.length; ++i)
@@ -91,105 +80,89 @@ for (let i = 0; i < teams.length; ++i)
 		continue;
 
 	++teamNo;
-	let teamAngle = startAngle + teamNo * 2 * Math.PI / numTeams;
-	let fractionX = 0.5 + 0.3 * Math.cos(teamAngle);
-	let fractionZ = 0.5 + 0.3 * Math.sin(teamAngle);
-	let teamX = fractionToTiles(fractionX);
-	let teamZ = fractionToTiles(fractionZ);
+
+	let [playerPosition, playerAngle] = distributePointsOnCircle(teams[i].length, startAngle + 2 * Math.PI / teams[i].length, teamRadius, teamPosition[i]);
+	playerPosition.forEach(position => position.round());
 
 	log("Creating island and starting entities for team " + i);
 	for (let p = 0; p < teams[i].length; ++p)
 	{
-		let [playerAngle, fx, fz, ix, iz] = getPlayerTileCoordinates(p, i, fractionX, fractionZ);
-		let playerPosition = new Vector2D(ix, iz);
-
-		addCivicCenterAreaToClass(playerPosition, clPlayer);
+		addCivicCenterAreaToClass(playerPosition[p], clPlayer);
 
 		createArea(
-			new ChainPlacer(2, Math.floor(scaleByMapSize(5, 11)), Math.floor(scaleByMapSize(60, 250)), 1, ix, iz, 0, [Math.floor(fractionToTiles(0.01))]),
+			new ChainPlacer(2, Math.floor(scaleByMapSize(5, 11)), Math.floor(scaleByMapSize(60, 250)), 1, playerPosition[p].x, playerPosition[p].y, 0, [Math.floor(fractionToTiles(0.01))]),
 			[
 				new LayeredPainter([tMainTerrain, tMainTerrain, tMainTerrain], [1, shoreRadius]),
 				new SmoothElevationPainter(ELEVATION_SET, landHeight, shoreRadius),
 				paintClass(clLand)
 			]);
 
-		placeCivDefaultStartingEntities(playerPosition, teams[i][p], false);
+		placeCivDefaultStartingEntities(playerPosition[p], teams[i][p], false);
 	}
 
-	log("Create initial mines for team " + i);
+	let mineAngle = randFloat(-1, 1) * Math.PI / teams[i].length;
+	let mines = [
+		{ "template": oMetalLarge, "angle": mineAngle },
+		{ "template": oStoneLarge, "angle": mineAngle + Math.PI / 4 }
+	];
+
+	log("Create starting resources for team " + i);
+	for (let p = 0; p < teams[i].length; ++p)
+		for (let mine of mines)
+		{
+			let position = Vector2D.add(playerPosition[p], new Vector2D(g_InitialMineDistance, 0).rotate(-playerAngle[p] - mine.angle));
+			createObjectGroup(
+				new SimpleGroup([new SimpleObject(mine.template, 1, 1, 0, 4)], true, clBaseResource, position.x, position.y),
+				0,
+				[avoidClasses(clBaseResource, 4, clPlayer, 4), stayClasses(clLand, 5)]);
+		}
+
+	log("Place initial trees for team " + i);
 	for (let p = 0; p < teams[i].length; ++p)
 	{
-		let [playerAngle, fx, fz, ix, iz] = getPlayerTileCoordinates(p, i, fractionX, fractionZ);
-		let mAngle = randFloat(playerAngle - Math.PI / teams[i].length, playerAngle + Math.PI / teams[i].length);
-
-		// Metal
-		let mX = Math.round(fx + g_InitialMineDistance * Math.cos(mAngle));
-		let mZ = Math.round(fz + g_InitialMineDistance * Math.sin(mAngle));
-		let group = new SimpleGroup(
-			[new SimpleObject(oMetalLarge, g_InitialMines, g_InitialMines, 0, 4)],
-			true, clBaseResource, mX, mZ
-		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 4), stayClasses(clLand, 2)]);
-
-		// Stone
-		let sX = Math.round(fx + g_InitialMineDistance * Math.cos(mAngle + Math.PI / 4));
-		let sZ = Math.round(fz + g_InitialMineDistance * Math.sin(mAngle + Math.PI / 4));
-		group = new SimpleGroup(
-			[new SimpleObject(oStoneLarge, g_InitialMines, g_InitialMines, 0, 4)],
-			true, clBaseResource, sX, sZ
-		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 4), stayClasses(clLand, 2)]);
-	}
-
-	log("Place initial trees and animals for team " + i);
-	for (let p = 0; p < teams[i].length; ++p)
-	{
-		let [playerAngle, fx, fz, ix, iz] = getPlayerTileCoordinates(p, i, fractionX, fractionZ);
-
-		placePlayerBaseChicken({
-			"playerID": teams[i][p],
-			"playerPosition": new Vector2D(fx, fz),
-			"BaseResourceClass": clBaseResource,
-			"baseResourceConstraint": stayClasses(clLand, 5)
-		});
-
-		// create initial berry bushes
-		let bbAngle = Math.PI * randFloat(1, 1.5);
-		let bbDist = 10;
-		let bbX = Math.round(fx + bbDist * Math.cos(bbAngle));
-		let bbZ = Math.round(fz + bbDist * Math.sin(bbAngle));
-		let group = new SimpleGroup(
-			[new SimpleObject(oFruitBush, 5, 5, 0, 3)],
-			true, clBaseResource, bbX, bbZ
-		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 4, clPlayer, 4), stayClasses(clLand, 5)]);
-
-		// create initial trees
 		let tries = 10;
-		let tDist = 16;
 		for (let x = 0; x < tries; ++x)
 		{
-			let tAngle = playerAngle + randFloat(-1, 1) * 2 * Math.PI / teams[i].length;
-			let tX = Math.round(fx + tDist * Math.cos(tAngle));
-			let tZ = Math.round(fz + tDist * Math.sin(tAngle));
-
-			group = new SimpleGroup(
+			let tAngle = playerAngle[p] + randFloat(-1, 1) * 2 * Math.PI / teams[i].length;
+			let treePosition = Vector2D.add(playerPosition[p], new Vector2D(16, 0).rotate(-tAngle)).round();
+			let group = new SimpleGroup(
 				[new SimpleObject(oTree2, g_InitialTrees, g_InitialTrees, 0, 7)],
-				true, clBaseResource, tX, tZ
+				true, clBaseResource, treePosition.x, treePosition.y
 			);
 			if (createObjectGroup(group, 0, [avoidClasses(clBaseResource, 4, clPlayer, 4), stayClasses(clLand, 4)]))
 				break;
 		}
+	}
 
-		// create huntable animals
-		group = new SimpleGroup(
-			[new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, Math.floor(mapSize * 0.2))],
-			true, clBaseResource, teamX, teamZ
+	for (let p = 0; p < teams[i].length; ++p)
+		placePlayerBaseBerries({
+			"template": oFruitBush,
+			"playerID": teams[i][p],
+			"playerPosition": playerPosition[p],
+			"BaseResourceClass": clBaseResource,
+			"baseResourceConstraint": new AndConstraint([avoidClasses(clPlayer, 4), stayClasses(clLand, 5)])
+		});
+
+	for (let p = 0; p < teams[i].length; ++p)
+		placePlayerBaseChicken({
+			"playerID": teams[i][p],
+			"playerPosition": playerPosition[p],
+			"BaseResourceClass": clBaseResource,
+			"baseResourceConstraint": new AndConstraint([avoidClasses(clPlayer, 4), stayClasses(clLand, 5)])
+		});
+
+	log("Creating huntable animals for team " + i + "...");
+	for (let p = 0; p < teams[i].length; ++p)
+	{
+		let group = new SimpleGroup(
+			[new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, Math.floor(fractionToTiles(0.2)))],
+			true, clBaseResource, teamPosition[i].x, teamPosition[i].y
 		);
 		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
+
 		group = new SimpleGroup(
-			[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, Math.floor(mapSize * 0.2))],
-			true, clBaseResource, teamX, teamZ
+			[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, Math.floor(fractionToTiles(0.2)))],
+			true, clBaseResource, teamPosition[i].x, teamPosition[i].y
 		);
 		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 	}
