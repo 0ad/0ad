@@ -111,22 +111,6 @@ function pickSize(sizes)
 }
 
 /**
- * Paints the entire map with the given terrain texture, tileclass and elevation.
- */
-function resetTerrain(terrain, tileClass, elevation)
-{
-	let mapCenter = getMapCenter();
-	createArea(
-		new ClumpPlacer(getMapArea(), 1, 1, 1, mapCenter.x, mapCenter.y),
-		[
-			new LayeredPainter([terrain], []),
-			new SmoothElevationPainter(ELEVATION_SET, elevation, 1),
-			paintClass(tileClass)
-		],
-		null);
-}
-
-/**
  * Choose starting locations for all players.
  *
  * @param {string} type - "radial", "line", "stronghold", "random"

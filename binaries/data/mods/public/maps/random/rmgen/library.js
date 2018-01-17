@@ -367,11 +367,6 @@ function setHeight(x, z, height)
 	g_Map.setHeight(x, z, height);
 }
 
-function initHeight(height)
-{
-	g_Map.initHeight(height);
-}
-
 /**
  *	Utility functions for classes
  */

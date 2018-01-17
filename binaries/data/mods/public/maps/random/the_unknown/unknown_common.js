@@ -337,7 +337,10 @@ function unknownCentralRiver()
 {
 	let waterHeight = -4;
 	let shallowHeight = -2;
-	initHeight(landHeight);
+
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(landHeight));
 
 	let horizontal = randBool();
 	let riverAngle = horizontal ? 0 : Math.PI / 2;
@@ -401,7 +404,9 @@ function unknownCentralRiver()
 function unknownRiversAndLake()
 {
 	let waterHeight = -4;
-	initHeight(landHeight);
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(landHeight));
 
 	let startAngle;
 	if (!isNomad())
@@ -475,7 +480,10 @@ function unknownRiversAndLake()
 function unknownEdgeSeas()
 {
 	let waterHeight = -4;
-	initHeight(landHeight);
+
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(landHeight));
 
 	let horizontal = randBool();
 	if (!isNomad())
@@ -513,7 +521,10 @@ function unknownEdgeSeas()
 function unknownGulf()
 {
 	let waterHeight = -3;
-	initHeight(landHeight);
+
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(landHeight));
 
 	let startAngle = randomAngle();
 	if (!isNomad())
@@ -554,7 +565,9 @@ function unknownLakes()
 {
 	let waterHeight = -5;
 
-	initHeight(landHeight);
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(landHeight));
 
 	if (!isNomad())
 	{
@@ -580,7 +593,10 @@ function unknownPasses()
 {
 	let mountainHeight = 24;
 	let waterHeight = -4;
-	initHeight(landHeight);
+
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(landHeight));
 
 	let playerAngle;
 	let startAngle;
@@ -659,7 +675,9 @@ function unknownLowlands()
 	let mountainHeight = 30;
 
 	log("Creating mountain that is going to separate players...");
-	initHeight(mountainHeight);
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(mountainHeight));
 
 	let playerAngle;
 	let startAngle;
@@ -713,7 +731,9 @@ function unknownLowlands()
  */
 function unknownMainland()
 {
-	initHeight(3);
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(3));
 
 	if (!isNomad())
 	{

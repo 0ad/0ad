@@ -9,7 +9,12 @@ initTileClasses();
 
 setFogFactor(0.04);
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
+createArea(
+	new MapBoundsPlacer(),
+	[
+		new TerrainPainter(g_Terrains.mainTerrain),
+		paintClass(g_TileClasses.land)
+	]);
 Engine.SetProgress(10);
 
 const mapSize = getMapSize();

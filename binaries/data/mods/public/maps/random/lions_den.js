@@ -19,7 +19,13 @@ const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();
 const startAngle = randomAngle();
 
-resetTerrain(topTerrain, g_TileClasses.land, hillHeight);
+createArea(
+	new MapBoundsPlacer(),
+	[
+		new TerrainPainter(topTerrain),
+		new ElevationPainter(hillHeight),
+		paintClass(g_TileClasses.land)
+	]);
 Engine.SetProgress(10);
 
 addBases("radial", fractionToTiles(0.4), fractionToTiles(randFloat(0.05, 0.1)), startAngle);

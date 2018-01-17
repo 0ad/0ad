@@ -8,12 +8,18 @@ setSelectedBiome();
 initTileClasses();
 Engine.SetProgress(10);
 
-// Pick a random elevation with a bias towards lower elevations
+log("Picking a random elevation with a bias towards lower elevations...");
 var randElevation = randIntInclusive(0, 29);
 if (randElevation < 25)
 	randElevation = randIntInclusive(1, 4);
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, randElevation);
+createArea(
+	new MapBoundsPlacer(),
+	[
+		new TerrainPainter(g_Terrains.mainTerrain),
+		new ElevationPainter(randElevation),
+		paintClass(g_TileClasses.land)
+	]);
 Engine.SetProgress(20);
 
 const startPositions = randomStartingPositionPattern(getTeamsArray());

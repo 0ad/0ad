@@ -7,7 +7,12 @@ InitMap();
 setSelectedBiome();
 initTileClasses();
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
+createArea(
+	new MapBoundsPlacer(),
+	[
+		new TerrainPainter(g_Terrains.mainTerrain),
+		paintClass(g_TileClasses.land)
+	]);
 Engine.SetProgress(20);
 
 addBases("stronghold", fractionToTiles(randFloat(0.2, 0.35)), fractionToTiles(randFloat(0.05, 0.1)), randomAngle());

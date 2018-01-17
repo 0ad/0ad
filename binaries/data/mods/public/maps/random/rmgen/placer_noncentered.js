@@ -31,6 +31,20 @@ RectPlacer.prototype.place = function(constraint)
 };
 
 /**
+ * The MapBoundsPlacer returns all points on the tilemap that meet the constraint.
+ */
+function MapBoundsPlacer()
+{
+	let mapBounds = getMapBounds();
+	this.rectPlacer = new RectPlacer(mapBounds.left, mapBounds.top, mapBounds.right, mapBounds.bottom);
+}
+
+MapBoundsPlacer.prototype.place = function(constraint)
+{
+	return this.rectPlacer.place(constraint);
+};
+
+/**
  * HeightPlacer constants determining whether the extrema should be included by the placer too.
  */
 const Elevation_ExcludeMin_ExcludeMax = 0;
