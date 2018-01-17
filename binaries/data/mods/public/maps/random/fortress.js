@@ -40,7 +40,7 @@ const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oBeech, tForestFloor];
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

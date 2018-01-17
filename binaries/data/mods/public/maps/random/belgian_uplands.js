@@ -1,7 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("heightmap");
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();

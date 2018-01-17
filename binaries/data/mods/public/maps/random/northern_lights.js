@@ -26,7 +26,7 @@ const aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor, tForestFloor];
 const pForestS = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor, tForestFloor, tForestFloor];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

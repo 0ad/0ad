@@ -280,7 +280,7 @@ else
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
@@ -299,8 +299,6 @@ var clBaseResource = createTileClass();
  */
 var snowlineHeight = 29;
 var mountainHeight = 30;
-
-initTerrain(tPrimary);
 
 var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 

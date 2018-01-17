@@ -3,7 +3,7 @@ Engine.LoadLibrary("heightmap");
 
 log('Initializing map...');
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 setSkySet("fog");
 setFogFactor(0.35);

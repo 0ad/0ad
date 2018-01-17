@@ -32,7 +32,7 @@ const aBush3 = "actor|props/flora/plant_tropic_large.xml";
 const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oTree, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPalm, tForestFloor];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

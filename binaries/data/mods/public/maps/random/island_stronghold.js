@@ -45,7 +45,7 @@ const aRockMedium = g_Decoratives.rockMedium;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -63,8 +63,6 @@ const clLand = createTileClass();
 
 const shoreRadius = 6;
 const landHeight = 3;
-
-initTerrain(tWater);
 
 var startAngle = randomAngle();
 

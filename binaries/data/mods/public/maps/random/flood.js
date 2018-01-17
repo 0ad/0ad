@@ -46,7 +46,7 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, tWater);
 
 const clPlayer = createTileClass();
 const clHill = createTileClass();
@@ -65,8 +65,6 @@ const mapCenter = getMapCenter();
 const landHeight = 2;
 const waterHeight = getMapBaseHeight();
 const shoreRadius = 6;
-
-initTerrain(tWater);
 
 log("Creating the water...");
 createArea(

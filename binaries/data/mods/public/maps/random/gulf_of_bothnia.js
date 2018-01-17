@@ -2,8 +2,6 @@ Engine.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
-InitMap();
-
 var biome = pickRandom(["late_spring", "winter", "frozen_lake"]);
 
 if (biome == "late_spring")
@@ -12,8 +10,8 @@ if (biome == "late_spring")
 	var waterHeight = -3;
 	var shoreHeight = 1;
 
-	var fishCount = scaleByMapSize(20, 80);
-	var bushCount = scaleByMapSize(13, 200);
+	var fishCount = { "min": 20, "max": 80 };
+	var bushCount = { "min": 13, "max": 200 };
 
 	setFogThickness(0.26);
 	setFogFactor(0.4);
@@ -56,8 +54,8 @@ else if (biome == "winter")
 	var waterHeight = -3;
 	var shoreHeight = 1;
 
-	var fishCount = scaleByMapSize(20, 80);
-	var bushCount = scaleByMapSize(13, 200);
+	var fishCount = { "min": 20, "max": 80 };
+	var bushCount = { "min": 13, "max": 200 };
 
 	setFogFactor(0.35);
 	setFogThickness(0.19);
@@ -97,8 +95,8 @@ else if (biome == "frozen_lake")
 	var waterHeight = 0;
 	var shoreHeight = 2;
 
-	var fishCount = 0;
-	var bushCount = 0;
+	var fishCount = { "min": 0, "max": 0 };
+	var bushCount = { "min": 0, "max": 0 };
 
 	setFogFactor(0.41);
 	setFogThickness(0.23);
@@ -135,6 +133,8 @@ else if (biome == "frozen_lake")
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
+InitMap(g_MapSettings.BaseHeight, tPrimary);
+
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapCenter = getMapCenter();
@@ -148,8 +148,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-
-initTerrain(tPrimary);
 
 var startAngle = -Math.PI / 6;
 
@@ -277,11 +275,11 @@ createDecoration(
 	[
 		scaleByMapSize(16, 262),
 		scaleByMapSize(8, 131),
-		bushCount,
-		bushCount,
-		bushCount
-	 ],
-	 avoidClasses(clWater, 0, clForest, 0, clPlayer, 5, clHill, 0, clBaseResource, 5));
+		scaleByMapSize(bushCount.min, bushCount.max),
+		scaleByMapSize(bushCount.min, bushCount.max),
+		scaleByMapSize(bushCount.min, bushCount.max)
+	],
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 5, clHill, 0, clBaseResource, 5));
 Engine.SetProgress(75);
 
 createFood(
@@ -304,7 +302,7 @@ createFood(
 
 createFood(
 	[[new SimpleObject(oFish, 2, 3, 0, 2)]],
-	[fishCount],
+	[scaleByMapSize(fishCount.min, fishCount.max)],
 	[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
 	clFood);
 

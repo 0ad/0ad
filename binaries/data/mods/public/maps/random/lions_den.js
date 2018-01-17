@@ -2,10 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
-InitMap();
-
 setSelectedBiome();
-initTileClasses(["step"]);
 
 const topTerrain = g_Terrains.tier2Terrain;
 
@@ -14,18 +11,17 @@ const pathHeight = 10;
 const denHeight = 15;
 const hillHeight = getMapBaseHeight();
 
+InitMap(hillHeight, topTerrain);
 const mapArea = getMapArea();
 const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();
 const startAngle = randomAngle();
 
+initTileClasses(["step"]);
 createArea(
 	new MapBoundsPlacer(),
-	[
-		new TerrainPainter(topTerrain),
-		new ElevationPainter(hillHeight),
-		paintClass(g_TileClasses.land)
-	]);
+	paintClass(g_TileClasses.land));
+
 Engine.SetProgress(10);
 
 addBases("radial", fractionToTiles(0.4), fractionToTiles(randFloat(0.05, 0.1)), startAngle);

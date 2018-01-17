@@ -38,7 +38,7 @@ var aPlantC = "actor|props/flora/grass_soft_tuft_a.xml";
 
 var aStandingStone = "actor|props/special/eyecandy/standing_stones.xml";
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, tVeryDeepWater);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -54,8 +54,6 @@ var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
 var clPassage = createTileClass();
 var clSettlement = createTileClass();
-
-initTerrain(tVeryDeepWater);
 
 var radiusBeach = fractionToTiles(0.57);
 var radiusCreeks = fractionToTiles(0.52);

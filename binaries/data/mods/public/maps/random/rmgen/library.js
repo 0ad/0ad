@@ -214,15 +214,6 @@ function placeTerrain(x, z, terrainNames)
 	createTerrain(terrainNames).place(x, z);
 }
 
-function initTerrain(terrainNames)
-{
-	let terrain = createTerrain(terrainNames);
-
-	for (let x = 0; x < getMapSize(); ++x)
-		for (let z = 0; z < getMapSize(); ++z)
-			terrain.place(x, z);
-}
-
 function isCircularMap()
 {
 	return !!g_MapSettings.CircularMap;

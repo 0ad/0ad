@@ -38,7 +38,7 @@ var aLillies = "actor|props/flora/water_lillies.xml";
 
 var pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 const mapSize = getMapSize();
 const mapCenter = getMapCenter();

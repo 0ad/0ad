@@ -32,7 +32,7 @@ const pForestMain = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor
 const pOasisForestLight = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor + TERRAIN_SEPARATOR + ePalmTall, tForestFloor,tForestFloor,tForestFloor
 					,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, tSand);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -51,8 +51,6 @@ var clBaseResource = createTileClass();
 var waterRadius = scaleByMapSize(7, 50)
 var shoreDistance = scaleByMapSize(4, 10);
 var forestDistance = scaleByMapSize(6, 20);
-
-initTerrain(tSand);
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 

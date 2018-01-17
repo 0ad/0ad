@@ -33,7 +33,7 @@ const aAleppoPine = "actor|flora/trees/aleppo_pine.xml";
 const pForest1 = [tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor];
 const pForest2 = [tForestFloor + TERRAIN_SEPARATOR + oAleppoPine, tForestFloor];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 

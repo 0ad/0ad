@@ -2,17 +2,15 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
-InitMap();
-
 setSelectedBiome();
+
+InitMap(g_MapSettings.BaseHeight, g_Terrains.mainTerrain);
+
 initTileClasses();
 
 createArea(
 	new MapBoundsPlacer(),
-	[
-		new TerrainPainter(g_Terrains.mainTerrain),
-		paintClass(g_TileClasses.land)
-	]);
+	paintClass(g_TileClasses.land));
 
 Engine.SetProgress(10);
 

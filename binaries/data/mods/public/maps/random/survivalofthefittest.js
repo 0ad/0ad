@@ -39,7 +39,7 @@ const triggerPointTreasures = [
 	"trigger/trigger_point_D"
 ];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, tMainTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -53,8 +53,6 @@ var clDirt = createTileClass();
 var clBaseResource = createTileClass();
 var clLand = createTileClass();
 var clWomen = createTileClass();
-
-initTerrain(tMainTerrain);
 
 // Create the main treasure area in the middle of the map
 createArea(

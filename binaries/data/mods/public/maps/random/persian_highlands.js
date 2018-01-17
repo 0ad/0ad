@@ -47,7 +47,7 @@ const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor, tDirtMain, tDirtMain];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, tDirtMain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -62,8 +62,6 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clCP = createTileClass();
-
-initTerrain(tDirtMain);
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),

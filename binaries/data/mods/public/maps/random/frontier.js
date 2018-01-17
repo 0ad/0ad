@@ -2,24 +2,20 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
-InitMap();
-
 setSelectedBiome();
-initTileClasses();
-Engine.SetProgress(10);
 
 log("Picking a random elevation with a bias towards lower elevations...");
 var randElevation = randIntInclusive(0, 29);
 if (randElevation < 25)
 	randElevation = randIntInclusive(1, 4);
 
+InitMap(randElevation, g_Terrains.mainTerrain);
+
+initTileClasses();
 createArea(
 	new MapBoundsPlacer(),
-	[
-		new TerrainPainter(g_Terrains.mainTerrain),
-		new ElevationPainter(randElevation),
-		paintClass(g_TileClasses.land)
-	]);
+	paintClass(g_TileClasses.land));
+
 Engine.SetProgress(20);
 
 const startPositions = randomStartingPositionPattern(getTeamsArray());

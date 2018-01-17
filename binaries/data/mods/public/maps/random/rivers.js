@@ -46,7 +46,7 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -65,8 +65,6 @@ var clShallow = createTileClass();
 
 var waterHeight = -3;
 var shallowHeight = -1;
-
-initTerrain(tMainTerrain);
 
 var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 

@@ -22,7 +22,7 @@ var aRockMedium = "actor|geology/stone_granite_med.xml";
 var pForestD = [tGrassC + TERRAIN_SEPARATOR + oTree, tGrassC];
 var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 var numPlayers = getNumPlayers();
 var mapCenter = getMapCenter();

@@ -38,7 +38,7 @@ var aRock = "actor|geology/stone_savanna_med.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPalm, tForestFloor];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

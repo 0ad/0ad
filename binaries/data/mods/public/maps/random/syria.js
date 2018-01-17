@@ -31,7 +31,7 @@ const aBushes = [aBushA, aBushB];
 const pForestP = [tForestFloor2 + TERRAIN_SEPARATOR + oPalm, tForestFloor2];
 const pForestT = [tForestFloor1 + TERRAIN_SEPARATOR + oTamarix,tForestFloor2];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();

@@ -58,7 +58,7 @@ const pForestLandVeryLight = [ tGrassLandForest2 + TERRAIN_SEPARATOR + oPine,tGr
 						tGrassLandForest,tForestTransition,tGrassLandForest2,tForestTransition,
 						tGrassLandForest2,tGrassLandForest2,tGrassLandForest2,tGrassLandForest2];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

@@ -38,7 +38,7 @@ const aLillies = "actor|props/flora/water_lillies.xml";
 
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();

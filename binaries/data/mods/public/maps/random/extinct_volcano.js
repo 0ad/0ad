@@ -50,7 +50,7 @@ const pForestP = [
 	tForestFloor1
 ];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 var numPlayers = getNumPlayers();
 var mapCenter = getMapCenter();

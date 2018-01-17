@@ -34,7 +34,7 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oBeech, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 

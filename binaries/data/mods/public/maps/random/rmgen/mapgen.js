@@ -12,11 +12,13 @@ var g_Camera = {
 	"Declination": 0.523599
 };
 
-function InitMap()
+function InitMap(baseHeight, baseTerrain)
 {
-	log("Creating new map...");
-	g_Map = new RandomMap(g_MapSettings.Size, g_MapSettings.BaseHeight);
-	initTerrain(g_MapSettings.BaseTerrain);
+	g_Map = new RandomMap(g_MapSettings.Size, baseHeight);
+
+	createArea(
+		new MapBoundsPlacer(),
+		new TerrainPainter(baseTerrain));
 }
 
 function ExportMap()

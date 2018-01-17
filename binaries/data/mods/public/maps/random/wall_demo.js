@@ -1,6 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
-InitMap();
+InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
 
 /**
  * Demonstration code for wall placement.
