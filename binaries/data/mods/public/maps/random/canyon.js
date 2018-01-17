@@ -164,8 +164,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 				new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
 				paintClass(clLand)
-			],
-			null);
+			]);
 
 		if (numPlayers > 1)
 			createArea(

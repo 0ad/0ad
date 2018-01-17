@@ -90,8 +90,7 @@ for (let i = 0; i < stripWidths.length; ++i)
 				new LayeredPainter([tGrass, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, 3, 3),
 				paintClass(clStrip[i])
-			],
-			null);
+			]);
 }
 Engine.SetProgress(20);
 

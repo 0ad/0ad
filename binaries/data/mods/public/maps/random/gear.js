@@ -142,8 +142,7 @@ createArea(
 log("Creating central island...");
 createArea(
 	new ClumpPlacer(Math.square(mapSize - 50) * 0.09, 1, 1, 10, mapCenter.x, mapCenter.y),
-	new SmoothElevationPainter(ELEVATION_SET, 4, 3),
-	null);
+	new SmoothElevationPainter(ELEVATION_SET, 4, 3));
 
 log("Creating hill on the central island...");
 createArea(

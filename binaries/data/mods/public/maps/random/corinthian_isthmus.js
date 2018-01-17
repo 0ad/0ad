@@ -69,15 +69,13 @@ var riverEnd = new Vector2D(mapCenter.x, mapSize).rotateAround(riverAngle, mapCe
 
 createArea(
 	new PathPlacer(riverStart.x, riverStart.y, riverEnd.x, riverEnd.y, riverWidth, 0.2, 15 * scaleByMapSize(1, 3), 0.04, 0.01),
-	new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-	null);
+	new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4));
 
 log("Creating small puddles at the map border to ensure players being separated...");
 for (let point of [riverStart, riverEnd])
 	createArea(
 		new ClumpPlacer(Math.floor(diskArea(riverWidth / 2)), 0.95, 0.6, 10, point.x, point.y),
-		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-		null);
+		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4));
 
 log("Creating passage connecting the two riversides...");
 var passageStart = riverStart.rotateAround(Math.PI / 2, mapCenter);
@@ -93,8 +91,7 @@ createArea(
 		3 * scaleByMapSize(1, 4),
 		0.1,
 		0.01),
-	new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
-	null);
+	new SmoothElevationPainter(ELEVATION_SET, landHeight, 4));
 
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2, 1, tShore);

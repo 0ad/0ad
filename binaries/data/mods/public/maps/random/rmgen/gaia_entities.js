@@ -85,8 +85,7 @@ function createStoneMineFormation(x, z, templateName, terrain, radius = 2.5, cou
 	log("Creating small stone mine circle...");
 	createArea(
 		new ChainPlacer(radius / 2, radius, 2, 1, x, z, undefined, [5]),
-		new TerrainPainter(terrain),
-		null);
+		new TerrainPainter(terrain));
 
 	let angle = startAngle !== undefined ? startAngle : randomAngle();
 

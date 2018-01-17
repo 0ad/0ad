@@ -74,8 +74,7 @@ createArea(
 		new LayeredPainter([tGrass, tGrass, tGrass], [4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
 		paintClass(clLand)
-	],
-	null);
+	]);
 
 placePlayerBases({
 	"PlayerPlacement": [primeSortAllPlayers(), ...playerPlacementCustomAngle(
