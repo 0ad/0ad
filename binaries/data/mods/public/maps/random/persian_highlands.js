@@ -51,6 +51,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -138,8 +139,8 @@ createArea(
 		Math.floor(scaleByMapSize(5, 13)),
 		Math.floor(scaleByMapSize(35, 200)),
 		1,
-		mapSize / 2,
-		mapSize / 2,
+		mapCenter.x,
+		mapCenter.y,
 		0,
 		[Math.floor(scaleByMapSize(18, 68))]),
 	[

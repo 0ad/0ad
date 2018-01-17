@@ -136,7 +136,7 @@ for (let i = 0; i < numPlayers; ++i)
 	});
 
 	log("Creating animals in shallows...");
-	let shallowPosition = Vector2D.average([playerPosition[i], playerPosition[neighbor]]).round();
+	let shallowPosition = Vector2D.average([playerPosition[i], playerPosition[neighborID]]).round();
 	let objects = [
 		new SimpleObject(oWildebeest, 5, 6, 0, 4),
 		new SimpleObject(oElephant, 2, 3, 0, 4)

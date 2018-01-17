@@ -202,20 +202,16 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 /**
  * Generates a volcano mountain. Smoke and lava are optional.
  *
- * @param {number} fx - Horizontal coordinate of the center.
- * @param {number} fz - Horizontal coordinate of the center.
+ * @param {number} center - Vector2D location on the tilemap.
  * @param {number} tileClass - Painted onto every tile that is occupied by the volcano.
  * @param {string} terrainTexture - The texture painted onto the volcano hill.
  * @param {array} lavaTextures - Three different textures for the interior, from the outside to the inside.
  * @param {boolean} smoke - Whether to place smoke particles.
  * @param {number} elevationType - Elevation painter type, ELEVATION_SET = absolute or ELEVATION_MODIFY = relative.
  */
-function createVolcano(fx, fz, tileClass, terrainTexture, lavaTextures, smoke, elevationType)
+function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke, elevationType)
 {
 	log("Creating volcano");
-
-	let ix = Math.round(fractionToTiles(fx));
-	let iz = Math.round(fractionToTiles(fz));
 
 	let baseSize = getMapArea() / scaleByMapSize(1, 8);
 	let coherence = 0.7;
@@ -257,7 +253,7 @@ function createVolcano(fx, fz, tileClass, terrainTexture, lavaTextures, smoke, e
 
 	for (let i = 0; i < layers.length; ++i)
 		createArea(
-			new ClumpPlacer(baseSize * layers[i].clumps, coherence, smoothness, failFraction, ix, iz),
+			new ClumpPlacer(baseSize * layers[i].clumps, coherence, smoothness, failFraction, position.x, position.y),
 			[
 				layers[i].painter || new LayeredPainter([terrainTexture, terrainTexture], [3]),
 				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness || steepness),
@@ -273,8 +269,8 @@ function createVolcano(fx, fz, tileClass, terrainTexture, lavaTextures, smoke, e
 				[new SimpleObject("actor|particle/smoke.xml", num, num, 0, 7)],
 				false,
 				clLava,
-				ix,
-				iz),
+				position.x,
+				position.y),
 			0,
 		stayClasses(tileClass, 1));
 	}
@@ -529,7 +525,7 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 }
 
 /**
- * Creates a smooth, passable path between between (startX, startZ) and (endX, endZ) with the given startWidth and endWidth.
+ * Creates a smooth, passable path between between start and end with the given startWidth and endWidth.
  * Paints the given tileclass and terrain.
  *
  * @property {Vector2D} start - Location of the passage.

@@ -15,6 +15,7 @@ const denHeight = 15;
 const hillHeight = getMapBaseHeight();
 
 const mapArea = getMapArea();
+const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();
 const startAngle = randomAngle();
 
@@ -478,9 +479,8 @@ function createSunkenTerrain()
 	}
 
 	log("Creating central valley...");
-	let center = Math.floor(fractionToTiles(0.5));
 	createArea(
-		new ClumpPlacer(mapArea * 0.26, 1, 1, 1, center, center),
+		new ClumpPlacer(mapArea * 0.26, 1, 1, 1, mapCenter.x, mapCenter.y),
 		[
 			new LayeredPainter([g_Terrains.cliff, lower], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, valleyHeight, 3),
@@ -489,7 +489,7 @@ function createSunkenTerrain()
 
 	log("Creating central hill...");
 	createArea(
-		new ClumpPlacer(mapArea * 0.14, 1, 1, 1, center, center),
+		new ClumpPlacer(mapArea * 0.14, 1, 1, 1, mapCenter.x, mapCenter.y),
 		[
 			new LayeredPainter([g_Terrains.cliff, topTerrain], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, hillHeight, 3),

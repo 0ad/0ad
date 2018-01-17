@@ -36,6 +36,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -78,22 +79,20 @@ placePlayerBases({
 Engine.SetProgress(30);
 
 log("Creating oases...");
+var oasisRadius = fractionToTiles(scaleByMapSize(0.19, 0.22));
 for (let i = 0; i < numPlayers; ++i)
+{
+	let position = Vector2D.add(mapCenter, new Vector2D(oasisRadius, 0).rotate(-playerAngle[i]));
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(16, 60)) * 0.185,
-			0.6,
-			0.15,
-			0,
-			mapSize * (0.5 + 0.18 * Math.cos(playerAngle[i]) + scaleByMapSize(1, 4) * Math.cos(playerAngle[i]) / 100),
-			mapSize * (0.5 + 0.18 * Math.sin(playerAngle[i]) + scaleByMapSize(1, 4) * Math.sin(playerAngle[i]) / 100)),
+		new ClumpPlacer(diskArea(scaleByMapSize(16, 60)) * 0.185, 0.6, 0.15, 0, position.x, position.y),
 		[
 			new LayeredPainter(
 				[tSLush ,[tLush, pForest], [tLush, pForest], tShore, tShore, tWaterDeep],
 				[2, 2, 1, 3, 1]),
 			new SmoothElevationPainter(ELEVATION_MODIFY, -3, 10),
 			paintClass(clWater)
-		],
-		null);
+		]);
+}
 Engine.SetProgress(50);
 
 log("Creating grass patches...");

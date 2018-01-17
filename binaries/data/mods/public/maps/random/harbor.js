@@ -13,6 +13,8 @@ resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 Engine.SetProgress(10);
 
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
+
 const startAngle = randomAngle();
 const players = addBases("radial", fractionToTiles(0.38), fractionToTiles(0.05), startAngle);
 Engine.SetProgress(20);
@@ -266,16 +268,14 @@ ExportMap();
 
 function addCenterLake()
 {
-	let center = Math.round(fractionToTiles(0.5));
-
 	createArea(
 		new ChainPlacer(
 			2,
 			Math.floor(scaleByMapSize(2, 12)),
 			Math.floor(scaleByMapSize(35, 160)),
 			1,
-			center,
-			center,
+			mapCenter.x,
+			mapCenter.y,
 			0,
 			[Math.floor(mapSize * 0.17 * Math.pow(scaleByMapSize(1, 6), 1/8))]),
 		[
@@ -303,8 +303,8 @@ function addCenterLake()
 			[new SimpleObject(g_Gaia.fish, 20, 30, 0, fDist)],
 			true,
 			g_TileClasses.baseResource,
-			center,
-			center
+			mapCenter.x,
+			mapCenter.y
 		),
 		0,
 		[
@@ -316,18 +316,13 @@ function addCenterLake()
 
 function addHarbors(players)
 {
-	let center = Math.round(fractionToTiles(0.5));
-
-	for (let i = 0; i < players.length; ++i)
+	for (let player of players)
 	{
-		let ix = Math.round(fractionToTiles(players[i].x));
-		let iz = Math.round(fractionToTiles(players[i].z));
-
-		let offsetX = Math.round((center - ix) / 2.5);
-		let offsetZ = Math.round((center - iz) / 2.5);
+		let playerPosition = player.position;
+		let harborPosition = Vector2D.add(playerPosition, Vector2D.sub(mapCenter, playerPosition).div(2.5).round());
 
 		createArea(
-			new ClumpPlacer(scaleByMapSize(1200, 1200), 0.5, 0.5, 1, ix + offsetX, iz + offsetZ),
+			new ClumpPlacer(scaleByMapSize(1200, 1200), 0.5, 0.5, 1, harborPosition.x, harborPosition.y),
 			[
 				new LayeredPainter([g_Terrains.shore, g_Terrains.water], [2]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, -11, 3),
@@ -343,7 +338,7 @@ function addHarbors(players)
 		createObjectGroup(
 			new SimpleGroup(
 				[new SimpleObject(g_Gaia.fish, 6, 6, 1, 20)],
-				true, g_TileClasses.baseResource, ix + offsetX, iz + offsetZ
+				true, g_TileClasses.baseResource, harborPosition.x, harborPosition.y
 			),
 			0,
 			[

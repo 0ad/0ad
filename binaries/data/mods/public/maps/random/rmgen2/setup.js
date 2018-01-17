@@ -115,9 +115,9 @@ function pickSize(sizes)
  */
 function resetTerrain(terrain, tileClass, elevation)
 {
-	let center = Math.round(fractionToTiles(0.5));
+	let mapCenter = getMapCenter();
 	createArea(
-		new ClumpPlacer(getMapArea(), 1, 1, 1, center, center),
+		new ClumpPlacer(getMapArea(), 1, 1, 1, mapCenter.x, mapCenter.y),
 		[
 			new LayeredPainter([terrain], []),
 			new SmoothElevationPainter(ELEVATION_SET, elevation, 1),

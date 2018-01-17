@@ -39,6 +39,8 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -88,19 +90,22 @@ placePlayerBases({
 });
 Engine.SetProgress(20);
 
+var riverPositions = [
+	new Vector2D(mapBounds.left + 1, mapCenter.y),
+	new Vector2D(mapBounds.right - 1, mapCenter.y)
+];
+
 log("Creating the main river...");
-var river1 = [1, fractionToTiles(0.5)];
-var river2 = [fractionToTiles(0.99), fractionToTiles(0.5)];
 createArea(
-	new PathPlacer(...river1, ...river2, scaleByMapSize(10, 20), 0.5, 3 * scaleByMapSize(1, 4), 0.1, 0.01),
+	new PathPlacer(riverPositions[0].x, riverPositions[0].y, riverPositions[1].x, riverPositions[1].y, scaleByMapSize(10, 20), 0.5, 3 * scaleByMapSize(1, 4), 0.1, 0.01),
 	new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 	avoidClasses(clPlayer, 4));
 Engine.SetProgress(25);
 
 log("Creating small puddles at the map border to ensure players being separated...");
-for (let [fx, fz] of [river1, river2])
+for (let riverPosition of riverPositions)
 	createArea(
-		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(5, 10))), 0.95, 0.6, 10, fx, fz),
+		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(5, 10))), 0.95, 0.6, 10, riverPosition.x, riverPosition.y),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2),
 		avoidClasses(clPlayer, 8));
 Engine.SetProgress(30);

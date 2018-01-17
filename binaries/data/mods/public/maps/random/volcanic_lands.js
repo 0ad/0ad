@@ -25,6 +25,7 @@ var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
 InitMap();
 
 var numPlayers = getNumPlayers();
+var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -56,7 +57,7 @@ placePlayerBases({
 });
 Engine.SetProgress(15);
 
-createVolcano(0.5, 0.5, clHill, tCliff, [tLava1, tLava2, tLava3], true, ELEVATION_SET);
+createVolcano(mapCenter, clHill, tCliff, [tLava1, tLava2, tLava3], true, ELEVATION_SET);
 Engine.SetProgress(45);
 
 log("Creating hills...");

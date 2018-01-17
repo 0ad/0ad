@@ -60,7 +60,7 @@ const clBaseResource = createTileClass();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const centerOfMap = mapSize / 2;
+const mapCenter = getMapCenter();
 
 const landHeight = 2;
 const waterHeight = getMapBaseHeight();
@@ -70,7 +70,7 @@ initTerrain(tWater);
 
 log("Creating the water...");
 createArea(
-	new ClumpPlacer(getMapArea(), 1, 1, 1, Math.round(fractionToTiles(0.5)), Math.round(fractionToTiles(0.5))),
+	new ClumpPlacer(getMapArea(), 1, 1, 1, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tWater, tWater, tShore], [1, 4]),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2)
@@ -134,8 +134,8 @@ createArea(
 		Math.floor(scaleByMapSize(10, 15)),
 		Math.floor(scaleByMapSize(200, 300)),
 		1,
-		centerOfMap,
-		centerOfMap,
+		mapCenter.x,
+		mapCenter.y,
 		0,
 		[Math.floor(mapSize * 0.01)]),
 	[
@@ -193,8 +193,8 @@ createObjectGroup(
 		[new SimpleObject(oMetalLarge, 3, 6, 25, Math.floor(mapSize * 0.25))],
 		true,
 		clBaseResource,
-		centerOfMap,
-		centerOfMap),
+		mapCenter.x,
+		mapCenter.y),
 	0,
 	[avoidClasses(clBaseResource, 20, clPlayer, 40, clMountain, 4), stayClasses(clHill, 10)]);
 
@@ -203,8 +203,8 @@ createObjectGroup(
 		[new SimpleObject(oStoneLarge, 3, 6, 25, Math.floor(mapSize * 0.25))],
 		true,
 		clBaseResource,
-		centerOfMap,
-		centerOfMap),
+		mapCenter.x,
+		mapCenter.y),
 		0,
 		[avoidClasses(clBaseResource, 20, clPlayer, 40, clMountain, 4), stayClasses(clHill, 10)]);
 

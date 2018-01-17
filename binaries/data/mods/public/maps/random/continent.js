@@ -44,6 +44,7 @@ InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
+var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -62,15 +63,14 @@ createArea(
 		Math.floor(scaleByMapSize(5, 12)),
 		Math.floor(scaleByMapSize(60, 700)),
 		1,
-		Math.round(fractionToTiles(0.5)),
-		Math.round(fractionToTiles(0.5)),
+		mapCenter.x,
+		mapCenter.y,
 		0,
-		[Math.floor(mapSize * 0.33)]),
+		[Math.floor(fractionToTiles(0.33))]),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, 3, 4),
 		paintClass(clLand)
-	],
-	null);
+	]);
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
 

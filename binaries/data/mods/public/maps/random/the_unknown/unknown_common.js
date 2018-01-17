@@ -240,7 +240,7 @@ function unknownContinent()
 
 	log("Creating continent...");
 	createArea(
-		new ClumpPlacer(mapArea * 0.45, 0.9, 0.09, 10, Math.round(fractionToTiles(0.5)), Math.round(fractionToTiles(0.5))),
+		new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, 10, mapCenter.x, mapCenter.y),
 		[
 			landElevationPainter,
 			paintClass(clLand)
@@ -250,28 +250,18 @@ function unknownContinent()
 	{
 		log("Creating peninsula (i.e. half the map not being surrounded by water)...");
 		let angle = randomAngle();
+		let peninsulaPosition1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.25), 0).rotate(-angle));
 		createArea(
-			new ClumpPlacer(
-				mapArea * 0.45,
-				0.9,
-				0.09,
-				10,
-				Math.round(fractionToTiles(0.5 + 0.25 * Math.cos(angle))),
-				Math.round(fractionToTiles(0.5 + 0.25 * Math.sin(angle)))),
+			new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, 10, peninsulaPosition1.x, peninsulaPosition1.y),
 			[
 				landElevationPainter,
 				paintClass(clLand)
 			]);
 
 		log("Remembering to not paint shorelines into the peninsula...");
+		let peninsulaPosition2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.35), 0).rotate(-angle));
 		createArea(
-			new ClumpPlacer(
-				mapArea * 0.3,
-				0.9,
-				0.01,
-				10,
-				Math.round(fractionToTiles(0.5 + 0.35 * Math.cos(angle))),
-				Math.round(fractionToTiles(0.5 + 0.35 * Math.sin(angle)))),
+			new ClumpPlacer(diskArea(fractionToTiles(0.33)), 0.9, 0.01, 10, peninsulaPosition2.x, peninsulaPosition2.y),
 			paintClass(clPeninsulaSteam));
 	}
 
@@ -525,7 +515,7 @@ function unknownGulf()
 	let waterHeight = -3;
 	initHeight(landHeight);
 
-	let startAngle = randFloat(0, 2) * Math.PI;
+	let startAngle = randomAngle();
 	if (!isNomad())
 	{
 		log("Determining player locations...");
@@ -538,20 +528,23 @@ function unknownGulf()
 		markPlayerArea("large");
 	}
 
-	let placers = [
-		new ClumpPlacer(mapArea * 0.08, 0.7, 0.05, 10, Math.round(fractionToTiles(0.5)), Math.round(fractionToTiles(0.5))),
-		new ClumpPlacer(mapArea * 0.13 * lSize, 0.7, 0.05, 10, Math.round(fractionToTiles(0.5 - 0.2 * Math.cos(startAngle))), Math.round(fractionToTiles(0.5 - 0.2 * Math.sin(startAngle)))),
-		new ClumpPlacer(mapArea * 0.15 * lSize, 0.7, 0.05, 10, Math.round(fractionToTiles(0.5 - 0.49 * Math.cos(startAngle))), Math.round(fractionToTiles(0.5 - 0.49 * Math.sin(startAngle)))),
+	let gulfParts = [
+		{ "radius": fractionToTiles(0.16), "distance": fractionToTiles(0) },
+		{ "radius": fractionToTiles(0.2), "distance": fractionToTiles(0.2) },
+		{ "radius": fractionToTiles(0.22), "distance": fractionToTiles(0.49) }
 	];
 
-	for (let placer of placers)
+	for (let gulfPart of gulfParts)
+	{
+		let position = Vector2D.sub(mapCenter, new Vector2D(gulfPart.distance, 0).rotate(-startAngle)).round();
 		createArea(
-			placer,
+			new ClumpPlacer(diskArea(gulfPart.radius), 0.7, 0.05, 10, position.x, position.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 				paintClass(clWater)
 			],
 			avoidClasses(clPlayerTerritory, defaultPlayerBaseRadius()));
+	}
 }
 
 /**
@@ -597,7 +590,7 @@ function unknownPasses()
 		markPlayerArea("small");
 	}
 	else
-		startAngle = Math.random(0, 2 * Math.PI);
+		startAngle = randomAngle();
 
 	for (let mountain of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
 	{
@@ -676,7 +669,7 @@ function unknownLowlands()
 		markPlayerArea("small");
 	}
 	else
-		startAngle = Math.random(0, 2 * Math.PI);
+		startAngle = randomAngle();
 
 	log("Creating valleys enclosed by the mountain...");
 	let valleys = numPlayers;

@@ -4,6 +4,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 const tGrass = ["new_alpine_grass_b", "new_alpine_grass_c", "new_alpine_grass_d"];
 const tPineForestFloor = "temp_forestfloor_pine";
@@ -63,13 +64,11 @@ var clHillDeco = createTileClass();
 
 log("Creating the central dip...");
 createArea(
-	new ClumpPlacer(mapSize * scaleByMapSize(70, 300), 0.94, 0.05, 0.1, fractionToTiles(0.5), fractionToTiles(0.5)),
+	new ClumpPlacer(diskArea(fractionToTiles(0.42)), 0.94, 0.05, 0.1, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tCliff, tGrass], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, 30, 3)
-	],
-	null);
-
+	]);
 Engine.SetProgress(5);
 
 // Find all hills

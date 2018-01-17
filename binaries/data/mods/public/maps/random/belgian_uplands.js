@@ -5,6 +5,7 @@ InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
+var mapCenter = getMapCenter();
 
 // Function to apply a heightmap
 function setReliefmap(reliefmap)
@@ -146,10 +147,9 @@ while (!goodStartPositionsFound)
 
 	// Reduce to tiles in a circle of mapSize / 2 distance to the center (to avoid players placed in corners)
 	var possibleStartPositionsTemp = [];
-	var maxDistToCenter = mapSize / 2;
 	for (var i = 0; i < possibleStartPositions.length; i++)
 	{
-		if (Math.euclidDistance2D(...possibleStartPositions[i], mapSize / 2, mapSize / 2) < maxDistToCenter)
+		if (Math.euclidDistance2D(...possibleStartPositions[i], mapCenter.x, mapCenter.y) < mapSize / 2)
 			possibleStartPositionsTemp.push(possibleStartPositions[i]);
 	}
 	possibleStartPositions = clone(possibleStartPositionsTemp);

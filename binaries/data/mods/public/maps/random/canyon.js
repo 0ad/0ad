@@ -85,22 +85,18 @@ for (let i = 0; i < numPlayers; ++i)
 		]);
 
 log("Creating center area...");
-var center = Math.round(fractionToTiles(0.5));
 var lSize = Math.pow(scaleByMapSize(1, 6), 1/8);
-
 createArea(
-	new ClumpPlacer(mapArea * 0.065 * lSize, 0.7, 0.1, 10, center, center),
+	new ClumpPlacer(mapArea * 0.065 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
 		paintClass(clLand)
-	],
-	null);
+	]);
 
 createArea(
-	new ClumpPlacer(150, 0.6, 0.3, 10, center, center),
-	paintClass(clHill),
-	null);
+	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter.x, mapCenter.y),
+	paintClass(clHill));
 
 log("Creating hills...");
 for (let i = 0; i < scaleByMapSize(9, 16); ++i)
@@ -178,8 +174,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 					new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 					new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
 					paintClass(clLand)
-				],
-				null);
+				]);
 	}
 }
 
@@ -204,15 +199,13 @@ for (let i = 0; i < numPlayers; ++i)
 				new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
 				paintClass(clLand),
 				paintClass(clHill)
-			],
-			null);
+			]);
 }
 
 log("Painting center place...");
 createArea(
-	new ClumpPlacer(150, 0.6, 0.3, 10, center, center),
-	new LayeredPainter([tRoad, tRoad], [1]),
-	null);
+	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter.x, mapCenter.y),
+	new LayeredPainter([tRoad, tRoad], [1]));
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
@@ -368,7 +361,7 @@ createStragglerTrees(
 log("Creating treasures...");
 for (let i = 0; i < randIntInclusive(3, 8); ++i)
 	for (let template of [oFoodTreasure, oWoodTreasure])
-		placeObject(center + randFloat(-7, 7), center + randFloat(-7, 7), template, 0, randomAngle());
+		placeObject(mapCenter.x + randFloat(-7, 7), mapCenter.y + randFloat(-7, 7), template, 0, randomAngle());
 
 placePlayersNomad(
 	clPlayer,

@@ -26,6 +26,7 @@ InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
+var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -84,8 +85,8 @@ createArea(
 		Math.floor(scaleByMapSize(2, 16)),
 		Math.floor(scaleByMapSize(35, 200)),
 		1,
-		Math.round(fractionToTiles(0.5)),
-		Math.round(fractionToTiles(0.5)),
+		mapCenter.x,
+		mapCenter.y,
 		0,
 		[Math.floor(mapSize * 0.008 * Math.pow(scaleByMapSize(1, 66), 1/8))]),
 	[

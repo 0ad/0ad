@@ -112,8 +112,7 @@ createArea(
 		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 		paintClass(clWater)
-	],
-	null);
+	]);
 
 log("Creating rivers between opponents...");
 let numRivers = isNomad() ? randIntInclusive(4, 8) : numPlayers;

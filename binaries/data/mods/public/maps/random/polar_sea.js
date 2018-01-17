@@ -32,6 +32,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clWater = createTileClass();
@@ -42,6 +43,10 @@ var clHill = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clArcticWolf = createTileClass();
+
+var waterHeight = -4;
+var cliffHeight = getMapBaseHeight() + 1;
+var snowHeight = Math.floor(scaleByMapSize(20, 40));
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -91,19 +96,19 @@ createArea(
 		Math.floor(scaleByMapSize(5, 16)),
 		Math.floor(scaleByMapSize(35, 200)),
 		1,
-		Math.round(fractionToTiles(0.5)),
-		Math.round(fractionToTiles(0.5)),
+		mapCenter.x,
+		mapCenter.y,
 		0,
-		[Math.floor(mapSize * 0.17)]),
+		[Math.floor(fractionToTiles(0.17))]),
 	[
 		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
-		new SmoothElevationPainter(ELEVATION_SET, -4, 4),
+		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 20));
 
-paintTerrainBasedOnHeight(3, Math.floor(scaleByMapSize(20, 40)), 0, tCliff);
-paintTerrainBasedOnHeight(Math.floor(scaleByMapSize(20, 40)), 100, 3, tSnowLimited);
+paintTerrainBasedOnHeight(cliffHeight, snowHeight, Elevation_ExcludeMin_ExcludeMax, tCliff);
+paintTerrainBasedOnHeight(snowHeight, Infinity, Elevation_IncludeMin_IncludeMax, tSnowLimited);
 Engine.SetProgress(40);
 
 log("Creating small lakes...");
@@ -132,7 +137,7 @@ for (let i = 0; i < numLakes ; ++i)
 			chosenPoint[1]),
 		[
 			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
-			new SmoothElevationPainter(ELEVATION_SET, -5, 5),
+			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 5),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 20),

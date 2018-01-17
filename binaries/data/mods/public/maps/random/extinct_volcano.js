@@ -53,6 +53,7 @@ const pForestP = [
 InitMap();
 
 var numPlayers = getNumPlayers();
+var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -129,7 +130,7 @@ placePlayerBases({
 });
 Engine.SetProgress(15);
 
-createVolcano(0.5, 0.5, clHill, tHillVeryDark, undefined, false, ELEVATION_SET);
+createVolcano(mapCenter, clHill, tHillVeryDark, undefined, false, ELEVATION_SET);
 Engine.SetProgress(20);
 
 log("Creating lakes...");

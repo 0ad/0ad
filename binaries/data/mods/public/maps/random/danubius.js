@@ -700,7 +700,7 @@ for (let i = 0; i < 2; ++i)
 	);
 
 log("Creating patrol points for land attackers...");
-addToClass(mapSize/2, mapSize/2, clMiddle);
+addToClass(mapCenter.x, mapCenter.y, clMiddle);
 for (let i = 0; i < 2; ++i)
 {
 	createObjectGroupsDeprecated(
