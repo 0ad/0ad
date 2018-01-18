@@ -11,11 +11,7 @@ var terrainWoodBorder = ['temp_grass_plants|gaia/flora_tree_euro_beech', 'temp_g
 	'temp_grass_long|gaia/flora_bush_temperate', 'temp_mud_plants|gaia/flora_bush_temperate', 'temp_mud_plants|gaia/flora_bush_badlands',
 	'temp_grass_long|gaia/flora_tree_apple', 'temp_grass_clovers|gaia/flora_bush_berry', 'temp_grass_clovers_2|gaia/flora_bush_grapes',
 	'temp_grass_plants|gaia/fauna_deer', "temp_grass_long_b|gaia/fauna_rabbit", "temp_grass_plants"];
-var terrainBase = ['temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b',
-	'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b',
-	'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b',
-	'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b',
-	'temp_grass_b|gaia/fauna_pig', 'temp_dirt_gravel|gaia/fauna_chicken'];
+var terrainBase = ["temp_dirt_gravel", "temp_grass_b"];
 var terrainBaseBorder = ["temp_grass_b", "temp_grass_b", "temp_grass", "temp_grass_c", "temp_grass_mossy"];
 var terrainBaseCenter = ['temp_dirt_gravel', 'temp_dirt_gravel', 'temp_grass_b'];
 var terrainPath = ['temp_road', "temp_road_overgrown", 'temp_grass_b'];
@@ -81,13 +77,15 @@ placePlayerBases({
 			paintClass(clPlayer)
 		]
 	},
-	// Chicken already placed at the base terrain
+	"Chicken": {
+	},
 	"Berries": {
 		"template": "gaia/flora_bush_grapes",
 		"minCount": 2,
 		"maxCount": 2,
-		"minDist": 10,
-		"maxDist": 10
+		"distance": 12,
+		"minDist": 5,
+		"maxDist": 8
 	},
 	"Mines": {
 		"types": [
