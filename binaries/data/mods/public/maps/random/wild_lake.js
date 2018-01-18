@@ -595,7 +595,7 @@ else
 	for (let p = 0; p < playerIDs.length; ++p)
 	{
 		let point = startLocations[p];
-		placeCivDefaultStartingEntities(point.x, point.y, playerIDs[p], g_Map.size > 192);
+		placeCivDefaultStartingEntities(point, playerIDs[p], g_Map.size > 192);
 		placeStartLocationResources(point);
 	}
 
@@ -625,7 +625,7 @@ for (let i = 0; i < resourceSpots.length; ++i)
 		}
 		else
 		{
-			placeCustomFortress(resourceSpots[i], pickRandom(fences), "other", 0, randomAngle());
+			placeCustomFortress(resourceSpots[i].x, resourceSpots[i].y, pickRandom(fences), "other", 0, randomAngle());
 			rectangularSmoothToHeight(resourceSpots[i], 10, 10, g_Map.height[resourceSpots[i].x][resourceSpots[i].y], 0.5);
 		}
 	}
