@@ -1,13 +1,5 @@
 Engine.LoadLibrary("rmgen");
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
-
-var clPlayer = createTileClass();
-var clPath = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clBaseResource = createTileClass();
-
 var templateStone = "gaia/geology_stone_temperate";
 var templateStoneMine = "gaia/geology_stonemine_temperate_quarry";
 var templateMetalMine = "gaia/geology_metal_temperate_slabs";
@@ -34,10 +26,22 @@ var terrainHillBorder = ["temp_highlands", "temp_highlands", "temp_highlands", "
 	"temp_highlands", "temp_highlands", "temp_highlands", "temp_cliff_b", "temp_dirt_gravel_plants",
 	"temp_highlands|gaia/fauna_goat"];
 
+var heightPath = -2;
+var heightLand = 0;
+var heightOffsetRandomPath = 1;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
+
 var mapSize = getMapSize();
 var mapArea = getMapArea();
 var mapRadius = mapSize/2;
 var mapCenter = getMapCenter();
+
+var clPlayer = createTileClass();
+var clPath = createTileClass();
+var clHill = createTileClass();
+var clForest = createTileClass();
+var clBaseResource = createTileClass();
 
 var numPlayers = getNumPlayers();
 var baseRadius = 20;
@@ -113,7 +117,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 			new RandomPathPlacer(pathStart, pathEnd, 1.25, baseRadius / 2, pathBlending),
 			[
 				new TerrainPainter(terrainPath),
-				new SmoothElevationPainter(ELEVATION_SET, -2, 2, 1),
+				new SmoothElevationPainter(ELEVATION_SET, heightPath, 2, heightOffsetRandomPath),
 				paintClass(clPath)
 			],
 			avoidClasses(clHill, 0, clBaseResource, 4));

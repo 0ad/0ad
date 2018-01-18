@@ -38,7 +38,13 @@ var aLillies = "actor|props/flora/water_lillies.xml";
 
 var pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightLand = 1;
+const heightShore = 2;
+const heightPonds = -7;
+const heightSeaGround = -3;
+const heightOffsetBump = 2;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const mapSize = getMapSize();
 const mapCenter = getMapCenter();
@@ -123,8 +129,8 @@ paintRiver({
 	"width": fractionToTiles(0.1),
 	"fadeDist": scaleByMapSize(3, 12),
 	"deviation": 0.5,
-	"waterHeight": -3,
-	"landHeight": 2,
+	"heightRiverbed": heightSeaGround,
+	"heightLand": heightShore,
 	"meanderShort": 12,
 	"meanderLong": 50,
 	"waterFunc": (ix, iz, height, riverFraction) => {
@@ -165,7 +171,7 @@ for (let [left, right] of [[mapBounds.left, mapBounds.left + desertWidth], [mapB
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clWater, 2, clPlayer, 6),
 	scaleByMapSize(100, 200));
 
@@ -175,7 +181,7 @@ var waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(2, 5) * 50, 0.8, 0.1, 10),
 	[
 		new LayeredPainter([tShore, tShore, tShore], [1, 1]),
-		new SmoothElevationPainter(ELEVATION_SET, -7, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightPonds, 4),
 		paintClass(clPond)
 	],
 	avoidClasses(clPlayer, 25, clWater, 20, clPond, 10),

@@ -32,7 +32,10 @@ const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
 const pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATOR + oSDatePalm, tLush];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightLand = 1;
+const heightOffsetOasis = -3;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -89,7 +92,7 @@ for (let i = 0; i < numPlayers; ++i)
 			new LayeredPainter(
 				[tSLush ,[tLush, pForest], [tLush, pForest], tShore, tShore, tWaterDeep],
 				[2, 2, 1, 3, 1]),
-			new SmoothElevationPainter(ELEVATION_MODIFY, -3, 10),
+			new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetOasis, 10),
 			paintClass(clWater)
 		]);
 }

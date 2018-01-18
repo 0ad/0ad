@@ -35,7 +35,12 @@ const pForestB = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
 const pForestO = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
 const pForestR = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest, tGrassDForest + TERRAIN_SEPARATOR + oOak, tGrassDForest, tGrassDForest, tGrassDForest];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -4;
+const heightShallows = -2;
+const heightLand = 3;
+const heightOffsetBump = 2;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -53,8 +58,6 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clShallow = createTileClass();
 
-var waterHeight = -4;
-var shallowHeight = -2;
 var shallowWidth = scaleByMapSize(8, 12);
 
 placePlayerBases({
@@ -98,7 +101,7 @@ var riverPositions = [
 log("Creating the main river...");
 createArea(
 	new PathPlacer(riverPositions[0].x, riverPositions[0].y, riverPositions[1].x, riverPositions[1].y, scaleByMapSize(10, 20), 0.5, 3 * scaleByMapSize(1, 4), 0.1, 0.01),
-	new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+	new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 	avoidClasses(clPlayer, 4));
 Engine.SetProgress(25);
 
@@ -106,7 +109,7 @@ log("Creating small puddles at the map border to ensure players being separated.
 for (let riverPosition of riverPositions)
 	createArea(
 		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(5, 10))), 0.95, 0.6, 10, riverPosition.x, riverPosition.y),
-		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 2),
 		avoidClasses(clPlayer, 8));
 Engine.SetProgress(30);
 
@@ -120,9 +123,9 @@ for (let i = 0; i <= randIntInclusive(3, scaleByMapSize(4, 6)); ++i)
 		"startWidth": shallowWidth,
 		"endWidth": shallowWidth,
 		"smoothWidth": 2,
-		"startHeight": shallowHeight,
-		"endHeight": shallowHeight,
-		"maxHeight": shallowHeight,
+		"startHeight": heightShallows,
+		"endHeight": heightShallows,
+		"maxHeight": heightShallows,
 		"tileClass": clShallow
 	});
 }
@@ -132,7 +135,7 @@ createTributaryRivers(
 	true,
 	randIntInclusive(9, scaleByMapSize(13, 21)),
 	scaleByMapSize(10, 20),
-	waterHeight,
+	heightSeaGround,
 	[-6, -1.5],
 	Math.PI / 5,
 	clWater,
@@ -150,7 +153,7 @@ Engine.SetProgress(50);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clWater, 2, clPlayer, 15),
 	scaleByMapSize(100, 200)
 );

@@ -26,7 +26,12 @@ const aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor, tForestFloor];
 const pForestS = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor, tForestFloor, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -5;
+const heightLake = -4;
+const heightLand = 3;
+const heightHill = 25;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -43,8 +48,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-
-var landHeight = getMapBaseHeight();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementLine(true, new Vector2D(fractionToTiles(0.45), mapCenter.y), fractionToTiles(0.2)),
@@ -76,8 +79,8 @@ paintRiver({
 	"width": 2 * fractionToTiles(0.31),
 	"fadeDist": 8,
 	"deviation": 0,
-	"waterHeight": -5,
-	"landHeight": landHeight,
+	"heightRiverbed": heightSeaGround,
+	"heightLand": heightLand,
 	"meanderShort": 0,
 	"meanderLong": 0
 });
@@ -96,7 +99,7 @@ for (let i = 0; i < scaleByMapSize(20, 120); ++i)
 			Math.floor(fractionToTiles(randFloat(0.67, 0.74)))),
 		[
 			new LayeredPainter([tSnowA, tSnowA], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 			unPaintClass(clWater)
 		]);
 
@@ -105,7 +108,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.1),
 	[
 		new LayeredPainter([tSnowA, tSnowA], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 		paintClass(clIsland),
 		unPaintClass(clWater)
 	],
@@ -119,7 +122,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(5, 7)), Math.floor(scaleByMapSize(20, 50)), 0.1),
 	[
 		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
-		new SmoothElevationPainter(ELEVATION_SET, -4, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightLake, 3),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 20, clWater, 20),
@@ -135,7 +138,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.1),
 	[
 		new LayeredPainter([tCliff, tSnowA], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, 25, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 20, clHill, 15, clWater, 2, clBaseResource, 2),

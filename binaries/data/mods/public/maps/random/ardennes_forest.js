@@ -1,11 +1,5 @@
 Engine.LoadLibrary("rmgen");
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
-
-const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
-
 const tGrass = ["new_alpine_grass_b", "new_alpine_grass_c", "new_alpine_grass_d"];
 const tPineForestFloor = "temp_forestfloor_pine";
 const tForestFloor = [tPineForestFloor, tPineForestFloor, "alpine_dirt_grass_50"];
@@ -52,6 +46,18 @@ var pForest = [
 		tForestFloor
 		];
 
+const heightRavineValley = 2;
+const heightLand = 30;
+const heightRavineHill = 40;
+const heightHill = 50;
+const heightOffsetRavine = 10;
+
+InitMap(heightHill, g_MapSettings.BaseTerrain);
+
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapCenter = getMapCenter();
+
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -67,7 +73,7 @@ createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.42)), 0.94, 0.05, 0.1, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tCliff, tGrass], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, 30, 3)
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3)
 	]);
 Engine.SetProgress(5);
 
@@ -164,7 +170,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 		new ClumpPlacer(size, 0.1, 0.2, 0.1),
 		[
 			new LayeredPainter([tCliff, [tForestFloor, tForestFloor, tCliff]], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, 50, size < 50 ? 2 : 4),
+			new SmoothElevationPainter(ELEVATION_SET, heightHill, size < 50 ? 2 : 4),
 			paintClass(clHill)
 		],
 		avoidClasses(clPlayer, 8, clBaseResource, 2, clHill, 5),
@@ -175,7 +181,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 			new ClumpPlacer(size * 0.3, 0.94, 0.05, 0.1),
 			[
 				new LayeredPainter([tCliff, tForestFloor], [2]),
-				new SmoothElevationPainter(ELEVATION_MODIFY, 10, 3)
+				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetRavine, 3)
 			],
 			stayClasses(clHill, 4),
 			mountains.length * 2,
@@ -186,7 +192,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 		new ClumpPlacer(size, 0.1, 0.2, 0.1),
 		[
 			new LayeredPainter([tCliff, tForestFloor], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, 10, 2),
+			new SmoothElevationPainter(ELEVATION_SET, heightRavine, 2),
 			paintClass(clHill)
 		],
 		avoidClasses(clPlayer, 6, clBaseResource, 2, clHill, 5),
@@ -220,7 +226,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 			new ClumpPlacer(size * 0.3, 0.94, 0.05, 0.1),
 			[
 				new LayeredPainter([tCliff, tForestFloor], [2]),
-				new SmoothElevationPainter(ELEVATION_SET, 2, 2)
+				new SmoothElevationPainter(ELEVATION_SET, hRavineValley, 2)
 			],
 			[avoidClasses(clHillDeco, 2), stayClasses(clHill, 0)],
 			ravine.length * 2,
@@ -231,7 +237,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 			new ClumpPlacer(size * 0.1, 0.3, 0.05, 0.1),
 			[
 				new LayeredPainter([tCliff, tForestFloor], [2]),
-				new SmoothElevationPainter(ELEVATION_SET, 40, 2),
+				new SmoothElevationPainter(ELEVATION_SET, hRavineHill, 2),
 				paintClass(clHill)
 			],
 			[avoidClasses(clHillDeco, 2), borderClasses(clHill, 15, 1)],

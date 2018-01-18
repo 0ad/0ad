@@ -1,7 +1,9 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("heightmap");
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightLand = 0;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -24,25 +26,25 @@ var averageWaterCoverage = 1/3; // NOTE: Since errosion is not predictable actua
 if (mapSize < 200) // Sink the waterlevel on tiny maps to ensure enough space
 	averageWaterCoverage = 2/3 * averageWaterCoverage;
 
-var waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
-var waterHeightAdjusted = waterHeight + MIN_HEIGHT;
-setWaterHeight(waterHeight);
+var heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
+var heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT;
+setWaterHeight(heightSeaGround);
 
 // Prepare terrain texture by height placement
 var textueByHeight = [];
 
 // Deep water
-textueByHeight.push({"upperHeightLimit": heightRange.min + 1/3 * (waterHeightAdjusted - heightRange.min), "terrain": "temp_sea_rocks"});
+textueByHeight.push({"upperHeightLimit": heightRange.min + 1/3 * (heightSeaGroundAdjusted - heightRange.min), "terrain": "temp_sea_rocks"});
 
 // Medium deep water (with fish)
 var terrains = ["temp_sea_weed"];
 terrains = terrains.concat(terrains, terrains, terrains, terrains);
 terrains = terrains.concat(terrains, terrains, terrains, terrains);
 terrains.push("temp_sea_weed|gaia/fauna_fish");
-textueByHeight.push({"upperHeightLimit": heightRange.min + 2/3 * (waterHeightAdjusted - heightRange.min), "terrain": terrains});
+textueByHeight.push({"upperHeightLimit": heightRange.min + 2/3 * (heightSeaGroundAdjusted - heightRange.min), "terrain": terrains});
 
 // Flat Water
-textueByHeight.push({"upperHeightLimit": heightRange.min + 3/3 * (waterHeightAdjusted - heightRange.min), "terrain": "temp_mud_a"});
+textueByHeight.push({"upperHeightLimit": heightRange.min + 3/3 * (heightSeaGroundAdjusted - heightRange.min), "terrain": "temp_mud_a"});
 
 // Water surroundings/bog (with stone/metal some rabits and bushes)
 var terrains = ["temp_plants_bog", "temp_plants_bog_aut", "temp_dirt_gravel_plants", "temp_grass_d"];
@@ -50,19 +52,19 @@ terrains = terrains.concat(terrains, terrains, terrains, terrains, terrains);
 terrains = ["temp_plants_bog|gaia/flora_bush_temperate"].concat(terrains, terrains);
 terrains = ["temp_dirt_gravel_plants|gaia/geology_metal_temperate", "temp_dirt_gravel_plants|gaia/geology_stone_temperate", "temp_plants_bog|gaia/fauna_rabbit"].concat(terrains, terrains);
 terrains = ["temp_plants_bog_aut|gaia/flora_tree_dead"].concat(terrains, terrains);
-textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 1/6 * (heightRange.max - waterHeightAdjusted), "terrain": terrains});
+textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 1/6 * (heightRange.max - heightSeaGroundAdjusted), "terrain": terrains});
 
 // Juicy grass near bog
-textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 2/6 * (heightRange.max - waterHeightAdjusted),
+textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 2/6 * (heightRange.max - heightSeaGroundAdjusted),
 	"terrain": ["temp_grass", "temp_grass_d", "temp_grass_long_b", "temp_grass_plants"]});
 
 // Medium level grass
 // var testActor = "actor|geology/decal_stone_medit_a.xml";
-textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 3/6 * (heightRange.max - waterHeightAdjusted),
+textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 3/6 * (heightRange.max - heightSeaGroundAdjusted),
 	"terrain": ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_mossy"]});
 
 // Long grass near forest border
-textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 4/6 * (heightRange.max - waterHeightAdjusted),
+textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 4/6 * (heightRange.max - heightSeaGroundAdjusted),
 	"terrain": ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d", "temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"]});
 
 // Forest border (With wood/food plants/deer/rabits)
@@ -74,10 +76,10 @@ var terrains = ["temp_grass_plants|gaia/flora_tree_euro_beech", "temp_grass_moss
 var numTerrains = terrains.length;
 for (var i = 0; i < numTerrains; i++)
 	terrains.push("temp_grass_plants");
-textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 5/6 * (heightRange.max - waterHeightAdjusted), "terrain": terrains});
+textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 5/6 * (heightRange.max - heightSeaGroundAdjusted), "terrain": terrains});
 
 // Unpassable woods
-textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 6/6 * (heightRange.max - waterHeightAdjusted),
+textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 6/6 * (heightRange.max - heightSeaGroundAdjusted),
 	"terrain": ["temp_grass_mossy|gaia/flora_tree_oak", "temp_forestfloor_pine|gaia/flora_tree_pine",
 	"temp_grass_mossy|gaia/flora_tree_oak", "temp_forestfloor_pine|gaia/flora_tree_pine",
 	"temp_mud_plants|gaia/flora_tree_dead", "temp_plants_bog|gaia/flora_tree_oak_large",

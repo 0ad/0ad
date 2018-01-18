@@ -43,7 +43,11 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+var heightSeaGround = -5;
+var heightLand = 3;
+var heightShore = 1;
+
+InitMap(heightSeaGround, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 
@@ -56,9 +60,6 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clLand = createTileClass();
-
-var landHeight = 3;
-var shoreHeight = 1;
 
 var islandRadius = scaleByMapSize(22, 31);
 
@@ -76,7 +77,7 @@ for (let i = 0; i < numPlayers; ++i)
 			playerPosition[i].y,
 			0,
 			[Math.floor(islandRadius)]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4));
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4));
 
 log("Creating random islands...");
 createAreas(
@@ -89,15 +90,15 @@ createAreas(
 		undefined,
 		scaleByMapSize(30, 70)),
 	[
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 		paintClass(clLand)
 	],
 	null,
 	scaleByMapSize(1, 5) * randIntInclusive(5, 10));
 
-paintTerrainBasedOnHeight(landHeight - 0.6, landHeight + 0.4, 3, tMainTerrain);
-paintTerrainBasedOnHeight(shoreHeight, landHeight, 0, tShore);
-paintTerrainBasedOnHeight(getMapBaseHeight(), shoreHeight, 2, tWater);
+paintTerrainBasedOnHeight(heightLand - 0.6, heightLand + 0.4, 3, tMainTerrain);
+paintTerrainBasedOnHeight(heightShore, heightLand, 0, tShore);
+paintTerrainBasedOnHeight(heightSeaGround, heightShore, 2, tWater);
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],

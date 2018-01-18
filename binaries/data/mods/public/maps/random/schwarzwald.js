@@ -3,7 +3,10 @@ Engine.LoadLibrary("heightmap");
 
 log('Initializing map...');
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightLand = 1;
+const heightOffsetPath = -0.1;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 setSkySet("fog");
 setFogFactor(0.35);
@@ -111,9 +114,9 @@ var heightRange = {'min': MIN_HEIGHT * (g_Map.size + 512) / 8192, 'max': MAX_HEI
 
 // Set average water coverage
 var averageWaterCoverage = 1/5; // NOTE: Since erosion is not predictable actual water coverage might vary much with the same values
-var waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
-var waterHeightAdjusted = waterHeight + MIN_HEIGHT;
-setWaterHeight(waterHeight);
+var heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
+var heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT;
+setWaterHeight(heightSeaGround);
 
 // Setting a 3x3 Grid as initial heightmap
 var initialReliefmap = [[heightRange.max, heightRange.max, heightRange.max], [heightRange.max, heightRange.min, heightRange.max], [heightRange.max, heightRange.max, heightRange.max]];
@@ -126,17 +129,17 @@ for (var i = 0; i < 5; i++)
 rescaleHeightmap(heightRange.min, heightRange.max);
 
 var heighLimits = [
-	heightRange.min + 1/3 * (waterHeightAdjusted - heightRange.min), // 0 Deep water
-	heightRange.min + 2/3 * (waterHeightAdjusted - heightRange.min), // 1 Medium Water
-	heightRange.min + (waterHeightAdjusted - heightRange.min), // 2 Shallow water
-	waterHeightAdjusted + 1/8 * (heightRange.max - waterHeightAdjusted), // 3 Shore
-	waterHeightAdjusted + 2/8 * (heightRange.max - waterHeightAdjusted), // 4 Low ground
-	waterHeightAdjusted + 3/8 * (heightRange.max - waterHeightAdjusted), // 5 Player and path height
-	waterHeightAdjusted + 4/8 * (heightRange.max - waterHeightAdjusted), // 6 High ground
-	waterHeightAdjusted + 5/8 * (heightRange.max - waterHeightAdjusted), // 7 Lower forest border
-	waterHeightAdjusted + 6/8 * (heightRange.max - waterHeightAdjusted), // 8 Forest
-	waterHeightAdjusted + 7/8 * (heightRange.max - waterHeightAdjusted), // 9 Upper forest border
-	waterHeightAdjusted + (heightRange.max - waterHeightAdjusted)]; // 10 Hilltop
+	heightRange.min + 1/3 * (heightSeaGroundAdjusted - heightRange.min), // 0 Deep water
+	heightRange.min + 2/3 * (heightSeaGroundAdjusted - heightRange.min), // 1 Medium Water
+	heightRange.min + (heightSeaGroundAdjusted - heightRange.min), // 2 Shallow water
+	heightSeaGroundAdjusted + 1/8 * (heightRange.max - heightSeaGroundAdjusted), // 3 Shore
+	heightSeaGroundAdjusted + 2/8 * (heightRange.max - heightSeaGroundAdjusted), // 4 Low ground
+	heightSeaGroundAdjusted + 3/8 * (heightRange.max - heightSeaGroundAdjusted), // 5 Player and path height
+	heightSeaGroundAdjusted + 4/8 * (heightRange.max - heightSeaGroundAdjusted), // 6 High ground
+	heightSeaGroundAdjusted + 5/8 * (heightRange.max - heightSeaGroundAdjusted), // 7 Lower forest border
+	heightSeaGroundAdjusted + 6/8 * (heightRange.max - heightSeaGroundAdjusted), // 8 Forest
+	heightSeaGroundAdjusted + 7/8 * (heightRange.max - heightSeaGroundAdjusted), // 9 Upper forest border
+	heightSeaGroundAdjusted + (heightRange.max - heightSeaGroundAdjusted)]; // 10 Hilltop
 
 var startLocations = getStartLocationsByHeightmap({'min': heighLimits[4], 'max': heighLimits[5]});
 var playerHeight = (heighLimits[4] + heighLimits[5]) / 2;
@@ -230,7 +233,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 			new RandomPathPlacer(pathStart, pathEnd, 1.75, baseRadius / 2, pathBlending),
 			[
 				new TerrainPainter(terrainPath),
-				new SmoothElevationPainter(ELEVATION_MODIFY, -0.1, 1),
+				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetPath, 1),
 				paintClass(clPath)
 			],
 			avoidClasses(clPath, 0, clOpen, 0 ,clWater, 4, clBaseResource, 4));

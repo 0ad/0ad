@@ -42,7 +42,12 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -5;
+const heightLand = 3;
+const heightHill = 18;
+const heightOffsetBump = 2;
+
+InitMap(heightSeaGround, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -60,8 +65,6 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 var clIsland = createTileClass();
 
-var landHeight = 3;
-
 var startAngle = 4/7 * Math.PI;
 var playerIDs = sortAllPlayers();
 var [playerPosition, playerAngle] = playerPlacementCustomAngle(
@@ -76,7 +79,7 @@ for (let i = 0; i < numPlayers; ++i)
 		new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.8, 0.1, 10, playerPosition[i].x, playerPosition[i].y),
 		[
 			new LayeredPainter([tWater, tShore, tMainTerrain], [1, 4]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 			paintClass(clIsland),
 			paintClass(isNomad() ? clLand : clPlayer)
 		]);
@@ -129,7 +132,7 @@ createArea(
 	new ClumpPlacer(mapArea * 0.50, 0.8, 0.08, 10,  Math.round(fractionToTiles(0.12)), Math.round(fractionToTiles(0.5))),
 	[
 		new LayeredPainter([tWater, tShore, tMainTerrain], [4, 2]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 		paintClass(clLand)
 	],
 	avoidClasses(clIsland, 8));
@@ -140,7 +143,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 		paintClass(clLand)
 	],
 	[
@@ -157,7 +160,7 @@ Engine.SetProgress(25);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	[avoidClasses(clIsland, 10), stayClasses(clLand, 3)],
 	scaleByMapSize(100, 200)
 );
@@ -168,7 +171,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	[avoidClasses(clIsland, 10, clHill, 15), stayClasses(clLand, 7)],

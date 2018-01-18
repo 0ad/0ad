@@ -44,7 +44,15 @@ const aDecorativeRock = "actor|geology/stone_granite_med.xml";
 
 const pForest = [tForestFloor, tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -3;
+const heightSeaBump = -2.5;
+const heightCorralsLower = -2;
+const heightCorralsUpper = -1.5;
+const heightShore = 1;
+const heightLand = 2;
+const heightIsland = 6;
+
+InitMap(heightShore, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
@@ -61,12 +69,6 @@ var clBaseResource = createTileClass();
 var clGrass = createTileClass();
 var clHill = createTileClass();
 var clIsland = createTileClass();
-
-var waterHeight = -3;
-var corralsHeightLower = -2;
-var corralsHeightUpper = -1.5;
-var shoreHeight = 1;
-var landHeight = 2;
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementRiver(0, fractionToTiles(0.6)),
@@ -104,16 +106,16 @@ paintRiver({
 	"width": fractionToTiles(0.35),
 	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
-	"waterHeight": waterHeight,
-	"landHeight": landHeight,
+	"heightRiverbed": heightSeaGround,
+	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0
 });
 
 paintTileClassBasedOnHeight(-Infinity, 0.7, Elevation_ExcludeMin_ExcludeMax, clWater);
 
-paintTerrainBasedOnHeight(-Infinity, shoreHeight, Elevation_ExcludeMin_ExcludeMax, tShoreLower);
-paintTerrainBasedOnHeight(shoreHeight, landHeight, Elevation_ExcludeMin_ExcludeMax, tShoreUpper);
+paintTerrainBasedOnHeight(-Infinity, heightShore, Elevation_ExcludeMin_ExcludeMax, tShoreLower);
+paintTerrainBasedOnHeight(heightShore, heightLand, Elevation_ExcludeMin_ExcludeMax, tShoreUpper);
 Engine.SetProgress(40);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
@@ -157,7 +159,7 @@ Engine.SetProgress(60);
 log("Creating undersea bumps...");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
-	new SmoothElevationPainter(ELEVATION_SET, -2.5, 3),
+	new SmoothElevationPainter(ELEVATION_SET, heightSeaBump, 3),
 	stayClasses(clWater, 6),
 	scaleByMapSize(10, 50));
 
@@ -166,16 +168,16 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(30, 80)), 0.5),
 	[
 		new LayeredPainter([tShoreLower, tShoreUpper, tHill], [2 ,1]),
-		new SmoothElevationPainter(ELEVATION_SET, 6, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightIsland, 4),
 		paintClass(clIsland)
 	],
 	[avoidClasses(clPlayer, 8, clForest, 1, clIsland, 15), stayClasses (clWater, 6)],
 	scaleByMapSize(1, 4) * numPlayers
 );
 
-paintTerrainBasedOnHeight(-Infinity, waterHeight, Elevation_IncludeMin_IncludeMax, tSeaDepths);
-paintTerrainBasedOnHeight(waterHeight, corralsHeightLower, Elevation_ExcludeMin_IncludeMax, tCoralsLower);
-paintTerrainBasedOnHeight(corralsHeightLower, corralsHeightUpper, Elevation_ExcludeMin_IncludeMax, tCoralsUpper);
+paintTerrainBasedOnHeight(-Infinity, heightSeaGround, Elevation_IncludeMin_IncludeMax, tSeaDepths);
+paintTerrainBasedOnHeight(heightSeaGround, heightCorralsLower, Elevation_ExcludeMin_IncludeMax, tCoralsLower);
+paintTerrainBasedOnHeight(heightCorralsLower, heightCorralsUpper, Elevation_ExcludeMin_IncludeMax, tCoralsUpper);
 
 log("Creating island stone mines...");
 createMines(

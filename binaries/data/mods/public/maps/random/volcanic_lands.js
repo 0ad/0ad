@@ -22,7 +22,10 @@ var aRockMedium = "actor|geology/stone_granite_med.xml";
 var pForestD = [tGrassC + TERRAIN_SEPARATOR + oTree, tGrassC];
 var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightLand = 1;
+const heightHill = 18;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 var numPlayers = getNumPlayers();
 var mapCenter = getMapCenter();
@@ -65,7 +68,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tCliff, tGrass], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 12, clHill, 15, clBaseResource, 2),

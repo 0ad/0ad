@@ -42,7 +42,12 @@ const pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
 const pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
 const pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -5;
+const heightLand = 3;
+const heightHill = 12;
+const heightOffsetBump = 2;
+
+InitMap(heightSeaGround, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -98,7 +103,7 @@ function createCycladicArchipelagoIsland(position, tileClass, radius, coralRadiu
 			new ClumpPlacer(diskArea(radius), 0.7, 0.1, 10, position.x, position.y),
 			[
 				new LayeredPainter([tOceanCoral, tBeachWet, tBeachDry, tBeach, tBeachBlend, tGrass], [1, 3, 1, 1, 2]),
-				new SmoothElevationPainter(ELEVATION_SET, 3, 5),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 5),
 				paintClass(tileClass)
 			],
 			avoidClasses(clPlayer, 0)));
@@ -155,7 +160,7 @@ Engine.SetProgress(20);
 log("Creating bumps...");
 createAreasInAreas(
 	new ClumpPlacer(scaleByMapSize(20, 60), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 3),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 3),
 	avoidClasses(clCity, 0),
 	scaleByMapSize(25, 75),15,
 	areas);
@@ -167,7 +172,7 @@ createAreasInAreas(
 	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tCliff, tCliffShrubs], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 12, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	avoidClasses(clCity, 15, clHill, 15),

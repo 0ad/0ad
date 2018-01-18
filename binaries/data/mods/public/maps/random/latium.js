@@ -49,7 +49,12 @@ const pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
 const pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
 const pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -16;
+const heightLand = 0;
+const heightPlayer = 5;
+const heightHill = 12;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -66,10 +71,6 @@ var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
 
 var WATER_WIDTH = 0.1;
-
-var waterHeight = -16;
-var landHeight = getMapBaseHeight();
-var hillHeight = 12;
 
 log("Creating players...");
 var [playerIDs, playerPosition] = playerPlacementLine(false, mapCenter, fractionToTiles(randFloat(0.42, 0.46)));
@@ -107,8 +108,8 @@ for (let x of [mapBounds.left, mapBounds.right])
 		"width": 2 * fractionToTiles(WATER_WIDTH),
 		"fadeDist": 16,
 		"deviation": 0,
-		"waterHeight": waterHeight,
-		"landHeight": landHeight,
+		"heightRiverbed": heightSeaGround,
+		"heightLand": heightLand,
 		"meanderShort": 0,
 		"meanderLong": 0,
 		"waterFunc": (ix, iz, height, z) => {
@@ -137,7 +138,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 		var pn = playerNearness(x, z);
 
 		let distToWater = stayClasses(clWater, 1).allows(ix, iz) ? 0 : (0.5 - WATER_WIDTH - Math.abs(x - 0.5));
-		let h = distToWater ? hillHeight * (1 - Math.abs(x - 0.5) / (0.5 - WATER_WIDTH)) : getHeight(ix, iz);
+		let h = distToWater ? heightHill * (1 - Math.abs(x - 0.5) / (0.5 - WATER_WIDTH)) : getHeight(ix, iz);
 
 		// add some base noise
 		var baseNoise = 16*noise0.get(x,z) + 8*noise1.get(x,z) + 4*noise2.get(x,z) - (16+8+4)/2;
@@ -323,7 +324,7 @@ placePlayerBases({
 		"innerTerrain": tCity,
 		"width": 4,
 		"painters": [
-			new SmoothElevationPainter(ELEVATION_SET, 5, 2)
+			new SmoothElevationPainter(ELEVATION_SET, heightPlayer, 2)
 		]
 	},
 	"Chicken": {

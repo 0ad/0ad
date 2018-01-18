@@ -39,7 +39,10 @@ var aRockMedium = "actor|geology/stone_granite_med.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBush, tForestFloor + TERRAIN_SEPARATOR + oBush2, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+var heightSeaGround = -5;
+var heightLand = 2;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 
@@ -112,7 +115,7 @@ createAreas(
 		1),
 	[
 		new LayeredPainter([tShore, tWater, tWater], [1, 3]),
-		new SmoothElevationPainter(ELEVATION_SET, -5, 5),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 15),

@@ -37,7 +37,14 @@ const aBushSmall = "actor|props/flora/bush_medit_sm_lush.xml";
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oPoplar, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround1 = -3;
+const heightShore1 = -1.5;
+const heightShore2 = 0;
+const heightLand = 1;
+const heightOffsetBump = 4;
+const heightHill = 15;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const mapCenter = getMapCenter();
 const mapBounds = getMapBounds();
@@ -92,16 +99,16 @@ paintRiver({
 	"width": fractionToTiles(0.5),
 	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
-	"waterHeight": -3,
-	"landHeight": 1,
+	"heightRiverbed": heightSeaGround1,
+	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0,
 	"waterFunc": (ix, iz, height, riverFraction) => {
 
-		if (height < 0)
+		if (height < heightShore2)
 			addToClass(ix, iz, clWater);
 
-		createTerrain(height < -1.5 ? tWater : tShore).place(ix, iz);
+		createTerrain(height < heightShore1 ? tWater : tShore).place(ix, iz);
 	}
 });
 Engine.SetProgress(20);
@@ -122,8 +129,8 @@ createArea(
 
 log("Creating bumps...");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 4, 3),
+	new ClumpPlacer(scaleByMapSize(10, 60), 0.3, 0.06, 1),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 3),
 	stayClasses(clHighlands, 1),
 	scaleByMapSize(300, 600));
 
@@ -134,7 +141,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 15, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 20, clWater, 5, clHill, 15, clHighlands, 5),

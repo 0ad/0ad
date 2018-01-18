@@ -40,7 +40,10 @@ const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oBeech, tForestFloor];
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+var heightSeaGround = -4;
+var heightLand = 3;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -137,7 +140,7 @@ var waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(100,250), 0.8, 0.1, 10),
 	[
 		new LayeredPainter([tShore, tWater, tWater], [1, 1]),
-		new SmoothElevationPainter(ELEVATION_SET, -4, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 3),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 7, clWater, 20),

@@ -46,7 +46,11 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap(g_MapSettings.BaseHeight, tWater);
+const heightSeaGround = -2;
+const heightLand = 2;
+const shoreRadius = 6;
+
+InitMap(heightSeaGround, tWater);
 
 const clPlayer = createTileClass();
 const clHill = createTileClass();
@@ -62,16 +66,12 @@ const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapCenter = getMapCenter();
 
-const landHeight = 2;
-const waterHeight = getMapBaseHeight();
-const shoreRadius = 6;
-
 log("Creating the water...");
 createArea(
 	new ClumpPlacer(getMapArea(), 1, 1, 1, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tWater, tWater, tShore], [1, 4]),
-		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2)
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 2)
 	],
 	avoidClasses(clPlayer, 5));
 
@@ -89,7 +89,7 @@ for (let i = 0; i < numPlayers; ++i)
 			playerPosition[i].y),
 		[
 			new LayeredPainter([tShore, tMainTerrain], [shoreRadius]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, shoreRadius),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
 			paintClass(clHill)
 		]);
 
@@ -138,7 +138,7 @@ createArea(
 		[Math.floor(mapSize * 0.01)]),
 	[
 		new LayeredPainter([tShore, tMainTerrain], [shoreRadius, 100]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, shoreRadius),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 40));
@@ -242,8 +242,8 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		numb * scaleByMapSize(15, 45));
 
 log("Painting shorelines...");
-paintTerrainBasedOnHeight(1, landHeight, 0, tMainTerrain);
-paintTerrainBasedOnHeight(waterHeight, 1, 3, tTier1Terrain);
+paintTerrainBasedOnHeight(1, heightLand, 0, tMainTerrain);
+paintTerrainBasedOnHeight(heightSeaGround, 1, 3, tTier1Terrain);
 
 log("Creating grass patches...");
 for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])

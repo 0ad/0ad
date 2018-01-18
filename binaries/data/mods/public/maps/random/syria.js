@@ -31,7 +31,11 @@ const aBushes = [aBushA, aBushB];
 const pForestP = [tForestFloor2 + TERRAIN_SEPARATOR + oPalm, tForestFloor2];
 const pForestT = [tForestFloor1 + TERRAIN_SEPARATOR + oTamarix,tForestFloor2];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightLand = 1;
+const heightHill = 22;
+const heightOffsetBump = 2;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();
@@ -106,7 +110,7 @@ Engine.SetProgress(20);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));
 
@@ -115,7 +119,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 22, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 3, clGrass, 1, clHill, 10),

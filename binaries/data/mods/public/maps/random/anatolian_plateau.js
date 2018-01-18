@@ -28,7 +28,10 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPoplar, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+var heightLand = 1;
+var heightOffsetBump = 2;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 var numPlayers = getNumPlayers();
 
@@ -73,7 +76,7 @@ Engine.SetProgress(20);
 log("Creating bumps...");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(2, 5)), 0.5),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));
 

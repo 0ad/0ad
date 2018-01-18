@@ -45,7 +45,11 @@ const aRockMedium = g_Decoratives.rockMedium;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap(g_MapSettings.BaseHeight, tWater);
+const heightSeaGround = -10;
+const heightLand = 3;
+const heightHill = 18;
+
+InitMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -60,9 +64,6 @@ const clMetal = createTileClass();
 const clFood = createTileClass();
 const clBaseResource = createTileClass();
 const clLand = createTileClass();
-
-const shoreRadius = 6;
-const landHeight = 3;
 
 var startAngle = randomAngle();
 
@@ -90,8 +91,8 @@ for (let i = 0; i < teams.length; ++i)
 		createArea(
 			new ChainPlacer(2, Math.floor(scaleByMapSize(5, 11)), Math.floor(scaleByMapSize(60, 250)), 1, playerPosition[p].x, playerPosition[p].y, 0, [Math.floor(fractionToTiles(0.01))]),
 			[
-				new LayeredPainter([tMainTerrain, tMainTerrain, tMainTerrain], [1, shoreRadius]),
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, shoreRadius),
+				new LayeredPainter([tMainTerrain, tMainTerrain, tMainTerrain], [1, 6]),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 				paintClass(clLand)
 			]);
 
@@ -199,7 +200,7 @@ for (let i = 0; i < numIslands; ++i)
 			scaleByMapSize(30, 70)),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 			paintClass(clLand)
 		],
 		avoidClasses(clLand, 3, clPlayer, 3),
@@ -237,7 +238,7 @@ for (let i = 0; i < numIslands; ++i)
 		new ChainPlacer(Math.floor(scaleByMapSize(4, 7)), Math.floor(scaleByMapSize(7, 10)), Math.floor(scaleByMapSize(16, 40)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(22, 40)),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 			paintClass(clLand)
 		],
 		avoidClasses(clLand, 3, clPlayer, 3),
@@ -301,7 +302,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	[avoidClasses(clBaseResource, 20, clHill, 15, clRock, 6, clMetal, 6), stayClasses(clLand, 0)],
@@ -455,7 +456,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 paintTerrainBasedOnHeight(1, 2, 0, tShore);
-paintTerrainBasedOnHeight(getMapBaseHeight(), 1, 3, tWater);
+paintTerrainBasedOnHeight(heightSeaGround, 1, 3, tWater);
 
 placePlayersNomad(clPlayer, [stayClasses(clLand, 4), avoidClasses(clHill, 2, clForest, 1, clMetal, 4, clRock, 4, clFood, 2)]);
 

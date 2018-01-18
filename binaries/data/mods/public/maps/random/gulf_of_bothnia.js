@@ -7,8 +7,9 @@ var biome = pickRandom(["late_spring", "winter", "frozen_lake"]);
 if (biome == "late_spring")
 {
 	log("Late spring biome...");
-	var waterHeight = -3;
-	var shoreHeight = 1;
+	var heightSeaGround = -3;
+	var heightShore = 1;
+	var heightLand = 3;
 
 	var fishCount = { "min": 20, "max": 80 };
 	var bushCount = { "min": 13, "max": 200 };
@@ -51,8 +52,9 @@ if (biome == "late_spring")
 else if (biome == "winter")
 {
 	log("Winter biome...");
-	var waterHeight = -3;
-	var shoreHeight = 1;
+	var heightSeaGround = -3;
+	var heightShore = 1;
+	var heightLand = 3;
 
 	var fishCount = { "min": 20, "max": 80 };
 	var bushCount = { "min": 13, "max": 200 };
@@ -92,8 +94,9 @@ else if (biome == "winter")
 else if (biome == "frozen_lake")
 {
 	log("Frozen lake biome...");
-	var waterHeight = 0;
-	var shoreHeight = 2;
+	var heightSeaGround = 0;
+	var heightShore = 2;
+	var heightLand = 3;
 
 	var fishCount = { "min": 0, "max": 0 };
 	var bushCount = { "min": 0, "max": 0 };
@@ -133,7 +136,7 @@ else if (biome == "frozen_lake")
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, tPrimary);
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -203,13 +206,13 @@ for (let position of gulfLakePositions)
 			[Math.floor(position.radius)]),
 		[
 			new LayeredPainter([tPrimary, tPrimary, tPrimary, tPrimary], [1, 4, 2]),
-			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer,scaleByMapSize(20, 28)));
 
-paintTerrainBasedOnHeight(shoreHeight, getMapBaseHeight(), Elevation_ExcludeMin_ExcludeMax, tShore);
-paintTerrainBasedOnHeight(-Infinity, shoreHeight, Elevation_ExcludeMin_IncludeMax, tWater);
+paintTerrainBasedOnHeight(heightShore, heightLand, Elevation_ExcludeMin_ExcludeMax, tShore);
+paintTerrainBasedOnHeight(-Infinity, heightShore, Elevation_ExcludeMin_IncludeMax, tWater);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 10));
 

@@ -4,9 +4,14 @@ Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
-InitMap(g_MapSettings.BaseHeight, Terrains.mainTerrain);
+const heightLand = 1;
+const heightBarrier = 30;
+
+InitMap(heightLand, g_Terrains.mainTerrain);
 
 initTileClasses();
+
+const mapCenter = getMapCenter();
 
 createArea(
 	new MapBoundsPlacer(),
@@ -25,7 +30,7 @@ Engine.SetProgress(40);
 addElements(shuffleArray([
 	{
 		"func": addBluffs,
-		"baseHeight": getMapBaseHeight(),
+		"baseHeight": heightLand,
 		"avoid": [
 			g_TileClasses.bluff, 20,
 			g_TileClasses.hill, 5,
@@ -258,8 +263,6 @@ function placeBarriers()
 
 	for (let i = 0; i < spineCount; ++i)
 	{
-		var mStartCo = 0.07;
-		var mStopCo = 0.42;
 		var mSize = 8;
 		var mWaviness = 0.6;
 		var mOffset = 0.5;
@@ -281,20 +284,13 @@ function placeBarriers()
 		}
 
 		let angle = startAngle + (i + 0.5) * 2 * Math.PI / spineCount;
+		let start = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.075), 0).rotate(-angle));
+		let end = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.42), 0).rotate(-angle));
 		createArea(
-			new PathPlacer(
-				fractionToTiles(0.5 + mStartCo * Math.cos(angle)),
-				fractionToTiles(0.5 + mStartCo * Math.sin(angle)),
-				fractionToTiles(0.5 + mStopCo * Math.cos(angle)),
-				fractionToTiles(0.5 + mStopCo * Math.sin(angle)),
-				scaleByMapSize(14, mSize),
-				mWaviness,
-				0.1,
-				mOffset,
-				mTaper),
+			new PathPlacer(start.x, start.y, end.x, end.y, scaleByMapSize(14, mSize), mWaviness, 0.1, mOffset, mTaper),
 			[
 				new LayeredPainter([g_Terrains.cliff, spineTerrain], [2]),
-				new SmoothElevationPainter(ELEVATION_SET, 30, 2),
+				new SmoothElevationPainter(ELEVATION_SET, heightBarrier, 2),
 				paintClass(g_TileClasses.spine)
 			],
 			avoidClasses(g_TileClasses.player, 5, g_TileClasses.baseResource, 5));

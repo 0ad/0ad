@@ -4,7 +4,11 @@ Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
-InitMap(g_MapSettings.BaseHeight, g_Terrains.mainTerrain);
+var heightSeaGround = -18;
+var heightLand = 2;
+var heightOffsetHarbor = -11;
+
+InitMap(heightLand, g_Terrains.mainTerrain);
 
 initTileClasses();
 
@@ -84,7 +88,7 @@ addElements(shuffleArray([
 	},
 	{
 		"func": addBluffs,
-		"baseHeight": getMapBaseHeight(),
+		"baseHeight": heightLand,
 		"avoid": [
 			g_TileClasses.bluff, 20,
 			g_TileClasses.mountain, 25,
@@ -291,7 +295,7 @@ function addCenterLake()
 				],
 				[1, 100]
 			),
-			new SmoothElevationPainter(ELEVATION_SET, -18, 10),
+			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 10),
 			paintClass(g_TileClasses.water)
 		],
 		avoidClasses(g_TileClasses.player, 20)
@@ -322,14 +326,12 @@ function addHarbors(players)
 {
 	for (let player of players)
 	{
-		let playerPosition = player.position;
-		let harborPosition = Vector2D.add(playerPosition, Vector2D.sub(mapCenter, playerPosition).div(2.5).round());
-
+		let harborPosition = Vector2D.add(player.position, Vector2D.sub(mapCenter, player.position).div(2.5).round());
 		createArea(
-			new ClumpPlacer(scaleByMapSize(1200, 1200), 0.5, 0.5, 1, harborPosition.x, harborPosition.y),
+			new ClumpPlacer(1200, 0.5, 0.5, 1, harborPosition.x, harborPosition.y),
 			[
 				new LayeredPainter([g_Terrains.shore, g_Terrains.water], [2]),
-				new SmoothElevationPainter(ELEVATION_MODIFY, -11, 3),
+				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHarbor, 3),
 				paintClass(g_TileClasses.water)
 			],
 			avoidClasses(
@@ -358,9 +360,13 @@ function addHarbors(players)
 
 function addSpines()
 {
+	let smallSpines = mapSize <= 192;
+	let spineSize = smallSpines ? 0.5 : 0.02;
+	let spineTapering = smallSpines ? -1.4 : -0.1;
+	let heightOffsetSpine = smallSpines ? 20 : 35;
+
 	let numPlayers = getNumPlayers();
 	let spineTile = g_Terrains.dirt;
-	let elevation = 35;
 
 	if (currentBiome() == "snowy")
 		spineTile = g_Terrains.tier1Terrain;
@@ -378,37 +384,14 @@ function addSpines()
 	for (let i = 0; i < numPlayers * split; ++i)
 	{
 		let tang = startAngle + (i + 0.5) * 2 * Math.PI / (numPlayers * split);
-
-		let mStartCo = 0.12;
-		let mStopCo = 0.40;
-		let mSize = 0.5;
-		let mWaviness = 0.6;
-		let mOffset = 0.4;
-		let mTaper = -1.4;
-
-		// make small mountain dividers if we're on a small map
-		if (mapSize <= 192)
-		{
-			mSize = 0.02;
-			mTaper = -0.1;
-			elevation = 20;
-		}
+		let start = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.12), 0).rotate(-tang));
+		let end = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.4), 0).rotate(-tang));
 
 		createArea(
-			new PathPlacer(
-				fractionToTiles(0.5 + mStartCo * Math.cos(tang)),
-				fractionToTiles(0.5 + mStartCo * Math.sin(tang)),
-				fractionToTiles(0.5 + mStopCo * Math.cos(tang)),
-				fractionToTiles(0.5 + mStopCo * Math.sin(tang)),
-				scaleByMapSize(14, mSize),
-				mWaviness,
-				0.1,
-				mOffset,
-				mTaper
-			),
+			new PathPlacer(start.x, start.y, end.x, end.y, scaleByMapSize(14, spineSize), 0.6, 0.1, 0.4, spineTapering),
 			[
 				new LayeredPainter([g_Terrains.cliff, spineTile], [3]),
-				new SmoothElevationPainter(ELEVATION_MODIFY, elevation, 3),
+				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetSpine, 3),
 				paintClass(g_TileClasses.spine)
 			],
 			avoidClasses(g_TileClasses.player, 5)

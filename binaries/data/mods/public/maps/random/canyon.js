@@ -40,7 +40,10 @@ const aTree = g_Decoratives.tree;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap(g_MapSettings.BaseHeight, tMainTerrain);
+const heightLand = 3;
+const heightHill = 30;
+
+InitMap(heightHill, tMainTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -56,9 +59,6 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clLand = createTileClass();
-
-var landHeight = 3;
-var hillHeight = 30;
 
 var playerCanyonRadius = scaleByMapSize(18, 32);
 
@@ -77,7 +77,7 @@ for (let i = 0; i < numPlayers; ++i)
 			playerPosition[i].y),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
 			paintClass(j == 1 || isNomad() ? clLand : clPlayer)
 		]);
 
@@ -86,7 +86,7 @@ createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.16)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 		paintClass(clLand)
 	]);
 
@@ -108,7 +108,7 @@ for (let i = 0; i < scaleByMapSize(9, 16); ++i)
 			0.1,
 			0),
 		[
-			new SmoothElevationPainter(ELEVATION_SET, hillHeight, 3),
+			new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
 			paintClass(clHill2)
 		],
 		avoidClasses(clPlayer, 6, clHill2, 3, clHill, 2));
@@ -122,7 +122,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 		new ClumpPlacer(diskArea(fractionToTiles(0.06)), 0.7, 0.1, 10, tx, tz),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 			paintClass(clLand)
 		],
 		avoidClasses(clLand, 6));
@@ -160,7 +160,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 					new PathPlacer(tx, tz, playerPosition[playerID].x, playerPosition[playerID].y, scaleByMapSize(11, 17), 0.4, scaleByMapSize(3, 12), 0.1, 0.1),
 					[
 						new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-						new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
+						new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 						paintClass(clLand)
 					]);
 	}
@@ -184,7 +184,7 @@ for (let i = 0; i < numPlayers; ++i)
 				0),
 			[
 				new LayeredPainter([tRoadWild, tRoad], [1]),
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
 				paintClass(clLand),
 				paintClass(clHill)
 			]);

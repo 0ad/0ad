@@ -278,9 +278,14 @@ else
 	var aBushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 }
 
+var heightLand = 3;
+var heightOffsetBump = 2;
+var snowlineHeight = 29;
+var heightMountain = 30;
+
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, tPrimary);
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
@@ -293,12 +298,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-
-/**
- * Minimum distance between two mountainranges.
- */
-var snowlineHeight = 29;
-var mountainHeight = 30;
 
 var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -334,7 +333,7 @@ new MountainRangeBuilder({
 	"pathplacer": new PathPlacer(undefined, undefined, undefined, undefined, undefined, 0.4, scaleByMapSize(3, 12), 0.1, 0.1, 0.1),
 	"painters":[
 		new LayeredPainter([tCliff, tPrimary], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightMountain, 2),
 		paintClass(clHill)
 	],
 	"constraint": avoidClasses(clPlayer, 20),
@@ -353,13 +352,13 @@ new MountainRangeBuilder({
 
 Engine.SetProgress(35);
 
-paintTerrainBasedOnHeight(getMapBaseHeight() + 0.1, snowlineHeight, 0, tCliff);
-paintTerrainBasedOnHeight(snowlineHeight, mountainHeight, 3, tSnowLimited);
+paintTerrainBasedOnHeight(heightLand + 0.1, snowlineHeight, 0, tCliff);
+paintTerrainBasedOnHeight(snowlineHeight, heightMountain, 3, tSnowLimited);
 
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 10),
 	scaleByMapSize(100, 200));
 Engine.SetProgress(40);
@@ -369,7 +368,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tCliff, tSnowLimited], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightMountain, 2),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 20, clHill, 14),

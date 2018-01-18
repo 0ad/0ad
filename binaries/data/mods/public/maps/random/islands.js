@@ -44,7 +44,12 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -5;
+const heightLand = 3;
+const heightOffsetBump = 2;
+const heightHill = 18;
+
+InitMap(heightSeaGround, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -60,7 +65,6 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clLand = createTileClass();
 
-var landHeight = 3;
 var playerIslandRadius = scaleByMapSize(20, 29);
 
 var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
@@ -74,12 +78,12 @@ if (!isNomad())
 			new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, 10, playerPosition[i].x, playerPosition[i].y),
 			[
 				new LayeredPainter([tMainTerrain , tMainTerrain, tMainTerrain], [1, 6]),
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 				paintClass(clLand),
 				paintClass(clPlayer)
 			]);
 
-		let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , landHeight - 0.5, landHeight);
+		let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , heightLand - 0.5, heightLand);
 		placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
 	}
 }
@@ -93,7 +97,7 @@ createAreas(
 		0.07),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 		paintClass(clLand)
 	],
 	avoidClasses(clLand, scaleByMapSize(8, 12)),
@@ -108,7 +112,7 @@ createAreas(
 		0.07),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 		paintClass(clLand)
 	],
 	avoidClasses(clLand, scaleByMapSize(8, 12)),
@@ -158,7 +162,7 @@ placePlayerBases({
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	[avoidClasses(clPlayer, 0), stayClasses(clLand, 3)],
 	scaleByMapSize(20, 100));
 
@@ -167,7 +171,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	[avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)],

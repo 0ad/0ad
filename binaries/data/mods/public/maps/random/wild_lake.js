@@ -2,7 +2,9 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("heightmap");
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightLand = 0;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 /**
  * getArray - To ensure a terrain texture is contained within an array
@@ -406,9 +408,9 @@ let heightRange = { "min": MIN_HEIGHT * heightScale, "max": MAX_HEIGHT * heightS
 
 // Water coverage
 let averageWaterCoverage = 1/5; // NOTE: Since terrain generation is quite unpredictable actual water coverage might vary much with the same value
-let waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min); // Water height in environment and the engine
-let waterHeightAdjusted = waterHeight + MIN_HEIGHT; // Water height as terrain height
-setWaterHeight(waterHeight);
+let heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min); // Water height in environment and the engine
+let heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT; // Water height as terrain height
+setWaterHeight(heightSeaGround);
 
 // Generate base terrain shape
 let lowH = heightRange.min;
@@ -463,13 +465,13 @@ Engine.SetProgress(25);
  * Prepare terrain texture placement
  */
 let heighLimits = [
-	heightRange.min + 3/4 * (waterHeightAdjusted - heightRange.min), // 0 Deep water
-	waterHeightAdjusted, // 1 Shallow water
-	waterHeightAdjusted + 2/8 * (heightRange.max - waterHeightAdjusted), // 2 Shore
-	waterHeightAdjusted + 3/8 * (heightRange.max - waterHeightAdjusted), // 3 Low ground
-	waterHeightAdjusted + 4/8 * (heightRange.max - waterHeightAdjusted), // 4 Player and path height
-	waterHeightAdjusted + 6/8 * (heightRange.max - waterHeightAdjusted), // 5 High ground
-	waterHeightAdjusted + 7/8 * (heightRange.max - waterHeightAdjusted), // 6 Lower forest border
+	heightRange.min + 3/4 * (heightSeaGroundAdjusted - heightRange.min), // 0 Deep water
+	heightSeaGroundAdjusted, // 1 Shallow water
+	heightSeaGroundAdjusted + 2/8 * (heightRange.max - heightSeaGroundAdjusted), // 2 Shore
+	heightSeaGroundAdjusted + 3/8 * (heightRange.max - heightSeaGroundAdjusted), // 3 Low ground
+	heightSeaGroundAdjusted + 4/8 * (heightRange.max - heightSeaGroundAdjusted), // 4 Player and path height
+	heightSeaGroundAdjusted + 6/8 * (heightRange.max - heightSeaGroundAdjusted), // 5 High ground
+	heightSeaGroundAdjusted + 7/8 * (heightRange.max - heightSeaGroundAdjusted), // 6 Lower forest border
 	heightRange.max // 7 Forest
 ];
 let playerHeightRange = { "min" : heighLimits[3], "max" : heighLimits[4] };

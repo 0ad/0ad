@@ -47,7 +47,10 @@ const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor, tDirtMain, tDirtMain];
 
-InitMap(g_MapSettings.BaseHeight, tDirtMain);
+const heightLand = 10;
+const heightOffsetValley = -10;
+
+InitMap(heightLand, tDirtMain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -143,7 +146,7 @@ createArea(
 		[Math.floor(scaleByMapSize(18, 68))]),
 	[
 		new LayeredPainter([tLakebed2, tLakebed1], [6]),
-		new SmoothElevationPainter(ELEVATION_MODIFY, -10, 8),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetValley, 8),
 		paintClass(clCP)
 	],
 	avoidClasses(clPlayer, 18));

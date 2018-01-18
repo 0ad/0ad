@@ -35,7 +35,13 @@ const aBushSmall = "actor|props/flora/bush_dry_a.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBaobab, tForestFloor + TERRAIN_SEPARATOR + oBaobab, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -4;
+const heightShallows = -2;
+const heightLand = 3;
+const heightHill = 35;
+const heightOffsetBump = 2;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -51,9 +57,6 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clShallows = createTileClass();
-
-var waterHeight = -4;
-var shallowHeight = -2;
 
 var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -98,7 +101,7 @@ for (let i = 0; i < numPlayers; ++i)
 	createArea(
 		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 3), 0.95, 0.6, 10, riverStart[i].x, riverStart[i].y),
 		[
-			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 5));
@@ -108,7 +111,7 @@ for (let i = 0; i < numPlayers; ++i)
 		new PathPlacer(riverStart[i].x, riverStart[i].y, riverEnd[i].x, riverEnd[i].y, scaleByMapSize(10, 50), 0.2, 3 * scaleByMapSize(1, 4), 0.2, 0.05),
 		[
 			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
-			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 5));
@@ -117,7 +120,7 @@ for (let i = 0; i < numPlayers; ++i)
 	createArea(
 		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, riverEnd[i].x, riverEnd[i].y),
 		[
-			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 5));
@@ -129,9 +132,9 @@ for (let i = 0; i < numPlayers; ++i)
 		"startWidth": 10,
 		"endWidth": 10,
 		"smoothWidth": 4,
-		"startHeight": shallowHeight,
-		"endHeight": shallowHeight,
-		"maxHeight": shallowHeight,
+		"startHeight": heightShallows,
+		"endHeight": heightShallows,
+		"maxHeight": heightShallows,
 		"tileClass": clShallows
 	});
 
@@ -157,7 +160,7 @@ paintTerrainBasedOnHeight(-6, 2, 1, tWater);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clWater, 2, clPlayer, 20),
 	scaleByMapSize(100, 200));
 
@@ -166,7 +169,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tGrass, tCliff, tHill], [1, 2]),
-		new SmoothElevationPainter(ELEVATION_SET, 35, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 20, clHill, 15, clWater, 3),

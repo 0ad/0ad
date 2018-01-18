@@ -4,7 +4,7 @@ Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
-InitMap(g_MapSettings.BaseHeight, g_Terrains.mainTerrain);
+InitMap(2, g_Terrains.mainTerrain);
 
 initTileClasses();
 

@@ -319,8 +319,8 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
  * @property width - Size between the two shorelines.
  * @property fadeDist - Size of the shoreline.
  * @property deviation - Fuzz effect on the shoreline if greater than 0.
- * @property waterHeight - Ground height of the riverbed.
- * @proeprty landHeight - Ground height of the end of the shoreline.
+ * @property heightRiverbed - Ground height of the riverbed.
+ * @proeprty heightLand - Ground height of the end of the shoreline.
  * @property meanderShort - Strength of frequent meanders.
  * @property meanderLong - Strength of less frequent meanders.
  * @property [constraint] - If given, ignores any tiles that don't satisfy the given Constraint.
@@ -398,12 +398,12 @@ function paintRiver(args)
 			// Create the elevation for the water and the slopy shoreline and call the user functions.
 			if (shoreDist1 < 0 && shoreDist2 > 0)
 			{
-				let height = args.waterHeight;
+				let height = args.heightRiverbed;
 
 				if (shoreDist1 > -args.fadeDist)
-					height += (args.landHeight - args.waterHeight) * (1 + shoreDist1 / args.fadeDist);
+					height += (args.heightLand - args.heightRiverbed) * (1 + shoreDist1 / args.fadeDist);
 				else if (shoreDist2 < args.fadeDist)
-					height += (args.landHeight - args.waterHeight) * (1 - shoreDist2 / args.fadeDist);
+					height += (args.heightLand - args.heightRiverbed) * (1 - shoreDist2 / args.fadeDist);
 
 				if (args.minHeight === undefined || height < args.minHeight)
 					setHeight(ix, iz, height);
@@ -448,14 +448,14 @@ function rndRiver(f, seed)
 /**
  * Add small rivers with shallows starting at a central river ending at the map border, if the given Constraint is met.
  */
-function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, heightRange, maxAngle, tributaryRiverTileClass, shallowTileClass, constraint)
+function createTributaryRivers(horizontal, riverCount, riverWidth, heightRiverbed, heightRange, maxAngle, tributaryRiverTileClass, shallowTileClass, constraint)
 {
 	log("Creating tributary rivers...");
 	let waviness = 0.4;
 	let smoothness = scaleByMapSize(3, 12);
 	let offset = 0.1;
 	let tapering = 0.05;
-	let shallowHeight = -2;
+	let heightShallow = -2;
 	let riverAngle = horizontal ? 0 : Math.PI / 2;
 
 	let mapSize = getMapSize();
@@ -495,7 +495,7 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 				offset,
 				tapering),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+				new SmoothElevationPainter(ELEVATION_SET, heightRiverbed, 4),
 				paintClass(tributaryRiverTileClass)
 			],
 			new AndConstraint([constraint, riverConstraint])))
@@ -504,7 +504,7 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 		// Create small puddles at the map border to ensure players being separated
 		createArea(
 			new ClumpPlacer(Math.floor(diskArea(riverWidth / 2)), 0.95, 0.6, 10, end.x, end.y),
-			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 3),
+			new SmoothElevationPainter(ELEVATION_SET, heightRiverbed, 3),
 			constraint);
 	}
 
@@ -517,9 +517,9 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 				"startWidth": scaleByMapSize(8, 12),
 				"endWidth": scaleByMapSize(8, 12),
 				"smoothWidth": 2,
-				"startHeight": shallowHeight,
-				"endHeight": shallowHeight,
-				"maxHeight": shallowHeight,
+				"startHeight": heightShallow,
+				"endHeight": heightShallow,
+				"maxHeight": heightShallow,
 				"tileClass": shallowTileClass
 			});
 }

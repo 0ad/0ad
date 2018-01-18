@@ -26,7 +26,10 @@ const oMetalLarge = "gaia/geology_metal_savanna_slabs";
 const aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 const aRock = "actor|geology/stone_savanna_med.xml";
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -5;
+const heightLand = 1;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -97,7 +100,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(20, 60)), 1),
 	[
 		new LayeredPainter([tShore, tWater], [1]),
-		new SmoothElevationPainter(ELEVATION_SET, -5, 7),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 7),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 24),

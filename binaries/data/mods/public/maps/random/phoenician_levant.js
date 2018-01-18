@@ -39,7 +39,14 @@ const aDecorativeRock = "actor|geology/stone_granite_med.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -3;
+const heightShore = -1.5;
+const heightLand = 1;
+const heightIsland = 6;
+const heightHill = 15;
+const heightOffsetBump = 2;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -57,10 +64,6 @@ var clBaseResource = createTileClass();
 var clGrass = createTileClass();
 var clHill = createTileClass();
 var clIsland = createTileClass();
-
-var waterHeight = -3;
-var shoreHeight = -1.5;
-var landHeight = getMapBaseHeight();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementLine(false, new Vector2D(fractionToTiles(0.76), mapCenter.y), fractionToTiles(0.2)),
@@ -98,21 +101,21 @@ paintRiver({
 	"width": mapSize,
 	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
-	"waterHeight": waterHeight,
-	"landHeight": landHeight,
+	"heightRiverbed": heightSeaGround,
+	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0
 });
 Engine.SetProgress(40);
 
-paintTileClassBasedOnHeight(-Infinity, landHeight, Elevation_ExcludeMin_ExcludeMax, clWater);
-paintTerrainBasedOnHeight(-Infinity, shoreHeight, Elevation_ExcludeMin_ExcludeMax, tWater);
-paintTerrainBasedOnHeight(shoreHeight, landHeight, Elevation_ExcludeMin_ExcludeMax, tShore);
+paintTileClassBasedOnHeight(-Infinity, heightLand, Elevation_ExcludeMin_ExcludeMax, clWater);
+paintTerrainBasedOnHeight(-Infinity, heightShore, Elevation_ExcludeMin_ExcludeMax, tWater);
+paintTerrainBasedOnHeight(heightShore, heightLand, Elevation_ExcludeMin_ExcludeMax, tShore);
 
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clWater, 2, clPlayer, 20),
 	scaleByMapSize(100, 200));
 
@@ -121,7 +124,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 15, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 0),
@@ -174,7 +177,7 @@ createAreas(
 	new ClumpPlacer(diskArea(fractionToTiles(0.08)), 0.2, 0.1, 0.01),
 	[
 		new LayeredPainter([tShore, tHill], [12]),
-		new SmoothElevationPainter(ELEVATION_SET, 6, 8),
+		new SmoothElevationPainter(ELEVATION_SET, heightIsland, 8),
 		paintClass(clIsland),
 		unPaintClass(clWater)
 	],

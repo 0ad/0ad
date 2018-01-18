@@ -38,7 +38,18 @@ var aPlantC = "actor|props/flora/grass_soft_tuft_a.xml";
 
 var aStandingStone = "actor|props/special/eyecandy/standing_stones.xml";
 
-InitMap(g_MapSettings.BaseHeight, tVeryDeepWater);
+var heightSeaGround = -8;
+var heightCreeks = -5;
+var heightBeaches = -1;
+var heightMain = 5;
+
+var heightOffsetMainRelief = 30;
+var heightOffsetLevel1 = 9;
+var heightOffsetLevel2 = 8;
+var heightOffsetBumps = 2;
+var heightOffsetAntiBumps = -5;
+
+InitMap(heightSeaGround, tVeryDeepWater);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -69,15 +80,6 @@ var nbSubIsland = 5;
 var nbBeaches = scaleByMapSize(2, 5);
 var nbPassagesLevel1 = scaleByMapSize(4, 8);
 var nbPassagesLevel2 = scaleByMapSize(2, 4);
-
-var heightMain = 5;
-var heightCreeks = -5;
-var heightBeaches = -1;
-var heightOffsetMainRelief = 30;
-var heightOffsetLevel1 = 9;
-var heightOffsetLevel2 = 8;
-var heightOffsetBumps = 2;
-var heightOffsetAntiBumps = -5;
 
 log("Creating Corsica and Sardinia...");
 var swapAngle = randBool() ? Math.PI / 2 : 0;

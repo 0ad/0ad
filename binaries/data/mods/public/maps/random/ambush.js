@@ -4,7 +4,9 @@ Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
-InitMap(g_MapSettings.BaseHeight, g_Terrains.mainTerrain);
+var heightLand = 2;
+
+InitMap(heightLand, g_Terrains.mainTerrain);
 
 initTileClasses();
 
@@ -21,7 +23,7 @@ Engine.SetProgress(20);
 addElements([
 	{
 		"func": addBluffs,
-		"baseHeight": getMapBaseHeight(),
+		"baseHeight": heightLand,
 		"avoid": [
 			g_TileClasses.bluff, 12,
 			g_TileClasses.hill, 5,

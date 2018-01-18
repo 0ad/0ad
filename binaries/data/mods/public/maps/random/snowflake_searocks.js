@@ -38,7 +38,10 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap(g_MapSettings.BaseHeight, tWater);
+const heightIsland = 20;
+const heightSeaGround = -5;
+
+InitMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -54,7 +57,6 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 
 const playerIslandRadius = scaleByMapSize(15, 30);
-const islandHeight = 20;
 
 const islandBetweenPlayerAndCenterDist = 0.16;
 const islandBetweenPlayerAndCenterRadius = 0.81;
@@ -82,7 +84,7 @@ function createIsland(islandID, size, tileClass)
 		new ClumpPlacer(size * diskArea(playerIslandRadius), 0.95, 0.6, 10, islandPos[islandID].x, islandPos[islandID].y),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, islandHeight, 2),
+			new SmoothElevationPainter(ELEVATION_SET, heightIsland, 2),
 			paintClass(tileClass)
 		]);
 }
@@ -260,7 +262,7 @@ for (let i = 0; i < numIslands; ++i)
 				"startWidth": 11,
 				"endWidth": 11,
 				"smoothWidth": 3,
-				"maxHeight": islandHeight - 1,
+				"maxHeight": heightIsland - 1,
 				"tileClass": clLand,
 				"terrain": tHill,
 				"edgeTerrain": tCliff

@@ -32,10 +32,13 @@ const aBush3 = "actor|props/flora/plant_tropic_large.xml";
 const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oTree, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPalm, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -5;
+const heightLand = 3;
+const heightHill = 25;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
 const mapCenter = getMapCenter();
 const mapBounds = getMapBounds();
 
@@ -91,8 +94,8 @@ paintRiver({
 	"width": 2 * waterPosition,
 	"fadeDist": 8,
 	"deviation": 0,
-	"waterHeight": -5,
-	"landHeight": 3,
+	"heightRiverbed": heightSeaGround,
+	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0,
 	"waterFunc": (ix, iz, height, riverFraction) => {
@@ -116,7 +119,7 @@ for (let i = 0; i < scaleByMapSize(20, 120); ++i)
 			Math.floor(fractionToTiles(randFloat(0.1, 0.9)))),
 		[
 			new LayeredPainter([tGrass, tGrass], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, 3, 3),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 			unPaintClass(clWater)
 		]);
 
@@ -132,7 +135,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.1),
 	[
 		new LayeredPainter([tCliff, tGrass], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, 25, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
 		paintClass(clHill)
 	],
 	[avoidClasses(clPlayer, 20, clHill, 5, clWater, 2, clBaseResource, 2), stayClasses(clMountains, 0)],

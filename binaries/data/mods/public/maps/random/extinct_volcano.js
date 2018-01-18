@@ -50,7 +50,12 @@ const pForestP = [
 	tForestFloor1
 ];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+var heightSeaGround = -4;
+var heightLand = 1;
+var heightHill = 18;
+var heightPlayerHill = 25;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 var numPlayers = getNumPlayers();
 var mapCenter = getMapCenter();
@@ -69,8 +74,7 @@ var clBumps = createTileClass();
 var clTower = createTileClass();
 var clRain = createTileClass();
 
-var ccMountainHeight = 25;
-var ccMountainSize = defaultPlayerBaseRadius();
+var playerMountainSize = defaultPlayerBaseRadius();
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -80,9 +84,9 @@ if (!isNomad())
 	{
 		// This one consists of many bumps, creating an omnidirectional ramp
 		createMountain(
-			ccMountainHeight,
-			ccMountainSize,
-			ccMountainSize,
+			heightPlayerHill,
+			playerMountainSize,
+			playerMountainSize,
 			Math.floor(scaleByMapSize(4, 10)),
 			undefined,
 			playerPosition[i].x,
@@ -93,10 +97,10 @@ if (!isNomad())
 
 		// Flatten the initial CC area
 		createArea(
-			new ClumpPlacer(diskArea(ccMountainSize), 0.95, 0.6, 10, playerPosition[i].x,playerPosition[i].y),
+			new ClumpPlacer(diskArea(playerMountainSize), 0.95, 0.6, 10, playerPosition[i].x,playerPosition[i].y),
 			[
-				new LayeredPainter([tHillVeryDark, tHillMedium1], [ccMountainSize]),
-				new SmoothElevationPainter(ELEVATION_SET, ccMountainHeight, ccMountainSize),
+				new LayeredPainter([tHillVeryDark, tHillMedium1], [playerMountainSize]),
+				new SmoothElevationPainter(ELEVATION_SET, heightPlayerHill, playerMountainSize),
 				paintClass(clPlayer)
 			]);
 	}
@@ -138,7 +142,7 @@ createAreas(
 	new ChainPlacer(5, 6, Math.floor(scaleByMapSize(10, 14)), 0.1),
 	[
 		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
-		new SmoothElevationPainter(ELEVATION_SET, -4, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 3),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 0, clHill, 2, clWater, 12),
@@ -154,7 +158,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tHillDark, tHillDark, tHillDark], [2, 2]),
-		new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 0, clHill, 15, clWater, 2, clBaseResource, 2),

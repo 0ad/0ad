@@ -39,7 +39,10 @@ const triggerPointTreasures = [
 	"trigger/trigger_point_D"
 ];
 
-InitMap(g_MapSettings.BaseHeight, tMainTerrain);
+const heightLand = 3;
+const heightHill = 30;
+
+InitMap(heightHill, tMainTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -59,7 +62,7 @@ createArea(
 	new ClumpPlacer(mapArea * scaleByMapSize(0.065, 0.09), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, 3, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 		paintClass(clLand)
 	]);
 Engine.SetProgress(10);
@@ -86,7 +89,7 @@ for (let  i = 0; i < numPlayers; ++i)
 		new PathPlacer(mapCenter.x, mapCenter.y, passage[i].x, passage[i].y, scaleByMapSize(14, 24), 0.4, scaleByMapSize(3, 9), 0.2, 0.05),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [1]),
-			new SmoothElevationPainter(ELEVATION_SET, 3, 4)
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4)
 		]);
 
 	log("Placing treasure seeker woman...");

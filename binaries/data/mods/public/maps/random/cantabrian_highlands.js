@@ -41,7 +41,11 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oOak, tGrassDForest + TERRAIN_SEPARATOR + oOakLarge, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest + TERRAIN_SEPARATOR + oAleppoPine, tGrassPForest];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -7;
+const heightLand = 3;
+const heightHill = 20;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -57,7 +61,6 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
 var playerHillRadius = defaultPlayerBaseRadius() / (isNomad() ? 1.5 : 1);
-var playerHillElevation = 20;
 
 var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -68,7 +71,7 @@ for (let i = 0; i < numPlayers; ++i)
 		new ClumpPlacer(diskArea(playerHillRadius), 0.95, 0.6, 10, playerPosition[i].x, playerPosition[i].y),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, playerHillElevation, 2),
+			new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 			paintClass(clPlayer)
 		]);
 
@@ -121,7 +124,7 @@ var waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(100, 250), 0.8, 0.1, 10),
 	[
 		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
-		new SmoothElevationPainter(ELEVATION_SET, -7, 6),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 6),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 2, clWater, 20),

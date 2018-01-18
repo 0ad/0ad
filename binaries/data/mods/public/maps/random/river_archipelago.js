@@ -39,7 +39,11 @@ const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oTree, tForestFloor];
 const pForestP1 = [tForestFloor + TERRAIN_SEPARATOR + oPalm1, tForestFloor];
 const pForestP2 = [tForestFloor + TERRAIN_SEPARATOR + oPalm2, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -8;
+const heightLand = 3;
+const heightHill = 25;
+
+InitMap(heightSeaGround, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
@@ -88,7 +92,7 @@ for (let i = 0; i < stripWidths.length; ++i)
 				Math.floor(fractionToTiles(randFloat(0, 1)))),
 			[
 				new LayeredPainter([tGrass, tGrass], [2]),
-				new SmoothElevationPainter(ELEVATION_SET, 3, 3),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 				paintClass(clStrip[i])
 			]);
 }
@@ -106,7 +110,7 @@ for (let i = 0; i < numPlayers; ++i)
 		new ChainPlacer(1, 6, 40, 1, playerPosition[i].x, playerPosition[i].y, 0, [Math.floor(playerRadius)]),
 		[
 			new LayeredPainter([tGrass, tGrass, tGrass], [1, 4]),
-			new SmoothElevationPainter(ELEVATION_SET, 3, 4),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 			paintClass(clPlayerTerritory)
 		]);
 
@@ -114,6 +118,7 @@ placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
+	"baseResourceConstraint": stayClasses(clPlayerTerritory, 4),
 	"Walls": "towers",
 	"CityPatch": {
 		"outerTerrain": tRoadWild,
@@ -179,7 +184,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.1),
 	[
 		new LayeredPainter([tCliff, tGrass], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, 25, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
 		paintClass(clHill)
 	],
 	[

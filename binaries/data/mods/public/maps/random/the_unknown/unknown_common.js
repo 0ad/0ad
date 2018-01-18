@@ -50,7 +50,13 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -5;
+const heightLand = 3;
+const heightCliff = 3.12;
+const heightHill = 18;
+const heightOffsetBump = 2;
+
+InitMap(heightSeaGround, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -71,9 +77,7 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 var clShallow = createTileClass();
 
-var landHeight = 3;
-var cliffHeight = 3.12;
-var landElevationPainter = new SmoothElevationPainter(ELEVATION_SET, landHeight, 4);
+var landElevationPainter = new SmoothElevationPainter(ELEVATION_SET, heightLand, 4);
 
 var unknownMapFunctions = {
 	"land": [
@@ -161,7 +165,7 @@ function unknownArchipelago()
 		createAreas(
 			new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, 1),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 				paintClass(clLand)
 			],
 			borderClasses(clLand, 6, 3),
@@ -184,7 +188,7 @@ function unknownArchipelago()
 		createAreas(
 			new ClumpPlacer(Math.floor(islandSize * randFloat(0.3, 0.7)), 0.8, 0.1, 0.07),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 				paintClass(clLand)
 			],
 			avoidClasses(clLand, 3, clPlayerTerritory, 3),
@@ -281,8 +285,8 @@ function unknownCentralSea()
 		"width": fractionToTiles(scaleByMapSize(0.27, 0.42) + randFloat(0, 0.08)),
 		"fadeDist": scaleByMapSize(3, 12),
 		"deviation": 0,
-		"waterHeight": waterHeight,
-		"landHeight": landHeight,
+		"heightRiverbed": waterHeight,
+		"heightLand": heightLand,
 		"meanderShort": 20,
 		"meanderLong": 0,
 		"waterFunc": (ix, iz, height, riverFraction) => {
@@ -333,11 +337,11 @@ function unknownCentralSea()
 function unknownCentralRiver()
 {
 	let waterHeight = -4;
-	let shallowHeight = -2;
+	let heightShallow = -2;
 
 	createArea(
 		new MapBoundsPlacer(),
-		new ElevationPainter(landHeight));
+		new ElevationPainter(heightLand));
 
 	let horizontal = randBool();
 	let riverAngle = horizontal ? 0 : Math.PI / 2;
@@ -374,9 +378,9 @@ function unknownCentralRiver()
 				"startWidth": scaleByMapSize(8, 12),
 				"endWidth": scaleByMapSize(8, 12),
 				"smoothWidth": 2,
-				"startHeight": shallowHeight,
-				"endHeight": shallowHeight,
-				"maxHeight": shallowHeight,
+				"startHeight": heightShallow,
+				"endHeight": heightShallow,
+				"maxHeight": heightShallow,
 				"tileClass": clShallow
 			});
 		}
@@ -403,7 +407,7 @@ function unknownRiversAndLake()
 	let waterHeight = -4;
 	createArea(
 		new MapBoundsPlacer(),
-		new ElevationPainter(landHeight));
+		new ElevationPainter(heightLand));
 
 	let startAngle;
 	if (!isNomad())
@@ -480,7 +484,7 @@ function unknownEdgeSeas()
 
 	createArea(
 		new MapBoundsPlacer(),
-		new ElevationPainter(landHeight));
+		new ElevationPainter(heightLand));
 
 	let horizontal = randBool();
 	if (!isNomad())
@@ -500,15 +504,15 @@ function unknownEdgeSeas()
 			"width": scaleByMapSize(80, randFloat(270, 320)),
 			"fadeDist": scaleByMapSize(2, 8),
 			"deviation": 0,
-			"waterHeight": waterHeight,
-			"landHeight": landHeight,
+			"heightRiverbed": waterHeight,
+			"heightLand": heightLand,
 			"meanderShort": 20,
 			"meanderLong": 0
 		});
 	}
 
 	createExtensionsOrIslands();
-	paintTileClassBasedOnHeight(0, cliffHeight, 1, clLand);
+	paintTileClassBasedOnHeight(0, heightCliff, 1, clLand);
 	createShoreJaggedness(waterHeight, clLand, 7, false);
 }
 
@@ -521,7 +525,7 @@ function unknownGulf()
 
 	createArea(
 		new MapBoundsPlacer(),
-		new ElevationPainter(landHeight));
+		new ElevationPainter(heightLand));
 
 	let startAngle = randomAngle();
 	if (!isNomad())
@@ -564,7 +568,7 @@ function unknownLakes()
 
 	createArea(
 		new MapBoundsPlacer(),
-		new ElevationPainter(landHeight));
+		new ElevationPainter(heightLand));
 
 	if (!isNomad())
 	{
@@ -588,12 +592,12 @@ function unknownLakes()
  */
 function unknownPasses()
 {
-	let mountainHeight = 24;
+	let heightMountain = 24;
 	let waterHeight = -4;
 
 	createArea(
 		new MapBoundsPlacer(),
-		new ElevationPainter(landHeight));
+		new ElevationPainter(heightLand));
 
 	let playerAngle;
 	let startAngle;
@@ -612,7 +616,7 @@ function unknownPasses()
 			new PathPlacer(mapCenter.x, mapCenter.y, mountain.x, mountain.y, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 			[
 				// More smoothing than this often results in the mountainrange becoming passable to one player.
-				new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 1),
+				new SmoothElevationPainter(ELEVATION_SET, heightMountain, 1),
 				paintClass(clWater)
 			],
 			avoidClasses(clPlayer, 5));
@@ -620,7 +624,7 @@ function unknownPasses()
 		log("Creating small mountain at the map border between the players to ensure separation of players...");
 		createArea(
 			new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, mountain.x, mountain.y),
-			new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 0),
+			new SmoothElevationPainter(ELEVATION_SET, heightMountain, 0),
 			avoidClasses(clPlayer, 5));
 	}
 
@@ -639,7 +643,7 @@ function unknownPasses()
 				3 * scaleByMapSize(1, 3),
 				0.2,
 				0.05),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 2));
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 2));
 	}
 
 	if (randBool(2/5))
@@ -658,7 +662,7 @@ function unknownPasses()
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 4),
+				new SmoothElevationPainter(ELEVATION_SET, heightMountain, 4),
 				paintClass(clWater)
 			]);
 	}
@@ -669,12 +673,12 @@ function unknownPasses()
  */
 function unknownLowlands()
 {
-	let mountainHeight = 30;
+	let heightMountain = 30;
 
 	log("Creating mountain that is going to separate players...");
 	createArea(
 		new MapBoundsPlacer(),
-		new ElevationPainter(mountainHeight));
+		new ElevationPainter(heightMountain));
 
 	let playerAngle;
 	let startAngle;
@@ -701,7 +705,7 @@ function unknownLowlands()
 		createArea(
 			new ClumpPlacer(diskArea(scaleByMapSize(18, 32)), 0.65, 0.1, 10, valley.x, valley.y),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
 				paintClass(clLand)
 			]);
 
@@ -755,7 +759,7 @@ function createShoreJaggedness(waterHeight, borderClass, shoreDist, inwards = tr
 			createAreas(
 				new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 15, 1),
 				[
-						new SmoothElevationPainter(ELEVATION_SET, i ? landHeight : waterHeight, 4),
+						new SmoothElevationPainter(ELEVATION_SET, i ? heightLand : waterHeight, 4),
 						i ? paintClass(clLand) : unPaintClass(clLand)
 				],
 				[
@@ -814,17 +818,17 @@ function markPlayerArea(size)
 
 function paintUnknownMapBasedOnHeight()
 {
-	paintTerrainBasedOnHeight(cliffHeight, 40, 1, tCliff);
-	paintTerrainBasedOnHeight(3, cliffHeight, 1, tMainTerrain);
+	paintTerrainBasedOnHeight(heightCliff, 40, 1, tCliff);
+	paintTerrainBasedOnHeight(3, heightCliff, 1, tMainTerrain);
 	paintTerrainBasedOnHeight(1, 3, 1, tShore);
 	paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
-	unPaintTileClassBasedOnHeight(0, cliffHeight, 1, clWater);
+	unPaintTileClassBasedOnHeight(0, heightCliff, 1, clWater);
 	unPaintTileClassBasedOnHeight(-6, 0, 1, clLand);
 
 	paintTileClassBasedOnHeight(-6, 0, 1, clWater);
-	paintTileClassBasedOnHeight(0, cliffHeight, 1, clLand);
-	paintTileClassBasedOnHeight(cliffHeight, 40, 1, clHill);
+	paintTileClassBasedOnHeight(0, heightCliff, 1, clLand);
+	paintTileClassBasedOnHeight(heightCliff, 40, 1, clHill);
 }
 
 /**
@@ -835,7 +839,7 @@ function createUnknownObjects()
 	log("Creating bumps...");
 	createAreas(
 		new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-		new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 		[avoidClasses(clWater, 2, clPlayer, 10), stayClasses(clLand, 3)],
 		randIntInclusive(0, scaleByMapSize(1, 2) * 200));
 
@@ -844,7 +848,7 @@ function createUnknownObjects()
 		new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+			new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 			paintClass(clHill)
 		],
 		[avoidClasses(clPlayer, 15, clHill, randIntInclusive(6, 18)), stayClasses(clLand, 0)],

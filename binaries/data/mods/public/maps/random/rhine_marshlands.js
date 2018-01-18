@@ -34,7 +34,12 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oBeech, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightMarsh = -2
+const heightLand = 1;
+const heightOffsetBumpWater = 1;
+const heightOffsetBumpLand = 2;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 
@@ -78,7 +83,7 @@ Engine.SetProgress(15);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBumpLand, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));
 
@@ -88,7 +93,7 @@ for (let i = 0; i < 7; ++i)
 		new ChainPlacer(1, Math.floor(scaleByMapSize(6, 12)), Math.floor(scaleByMapSize(15, 60)), 0.8),
 		[
 			new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
-			new SmoothElevationPainter(ELEVATION_SET, -2, 3),
+			new SmoothElevationPainter(ELEVATION_SET, heightMarsh, 3),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 20, clWater, Math.round(scaleByMapSize(7,16)*randFloat(0.8,1.35))),
@@ -105,7 +110,7 @@ Engine.SetProgress(40);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 1, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBumpWater, 2),
 	stayClasses(clWater, 2),
 	scaleByMapSize(50, 100));
 

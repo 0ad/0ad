@@ -1,7 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
 var tPrimary = ["polar_snow_a"];
-var tCliff = ["polar_cliff_a", "polar_cliff_b", "polar_cliff_snow"];
 var tSecondary = "polar_snow_glacial";
 var tHalfSnow = ["ice_01", "ice_dirt"];
 var tSnowLimited = ["polar_snow_b", "polar_ice"];
@@ -28,7 +27,11 @@ var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";
 var aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+var heightSeaGround = -4;
+var heightLand = 2;
+var heightCliff = 3;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -43,10 +46,6 @@ var clHill = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clArcticWolf = createTileClass();
-
-var waterHeight = -4;
-var cliffHeight = getMapBaseHeight() + 1;
-var snowHeight = Math.floor(scaleByMapSize(20, 40));
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -102,13 +101,11 @@ createArea(
 		[Math.floor(fractionToTiles(0.17))]),
 	[
 		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
-		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 20));
 
-paintTerrainBasedOnHeight(cliffHeight, snowHeight, Elevation_ExcludeMin_ExcludeMax, tCliff);
-paintTerrainBasedOnHeight(snowHeight, Infinity, Elevation_IncludeMin_IncludeMax, tSnowLimited);
 Engine.SetProgress(40);
 
 log("Creating small lakes...");
@@ -137,7 +134,7 @@ for (let i = 0; i < numLakes ; ++i)
 			chosenPoint[1]),
 		[
 			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
-			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 5),
+			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 20),
@@ -153,7 +150,8 @@ log("Creating hills...");
 createHills(
 	[tPrimary, tPrimary, tSecondary],
 	avoidClasses(clPlayer, 20, clHill, 35),
-	clHill, scaleByMapSize(20, 240));
+	clHill,
+	scaleByMapSize(20, 240));
 Engine.SetProgress(65);
 
 log("Creating dirt patches...");

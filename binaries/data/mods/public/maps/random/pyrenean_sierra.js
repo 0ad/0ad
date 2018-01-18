@@ -58,7 +58,11 @@ const pForestLandVeryLight = [ tGrassLandForest2 + TERRAIN_SEPARATOR + oPine,tGr
 						tGrassLandForest,tForestTransition,tGrassLandForest2,tForestTransition,
 						tGrassLandForest2,tGrassLandForest2,tGrassLandForest2,tGrassLandForest2];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightLand = -100;
+const heightOffsetHill = 7;
+const heightOffsetHillRandom = 2;
+
+InitMap(heightLand, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -204,7 +208,6 @@ Engine.SetProgress(48);
 
 log("Creating passages...");
 var passageLocation = 0.35;
-var passageHeight = MountainHeight - 25;
 var passageLength = scaleByMapSize(8, 50);
 var passageVec = mountainVec.perpendicular().normalize().mult(passageLength);
 
@@ -217,7 +220,7 @@ for (let passLoc of [passageLocation, 1 - passageLocation])
 		createPassage({
 			"start": passageStart,
 			"end": passageEnd,
-			"startHeight": passageHeight,
+			"startHeight": MountainHeight - 25,
 			"startWidth": 7,
 			"endWidth": 7,
 			"smoothWidth": 2,
@@ -289,7 +292,7 @@ log("Creating hills...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(60, 120), 0.3, 0.06, 5),
 	[
-		new SmoothElevationPainter(ELEVATION_MODIFY, 7, 4, 2),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill, 4, heightOffsetHillRandom),
 		new TerrainPainter(tGrassSpecific),
 		paintClass(clHill)
 	],

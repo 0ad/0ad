@@ -40,7 +40,10 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap(g_MapSettings.BaseHeight, g_MapSettings.BaseTerrain);
+const heightSeaGround = -5;
+const heightLand = 3;
+
+InitMap(heightSeaGround, g_MapSettings.BaseTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -68,7 +71,7 @@ createArea(
 		0,
 		[Math.floor(fractionToTiles(0.33))]),
 	[
-		new SmoothElevationPainter(ELEVATION_SET, 3, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 		paintClass(clLand)
 	]);
 
@@ -87,7 +90,7 @@ for (let i = 0; i < numPlayers; ++i)
 			0,
 			[Math.floor(scaleByMapSize(23, 50))]),
 		[
-			new SmoothElevationPainter(ELEVATION_SET, 3, 4),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 			paintClass(clLand)
 		]);
 
