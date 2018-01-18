@@ -36,16 +36,6 @@ function tilesToFraction(t)
 	return t / g_Map.size;
 }
 
-function fractionToSize(f)
-{
-	return getMapArea() * f;
-}
-
-function sizeToFraction(s)
-{
-	return s / getMapArea();
-}
-
 function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
 {
 	return min + (max - min) * (g_Map.size - minMapSize) / (maxMapSize - minMapSize);
@@ -268,11 +258,6 @@ function createObjectGroup(group, player, constraints)
 function getMapSize()
 {
 	return g_Map.size;
-}
-
-function getMapArea()
-{
-	return Math.square(g_Map.size);
 }
 
 function getMapCenter()

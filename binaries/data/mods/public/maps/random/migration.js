@@ -51,7 +51,6 @@ InitMap(heightSeaGround, g_MapSettings.BaseTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = getMapArea();
 const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
@@ -128,8 +127,9 @@ placePlayerBases({
 Engine.SetProgress(15);
 
 log("Create the continent body...");
+var continentPosition = new Vector2D(fractionToTiles(0.12), mapCenter.y).round()
 createArea(
-	new ClumpPlacer(mapArea * 0.50, 0.8, 0.08, 10,  Math.round(fractionToTiles(0.12)), Math.round(fractionToTiles(0.5))),
+	new ClumpPlacer(diskArea(fractionToTiles(0.4)), 0.8, 0.08, 10, continentPosition.x, continentPosition.y),
 	[
 		new LayeredPainter([tWater, tShore, tMainTerrain], [4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),

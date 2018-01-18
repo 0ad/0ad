@@ -13,7 +13,6 @@ const heightHill = 50;
 
 InitMap(heightHill, topTerrain);
 
-const mapArea = getMapArea();
 const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();
 const startAngle = randomAngle();
@@ -462,13 +461,13 @@ function createSunkenTerrain()
 	if (currentBiome() == "autumn")
 		middle = g_Terrains.shore;
 
-	var expSize = mapArea * 0.015 / (numPlayers / 4);
+	var expSize = diskArea(fractionToTiles(0.14)) / numPlayers;
 	var expDist = 0.1 + numPlayers / 200;
 	var expAngle = 0.75;
 
-	if (numPlayers == 2)
+	if (numPlayers <= 2)
 	{
-		expSize = mapArea * 0.015 / 0.8;
+		expSize = diskArea(fractionToTiles(0.075));
 		expAngle = 0.72;
 	}
 
@@ -483,7 +482,7 @@ function createSunkenTerrain()
 
 	log("Creating central valley...");
 	createArea(
-		new ClumpPlacer(mapArea * 0.26, 1, 1, 1, mapCenter.x, mapCenter.y),
+		new ClumpPlacer(diskArea(fractionToTiles(0.29)), 1, 1, 1, mapCenter.x, mapCenter.y),
 		[
 			new LayeredPainter([g_Terrains.cliff, lower], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightValley, 3),
@@ -492,7 +491,7 @@ function createSunkenTerrain()
 
 	log("Creating central hill...");
 	createArea(
-		new ClumpPlacer(mapArea * 0.14, 1, 1, 1, mapCenter.x, mapCenter.y),
+		new ClumpPlacer(diskArea(fractionToTiles(0.21)), 1, 1, 1, mapCenter.x, mapCenter.y),
 		[
 			new LayeredPainter([g_Terrains.cliff, topTerrain], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
@@ -534,7 +533,7 @@ function createSunkenTerrain()
 
 		log("Creating the den of the player...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.03 / (isNomad() ? 2 : 1), 0.9, 0.3, 1, playerPosition.x, playerPosition.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.1)) / (isNomad() ? 2 : 1), 0.9, 0.3, 1, playerPosition.x, playerPosition.y),
 			[
 				new LayeredPainter([g_Terrains.cliff, base], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, heightDen, 3),

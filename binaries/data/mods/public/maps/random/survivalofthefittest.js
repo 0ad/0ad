@@ -46,7 +46,6 @@ InitMap(heightHill, tMainTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapArea = getMapArea();
 var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
@@ -57,9 +56,9 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 var clWomen = createTileClass();
 
-// Create the main treasure area in the middle of the map
+log("Creating central area...");
 createArea(
-	new ClumpPlacer(mapArea * scaleByMapSize(0.065, 0.09), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(fractionToTiles(0.15)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),

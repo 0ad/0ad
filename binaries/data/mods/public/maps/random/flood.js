@@ -66,15 +66,6 @@ const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapCenter = getMapCenter();
 
-log("Creating the water...");
-createArea(
-	new ClumpPlacer(getMapArea(), 1, 1, 1, mapCenter.x, mapCenter.y),
-	[
-		new LayeredPainter([tWater, tWater, tShore], [1, 4]),
-		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 2)
-	],
-	avoidClasses(clPlayer, 5));
-
 log("Creating player islands...")
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));
 

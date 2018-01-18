@@ -102,7 +102,7 @@ for (let island = 0; island < 2; ++island)
 		let angle = Math.PI * (island + i / (nbSubIsland * 2)) + swapAngle;
 		let location = Vector2D.add(islandLocations[island], new Vector2D(radiusIsland, 0).rotate(-angle));
 		createArea(
-			new ClumpPlacer(fractionToSize(0.05) / 2, 0.6, 0.03, 10, location.x, location.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.09)), 0.6, 0.03, 10, location.x, location.y),
 			[
 				new LayeredPainter([tCliffs, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightMain, 1),

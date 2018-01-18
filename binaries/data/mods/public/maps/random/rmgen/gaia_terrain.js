@@ -213,34 +213,33 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 {
 	log("Creating volcano");
 
-	let baseSize = getMapArea() / scaleByMapSize(1, 8);
-	let coherence = 0.7;
-	let smoothness = 0.05;
-	let failFraction = 100;
-	let steepness = 3;
+	let baseSize =  diskArea(scaleByMapSize(72, 102));
 
 	let clLava = createTileClass();
-
 	let layers = [
 		{
 			"clumps": 0.067,
 			"elevation": 15,
-			"tileClass": tileClass
+			"tileClass": tileClass,
+			"steepness": 3
 		},
 		{
 			"clumps": 0.05,
 			"elevation": 25,
-			"tileClass": createTileClass()
+			"tileClass": createTileClass(),
+			"steepness": 3
 		},
 		{
 			"clumps": 0.02,
 			"elevation": 45,
-			"tileClass": createTileClass()
+			"tileClass": createTileClass(),
+			"steepness": 3
 		},
 		{
 			"clumps": 0.011,
 			"elevation": 62,
-			"tileClass": createTileClass()
+			"tileClass": createTileClass(),
+			"steepness": 3
 		},
 		{
 			"clumps": 0.003,
@@ -253,10 +252,10 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 
 	for (let i = 0; i < layers.length; ++i)
 		createArea(
-			new ClumpPlacer(baseSize * layers[i].clumps, coherence, smoothness, failFraction, position.x, position.y),
+			new ClumpPlacer(baseSize * layers[i].clumps, 0.7, 0.05, 100, position.x, position.y),
 			[
 				layers[i].painter || new LayeredPainter([terrainTexture, terrainTexture], [3]),
-				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness || steepness),
+				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness),
 				paintClass(layers[i].tileClass)
 			],
 			i == 0 ? null : stayClasses(layers[i - 1].tileClass, 1));
