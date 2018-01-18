@@ -1421,6 +1421,7 @@ function sendLobbyPlayerlistUpdate()
 		{
 			minPData.AI = pData.AI;
 			minPData.AIDiff = pData.AIDiff;
+			minPData.AIBehavior = pData.AIBehavior;
 		}
 
 		if (g_Players[playerID].offline)
