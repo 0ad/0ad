@@ -39,6 +39,23 @@ if (mapSize >= 192)
 addSpines();
 Engine.SetProgress(50);
 
+addElements([
+	{
+		"func": addFish,
+		"avoid": [
+			g_TileClasses.fish, 12,
+			g_TileClasses.hill, 8,
+			g_TileClasses.mountain, 8,
+			g_TileClasses.player, 8,
+			g_TileClasses.spine, 4
+		],
+		"stay": [g_TileClasses.water, 7],
+		"sizes": g_AllSizes,
+		"mixes": g_AllMixes,
+		"amounts": ["many"]
+	}
+]);
+
 addElements(shuffleArray([
 	{
 		"func": addHills,
@@ -304,22 +321,6 @@ function addCenterLake()
 	let fDist = 50;
 	if (mapSize <= 192)
 		fDist = 20;
-
-	// create a bunch of fish
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(g_Gaia.fish, 20, 30, 0, fDist)],
-			true,
-			g_TileClasses.baseResource,
-			mapCenter.x,
-			mapCenter.y
-		),
-		0,
-		[
-			avoidClasses(g_TileClasses.player, 5, g_TileClasses.hill, 3, g_TileClasses.mountain, 3),
-			stayClasses(g_TileClasses.water, 5)
-		]
-	);
 }
 
 function addHarbors(players)
@@ -339,30 +340,14 @@ function addHarbors(players)
 				g_TileClasses.hill, 1
 			)
 		);
-
-		// create fish in harbor
-		createObjectGroup(
-			new SimpleGroup(
-				[new SimpleObject(g_Gaia.fish, 6, 6, 1, 20)],
-				true, g_TileClasses.baseResource, harborPosition.x, harborPosition.y
-			),
-			0,
-			[
-				avoidClasses(
-					g_TileClasses.hill, 3,
-					g_TileClasses.mountain, 3
-				),
-				stayClasses(g_TileClasses.water, 5)
-			]
-		);
 	}
 }
 
 function addSpines()
 {
 	let smallSpines = mapSize <= 192;
-	let spineSize = smallSpines ? 0.5 : 0.02;
-	let spineTapering = smallSpines ? -1.4 : -0.1;
+	let spineSize = smallSpines ? 0.02 : 0.5;
+	let spineTapering = smallSpines ?-0.1 :  -1.4;
 	let heightOffsetSpine = smallSpines ? 20 : 35;
 
 	let numPlayers = getNumPlayers();
