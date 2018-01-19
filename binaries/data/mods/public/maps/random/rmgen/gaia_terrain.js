@@ -310,7 +310,6 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
 /**
  * Creates a meandering river at the given location and width.
  * Optionally calls a function on the affected tiles.
- * Horizontal locations and widths (including fadeDist, meandering) are fractions of the mapsize.
  *
  * @property start - A Vector2D in tile coordinates stating where the river starts.
  * @property end - A Vector2D in tile coordinates stating where the river ends.
@@ -447,7 +446,7 @@ function rndRiver(f, seed)
 /**
  * Add small rivers with shallows starting at a central river ending at the map border, if the given Constraint is met.
  */
-function createTributaryRivers(horizontal, riverCount, riverWidth, heightRiverbed, heightRange, maxAngle, tributaryRiverTileClass, shallowTileClass, constraint)
+function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbed, heightRange, maxAngle, tributaryRiverTileClass, shallowTileClass, constraint)
 {
 	log("Creating tributary rivers...");
 	let waviness = 0.4;
@@ -455,10 +454,10 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, heightRiverbe
 	let offset = 0.1;
 	let tapering = 0.05;
 	let heightShallow = -2;
-	let riverAngle = horizontal ? 0 : Math.PI / 2;
 
 	let mapSize = getMapSize();
 	let mapCenter = getMapCenter();
+	let mapBounds = getMapBounds();
 
 	let riverConstraint = avoidClasses(tributaryRiverTileClass, 3);
 	if (shallowTileClass)
@@ -467,12 +466,12 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, heightRiverbe
 	for (let i = 0; i < riverCount; ++i)
 	{
 		// Determining tributary river location
-		let searchCenter = new Vector2D(randFloat(tapering, 1 - tapering), 0.5);
+		let searchCenter = new Vector2D(fractionToTiles(randFloat(tapering, 1 - tapering)), mapCenter.y);
 		let sign = randBool() ? 1 : -1;
 		let distanceVec = new Vector2D(0, sign * tapering);
 
-		let searchStart = Vector2D.add(searchCenter, distanceVec).mult(mapSize).rotateAround(riverAngle, mapCenter);
-		let searchEnd = Vector2D.sub(searchCenter, distanceVec).mult(mapSize).rotateAround(riverAngle, mapCenter);
+		let searchStart = Vector2D.add(searchCenter, distanceVec).rotateAround(riverAngle, mapCenter);
+		let searchEnd = Vector2D.sub(searchCenter, distanceVec).rotateAround(riverAngle, mapCenter);
 
 		let start = findLocationInDirectionBasedOnHeight(searchStart, searchEnd, heightRange[0], heightRange[1], 4);
 		if (!start)
@@ -511,8 +510,8 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, heightRiverbe
 	if (shallowTileClass)
 		for (let z of [0.25, 0.75])
 			createPassage({
-				"start": new Vector2D(0, z).mult(mapSize).rotateAround(riverAngle, mapCenter),
-				"end": new Vector2D(1, z).mult(mapSize).rotateAround(riverAngle, mapCenter),
+				"start": new Vector2D(mapBounds.left, fractionToTiles(z)).rotateAround(riverAngle, mapCenter),
+				"end": new Vector2D(mapBounds.right, fractionToTiles(z)).rotateAround(riverAngle, mapCenter),
 				"startWidth": scaleByMapSize(8, 12),
 				"endWidth": scaleByMapSize(8, 12),
 				"smoothWidth": 2,

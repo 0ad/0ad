@@ -62,7 +62,7 @@ var clGrass = createTileClass();
 var clHill = createTileClass();
 
 log("Creating the main river");
-var riverAngle = randFloat(0, Math.PI);
+var riverAngle = randomAngle();
 var riverWidth = scaleByMapSize(15, 70);
 var riverStart = new Vector2D(mapCenter.x, 0).rotateAround(riverAngle, mapCenter);
 var riverEnd = new Vector2D(mapCenter.x, mapSize).rotateAround(riverAngle, mapCenter);

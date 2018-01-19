@@ -60,8 +60,10 @@ var clShallow = createTileClass();
 
 var shallowWidth = scaleByMapSize(8, 12);
 
+var startAngle = randomAngle();
+
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(Math.PI / 2, fractionToTiles(0.5)),
+	"PlayerPlacement": playerPlacementRiver(startAngle + Math.PI / 2, fractionToTiles(0.5)),
 	// PlayerTileClass marked below
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",
@@ -96,7 +98,7 @@ Engine.SetProgress(20);
 var riverPositions = [
 	new Vector2D(mapBounds.left + 1, mapCenter.y),
 	new Vector2D(mapBounds.right - 1, mapCenter.y)
-];
+].map(v => v.rotateAround(startAngle, mapCenter));
 
 log("Creating the main river...");
 createArea(
@@ -116,10 +118,10 @@ Engine.SetProgress(30);
 log("Creating the shallows of the main river...");
 for (let i = 0; i <= randIntInclusive(3, scaleByMapSize(4, 6)); ++i)
 {
-	let location = randFloat(0.15, 0.85);
+	let location = fractionToTiles(randFloat(0.15, 0.85));
 	createPassage({
-		"start": new Vector2D(location, 0).mult(mapSize),
-		"end": new Vector2D(location, 1).mult(mapSize),
+		"start": new Vector2D(location, mapBounds.top).rotateAround(startAngle, mapCenter),
+		"end": new Vector2D(location, mapBounds.bottom).rotateAround(startAngle, mapCenter),
 		"startWidth": shallowWidth,
 		"endWidth": shallowWidth,
 		"smoothWidth": 2,
@@ -132,7 +134,7 @@ for (let i = 0; i <= randIntInclusive(3, scaleByMapSize(4, 6)); ++i)
 Engine.SetProgress(35);
 
 createTributaryRivers(
-	true,
+	startAngle,
 	randIntInclusive(9, scaleByMapSize(13, 21)),
 	scaleByMapSize(10, 20),
 	heightSeaGround,

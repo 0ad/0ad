@@ -71,9 +71,10 @@ var clShore = createTileClass();
 var clTreasure = createTileClass();
 
 var desertWidth = fractionToTiles(0.25);
+var startAngle = randomAngle();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(0, fractionToTiles(0.4)),
+	"PlayerPlacement": playerPlacementRiver(startAngle, fractionToTiles(0.4)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -105,17 +106,25 @@ const riverTextures = [
 	{
 		"left": fractionToTiles(0),
 		"right": fractionToTiles(0.04),
-		"tileClass": tLush
+		"terrain": tLush,
+		"tileClass": clShore
 	},
 	{
 		"left": fractionToTiles(0.04),
 		"right": fractionToTiles(0.06),
-		"tileClass": tSLush
+		"terrain": tSLush,
+		"tileClass": clShore
 	},
 	{
 		"left": fractionToTiles(0.06),
 		"right": fractionToTiles(0.09),
-		"tileClass": tSDry
+		"terrain": tSDry,
+		"tileClass": clShore
+	},
+	{
+		"left": fractionToTiles(0.25),
+		"right": fractionToTiles(0.5),
+		"tileClass": clDesert
 	}
 ];
 
@@ -124,8 +133,8 @@ var plantID = 0;
 
 paintRiver({
 	"parallel": true,
-	"start": new Vector2D(mapCenter.x, mapBounds.top),
-	"end": new Vector2D(mapCenter.x, mapBounds.bottom),
+	"start": new Vector2D(mapCenter.x, mapBounds.top).rotateAround(startAngle, mapCenter),
+	"end": new Vector2D(mapCenter.x, mapBounds.bottom).rotateAround(startAngle, mapCenter),
 	"width": fractionToTiles(0.1),
 	"fadeDist": scaleByMapSize(3, 12),
 	"deviation": 0.5,
@@ -155,18 +164,14 @@ paintRiver({
 			if (riv.left < +shoreDist1 && +shoreDist1 < riv.right ||
 			    riv.left < -shoreDist2 && -shoreDist2 < riv.right)
 			{
-				createTerrain(riv.tileClass).place(ix, iz);
-				addToClass(ix, iz, clShore);
+				addToClass(ix, iz, riv.tileClass);
+
+				if (riv.terrain)
+					createTerrain(riv.terrain).place(ix, iz);
 			}
 	}
 });
 Engine.SetProgress(40);
-
-log("Marking desert...");
-for (let [left, right] of [[mapBounds.left, mapBounds.left + desertWidth], [mapBounds.right - desertWidth, mapBounds.right]])
-	createArea(
-		new RectPlacer(left, mapBounds.top, right, mapBounds.bottom),
-		paintClass(clDesert));
 
 log("Creating bumps...");
 createAreas(

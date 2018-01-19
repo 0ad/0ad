@@ -64,12 +64,12 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 var clIsland = createTileClass();
 
-var startAngle = 4/7 * Math.PI;
+var startAngle = randomAngle();
 var playerIDs = sortAllPlayers();
 var [playerPosition, playerAngle] = playerPlacementCustomAngle(
 	fractionToTiles(0.35),
 	mapCenter,
-	i => startAngle - 8/7 * Math.PI * (i + 1) / (numPlayers + 1));
+	i => startAngle - Math.PI * (i + 1) / (numPlayers + 1));
 
 log("Creating player islands and docks...");
 for (let i = 0; i < numPlayers; ++i)
@@ -127,7 +127,7 @@ placePlayerBases({
 Engine.SetProgress(15);
 
 log("Create the continent body...");
-var continentPosition = new Vector2D(fractionToTiles(0.12), mapCenter.y).round()
+var continentPosition = Vector2D.add(mapCenter, new Vector2D(0, fractionToTiles(0.38)).rotate(-startAngle)).round()
 createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.4)), 0.8, 0.08, 10, continentPosition.x, continentPosition.y),
 	[

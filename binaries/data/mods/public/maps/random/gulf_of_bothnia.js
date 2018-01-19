@@ -152,13 +152,13 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var startAngle = -Math.PI / 6;
+var startAngle = randomAngle();
 
 placePlayerBases({
 	"PlayerPlacement": [sortAllPlayers(), ...playerPlacementCustomAngle(
 			fractionToTiles(0.35),
 			mapCenter,
-			i => startAngle + 2/3 * Math.PI * (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1)))],
+			i => startAngle + 1/3 * Math.PI * (1 + 2 * (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1))))],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -188,28 +188,32 @@ Engine.SetProgress(20);
 
 log("Creating the gulf...");
 var gulfLakePositions = [
-	{ "numCircles": 200, "z": Math.round(fractionToTiles(0.5)), "radius": fractionToTiles(0.175) },
-	{ "numCircles": 120, "z": Math.round(fractionToTiles(0.3)), "radius": fractionToTiles(0.2) },
-	{ "numCircles": 100, "z": Math.round(fractionToTiles(0.01)), "radius": fractionToTiles(0.225) }
+	{ "numCircles": 200, "x": fractionToTiles(0), "radius": fractionToTiles(0.175) },
+	{ "numCircles": 120, "x": fractionToTiles(0.3), "radius": fractionToTiles(0.2) },
+	{ "numCircles": 100, "x": fractionToTiles(0.5), "radius": fractionToTiles(0.225) }
 ];
 
-for (let position of gulfLakePositions)
+for (let gulfLake of gulfLakePositions)
+{
+	let position = Vector2D.add(mapCenter, new Vector2D(gulfLake.x, 0).rotate(-startAngle)).round();
+
 	createArea(
 		new ChainPlacer(
 			2,
 			Math.floor(scaleByMapSize(5, 16)),
-			Math.floor(scaleByMapSize(35, position.numCircles)),
+			Math.floor(scaleByMapSize(35, gulfLake.numCircles)),
 			1,
-			mapCenter.x,
-			position.z,
+			position.x,
+			position.y,
 			0,
-			[Math.floor(position.radius)]),
+			[Math.floor(gulfLake.radius)]),
 		[
 			new LayeredPainter([tPrimary, tPrimary, tPrimary, tPrimary], [1, 4, 2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer,scaleByMapSize(20, 28)));
+}
 
 paintTerrainBasedOnHeight(heightShore, heightLand, Elevation_ExcludeMin_ExcludeMax, tShore);
 paintTerrainBasedOnHeight(-Infinity, heightShore, Elevation_ExcludeMin_IncludeMax, tWater);

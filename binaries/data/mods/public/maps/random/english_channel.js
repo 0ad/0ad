@@ -59,8 +59,10 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clShallow = createTileClass();
 
+var startAngle = randomAngle();
+
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(Math.PI / 2, fractionToTiles(0.6)),
+	"PlayerPlacement": playerPlacementRiver(startAngle + Math.PI / 2, fractionToTiles(0.6)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -90,8 +92,8 @@ Engine.SetProgress(10);
 
 paintRiver({
 	"parallel": false,
-	"start": new Vector2D(mapBounds.left, mapCenter.y),
-	"end": new Vector2D(mapBounds.right, mapCenter.y),
+	"start": new Vector2D(mapBounds.left, mapCenter.y).rotateAround(startAngle, mapCenter),
+	"end": new Vector2D(mapBounds.right, mapCenter.y).rotateAround(startAngle, mapCenter),
 	"width": fractionToTiles(0.25),
 	"fadeDist": scaleByMapSize(3, 10),
 	"deviation": 0,
@@ -110,7 +112,7 @@ paintRiver({
 Engine.SetProgress(20);
 
 createTributaryRivers(
-	true,
+	startAngle,
 	randIntInclusive(9, scaleByMapSize(13, 21)),
 	scaleByMapSize(10, 20),
 	heightSeaGround,

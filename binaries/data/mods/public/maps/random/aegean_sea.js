@@ -70,8 +70,10 @@ var clGrass = createTileClass();
 var clHill = createTileClass();
 var clIsland = createTileClass();
 
+var startAngle = randomAngle();
+
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(0, fractionToTiles(0.6)),
+	"PlayerPlacement": playerPlacementRiver(startAngle , fractionToTiles(0.6)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -101,8 +103,8 @@ Engine.SetProgress(30);
 
 paintRiver({
 	"parallel": false,
-	"start": new Vector2D(mapCenter.x, mapBounds.top),
-	"end": new Vector2D(mapCenter.x, mapBounds.bottom),
+	"start": new Vector2D(mapCenter.x, mapBounds.top).rotateAround(startAngle, mapCenter),
+	"end": new Vector2D(mapCenter.x, mapBounds.bottom).rotateAround(startAngle, mapCenter),
 	"width": fractionToTiles(0.35),
 	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
