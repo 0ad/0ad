@@ -9,22 +9,16 @@ const tHighRocks = ["alpine_cliff_b", "alpine_cliff_c","alpine_cliff_c", "alpine
 const tSnowedRocks = ["alpine_cliff_b", "alpine_cliff_snow"];
 const tTopSnow = ["alpine_snow_rocky","alpine_snow_a"];
 const tTopSnowOnly = ["alpine_snow_a"];
-
 const tDirtyGrass = ["new_alpine_grass_d","alpine_grass_d","alpine_grass_c", "alpine_grass_b"];
 const tLushGrass = ["new_alpine_grass_a","new_alpine_grass_d"];
-
 const tMidRangeCliffs = ["alpine_cliff_b","alpine_cliff_c"];
 const tHighRangeCliffs = ["alpine_mountainside","alpine_cliff_snow" ];
-const tPass = ["alpine_cliff_b", "alpine_cliff_c", "alpine_grass_rocky", "alpine_grass_rocky", "alpine_grass_rocky"];
-
 const tSand = ["beach_c", "beach_d"];
 const tSandTransition = ["beach_scrub_50_"];
 const tWater = ["sand_wet_a","sand_wet_b","sand_wet_b","sand_wet_b"];
-
 const tGrassLandForest = "alpine_forrestfloor";
 const tGrassLandForest2 = "alpine_grass_d";
 const tForestTransition = ["new_alpine_grass_d", "new_alpine_grass_b","alpine_grass_d"];
-
 const tRoad = "new_alpine_citytile";
 const tRoadWild = "new_alpine_citytile";
 
@@ -59,10 +53,10 @@ const pForestLandVeryLight = [ tGrassLandForest2 + TERRAIN_SEPARATOR + oPine,tGr
 						tGrassLandForest2,tGrassLandForest2,tGrassLandForest2,tGrassLandForest2];
 
 const heightInit = -100;
+const heightOcean = -22;
 const heightBase = -6;
 const heightWaterLevel = 8;
 const heightPyreneans = 15;
-
 const heightGrass = 6;
 const heightGrassMidRange = 18;
 const heightGrassHighRange = 30;
@@ -197,6 +191,7 @@ var mountainVec = new Vector2D(mountainLength, 0).rotate(-startAngle);
 var mountainStart = Vector2D.sub(mapCenter, Vector2D.div(mountainVec, 2));
 var mountainDirection = mountainVec.clone().normalize();
 createPyreneans();
+paintTileClassBasedOnHeight(heightPyreneans, Infinity, Elevation_ExcludeMin_ExcludeMax, clPyrenneans);
 Engine.SetProgress(40);
 
 /**
@@ -238,29 +233,22 @@ function createPyreneans()
 					new Vector2D(distance, 0).rotate(-startAngle - direction * Math.PI / 2)
 				]).round();
 
-				let newHeight = heightMountain + peakHeight + randFloat(-9, 9);
-
-				setHeight(pos.x, pos.y, baseHeights[pos.x][pos.y] + newHeight * sigmoid(sigmoidX, peakPosition));
-
-				if (getHeight(pos.x, pos.y) > heightPyreneans)
-					addToClass(pos.x, pos.y, clPyrenneans);
+				setHeight(pos.x, pos.y, baseHeights[pos.x][pos.y] + (heightMountain + peakHeight + randFloat(-9, 9)) * sigmoid(sigmoidX, peakPosition));
 			}
 		}
 	}
 }
 
-// Allright now slight smoothing (decreasing with height)
-for (var ix = 1; ix < mapSize-1; ix++)
-{
-	for (var iz = 1; iz < mapSize-1; iz++)
-	{
-		if (g_Map.inMapBounds(ix,iz) && checkIfInClass(ix,iz,clPyrenneans) ) {
-			var NB = getNeighborsHeight(ix,iz);
-			var index = 9/(1 + Math.max(0,getHeight(ix,iz)/7));
-			setHeight(ix,iz, (getHeight(ix,iz)*(9-index) + NB*index)/9 );
+log("Smoothing pyreneans...");
+for (let ix = 1; ix < mapSize - 1; ++ix)
+	for (let iz = 1; iz < mapSize - 1; ++iz)
+		if (g_Map.validH(ix, iz) && checkIfInClass(ix, iz, clPyrenneans))
+		{
+			let height = getHeight(ix, iz);
+			let index = 1 / (1 + Math.max(0, height / 7));
+			setHeight(ix, iz, height * (1 - index) + getNeighborsHeight(ix, iz) * index);
 		}
-	}
-}
+
 Engine.SetProgress(48);
 
 log("Creating passages...");
@@ -283,65 +271,46 @@ for (let passLoc of [passageLocation, 1 - passageLocation])
 			"tileClass": clPass
 		});
 	}
-
 Engine.SetProgress(50);
 
-// Smoothing the mountains
-for (var ix = 1; ix < mapSize-1; ix++)
-	for (var iz = 1; iz < mapSize-1; iz++)
-	{
-		if ( g_Map.inMapBounds(ix,iz) && checkIfInClass(ix,iz,clPyrenneans) ) {
-			var NB = getNeighborsHeight(ix,iz);
-			var index = 9/(1 + Math.max(0,(getHeight(ix,iz)-10)/7));
-			setHeight(ix,iz, (getHeight(ix,iz)*(9-index) + NB*index)/9 );
-			baseHeights[ix][iz] = (getHeight(ix,iz)*(9-index) + NB*index)/9;
+log("Smoothing the mountains...");
+for (let ix = 1; ix < mapSize - 1; ++ix)
+	for (let iz = 1; iz < mapSize - 1; ++iz)
+		if (g_Map.inMapBounds(ix,iz) && checkIfInClass(ix, iz, clPyrenneans))
+		{
+			let heightNeighbor = getNeighborsHeight(ix, iz);
+			let index = 1 / (1 + Math.max(0, (getHeight(ix,iz) - 10) / 7));
+			setHeight(ix, iz, getHeight(ix, iz) * (1 - index) + heightNeighbor * index);
 		}
-	}
 
 log("Creating oceans...");
 for (let ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48), mapCenter)[0])
 	createArea(
 		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, ocean.x, ocean.y),
 		[
-			new ElevationPainter(-22),
+			new ElevationPainter(heightOcean),
 			paintClass(clWater)
 		]);
 
-// Smoothing around the water, then going a bit random
-for (var ix = 1; ix < mapSize-1; ix++)
-{
-	for (var iz = 1; iz < mapSize-1; iz++)
+log("Smoothing around the water...");
+var smoothDist = 5;
+for (let ix = 1; ix < mapSize - 1; ++ix)
+	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
-		if ( g_Map.inMapBounds(ix,iz) && getTileClass(clWater).countInRadius(ix,iz,5,true) > 0 ) {
-
-			var averageHeight = 0;
-			var size = 5;
-			if (getTileClass(clPyrenneans).countInRadius(ix,iz,1,true) > 0)
-				size = 1;
-			else if (getTileClass(clPyrenneans).countInRadius(ix,iz,2,true) > 0)
-				size = 2;
-			else if (getTileClass(clPyrenneans).countInRadius(ix,iz,3,true) > 0)
-				size = 3;
-			else if (getTileClass(clPyrenneans).countInRadius(ix,iz,4,true) > 0)
-				size = 4;
-			var todivide = 0;
-			for (var xx = -size; xx <= size;xx++)
-				for (var yy = -size; yy <= size;yy++) {
-					if (g_Map.inMapBounds(ix + xx,iz + yy) && (xx != 0 || yy != 0)){
-						averageHeight += getHeight(ix + xx,iz + yy) / (Math.abs(xx) + Math.abs(yy));
-						todivide += 1 / (Math.abs(xx) + Math.abs(yy));
-					}
+		if (!g_Map.inMapBounds(ix, iz) || !getTileClass(clWater).countMembersInRadius(ix, iz, smoothDist))
+			continue;
+		let averageHeight = 0;
+		let todivide = 0;
+		for (let xx = -smoothDist; xx <= smoothDist; ++xx)
+			for (let yy = -smoothDist; yy <= smoothDist; ++yy)
+				if (g_Map.inMapBounds(ix + xx,iz + yy) && (xx != 0 || yy != 0))
+				{
+					averageHeight += getHeight(ix + xx, iz + yy) / (Math.abs(xx) + Math.abs(yy));
+					todivide += 1 / (Math.abs(xx) + Math.abs(yy));
 				}
-			averageHeight += getHeight(ix,iz)*2;
-			averageHeight /= (todivide+2);
 
-			setHeight(ix,iz, averageHeight );
-			//baseHeights[ix][iz] = averageHeight;
-		}
-		if ( g_Map.inMapBounds(ix,iz) && getTileClass(clWater).countInRadius(ix,iz,4,true) > 0 && getTileClass(clWater).countInRadius(ix,iz,4) > 0 )
-			setHeight(ix,iz, getHeight(ix,iz) + randFloat(-1,1));
+		setHeight(ix, iz, (averageHeight + 2 * getHeight(ix, iz)) / (todivide + 2));
 	}
-}
 Engine.SetProgress(55);
 
 log("Creating hills...");
@@ -382,13 +351,10 @@ for (let x = 0; x < mapSize; ++x)
 		let height = getHeight(x, z);
 		let heightDiff = getHeightDifference(x, z);
 
-		if (getTileClass(clPyrenneans).countInRadius(x, z, 2, true))
+		if (getTileClass(clPyrenneans).countMembersInRadius(x, z, 2))
 		{
 			let layer = terrainPerHeight.find(layer => height < layer.maxHeight);
 			createTerrain(heightDiff > layer.steepness ? layer.terrainSteep : layer.terrainGround).place(x, z);
-
-			if (height >= 30 && heightDiff < 5 && getTileClass(clPass).countInRadius(x, z, 2, true))
-				createTerrain(tPass).place(x,z);
 		}
 
 		let terrainShore = getShoreTerrain(height, heightDiff, x, z);
@@ -401,10 +367,10 @@ function getShoreTerrain(height, heightDiff, x, z)
 	if (height <= -14)
 		return tWater;
 
-	if (height <= -2 && getTileClass(clWater).countInRadius(x, z, 2, true))
+	if (height <= -2 && getTileClass(clWater).countMembersInRadius(x, z, 2))
 		return heightDiff < 2.5 ? tSand : tMidRangeCliffs;
 
-	if (height <= 0 && getTileClass(clWater).countInRadius(x, z, 3, true))
+	if (height <= 0 && getTileClass(clWater).countMembersInRadius(x, z, 3))
 		return heightDiff < 2.5 ? tSandTransition : tMidRangeCliffs;
 
 	return undefined;
