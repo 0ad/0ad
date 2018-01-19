@@ -211,38 +211,36 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
  */
 function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke, elevationType)
 {
-	log("Creating volcano");
-
-	let baseSize =  diskArea(scaleByMapSize(72, 102));
+	log("Creating volcano...");
 
 	let clLava = createTileClass();
 	let layers = [
 		{
-			"clumps": 0.067,
+			"clumps": diskArea(scaleByMapSize(18, 25)),
 			"elevation": 15,
 			"tileClass": tileClass,
 			"steepness": 3
 		},
 		{
-			"clumps": 0.05,
+			"clumps": diskArea(scaleByMapSize(16, 23)),
 			"elevation": 25,
 			"tileClass": createTileClass(),
 			"steepness": 3
 		},
 		{
-			"clumps": 0.02,
+			"clumps": diskArea(scaleByMapSize(10, 15)),
 			"elevation": 45,
 			"tileClass": createTileClass(),
 			"steepness": 3
 		},
 		{
-			"clumps": 0.011,
+			"clumps": diskArea(scaleByMapSize(8, 11)),
 			"elevation": 62,
 			"tileClass": createTileClass(),
 			"steepness": 3
 		},
 		{
-			"clumps": 0.003,
+			"clumps": diskArea(scaleByMapSize(4, 6)),
 			"elevation": 42,
 			"tileClass": clLava,
 			"painter": lavaTextures && new LayeredPainter([terrainTexture, ...lavaTextures], [1, 1, 1]),
@@ -252,7 +250,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 
 	for (let i = 0; i < layers.length; ++i)
 		createArea(
-			new ClumpPlacer(baseSize * layers[i].clumps, 0.7, 0.05, 100, position.x, position.y),
+			new ClumpPlacer(layers[i].clumps, 0.7, 0.05, 100, position.x, position.y),
 			[
 				layers[i].painter || new LayeredPainter([terrainTexture, terrainTexture], [3]),
 				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness),
@@ -262,7 +260,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 
 	if (smoke)
 	{
-		let num = Math.floor(baseSize * 0.002);
+		let num = Math.floor(diskArea(scaleByMapSize(3, 5)));
 		createObjectGroup(
 			new SimpleGroup(
 				[new SimpleObject("actor|particle/smoke.xml", num, num, 0, 7)],
@@ -330,7 +328,7 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
  */
 function paintRiver(args)
 {
-	log("Creating the river");
+	log("Creating river...");
 
 	// Model the river meandering as the sum of two sine curves.
 	let meanderShort = fractionToTiles(args.meanderShort / scaleByMapSize(35, 160));
