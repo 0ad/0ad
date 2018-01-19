@@ -1,7 +1,6 @@
 Engine.LoadLibrary("rmgen");
 TILE_CENTERED_HEIGHT_MAP = true;
 
-const tPrimary = "alpine_dirt_grass_50";
 const tGrassSpecific = ["new_alpine_grass_d","new_alpine_grass_d", "new_alpine_grass_e"];
 const tGrass = ["new_alpine_grass_d", "new_alpine_grass_b", "new_alpine_grass_e"];
 const tGrassMidRange = ["new_alpine_grass_b", "alpine_grass_a"];
@@ -59,15 +58,28 @@ const pForestLandVeryLight = [ tGrassLandForest2 + TERRAIN_SEPARATOR + oPine,tGr
 						tGrassLandForest,tForestTransition,tGrassLandForest2,tForestTransition,
 						tGrassLandForest2,tGrassLandForest2,tGrassLandForest2,tGrassLandForest2];
 
-const heightLand = -100;
+const heightInit = -100;
+const heightBase = -6;
+const heightWaterLevel = 8;
+const heightPyreneans = 15;
+
+const heightGrass = 6;
+const heightGrassMidRange = 18;
+const heightGrassHighRange = 30;
+const heightPassage = scaleByMapSize(25, 40);
+const heightHighRocks = heightPassage + 5;
+const heightSnowedRocks = heightHighRocks + 10;
+const heightMountain = heightHighRocks + 20;
+
 const heightOffsetHill = 7;
 const heightOffsetHillRandom = 2;
 
-InitMap(heightLand, tPrimary);
+InitMap(heightInit, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
 var clDirt = createTileClass();
 var clRock = createTileClass();
@@ -81,16 +93,57 @@ var clHill = createTileClass();
 var clForest = createTileClass();
 var clWater = createTileClass();
 
-// Initial Terrain Creation
-// I'll use very basic noised sinusoidal functions to give the terrain a way aspect
-// It looks like we can't go higher than ≈ 75. Given this I'll lower the ground
+var startAngle = randomAngle();
+var oceanAngle = startAngle + randFloat(-1, 1) * Math.PI / 12;
 
-const baseHeight = -6;
-setWaterHeight(8);
+var mountainLength = fractionToTiles(0.68);
+var mountainWidth = scaleByMapSize(15, 55);
 
-var MoutainAngle = randFloat(0,2 * Math.PI);
-var oceanAngle = MoutainAngle + randFloat(-1, 1) * Math.PI / 12;
+var mountainPeaks = 100 * scaleByMapSize(1, 10);
+var mountainOffset = randFloat(-1, 1) * scaleByMapSize(1, 12);
 
+var passageLength = scaleByMapSize(8, 50);
+
+var terrainPerHeight = [
+	{
+		"maxHeight": heightGrass,
+		"steepness": 5,
+		"terrainGround": tGrass,
+		"terrainSteep": tMidRangeCliffs
+	},
+	{
+		"maxHeight": heightGrassMidRange,
+		"steepness": 8,
+		"terrainGround": tGrassMidRange,
+		"terrainSteep": tMidRangeCliffs
+	},
+	{
+		"maxHeight": heightGrassHighRange,
+		"steepness": 8,
+		"terrainGround": tGrassHighRange,
+		"terrainSteep": tMidRangeCliffs
+	},
+	{
+		"maxHeight": heightHighRocks,
+		"steepness": 8,
+		"terrainGround": tHighRocks,
+		"terrainSteep": tHighRangeCliffs
+	},
+	{
+		"maxHeight": heightSnowedRocks,
+		"steepness": 7,
+		"terrainGround": tSnowedRocks,
+		"terrainSteep": tHighRangeCliffs
+	},
+	{
+		"maxHeight": Infinity,
+		"steepness": 6,
+		"terrainGround": tTopSnowOnly,
+		"terrainSteep": tTopSnow
+	}
+];
+
+log("Creating initial sinusoidal noise...");
 var baseHeights = [];
 for (var ix = 0; ix < mapSize; ix++)
 {
@@ -99,14 +152,12 @@ for (var ix = 0; ix < mapSize; ix++)
 	{
 		if (g_Map.inMapBounds(ix,iz))
 		{
-			createTerrain(tGrass).place(ix, iz);
-
-			let height = baseHeight + randFloat(-1, 1) + scaleByMapSize(1, 3) * (Math.cos(ix / scaleByMapSize(5, 30)) + Math.sin(iz / scaleByMapSize(5, 30)));
+			let height = heightBase + randFloat(-1, 1) + scaleByMapSize(1, 3) * (Math.cos(ix / scaleByMapSize(5, 30)) + Math.sin(iz / scaleByMapSize(5, 30)));
 			setHeight(ix, iz, height);
 			baseHeights[ix].push(height);
 		}
 		else
-			baseHeights[ix].push(-100);
+			baseHeights[ix].push(heightInit);
 	}
 }
 
@@ -142,57 +193,62 @@ placePlayerBases({
 Engine.SetProgress(30);
 
 log("Creating the pyreneans...");
-var mountainLength = fractionToTiles(0.68);
+var mountainVec = new Vector2D(mountainLength, 0).rotate(-startAngle);
+var mountainStart = Vector2D.sub(mapCenter, Vector2D.div(mountainVec, 2));
+var mountainDirection = mountainVec.clone().normalize();
+createPyreneans();
+Engine.SetProgress(40);
 
-var mountainVec = new Vector2D(mountainLength, 0).rotate(-MoutainAngle);
-var mountainVecHalf = Vector2D.mult(mountainVec, 1/2);
-
-var mountainStart = Vector2D.add(mapCenter, mountainVecHalf);
-var mountainEnd = Vector2D.sub(mapCenter, mountainVecHalf);
-
-// Number of peaks
-var MountainHeight = scaleByMapSize(50, 65);
-var NumOfIterations = scaleByMapSize(100,1000);
-
-var randomNess = randFloat(-scaleByMapSize(1,12),scaleByMapSize(1,12));
-
-for (var i = 0; i < NumOfIterations; i++)
+/**
+ * Generates the mountain peak noise.
+ *
+ * @param {number} x - between 0 and 1
+ * @returns {number} between 0 and 1
+ */
+function sigmoid(x, peakPosition)
 {
-	Engine.SetProgress(45 * i/NumOfIterations + 30 * (1-i/NumOfIterations));
-
-	var position = i/NumOfIterations;
-	var width = scaleByMapSize(15,55);
-
-	var randHeight2 = randFloat(0,10) + MountainHeight;
-
-	for (var dist = 0; dist < width*3; dist++)
-	{
-		var okDist = dist/3;
-		var S1x = Math.round((mountainStart.x * (1 - position) + mountainEnd.x * position) + randomNess * Math.cos(position * Math.PI * 4) + Math.cos(MoutainAngle + Math.PI / 2) * okDist);
-		var S1z = Math.round((mountainStart.y * (1 - position) + mountainEnd.y * position) + randomNess * Math.sin(position * Math.PI * 4) + Math.sin(MoutainAngle + Math.PI / 2) * okDist);
-		var S2x = Math.round((mountainStart.x * (1 - position) + mountainEnd.x * position) + randomNess * Math.cos(position * Math.PI * 4) + Math.cos(MoutainAngle - Math.PI / 2) * okDist);
-		var S2z = Math.round((mountainStart.y * (1 - position) + mountainEnd.y * position) + randomNess * Math.sin(position * Math.PI * 4) + Math.sin(MoutainAngle - Math.PI / 2) * okDist);
-
-		// complicated sigmoid
-		// Ranges is 0-1, FormX is 0-1 too.
-		var FormX = (-2*(1-okDist/width)+1.9) - 4*(2*(1-okDist/width)-randFloat(0.9,1.1))*(2*(1-okDist/width)-randFloat(0.9,1.1))*(2*(1-okDist/width)-randFloat(0.9,1.1));
-		var Formula = (1/(1 + Math.exp(FormX)));
-
+	return 1 / (1 + Math.exp(x)) *
 		// If we're too far from the border, we flatten
-		Formula *= (0.2 - Math.max(0, Math.abs(0.5 - position) - 0.3)) * 5;
+		(0.2 - Math.max(0, Math.abs(0.5 - peakPosition) - 0.3)) * 5;
+}
 
-		var randHeight = randFloat(-9,9) * Formula;
+function createPyreneans()
+{
+	for (let peak = 0; peak < mountainPeaks; ++peak)
+	{
+		let peakPosition = peak / mountainPeaks;
+		let peakHeight = randFloat(0, 10);
 
-		var height = baseHeights[S1x][S1z];
-		setHeight(S1x,S1z, height + randHeight2 * Formula + randHeight );
-		var height = baseHeights[S2x][S2z];
-		setHeight(S2x,S2z, height + randHeight2 * Formula + randHeight );
-		if (getHeight(S1x,S1z) > 15)
-			addToClass(S1x,S1z, clPyrenneans);
-		if (getHeight(S2x,S2z) > 15)
-			addToClass(S2x,S2z, clPyrenneans);
+		for (let distance = 0; distance < mountainWidth; distance += 1/3)
+		{
+			let rest = 2 * (1 - distance / mountainWidth);
+
+			let sigmoidX =
+				- 1 * (rest - 1.9) +
+				- 4 *
+					(rest - randFloat(0.9, 1.1)) *
+					(rest - randFloat(0.9, 1.1)) *
+					(rest - randFloat(0.9, 1.1));
+
+			for (let direction of [-1, 1])
+			{
+				let pos = Vector2D.sum([
+					Vector2D.add(mountainStart, Vector2D.mult(mountainDirection, peakPosition * mountainLength)),
+					new Vector2D(mountainOffset, 0).rotate(-peakPosition * Math.PI * 4),
+					new Vector2D(distance, 0).rotate(-startAngle - direction * Math.PI / 2)
+				]).round();
+
+				let newHeight = heightMountain + peakHeight + randFloat(-9, 9);
+
+				setHeight(pos.x, pos.y, baseHeights[pos.x][pos.y] + newHeight * sigmoid(sigmoidX, peakPosition));
+
+				if (getHeight(pos.x, pos.y) > heightPyreneans)
+					addToClass(pos.x, pos.y, clPyrenneans);
+			}
+		}
 	}
 }
+
 // Allright now slight smoothing (decreasing with height)
 for (var ix = 1; ix < mapSize-1; ix++)
 {
@@ -209,19 +265,18 @@ Engine.SetProgress(48);
 
 log("Creating passages...");
 var passageLocation = 0.35;
-var passageLength = scaleByMapSize(8, 50);
-var passageVec = mountainVec.perpendicular().normalize().mult(passageLength);
+var passageVec = mountainDirection.perpendicular().mult(passageLength);
 
 for (let passLoc of [passageLocation, 1 - passageLocation])
 	for (let direction of [1, -1])
 	{
-		let passageStart = Vector2D.add(mountainEnd, Vector2D.mult(mountainVec, passLoc));
+		let passageStart = Vector2D.add(mountainStart, Vector2D.mult(mountainVec, passLoc));
 		let passageEnd = Vector2D.add(passageStart, Vector2D.mult(passageVec, direction));
 
 		createPassage({
 			"start": passageStart,
 			"end": passageEnd,
-			"startHeight": MountainHeight - 25,
+			"startHeight": heightPassage,
 			"startWidth": 7,
 			"endWidth": 7,
 			"smoothWidth": 2,
@@ -329,7 +384,8 @@ for (let x = 0; x < mapSize; ++x)
 
 		if (getTileClass(clPyrenneans).countInRadius(x, z, 2, true))
 		{
-			createTerrain(getPyreneansTerrain(height, heightDiff)).place(x, z);
+			let layer = terrainPerHeight.find(layer => height < layer.maxHeight);
+			createTerrain(heightDiff > layer.steepness ? layer.terrainSteep : layer.terrainGround).place(x, z);
 
 			if (height >= 30 && heightDiff < 5 && getTileClass(clPass).countInRadius(x, z, 2, true))
 				createTerrain(tPass).place(x,z);
@@ -339,26 +395,6 @@ for (let x = 0; x < mapSize; ++x)
 		if (terrainShore)
 			createTerrain(terrainShore).place(x, z);
 	}
-
-function getPyreneansTerrain(height, heightDiff)
-{
-	if (height < 6)
-		return heightDiff < 5 ? tGrass : tMidRangeCliffs;
-
-	if (height < 18)
-		return heightDiff < 8 ? tGrassMidRange : tMidRangeCliffs;
-
-	if (height < 30)
-		return heightDiff < 8 ? tGrassHighRange : tMidRangeCliffs;
-
-	if (height < MountainHeight - 20)
-		return heightDiff < 8 ? tHighRocks : tHighRangeCliffs;
-
-	if (height < MountainHeight - 10)
-		return heightDiff < 7 ? tSnowedRocks : tHighRangeCliffs;
-
-	return heightDiff < 6 ? tTopSnowOnly : tTopSnow;
-}
 
 function getShoreTerrain(height, heightDiff, x, z)
 {
@@ -467,6 +503,7 @@ setWaterTint(0.104, 0.172, 0.563);
 setWaterWaviness(5.0);
 setWaterType("ocean");
 setWaterMurkiness(0.83);
+setWaterHeight(heightWaterLevel);
 
 ExportMap();
 
