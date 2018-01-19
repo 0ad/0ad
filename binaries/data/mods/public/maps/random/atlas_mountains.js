@@ -1,5 +1,7 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = ["medit_rocks_grass", "medit_rocks_grass", "medit_rocks_grass",
+	"medit_rocks_grass", "medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
 const tGrass = ["medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
 const tForestFloor = "medit_grass_field_dry";
 const tCliff = "medit_cliff_italia";
@@ -33,7 +35,9 @@ const aAleppoPine = "actor|flora/trees/aleppo_pine.xml";
 const pForest1 = [tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor];
 const pForest2 = [tForestFloor + TERRAIN_SEPARATOR + oAleppoPine, tForestFloor];
 
-InitMap();
+const heightLand = 3;
+
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 
@@ -48,7 +52,7 @@ var clBaseResource = createTileClass();
 var clTreasure = createTileClass();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

@@ -42,11 +42,15 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+const heightSeaGround = -5;
+const heightLand = 3;
+const heightHill = 18;
+const heightOffsetBump = 2;
+
+InitMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = getMapArea();
 const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
@@ -60,26 +64,21 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 var clIsland = createTileClass();
 
-var landHeight = 3;
-
-var startAngle = 4/7 * Math.PI;
+var startAngle = randomAngle();
 var playerIDs = sortAllPlayers();
-var [playerX, playerZ, playerAngle] = playerPlacementCustomAngle(
-	0.35,
-	tilesToFraction(mapCenter.x),
-	tilesToFraction(mapCenter.y),
-	i => startAngle - 8/7 * Math.PI * (i + 1) / (numPlayers + 1));
+var [playerPosition, playerAngle] = playerPlacementCustomAngle(
+	fractionToTiles(0.35),
+	mapCenter,
+	i => startAngle - Math.PI * (i + 1) / (numPlayers + 1));
 
 log("Creating player islands and docks...");
 for (let i = 0; i < numPlayers; ++i)
 {
-	let playerPosition = new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round();
-
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.8, 0.1, 10, playerPosition.x, playerPosition.y),
+		new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.8, 0.1, 10, playerPosition[i].x, playerPosition[i].y),
 		[
 			new LayeredPainter([tWater, tShore, tMainTerrain], [1, 4]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 			paintClass(clIsland),
 			paintClass(isNomad() ? clLand : clPlayer)
 		]);
@@ -87,13 +86,13 @@ for (let i = 0; i < numPlayers; ++i)
 	if (isNomad())
 		continue;
 
-	let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition, mapCenter, -3 , 2.6, 3);
+	let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 2.6, 3);
 	placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
 }
 Engine.SetProgress(10);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,
@@ -128,11 +127,12 @@ placePlayerBases({
 Engine.SetProgress(15);
 
 log("Create the continent body...");
+var continentPosition = Vector2D.add(mapCenter, new Vector2D(0, fractionToTiles(0.38)).rotate(-startAngle)).round()
 createArea(
-	new ClumpPlacer(mapArea * 0.50, 0.8, 0.08, 10,  Math.round(fractionToTiles(0.12)), Math.round(fractionToTiles(0.5))),
+	new ClumpPlacer(diskArea(fractionToTiles(0.4)), 0.8, 0.08, 10, continentPosition.x, continentPosition.y),
 	[
 		new LayeredPainter([tWater, tShore, tMainTerrain], [4, 2]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 		paintClass(clLand)
 	],
 	avoidClasses(clIsland, 8));
@@ -143,7 +143,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 		paintClass(clLand)
 	],
 	[
@@ -160,7 +160,7 @@ Engine.SetProgress(25);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	[avoidClasses(clIsland, 10), stayClasses(clLand, 3)],
 	scaleByMapSize(100, 200)
 );
@@ -171,7 +171,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	[avoidClasses(clIsland, 10, clHill, 15), stayClasses(clLand, 7)],

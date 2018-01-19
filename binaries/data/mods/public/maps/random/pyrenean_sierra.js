@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 TILE_CENTERED_HEIGHT_MAP = true;
 
+const tPrimary = "alpine_dirt_grass_50";
 const tGrassSpecific = ["new_alpine_grass_d","new_alpine_grass_d", "new_alpine_grass_e"];
 const tGrass = ["new_alpine_grass_d", "new_alpine_grass_b", "new_alpine_grass_e"];
 const tGrassMidRange = ["new_alpine_grass_b", "alpine_grass_a"];
@@ -58,7 +59,11 @@ const pForestLandVeryLight = [ tGrassLandForest2 + TERRAIN_SEPARATOR + oPine,tGr
 						tGrassLandForest,tForestTransition,tGrassLandForest2,tForestTransition,
 						tGrassLandForest2,tGrassLandForest2,tGrassLandForest2,tGrassLandForest2];
 
-InitMap();
+const heightLand = -100;
+const heightOffsetHill = 7;
+const heightOffsetHillRandom = 2;
+
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -94,7 +99,8 @@ for (var ix = 0; ix < mapSize; ix++)
 	{
 		if (g_Map.inMapBounds(ix,iz))
 		{
-			placeTerrain(ix, iz, tGrass);
+			createTerrain(tGrass).place(ix, iz);
+
 			let height = baseHeight + randFloat(-1, 1) + scaleByMapSize(1, 3) * (Math.cos(ix / scaleByMapSize(5, 30)) + Math.sin(iz / scaleByMapSize(5, 30)));
 			setHeight(ix, iz, height);
 			baseHeights[ix].push(height);
@@ -106,10 +112,9 @@ for (var ix = 0; ix < mapSize; ix++)
 
 placePlayerBases({
 	"PlayerPlacement": [primeSortAllPlayers(), ...playerPlacementCustomAngle(
-			0.35,
-			tilesToFraction(mapCenter.x),
-			tilesToFraction(mapCenter.y),
-			i => oceanAngle + Math.PI * (i % 2 ? 1 : -1) * ((1/2 + 1/3 * (2/numPlayers * (i + 1 - i % 2) - 1))))],
+		fractionToTiles(0.35),
+		mapCenter,
+		i => oceanAngle + Math.PI * (i % 2 ? 1 : -1) * ((1/2 + 1/3 * (2/numPlayers * (i + 1 - i % 2) - 1))))],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -204,7 +209,6 @@ Engine.SetProgress(48);
 
 log("Creating passages...");
 var passageLocation = 0.35;
-var passageHeight = MountainHeight - 25;
 var passageLength = scaleByMapSize(8, 50);
 var passageVec = mountainVec.perpendicular().normalize().mult(passageLength);
 
@@ -217,7 +221,7 @@ for (let passLoc of [passageLocation, 1 - passageLocation])
 		createPassage({
 			"start": passageStart,
 			"end": passageEnd,
-			"startHeight": passageHeight,
+			"startHeight": MountainHeight - 25,
 			"startWidth": 7,
 			"endWidth": 7,
 			"smoothWidth": 2,
@@ -289,7 +293,7 @@ log("Creating hills...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(60, 120), 0.3, 0.06, 5),
 	[
-		new SmoothElevationPainter(ELEVATION_MODIFY, 7, 4, 2),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill, 4, heightOffsetHillRandom),
 		new TerrainPainter(tGrassSpecific),
 		paintClass(clHill)
 	],

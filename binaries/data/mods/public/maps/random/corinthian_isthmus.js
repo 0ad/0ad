@@ -41,7 +41,10 @@ const aDecorativeRock = "actor|geology/stone_granite_med.xml";
 
 const pForest = [tForestFloor, tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
-InitMap();
+var heightSeaGround = -4;
+var heightLand = 3;
+
+InitMap(heightLand, tHill);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -58,26 +61,21 @@ var clBaseResource = createTileClass();
 var clGrass = createTileClass();
 var clHill = createTileClass();
 
-var landHeight = getMapBaseHeight();
-var waterHeight = -4;
-
 log("Creating the main river");
-var riverAngle = randFloat(0, Math.PI);
+var riverAngle = randomAngle();
 var riverWidth = scaleByMapSize(15, 70);
 var riverStart = new Vector2D(mapCenter.x, 0).rotateAround(riverAngle, mapCenter);
 var riverEnd = new Vector2D(mapCenter.x, mapSize).rotateAround(riverAngle, mapCenter);
 
 createArea(
 	new PathPlacer(riverStart.x, riverStart.y, riverEnd.x, riverEnd.y, riverWidth, 0.2, 15 * scaleByMapSize(1, 3), 0.04, 0.01),
-	new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-	null);
+	new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4));
 
 log("Creating small puddles at the map border to ensure players being separated...");
 for (let point of [riverStart, riverEnd])
 	createArea(
 		new ClumpPlacer(Math.floor(diskArea(riverWidth / 2)), 0.95, 0.6, 10, point.x, point.y),
-		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-		null);
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4));
 
 log("Creating passage connecting the two riversides...");
 var passageStart = riverStart.rotateAround(Math.PI / 2, mapCenter);
@@ -93,8 +91,7 @@ createArea(
 		3 * scaleByMapSize(1, 4),
 		0.1,
 		0.01),
-	new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
-	null);
+	new SmoothElevationPainter(ELEVATION_SET, heightLand, 4));
 
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2, 1, tShore);
@@ -103,7 +100,7 @@ paintTerrainBasedOnHeight(2, 5, 1, tGrass);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(riverAngle, 0.6),
+	"PlayerPlacement": playerPlacementRiver(riverAngle, fractionToTiles(0.6)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",

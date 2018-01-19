@@ -37,7 +37,9 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+const heightLand = 3;
+
+InitMap(heightLand, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 
@@ -50,10 +52,8 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-initTerrain(tMainTerrain);
-
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

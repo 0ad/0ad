@@ -50,15 +50,18 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+const heightSeaGround = -5;
+const heightLand = 3;
+const heightCliff = 3.12;
+const heightHill = 18;
+const heightOffsetBump = 2;
+
+InitMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = getMapArea();
 const mapCenter = getMapCenter();
 const mapBounds = getMapBounds();
-
-const lSize = Math.pow(scaleByMapSize(1, 6), 1/8);
 
 var clPlayer = createTileClass();
 var clPlayerTerritory = createTileClass();
@@ -74,9 +77,7 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 var clShallow = createTileClass();
 
-var landHeight = 3;
-var cliffHeight = 3.12;
-var landElevationPainter = new SmoothElevationPainter(ELEVATION_SET, landHeight, 4);
+var landElevationPainter = new SmoothElevationPainter(ELEVATION_SET, heightLand, 4);
 
 var unknownMapFunctions = {
 	"land": [
@@ -102,8 +103,7 @@ var unknownMapFunctions = {
  * The locations should only determined by the landscape functions to avoid placing bodies of water and resources into civic centers and the starting resources.
  */
 var playerIDs = sortAllPlayers();
-var playerX = [];
-var playerZ = [];
+var playerPosition = [];
 
 var g_StartingTreasures = false;
 var g_StartingWalls = true;
@@ -134,10 +134,10 @@ function unknownArchipelago()
 	g_StartingWalls = "towers";
 	g_StartingTreasures = true;
 
-	let [pIDs, islandX, islandZ] = playerPlacementCircle(0.35);
+	let [pIDs, islandPosition] = playerPlacementCircle(fractionToTiles(0.35));
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = [pIDs, islandX, islandZ];
+		[playerIDs, playerPosition] = [pIDs, islandPosition];
 		markPlayerArea("large");
 	}
 
@@ -145,7 +145,7 @@ function unknownArchipelago()
 	let islandSize = diskArea(scaleByMapSize(17, 29));
 	for (let i = 0; i < numPlayers; ++i)
 		createArea(
-			new ClumpPlacer(islandSize, 0.8, 0.1, 10, fractionToTiles(islandX[i]), fractionToTiles(islandZ[i])),
+			new ClumpPlacer(islandSize, 0.8, 0.1, 10, islandPosition[i].x, islandPosition[i].y),
 			landElevationPainter);
 
 	let type = isNomad() ? randIntInclusive(1, 2) : randIntInclusive(1, 3);
@@ -165,7 +165,7 @@ function unknownArchipelago()
 		createAreas(
 			new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, 1),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 				paintClass(clLand)
 			],
 			borderClasses(clLand, 6, 3),
@@ -188,7 +188,7 @@ function unknownArchipelago()
 		createAreas(
 			new ClumpPlacer(Math.floor(islandSize * randFloat(0.3, 0.7)), 0.8, 0.1, 0.07),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 6),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 				paintClass(clLand)
 			],
 			avoidClasses(clLand, 3, clPlayerTerritory, 3),
@@ -219,7 +219,7 @@ function unknownContinent()
 	if (!isNomad())
 	{
 		log("Ensuring player area...");
-		[playerIDs, playerX, playerZ] = playerPlacementCircle(0.25);
+		[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
 		markPlayerArea("small");
 
 		for (let i = 0; i < numPlayers; ++i)
@@ -229,8 +229,8 @@ function unknownContinent()
 					Math.floor(scaleByMapSize(5, 9)),
 					Math.floor(scaleByMapSize(5, 20)),
 					1,
-					Math.round(fractionToTiles(playerX[i])),
-					Math.round(fractionToTiles(playerZ[i])),
+					playerPosition[i].x,
+					playerPosition[i].y,
 					0,
 					[Math.floor(scaleByMapSize(23, 50))]),
 				[
@@ -241,7 +241,7 @@ function unknownContinent()
 
 	log("Creating continent...");
 	createArea(
-		new ClumpPlacer(mapArea * 0.45, 0.9, 0.09, 10, Math.round(fractionToTiles(0.5)), Math.round(fractionToTiles(0.5))),
+		new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, 10, mapCenter.x, mapCenter.y),
 		[
 			landElevationPainter,
 			paintClass(clLand)
@@ -251,28 +251,18 @@ function unknownContinent()
 	{
 		log("Creating peninsula (i.e. half the map not being surrounded by water)...");
 		let angle = randomAngle();
+		let peninsulaPosition1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.25), 0).rotate(-angle));
 		createArea(
-			new ClumpPlacer(
-				mapArea * 0.45,
-				0.9,
-				0.09,
-				10,
-				Math.round(fractionToTiles(0.5 + 0.25 * Math.cos(angle))),
-				Math.round(fractionToTiles(0.5 + 0.25 * Math.sin(angle)))),
+			new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, 10, peninsulaPosition1.x, peninsulaPosition1.y),
 			[
 				landElevationPainter,
 				paintClass(clLand)
 			]);
 
 		log("Remembering to not paint shorelines into the peninsula...");
+		let peninsulaPosition2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.35), 0).rotate(-angle));
 		createArea(
-			new ClumpPlacer(
-				mapArea * 0.3,
-				0.9,
-				0.01,
-				10,
-				Math.round(fractionToTiles(0.5 + 0.35 * Math.cos(angle))),
-				Math.round(fractionToTiles(0.5 + 0.35 * Math.sin(angle)))),
+			new ClumpPlacer(diskArea(fractionToTiles(0.33)), 0.9, 0.01, 10, peninsulaPosition2.x, peninsulaPosition2.y),
 			paintClass(clPeninsulaSteam));
 	}
 
@@ -285,9 +275,11 @@ function unknownContinent()
 function unknownCentralSea()
 {
 	let waterHeight = -3;
-	let horizontal = randBool();
 
-	let [riverStart, riverEnd] = centralRiverCoordinates(horizontal);
+	let startAngle = randomAngle();
+
+	let [riverStart, riverEnd] = centralRiverCoordinates(startAngle);
+
 	paintRiver({
 		"parallel": false,
 		"start": riverStart,
@@ -295,8 +287,8 @@ function unknownCentralSea()
 		"width": fractionToTiles(scaleByMapSize(0.27, 0.42) + randFloat(0, 0.08)),
 		"fadeDist": scaleByMapSize(3, 12),
 		"deviation": 0,
-		"waterHeight": waterHeight,
-		"landHeight": landHeight,
+		"heightRiverbed": waterHeight,
+		"heightLand": heightLand,
 		"meanderShort": 20,
 		"meanderLong": 0,
 		"waterFunc": (ix, iz, height, riverFraction) => {
@@ -311,14 +303,14 @@ function unknownCentralSea()
 
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = playerPlacementRiver(horizontal ? Math.PI / 2 : 0, 0.6);
+		[playerIDs, playerPosition] = playerPlacementRiver(startAngle + Math.PI / 2, fractionToTiles(0.6));
 		markPlayerArea("small");
 	}
 
 	if (!g_AllowNaval || randBool())
 	{
 		log("Creating isthmus (i.e. connecting the two riversides with a big land passage)...");
-		let [isthmusStart, isthmusEnd] = centralRiverCoordinates(!horizontal);
+		let [isthmusStart, isthmusEnd] = centralRiverCoordinates(startAngle + Math.PI / 2);
 		createArea(
 			new PathPlacer(
 				isthmusStart.x,
@@ -347,20 +339,22 @@ function unknownCentralSea()
 function unknownCentralRiver()
 {
 	let waterHeight = -4;
-	let shallowHeight = -2;
-	initHeight(landHeight);
+	let heightShallow = -2;
 
-	let horizontal = randBool();
-	let riverAngle = horizontal ? 0 : Math.PI / 2;
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(heightLand));
+
+	let startAngle = randomAngle();
 
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = playerPlacementRiver(horizontal ? Math.PI / 2 : 0, 0.5);
+		[playerIDs, playerPosition] = playerPlacementRiver(startAngle + Math.PI / 2, fractionToTiles(0.5));
 		markPlayerArea("large");
 	}
 
 	log("Creating the main river...");
-	let [coord1, coord2] = centralRiverCoordinates(horizontal);
+	let [coord1, coord2] = centralRiverCoordinates(startAngle);
 	createArea(
 		new PathPlacer(coord1.x, coord1.y, coord2.x, coord2.y, scaleByMapSize(14, 24), 0.5, scaleByMapSize(3, 12), 0.1, 0.01),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
@@ -369,7 +363,7 @@ function unknownCentralRiver()
 	log("Creating small water spots at the map border to ensure separation of players...");
 	for (let coord of [coord1, coord2])
 		createArea(
-			new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(5, 10))), 0.95, 0.6, 10, ...coord),
+			new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(5, 10))), 0.95, 0.6, 10, coord.x, coord.y),
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2),
 			avoidClasses(clPlayerTerritory, 8));
 
@@ -378,16 +372,16 @@ function unknownCentralRiver()
 		log("Creating the shallows of the main river...");
 		for (let i = 0; i <= randIntInclusive(1, scaleByMapSize(4, 8)); ++i)
 		{
-			let location = randFloat(0.15, 0.85);
+			let location = fractionToTiles(randFloat(0.15, 0.85));
 			createPassage({
-				"start": new Vector2D(location, 0).mult(mapSize).rotateAround(riverAngle, mapCenter),
-				"end": new Vector2D(location, 1).mult(mapSize).rotateAround(riverAngle, mapCenter),
+				"start": new Vector2D(location, mapBounds.top).rotateAround(startAngle, mapCenter),
+				"end": new Vector2D(location, mapBounds.bottom).rotateAround(startAngle, mapCenter),
 				"startWidth": scaleByMapSize(8, 12),
 				"endWidth": scaleByMapSize(8, 12),
 				"smoothWidth": 2,
-				"startHeight": shallowHeight,
-				"endHeight": shallowHeight,
-				"maxHeight": shallowHeight,
+				"startHeight": heightShallow,
+				"endHeight": heightShallow,
+				"maxHeight": heightShallow,
 				"tileClass": clShallow
 			});
 		}
@@ -395,7 +389,7 @@ function unknownCentralRiver()
 
 	if (randBool(2/3))
 		createTributaryRivers(
-			horizontal,
+			startAngle,
 			randIntInclusive(8, scaleByMapSize(12, 16)),
 			scaleByMapSize(10, 20),
 			-4,
@@ -412,13 +406,15 @@ function unknownCentralRiver()
 function unknownRiversAndLake()
 {
 	let waterHeight = -4;
-	initHeight(landHeight);
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(heightLand));
 
 	let startAngle;
 	if (!isNomad())
 	{
 		let playerAngle;
-		[playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+		[playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 		markPlayerArea("small");
 	}
 
@@ -427,7 +423,7 @@ function unknownRiversAndLake()
 	{
 		log("Creating lake...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.09 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.17)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 				paintClass(clWater)
@@ -461,7 +457,7 @@ function unknownRiversAndLake()
 
 		log("Creating lake...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.005, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+			new ClumpPlacer(Math.square(mapSize) * 0.005, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 				paintClass(clWater)
@@ -472,7 +468,7 @@ function unknownRiversAndLake()
 	{
 		log("Creating small central island...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.006 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				landElevationPainter,
 				paintClass(clWater)
@@ -486,12 +482,15 @@ function unknownRiversAndLake()
 function unknownEdgeSeas()
 {
 	let waterHeight = -4;
-	initHeight(landHeight);
+
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(heightLand));
 
 	let horizontal = randBool();
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = playerPlacementLine(horizontal, 0.5, 0.2);
+		[playerIDs, playerPosition] = playerPlacementLine(horizontal, mapCenter, fractionToTiles(0.2));
 		// Don't place the shoreline inside the CC, but possibly into the players territory
 		markPlayerArea("small");
 	}
@@ -506,15 +505,15 @@ function unknownEdgeSeas()
 			"width": scaleByMapSize(80, randFloat(270, 320)),
 			"fadeDist": scaleByMapSize(2, 8),
 			"deviation": 0,
-			"waterHeight": waterHeight,
-			"landHeight": landHeight,
+			"heightRiverbed": waterHeight,
+			"heightLand": heightLand,
 			"meanderShort": 20,
 			"meanderLong": 0
 		});
 	}
 
 	createExtensionsOrIslands();
-	paintTileClassBasedOnHeight(0, cliffHeight, 1, clLand);
+	paintTileClassBasedOnHeight(0, heightCliff, 1, clLand);
 	createShoreJaggedness(waterHeight, clLand, 7, false);
 }
 
@@ -524,36 +523,41 @@ function unknownEdgeSeas()
 function unknownGulf()
 {
 	let waterHeight = -3;
-	initHeight(landHeight);
 
-	let startAngle = randFloat(0, 2) * Math.PI;
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(heightLand));
+
+	let startAngle = randomAngle();
 	if (!isNomad())
 	{
 		log("Determining player locations...");
 
-		[playerX, playerZ] = playerPlacementCustomAngle(
-			0.35,
-			tilesToFraction(mapCenter.x),
-			tilesToFraction(mapCenter.y),
-			i => startAngle + 2/3 * Math.PI * (-1 + (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1))));
+		playerPosition = playerPlacementCustomAngle(
+			fractionToTiles(0.35),
+			mapCenter,
+			i => startAngle + 2/3 * Math.PI * (-1 + (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1))))[0];
 
 		markPlayerArea("large");
 	}
 
-	let placers = [
-		new ClumpPlacer(mapArea * 0.08, 0.7, 0.05, 10, Math.round(fractionToTiles(0.5)), Math.round(fractionToTiles(0.5))),
-		new ClumpPlacer(mapArea * 0.13 * lSize, 0.7, 0.05, 10, Math.round(fractionToTiles(0.5 - 0.2 * Math.cos(startAngle))), Math.round(fractionToTiles(0.5 - 0.2 * Math.sin(startAngle)))),
-		new ClumpPlacer(mapArea * 0.15 * lSize, 0.7, 0.05, 10, Math.round(fractionToTiles(0.5 - 0.49 * Math.cos(startAngle))), Math.round(fractionToTiles(0.5 - 0.49 * Math.sin(startAngle)))),
+	let gulfParts = [
+		{ "radius": fractionToTiles(0.16), "distance": fractionToTiles(0) },
+		{ "radius": fractionToTiles(0.2), "distance": fractionToTiles(0.2) },
+		{ "radius": fractionToTiles(0.22), "distance": fractionToTiles(0.49) }
 	];
 
-	for (let placer of placers)
+	for (let gulfPart of gulfParts)
+	{
+		let position = Vector2D.sub(mapCenter, new Vector2D(gulfPart.distance, 0).rotate(-startAngle)).round();
 		createArea(
-			placer,
+			new ClumpPlacer(diskArea(gulfPart.radius), 0.7, 0.05, 10, position.x, position.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 				paintClass(clWater)
 			],
-			avoidClasses(clPlayerTerritory, scaleByMapSize(15, 25)));
+			avoidClasses(clPlayerTerritory, defaultPlayerBaseRadius()));
+	}
 }
 
 /**
@@ -563,11 +567,13 @@ function unknownLakes()
 {
 	let waterHeight = -5;
 
-	initHeight(landHeight);
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(heightLand));
 
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+		[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 		markPlayerArea("large");
 	}
 
@@ -587,19 +593,22 @@ function unknownLakes()
  */
 function unknownPasses()
 {
-	let mountainHeight = 24;
+	let heightMountain = 24;
 	let waterHeight = -4;
-	initHeight(landHeight);
+
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(heightLand));
 
 	let playerAngle;
 	let startAngle;
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+		[playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 		markPlayerArea("small");
 	}
 	else
-		startAngle = Math.random(0, 2 * Math.PI);
+		startAngle = randomAngle();
 
 	for (let mountain of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
 	{
@@ -608,7 +617,7 @@ function unknownPasses()
 			new PathPlacer(mapCenter.x, mapCenter.y, mountain.x, mountain.y, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 			[
 				// More smoothing than this often results in the mountainrange becoming passable to one player.
-				new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 1),
+				new SmoothElevationPainter(ELEVATION_SET, heightMountain, 1),
 				paintClass(clWater)
 			],
 			avoidClasses(clPlayer, 5));
@@ -616,7 +625,7 @@ function unknownPasses()
 		log("Creating small mountain at the map border between the players to ensure separation of players...");
 		createArea(
 			new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, mountain.x, mountain.y),
-			new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 0),
+			new SmoothElevationPainter(ELEVATION_SET, heightMountain, 0),
 			avoidClasses(clPlayer, 5));
 	}
 
@@ -635,14 +644,14 @@ function unknownPasses()
 				3 * scaleByMapSize(1, 3),
 				0.2,
 				0.05),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 2));
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 2));
 	}
 
 	if (randBool(2/5))
 	{
 		log("Create central lake...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.03 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.1)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 3),
 				paintClass(clWater)
@@ -652,9 +661,9 @@ function unknownPasses()
 	{
 		log("Fill area between the paths...");
 		createArea(
-			new ClumpPlacer(mapArea * 0.005, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 4),
+				new SmoothElevationPainter(ELEVATION_SET, heightMountain, 4),
 				paintClass(clWater)
 			]);
 	}
@@ -665,20 +674,22 @@ function unknownPasses()
  */
 function unknownLowlands()
 {
-	let mountainHeight = 30;
+	let heightMountain = 30;
 
 	log("Creating mountain that is going to separate players...");
-	initHeight(mountainHeight);
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(heightMountain));
 
 	let playerAngle;
 	let startAngle;
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+		[playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 		markPlayerArea("small");
 	}
 	else
-		startAngle = Math.random(0, 2 * Math.PI);
+		startAngle = randomAngle();
 
 	log("Creating valleys enclosed by the mountain...");
 	let valleys = numPlayers;
@@ -695,7 +706,7 @@ function unknownLowlands()
 		createArea(
 			new ClumpPlacer(diskArea(scaleByMapSize(18, 32)), 0.65, 0.1, 10, valley.x, valley.y),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
 				paintClass(clLand)
 			]);
 
@@ -710,7 +721,7 @@ function unknownLowlands()
 
 	log("Creating the big central area...");
 	createArea(
-		new ClumpPlacer(mapArea * 0.091 * lSize, 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 		[
 			landElevationPainter,
 			paintClass(clWater)
@@ -722,21 +733,23 @@ function unknownLowlands()
  */
 function unknownMainland()
 {
-	initHeight(3);
+	createArea(
+		new MapBoundsPlacer(),
+		new ElevationPainter(3));
 
 	if (!isNomad())
 	{
-		[playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+		[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 		markPlayerArea("small");
 	}
 }
 
-function centralRiverCoordinates(horizontal)
+function centralRiverCoordinates(angle)
 {
 	return [
-		new Vector2D(mapBounds.left, mapCenter.y),
-		new Vector2D(mapBounds.right, mapCenter.y)
-	].map(v => v.rotateAround(horizontal ? 0 : Math.PI / 2, mapCenter));
+		new Vector2D(mapBounds.left + 1, mapCenter.y),
+		new Vector2D(mapBounds.right - 1, mapCenter.y)
+	].map(v => v.rotateAround(angle, mapCenter));
 }
 
 function createShoreJaggedness(waterHeight, borderClass, shoreDist, inwards = true)
@@ -747,7 +760,7 @@ function createShoreJaggedness(waterHeight, borderClass, shoreDist, inwards = tr
 			createAreas(
 				new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 15, 1),
 				[
-						new SmoothElevationPainter(ELEVATION_SET, i ? landHeight : waterHeight, 4),
+						new SmoothElevationPainter(ELEVATION_SET, i ? heightLand : waterHeight, 4),
 						i ? paintClass(clLand) : unPaintClass(clLand)
 				],
 				[
@@ -795,31 +808,28 @@ function markPlayerArea(size)
 {
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		addCivicCenterAreaToClass(
-			Math.round(fractionToTiles(playerX[i])),
-			Math.round(fractionToTiles(playerZ[i])),
-			clPlayer);
+		addCivicCenterAreaToClass(playerPosition[i], clPlayer);
 
 		if (size == "large")
 			createArea(
-				new ClumpPlacer(diskArea(scaleByMapSize(17, 29) / 3), 0.6, 0.3, 10, fractionToTiles(playerX[i]), fractionToTiles(playerZ[i])),
+				new ClumpPlacer(diskArea(scaleByMapSize(17, 29) / 3), 0.6, 0.3, 10, playerPosition[i].x, playerPosition[i].y),
 				paintClass(clPlayerTerritory));
 	}
 }
 
 function paintUnknownMapBasedOnHeight()
 {
-	paintTerrainBasedOnHeight(cliffHeight, 40, 1, tCliff);
-	paintTerrainBasedOnHeight(3, cliffHeight, 1, tMainTerrain);
+	paintTerrainBasedOnHeight(heightCliff, 40, 1, tCliff);
+	paintTerrainBasedOnHeight(3, heightCliff, 1, tMainTerrain);
 	paintTerrainBasedOnHeight(1, 3, 1, tShore);
 	paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
-	unPaintTileClassBasedOnHeight(0, cliffHeight, 1, clWater);
+	unPaintTileClassBasedOnHeight(0, heightCliff, 1, clWater);
 	unPaintTileClassBasedOnHeight(-6, 0, 1, clLand);
 
 	paintTileClassBasedOnHeight(-6, 0, 1, clWater);
-	paintTileClassBasedOnHeight(0, cliffHeight, 1, clLand);
-	paintTileClassBasedOnHeight(cliffHeight, 40, 1, clHill);
+	paintTileClassBasedOnHeight(0, heightCliff, 1, clLand);
+	paintTileClassBasedOnHeight(heightCliff, 40, 1, clHill);
 }
 
 /**
@@ -830,7 +840,7 @@ function createUnknownObjects()
 	log("Creating bumps...");
 	createAreas(
 		new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-		new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 		[avoidClasses(clWater, 2, clPlayer, 10), stayClasses(clLand, 3)],
 		randIntInclusive(0, scaleByMapSize(1, 2) * 200));
 
@@ -839,7 +849,7 @@ function createUnknownObjects()
 		new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+			new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 			paintClass(clHill)
 		],
 		[avoidClasses(clPlayer, 15, clHill, randIntInclusive(6, 18)), stayClasses(clLand, 0)],
@@ -1018,7 +1028,7 @@ function createUnknownObjects()
 function createUnknownPlayerBases()
 {
 	placePlayerBases({
-		"PlayerPlacement": [playerIDs, playerX, playerZ],
+		"PlayerPlacement": [playerIDs, playerPosition],
 		"BaseResourceClass": clBaseResource,
 		"Walls": g_StartingWalls,
 		"CityPatch": {

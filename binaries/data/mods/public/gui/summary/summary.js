@@ -465,7 +465,7 @@ function continueButton()
 			"summarySelectedData": summarySelectedData
 		});
 	else if (Engine.HasXmppClient())
-		Engine.SwitchGuiPage("page_lobby.xml");
+		Engine.SwitchGuiPage("page_lobby.xml", { "dialog": false });
 	else
 		Engine.SwitchGuiPage("page_pregame.xml");
 }

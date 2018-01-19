@@ -2,21 +2,27 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
-InitMap();
-
 setSelectedBiome();
+
+const heightLand = 30;
+
+InitMap(heightLand, g_Terrains.mainTerrain);
+
 initTileClasses();
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
+createArea(
+	new MapBoundsPlacer(),
+	paintClass(g_TileClasses.land));
+
 Engine.SetProgress(20);
 
-addBases("stronghold", randFloat(0.2, 0.35), randFloat(0.05, 0.1), randomAngle());
+addBases("stronghold", fractionToTiles(randFloat(0.2, 0.35)), fractionToTiles(randFloat(0.05, 0.1)), randomAngle());
 Engine.SetProgress(30);
 
 addElements(shuffleArray([
 	{
 		"func": addBluffs,
-		"baseHeight": getMapBaseHeight(),
+		"baseHeight": heightLand,
 		"avoid": [
 			g_TileClasses.bluff, 20,
 			g_TileClasses.hill, 5,
@@ -75,7 +81,7 @@ addElements(shuffleArray([
 	},
 	{
 		"func": addValleys,
-		"baseHeight": getMapBaseHeight(),
+		"baseHeight": heightLand,
 		"avoid": [
 			g_TileClasses.bluff, 5,
 			g_TileClasses.hill, 5,

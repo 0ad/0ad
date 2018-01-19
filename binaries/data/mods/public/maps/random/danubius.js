@@ -10,6 +10,7 @@ const triggerPointLandPatrolRight = "trigger/trigger_point_F";
 const triggerPointCCAttackerPatrolLeft = "trigger/trigger_point_G";
 const triggerPointCCAttackerPatrolRight = "trigger/trigger_point_H";
 
+const tPrimary = ["temp_grass_aut", "temp_grass_plants_aut", "temp_grass_c_aut", "temp_grass_d_aut"];
 const tRoad = "steppe_river_rocks";
 const tIsland = ["temp_grass_long_b_aut", "temp_grass_plants_aut", "temp_forestfloor_aut"];
 const tCliff = "temp_cliff_a";
@@ -117,7 +118,13 @@ const normalMapSize = 320;
 // Minimum distance from the map border to ship ungarrison points
 const ShorelineDistance = 15;
 
-InitMap();
+const heightSeaGround = -3;
+const heightShore = 1;
+const heightLand = 3;
+const heightPath = 5;
+const heightIsland = 6;
+
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -151,9 +158,6 @@ var clPath = createTileClass();
 var clRitualPlace = createTileClass();
 
 var waterWidth = fractionToTiles(0.3);
-var waterHeight = -3;
-var shoreHeight = 1;
-var landHeight = 2;
 
 // How many treasures will be placed near the gallic civic centers
 var gallicCCTreasureCount = randIntInclusive(8, 12);
@@ -204,7 +208,7 @@ if (gallicCC)
 				placer,
 				[
 					new LayeredPainter([tShore, tRoad, tRoad], [1, 3]),
-					new SmoothElevationPainter(ELEVATION_SET, 5, 4),
+					new SmoothElevationPainter(ELEVATION_SET, heightPath, 4),
 					paintClass(clPath)
 				]);
 
@@ -320,7 +324,7 @@ if (gallicCC)
 Engine.SetProgress(10);
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(0, 0.6),
+	"PlayerPlacement": playerPlacementRiver(0, fractionToTiles(0.6)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,
@@ -359,8 +363,8 @@ paintRiver({
 	"width": waterWidth,
 	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
-	"waterHeight": waterHeight,
-	"landHeight": landHeight,
+	"heightRiverbed": heightSeaGround,
+	"heightLand": heightLand,
 	"meanderShort": 30,
 	"meanderLong": 0,
 	"waterFunc": (ix, iz, height, riverFraction) => {
@@ -382,8 +386,8 @@ Engine.SetProgress(30);
 paintTileClassBasedOnHeight(-Infinity, 0.7, Elevation_ExcludeMin_ExcludeMax, clWater);
 
 log("Creating shores...");
-paintTerrainBasedOnHeight(-Infinity, shoreHeight, 0, tWater);
-paintTerrainBasedOnHeight(shoreHeight, landHeight, 0, tShore);
+paintTerrainBasedOnHeight(-Infinity, heightShore, 0, tWater);
+paintTerrainBasedOnHeight(heightShore, heightLand, 0, tShore);
 Engine.SetProgress(35);
 
 log("Creating bumps...");
@@ -429,7 +433,7 @@ createAreas(
 	new ChainPlacer(Math.floor(scaleByMapSize(3, 4)), Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(50, 80)), 0.5),
 	[
 		new LayeredPainter([tWater, tShore, tIsland], [2, 1]),
-		new SmoothElevationPainter(ELEVATION_SET, 6, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightIsland, 4),
 		paintClass(clIsland)
 	],
 	[avoidClasses(clIsland, 30), stayClasses (clWater, 10)],
@@ -700,7 +704,7 @@ for (let i = 0; i < 2; ++i)
 	);
 
 log("Creating patrol points for land attackers...");
-addToClass(mapSize/2, mapSize/2, clMiddle);
+addToClass(mapCenter.x, mapCenter.y, clMiddle);
 for (let i = 0; i < 2; ++i)
 {
 	createObjectGroupsDeprecated(

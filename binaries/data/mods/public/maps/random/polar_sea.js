@@ -1,7 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
 var tPrimary = ["polar_snow_a"];
-var tCliff = ["polar_cliff_a", "polar_cliff_b", "polar_cliff_snow"];
 var tSecondary = "polar_snow_glacial";
 var tHalfSnow = ["ice_01", "ice_dirt"];
 var tSnowLimited = ["polar_snow_b", "polar_ice"];
@@ -28,10 +27,15 @@ var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";
 var aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 
-InitMap();
+var heightSeaGround = -4;
+var heightLand = 2;
+var heightCliff = 3;
+
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clWater = createTileClass();
@@ -43,7 +47,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clArcticWolf = createTileClass();
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 var treasures = [{
 	"template": oWoodTreasure,
@@ -54,13 +58,13 @@ log("Creating player markets...");
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let marketPos = Vector2D.add(new Vector2D(playerX[i], playerZ[i]).mult(mapSize), new Vector2D(12, 0).rotate(randomAngle())).round();
+		let marketPos = Vector2D.add(playerPosition[i], new Vector2D(12, 0).rotate(randomAngle())).round();
 		placeObject(marketPos.x, marketPos.y, oMarket, playerIDs[i], BUILDING_ORIENTATION);
-		addCivicCenterAreaToClass(marketPos.x, marketPos.y, clBaseResource);
+		addCivicCenterAreaToClass(marketPos, clBaseResource);
 	}
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",
@@ -91,19 +95,17 @@ createArea(
 		Math.floor(scaleByMapSize(5, 16)),
 		Math.floor(scaleByMapSize(35, 200)),
 		1,
-		Math.round(fractionToTiles(0.5)),
-		Math.round(fractionToTiles(0.5)),
+		mapCenter.x,
+		mapCenter.y,
 		0,
-		[Math.floor(mapSize * 0.17)]),
+		[Math.floor(fractionToTiles(0.17))]),
 	[
 		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
-		new SmoothElevationPainter(ELEVATION_SET, -4, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 20));
 
-paintTerrainBasedOnHeight(3, Math.floor(scaleByMapSize(20, 40)), 0, tCliff);
-paintTerrainBasedOnHeight(Math.floor(scaleByMapSize(20, 40)), 100, 3, tSnowLimited);
 Engine.SetProgress(40);
 
 log("Creating small lakes...");
@@ -132,7 +134,7 @@ for (let i = 0; i < numLakes ; ++i)
 			chosenPoint[1]),
 		[
 			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
-			new SmoothElevationPainter(ELEVATION_SET, -5, 5),
+			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 20),
@@ -148,7 +150,8 @@ log("Creating hills...");
 createHills(
 	[tPrimary, tPrimary, tSecondary],
 	avoidClasses(clPlayer, 20, clHill, 35),
-	clHill, scaleByMapSize(20, 240));
+	clHill,
+	scaleByMapSize(20, 240));
 Engine.SetProgress(65);
 
 log("Creating dirt patches...");
@@ -278,13 +281,12 @@ else
 if (isNomad())
 {
 	let constraint = avoidClasses(clWater, 4, clMetal, 4, clRock, 4, clHill, 4, clFood, 2);
-	[playerIDs, playerX, playerZ] = placePlayersNomad(clPlayer, constraint);
+	[playerIDs, playerPosition] = placePlayersNomad(clPlayer, constraint);
 
 	for (let i = 0; i < numPlayers; ++i)
 		placePlayerBaseTreasures({
 			"playerID": playerIDs[i],
-			"playerX": tilesToFraction(playerX[i]),
-			"playerZ": tilesToFraction(playerZ[i]),
+			"playerPosition": playerPosition[i],
 			"BaseResourceClass": clBaseResource,
 			"baseResourceConstraint": constraint,
 			"types": treasures

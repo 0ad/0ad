@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = "savanna_grass_a";
 const tGrass2 = "savanna_grass_b";
 const tGrass3 = "savanna_shrubs_a";
 const tDirt1 = "savanna_dirt_rocks_a";
@@ -26,7 +27,10 @@ const oMetalLarge = "gaia/geology_metal_savanna_slabs";
 const aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 const aRock = "actor|geology/stone_savanna_med.xml";
 
-InitMap();
+const heightSeaGround = -5;
+const heightLand = 1;
+
+InitMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -40,7 +44,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -97,7 +101,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(20, 60)), 1),
 	[
 		new LayeredPainter([tShore, tWater], [1]),
-		new SmoothElevationPainter(ELEVATION_SET, -5, 7),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 7),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 24),
@@ -219,7 +223,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(100, 1200)
 );
 
-placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clHill, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
 
 setSunColor(0.87451, 0.847059, 0.647059);
 setWaterColor(0.741176, 0.592157, 0.27451);

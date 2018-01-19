@@ -40,10 +40,14 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+const heightSeaGround = -5;
+const heightLand = 3;
+
+InitMap(heightSeaGround, tWater);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
+var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -62,17 +66,16 @@ createArea(
 		Math.floor(scaleByMapSize(5, 12)),
 		Math.floor(scaleByMapSize(60, 700)),
 		1,
-		Math.round(fractionToTiles(0.5)),
-		Math.round(fractionToTiles(0.5)),
+		mapCenter.x,
+		mapCenter.y,
 		0,
-		[Math.floor(mapSize * 0.33)]),
+		[Math.floor(fractionToTiles(0.33))]),
 	[
-		new SmoothElevationPainter(ELEVATION_SET, 3, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 		paintClass(clLand)
-	],
-	null);
+	]);
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.25);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
 
 log("Ensuring initial player land...");
 for (let i = 0; i < numPlayers; ++i)
@@ -82,12 +85,12 @@ for (let i = 0; i < numPlayers; ++i)
 			Math.floor(scaleByMapSize(5, 9)),
 			Math.floor(scaleByMapSize(5, 20)),
 			1,
-			Math.round(fractionToTiles(playerX[i])),
-			Math.round(fractionToTiles(playerZ[i])),
+			playerPosition[i].x,
+			playerPosition[i].y,
 			0,
 			[Math.floor(scaleByMapSize(23, 50))]),
 		[
-			new SmoothElevationPainter(ELEVATION_SET, 3, 4),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 			paintClass(clLand)
 		]);
 
@@ -98,7 +101,7 @@ paintTerrainBasedOnHeight(1, 3, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

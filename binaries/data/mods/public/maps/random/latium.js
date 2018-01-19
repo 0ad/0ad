@@ -1,7 +1,5 @@
 Engine.LoadLibrary("rmgen");
 
-const WATER_WIDTH = 0.1;
-
 const tOceanDepths = "medit_sea_depths";
 const tOceanRockDeep = "medit_sea_coral_deep";
 const tOceanRockShallow = "medit_rocks_wet";
@@ -51,12 +49,18 @@ const pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
 const pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
 const pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
 
-InitMap();
+const heightSeaGround = -16;
+const heightLand = 0;
+const heightPlayer = 5;
+const heightHill = 12;
+
+InitMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
-// Create classes
 var clWater = createTileClass();
 var clCliff = createTileClass();
 var clForest = createTileClass();
@@ -66,17 +70,18 @@ var clFood = createTileClass();
 var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
 
-log("Creating players...");
+var WATER_WIDTH = 0.1;
 
-var [playerIDs, playerX, playerZ] = playerPlacementLine(false, 0.5, randFloat(0.42, 0.46));
+log("Creating players...");
+var [playerIDs, playerPosition] = playerPlacementLine(false, mapCenter, fractionToTiles(randFloat(0.42, 0.46)));
 
 function distanceToPlayers(x, z)
 {
 	var r = 10000;
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		var dx = x - playerX[i];
-		var dz = z - playerZ[i];
+		var dx = x - playerPosition[i].x;
+		var dz = z - playerPosition[i].y;
 		r = Math.min(r, Math.square(dx) + Math.square(dz));
 	}
 	return Math.sqrt(r);
@@ -95,8 +100,25 @@ function playerNearness(x, z)
 	return 1;
 }
 
-log("Painting elevation...");
+for (let x of [mapBounds.left, mapBounds.right])
+	paintRiver({
+		"parallel": true,
+		"start": new Vector2D(x, mapBounds.top),
+		"end": new Vector2D(x, mapBounds.bottom),
+		"width": 2 * fractionToTiles(WATER_WIDTH),
+		"fadeDist": 16,
+		"deviation": 0,
+		"heightRiverbed": heightSeaGround,
+		"heightLand": heightLand,
+		"meanderShort": 0,
+		"meanderLong": 0,
+		"waterFunc": (ix, iz, height, z) => {
+			addToClass(ix, iz, clWater);
+		}
+	});
+Engine.SetProgress(10);
 
+log("Painting elevation...");
 var noise0 = new Noise2D(scaleByMapSize(4, 16));
 var noise1 = new Noise2D(scaleByMapSize(8, 32));
 var noise2 = new Noise2D(scaleByMapSize(15, 60));
@@ -115,22 +137,8 @@ for (var ix = 0; ix <= mapSize; ix++)
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
 
-		var h = 0;
-		var distToWater = 0;
-
-		h = 32 * (x - 0.5);
-
-		// add the rough shape of the water
-		if (x < WATER_WIDTH)
-			h = Math.max(-16, -28 * (WATER_WIDTH - x) / WATER_WIDTH);
-		else if (x > 1.0-WATER_WIDTH)
-			h = Math.max(-16, -28 * (x - (1 - WATER_WIDTH)) / WATER_WIDTH);
-		else
-		{
-			distToWater = (0.5 - WATER_WIDTH - Math.abs(x - 0.5));
-			var u = 1 - Math.abs(x - 0.5) / (0.5 - WATER_WIDTH);
-			h = 12*u;
-		}
+		let distToWater = stayClasses(clWater, 1).allows(ix, iz) ? 0 : (0.5 - WATER_WIDTH - Math.abs(x - 0.5));
+		let h = distToWater ? heightHill * (1 - Math.abs(x - 0.5) / (0.5 - WATER_WIDTH)) : getHeight(ix, iz);
 
 		// add some base noise
 		var baseNoise = 16*noise0.get(x,z) + 8*noise1.get(x,z) + 4*noise2.get(x,z) - (16+8+4)/2;
@@ -169,7 +177,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 		}
 		setHeight(ix, iz, h);
 	}
-Engine.SetProgress(15);
+Engine.SetProgress(20);
 
 log("Painting terrain...");
 var noise6 = new Noise2D(scaleByMapSize(10, 40));
@@ -300,13 +308,13 @@ for (var ix = 0; ix < mapSize; ix++)
 				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randomAngle());
 		}
 
-		placeTerrain(ix, iz, t);
+		createTerrain(t).place(ix, iz);
 	}
 
 Engine.SetProgress(30);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"baseResourceConstraint": avoidClasses(clCliff, 4),
@@ -316,7 +324,7 @@ placePlayerBases({
 		"innerTerrain": tCity,
 		"width": 4,
 		"painters": [
-			new SmoothElevationPainter(ELEVATION_SET, 5, 2)
+			new SmoothElevationPainter(ELEVATION_SET, heightPlayer, 2)
 		]
 	},
 	"Chicken": {

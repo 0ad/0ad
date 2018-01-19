@@ -1,29 +1,18 @@
 Engine.LoadLibrary("rmgen");
 
-InitMap();
-
-var clPlayer = createTileClass();
-var clPath = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clBaseResource = createTileClass();
-
 var templateStone = "gaia/geology_stone_temperate";
 var templateStoneMine = "gaia/geology_stonemine_temperate_quarry";
 var templateMetalMine = "gaia/geology_metal_temperate_slabs";
 var templateTemple = "other/unfinished_greek_temple";
 
+var terrainPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d", "temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"];
 var terrainWood = ['temp_grass_mossy|gaia/flora_tree_oak', 'temp_forestfloor_pine|gaia/flora_tree_pine', 'temp_mud_plants|gaia/flora_tree_dead',
 	'temp_plants_bog|gaia/flora_tree_oak_large', "temp_dirt_gravel_plants|gaia/flora_tree_aleppo_pine", 'temp_forestfloor_autumn|gaia/flora_tree_carob']; //'temp_forestfloor_autumn|gaia/flora_tree_fig'
 var terrainWoodBorder = ['temp_grass_plants|gaia/flora_tree_euro_beech', 'temp_grass_mossy|gaia/flora_tree_poplar', 'temp_grass_mossy|gaia/flora_tree_poplar_lombardy',
 	'temp_grass_long|gaia/flora_bush_temperate', 'temp_mud_plants|gaia/flora_bush_temperate', 'temp_mud_plants|gaia/flora_bush_badlands',
 	'temp_grass_long|gaia/flora_tree_apple', 'temp_grass_clovers|gaia/flora_bush_berry', 'temp_grass_clovers_2|gaia/flora_bush_grapes',
 	'temp_grass_plants|gaia/fauna_deer', "temp_grass_long_b|gaia/fauna_rabbit", "temp_grass_plants"];
-var terrainBase = ['temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b',
-	'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b',
-	'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b',
-	'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b',
-	'temp_grass_b|gaia/fauna_pig', 'temp_dirt_gravel|gaia/fauna_chicken'];
+var terrainBase = ["temp_dirt_gravel", "temp_grass_b"];
 var terrainBaseBorder = ["temp_grass_b", "temp_grass_b", "temp_grass", "temp_grass_c", "temp_grass_mossy"];
 var terrainBaseCenter = ['temp_dirt_gravel', 'temp_dirt_gravel', 'temp_grass_b'];
 var terrainPath = ['temp_road', "temp_road_overgrown", 'temp_grass_b'];
@@ -34,10 +23,21 @@ var terrainHillBorder = ["temp_highlands", "temp_highlands", "temp_highlands", "
 	"temp_highlands", "temp_highlands", "temp_highlands", "temp_cliff_b", "temp_dirt_gravel_plants",
 	"temp_highlands|gaia/fauna_goat"];
 
+var heightPath = -2;
+var heightLand = 0;
+var heightOffsetRandomPath = 1;
+
+InitMap(heightLand, terrainPrimary);
+
 var mapSize = getMapSize();
-var mapArea = getMapArea();
 var mapRadius = mapSize/2;
 var mapCenter = getMapCenter();
+
+var clPlayer = createTileClass();
+var clPath = createTileClass();
+var clHill = createTileClass();
+var clForest = createTileClass();
+var clBaseResource = createTileClass();
 
 var numPlayers = getNumPlayers();
 var baseRadius = 20;
@@ -55,7 +55,7 @@ var resourcePerPlayer = [templateStone, templateMetalMine];
 
 // For large maps there are memory errors with too many trees.  A density of 256*192/mapArea works with 0 players.
 // Around each player there is an area without trees so with more players the max density can increase a bit.
-var maxTreeDensity = Math.min(256 * (192 + 8 * numPlayers) / mapArea, 1); // Has to be tweeked but works ok
+var maxTreeDensity = Math.min(256 * (192 + 8 * numPlayers) / Math.square(mapSize), 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
 
 var playerIDs = sortAllPlayers();
@@ -67,7 +67,7 @@ for (var i=0; i < numPlayers; i++)
 Engine.SetProgress(10);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerPosition.map(p => tilesToFraction(p.x)), playerPosition.map(p => tilesToFraction(p.y))],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"BaseResourceClass": clBaseResource,
 	// player class painted below
 	"CityPatch": {
@@ -78,13 +78,15 @@ placePlayerBases({
 			paintClass(clPlayer)
 		]
 	},
-	// Chicken already placed at the base terrain
+	"Chicken": {
+	},
 	"Berries": {
 		"template": "gaia/flora_bush_grapes",
 		"minCount": 2,
 		"maxCount": 2,
-		"minDist": 10,
-		"maxDist": 10
+		"distance": 12,
+		"minDist": 5,
+		"maxDist": 8
 	},
 	"Mines": {
 		"types": [
@@ -113,7 +115,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 			new RandomPathPlacer(pathStart, pathEnd, 1.25, baseRadius / 2, pathBlending),
 			[
 				new TerrainPainter(terrainPath),
-				new SmoothElevationPainter(ELEVATION_SET, -2, 2, 1),
+				new SmoothElevationPainter(ELEVATION_SET, heightPath, 2, heightOffsetRandomPath),
 				paintClass(clPath)
 			],
 			avoidClasses(clHill, 0, clBaseResource, 4));

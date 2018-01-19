@@ -31,8 +31,13 @@ const aBushes = [aBushA, aBushB];
 const pForestP = [tForestFloor2 + TERRAIN_SEPARATOR + oPalm, tForestFloor2];
 const pForestT = [tForestFloor1 + TERRAIN_SEPARATOR + oTamarix,tForestFloor2];
 
-InitMap();
+const heightLand = 1;
+const heightHill = 22;
+const heightOffsetBump = 2;
 
+InitMap(heightLand, tMainDirt);
+
+const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();
 
 var clPlayer = createTileClass();
@@ -44,17 +49,14 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clGrass = createTileClass();
 
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 for (let i = 0; i < numPlayers; ++i)
 {
-	let ix = Math.round(fractionToTiles(playerX[i]));
-	let iz = Math.round(fractionToTiles(playerZ[i]));
-
 	log("Marking player territory larger than the city patch...");
 	if (!isNomad())
 		createArea(
-			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, ix, iz),
+			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i].x, playerPosition[i].y),
 			paintClass(clPlayer));
 
 	log("Creating big grass patches surrounding the city patches...");
@@ -64,8 +66,8 @@ for (let i = 0; i < numPlayers; ++i)
 			Math.floor(scaleByMapSize(5, 12)),
 			Math.floor(scaleByMapSize(25, 60)) / (isNomad() ? 2 : 1),
 			1,
-			ix,
-			iz,
+			playerPosition[i].x,
+			playerPosition[i].y,
 			0,
 			[Math.floor(scaleByMapSize(16, 30))]),
 		[
@@ -76,7 +78,7 @@ for (let i = 0; i < numPlayers; ++i)
 Engine.SetProgress(10);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass marked above
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -108,7 +110,7 @@ Engine.SetProgress(20);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));
 
@@ -117,7 +119,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 22, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 3, clGrass, 1, clHill, 10),

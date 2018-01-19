@@ -80,7 +80,10 @@ else
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-InitMap();
+var heightSeaGround = -5;
+var heightLand = 3;
+
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -95,10 +98,8 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-initTerrain(tPrimary);
-
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -157,7 +158,7 @@ for (var i = 0; i < numLakes; ++i)
 		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(40, 180)), 0.7, chosenPoint[0], chosenPoint[1]),
 		[
 			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
-			new SmoothElevationPainter(ELEVATION_SET, -5, 5),
+			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 20, clWater, 8),

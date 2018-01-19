@@ -39,7 +39,10 @@ var aRockMedium = "actor|geology/stone_granite_med.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBush, tForestFloor + TERRAIN_SEPARATOR + oBush2, tForestFloor];
 
-InitMap();
+var heightSeaGround = -5;
+var heightLand = 2;
+
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 
@@ -54,7 +57,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -112,7 +115,7 @@ createAreas(
 		1),
 	[
 		new LayeredPainter([tShore, tWater, tWater], [1, 3]),
-		new SmoothElevationPainter(ELEVATION_SET, -5, 5),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 15),

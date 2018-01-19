@@ -75,6 +75,11 @@ var g_SenderFont = "sans-bold-13";
 var g_ChatCommandColor = "200 200 255";
 
 /**
+ * Indicates if the lobby is opened as a dialog or window.
+ */
+var g_Dialog = false;
+
+/**
  * All chat messages received since init (i.e. after lobby join and after returning from a game).
  */
 var g_ChatMessages = [];
@@ -88,7 +93,7 @@ var g_UserRating = "";
 /**
  * All games currently running.
  */
-var g_GameList = {};
+var g_GameList = [];
 
 /**
  * Used to restore the selection after updating the playerlist.
@@ -111,6 +116,12 @@ var g_SelectedGamePort = "";
 var g_Kicked = false;
 
 /**
+ * Whether the player was already asked to reconnect to the lobby.
+ * Ensures that no more than one message box is opened at a time.
+ */
+var g_AskedReconnect = false;
+
+/**
  * Processing of notifications sent by XmppClient.cpp.
  *
  * @returns true if the playerlist GUI must be updated.
@@ -119,24 +130,28 @@ var g_NetMessageTypes = {
 	"system": {
 		// Three cases are handled in prelobby.js
 		"registered": msg => false,
-		"connected": msg => false,
+		"connected": msg => {
+
+			g_AskedReconnect = false;
+			updateConnectedState();
+			return false;
+		},
 		"disconnected": msg => {
 
 			updateGameList();
 			updateLeaderboard();
-
-			Engine.GetGUIObjectByName("chatInput").hidden = true;
-
-			for (let button of ["host", "leaderboard", "userprofile", "toggleBuddy"])
-				Engine.GetGUIObjectByName(button + "Button").enabled = false;
-			Engine.GetGUIObjectByName("chatInput").hidden = true;
+			updateConnectedState();
 
 			if (!g_Kicked)
+			{
 				addChatMessage({
 					"from": "system",
 					"time": msg.time,
 					"text": translate("Disconnected.") + " " + msg.reason
 				});
+				reconnectMessageBox();
+			}
+
 			return true;
 		},
 		"error": msg => {
@@ -363,7 +378,7 @@ var g_ChatCommands = {
 	"quit": {
 		"description": translate("Return to the main menu."),
 		"handler": args => {
-			returnToMainMenu();
+			leaveLobby();
 			return false;
 		}
 	}
@@ -376,16 +391,20 @@ var g_ChatCommands = {
  */
 function init(attribs)
 {
+	g_Dialog = attribs && attribs.dialog;
+
 	if (!g_Settings)
 	{
-		returnToMainMenu();
+		leaveLobby();
 		return;
 	}
 
 	initMusic();
 	global.music.setState(global.music.states.MENU);
 
+	initDialogStyle();
 	initGameFilters();
+	updateConnectedState();
 
 	Engine.LobbySetPlayerPresence("available");
 
@@ -401,6 +420,61 @@ function init(attribs)
 	// Get all messages since the login
 	for (let msg of Engine.LobbyGuiPollHistoricMessages())
 		g_NetMessageTypes[msg.type][msg.level](msg);
+
+	if (!Engine.IsXmppClientConnected())
+		reconnectMessageBox();
+}
+
+function reconnectMessageBox()
+{
+	if (g_AskedReconnect)
+		return;
+
+	g_AskedReconnect = true;
+
+	messageBox(
+		400, 200,
+		translate("You have been disconnected from the lobby. Do you want to reconnect?"),
+		translate("Confirmation"),
+		[translate("No"), translate("Yes")],
+		[null, Engine.ConnectXmppClient]);
+}
+
+/**
+ * Set style of GUI elements and the window style.
+ */
+function initDialogStyle()
+{
+	let lobbyWindow = Engine.GetGUIObjectByName("lobbyWindow");
+	lobbyWindow.sprite = g_Dialog ? "ModernDialog" : "ModernWindow";
+	lobbyWindow.size = g_Dialog ? "42 42 100%-42 100%-42" : "0 0 100% 100%";
+	Engine.GetGUIObjectByName("lobbyWindowTitle").size = g_Dialog ? "50%-128 -16 50%+128 16" : "50%-128 4 50%+128 36";
+
+	Engine.GetGUIObjectByName("leaveButton").caption = g_Dialog ?
+		translateWithContext("previous page", "Back") :
+		translateWithContext("previous page", "Main Menu");
+
+	Engine.GetGUIObjectByName("hostButton").hidden = g_Dialog;
+	Engine.GetGUIObjectByName("joinGameButton").hidden = g_Dialog;
+	Engine.GetGUIObjectByName("gameInfoEmpty").size = "0 0 100% 100%-30" + (g_Dialog ? "" : "-30");
+	Engine.GetGUIObjectByName("gameInfo").size = "0 0 100% 100%-30" + (g_Dialog ? "" : "-60");
+
+	if (g_Dialog)
+	{
+		Engine.GetGUIObjectByName("lobbyDialogToggle").onPress = leaveLobby;
+		Engine.GetGUIObjectByName("cancelDialog").onPress = leaveLobby;
+	}
+}
+
+/**
+ * Set style of GUI elements according to the connection state of the lobby.
+ */
+function updateConnectedState()
+{
+	Engine.GetGUIObjectByName("chatInput").hidden = !Engine.IsXmppClientConnected();
+
+	for (let button of ["host", "leaderboard", "userprofile", "toggleBuddy"])
+		Engine.GetGUIObjectByName(button + "Button").enabled = Engine.IsXmppClientConnected();
 }
 
 function updateLobbyColumns()
@@ -426,10 +500,18 @@ function updateLobbyColumns()
 	playersNumberFilter.size = size;
 }
 
-function returnToMainMenu()
+function leaveLobby()
 {
-	Engine.StopXmppClient();
-	Engine.SwitchGuiPage("page_pregame.xml");
+	if (g_Dialog)
+	{
+		Engine.LobbySetPlayerPresence("playing");
+		Engine.PopGuiPage();
+	}
+	else
+	{
+		Engine.StopXmppClient();
+		Engine.SwitchGuiPage("page_pregame.xml");
+	}
 }
 
 function initGameFilters()
@@ -1015,7 +1097,7 @@ function updateGameSelection()
 	let game = selectedGame();
 
 	Engine.GetGUIObjectByName("gameInfo").hidden = !game;
-	Engine.GetGUIObjectByName("joinGameButton").hidden = !game;
+	Engine.GetGUIObjectByName("joinGameButton").hidden = g_Dialog || !game;
 	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = game;
 
 	if (!game)
@@ -1073,7 +1155,7 @@ function selectedGame()
 function joinButton()
 {
 	let game = selectedGame();
-	if (!game)
+	if (!game || g_Dialog)
 		return;
 
 	let rating = getRejoinRating(game);

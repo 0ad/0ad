@@ -40,10 +40,14 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+const heightSeaGround = -3;
+const heightLand = 3;
+
+InitMap(heightLand, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -55,16 +59,11 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-initTerrain(tMainTerrain);
-
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Preventing water in player territory...");
 for (let i = 0; i < numPlayers; ++i)
-	addCivicCenterAreaToClass(
-		Math.round(fractionToTiles(playerX[i])),
-		Math.round(fractionToTiles(playerZ[i])),
-		clPlayer);
+	addCivicCenterAreaToClass(playerPosition[i], clPlayer);
 
 log("Creating the lake...")
 createArea(
@@ -73,12 +72,12 @@ createArea(
 		Math.floor(scaleByMapSize(5, 16)),
 		Math.floor(scaleByMapSize(35, 200)),
 		1,
-		Math.round(fractionToTiles(0.5)),
-		Math.round(fractionToTiles(0.5)),
+		mapCenter.x,
+		mapCenter.y,
 		0,
-		[Math.floor(mapSize * 0.17 * Math.pow(scaleByMapSize(1, 6), 1/8))]),
+		[Math.floor(fractionToTiles(0.2))]),
 	[
-		new SmoothElevationPainter(ELEVATION_SET, -3, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 20));
@@ -100,7 +99,7 @@ paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 paintTileClassBasedOnHeight(-6, 0, 1, clWater);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass marked above
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

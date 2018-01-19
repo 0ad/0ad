@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = ["steppe_grass_a", "steppe_grass_c", "steppe_grass_d"];
 const tGrass = ["steppe_grass_a", "steppe_grass_b", "steppe_grass_c", "steppe_grass_d"];
 const tForestFloor = "steppe_grass_c";
 const tGrassA = "steppe_grass_b";
@@ -28,7 +29,10 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPoplar, tForestFloor];
 
-InitMap();
+var heightLand = 1;
+var heightOffsetBump = 2;
+
+InitMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 
@@ -42,7 +46,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -73,7 +77,7 @@ Engine.SetProgress(20);
 log("Creating bumps...");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(2, 5)), 0.5),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));
 

@@ -38,7 +38,10 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+const heightIsland = 20;
+const heightSeaGround = -5;
+
+InitMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -54,13 +57,12 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 
 const playerIslandRadius = scaleByMapSize(15, 30);
-const islandHeight = 20;
 
 const islandBetweenPlayerAndCenterDist = 0.16;
 const islandBetweenPlayerAndCenterRadius = 0.81;
 const centralIslandRadius = 0.36;
 
-var [playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 var numIslands = 0;
 var isConnected = [];
@@ -82,7 +84,7 @@ function createIsland(islandID, size, tileClass)
 		new ClumpPlacer(size * diskArea(playerIslandRadius), 0.95, 0.6, 10, islandPos[islandID].x, islandPos[islandID].y),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, islandHeight, 2),
+			new SmoothElevationPainter(ELEVATION_SET, heightIsland, 2),
 			paintClass(tileClass)
 		]);
 }
@@ -177,8 +179,6 @@ function createSnowflakeSearockTiny()
 	}
 }
 
-initTerrain(tWater);
-
 const islandSizes = {
 	"medium":  [0.41, 0.49, 0.26, 1],
 	"large1":  [0.41, 0.49, 0.24, 1],
@@ -213,12 +213,12 @@ else
 log("Creating player islands...");
 for (let i = 0; i < numPlayers; ++i)
 {
-	islandPos[i] = new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round();
+	islandPos[i] = playerPosition[i];
 	createIsland(i, 1, isNomad() ? clLand : clPlayer);
 }
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass already marked above
 	"BaseResourceClass": clBaseResource,
 	"baseResourceConstraint": stayClasses(clPlayer, 4),
@@ -262,7 +262,7 @@ for (let i = 0; i < numIslands; ++i)
 				"startWidth": 11,
 				"endWidth": 11,
 				"smoothWidth": 3,
-				"maxHeight": islandHeight - 1,
+				"maxHeight": heightIsland - 1,
 				"tileClass": clLand,
 				"terrain": tHill,
 				"edgeTerrain": tCliff

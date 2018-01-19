@@ -1,6 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
-InitMap();
+InitMap(0, "grass1");
 
 /**
  * Demonstration code for wall placement.

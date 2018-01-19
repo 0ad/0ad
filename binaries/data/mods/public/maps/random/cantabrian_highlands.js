@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = "temp_grass_long";
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 const tGrassPForest = "temp_plants_bog";
 const tGrassDForest = "temp_plants_bog";
@@ -41,7 +42,11 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oOak, tGrassDForest + TERRAIN_SEPARATOR + oOakLarge, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest + TERRAIN_SEPARATOR + oAleppoPine, tGrassPForest];
 
-InitMap();
+const heightSeaGround = -7;
+const heightLand = 3;
+const heightHill = 20;
+
+InitMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -57,26 +62,24 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
 var playerHillRadius = defaultPlayerBaseRadius() / (isNomad() ? 1.5 : 1);
-var playerHillElevation = 20;
 
-var [playerIDs, playerX, playerZ, playerAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Creating player hills and ramps...");
 for (let i = 0; i < numPlayers; ++i)
 {
-	let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize);
 	createArea(
-		new ClumpPlacer(diskArea(playerHillRadius), 0.95, 0.6, 10, Math.round(playerPos.x), Math.round(playerPos.y)),
+		new ClumpPlacer(diskArea(playerHillRadius), 0.95, 0.6, 10, playerPosition[i].x, playerPosition[i].y),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, playerHillElevation, 2),
+			new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 			paintClass(clPlayer)
 		]);
 
 	let angle = playerAngle[i] + Math.PI * (1 + randFloat(-1, 1) / 8);
 	createPassage({
-		"start": Vector2D.add(playerPos, new Vector2D(playerHillRadius + 15, 0).rotate(-angle)),
-		"end": Vector2D.add(playerPos, new Vector2D(playerHillRadius - 3, 0).rotate(-angle)),
+		"start": Vector2D.add(playerPosition[i], new Vector2D(playerHillRadius + 15, 0).rotate(-angle)),
+		"end": Vector2D.add(playerPosition[i], new Vector2D(playerHillRadius - 3, 0).rotate(-angle)),
 		"startWidth": 10,
 		"endWidth": 10,
 		"smoothWidth": 2,
@@ -87,7 +90,7 @@ for (let i = 0; i < numPlayers; ++i)
 }
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,
@@ -122,7 +125,7 @@ var waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(100, 250), 0.8, 0.1, 10),
 	[
 		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
-		new SmoothElevationPainter(ELEVATION_SET, -7, 6),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 6),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 2, clWater, 20),

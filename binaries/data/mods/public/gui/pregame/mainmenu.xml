@@ -291,10 +291,13 @@
 					style="StoneButtonFancy"
 					size="0 64 100% 92"
 					tooltip_style="pgToolTip"
+					hotkey="lobby"
 				>
 					<translatableAttribute id="caption">Game Lobby</translatableAttribute>
 					<translatableAttribute id="tooltip">Launch the multiplayer lobby.</translatableAttribute>
 					<action on="Press">
+						if (!Engine.StartXmppClient)
+							return;
 						closeMenu();
 						Engine.PushGuiPage("page_prelobby.xml");
 					</action>

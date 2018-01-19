@@ -198,14 +198,17 @@ function GetMultipleEntityStates(ents)
 		return null;
 	let entityStates = Engine.GuiInterfaceCall("GetMultipleEntityStates", ents);
 	for (let item of entityStates)
-		g_EntityStates[item.entId] = deepfreeze(item.state);
+		g_EntityStates[item.entId] = item.state && deepfreeze(item.state);
 	return entityStates;
 }
 
 function GetEntityState(entId)
 {
 	if (!g_EntityStates[entId])
-		g_EntityStates[entId] = deepfreeze(Engine.GuiInterfaceCall("GetEntityState", entId));
+	{
+		let entityState = Engine.GuiInterfaceCall("GetEntityState", entId);
+		g_EntityStates[entId] = entityState && deepfreeze(entityState);
+	}
 
 	return g_EntityStates[entId];
 }
@@ -612,6 +615,7 @@ function updateTopPanel()
 
 	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked || g_IsController;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;
+	Engine.GetGUIObjectByName("lobbyButton").enabled = Engine.HasXmppClient();
 }
 
 function reportPerformance(time)
@@ -1417,6 +1421,7 @@ function sendLobbyPlayerlistUpdate()
 		{
 			minPData.AI = pData.AI;
 			minPData.AIDiff = pData.AIDiff;
+			minPData.AIBehavior = pData.AIBehavior;
 		}
 
 		if (g_Players[playerID].offline)

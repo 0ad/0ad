@@ -32,7 +32,13 @@ const pForestMain = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor
 const pOasisForestLight = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor + TERRAIN_SEPARATOR + ePalmTall, tForestFloor,tForestFloor,tForestFloor
 					,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
 
-InitMap();
+const heightSeaGround = -3;
+const heightLand = 1;
+const heightOasisPath = 4;
+const heightOffsetBump = 4;
+const heightOffsetDune = 18;
+
+InitMap(heightLand, tSand);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -52,17 +58,12 @@ var waterRadius = scaleByMapSize(7, 50)
 var shoreDistance = scaleByMapSize(4, 10);
 var forestDistance = scaleByMapSize(6, 20);
 
-initTerrain(tSand);
-
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Creating small oasis near the players...")
 var forestDist = 1.2 * defaultPlayerBaseRadius();
 for (let i = 0; i < numPlayers; ++i)
 {
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
-
 	// Create starting batches of wood
 	let forestX = 0;
 	let forestY = 0;
@@ -70,8 +71,8 @@ for (let i = 0; i < numPlayers; ++i)
 
 	do {
 		forestAngle = Math.PI / 3 * randFloat(1, 2);
-		forestX = Math.round(fx + forestDist * Math.cos(forestAngle));
-		forestY = Math.round(fz + forestDist * Math.sin(forestAngle));
+		forestX = playerPosition[i].x + Math.round(forestDist * Math.cos(forestAngle));
+		forestY = playerPosition[i].y + Math.round(forestDist * Math.sin(forestAngle));
 	} while (
 		!createArea(
 			new ClumpPlacer(70, 1, 0.5, 10, forestX, forestY),
@@ -110,14 +111,14 @@ for (let i = 0; i < numPlayers; ++i)
 			new ClumpPlacer(60, 0.9, 0.4, 5, watX, watY),
 			[
 				new LayeredPainter([tShore, tWater], [1]),
-				new SmoothElevationPainter(ELEVATION_MODIFY, -5, 3)
+				new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 3)
 			],
 			avoidClasses(clBaseResource, 0)));
 }
 Engine.SetProgress(20);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -151,7 +152,7 @@ createArea(
 	new ClumpPlacer(diskArea(forestDistance + shoreDistance + waterRadius), 0.8, 0.2, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([pOasisForestLight, tWater], [forestDistance]),
-		new SmoothElevationPainter(ELEVATION_SET, -3, forestDistance + shoreDistance),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, forestDistance + shoreDistance),
 		paintClass(clOasis)
 	]);
 
@@ -160,7 +161,7 @@ Engine.SetProgress(40);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 4, 3),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 3),
 	avoidClasses(clPlayer, 10, clBaseResource, 6, clOasis, 4),
 	scaleByMapSize(30, 70));
 
@@ -176,7 +177,7 @@ createAreas(
 	new ClumpPlacer(120, 0.3, 0.06, 1),
 	[
 		new TerrainPainter(tDune),
-		new SmoothElevationPainter(ELEVATION_MODIFY, 18, 30)
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetDune, 30)
 	],
 	avoidClasses(clPlayer, 10, clBaseResource, 6, clOasis, 4, clForest, 4),
 	scaleByMapSize(15, 50));
@@ -192,7 +193,7 @@ if (mapSize > 150 && randBool())
 		new PathPlacer(points[0].x, points[0].y, points[1].x, points[1].y, pathWidth, 0.4, 1, 0.2, 0),
 		[
 			new TerrainPainter(tSand),
-			new SmoothElevationPainter(ELEVATION_SET, 4, 5),
+			new SmoothElevationPainter(ELEVATION_SET, hOasisPath, 5),
 			paintClass(clPassage)
 		]);
 }

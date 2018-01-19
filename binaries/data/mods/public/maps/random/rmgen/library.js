@@ -36,16 +36,6 @@ function tilesToFraction(t)
 	return t / g_Map.size;
 }
 
-function fractionToSize(f)
-{
-	return getMapArea() * f;
-}
-
-function sizeToFraction(s)
-{
-	return s / getMapArea();
-}
-
 function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
 {
 	return min + (max - min) * (g_Map.size - minMapSize) / (maxMapSize - minMapSize);
@@ -183,24 +173,9 @@ function createObjectGroupsByAreas(group, player, constraint, amount, retryFacto
 
 function createTerrain(terrain)
 {
-	if (!(terrain instanceof Array))
-		return createSimpleTerrain(terrain);
-
-	return new RandomTerrain(terrain.map(t => createTerrain(t)));
-}
-
-function createSimpleTerrain(terrain)
-{
-	if (typeof(terrain) != "string")
-		throw new Error("createSimpleTerrain expects string as input, received " + uneval(terrain));
-
-	// Split string by pipe | character, this allows specifying terrain + tree type in single string
-	let params = terrain.split(TERRAIN_SEPARATOR, 2);
-
-	if (params.length != 2)
-		return new SimpleTerrain(terrain);
-
-	return new SimpleTerrain(params[0], params[1]);
+	return typeof terrain == "string" ?
+		new SimpleTerrain(...terrain.split(TERRAIN_SEPARATOR)) :
+		new RandomTerrain(terrain.map(t => createTerrain(t)));
 }
 
 function placeObject(x, z, type, player, angle)
@@ -209,28 +184,9 @@ function placeObject(x, z, type, player, angle)
 		g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 
-function placeTerrain(x, z, terrainNames)
-{
-	createTerrain(terrainNames).place(x, z);
-}
-
-function initTerrain(terrainNames)
-{
-	let terrain = createTerrain(terrainNames);
-
-	for (let x = 0; x < getMapSize(); ++x)
-		for (let z = 0; z < getMapSize(); ++z)
-			terrain.place(x, z);
-}
-
 function isCircularMap()
 {
 	return !!g_MapSettings.CircularMap;
-}
-
-function getMapBaseHeight()
-{
-	return g_MapSettings.BaseHeight;
 }
 
 function createTileClass()
@@ -304,11 +260,6 @@ function getMapSize()
 	return g_Map.size;
 }
 
-function getMapArea()
-{
-	return Math.square(g_Map.size);
-}
-
 function getMapCenter()
 {
 	return deepfreeze(new Vector2D(g_Map.size / 2, g_Map.size / 2));
@@ -365,11 +316,6 @@ function getHeight(x, z)
 function setHeight(x, z, height)
 {
 	g_Map.setHeight(x, z, height);
-}
-
-function initHeight(height)
-{
-	g_Map.initHeight(height);
 }
 
 /**
@@ -476,9 +422,4 @@ function checkIfInClass(x, z, id)
 		return 0;
 
 	return members;
-}
-
-function getTerrainTexture(x, y)
-{
-	return g_Map.getTexture(x, y);
 }

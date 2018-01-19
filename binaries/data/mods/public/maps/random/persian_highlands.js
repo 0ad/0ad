@@ -47,10 +47,14 @@ const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor, tDirtMain, tDirtMain];
 
-InitMap();
+const heightLand = 10;
+const heightOffsetValley = -10;
+
+InitMap(heightLand, tDirtMain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -62,10 +66,8 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clCP = createTileClass();
 
-initTerrain(tDirtMain);
-
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
 		"outerTerrain": tCity,
@@ -138,13 +140,13 @@ createArea(
 		Math.floor(scaleByMapSize(5, 13)),
 		Math.floor(scaleByMapSize(35, 200)),
 		1,
-		mapSize / 2,
-		mapSize / 2,
+		mapCenter.x,
+		mapCenter.y,
 		0,
 		[Math.floor(scaleByMapSize(18, 68))]),
 	[
 		new LayeredPainter([tLakebed2, tLakebed1], [6]),
-		new SmoothElevationPainter(ELEVATION_MODIFY, -10, 8),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetValley, 8),
 		paintClass(clCP)
 	],
 	avoidClasses(clPlayer, 18));

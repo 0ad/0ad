@@ -38,7 +38,18 @@ var aPlantC = "actor|props/flora/grass_soft_tuft_a.xml";
 
 var aStandingStone = "actor|props/special/eyecandy/standing_stones.xml";
 
-InitMap();
+var heightSeaGround = -8;
+var heightCreeks = -5;
+var heightBeaches = -1;
+var heightMain = 5;
+
+var heightOffsetMainRelief = 30;
+var heightOffsetLevel1 = 9;
+var heightOffsetLevel2 = 8;
+var heightOffsetBumps = 2;
+var heightOffsetAntiBumps = -5;
+
+InitMap(heightSeaGround, tVeryDeepWater);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -55,8 +66,6 @@ var clBaseResource = createTileClass();
 var clPassage = createTileClass();
 var clSettlement = createTileClass();
 
-initTerrain(tVeryDeepWater);
-
 var radiusBeach = fractionToTiles(0.57);
 var radiusCreeks = fractionToTiles(0.52);
 var radiusIsland = fractionToTiles(0.4);
@@ -71,15 +80,6 @@ var nbSubIsland = 5;
 var nbBeaches = scaleByMapSize(2, 5);
 var nbPassagesLevel1 = scaleByMapSize(4, 8);
 var nbPassagesLevel2 = scaleByMapSize(2, 4);
-
-var heightMain = 5;
-var heightCreeks = -5;
-var heightBeaches = -1;
-var heightOffsetMainRelief = 30;
-var heightOffsetLevel1 = 9;
-var heightOffsetLevel2 = 8;
-var heightOffsetBumps = 2;
-var heightOffsetAntiBumps = -5;
 
 log("Creating Corsica and Sardinia...");
 var swapAngle = randBool() ? Math.PI / 2 : 0;
@@ -102,7 +102,7 @@ for (let island = 0; island < 2; ++island)
 		let angle = Math.PI * (island + i / (nbSubIsland * 2)) + swapAngle;
 		let location = Vector2D.add(islandLocations[island], new Vector2D(radiusIsland, 0).rotate(-angle));
 		createArea(
-			new ClumpPlacer(fractionToSize(0.05) / 2, 0.6, 0.03, 10, location.x, location.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.09)), 0.6, 0.03, 10, location.x, location.y),
 			[
 				new LayeredPainter([tCliffs, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightMain, 1),
@@ -198,8 +198,7 @@ Engine.SetProgress(30);
 
 log("Determining player locations...");
 var playerIDs = sortAllPlayers();
-var playerX = [];
-var playerZ = [];
+var playerPosition = [];
 var playerAngle = [];
 var p = 0;
 for (let island = 0; island < 2; ++island)
@@ -209,14 +208,13 @@ for (let island = 0; island < 2; ++island)
 	for (let i = 0; i < playersPerIsland; ++i)
 	{
 		playerAngle[p] = Math.PI * ((i + 0.5) / (2 * playersPerIsland) + island) + swapAngle;
-		let pos = Vector2D.add(islandLocations[island], new Vector2D(radiusPlayer).rotate(-playerAngle[p]));
-		[playerX[p], playerZ[p]] = [tilesToFraction(pos.x), tilesToFraction(pos.y)];
+		playerPosition[p] = Vector2D.add(islandLocations[island], new Vector2D(radiusPlayer).rotate(-playerAngle[p]));
 		++p;
 	}
 }
 
 placePlayerBases({
-	"PlayerPlacement": [sortAllPlayers(), playerX, playerZ],
+	"PlayerPlacement": [sortAllPlayers(), playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,

@@ -39,11 +39,13 @@ const triggerPointTreasures = [
 	"trigger/trigger_point_D"
 ];
 
-InitMap();
+const heightLand = 3;
+const heightHill = 30;
+
+InitMap(heightHill, tMainTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapArea = getMapArea();
 var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
@@ -54,19 +56,17 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 var clWomen = createTileClass();
 
-initTerrain(tMainTerrain);
-
-// Create the main treasure area in the middle of the map
+log("Creating central area...");
 createArea(
-	new ClumpPlacer(mapArea * scaleByMapSize(0.065, 0.09), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(fractionToTiles(0.15)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, 3, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 		paintClass(clLand)
 	]);
 Engine.SetProgress(10);
 
-var [playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.3);
+var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.3));
 var halfway = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.375), mapCenter)[0].map(v => v.round());
 var attacker = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.45), mapCenter)[0].map(v => v.round());
 var passage = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0];
@@ -74,14 +74,11 @@ var passage = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPla
 log("Creating player bases and attacker points...");
 for (let  i = 0; i < numPlayers; ++i)
 {
-	let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize).round();
-
-	placeStartingEntities(playerPos.x, playerPos.y, playerIDs[i], getStartingEntities(playerIDs[i]).filter(ent =>
+	placeStartingEntities(playerPosition[i], playerIDs[i], getStartingEntities(playerIDs[i]).filter(ent =>
 		ent.Template.indexOf("civil_centre") != -1 || ent.Template.indexOf("infantry") != -1));
 
 	placePlayerBaseDecoratives({
-		"playerX": playerX[i],
-		"playerZ": playerZ[i],
+		"playerPosition": playerPosition[i],
 		"template": aGrassShort,
 		"BaseResourceClass": clBaseResource
 	});
@@ -91,11 +88,11 @@ for (let  i = 0; i < numPlayers; ++i)
 		new PathPlacer(mapCenter.x, mapCenter.y, passage[i].x, passage[i].y, scaleByMapSize(14, 24), 0.4, scaleByMapSize(3, 9), 0.2, 0.05),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [1]),
-			new SmoothElevationPainter(ELEVATION_SET, 3, 4)
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4)
 		]);
 
 	log("Placing treasure seeker woman...");
-	let femaleLocation = findLocationInDirectionBasedOnHeight(playerPos, mapCenter, -3 , 3.5, 3).round();
+	let femaleLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 3.5, 3).round();
 	addToClass(femaleLocation.x, femaleLocation.y, clWomen);
 	placeObject(femaleLocation.x, femaleLocation.y, oTreasureSeeker, playerIDs[i], playerAngle[i] + Math.PI);
 
@@ -104,7 +101,7 @@ for (let  i = 0; i < numPlayers; ++i)
 	placeObject(attacker[i].x, attacker[i].y, triggerPointAttacker, playerIDs[i], Math.PI / 2);
 
 	log("Preventing mountains in the area between player and attackers...");
-	addCivicCenterAreaToClass(playerPos.x, playerPos.y, clPlayer);
+	addCivicCenterAreaToClass(playerPosition[i], clPlayer);
 	addToClass(attacker[i].x, attacker[i].y, clPlayer);
 	addToClass(halfway[i].x, halfway[i].y, clPlayer);
 }

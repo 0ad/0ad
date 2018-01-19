@@ -46,11 +46,14 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+const heightSeaGround = -3;
+const heightShallows = -1;
+const heightLand = 1;
+
+InitMap(heightLand, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = getMapArea();
 const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
@@ -64,15 +67,10 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clShallow = createTileClass();
 
-var waterHeight = -3;
-var shallowHeight = -1;
-
-initTerrain(tMainTerrain);
-
-var [playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -101,19 +99,12 @@ placePlayerBases({
 
 log("Creating central lake...");
 createArea(
-	new ClumpPlacer(
-		mapArea / 100 * Math.pow(scaleByMapSize(1, 6), 1/8),
-		0.7,
-		0.1,
-		10,
-		mapCenter.x,
-		mapCenter.y),
+	new ClumpPlacer(diskArea(fractionToTiles(0.075)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
-		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		paintClass(clWater)
-	],
-	null);
+	]);
 
 log("Creating rivers between opponents...");
 let numRivers = isNomad() ? randIntInclusive(4, 8) : numPlayers;
@@ -133,26 +124,26 @@ for (let i = 0; i < numRivers; ++i)
 		"width": scaleByMapSize(10, 30),
 		"fadeDist": 5,
 		"deviation": 0,
-		"landHeight": getMapBaseHeight(),
-		"waterHeight": waterHeight,
-		"minHeight": waterHeight,
+		"heightLand": heightLand,
+		"heightRiverbed": heightSeaGround,
+		"minHeight": heightSeaGround,
 		"meanderShort": 10,
 		"meanderLong": 0,
 		"waterFunc": (ix, iz, height, riverFraction) => {
 
 			addToClass(ix, iz, clWater);
 
-			let isShallow = height < shallowHeight &&
+			let isShallow = height < heightShallows &&
 				riverFraction > shallowLocation &&
 				riverFraction < shallowLocation + shallowWidth;
 
-			let newHeight = isShallow ? shallowHeight : Math.max(height, waterHeight);
+			let newHeight = isShallow ? heightShallows : Math.max(height, heightSeaGround);
 
 			if (getHeight(ix, iz) < newHeight)
 				return;
 
 			setHeight(ix, iz, newHeight);
-			placeTerrain(ix, iz, height >= 0 ? tShore : tWater);
+			createTerrain(height >= 0 ? tShore : tWater).place(ix, iz);
 
 			if (isShallow)
 				addToClass(ix, iz, clShallow);

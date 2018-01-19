@@ -40,11 +40,14 @@ const aTree = g_Decoratives.tree;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+const heightLand = 3;
+const heightHill = 30;
+
+InitMap(heightHill, tMainTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -57,14 +60,9 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clLand = createTileClass();
 
-var landHeight = 3;
-var hillHeight = 30;
-
 var playerCanyonRadius = scaleByMapSize(18, 32);
 
-initTerrain(tMainTerrain);
-
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 log("Reserving space for the players, their initial forests and some less space therein without trees...");
 for (let i = 0; i < numPlayers; ++i)
@@ -75,31 +73,26 @@ for (let i = 0; i < numPlayers; ++i)
 			0.65,
 			0.1,
 			10,
-			Math.round(fractionToTiles(playerX[i])),
-			Math.round(fractionToTiles(playerZ[i]))),
+			playerPosition[i].x,
+			playerPosition[i].y),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
 			paintClass(j == 1 || isNomad() ? clLand : clPlayer)
 		]);
 
 log("Creating center area...");
-var center = Math.round(fractionToTiles(0.5));
-var lSize = Math.pow(scaleByMapSize(1, 6), 1/8);
-
 createArea(
-	new ClumpPlacer(mapArea * 0.065 * lSize, 0.7, 0.1, 10, center, center),
+	new ClumpPlacer(diskArea(fractionToTiles(0.16)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 		paintClass(clLand)
-	],
-	null);
+	]);
 
 createArea(
-	new ClumpPlacer(150, 0.6, 0.3, 10, center, center),
-	paintClass(clHill),
-	null);
+	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter.x, mapCenter.y),
+	paintClass(clHill));
 
 log("Creating hills...");
 for (let i = 0; i < scaleByMapSize(9, 16); ++i)
@@ -115,7 +108,7 @@ for (let i = 0; i < scaleByMapSize(9, 16); ++i)
 			0.1,
 			0),
 		[
-			new SmoothElevationPainter(ELEVATION_SET, hillHeight, 3),
+			new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
 			paintClass(clHill2)
 		],
 		avoidClasses(clPlayer, 6, clHill2, 3, clHill, 2));
@@ -126,10 +119,10 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 	var tz = randIntInclusive(1, mapSize - 1);
 
 	var newarea = createArea(
-		new ClumpPlacer(mapArea * 0.01 * lSize, 0.7, 0.1, 10, tx, tz),
+		new ClumpPlacer(diskArea(fractionToTiles(0.06)), 0.7, 0.1, 10, tx, tz),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 			paintClass(clLand)
 		],
 		avoidClasses(clLand, 6));
@@ -143,7 +136,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 		var p2 = 0;
 
 		for (let i = 0; i < numPlayers; ++i)
-			distances.push(Math.euclidDistance2D(tx, tz, fractionToTiles(playerX[i]), fractionToTiles(playerZ[i])));
+			distances.push(Math.euclidDistance2D(tx, tz, playerPosition[i].x, playerPosition[i].y));
 
 		for (let a = 0; a < numPlayers; ++a)
 		{
@@ -161,24 +154,15 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 			}
 		}
 
-		createArea(
-			new PathPlacer(tx, tz, mapSize * playerX[p1], mapSize * playerZ[p1], scaleByMapSize(11, 17), 0.4, 3 * scaleByMapSize(1, 4), 0.1, 0.1),
-			[
-				new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
-				paintClass(clLand)
-			],
-			null);
-
-		if (numPlayers > 1)
-			createArea(
-				new PathPlacer(tx, tz, mapSize * playerX[p2], mapSize * playerZ[p2], scaleByMapSize(11, 17), 0.4, 3 * scaleByMapSize(1, 4), 0.1, 0.1),
-				[
-					new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
-					new SmoothElevationPainter(ELEVATION_SET, landHeight, 3),
-					paintClass(clLand)
-				],
-				null);
+		for (let playerID of [p1, p2])
+			if (playerPosition[playerID])
+				createArea(
+					new PathPlacer(tx, tz, playerPosition[playerID].x, playerPosition[playerID].y, scaleByMapSize(11, 17), 0.4, scaleByMapSize(3, 12), 0.1, 0.1),
+					[
+						new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
+						new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
+						paintClass(clLand)
+					]);
 	}
 }
 
@@ -186,13 +170,13 @@ for (let i = 0; i < numPlayers; ++i)
 {
 	log("Creating path from player to center and to neighbor...");
 	let neighbor = i + 1 < numPlayers ? i + 1 : 0;
-	for (let [x, z] of [[playerX[neighbor], playerZ[neighbor]], [0.5, 0.5]])
+	for (let position of [playerPosition[neighbor], mapCenter])
 		createArea(
 			new PathPlacer(
-				fractionToTiles(playerX[i]),
-				fractionToTiles(playerZ[i]),
-				fractionToTiles(x),
-				fractionToTiles(z),
+				playerPosition[i].x,
+				playerPosition[i].y,
+				position.x,
+				position.y,
 				scaleByMapSize(8, 13),
 				0.4,
 				3 * scaleByMapSize(1, 4),
@@ -200,21 +184,19 @@ for (let i = 0; i < numPlayers; ++i)
 				0),
 			[
 				new LayeredPainter([tRoadWild, tRoad], [1]),
-				new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
+				new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
 				paintClass(clLand),
 				paintClass(clHill)
-			],
-			null);
+			]);
 }
 
 log("Painting center place...");
 createArea(
-	new ClumpPlacer(150, 0.6, 0.3, 10, center, center),
-	new LayeredPainter([tRoad, tRoad], [1]),
-	null);
+	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter.x, mapCenter.y),
+	new LayeredPainter([tRoad, tRoad], [1]));
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass already marked above
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -367,7 +349,7 @@ createStragglerTrees(
 log("Creating treasures...");
 for (let i = 0; i < randIntInclusive(3, 8); ++i)
 	for (let template of [oFoodTreasure, oWoodTreasure])
-		placeObject(center + randFloat(-7, 7), center + randFloat(-7, 7), template, 0, randomAngle());
+		placeObject(mapCenter.x + randFloat(-7, 7), mapCenter.y + randFloat(-7, 7), template, 0, randomAngle());
 
 placePlayersNomad(
 	clPlayer,

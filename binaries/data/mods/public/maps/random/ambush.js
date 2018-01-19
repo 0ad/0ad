@@ -2,12 +2,18 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
-InitMap();
-
 setSelectedBiome();
+
+var heightLand = 2;
+
+InitMap(heightLand, g_Terrains.mainTerrain);
+
 initTileClasses();
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
+createArea(
+	new MapBoundsPlacer(),
+	paintClass(g_TileClasses.land));
+
 Engine.SetProgress(10);
 
 const pos = randomStartingPositionPattern(getTeamsArray());
@@ -17,7 +23,7 @@ Engine.SetProgress(20);
 addElements([
 	{
 		"func": addBluffs,
-		"baseHeight": getMapBaseHeight(),
+		"baseHeight": heightLand,
 		"avoid": [
 			g_TileClasses.bluff, 12,
 			g_TileClasses.hill, 5,

@@ -191,7 +191,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 					setHeight(ix, iz, newHeight + 4);
 
 				if (terrain !== undefined)
-					placeTerrain(ix, iz, terrain);
+					createTerrain(terrain).place(ix, iz);
 
 				if (tileClass !== undefined)
 					addToClass(ix, iz, tileClass);
@@ -202,52 +202,45 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 /**
  * Generates a volcano mountain. Smoke and lava are optional.
  *
- * @param {number} fx - Horizontal coordinate of the center.
- * @param {number} fz - Horizontal coordinate of the center.
+ * @param {number} center - Vector2D location on the tilemap.
  * @param {number} tileClass - Painted onto every tile that is occupied by the volcano.
  * @param {string} terrainTexture - The texture painted onto the volcano hill.
  * @param {array} lavaTextures - Three different textures for the interior, from the outside to the inside.
  * @param {boolean} smoke - Whether to place smoke particles.
  * @param {number} elevationType - Elevation painter type, ELEVATION_SET = absolute or ELEVATION_MODIFY = relative.
  */
-function createVolcano(fx, fz, tileClass, terrainTexture, lavaTextures, smoke, elevationType)
+function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke, elevationType)
 {
-	log("Creating volcano");
-
-	let ix = Math.round(fractionToTiles(fx));
-	let iz = Math.round(fractionToTiles(fz));
-
-	let baseSize = getMapArea() / scaleByMapSize(1, 8);
-	let coherence = 0.7;
-	let smoothness = 0.05;
-	let failFraction = 100;
-	let steepness = 3;
+	log("Creating volcano...");
 
 	let clLava = createTileClass();
-
 	let layers = [
 		{
-			"clumps": 0.067,
+			"clumps": diskArea(scaleByMapSize(18, 25)),
 			"elevation": 15,
-			"tileClass": tileClass
+			"tileClass": tileClass,
+			"steepness": 3
 		},
 		{
-			"clumps": 0.05,
+			"clumps": diskArea(scaleByMapSize(16, 23)),
 			"elevation": 25,
-			"tileClass": createTileClass()
+			"tileClass": createTileClass(),
+			"steepness": 3
 		},
 		{
-			"clumps": 0.02,
+			"clumps": diskArea(scaleByMapSize(10, 15)),
 			"elevation": 45,
-			"tileClass": createTileClass()
+			"tileClass": createTileClass(),
+			"steepness": 3
 		},
 		{
-			"clumps": 0.011,
+			"clumps": diskArea(scaleByMapSize(8, 11)),
 			"elevation": 62,
-			"tileClass": createTileClass()
+			"tileClass": createTileClass(),
+			"steepness": 3
 		},
 		{
-			"clumps": 0.003,
+			"clumps": diskArea(scaleByMapSize(4, 6)),
 			"elevation": 42,
 			"tileClass": clLava,
 			"painter": lavaTextures && new LayeredPainter([terrainTexture, ...lavaTextures], [1, 1, 1]),
@@ -257,24 +250,24 @@ function createVolcano(fx, fz, tileClass, terrainTexture, lavaTextures, smoke, e
 
 	for (let i = 0; i < layers.length; ++i)
 		createArea(
-			new ClumpPlacer(baseSize * layers[i].clumps, coherence, smoothness, failFraction, ix, iz),
+			new ClumpPlacer(layers[i].clumps, 0.7, 0.05, 100, position.x, position.y),
 			[
 				layers[i].painter || new LayeredPainter([terrainTexture, terrainTexture], [3]),
-				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness || steepness),
+				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness),
 				paintClass(layers[i].tileClass)
 			],
 			i == 0 ? null : stayClasses(layers[i - 1].tileClass, 1));
 
 	if (smoke)
 	{
-		let num = Math.floor(baseSize * 0.002);
+		let num = Math.floor(diskArea(scaleByMapSize(3, 5)));
 		createObjectGroup(
 			new SimpleGroup(
 				[new SimpleObject("actor|particle/smoke.xml", num, num, 0, 7)],
 				false,
 				clLava,
-				ix,
-				iz),
+				position.x,
+				position.y),
 			0,
 		stayClasses(tileClass, 1));
 	}
@@ -315,7 +308,6 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
 /**
  * Creates a meandering river at the given location and width.
  * Optionally calls a function on the affected tiles.
- * Horizontal locations and widths (including fadeDist, meandering) are fractions of the mapsize.
  *
  * @property start - A Vector2D in tile coordinates stating where the river starts.
  * @property end - A Vector2D in tile coordinates stating where the river ends.
@@ -323,8 +315,8 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
  * @property width - Size between the two shorelines.
  * @property fadeDist - Size of the shoreline.
  * @property deviation - Fuzz effect on the shoreline if greater than 0.
- * @property waterHeight - Ground height of the riverbed.
- * @proeprty landHeight - Ground height of the end of the shoreline.
+ * @property heightRiverbed - Ground height of the riverbed.
+ * @proeprty heightLand - Ground height of the end of the shoreline.
  * @property meanderShort - Strength of frequent meanders.
  * @property meanderLong - Strength of less frequent meanders.
  * @property [constraint] - If given, ignores any tiles that don't satisfy the given Constraint.
@@ -336,7 +328,7 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
  */
 function paintRiver(args)
 {
-	log("Creating the river");
+	log("Creating river...");
 
 	// Model the river meandering as the sum of two sine curves.
 	let meanderShort = fractionToTiles(args.meanderShort / scaleByMapSize(35, 160));
@@ -402,12 +394,12 @@ function paintRiver(args)
 			// Create the elevation for the water and the slopy shoreline and call the user functions.
 			if (shoreDist1 < 0 && shoreDist2 > 0)
 			{
-				let height = args.waterHeight;
+				let height = args.heightRiverbed;
 
 				if (shoreDist1 > -args.fadeDist)
-					height += (args.landHeight - args.waterHeight) * (1 + shoreDist1 / args.fadeDist);
+					height += (args.heightLand - args.heightRiverbed) * (1 + shoreDist1 / args.fadeDist);
 				else if (shoreDist2 < args.fadeDist)
-					height += (args.landHeight - args.waterHeight) * (1 - shoreDist2 / args.fadeDist);
+					height += (args.heightLand - args.heightRiverbed) * (1 - shoreDist2 / args.fadeDist);
 
 				if (args.minHeight === undefined || height < args.minHeight)
 					setHeight(ix, iz, height);
@@ -452,18 +444,18 @@ function rndRiver(f, seed)
 /**
  * Add small rivers with shallows starting at a central river ending at the map border, if the given Constraint is met.
  */
-function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, heightRange, maxAngle, tributaryRiverTileClass, shallowTileClass, constraint)
+function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbed, heightRange, maxAngle, tributaryRiverTileClass, shallowTileClass, constraint)
 {
 	log("Creating tributary rivers...");
 	let waviness = 0.4;
 	let smoothness = scaleByMapSize(3, 12);
 	let offset = 0.1;
 	let tapering = 0.05;
-	let shallowHeight = -2;
-	let riverAngle = horizontal ? 0 : Math.PI / 2;
+	let heightShallow = -2;
 
 	let mapSize = getMapSize();
 	let mapCenter = getMapCenter();
+	let mapBounds = getMapBounds();
 
 	let riverConstraint = avoidClasses(tributaryRiverTileClass, 3);
 	if (shallowTileClass)
@@ -472,12 +464,12 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 	for (let i = 0; i < riverCount; ++i)
 	{
 		// Determining tributary river location
-		let searchCenter = new Vector2D(randFloat(tapering, 1 - tapering), 0.5);
+		let searchCenter = new Vector2D(fractionToTiles(randFloat(tapering, 1 - tapering)), mapCenter.y);
 		let sign = randBool() ? 1 : -1;
 		let distanceVec = new Vector2D(0, sign * tapering);
 
-		let searchStart = Vector2D.add(searchCenter, distanceVec).mult(mapSize).rotateAround(riverAngle, mapCenter);
-		let searchEnd = Vector2D.sub(searchCenter, distanceVec).mult(mapSize).rotateAround(riverAngle, mapCenter);
+		let searchStart = Vector2D.add(searchCenter, distanceVec).rotateAround(riverAngle, mapCenter);
+		let searchEnd = Vector2D.sub(searchCenter, distanceVec).rotateAround(riverAngle, mapCenter);
 
 		let start = findLocationInDirectionBasedOnHeight(searchStart, searchEnd, heightRange[0], heightRange[1], 4);
 		if (!start)
@@ -499,7 +491,7 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 				offset,
 				tapering),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+				new SmoothElevationPainter(ELEVATION_SET, heightRiverbed, 4),
 				paintClass(tributaryRiverTileClass)
 			],
 			new AndConstraint([constraint, riverConstraint])))
@@ -508,7 +500,7 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 		// Create small puddles at the map border to ensure players being separated
 		createArea(
 			new ClumpPlacer(Math.floor(diskArea(riverWidth / 2)), 0.95, 0.6, 10, end.x, end.y),
-			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 3),
+			new SmoothElevationPainter(ELEVATION_SET, heightRiverbed, 3),
 			constraint);
 	}
 
@@ -516,20 +508,20 @@ function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, 
 	if (shallowTileClass)
 		for (let z of [0.25, 0.75])
 			createPassage({
-				"start": new Vector2D(0, z).mult(mapSize).rotateAround(riverAngle, mapCenter),
-				"end": new Vector2D(1, z).mult(mapSize).rotateAround(riverAngle, mapCenter),
+				"start": new Vector2D(mapBounds.left, fractionToTiles(z)).rotateAround(riverAngle, mapCenter),
+				"end": new Vector2D(mapBounds.right, fractionToTiles(z)).rotateAround(riverAngle, mapCenter),
 				"startWidth": scaleByMapSize(8, 12),
 				"endWidth": scaleByMapSize(8, 12),
 				"smoothWidth": 2,
-				"startHeight": shallowHeight,
-				"endHeight": shallowHeight,
-				"maxHeight": shallowHeight,
+				"startHeight": heightShallow,
+				"endHeight": heightShallow,
+				"maxHeight": heightShallow,
 				"tileClass": shallowTileClass
 			});
 }
 
 /**
- * Creates a smooth, passable path between between (startX, startZ) and (endX, endZ) with the given startWidth and endWidth.
+ * Creates a smooth, passable path between between start and end with the given startWidth and endWidth.
  * Paints the given tileclass and terrain.
  *
  * @property {Vector2D} start - Location of the passage.
@@ -582,9 +574,9 @@ function createPassage(args)
 				addToClass(location.x, location.y, args.tileClass);
 
 			if (args.edgeTerrain && smoothDistance > 0)
-				placeTerrain(location.x, location.y, args.edgeTerrain);
+				createTerrain(args.edgeTerrain).place(location.x, location.y);
 			else if (args.terrain)
-				placeTerrain(location.x, location.y, args.terrain);
+				createTerrain(args.terrain).place(location.x, location.y);
 		}
 	}
 }

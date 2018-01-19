@@ -6,6 +6,8 @@
 		onTick();
 	</action>
 
+	<object hotkey="lobby" name="lobbyDialogToggle"/>
+
 	<!-- Left panel: Player list. -->
 	<object name="leftPanel" size="20 30 20% 100%-310">
 		<object name="playersBox"
@@ -96,13 +98,13 @@
 
 	<!-- Right panel: Game details. -->
 	<object name="rightPanel" size="100%-250 30 100%-20 100%-20" >
-		<object name="gameInfoEmpty" size="0 0 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="false">
+		<object name="gameInfoEmpty" type="image" sprite="ModernDarkBoxGold" hidden="false">
 			<object name="logo" size="50%-110 40 50%+110 140" type="image" sprite="logo"/>
 			<object name="subjectBox" type="image" sprite="ModernDarkBoxWhite" size="3% 180 97% 99%">
 				<object name="subject" size="5 5 100%-5 100%-5" type="text" style="ModernText" text_align="center"/>
 			</object>
 		</object>
-		<object name="gameInfo" size="0 0 100% 100%-90" type="image" sprite="ModernDarkBoxGold" hidden="true">
+		<object name="gameInfo" type="image" sprite="ModernDarkBoxGold" hidden="true">
 
 			<!-- Map Name -->
 			<object name="sgMapName" size="0 5 100% 20" type="text" style="ModernLabelText"/>
@@ -164,9 +166,8 @@
 			</action>
 		</object>
 
-		<object type="button" style="ModernButtonRed" size="0 100%-25 100% 100%">
-			<translatableAttribute id="caption">Main Menu</translatableAttribute>
-			<action on="Press">returnToMainMenu();</action>
+		<object name="leaveButton" type="button" style="ModernButtonRed" size="0 100%-25 100% 100%">
+			<action on="Press">leaveLobby();</action>
 		</object>
 	</object>
 
@@ -360,5 +361,8 @@
 		</object>
 	</object>
 	<!-- End of user profile lookup -->
+
+	<!-- Keep this hotkey at the end of the gui, because the other cancel hotkeys must be processed first! -->
+	<object hotkey="cancel" name="cancelDialog"/>
 
 </object>

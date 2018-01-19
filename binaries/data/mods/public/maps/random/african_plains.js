@@ -1,11 +1,10 @@
 Engine.LoadLibrary("rmgen");
 
-var tPrimary = ["savanna_grass_a"];
+var tPrimary = "savanna_grass_a";
 var tForestFloor = "savanna_forestfloor_a";
 var tCliff = ["savanna_cliff_a", "savanna_cliff_a_red", "savanna_cliff_b", "savanna_cliff_b_red"];
 var tSecondary = "savanna_grass_b";
-var tGrassShrubs = ["savanna_shrubs_a"];
-var tGrass = ["savanna_grass_a_wetseason", "savanna_grass_b_wetseason"];
+var tGrassShrubs = "savanna_shrubs_a";
 var tDirt = "savanna_dirt_a";
 var tDirt2 = "savanna_dirt_a_red";
 var tDirt3 = "savanna_dirt_b";
@@ -38,7 +37,11 @@ var aRock = "actor|geology/stone_savanna_med.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPalm, tForestFloor];
 
-InitMap();
+var heightSeaGround = -5;
+var heightLand = 2;
+var heightCliff = 3;
+
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -54,7 +57,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -107,7 +110,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(60, 100)), 5),
 	[
 		new LayeredPainter([tShore, tWater], [1]),
-		new SmoothElevationPainter(ELEVATION_SET, -5, 7),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 7),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 22, clWater, 8, clHill, 2),
@@ -115,8 +118,7 @@ createAreas(
 );
 Engine.SetProgress(45);
 
-paintTerrainBasedOnHeight(3, Math.floor(scaleByMapSize(20, 40)), 0, tCliff);
-paintTerrainBasedOnHeight(Math.floor(scaleByMapSize(20, 40)), 100, 3, tGrass);
+paintTerrainBasedOnHeight(heightCliff, Infinity, 0, tCliff);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 

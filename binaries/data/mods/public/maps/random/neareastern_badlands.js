@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = ["desert_sand_smooth", "desert_sand_smooth_b"];
 const tCity = "desert_city_tile";
 const tCityPlaza = "desert_city_tile_plaza";
 const tSand = "desert_dirt_rough";
@@ -36,7 +37,15 @@ const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 const pForestOasis = [tGrass + TERRAIN_SEPARATOR + oDatePalm, tGrass + TERRAIN_SEPARATOR + oSDatePalm, tGrass];
 
-InitMap();
+const heightLand = 10;
+
+const heightOffsetOasis = -11;
+const heightOffsetHill1 = 16;
+const heightOffsetHill2 = 16;
+const heightOffsetHill3 = 16;
+const heightOffsetBump = 2;
+
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -53,13 +62,8 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
 var oasisRadius = scaleByMapSize(14, 40);
-var oasisHeight = -11;
 
-var hillHeight1 = 16;
-var hillHeight2 = 16;
-var hillHeight3 = 16;
-
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
@@ -69,12 +73,12 @@ if (!isNomad())
 				0.9,
 				0.5,
 				10,
-				Math.round(fractionToTiles(playerX[i])),
-				Math.round(fractionToTiles(playerZ[i]))),
+				playerPosition[i].x,
+				playerPosition[i].y),
 			paintClass(clPlayer));
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -139,7 +143,7 @@ createArea(
 	new ClumpPlacer(diskArea(oasisRadius), 0.6, 0.15, 0, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([[tSand, pForest], [tGrassSand25, pForestOasis], tGrassSand25, tShore, tWaterDeep], [2, 3, 1, 1]),
-		new SmoothElevationPainter(ELEVATION_MODIFY, oasisHeight, 8),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetOasis, 8),
 		paintClass(clOasis)
 	]);
 
@@ -199,7 +203,7 @@ var hillAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(50,300), 0.25, 0.1, 0.5),
 	[
 		new LayeredPainter([tCliff, tSand], [1]),
-		new SmoothElevationPainter(ELEVATION_MODIFY, hillHeight1, 1),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill1, 1),
 		paintClass(clHill1)
 	],
 	avoidClasses(clOasis, 3, clPlayer, 0, clHill1, 10),
@@ -213,7 +217,7 @@ hillAreas = hillAreas.concat(
 		new ClumpPlacer(scaleByMapSize(25,150), 0.25, 0.1, 0.5),
 		[
 			new LayeredPainter([tCliff, tSand], [1]),
-			new SmoothElevationPainter(ELEVATION_MODIFY, hillHeight2, 1),
+			new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill2, 1),
 			paintClass(clHill1)
 		],
 		avoidClasses(clOasis, 3, clPlayer, 0, clHill1, 3),
@@ -239,7 +243,7 @@ createAreasInAreas(
 	new ClumpPlacer(scaleByMapSize(25, 150), 0.25, 0.1, 0),
 	[
 		new LayeredPainter([tCliff, tSand], [1]),
-		new SmoothElevationPainter(ELEVATION_MODIFY, hillHeight2, 1)
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill2, 1)
 	],
 	[stayClasses(clHill1, 0)],
 	scaleByMapSize(15, 25),
@@ -253,7 +257,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(12, 75), 0.25, 0.1, 0),
 	[
 		new LayeredPainter([tCliff, tSand], [1]),
-		new SmoothElevationPainter(ELEVATION_MODIFY, hillHeight3, 1)
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill3, 1)
 	],
 	[stayClasses(clHill1, 0)],
 	scaleByMapSize(15,25),
@@ -264,7 +268,7 @@ Engine.SetProgress(60);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 0),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clOasis, 0, clPlayer, 0, clHill1, 2),
 	scaleByMapSize(100, 200)
 );
@@ -351,7 +355,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(16, 262)
 );
 
-placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill1, 4, clFood, 2));
+placePlayersNomad(clPlayer, avoidClasses(clOasis, 4, clForest, 1, clMetal, 4, clRock, 4, clHill1, 4, clFood, 2));
 
 setWaterColor(0, 0.227, 0.843);
 setWaterTint(0, 0.545, 0.859);

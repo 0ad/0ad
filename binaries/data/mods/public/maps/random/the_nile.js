@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+var tPrimary = "desert_sand_dunes_100";
 var tCity = "desert_city_tile";
 var tCityPlaza = "desert_city_tile_plaza";
 var tFineSand = "desert_sand_smooth";
@@ -38,7 +39,13 @@ var aLillies = "actor|props/flora/water_lillies.xml";
 
 var pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
-InitMap();
+const heightLand = 1;
+const heightShore = 2;
+const heightPonds = -7;
+const heightSeaGround = -3;
+const heightOffsetBump = 2;
+
+InitMap(heightLand, tPrimary);
 
 const mapSize = getMapSize();
 const mapCenter = getMapCenter();
@@ -65,9 +72,10 @@ var clShore = createTileClass();
 var clTreasure = createTileClass();
 
 var desertWidth = fractionToTiles(0.25);
+var startAngle = randomAngle();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(0, 0.4),
+	"PlayerPlacement": playerPlacementRiver(startAngle, fractionToTiles(0.4)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -99,17 +107,25 @@ const riverTextures = [
 	{
 		"left": fractionToTiles(0),
 		"right": fractionToTiles(0.04),
-		"tileClass": tLush
+		"terrain": tLush,
+		"tileClass": clShore
 	},
 	{
 		"left": fractionToTiles(0.04),
 		"right": fractionToTiles(0.06),
-		"tileClass": tSLush
+		"terrain": tSLush,
+		"tileClass": clShore
 	},
 	{
 		"left": fractionToTiles(0.06),
 		"right": fractionToTiles(0.09),
-		"tileClass": tSDry
+		"terrain": tSDry,
+		"tileClass": clShore
+	},
+	{
+		"left": fractionToTiles(0.25),
+		"right": fractionToTiles(0.5),
+		"tileClass": clDesert
 	}
 ];
 
@@ -118,19 +134,19 @@ var plantID = 0;
 
 paintRiver({
 	"parallel": true,
-	"start": new Vector2D(mapCenter.x, mapBounds.top),
-	"end": new Vector2D(mapCenter.x, mapBounds.bottom),
+	"start": new Vector2D(mapCenter.x, mapBounds.top).rotateAround(startAngle, mapCenter),
+	"end": new Vector2D(mapCenter.x, mapBounds.bottom).rotateAround(startAngle, mapCenter),
 	"width": fractionToTiles(0.1),
 	"fadeDist": scaleByMapSize(3, 12),
 	"deviation": 0.5,
-	"waterHeight": -3,
-	"landHeight": 2,
+	"heightRiverbed": heightSeaGround,
+	"heightLand": heightShore,
 	"meanderShort": 12,
 	"meanderLong": 50,
 	"waterFunc": (ix, iz, height, riverFraction) => {
 
 		addToClass(ix, iz, clWater);
-		placeTerrain(ix, iz, tShore);
+		createTerrain(tShore).place(ix, iz);
 
 		// Place river bushes
 		if (height <= -0.2 || height >= 0.1)
@@ -149,23 +165,19 @@ paintRiver({
 			if (riv.left < +shoreDist1 && +shoreDist1 < riv.right ||
 			    riv.left < -shoreDist2 && -shoreDist2 < riv.right)
 			{
-				placeTerrain(ix, iz, riv.tileClass);
-				addToClass(ix, iz, clShore);
+				addToClass(ix, iz, riv.tileClass);
+
+				if (riv.terrain)
+					createTerrain(riv.terrain).place(ix, iz);
 			}
 	}
 });
 Engine.SetProgress(40);
 
-log("Marking desert...");
-for (let [left, right] of [[mapBounds.left, mapBounds.left + desertWidth], [mapBounds.right - desertWidth, mapBounds.right]])
-	createArea(
-		new RectPlacer(left, mapBounds.top, right, mapBounds.bottom),
-		paintClass(clDesert));
-
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clWater, 2, clPlayer, 6),
 	scaleByMapSize(100, 200));
 
@@ -175,7 +187,7 @@ var waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(2, 5) * 50, 0.8, 0.1, 10),
 	[
 		new LayeredPainter([tShore, tShore, tShore], [1, 1]),
-		new SmoothElevationPainter(ELEVATION_SET, -7, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightPonds, 4),
 		paintClass(clPond)
 	],
 	avoidClasses(clPlayer, 25, clWater, 20, clPond, 10),

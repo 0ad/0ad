@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = "temp_grass_long";
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 const tGrassDForest = "temp_plants_bog";
 const tGrassA = "temp_grass_plants";
@@ -38,7 +39,11 @@ const aLillies = "actor|props/flora/water_lillies.xml";
 
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
 
-InitMap();
+var heightSeaGround = -4;
+var heightShore = 1;
+var heightLand = 3;
+
+InitMap(heightShore, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
@@ -55,11 +60,10 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clShallow = createTileClass();
 
-var landHeight = 3;
-var waterHeight = -4;
+var startAngle = randomAngle();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(Math.PI / 2, 0.6),
+	"PlayerPlacement": playerPlacementRiver(startAngle + Math.PI / 2, fractionToTiles(0.6)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -89,30 +93,30 @@ Engine.SetProgress(10);
 
 paintRiver({
 	"parallel": false,
-	"start": new Vector2D(mapBounds.left, mapCenter.y),
-	"end": new Vector2D(mapBounds.right, mapCenter.y),
+	"start": new Vector2D(mapBounds.left, mapCenter.y).rotateAround(startAngle, mapCenter),
+	"end": new Vector2D(mapBounds.right, mapCenter.y).rotateAround(startAngle, mapCenter),
 	"width": fractionToTiles(0.25),
 	"fadeDist": scaleByMapSize(3, 10),
 	"deviation": 0,
-	"waterHeight": waterHeight,
-	"landHeight": landHeight,
+	"heightRiverbed": heightSeaGround,
+	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0,
 	"waterFunc": (ix, iz, height, riverFraction) => {
-		placeTerrain(ix, iz, height < -1.5 ? tWater : tShore);
+		createTerrain(height < -1.5 ? tWater : tShore).place(ix, iz);
 	},
 	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
-		setHeight(ix, iz, landHeight + 0.1);
+		setHeight(ix, iz, heightLand + 0.1);
 	}
 });
 
 Engine.SetProgress(20);
 
 createTributaryRivers(
-	true,
+	startAngle,
 	randIntInclusive(9, scaleByMapSize(13, 21)),
 	scaleByMapSize(10, 20),
-	waterHeight,
+	heightSeaGround,
 	[-6, -1.5],
 	Math.PI / 5,
 	clWater,
@@ -120,7 +124,7 @@ createTributaryRivers(
 	avoidClasses(clPlayer, 8, clBaseResource, 4));
 
 paintTerrainBasedOnHeight(-5, 1, 1, tWater);
-paintTerrainBasedOnHeight(1, landHeight, 1, tShore);
+paintTerrainBasedOnHeight(1, heightLand, 1, tShore);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 Engine.SetProgress(25);
 

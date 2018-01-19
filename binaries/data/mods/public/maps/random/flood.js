@@ -46,7 +46,11 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+const heightSeaGround = -2;
+const heightLand = 2;
+const shoreRadius = 6;
+
+InitMap(heightSeaGround, tWater);
 
 const clPlayer = createTileClass();
 const clHill = createTileClass();
@@ -60,25 +64,10 @@ const clBaseResource = createTileClass();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const centerOfMap = mapSize / 2;
-
-const landHeight = 2;
-const waterHeight = getMapBaseHeight();
-const shoreRadius = 6;
-
-initTerrain(tWater);
-
-log("Creating the water...");
-createArea(
-	new ClumpPlacer(getMapArea(), 1, 1, 1, Math.round(fractionToTiles(0.5)), Math.round(fractionToTiles(0.5))),
-	[
-		new LayeredPainter([tWater, tWater, tShore], [1, 4]),
-		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2)
-	],
-	avoidClasses(clPlayer, 5));
+const mapCenter = getMapCenter();
 
 log("Creating player islands...")
-var [playerIDs, playerX, playerZ] = playerPlacementCircle(0.38);
+var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));
 
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
@@ -87,17 +76,16 @@ for (let i = 0; i < numPlayers; ++i)
 			0.8,
 			0.1,
 			10,
-			Math.round(fractionToTiles(playerX[i])),
-			Math.round(fractionToTiles(playerZ[i]))),
+			playerPosition[i].x,
+			playerPosition[i].y),
 		[
 			new LayeredPainter([tShore, tMainTerrain], [shoreRadius]),
-			new SmoothElevationPainter(ELEVATION_SET, landHeight, shoreRadius),
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
 			paintClass(clHill)
-		],
-		null);
+		]);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,
@@ -135,13 +123,13 @@ createArea(
 		Math.floor(scaleByMapSize(10, 15)),
 		Math.floor(scaleByMapSize(200, 300)),
 		1,
-		centerOfMap,
-		centerOfMap,
+		mapCenter.x,
+		mapCenter.y,
 		0,
 		[Math.floor(mapSize * 0.01)]),
 	[
 		new LayeredPainter([tShore, tMainTerrain], [shoreRadius, 100]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, shoreRadius),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 40));
@@ -194,8 +182,8 @@ createObjectGroup(
 		[new SimpleObject(oMetalLarge, 3, 6, 25, Math.floor(mapSize * 0.25))],
 		true,
 		clBaseResource,
-		centerOfMap,
-		centerOfMap),
+		mapCenter.x,
+		mapCenter.y),
 	0,
 	[avoidClasses(clBaseResource, 20, clPlayer, 40, clMountain, 4), stayClasses(clHill, 10)]);
 
@@ -204,8 +192,8 @@ createObjectGroup(
 		[new SimpleObject(oStoneLarge, 3, 6, 25, Math.floor(mapSize * 0.25))],
 		true,
 		clBaseResource,
-		centerOfMap,
-		centerOfMap),
+		mapCenter.x,
+		mapCenter.y),
 		0,
 		[avoidClasses(clBaseResource, 20, clPlayer, 40, clMountain, 4), stayClasses(clHill, 10)]);
 
@@ -245,8 +233,8 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		numb * scaleByMapSize(15, 45));
 
 log("Painting shorelines...");
-paintTerrainBasedOnHeight(1, landHeight, 0, tMainTerrain);
-paintTerrainBasedOnHeight(waterHeight, 1, 3, tTier1Terrain);
+paintTerrainBasedOnHeight(1, heightLand, 0, tMainTerrain);
+paintTerrainBasedOnHeight(heightSeaGround, 1, 3, tTier1Terrain);
 
 log("Creating grass patches...");
 for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])

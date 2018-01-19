@@ -22,10 +22,16 @@ const oMetalLarge = "gaia/geology_metal_savanna_slabs";
 const aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 const aRock = "actor|geology/stone_savanna_med.xml";
 
-InitMap();
+const heightSeaGround = -3;
+const heightLand = 1;
+const heightShore = 3;
+const heightOffsetBump = 2;
+
+InitMap(heightLand, tGrass1);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
+var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -36,7 +42,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	// No city patch
@@ -72,7 +78,7 @@ Engine.SetProgress(20);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.5, 0.08, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800)
 );
@@ -84,12 +90,12 @@ createArea(
 		Math.floor(scaleByMapSize(2, 16)),
 		Math.floor(scaleByMapSize(35, 200)),
 		1,
-		Math.round(fractionToTiles(0.5)),
-		Math.round(fractionToTiles(0.5)),
+		mapCenter.x,
+		mapCenter.y,
 		0,
 		[Math.floor(mapSize * 0.008 * Math.pow(scaleByMapSize(1, 66), 1/8))]),
 	[
-		new SmoothElevationPainter(ELEVATION_SET, -3, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 20));
@@ -98,7 +104,7 @@ log("Creating more shore jaggedness...");
 createAreas(
 	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, 1),
 	[
-		new SmoothElevationPainter(ELEVATION_SET, 3, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightShore, 4),
 		unPaintClass(clWater)
 	],
 	borderClasses(clWater, 4, 7),

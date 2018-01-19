@@ -946,6 +946,13 @@ var g_MiscControls = {
 	"teamResetButton": {
 		"hidden": () => g_GameAttributes.mapType == "scenario" || !g_IsController,
 	},
+	"lobbyButton": {
+		"onPress": () => function() {
+			if (Engine.HasXmppClient())
+				Engine.PushGuiPage("page_lobby.xml", { "dialog": true });
+		},
+		"hidden": () => !Engine.HasXmppClient()
+	},
 	// Display these after having hidden every GUI object in the "More Options" dialog
 	"moreOptionsLabel": {
 		"hidden": () => false,
@@ -1729,7 +1736,7 @@ function cancelSetup()
 		if (g_IsController)
 			Engine.SendUnregisterGame();
 
-		Engine.SwitchGuiPage("page_lobby.xml");
+		Engine.SwitchGuiPage("page_lobby.xml", { "dialog": false });
 	}
 	else
 		Engine.SwitchGuiPage("page_pregame.xml");

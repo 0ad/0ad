@@ -22,9 +22,13 @@ var aRockMedium = "actor|geology/stone_granite_med.xml";
 var pForestD = [tGrassC + TERRAIN_SEPARATOR + oTree, tGrassC];
 var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
 
-InitMap();
+const heightLand = 1;
+const heightHill = 18;
+
+InitMap(heightLand, tGrassB);
 
 var numPlayers = getNumPlayers();
+var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -35,7 +39,7 @@ var clMetal = createTileClass();
 var clBaseResource = createTileClass();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementCircle(0.35),
+	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -56,7 +60,7 @@ placePlayerBases({
 });
 Engine.SetProgress(15);
 
-createVolcano(0.5, 0.5, clHill, tCliff, [tLava1, tLava2, tLava3], true, ELEVATION_SET);
+createVolcano(mapCenter, clHill, tCliff, [tLava1, tLava2, tLava3], true, ELEVATION_SET);
 Engine.SetProgress(45);
 
 log("Creating hills...");
@@ -64,7 +68,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 	[
 		new LayeredPainter([tCliff, tGrass], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
 		paintClass(clHill)
 	],
 	avoidClasses(clPlayer, 12, clHill, 15, clBaseResource, 2),

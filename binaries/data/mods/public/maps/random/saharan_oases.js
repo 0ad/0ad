@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = "desert_sand_dunes_100";
 const tCity = "desert_city_tile";
 const tCityPlaza = "desert_city_tile_plaza";
 const tFineSand = "desert_sand_smooth";
@@ -32,10 +33,14 @@ const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
 const pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATOR + oSDatePalm, tLush];
 
-InitMap();
+const heightLand = 1;
+const heightOffsetOasis = -3;
+
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -47,10 +52,10 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clTreasure = createTileClass();
 
-var [playerIDs, playerX, playerZ, playerAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -78,22 +83,20 @@ placePlayerBases({
 Engine.SetProgress(30);
 
 log("Creating oases...");
+var oasisRadius = fractionToTiles(scaleByMapSize(0.19, 0.22));
 for (let i = 0; i < numPlayers; ++i)
+{
+	let position = Vector2D.add(mapCenter, new Vector2D(oasisRadius, 0).rotate(-playerAngle[i]));
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(16, 60)) * 0.185,
-			0.6,
-			0.15,
-			0,
-			mapSize * (0.5 + 0.18 * Math.cos(playerAngle[i]) + scaleByMapSize(1, 4) * Math.cos(playerAngle[i]) / 100),
-			mapSize * (0.5 + 0.18 * Math.sin(playerAngle[i]) + scaleByMapSize(1, 4) * Math.sin(playerAngle[i]) / 100)),
+		new ClumpPlacer(diskArea(scaleByMapSize(16, 60)) * 0.185, 0.6, 0.15, 0, position.x, position.y),
 		[
 			new LayeredPainter(
 				[tSLush ,[tLush, pForest], [tLush, pForest], tShore, tShore, tWaterDeep],
 				[2, 2, 1, 3, 1]),
-			new SmoothElevationPainter(ELEVATION_MODIFY, -3, 10),
+			new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetOasis, 10),
 			paintClass(clWater)
-		],
-		null);
+		]);
+}
 Engine.SetProgress(50);
 
 log("Creating grass patches...");

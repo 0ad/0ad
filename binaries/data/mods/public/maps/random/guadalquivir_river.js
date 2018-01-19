@@ -35,7 +35,12 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const pForestP = [tForestFloorP + TERRAIN_SEPARATOR + oPoplar, tForestFloorP];
 const pForestC = [tForestFloorC + TERRAIN_SEPARATOR + oCarob, tForestFloorC];
 
-InitMap();
+var heightSeaGround = -3;
+var heightShallow = -1.5;
+var heightShore = 2;
+var heightLand = 3;
+
+InitMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -53,35 +58,28 @@ var clLand = createTileClass();
 var clRiver = createTileClass();
 var clShallow = createTileClass();
 
-var landHeight = 3;
-var shoreHeight = 2;
-var shallowHeight = -1.5;
-var waterHeight = -3;
-
 log("Create the continent body");
-var continentCenter = new Vector2D(0.5, 0.7);
+var continentCenter = new Vector2D(fractionToTiles(0.5), fractionToTiles(0.7)).round();
 createArea(
 	new ChainPlacer(
 		2,
 		Math.floor(scaleByMapSize(5, 12)),
 		Math.floor(scaleByMapSize(60, 700)),
 		1,
-		Math.floor(fractionToTiles(continentCenter.x)),
-		Math.floor(fractionToTiles(continentCenter.y)),
+		continentCenter.x,
+		continentCenter.y,
 		0,
-		[Math.floor(mapSize * 0.49)]),
+		[Math.floor(fractionToTiles(0.49))]),
 	[
 		new LayeredPainter([tGrass, tGrass, tGrass], [4, 2]),
-		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 		paintClass(clLand)
-	],
-	null);
+	]);
 
 placePlayerBases({
 	"PlayerPlacement": [primeSortAllPlayers(), ...playerPlacementCustomAngle(
-			0.35,
-			continentCenter.x,
-			continentCenter.y,
+			fractionToTiles(0.35),
+			continentCenter,
 			i => Math.PI * (-0.46 / numPlayers * (i + i % 2) - (i % 2) / 2))],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
@@ -119,20 +117,20 @@ paintRiver({
 	"width": fractionToTiles(0.07),
 	"fadeDist": scaleByMapSize(3, 12),
 	"deviation": 1,
-	"waterHeight": waterHeight,
-	"landHeight": shoreHeight,
+	"heightRiverbed": heightSeaGround,
+	"heightLand": heightShore,
 	"meanderShort": 12,
 	"meanderLong": 0,
 	"waterFunc": (ix, iz, height, z) => {
 		addToClass(ix, iz, clRiver);
-		placeTerrain(ix, iz, tWater);
+		createTerrain(tWater).place(ix, iz);
 
-		if (height < shallowHeight && (
+		if (height < heightShallow && (
 		    z > 0.3 && z < 0.4 ||
 		    z > 0.5 && z < 0.6 ||
 		    z > 0.7 && z < 0.8))
 		{
-			setHeight(ix, iz, shallowHeight);
+			setHeight(ix, iz, heightShallow);
 			addToClass(ix, iz, clShallow);
 		}
 	}

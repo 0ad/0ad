@@ -42,11 +42,17 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-InitMap();
+var heightSeaGround = -4;
+var heightShallow = -2;
+var heightLand = 3;
+var heightRing = 4;
+var heightHill = 20;
+
+InitMap(heightLand, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = getMapArea();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -58,9 +64,14 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-initTerrain(tMainTerrain);
+var radiusPlayers = fractionToTiles(0.35);
+var radiusCentralLake = fractionToTiles(0.27);
+var radiusCentralRingLand = fractionToTiles(0.21);
+var radiusCentralWaterRing = fractionToTiles(0.17);
+var radiusCentralIsland = fractionToTiles(0.14);
+var radiusCentralHill = fractionToTiles(0.12);
 
-var [playerIDs, playerX, playerZ, playerAngle, startAngle] = playerPlacementCircle(0.35);
+var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(radiusPlayers);
 
 log("Determining number of rivers between players...");
 var split = 1;
@@ -104,70 +115,49 @@ else if (mapSize == 448)
 }
 
 log("Creating big circular lake...");
-var center = Math.round(fractionToTiles(0.5));
 createArea(
-	new ClumpPlacer(mapArea * 0.23, 1, 1, 10, center, center),
-	new SmoothElevationPainter(ELEVATION_SET, -3, 4),
-	null);
+	new ClumpPlacer(diskArea(radiusCentralLake), 1, 1, 10, mapCenter.x, mapCenter.y),
+	new SmoothElevationPainter(ELEVATION_SET, heightShallow, 4));
 
 for (let m = 0; m < numPlayers * split; ++m)
 {
 	log("Creating rivers between players...");
 	let angle = startAngle + (m + 0.5) * 2 * Math.PI / (numPlayers * split);
+	let position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.15), 0).rotate(-angle));
+	let position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.6), 0).rotate(-angle));
 	createArea(
-		new PathPlacer(
-			fractionToTiles(0.5 + 0.15 * Math.cos(angle)),
-			fractionToTiles(0.5 + 0.15 * Math.sin(angle)),
-			fractionToTiles(0.5 + 0.6 * Math.cos(angle)),
-			fractionToTiles(0.5 + 0.6 * Math.sin(angle)),
-			scaleByMapSize(14, 40),
-			0,
-			3 * scaleByMapSize(1, 3),
-			0.2,
-			0.05),
-		new SmoothElevationPainter(ELEVATION_SET, -4, 4),
-	    avoidClasses(clPlayer, 5));
+		new PathPlacer(position1.x, position1.y, position2.x, position2.y, scaleByMapSize(14, 40), 0, scaleByMapSize(3, 9), 0.2, 0.05),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
+		avoidClasses(clPlayer, 5));
 
 	log("Create path from the island to the center...");
 	angle = startAngle + m * 2 * Math.PI / (numPlayers * split);
+	position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.05), 0).rotate(-angle));
+	position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.49), 0).rotate(-angle));
 	createArea(
-		new PathPlacer(
-			fractionToTiles(0.5 + 0.05 * Math.cos(angle)),
-			fractionToTiles(0.5 + 0.05 * Math.sin(angle)),
-			fractionToTiles(0.5 + 0.49 * Math.cos(angle)),
-			fractionToTiles(0.5 + 0.49 * Math.sin(angle)),
-			scaleByMapSize(10, 40),
-			0,
-			3 * scaleByMapSize(1, 3),
-			0.2,
-			0.05),
-		new SmoothElevationPainter(ELEVATION_SET, 3, 4),
-		null);
+		new PathPlacer(position1.x, position1.y, position2.x, position2.y, scaleByMapSize(10, 40), 0, scaleByMapSize(3, 9), 0.2, 0.05),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4));
 }
 
 log("Creating ring of land connecting players...");
 createArea(
-	new ClumpPlacer(mapArea * 0.15, 1, 1, 10, center, center),
-	new SmoothElevationPainter(ELEVATION_SET, 4, 4),
-	null);
+	new ClumpPlacer(diskArea(radiusCentralRingLand), 1, 1, 10, mapCenter.x, mapCenter.y),
+	new SmoothElevationPainter(ELEVATION_SET, heightRing, 4));
 
 log("Creating ring of water separating the central hill from the ring...");
 createArea(
-	new ClumpPlacer(mapArea * 0.09, 1, 1, 10, center, center),
-	new SmoothElevationPainter(ELEVATION_SET, -2, 3),
-	null);
+	new ClumpPlacer(diskArea(radiusCentralWaterRing), 1, 1, 10, mapCenter.x, mapCenter.y),
+	new SmoothElevationPainter(ELEVATION_SET, heightShallow, 3));
 
 log("Creating central island...");
 createArea(
-	new ClumpPlacer(Math.square(mapSize - 50) * 0.09, 1, 1, 10, center, center),
-	new SmoothElevationPainter(ELEVATION_SET, 4, 3),
-	null);
+	new ClumpPlacer(diskArea(radiusCentralIsland), 1, 1, 10, mapCenter.x, mapCenter.y),
+	new SmoothElevationPainter(ELEVATION_SET, heightRing, 3));
 
 log("Creating hill on the central island...");
 createArea(
-	new ClumpPlacer(diskArea(scaleByMapSize(6, 18)) * 7, 1, 1, 10, center, center),
-	new SmoothElevationPainter(ELEVATION_SET, 20, 8),
-	null);
+	new ClumpPlacer(diskArea(radiusCentralHill), 1, 1, 10, mapCenter.x, mapCenter.y),
+	new SmoothElevationPainter(ELEVATION_SET, heightHill, 8));
 
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2, 1, tShore);
@@ -176,9 +166,10 @@ paintTerrainBasedOnHeight(2, 21, 1, tMainTerrain);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerX, playerZ],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
+	"baseResourceConstraint": avoidClasses(clWater, 2),
 	"Walls": "towers",
 	"CityPatch": {
 		"outerTerrain": tRoadWild,
