@@ -42,7 +42,7 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBush, tForestFloor + TERRAI
 var heightSeaGround = -5;
 var heightLand = 2;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 

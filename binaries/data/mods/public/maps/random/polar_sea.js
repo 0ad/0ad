@@ -31,7 +31,7 @@ var heightSeaGround = -4;
 var heightLand = 2;
 var heightCliff = 3;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

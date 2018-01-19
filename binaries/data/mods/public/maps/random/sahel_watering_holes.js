@@ -41,7 +41,7 @@ const heightLand = 3;
 const heightHill = 35;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

@@ -31,7 +31,7 @@ const heightLake = -4;
 const heightLand = 3;
 const heightHill = 25;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tSnowA);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

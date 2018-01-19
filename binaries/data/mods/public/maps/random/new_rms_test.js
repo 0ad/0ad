@@ -1,6 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
-InitMap(0, g_MapSettings.BaseTerrain);
+InitMap(0, "grass1_spring");
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.39))

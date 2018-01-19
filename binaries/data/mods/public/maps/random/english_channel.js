@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = "temp_grass_long";
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 const tGrassDForest = "temp_plants_bog";
 const tGrassA = "temp_grass_plants";
@@ -42,7 +43,7 @@ var heightSeaGround = -4;
 var heightShore = 1;
 var heightLand = 3;
 
-InitMap(heightShore, g_MapSettings.BaseTerrain);
+InitMap(heightShore, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();

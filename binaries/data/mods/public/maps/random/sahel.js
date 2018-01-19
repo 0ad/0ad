@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = "savanna_grass_a";
 const tGrass2 = "savanna_grass_b";
 const tGrass3 = "savanna_shrubs_a";
 const tDirt1 = "savanna_dirt_rocks_a";
@@ -29,7 +30,7 @@ const aRock = "actor|geology/stone_savanna_med.xml";
 const heightSeaGround = -5;
 const heightLand = 1;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();

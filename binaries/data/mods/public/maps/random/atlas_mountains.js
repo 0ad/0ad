@@ -1,5 +1,7 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = ["medit_rocks_grass", "medit_rocks_grass", "medit_rocks_grass",
+	"medit_rocks_grass", "medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
 const tGrass = ["medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
 const tForestFloor = "medit_grass_field_dry";
 const tCliff = "medit_cliff_italia";
@@ -35,7 +37,7 @@ const pForest2 = [tForestFloor + TERRAIN_SEPARATOR + oAleppoPine, tForestFloor];
 
 const heightLand = 3;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 

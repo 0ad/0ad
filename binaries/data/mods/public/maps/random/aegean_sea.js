@@ -52,7 +52,7 @@ const heightShore = 1;
 const heightLand = 2;
 const heightIsland = 6;
 
-InitMap(heightShore, g_MapSettings.BaseTerrain);
+InitMap(heightShore, tHill);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();

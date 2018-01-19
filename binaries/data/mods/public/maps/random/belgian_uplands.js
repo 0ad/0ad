@@ -1,9 +1,12 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("heightmap");
 
+const tPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d",
+	"temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"];
+
 const heightLand = 0;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();

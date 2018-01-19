@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = "desert_sand_dunes_100";
 const tCity = "desert_city_tile";
 const tCityPlaza = "desert_city_tile_plaza";
 const tFineSand = "desert_sand_smooth";
@@ -35,7 +36,7 @@ const pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATO
 const heightLand = 1;
 const heightOffsetOasis = -3;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

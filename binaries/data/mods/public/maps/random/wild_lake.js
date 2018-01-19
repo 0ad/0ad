@@ -2,9 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("heightmap");
 
-const heightLand = 0;
-
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(0, "whiteness");
 
 /**
  * getArray - To ensure a terrain texture is contained within an array

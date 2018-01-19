@@ -55,7 +55,7 @@ var heightLand = 1;
 var heightHill = 18;
 var heightPlayerHill = 25;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tHillMedium1);
 
 var numPlayers = getNumPlayers();
 var mapCenter = getMapCenter();

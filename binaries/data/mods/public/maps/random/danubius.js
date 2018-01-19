@@ -10,6 +10,7 @@ const triggerPointLandPatrolRight = "trigger/trigger_point_F";
 const triggerPointCCAttackerPatrolLeft = "trigger/trigger_point_G";
 const triggerPointCCAttackerPatrolRight = "trigger/trigger_point_H";
 
+const tPrimary = ["temp_grass_aut", "temp_grass_plants_aut", "temp_grass_c_aut", "temp_grass_d_aut"];
 const tRoad = "steppe_river_rocks";
 const tIsland = ["temp_grass_long_b_aut", "temp_grass_plants_aut", "temp_forestfloor_aut"];
 const tCliff = "temp_cliff_a";
@@ -123,7 +124,7 @@ const heightLand = 3;
 const heightPath = 5;
 const heightIsland = 6;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

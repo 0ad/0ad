@@ -44,7 +44,7 @@ const pForest = [tForestFloor, tForestFloor + TERRAIN_SEPARATOR + oCarob, tFores
 var heightSeaGround = -4;
 var heightLand = 3;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tHill);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

@@ -43,7 +43,7 @@ const heightSeaGround = -8;
 const heightLand = 3;
 const heightHill = 25;
 
-InitMap(heightSeaGround, g_MapSettings.BaseTerrain);
+InitMap(heightSeaGround, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();

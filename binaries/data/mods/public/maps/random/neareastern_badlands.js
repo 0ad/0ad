@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = ["desert_sand_smooth", "desert_sand_smooth_b"];
 const tCity = "desert_city_tile";
 const tCityPlaza = "desert_city_tile_plaza";
 const tSand = "desert_dirt_rough";
@@ -44,7 +45,7 @@ const heightOffsetHill2 = 16;
 const heightOffsetHill3 = 16;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

@@ -49,7 +49,7 @@ const heightLand = 3;
 const heightOffsetBump = 2;
 const heightHill = 18;
 
-InitMap(heightSeaGround, g_MapSettings.BaseTerrain);
+InitMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

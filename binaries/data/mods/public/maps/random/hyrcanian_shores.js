@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = "temp_grass_long";
 const tGrass = ["temp_grass_clovers"];
 const tGrassPForest = "temp_plants_bog";
 const tGrassDForest = "alpine_dirt_grass_50";
@@ -44,7 +45,7 @@ const heightLand = 1;
 const heightOffsetBump = 4;
 const heightHill = 15;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 const mapCenter = getMapCenter();
 const mapBounds = getMapBounds();

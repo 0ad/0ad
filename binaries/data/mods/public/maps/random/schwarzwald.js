@@ -1,13 +1,6 @@
 Engine.LoadLibrary('rmgen');
 Engine.LoadLibrary("heightmap");
 
-log('Initializing map...');
-
-const heightLand = 1;
-const heightOffsetPath = -0.1;
-
-InitMap(heightLand, g_MapSettings.BaseTerrain);
-
 setSkySet("fog");
 setFogFactor(0.35);
 setFogThickness(0.19);
@@ -24,18 +17,10 @@ setPPBrightness(0.4);
 setPPEffect("hdr");
 setPPBloom(0.4);
 
-var clPlayer = createTileClass();
-var clPath = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clMetal = createTileClass();
-var clRock = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clOpen = createTileClass();
+var oStoneLarge = 'gaia/geology_stonemine_alpine_quarry';
+var oMetalLarge = 'gaia/geology_metal_alpine_slabs';
+var oFish = "gaia/fauna_fish";
 
-var templateStoneMine = 'gaia/geology_stonemine_alpine_quarry';
-var templateMetalMine = 'gaia/geology_metal_alpine_slabs';
 var aGrass = 'actor|props/flora/grass_soft_small_tall.xml';
 var aGrassShort = 'actor|props/flora/grass_soft_large.xml';
 var aRockLarge = 'actor|geology/stone_granite_med.xml';
@@ -43,14 +28,12 @@ var aRockMedium = 'actor|geology/stone_granite_med.xml';
 var aBushMedium = 'actor|props/flora/bush_medit_me.xml';
 var aBushSmall = 'actor|props/flora/bush_medit_sm.xml';
 var aReeds = 'actor|props/flora/reeds_pond_lush_b.xml';
-var oFish = "gaia/fauna_fish";
 
+var terrainPrimary = ["temp_grass_plants", "temp_plants_bog"];
 var terrainWood = ['alpine_forrestfloor|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine'];
-
 var terrainWoodBorder = ['new_alpine_grass_mossy|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine',
 	'temp_grass_long|gaia/flora_bush_temperate', 'temp_grass_clovers|gaia/flora_bush_berry', 'temp_grass_clovers_2|gaia/flora_bush_grapes',
 	'temp_grass_plants|gaia/fauna_deer', 'temp_grass_plants|gaia/fauna_rabbit', 'new_alpine_grass_dirt_a'];
-
 var terrainBase = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
@@ -63,7 +46,6 @@ var terrainBase = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants', 'temp_grass_plants|gaia/fauna_sheep'];
-
 var terrainBaseBorder = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
@@ -76,13 +58,25 @@ var terrainBaseBorder = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants'];
-
 var baseTex = ['temp_road', 'temp_road_overgrown'];
-
 var terrainPath = ['temp_road', 'temp_road_overgrown'];
-
 var tWater = ['dirt_brown_d'];
 var tWaterBorder = ['dirt_brown_d'];
+
+const heightLand = 1;
+const heightOffsetPath = -0.1;
+
+InitMap(heightLand, terrainPrimary);
+
+var clPlayer = createTileClass();
+var clPath = createTileClass();
+var clForest = createTileClass();
+var clWater = createTileClass();
+var clMetal = createTileClass();
+var clRock = createTileClass();
+var clFood = createTileClass();
+var clBaseResource = createTileClass();
+var clOpen = createTileClass();
 
 var mapSize = getMapSize();
 var mapCenter = getMapCenter();
@@ -176,8 +170,8 @@ placePlayerBases({
 	},
 	"Mines": {
 		"types": [
-			{ "template": templateMetalMine },
-			{ "template": templateStoneMine }
+			{ "template": oMetalLarge },
+			{ "template": oStoneLarge }
 		],
 		"distance": 15,
 		"minAngle": Math.PI / 2,
@@ -191,7 +185,7 @@ placePlayerBases({
 
 log("Creating mines...");
 for (let [minHeight, maxHeight] of [[heighLimits[3], (heighLimits[4] + heighLimits[3]) / 2], [(heighLimits[5] + heighLimits[6]) / 2, heighLimits[7]]])
-	for (let [template, tileClass] of [[templateStoneMine, clRock], [templateMetalMine, clMetal]])
+	for (let [template, tileClass] of [[oStoneLarge, clRock], [oMetalLarge, clMetal]])
 		createObjectGroups(
 			new SimpleGroup([new SimpleObject(template, 1, 1, 0, 4)], true, tileClass),
 			0,

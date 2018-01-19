@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+var tPrimary = "desert_sand_dunes_100";
 var tCity = "desert_city_tile";
 var tCityPlaza = "desert_city_tile_plaza";
 var tFineSand = "desert_sand_smooth";
@@ -44,7 +45,7 @@ const heightPonds = -7;
 const heightSeaGround = -3;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 const mapSize = getMapSize();
 const mapCenter = getMapCenter();

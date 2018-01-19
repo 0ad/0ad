@@ -2,7 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("heightmap");
 
-InitMap(0, g_MapSettings.BaseTerrain);
+InitMap(0, "whiteness");
 
 /**
  * Drags a path to a target height smoothing it at the edges and return some points along the path.

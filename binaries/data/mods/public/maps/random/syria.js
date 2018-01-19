@@ -35,7 +35,7 @@ const heightLand = 1;
 const heightHill = 22;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tMainDirt);
 
 const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();

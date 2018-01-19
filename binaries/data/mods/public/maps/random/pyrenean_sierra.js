@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 TILE_CENTERED_HEIGHT_MAP = true;
 
+const tPrimary = "alpine_dirt_grass_50";
 const tGrassSpecific = ["new_alpine_grass_d","new_alpine_grass_d", "new_alpine_grass_e"];
 const tGrass = ["new_alpine_grass_d", "new_alpine_grass_b", "new_alpine_grass_e"];
 const tGrassMidRange = ["new_alpine_grass_b", "alpine_grass_a"];
@@ -62,7 +63,7 @@ const heightLand = -100;
 const heightOffsetHill = 7;
 const heightOffsetHillRandom = 2;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

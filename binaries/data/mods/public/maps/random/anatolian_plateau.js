@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = ["steppe_grass_a", "steppe_grass_c", "steppe_grass_d"];
 const tGrass = ["steppe_grass_a", "steppe_grass_b", "steppe_grass_c", "steppe_grass_d"];
 const tForestFloor = "steppe_grass_c";
 const tGrassA = "steppe_grass_b";
@@ -31,7 +32,7 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPoplar, tForestFloor];
 var heightLand = 1;
 var heightOffsetBump = 2;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 

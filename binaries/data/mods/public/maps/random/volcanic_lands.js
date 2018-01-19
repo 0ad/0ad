@@ -25,7 +25,7 @@ var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
 const heightLand = 1;
 const heightHill = 18;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, tGrassB);
 
 var numPlayers = getNumPlayers();
 var mapCenter = getMapCenter();

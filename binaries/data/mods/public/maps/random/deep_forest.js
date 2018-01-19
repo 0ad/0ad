@@ -5,6 +5,7 @@ var templateStoneMine = "gaia/geology_stonemine_temperate_quarry";
 var templateMetalMine = "gaia/geology_metal_temperate_slabs";
 var templateTemple = "other/unfinished_greek_temple";
 
+var terrainPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d", "temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"];
 var terrainWood = ['temp_grass_mossy|gaia/flora_tree_oak', 'temp_forestfloor_pine|gaia/flora_tree_pine', 'temp_mud_plants|gaia/flora_tree_dead',
 	'temp_plants_bog|gaia/flora_tree_oak_large', "temp_dirt_gravel_plants|gaia/flora_tree_aleppo_pine", 'temp_forestfloor_autumn|gaia/flora_tree_carob']; //'temp_forestfloor_autumn|gaia/flora_tree_fig'
 var terrainWoodBorder = ['temp_grass_plants|gaia/flora_tree_euro_beech', 'temp_grass_mossy|gaia/flora_tree_poplar', 'temp_grass_mossy|gaia/flora_tree_poplar_lombardy',
@@ -26,7 +27,7 @@ var heightPath = -2;
 var heightLand = 0;
 var heightOffsetRandomPath = 1;
 
-InitMap(heightLand, g_MapSettings.BaseTerrain);
+InitMap(heightLand, terrainPrimary);
 
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;

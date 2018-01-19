@@ -1,5 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
+const tPrimary = ["temp_forestfloor_pine", "temp_forestfloor_pine", "alpine_cliff_c", "alpine_grass_rocky"];
 const tGrass = ["new_alpine_grass_b", "new_alpine_grass_c", "new_alpine_grass_d"];
 const tPineForestFloor = "temp_forestfloor_pine";
 const tForestFloor = [tPineForestFloor, tPineForestFloor, "alpine_dirt_grass_50"];
@@ -52,7 +53,7 @@ const heightRavineHill = 40;
 const heightHill = 50;
 const heightOffsetRavine = 10;
 
-InitMap(heightHill, g_MapSettings.BaseTerrain);
+InitMap(heightHill, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
