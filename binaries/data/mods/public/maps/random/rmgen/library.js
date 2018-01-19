@@ -28,17 +28,17 @@ const g_CivData = deepfreeze(loadCivFiles(false));
 
 function fractionToTiles(f)
 {
-	return g_Map.size * f;
+	return g_MapSettings.Size * f;
 }
 
 function tilesToFraction(t)
 {
-	return t / g_Map.size;
+	return t / g_MapSettings.Size;
 }
 
 function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
 {
-	return min + (max - min) * (g_Map.size - minMapSize) / (maxMapSize - minMapSize);
+	return min + (max - min) * (g_MapSettings.Size - minMapSize) / (maxMapSize - minMapSize);
 }
 
 /**
