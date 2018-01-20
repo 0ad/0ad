@@ -168,12 +168,12 @@ RandomMap.prototype.getHeight = function(x, z)
 	return this.height[x][z];
 };
 
-RandomMap.prototype.setHeight = function(x, z, height)
+RandomMap.prototype.setHeight = function(position, height)
 {
-	if (!this.validH(x, z))
-		throw new Error("setHeight: invalid vertex position (" + x + ", " + z + ")");
+	if (!this.validH(position.x, position.y))
+		throw new Error("setHeight: invalid vertex position " + uneval(position));
 
-	this.height[x][z] = height;
+	this.height[position.x][position.y] = height;
 };
 
 /**

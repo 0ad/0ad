@@ -135,6 +135,8 @@ var noise5 = new Noise2D(scaleByMapSize(11, 44));
 for (var ix = 0; ix <= mapSize; ix++)
 	for (var iz = 0; iz <= mapSize; iz++)
 	{
+		let position = new Vector2D(ix, iz);
+
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
@@ -178,7 +180,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 			if (cliffNoise > 0)
 				h += 19 * Math.min(cliffNoise, 0.045) / 0.045;
 		}
-		setHeight(ix, iz, h);
+		g_Map.setHeight(position, h);
 	}
 Engine.SetProgress(20);
 

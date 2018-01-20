@@ -18,7 +18,7 @@ function setReliefmap(reliefmap)
 	// g_Map.height = reliefmap;
 	for (var x = 0; x <= mapSize; x++)
 		for (var y = 0; y <= mapSize; y++)
-			setHeight(x, y, reliefmap[x][y]);
+			g_Map.setHeight(new Vector2D(x, y), reliefmap[x][y]);
 }
 
 // Set target min and max height depending on map size to make average stepness the same on all map sizes

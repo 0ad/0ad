@@ -134,7 +134,7 @@ paintRiver({
 		    z > 0.5 && z < 0.6 ||
 		    z > 0.7 && z < 0.8))
 		{
-			setHeight(position.x, position.y, heightShallow);
+			g_Map.setHeight(position, heightShallow);
 			addToClass(position.x, position.y, clShallow);
 		}
 	}

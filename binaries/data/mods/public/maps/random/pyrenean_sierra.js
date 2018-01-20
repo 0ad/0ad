@@ -73,7 +73,6 @@ InitMap(heightInit, tGrass);
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapCenter = getMapCenter();
-const mapBounds = getMapBounds();
 
 var clDirt = createTileClass();
 var clRock = createTileClass();
@@ -144,10 +143,11 @@ for (var ix = 0; ix < mapSize; ix++)
 	baseHeights.push([]);
 	for (var iz = 0; iz < mapSize; iz++)
 	{
-		if (g_Map.inMapBounds(ix,iz))
+		let position = new Vector2D(ix, iz);
+		if (g_Map.inMapBounds(ix, iz))
 		{
 			let height = heightBase + randFloat(-1, 1) + scaleByMapSize(1, 3) * (Math.cos(ix / scaleByMapSize(5, 30)) + Math.sin(iz / scaleByMapSize(5, 30)));
-			setHeight(ix, iz, height);
+			g_Map.setHeight(position, height);
 			baseHeights[ix].push(height);
 		}
 		else
@@ -233,7 +233,7 @@ function createPyreneans()
 					new Vector2D(distance, 0).rotate(-startAngle - direction * Math.PI / 2)
 				]).round();
 
-				setHeight(pos.x, pos.y, baseHeights[pos.x][pos.y] + (heightMountain + peakHeight + randFloat(-9, 9)) * sigmoid(sigmoidX, peakPosition));
+				g_Map.setHeight(pos, baseHeights[pos.x][pos.y] + (heightMountain + peakHeight + randFloat(-9, 9)) * sigmoid(sigmoidX, peakPosition));
 			}
 		}
 	}
@@ -242,13 +242,15 @@ function createPyreneans()
 log("Smoothing pyreneans...");
 for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
+	{
+		let position = new Vector2D(ix, iz);
 		if (g_Map.validH(ix, iz) && checkIfInClass(ix, iz, clPyrenneans))
 		{
 			let height = getHeight(ix, iz);
 			let index = 1 / (1 + Math.max(0, height / 7));
-			setHeight(ix, iz, height * (1 - index) + getNeighborsHeight(ix, iz) * index);
+			g_Map.setHeight(position, height * (1 - index) + getNeighborsHeight(ix, iz) * index);
 		}
-
+	}
 Engine.SetProgress(48);
 
 log("Creating passages...");
@@ -276,12 +278,15 @@ Engine.SetProgress(50);
 log("Smoothing the mountains...");
 for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
+	{
+		let position = new Vector2D(ix, iz);
 		if (g_Map.inMapBounds(ix,iz) && checkIfInClass(ix, iz, clPyrenneans))
 		{
 			let heightNeighbor = getNeighborsHeight(ix, iz);
 			let index = 1 / (1 + Math.max(0, (getHeight(ix,iz) - 10) / 7));
-			setHeight(ix, iz, getHeight(ix, iz) * (1 - index) + heightNeighbor * index);
+			g_Map.setHeight(position, getHeight(ix, iz) * (1 - index) + heightNeighbor * index);
 		}
+	}
 
 log("Creating oceans...");
 for (let ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48), mapCenter)[0])
@@ -297,6 +302,7 @@ var smoothDist = 5;
 for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
+		let position = new Vector2D(ix, iz);
 		if (!g_Map.inMapBounds(ix, iz) || !getTileClass(clWater).countMembersInRadius(ix, iz, smoothDist))
 			continue;
 		let averageHeight = 0;
@@ -309,7 +315,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 					todivide += 1 / (Math.abs(xx) + Math.abs(yy));
 				}
 
-		setHeight(ix, iz, (averageHeight + 2 * getHeight(ix, iz)) / (todivide + 2));
+		g_Map.setHeight(position, (averageHeight + 2 * getHeight(ix, iz)) / (todivide + 2));
 	}
 Engine.SetProgress(55);
 

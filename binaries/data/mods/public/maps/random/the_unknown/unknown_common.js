@@ -296,7 +296,7 @@ function unknownCentralSea()
 				addToClass(position.x, position.y, clWater);
 		},
 		"landFunc": (position, shoreDist1, shoreDist2) => {
-			setHeight(position.x, position.y, 3.1);
+			g_Map.setHeight(position, 3.1);
 			addToClass(position.x, position.y, clLand);
 		}
 	});

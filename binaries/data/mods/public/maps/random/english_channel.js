@@ -106,7 +106,7 @@ paintRiver({
 		createTerrain(height < -1.5 ? tWater : tShore).place(position.x, position.y);
 	},
 	"landFunc": (position, shoreDist1, shoreDist2) => {
-		setHeight(position.x, position.y, heightLand + 0.1);
+		g_Map.setHeight(position, heightLand + 0.1);
 	}
 });
 

@@ -83,15 +83,17 @@ var noise0 = new Noise2D(20);
 for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
+		let position = new Vector2D(ix, iz);
 		var h = getHeight(ix,iz);
-		if(h > 40){
+		if (h > heightRavineHill)
+		{
 			addToClass(ix,iz,clHill);
 
 			// Add hill noise
 			var x = ix / (mapSize + 1.0);
 			var z = iz / (mapSize + 1.0);
-			var n = (noise0.get(x,z) - 0.5) * 40;
-			setHeight(ix, iz, h + n);
+			var n = (noise0.get(x, z) - 0.5) * heightRavineHill;
+			g_Map.setHeight(position, h + n);
 		}
 	}
 
@@ -193,7 +195,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 		new ClumpPlacer(size, 0.1, 0.2, 0.1),
 		[
 			new LayeredPainter([tCliff, tForestFloor], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, heightRavine, 2),
+			new SmoothElevationPainter(ELEVATION_SET, heightRavineValley, 2),
 			paintClass(clHill)
 		],
 		avoidClasses(clPlayer, 6, clBaseResource, 2, clHill, 5),
@@ -227,7 +229,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 			new ClumpPlacer(size * 0.3, 0.94, 0.05, 0.1),
 			[
 				new LayeredPainter([tCliff, tForestFloor], [2]),
-				new SmoothElevationPainter(ELEVATION_SET, hRavineValley, 2)
+				new SmoothElevationPainter(ELEVATION_SET, heightRavineValley, 2)
 			],
 			[avoidClasses(clHillDeco, 2), stayClasses(clHill, 0)],
 			ravine.length * 2,
@@ -238,7 +240,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 			new ClumpPlacer(size * 0.1, 0.3, 0.05, 0.1),
 			[
 				new LayeredPainter([tCliff, tForestFloor], [2]),
-				new SmoothElevationPainter(ELEVATION_SET, hRavineHill, 2),
+				new SmoothElevationPainter(ELEVATION_SET, heightRavineHill, 2),
 				paintClass(clHill)
 			],
 			[avoidClasses(clHillDeco, 2), borderClasses(clHill, 15, 1)],
@@ -285,11 +287,12 @@ for (var ix = 0; ix < mapSize; ix++)
 	var x = ix / (mapSize + 1.0);
 	for (var iz = 0; iz < mapSize; iz++)
 	{
+		let position = new Vector2D(ix, iz);
 		var z = iz / (mapSize + 1.0);
 		var h = getHeight(ix,iz);
 		var pn = playerNearness(x,z);
 		var n = (noise0.get(x,z) - 0.5) * 10;
-		setHeight(ix, iz, h + (n * pn));
+		g_Map.setHeight(position, h + (n * pn));
 	}
 }
 

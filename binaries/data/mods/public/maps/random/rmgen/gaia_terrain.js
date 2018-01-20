@@ -166,6 +166,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 
 	for (let [cx, cz, radius] of circles)
 	{
+		let circlePosition = new Vector2D(cx, cz);
 		let sx = Math.max(0, cx - radius);
 		let sz = Math.max(0, cz - radius);
 		let lx = Math.min(cx + radius, mapSize);
@@ -176,7 +177,8 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 		for (let ix = sx; ix <= lx; ++ix)
 			for (let iz = sz; iz <= lz; ++iz)
 			{
-				let distance = Math.euclidDistance2D(ix, iz, cx, cz);
+				let position = new Vector2D(ix, iz);
+				let distance = position.distanceTo(circlePosition);
 
 				let newHeight =
 					randIntInclusive(0, 2) +
@@ -186,9 +188,9 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 					continue;
 
 				if (getHeight(ix, iz) < newHeight)
-					setHeight(ix, iz, newHeight);
+					g_Map.setHeight(position, newHeight);
 				else if (getHeight(ix, iz) >= newHeight && getHeight(ix, iz) < newHeight + 4)
-					setHeight(ix, iz, newHeight + 4);
+					g_Map.setHeight(position, newHeight + 4);
 
 				if (terrain !== undefined)
 					createTerrain(terrain).place(ix, iz);
@@ -402,7 +404,7 @@ function paintRiver(args)
 					height += (args.heightLand - args.heightRiverbed) * (1 - shoreDist2 / args.fadeDist);
 
 				if (args.minHeight === undefined || height < args.minHeight)
-					setHeight(ix, iz, height);
+					g_Map.setHeight(vecPoint, height);
 
 				if (args.waterFunc)
 					args.waterFunc(vecPoint, height, riverFraction);
@@ -564,8 +566,7 @@ function createPassage(args)
 			let smoothDistance = args.smoothWidth + Math.abs(stepWidth) - halfPassageWidth;
 
 			g_Map.setHeight(
-				location.x,
-				location.y,
+				location,
 				smoothDistance > 0 ?
 					(getHeight(location.x, location.y) * smoothDistance + passageHeight / smoothDistance) / (smoothDistance + 1 / smoothDistance) :
 					passageHeight);
