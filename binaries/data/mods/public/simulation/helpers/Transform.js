@@ -218,16 +218,20 @@ function DeleteEntityAndReturn(ent, cmpPosition, position, angle, cmpNewPosition
 function TransferGarrisonedUnits(oldEnt, newEnt)
 {
 	// Transfer garrisoned units if possible, or unload them
-	var cmpOldGarrison = Engine.QueryInterface(oldEnt, IID_GarrisonHolder);
-	var cmpNewGarrison = Engine.QueryInterface(newEnt, IID_GarrisonHolder);
-	if (!cmpNewGarrison || !cmpOldGarrison || !cmpOldGarrison.GetEntities().length)
-		return;	// nothing to do as the code will by default unload all.
+	let cmpOldGarrison = Engine.QueryInterface(oldEnt, IID_GarrisonHolder);
+	if (!cmpOldGarrison || !cmpOldGarrison.GetEntities().length)
+		return;
 
-	var garrisonedEntities = cmpOldGarrison.GetEntities().slice();
-	for (let ent of garrisonedEntities)
+	let cmpNewGarrison = Engine.QueryInterface(newEnt, IID_GarrisonHolder);
+	let entities = cmpOldGarrison.GetEntities().slice();
+	for (let ent of entities)
 	{
-		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpOldGarrison.Eject(ent);
+		if (!cmpNewGarrison)
+			continue;
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (!cmpUnitAI)
+			continue;
 		cmpUnitAI.Autogarrison(newEnt);
 		cmpNewGarrison.Garrison(ent);
 	}
