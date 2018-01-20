@@ -360,15 +360,21 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"progress": cmpFoundation.GetBuildPercentage(),
 			"numBuilders": cmpFoundation.GetNumBuilders()
 		};
-		ret.buildRate = cmpFoundation.GetBuildRate();
-		ret.buildTime = cmpFoundation.GetBuildTime();
+		cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
+		if (cmpFoundation)
+		{
+			ret.buildRate = cmpFoundation.GetBuildRate();
+			ret.buildTime = cmpFoundation.GetBuildTime();
+		}
 	}
 
 	let cmpRepairable = QueryMiragedInterface(ent, IID_Repairable);
 	if (cmpRepairable)
 	{
 		ret.repairable = { "numBuilders": cmpRepairable.GetNumBuilders() };
-		ret.repairRate = cmpRepairable.GetRepairRate();
+		cmpRepairable = Engine.QueryInterface(ent, IID_Repairable);
+		if (cmpRepairable)
+			ret.repairRate = cmpRepairable.GetRepairRate();
 	}
 
 	let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);

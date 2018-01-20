@@ -84,6 +84,14 @@ Mirage.prototype.CopyFoundation = function(cmpFoundation)
 Mirage.prototype.GetBuildPercentage = function() { return this.buildPercentage; };
 Mirage.prototype.GetNumBuilders = function() { return this.numBuilders; };
 
+// Repairable data (numBuilders shared with foundation as entities can't have both)
+
+Mirage.prototype.CopyRepairable = function(cmpRepairable)
+{
+	this.miragedIids.add(IID_Repairable);
+	this.numBuilders = cmpRepairable.GetNumBuilders();
+};
+
 // Health data
 
 Mirage.prototype.CopyHealth = function(cmpHealth)

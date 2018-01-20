@@ -248,13 +248,13 @@ function displaySingle(entState)
 		});
 	}
 	// And for number of workers
-	else if (entState.foundation && entState.visibility == "visible")
+	else if (entState.foundation && entState.visibility != "hidden")
 	{
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
-		if (entState.foundation.numBuilders !== 0 && entState.buildTime)
+		if (entState.foundation.numBuilders !== 0 && entState.visibility == "visible" && entState.buildTime)
 			Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(
 				translatePlural(
 					"Number of builders.\nTasking another to this foundation would speed construction up by %(speedup)s second.",
@@ -266,7 +266,7 @@ function displaySingle(entState)
 		else
 			Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = translate("Number of builders.");
 	}
-	else if (entState.repairable && entState.repairable.numBuilders > 0 && entState.visibility == "visible")
+	else if (entState.repairable && entState.repairable.numBuilders > 0 && entState.visibility != "hidden")
 	{
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
