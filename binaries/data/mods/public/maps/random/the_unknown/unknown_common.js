@@ -487,21 +487,20 @@ function unknownEdgeSeas()
 		new MapBoundsPlacer(),
 		new ElevationPainter(heightLand));
 
-	let horizontal = randBool();
+	let startAngle = randomAngle();
 	if (!isNomad())
 	{
-		[playerIDs, playerPosition] = playerPlacementLine(horizontal, mapCenter, fractionToTiles(0.2));
+		playerIDs = sortAllPlayers();
+		playerPosition = playerPlacementLine(startAngle + Math.PI / 2, mapCenter, fractionToTiles(0.2));
 		// Don't place the shoreline inside the CC, but possibly into the players territory
 		markPlayerArea("small");
 	}
 
 	for (let side of pickRandom([[0], [Math.PI], [0, Math.PI]]))
-	{
-		let angle = side + (horizontal ? 0 : Math.PI / 2);
 		paintRiver({
 			"parallel": true,
-			"start": new Vector2D(mapBounds.left, mapBounds.top).rotateAround(angle, mapCenter),
-			"end": new Vector2D(mapBounds.left, mapBounds.bottom).rotateAround(angle, mapCenter),
+			"start": new Vector2D(mapBounds.left, mapBounds.top).rotateAround(side + startAngle, mapCenter),
+			"end": new Vector2D(mapBounds.left, mapBounds.bottom).rotateAround(side + startAngle, mapCenter),
 			"width": scaleByMapSize(80, randFloat(270, 320)),
 			"fadeDist": scaleByMapSize(2, 8),
 			"deviation": 0,
@@ -510,7 +509,6 @@ function unknownEdgeSeas()
 			"meanderShort": 20,
 			"meanderLong": 0
 		});
-	}
 
 	createExtensionsOrIslands();
 	paintTileClassBasedOnHeight(0, heightCliff, 1, clLand);

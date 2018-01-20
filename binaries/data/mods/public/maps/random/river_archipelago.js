@@ -47,6 +47,7 @@ InitMap(heightSeaGround, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
+const mapBounds = getMapBounds();
 
 var clPlayer = createTileClass();
 var clPlayerTerritory = createTileClass();
@@ -61,6 +62,7 @@ var clBaseResource = createTileClass();
 var clGaia = createTileClass();
 var clStrip = [];
 
+var startAngle = randomAngle();
 var connectPlayers = randBool();
 
 // Map layout
@@ -82,26 +84,32 @@ for (let i = 0; i < stripWidths.length; ++i)
 
 	let isPlayerStrip = i == 2 || i == 3;
 	for (let j = 0; j < scaleByMapSize(20, 100); ++j)
+	{
+		let position = new Vector2D(
+			randFloat(mapBounds.bottom, mapBounds.top),
+			fractionToTiles(randFloat(...stripWidths[i]))).rotateAround(startAngle, mapCenter).round();
+
 		createArea(
 			new ChainPlacer(
 				1,
 				Math.floor(scaleByMapSize(3, connectPlayers && isPlayerStrip ? 8 : 7)),
 				Math.floor(scaleByMapSize(30, 60)),
 				1,
-				Math.floor(fractionToTiles(randFloat(...stripWidths[i]))),
-				Math.floor(fractionToTiles(randFloat(0, 1)))),
+				position.x,
+				position.y),
 			[
 				new LayeredPainter([tGrass, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 				paintClass(clStrip[i])
 			]);
+	}
 }
 Engine.SetProgress(20);
 
-var [playerIDs, playerPosition] = playerPlacementLine(false, mapCenter, fractionToTiles(1 - stripWidthsLeft[2][0] - stripWidthsLeft[2][1]));
+var playerPosition = playerPlacementLine(startAngle, mapCenter, fractionToTiles(1 - stripWidthsLeft[2][0] - stripWidthsLeft[2][1]));
 
 // Either left vs right or top vs bottom
-playerIDs = randBool() ? sortAllPlayers() : primeSortAllPlayers();
+var playerIDs = randBool() ? sortAllPlayers() : primeSortAllPlayers();
 
 log("Ensuring player territory...");
 var playerRadius = scaleByMapSize(12, 20);

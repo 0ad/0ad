@@ -567,9 +567,8 @@ function playerPlacementRiver(angle, width, center = undefined)
 /***
  * Returns starting positions located on two parallel lines.
  * The locations on the first line are shifted in comparison to the other line.
- * The players are grouped per team and hence they can be found on both lines.
  */
-function playerPlacementLine(horizontal, center, width)
+function playerPlacementLine(angle, center, width)
 {
 	let playerPosition = [];
 	let numPlayers = getNumPlayers();
@@ -579,9 +578,11 @@ function playerPlacementLine(horizontal, center, width)
 			center,
 			new Vector2D(
 				fractionToTiles((i + 1) / (numPlayers + 1) - 0.5),
-				width * (i % 2 - 1/2))).rotateAround(horizontal ? 0 : Math.PI / 2, center).round();
+				width * (i % 2 - 1/2)
+			).rotate(angle)
+		).round();
 
-	return [sortAllPlayers(), playerPosition];
+	return playerPosition;
 }
 
 /**

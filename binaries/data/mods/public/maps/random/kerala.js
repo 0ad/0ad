@@ -54,10 +54,16 @@ var clBaseResource = createTileClass();
 var clMountains = createTileClass();
 
 var waterPosition = fractionToTiles(0.31);
+var playerPosition = fractionToTiles(0.55);
 var mountainPosition = fractionToTiles(0.69);
 
+var startAngle = randomAngle();
+
 placePlayerBases({
-	"PlayerPlacement": playerPlacementLine(false, new Vector2D(fractionToTiles(0.55), mapCenter.y), fractionToTiles(0.2)),
+	"PlayerPlacement": [
+		sortAllPlayers(),
+		playerPlacementLine(0, new Vector2D(mapCenter.x, playerPosition), fractionToTiles(0.2)).map(pos => pos.rotateAround(startAngle, mapCenter))
+	],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -89,8 +95,8 @@ Engine.SetProgress(15);
 
 paintRiver({
 	"parallel": true,
-	"start": new Vector2D(mapBounds.left, mapBounds.top),
-	"end": new Vector2D(mapBounds.left, mapBounds.bottom),
+	"start": new Vector2D(mapBounds.left, mapBounds.top).rotateAround(startAngle - Math.PI / 2, mapCenter),
+	"end": new Vector2D(mapBounds.left, mapBounds.bottom).rotateAround(startAngle - Math.PI / 2, mapCenter),
 	"width": 2 * waterPosition,
 	"fadeDist": 8,
 	"deviation": 0,
@@ -98,30 +104,27 @@ paintRiver({
 	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0,
+	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+		if (waterPosition + shoreDist1 > mountainPosition)
+			addToClass(ix, iz, clMountains);
+	},
 	"waterFunc": (ix, iz, height, riverFraction) => {
 		addToClass(ix, iz, clWater);
 	}
 });
 
-createArea(
-	new RectPlacer(mountainPosition, mapBounds.top, mapBounds.right, mapBounds.bottom),
-	paintClass(clMountains));
-
 log("Creating shores...");
 for (let i = 0; i < scaleByMapSize(20, 120); ++i)
+{
+	let position = new Vector2D(fractionToTiles(randFloat(0.28, 0.34)), fractionToTiles(randFloat(0.1, 0.9))).rotateAround(startAngle - Math.PI / 2, mapCenter).round();
 	createArea(
-		new ChainPlacer(
-			1,
-			Math.floor(scaleByMapSize(4, 6)),
-			Math.floor(scaleByMapSize(16, 30)),
-			1,
-			Math.floor(fractionToTiles(randFloat(0.28, 0.34))),
-			Math.floor(fractionToTiles(randFloat(0.1, 0.9)))),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 30)), 1, position.x, position.y),
 		[
 			new LayeredPainter([tGrass, tGrass], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 			unPaintClass(clWater)
 		]);
+}
 
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2.8, 1, tShoreBlend);

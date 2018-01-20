@@ -49,8 +49,14 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
+var startAngle = randomAngle();
+
 placePlayerBases({
-	"PlayerPlacement": playerPlacementLine(true, new Vector2D(fractionToTiles(0.45), mapCenter.y), fractionToTiles(0.2)),
+	"PlayerPlacement": [
+		sortAllPlayers(),
+		playerPlacementLine(0, new Vector2D(mapCenter.x, fractionToTiles(0.45)), fractionToTiles(0.2)).map(
+			pos => pos.rotateAround(startAngle, mapCenter))
+	],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -74,8 +80,8 @@ Engine.SetProgress(15);
 
 paintRiver({
 	"parallel": true,
-	"start": new Vector2D(mapBounds.left, mapBounds.top),
-	"end": new Vector2D(mapBounds.right, mapBounds.top),
+	"start": new Vector2D(mapBounds.left, mapBounds.top).rotateAround(startAngle, mapCenter),
+	"end": new Vector2D(mapBounds.right, mapBounds.top).rotateAround(startAngle, mapCenter),
 	"width": 2 * fractionToTiles(0.31),
 	"fadeDist": 8,
 	"deviation": 0,
@@ -89,19 +95,16 @@ paintTileClassBasedOnHeight(-Infinity, 0.5, Elevation_ExcludeMin_ExcludeMax, clW
 
 log("Creating shores...");
 for (let i = 0; i < scaleByMapSize(20, 120); ++i)
+{
+	let position = new Vector2D(fractionToTiles(randFloat(0.1, 0.9)), fractionToTiles(randFloat(0.67, 0.74))).rotateAround(startAngle, mapCenter).round();
 	createArea(
-		new ChainPlacer(
-			1,
-			Math.floor(scaleByMapSize(4, 6)),
-			Math.floor(scaleByMapSize(16, 30)),
-			1,
-			Math.floor(fractionToTiles(randFloat(0.1, 0.9))),
-			Math.floor(fractionToTiles(randFloat(0.67, 0.74)))),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 30)), 1, position.x, position.y),
 		[
 			new LayeredPainter([tSnowA, tSnowA], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 			unPaintClass(clWater)
 		]);
+}
 
 log("Creating islands...");
 createAreas(
