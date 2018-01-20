@@ -2,11 +2,16 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/props/peytral_base.xml" name="horse-armor-peytral-iron-archer">
+    <variant frequency="1" name="base">
       <animations>
         <animation file="other/horse_peytral_idle.dae" name="attack_ranged" speed="60"/>
       </animations>
     </variant>
+  </group>
+  <group>
+    <variant file="quadraped/props/peytral_base.xml" name="horse-armor-peytral-bronze-archer"/>
+    <variant file="quadraped/props/peytral_base_01.xml" name="horse-armor-peytral-bronze-archer-01"/>
+    <variant file="quadraped/props/peytral_base_02.xml" name="horse-armor-peytral-bronze-archer-02"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>
