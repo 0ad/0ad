@@ -125,17 +125,17 @@ paintRiver({
 	"heightLand": heightShore,
 	"meanderShort": 12,
 	"meanderLong": 0,
-	"waterFunc": (ix, iz, height, z) => {
-		addToClass(ix, iz, clRiver);
-		createTerrain(tWater).place(ix, iz);
+	"waterFunc": (position, height, z) => {
+		addToClass(position.x, position.y, clRiver);
+		createTerrain(tWater).place(position.x, position.y);
 
 		if (height < heightShallow && (
 		    z > 0.3 && z < 0.4 ||
 		    z > 0.5 && z < 0.6 ||
 		    z > 0.7 && z < 0.8))
 		{
-			setHeight(ix, iz, heightShallow);
-			addToClass(ix, iz, clShallow);
+			setHeight(position.x, position.y, heightShallow);
+			addToClass(position.x, position.y, clShallow);
 		}
 	}
 });

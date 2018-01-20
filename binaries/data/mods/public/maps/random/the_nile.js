@@ -143,10 +143,10 @@ paintRiver({
 	"heightLand": heightShore,
 	"meanderShort": 12,
 	"meanderLong": 50,
-	"waterFunc": (ix, iz, height, riverFraction) => {
+	"waterFunc": (position, height, riverFraction) => {
 
-		addToClass(ix, iz, clWater);
-		createTerrain(tShore).place(ix, iz);
+		addToClass(position.x, position.y, clWater);
+		createTerrain(tShore).place(position.x, position.y);
 
 		// Place river bushes
 		if (height <= -0.2 || height >= 0.1)
@@ -155,20 +155,20 @@ paintRiver({
 		if (plantID % plantFrequency == 0)
 		{
 			plantID = 0;
-			placeObject(ix, iz, aPlants, 0, randomAngle());
+			placeObject(position.x, position.y, aPlants, 0, randomAngle());
 		}
 		++plantID;
 	},
-	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+	"landFunc": (position, shoreDist1, shoreDist2) => {
 
 		for (let riv of riverTextures)
 			if (riv.left < +shoreDist1 && +shoreDist1 < riv.right ||
 			    riv.left < -shoreDist2 && -shoreDist2 < riv.right)
 			{
-				addToClass(ix, iz, riv.tileClass);
+				addToClass(position.x, position.y, riv.tileClass);
 
 				if (riv.terrain)
-					createTerrain(riv.terrain).place(ix, iz);
+					createTerrain(riv.terrain).place(position.x, position.y);
 			}
 	}
 });

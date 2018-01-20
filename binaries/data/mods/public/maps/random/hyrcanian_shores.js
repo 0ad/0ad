@@ -107,17 +107,17 @@ paintRiver({
 	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0,
-	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+	"landFunc": (position, shoreDist1, shoreDist2) => {
 
 		if (waterPosition + shoreDist1 > highlandsPosition)
-			addToClass(ix, iz, clHighlands);
+			addToClass(position.x, position.y, clHighlands);
 	},
-	"waterFunc": (ix, iz, height, riverFraction) => {
+	"waterFunc": (position, height, riverFraction) => {
 
 		if (height < heightShore2)
-			addToClass(ix, iz, clWater);
+			addToClass(position.x, position.y, clWater);
 
-		createTerrain(height < heightShore1 ? tWater : tShore).place(ix, iz);
+		createTerrain(height < heightShore1 ? tWater : tShore).place(position.x, position.y);
 	}
 });
 Engine.SetProgress(20);

@@ -367,18 +367,19 @@ paintRiver({
 	"heightLand": heightLand,
 	"meanderShort": 30,
 	"meanderLong": 0,
-	"waterFunc": (ix, iz, height, riverFraction) => {
+	"waterFunc": (position, height, riverFraction) => {
 		// Distinguish left and right shoreline
-		if (0 < height && height < 1 && iz > ShorelineDistance && iz < mapSize - ShorelineDistance)
-			addToClass(ix, iz, clShore[ix < mapCenter.x ? 0 : 1]);
+		if (0 < height && height < 1 &&
+		    position.y > ShorelineDistance && position.y < mapSize - ShorelineDistance)
+			addToClass(position.x, position.y, clShore[position.x < mapCenter.x ? 0 : 1]);
 	},
-	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+	"landFunc": (position, shoreDist1, shoreDist2) => {
 
 		if (shoreDist1 > 0)
-			addToClass(ix, iz, clLand[0]);
+			addToClass(position.x, position.y, clLand[0]);
 
 		if (shoreDist2 < 0)
-			addToClass(ix, iz, clLand[1]);
+			addToClass(position.x, position.y, clLand[1]);
 	}
 });
 Engine.SetProgress(30);

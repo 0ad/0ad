@@ -291,13 +291,13 @@ function unknownCentralSea()
 		"heightLand": heightLand,
 		"meanderShort": 20,
 		"meanderLong": 0,
-		"waterFunc": (ix, iz, height, riverFraction) => {
+		"waterFunc": (position, height, riverFraction) => {
 			if (height < 0)
-				addToClass(ix, iz, clWater);
+				addToClass(position.x, position.y, clWater);
 		},
-		"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
-			setHeight(ix, iz, 3.1);
-			addToClass(ix, iz, clLand);
+		"landFunc": (position, shoreDist1, shoreDist2) => {
+			setHeight(position.x, position.y, 3.1);
+			addToClass(position.x, position.y, clLand);
 		}
 	});
 

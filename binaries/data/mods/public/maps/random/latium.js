@@ -114,8 +114,8 @@ for (let x of [mapBounds.left, mapBounds.right])
 		"heightLand": heightLand,
 		"meanderShort": 0,
 		"meanderLong": 0,
-		"waterFunc": (ix, iz, height, z) => {
-			addToClass(ix, iz, clWater);
+		"waterFunc": (position, height, z) => {
+			addToClass(position.x, position.y, clWater);
 		}
 	});
 Engine.SetProgress(10);

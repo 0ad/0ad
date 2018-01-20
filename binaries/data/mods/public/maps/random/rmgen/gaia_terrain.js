@@ -405,10 +405,10 @@ function paintRiver(args)
 					setHeight(ix, iz, height);
 
 				if (args.waterFunc)
-					args.waterFunc(ix, iz, height, riverFraction);
+					args.waterFunc(vecPoint, height, riverFraction);
 			}
 			else if (args.landFunc)
-				args.landFunc(ix, iz, shoreDist1, shoreDist2);
+				args.landFunc(vecPoint, shoreDist1, shoreDist2);
 		}
 }
 

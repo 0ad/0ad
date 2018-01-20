@@ -104,12 +104,12 @@ paintRiver({
 	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0,
-	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+	"landFunc": (position, shoreDist1, shoreDist2) => {
 		if (waterPosition + shoreDist1 > mountainPosition)
-			addToClass(ix, iz, clMountains);
+			addToClass(position.x, position.y, clMountains);
 	},
-	"waterFunc": (ix, iz, height, riverFraction) => {
-		addToClass(ix, iz, clWater);
+	"waterFunc": (position, height, riverFraction) => {
+		addToClass(position.x, position.y, clWater);
 	}
 });
 
