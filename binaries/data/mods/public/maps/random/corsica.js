@@ -280,6 +280,7 @@ for (let mapX = 0; mapX < mapSize; ++mapX)
 
 function getCosricaSardiniaTerrain(mapX, mapZ)
 {
+	let position = new Vector2D(mapX, mapZ);
 	let isWater = getTileClass(clWater).countMembersInRadius(mapX, mapZ, 3);
 	let isShore = getTileClass(clShore).countMembersInRadius(mapX, mapZ, 2);
 	let isPassage = getTileClass(clPassage).countMembersInRadius(mapX, mapZ, 2);
@@ -289,7 +290,7 @@ function getCosricaSardiniaTerrain(mapX, mapZ)
 		return undefined;
 
 	let height = getHeight(mapX, mapZ);
-	let heightDiff = getHeightDiff(mapX, mapZ);
+	let slope = g_Map.getSlope(position);
 
 	if (height >= 0.5 && height < 1.5 && isShore)
 		return tSandTransition;
@@ -300,19 +301,19 @@ function getCosricaSardiniaTerrain(mapX, mapZ)
 		if (isPassage)
 			return tGrass;
 
-		if (heightDiff >= 10)
+		if (slope >= 1.25)
 			return height > 25 ? tSteepCliffs : tCliffs;
 
 		if (height < 17)
 			return tGrass;
 
-		if (heightDiff < 5)
+		if (slope < 0.625)
 			return tHill;
 
 		return tMountain;
 	}
 
-	if (heightDiff >= 9)
+	if (slope >= 1.125)
 		return tCliffs;
 
 	if (height >= 1.5)
@@ -327,7 +328,7 @@ function getCosricaSardiniaTerrain(mapX, mapZ)
 	if (height >= -6)
 		return tCreekWater;
 
-	if (height > -10 && heightDiff < 6)
+	if (height > -10 && slope < 0.75)
 		return tDeepWater;
 
 	return undefined;
@@ -515,27 +516,3 @@ setWaterWaviness(2.0);
 setWaterType("ocean");
 
 ExportMap();
-
-// no need for preliminary rounding
-function getHeightDiff(x1, z1)
-{
-	var height = getHeight(Math.round(x1),Math.round(z1));
-	var diff = 0;
-	if (z1 + 1 < mapSize)
-		diff += Math.abs(getHeight(Math.round(x1),Math.round(z1+1)) - height);
-	if (x1 + 1 < mapSize && z1 + 1 < mapSize)
-		diff += Math.abs(getHeight(Math.round(x1+1),Math.round(z1+1)) - height);
-	if (x1 + 1 < mapSize)
-		diff += Math.abs(getHeight(Math.round(x1+1),Math.round(z1)) - height);
-	if (x1 + 1 < mapSize && z1 - 1 >= 0)
-		diff += Math.abs(getHeight(Math.round(x1+1),Math.round(z1-1)) - height);
-	if (z1 - 1 >= 0)
-		diff += Math.abs(getHeight(Math.round(x1),Math.round(z1-1)) - height);
-	if (x1 - 1 >= 0 && z1 - 1 >= 0)
-		diff += Math.abs(getHeight(Math.round(x1-1),Math.round(z1-1)) - height);
-	if (x1 - 1 >= 0)
-		diff += Math.abs(getHeight(Math.round(x1-1),Math.round(z1)) - height);
-	if (x1 - 1 >= 0 && z1 + 1 < mapSize)
-		diff += Math.abs(getHeight(Math.round(x1-1),Math.round(z1+1)) - height);
-	return diff;
-}

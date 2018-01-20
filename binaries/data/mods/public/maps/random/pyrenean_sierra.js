@@ -248,7 +248,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 		{
 			let height = getHeight(ix, iz);
 			let index = 1 / (1 + Math.max(0, height / 7));
-			g_Map.setHeight(position, height * (1 - index) + getNeighborsHeight(ix, iz) * index);
+			g_Map.setHeight(position, height * (1 - index) + g_Map.getAverageHeight(position) * index);
 		}
 	}
 Engine.SetProgress(48);
@@ -282,7 +282,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 		let position = new Vector2D(ix, iz);
 		if (g_Map.inMapBounds(ix,iz) && checkIfInClass(ix, iz, clPyrenneans))
 		{
-			let heightNeighbor = getNeighborsHeight(ix, iz);
+			let heightNeighbor = g_Map.getAverageHeight(position);
 			let index = 1 / (1 + Math.max(0, (getHeight(ix,iz) - 10) / 7));
 			g_Map.setHeight(position, getHeight(ix, iz) * (1 - index) + heightNeighbor * index);
 		}
@@ -354,8 +354,9 @@ log("Painting the map...");
 for (let x = 0; x < mapSize; ++x)
 	for (let z = 0; z < mapSize; ++z)
 	{
+		let position = new Vector2D(x, z);
 		let height = getHeight(x, z);
-		let heightDiff = getHeightDifference(x, z);
+		let heightDiff = g_Map.getSlope(position);
 
 		if (getTileClass(clPyrenneans).countMembersInRadius(x, z, 2))
 		{
@@ -478,44 +479,3 @@ setWaterMurkiness(0.83);
 setWaterHeight(heightWaterLevel);
 
 ExportMap();
-
-function getNeighborsHeight(x1, z1)
-{
-	var toCheck = [ [-1,-1], [-1,0], [-1,1], [0,1], [1,1], [1,0], [1,-1], [0,-1] ];
-	var height = 0;
-	for (var i in toCheck) {
-		var xx = x1 + toCheck[i][0];
-		var zz = z1 + toCheck[i][1];
-		height += getHeight(Math.round(xx), Math.round(zz));
-	}
-	height /= 8;
-	return height;
-}
-
-// no need for preliminary rounding
-function getHeightDifference(x1, z1)
-{
-	x1 = Math.round(x1);
-	z1 = Math.round(z1);
-	var height = getHeight(x1,z1);
-
-	if (!g_Map.inMapBounds(x1,z1))
-		return 0;
-	// I wanna store the height difference with any neighbor
-
-	var toCheck = [ [-1,-1], [-1,0], [-1,1], [0,1], [1,1], [1,0], [1,-1], [0,-1] ];
-
-	var diff = 0;
-	var todiv = 0;
-	for (var i in toCheck) {
-		var xx = Math.round(x1 + toCheck[i][0]);
-		var zz = Math.round(z1 + toCheck[i][1]);
-		if (g_Map.inMapBounds(xx,zz)) {
-			diff += Math.abs(getHeight(xx,zz) - height);
-			todiv++;
-		}
-	}
-	if (todiv > 0)
-		diff /= todiv;
-	return diff;
-}

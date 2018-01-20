@@ -264,6 +264,46 @@ RandomMap.prototype.cornerHeight = function(x, z)
 	return sumHeight / count;
 };
 
+RandomMap.prototype.getAdjacentPoints = function(position)
+{
+	let adjacentPositions = [];
+
+	for (let x = -1; x <= 1; ++x)
+		for (let z = -1; z <= 1; ++z)
+			if (x || z )
+			{
+				let adjacentPos = Vector2D.add(position, new Vector2D(x, z)).round();
+				if (this.inMapBounds(adjacentPos.x, adjacentPos.y))
+					adjacentPositions.push(adjacentPos);
+			}
+
+	return adjacentPositions;
+}
+
+/**
+ * Returns the average height of adjacent tiles, helpful for smoothing.
+ */
+RandomMap.prototype.getAverageHeight = function(position)
+{
+	let adjacentPositions = this.getAdjacentPoints(position);
+	if (!adjacentPositions.length)
+		return 0;
+
+	return adjacentPositions.reduce((totalHeight, pos) => totalHeight + this.getHeight(pos.x, pos.y), 0) / adjacentPositions.length;
+}
+
+/**
+ * Returns the steepness of the given location, defined as the average height difference of the adjacent tiles.
+ */
+RandomMap.prototype.getSlope = function(position)
+{
+	let adjacentPositions = this.getAdjacentPoints(position);
+	if (!adjacentPositions.length)
+		return 0;
+
+	return adjacentPositions.reduce((totalSlope, adjacentPos) => totalSlope + Math.abs(this.getHeight(adjacentPos.x, adjacentPos.y) - this.getHeight(position.x, position.y)), 0) / adjacentPositions.length;
+}
+
 /**
  * Retrieve an array of all Entities placed on the map.
  */

@@ -103,10 +103,11 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 		for (var p = 0; p < points.length; ++p)
 		{
 			var pt = points[p];
+			var position = new Vector2D(pt.x, pt.z);
 			var dist = Math.abs(distanceOfPointFromLine(
 				new Vector2D(baseLine.x1, baseLine.z1),
 				new Vector2D(baseLine.x2, baseLine.z2),
-				new Vector2D(pt.x, pt.z)));
+				position));
 
 			var curHeight = g_Map.getHeight(pt.x, pt.z);
 			var newHeight = curHeight - curHeight * (dist / slopeLength) - 2;
@@ -116,7 +117,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 			if (newHeight <= endLine.height + 2 && g_Map.validT(pt.x, pt.z) && g_Map.getTexture(pt.x, pt.z).indexOf('cliff') > -1)
 				ground.place(pt.x, pt.z);
 
-			g_Map.setHeight(pt, newHeight);
+			g_Map.setHeight(position, newHeight);
 		}
 
 		// Smooth out the ground around the bluff
@@ -1044,7 +1045,7 @@ function fadeToGround(bb, minX, minZ, elevation)
 			if (!pt.isFeature && nextToFeature(bb, x, z))
 			{
 				let position = new Vector2D(x + minX, z + minZ);
-				g_Map.setHeight(position, smoothElevation(position.x, position.y));
+				g_Map.setHeight(position, g_Map.getAverageHeight(position));
 				ground.place(position.x, position.y);
 			}
 		}
@@ -1154,29 +1155,6 @@ function findCorners(points)
 		"maxX": maxX,
 		"maxZ": maxZ
 	};
-}
-
-/**
- * Finds the average elevation around a point.
- */
-function smoothElevation(x, z)
-{
-	var min = g_Map.getHeight(x, z);
-
-	for (var xOffset = -1; xOffset <= 1; ++xOffset)
-		for (var zOffset = -1; zOffset <= 1; ++zOffset)
-		{
-			var thisX = x + xOffset;
-			var thisZ = z + zOffset;
-			if (!g_Map.validH(thisX, thisZ))
-				continue;
-
-			var height = g_Map.getHeight(thisX, thisZ);
-			if (height < min)
-				min = height;
-		}
-
-	return min;
 }
 
 /**
