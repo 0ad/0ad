@@ -59,15 +59,17 @@ var clRiver = createTileClass();
 var clShallow = createTileClass();
 
 log("Create the continent body");
-var continentCenter = new Vector2D(fractionToTiles(0.5), fractionToTiles(0.7)).round();
+var startAngle = randomAngle();
+var continentCenter = new Vector2D(fractionToTiles(0.5), fractionToTiles(0.7));
+var continentCenterR = continentCenter.clone().rotateAround(startAngle, mapCenter).round()
 createArea(
 	new ChainPlacer(
 		2,
 		Math.floor(scaleByMapSize(5, 12)),
 		Math.floor(scaleByMapSize(60, 700)),
 		1,
-		continentCenter.x,
-		continentCenter.y,
+		continentCenterR.x,
+		continentCenterR.y,
 		0,
 		[Math.floor(fractionToTiles(0.49))]),
 	[
@@ -76,11 +78,13 @@ createArea(
 		paintClass(clLand)
 	]);
 
+var playerPosition = playerPlacementCustomAngle(
+	fractionToTiles(0.35),
+	continentCenter,
+	i => Math.PI * (-0.46 / numPlayers * (i + i % 2) - (i % 2) / 2))[0].map(pos => pos.rotateAround(startAngle, mapCenter));
+
 placePlayerBases({
-	"PlayerPlacement": [primeSortAllPlayers(), ...playerPlacementCustomAngle(
-			fractionToTiles(0.35),
-			continentCenter,
-			i => Math.PI * (-0.46 / numPlayers * (i + i % 2) - (i % 2) / 2))],
+	"PlayerPlacement": [primeSortAllPlayers(), playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,
@@ -112,8 +116,8 @@ Engine.SetProgress(20);
 paintRiver({
 	"parallel": true,
 	"constraint": stayClasses(clLand, 0),
-	"start": new Vector2D(mapCenter.x, mapBounds.top),
-	"end": new Vector2D(mapCenter.x, mapBounds.bottom),
+	"start": new Vector2D(mapCenter.x, mapBounds.top).rotateAround(startAngle, mapCenter),
+	"end": new Vector2D(mapCenter.x, mapBounds.bottom).rotateAround(startAngle, mapCenter),
 	"width": fractionToTiles(0.07),
 	"fadeDist": scaleByMapSize(3, 12),
 	"deviation": 1,
