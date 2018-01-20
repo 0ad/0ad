@@ -26,6 +26,26 @@ const BUILDING_ORIENTATION = -1/4 * Math.PI;
 
 const g_CivData = deepfreeze(loadCivFiles(false));
 
+/**
+ * Sets whether setHeight operates on the center of a tile or on the vertices.
+ */
+var TILE_CENTERED_HEIGHT_MAP = false;
+
+/**
+ * Main RandomMap object.
+ */
+var g_Map;
+
+function InitMap(baseHeight, baseTerrain)
+{
+	g_Map = new RandomMap(baseHeight, baseTerrain);
+}
+
+function ExportMap()
+{
+	g_Map.ExportMap();
+}
+
 function fractionToTiles(f)
 {
 	return g_MapSettings.Size * f;

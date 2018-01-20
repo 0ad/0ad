@@ -14,7 +14,7 @@ var g_Environment = {
 			"Type": "ocean", // Subdirectory name of art/textures/animated/water
 			"Color": { "r": 0.3, "g": 0.35, "b": 0.7, "a": 0 },
 			"Tint": { "r": 0.28, "g": 0.3, "b": 0.59, "a": 0 },
-			"Height": 5, // TODO: The true default is 19.9, see ExportMap() in mapgen.js and  SEA_LEVEL in library.js
+			"Height": undefined, // TODO: default shouldn't be set in ExportMap
 			"Waviness": 8, // typically from 0 to 10
 			"Murkiness": 0.45, // 0 to 1, amount of tint to blend in with the refracted color
 			"WindAngle": 0.0 // 0 to 2pi, direction of waves
@@ -32,6 +32,15 @@ var g_Environment = {
 		"Bloom": 0.2,
 		"PostprocEffect": "default" // "default", "hdr" or "DOF"
 	}
+};
+
+/**
+ * Camera location in case there are no player entities.
+ */
+var g_Camera = {
+	"Position": { "x": 256, "y": 150, "z": 256 },
+	"Rotation": 0,
+	"Declination": 0.523599
 };
 
 ////////////////////////////////////////////////////////////////////////////
@@ -85,7 +94,6 @@ function setWaterTint(r, g, b)
 function setWaterHeight(h)
 {
 	g_Environment.Water.WaterBody.Height = h;
-	WATER_LEVEL_CHANGED = true;
 }
 
 function setWaterWaviness(w)
