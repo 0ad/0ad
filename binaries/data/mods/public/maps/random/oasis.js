@@ -193,7 +193,7 @@ if (mapSize > 150 && randBool())
 		new PathPlacer(points[0].x, points[0].y, points[1].x, points[1].y, pathWidth, 0.4, 1, 0.2, 0),
 		[
 			new TerrainPainter(tSand),
-			new SmoothElevationPainter(ELEVATION_SET, hOasisPath, 5),
+			new SmoothElevationPainter(ELEVATION_SET, heightOasisPath, 5),
 			paintClass(clPassage)
 		]);
 }
