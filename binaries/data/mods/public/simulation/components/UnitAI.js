@@ -4146,32 +4146,55 @@ UnitAI.prototype.FindNearbyResource = function(filter, target)
  */
 UnitAI.prototype.FindNearestDropsite = function(genericType)
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
 		return undefined;
 
-	// Find dropsites owned by this unit's player or allied ones if allowed
-	var owner = cmpOwnership.GetOwner();
-	var players = [owner];
-	var cmpPlayer = QueryOwnerInterface(this.entity);
-	if (cmpPlayer && cmpPlayer.HasSharedDropsites())
-		players = cmpPlayer.GetMutualAllies();
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position)
+	if (!cmpPosition)
+		return undefined;
 
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
+	let pos = cmpPosition.GetPosition2D();
+	let bestDropsite;
+	let bestDist = Infinity;
+	// Maximum distance a point on an obstruction can be from the center of the obstruction.
+	let maxDifference = 40;
 
-	// Ships are unable to reach land dropsites and shouldn't attempt to do so.
-	var excludeLand = Engine.QueryInterface(this.entity, IID_Identity).HasClass("Ship");
-	if (excludeLand)
-		nearby = nearby.filter(e => Engine.QueryInterface(e, IID_Identity).HasClass("Naval"));
+	// Find dropsites owned by this unit's player or allied ones if allowed.
+	let owner = cmpOwnership.GetOwner();
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	let players = cmpPlayer && cmpPlayer.HasSharedDropsites() ? cmpPlayer.GetMutualAllies() : [owner];
+	let nearbyDropsites = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
 
-	return nearby.find(ent => {
-		let cmpResourceDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
+	let isShip = Engine.QueryInterface(this.entity, IID_Identity).HasClass("Ship");
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	for (let dropsite of nearbyDropsites)
+	{
+		// Ships are unable to reach land dropsites and shouldn't attempt to do so.
+		if (isShip && !Engine.QueryInterface(dropsite, IID_Identity).HasClass("Naval"))
+			continue;
+
+		let cmpResourceDropsite = Engine.QueryInterface(dropsite, IID_ResourceDropsite);
 		if (!cmpResourceDropsite.AcceptsType(genericType))
-			return false;
-		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-		return cmpOwnership.GetOwner() == owner || cmpResourceDropsite.IsShared();
-	});
+			continue;
+		if (Engine.QueryInterface(dropsite, IID_Ownership).GetOwner() != owner && !cmpResourceDropsite.IsShared())
+			continue;
+
+		// The range manager sorts entities by the distance to their center,
+		// but we want the distance to the point where resources will be dropped off.
+		let dist = cmpObstructionManager.DistanceToPoint(dropsite, pos.x, pos.y);
+		if (dist == -1)
+			continue;
+
+		if (dist < bestDist)
+		{
+			bestDropsite = dropsite;
+			bestDist = dist;
+		}
+		else if (dist > bestDist + maxDifference)
+			break;
+	}
+	return bestDropsite;
 };
 
 /**

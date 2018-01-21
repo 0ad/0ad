@@ -23,5 +23,6 @@
 
 BEGIN_INTERFACE_WRAPPER(ObstructionManager)
 DEFINE_INTERFACE_METHOD_1("SetPassabilityCircular", void, ICmpObstructionManager, SetPassabilityCircular, bool)
+DEFINE_INTERFACE_METHOD_CONST_3("DistanceToPoint", fixed, ICmpObstructionManager, DistanceToPoint, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpObstructionManager, SetDebugOverlay, bool)
 END_INTERFACE_WRAPPER(ObstructionManager)
