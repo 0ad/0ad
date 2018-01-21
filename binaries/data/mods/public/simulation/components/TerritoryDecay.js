@@ -8,14 +8,13 @@ TerritoryDecay.prototype.Schema =
 TerritoryDecay.prototype.Init = function()
 {
 	this.decaying = false;
-	this.connectedNeighbours = [];
+	this.connectedNeighbours = new Array(Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers()).fill(0);
 	this.territoryOwnership = !isFinite(+this.template.DecayRate);
 };
 
 TerritoryDecay.prototype.IsConnected = function()
 {
-	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-	this.connectedNeighbours.fill(0, 0, numPlayers);
+	this.connectedNeighbours.fill(0);
 
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
@@ -44,8 +43,15 @@ TerritoryDecay.prototype.IsConnected = function()
 	if (tileConnected)
 		return true;
 
+	if (cmpPlayer.GetPlayerID() != tileOwner)
+	{
+		this.connectedNeighbours[0] = 1;
+		return false;
+	}
+
 	this.connectedNeighbours = cmpTerritoryManager.GetNeighbours(pos.x, pos.y, true);
 
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (var i = 1; i < numPlayers; ++i)
 		if (this.connectedNeighbours[i] > 0 && cmpPlayer.IsMutualAlly(i))
 		{
