@@ -47,10 +47,14 @@ PlayerManager.prototype.ReplacePlayer = function(id, ent)
 	var oldent = this.playerEntities[id];
 	var cmpPlayer = Engine.QueryInterface(oldent, IID_Player);
 	var diplo = cmpPlayer.GetDiplomacy();
+	var color = cmpPlayer.GetColor();
+
 	var cmpPlayer = Engine.QueryInterface(ent, IID_Player);
 	cmpPlayer.SetPlayerID(id);
 	this.playerEntities[id] = ent;
+	cmpPlayer.SetColor(color);
 	cmpPlayer.SetDiplomacy(diplo);
+
 	Engine.DestroyEntity(oldent);
 	Engine.FlushDestroyedEntities();
 
