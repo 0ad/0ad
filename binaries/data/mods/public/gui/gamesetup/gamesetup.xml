@@ -29,6 +29,10 @@
 			<action on="Tick">
 				onTick();
 			</action>
+			<!--  Keep the settings panel size fitting to the settings when resizing -->
+			<action on="WindowResized">
+				distributeSettings();
+			</action>
 
 			<!-- Player assignments -->
 			<object size="24 49 100%-440 345" type="image" sprite="ModernDarkBoxGold" name="playerAssignmentsPanel">
@@ -125,7 +129,7 @@
 			</object>
 
 			<!-- Singleplayer / AI tips -->
-			<object name="spTips" size="24 370 560 520" type="image" hidden="true">
+			<object name="spTips" size="24 370 360 570" type="image" hidden="true">
 				<object size="4 10 28 34" type="image" sprite="ModernGear"/>
 				<object name="aiTips" size="32 0 100%-20 100%-32" type="text" style="ModernLeftLabelText"/>
 				<object size="30 100%-30 100% 100%-8" type="text" style="ModernLeftLabelText">
@@ -136,58 +140,80 @@
 				</object>
 			</object>
 
-			<!-- Map Options -->
-			<object name="mapOptions" size="100%-425 355 100%-25 470">
+			<!-- Map Preview -->
+			<object type="image" sprite="ModernDarkBoxGold" name="gamePreviewBox" size="100%-426 49 100%-24 345">
+				<object type="image" sprite="snMapPreview" size="1 1 401 294" name="mapPreview"/>
+				<object name="mapInfoName" type="text" style="ModernLeftLabelText" size="5 100%-20 100% 100%-1"/>
+			</object>
 
-				<repeat count="30" var="n">
-					<object name="mapOptionFrame[n]" size="0 0 100% 30">
+			<!-- Settings -->
+			<object name="settingsBackground" type="image" sprite="ModernDarkBoxGold" size="100%-635 355 100%-315 100%-60"/>
+			<object name="settingsPanel" type="image" sprite="ModernDarkBoxGold" size="100%-635 360 100%-315 100%-65" hidden="true" z="1">
+				<repeat count="60" var="n">
+					<object name="settingFrame[n]" size="0 2 320 60">
 						<object
-							name="mapOptionTitle[n]"
+							name="settingTitle[n]"
 							type="text"
-							size="0 0 140 28"
+							size="0 0 50%-27 28"
 							style="ModernRightLabelText"
+							z="1"
 						/>
 						<object
-							name="mapOptionText[n]"
+							name="settingText[n]"
 							type="text"
-							size="150 0 100% 28"
+							size="50%-27 0 100% 28"
 							style="ModernLeftLabelText"
+							z="1"
 						/>
 						<object
-							name="mapOptionDropdown[n]"
+							name="settingDropdown[n]"
 							type="dropdown"
-							size="150 0 100% 28"
+							size="50%-22 0 100% 28"
 							style="ModernDropDown"
 							tooltip_style="onscreenToolTip"
+							z="1"
 						/>
 						<object
-							name="mapOptionCheckbox[n]"
+							name="settingCheckbox[n]"
 							type="checkbox"
-							size="150 0 180 28"
+							size="50%-22 5 50% 28"
 							style="ModernTickBox"
 							tooltip_style="onscreenToolTip"
+							z="1"
 						/>
 					</object>
 				</repeat>
 			</object>
-			<!-- End Map Options -->
 
+			<!-- Re-add background to hide settings panel -->
+			<object type="image" sprite="ModernWindowCornerBottomRight" size="100%-315 355 100% 100%" z="20"/>
 
-			<!-- Map Preview -->
-			<object type="image" sprite="ModernDarkBoxGold" name="gamePreviewBox" size="100%-426 49 100%-24 345">
-				<object type="image" size="1 1 401 294" name="mapPreview"/>
+			<!-- Category Tabs -->
+			<object name="settingTabButtonsBackground" type="image" sprite="ModernDarkBoxGold" size="100%-315 355 100%-25 556" z="21"/>
+			<object name="settingTabButtons" size="100%-315 355 100%-25 556" z="21">
+				<include file="gui/common/tab_buttons.xml"/>
+			</object>
+
+			<!-- View Lobby Button -->
+			<object name="lobbyButton"
+				type="button"
+				style="IconButton"
+				sprite="iconBubbleGold"
+				sprite_over="iconBubbleWhite"
+				size="100%-41 355 100%-25 371"
+				hotkey="lobby"
+				z="100"
+			>
+				<translatableAttribute id="tooltip">Show the multiplayer lobby in a dialog window.</translatableAttribute>
 			</object>
 
 			<!-- Map Description -->
-			<object size="100%-425 529 100%-25 100%-60">
-				<object name="mapInfoName" type="text" style="ModernLeftLabelText" size="0 0 100%-120 30"/>
-				<object type="image" sprite="ModernDarkBoxGold" size="0 30 100% 100%">
-					<object name="mapInfoDescription" type="text" style="ModernText" size="0 0 100% 100%"/>
-				</object>
+			<object name="mapInfoDescriptionFrame" type="image" sprite="ModernDarkBoxGold" size="100%-315 559 100%-25 100%-60" z="21">
+				<object name="mapInfoDescription" type="text" style="ModernText" size="0 0 100% 100%"/>
 			</object>
 
 			<!-- Chat window -->
-			<object name="chatPanel" size="24 355 100%-440 100%-58" type="image" sprite="ModernDarkBoxGold">
+			<object name="chatPanel" size="24 355 100%-640 100%-58" type="image" sprite="ModernDarkBoxGold">
 				<object name="chatText" size="2 2 100%-2 100%-26" type="text" style="ChatPanel"/>
 
 				<object name="chatInput" size="4 100%-24 100%-76 100%-4" type="input" style="ModernInput">
@@ -224,6 +250,7 @@
 				style="StoneButton"
 				size="100%-164 100%-52 100%-24 100%-24"
 				tooltip_style="onscreenToolTip"
+				z="21"
 			>
 				<action on="Press">
 					if (g_IsController)
@@ -240,95 +267,11 @@
 				style="StoneButton"
 				size="100%-308 100%-52 100%-168 100%-24"
 				tooltip_style="onscreenToolTip"
+				z="21"
 			>
 				<translatableAttribute id="caption">Back</translatableAttribute>
 				<action on="Press">cancelSetup();</action>
 			</object>
-
-			<!-- Options -->
-			<object name="gameOptionsBox" size="100%-425 529 100%-25 525">
-				<!-- View Lobby Button -->
-				<object name="lobbyButton"
-					type="button"
-					style="IconButton"
-					sprite="iconBubbleGold"
-					sprite_over="iconBubbleWhite"
-					size="100%-143 0 100%-127 16"
-					hotkey="lobby"
-				>
-					<translatableAttribute id="tooltip">Show the multiplayer lobby in a dialog window.</translatableAttribute>
-				</object>
-				<!-- More Options Button -->
-				<object
-					name="showMoreOptions"
-					type="button"
-					style="StoneButton"
-					size="100%-120 0 100% 28"
-					tooltip_style="onscreenToolTip"
-				>
-					<translatableAttribute id="caption">More Options</translatableAttribute>
-					<translatableAttribute id="tooltip">See more game options</translatableAttribute>
-					<action on="Press">showMoreOptions(true);</action>
-				</object>
-			</object>
-			<!-- End Options -->
-
-			<!-- More Options -->
-			<object hidden="true" name="moreOptionsFade" type="image" z="60" sprite="ModernFade"/>
-			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-195 50%+200 50%+220" z="70" hidden="true">
-
-				<object name="moreOptionsLabel" style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
-					<translatableAttribute id="caption">More Options</translatableAttribute>
-				</object>
-
-				<repeat count="30" var="n">
-					<object name="moreOptionFrame[n]" size="14 30 94% 60">
-						<object
-							name="moreOptionTitle[n]"
-							type="text"
-							size="0 0 40% 28"
-							style="ModernRightLabelText"
-						/>
-						<object
-							name="moreOptionText[n]"
-							type="text"
-							size="40% 0 100% 28"
-							style="ModernLeftLabelText"
-						/>
-						<object
-							name="moreOptionDropdown[n]"
-							type="dropdown"
-							size="40%+10 0 100% 28"
-							style="ModernDropDown"
-							tooltip_style="onscreenToolTip"
-							dropdown_size="350"
-						/>
-						<object
-							name="moreOptionCheckbox[n]"
-							type="checkbox"
-							size="40%+10 5 40%+28 28"
-							style="ModernTickBox"
-							tooltip_style="onscreenToolTip"
-						/>
-					</object>
-				</repeat>
-
-				<!-- Hide More Options Button -->
-				<object
-					name="hideMoreOptions"
-					type="button"
-					style="StoneButton"
-					size="50%-70 428 50%+70 456"
-					tooltip_style="onscreenToolTip"
-					hotkey="cancel"
-				>
-					<translatableAttribute id="caption">OK</translatableAttribute>
-					<translatableAttribute id="tooltip">Close more game options window</translatableAttribute>
-					<action on="Press">showMoreOptions(false);</action>
-				</object>
-			</object>
-			<!-- End More Options -->
-
 		</object>
 	</object>
 </objects>

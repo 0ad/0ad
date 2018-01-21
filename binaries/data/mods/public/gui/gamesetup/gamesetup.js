@@ -300,6 +300,11 @@ var g_Autocomplete = [];
 var g_ChatMessages = [];
 
 /**
+ * Minimum amount of pixels required for the chat panel to be visible.
+ */
+var g_MinChatWidth = 74;
+
+/**
  * Filename and translated title of all maps, given the currently selected
  * maptype and filter. Sorted by title, shown in the dropdown.
  */
@@ -343,42 +348,91 @@ var g_LastViewedAIPlayer = -1;
 var g_PopulationCapacityRecommendation = 1200;
 
 /**
- * Order in which the GUI elements will be shown.
- * All valid options are required to appear here.
- * The ones under "map" are shown in the map selection panel,
- * the others in the "more options" dialog.
+ * Horizontal space between tab buttons and lobby button.
  */
-var g_OptionOrderGUI = {
-	"map": [
-		"mapType",
-		"mapFilter",
-		"mapSelection",
-		"numPlayers",
-		"mapSize"
-	],
-	"more": [
-		"triggerDifficulty",
-		"biome",
-		"gameSpeed",
-		"victoryCondition",
-		"relicCount",
-		"relicDuration",
-		"wonderDuration",
-		"populationCap",
-		"startingResources",
-		"ceasefire",
-		"nomad",
-		"regicideGarrison",
-		"exploreMap",
-		"revealMap",
-		"disableTreasures",
-		"disableSpies",
-		"lockTeams",
-		"lastManStanding",
-		"enableCheats",
-		"enableRating"
-	]
-};
+var g_LobbyButtonSpacing = 8;
+
+/**
+ * Vertical size of a tab button.
+ */
+var g_TabButtonHeight = 30;
+
+/**
+ * Vertical space between two tab buttons.
+ */
+var g_TabButtonDist = 4;
+
+/**
+ * Vertical size of a setting object.
+ */
+var g_SettingHeight = 32;
+
+/**
+ * Vertical space between two setting objects.
+ */
+var g_SettingDist = 2;
+
+/**
+ * Width of a column in the settings panel.
+ */
+var g_ColumnWidth = 320;
+
+/**
+ * Pixels per millisecond the settings panel slides when opening/closing.
+ */
+var g_SlideSpeed = 1.2;
+
+/**
+ * Store last tick time.
+ */
+var g_LastTickTime = Date.now();
+
+/**
+ * Order in which the GUI elements will be shown.
+ * All valid settings are required to appear here.
+ */
+var g_SettingsTabsGUI = [
+	{
+		"label": translateWithContext("Match settings tab name", "Map"),
+		"settings": [
+			"mapType",
+			"mapFilter",
+			"mapSelection",
+			"mapSize",
+			"biome",
+			"nomad",
+			"triggerDifficulty",
+			"disableTreasures",
+			"exploreMap",
+			"revealMap"
+		]
+	},
+	{
+		"label": translateWithContext("Match settings tab name", "Player"),
+		"settings": [
+			"numPlayers",
+			"populationCap",
+			"startingResources",
+			"disableSpies",
+			"enableCheats"
+		]
+	},
+	{
+		"label": translateWithContext("Match settings tab name", "Game Type"),
+		"settings": [
+			"victoryCondition",
+			"relicCount",
+			"relicDuration",
+			"wonderDuration",
+			"regicideGarrison",
+			"gameSpeed",
+			"ceasefire",
+			"lockTeams",
+			"lastManStanding",
+			"enableRating"
+		]
+	}
+];
 
 /**
  * Contains the logic of all multiple-choice gamesettings.
@@ -400,7 +454,7 @@ var g_OptionOrderGUI = {
  * autocomplete - Marks whether to autocomplete translated values of the string. (default: undefined)
  *                If not undefined, must be a number that denotes the priority (higher numbers come first).
  *                If undefined, still autocompletes the translated title of the setting.
- * initOrder    - Options with lower values will be initialized first.
+ * initOrder    - Settings with lower values will be initialized first.
  */
 var g_Dropdowns = {
 	"mapType": {
@@ -783,10 +837,10 @@ var g_Checkboxes = {
 	},
 	"revealMap": {
 		"title": () =>
-			// Translation: Make sure to differentiate between the revealed map and explored map options!
+			// Translation: Make sure to differentiate between the revealed map and explored map settings!
 			translate("Revealed Map"),
 		"tooltip":
-			// Translation: Make sure to differentiate between the revealed map and explored map options!
+			// Translation: Make sure to differentiate between the revealed map and explored map settings!
 			() => translate("Toggle revealed map (see everything)."),
 		"default": () => false,
 		"defined": () => g_GameAttributes.settings.RevealMap !== undefined,
@@ -802,10 +856,10 @@ var g_Checkboxes = {
 	},
 	"exploreMap": {
 		"title":
-			// Translation: Make sure to differentiate between the revealed map and explored map options!
+			// Translation: Make sure to differentiate between the revealed map and explored map settings!
 			() => translate("Explored Map"),
 		"tooltip":
-			// Translation: Make sure to differentiate between the revealed map and explored map options!
+			// Translation: Make sure to differentiate between the revealed map and explored map settings!
 			() => translate("Toggle explored map (see initial map)."),
 		"default": () => false,
 		"defined": () => g_GameAttributes.settings.ExploreMap !== undefined,
@@ -908,7 +962,13 @@ var g_Checkboxes = {
  */
 var g_MiscControls = {
 	"chatPanel": {
-		"hidden": () => !g_IsNetworked,
+		"hidden": () => {
+			if (!g_IsNetworked)
+				return true;
+
+			let size = Engine.GetGUIObjectByName("chatPanel").getComputedSize();
+			return size.right - size.left < g_MinChatWidth;
+		},
 	},
 	"chatInput": {
 		"tooltip": () => colorizeAutocompleteHotkey(translate("Press %(hotkey)s to autocomplete playernames or settings.")),
@@ -953,13 +1013,15 @@ var g_MiscControls = {
 		},
 		"hidden": () => !Engine.HasXmppClient()
 	},
-	// Display these after having hidden every GUI object in the "More Options" dialog
-	"moreOptionsLabel": {
-		"hidden": () => false,
-	},
-	"hideMoreOptions": {
-		"hidden": () => false,
-	},
+	"spTips": {
+		"hidden": () => {
+			let settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
+			let spTips = Engine.GetGUIObjectByName("spTips");
+			return g_IsNetworked ||
+				Engine.ConfigDB_GetValue("user", "gui.gamesetup.enabletips") !== "true" ||
+				spTips.size.right > settingsPanel.getComputedSize().left
+		}
+	}
 };
 
 /**
@@ -1090,6 +1152,12 @@ function supplementDefaults()
  */
 function initGUIObjects()
 {
+	for (let tab in g_SettingsTabsGUI)
+		g_SettingsTabsGUI[tab].tooltip =
+			sprintf(translate("Toggle the %(name)s settings tab."), { "name": g_SettingsTabsGUI[tab].label }) +
+			colorizeHotkey("\n" + translate("Use %(hotkey)s to move a settings tab down."), "tab.next") +
+			colorizeHotkey("\n" + translate("Use %(hotkey)s to move a settings tab up."), "tab.prev");
+
 	// Copy all initOrder values into one object
 	let initOrder = {};
 	for (let dropdown in g_Dropdowns)
@@ -1097,19 +1165,45 @@ function initGUIObjects()
 	for (let checkbox in g_Checkboxes)
 		initOrder[checkbox] = g_Checkboxes[checkbox].initOrder;
 
-	// Sort the object on initOrder so we can init the options in an arbitrary order
-	for (let option of Object.keys(initOrder).sort((a, b) => initOrder[a] - initOrder[b]))
-		if (g_Dropdowns[option])
-			initDropdown(option);
-		else if (g_Checkboxes[option])
-			initCheckbox(option);
+	// Sort the object on initOrder so we can init the settings in an arbitrary order
+	for (let setting of Object.keys(initOrder).sort((a, b) => initOrder[a] - initOrder[b]))
+		if (g_Dropdowns[setting])
+			initDropdown(setting);
+		else if (g_Checkboxes[setting])
+			initCheckbox(setting);
 		else
-			warn('The option "' + option + '" is not defined.');
+			warn('The setting "' + setting + '" is not defined.');
 
 	for (let dropdown in g_PlayerDropdowns)
 		initPlayerDropdowns(dropdown);
 
-	resizeMoreOptionsWindow();
+	let settingTabButtons = Engine.GetGUIObjectByName("settingTabButtons");
+	let settingTabButtonsSize = settingTabButtons.size;
+	settingTabButtonsSize.bottom = settingTabButtonsSize.top + g_SettingsTabsGUI.length * (g_TabButtonHeight + g_TabButtonDist);
+	settingTabButtonsSize.right = g_MiscControls.lobbyButton.hidden() ?
+		settingTabButtonsSize.right :
+		Engine.GetGUIObjectByName("lobbyButton").size.left - g_LobbyButtonSpacing;
+	settingTabButtons.size = settingTabButtonsSize;
+
+	let settingTabButtonsBackground = Engine.GetGUIObjectByName("settingTabButtonsBackground");
+	settingTabButtonsBackground.size = settingTabButtonsSize;
+
+	let gameDescription = Engine.GetGUIObjectByName("mapInfoDescriptionFrame");
+	let gameDescriptionSize = gameDescription.size;
+	gameDescriptionSize.top = settingTabButtonsSize.bottom + 3;
+	gameDescription.size = gameDescriptionSize;
+
+	placeTabButtons(
+		g_SettingsTabsGUI,
+		g_TabButtonHeight,
+		g_TabButtonDist,
+		category => {
+			selectPanel(category == g_TabCategorySelected ? undefined : category);
+		},
+		() => {
+			updateGUIObjects();
+			Engine.GetGUIObjectByName("settingsPanel").hidden = false;
+		});
 
 	initSPTips();
 
@@ -1128,6 +1222,53 @@ function initGUIObjects()
 		hideLoadingWindow();
 }
 
+/**
+ * Slide settings panel.
+ * @param {number} dt - Time in milliseconds since last call.
+ */
+function updateSettingsPanelPosition(dt)
+{
+	let slideSpeed = Engine.ConfigDB_GetValue("user", "gui.gamesetup.settingsslide") == "true" ? g_SlideSpeed : Infinity;
+
+	let settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
+	let rightBorder = Engine.GetGUIObjectByName("settingTabButtons").size.left;
+	let offset = 0;
+	if (g_TabCategorySelected === undefined)
+	{
+		let maxOffset = rightBorder - settingsPanel.size.left;
+		if (maxOffset > 0)
+			offset = Math.min(slideSpeed * dt, maxOffset);
+	}
+	else if (rightBorder > settingsPanel.size.right)
+		offset = Math.min(slideSpeed * dt, rightBorder - settingsPanel.size.right);
+	else
+	{
+		let maxOffset = settingsPanel.size.right - rightBorder;
+		if (maxOffset > 0)
+			offset = -Math.min(slideSpeed * dt, maxOffset);
+	}
+
+	let size = settingsPanel.size;
+	size.left += offset;
+	size.right += offset;
+	settingsPanel.size = size;
+
+	let settingsBackground = Engine.GetGUIObjectByName("settingsBackground");
+	let backgroundSize = settingsBackground.size;
+	backgroundSize.left = size.left;
+	settingsBackground.size = backgroundSize;
+
+	let chatPanel = Engine.GetGUIObjectByName("chatPanel");
+	let chatSize = chatPanel.size;
+
+	chatSize.right += offset;
+	chatPanel.size = chatSize;
+	chatPanel.hidden = g_MiscControls.chatPanel.hidden();
+
+	let spTips = Engine.GetGUIObjectByName("spTips");
+	spTips.hidden = g_MiscControls.spTips.hidden();
+}
+
 function hideLoadingWindow()
 {
 	let loadingWindow = Engine.GetGUIObjectByName("loadingWindow");
@@ -1140,24 +1281,26 @@ function hideLoadingWindow()
 }
 
 /**
- * Options in the "More Options" or "Map" panel use a generic name.
+ * Settings under the settings tabs use a generic name.
  * Player settings use custom names.
  */
-function getGUIObjectNameFromSetting(name)
+function getGUIObjectNameFromSetting(setting)
 {
-	for (let panel in g_OptionOrderGUI)
+	let idxOffset = 0;
+	for (let category of g_SettingsTabsGUI)
 	{
-		let idx = g_OptionOrderGUI[panel].indexOf(name);
+		let idx = category.settings.indexOf(setting);
 		if (idx != -1)
 			return [
-				panel + "Option",
-				g_Dropdowns[name] ? "Dropdown" : "Checkbox",
-				"[" + idx + "]"
+				"setting",
+				g_Dropdowns[setting] ? "Dropdown" : "Checkbox",
+				"[" + (idx + idxOffset) + "]"
 			];
+		idxOffset += category.settings.length;
 	}
 
 	// Assume there is a GUI object with exactly that setting name
-	return [name, "", ""];
+	return [setting, "", ""];
 }
 
 function initDropdown(name, playerIdx)
@@ -1239,45 +1382,48 @@ function saveSPTipsSetting()
 	Engine.ConfigDB_WriteValueToFile("user", "gui.gamesetup.enabletips", enabled, "config/user.cfg");
 }
 
-function verticallyDistributeGUIObjects(parent, objectHeight, ignore)
+/**
+ * Distribute the currently visible settings over the settings panel.
+ * First calculate the number of columns required, then place the objects.
+ */
+function distributeSettings()
 {
-	let yPos;
+	let settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
+	let actualSettingsPanelSize = settingsPanel.getComputedSize();
 
-	let parentObject = Engine.GetGUIObjectByName(parent);
-	for (let child of parentObject.children)
+	let maxPerColumn = Math.floor((actualSettingsPanelSize.bottom - actualSettingsPanelSize.top) / g_SettingHeight);
+	let childCount = settingsPanel.children.filter(child => !child.hidden).length;
+	let perColumn = childCount / Math.ceil(childCount / maxPerColumn);
+
+	let yPos = g_SettingDist;
+	let column = 0;
+	let thisColumn = 0;
+	let settingsPanelSize = settingsPanel.size;
+	for (let child of settingsPanel.children)
 	{
-		if (ignore.indexOf(child.name) != -1)
-			continue;
-
-		let childSize = child.size;
-		yPos = yPos || childSize.top;
-
 		if (child.hidden)
 			continue;
 
-		childSize.top = yPos;
-		childSize.bottom = yPos + objectHeight - 2;
-		child.size = childSize;
+		if (thisColumn >= perColumn)
+		{
+			yPos = g_SettingDist;
+			++column;
+			thisColumn = 0;
+		}
 
-		yPos += objectHeight;
+		let childSize = child.size;
+		child.size = new GUISize(
+			column * g_ColumnWidth,
+			yPos,
+			column * g_ColumnWidth + g_ColumnWidth - 10,
+			yPos + g_SettingHeight - g_SettingDist);
+
+		yPos += g_SettingHeight;
+		++thisColumn;
 	}
-	return yPos;
-}
 
-/**
- * Remove empty space in case of hidden options (like cheats, rating or victory duration)
- */
-function resizeMoreOptionsWindow()
-{
-	verticallyDistributeGUIObjects("mapOptions", 32, []);
-
-	let yPos = verticallyDistributeGUIObjects("moreOptions", 32, ["moreOptionsLabel"]);
-
-	// Resize the vertically centered window containing the options
-	let moreOptions = Engine.GetGUIObjectByName("moreOptions");
-	let mSize = moreOptions.size;
-	mSize.bottom = mSize.top + yPos + 20;
-	moreOptions.size = mSize;
+	settingsPanelSize.right = settingsPanelSize.left + (column + 1) * g_ColumnWidth;
+	settingsPanel.size = settingsPanelSize;
 }
 
 /**
@@ -1572,6 +1718,7 @@ function reloadBiomeList()
 		}))));
 
 	initDropdown("biome");
+	updateGUIDropdown("biome");
 }
 
 function reloadTriggerDifficulties()
@@ -1601,6 +1748,7 @@ function reloadTriggerDifficulties()
 		})));
 
 	initDropdown("triggerDifficulty");
+	updateGUIDropdown("triggerDifficulty");
 }
 
 function reloadGameSpeedChoices()
@@ -1763,6 +1911,12 @@ function onTick()
 		handleNetMessages();
 
 	updateTimers();
+
+	let now = Date.now();
+	let tickLength = now - g_LastTickTime;
+	g_LastTickTime = now;
+
+	updateSettingsPanelPosition(tickLength);
 }
 
 /**
@@ -1872,10 +2026,11 @@ function updateGUIDropdown(name, playerIdx = undefined)
 	let indexHidden = isControlArrayElementHidden(playerIdx);
 	let obj = (playerIdx === undefined ? g_Dropdowns : g_PlayerDropdowns)[name];
 
-	let selected = indexHidden ? -1 : dropdown.list_data.indexOf(String(obj.get(playerIdx)));
-	let enabled = !indexHidden && (!obj.enabled || obj.enabled(playerIdx));
 	let hidden = indexHidden || obj.hidden && obj.hidden(playerIdx);
+	let selected = hidden ? -1 : dropdown.list_data.indexOf(String(obj.get(playerIdx)));
+	let enabled = !indexHidden && (!obj.enabled || obj.enabled(playerIdx));
 
+	dropdown.enabled = g_IsController && enabled;
 	dropdown.hidden = !g_IsController || !enabled || hidden;
 	dropdown.selected = selected;
 	dropdown.tooltip = !indexHidden && obj.tooltip ? obj.tooltip(-1, playerIdx) : "";
@@ -1884,12 +2039,12 @@ function updateGUIDropdown(name, playerIdx = undefined)
 		frame.hidden = hidden;
 
 	if (title && obj.title && !indexHidden)
-		title.caption = sprintf(translate("%(option)s:"), { "option": obj.title(playerIdx) });
+		title.caption = sprintf(translateWithContext("Title for specific setting", "%(setting)s:"), { "setting": obj.title(playerIdx) });
 
 	if (label && !indexHidden)
 	{
 		label.hidden = g_IsController && enabled || hidden;
-		label.caption = selected == -1 ? translateWithContext("option value", "Unknown") : dropdown.list[selected];
+		label.caption = selected == -1 ? translateWithContext("settings value", "Unknown") : dropdown.list[selected];
 	}
 }
 
@@ -1915,7 +2070,7 @@ function updateGUICheckbox(name)
 		Engine.GetGUIObjectByName(guiName + "Dropdown" + guiIdx).hidden = true;
 
 	checkbox.checked = checked;
-	checkbox.enabled = enabled;
+	checkbox.enabled = g_IsController && enabled;
 	checkbox.hidden = hidden || !g_IsController;
 	checkbox.tooltip = obj.tooltip ? obj.tooltip() : "";
 
@@ -1926,7 +2081,7 @@ function updateGUICheckbox(name)
 		frame.hidden = hidden;
 
 	if (title && obj.title)
-		title.caption = sprintf(translate("%(option)s:"), { "option": obj.title() });
+		title.caption = sprintf(translate("%(setting)s:"), { "setting": obj.title() });
 }
 
 function updateGUIMiscControl(name, playerIdx)
@@ -2081,16 +2236,20 @@ function updateGUIObjects()
 	reloadPlayerAssignmentChoices();
 
 	// Hide exceeding dropdowns and checkboxes
-	for (let panel in g_OptionOrderGUI)
-		for (let child of Engine.GetGUIObjectByName(panel + "Options").children)
-			child.hidden = true;
+	for (let setting of Engine.GetGUIObjectByName("settingsPanel").children)
+		setting.hidden = true;
 
 	// Show the relevant ones
-	for (let name in g_Dropdowns)
-		updateGUIDropdown(name);
+	if (g_TabCategorySelected !== undefined)
+	{
+		for (let name in g_Dropdowns)
+			if (g_SettingsTabsGUI[g_TabCategorySelected].settings.indexOf(name) != -1)
+				updateGUIDropdown(name);
 
-	for (let name in g_Checkboxes)
-		updateGUICheckbox(name);
+		for (let name in g_Checkboxes)
+			if (g_SettingsTabsGUI[g_TabCategorySelected].settings.indexOf(name) != -1)
+				updateGUICheckbox(name);
+	}
 
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
@@ -2105,7 +2264,7 @@ function updateGUIObjects()
 		updateGUIMiscControl(name);
 
 	updateGameDescription();
-	resizeMoreOptionsWindow();
+	distributeSettings();
 	rightAlignCancelButton();
 	updateAutocompleteEntries();
 
@@ -2356,12 +2515,6 @@ function addChatMessage(msg)
 	g_ChatMessages.push(text);
 
 	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
-}
-
-function showMoreOptions(show)
-{
-	Engine.GetGUIObjectByName("moreOptionsFade").hidden = !show;
-	Engine.GetGUIObjectByName("moreOptions").hidden = !show;
 }
 
 function resetCivilizations()
