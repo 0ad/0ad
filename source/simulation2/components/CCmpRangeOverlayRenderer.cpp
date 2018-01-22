@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "graphics/TextureManager.h"
 #include "renderer/Renderer.h"
 #include "simulation2/MessageTypes.h"
+#include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
@@ -34,6 +35,7 @@ class CCmpRangeOverlayRenderer : public ICmpRangeOverlayRenderer
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_Deserialized);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 	}
 
@@ -119,22 +121,10 @@ public:
 
 			break;
 		}
+		case MT_Deserialized:
 		case MT_OwnershipChanged:
 		{
-			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
-			if (msgData.to == INVALID_PLAYER)
-				break;
-
-			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
-			if (!cmpPlayerManager)
-				break;
-
-			CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(msgData.to));
-			if (!cmpPlayer)
-				break;
-
-			CColor color = cmpPlayer->GetColor();
-			m_Color = color;
+			UpdateColor();
 			break;
 		}
 		case MT_RenderSubmit:
@@ -144,6 +134,28 @@ public:
 			break;
 		}
 		}
+	}
+
+	virtual void UpdateColor()
+	{
+		CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
+		if (!cmpOwnership)
+			return;
+
+		player_id_t owner = cmpOwnership->GetOwner();
+		if (owner == INVALID_PLAYER)
+			return;
+
+		CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
+		if (!cmpPlayerManager)
+			return;
+
+		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(owner));
+		if (!cmpPlayer)
+			return;
+
+		CColor color = cmpPlayer->GetColor();
+		m_Color = color;
 	}
 
 	void UpdateMessageSubscriptions()
