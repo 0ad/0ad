@@ -41,7 +41,7 @@ public:
 
 	CCmpRangeOverlayRenderer() : m_RangeOverlayData()
 	{
-		m_Color = CColor(0, 0, 0, 0);
+		m_Color = CColor(0.f, 0.f, 0.f, 1.f);
 	}
 
 	~CCmpRangeOverlayRenderer()
