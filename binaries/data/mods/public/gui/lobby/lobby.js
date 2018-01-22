@@ -801,6 +801,7 @@ function selectGameFromPlayername()
 			if (g_SelectedPlayer != splitRatingFromNick(player.Name).nick)
 				continue;
 
+			gameList.auto_scroll = true;
 			if (player.Team == "observer")
 			{
 				foundAsObserver = true;
@@ -1084,6 +1085,8 @@ function updateGameList()
 	// Change these last, otherwise crash
 	gamesBox.list = list;
 	gamesBox.list_data = list_data;
+
+	gamesBox.auto_scroll = false;
 	gamesBox.selected = selectedGameIndex;
 
 	updateGameSelection();

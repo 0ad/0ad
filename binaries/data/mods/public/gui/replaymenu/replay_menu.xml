@@ -57,6 +57,7 @@
 				selected_column="months"
 				selected_column_order="-1"
 				font="sans-stroke-13"
+				auto_scroll="true"
 			>
 
 				<action on="SelectionChange">displayReplayDetails();</action>

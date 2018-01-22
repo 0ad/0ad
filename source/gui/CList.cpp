@@ -45,6 +45,7 @@ CList::CList()
 	AddSetting(GUIST_CColor,				"textcolor");
 	AddSetting(GUIST_CColor,				"textcolor_selected");
 	AddSetting(GUIST_int,					"selected");	// Index selected. -1 is none.
+	AddSetting(GUIST_bool,					"auto_scroll");
 	AddSetting(GUIST_int,					"hovered");
 	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
@@ -56,6 +57,7 @@ CList::CList()
 	GUI<bool>::SetSetting(this, "scrollbar", false);
 	GUI<int>::SetSetting(this, "selected", -1);
 	GUI<int>::SetSetting(this, "hovered", -1);
+	GUI<int>::SetSetting(this, "auto_scroll", false);
 
 	// Add scroll-bar
 	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical();
@@ -161,7 +163,12 @@ void CList::HandleMessage(SGUIMessage& Message)
 		{
 			// TODO: Check range
 
-			UpdateAutoScroll();
+			bool auto_scroll;
+
+			GUI<bool>::GetSetting(this, "auto_scroll", auto_scroll);
+
+			if (auto_scroll)
+				UpdateAutoScroll();
 
 			// TODO only works if lower-case, shouldn't it be made case sensitive instead?
 			ScriptEvent("selectionchange");

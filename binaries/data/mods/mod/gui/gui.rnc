@@ -47,6 +47,7 @@ base_settings =
 # Defaults are not put in here, because it ruins the concept of styles.
 ex_settings =
   attribute anchor { valign }?&
+  attribute auto_scroll { bool }?&
   attribute buffer_zone { xsd:decimal }?&
   attribute buffer_width { xsd:decimal }?&
   attribute button_width { xsd:decimal }?&
