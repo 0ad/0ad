@@ -350,7 +350,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 Engine.SetProgress(99);
 
-placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clBaseResource, 4, clHill, 4));
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clBaseResource, 4, clHill, 4, clMetal, 4, clRock, 4, clFood, 1));
 
 setSkySet("sunny");
 setWaterColor(0.2,0.294,0.49);

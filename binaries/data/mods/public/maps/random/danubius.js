@@ -9,6 +9,7 @@ const triggerPointLandPatrolLeft = "trigger/trigger_point_E";
 const triggerPointLandPatrolRight = "trigger/trigger_point_F";
 const triggerPointCCAttackerPatrolLeft = "trigger/trigger_point_G";
 const triggerPointCCAttackerPatrolRight = "trigger/trigger_point_H";
+const triggerPointRiverDirection = "trigger/trigger_point_I";
 
 const tPrimary = ["temp_grass_aut", "temp_grass_plants_aut", "temp_grass_c_aut", "temp_grass_d_aut"];
 const tRoad = "steppe_river_rocks";
@@ -157,6 +158,7 @@ var clOutpost = createTileClass();
 var clPath = createTileClass();
 var clRitualPlace = createTileClass();
 
+var startAngle = randomAngle();
 var waterWidth = fractionToTiles(0.3);
 
 // How many treasures will be placed near the gallic civic centers
@@ -179,33 +181,25 @@ if (gallicCC)
 	// One village left and right of the river
 	for (let i = 0; i < 2; ++i)
 	{
-		let gX = i == 0 ? mapBounds.left + gaulCityBorderDistance : mapBounds.right - gaulCityBorderDistance;
-		let gZ = mapCenter.y;
+		let civicCenterPosition = new Vector2D(
+			i == 0 ? mapBounds.left + gaulCityBorderDistance : mapBounds.right - gaulCityBorderDistance,
+			mapCenter.y).rotateAround(startAngle, mapCenter);
 
 		if (addCelticRitual)
 		{
 			// Don't position the meeting place at the center of the map
-			let mX = i == 0 ? mapBounds.left + waterWidth : mapBounds.right - waterWidth;
-			let mZ = mapCenter.y + fractionToTiles(randFloat(0.1, 0.4)) * (randBool() ? 1 : -1);
+			let meetingPlacePosition = new Vector2D(
+				i == 0 ? mapBounds.left + waterWidth : mapBounds.right - waterWidth,
+				mapCenter.y + fractionToTiles(randFloat(0.1, 0.4)) * (randBool() ? 1 : -1)).rotateAround(startAngle, mapCenter);
 
 			// Radius of the meeting place
 			let mRadius = scaleByMapSize(4, 6);
 
 			// Create a path connecting the gallic city with a meeting place at the shoreline.
 			// To avoid the path going through the palisade wall, start it at the gate, not at the city center.
-			let placer = new PathPlacer(
-				gX + gaulCityRadius * (i == 0 ? 1 : -1),
-				gZ,
-				mX,
-				mZ,
-				4, // width
-				0.4, // waviness
-				4, // smoothness
-				0.2, // offset
-				0.05); // tapering
-
+			let pathStart = Vector2D.add(civicCenterPosition, new Vector2D(gaulCityRadius * (i == 0 ? 1 : -1), 0).rotate(startAngle));
 			createArea(
-				placer,
+				new PathPlacer(pathStart.x, pathStart.y, meetingPlacePosition.x, meetingPlacePosition.y, 4, 0.4, 4, 0.2, 0.05),
 				[
 					new LayeredPainter([tShore, tRoad, tRoad], [1, 3]),
 					new SmoothElevationPainter(ELEVATION_SET, heightPath, 4),
@@ -214,14 +208,14 @@ if (gallicCC)
 
 			// Create the meeting place near the shoreline at the end of the path
 			createArea(
-				new ClumpPlacer(mRadius * mRadius * Math.PI, 0.6, 0.3, 10, mX, mZ),
+				new ClumpPlacer(diskArea(mRadius), 0.6, 0.3, 10, meetingPlacePosition.x, meetingPlacePosition.y),
 				[
 					new LayeredPainter([tShore, tShore], [1]),
 					paintClass(clPath),
 					paintClass(clRitualPlace)
 				]);
 
-			placeObject(mX, mZ, aCampfire, 0, randomAngle());
+			placeObject(meetingPlacePosition.x, meetingPlacePosition.y, aCampfire, 0, randomAngle());
 
 			let femaleCount = Math.round(mRadius * 2);
 			let maleCount = Math.round(mRadius * 3);
@@ -249,21 +243,21 @@ if (gallicCC)
 				"goat":       { "angle": Math.PI, "length": goatRadius, "indent": 0, "bend": calcBend(goatCount), "templateName": oGoat }
 			};
 
-			placeCustomFortress(mX, mZ, new Fortress("celt ritual females", new Array(femaleCount).fill("female")), "celt_ritual", 0, 0);
+			placeCustomFortress(meetingPlacePosition.x, meetingPlacePosition.y, new Fortress("celt ritual females", new Array(femaleCount).fill("female")), "celt_ritual", 0, 0);
 
-			placeCustomFortress(mX, mZ, new Fortress("celt ritual males", new Array(maleCount).fill(0).map(i =>
+			placeCustomFortress(meetingPlacePosition.x, meetingPlacePosition.y, new Fortress("celt ritual males", new Array(maleCount).fill(0).map(i =>
 				pickRandom(["skirmisher", "healer", "fanatic"]))), "celt_ritual", 0, 0);
 
-			placeCustomFortress(mX, mZ, new Fortress("celt ritual bench", new Array(benchCount).fill("bench")), "celt_ritual", 0, 0);
-			placeCustomFortress(mX, mZ, new Fortress("celt ritual rug", new Array(rugCount).fill("rug")), "celt_ritual", 0, 0);
-			placeCustomFortress(mX, mZ, new Fortress("celt ritual goat", new Array(goatCount).fill("goat")), "celt_ritual", 0, 0);
+			placeCustomFortress(meetingPlacePosition.x, meetingPlacePosition.y, new Fortress("celt ritual bench", new Array(benchCount).fill("bench")), "celt_ritual", 0, 0);
+			placeCustomFortress(meetingPlacePosition.x, meetingPlacePosition.y, new Fortress("celt ritual rug", new Array(rugCount).fill("rug")), "celt_ritual", 0, 0);
+			placeCustomFortress(meetingPlacePosition.x, meetingPlacePosition.y, new Fortress("celt ritual goat", new Array(goatCount).fill("goat")), "celt_ritual", 0, 0);
 		}
 
-		placeObject(gX, gZ, oCivicCenter, 0, BUILDING_ORIENTATION + Math.PI * 3/2 * i);
+		placeObject(civicCenterPosition.x, civicCenterPosition.y, oCivicCenter, 0, startAngle + BUILDING_ORIENTATION + Math.PI * 3/2 * i);
 
 		// Create the city patch
 		createArea(
-			new ClumpPlacer(diskArea(gaulCityRadius), 0.6, 0.3, 10, gX, gZ),
+			new ClumpPlacer(diskArea(gaulCityRadius), 0.6, 0.3, 10, civicCenterPosition.x, civicCenterPosition.y),
 			[
 				new LayeredPainter([tShore, tShore], [1]),
 				paintClass(clGauls)
@@ -289,7 +283,7 @@ if (gallicCC)
 			"tower", "long", "house", "short", "tower", "gate", "tower", "longhouse", "long", "long",
 			"cornerIn", "defense_tower", "long", "tavern", "long", "tower"];
 		wall = wall.concat(wall);
-		placeCustomFortress(gX, gZ, new Fortress("Geto-Dacian Tribal Confederation", wall), "gaul", 0, Math.PI);
+		placeCustomFortress(civicCenterPosition.x, civicCenterPosition.y, new Fortress("Geto-Dacian Tribal Confederation", wall), "gaul", 0, startAngle + Math.PI);
 
 		// Place spikes
 		g_WallStyles.palisade.spikes_tall = readyWallElement("other/palisades_tall_spikes", "gaia");
@@ -309,13 +303,13 @@ if (gallicCC)
 			"spike_single"
 		];
 		spikes = spikes.concat(spikes);
-		placeCustomFortress(gX, gZ, new Fortress("spikes", spikes), "palisade", 0, Math.PI);
+		placeCustomFortress(civicCenterPosition.x, civicCenterPosition.y, new Fortress("spikes", spikes), "palisade", 0, startAngle + Math.PI);
 
 		// Place treasure, potentially inside buildings
 		for (let i = 0; i < gallicCCTreasureCount; ++i)
 			placeObject(
-				gX + randFloat(-0.8, 0.8) * gaulCityRadius,
-				gZ + randFloat(-0.8, 0.8) * gaulCityRadius,
+				civicCenterPosition.x + randFloat(-0.8, 0.8) * gaulCityRadius,
+				civicCenterPosition.y + randFloat(-0.8, 0.8) * gaulCityRadius,
 				pickRandom(oTreasures),
 				0,
 				randomAngle());
@@ -324,7 +318,7 @@ if (gallicCC)
 Engine.SetProgress(10);
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementRiver(0, fractionToTiles(0.6)),
+	"PlayerPlacement": playerPlacementRiver(startAngle, fractionToTiles(0.6)),
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,
@@ -358,8 +352,8 @@ Engine.SetProgress(20);
 
 paintRiver({
 	"parallel": true,
-	"start": new Vector2D(mapCenter.x, mapBounds.top),
-	"end": new Vector2D(mapCenter.x, mapBounds.bottom),
+	"start": new Vector2D(mapCenter.x, mapBounds.top).rotateAround(startAngle, mapCenter),
+	"end": new Vector2D(mapCenter.x, mapBounds.bottom).rotateAround(startAngle, mapCenter),
 	"width": waterWidth,
 	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
@@ -392,7 +386,7 @@ paintTerrainBasedOnHeight(heightShore, heightLand, 0, tShore);
 Engine.SetProgress(35);
 
 log("Creating bumps...");
-createBumps(avoidClasses(clPlayer, 6, clWater, 2, clPath, 1), scaleByMapSize(30, 300), 1, 8, 4, 0, 3);
+createBumps(avoidClasses(clPlayer, 6, clWater, 2, clPath, 1, clGauls, 1), scaleByMapSize(30, 300), 1, 8, 4, 0, 3);
 Engine.SetProgress(40);
 
 log("Creating hills...");
@@ -706,6 +700,10 @@ for (let i = 0; i < 2; ++i)
 
 log("Creating patrol points for land attackers...");
 addToClass(mapCenter.x, mapCenter.y, clMiddle);
+
+var riverDirectionPosition = Vector2D.add(mapCenter, new Vector2D(0, 1).rotate(startAngle));
+placeObject(riverDirectionPosition.x, riverDirectionPosition.y, triggerPointRiverDirection, 0, 0);
+
 for (let i = 0; i < 2; ++i)
 {
 	createObjectGroupsDeprecated(
@@ -763,7 +761,7 @@ createObjectGroupsDeprecated(
 	100
 );
 
-placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clIsland, 4, clGauls, 20, clRitualPlace, 20, clForest, 1, clBaseResource, 4, clHill, 4, clFood, 2));
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clMetal, 4, clRock, 4, clIsland, 4, clGauls, 20, clRitualPlace, 20, clForest, 1, clBaseResource, 4, clHill, 4, clFood, 2));
 
 if (randBool(2/3))
 {
