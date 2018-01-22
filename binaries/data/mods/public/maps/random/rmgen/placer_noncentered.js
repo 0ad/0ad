@@ -99,7 +99,7 @@ HeightPlacer.prototype.place = function(constraint)
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function PathPlacer(x1, z1, x2, z2, width, a, b, c, taper, failfraction)
+function PathPlacer(x1, z1, x2, z2, width, a, b, c, taper, failFraction = 0)
 {
 	this.x1 = x1;
 	this.z1 = z1;
@@ -110,29 +110,22 @@ function PathPlacer(x1, z1, x2, z2, width, a, b, c, taper, failfraction)
 	this.b = b;
 	this.c = c;
 	this.taper = taper;
-	this.failfraction = (failfraction !== undefined ? failfraction : 5);
+	this.failFraction = failFraction;
 }
 
 PathPlacer.prototype.place = function(constraint)
 {
-	/*/ Preliminary bounds check
-	if (!g_Map.validT(this.x1, this.z1) || !constraint.allows(this.x1, this.z1) ||
-		!g_Map.validT(this.x2, this.z2) || !constraint.allows(this.x2, this.z2))
-	{
-		return undefined;
-	}*/
-
 	var failed = 0;
 	var dx = (this.x2 - this.x1);
 	var dz = (this.z2 - this.z1);
-	var dist = Math.sqrt(dx*dx + dz*dz);
-	dx /= dist;
-	dz /= dist;
+	var pathLength = Math.sqrt(dx*dx + dz*dz);
+	dx /= pathLength;
+	dz /= pathLength;
 
-	var numSteps = 1 + Math.floor(dist/4 * this.a);
-	var numISteps = 1 + Math.floor(dist/4 * this.b);
+	var numSteps = 1 + Math.floor(pathLength / 4 * this.a);
+	var numISteps = 1 + Math.floor(pathLength / 4 * this.b);
 	var totalSteps = numSteps*numISteps;
-	var offset = 1 + Math.floor(dist/4 * this.c);
+	var offset = 1 + Math.floor(pathLength / 4 * this.c);
 
 	var size = getMapSize();
 	var gotRet = [];
@@ -278,7 +271,7 @@ PathPlacer.prototype.place = function(constraint)
 		}
 	}
 
-	return ((failed > this.width*this.failfraction*dist) ? undefined : retVec);
+	return failed > this.failFraction * this.width * pathLength ? undefined : retVec;
 };
 
 /**
