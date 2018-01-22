@@ -9,6 +9,11 @@ const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 
 /**
+ *  Used for civ settings display of the selected game. 
+ */
+const g_CivData = loadCivData(false, false);
+
+/**
  * A symbol which is prepended to the username of moderators.
  */
 var g_ModeratorPrefix = "@";

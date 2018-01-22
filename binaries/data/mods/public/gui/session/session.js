@@ -1412,7 +1412,7 @@ function sendLobbyPlayerlistUpdate()
 
 		let pData = g_GameAttributes.settings.PlayerData[playerID];
 
-		let minPData = { "Name": pData.Name };
+		let minPData = { "Name": pData.Name, "Civ": pData.Civ };
 
 		if (g_GameAttributes.settings.LockTeams)
 			minPData.Team = pData.Team;
