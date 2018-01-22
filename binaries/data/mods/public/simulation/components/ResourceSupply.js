@@ -145,7 +145,7 @@ ResourceSupply.prototype.AddGatherer = function(player, gathererID)
 ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
 {
 	// this can happen if the unit is dead
-	if (player === undefined || player === -1)
+	if (player == undefined || player == INVALID_PLAYER)
 	{
 		for (var i = 0; i < this.gatherers.length; ++i)
 			this.RemoveGatherer(gathererID, i);

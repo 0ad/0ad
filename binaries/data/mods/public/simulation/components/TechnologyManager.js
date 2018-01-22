@@ -208,7 +208,7 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 		// Newly created entity, check if any researched techs might apply
 		// (only do this for new entities because even if an entity is converted or captured,
 		//	we want it to maintain whatever technologies previously applied)
-		if (msg.from == -1)
+		if (msg.from == INVALID_PLAYER)
 		{
 			var modifiedComponents = {};
 			for (var name in this.modifications)

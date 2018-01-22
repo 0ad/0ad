@@ -106,7 +106,7 @@ RallyPoint.prototype.OnGlobalEntityRenamed = function(msg)
 RallyPoint.prototype.OnOwnershipChanged = function(msg)
 {
 	// No need to reset when constructing or destructing the entity
-	if (msg.from == -1 || msg.to == -1)
+	if (msg.from == INVALID_PLAYER || msg.to == INVALID_PLAYER)
 		return;
 
 	this.Reset();

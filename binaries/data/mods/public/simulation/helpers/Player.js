@@ -194,7 +194,7 @@ function QueryOwnerInterface(ent, iid = IID_Player)
 		return null;
 
 	var owner = cmpOwnership.GetOwner();
-	if (owner == -1)
+	if (owner == INVALID_PLAYER)
 		return null;
 
 	return QueryPlayerIDInterface(owner, iid);

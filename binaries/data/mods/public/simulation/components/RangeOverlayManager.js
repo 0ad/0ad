@@ -61,7 +61,7 @@ RangeOverlayManager.prototype.RegenerateRangeOverlayManagers = function(forceUpd
 
 RangeOverlayManager.prototype.OnOwnershipChanged = function(msg)
 {
-	if (msg.to == -1)
+	if (msg.to == INVALID_PLAYER)
 		return;
 	for (let type in this.enabledRangeTypes)
 		this.UpdateRangeOverlays(type);

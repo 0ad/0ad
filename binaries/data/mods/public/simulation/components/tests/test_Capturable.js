@@ -92,7 +92,7 @@ testCapturable(testData, cmpCapturable => {
 	Engine.PostMessage = function(ent, iid, message) {
 		TS_ASSERT_UNEVAL_EQUALS(message, { "regenerating": true, "regenRate": cmpCapturable.GetRegenRate() , "territoryDecay": 0 });
 	};
-	cmpCapturable.OnOwnershipChanged({ "from": -1, "to": testData.playerID });
+	cmpCapturable.OnOwnershipChanged({ "from": INVALID_PLAYER, "to": testData.playerID });
 	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [0, 3000, 0, 0]);
 });
 

@@ -134,10 +134,10 @@ TerritoryDecay.prototype.OnDiplomacyChanged = function(msg)
 TerritoryDecay.prototype.OnOwnershipChanged = function(msg)
 {
 	// Update the list of TerritoryDecay components in the manager
-	if (msg.from == -1 || msg.to == -1)
+	if (msg.from == INVALID_PLAYER || msg.to == INVALID_PLAYER)
 	{
 		let cmpTerritoryDecayManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryDecayManager);
-		if (msg.from == -1)
+		if (msg.from == INVALID_PLAYER)
 			cmpTerritoryDecayManager.Add(this.entity);
 		else
 			cmpTerritoryDecayManager.Remove(this.entity);

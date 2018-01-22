@@ -21,7 +21,7 @@ Gate.prototype.Init = function()
 
 Gate.prototype.OnOwnershipChanged = function(msg)
 {
-	if (msg.to != -1)
+	if (msg.to != INVALID_PLAYER)
 	{
 		this.SetupRangeQuery(msg.to);
 		// Set the initial state, but don't play unlocking sound

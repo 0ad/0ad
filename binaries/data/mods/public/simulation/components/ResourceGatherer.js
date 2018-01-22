@@ -341,7 +341,7 @@ ResourceGatherer.prototype.OnValueModification = function(msg)
 
 ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
 {
-	if (msg.to === -1)
+	if (msg.to == INVALID_PLAYER)
 		return;
 	this.RecalculateGatherRatesAndCapacities();
 };

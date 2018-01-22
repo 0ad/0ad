@@ -549,7 +549,7 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 	// The ownership change may be on the garrisonholder
 	if (this.entity == msg.entity)
 	{
-		let entities = this.entities.filter(ent => msg.to == -1 || !IsOwnedByMutualAllyOfEntity(this.entity, ent));
+		let entities = this.entities.filter(ent => msg.to == INVALID_PLAYER || !IsOwnedByMutualAllyOfEntity(this.entity, ent));
 
 		if (entities.length)
 			this.EjectOrKill(entities);
@@ -573,7 +573,7 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 				if (point.entity == msg.entity)
 					point.entity = null;
 		}
-		else if (msg.to == -1 || !IsOwnedByMutualAllyOfEntity(this.entity, msg.entity))
+		else if (msg.to == INVALID_PLAYER || !IsOwnedByMutualAllyOfEntity(this.entity, msg.entity))
 			this.EjectOrKill([msg.entity]);
 	}
 };

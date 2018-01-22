@@ -591,7 +591,7 @@ Attack.prototype.PerformAttack = function(type, target)
 	}
 	else if (type == "Capture")
 	{
-		if (attackerOwner == -1)
+		if (attackerOwner == INVALID_PLAYER)
 			return;
 
 		let multiplier = GetDamageBonus(target, this.GetBonusTemplate(type));

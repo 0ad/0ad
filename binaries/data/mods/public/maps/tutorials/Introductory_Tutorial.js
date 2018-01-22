@@ -290,7 +290,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("Try to repel the attack."),
 		"OnOwnershipChanged": function(msg)
 		{
-			if (msg.to != -1)
+			if (msg.to != INVALID_PLAYER)
 				return;
 			if (this.IsAttackRepelled())
 				this.NextGoal();

@@ -47,7 +47,7 @@ for (let ent = 60; ent < 63; ++ent)
 });
 }
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 60, "from": -1, "to": 1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 60, "from": INVALID_PLAYER, "to": 1 });
 cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 61, "from": 2, "to": 1 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 2, "Champion": 0 });
@@ -55,11 +55,11 @@ TS_ASSERT(cmpEntityLimits.AllowedToTrain("Hero"));
 TS_ASSERT(!cmpEntityLimits.AllowedToTrain("Hero", 1));
 
 // Restrictions can be enforced
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 62, "from": -1, "to": 1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 62, "from": INVALID_PLAYER, "to": 1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 3, "Champion": 0 });
 
 for (let ent = 60; ent < 63; ++ent)
-	cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": ent, "from": 1, "to": -1 });
+	cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": ent, "from": 1, "to": INVALID_PLAYER });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 0, "Champion": 0 });
 
@@ -75,7 +75,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, 
 // AllowedToBuild is used after foundation placement, which are meant to be replaced
 TS_ASSERT(cmpEntityLimits.AllowedToBuild("Wonder"));
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 70, "from": 1, "to": -1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 70, "from": 1, "to": INVALID_PLAYER });
 
 // Test limit changers
 AddMock(80, IID_Identity, {
@@ -86,12 +86,12 @@ AddMock(81, IID_Identity, {
 	"GetClassesList": () => ["Monument"]
 });
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 80, "from": -1, "to": 1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 80, "from": INVALID_PLAYER, "to": 1 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 0, "Champion": 0 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5 + 1, "Wonder": 1, "Hero": 2, "Champion": 1 });
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 81, "from": 1, "to": -1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 81, "from": 1, "to": INVALID_PLAYER });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 0, "Champion": 0 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, "Hero": 2, "Champion": 1 });
@@ -99,19 +99,19 @@ TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, 
 // Foundations don't change limits
 AddMock(81, IID_Foundation, {});
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 81, "from": -1, "to": 1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 81, "from": INVALID_PLAYER, "to": 1 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 0, "Champion": 0 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, "Hero": 2, "Champion": 1 });
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 81, "from": 1, "to": -1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 81, "from": 1, "to": INVALID_PLAYER });
 
 // Test limit removers by classes
 AddMock(90, IID_Identity, {
 	"GetClassesList": () => ["Aegis"]
 });
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 90, "from": -1, "to": 1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 90, "from": INVALID_PLAYER, "to": 1 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, "Hero": undefined, "Champion": 1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 0, "Champion": 0 });
@@ -120,11 +120,11 @@ AddMock(91, IID_TrainingRestrictions, {
 	"GetCategory": () => "Hero"
 });
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 91, "from": -1, "to": 1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 91, "from": INVALID_PLAYER, "to": 1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, "Hero": undefined, "Champion": 1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 1, "Champion": 0 });
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 90, "from": 1, "to": -1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 90, "from": 1, "to": INVALID_PLAYER });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, "Hero": 2, "Champion": 1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 1, "Champion": 0 });
 
@@ -136,13 +136,13 @@ AddMock(92, IID_Identity, {
 	"GetClassesList": () => ["Aegis"]
 });
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 92, "from": -1, "to": 1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 92, "from": INVALID_PLAYER, "to": 1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, "Hero": undefined, "Champion": 1 });
 TS_ASSERT(cmpEntityLimits.AllowedToTrain("Hero", 157));
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 2, "Champion": 0 });
 
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 91, "from": 1, "to": -1 });
-cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 92, "from": 1, "to": -1 });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 91, "from": 1, "to": INVALID_PLAYER });
+cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 92, "from": 1, "to": INVALID_PLAYER });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, "Hero": 2, "Champion": 1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 0, "Champion": 0 });
 

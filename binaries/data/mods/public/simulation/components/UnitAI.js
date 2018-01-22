@@ -3440,11 +3440,11 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 {
 	this.SetupRangeQueries();
 
-	if (this.isGuardOf && (msg.to == -1 || !IsOwnedByMutualAllyOfEntity(this.entity, this.isGuardOf)))
+	if (this.isGuardOf && (msg.to == INVALID_PLAYER || !IsOwnedByMutualAllyOfEntity(this.entity, this.isGuardOf)))
 		this.RemoveGuard();
 
 	// If the unit isn't being created or dying, reset stance and clear orders
-	if (msg.to != -1 && msg.from != -1)
+	if (msg.to != INVALID_PLAYER && msg.from != INVALID_PLAYER)
 	{
 		// Switch to a virgin state to let states execute their leave handlers.
 		// except if garrisoned or cheering or (un)packing, in which case we only clear the order queue
@@ -4105,7 +4105,7 @@ UnitAI.prototype.MustKillGatherTarget = function(ent)
 UnitAI.prototype.FindNearbyResource = function(filter, target)
 {
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
+	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
 		return undefined;
 	var owner = cmpOwnership.GetOwner();
 
@@ -4147,7 +4147,7 @@ UnitAI.prototype.FindNearbyResource = function(filter, target)
 UnitAI.prototype.FindNearestDropsite = function(genericType)
 {
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
+	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
 		return undefined;
 
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position)
@@ -4204,7 +4204,7 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 UnitAI.prototype.FindNearbyFoundation = function()
 {
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
+	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
 		return undefined;
 
 	// Find buildings owned by this unit's player
@@ -4228,7 +4228,7 @@ UnitAI.prototype.FindNearbyFoundation = function()
 UnitAI.prototype.FindNearbyGarrisonHolder = function()
 {
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
+	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
 		return undefined;
 
 	// Find buildings owned by this unit's player

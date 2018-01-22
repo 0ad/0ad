@@ -599,7 +599,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	"pack": null,
 	"promotion": null,
 	"upgrade" : null,
-	"player": -1,
+	"player": INVALID_PLAYER,
 	"position": {x:1, y:2, z:3},
 	"production": null,
 	"rallyPoint": null,

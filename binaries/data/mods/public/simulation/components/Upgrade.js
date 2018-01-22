@@ -76,7 +76,8 @@ Upgrade.prototype.OnOwnershipChanged = function(msg)
 {
 	if (!this.completed)
 		this.CancelUpgrade(msg.from);
-	if (msg.to !== -1)
+
+	if (msg.to != INVALID_PLAYER)
 		this.owner = msg.to;
 };
 

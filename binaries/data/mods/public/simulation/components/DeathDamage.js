@@ -67,7 +67,7 @@ DeathDamage.prototype.CauseDeathDamage = function()
 
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	let owner = cmpOwnership.GetOwner();
-	if (owner == -1)
+	if (owner == INVALID_PLAYER)
 		warn("Unit causing death damage does not have any owner.");
 
 	let cmpDamage = Engine.QueryInterface(SYSTEM_ENTITY, IID_Damage);

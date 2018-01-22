@@ -837,7 +837,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 			continue;
 
 		// Find the entity's owner's color:
-		let owner = -1;
+		let owner = INVALID_PLAYER;
 		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		if (cmpOwnership)
 			owner = cmpOwnership.GetOwner();
@@ -855,7 +855,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		cmpSelectable.SetSelectionHighlight({ "r": color.r, "g": color.g, "b": color.b, "a": cmd.alpha }, cmd.selected);
 
 		let cmpRangeOverlayManager = Engine.QueryInterface(ent, IID_RangeOverlayManager);
-		if (!cmpRangeOverlayManager || player != owner && player != -1)
+		if (!cmpRangeOverlayManager || player != owner && player != INVALID_PLAYER)
 			continue;
 
 		cmpRangeOverlayManager.SetEnabled(cmd.selected, this.enabledVisualRangeOverlayTypes, false);

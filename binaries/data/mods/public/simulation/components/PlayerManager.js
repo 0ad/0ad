@@ -41,7 +41,7 @@ PlayerManager.prototype.ReplacePlayer = function(id, ent)
 	{
 		var cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
 		if (cmpOwnership)
-			cmpOwnership.SetOwner(-1);
+			cmpOwnership.SetOwner(INVALID_PLAYER);
 	}
 
 	var oldent = this.playerEntities[id];

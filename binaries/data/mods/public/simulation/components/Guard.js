@@ -68,7 +68,7 @@ Guard.prototype.OnOwnershipChanged = function(msg)
 {
 	if (!this.entities.length)
 		return;
-	this.CheckGuards(msg.to == -1);
+	this.CheckGuards(msg.to == INVALID_PLAYER);
 };
 
 Guard.prototype.OnDiplomacyChanged = function(msg)

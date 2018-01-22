@@ -31,7 +31,7 @@ Trigger.prototype.InitCaptureTheRelic = function()
 Trigger.prototype.CheckCaptureTheRelicVictory = function(data)
 {
 	let cmpIdentity = Engine.QueryInterface(data.entity, IID_Identity);
-	if (!cmpIdentity || !cmpIdentity.HasClass("Relic") || data.from == -1)
+	if (!cmpIdentity || !cmpIdentity.HasClass("Relic") || data.from == INVALID_PLAYER)
 		return;
 
 	--this.playerRelicsCount[data.from];

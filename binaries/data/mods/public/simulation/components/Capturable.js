@@ -59,7 +59,7 @@ Capturable.prototype.Reduce = function(amount, playerID)
 		return 0;
 
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
+	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
 		return 0;
 
 	var cmpPlayerSource = QueryPlayerIDInterface(playerID);
@@ -142,7 +142,7 @@ Capturable.prototype.RegisterCapturePointsChanged = function()
 	Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.cp });
 
 	var owner = cmpOwnership.GetOwner();
-	if (owner == -1 || this.cp[owner] > 0)
+	if (owner == INVALID_PLAYER || this.cp[owner] > 0)
 		return;
 
 	// if all cp has been taken from the owner, convert it to the best player
@@ -179,7 +179,7 @@ Capturable.prototype.GetRegenRate = function()
 Capturable.prototype.TimerTick = function()
 {
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
+	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
 		return;
 
 	var owner = cmpOwnership.GetOwner();
@@ -279,7 +279,7 @@ Capturable.prototype.OnDiplomacyChanged = function(msg)
 
 Capturable.prototype.OnOwnershipChanged = function(msg)
 {
-	if (msg.to == -1)
+	if (msg.to == INVALID_PLAYER)
 		return; // we're dead
 
 	if (this.cp.length)

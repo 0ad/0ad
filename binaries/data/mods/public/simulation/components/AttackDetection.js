@@ -64,7 +64,7 @@ AttackDetection.prototype.AttackAlert = function(target, attacker, attackerOwner
 		return;
 
 	let cmpAttackerOwnership = Engine.QueryInterface(attacker, IID_Ownership);
-	let atkOwner = cmpAttackerOwnership && cmpAttackerOwnership.GetOwner() != -1 ? cmpAttackerOwnership.GetOwner() : attackerOwner;
+	let atkOwner = cmpAttackerOwnership && cmpAttackerOwnership.GetOwner() != INVALID_PLAYER ? cmpAttackerOwnership.GetOwner() : attackerOwner;
 	// Don't register attacks dealt by myself
 	if (atkOwner == playerID)
 		return;

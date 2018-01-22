@@ -73,13 +73,13 @@ Cost.prototype.GetResourceCosts = function(owner)
 
 Cost.prototype.OnOwnershipChanged = function(msg)
 {
-	if (msg.from != -1)
+	if (msg.from != INVALID_PLAYER)
 	{
 		let cmpPlayer = QueryPlayerIDInterface(msg.from);
 		if (cmpPlayer)
 			cmpPlayer.AddPopulationBonuses(-this.GetPopBonus());
 	}
-	if (msg.to != -1)
+	if (msg.to != INVALID_PLAYER)
 	{
 		let cmpPlayer = QueryPlayerIDInterface(msg.to);
 		if (cmpPlayer)
