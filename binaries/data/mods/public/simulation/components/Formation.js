@@ -214,7 +214,7 @@ Formation.prototype.GetPrimaryMember = function()
 Formation.prototype.GetFormationAnimation = function(entity, defaultAnimation)
 {
 	var animationGroup = this.animations[defaultAnimation];
-	if (!animationGroup || this.columnar)
+	if (!animationGroup || this.columnar || !this.memberPositions[entity])
 		return defaultAnimation;
 	var row = this.memberPositions[entity].row;
 	var column = this.memberPositions[entity].column;
