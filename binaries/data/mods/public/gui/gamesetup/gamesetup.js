@@ -1277,7 +1277,9 @@ function hideLoadingWindow()
 
 	loadingWindow.hidden = true;
 	Engine.GetGUIObjectByName("setupWindow").hidden = false;
-	Engine.GetGUIObjectByName("chatInput").focus();
+
+	if (!Engine.GetGUIObjectByName("chatPanel").hidden)
+		Engine.GetGUIObjectByName("chatInput").focus();
 }
 
 /**
@@ -2439,17 +2441,17 @@ function swapPlayers(guidToSwap, newSlot)
 
 function submitChatInput()
 {
-	let input = Engine.GetGUIObjectByName("chatInput");
-	let text = input.caption;
+	let chatInput = Engine.GetGUIObjectByName("chatInput");
+	let text = chatInput.caption;
 	if (!text.length)
 		return;
 
-	input.caption = "";
+	chatInput.caption = "";
 
-	if (executeNetworkCommand(text))
-		return;
+	if (!executeNetworkCommand(text))
+		Engine.SendNetworkChat(text);
 
-	Engine.SendNetworkChat(text);
+	chatInput.focus();
 }
 
 function senderFont(text)
