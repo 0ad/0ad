@@ -259,7 +259,13 @@ function pressedScenarioEditorButton()
 	closeMenu();
 
 	if (Engine.AtlasIsAvailable())
-		Engine.RestartInAtlas();
+		messageBox(
+			400, 200,
+			translate("Are you sure you want to quit 0 A.D. and open the Scenario Editor?"),
+			translate("Confirmation"),
+			[translate("No"), translate("Yes")],
+			[null, Engine.RestartInAtlas]
+		);
 	else
 		messageBox(
 			400, 200,
