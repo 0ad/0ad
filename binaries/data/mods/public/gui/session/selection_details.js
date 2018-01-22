@@ -364,7 +364,7 @@ function displayMultiple(entStates)
 		}
 
 		let carrying = calculateCarriedResources(
-			entState.resourceCarrying,
+			entState.resourceCarrying || null,
 			entState.trader && entState.trader.goods
 		);
 

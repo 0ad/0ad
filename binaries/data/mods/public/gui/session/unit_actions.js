@@ -1098,7 +1098,7 @@ var g_EntityCommands =
 	"garrison": {
 		"getInfo": function(entStates)
 		{
-			if (entStates.every(entState => !entState.unitAI || entState.turretParent))
+			if (entStates.every(entState => !entState.unitAI || entState.turretParent || false))
 				return false;
 
 			return {
@@ -1407,7 +1407,7 @@ function someUnitAI(entities)
 {
 	return entities.some(ent => {
 		let entState = GetEntityState(ent);
-		return entState && entState.unitAI;
+		return entState && entState.unitAI || false;
 	});
 }
 
@@ -1415,7 +1415,7 @@ function someRallyPoints(entities)
 {
 	return entities.some(ent => {
 		let entState = GetEntityState(ent);
-		return entState && entState.rallyPoint;
+		return entState && entState.rallyPoint || false;
 	});
 }
 

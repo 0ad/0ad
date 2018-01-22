@@ -551,9 +551,6 @@ AddMock(10, IID_Position, {
 	GetPosition: function() {
 		return {x:1, y:2, z:3};
 	},
-	GetRotation: function() {
-		return {x:4, y:5, z:6};
-	},
 	IsInWorld: function() {
 		return true;
 	}
@@ -569,17 +566,8 @@ AddMock(10, IID_ResourceTrickle, {
 //	matches the ordering in GuiInterface.
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	"id": 10,
+	"player": INVALID_PLAYER,
 	"template": "example",
-	"alertRaiser": null,
-	"armour": null,
-	"attack": null,
-	"builder": true,
-	"buildingAI": null,
-	"buildRate": null,
-	"buildTime": null,
-	"canGarrison": false,
-	"deathDamage": null,
-	"heal": null,
 	"identity": {
 		"rank": "foo",
 		"classes": ["class1", "class2"],
@@ -587,39 +575,17 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 		"selectionGroupName": "Selection Group Name",
 		"canDelete": true
 	},
-	"isBarterMarket": true,
-	"fogging": null,
-	"foundation": null,
-	"garrisonHolder": null,
-	"gate": null,
-	"guard": null,
-	"loot": null,
-	"market": null,
-	"mirage": null,
-	"pack": null,
-	"promotion": null,
-	"upgrade" : null,
-	"player": INVALID_PLAYER,
 	"position": {x:1, y:2, z:3},
-	"production": null,
-	"rallyPoint": null,
-	"repairRate": null,
-	"resourceCarrying": null,
-	"resourceDropsite": null,
-	"resourceGatherRates": null,
-	"resourceSupply": null,
-	"resourceTrickle": {
-		"interval": 1250,
-		"rates": { "food": 2, "wood": 3, "stone": 5, "metal": 9 }
-	},
-	"rotation": {x:4, y:5, z:6},
-	"speed": null,
-	"trader": null,
-	"turretParent":null,
-	"unitAI": null,
-	"visibility": "visible",
 	"hitpoints": 50,
 	"maxHitpoints": 60,
 	"needsRepair": false,
-	"needsHeal": true
+	"needsHeal": true,
+	"builder": true,
+	"canGarrison": false,
+	"visibility": "visible",
+	"isBarterMarket":true,
+	"resourceTrickle": {
+		"interval": 1250,
+		"rates": { "food": 2, "wood": 3, "stone": 5, "metal": 9 }
+	}
 });

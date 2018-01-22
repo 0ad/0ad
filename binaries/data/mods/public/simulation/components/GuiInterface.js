@@ -226,47 +226,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	let ret = {
 		"id": ent,
-		"template": template,
-
-		"alertRaiser": null,
-		"armour": null,
-		"attack": null,
-		"builder": null,
-		"buildingAI": null,
-		"buildRate": null,
-		"buildTime": null,
-		"canGarrison": null,
-		"deathDamage": null,
-		"heal": null,
-		"identity": null,
-		"isBarterMarket": null,
-		"fogging": null,
-		"foundation": null,
-		"garrisonHolder": null,
-		"gate": null,
-		"guard": null,
-		"loot": null,
-		"market": null,
-		"mirage": null,
-		"pack": null,
-		"promotion": null,
-		"upgrade" : null,
-		"player": -1,
-		"position": null,
-		"production": null,
-		"rallyPoint": null,
-		"repairRate": null,
-		"resourceCarrying": null,
-		"resourceDropsite": null,
-		"resourceGatherRates": null,
-		"resourceSupply": null,
-		"resourceTrickle": null,
-		"rotation": null,
-		"speed": null,
-		"trader": null,
-		"turretParent":null,
-		"unitAI": null,
-		"visibility": null,
+		"player": INVALID_PLAYER,
+		"template": template
 	};
 
 	let cmpMirage = Engine.QueryInterface(ent, IID_Mirage);
@@ -285,10 +246,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 	if (cmpPosition && cmpPosition.IsInWorld())
-	{
 		ret.position = cmpPosition.GetPosition();
-		ret.rotation = cmpPosition.GetRotation();
-	}
 
 	let cmpHealth = QueryMiragedInterface(ent, IID_Health);
 	if (cmpHealth)
@@ -345,12 +303,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpTrader)
 		ret.trader = {
 			"goods": cmpTrader.GetGoods()
-		};
-
-	let cmpFogging = Engine.QueryInterface(ent, IID_Fogging);
-	if (cmpFogging)
-		ret.fogging = {
-			"mirage": cmpFogging.IsMiraged(player) ? cmpFogging.GetMirage(player) : null
 		};
 
 	let cmpFoundation = QueryMiragedInterface(ent, IID_Foundation);
@@ -492,10 +444,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpArmour)
 		ret.armour = cmpArmour.GetArmourStrengths();
 
-	let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
-	if (cmpAuras)
-		ret.auras = cmpAuras.GetDescriptions();
-
 	let cmpBuildingAI = Engine.QueryInterface(ent, IID_BuildingAI);
 	if (cmpBuildingAI)
 		ret.buildingAI = {
@@ -505,10 +453,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"garrisonArrowClasses": cmpBuildingAI.GetGarrisonArrowClasses(),
 			"arrowCount": cmpBuildingAI.GetArrowCount()
 		};
-
-	let cmpDeathDamage = Engine.QueryInterface(ent, IID_DeathDamage);
-	if (cmpDeathDamage)
-		ret.deathDamage = cmpDeathDamage.GetDeathDamageStrengths();
 
 	if (cmpPosition && cmpPosition.GetTurretParent() != INVALID_ENTITY)
 		ret.turretParent = cmpPosition.GetTurretParent();
