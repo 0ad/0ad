@@ -482,16 +482,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 
 		// Create river
 		if (!createArea(
-			new PathPlacer(
-				start.x,
-				start.y,
-				end.x,
-				end.y,
-				riverWidth,
-				waviness,
-				smoothness,
-				offset,
-				tapering),
+			new PathPlacer(start, end, riverWidth, waviness, smoothness, offset, tapering),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, heightRiverbed, 4),
 				paintClass(tributaryRiverTileClass)

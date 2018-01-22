@@ -85,7 +85,7 @@ for (let  i = 0; i < numPlayers; ++i)
 
 	log("Creating passage separating players...");
 	createArea(
-		new PathPlacer(mapCenter.x, mapCenter.y, passage[i].x, passage[i].y, scaleByMapSize(14, 24), 0.4, scaleByMapSize(3, 9), 0.2, 0.05),
+		new PathPlacer(mapCenter, passage[i], scaleByMapSize(14, 24), 0.4, scaleByMapSize(3, 9), 0.2, 0.05),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [1]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4)

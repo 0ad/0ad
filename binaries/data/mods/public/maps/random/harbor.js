@@ -373,7 +373,7 @@ function addSpines()
 		let end = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.4), 0).rotate(-tang));
 
 		createArea(
-			new PathPlacer(start.x, start.y, end.x, end.y, scaleByMapSize(14, spineSize), 0.6, 0.1, 0.4, spineTapering),
+			new PathPlacer(start, end, scaleByMapSize(14, spineSize), 0.6, 0.1, 0.4, spineTapering),
 			[
 				new LayeredPainter([g_Terrains.cliff, spineTile], [3]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetSpine, 3),

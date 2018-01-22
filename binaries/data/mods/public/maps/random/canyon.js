@@ -98,10 +98,8 @@ log("Creating hills...");
 for (let i = 0; i < scaleByMapSize(9, 16); ++i)
 	createArea(
 		new PathPlacer(
-			randIntExclusive(1, mapSize),
-			randIntExclusive(1, mapSize),
-			randIntExclusive(1, mapSize),
-			randIntExclusive(1, mapSize),
+			new Vector2D(randIntExclusive(1, mapSize), randIntExclusive(1, mapSize)),
+			new Vector2D(randIntExclusive(1, mapSize), randIntExclusive(1, mapSize)),
 			scaleByMapSize(11, 16),
 			0.4,
 			3 * scaleByMapSize(1, 4),
@@ -115,11 +113,10 @@ for (let i = 0; i < scaleByMapSize(9, 16); ++i)
 
 for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 {
-	var tx = randIntInclusive(1, mapSize - 1);
-	var tz = randIntInclusive(1, mapSize - 1);
+	let position = new Vector2D(randIntInclusive(1, mapSize - 1), randIntInclusive(1, mapSize - 1));
 
-	var newarea = createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.06)), 0.7, 0.1, 10, tx, tz),
+	let newarea = createArea(
+		new ClumpPlacer(diskArea(fractionToTiles(0.06)), 0.7, 0.1, 10, position.x, position.y),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
@@ -136,7 +133,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 		var p2 = 0;
 
 		for (let i = 0; i < numPlayers; ++i)
-			distances.push(Math.euclidDistance2D(tx, tz, playerPosition[i].x, playerPosition[i].y));
+			distances.push(position.distanceTo(playerPosition[i]));
 
 		for (let a = 0; a < numPlayers; ++a)
 		{
@@ -157,7 +154,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 		for (let playerID of [p1, p2])
 			if (playerPosition[playerID])
 				createArea(
-					new PathPlacer(tx, tz, playerPosition[playerID].x, playerPosition[playerID].y, scaleByMapSize(11, 17), 0.4, scaleByMapSize(3, 12), 0.1, 0.1),
+					new PathPlacer(position, playerPosition[playerID], scaleByMapSize(11, 17), 0.4, scaleByMapSize(3, 12), 0.1, 0.1),
 					[
 						new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 						new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
@@ -173,10 +170,8 @@ for (let i = 0; i < numPlayers; ++i)
 	for (let position of [playerPosition[neighbor], mapCenter])
 		createArea(
 			new PathPlacer(
-				playerPosition[i].x,
-				playerPosition[i].y,
-				position.x,
-				position.y,
+				playerPosition[i],
+				position,
 				scaleByMapSize(8, 13),
 				0.4,
 				3 * scaleByMapSize(1, 4),

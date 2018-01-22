@@ -190,7 +190,7 @@ if (mapSize > 150 && randBool())
 	let pathWidth = scaleByMapSize(7, 18);
 	let points = distributePointsOnCircle(2, randomAngle(), waterRadius + shoreDistance + forestDistance + pathWidth, mapCenter)[0];
 	createArea(
-		new PathPlacer(points[0].x, points[0].y, points[1].x, points[1].y, pathWidth, 0.4, 1, 0.2, 0),
+		new PathPlacer(points[0], points[1], pathWidth, 0.4, 1, 0.2, 0),
 		[
 			new TerrainPainter(tSand),
 			new SmoothElevationPainter(ELEVATION_SET, heightOasisPath, 5),

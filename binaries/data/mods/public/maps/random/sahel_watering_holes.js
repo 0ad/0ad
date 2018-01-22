@@ -108,7 +108,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	log("Creating the river between the players...");
 	createArea(
-		new PathPlacer(riverStart[i].x, riverStart[i].y, riverEnd[i].x, riverEnd[i].y, scaleByMapSize(10, 50), 0.2, 3 * scaleByMapSize(1, 4), 0.2, 0.05),
+		new PathPlacer(riverStart[i], riverEnd[i], scaleByMapSize(10, 50), 0.2, 3 * scaleByMapSize(1, 4), 0.2, 0.05),
 		[
 			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),

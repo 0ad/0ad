@@ -99,12 +99,10 @@ HeightPlacer.prototype.place = function(constraint)
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function PathPlacer(x1, z1, x2, z2, width, a, b, c, taper, failFraction = 0)
+function PathPlacer(start, end, width, a, b, c, taper, failFraction = 0)
 {
-	this.x1 = x1;
-	this.z1 = z1;
-	this.x2 = x2;
-	this.z2 = z2;
+	this.start = start;
+	this.end = end;
 	this.width = width;
 	this.a = a;
 	this.b = b;
@@ -116,12 +114,8 @@ function PathPlacer(x1, z1, x2, z2, width, a, b, c, taper, failFraction = 0)
 PathPlacer.prototype.place = function(constraint)
 {
 	var failed = 0;
-	var dx = (this.x2 - this.x1);
-	var dz = (this.z2 - this.z1);
-	var pathLength = Math.sqrt(dx*dx + dz*dz);
-	dx /= pathLength;
-	dz /= pathLength;
 
+	let pathLength = this.start.distanceTo(this.end);
 	var numSteps = 1 + Math.floor(pathLength / 4 * this.a);
 	var numISteps = 1 + Math.floor(pathLength / 4 * this.b);
 	var totalSteps = numSteps*numISteps;
@@ -151,45 +145,31 @@ PathPlacer.prototype.place = function(constraint)
 				ctrlVals[(j + 1) % numSteps],
 				ctrlVals[(j + 2) % numSteps]);
 
-	var halfWidth = 0.5 * this.width;
-
 	// Add smoothed noise to straight path
+	let pathPerpendicular = Vector2D.sub(this.end, this.start).normalize().perpendicular();
 	var segments1 = [];
 	var segments2 = [];
 
 	for (var j = 0; j < totalSteps; ++j)
 	{
 		// Interpolated points along straight path
-		var t = j/totalSteps;
-		var tx = this.x1 * (1.0 - t) + this.x2 * t;
-		var tz = this.z1 * (1.0 - t) + this.z2 * t;
-		var t2 = (j+1)/totalSteps;
-		var tx2 = this.x1 * (1.0 - t2) + this.x2 * t2;
-		var tz2 = this.z1 * (1.0 - t2) + this.z2 * t2;
+		let step1 = j / totalSteps;
+		let step2 = (j + 1) / totalSteps;
+		let stepStart = Vector2D.add(Vector2D.mult(this.start, 1 - step1), Vector2D.mult(this.end, step1));
+		let stepEnd = Vector2D.add(Vector2D.mult(this.start, 1 - step2), Vector2D.mult(this.end, step2));
 
 		// Find noise offset points
-		var nx = (tx - dz * noise[j]);
-		var nz = (tz + dx * noise[j]);
-		var nx2 = (tx2 - dz * noise[j+1]);
-		var nz2 = (tz2 + dx * noise[j+1]);
+		let noiseStart = Vector2D.add(stepStart, Vector2D.mult(pathPerpendicular, noise[j]));
+		let noiseEnd = Vector2D.add(stepEnd, Vector2D.mult(pathPerpendicular, noise[j + 1]));
+		let noisePerpendicular = Vector2D.sub(noiseEnd, noiseStart).normalize().perpendicular();
 
-		// Find slope of offset points
-		var ndx = (nx2 - nx);
-		var ndz = (nz2 - nz);
-		var dist = Math.sqrt(ndx*ndx + ndz*ndz);
-		ndx /= dist;
-		ndz /= dist;
+		let taperedWidth = (1 - step1 * this.taper) * this.width / 2;
 
-		var taperedWidth = (1.0 - t*this.taper) * halfWidth;
+		let point1 = Vector2D.sub(noiseStart, Vector2D.mult(noisePerpendicular, taperedWidth)).round();
+		let point2 = Vector2D.add(noiseEnd, Vector2D.mult(noisePerpendicular, taperedWidth)).round();
 
-		// Find slope of offset path
-		var px = Math.round(nx - ndz * -taperedWidth);
-		var pz = Math.round(nz + ndx * -taperedWidth);
-		segments1.push({ "x": px, "z": pz });
-		var px2 = Math.round(nx2 - ndz * taperedWidth);
-		var pz2 = Math.round(nz2 + ndx * taperedWidth);
-		segments2.push({ "x": px2, "z": pz2 });
-
+		segments1.push({ "x": point1.x, "z": point1.y });
+		segments2.push({ "x": point2.x, "z": point2.y });
 	}
 
 	var retVec = [];

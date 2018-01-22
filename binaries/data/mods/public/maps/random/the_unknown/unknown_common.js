@@ -313,10 +313,8 @@ function unknownCentralSea()
 		let [isthmusStart, isthmusEnd] = centralRiverCoordinates(startAngle + Math.PI / 2);
 		createArea(
 			new PathPlacer(
-				isthmusStart.x,
-				isthmusStart.y,
-				isthmusEnd.x,
-				isthmusEnd.y,
+				isthmusStart,
+				isthmusEnd,
 				scaleByMapSize(randIntInclusive(16, 24), randIntInclusive(100, 140)),
 				0.5,
 				3 * scaleByMapSize(1, 4),
@@ -356,7 +354,7 @@ function unknownCentralRiver()
 	log("Creating the main river...");
 	let [coord1, coord2] = centralRiverCoordinates(startAngle);
 	createArea(
-		new PathPlacer(coord1.x, coord1.y, coord2.x, coord2.y, scaleByMapSize(14, 24), 0.5, scaleByMapSize(3, 12), 0.1, 0.01),
+		new PathPlacer(coord1, coord2, scaleByMapSize(14, 24), 0.5, scaleByMapSize(3, 12), 0.1, 0.01),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 		avoidClasses(clPlayerTerritory, 4));
 
@@ -439,7 +437,7 @@ function unknownRiversAndLake()
 		for (let river of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
 		{
 			createArea(
-				new PathPlacer(mapCenter.x, mapCenter.y, river.x, river.y, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
+				new PathPlacer(mapCenter, river, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 				[
 					new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 					paintClass(clWater)
@@ -612,7 +610,7 @@ function unknownPasses()
 	{
 		log("Creating a mountain range between neighboring players...");
 		createArea(
-			new PathPlacer(mapCenter.x, mapCenter.y, mountain.x, mountain.y, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
+			new PathPlacer(mapCenter, mountain, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 			[
 				// More smoothing than this often results in the mountainrange becoming passable to one player.
 				new SmoothElevationPainter(ELEVATION_SET, heightMountain, 1),
@@ -633,10 +631,8 @@ function unknownPasses()
 		log("Create passages between neighboring players...");
 		createArea(
 			new PathPlacer(
-				passes[2 * i].x,
-				passes[2 * i].y,
-				passes[2 * ((i + 1) % numPlayers)].x,
-				passes[2 * ((i + 1) % numPlayers)].y,
+				passes[2 * i],
+				passes[2 * ((i + 1) % numPlayers)],
 				scaleByMapSize(14, 24),
 				0.4,
 				3 * scaleByMapSize(1, 3),
@@ -710,7 +706,7 @@ function unknownLowlands()
 
 		log("Creating passes from player areas to the center...");
 		createArea(
-			new PathPlacer(mapCenter.x, mapCenter.y, valley.x, valley.y, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
+			new PathPlacer(mapCenter, valley, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 			[
 				landElevationPainter,
 				paintClass(clWater)

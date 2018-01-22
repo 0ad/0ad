@@ -510,7 +510,7 @@ function createSunkenTerrain()
 		log("Creating path from player to expansion...");
 		let expansionPosition = getCoords(expDist, i, expAngle);
 		createArea(
-			new PathPlacer(playerPosition.x, playerPosition.y, expansionPosition.x, expansionPosition.y, 12, 0.7, 0.5, 0.1, -1),
+			new PathPlacer(playerPosition, expansionPosition, 12, 0.7, 0.5, 0.1, -1),
 			[
 				new LayeredPainter([g_Terrains.cliff, middle, road], [3, 4]),
 				new SmoothElevationPainter(ELEVATION_SET, heightPath, 3),
@@ -523,7 +523,7 @@ function createSunkenTerrain()
 			let neighborPosition = getCoords(nRoad, i, neighborOffset);
 			let pathPosition = getCoords(0.47, i, 0);
 			createArea(
-				new PathPlacer(pathPosition.x, pathPosition.y, neighborPosition.x, neighborPosition.y, 19, 0.4, 0.5, 0.1, -0.6),
+				new PathPlacer(pathPosition, neighborPosition, 19, 0.4, 0.5, 0.1, -0.6),
 				[
 					new LayeredPainter([g_Terrains.cliff, middle, road], [3, 6]),
 					new SmoothElevationPainter(ELEVATION_SET, heightPath, 3),

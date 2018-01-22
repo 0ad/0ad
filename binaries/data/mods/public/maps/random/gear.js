@@ -126,7 +126,7 @@ for (let m = 0; m < numPlayers * split; ++m)
 	let position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.15), 0).rotate(-angle));
 	let position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.6), 0).rotate(-angle));
 	createArea(
-		new PathPlacer(position1.x, position1.y, position2.x, position2.y, scaleByMapSize(14, 40), 0, scaleByMapSize(3, 9), 0.2, 0.05),
+		new PathPlacer(position1, position2, scaleByMapSize(14, 40), 0, scaleByMapSize(3, 9), 0.2, 0.05),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		avoidClasses(clPlayer, 5));
 
@@ -135,7 +135,7 @@ for (let m = 0; m < numPlayers * split; ++m)
 	position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.05), 0).rotate(-angle));
 	position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.49), 0).rotate(-angle));
 	createArea(
-		new PathPlacer(position1.x, position1.y, position2.x, position2.y, scaleByMapSize(10, 40), 0, scaleByMapSize(3, 9), 0.2, 0.05),
+		new PathPlacer(position1, position2, scaleByMapSize(10, 40), 0, scaleByMapSize(3, 9), 0.2, 0.05),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4));
 }
 

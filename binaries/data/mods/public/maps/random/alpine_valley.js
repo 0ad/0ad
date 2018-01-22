@@ -174,10 +174,8 @@ MountainRangeBuilder.prototype.HasCycles = function()
 
 MountainRangeBuilder.prototype.PaintCurrentEdge = function()
 {
-	this.pathplacer.x1 = this.currentEdgeStart.x;
-	this.pathplacer.z1 = this.currentEdgeStart.y;
-	this.pathplacer.x2 = this.currentEdgeEnd.x;
-	this.pathplacer.z2 = this.currentEdgeEnd.y;
+	this.pathplacer.start = this.currentEdgeStart;
+	this.pathplacer.end = this.currentEdgeEnd;
 	this.pathplacer.width = this.mountainWidth;
 
 	log("Creating mountainrange...");
@@ -330,7 +328,7 @@ placePlayerBases({
 Engine.SetProgress(20);
 
 new MountainRangeBuilder({
-	"pathplacer": new PathPlacer(undefined, undefined, undefined, undefined, undefined, 0.4, scaleByMapSize(3, 12), 0.1, 0.1, 0.1),
+	"pathplacer": new PathPlacer(undefined, undefined, undefined, 0.4, scaleByMapSize(3, 12), 0.1, 0.1, 0.1),
 	"painters":[
 		new LayeredPainter([tCliff, tPrimary], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightMountain, 2),

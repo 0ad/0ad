@@ -287,7 +287,7 @@ function placeBarriers()
 		let start = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.075), 0).rotate(-angle));
 		let end = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.42), 0).rotate(-angle));
 		createArea(
-			new PathPlacer(start.x, start.y, end.x, end.y, scaleByMapSize(14, mSize), mWaviness, 0.1, mOffset, mTaper),
+			new PathPlacer(start, end, scaleByMapSize(14, mSize), mWaviness, 0.1, mOffset, mTaper),
 			[
 				new LayeredPainter([g_Terrains.cliff, spineTerrain], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightBarrier, 2),

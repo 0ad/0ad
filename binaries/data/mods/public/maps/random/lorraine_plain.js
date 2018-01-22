@@ -103,7 +103,7 @@ var riverPositions = [
 
 log("Creating the main river...");
 createArea(
-	new PathPlacer(riverPositions[0].x, riverPositions[0].y, riverPositions[1].x, riverPositions[1].y, scaleByMapSize(10, 20), 0.5, 3 * scaleByMapSize(1, 4), 0.1, 0.01),
+	new PathPlacer(riverPositions[0], riverPositions[1], scaleByMapSize(10, 20), 0.5, 3 * scaleByMapSize(1, 4), 0.1, 0.01),
 	new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 	avoidClasses(clPlayer, 4));
 Engine.SetProgress(25);

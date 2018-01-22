@@ -199,7 +199,7 @@ if (gallicCC)
 			// To avoid the path going through the palisade wall, start it at the gate, not at the city center.
 			let pathStart = Vector2D.add(civicCenterPosition, new Vector2D(gaulCityRadius * (i == 0 ? 1 : -1), 0).rotate(startAngle));
 			createArea(
-				new PathPlacer(pathStart.x, pathStart.y, meetingPlacePosition.x, meetingPlacePosition.y, 4, 0.4, 4, 0.2, 0.05),
+				new PathPlacer(pathStart, meetingPlacePosition, 4, 0.4, 4, 0.2, 0.05),
 				[
 					new LayeredPainter([tShore, tRoad, tRoad], [1, 3]),
 					new SmoothElevationPainter(ELEVATION_SET, heightPath, 4),
