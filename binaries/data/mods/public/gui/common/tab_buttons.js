@@ -57,11 +57,12 @@ function placeTabButtons(categoriesData, buttonHeight, spacing, onPress, onSelec
  */
 function selectNextTab(direction)
 {
-	selectPanel(g_TabCategorySelected === undefined ?
-		direction > 0 ?
-			0 :
-			g_TabCategoryCount - 1 :
-		(g_TabCategorySelected + direction + g_TabCategoryCount) % g_TabCategoryCount);
+	if (g_TabCategoryCount)
+		selectPanel(g_TabCategorySelected === undefined ?
+			direction > 0 ?
+				0 :
+				g_TabCategoryCount - 1 :
+			(g_TabCategorySelected + direction + g_TabCategoryCount) % g_TabCategoryCount);
 }
 
 function selectPanel(category)
