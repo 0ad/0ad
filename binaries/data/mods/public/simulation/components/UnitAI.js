@@ -4125,7 +4125,7 @@ UnitAI.prototype.FindNearbyResource = function(filter, target)
 	}
 	var nearby = cmpRangeManager.ExecuteQuery(entity, 0, range, players, IID_ResourceSupply);
 	return nearby.find(ent => {
-		if (!this.CanGather(ent))
+		if (!this.CanGather(ent) || !this.CheckTargetVisible(ent))
 			return false;
 		var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 		var type = cmpResourceSupply.GetType();
@@ -4175,7 +4175,7 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 			continue;
 
 		let cmpResourceDropsite = Engine.QueryInterface(dropsite, IID_ResourceDropsite);
-		if (!cmpResourceDropsite.AcceptsType(genericType))
+		if (!cmpResourceDropsite.AcceptsType(genericType) || !this.CheckTargetVisible(dropsite))
 			continue;
 		if (Engine.QueryInterface(dropsite, IID_Ownership).GetOwner() != owner && !cmpResourceDropsite.IsShared())
 			continue;
