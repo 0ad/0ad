@@ -411,7 +411,7 @@ function placePlayerBaseDecoratives(args)
 function placePlayersNomad(playerClass, constraints)
 {
 	if (!isNomad())
-		return;
+		return undefined;
 
 	let distance = scaleByMapSize(60, 240);
 	let constraint = new AndConstraint(constraints);
