@@ -146,7 +146,7 @@ paintRiver({
 	"waterFunc": (position, height, riverFraction) => {
 
 		addToClass(position.x, position.y, clWater);
-		createTerrain(tShore).place(position.x, position.y);
+		createTerrain(tShore).place(position);
 
 		// Place river bushes
 		if (height <= -0.2 || height >= 0.1)
@@ -168,7 +168,7 @@ paintRiver({
 				addToClass(position.x, position.y, riv.tileClass);
 
 				if (riv.terrain)
-					createTerrain(riv.terrain).place(position.x, position.y);
+					createTerrain(riv.terrain).place(position);
 			}
 	}
 });

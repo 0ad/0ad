@@ -194,6 +194,7 @@ var noise10 = new Noise2D(scaleByMapSize(50, 200));
 for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
+		let position = new Vector2D(ix, iz);
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
@@ -313,7 +314,7 @@ for (var ix = 0; ix < mapSize; ix++)
 				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randomAngle());
 		}
 
-		createTerrain(t).place(ix, iz);
+		createTerrain(t).place(position);
 	}
 
 Engine.SetProgress(30);

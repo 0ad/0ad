@@ -103,7 +103,7 @@ paintRiver({
 	"meanderShort": 20,
 	"meanderLong": 0,
 	"waterFunc": (position, height, riverFraction) => {
-		createTerrain(height < -1.5 ? tWater : tShore).place(position.x, position.y);
+		createTerrain(height < -1.5 ? tWater : tShore).place(position);
 	},
 	"landFunc": (position, shoreDist1, shoreDist2) => {
 		g_Map.setHeight(position, heightLand + 0.1);

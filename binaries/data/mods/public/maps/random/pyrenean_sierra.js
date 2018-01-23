@@ -363,12 +363,12 @@ for (let x = 0; x < mapSize; ++x)
 		if (getTileClass(clPyrenneans).countMembersInRadius(x, z, 2))
 		{
 			let layer = terrainPerHeight.find(layer => height < layer.maxHeight);
-			createTerrain(heightDiff > layer.steepness ? layer.terrainSteep : layer.terrainGround).place(x, z);
+			createTerrain(heightDiff > layer.steepness ? layer.terrainSteep : layer.terrainGround).place(position);
 		}
 
 		let terrainShore = getShoreTerrain(height, heightDiff, x, z);
 		if (terrainShore)
-			createTerrain(terrainShore).place(x, z);
+			createTerrain(terrainShore).place(position);
 	}
 
 function getShoreTerrain(height, heightDiff, x, z)

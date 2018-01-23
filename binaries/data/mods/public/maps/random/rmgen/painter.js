@@ -57,7 +57,7 @@ function TerrainPainter(terrain)
 TerrainPainter.prototype.paint = function(area)
 {
 	for (let point of area.points)
-		this.terrain.place(point.x, point.y);
+		this.terrain.place(point);
 };
 
 /**
@@ -96,7 +96,7 @@ LayeredPainter.prototype.paint = function(area)
 					break;
 			}
 
-			this.terrains[i].place(point.x, point.y);
+			this.terrains[i].place(point);
 		}
 	});
 };

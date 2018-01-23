@@ -261,12 +261,13 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 {
 	for (var y = minTerrainDistToBorder; y < mapSize - minTerrainDistToBorder; y++)
 	{
+		let position = new Vector2D(x, y);
 		var textureMinHeight = heightRange.min;
 		for (var i = 0; i < textueByHeight.length; i++)
 		{
 			if (getHeight(x, y) >= textureMinHeight && getHeight(x, y) <= textueByHeight[i].upperHeightLimit)
 			{
-				createTerrain(textueByHeight[i].terrain).place(x, y);
+				createTerrain(textueByHeight[i].terrain).place(position);
 
 				// Add some props at...
 				if (i == 0) // ...deep water

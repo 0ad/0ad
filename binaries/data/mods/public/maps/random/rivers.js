@@ -143,7 +143,7 @@ for (let i = 0; i < numRivers; ++i)
 				return;
 
 			g_Map.setHeight(position, newHeight);
-			createTerrain(height >= 0 ? tShore : tWater).place(position.x, position.y);
+			createTerrain(height >= 0 ? tShore : tWater).place(position);
 
 			if (isShallow)
 				addToClass(position.x, position.y, clShallow);

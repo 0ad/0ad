@@ -17,12 +17,15 @@ function SimpleTerrain(texture, templateName = undefined)
 	this.templateName = templateName;
 }
 
-SimpleTerrain.prototype.place = function(x, z)
+SimpleTerrain.prototype.place = function(position)
 {
-	if (g_Map.validT(x, z))
-		g_Map.terrainObjects[x][z] = this.templateName ? new Entity(this.templateName, 0, x + 0.5, z + 0.5, randomAngle()) : undefined;
+	if (g_Map.validT(position.x, position.y))
+		g_Map.terrainObjects[position.x][position.y] =
+			this.templateName ?
+				new Entity(this.templateName, 0, position.x + 0.5, position.y + 0.5, randomAngle()) :
+					undefined;
 
-	g_Map.texture[x][z] = g_Map.getTextureID(this.texture);
+	g_Map.texture[position.x][position.y] = g_Map.getTextureID(this.texture);
 };
 
 /**
@@ -38,7 +41,7 @@ function RandomTerrain(terrains)
 	this.terrains = terrains;
 }
 
-RandomTerrain.prototype.place = function(x, z)
+RandomTerrain.prototype.place = function(position)
 {
-	pickRandom(this.terrains).place(x, z);
+	pickRandom(this.terrains).place(position);
 };

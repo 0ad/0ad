@@ -268,11 +268,12 @@ log("Painting land...");
 for (let mapX = 0; mapX < mapSize; ++mapX)
 	for (let mapZ = 0; mapZ < mapSize; ++mapZ)
 	{
+		let position = new Vector2D(mapX, mapZ);
 		let terrain = getCosricaSardiniaTerrain(mapX, mapZ);
 		if (!terrain)
 			continue;
 
-		createTerrain(terrain).place(mapX, mapZ);
+		createTerrain(terrain).place(position);
 
 		if (terrain == tCliffs || terrain == tSteepCliffs)
 			addToClass(mapX, mapZ, clCliffs);

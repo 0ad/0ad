@@ -115,7 +115,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 			newHeight = Math.max(newHeight, endLine.height);
 
 			if (newHeight <= endLine.height + 2 && g_Map.validT(pt.x, pt.z) && g_Map.getTexture(pt.x, pt.z).indexOf('cliff') > -1)
-				ground.place(pt.x, pt.z);
+				ground.place(position);
 
 			g_Map.setHeight(position, newHeight);
 		}
@@ -1046,7 +1046,7 @@ function fadeToGround(bb, minX, minZ, elevation)
 			{
 				let position = new Vector2D(x + minX, z + minZ);
 				g_Map.setHeight(position, g_Map.getAverageHeight(position));
-				ground.place(position.x, position.y);
+				ground.place(position);
 			}
 		}
 }
@@ -1237,7 +1237,7 @@ function paintHeightmap(mapName, func = undefined)
 			{
 				let i = hmTile.x * hmSize + hmTile.y;
 				let tile = mapData.pallet[mapData.tilemap[i]];
-				createTerrain(tile).place(x, y);
+				createTerrain(tile).place(position);
 
 				if (func)
 					func(tile, x, y);
