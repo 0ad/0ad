@@ -70,7 +70,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 	let position = new Vector2D(x, z);
 	let constraint = new AndConstraint(constraints);
 
-	if (!g_Map.inMapBounds(x, z) || !constraint.allows(position))
+	if (!g_Map.inMapBounds(position) || !constraint.allows(position))
 		return;
 
 	let mapSize = getMapSize();
@@ -118,7 +118,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 			{
 				let pos = new Vector2D(ix, iz);
 
-				if (Math.euclidDistance2D(ix, iz, cx, cz) > radius2 || !g_Map.inMapBounds(ix, iz))
+				if (Math.euclidDistance2D(ix, iz, cx, cz) > radius2 || !g_Map.inMapBounds(pos))
 					continue;
 
 				if (!constraint.allows(pos))
@@ -553,7 +553,7 @@ function createPassage(args)
 		{
 			let location = Vector2D.add(locationLength, Vector2D.mult(widthDirection, stepWidth)).round();
 
-			if (!g_Map.inMapBounds(location.x, location.y) ||
+			if (!g_Map.inMapBounds(location) ||
 			    args.maxHeight !== undefined && getHeight(location.x, location.y) > args.maxHeight)
 				continue;
 

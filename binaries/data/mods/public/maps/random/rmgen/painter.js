@@ -84,7 +84,7 @@ LayeredPainter.prototype.paint = function(area)
 		"area": area,
 		"brushSize": 1,
 		"gridSize": getMapSize(),
-		"withinArea": (areaID, x, z) => g_Map.area[x][z] == areaID,
+		"withinArea": (areaID, position) => g_Map.area[position.x][position.y] == areaID,
 		"paintTile": (point, distance) => {
 			let width = 0;
 			let i = 0;
@@ -114,11 +114,10 @@ ElevationPainter.prototype.paint = function(area)
 	for (let point of area.points)
 		for (let [dx, dz] of [[0, 0], [1, 0], [0, 1], [1, 1]])
 		{
-			let x = point.x + dx;
-			let z = point.y + dz;
+			let position = Vector2D.add(point, new Vector2D(dx, dz));
 
-			if (g_Map.inMapBounds(x, z))
-				g_Map.height[x][z] = this.elevation;
+			if (g_Map.inMapBounds(position))
+				g_Map.height[position.x][position.y] = this.elevation;
 		}
 };
 
@@ -188,10 +187,13 @@ SmoothElevationPainter.prototype.paint = function(area)
 		}
 
 	// Every vertex of a tile is considered within the area
-	let withinArea = (areaID, x, z) => {
+	let withinArea = (areaID, position) => {
 		for (let [dx, dz] of [[0, 0], [1, 0], [0, 1], [1, 1]])
-			if (g_Map.inMapBounds(x - dx, z - dz) && g_Map.area[x - dx][z - dz] == areaID)
+		{
+			let vertexPos = Vector2D.sub(position, new Vector2D(dx, dz));
+			if (g_Map.inMapBounds(vertexPos) && g_Map.area[vertexPos.x][vertexPos.y] == areaID)
 				return true;
+		}
 
 		return false;
 	};
@@ -218,7 +220,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 	let areaID = area.getID();
 	for (let point of heightPoints)
 	{
-		if (!withinArea(areaID, point.x, point.y))
+		if (!withinArea(areaID, point))
 			continue;
 
 		let count = 0;
@@ -281,7 +283,7 @@ function breadthFirstSearchPaint(args)
 				let nz = point.y + dz;
 				let position = new Vector2D(nx, nz);
 
-				if (!withinGrid(nx, nz) || args.withinArea(areaID, nx, nz) || saw[nx][nz])
+				if (!withinGrid(nx, nz) || args.withinArea(areaID, position) || saw[nx][nz])
 					continue;
 
 				saw[nx][nz] = 1;
@@ -297,7 +299,7 @@ function breadthFirstSearchPaint(args)
 		let point = pointQueue.shift();
 		let distance = dist[point.x][point.y];
 
-		if (args.withinArea(areaID, point.x, point.y))
+		if (args.withinArea(areaID, point))
 			args.paintTile(point, distance);
 
 		// Enqueue neighboring points
@@ -309,7 +311,7 @@ function breadthFirstSearchPaint(args)
 				let nz = point.y + dz;
 				let position = new Vector2D(nx, nz);
 
-				if (!withinGrid(nx, nz) || !args.withinArea(areaID, nx, nz) || saw[nx][nz])
+				if (!withinGrid(nx, nz) || !args.withinArea(areaID, position) || saw[nx][nz])
 					continue;
 
 				saw[nx][nz] = 1;

@@ -144,7 +144,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
 		let position = new Vector2D(ix, iz);
-		if (g_Map.inMapBounds(ix, iz))
+		if (g_Map.inMapBounds(position))
 		{
 			let height = heightBase + randFloat(-1, 1) + scaleByMapSize(1, 3) * (Math.cos(ix / scaleByMapSize(5, 30)) + Math.sin(iz / scaleByMapSize(5, 30)));
 			g_Map.setHeight(position, height);
@@ -280,7 +280,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
 		let position = new Vector2D(ix, iz);
-		if (g_Map.inMapBounds(ix, iz) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
+		if (g_Map.inMapBounds(position) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
 		{
 			let heightNeighbor = g_Map.getAverageHeight(position);
 			let index = 1 / (1 + Math.max(0, (getHeight(ix,iz) - 10) / 7));
@@ -303,18 +303,20 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
 		let position = new Vector2D(ix, iz);
-		if (!g_Map.inMapBounds(ix, iz) || !getTileClass(clWater).countMembersInRadius(ix, iz, smoothDist))
+		if (!g_Map.inMapBounds(position) || !getTileClass(clWater).countMembersInRadius(ix, iz, smoothDist))
 			continue;
 		let averageHeight = 0;
 		let todivide = 0;
 		for (let xx = -smoothDist; xx <= smoothDist; ++xx)
 			for (let yy = -smoothDist; yy <= smoothDist; ++yy)
-				if (g_Map.inMapBounds(ix + xx,iz + yy) && (xx != 0 || yy != 0))
+			{
+				let smoothPos = Vector2D.add(position, new Vector2D(xx, yy));
+				if (g_Map.inMapBounds(smoothPos) && (xx != 0 || yy != 0))
 				{
-					averageHeight += getHeight(ix + xx, iz + yy) / (Math.abs(xx) + Math.abs(yy));
+					averageHeight += getHeight(smoothPos.x, smoothPos.y) / (Math.abs(xx) + Math.abs(yy));
 					todivide += 1 / (Math.abs(xx) + Math.abs(yy));
 				}
-
+			}
 		g_Map.setHeight(position, (averageHeight + 2 * getHeight(ix, iz)) / (todivide + 2));
 	}
 Engine.SetProgress(55);

@@ -112,9 +112,9 @@ RandomMap.prototype.validT = function(x, z, distance = 0)
  * Determines whether the given coordinates are within the tile grid, passable or not.
  * Should be used to restrict texture painting.
  */
-RandomMap.prototype.inMapBounds = function(x, z)
+RandomMap.prototype.inMapBounds = function(position)
 {
-	return x >= 0 && z >= 0 && x < this.size && z < this.size;
+	return position.x >= 0 && position.y >= 0 && position.x < this.size && position.y < this.size;
 };
 
 /**
@@ -273,7 +273,7 @@ RandomMap.prototype.getAdjacentPoints = function(position)
 			if (x || z )
 			{
 				let adjacentPos = Vector2D.add(position, new Vector2D(x, z)).round();
-				if (this.inMapBounds(adjacentPos.x, adjacentPos.y))
+				if (this.inMapBounds(adjacentPos))
 					adjacentPositions.push(adjacentPos);
 			}
 

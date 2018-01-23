@@ -212,7 +212,7 @@ PathPlacer.prototype.place = function(constraint)
 					let position = new Vector2D(x, z);
 					if (constraint.allows(position))
 					{
-						if (g_Map.inMapBounds(x, z) && !gotRet[x][z])
+						if (g_Map.inMapBounds(position) && !gotRet[x][z])
 						{
 							retVec.push(position);
 							gotRet[x][z] = 1;
