@@ -68,13 +68,7 @@ var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 		createArea(
-			new ClumpPlacer(
-				diskArea(defaultPlayerBaseRadius()),
-				0.9,
-				0.5,
-				10,
-				playerPosition[i].x,
-				playerPosition[i].y),
+			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i]),
 			paintClass(clPlayer));
 
 placePlayerBases({
@@ -140,7 +134,7 @@ Engine.SetProgress(25);
 
 log("Creating oasis...");
 createArea(
-	new ClumpPlacer(diskArea(oasisRadius), 0.6, 0.15, 0, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(oasisRadius), 0.6, 0.15, 0, mapCenter),
 	[
 		new LayeredPainter([[tSand, pForest], [tGrassSand25, pForestOasis], tGrassSand25, tShore, tWaterDeep], [2, 3, 1, 1]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetOasis, 8),

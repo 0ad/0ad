@@ -291,7 +291,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 log("Creating oceans...");
 for (let ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48), mapCenter)[0])
 	createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, ocean.x, ocean.y),
+		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, ocean),
 		[
 			new ElevationPainter(heightOcean),
 			paintClass(clWater)

@@ -58,7 +58,7 @@ var clWomen = createTileClass();
 
 log("Creating central area...");
 createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.15)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(fractionToTiles(0.15)), 0.7, 0.1, 10, mapCenter),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),

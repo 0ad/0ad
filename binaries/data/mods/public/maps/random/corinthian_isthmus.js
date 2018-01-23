@@ -74,7 +74,7 @@ createArea(
 log("Creating small puddles at the map border to ensure players being separated...");
 for (let point of [riverStart, riverEnd])
 	createArea(
-		new ClumpPlacer(Math.floor(diskArea(riverWidth / 2)), 0.95, 0.6, 10, point.x, point.y),
+		new ClumpPlacer(diskArea(riverWidth / 2), 0.95, 0.6, 10, point),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4));
 
 log("Creating passage connecting the two riversides...");

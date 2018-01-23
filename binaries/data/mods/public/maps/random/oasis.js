@@ -65,50 +65,50 @@ var forestDist = 1.2 * defaultPlayerBaseRadius();
 for (let i = 0; i < numPlayers; ++i)
 {
 	// Create starting batches of wood
-	let forestX = 0;
-	let forestY = 0;
-	let forestAngle = 0
+	let forestPosition;
+	let forestAngle;
 
 	do {
 		forestAngle = Math.PI / 3 * randFloat(1, 2);
-		forestX = playerPosition[i].x + Math.round(forestDist * Math.cos(forestAngle));
-		forestY = playerPosition[i].y + Math.round(forestDist * Math.sin(forestAngle));
+		forestPosition = Vector2D.add(playerPosition[i], new Vector2D(forestDist, 0).rotate(-forestAngle));
 	} while (
 		!createArea(
-			new ClumpPlacer(70, 1, 0.5, 10, forestX, forestY),
+			new ClumpPlacer(70, 1, 0.5, 10, forestPosition),
 			[
 				new LayeredPainter([tForestFloor, pForestMain], [0]),
 				paintClass(clBaseResource)
 			],
 			avoidClasses(clBaseResource, 0)));
 
-	// Creating the water patch explaining the forest
+	log("Creating the water patch explaining the forest for player " + playerIDs[i] + "...");
+	let waterPosition;
 	do {
-		var watAngle = forestAngle + randFloat(1/3, 5/3) * Math.PI;
-		var watX = Math.round(forestX + 6 * Math.cos(watAngle));
-		var watY = Math.round(forestY + 6 * Math.sin(watAngle));
+		let waterAngle = forestAngle + randFloat(1, 5) / 3 * Math.PI;
+		waterPosition = Vector2D.add(forestPosition, new Vector2D(6, 0).rotate(-waterAngle)).round();
 
+		let flowerPosition = Vector2D.add(forestPosition, new Vector2D(3, 0).rotate(-waterAngle)).round();
 		createObjectGroup(
 			new SimpleGroup(
 				[new SimpleObject(aFlower1, 1, 5, 0, 3)],
 				true,
 				undefined,
-				Math.round(forestX + 3 * Math.cos(watAngle)),
-				Math.round(forestY + 3 * Math.sin(watAngle))),
+				flowerPosition.x,
+				flowerPosition.y),
 			0);
 
+		let reedsPosition = Vector2D.add(forestPosition, new Vector2D(5, 0).rotate(-waterAngle)).round();
 		createObjectGroup(
 			new SimpleGroup(
 				[new SimpleObject(aReedsA, 1, 3, 0, 0)],
 				true,
 				undefined,
-				Math.round(forestX + 5 * Math.cos(watAngle)),
-				Math.round(forestY + 5 * Math.sin(watAngle))),
+				reedsPosition.x,
+				reedsPosition.y),
 			0);
 
 	} while (
 		!createArea(
-			new ClumpPlacer(60, 0.9, 0.4, 5, watX, watY),
+			new ClumpPlacer(60, 0.9, 0.4, 5, waterPosition),
 			[
 				new LayeredPainter([tShore, tWater], [1]),
 				new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 3)
@@ -149,7 +149,7 @@ Engine.SetProgress(30);
 
 log("Creating central oasis...");
 createArea(
-	new ClumpPlacer(diskArea(forestDistance + shoreDistance + waterRadius), 0.8, 0.2, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(forestDistance + shoreDistance + waterRadius), 0.8, 0.2, 10, mapCenter),
 	[
 		new LayeredPainter([pOasisForestLight, tWater], [forestDistance]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, forestDistance + shoreDistance),

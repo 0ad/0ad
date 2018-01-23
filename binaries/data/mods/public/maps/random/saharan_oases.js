@@ -88,7 +88,7 @@ for (let i = 0; i < numPlayers; ++i)
 {
 	let position = Vector2D.add(mapCenter, new Vector2D(oasisRadius, 0).rotate(-playerAngle[i]));
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(16, 60)) * 0.185, 0.6, 0.15, 0, position.x, position.y),
+		new ClumpPlacer(diskArea(scaleByMapSize(16, 60)) * 0.185, 0.6, 0.15, 0, position),
 		[
 			new LayeredPainter(
 				[tSLush ,[tLush, pForest], [tLush, pForest], tShore, tShore, tWaterDeep],

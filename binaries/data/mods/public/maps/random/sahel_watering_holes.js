@@ -99,7 +99,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	log("Creating lake near the center...");
 	createArea(
-		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 3), 0.95, 0.6, 10, riverStart[i].x, riverStart[i].y),
+		new ClumpPlacer(diskArea(scaleByMapSize(5, 30)), 0.95, 0.6, 10, riverStart[i]),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 			paintClass(clWater)
@@ -118,7 +118,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	log("Creating lake near the map border...");
 	createArea(
-		new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(10, 50)) / 5), 0.95, 0.6, 10, riverEnd[i].x, riverEnd[i].y),
+		new ClumpPlacer(diskArea(scaleByMapSize(5, 22)), 0.95, 0.6, 10, riverEnd[i]),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 			paintClass(clWater)

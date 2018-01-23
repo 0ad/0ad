@@ -75,7 +75,7 @@ log("Creating player islands and docks...");
 for (let i = 0; i < numPlayers; ++i)
 {
 	createArea(
-		new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.8, 0.1, 10, playerPosition[i].x, playerPosition[i].y),
+		new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.8, 0.1, 10, playerPosition[i]),
 		[
 			new LayeredPainter([tWater, tShore, tMainTerrain], [1, 4]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
@@ -129,7 +129,7 @@ Engine.SetProgress(15);
 log("Create the continent body...");
 var continentPosition = Vector2D.add(mapCenter, new Vector2D(0, fractionToTiles(0.38)).rotate(-startAngle)).round()
 createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.4)), 0.8, 0.08, 10, continentPosition.x, continentPosition.y),
+	new ClumpPlacer(diskArea(fractionToTiles(0.4)), 0.8, 0.08, 10, continentPosition),
 	[
 		new LayeredPainter([tWater, tShore, tMainTerrain], [4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),

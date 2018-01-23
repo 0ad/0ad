@@ -137,7 +137,7 @@ for (let i = 0; i < numPlayers; ++i)
 		placeObject(position.x, position.y, resourcePerPlayer[rIndex], 0, randomAngle());
 
 		createArea(
-			new ClumpPlacer(40, 1/2, 1/8, 1, position.x, position.y),
+			new ClumpPlacer(40, 1/2, 1/8, 1, position),
 			[
 				new LayeredPainter([terrainHillBorder, terrainHill], [1]),
 				new ElevationPainter(randFloat(1, 2)),
@@ -152,7 +152,7 @@ addToClass(mapCenter.x, mapCenter.y, clBaseResource);
 
 log("Creating central mountain...");
 createArea(
-	new ClumpPlacer(Math.square(radiusEC), 1/2, 1/8, 1, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(Math.square(radiusEC), 1/2, 1/8, 1, mapCenter),
 	[
 		new LayeredPainter([terrainHillBorder, terrainHill], [radiusEC/4]),
 		new ElevationPainter(randFloat(1, 2)),
@@ -181,7 +181,7 @@ for (var x = 0; x < mapSize; x++)
 		{
 			let border = tDensActual < randFloat(0, bushChance * maxTreeDensity);
 			createArea(
-				new ClumpPlacer(1, 1, 1, 1, x, z),
+				new RectPlacer(position.x, position.y, position.x + 1, position.y + 1)
 				[
 					new TerrainPainter(border ? terrainWoodBorder : terrainWood),
 					new ElevationPainter(randFloat(0, 1)),

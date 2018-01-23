@@ -116,7 +116,7 @@ else if (mapSize == 448)
 
 log("Creating big circular lake...");
 createArea(
-	new ClumpPlacer(diskArea(radiusCentralLake), 1, 1, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(radiusCentralLake), 1, 1, 10, mapCenter),
 	new SmoothElevationPainter(ELEVATION_SET, heightShallow, 4));
 
 for (let m = 0; m < numPlayers * split; ++m)
@@ -141,22 +141,22 @@ for (let m = 0; m < numPlayers * split; ++m)
 
 log("Creating ring of land connecting players...");
 createArea(
-	new ClumpPlacer(diskArea(radiusCentralRingLand), 1, 1, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(radiusCentralRingLand), 1, 1, 10, mapCenter),
 	new SmoothElevationPainter(ELEVATION_SET, heightRing, 4));
 
 log("Creating ring of water separating the central hill from the ring...");
 createArea(
-	new ClumpPlacer(diskArea(radiusCentralWaterRing), 1, 1, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(radiusCentralWaterRing), 1, 1, 10, mapCenter),
 	new SmoothElevationPainter(ELEVATION_SET, heightShallow, 3));
 
 log("Creating central island...");
 createArea(
-	new ClumpPlacer(diskArea(radiusCentralIsland), 1, 1, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(radiusCentralIsland), 1, 1, 10, mapCenter),
 	new SmoothElevationPainter(ELEVATION_SET, heightRing, 3));
 
 log("Creating hill on the central island...");
 createArea(
-	new ClumpPlacer(diskArea(radiusCentralHill), 1, 1, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(radiusCentralHill), 1, 1, 10, mapCenter),
 	new SmoothElevationPainter(ELEVATION_SET, heightHill, 8));
 
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);

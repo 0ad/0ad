@@ -16,14 +16,14 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function ClumpPlacer(size, coherence, smoothness, failFraction, x, z)
+function ClumpPlacer(size, coherence, smoothness, failFraction = 0, position = undefined)
 {
 	this.size = size;
 	this.coherence = coherence;
 	this.smoothness = smoothness;
-	this.failFraction = failFraction !== undefined ? failFraction : 0;
-	this.x = x !== undefined ? x : -1;
-	this.z = z !== undefined ? z : -1;
+	this.failFraction = failFraction;
+	this.x = position ? Math.round(position.x) : -1;
+	this.z = position ? Math.round(position.y) : -1;
 }
 
 ClumpPlacer.prototype.place = function(constraint)

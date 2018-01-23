@@ -185,7 +185,7 @@ MountainRangeBuilder.prototype.PaintCurrentEdge = function()
 	log("Creating circular mountains at both ends of that mountainrange...");
 	for (let point of [this.currentEdgeStart, this.currentEdgeEnd])
 		createArea(
-			new ClumpPlacer(Math.floor(diskArea(this.mountainWidth / 2)), 0.95, 0.6, 10, point.x, point.y),
+			new ClumpPlacer(diskArea(this.mountainWidth / 2), 0.95, 0.6, 10, point),
 			this.painters,
 			this.constraint);
 

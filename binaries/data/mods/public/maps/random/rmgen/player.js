@@ -200,8 +200,7 @@ function placePlayerBaseCityPatch(args)
 			get("coherence", 0.6),
 			get("smoothness", 0.3),
 			get("failFraction", 10),
-			Math.round(basePosition.x),
-			Math.round(basePosition.y)),
+			basePosition),
 		painters);
 }
 

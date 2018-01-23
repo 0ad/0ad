@@ -71,7 +71,7 @@ var clHillDeco = createTileClass();
 
 log("Creating the central dip...");
 createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.42)), 0.94, 0.05, 0.1, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(fractionToTiles(0.42)), 0.94, 0.05, 0.1, mapCenter),
 	[
 		new LayeredPainter([tCliff, tGrass], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3)
@@ -161,7 +161,7 @@ placePlayerBases({
 log("Marking player territory larger than the city patch...");
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
-		new ClumpPlacer(250, 0.95, 0.3, 0.1, playerPosition[i].x, playerPosition[i].y),
+		new ClumpPlacer(250, 0.95, 0.3, 0.1, playerPosition[i]),
 		paintClass(clPlayer));
 
 Engine.SetProgress(30);

@@ -71,13 +71,7 @@ var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));
 
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
-		new ClumpPlacer(
-			2 * diskArea(defaultPlayerBaseRadius()),
-			0.8,
-			0.1,
-			10,
-			playerPosition[i].x,
-			playerPosition[i].y),
+		new ClumpPlacer(diskArea(1.4 * defaultPlayerBaseRadius()), 0.8, 0.1, 10, playerPosition[i]),
 		[
 			new LayeredPainter([tShore, tMainTerrain], [shoreRadius]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),

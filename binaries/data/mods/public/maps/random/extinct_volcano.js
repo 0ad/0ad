@@ -97,7 +97,7 @@ if (!isNomad())
 
 		// Flatten the initial CC area
 		createArea(
-			new ClumpPlacer(diskArea(playerMountainSize), 0.95, 0.6, 10, playerPosition[i].x,playerPosition[i].y),
+			new ClumpPlacer(diskArea(playerMountainSize), 0.95, 0.6, 10, playerPosition[i]),
 			[
 				new LayeredPainter([tHillVeryDark, tHillMedium1], [playerMountainSize]),
 				new SmoothElevationPainter(ELEVATION_SET, heightPlayerHill, playerMountainSize),

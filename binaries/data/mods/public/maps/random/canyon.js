@@ -68,13 +68,7 @@ log("Reserving space for the players, their initial forests and some less space 
 for (let i = 0; i < numPlayers; ++i)
 	for (let j = 1; j <= 2; ++j)
 	createArea(
-		new ClumpPlacer(
-			diskArea(playerCanyonRadius / j),
-			0.65,
-			0.1,
-			10,
-			playerPosition[i].x,
-			playerPosition[i].y),
+		new ClumpPlacer(diskArea(playerCanyonRadius / j), 0.65, 0.1, 10, playerPosition[i]),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
@@ -83,7 +77,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 log("Creating center area...");
 createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.16)), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(diskArea(fractionToTiles(0.16)), 0.7, 0.1, 10, mapCenter),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
@@ -91,7 +85,7 @@ createArea(
 	]);
 
 createArea(
-	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter),
 	paintClass(clHill));
 
 log("Creating hills...");
@@ -116,7 +110,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 	let position = new Vector2D(randIntInclusive(1, mapSize - 1), randIntInclusive(1, mapSize - 1));
 
 	let newarea = createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.06)), 0.7, 0.1, 10, position.x, position.y),
+		new ClumpPlacer(diskArea(fractionToTiles(0.06)), 0.7, 0.1, 10, position),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
@@ -187,7 +181,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 log("Painting center place...");
 createArea(
-	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter.x, mapCenter.y),
+	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter),
 	new LayeredPainter([tRoad, tRoad], [1]));
 
 placePlayerBases({
