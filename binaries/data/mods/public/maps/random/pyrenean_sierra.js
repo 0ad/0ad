@@ -244,7 +244,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
 		let position = new Vector2D(ix, iz);
-		if (g_Map.validH(ix, iz) && checkIfInClass(ix, iz, clPyrenneans))
+		if (g_Map.validH(ix, iz) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
 		{
 			let height = getHeight(ix, iz);
 			let index = 1 / (1 + Math.max(0, height / 7));
@@ -280,7 +280,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
 		let position = new Vector2D(ix, iz);
-		if (g_Map.inMapBounds(ix,iz) && checkIfInClass(ix, iz, clPyrenneans))
+		if (g_Map.inMapBounds(ix, iz) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
 		{
 			let heightNeighbor = g_Map.getAverageHeight(position);
 			let index = 1 / (1 + Math.max(0, (getHeight(ix,iz) - 10) / 7));

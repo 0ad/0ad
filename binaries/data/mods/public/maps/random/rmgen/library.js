@@ -422,19 +422,3 @@ function borderClasses(/*class1, idist1, odist1, class2, idist2, odist2, etc*/)
 
 	return new AndConstraint(ar);
 }
-
-/**
- * Checks if the given tile is in class "id"
- */
-function checkIfInClass(x, z, id)
-{
-	let tileClass = getTileClass(id);
-	if (tileClass === null)
-		return 0;
-
-	let members = tileClass.countMembersInRadius(x, z, 1);
-	if (members === null)
-		return 0;
-
-	return members;
-}
