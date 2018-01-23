@@ -76,7 +76,8 @@ Upgrade.prototype.OnOwnershipChanged = function(msg)
 {
 	if (!this.completed)
 		this.CancelUpgrade(msg.from);
-	if (msg.to !== -1)
+
+	if (msg.to != INVALID_PLAYER)
 		this.owner = msg.to;
 };
 
@@ -104,7 +105,7 @@ Upgrade.prototype.ChangeUpgradedEntityCount = function(amount)
 		categoryFrom = cmpTrainingRestrictions.GetCategory();
 	else if (cmpBuildRestrictions)
 		categoryFrom = cmpBuildRestrictions.GetCategory();
-	
+
 	if (categoryTo == categoryFrom)
 		return;
 
@@ -126,7 +127,7 @@ Upgrade.prototype.GetUpgrades = function()
 	for (let option in this.template)
 	{
 		let choice = this.template[option];
-		let templateName = cmpIdentity ? choice.Entity.replace(/\{civ\}/g, cmpIdentity.GetCiv()) : choice.Entity
+		let templateName = cmpIdentity ? choice.Entity.replace(/\{civ\}/g, cmpIdentity.GetCiv()) : choice.Entity;
 
 		let cost = {};
 		if (choice.Cost)

@@ -81,7 +81,7 @@ function initIsConnected()
 function createIsland(islandID, size, tileClass)
 {
 	createArea(
-		new ClumpPlacer(size * diskArea(playerIslandRadius), 0.95, 0.6, 10, islandPos[islandID].x, islandPos[islandID].y),
+		new ClumpPlacer(size * diskArea(playerIslandRadius), 0.95, 0.6, 10, islandPos[islandID]),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightIsland, 2),

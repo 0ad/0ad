@@ -201,6 +201,7 @@ var triggerPointLandPatrolLeft = "E";
 var triggerPointLandPatrolRight = "F";
 var triggerPointCCAttackerPatrolLeft = "G";
 var triggerPointCCAttackerPatrolRight = "H";
+var triggerPointRiverDirection = "I";
 
 /**
  * Which playerID to use for the opposing gallic reinforcements.
@@ -299,13 +300,12 @@ Trigger.prototype.SpawnInitialCCDefenders = function(gaiaEnts)
 Trigger.prototype.SpawnCCAttackers = function()
 {
 	let time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000;
-	let mapSize = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetMapSize();
 
 	let [spawnLeft, spawnRight] = this.GetActiveRiversides();
 
 	for (let gaiaCC of this.civicCenters)
 	{
-		let isLeft = Engine.QueryInterface(gaiaCC, IID_Position).GetPosition2D().x < mapSize / 2;
+		let isLeft = this.IsLeftRiverside(gaiaCC)
 		if (isLeft && !spawnLeft || !isLeft && !spawnRight)
 			continue;
 
@@ -547,8 +547,6 @@ Trigger.prototype.AttackAndPatrol = function(attackers, targetClass, triggerPoin
  */
 Trigger.prototype.GetActiveRiversides = function()
 {
-	let mapSize = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetMapSize();
-
 	let left = false;
 	let right = false;
 
@@ -558,7 +556,7 @@ Trigger.prototype.GetActiveRiversides = function()
 		if (!cmpIdentity || !cmpIdentity.HasClass(siegeTargetClass))
 			continue;
 
-		if (Engine.QueryInterface(ent, IID_Position).GetPosition2D().x < mapSize / 2)
+		if (this.IsLeftRiverside(ent))
 			left = true;
 		else
 			right = true;
@@ -568,6 +566,11 @@ Trigger.prototype.GetActiveRiversides = function()
 	}
 
 	return [left, right];
+};
+
+Trigger.prototype.IsLeftRiverside = function(ent)
+{
+	return this.riverDirection.cross(Vector2D.sub(Engine.QueryInterface(ent, IID_Position).GetPosition2D(), this.mapCenter)) > 0;
 };
 
 /**
@@ -710,6 +713,13 @@ Trigger.prototype.DanubiusOwnershipChange = function(data)
 	// Maps from gaia ship entity ID to ungarrison trigger point entity ID and land patrol triggerpoint name
 	cmpTrigger.shipTarget = {};
 	cmpTrigger.fillShipsTimer = undefined;
+
+	// Be able to distinguish between the left and right riverside
+	let mapSize = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetMapSize();
+	cmpTrigger.mapCenter = new Vector2D(mapSize / 2, mapSize / 2);
+	cmpTrigger.riverDirection = Vector2D.sub(
+		Engine.QueryInterface(cmpTrigger.GetTriggerPoints(triggerPointRiverDirection)[0], IID_Position).GetPosition2D(),
+		cmpTrigger.mapCenter);
 
 	cmpTrigger.StartCelticRitual(gaiaEnts);
 	cmpTrigger.GarrisonAllGallicBuildings(gaiaEnts);

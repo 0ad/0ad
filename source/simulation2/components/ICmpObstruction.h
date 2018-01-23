@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,6 +59,11 @@ public:
 	virtual void SetUnitClearance(const entity_pos_t& clearance) = 0;
 
 	virtual bool IsControlPersistent() const = 0;
+
+	/**
+	 * Test whether the front of the obstruction square is in the water and the back is on the shore.
+	 */
+	virtual bool CheckShorePlacement() const = 0;
 
 	/**
 	 * Test whether this entity is colliding with any obstruction that are set to

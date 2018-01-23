@@ -34,10 +34,10 @@ RangeOverlayManager.prototype.SetEnabled = function(enabled, enabledRangeTypes, 
 	this.enabled = enabled;
 	this.enabledRangeTypes = enabledRangeTypes;
 
-	this.RegenerateRangeOverlayManagers(forceUpdate);
+	this.RegenerateRangeOverlays(forceUpdate);
 };
 
-RangeOverlayManager.prototype.RegenerateRangeOverlayManagers = function(forceUpdate)
+RangeOverlayManager.prototype.RegenerateRangeOverlays = function(forceUpdate)
 {
 	let cmpRangeOverlayRenderer = Engine.QueryInterface(this.entity, IID_RangeOverlayRenderer);
 	if (!cmpRangeOverlayRenderer)
@@ -61,12 +61,12 @@ RangeOverlayManager.prototype.RegenerateRangeOverlayManagers = function(forceUpd
 
 RangeOverlayManager.prototype.OnOwnershipChanged = function(msg)
 {
-	if (msg.to == -1)
+	if (msg.to == INVALID_PLAYER)
 		return;
 	for (let type in this.enabledRangeTypes)
 		this.UpdateRangeOverlays(type);
 
-	this.RegenerateRangeOverlayManagers(false);
+	this.RegenerateRangeOverlays(false);
 };
 
 RangeOverlayManager.prototype.OnValueModification = function(msg)
@@ -77,7 +77,7 @@ RangeOverlayManager.prototype.OnValueModification = function(msg)
 		return;
 
 	this.UpdateRangeOverlays(msg.component);
-	this.RegenerateRangeOverlayManagers(false);
+	this.RegenerateRangeOverlays(false);
 };
 
 /** 

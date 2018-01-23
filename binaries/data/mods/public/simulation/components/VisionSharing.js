@@ -45,7 +45,7 @@ VisionSharing.prototype.CheckVisionSharings = function()
 	let shared = new Set();
 
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	let owner = cmpOwnership ? cmpOwnership.GetOwner() : -1;
+	let owner = cmpOwnership ? cmpOwnership.GetOwner() : INVALID_PLAYER;
 	if (owner >= 0)
 	{
 		// The owner has vision

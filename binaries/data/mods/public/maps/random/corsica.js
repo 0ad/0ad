@@ -89,7 +89,7 @@ for (let island = 0; island < 2; ++island)
 {
 	log("Creating island area...");
 	createArea(
-		new ClumpPlacer(diskArea(radiusIsland), 1, 0.5, 10, islandLocations[island].x, islandLocations[island].y),
+		new ClumpPlacer(diskArea(radiusIsland), 1, 0.5, 10, islandLocations[island]),
 		[
 			new LayeredPainter([tCliffs, tGrass], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightMain, 0),
@@ -102,7 +102,7 @@ for (let island = 0; island < 2; ++island)
 		let angle = Math.PI * (island + i / (nbSubIsland * 2)) + swapAngle;
 		let location = Vector2D.add(islandLocations[island], new Vector2D(radiusIsland, 0).rotate(-angle));
 		createArea(
-			new ClumpPlacer(diskArea(fractionToTiles(0.09)), 0.6, 0.03, 10, location.x, location.y),
+			new ClumpPlacer(diskArea(fractionToTiles(0.09)), 0.6, 0.03, 10, location),
 			[
 				new LayeredPainter([tCliffs, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightMain, 1),
@@ -116,7 +116,7 @@ for (let island = 0; island < 2; ++island)
 		let angle = Math.PI * (island + i * (1 / (nbCreeks * 2))) + swapAngle;
 		let location = Vector2D.add(islandLocations[island], new Vector2D(radiusCreeks, 0).rotate(-angle));
 		createArea(
-			new ClumpPlacer(creeksArea(), 0.4, 0.01, 10, location.x, location.y),
+			new ClumpPlacer(creeksArea(), 0.4, 0.01, 10, location),
 			[
 				new TerrainPainter(tSteepCliffs),
 				new SmoothElevationPainter(ELEVATION_SET, heightCreeks, 0),
@@ -132,7 +132,7 @@ for (let island = 0; island < 2; ++island)
 		let end = Vector2D.add(islandLocations[island], new Vector2D(radiusBeach, 0).rotate(-angle));
 
 		createArea(
-			new ClumpPlacer(130, 0.7, 0.8, 10, Math.round((start.x + end.x * 3) / 4), Math.round((start.y + end.y * 3) / 4)),
+			new ClumpPlacer(130, 0.7, 0.8, 10, Vector2D.add(start, Vector2D.mult(end, 3)).div(4)),
 			new SmoothElevationPainter(ELEVATION_SET, heightBeaches, 5));
 
 		createPassage({
@@ -147,12 +147,12 @@ for (let island = 0; island < 2; ++island)
 
 	log("Creating main relief...");
 	createArea(
-		new ClumpPlacer(diskArea(radiusIsland), 1, 0.2, 10, islandLocations[island].x, islandLocations[island].y),
+		new ClumpPlacer(diskArea(radiusIsland), 1, 0.2, 10, islandLocations[island]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetMainRelief, fractionToTiles(0.45)));
 
 	log("Creating first level plateau...");
 	createArea(
-		new ClumpPlacer(diskArea(radiusLevel1), 0.95, 0.02, 10, islandLocations[island].x, islandLocations[island].y),
+		new ClumpPlacer(diskArea(radiusLevel1), 0.95, 0.02, 10, islandLocations[island]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetLevel1, 1));
 
 	log("Creating first level passages...");
@@ -173,7 +173,7 @@ for (let island = 0; island < 2; ++island)
 	{
 		log("Creating second level plateau...");
 		createArea(
-			new ClumpPlacer(diskArea(radiusLevel2), 0.98, 0.04, 10, islandLocations[island].x, islandLocations[island].y),
+			new ClumpPlacer(diskArea(radiusLevel2), 0.98, 0.04, 10, islandLocations[island]),
 			[
 				new LayeredPainter([tCliffs, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetLevel2, 1)
@@ -280,6 +280,7 @@ for (let mapX = 0; mapX < mapSize; ++mapX)
 
 function getCosricaSardiniaTerrain(mapX, mapZ)
 {
+	let position = new Vector2D(mapX, mapZ);
 	let isWater = getTileClass(clWater).countMembersInRadius(mapX, mapZ, 3);
 	let isShore = getTileClass(clShore).countMembersInRadius(mapX, mapZ, 2);
 	let isPassage = getTileClass(clPassage).countMembersInRadius(mapX, mapZ, 2);
@@ -289,7 +290,7 @@ function getCosricaSardiniaTerrain(mapX, mapZ)
 		return undefined;
 
 	let height = getHeight(mapX, mapZ);
-	let heightDiff = getHeightDiff(mapX, mapZ);
+	let slope = g_Map.getSlope(position);
 
 	if (height >= 0.5 && height < 1.5 && isShore)
 		return tSandTransition;
@@ -300,19 +301,19 @@ function getCosricaSardiniaTerrain(mapX, mapZ)
 		if (isPassage)
 			return tGrass;
 
-		if (heightDiff >= 10)
+		if (slope >= 1.25)
 			return height > 25 ? tSteepCliffs : tCliffs;
 
 		if (height < 17)
 			return tGrass;
 
-		if (heightDiff < 5)
+		if (slope < 0.625)
 			return tHill;
 
 		return tMountain;
 	}
 
-	if (heightDiff >= 9)
+	if (slope >= 1.125)
 		return tCliffs;
 
 	if (height >= 1.5)
@@ -327,7 +328,7 @@ function getCosricaSardiniaTerrain(mapX, mapZ)
 	if (height >= -6)
 		return tCreekWater;
 
-	if (height > -10 && heightDiff < 6)
+	if (height > -10 && slope < 0.75)
 		return tDeepWater;
 
 	return undefined;
@@ -515,27 +516,3 @@ setWaterWaviness(2.0);
 setWaterType("ocean");
 
 ExportMap();
-
-// no need for preliminary rounding
-function getHeightDiff(x1, z1)
-{
-	var height = getHeight(Math.round(x1),Math.round(z1));
-	var diff = 0;
-	if (z1 + 1 < mapSize)
-		diff += Math.abs(getHeight(Math.round(x1),Math.round(z1+1)) - height);
-	if (x1 + 1 < mapSize && z1 + 1 < mapSize)
-		diff += Math.abs(getHeight(Math.round(x1+1),Math.round(z1+1)) - height);
-	if (x1 + 1 < mapSize)
-		diff += Math.abs(getHeight(Math.round(x1+1),Math.round(z1)) - height);
-	if (x1 + 1 < mapSize && z1 - 1 >= 0)
-		diff += Math.abs(getHeight(Math.round(x1+1),Math.round(z1-1)) - height);
-	if (z1 - 1 >= 0)
-		diff += Math.abs(getHeight(Math.round(x1),Math.round(z1-1)) - height);
-	if (x1 - 1 >= 0 && z1 - 1 >= 0)
-		diff += Math.abs(getHeight(Math.round(x1-1),Math.round(z1-1)) - height);
-	if (x1 - 1 >= 0)
-		diff += Math.abs(getHeight(Math.round(x1-1),Math.round(z1)) - height);
-	if (x1 - 1 >= 0 && z1 + 1 < mapSize)
-		diff += Math.abs(getHeight(Math.round(x1-1),Math.round(z1+1)) - height);
-	return diff;
-}

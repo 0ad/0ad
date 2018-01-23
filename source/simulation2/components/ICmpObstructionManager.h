@@ -159,6 +159,11 @@ public:
 	virtual void RemoveShape(tag_t tag) = 0;
 
 	/**
+	 * Returns the distance from the obstruction to the point (px, pz), or -1 if the entity is out of the world.
+	 */
+	virtual fixed DistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const = 0;
+
+	/**
 	 * Collision test a flat-ended thick line against the current set of shapes.
 	 * The line caps extend by @p r beyond the end points.
 	 * Only intersections going from outside to inside a shape are counted.

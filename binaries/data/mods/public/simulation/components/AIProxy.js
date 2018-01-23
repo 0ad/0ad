@@ -339,12 +339,12 @@ AIProxy.prototype.OnOwnershipChanged = function(msg)
 {
 	this.NotifyChange();
 
-	if (msg.from === -1)
+	if (msg.from == INVALID_PLAYER)
 	{
 		this.cmpAIInterface.PushEvent("Create", {"entity" : msg.entity});
 		return;
 	}
-	else if (msg.to === -1)
+	else if (msg.to == INVALID_PLAYER)
 	{
 		this.cmpAIInterface.PushEvent("Destroy", {"entity" : msg.entity});
 		this.needsFullGet = true;

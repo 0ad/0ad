@@ -19,10 +19,12 @@ function placeRandomPathToHeight(
 		if (texture)
 		{
 			let painters = [new TerrainPainter(texture)];
+
 			if (tileClass !== undefined)
 				painters.push(paintClass(tileClass));
+
 			createArea(
-				new ClumpPlacer(0.3 * Math.square(width), 1, 1, 1, Math.floor(position.x), Math.floor(position.y)),
+				new ClumpPlacer(diskArea(0.3 * width), 1, 1, 1, position),
 				painters);
 		}
 		pathPoints.push({ "x": position.x, "y": position.y, "dist": distance });
@@ -130,10 +132,14 @@ function placeGrove(point)
 		let objectList = groveEntities;
 		if (i % 3 == 0)
 			objectList = groveActors;
-		let x = point.x + dist * Math.cos(angle);
-		let y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(objectList), 0, randomAngle());
-		createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
+		let position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
+		placeObject(position.x, position.y, pickRandom(objectList), 0, randomAngle());
+		createArea(
+			new ClumpPlacer(5, 1, 1, 1, position),
+			[
+				new TerrainPainter("temp_grass_plants"),
+				paintClass(clGrove)
+			]);
 	}
 }
 
@@ -162,11 +168,9 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 	let currentAngle = randomAngle();
 	// Stone and chicken
 	let dAngle = 4/9 * Math.PI;
-	let angle = currentAngle + randFloat(dAngle / 4, 3 * dAngle / 4);
-	let dist = 12;
-	let x = point.x + dist * Math.cos(angle);
-	let y = point.y + dist * Math.sin(angle);
-	placeMine({ "x": x, "y": y }, "gaia/geology_stonemine_temperate_quarry");
+	let angle = currentAngle + randFloat(1, 3) * dAngle / 4;
+	let stonePosition = Vector2D.add(point, new Vector2D(12, 0).rotate(-angle));
+	placeMine(stonePosition, "gaia/geology_stonemine_temperate_quarry");
 
 	currentAngle += dAngle;
 
@@ -176,24 +180,25 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 	for (let i = 0; i < quantity; ++i)
 	{
 		angle = currentAngle + randFloat(0, dAngle);
-		dist = randFloat(10, 15);
 		let objectList = groveEntities;
 		if (i % 2 == 0)
 			objectList = groveActors;
-		x = point.x + dist * Math.cos(angle);
-		y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(objectList), 0, randomAngle());
-		createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
+		let woodPosition = Vector2D.add(point, new Vector2D(randFloat(10, 15), 0).rotate(-angle));
+		placeObject(woodPosition.x, woodPosition.y, pickRandom(objectList), 0, randomAngle());
+		createArea(
+			new ClumpPlacer(5, 1, 1, 1, woodPosition),
+			[
+				new TerrainPainter("temp_grass_plants"),
+				paintClass(clGrove)
+			]);
 		currentAngle += dAngle;
 	}
 
 	// Metal and chicken
 	dAngle = 2 * Math.PI * 2 / 9;
-	angle = currentAngle + randFloat(dAngle / 4, 3 * dAngle / 4);
-	dist = 13;
-	x = point.x + dist * Math.cos(angle);
-	y = point.y + dist * Math.sin(angle);
-	placeMine({ "x": x, "y": y }, "gaia/geology_metal_temperate_slabs");
+	angle = currentAngle + dAngle * randFloat(1, 3) / 4;
+	let metalPosition = Vector2D.add(point, new Vector2D(13, 0).rotate(-angle));
+	placeMine(metalPosition, "gaia/geology_metal_temperate_slabs");
 	currentAngle += dAngle;
 
 	// Berries
@@ -202,10 +207,8 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 	for (let i = 0; i < quantity; ++i)
 	{
 		angle = currentAngle + randFloat(0, dAngle);
-		dist = randFloat(10, 15);
-		x = point.x + dist * Math.cos(angle);
-		y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(foodEntities), 0, randomAngle());
+		let berriesPosition = Vector2D.add(point, new Vector2D(randFloat(10, 15), 0).rotate(-angle));
+		placeObject(berriesPosition.x, berriesPosition.y, pickRandom(foodEntities), 0, randomAngle());
 		currentAngle += dAngle;
 	}
 }

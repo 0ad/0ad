@@ -57,7 +57,7 @@ initialRallyPointTest((cmpRallyPoint) => {
 
 // Construction
 initialRallyPointTest((cmpRallyPoint) => {
-	cmpRallyPoint.OnOwnershipChanged({ "from": -1, "to": 1 });
+	cmpRallyPoint.OnOwnershipChanged({ "from": INVALID_PLAYER, "to": 1 });
 	return false;
 });
 
@@ -69,7 +69,7 @@ initialRallyPointTest((cmpRallyPoint) => {
 
 // Destruction
 initialRallyPointTest((cmpRallyPoint) => {
-	cmpRallyPoint.OnOwnershipChanged({ "from": 2, "to": -1 });
+	cmpRallyPoint.OnOwnershipChanged({ "from": 2, "to": INVALID_PLAYER });
 	return false;
 });
 

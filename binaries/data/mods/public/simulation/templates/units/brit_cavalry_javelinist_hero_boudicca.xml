@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_cavalry_javelinist">
+  <Auras datatype="tokens">
+    units/heroes/brit_hero_boudicca
+  </Auras>
+  <Identity>
+    <Civ>brit</Civ>
+    <GenericName>Boudicca (Sword)</GenericName>
+    <SpecificName>Boadicea</SpecificName>
+    <Gender>female</Gender>
+    <Icon>units/brit_hero_boudicca.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/celts/boudicca_horse.xml</Actor>
+  </VisualActor>
+</Entity>

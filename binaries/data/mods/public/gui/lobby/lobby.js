@@ -9,6 +9,11 @@ const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 
 /**
+ *  Used for civ settings display of the selected game. 
+ */
+const g_CivData = loadCivData(false, false);
+
+/**
  * A symbol which is prepended to the username of moderators.
  */
 var g_ModeratorPrefix = "@";
@@ -801,6 +806,7 @@ function selectGameFromPlayername()
 			if (g_SelectedPlayer != splitRatingFromNick(player.Name).nick)
 				continue;
 
+			gameList.auto_scroll = true;
 			if (player.Team == "observer")
 			{
 				foundAsObserver = true;
@@ -1084,6 +1090,8 @@ function updateGameList()
 	// Change these last, otherwise crash
 	gamesBox.list = list;
 	gamesBox.list_data = list_data;
+
+	gamesBox.auto_scroll = false;
 	gamesBox.selected = selectedGameIndex;
 
 	updateGameSelection();

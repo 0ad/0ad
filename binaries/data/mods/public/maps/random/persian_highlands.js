@@ -140,8 +140,7 @@ createArea(
 		Math.floor(scaleByMapSize(5, 13)),
 		Math.floor(scaleByMapSize(35, 200)),
 		1,
-		mapCenter.x,
-		mapCenter.y,
+		mapCenter,
 		0,
 		[Math.floor(scaleByMapSize(18, 68))]),
 	[

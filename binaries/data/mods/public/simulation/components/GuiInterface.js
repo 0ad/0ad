@@ -226,47 +226,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	let ret = {
 		"id": ent,
-		"template": template,
-
-		"alertRaiser": null,
-		"armour": null,
-		"attack": null,
-		"builder": null,
-		"buildingAI": null,
-		"buildRate": null,
-		"buildTime": null,
-		"canGarrison": null,
-		"deathDamage": null,
-		"heal": null,
-		"identity": null,
-		"isBarterMarket": null,
-		"fogging": null,
-		"foundation": null,
-		"garrisonHolder": null,
-		"gate": null,
-		"guard": null,
-		"loot": null,
-		"market": null,
-		"mirage": null,
-		"pack": null,
-		"promotion": null,
-		"upgrade" : null,
-		"player": -1,
-		"position": null,
-		"production": null,
-		"rallyPoint": null,
-		"repairRate": null,
-		"resourceCarrying": null,
-		"resourceDropsite": null,
-		"resourceGatherRates": null,
-		"resourceSupply": null,
-		"resourceTrickle": null,
-		"rotation": null,
-		"speed": null,
-		"trader": null,
-		"turretParent":null,
-		"unitAI": null,
-		"visibility": null,
+		"player": INVALID_PLAYER,
+		"template": template
 	};
 
 	let cmpMirage = Engine.QueryInterface(ent, IID_Mirage);
@@ -285,10 +246,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 	if (cmpPosition && cmpPosition.IsInWorld())
-	{
 		ret.position = cmpPosition.GetPosition();
-		ret.rotation = cmpPosition.GetRotation();
-	}
 
 	let cmpHealth = QueryMiragedInterface(ent, IID_Health);
 	if (cmpHealth)
@@ -347,12 +305,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"goods": cmpTrader.GetGoods()
 		};
 
-	let cmpFogging = Engine.QueryInterface(ent, IID_Fogging);
-	if (cmpFogging)
-		ret.fogging = {
-			"mirage": cmpFogging.IsMiraged(player) ? cmpFogging.GetMirage(player) : null
-		};
-
 	let cmpFoundation = QueryMiragedInterface(ent, IID_Foundation);
 	if (cmpFoundation)
 	{
@@ -360,15 +312,21 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"progress": cmpFoundation.GetBuildPercentage(),
 			"numBuilders": cmpFoundation.GetNumBuilders()
 		};
-		ret.buildRate = cmpFoundation.GetBuildRate();
-		ret.buildTime = cmpFoundation.GetBuildTime();
+		cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
+		if (cmpFoundation)
+		{
+			ret.buildRate = cmpFoundation.GetBuildRate();
+			ret.buildTime = cmpFoundation.GetBuildTime();
+		}
 	}
 
 	let cmpRepairable = QueryMiragedInterface(ent, IID_Repairable);
 	if (cmpRepairable)
 	{
 		ret.repairable = { "numBuilders": cmpRepairable.GetNumBuilders() };
-		ret.repairRate = cmpRepairable.GetRepairRate();
+		cmpRepairable = Engine.QueryInterface(ent, IID_Repairable);
+		if (cmpRepairable)
+			ret.repairRate = cmpRepairable.GetRepairRate();
 	}
 
 	let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
@@ -486,10 +444,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpArmour)
 		ret.armour = cmpArmour.GetArmourStrengths();
 
-	let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
-	if (cmpAuras)
-		ret.auras = cmpAuras.GetDescriptions();
-
 	let cmpBuildingAI = Engine.QueryInterface(ent, IID_BuildingAI);
 	if (cmpBuildingAI)
 		ret.buildingAI = {
@@ -499,10 +453,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"garrisonArrowClasses": cmpBuildingAI.GetGarrisonArrowClasses(),
 			"arrowCount": cmpBuildingAI.GetArrowCount()
 		};
-
-	let cmpDeathDamage = Engine.QueryInterface(ent, IID_DeathDamage);
-	if (cmpDeathDamage)
-		ret.deathDamage = cmpDeathDamage.GetDeathDamageStrengths();
 
 	if (cmpPosition && cmpPosition.GetTurretParent() != INVALID_ENTITY)
 		ret.turretParent = cmpPosition.GetTurretParent();
@@ -831,7 +781,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 			continue;
 
 		// Find the entity's owner's color:
-		let owner = -1;
+		let owner = INVALID_PLAYER;
 		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		if (cmpOwnership)
 			owner = cmpOwnership.GetOwner();
@@ -849,7 +799,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		cmpSelectable.SetSelectionHighlight({ "r": color.r, "g": color.g, "b": color.b, "a": cmd.alpha }, cmd.selected);
 
 		let cmpRangeOverlayManager = Engine.QueryInterface(ent, IID_RangeOverlayManager);
-		if (!cmpRangeOverlayManager || player != owner && player != -1)
+		if (!cmpRangeOverlayManager || player != owner && player != INVALID_PLAYER)
 			continue;
 
 		cmpRangeOverlayManager.SetEnabled(cmd.selected, this.enabledVisualRangeOverlayTypes, false);

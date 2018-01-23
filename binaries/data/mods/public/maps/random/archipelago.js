@@ -73,8 +73,7 @@ for (let i = 0; i < numPlayers; ++i)
 			Math.floor(scaleByMapSize(5, 10)),
 			Math.floor(scaleByMapSize(25, 60)),
 			1,
-			playerPosition[i].x,
-			playerPosition[i].y,
+			playerPosition[i],
 			0,
 			[Math.floor(islandRadius)]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4));
@@ -86,7 +85,6 @@ createAreas(
 		Math.floor(scaleByMapSize(8, 14)),
 		Math.floor(scaleByMapSize(25, 60)),
 		0.07,
-		undefined,
 		undefined,
 		scaleByMapSize(30, 70)),
 	[

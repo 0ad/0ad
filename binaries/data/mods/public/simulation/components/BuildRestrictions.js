@@ -223,38 +223,13 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	// Check special requirements
 	if (this.template.PlacementType == "shore")
 	{
-		// TODO: Probably should check unit passability classes here, to determine if:
-		//		1. ships can be spawned "nearby"
-		//		2. builders can pass the terrain where the dock is placed (don't worry about paths)
-		//	so it's correct even if the criteria changes for these units
-		var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
-		if (!cmpFootprint)
-			return result;	// Fail
-
-		// Get building's footprint
-		var shape = cmpFootprint.GetShape();
-		var halfSize = 0;
-		if (shape.type == "square")
-			halfSize = shape.depth/2;
-		else if (shape.type == "circle")
-			halfSize = shape.radius;
-
-		var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
-		var cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
-		if (!cmpTerrain || !cmpWaterManager)
-			return result;	// Fail
-
-		var ang = cmpPosition.GetRotation().y;
-		var sz = halfSize * Math.sin(ang);
-		var cz = halfSize * Math.cos(ang);
-		if ((cmpWaterManager.GetWaterLevel(pos.x + sz, pos.y + cz) - cmpTerrain.GetGroundLevel(pos.x + sz, pos.y + cz)) < 1.0 // front
-			|| (cmpWaterManager.GetWaterLevel(pos.x - sz, pos.y - cz) - cmpTerrain.GetGroundLevel(pos.x - sz, pos.y - cz)) > 2.0) // back
+		if (!cmpObstruction.CheckShorePlacement())
 		{
 			result.message = markForTranslation("%(name)s must be built on a valid shoreline");
 			return result;	// Fail
 		}
 	}
-	
+
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 
 	let templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);

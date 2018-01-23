@@ -1098,7 +1098,7 @@ var g_EntityCommands =
 	"garrison": {
 		"getInfo": function(entStates)
 		{
-			if (entStates.every(entState => !entState.unitAI || entState.turretParent))
+			if (entStates.every(entState => !entState.unitAI || entState.turretParent || false))
 				return false;
 
 			return {
@@ -1407,7 +1407,7 @@ function someUnitAI(entities)
 {
 	return entities.some(ent => {
 		let entState = GetEntityState(ent);
-		return entState && entState.unitAI;
+		return entState && entState.unitAI || false;
 	});
 }
 
@@ -1415,7 +1415,7 @@ function someRallyPoints(entities)
 {
 	return entities.some(ent => {
 		let entState = GetEntityState(ent);
-		return entState && entState.rallyPoint;
+		return entState && entState.rallyPoint || false;
 	});
 }
 
@@ -1521,6 +1521,8 @@ function getActionInfo(action, target, selection)
 	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
 	let targetState = GetEntityState(target);
+	if (!targetState)
+		return { "possible": false };
 
 	// Check if any entities in the selection can do some of the available actions with target
 	for (let entityID of selection)

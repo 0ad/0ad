@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_spearman">
+  <Auras datatype="tokens">
+    units/heroes/iber_hero_indibil
+  </Auras>
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Indibil</SpecificName>
+    <Icon>units/iber_hero_indibil.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/iberians/hero_indibil_infantry.xml</Actor>
+  </VisualActor>
+</Entity>

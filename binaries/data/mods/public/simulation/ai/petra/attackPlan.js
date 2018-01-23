@@ -831,9 +831,9 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	}
 	else
 	{
-		if (this.type === "Raid")
+		if (this.type == "Raid")
 			targets = this.raidTargetFinder(gameState);
-		else if (this.type === "Rush" || this.type === "Attack")
+		else if (this.type == "Rush" || this.type == "Attack")
 		{
 			targets = this.rushTargetFinder(gameState, this.targetPlayer);
 			if (!targets.hasEntities() && (this.hasSiegeUnits() || this.forced))
@@ -852,19 +852,19 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	let minDist = Math.min();
 	for (let ent of targets.values())
 	{
-		if (this.targetPlayer === 0 && gameState.getGameType() === "capture_the_relic" &&
+		if (this.targetPlayer == 0 && gameState.getGameType() == "capture_the_relic" &&
 		   (!ent.hasClass("Relic") || gameState.ai.HQ.gameTypeManager.targetedGaiaRelics.has(ent.id())))
 			continue;
 		if (!ent.position())
 			continue;
-		if (sameLand && gameState.ai.accessibility.getAccessValue(ent.position()) !== land)
+		if (sameLand && gameState.ai.accessibility.getAccessValue(ent.position()) != land)
 			continue;
 		let dist = API3.SquareVectorDistance(ent.position(), position);
-		// Do not bother with decaying structure if they are not dangerous
-		if (ent.decaying() && !ent.getDefaultArrow() && (!ent.isGarrisonHolder() || !ent.garrisoned().length))
+		// Do not bother with some pointless decaying structures
+		if (this.isPointlessTarget(ent))
 			continue;
 		// In normal attacks, disfavor fields
-		if (this.type !== "Rush" && this.type !== "Raid" && ent.hasClass("Field"))
+		if (this.type != "Rush" && this.type != "Raid" && ent.hasClass("Field"))
 			dist += 100000;
 		if (dist < minDist)
 		{
@@ -880,7 +880,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 
 	if (!target)
 		return undefined;
-	if (this.targetPlayer === 0 && gameState.getGameType() === "capture_the_relic" && target.hasClass("Relic"))
+	if (this.targetPlayer == 0 && gameState.getGameType() == "capture_the_relic" && target.hasClass("Relic"))
 		gameState.ai.HQ.gameTypeManager.targetedGaiaRelics.add(target.id());
 	// Rushes can change their enemy target if nothing found with the preferred enemy
 	// Obstruction also can change the enemy target
@@ -892,12 +892,12 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 {
 	let targets;
-	if (gameState.getGameType() === "wonder")
+	if (gameState.getGameType() == "wonder")
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Wonder"));
-	else if (gameState.getGameType() === "regicide")
+	else if (gameState.getGameType() == "regicide")
 		targets = gameState.getEnemyUnits(playerEnemy).filter(API3.Filters.byClass("Hero"));
-	else if (gameState.getGameType() === "capture_the_relic")
-		targets = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic")).filter(relic => relic.owner() === playerEnemy);
+	else if (gameState.getGameType() == "capture_the_relic")
+		targets = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic")).filter(relic => relic.owner() == playerEnemy);
 	if (targets && targets.hasEntities())
 		return targets;
 
@@ -905,14 +905,28 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 	if (!targets.hasEntities())
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
 	// If there's nothing, attack anything else that's less critical
-	if (!targets.hasEntities())
+	if (!this.hasValidTarget(targets))
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Town"));
-	if (!targets.hasEntities())
+	if (!this.hasValidTarget(targets))
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Village"));
-	// no buildings, attack anything conquest critical, even units
-	if (!targets.hasEntities())
+	// no buildings, attack anything conquest critical, units included
+	if (!this.hasValidTarget(targets))
 		targets = gameState.getEntities(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
 	return targets;
+};
+
+/** Apply the *same* selection as done in getNearestTarget for pointless decaying targets */
+m.AttackPlan.prototype.hasValidTarget = function(targets)
+{
+	for (let target of targets.values())
+		if (!this.isPointlessTarget(target))
+			return true;
+	return false;
+};
+
+m.AttackPlan.prototype.isPointlessTarget = function(ent)
+{
+	return ent.decaying() && !ent.getDefaultArrow() && (!ent.isGarrisonHolder() || !ent.garrisoned().length);
 };
 
 /** Rush target finder aims at isolated non-defended buildings */
@@ -1260,10 +1274,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	}
 
 	// basic state of attacking.
-	if (this.state === "")
+	if (this.state == "")
 	{
 		// First update the target and/or its position if needed
-		if (!this.UpdateTarget(gameState, events))
+		if (!this.UpdateTarget(gameState))
 		{
 			Engine.ProfileStop();
 			return false;
@@ -1832,7 +1846,7 @@ m.AttackPlan.prototype.UpdateWalking = function(gameState, events)
 	return true;
 };
 
-m.AttackPlan.prototype.UpdateTarget = function(gameState, events)
+m.AttackPlan.prototype.UpdateTarget = function(gameState)
 {
 	// First update the target position in case it's a unit (and check if it has garrisoned)
 	if (this.target && this.target.hasClass("Unit"))

@@ -75,7 +75,7 @@ if (!isNomad())
 	for (let i = 0; i < numPlayers; i++)
 	{
 		createArea(
-			new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, 10, playerPosition[i].x, playerPosition[i].y),
+			new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, 10, playerPosition[i]),
 			[
 				new LayeredPainter([tMainTerrain , tMainTerrain, tMainTerrain], [1, 6]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,7 +23,9 @@
 #include "ps/CLogger.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpUnitMotion.h"
+#include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/serialization/SerializeTemplates.h"
 
 /**
@@ -518,6 +520,25 @@ public:
 	virtual bool IsControlPersistent() const
 	{
 		return m_ControlPersist;
+	}
+
+	virtual bool CheckShorePlacement() const
+	{
+		ICmpObstructionManager::ObstructionSquare s;
+		if (!GetObstructionSquare(s))
+			return false;
+
+		CFixedVector2D front = CFixedVector2D(s.x, s.z) + s.v.Multiply(s.hh);
+		CFixedVector2D  back = CFixedVector2D(s.x, s.z) - s.v.Multiply(s.hh);
+
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
+		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
+		if (!cmpTerrain || !cmpWaterManager)
+			return false;
+
+		// Keep these constants in agreement with the pathfinder.
+		return cmpWaterManager->GetWaterLevel(front.X, front.Y) - cmpTerrain->GetGroundLevel(front.X, front.Y) > fixed::FromInt(1) &&
+		       cmpWaterManager->GetWaterLevel( back.X,  back.Y) - cmpTerrain->GetGroundLevel( back.X,  back.Y) < fixed::FromInt(2);
 	}
 
 	virtual EFoundationCheck CheckFoundation(const std::string& className) const

@@ -194,7 +194,7 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 		return 0;
 
 	let owner = cmpOwnership.GetOwner();
-	if (owner == -1)
+	if (owner == INVALID_PLAYER)
 		return 0;
 	let cp = cmpCapturable.GetCapturePoints();
 

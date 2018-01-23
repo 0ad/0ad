@@ -223,14 +223,14 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnOwnershipChanged": function(msg)
 		{
-			if (msg.from != -1 && this.houseGoal.has(+msg.entity))
+			if (msg.from != INVALID_PLAYER && this.houseGoal.has(+msg.entity))
 			{
 				this.houseGoal.delete(+msg.entity);
 				let cmpFoundation = Engine.QueryInterface(+msg.entity, IID_Foundation);
 				if (cmpFoundation && cmpFoundation.GetBuildProgress() < 1)	// Destroyed before built
 					--this.houseCount;
 			}
-			else if (msg.from == -1 && msg.to == this.playerID &&
+			else if (msg.from == INVALID_PLAYER && msg.to == this.playerID &&
 			         Engine.QueryInterface(+msg.entity, IID_Foundation) &&
 			         TriggerHelper.EntityMatchesClassList(+msg.entity, "House"))
 			{

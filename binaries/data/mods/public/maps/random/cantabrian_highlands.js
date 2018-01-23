@@ -69,7 +69,7 @@ log("Creating player hills and ramps...");
 for (let i = 0; i < numPlayers; ++i)
 {
 	createArea(
-		new ClumpPlacer(diskArea(playerHillRadius), 0.95, 0.6, 10, playerPosition[i].x, playerPosition[i].y),
+		new ClumpPlacer(diskArea(playerHillRadius), 0.95, 0.6, 10, playerPosition[i]),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),

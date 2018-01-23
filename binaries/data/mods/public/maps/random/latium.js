@@ -71,13 +71,15 @@ var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
 
 var WATER_WIDTH = 0.1;
+var horizontal = randBool();
 
 log("Creating players...");
-var [playerIDs, playerPosition] = playerPlacementLine(false, mapCenter, fractionToTiles(randFloat(0.42, 0.46)));
+var startAngle = randBool() ? 0 : Math.PI / 2;
+var playerPosition = playerPlacementLine(startAngle + Math.PI / 2, mapCenter, fractionToTiles(randFloat(0.42, 0.46)));
 
 function distanceToPlayers(x, z)
 {
-	var r = 10000;
+	let r = Infinity;
 	for (let i = 0; i < numPlayers; ++i)
 	{
 		var dx = x - playerPosition[i].x;
@@ -103,8 +105,8 @@ function playerNearness(x, z)
 for (let x of [mapBounds.left, mapBounds.right])
 	paintRiver({
 		"parallel": true,
-		"start": new Vector2D(x, mapBounds.top),
-		"end": new Vector2D(x, mapBounds.bottom),
+		"start": new Vector2D(x, mapBounds.top).rotateAround(startAngle, mapCenter),
+		"end": new Vector2D(x, mapBounds.bottom).rotateAround(startAngle, mapCenter),
 		"width": 2 * fractionToTiles(WATER_WIDTH),
 		"fadeDist": 16,
 		"deviation": 0,
@@ -112,8 +114,8 @@ for (let x of [mapBounds.left, mapBounds.right])
 		"heightLand": heightLand,
 		"meanderShort": 0,
 		"meanderLong": 0,
-		"waterFunc": (ix, iz, height, z) => {
-			addToClass(ix, iz, clWater);
+		"waterFunc": (position, height, z) => {
+			addToClass(position.x, position.y, clWater);
 		}
 	});
 Engine.SetProgress(10);
@@ -133,12 +135,15 @@ var noise5 = new Noise2D(scaleByMapSize(11, 44));
 for (var ix = 0; ix <= mapSize; ix++)
 	for (var iz = 0; iz <= mapSize; iz++)
 	{
+		let position = new Vector2D(ix, iz);
+
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
 
-		let distToWater = stayClasses(clWater, 1).allows(ix, iz) ? 0 : (0.5 - WATER_WIDTH - Math.abs(x - 0.5));
-		let h = distToWater ? heightHill * (1 - Math.abs(x - 0.5) / (0.5 - WATER_WIDTH)) : getHeight(ix, iz);
+		let c = startAngle ? z : x;
+		let distToWater = stayClasses(clWater, 1).allows(ix, iz) ? 0 : (0.5 - WATER_WIDTH - Math.abs(c - 0.5));
+		let h = distToWater ? heightHill * (1 - Math.abs(c - 0.5) / (0.5 - WATER_WIDTH)) : getHeight(ix, iz);
 
 		// add some base noise
 		var baseNoise = 16*noise0.get(x,z) + 8*noise1.get(x,z) + 4*noise2.get(x,z) - (16+8+4)/2;
@@ -175,7 +180,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 			if (cliffNoise > 0)
 				h += 19 * Math.min(cliffNoise, 0.045) / 0.045;
 		}
-		setHeight(ix, iz, h);
+		g_Map.setHeight(position, h);
 	}
 Engine.SetProgress(20);
 
@@ -314,7 +319,7 @@ for (var ix = 0; ix < mapSize; ix++)
 Engine.SetProgress(30);
 
 placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerPosition],
+	"PlayerPlacement": [sortAllPlayers(), playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"baseResourceConstraint": avoidClasses(clCliff, 4),

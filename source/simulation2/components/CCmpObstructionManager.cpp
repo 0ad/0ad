@@ -21,6 +21,7 @@
 #include "ICmpObstructionManager.h"
 
 #include "ICmpTerrain.h"
+#include "ICmpPosition.h"
 
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Geometry.h"
@@ -464,6 +465,8 @@ public:
 		}
 	}
 
+	virtual fixed DistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const;
+
 	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits = false) const;
 	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, std::vector<entity_id_t>* out) const;
 	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, std::vector<entity_id_t>* out) const;
@@ -652,6 +655,20 @@ private:
 };
 
 REGISTER_COMPONENT_TYPE(ObstructionManager)
+
+fixed CCmpObstructionManager::DistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const
+{
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
+	if (!cmpPosition || !cmpPosition->IsInWorld())
+		return fixed::FromInt(-1);
+
+	ObstructionSquare s;
+	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
+	if (!cmpObstruction || !cmpObstruction->GetObstructionSquare(s))
+		return (CFixedVector2D(px, pz) - cmpPosition->GetPosition2D()).Length();
+
+	return Geometry::DistanceToSquare(CFixedVector2D(px - s.x, pz - s.z), s.u, s.v, CFixedVector2D(s.hw, s.hh));
+}
 
 bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits) const
 {

@@ -248,13 +248,17 @@ function placeGrove(point,
 		let objectList = groveEntities;
 		if (i % 3 == 0)
 			objectList = groveActors;
-		let x = point.x + dist * Math.cos(angle);
-		let y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(objectList), 0, randomAngle());
+
+		let position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
+		placeObject(position.x, position.y, pickRandom(objectList), 0, randomAngle());
+
+		let painters = [new TerrainPainter(groveTerrainTexture)];
 		if (groveTileClass)
-			createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter(groveTerrainTexture), paintClass(groveTileClass)]);
-		else
-			createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter(groveTerrainTexture)]);
+			painters.push(paintClass(groveTileClass));
+
+		createArea(
+			new ClumpPlacer(5, 1, 1, 1, position),
+			painters);
 	}
 }
 
@@ -372,10 +376,16 @@ function placeStartLocationResources(
 		let objectList = groveEntities;
 		if (i % 2 == 0)
 			objectList = groveActors;
-		let x = point.x + dist * Math.cos(angle);
-		let y = point.y + dist * Math.sin(angle);
-		placeObject(x, y, pickRandom(objectList), 0, randomAngle());
-		createArea(new ClumpPlacer(5, 1, 1, 1, Math.floor(x), Math.floor(y)), [new TerrainPainter(groveTerrainTexture), paintClass(clGrove)]);
+
+		let position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
+		placeObject(position.x, position.y, pickRandom(objectList), 0, randomAngle());
+		createArea(
+			new ClumpPlacer(5, 1, 1, 1, position),
+			[
+				new TerrainPainter(groveTerrainTexture),
+				paintClass(clGrove)
+			]);
+
 		currentAngle += dAngle;
 	}
 

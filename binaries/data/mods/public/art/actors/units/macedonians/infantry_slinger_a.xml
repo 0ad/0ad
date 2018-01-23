@@ -8,12 +8,15 @@
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sling.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
+        <prop actor="props/units/mace_sling_pouch.xml" attachpoint="sheath_L"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Tunic-Sleeveless">
-      <textures><texture file="skeletal/hele_isp_b_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_isp_b_2.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

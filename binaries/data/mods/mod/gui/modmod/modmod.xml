@@ -62,6 +62,7 @@
 				selected_column_order="1"
 				size="0 25 100%-2 100%"
 				font="sans-stroke-13"
+				auto_scroll="true"
 			>
 				<action on="SelectionChange">showModDescription(this.name);</action>
 				<action on="SelectionColumnChange">applyFilters();</action>
@@ -113,6 +114,7 @@
 				size="0 25 96%-5 100%"
 				font="sans-stroke-13"
 				tooltip_style="pgToolTip"
+				auto_scroll="true"
 			>
 				<action on="SelectionChange">showModDescription(this.name);</action>
 				<action on="MouseLeftDoubleClickItem">disableMod();</action>

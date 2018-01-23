@@ -43,10 +43,11 @@ const aFlower = "actor|props/flora/flower_bright.xml";
 const aPalm = "actor|props/flora/shrub_fanpalm.xml";
 
 const heightMarsh = -2;
-const heightOffsetBump = 1;
 const heightLand = 3;
 const heightHill = 15;
-const heightOffsetBump = 2;
+
+const heightOffsetBump1 = 2;
+const heightOffsetBump2 = 1;
 
 InitMap(heightLand, tShoreBlend);
 
@@ -93,7 +94,7 @@ Engine.SetProgress(15);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.6, 0.1, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump1, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));
 
@@ -114,7 +115,7 @@ for (let i = 0; i < 2; ++i)
 		new ChainPlacer(1, Math.floor(scaleByMapSize(6, 12)), Math.floor(scaleByMapSize(15, 60)), 0.8),
 		[
 			new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
-			new SmoothElevationPainter(ELEVATION_SET, hMarsh, 3),
+			new SmoothElevationPainter(ELEVATION_SET, heightMarsh, 3),
 			paintClass(clWater)
 		],
 		avoidClasses(clPlayer, 25, clWater, Math.round(scaleByMapSize(7, 16) * randFloat(0.8, 1.35))),
@@ -138,7 +139,7 @@ Engine.SetProgress(40);
 log("Creating bumps...");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
-	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump2, 2),
 	stayClasses(clWater, 2),
 	scaleByMapSize(50, 100));
 

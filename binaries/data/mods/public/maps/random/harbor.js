@@ -299,8 +299,7 @@ function addCenterLake()
 			Math.floor(scaleByMapSize(2, 12)),
 			Math.floor(scaleByMapSize(35, 160)),
 			1,
-			mapCenter.x,
-			mapCenter.y,
+			mapCenter,
 			0,
 			[Math.floor(fractionToTiles(0.2))]),
 		[
@@ -329,7 +328,7 @@ function addHarbors(players)
 	{
 		let harborPosition = Vector2D.add(player.position, Vector2D.sub(mapCenter, player.position).div(2.5).round());
 		createArea(
-			new ClumpPlacer(1200, 0.5, 0.5, 1, harborPosition.x, harborPosition.y),
+			new ClumpPlacer(1200, 0.5, 0.5, 1, harborPosition),
 			[
 				new LayeredPainter([g_Terrains.shore, g_Terrains.water], [2]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHarbor, 3),
@@ -373,7 +372,7 @@ function addSpines()
 		let end = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.4), 0).rotate(-tang));
 
 		createArea(
-			new PathPlacer(start.x, start.y, end.x, end.y, scaleByMapSize(14, spineSize), 0.6, 0.1, 0.4, spineTapering),
+			new PathPlacer(start, end, scaleByMapSize(14, spineSize), 0.6, 0.1, 0.4, spineTapering),
 			[
 				new LayeredPainter([g_Terrains.cliff, spineTile], [3]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetSpine, 3),

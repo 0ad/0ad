@@ -203,8 +203,7 @@ for (let gulfLake of gulfLakePositions)
 			Math.floor(scaleByMapSize(5, 16)),
 			Math.floor(scaleByMapSize(35, gulfLake.numCircles)),
 			1,
-			position.x,
-			position.y,
+			position,
 			0,
 			[Math.floor(gulfLake.radius)]),
 		[

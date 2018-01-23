@@ -249,6 +249,25 @@
 					</action>
 				</object>
 
+				<object
+					type="button"
+					style="StoneButtonFancy"
+					size="0 96 100% 124"
+					tooltip_style="pgToolTip"
+				>
+					<translatableAttribute id="caption">Replays</translatableAttribute>
+					<translatableAttribute id="tooltip">Playback previous games.</translatableAttribute>
+					<action on="Press">
+						closeMenu();
+						Engine.SwitchGuiPage("page_replaymenu.xml", {
+							"replaySelectionData": {
+								"filters": {
+									"singleplayer": "Singleplayer"
+								}
+							}
+						});
+					</action>
+				</object>
 			</object>
 
 			<!-- submenuMultiplayer -->
@@ -309,10 +328,30 @@
 						}
 					</action>
 				</object>
-				</object>
 
-			<!-- submenuToolsAndOptions -->
-			<object name="submenuToolsAndOptions"
+				<object
+					type="button"
+					style="StoneButtonFancy"
+					size="0 96 100% 124"
+					tooltip_style="pgToolTip"
+				>
+					<translatableAttribute id="caption">Replays</translatableAttribute>
+					<translatableAttribute id="tooltip">Playback previous games.</translatableAttribute>
+					<action on="Press">
+						closeMenu();
+						Engine.SwitchGuiPage("page_replaymenu.xml", {
+							"replaySelectionData": {
+								"filters": {
+									"singleplayer": "Multiplayer"
+								}
+							}
+						});
+					</action>
+				</object>
+			</object>
+
+			<!-- submenuOptions -->
+			<object name="submenuOptions"
 				type="image"
 				size="0 4 100%-4 100%-4"
 				tooltip_style="pgToolTip"
@@ -347,36 +386,21 @@
 				</object>
 
 				<object
-					type="button"
 					style="StoneButtonFancy"
+					type="button"
 					size="0 64 100% 92"
 					tooltip_style="pgToolTip"
 				>
-					<translatableAttribute id="caption">Replays</translatableAttribute>
-					<translatableAttribute id="tooltip">Playback previous games.</translatableAttribute>
+					<translatableAttribute id="caption">Mod Selection</translatableAttribute>
+					<translatableAttribute id="tooltip">Select mods to use.</translatableAttribute>
 					<action on="Press">
-						closeMenu();
-						Engine.SwitchGuiPage("page_replaymenu.xml");
+						Engine.SwitchGuiPage("page_modmod.xml");
 					</action>
 				</object>
-
 				<object
 					style="StoneButtonFancy"
 					type="button"
 					size="0 96 100% 124"
-					tooltip_style="pgToolTip"
-				>
-					<translatableAttribute id="caption">Scenario Editor</translatableAttribute>
-					<translatableAttribute id="tooltip">Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument &quot;-editor&quot;.</translatableAttribute>
-					<action on="Press">
-						pressedScenarioEditorButton();
-					</action>
-				</object>
-
-				<object
-					style="StoneButtonFancy"
-					type="button"
-					size="0 128 100% 156"
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Welcome Screen</translatableAttribute>
@@ -387,18 +411,6 @@
 							"page": "splashscreen",
 							"callback": "SplashScreenClosedCallback"
 						});
-					</action>
-				</object>
-				<object
-					style="StoneButtonFancy"
-					type="button"
-					size="0 160 100% 188"
-					tooltip_style="pgToolTip"
-				>
-					<translatableAttribute id="caption">Mod Selection</translatableAttribute>
-					<translatableAttribute id="tooltip">Select mods to use.</translatableAttribute>
-					<action on="Press">
-						Engine.SwitchGuiPage("page_modmod.xml");
 					</action>
 				</object>
 			</object>
@@ -453,7 +465,7 @@
 					<translatableAttribute id="tooltip">Learn how to play, start the tutorial, discover the technology trees, and the history behind the civilizations</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuLearn", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 4);
+						openMenu("submenuLearn", this.parent.size.top + this.size.top, this.size.bottom - this.size.top, 4);
 					</action>
 				</object>
 
@@ -468,7 +480,7 @@
 					<translatableAttribute id="tooltip">Challenge the computer player to a single player match.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuSinglePlayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 3);
+						openMenu("submenuSinglePlayer", this.parent.size.top + this.size.top, this.size.bottom - this.size.top, 4);
 					</action>
 				</object>
 
@@ -483,22 +495,36 @@
 					<translatableAttribute id="tooltip">Fight against one or more human players in a multiplayer game.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuMultiplayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 3);
+						openMenu("submenuMultiplayer", this.parent.size.top + this.size.top, this.size.bottom - this.size.top, 4);
 					</action>
 				</object>
 
-				<!-- TOOLS AND OPTIONS BUTTON -->
+				<!-- OPTIONS BUTTON -->
 				<object
 					style="StoneButtonFancy"
 					type="button"
 					size="4 100 100%-4 128"
 					tooltip_style="pgToolTip"
 				>
-					<translatableAttribute id="caption">Tools &amp; Options</translatableAttribute>
-					<translatableAttribute id="tooltip">Game options and scenario design tools.</translatableAttribute>
+					<translatableAttribute id="caption">Settings</translatableAttribute>
+					<translatableAttribute id="tooltip">Game options and mod selection.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 6);
+						openMenu("submenuOptions", this.parent.size.top + this.size.top, this.size.bottom - this.size.top, 4);
+					</action>
+				</object>
+
+				<!-- SCENARIO EDITOR BUTTON -->
+				<object
+					style="StoneButtonFancy"
+					type="button"
+					size="4 132 100%-4 160"
+					tooltip_style="pgToolTip"
+				>
+					<translatableAttribute id="caption">Scenario Editor</translatableAttribute>
+					<translatableAttribute id="tooltip">Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument &quot;-editor&quot;.</translatableAttribute>
+					<action on="Press">
+						pressedScenarioEditorButton();
 					</action>
 				</object>
 
@@ -506,7 +532,7 @@
 				<object
 					type="button"
 					style="StoneButtonFancy"
-					size="4 132 100%-4 160"
+					size="4 164 100%-4 192"
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Exit</translatableAttribute>
@@ -516,7 +542,7 @@
 			</object>
 
 			<!-- PRE-RELEASE INFO -->
-			<object size="8 100%-400 100%-8 100%-100"
+			<object size="8 100%-390 100%-8 100%-100"
 				type="image"
 				style="TranslucentPanelThinBorder"
 			>

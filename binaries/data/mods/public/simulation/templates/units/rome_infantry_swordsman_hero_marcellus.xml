@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_swordsman">
+  <Auras datatype="tokens">
+    units/heroes/rome_hero_marcellus_1
+    units/heroes/rome_hero_marcellus_2
+  </Auras>
+  <Identity>
+    <Civ>rome</Civ>
+    <Lang>latin</Lang>
+    <SpecificName>Marcus Claudius Marcellus</SpecificName>
+    <Icon>units/rome_hero_marcellus.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/romans/hero_marcellus.xml</Actor>
+  </VisualActor>
+</Entity>
+

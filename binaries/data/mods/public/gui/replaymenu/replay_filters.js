@@ -23,25 +23,25 @@ const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.Popul
  */
 function initFilters(filters)
 {
-	Engine.GetGUIObjectByName("compatibilityFilter").checked = !filters || filters.compatibility;
+	Engine.GetGUIObjectByName("compatibilityFilter").checked = !filters || filters.compatibility === undefined || filters.compatibility;
 
 	if (filters && filters.playernames)
 		Engine.GetGUIObjectByName("playersFilter").caption = filters.playernames;
 
-	initDateFilter(filters && filters.date);
-	initMapSizeFilter(filters && filters.mapSize);
-	initMapNameFilter(filters && filters.mapName);
-	initPopCapFilter(filters && filters.popCap);
-	initDurationFilter(filters && filters.duration);
-	initSingleplayerFilter(filters && filters.singleplayer);
-	initVictoryConditionFilter(filters && filters.victoryCondition);
-	initRatedGamesFilter(filters && filters.ratedGames);
+	initDateFilter(filters);
+	initMapSizeFilter(filters);
+	initMapNameFilter(filters);
+	initPopCapFilter(filters);
+	initDurationFilter(filters);
+	initSingleplayerFilter(filters);
+	initVictoryConditionFilter(filters);
+	initRatedGamesFilter(filters);
 }
 
 /**
  * Allow to filter by month. Uses g_Replays.
  */
-function initDateFilter(date)
+function initDateFilter(filters)
 {
 	var months = g_Replays.map(replay => getReplayMonth(replay));
 	months = months.filter((month, index) => months.indexOf(month) == index).sort();
@@ -50,8 +50,8 @@ function initDateFilter(date)
 	dateTimeFilter.list = [translateWithContext("datetime", "Any")].concat(months);
 	dateTimeFilter.list_data = [""].concat(months);
 
-	if (date)
-		dateTimeFilter.selected = dateTimeFilter.list_data.indexOf(date);
+	if (filters && filters.date)
+		dateTimeFilter.selected = dateTimeFilter.list_data.indexOf(filters.date);
 
 	if (dateTimeFilter.selected == -1 || dateTimeFilter.selected >= dateTimeFilter.list.length)
 		dateTimeFilter.selected = 0;
@@ -60,14 +60,14 @@ function initDateFilter(date)
 /**
  * Allow to filter by mapsize. Uses g_MapSizes.
  */
-function initMapSizeFilter(mapSize)
+function initMapSizeFilter(filters)
 {
 	var mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
 	mapSizeFilter.list = [translateWithContext("map size", "Any")].concat(g_MapSizes.Name);
 	mapSizeFilter.list_data = [-1].concat(g_MapSizes.Tiles);
 
-	if (mapSize)
-		mapSizeFilter.selected = mapSizeFilter.list_data.indexOf(mapSize);
+	if (filters && filters.mapSize)
+		mapSizeFilter.selected = mapSizeFilter.list_data.indexOf(filters.mapSize);
 
 	if (mapSizeFilter.selected == -1 || mapSizeFilter.selected >= mapSizeFilter.list.length)
 		mapSizeFilter.selected = 0;
@@ -76,14 +76,14 @@ function initMapSizeFilter(mapSize)
 /**
  * Allow to filter by mapname. Uses g_MapNames.
  */
-function initMapNameFilter(mapName)
+function initMapNameFilter(filters)
 {
 	var mapNameFilter = Engine.GetGUIObjectByName("mapNameFilter");
 	mapNameFilter.list = [translateWithContext("map name", "Any")].concat(g_MapNames.map(name => translate(name)));
 	mapNameFilter.list_data = [""].concat(g_MapNames);
 
-	if (mapName)
-		mapNameFilter.selected = mapNameFilter.list_data.indexOf(mapName);
+	if (filters && filters.mapName)
+		mapNameFilter.selected = mapNameFilter.list_data.indexOf(filters.mapName);
 
 	if (mapNameFilter.selected == -1 || mapNameFilter.selected >= mapNameFilter.list.length)
 		mapNameFilter.selected = 0;
@@ -92,14 +92,14 @@ function initMapNameFilter(mapName)
 /**
  * Allow to filter by population capacity.
  */
-function initPopCapFilter(popCap)
+function initPopCapFilter(filters)
 {
 	var populationFilter = Engine.GetGUIObjectByName("populationFilter");
 	populationFilter.list = [translateWithContext("population capacity", "Any")].concat(g_PopulationCapacities.Title);
 	populationFilter.list_data = [""].concat(g_PopulationCapacities.Population);
 
-	if (popCap)
-		populationFilter.selected = populationFilter.list_data.indexOf(popCap);
+	if (filters && filters.popCap)
+		populationFilter.selected = populationFilter.list_data.indexOf(filters.popCap);
 
 	if (populationFilter.selected == -1 || populationFilter.selected >= populationFilter.list.length)
 		populationFilter.selected = 0;
@@ -108,7 +108,7 @@ function initPopCapFilter(popCap)
 /**
  * Allow to filter by game duration. Uses g_DurationFilterIntervals.
  */
-function initDurationFilter(duration)
+function initDurationFilter(filters)
 {
 	var durationFilter = Engine.GetGUIObjectByName("durationFilter");
 	durationFilter.list = g_DurationFilterIntervals.map((interval, index) => {
@@ -129,47 +129,47 @@ function initDurationFilter(duration)
 	});
 	durationFilter.list_data = g_DurationFilterIntervals.map((interval, index) => index);
 
-	if (duration)
-		durationFilter.selected = durationFilter.list_data.indexOf(duration);
+	if (filters && filters.duration)
+		durationFilter.selected = durationFilter.list_data.indexOf(filters.duration);
 
 	if (durationFilter.selected == -1 || durationFilter.selected >= g_DurationFilterIntervals.length)
 		durationFilter.selected = 0;
 }
 
-function initSingleplayerFilter(singleplayer)
+function initSingleplayerFilter(filters)
 {
 	let singleplayerFilter = Engine.GetGUIObjectByName("singleplayerFilter");
 	singleplayerFilter.list = [translate("Single- and multiplayer"), translate("Single Player"), translate("Multiplayer")];
 	singleplayerFilter.list_data = ["", "Singleplayer", "Multiplayer"];
 
-	if (singleplayer)
-		singleplayerFilter.selected = singleplayerFilter.list_data.indexOf(singleplayer);
+	if (filters && filters.singleplayer)
+		singleplayerFilter.selected = singleplayerFilter.list_data.indexOf(filters.singleplayer);
 
 	if (singleplayerFilter.selected < 0 || singleplayerFilter.selected >= singleplayerFilter.list.length)
 		singleplayerFilter.selected = 0;
 }
 
-function initVictoryConditionFilter(victoryCondition)
+function initVictoryConditionFilter(filters)
 {
 	let victoryConditionFilter = Engine.GetGUIObjectByName("victoryConditionFilter");
 	victoryConditionFilter.list = [translateWithContext("victory condition", "Any gametype")].concat(g_VictoryConditions.map(vc => translateVictoryCondition(vc)));
 	victoryConditionFilter.list_data = [""].concat(g_VictoryConditions);
 
-	if (victoryCondition)
-		victoryConditionFilter.selected = victoryConditionFilter.list_data.indexOf(victoryCondition);
+	if (filters && filters.victoryCondition)
+		victoryConditionFilter.selected = victoryConditionFilter.list_data.indexOf(filters.victoryCondition);
 
 	if (victoryConditionFilter.selected < 0 || victoryConditionFilter.selected >= victoryConditionFilter.list.length)
 		victoryConditionFilter.selected = 0;
 }
 
-function initRatedGamesFilter(ratedGames)
+function initRatedGamesFilter(filters)
 {
 	let ratedGamesFilter = Engine.GetGUIObjectByName("ratedGamesFilter");
 	ratedGamesFilter.list = [translate("Rated and unrated games"), translate("Rated games"), translate("Unrated games")];
 	ratedGamesFilter.list_data = ["", "rated", "not rated"];
 
-	if (ratedGames)
-		ratedGamesFilter.selected = ratedGamesFilter.list_data.indexOf(ratedGames);
+	if (filters && filters.ratedGames)
+		ratedGamesFilter.selected = ratedGamesFilter.list_data.indexOf(filters.ratedGames);
 
 	if (ratedGamesFilter.selected < 0 || ratedGamesFilter.selected >= ratedGamesFilter.list.length)
 		ratedGamesFilter.selected = 0;

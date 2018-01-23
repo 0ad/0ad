@@ -286,7 +286,7 @@ Auras.prototype.Clean = function()
 		if (cmpRangeOverlayManager)
 		{
 			cmpRangeOverlayManager.UpdateRangeOverlays("Auras");
-			cmpRangeOverlayManager.RegenerateRangeOverlayManagers(false);
+			cmpRangeOverlayManager.RegenerateRangeOverlays(false);
 		}
 	}
 };

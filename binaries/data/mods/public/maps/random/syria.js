@@ -56,7 +56,7 @@ for (let i = 0; i < numPlayers; ++i)
 	log("Marking player territory larger than the city patch...");
 	if (!isNomad())
 		createArea(
-			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i].x, playerPosition[i].y),
+			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i]),
 			paintClass(clPlayer));
 
 	log("Creating big grass patches surrounding the city patches...");
@@ -66,8 +66,7 @@ for (let i = 0; i < numPlayers; ++i)
 			Math.floor(scaleByMapSize(5, 12)),
 			Math.floor(scaleByMapSize(25, 60)) / (isNomad() ? 2 : 1),
 			1,
-			playerPosition[i].x,
-			playerPosition[i].y,
+			playerPosition[i],
 			0,
 			[Math.floor(scaleByMapSize(16, 30))]),
 		[

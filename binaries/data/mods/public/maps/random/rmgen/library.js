@@ -26,19 +26,39 @@ const BUILDING_ORIENTATION = -1/4 * Math.PI;
 
 const g_CivData = deepfreeze(loadCivFiles(false));
 
+/**
+ * Sets whether setHeight operates on the center of a tile or on the vertices.
+ */
+var TILE_CENTERED_HEIGHT_MAP = false;
+
+/**
+ * Main RandomMap object.
+ */
+var g_Map;
+
+function InitMap(baseHeight, baseTerrain)
+{
+	g_Map = new RandomMap(baseHeight, baseTerrain);
+}
+
+function ExportMap()
+{
+	g_Map.ExportMap();
+}
+
 function fractionToTiles(f)
 {
-	return g_Map.size * f;
+	return g_MapSettings.Size * f;
 }
 
 function tilesToFraction(t)
 {
-	return t / g_Map.size;
+	return t / g_MapSettings.Size;
 }
 
 function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
 {
-	return min + (max - min) * (g_Map.size - minMapSize) / (maxMapSize - minMapSize);
+	return min + (max - min) * (g_MapSettings.Size - minMapSize) / (maxMapSize - minMapSize);
 }
 
 /**
@@ -311,11 +331,6 @@ function getPlayerTeam(playerID)
 function getHeight(x, z)
 {
 	return g_Map.getHeight(x, z);
-}
-
-function setHeight(x, z, height)
-{
-	g_Map.setHeight(x, z, height);
 }
 
 /**

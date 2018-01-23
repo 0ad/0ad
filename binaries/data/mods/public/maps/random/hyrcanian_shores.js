@@ -62,10 +62,13 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clHighlands = createTileClass();
 
-var highlandsPosition = fractionToTiles(0.25);
+var waterPosition = fractionToTiles(0.25)
+var highlandsPosition = fractionToTiles(0.75);
+
+var startAngle = randomAngle();
 
 placePlayerBases({
-	"PlayerPlacement": playerPlacementLine(true, mapCenter, fractionToTiles(0.2)),
+	"PlayerPlacement": [sortAllPlayers(), playerPlacementLine(startAngle, mapCenter, fractionToTiles(0.2))],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
@@ -95,21 +98,26 @@ Engine.SetProgress(10);
 
 paintRiver({
 	"parallel": true,
-	"start": new Vector2D(mapBounds.left, mapBounds.top),
-	"end": new Vector2D(mapBounds.right, mapBounds.top),
-	"width": fractionToTiles(0.5),
+	"start": new Vector2D(mapBounds.left, mapBounds.top).rotateAround(startAngle, mapCenter),
+	"end": new Vector2D(mapBounds.right, mapBounds.top).rotateAround(startAngle, mapCenter),
+	"width": 2 * waterPosition,
 	"fadeDist": scaleByMapSize(6, 25),
 	"deviation": 0,
 	"heightRiverbed": heightSeaGround1,
 	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0,
-	"waterFunc": (ix, iz, height, riverFraction) => {
+	"landFunc": (position, shoreDist1, shoreDist2) => {
+
+		if (waterPosition + shoreDist1 > highlandsPosition)
+			addToClass(position.x, position.y, clHighlands);
+	},
+	"waterFunc": (position, height, riverFraction) => {
 
 		if (height < heightShore2)
-			addToClass(ix, iz, clWater);
+			addToClass(position.x, position.y, clWater);
 
-		createTerrain(height < heightShore1 ? tWater : tShore).place(ix, iz);
+		createTerrain(height < heightShore1 ? tWater : tShore).place(position.x, position.y);
 	}
 });
 Engine.SetProgress(20);
@@ -123,10 +131,6 @@ for (let i = 0; i < scaleByMapSize(10, 20); ++i)
 		numPlayers,
 		50);
 Engine.SetProgress(25);
-
-createArea(
-	new RectPlacer(mapBounds.left, mapBounds.bottom + highlandsPosition, mapBounds.right, mapBounds.bottom),
-	paintClass(clHighlands));
 
 log("Creating bumps...");
 createAreas(

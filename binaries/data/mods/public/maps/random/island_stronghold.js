@@ -89,7 +89,7 @@ for (let i = 0; i < teams.length; ++i)
 		addCivicCenterAreaToClass(playerPosition[p], clPlayer);
 
 		createArea(
-			new ChainPlacer(2, Math.floor(scaleByMapSize(5, 11)), Math.floor(scaleByMapSize(60, 250)), 1, playerPosition[p].x, playerPosition[p].y, 0, [Math.floor(fractionToTiles(0.01))]),
+			new ChainPlacer(2, Math.floor(scaleByMapSize(5, 11)), Math.floor(scaleByMapSize(60, 250)), 1, playerPosition[p], 0, [Math.floor(fractionToTiles(0.01))]),
 			[
 				new LayeredPainter([tMainTerrain, tMainTerrain, tMainTerrain], [1, 6]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
@@ -169,96 +169,35 @@ for (let i = 0; i < teams.length; ++i)
 
 Engine.SetProgress(40);
 
-log("Creating expansion islands...");
-var landAreas = [];
-var playerConstraint = new AvoidTileClassConstraint(clPlayer, Math.floor(scaleByMapSize(12, 16)));
-var landConstraint = new AvoidTileClassConstraint(clLand, Math.floor(scaleByMapSize(12, 16)));
-
-for (let x = 0; x < mapSize; ++x)
-	for (let z = 0; z < mapSize; ++z)
-		if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-			landAreas.push([x, z]);
-
 log("Creating big islands...");
-let numIslands = scaleByMapSize(4, 14) * (isNomad() ? 2 : 1);
-for (let i = 0; i < numIslands; ++i)
-{
-	let landAreaLen = landAreas.length;
-	if (!landAreaLen)
-		break;
-
-	let chosenPoint = pickRandom(landAreas);
-
-	let newIsland = createAreas(
-		new ChainPlacer(
-			Math.floor(scaleByMapSize(4, 8) * (isNomad() ? 2 : 1)),
-			Math.floor(scaleByMapSize(8, 16) * (isNomad() ? 2 : 1)),
-			Math.floor(scaleByMapSize(25, 60)),
-			0.07,
-			chosenPoint[0],
-			chosenPoint[1],
-			scaleByMapSize(30, 70)),
-		[
-			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
-			paintClass(clLand)
-		],
-		avoidClasses(clLand, 3, clPlayer, 3),
-		1, 1
-	);
-
-	if (!newIsland || !newIsland.length)
-		continue;
-
-	let n = 0;
-	for (let j = 0; j < landAreaLen; ++j)
-	{
-		let x = landAreas[j][0];
-		let z = landAreas[j][1];
-
-		if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-			landAreas[n++] = landAreas[j];
-	}
-	landAreas.length = n;
-}
-
-playerConstraint = new AvoidTileClassConstraint(clPlayer, Math.floor(scaleByMapSize(9, 12)));
-landConstraint = new AvoidTileClassConstraint(clLand, Math.floor(scaleByMapSize(9, 12)));
+createAreas(
+	new ChainPlacer(
+		Math.floor(scaleByMapSize(4, 8) * (isNomad() ? 2 : 1)),
+		Math.floor(scaleByMapSize(8, 16) * (isNomad() ? 2 : 1)),
+		Math.floor(scaleByMapSize(25, 60)),
+		0.07,
+		undefined,
+		scaleByMapSize(30, 70)),
+	[
+		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
+		paintClass(clLand)
+	],
+	avoidClasses(clLand, 3, clPlayer, 3),
+	scaleByMapSize(4, 14) * (isNomad() ? 2 : 1),
+	1);
 
 log("Creating small islands...");
-numIslands = scaleByMapSize(6, 18) * scaleByMapSize(1, 3);
-for (let i = 0; i < numIslands; ++i)
-{
-	let landAreaLen = landAreas.length;
-	if (!landAreaLen)
-		break;
-
-	let chosenPoint = pickRandom(landAreas);
-	let newIsland = createAreas(
-		new ChainPlacer(Math.floor(scaleByMapSize(4, 7)), Math.floor(scaleByMapSize(7, 10)), Math.floor(scaleByMapSize(16, 40)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(22, 40)),
-		[
-			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
-			paintClass(clLand)
-		],
-		avoidClasses(clLand, 3, clPlayer, 3),
-		1,
-		1);
-
-	if (newIsland === undefined)
-		continue;
-
-	let temp = [];
-	for (let j = 0; j < landAreaLen; ++j)
-	{
-		let x = landAreas[j][0];
-		let z = landAreas[j][1];
-
-		if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-			temp.push([x, z]);
-	}
-	landAreas = temp;
-}
+createAreas(
+	new ChainPlacer(Math.floor(scaleByMapSize(4, 7)), Math.floor(scaleByMapSize(7, 10)), Math.floor(scaleByMapSize(16, 40)), 0.07, undefined, scaleByMapSize(22, 40)),
+	[
+		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
+		paintClass(clLand)
+	],
+	avoidClasses(clLand, 3, clPlayer, 3),
+	scaleByMapSize(6, 55),
+	1);
 
 Engine.SetProgress(70);
 

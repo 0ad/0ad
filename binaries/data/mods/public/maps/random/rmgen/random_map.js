@@ -1,35 +1,48 @@
 /**
  * @file The RandomMap stores the elevation grid, terrain textures and entities that are exported to the engine.
  *
- * @param {Number} size - Radius or side length of the map in tiles
  * @param {Number} baseHeight - Initial elevation of the map
+ * @param {String|Array} baseTerrain - One or more texture names
  */
-function RandomMap(size, baseHeight)
+function RandomMap(baseHeight, baseTerrain)
 {
-	// Size must be 0 to 1024, divisible by patches
-	this.size = size;
+	log("Initializing map...");
 
-	// Create 2D arrays for textures, object, and areas
+	// Size must be 0 to 1024, divisible by patches
+	this.size = g_MapSettings.Size;
+
+	// Create name <-> id maps for textures
+	this.nameToID = {};
+	this.IDToName = [];
+
+	// Texture 2D array
 	this.texture = [];
+	for (let x = 0; x < this.size; ++x)
+	{
+		this.texture[x] = new Uint16Array(this.size);
+
+		for (let z = 0; z < this.size; ++z)
+			this.texture[x][z] = this.getTextureID(
+				typeof baseTerrain == "string" ? baseTerrain : pickRandom(baseTerrain));
+	}
+
+	// Create 2D arrays for terrain objects and areas
 	this.terrainObjects = [];
 	this.area = [];
 
-	for (let i = 0; i < size; ++i)
+	for (let i = 0; i < this.size; ++i)
 	{
-		// Texture IDs
-		this.texture[i] = new Uint16Array(size);
-
 		// Area IDs
-		this.area[i] = new Uint16Array(size);
+		this.area[i] = new Uint16Array(this.size);
 
 		// Entities
 		this.terrainObjects[i] = [];
-		for (let j = 0; j < size; ++j)
+		for (let j = 0; j < this.size; ++j)
 			this.terrainObjects[i][j] = undefined;
 	}
 
 	// Create 2D array for heightmap
-	let mapSize = size;
+	let mapSize = this.size;
 	if (!TILE_CENTERED_HEIGHT_MAP)
 		++mapSize;
 
@@ -41,10 +54,6 @@ function RandomMap(size, baseHeight)
 		for (let j = 0; j < mapSize; ++j)
 			this.height[i][j] = baseHeight;
 	}
-
-	// Create name <-> id maps for textures
-	this.nameToID = {};
-	this.IDToName = [];
 
 	// Array of Entities
 	this.objects = [];
@@ -159,12 +168,12 @@ RandomMap.prototype.getHeight = function(x, z)
 	return this.height[x][z];
 };
 
-RandomMap.prototype.setHeight = function(x, z, height)
+RandomMap.prototype.setHeight = function(position, height)
 {
-	if (!this.validH(x, z))
-		throw new Error("setHeight: invalid vertex position (" + x + ", " + z + ")");
+	if (!this.validH(position.x, position.y))
+		throw new Error("setHeight: invalid vertex position " + uneval(position));
 
-	this.height[x][z] = height;
+	this.height[position.x][position.y] = height;
 };
 
 /**
@@ -255,6 +264,46 @@ RandomMap.prototype.cornerHeight = function(x, z)
 	return sumHeight / count;
 };
 
+RandomMap.prototype.getAdjacentPoints = function(position)
+{
+	let adjacentPositions = [];
+
+	for (let x = -1; x <= 1; ++x)
+		for (let z = -1; z <= 1; ++z)
+			if (x || z )
+			{
+				let adjacentPos = Vector2D.add(position, new Vector2D(x, z)).round();
+				if (this.inMapBounds(adjacentPos.x, adjacentPos.y))
+					adjacentPositions.push(adjacentPos);
+			}
+
+	return adjacentPositions;
+}
+
+/**
+ * Returns the average height of adjacent tiles, helpful for smoothing.
+ */
+RandomMap.prototype.getAverageHeight = function(position)
+{
+	let adjacentPositions = this.getAdjacentPoints(position);
+	if (!adjacentPositions.length)
+		return 0;
+
+	return adjacentPositions.reduce((totalHeight, pos) => totalHeight + this.getHeight(pos.x, pos.y), 0) / adjacentPositions.length;
+}
+
+/**
+ * Returns the steepness of the given location, defined as the average height difference of the adjacent tiles.
+ */
+RandomMap.prototype.getSlope = function(position)
+{
+	let adjacentPositions = this.getAdjacentPoints(position);
+	if (!adjacentPositions.length)
+		return 0;
+
+	return adjacentPositions.reduce((totalSlope, adjacentPos) => totalSlope + Math.abs(this.getHeight(adjacentPos.x, adjacentPos.y) - this.getHeight(position.x, position.y)), 0) / adjacentPositions.length;
+}
+
 /**
  * Retrieve an array of all Entities placed on the map.
  */
@@ -315,3 +364,22 @@ RandomMap.prototype.exportTerrainTextures = function()
 		"priority": tilePriority
 	};
 };
+
+RandomMap.prototype.ExportMap = function()
+{
+	log("Saving map...");
+
+	if (g_Environment.Water.WaterBody.Height === undefined)
+		g_Environment.Water.WaterBody.Height = SEA_LEVEL - 0.1;
+
+	Engine.ExportMap({
+		"entities": this.exportEntityList(),
+		"height": this.exportHeightData(),
+		"seaLevel": SEA_LEVEL,
+		"size": this.size,
+		"textureNames": this.IDToName,
+		"tileData": this.exportTerrainTextures(),
+		"Camera": g_Camera,
+		"Environment": g_Environment
+	});
+}

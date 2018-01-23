@@ -534,14 +534,14 @@ ProductionQueue.prototype.GetBatchTime = function(batchSize)
 
 ProductionQueue.prototype.OnOwnershipChanged = function(msg)
 {
-	if (msg.from != -1)
+	if (msg.from != INVALID_PLAYER)
 	{
 		// Unset flag that previous owner's training may be blocked
 		var cmpPlayer = QueryPlayerIDInterface(msg.from);
 		if (cmpPlayer && this.queue.length > 0)
 			cmpPlayer.UnBlockTraining();
 	}
-	if (msg.to != -1)
+	if (msg.to != INVALID_PLAYER)
 		this.CalculateEntitiesList();
 
 	// Reset the production queue whenever the owner changes.
@@ -626,7 +626,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			// Temporary owner affectation needed for GarrisonHolder checks
 			cmpNewOwnership.SetOwnerQuiet(cmpOwnership.GetOwner());
 			garrisoned = cmpAutoGarrison.PerformGarrison(ent);
-			cmpNewOwnership.SetOwnerQuiet(-1);
+			cmpNewOwnership.SetOwnerQuiet(INVALID_PLAYER);
 		}
 
 		if (garrisoned)

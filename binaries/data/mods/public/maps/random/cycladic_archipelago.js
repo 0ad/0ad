@@ -90,7 +90,7 @@ function createCycladicArchipelagoIsland(position, tileClass, radius, coralRadiu
 {
 	log("Creating deep ocean rocks...");
 	createArea(
-		new ClumpPlacer(diskArea(radius + coralRadius), 0.7, 0.1, 10, position.x, position.y),
+		new ClumpPlacer(diskArea(radius + coralRadius), 0.7, 0.1, 10, position),
 		[
 			new LayeredPainter([tOceanRockDeep, tOceanCoral], [5]),
 			paintClass(clCoral)
@@ -100,7 +100,7 @@ function createCycladicArchipelagoIsland(position, tileClass, radius, coralRadiu
 	log("Creating island...");
 	areas.push(
 		createArea(
-			new ClumpPlacer(diskArea(radius), 0.7, 0.1, 10, position.x, position.y),
+			new ClumpPlacer(diskArea(radius), 0.7, 0.1, 10, position),
 			[
 				new LayeredPainter([tOceanCoral, tBeachWet, tBeachDry, tBeach, tBeachBlend, tGrass], [1, 3, 1, 1, 2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 5),
@@ -350,7 +350,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 Engine.SetProgress(99);
 
-placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clBaseResource, 4, clHill, 4));
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clBaseResource, 4, clHill, 4, clMetal, 4, clRock, 4, clFood, 1));
 
 setSkySet("sunny");
 setWaterColor(0.2,0.294,0.49);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_swordsman">
+  <Auras datatype="tokens">
+    units/heroes/gaul_hero_vercingetorix
+  </Auras>
+  <Identity>
+    <Civ>gaul</Civ>
+    <SpecificName>Vercingetorix</SpecificName>
+    <Icon>units/gaul_hero_vercingetorix.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/celts/vercingetorix.xml</Actor>
+  </VisualActor>
+</Entity>
+

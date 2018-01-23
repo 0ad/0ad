@@ -108,19 +108,14 @@ createAreas(
 	scaleByMapSize(1, 3));
 Engine.SetProgress(55);
 
-var playerConstraint = new AvoidTileClassConstraint(clPlayer, 30);
-var minesConstraint = new AvoidTileClassConstraint(clRock, 25);
-var waterConstraint = new AvoidTileClassConstraint(clWater, 10);
-
 log("Creating stone mines...");
 for (var i = 0; i < scaleByMapSize(12,30); ++i)
 {
-	var mX = randIntExclusive(0, mapSize);
-	var mZ = randIntExclusive(0, mapSize);
-	if (playerConstraint.allows(mX, mZ) && minesConstraint.allows(mX, mZ) && waterConstraint.allows(mX, mZ))
+	let position = new Vector2D(randIntExclusive(0, mapSize), randIntExclusive(0, mapSize));
+	if (avoidClasses(clPlayer, 30, clRock, 25, clWater, 10).allows(position.x, position.y))
 	{
-		createStoneMineFormation(mX, mZ, oStoneSmall, tDirt4);
-		addToClass(mX, mZ, clRock);
+		createStoneMineFormation(position, oStoneSmall, tDirt4);
+		addToClass(position.x, position.y, clRock);
 	}
 }
 

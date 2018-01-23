@@ -286,7 +286,7 @@ Damage.prototype.EntitiesNearPoint = function(origin, radius, players)
 Damage.prototype.TargetKilled = function(attacker, target, attackerOwner)
 {
 	let cmpAttackerOwnership = Engine.QueryInterface(attacker, IID_Ownership);
-	let atkOwner = cmpAttackerOwnership && cmpAttackerOwnership.GetOwner() != -1 ? cmpAttackerOwnership.GetOwner() : attackerOwner;
+	let atkOwner = cmpAttackerOwnership && cmpAttackerOwnership.GetOwner() != INVALID_PLAYER ? cmpAttackerOwnership.GetOwner() : attackerOwner;
 
 	// Add to killer statistics.
 	let cmpKillerPlayerStatisticsTracker = QueryPlayerIDInterface(atkOwner, IID_StatisticsTracker);

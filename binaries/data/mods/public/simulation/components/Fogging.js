@@ -120,6 +120,10 @@ Fogging.prototype.LoadMirage = function(player)
 	if (cmpFoundation)
 		cmpMirage.CopyFoundation(cmpFoundation);
 
+	var cmpRepairable = Engine.QueryInterface(this.entity, IID_Repairable);
+	if (cmpRepairable && !cmpFoundation)
+		cmpMirage.CopyRepairable(cmpRepairable);
+
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (cmpHealth)
 		cmpMirage.CopyHealth(cmpHealth);

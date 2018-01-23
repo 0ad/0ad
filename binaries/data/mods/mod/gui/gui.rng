@@ -175,6 +175,11 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="auto_scroll">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="buffer_zone">
           <data type="decimal"/>
         </attribute>

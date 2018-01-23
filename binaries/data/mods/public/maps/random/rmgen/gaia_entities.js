@@ -80,23 +80,19 @@ function createMines(objects, constraint, tileClass, count)
 /**
  * Places Entities of the given templateName in a circular pattern (leaving out a quarter of the circle).
  */
-function createStoneMineFormation(x, z, templateName, terrain, radius = 2.5, count = 8, startAngle = undefined, maxOffset = 1)
+function createStoneMineFormation(position, templateName, terrain, radius = 2.5, count = 8, startAngle = undefined, maxOffset = 1)
 {
 	log("Creating small stone mine circle...");
 	createArea(
-		new ChainPlacer(radius / 2, radius, 2, 1, x, z, undefined, [5]),
+		new ChainPlacer(radius / 2, radius, 2, 1, position, undefined, [5]),
 		new TerrainPainter(terrain));
 
 	let angle = startAngle !== undefined ? startAngle : randomAngle();
 
 	for (let i = 0; i < count; ++i)
 	{
-		placeObject(
-			Math.round(x + (radius + randFloat(0, maxOffset)) * Math.cos(angle)),
-			Math.round(z + (radius + randFloat(0, maxOffset)) * Math.sin(angle)),
-			templateName,
-			0,
-			randomAngle());
+		let pos = Vector2D.add(position, new Vector2D(radius + randFloat(0, maxOffset), 0).rotate(-angle)).round();
+		placeObject(pos.x, pos.y, templateName, 0, randomAngle());
 		angle += 3/2 * Math.PI / count;
 	}
 }
