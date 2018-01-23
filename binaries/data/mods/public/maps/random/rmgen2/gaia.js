@@ -100,24 +100,22 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 		var slopeLength = (1 - margin) * Math.euclidDistance2D(baseLine.midX, baseLine.midZ, endLine.midX, endLine.midZ);
 
 		// Adjust the height of each point in the bluff
-		for (var p = 0; p < points.length; ++p)
+		for (let point of points)
 		{
-			var pt = points[p];
-			var position = new Vector2D(pt.x, pt.z);
 			var dist = Math.abs(distanceOfPointFromLine(
 				new Vector2D(baseLine.x1, baseLine.z1),
 				new Vector2D(baseLine.x2, baseLine.z2),
-				position));
+				point));
 
-			var curHeight = g_Map.getHeight(position);
+			var curHeight = g_Map.getHeight(point);
 			var newHeight = curHeight - curHeight * (dist / slopeLength) - 2;
 
 			newHeight = Math.max(newHeight, endLine.height);
 
-			if (newHeight <= endLine.height + 2 && g_Map.validT(pt.x, pt.z) && g_Map.getTexture(pt.x, pt.z).indexOf('cliff') > -1)
-				ground.place(position);
+			if (newHeight <= endLine.height + 2 && g_Map.validT(point.x, point.y) && g_Map.getTexture(point.x, point.y).indexOf('cliff') != -1)
+				ground.place(point);
 
-			g_Map.setHeight(position, newHeight);
+			g_Map.setHeight(point, newHeight);
 		}
 
 		// Smooth out the ground around the bluff
@@ -997,8 +995,8 @@ function unreachableBluff(bb, corners, baseLine, endLine)
  */
 function removeBluff(points)
 {
-	for (var i = 0; i < points.length; ++i)
-		addToClass(points[i].x, points[i].z, g_TileClasses.mountain);
+	for (let point of points)
+		addToClass(point.x, point.y, g_TileClasses.mountain);
 }
 
 /**
@@ -1012,22 +1010,16 @@ function createBoundingBox(points, corners)
 	for (var w = 0; w < width; ++w)
 	{
 		bb[w] = [];
-		for (var l = 0; l < length; ++l)
-		{
-			var curHeight = g_Map.getHeight(new Vector2D(w + corners.minX, l + corners.minZ));
+		for (let l = 0; l < length; ++l)
 			bb[w][l] = {
-				"height": curHeight,
+				"height": g_Map.getHeight(new Vector2D(w + corners.minX, l + corners.minZ)),
 				"isFeature": false
 			};
-		}
 	}
 
 	// Define the coordinates that represent the bluff
-	for (var p = 0; p < points.length; ++p)
-	{
-		var pt = points[p];
-		bb[pt.x - corners.minX][pt.z - corners.minZ].isFeature = true;
-	}
+	for (let point of points)
+		bb[point.x - corners.minX][point.y - corners.minZ].isFeature = true;
 
 	return bb;
 }
@@ -1041,8 +1033,7 @@ function fadeToGround(bb, minX, minZ, elevation)
 	for (var x = 0; x < bb.length; ++x)
 		for (var z = 0; z < bb[x].length; ++z)
 		{
-			var pt = bb[x][z];
-			if (!pt.isFeature && nextToFeature(bb, x, z))
+			if (!bb[x][z].isFeature && nextToFeature(bb, x, z))
 			{
 				let position = new Vector2D(x + minX, z + minZ);
 				g_Map.setHeight(position, g_Map.getAverageHeight(position));
@@ -1138,15 +1129,13 @@ function findCorners(points)
 	var maxX = -1;
 	var maxZ = -1;
 
-	for (var p = 0; p < points.length; ++p)
+	for (let point of points)
 	{
-		var pt = points[p];
+		minX = Math.min(point.x, minX);
+		minZ = Math.min(point.y, minZ);
 
-		minX = Math.min(pt.x, minX);
-		minZ = Math.min(pt.z, minZ);
-
-		maxX = Math.max(pt.x, maxX);
-		maxZ = Math.max(pt.z, maxZ);
+		maxX = Math.max(point.x, maxX);
+		maxZ = Math.max(point.y, maxZ);
 	}
 
 	return {
