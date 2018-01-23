@@ -95,8 +95,7 @@ for (let i = 0; i < stripWidths.length; ++i)
 				Math.floor(scaleByMapSize(3, connectPlayers && isPlayerStrip ? 8 : 7)),
 				Math.floor(scaleByMapSize(30, 60)),
 				1,
-				position.x,
-				position.y),
+				position),
 			[
 				new LayeredPainter([tGrass, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
@@ -115,7 +114,7 @@ log("Ensuring player territory...");
 var playerRadius = scaleByMapSize(12, 20);
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
-		new ChainPlacer(1, 6, 40, 1, playerPosition[i].x, playerPosition[i].y, 0, [Math.floor(playerRadius)]),
+		new ChainPlacer(1, 6, 40, 1, playerPosition[i], 0, [Math.floor(playerRadius)]),
 		[
 			new LayeredPainter([tGrass, tGrass, tGrass], [1, 4]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),

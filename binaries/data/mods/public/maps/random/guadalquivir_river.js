@@ -68,8 +68,7 @@ createArea(
 		Math.floor(scaleByMapSize(5, 12)),
 		Math.floor(scaleByMapSize(60, 700)),
 		1,
-		continentCenterR.x,
-		continentCenterR.y,
+		continentCenterR,
 		0,
 		[Math.floor(fractionToTiles(0.49))]),
 	[

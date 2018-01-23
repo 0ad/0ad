@@ -229,8 +229,7 @@ function unknownContinent()
 					Math.floor(scaleByMapSize(5, 9)),
 					Math.floor(scaleByMapSize(5, 20)),
 					1,
-					playerPosition[i].x,
-					playerPosition[i].y,
+					playerPosition[i],
 					0,
 					[Math.floor(scaleByMapSize(23, 50))]),
 				[

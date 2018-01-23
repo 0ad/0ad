@@ -117,10 +117,9 @@ createArea(
 		Math.floor(scaleByMapSize(10, 15)),
 		Math.floor(scaleByMapSize(200, 300)),
 		1,
-		mapCenter.x,
-		mapCenter.y,
+		mapCenter,
 		0,
-		[Math.floor(mapSize * 0.01)]),
+		[Math.floor(fractionToTiles(0.01))]),
 	[
 		new LayeredPainter([tShore, tMainTerrain], [shoreRadius, 100]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
@@ -137,10 +136,9 @@ for (let m = 0; m < randIntInclusive(20, 34); ++m)
 			15,
 			Math.floor(scaleByMapSize(15, 20)),
 			1,
-			randIntExclusive(0, mapSize),
-			randIntExclusive(0, mapSize),
+			new Vector2D(fractionToTiles(randFloat(0, 1)), fractionToTiles(randFloat(0, 1))),
 			0,
-			[Math.floor(mapSize * 0.01)]),
+			[Math.floor(fractionToTiles(0.01))]),
 		[
 			new LayeredPainter([tDirt, tHill], [Math.floor(elevRand / 3), 40]),
 			new SmoothElevationPainter(ELEVATION_SET, elevRand, Math.floor(elevRand / 3)),
@@ -158,10 +156,9 @@ for (let m = 0; m < randIntInclusive(8, 17); ++m)
 				8,
 				Math.floor(scaleByMapSize(15, 20)),
 				1,
-				randIntExclusive(0, mapSize),
-				randIntExclusive(0, mapSize),
+				new Vector2D(randIntExclusive(0, mapSize), randIntExclusive(0, mapSize)),
 				0,
-				[Math.floor(mapSize * 0.01)]),
+				[Math.floor(fractionToTiles(0.01))]),
 		[
 			new LayeredPainter([tCliff, tForestFloor2], [Math.floor(elevRand / 3), 40]),
 			new SmoothElevationPainter(ELEVATION_MODIFY, elevRand, Math.floor(elevRand / 3)),
@@ -173,7 +170,7 @@ for (let m = 0; m < randIntInclusive(8, 17); ++m)
 log("Creating center bounty...");
 createObjectGroup(
 	new SimpleGroup(
-		[new SimpleObject(oMetalLarge, 3, 6, 25, Math.floor(mapSize * 0.25))],
+		[new SimpleObject(oMetalLarge, 3, 6, 25, Math.floor(fractionToTiles(0.25)))],
 		true,
 		clBaseResource,
 		mapCenter.x,
@@ -183,7 +180,7 @@ createObjectGroup(
 
 createObjectGroup(
 	new SimpleGroup(
-		[new SimpleObject(oStoneLarge, 3, 6, 25, Math.floor(mapSize * 0.25))],
+		[new SimpleObject(oStoneLarge, 3, 6, 25, Math.floor(fractionToTiles(0.25)))],
 		true,
 		clBaseResource,
 		mapCenter.x,

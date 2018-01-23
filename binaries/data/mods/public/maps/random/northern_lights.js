@@ -98,7 +98,7 @@ for (let i = 0; i < scaleByMapSize(20, 120); ++i)
 {
 	let position = new Vector2D(fractionToTiles(randFloat(0.1, 0.9)), fractionToTiles(randFloat(0.67, 0.74))).rotateAround(startAngle, mapCenter).round();
 	createArea(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 30)), 1, position.x, position.y),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 30)), 1, position),
 		[
 			new LayeredPainter([tSnowA, tSnowA], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),

@@ -299,8 +299,7 @@ function addCenterLake()
 			Math.floor(scaleByMapSize(2, 12)),
 			Math.floor(scaleByMapSize(35, 160)),
 			1,
-			mapCenter.x,
-			mapCenter.y,
+			mapCenter,
 			0,
 			[Math.floor(fractionToTiles(0.2))]),
 		[

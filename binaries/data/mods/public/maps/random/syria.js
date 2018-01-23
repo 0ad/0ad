@@ -66,8 +66,7 @@ for (let i = 0; i < numPlayers; ++i)
 			Math.floor(scaleByMapSize(5, 12)),
 			Math.floor(scaleByMapSize(25, 60)) / (isNomad() ? 2 : 1),
 			1,
-			playerPosition[i].x,
-			playerPosition[i].y,
+			playerPosition[i],
 			0,
 			[Math.floor(scaleByMapSize(16, 30))]),
 		[

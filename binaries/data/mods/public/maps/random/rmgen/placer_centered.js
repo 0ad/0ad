@@ -12,7 +12,7 @@
 //	coherence: How much the radius of the clump varies (1.0 = circle, 0.0 = very random)
 //	smoothness: How smooth the border of the clump is (1.0 = few "peaks", 0.0 = very jagged)
 //	failfraction: Percentage of place attempts allowed to fail (optional)
-//	x, z: Tile coordinates of placer center (optional)
+//	position: Tile coordinates of placer center (optional)
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -119,20 +119,20 @@ ClumpPlacer.prototype.place = function(constraint)
 //	maxRadius: maximum radius of the circles
 //	numCircles: the number of the circles
 //	failfraction: Percentage of place attempts allowed to fail (optional)
-//	x, z: Tile coordinates of placer center (optional)
+//	position: Tile coordinates of placer center (optional)
 //  fcc: Farthest circle center (optional)
 //  q: a list containing numbers. each time if the list still contains values, pops one from the end and uses it as the radius (optional)
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z, fcc, q)
+function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, position, fcc, q)
 {
 	this.minRadius = minRadius;
 	this.maxRadius = maxRadius;
 	this.numCircles = numCircles;
 	this.failFraction = failFraction !== undefined ? failFraction : 0;
-	this.x = x !== undefined ? x : -1;
-	this.z = z !== undefined ? z : -1;
+	this.x = position ? Math.round(position.x) : -1;
+	this.z = position ? Math.round(position.y) : -1;
 	this.fcc = fcc !== undefined ? fcc : 0;
 	this.q = q !== undefined ? q : [];
 }
