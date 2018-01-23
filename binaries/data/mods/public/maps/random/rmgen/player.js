@@ -293,7 +293,7 @@ function placePlayerBaseMines(args)
 		{
 			if (args.types[i].type && args.types[i].type == "stone_formation")
 			{
-				createStoneMineFormation(pos[i].x, pos[i].y, args.types[i].template, args.types[i].terrain);
+				createStoneMineFormation(pos[i], args.types[i].template, args.types[i].terrain);
 				addToClass(pos[i].x, pos[i].y, args.BaseResourceClass);
 				continue;
 			}

@@ -93,12 +93,12 @@ createArea(
 		mapCenter.x,
 		mapCenter.y,
 		0,
-		[Math.floor(mapSize * 0.008 * Math.pow(scaleByMapSize(1, 66), 1/8))]),
+		[Math.floor(scaleByMapSize(15, 40))]),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		paintClass(clWater)
 	],
-	avoidClasses(clPlayer, 20));
+	avoidClasses(clPlayer, 2));
 
 log("Creating more shore jaggedness...");
 createAreas(
@@ -117,19 +117,14 @@ paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 paintTileClassBasedOnHeight(-6, 0, 1, clWater);
 Engine.SetProgress(55);
 
-var playerConstraint = new AvoidTileClassConstraint(clPlayer, 30);
-var minesConstraint = new AvoidTileClassConstraint(clRock, 25);
-var waterConstraint = new AvoidTileClassConstraint(clWater, 10);
-
 log("Creating stone mines...");
 for (let i = 0; i < scaleByMapSize(12, 30); ++i)
 {
-	let mX = randIntInclusive(1, mapSize - 1);
-	let mZ = randIntInclusive(1, mapSize - 1);
-	if (playerConstraint.allows(mX, mZ) && minesConstraint.allows(mX, mZ) && waterConstraint.allows(mX, mZ))
+	let position = new Vector2D(randIntInclusive(1, mapSize - 1), randIntInclusive(1, mapSize - 1));
+	if (avoidClasses(clPlayer, 30, clRock, 25, clWater, 10).allows(position.x, position.y))
 	{
-		createStoneMineFormation(mX, mZ, oStoneSmall, tDirt4);
-		addToClass(mX, mZ, clRock);
+		createStoneMineFormation(position, oStoneSmall, tDirt4);
+		addToClass(position.x, position.y, clRock);
 	}
 }
 
