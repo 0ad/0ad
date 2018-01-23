@@ -109,38 +109,16 @@ createArea(
 Engine.SetProgress(40);
 
 log("Creating small lakes...");
-var lakeAreas = [];
-var playerConstraint = new AvoidTileClassConstraint(clPlayer, 20);
-var waterConstraint = new AvoidTileClassConstraint(clWater, 8);
-for (let x = 0; x < mapSize; ++x)
-	for (let z = 0; z < mapSize; ++z)
-		if (playerConstraint.allows(x, z) && waterConstraint.allows(x, z))
-			lakeAreas.push([x, z]);
-
-var numLakes = scaleByMapSize(10, 16);
-for (let i = 0; i < numLakes ; ++i)
-{
-	let chosenPoint = pickRandom(lakeAreas);
-	if (!chosenPoint)
-		break;
-
-	createAreas(
-		new ChainPlacer(
-			1,
-			Math.floor(scaleByMapSize(2, 4)),
-			Math.floor(scaleByMapSize(20, 140)),
-			0.7,
-			chosenPoint[0],
-			chosenPoint[1]),
-		[
-			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
-			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
-			paintClass(clWater)
-		],
-		avoidClasses(clPlayer, 20),
-		1,
-		1);
-}
+createAreas(
+	new ChainPlacer(1, Math.floor(scaleByMapSize(2, 4)), Math.floor(scaleByMapSize(20, 140)), 0.7),
+	[
+		new LayeredPainter([tShore, tWater, tWater], [1, 3]),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
+		paintClass(clWater)
+	],
+	avoidClasses(clPlayer, 20),
+	scaleByMapSize(10, 16),
+	1);
 Engine.SetProgress(50);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));

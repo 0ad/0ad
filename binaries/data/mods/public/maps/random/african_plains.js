@@ -96,15 +96,6 @@ Engine.SetProgress(20);
 createHills([tDirt2, tCliff, tGrassShrubs], avoidClasses(clPlayer, 35, clForest, 20, clHill, 20, clWater, 2), clHill, scaleByMapSize(5, 8));
 Engine.SetProgress(30);
 
-var lakeAreas = [];
-var playerConstraint = new AvoidTileClassConstraint(clPlayer, 20);
-var waterConstraint = new AvoidTileClassConstraint(clWater, 8);
-
-for (var x = 0; x < mapSize; ++x)
-	for (var z = 0; z < mapSize; ++z)
-		if (playerConstraint.allows(x, z) && waterConstraint.allows(x, z))
-			lakeAreas.push([x, z]);
-
 log("Creating water holes...");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(60, 100)), 5),
@@ -114,8 +105,8 @@ createAreas(
 		paintClass(clWater)
 	],
 	avoidClasses(clPlayer, 22, clWater, 8, clHill, 2),
-	scaleByMapSize(2, 5)
-);
+	scaleByMapSize(2, 5));
+
 Engine.SetProgress(45);
 
 paintTerrainBasedOnHeight(heightCliff, Infinity, 0, tCliff);

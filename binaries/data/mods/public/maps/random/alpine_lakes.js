@@ -132,52 +132,18 @@ createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMa
 
 Engine.SetProgress(30);
 
-var lakeAreas = [];
-var playerConstraint = new AvoidTileClassConstraint(clPlayer, 20);
-var waterConstraint = new AvoidTileClassConstraint(clWater, 8);
-
-for (var x = 0; x < mapSize; ++x)
-	for (var z = 0; z < mapSize; ++z)
-		if (playerConstraint.allows(x, z) && waterConstraint.allows(x, z))
-			lakeAreas.push([x, z]);
-
-var lakeAreaLen;
-
 log("Creating lakes...");
+createAreas(
+	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(40, 180)), 0.7),
+	[
+		new LayeredPainter([tShore, tWater, tWater], [1, 3]),
+		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
+		paintClass(clWater)
+	],
+	avoidClasses(clPlayer, 20, clWater, 8),
+	scaleByMapSize(5, 16),
+	1);
 
-var numLakes = scaleByMapSize(5, 16);
-for (var i = 0; i < numLakes; ++i)
-{
-	lakeAreaLen = lakeAreas.length;
-	if (!lakeAreaLen)
-		break;
-
-	let chosenPoint = pickRandom(lakeAreas);
-
-	let newLake = createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(40, 180)), 0.7, chosenPoint[0], chosenPoint[1]),
-		[
-			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
-			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
-			paintClass(clWater)
-		],
-		avoidClasses(clPlayer, 20, clWater, 8),
-		1, 1
-	);
-
-	if (newLake && newLake.length)
-	{
-		var n = 0;
-		for (var j = 0; j < lakeAreaLen; ++j)
-		{
-			var x = lakeAreas[j][0], z = lakeAreas[j][1];
-			if (playerConstraint.allows(x, z) && waterConstraint.allows(x, z))
-				lakeAreas[n++] = lakeAreas[j];
-		}
-		lakeAreas.length = n;
-	}
-
-}
 paintTerrainBasedOnHeight(3, Math.floor(scaleByMapSize(20, 40)), 0, tCliff);
 paintTerrainBasedOnHeight(Math.floor(scaleByMapSize(20, 40)), 100, 3, tSnowLimited);
 
