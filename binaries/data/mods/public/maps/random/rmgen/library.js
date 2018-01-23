@@ -328,15 +328,6 @@ function getPlayerTeam(playerID)
 	return g_MapSettings.PlayerData[playerID].Team;
 }
 
-function getHeight(x, z)
-{
-	return g_Map.getHeight(x, z);
-}
-
-/**
- *	Utility functions for classes
- */
-
 /**
  * Add point to given class by id
  */

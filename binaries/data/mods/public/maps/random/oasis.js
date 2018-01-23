@@ -33,7 +33,11 @@ const pOasisForestLight = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tFores
 					,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
 
 const heightSeaGround = -3;
+const heightFloraMin = -2.5
+const heightFloraReedsMax = -1.9;
+const heightFloraMax = -1;
 const heightLand = 1;
+const heightSand = 3.4;
 const heightOasisPath = 4;
 const heightOffsetBump = 4;
 const heightOffsetDune = 18;
@@ -280,34 +284,38 @@ log("Creating sand blows and beautifications");
 for (var sandx = 0; sandx < mapSize; sandx += 4)
 	for (var sandz = 0; sandz < mapSize; sandz += 4)
 	{
-		if (getHeight(sandx,sandz) > 3.4)
+		let position = new Vector2D(sandx, sandz);
+		let height = g_Map.getHeight(position);
+
+		if (height > heightSand)
 		{
-			if (randBool((getHeight(sandx,sandz) - 3.4) / 1.4))
+			if (randBool((height - heightSand) / 1.4))
 			{
 				group = new SimpleGroup( [new SimpleObject(aSand, 0,1, 0,2)], true, undefined, sandx,sandz );
 				createObjectGroup(group, 0);
 			}
 		}
-		else if (getHeight(sandx, sandz) > -2.5 && getHeight(sandx,sandz) < -1)
+		else if (height > heightFloraMin && height < heightFloraMax)
 		{
 			if (randBool(0.4))
 			{
 				group = new SimpleGroup( [new SimpleObject(aWaterFlower, 1,4, 1,2)], true, undefined, sandx,sandz );
 				createObjectGroup(group, 0);
 			}
-			else if (randBool(0.7) && getHeight(sandx,sandz) < -1.9)
+			else if (randBool(0.7) && height < heightFloraReedsMax)
 			{
 				group = new SimpleGroup( [new SimpleObject(aReedsA, 5,12, 0,2),new SimpleObject(aReedsB, 5,12, 0,2)], true, undefined, sandx,sandz );
 				createObjectGroup(group, 0);
 			}
 
-			if (getTileClass(clPassage).countInRadius(sandx,sandz,2,true) > 0) {
+			if (getTileClass(clPassage).countMembersInRadius(sandx, sandz, 2) > 0)
+			{
 				if (randBool(0.4))
 				{
 					group = new SimpleGroup( [new SimpleObject(aWaterFlower, 1,4, 1,2)], true, undefined, sandx,sandz );
 					createObjectGroup(group, 0);
 				}
-				else if (randBool(0.7) && getHeight(sandx,sandz) < -1.9)
+				else if (randBool(0.7) && height < heightFloraReedsMax)
 				{
 					group = new SimpleGroup( [new SimpleObject(aReedsA, 5,12, 0,2),new SimpleObject(aReedsB, 5,12, 0,2)], true, undefined, sandx,sandz );
 					createObjectGroup(group, 0);

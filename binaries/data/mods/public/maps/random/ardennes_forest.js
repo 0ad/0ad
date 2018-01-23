@@ -84,7 +84,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
 		let position = new Vector2D(ix, iz);
-		var h = getHeight(ix,iz);
+		let h = g_Map.getHeight(position);
 		if (h > heightRavineHill)
 		{
 			addToClass(ix,iz,clHill);
@@ -260,7 +260,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
 		let position = new Vector2D(ix, iz);
-		var h = getHeight(ix,iz);
+		let h = g_Map.getHeight(position);
 
 		if(h > 15 && h < 45 && playerClass.countMembersInRadius(ix, iz, 1) == 0)
 			explorablePoints.push(position);
@@ -282,7 +282,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	{
 		let position = new Vector2D(ix, iz);
 		var z = iz / (mapSize + 1.0);
-		var h = getHeight(ix,iz);
+		var h = g_Map.getHeight(position);
 		var pn = playerNearness(x,z);
 		var n = (noise0.get(x,z) - 0.5) * 10;
 		g_Map.setHeight(position, h + (n * pn));

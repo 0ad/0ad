@@ -190,9 +190,9 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 				if (distance > radius)
 					continue;
 
-				if (getHeight(ix, iz) < newHeight)
+				if (g_Map.getHeight(position) < newHeight)
 					g_Map.setHeight(position, newHeight);
-				else if (getHeight(ix, iz) >= newHeight && getHeight(ix, iz) < newHeight + 4)
+				else if (g_Map.getHeight(position) >= newHeight && g_Map.getHeight(position) < newHeight + 4)
 					g_Map.setHeight(position, newHeight + 4);
 
 				if (terrain !== undefined)
@@ -536,8 +536,8 @@ function createPassage(args)
 {
 	let bound = x => Math.max(0, Math.min(Math.round(x), getMapSize()));
 
-	let startHeight = args.startHeight !== undefined ? args.startHeight : getHeight(bound(args.start.x), bound(args.start.y));
-	let endHeight = args.endHeight !== undefined ? args.endHeight : getHeight(bound(args.end.x), bound(args.end.y));
+	let startHeight = args.startHeight !== undefined ? args.startHeight : g_Map.getHeight(new Vector2D(bound(args.start.x), bound(args.start.y)));
+	let endHeight = args.endHeight !== undefined ? args.endHeight : g_Map.getHeight(new Vector2D(bound(args.end.x), bound(args.end.y)));
 
 	let passageVec = Vector2D.sub(args.end, args.start);
 	let widthDirection = passageVec.perpendicular().normalize();
@@ -554,7 +554,7 @@ function createPassage(args)
 			let location = Vector2D.add(locationLength, Vector2D.mult(widthDirection, stepWidth)).round();
 
 			if (!g_Map.inMapBounds(location) ||
-			    args.maxHeight !== undefined && getHeight(location.x, location.y) > args.maxHeight)
+			    args.maxHeight !== undefined && g_Map.getHeight(location) > args.maxHeight)
 				continue;
 
 			let smoothDistance = args.smoothWidth + Math.abs(stepWidth) - halfPassageWidth;
@@ -562,7 +562,7 @@ function createPassage(args)
 			g_Map.setHeight(
 				location,
 				smoothDistance > 0 ?
-					(getHeight(location.x, location.y) * smoothDistance + passageHeight / smoothDistance) / (smoothDistance + 1 / smoothDistance) :
+					(g_Map.getHeight(location) * smoothDistance + passageHeight / smoothDistance) / (smoothDistance + 1 / smoothDistance) :
 					passageHeight);
 
 			if (args.tileClass !== undefined)
@@ -591,8 +591,8 @@ function findLocationInDirectionBasedOnHeight(startPoint, endPoint, minHeight, m
 		let ipos = pos.clone().round();
 
 		if (g_Map.validH(ipos.x, ipos.y) &&
-		    getHeight(ipos.x, ipos.y) >= minHeight &&
-		    getHeight(ipos.x, ipos.y) <= maxHeight)
+		    g_Map.getHeight(ipos) >= minHeight &&
+		    g_Map.getHeight(ipos) <= maxHeight)
 			return pos.add(stepVec.mult(offset));
 	}
 

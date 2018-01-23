@@ -193,7 +193,7 @@ for (var x = 0; x < mapSize; x++)
 		// General hight map
 		var hVarMiddleHill = mapSize / 64 * (1 + Math.cos(3/2 * Math.PI * radius / mapRadius));
 		var hVarHills = 5 * (1 + Math.sin(x / 10) * Math.sin(z / 10));
-		g_Map.setHeight(position, getHeight(x, z) + hVarMiddleHill + hVarHills + 1);
+		g_Map.setHeight(position, g_Map.getHeight(position) + hVarMiddleHill + hVarHills + 1);
 	}
 Engine.SetProgress(95);
 

@@ -290,7 +290,7 @@ function getCosricaSardiniaTerrain(mapX, mapZ)
 	if (isSettlement)
 		return undefined;
 
-	let height = getHeight(mapX, mapZ);
+	let height = g_Map.getHeight(position);
 	let slope = g_Map.getSlope(position);
 
 	if (height >= 0.5 && height < 1.5 && isShore)

@@ -160,12 +160,12 @@ RandomMap.prototype.setTexture = function(x, z, texture)
 	this.texture[x][z] = this.getTextureID(texture);
 };
 
-RandomMap.prototype.getHeight = function(x, z)
+RandomMap.prototype.getHeight = function(position)
 {
-	if (!this.validH(x, z))
-		throw new Error("getHeight: invalid vertex position (" + x + ", " + z + ")");
+	if (!this.validH(position.x, position.y))
+		throw new Error("getHeight: invalid vertex position " + uneval(position));
 
-	return this.height[x][z];
+	return this.height[position.x][position.y];
 };
 
 RandomMap.prototype.setHeight = function(position, height)
@@ -289,7 +289,7 @@ RandomMap.prototype.getAverageHeight = function(position)
 	if (!adjacentPositions.length)
 		return 0;
 
-	return adjacentPositions.reduce((totalHeight, pos) => totalHeight + this.getHeight(pos.x, pos.y), 0) / adjacentPositions.length;
+	return adjacentPositions.reduce((totalHeight, pos) => totalHeight + this.getHeight(pos), 0) / adjacentPositions.length;
 }
 
 /**
@@ -301,7 +301,8 @@ RandomMap.prototype.getSlope = function(position)
 	if (!adjacentPositions.length)
 		return 0;
 
-	return adjacentPositions.reduce((totalSlope, adjacentPos) => totalSlope + Math.abs(this.getHeight(adjacentPos.x, adjacentPos.y) - this.getHeight(position.x, position.y)), 0) / adjacentPositions.length;
+	return adjacentPositions.reduce((totalSlope, adjacentPos) =>
+		totalSlope + Math.abs(this.getHeight(adjacentPos) - this.getHeight(position)), 0) / adjacentPositions.length;
 }
 
 /**

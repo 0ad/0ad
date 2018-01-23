@@ -246,7 +246,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 		let position = new Vector2D(ix, iz);
 		if (g_Map.validH(ix, iz) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
 		{
-			let height = getHeight(ix, iz);
+			let height = g_Map.getHeight(position);
 			let index = 1 / (1 + Math.max(0, height / 7));
 			g_Map.setHeight(position, height * (1 - index) + g_Map.getAverageHeight(position) * index);
 		}
@@ -283,8 +283,8 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 		if (g_Map.inMapBounds(position) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
 		{
 			let heightNeighbor = g_Map.getAverageHeight(position);
-			let index = 1 / (1 + Math.max(0, (getHeight(ix,iz) - 10) / 7));
-			g_Map.setHeight(position, getHeight(ix, iz) * (1 - index) + heightNeighbor * index);
+			let index = 1 / (1 + Math.max(0, (g_Map.getHeight(position) - 10) / 7));
+			g_Map.setHeight(position, g_Map.getHeight(position) * (1 - index) + heightNeighbor * index);
 		}
 	}
 
@@ -313,11 +313,11 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 				let smoothPos = Vector2D.add(position, new Vector2D(xx, yy));
 				if (g_Map.inMapBounds(smoothPos) && (xx != 0 || yy != 0))
 				{
-					averageHeight += getHeight(smoothPos.x, smoothPos.y) / (Math.abs(xx) + Math.abs(yy));
+					averageHeight += g_Map.getHeight(smoothPos) / (Math.abs(xx) + Math.abs(yy));
 					todivide += 1 / (Math.abs(xx) + Math.abs(yy));
 				}
 			}
-		g_Map.setHeight(position, (averageHeight + 2 * getHeight(ix, iz)) / (todivide + 2));
+		g_Map.setHeight(position, (averageHeight + 2 * g_Map.getHeight(position)) / (todivide + 2));
 	}
 Engine.SetProgress(55);
 
@@ -357,7 +357,7 @@ for (let x = 0; x < mapSize; ++x)
 	for (let z = 0; z < mapSize; ++z)
 	{
 		let position = new Vector2D(x, z);
-		let height = getHeight(x, z);
+		let height = g_Map.getHeight(position);
 		let heightDiff = g_Map.getSlope(position);
 
 		if (getTileClass(clPyrenneans).countMembersInRadius(x, z, 2))

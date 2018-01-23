@@ -139,7 +139,7 @@ for (let i = 0; i < numRivers; ++i)
 
 			let newHeight = isShallow ? heightShallows : Math.max(height, heightSeaGround);
 
-			if (getHeight(position.x, position.y) < newHeight)
+			if (g_Map.getHeight(position) < newHeight)
 				return;
 
 			g_Map.setHeight(position, newHeight);

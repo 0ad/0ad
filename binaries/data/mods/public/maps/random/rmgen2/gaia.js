@@ -109,7 +109,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 				new Vector2D(baseLine.x2, baseLine.z2),
 				position));
 
-			var curHeight = g_Map.getHeight(pt.x, pt.z);
+			var curHeight = g_Map.getHeight(position);
 			var newHeight = curHeight - curHeight * (dist / slopeLength) - 2;
 
 			newHeight = Math.max(newHeight, endLine.height);
@@ -1014,7 +1014,7 @@ function createBoundingBox(points, corners)
 		bb[w] = [];
 		for (var l = 0; l < length; ++l)
 		{
-			var curHeight = g_Map.getHeight(w + corners.minX, l + corners.minZ);
+			var curHeight = g_Map.getHeight(new Vector2D(w + corners.minX, l + corners.minZ));
 			bb[w][l] = {
 				"height": curHeight,
 				"isFeature": false

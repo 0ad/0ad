@@ -126,7 +126,8 @@ while (!goodStartPositionsFound)
 	for (var x = distToBorder + minTerrainDistToBorder; x < mapSize - distToBorder - minTerrainDistToBorder; x++)
 		for (var y = distToBorder + minTerrainDistToBorder; y < mapSize - distToBorder - minTerrainDistToBorder; y++)
 		{
-			var actualHeight = getHeight(x, y);
+			let position = new Vector2D(x, y);
+			let actualHeight = g_Map.getHeight(position);
 			if (actualHeight > lowerHeightLimit && actualHeight < upperHeightLimit)
 			{
 				// Check for points within a valid area by height (rectangular since faster)
@@ -134,7 +135,7 @@ while (!goodStartPositionsFound)
 				for (var offX = - neededDistance; offX <= neededDistance; offX++)
 					for (var offY = - neededDistance; offY <= neededDistance; offY++)
 					{
-						var testHeight = getHeight(x + offX, y + offY);
+						var testHeight = g_Map.getHeight(Vector2D.add(position, new Vector2D(offX, offY)));
 						if (testHeight <= lowerHeightLimit || testHeight >= upperHeightLimit)
 						{
 							isPossible = false;
@@ -171,7 +172,7 @@ while (!goodStartPositionsFound)
 		{
 			for (var dy = - maxDistToResources; dy < maxDistToResources; dy++)
 			{
-				var testHeight = getHeight(possibleStartPositions[i][0] + dx, possibleStartPositions[i][1] + dy);
+				var testHeight = g_Map.getHeight(new Vector2D(possibleStartPositions[i][0] + dx, possibleStartPositions[i][1] + dy));
 
 				if (testHeight < lowerHeightLimit)
 					numLowTiles++;
@@ -265,7 +266,7 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 		var textureMinHeight = heightRange.min;
 		for (var i = 0; i < textueByHeight.length; i++)
 		{
-			if (getHeight(x, y) >= textureMinHeight && getHeight(x, y) <= textueByHeight[i].upperHeightLimit)
+			if (g_Map.getHeight(position) >= textureMinHeight && g_Map.getHeight(position) <= textueByHeight[i].upperHeightLimit)
 			{
 				createTerrain(textueByHeight[i].terrain).place(position);
 
