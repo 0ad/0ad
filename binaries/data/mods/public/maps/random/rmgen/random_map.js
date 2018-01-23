@@ -213,7 +213,7 @@ RandomMap.prototype.createArea = function(points)
 {
 	let areaID = ++this.areaID;
 	for (let p of points)
-		this.area[p.x][p.z] = areaID;
+		this.area[p.x][p.y] = areaID;
 	return new Area(points, areaID);
 };
 

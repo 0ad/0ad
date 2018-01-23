@@ -90,13 +90,15 @@ ClumpPlacer.prototype.place = function(constraint)
 		{
 			var i = Math.floor(xx);
 			var j = Math.floor(yy);
+			let position = new Vector2D(i, j);
+
 			if (g_Map.inMapBounds(i, j) && constraint.allows(i, j))
 			{
 				if (!gotRet[i][j])
 				{
 					// Only include each point once
 					gotRet[i][j] = 1;
-					retVec.push({ "x": i, "z": j });
+					retVec.push(position);
 				}
 			}
 			else
@@ -179,6 +181,7 @@ ChainPlacer.prototype.place = function(constraint)
 		for (var ix = sx; ix <= lx; ++ix)
 			for (var iz = sz; iz <= lz; ++ iz)
 			{
+				let position = new Vector2D(ix, iz);
 				dx = ix - cx;
 				dz = iz - cz;
 				if (dx * dx + dz * dz <= radius2)
@@ -188,7 +191,7 @@ ChainPlacer.prototype.place = function(constraint)
 						var state = gotRet[ix][iz];
 						if (state == -1)
 						{
-							retVec.push({ "x": ix, "z": iz });
+							retVec.push(position);
 							gotRet[ix][iz] = -2;
 						}
 						else if (state >= 0)

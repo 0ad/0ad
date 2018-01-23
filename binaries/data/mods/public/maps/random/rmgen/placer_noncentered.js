@@ -24,8 +24,11 @@ RectPlacer.prototype.place = function(constraint)
 
 	for (let x = this.x1; x <= this.x2; ++x)
 		for (let z = this.z1; z <= this.z2; ++z)
+		{
+			let position = new Vector2D(x, z);
 			if (constraint.allows(x, z))
-				points.push({ "x": x, "z": z });
+				points.push(position);
+		}
 
 	return points;
 };
@@ -76,8 +79,11 @@ HeightPlacer.prototype.place = function(constraint)
 
 	for (let x = 0; x < mapSize; ++x)
 		for (let z = 0; z < mapSize; ++z)
+		{
+			let position = new Vector2D(x, z);
 			if (this.withinHeightRange(x, z) && constraint.allows(x, z))
-				points.push({ "x": x, "z": z });
+				points.push(position);
+		}
 
 	return points;
 };
@@ -203,18 +209,17 @@ PathPlacer.prototype.place = function(constraint)
 				var right = Math.round(Math.max(x1, x2));
 				for (var x = left; x <= right; x++)
 				{
+					let position = new Vector2D(x, z);
 					if (constraint.allows(x, z))
 					{
 						if (g_Map.inMapBounds(x, z) && !gotRet[x][z])
 						{
-							retVec.push({ "x": x, "z": z });
+							retVec.push(position);
 							gotRet[x][z] = 1;
 						}
 					}
 					else
-					{
 						failed++;
-					}
 				}
 			};
 
@@ -286,7 +291,7 @@ RandomPathPlacer.prototype.place = function(constraint)
 		this.clumpPlacer.z = position.y;
 
 		for (let point of this.clumpPlacer.place(constraint) || [])
-			if (points.every(p => p.x != point.x || p.z != point.z))
+			if (points.every(p => p.x != point.x || p.y != point.y))
 				points.push(point);
 	}
 

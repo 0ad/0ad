@@ -14,7 +14,7 @@ function TileClassPainter(tileClass)
 TileClassPainter.prototype.paint = function(area)
 {
 	for (let point of area.points)
-		this.tileClass.add(point.x, point.z);
+		this.tileClass.add(point.x, point.y);
 };
 
 /**
@@ -28,7 +28,7 @@ function TileClassUnPainter(tileClass)
 TileClassUnPainter.prototype.paint = function(area)
 {
 	for (let point of area.points)
-		this.tileClass.remove(point.x, point.z);
+		this.tileClass.remove(point.x, point.y);
 };
 
 /**
@@ -57,7 +57,7 @@ function TerrainPainter(terrain)
 TerrainPainter.prototype.paint = function(area)
 {
 	for (let point of area.points)
-		this.terrain.place(point.x, point.z);
+		this.terrain.place(point.x, point.y);
 };
 
 /**
@@ -96,7 +96,7 @@ LayeredPainter.prototype.paint = function(area)
 					break;
 			}
 
-			this.terrains[i].place(point.x, point.z);
+			this.terrains[i].place(point.x, point.y);
 		}
 	});
 };
@@ -115,7 +115,7 @@ ElevationPainter.prototype.paint = function(area)
 		for (let [dx, dz] of [[0, 0], [1, 0], [0, 1], [1, 1]])
 		{
 			let x = point.x + dx;
-			let z = point.z + dz;
+			let z = point.y + dz;
 
 			if (g_Map.inMapBounds(x, z))
 				g_Map.height[x][z] = this.elevation;
@@ -175,13 +175,14 @@ SmoothElevationPainter.prototype.paint = function(area)
 			let nx = point.x + dx;
 			for (let dz = -1; dz < 1 + brushSize; ++dz)
 			{
-				let nz = point.z + dz;
+				let nz = point.y + dz;
+				let position = new Vector2D(nx, nz);
 
 				if (g_Map.validH(nx, nz) && !gotHeightPt[nx][nz])
 				{
 					newHeight[nx][nz] = g_Map.height[nx][nz];
 					gotHeightPt[nx][nz] = 1;
-					heightPoints.push({ "x": nx, "z": nz });
+					heightPoints.push(position);
 				}
 			}
 		}
@@ -207,9 +208,9 @@ SmoothElevationPainter.prototype.paint = function(area)
 				a = (distance - 1) / this.blendRadius;
 
 			if (this.type == ELEVATION_SET)
-				newHeight[point.x][point.z] = (1 - a) * g_Map.height[point.x][point.z];
+				newHeight[point.x][point.y] = (1 - a) * g_Map.height[point.x][point.y];
 
-			newHeight[point.x][point.z] += a * this.elevation + randFloat(-0.5, 0.5) * this.randomElevation;
+			newHeight[point.x][point.y] += a * this.elevation + randFloat(-0.5, 0.5) * this.randomElevation;
 		}
 	});
 
@@ -217,7 +218,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 	let areaID = area.getID();
 	for (let point of heightPoints)
 	{
-		if (!withinArea(areaID, point.x, point.z))
+		if (!withinArea(areaID, point.x, point.y))
 			continue;
 
 		let count = 0;
@@ -229,7 +230,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 
 			for (let dz = -1; dz <= 1; ++dz)
 			{
-				let nz = point.z + dz;
+				let nz = point.y + dz;
 
 				if (g_Map.validH(nx, nz))
 				{
@@ -239,7 +240,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 			}
 		}
 
-		g_Map.height[point.x][point.z] = (newHeight[point.x][point.z] + sum / count) / 2;
+		g_Map.height[point.x][point.y] = (newHeight[point.x][point.y] + sum / count) / 2;
 	}
 };
 
@@ -277,14 +278,15 @@ function breadthFirstSearchPaint(args)
 			let nx = point.x + dx;
 			for (let dz = -1; dz < 1 + args.brushSize; ++dz)
 			{
-				let nz = point.z + dz;
+				let nz = point.y + dz;
+				let position = new Vector2D(nx, nz);
 
 				if (!withinGrid(nx, nz) || args.withinArea(areaID, nx, nz) || saw[nx][nz])
 					continue;
 
 				saw[nx][nz] = 1;
 				dist[nx][nz] = 0;
-				pointQueue.push({ "x": nx, "z": nz });
+				pointQueue.push(position);
 			}
 		}
 
@@ -293,9 +295,9 @@ function breadthFirstSearchPaint(args)
 	while (pointQueue.length)
 	{
 		let point = pointQueue.shift();
-		let distance = dist[point.x][point.z];
+		let distance = dist[point.x][point.y];
 
-		if (args.withinArea(areaID, point.x, point.z))
+		if (args.withinArea(areaID, point.x, point.y))
 			args.paintTile(point, distance);
 
 		// Enqueue neighboring points
@@ -304,14 +306,15 @@ function breadthFirstSearchPaint(args)
 			let nx = point.x + dx;
 			for (let dz = -1; dz <= 1; ++dz)
 			{
-				let nz = point.z + dz;
+				let nz = point.y + dz;
+				let position = new Vector2D(nx, nz);
 
 				if (!withinGrid(nx, nz) || !args.withinArea(areaID, nx, nz) || saw[nx][nz])
 					continue;
 
 				saw[nx][nz] = 1;
 				dist[nx][nz] = distance + 1;
-				pointQueue.push({ "x": nx, "z": nz });
+				pointQueue.push(position);
 			}
 		}
 	}

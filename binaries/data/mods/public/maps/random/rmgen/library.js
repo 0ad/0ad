@@ -120,7 +120,7 @@ function randomizeCoordinatesFromAreas(obj, areas)
 {
 	let pt = pickRandom(pickRandom(areas).points);
 	obj.x = pt.x;
-	obj.z = pt.z;
+	obj.z = pt.y;
 }
 
 // TODO this is a hack to simulate the old behaviour of those functions
