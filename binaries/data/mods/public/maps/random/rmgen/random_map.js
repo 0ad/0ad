@@ -152,12 +152,15 @@ RandomMap.prototype.getTexture = function(x, z)
 /**
  * Paints the given texture on the given tile.
  */
-RandomMap.prototype.setTexture = function(x, z, texture)
+RandomMap.prototype.setTexture = function(position, texture)
 {
-	if (!this.validT(x, z))
-		throw new Error("setTexture: invalid tile position (" + x + ", " + z + ")");
+	if (position.x < 0 ||
+	    position.y < 0 ||
+	    position.x >= this.texture.length ||
+	    position.y >= this.texture[position.x].length)
+		throw new Error("setTexture: invalid tile position " + uneval(position));
 
-	this.texture[x][z] = this.getTextureID(texture);
+	this.texture[position.x][position.y] = this.getTextureID(texture);
 };
 
 RandomMap.prototype.getHeight = function(position)

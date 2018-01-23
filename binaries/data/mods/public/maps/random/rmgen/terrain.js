@@ -25,7 +25,7 @@ SimpleTerrain.prototype.place = function(position)
 				new Entity(this.templateName, 0, position.x + 0.5, position.y + 0.5, randomAngle()) :
 					undefined;
 
-	g_Map.texture[position.x][position.y] = g_Map.getTextureID(this.texture);
+	g_Map.setTexture(position, this.texture);
 };
 
 /**
