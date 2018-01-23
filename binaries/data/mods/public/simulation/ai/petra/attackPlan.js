@@ -887,7 +887,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 
 /**
  * Default target finder aims for conquest critical targets
- * We must apply the same selection (isValidTarget) as done in getNearestTarget TOTO remove
+ * We must apply the same selection (isValidTarget) as done in getNearestTarget
  */
 m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 {
