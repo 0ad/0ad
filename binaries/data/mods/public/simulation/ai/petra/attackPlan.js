@@ -820,6 +820,9 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand)
 {
 	this.isBlocked = false;
+	// Temporary variables needed by isValidTarget
+	this.accessibility = gameState.ai.accessibility;
+	this.sameLand = sameLand && position && this.accessibility.getAccessValue(position);
 
 	let targets;
 	if (this.uniqueTargetId)
@@ -845,8 +848,6 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	if (!targets.hasEntities())
 		return undefined;
 
-	let land = gameState.ai.accessibility.getAccessValue(position);
-
 	// picking the nearest target
 	let target;
 	let minDist = Math.min();
@@ -855,14 +856,10 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 		if (this.targetPlayer == 0 && gameState.getGameType() == "capture_the_relic" &&
 		   (!ent.hasClass("Relic") || gameState.ai.HQ.gameTypeManager.targetedGaiaRelics.has(ent.id())))
 			continue;
-		if (!ent.position())
-			continue;
-		if (sameLand && gameState.ai.accessibility.getAccessValue(ent.position()) != land)
+		// Do not bother with some pointless targets
+		if (!this.isValidTarget(ent))
 			continue;
 		let dist = API3.SquareVectorDistance(ent.position(), position);
-		// Do not bother with some pointless decaying structures
-		if (this.isPointlessTarget(ent))
-			continue;
 		// In normal attacks, disfavor fields
 		if (this.type != "Rush" && this.type != "Raid" && ent.hasClass("Field"))
 			dist += 100000;
@@ -888,7 +885,10 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	return target;
 };
 
-/** Default target finder aims for conquest critical targets */
+/**
+ * Default target finder aims for conquest critical targets
+ * We must apply the same selection (isValidTarget) as done in getNearestTarget TOTO remove
+ */
 m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 {
 	let targets;
@@ -898,35 +898,34 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 		targets = gameState.getEnemyUnits(playerEnemy).filter(API3.Filters.byClass("Hero"));
 	else if (gameState.getGameType() == "capture_the_relic")
 		targets = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic")).filter(relic => relic.owner() == playerEnemy);
+	if (targets)
+		targets = targets.filter(this.isValidTarget, this);
 	if (targets && targets.hasEntities())
 		return targets;
 
-	targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("CivCentre"));
+	// We must apply the *same* selection as done in getNearestTarget
+	let validTargets = gameState.getEnemyStructures(playerEnemy).filter(this.isValidTarget, this);
+	targets = validTargets.filter(API3.Filters.byClass("CivCentre"));
 	if (!targets.hasEntities())
-		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
+		targets = validTargets.filter(API3.Filters.byClass("ConquestCritical"));
 	// If there's nothing, attack anything else that's less critical
-	if (!this.hasValidTarget(targets))
-		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Town"));
-	if (!this.hasValidTarget(targets))
-		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Village"));
+	if (!targets.hasEntities())
+		targets = validTargets.filter(API3.Filters.byClass("Town"));
+	if (!targets.hasEntities())
+		targets = validTargets.filter(API3.Filters.byClass("Village"));
 	// no buildings, attack anything conquest critical, units included
-	if (!this.hasValidTarget(targets))
+	if (!targets.hasEntities())
 		targets = gameState.getEntities(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
 	return targets;
 };
 
-/** Apply the *same* selection as done in getNearestTarget for pointless decaying targets */
-m.AttackPlan.prototype.hasValidTarget = function(targets)
+m.AttackPlan.prototype.isValidTarget = function(ent)
 {
-	for (let target of targets.values())
-		if (!this.isPointlessTarget(target))
-			return true;
-	return false;
-};
-
-m.AttackPlan.prototype.isPointlessTarget = function(ent)
-{
-	return ent.decaying() && !ent.getDefaultArrow() && (!ent.isGarrisonHolder() || !ent.garrisoned().length);
+	if (!ent.position())
+		return false;
+	if (this.sameLand && this.accessibility.getAccessValue(ent.position()) != this.sameLand)
+		return false;
+	return !ent.decaying() || ent.getDefaultArrow() || ent.isGarrisonHolder() && ent.garrisoned().length;
 };
 
 /** Rush target finder aims at isolated non-defended buildings */
@@ -979,9 +978,9 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 
 	if (!targets.hasEntities())
 	{
-		if (this.type === "Attack")
+		if (this.type == "Attack")
 			targets = this.defaultTargetFinder(gameState, playerEnemy);
-		else if (this.type === "Rush" && playerEnemy)
+		else if (this.type == "Rush" && playerEnemy)
 			targets = this.rushTargetFinder(gameState);
 	}
 
@@ -1239,8 +1238,6 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	Engine.ProfileStart("Update Attack");
 
 	this.position = this.unitCollection.getCentrePosition();
-
-	let self = this;
 
 	// we are transporting our units, let's wait
 	// TODO instead of state "arrived", made a state "walking" with a new path
@@ -1580,14 +1577,14 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					let dist = API3.SquareVectorDistance(enemy.position(), ent.position());
 					if (dist > range)
 						return false;
-					if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
+					if (gameState.ai.accessibility.getAccessValue(enemy.position()) != entIndex)
 						return false;
 					// if already too much units targeting this enemy, let's continue towards our main target
-					if (veto[enemy.id()] && API3.SquareVectorDistance(self.targetPos, ent.position()) > 2500)
+					if (veto[enemy.id()] && API3.SquareVectorDistance(this.targetPos, ent.position()) > 2500)
 						return false;
 					enemy.setMetadata(PlayerID, "distance", Math.sqrt(dist));
 					return true;
-				}).toEntityArray();
+				}, this).toEntityArray();
 				if (mUnit.length !== 0)
 				{
 					mUnit.sort(function (unitA,unitB) {
@@ -1632,16 +1629,16 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				else
 				{
 					let mStruct = enemyStructures.filter(function (enemy) {
-						if (self.isBlocked && enemy.id() !== this.target.id())
+						if (this.isBlocked && enemy.id() != this.target.id())
 							return false;
 						if (!enemy.position() || enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall"))
 							return false;
 						if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
 							return false;
-						if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
+						if (gameState.ai.accessibility.getAccessValue(enemy.position()) != entIndex)
 							return false;
 						return true;
-					}).toEntityArray();
+					}, this).toEntityArray();
 					if (mStruct.length !== 0)
 					{
 						mStruct.sort(function (structa,structb) {
