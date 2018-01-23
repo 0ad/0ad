@@ -67,9 +67,10 @@ function createMountains(terrain, constraint, tileClass, count, maxHeight, minRa
  */
 function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints, x, z, terrain, tileClass, fcc = 0, q = [])
 {
+	let position = new Vector2D(x, z);
 	let constraint = new AndConstraint(constraints);
 
-	if (!g_Map.inMapBounds(x, z) || !constraint.allows(x, z))
+	if (!g_Map.inMapBounds(x, z) || !constraint.allows(position))
 		return;
 
 	let mapSize = getMapSize();
@@ -115,10 +116,12 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 		{
 			for (let iz = sz; iz <= lz; ++iz)
 			{
+				let pos = new Vector2D(ix, iz);
+
 				if (Math.euclidDistance2D(ix, iz, cx, cz) > radius2 || !g_Map.inMapBounds(ix, iz))
 					continue;
 
-				if (!constraint.allows(ix, iz))
+				if (!constraint.allows(pos))
 				{
 					badPoint = true;
 					break;
@@ -362,10 +365,10 @@ function paintRiver(args)
 	for (let ix = 0; ix < mapSize; ++ix)
 		for (let iz = 0; iz < mapSize; ++iz)
 		{
-			if (args.constraint && !args.constraint.allows(ix, iz))
-				continue;
-
 			let vecPoint = new Vector2D(ix, iz);
+
+			if (args.constraint && !args.constraint.allows(vecPoint))
+				continue;
 
 			// Compute the shortest distance to the river.
 			let distanceToRiver = distanceOfPointFromLine(args.start, args.end, vecPoint);

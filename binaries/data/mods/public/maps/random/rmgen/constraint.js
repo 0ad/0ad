@@ -7,7 +7,7 @@
  */
 function NullConstraint() {}
 
-NullConstraint.prototype.allows = function(x, z)
+NullConstraint.prototype.allows = function(position)
 {
 	return true;
 };
@@ -25,9 +25,9 @@ function AndConstraint(constraints)
 		this.constraints = [constraints];
 }
 
-AndConstraint.prototype.allows = function(x, z)
+AndConstraint.prototype.allows = function(position)
 {
-	return this.constraints.every(constraint => constraint.allows(x, z));
+	return this.constraints.every(constraint => constraint.allows(position));
 };
 
 /**
@@ -38,9 +38,9 @@ function AvoidAreaConstraint(area)
 	this.area = area;
 }
 
-AvoidAreaConstraint.prototype.allows = function(x, z)
+AvoidAreaConstraint.prototype.allows = function(position)
 {
-	return g_Map.area[x][z] != this.area.getID();
+	return g_Map.area[position.x][position.y] != this.area.getID();
 };
 
 /**
@@ -51,9 +51,9 @@ function AvoidTextureConstraint(textureID)
 	this.textureID = textureID;
 }
 
-AvoidTextureConstraint.prototype.allows = function(x, z)
+AvoidTextureConstraint.prototype.allows = function(position)
 {
-	return g_Map.texture[x][z] != this.textureID;
+	return g_Map.texture[position.x][position.y] != this.textureID;
 };
 
 /**
@@ -65,9 +65,9 @@ function AvoidTileClassConstraint(tileClassID, distance)
 	this.distance = distance;
 }
 
-AvoidTileClassConstraint.prototype.allows = function(x, z)
+AvoidTileClassConstraint.prototype.allows = function(position)
 {
-	return this.tileClass.countMembersInRadius(x, z, this.distance) == 0;
+	return this.tileClass.countMembersInRadius(position.x, position.y, this.distance) == 0;
 };
 
 /**
@@ -79,9 +79,9 @@ function StayInTileClassConstraint(tileClassID, distance)
 	this.distance = distance;
 }
 
-StayInTileClassConstraint.prototype.allows = function(x, z)
+StayInTileClassConstraint.prototype.allows = function(position)
 {
-	return this.tileClass.countNonMembersInRadius(x, z, this.distance) == 0;
+	return this.tileClass.countNonMembersInRadius(position.x, position.y, this.distance) == 0;
 };
 
 /**
@@ -96,10 +96,10 @@ function BorderTileClassConstraint(tileClassID, distanceInside, distanceOutside)
 	this.distanceOutside = distanceOutside;
 }
 
-BorderTileClassConstraint.prototype.allows = function(x, z)
+BorderTileClassConstraint.prototype.allows = function(position)
 {
-	return this.tileClass.countMembersInRadius(x, z, this.distanceOutside) > 0 &&
-	       this.tileClass.countNonMembersInRadius(x, z, this.distanceInside) > 0;
+	return this.tileClass.countMembersInRadius(position.x, position.y, this.distanceOutside) > 0 &&
+	       this.tileClass.countNonMembersInRadius(position.x, position.y, this.distanceInside) > 0;
 };
 
 /**
@@ -112,7 +112,7 @@ function HeightConstraint(minHeight, maxHeight)
 	this.maxHeight = maxHeight;
 }
 
-HeightConstraint.prototype.allows = function(x, z)
+HeightConstraint.prototype.allows = function(position)
 {
-	return this.minHeight <= g_Map.height[x][z] && g_Map.height[x][z] <= this.maxHeight;
+	return this.minHeight <= g_Map.height[position.x][position.y] && g_Map.height[position.x][position.y] <= this.maxHeight;
 };

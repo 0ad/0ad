@@ -41,7 +41,7 @@ SimpleObject.prototype.place = function(centerX, centerZ, player, avoidSelf, con
 
 			if (g_Map.validT(x, z) &&
 			    (!avoidSelf || entities.every(ent => Math.euclidDistance2DSquared(x, z, ent.position.x, ent.position.z) >= 1)) &&
-			    constraint.allows(Math.floor(x), Math.floor(z)))
+			    constraint.allows(new Vector2D(Math.floor(x), Math.floor(z))))
 			{
 				entities.push(new Entity(this.templateName, player, x, z, randFloat(this.minAngle, this.maxAngle)));
 				break;

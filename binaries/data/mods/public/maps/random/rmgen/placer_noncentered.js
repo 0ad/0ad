@@ -26,7 +26,7 @@ RectPlacer.prototype.place = function(constraint)
 		for (let z = this.z1; z <= this.z2; ++z)
 		{
 			let position = new Vector2D(x, z);
-			if (constraint.allows(x, z))
+			if (constraint.allows(position))
 				points.push(position);
 		}
 
@@ -81,7 +81,7 @@ HeightPlacer.prototype.place = function(constraint)
 		for (let z = 0; z < mapSize; ++z)
 		{
 			let position = new Vector2D(x, z);
-			if (this.withinHeightRange(x, z) && constraint.allows(x, z))
+			if (this.withinHeightRange(x, z) && constraint.allows(position))
 				points.push(position);
 		}
 
@@ -210,7 +210,7 @@ PathPlacer.prototype.place = function(constraint)
 				for (var x = left; x <= right; x++)
 				{
 					let position = new Vector2D(x, z);
-					if (constraint.allows(x, z))
+					if (constraint.allows(position))
 					{
 						if (g_Map.inMapBounds(x, z) && !gotRet[x][z])
 						{
