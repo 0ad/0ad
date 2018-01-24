@@ -35,7 +35,7 @@ var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 
 var clPlayer = createTileClass();
 var clWater = createTileClass();

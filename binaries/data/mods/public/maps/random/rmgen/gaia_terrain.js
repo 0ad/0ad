@@ -459,8 +459,8 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 	let heightShallow = -2;
 
 	let mapSize = getMapSize();
-	let mapCenter = getMapCenter();
-	let mapBounds = getMapBounds();
+	let mapCenter = g_Map.getCenter();
+	let mapBounds = g_Map.getBounds();
 
 	let riverConstraint = avoidClasses(tributaryRiverTileClass, 3);
 	if (shallowTileClass)

@@ -286,7 +286,7 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

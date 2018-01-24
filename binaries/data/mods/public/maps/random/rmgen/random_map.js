@@ -92,6 +92,27 @@ RandomMap.prototype.getEntityID = function()
 };
 
 /**
+ * Returns the center tile coordinates of the map.
+ */
+RandomMap.prototype.getCenter = function()
+{
+	return deepfreeze(new Vector2D(this.size / 2, this.size / 2));
+}
+
+/**
+ * Returns a human-readable reference to the smallest and greatest coordinates of the map.
+ */
+RandomMap.prototype.getBounds = function()
+{
+	return deepfreeze({
+		"left": 0,
+		"right": this.size,
+		"top": this.size,
+		"bottom": 0
+	});
+}
+
+/**
  * Determines whether the given coordinates are within the given distance of the passable map area.
  * Should be used to restrict entity placement and path creation.
  */
@@ -100,7 +121,7 @@ RandomMap.prototype.validTile = function(position, distance = 0)
 	distance += MAP_BORDER_WIDTH;
 
 	if (g_MapSettings.CircularMap)
-		return Math.round(position.distanceTo(getMapCenter())) < this.size / 2 - distance - 1;
+		return Math.round(position.distanceTo(this.getCenter())) < this.size / 2 - distance - 1;
 
 	return position.x >= distance && position.y >= distance && position.x < this.size - distance && position.y < this.size - distance;
 };

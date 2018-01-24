@@ -11,7 +11,7 @@ var g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
 
 initTileClasses();
 
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 
 createArea(
 	new MapBoundsPlacer(),

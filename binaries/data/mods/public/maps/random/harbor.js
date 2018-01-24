@@ -21,7 +21,7 @@ createArea(
 Engine.SetProgress(10);
 
 const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 
 const startAngle = randomAngle();
 const players = addBases("radial", fractionToTiles(0.38), fractionToTiles(0.05), startAngle);

@@ -58,8 +58,8 @@ var g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapCenter = getMapCenter();
-const mapBounds = getMapBounds();
+const mapCenter = g_Map.getCenter();
+const mapBounds = g_Map.getBounds();
 
 var clWater = createTileClass();
 var clCliff = createTileClass();

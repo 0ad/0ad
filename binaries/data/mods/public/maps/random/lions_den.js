@@ -13,7 +13,7 @@ const heightHill = 50;
 
 var g_Map = new RandomMap(heightHill, topTerrain);
 
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 const numPlayers = getNumPlayers();
 const startAngle = randomAngle();
 

@@ -37,7 +37,7 @@ const heightOffsetBump = 2;
 
 var g_Map = new RandomMap(heightLand, tMainDirt);
 
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 const numPlayers = getNumPlayers();
 
 var clPlayer = createTileClass();

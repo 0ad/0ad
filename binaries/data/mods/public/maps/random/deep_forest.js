@@ -31,7 +31,7 @@ var g_Map = new RandomMap(heightLand, terrainPrimary);
 
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;
-var mapCenter = getMapCenter();
+var mapCenter = g_Map.getCenter();
 
 var clPlayer = createTileClass();
 var clPath = createTileClass();

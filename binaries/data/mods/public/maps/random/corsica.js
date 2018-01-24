@@ -53,7 +53,7 @@ var g_Map = new RandomMap(heightSeaGround, tVeryDeepWater);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapCenter = g_Map.getCenter();
 
 var clIsland = createTileClass();
 var clCreek = createTileClass();

@@ -72,7 +72,7 @@ var g_Map = new RandomMap(heightInit, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 
 var clDirt = createTileClass();
 var clRock = createTileClass();

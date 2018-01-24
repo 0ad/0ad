@@ -79,7 +79,7 @@ var clBaseResource = createTileClass();
 var clOpen = createTileClass();
 
 var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapCenter = g_Map.getCenter();
 var mapRadius = mapSize/2;
 
 var numPlayers = getNumPlayers();

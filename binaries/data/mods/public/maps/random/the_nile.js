@@ -48,8 +48,8 @@ const heightOffsetBump = 2;
 var g_Map = new RandomMap(heightLand, tPrimary);
 
 const mapSize = getMapSize();
-const mapCenter = getMapCenter();
-const mapBounds = getMapBounds();
+const mapCenter = g_Map.getCenter();
+const mapBounds = g_Map.getBounds();
 
 var aPlants = mapSize < 256 ?
 	"actor|props/flora/grass_tropical.xml" :

@@ -255,7 +255,7 @@ function randomStartingPositionPattern(teamsArray)
 function placeLine(teamsArray, distance, groupedDistance, startAngle)
 {
 	let players = [];
-	let mapCenter = getMapCenter();
+	let mapCenter = g_Map.getCenter();
 	let dist = fractionToTiles(0.45);
 
 	for (let i = 0; i < teamsArray.length; ++i)
@@ -289,7 +289,7 @@ function placeLine(teamsArray, distance, groupedDistance, startAngle)
  */
 function placeRadial(playerIDs, distance, startAngle)
 {
-	let mapCenter = getMapCenter();
+	let mapCenter = g_Map.getCenter();
 	let players = [];
 	let numPlayers = getNumPlayers();
 
@@ -314,7 +314,7 @@ function placeRandom(playerIDs)
 	var locations = [];
 	var attempts = 0;
 	var resets = 0;
-	var mapCenter = getMapCenter();
+	var mapCenter = g_Map.getCenter();
 
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
@@ -418,7 +418,7 @@ function groupPlayersByLocations(playerIDs, locations)
 function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 {
 	var players = [];
-	var mapCenter = getMapCenter();
+	var mapCenter = g_Map.getCenter();
 
 	for (let i = 0; i < teamsArray.length; ++i)
 	{

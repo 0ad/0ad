@@ -10,7 +10,7 @@ var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapCenter = g_Map.getCenter();
 
 // Function to apply a heightmap
 function setReliefmap(reliefmap)

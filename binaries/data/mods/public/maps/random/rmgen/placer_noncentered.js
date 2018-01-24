@@ -38,7 +38,7 @@ RectPlacer.prototype.place = function(constraint)
  */
 function MapBoundsPlacer()
 {
-	let mapBounds = getMapBounds();
+	let mapBounds = g_Map.getBounds();
 	this.rectPlacer = new RectPlacer(mapBounds.left, mapBounds.top, mapBounds.right, mapBounds.bottom);
 }
 

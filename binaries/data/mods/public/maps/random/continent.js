@@ -47,7 +47,7 @@ var g_Map = new RandomMap(heightSeaGround, tWater);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapCenter = g_Map.getCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

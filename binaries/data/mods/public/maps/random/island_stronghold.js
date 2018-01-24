@@ -53,7 +53,7 @@ var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 
 const clPlayer = createTileClass();
 const clHill = createTileClass();

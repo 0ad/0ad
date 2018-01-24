@@ -510,7 +510,7 @@ function primeSortAllPlayers()
 function playerPlacementCircle(radius, startingAngle = undefined, center = undefined)
 {
 	let startAngle = startingAngle !== undefined ? startingAngle : randomAngle();
-	let [playerPosition, playerAngle] = distributePointsOnCircle(getNumPlayers(), startAngle, radius, center || getMapCenter());
+	let [playerPosition, playerAngle] = distributePointsOnCircle(getNumPlayers(), startAngle, radius, center || g_Map.getCenter());
 	return [sortAllPlayers(), playerPosition.map(p => p.round()), playerAngle, startAngle];
 }
 
@@ -544,7 +544,7 @@ function playerPlacementRiver(angle, width, center = undefined)
 	let numPlayers = getNumPlayers();
 	let numPlayersEven = numPlayers % 2 == 0;
 	let mapSize = getMapSize();
-	let centerPosition = center || getMapCenter();
+	let centerPosition = center || g_Map.getCenter();
 	let playerPosition = [];
 
 	for (let i = 0; i < numPlayers; ++i)

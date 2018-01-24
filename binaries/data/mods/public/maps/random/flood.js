@@ -64,7 +64,7 @@ const clBaseResource = createTileClass();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 
 log("Creating player islands...")
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));

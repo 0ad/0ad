@@ -46,7 +46,7 @@ var g_Map = new RandomMap(heightHill, tMainTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapCenter = g_Map.getCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

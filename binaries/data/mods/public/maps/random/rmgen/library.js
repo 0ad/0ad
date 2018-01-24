@@ -266,21 +266,6 @@ function getMapSize()
 	return g_Map.size;
 }
 
-function getMapCenter()
-{
-	return deepfreeze(new Vector2D(g_Map.size / 2, g_Map.size / 2));
-}
-
-function getMapBounds()
-{
-	return deepfreeze({
-		"left": fractionToTiles(0),
-		"right": fractionToTiles(1),
-		"top": fractionToTiles(1),
-		"bottom": fractionToTiles(0)
-	});
-}
-
 function isNomad()
 {
 	return !!g_MapSettings.Nomad;
