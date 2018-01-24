@@ -244,7 +244,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
 		let position = new Vector2D(ix, iz);
-		if (g_Map.validH(ix, iz) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
+		if (g_Map.validHeight(position) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
 		{
 			let height = g_Map.getHeight(position);
 			let index = 1 / (1 + Math.max(0, height / 7));

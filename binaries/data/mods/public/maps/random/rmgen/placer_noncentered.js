@@ -62,10 +62,10 @@ const Elevation_IncludeMin_IncludeMax = 3;
 function HeightPlacer(mode, minElevation, maxElevation)
 {
 	this.withinHeightRange =
-		mode == Elevation_ExcludeMin_ExcludeMax ? (x, z) => g_Map.height[x][z] >  minElevation && g_Map.height[x][z] < maxElevation :
-		mode == Elevation_IncludeMin_ExcludeMax ? (x, z) => g_Map.height[x][z] >= minElevation && g_Map.height[x][z] < maxElevation :
-		mode == Elevation_ExcludeMin_IncludeMax ? (x, z) => g_Map.height[x][z] >  minElevation && g_Map.height[x][z] <= maxElevation :
-		mode == Elevation_IncludeMin_IncludeMax ? (x, z) => g_Map.height[x][z] >= minElevation && g_Map.height[x][z] <= maxElevation :
+		mode == Elevation_ExcludeMin_ExcludeMax ? position => g_Map.getHeight(position) >  minElevation && g_Map.getHeight(position) < maxElevation :
+		mode == Elevation_IncludeMin_ExcludeMax ? position => g_Map.getHeight(position) >= minElevation && g_Map.getHeight(position) < maxElevation :
+		mode == Elevation_ExcludeMin_IncludeMax ? position => g_Map.getHeight(position) >  minElevation && g_Map.getHeight(position) <= maxElevation :
+		mode == Elevation_IncludeMin_IncludeMax ? position => g_Map.getHeight(position) >= minElevation && g_Map.getHeight(position) <= maxElevation :
 		undefined;
 
 	if (!this.withinHeightRange)
@@ -81,7 +81,7 @@ HeightPlacer.prototype.place = function(constraint)
 		for (let z = 0; z < mapSize; ++z)
 		{
 			let position = new Vector2D(x, z);
-			if (this.withinHeightRange(x, z) && constraint.allows(position))
+			if (this.withinHeightRange(position) && constraint.allows(position))
 				points.push(position);
 		}
 

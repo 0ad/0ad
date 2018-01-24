@@ -114,5 +114,5 @@ function HeightConstraint(minHeight, maxHeight)
 
 HeightConstraint.prototype.allows = function(position)
 {
-	return this.minHeight <= g_Map.height[position.x][position.y] && g_Map.height[position.x][position.y] <= this.maxHeight;
+	return this.minHeight <= g_Map.getHeight(position) && g_Map.getHeight(position) <= this.maxHeight;
 };

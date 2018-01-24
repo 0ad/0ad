@@ -590,7 +590,7 @@ function findLocationInDirectionBasedOnHeight(startPoint, endPoint, minHeight, m
 		let pos = Vector2D.add(startPoint, Vector2D.mult(stepVec, i));
 		let ipos = pos.clone().round();
 
-		if (g_Map.validH(ipos.x, ipos.y) &&
+		if (g_Map.validHeight(ipos) &&
 		    g_Map.getHeight(ipos) >= minHeight &&
 		    g_Map.getHeight(ipos) <= maxHeight)
 			return pos.add(stepVec.mult(offset));
