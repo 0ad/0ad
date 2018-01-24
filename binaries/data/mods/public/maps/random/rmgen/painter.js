@@ -22,7 +22,7 @@ TileClassPainter.prototype.paint = function(area)
  */
 function TileClassUnPainter(tileClassID)
 {
-	this.tileClass = getTileClass(tileClass);
+	this.tileClass = getTileClass(tileClassID);
 }
 
 TileClassUnPainter.prototype.paint = function(area)
