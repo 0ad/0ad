@@ -32,6 +32,7 @@ class CCmpMinimap : public ICmpMinimap
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_Deserialized);
 		componentManager.SubscribeToMessageType(MT_PositionChanged);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_MinimapPing);
@@ -159,6 +160,7 @@ public:
 
 			break;
 		}
+		case MT_Deserialized:
 		case MT_OwnershipChanged:
 		{
 			UpdateColor();
