@@ -44,7 +44,7 @@ var heightCliff = 3;
 var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
+const mapSize = g_Map.getSize();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

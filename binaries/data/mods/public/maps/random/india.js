@@ -30,7 +30,7 @@ const heightOffsetBump = 2;
 var g_Map = new RandomMap(heightLand, tGrass1);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
+var mapSize = g_Map.getSize();
 var mapCenter = g_Map.getCenter();
 
 var clPlayer = createTileClass();

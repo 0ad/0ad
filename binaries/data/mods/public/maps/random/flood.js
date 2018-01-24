@@ -63,7 +63,7 @@ const clFood = createTileClass();
 const clBaseResource = createTileClass();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
+const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
 log("Creating player islands...")

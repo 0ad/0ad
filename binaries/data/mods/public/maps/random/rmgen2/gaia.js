@@ -1121,7 +1121,7 @@ function findClearLine(bb, corners, angle, baseHeight)
 function findCorners(points)
 {
 	// Find the bounding box of the terrain feature
-	var mapSize = getMapSize();
+	var mapSize = g_Map.getSize();
 	var minX = mapSize + 1;
 	var minZ = mapSize + 1;
 	var maxX = -1;
@@ -1187,7 +1187,7 @@ function paintHeightmap(mapName, func = undefined)
 	 */
 	let mapData = Engine.ReadJSONFile("maps/random/" + mapName + ".hmap");
 
-	let mapSize = getMapSize(); // Width of the map in terrain tiles
+	let mapSize = g_Map.getSize(); // Width of the map in terrain tiles
 	let hmSize = Math.sqrt(mapData.heightmap.length);
 	let scale = hmSize / (mapSize + 1); // There are mapSize + 1 vertices (each 1 tile is surrounded by 2x2 vertices)
 

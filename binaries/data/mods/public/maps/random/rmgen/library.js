@@ -261,7 +261,7 @@ function createObjectGroup(group, player, constraints)
 	return group.place(player, new AndConstraint(constraints));
 }
 
-function getMapSize()
+function g_Map.getSize()
 {
 	return g_Map.size;
 }

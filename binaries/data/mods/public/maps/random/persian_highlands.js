@@ -53,7 +53,7 @@ const heightOffsetValley = -10;
 var g_Map = new RandomMap(heightLand, tDirtMain);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
+const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
 var clPlayer = createTileClass();

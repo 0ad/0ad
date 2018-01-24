@@ -52,7 +52,7 @@ var heightOffsetAntiBumps = -5;
 var g_Map = new RandomMap(heightSeaGround, tVeryDeepWater);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
+var mapSize = g_Map.getSize();
 var mapCenter = g_Map.getCenter();
 
 var clIsland = createTileClass();

@@ -33,7 +33,7 @@ const heightLand = 1;
 var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
+var mapSize = g_Map.getSize();
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();

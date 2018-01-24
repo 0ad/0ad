@@ -153,7 +153,7 @@ function createBase(player, walls = true)
 		"playerPosition": player.position,
 		"PlayerTileClass": g_TileClasses.player,
 		"BaseResourceClass": g_TileClasses.baseResource,
-		"Walls": getMapSize() > 192 && walls,
+		"Walls": g_Map.getSize() > 192 && walls,
 		"CityPatch": {
 			"outerTerrain": g_Terrains.roadWild,
 			"innerTerrain": g_Terrains.road,
@@ -220,7 +220,7 @@ function getTeamsArray()
 function randomStartingPositionPattern(teamsArray)
 {
 	var formats = ["radial"];
-	var mapSize = getMapSize();
+	var mapSize = g_Map.getSize();
 	var numPlayers = getNumPlayers();
 
 	// Enable stronghold if we have a few teams and a big enough map

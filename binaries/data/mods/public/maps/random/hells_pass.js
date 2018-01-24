@@ -268,7 +268,7 @@ function placeBarriers()
 		var mOffset = 0.5;
 		var mTaper = -1.5;
 
-		if (spineCount > 3 || getMapSize() <= 192)
+		if (spineCount > 3 || g_Map.getSize() <= 192)
 		{
 			mWaviness = 0.2;
 			mOffset = 0.2;

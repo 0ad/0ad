@@ -83,7 +83,7 @@ LayeredPainter.prototype.paint = function(area)
 	breadthFirstSearchPaint({
 		"area": area,
 		"brushSize": 1,
-		"gridSize": getMapSize(),
+		"gridSize": g_Map.getSize(),
 		"withinArea": (areaID, position) => g_Map.area[position.x][position.y] == areaID,
 		"paintTile": (point, distance) => {
 			let width = 0;

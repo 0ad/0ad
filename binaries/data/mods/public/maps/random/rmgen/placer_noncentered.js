@@ -9,7 +9,7 @@
  */
 function RectPlacer(x1, z1, x2, z2)
 {
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 
 	this.x1 = Math.round(Math.max(Math.min(x1, x2), 0));
 	this.x2 = Math.round(Math.min(Math.max(x1, x2), mapSize - 1));
@@ -74,7 +74,7 @@ function HeightPlacer(mode, minElevation, maxElevation)
 
 HeightPlacer.prototype.place = function(constraint)
 {
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 	let points = [];
 
 	for (let x = 0; x < mapSize; ++x)
@@ -127,7 +127,7 @@ PathPlacer.prototype.place = function(constraint)
 	var totalSteps = numSteps*numISteps;
 	var offset = 1 + Math.floor(pathLength / 4 * this.c);
 
-	var size = getMapSize();
+	var size = g_Map.getSize();
 	var gotRet = [];
 	for (var i = 0; i < size; ++i)
 		gotRet[i] = new Uint8Array(size);			// bool / uint8

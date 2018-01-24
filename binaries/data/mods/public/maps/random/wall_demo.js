@@ -42,7 +42,7 @@ var g_Map = new RandomMap(0, "grass1");
  * And have fun!
  */
 
-var mapSize = getMapSize();
+var mapSize = g_Map.getSize();
 
 /**
  * General wall placement setup

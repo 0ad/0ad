@@ -45,7 +45,7 @@ const heightOffsetDune = 18;
 var g_Map = new RandomMap(heightLand, tSand);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
+const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
 var clPlayer = createTileClass();

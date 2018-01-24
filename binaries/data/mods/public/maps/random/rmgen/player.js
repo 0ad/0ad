@@ -84,7 +84,7 @@ function placeCivDefaultStartingEntities(location, playerID, wallType, dist = 6,
 function placeStartingWalls(x, z, playerID, wallType, orientation = BUILDING_ORIENTATION)
 {
 	let civ = getCivCode(playerID);
-	if (civ != "iber" || getMapSize() <= 128)
+	if (civ != "iber" || g_Map.getSize() <= 128)
 		return;
 
 	if (wallType == "towers")
@@ -543,7 +543,7 @@ function playerPlacementRiver(angle, width, center = undefined)
 {
 	let numPlayers = getNumPlayers();
 	let numPlayersEven = numPlayers % 2 == 0;
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 	let centerPosition = center || g_Map.getCenter();
 	let playerPosition = [];
 

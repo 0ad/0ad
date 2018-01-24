@@ -36,7 +36,7 @@ ClumpPlacer.prototype.place = function(constraint)
 
 	var retVec = [];
 
-	var size = getMapSize();
+	var size = g_Map.getSize();
 	var gotRet = new Array(size).fill(0).map(p => new Uint8Array(size)); // booleans
 	var radius = Math.sqrt(this.size / Math.PI);
 	var perim = 4 * radius * 2 * Math.PI;
@@ -150,7 +150,7 @@ ChainPlacer.prototype.place = function(constraint)
 		return undefined;
 
 	var retVec = [];
-	var size = getMapSize();
+	var size = g_Map.getSize();
 	var failed = 0, count = 0;
 	var queueEmpty = !this.q.length;
 

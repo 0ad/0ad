@@ -34,7 +34,7 @@ const heightHill = 25;
 var g_Map = new RandomMap(heightLand, tSnowA);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
+const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 

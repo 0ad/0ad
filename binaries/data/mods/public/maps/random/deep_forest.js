@@ -29,7 +29,7 @@ var heightOffsetRandomPath = 1;
 
 var g_Map = new RandomMap(heightLand, terrainPrimary);
 
-var mapSize = getMapSize();
+var mapSize = g_Map.getSize();
 var mapRadius = mapSize/2;
 var mapCenter = g_Map.getCenter();
 

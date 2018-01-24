@@ -46,7 +46,7 @@ function createHills(terrainset, constraint, tileClass, count, minSize, maxSize,
 function createMountains(terrain, constraint, tileClass, count, maxHeight, minRadius, maxRadius, numCircles)
 {
 	log("Creating mountains...");
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 
 	for (let i = 0; i < (count || scaleByMapSize(1, 4) * getNumPlayers()); ++i)
 		createMountain(
@@ -73,7 +73,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 	if (!g_Map.inMapBounds(position) || !constraint.allows(position))
 		return;
 
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 	let queueEmpty = !q.length;
 
 	let gotRet = [];
@@ -361,7 +361,7 @@ function paintRiver(args)
 	let riverMaxX = Math.max(args.start.x, args.end.x);
 	let riverMaxZ = Math.max(args.start.y, args.end.y);
 
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 	for (let ix = 0; ix < mapSize; ++ix)
 		for (let iz = 0; iz < mapSize; ++iz)
 		{
@@ -458,7 +458,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 	let tapering = 0.05;
 	let heightShallow = -2;
 
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 	let mapCenter = g_Map.getCenter();
 	let mapBounds = g_Map.getBounds();
 
@@ -534,7 +534,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
  */
 function createPassage(args)
 {
-	let bound = x => Math.max(0, Math.min(Math.round(x), getMapSize()));
+	let bound = x => Math.max(0, Math.min(Math.round(x), g_Map.getSize()));
 
 	let startHeight = args.startHeight !== undefined ? args.startHeight : g_Map.getHeight(new Vector2D(bound(args.start.x), bound(args.start.y)));
 	let endHeight = args.endHeight !== undefined ? args.endHeight : g_Map.getHeight(new Vector2D(bound(args.end.x), bound(args.end.y)));

@@ -20,7 +20,7 @@ createArea(
 
 Engine.SetProgress(10);
 
-const mapSize = getMapSize();
+const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
 const startAngle = randomAngle();

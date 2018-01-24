@@ -78,7 +78,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clOpen = createTileClass();
 
-var mapSize = getMapSize();
+var mapSize = g_Map.getSize();
 var mapCenter = g_Map.getCenter();
 var mapRadius = mapSize/2;
 

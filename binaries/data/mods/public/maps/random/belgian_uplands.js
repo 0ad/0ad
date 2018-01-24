@@ -9,7 +9,7 @@ const heightLand = 0;
 var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
+var mapSize = g_Map.getSize();
 var mapCenter = g_Map.getCenter();
 
 // Function to apply a heightmap
