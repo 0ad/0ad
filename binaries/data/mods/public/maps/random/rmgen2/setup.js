@@ -374,8 +374,8 @@ function groupPlayersByLocations(playerIDs, locations)
 
 		for (let i = 1; i < playerIDs.length; ++i)
 		{
-			let team1 = g_MapSettings.PlayerData[playerIDs[i - 1]].Team;
-			let team2 = g_MapSettings.PlayerData[playerIDs[i]].Team;
+			let team1 = getPlayerTeam(playerIDs[i - 1]);
+			let team2 = getPlayerTeam(playerIDs[i]);
 			++teamSize;
 			if (team1 != -1 && team1 == team2)
 				teamDist += permutation[i - 1].distanceTo(permutation[i]);

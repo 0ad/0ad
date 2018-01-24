@@ -256,39 +256,6 @@ function createObjectGroup(group, player, constraints)
 	return group.place(player, new AndConstraint(constraints));
 }
 
-function isNomad()
-{
-	return !!g_MapSettings.Nomad;
-}
-
-function getNumPlayers()
-{
-	return g_MapSettings.PlayerData.length - 1;
-}
-
-function getCivCode(playerID)
-{
-	return g_MapSettings.PlayerData[playerID].Civ;
-}
-
-function areAllies(playerID1, playerID2)
-{
-	return (
-		g_MapSettings.PlayerData[playerID1].Team !== undefined &&
-		g_MapSettings.PlayerData[playerID2].Team !== undefined &&
-		g_MapSettings.PlayerData[playerID1].Team != -1 &&
-		g_MapSettings.PlayerData[playerID2].Team != -1 &&
-		g_MapSettings.PlayerData[playerID1].Team === g_MapSettings.PlayerData[playerID2].Team);
-}
-
-function getPlayerTeam(playerID)
-{
-	if (g_MapSettings.PlayerData[playerID].Team === undefined)
-		return -1;
-
-	return g_MapSettings.PlayerData[playerID].Team;
-}
-
 /**
  * Add point to given class by id
  */

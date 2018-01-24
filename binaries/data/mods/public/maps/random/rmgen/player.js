@@ -26,6 +26,38 @@ var g_PlayerBaseFunctions = [
 	"Decoratives"
 ];
 
+function isNomad()
+{
+	return !!g_MapSettings.Nomad;
+}
+
+function getNumPlayers()
+{
+	return g_MapSettings.PlayerData.length - 1;
+}
+
+function getCivCode(playerID)
+{
+	return g_MapSettings.PlayerData[playerID].Civ;
+}
+
+function areAllies(playerID1, playerID2)
+{
+	return g_MapSettings.PlayerData[playerID1].Team !== undefined &&
+	       g_MapSettings.PlayerData[playerID2].Team !== undefined &&
+	       g_MapSettings.PlayerData[playerID1].Team != -1 &&
+	       g_MapSettings.PlayerData[playerID2].Team != -1 &&
+	       g_MapSettings.PlayerData[playerID1].Team === g_MapSettings.PlayerData[playerID2].Team;
+}
+
+function getPlayerTeam(playerID)
+{
+	if (g_MapSettings.PlayerData[playerID].Team === undefined)
+		return -1;
+
+	return g_MapSettings.PlayerData[playerID].Team;
+}
+
 /**
  * Gets the default starting entities for the civ of the given player, as defined by the civ file.
  */
