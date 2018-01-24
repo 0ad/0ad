@@ -37,7 +37,7 @@ const pForest2 = [tForestFloor + TERRAIN_SEPARATOR + oAleppoPine, tForestFloor];
 
 const heightLand = 3;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 
@@ -220,4 +220,4 @@ setPPContrast(0.45);
 setPPSaturation(0.56);
 setPPBloom(0.1);
 
-ExportMap();
+g_Map.ExportMap();

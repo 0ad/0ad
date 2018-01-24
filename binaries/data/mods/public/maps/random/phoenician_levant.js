@@ -46,7 +46,7 @@ const heightIsland = 6;
 const heightHill = 15;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, tHill);
+var g_Map = new RandomMap(heightLand, tHill);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -329,4 +329,4 @@ setPPBloom(0.52);
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-ExportMap();
+g_Map.ExportMap();

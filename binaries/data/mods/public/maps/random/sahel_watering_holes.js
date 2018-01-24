@@ -41,7 +41,7 @@ const heightLand = 3;
 const heightHill = 35;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, tGrass);
+var g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -388,4 +388,4 @@ setWaterMurkiness(0.87);
 setWaterWaviness(0.5);
 setWaterType("clap");
 
-ExportMap();
+g_Map.ExportMap();

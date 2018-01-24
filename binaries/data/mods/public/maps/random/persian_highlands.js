@@ -50,7 +50,7 @@ const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAI
 const heightLand = 10;
 const heightOffsetValley = -10;
 
-InitMap(heightLand, tDirtMain);
+var g_Map = new RandomMap(heightLand, tDirtMain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -326,4 +326,4 @@ setPPBloom(0.3);
 
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-ExportMap();
+g_Map.ExportMap();

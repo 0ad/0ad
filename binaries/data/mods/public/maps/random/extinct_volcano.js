@@ -55,7 +55,7 @@ var heightLand = 1;
 var heightHill = 18;
 var heightPlayerHill = 25;
 
-InitMap(heightLand, tHillMedium1);
+var g_Map = new RandomMap(heightLand, tHillMedium1);
 
 var numPlayers = getNumPlayers();
 var mapCenter = getMapCenter();
@@ -462,4 +462,4 @@ setWaterMurkiness(0.9);
 
 setPPEffect("hdr");
 
-ExportMap();
+g_Map.ExportMap();

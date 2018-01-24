@@ -53,7 +53,7 @@ const heightRavineHill = 40;
 const heightHill = 50;
 const heightOffsetRavine = 10;
 
-InitMap(heightHill, tPrimary);
+var g_Map = new RandomMap(heightHill, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -459,4 +459,4 @@ placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clH
 setTerrainAmbientColor(0.44,0.51,0.56);
 setUnitsAmbientColor(0.44,0.51,0.56);
 
-ExportMap();
+g_Map.ExportMap();

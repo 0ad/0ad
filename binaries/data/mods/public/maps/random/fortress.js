@@ -43,7 +43,7 @@ const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 var heightSeaGround = -4;
 var heightLand = 3;
 
-InitMap(heightLand, tGrass);
+var g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -305,4 +305,4 @@ setPPContrast(0.56);
 setPPBloom(0.38);
 setPPEffect("hdr");
 
-ExportMap();
+g_Map.ExportMap();

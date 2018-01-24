@@ -42,7 +42,7 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBush, tForestFloor + TERRAI
 var heightSeaGround = -5;
 var heightLand = 2;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 
@@ -322,4 +322,4 @@ setWaterMurkiness(0.92);
 setWaterWaviness(1);
 setWaterType("clap");
 
-ExportMap();
+g_Map.ExportMap();

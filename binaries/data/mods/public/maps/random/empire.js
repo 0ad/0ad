@@ -4,7 +4,7 @@ Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
-InitMap(2, g_Terrains.mainTerrain);
+var g_Map = new RandomMap(2, g_Terrains.mainTerrain);
 
 initTileClasses();
 
@@ -230,4 +230,4 @@ placePlayersNomad(
 		g_TileClasses.mountain, 4,
 		g_TileClasses.animals, 2));
 
-ExportMap();
+g_Map.ExportMap();

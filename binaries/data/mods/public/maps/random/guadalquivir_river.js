@@ -40,7 +40,7 @@ var heightShallow = -1.5;
 var heightShore = 2;
 var heightLand = 3;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -282,4 +282,4 @@ setPPContrast(0.62);
 setPPSaturation(0.51);
 setPPBloom(0.12);
 
-ExportMap();
+g_Map.ExportMap();

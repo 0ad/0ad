@@ -43,7 +43,7 @@ const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TE
 const heightSeaGround = -5;
 const heightLand = 3;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -253,4 +253,4 @@ placePlayersNomad(
 setWaterWaviness(1.0);
 setWaterType("ocean");
 
-ExportMap();
+g_Map.ExportMap();

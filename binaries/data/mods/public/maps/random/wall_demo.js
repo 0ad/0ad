@@ -1,6 +1,6 @@
 Engine.LoadLibrary("rmgen");
 
-InitMap(0, "grass1");
+var g_Map = new RandomMap(0, "grass1");
 
 /**
  * Demonstration code for wall placement.
@@ -327,4 +327,4 @@ for (let styleIndex in wallStyleList)
 		placeLinearWall(startX, startY, endX, endY, wallPart, style, playerID);
 	}
 
-ExportMap();
+g_Map.ExportMap();

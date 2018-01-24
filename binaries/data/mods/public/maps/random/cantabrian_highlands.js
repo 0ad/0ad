@@ -46,7 +46,7 @@ const heightSeaGround = -7;
 const heightLand = 3;
 const heightHill = 20;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -279,4 +279,4 @@ setPPSaturation(0.62);
 setPPContrast(0.62);
 setPPBloom(0.3);
 
-ExportMap();
+g_Map.ExportMap();

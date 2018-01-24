@@ -68,7 +68,7 @@ const heightMountain = heightHighRocks + 20;
 const heightOffsetHill = 7;
 const heightOffsetHillRandom = 2;
 
-InitMap(heightInit, tGrass);
+var g_Map = new RandomMap(heightInit, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -480,4 +480,4 @@ setWaterType("ocean");
 setWaterMurkiness(0.83);
 setWaterHeight(heightWaterLevel);
 
-ExportMap();
+g_Map.ExportMap();

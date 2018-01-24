@@ -41,7 +41,7 @@ const heightShallows = -2;
 const heightLand = 3;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -318,4 +318,4 @@ setWaterWaviness(3.0);
 setWaterType("lake");
 setWaterMurkiness(0.80);
 
-ExportMap();
+g_Map.ExportMap();

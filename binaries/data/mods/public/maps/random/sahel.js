@@ -30,7 +30,7 @@ const aRock = "actor|geology/stone_savanna_med.xml";
 const heightSeaGround = -5;
 const heightLand = 1;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -238,4 +238,4 @@ setPPEffect("hdr");
 setPPContrast(0.57031);
 setPPBloom(0.34);
 
-ExportMap();
+g_Map.ExportMap();

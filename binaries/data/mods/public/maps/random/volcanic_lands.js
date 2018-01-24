@@ -25,7 +25,7 @@ var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
 const heightLand = 1;
 const heightHill = 18;
 
-InitMap(heightLand, tGrassB);
+var g_Map = new RandomMap(heightLand, tGrassB);
 
 var numPlayers = getNumPlayers();
 var mapCenter = getMapCenter();
@@ -182,4 +182,4 @@ createStragglerTrees(
 
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4));
 
-ExportMap();
+g_Map.ExportMap();

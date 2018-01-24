@@ -52,7 +52,7 @@ const heightShore = 1;
 const heightLand = 2;
 const heightIsland = 6;
 
-InitMap(heightShore, tHill);
+var g_Map = new RandomMap(heightShore, tHill);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
@@ -306,4 +306,4 @@ setPPContrast(0.62);
 setPPSaturation(0.51);
 setPPBloom(0.12);
 
-ExportMap();
+g_Map.ExportMap();

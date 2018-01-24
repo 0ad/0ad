@@ -42,7 +42,7 @@ const heightOasisPath = 4;
 const heightOffsetBump = 4;
 const heightOffsetDune = 18;
 
-InitMap(heightLand, tSand);
+var g_Map = new RandomMap(heightLand, tSand);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -338,4 +338,4 @@ setWaterMurkiness(0.5);
 setTerrainAmbientColor(0.45, 0.5, 0.6);
 setUnitsAmbientColor(0.501961, 0.501961, 0.501961);
 
-ExportMap();
+g_Map.ExportMap();

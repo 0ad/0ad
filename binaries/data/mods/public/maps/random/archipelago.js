@@ -47,7 +47,7 @@ var heightSeaGround = -5;
 var heightLand = 3;
 var heightShore = 1;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 
@@ -264,4 +264,4 @@ placePlayersNomad(
 setWaterWaviness(4.0);
 setWaterType("ocean");
 
-ExportMap();
+g_Map.ExportMap();

@@ -43,7 +43,7 @@ var heightSeaGround = -4;
 var heightShore = 1;
 var heightLand = 3;
 
-InitMap(heightShore, tPrimary);
+var g_Map = new RandomMap(heightShore, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
@@ -263,4 +263,4 @@ setPPBloom(0.37);
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-ExportMap();
+g_Map.ExportMap();

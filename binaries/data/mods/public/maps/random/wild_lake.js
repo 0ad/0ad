@@ -2,7 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("heightmap");
 
-InitMap(0, "whiteness");
+var g_Map = new RandomMap(0, "whiteness");
 
 /**
  * getArray - To ensure a terrain texture is contained within an array
@@ -634,4 +634,4 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	}
 }
 
-ExportMap();
+g_Map.ExportMap();

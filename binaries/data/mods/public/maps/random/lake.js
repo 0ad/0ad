@@ -43,7 +43,7 @@ const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TE
 const heightSeaGround = -3;
 const heightLand = 3;
 
-InitMap(heightLand, tMainTerrain);
+var g_Map = new RandomMap(heightLand, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -249,4 +249,4 @@ placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clHill, 2, clForest, 1, clM
 setWaterWaviness(4.0);
 setWaterType("lake");
 
-ExportMap();
+g_Map.ExportMap();

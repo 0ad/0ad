@@ -125,7 +125,7 @@ const heightLand = 3;
 const heightPath = 5;
 const heightIsland = 6;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -811,4 +811,4 @@ setWaterType("lake");
 setWaterMurkiness(0.97);
 setWaterHeight(21);
 
-ExportMap();
+g_Map.ExportMap();

@@ -49,7 +49,7 @@ const heightSeaGround = -10;
 const heightLand = 3;
 const heightHill = 18;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -406,4 +406,4 @@ setWaterWaviness(2);
 
 Engine.SetProgress(100);
 
-ExportMap();
+g_Map.ExportMap();

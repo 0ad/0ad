@@ -283,7 +283,7 @@ var heightMountain = 30;
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
@@ -539,4 +539,4 @@ setWaterMurkiness(0.72);
 setWaterWaviness(2.0);
 setWaterType("lake");
 
-ExportMap();
+g_Map.ExportMap();

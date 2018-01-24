@@ -50,7 +50,7 @@ const heightSeaGround = -3;
 const heightShallows = -1;
 const heightLand = 1;
 
-InitMap(heightLand, tMainTerrain);
+var g_Map = new RandomMap(heightLand, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -286,4 +286,4 @@ placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, cl
 setWaterWaviness(3.0);
 setWaterType("lake");
 
-ExportMap();
+g_Map.ExportMap();

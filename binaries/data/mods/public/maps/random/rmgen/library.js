@@ -31,21 +31,6 @@ const g_CivData = deepfreeze(loadCivFiles(false));
  */
 var TILE_CENTERED_HEIGHT_MAP = false;
 
-/**
- * Main RandomMap object.
- */
-var g_Map;
-
-function InitMap(baseHeight, baseTerrain)
-{
-	g_Map = new RandomMap(baseHeight, baseTerrain);
-}
-
-function ExportMap()
-{
-	g_Map.ExportMap();
-}
-
 function fractionToTiles(f)
 {
 	return g_MapSettings.Size * f;

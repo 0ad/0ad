@@ -49,7 +49,7 @@ var heightOffsetLevel2 = 8;
 var heightOffsetBumps = 2;
 var heightOffsetAntiBumps = -5;
 
-InitMap(heightSeaGround, tVeryDeepWater);
+var g_Map = new RandomMap(heightSeaGround, tVeryDeepWater);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -516,4 +516,4 @@ setWaterMurkiness(0.72);
 setWaterWaviness(2.0);
 setWaterType("ocean");
 
-ExportMap();
+g_Map.ExportMap();

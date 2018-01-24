@@ -136,7 +136,7 @@ else if (biome == "frozen_lake")
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -333,4 +333,4 @@ setWaterWaviness(5.0);
 setWaterType("lake");
 setWaterMurkiness(0.88);
 
-ExportMap();
+g_Map.ExportMap();

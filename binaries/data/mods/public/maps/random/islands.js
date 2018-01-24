@@ -49,7 +49,7 @@ const heightLand = 3;
 const heightOffsetBump = 2;
 const heightHill = 18;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -361,4 +361,4 @@ setSunRotation(randomAngle());
 setSunElevation(randFloat(1/5, 1/3) * Math.PI);
 setWaterWaviness(2);
 
-ExportMap();
+g_Map.ExportMap();

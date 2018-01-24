@@ -6,4 +6,4 @@ g_AllowNaval = false;
 
 createUnknownMap();
 
-ExportMap();
+g_Map.ExportMap();

@@ -32,7 +32,7 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPoplar, tForestFloor];
 var heightLand = 1;
 var heightOffsetBump = 2;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 
@@ -245,4 +245,4 @@ setPPSaturation(0.45);
 setPPContrast(0.62);
 setPPBloom(0.2);
 
-ExportMap();
+g_Map.ExportMap();

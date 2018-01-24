@@ -47,7 +47,7 @@ const heightLand = 3;
 const heightHill = 18;
 const heightOffsetBump = 2;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -369,4 +369,4 @@ setWaterWaviness(2);
 
 placePlayersNomad(clPlayer, [stayClasses(clIsland, 4), avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2)]);
 
-ExportMap();
+g_Map.ExportMap();

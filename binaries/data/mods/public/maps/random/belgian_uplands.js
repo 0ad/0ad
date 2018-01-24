@@ -6,7 +6,7 @@ const tPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d",
 
 const heightLand = 0;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -410,4 +410,4 @@ else
 	}
 }
 
-ExportMap();
+g_Map.ExportMap();

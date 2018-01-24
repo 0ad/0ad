@@ -49,7 +49,7 @@ const heightHill = 15;
 const heightOffsetBump1 = 2;
 const heightOffsetBump2 = 1;
 
-InitMap(heightLand, tShoreBlend);
+var g_Map = new RandomMap(heightLand, tShoreBlend);
 
 const numPlayers = getNumPlayers();
 
@@ -394,4 +394,4 @@ setPPEffect("hdr");
 setPPSaturation(0.44);
 setPPBloom(0.3);
 
-ExportMap();
+g_Map.ExportMap();

@@ -27,7 +27,7 @@ var heightPath = -2;
 var heightLand = 0;
 var heightOffsetRandomPath = 1;
 
-InitMap(heightLand, terrainPrimary);
+var g_Map = new RandomMap(heightLand, terrainPrimary);
 
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;
@@ -199,4 +199,4 @@ Engine.SetProgress(95);
 
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clBaseResource, 4));
 
-ExportMap();
+g_Map.ExportMap();

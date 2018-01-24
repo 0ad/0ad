@@ -47,7 +47,7 @@ const heightLand = 3;
 const heightHill = 12;
 const heightOffsetBump = 2;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -359,4 +359,4 @@ setWaterMurkiness(0.72);
 setWaterWaviness(3.0);
 setWaterType("ocean");
 
-ExportMap();
+g_Map.ExportMap();

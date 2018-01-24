@@ -36,7 +36,7 @@ const pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATO
 const heightLand = 1;
 const heightOffsetOasis = -3;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -237,4 +237,4 @@ setWaterWaviness(1.0);
 setWaterType("clap");
 setWaterMurkiness(0.5);
 
-ExportMap();
+g_Map.ExportMap();

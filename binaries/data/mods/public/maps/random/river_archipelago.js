@@ -43,7 +43,7 @@ const heightSeaGround = -8;
 const heightLand = 3;
 const heightHill = 25;
 
-InitMap(heightSeaGround, tGrass);
+var g_Map = new RandomMap(heightSeaGround, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
@@ -497,4 +497,4 @@ setPPSaturation(0.65);
 setPPBloom(0.6);
 
 setSkySet("stratus");
-ExportMap();
+g_Map.ExportMap();

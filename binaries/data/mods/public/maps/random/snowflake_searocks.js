@@ -41,7 +41,7 @@ const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TE
 const heightIsland = 20;
 const heightSeaGround = -5;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -437,4 +437,4 @@ setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randomAngle());
 setSunElevation(Math.PI * randFloat(1/5, 1/3));
 
-ExportMap();
+g_Map.ExportMap();

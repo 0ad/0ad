@@ -35,7 +35,7 @@ const heightLand = 1;
 const heightHill = 22;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, tMainDirt);
+var g_Map = new RandomMap(heightLand, tMainDirt);
 
 const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();
@@ -274,4 +274,4 @@ setPPContrast(0.65);
 setPPSaturation(0.42);
 setPPBloom(0.6);
 
-ExportMap();
+g_Map.ExportMap();

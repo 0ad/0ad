@@ -39,7 +39,7 @@ const heightLand = 1;
 const heightOffsetBumpWater = 1;
 const heightOffsetBumpLand = 2;
 
-InitMap(heightLand, tGrass);
+var g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 
@@ -305,4 +305,4 @@ setPPEffect("hdr");
 setPPSaturation(0.44);
 setPPBloom(0.3);
 
-ExportMap();
+g_Map.ExportMap();

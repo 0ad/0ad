@@ -66,7 +66,7 @@ var tWaterBorder = ['dirt_brown_d'];
 const heightLand = 1;
 const heightOffsetPath = -0.1;
 
-InitMap(heightLand, terrainPrimary);
+var g_Map = new RandomMap(heightLand, terrainPrimary);
 
 var clPlayer = createTileClass();
 var clPath = createTileClass();
@@ -317,4 +317,4 @@ placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clFood, 2, clM
 
 Engine.SetProgress(100);
 
-ExportMap();
+g_Map.ExportMap();

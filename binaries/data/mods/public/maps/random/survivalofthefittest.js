@@ -42,7 +42,7 @@ const triggerPointTreasures = [
 const heightLand = 3;
 const heightHill = 30;
 
-InitMap(heightHill, tMainTerrain);
+var g_Map = new RandomMap(heightHill, tMainTerrain);
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
@@ -200,4 +200,4 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
-ExportMap();
+g_Map.ExportMap();

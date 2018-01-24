@@ -56,7 +56,7 @@ const heightCliff = 3.12;
 const heightHill = 18;
 const heightOffsetBump = 2;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();

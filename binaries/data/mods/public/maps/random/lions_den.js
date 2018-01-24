@@ -11,7 +11,7 @@ const heightPath = 10;
 const heightDen = 15;
 const heightHill = 50;
 
-InitMap(heightHill, topTerrain);
+var g_Map = new RandomMap(heightHill, topTerrain);
 
 const mapCenter = getMapCenter();
 const numPlayers = getNumPlayers();
@@ -422,7 +422,7 @@ placePlayersNomad(
 			g_TileClasses.animals, 2)
 	]);
 
-ExportMap();
+g_Map.ExportMap();
 
 function createSunkenTerrain()
 {

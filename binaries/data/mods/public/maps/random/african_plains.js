@@ -41,7 +41,7 @@ var heightSeaGround = -5;
 var heightLand = 2;
 var heightCliff = 3;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -283,4 +283,4 @@ setWaterMurkiness(5.92);
 setWaterWaviness(0);
 setWaterType("clap");
 
-ExportMap();
+g_Map.ExportMap();

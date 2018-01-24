@@ -31,7 +31,7 @@ const heightLake = -4;
 const heightLand = 3;
 const heightHill = 25;
 
-InitMap(heightLand, tSnowA);
+var g_Map = new RandomMap(heightLand, tSnowA);
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
@@ -285,4 +285,4 @@ setPPSaturation(0.28);
 setPPEffect("hdr");
 
 setSkySet("fog");
-ExportMap();
+g_Map.ExportMap();

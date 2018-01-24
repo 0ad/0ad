@@ -50,7 +50,7 @@ const heightSeaGround = -2;
 const heightLand = 2;
 const shoreRadius = 6;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const clPlayer = createTileClass();
 const clHill = createTileClass();
@@ -300,4 +300,4 @@ placePlayersNomad(
 setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
 setWaterMurkiness(0.4);
 
-ExportMap();
+g_Map.ExportMap();

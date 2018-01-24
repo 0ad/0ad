@@ -36,7 +36,7 @@ const heightSeaGround = -5;
 const heightLand = 3;
 const heightHill = 25;
 
-InitMap(heightLand, tGrass);
+var g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapCenter = getMapCenter();
@@ -333,4 +333,4 @@ setPPSaturation(0.65);
 setPPBloom(0.6);
 
 setSkySet("cirrus");
-ExportMap();
+g_Map.ExportMap();
