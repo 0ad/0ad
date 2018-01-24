@@ -181,7 +181,7 @@ for (var x = 0; x < mapSize; x++)
 		{
 			let border = tDensActual < randFloat(0, bushChance * maxTreeDensity);
 			createArea(
-				new RectPlacer(position.x, position.y, position.x + 1, position.y + 1),
+				new RectPlacer(position.x, position.y, position.x, position.y),
 				[
 					new TerrainPainter(border ? terrainWoodBorder : terrainWood),
 					new ElevationPainter(randFloat(0, 1)),

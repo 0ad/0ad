@@ -289,7 +289,7 @@ for (var x = 0; x < mapSize; x++)
 		var radius = Math.euclidDistance2D(x + 0.5, z + 0.5, mapCenter.x, mapCenter.y);
 		var minDistToSL = mapSize;
 		for (var i=0; i < numPlayers; i++)
-			minDistToSL = Math.min(minDistToSL, Math.euclidDistance2D(x, z, playerPosition[i].x, playerPosition[i].x));
+			minDistToSL = Math.min(minDistToSL, Math.euclidDistance2D(x, z, playerPosition[i].x, playerPosition[i].y));
 
 		// Woods tile based
 		var tDensFactSL = Math.max(Math.min((minDistToSL - baseRadius) / baseRadius, 1), 0);
