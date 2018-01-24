@@ -278,7 +278,7 @@ function placePlayerBaseMines(args)
 		{
 			let angle = startAngle + angleBetweenMines * (i + (mineCount - 1) / 2);
 			pos[i] = new Vector2D(0, get("distance", 12)).rotate(angle).add(basePosition).round();
-			if (!g_Map.validT(pos[i].x, pos[i].y) || !baseResourceConstraint.allows(pos[i].x, pos[i].y))
+			if (!g_Map.validTile(pos[i]) || !baseResourceConstraint.allows(pos[i]))
 			{
 				pos = undefined;
 				break;
@@ -411,7 +411,7 @@ function placePlayerBaseDecoratives(args)
 function placePlayersNomad(playerClass, constraints)
 {
 	if (!isNomad())
-		return;
+		return undefined;
 
 	let distance = scaleByMapSize(60, 240);
 	let constraint = new AndConstraint(constraints);

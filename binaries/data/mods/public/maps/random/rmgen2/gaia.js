@@ -100,24 +100,22 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 		var slopeLength = (1 - margin) * Math.euclidDistance2D(baseLine.midX, baseLine.midZ, endLine.midX, endLine.midZ);
 
 		// Adjust the height of each point in the bluff
-		for (var p = 0; p < points.length; ++p)
+		for (let point of points)
 		{
-			var pt = points[p];
-			var position = new Vector2D(pt.x, pt.z);
 			var dist = Math.abs(distanceOfPointFromLine(
 				new Vector2D(baseLine.x1, baseLine.z1),
 				new Vector2D(baseLine.x2, baseLine.z2),
-				position));
+				point));
 
-			var curHeight = g_Map.getHeight(pt.x, pt.z);
+			var curHeight = g_Map.getHeight(point);
 			var newHeight = curHeight - curHeight * (dist / slopeLength) - 2;
 
 			newHeight = Math.max(newHeight, endLine.height);
 
-			if (newHeight <= endLine.height + 2 && g_Map.validT(pt.x, pt.z) && g_Map.getTexture(pt.x, pt.z).indexOf('cliff') > -1)
-				ground.place(pt.x, pt.z);
+			if (newHeight <= endLine.height + 2 && g_Map.validTile(point) && g_Map.getTexture(point).indexOf('cliff') != -1)
+				ground.place(point);
 
-			g_Map.setHeight(position, newHeight);
+			g_Map.setHeight(point, newHeight);
 		}
 
 		// Smooth out the ground around the bluff
@@ -926,7 +924,7 @@ function unreachableBluff(bb, corners, baseLine, endLine)
 		return 1;
 
 	// If the end points aren't on the tilemap
-	if (!g_Map.validT(endLine.x1, endLine.z1) && !g_Map.validT(endLine.x2, endLine.z2))
+	if (!g_Map.validTile(new Vector2D(endLine.x1, endLine.z1)) && !g_Map.validTile(new Vector2D(endLine.x2, endLine.z2)))
 		return 2;
 
 	var minTilesInGroup = 1;
@@ -942,7 +940,7 @@ function unreachableBluff(bb, corners, baseLine, endLine)
 			if (!bb[x][z].isFeature)
 				continue;
 
-			var valid = g_Map.validT(x + corners.minX, z + corners.minZ);
+			var valid = g_Map.validTile(new Vector2D(x + corners.minX, z + corners.minZ));
 
 			if (valid)
 				++count;
@@ -971,7 +969,7 @@ function unreachableBluff(bb, corners, baseLine, endLine)
 			if (!bb[x][z].isFeature)
 				continue;
 
-			var valid = g_Map.validT(x + corners.minX, z + corners.minZ);
+			var valid = g_Map.validTile(new Vector2D(x + corners.minX, z + corners.minZ));
 
 			if (valid)
 				++count;
@@ -997,8 +995,8 @@ function unreachableBluff(bb, corners, baseLine, endLine)
  */
 function removeBluff(points)
 {
-	for (var i = 0; i < points.length; ++i)
-		addToClass(points[i].x, points[i].z, g_TileClasses.mountain);
+	for (let point of points)
+		addToClass(point.x, point.y, g_TileClasses.mountain);
 }
 
 /**
@@ -1012,22 +1010,16 @@ function createBoundingBox(points, corners)
 	for (var w = 0; w < width; ++w)
 	{
 		bb[w] = [];
-		for (var l = 0; l < length; ++l)
-		{
-			var curHeight = g_Map.getHeight(w + corners.minX, l + corners.minZ);
+		for (let l = 0; l < length; ++l)
 			bb[w][l] = {
-				"height": curHeight,
+				"height": g_Map.getHeight(new Vector2D(w + corners.minX, l + corners.minZ)),
 				"isFeature": false
 			};
-		}
 	}
 
 	// Define the coordinates that represent the bluff
-	for (var p = 0; p < points.length; ++p)
-	{
-		var pt = points[p];
-		bb[pt.x - corners.minX][pt.z - corners.minZ].isFeature = true;
-	}
+	for (let point of points)
+		bb[point.x - corners.minX][point.y - corners.minZ].isFeature = true;
 
 	return bb;
 }
@@ -1041,12 +1033,11 @@ function fadeToGround(bb, minX, minZ, elevation)
 	for (var x = 0; x < bb.length; ++x)
 		for (var z = 0; z < bb[x].length; ++z)
 		{
-			var pt = bb[x][z];
-			if (!pt.isFeature && nextToFeature(bb, x, z))
+			if (!bb[x][z].isFeature && nextToFeature(bb, x, z))
 			{
 				let position = new Vector2D(x + minX, z + minZ);
 				g_Map.setHeight(position, g_Map.getAverageHeight(position));
-				ground.place(position.x, position.y);
+				ground.place(position);
 			}
 		}
 }
@@ -1081,28 +1072,26 @@ function findClearLine(bb, corners, angle, baseHeight)
 
 	for (var x = corners.minX; x <= corners.maxX; ++x)
 	{
-		var x2 = x;
-		var z2 = z;
+		let position2 = new Vector2D(x, z);
 
 		var clear = true;
 
-		while (x2 >= corners.minX && x2 <= corners.maxX && z2 >= corners.minZ && z2 <= corners.maxZ)
+		while (position2.x >= corners.minX && position2.x <= corners.maxX && position2.y >= corners.minZ && position2.y <= corners.maxZ)
 		{
-			var bp = bb[x2 - corners.minX][z2 - corners.minZ];
-			if (bp.isFeature && g_Map.validT(x2, z2))
+			var bp = bb[position2.x - corners.minX][position2.y - corners.minZ];
+			if (bp.isFeature && g_Map.validTile(position2))
 			{
 				clear = false;
 				break;
 			}
 
-			x2 = x2 + xOffset;
-			z2 = z2 + zOffset;
+			position2.add(new Vector2D(xOffset, zOffset));
 		}
 
 		if (clear)
 		{
-			var lastX = x2 - xOffset;
-			var lastZ = z2 - zOffset;
+			var lastX = position2.x - xOffset;
+			var lastZ = position2.y - zOffset;
 			var midX = Math.floor((x + lastX) / 2);
 			var midZ = Math.floor((z + lastZ) / 2);
 			clearLine = {
@@ -1138,15 +1127,13 @@ function findCorners(points)
 	var maxX = -1;
 	var maxZ = -1;
 
-	for (var p = 0; p < points.length; ++p)
+	for (let point of points)
 	{
-		var pt = points[p];
+		minX = Math.min(point.x, minX);
+		minZ = Math.min(point.y, minZ);
 
-		minX = Math.min(pt.x, minX);
-		minZ = Math.min(pt.z, minZ);
-
-		maxX = Math.max(pt.x, maxX);
-		maxZ = Math.max(pt.z, maxZ);
+		maxX = Math.max(point.x, maxX);
+		maxZ = Math.max(point.y, maxZ);
 	}
 
 	return {
@@ -1237,7 +1224,7 @@ function paintHeightmap(mapName, func = undefined)
 			{
 				let i = hmTile.x * hmSize + hmTile.y;
 				let tile = mapData.pallet[mapData.tilemap[i]];
-				createTerrain(tile).place(x, y);
+				createTerrain(tile).place(position);
 
 				if (func)
 					func(tile, x, y);

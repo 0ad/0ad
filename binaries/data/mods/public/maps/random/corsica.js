@@ -268,11 +268,12 @@ log("Painting land...");
 for (let mapX = 0; mapX < mapSize; ++mapX)
 	for (let mapZ = 0; mapZ < mapSize; ++mapZ)
 	{
+		let position = new Vector2D(mapX, mapZ);
 		let terrain = getCosricaSardiniaTerrain(mapX, mapZ);
 		if (!terrain)
 			continue;
 
-		createTerrain(terrain).place(mapX, mapZ);
+		createTerrain(terrain).place(position);
 
 		if (terrain == tCliffs || terrain == tSteepCliffs)
 			addToClass(mapX, mapZ, clCliffs);
@@ -289,7 +290,7 @@ function getCosricaSardiniaTerrain(mapX, mapZ)
 	if (isSettlement)
 		return undefined;
 
-	let height = getHeight(mapX, mapZ);
+	let height = g_Map.getHeight(position);
 	let slope = g_Map.getSlope(position);
 
 	if (height >= 0.5 && height < 1.5 && isShore)

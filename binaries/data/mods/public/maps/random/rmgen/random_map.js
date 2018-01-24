@@ -95,26 +95,23 @@ RandomMap.prototype.getEntityID = function()
  * Determines whether the given coordinates are within the given distance of the passable map area.
  * Should be used to restrict entity placement and path creation.
  */
-RandomMap.prototype.validT = function(x, z, distance = 0)
+RandomMap.prototype.validTile = function(position, distance = 0)
 {
 	distance += MAP_BORDER_WIDTH;
 
 	if (g_MapSettings.CircularMap)
-	{
-		let halfSize = Math.floor(this.size / 2);
-		return Math.round(Math.euclidDistance2D(x, z, halfSize, halfSize)) < halfSize - distance - 1;
-	}
-	else
-		return x >= distance && z >= distance && x < this.size - distance && z < this.size - distance;
+		return Math.round(position.distanceTo(getMapCenter())) < this.size / 2 - distance - 1;
+
+	return position.x >= distance && position.y >= distance && position.x < this.size - distance && position.y < this.size - distance;
 };
 
 /**
  * Determines whether the given coordinates are within the tile grid, passable or not.
  * Should be used to restrict texture painting.
  */
-RandomMap.prototype.inMapBounds = function(x, z)
+RandomMap.prototype.inMapBounds = function(position)
 {
-	return x >= 0 && z >= 0 && x < this.size && z < this.size;
+	return position.x >= 0 && position.y >= 0 && position.x < this.size && position.y < this.size;
 };
 
 /**
@@ -141,31 +138,34 @@ RandomMap.prototype.validClass = function(tileClassID)
 /**
  * Returns the name of the texture of the given tile.
  */
-RandomMap.prototype.getTexture = function(x, z)
+RandomMap.prototype.getTexture = function(position)
 {
-	if (!this.validT(x, z))
-		throw new Error("getTexture: invalid tile position (" + x + ", " + z + ")");
+	if (!this.validTile(position))
+		throw new Error("getTexture: invalid tile position " + uneval(position));
 
-	return this.IDToName[this.texture[x][z]];
+	return this.IDToName[this.texture[position.x][position.y]];
 };
 
 /**
  * Paints the given texture on the given tile.
  */
-RandomMap.prototype.setTexture = function(x, z, texture)
+RandomMap.prototype.setTexture = function(position, texture)
 {
-	if (!this.validT(x, z))
-		throw new Error("setTexture: invalid tile position (" + x + ", " + z + ")");
+	if (position.x < 0 ||
+	    position.y < 0 ||
+	    position.x >= this.texture.length ||
+	    position.y >= this.texture[position.x].length)
+		throw new Error("setTexture: invalid tile position " + uneval(position));
 
-	this.texture[x][z] = this.getTextureID(texture);
+	this.texture[position.x][position.y] = this.getTextureID(texture);
 };
 
-RandomMap.prototype.getHeight = function(x, z)
+RandomMap.prototype.getHeight = function(position)
 {
-	if (!this.validH(x, z))
-		throw new Error("getHeight: invalid vertex position (" + x + ", " + z + ")");
+	if (!this.validH(position.x, position.y))
+		throw new Error("getHeight: invalid vertex position " + uneval(position));
 
-	return this.height[x][z];
+	return this.height[position.x][position.y];
 };
 
 RandomMap.prototype.setHeight = function(position, height)
@@ -179,23 +179,23 @@ RandomMap.prototype.setHeight = function(position, height)
 /**
  * Returns the Entity that was painted by a Terrain class on the given tile or undefined otherwise.
  */
-RandomMap.prototype.getTerrainObject = function(x, z)
+RandomMap.prototype.getTerrainObject = function(position)
 {
-	if (!this.validT(x, z))
-		throw new Error("getTerrainObject: invalid tile position (" + x + ", " + z + ")");
+	if (!this.validTile(position))
+		throw new Error("getTerrainObject: invalid tile position " + uneval(position));
 
-	return this.terrainObjects[x][z];
+	return this.terrainObjects[position.x][position.y];
 };
 
 /**
  * Places the Entity on the given tile and allows to later replace it if the terrain was painted over.
  */
-RandomMap.prototype.setTerrainObject = function(x, z, object)
+RandomMap.prototype.setTerrainObject = function(position, object)
 {
-	if (!this.validT(x, z))
-		throw new Error("setTerrainObject: invalid tile position (" + x + ", " + z + ")");
+	if (!this.validTile(position))
+		throw new Error("setTerrainObject: invalid tile position " + uneval(position));
 
-	this.terrainObjects[x][z] = object;
+	this.terrainObjects[position.x][position.y] = object;
 };
 
 /**
@@ -213,7 +213,7 @@ RandomMap.prototype.createArea = function(points)
 {
 	let areaID = ++this.areaID;
 	for (let p of points)
-		this.area[p.x][p.z] = areaID;
+		this.area[p.x][p.y] = areaID;
 	return new Area(points, areaID);
 };
 
@@ -273,7 +273,7 @@ RandomMap.prototype.getAdjacentPoints = function(position)
 			if (x || z )
 			{
 				let adjacentPos = Vector2D.add(position, new Vector2D(x, z)).round();
-				if (this.inMapBounds(adjacentPos.x, adjacentPos.y))
+				if (this.inMapBounds(adjacentPos))
 					adjacentPositions.push(adjacentPos);
 			}
 
@@ -289,7 +289,7 @@ RandomMap.prototype.getAverageHeight = function(position)
 	if (!adjacentPositions.length)
 		return 0;
 
-	return adjacentPositions.reduce((totalHeight, pos) => totalHeight + this.getHeight(pos.x, pos.y), 0) / adjacentPositions.length;
+	return adjacentPositions.reduce((totalHeight, pos) => totalHeight + this.getHeight(pos), 0) / adjacentPositions.length;
 }
 
 /**
@@ -301,7 +301,8 @@ RandomMap.prototype.getSlope = function(position)
 	if (!adjacentPositions.length)
 		return 0;
 
-	return adjacentPositions.reduce((totalSlope, adjacentPos) => totalSlope + Math.abs(this.getHeight(adjacentPos.x, adjacentPos.y) - this.getHeight(position.x, position.y)), 0) / adjacentPositions.length;
+	return adjacentPositions.reduce((totalSlope, adjacentPos) =>
+		totalSlope + Math.abs(this.getHeight(adjacentPos) - this.getHeight(position)), 0) / adjacentPositions.length;
 }
 
 /**

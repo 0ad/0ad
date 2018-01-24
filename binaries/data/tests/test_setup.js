@@ -43,3 +43,12 @@ global.TS_ASSERT_UNEVAL_EQUALS = function TS_ASSERT_UNEVAL_EQUALS(x, y)
 	if (!(uneval(x) === uneval(y)))
 		fail("Expected equal, got "+uneval(x)+" !== "+uneval(y));
 }
+
+global.TS_ASSERT_EXCEPTION = function(func)
+{
+	try {
+		func();
+		Engine.TS_FAIL("Missed exception at:\n" + new Error().stack);
+	} catch (e) {
+	}
+}

@@ -112,7 +112,7 @@ log("Creating stone mines...");
 for (var i = 0; i < scaleByMapSize(12,30); ++i)
 {
 	let position = new Vector2D(randIntExclusive(0, mapSize), randIntExclusive(0, mapSize));
-	if (avoidClasses(clPlayer, 30, clRock, 25, clWater, 10).allows(position.x, position.y))
+	if (avoidClasses(clPlayer, 30, clRock, 25, clWater, 10).allows(position))
 	{
 		createStoneMineFormation(position, oStoneSmall, tDirt4);
 		addToClass(position.x, position.y, clRock);

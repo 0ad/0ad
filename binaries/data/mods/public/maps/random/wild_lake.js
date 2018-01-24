@@ -514,10 +514,7 @@ let clPath = createTileClass();
 /**
  * Divide tiles in areas by height and avoid paths
  */
-let areas = [];
-for (let h = 0; h < heighLimits.length; ++h)
-	areas.push([]);
-
+let areas = heighLimits.map(heightLimit => []);
 for (let x = 0; x < tchm.length; ++x)
 	for (let y = 0; y < tchm[0].length; ++y)
 	{
@@ -529,7 +526,7 @@ for (let x = 0; x < tchm.length; ++x)
 		{
 			if (tchm[x][y] >= minHeight && tchm[x][y] <= heighLimits[h])
 			{
-				areas[h].push({ "x": x, "y": y });
+				areas[h].push(new Vector2D(x, y));
 				break;
 			}
 			else
@@ -547,11 +544,9 @@ for (let h = 0; h < heighLimits.length; ++h)
 {
 	minSlope[h] = Infinity;
 	maxSlope[h] = 0;
-	for (let t = 0; t < areas[h].length; ++t)
+	for (let point of areas[h])
 	{
-		let x = areas[h][t].x;
-		let y = areas[h][t].y;
-		let slope = slopeMap[x][y];
+		let slope = slopeMap[point.x][point.y];
 
 		if (slope > maxSlope[h])
 			maxSlope[h] = slope;
@@ -565,14 +560,12 @@ for (let h = 0; h < heighLimits.length; ++h)
  * Paint areas by height and slope
  */
 for (let h = 0; h < heighLimits.length; ++h)
-	for (let t = 0; t < areas[h].length; ++t)
+	for (let point of areas[h])
 	{
-		let x = areas[h][t].x;
-		let y = areas[h][t].y;
 		let actor;
 		let texture = pickRandom(wildLakeBiome[h].texture);
 
-		if (slopeMap[x][y] < 0.5 * (minSlope[h] + maxSlope[h]))
+		if (slopeMap[point.x][point.y] < (minSlope[h] + maxSlope[h]) / 2)
 		{
 			if (randBool(wildLakeBiome[h].actor[1]))
 				actor = pickRandom(wildLakeBiome[h].actor[0]);
@@ -584,10 +577,10 @@ for (let h = 0; h < heighLimits.length; ++h)
 				actor = pickRandom(wildLakeBiome[h].actorHS[0]);
 		}
 
-		g_Map.texture[x][y] = g_Map.getTextureID(texture);
+		g_Map.setTexture(point, texture);
 
 		if (actor)
-			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randomAngle());
+			placeObject(point.x + randFloat(0, 1), point.y + randFloat(0, 1), actor, 0, randomAngle());
 	}
 Engine.SetProgress(80);
 

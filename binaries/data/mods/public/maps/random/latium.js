@@ -142,8 +142,8 @@ for (var ix = 0; ix <= mapSize; ix++)
 		var pn = playerNearness(x, z);
 
 		let c = startAngle ? z : x;
-		let distToWater = stayClasses(clWater, 1).allows(ix, iz) ? 0 : (0.5 - WATER_WIDTH - Math.abs(c - 0.5));
-		let h = distToWater ? heightHill * (1 - Math.abs(c - 0.5) / (0.5 - WATER_WIDTH)) : getHeight(ix, iz);
+		let distToWater = stayClasses(clWater, 1).allows(position) ? 0 : (0.5 - WATER_WIDTH - Math.abs(c - 0.5));
+		let h = distToWater ? heightHill * (1 - Math.abs(c - 0.5) / (0.5 - WATER_WIDTH)) : g_Map.getHeight(position);
 
 		// add some base noise
 		var baseNoise = 16*noise0.get(x,z) + 8*noise1.get(x,z) + 4*noise2.get(x,z) - (16+8+4)/2;
@@ -194,15 +194,16 @@ var noise10 = new Noise2D(scaleByMapSize(50, 200));
 for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
+		let position = new Vector2D(ix, iz);
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
 
 		// get heights of surrounding vertices
-		var h00 = getHeight(ix, iz);
-		var h01 = getHeight(ix, iz+1);
-		var h10 = getHeight(ix+1, iz);
-		var h11 = getHeight(ix+1, iz+1);
+		var h00 = g_Map.getHeight(Vector2D.add(position, new Vector2D(0, 0));
+		var h01 = g_Map.getHeight(Vector2D.add(position, new Vector2D(0, 1));
+		var h10 = g_Map.getHeight(Vector2D.add(position, new Vector2D(1, 0));
+		var h11 = g_Map.getHeight(Vector2D.add(position, new Vector2D(1, 1));
 
 		// find min and max height
 		var maxH = Math.max(h00, h01, h10, h11);
@@ -217,7 +218,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			var maxNz = Math.min(iz + 2, mapSize);
 			for (let nx = Math.max(ix - 1, 0); nx <= maxNx; ++nx)
 				for (let nz = Math.max(iz - 1, 0); nz <= maxNz; ++nz)
-					minAdjHeight = Math.min(minAdjHeight, getHeight(nx, nz));
+					minAdjHeight = Math.min(minAdjHeight, getHeight(new Vector2D(nx, nz)));
 		}
 
 		// choose a terrain based on elevation
@@ -265,7 +266,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			addToClass(ix, iz, clCliff);
 
 		// forests
-		if (getHeight(ix, iz) < 11 && diffH < 2 && minH > 1)
+		if (g_Map.getHeight(position) < 11 && diffH < 2 && minH > 1)
 		{
 			var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn - 0.59;
 
@@ -313,7 +314,7 @@ for (var ix = 0; ix < mapSize; ix++)
 				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randomAngle());
 		}
 
-		createTerrain(t).place(ix, iz);
+		createTerrain(t).place(position);
 	}
 
 Engine.SetProgress(30);

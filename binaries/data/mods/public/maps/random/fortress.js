@@ -103,13 +103,14 @@ for (let i = 0; i < numPlayers; ++i)
 	for (var tx = minBoundX; tx < maxBoundX; ++tx)
 		for (var ty = minBoundY; ty < maxBoundY; ++ty)
 		{
+			let position = new Vector2D(tx, ty);
 			var unboundSumOfXY = tx + ty - minBoundX - minBoundY;
 			if (unboundSumOfXY > tilesSize &&
 			    unboundSumOfXY < tilesSize * 3 &&
 			    tx - ty + minBoundY - minBoundX < tilesSize &&
 			    ty - tx - minBoundY + minBoundX < tilesSize)
 			{
-				createTerrain(tRoad).place(tx, ty);
+				createTerrain(tRoad).place(position);
 				addToClass(tx, ty, clPlayer);
 			}
 		}

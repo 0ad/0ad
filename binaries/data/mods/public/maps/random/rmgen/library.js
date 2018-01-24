@@ -120,7 +120,7 @@ function randomizeCoordinatesFromAreas(obj, areas)
 {
 	let pt = pickRandom(pickRandom(areas).points);
 	obj.x = pt.x;
-	obj.z = pt.z;
+	obj.z = pt.y;
 }
 
 // TODO this is a hack to simulate the old behaviour of those functions
@@ -200,7 +200,8 @@ function createTerrain(terrain)
 
 function placeObject(x, z, type, player, angle)
 {
-	if (g_Map.validT(x, z))
+	let position = new Vector2D(x, z);
+	if (g_Map.validTile(position))
 		g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 
@@ -328,15 +329,6 @@ function getPlayerTeam(playerID)
 	return g_MapSettings.PlayerData[playerID].Team;
 }
 
-function getHeight(x, z)
-{
-	return g_Map.getHeight(x, z);
-}
-
-/**
- *	Utility functions for classes
- */
-
 /**
  * Add point to given class by id
  */
@@ -421,20 +413,4 @@ function borderClasses(/*class1, idist1, odist1, class2, idist2, odist2, etc*/)
 		return ar[0];
 
 	return new AndConstraint(ar);
-}
-
-/**
- * Checks if the given tile is in class "id"
- */
-function checkIfInClass(x, z, id)
-{
-	let tileClass = getTileClass(id);
-	if (tileClass === null)
-		return 0;
-
-	let members = tileClass.countMembersInRadius(x, z, 1);
-	if (members === null)
-		return 0;
-
-	return members;
 }

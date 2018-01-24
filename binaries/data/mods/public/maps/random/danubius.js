@@ -167,6 +167,39 @@ var gallicCCTreasureCount = randIntInclusive(8, 12);
 // How many treasures will be placed randomly on the map at most
 var randomTreasureCount = randIntInclusive(0, 3 * numPlayers);
 
+var ritualParticipants = [
+	{
+		"radius": 0.6,
+		"templates": [oFemale],
+		"count": 9,
+		"angle": Math.PI
+	},
+	{
+		"radius": 0.8,
+		"templates": [oSkirmisher, oHealer, oNakedFanatic],
+		"count": 15,
+		"angle": Math.PI
+	},
+	{
+		"radius": 1,
+		"templates": [aBench],
+		"count": 10,
+		"angle": Math.PI / 2
+	},
+	{
+		"radius": 1.1,
+		"templates": [oGoat],
+		"count": 7,
+		"angle": 0
+	},
+	{
+		"radius": 1.2,
+		"templates": [aRug],
+		"count": 8,
+		"angle": Math.PI
+	}
+];
+
 // Place a gallic village on small maps and larger
 var gallicCC = mapSize >= smallMapSize;
 if (gallicCC)
@@ -210,47 +243,19 @@ if (gallicCC)
 			createArea(
 				new ClumpPlacer(diskArea(mRadius), 0.6, 0.3, 10, meetingPlacePosition),
 				[
-					new LayeredPainter([tShore, tShore], [1]),
+					new TerrainPainter(tShore),
 					paintClass(clPath),
 					paintClass(clRitualPlace)
 				]);
 
 			placeObject(meetingPlacePosition.x, meetingPlacePosition.y, aCampfire, 0, randomAngle());
 
-			let femaleCount = Math.round(mRadius * 2);
-			let maleCount = Math.round(mRadius * 3);
-			let benchCount = Math.round(mRadius * 2);
-			let rugCount = Math.round(mRadius * 2.5);
-			let goatCount = Math.round(mRadius * 1.5);
-
-			let femaleRadius = mRadius * 0.3;
-			let maleRadius = mRadius * 0.4;
-			let benchRadius = mRadius * 0.5;
-			let rugRadius = mRadius * 0.6;
-			let goatRadius = mRadius * 0.8;
-
-			let calcBend = entCount => Math.PI * 2 / entCount;
-			let maleBend = calcBend(maleCount);
-
-			g_WallStyles.celt_ritual = {
-				"overlap": 0,
-				"female":     { "angle": Math.PI, "length": femaleRadius, "indent": 0, "bend": calcBend(femaleCount), "templateName": oFemale },
-				"skirmisher": { "angle": Math.PI, "length": maleRadius, "indent": 0, "bend": maleBend, "templateName": oSkirmisher },
-				"healer":     { "angle": Math.PI, "length": maleRadius, "indent": 0, "bend": maleBend, "templateName": oHealer },
-				"fanatic":    { "angle": Math.PI, "length": maleRadius, "indent": 0, "bend": maleBend, "templateName": oNakedFanatic },
-				"bench":      { "angle": Math.PI / 2, "length": benchRadius, "indent": 0, "bend": calcBend(benchCount), "templateName": aBench },
-				"rug":        { "angle": 0,       "length": rugRadius, "indent": 0, "bend": calcBend(rugCount), "templateName": aRug },
-				"goat":       { "angle": Math.PI, "length": goatRadius, "indent": 0, "bend": calcBend(goatCount), "templateName": oGoat }
-			};
-
-			placeCustomFortress(meetingPlacePosition.x, meetingPlacePosition.y, new Fortress("celt ritual females", new Array(femaleCount).fill("female")), "celt_ritual", 0, 0);
-
-			placeCustomFortress(meetingPlacePosition.x, meetingPlacePosition.y, new Fortress("celt ritual males", new Array(maleCount).fill(0).map(i =>
-				pickRandom(["skirmisher", "healer", "fanatic"]))), "celt_ritual", 0, 0);
-
-			placeCustomFortress(meetingPlacePosition.x, meetingPlacePosition.y, new Fortress("celt ritual bench", new Array(benchCount).fill("bench")), "celt_ritual", 0, 0);
-			placeCustomFortress(meetingPlacePosition.x, meetingPlacePosition.y, new Fortress("celt ritual rug", new Array(rugCount).fill("rug")), "celt_ritual", 0, 0);
-			placeCustomFortress(meetingPlacePosition.x, meetingPlacePosition.y, new Fortress("celt ritual goat", new Array(goatCount).fill("goat")), "celt_ritual", 0, 0);
+			for (let participants of ritualParticipants)
+			{
+				let [positions, angles] = distributePointsOnCircle(participants.count, startAngle, participants.radius * mRadius, meetingPlacePosition);
+				for (let i = 0; i < positions.length; ++i)
+					placeObject(positions[i].x, positions[i].y, pickRandom(participants.templates), 0, angles[i] + participants.angle);
+			}
 		}
 
 		placeObject(civicCenterPosition.x, civicCenterPosition.y, oCivicCenter, 0, startAngle + BUILDING_ORIENTATION + Math.PI * 3/2 * i);
@@ -259,7 +264,7 @@ if (gallicCC)
 		createArea(
 			new ClumpPlacer(diskArea(gaulCityRadius), 0.6, 0.3, 10, civicCenterPosition),
 			[
-				new LayeredPainter([tShore, tShore], [1]),
+				new TerrainPainter(tShore),
 				paintClass(clGauls)
 			]);
 

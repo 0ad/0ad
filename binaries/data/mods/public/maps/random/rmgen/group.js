@@ -46,7 +46,7 @@ SimpleGroup.prototype.place = function(player, constraint)
 	// Add all objects to the map
 	for (let obj of resultObjs)
 	{
-		if (g_Map.validT(obj.position.x, obj.position.z))
+		if (g_Map.validTile(new Vector2D(obj.position.x, obj.position.z)))
 			g_Map.addObject(obj);
 
 		if (this.tileClass !== undefined)

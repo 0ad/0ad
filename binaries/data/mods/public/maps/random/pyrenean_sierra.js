@@ -144,7 +144,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
 		let position = new Vector2D(ix, iz);
-		if (g_Map.inMapBounds(ix, iz))
+		if (g_Map.inMapBounds(position))
 		{
 			let height = heightBase + randFloat(-1, 1) + scaleByMapSize(1, 3) * (Math.cos(ix / scaleByMapSize(5, 30)) + Math.sin(iz / scaleByMapSize(5, 30)));
 			g_Map.setHeight(position, height);
@@ -244,9 +244,9 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
 		let position = new Vector2D(ix, iz);
-		if (g_Map.validH(ix, iz) && checkIfInClass(ix, iz, clPyrenneans))
+		if (g_Map.validH(ix, iz) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
 		{
-			let height = getHeight(ix, iz);
+			let height = g_Map.getHeight(position);
 			let index = 1 / (1 + Math.max(0, height / 7));
 			g_Map.setHeight(position, height * (1 - index) + g_Map.getAverageHeight(position) * index);
 		}
@@ -280,11 +280,11 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
 		let position = new Vector2D(ix, iz);
-		if (g_Map.inMapBounds(ix,iz) && checkIfInClass(ix, iz, clPyrenneans))
+		if (g_Map.inMapBounds(position) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
 		{
 			let heightNeighbor = g_Map.getAverageHeight(position);
-			let index = 1 / (1 + Math.max(0, (getHeight(ix,iz) - 10) / 7));
-			g_Map.setHeight(position, getHeight(ix, iz) * (1 - index) + heightNeighbor * index);
+			let index = 1 / (1 + Math.max(0, (g_Map.getHeight(position) - 10) / 7));
+			g_Map.setHeight(position, g_Map.getHeight(position) * (1 - index) + heightNeighbor * index);
 		}
 	}
 
@@ -303,19 +303,21 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
 		let position = new Vector2D(ix, iz);
-		if (!g_Map.inMapBounds(ix, iz) || !getTileClass(clWater).countMembersInRadius(ix, iz, smoothDist))
+		if (!g_Map.inMapBounds(position) || !getTileClass(clWater).countMembersInRadius(ix, iz, smoothDist))
 			continue;
 		let averageHeight = 0;
 		let todivide = 0;
 		for (let xx = -smoothDist; xx <= smoothDist; ++xx)
 			for (let yy = -smoothDist; yy <= smoothDist; ++yy)
-				if (g_Map.inMapBounds(ix + xx,iz + yy) && (xx != 0 || yy != 0))
+			{
+				let smoothPos = Vector2D.add(position, new Vector2D(xx, yy));
+				if (g_Map.inMapBounds(smoothPos) && (xx != 0 || yy != 0))
 				{
-					averageHeight += getHeight(ix + xx, iz + yy) / (Math.abs(xx) + Math.abs(yy));
+					averageHeight += g_Map.getHeight(smoothPos) / (Math.abs(xx) + Math.abs(yy));
 					todivide += 1 / (Math.abs(xx) + Math.abs(yy));
 				}
-
-		g_Map.setHeight(position, (averageHeight + 2 * getHeight(ix, iz)) / (todivide + 2));
+			}
+		g_Map.setHeight(position, (averageHeight + 2 * g_Map.getHeight(position)) / (todivide + 2));
 	}
 Engine.SetProgress(55);
 
@@ -355,18 +357,18 @@ for (let x = 0; x < mapSize; ++x)
 	for (let z = 0; z < mapSize; ++z)
 	{
 		let position = new Vector2D(x, z);
-		let height = getHeight(x, z);
+		let height = g_Map.getHeight(position);
 		let heightDiff = g_Map.getSlope(position);
 
 		if (getTileClass(clPyrenneans).countMembersInRadius(x, z, 2))
 		{
 			let layer = terrainPerHeight.find(layer => height < layer.maxHeight);
-			createTerrain(heightDiff > layer.steepness ? layer.terrainSteep : layer.terrainGround).place(x, z);
+			createTerrain(heightDiff > layer.steepness ? layer.terrainSteep : layer.terrainGround).place(position);
 		}
 
 		let terrainShore = getShoreTerrain(height, heightDiff, x, z);
 		if (terrainShore)
-			createTerrain(terrainShore).place(x, z);
+			createTerrain(terrainShore).place(position);
 	}
 
 function getShoreTerrain(height, heightDiff, x, z)

@@ -84,7 +84,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
 		let position = new Vector2D(ix, iz);
-		var h = getHeight(ix,iz);
+		let h = g_Map.getHeight(position);
 		if (h > heightRavineHill)
 		{
 			addToClass(ix,iz,clHill);
@@ -252,32 +252,25 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 
 Engine.SetProgress(50);
 
-var explorableArea = {};
-explorableArea.points = [];
-
+var explorablePoints = [];
 var playerClass = getTileClass(clPlayer);
 var hillDecoClass = getTileClass(clHillDeco);
 
 for (var ix = 0; ix < mapSize; ix++)
-{
 	for (var iz = 0; iz < mapSize; iz++)
 	{
-		var h = getHeight(ix,iz);
+		let position = new Vector2D(ix, iz);
+		let h = g_Map.getHeight(position);
 
 		if(h > 15 && h < 45 && playerClass.countMembersInRadius(ix, iz, 1) == 0)
-		{
-			// explorable area
-			var pt = {};
-			pt.x = ix;
-			pt.z = iz;
-			explorableArea.points.push(pt);
-		}
+			explorablePoints.push(position);
 
 		if (h > 35 && randBool(0.1) ||
 		    h < 15 && randBool(0.05) && hillDecoClass.countMembersInRadius(ix, iz, 1) == 0)
 			placeObject(ix + randFloat(0, 1), iz + randFloat(0, 1), pickRandom(aTrees), 0, randomAngle());
 	}
-}
+
+var explorableArea = g_Map.createArea(explorablePoints);
 
 Engine.SetProgress(55);
 
@@ -289,7 +282,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	{
 		let position = new Vector2D(ix, iz);
 		var z = iz / (mapSize + 1.0);
-		var h = getHeight(ix,iz);
+		var h = g_Map.getHeight(position);
 		var pn = playerNearness(x,z);
 		var n = (noise0.get(x,z) - 0.5) * 10;
 		g_Map.setHeight(position, h + (n * pn));

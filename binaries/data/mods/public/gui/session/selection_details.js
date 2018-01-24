@@ -368,8 +368,9 @@ function displayMultiple(entStates)
 			entState.trader && entState.trader.goods
 		);
 
-		for (let type in entState.loot)
-			totalLoot[type] = (totalLoot[type] || 0) + entState.loot[type];
+		if (entState.loot)
+			for (let type in entState.loot)
+				totalLoot[type] = (totalLoot[type] || 0) + entState.loot[type];
 
 		for (let type in carrying)
 		{

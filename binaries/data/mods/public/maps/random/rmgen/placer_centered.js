@@ -28,8 +28,10 @@ function ClumpPlacer(size, coherence, smoothness, failFraction = 0, position = u
 
 ClumpPlacer.prototype.place = function(constraint)
 {
+	let centerPosition = new Vector2D(this.x, this.z);
+
 	// Preliminary bounds check
-	if (!g_Map.inMapBounds(this.x, this.z) || !constraint.allows(this.x, this.z))
+	if (!g_Map.inMapBounds(centerPosition) || !constraint.allows(centerPosition))
 		return undefined;
 
 	var retVec = [];
@@ -90,13 +92,15 @@ ClumpPlacer.prototype.place = function(constraint)
 		{
 			var i = Math.floor(xx);
 			var j = Math.floor(yy);
-			if (g_Map.inMapBounds(i, j) && constraint.allows(i, j))
+			let position = new Vector2D(i, j);
+
+			if (g_Map.inMapBounds(position) && constraint.allows(position))
 			{
 				if (!gotRet[i][j])
 				{
 					// Only include each point once
 					gotRet[i][j] = 1;
-					retVec.push({ "x": i, "z": j });
+					retVec.push(position);
 				}
 			}
 			else
@@ -139,8 +143,10 @@ function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, position, f
 
 ChainPlacer.prototype.place = function(constraint)
 {
+	let centerPosition = new Vector2D(this.x, this.z);
+
 	// Preliminary bounds check
-	if (!g_Map.inMapBounds(this.x, this.z) || !constraint.allows(this.x, this.z))
+	if (!g_Map.inMapBounds(centerPosition) || !constraint.allows(centerPosition))
 		return undefined;
 
 	var retVec = [];
@@ -179,16 +185,17 @@ ChainPlacer.prototype.place = function(constraint)
 		for (var ix = sx; ix <= lx; ++ix)
 			for (var iz = sz; iz <= lz; ++ iz)
 			{
+				let position = new Vector2D(ix, iz);
 				dx = ix - cx;
 				dz = iz - cz;
 				if (dx * dx + dz * dz <= radius2)
 				{
-					if (g_Map.inMapBounds(ix, iz) && constraint.allows(ix, iz))
+					if (g_Map.inMapBounds(position) && constraint.allows(position))
 					{
 						var state = gotRet[ix][iz];
 						if (state == -1)
 						{
-							retVec.push({ "x": ix, "z": iz });
+							retVec.push(position);
 							gotRet[ix][iz] = -2;
 						}
 						else if (state >= 0)

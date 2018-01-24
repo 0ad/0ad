@@ -292,6 +292,8 @@ function init(initData, hotloadData)
 	if (hotloadData)
 		g_Selection.selected = hotloadData.selection;
 
+	Engine.SetBoundingBoxDebugOverlay(false);
+
 	initChatWindow();
 
 	sendLobbyPlayerlistUpdate();

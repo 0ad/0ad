@@ -84,10 +84,9 @@ function TileClass(size, id)
 
 TileClass.prototype.add = function(x, z)
 {
-	if (!this.inclusionCount[x][z] && g_Map.validT(x, z))
-	{
+	let position = new Vector2D(x, z);
+	if (!this.inclusionCount[position.x][position.y] && g_Map.validTile(position))
 		this.rangeCount[z].add(x, 1);
-	}
 
 	this.inclusionCount[x][z]++;
 };

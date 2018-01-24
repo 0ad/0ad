@@ -146,49 +146,46 @@ Engine.SetProgress(30);
 log("Creating oasis wildlife...");
 var num = Math.round(Math.PI * oasisRadius / 8);
 var constraint = new AndConstraint([borderClasses(clOasis, 0, 3), avoidClasses(clOasis, 0)]);
-var halfSize = mapSize/2;
 for (var i = 0; i < num; ++i)
 {
-	var r = 0;
-	var angle = 2 * Math.PI / num * i;
+	let animalPosition;
+	let r = 0;
+	let angle = 2 * Math.PI / num * i;
 	do {
 		// Work outward until constraint met
-		var gx = Math.round(halfSize + r * Math.cos(angle));
-		var gz = Math.round(halfSize + r * Math.sin(angle));
+		animalPosition = Vector2D.add(mapCenter, new Vector2D(r, 0).rotate(-angle)).round();
 		++r;
-	} while (!constraint.allows(gx,gz) && r < halfSize);
+	} while (!constraint.allows(animalPosition) && r < mapSize / 2);
 
 	createObjectGroup(
 		new RandomGroup(
-			[	new SimpleObject(oGiraffe, 2,4, 0,3),
+			[
+				new SimpleObject(oGiraffe, 2, 4, 0, 3),
 				new SimpleObject(oWildebeest, 3,5, 0,3),
 				new SimpleObject(oGazelle, 5,7, 0,3)
 			],
 			true,
 			clFood,
-			gx,
-			gz),
+			animalPosition.x,
+			animalPosition.y),
 		0);
 }
 
+log("Creating oasis fish...");
 constraint = new AndConstraint([borderClasses(clOasis, 15, 0), avoidClasses(clFood, 5)]);
 num = Math.round(Math.PI * oasisRadius / 16);
 for (var i = 0; i < num; ++i)
 {
+	let fishPosition;
 	var r = 0;
 	var angle = 2 * Math.PI / num * i;
 	do {
 		// Work outward until constraint met
-		var gx = Math.round(halfSize + r * Math.cos(angle));
-		var gz = Math.round(halfSize + r * Math.sin(angle));
+		fishPosition = Vector2D.add(mapCenter, new Vector2D(r, 0).rotate(-angle));
 		++r;
-	} while (!constraint.allows(gx,gz) && r < halfSize);
+	} while (!constraint.allows(fishPosition) && r < mapSize / 2);
 
-	group = new SimpleGroup(
-		[new SimpleObject(oFish, 1,1, 0,1)],
-		true, clFood, gx, gz
-	);
-	createObjectGroup(group, 0);
+	createObjectGroup(new SimpleGroup([new SimpleObject(oFish, 1, 1, 0, 1)], true, clFood, fishPosition.x, fishPosition.y), 0);
 }
 Engine.SetProgress(35);
 

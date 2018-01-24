@@ -139,11 +139,11 @@ for (let i = 0; i < numRivers; ++i)
 
 			let newHeight = isShallow ? heightShallows : Math.max(height, heightSeaGround);
 
-			if (getHeight(position.x, position.y) < newHeight)
+			if (g_Map.getHeight(position) < newHeight)
 				return;
 
 			g_Map.setHeight(position, newHeight);
-			createTerrain(height >= 0 ? tShore : tWater).place(position.x, position.y);
+			createTerrain(height >= 0 ? tShore : tWater).place(position);
 
 			if (isShallow)
 				addToClass(position.x, position.y, clShallow);

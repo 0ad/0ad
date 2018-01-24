@@ -117,7 +117,7 @@ paintRiver({
 		if (height < heightShore2)
 			addToClass(position.x, position.y, clWater);
 
-		createTerrain(height < heightShore1 ? tWater : tShore).place(position.x, position.y);
+		createTerrain(height < heightShore1 ? tWater : tShore).place(position);
 	}
 });
 Engine.SetProgress(20);
