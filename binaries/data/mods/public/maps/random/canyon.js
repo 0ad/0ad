@@ -72,7 +72,7 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
-			paintClass(j == 1 || isNomad() ? clLand : clPlayer)
+			new TileClassPainter(j == 1 || isNomad() ? clLand : clPlayer)
 		]);
 
 log("Creating center area...");
@@ -81,12 +81,12 @@ createArea(
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	]);
 
 createArea(
 	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter),
-	paintClass(clHill));
+	new TileClassPainter(clHill));
 
 log("Creating hills...");
 for (let i = 0; i < scaleByMapSize(9, 16); ++i)
@@ -101,7 +101,7 @@ for (let i = 0; i < scaleByMapSize(9, 16); ++i)
 			0),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
-			paintClass(clHill2)
+			new TileClassPainter(clHill2)
 		],
 		avoidClasses(clPlayer, 6, clHill2, 3, clHill, 2));
 
@@ -114,7 +114,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-			paintClass(clLand)
+			new TileClassPainter(clLand)
 		],
 		avoidClasses(clLand, 6));
 
@@ -152,7 +152,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 					[
 						new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 						new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-						paintClass(clLand)
+						new TileClassPainter(clLand)
 					]);
 	}
 }
@@ -174,8 +174,8 @@ for (let i = 0; i < numPlayers; ++i)
 			[
 				new LayeredPainter([tRoadWild, tRoad], [1]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
-				paintClass(clLand),
-				paintClass(clHill)
+				new TileClassPainter(clLand),
+				new TileClassPainter(clHill)
 			]);
 }
 

@@ -57,7 +57,7 @@ for (let i = 0; i < numPlayers; ++i)
 	if (!isNomad())
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i]),
-			paintClass(clPlayer));
+			new TileClassPainter(clPlayer));
 
 	log("Creating big grass patches surrounding the city patches...");
 	createArea(
@@ -71,7 +71,7 @@ for (let i = 0; i < numPlayers; ++i)
 			[Math.floor(scaleByMapSize(16, 30))]),
 		[
 			new LayeredPainter([tGrassSands, tGrass], [3]),
-			paintClass(clGrass)
+			new TileClassPainter(clGrass)
 		]);
 }
 Engine.SetProgress(10);
@@ -119,7 +119,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 3, clGrass, 1, clHill, 10),
 	scaleByMapSize(1, 3) * numPlayers * 3);
@@ -143,7 +143,7 @@ for (let type of types)
 			0.5),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 1, clGrass, 1, clForest, 10, clHill, 1),
 		num);

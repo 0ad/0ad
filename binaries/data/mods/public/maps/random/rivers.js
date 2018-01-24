@@ -103,7 +103,7 @@ createArea(
 	[
 		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	]);
 
 log("Creating rivers between opponents...");

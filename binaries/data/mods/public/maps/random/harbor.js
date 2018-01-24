@@ -16,7 +16,7 @@ setFogFactor(0.04);
 
 createArea(
 	new MapBoundsPlacer(),
-	paintClass(g_TileClasses.land));
+	new TileClassPainter(g_TileClasses.land));
 
 Engine.SetProgress(10);
 
@@ -312,7 +312,7 @@ function addCenterLake()
 				[1, 100]
 			),
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 10),
-			paintClass(g_TileClasses.water)
+			new TileClassPainter(g_TileClasses.water)
 		],
 		avoidClasses(g_TileClasses.player, 20)
 	);
@@ -332,7 +332,7 @@ function addHarbors(players)
 			[
 				new LayeredPainter([g_Terrains.shore, g_Terrains.water], [2]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHarbor, 3),
-				paintClass(g_TileClasses.water)
+				new TileClassPainter(g_TileClasses.water)
 			],
 			avoidClasses(
 				g_TileClasses.player, 15,
@@ -376,7 +376,7 @@ function addSpines()
 			[
 				new LayeredPainter([g_Terrains.cliff, spineTile], [3]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetSpine, 3),
-				paintClass(g_TileClasses.spine)
+				new TileClassPainter(g_TileClasses.spine)
 			],
 			avoidClasses(g_TileClasses.player, 5)
 		);

@@ -101,7 +101,7 @@ createArea(
 	[
 		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 20));
 
@@ -113,7 +113,7 @@ createAreas(
 	[
 		new LayeredPainter([tShore, tWater, tWater], [1, 3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 20),
 	scaleByMapSize(10, 16),

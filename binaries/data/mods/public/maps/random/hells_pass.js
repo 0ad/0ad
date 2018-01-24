@@ -15,7 +15,7 @@ const mapCenter = g_Map.getCenter();
 
 createArea(
 	new MapBoundsPlacer(),
-	paintClass(g_TileClasses.land));
+	new TileClassPainter(g_TileClasses.land));
 
 Engine.SetProgress(10);
 
@@ -291,7 +291,7 @@ function placeBarriers()
 			[
 				new LayeredPainter([g_Terrains.cliff, spineTerrain], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightBarrier, 2),
-				paintClass(g_TileClasses.spine)
+				new TileClassPainter(g_TileClasses.spine)
 			],
 			avoidClasses(g_TileClasses.player, 5, g_TileClasses.baseResource, 5));
 	}

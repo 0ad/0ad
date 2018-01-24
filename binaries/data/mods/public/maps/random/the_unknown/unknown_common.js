@@ -156,7 +156,7 @@ function unknownArchipelago()
 			new ClumpPlacer(islandSize * randFloat(0.8, 1.2), 0.8, 0.1, 10),
 			[
 				landElevationPainter,
-				paintClass(clLand)
+				new TileClassPainter(clLand)
 			],
 			null,
 			scaleByMapSize(2, 5) * randIntInclusive(8, 14));
@@ -166,7 +166,7 @@ function unknownArchipelago()
 			new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, 1),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-				paintClass(clLand)
+				new TileClassPainter(clLand)
 			],
 			borderClasses(clLand, 6, 3),
 			scaleByMapSize(12, 130) * 2,
@@ -179,7 +179,7 @@ function unknownArchipelago()
 			new ClumpPlacer(islandSize * randFloat(0.6, 1.4), 0.8, 0.1, randFloat(0.0, 0.2)),
 			[
 				landElevationPainter,
-				paintClass(clLand)
+				new TileClassPainter(clLand)
 			],
 			avoidClasses(clLand, 3, clPlayerTerritory, 3),
 			scaleByMapSize(6, 10) * randIntInclusive(8, 14));
@@ -189,7 +189,7 @@ function unknownArchipelago()
 			new ClumpPlacer(islandSize * randFloat(0.3, 0.7), 0.8, 0.1, 0.07),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
-				paintClass(clLand)
+				new TileClassPainter(clLand)
 			],
 			avoidClasses(clLand, 3, clPlayerTerritory, 3),
 			scaleByMapSize(2, 6) * randIntInclusive(6, 15),
@@ -202,7 +202,7 @@ function unknownArchipelago()
 			new ClumpPlacer(islandSize * randFloat(0.8, 1.2), 0.8, 0.1, 10),
 			[
 				landElevationPainter,
-				paintClass(clLand)
+				new TileClassPainter(clLand)
 			],
 			avoidClasses(clLand, randIntInclusive(8, 16), clPlayerTerritory, 3),
 			scaleByMapSize(2, 5) * randIntInclusive(8, 14));
@@ -234,7 +234,7 @@ function unknownContinent()
 					[Math.floor(scaleByMapSize(23, 50))]),
 				[
 					landElevationPainter,
-					paintClass(clLand)
+					new TileClassPainter(clLand)
 				]);
 	}
 
@@ -243,7 +243,7 @@ function unknownContinent()
 		new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, 10, mapCenter),
 		[
 			landElevationPainter,
-			paintClass(clLand)
+			new TileClassPainter(clLand)
 		]);
 
 	if (randBool(1/3))
@@ -255,14 +255,14 @@ function unknownContinent()
 			new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, 10, peninsulaPosition1),
 			[
 				landElevationPainter,
-				paintClass(clLand)
+				new TileClassPainter(clLand)
 			]);
 
 		log("Remembering to not paint shorelines into the peninsula...");
 		let peninsulaPosition2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.35), 0).rotate(-angle));
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.33)), 0.9, 0.01, 10, peninsulaPosition2),
-			paintClass(clPeninsulaSteam));
+			new TileClassPainter(clPeninsulaSteam));
 	}
 
 	createShoreJaggedness(waterHeight, clLand, 7);
@@ -321,8 +321,8 @@ function unknownCentralSea()
 				0.01),
 			[
 				landElevationPainter,
-				paintClass(clLand),
-				unPaintClass(clWater)
+				new TileClassPainter(clLand),
+				new TileClassUnPainter(clWater)
 			]);
 	}
 
@@ -423,7 +423,7 @@ function unknownRiversAndLake()
 			new ClumpPlacer(diskArea(fractionToTiles(0.17)), 0.7, 0.1, 10, mapCenter),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-				paintClass(clWater)
+				new TileClassPainter(clWater)
 			]);
 
 		createShoreJaggedness(waterHeight, clWater, 3);
@@ -439,7 +439,7 @@ function unknownRiversAndLake()
 				new PathPlacer(mapCenter, river, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 				[
 					new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-					paintClass(clWater)
+					new TileClassPainter(clWater)
 				],
 				avoidClasses(clPlayer, 5));
 
@@ -447,7 +447,7 @@ function unknownRiversAndLake()
 				new ClumpPlacer(diskArea(scaleByMapSize(4, 22)), 0.95, 0.6, 10, river),
 				[
 					new SmoothElevationPainter(ELEVATION_SET, waterHeight, 0),
-					paintClass(clWater)
+					new TileClassPainter(clWater)
 				],
 				avoidClasses(clPlayer, 5));
 		}
@@ -457,7 +457,7 @@ function unknownRiversAndLake()
 			new ClumpPlacer(diskArea(fractionToTiles(0.04)), 0.7, 0.1, 10, mapCenter),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-				paintClass(clWater)
+				new TileClassPainter(clWater)
 			]);
 	}
 
@@ -468,7 +468,7 @@ function unknownRiversAndLake()
 			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, 10, mapCenter),
 			[
 				landElevationPainter,
-				paintClass(clWater)
+				new TileClassPainter(clWater)
 			]);
 	}
 }
@@ -549,7 +549,7 @@ function unknownGulf()
 			new ClumpPlacer(diskArea(gulfPart.radius), 0.7, 0.05, 10, position),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-				paintClass(clWater)
+				new TileClassPainter(clWater)
 			],
 			avoidClasses(clPlayerTerritory, defaultPlayerBaseRadius()));
 	}
@@ -577,7 +577,7 @@ function unknownLakes()
 		new ClumpPlacer(scaleByMapSize(160, 700), 0.2, 0.1, 1),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 5),
-			paintClass(clWater)
+			new TileClassPainter(clWater)
 		],
 		[avoidClasses(clPlayerTerritory, 12), randBool() ? avoidClasses(clWater, 8) : new NullConstraint()],
 		scaleByMapSize(5, 16));
@@ -613,7 +613,7 @@ function unknownPasses()
 			[
 				// More smoothing than this often results in the mountainrange becoming passable to one player.
 				new SmoothElevationPainter(ELEVATION_SET, heightMountain, 1),
-				paintClass(clWater)
+				new TileClassPainter(clWater)
 			],
 			avoidClasses(clPlayer, 5));
 
@@ -647,7 +647,7 @@ function unknownPasses()
 			new ClumpPlacer(diskArea(fractionToTiles(0.1)), 0.7, 0.1, 10, mapCenter),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 3),
-				paintClass(clWater)
+				new TileClassPainter(clWater)
 			]);
 	}
 	else
@@ -657,7 +657,7 @@ function unknownPasses()
 			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, 10, mapCenter),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, heightMountain, 4),
-				paintClass(clWater)
+				new TileClassPainter(clWater)
 			]);
 	}
 }
@@ -700,7 +700,7 @@ function unknownLowlands()
 			new ClumpPlacer(diskArea(scaleByMapSize(18, 32)), 0.65, 0.1, 10, valley),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
-				paintClass(clLand)
+				new TileClassPainter(clLand)
 			]);
 
 		log("Creating passes from player areas to the center...");
@@ -708,7 +708,7 @@ function unknownLowlands()
 			new PathPlacer(mapCenter, valley, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 			[
 				landElevationPainter,
-				paintClass(clWater)
+				new TileClassPainter(clWater)
 			]);
 	}
 
@@ -717,7 +717,7 @@ function unknownLowlands()
 		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.7, 0.1, 10, mapCenter),
 		[
 			landElevationPainter,
-			paintClass(clWater)
+			new TileClassPainter(clWater)
 		]);
 }
 
@@ -754,7 +754,7 @@ function createShoreJaggedness(waterHeight, borderClass, shoreDist, inwards = tr
 				new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 15, 1),
 				[
 						new SmoothElevationPainter(ELEVATION_SET, i ? heightLand : waterHeight, 4),
-						i ? paintClass(clLand) : unPaintClass(clLand)
+						i ? new TileClassPainter(clLand) : new TileClassUnPainter(clLand)
 				],
 				[
 						avoidClasses(clPlayer, 20, clPeninsulaSteam, 20),
@@ -775,7 +775,7 @@ function createExtensionsOrIslands()
 			new ClumpPlacer(Math.square(randIntInclusive(scaleByMapSize(8, 15), scaleByMapSize(15, 23))), 0.8, 0.1, randFloat(0, 0.2)),
 			[
 				landElevationPainter,
-				paintClass(clLand)
+				new TileClassPainter(clLand)
 			],
 			avoidClasses(clLand, 3, clPlayer, 3),
 			scaleByMapSize(2, 5) * randIntInclusive(8, 14));
@@ -787,7 +787,7 @@ function createExtensionsOrIslands()
 			new ChainPlacer(Math.floor(scaleByMapSize(4, 7)), Math.floor(scaleByMapSize(7, 10)), Math.floor(scaleByMapSize(16, 40)), 0.07),
 			[
 				landElevationPainter,
-				paintClass(clLand)
+				new TileClassPainter(clLand)
 			],
 			null,
 			scaleByMapSize(2, 5) * randIntInclusive(8, 14));
@@ -806,7 +806,7 @@ function markPlayerArea(size)
 		if (size == "large")
 			createArea(
 				new ClumpPlacer(diskArea(scaleByMapSize(17, 29) / 3), 0.6, 0.3, 10, playerPosition[i]),
-				paintClass(clPlayerTerritory));
+				new TileClassPainter(clPlayerTerritory));
 	}
 }
 
@@ -843,7 +843,7 @@ function createUnknownObjects()
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-			paintClass(clHill)
+			new TileClassPainter(clHill)
 		],
 		[avoidClasses(clPlayer, 15, clHill, randIntInclusive(6, 18)), stayClasses(clLand, 0)],
 		randIntInclusive(0, scaleByMapSize(4, 8))*randIntInclusive(1, scaleByMapSize(4, 9))
@@ -864,7 +864,7 @@ function createUnknownObjects()
 			new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
 			[
 				new LayeredPainter(type, [2]),
-				paintClass(clForest)
+				new TileClassPainter(clForest)
 			],
 			[avoidClasses(clPlayer, 20, clForest, randIntInclusive(5, 15), clHill, 2), stayClasses(clLand, 4)],
 			num);
@@ -877,7 +877,7 @@ function createUnknownObjects()
 			new ClumpPlacer(size, 0.3, 0.06, 0.5),
 			[
 				new LayeredPainter([[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
-				paintClass(clDirt)
+				new TileClassPainter(clDirt)
 			],
 			[avoidClasses(clForest, 0, clHill, 2, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
 			patchCount);
@@ -1028,7 +1028,7 @@ function createUnknownPlayerBases()
 			"outerTerrain": tRoadWild,
 			"innerTerrain": tRoad,
 			"painters": [
-				paintClass(clPlayer)
+				new TileClassPainter(clPlayer)
 			]
 		},
 		"Chicken": {

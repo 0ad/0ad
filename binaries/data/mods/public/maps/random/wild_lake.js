@@ -254,7 +254,7 @@ function placeGrove(point,
 
 		let painters = [new TerrainPainter(groveTerrainTexture)];
 		if (groveTileClass)
-			painters.push(paintClass(groveTileClass));
+			painters.push(new TileClassPainter(groveTileClass));
 
 		createArea(
 			new ClumpPlacer(5, 1, 1, 1, position),
@@ -383,7 +383,7 @@ function placeStartLocationResources(
 			new ClumpPlacer(5, 1, 1, 1, position),
 			[
 				new TerrainPainter(groveTerrainTexture),
-				paintClass(clGrove)
+				new TileClassPainter(clGrove)
 			]);
 
 		currentAngle += dAngle;

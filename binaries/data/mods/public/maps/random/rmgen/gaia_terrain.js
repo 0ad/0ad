@@ -34,7 +34,7 @@ function createHills(terrainset, constraint, tileClass, count, minSize, maxSize,
 		[
 			new LayeredPainter(terrainset, [1, elevationSmoothing]),
 			new SmoothElevationPainter(ELEVATION_SET, elevation, elevationSmoothing),
-			paintClass(tileClass)
+			new TileClassPainter(tileClass)
 		],
 		constraint,
 		count || scaleByMapSize(1, 4) * getNumPlayers());
@@ -259,7 +259,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 			[
 				layers[i].painter || new LayeredPainter([terrainTexture, terrainTexture], [3]),
 				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness),
-				paintClass(layers[i].tileClass)
+				new TileClassPainter(layers[i].tileClass)
 			],
 			i == 0 ? null : stayClasses(layers[i - 1].tileClass, 1));
 
@@ -288,7 +288,7 @@ function createPatches(sizes, terrain, constraint, count,  tileClass, failFracti
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, failFraction),
 			[
 				new TerrainPainter(terrain),
-				paintClass(tileClass)
+				new TileClassPainter(tileClass)
 			],
 			constraint,
 			count);
@@ -304,7 +304,7 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, failFraction),
 			[
 				new LayeredPainter(terrains, terrainWidths),
-				paintClass(tileClass)
+				new TileClassPainter(tileClass)
 			],
 			constraint,
 			count);
@@ -488,7 +488,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 			new PathPlacer(start, end, riverWidth, waviness, smoothness, offset, tapering),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, heightRiverbed, 4),
-				paintClass(tributaryRiverTileClass)
+				new TileClassPainter(tributaryRiverTileClass)
 			],
 			new AndConstraint([constraint, riverConstraint])))
 			continue;

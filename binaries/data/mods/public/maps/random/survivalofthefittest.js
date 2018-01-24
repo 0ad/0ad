@@ -62,7 +62,7 @@ createArea(
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	]);
 Engine.SetProgress(10);
 

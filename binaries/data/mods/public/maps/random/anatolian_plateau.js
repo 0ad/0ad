@@ -91,7 +91,7 @@ for (let type of types)
 		new ChainPlacer(1, Math.floor(scaleByMapSize(2, 3)), 4, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 13, clForest, 20, clHill, 1),
 		num);

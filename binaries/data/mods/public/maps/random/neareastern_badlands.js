@@ -69,7 +69,7 @@ if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i]),
-			paintClass(clPlayer));
+			new TileClassPainter(clPlayer));
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
@@ -104,7 +104,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, 0),
 	[
 		new TerrainPainter(tDunes),
-		paintClass(clPatch)
+		new TileClassPainter(clPatch)
 	],
 	avoidClasses(clPatch, 2, clPlayer, 0),
 	scaleByMapSize(5, 20));
@@ -115,7 +115,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0),
 	[
 		new TerrainPainter([tSand, tFineSand]),
-		paintClass(clPatch)
+		new TileClassPainter(clPatch)
 	],
 	avoidClasses(clPatch, 2, clPlayer, 0),
 	scaleByMapSize(15, 50));
@@ -126,7 +126,7 @@ createAreas(
 	new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0),
 	[
 		new TerrainPainter([tDirt]),
-		paintClass(clPatch)
+		new TileClassPainter(clPatch)
 	],
 	avoidClasses(clPatch, 2, clPlayer, 0),
 	scaleByMapSize(15, 50));
@@ -138,7 +138,7 @@ createArea(
 	[
 		new LayeredPainter([[tSand, pForest], [tGrassSand25, pForestOasis], tGrassSand25, tShore, tWaterDeep], [2, 3, 1, 1]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetOasis, 8),
-		paintClass(clOasis)
+		new TileClassPainter(clOasis)
 	]);
 
 Engine.SetProgress(30);
@@ -195,7 +195,7 @@ var hillAreas = createAreas(
 	[
 		new LayeredPainter([tCliff, tSand], [1]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill1, 1),
-		paintClass(clHill1)
+		new TileClassPainter(clHill1)
 	],
 	avoidClasses(clOasis, 3, clPlayer, 0, clHill1, 10),
 	scaleByMapSize(10,20), 100
@@ -209,7 +209,7 @@ hillAreas = hillAreas.concat(
 		[
 			new LayeredPainter([tCliff, tSand], [1]),
 			new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill2, 1),
-			paintClass(clHill1)
+			new TileClassPainter(clHill1)
 		],
 		avoidClasses(clOasis, 3, clPlayer, 0, clHill1, 3),
 		scaleByMapSize(15,25),
@@ -273,7 +273,7 @@ createAreas(
 	new ClumpPlacer(forestTrees / num, 0.15, 0.1, 0.5),
 	[
 		new TerrainPainter([tSand, pForest]),
-		paintClass(clForest)
+		new TileClassPainter(clForest)
 	],
 	avoidClasses(clPlayer, 1, clOasis, 10, clForest, 10, clHill1, 1),
 	num,

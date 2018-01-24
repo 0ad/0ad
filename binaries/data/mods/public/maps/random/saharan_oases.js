@@ -94,7 +94,7 @@ for (let i = 0; i < numPlayers; ++i)
 				[tSLush ,[tLush, pForest], [tLush, pForest], tShore, tShore, tWaterDeep],
 				[2, 2, 1, 3, 1]),
 			new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetOasis, 10),
-			paintClass(clWater)
+			new TileClassPainter(clWater)
 		]);
 }
 Engine.SetProgress(50);
@@ -108,7 +108,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 				[[tDirt1, tSandDunes], [tSandDunes, tDirt2], [tDirt2, tDirt1]],
 				[1, 1]
 			),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clPlayer, 0, clWater, 1, clDirt, 5),
 		scaleByMapSize(15, 45));
@@ -123,7 +123,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 				[[tDirt2, tDirtCracks], [tDirt2, tFineSand], [tDirtCracks, tFineSand]],
 				[1, 1]
 			),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 0, clWater, 1),
 		scaleByMapSize(15, 45));

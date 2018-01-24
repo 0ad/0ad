@@ -80,7 +80,7 @@ for (let i = 0; i < numPlayers; ++i)
 			new ClumpPlacer(70, 1, 0.5, 10, forestPosition),
 			[
 				new LayeredPainter([tForestFloor, pForestMain], [0]),
-				paintClass(clBaseResource)
+				new TileClassPainter(clBaseResource)
 			],
 			avoidClasses(clBaseResource, 0)));
 
@@ -129,7 +129,7 @@ placePlayerBases({
 		"outerTerrain": tRoadWild,
 		"innerTerrain": tRoad,
 		"painters": [
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	"Chicken": {
@@ -157,7 +157,7 @@ createArea(
 	[
 		new LayeredPainter([pOasisForestLight, tWater], [forestDistance]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, forestDistance + shoreDistance),
-		paintClass(clOasis)
+		new TileClassPainter(clOasis)
 	]);
 
 Engine.SetProgress(40);
@@ -198,7 +198,7 @@ if (mapSize > 150 && randBool())
 		[
 			new TerrainPainter(tSand),
 			new SmoothElevationPainter(ELEVATION_SET, heightOasisPath, 5),
-			paintClass(clPassage)
+			new TileClassPainter(clPassage)
 		]);
 }
 log("Creating some straggler trees around the passage...");

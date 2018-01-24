@@ -294,7 +294,7 @@ for (let ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48),
 		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, ocean),
 		[
 			new ElevationPainter(heightOcean),
-			paintClass(clWater)
+			new TileClassPainter(clWater)
 		]);
 
 log("Smoothing around the water...");
@@ -327,7 +327,7 @@ createAreas(
 	[
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill, 4, heightOffsetHillRandom),
 		new TerrainPainter(tGrassSpecific),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clWater, 5, clPlayer, 20, clBaseResource, 6, clPyrenneans, 2), scaleByMapSize(5, 35));
 
@@ -340,7 +340,7 @@ for (let type of types)
 		new ClumpPlacer(size, 0.2, 0.1, 1),
 		[
 			new LayeredPainter(type, [scaleByMapSize(1, 2), scaleByMapSize(3, 6), scaleByMapSize(3, 6)]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 20, clPyrenneans,0, clForest, 7, clWater, 2),
 		num);
@@ -391,7 +391,7 @@ for (let size of [scaleByMapSize(3, 20), scaleByMapSize(5, 40), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new TerrainPainter(tDirtyGrass),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clWater, 3, clForest, 0, clPyrenneans,5, clHill, 0, clDirt, 5, clPlayer, 6),
 		scaleByMapSize(15, 45));

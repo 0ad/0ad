@@ -209,7 +209,7 @@ for (let gulfLake of gulfLakePositions)
 		[
 			new LayeredPainter([tPrimary, tPrimary, tPrimary, tPrimary], [1, 4, 2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
-			paintClass(clWater)
+			new TileClassPainter(clWater)
 		],
 		avoidClasses(clPlayer,scaleByMapSize(20, 28)));
 }

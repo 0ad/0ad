@@ -74,7 +74,7 @@ createArea(
 	[
 		new LayeredPainter([tGrass, tGrass, tGrass], [4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	]);
 
 var playerPosition = playerPlacementCustomAngle(

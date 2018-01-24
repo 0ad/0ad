@@ -6,9 +6,9 @@
 /**
  * Marks the affected area with the given tileclass.
  */
-function TileClassPainter(tileClass)
+function TileClassPainter(tileClassID)
 {
-	this.tileClass = tileClass;
+	this.tileClass = getTileClass(tileClassID);
 }
 
 TileClassPainter.prototype.paint = function(area)
@@ -20,9 +20,9 @@ TileClassPainter.prototype.paint = function(area)
 /**
  * Removes the given tileclass from a given area.
  */
-function TileClassUnPainter(tileClass)
+function TileClassUnPainter(tileClassID)
 {
-	this.tileClass = tileClass;
+	this.tileClass = getTileClass(tileClass);
 }
 
 TileClassUnPainter.prototype.paint = function(area)

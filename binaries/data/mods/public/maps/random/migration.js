@@ -79,8 +79,8 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tWater, tShore, tMainTerrain], [1, 4]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-			paintClass(clIsland),
-			paintClass(isNomad() ? clLand : clPlayer)
+			new TileClassPainter(clIsland),
+			new TileClassPainter(isNomad() ? clLand : clPlayer)
 		]);
 
 	if (isNomad())
@@ -133,7 +133,7 @@ createArea(
 	[
 		new LayeredPainter([tWater, tShore, tMainTerrain], [4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	],
 	avoidClasses(clIsland, 8));
 Engine.SetProgress(20);
@@ -144,7 +144,7 @@ createAreas(
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	],
 	[
 		borderClasses(clLand, 6, 3),
@@ -172,7 +172,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	[avoidClasses(clIsland, 10, clHill, 15), stayClasses(clLand, 7)],
 	scaleByMapSize(1, 4) * numPlayers
@@ -195,7 +195,7 @@ for (let type of types)
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		[avoidClasses(clPlayer, 6, clForest, 10, clHill, 0), stayClasses(clLand, 7)],
 		num);
@@ -209,7 +209,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 			new LayeredPainter(
 				[[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]],
 				[1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		[
 			avoidClasses(

@@ -94,7 +94,7 @@ for (let i = 0; i < 7; ++i)
 		[
 			new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
 			new SmoothElevationPainter(ELEVATION_SET, heightMarsh, 3),
-			paintClass(clWater)
+			new TileClassPainter(clWater)
 		],
 		avoidClasses(clPlayer, 20, clWater, Math.round(scaleByMapSize(7,16)*randFloat(0.8,1.35))),
 		scaleByMapSize(4,20));
@@ -127,7 +127,7 @@ for (let type of types)
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 4))), 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 20, clWater, 0, clForest, 10),
 		num);
@@ -139,7 +139,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 1),
 		[
 			new LayeredPainter([tGrassA, tGrassB, tMud], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clWater, 1, clForest, 0, clDirt, 5, clPlayer, 8),
 		scaleByMapSize(15, 45));

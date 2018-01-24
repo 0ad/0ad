@@ -131,7 +131,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 0),
 	scaleByMapSize(1, 4) * numPlayers * 3);
@@ -143,7 +143,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 5))), 0.5),
 	[
 		new TerrainPainter([tForestFloor, pForest]),
-		paintClass(clForest)
+		new TileClassPainter(clForest)
 	],
 	avoidClasses(clPlayer, 20, clForest, 10, clWater, 1, clHill, 1, clBaseResource, 3),
 	num,
@@ -158,7 +158,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 			new LayeredPainter(
 				[[tGrass, tRocksShrubs], [tRocksShrubs, tRocksGrass], [tRocksGrass, tGrass]],
 				[1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 10, clWater, 4, clDirt, 5, clHill, 1),
 		scaleByMapSize(15, 45));
@@ -172,7 +172,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 			new LayeredPainter(
 				[[tDirt, tDirtB], [tDirt, tMainDirt], [tDirtB, tMainDirt]],
 				[1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 10, clWater, 4, clGrass, 5, clHill, 1),
 		scaleByMapSize(15, 45));
@@ -184,8 +184,8 @@ createAreas(
 	[
 		new LayeredPainter([tShore, tHill], [12]),
 		new SmoothElevationPainter(ELEVATION_SET, heightIsland, 8),
-		paintClass(clIsland),
-		unPaintClass(clWater)
+		new TileClassPainter(clIsland),
+		new TileClassUnPainter(clWater)
 	],
 	[stayClasses (clWater, 8)],
 	1,

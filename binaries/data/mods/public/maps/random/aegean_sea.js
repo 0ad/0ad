@@ -171,7 +171,7 @@ createAreas(
 	[
 		new LayeredPainter([tShoreLower, tShoreUpper, tHill], [2 ,1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightIsland, 4),
-		paintClass(clIsland)
+		new TileClassPainter(clIsland)
 	],
 	[avoidClasses(clPlayer, 8, clForest, 1, clIsland, 15), stayClasses (clWater, 6)],
 	scaleByMapSize(1, 4) * numPlayers

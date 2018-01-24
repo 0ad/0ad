@@ -147,7 +147,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 20, clWater, 5, clHill, 15, clHighlands, 5),
 	scaleByMapSize(1, 4) * numPlayers);
@@ -166,7 +166,7 @@ for (let type of types)
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 20, clWater, 3, clForest, 10, clHill, 0, clBaseResource, 3),
 		num);
@@ -183,7 +183,7 @@ for (let type of types)
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 20, clWater, 3, clForest, 2, clHill, 0),
 		num);
@@ -195,7 +195,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([[tGrass, tGrassA], [tGrassA, tGrassB], [tGrassB, tGrassC]], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 4),
 		scaleByMapSize(15, 45));

@@ -142,7 +142,7 @@ var waterAreas = createAreas(
 	[
 		new LayeredPainter([tShore, tWater, tWater], [1, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 3),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 7, clWater, 20),
 	numLakes);
@@ -193,7 +193,7 @@ for (let type of types)
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / num, 0.5),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 5, clWater, 3, clForest, 15, clHill, 1),
 		num);

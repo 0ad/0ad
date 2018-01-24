@@ -71,7 +71,7 @@ createArea(
 		[Math.floor(fractionToTiles(0.33))]),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	]);
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
@@ -89,7 +89,7 @@ for (let i = 0; i < numPlayers; ++i)
 			[Math.floor(scaleByMapSize(23, 50))]),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-			paintClass(clLand)
+			new TileClassPainter(clLand)
 		]);
 
 Engine.SetProgress(20);

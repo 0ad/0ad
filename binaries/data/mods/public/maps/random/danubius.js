@@ -236,7 +236,7 @@ if (gallicCC)
 				[
 					new LayeredPainter([tShore, tRoad, tRoad], [1, 3]),
 					new SmoothElevationPainter(ELEVATION_SET, heightPath, 4),
-					paintClass(clPath)
+					new TileClassPainter(clPath)
 				]);
 
 			// Create the meeting place near the shoreline at the end of the path
@@ -244,8 +244,8 @@ if (gallicCC)
 				new ClumpPlacer(diskArea(mRadius), 0.6, 0.3, 10, meetingPlacePosition),
 				[
 					new TerrainPainter(tShore),
-					paintClass(clPath),
-					paintClass(clRitualPlace)
+					new TileClassPainter(clPath),
+					new TileClassPainter(clRitualPlace)
 				]);
 
 			placeObject(meetingPlacePosition.x, meetingPlacePosition.y, aCampfire, 0, randomAngle());
@@ -265,7 +265,7 @@ if (gallicCC)
 			new ClumpPlacer(diskArea(gaulCityRadius), 0.6, 0.3, 10, civicCenterPosition),
 			[
 				new TerrainPainter(tShore),
-				paintClass(clGauls)
+				new TileClassPainter(clGauls)
 			]);
 
 		// Place palisade fortress and some city buildings
@@ -434,7 +434,7 @@ createAreas(
 	[
 		new LayeredPainter([tWater, tShore, tIsland], [2, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightIsland, 4),
-		paintClass(clIsland)
+		new TileClassPainter(clIsland)
 	],
 	[avoidClasses(clIsland, 30), stayClasses (clWater, 10)],
 	scaleByMapSize(1, 4) * numPlayers

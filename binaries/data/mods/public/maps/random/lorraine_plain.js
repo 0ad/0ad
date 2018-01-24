@@ -72,7 +72,7 @@ placePlayerBases({
 		"outerTerrain": tRoadWild,
 		"innerTerrain": tRoad,
 		"painters": [
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	"Chicken": {
@@ -176,7 +176,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([[tGrass,tGrassA], tGrassB, [tGrassB,tGrassC]], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6),
 		scaleByMapSize(15, 45)

@@ -75,7 +75,7 @@ placePlayerBases({
 		"smoothness": 1/8,
 		"painters": [
 			new LayeredPainter([terrainBaseBorder, terrainBase, terrainBaseCenter], [baseRadius/4, baseRadius/4]),
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	"Chicken": {
@@ -116,7 +116,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 			[
 				new TerrainPainter(terrainPath),
 				new SmoothElevationPainter(ELEVATION_SET, heightPath, 2, heightOffsetRandomPath),
-				paintClass(clPath)
+				new TileClassPainter(clPath)
 			],
 			avoidClasses(clHill, 0, clBaseResource, 4));
 	}
@@ -141,7 +141,7 @@ for (let i = 0; i < numPlayers; ++i)
 			[
 				new LayeredPainter([terrainHillBorder, terrainHill], [1]),
 				new ElevationPainter(randFloat(1, 2)),
-				paintClass(clHill)
+				new TileClassPainter(clHill)
 			]);
 	}
 Engine.SetProgress(60);
@@ -156,7 +156,7 @@ createArea(
 	[
 		new LayeredPainter([terrainHillBorder, terrainHill], [radiusEC/4]),
 		new ElevationPainter(randFloat(1, 2)),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	]);
 
 // Woods and general hight map
@@ -185,7 +185,7 @@ for (var x = 0; x < mapSize; x++)
 				[
 					new TerrainPainter(border ? terrainWoodBorder : terrainWood),
 					new ElevationPainter(randFloat(0, 1)),
-					paintClass(clForest)
+					new TileClassPainter(clForest)
 				],
 				avoidClasses(clPath, 1, clHill, border ? 0 : 1));
 		}

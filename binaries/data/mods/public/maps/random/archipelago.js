@@ -89,7 +89,7 @@ createAreas(
 		scaleByMapSize(30, 70)),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	],
 	null,
 	scaleByMapSize(1, 5) * randIntInclusive(5, 10));
@@ -108,7 +108,7 @@ placePlayerBases({
 		"innerTerrain": tRoad,
 		"radius": islandRadius / 3,
 		"painters": [
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	"Chicken": {

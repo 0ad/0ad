@@ -73,7 +73,7 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]);
 
 	let angle = playerAngle[i] + Math.PI * (1 + randFloat(-1, 1) / 8);
@@ -126,7 +126,7 @@ var waterAreas = createAreas(
 	[
 		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 6),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 2, clWater, 20),
 	numLakes

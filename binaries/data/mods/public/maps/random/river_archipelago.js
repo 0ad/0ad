@@ -99,7 +99,7 @@ for (let i = 0; i < stripWidths.length; ++i)
 			[
 				new LayeredPainter([tGrass, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-				paintClass(clStrip[i])
+				new TileClassPainter(clStrip[i])
 			]);
 	}
 }
@@ -118,7 +118,7 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tGrass, tGrass, tGrass], [1, 4]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-			paintClass(clPlayerTerritory)
+			new TileClassPainter(clPlayerTerritory)
 		]);
 
 placePlayerBases({
@@ -192,7 +192,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tGrass], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	[
 		avoidClasses(
@@ -225,7 +225,7 @@ for (let type of types)
 			0.5),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(
 			clPlayer, 12,
@@ -257,7 +257,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([tGrassC, tGrassA, tGrassB], [2, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(
 			clWater, 8,
@@ -274,7 +274,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([tPlants, tPlants], [1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(
 			clWater, 8,

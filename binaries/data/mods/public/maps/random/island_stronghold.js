@@ -93,7 +93,7 @@ for (let i = 0; i < teams.length; ++i)
 			[
 				new LayeredPainter([tMainTerrain, tMainTerrain, tMainTerrain], [1, 6]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
-				paintClass(clLand)
+				new TileClassPainter(clLand)
 			]);
 
 		placeCivDefaultStartingEntities(playerPosition[p], teams[i][p], false);
@@ -181,7 +181,7 @@ createAreas(
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	],
 	avoidClasses(clLand, 3, clPlayer, 3),
 	scaleByMapSize(4, 14) * (isNomad() ? 2 : 1),
@@ -193,7 +193,7 @@ createAreas(
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	],
 	avoidClasses(clLand, 3, clPlayer, 3),
 	scaleByMapSize(6, 55),
@@ -242,7 +242,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	[avoidClasses(clBaseResource, 20, clHill, 15, clRock, 6, clMetal, 6), stayClasses(clLand, 0)],
 	scaleByMapSize(4, 13)
@@ -298,7 +298,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 4)],
 		numb*scaleByMapSize(15, 45));

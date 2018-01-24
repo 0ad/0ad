@@ -69,7 +69,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tGrass], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 12, clHill, 15, clBaseResource, 2),
 	scaleByMapSize(2, 8) * numPlayers
@@ -88,7 +88,7 @@ for (let type of types)
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 12, clForest, 10, clHill, 0, clBaseResource, 6),
 		num);
@@ -101,7 +101,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([tGrassA, tGrassA], [1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clHill, 0, clPlayer, 12),
 		scaleByMapSize(20, 80));
@@ -111,7 +111,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([tGrassB, tGrassB], [1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clHill, 0, clPlayer, 12),
 		scaleByMapSize(20, 80));
@@ -121,7 +121,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([tGrassC, tGrassC], [1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clHill, 0, clPlayer, 12),
 		scaleByMapSize(20, 80)

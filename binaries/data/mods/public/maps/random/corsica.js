@@ -93,7 +93,7 @@ for (let island = 0; island < 2; ++island)
 		[
 			new LayeredPainter([tCliffs, tGrass], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightMain, 0),
-			paintClass(clIsland)
+			new TileClassPainter(clIsland)
 		]);
 
 	log("Creating subislands...");
@@ -106,7 +106,7 @@ for (let island = 0; island < 2; ++island)
 			[
 				new LayeredPainter([tCliffs, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightMain, 1),
-				paintClass(clIsland)
+				new TileClassPainter(clIsland)
 			]);
 	}
 
@@ -120,7 +120,7 @@ for (let island = 0; island < 2; ++island)
 			[
 				new TerrainPainter(tSteepCliffs),
 				new SmoothElevationPainter(ELEVATION_SET, heightCreeks, 0),
-				paintClass(clCreek)
+				new TileClassPainter(clCreek)
 			]);
 	}
 
@@ -224,7 +224,7 @@ placePlayerBases({
 		"coherence": 0.8,
 		"radius": 6,
 		"painters": [
-			paintClass(clSettlement)
+			new TileClassPainter(clSettlement)
 		]
 	},
 	"Chicken": {
@@ -366,7 +366,7 @@ createAreas(
 	new ClumpPlacer(20, 0.3, 0.06, 0.5),
 	[
 		new TerrainPainter(tLushGrass),
-		paintClass(clForest)
+		new TileClassPainter(clForest)
 	],
 	avoidClasses(
 		clWater, 1,

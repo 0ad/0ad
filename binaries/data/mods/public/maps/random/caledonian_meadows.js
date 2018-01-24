@@ -21,7 +21,7 @@ function placeRandomPathToHeight(
 			let painters = [new TerrainPainter(texture)];
 
 			if (tileClass !== undefined)
-				painters.push(paintClass(tileClass));
+				painters.push(new TileClassPainter(tileClass));
 
 			createArea(
 				new ClumpPlacer(diskArea(0.3 * width), 1, 1, 1, position),
@@ -138,7 +138,7 @@ function placeGrove(point)
 			new ClumpPlacer(5, 1, 1, 1, position),
 			[
 				new TerrainPainter("temp_grass_plants"),
-				paintClass(clGrove)
+				new TileClassPainter(clGrove)
 			]);
 	}
 }
@@ -189,7 +189,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 			new ClumpPlacer(5, 1, 1, 1, woodPosition),
 			[
 				new TerrainPainter("temp_grass_plants"),
-				paintClass(clGrove)
+				new TileClassPainter(clGrove)
 			]);
 		currentAngle += dAngle;
 	}

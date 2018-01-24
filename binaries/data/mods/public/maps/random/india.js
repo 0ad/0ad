@@ -95,7 +95,7 @@ createArea(
 		[Math.floor(scaleByMapSize(15, 40))]),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 2));
 
@@ -104,7 +104,7 @@ createAreas(
 	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, 1),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, heightShore, 4),
-		unPaintClass(clWater)
+		new TileClassUnPainter(clWater)
 	],
 	borderClasses(clWater, 4, 7),
 	scaleByMapSize(12, 130) * 2, 150

@@ -274,22 +274,6 @@ function removeFromClass(x, z, id)
 }
 
 /**
- * Create a painter for the given class
- */
-function paintClass(id)
-{
-	return new TileClassPainter(getTileClass(id));
-}
-
-/**
- * Create a painter for the given class
- */
-function unPaintClass(id)
-{
-	return new TileClassUnPainter(getTileClass(id));
-}
-
-/**
  * Create an avoid constraint for the given classes by the given distances
  */
 function avoidClasses(/*class1, dist1, class2, dist2, etc*/)

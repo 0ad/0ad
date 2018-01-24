@@ -93,7 +93,7 @@ function createCycladicArchipelagoIsland(position, tileClass, radius, coralRadiu
 		new ClumpPlacer(diskArea(radius + coralRadius), 0.7, 0.1, 10, position),
 		[
 			new LayeredPainter([tOceanRockDeep, tOceanCoral], [5]),
-			paintClass(clCoral)
+			new TileClassPainter(clCoral)
 		],
 		avoidClasses(clCoral, 0, clPlayer, 0));
 
@@ -104,7 +104,7 @@ function createCycladicArchipelagoIsland(position, tileClass, radius, coralRadiu
 			[
 				new LayeredPainter([tOceanCoral, tBeachWet, tBeachDry, tBeach, tBeachBlend, tGrass], [1, 3, 1, 1, 2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 5),
-				paintClass(tileClass)
+				new TileClassPainter(tileClass)
 			],
 			avoidClasses(clPlayer, 0)));
 }
@@ -135,7 +135,7 @@ placePlayerBases({
 		"outerTerrain": tGrass,
 		"innerTerrain": tCity,
 		"painters": [
-			paintClass(clCity)
+			new TileClassPainter(clCity)
 		]
 	},
 	"Chicken": {
@@ -173,7 +173,7 @@ createAreasInAreas(
 	[
 		new LayeredPainter([tCliff, tCliffShrubs], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clCity, 15, clHill, 15),
 	scaleByMapSize(5, 30), 15,
@@ -196,7 +196,7 @@ for (let type of forestTypes)
 		new ClumpPlacer(randIntInclusive(6, 17), 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clCity, 1, clWater, 3, clForest, 3, clHill, 1, clBaseResource, 4),
 		scaleByMapSize(10, 64),
@@ -234,7 +234,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([tBeachBlend, tGrassShrubs], [1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clWater, 3, clHill, 0, clDirt, 6, clCity, 0, clBaseResource, 4),
 		scaleByMapSize(4, 16),
@@ -248,7 +248,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([tGrassDry], []),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clWater, 3, clHill, 0, clDirt, 6, clCity, 0, clBaseResource, 4),
 		scaleByMapSize(4, 16),

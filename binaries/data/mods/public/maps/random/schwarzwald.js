@@ -157,7 +157,7 @@ placePlayerBases({
 		"smoothness": 1/8,
 		"painters": [
 			new TerrainPainter([baseTex], [baseRadius/4, baseRadius/4]),
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	// No chicken
@@ -227,7 +227,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 			[
 				new TerrainPainter(terrainPath),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetPath, 1),
-				paintClass(clPath)
+				new TileClassPainter(clPath)
 			],
 			avoidClasses(clPath, 0, clOpen, 0 ,clWater, 4, clBaseResource, 4));
 	}
@@ -306,7 +306,7 @@ for (var x = 0; x < mapSize; x++)
 			new RectPlacer(x, z, x, z),
 			[
 				new TerrainPainter(border ? terrainWoodBorder : terrainWood),
-				paintClass(clForest)
+				new TileClassPainter(clForest)
 			],
 			border ?
 				avoidClasses(clPath, 1, clOpen, 2, clWater, 3, clMetal, 4, clRock, 4) :

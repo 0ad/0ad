@@ -73,7 +73,7 @@ placePlayerBases({
 		"outerTerrain": tCity,
 		"innerTerrain": tCity,
 		"painters": [
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	"Chicken": {
@@ -101,7 +101,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 6)), Math.floor(scaleByMapSize(20, 45)), 0),
 	[
 		new TerrainPainter(tRocky),
-		paintClass(clPatch)
+		new TileClassPainter(clPatch)
 	],
 	avoidClasses(clPatch, 2, clPlayer, 0),
 	scaleByMapSize(5, 20));
@@ -112,7 +112,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(15, 40)), 0),
 	[
 		new TerrainPainter([tRocky, tRocks]),
-		paintClass(clPatch)
+		new TileClassPainter(clPatch)
 	],
 	avoidClasses(clPatch, 2, clPlayer, 4),
 	scaleByMapSize(15, 50));
@@ -127,7 +127,7 @@ createAreas(
 		0),
 	[
 		new TerrainPainter([tGrass]),
-		paintClass(clPatch)
+		new TileClassPainter(clPatch)
 	],
 	avoidClasses(clPatch, 2, clPlayer, 4),
 	scaleByMapSize(15, 50));
@@ -146,7 +146,7 @@ createArea(
 	[
 		new LayeredPainter([tLakebed2, tLakebed1], [6]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetValley, 8),
-		paintClass(clCP)
+		new TileClassPainter(clCP)
 	],
 	avoidClasses(clPlayer, 18));
 Engine.SetProgress(30);
@@ -183,7 +183,7 @@ for (let type of types)
 			1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(
 			clPlayer, 6,

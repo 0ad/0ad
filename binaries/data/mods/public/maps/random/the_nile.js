@@ -188,7 +188,7 @@ var waterAreas = createAreas(
 	[
 		new LayeredPainter([tShore, tShore, tShore], [1, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightPonds, 4),
-		paintClass(clPond)
+		new TileClassPainter(clPond)
 	],
 	avoidClasses(clPlayer, 25, clWater, 20, clPond, 10),
 	numLakes);
@@ -218,7 +218,7 @@ createAreas(
 	new ClumpPlacer(forestTrees / num, 0.15, 0.1, 0.5),
 	[
 		new TerrainPainter([pForest, tForestFloor]),
-		paintClass(clForest)
+		new TileClassPainter(clForest)
 	],
 	avoidClasses(clPlayer, 19, clForest, 4, clWater, 1, clDesert, 5, clPond, 2, clBaseResource, 3),
 	num,
@@ -234,7 +234,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 			new LayeredPainter(
 				[[tGrass, tGrassSand50], [tGrassSand50, tGrassSand25], [tGrassSand25, tGrass]],
 				[1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 10, clWater, 1, clDirt, 5, clShore, 1, clPond, 1),
 		scaleByMapSize(15, 45));
@@ -248,7 +248,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 			new LayeredPainter(
 				[[tDirt, tDirtCracks], [tDirt, tFineSand], [tDirtCracks, tFineSand]],
 				[1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 10, clWater, 1, clGrass, 5, clShore, 1, clPond, 1),
 		scaleByMapSize(15, 45));

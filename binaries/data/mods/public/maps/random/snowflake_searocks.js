@@ -85,7 +85,7 @@ function createIsland(islandID, size, tileClass)
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightIsland, 2),
-			paintClass(tileClass)
+			new TileClassPainter(tileClass)
 		]);
 }
 
@@ -282,7 +282,7 @@ for (let type of types)
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		[avoidClasses(clPlayer, 6, clForest, 10), stayClasses(clLand, 4)],
 		num);
@@ -316,7 +316,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([[tMainTerrain, tTier1Terrain],[tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		[avoidClasses(clForest, 0, clDirt, 5, clPlayer, 12), stayClasses(clLand, 5)],
 		scaleByMapSize(15, 45));

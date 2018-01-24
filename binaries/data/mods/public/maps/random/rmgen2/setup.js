@@ -158,7 +158,7 @@ function createBase(player, walls = true)
 			"outerTerrain": g_Terrains.roadWild,
 			"innerTerrain": g_Terrains.road,
 			"painters": [
-				paintClass(g_TileClasses.player)
+				new TileClassPainter(g_TileClasses.player)
 			]
 		},
 		"Chicken": {

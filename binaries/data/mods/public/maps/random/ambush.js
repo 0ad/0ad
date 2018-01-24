@@ -12,7 +12,7 @@ initTileClasses();
 
 createArea(
 	new MapBoundsPlacer(),
-	paintClass(g_TileClasses.land));
+	new TileClassPainter(g_TileClasses.land));
 
 Engine.SetProgress(10);
 

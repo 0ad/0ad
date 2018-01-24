@@ -75,7 +75,7 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tShore, tMainTerrain], [shoreRadius]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
-			paintClass(clHill)
+			new TileClassPainter(clHill)
 		]);
 
 placePlayerBases({
@@ -123,7 +123,7 @@ createArea(
 	[
 		new LayeredPainter([tShore, tMainTerrain], [shoreRadius, 100]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 40));
 
@@ -142,7 +142,7 @@ for (let m = 0; m < randIntInclusive(20, 34); ++m)
 		[
 			new LayeredPainter([tDirt, tHill], [Math.floor(elevRand / 3), 40]),
 			new SmoothElevationPainter(ELEVATION_SET, elevRand, Math.floor(elevRand / 3)),
-			paintClass(clHill)
+			new TileClassPainter(clHill)
 		],
 		[avoidClasses(clBaseResource, 2, clPlayer, 40), stayClasses(clHill, 6)]);
 }
@@ -162,7 +162,7 @@ for (let m = 0; m < randIntInclusive(8, 17); ++m)
 		[
 			new LayeredPainter([tCliff, tForestFloor2], [Math.floor(elevRand / 3), 40]),
 			new SmoothElevationPainter(ELEVATION_MODIFY, elevRand, Math.floor(elevRand / 3)),
-			paintClass(clMountain)
+			new TileClassPainter(clMountain)
 		],
 		[avoidClasses(clBaseResource, 2, clPlayer, 40), stayClasses(clHill, 6)]);
 }
@@ -218,7 +218,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clMountain, 0, clDirt, 5, clPlayer, 10),
 		numb * scaleByMapSize(15, 45));

@@ -162,7 +162,7 @@ log("Marking player territory larger than the city patch...");
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
 		new ClumpPlacer(250, 0.95, 0.3, 0.1, playerPosition[i]),
-		paintClass(clPlayer));
+		new TileClassPainter(clPlayer));
 
 Engine.SetProgress(30);
 
@@ -174,7 +174,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 		[
 			new LayeredPainter([tCliff, [tForestFloor, tForestFloor, tCliff]], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, size < 50 ? 2 : 4),
-			paintClass(clHill)
+			new TileClassPainter(clHill)
 		],
 		avoidClasses(clPlayer, 8, clBaseResource, 2, clHill, 5),
 		scaleByMapSize(1, 4));
@@ -196,7 +196,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 		[
 			new LayeredPainter([tCliff, tForestFloor], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightRavineValley, 2),
-			paintClass(clHill)
+			new TileClassPainter(clHill)
 		],
 		avoidClasses(clPlayer, 6, clBaseResource, 2, clHill, 5),
 		scaleByMapSize(1, 3));
@@ -241,7 +241,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 			[
 				new LayeredPainter([tCliff, tForestFloor], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightRavineHill, 2),
-				paintClass(clHill)
+				new TileClassPainter(clHill)
 			],
 			[avoidClasses(clHillDeco, 2), borderClasses(clHill, 15, 1)],
 			ravine.length * 2,
@@ -300,7 +300,7 @@ createAreasInAreas(
 	new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 	[
 		new TerrainPainter(pForest),
-		paintClass(clForest)
+		new TileClassPainter(clForest)
 	],
 	avoidClasses(clPlayer, 5, clBaseResource, 4, clForest, 6, clHill, 4),
 	num,
@@ -313,8 +313,8 @@ createAreasInAreas(
 	new ClumpPlacer(forestTreesJoin / num, 0.1, 0.1, 1),
 	[
 		new TerrainPainter(pForest),
-		paintClass(clForest),
-		paintClass(clForestJoin)
+		new TileClassPainter(clForest),
+		new TileClassPainter(clForestJoin)
 	],
 	[avoidClasses(clPlayer, 5, clBaseResource, 4, clForestJoin, 5, clHill, 4), borderClasses(clForest, 1, 4)],
 	num,
