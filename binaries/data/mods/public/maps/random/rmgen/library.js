@@ -80,7 +80,7 @@ function retryPlacing(placeFunc, retryFactor, amount, getResult, behaveDeprecate
 function randomizeCoordinates(obj, passableOnly)
 {
 	let border = passableOnly ? MAP_BORDER_WIDTH : 0;
-	if (g_MapSettings.CircularMap)
+	if (g_Map.isCircularMap())
 	{
 		// Polar coordinates
 		// Uniformly distributed on the disk
@@ -190,11 +190,6 @@ function placeObject(x, z, type, player, angle)
 		g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 
-function isCircularMap()
-{
-	return !!g_MapSettings.CircularMap;
-}
-
 function createTileClass()
 {
 	return g_Map.createTileClass();
@@ -259,11 +254,6 @@ function unPaintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
 function createObjectGroup(group, player, constraints)
 {
 	return group.place(player, new AndConstraint(constraints));
-}
-
-function g_Map.getSize()
-{
-	return g_Map.size;
 }
 
 function isNomad()

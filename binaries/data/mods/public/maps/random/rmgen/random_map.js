@@ -91,13 +91,23 @@ RandomMap.prototype.getEntityID = function()
 	return this.entityCount++;
 };
 
+RandomMap.prototype.isCircularMap = function()
+{
+	return !!g_MapSettings.CircularMap;
+};
+
+RandomMap.prototype.getSize = function()
+{
+	return this.size;
+};
+
 /**
  * Returns the center tile coordinates of the map.
  */
 RandomMap.prototype.getCenter = function()
 {
 	return deepfreeze(new Vector2D(this.size / 2, this.size / 2));
-}
+};
 
 /**
  * Returns a human-readable reference to the smallest and greatest coordinates of the map.
@@ -110,7 +120,7 @@ RandomMap.prototype.getBounds = function()
 		"top": this.size,
 		"bottom": 0
 	});
-}
+};
 
 /**
  * Determines whether the given coordinates are within the given distance of the passable map area.
@@ -120,7 +130,7 @@ RandomMap.prototype.validTile = function(position, distance = 0)
 {
 	distance += MAP_BORDER_WIDTH;
 
-	if (g_MapSettings.CircularMap)
+	if (this.isCircularMap())
 		return Math.round(position.distanceTo(this.getCenter())) < this.size / 2 - distance - 1;
 
 	return position.x >= distance && position.y >= distance && position.x < this.size - distance && position.y < this.size - distance;
@@ -284,7 +294,7 @@ RandomMap.prototype.cornerHeight = function(position)
 		}
 	}
 
-	if (count == 0)
+	if (!count)
 		return 0;
 
 	return sumHeight / count;
@@ -304,7 +314,7 @@ RandomMap.prototype.getAdjacentPoints = function(position)
 			}
 
 	return adjacentPositions;
-}
+};
 
 /**
  * Returns the average height of adjacent tiles, helpful for smoothing.
@@ -316,7 +326,7 @@ RandomMap.prototype.getAverageHeight = function(position)
 		return 0;
 
 	return adjacentPositions.reduce((totalHeight, pos) => totalHeight + this.getHeight(pos), 0) / adjacentPositions.length;
-}
+};
 
 /**
  * Returns the steepness of the given location, defined as the average height difference of the adjacent tiles.
@@ -329,7 +339,7 @@ RandomMap.prototype.getSlope = function(position)
 
 	return adjacentPositions.reduce((totalSlope, adjacentPos) =>
 		totalSlope + Math.abs(this.getHeight(adjacentPos) - this.getHeight(position)), 0) / adjacentPositions.length;
-}
+};
 
 /**
  * Retrieve an array of all Entities placed on the map.
@@ -410,4 +420,4 @@ RandomMap.prototype.ExportMap = function()
 		"Camera": g_Camera,
 		"Environment": g_Environment
 	});
-}
+};
