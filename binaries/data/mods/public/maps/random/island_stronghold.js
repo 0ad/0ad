@@ -55,15 +55,15 @@ const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-const clPlayer = createTileClass();
-const clHill = createTileClass();
-const clForest = createTileClass();
-const clDirt = createTileClass();
-const clRock = createTileClass();
-const clMetal = createTileClass();
-const clFood = createTileClass();
-const clBaseResource = createTileClass();
-const clLand = createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clLand = g_Map.createTileClass();
 
 var startAngle = randomAngle();
 

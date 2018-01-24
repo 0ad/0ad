@@ -118,7 +118,7 @@ let groveActors = [
 	"actor|props/flora/bush.xml", "actor|props/flora/bush_dry_a.xml", "actor|props/flora/bush_highlands.xml",
 	"actor|props/flora/bush_tempe_a.xml", "actor|props/flora/bush_tempe_b.xml", "actor|props/flora/ferns.xml"
 ];
-let clGrove = createTileClass();
+let clGrove = g_Map.createTileClass();
 
 function placeGrove(point)
 {
@@ -330,7 +330,7 @@ for (let p = 0; p < playerIDs.length; ++p)
 log("Creating paths...");
 let tchm = getTileCenteredHeightmap(); // Calculate tileCenteredHeightMap (This has nothing to to with TILE_CENTERED_HEIGHT_MAP which should be false)
 let pathPoints = [];
-let clPath = createTileClass();
+let clPath = g_Map.createTileClass();
 for (let i = 0; i < startLocations.length; ++i)
 {
 	let start = startLocations[i];
@@ -419,7 +419,7 @@ Engine.SetProgress(80);
 
 log("Placing players...");
 if (isNomad())
-	placePlayersNomad(createTileClass(), new HeightConstraint(heighLimits[4], heighLimits[5]));
+	placePlayersNomad(g_Map.createTileClass(), new HeightConstraint(heighLimits[4], heighLimits[5]));
 else
 	for (let p = 0; p < playerIDs.length; ++p)
 	{

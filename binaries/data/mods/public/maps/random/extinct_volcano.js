@@ -60,19 +60,19 @@ var g_Map = new RandomMap(heightLand, tHillMedium1);
 var numPlayers = getNumPlayers();
 var mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clFood = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clGrass = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clBaseResource = createTileClass();
-var clBumps = createTileClass();
-var clTower = createTileClass();
-var clRain = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clGrass = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clBumps = g_Map.createTileClass();
+var clTower = g_Map.createTileClass();
+var clRain = g_Map.createTileClass();
 
 var playerMountainSize = defaultPlayerBaseRadius();
 

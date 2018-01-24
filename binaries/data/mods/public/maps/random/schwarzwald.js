@@ -68,15 +68,15 @@ const heightOffsetPath = -0.1;
 
 var g_Map = new RandomMap(heightLand, terrainPrimary);
 
-var clPlayer = createTileClass();
-var clPath = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clMetal = createTileClass();
-var clRock = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clOpen = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clPath = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clOpen = g_Map.createTileClass();
 
 var mapSize = g_Map.getSize();
 var mapCenter = g_Map.getCenter();

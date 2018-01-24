@@ -6,6 +6,6 @@ placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.39))
 });
 
-placePlayersNomad(createTileClass());
+placePlayersNomad(g_Map.createTileClass());
 
 g_Map.ExportMap();

@@ -190,11 +190,6 @@ function placeObject(x, z, type, player, angle)
 		g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 
-function createTileClass()
-{
-	return g_Map.createTileClass();
-}
-
 function getTileClass(id)
 {
 	if (!g_Map.validClass(id))

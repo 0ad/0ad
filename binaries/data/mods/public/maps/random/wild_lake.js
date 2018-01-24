@@ -225,7 +225,7 @@ function placeMine(point, centerEntity,
 
 // Groves, only Wood
 let groveActors = [g_Decoratives.grass, g_Decoratives.rockMedium, g_Decoratives.bushMedium];
-let clGrove = createTileClass();
+let clGrove = g_Map.createTileClass();
 
 function placeGrove(point,
 	groveEntities = [
@@ -509,7 +509,7 @@ let tchm = getTileCenteredHeightmap();
 /**
  * Add paths (If any)
  */
-let clPath = createTileClass();
+let clPath = g_Map.createTileClass();
 
 /**
  * Divide tiles in areas by height and avoid paths
@@ -593,7 +593,7 @@ Engine.SetProgress(55);
 
 log("Placing players...");
 if (isNomad())
-	placePlayersNomad(createTileClass(), new HeightConstraint(playerHeightRange.min, playerHeightRange.max));
+	placePlayersNomad(g_Map.createTileClass(), new HeightConstraint(playerHeightRange.min, playerHeightRange.max));
 else
 	for (let p = 0; p < playerIDs.length; ++p)
 	{

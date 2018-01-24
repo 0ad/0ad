@@ -57,19 +57,19 @@ var aPlants = mapSize < 256 ?
 
 var numPlayers = getNumPlayers();
 
-var clPlayer = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clGrass = createTileClass();
-var clDesert = createTileClass();
-var clPond = createTileClass();
-var clShore = createTileClass();
-var clTreasure = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clGrass = g_Map.createTileClass();
+var clDesert = g_Map.createTileClass();
+var clPond = g_Map.createTileClass();
+var clShore = g_Map.createTileClass();
+var clTreasure = g_Map.createTileClass();
 
 var desertWidth = fractionToTiles(0.25);
 var startAngle = randomAngle();

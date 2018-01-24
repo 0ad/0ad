@@ -48,13 +48,13 @@ var numPlayers = getNumPlayers();
 var mapSize = g_Map.getSize();
 var mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clDirt = createTileClass();
-var clBaseResource = createTileClass();
-var clLand = createTileClass();
-var clWomen = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clLand = g_Map.createTileClass();
+var clWomen = g_Map.createTileClass();
 
 log("Creating central area...");
 createArea(

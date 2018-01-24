@@ -52,15 +52,15 @@ const shoreRadius = 6;
 
 var g_Map = new RandomMap(heightSeaGround, tWater);
 
-const clPlayer = createTileClass();
-const clHill = createTileClass();
-const clMountain = createTileClass();
-const clForest = createTileClass();
-const clDirt = createTileClass();
-const clRock = createTileClass();
-const clMetal = createTileClass();
-const clFood = createTileClass();
-const clBaseResource = createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clMountain = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();

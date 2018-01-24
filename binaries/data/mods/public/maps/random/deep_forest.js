@@ -33,11 +33,11 @@ var mapSize = g_Map.getSize();
 var mapRadius = mapSize/2;
 var mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clPath = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clPath = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 var numPlayers = getNumPlayers();
 var baseRadius = 20;

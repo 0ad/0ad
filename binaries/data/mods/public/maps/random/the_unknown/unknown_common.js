@@ -63,19 +63,19 @@ const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = createTileClass();
-var clPlayerTerritory = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clPeninsulaSteam = createTileClass();
-var clBaseResource = createTileClass();
-var clLand = createTileClass();
-var clShallow = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clPlayerTerritory = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clPeninsulaSteam = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clLand = g_Map.createTileClass();
+var clShallow = g_Map.createTileClass();
 
 var landElevationPainter = new SmoothElevationPainter(ELEVATION_SET, heightLand, 4);
 

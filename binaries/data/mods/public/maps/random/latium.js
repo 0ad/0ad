@@ -61,14 +61,14 @@ const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clWater = createTileClass();
-var clCliff = createTileClass();
-var clForest = createTileClass();
-var clMetal = createTileClass();
-var clRock = createTileClass();
-var clFood = createTileClass();
-var clPlayer = createTileClass();
-var clBaseResource = createTileClass();
+var clWater = g_Map.createTileClass();
+var clCliff = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 var WATER_WIDTH = 0.1;
 var horizontal = randBool();

@@ -218,7 +218,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 {
 	log("Creating volcano...");
 
-	let clLava = createTileClass();
+	let clLava = g_Map.createTileClass();
 	let layers = [
 		{
 			"clumps": diskArea(scaleByMapSize(18, 25)),
@@ -229,19 +229,19 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 		{
 			"clumps": diskArea(scaleByMapSize(16, 23)),
 			"elevation": 25,
-			"tileClass": createTileClass(),
+			"tileClass": g_Map.createTileClass(),
 			"steepness": 3
 		},
 		{
 			"clumps": diskArea(scaleByMapSize(10, 15)),
 			"elevation": 45,
-			"tileClass": createTileClass(),
+			"tileClass": g_Map.createTileClass(),
 			"steepness": 3
 		},
 		{
 			"clumps": diskArea(scaleByMapSize(8, 11)),
 			"elevation": 62,
-			"tileClass": createTileClass(),
+			"tileClass": g_Map.createTileClass(),
 			"steepness": 3
 		},
 		{

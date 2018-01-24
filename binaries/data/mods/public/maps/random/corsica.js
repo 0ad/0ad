@@ -55,16 +55,16 @@ var numPlayers = getNumPlayers();
 var mapSize = g_Map.getSize();
 var mapCenter = g_Map.getCenter();
 
-var clIsland = createTileClass();
-var clCreek = createTileClass();
-var clWater = createTileClass();
-var clCliffs = createTileClass();
-var clForest = createTileClass();
-var clShore = createTileClass();
-var clPlayer = createTileClass();
-var clBaseResource = createTileClass();
-var clPassage = createTileClass();
-var clSettlement = createTileClass();
+var clIsland = g_Map.createTileClass();
+var clCreek = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clCliffs = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clShore = g_Map.createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clPassage = g_Map.createTileClass();
+var clSettlement = g_Map.createTileClass();
 
 var radiusBeach = fractionToTiles(0.57);
 var radiusCreeks = fractionToTiles(0.52);

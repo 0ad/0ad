@@ -51,15 +51,15 @@ const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill1 = createTileClass();
-var clOasis = createTileClass();
-var clForest = createTileClass();
-var clPatch = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill1 = g_Map.createTileClass();
+var clOasis = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clPatch = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 var oasisRadius = scaleByMapSize(14, 40);
 

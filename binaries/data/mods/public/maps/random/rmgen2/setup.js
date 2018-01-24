@@ -466,5 +466,5 @@ function initTileClasses(newClasses)
 
 	g_TileClasses = {};
 	for (var className of classNames)
-		g_TileClasses[className] = createTileClass();
+		g_TileClasses[className] = g_Map.createTileClass();
 }
