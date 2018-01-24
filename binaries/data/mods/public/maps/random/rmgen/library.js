@@ -232,14 +232,14 @@ function paintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
 {
 	createArea(
 		new HeightPlacer(mode, minHeight, maxHeight),
-		new TileClassPainter(getTileClass(tileClass)));
+		new TileClassPainter(tileClass));
 }
 
 function unPaintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
 {
 	createArea(
 		new HeightPlacer(mode, minHeight, maxHeight),
-		new TileClassUnPainter(getTileClass(tileClass)));
+		new TileClassUnPainter(tileClass));
 }
 
 /**
