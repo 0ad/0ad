@@ -369,28 +369,24 @@ Formation.prototype.AddMembers = function(ents)
 	this.offsets = undefined;
 	this.inPosition = [];
 
-	for (var ent of this.formationMembersWithAura)
+	for (let ent of this.formationMembersWithAura)
 	{
-		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
-		cmpAuras.RemoveFormationBonus(ents);
-
-		// the unit with the aura is also removed from the formation
-		if (ents.indexOf(ent) !== -1)
-			cmpAuras.RemoveFormationBonus(this.members);
+		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		cmpAuras.ApplyFormationBonus(ents);
 	}
 
 	this.members = this.members.concat(ents);
 
-	for (var ent of this.members)
+	for (let ent of ents)
 	{
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
 
-		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		if (cmpAuras && cmpAuras.HasFormationAura())
 		{
 			this.formationMembersWithAura.push(ent);
-			cmpAuras.ApplyFormationBonus(ents);
+			cmpAuras.ApplyFormationBonus(this.members);
 		}
 	}
 
@@ -902,7 +898,9 @@ Formation.prototype.ShapeUpdate = function()
 
 		// merge the members from the twin formation into this one
 		// twin formations should always have exactly the same orders
-		this.AddMembers(cmpOtherFormation.members);
+		let otherMembers = cmpOtherFormation.members;
+		cmpOtherFormation.RemoveMembers(otherMembers);
+		this.AddMembers(otherMembers);
 		Engine.DestroyEntity(this.twinFormations[i]);
 		this.twinFormations.splice(i,1);
 	}
