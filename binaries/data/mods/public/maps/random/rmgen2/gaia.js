@@ -112,7 +112,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 
 			newHeight = Math.max(newHeight, endLine.height);
 
-			if (newHeight <= endLine.height + 2 && g_Map.validT(point.x, point.y) && g_Map.getTexture(point.x, point.y).indexOf('cliff') != -1)
+			if (newHeight <= endLine.height + 2 && g_Map.validTile(point) && g_Map.getTexture(point).indexOf('cliff') != -1)
 				ground.place(point);
 
 			g_Map.setHeight(point, newHeight);
@@ -924,7 +924,7 @@ function unreachableBluff(bb, corners, baseLine, endLine)
 		return 1;
 
 	// If the end points aren't on the tilemap
-	if (!g_Map.validT(endLine.x1, endLine.z1) && !g_Map.validT(endLine.x2, endLine.z2))
+	if (!g_Map.validTile(new Vector2D(endLine.x1, endLine.z1)) && !g_Map.validTile(new Vector2D(endLine.x2, endLine.z2)))
 		return 2;
 
 	var minTilesInGroup = 1;
@@ -940,7 +940,7 @@ function unreachableBluff(bb, corners, baseLine, endLine)
 			if (!bb[x][z].isFeature)
 				continue;
 
-			var valid = g_Map.validT(x + corners.minX, z + corners.minZ);
+			var valid = g_Map.validTile(new Vector2D(x + corners.minX, z + corners.minZ));
 
 			if (valid)
 				++count;
@@ -969,7 +969,7 @@ function unreachableBluff(bb, corners, baseLine, endLine)
 			if (!bb[x][z].isFeature)
 				continue;
 
-			var valid = g_Map.validT(x + corners.minX, z + corners.minZ);
+			var valid = g_Map.validTile(new Vector2D(x + corners.minX, z + corners.minZ));
 
 			if (valid)
 				++count;
@@ -1072,28 +1072,26 @@ function findClearLine(bb, corners, angle, baseHeight)
 
 	for (var x = corners.minX; x <= corners.maxX; ++x)
 	{
-		var x2 = x;
-		var z2 = z;
+		let position2 = new Vector2D(x, z);
 
 		var clear = true;
 
-		while (x2 >= corners.minX && x2 <= corners.maxX && z2 >= corners.minZ && z2 <= corners.maxZ)
+		while (position2.x >= corners.minX && position2.x <= corners.maxX && position2.y >= corners.minZ && position2.y <= corners.maxZ)
 		{
-			var bp = bb[x2 - corners.minX][z2 - corners.minZ];
-			if (bp.isFeature && g_Map.validT(x2, z2))
+			var bp = bb[position2.x - corners.minX][position2.y - corners.minZ];
+			if (bp.isFeature && g_Map.validTile(position2))
 			{
 				clear = false;
 				break;
 			}
 
-			x2 = x2 + xOffset;
-			z2 = z2 + zOffset;
+			position2.add(new Vector2D(xOffset, zOffset));
 		}
 
 		if (clear)
 		{
-			var lastX = x2 - xOffset;
-			var lastZ = z2 - zOffset;
+			var lastX = position2.x - xOffset;
+			var lastZ = position2.y - zOffset;
 			var midX = Math.floor((x + lastX) / 2);
 			var midZ = Math.floor((z + lastZ) / 2);
 			clearLine = {

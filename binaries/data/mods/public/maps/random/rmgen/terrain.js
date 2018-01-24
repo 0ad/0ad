@@ -19,11 +19,12 @@ function SimpleTerrain(texture, templateName = undefined)
 
 SimpleTerrain.prototype.place = function(position)
 {
-	if (g_Map.validT(position.x, position.y))
-		g_Map.terrainObjects[position.x][position.y] =
+	if (g_Map.validTile(position))
+		g_Map.setTerrainObject(
+			position,
 			this.templateName ?
 				new Entity(this.templateName, 0, position.x + 0.5, position.y + 0.5, randomAngle()) :
-					undefined;
+				undefined);
 
 	g_Map.setTexture(position, this.texture);
 };

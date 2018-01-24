@@ -177,7 +177,7 @@ for (var x = 0; x < mapSize; x++)
 		var tDensFactEC = Math.max(Math.min((radius - radiusEC) / radiusEC, 1), 0);
 		var tDensActual = maxTreeDensity * tDensFactSL * tDensFactRad * tDensFactEC;
 
-		if (randBool(tDensActual) && g_Map.validT(x, z))
+		if (randBool(tDensActual) && g_Map.validTile(position))
 		{
 			let border = tDensActual < randFloat(0, bushChance * maxTreeDensity);
 			createArea(
@@ -190,8 +190,8 @@ for (var x = 0; x < mapSize; x++)
 				avoidClasses(clPath, 1, clHill, border ? 0 : 1));
 		}
 
-		// General hight map
-		var hVarMiddleHill = mapSize / 64 * (1 + Math.cos(3/2 * Math.PI * radius / mapRadius));
+		// General height map
+		let hVarMiddleHill = fractionToTiles(1 / 64) * (1 + Math.cos(3/2 * Math.PI * radius / mapRadius));
 		var hVarHills = 5 * (1 + Math.sin(x / 10) * Math.sin(z / 10));
 		g_Map.setHeight(position, g_Map.getHeight(position) + hVarMiddleHill + hVarHills + 1);
 	}

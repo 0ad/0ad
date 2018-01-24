@@ -200,7 +200,8 @@ function createTerrain(terrain)
 
 function placeObject(x, z, type, player, angle)
 {
-	if (g_Map.validT(x, z))
+	let position = new Vector2D(x, z);
+	if (g_Map.validTile(position))
 		g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 

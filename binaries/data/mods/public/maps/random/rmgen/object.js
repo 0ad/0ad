@@ -30,20 +30,21 @@ SimpleObject.prototype.place = function(centerX, centerZ, player, avoidSelf, con
 	let entities = [];
 	let failCount = 0;
 
+	let centerPosition = new Vector2D(centerX, centerZ);
+
 	for (let i = 0; i < randIntInclusive(this.minCount, this.maxCount); ++i)
 		while (true)
 		{
 			let distance = randFloat(this.minDistance, this.maxDistance);
 			let angle = randomAngle();
 
-			let x = centerX + 0.5 + distance * Math.cos(angle);
-			let z = centerZ + 0.5 + distance * Math.sin(angle);
+			let position = Vector2D.sum([centerPosition, new Vector2D(0.5, 0.5), new Vector2D(distance, 0).rotate(-angle)]);
 
-			if (g_Map.validT(x, z) &&
-			    (!avoidSelf || entities.every(ent => Math.euclidDistance2DSquared(x, z, ent.position.x, ent.position.z) >= 1)) &&
-			    constraint.allows(new Vector2D(Math.floor(x), Math.floor(z))))
+			if (g_Map.validTile(position) &&
+			    (!avoidSelf || entities.every(ent => new Vector2D(ent.position.x, ent.position.z).distanceTo(position) >= 1)) &&
+			    constraint.allows(position.clone().round()))
 			{
-				entities.push(new Entity(this.templateName, player, x, z, randFloat(this.minAngle, this.maxAngle)));
+				entities.push(new Entity(this.templateName, player, position.x, position.y, randFloat(this.minAngle, this.maxAngle)));
 				break;
 			}
 			else if (failCount++ > maxFailCount)

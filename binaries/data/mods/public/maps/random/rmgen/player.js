@@ -278,7 +278,7 @@ function placePlayerBaseMines(args)
 		{
 			let angle = startAngle + angleBetweenMines * (i + (mineCount - 1) / 2);
 			pos[i] = new Vector2D(0, get("distance", 12)).rotate(angle).add(basePosition).round();
-			if (!g_Map.validT(pos[i].x, pos[i].y) || !baseResourceConstraint.allows(pos[i]))
+			if (!g_Map.validTile(pos[i]) || !baseResourceConstraint.allows(pos[i]))
 			{
 				pos = undefined;
 				break;

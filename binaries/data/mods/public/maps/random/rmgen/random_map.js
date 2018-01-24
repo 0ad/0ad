@@ -95,17 +95,14 @@ RandomMap.prototype.getEntityID = function()
  * Determines whether the given coordinates are within the given distance of the passable map area.
  * Should be used to restrict entity placement and path creation.
  */
-RandomMap.prototype.validT = function(x, z, distance = 0)
+RandomMap.prototype.validTile = function(position, distance = 0)
 {
 	distance += MAP_BORDER_WIDTH;
 
 	if (g_MapSettings.CircularMap)
-	{
-		let halfSize = Math.floor(this.size / 2);
-		return Math.round(Math.euclidDistance2D(x, z, halfSize, halfSize)) < halfSize - distance - 1;
-	}
-	else
-		return x >= distance && z >= distance && x < this.size - distance && z < this.size - distance;
+		return Math.round(position.distanceTo(getMapCenter())) < this.size / 2 - distance - 1;
+
+	return position.x >= distance && position.y >= distance && position.x < this.size - distance && position.y < this.size - distance;
 };
 
 /**
@@ -141,12 +138,12 @@ RandomMap.prototype.validClass = function(tileClassID)
 /**
  * Returns the name of the texture of the given tile.
  */
-RandomMap.prototype.getTexture = function(x, z)
+RandomMap.prototype.getTexture = function(position)
 {
-	if (!this.validT(x, z))
-		throw new Error("getTexture: invalid tile position (" + x + ", " + z + ")");
+	if (!this.validTile(position))
+		throw new Error("getTexture: invalid tile position " + uneval(position));
 
-	return this.IDToName[this.texture[x][z]];
+	return this.IDToName[this.texture[position.x][position.y]];
 };
 
 /**
@@ -182,23 +179,23 @@ RandomMap.prototype.setHeight = function(position, height)
 /**
  * Returns the Entity that was painted by a Terrain class on the given tile or undefined otherwise.
  */
-RandomMap.prototype.getTerrainObject = function(x, z)
+RandomMap.prototype.getTerrainObject = function(position)
 {
-	if (!this.validT(x, z))
-		throw new Error("getTerrainObject: invalid tile position (" + x + ", " + z + ")");
+	if (!this.validTile(position))
+		throw new Error("getTerrainObject: invalid tile position " + uneval(position));
 
-	return this.terrainObjects[x][z];
+	return this.terrainObjects[position.x][position.y];
 };
 
 /**
  * Places the Entity on the given tile and allows to later replace it if the terrain was painted over.
  */
-RandomMap.prototype.setTerrainObject = function(x, z, object)
+RandomMap.prototype.setTerrainObject = function(position, object)
 {
-	if (!this.validT(x, z))
-		throw new Error("setTerrainObject: invalid tile position (" + x + ", " + z + ")");
+	if (!this.validTile(position))
+		throw new Error("setTerrainObject: invalid tile position " + uneval(position));
 
-	this.terrainObjects[x][z] = object;
+	this.terrainObjects[position.x][position.y] = object;
 };
 
 /**

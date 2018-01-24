@@ -282,14 +282,16 @@ log("Planting trees...");
 for (var x = 0; x < mapSize; x++)
 	for (var z = 0;z < mapSize;z++)
 	{
-		if (!g_Map.validT(x, z))
+		let position = new Vector2D(x, z);
+
+		if (!g_Map.validTile(position))
 			continue;
 
 		// The 0.5 is a correction for the entities placed on the center of tiles
-		var radius = Math.euclidDistance2D(x + 0.5, z + 0.5, mapCenter.x, mapCenter.y);
+		let radius = Vector2D.add(position, new Vector2D(0.5, 0.5)).distanceTo(mapCenter);
 		var minDistToSL = mapSize;
-		for (var i=0; i < numPlayers; i++)
-			minDistToSL = Math.min(minDistToSL, Math.euclidDistance2D(x, z, playerPosition[i].x, playerPosition[i].y));
+		for (let i = 0; i < numPlayers; ++i)
+			minDistToSL = Math.min(minDistToSL, position.distanceTo(playerPosition[i]));
 
 		// Woods tile based
 		var tDensFactSL = Math.max(Math.min((minDistToSL - baseRadius) / baseRadius, 1), 0);
