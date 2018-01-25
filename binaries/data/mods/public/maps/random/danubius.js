@@ -346,7 +346,7 @@ placePlayerBases({
 	"Chicken": {
 	},
 	"Berries": {
-		"template": aBush1
+		"template": oBerryBush
 	},
 	"Mines": {
 		"types": [
