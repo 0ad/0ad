@@ -52,23 +52,23 @@ const heightShore = 1;
 const heightLand = 2;
 const heightIsland = 6;
 
-InitMap(heightShore, tHill);
+var g_Map = new RandomMap(heightShore, tHill);
 
 const numPlayers = getNumPlayers();
-const mapCenter = getMapCenter();
-const mapBounds = getMapBounds();
+const mapCenter = g_Map.getCenter();
+const mapBounds = g_Map.getBounds();
 
-var clPlayer = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clGrass = createTileClass();
-var clHill = createTileClass();
-var clIsland = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clGrass = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clIsland = g_Map.createTileClass();
 
 var startAngle = randomAngle();
 
@@ -171,7 +171,7 @@ createAreas(
 	[
 		new LayeredPainter([tShoreLower, tShoreUpper, tHill], [2 ,1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightIsland, 4),
-		paintClass(clIsland)
+		new TileClassPainter(clIsland)
 	],
 	[avoidClasses(clPlayer, 8, clForest, 1, clIsland, 15), stayClasses (clWater, 6)],
 	scaleByMapSize(1, 4) * numPlayers
@@ -306,4 +306,4 @@ setPPContrast(0.62);
 setPPSaturation(0.51);
 setPPBloom(0.12);
 
-ExportMap();
+g_Map.ExportMap();

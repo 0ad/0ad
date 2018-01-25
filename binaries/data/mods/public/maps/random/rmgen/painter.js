@@ -6,9 +6,9 @@
 /**
  * Marks the affected area with the given tileclass.
  */
-function TileClassPainter(tileClass)
+function TileClassPainter(tileClassID)
 {
-	this.tileClass = tileClass;
+	this.tileClass = getTileClass(tileClassID);
 }
 
 TileClassPainter.prototype.paint = function(area)
@@ -20,9 +20,9 @@ TileClassPainter.prototype.paint = function(area)
 /**
  * Removes the given tileclass from a given area.
  */
-function TileClassUnPainter(tileClass)
+function TileClassUnPainter(tileClassID)
 {
-	this.tileClass = tileClass;
+	this.tileClass = getTileClass(tileClassID);
 }
 
 TileClassUnPainter.prototype.paint = function(area)
@@ -83,7 +83,7 @@ LayeredPainter.prototype.paint = function(area)
 	breadthFirstSearchPaint({
 		"area": area,
 		"brushSize": 1,
-		"gridSize": getMapSize(),
+		"gridSize": g_Map.getSize(),
 		"withinArea": (areaID, position) => g_Map.area[position.x][position.y] == areaID,
 		"paintTile": (point, distance) => {
 			let width = 0;
@@ -117,7 +117,7 @@ ElevationPainter.prototype.paint = function(area)
 			let position = Vector2D.add(point, new Vector2D(dx, dz));
 
 			if (g_Map.inMapBounds(position))
-				g_Map.height[position.x][position.y] = this.elevation;
+				g_Map.setHeight(position, this.elevation);
 		}
 };
 
@@ -177,9 +177,9 @@ SmoothElevationPainter.prototype.paint = function(area)
 				let nz = point.y + dz;
 				let position = new Vector2D(nx, nz);
 
-				if (g_Map.validH(nx, nz) && !gotHeightPt[nx][nz])
+				if (g_Map.validHeight(position) && !gotHeightPt[nx][nz])
 				{
-					newHeight[nx][nz] = g_Map.height[nx][nz];
+					newHeight[nx][nz] = g_Map.getHeight(position);
 					gotHeightPt[nx][nz] = 1;
 					heightPoints.push(position);
 				}
@@ -210,7 +210,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 				a = (distance - 1) / this.blendRadius;
 
 			if (this.type == ELEVATION_SET)
-				newHeight[point.x][point.y] = (1 - a) * g_Map.height[point.x][point.y];
+				newHeight[point.x][point.y] = (1 - a) * g_Map.getHeight(point);
 
 			newHeight[point.x][point.y] += a * this.elevation + randFloat(-0.5, 0.5) * this.randomElevation;
 		}
@@ -234,7 +234,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 			{
 				let nz = point.y + dz;
 
-				if (g_Map.validH(nx, nz))
+				if (g_Map.validHeight(new Vector2D(nx, nz)))
 				{
 					sum += newHeight[nx][nz];
 					++count;
@@ -242,7 +242,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 			}
 		}
 
-		g_Map.height[point.x][point.y] = (newHeight[point.x][point.y] + sum / count) / 2;
+		g_Map.setHeight(point, (newHeight[point.x][point.y] + sum / count) / 2);
 	}
 };
 

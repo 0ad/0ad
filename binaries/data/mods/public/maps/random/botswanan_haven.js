@@ -49,19 +49,19 @@ const heightHill = 15;
 const heightOffsetBump1 = 2;
 const heightOffsetBump2 = 1;
 
-InitMap(heightLand, tShoreBlend);
+var g_Map = new RandomMap(heightLand, tShoreBlend);
 
 const numPlayers = getNumPlayers();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clForest = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -104,7 +104,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 20, clHill, 15, clWater, 0),
 	scaleByMapSize(1, 4) * numPlayers * 3);
@@ -116,7 +116,7 @@ for (let i = 0; i < 2; ++i)
 		[
 			new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
 			new SmoothElevationPainter(ELEVATION_SET, heightMarsh, 3),
-			paintClass(clWater)
+			new TileClassPainter(clWater)
 		],
 		avoidClasses(clPlayer, 25, clWater, Math.round(scaleByMapSize(7, 16) * randFloat(0.8, 1.35))),
 		scaleByMapSize(4, 20));
@@ -149,7 +149,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(2, Math.floor(scaleByMapSize(3, 6)), size, 1),
 		[
 			new LayeredPainter([tGrassA, tGrassB, tMud], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clWater, 1, clHill, 0, clDirt, 5, clPlayer, 8),
 		scaleByMapSize(15, 45));
@@ -394,4 +394,4 @@ setPPEffect("hdr");
 setPPSaturation(0.44);
 setPPBloom(0.3);
 
-ExportMap();
+g_Map.ExportMap();

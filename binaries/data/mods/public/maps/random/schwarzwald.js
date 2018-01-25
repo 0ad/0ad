@@ -66,20 +66,20 @@ var tWaterBorder = ['dirt_brown_d'];
 const heightLand = 1;
 const heightOffsetPath = -0.1;
 
-InitMap(heightLand, terrainPrimary);
+var g_Map = new RandomMap(heightLand, terrainPrimary);
 
-var clPlayer = createTileClass();
-var clPath = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clMetal = createTileClass();
-var clRock = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clOpen = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clPath = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clOpen = g_Map.createTileClass();
 
-var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapSize = g_Map.getSize();
+var mapCenter = g_Map.getCenter();
 var mapRadius = mapSize/2;
 
 var numPlayers = getNumPlayers();
@@ -157,7 +157,7 @@ placePlayerBases({
 		"smoothness": 1/8,
 		"painters": [
 			new TerrainPainter([baseTex], [baseRadius/4, baseRadius/4]),
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	// No chicken
@@ -227,7 +227,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 			[
 				new TerrainPainter(terrainPath),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetPath, 1),
-				paintClass(clPath)
+				new TileClassPainter(clPath)
 			],
 			avoidClasses(clPath, 0, clOpen, 0 ,clWater, 4, clBaseResource, 4));
 	}
@@ -306,7 +306,7 @@ for (var x = 0; x < mapSize; x++)
 			new RectPlacer(x, z, x, z),
 			[
 				new TerrainPainter(border ? terrainWoodBorder : terrainWood),
-				paintClass(clForest)
+				new TileClassPainter(clForest)
 			],
 			border ?
 				avoidClasses(clPath, 1, clOpen, 2, clWater, 3, clMetal, 4, clRock, 4) :
@@ -317,4 +317,4 @@ placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clFood, 2, clM
 
 Engine.SetProgress(100);
 
-ExportMap();
+g_Map.ExportMap();

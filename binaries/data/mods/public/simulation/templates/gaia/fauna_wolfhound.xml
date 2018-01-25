@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_dog">
+<Entity parent="template_unit_fauna_wild_aggressive_dog">
   <Identity>
-    <Civ>brit</Civ>
-    <SelectionGroupName>units/brit_war_dog_b</SelectionGroupName>
-    <SpecificName>Coun</SpecificName>
-    <Icon>units/celt_war_dog.png</Icon>
+    <SpecificName>Wolfhound</SpecificName>
+    <Icon>units/brit_wolfhound.png</Icon>
   </Identity>
-  <Promotion disable=""/>
   <VisualActor>
     <Actor>units/celts/wolfhound.xml</Actor>
   </VisualActor>

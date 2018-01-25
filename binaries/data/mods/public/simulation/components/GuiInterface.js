@@ -757,19 +757,6 @@ GuiInterface.prototype.GetAllBuildableEntities = function(player, cmd)
 	return buildableEnts;
 };
 
-/**
- * Updates player colors on the minimap.
- */
-GuiInterface.prototype.UpdateDisplayedPlayerColors = function()
-{
-	for (let ent of Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetGaiaAndNonGaiaEntities())
-	{
-		let cmpMinimap = Engine.QueryInterface(ent, IID_Minimap);
-		if (cmpMinimap)
-			cmpMinimap.UpdateColor();
-	}
-};
-
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
 	let playerColors = {}; // cache of owner -> color map
@@ -1903,7 +1890,6 @@ let exposedFunctions = {
 	"GetFormationInfoFromTemplate": 1,
 	"IsStanceSelected": 1,
 
-	"UpdateDisplayedPlayerColors": 1,
 	"SetSelectionHighlight": 1,
 	"GetAllBuildableEntities": 1,
 	"SetStatusBars": 1,

@@ -27,19 +27,19 @@ const heightLand = 1;
 const heightShore = 3;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, tGrass1);
+var g_Map = new RandomMap(heightLand, tGrass1);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapSize = g_Map.getSize();
+var mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -95,7 +95,7 @@ createArea(
 		[Math.floor(scaleByMapSize(15, 40))]),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 2));
 
@@ -104,7 +104,7 @@ createAreas(
 	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, 1),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, heightShore, 4),
-		unPaintClass(clWater)
+		new TileClassUnPainter(clWater)
 	],
 	borderClasses(clWater, 4, 7),
 	scaleByMapSize(12, 130) * 2, 150
@@ -268,4 +268,4 @@ setPPEffect("hdr");
 setPPContrast(0.57031);
 setPPBloom(0.34);
 
-ExportMap();
+g_Map.ExportMap();

@@ -50,21 +50,21 @@ const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAI
 const heightLand = 10;
 const heightOffsetValley = -10;
 
-InitMap(heightLand, tDirtMain);
+var g_Map = new RandomMap(heightLand, tDirtMain);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clPatch = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clCP = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clPatch = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clCP = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -73,7 +73,7 @@ placePlayerBases({
 		"outerTerrain": tCity,
 		"innerTerrain": tCity,
 		"painters": [
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	"Chicken": {
@@ -101,7 +101,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 6)), Math.floor(scaleByMapSize(20, 45)), 0),
 	[
 		new TerrainPainter(tRocky),
-		paintClass(clPatch)
+		new TileClassPainter(clPatch)
 	],
 	avoidClasses(clPatch, 2, clPlayer, 0),
 	scaleByMapSize(5, 20));
@@ -112,7 +112,7 @@ createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(15, 40)), 0),
 	[
 		new TerrainPainter([tRocky, tRocks]),
-		paintClass(clPatch)
+		new TileClassPainter(clPatch)
 	],
 	avoidClasses(clPatch, 2, clPlayer, 4),
 	scaleByMapSize(15, 50));
@@ -127,7 +127,7 @@ createAreas(
 		0),
 	[
 		new TerrainPainter([tGrass]),
-		paintClass(clPatch)
+		new TileClassPainter(clPatch)
 	],
 	avoidClasses(clPatch, 2, clPlayer, 4),
 	scaleByMapSize(15, 50));
@@ -146,7 +146,7 @@ createArea(
 	[
 		new LayeredPainter([tLakebed2, tLakebed1], [6]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetValley, 8),
-		paintClass(clCP)
+		new TileClassPainter(clCP)
 	],
 	avoidClasses(clPlayer, 18));
 Engine.SetProgress(30);
@@ -183,7 +183,7 @@ for (let type of types)
 			1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(
 			clPlayer, 6,
@@ -326,4 +326,4 @@ setPPBloom(0.3);
 
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-ExportMap();
+g_Map.ExportMap();

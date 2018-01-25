@@ -91,6 +91,37 @@ RandomMap.prototype.getEntityID = function()
 	return this.entityCount++;
 };
 
+RandomMap.prototype.isCircularMap = function()
+{
+	return !!g_MapSettings.CircularMap;
+};
+
+RandomMap.prototype.getSize = function()
+{
+	return this.size;
+};
+
+/**
+ * Returns the center tile coordinates of the map.
+ */
+RandomMap.prototype.getCenter = function()
+{
+	return deepfreeze(new Vector2D(this.size / 2, this.size / 2));
+};
+
+/**
+ * Returns a human-readable reference to the smallest and greatest coordinates of the map.
+ */
+RandomMap.prototype.getBounds = function()
+{
+	return deepfreeze({
+		"left": 0,
+		"right": this.size,
+		"top": this.size,
+		"bottom": 0
+	});
+};
+
 /**
  * Determines whether the given coordinates are within the given distance of the passable map area.
  * Should be used to restrict entity placement and path creation.
@@ -99,8 +130,8 @@ RandomMap.prototype.validTile = function(position, distance = 0)
 {
 	distance += MAP_BORDER_WIDTH;
 
-	if (g_MapSettings.CircularMap)
-		return Math.round(position.distanceTo(getMapCenter())) < this.size / 2 - distance - 1;
+	if (this.isCircularMap())
+		return Math.round(position.distanceTo(this.getCenter())) < this.size / 2 - distance - 1;
 
 	return position.x >= distance && position.y >= distance && position.x < this.size - distance && position.y < this.size - distance;
 };
@@ -118,13 +149,15 @@ RandomMap.prototype.inMapBounds = function(position)
  * Determines whether the given coordinates are within the heightmap grid.
  * Should be used to restrict elevation changes.
  */
-RandomMap.prototype.validH = function(x, z)
+RandomMap.prototype.validHeight = function(position)
 {
-	if (x < 0 || z < 0)
+	if (position.x < 0 || position.y < 0)
 		return false;
+
 	if (TILE_CENTERED_HEIGHT_MAP)
-		return x < this.size && z < this.size;
-	return x <= this.size && z <= this.size;
+		return position.x < this.size && position.y < this.size;
+
+	return position.x <= this.size && position.y <= this.size;
 };
 
 /**
@@ -162,7 +195,7 @@ RandomMap.prototype.setTexture = function(position, texture)
 
 RandomMap.prototype.getHeight = function(position)
 {
-	if (!this.validH(position.x, position.y))
+	if (!this.validHeight(position))
 		throw new Error("getHeight: invalid vertex position " + uneval(position));
 
 	return this.height[position.x][position.y];
@@ -170,7 +203,7 @@ RandomMap.prototype.getHeight = function(position)
 
 RandomMap.prototype.setHeight = function(position, height)
 {
-	if (!this.validH(position.x, position.y))
+	if (!this.validHeight(position))
 		throw new Error("setHeight: invalid vertex position " + uneval(position));
 
 	this.height[position.x][position.y] = height;
@@ -230,12 +263,12 @@ RandomMap.prototype.createTileClass = function()
 /**
  * Retrieve interpolated height for arbitrary coordinates within the heightmap grid.
  */
-RandomMap.prototype.getExactHeight = function(x, z)
+RandomMap.prototype.getExactHeight = function(position)
 {
-	let xi = Math.min(Math.floor(x), this.size);
-	let zi = Math.min(Math.floor(z), this.size);
-	let xf = x - xi;
-	let zf = z - zi;
+	let xi = Math.min(Math.floor(position.x), this.size);
+	let zi = Math.min(Math.floor(position.y), this.size);
+	let xf = position.x - xi;
+	let zf = position.y - zi;
 
 	let h00 = this.height[xi][zi];
 	let h01 = this.height[xi][zi + 1];
@@ -246,19 +279,22 @@ RandomMap.prototype.getExactHeight = function(x, z)
 };
 
 // Converts from the tile centered height map to the corner based height map, used when TILE_CENTERED_HEIGHT_MAP = true
-RandomMap.prototype.cornerHeight = function(x, z)
+RandomMap.prototype.cornerHeight = function(position)
 {
 	let count = 0;
 	let sumHeight = 0;
 
 	for (let dir of [[-1, -1], [-1, 0], [0, -1], [0, 0]])
-		if (this.validH(x + dir[0], z + dir[1]))
+	{
+		let pos = Vector2D.add(position, new Vector2D(dir[0], dir[1]));
+		if (this.validHeight(pos))
 		{
 			++count;
-			sumHeight += this.height[x + dir[0]][z + dir[1]];
+			sumHeight += this.getHeight(pos);
 		}
+	}
 
-	if (count == 0)
+	if (!count)
 		return 0;
 
 	return sumHeight / count;
@@ -278,7 +314,7 @@ RandomMap.prototype.getAdjacentPoints = function(position)
 			}
 
 	return adjacentPositions;
-}
+};
 
 /**
  * Returns the average height of adjacent tiles, helpful for smoothing.
@@ -290,7 +326,7 @@ RandomMap.prototype.getAverageHeight = function(position)
 		return 0;
 
 	return adjacentPositions.reduce((totalHeight, pos) => totalHeight + this.getHeight(pos), 0) / adjacentPositions.length;
-}
+};
 
 /**
  * Returns the steepness of the given location, defined as the average height difference of the adjacent tiles.
@@ -303,7 +339,7 @@ RandomMap.prototype.getSlope = function(position)
 
 	return adjacentPositions.reduce((totalSlope, adjacentPos) =>
 		totalSlope + Math.abs(this.getHeight(adjacentPos) - this.getHeight(position)), 0) / adjacentPositions.length;
-}
+};
 
 /**
  * Retrieve an array of all Entities placed on the map.
@@ -335,7 +371,8 @@ RandomMap.prototype.exportHeightData = function()
 	for (let x = 0; x < heightmapSize; ++x)
 		for (let z = 0; z < heightmapSize; ++z)
 		{
-			let currentHeight = TILE_CENTERED_HEIGHT_MAP ? this.cornerHeight(x, z) : this.height[x][z];
+			let position = new Vector2D(x, z);
+			let currentHeight = TILE_CENTERED_HEIGHT_MAP ? this.cornerHeight(position) : this.getHeight(position);
 
 			// Correct height by SEA_LEVEL and prevent under/overflow in terrain data
 			heightmap[z * heightmapSize + x] = Math.max(0, Math.min(0xFFFF, Math.floor((currentHeight + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE)));
@@ -383,4 +420,4 @@ RandomMap.prototype.ExportMap = function()
 		"Camera": g_Camera,
 		"Environment": g_Environment
 	});
-}
+};

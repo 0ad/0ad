@@ -35,7 +35,7 @@
 			</action>
 
 			<!-- Player assignments -->
-			<object size="24 49 100%-440 345" type="image" sprite="ModernDarkBoxGold" name="playerAssignmentsPanel">
+			<object size="24 40 100%-440 336" type="image" sprite="ModernDarkBoxGold" name="playerAssignmentsPanel">
 				<object size="0 6 100% 30">
 
 					<object name="playerNameHeading" type="text" style="ModernLabelText" size="0 0 20%+5 100%">
@@ -141,14 +141,14 @@
 			</object>
 
 			<!-- Map Preview -->
-			<object type="image" sprite="ModernDarkBoxGold" name="gamePreviewBox" size="100%-426 49 100%-24 345">
+			<object type="image" sprite="ModernDarkBoxGold" name="gamePreviewBox" size="100%-426 40 100%-24 336">
 				<object type="image" sprite="snMapPreview" size="1 1 401 294" name="mapPreview"/>
 				<object name="mapInfoName" type="text" style="ModernLeftLabelText" size="5 100%-20 100% 100%-1"/>
 			</object>
 
 			<!-- Settings -->
-			<object name="settingsBackground" type="image" sprite="ModernDarkBoxGold" size="100%-635 355 100%-315 100%-60"/>
-			<object name="settingsPanel" type="image" sprite="ModernDarkBoxGold" size="100%-635 360 100%-315 100%-65" hidden="true" z="1">
+			<object name="settingsBackground" type="image" sprite="ModernDarkBoxGold" size="100%-635 346 100%-315 100%-60"/>
+			<object name="settingsPanel" type="image" sprite="ModernDarkBoxGold" size="100%-635 351 100%-315 100%-65" hidden="true" z="1">
 				<repeat count="60" var="n">
 					<object name="settingFrame[n]" size="0 2 320 60">
 						<object
@@ -186,11 +186,11 @@
 			</object>
 
 			<!-- Re-add background to hide settings panel -->
-			<object type="image" sprite="ModernWindowCornerBottomRight" size="100%-315 355 100% 100%" z="20"/>
+			<object type="image" sprite="ModernWindowCornerBottomRight" size="100%-315 346 100% 100%" z="20"/>
 
 			<!-- Category Tabs -->
-			<object name="settingTabButtonsBackground" type="image" sprite="ModernDarkBoxGold" size="100%-315 355 100%-25 556" z="21"/>
-			<object name="settingTabButtons" size="100%-315 355 100%-25 556" z="21">
+			<object name="settingTabButtonsBackground" type="image" sprite="ModernDarkBoxGold" size="100%-315 346 100%-25 556" z="21"/>
+			<object name="settingTabButtons" size="100%-315 346 100%-25 556" z="21">
 				<include file="gui/common/tab_buttons.xml"/>
 			</object>
 
@@ -200,7 +200,7 @@
 				style="IconButton"
 				sprite="iconBubbleGold"
 				sprite_over="iconBubbleWhite"
-				size="100%-41 355 100%-25 371"
+				size="100%-41 346 100%-25 362"
 				hotkey="lobby"
 				z="100"
 			>
@@ -208,20 +208,20 @@
 			</object>
 
 			<!-- Map Description -->
-			<object name="mapInfoDescriptionFrame" type="image" sprite="ModernDarkBoxGold" size="100%-315 559 100%-25 100%-60" z="21">
+			<object name="mapInfoDescriptionFrame" type="image" sprite="ModernDarkBoxGold" size="100%-315 550 100%-25 100%-60" z="21">
 				<object name="mapInfoDescription" type="text" style="ModernText" size="0 0 100% 100%"/>
 			</object>
 
 			<!-- Chat window -->
-			<object name="chatPanel" size="24 355 100%-640 100%-58" type="image" sprite="ModernDarkBoxGold">
-				<object name="chatText" size="2 2 100%-2 100%-26" type="text" style="ChatPanel"/>
+			<object name="chatPanel" size="24 346 100%-640 100%-58" type="image" sprite="ModernDarkBoxGold">
+				<object name="chatText" size="2 2 100%-2 100%-28" type="text" style="ChatPanel"/>
 
-				<object name="chatInput" size="4 100%-24 100%-76 100%-4" type="input" style="ModernInput">
+				<object name="chatInput" size="4 100%-26 100%-76 100%-4" type="input" style="ModernInput">
 					<action on="Press">submitChatInput();</action>
 					<action on="Tab">autoCompleteNick(this, g_Autocomplete);</action>
 				</object>
 
-				<object size="100%-72 100%-24 100%-4 100%-4" type="button" style="StoneButton">
+				<object size="100%-72 100%-26 100%-4 100%-4" type="button" style="StoneButton">
 					<translatableAttribute id="caption">Send</translatableAttribute>
 					<action on="Press">submitChatInput();</action>
 				</object>

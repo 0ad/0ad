@@ -43,23 +43,23 @@ const heightSeaGround = -8;
 const heightLand = 3;
 const heightHill = 25;
 
-InitMap(heightSeaGround, tGrass);
+var g_Map = new RandomMap(heightSeaGround, tGrass);
 
 const numPlayers = getNumPlayers();
-const mapCenter = getMapCenter();
-const mapBounds = getMapBounds();
+const mapCenter = g_Map.getCenter();
+const mapBounds = g_Map.getBounds();
 
-var clPlayer = createTileClass();
-var clPlayerTerritory = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clGaia = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clPlayerTerritory = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clGaia = g_Map.createTileClass();
 var clStrip = [];
 
 var startAngle = randomAngle();
@@ -80,7 +80,7 @@ var stripWidths = stripWidthsLeft.concat(stripWidthsRight);
 log("Creating strips...");
 for (let i = 0; i < stripWidths.length; ++i)
 {
-	clStrip[i] = createTileClass();
+	clStrip[i] = g_Map.createTileClass();
 
 	let isPlayerStrip = i == 2 || i == 3;
 	for (let j = 0; j < scaleByMapSize(20, 100); ++j)
@@ -99,7 +99,7 @@ for (let i = 0; i < stripWidths.length; ++i)
 			[
 				new LayeredPainter([tGrass, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-				paintClass(clStrip[i])
+				new TileClassPainter(clStrip[i])
 			]);
 	}
 }
@@ -118,7 +118,7 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tGrass, tGrass, tGrass], [1, 4]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-			paintClass(clPlayerTerritory)
+			new TileClassPainter(clPlayerTerritory)
 		]);
 
 placePlayerBases({
@@ -192,7 +192,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tGrass], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	[
 		avoidClasses(
@@ -225,7 +225,7 @@ for (let type of types)
 			0.5),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(
 			clPlayer, 12,
@@ -257,7 +257,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([tGrassC, tGrassA, tGrassB], [2, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(
 			clWater, 8,
@@ -274,7 +274,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([tPlants, tPlants], [1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(
 			clWater, 8,
@@ -497,4 +497,4 @@ setPPSaturation(0.65);
 setPPBloom(0.6);
 
 setSkySet("stratus");
-ExportMap();
+g_Map.ExportMap();

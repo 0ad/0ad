@@ -35,19 +35,19 @@ const heightLand = 1;
 const heightHill = 22;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, tMainDirt);
+var g_Map = new RandomMap(heightLand, tMainDirt);
 
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 const numPlayers = getNumPlayers();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clGrass = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clGrass = g_Map.createTileClass();
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -57,7 +57,7 @@ for (let i = 0; i < numPlayers; ++i)
 	if (!isNomad())
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i]),
-			paintClass(clPlayer));
+			new TileClassPainter(clPlayer));
 
 	log("Creating big grass patches surrounding the city patches...");
 	createArea(
@@ -71,7 +71,7 @@ for (let i = 0; i < numPlayers; ++i)
 			[Math.floor(scaleByMapSize(16, 30))]),
 		[
 			new LayeredPainter([tGrassSands, tGrass], [3]),
-			paintClass(clGrass)
+			new TileClassPainter(clGrass)
 		]);
 }
 Engine.SetProgress(10);
@@ -119,7 +119,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 3, clGrass, 1, clHill, 10),
 	scaleByMapSize(1, 3) * numPlayers * 3);
@@ -143,7 +143,7 @@ for (let type of types)
 			0.5),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 1, clGrass, 1, clForest, 10, clHill, 1),
 		num);
@@ -274,4 +274,4 @@ setPPContrast(0.65);
 setPPSaturation(0.42);
 setPPBloom(0.6);
 
-ExportMap();
+g_Map.ExportMap();

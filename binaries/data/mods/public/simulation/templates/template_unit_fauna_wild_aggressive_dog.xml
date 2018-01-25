@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_fauna_wild_aggressive_wolf">
+  <Attack>
+    <Melee>
+      <Hack>7</Hack>
+      <Pierce>2</Pierce>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+  </Attack>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.6</WalkSpeed>
+    <Run>
+      <Speed op="mul">1.6</Speed>
+    </Run>
+  </UnitMotion>
+  <Sound>
+    <SoundGroups>
+      <select>voice/global/civ_dog_bark.xml</select>
+      <order_walk>voice/global/civ_dog_move.xml</order_walk>
+      <order_attack>voice/global/civ_dog_move.xml</order_attack>
+      <order_gather>voice/global/civ_dog_move.xml</order_gather>
+      <order_repair>voice/global/civ_dog_move.xml</order_repair>
+      <walk>actor/mounted/movement/walk.xml</walk>
+      <run>actor/mounted/movement/walk.xml</run>
+      <attack_melee>attack/weapon/sword.xml</attack_melee>
+      <death>actor/fauna/death/death_animal_gen.xml</death>
+      <trained>interface/complete/building/complete_kennel.xml</trained>
+    </SoundGroups>
+  </Sound>
+</Entity>

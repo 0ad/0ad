@@ -30,18 +30,18 @@ const aRock = "actor|geology/stone_savanna_med.xml";
 const heightSeaGround = -5;
 const heightLand = 1;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
+var mapSize = g_Map.getSize();
 
-var clPlayer = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -102,7 +102,7 @@ createAreas(
 	[
 		new LayeredPainter([tShore, tWater], [1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 7),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 24),
 	scaleByMapSize(1, 3));
@@ -238,4 +238,4 @@ setPPEffect("hdr");
 setPPContrast(0.57031);
 setPPBloom(0.34);
 
-ExportMap();
+g_Map.ExportMap();

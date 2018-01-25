@@ -8,7 +8,7 @@ var heightSeaGround = -18;
 var heightLand = 2;
 var heightOffsetHarbor = -11;
 
-InitMap(heightLand, g_Terrains.mainTerrain);
+var g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
 
 initTileClasses();
 
@@ -16,12 +16,12 @@ setFogFactor(0.04);
 
 createArea(
 	new MapBoundsPlacer(),
-	paintClass(g_TileClasses.land));
+	new TileClassPainter(g_TileClasses.land));
 
 Engine.SetProgress(10);
 
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
 const startAngle = randomAngle();
 const players = addBases("radial", fractionToTiles(0.38), fractionToTiles(0.05), startAngle);
@@ -289,7 +289,7 @@ placePlayersNomad(
 		g_TileClasses.mountain, 4,
 		g_TileClasses.animals, 2));
 
-ExportMap();
+g_Map.ExportMap();
 
 function addCenterLake()
 {
@@ -312,7 +312,7 @@ function addCenterLake()
 				[1, 100]
 			),
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 10),
-			paintClass(g_TileClasses.water)
+			new TileClassPainter(g_TileClasses.water)
 		],
 		avoidClasses(g_TileClasses.player, 20)
 	);
@@ -332,7 +332,7 @@ function addHarbors(players)
 			[
 				new LayeredPainter([g_Terrains.shore, g_Terrains.water], [2]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHarbor, 3),
-				paintClass(g_TileClasses.water)
+				new TileClassPainter(g_TileClasses.water)
 			],
 			avoidClasses(
 				g_TileClasses.player, 15,
@@ -376,7 +376,7 @@ function addSpines()
 			[
 				new LayeredPainter([g_Terrains.cliff, spineTile], [3]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetSpine, 3),
-				paintClass(g_TileClasses.spine)
+				new TileClassPainter(g_TileClasses.spine)
 			],
 			avoidClasses(g_TileClasses.player, 5)
 		);

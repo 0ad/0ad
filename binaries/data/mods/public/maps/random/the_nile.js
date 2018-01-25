@@ -45,11 +45,11 @@ const heightPonds = -7;
 const heightSeaGround = -3;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
-const mapBounds = getMapBounds();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
+const mapBounds = g_Map.getBounds();
 
 var aPlants = mapSize < 256 ?
 	"actor|props/flora/grass_tropical.xml" :
@@ -57,19 +57,19 @@ var aPlants = mapSize < 256 ?
 
 var numPlayers = getNumPlayers();
 
-var clPlayer = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clGrass = createTileClass();
-var clDesert = createTileClass();
-var clPond = createTileClass();
-var clShore = createTileClass();
-var clTreasure = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clGrass = g_Map.createTileClass();
+var clDesert = g_Map.createTileClass();
+var clPond = g_Map.createTileClass();
+var clShore = g_Map.createTileClass();
+var clTreasure = g_Map.createTileClass();
 
 var desertWidth = fractionToTiles(0.25);
 var startAngle = randomAngle();
@@ -188,7 +188,7 @@ var waterAreas = createAreas(
 	[
 		new LayeredPainter([tShore, tShore, tShore], [1, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightPonds, 4),
-		paintClass(clPond)
+		new TileClassPainter(clPond)
 	],
 	avoidClasses(clPlayer, 25, clWater, 20, clPond, 10),
 	numLakes);
@@ -218,7 +218,7 @@ createAreas(
 	new ClumpPlacer(forestTrees / num, 0.15, 0.1, 0.5),
 	[
 		new TerrainPainter([pForest, tForestFloor]),
-		paintClass(clForest)
+		new TileClassPainter(clForest)
 	],
 	avoidClasses(clPlayer, 19, clForest, 4, clWater, 1, clDesert, 5, clPond, 2, clBaseResource, 3),
 	num,
@@ -234,7 +234,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 			new LayeredPainter(
 				[[tGrass, tGrassSand50], [tGrassSand50, tGrassSand25], [tGrassSand25, tGrass]],
 				[1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 10, clWater, 1, clDirt, 5, clShore, 1, clPond, 1),
 		scaleByMapSize(15, 45));
@@ -248,7 +248,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 			new LayeredPainter(
 				[[tDirt, tDirtCracks], [tDirt, tFineSand], [tDirtCracks, tFineSand]],
 				[1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 10, clWater, 1, clGrass, 5, clShore, 1, clPond, 1),
 		scaleByMapSize(15, 45));
@@ -408,4 +408,4 @@ setWaterMurkiness(1);
 setWaterWaviness(3.0);
 setWaterType("lake");
 
-ExportMap();
+g_Map.ExportMap();

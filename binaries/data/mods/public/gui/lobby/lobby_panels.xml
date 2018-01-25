@@ -9,7 +9,7 @@
 	<object hotkey="lobby" name="lobbyDialogToggle"/>
 
 	<!-- Left panel: Player list. -->
-	<object name="leftPanel" size="20 30 20% 100%-310">
+	<object name="leftPanel">
 		<object name="playersBox"
 			style="ModernSortedList"
 			selected_column="name"
@@ -23,7 +23,7 @@
 			<column id="status" width="26%">
 				<translatableAttribute id="heading">Status</translatableAttribute>
 			</column>
-			<column id="name" width="45%-12">
+			<column id="name" width="48%-12">
 				<translatableAttribute id="heading">Name</translatableAttribute>
 			</column>
 			<column id="rating" width="26%">
@@ -43,7 +43,7 @@
 		</object>
 	</object>
 
-	<object name="profilePanel" size="20 100%-305 20% 100%-110">
+	<object name="profilePanel" size="20 100%-310 20% 100%-104">
 		<object name="profileBox" type="image" sprite="ModernDarkBoxGold" size="0 0 100% 100%">
 			<object name="profileArea" size="0 0 100% 100%" hidden="true">
 				<object name="usernameText" size="0 0 100% 45" type="text" style="ModernLabelText" font="sans-bold-16" />
@@ -77,12 +77,12 @@
 	</object>
 
 	<object name="leftButtonPanel" size="20 100%-105 20% 100%-20">
-		<object name="toggleBuddyButton" type="button" style="ModernButtonRed" size="0 100%-85 100% 100%-60">
+		<object name="toggleBuddyButton" type="button" style="ModernButtonRed" size="0 100%-79 100% 100%-54">
 			<action on="Press">
 				toggleBuddy();
 			</action>
 		</object>
-		<object name="leaderboardButton" type="button" style="ModernButtonRed" size="0 100%-55 100% 100%-30">
+		<object name="leaderboardButton" type="button" style="ModernButtonRed" size="0 100%-52 100% 100%-27">
 			<translatableAttribute id="caption">Leaderboard</translatableAttribute>
 			<action on="Press">
 				setLeaderboardVisibility(true);
@@ -97,7 +97,7 @@
 	</object>
 
 	<!-- Right panel: Game details. -->
-	<object name="rightPanel" size="100%-250 30 100%-20 100%-20" >
+	<object name="rightPanel">
 		<object name="gameInfoEmpty" type="image" sprite="ModernDarkBoxGold" hidden="false">
 			<object name="logo" size="50%-110 40 50%+110 140" type="image" sprite="logo"/>
 			<object name="subjectBox" type="image" sprite="ModernDarkBoxWhite" size="3% 180 97% 99%">
@@ -153,13 +153,13 @@
 				<object name="sgPlayersNames" size="0 0 100% 100%" type="text" style="MapPlayerList"/>
 			</object>
 		</object>
-		<object name="joinGameButton" type="button" style="ModernButtonRed" size="0 100%-85 100% 100%-60" hidden="true">
+		<object name="joinGameButton" type="button" style="ModernButtonRed" size="0 100%-79 100% 100%-54" hidden="true">
 			<translatableAttribute id="caption" comment="Join the game currently selected in the list.">Join Game</translatableAttribute>
 			<action on="Press">
 				joinButton();
 			</action>
 		</object>
-		<object name="hostButton" type="button" style="ModernButtonRed" size="0 100%-55 100% 100%-30">
+		<object name="hostButton" type="button" style="ModernButtonRed" size="0 100%-52 100% 100%-27">
 			<translatableAttribute id="caption">Host Game</translatableAttribute>
 			<action on="Press">
 				hostGame();
@@ -172,7 +172,7 @@
 	</object>
 
 	<!-- Middle panel: Filters, game list, chat box. -->
-	<object name="middlePanel" size="20%+5 5% 100%-255 97.2%">
+	<object name="middlePanel">
 		<object name="gamesBox"
 			style="ModernSortedList"
 			selected_column="name"
@@ -256,12 +256,16 @@
 		</object>
 
 		<object name="chatPanel" size="0 49% 100% 100%" type="image" sprite="ModernDarkBoxGold">
-			<object name="chatText" size="0 0 100% 94%" type="text" style="ChatPanel" font="sans-13"/>
-			<object name="chatInput" size="0 94% 100% 100%" type="input" style="ModernInput" font="sans-13">
+			<object name="chatText" size="0 0 100% 100%-28" type="text" style="ChatPanel" font="sans-13"/>
+			<object name="chatInput" size="0 100%-26 100%-72 100%-4" type="input" style="ModernInput" font="sans-13">
 				<action on="Press">submitChatInput();</action>
 				<action on="Tab">
 					autoCompleteNick(this, Engine.GetPlayerList().map(player => player.name));
 				</action>
+			</object>
+			<object size="100%-72 100%-26 100%-4 100%-4" type="button" style="StoneButton">
+				<translatableAttribute id="caption">Send</translatableAttribute>
+				<action on="Press">submitChatInput();</action>
 			</object>
 		</object>
 	</object>

@@ -42,19 +42,19 @@ const triggerPointTreasures = [
 const heightLand = 3;
 const heightHill = 30;
 
-InitMap(heightHill, tMainTerrain);
+var g_Map = new RandomMap(heightHill, tMainTerrain);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapSize = g_Map.getSize();
+var mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clDirt = createTileClass();
-var clBaseResource = createTileClass();
-var clLand = createTileClass();
-var clWomen = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clLand = g_Map.createTileClass();
+var clWomen = g_Map.createTileClass();
 
 log("Creating central area...");
 createArea(
@@ -62,7 +62,7 @@ createArea(
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	]);
 Engine.SetProgress(10);
 
@@ -200,4 +200,4 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
-ExportMap();
+g_Map.ExportMap();

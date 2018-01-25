@@ -26,6 +26,38 @@ var g_PlayerBaseFunctions = [
 	"Decoratives"
 ];
 
+function isNomad()
+{
+	return !!g_MapSettings.Nomad;
+}
+
+function getNumPlayers()
+{
+	return g_MapSettings.PlayerData.length - 1;
+}
+
+function getCivCode(playerID)
+{
+	return g_MapSettings.PlayerData[playerID].Civ;
+}
+
+function areAllies(playerID1, playerID2)
+{
+	return g_MapSettings.PlayerData[playerID1].Team !== undefined &&
+	       g_MapSettings.PlayerData[playerID2].Team !== undefined &&
+	       g_MapSettings.PlayerData[playerID1].Team != -1 &&
+	       g_MapSettings.PlayerData[playerID2].Team != -1 &&
+	       g_MapSettings.PlayerData[playerID1].Team === g_MapSettings.PlayerData[playerID2].Team;
+}
+
+function getPlayerTeam(playerID)
+{
+	if (g_MapSettings.PlayerData[playerID].Team === undefined)
+		return -1;
+
+	return g_MapSettings.PlayerData[playerID].Team;
+}
+
 /**
  * Gets the default starting entities for the civ of the given player, as defined by the civ file.
  */
@@ -84,7 +116,7 @@ function placeCivDefaultStartingEntities(location, playerID, wallType, dist = 6,
 function placeStartingWalls(x, z, playerID, wallType, orientation = BUILDING_ORIENTATION)
 {
 	let civ = getCivCode(playerID);
-	if (civ != "iber" || getMapSize() <= 128)
+	if (civ != "iber" || g_Map.getSize() <= 128)
 		return;
 
 	if (wallType == "towers")
@@ -510,7 +542,7 @@ function primeSortAllPlayers()
 function playerPlacementCircle(radius, startingAngle = undefined, center = undefined)
 {
 	let startAngle = startingAngle !== undefined ? startingAngle : randomAngle();
-	let [playerPosition, playerAngle] = distributePointsOnCircle(getNumPlayers(), startAngle, radius, center || getMapCenter());
+	let [playerPosition, playerAngle] = distributePointsOnCircle(getNumPlayers(), startAngle, radius, center || g_Map.getCenter());
 	return [sortAllPlayers(), playerPosition.map(p => p.round()), playerAngle, startAngle];
 }
 
@@ -543,8 +575,8 @@ function playerPlacementRiver(angle, width, center = undefined)
 {
 	let numPlayers = getNumPlayers();
 	let numPlayersEven = numPlayers % 2 == 0;
-	let mapSize = getMapSize();
-	let centerPosition = center || getMapCenter();
+	let mapSize = g_Map.getSize();
+	let centerPosition = center || g_Map.getCenter();
 	let playerPosition = [];
 
 	for (let i = 0; i < numPlayers; ++i)

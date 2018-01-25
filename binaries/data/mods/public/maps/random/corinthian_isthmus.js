@@ -44,22 +44,22 @@ const pForest = [tForestFloor, tForestFloor + TERRAIN_SEPARATOR + oCarob, tFores
 var heightSeaGround = -4;
 var heightLand = 3;
 
-InitMap(heightLand, tHill);
+var g_Map = new RandomMap(heightLand, tHill);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clGrass = createTileClass();
-var clHill = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clGrass = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
 
 log("Creating the main river");
 var riverAngle = randomAngle();
@@ -265,4 +265,4 @@ setPPContrast(0.62);
 setPPSaturation(0.51);
 setPPBloom(0.12);
 
-ExportMap();
+g_Map.ExportMap();

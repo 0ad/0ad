@@ -41,7 +41,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 			[
 				new LayeredPainter([g_Terrains.cliff, g_Terrains.mainTerrain, constrastTerrain], [2, 3]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, Math.floor(elevation * offset), 2),
-				paintClass(g_TileClasses.bluff)
+				new TileClassPainter(g_TileClasses.bluff)
 			],
 			constraint,
 			1);
@@ -400,7 +400,7 @@ function addElevation(constraint, el)
 			[
 				new LayeredPainter(el.painter, [widths.concat(pSmooth)]),
 				new SmoothElevationPainter(elType, pElevation, pSmooth),
-				paintClass(el.class)
+				new TileClassPainter(el.class)
 			],
 			constraint,
 			1);
@@ -514,7 +514,7 @@ function addLayeredPatches(constraint, size, deviation, fill)
 						[g_Terrains.tier4Terrain]
 					],
 					[1, 1]),
-				paintClass(g_TileClasses.dirt)
+				new TileClassPainter(g_TileClasses.dirt)
 			],
 			constraint,
 			count * offset);
@@ -581,7 +581,7 @@ function addPlateaus(constraint, size, deviation, fill)
 			[
 				new LayeredPainter([plateauTile, plateauTile], [3]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, hillElevation, hillElevation - 2),
-				paintClass(g_TileClasses.hill)
+				new TileClassPainter(g_TileClasses.hill)
 			],
 			[
 				avoidClasses(g_TileClasses.hill, 7),
@@ -802,7 +802,7 @@ function addForests(constraint, size, deviation, fill)
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5) * offset), Math.floor(50 * offset), 0.5),
 			[
 				new LayeredPainter(forestType, [2]),
-				paintClass(g_TileClasses.forest)
+				new TileClassPainter(g_TileClasses.forest)
 			],
 			constraint,
 			10 * fill);
@@ -1121,7 +1121,7 @@ function findClearLine(bb, corners, angle, baseHeight)
 function findCorners(points)
 {
 	// Find the bounding box of the terrain feature
-	var mapSize = getMapSize();
+	var mapSize = g_Map.getSize();
 	var minX = mapSize + 1;
 	var minZ = mapSize + 1;
 	var maxX = -1;
@@ -1187,7 +1187,7 @@ function paintHeightmap(mapName, func = undefined)
 	 */
 	let mapData = Engine.ReadJSONFile("maps/random/" + mapName + ".hmap");
 
-	let mapSize = getMapSize(); // Width of the map in terrain tiles
+	let mapSize = g_Map.getSize(); // Width of the map in terrain tiles
 	let hmSize = Math.sqrt(mapData.heightmap.length);
 	let scale = hmSize / (mapSize + 1); // There are mapSize + 1 vertices (each 1 tile is surrounded by 2x2 vertices)
 

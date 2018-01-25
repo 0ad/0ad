@@ -2,7 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("heightmap");
 
-InitMap(0, "whiteness");
+var g_Map = new RandomMap(0, "whiteness");
 
 /**
  * getArray - To ensure a terrain texture is contained within an array
@@ -225,7 +225,7 @@ function placeMine(point, centerEntity,
 
 // Groves, only Wood
 let groveActors = [g_Decoratives.grass, g_Decoratives.rockMedium, g_Decoratives.bushMedium];
-let clGrove = createTileClass();
+let clGrove = g_Map.createTileClass();
 
 function placeGrove(point,
 	groveEntities = [
@@ -254,7 +254,7 @@ function placeGrove(point,
 
 		let painters = [new TerrainPainter(groveTerrainTexture)];
 		if (groveTileClass)
-			painters.push(paintClass(groveTileClass));
+			painters.push(new TileClassPainter(groveTileClass));
 
 		createArea(
 			new ClumpPlacer(5, 1, 1, 1, position),
@@ -383,7 +383,7 @@ function placeStartLocationResources(
 			new ClumpPlacer(5, 1, 1, 1, position),
 			[
 				new TerrainPainter(groveTerrainTexture),
-				paintClass(clGrove)
+				new TileClassPainter(clGrove)
 			]);
 
 		currentAngle += dAngle;
@@ -509,7 +509,7 @@ let tchm = getTileCenteredHeightmap();
 /**
  * Add paths (If any)
  */
-let clPath = createTileClass();
+let clPath = g_Map.createTileClass();
 
 /**
  * Divide tiles in areas by height and avoid paths
@@ -593,7 +593,7 @@ Engine.SetProgress(55);
 
 log("Placing players...");
 if (isNomad())
-	placePlayersNomad(createTileClass(), new HeightConstraint(playerHeightRange.min, playerHeightRange.max));
+	placePlayersNomad(g_Map.createTileClass(), new HeightConstraint(playerHeightRange.min, playerHeightRange.max));
 else
 	for (let p = 0; p < playerIDs.length; ++p)
 	{
@@ -616,22 +616,22 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	if (choice == 3)
 	{
 		placeCamp(resourceSpots[i]);
-		rectangularSmoothToHeight(resourceSpots[i], 5, 5, g_Map.height[resourceSpots[i].x][resourceSpots[i].y] - 10, 0.5);
+		rectangularSmoothToHeight(resourceSpots[i], 5, 5, g_Map.getHeight(resourceSpots[i]) - 10, 0.5);
 	}
 	if (choice == 4)
 	{
 		if (mercenaryCamps)
 		{
 			placeStartingEntities(resourceSpots[i], 0, mercenaryCampGuards[currentBiome()]);
-			rectangularSmoothToHeight(resourceSpots[i], 15, 15, g_Map.height[resourceSpots[i].x][resourceSpots[i].y], 0.5);
+			rectangularSmoothToHeight(resourceSpots[i], 15, 15, g_Map.getHeight(resourceSpots[i]), 0.5);
 			--mercenaryCamps;
 		}
 		else
 		{
 			placeCustomFortress(resourceSpots[i].x, resourceSpots[i].y, pickRandom(fences), "other", 0, randomAngle());
-			rectangularSmoothToHeight(resourceSpots[i], 10, 10, g_Map.height[resourceSpots[i].x][resourceSpots[i].y], 0.5);
+			rectangularSmoothToHeight(resourceSpots[i], 10, 10, g_Map.getHeight(resourceSpots[i]), 0.5);
 		}
 	}
 }
 
-ExportMap();
+g_Map.ExportMap();

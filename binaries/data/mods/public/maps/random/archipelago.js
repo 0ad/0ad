@@ -47,19 +47,19 @@ var heightSeaGround = -5;
 var heightLand = 3;
 var heightShore = 1;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clLand = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clLand = g_Map.createTileClass();
 
 var islandRadius = scaleByMapSize(22, 31);
 
@@ -89,7 +89,7 @@ createAreas(
 		scaleByMapSize(30, 70)),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	],
 	null,
 	scaleByMapSize(1, 5) * randIntInclusive(5, 10));
@@ -108,7 +108,7 @@ placePlayerBases({
 		"innerTerrain": tRoad,
 		"radius": islandRadius / 3,
 		"painters": [
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	"Chicken": {
@@ -264,4 +264,4 @@ placePlayersNomad(
 setWaterWaviness(4.0);
 setWaterType("ocean");
 
-ExportMap();
+g_Map.ExportMap();

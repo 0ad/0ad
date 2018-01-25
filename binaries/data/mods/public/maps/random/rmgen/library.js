@@ -31,21 +31,6 @@ const g_CivData = deepfreeze(loadCivFiles(false));
  */
 var TILE_CENTERED_HEIGHT_MAP = false;
 
-/**
- * Main RandomMap object.
- */
-var g_Map;
-
-function InitMap(baseHeight, baseTerrain)
-{
-	g_Map = new RandomMap(baseHeight, baseTerrain);
-}
-
-function ExportMap()
-{
-	g_Map.ExportMap();
-}
-
 function fractionToTiles(f)
 {
 	return g_MapSettings.Size * f;
@@ -95,7 +80,7 @@ function retryPlacing(placeFunc, retryFactor, amount, getResult, behaveDeprecate
 function randomizeCoordinates(obj, passableOnly)
 {
 	let border = passableOnly ? MAP_BORDER_WIDTH : 0;
-	if (g_MapSettings.CircularMap)
+	if (g_Map.isCircularMap())
 	{
 		// Polar coordinates
 		// Uniformly distributed on the disk
@@ -205,16 +190,6 @@ function placeObject(x, z, type, player, angle)
 		g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 
-function isCircularMap()
-{
-	return !!g_MapSettings.CircularMap;
-}
-
-function createTileClass()
-{
-	return g_Map.createTileClass();
-}
-
 function getTileClass(id)
 {
 	if (!g_Map.validClass(id))
@@ -257,14 +232,14 @@ function paintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
 {
 	createArea(
 		new HeightPlacer(mode, minHeight, maxHeight),
-		new TileClassPainter(getTileClass(tileClass)));
+		new TileClassPainter(tileClass));
 }
 
 function unPaintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
 {
 	createArea(
 		new HeightPlacer(mode, minHeight, maxHeight),
-		new TileClassUnPainter(getTileClass(tileClass)));
+		new TileClassUnPainter(tileClass));
 }
 
 /**
@@ -274,59 +249,6 @@ function unPaintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
 function createObjectGroup(group, player, constraints)
 {
 	return group.place(player, new AndConstraint(constraints));
-}
-
-function getMapSize()
-{
-	return g_Map.size;
-}
-
-function getMapCenter()
-{
-	return deepfreeze(new Vector2D(g_Map.size / 2, g_Map.size / 2));
-}
-
-function getMapBounds()
-{
-	return deepfreeze({
-		"left": fractionToTiles(0),
-		"right": fractionToTiles(1),
-		"top": fractionToTiles(1),
-		"bottom": fractionToTiles(0)
-	});
-}
-
-function isNomad()
-{
-	return !!g_MapSettings.Nomad;
-}
-
-function getNumPlayers()
-{
-	return g_MapSettings.PlayerData.length - 1;
-}
-
-function getCivCode(playerID)
-{
-	return g_MapSettings.PlayerData[playerID].Civ;
-}
-
-function areAllies(playerID1, playerID2)
-{
-	return (
-		g_MapSettings.PlayerData[playerID1].Team !== undefined &&
-		g_MapSettings.PlayerData[playerID2].Team !== undefined &&
-		g_MapSettings.PlayerData[playerID1].Team != -1 &&
-		g_MapSettings.PlayerData[playerID2].Team != -1 &&
-		g_MapSettings.PlayerData[playerID1].Team === g_MapSettings.PlayerData[playerID2].Team);
-}
-
-function getPlayerTeam(playerID)
-{
-	if (g_MapSettings.PlayerData[playerID].Team === undefined)
-		return -1;
-
-	return g_MapSettings.PlayerData[playerID].Team;
 }
 
 /**
@@ -349,22 +271,6 @@ function removeFromClass(x, z, id)
 
 	if (tileClass !== null)
 		tileClass.remove(x, z);
-}
-
-/**
- * Create a painter for the given class
- */
-function paintClass(id)
-{
-	return new TileClassPainter(getTileClass(id));
-}
-
-/**
- * Create a painter for the given class
- */
-function unPaintClass(id)
-{
-	return new TileClassUnPainter(getTileClass(id));
 }
 
 /**

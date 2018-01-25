@@ -6,11 +6,11 @@ const tPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d",
 
 const heightLand = 0;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapSize = g_Map.getSize();
+var mapCenter = g_Map.getCenter();
 
 // Function to apply a heightmap
 function setReliefmap(reliefmap)
@@ -377,7 +377,7 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 Engine.SetProgress(90);
 
 if (isNomad())
-	placePlayersNomad(createTileClass(), new HeightConstraint(lowerHeightLimit, upperHeightLimit));
+	placePlayersNomad(g_Map.createTileClass(), new HeightConstraint(lowerHeightLimit, upperHeightLimit));
 else
 {
 	log("Placing players and starting resources...");
@@ -410,4 +410,4 @@ else
 	}
 }
 
-ExportMap();
+g_Map.ExportMap();

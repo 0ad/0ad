@@ -268,7 +268,6 @@ function init(initData, hotloadData)
 	LoadModificationTemplates();
 
 	updatePlayerData();
-	Engine.GuiInterfaceCall("UpdateDisplayedPlayerColors");
 
 	g_BarterSell = g_ResourceData.GetCodes()[0];
 

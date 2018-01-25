@@ -34,7 +34,7 @@ function createHills(terrainset, constraint, tileClass, count, minSize, maxSize,
 		[
 			new LayeredPainter(terrainset, [1, elevationSmoothing]),
 			new SmoothElevationPainter(ELEVATION_SET, elevation, elevationSmoothing),
-			paintClass(tileClass)
+			new TileClassPainter(tileClass)
 		],
 		constraint,
 		count || scaleByMapSize(1, 4) * getNumPlayers());
@@ -46,7 +46,7 @@ function createHills(terrainset, constraint, tileClass, count, minSize, maxSize,
 function createMountains(terrain, constraint, tileClass, count, maxHeight, minRadius, maxRadius, numCircles)
 {
 	log("Creating mountains...");
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 
 	for (let i = 0; i < (count || scaleByMapSize(1, 4) * getNumPlayers()); ++i)
 		createMountain(
@@ -73,7 +73,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 	if (!g_Map.inMapBounds(position) || !constraint.allows(position))
 		return;
 
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 	let queueEmpty = !q.length;
 
 	let gotRet = [];
@@ -218,7 +218,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 {
 	log("Creating volcano...");
 
-	let clLava = createTileClass();
+	let clLava = g_Map.createTileClass();
 	let layers = [
 		{
 			"clumps": diskArea(scaleByMapSize(18, 25)),
@@ -229,19 +229,19 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 		{
 			"clumps": diskArea(scaleByMapSize(16, 23)),
 			"elevation": 25,
-			"tileClass": createTileClass(),
+			"tileClass": g_Map.createTileClass(),
 			"steepness": 3
 		},
 		{
 			"clumps": diskArea(scaleByMapSize(10, 15)),
 			"elevation": 45,
-			"tileClass": createTileClass(),
+			"tileClass": g_Map.createTileClass(),
 			"steepness": 3
 		},
 		{
 			"clumps": diskArea(scaleByMapSize(8, 11)),
 			"elevation": 62,
-			"tileClass": createTileClass(),
+			"tileClass": g_Map.createTileClass(),
 			"steepness": 3
 		},
 		{
@@ -259,7 +259,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 			[
 				layers[i].painter || new LayeredPainter([terrainTexture, terrainTexture], [3]),
 				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness),
-				paintClass(layers[i].tileClass)
+				new TileClassPainter(layers[i].tileClass)
 			],
 			i == 0 ? null : stayClasses(layers[i - 1].tileClass, 1));
 
@@ -288,7 +288,7 @@ function createPatches(sizes, terrain, constraint, count,  tileClass, failFracti
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, failFraction),
 			[
 				new TerrainPainter(terrain),
-				paintClass(tileClass)
+				new TileClassPainter(tileClass)
 			],
 			constraint,
 			count);
@@ -304,7 +304,7 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, failFraction),
 			[
 				new LayeredPainter(terrains, terrainWidths),
-				paintClass(tileClass)
+				new TileClassPainter(tileClass)
 			],
 			constraint,
 			count);
@@ -361,7 +361,7 @@ function paintRiver(args)
 	let riverMaxX = Math.max(args.start.x, args.end.x);
 	let riverMaxZ = Math.max(args.start.y, args.end.y);
 
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 	for (let ix = 0; ix < mapSize; ++ix)
 		for (let iz = 0; iz < mapSize; ++iz)
 		{
@@ -458,9 +458,9 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 	let tapering = 0.05;
 	let heightShallow = -2;
 
-	let mapSize = getMapSize();
-	let mapCenter = getMapCenter();
-	let mapBounds = getMapBounds();
+	let mapSize = g_Map.getSize();
+	let mapCenter = g_Map.getCenter();
+	let mapBounds = g_Map.getBounds();
 
 	let riverConstraint = avoidClasses(tributaryRiverTileClass, 3);
 	if (shallowTileClass)
@@ -488,7 +488,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 			new PathPlacer(start, end, riverWidth, waviness, smoothness, offset, tapering),
 			[
 				new SmoothElevationPainter(ELEVATION_SET, heightRiverbed, 4),
-				paintClass(tributaryRiverTileClass)
+				new TileClassPainter(tributaryRiverTileClass)
 			],
 			new AndConstraint([constraint, riverConstraint])))
 			continue;
@@ -534,7 +534,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
  */
 function createPassage(args)
 {
-	let bound = x => Math.max(0, Math.min(Math.round(x), getMapSize()));
+	let bound = x => Math.max(0, Math.min(Math.round(x), g_Map.getSize()));
 
 	let startHeight = args.startHeight !== undefined ? args.startHeight : g_Map.getHeight(new Vector2D(bound(args.start.x), bound(args.start.y)));
 	let endHeight = args.endHeight !== undefined ? args.endHeight : g_Map.getHeight(new Vector2D(bound(args.end.x), bound(args.end.y)));
@@ -590,7 +590,7 @@ function findLocationInDirectionBasedOnHeight(startPoint, endPoint, minHeight, m
 		let pos = Vector2D.add(startPoint, Vector2D.mult(stepVec, i));
 		let ipos = pos.clone().round();
 
-		if (g_Map.validH(ipos.x, ipos.y) &&
+		if (g_Map.validHeight(ipos) &&
 		    g_Map.getHeight(ipos) >= minHeight &&
 		    g_Map.getHeight(ipos) <= maxHeight)
 			return pos.add(stepVec.mult(offset));

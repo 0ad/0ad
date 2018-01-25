@@ -43,21 +43,21 @@ const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TE
 const heightSeaGround = -3;
 const heightLand = 3;
 
-InitMap(heightLand, tMainTerrain);
+var g_Map = new RandomMap(heightLand, tMainTerrain);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -77,7 +77,7 @@ createArea(
 		[Math.floor(fractionToTiles(0.2))]),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 20));
 
@@ -86,7 +86,7 @@ createAreas(
 	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, 1),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
-		unPaintClass(clWater)
+		new TileClassUnPainter(clWater)
 	],
 	borderClasses(clWater, 4, 7),
 	scaleByMapSize(12, 130) * 2,
@@ -249,4 +249,4 @@ placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clHill, 2, clForest, 1, clM
 setWaterWaviness(4.0);
 setWaterType("lake");
 
-ExportMap();
+g_Map.ExportMap();

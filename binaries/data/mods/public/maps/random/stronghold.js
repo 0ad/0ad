@@ -6,13 +6,13 @@ setSelectedBiome();
 
 const heightLand = 30;
 
-InitMap(heightLand, g_Terrains.mainTerrain);
+var g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
 
 initTileClasses();
 
 createArea(
 	new MapBoundsPlacer(),
-	paintClass(g_TileClasses.land));
+	new TileClassPainter(g_TileClasses.land));
 
 Engine.SetProgress(20);
 
@@ -256,4 +256,4 @@ placePlayersNomad(
 		g_TileClasses.mountain, 4,
 		g_TileClasses.animals, 2));
 
-ExportMap();
+g_Map.ExportMap();

@@ -50,21 +50,21 @@ const heightSeaGround = -2;
 const heightLand = 2;
 const shoreRadius = 6;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
-const clPlayer = createTileClass();
-const clHill = createTileClass();
-const clMountain = createTileClass();
-const clForest = createTileClass();
-const clDirt = createTileClass();
-const clRock = createTileClass();
-const clMetal = createTileClass();
-const clFood = createTileClass();
-const clBaseResource = createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clMountain = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
 log("Creating player islands...")
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));
@@ -75,7 +75,7 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tShore, tMainTerrain], [shoreRadius]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
-			paintClass(clHill)
+			new TileClassPainter(clHill)
 		]);
 
 placePlayerBases({
@@ -123,7 +123,7 @@ createArea(
 	[
 		new LayeredPainter([tShore, tMainTerrain], [shoreRadius, 100]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 40));
 
@@ -142,7 +142,7 @@ for (let m = 0; m < randIntInclusive(20, 34); ++m)
 		[
 			new LayeredPainter([tDirt, tHill], [Math.floor(elevRand / 3), 40]),
 			new SmoothElevationPainter(ELEVATION_SET, elevRand, Math.floor(elevRand / 3)),
-			paintClass(clHill)
+			new TileClassPainter(clHill)
 		],
 		[avoidClasses(clBaseResource, 2, clPlayer, 40), stayClasses(clHill, 6)]);
 }
@@ -162,7 +162,7 @@ for (let m = 0; m < randIntInclusive(8, 17); ++m)
 		[
 			new LayeredPainter([tCliff, tForestFloor2], [Math.floor(elevRand / 3), 40]),
 			new SmoothElevationPainter(ELEVATION_MODIFY, elevRand, Math.floor(elevRand / 3)),
-			paintClass(clMountain)
+			new TileClassPainter(clMountain)
 		],
 		[avoidClasses(clBaseResource, 2, clPlayer, 40), stayClasses(clHill, 6)]);
 }
@@ -218,7 +218,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clMountain, 0, clDirt, 5, clPlayer, 10),
 		numb * scaleByMapSize(15, 45));
@@ -300,4 +300,4 @@ placePlayersNomad(
 setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
 setWaterMurkiness(0.4);
 
-ExportMap();
+g_Map.ExportMap();

@@ -41,20 +41,20 @@ const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TE
 const heightIsland = 20;
 const heightSeaGround = -5;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clForest = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clLand = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clLand = g_Map.createTileClass();
 
 const playerIslandRadius = scaleByMapSize(15, 30);
 
@@ -85,7 +85,7 @@ function createIsland(islandID, size, tileClass)
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightIsland, 2),
-			paintClass(tileClass)
+			new TileClassPainter(tileClass)
 		]);
 }
 
@@ -282,7 +282,7 @@ for (let type of types)
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		[avoidClasses(clPlayer, 6, clForest, 10), stayClasses(clLand, 4)],
 		num);
@@ -316,7 +316,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([[tMainTerrain, tTier1Terrain],[tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		[avoidClasses(clForest, 0, clDirt, 5, clPlayer, 12), stayClasses(clLand, 5)],
 		scaleByMapSize(15, 45));
@@ -437,4 +437,4 @@ setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randomAngle());
 setSunElevation(Math.PI * randFloat(1/5, 1/3));
 
-ExportMap();
+g_Map.ExportMap();

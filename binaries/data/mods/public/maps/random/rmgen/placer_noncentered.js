@@ -9,7 +9,7 @@
  */
 function RectPlacer(x1, z1, x2, z2)
 {
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 
 	this.x1 = Math.round(Math.max(Math.min(x1, x2), 0));
 	this.x2 = Math.round(Math.min(Math.max(x1, x2), mapSize - 1));
@@ -38,7 +38,7 @@ RectPlacer.prototype.place = function(constraint)
  */
 function MapBoundsPlacer()
 {
-	let mapBounds = getMapBounds();
+	let mapBounds = g_Map.getBounds();
 	this.rectPlacer = new RectPlacer(mapBounds.left, mapBounds.top, mapBounds.right, mapBounds.bottom);
 }
 
@@ -62,10 +62,10 @@ const Elevation_IncludeMin_IncludeMax = 3;
 function HeightPlacer(mode, minElevation, maxElevation)
 {
 	this.withinHeightRange =
-		mode == Elevation_ExcludeMin_ExcludeMax ? (x, z) => g_Map.height[x][z] >  minElevation && g_Map.height[x][z] < maxElevation :
-		mode == Elevation_IncludeMin_ExcludeMax ? (x, z) => g_Map.height[x][z] >= minElevation && g_Map.height[x][z] < maxElevation :
-		mode == Elevation_ExcludeMin_IncludeMax ? (x, z) => g_Map.height[x][z] >  minElevation && g_Map.height[x][z] <= maxElevation :
-		mode == Elevation_IncludeMin_IncludeMax ? (x, z) => g_Map.height[x][z] >= minElevation && g_Map.height[x][z] <= maxElevation :
+		mode == Elevation_ExcludeMin_ExcludeMax ? position => g_Map.getHeight(position) >  minElevation && g_Map.getHeight(position) < maxElevation :
+		mode == Elevation_IncludeMin_ExcludeMax ? position => g_Map.getHeight(position) >= minElevation && g_Map.getHeight(position) < maxElevation :
+		mode == Elevation_ExcludeMin_IncludeMax ? position => g_Map.getHeight(position) >  minElevation && g_Map.getHeight(position) <= maxElevation :
+		mode == Elevation_IncludeMin_IncludeMax ? position => g_Map.getHeight(position) >= minElevation && g_Map.getHeight(position) <= maxElevation :
 		undefined;
 
 	if (!this.withinHeightRange)
@@ -74,14 +74,14 @@ function HeightPlacer(mode, minElevation, maxElevation)
 
 HeightPlacer.prototype.place = function(constraint)
 {
-	let mapSize = getMapSize();
+	let mapSize = g_Map.getSize();
 	let points = [];
 
 	for (let x = 0; x < mapSize; ++x)
 		for (let z = 0; z < mapSize; ++z)
 		{
 			let position = new Vector2D(x, z);
-			if (this.withinHeightRange(x, z) && constraint.allows(position))
+			if (this.withinHeightRange(position) && constraint.allows(position))
 				points.push(position);
 		}
 
@@ -127,7 +127,7 @@ PathPlacer.prototype.place = function(constraint)
 	var totalSteps = numSteps*numISteps;
 	var offset = 1 + Math.floor(pathLength / 4 * this.c);
 
-	var size = getMapSize();
+	var size = g_Map.getSize();
 	var gotRet = [];
 	for (var i = 0; i < size; ++i)
 		gotRet[i] = new Uint8Array(size);			// bool / uint8

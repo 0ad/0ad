@@ -41,23 +41,23 @@ const heightShallows = -2;
 const heightLand = 3;
 const heightOffsetBump = 2;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
-const mapBounds = getMapBounds();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
+const mapBounds = g_Map.getBounds();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clShallow = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clShallow = g_Map.createTileClass();
 
 var shallowWidth = scaleByMapSize(8, 12);
 
@@ -72,7 +72,7 @@ placePlayerBases({
 		"outerTerrain": tRoadWild,
 		"innerTerrain": tRoad,
 		"painters": [
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	"Chicken": {
@@ -176,7 +176,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([[tGrass,tGrassA], tGrassB, [tGrassB,tGrassC]], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6),
 		scaleByMapSize(15, 45)
@@ -318,4 +318,4 @@ setWaterWaviness(3.0);
 setWaterType("lake");
 setWaterMurkiness(0.80);
 
-ExportMap();
+g_Map.ExportMap();

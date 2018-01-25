@@ -153,12 +153,12 @@ function createBase(player, walls = true)
 		"playerPosition": player.position,
 		"PlayerTileClass": g_TileClasses.player,
 		"BaseResourceClass": g_TileClasses.baseResource,
-		"Walls": getMapSize() > 192 && walls,
+		"Walls": g_Map.getSize() > 192 && walls,
 		"CityPatch": {
 			"outerTerrain": g_Terrains.roadWild,
 			"innerTerrain": g_Terrains.road,
 			"painters": [
-				paintClass(g_TileClasses.player)
+				new TileClassPainter(g_TileClasses.player)
 			]
 		},
 		"Chicken": {
@@ -220,7 +220,7 @@ function getTeamsArray()
 function randomStartingPositionPattern(teamsArray)
 {
 	var formats = ["radial"];
-	var mapSize = getMapSize();
+	var mapSize = g_Map.getSize();
 	var numPlayers = getNumPlayers();
 
 	// Enable stronghold if we have a few teams and a big enough map
@@ -255,7 +255,7 @@ function randomStartingPositionPattern(teamsArray)
 function placeLine(teamsArray, distance, groupedDistance, startAngle)
 {
 	let players = [];
-	let mapCenter = getMapCenter();
+	let mapCenter = g_Map.getCenter();
 	let dist = fractionToTiles(0.45);
 
 	for (let i = 0; i < teamsArray.length; ++i)
@@ -289,7 +289,7 @@ function placeLine(teamsArray, distance, groupedDistance, startAngle)
  */
 function placeRadial(playerIDs, distance, startAngle)
 {
-	let mapCenter = getMapCenter();
+	let mapCenter = g_Map.getCenter();
 	let players = [];
 	let numPlayers = getNumPlayers();
 
@@ -314,7 +314,7 @@ function placeRandom(playerIDs)
 	var locations = [];
 	var attempts = 0;
 	var resets = 0;
-	var mapCenter = getMapCenter();
+	var mapCenter = g_Map.getCenter();
 
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
@@ -374,8 +374,8 @@ function groupPlayersByLocations(playerIDs, locations)
 
 		for (let i = 1; i < playerIDs.length; ++i)
 		{
-			let team1 = g_MapSettings.PlayerData[playerIDs[i - 1]].Team;
-			let team2 = g_MapSettings.PlayerData[playerIDs[i]].Team;
+			let team1 = getPlayerTeam(playerIDs[i - 1]);
+			let team2 = getPlayerTeam(playerIDs[i]);
 			++teamSize;
 			if (team1 != -1 && team1 == team2)
 				teamDist += permutation[i - 1].distanceTo(permutation[i]);
@@ -418,7 +418,7 @@ function groupPlayersByLocations(playerIDs, locations)
 function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 {
 	var players = [];
-	var mapCenter = getMapCenter();
+	var mapCenter = g_Map.getCenter();
 
 	for (let i = 0; i < teamsArray.length; ++i)
 	{
@@ -466,5 +466,5 @@ function initTileClasses(newClasses)
 
 	g_TileClasses = {};
 	for (var className of classNames)
-		g_TileClasses[className] = createTileClass();
+		g_TileClasses[className] = g_Map.createTileClass();
 }

@@ -68,23 +68,23 @@ const heightMountain = heightHighRocks + 20;
 const heightOffsetHill = 7;
 const heightOffsetHillRandom = 2;
 
-InitMap(heightInit, tGrass);
+var g_Map = new RandomMap(heightInit, tGrass);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clPass = createTileClass();
-var clPyrenneans = createTileClass();
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clPass = g_Map.createTileClass();
+var clPyrenneans = g_Map.createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
 
 var startAngle = randomAngle();
 var oceanAngle = startAngle + randFloat(-1, 1) * Math.PI / 12;
@@ -244,7 +244,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 	for (let iz = 1; iz < mapSize - 1; ++iz)
 	{
 		let position = new Vector2D(ix, iz);
-		if (g_Map.validH(ix, iz) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
+		if (g_Map.validHeight(position) && getTileClass(clPyrenneans).countMembersInRadius(ix, iz, 1))
 		{
 			let height = g_Map.getHeight(position);
 			let index = 1 / (1 + Math.max(0, height / 7));
@@ -294,7 +294,7 @@ for (let ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48),
 		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, ocean),
 		[
 			new ElevationPainter(heightOcean),
-			paintClass(clWater)
+			new TileClassPainter(clWater)
 		]);
 
 log("Smoothing around the water...");
@@ -327,7 +327,7 @@ createAreas(
 	[
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill, 4, heightOffsetHillRandom),
 		new TerrainPainter(tGrassSpecific),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clWater, 5, clPlayer, 20, clBaseResource, 6, clPyrenneans, 2), scaleByMapSize(5, 35));
 
@@ -340,7 +340,7 @@ for (let type of types)
 		new ClumpPlacer(size, 0.2, 0.1, 1),
 		[
 			new LayeredPainter(type, [scaleByMapSize(1, 2), scaleByMapSize(3, 6), scaleByMapSize(3, 6)]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 20, clPyrenneans,0, clForest, 7, clWater, 2),
 		num);
@@ -391,7 +391,7 @@ for (let size of [scaleByMapSize(3, 20), scaleByMapSize(5, 40), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new TerrainPainter(tDirtyGrass),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clWater, 3, clForest, 0, clPyrenneans,5, clHill, 0, clDirt, 5, clPlayer, 6),
 		scaleByMapSize(15, 45));
@@ -480,4 +480,4 @@ setWaterType("ocean");
 setWaterMurkiness(0.83);
 setWaterHeight(heightWaterLevel);
 
-ExportMap();
+g_Map.ExportMap();

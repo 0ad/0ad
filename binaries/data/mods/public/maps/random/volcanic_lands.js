@@ -25,18 +25,18 @@ var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
 const heightLand = 1;
 const heightHill = 18;
 
-InitMap(heightLand, tGrassB);
+var g_Map = new RandomMap(heightLand, tGrassB);
 
 var numPlayers = getNumPlayers();
-var mapCenter = getMapCenter();
+var mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -69,7 +69,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tGrass], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 12, clHill, 15, clBaseResource, 2),
 	scaleByMapSize(2, 8) * numPlayers
@@ -88,7 +88,7 @@ for (let type of types)
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 12, clForest, 10, clHill, 0, clBaseResource, 6),
 		num);
@@ -101,7 +101,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([tGrassA, tGrassA], [1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clHill, 0, clPlayer, 12),
 		scaleByMapSize(20, 80));
@@ -111,7 +111,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([tGrassB, tGrassB], [1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clHill, 0, clPlayer, 12),
 		scaleByMapSize(20, 80));
@@ -121,7 +121,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([tGrassC, tGrassC], [1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clHill, 0, clPlayer, 12),
 		scaleByMapSize(20, 80)
@@ -182,4 +182,4 @@ createStragglerTrees(
 
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4));
 
-ExportMap();
+g_Map.ExportMap();

@@ -43,20 +43,20 @@ const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 var heightSeaGround = -4;
 var heightLand = 3;
 
-InitMap(heightLand, tGrass);
+var g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
+const mapSize = g_Map.getSize();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 var treasures = [
 	{ "template": oFoodTreasure, "distance": 5 },
@@ -142,7 +142,7 @@ var waterAreas = createAreas(
 	[
 		new LayeredPainter([tShore, tWater, tWater], [1, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 3),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 7, clWater, 20),
 	numLakes);
@@ -193,7 +193,7 @@ for (let type of types)
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / num, 0.5),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 5, clWater, 3, clForest, 15, clHill, 1),
 		num);
@@ -305,4 +305,4 @@ setPPContrast(0.56);
 setPPBloom(0.38);
 setPPEffect("hdr");
 
-ExportMap();
+g_Map.ExportMap();

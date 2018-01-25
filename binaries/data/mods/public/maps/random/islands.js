@@ -49,21 +49,21 @@ const heightLand = 3;
 const heightOffsetBump = 2;
 const heightHill = 18;
 
-InitMap(heightSeaGround, tWater);
+var g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clLand = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clLand = g_Map.createTileClass();
 
 var playerIslandRadius = scaleByMapSize(20, 29);
 
@@ -79,8 +79,8 @@ if (!isNomad())
 			[
 				new LayeredPainter([tMainTerrain , tMainTerrain, tMainTerrain], [1, 6]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
-				paintClass(clLand),
-				paintClass(clPlayer)
+				new TileClassPainter(clLand),
+				new TileClassPainter(clPlayer)
 			]);
 
 		let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , heightLand - 0.5, heightLand);
@@ -98,7 +98,7 @@ createAreas(
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	],
 	avoidClasses(clLand, scaleByMapSize(8, 12)),
 	scaleByMapSize(4, 14));
@@ -113,7 +113,7 @@ createAreas(
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	],
 	avoidClasses(clLand, scaleByMapSize(8, 12)),
 	scaleByMapSize(6, 54));
@@ -172,7 +172,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	[avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)],
 	scaleByMapSize(4, 13));
@@ -193,7 +193,7 @@ if (currentBiome() != "savanna")
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 5))), 0.5),
 			[
 				new LayeredPainter(type, [2]),
-				paintClass(clForest)
+				new TileClassPainter(clForest)
 			],
 			[avoidClasses(clPlayer, 0, clForest, 10, clHill, 0), stayClasses(clLand, 6)],
 			num);
@@ -207,7 +207,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 6)],
 		numberOfPatches);
@@ -361,4 +361,4 @@ setSunRotation(randomAngle());
 setSunElevation(randFloat(1/5, 1/3) * Math.PI);
 setWaterWaviness(2);
 
-ExportMap();
+g_Map.ExportMap();

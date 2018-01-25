@@ -42,7 +42,7 @@ function createForests(terrainSet, constraint, tileClass, treeCount)
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), treeCount / numberOfForests, 0.5),
 			[
 				new LayeredPainter([forestVariant.borderTerrains, forestVariant.interiorTerrains], [2]),
-				paintClass(tileClass)
+				new TileClassPainter(tileClass)
 			],
 			constraint,
 			numberOfForests);

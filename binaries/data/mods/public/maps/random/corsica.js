@@ -49,22 +49,22 @@ var heightOffsetLevel2 = 8;
 var heightOffsetBumps = 2;
 var heightOffsetAntiBumps = -5;
 
-InitMap(heightSeaGround, tVeryDeepWater);
+var g_Map = new RandomMap(heightSeaGround, tVeryDeepWater);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapSize = g_Map.getSize();
+var mapCenter = g_Map.getCenter();
 
-var clIsland = createTileClass();
-var clCreek = createTileClass();
-var clWater = createTileClass();
-var clCliffs = createTileClass();
-var clForest = createTileClass();
-var clShore = createTileClass();
-var clPlayer = createTileClass();
-var clBaseResource = createTileClass();
-var clPassage = createTileClass();
-var clSettlement = createTileClass();
+var clIsland = g_Map.createTileClass();
+var clCreek = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clCliffs = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clShore = g_Map.createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clPassage = g_Map.createTileClass();
+var clSettlement = g_Map.createTileClass();
 
 var radiusBeach = fractionToTiles(0.57);
 var radiusCreeks = fractionToTiles(0.52);
@@ -93,7 +93,7 @@ for (let island = 0; island < 2; ++island)
 		[
 			new LayeredPainter([tCliffs, tGrass], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightMain, 0),
-			paintClass(clIsland)
+			new TileClassPainter(clIsland)
 		]);
 
 	log("Creating subislands...");
@@ -106,7 +106,7 @@ for (let island = 0; island < 2; ++island)
 			[
 				new LayeredPainter([tCliffs, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightMain, 1),
-				paintClass(clIsland)
+				new TileClassPainter(clIsland)
 			]);
 	}
 
@@ -120,7 +120,7 @@ for (let island = 0; island < 2; ++island)
 			[
 				new TerrainPainter(tSteepCliffs),
 				new SmoothElevationPainter(ELEVATION_SET, heightCreeks, 0),
-				paintClass(clCreek)
+				new TileClassPainter(clCreek)
 			]);
 	}
 
@@ -224,7 +224,7 @@ placePlayerBases({
 		"coherence": 0.8,
 		"radius": 6,
 		"painters": [
-			paintClass(clSettlement)
+			new TileClassPainter(clSettlement)
 		]
 	},
 	"Chicken": {
@@ -366,7 +366,7 @@ createAreas(
 	new ClumpPlacer(20, 0.3, 0.06, 0.5),
 	[
 		new TerrainPainter(tLushGrass),
-		paintClass(clForest)
+		new TileClassPainter(clForest)
 	],
 	avoidClasses(
 		clWater, 1,
@@ -516,4 +516,4 @@ setWaterMurkiness(0.72);
 setWaterWaviness(2.0);
 setWaterType("ocean");
 
-ExportMap();
+g_Map.ExportMap();

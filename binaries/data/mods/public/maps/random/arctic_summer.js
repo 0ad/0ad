@@ -42,19 +42,19 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBush, tForestFloor + TERRAI
 var heightSeaGround = -5;
 var heightLand = 2;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -116,7 +116,7 @@ createAreas(
 	[
 		new LayeredPainter([tShore, tWater, tWater], [1, 3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 15),
 	scaleByMapSize(1, 20));
@@ -322,4 +322,4 @@ setWaterMurkiness(0.92);
 setWaterWaviness(1);
 setWaterType("clap");
 
-ExportMap();
+g_Map.ExportMap();

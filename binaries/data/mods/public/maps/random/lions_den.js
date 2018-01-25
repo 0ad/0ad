@@ -11,16 +11,16 @@ const heightPath = 10;
 const heightDen = 15;
 const heightHill = 50;
 
-InitMap(heightHill, topTerrain);
+var g_Map = new RandomMap(heightHill, topTerrain);
 
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 const numPlayers = getNumPlayers();
 const startAngle = randomAngle();
 
 initTileClasses(["step"]);
 createArea(
 	new MapBoundsPlacer(),
-	paintClass(g_TileClasses.land));
+	new TileClassPainter(g_TileClasses.land));
 
 Engine.SetProgress(10);
 
@@ -422,7 +422,7 @@ placePlayersNomad(
 			g_TileClasses.animals, 2)
 	]);
 
-ExportMap();
+g_Map.ExportMap();
 
 function createSunkenTerrain()
 {
@@ -486,7 +486,7 @@ function createSunkenTerrain()
 		[
 			new LayeredPainter([g_Terrains.cliff, lower], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightValley, 3),
-			paintClass(g_TileClasses.valley)
+			new TileClassPainter(g_TileClasses.valley)
 		]);
 
 	log("Creating central hill...");
@@ -495,7 +495,7 @@ function createSunkenTerrain()
 		[
 			new LayeredPainter([g_Terrains.cliff, topTerrain], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
-			paintClass(g_TileClasses.mountain)
+			new TileClassPainter(g_TileClasses.mountain)
 		]);
 
 	let getCoords = (distance, playerID, playerIDOffset) => {
@@ -514,7 +514,7 @@ function createSunkenTerrain()
 			[
 				new LayeredPainter([g_Terrains.cliff, middle, road], [3, 4]),
 				new SmoothElevationPainter(ELEVATION_SET, heightPath, 3),
-				paintClass(g_TileClasses.step)
+				new TileClassPainter(g_TileClasses.step)
 			]);
 
 		log("Creating path from player to the neighbor...");
@@ -527,7 +527,7 @@ function createSunkenTerrain()
 				[
 					new LayeredPainter([g_Terrains.cliff, middle, road], [3, 6]),
 					new SmoothElevationPainter(ELEVATION_SET, heightPath, 3),
-					paintClass(g_TileClasses.step)
+					new TileClassPainter(g_TileClasses.step)
 				]);
 		}
 
@@ -537,7 +537,7 @@ function createSunkenTerrain()
 			[
 				new LayeredPainter([g_Terrains.cliff, base], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, heightDen, 3),
-				paintClass(g_TileClasses.valley)
+				new TileClassPainter(g_TileClasses.valley)
 			]);
 
 		log("Creating the expansion of the player...");
@@ -546,7 +546,7 @@ function createSunkenTerrain()
 			[
 				new LayeredPainter([g_Terrains.cliff, base], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, heightDen, 3),
-				paintClass(g_TileClasses.settlement)
+				new TileClassPainter(g_TileClasses.settlement)
 			],
 			[avoidClasses(g_TileClasses.settlement, 2)]);
 	}
@@ -560,7 +560,7 @@ function createSunkenTerrain()
 			[
 				new LayeredPainter([g_Terrains.cliff, lower], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, heightValley, 3),
-				paintClass(g_TileClasses.settlement)
+				new TileClassPainter(g_TileClasses.settlement)
 			]);
 	}
 }

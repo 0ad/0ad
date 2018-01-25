@@ -9,12 +9,12 @@ var randElevation = randIntInclusive(0, 29);
 if (randElevation < 25)
 	randElevation = randIntInclusive(1, 4);
 
-InitMap(randElevation, g_Terrains.mainTerrain);
+var g_Map = new RandomMap(randElevation, g_Terrains.mainTerrain);
 
 initTileClasses();
 createArea(
 	new MapBoundsPlacer(),
-	paintClass(g_TileClasses.land));
+	new TileClassPainter(g_TileClasses.land));
 
 Engine.SetProgress(20);
 
@@ -278,4 +278,4 @@ placePlayersNomad(
 		g_TileClasses.plateau, 4,
 		g_TileClasses.animals, 2));
 
-ExportMap();
+g_Map.ExportMap();

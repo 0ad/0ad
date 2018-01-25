@@ -1,11 +1,11 @@
 Engine.LoadLibrary("rmgen");
 
-InitMap(0, "grass1_spring");
+var g_Map = new RandomMap(0, "grass1_spring");
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.39))
 });
 
-placePlayersNomad(createTileClass());
+placePlayersNomad(g_Map.createTileClass());
 
-ExportMap();
+g_Map.ExportMap();

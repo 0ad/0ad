@@ -27,17 +27,17 @@ var heightPath = -2;
 var heightLand = 0;
 var heightOffsetRandomPath = 1;
 
-InitMap(heightLand, terrainPrimary);
+var g_Map = new RandomMap(heightLand, terrainPrimary);
 
-var mapSize = getMapSize();
+var mapSize = g_Map.getSize();
 var mapRadius = mapSize/2;
-var mapCenter = getMapCenter();
+var mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clPath = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clPath = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 var numPlayers = getNumPlayers();
 var baseRadius = 20;
@@ -75,7 +75,7 @@ placePlayerBases({
 		"smoothness": 1/8,
 		"painters": [
 			new LayeredPainter([terrainBaseBorder, terrainBase, terrainBaseCenter], [baseRadius/4, baseRadius/4]),
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]
 	},
 	"Chicken": {
@@ -116,7 +116,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 			[
 				new TerrainPainter(terrainPath),
 				new SmoothElevationPainter(ELEVATION_SET, heightPath, 2, heightOffsetRandomPath),
-				paintClass(clPath)
+				new TileClassPainter(clPath)
 			],
 			avoidClasses(clHill, 0, clBaseResource, 4));
 	}
@@ -141,7 +141,7 @@ for (let i = 0; i < numPlayers; ++i)
 			[
 				new LayeredPainter([terrainHillBorder, terrainHill], [1]),
 				new ElevationPainter(randFloat(1, 2)),
-				paintClass(clHill)
+				new TileClassPainter(clHill)
 			]);
 	}
 Engine.SetProgress(60);
@@ -156,7 +156,7 @@ createArea(
 	[
 		new LayeredPainter([terrainHillBorder, terrainHill], [radiusEC/4]),
 		new ElevationPainter(randFloat(1, 2)),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	]);
 
 // Woods and general hight map
@@ -185,7 +185,7 @@ for (var x = 0; x < mapSize; x++)
 				[
 					new TerrainPainter(border ? terrainWoodBorder : terrainWood),
 					new ElevationPainter(randFloat(0, 1)),
-					paintClass(clForest)
+					new TileClassPainter(clForest)
 				],
 				avoidClasses(clPath, 1, clHill, border ? 0 : 1));
 		}
@@ -199,4 +199,4 @@ Engine.SetProgress(95);
 
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clBaseResource, 4));
 
-ExportMap();
+g_Map.ExportMap();

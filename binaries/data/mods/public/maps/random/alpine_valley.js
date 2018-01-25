@@ -283,19 +283,19 @@ var heightMountain = 30;
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -332,7 +332,7 @@ new MountainRangeBuilder({
 	"painters":[
 		new LayeredPainter([tCliff, tPrimary], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightMountain, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	"constraint": avoidClasses(clPlayer, 20),
 	"passageWidth": scaleByMapSize(10, 15),
@@ -367,7 +367,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tSnowLimited], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightMountain, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 20, clHill, 14),
 	scaleByMapSize(10, 80) * numPlayers
@@ -388,7 +388,7 @@ for (let type of types)
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 12, clForest, 10, clHill, 0),
 		num);
@@ -400,7 +400,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
 			new LayeredPainter([[tDirt, tHalfSnow], [tHalfSnow, tSnowLimited]], [2]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45));
@@ -539,4 +539,4 @@ setWaterMurkiness(0.72);
 setWaterWaviness(2.0);
 setWaterType("lake");
 
-ExportMap();
+g_Map.ExportMap();

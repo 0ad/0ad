@@ -461,8 +461,12 @@ function initDialogStyle()
 
 	Engine.GetGUIObjectByName("hostButton").hidden = g_Dialog;
 	Engine.GetGUIObjectByName("joinGameButton").hidden = g_Dialog;
-	Engine.GetGUIObjectByName("gameInfoEmpty").size = "0 0 100% 100%-30" + (g_Dialog ? "" : "-30");
-	Engine.GetGUIObjectByName("gameInfo").size = "0 0 100% 100%-30" + (g_Dialog ? "" : "-60");
+	Engine.GetGUIObjectByName("gameInfoEmpty").size = "0 0 100% 100%-24" + (g_Dialog ? "" : "-30");
+	Engine.GetGUIObjectByName("gameInfo").size = "0 0 100% 100%-24" + (g_Dialog ? "" : "-60");
+
+	Engine.GetGUIObjectByName("middlePanel").size = "20%+5 " + (g_Dialog ? "18" : "40") + " 100%-255 100%-20";
+	Engine.GetGUIObjectByName("rightPanel").size = "100%-250 " + (g_Dialog ? "18" : "40") + " 100%-20 100%-20";
+	Engine.GetGUIObjectByName("leftPanel").size = "20 " + (g_Dialog ? "18" : "40") + " 20% 100%-315";
 
 	if (g_Dialog)
 	{
@@ -1498,7 +1502,7 @@ function ircFormat(msg)
 
 	// Translation: IRC message format when there is a time prefix.
 	return sprintf(translate("%(time)s %(message)s"), {
-		"time": senderFont(timePrefixString),
+		"time": timePrefixString,
 		"message": formattedMessage
 	});
 }

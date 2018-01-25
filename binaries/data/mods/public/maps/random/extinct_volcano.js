@@ -55,24 +55,24 @@ var heightLand = 1;
 var heightHill = 18;
 var heightPlayerHill = 25;
 
-InitMap(heightLand, tHillMedium1);
+var g_Map = new RandomMap(heightLand, tHillMedium1);
 
 var numPlayers = getNumPlayers();
-var mapCenter = getMapCenter();
+var mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clFood = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clGrass = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clBaseResource = createTileClass();
-var clBumps = createTileClass();
-var clTower = createTileClass();
-var clRain = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clGrass = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clBumps = g_Map.createTileClass();
+var clTower = g_Map.createTileClass();
+var clRain = g_Map.createTileClass();
 
 var playerMountainSize = defaultPlayerBaseRadius();
 
@@ -101,7 +101,7 @@ if (!isNomad())
 			[
 				new LayeredPainter([tHillVeryDark, tHillMedium1], [playerMountainSize]),
 				new SmoothElevationPainter(ELEVATION_SET, heightPlayerHill, playerMountainSize),
-				paintClass(clPlayer)
+				new TileClassPainter(clPlayer)
 			]);
 	}
 
@@ -143,7 +143,7 @@ createAreas(
 	[
 		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 3),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 0, clHill, 2, clWater, 12),
 	Math.round(scaleByMapSize(6, 12)));
@@ -159,7 +159,7 @@ createAreas(
 	[
 		new LayeredPainter([tHillDark, tHillDark, tHillDark], [2, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 0, clHill, 15, clWater, 2, clBaseResource, 2),
 	scaleByMapSize(2, 8) * numPlayers);
@@ -178,7 +178,7 @@ for (let type of types)
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(
 			clPlayer, 4,
@@ -195,7 +195,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 			new ClumpPlacer(size, 0.3, 0.06, 0.5),
 			[
 				new LayeredPainter(type, [1]),
-				paintClass(clGrass)
+				new TileClassPainter(clGrass)
 			],
 			avoidClasses(
 				clWater, 3,
@@ -462,4 +462,4 @@ setWaterMurkiness(0.9);
 
 setPPEffect("hdr");
 
-ExportMap();
+g_Map.ExportMap();

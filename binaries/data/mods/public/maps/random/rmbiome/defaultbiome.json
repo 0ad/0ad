@@ -57,9 +57,11 @@
 		"bushSmall": "actor|props/flora/bush_medit_sm.xml",
 		"tree": "actor|flora/trees/oak.xml"
 	},
-	"TreeCount": {
-		"minTrees": 500,
-		"maxTrees": 3000,
-		"forestProbability": 0.7
+	"ResourceCounts": {
+		"trees": {
+			"min": 500,
+			"max": 3000,
+			"forestProbability": 0.7
+		}
 	}
 }

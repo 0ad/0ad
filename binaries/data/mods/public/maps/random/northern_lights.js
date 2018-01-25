@@ -31,23 +31,23 @@ const heightLake = -4;
 const heightLand = 3;
 const heightHill = 25;
 
-InitMap(heightLand, tSnowA);
+var g_Map = new RandomMap(heightLand, tSnowA);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
-const mapBounds = getMapBounds();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
+const mapBounds = g_Map.getBounds();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clIsland = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clIsland = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 var startAngle = randomAngle();
 
@@ -102,7 +102,7 @@ for (let i = 0; i < scaleByMapSize(20, 120); ++i)
 		[
 			new LayeredPainter([tSnowA, tSnowA], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-			unPaintClass(clWater)
+			new TileClassUnPainter(clWater)
 		]);
 }
 
@@ -112,8 +112,8 @@ createAreas(
 	[
 		new LayeredPainter([tSnowA, tSnowA], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-		paintClass(clIsland),
-		unPaintClass(clWater)
+		new TileClassPainter(clIsland),
+		new TileClassUnPainter(clWater)
 	],
 	stayClasses(clWater, 7),
 	scaleByMapSize(10, 80));
@@ -126,7 +126,7 @@ createAreas(
 	[
 		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLake, 3),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 20, clWater, 20),
 	Math.round(scaleByMapSize(1, 4) * numPlayers));
@@ -142,7 +142,7 @@ createAreas(
 	[
 		new LayeredPainter([tCliff, tSnowA], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
-		paintClass(clHill)
+		new TileClassPainter(clHill)
 	],
 	avoidClasses(clPlayer, 20, clHill, 15, clWater, 2, clBaseResource, 2),
 	scaleByMapSize(1, 4) * numPlayers
@@ -163,7 +163,7 @@ for (let type of types)
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 4))), 1),
 		[
 			new LayeredPainter(type, [2]),
-			paintClass(clForest)
+			new TileClassPainter(clForest)
 		],
 		avoidClasses(clPlayer, 20, clForest, 20, clHill, 0, clWater, 8),
 		num);
@@ -183,7 +183,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([tSnowD, tSnowB, tSnowC], [2, 1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(
 			clWater, 8,
@@ -198,7 +198,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([tSnowE, tSnowE], [1]),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(
 			clWater, 8,
@@ -285,4 +285,4 @@ setPPSaturation(0.28);
 setPPEffect("hdr");
 
 setSkySet("fog");
-ExportMap();
+g_Map.ExportMap();

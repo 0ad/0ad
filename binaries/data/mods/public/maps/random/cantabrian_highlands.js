@@ -46,20 +46,20 @@ const heightSeaGround = -7;
 const heightLand = 3;
 const heightHill = 20;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
+var mapSize = g_Map.getSize();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
 
 var playerHillRadius = defaultPlayerBaseRadius() / (isNomad() ? 1.5 : 1);
 
@@ -73,7 +73,7 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-			paintClass(clPlayer)
+			new TileClassPainter(clPlayer)
 		]);
 
 	let angle = playerAngle[i] + Math.PI * (1 + randFloat(-1, 1) / 8);
@@ -126,7 +126,7 @@ var waterAreas = createAreas(
 	[
 		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 6),
-		paintClass(clWater)
+		new TileClassPainter(clWater)
 	],
 	avoidClasses(clPlayer, 2, clWater, 20),
 	numLakes
@@ -279,4 +279,4 @@ setPPSaturation(0.62);
 setPPContrast(0.62);
 setPPBloom(0.3);
 
-ExportMap();
+g_Map.ExportMap();

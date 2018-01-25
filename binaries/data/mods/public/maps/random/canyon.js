@@ -43,22 +43,22 @@ const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TE
 const heightLand = 3;
 const heightHill = 30;
 
-InitMap(heightHill, tMainTerrain);
+var g_Map = new RandomMap(heightHill, tMainTerrain);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapCenter = getMapCenter();
+var mapSize = g_Map.getSize();
+var mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clHill = createTileClass();
-var clHill2 = createTileClass();
-var clForest = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clLand = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clHill = g_Map.createTileClass();
+var clHill2 = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clLand = g_Map.createTileClass();
 
 var playerCanyonRadius = scaleByMapSize(18, 32);
 
@@ -72,7 +72,7 @@ for (let i = 0; i < numPlayers; ++i)
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
-			paintClass(j == 1 || isNomad() ? clLand : clPlayer)
+			new TileClassPainter(j == 1 || isNomad() ? clLand : clPlayer)
 		]);
 
 log("Creating center area...");
@@ -81,12 +81,12 @@ createArea(
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-		paintClass(clLand)
+		new TileClassPainter(clLand)
 	]);
 
 createArea(
 	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter),
-	paintClass(clHill));
+	new TileClassPainter(clHill));
 
 log("Creating hills...");
 for (let i = 0; i < scaleByMapSize(9, 16); ++i)
@@ -101,7 +101,7 @@ for (let i = 0; i < scaleByMapSize(9, 16); ++i)
 			0),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
-			paintClass(clHill2)
+			new TileClassPainter(clHill2)
 		],
 		avoidClasses(clPlayer, 6, clHill2, 3, clHill, 2));
 
@@ -114,7 +114,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-			paintClass(clLand)
+			new TileClassPainter(clLand)
 		],
 		avoidClasses(clLand, 6));
 
@@ -152,7 +152,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 					[
 						new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 						new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
-						paintClass(clLand)
+						new TileClassPainter(clLand)
 					]);
 	}
 }
@@ -174,8 +174,8 @@ for (let i = 0; i < numPlayers; ++i)
 			[
 				new LayeredPainter([tRoadWild, tRoad], [1]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
-				paintClass(clLand),
-				paintClass(clHill)
+				new TileClassPainter(clLand),
+				new TileClassPainter(clHill)
 			]);
 }
 
@@ -344,4 +344,4 @@ placePlayersNomad(
 	clPlayer,
 	[stayClasses(clLand, 4), avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clHill2, 4, clFood, 2)]);
 
-ExportMap();
+g_Map.ExportMap();

@@ -7,15 +7,15 @@ setSelectedBiome();
 const heightLand = 1;
 const heightBarrier = 30;
 
-InitMap(heightLand, g_Terrains.mainTerrain);
+var g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
 
 initTileClasses();
 
-const mapCenter = getMapCenter();
+const mapCenter = g_Map.getCenter();
 
 createArea(
 	new MapBoundsPlacer(),
-	paintClass(g_TileClasses.land));
+	new TileClassPainter(g_TileClasses.land));
 
 Engine.SetProgress(10);
 
@@ -244,7 +244,7 @@ placePlayersNomad(
 		g_TileClasses.mountain, 4,
 		g_TileClasses.animals, 2));
 
-ExportMap();
+g_Map.ExportMap();
 
 function placeBarriers()
 {
@@ -268,7 +268,7 @@ function placeBarriers()
 		var mOffset = 0.5;
 		var mTaper = -1.5;
 
-		if (spineCount > 3 || getMapSize() <= 192)
+		if (spineCount > 3 || g_Map.getSize() <= 192)
 		{
 			mWaviness = 0.2;
 			mOffset = 0.2;
@@ -291,7 +291,7 @@ function placeBarriers()
 			[
 				new LayeredPainter([g_Terrains.cliff, spineTerrain], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightBarrier, 2),
-				paintClass(g_TileClasses.spine)
+				new TileClassPainter(g_TileClasses.spine)
 			],
 			avoidClasses(g_TileClasses.player, 5, g_TileClasses.baseResource, 5));
 	}

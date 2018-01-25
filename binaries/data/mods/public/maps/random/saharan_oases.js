@@ -36,21 +36,21 @@ const pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATO
 const heightLand = 1;
 const heightOffsetOasis = -3;
 
-InitMap(heightLand, tPrimary);
+var g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapCenter = getMapCenter();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = createTileClass();
-var clForest = createTileClass();
-var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
-var clBaseResource = createTileClass();
-var clTreasure = createTileClass();
+var clPlayer = g_Map.createTileClass();
+var clForest = g_Map.createTileClass();
+var clWater = g_Map.createTileClass();
+var clDirt = g_Map.createTileClass();
+var clRock = g_Map.createTileClass();
+var clMetal = g_Map.createTileClass();
+var clFood = g_Map.createTileClass();
+var clBaseResource = g_Map.createTileClass();
+var clTreasure = g_Map.createTileClass();
 
 var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -94,7 +94,7 @@ for (let i = 0; i < numPlayers; ++i)
 				[tSLush ,[tLush, pForest], [tLush, pForest], tShore, tShore, tWaterDeep],
 				[2, 2, 1, 3, 1]),
 			new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetOasis, 10),
-			paintClass(clWater)
+			new TileClassPainter(clWater)
 		]);
 }
 Engine.SetProgress(50);
@@ -108,7 +108,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 				[[tDirt1, tSandDunes], [tSandDunes, tDirt2], [tDirt2, tDirt1]],
 				[1, 1]
 			),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clPlayer, 0, clWater, 1, clDirt, 5),
 		scaleByMapSize(15, 45));
@@ -123,7 +123,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 				[[tDirt2, tDirtCracks], [tDirt2, tFineSand], [tDirtCracks, tFineSand]],
 				[1, 1]
 			),
-			paintClass(clDirt)
+			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 0, clWater, 1),
 		scaleByMapSize(15, 45));
@@ -237,4 +237,4 @@ setWaterWaviness(1.0);
 setWaterType("clap");
 setWaterMurkiness(0.5);
 
-ExportMap();
+g_Map.ExportMap();

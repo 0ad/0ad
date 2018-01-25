@@ -12,7 +12,6 @@
       <mesh>structural/pers_ram.dae</mesh>
       <textures>
         <texture file="structural/assyrian_ram_2.png" name="baseTex"/>
-        <texture file="structural/assyrian_ram_2.png" name="normTex"/>
         <texture file="structural/assyrian_ram_2_spec.png" name="specTex"/>
       </textures>
     </variant>
@@ -34,5 +33,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
