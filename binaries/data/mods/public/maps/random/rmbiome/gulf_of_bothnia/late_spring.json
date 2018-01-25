@@ -1,0 +1,67 @@
+{
+	"Description": {
+		"Title": "Late Spring"
+	},
+	"Environment": {
+		"SkySet": "stormy",
+		"Water": {
+			"WaterBody": {
+				"Type": "lake",
+				"Color": { "r": 0.035, "g": 0.098, "b": 0.314 },
+				"Tint": { "r": 0.28, "g": 0.3, "b": 0.59 },
+				"Murkiness": 0.88,
+				"Waviness": 5
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.26,
+			"FogFactor": 0.004
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Saturation": 0.96,
+			"Contrast": 1.03,
+			"Bloom": 0.176
+		}
+	},
+	"Terrains": {
+		"mainTerrain": "alpine_dirt_grass_50",
+		"forestFloor1": "alpine_forrestfloor",
+		"cliff": ["alpine_cliff_a", "alpine_cliff_b", "alpine_cliff_c"],
+		"tier1Terrain": "alpine_grass_rocky",
+		"tier2Terrain": ["alpine_grass_snow_50", "alpine_dirt_snow"],
+		"tier3Terrain": "alpine_snow_rocky",
+		"road": "new_alpine_citytile",
+		"roadWild": "new_alpine_citytile",
+		"shore": "alpine_shore_rocks_grass_50",
+		"water": "alpine_shore_rocks"
+	},
+	"Gaia": {
+		"tree1": "gaia/flora_tree_pine",
+		"fruitBush": "gaia/flora_bush_berry",
+		"chicken": "gaia/fauna_chicken",
+		"mainHuntableAnimal": "gaia/fauna_deer",
+		"secondaryHuntableAnimal": "gaia/fauna_rabbit",
+		"fish": "gaia/fauna_fish",
+		"stoneLarge": "gaia/geology_stonemine_alpine_quarry",
+		"stoneSmall": "gaia/geology_stone_alpine_a",
+		"metalLarge": "gaia/geology_metal_alpine_slabs"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_soft_small_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_large.xml",
+		"rockLarge": "actor|geology/stone_granite_med.xml",
+		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"bushMedium": "actor|props/flora/bush_medit_me.xml",
+		"bushSmall": "actor|props/flora/bush_medit_sm.xml"
+	},
+	"ResourceCounts": {
+		"fish": { "min": 20, "max": 80 },
+		"bush": { "min": 13, "max": 200 }
+	},
+	"Heights": {
+		"seaGround": -3,
+		"shore": 1,
+		"land": 3
+	}
+}

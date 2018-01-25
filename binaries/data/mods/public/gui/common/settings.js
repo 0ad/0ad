@@ -17,7 +17,7 @@ const g_SettingsDirectory = "simulation/data/settings/";
 /**
  * Directory containing all biomes supported for random map scripts.
  */
-const g_BiomesDirectory = "maps/random/rmbiome/biomes/";
+const g_BiomesDirectory = "maps/random/rmbiome/";
 
 
 /**
@@ -236,12 +236,12 @@ function loadMapTypes()
 
 function loadBiomes()
 {
-	return listFiles(g_BiomesDirectory, ".json", false).map(biomeID => {
+	return listFiles(g_BiomesDirectory, ".json", true).filter(biomeID => biomeID != "defaultbiome").map(biomeID => {
 		let description = Engine.ReadJSONFile(g_BiomesDirectory + biomeID + ".json").Description;
 		return {
 			"Id": biomeID,
 			"Title": translateWithContext("biome definition", description.Title),
-			"Description": translateWithContext("biome definition", description.Description)
+			"Description": description.Description ? translateWithContext("biome definition", description.Description) : ""
 		};
 	});
 }

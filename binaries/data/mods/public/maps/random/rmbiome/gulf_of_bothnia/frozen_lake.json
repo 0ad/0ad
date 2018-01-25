@@ -1,0 +1,67 @@
+{
+	"Description": {
+		"Title": "Frozen Lake"
+	},
+	"Environment": {
+		"SkySet": "stormy",
+		"Water": {
+			"WaterBody": {
+				"Type": "lake",
+				"Color": { "r": 0.035, "g": 0.098, "b": 0.314 },
+				"Tint": { "r": 0.28, "g": 0.3, "b": 0.59 },
+				"Murkiness": 0.88,
+				"Waviness": 5
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.23,
+			"FogFactor": 0.0041
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Saturation": 0.68,
+			"Contrast": 1.03,
+			"Bloom": 0.176
+		}
+	},
+	"Terrains": {
+		"mainTerrain": ["alpine_snow_a", "alpine_snow_b"],
+		"forestFloor1": "alpine_snow_a",
+		"cliff": "alpine_cliff_snow",
+		"tier1Terrain": "polar_ice_snow",
+		"tier2Terrain": "polar_ice_cracked",
+		"tier3Terrain": ["alpine_snow_a", "alpine_snow_b"],
+		"road": "new_alpine_citytile",
+		"roadWild": "new_alpine_citytile",
+		"shore": "polar_ice_snow",
+		"water": ["polar_ice_snow", "polar_ice"]
+	},
+	"Gaia": {
+		"tree1": "gaia/flora_tree_pine_w",
+		"fruitBush": "gaia/flora_bush_berry",
+		"chicken": "gaia/fauna_chicken",
+		"mainHuntableAnimal": "gaia/fauna_deer",
+		"secondaryHuntableAnimal": "gaia/fauna_rabbit",
+		"fish": "gaia/fauna_fish",
+		"stoneLarge": "gaia/geology_stonemine_alpine_quarry",
+		"stoneSmall": "gaia/geology_stone_alpine_a",
+		"metalLarge": "gaia/geology_metal_alpine_slabs"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
+		"rockLarge": "actor|geology/stone_granite_med.xml",
+		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"bushMedium": "actor|props/flora/bush_medit_me_dry.xml",
+		"bushSmall": "actor|props/flora/bush_medit_sm_dry.xml"
+	},
+	"ResourceCounts": {
+		"fish": { "min": 0, "max": 0 },
+		"bush": { "min": 0, "max": 0 }
+	},
+	"Heights": {
+		"seaGround": 0,
+		"shore": 2,
+		"land": 3
+	}
+}

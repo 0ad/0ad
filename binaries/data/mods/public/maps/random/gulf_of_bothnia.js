@@ -1,138 +1,47 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmbiome");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
-var biome = pickRandom(["late_spring", "winter", "frozen_lake"]);
+if (g_MapSettings.Biome)
+	setSelectedBiome();
+else
+	// TODO: Replace ugly default for atlas by a dropdown
+	setBiome("late_spring");
 
-if (biome == "late_spring")
-{
-	log("Late spring biome...");
-	var heightSeaGround = -3;
-	var heightShore = 1;
-	var heightLand = 3;
+const tPrimary = g_Terrains.mainTerrain;
+const tForestFloor = g_Terrains.forestFloor1;
+const tCliff = g_Terrains.cliff;
+const tSecondary = g_Terrains.tier1Terrain;
+const tHalfSnow = g_Terrains.tier2Terrain;
+const tSnowLimited = g_Terrains.tier3Terrain;
+const tRoad = g_Terrains.road;
+const tRoadWild = g_Terrains.roadWild;
+const tShore = g_Terrains.shore;
+const tWater = g_Terrains.water;
 
-	var fishCount = { "min": 20, "max": 80 };
-	var bushCount = { "min": 13, "max": 200 };
+const oPine = g_Gaia.tree1;
+const oBerryBush = g_Gaia.fruitBush;
+const oStoneLarge = g_Gaia.stoneLarge;
+const oStoneSmall = g_Gaia.stoneSmall;
+const oMetalLarge = g_Gaia.metalLarge;
+const oDeer = g_Gaia.mainHuntableAnimal;
+const oRabbit = g_Gaia.secondaryHuntableAnimal;
+const oFish = g_Gaia.fish;
 
-	setFogThickness(0.26);
-	setFogFactor(0.4);
+const aGrass = g_Decoratives.grass;
+const aGrassShort = g_Decoratives.grassShort;
+const aRockLarge = g_Decoratives.rockLarge;
+const aRockMedium = g_Decoratives.rockMedium;
+const aBushMedium = g_Decoratives.bushMedium;
+const aBushSmall = g_Decoratives.bushSmall;
 
-	setPPEffect("hdr");
-	setPPSaturation(0.48);
-	setPPContrast(0.53);
-	setPPBloom(0.12);
+const heightSeaGround = g_Heights.seaGround;
+const heightShore = g_Heights.shore;
+const heightLand = g_Heights.land;
 
-	var tPrimary = ["alpine_dirt_grass_50"];
-	var tForestFloor = "alpine_forrestfloor";
-	var tCliff = ["alpine_cliff_a", "alpine_cliff_b", "alpine_cliff_c"];
-	var tSecondary = "alpine_grass_rocky";
-	var tHalfSnow = ["alpine_grass_snow_50", "alpine_dirt_snow"];
-	var tSnowLimited = ["alpine_snow_rocky"];
-	var tRoad = "new_alpine_citytile";
-	var tRoadWild = "new_alpine_citytile";
-	var tShore = "alpine_shore_rocks_grass_50";
-	var tWater = "alpine_shore_rocks";
-
-	var oPine = "gaia/flora_tree_pine";
-	var oBerryBush = "gaia/flora_bush_berry";
-	var oDeer = "gaia/fauna_deer";
-	var oFish = "gaia/fauna_fish";
-	var oRabbit = "gaia/fauna_rabbit";
-	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-	var oStoneSmall = "gaia/geology_stone_alpine_a";
-	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
-
-	var aGrass = "actor|props/flora/grass_soft_small_tall.xml";
-	var aGrassShort = "actor|props/flora/grass_soft_large.xml";
-	var aRockLarge = "actor|geology/stone_granite_med.xml";
-	var aRockMedium = "actor|geology/stone_granite_med.xml";
-	var aBushMedium = "actor|props/flora/bush_medit_me.xml";
-	var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
-}
-else if (biome == "winter")
-{
-	log("Winter biome...");
-	var heightSeaGround = -3;
-	var heightShore = 1;
-	var heightLand = 3;
-
-	var fishCount = { "min": 20, "max": 80 };
-	var bushCount = { "min": 13, "max": 200 };
-
-	setFogFactor(0.35);
-	setFogThickness(0.19);
-	setPPSaturation(0.37);
-	setPPEffect("hdr");
-
-	var tPrimary = ["alpine_snow_a", "alpine_snow_b"];
-	var tForestFloor = "alpine_forrestfloor_snow";
-	var tCliff = ["alpine_cliff_snow"];
-	var tSecondary = "alpine_grass_snow_50";
-	var tHalfSnow = ["alpine_grass_snow_50", "alpine_dirt_snow"];
-	var tSnowLimited = ["alpine_snow_a", "alpine_snow_b"];
-	var tRoad = "new_alpine_citytile";
-	var tRoadWild = "new_alpine_citytile";
-	var tShore = "alpine_shore_rocks_icy";
-	var tWater = "alpine_shore_rocks";
-
-	var oPine = "gaia/flora_tree_pine_w";
-	var oBerryBush = "gaia/flora_bush_berry";
-	var oDeer = "gaia/fauna_deer";
-	var oFish = "gaia/fauna_fish";
-	var oRabbit = "gaia/fauna_rabbit";
-	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-	var oStoneSmall = "gaia/geology_stone_alpine_a";
-	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
-
-	var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
-	var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
-	var aRockLarge = "actor|geology/stone_granite_med.xml";
-	var aRockMedium = "actor|geology/stone_granite_med.xml";
-	var aBushMedium = "actor|props/flora/bush_medit_me_dry.xml";
-	var aBushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
-}
-else if (biome == "frozen_lake")
-{
-	log("Frozen lake biome...");
-	var heightSeaGround = 0;
-	var heightShore = 2;
-	var heightLand = 3;
-
-	var fishCount = { "min": 0, "max": 0 };
-	var bushCount = { "min": 0, "max": 0 };
-
-	setFogFactor(0.41);
-	setFogThickness(0.23);
-	setPPSaturation(0.34);
-	setPPEffect("hdr");
-
-	var tPrimary = ["alpine_snow_a", "alpine_snow_b"];
-	var tForestFloor = "alpine_snow_a";
-	var tCliff = ["alpine_cliff_snow"];
-	var tSecondary = "polar_ice_snow";
-	var tHalfSnow = ["polar_ice_cracked"];
-	var tSnowLimited = ["alpine_snow_a", "alpine_snow_b"];
-	var tRoad = "new_alpine_citytile";
-	var tRoadWild = "new_alpine_citytile";
-	var tShore = "polar_ice_snow";
-	var tWater = ["polar_ice_snow", "polar_ice"];
-
-	var oPine = "gaia/flora_tree_pine_w";
-	var oBerryBush = "gaia/flora_bush_berry";
-	var oDeer = "gaia/fauna_deer";
-	var oFish = "gaia/fauna_fish";
-	var oRabbit = "gaia/fauna_rabbit";
-	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-	var oStoneSmall = "gaia/geology_stone_alpine_a";
-	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
-
-	var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
-	var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
-	var aRockLarge = "actor|geology/stone_granite_med.xml";
-	var aRockMedium = "actor|geology/stone_granite_med.xml";
-	var aBushMedium = "actor|props/flora/bush_medit_me_dry.xml";
-	var aBushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
-}
+const fishCount = g_ResourceCounts.fish;
+const bushCount = g_ResourceCounts.bush;
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
@@ -323,14 +232,6 @@ createStragglerTrees(
 // Avoid the lake, even if frozen
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-setSkySet("stormy");
-setSunRotation(randomAngle());
 setSunElevation(Math.PI * randFloat(1/6, 1/4));
-
-setWaterColor(0.035,0.098,0.314);
-setWaterTint(0.28, 0.3, 0.59);
-setWaterWaviness(5.0);
-setWaterType("lake");
-setWaterMurkiness(0.88);
 
 g_Map.ExportMap();

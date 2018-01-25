@@ -77,9 +77,11 @@
 		"bushSmall": "actor|props/flora/bush_dry_a.xml",
 		"tree": "actor|flora/trees/baobab.xml"
 	},
-	"TreeCount": {
-		"minTrees": 200,
-		"maxTrees": 1250,
-		"forestProbability": 0
+	"ResourceCounts": {
+		"trees": {
+			"min": 200,
+			"max": 1250,
+			"forestProbability": 0
+		}
 	}
 }

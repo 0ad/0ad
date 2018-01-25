@@ -1,11 +1,10 @@
-Engine.LoadLibrary("rmbiome/biomes");
-
 var g_BiomeID;
 
 var g_Terrains = {};
 var g_Gaia = {};
 var g_Decoratives = {};
-var g_TreeCount = {};
+var g_ResourceCounts = {};
+var g_Heights = {};
 
 function currentBiome()
 {
@@ -14,11 +13,13 @@ function currentBiome()
 
 function setSelectedBiome()
 {
-	setBiome(g_MapSettings.Biome || "alpine");
+	// TODO: Replace ugly default for atlas by a dropdown
+	setBiome(g_MapSettings.Biome || "generic/alpine");
 }
 
 function setBiome(biomeID)
 {
+	log("Setting biome "+ biomeID);
 	loadBiomeFile("defaultbiome");
 
 	setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
@@ -27,13 +28,17 @@ function setBiome(biomeID)
 
 	g_BiomeID = biomeID;
 
-	loadBiomeFile("biomes/" + biomeID);
+	loadBiomeFile(biomeID);
 
+	Engine.LoadLibrary("rmbiome/" + biomeID.slice(0, biomeID.lastIndexOf("/")));
 	let setupBiomeFunc = global["setupBiome_" + biomeID];
 	if (setupBiomeFunc)
 		setupBiomeFunc();
 }
 
+/**
+ * Copies JSON contents to defined global variables.
+ */
 function loadBiomeFile(file)
 {
 	let path = "maps/random/rmbiome/" + file + ".json";
@@ -62,15 +67,22 @@ function loadBiomeFile(file)
 	};
 
 	for (let rmsGlobal in biome)
-		if (rmsGlobal != "Description")
-			copyProperties(biome[rmsGlobal], global["g_" + rmsGlobal]);
+	{
+		if (rmsGlobal == "Description")
+			continue;
+
+		if (!global["g_" + rmsGlobal])
+			throw new Error(rmsGlobal + " not defined!");
+
+		copyProperties(biome[rmsGlobal], global["g_" + rmsGlobal]);
+	}
 }
 
 function rBiomeTreeCount(multiplier = 1)
 {
 	return [
-		g_TreeCount.minTrees * multiplier,
-		g_TreeCount.maxTrees * multiplier,
-		g_TreeCount.forestProbability
+		g_ResourceCounts.trees.min * multiplier,
+		g_ResourceCounts.trees.max * multiplier,
+		g_ResourceCounts.trees.forestProbability
 	];
 }

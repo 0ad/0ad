@@ -1699,8 +1699,8 @@ function reloadBiomeList()
 
 	if (g_GameAttributes.mapType == "random" && g_GameAttributes.settings.SupportedBiomes)
 	{
-		if (g_GameAttributes.settings.SupportedBiomes === true)
-			biomeList = g_Settings.Biomes;
+		if (typeof g_GameAttributes.settings.SupportedBiomes == "string")
+			biomeList = g_Settings.Biomes.filter(biome => biome.Id.startsWith(g_GameAttributes.settings.SupportedBiomes));
 		else
 			biomeList = g_Settings.Biomes.filter(
 				biome => g_GameAttributes.settings.SupportedBiomes.indexOf(biome.Id) != -1);
@@ -2130,8 +2130,8 @@ function launchGame()
 
 	if (g_GameAttributes.settings.Biome == "random")
 		g_GameAttributes.settings.Biome = pickRandom(
-			g_GameAttributes.settings.SupportedBiomes === true ?
-				g_BiomeList.Id.slice(1) :
+			typeof g_GameAttributes.settings.SupportedBiomes == "string" ?
+				g_BiomeList.Id.slice(1).filter(biomeID => biomeID.startsWith(g_GameAttributes.settings.SupportedBiomes)) :
 				g_GameAttributes.settings.SupportedBiomes);
 
 	g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttributes.settings.TriggerScripts || []);
