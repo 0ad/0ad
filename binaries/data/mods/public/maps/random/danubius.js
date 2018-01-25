@@ -60,12 +60,18 @@ const oTavern = "structures/gaul_tavern";
 const oTower = "structures/gaul_defense_tower";
 const oSentryTower = "structures/gaul_sentry_tower";
 const oOutpost = "structures/gaul_outpost";
-
 const oHut = "other/celt_hut";
 const oLongHouse = "other/celt_longhouse";
+
 const oPalisadeTower = "other/palisades_rocks_watchtower";
-const oTallSpikes = "other/palisades_tall_spikes";
-const oAngleSpikes = "other/palisades_angle_spike";
+const oPalisadeTallSpikes = "other/palisades_tall_spikes";
+const oPalisadeAngleSpikes = "other/palisades_angle_spike";
+const oPalisadeCurve = "other/palisades_rocks_curve";
+const oPalisadeShort = "other/palisades_rocks_short";
+const oPalisadeMedium = "other/palisades_rocks_medium";
+const oPalisadeLong = "other/palisades_rocks_long";
+const oPalisadeGate = "other/palisades_rocks_gate";
+const oPalisadePillar = "other/palisades_rocks_tower";
 
 const oFemale = "units/gaul_support_female_citizen";
 const oHealer = "units/gaul_support_healer_b";
@@ -200,6 +206,47 @@ var ritualParticipants = [
 	}
 ];
 
+g_WallStyles.danubius_village = {
+	"house": { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oHouse },
+	"hut": { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oHut },
+	"longhouse": { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oLongHouse },
+	"tavern": { "angle": Math.PI * 3/2, "length": 0, "indent": 4, "bend": 0, "templateName": oTavern },
+	"temple": { "angle": Math.PI * 3/2, "length": 0, "indent": 4, "bend": 0, "templateName": oTemple },
+	"defense_tower": { "angle": Math.PI / 2, "length": 0, "indent": 4, "bend": 0, "templateName": mapSize >= normalMapSize ? (isNomad() ? oSentryTower : oTower) : oPalisadeTower },
+	"pillar": readyWallElement(oPalisadePillar),
+	"gate": readyWallElement(oPalisadeGate),
+	"long": readyWallElement(oPalisadeLong),
+	"medium": readyWallElement(oPalisadeMedium),
+	"short": readyWallElement(oPalisadeShort),
+	"cornerIn": readyWallElement(oPalisadeCurve),
+	"overlap": 0.05
+};
+
+g_WallStyles.danubius_spikes = {
+	"spikes_tall": readyWallElement(oPalisadeTallSpikes, "gaia"),
+	"spike_single": readyWallElement(oPalisadeAngleSpikes, "gaia"),
+	"overlap": 0
+};
+
+var fortressDanubiusVillage = new Fortress(
+	"Geto-Dacian Tribal Confederation",
+	new Array(2).fill([
+		"gate", "pillar", "hut", "long", "long",
+		"cornerIn", "defense_tower", "long",  "temple", "long",
+		"pillar", "house", "long", "short", "pillar", "gate", "pillar", "longhouse", "long", "long",
+		"cornerIn", "defense_tower", "long", "tavern", "long", "pillar"
+	]).reduce((result, items) => result.concat(items), []));
+
+var palisadeCorner = ["turn_0.25", "spike_single", "turn_0.25"];
+var palisadeGate = ["spike_single", "gap_3.6", "spike_single"];
+var palisadeWallShort = new Array(3).fill("spikes_tall");
+var palisadeWallLong = new Array(5).fill("spikes_tall");
+var palisadeSideShort = [...palisadeGate, ...palisadeWallShort, ...palisadeCorner, ...palisadeWallShort];
+var palisadeSideLong = [...palisadeGate, ...palisadeWallShort, ...palisadeCorner, ...palisadeWallLong];
+var fortressDanubiusSpikes = new Fortress(
+	"Spikes Of The Geto-Dacian Tribal Confederation",
+	[...palisadeSideLong, ...palisadeSideShort, ...palisadeSideLong, ...palisadeSideShort]);
+
 // Place a gallic village on small maps and larger
 var gallicCC = mapSize >= smallMapSize;
 if (gallicCC)
@@ -268,47 +315,9 @@ if (gallicCC)
 				new TileClassPainter(clGauls)
 			]);
 
-		// Place palisade fortress and some city buildings
-		// Use actors to avoid players capturing the buildings
-		g_WallStyles.gaul = clone(g_WallStyles.gaul_stone);
-		g_WallStyles.gaul.house = { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oHouse };
-		g_WallStyles.gaul.hut = { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oHut };
-		g_WallStyles.gaul.longhouse = { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oLongHouse };
-		g_WallStyles.gaul.tavern = { "angle": Math.PI * 3/2, "length": 0, "indent": 4, "bend": 0, "templateName": oTavern };
-		g_WallStyles.gaul.temple = { "angle": Math.PI * 3/2, "length": 0, "indent": 4, "bend": 0, "templateName": oTemple };
-		g_WallStyles.gaul.defense_tower = { "angle": Math.PI / 2, "length": 0, "indent": 4, "bend": 0, "templateName": mapSize >= normalMapSize ? (isNomad() ? oSentryTower : oTower) : oPalisadeTower };
-
-		// Replace stone walls with palisade walls
-		for (let element of ["gate", "long", "short", "cornerIn", "cornerOut", "tower"])
-			g_WallStyles.gaul[element] = getWallElement(element, "palisade");
-
-		let wall = [
-			"gate", "hut", "tower", "long", "long",
-			"cornerIn", "defense_tower", "long", "long", "temple",
-			"tower", "long", "house", "short", "tower", "gate", "tower", "longhouse", "long", "long",
-			"cornerIn", "defense_tower", "long", "tavern", "long", "tower"];
-		wall = wall.concat(wall);
-		placeCustomFortress(civicCenterPosition.x, civicCenterPosition.y, new Fortress("Geto-Dacian Tribal Confederation", wall), "gaul", 0, startAngle + Math.PI);
-
-		// Place spikes
-		g_WallStyles.palisade.spikes_tall = readyWallElement("other/palisades_tall_spikes", "gaia");
-		g_WallStyles.palisade.spike_single = readyWallElement("other/palisades_angle_spike", "gaia");
-
-		let threeSpikes = new Array(3).fill("spikes_tall");
-		let fiveSpikes = new Array(5).fill("spikes_tall");
-
-		let spikes = [
-			"gap_3.6",
-			"spike_single", ...threeSpikes,
-			"turn_0.25", "spike_single", "turn_0.25",
-			...fiveSpikes, "spike_single",
-			"gap_3.6", "spike_single", ...threeSpikes,
-			"turn_0.25", "spike_single", "turn_0.25",
-			...threeSpikes,
-			"spike_single"
-		];
-		spikes = spikes.concat(spikes);
-		placeCustomFortress(civicCenterPosition.x, civicCenterPosition.y, new Fortress("spikes", spikes), "palisade", 0, startAngle + Math.PI);
+		// Place walls and buildings
+		placeCustomFortress(civicCenterPosition.x, civicCenterPosition.y, fortressDanubiusVillage, "danubius_village", 0, startAngle + Math.PI);
+		placeCustomFortress(civicCenterPosition.x, civicCenterPosition.y, fortressDanubiusSpikes, "danubius_spikes", 0, startAngle + Math.PI);
 
 		// Place treasure, potentially inside buildings
 		for (let i = 0; i < gallicCCTreasureCount; ++i)
@@ -416,6 +425,7 @@ createForests(
 	avoidClasses(clPlayer, 16, clForest, 17, clWater, 5, clHill, 2, clGauls, 5, clPath, 1),
 	clForest,
 	forestTrees);
+
 Engine.SetProgress(50);
 
 log("Creating grass patches...");
@@ -426,6 +436,7 @@ createLayeredPatches(
 	avoidClasses(clForest, 0, clPlayer, 10, clWater, 2, clDirt, 2, clHill, 1, clGauls, 5, clPath, 1),
 	scaleByMapSize(15, 45),
 	clDirt);
+
 Engine.SetProgress(55);
 
 log("Creating islands...");
@@ -437,8 +448,8 @@ createAreas(
 		new TileClassPainter(clIsland)
 	],
 	[avoidClasses(clIsland, 30), stayClasses (clWater, 10)],
-	scaleByMapSize(1, 4) * numPlayers
-);
+	scaleByMapSize(1, 4) * numPlayers);
+
 Engine.SetProgress(60);
 
 log("Creating island bumps...");
@@ -452,16 +463,16 @@ createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
 	[avoidClasses(clMetal, 50, clRock, 10), stayClasses(clIsland, 5)],
-	500, 1
-);
+	500,
+	1);
 
 log("Creating island stone mines...");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
 	0,
 	[avoidClasses(clMetal, 10, clRock, 50), stayClasses(clIsland, 5)],
-	500, 1
-);
+	500,
+	1);
 Engine.SetProgress(65);
 
 log("Creating island towers...");
@@ -469,40 +480,40 @@ createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oTower, 1, 1, 0, 4)], true, clTower),
 	0,
 	[avoidClasses(clMetal, 4, clRock, 4, clTower, 20), stayClasses(clIsland, 7)],
-	500, 1
-);
+	500,
+	1);
 
 log("Creating island outposts...");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oOutpost, 1, 1, 0, 4)], true, clOutpost),
 	0,
 	[avoidClasses(clMetal, 4, clRock, 4, clTower, 5, clOutpost, 20), stayClasses(clIsland, 7)],
-	500, 1
-);
+	500,
+	1);
 
 log("Creating metal mines...");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
 	[avoidClasses(clForest, 4, clBaseResource, 20, clMetal, 50, clRock, 20, clWater, 4, clHill, 4, clGauls, 5, clPath, 5)],
-	500, 1
-);
+	500,
+	1);
 
 log("Creating stone mines...");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
 	0,
 	[avoidClasses(clForest, 4, clBaseResource, 20, clMetal, 20, clRock, 50, clWater, 4, clHill, 4, clGauls, 5, clPath, 5)],
-	500, 1
-);
+	500,
+	1);
 
 log("Creating stone ruins...");
 createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oStoneRuins, 1, 1, 0, 4)], true, clRock),
 		0,
 		[avoidClasses(clForest, 2, clPlayer, 12, clMetal, 6, clRock, 25, clWater, 4, clHill, 4, clGauls, 5, clPath, 1)],
-		500, 1
-	);
+		500,
+		1);
 Engine.SetProgress(70);
 
 log("Creating decoratives...");
@@ -536,8 +547,7 @@ for (let i = 0; i < 2; ++i)
 		],
 		i == 0 ?
 			avoidClasses(clWater, 4, clForest, 1, clPlayer, 16, clRock, 4, clMetal, 4, clHill, 4, clGauls, 5, clPath, 1) :
-			[stayClasses(clIsland, 4) , avoidClasses(clForest, 1, clRock, 4, clMetal, 4)]
-	);
+			[stayClasses(clIsland, 4) , avoidClasses(clForest, 1, clRock, 4, clMetal, 4)]);
 Engine.SetProgress(75);
 
 log("Creating fish...");
@@ -549,8 +559,8 @@ createFood(
 		20 * scaleByMapSize(5, 20)
 	],
 	[avoidClasses(clIsland, 2, clFood, 10, clPath, 1), stayClasses(clWater, 5)],
-	clFood
-);
+	clFood);
+
 Engine.SetProgress(80);
 
 log("Creating huntable animals...");
@@ -616,6 +626,7 @@ createStragglerTrees(
 	[stayClasses(clIsland, 4), avoidClasses(clMetal, 4, clRock, 4, clTower, 4, clOutpost, 4)],
 	clForest,
 	stragglerTrees * 7);
+
 Engine.SetProgress(95);
 
 log("Creating animals on islands...");
@@ -631,8 +642,8 @@ createFood(
 		10 * scaleByMapSize(5, 20)
 	],
 	[avoidClasses(clRock, 4, clMetal, 4, clFood, 3, clForest, 1, clOutpost, 2, clTower, 2), stayClasses(clIsland, 4)],
-	clFood
-);
+	clFood);
+
 Engine.SetProgress(98);
 
 log("Creating treasures...");
@@ -645,8 +656,7 @@ for (let i = 0; i < randomTreasureCount; ++i)
 		0,
 		avoidClasses(clForest, 1, clPlayer, 15, clHill, 1, clWater, 5, clFood, 1, clRock, 4, clMetal, 4, clTreasure, 10, clGauls, 5),
 		1,
-		50
-	);
+		50);
 
 log("Creating gallic decoratives...");
 createDecoration(
@@ -666,8 +676,7 @@ createDecoration(
 		scaleByMapSize(3, 4),
 		scaleByMapSize(2, 10)
 	],
-	avoidClasses(clForest, 1, clPlayer, 10, clBaseResource, 5, clHill, 1, clFood, 1, clWater, 5, clRock, 4, clMetal, 4, clGauls, 5, clPath, 1)
-);
+	avoidClasses(clForest, 1, clPlayer, 10, clBaseResource, 5, clHill, 1, clFood, 1, clWater, 5, clRock, 4, clMetal, 4, clGauls, 5, clPath, 1));
 
 log("Creating spawn points for ships...");
 createObjectGroupsDeprecated(
@@ -675,8 +684,7 @@ createObjectGroupsDeprecated(
 	0,
 	[avoidClasses(clShip, 5, clIsland, 4), stayClasses(clWater, 10)],
 	10000,
-	1000
-);
+	1000);
 
 log("Creating patrol points for ships...");
 createObjectGroupsDeprecated(
@@ -684,8 +692,7 @@ createObjectGroupsDeprecated(
 	0,
 	[avoidClasses(clShipPatrol, 5, clIsland, 3), stayClasses(clWater, 4)],
 	10000,
-	1000
-);
+	1000);
 
 log("Creating ungarrison points for ships...");
 for (let i = 0; i < 2; ++i)
@@ -700,8 +707,7 @@ for (let i = 0; i < 2; ++i)
 		0,
 		[avoidClasses(clShoreUngarrisonPoint[i], 4), stayClasses(clShore[i], 0)],
 		20000,
-		1
-	);
+		1);
 
 log("Creating patrol points for land attackers...");
 addToClass(mapCenter.x, mapCenter.y, clMiddle);
@@ -725,8 +731,7 @@ for (let i = 0; i < 2; ++i)
 			stayClasses(clLand[i], 0)
 		],
 		10000,
-		100
-	);
+		100);
 
 	if (gallicCC)
 		createObjectGroupsDeprecated(
@@ -753,8 +758,7 @@ for (let i = 0; i < 2; ++i)
 				stayClasses(clLand[i], 0)
 			],
 			10000,
-			100
-		);
+			100);
 }
 
 log("Creating water logs...");
@@ -763,14 +767,13 @@ createObjectGroupsDeprecated(
 	0,
 	[avoidClasses(clShip, 3, clIsland, 4), stayClasses(clWater, 4)],
 	scaleByMapSize(15, 60),
-	100
-);
+	100);
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clMetal, 4, clRock, 4, clIsland, 4, clGauls, 20, clRitualPlace, 20, clForest, 1, clBaseResource, 4, clHill, 4, clFood, 2));
 
 if (randBool(2/3))
 {
-	// Day
+	log("Setting day theme...");
 	setSkySet("cumulus");
 
 	setSunColor(0.9, 0.8, 0.5);
@@ -787,7 +790,7 @@ if (randBool(2/3))
 }
 else
 {
-	// Night
+	log("Setting night theme...");
 	setSkySet("dark");
 
 	setSunColor(0.4, 0.9, 1.2);
