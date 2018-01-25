@@ -53,25 +53,28 @@ const oTreasures = [
 	"gaia/special_treasure_metal"
 ];
 
+// Disable capturing on all parts of the village except the
+// civic center and buildings occurring outside of the village
 const oCivicCenter = "structures/gaul_civil_centre";
-const oHouse = "structures/gaul_house";
-const oTemple = "structures/gaul_temple";
-const oTavern = "structures/gaul_tavern";
 const oTower = "structures/gaul_defense_tower";
-const oSentryTower = "structures/gaul_sentry_tower";
 const oOutpost = "structures/gaul_outpost";
-const oHut = "other/celt_hut";
-const oLongHouse = "other/celt_longhouse";
 
-const oPalisadeTower = "other/palisades_rocks_watchtower";
-const oPalisadeTallSpikes = "other/palisades_tall_spikes";
-const oPalisadeAngleSpikes = "other/palisades_angle_spike";
-const oPalisadeCurve = "other/palisades_rocks_curve";
-const oPalisadeShort = "other/palisades_rocks_short";
-const oPalisadeMedium = "other/palisades_rocks_medium";
-const oPalisadeLong = "other/palisades_rocks_long";
-const oPalisadeGate = "other/palisades_rocks_gate";
-const oPalisadePillar = "other/palisades_rocks_tower";
+const oTemple = "uncapturable|structures/gaul_temple";
+const oTavern = "uncapturable|structures/gaul_tavern";
+const oHouse = "uncapturable|structures/gaul_house";
+const oLongHouse = "uncapturable|other/celt_longhouse";
+const oHut = "uncapturable|other/celt_hut";
+const oSentryTower = "uncapturable|structures/gaul_sentry_tower";
+const oWatchTower = "uncapturable|other/palisades_rocks_watchtower";
+
+const oPalisadeTallSpikes = "uncapturable|other/palisades_tall_spikes";
+const oPalisadeAngleSpikes = "uncapturable|other/palisades_angle_spike";
+const oPalisadeCurve = "uncapturable|other/palisades_rocks_curve";
+const oPalisadeShort = "uncapturable|other/palisades_rocks_short";
+const oPalisadeMedium = "uncapturable|other/palisades_rocks_medium";
+const oPalisadeLong = "uncapturable|other/palisades_rocks_long";
+const oPalisadeGate = "uncapturable|other/palisades_rocks_gate";
+const oPalisadePillar = "uncapturable|other/palisades_rocks_tower";
 
 const oFemale = "units/gaul_support_female_citizen";
 const oHealer = "units/gaul_support_healer_b";
@@ -212,7 +215,7 @@ g_WallStyles.danubius_village = {
 	"longhouse": { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oLongHouse },
 	"tavern": { "angle": Math.PI * 3/2, "length": 0, "indent": 4, "bend": 0, "templateName": oTavern },
 	"temple": { "angle": Math.PI * 3/2, "length": 0, "indent": 4, "bend": 0, "templateName": oTemple },
-	"defense_tower": { "angle": Math.PI / 2, "length": 0, "indent": 4, "bend": 0, "templateName": mapSize >= normalMapSize ? (isNomad() ? oSentryTower : oTower) : oPalisadeTower },
+	"defense_tower": { "angle": Math.PI / 2, "length": 0, "indent": 4, "bend": 0, "templateName": mapSize >= normalMapSize ? (isNomad() ? oSentryTower : oTower) : oWatchTower },
 	"pillar": readyWallElement(oPalisadePillar),
 	"gate": readyWallElement(oPalisadeGate),
 	"long": readyWallElement(oPalisadeLong),
