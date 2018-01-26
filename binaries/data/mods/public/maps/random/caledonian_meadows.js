@@ -216,7 +216,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 /**
  * Environment settings
  */
-setBiome("alpine");
+setBiome("generic/alpine");
 g_Environment.Fog.FogColor = { "r": 0.8, "g": 0.8, "b": 0.8, "a": 0.01 };
 g_Environment.Water.WaterBody.Colour = { "r" : 0.3, "g" : 0.05, "b" : 0.1, "a" : 0.1 };
 g_Environment.Water.WaterBody.Murkiness = 0.4;
