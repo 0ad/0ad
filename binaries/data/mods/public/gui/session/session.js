@@ -483,6 +483,8 @@ function selectViewPlayer(playerID)
 	updateGameSpeedControl();
 
 	// Update GUI and clear player-dependent cache
+	g_TemplateData = {};
+	Engine.GuiInterfaceCall("ResetTemplateModified");
 	onSimulationUpdate();
 
 	if (g_IsDiplomacyOpen)
@@ -783,10 +785,14 @@ function updateIdleWorkerButton()
 
 function onSimulationUpdate()
 {
-	// Templates change depending on technologies and auras, so they have to be reloaded every turn.
+	// Templates change depending on technologies and auras, so they have to be reloaded after such a change.
 	// g_TechnologyData data never changes, so it shouldn't be deleted.
 	g_EntityStates = {};
-	g_TemplateData = {};
+	if (Engine.GuiInterfaceCall("IsTemplateModified"))
+	{
+		g_TemplateData = {};
+		Engine.GuiInterfaceCall("ResetTemplateModified");
+	}
 	g_SimState = undefined;
 
 	if (!GetSimState())

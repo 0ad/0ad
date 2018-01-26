@@ -134,7 +134,7 @@ for (let i = 0; i < numPlayers; ++i)
 		let angle = playerAngle[i] + angleDist * (rIndex + 1) / (resourcePerPlayer.length + 1);
 		let position = Vector2D.add(mapCenter, new Vector2D(resourceRadius, 0).rotate(-angle)).round();
 
-		placeObject(position.x, position.y, resourcePerPlayer[rIndex], 0, randomAngle());
+		placeObject(position, resourcePerPlayer[rIndex], 0, randomAngle());
 
 		createArea(
 			new ClumpPlacer(40, 1/2, 1/8, 1, position),
@@ -147,7 +147,7 @@ for (let i = 0; i < numPlayers; ++i)
 Engine.SetProgress(60);
 
 log("Placing temple...");
-placeObject(mapCenter.x, mapCenter.y, templateTemple, 0, randomAngle());
+placeObject(mapCenter, templateTemple, 0, randomAngle());
 addToClass(mapCenter.x, mapCenter.y, clBaseResource);
 
 log("Creating central mountain...");

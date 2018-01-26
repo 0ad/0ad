@@ -79,7 +79,7 @@ function placeStartingEntities(location, playerID, civEntities, dist = 6, orient
 	let firstTemplate = civEntities[i].Template;
 	if (firstTemplate.startsWith("structures/"))
 	{
-		placeObject(location.x, location.y, firstTemplate, playerID, orientation);
+		placeObject(location, firstTemplate, playerID, orientation);
 		++i;
 	}
 
@@ -91,38 +91,41 @@ function placeStartingEntities(location, playerID, civEntities, dist = 6, orient
 		let count = civEntities[j].Count || 1;
 
 		for (let num = 0; num < count; ++num)
-			placeObject(
-				location.x + dist * Math.cos(angle) + space * (-num + 0.75 * Math.floor(count / 2)) * Math.sin(angle),
-				location.y + dist * Math.sin(angle) + space * (num - 0.75 * Math.floor(count / 2)) * Math.cos(angle),
-				civEntities[j].Template,
-				playerID,
-				angle);
+		{
+			let position = Vector2D.sum([
+				location,
+				new Vector2D(dist, 0).rotate(-angle),
+				new Vector2D(space * (-num + 0.75 * Math.floor(count / 2)), 0).rotate(angle)
+			]);
+
+			placeObject(position, civEntities[j].Template, playerID, angle);
+		}
 	}
 }
 
 /**
  * Places the default starting entities as defined by the civilization definition, optionally including city walls.
  */
-function placeCivDefaultStartingEntities(location, playerID, wallType, dist = 6, orientation = BUILDING_ORIENTATION)
+function placeCivDefaultStartingEntities(position, playerID, wallType, dist = 6, orientation = BUILDING_ORIENTATION)
 {
-	placeStartingEntities(location, playerID, getStartingEntities(playerID), dist, orientation);
-	placeStartingWalls(location.x, location.y, playerID, wallType, orientation);
+	placeStartingEntities(position, playerID, getStartingEntities(playerID), dist, orientation);
+	placeStartingWalls(position, playerID, wallType, orientation);
 }
 
 /**
  * If the map is large enough and the civilization defines them, places the initial city walls or towers.
  * @param {string|boolean} wallType - Either "towers" to only place the wall turrets or a boolean indicating enclosing city walls.
  */
-function placeStartingWalls(x, z, playerID, wallType, orientation = BUILDING_ORIENTATION)
+function placeStartingWalls(position, playerID, wallType, orientation = BUILDING_ORIENTATION)
 {
 	let civ = getCivCode(playerID);
 	if (civ != "iber" || g_Map.getSize() <= 128)
 		return;
 
 	if (wallType == "towers")
-		placePolygonalWall(x, z, 15, ["entry"], "tower", civ, playerID, orientation, 7);
+		placePolygonalWall(position, 15, ["entry"], "tower", civ, playerID, orientation, 7);
 	else if (wallType)
-		placeGenericFortress(x, z, 20, playerID);
+		placeGenericFortress(position, 20, playerID);
 }
 
 /**

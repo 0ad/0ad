@@ -20,10 +20,10 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 {
 	var constrastTerrain = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == "tropic")
+	if (currentBiome() == "generic/tropic")
 		constrastTerrain = g_Terrains.dirt;
 
-	if (currentBiome() == "autumn")
+	if (currentBiome() == "generic/autumn")
 		constrastTerrain = g_Terrains.tier3Terrain;
 
 	var count = fill * 15;
@@ -240,7 +240,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 		}
 	]));
 
-	let savanna = currentBiome() == "savanna";
+	let savanna = currentBiome() == "generic/savanna";
 	addElements(shuffleArray([
 		{
 			"func": addStragglerTrees,
@@ -321,7 +321,7 @@ function addDecoration(constraint, size, deviation, fill)
 	];
 
 	var baseCount = 1;
-	if (currentBiome() == "tropic")
+	if (currentBiome() == "generic/tropic")
 		baseCount = 8;
 
 	var counts = [
@@ -435,13 +435,13 @@ function addLakes(constraint, size, deviation, fill)
 {
 	var lakeTile = g_Terrains.water;
 
-	if (currentBiome() == "temperate" || currentBiome() == "tropic")
+	if (currentBiome() == "generic/temperate" || currentBiome() == "generic/tropic")
 		lakeTile = g_Terrains.dirt;
 
-	if (currentBiome() == "mediterranean")
+	if (currentBiome() == "generic/mediterranean")
 		lakeTile = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == "autumn")
+	if (currentBiome() == "generic/autumn")
 		lakeTile = g_Terrains.shore;
 
 	addElevation(constraint, {
@@ -549,13 +549,13 @@ function addPlateaus(constraint, size, deviation, fill)
 {
 	var plateauTile = g_Terrains.dirt;
 
-	if (currentBiome() == "snowy")
+	if (currentBiome() == "generic/snowy")
 		plateauTile = g_Terrains.tier1Terrain;
 
-	if (currentBiome() == "alpine" || currentBiome() == "savanna")
+	if (currentBiome() == "generic/alpine" || currentBiome() == "generic/savanna")
 		plateauTile = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == "autumn")
+	if (currentBiome() == "generic/autumn")
 		plateauTile = g_Terrains.tier4Terrain;
 
 	addElevation(constraint, {
@@ -672,25 +672,25 @@ function addValleys(constraint, size, deviation, fill, baseHeight)
 	var valleySlope = g_Terrains.tier1Terrain;
 	var valleyFloor = g_Terrains.tier4Terrain;
 
-	if (currentBiome() == "desert")
+	if (currentBiome() == "generic/desert")
 	{
 		valleySlope = g_Terrains.tier3Terrain;
 		valleyFloor = g_Terrains.dirt;
 	}
 
-	if (currentBiome() == "mediterranean")
+	if (currentBiome() == "generic/mediterranean")
 	{
 		valleySlope = g_Terrains.tier2Terrain;
 		valleyFloor = g_Terrains.dirt;
 	}
 
-	if (currentBiome() == "alpine" || currentBiome() == "savanna")
+	if (currentBiome() == "generic/alpine" || currentBiome() == "generic/savanna")
 		valleyFloor = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == "tropic")
+	if (currentBiome() == "generic/tropic")
 		valleySlope = g_Terrains.dirt;
 
-	if (currentBiome() == "autumn")
+	if (currentBiome() == "generic/autumn")
 		valleyFloor = g_Terrains.tier3Terrain;
 
 	addElevation(constraint, {
@@ -762,7 +762,7 @@ function addFish(constraint, size, deviation, fill)
 
 function addForests(constraint, size, deviation, fill)
 {
-	if (currentBiome() == "savanna")
+	if (currentBiome() == "generic/savanna")
 		return;
 
 	let treeTypes = [
@@ -863,7 +863,7 @@ function addStone(constraint, size, deviation, fill)
 function addStragglerTrees(constraint, size, deviation, fill)
 {
 	// Ensure minimum distribution on african biome
-	if (currentBiome() == "savanna")
+	if (currentBiome() == "generic/savanna")
 	{
 		fill = Math.max(fill, 2);
 		size = Math.max(size, 1);
@@ -885,7 +885,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 	var maxDist = 5 * offset;
 
 	// More trees for the african biome
-	if (currentBiome() == "savanna")
+	if (currentBiome() == "generic/savanna")
 	{
 		min = 3 * offset;
 		max = 5 * offset;
@@ -898,7 +898,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 		var treesMax = max;
 
 		// Don't clump fruit trees
-		if (i == 2 && (currentBiome() == "desert" || currentBiome() == "mediterranean"))
+		if (i == 2 && (currentBiome() == "generic/desert" || currentBiome() == "generic/mediterranean"))
 			treesMax = 1;
 
 		min = Math.min(min, treesMax);

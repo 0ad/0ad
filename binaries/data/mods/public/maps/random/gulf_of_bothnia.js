@@ -7,7 +7,7 @@ if (g_MapSettings.Biome)
 	setSelectedBiome();
 else
 	// TODO: Replace ugly default for atlas by a dropdown
-	setBiome("late_spring");
+	setBiome("gulf_of_bothnia/late_spring");
 
 const tPrimary = g_Terrains.mainTerrain;
 const tForestFloor = g_Terrains.forestFloor1;

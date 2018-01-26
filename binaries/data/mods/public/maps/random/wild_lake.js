@@ -141,56 +141,56 @@ let wildLakeBiome = [
 ];
 
 var mercenaryCampGuards = {
-	"temperate": [
+	"generic/temperate": [
 		{ "Template" : "structures/merc_camp_egyptian" },
 		{ "Template" : "units/mace_infantry_javelinist_b", "Count" : 4 },
 		{ "Template" : "units/mace_cavalry_spearman_e", "Count" : 3 },
 		{ "Template" : "units/mace_infantry_archer_a", "Count" : 4 },
 		{ "Template" : "units/mace_champion_infantry_a", "Count" : 3 }
 	],
-	"snowy": [
+	"generic/snowy": [
 		{ "Template" : "structures/ptol_mercenary_camp" },
 		{ "Template" : "units/brit_infantry_javelinist_b", "Count" : 4 },
 		{ "Template" : "units/brit_cavalry_swordsman_e", "Count" : 3 },
 		{ "Template" : "units/brit_infantry_slinger_a", "Count" : 4 },
 		{ "Template" : "units/brit_champion_infantry", "Count" : 3 }
 	],
-	"desert": [
+	"generic/desert": [
 		{ "Template" : "structures/ptol_mercenary_camp" },
 		{ "Template" : "units/pers_infantry_javelinist_b", "Count" : 4 },
 		{ "Template" : "units/pers_cavalry_swordsman_e", "Count" : 3 },
 		{ "Template" : "units/pers_infantry_archer_a", "Count" : 4 },
 		{ "Template" : "units/pers_champion_infantry", "Count" : 3 }
 	],
-	"alpine": [
+	"generic/alpine": [
 		{ "Template" : "structures/ptol_mercenary_camp" },
 		{ "Template" : "units/rome_infantry_swordsman_b", "Count" : 4 },
 		{ "Template" : "units/rome_cavalry_spearman_e", "Count" : 3 },
 		{ "Template" : "units/rome_infantry_javelinist_a", "Count" : 4 },
 		{ "Template" : "units/rome_champion_infantry", "Count" : 3 }
 	],
-	"mediterranean": [
+	"generic/mediterranean": [
 		{ "Template" : "structures/merc_camp_egyptian" },
 		{ "Template" : "units/iber_infantry_javelinist_b", "Count" : 4 },
 		{ "Template" : "units/iber_cavalry_spearman_e", "Count" : 3 },
 		{ "Template" : "units/iber_infantry_slinger_a", "Count" : 4 },
 		{ "Template" : "units/iber_champion_infantry", "Count" : 3 }
 	],
-	"savanna": [
+	"generic/savanna": [
 		{ "Template" : "structures/merc_camp_egyptian" },
 		{ "Template" : "units/sele_infantry_javelinist_b", "Count" : 4 },
 		{ "Template" : "units/sele_cavalry_spearman_merc_e", "Count" : 3 },
 		{ "Template" : "units/sele_infantry_spearman_a", "Count" : 4 },
 		{ "Template" : "units/sele_champion_infantry_swordsman", "Count" : 3 }
 	],
-	"tropic": [
+	"generic/tropic": [
 		{ "Template" : "structures/merc_camp_egyptian" },
 		{ "Template" : "units/ptol_infantry_javelinist_b", "Count" : 4 },
 		{ "Template" : "units/ptol_cavalry_archer_e", "Count" : 3 },
 		{ "Template" : "units/ptol_infantry_slinger_a", "Count" : 4 },
 		{ "Template" : "units/ptol_champion_infantry_pikeman", "Count" : 3 }
 	],
-	"autumn": [
+	"generic/autumn": [
 		{ "Template" : "structures/ptol_mercenary_camp" },
 		{ "Template" : "units/gaul_infantry_javelinist_b", "Count" : 4 },
 		{ "Template" : "units/gaul_cavalry_swordsman_e", "Count" : 3 },
@@ -203,8 +203,7 @@ var mercenaryCampGuards = {
  * Resource spots and other points of interest
  */
 
-// Mines
-function placeMine(point, centerEntity,
+function placeMine(position, centerEntity,
 	decorativeActors = [
 		g_Decoratives.grass, g_Decoratives.grassShort,
 		g_Decoratives.rockLarge, g_Decoratives.rockMedium,
@@ -212,15 +211,16 @@ function placeMine(point, centerEntity,
 	]
 )
 {
-	placeObject(point.x, point.y, centerEntity, 0, randomAngle());
+	placeObject(position, centerEntity, 0, randomAngle());
+
 	let quantity = randIntInclusive(11, 23);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
-	{
-		let angle = dAngle * randFloat(i, i + 1);
-		let dist = randFloat(2, 5);
-		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(decorativeActors), 0, randomAngle());
-	}
+		placeObject(
+			Vector2D.add(position, new Vector2D(randFloat(2, 5), 0).rotate(-dAngle * randFloat(i, i + 1))),
+			pickRandom(decorativeActors),
+			0,
+			randomAngle());
 }
 
 // Groves, only Wood
@@ -238,7 +238,9 @@ function placeGrove(point,
 	groveTerrainTexture = getArray(g_Terrains.forestFloor1)
 )
 {
-	placeObject(point.x, point.y, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randomAngle());
+	let position = new Vector2D(point.x, point.y);
+	placeObject(position, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randomAngle());
+
 	let quantity = randIntInclusive(20, 30);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
@@ -249,28 +251,28 @@ function placeGrove(point,
 		if (i % 3 == 0)
 			objectList = groveActors;
 
-		let position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
-		placeObject(position.x, position.y, pickRandom(objectList), 0, randomAngle());
+		let pos = Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle));
+		placeObject(pos, pickRandom(objectList), 0, randomAngle());
 
 		let painters = [new TerrainPainter(groveTerrainTexture)];
 		if (groveTileClass)
 			painters.push(new TileClassPainter(groveTileClass));
 
 		createArea(
-			new ClumpPlacer(5, 1, 1, 1, position),
+			new ClumpPlacer(5, 1, 1, 1, pos),
 			painters);
 	}
 }
 
 var farmEntities = {
-	"temperate": { "building": "structures/mace_farmstead", "animal": "gaia/fauna_pig" },
-	"snowy": { "building": "structures/brit_farmstead", "animal": "gaia/fauna_sheep" },
-	"desert": { "building": "structures/pers_farmstead", "animal": "gaia/fauna_camel" },
-	"alpine": { "building": "structures/rome_farmstead", "animal": "gaia/fauna_sheep" },
-	"mediterranean": { "building": "structures/iber_farmstead", "animal": "gaia/fauna_pig" },
-	"savanna": { "building": "structures/sele_farmstead", "animal": "gaia/fauna_horse" },
-	"tropic": { "building": "structures/ptol_farmstead", "animal": "gaia/fauna_camel" },
-	"autumn": { "building": "structures/gaul_farmstead", "animal": "gaia/fauna_horse" }
+	"generic/temperate": { "building": "structures/mace_farmstead", "animal": "gaia/fauna_pig" },
+	"generic/snowy": { "building": "structures/brit_farmstead", "animal": "gaia/fauna_sheep" },
+	"generic/desert": { "building": "structures/pers_farmstead", "animal": "gaia/fauna_camel" },
+	"generic/alpine": { "building": "structures/rome_farmstead", "animal": "gaia/fauna_sheep" },
+	"generic/mediterranean": { "building": "structures/iber_farmstead", "animal": "gaia/fauna_pig" },
+	"generic/savanna": { "building": "structures/sele_farmstead", "animal": "gaia/fauna_horse" },
+	"generic/tropic": { "building": "structures/ptol_farmstead", "animal": "gaia/fauna_camel" },
+	"generic/autumn": { "building": "structures/gaul_farmstead", "animal": "gaia/fauna_horse" }
 };
 
 g_WallStyles.other = {
@@ -320,7 +322,7 @@ for (let i = 0; i < num; ++i)
 	fences.push(new Fortress("fence", clone(fences[i].wall).reverse()));
 
 // Camps with fire and gold treasure
-function placeCamp(point,
+function placeCamp(position,
 	centerEntity = "actor|props/special/eyecandy/campfire.xml",
 	otherEntities = ["gaia/special_treasure_metal", "gaia/special_treasure_standing_stone",
 		"units/brit_infantry_slinger_b", "units/brit_infantry_javelinist_b", "units/gaul_infantry_slinger_b", "units/gaul_infantry_javelinist_b", "units/gaul_champion_fanatic",
@@ -328,14 +330,15 @@ function placeCamp(point,
 	]
 )
 {
-	placeObject(point.x, point.y, centerEntity, 0, randomAngle());
+	placeObject(position, centerEntity, 0, randomAngle());
+
 	let quantity = randIntInclusive(5, 11);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
 		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(1, 3);
-		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(otherEntities), 0, randomAngle());
+		placeObject(Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle)), pickRandom(otherEntities), 0, randomAngle());
 	}
 }
 
@@ -362,7 +365,7 @@ function placeStartLocationResources(
 	// Stone
 	let dAngle = 4/9 * Math.PI;
 	let angle = currentAngle + randFloat(dAngle / 4, 3 * dAngle / 4);
-	placeMine({ "x": point.x + averageDistToCC * Math.cos(angle), "y": point.y + averageDistToCC * Math.sin(angle) }, g_Gaia.stoneLarge);
+	placeMine(Vector2D.add(point, new Vector2D(averageDistToCC, 0).rotate(-angle)), g_Gaia.stoneLarge);
 
 	currentAngle += dAngle;
 
@@ -378,7 +381,7 @@ function placeStartLocationResources(
 			objectList = groveActors;
 
 		let position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
-		placeObject(position.x, position.y, pickRandom(objectList), 0, randomAngle());
+		placeObject(position, pickRandom(objectList), 0, randomAngle());
 		createArea(
 			new ClumpPlacer(5, 1, 1, 1, position),
 			[
@@ -392,7 +395,7 @@ function placeStartLocationResources(
 	// Metal
 	dAngle = 4/9 * Math.PI;
 	angle = currentAngle + randFloat(dAngle / 4, 3 * dAngle / 4);
-	placeMine({ "x": point.x + averageDistToCC * Math.cos(angle), "y": point.y + averageDistToCC * Math.sin(angle) }, g_Gaia.metalLarge);
+	placeMine(Vector2D.add(point, new Vector2D(averageDistToCC, 0).rotate(-angle)), g_Gaia.metalLarge);
 	currentAngle += dAngle;
 
 	// Berries and domestic animals
@@ -402,7 +405,7 @@ function placeStartLocationResources(
 	{
 		angle = currentAngle + randFloat(0, dAngle);
 		let dist = getRandDist();
-		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(foodEntities), 0, randomAngle());
+		placeObject(Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle)), pickRandom(foodEntities), 0, randomAngle());
 		currentAngle += dAngle;
 	}
 }
@@ -580,7 +583,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 		g_Map.setTexture(point, texture);
 
 		if (actor)
-			placeObject(point.x + randFloat(0, 1), point.y + randFloat(0, 1), actor, 0, randomAngle());
+			placeObject(Vector2D.add(point, new Vector2D(randFloat(0, 1), randFloat(0, 1))), actor, 0, randomAngle());
 	}
 Engine.SetProgress(80);
 
@@ -588,7 +591,8 @@ log("Placing resources...");
 let avoidPoints = clone(startLocations);
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
-let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints, clPath);
+let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints, clPath).map(point => new Vector2D(point.x, point.y));
+
 Engine.SetProgress(55);
 
 log("Placing players...");
@@ -597,7 +601,7 @@ if (isNomad())
 else
 	for (let p = 0; p < playerIDs.length; ++p)
 	{
-		let point = startLocations[p];
+		let point = new Vector2D(startLocations[p].x, startLocations[p].y);
 		placeCivDefaultStartingEntities(point, playerIDs[p], g_Map.size > 192);
 		placeStartLocationResources(point);
 	}
@@ -628,7 +632,7 @@ for (let i = 0; i < resourceSpots.length; ++i)
 		}
 		else
 		{
-			placeCustomFortress(resourceSpots[i].x, resourceSpots[i].y, pickRandom(fences), "other", 0, randomAngle());
+			placeCustomFortress(resourceSpots[i], pickRandom(fences), "other", 0, randomAngle());
 			rectangularSmoothToHeight(resourceSpots[i], 10, 10, g_Map.getHeight(resourceSpots[i]), 0.5);
 		}
 	}

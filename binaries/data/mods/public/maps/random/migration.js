@@ -87,7 +87,7 @@ for (let i = 0; i < numPlayers; ++i)
 		continue;
 
 	let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 2.6, 3);
-	placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
+	placeObject(dockLocation, oDock, playerIDs[i], playerAngle[i] + Math.PI);
 }
 Engine.SetProgress(10);
 
@@ -187,7 +187,7 @@ var types = [
 ];
 
 var size = forestTrees / (scaleByMapSize(2,8) * numPlayers) *
-	(currentBiome() == "savanna" ? 2 : 1);
+	(currentBiome() == "generic/savanna" ? 2 : 1);
 
 var num = Math.floor(size / types.length);
 for (let type of types)
@@ -330,7 +330,7 @@ createStragglerTrees(
 
 Engine.SetProgress(86);
 
-var planetm = currentBiome() == "tropic" ? 8 : 1;
+var planetm = currentBiome() == "generic/tropic" ? 8 : 1;
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(

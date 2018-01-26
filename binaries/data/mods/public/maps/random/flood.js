@@ -18,7 +18,7 @@ const tWater = g_Terrains.water;
 
 var tHill = g_Terrains.hill;
 var tDirt = g_Terrains.dirt;
-if (currentBiome() == "temperate")
+if (currentBiome() == "generic/temperate")
 {
 	tDirt = ["medit_shrubs_a", "grass_field"];
 	tHill = ["grass_field", "peat_temp"];
@@ -212,7 +212,7 @@ createStragglerTrees(
 Engine.SetProgress(65);
 
 log("Creating dirt patches...");
-var numb = currentBiome() == "savanna" ? 3 : 1;
+var numb = currentBiome() == "generic/savanna" ? 3 : 1;
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
@@ -258,7 +258,7 @@ createFood(
 Engine.SetProgress(85);
 
 log("Creating decoration...");
-var planetm = currentBiome() == "tropic" ? 8 : 1;
+var planetm = currentBiome() == "generic/tropic" ? 8 : 1;
 createDecoration(
 	[
 		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],

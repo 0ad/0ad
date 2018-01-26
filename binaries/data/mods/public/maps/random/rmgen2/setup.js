@@ -175,7 +175,7 @@ function createBase(player, walls = true)
 		},
 		"Trees": {
 			"template": g_Gaia.tree1,
-			"count": currentBiome() == "savanna" ? 5 : 15
+			"count": currentBiome() == "generic/savanna" ? 5 : 15
 		},
 		"Decoratives": {
 			"template": g_Decoratives.grassShort

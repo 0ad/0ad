@@ -279,19 +279,17 @@ function readyWallElement(path, civCode)
  * Placing the first wall element at startX/startY placed with an angle given by orientation
  * An alignment can be used to get the "center" of a "wall" (more likely used for fortresses) with getCenterToFirstElement
  *
- * @param {number} startX
- * @param {number} startY
+ * @param {Vector2D} position
  * @param {array} [wall]
  * @param {string} [style]
  * @param {number} [orientation]
  * @returns {array}
  */
-function getWallAlignment(startX, startY, wall = [], style = "athen_stone", orientation = 0)
+function getWallAlignment(position, wall = [], style = "athen_stone", orientation = 0)
 {
 	style = validateStyle(style);
 	let alignment = [];
-	let wallX = startX;
-	let wallY = startY;
+	let wallPosition = position.clone();
 
 	for (let i = 0; i < wall.length; ++i)
 	{
@@ -302,14 +300,9 @@ function getWallAlignment(startX, startY, wall = [], style = "athen_stone", orie
 			continue;
 		}
 
-		// Indentation
-		let placeX = wallX - element.indent * Math.cos(orientation);
-		let placeY = wallY - element.indent * Math.sin(orientation);
-
 		// Add wall elements entity placement arguments to the alignment
 		alignment.push({
-			"x": placeX,
-			"y": placeY,
+			"position": Vector2D.sub(wallPosition, new Vector2D(element.indent, 0).rotate(-orientation)),
 			"templateName": element.templateName,
 			"angle": orientation + element.angle
 		});
@@ -336,12 +329,11 @@ function getWallAlignment(startX, startY, wall = [], style = "athen_stone", orie
 				distance += indent * Math.sin(bend);
 
 				// Indent correction to normalize indentation
-				wallX += indent * Math.cos(orientation);
-				wallY += indent * Math.sin(orientation);
+				wallPosition.add(new Vector2D(indent).rotate(-orientation));
 			}
+
 			// Set the next coordinates of the next element in the wall without indentation adjustment
-			wallX -= distance * Math.sin(orientation);
-			wallY += distance * Math.cos(orientation);
+			wallPosition.add(new Vector2D(distance, 0).rotate(-orientation).perpendicular());
 		}
 	}
 	return alignment;
@@ -357,13 +349,7 @@ function getWallAlignment(startX, startY, wall = [], style = "athen_stone", orie
  */
 function getCenterToFirstElement(alignment)
 {
-	let centerToFirstElement = { "x": 0, "y": 0 };
-	for (let align of alignment)
-	{
-		centerToFirstElement.x -= align.x / alignment.length;
-		centerToFirstElement.y -= align.y / alignment.length;
-	}
-	return centerToFirstElement;
+	return alignment.reduce((result, align) => result.sub(Vector2D.div(align.position, alignment.length)), new Vector2D(0, 0));
 }
 
 /**
@@ -412,8 +398,7 @@ function validateStyle(style, playerId = 0)
 /**
  * Places an abitrary wall beginning at the location comprised of the array of elements provided.
  *
- * @param {number} startX
- * @param {number} startY
+ * @param {Vector2D} position
  * @param {array} [wall] - Array of wall element types. Example: ["start", "long", "tower", "long", "end"]
  * @param {string} [style] - Wall style string.
  * @param {number} [playerId] - Identifier of the player for whom the wall will be placed.
@@ -422,14 +407,13 @@ function validateStyle(style, playerId = 0)
  *                                 It will then be build towards top/positive Y (if no bending wall elements like corners are used)
  *                                 Raising orientation means the wall is rotated counter-clockwise like placeObject
  */
-function placeWall(startX, startY, wall = [], style, playerId = 0, orientation = 0)
+function placeWall(position, wall = [], style, playerId = 0, orientation = 0)
 {
 	style = validateStyle(style, playerId);
 
-	let AM = getWallAlignment(startX, startY, wall, style, orientation);
-	for (let iWall = 0; iWall < wall.length; ++iWall)
-		if (AM[iWall].templateName)
-			placeObject(AM[iWall].x, AM[iWall].y, AM[iWall].templateName, playerId, AM[iWall].angle);
+	for (let align of getWallAlignment(position, wall, style, orientation))
+		if (align.templateName)
+			placeObject(align.position, align.templateName, playerId, align.angle);
 }
 
 /**
@@ -439,14 +423,13 @@ function placeWall(startX, startY, wall = [], style, playerId = 0, orientation =
  * The fortress wall should always start with the main entrance (like
  * "entry" or "gate") to get the orientation correct.
  *
- * @param {number} centerX
- * @param {number} centerY
+ * @param {Vector2D} centerPosition
  * @param {object} [fortress] - If not provided, defaults to the predefined "medium" fortress type.
  * @param {string} [style] - Wall style string.
  * @param {number} [playerId] - Identifier of the player for whom the wall will be placed.
  * @param {number} [orientation] - Angle the first wall element (should be a gate or entrance) is placed. Default is 0
  */
-function placeCustomFortress(centerX, centerY, fortress, style, playerId = 0, orientation = 0)
+function placeCustomFortress(centerPosition, fortress, style, playerId = 0, orientation = 0)
 {
 	fortress = fortress || g_FortressTypes.medium;
 	style = validateStyle(style, playerId);
@@ -454,12 +437,16 @@ function placeCustomFortress(centerX, centerY, fortress, style, playerId = 0, or
 	// Calculate center if fortress.centerToFirstElement is undefined (default)
 	let centerToFirstElement = fortress.centerToFirstElement;
 	if (centerToFirstElement === undefined)
-		centerToFirstElement = getCenterToFirstElement(getWallAlignment(0, 0, fortress.wall, style));
+		centerToFirstElement = getCenterToFirstElement(getWallAlignment(new Vector2D(0, 0), fortress.wall, style));
 
 	// Placing the fortress wall
-	let startX = centerX + centerToFirstElement.x * Math.cos(orientation) - centerToFirstElement.y * Math.sin(orientation);
-	let startY = centerY + centerToFirstElement.y * Math.cos(orientation) + centerToFirstElement.x * Math.sin(orientation);
-	placeWall(startX, startY, fortress.wall, style, playerId, orientation);
+	let position = Vector2D.sum([
+		centerPosition,
+		new Vector2D(centerToFirstElement.x, 0).rotate(-orientation),
+		new Vector2D(centerToFirstElement.y, 0).perpendicular().rotate(-orientation)
+	]);
+
+	placeWall(position, fortress.wall, style, playerId, orientation);
 }
 
 /**
@@ -469,10 +456,9 @@ function placeCustomFortress(centerX, centerY, fortress, style, playerId = 0, or
  *
  * @param {string} [type] - Predefined fortress type, as used as a key in g_FortressTypes.
  */
-function placeFortress(centerX, centerY, type = "medium", style, playerId = 0, orientation = 0)
+function placeFortress(centerPosition, type = "medium", style, playerId = 0, orientation = 0)
 {
-	// Call placeCustomFortress with the given arguments
-	placeCustomFortress(centerX, centerY, g_FortressTypes[type], style, playerId, orientation);
+	placeCustomFortress(centerPosition, g_FortressTypes[type], style, playerId, orientation);
 }
 
 /**
@@ -481,15 +467,13 @@ function placeFortress(centerX, centerY, type = "medium", style, playerId = 0, o
  *
  * Note: Any "bending" wall pieces passed will be complained about.
  *
- * @param {number} startX - Approximate start point of the wall.
- * @param {number} startY - Approximate start point of the wall.
- * @param {number} targetX - Approximate end point of the wall.
- * @param {number} targetY - Approximate end point of the wall.
+ * @param {Vector2D} startPosition - Approximate start point of the wall.
+ * @param {Vector2D} targetPosition - Approximate end point of the wall.
  * @param {array} [wallPart=["tower", "long"]]
  * @param {number} [playerId]
  * @param {boolean} [endWithFirst] - If true, the first wall element will also be the last.
  */
-function placeLinearWall(startX, startY, targetX, targetY, wallPart = undefined, style, playerId = 0, endWithFirst = true)
+function placeLinearWall(startPosition, targetPosition, wallPart = undefined, style, playerId = 0, endWithFirst = true)
 {
 	wallPart = wallPart || ["tower", "long"];
 	style = validateStyle(style, playerId);
@@ -501,7 +485,7 @@ function placeLinearWall(startX, startY, targetX, targetY, wallPart = undefined,
 
 	// Setup number of wall parts
 
-	let totalLength = Math.euclidDistance2D(startX, startY, targetX, targetY);
+	let totalLength = startPosition.distanceTo(targetPosition);
 	let wallPartLength = getWallLength(style, wallPart);
 	let numParts = Math.ceil(totalLength / wallPartLength);
 	if (endWithFirst)
@@ -513,47 +497,39 @@ function placeLinearWall(startX, startY, targetX, targetY, wallPart = undefined,
 		scaleFactor = totalLength / (numParts * wallPartLength + getWallElement(wallPart[0], style).length);
 
 	// Setup angle
-	let wallAngle = getAngle(startX, startY, targetX, targetY); // NOTE: function "getAngle()" is about to be changed...
+	let wallAngle = getAngle(startPosition.x, startPosition.y, targetPosition.x, targetPosition.y);
 	let placeAngle = wallAngle - Math.PI / 2;
 
 	// Place wall entities
-	let x = startX;
-	let y = startY;
+	let position = startPosition.clone();
 	let overlap = g_WallStyles[style].overlap;
 	for (let partIndex = 0; partIndex < numParts; ++partIndex)
-	{
 		for (let elementIndex = 0; elementIndex < wallPart.length; ++elementIndex)
 		{
 			let wallEle = getWallElement(wallPart[elementIndex], style);
+
 			let wallLength = (wallEle.length - overlap) / 2;
-			let distX = scaleFactor * wallLength * Math.cos(wallAngle);
-			let distY = scaleFactor * wallLength * Math.sin(wallAngle);
+			let dist = new Vector2D(scaleFactor * wallLength, 0).rotate(-wallAngle);
 
 			// Length correction
-			x += distX;
-			y += distY;
+			position.add(dist);
 
 			// Indent correction
-			let placeX = x - wallEle.indent * Math.sin(wallAngle);
-			let placeY = y + wallEle.indent * Math.cos(wallAngle);
+			let place = Vector2D.add(position, new Vector2D(0, wallEle.indent).rotate(-wallAngle));
 
-			// Placement
 			if (wallEle.templateName)
-				placeObject(placeX, placeY, wallEle.templateName, playerId, placeAngle + wallEle.angle);
+				placeObject(place, wallEle.templateName, playerId, placeAngle + wallEle.angle);
 
-			// Prep for next object
-			x += distX;
-			y += distY;
+			position.add(dist);
 		}
-	}
+
 	if (endWithFirst)
 	{
 		let wallEle = getWallElement(wallPart[0], style);
 		let wallLength = (wallEle.length - overlap) / 2;
-		x += scaleFactor * wallLength * Math.cos(wallAngle);
-		y += scaleFactor * wallLength * Math.sin(wallAngle);
+		position.add(new Vector2D(scaleFactor * wallLength, 0).rotate(-wallAngle));
 		if (wallEle.templateName)
-			placeObject(x, y, wallEle.templateName, playerId, placeAngle + wallEle.angle);
+			placeObject(position, wallEle.templateName, playerId, placeAngle + wallEle.angle);
 	}
 }
 
@@ -568,8 +544,7 @@ function placeLinearWall(startX, startY, targetX, targetY, wallPart = undefined,
  *
  * Note: Any "bending" wall pieces passed will be complained about.
  *
- * @param {number} centerX - Center of the circle or arc.
- * @param {number} centerY - Center of the circle or arc.
+ * @param {Vector2D} center - Center of the circle or arc.
  * @param (number} radius - Approximate radius of the circle. (Given the maxBendOff argument)
  * @param {array} [wallPart]
  * @param {string} [style]
@@ -579,7 +554,7 @@ function placeLinearWall(startX, startY, targetX, targetY, wallPart = undefined,
  * @param {boolean} [endWithFirst] - If true, the first wall element will also be the last. For full circles, the default is false. For arcs, true.
  * @param {number} [maxBendOff]    Optional. How irregular the circle should be. 0 means regular circle, PI/2 means very irregular. Default is 0 (regular circle)
  */
-function placeCircularWall(centerX, centerY, radius, wallPart, style, playerId = 0, orientation = 0, maxAngle = Math.PI * 2, endWithFirst, maxBendOff = 0)
+function placeCircularWall(center, radius, wallPart, style, playerId = 0, orientation = 0, maxAngle = Math.PI * 2, endWithFirst, maxBendOff = 0)
 {
 	wallPart = wallPart || ["tower", "long"];
 	style = validateStyle(style, playerId);
@@ -609,8 +584,7 @@ function placeCircularWall(centerX, centerY, radius, wallPart, style, playerId =
 
 	// Place wall entities
 	let actualAngle = orientation + (Math.PI * 2 - maxAngle) / 2;
-	let x = centerX + radius * Math.cos(actualAngle);
-	let y = centerY + radius * Math.sin(actualAngle);
+	let position = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle));
 	let overlap = g_WallStyles[style].overlap;
 	for (let partIndex = 0; partIndex < numParts; ++partIndex)
 		for (let wallEle of wallPart)
@@ -619,36 +593,30 @@ function placeCircularWall(centerX, centerY, radius, wallPart, style, playerId =
 
 			// Width correction
 			let addAngle = scaleFactor * (wallEle.length - overlap) / radius;
-			let targetX = centerX + radius * Math.cos(actualAngle + addAngle);
-			let targetY = centerY + radius * Math.sin(actualAngle + addAngle);
-			let placeX = x + (targetX - x) / 2;
-			let placeY = y + (targetY - y) / 2;
+			let target = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle - addAngle));
+			let place = Vector2D.average([position, target]);
 			let placeAngle = actualAngle + addAngle / 2;
 
 			// Indent correction
-			placeX -= wallEle.indent * Math.cos(placeAngle);
-			placeY -= wallEle.indent * Math.sin(placeAngle);
+			place.sub(new Vector2D(wallEle.indent, 0).rotate(-placeAngle));
 
 			// Placement
 			if (wallEle.templateName)
-				placeObject(placeX, placeY, wallEle.templateName, playerId, placeAngle + wallEle.angle);
+				placeObject(place, wallEle.templateName, playerId, placeAngle + wallEle.angle);
 
 			// Prepare for the next wall element
 			actualAngle += addAngle;
-			x = centerX + radius * Math.cos(actualAngle);
-			y = centerY + radius * Math.sin(actualAngle);
+			position = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle));
 		}
 
 	if (endWithFirst)
 	{
 		let wallEle = getWallElement(wallPart[0], style);
 		let addAngle = scaleFactor * wallEle.length / radius;
-		let targetX = centerX + radius * Math.cos(actualAngle + addAngle);
-		let targetY = centerY + radius * Math.sin(actualAngle + addAngle);
-		let placeX = x + (targetX - x) / 2;
-		let placeY = y + (targetY - y) / 2;
+		let target = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle - addAngle))
+		let place = Vector2D.average([position, target]);
 		let placeAngle = actualAngle + addAngle / 2;
-		placeObject(placeX, placeY, wallEle.templateName, playerId, placeAngle + wallEle.angle);
+		placeObject(place, wallEle.templateName, playerId, placeAngle + wallEle.angle);
 	}
 }
 
@@ -658,8 +626,7 @@ function placeCircularWall(centerX, centerY, radius, wallPart, style, playerId =
  *
  * Note: Any "bending" wall pieces passed will be ignored.
  *
- * @param {number} centerX
- * @param {number} centerY
+ * @param {Vector2D} centerPosition
  * @param {number} radius
  * @param {array} [wallPart]
  * @param {string} [cornerWallElement] - Wall element to be placed at the polygon's corners.
@@ -669,42 +636,35 @@ function placeCircularWall(centerX, centerY, radius, wallPart, style, playerId =
  * @param {number} [numCorners] - How many corners the polygon will have.
  * @param {boolean} [skipFirstWall] - If the first linear wall part will be left opened as entrance.
  */
-function placePolygonalWall(centerX, centerY, radius, wallPart, cornerWallElement = "tower", style, playerId = 0, orientation = 0, numCorners = 8, skipFirstWall = true)
+function placePolygonalWall(centerPosition, radius, wallPart, cornerWallElement = "tower", style, playerId = 0, orientation = 0, numCorners = 8, skipFirstWall = true)
 {
 	wallPart = wallPart || ["long", "tower"];
 	style = validateStyle(style, playerId);
 
-	// Setup angles
 	let angleAdd = Math.PI * 2 / numCorners;
 	let angleStart = orientation - angleAdd / 2;
+	let corners = new Array(numCorners).fill(0).map((zero, i) =>
+		Vector2D.add(centerPosition, new Vector2D(radius, 0).rotate(-angleStart - i * angleAdd)));
 
-	// Setup corners
-	let corners = [];
-	for (let i = 0; i < numCorners; ++i)
-		corners.push([
-			centerX + radius * Math.cos(angleStart + i * angleAdd),
-			centerY + radius * Math.sin(angleStart + i * angleAdd)
-		]);
-
-	// Place Corners and walls
 	for (let i = 0; i < numCorners; ++i)
 	{
-		let angleToCorner = getAngle(corners[i][0], corners[i][1], centerX, centerY);
-		placeObject(corners[i][0], corners[i][1], getWallElement(cornerWallElement, style).templateName, playerId, angleToCorner);
+		let angleToCorner = getAngle(corners[i].x, corners[i].y, centerPosition.x, centerPosition.y);
+		placeObject(corners[i], getWallElement(cornerWallElement, style).templateName, playerId, angleToCorner);
+
 		if (!skipFirstWall || i != 0)
 		{
 			let cornerLength = getWallElement(cornerWallElement, style).length / 2;
 			let cornerAngle = angleToCorner + angleAdd / 2;
-			let cornerX = cornerLength * Math.sin(cornerAngle);
-			let cornerY = cornerLength * Math.cos(cornerAngle);
 			let targetCorner = (i + 1) % numCorners;
+			let cornerPosition = new Vector2D(cornerLength, 0).rotate(-cornerAngle).perpendicular();
+
 			placeLinearWall(
 				// Adjustment to the corner element width (approximately)
-				corners[i][0] + cornerX, // startX
-				corners[i][1] - cornerY, // startY
-				corners[targetCorner][0] - cornerX, // targetX
-				corners[targetCorner][1] + cornerY, // targetY
-				wallPart, style, playerId);
+				Vector2D.sub(corners[i], cornerPosition),
+				Vector2D.add(corners[targetCorner], cornerPosition),
+				wallPart,
+				style,
+				playerId);
 		}
 	}
 }
@@ -718,8 +678,7 @@ function placePolygonalWall(centerX, centerY, radius, wallPart, cornerWallElemen
  *
  * Note: The wallPartsAssortment is last because it's the hardest to set.
  *
- * @param {number} centerX
- * @param {number} centerY
+ * @param {Vector2D} centerPosition
  * @param {number} radius
  * @param {string} [cornerWallElement] - Wall element to be placed at the polygon's corners.
  * @param {string} [style]
@@ -730,7 +689,7 @@ function placePolygonalWall(centerX, centerY, radius, wallPart, cornerWallElemen
  * @param {boolean} [skipFirstWall] - If true, the first linear wall part will be left open as an entrance.
  * @param {array} [wallPartsAssortment] - An array of wall part arrays to choose from for each linear wall connecting the corners.
  */
-function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement = "tower", style, playerId = 0, orientation = 0, numCorners, irregularity = 0.5, skipFirstWall = false, wallPartsAssortment)
+function placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement = "tower", style, playerId = 0, orientation = 0, numCorners, irregularity = 0.5, skipFirstWall = false, wallPartsAssortment)
 {
 	style = validateStyle(style, playerId);
 	numCorners = numCorners || randIntInclusive(5, 7);
@@ -775,10 +734,8 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 	let angleActual = orientation - angleAddList[0] / 2;
 	for (let i = 0; i < numCorners; ++i)
 	{
-		corners.push([
-			centerX + radius * Math.cos(angleActual),
-			centerY + radius * Math.sin(angleActual)
-		]);
+		corners.push(Vector2D.add(centerPosition, new Vector2D(radius, 0).rotate(-angleActual)));
+
 		if (i < numCorners - 1)
 			angleActual += angleAddList[i + 1];
 	}
@@ -801,7 +758,7 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 		let bestWallLength = Infinity;
 		let targetCorner = (i + 1) % numCorners;
 		// NOTE: This is not quite the length the wall will be in the end. Has to be tweaked...
-		let wallLength = Math.euclidDistance2D(corners[i][0], corners[i][1], corners[targetCorner][0], corners[targetCorner][1]);
+		let wallLength = corners[i].distanceTo(corners[targetCorner]);
 		let numWallParts = Math.ceil(wallLength / maxWallPartLength);
 		for (let partIndex = 0; partIndex < wallPartsAssortment.length; ++partIndex)
 		{
@@ -818,21 +775,24 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 	// Place Corners and walls
 	for (let i = 0; i < numCorners; ++i)
 	{
-		let angleToCorner = getAngle(corners[i][0], corners[i][1], centerX, centerY);
-		placeObject(corners[i][0], corners[i][1], getWallElement(cornerWallElement, style).templateName, playerId, angleToCorner);
+		let angleToCorner = getAngle(corners[i].x, corners[i].y, centerPosition.x, centerPosition.y);
+		placeObject(corners[i], getWallElement(cornerWallElement, style).templateName, playerId, angleToCorner);
 		if (!skipFirstWall || i != 0)
 		{
 			let cornerLength = getWallElement(cornerWallElement, style).length / 2;
 			let targetCorner = (i + 1) % numCorners;
 			let startAngle = angleToCorner + angleAddList[i] / 2;
 			let targetAngle = angleToCorner + angleAddList[targetCorner] / 2;
+
+
 			placeLinearWall(
 				// Adjustment to the corner element width (approximately)
-				corners[i][0] + cornerLength * Math.sin(startAngle), // startX
-				corners[i][1] - cornerLength * Math.cos(startAngle), // startY
-				corners[targetCorner][0] - cornerLength * Math.sin(targetAngle), // targetX
-				corners[targetCorner][1] + cornerLength * Math.cos(targetAngle), // targetY
-				wallPartList[i], style, playerId, false);
+				Vector2D.sub(corners[i], new Vector2D(cornerLength, 0).perpendicular().rotate(-startAngle)),
+				Vector2D.add(corners[targetCorner], new Vector2D(cornerLength, 0).rotate(-targetAngle - Math.PI / 2)),
+				wallPartList[i],
+				style,
+				playerId,
+				false);
 		}
 	}
 }
@@ -848,23 +808,21 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
  *
  * This is the default Iberian civ bonus starting wall.
  *
- * @param {number} centerX - The approximate center coordinates of the fortress
- * @param {number} centerY - The approximate center coordinates of the fortress
+ * @param {Vector2D} center - The approximate center coordinates of the fortress
  * @param {number} [radius] - The approximate radius of the wall to be placed.
  * @param {number} [playerId]
  * @param {string} [style]
  * @param {number} [irregularity] - 0 = circle, 1 = very spiky
  * @param {number} [gateOccurence] - Integer number, every n-th walls will be a gate instead.
- * @param {number} [maxTrys] - How often the function tries to find a better fitting shape.
+ * @param {number} [maxTries] - How often the function tries to find a better fitting shape.
  */
-function placeGenericFortress(centerX, centerY, radius = 20, playerId = 0, style, irregularity = 0.5, gateOccurence = 3, maxTrys = 100)
+function placeGenericFortress(center, radius = 20, playerId = 0, style, irregularity = 0.5, gateOccurence = 3, maxTries = 100)
 {
 	style = validateStyle(style, playerId);
 
 	// Setup some vars
-	let startAngle = randFloat(0, Math.PI * 2);
-	let actualOffX = radius * Math.cos(startAngle);
-	let actualOffY = radius * Math.sin(startAngle);
+	let startAngle = randomAngle();
+	let actualOff = new Vector2D(radius, 0).rotate(-startAngle);
 	let actualAngle = startAngle;
 	let pointDistance = getWallLength(style, ["long", "tower"]);
 
@@ -873,33 +831,31 @@ function placeGenericFortress(centerX, centerY, radius = 20, playerId = 0, style
 	let bestPointDerivation;
 	let minOverlap = 1000;
 	let overlap;
-	while (tries < maxTrys && minOverlap > g_WallStyles[style].overlap)
+	while (tries < maxTries && minOverlap > g_WallStyles[style].overlap)
 	{
 		let pointDerivation = [];
 		let distanceToTarget = 1000;
-		let targetReached = false;
-		while (!targetReached)
+		while (true)
 		{
 			let indent = randFloat(-irregularity * pointDistance, irregularity * pointDistance);
-			let tmpAngle = getAngle(actualOffX, actualOffY,
-				(radius + indent) * Math.cos(actualAngle + pointDistance / radius),
-				(radius + indent) * Math.sin(actualAngle + pointDistance / radius)
-			);
-			actualOffX += pointDistance * Math.cos(tmpAngle);
-			actualOffY += pointDistance * Math.sin(tmpAngle);
-			actualAngle = getAngle(0, 0, actualOffX, actualOffY);
-			pointDerivation.push([actualOffX, actualOffY]);
-			distanceToTarget = Math.euclidDistance2D(actualOffX, actualOffY, ...pointDerivation[0]);
+			let tmp = new Vector2D(radius + indent, 0).rotate(-actualAngle - pointDistance / radius);
+			let tmpAngle = getAngle(actualOff.x, actualOff.y, tmp.x, tmp.y);
+
+			actualOff.add(new Vector2D(pointDistance, 0).rotate(-tmpAngle));
+			actualAngle = getAngle(0, 0, actualOff.x, actualOff.y);
+			pointDerivation.push(actualOff.clone());
+			distanceToTarget = pointDerivation[0].distanceTo(actualOff);
+
 			let numPoints = pointDerivation.length;
 			if (numPoints > 3 && distanceToTarget < pointDistance) // Could be done better...
 			{
-				targetReached = true;
-				overlap = pointDistance - Math.euclidDistance2D(...pointDerivation[numPoints - 1], ...pointDerivation[0]);
+				overlap = pointDistance - pointDerivation[numPoints - 1].distanceTo(pointDerivation[0]);
 				if (overlap < minOverlap)
 				{
 					minOverlap = overlap;
 					bestPointDerivation = pointDerivation;
 				}
+				break;
 			}
 		}
 		++tries;
@@ -909,34 +865,24 @@ function placeGenericFortress(centerX, centerY, radius = 20, playerId = 0, style
 	// Place wall
 	for (let pointIndex = 0; pointIndex < bestPointDerivation.length; ++pointIndex)
 	{
-		let startX = centerX + bestPointDerivation[pointIndex][0];
-		let startY = centerY + bestPointDerivation[pointIndex][1];
-		let targetX = centerX + bestPointDerivation[(pointIndex + 1) % bestPointDerivation.length][0];
-		let targetY = centerY + bestPointDerivation[(pointIndex + 1) % bestPointDerivation.length][1];
-		let angle = getAngle(startX, startY, targetX, targetY);
+		let start = Vector2D.add(center, bestPointDerivation[pointIndex]);
+		let target = Vector2D.add(center, bestPointDerivation[(pointIndex + 1) % bestPointDerivation.length]);
+		let angle = getAngle(start.x, start.y, target.x, target.y);
 
 		let element = (pointIndex + 1) % gateOccurence == 0 ? "gate" : "long";
 		element = getWallElement(element, style);
+
 		if (element.templateName)
 		{
-			let dist = Math.euclidDistance2D(startX, startY, targetX, targetY) / 2;
-			placeObject(
-				startX + dist * Math.cos(angle), // placeX
-				startY + dist * Math.sin(angle), // placeY
-				element.templateName, playerId, angle - Math.PI / 2 + element.angle
-			);
+			let pos = Vector2D.add(start, new Vector2D(start.distanceTo(target) / 2, 0).rotate(-angle));
+			placeObject(pos, element.templateName, playerId, angle - Math.PI / 2 + element.angle);
 		}
 
 		// Place tower
-		startX = centerX + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][0];
-		startY = centerY + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][1];
-		angle = getAngle(startX, startY, targetX, targetY);
+		start = Vector2D.add(center, bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length]);
+		angle = getAngle(start.x, start.y, target.x, target.y);
 
 		let tower = getWallElement("tower", style);
-		placeObject(
-			centerX + bestPointDerivation[pointIndex][0],
-			centerY + bestPointDerivation[pointIndex][1],
-			tower.templateName, playerId, angle - Math.PI / 2 + tower.angle
-		);
+		placeObject(Vector2D.add(center, bestPointDerivation[pointIndex]), tower.templateName, playerId, angle - Math.PI / 2 + tower.angle);
 	}
 }

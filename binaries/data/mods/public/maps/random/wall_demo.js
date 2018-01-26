@@ -50,8 +50,8 @@ var mapSize = g_Map.getSize();
 const distToMapBorder = 5;
 const distToOtherWalls = 10;
 var buildableMapSize = mapSize - 2 * distToMapBorder;
-var actualX = distToMapBorder;
-var actualY = distToMapBorder;
+
+var position = new Vector2D(distToMapBorder, distToMapBorder);
 var playerID = 0;
 const wallStyleList = Object.keys(g_WallStyles);
 
@@ -69,18 +69,14 @@ const wallStyleList = Object.keys(g_WallStyles);
  */
 for (let styleIndex in wallStyleList)
 {
-	let x = actualX + styleIndex * buildableMapSize / wallStyleList.length;
-	let y = actualY;
+	let pos = Vector2D.add(position, new Vector2D(styleIndex * buildableMapSize / wallStyleList.length));
 	let wall = ['start', 'long', 'tower', 'tower', 'tower', 'medium', 'outpost', 'medium', 'cornerOut', 'medium', 'cornerIn', 'medium', 'house', 'end', 'entryTower', 'start', 'short', 'barracks', 'gate', 'tower', 'medium', 'fort', 'medium', 'end'];
 	let style = wallStyleList[styleIndex];
 	let orientation = Math.PI / 16 * Math.sin(styleIndex * Math.PI / 4);
-
-	placeWall(x, y, wall, style, playerID, orientation);
+	placeWall(pos, wall, style, playerID, orientation);
 }
 
-// Prep for next set of walls
-actualX = distToMapBorder;
-actualY += 80 + distToOtherWalls;
+position.y += 80 + distToOtherWalls;
 
 /**
  * Default fortress placement (chosen by fortress type string)
@@ -100,19 +96,21 @@ var fortressRadius = 15; // The space the fortresses take in average. Just for d
 
 for (let styleIndex in wallStyleList)
 {
-	let x = actualX + fortressRadius + styleIndex * buildableMapSize / wallStyleList.length;
-	let y = actualY + fortressRadius;
 	let type = "tiny";
 	let style = wallStyleList[styleIndex];
 	let orientation = styleIndex * Math.PI / 32;
 
-	placeObject(x, y, "other/obelisk", playerID, orientation);
-	placeFortress(x, y, type, style, playerID, orientation);
+	let pos = Vector2D.sum([
+		position,
+		new Vector2D(1, 1).mult(fortressRadius),
+		new Vector2D(styleIndex * buildableMapSize / wallStyleList.length, 0)
+	]);
+
+	placeObject(pos, "other/obelisk", playerID, orientation);
+	placeFortress(pos, type, style, playerID, orientation);
 }
 
-// Prep for next set of walls
-actualX = distToMapBorder;
-actualY += 2 * fortressRadius + distToOtherWalls;
+position.y += 2 * fortressRadius + distToOtherWalls;
 
 /**
  * 'Generic' fortress placement (iberian wall circuit code)
@@ -125,20 +123,22 @@ actualY += 2 * fortressRadius + distToOtherWalls;
  *
  * We also supply a radius value to dictate how wide the circuit of walls should be.
  */
-var radius = Math.min((mapSize - actualY - distToOtherWalls) / 3, (buildableMapSize / wallStyleList.length - distToOtherWalls) / 2);
+var radius = Math.min((mapSize - position.y - distToOtherWalls) / 3, (buildableMapSize / wallStyleList.length - distToOtherWalls) / 2);
 for (let styleIndex in wallStyleList)
 {
-	let centerX = actualX + radius + styleIndex * buildableMapSize / wallStyleList.length;
-	let centerY = actualY + radius;
 	let style = wallStyleList[styleIndex];
 
-	placeObject(centerX, centerY, 'other/obelisk', playerID, 0);
-	placeGenericFortress(centerX, centerY, radius, playerID, style);
+	let pos = Vector2D.sum([
+		position,
+		new Vector2D(radius, radius),
+		new Vector2D(styleIndex * buildableMapSize / wallStyleList.length, 0)
+	]);
+
+	placeObject(pos, "other/obelisk", playerID, 0);
+	placeGenericFortress(pos, radius, playerID, style);
 }
 
-// Prep for next set of walls
-actualX = distToMapBorder;
-actualY += 2 * radius + distToOtherWalls;
+position.y += 2 * radius + distToOtherWalls;
 
 /**
  * Circular wall placement
@@ -162,11 +162,10 @@ actualY += 2 * radius + distToOtherWalls;
  * arc faces. If the wall is to be a complete circle, then this is used as
  * the orientation of the first wall piece.
  */
-radius = Math.min((mapSize - actualY - distToOtherWalls) / 3, (buildableMapSize / wallStyleList.length - distToOtherWalls) / 2);
+radius = Math.min((mapSize - position.y - distToOtherWalls) / 3, (buildableMapSize / wallStyleList.length - distToOtherWalls) / 2);
 for (let styleIndex in wallStyleList)
 {
-	let centerX = actualX + radius + styleIndex * buildableMapSize / wallStyleList.length;
-	let centerY = actualY + radius;
+	let center = Vector2D.sum([position, new Vector2D(1, 1).mult(radius), new Vector2D(styleIndex * buildableMapSize / wallStyleList.length, 0)]);
 	let wallPart = ['tower', 'medium', 'house'];
 	let style = wallStyleList[styleIndex];
 	let orientation = styleIndex * Math.PI / 16;
@@ -176,13 +175,11 @@ for (let styleIndex in wallStyleList)
 	// If less than Pi * 2, then the wall will be an arc.
 	let maxAngle = Math.PI / 2 * (styleIndex % 3 + 2);
 
-	placeObject(centerX, centerY, 'other/obelisk', playerID, orientation);
-	placeCircularWall(centerX, centerY, radius, wallPart, style, playerID, orientation, maxAngle);
+	placeObject(center, "other/obelisk", playerID, orientation);
+	placeCircularWall(center, radius, wallPart, style, playerID, orientation, maxAngle);
 }
 
-// Prep for next set of walls.
-actualX = distToMapBorder;
-actualY += 2 * radius + distToOtherWalls;
+position.y += 2 * radius + distToOtherWalls;
 
 /**
  * Regular Polygonal wall placement
@@ -208,11 +205,11 @@ actualY += 2 * radius + distToOtherWalls;
  * outward side facing or, if the `skipFirstWall` argument is true, the
  * opening in the wall.
  */
-radius = Math.min((mapSize - actualY - distToOtherWalls) / 2, (buildableMapSize / wallStyleList.length - distToOtherWalls) / 2);
+
+radius = Math.min((mapSize - position.y - distToOtherWalls) / 2, (buildableMapSize / wallStyleList.length - distToOtherWalls) / 2);
 for (let styleIndex in wallStyleList)
 {
-	let centerX = actualX + radius + styleIndex * buildableMapSize / wallStyleList.length;
-	let centerY = actualY + radius;
+	let centerPosition = Vector2D.sum([position, new Vector2D(1, 1).mult(radius), new Vector2D(styleIndex * buildableMapSize / wallStyleList.length, 0)]);
 	let wallParts = ['medium', 'tower']; // Function default: ['long', 'tower']
 
 	// Which wall element to use for the corners of the polygon
@@ -227,13 +224,11 @@ for (let styleIndex in wallStyleList)
 	// If true, the first side will not be drawn, leaving the wall open.
 	let skipFirstWall = true;
 
-	placeObject(centerX, centerY, 'other/obelisk', playerID, orientation);
-	placePolygonalWall(centerX, centerY, radius, wallParts, cornerWallElement, style, playerID, orientation, numCorners, skipFirstWall);
+	placeObject(centerPosition, "other/obelisk", playerID, orientation);
+	placePolygonalWall(centerPosition, radius, wallParts, cornerWallElement, style, playerID, orientation, numCorners, skipFirstWall);
 }
 
-// Prep for next set of walls.
-actualX = distToMapBorder;
-actualY += 2 * radius + distToOtherWalls;
+position.y += 2 * radius + distToOtherWalls;
 
 /**
  * Irregular Polygonal wall placement
@@ -263,11 +258,14 @@ actualY += 2 * radius + distToOtherWalls;
  * the wall. It is not defined in this example (so as to use the defaults)
  * as it is not easy to comprehend.
  */
-radius = Math.min((mapSize - actualY - distToOtherWalls) / 2, (buildableMapSize / wallStyleList.length - distToOtherWalls) / 2); // The radius of wall polygons
+radius = Math.min((mapSize - position.y - distToOtherWalls) / 2, (buildableMapSize / wallStyleList.length - distToOtherWalls) / 2); // The radius of wall polygons
 for (let styleIndex in wallStyleList)
 {
-	let centerX = actualX + radius + styleIndex * buildableMapSize / wallStyleList.length;
-	let centerY = actualY + radius;
+	let centerPosition = Vector2D.sum([
+		position,
+		new Vector2D(1, 1).mult(radius),
+		new Vector2D(styleIndex * buildableMapSize / wallStyleList.length, 0)
+	]);
 
 	// Which wall element type will be used for the corners of the polygon.
 	let cornerWallElement = 'tower';
@@ -284,13 +282,11 @@ for (let styleIndex in wallStyleList)
 	// If true, the first side will not be drawn, leaving the wall open.
 	let skipFirstWall = true;
 
-	placeObject(centerX, centerY, 'other/obelisk', playerID, orientation);
-	placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement, style, playerID, orientation, numCorners, irregularity, skipFirstWall);
+	placeObject(centerPosition, "other/obelisk", playerID, orientation);
+	placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement, style, playerID, orientation, numCorners, irregularity, skipFirstWall);
 }
 
-// Prep for next set of walls.
-actualX = distToMapBorder;
-actualY += 2 * radius + distToOtherWalls;
+position.y += 2 * radius + distToOtherWalls;
 
 /**
  * Linear wall placement
@@ -306,25 +302,20 @@ actualY += 2 * radius + distToOtherWalls;
  * of the walls is facing the top of the screen.
  */
 // Two vars, just for this map; firstly how long the longest wall will be.
-var maxWallLength = (mapSize - actualY - distToMapBorder - distToOtherWalls);
+var maxWallLength = (mapSize - position.y - distToMapBorder - distToOtherWalls);
 // And secondly, how many walls of the same style will be placed.
 var numWallsPerStyle = Math.floor(buildableMapSize / distToOtherWalls / wallStyleList.length);
 
 for (let styleIndex in wallStyleList)
 	for (let wallIndex = 0; wallIndex < numWallsPerStyle; ++wallIndex)
 	{
-		// Start point.
-		let startX = actualX + (styleIndex * numWallsPerStyle + wallIndex) * buildableMapSize / wallStyleList.length / numWallsPerStyle;
-		let startY = actualY;
+		let offsetX = (styleIndex * numWallsPerStyle + wallIndex) * buildableMapSize / wallStyleList.length / numWallsPerStyle;
+		let start = Vector2D.add(position, new Vector2D(offsetX, 0));
 
-		// End point.
-		let endX = startX;
-		let endY = actualY + (wallIndex + 1) * maxWallLength / numWallsPerStyle;
+		let offsetY = (wallIndex + 1) * maxWallLength / numWallsPerStyle;
+		let end = Vector2D.add(position, new Vector2D(offsetX, offsetY));
 
-		let wallPart = ['tower', 'medium'];
-		let style = wallStyleList[styleIndex];
-
-		placeLinearWall(startX, startY, endX, endY, wallPart, style, playerID);
+		placeLinearWall(start, end, ['tower', 'medium'], wallStyleList[styleIndex], playerID);
 	}
 
 g_Map.ExportMap();

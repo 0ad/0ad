@@ -16,7 +16,7 @@ const tRoadWild = g_Terrains.roadWild;
 const tTier4Terrain = g_Terrains.tier4Terrain;
 var tShore = g_Terrains.shore;
 var tWater = g_Terrains.water;
-if (currentBiome() == "tropic")
+if (currentBiome() == "generic/tropic")
 {
 	tShore = "tropic_dirt_b_plants";
 	tWater = "tropic_dirt_b";
@@ -208,7 +208,7 @@ Engine.SetProgress(65);
 
 var planetm = 1;
 
-if (currentBiome() == "tropic")
+if (currentBiome() == "generic/tropic")
 	planetm = 8;
 
 createDecoration(

@@ -200,10 +200,10 @@ for (var ix = 0; ix < mapSize; ix++)
 		var pn = playerNearness(x, z);
 
 		// get heights of surrounding vertices
-		var h00 = g_Map.getHeight(Vector2D.add(position, new Vector2D(0, 0));
-		var h01 = g_Map.getHeight(Vector2D.add(position, new Vector2D(0, 1));
-		var h10 = g_Map.getHeight(Vector2D.add(position, new Vector2D(1, 0));
-		var h11 = g_Map.getHeight(Vector2D.add(position, new Vector2D(1, 1));
+		var h00 = g_Map.getHeight(Vector2D.add(position, new Vector2D(0, 0)));
+		var h01 = g_Map.getHeight(Vector2D.add(position, new Vector2D(0, 1)));
+		var h10 = g_Map.getHeight(Vector2D.add(position, new Vector2D(1, 0)));
+		var h11 = g_Map.getHeight(Vector2D.add(position, new Vector2D(1, 1)));
 
 		// find min and max height
 		var maxH = Math.max(h00, h01, h10, h11);
@@ -218,7 +218,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			var maxNz = Math.min(iz + 2, mapSize);
 			for (let nx = Math.max(ix - 1, 0); nx <= maxNx; ++nx)
 				for (let nz = Math.max(iz - 1, 0); nz <= maxNz; ++nz)
-					minAdjHeight = Math.min(minAdjHeight, getHeight(new Vector2D(nx, nz)));
+					minAdjHeight = Math.min(minAdjHeight, g_Map.getHeight(new Vector2D(nx, nz)));
 		}
 
 		// choose a terrain based on elevation
@@ -304,14 +304,14 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				t = (diffH > 1.2) ? tGrassCliff : tGrassDry;
 				if (diffH < 0.5 && randBool(0.02))
-					placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrassDry, 0, randomAngle());
+					placeObject(Vector2D.add(position, new Vector2D(1, 1).mult(randFloat(0, 1))), aGrassDry, 0, randomAngle());
 			}
 			else if (grassNoise > 0.61)
 			{
 				t = (diffH > 1.2 ? tGrassRock : tGrassShrubs);
 			}
 			else if (diffH < 0.5 && randBool(0.02))
-				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randomAngle());
+				placeObject(Vector2D.add(position, new Vector2D(1, 1).mult(randFloat(0, 1))), aGrass, 0, randomAngle());
 		}
 
 		createTerrain(t).place(position);

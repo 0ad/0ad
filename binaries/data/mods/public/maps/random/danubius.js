@@ -298,17 +298,17 @@ if (gallicCC)
 					new TileClassPainter(clRitualPlace)
 				]);
 
-			placeObject(meetingPlacePosition.x, meetingPlacePosition.y, aCampfire, 0, randomAngle());
+			placeObject(meetingPlacePosition, aCampfire, 0, randomAngle());
 
 			for (let participants of ritualParticipants)
 			{
 				let [positions, angles] = distributePointsOnCircle(participants.count, startAngle, participants.radius * mRadius, meetingPlacePosition);
 				for (let i = 0; i < positions.length; ++i)
-					placeObject(positions[i].x, positions[i].y, pickRandom(participants.templates), 0, angles[i] + participants.angle);
+					placeObject(positions[i], pickRandom(participants.templates), 0, angles[i] + participants.angle);
 			}
 		}
 
-		placeObject(civicCenterPosition.x, civicCenterPosition.y, oCivicCenter, 0, startAngle + BUILDING_ORIENTATION + Math.PI * 3/2 * i);
+		placeObject(civicCenterPosition, oCivicCenter, 0, startAngle + BUILDING_ORIENTATION + Math.PI * 3/2 * i);
 
 		// Create the city patch
 		createArea(
@@ -319,14 +319,13 @@ if (gallicCC)
 			]);
 
 		// Place walls and buildings
-		placeCustomFortress(civicCenterPosition.x, civicCenterPosition.y, fortressDanubiusVillage, "danubius_village", 0, startAngle + Math.PI);
-		placeCustomFortress(civicCenterPosition.x, civicCenterPosition.y, fortressDanubiusSpikes, "danubius_spikes", 0, startAngle + Math.PI);
+		placeCustomFortress(civicCenterPosition, fortressDanubiusVillage, "danubius_village", 0, startAngle + Math.PI);
+		placeCustomFortress(civicCenterPosition, fortressDanubiusSpikes, "danubius_spikes", 0, startAngle + Math.PI);
 
 		// Place treasure, potentially inside buildings
 		for (let i = 0; i < gallicCCTreasureCount; ++i)
 			placeObject(
-				civicCenterPosition.x + randFloat(-0.8, 0.8) * gaulCityRadius,
-				civicCenterPosition.y + randFloat(-0.8, 0.8) * gaulCityRadius,
+				Vector2D.add(civicCenterPosition, new Vector2D(randFloat(-1, 1) * 0.8 * gaulCityRadius, 0).rotate(randomAngle())),
 				pickRandom(oTreasures),
 				0,
 				randomAngle());
@@ -715,8 +714,8 @@ for (let i = 0; i < 2; ++i)
 log("Creating patrol points for land attackers...");
 addToClass(mapCenter.x, mapCenter.y, clMiddle);
 
-var riverDirectionPosition = Vector2D.add(mapCenter, new Vector2D(0, 1).rotate(startAngle));
-placeObject(riverDirectionPosition.x, riverDirectionPosition.y, triggerPointRiverDirection, 0, 0);
+log("Creating triggerpoint to allow the triggerscript to determine the river direction...");
+placeObject(Vector2D.add(mapCenter, new Vector2D(0, 1).rotate(startAngle)), triggerPointRiverDirection, 0, 0);
 
 for (let i = 0; i < 2; ++i)
 {

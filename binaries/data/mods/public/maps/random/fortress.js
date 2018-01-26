@@ -132,7 +132,7 @@ for (let i = 0; i < numPlayers; ++i)
 			"cornerIn", "long", "house", "tower", "long", "tower", "long",
 			"cornerIn", "long", "house", "tower"];
 	}
-	placeCustomFortress(playerPosition[i].x, playerPosition[i].y, new Fortress("Spahbod", wall), civ, playerIDs[i], -Math.PI/4);
+	placeCustomFortress(playerPosition[i], new Fortress("Spahbod", wall), civ, playerIDs[i], -Math.PI/4);
 }
 
 log("Creating lakes...");

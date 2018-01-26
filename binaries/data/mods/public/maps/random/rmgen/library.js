@@ -183,11 +183,10 @@ function createTerrain(terrain)
 		new RandomTerrain(terrain.map(t => createTerrain(t)));
 }
 
-function placeObject(x, z, type, player, angle)
+function placeObject(position, type, player, angle)
 {
-	let position = new Vector2D(x, z);
 	if (g_Map.validTile(position))
-		g_Map.addObject(new Entity(type, player, x, z, angle));
+		g_Map.addObject(new Entity(type, player, position.x, position.y, angle));
 }
 
 function getTileClass(id)

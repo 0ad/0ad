@@ -272,7 +272,7 @@ Engine.SetProgress(65);
 
 var planetm = 1;
 
-if (currentBiome() == "tropic")
+if (currentBiome() == "generic/tropic")
 	planetm = 8;
 
 createDecoration(
@@ -338,7 +338,7 @@ createStragglerTrees(
 log("Creating treasures...");
 for (let i = 0; i < randIntInclusive(3, 8); ++i)
 	for (let template of [oFoodTreasure, oWoodTreasure])
-		placeObject(mapCenter.x + randFloat(-7, 7), mapCenter.y + randFloat(-7, 7), template, 0, randomAngle());
+		placeObject(Vector2D.add(mapCenter, new Vector2D(randFloat(0, 7), 0).rotate(randomAngle())), template, 0, randomAngle());
 
 placePlayersNomad(
 	clPlayer,

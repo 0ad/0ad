@@ -34,6 +34,7 @@ GuiInterface.prototype.Init = function()
 	this.entsRallyPointsDisplayed = [];
 	this.entsWithAuraAndStatusBars = new Set();
 	this.enabledVisualRangeOverlayTypes = {};
+	this.templateModified = {};
 };
 
 /*
@@ -631,6 +632,25 @@ GuiInterface.prototype.GetIncomingAttacks = function(player)
 GuiInterface.prototype.GetNeededResources = function(player, data)
 {
 	return QueryPlayerIDInterface(data.player || player).GetNeededResources(data.cost);
+};
+
+/**
+ * State of the templateData (player dependent): true when some template values have been modified
+ * and need to be reloaded by the gui.
+ */
+GuiInterface.prototype.OnTemplateModification = function(msg)
+{
+	this.templateModified[msg.player] = true;
+};
+
+GuiInterface.prototype.IsTemplateModified = function(player)
+{
+	return this.templateModified[player] || false;
+};
+
+GuiInterface.prototype.ResetTemplateModified = function()
+{
+	this.templateModified = {};
 };
 
 /**
@@ -1919,6 +1939,8 @@ let exposedFunctions = {
 
 	"GetTraderNumber": 1,
 	"GetTradingGoods": 1,
+	"IsTemplateModified": 1,
+	"ResetTemplateModified": 1
 };
 
 GuiInterface.prototype.ScriptCall = function(player, name, args)

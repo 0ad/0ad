@@ -92,7 +92,7 @@ function createStoneMineFormation(position, templateName, terrain, radius = 2.5,
 	for (let i = 0; i < count; ++i)
 	{
 		let pos = Vector2D.add(position, new Vector2D(radius + randFloat(0, maxOffset), 0).rotate(-angle)).round();
-		placeObject(pos.x, pos.y, templateName, 0, randomAngle());
+		placeObject(pos, templateName, 0, randomAngle());
 		angle += 3/2 * Math.PI / count;
 	}
 }

@@ -275,7 +275,7 @@ var types = [
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];
 
-var size = forestTrees / (scaleByMapSize(2, 8) * numPlayers) * (currentBiome() == "savanna" ? 2 : 1);
+var size = forestTrees / (scaleByMapSize(2, 8) * numPlayers) * (currentBiome() == "generic/savanna" ? 2 : 1);
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
@@ -393,7 +393,7 @@ createStragglerTrees(
 	stragglerTrees);
 
 var planetm = 1;
-if (currentBiome() == "tropic")
+if (currentBiome() == "generic/tropic")
 	planetm = 8;
 
 log("Creating small grass tufts...");
