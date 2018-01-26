@@ -475,11 +475,21 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 		let min = Math.min();
 		for (let [id, data] of this.criticalEnts)
 		{
+			if (guardEnt.hasClass("Healer") && data.healersAssigned === undefined)
+				continue;
 			if (data.guards.size > min)
 				continue;
 
 			criticalEntId = id;
 			min = data.guards.size;
+		}
+		if (criticalEntId)
+		{
+			let data = this.criticalEnts.get(criticalEntId);
+			if (guardEnt.hasClass("Healer"))
+				++data.healersAssigned;
+			else
+				++data.guardsAssigned;
 		}
 	}
 
