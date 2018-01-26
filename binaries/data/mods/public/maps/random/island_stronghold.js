@@ -277,7 +277,7 @@ createFood(
 	[avoidClasses(clForest, 0, clPlayer, 15, clHill, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clLand, 2)],
 	clFood);
 
-if (currentBiome() == "desert")
+if (currentBiome() == "generic/desert")
 {
 	log("Creating obelisks");
 	let group = new SimpleGroup(
@@ -292,7 +292,7 @@ if (currentBiome() == "desert")
 }
 
 log("Creating dirt patches...");
-let numb = currentBiome() == "savanna" ? 3 : 1;
+let numb = currentBiome() == "generic/savanna" ? 3 : 1;
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
@@ -374,7 +374,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 log("Creating small grass tufts...");
-let planetm = currentBiome() == "tropic" ? 8 : 1;
+let planetm = currentBiome() == "generic/tropic" ? 8 : 1;
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]
 );

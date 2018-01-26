@@ -184,7 +184,7 @@ var types = [
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];
 
-if (currentBiome() != "savanna")
+if (currentBiome() != "generic/savanna")
 {
 	var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
 	var num = Math.floor(size / types.length);
@@ -201,7 +201,7 @@ if (currentBiome() != "savanna")
 
 Engine.SetProgress(50);
 log("Creating dirt patches...");
-var numberOfPatches = scaleByMapSize(15, 45) * (currentBiome() == "savanna" ? 3 : 1);
+var numberOfPatches = scaleByMapSize(15, 45) * (currentBiome() == "generic/savanna" ? 3 : 1);
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
@@ -320,7 +320,7 @@ createStragglerTrees(
 	stragglerTrees);
 
 var planetm = 1;
-if (currentBiome() == "tropic")
+if (currentBiome() == "generic/tropic")
 	planetm = 8;
 
 log("Creating small grass tufts...");

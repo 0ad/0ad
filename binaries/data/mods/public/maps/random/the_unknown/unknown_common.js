@@ -871,7 +871,7 @@ function createUnknownObjects()
 	Engine.SetProgress(50);
 
 	log("Creating dirt patches...");
-	let patchCount = (currentBiome() == "savanna" ? 3 : 1) * scaleByMapSize(15, 45);
+	let patchCount = (currentBiome() == "generic/savanna" ? 3 : 1) * scaleByMapSize(15, 45);
 	for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 		createAreas(
 			new ClumpPlacer(size, 0.3, 0.06, 0.5),
@@ -979,7 +979,7 @@ function createUnknownObjects()
 			[avoidClasses(clWater, 1, clForest, 1, clHill, 2, clPlayer, 0, clMetal, 6, clRock, 6, clBaseResource, 6), stayClasses(clLand, 4)],
 			num);
 
-	let planetm = currentBiome() == "tropic" ? 8 : 1;
+	let planetm = currentBiome() == "generic/tropic" ? 8 : 1;
 
 	log("Creating small grass tufts...");
 	createObjectGroupsDeprecated(

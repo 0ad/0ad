@@ -250,13 +250,13 @@ function placeBarriers()
 {
 	var spineTerrain = g_Terrains.dirt;
 
-	if (currentBiome() == "snowy")
+	if (currentBiome() == "generic/snowy")
 		spineTerrain = g_Terrains.tier1Terrain;
 
-	if (currentBiome() == "alpine" || currentBiome() == "savanna")
+	if (currentBiome() == "generic/alpine" || currentBiome() == "generic/savanna")
 		spineTerrain = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == "autumn")
+	if (currentBiome() == "generic/autumn")
 		spineTerrain = g_Terrains.tier4Terrain;
 
 	let spineCount = isNomad() ? randIntInclusive(1, 4) : teamsArray.length;

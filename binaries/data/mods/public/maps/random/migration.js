@@ -187,7 +187,7 @@ var types = [
 ];
 
 var size = forestTrees / (scaleByMapSize(2,8) * numPlayers) *
-	(currentBiome() == "savanna" ? 2 : 1);
+	(currentBiome() == "generic/savanna" ? 2 : 1);
 
 var num = Math.floor(size / types.length);
 for (let type of types)
@@ -330,7 +330,7 @@ createStragglerTrees(
 
 Engine.SetProgress(86);
 
-var planetm = currentBiome() == "tropic" ? 8 : 1;
+var planetm = currentBiome() == "generic/tropic" ? 8 : 1;
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(
