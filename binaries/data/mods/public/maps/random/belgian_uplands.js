@@ -259,7 +259,6 @@ else if (mapSize > 400)
 	propDensity = 3/4;
 
 for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
-{
 	for (var y = minTerrainDistToBorder; y < mapSize - minTerrainDistToBorder; y++)
 	{
 		let position = new Vector2D(x, y);
@@ -270,109 +269,113 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 			{
 				createTerrain(textueByHeight[i].terrain).place(position);
 
-				// Add some props at...
+				let template;
+
 				if (i == 0) // ...deep water
 				{
 					if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/pond_lillies_large.xml", 0, randomAngle());
+						template = "actor|props/flora/pond_lillies_large.xml";
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/water_lillies.xml", 0, randomAngle());
+						template = "actor|props/flora/water_lillies.xml";
 				}
 				if (i == 1) // ...medium water (with fish)
 				{
 					if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/pond_lillies_large.xml", 0, randomAngle());
+						template = "actor|props/flora/pond_lillies_large.xml";
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/water_lillies.xml", 0, randomAngle());
+						template = "actor|props/flora/water_lillies.xml";
 				}
 				if (i == 2) // ...low water/mud
 				{
 					if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/water_log.xml", 0, randomAngle());
+						template = "actor|props/flora/water_log.xml";
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/water_lillies.xml", 0, randomAngle());
+						template = "actor|props/flora/water_lillies.xml";
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|geology/highland_c.xml", 0, randomAngle());
+						template = "actor|geology/highland_c.xml";
 					else if (randBool(propDensity / 20))
-						placeObject(x, y, "actor|props/flora/reeds_pond_lush_b.xml", 0, randomAngle());
+						template = "actor|props/flora/reeds_pond_lush_b.xml";
 					else if (randBool(propDensity / 10))
-						placeObject(x, y, "actor|props/flora/reeds_pond_lush_a.xml", 0, randomAngle());
+						template = "actor|props/flora/reeds_pond_lush_a.xml";
 				}
 				if (i == 3) // ...water suroundings/bog
 				{
 					if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/water_log.xml", 0, randomAngle());
+						template = "actor|props/flora/water_log.xml";
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|geology/highland_c.xml", 0, randomAngle());
+						template = "actor|geology/highland_c.xml";
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/reeds_pond_lush_a.xml", 0, randomAngle());
+						template = "actor|props/flora/reeds_pond_lush_a.xml";
 				}
 				if (i == 4) // ...low height grass
 				{
 					if (randBool(propDensity / 800))
-						placeObject(x, y, "actor|props/flora/grass_field_flowering_tall.xml", 0, randomAngle());
+						template = "actor|props/flora/grass_field_flowering_tall.xml";
 					else if (randBool(propDensity / 400))
-						placeObject(x, y, "actor|geology/gray_rock1.xml", 0, randomAngle());
+						template = "actor|geology/gray_rock1.xml";
 					else if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/bush_tempe_sm_lush.xml", 0, randomAngle());
+						template = "actor|props/flora/bush_tempe_sm_lush.xml";
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/bush_tempe_b.xml", 0, randomAngle());
+						template = "actor|props/flora/bush_tempe_b.xml";
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/grass_soft_small_tall.xml", 0, randomAngle());
+						template = "actor|props/flora/grass_soft_small_tall.xml";
 				}
 				if (i == 5) // ...medium height grass
 				{
 					if (randBool(propDensity / 800))
-						placeObject(x, y, "actor|geology/decal_stone_medit_a.xml", 0, randomAngle());
+						template = "actor|geology/decal_stone_medit_a.xml";
 					else if (randBool(propDensity / 400))
-						placeObject(x, y, "actor|props/flora/decals_flowers_daisies.xml", 0, randomAngle());
+						template = "actor|props/flora/decals_flowers_daisies.xml";
 					else if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/bush_tempe_underbrush.xml", 0, randomAngle());
+						template = "actor|props/flora/bush_tempe_underbrush.xml";
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/grass_soft_small_tall.xml", 0, randomAngle());
+						template = "actor|props/flora/grass_soft_small_tall.xml";
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/grass_temp_field.xml", 0, randomAngle());
+						template = "actor|props/flora/grass_temp_field.xml";
 				}
 				if (i == 6) // ...high height grass
 				{
 					if (randBool(propDensity / 400))
-						placeObject(x, y, "actor|geology/stone_granite_boulder.xml", 0, randomAngle());
+						template = "actor|geology/stone_granite_boulder.xml";
 					else if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/foliagebush.xml", 0, randomAngle());
+						template = "actor|props/flora/foliagebush.xml";
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/bush_tempe_underbrush.xml", 0, randomAngle());
+						template = "actor|props/flora/bush_tempe_underbrush.xml";
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/grass_soft_small_tall.xml", 0, randomAngle());
+						template = "actor|props/flora/grass_soft_small_tall.xml";
 					else if (randBool(propDensity / 20))
-						placeObject(x, y, "actor|props/flora/ferns.xml", 0, randomAngle());
+						template = "actor|props/flora/ferns.xml";
 				}
 				if (i == 7) // ...forest border (with wood/food plants/deer/rabits)
 				{
 					if (randBool(propDensity / 400))
-						placeObject(x, y, "actor|geology/highland_c.xml", 0, randomAngle());
+						template = "actor|geology/highland_c.xml";
 					else if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|props/flora/bush_tempe_a.xml", 0, randomAngle());
+						template = "actor|props/flora/bush_tempe_a.xml";
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/ferns.xml", 0, randomAngle());
+						template = "actor|props/flora/ferns.xml";
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/grass_soft_tuft_a.xml", 0, randomAngle());
+						template = "actor|props/flora/grass_soft_tuft_a.xml";
 				}
 				if (i == 8) // ...woods
 				{
 					if (randBool(propDensity / 200))
-						placeObject(x, y, "actor|geology/highland2_moss.xml", 0, randomAngle());
+						template = "actor|geology/highland2_moss.xml";
 					else if (randBool(propDensity / 100))
-						placeObject(x, y, "actor|props/flora/grass_soft_tuft_a.xml", 0, randomAngle());
+						template = "actor|props/flora/grass_soft_tuft_a.xml";
 					else if (randBool(propDensity / 40))
-						placeObject(x, y, "actor|props/flora/ferns.xml", 0, randomAngle());
+						template = "actor|props/flora/ferns.xml";
 				}
+
+				if (template)
+					placeObject(position, template, 0, randomAngle());
+
 				break;
 			}
 			else
 				textureMinHeight = textueByHeight[i].upperHeightLimit;
 		}
 	}
-}
 
 Engine.SetProgress(90);
 
@@ -404,7 +407,7 @@ else
 					new Vector2D(-0.75 * resourceSpacing * Math.floor(resourceCount / 2), 0).rotate(-uAngle - Math.PI/2)
 				]);
 
-				placeObject(pos.x, pos.y, j % 2 ? "gaia/flora_tree_cypress" : "gaia/flora_bush_berry", 0, randomAngle());
+				placeObject(pos, j % 2 ? "gaia/flora_tree_cypress" : "gaia/flora_bush_berry", 0, randomAngle());
 			}
 		}
 	}

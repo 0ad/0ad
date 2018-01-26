@@ -304,14 +304,14 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				t = (diffH > 1.2) ? tGrassCliff : tGrassDry;
 				if (diffH < 0.5 && randBool(0.02))
-					placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrassDry, 0, randomAngle());
+					placeObject(Vector2D.add(position, new Vector2D(1, 1).mult(randFloat(0, 1))), aGrassDry, 0, randomAngle());
 			}
 			else if (grassNoise > 0.61)
 			{
 				t = (diffH > 1.2 ? tGrassRock : tGrassShrubs);
 			}
 			else if (diffH < 0.5 && randBool(0.02))
-				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randomAngle());
+				placeObject(Vector2D.add(position, new Vector2D(1, 1).mult(randFloat(0, 1))), aGrass, 0, randomAngle());
 		}
 
 		createTerrain(t).place(position);

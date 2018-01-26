@@ -53,15 +53,16 @@ let decorations = [
 
 function placeMine(point, centerEntity)
 {
-	placeObject(point.x, point.y, centerEntity, 0, randomAngle());
+	placeObject(point, centerEntity, 0, randomAngle());
 	let quantity = randIntInclusive(11, 23);
 	let dAngle = 2 * Math.PI / quantity;
+
 	for (let i = 0; i < quantity; ++i)
-	{
-		let angle = dAngle * randFloat(i, i + 1);
-		let dist = randFloat(2, 5);
-		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(decorations), 0, randomAngle());
-	}
+		placeObject(
+			Vector2D.add(point, new Vector2D(randFloat(2, 5), 0).rotate(-dAngle * randFloat(i, i + 1))),
+			pickRandom(decorations),
+			0,
+			randomAngle());
 }
 
 // Food, fences with domestic animals
@@ -122,7 +123,7 @@ let clGrove = g_Map.createTileClass();
 
 function placeGrove(point)
 {
-	placeObject(point.x, point.y, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randomAngle());
+	placeObject(point, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randomAngle());
 	let quantity = randIntInclusive(20, 30);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
@@ -133,7 +134,7 @@ function placeGrove(point)
 		if (i % 3 == 0)
 			objectList = groveActors;
 		let position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
-		placeObject(position.x, position.y, pickRandom(objectList), 0, randomAngle());
+		placeObject(position, pickRandom(objectList), 0, randomAngle());
 		createArea(
 			new ClumpPlacer(5, 1, 1, 1, position),
 			[
@@ -152,14 +153,14 @@ function placeCamp(point,
 	]
 )
 {
-	placeObject(point.x, point.y, centerEntity, 0, randomAngle());
+	placeObject(point, centerEntity, 0, randomAngle());
 	let quantity = randIntInclusive(5, 11);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
 		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(1, 3);
-		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(otherEntities), 0, randomAngle());
+		placeObject(Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle)), pickRandom(otherEntities), 0, randomAngle());
 	}
 }
 
@@ -184,7 +185,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 		if (i % 2 == 0)
 			objectList = groveActors;
 		let woodPosition = Vector2D.add(point, new Vector2D(randFloat(10, 15), 0).rotate(-angle));
-		placeObject(woodPosition.x, woodPosition.y, pickRandom(objectList), 0, randomAngle());
+		placeObject(woodPosition, pickRandom(objectList), 0, randomAngle());
 		createArea(
 			new ClumpPlacer(5, 1, 1, 1, woodPosition),
 			[
@@ -208,7 +209,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 	{
 		angle = currentAngle + randFloat(0, dAngle);
 		let berriesPosition = Vector2D.add(point, new Vector2D(randFloat(10, 15), 0).rotate(-angle));
-		placeObject(berriesPosition.x, berriesPosition.y, pickRandom(foodEntities), 0, randomAngle());
+		placeObject(berriesPosition, pickRandom(foodEntities), 0, randomAngle());
 		currentAngle += dAngle;
 	}
 }
@@ -413,7 +414,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 		g_Map.setTexture(point, texture);
 
 		if (actor)
-			placeObject(point.x + randFloat(0, 1), point.y + randFloat(0, 1), actor, 0, randomAngle());
+			placeObject(Vector2D.add(point, new Vector2D(randFloat(0, 1), randFloat(0, 1))), actor, 0, randomAngle());
 	}
 Engine.SetProgress(80);
 
@@ -423,25 +424,26 @@ if (isNomad())
 else
 	for (let p = 0; p < playerIDs.length; ++p)
 	{
-		let point = startLocations[p];
-		placeCivDefaultStartingEntities(point, playerIDs[p], true);
-		placeStartLocationResources(startLocations[p]);
+		let pos = new Vector2D(startLocations[p].x, startLocations[p].y);
+		placeCivDefaultStartingEntities(pos, playerIDs[p], true);
+		placeStartLocationResources(pos);
 	}
 
 log("Placing resources, farmsteads, groves and camps...");
 for (let i = 0; i < resourceSpots.length; ++i)
 {
+	let pos = new Vector2D(resourceSpots[i].x, resourceSpots[i].y);
 	let choice = i % 5;
 	if (choice == 0)
-		placeMine(resourceSpots[i], "gaia/geology_stonemine_temperate_formation");
+		placeMine(pos, "gaia/geology_stonemine_temperate_formation");
 	if (choice == 1)
-		placeMine(resourceSpots[i], "gaia/geology_metal_temperate_slabs");
+		placeMine(pos, "gaia/geology_metal_temperate_slabs");
 	if (choice == 2)
-		placeCustomFortress(resourceSpots[i].x, resourceSpots[i].y, pickRandom(fences), "other", 0, randomAngle());
+		placeCustomFortress(pos, pickRandom(fences), "other", 0, randomAngle());
 	if (choice == 3)
-		placeGrove(resourceSpots[i]);
+		placeGrove(pos);
 	if (choice == 4)
-		placeCamp(resourceSpots[i]);
+		placeCamp(pos);
 }
 
 g_Map.ExportMap();

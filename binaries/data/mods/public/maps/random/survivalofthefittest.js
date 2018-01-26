@@ -94,11 +94,11 @@ for (let  i = 0; i < numPlayers; ++i)
 	log("Placing treasure seeker woman...");
 	let femaleLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 3.5, 3).round();
 	addToClass(femaleLocation.x, femaleLocation.y, clWomen);
-	placeObject(femaleLocation.x, femaleLocation.y, oTreasureSeeker, playerIDs[i], playerAngle[i] + Math.PI);
+	placeObject(femaleLocation, oTreasureSeeker, playerIDs[i], playerAngle[i] + Math.PI);
 
 	log("Placing attacker spawn point....");
-	placeObject(attacker[i].x, attacker[i].y, aWaypointFlag, 0, Math.PI / 2);
-	placeObject(attacker[i].x, attacker[i].y, triggerPointAttacker, playerIDs[i], Math.PI / 2);
+	placeObject(attacker[i], aWaypointFlag, 0, Math.PI / 2);
+	placeObject(attacker[i], triggerPointAttacker, playerIDs[i], Math.PI / 2);
 
 	log("Preventing mountains in the area between player and attackers...");
 	addCivicCenterAreaToClass(playerPosition[i], clPlayer);

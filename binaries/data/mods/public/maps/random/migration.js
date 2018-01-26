@@ -87,7 +87,7 @@ for (let i = 0; i < numPlayers; ++i)
 		continue;
 
 	let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 2.6, 3);
-	placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
+	placeObject(dockLocation, oDock, playerIDs[i], playerAngle[i] + Math.PI);
 }
 Engine.SetProgress(10);
 

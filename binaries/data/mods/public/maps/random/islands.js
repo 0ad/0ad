@@ -84,7 +84,7 @@ if (!isNomad())
 			]);
 
 		let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , heightLand - 0.5, heightLand);
-		placeObject(dockLocation.x, dockLocation.y, oDock, playerIDs[i], playerAngle[i] + Math.PI);
+		placeObject(dockLocation, oDock, playerIDs[i], playerAngle[i] + Math.PI);
 	}
 }
 
