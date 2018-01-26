@@ -192,6 +192,22 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 		}
 	}
 
+	for (let evt of events.EntityRenamed)
+	{
+		if (!this.guardEnts.has(evt.entity))
+			continue;
+		for (let data of this.criticalEnts.values())
+		{
+			if (!data.guards.has(evt.entity))
+				continue;
+			data.guards.set(evt.newentity, data.guards.get(evt.entity));
+			data.guards.delete(evt.entity);
+			break;
+		}
+		this.guardEnts.set(evt.newentity, this.guardEnts.get(evt.entity));
+		this.guardEnts.delete(evt.entity);
+	}
+
 	// Check if new healers/guards need to be assigned to an ent
 	for (let evt of events.Destroy)
 	{
