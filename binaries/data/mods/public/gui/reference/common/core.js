@@ -93,14 +93,12 @@ function getTemplateListsFromUnit(templateName)
 {
 	if (!templateName || !Engine.TemplateExists(templateName))
 		return {};
+
 	let template = loadTemplate(templateName);
 
-	let templateLists = {
-		"structures": [],
-		"units": [],
-		"techs": []
-	};
+	let templateLists = loadProductionQueue(template);
 
+	templateLists.structures = [];
 	if (template.Builder && template.Builder.Entities._string)
 		for (let build of template.Builder.Entities._string.split(" "))
 		{
@@ -108,30 +106,6 @@ function getTemplateListsFromUnit(templateName)
 			if (Engine.TemplateExists(build) && templateLists.structures.indexOf(build) === -1)
 				templateLists.structures.push(build);
 		}
-
-	if (template.ProductionQueue)
-	{
-		if (template.ProductionQueue.Entities)
-			for (let build of template.ProductionQueue.Entities._string.split(" "))
-			{
-				build = build.replace(/\{(civ|native)\}/g, g_SelectedCiv);
-				if (Engine.TemplateExists(build) && templateLists.units.indexOf(build) === -1)
-					templateLists.units.push(build);
-			}
-
-		if (template.ProductionQueue.Technologies)
-			for (let research of template.ProductionQueue.Technologies._string.split(" "))
-			{
-				if (research.indexOf("{civ}") != -1)
-				{
-					let civResearch = research.replace("{civ}", g_SelectedCiv);
-					research = techDataExists(civResearch) ?
-					           civResearch : research.replace("{civ}", "generic");
-				}
-				if (templateLists.techs.indexOf(research) === -1)
-					templateLists.techs.push(research);
-			}
-	}
 
 	return templateLists;
 }
@@ -146,36 +120,10 @@ function getTemplateListsFromStructure(templateName)
 {
 	if (!templateName || !Engine.TemplateExists(templateName))
 		return {};
+
 	let template = loadTemplate(templateName);
 
-	let templateLists = {
-		"techs": [],
-		"units": []
-	};
-
-	if (template.ProductionQueue)
-	{
-		if (template.ProductionQueue.Entities && template.ProductionQueue.Entities._string)
-			for (let build of template.ProductionQueue.Entities._string.split(" "))
-			{
-				build = build.replace(/\{(civ|native)\}/g, g_SelectedCiv);
-				if (Engine.TemplateExists(build) && templateLists.units.indexOf(build) === -1)
-					templateLists.units.push(build);
-			}
-
-		if (template.ProductionQueue.Technologies && template.ProductionQueue.Technologies._string)
-			for (let research of template.ProductionQueue.Technologies._string.split(" "))
-			{
-				if (research.indexOf("{civ}") != -1)
-				{
-					let civResearch = research.replace("{civ}", g_SelectedCiv);
-					research = techDataExists(civResearch) ?
-					           civResearch : research.replace("{civ}", "generic");
-				}
-				if (templateLists.techs.indexOf(research) === -1)
-					templateLists.techs.push(research);
-			}
-	}
+	let templateLists = loadProductionQueue(template);
 
 	if (template.WallSet)
 		for (let wSegm in template.WallSet.Templates)
@@ -187,4 +135,41 @@ function getTemplateListsFromStructure(templateName)
 		}
 
 	return templateLists;
+}
+
+function loadProductionQueue(template)
+{
+	let production = {
+		"techs": [],
+		"units": []
+	};
+
+	if (!template.ProductionQueue)
+		return production;
+
+	if (template.ProductionQueue.Entities && template.ProductionQueue.Entities._string)
+		for (let templateName of template.ProductionQueue.Entities._string.split(" "))
+		{
+			templateName = templateName.replace(/\{(civ|native)\}/g, g_SelectedCiv);
+			if (Engine.TemplateExists(templateName))
+				production.units.push(templateName);
+		}
+
+	if (template.ProductionQueue.Technologies && template.ProductionQueue.Technologies._string)
+		for (let technologyName of template.ProductionQueue.Technologies._string.split(" "))
+		{
+			if (technologyName.indexOf("{civ}") != -1)
+			{
+				let civTechName = technologyName.replace("{civ}", g_SelectedCiv);
+				technologyName = techDataExists(civTechName) ? civTechName : technologyName.replace("{civ}", "generic");
+			}
+
+			if (isPairTech(technologyName))
+				for (let pairTechnologyName of loadTechnologyPair(technologyName).techs)
+					production.techs.push(pairTechnologyName);
+			else
+				production.techs.push(technologyName);
+		}
+
+	return production;
 }

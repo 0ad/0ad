@@ -81,8 +81,8 @@ function draw()
 					++p;
 				}
 
-				if (stru.production.technology[prod_pha])
-					for (let prod of stru.production.technology[prod_pha])
+				if (stru.production.techs[prod_pha])
+					for (let prod of stru.production.techs[prod_pha])
 					{
 						prod = clone(basename(prod).startsWith("phase") ?
 							g_ParsedData.phases[prod] :

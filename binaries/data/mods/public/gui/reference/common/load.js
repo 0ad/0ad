@@ -108,39 +108,7 @@ function loadUnit(templateName)
 
 	let template = loadTemplate(templateName);
 	let unit = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
-
-	if (template.ProductionQueue)
-	{
-		unit.production = {};
-		if (template.ProductionQueue.Entities)
-		{
-			unit.production.units = [];
-			for (let build of template.ProductionQueue.Entities._string.split(" "))
-			{
-				build = build.replace(/\{(civ|native)\}/g, g_SelectedCiv);
-				if (Engine.TemplateExists(build))
-					unit.production.units.push(build);
-			}
-		}
-		if (template.ProductionQueue.Technologies)
-		{
-			unit.production.techs = [];
-			for (let research of template.ProductionQueue.Technologies._string.split(" "))
-			{
-				if (research.indexOf("{civ}") != -1)
-				{
-					let civResearch = research.replace("{civ}", g_SelectedCiv);
-					research = techDataExists(civResearch) ?
-					           civResearch : research.replace("{civ}", "generic");
-				}
-				if (isPairTech(research))
-					for (let tech of loadTechnologyPair(research).techs)
-						unit.production.techs.push(tech);
-				else
-					unit.production.techs.push(research);
-			}
-		}
-	}
+	unit.production = loadProductionQueue(template);
 
 	if (template.Builder && template.Builder.Entities._string)
 	{
@@ -173,37 +141,7 @@ function loadStructure(templateName)
 	let template = loadTemplate(templateName);
 	let structure = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
 
-	structure.production = {
-		"technology": [],
-		"units": []
-	};
-
-	if (template.ProductionQueue)
-	{
-		if (template.ProductionQueue.Entities && template.ProductionQueue.Entities._string)
-			for (let build of template.ProductionQueue.Entities._string.split(" "))
-			{
-				build = build.replace(/\{(civ|native)\}/g, g_SelectedCiv);
-				if (Engine.TemplateExists(build))
-					structure.production.units.push(build);
-			}
-
-		if (template.ProductionQueue.Technologies && template.ProductionQueue.Technologies._string)
-			for (let research of template.ProductionQueue.Technologies._string.split(" "))
-			{
-				if (research.indexOf("{civ}") != -1)
-				{
-					let civResearch = research.replace("{civ}", g_SelectedCiv);
-					research = techDataExists(civResearch) ?
-					           civResearch : research.replace("{civ}", "generic");
-				}
-				if (isPairTech(research))
-					for (let tech of loadTechnologyPair(research).techs)
-						structure.production.technology.push(tech);
-				else
-					structure.production.technology.push(research);
-			}
-	}
+	structure.production = loadProductionQueue(template);
 
 	if (structure.upgrades)
 		structure.upgrades = getActualUpgradeData(structure.upgrades);
@@ -234,8 +172,8 @@ function loadStructure(templateName)
 			let wPart = loadStructure(structure.wallSet.templates[wSegm]);
 			structure.wallset[wSegm] = wPart;
 
-			for (let research of wPart.production.technology)
-				structure.production.technology.push(research);
+			for (let research of wPart.production.techs)
+				structure.production.techs.push(research);
 
 			if (wPart.upgrades)
 				structure.upgrades = structure.upgrades.concat(wPart.upgrades);
