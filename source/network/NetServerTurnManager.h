@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "ps/CStr.h"
 
 class CNetServerWorker;
+class CNetServerSession;
 
 /**
  * The server-side counterpart to CNetClientTurnManager.
@@ -37,9 +38,9 @@ class CNetServerTurnManager
 public:
 	CNetServerTurnManager(CNetServerWorker& server);
 
-	void NotifyFinishedClientCommands(int client, u32 turn);
+	void NotifyFinishedClientCommands(CNetServerSession& session, u32 turn);
 
-	void NotifyFinishedClientUpdate(int client, const CStrW& playername, u32 turn, const CStr& hash);
+	void NotifyFinishedClientUpdate(CNetServerSession& session, u32 turn, const CStr& hash);
 
 	/**
 	 * Inform the turn manager of a new client who will be sending commands.
