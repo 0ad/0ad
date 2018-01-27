@@ -108,7 +108,7 @@
 
 			<object name="hostSTUNWrapper">
 				<object name="useSTUN" size="120 116 152 146" type="checkbox" style="ModernTickBox">
-					<action on="Press">saveSTUNSetting(String(this.checked));</action>
+					<action on="Press">saveSettingAndWriteToUserConfig("lobby.stun.enabled", String(this.checked));</action>
 				</object>
 				<object type="text" size="146 106 100% 146" style="ModernLeftLabelText">
 					<translatableAttribute id="caption">Use STUN to work around firewalls</translatableAttribute>

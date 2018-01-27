@@ -1280,8 +1280,7 @@ function recalculateStatusBarDisplay(remove = false)
 function toggleConfigBool(configName)
 {
 	let enabled = Engine.ConfigDB_GetValue("user", configName) != "true";
-	Engine.ConfigDB_CreateValue("user", configName, String(enabled));
-	Engine.ConfigDB_WriteValueToFile("user", configName, String(enabled), "config/user.cfg");
+	saveSettingAndWriteToUserConfig(configName, String(enabled));
 	return enabled;
 }
 

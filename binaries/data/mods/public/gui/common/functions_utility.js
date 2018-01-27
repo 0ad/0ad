@@ -8,6 +8,15 @@ var g_SoundNotifications = {
 };
 
 /**
+ * Save setting for current instance and write setting to the user config file.
+ */
+function saveSettingAndWriteToUserConfig(setting, value)
+{
+	Engine.ConfigDB_CreateValue("user", setting, value);
+	Engine.ConfigDB_WriteValueToFile("user", setting, value, "config/user.cfg");
+}
+
+/**
  * Returns translated history and gameplay data of all civs, optionally including a mock gaia civ.
  */
 function loadCivData(selectableOnly, gaia)

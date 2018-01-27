@@ -783,10 +783,7 @@ function toggleBuddy()
 
 	updateToggleBuddy();
 
-	// Don't save empty strings to the config file
-	let buddies = g_Buddies.filter(nick => nick).join(g_BuddyListDelimiter) || g_BuddyListDelimiter;
-	Engine.ConfigDB_CreateValue("user", "lobby.buddies", buddies);
-	Engine.ConfigDB_WriteValueToFile("user", "lobby.buddies", buddies, "config/user.cfg");
+	saveSettingAndWriteToUserConfig("lobby.buddies", g_Buddies.filter(nick => nick).join(g_BuddyListDelimiter) || g_BuddyListDelimiter);
 
 	updatePlayerList();
 	updateGameList();

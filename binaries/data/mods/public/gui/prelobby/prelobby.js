@@ -191,15 +191,12 @@ function onTick()
 		{
 			Engine.PopGuiPage();
 			Engine.SwitchGuiPage("page_lobby.xml", { "dialog": false });
-			Engine.ConfigDB_CreateValue("user", "playername.multiplayer", username);
-			Engine.ConfigDB_WriteValueToFile("user", "playername.multiplayer", username, "config/user.cfg");
-			Engine.ConfigDB_CreateValue("user", "lobby.login", username);
-			Engine.ConfigDB_WriteValueToFile("user", "lobby.login", username, "config/user.cfg");
+			saveSettingAndWriteToUserConfig("playername.multiplayer", username);
+			saveSettingAndWriteToUserConfig("lobby.login", username);
 			// We only store the encrypted password, so make sure to re-encrypt it if changed before saving.
 			if (password != g_EncryptedPassword.substring(0, 10))
 				g_EncryptedPassword = Engine.EncryptPassword(password, username);
-			Engine.ConfigDB_CreateValue("user", "lobby.password", g_EncryptedPassword);
-			Engine.ConfigDB_WriteValueToFile("user", "lobby.password", g_EncryptedPassword, "config/user.cfg");
+			saveSettingAndWriteToUserConfig("lobby.password", g_EncryptedPassword);
 			break;
 		}
 		}
