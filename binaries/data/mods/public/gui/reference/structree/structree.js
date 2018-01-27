@@ -97,12 +97,12 @@ function selectCiv(civCode)
 
 		// If this building is shared with another civ,
 		// it may have already gone through the grouping process already
-		if (!Array.isArray(structInfo.production.technology))
+		if (!Array.isArray(structInfo.production.techs))
 			continue;
 
 		// Sort techs by phase
 		let newProdTech = {};
-		for (let prod of structInfo.production.technology)
+		for (let prod of structInfo.production.techs)
 		{
 			let phase = getPhaseOfTechnology(prod);
 			if (phase === false)
@@ -135,7 +135,7 @@ function selectCiv(civCode)
 		}
 
 		g_ParsedData.structures[structCode].production = {
-			"technology": newProdTech,
+			"techs": newProdTech,
 			"units": newProdUnits
 		};
 
@@ -170,7 +170,7 @@ function selectCiv(civCode)
 	for (let unitCode of templateLists.units.keys())
 	{
 		let unitTemplate = g_ParsedData.units[unitCode];
-		if ((!unitTemplate.production || !Object.keys(unitTemplate.production).length) && !unitTemplate.upgrades)
+		if (!unitTemplate.production.units.length && !unitTemplate.production.techs.length && !unitTemplate.upgrades)
 			continue;
 
 		trainerList.push(unitCode);

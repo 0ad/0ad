@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -1096,13 +1096,13 @@ bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
 	else if (message->GetType() == (uint)NMT_SYNC_CHECK)
 	{
 		CSyncCheckMessage* syncMessage = static_cast<CSyncCheckMessage*> (message);
-		server.m_ServerTurnManager->NotifyFinishedClientUpdate(session->GetHostID(), session->GetUserName(), syncMessage->m_Turn, syncMessage->m_Hash);
+		server.m_ServerTurnManager->NotifyFinishedClientUpdate(*session, syncMessage->m_Turn, syncMessage->m_Hash);
 	}
 	else if (message->GetType() == (uint)NMT_END_COMMAND_BATCH)
 	{
 		// The turn-length field is ignored
 		CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (message);
-		server.m_ServerTurnManager->NotifyFinishedClientCommands(session->GetHostID(), endMessage->m_Turn);
+		server.m_ServerTurnManager->NotifyFinishedClientCommands(*session, endMessage->m_Turn);
 	}
 
 	return true;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,9 @@
 #include "NetMessage.h"
 #include "NetServerTurnManager.h"
 #include "NetServer.h"
+#include "NetSession.h"
 
+#include "ps/CLogger.h"
 #include "simulation2/system/TurnManager.h"
 
 #if 0
@@ -38,15 +40,27 @@ CNetServerTurnManager::CNetServerTurnManager(CNetServerWorker& server)
 	m_SavedTurnLengths.push_back(0);
 }
 
-void CNetServerTurnManager::NotifyFinishedClientCommands(int client, u32 turn)
+void CNetServerTurnManager::NotifyFinishedClientCommands(CNetServerSession& session, u32 turn)
 {
+	int client = session.GetHostID();
+
 	NETSERVERTURN_LOG("NotifyFinishedClientCommands(client=%d, turn=%d)\n", client, turn);
 
 	// Must be a client we've already heard of
 	ENSURE(m_ClientsReady.find(client) != m_ClientsReady.end());
 
 	// Clients must advance one turn at a time
-	ENSURE(turn == m_ClientsReady[client] + 1);
+	if (turn != m_ClientsReady[client] + 1)
+	{
+		LOGERROR("NotifyFinishedClientCommands: Client %d (%s) is ready for turn %d, but expected %d",
+			client,
+			utf8_from_wstring(session.GetUserName()).c_str(),
+			turn,
+			m_ClientsReady[client] + 1);
+
+		session.Disconnect(NDR_UNKNOWN);
+	}
+
 	m_ClientsReady[client] = turn;
 
 	// Check whether this was the final client to become ready
@@ -77,10 +91,24 @@ void CNetServerTurnManager::CheckClientsReady()
 	m_SavedTurnLengths.push_back(m_TurnLength);
 }
 
-void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, const CStrW& playername, u32 turn, const CStr& hash)
+void CNetServerTurnManager::NotifyFinishedClientUpdate(CNetServerSession& session, u32 turn, const CStr& hash)
 {
+
+	int client = session.GetHostID();
+	const CStrW& playername = session.GetUserName();
+
 	// Clients must advance one turn at a time
-	ENSURE(turn == m_ClientsSimulated[client] + 1);
+	if (turn != m_ClientsSimulated[client] + 1)
+	{
+		LOGERROR("NotifyFinishedClientUpdate: Client %d (%s) is ready for turn %d, but expected %d",
+			client,
+			utf8_from_wstring(playername).c_str(),
+			turn,
+			m_ClientsReady[client] + 1);
+
+		session.Disconnect(NDR_UNKNOWN);
+	}
+
 	m_ClientsSimulated[client] = turn;
 
 	// Check for OOS only if in sync
