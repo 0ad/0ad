@@ -276,16 +276,16 @@ for (let mapX = 0; mapX < mapSize; ++mapX)
 		createTerrain(terrain).place(position);
 
 		if (terrain == tCliffs || terrain == tSteepCliffs)
-			addToClass(mapX, mapZ, clCliffs);
+			clCliffs.add(position);
 	}
 
 function getCosricaSardiniaTerrain(mapX, mapZ)
 {
 	let position = new Vector2D(mapX, mapZ);
-	let isWater = getTileClass(clWater).countMembersInRadius(mapX, mapZ, 3);
-	let isShore = getTileClass(clShore).countMembersInRadius(mapX, mapZ, 2);
-	let isPassage = getTileClass(clPassage).countMembersInRadius(mapX, mapZ, 2);
-	let isSettlement = getTileClass(clSettlement).countMembersInRadius(mapX, mapZ, 2);
+	let isWater = clWater.countMembersInRadius(mapX, mapZ, 3);
+	let isShore = clShore.countMembersInRadius(mapX, mapZ, 2);
+	let isPassage = clPassage.countMembersInRadius(mapX, mapZ, 2);
+	let isSettlement = clSettlement.countMembersInRadius(mapX, mapZ, 2);
 
 	if (isSettlement)
 		return undefined;

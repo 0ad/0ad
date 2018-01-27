@@ -381,15 +381,15 @@ paintRiver({
 		// Distinguish left and right shoreline
 		if (0 < height && height < 1 &&
 		    position.y > ShorelineDistance && position.y < mapSize - ShorelineDistance)
-			addToClass(position.x, position.y, clShore[position.x < mapCenter.x ? 0 : 1]);
+			clShore[position.x < mapCenter.x ? 0 : 1].add(position);
 	},
 	"landFunc": (position, shoreDist1, shoreDist2) => {
 
 		if (shoreDist1 > 0)
-			addToClass(position.x, position.y, clLand[0]);
+			clLand[0].add(position);
 
 		if (shoreDist2 < 0)
-			addToClass(position.x, position.y, clLand[1]);
+			clLand[1].add(position);
 	}
 });
 Engine.SetProgress(30);
@@ -712,7 +712,7 @@ for (let i = 0; i < 2; ++i)
 		1);
 
 log("Creating patrol points for land attackers...");
-addToClass(mapCenter.x, mapCenter.y, clMiddle);
+clMiddle.add(mapCenter);
 
 log("Creating triggerpoint to allow the triggerscript to determine the river direction...");
 placeObject(Vector2D.add(mapCenter, new Vector2D(0, 1).rotate(startAngle)), triggerPointRiverDirection, 0, 0);

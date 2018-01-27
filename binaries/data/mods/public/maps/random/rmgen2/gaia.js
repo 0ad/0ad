@@ -996,7 +996,7 @@ function unreachableBluff(bb, corners, baseLine, endLine)
 function removeBluff(points)
 {
 	for (let point of points)
-		addToClass(point.x, point.y, g_TileClasses.mountain);
+		g_TileClasses.mountain.add(point);
 }
 
 /**

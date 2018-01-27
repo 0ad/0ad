@@ -189,14 +189,6 @@ function placeObject(position, type, player, angle)
 		g_Map.addObject(new Entity(type, player, position.x, position.y, angle));
 }
 
-function getTileClass(id)
-{
-	if (!g_Map.validClass(id))
-		return undefined;
-
-	return g_Map.tileClasses[id];
-}
-
 /**
  * Constructs a new Area shaped by the Placer meeting the Constraints and calls the Painters there.
  * Supports both Centered and Non-Centered Placers.
@@ -248,28 +240,6 @@ function unPaintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
 function createObjectGroup(group, player, constraints)
 {
 	return group.place(player, new AndConstraint(constraints));
-}
-
-/**
- * Add point to given class by id
- */
-function addToClass(x, z, id)
-{
-	let tileClass = getTileClass(id);
-
-	if (tileClass !== null)
-		tileClass.add(x, z);
-}
-
-/**
- * Remove point from the given class by id
- */
-function removeFromClass(x, z, id)
-{
-	let tileClass = getTileClass(id);
-
-	if (tileClass !== null)
-		tileClass.remove(x, z);
 }
 
 /**

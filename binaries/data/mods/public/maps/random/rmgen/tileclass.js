@@ -60,44 +60,36 @@ RangeOp.prototype.get = function(start, end)
 	return ret;
 };
 
-//////////////////////////////////////////////////////////////////////
-//	TileClass
-//
-//	Class for representing terrain types and containing all the tiles
-//		within that type
-//
-//////////////////////////////////////////////////////////////////////
-
-function TileClass(size, id)
+/**
+ * Class that can be tagged to any tile. Can be used to constrain placers and entity placement to given areas.
+ */
+function TileClass(size)
 {
-	this.id = id;
 	this.size = size;
 	this.inclusionCount = [];
 	this.rangeCount = [];
 
-	for (var i=0; i < size; ++i)
+	for (let i=0; i < size; ++i)
 	{
 		this.inclusionCount[i] = new Int16Array(size); //int16
 		this.rangeCount[i] = new RangeOp(size);
 	}
 }
 
-TileClass.prototype.add = function(x, z)
+TileClass.prototype.add = function(position)
 {
-	let position = new Vector2D(x, z);
 	if (!this.inclusionCount[position.x][position.y] && g_Map.validTile(position))
-		this.rangeCount[z].add(x, 1);
+		this.rangeCount[position.y].add(position.x, 1);
 
-	this.inclusionCount[x][z]++;
+	++this.inclusionCount[position.x][position.y];
 };
 
-TileClass.prototype.remove = function(x, z)
+TileClass.prototype.remove = function(position)
 {
-	this.inclusionCount[x][z]--;
-	if(!this.inclusionCount[x][z])
-	{
-		this.rangeCount[z].add(x, -1);
-	}
+	--this.inclusionCount[position.x][position.y];
+
+	if (!this.inclusionCount[position.x][position.y])
+		this.rangeCount[position.y].add(position.x, -1);
 };
 
 TileClass.prototype.countInRadius = function(cx, cy, radius, returnMembers)

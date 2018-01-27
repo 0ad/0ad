@@ -189,15 +189,9 @@ function defaultPlayerBaseRadius()
  */
 function addCivicCenterAreaToClass(position, tileClass)
 {
-	let pos = position.clone().round();
-
-	addToClass(pos.x, pos.y, tileClass);
-
-	addToClass(pos.x, pos.y + 5, tileClass);
-	addToClass(pos.x, pos.y - 5, tileClass);
-
-	addToClass(pos.x + 5, pos.y, tileClass);
-	addToClass(pos.x - 5, pos.y, tileClass);
+	createArea(
+		new ClumpPlacer(diskArea(5), 1, 1, Infinity, position),
+		new TileClassPainter(tileClass));
 }
 
 /**
@@ -329,7 +323,7 @@ function placePlayerBaseMines(args)
 			if (args.types[i].type && args.types[i].type == "stone_formation")
 			{
 				createStoneMineFormation(pos[i], args.types[i].template, args.types[i].terrain);
-				addToClass(pos[i].x, pos[i].y, args.BaseResourceClass);
+				args.BaseResourceClass.add(pos[i]);
 				continue;
 			}
 

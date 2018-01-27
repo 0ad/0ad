@@ -308,7 +308,7 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 				createObjectGroup(group, 0);
 			}
 
-			if (getTileClass(clPassage).countMembersInRadius(sandx, sandz, 2) > 0)
+			if (clPassage.countMembersInRadius(sandx, sandz, 2))
 			{
 				if (randBool(0.4))
 				{

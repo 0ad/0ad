@@ -145,7 +145,7 @@ paintRiver({
 	"meanderLong": 50,
 	"waterFunc": (position, height, riverFraction) => {
 
-		addToClass(position.x, position.y, clWater);
+		clWater.add(position);
 		createTerrain(tShore).place(position);
 
 		// Place river bushes
@@ -165,7 +165,7 @@ paintRiver({
 			if (riv.left < +shoreDist1 && +shoreDist1 < riv.right ||
 			    riv.left < -shoreDist2 && -shoreDist2 < riv.right)
 			{
-				addToClass(position.x, position.y, riv.tileClass);
+				riv.tileClass.add(position);
 
 				if (riv.terrain)
 					createTerrain(riv.terrain).place(position);

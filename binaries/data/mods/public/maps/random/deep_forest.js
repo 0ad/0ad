@@ -148,7 +148,7 @@ Engine.SetProgress(60);
 
 log("Placing temple...");
 placeObject(mapCenter, templateTemple, 0, randomAngle());
-addToClass(mapCenter.x, mapCenter.y, clBaseResource);
+clBaseResource.add(mapCenter);
 
 log("Creating central mountain...");
 createArea(
