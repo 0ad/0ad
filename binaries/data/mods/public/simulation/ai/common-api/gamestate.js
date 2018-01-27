@@ -19,8 +19,7 @@ m.GameState.prototype.init = function(SharedScript, state, player)
 	this.entities = SharedScript.entities;
 	this.player = player;
 	this.playerData = SharedScript.playersData[this.player];
-	this.gameType = SharedScript.gameType;
-	this.victoryConditions = new Set([this.gameType]);
+	this.victoryConditions = SharedScript.victoryConditions;
 	this.alliedVictory = SharedScript.alliedVictory;
 	this.ceasefireActive = SharedScript.ceasefireActive;
 	this.ceasefireTimeRemaining = SharedScript.ceasefireTimeRemaining;
@@ -127,11 +126,6 @@ m.GameState.prototype.getBarterPrices = function()
 m.GameState.prototype.getVictoryConditions = function()
 {
 	return this.victoryConditions;
-};
-
-m.GameState.prototype.getGameType = function()
-{
-	return this.gameType;
 };
 
 m.GameState.prototype.getAlliedVictory = function()
