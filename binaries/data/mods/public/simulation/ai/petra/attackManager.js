@@ -455,7 +455,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 
 	if (gameState.getVictoryConditions().has("capture_the_relic"))
 		if (!enemyPlayer || randBool())
-			enemyPlayer = this.getWonderEnemyPlayer(gameState) || enemyPlayer;
+			enemyPlayer = this.getRelicEnemyPlayer(gameState) || enemyPlayer;
 
 	if (enemyPlayer)
 		return enemyPlayer;
