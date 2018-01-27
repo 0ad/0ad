@@ -3,21 +3,30 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+      <props>
+        <prop actor="props/units/weapons/blades/spear_blade.xml" attachpoint="blade"/>
+      </props>
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="spear-a">
-      <mesh>props/weap_spear_a.dae</mesh>
+    <variant frequency="1" name="spear-ball-darkgold">
+      <mesh>props/weap_shaft_wood_a.dae</mesh>
     </variant>
-    <variant frequency="1" name="spear-b">
-      <mesh>props/weap_spear_b.dae</mesh>
+    <variant frequency="1" name="darksilver">
+      <mesh>props/weap_shaft_wood_b.dae</mesh>
     </variant>
-    <variant frequency="1" name="spear-d">
-      <mesh>props/weap_spear_d.dae</mesh>
+    <variant frequency="1" name="lightgold">
+      <mesh>props/weap_shaft_wood_c.dae</mesh>
     </variant>
-    <variant frequency="1" name="spear-e">
-      <mesh>props/weap_spear_e.dae</mesh>
+    <variant frequency="1" name="medsilver">
+      <mesh>props/weap_shaft_wood_d.dae</mesh>
+    </variant>
+    <variant frequency="1" name="medgold">
+      <mesh>props/weap_shaft_wood_e.dae</mesh>
     </variant>
   </group>
+  <material>basic_trans.xml</material>
 </actor>

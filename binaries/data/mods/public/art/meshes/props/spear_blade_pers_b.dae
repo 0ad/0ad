@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2018-01-21T15:10:38</created>
+    <modified>2018-01-21T15:10:38</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Blade-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.2597955 0.2597955 0.2597955 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">1 1 1 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Blade-material" name="Blade">
+      <instance_effect url="#Blade-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Plano_022-mesh" name="Plano.022">
+      <mesh>
+        <source id="Plano_022-mesh-positions">
+          <float_array id="Plano_022-mesh-positions-array" count="63">-0.006129086 -0.01867485 -0.01114219 0.01586401 -0.01152938 -0.01114219 -0.006129086 0.01867485 -0.01114219 0.01586401 0.01152938 -0.01114219 -0.01968061 0 -0.01114219 -0.002956449 -0.06729179 0.0415669 0.007573366 -0.04154431 0.0415669 -0.002956449 0.06729185 0.0415669 0.007573366 0.04154431 0.0415669 -0.009444653 0 0.0415669 -0.004506409 -0.06306397 0.1696554 0.008260488 -0.03893411 0.1696554 -0.004506409 0.06306397 0.1696554 0.008260488 0.03893411 0.1696554 -0.01059353 0 0.1696554 -4.21728e-5 0 0.6113873 -0.003738284 0.0478155 0.302415 0.006253182 -0.02952009 0.302415 0.006253182 0.02952009 0.302415 -0.008115172 0 0.302415 -0.003738284 -0.0478155 0.302415</float_array>
+          <technique_common>
+            <accessor source="#Plano_022-mesh-positions-array" count="21" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano_022-mesh-normals">
+          <float_array id="Plano_022-mesh-normals-array" count="63">-0.9999863 0 0.005249261 -0.1916318 0.9800111 0.05343961 -0.1146588 0.9505363 -0.2886766 0.7097798 -0.3226466 -0.6261883 0.9574508 0.2659755 -0.1120057 0.9574508 -0.2659755 -0.1120057 -0.3749929 0.6143877 -0.6941961 0.7097798 0.3226466 -0.6261883 -0.3749929 -0.6143877 -0.6941961 -0.8520082 0 -0.5235286 -0.1146588 -0.9505363 -0.2886766 0.9695277 -0.2444267 0.01648026 0.9678446 0.2486676 0.03796541 0.9678446 -0.2486676 0.03796541 -0.1916318 -0.9800111 0.05343961 0.9695277 0.2444267 0.01648026 -0.9999915 0 0.004120051 -0.2017897 0.9707086 0.1304064 -0.2017897 -0.9707086 0.1304064 -0.9997498 0 0.02237057 0.00125128 0 0.9999993</float_array>
+          <technique_common>
+            <accessor source="#Plano_022-mesh-normals-array" count="21" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano_022-mesh-map-0">
+          <float_array id="Plano_022-mesh-map-0-array" count="228">0.9867519 0.8005589 0.9553011 0.8158903 0.9867519 0.8169181 0.9996941 0.7960294 0.9867519 0.8168801 0.9867519 0.7842376 0.9996941 0.8052781 0.9867519 0.8168801 0.9996941 0.8050884 0.9996941 0.7958396 0.9867519 0.8005589 0.9996941 0.8005589 0.9996941 0.8052781 0.9867519 0.8005589 0.9867519 0.8169181 0.9996941 0.7958396 0.9867519 0.7842376 0.9867519 0.7841996 0.9553011 0.7852631 0.9227033 0.8121563 0.9227033 0.7889615 0.9867519 0.7842376 0.9553011 0.7852274 0.9867519 0.7841996 0.9867519 0.8168801 0.9553011 0.7852631 0.9867519 0.7842376 0.9867519 0.8168801 0.9553011 0.8158903 0.9553011 0.8158547 0.9867519 0.8005589 0.9553011 0.7852274 0.9553011 0.8005589 0.9553011 0.8158547 0.9227033 0.8121832 0.9227033 0.8121563 0.9553011 0.8005589 0.9227033 0.7889345 0.9227033 0.8005589 0.9553011 0.8005589 0.9227033 0.8121832 0.9553011 0.8158903 0.9553011 0.7852631 0.9227033 0.7889345 0.9553011 0.7852274 0.9227033 0.8005589 0.9227033 0.7889345 0.8468384 0.8005589 0.9227033 0.7889615 0.9227033 0.8121563 0.8468384 0.8005589 0.9227033 0.8121832 0.9227033 0.8005589 0.8468384 0.8005589 0.9227033 0.7889345 0.9227033 0.7889615 0.8468384 0.8005589 0.9227033 0.8121563 0.9227033 0.8121832 0.8468384 0.8005589 0.9996941 0.8052781 0.9996941 0.7960294 0.9996941 0.8005589 0.9867519 0.8005589 0.9553011 0.8005589 0.9553011 0.8158903 0.9996941 0.7960294 0.9996941 0.8050884 0.9867519 0.8168801 0.9996941 0.8052781 0.9867519 0.8169181 0.9867519 0.8168801 0.9996941 0.7958396 0.9867519 0.7841996 0.9867519 0.8005589 0.9996941 0.8052781 0.9996941 0.8005589 0.9867519 0.8005589 0.9996941 0.7958396 0.9996941 0.7960294 0.9867519 0.7842376 0.9553011 0.7852631 0.9553011 0.8158547 0.9227033 0.8121563 0.9867519 0.7842376 0.9553011 0.7852631 0.9553011 0.7852274 0.9867519 0.8168801 0.9553011 0.8158547 0.9553011 0.7852631 0.9867519 0.8168801 0.9867519 0.8169181 0.9553011 0.8158903 0.9867519 0.8005589 0.9867519 0.7841996 0.9553011 0.7852274 0.9553011 0.8158547 0.9553011 0.8158903 0.9227033 0.8121832 0.9553011 0.8005589 0.9553011 0.7852274 0.9227033 0.7889345 0.9553011 0.8005589 0.9227033 0.8005589 0.9227033 0.8121832 0.9553011 0.7852631 0.9227033 0.7889615 0.9227033 0.7889345 0.9996941 0.7958396 0.9996941 0.8005589 0.9996941 0.7960294 0.9996941 0.8052781 0.9996941 0.8050884 0.9996941 0.7960294</float_array>
+          <technique_common>
+            <accessor source="#Plano_022-mesh-map-0-array" count="114" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plano_022-mesh-vertices">
+          <input semantic="POSITION" source="#Plano_022-mesh-positions"/>
+        </vertices>
+        <triangles material="Blade-material" count="38">
+          <input semantic="VERTEX" source="#Plano_022-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plano_022-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plano_022-mesh-map-0" offset="2" set="0"/>
+          <p>9 0 0 12 1 1 7 2 2 1 3 3 8 4 4 6 5 5 2 6 6 8 4 7 3 7 8 0 8 9 9 0 10 4 9 11 2 6 12 9 0 13 7 2 14 0 8 15 6 5 16 5 10 17 11 11 18 18 12 19 17 13 20 6 5 21 10 14 22 5 10 23 8 4 24 11 11 25 6 5 26 8 4 27 12 1 28 13 15 29 9 0 30 10 14 31 14 16 32 13 15 33 16 17 34 18 12 35 14 16 36 20 18 37 19 19 38 14 16 39 16 17 40 12 1 41 11 11 42 20 18 43 10 14 44 19 19 45 20 18 46 15 20 47 17 13 48 18 12 49 15 20 50 16 17 51 19 19 52 15 20 53 20 18 54 17 13 55 15 20 56 18 12 57 16 17 58 15 20 59 2 6 60 1 3 61 4 9 62 9 0 63 14 16 64 12 1 65 1 3 66 3 7 67 8 4 68 2 6 69 7 2 70 8 4 71 0 8 72 5 10 73 9 0 74 2 6 75 4 9 76 9 0 77 0 8 78 1 3 79 6 5 80 11 11 81 13 15 82 18 12 83 6 5 84 11 11 85 10 14 86 8 4 87 13 15 88 11 11 89 8 4 90 7 2 91 12 1 92 9 0 93 5 10 94 10 14 95 13 15 96 12 1 97 16 17 98 14 16 99 10 14 100 20 18 101 14 16 102 19 19 103 16 17 104 11 11 105 17 13 106 20 18 107 0 8 108 4 9 109 1 3 110 2 6 111 3 7 112 1 3 113</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Pers_blade_b" name="Pers_blade_b" type="NODE">
+        <matrix sid="transform">1.6 0 0 0 0 1.6 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Plano_022-mesh" name="Pers_blade_b">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Blade-material" target="#Blade-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <extra>
+          <technique profile="blender">
+            <Copiar_posición_constraint>
+              <type sid="type" type="int">9</type>
+              <enforce sid="enforce" type="float">1</enforce>
+              <flag sid="flag" type="int">512</flag>
+              <headtail sid="headtail" type="float">0</headtail>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <own_space sid="own_space" type="int">0</own_space>
+              <rot_error sid="rot_error" type="float">0</rot_error>
+              <tar_space sid="tar_space" type="int">0</tar_space>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <target_id sid="target_id" type="string">prop-blade</target_id>
+            </Copiar_posición_constraint>
+            <Copiar_rotación_constraint>
+              <type sid="type" type="int">8</type>
+              <enforce sid="enforce" type="float">1</enforce>
+              <flag sid="flag" type="int">528</flag>
+              <headtail sid="headtail" type="float">0</headtail>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <own_space sid="own_space" type="int">0</own_space>
+              <rot_error sid="rot_error" type="float">0</rot_error>
+              <tar_space sid="tar_space" type="int">0</tar_space>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <target_id sid="target_id" type="string">prop-blade</target_id>
+            </Copiar_rotación_constraint>
+          </technique>
+        </extra>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2018-01-20T23:21:10</created>
+    <modified>2018-01-20T23:21:10</modified>
+    <unit name="centimeter" meter="0.01"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects/>
+  <library_geometries>
+    <geometry id="Plano_001-mesh" name="Plano.001">
+      <mesh>
+        <source id="Plano_001-mesh-positions">
+          <float_array id="Plano_001-mesh-positions-array" count="48">-0.005321741 -0.01603645 0.3302206 0.0141353 -0.00950241 0.3302206 -0.005321741 0.01603716 0.3302206 0.0141353 0.009503066 0.3302206 -0.01722145 3.44969e-7 0.3302206 -0.005305707 -0.01603996 -0.7492403 0.01409369 -0.009504675 -0.7492403 -0.005305707 0.01603966 -0.7492403 0.01409369 0.009504377 -0.7492403 -0.01717013 -1.26453e-7 -0.7492403 -0.005321323 -0.01603734 -1.647833 0.01413577 -0.009503245 -1.647833 -0.005321323 0.01603627 -1.647833 0.01413577 0.009502232 -1.647833 -0.01722097 -5.1878e-7 -1.647833 8.11331e-5 -6.93913e-7 -2.04894</float_array>
+          <technique_common>
+            <accessor source="#Plano_001-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano_001-mesh-normals">
+          <float_array id="Plano_001-mesh-normals-array" count="48">-0.2996399 0.9538241 -0.02087527 -1 0 0 -0.2997917 0.9540048 0 -0.2405809 -0.7663309 0.5956994 0.8121654 -0.5834273 0 0.6517507 -0.4686318 0.5963267 -0.2405809 0.7663309 0.5956994 -0.8041774 0 0.5943893 0.8121654 0.5834273 0 0.6517682 0.4686225 0.5963148 0.8118442 -0.5834987 -0.02093625 3.05185e-4 1.22074e-4 -1 0.8118442 0.5834987 -0.02093625 -0.2996399 -0.9538241 -0.02087527 -0.2997917 -0.9540048 0 -0.9997724 0 -0.02133274</float_array>
+          <technique_common>
+            <accessor source="#Plano_001-mesh-normals-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano_001-mesh-map-0">
+          <float_array id="Plano_001-mesh-map-0-array" count="168">0.254094 0.4729172 0.2450425 0.5928985 0.2541944 0.5928987 0.2358915 0.9378905 0.2421312 0.5928999 0.2421505 0.9378905 0.7105213 0.3025825 0.7261137 0.2821156 0.7261137 0.3078187 0.2542043 0.9378905 0.2450425 0.5928985 0.2450479 0.9378905 0.2450425 0.5928985 0.2358915 0.9378905 0.2450479 0.9378905 0.2421505 0.9378905 0.2479307 0.5928995 0.2479453 0.9378905 0.2479307 0.5928995 0.2542043 0.9378905 0.2479453 0.9378905 0.2421492 0.4730417 0.244996 0.3768777 0.2478905 0.4730407 0.2359441 0.4729204 0.2421312 0.5928999 0.2358673 0.5929 0.2450425 0.5928985 0.2359441 0.4729204 0.2358673 0.5929 0.2421312 0.5928999 0.2478905 0.4730407 0.2479307 0.5928995 0.2479307 0.5928995 0.254094 0.4729172 0.2541944 0.5928987 0.2478905 0.4730407 0.244996 0.3768777 0.254094 0.4729172 0.2450173 0.4726793 0.244996 0.3768777 0.2359441 0.4729204 0.254094 0.4729172 0.244996 0.3768777 0.2450173 0.4726793 0.2359441 0.4729204 0.244996 0.3768777 0.2421492 0.4730417 0.254094 0.4729172 0.2450173 0.4726793 0.2450425 0.5928985 0.2358915 0.9378905 0.2358673 0.5929 0.2421312 0.5928999 0.73565 0.2949672 0.7261137 0.3078187 0.7261137 0.2821156 0.7105213 0.3025825 0.7105213 0.2873519 0.7261137 0.2821156 0.2542043 0.9378905 0.2541944 0.5928987 0.2450425 0.5928985 0.2450425 0.5928985 0.2358673 0.5929 0.2358915 0.9378905 0.2421505 0.9378905 0.2421312 0.5928999 0.2479307 0.5928995 0.2479307 0.5928995 0.2541944 0.5928987 0.2542043 0.9378905 0.2359441 0.4729204 0.2421492 0.4730417 0.2421312 0.5928999 0.2450425 0.5928985 0.2450173 0.4726793 0.2359441 0.4729204 0.2421312 0.5928999 0.2421492 0.4730417 0.2478905 0.4730407 0.2479307 0.5928995 0.2478905 0.4730407 0.254094 0.4729172</float_array>
+          <technique_common>
+            <accessor source="#Plano_001-mesh-map-0-array" count="84" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plano_001-mesh-vertices">
+          <input semantic="POSITION" source="#Plano_001-mesh-positions"/>
+        </vertices>
+        <triangles count="28">
+          <input semantic="VERTEX" source="#Plano_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plano_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plano_001-mesh-map-0" offset="2" set="0"/>
+          <p>12 0 0 9 1 1 7 2 2 0 3 3 6 4 4 1 5 5 1 5 6 2 6 7 0 3 8 2 6 9 9 1 10 4 7 11 9 1 12 0 3 13 4 7 14 1 5 15 8 8 16 3 9 17 8 8 18 2 6 19 3 9 20 11 10 21 15 11 22 13 12 23 10 13 24 6 4 25 5 14 26 9 1 27 10 13 28 5 14 29 6 4 30 13 12 31 8 8 32 8 8 33 12 0 34 7 2 35 13 12 36 15 11 37 12 0 38 14 15 39 15 11 40 10 13 41 12 0 42 15 11 43 14 15 44 10 13 45 15 11 46 11 10 47 12 0 48 14 15 49 9 1 50 0 3 51 5 14 52 6 4 53 4 7 54 0 3 55 2 6 56 1 5 57 3 9 58 2 6 59 2 6 60 7 2 61 9 1 62 9 1 63 5 14 64 0 3 65 1 5 66 6 4 67 8 8 68 8 8 69 7 2 70 2 6 71 10 13 72 11 10 73 6 4 74 9 1 75 14 15 76 10 13 77 6 4 78 11 10 79 13 12 80 8 8 81 13 12 82 12 0 83</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Javelin_stave_b" name="Javelin_stave_b" type="NODE">
+        <matrix sid="transform">1.6 0 0 0 0 1.6 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Plano_001-mesh" name="Javelin_stave_b"/>
+        <node id="prop-blade" name="prop-blade" type="NODE">
+          <matrix sid="transform">0.2021434 0 0 0 0 0.2021434 0 0 0 0 0.3234295 0.322833 0 0 0 1</matrix>
+        </node>
+        <extra>
+          <technique profile="blender">
+            <Copiar_posición_constraint>
+              <type sid="type" type="int">9</type>
+              <enforce sid="enforce" type="float">1</enforce>
+              <flag sid="flag" type="int">529</flag>
+              <headtail sid="headtail" type="float">0</headtail>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <own_space sid="own_space" type="int">0</own_space>
+              <rot_error sid="rot_error" type="float">0</rot_error>
+              <tar_space sid="tar_space" type="int">0</tar_space>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <target_id sid="target_id" type="string">Javelin_2</target_id>
+            </Copiar_posición_constraint>
+          </technique>
+        </extra>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

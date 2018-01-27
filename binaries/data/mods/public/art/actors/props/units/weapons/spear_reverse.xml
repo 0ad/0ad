@@ -1,18 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant name="Base">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="Base">
+      <props>
+        <prop actor="props/units/weapons/blades/spear_blade.xml" attachpoint="blade"/>
+      </props>
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
   <group>
-    <variant>
-      <mesh>props/weap_spear_rev.dae</mesh>
+    <variant frequency="1" name="spear-ball-darkgold">
+      <mesh>props/weap_shaft_wood_reverse_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="darksilver">
+      <mesh>props/weap_shaft_wood_reverse_b.dae</mesh>
+    </variant>
+    <variant frequency="1" name="lightgold">
+      <mesh>props/weap_shaft_wood_reverse_c.dae</mesh>
+    </variant>
+    <variant frequency="1" name="medsilver">
+      <mesh>props/weap_shaft_wood_reverse_d.dae</mesh>
+    </variant>
+    <variant frequency="1" name="medgold">
+      <mesh>props/weap_shaft_wood_reverse_e.dae</mesh>
     </variant>
   </group>
-
+  <material>basic_trans.xml</material>
 </actor>

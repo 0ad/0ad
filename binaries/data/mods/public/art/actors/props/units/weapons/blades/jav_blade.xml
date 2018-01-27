@@ -2,12 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Base">
-      <mesh>props/spear_lance_cavalry_reverse.dae</mesh>
+    <variant frequency="100" name="Base">
+      <mesh>props/jav_blade.dae</mesh>
       <textures>
         <texture file="props/prop_weap.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_spec.xml</material>
 </actor>

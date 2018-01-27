@@ -3,18 +3,18 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <props>
-        <prop actor="props/units/weapons/blades/spear_blade.xml" attachpoint="blade"/>
-      </props>
       <textures>
         <texture file="props/prop_weap.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="spear-iron">
-      <mesh>props/weap_shaft_iron_long.dae</mesh>
+    <variant frequency="1" name="blade-a">
+      <mesh>props/spear_blade_pers_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="blade-b">
+      <mesh>props/spear_blade_pers_b.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_spec.xml</material>
 </actor>

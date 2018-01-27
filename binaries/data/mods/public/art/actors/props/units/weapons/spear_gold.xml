@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant name="Base">
-      <mesh>props/weap_spear_c.dae</mesh>
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="Base">
+      <mesh>props/weap_shaft_gold.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/blades/spear_blade.xml" attachpoint="blade"/>
+      </props>
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
+  <material>basic_spec.xml</material>
 </actor>
