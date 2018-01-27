@@ -853,7 +853,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	let minDist = Math.min();
 	for (let ent of targets.values())
 	{
-		if (this.targetPlayer == 0 && gameState.getGameType() == "capture_the_relic" &&
+		if (this.targetPlayer == 0 && gameState.getVictoryConditions().has("capture_the_relic") &&
 		   (!ent.hasClass("Relic") || gameState.ai.HQ.gameTypeManager.targetedGaiaRelics.has(ent.id())))
 			continue;
 		// Do not bother with some pointless targets
@@ -877,7 +877,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 
 	if (!target)
 		return undefined;
-	if (this.targetPlayer == 0 && gameState.getGameType() == "capture_the_relic" && target.hasClass("Relic"))
+	if (this.targetPlayer == 0 && gameState.getVictoryConditions().has("capture_the_relic") && target.hasClass("Relic"))
 		gameState.ai.HQ.gameTypeManager.targetedGaiaRelics.add(target.id());
 	// Rushes can change their enemy target if nothing found with the preferred enemy
 	// Obstruction also can change the enemy target
@@ -887,23 +887,24 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 
 /**
  * Default target finder aims for conquest critical targets
- * We must apply the same selection (isValidTarget) as done in getNearestTarget
+ * We must apply the *same* selection (isValidTarget) as done in getNearestTarget
  */
 m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 {
-	let targets;
-	if (gameState.getGameType() == "wonder")
-		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Wonder"));
-	else if (gameState.getGameType() == "regicide")
-		targets = gameState.getEnemyUnits(playerEnemy).filter(API3.Filters.byClass("Hero"));
-	else if (gameState.getGameType() == "capture_the_relic")
-		targets = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic")).filter(relic => relic.owner() == playerEnemy);
-	if (targets)
-		targets = targets.filter(this.isValidTarget, this);
-	if (targets && targets.hasEntities())
+	let targets = new API3.EntityCollection(gameState.sharedScript);
+	if (gameState.getVictoryConditions().has("wonder"))
+		for (let ent of gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Wonder")).values())
+			targets.addEnt(ent);
+	if (gameState.getVictoryConditions().has("regicide"))
+		for (let ent of gameState.getEnemyUnits(playerEnemy).filter(API3.Filters.byClass("Hero")).values())
+			targets.addEnt(ent);
+	if (gameState.getVictoryConditions().has("capture_the_relic"))
+		for (let ent of gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic")).filter(relic => relic.owner() == playerEnemy).values())
+			targets.addEnt(ent);
+	targets = targets.filter(this.isValidTarget, this);
+	if (targets.hasEntities())
 		return targets;
 
-	// We must apply the *same* selection as done in getNearestTarget
 	let validTargets = gameState.getEnemyStructures(playerEnemy).filter(this.isValidTarget, this);
 	targets = validTargets.filter(API3.Filters.byClass("CivCentre"));
 	if (!targets.hasEntities())

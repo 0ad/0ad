@@ -1310,7 +1310,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	}
 	enemyStructures = enemyStructures.toEntityArray();
 
-	let wonderMode = gameState.getGameType() === "wonder";
+	let wonderMode = gameState.getVictoryConditions().has("wonder");
 	let wonderDistmin;
 	let wonders;
 	if (wonderMode)
@@ -1431,7 +1431,7 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 		!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
 		return;
 	// Try to build a temple earlier if in regicide to recruit healer guards
-	if (this.currentPhase < 3 && gameState.getGameType() !== "regicide")
+	if (this.currentPhase < 3 && !gameState.getVictoryConditions().has("regicide"))
 		return;
 	if (!this.canBuild(gameState, "structures/{civ}_temple"))
 		return;

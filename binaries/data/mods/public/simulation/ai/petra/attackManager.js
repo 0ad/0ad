@@ -439,7 +439,7 @@ m.AttackManager.prototype.getAttackInPreparation = function(type)
 };
 
 /**
- * determine which player should be attacked: when called when starting the attack,
+ * Determine which player should be attacked: when called when starting the attack,
  * attack.targetPlayer is undefined and in that case, we keep track of the chosen target
  * for future attacks.
  */
@@ -447,67 +447,24 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 {
 	let enemyPlayer;
 
-	// first check if there is a preferred enemy based on our victory conditions
-	if (gameState.getGameType() === "wonder")
-	{
-		let moreAdvanced;
-		let enemyWonder;
-		let wonders = gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder"));
-		for (let wonder of wonders.values())
-		{
-			if (wonder.owner() === 0)
-				continue;
-			let progress = wonder.foundationProgress();
-			if (progress === undefined)
-			{
-				enemyWonder = wonder;
-				break;
-			}
-			if (enemyWonder && moreAdvanced > progress)
-				continue;
-			enemyWonder = wonder;
-			moreAdvanced = progress;
-		}
-		if (enemyWonder)
-		{
-			enemyPlayer = enemyWonder.owner();
-			if (attack.targetPlayer === undefined)
-				this.currentEnemyPlayer = enemyPlayer;
-			return enemyPlayer;
-		}
-	}
-	else if (gameState.getGameType() === "capture_the_relic")
-	{
-		// Target the player with the most relics (including gaia)
-		let allRelics = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic"));
-		let maxRelicsOwned = 0;
-		for (let i = 0; i < gameState.sharedScript.playersData.length; ++i)
-		{
-			if (!gameState.isPlayerEnemy(i) || this.defeated[i] ||
-			    i === 0 && !gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelic)
-				continue;
+	// First check if there is a preferred enemy based on our victory conditions.
+	// If both wonder and relic, choose randomly between them TODO should combine decisions
 
-			let relicsCount = allRelics.filter(relic => relic.owner() === i).length;
-			if (relicsCount <= maxRelicsOwned)
-				continue;
-			maxRelicsOwned = relicsCount;
-			enemyPlayer = i;
-		}
-		if (enemyPlayer !== undefined)
-		{
-			if (attack.targetPlayer === undefined)
-				this.currentEnemyPlayer = enemyPlayer;
-			if (enemyPlayer === 0)
-				gameState.ai.HQ.gameTypeManager.resetCaptureGaiaRelic(gameState);
-			return enemyPlayer;
-		}
-	}
+	if (gameState.getVictoryConditions().has("wonder"))
+		enemyPlayer = this.getWonderEnemyPlayer(gameState);
+
+	if (gameState.getVictoryConditions().has("capture_the_relic"))
+		if (!enemyPlayer || randBool())
+			enemyPlayer = this.getWonderEnemyPlayer(gameState) || enemyPlayer;
+
+	if (enemyPlayer)
+		return enemyPlayer;
 
 	let veto = {};
 	for (let i in this.defeated)
 		veto[i] = true;
 	// No rush if enemy too well defended (i.e. iberians)
-	if (attack.type === "Rush")
+	if (attack.type == "Rush")
 	{
 		for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
 		{
@@ -526,7 +483,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 
 	// then if not a huge attack, continue attacking our previous target as long as it has some entities,
 	// otherwise target the most accessible one
-	if (attack.type !== "HugeAttack")
+	if (attack.type != "HugeAttack")
 	{
 		if (attack.targetPlayer === undefined && this.currentEnemyPlayer !== undefined &&
 			!this.defeated[this.currentEnemyPlayer] &&
@@ -539,7 +496,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 		let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
 		for (let ourcc of ccEnts.values())
 		{
-			if (ourcc.owner() !== PlayerID)
+			if (ourcc.owner() != PlayerID)
 				continue;
 			let ourPos = ourcc.position();
 			let access = gameState.ai.accessibility.getAccessValue(ourPos);
@@ -550,7 +507,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 				if (!gameState.isPlayerEnemy(enemycc.owner()))
 					continue;
 				let enemyPos = enemycc.position();
-				if (access !== gameState.ai.accessibility.getAccessValue(enemyPos))
+				if (access != gameState.ai.accessibility.getAccessValue(enemyPos))
 					continue;
 				let dist = API3.SquareVectorDistance(ourPos, enemyPos);
 				if (distmin && dist > distmin)
@@ -594,6 +551,69 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 	}
 	if (attack.targetPlayer === undefined)
 		this.currentEnemyPlayer = enemyPlayer;
+	return enemyPlayer;
+};
+
+/**
+ * Target the player with the most advanced wonder.
+ * TODO currently the first built wonder is kept, should chek on the minimum wonderDuration left instead.
+ */
+m.AttackManager.prototype.getWonderEnemyPlayer = function(gameState)
+{
+	let enemyPlayer;
+	let enemyWonder;
+	let moreAdvanced;
+	for (let wonder of gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder")))
+	{
+		if (wonder.owner() == 0)
+			continue;
+		let progress = wonder.foundationProgress();
+		if (progress === undefined)
+		{
+			enemyWonder = wonder;
+			break;
+		}
+		if (enemyWonder && moreAdvanced > progress)
+			continue;
+		enemyWonder = wonder;
+		moreAdvanced = progress;
+	}
+	if (enemyWonder)
+	{
+		enemyPlayer = enemyWonder.owner();
+		if (attack.targetPlayer === undefined)
+			this.currentEnemyPlayer = enemyPlayer;
+	}
+	return enemyPlayer;
+};
+
+/**
+ * Target the player with the most relics (including gaia).
+ */ 
+m.AttackManager.prototype.getRelicEnemyPlayer = function(gameState)
+{
+	let enemyPlayer;
+	let allRelics = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic"));
+	let maxRelicsOwned = 0;
+	for (let i = 0; i < gameState.sharedScript.playersData.length; ++i)
+	{
+		if (!gameState.isPlayerEnemy(i) || this.defeated[i] ||
+		    i == 0 && !gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelic)
+			continue;
+
+		let relicsCount = allRelics.filter(relic => relic.owner() == i).length;
+		if (relicsCount <= maxRelicsOwned)
+			continue;
+		maxRelicsOwned = relicsCount;
+		enemyPlayer = i;
+	}
+	if (enemyPlayer !== undefined)
+	{
+		if (attack.targetPlayer === undefined)
+			this.currentEnemyPlayer = enemyPlayer;
+		if (enemyPlayer == 0)
+			gameState.ai.HQ.gameTypeManager.resetCaptureGaiaRelic(gameState);
+	}
 	return enemyPlayer;
 };
 

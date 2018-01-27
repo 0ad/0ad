@@ -749,7 +749,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
 			if (!target.hasClass("CivCentre") && !target.hasClass("StoneWall") &&
-			    (!target.hasClass("Wonder") || gameState.getGameType() != "wonder"))
+			    (!target.hasClass("Wonder") || !gameState.getVictoryConditions().has("wonder")))
 				continue;
 
 		// if our territory has shrinked since this foundation was positioned, do not build it
@@ -774,7 +774,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			targetNB = 3;
 
 		if (target.getMetadata(PlayerID, "baseAnchor") == true ||
-		    target.hasClass("Wonder") && gameState.getGameType() == "wonder")
+		    target.hasClass("Wonder") && gameState.getVictoryConditions().has("wonder"))
 		{
 			targetNB = 15;
 			maxTotalBuilders = Math.max(maxTotalBuilders, 15);
@@ -848,7 +848,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
 			if (target.healthLevel() > 0.5 ||
 			    !target.hasClass("CivCentre") && !target.hasClass("StoneWall") &&
-			    (!target.hasClass("Wonder") || gameState.getGameType() != "wonder"))
+			    (!target.hasClass("Wonder") || !gameState.getVictoryConditions().has("wonder")))
 				continue;
 		else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
@@ -862,7 +862,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (target.hasClass("Fortress") || target.hasClass("Wonder"))
 			targetNB = 3;
 		if (target.getMetadata(PlayerID, "baseAnchor") == true ||
-		    target.hasClass("Wonder") && gameState.getGameType() == "wonder")
+		    target.hasClass("Wonder") && gameState.getVictoryConditions().has("wonder"))
 		{
 			maxTotalBuilders = Math.ceil(workers.length * Math.max(0.3, builderRatio));
 			targetNB = 5;
