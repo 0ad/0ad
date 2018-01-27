@@ -96,6 +96,11 @@ Vector2D.prototype.round = function()
 	return this.set(Math.round(this.x), Math.round(this.y));
 };
 
+Vector2D.prototype.floor = function()
+{
+	return this.set(Math.floor(this.x), Math.floor(this.y));
+};
+
 // Numeric 2D info functions (non-mutating)
 //
 // These methods serve to get numeric info on the vector, they don't modify the vector
@@ -292,6 +297,11 @@ Vector3D.prototype.normalize = function()
 Vector3D.prototype.round = function()
 {
 	return this.set(Math.round(this.x), Math.round(this.y), Math.round(this.z));
+};
+
+Vector3D.prototype.floor = function()
+{
+	return this.set(Math.floor(this.x), Math.floor(this.y), Math.floor(this.z));
 };
 
 // Numeric 3D info functions (non-mutating)

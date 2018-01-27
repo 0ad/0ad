@@ -167,6 +167,17 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v3.y, 0);
 }
 
+// Test Vector2D floor
+{
+	let v1 = new Vector2D(-4.5, 8.9).floor();
+	TS_ASSERT_EQUALS(v1.x, -5);
+	TS_ASSERT_EQUALS(v1.y, 8);
+
+	let v2 = new Vector2D().floor();
+	TS_ASSERT_EQUALS(v2.x, 0);
+	TS_ASSERT_EQUALS(v2.y, 0);
+}
+
 // Vector3D tests
 
 // Test Vector3D distance and compareLength
@@ -237,4 +248,17 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v4.x, 72);
 	TS_ASSERT_EQUALS(v4.y, 73);
 	TS_ASSERT_EQUALS(v4.z, 74);
+}
+
+// Test Vector3D floor
+{
+	let v1 = new Vector3D(-1.1, 2.2, 3.9).floor();
+	TS_ASSERT_EQUALS(v1.x, -2);
+	TS_ASSERT_EQUALS(v1.y, 2);
+	TS_ASSERT_EQUALS(v1.z, 3);
+
+	let v3 = new Vector3D().floor();
+	TS_ASSERT_EQUALS(v3.x, 0);
+	TS_ASSERT_EQUALS(v3.y, 0);
+	TS_ASSERT_EQUALS(v3.z, 0);
 }
