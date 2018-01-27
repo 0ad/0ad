@@ -269,7 +269,7 @@ for (let mapX = 0; mapX < mapSize; ++mapX)
 	for (let mapZ = 0; mapZ < mapSize; ++mapZ)
 	{
 		let position = new Vector2D(mapX, mapZ);
-		let terrain = getCosricaSardiniaTerrain(mapX, mapZ);
+		let terrain = getCosricaSardiniaTerrain(position);
 		if (!terrain)
 			continue;
 
@@ -279,13 +279,12 @@ for (let mapX = 0; mapX < mapSize; ++mapX)
 			clCliffs.add(position);
 	}
 
-function getCosricaSardiniaTerrain(mapX, mapZ)
+function getCosricaSardiniaTerrain(position)
 {
-	let position = new Vector2D(mapX, mapZ);
-	let isWater = clWater.countMembersInRadius(mapX, mapZ, 3);
-	let isShore = clShore.countMembersInRadius(mapX, mapZ, 2);
-	let isPassage = clPassage.countMembersInRadius(mapX, mapZ, 2);
-	let isSettlement = clSettlement.countMembersInRadius(mapX, mapZ, 2);
+	let isWater = clWater.countMembersInRadius(position, 3);
+	let isShore = clShore.countMembersInRadius(position, 2);
+	let isPassage = clPassage.countMembersInRadius(position, 2);
+	let isSettlement = clSettlement.countMembersInRadius(position, 2);
 
 	if (isSettlement)
 		return undefined;

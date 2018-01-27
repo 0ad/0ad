@@ -92,54 +92,46 @@ TileClass.prototype.remove = function(position)
 		this.rangeCount[position.y].add(position.x, -1);
 };
 
-TileClass.prototype.countInRadius = function(cx, cy, radius, returnMembers)
+TileClass.prototype.countInRadius = function(position, radius, returnMembers)
 {
-	var members = 0;
-	var nonMembers = 0;
-	var size = this.size;
+	let members = 0;
+	let nonMembers = 0;
+	let radius2 = Math.square(radius);
 
-	var ymax = cy+radius;
-	var radius2 = radius*radius;
-
-	for (var y = cy-radius; y <= ymax; y++)
+	for (let y = position.y - radius; y <= position.y + radius; ++y)
 	{
-		var iy = Math.floor(y);
+		let iy = Math.floor(y);
 		if (radius >= 27) // Switchover point before RangeOp actually performs better than a straight algorithm
 		{
-			if(iy >= 0 && iy < size)
+			if (iy >= 0 && iy < this.size)
 			{
-				var dy = y - cy;
-				var dx = Math.sqrt(radius*radius - dy*dy);
+				let dx = Math.sqrt(Math.square(radius) - Math.square(y - position.y));
 
-				var lowerX = Math.floor(cx - dx);
-				var upperX = Math.floor(cx + dx);
+				let minX = Math.max(Math.floor(position.x - dx), 0);
+				let maxX = Math.min(Math.floor(position.x + dx), this.size - 1) + 1;
 
-				var minX = (lowerX > 0 ? lowerX : 0);
-				var maxX = (upperX < size ? upperX+1 : size);
+				let newMembers = this.rangeCount[iy].get(minX, maxX);
 
-				var total = maxX - minX;
-				var mem = this.rangeCount[iy].get(minX, maxX);
-
-				members += mem;
-				nonMembers += total - mem;
+				members += newMembers;
+				nonMembers += maxX - minX - newMembers;
 			}
 		}
 		else // Simply check the tiles one by one to find the number
 		{
-			var dy = (iy - cy);
-			var xmin = Math.floor(cx - radius);
-			var xmax = Math.ceil(cx + radius);
-			xmin = (xmin >= 0) ? xmin : 0;
-			xmax = ( xmax < size) ? xmax : size - 1;
-			for (var ix = xmin; ix <= xmax; ++ix)
+			let dy = iy - position.y;
+
+			let xMin = Math.max(Math.floor(position.x - radius), 0);
+			let xMax = Math.max(Math.ceil(position.x + radius), this.size - 1);
+
+			for (let ix = xMin; ix <= xMax; ++ix)
 			{
-				var dx = (ix - cx);
-				if (dx*dx + dy*dy <= radius2)
+				let dx = ix - position.x;
+				if (Math.square(dx) + Math.square(dy) <= radius2)
 				{
 					if (this.inclusionCount[ix] && this.inclusionCount[ix][iy] && this.inclusionCount[ix][iy] > 0)
-						members += 1;
+						++members;
 					else
-						nonMembers += 1;
+						++nonMembers;
 				}
 			}
 		}
@@ -151,12 +143,12 @@ TileClass.prototype.countInRadius = function(cx, cy, radius, returnMembers)
 		return nonMembers;
 };
 
-TileClass.prototype.countMembersInRadius = function(cx, cy, radius)
+TileClass.prototype.countMembersInRadius = function(position, radius)
 {
-	return this.countInRadius(cx, cy, radius, true);
+	return this.countInRadius(position, radius, true);
 };
 
-TileClass.prototype.countNonMembersInRadius = function(cx, cy, radius)
+TileClass.prototype.countNonMembersInRadius = function(position, radius)
 {
-	return this.countInRadius(cx, cy, radius, false);
+	return this.countInRadius(position, radius, false);
 };

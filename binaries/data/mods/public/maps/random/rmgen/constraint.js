@@ -67,7 +67,7 @@ function AvoidTileClassConstraint(tileClass, distance)
 
 AvoidTileClassConstraint.prototype.allows = function(position)
 {
-	return this.tileClass.countMembersInRadius(position.x, position.y, this.distance) == 0;
+	return this.tileClass.countMembersInRadius(position, this.distance) == 0;
 };
 
 /**
@@ -81,7 +81,7 @@ function StayInTileClassConstraint(tileClass, distance)
 
 StayInTileClassConstraint.prototype.allows = function(position)
 {
-	return this.tileClass.countNonMembersInRadius(position.x, position.y, this.distance) == 0;
+	return this.tileClass.countNonMembersInRadius(position, this.distance) == 0;
 };
 
 /**
@@ -98,8 +98,8 @@ function BorderTileClassConstraint(tileClass, distanceInside, distanceOutside)
 
 BorderTileClassConstraint.prototype.allows = function(position)
 {
-	return this.tileClass.countMembersInRadius(position.x, position.y, this.distanceOutside) > 0 &&
-	       this.tileClass.countNonMembersInRadius(position.x, position.y, this.distanceInside) > 0;
+	return this.tileClass.countMembersInRadius(position, this.distanceOutside) > 0 &&
+	       this.tileClass.countNonMembersInRadius(position, this.distanceInside) > 0;
 };
 
 /**

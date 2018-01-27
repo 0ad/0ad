@@ -308,7 +308,7 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 				createObjectGroup(group, 0);
 			}
 
-			if (clPassage.countMembersInRadius(sandx, sandz, 2))
+			if (clPassage.countMembersInRadius(position, 2))
 			{
 				if (randBool(0.4))
 				{
