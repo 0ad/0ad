@@ -19,6 +19,7 @@
 # Esteban A. Mina <ztephanuz@hotmail.com>, 2014
 # Esteban de Jesus Rodriguez Bujaidar <iscestebanrodriguez@gmail.com>, 2013
 # fca1970 <iobaladi@yahoo.es>, 2014
+# Federico Palacios <fedenator7@gmail.com>, 2018
 # Francisco <bil_94@hotmail.com>, 2014
 # GaboXandre <gabo.xandre@gmail.com>, 2013
 # gonzaleau <reddecontactos@gmail.com>, 2013
@@ -36,7 +37,7 @@
 # Brookhaven Alt <Lion.Kanzen@gmail.com>, 2013
 # matiasng37 <matiasng37@gmail.com>, 2013
 # memmaker650 <memmaker650@gmail.com>, 2014
-# Mihai Pantazi <malexandru_70@hotmail.com>, 2017
+# Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # papalote alreves <papalotealreves@gmail.com>, 2017
 # Pedro Luis <pedrochusma@gmail.com>, 2014
 # Pretorg <fpgelmejor2@hotmail.com>, 2014
@@ -56,8 +57,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 04:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-25 11:45+0000\n"
+"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -340,11 +341,11 @@ msgstr "Elige la velocidad de juego."
 
 #: gui/gamesetup/gamesetup.js:652
 msgid "Difficulty"
-msgstr ""
+msgstr "Dificultad"
 
 #: gui/gamesetup/gamesetup.js:654
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Seleccione la dificultad de este escenario."
 
 #: gui/gamesetup/gamesetup.js:719
 msgid "Chose the civilization for this player"
@@ -462,7 +463,7 @@ msgstr "Comenzar una nueva partida con los ajustes actuales (cuando todo el mund
 #: gui/gamesetup/gamesetup.js:975
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Configurar IA: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1510
 msgctxt "map selection"
@@ -582,7 +583,7 @@ msgstr "Cargando"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Cargando información del mapa. Por favor espere..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Player Name"
@@ -671,7 +672,7 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[...] impuso su ley: la sabiduría viene a través sufrimiento.  \\[…] Así el hombre, en contra de su voluntad, aprendió la moderación.  \\[…] Tal voluntad es dura y violenta.\" - Aeschylus(\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -787,7 +788,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "«El darse al regalo es lo más servil y abatido, y el trabajar lo más regio y más propio de los que han de mandar. \\[...] ¿No sabéis que el fin que en vencer nos proponemos es el no hacer lo que hacen los vencidos?» - Alejandro Magno (Plutarco, «Vidas Paralelas», «Alejandro», sec. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -1075,7 +1076,7 @@ msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "«Yo soy Darío, el Gran Rey, Rey de Reyes, Rey de Persia, Rey de todos los países , \\[…] 23 países en total». - Darío I (Inscripción de Behistún, columna I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1418,7 +1419,7 @@ msgstr "«Es dulce y honorable morir por el país propio.» - Horacio («Odas»,
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "«Soy Ciro, rey del mundo...». - Inscripción (Cilindro de Ciro)"
 
 #: gui/text/quotes.txt:111
 msgid ""
@@ -1677,7 +1678,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
 "about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
-msgstr ""
+msgstr "«Uno \\[…] le disparó del arco una saeta con tal fuerza y rapidez, que pasando la coraza se le clavó en las costillas. \\[…] Cedió el cuerpo al golpe y aun se trastornó algún tanto. \\[…] Alejandro dio muerte al bárbaro. Había recibido muchos golpes, y, herido por fin con un mazo junto al cuello, tuvo que apoyarse en la muralla, quedándose mirando a los enemigos». - Plutarco sobre la Campaña Malia («Vidas Paralelas», «Alejandro», sec. 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""

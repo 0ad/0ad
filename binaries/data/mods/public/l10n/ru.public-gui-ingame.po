@@ -20,7 +20,7 @@
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Cергей Исаченко <vortexius@gmail.com>, 2014
 # Владимир Смирнов <delpfine2012@gmail.com>, 2014
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2017
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014-2015
 # Eugene Kostrika <testiculi@yandex.ru>, 2013
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -61,8 +61,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-23 01:50+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +148,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Времени до начала военных действий: %(time)s."
 
 #: gui/session/menu.js:441
 msgctxt "team"
@@ -610,7 +610,7 @@ msgstr "Повтор сохранен в %(filepath)s"
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr ""
+msgstr "Запись текущего состояния в %(filepath)s"
 
 #: gui/session/messages.js:722 gui/session/messages.js:733
 msgid "Out of Sync"
@@ -658,7 +658,7 @@ msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:925
 msgid "HH:mm"
-msgstr "HH:mm"
+msgstr "ЧЧ:мм"
 
 #: gui/session/messages.js:969
 msgid "Unknown Player"
@@ -668,7 +668,7 @@ msgstr "Неизвестный Игрок"
 #. elements in an enumeration.
 #: gui/session/messages.js:994
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:1026
 #, javascript-format
@@ -703,17 +703,17 @@ msgstr "Вас атаковал %(attacker)s!"
 #: gui/session/messages.js:1084
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s начал переход к этапу %(phaseName)s."
 
 #: gui/session/messages.js:1086
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr ""
+msgstr "Игрок %(player)s отменил переход к этапу %(phaseName)s."
 
 #: gui/session/messages.js:1089
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s достиг этапа %(phaseName)s."
 
 #: gui/session/messages.js:1141
 #, javascript-format
@@ -1570,4 +1570,4 @@ msgstr "Меню"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIII : Ken Wood"
-msgstr ""
+msgstr "АЛЬФА XXIII : Ken Wood"

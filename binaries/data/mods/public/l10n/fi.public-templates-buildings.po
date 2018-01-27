@@ -11,12 +11,13 @@
 # mrJalostaja <pauli.nykanen@yahoo.com>, 2015
 # Petri, 2014
 # Riku Viitanen <riisseli4@gmail.com>, 2015
+# Some Dude <jonpajanen2@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-21 09:03+0200\n"
-"PO-Revision-Date: 2017-06-21 15:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-16 08:14+0000\n"
+"Last-Translator: Some Dude <jonpajanen2@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr "Kansalaiskeskus"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr ""
+msgstr "Rakenna kasvattaaksesi aluettasi. Kouluta kansalaisia."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:76
 #: simulation/templates/template_structure_civic_civil_centre.xml:38
@@ -107,7 +108,7 @@ msgstr "Talo"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "Kouluta parantajia. Siirrä yksiköitäsi rakennuksiin parantaaksesi heitä nopeasti (3 osumapistettä per sekunti). Kehitä parantamis-ja uskonnollispäivityksiä"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -152,11 +153,11 @@ msgstr "Vartiotorni"
 
 #: simulation/templates/template_structure_defense_sentry_tower.xml:42
 msgid "SentryTower"
-msgstr ""
+msgstr "VatioTorni"
 
 #: simulation/templates/template_structure_defense_sentry_tower.xml:69
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr ""
+msgstr "Puolustustorni, Vahvista kivellä ja päivitä Vahtitorniksi."
 
 #: simulation/templates/template_structure_defense_wall.xml:26
 #: simulation/templates/structures/cart_s_wall_long.xml:7
@@ -187,7 +188,7 @@ msgstr "Pitkät muurin osat voidaan muuntaa porteiksi."
 #: simulation/templates/template_structure_defense_wall_long.xml:47
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr ""
+msgstr "Tämä antaa yksiköiden kiertää puolustuksiesi lävitse.\n"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:52
 msgid "Wall Turret"
@@ -261,7 +262,7 @@ msgstr "Sotilaallinen"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Kouluta kansalais-sotilaita. Kehitä koulutuspäivityksiä."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -304,7 +305,7 @@ msgstr "Linnoitus"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr ""
+msgstr "Kouluta sankareita, mestareita ja piiritysaseita. Kehitä piiritysaseitten päivityksiä"
 
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
@@ -355,7 +356,7 @@ msgstr "Kirjasto"
 
 #: simulation/templates/template_structure_special_library.xml:19
 msgid "Research special technologies."
-msgstr ""
+msgstr "Tutki erikoisteknologioita"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "Rotary Mill"
@@ -549,7 +550,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Tuo kunniaa sivilisaatiollesi ja kasvata imperiumisi maa-alaa. Aseta yksiköitä rakennukseen parantaaksesi niitä hyvin nopeasti"
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -669,7 +670,7 @@ msgstr "Stonehenge"
 
 #: simulation/templates/structures/cart_apartment.xml:17
 msgid "Apartment Building"
-msgstr ""
+msgstr "Kerrostalo"
 
 #: simulation/templates/structures/cart_barracks.xml:18
 msgid "Maḥanēt"
@@ -770,7 +771,7 @@ msgstr "Karthagolainen Vartiotorni"
 #: simulation/templates/structures/cart_s_wall_tower.xml:6
 #: simulation/templates/structures/cart_wallset_short.xml:5
 msgid "Low Wall"
-msgstr ""
+msgstr "Matala muuri"
 
 #: simulation/templates/structures/cart_storehouse.xml:9
 msgid "Maḥṣabah"
@@ -800,7 +801,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Kouluta parantajattaria, jotka parantavat yksiköitäsi. Kouluta Pyhän Yhteyden keihäsmiehiä. Aseta yksiköitä rakennukseen parantaaksesi heitä nopeasti."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -842,7 +843,7 @@ msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Recruit Naked Fanatics."
-msgstr ""
+msgstr "Kouluta Alastomia Fanaatikkoja"
 
 #: simulation/templates/structures/gaul_wall_gate.xml:9
 msgid "Duro"
@@ -895,7 +896,7 @@ msgstr "Arruga"
 
 #: simulation/templates/structures/iber_monument.xml:9
 msgid "Monument"
-msgstr ""
+msgstr "Monumentti"
 
 #: simulation/templates/structures/iber_monument.xml:34
 msgid "Revered Monument"

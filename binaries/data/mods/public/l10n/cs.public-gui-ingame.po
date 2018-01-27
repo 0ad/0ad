@@ -14,7 +14,7 @@
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
 # LiberteCzech <liberte.czech@gmail.com>, 2015
 # OndraK <ondrej.kajinek@gmail.com>, 2014
-# fri, 2014-2017
+# fri, 2014-2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-26 14:44+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,7 +110,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Čas zbývající do konce klidu zbraní: %(time)s."
 
 #: gui/session/menu.js:441
 msgctxt "team"
@@ -374,7 +374,7 @@ msgstr "Čeká se na připojení hráčů:"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr ""
+msgstr "Synchronizace hry s dalšími hráči..."
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -1032,7 +1032,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Vyberte jeden druh zboží, jež chcete změnit klepnutím na něj, a pak použijte šipky jiných druhů pro změnění jejich podílů. Také můžete stisknout %(hotkey)s v okamžiku výběru jednoho druhu zboží pro přivedení jeho podílu na 100%%."
 
 #: gui/session/session.js:394
 #, javascript-format
@@ -1508,7 +1508,7 @@ msgstr "Klepněte pro vybrání seskupených jednotek, klepněte dvakrát pro p�
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr "Rychlost Hry"
+msgstr "Rychlost hry"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"

@@ -19,6 +19,7 @@
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
 # Marcin S <dzidek1003@o2.pl>, 2016
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
+# Mateusz Czerwinski <mateusz12148@hotmail.com>, 2018
 # Mateusz Kubicz <zabsik1@wp.pl>, 2017
 # Michał Karol, 2016
 # Michał Karol, 2015
@@ -30,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-21 09:03+0200\n"
-"PO-Revision-Date: 2017-07-11 12:49+0000\n"
-"Last-Translator: Marek Opłotny <oplotny.marek@gmail.com>\n"
+"PO-Revision-Date: 2018-01-22 12:30+0000\n"
+"Last-Translator: Mateusz Czerwinski <mateusz12148@hotmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +54,7 @@ msgstr "Centrum osady"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr "Zbuduj aby pozyskać duże połacie ziemi. Trenuj obywateli."
+msgstr "Buduj aby pozyskać duże połacie terytorium. Wyszkol więcej obywateli."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:76
 #: simulation/templates/template_structure_civic_civil_centre.xml:38
@@ -152,7 +153,7 @@ msgstr "Wieża obronna."
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Buduj na neutralnym oraz własnym terytorium aby widzieć większe obszary mapy. Powoli przechodzi do Gaji, gdy znajduje się na neutralnym terytorium."
+msgstr "Buduj na neutralnym oraz własnym terytorium aby widzieć większe obszary mapy. Budynki powoli przechodzą pod kontrolę Gaji, gdy znajdują się na neutralnym terytorium."
 
 #: simulation/templates/template_structure_defense_outpost.xml:65
 #: simulation/templates/template_structure_defense_outpost.xml:33
@@ -210,7 +211,7 @@ msgstr "Baszta"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Strzela strzałami. Umieść wewnątrz jednostki do obrony murów miasta przed napastnikami."
+msgstr "Strzela strzałami. Koszaruj jednostki wewnątrz budynku do obrony murów miejskich przed napastnikami."
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"

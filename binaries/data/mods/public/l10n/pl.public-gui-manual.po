@@ -16,12 +16,13 @@
 # mhnxo <mhnxo123@gmail.com>, 2014
 # miragae <miragae@gmail.com>, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2016
+# Paweł Stopa <pawcio980@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-22 16:03+0000\n"
+"Last-Translator: Paweł Stopa <pawcio980@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -243,11 +244,11 @@ msgstr "Shift + F2: Zrób wielki zrzut ekranu (6400x4800 pikseli, w formacie .bm
 
 #: gui/manual/intro.txt:52
 msgid "Alt + S: Switch to the next tab."
-msgstr ""
+msgstr "Alt + S: Zmienia do następnej etykiety."
 
 #: gui/manual/intro.txt:53
 msgid "Alt + W: Switch to the previous tab."
-msgstr ""
+msgstr "Alt + W: Zmienia do poprzedniej etykiety."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -329,7 +330,7 @@ msgstr "/ (Ukośnik): Zaznacz bezczynnego wojownika"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /: Dodaje nieaktywnego wojownika do zaznaczenia"
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
@@ -341,7 +342,7 @@ msgstr ". (kropka): Zaznacz bezczynnego robotnika (włącznie z żołnierzami mi
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: Dodaje nieaktywnego pracownika do zaznaczenia (wliczając Żołnierzy Obywatelskich)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
@@ -349,15 +350,15 @@ msgstr "Alt + .: Wybierz wszystkich bezczynnych robotników (również mieszkań
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr ""
+msgstr "\\ : Zaznacza jednostkę bez pracy"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr ""
+msgstr "Shift + \\: Dodaje jednostkę bez pracy do zaznaczenia"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
-msgstr ""
+msgstr "Alt + \\: Zaznacza wszystkie jednostki bez pracy"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
@@ -403,7 +404,7 @@ msgstr "F5, F6, F7, F8: Przesuń kamerę do zaznaczonej pozycji. Skocz z powrote
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: Z zaznaczonymi budynkami treningowymi. Dodaje pierwszą, drugą... jednostkę do treningu w kolejce dla wszystkich wybranych budynków."
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -423,15 +424,15 @@ msgstr "Tab: Zobacz wszystkie statusy kart (pokazują również postępy budynk�
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
-msgstr ""
+msgstr "Ctrl + Tab: Włącza okno podsumowań."
 
 #: gui/manual/intro.txt:93
 msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Ctrl + B: Włącza stronę wymiany/handlu w grze."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Ctrl + P: Włącza panel samouczka w grze."
 
 #: gui/manual/intro.txt:96
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -482,7 +483,7 @@ msgstr "Alt + LPM przeciągnij nad jednostkami na mapie: Można wybrać tylko je
 
 #: gui/manual/intro.txt:106
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr ""
+msgstr "Alt + Y + Przeciągnięcie LPM nad jednostkami na mapie: Zaznacza tylko jednostki bez broni"
 
 #: gui/manual/intro.txt:107
 msgid "I + Left Drag over units on map: Only select idle units"
@@ -490,7 +491,7 @@ msgstr "I + LPM przeciągnij nad jednostkami na mapie : Zostaną zaznaczone tylk
 
 #: gui/manual/intro.txt:108
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr ""
+msgstr "O + przegiągnięcie LMP nad jednostkami na mapie: Zaznacza tylko ranne jednostki"
 
 #: gui/manual/intro.txt:109
 msgid ""
@@ -541,13 +542,13 @@ msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + Shift + W: Przełącz tryb krawędziowy (naciśnij jeden raz, aby uzyskać siatkę krawędzi nałożoną na modele teksturowane, dwa razy, aby uzyskać tylko siatkę w kolorze tekstury, trzykrotnie, aby powrócić do normalnego trybu teksturowanego)"
 
 #: gui/manual/intro.txt:120
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr "Alt + Shoft + S: Włącza sylwetki jednostek (może dać niewielki wzrost wydajności)"
 
 #: gui/manual/intro.txt:121
 msgid "Alt + Z: Toggle sky"
@@ -556,7 +557,7 @@ msgstr "Alt +Z: Przełącznik nieba"
 #: gui/manual/intro.txt:122
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
+msgstr "Alt + C: Włącza wizualizację zasięgu ataku zaznaczonych budynków obronnych"
 
 #: gui/manual/intro.txt:123
 msgid ""

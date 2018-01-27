@@ -14,6 +14,7 @@
 # Sturm <gravador202@yahoo.com.br>, 2014
 # Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
 # Igor Aleixo <igor.pavao@gmail.com>, 2016-2017
+# Jorno Jornade <jfcarrer@hotmail.com>, 2018
 # Jose Bentivi <josebentivi@gmail.com>, 2017
 # J. P. Lacerda <jp-lacerda@msn.com>, 2016
 # Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2015
@@ -35,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:46+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-13 03:50+0000\n"
+"Last-Translator: Jorno Jornade <jfcarrer@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,7 +116,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Abrindo %(url)s\nno navegador web padrão. Por favor aguarde..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -654,7 +655,7 @@ msgstr "Aleatório"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Balanceado"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -1553,7 +1554,7 @@ msgstr "Recursos"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr ""
+msgstr "Tributos"
 
 #: gui/summary/layout.js:112
 #, javascript-format
@@ -1737,7 +1738,7 @@ msgstr "Você venceu a batalha!"
 
 #: gui/summary/summary.js:499
 msgid "You have been defeated…"
-msgstr ""
+msgstr "Você foi derrotado..."
 
 #: gui/summary/summary.js:500
 msgid "You have abandoned the game."
@@ -2208,7 +2209,7 @@ msgstr "Tipo"
 
 #: mod.jsondescription
 msgid "A free, open-source, historical RTS game."
-msgstr ""
+msgstr "Um jogo RTS histórico, gratuito e de código aberto."
 
 #: mod.jsonlabel
 msgid "0 A.D. Empires Ascendant"
@@ -2548,7 +2549,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[16].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "Visualização do alcance do ataque."
 
 #: gui/options/options.json[0].options[17].tooltip
 msgid ""
@@ -2872,7 +2873,7 @@ msgstr "Aleatório"
 
 #: gui/options/options.json[3].options[3].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Balanceado"
 
 #: gui/options/options.json[3].options[3].list[2].label
 msgid "Aggressive"
@@ -2884,11 +2885,11 @@ msgstr "Defensivo"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "Comportamento padrão da IA."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Behavior"
-msgstr ""
+msgstr "Comportamento padrão da IA."
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid ""
@@ -3349,7 +3350,7 @@ msgstr "CENTROS CÍVICOS"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The foundation of your new colony."
-msgstr ""
+msgstr "- A fundação de sua nova colônia."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
