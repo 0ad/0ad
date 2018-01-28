@@ -21,9 +21,15 @@ Armour.prototype.Init = function()
 	this.invulnerable = false;
 };
 
+Armour.prototype.IsInvulnerable = function()
+{
+	return this.invulnerable;
+};
+
 Armour.prototype.SetInvulnerability = function(invulnerability)
 {
 	this.invulnerable = invulnerability;
+	Engine.PostMessage(this.entity, MT_InvulnerabilityChanged, { "entity": this.entity, "invulnerability": invulnerability });
 };
 
 /**
