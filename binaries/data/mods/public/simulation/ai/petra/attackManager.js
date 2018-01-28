@@ -451,11 +451,11 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 	// If both wonder and relic, choose randomly between them TODO should combine decisions
 
 	if (gameState.getVictoryConditions().has("wonder"))
-		enemyPlayer = this.getWonderEnemyPlayer(gameState);
+		enemyPlayer = this.getWonderEnemyPlayer(gameState, attack);
 
 	if (gameState.getVictoryConditions().has("capture_the_relic"))
 		if (!enemyPlayer || randBool())
-			enemyPlayer = this.getRelicEnemyPlayer(gameState) || enemyPlayer;
+			enemyPlayer = this.getRelicEnemyPlayer(gameState, attack) || enemyPlayer;
 
 	if (enemyPlayer)
 		return enemyPlayer;
@@ -558,7 +558,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
  * Target the player with the most advanced wonder.
  * TODO currently the first built wonder is kept, should chek on the minimum wonderDuration left instead.
  */
-m.AttackManager.prototype.getWonderEnemyPlayer = function(gameState)
+m.AttackManager.prototype.getWonderEnemyPlayer = function(gameState, attack)
 {
 	let enemyPlayer;
 	let enemyWonder;
@@ -590,7 +590,7 @@ m.AttackManager.prototype.getWonderEnemyPlayer = function(gameState)
 /**
  * Target the player with the most relics (including gaia).
  */ 
-m.AttackManager.prototype.getRelicEnemyPlayer = function(gameState)
+m.AttackManager.prototype.getRelicEnemyPlayer = function(gameState, attack)
 {
 	let enemyPlayer;
 	let allRelics = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic"));
