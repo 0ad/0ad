@@ -3,12 +3,11 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Mesh">
-      <mesh>skeletal/goat.dae</mesh>
+      <mesh>skeletal/goat_male.dae</mesh>
+      <textures>
+        <texture file="skeletal/special_fleece.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <group>
-    <variant frequency="100" name="Golden-fleece">
-      <textures><texture file="skeletal/special_fleece.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
+  <material>basic_spec.xml</material>
 </actor>

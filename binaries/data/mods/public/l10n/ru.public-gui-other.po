@@ -41,7 +41,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-08 00:30+0000\n"
+"PO-Revision-Date: 2018-01-23 21:25+0000\n"
 "Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgstr "%(civilization)s, исторические факты"
 #: gui/common/color.js:149
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Неназначенная горячая клавиша: %(hotkeyName)s"
 
 #: gui/common/color.js:164
 #, javascript-format
@@ -127,7 +127,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Открывается %(url)s\n в браузере по умолчанию. Пожалуйста, подождите..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -359,7 +359,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:262
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Герои могут размещаться внутри зданий."
 
 #: gui/common/gamedescription.js:266
 msgid "Exposed Heroes"
@@ -367,7 +367,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:267
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
-msgstr ""
+msgstr "Герои не могут быть размещены в гарнизоне, что делает их уязвимыми для внезапных атак."
 
 #: gui/common/gamedescription.js:274
 msgid "Rated game"
@@ -485,7 +485,7 @@ msgstr "Отключено"
 #: gui/common/gamedescription.js:379
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Определяется картой."
 
 #: gui/common/gamedescription.js:383
 msgid "Revealed Map"
@@ -497,7 +497,7 @@ msgstr "Исследованная карта"
 
 #: gui/common/gamedescription.js:393
 msgid "Cheats"
-msgstr "Читы"
+msgstr "Чит-коды"
 
 #: gui/common/gamedescription.js:398 gui/common/tooltips.js:126
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:222
@@ -533,22 +533,22 @@ msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr "Потеря соединения с сервером (%(seconds)ss)"
+msgstr "Потеря соединения с сервером (%(seconds)sсек.)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr "%(player)s потерял соединение (%(seconds)ss)"
+msgstr "%(player)s потерял соединение (%(seconds)sсек.)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr "Плохое подключение к серверу (%(milliseconds)sms)"
+msgstr "Плохое подключение к серверу (%(milliseconds)sмс.)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr "Плохое соединение с %(player)s (%(milliseconds)sms)"
+msgstr "Плохое соединение с %(player)s (%(milliseconds)sмс.)"
 
 #: gui/common/network.js:66
 msgctxt "network disconnect"
@@ -720,7 +720,7 @@ msgstr "Схватка"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "Карта с заранее определённой местностью и числом игроков, однако можно изменять другие настройки игры."
 
 #: gui/common/settings.js:226
 msgctxt "map"
@@ -731,7 +731,7 @@ msgstr "Случайная"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Создайте уникальную карту, ресурсы которой каждый раз будут распределяться по-разному. Вы можете выбирать количество игроков и команд."
 
 #: gui/common/settings.js:231
 msgctxt "map"
@@ -740,7 +740,7 @@ msgstr "Сценарий"
 
 #: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "Карта с заранее определённой местностью и игровыми настройками."
 
 #: gui/common/settings.js:272
 msgctxt "victory condition"
@@ -1198,19 +1198,19 @@ msgstr "OK"
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Мин: %(min)s, Макс: %(max)s"
 
 #: gui/options/options.js:94
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Мин: %(min)s"
 
 #: gui/options/options.js:96
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Макс: %(max)s"
 
 #: gui/options/options.js:129
 #, javascript-format
@@ -1231,7 +1231,7 @@ msgstr "Предупреждение"
 
 #: gui/options/options.js:314
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr ""
+msgstr "Некоторые параметры настроек некорректны! Вы уверены, что хотите сохранить их?"
 
 #: gui/options/options.js:340
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1284,7 +1284,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr ""
+msgstr "%(warning)s Похоже Вы используете графику без шейдеров (неизменяемая). Эта опция будет удалена в одном из последующих релизов 0 A.D. в целях обеспечения более продвинутых графических возможностей. Мы советуем подумать о модернизации или замене видеокарты на более современную модель, поддерживающую шейдеры."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1481,11 +1481,11 @@ msgstr "Игроков: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
-msgstr "dd.MM.yyyy HH:mm"
+msgstr "дд.ММ.гггг чч:мм"
 
 #: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
-msgstr "yyyy-MM"
+msgstr "гггг-ММ"
 
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):73
 msgid "Score"
@@ -1614,7 +1614,7 @@ msgstr "Трофеи"
 
 #: gui/summary/layout.js:122
 msgid "Livestock bred"
-msgstr ""
+msgstr "Животноводство"
 
 #: gui/summary/layout.js:126
 #, javascript-format
@@ -1670,14 +1670,14 @@ msgstr "Феминизация"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr ""
+msgstr "Взятки"
 
 #: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "Взятки\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:357
 msgid "Team total"
@@ -1885,7 +1885,7 @@ msgstr "Вы можете автоматически посылать нам а�
 
 #: gui/pregame/mainmenu.xml:532
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "Альфа XXIII: Ken Wood"
 
 #: gui/pregame/mainmenu.xml:534
 msgid ""
@@ -1985,7 +1985,7 @@ msgstr "Сообщить об ошибке"
 
 #: gui/pregame/mainmenu.xml:(caption):580
 msgid "Translate the Game"
-msgstr ""
+msgstr "Перевести Игру"
 
 #: gui/pregame/mainmenu.xml:(caption):592
 msgid "Credits"
@@ -2467,7 +2467,7 @@ msgstr "Пауза при фоновом режиме"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "При отключении экрана приветствия он будет единожды появляться только при выходе новой версии игры. вы всегда можете запустить его из главного меню."
 
 #: gui/options/options.json[0].options[4].label
 msgid "Enable Welcome Screen"
@@ -2567,11 +2567,11 @@ msgstr "Размер группы для обучения"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number"
-msgstr ""
+msgstr "Юнит считается раненым и будет выбран при нажатии горячей клавиши выбора раненых юнитов, если процент оставшегося у него здоровья будет ниже этого уровня"
 
 #: gui/options/options.json[0].options[14].label
 msgid "Wounded Unit Health"
-msgstr ""
+msgstr "Здоровье раненых юнитов"
 
 #: gui/options/options.json[0].options[15].tooltip
 msgid ""
@@ -2590,7 +2590,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[16].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "Визуализация радиуса атаки"
 
 #: gui/options/options.json[0].options[17].tooltip
 msgid ""
@@ -2630,7 +2630,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[1].label
 msgid "Fog"
-msgstr ""
+msgstr "Туман"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
@@ -2902,11 +2902,11 @@ msgstr "Очень сложно"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "Сложность ИИ по умолчанию."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "Сложность ИИ по умолчанию"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Random"
@@ -2926,11 +2926,11 @@ msgstr "Защищающийся"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "Поведение ИИ по умолчанию."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Behavior"
-msgstr ""
+msgstr "Поведение ИИ по умолчанию"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid ""
@@ -2966,7 +2966,7 @@ msgstr "Столбец игрового рейтинга"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "Эти настройки применимы только в режиме многопользовательской игры."
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
@@ -3471,7 +3471,7 @@ msgstr "СБОР РЕСУРСОВ"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "- Используйте горожан-солдат и горожанок для сбора ресурсов."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female citizens are faster gathering vegetable resources."

@@ -315,7 +315,7 @@ m.DiplomacyManager.prototype.lastManStandingCheck = function(gameState)
 		if (gameState.isPlayerNeutral(i)) // be more inclined to turn against neutral players
 			turnFactor += this.betrayWeighting;
 
-		if (gameState.getGameType() === "wonder")
+		if (gameState.getVictoryConditions().has("wonder"))
 		{
 			let wonder = gameState.getEnemyStructures(i).filter(API3.Filters.byClass("Wonder"))[0];
 			if (wonder)
@@ -330,7 +330,7 @@ m.DiplomacyManager.prototype.lastManStandingCheck = function(gameState)
 			}
 		}
 
-		if (gameState.getGameType() === "capture_the_relic")
+		if (gameState.getVictoryConditions().has("capture_the_relic"))
 		{
 			let relicsCount = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic"))
 				.filter(relic => relic.owner() === i).length;

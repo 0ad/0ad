@@ -350,10 +350,7 @@ function updateChatHistory()
 
 function onToggleChatWindowExtended()
 {
-	// Save user preference
-	let extended = Engine.GetGUIObjectByName("extendedChat").checked.toString();
-	Engine.ConfigDB_CreateValue("user", "chat.session.extended", extended);
-	Engine.ConfigDB_WriteValueToFile("user", "chat.session.extended", extended, "config/user.cfg");
+	saveSettingAndWriteToUserConfig("chat.session.extended", String(Engine.GetGUIObjectByName("extendedChat").checked));
 
 	resizeChatWindow();
 

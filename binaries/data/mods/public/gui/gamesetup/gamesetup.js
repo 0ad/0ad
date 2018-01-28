@@ -1097,10 +1097,7 @@ function init(attribs)
 
 	// Replace empty playername when entering a singleplayermatch for the first time
 	if (!g_IsNetworked)
-	{
-		Engine.ConfigDB_CreateValue("user", "playername.singleplayer", singleplayerName());
-		Engine.ConfigDB_WriteValueToFile("user", "playername.singleplayer", singleplayerName(), "config/user.cfg");
-	}
+		saveSettingAndWriteToUserConfig("playername.singleplayer", singleplayerName());
 
 	initDefaults();
 	supplementDefaults();
@@ -1375,13 +1372,6 @@ function initSPTips()
 	Engine.GetGUIObjectByName("spTips").hidden = false;
 	Engine.GetGUIObjectByName("displaySPTips").checked = true;
 	Engine.GetGUIObjectByName("aiTips").caption = Engine.TranslateLines(Engine.ReadFile("gui/gamesetup/ai.txt"));
-}
-
-function saveSPTipsSetting()
-{
-	let enabled = String(Engine.GetGUIObjectByName("displaySPTips").checked);
-	Engine.ConfigDB_CreateValue("user", "gui.gamesetup.enabletips", enabled);
-	Engine.ConfigDB_WriteValueToFile("user", "gui.gamesetup.enabletips", enabled, "config/user.cfg");
 }
 
 /**

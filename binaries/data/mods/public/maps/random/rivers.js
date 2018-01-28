@@ -131,7 +131,7 @@ for (let i = 0; i < numRivers; ++i)
 		"meanderLong": 0,
 		"waterFunc": (position, height, riverFraction) => {
 
-			addToClass(position.x, position.y, clWater);
+			clWater.add(position);
 
 			let isShallow = height < heightShallows &&
 				riverFraction > shallowLocation &&
@@ -146,7 +146,7 @@ for (let i = 0; i < numRivers; ++i)
 			createTerrain(height >= 0 ? tShore : tWater).place(position);
 
 			if (isShallow)
-				addToClass(position.x, position.y, clShallow);
+				clShallow.add(position);
 		}
 	});
 }

@@ -7,7 +7,7 @@
 # Costas Sachos <konssach7@gmail.com>, 2016
 # Lampros Lampreas <marbiourd@hotmail.com>, 2016
 # Natalia V <inactive+irida@transifex.com>, 2016
-# Steven Gikas <stevengk123@gmail.com>, 2016-2017
+# Steven Gikas <stevengk123@gmail.com>, 2016-2018
 # Vasilis Drosos <basilisd@gmail.com>, 2016-2017
 # Κωνσταντίνος Σπάρταλης <consta.spartalis@gmail.com>, 2016
 # ΧΡΗΣΤΟΣ ΣΚΙΑΔΑΣ <chrisskas@gmail.com>, 2017
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-21 17:53+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"PO-Revision-Date: 2018-01-14 19:24+0000\n"
+"Last-Translator: Steven Gikas <stevengk123@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
-msgstr "Επισκευές στο Ναυπηγείο"
+msgstr "Επισκευές Ναυπηγείου"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
@@ -38,7 +38,7 @@ msgstr "Ευλογία των Θεών"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
-msgstr "Θεραπεύει τις μονάδες ανά 3 HP (Μονάδες Ζωής) το δευτερόλεπτο."
+msgstr "Θεραπεύει τις μονάδες ανά 3 HP Μονάδες Ζωής το δευτερόλεπτο."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -63,7 +63,7 @@ msgstr "Αφοσίωση"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr "+50% στο ρυθμό αναγέννησης της αφοσίωσις για τις φρουρούμενες κατασκευές."
+msgstr "+50% στο ρυθμό αναγέννησης της αφοσίωσης για τις φρουρούμενες κατασκευές."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -71,11 +71,11 @@ msgstr "Διάταγμα του Ασόκα"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "+20% movement speed for traders."
-msgstr "οι έμποροι κινούνται +20% ταχύτερα"
+msgstr "Οι έμποροι κινούνται +20% ταχύτερα"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
-msgstr "Bonus στη γεωργία"
+msgstr "Μπόνους στη καλλιέργεια"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "+25% gather rate for workers in the grainfields."
@@ -87,11 +87,11 @@ msgstr "Ιατρική Περίθαλψη"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Θεραπεύει τις κοντινές μονάδες ανά 1 HP το δευτερόλεπτο"
+msgstr "Θεραπεύει τις κοντινές μονάδες ανά 1 Μονάδα Ζωής το δευτερόλεπτο."
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
-msgstr "Εξελληνισμός"
+msgstr "Ελληνισμός"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
@@ -99,7 +99,7 @@ msgstr "Αύξηση της εδαφικής επιρροής κατά 20% αν�
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr " Τείχος Προστασίας"
+msgstr "Προστασία Τοίχου"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."

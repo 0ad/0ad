@@ -9,7 +9,7 @@
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # anton.tsyganenko <anton-tsyganenko@yandex.ru>, 2015
 # Boris Karalnik <eyesucker@gmail.com>, 2015
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2017
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014-2016
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-23 21:25+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -250,11 +250,11 @@ msgstr "Shift + F2     Сделать огромный скриншот (6400px*
 
 #: gui/manual/intro.txt:52
 msgid "Alt + S: Switch to the next tab."
-msgstr ""
+msgstr "Alt + S: Перейти на следующую вкладку."
 
 #: gui/manual/intro.txt:53
 msgid "Alt + W: Switch to the previous tab."
-msgstr ""
+msgstr "Alt + W: Перейти на предыдущую вкладку."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -310,7 +310,7 @@ msgstr "Enter / return     Открыть / отправить чат"
 
 #: gui/manual/intro.txt:66
 msgid "T: Send team chat"
-msgstr "T     Отправить сообщение союзникам"
+msgstr "T: Отправить сообщение союзникам"
 
 #: gui/manual/intro.txt:67
 msgid "L: Chat with the previously selected private chat partner"
@@ -328,7 +328,7 @@ msgstr "Delete: Удалить только выделенных юнитов и
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr "Shift + Delete: Delete: Удалить только выделенных юнитов и/или здания без подтверждения"
+msgstr "Shift + Delete: Удалить выделенных юнитов и/или здания без подтверждения"
 
 #: gui/manual/intro.txt:71
 msgid "/ (ForwardSlash): Select idle fighter"
@@ -336,7 +336,7 @@ msgstr "/ (Косая черта): Выбрать бездействующего
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /: Добавить незанятого воина к выделенному отряду"
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
@@ -348,7 +348,7 @@ msgstr ". (Точка): Выбрать бездействующего рабоч
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: Добавить бездействующего рабочего к выделенным юнитам (включая солдат-горожан)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
@@ -356,15 +356,15 @@ msgstr "Alt + .: Выбрать всех незанятых рабочих (вк
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr ""
+msgstr "\\ (Обратный слэш): Выбрать бездействующего юнита"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr ""
+msgstr "Shift + \\: Добавить незанятого юнита к выделенному отряду"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
-msgstr ""
+msgstr "Alt + \\: Выбрать всех незанятых юнитов"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
@@ -410,7 +410,7 @@ msgstr "F5, F6, F7 и F8      Переместит камеру в указан�
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M при выбранных постройках: добавить 1-го, 2-го... отображаемого юнита в очередь тренировки во всех выбранных постройках."
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -434,11 +434,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:93
 msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Ctrl + B: Переключить отображение страницы обмена/торговли."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Ctlr + P: переключить отображение игровой панели обучения."
 
 #: gui/manual/intro.txt:96
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -465,7 +465,7 @@ msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
-msgstr ""
+msgstr "Alt + ПКМ: Приказать одному юниту из выбранного отряда идти/строить/собирать/и т.д. и убрать его из группы. Используется для того, чтобы быстро распределить работу среди выбранных юнитов."
 
 #: gui/manual/intro.txt:102
 msgid ""
@@ -489,7 +489,7 @@ msgstr "Alt + выделение юнитов ЛКМ    Выбрать толь�
 
 #: gui/manual/intro.txt:106
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr ""
+msgstr "Alt + Y + выделение юнитов ЛКМ: Выбрать только гражданских юнитов"
 
 #: gui/manual/intro.txt:107
 msgid "I + Left Drag over units on map: Only select idle units"
@@ -497,7 +497,7 @@ msgstr "I + выделение юнитов ЛКМ: Выбрать только 
 
 #: gui/manual/intro.txt:108
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr ""
+msgstr "O + выделение юнитов ЛКМ: Выбрать только раненых юнитов"
 
 #: gui/manual/intro.txt:109
 msgid ""
@@ -554,7 +554,7 @@ msgstr ""
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr "Alt + Shift + S: Переключить режим отображения силуэтов юнитов (выключение может дать небольшой прирост производительности)"
 
 #: gui/manual/intro.txt:121
 msgid "Alt + Z: Toggle sky"
@@ -563,7 +563,7 @@ msgstr "Alt + Z     Переключить небо"
 #: gui/manual/intro.txt:122
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
+msgstr "Alt + C: Переключить режим отображения визуализации дальности атаки выбранных оборонительных сооружений"
 
 #: gui/manual/intro.txt:123
 msgid ""

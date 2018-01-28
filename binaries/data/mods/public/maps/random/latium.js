@@ -115,7 +115,7 @@ for (let x of [mapBounds.left, mapBounds.right])
 		"meanderShort": 0,
 		"meanderLong": 0,
 		"waterFunc": (position, height, z) => {
-			addToClass(position.x, position.y, clWater);
+			clWater.add(position);
 		}
 	});
 Engine.SetProgress(10);
@@ -241,13 +241,13 @@ for (var ix = 0; ix < mapSize; ix++)
 			t = tBeachGrass;
 
 		if (minH < 0)
-			addToClass(ix, iz, clWater);
+			clWater.add(position);
 
 		// cliffs
 		if (diffH > 2.9 && minH > -7)
 		{
 			t = tCliff;
-			addToClass(ix, iz, clCliff);
+			clCliff.add(position);
 		}
 		else if (diffH > 2.5 && minH > -5 || maxH - minAdjHeight > 2.9 && minH > 0)
 		{
@@ -258,12 +258,12 @@ for (var ix = 0; ix < mapSize; ix++)
 			else
 				t = [tDirtCliff, tGrassCliff, tGrassCliff, tGrassRock, tCliff];
 
-			addToClass(ix, iz, clCliff);
+			clCliff.add(position);
 		}
 
 		// Don't place resources onto potentially impassable mountains
 		if (minH >= 20)
-			addToClass(ix, iz, clCliff);
+			clCliff.add(position);
 
 		// forests
 		if (g_Map.getHeight(position) < 11 && diffH < 2 && minH > 1)
@@ -284,12 +284,12 @@ for (var ix = 0; ix < mapSize; ix++)
 					else
 						t = pPineForest;
 
-					addToClass(ix, iz, clForest);
+					clForest.add(position);
 				}
 				else if (minH < 4)
 				{
 					t = pPalmForest;
-					addToClass(ix, iz, clForest);
+					clForest.add(position);
 				}
 			}
 		}

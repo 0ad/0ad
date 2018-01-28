@@ -110,12 +110,12 @@ paintRiver({
 	"landFunc": (position, shoreDist1, shoreDist2) => {
 
 		if (waterPosition + shoreDist1 > highlandsPosition)
-			addToClass(position.x, position.y, clHighlands);
+			clHighlands.add(position);
 	},
 	"waterFunc": (position, height, riverFraction) => {
 
 		if (height < heightShore2)
-			addToClass(position.x, position.y, clWater);
+			clWater.add(position);
 
 		createTerrain(height < heightShore1 ? tWater : tShore).place(position);
 	}

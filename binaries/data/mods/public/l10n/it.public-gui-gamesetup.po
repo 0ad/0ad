@@ -21,6 +21,7 @@
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2013,2015-2016
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2017
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
+# George Lungu <lungugeorge88@gmail.com>, 2018
 # giangy <giancarlo.moi@tiscali.it>, 2014
 # j4nsen <enrico.meneguzzi@gmail.com>, 2013
 # Marco <inactive+Vamos@transifex.com>, 2013
@@ -42,8 +43,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 04:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-24 11:46+0000\n"
+"Last-Translator: George Lungu <lungugeorge88@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -326,11 +327,11 @@ msgstr "Seleziona la velocità di gioco."
 
 #: gui/gamesetup/gamesetup.js:652
 msgid "Difficulty"
-msgstr ""
+msgstr "Difficoltà"
 
 #: gui/gamesetup/gamesetup.js:654
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Seleziona la difficoltà del scenario"
 
 #: gui/gamesetup/gamesetup.js:719
 msgid "Chose the civilization for this player"
@@ -448,7 +449,7 @@ msgstr "Inizia una nuova partita con le impostazioni correnti ( rimane disattiva
 #: gui/gamesetup/gamesetup.js:975
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Configura l'AI: %(description)s"
 
 #: gui/gamesetup/gamesetup.js:1510
 msgctxt "map selection"
@@ -547,7 +548,7 @@ msgstr "Difficoltà I.A.:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Comportamento dell'AI"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -568,7 +569,7 @@ msgstr "Caricamento"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Caricamento dei dati  della mappa. Aspetta"
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Player Name"
@@ -657,7 +658,7 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus […] ha stabilito la sua legge: la saggezza arriva dalla sofferenza. […] Cosi i uomini contro la loro volontà impareranno a diventare calmi. […] Cosi tale grazia è dura e violenta.\" - Eschilo (\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -773,7 +774,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "\" E molto servile vivere nella lussuria, ma molto regale a faticare. [...] Te non sai che la fine e l'oggetto della conquista è evitare i vizi e le infermità dei sottomessi?\" - Alessandro Magno (Plutarco, \"Vite parallele\", \"Alessandro\". sec. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -907,7 +908,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "\"Alessandro stesso, assetato, con gran dolore e difficoltà tuttavia guido l'armata a piedi [...]. Nello stesso momento un gruppo di soldati [...] trovo un po d'acqua, raccolsero l'acqua e gliela portarono. Lui la prese, è lodò l'uomo, immediatamente lo verso sulla terra in fronte a tutti.\" - Arriano sulla marcia di Alessandro attraverso il deserto del Gedrosia (\"The Anabasis di Alessandro\", 6,26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -918,7 +919,7 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "\"Conficcando la sua lancia nel viso di Mitridate, lui [Alessandro] la buttò a terra. Poi Roesace [un Persiano] [...] lo colpì in testa con la sua spada. [...] Alessandro lanciò  anche lui a terra, perforandone con la lancia la corazza e il petto. Spitridate [un Persiano] aveva già sollevato la sua spada alle spalle di Alessandro quando Clito [...] tagliò il suo braccio.\" - Arrian sulla battaglia del Granico (\"Anabasi di Alessandro\", 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
@@ -1061,7 +1062,7 @@ msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "\"Io sono Dario, il grande re, il re dei re, il re di Persia, il re dei paesi, [...] 23 terre in totale.\"  - Dario I. (iscrizione di Behistun, colonna I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1071,7 +1072,7 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Fraorte è stato catturato e portato davanti a me. Gli ho tagliato il naso, le orecchie e la lingua, e gli ho cavato un occhio, ed è stato tenuto in catene all'ingresso del mio palazzo, e tutto il popolo lo ha visto. Poi l'ho crocifisso a Ecbatana; e degli uomini che erano i suoi seguaci [...] ho scorticato e appeso le loro pelli, riempite di paglia.\"  - Dario I. (iscrizione di Behistun, colonna II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1239,7 +1240,7 @@ msgid ""
 "while the survivors used the heap as a vantage point for throwing missiles "
 "at our men, or catching our spears and throwing them back.\" - Gaius Julius "
 "Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
-msgstr ""
+msgstr "\"Ma il nemico [...] mostrò così grande coraggio, alla caduta della prima fila gli uomini dietro vi si issarono e continuarono la lotta da sopra i cadaveri, facendo crescere con la loro morte la pila di corpi. Quindi i sopravvissuti usarono la pila come punto di partenza per lanciare dardi contro i nostri uomini, o prendere le nostre lance e tirarcele addosso.\" - Gaio Giulio Cesare sulla battaglia del Sabis (\"De Bello Gallico\", II 27)"
 
 #: gui/text/quotes.txt:87
 msgid ""
@@ -1350,7 +1351,7 @@ msgid ""
 "would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
 " reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr ""
+msgstr "\"Quando lo informarono [...] che i barbari scagliavano le loro frecce e oscuravano la luce del sole, lui [Dienece] [...] disse che l'emissario \\[...] gli portava una buona notizia, perché se i Medi oscuravano la luce, la battaglia era contro di loro sarebbe stata all'ombra e non al sole.\" - Erodoto che descrive Dienece, reputato il più coraggioso soldato Spartano delle Termopili (Polibio, \"Storie\", VII. 226)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1404,7 +1405,7 @@ msgstr "\"E' dolce e onorevole morire per la patria.\" - Orazio (\"Odi\", III., 
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "\"Io sono Ciro, re del mondo ...\" - Iscrizione (Cilindro di Ciro)"
 
 #: gui/text/quotes.txt:111
 msgid ""
@@ -1444,7 +1445,7 @@ msgid ""
 "of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr ""
+msgstr "\" Tante migliaia di Romani stavano morendo [...] alcuni, le cui ferite erano eccitate dal freddo mattino, nel momento in cui si stavano alzando, coperti di sangue, dal mezzo dei mucchi di uccisi, erano sopraffatti dal nemico.\" - Livio, descrivendo le conseguenze della battaglia di Canne, dove Annibale inflisse la più grande sconfitta nella storia dei Romani (\"Ab Urbe Condita\", XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1663,7 +1664,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
 "about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
-msgstr ""
+msgstr "\"Uno [...] scagliò una freccia con tanta precisione e forza che trafisse la corazza e si fermò tra le sue costole. [...] Alessandro indietreggiò e si mise in ginocchio. [...] Alla fine Alessandro uccise il barbaro. Ma aveva molte ferite, all'ultimo era stato colpito sul collo con una mazza e si appoggiò al muro della città, con gli occhi ancora fissi ai suoi nemici.\" - Plutarco sulla Campagna Malliana (\"Vite Parallele\", \"Alessandro\", cap. 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1700,7 +1701,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"Il popolo Ateniese è come una nave senza un comandante: la paura del nemico o di una tempesta rendono l'equipaggio consenziente e obbediente al timoniere, e tutto va bene, ma una volta al sicuro [...]  iniziano a litigare tra di loro [...], e il risultato è stato spesso che, dopo aver scampato i pericoli dei mari più ampi e delle tempeste più violente, affondano la loro nave in porto e a un passo dalla salvezza.\" - Polibio sulla Costituzione Ateniese (\"Storie\", VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1938,7 +1939,7 @@ msgid ""
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr ""
+msgstr "\"Quando i Lacedaemoniani non erano più in grado di corrergli dietro, gli schermagliatori [...] insieme li hanno caricati, gettando pietre, frecce e dardi al nemico più vicino.\" - Tucidide, descrivendo il disastro Spartano nella Battaglia di Sfacteria (\"Storia della Guerra del Peloponneso\", IV 34.2)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -1997,7 +1998,7 @@ msgid ""
 " are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "\"Queste sono le domande giuste da porre, in inverno, intorno al fuoco [...]: Chi sei tu, amico? Qual è la tua terra? E quanti anni avevi quando i Medi [Persiani] sono venuti?\"  - Senofane, probabilmente riferendosi a una spedizione punitiva contro le città greche in Ionia (frammento 17)"
 
 #: gui/text/quotes.txt:190
 msgid ""

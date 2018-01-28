@@ -61,7 +61,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			{
-				"text": markForTranslation("Build a batch of Skirmishers by holding %(hotkey)s and clicking on the Skirmisher icon in the Civic Center."),
+				"text": markForTranslation("Train a batch of Skirmishers by holding %(hotkey)s and clicking on the Skirmisher icon in the Civic Center."),
 				"hotkey": "session.batchtrain"
 			}
 		],
@@ -217,7 +217,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Start building a batch of female citizens in the Civic Center and set its rally point to the farm (right click on it)."),
+		"instructions": markForTranslation("Start training a batch of female citizens in the Civic Center and set its rally point to the farm (right click on it)."),
 		"Init": function()
 		{
 			this.rallyPointSet = false;
@@ -263,7 +263,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Prepare for an attack by an enemy player. Build more soldiers using the Barracks, and get idle soldiers to build a Defense Tower near your Outpost."),
+		"instructions": markForTranslation("Prepare for an attack by an enemy player. Train more soldiers using the Barracks, and get idle soldiers to build a Defense Tower near your Outpost."),
 		"OnPlayerCommand": function(msg)
 		{
 			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "DefenseTower"))
@@ -279,7 +279,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("The enemy is coming. Build more soldiers to fight off the enemies."),
+		"instructions": markForTranslation("The enemy is coming. Train more soldiers to fight off the enemies."),
 		"OnResearchFinished": function(msg)
 		{
 			this.LaunchAttack();
@@ -326,7 +326,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("While waiting for the phase change, you may build more soldiers at the barracks."),
+		"instructions": markForTranslation("While waiting for the phase change, you may train more soldiers at the barracks."),
 		"OnResearchFinished": function(msg)
 		{
 			if (msg.tech == "phase_city_generic")
@@ -334,7 +334,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Now that you are in City Phase, build a fortress nearby (gather some stone first if needed) and then use it to build 2 Battering Rams."),
+		"instructions": markForTranslation("Now that you are in City Phase, build a fortress nearby (gather some stone first if needed) and then use it to construct 2 Battering Rams."),
 		"Init": function()
 		{
 			this.ramCount = 0;

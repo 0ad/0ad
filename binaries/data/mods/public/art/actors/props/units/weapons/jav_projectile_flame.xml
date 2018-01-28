@@ -2,13 +2,27 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Flaming Iron Javelin">
-      <mesh>props/weap_jav_f.dae</mesh>
+    <variant frequency="100" name="Base">
       <props>
-        <prop actor="particle/flame_jav.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_jav.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/blades/jav_blade.xml" attachpoint="blade"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="blade"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="blade"/>
       </props>
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="medgrip">
+      <mesh>props/weap_javelin_shaft_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="light">
+      <mesh>props/weap_javelin_shaft_b.dae</mesh>
+    </variant>
+    <variant frequency="1" name="med">
+      <mesh>props/weap_javelin_shaft_c.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
 </actor>

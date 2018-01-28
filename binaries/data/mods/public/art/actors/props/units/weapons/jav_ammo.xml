@@ -3,15 +3,16 @@
   <castshadow/>
   <group>
     <variant name="javelin ammo">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+      <mesh>props/weap_javelin_shaft_quiver.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="ammo_a"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="ammo_b"/>
+        <prop actor="props/units/weapons/blades/jav_blade.xml" attachpoint="blade"/>
+      </props>
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <group>
-    <variant frequency="1" name="ammo1">
-      <mesh>props/javelin_ammo.dae</mesh>
-    </variant>
-    <variant frequency="1" name="ammo2">
-      <mesh>props/javelin_ammo2.dae</mesh>
-    </variant>
-  </group>
+  <material>basic_trans.xml</material>
 </actor>

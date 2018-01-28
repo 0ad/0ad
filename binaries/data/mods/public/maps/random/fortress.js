@@ -111,7 +111,7 @@ for (let i = 0; i < numPlayers; ++i)
 			    ty - tx - minBoundY + minBoundX < tilesSize)
 			{
 				createTerrain(tRoad).place(position);
-				addToClass(tx, ty, clPlayer);
+				clPlayer.add(position);
 			}
 		}
 

@@ -93,7 +93,7 @@ for (let  i = 0; i < numPlayers; ++i)
 
 	log("Placing treasure seeker woman...");
 	let femaleLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 3.5, 3).round();
-	addToClass(femaleLocation.x, femaleLocation.y, clWomen);
+	clWomen.add(femaleLocation);
 	placeObject(femaleLocation, oTreasureSeeker, playerIDs[i], playerAngle[i] + Math.PI);
 
 	log("Placing attacker spawn point....");
@@ -102,8 +102,8 @@ for (let  i = 0; i < numPlayers; ++i)
 
 	log("Preventing mountains in the area between player and attackers...");
 	addCivicCenterAreaToClass(playerPosition[i], clPlayer);
-	addToClass(attacker[i].x, attacker[i].y, clPlayer);
-	addToClass(halfway[i].x, halfway[i].y, clPlayer);
+	clPlayer.add(attacker);
+	clPlayer.add(halfway);
 }
 Engine.SetProgress(20);
 

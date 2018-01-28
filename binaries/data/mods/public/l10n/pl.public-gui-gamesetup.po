@@ -13,10 +13,13 @@
 # Daniel Whatever <Deynyel@protonmail.com>, 2017
 # Dominik Pieczyński <inactive+RiviPN@transifex.com>, 2014
 # domino1162, 2014
+# Filip Binkiewicz <filip.binkiewicz@gmail.com>, 2018
 # Grzegorz Lara <gregoriuszgonface@gmail.com>, 2016
 # inso_pl <hurricane.pl.96@gmail.com>, 2014
+# Kamil Grela <kamilgrela97@gmail.com>, 2018
 # krzychu188 <krzychu188@gmail.com>, 2014
 # Krzysztof5 <krzysztoftaperek@gmail.com>, 2014
+# Krzysztof Balawejder <krzybalaw@outlook.com>, 2018
 # Krzysztof Grabania, 2015
 # lacek, 2014
 # LenaPL <polandlena@gmail.com>, 2014
@@ -54,8 +57,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 04:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-19 10:53+0000\n"
+"Last-Translator: Krzysztof Balawejder <krzybalaw@outlook.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -338,11 +341,11 @@ msgstr "Wybierz szybkość gry."
 
 #: gui/gamesetup/gamesetup.js:652
 msgid "Difficulty"
-msgstr ""
+msgstr "Poziom trudności"
 
 #: gui/gamesetup/gamesetup.js:654
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Wybierz poziom trudności dla tego scenariusza."
 
 #: gui/gamesetup/gamesetup.js:719
 msgid "Chose the civilization for this player"
@@ -460,7 +463,7 @@ msgstr "Rozpocznij nową grę z obecnymi ustawieniami (wyłączone dopóki wszys
 #: gui/gamesetup/gamesetup.js:975
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Wybierz SI: %(description)s"
 
 #: gui/gamesetup/gamesetup.js:1510
 msgctxt "map selection"
@@ -559,7 +562,7 @@ msgstr "Poziom trudności SI"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Zachowanie SI:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -580,7 +583,7 @@ msgstr "Wczytywanie"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Ładowanie mapy. Proszę czekać..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Player Name"
@@ -669,7 +672,7 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[...] ustanowił swoje prawo: mądrość przychodzi przez cierpienie. \\[...] Więc ludzie wbrew swojej woli uczą się umiarkowania. \\[...] Ta łaska jest szorstka i brutalna\" - Ajschylos (\"Oresteja\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -982,7 +985,7 @@ msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, \"The Lives "
 "and Opinions of Eminent Philosophers\", Bion, sec. 50)"
-msgstr ""
+msgstr "\"To nie bogaty skąpiec posiada majątek, lecz majątek posiada jego.\" - Bion z Borystenes"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -2053,7 +2056,7 @@ msgstr ""
 msgid ""
 "\"Battles are decided more by the morale of men than their physical "
 "strength.\" - Xenophon (\"The Education of Cyrus\", 3.3.20)"
-msgstr ""
+msgstr "\"Bitwy bardziej wpływają na morale mężczyzn niż ich siła fizyczna.\" - Xenophon (\"The Education of Cyrus\", 3.3.20)"
 
 #: gui/text/quotes.txt:196
 msgid ""

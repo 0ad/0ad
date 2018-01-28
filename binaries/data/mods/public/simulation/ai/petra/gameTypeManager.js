@@ -27,13 +27,13 @@ m.GameTypeManager = function(Config)
  */
 m.GameTypeManager.prototype.init = function(gameState)
 {
-	if (gameState.getGameType() === "wonder")
+	if (gameState.getVictoryConditions().has("wonder"))
 	{
 		for (let wonder of gameState.getOwnEntitiesByClass("Wonder", true).values())
 			this.criticalEnts.set(wonder.id(), { "guardsAssigned": 0, "guards": new Map() });
 	}
 
-	if (gameState.getGameType() === "regicide")
+	if (gameState.getVictoryConditions().has("regicide"))
 	{
 		for (let hero of gameState.getOwnEntitiesByClass("Hero", true).values())
 		{
@@ -57,7 +57,7 @@ m.GameTypeManager.prototype.init = function(gameState)
  */
 m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 {
-	if (gameState.getGameType() === "wonder")
+	if (gameState.getVictoryConditions().has("wonder"))
 	{
 		for (let evt of events.Create)
 		{
@@ -89,7 +89,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 		}
 	}
 
-	if (gameState.getGameType() === "regicide")
+	if (gameState.getVictoryConditions().has("regicide"))
 	{
 		for (let evt of events.Attacked)
 		{
@@ -288,8 +288,8 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 			continue;
 
 		let ent = gameState.getEntityById(evt.entity);
-		if (ent && (gameState.getGameType() === "wonder" && ent.hasClass("Wonder") ||
-		            gameState.getGameType() === "capture_the_relic" && ent.hasClass("Relic")))
+		if (ent && (gameState.getVictoryConditions().has("wonder") && ent.hasClass("Wonder") ||
+		            gameState.getVictoryConditions().has("capture_the_relic") && ent.hasClass("Relic")))
 		{
 			this.criticalEnts.set(ent.id(), { "guardsAssigned": 0, "guards": new Map() });
 			// Move captured relics to the closest base
@@ -326,6 +326,24 @@ m.GameTypeManager.prototype.removeGuardsFromCriticalEnt = function(gameState, cr
 			guardEnt.setMetadata(PlayerID, "guardedEnt", undefined);
 	}
 	this.criticalEnts.delete(criticalEntId);
+};
+
+/**
+ * Train more healers and affect them to critical entities if needed
+ */
+m.GameTypeManager.prototype.manageCriticalEntHealers = function(gameState, queues)
+{
+	if (this.guardEnts.size > Math.min(gameState.getPopulationMax() / 10, gameState.getPopulation() / 4))
+		return;
+
+	for (let [id, data] of this.criticalEnts)
+	{
+		if (data.healersAssigned !== undefined && data.healersAssigned < this.healersPerCriticalEnt)
+		{
+			this.trainCriticalEntHealer(gameState, queues, id);
+			return;
+		}
+	}
 };
 
 /**
@@ -556,36 +574,42 @@ m.GameTypeManager.prototype.resetCaptureGaiaRelic = function(gameState)
 m.GameTypeManager.prototype.update = function(gameState, events, queues)
 {
 	// Wait a turn for trigger scripts to spawn any critical ents (i.e. in regicide)
-	if (gameState.ai.playedTurn === 1)
+	if (gameState.ai.playedTurn == 1)
 		this.init(gameState);
+
+/*	for (let [id, data] of this.criticalEnts)
+	{
+		API3.warn(" critical " + id + " data " + uneval(data));
+		for (let [k, v] of data.guards)
+			API3.warn(" --- guard " + k + " >>> " + uneval(v));
+	} */
 
 	this.checkEvents(gameState, events);
 
-	if (gameState.getGameType() === "wonder" && gameState.ai.playedTurn % 10 === 0)
-	{
-		gameState.ai.HQ.buildWonder(gameState, queues, true);
-		this.manageCriticalEntGuards(gameState);
-	}
+	if (gameState.ai.playedTurn % 10 != 0 ||
+	    !gameState.getVictoryConditions().has("wonder") && !gameState.getVictoryConditions().has("regicide") &&
+	    !gameState.getVictoryConditions().has("capture_the_relic"))
+		return;
 
-	if (gameState.getGameType() === "regicide" && gameState.ai.playedTurn % 10 === 0)
+	this.manageCriticalEntGuards(gameState);
+
+	if (gameState.getVictoryConditions().has("wonder"))
+		gameState.ai.HQ.buildWonder(gameState, queues, true);
+
+	if (gameState.getVictoryConditions().has("regicide"))
 	{
-		for (let [id, data] of this.criticalEnts)
+		for (let id of this.criticalEnts.keys())
 		{
 			let ent = gameState.getEntityById(id);
 			if (ent && ent.healthLevel() > this.Config.garrisonHealthLevel.high && ent.hasClass("Soldier") &&
-			    ent.getStance() !== "aggressive")
+			    ent.getStance() != "aggressive")
 				ent.setStance("aggressive");
-
-			if (data.healersAssigned < this.healersPerCriticalEnt &&
-			    this.guardEnts.size < Math.min(gameState.getPopulationMax() / 10, gameState.getPopulation() / 4))
-				this.trainCriticalEntHealer(gameState, queues, id);
 		}
-		this.manageCriticalEntGuards(gameState);
+		this.manageCriticalEntHealers(gameState, queues);
 	}
 
-	if (gameState.getGameType() === "capture_the_relic" && gameState.ai.playedTurn % 10 === 0)
+	if (gameState.getVictoryConditions().has("capture_the_relic"))
 	{
-		this.manageCriticalEntGuards(gameState);
 		if (!this.tryCaptureGaiaRelic && gameState.ai.elapsedTime > this.tryCaptureGaiaRelicLapseTime)
 			this.tryCaptureGaiaRelic = true;
 
@@ -596,8 +620,8 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 			for (let relic of allRelics.values())
 			{
 				let relicPosition = relic.position();
-				if (this.targetedGaiaRelics.has(relic.id()) || relic.owner() !== 0 ||
-				    !relicPosition || gameState.ai.HQ.territoryMap.getOwner(relicPosition) !== PlayerID)
+				if (this.targetedGaiaRelics.has(relic.id()) || relic.owner() != 0 ||
+				    !relicPosition || gameState.ai.HQ.territoryMap.getOwner(relicPosition) != PlayerID)
 					continue;
 
 				gameState.ai.HQ.attackManager.raidTargetEntity(gameState, relic);

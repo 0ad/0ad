@@ -209,7 +209,7 @@ m.Config.prototype.setConfig = function(gameState)
 	this.Economy.targetNumTraders = 2 + this.difficulty;
 
 
-	if (gameState.getGameType() === "wonder")
+	if (gameState.getVictoryConditions().has("wonder"))
 	{
 		this.Economy.workPhase3 = Math.floor(0.9 * this.Economy.workPhase3);
 		this.Economy.workPhase4 = Math.floor(0.9 * this.Economy.workPhase4);

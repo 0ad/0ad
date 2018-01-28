@@ -59,29 +59,29 @@ AvoidTextureConstraint.prototype.allows = function(position)
 /**
  * The AvoidTileClassConstraint is met if there are no tiles marked with the given TileClass within the given radius of the tile.
  */
-function AvoidTileClassConstraint(tileClassID, distance)
+function AvoidTileClassConstraint(tileClass, distance)
 {
-	this.tileClass = getTileClass(tileClassID);
+	this.tileClass = tileClass;
 	this.distance = distance;
 }
 
 AvoidTileClassConstraint.prototype.allows = function(position)
 {
-	return this.tileClass.countMembersInRadius(position.x, position.y, this.distance) == 0;
+	return this.tileClass.countMembersInRadius(position, this.distance) == 0;
 };
 
 /**
  * The StayInTileClassConstraint is met if every tile within the given radius of the tile is marked with the given TileClass.
  */
-function StayInTileClassConstraint(tileClassID, distance)
+function StayInTileClassConstraint(tileClass, distance)
 {
-	this.tileClass = getTileClass(tileClassID);
+	this.tileClass = tileClass;
 	this.distance = distance;
 }
 
 StayInTileClassConstraint.prototype.allows = function(position)
 {
-	return this.tileClass.countNonMembersInRadius(position.x, position.y, this.distance) == 0;
+	return this.tileClass.countNonMembersInRadius(position, this.distance) == 0;
 };
 
 /**
@@ -89,17 +89,17 @@ StayInTileClassConstraint.prototype.allows = function(position)
  * tiles not marked with the given TileClass within distanceInside of the tile and
  * tiles marked with the given TileClass within distanceOutside of the tile.
  */
-function BorderTileClassConstraint(tileClassID, distanceInside, distanceOutside)
+function BorderTileClassConstraint(tileClass, distanceInside, distanceOutside)
 {
-	this.tileClass = getTileClass(tileClassID);
+	this.tileClass = tileClass;
 	this.distanceInside = distanceInside;
 	this.distanceOutside = distanceOutside;
 }
 
 BorderTileClassConstraint.prototype.allows = function(position)
 {
-	return this.tileClass.countMembersInRadius(position.x, position.y, this.distanceOutside) > 0 &&
-	       this.tileClass.countNonMembersInRadius(position.x, position.y, this.distanceInside) > 0;
+	return this.tileClass.countMembersInRadius(position, this.distanceOutside) > 0 &&
+	       this.tileClass.countNonMembersInRadius(position, this.distanceInside) > 0;
 };
 
 /**

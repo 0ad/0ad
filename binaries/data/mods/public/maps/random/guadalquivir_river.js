@@ -125,7 +125,7 @@ paintRiver({
 	"meanderShort": 12,
 	"meanderLong": 0,
 	"waterFunc": (position, height, z) => {
-		addToClass(position.x, position.y, clRiver);
+		clRiver.add(position);
 		createTerrain(tWater).place(position);
 
 		if (height < heightShallow && (
@@ -134,7 +134,7 @@ paintRiver({
 		    z > 0.7 && z < 0.8))
 		{
 			g_Map.setHeight(position, heightShallow);
-			addToClass(position.x, position.y, clShallow);
+			clShallow.add(position);
 		}
 	}
 });

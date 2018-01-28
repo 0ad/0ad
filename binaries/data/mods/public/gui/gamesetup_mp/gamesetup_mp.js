@@ -272,23 +272,13 @@ function switchSetupPage(newPage)
 	Engine.GetGUIObjectByName("continueButton").hidden = newPage == "pageConnecting";
 }
 
-function saveSTUNSetting(enabled)
-{
-	Engine.ConfigDB_CreateValue("user", "lobby.stun.enabled", enabled);
-	Engine.ConfigDB_WriteValueToFile("user", "lobby.stun.enabled", enabled, "config/user.cfg");
-}
-
 function startHost(playername, servername, port)
 {
 	startConnectionStatus("server");
 
-	// Save player name
-	Engine.ConfigDB_CreateValue("user", "playername.multiplayer", playername);
-	Engine.ConfigDB_WriteValueToFile("user", "playername.multiplayer", playername, "config/user.cfg");
+	saveSettingAndWriteToUserConfig("playername.multiplayer", playername);
 
-	// Save port
-	Engine.ConfigDB_CreateValue("user", "multiplayerhosting.port", port);
-	Engine.ConfigDB_WriteValueToFile("user", "multiplayerhosting.port", port, "config/user.cfg");
+	saveSettingAndWriteToUserConfig("multiplayerhosting.port", port);
 
 	let hostFeedback = Engine.GetGUIObjectByName("hostFeedback");
 
@@ -366,12 +356,9 @@ function startJoin(playername, ip, port, useSTUN, hostJID = "")
 	else
 	{
 		// Only save the player name and host address if they're valid and we're not in the lobby
-		Engine.ConfigDB_CreateValue("user", "playername.multiplayer", playername);
-		Engine.ConfigDB_WriteValueToFile("user", "playername.multiplayer", playername, "config/user.cfg");
-		Engine.ConfigDB_CreateValue("user", "multiplayerserver", ip);
-		Engine.ConfigDB_WriteValueToFile("user", "multiplayerserver", ip, "config/user.cfg");
-		Engine.ConfigDB_CreateValue("user", "multiplayerjoining.port", port);
-		Engine.ConfigDB_WriteValueToFile("user", "multiplayerjoining.port", port, "config/user.cfg");
+		saveSettingAndWriteToUserConfig("playername.multiplayer", playername);
+		saveSettingAndWriteToUserConfig("multiplayerserver", ip);
+		saveSettingAndWriteToUserConfig("multiplayerjoining.port", port);
 	}
 	return true;
 }

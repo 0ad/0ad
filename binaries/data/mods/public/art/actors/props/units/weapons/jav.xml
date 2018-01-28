@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+      <props>
+        <prop actor="props/units/weapons/blades/jav_blade.xml" attachpoint="blade"/>
+      </props>
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="medgrip">
-      <mesh>props/weap_jav_b.dae</mesh>
+      <mesh>props/weap_javelin_shaft_a.dae</mesh>
     </variant>
     <variant frequency="1" name="light">
-      <mesh>props/weap_jav_c.dae</mesh>
+      <mesh>props/weap_javelin_shaft_b.dae</mesh>
     </variant>
     <variant frequency="1" name="med">
-      <mesh>props/weap_jav_d.dae</mesh>
+      <mesh>props/weap_javelin_shaft_c.dae</mesh>
     </variant>
   </group>
-
+  <material>basic_trans.xml</material>
 </actor>

@@ -292,11 +292,11 @@ function unknownCentralSea()
 		"meanderLong": 0,
 		"waterFunc": (position, height, riverFraction) => {
 			if (height < 0)
-				addToClass(position.x, position.y, clWater);
+				clWater.add(position);
 		},
 		"landFunc": (position, shoreDist1, shoreDist2) => {
 			g_Map.setHeight(position, 3.1);
-			addToClass(position.x, position.y, clLand);
+			clLand.add(position);
 		}
 	});
 

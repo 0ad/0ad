@@ -2,11 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="helmets/sele_chalkaspides_base.xml">
-      <props>
-        <prop actor="props/units/helmets/props/chalkaspides_neckguard.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="helmets/sele_chalkaspides_base.xml"/>
   </group>
   <group>
     <variant frequency="1" name="high-crest">

@@ -7,7 +7,7 @@
 # Andrii Puzan <doctrina.90@mail.ru>, 2013
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
-# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
+# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2018
 # Oleg Adept <adeptoleg@gmail.com>, 2016
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # SkiDo <skidoster@gmail.com>, 2015,2017
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 04:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-11 12:04+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -209,11 +209,11 @@ msgstr "Виберіть розмір мапи. (Великі можуть зм�
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Biome"
-msgstr ""
+msgstr "Біом"
 
 #: gui/gamesetup/gamesetup.js:477
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Виберіть флору та фауну."
 
 #: gui/gamesetup/gamesetup.js:492
 msgid "Number of Players"
@@ -276,23 +276,23 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "Загальна кількість реліквій, розміщених на карті. Перемога з реліквіями є найбільш реалістичною лише з однією або двома реліквіями. З більшою кількістю, реліквії важливо захопити, щоб отримувати аура бонусів."
 
 #: gui/gamesetup/gamesetup.js:607
 msgid "Relic Duration"
-msgstr ""
+msgstr "Тривалість часу утримання реліквії"
 
 #: gui/gamesetup/gamesetup.js:608
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Час, доки гравець не досяг перемоги за реліквіями."
 
 #: gui/gamesetup/gamesetup.js:622
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Тривалість часу збереження Чуда."
 
 #: gui/gamesetup/gamesetup.js:623
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Час, доки гравець не досяг перемоги за Чудом."
 
 #: gui/gamesetup/gamesetup.js:637
 msgid "Game Speed"
@@ -304,11 +304,11 @@ msgstr "Виберіть швидкість гри."
 
 #: gui/gamesetup/gamesetup.js:652
 msgid "Difficulty"
-msgstr ""
+msgstr "Складність"
 
 #: gui/gamesetup/gamesetup.js:654
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Виберіть складність даного сценарію."
 
 #: gui/gamesetup/gamesetup.js:719
 msgid "Chose the civilization for this player"
@@ -426,7 +426,7 @@ msgstr "Старт нової гри з поточними налаштуван�
 #: gui/gamesetup/gamesetup.js:975
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Налаштувати ШІ: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1510
 msgctxt "map selection"
@@ -440,11 +440,11 @@ msgstr "Виберіть будь-яку з даних карт випадков
 #: gui/gamesetup/gamesetup.js:1544
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Випадково"
 
 #: gui/gamesetup/gamesetup.js:1545
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Виберіть біом випадковим чином."
 
 #: gui/gamesetup/gamesetup.js:1866 gui/gamesetup/gamesetup.js:1908
 #, javascript-format
@@ -525,7 +525,7 @@ msgstr "Складність ШІ:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Поведідка ШІ:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -546,7 +546,7 @@ msgstr "Завантаження"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Завантаження даних мапи. Будь ласка зачекайте..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Player Name"
@@ -635,7 +635,7 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Зевс \\[...] встановив свій закон: Мудрість приходить через страждання. \\[...] Так люди проти їх волі навчилися практикувати помірність. \\[...] Така благодать сувора і жорстока.\" - Есхіл (\"Орестея\", І. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -2019,7 +2019,7 @@ msgstr ""
 msgid ""
 "\"Battles are decided more by the morale of men than their physical "
 "strength.\" - Xenophon (\"The Education of Cyrus\", 3.3.20)"
-msgstr ""
+msgstr "\"Битви виграються силою духу чоловіків, а не силою зброї.\" - Ксенофонт (\"Навчання Кира, 3.3.20\")"
 
 #: gui/text/quotes.txt:196
 msgid ""
@@ -2057,4 +2057,4 @@ msgstr ""
 msgid ""
 "\"For a thinking man is where Wisdom is at home.\" - Zoroaster, founder of "
 "the Zoroastrian religion (\"Ahunuvaiti Gatha\", yasna 30.9)"
-msgstr ""
+msgstr "\"Для думаючої людини дім там де є мудрість.\" - Заратустра, засновник релігії зороастризму (\"Сага Гагаувіта\", вірш 30.9)"

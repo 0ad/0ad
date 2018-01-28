@@ -115,7 +115,7 @@ for (var i = 0; i < scaleByMapSize(12,30); ++i)
 	if (avoidClasses(clPlayer, 30, clRock, 25, clWater, 10).allows(position))
 	{
 		createStoneMineFormation(position, oStoneSmall, tDirt4);
-		addToClass(position.x, position.y, clRock);
+		clRock.add(position);
 	}
 }
 

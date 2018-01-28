@@ -2,9 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="iron">
-      <mesh>props/weap_jav_f.dae</mesh>
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+    <variant frequency="100" name="Base">
+      <mesh>props/weap_javelin_shaft_iron.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/blades/jav_blade.xml" attachpoint="blade"/>
+      </props>
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

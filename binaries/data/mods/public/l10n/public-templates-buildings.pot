@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-12-18 09:21+0100\n"
-"PO-Revision-Date: 2017-12-18 09:21+0100\n"
+"POT-Creation-Date: 2018-01-27 12:55+0100\n"
+"PO-Revision-Date: 2018-01-27 12:55+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -60,7 +60,7 @@ msgstr ""
 #: simulation/templates/template_structure_defense_tower_stone.xml:32
 #: simulation/templates/template_structure_economic_market.xml:26
 #: simulation/templates/template_structure_military_blacksmith.xml:34
-#: simulation/templates/template_structure_military_embassy.xml:26
+#: simulation/templates/template_structure_military_embassy.xml:41
 #: simulation/templates/template_structure_military_kennel.xml:43
 #: simulation/templates/structures/cart_super_dock.xml:46
 #: simulation/templates/structures/gaul_tavern.xml:28
@@ -323,8 +323,8 @@ msgstr ""
 msgid "ElephantStables"
 msgstr ""
 
-#: simulation/templates/template_structure_military_embassy.xml:26
-#: simulation/templates/template_structure_military_embassy.xml:27
+#: simulation/templates/template_structure_military_embassy.xml:41
+#: simulation/templates/template_structure_military_embassy.xml:42
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
@@ -1326,6 +1326,10 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_dock.xml:9
 msgid "ḥwt-n-dpt.w"
+msgstr ""
+
+#: simulation/templates/structures/ptol_elephant_stables.xml:5
+msgid "Ptolemaic Elephant Stables"
 msgstr ""
 
 #: simulation/templates/structures/ptol_farmstead.xml:17

@@ -58,9 +58,6 @@ function RandomMap(baseHeight, baseTerrain)
 	// Array of Entities
 	this.objects = [];
 
-	// Array of integers
-	this.tileClasses = [];
-
 	this.areaID = 0;
 
 	// Starting entity ID, arbitrary number to leave some space for player entities
@@ -161,14 +158,6 @@ RandomMap.prototype.validHeight = function(position)
 };
 
 /**
- * Tests if there is a tileclass with the given ID.
- */
-RandomMap.prototype.validClass = function(tileClassID)
-{
-	return tileClassID >= 0 && tileClassID < this.tileClasses.length;
-};
-
-/**
  * Returns the name of the texture of the given tile.
  */
 RandomMap.prototype.getTexture = function(position)
@@ -250,14 +239,9 @@ RandomMap.prototype.createArea = function(points)
 	return new Area(points, areaID);
 };
 
-/**
- * Returns an unused tileclass ID.
- */
 RandomMap.prototype.createTileClass = function()
 {
-	let newID = this.tileClasses.length;
-	this.tileClasses.push(new TileClass(this.size, newID));
-	return newID;
+	return new TileClass(this.size);
 };
 
 /**
