@@ -563,7 +563,7 @@ m.AttackManager.prototype.getWonderEnemyPlayer = function(gameState)
 	let enemyPlayer;
 	let enemyWonder;
 	let moreAdvanced;
-	for (let wonder of gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder")))
+	for (let wonder of gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder")).values())
 	{
 		if (wonder.owner() == 0)
 			continue;
