@@ -130,6 +130,8 @@ m.allowCapture = function(gameState, ent, target)
 {
 	if (!target.isCapturable() || !ent.canCapture(target))
 		return false;
+	if (target.isInvulnerable())
+		return true;
 	// always try to recapture cp from an allied, except if it's decaying
 	if (gameState.isPlayerAlly(target.owner()))
 		return !target.decaying();
