@@ -57,7 +57,7 @@ CList::CList()
 	GUI<bool>::SetSetting(this, "scrollbar", false);
 	GUI<int>::SetSetting(this, "selected", -1);
 	GUI<int>::SetSetting(this, "hovered", -1);
-	GUI<int>::SetSetting(this, "auto_scroll", false);
+	GUI<bool>::SetSetting(this, "auto_scroll", false);
 
 	// Add scroll-bar
 	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical();

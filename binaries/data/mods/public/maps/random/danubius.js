@@ -378,10 +378,11 @@ paintRiver({
 	"meanderShort": 30,
 	"meanderLong": 0,
 	"waterFunc": (position, height, riverFraction) => {
+		let origPos = position.clone().rotateAround(-startAngle, mapCenter);
 		// Distinguish left and right shoreline
 		if (0 < height && height < 1 &&
-		    position.y > ShorelineDistance && position.y < mapSize - ShorelineDistance)
-			clShore[position.x < mapCenter.x ? 0 : 1].add(position);
+			origPos.y > ShorelineDistance && origPos.y < mapSize - ShorelineDistance)
+			clShore[origPos.x < mapCenter.x ? 0 : 1].add(position);
 	},
 	"landFunc": (position, shoreDist1, shoreDist2) => {
 

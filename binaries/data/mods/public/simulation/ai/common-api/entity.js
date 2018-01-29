@@ -602,6 +602,7 @@ m.Entity = m.Class({
 	"needsRepair": function() { return this.isHurt() && this.isRepairable(); },
 	"decaying": function() { return this._entity.decaying !== undefined ? this._entity.decaying : undefined; },
 	"capturePoints": function() {return this._entity.capturePoints !== undefined ? this._entity.capturePoints : undefined; },
+	"isInvulnerable": function() { return this._entity.invulnerability || false; },
 
 	"isSharedDropsite": function() { return this._entity.sharedDropsite === true; },
 
