@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:46+0000\n"
+"POT-Creation-Date: 2018-01-27 12:54+0100\n"
+"PO-Revision-Date: 2018-01-27 15:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -159,14 +159,16 @@ msgstr "DELETE (Ta bort)"
 #: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
 #: gui/options/options.js:263 gui/options/options.js:316
 #: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:428
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/summary/summary.js:442
 msgid "No"
 msgstr "Nej"
 
 #: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
 #: gui/options/options.js:263 gui/options/options.js:316
 #: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:428
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/summary/summary.js:442
 msgid "Yes"
 msgstr "Ja"
 
@@ -412,55 +414,73 @@ msgstr "Kartbeskrivning"
 msgid "Randomly selects a map from the list"
 msgstr "Väljer slumpmässigt en karta från listan"
 
-#: gui/common/gamedescription.js:349
+#: gui/common/gamedescription.js:347
+msgid "Nomad Mode"
+msgstr ""
+
+#: gui/common/gamedescription.js:347
+msgid "Civic Centers"
+msgstr ""
+
+#: gui/common/gamedescription.js:350
+msgid ""
+"Players start with only few units and have to find a suitable place to build"
+" their city."
+msgstr ""
+
+#: gui/common/gamedescription.js:351
+msgid "Players start with a Civic Center."
+msgstr ""
+
+#: gui/common/gamedescription.js:358
 msgid "Biome"
 msgstr "Biom"
 
-#: gui/common/gamedescription.js:350
+#: gui/common/gamedescription.js:359
 msgctxt "biome"
 msgid "Random"
 msgstr "Slumpmässig"
 
-#: gui/common/gamedescription.js:357
+#: gui/common/gamedescription.js:366
 msgid "Starting Resources"
 msgstr "Startresurser"
 
-#: gui/common/gamedescription.js:358
+#: gui/common/gamedescription.js:367
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:368
+#: gui/common/gamedescription.js:377
 msgid "Population Limit"
 msgstr "Befolkningsgräns"
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:385
 msgid "Treasures"
 msgstr "Skatter"
 
-#: gui/common/gamedescription.js:378
+#: gui/common/gamedescription.js:387
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Inaktiverad"
 
-#: gui/common/gamedescription.js:379
+#: gui/common/gamedescription.js:388
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Som definierat av kartan."
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:392
 msgid "Revealed Map"
 msgstr "Synlig karta"
 
-#: gui/common/gamedescription.js:388
+#: gui/common/gamedescription.js:397
 msgid "Explored Map"
 msgstr "Utforskad karta"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:402
 msgid "Cheats"
 msgstr "Fusk"
 
-#: gui/common/gamedescription.js:398 gui/common/tooltips.js:126
+#: gui/common/gamedescription.js:407 gui/common/tooltips.js:126
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:222
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:468
 #: gui/common/tooltips.js:758
@@ -468,25 +488,25 @@ msgstr "Fusk"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:401
+#: gui/common/gamedescription.js:410
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "aktiverat"
 
-#: gui/common/gamedescription.js:402
+#: gui/common/gamedescription.js:411
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "inaktiverat"
 
-#: gui/common/gamedescription.js:418
+#: gui/common/gamedescription.js:427
 msgid "Victorious"
 msgstr "Segerrik"
 
-#: gui/common/gamedescription.js:423
+#: gui/common/gamedescription.js:432
 msgid "Defeated"
 msgstr "Besegrad"
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:441
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr ""
@@ -1254,34 +1274,39 @@ msgstr "Build: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Är du säker på att du vill avsluta 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:427
+#: gui/pregame/mainmenu.js:251 gui/pregame/mainmenu.js:265
+#: gui/summary/summary.js:441
 msgid "Confirmation"
 msgstr "Bekräfta"
 
-#: gui/pregame/mainmenu.js:266
+#: gui/pregame/mainmenu.js:264
+msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
+msgstr ""
+
+#: gui/pregame/mainmenu.js:272
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Scenarioredigeraren är inte tillgänglig eller så misslyckades laddningen av den. Se loggen för mer information."
 
-#: gui/pregame/mainmenu.js:267 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "Fel"
 
-#: gui/pregame/mainmenu.js:273
+#: gui/pregame/mainmenu.js:279
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Starta multiplayerlobbyn. \\[INAKTIVERAD AV KOMPILERINGEN]"
 
-#: gui/pregame/mainmenu.js:278 gui/pregame/mainmenu.xml:(caption):68
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
 msgid "Technical Details"
 msgstr "Tekniska detaljer"
 
-#: gui/pregame/mainmenu.js:283 gui/pregame/mainmenu.xml:(caption):146
+#: gui/pregame/mainmenu.js:289 gui/pregame/mainmenu.xml:(caption):146
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/reference/common/load.js:267
+#: gui/reference/common/load.js:205
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s till %(health_max)s"
@@ -1322,11 +1347,11 @@ msgstr "Inkompatibel replay"
 msgid "No summary data available."
 msgstr "Ingen sammanfattningsinformation tillgänglig."
 
-#: gui/replaymenu/replay_actions.js:168
+#: gui/replaymenu/replay_actions.js:169
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Är du säker att du vill ta bort denna replay permanent?"
 
-#: gui/replaymenu/replay_actions.js:170
+#: gui/replaymenu/replay_actions.js:171
 msgid "Delete replay"
 msgstr "Ta bort replay"
 
@@ -1384,11 +1409,11 @@ msgstr "%(min)s - %(max)s min"
 msgid "Single- and multiplayer"
 msgstr "En och flera spelare"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):464
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):479
 msgid "Single Player"
 msgstr "En spelare"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):479
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):494
 msgid "Multiplayer"
 msgstr "Flera spelare"
 
@@ -1426,13 +1451,13 @@ msgstr "yyyy-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):73
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):81
 msgid "Score"
 msgstr "Poäng"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:152
-#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):122
+#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):130
 msgid "Player name"
 msgstr "Spelarnamn"
 
@@ -1452,7 +1477,7 @@ msgstr "Militärpoäng"
 msgid "Exploration score"
 msgstr "Upptäckarpoäng"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):80
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):88
 msgid "Buildings"
 msgstr "Byggnader"
 
@@ -1495,7 +1520,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Byggnader Statistik (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):87
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):95
 msgid "Units"
 msgstr "Enheter"
 
@@ -1528,7 +1553,7 @@ msgstr "Handelsmän"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Enheter Statistik (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):94
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):102
 msgid "Resources"
 msgstr "Resurser"
 
@@ -1560,7 +1585,7 @@ msgstr "Boskap uppfött"
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Resurs Statistik (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):101
+#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):109
 msgid "Market"
 msgstr "Marknad"
 
@@ -1578,7 +1603,7 @@ msgstr "Byteseffektivitet"
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s utbytt"
 
-#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):116
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Övrigt"
@@ -1692,44 +1717,44 @@ msgstr "Misslyckade"
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:426
+#: gui/summary/summary.js:440
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Är du säker på att du vill lämna lobbyn?"
 
-#: gui/summary/summary.js:489
+#: gui/summary/summary.js:505
 msgid "Current Scores"
 msgstr "Aktuella Poäng"
 
-#: gui/summary/summary.js:491
+#: gui/summary/summary.js:507
 msgid "Scores at the end of the game."
 msgstr "Resultat vid slutet av spelet."
 
-#: gui/summary/summary.js:493
+#: gui/summary/summary.js:509
 msgid "You have been disconnected."
 msgstr "Du har frånkopplats."
 
-#: gui/summary/summary.js:495
+#: gui/summary/summary.js:511
 msgid "You have left the game."
 msgstr "Du har lämnat spelet."
 
-#: gui/summary/summary.js:497
+#: gui/summary/summary.js:513
 msgid "You have won the battle!"
 msgstr "Du har vunnit striden!"
 
-#: gui/summary/summary.js:499
+#: gui/summary/summary.js:515
 msgid "You have been defeated…"
 msgstr ""
 
-#: gui/summary/summary.js:500
+#: gui/summary/summary.js:516
 msgid "You have abandoned the game."
 msgstr "Du har övergivit spelet."
 
-#: gui/summary/summary.js:503
+#: gui/summary/summary.js:519
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Speltid: %(time)s"
 
-#: gui/summary/summary.js:511
+#: gui/summary/summary.js:527
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1752,7 +1777,7 @@ msgstr "Stäng"
 msgid "0 A.D. Credits"
 msgstr "0 A.D. Medverkande"
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):338
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):380
 msgid "Language"
 msgstr "Språk"
 
@@ -1822,11 +1847,11 @@ msgid ""
 " and improve performance and compatibility."
 msgstr "Du kan automatiskt skicka anonym feedback som hjälper oss att fixa buggar och förbättra prestanda och kompatibilitet."
 
-#: gui/pregame/mainmenu.xml:532
+#: gui/pregame/mainmenu.xml:561
 msgid "Alpha XXIII: Ken Wood"
 msgstr "Alpha XXIII: Ken Wood"
 
-#: gui/pregame/mainmenu.xml:534
+#: gui/pregame/mainmenu.xml:563
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
@@ -1865,72 +1890,73 @@ msgstr "Kampanjer"
 msgid "Load Game"
 msgstr "Ladda spel"
 
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):267
-msgid "Join Game"
-msgstr "Anslut till spel"
-
-#: gui/pregame/mainmenu.xml:(caption):281
-msgid "Host Game"
-msgstr "Var värd i ett spel"
-
-#: gui/pregame/mainmenu.xml:(caption):295
-msgid "Game Lobby"
-msgstr "Spellobby"
-
-#: gui/pregame/mainmenu.xml:(caption):324
-msgid "Options"
-msgstr "Inställningar"
-
-#: gui/pregame/mainmenu.xml:(caption):352
+#: gui/pregame/mainmenu.xml:(caption):258
+#: gui/pregame/mainmenu.xml:(caption):338
 msgid "Replays"
 msgstr "Replays"
 
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):286
+msgid "Join Game"
+msgstr "Anslut till spel"
+
+#: gui/pregame/mainmenu.xml:(caption):300
+msgid "Host Game"
+msgstr "Var värd i ett spel"
+
+#: gui/pregame/mainmenu.xml:(caption):315
+msgid "Game Lobby"
+msgstr "Spellobby"
+
 #: gui/pregame/mainmenu.xml:(caption):366
-msgid "Scenario Editor"
-msgstr "Scenarioredigerare"
+msgid "Options"
+msgstr "Inställningar"
 
-#: gui/pregame/mainmenu.xml:(caption):379
-msgid "Welcome Screen"
-msgstr "Välkomstskärm"
-
-#: gui/pregame/mainmenu.xml:(caption):395
+#: gui/pregame/mainmenu.xml:(caption):394
 msgid "Mod Selection"
 msgstr "Modifikationsval"
 
-#: gui/pregame/mainmenu.xml:(caption):449
+#: gui/pregame/mainmenu.xml:(caption):406
+msgid "Welcome Screen"
+msgstr "Välkomstskärm"
+
+#: gui/pregame/mainmenu.xml:(caption):464
 msgid "Learn to Play"
 msgstr "Lär dig spela"
 
-#: gui/pregame/mainmenu.xml:(caption):494
-msgid "Tools & Options"
-msgstr "Verktyg & Inställningar"
-
 #: gui/pregame/mainmenu.xml:(caption):509
+msgid "Settings"
+msgstr "Inställningar"
+
+#: gui/pregame/mainmenu.xml:(caption):524
+msgid "Scenario Editor"
+msgstr "Scenarioredigerare"
+
+#: gui/pregame/mainmenu.xml:(caption):538
 msgid "Exit"
 msgstr "Avsluta"
 
-#: gui/pregame/mainmenu.xml:(caption):544
+#: gui/pregame/mainmenu.xml:(caption):573
 msgid "Website"
 msgstr "Hemsida"
 
-#: gui/pregame/mainmenu.xml:(caption):556
+#: gui/pregame/mainmenu.xml:(caption):585
 msgid "Chat"
 msgstr "Chatt"
 
-#: gui/pregame/mainmenu.xml:(caption):568
+#: gui/pregame/mainmenu.xml:(caption):597
 msgid "Report a Bug"
 msgstr "Rapportera en bugg"
 
-#: gui/pregame/mainmenu.xml:(caption):580
+#: gui/pregame/mainmenu.xml:(caption):609
 msgid "Translate the Game"
 msgstr "Översätt Spelet"
 
-#: gui/pregame/mainmenu.xml:(caption):592
+#: gui/pregame/mainmenu.xml:(caption):621
 msgid "Credits"
 msgstr "Medverkande"
 
-#: gui/pregame/mainmenu.xml:(caption):621
+#: gui/pregame/mainmenu.xml:(caption):650
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1964,85 +1990,86 @@ msgstr "Återupplev det förflutna genom historiska militära kampanjer. \\[EJ I
 msgid "Click here to load a saved game."
 msgstr "Klicka här för att ladda ett sparat spel."
 
-#: gui/pregame/mainmenu.xml:(tooltip):268
-msgid "Joining an existing multiplayer game."
-msgstr "Ansluter till ett existerande flerspelarspel."
-
-#: gui/pregame/mainmenu.xml:(tooltip):282
-msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "Var värd för ett flerspelarspel.\\n\\nKräver att UDP-port 20595 är öppen."
-
-#: gui/pregame/mainmenu.xml:(tooltip):296
-msgid "Launch the multiplayer lobby."
-msgstr "Starta multiplayerlobbyn."
-
-#: gui/pregame/mainmenu.xml:(tooltip):325
-msgid "Adjust game settings."
-msgstr "Justera spelinställningar."
-
+#: gui/pregame/mainmenu.xml:(tooltip):259
 #: gui/pregame/mainmenu.xml:(tooltip):339
-msgid "Choose the language of the game."
-msgstr "Välj språk för spelet."
-
-#: gui/pregame/mainmenu.xml:(tooltip):353
 msgid "Playback previous games."
 msgstr "Återuppspela tidigare spel."
 
+#: gui/pregame/mainmenu.xml:(tooltip):287
+msgid "Joining an existing multiplayer game."
+msgstr "Ansluter till ett existerande flerspelarspel."
+
+#: gui/pregame/mainmenu.xml:(tooltip):301
+msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
+msgstr "Var värd för ett flerspelarspel.\\n\\nKräver att UDP-port 20595 är öppen."
+
+#: gui/pregame/mainmenu.xml:(tooltip):316
+msgid "Launch the multiplayer lobby."
+msgstr "Starta multiplayerlobbyn."
+
 #: gui/pregame/mainmenu.xml:(tooltip):367
-msgid ""
-"Open the Atlas Scenario Editor in a new window. You can run this more "
-"reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Öppna scenario-redigeraren Atlas i ett nytt fönster. Du kan köra den mer tillförlitligt genom att starta spelet med kommandorad argumentet \"-editor\"."
+msgid "Adjust game settings."
+msgstr "Justera spelinställningar."
 
-#: gui/pregame/mainmenu.xml:(tooltip):380
-msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr "Visa välkomstskärm. Användbar om du dolt den av misstag."
+#: gui/pregame/mainmenu.xml:(tooltip):381
+msgid "Choose the language of the game."
+msgstr "Välj språk för spelet."
 
-#: gui/pregame/mainmenu.xml:(tooltip):396
+#: gui/pregame/mainmenu.xml:(tooltip):395
 msgid "Select mods to use."
 msgstr "Välj modifikationer som skall användas."
 
-#: gui/pregame/mainmenu.xml:(tooltip):450
+#: gui/pregame/mainmenu.xml:(tooltip):407
+msgid "Show the Welcome Screen. Useful if you hid it by mistake."
+msgstr "Visa välkomstskärm. Användbar om du dolt den av misstag."
+
+#: gui/pregame/mainmenu.xml:(tooltip):465
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Lär dig spela, börja handledningen, upptäck teknologiträden och historian bakom civilisationerna."
 
-#: gui/pregame/mainmenu.xml:(tooltip):465
+#: gui/pregame/mainmenu.xml:(tooltip):480
 msgid "Challenge the computer player to a single player match."
 msgstr "Utmana datorspelaren på en enspelarläge-match."
 
-#: gui/pregame/mainmenu.xml:(tooltip):480
+#: gui/pregame/mainmenu.xml:(tooltip):495
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Strid mot en eller flera mänskliga motståndare i multiplayer."
 
-#: gui/pregame/mainmenu.xml:(tooltip):495
-msgid "Game options and scenario design tools."
-msgstr "Spelinställningar och scenariodesignverktyg."
-
 #: gui/pregame/mainmenu.xml:(tooltip):510
+msgid "Game options and mod selection."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(tooltip):525
+msgid ""
+"Open the Atlas Scenario Editor in a new window. You can run this more "
+"reliably by starting the game with the command-line argument \"-editor\"."
+msgstr "Öppna scenario-redigeraren Atlas i ett nytt fönster. Du kan köra den mer tillförlitligt genom att starta spelet med kommandorad argumentet \"-editor\"."
+
+#: gui/pregame/mainmenu.xml:(tooltip):539
 msgid "Exits the game."
 msgstr "Avslutar spelet."
 
-#: gui/pregame/mainmenu.xml:(tooltip):545
+#: gui/pregame/mainmenu.xml:(tooltip):574
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Klicka för att öppna play0ad.com i din webbläsare."
 
-#: gui/pregame/mainmenu.xml:(tooltip):557
+#: gui/pregame/mainmenu.xml:(tooltip):586
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Klicka här för att öppna 0 A.D. IRC-chatten i din webbläsare. (#0ad på webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):569
+#: gui/pregame/mainmenu.xml:(tooltip):598
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Klicka här för att gå till 0 A.D. Trac för att rapportera en bugg, en krasch eller ett fel."
 
-#: gui/pregame/mainmenu.xml:(tooltip):581
+#: gui/pregame/mainmenu.xml:(tooltip):610
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Klicka för att öppna översättningssidan för 0 A.D. i din webbläsare."
 
-#: gui/pregame/mainmenu.xml:(tooltip):593
+#: gui/pregame/mainmenu.xml:(tooltip):622
 msgid "Click to see the 0 A.D. credits."
 msgstr "Klicka för att se 0 A.D. medverkande."
 
@@ -2058,78 +2085,78 @@ msgstr "Tränareneheter"
 msgid "Replay Games"
 msgstr "Spela upp tidigare spel"
 
-#: gui/replaymenu/replay_menu.xml:(caption):108
+#: gui/replaymenu/replay_menu.xml:(caption):109
 msgid "Filter compatible replays"
 msgstr "Visa kompatibla replays"
 
-#: gui/replaymenu/replay_menu.xml:(caption):149
+#: gui/replaymenu/replay_menu.xml:(caption):150
 msgid "Map Type:"
 msgstr "Karttyp:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/replaymenu/replay_menu.xml:(caption):165
 msgid "Map Size:"
 msgstr "Kartstorlek:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/replaymenu/replay_menu.xml:(caption):180
 msgid "Victory:"
 msgstr "Segervillkor:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):212
+#: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):224
+#: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
 msgstr "Huvudmeny"
 
-#: gui/replaymenu/replay_menu.xml:(caption):230
+#: gui/replaymenu/replay_menu.xml:(caption):231
 msgid "Delete"
 msgstr "Ta bort"
 
-#: gui/replaymenu/replay_menu.xml:(caption):236
+#: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
 msgstr "Ladda om Cacheminnet"
 
-#: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):33
+#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/summary/summary.xml:(caption):41
 msgid "Summary"
 msgstr "Sammanfattning"
 
-#: gui/replaymenu/replay_menu.xml:(caption):249
+#: gui/replaymenu/replay_menu.xml:(caption):250
 msgid "Start Replay"
 msgstr "Starta replayen"
 
-#: gui/replaymenu/replay_menu.xml:(heading):68
+#: gui/replaymenu/replay_menu.xml:(heading):69
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Datum / Tid"
 
-#: gui/replaymenu/replay_menu.xml:(heading):72
+#: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
 msgstr "Spelare"
 
-#: gui/replaymenu/replay_menu.xml:(heading):76
+#: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Kartnamn"
 
-#: gui/replaymenu/replay_menu.xml:(heading):80
+#: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
 msgid "Size"
 msgstr "Storlek"
 
-#: gui/replaymenu/replay_menu.xml:(heading):84
+#: gui/replaymenu/replay_menu.xml:(heading):85
 msgctxt "replay"
 msgid "Population"
 msgstr "Befolkningsgräns:"
 
-#: gui/replaymenu/replay_menu.xml:(heading):88
+#: gui/replaymenu/replay_menu.xml:(heading):89
 msgctxt "replay"
 msgid "Duration"
 msgstr "Längd"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):237
+#: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Ombilda replaycachen från början. Potentiellt långsam!"
 
@@ -2145,44 +2172,44 @@ msgstr "Visa detta meddelande i framtiden"
 msgid "Known Issues (web)"
 msgstr "Kända fel (webb)"
 
-#: gui/summary/summary.xml:(caption):115
+#: gui/summary/summary.xml:(caption):123
 msgid "Charts"
 msgstr "Diagram"
 
-#: gui/summary/summary.xml:(caption):172
+#: gui/summary/summary.xml:(caption):180
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Kategori:"
 
-#: gui/summary/summary.xml:(caption):182
+#: gui/summary/summary.xml:(caption):190
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Värde:"
 
-#: gui/summary/summary.xml:(caption):192
+#: gui/summary/summary.xml:(caption):200
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Typ:"
 
-#: gui/summary/summary.xml:(caption):211
+#: gui/summary/summary.xml:(caption):219
 msgid "Replay"
 msgstr "Replay"
 
-#: gui/summary/summary.xml:(caption):216
+#: gui/summary/summary.xml:(caption):224
 msgid "Continue"
 msgstr "Fortsätt"
 
-#: gui/summary/summary.xml:(tooltip):178
+#: gui/summary/summary.xml:(tooltip):186
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Kategori"
 
-#: gui/summary/summary.xml:(tooltip):188
+#: gui/summary/summary.xml:(tooltip):196
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Värde"
 
-#: gui/summary/summary.xml:(tooltip):199
+#: gui/summary/summary.xml:(tooltip):207
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Typ"
@@ -2462,17 +2489,17 @@ msgid "Ceasefire Time Overlay"
 msgstr "Vapenvila Tidsöverlägg"
 
 #: gui/options/options.json[0].options[11].list[0].label
-#: gui/options/options.json[3].options[4].list[0].label
+#: gui/options/options.json[3].options[5].list[0].label
 msgid "Everyone"
 msgstr "Alla"
 
 #: gui/options/options.json[0].options[11].list[1].label
-#: gui/options/options.json[3].options[4].list[1].label
+#: gui/options/options.json[3].options[5].list[1].label
 msgid "Buddies"
 msgstr "Kompisar"
 
 #: gui/options/options.json[0].options[11].list[2].label
-#: gui/options/options.json[3].options[4].list[2].label
+#: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
 msgstr "Inaktiverad"
 
@@ -2604,7 +2631,7 @@ msgid "Low"
 msgstr "Låg"
 
 #: gui/options/options.json[1].options[5].list[2].label
-#: gui/options/options.json[3].options[2].list[3].label
+#: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "Mellan"
 
@@ -2811,73 +2838,81 @@ msgid "Enable Game Setting Tips"
 msgstr "Aktivera Spelinställningstips"
 
 #: gui/options/options.json[3].options[1].tooltip
+msgid "Slide the settings panel when opening, closing or resizing"
+msgstr ""
+
+#: gui/options/options.json[3].options[1].label
+msgid "Enable Settings Panel Slide"
+msgstr ""
+
+#: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Spara och ladda matchinställningar för snabb återanvändning vid nästa spel."
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
 msgstr "Spara matchinställningar"
 
-#: gui/options/options.json[3].options[2].list[0].label
+#: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
 msgstr "Sandlåda"
 
-#: gui/options/options.json[3].options[2].list[1].label
+#: gui/options/options.json[3].options[3].list[1].label
 msgid "Very Easy"
 msgstr "Väldigt lätt"
 
-#: gui/options/options.json[3].options[2].list[2].label
+#: gui/options/options.json[3].options[3].list[2].label
 msgid "Easy"
 msgstr "Lätt"
 
-#: gui/options/options.json[3].options[2].list[4].label
+#: gui/options/options.json[3].options[3].list[4].label
 msgid "Hard"
 msgstr "Svår"
 
-#: gui/options/options.json[3].options[2].list[5].label
+#: gui/options/options.json[3].options[3].list[5].label
 msgid "Very Hard"
 msgstr "Mycket svår"
 
-#: gui/options/options.json[3].options[2].tooltip
+#: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
 msgstr "Standardsvårighetsgrad för AI."
 
-#: gui/options/options.json[3].options[2].label
+#: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
 msgstr ""
 
-#: gui/options/options.json[3].options[3].list[0].label
+#: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
 msgstr "Slumpmässig"
 
-#: gui/options/options.json[3].options[3].list[1].label
+#: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
 msgstr ""
 
-#: gui/options/options.json[3].options[3].list[2].label
+#: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
 msgstr "Agressiv"
 
-#: gui/options/options.json[3].options[3].list[3].label
+#: gui/options/options.json[3].options[4].list[3].label
 msgid "Defensive"
 msgstr "Defensiv"
 
-#: gui/options/options.json[3].options[3].tooltip
+#: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
 msgstr ""
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[3].options[4].label
 msgid "Default AI Behavior"
 msgstr ""
 
-#: gui/options/options.json[3].options[4].tooltip
+#: gui/options/options.json[3].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Tilldela anslutande spelare automatiskt till lediga spelarplatser i matchinställningarna."
 
-#: gui/options/options.json[3].options[4].label
+#: gui/options/options.json[3].options[5].label
 msgid "Assign Players"
 msgstr "Tilldela Spelare"
 

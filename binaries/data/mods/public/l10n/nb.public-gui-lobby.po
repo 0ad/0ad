@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 03:52+0000\n"
+"POT-Creation-Date: 2018-01-27 12:54+0100\n"
+"PO-Revision-Date: 2018-01-27 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -21,338 +21,352 @@ msgstr ""
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/lobby/lobby.js:44
+#: gui/lobby/lobby.js:49
 msgid "Online"
 msgstr "Tilkoblet"
 
-#: gui/lobby/lobby.js:45
+#: gui/lobby/lobby.js:50
 msgid "Away"
 msgstr "Borte"
 
-#: gui/lobby/lobby.js:46
+#: gui/lobby/lobby.js:51
 msgid "Busy"
 msgstr "Opptatt"
 
-#: gui/lobby/lobby.js:47
+#: gui/lobby/lobby.js:52
 msgid "Offline"
 msgstr "Frakoblet"
 
-#: gui/lobby/lobby.js:48
+#: gui/lobby/lobby.js:53
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: gui/lobby/lobby.js:52
+#: gui/lobby/lobby.js:57
 msgid "Moderator"
 msgstr "Moderator"
 
-#: gui/lobby/lobby.js:53
+#: gui/lobby/lobby.js:58
 msgid "Player"
 msgstr "Spiller"
 
-#: gui/lobby/lobby.js:54
+#: gui/lobby/lobby.js:59
 msgid "Muted Player"
 msgstr "Forstummet spiller"
 
-#: gui/lobby/lobby.js:138
+#: gui/lobby/lobby.js:155
 msgid "Disconnected."
 msgstr "Frakoblet."
 
-#: gui/lobby/lobby.js:157
+#: gui/lobby/lobby.js:177
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
 msgstr "%(nick)s endret lobbyemnet til %(subject)s"
 
-#: gui/lobby/lobby.js:168
+#: gui/lobby/lobby.js:188
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s har blitt med."
 
-#: gui/lobby/lobby.js:178
+#: gui/lobby/lobby.js:198
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s har gått."
 
-#: gui/lobby/lobby.js:199
+#: gui/lobby/lobby.js:219
 msgid "You have been muted."
 msgstr "Du har blitt forstummet."
 
-#: gui/lobby/lobby.js:200
+#: gui/lobby/lobby.js:220
 #, javascript-format
 msgid "%(nick)s has been muted."
 msgstr "%(nick)s har blitt forstummet."
 
-#: gui/lobby/lobby.js:203
+#: gui/lobby/lobby.js:223
 msgid "You are now a moderator."
 msgstr "Du er nå moderator."
 
-#: gui/lobby/lobby.js:204
+#: gui/lobby/lobby.js:224
 #, javascript-format
 msgid "%(nick)s is now a moderator."
 msgstr "%(nick)s er nå moderator."
 
-#: gui/lobby/lobby.js:207
+#: gui/lobby/lobby.js:227
 msgid "You have been unmuted."
 msgstr "Du kan nå snakke."
 
-#: gui/lobby/lobby.js:208
+#: gui/lobby/lobby.js:228
 #, javascript-format
 msgid "%(nick)s has been unmuted."
 msgstr "%(nick)s kan nå snakke."
 
-#: gui/lobby/lobby.js:210
+#: gui/lobby/lobby.js:230
 msgid "You are not a moderator anymore."
 msgstr "Du er ikke moderator lenger."
 
-#: gui/lobby/lobby.js:211
+#: gui/lobby/lobby.js:231
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
 msgstr "%(nick)s er ikke moderator lenger."
 
-#: gui/lobby/lobby.js:226
+#: gui/lobby/lobby.js:246
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s er nå kjent som %(newnick)s."
 
-#: gui/lobby/lobby.js:258
+#: gui/lobby/lobby.js:278
 msgid "Notice"
 msgstr "Merknad"
 
-#: gui/lobby/lobby.js:299
+#: gui/lobby/lobby.js:319
 msgid "Set your state to 'Away'."
 msgstr "Endre status til 'Borte'."
 
-#: gui/lobby/lobby.js:306
+#: gui/lobby/lobby.js:326
 msgid "Set your state to 'Online'."
 msgstr "Endre status til 'Pålogget'."
 
-#: gui/lobby/lobby.js:313
+#: gui/lobby/lobby.js:333
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
 msgstr "Kast en oppgitt bruker ut av lobbyen. Bruk: /kick kallenavn grunn"
 
-#: gui/lobby/lobby.js:321
+#: gui/lobby/lobby.js:341
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
 msgstr "Bannlys en oppgitt bruker fra lobbyen. Bruk: /ban kallenavn grunn"
 
-#: gui/lobby/lobby.js:329
+#: gui/lobby/lobby.js:349
 msgid "Show this help."
 msgstr "Vis denne hjelpefila."
 
-#: gui/lobby/lobby.js:332
+#: gui/lobby/lobby.js:352
 msgid "Chat commands:"
 msgstr "Sludrekommandoer:"
 
 #. Translation: Chat command help format
-#: gui/lobby/lobby.js:336
+#: gui/lobby/lobby.js:356
 #, javascript-format
 msgid "%(command)s - %(description)s"
 msgstr "%(command)s - %(description)s"
 
-#: gui/lobby/lobby.js:349
+#: gui/lobby/lobby.js:369
 msgid "Send a chat message about yourself. Example: /me goes swimming."
 msgstr "Send en sludremelding om deg selv. Eksempel: /me drar å svømmer."
 
-#: gui/lobby/lobby.js:353
+#: gui/lobby/lobby.js:373
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
 msgstr "Send tekst som sludremelding (selv om den starter med skråstrek). Eksempel: /say /help er en fin kommando."
 
-#: gui/lobby/lobby.js:357
+#: gui/lobby/lobby.js:377
 msgid "Clear all chat scrollback."
 msgstr "Tøm alt sludrerulleminne."
 
-#: gui/lobby/lobby.js:364
+#: gui/lobby/lobby.js:384
 msgid "Return to the main menu."
 msgstr "Gå tilbake til hovedmeny."
 
-#: gui/lobby/lobby.js:438
+#: gui/lobby/lobby.js:442
+msgid "You have been disconnected from the lobby. Do you want to reconnect?"
+msgstr ""
+
+#: gui/lobby/lobby.js:443 gui/lobby/lobby.js:1182
+msgid "Confirmation"
+msgstr "Bekreftelse"
+
+#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1183
+msgid "No"
+msgstr "Nei"
+
+#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1183
+msgid "Yes"
+msgstr "Ja"
+
+#: gui/lobby/lobby.js:459
+msgctxt "previous page"
+msgid "Back"
+msgstr "Tilbake"
+
+#: gui/lobby/lobby.js:460
+msgctxt "previous page"
+msgid "Main Menu"
+msgstr "Hovedmeny"
+
+#: gui/lobby/lobby.js:529
 msgctxt "map size"
 msgid "Any"
 msgstr "Alle"
 
-#: gui/lobby/lobby.js:443
+#: gui/lobby/lobby.js:534
 msgctxt "player number"
 msgid "Any"
 msgstr "Alle"
 
-#: gui/lobby/lobby.js:447 gui/lobby/lobby.js:461
+#: gui/lobby/lobby.js:538 gui/lobby/lobby.js:552
 msgctxt "map"
 msgid "Any"
 msgstr "Alle"
 
-#: gui/lobby/lobby.js:455
+#: gui/lobby/lobby.js:546
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
 msgstr "> %(rating)s"
 
-#: gui/lobby/lobby.js:456
+#: gui/lobby/lobby.js:547
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
 msgstr "< %(rating)s"
 
-#: gui/lobby/lobby.js:529
+#: gui/lobby/lobby.js:620
 msgid "You have been banned from the lobby!"
 msgstr "Du har blitt utestengt fra lobbyen!"
 
-#: gui/lobby/lobby.js:530
+#: gui/lobby/lobby.js:621
 msgid "You have been kicked from the lobby!"
 msgstr "Du har blitt kastet ut fra lobbyen!"
 
-#: gui/lobby/lobby.js:532
+#: gui/lobby/lobby.js:623
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
 msgstr "%(nick)s har blitt utestengt fra lobbyen."
 
-#: gui/lobby/lobby.js:533
+#: gui/lobby/lobby.js:624
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
 msgstr "%(nick)s har blitt kastet ut av lobbyen."
 
-#: gui/lobby/lobby.js:536
+#: gui/lobby/lobby.js:627
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
 msgstr "Reason: %(reason)s"
 
-#: gui/lobby/lobby.js:564
+#: gui/lobby/lobby.js:655
 msgid "BANNED"
 msgstr "UTESTENGT"
 
-#: gui/lobby/lobby.js:564
+#: gui/lobby/lobby.js:655
 msgid "KICKED"
 msgstr "KASTET UT"
 
-#: gui/lobby/lobby.js:595
+#: gui/lobby/lobby.js:686
 msgid "Unmark as Buddy"
 msgstr "Fjern vennemarkering"
 
-#: gui/lobby/lobby.js:595
+#: gui/lobby/lobby.js:686
 msgid "Mark as Buddy"
 msgstr "Merk som venn"
 
-#: gui/lobby/lobby.js:790 gui/lobby/lobby.js:791 gui/lobby/lobby.js:792
-#: gui/lobby/lobby.js:793 gui/lobby/lobby.js:794 gui/lobby/lobby.js:795
+#: gui/lobby/lobby.js:882 gui/lobby/lobby.js:883 gui/lobby/lobby.js:884
+#: gui/lobby/lobby.js:885 gui/lobby/lobby.js:886 gui/lobby/lobby.js:887
 msgid "N/A"
 msgstr "Ikke tilgjengelig"
 
-#: gui/lobby/lobby.js:823
+#: gui/lobby/lobby.js:915
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr "Fant ingen spiller ved navn \"%(nick)s\"."
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:1039
+#: gui/lobby/lobby.js:1133
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "Spillet startet %(time)s"
 
-#: gui/lobby/lobby.js:1040 gui/lobby/lobby.js:1402
+#: gui/lobby/lobby.js:1134 gui/lobby/lobby.js:1496
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/lobby.js:1044
+#: gui/lobby/lobby.js:1138
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Spillere: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1087
+#: gui/lobby/lobby.js:1181
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "Spillet har allerede startet. Vil du ta del som observatør?"
 
-#: gui/lobby/lobby.js:1088
-msgid "Confirmation"
-msgstr "Bekreftelse"
-
-#: gui/lobby/lobby.js:1089
-msgid "No"
-msgstr "Nei"
-
-#: gui/lobby/lobby.js:1089
-msgid "Yes"
-msgstr "Ja"
-
-#: gui/lobby/lobby.js:1121
+#: gui/lobby/lobby.js:1215
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Dette spillets adresse '%(ip)s' ser ikke ut til å være gyldig."
 
-#: gui/lobby/lobby.js:1237
+#: gui/lobby/lobby.js:1331
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
 msgstr "Kommandoen '%(cmd)s' støttes ikke."
 
-#: gui/lobby/lobby.js:1249
+#: gui/lobby/lobby.js:1343
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
 msgstr "Kommandoen '%(cmd)s' er kun for moderatorer."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1322
+#: gui/lobby/lobby.js:1416
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1327
+#: gui/lobby/lobby.js:1421
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1336 gui/lobby/lobby.js:1357 gui/lobby/lobby.js:1384
+#: gui/lobby/lobby.js:1430 gui/lobby/lobby.js:1451 gui/lobby/lobby.js:1478
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:1341 gui/lobby/lobby.js:1362 gui/lobby/lobby.js:1389
+#: gui/lobby/lobby.js:1435 gui/lobby/lobby.js:1456 gui/lobby/lobby.js:1483
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:1351
+#: gui/lobby/lobby.js:1445
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/lobby/lobby.js:1379
+#: gui/lobby/lobby.js:1473
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr "(%(private)s) <%(sender)s>"
 
-#: gui/lobby/lobby.js:1380
+#: gui/lobby/lobby.js:1474
 msgid "Private"
 msgstr "Privat"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:1405
+#: gui/lobby/lobby.js:1499
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1410
+#: gui/lobby/lobby.js:1504
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1449
+#: gui/lobby/lobby.js:1543
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1465
+#: gui/lobby/lobby.js:1559
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1467
+#: gui/lobby/lobby.js:1561
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
@@ -417,181 +431,181 @@ msgstr "Registrert"
 msgid "Register"
 msgstr "Registrer"
 
-#: gui/prelobby/prelobby.js:249 gui/prelobby/prelobby.xml:(caption):101
+#: gui/prelobby/prelobby.js:249 gui/prelobby/prelobby.xml:(caption):108
 msgid "Connect"
 msgstr "Koble til"
 
-#: gui/prelobby/prelobby.js:259 gui/prelobby/prelobby.xml:(caption):78
+#: gui/prelobby/prelobby.js:259 gui/prelobby/prelobby.xml:(caption):85
 msgid "Terms of Service"
 msgstr "Tjenestevilkår"
 
-#: gui/prelobby/prelobby.js:268 gui/prelobby/prelobby.xml:(caption):83
+#: gui/prelobby/prelobby.js:268 gui/prelobby/prelobby.xml:(caption):90
 msgid "Terms of Use"
 msgstr "Bruksvilkår"
 
-#: gui/lobby/lobby.xml:(caption):11 gui/prelobby/prelobby.xml:(caption):18
+#: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
 msgstr "Flerspiller-lobby"
 
-#: gui/lobby/lobby_panels.xml:(heading):22
+#: gui/lobby/lobby_panels.xml:(heading):24
 msgid "Status"
 msgstr "Status"
 
-#: gui/lobby/lobby_panels.xml:(heading):25
-#: gui/lobby/lobby_panels.xml:(heading):189
-#: gui/lobby/lobby_panels.xml:(heading):284
+#: gui/lobby/lobby_panels.xml:(heading):27
+#: gui/lobby/lobby_panels.xml:(heading):190
+#: gui/lobby/lobby_panels.xml:(heading):289
 msgid "Name"
 msgstr "Navn"
 
-#: gui/lobby/lobby_panels.xml:(heading):28
-#: gui/lobby/lobby_panels.xml:(heading):204
-#: gui/lobby/lobby_panels.xml:(heading):287
+#: gui/lobby/lobby_panels.xml:(heading):30
+#: gui/lobby/lobby_panels.xml:(heading):205
+#: gui/lobby/lobby_panels.xml:(heading):292
 msgid "Rating"
 msgstr "Vurdering"
 
-#: gui/lobby/lobby_panels.xml:(heading):192
+#: gui/lobby/lobby_panels.xml:(heading):193
 msgid "Map Name"
 msgstr "Kartnavn"
 
-#: gui/lobby/lobby_panels.xml:(heading):195
+#: gui/lobby/lobby_panels.xml:(heading):196
 msgctxt "map"
 msgid "Size"
 msgstr "Størrelse"
 
-#: gui/lobby/lobby_panels.xml:(heading):198
+#: gui/lobby/lobby_panels.xml:(heading):199
 msgctxt "map"
 msgid "Type"
 msgstr "Type"
 
-#: gui/lobby/lobby_panels.xml:(heading):201
+#: gui/lobby/lobby_panels.xml:(heading):202
 msgid "Players"
 msgstr "Spillere"
 
-#: gui/lobby/lobby_panels.xml:(heading):281
+#: gui/lobby/lobby_panels.xml:(heading):286
 msgid "Rank"
 msgstr "Grad"
 
-#: gui/lobby/lobby_panels.xml:(caption):50
-#: gui/lobby/lobby_panels.xml:(caption):326
+#: gui/lobby/lobby_panels.xml:(caption):52
+#: gui/lobby/lobby_panels.xml:(caption):331
 msgid "Current Rank:"
 msgstr "Gjeldende rangering:"
 
-#: gui/lobby/lobby_panels.xml:(caption):54
-#: gui/lobby/lobby_panels.xml:(caption):330
+#: gui/lobby/lobby_panels.xml:(caption):56
+#: gui/lobby/lobby_panels.xml:(caption):335
 msgid "Highest Rating:"
 msgstr "Høyeste rangering:"
 
-#: gui/lobby/lobby_panels.xml:(caption):58
-#: gui/lobby/lobby_panels.xml:(caption):334
+#: gui/lobby/lobby_panels.xml:(caption):60
+#: gui/lobby/lobby_panels.xml:(caption):339
 msgid "Total Games:"
 msgstr "Totale spill:"
 
-#: gui/lobby/lobby_panels.xml:(caption):62
-#: gui/lobby/lobby_panels.xml:(caption):338
+#: gui/lobby/lobby_panels.xml:(caption):64
+#: gui/lobby/lobby_panels.xml:(caption):343
 msgid "Wins:"
 msgstr "Seirer:"
 
-#: gui/lobby/lobby_panels.xml:(caption):66
-#: gui/lobby/lobby_panels.xml:(caption):342
+#: gui/lobby/lobby_panels.xml:(caption):68
+#: gui/lobby/lobby_panels.xml:(caption):347
 msgid "Losses:"
 msgstr "Tap:"
 
-#: gui/lobby/lobby_panels.xml:(caption):70
-#: gui/lobby/lobby_panels.xml:(caption):346
+#: gui/lobby/lobby_panels.xml:(caption):72
+#: gui/lobby/lobby_panels.xml:(caption):351
 msgid "Win Rate:"
 msgstr "Seiersrate:"
 
-#: gui/lobby/lobby_panels.xml:(caption):84
-#: gui/lobby/lobby_panels.xml:(caption):274
+#: gui/lobby/lobby_panels.xml:(caption):86
+#: gui/lobby/lobby_panels.xml:(caption):279
 msgid "Leaderboard"
 msgstr "Toppliste"
 
-#: gui/lobby/lobby_panels.xml:(caption):90
-#: gui/lobby/lobby_panels.xml:(caption):309
+#: gui/lobby/lobby_panels.xml:(caption):92
+#: gui/lobby/lobby_panels.xml:(caption):314
 msgid "User Profile Lookup"
 msgstr "Brukerprofil-oppslag"
 
-#: gui/lobby/lobby_panels.xml:(caption):118
+#: gui/lobby/lobby_panels.xml:(caption):120
 msgid "Map Type:"
 msgstr "Karttype:"
 
-#: gui/lobby/lobby_panels.xml:(caption):130
+#: gui/lobby/lobby_panels.xml:(caption):132
 msgid "Map Size:"
 msgstr "Kartstørrelse:"
 
 #. Join the game currently selected in the list.
-#: gui/lobby/lobby_panels.xml:(caption):155
+#: gui/lobby/lobby_panels.xml:(caption):157
 msgid "Join Game"
 msgstr "Delta i spillet"
 
-#: gui/lobby/lobby_panels.xml:(caption):161
+#: gui/lobby/lobby_panels.xml:(caption):163
 msgid "Host Game"
 msgstr "Arranger spill"
 
-#: gui/lobby/lobby_panels.xml:(caption):168
-msgid "Main Menu"
-msgstr "Hovedmeny"
-
-#: gui/lobby/lobby_panels.xml:(caption):243
+#: gui/lobby/lobby_panels.xml:(caption):244
 msgid "Show only open games"
 msgstr "Bare vis åpne spill"
 
-#: gui/lobby/lobby_panels.xml:(caption):294
-#: gui/lobby/lobby_panels.xml:(caption):356
+#: gui/lobby/lobby_panels.xml:(caption):267
+msgid "Send"
+msgstr "Send"
+
+#: gui/lobby/lobby_panels.xml:(caption):299
+#: gui/lobby/lobby_panels.xml:(caption):361
 msgid "Back"
 msgstr "Tilbake"
 
-#: gui/lobby/lobby_panels.xml:(caption):300
+#: gui/lobby/lobby_panels.xml:(caption):305
 msgid "Update"
 msgstr "Oppdater"
 
-#: gui/lobby/lobby_panels.xml:(caption):312
+#: gui/lobby/lobby_panels.xml:(caption):317
 msgid "Enter username:"
 msgstr "Skriv brukernavn:"
 
-#: gui/lobby/lobby_panels.xml:(caption):318
+#: gui/lobby/lobby_panels.xml:(caption):323
 msgid "View Profile"
 msgstr "Vis profil"
 
-#: gui/lobby/lobby_panels.xml:(caption):351
+#: gui/lobby/lobby_panels.xml:(caption):356
 msgid "Please enter a player name."
 msgstr "Skriv inn et spillernavn"
 
-#: gui/prelobby/prelobby.xml:(caption):23
+#: gui/prelobby/prelobby.xml:(caption):30
 msgid "Create a new account"
 msgstr "Lag en ny konto"
 
-#: gui/prelobby/prelobby.xml:(caption):27
+#: gui/prelobby/prelobby.xml:(caption):34
 msgid "Login to an existing account"
 msgstr "ogg inn til en eksisterende konto"
 
-#: gui/prelobby/prelobby.xml:(caption):33
+#: gui/prelobby/prelobby.xml:(caption):40
 msgid "Connect to the game lobby"
 msgstr "Koble til spillets lobby"
 
-#: gui/prelobby/prelobby.xml:(caption):36
-#: gui/prelobby/prelobby.xml:(caption):63
+#: gui/prelobby/prelobby.xml:(caption):43
+#: gui/prelobby/prelobby.xml:(caption):70
 msgid "Login:"
 msgstr "Brukernavn:"
 
-#: gui/prelobby/prelobby.xml:(caption):44
-#: gui/prelobby/prelobby.xml:(caption):68
+#: gui/prelobby/prelobby.xml:(caption):51
+#: gui/prelobby/prelobby.xml:(caption):75
 msgid "Password:"
 msgstr "Passord:"
 
-#: gui/prelobby/prelobby.xml:(caption):59
+#: gui/prelobby/prelobby.xml:(caption):66
 msgid "Registration"
 msgstr "Registrering"
 
-#: gui/prelobby/prelobby.xml:(caption):73
+#: gui/prelobby/prelobby.xml:(caption):80
 msgid "Password again:"
 msgstr "Gjenta passord:"
 
-#: gui/prelobby/prelobby.xml:(caption):88
+#: gui/prelobby/prelobby.xml:(caption):95
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
 msgstr "Jeg har lest og er enig i tjenestevilkårene og bruksvilkårene:"
 
-#: gui/prelobby/prelobby.xml:(caption):97
+#: gui/prelobby/prelobby.xml:(caption):104
 msgid "Cancel"
 msgstr "Avbryt"
 

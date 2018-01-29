@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:34+0100\n"
-"PO-Revision-Date: 2018-01-24 11:49+0000\n"
-"Last-Translator: George Lungu <lungugeorge88@gmail.com>\n"
+"POT-Creation-Date: 2018-01-27 12:56+0100\n"
+"PO-Revision-Date: 2018-01-27 15:53+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -270,8 +270,8 @@ msgstr "Canale della Manica"
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
-"A once fertile valley… desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
-msgstr "[color=\"red\"]NOTA IMPORTANTE: LE I.A. NON FUNZIONANO SU QUESTA MAPPA[/color]\n\nUna valle un tempo fertile ... devastata dall'eruzione del vulcano nel cuore della regione. Dopo anni di vuoto e terra bruciata, segni di vita cominciarono a riapparire e diffondersi. Ora la terra è quasi rigogliosa come nella precedente era. Purtroppo, non sembra destinata a durare: dopo un lungo periodo di siccità, nelle regioni più a nord si scatenano piogge interminabili. Il livello dell'acqua aumenta drasticamente, costringendo i giocatori a spostarsi lentamente verso la parte alta dei vulcani minori, o del grande cono dormiente."
+"A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
+msgstr ""
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
@@ -671,31 +671,20 @@ msgid "The Nile"
 msgstr "Il Nilo"
 
 #: maps/random/unknown.jsonsettings.Description
-msgid "The unknown… Warning: May be a naval map."
-msgstr "La sconosciuta... Attenzione: Potrebbe essere una mappa navale."
+msgid "The unknown. Warning: May be a naval map."
+msgstr ""
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
 msgstr "Sconosciuto"
 
 #: maps/random/unknown_land.jsonsettings.Description
-msgid "The unknown…"
-msgstr "La sconosciuta..."
+msgid "The unknown."
+msgstr ""
 
 #: maps/random/unknown_land.jsonsettings.Name
 msgid "Unknown Land"
 msgstr "Terra Sconosciuta"
-
-#: maps/random/unknown_nomad.jsonsettings.Description
-msgid ""
-"The unknown… Players start with only some citizen soldiers and female "
-"citizens. [color=\"red\"]Warning: The starting resources should be set at "
-"least at Medium.[/color]"
-msgstr "Ciò che non si conosce... I giocatori iniziano con solo alcuni soldati cittadini e donne. [color=\"red\"]Attenzione: Le risorse iniziali devono essere almeno a livello Medio.[/color]"
-
-#: maps/random/unknown_nomad.jsonsettings.Name
-msgid "Unknown Nomad"
-msgstr "Nomade Sconosciuto"
 
 #: maps/random/volcanic_lands.jsonsettings.Description
 msgid "A charred dead land where players start around a smoking volcano."
@@ -723,31 +712,18 @@ msgstr "Un lago racchiuso tra le colline"
 msgid "Wild Lake"
 msgstr "Lago selvaggio"
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Description
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
 "abundant conifer forests, making even the more resilient deer and mountain "
 "goats shiver."
 msgstr "Una regione nelle alte montagne nevose. I venti pungenti che soffiano attraverso le abbondanti foreste di conifere fanno tremare anche i più resistenti cervi e le capre di montagna."
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Una regione nelle alte montagne nevose. I venti pungenti che soffiano attraverso le abbondanti foreste di conifere fanno tremare anche i più resistenti cervi e le capre di montagna."
-
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Title
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgid "Alpine"
 msgstr "Alpino"
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alpino"
-
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Description
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgid ""
 "Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
 "intertwined. The native beech and oak trees of this temperate zone display a"
@@ -755,121 +731,55 @@ msgid ""
 "at the approaching winter."
 msgstr "L'autunno al suo apice. Il paesaggio è una lucente tavolozza di colori mescolati. I faggi e le querce native di questa zona a clima temperato mostrano un fogliame multicolore mentre i sempreverdi pini guardano in modo indifferente l'arrivo dell'inverno."
 
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-coloured foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "L'autunno al suo apice. Il paesaggio è una lucente tavolozza di colori mescolati. I faggi e le querce native di questa zona a clima temperato mostrano un fogliame multicolore mentre i sempreverdi pini guardano in modo indifferente l'arrivo dell'inverno."
-
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Title
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgid "Autumn"
 msgstr "Autunno"
 
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Autunno"
-
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Description
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
 msgid ""
 "A semi-desert area that boasts numerous clumps of date palms and tamarix "
 "trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
 "fright at being disturbed."
 msgstr "Un'area semi-desertica che vanta molti agglomerati di palme da dattero e cespugli di tamarix. Mandrie di cammelli vagano nel deserto e le sparute gazzelle saltano senza paura di essere disturbate."
 
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Un'area semi-desertica che vanta molti agglomerati di palme da dattero e cespugli di tamarix. Mandrie di cammelli vagano nel deserto e le sparute gazzelle saltano senza paura di essere disturbate."
-
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Title
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
 msgid "Desert"
 msgstr "Deserto"
 
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Desert"
-msgstr "Deserto"
-
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Description
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
 msgid ""
 "Start in a region blessed with the Mediterranean climate, a warm and "
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Si inizia in una regione benedetta dal clima mediterraneo, una terra calda e invitante. I cipressi sono in perpetua lotta con le palme dominanti mentre i cervi pascolano alla loro ombra, ignari."
 
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Si inizia in una regione benedetta dal clima mediterraneo, una terra calda e invitante. I cipressi sono in perpetua lotta con le palme dominanti mentre i cervi pascolano alla loro ombra, ignari."
-
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Title
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgid "Mediterranean"
 msgstr "Mediterraneo"
 
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Mediterraneo"
-
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Description
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
 "The savanna, a dry climate in which only the hardy Baobab trees thrive. "
 "Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
 " giraffes or elephants roam the wild in search of food."
 msgstr "La savana, un clima secco nel quale solo i resistenti baobab prosperano. Gazzelle solitarie pascolano l'erba rada, mentre mandrie di zebre, gnu, giraffe o elefanti vagano nel deserto in cerca di cibo."
 
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "La savana, un clima secco nel quale solo i resistenti baobab prosperano. Gazzelle solitarie pascolano l'erba rada, mentre mandrie di zebre, gnu, giraffe o elefanti vagano nel deserto in cerca di cibo."
-
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Title
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgid "Savanna"
 msgstr "Savana"
 
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Savana"
-
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Description
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
 msgid ""
 "Settle in the cold regions of the North, the native habitat of the wooly "
 "muskox. Here you can pine away to your content and also hunt the occasional "
 "walrus or two."
 msgstr "Sistemata nelle fredde regioni del Nord, l'abitati nativo del bue muschiato. Qui puoi struggerti della tua soddisfazione e anche cacciare occasionali trichechi."
 
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Sistemata nelle fredde regioni del Nord, l'abitati nativo del bue muschiato. Qui puoi struggerti della tua soddisfazione e anche cacciare occasionali trichechi."
-
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Title
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgid "Snowy"
 msgstr "Nevoso"
 
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Nevoso"
-
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Description
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgid ""
 "Lush grasslands carpet the land, in places giving way to magnificent and "
 "diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
@@ -877,25 +787,11 @@ msgid ""
 "dot the land, deer and sheep gorge themselves on this years fallen fruit."
 msgstr "Lussureggianti praterie tappezzano la terra, dando spazio a varie e magnificenti foreste di latifoglie. Pioppi, pini, faggi e querce, tutti gareggiano per la supremazia ma questa guerra è una lotta senza fine. Numerosi meli punteggiano la terra, cervi e pecore si rimpinzano di questo frutto caduto annualmente."
 
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Lussureggianti praterie tappezzano la terra, dando spazio a varie e magnificenti foreste di latifoglie. Pioppi, pini, faggi e querce, tutti gareggiano per la supremazia ma questa guerra è una lotta senza fine. Numerosi meli punteggiano la terra, cervi e pecore si rimpinzano di questo frutto caduto annualmente."
-
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Title
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgid "Temperate"
 msgstr "Temperato"
 
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Temperato"
-
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Description
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
 msgid ""
 "Explore the mysterious tropics. An extremely green, but also extremely humid"
 " environment awaits. The tall Toona trees look on disapprovingly at this "
@@ -903,23 +799,21 @@ msgid ""
 "their territory at all costs."
 msgstr "Esplora i misteriosi tropici. Un ambiente estremamente verde ma anche umido ti aspetta. Gli alti Toona controllano disapprovando l'invasione della loro privacy e feroci tigri sono determinate a difendere il loro territorio a tutti i costi."
 
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Esplora i misteriosi tropici. Un ambiente estremamente verde ma anche umido ti aspetta. Gli alti Toona controllano disapprovando l'invasione della loro privacy e feroci tigri sono determinate a difendere il loro territorio a tutti i costi."
-
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Title
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgid "Tropic"
 msgstr "Tropicale"
 
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "Tropicale"
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgid "Frozen Lake"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgid "Late Spring"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgid "Winter"
+msgstr ""
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -2141,11 +2035,11 @@ msgstr "Barcania (3)"
 
 #: maps/skirmishes/Barcania (3).xml:Description:27
 msgid ""
-"A wild and wooded isle, full of forests, gold, and mystery…  mountains, "
-"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
-"with lots of potential for skirmishing and guerilla warfare as well as tough"
-" defensive fighting or aggressive maneuvers."
-msgstr "Un isola selvaggia e boscosa, ricca di foreste, oro e mistero... montagne, mari e fitte foreste ideali per una mappa molto dinamica e veloce con 3 giocatori e con schermaglie e azioni di guerriglia ad ogni angolo, nonché difese tenaci o manovre aggressive."
+"A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
+" and thick forests make for a very dynamic and fast-paced 3-player map with "
+"lots of potential for skirmishing and guerilla warfare as well as tough "
+"defensive fighting or aggressive maneuvers."
+msgstr ""
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:39
 msgid ""
@@ -2583,6 +2477,15 @@ msgstr "Una grande mappa tropicale con due mari ad Est ed Ovest. Adatta a due sq
 #: maps/skirmishes/Two Seas (6).xml:Name:40
 msgid "Two Seas (6)"
 msgstr "Due Mari (6)"
+
+#: maps/skirmishes/Via Augusta (4).xml:Description:40
+msgid ""
+"All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
+msgstr ""
+
+#: maps/skirmishes/Via Augusta (4).xml:Name:40
+msgid "Via Augusta"
+msgstr ""
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:39
 msgid ""

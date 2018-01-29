@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:34+0100\n"
-"PO-Revision-Date: 2018-01-07 02:56+0000\n"
+"POT-Creation-Date: 2018-01-27 12:56+0100\n"
+"PO-Revision-Date: 2018-01-27 15:53+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -256,7 +256,7 @@ msgstr "Selat Inggeris"
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
-"A once fertile valley… desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
+"A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
 msgstr ""
 
 #: maps/random/extinct_volcano.jsonsettings.Name
@@ -657,7 +657,7 @@ msgid "The Nile"
 msgstr "Nil"
 
 #: maps/random/unknown.jsonsettings.Description
-msgid "The unknown… Warning: May be a naval map."
+msgid "The unknown. Warning: May be a naval map."
 msgstr ""
 
 #: maps/random/unknown.jsonsettings.Name
@@ -665,23 +665,12 @@ msgid "Unknown"
 msgstr "Tidak Diketahui"
 
 #: maps/random/unknown_land.jsonsettings.Description
-msgid "The unknown…"
+msgid "The unknown."
 msgstr ""
 
 #: maps/random/unknown_land.jsonsettings.Name
 msgid "Unknown Land"
 msgstr "Tanah Tidak Diketahui"
-
-#: maps/random/unknown_nomad.jsonsettings.Description
-msgid ""
-"The unknown… Players start with only some citizen soldiers and female "
-"citizens. [color=\"red\"]Warning: The starting resources should be set at "
-"least at Medium.[/color]"
-msgstr ""
-
-#: maps/random/unknown_nomad.jsonsettings.Name
-msgid "Unknown Nomad"
-msgstr "Nomad Tidak Diketahui"
 
 #: maps/random/volcanic_lands.jsonsettings.Description
 msgid "A charred dead land where players start around a smoking volcano."
@@ -709,31 +698,18 @@ msgstr "Sebuah tasek yang dikelilingi bukit bukau."
 msgid "Wild Lake"
 msgstr "Tasek Meliar"
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Description
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
 "abundant conifer forests, making even the more resilient deer and mountain "
 "goats shiver."
 msgstr "Wilayah dipergunungan bersalji. Angin kuat yang menghembus hutan konifer yang terbentang luas, menjadikan rusa dan kambing gurun  lasak kesejukan."
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Wilayah dipergunungan bersalji. Angin kuat yang menghembus hutan konifer yang terbentang luas, menjadikan rusa dan kambing gurun lasak kesejukan."
-
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Title
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgid "Alpine"
 msgstr "Alp"
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alp"
-
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Description
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgid ""
 "Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
 "intertwined. The native beech and oak trees of this temperate zone display a"
@@ -741,121 +717,55 @@ msgid ""
 "at the approaching winter."
 msgstr "Musim luruh berada dikemuncak. Lanskap diselebungi warna-warna yang bergemerlapan. Pokok beech dan oak dalam zon ini mengeluarkan daun yang berwarna-warni manakala pokok pain masih kekal berwarna hijau jelas berbeza sebelum musim sejuk tiba."
 
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-coloured foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "Musim luruh berada dikemuncak. Lanskap diselebungi warna-warna yang bergemerlapan. Pokok beech dan oak dalam zon ini mengeluarkan daun yang berwarna-warni manakala pokok pain masih kekal berwarna hijau jelas berbeza sebelum  musim sejuk tiba."
-
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Title
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgid "Autumn"
 msgstr "Musim Luruh"
 
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Musim  Luruh"
-
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Description
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
 msgid ""
 "A semi-desert area that boasts numerous clumps of date palms and tamarix "
 "trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
 "fright at being disturbed."
 msgstr "Kawasan separa-padang-pasir yang ditumbuhi dengan pepohon kurma dan tamarisk. Sekumpulan unta liar berkeliaran dan gazel sekali-sekala kelihatan melompat ketakutan jika diganggu."
 
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Kawasan  separa-padang-pasir yang ditumbuhi dengan pepohon kurma dan tamarisk. Sekumpulan unta liar berkeliaran dan gazel sekali-sekala kelihatan melompat ketakutan jika diganggu."
-
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Title
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
 msgid "Desert"
 msgstr "Padang Pasir"
 
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Desert"
-msgstr "Padang Pasir "
-
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Description
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
 msgid ""
 "Start in a region blessed with the Mediterranean climate, a warm and "
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Bermula di kawasan subur dengan suasana cuaca Mediterranean iaitu tanah bersuhu sederhana nan subur. Pepohon sipres berselang seli dengan pokok palma yang tampak dominan di kawasan ini manakala sang rusa meragut disebalik bayang pepohon, tampak gembira dan tidak malu-malu."
 
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Bermula di kawasan subur dengan suasana cuaca Mediterranean iaitu tanah bersuhu sederhana yang subur. Pepohon sipres berselang seli dengan pokok palma yang tampak dominan di kawasan ini manakala sang rusa meragut disebalik bayang pepohon, tampak gembira dan tidak malu-malu."
-
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Title
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgid "Mediterranean"
 msgstr "Mediterranean"
 
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Mediterranean"
-
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Description
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
 "The savanna, a dry climate in which only the hardy Baobab trees thrive. "
 "Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
 " giraffes or elephants roam the wild in search of food."
 msgstr "Padang Savana, dengan cuaca kering yang hanya dipenuhi dengan pokok Baobab. Kelihatan rusa gazelle meragut rumput yang jarang-jarang memenuhi lanskapnya, manakala sekumpulan kuda belang, wildebeast, zirafah atau sang gajah berkeliaran mencari makanan di sini."
 
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "Padang Savana, dengan cuaca kering yang hanya dipenuhi dengan pokok Baobab. Kelihatan rusa gazelle meragut rumput yang jarang-jarang memenuhi lanskapnya, manakala sekumpulan kuda belang, wildebeast, zirafah atau sang gajah berkeliaran mencari makanan di sini."
-
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Title
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgid "Savanna"
 msgstr "Savanna"
 
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Savanna"
-
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Description
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
 msgid ""
 "Settle in the cold regions of the North, the native habitat of the wooly "
 "muskox. Here you can pine away to your content and also hunt the occasional "
 "walrus or two."
 msgstr "Berada di wilayah Utara yang sejuk, habitat di sini ialah muskox iaitu sejenis lembu liar atau seladang. Di sini anda boleh membangunkan tamadun dan sekali-sekala memburu walrus."
 
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Berada di  wilayah Utara yang sejuk, habitat di sini ialah muskox iaitu sejenis lembu liar atau seladang. Di sini anda boleh membangunkan tamadun dan sekali-sekala memburu walrus."
-
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Title
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgid "Snowy"
 msgstr "Dilitupi Salji"
 
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Dilitupi  Salji"
-
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Description
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgid ""
 "Lush grasslands carpet the land, in places giving way to magnificent and "
 "diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
@@ -863,25 +773,11 @@ msgid ""
 "dot the land, deer and sheep gorge themselves on this years fallen fruit."
 msgstr "Padang rumput subur yang terbentang luas, dengan kewujudan hutan berdaun lebar yang beraneka rupa. Pokok Poplar, pain, beech dan oak semuanya mahu menguasai hutan dimana pertandingan yang tidak pernah selesai. Banyak pokok epal kelihatan bertebaran di tanah ini. Rusa dan kambing biri-biri mengerumumi buah-buah epal yang masih jatuh ke bumi."
 
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Padang rumput subur yang terbentang luas, dengan kewujudan hutan berdaun lebar yang beraneka rupa. Pokok poplar, pain, beech dan oak semuanya mahu menguasai hutan dimana pertandingan yang tidak pernah selesai. Banyak pokok epal kelihatan bertebaran di tanah ini. Rusa dan kambing biri-biri mengerumumi buah-buah epal yang masih jatuh ke bumi."
-
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Title
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgid "Temperate"
 msgstr "Iklim Sederhana"
 
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Iklim  Sederhana"
-
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Description
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
 msgid ""
 "Explore the mysterious tropics. An extremely green, but also extremely humid"
 " environment awaits. The tall Toona trees look on disapprovingly at this "
@@ -889,23 +785,21 @@ msgid ""
 "their territory at all costs."
 msgstr "Jelajahi kawasan tropika yang misteri. Tempat yang kelihatan sangat hijau, dan juga dengan persekitaran yang sangat lembap. Pokok Toona yang tinggi menjulang langit kelihatan tidak mengalu-alukan kedatangan manusia dan kehadiran harimau ganas sudah pasti akan mempertahankan wilayah mereka."
 
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Jelajahi kawasan tropika  yang misteri. Tempat yang kelihatan sangat hijau, dan juga dengan persekitaran yang sangat lembap. Pokok Toona yang tinggi menjulang langit kelihatan tidak mengalu-alukan kedatangan manusia dan kehadiran harimau ganas sudah pasti akan mempertahankan wilayah mereka."
-
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Title
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgid "Tropic"
 msgstr "Tropika"
 
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "Tropika"
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgid "Frozen Lake"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgid "Late Spring"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgid "Winter"
+msgstr ""
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -2125,10 +2019,10 @@ msgstr "Barcania (3)"
 
 #: maps/skirmishes/Barcania (3).xml:Description:27
 msgid ""
-"A wild and wooded isle, full of forests, gold, and mystery…  mountains, "
-"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
-"with lots of potential for skirmishing and guerilla warfare as well as tough"
-" defensive fighting or aggressive maneuvers."
+"A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
+" and thick forests make for a very dynamic and fast-paced 3-player map with "
+"lots of potential for skirmishing and guerilla warfare as well as tough "
+"defensive fighting or aggressive maneuvers."
 msgstr ""
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:39
@@ -2567,6 +2461,15 @@ msgstr "Peta tropik yang luas berserta dua laut di bahagian Barat dan Timur. Ses
 #: maps/skirmishes/Two Seas (6).xml:Name:40
 msgid "Two Seas (6)"
 msgstr "Dua Laut (6)"
+
+#: maps/skirmishes/Via Augusta (4).xml:Description:40
+msgid ""
+"All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
+msgstr ""
+
+#: maps/skirmishes/Via Augusta (4).xml:Name:40
+msgid "Via Augusta"
+msgstr ""
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:39
 msgid ""

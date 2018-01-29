@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:34+0100\n"
-"PO-Revision-Date: 2018-01-07 07:21+0000\n"
+"POT-Creation-Date: 2018-01-27 12:56+0100\n"
+"PO-Revision-Date: 2018-01-27 16:40+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -264,7 +264,7 @@ msgstr "Ла Манш"
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
-"A once fertile valley… desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
+"A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
 msgstr "[color=\"red\"]ВАЖНО: КОМПЮТЪРНО-УПРАВЛЯВАНИТЕ ИГРАЧИ НЕ РАБОТЯТ НА ТАЗИ КАРТА[/color]\n\nНякогашна плодородна долина… е унищожена от изригването на дълго спящ вулкан в сърцето на региона. След много години, през които долината прилича на пустиня, отново започват да се появяват знаци на живот. Земята вече е успяла да възстанови наполовина някогашната си жизненост. Уви, за кратко. След дълъг период на суша, неспирни дъждове заливат високите региони на север. Водните нива се увеличават заплашително, принуждавайки играчите да бягат към по-високите места — останки от угаснали вулкани, или към отново заспалия голям хълм."
 
 #: maps/random/extinct_volcano.jsonsettings.Name
@@ -665,31 +665,20 @@ msgid "The Nile"
 msgstr "Нил"
 
 #: maps/random/unknown.jsonsettings.Description
-msgid "The unknown… Warning: May be a naval map."
-msgstr "Непозната карта…  Внимание: Може да бъде морска."
+msgid "The unknown. Warning: May be a naval map."
+msgstr "Непозната карта. Внимание: Може да бъде морска."
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
 msgstr "Непозната"
 
 #: maps/random/unknown_land.jsonsettings.Description
-msgid "The unknown…"
-msgstr "Непозната карта…"
+msgid "The unknown."
+msgstr "Непозната карта."
 
 #: maps/random/unknown_land.jsonsettings.Name
 msgid "Unknown Land"
 msgstr "Непозната земя"
-
-#: maps/random/unknown_nomad.jsonsettings.Description
-msgid ""
-"The unknown… Players start with only some citizen soldiers and female "
-"citizens. [color=\"red\"]Warning: The starting resources should be set at "
-"least at Medium.[/color]"
-msgstr "Непозната карта… Играчите започват само с няколко войници и жени.[color=\"red\"]Внимание: Началните ресурси трябва да бъдат зададени на поне средно ниво.[/color]"
-
-#: maps/random/unknown_nomad.jsonsettings.Name
-msgid "Unknown Nomad"
-msgstr "Непозната номадска"
 
 #: maps/random/volcanic_lands.jsonsettings.Description
 msgid "A charred dead land where players start around a smoking volcano."
@@ -717,31 +706,18 @@ msgstr "Заградено от хълмове езеро."
 msgid "Wild Lake"
 msgstr "Диво езеро"
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Description
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
 "abundant conifer forests, making even the more resilient deer and mountain "
 "goats shiver."
 msgstr "Регион във високите заснежени планини. Пронизващи ветрове вият през гъстите иглолистни гори, карайки и най-жилавите елени и планински кози да треперят."
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Регион във високите заснежени планини. Пронизващи ветрове вият през гъстите иглолистни гори, карайки и най-жилавите елени и планински кози да треперят."
-
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Title
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgid "Alpine"
 msgstr "Планински"
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Планински"
-
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Description
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgid ""
 "Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
 "intertwined. The native beech and oak trees of this temperate zone display a"
@@ -749,121 +725,55 @@ msgid ""
 "at the approaching winter."
 msgstr "Същинска есен. Пейзажът представлява плетеница от най-разнообразни цветове. Типичните за тази умерена зона букове и дъбове са с многоцветни листа, а вечнозелените борове гледат с безразличие на наближаващата зима."
 
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-coloured foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "Същинска есен. Пейзажът представлява плетеница от най-разнообразни цветове. Типичните за тази умерена зона букове и дъбове са с многоцветни листа, а вечнозелените борове гледат с безразличие на наближаващата зима."
-
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Title
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgid "Autumn"
 msgstr "Есен"
 
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Есен"
-
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Description
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
 msgid ""
 "A semi-desert area that boasts numerous clumps of date palms and tamarix "
 "trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
 "fright at being disturbed."
 msgstr "Полупустинна област с многобройни групички финикови палми и ракитовици. Стада камили кръстосват пустошта, и само от време на време някоя газела подскача уплашена от незабележим шум."
 
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Полупустинна област с многобройни групички финикови палми и ракитовици. Стада камили кръстосват пустошта, и само от време на време някоя газела подскача уплашена от незабележим шум."
-
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Title
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
 msgid "Desert"
 msgstr "Пустиня"
 
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Desert"
-msgstr "Пустиня"
-
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Description
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
 msgid ""
 "Start in a region blessed with the Mediterranean climate, a warm and "
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Започвате в район благословен със средиземноморски климат, топла и приветлива земя. Кипарисите са в непрекъсната борба с преобладаващите ветрилни палми, а елените пасат в сенките им, необезпокоявани."
 
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Започвате в район благословен със средиземноморски климат, топла и приветлива земя. Кипарисите са в непрекъсната борба с преобладаващите ветрилни палми, а елените пасат в сенките им, необезпокоявани."
-
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Title
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgid "Mediterranean"
 msgstr "Средиземно море"
 
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Средиземноморски"
-
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Description
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
 "The savanna, a dry climate in which only the hardy Baobab trees thrive. "
 "Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
 " giraffes or elephants roam the wild in search of food."
 msgstr "Саваната – сух климат, където само жилавите дървета баобаб могат да оцелеят. Самотни газели пасат оскъдната трева, а стада зебри, гнута, жирафи и слонове кръстосват пустошта в търсене на храна."
 
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "Саваната – сух климат, където само жилавите дървета баобаб могат да оцелеят. Самотни газели пасат оскъдната трева, а стада зебри, гнута, жирафи и слонове кръстосват пустошта в търсене на храна."
-
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Title
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgid "Savanna"
 msgstr "Савана"
 
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Савана"
-
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Description
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
 msgid ""
 "Settle in the cold regions of the North, the native habitat of the wooly "
 "muskox. Here you can pine away to your content and also hunt the occasional "
 "walrus or two."
 msgstr "Установете се в студените райони на севера, естествената родина на мускусния бик. Тук можете да сечете борове на воля, както и да ловувате моржове."
 
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Установете се в студените райони на севера, естествената родина на мускусния бик. Тук можете да сечете борове на воля, както и да ловувате моржове."
-
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Title
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgid "Snowy"
 msgstr "Сняг"
 
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Сняг"
-
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Description
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgid ""
 "Lush grasslands carpet the land, in places giving way to magnificent and "
 "diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
@@ -871,25 +781,11 @@ msgid ""
 "dot the land, deer and sheep gorge themselves on this years fallen fruit."
 msgstr "Тучни поляни покриват земята, отстъпвайки място само на величествени и разнообразни широколистни гори. Тополи, борове, дъбове и букове се борят за надмощие, но тази коренова война е неспирна битка. Многобройни ябълкови дървета осейват земята, елени и овце пируват с тазгодишните паднали плодове."
 
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Тучни поляни покриват земята, отстъпвайки място само на величествени и разнообразни широколистни гори. Тополи, борове, дъбове и букове се борят за надмощие, но тази коренова война е неспирна битка. Многобройни ябълкови дървета осейват земята, елени и овце пируват с тазгодишните паднали плодове."
-
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Title
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgid "Temperate"
 msgstr "Умерен"
 
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Умерен"
-
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Description
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
 msgid ""
 "Explore the mysterious tropics. An extremely green, but also extremely humid"
 " environment awaits. The tall Toona trees look on disapprovingly at this "
@@ -897,23 +793,21 @@ msgid ""
 "their territory at all costs."
 msgstr "Изследвайте загадъчните тропици. Очаква Ви невероятно зелена, но и особено влажна среда. Високите дървета Тоона гледат неодобрително на това нарушаване на личното им пространство, а яростни тигри са готови да защитават територията си на всяка цена."
 
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Изследвайте загадъчните тропици. Очаква Ви невероятно зелена, но и особено влажна среда. Високите дървета Тоона гледат неодобрително на това нарушаване на личното им пространство, а яростни тигри са готови да защитават територията си на всяка цена."
-
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Title
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgid "Tropic"
 msgstr "Тропически"
 
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "Тропически"
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgid "Frozen Lake"
+msgstr "Замръзнало езеро"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgid "Late Spring"
+msgstr "Късна пролет"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgid "Winter"
+msgstr "Зима"
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -2135,11 +2029,11 @@ msgstr "Баркания (3)"
 
 #: maps/skirmishes/Barcania (3).xml:Description:27
 msgid ""
-"A wild and wooded isle, full of forests, gold, and mystery…  mountains, "
-"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
-"with lots of potential for skirmishing and guerilla warfare as well as tough"
-" defensive fighting or aggressive maneuvers."
-msgstr "Див остров с много гори, злато и загадки… планините, моретата и гъстите гори правят тази карта за 3-ма играчи много динамична и забързана, с много възможности за обстрел и засади, както и за защитни действия и нападателни маневри."
+"A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
+" and thick forests make for a very dynamic and fast-paced 3-player map with "
+"lots of potential for skirmishing and guerilla warfare as well as tough "
+"defensive fighting or aggressive maneuvers."
+msgstr "Див остров с много гори, злато и загадки. Планините, моретата и гъстите гори правят тази карта за 3-ма играчи много динамична и забързана, с много възможности за обстрел и засади, както и за защитни действия и нападателни маневри."
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:39
 msgid ""
@@ -2577,6 +2471,15 @@ msgstr "Голяма тропическа карта с две морета на
 #: maps/skirmishes/Two Seas (6).xml:Name:40
 msgid "Two Seas (6)"
 msgstr "Две морета (6)"
+
+#: maps/skirmishes/Via Augusta (4).xml:Description:40
+msgid ""
+"All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
+msgstr "Всички пътища водят към Рим. Виа Августа е римски път построен през 13 г. пр.н.е."
+
+#: maps/skirmishes/Via Augusta (4).xml:Name:40
+msgid "Via Augusta"
+msgstr "Виа Августа"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:39
 msgid ""
