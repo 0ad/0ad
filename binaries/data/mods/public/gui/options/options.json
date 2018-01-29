@@ -127,6 +127,17 @@
 				"label": "Heal Range Visualization",
 				"tooltip": "Display the healing range of selected units (can also be toggled in-game with the hotkey).",
 				"config": "gui.session.healrange"
+			},
+			{
+				"type": "dropdown",
+				"label": "Sort resources and population tooltip",
+				"tooltip": "Dynamically sort players in the resources and population tooltip by value.",
+				"config": "gui.session.respoptooltipsort",
+				"list": [
+					{ "value": 0, "label": "Unordered" },
+					{ "value": -1, "label": "Ascending" },
+					{ "value": 1, "label": "Descending" }
+				]
 			}
 		]
 	},
