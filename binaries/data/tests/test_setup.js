@@ -34,8 +34,7 @@ global.TS_ASSERT_EQUALS = function TS_ASSERT_EQUALS(x, y)
 
 global.TS_ASSERT_EQUALS_APPROX = function TS_ASSERT_EQUALS_APPROX(x, y, maxDifference)
 {
-	if (!Number.isInteger(maxDifference))
-		fail("Test must pass a maximum difference!");
+	TS_ASSERT_NUMBER(maxDifference);
 
 	if (Math.abs(x - y) > maxDifference)
 		fail("Expected almost equal, got " + uneval(x) + " !== " + uneval(y));
@@ -54,4 +53,10 @@ global.TS_ASSERT_EXCEPTION = function(func)
 		Engine.TS_FAIL("Missed exception at:\n" + new Error().stack);
 	} catch (e) {
 	}
+}
+
+global.TS_ASSERT_NUMBER = function(value)
+{
+	if (typeof value != "number" || !isFinite(value))
+		fail("The given value must be a real number!");
 }

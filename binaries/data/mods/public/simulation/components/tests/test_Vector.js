@@ -86,6 +86,12 @@ var brokenVector = {
 
 		TS_ASSERT_EQUALS_APPROX(vec1.x, vec2.x, epsilon);
 		TS_ASSERT_EQUALS_APPROX(vec1.y, vec2.y, epsilon);
+
+		let vec3 = new Vector2D(Math.sin(angle), Math.cos(angle));
+		let vec4 = new Vector2D(0, 1).rotate(angle);
+
+		TS_ASSERT_EQUALS_APPROX(vec3.x, vec4.x, epsilon);
+		TS_ASSERT_EQUALS_APPROX(vec3.y, vec4.y, epsilon);
 	}
 }
 
