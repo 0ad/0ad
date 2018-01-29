@@ -392,9 +392,8 @@ function paintRiver(args)
 			let deviation = args.deviation * randFloat(-1, 1);
 
 			// Compute the distance to the shoreline.
-			let sign = Math.sign(distanceToRiver || 1);
-			let shoreDist1 = sign * riverCurve1 + Math.abs(distanceToRiver) - deviation - args.width / 2;
-			let shoreDist2 = sign * riverCurve2 + Math.abs(distanceToRiver) - deviation + args.width / 2;
+			let shoreDist1 = riverCurve1 + distanceToRiver - deviation - args.width / 2;
+			let shoreDist2 = riverCurve2 + distanceToRiver - deviation + args.width / 2;
 
 			// Create the elevation for the water and the slopy shoreline and call the user functions.
 			if (shoreDist1 < 0 && shoreDist2 > 0)
