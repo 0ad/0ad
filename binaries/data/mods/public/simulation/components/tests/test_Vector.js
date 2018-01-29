@@ -74,6 +74,21 @@ var brokenVector = {
 	}
 }
 
+// Test Vector2D rotation further
+{
+	let epsilon = 0.00000001;
+
+	for (let i = 0; i <= 128; ++i)
+	{
+		let angle = i / 128 * Math.PI;
+		let vec1 = new Vector2D(Math.cos(angle), Math.sin(angle));
+		let vec2 = new Vector2D(1, 0).rotate(-angle);
+
+		TS_ASSERT_EQUALS_APPROX(vec1.x, vec2.x, epsilon);
+		TS_ASSERT_EQUALS_APPROX(vec1.y, vec2.y, epsilon);
+	}
+}
+
 // Test Vector2D rotation around a center
 {
 	let epsilon = 0.00000001;

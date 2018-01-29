@@ -34,6 +34,9 @@ global.TS_ASSERT_EQUALS = function TS_ASSERT_EQUALS(x, y)
 
 global.TS_ASSERT_EQUALS_APPROX = function TS_ASSERT_EQUALS_APPROX(x, y, maxDifference)
 {
+	if (!Number.isInteger(maxDifference))
+		fail("Test must pass a maximum difference!");
+
 	if (Math.abs(x - y) > maxDifference)
 		fail("Expected almost equal, got " + uneval(x) + " !== " + uneval(y));
 }

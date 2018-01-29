@@ -77,7 +77,7 @@ Vector2D.prototype.rotate = function(angle)
 
 	return this.set(
 		this.x * cos + this.y * sin,
-		this.y * cos - this.x * sin);
+		-this.x * sin + this.y * cos);
 };
 
 /**
