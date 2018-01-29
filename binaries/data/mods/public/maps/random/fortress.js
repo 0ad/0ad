@@ -88,7 +88,7 @@ for (let i = 0; i < numPlayers; ++i)
 	for (let treasure of treasures)
 	{
 		let position = Vector2D.add(playerPosition[i], new Vector2D(10, 0).rotate(-bbAngle))
-		createObjectGroup(new SimpleGroup([new SimpleObject(oFoodTreasure, 5, 5, 0, 2)], true, clBaseResource, position.x, position.y), 0);
+		createObjectGroup(new SimpleGroup([new SimpleObject(oFoodTreasure, 5, 5, 0, 2)], true, clBaseResource, position), 0);
 		bbAngle += Math.PI / 2;
 	}
 

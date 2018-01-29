@@ -265,7 +265,11 @@ for (var ix = 0; ix < mapSize; ix++)
 
 		if (h > 35 && randBool(0.1) ||
 		    h < 15 && randBool(0.05) && clHillDeco.countMembersInRadius(position, 1) == 0)
-			placeObject(Vector2D.add(position, new Vector2D(1, 1).mult(randFloat(0, 1))), pickRandom(aTrees), 0, randomAngle());
+			g_Map.placeEntityAnywhere(
+				pickRandom(aTrees),
+				0,
+				randomPositionOnTile(position),
+				randomAngle());
 	}
 
 var explorableArea = g_Map.createArea(explorablePoints);

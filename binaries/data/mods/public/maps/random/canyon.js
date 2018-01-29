@@ -338,7 +338,11 @@ createStragglerTrees(
 log("Creating treasures...");
 for (let i = 0; i < randIntInclusive(3, 8); ++i)
 	for (let template of [oFoodTreasure, oWoodTreasure])
-		placeObject(Vector2D.add(mapCenter, new Vector2D(randFloat(0, 7), 0).rotate(randomAngle())), template, 0, randomAngle());
+		g_Map.placeEntityPassable(
+			template,
+			0,
+			Vector2D.add(mapCenter, new Vector2D(randFloat(0, 7), 0).rotate(randomAngle())),
+			randomAngle());
 
 placePlayersNomad(
 	clPlayer,

@@ -304,14 +304,14 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				t = (diffH > 1.2) ? tGrassCliff : tGrassDry;
 				if (diffH < 0.5 && randBool(0.02))
-					placeObject(Vector2D.add(position, new Vector2D(1, 1).mult(randFloat(0, 1))), aGrassDry, 0, randomAngle());
+					g_Map.placeEntityAnywhere(aGrassDry, 0, randomPositionOnTile(position), randomAngle());
 			}
 			else if (grassNoise > 0.61)
 			{
 				t = (diffH > 1.2 ? tGrassRock : tGrassShrubs);
 			}
 			else if (diffH < 0.5 && randBool(0.02))
-				placeObject(Vector2D.add(position, new Vector2D(1, 1).mult(randFloat(0, 1))), aGrass, 0, randomAngle());
+				g_Map.placeEntityAnywhere(aGrass, 0, randomPositionOnTile(position), randomAngle());
 		}
 
 		createTerrain(t).place(position);
@@ -426,27 +426,15 @@ createObjectGroupsDeprecated(group, 0,
 Engine.SetProgress(85);
 
 log("Creating fish...");
-var num = scaleByMapSize(4, 16);
-var offsetX = mapSize * WATER_WIDTH/2;
-for (let i = 0; i < num; ++i)
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oFish, 1, 1, 0, 1)],
-			true,
-			clFood,
-			randIntInclusive(offsetX / 2, offsetX * 3/2),
-			Math.round((i + 0.5) * mapSize / num)),
-		0);
-
-for (let i = 0; i < num; ++i)
-	createObjectGroup(
-		new SimpleGroup(
-			[new SimpleObject(oFish, 1, 1, 0, 1)],
-			true,
-			clFood,
-			randIntInclusive(mapSize - offsetX * 3/2, mapSize - offsetX / 2),
-			Math.round((i + 0.5) * mapSize / num)),
-		0);
+createObjectGroups(
+	new SimpleGroup([new SimpleObject(oFish, 1, 1, 0, 1)], true, clFood),
+	0,
+	[
+		avoidClasses(clFood, 10),
+		stayClasses(clWater, 4),
+		new HeightConstraint(-Infinity, heightLand)
+	],
+	scaleByMapSize(8, 32));
 
 Engine.SetProgress(90);
 

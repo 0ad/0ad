@@ -2,41 +2,35 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("heightmap");
 
+var tGrove = "temp_grass_plants";
+var tPath = "road_rome_a";
+
+var oGroveEntities = ["structures/gaul_outpost", "gaia/flora_tree_oak_new"];
+
 var g_Map = new RandomMap(0, "whiteness");
 
 /**
  * Drags a path to a target height smoothing it at the edges and return some points along the path.
  */
-function placeRandomPathToHeight(
-	start, target, targetHeight, tileClass = undefined, texture = "road_rome_a",
-	width = 10, distance = 4, strength = 0.08, heightmap = g_Map.height)
+function placeRandomPathToHeight(start, target, targetHeight, tileClass, texture, width, distance, strength, heightmap)
 {
-	let pathPoints = [];
-	let position = clone(start);
-	while (true)
+	let painters = [new TerrainPainter(texture)];
+
+	if (tileClass)
+		painters.push(new TileClassPainter(tileClass));
+
+	let position = start.clone();
+	while (position.distanceTo(target) >= distance / 2)
 	{
-		rectangularSmoothToHeight(position, width, width, targetHeight, strength, heightmap);
-		if (texture)
-		{
-			let painters = [new TerrainPainter(texture)];
+		rectangularSmoothToHeight(position, width * 3, width * 3, targetHeight, strength, heightmap);
 
-			if (tileClass)
-				painters.push(new TileClassPainter(tileClass));
+		createArea(
+			new ClumpPlacer(diskArea(width), 1, 1, 1, position),
+			painters);
 
-			createArea(
-				new ClumpPlacer(diskArea(0.3 * width), 1, 1, 1, position),
-				painters);
-		}
-		pathPoints.push({ "x": position.x, "y": position.y, "dist": distance });
-		// Check for distance to target and setup for next loop if needed
-		if (Math.euclidDistance2D(position.x, position.y, target.x, target.y) < distance / 2)
-			break;
-		let angleToTarget = getAngle(position.x, position.y, target.x, target.y);
-		let angleOff = randFloat(-1, 1) * Math.PI / 2;
-		position.x += distance * Math.cos(angleToTarget + angleOff);
-		position.y += distance * Math.sin(angleToTarget + angleOff);
+		position.add(new Vector2D(distance, 0).rotate(
+			-getAngle(position.x, position.y, target.x, target.y) - randFloat(-1, 1) * Math.PI / 2));
 	}
-	return pathPoints;
 }
 
 /**
@@ -53,15 +47,15 @@ let decorations = [
 
 function placeMine(point, centerEntity)
 {
-	placeObject(point, centerEntity, 0, randomAngle());
+	g_Map.placeEntityPassable(centerEntity, 0, point, randomAngle());
 	let quantity = randIntInclusive(11, 23);
 	let dAngle = 2 * Math.PI / quantity;
 
 	for (let i = 0; i < quantity; ++i)
-		placeObject(
-			Vector2D.add(point, new Vector2D(randFloat(2, 5), 0).rotate(-dAngle * randFloat(i, i + 1))),
+		g_Map.placeEntityPassable(
 			pickRandom(decorations),
 			0,
+			Vector2D.add(point, new Vector2D(randFloat(2, 5), 0).rotate(-dAngle * randFloat(i, i + 1))),
 			randomAngle());
 }
 
@@ -123,7 +117,7 @@ let clGrove = g_Map.createTileClass();
 
 function placeGrove(point)
 {
-	placeObject(point, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randomAngle());
+	g_Map.placeEntityPassable(pickRandom(oGroveEntities), 0, point, randomAngle());
 	let quantity = randIntInclusive(20, 30);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
@@ -134,11 +128,11 @@ function placeGrove(point)
 		if (i % 3 == 0)
 			objectList = groveActors;
 		let position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
-		placeObject(position, pickRandom(objectList), 0, randomAngle());
+		g_Map.placeEntityPassable(pickRandom(objectList), 0, position, randomAngle());
 		createArea(
 			new ClumpPlacer(5, 1, 1, 1, position),
 			[
-				new TerrainPainter("temp_grass_plants"),
+				new TerrainPainter(tGrove),
 				new TileClassPainter(clGrove)
 			]);
 	}
@@ -153,14 +147,14 @@ function placeCamp(point,
 	]
 )
 {
-	placeObject(point, centerEntity, 0, randomAngle());
+	g_Map.placeEntityPassable(centerEntity, 0, point, randomAngle());
 	let quantity = randIntInclusive(5, 11);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
 		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(1, 3);
-		placeObject(Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle)), pickRandom(otherEntities), 0, randomAngle());
+		g_Map.placeEntityPassable(pickRandom(otherEntities), 0, Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle)), randomAngle());
 	}
 }
 
@@ -185,7 +179,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 		if (i % 2 == 0)
 			objectList = groveActors;
 		let woodPosition = Vector2D.add(point, new Vector2D(randFloat(10, 15), 0).rotate(-angle));
-		placeObject(woodPosition, pickRandom(objectList), 0, randomAngle());
+		g_Map.placeEntityPassable(pickRandom(objectList), 0, woodPosition, randomAngle());
 		createArea(
 			new ClumpPlacer(5, 1, 1, 1, woodPosition),
 			[
@@ -209,7 +203,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 	{
 		angle = currentAngle + randFloat(0, dAngle);
 		let berriesPosition = Vector2D.add(point, new Vector2D(randFloat(10, 15), 0).rotate(-angle));
-		placeObject(berriesPosition, pickRandom(foodEntities), 0, randomAngle());
+		g_Map.placeEntityPassable(pickRandom(foodEntities), 0, berriesPosition, randomAngle());
 		currentAngle += dAngle;
 	}
 }
@@ -321,27 +315,22 @@ myBiome.push({ // 10 Hilltop
 	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|geology/highland1.xml"], 0.0]
 });
 
-let [playerIDs, startLocations] = sortPlayersByLocation(getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
+let [playerIDs, playerPosition] = sortPlayersByLocation(getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
 Engine.SetProgress(30);
 
 log("Smooth player locations...");
 for (let p = 0; p < playerIDs.length; ++p)
-	rectangularSmoothToHeight(startLocations[p], 35, 35, playerHeight, 0.7);
+	rectangularSmoothToHeight(playerPosition[p], 35, 35, playerHeight, 0.7);
 
 log("Creating paths...");
-let tchm = getTileCenteredHeightmap(); // Calculate tileCenteredHeightMap (This has nothing to to with TILE_CENTERED_HEIGHT_MAP which should be false)
-let pathPoints = [];
+let tchm = getTileCenteredHeightmap();
 let clPath = g_Map.createTileClass();
-for (let i = 0; i < startLocations.length; ++i)
-{
-	let start = startLocations[i];
-	let target = startLocations[(i + 1) % startLocations.length];
-	pathPoints = pathPoints.concat(placeRandomPathToHeight(start, target, playerHeight, clPath));
-}
+for (let i = 0; i < playerPosition.length; ++i)
+	placeRandomPathToHeight(playerPosition[i], playerPosition[(i + 1) % playerPosition.length], playerHeight, clPath, tPath, 4, 4, 0.08, g_Map.height);
 Engine.SetProgress(45);
 
 log("Determining resource locations...");
-let avoidPoints = clone(startLocations);
+let avoidPoints = playerPosition.map(pos => pos.clone());
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
 let resourceSpots = getPointsByHeight({ "min": (heighLimits[3] + heighLimits[4]) / 2, "max": (heighLimits[5] + heighLimits[6]) / 2 }, avoidPoints, clPath);
@@ -366,8 +355,8 @@ for (let x = 0; x < tchm.length; ++x)
 				areas[h].push(position);
 				break;
 			}
-			else
-				minHeight = heighLimits[h];
+
+			minHeight = heighLimits[h];
 		}
 	}
 
@@ -415,7 +404,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 		g_Map.setTexture(point, texture);
 
 		if (actor)
-			placeObject(Vector2D.add(point, new Vector2D(randFloat(0, 1), randFloat(0, 1))), actor, 0, randomAngle());
+			g_Map.placeEntityAnywhere(actor, 0, randomPositionOnTile(point), randomAngle());
 	}
 Engine.SetProgress(80);
 
@@ -425,9 +414,8 @@ if (isNomad())
 else
 	for (let p = 0; p < playerIDs.length; ++p)
 	{
-		let pos = new Vector2D(startLocations[p].x, startLocations[p].y);
-		placeCivDefaultStartingEntities(pos, playerIDs[p], true);
-		placeStartLocationResources(pos);
+		placeCivDefaultStartingEntities(playerPosition[p], playerIDs[p], true);
+		placeStartLocationResources(playerPosition[p]);
 	}
 
 log("Placing resources, farmsteads, groves and camps...");

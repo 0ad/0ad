@@ -368,7 +368,7 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 				}
 
 				if (template)
-					placeObject(position, template, 0, randomAngle());
+					g_Map.placeEntityAnywhere(template, 0, position, randomAngle());
 
 				break;
 			}
@@ -407,7 +407,7 @@ else
 					new Vector2D(-0.75 * resourceSpacing * Math.floor(resourceCount / 2), 0).rotate(-uAngle - Math.PI/2)
 				]);
 
-				placeObject(pos, j % 2 ? "gaia/flora_tree_cypress" : "gaia/flora_bush_berry", 0, randomAngle());
+				g_Map.placeEntityPassable(j % 2 ? "gaia/flora_tree_cypress" : "gaia/flora_bush_berry", 0, pos, randomAngle());
 			}
 		}
 	}

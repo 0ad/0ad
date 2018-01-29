@@ -77,7 +77,7 @@ function sortPointsShortestCycle(points)
 	}
 
 	// Just add the first 3 points
-	let pointsToAdd = clone(points);
+	let pointsToAdd = points.map(p => p.clone());
 	for (let i = 0; i < 3; ++i)
 	{
 		order.push(i);
@@ -86,11 +86,7 @@ function sortPointsShortestCycle(points)
 			distances.push(Math.euclidDistance2D(points[order[i]].x, points[order[i]].y, points[order[i - 1]].x, points[order[i - 1]].y));
 	}
 
-	distances.push(Math.euclidDistance2D(
-		points[order[0]].x,
-		points[order[0]].y,
-		points[order[order.length - 1]].x,
-		points[order[order.length - 1]].y));
+	distances.push(points[order[0]].distanceTo(points[order[order.length - 1]]));
 
 	// Add remaining points so the path lengthens the least
 	let numPointsToAdd = pointsToAdd.length;
@@ -102,8 +98,9 @@ function sortPointsShortestCycle(points)
 		let minDist2 = 0;
 		for (let k = 0; k < order.length; ++k)
 		{
-			let dist1 = Math.euclidDistance2D(pointsToAdd[0].x, pointsToAdd[0].y, points[order[k]].x, points[order[k]].y);
-			let dist2 = Math.euclidDistance2D(pointsToAdd[0].x, pointsToAdd[0].y, points[order[(k + 1) % order.length]].x, points[order[(k + 1) % order.length]].y);
+			let dist1 = pointsToAdd[0].distanceTo(points[order[k]]);
+			let dist2 = pointsToAdd[0].distanceTo(points[order[(k + 1) % order.length]]);
+
 			let enlengthen = dist1 + dist2 - distances[k];
 			if (enlengthen < minEnlengthen)
 			{

@@ -111,7 +111,7 @@ for (let i = 0; i < teams.length; ++i)
 		{
 			let position = Vector2D.add(playerPosition[p], new Vector2D(g_InitialMineDistance, 0).rotate(-playerAngle[p] - mine.angle));
 			createObjectGroup(
-				new SimpleGroup([new SimpleObject(mine.template, 1, 1, 0, 4)], true, clBaseResource, position.x, position.y),
+				new SimpleGroup([new SimpleObject(mine.template, 1, 1, 0, 4)], true, clBaseResource, position),
 				0,
 				[avoidClasses(clBaseResource, 4, clPlayer, 4), stayClasses(clLand, 5)]);
 		}
@@ -124,11 +124,10 @@ for (let i = 0; i < teams.length; ++i)
 		{
 			let tAngle = playerAngle[p] + randFloat(-1, 1) * 2 * Math.PI / teams[i].length;
 			let treePosition = Vector2D.add(playerPosition[p], new Vector2D(16, 0).rotate(-tAngle)).round();
-			let group = new SimpleGroup(
-				[new SimpleObject(oTree2, g_InitialTrees, g_InitialTrees, 0, 7)],
-				true, clBaseResource, treePosition.x, treePosition.y
-			);
-			if (createObjectGroup(group, 0, [avoidClasses(clBaseResource, 4, clPlayer, 4), stayClasses(clLand, 4)]))
+			if (createObjectGroup(
+				new SimpleGroup([new SimpleObject(oTree2, g_InitialTrees, g_InitialTrees, 0, 7)], true, clBaseResource, treePosition),
+				0,
+				[avoidClasses(clBaseResource, 4, clPlayer, 4), stayClasses(clLand, 4)]))
 				break;
 		}
 	}
@@ -153,17 +152,17 @@ for (let i = 0; i < teams.length; ++i)
 	log("Creating huntable animals for team " + i + "...");
 	for (let p = 0; p < teams[i].length; ++p)
 	{
-		let group = new SimpleGroup(
-			[new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, Math.floor(fractionToTiles(0.2)))],
-			true, clBaseResource, teamPosition[i].x, teamPosition[i].y
-		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
+		createObjectGroup(
+			new SimpleGroup([new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, Math.floor(fractionToTiles(0.2)))], true, clBaseResource, teamPosition[i]),
+			0,
+			[avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 
-		group = new SimpleGroup(
-			[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, Math.floor(fractionToTiles(0.2)))],
-			true, clBaseResource, teamPosition[i].x, teamPosition[i].y
-		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
+		createObjectGroup(
+			new SimpleGroup(
+				[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, Math.floor(fractionToTiles(0.2)))],
+				true, clBaseResource, teamPosition[i]),
+			0,
+			[avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 	}
 }
 

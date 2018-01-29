@@ -134,7 +134,6 @@ var heighLimits = [
 	heightSeaGroundAdjusted + 7/8 * (heightRange.max - heightSeaGroundAdjusted), // 9 Upper forest border
 	heightSeaGroundAdjusted + (heightRange.max - heightSeaGroundAdjusted)]; // 10 Hilltop
 
-var startLocations = getStartLocationsByHeightmap({'min': heighLimits[4], 'max': heighLimits[5]});
 var playerHeight = (heighLimits[4] + heighLimits[5]) / 2;
 
 for (let i = 0; i < numPlayers; ++i)

@@ -166,8 +166,7 @@ for (var i = 0; i < num; ++i)
 			],
 			true,
 			clFood,
-			animalPosition.x,
-			animalPosition.y),
+			animalPosition),
 		0);
 }
 
@@ -185,7 +184,7 @@ for (var i = 0; i < num; ++i)
 		++r;
 	} while (!constraint.allows(fishPosition) && r < mapSize / 2);
 
-	createObjectGroup(new SimpleGroup([new SimpleObject(oFish, 1, 1, 0, 1)], true, clFood, fishPosition.x, fishPosition.y), 0);
+	createObjectGroup(new SimpleGroup([new SimpleObject(oFish, 1, 1, 0, 1)], true, clFood, fishPosition), 0);
 }
 Engine.SetProgress(35);
 

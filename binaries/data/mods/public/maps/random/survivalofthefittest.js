@@ -94,16 +94,16 @@ for (let  i = 0; i < numPlayers; ++i)
 	log("Placing treasure seeker woman...");
 	let femaleLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 3.5, 3).round();
 	clWomen.add(femaleLocation);
-	placeObject(femaleLocation, oTreasureSeeker, playerIDs[i], playerAngle[i] + Math.PI);
+	g_Map.placeEntityPassable(oTreasureSeeker, playerIDs[i], femaleLocation, playerAngle[i] + Math.PI);
 
 	log("Placing attacker spawn point....");
-	placeObject(attacker[i], aWaypointFlag, 0, Math.PI / 2);
-	placeObject(attacker[i], triggerPointAttacker, playerIDs[i], Math.PI / 2);
+	g_Map.placeEntityAnywhere(aWaypointFlag, 0, attacker[i], Math.PI / 2);
+	g_Map.placeEntityPassable(triggerPointAttacker, playerIDs[i], attacker[i], Math.PI / 2);
 
 	log("Preventing mountains in the area between player and attackers...");
 	addCivicCenterAreaToClass(playerPosition[i], clPlayer);
-	clPlayer.add(attacker);
-	clPlayer.add(halfway);
+	clPlayer.add(attacker[i]);
+	clPlayer.add(halfway[i]);
 }
 Engine.SetProgress(20);
 

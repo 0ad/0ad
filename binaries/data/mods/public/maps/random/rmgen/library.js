@@ -46,6 +46,11 @@ function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
 	return min + (max - min) * (g_MapSettings.Size - minMapSize) / (maxMapSize - minMapSize);
 }
 
+function randomPositionOnTile(tilePosition)
+{
+	return Vector2D.add(tilePosition, new Vector2D(randFloat(0, 1), randFloat(0, 1)));
+}
+
 /**
  * Retries the given function with those arguments as often as specified.
  */
@@ -73,41 +78,6 @@ function retryPlacing(placeFunc, retryFactor, amount, getResult, behaveDeprecate
 	return getResult ? results : good;
 }
 
-/**
- * Sets the x and z property of the given object (typically a Placer or Group) to a random point on the map.
- * @param passableOnly - Should be true for entity placement and false for terrain or elevation operations.
- */
-function randomizeCoordinates(obj, passableOnly)
-{
-	let border = passableOnly ? MAP_BORDER_WIDTH : 0;
-	if (g_Map.isCircularMap())
-	{
-		// Polar coordinates
-		// Uniformly distributed on the disk
-		let halfMapSize = g_Map.size / 2 - border;
-		let r = halfMapSize * Math.sqrt(randFloat(0, 1));
-		let theta = randomAngle();
-		obj.x = Math.floor(r * Math.cos(theta)) + halfMapSize;
-		obj.z = Math.floor(r * Math.sin(theta)) + halfMapSize;
-	}
-	else
-	{
-		// Rectangular coordinates
-		obj.x = randIntExclusive(border, g_Map.size - border);
-		obj.z = randIntExclusive(border, g_Map.size - border);
-	}
-}
-
-/**
- * Sets the x and z property of the given JS object (typically a Placer or Group) to a random point of the area.
- */
-function randomizeCoordinatesFromAreas(obj, areas)
-{
-	let pt = pickRandom(pickRandom(areas).points);
-	obj.x = pt.x;
-	obj.z = pt.y;
-}
-
 // TODO this is a hack to simulate the old behaviour of those functions
 // until all old maps are changed to use the correct version of these functions
 function createObjectGroupsDeprecated(group, player, constraint, amount, retryFactor = 10)
@@ -127,7 +97,7 @@ function createObjectGroupsByAreasDeprecated(group, player, constraint, amount, 
 function createAreas(centeredPlacer, painter, constraint, amount, retryFactor = 10)
 {
 	let placeFunc = function() {
-		randomizeCoordinates(centeredPlacer, false);
+		centeredPlacer.setCenterPosition(g_Map.randomCoordinate(false));
 		return createArea(centeredPlacer, painter, constraint);
 	};
 
@@ -141,7 +111,7 @@ function createAreas(centeredPlacer, painter, constraint, amount, retryFactor = 
 function createAreasInAreas(centeredPlacer, painter, constraint, amount, retryFactor, areas)
 {
 	let placeFunc = function() {
-		randomizeCoordinatesFromAreas(centeredPlacer, areas);
+		centeredPlacer.setCenterPosition(pickRandom(pickRandom(areas).points));
 		return createArea(centeredPlacer, painter, constraint);
 	};
 
@@ -155,7 +125,7 @@ function createAreasInAreas(centeredPlacer, painter, constraint, amount, retryFa
 function createObjectGroups(group, player, constraint, amount, retryFactor = 10, behaveDeprecated = false)
 {
 	let placeFunc = function() {
-		randomizeCoordinates(group, true);
+		group.setCenterPosition(g_Map.randomCoordinate(true));
 		return createObjectGroup(group, player, constraint);
 	};
 
@@ -169,7 +139,7 @@ function createObjectGroups(group, player, constraint, amount, retryFactor = 10,
 function createObjectGroupsByAreas(group, player, constraint, amount, retryFactor, areas, behaveDeprecated = false)
 {
 	let placeFunc = function() {
-		randomizeCoordinatesFromAreas(group, areas);
+		group.setCenterPosition(pickRandom(pickRandom(areas).points));
 		return createObjectGroup(group, player, constraint);
 	};
 
@@ -181,12 +151,6 @@ function createTerrain(terrain)
 	return typeof terrain == "string" ?
 		new SimpleTerrain(...terrain.split(TERRAIN_SEPARATOR)) :
 		new RandomTerrain(terrain.map(t => createTerrain(t)));
-}
-
-function placeObject(position, type, player, angle)
-{
-	if (g_Map.validTile(position))
-		g_Map.addObject(new Entity(type, player, position.x, position.y, angle));
 }
 
 /**

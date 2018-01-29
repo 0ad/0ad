@@ -144,15 +144,9 @@ for (let i = 0; i < numPlayers; ++i)
 		new SimpleObject(oWildebeest, 5, 6, 0, 4),
 		new SimpleObject(oElephant, 2, 3, 0, 4)
 	];
+
 	for (let object of objects)
-		createObjectGroup(
-			new SimpleGroup(
-				[object],
-				true,
-				clFood,
-				shallowPosition.x,
-				shallowPosition.y),
-			0);
+		createObjectGroup(new SimpleGroup([object], true, clFood, shallowPosition), 0);
 }
 
 paintTerrainBasedOnHeight(-6, 2, 1, tWater);

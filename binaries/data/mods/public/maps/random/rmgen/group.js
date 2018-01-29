@@ -16,55 +16,66 @@
  * @param objects - An array of Objects, for instance SimpleObjects.
  * @param avoidSelf - Objects will not overlap.
  * @param tileClass - Optional TileClass that tiles with placed entities are marked with.
- * @param x, z - The location the group is placed around. Can be omitted if the x and z properties are set externally.
+ * @param centerPosition - The location the group is placed around. Can be omitted if the property is set externally.
  */
-function SimpleGroup(objects, avoidSelf = false, tileClass = undefined, x = -1, z = -1)
+function SimpleGroup(objects, avoidSelf = false, tileClass = undefined, centerPosition = undefined)
 {
 	this.objects = objects;
 	this.tileClass = tileClass;
 	this.avoidSelf = avoidSelf;
-	this.x = x;
-	this.z = z;
+	this.centerPosition = undefined;
+
+	if (centerPosition)
+		this.setCenterPosition(centerPosition);
 }
+
+SimpleGroup.prototype.setCenterPosition = function(position)
+{
+	this.centerPosition = deepfreeze(position.clone().round());
+};
 
 SimpleGroup.prototype.place = function(player, constraint)
 {
-	let resultObjs = [];
+	let entitySpecsResult = [];
 
 	// Test if the Objects can be placed at the given location
 	// Place none of them if one can't be placed.
 	for (let object of this.objects)
 	{
-		let objs = object.place(this.x, this.z, player, this.avoidSelf, constraint);
+		let entitySpecs = object.place(this.centerPosition, player, this.avoidSelf, constraint);
 
-		if (objs === undefined)
+		if (!entitySpecs)
 			return undefined;
 
-		resultObjs = resultObjs.concat(objs);
+		entitySpecsResult = entitySpecsResult.concat(entitySpecs);
 	}
 
-	// Add all objects to the map
-	for (let obj of resultObjs)
+	// Create and place entities as specified
+	let entities = [];
+	for (let entitySpecs of entitySpecsResult)
 	{
-		let position = new Vector2D(obj.position.x, obj.position.z);
-
-		if (g_Map.validTile(position))
-			g_Map.addObject(obj);
+		entities.push(
+			g_Map.placeEntityPassable(entitySpecs.templateName, entitySpecs.playerID, entitySpecs.position, entitySpecs.angle));
 
 		if (this.tileClass)
-			this.tileClass.add(position.clone().floor());
+			this.tileClass.add(entitySpecs.position.clone().floor());
 	}
 
-	return resultObjs;
+	return entities;
 };
 
 /**
  * Randomly choses one of the given Objects and places it just like the SimpleGroup.
  */
-function RandomGroup(objects, avoidSelf = false, tileClass = undefined, x = -1, z = -1)
+function RandomGroup(objects, avoidSelf = false, tileClass = undefined, centerPosition = undefined)
 {
-	this.simpleGroup = new SimpleGroup([pickRandom(objects)], avoidSelf, tileClass, x, z);
+	this.simpleGroup = new SimpleGroup([pickRandom(objects)], avoidSelf, tileClass, centerPosition);
 }
+
+RandomGroup.prototype.setCenterPosition = function(position)
+{
+	this.simpleGroup.setCenterPosition(position);
+};
 
 RandomGroup.prototype.place = function(player, constraint)
 {

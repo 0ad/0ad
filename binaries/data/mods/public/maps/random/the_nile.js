@@ -155,7 +155,7 @@ paintRiver({
 		if (plantID % plantFrequency == 0)
 		{
 			plantID = 0;
-			placeObject(position, aPlants, 0, randomAngle());
+			g_Map.placeEntityAnywhere(aPlants, 0, position, randomAngle());
 		}
 		++plantID;
 	},

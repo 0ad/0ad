@@ -27,18 +27,16 @@ function RandomMap(baseHeight, baseTerrain)
 	}
 
 	// Create 2D arrays for terrain objects and areas
-	this.terrainObjects = [];
+	this.terrainEntities = [];
 	this.area = [];
 
 	for (let i = 0; i < this.size; ++i)
 	{
-		// Area IDs
 		this.area[i] = new Uint16Array(this.size);
 
-		// Entities
-		this.terrainObjects[i] = [];
+		this.terrainEntities[i] = [];
 		for (let j = 0; j < this.size; ++j)
-			this.terrainObjects[i][j] = undefined;
+			this.terrainEntities[i][j] = undefined;
 	}
 
 	// Create 2D array for heightmap
@@ -55,8 +53,7 @@ function RandomMap(baseHeight, baseTerrain)
 			this.height[i][j] = baseHeight;
 	}
 
-	// Array of Entities
-	this.objects = [];
+	this.entities = [];
 
 	this.areaID = 0;
 
@@ -120,17 +117,25 @@ RandomMap.prototype.getBounds = function()
 };
 
 /**
- * Determines whether the given coordinates are within the given distance of the passable map area.
- * Should be used to restrict entity placement and path creation.
+ * Determines whether the given coordinates are within the given distance of the map area.
+ * Should be used to restrict terrain texture changes and actor placement.
+ * Entity placement should be checked against validTilePassable to exclude the map border.
  */
 RandomMap.prototype.validTile = function(position, distance = 0)
 {
-	distance += MAP_BORDER_WIDTH;
-
 	if (this.isCircularMap())
 		return Math.round(position.distanceTo(this.getCenter())) < this.size / 2 - distance - 1;
 
 	return position.x >= distance && position.y >= distance && position.x < this.size - distance && position.y < this.size - distance;
+};
+
+/**
+ * Determines whether the given coordinates are within the given distance of the passable map area.
+ * Should be used to restrict entity placement and path creation.
+ */
+RandomMap.prototype.validTilePassable = function(position, distance = 0)
+{
+	return this.validTile(position, distance + MAP_BORDER_WIDTH);
 };
 
 /**
@@ -155,6 +160,27 @@ RandomMap.prototype.validHeight = function(position)
 		return position.x < this.size && position.y < this.size;
 
 	return position.x <= this.size && position.y <= this.size;
+};
+
+/**
+ * Returns a random point on the map.
+ * @param passableOnly - Should be true for entity placement and false for terrain or elevation operations.
+ */
+RandomMap.prototype.randomCoordinate = function(passableOnly)
+{
+	let border = passableOnly ? MAP_BORDER_WIDTH : 0;
+
+	if (this.isCircularMap())
+		// Polar coordinates
+		// Uniformly distributed on the disk
+		return Vector2D.add(
+			this.getCenter(),
+			new Vector2D((this.size / 2 - border) * Math.sqrt(randFloat(0, 1)), 0).rotate(randomAngle()).floor());
+
+	// Rectangular coordinates
+	return new Vector2D(
+		randIntExclusive(border, this.size - border),
+		randIntExclusive(border, this.size - border));
 };
 
 /**
@@ -199,33 +225,45 @@ RandomMap.prototype.setHeight = function(position, height)
 };
 
 /**
+ * Adds the given Entity to the map at the location it defines, even if at the impassable map border.
+ */
+RandomMap.prototype.placeEntityAnywhere = function(templateName, playerID, position, orientation)
+{
+	let entity = new Entity(this.getEntityID(), templateName, playerID, position, orientation);
+	this.entities.push(entity);
+};
+
+/**
+ * Adds the given Entity to the map at the location it defines, if that area is not at the impassable map border.
+ */
+RandomMap.prototype.placeEntityPassable = function(templateName, playerID, position, orientation)
+{
+	if (g_Map.validTilePassable(position))
+		this.placeEntityAnywhere(templateName, playerID, position, orientation);
+};
+
+/**
  * Returns the Entity that was painted by a Terrain class on the given tile or undefined otherwise.
  */
-RandomMap.prototype.getTerrainObject = function(position)
+RandomMap.prototype.getTerrainEntity = function(position)
 {
-	if (!this.validTile(position))
-		throw new Error("getTerrainObject: invalid tile position " + uneval(position));
+	if (!this.validTilePassable(position))
+		throw new Error("getTerrainEntity: invalid tile position " + uneval(position));
 
-	return this.terrainObjects[position.x][position.y];
+	return this.terrainEntities[position.x][position.y];
 };
 
 /**
  * Places the Entity on the given tile and allows to later replace it if the terrain was painted over.
  */
-RandomMap.prototype.setTerrainObject = function(position, object)
+RandomMap.prototype.setTerrainEntity = function(templateName, playerID, position, orientation)
 {
-	if (!this.validTile(position))
-		throw new Error("setTerrainObject: invalid tile position " + uneval(position));
+	let tilePosition = position.clone().floor();
+	if (!this.validTilePassable(tilePosition))
+		throw new Error("setTerrainEntity: invalid tile position " + uneval(position));
 
-	this.terrainObjects[position.x][position.y] = object;
-};
-
-/**
- * Adds the given Entity to the map at the location it defines.
- */
-RandomMap.prototype.addObject = function(obj)
-{
-	this.objects.push(obj);
+	this.terrainEntities[tilePosition.x][tilePosition.y] =
+		new Entity(this.getEntityID(), templateName, playerID, position, orientation);
 };
 
 /**
@@ -331,17 +369,17 @@ RandomMap.prototype.getSlope = function(position)
 RandomMap.prototype.exportEntityList = function()
 {
 	// Change rotation from simple 2d to 3d befor giving to engine
-	for (let obj of this.objects)
-		obj.rotation.y = Math.PI / 2 - obj.rotation.y;
+	for (let entity of this.entities)
+		entity.rotation.y = Math.PI / 2 - entity.rotation.y;
 
 	// Terrain objects e.g. trees
 	for (let x = 0; x < this.size; ++x)
 		for (let z = 0; z < this.size; ++z)
-			if (this.terrainObjects[x][z])
-				this.objects.push(this.terrainObjects[x][z]);
+			if (this.terrainEntities[x][z])
+				this.entities.push(this.terrainEntities[x][z]);
 
-	log("Number of entities: " + this.objects.length);
-	return this.objects;
+	log("Number of entities: " + this.entities.length);
+	return this.entities;
 };
 
 /**

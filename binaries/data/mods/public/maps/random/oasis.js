@@ -91,24 +91,10 @@ for (let i = 0; i < numPlayers; ++i)
 		waterPosition = Vector2D.add(forestPosition, new Vector2D(6, 0).rotate(-waterAngle)).round();
 
 		let flowerPosition = Vector2D.add(forestPosition, new Vector2D(3, 0).rotate(-waterAngle)).round();
-		createObjectGroup(
-			new SimpleGroup(
-				[new SimpleObject(aFlower1, 1, 5, 0, 3)],
-				true,
-				undefined,
-				flowerPosition.x,
-				flowerPosition.y),
-			0);
+		createObjectGroup(new SimpleGroup([new SimpleObject(aFlower1, 1, 5, 0, 3)], true, undefined, flowerPosition), 0);
 
 		let reedsPosition = Vector2D.add(forestPosition, new Vector2D(5, 0).rotate(-waterAngle)).round();
-		createObjectGroup(
-			new SimpleGroup(
-				[new SimpleObject(aReedsA, 1, 3, 0, 0)],
-				true,
-				undefined,
-				reedsPosition.x,
-				reedsPosition.y),
-			0);
+		createObjectGroup(new SimpleGroup([new SimpleObject(aReedsA, 1, 3, 0, 0)], true, undefined, reedsPosition), 0);
 
 	} while (
 		!createArea(
@@ -265,8 +251,7 @@ for (let i = 0; i < scaleByMapSize(5, 30); ++i)
 			],
 			true,
 			clFood,
-			animalPos.x,
-			animalPos.y),
+			animalPos),
 		0);
 }
 Engine.SetProgress(90);
@@ -280,6 +265,11 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(10, 40), 20
 );
 
+var objectsWaterFlora = [
+	new SimpleObject(aReedsA, 5, 12, 0, 2),
+	new SimpleObject(aReedsB, 5, 12, 0, 2)
+];
+
 log("Creating sand blows and beautifications");
 for (var sandx = 0; sandx < mapSize; sandx += 4)
 	for (var sandz = 0; sandz < mapSize; sandz += 4)
@@ -290,36 +280,21 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 		if (height > heightSand)
 		{
 			if (randBool((height - heightSand) / 1.4))
-			{
-				group = new SimpleGroup( [new SimpleObject(aSand, 0,1, 0,2)], true, undefined, sandx,sandz );
-				createObjectGroup(group, 0);
-			}
+				createObjectGroup(new SimpleGroup([new SimpleObject(aSand, 0, 1, 0, 2)], true, undefined, position), 0);
 		}
 		else if (height > heightFloraMin && height < heightFloraMax)
 		{
 			if (randBool(0.4))
-			{
-				group = new SimpleGroup( [new SimpleObject(aWaterFlower, 1,4, 1,2)], true, undefined, sandx,sandz );
-				createObjectGroup(group, 0);
-			}
+				createObjectGroup(new SimpleGroup([new SimpleObject(aWaterFlower, 1, 4, 1, 2)], true, undefined, position), 0);
 			else if (randBool(0.7) && height < heightFloraReedsMax)
-			{
-				group = new SimpleGroup( [new SimpleObject(aReedsA, 5,12, 0,2),new SimpleObject(aReedsB, 5,12, 0,2)], true, undefined, sandx,sandz );
-				createObjectGroup(group, 0);
-			}
+				createObjectGroup(new SimpleGroup(objectsWaterFlora, true, undefined, position), 0);
 
 			if (clPassage.countMembersInRadius(position, 2))
 			{
 				if (randBool(0.4))
-				{
-					group = new SimpleGroup( [new SimpleObject(aWaterFlower, 1,4, 1,2)], true, undefined, sandx,sandz );
-					createObjectGroup(group, 0);
-				}
+					createObjectGroup(new SimpleGroup([new SimpleObject(aWaterFlower, 1, 4, 1, 2)], true, undefined, position), 0);
 				else if (randBool(0.7) && height < heightFloraReedsMax)
-				{
-					group = new SimpleGroup( [new SimpleObject(aReedsA, 5,12, 0,2),new SimpleObject(aReedsB, 5,12, 0,2)], true, undefined, sandx,sandz );
-					createObjectGroup(group, 0);
-				}
+					createObjectGroup(new SimpleGroup(objectsWaterFlora, true, undefined, position), 0);
 			}
 		}
 	}

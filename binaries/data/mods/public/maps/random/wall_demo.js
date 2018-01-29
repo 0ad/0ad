@@ -16,7 +16,7 @@ var g_Map = new RandomMap(0, "grass1");
  *
  * Some general notes concerning the arguments:
  *
- * - The first two arguments for most placement functions are x/y co-ordinates needed to position the wall. These are received via separate arguments, like in placeObject(), and their exact meaning differs between methods, but should be mostly self explanatory. The exception to this is placeLinearWall(), where the first four arguments are co-ordinates. However, whether two argument or four, the initial x/y co-ordinates are required parameters.
+ * - The first two arguments for most placement functions are x/y co-ordinates needed to position the wall. These are received via separate arguments, like in placeEntityPassable and their exact meaning differs between methods, but should be mostly self explanatory. The exception to this is placeLinearWall(), where the first four arguments are co-ordinates. However, whether two argument or four, the initial x/y co-ordinates are required parameters.
  *
  * - For some functions, the next argument is radius, indicating how far from a central point the wall should be drawn. The functions that use this are marked as doing so below.
  *
@@ -106,7 +106,7 @@ for (let styleIndex in wallStyleList)
 		new Vector2D(styleIndex * buildableMapSize / wallStyleList.length, 0)
 	]);
 
-	placeObject(pos, "other/obelisk", playerID, orientation);
+	g_Map.placeEntityPassable("other/obelisk", playerID, pos, orientation);
 	placeFortress(pos, type, style, playerID, orientation);
 }
 
@@ -134,7 +134,7 @@ for (let styleIndex in wallStyleList)
 		new Vector2D(styleIndex * buildableMapSize / wallStyleList.length, 0)
 	]);
 
-	placeObject(pos, "other/obelisk", playerID, 0);
+	g_Map.placeEntityPassable("other/obelisk", playerID, pos, 0);
 	placeGenericFortress(pos, radius, playerID, style);
 }
 
@@ -175,7 +175,7 @@ for (let styleIndex in wallStyleList)
 	// If less than Pi * 2, then the wall will be an arc.
 	let maxAngle = Math.PI / 2 * (styleIndex % 3 + 2);
 
-	placeObject(center, "other/obelisk", playerID, orientation);
+	g_Map.placeEntityPassable("other/obelisk", playerID, center, orientation);
 	placeCircularWall(center, radius, wallPart, style, playerID, orientation, maxAngle);
 }
 
@@ -224,7 +224,7 @@ for (let styleIndex in wallStyleList)
 	// If true, the first side will not be drawn, leaving the wall open.
 	let skipFirstWall = true;
 
-	placeObject(centerPosition, "other/obelisk", playerID, orientation);
+	g_Map.placeEntityPassable("other/obelisk", playerID, centerPosition, orientation);
 	placePolygonalWall(centerPosition, radius, wallParts, cornerWallElement, style, playerID, orientation, numCorners, skipFirstWall);
 }
 
@@ -282,7 +282,7 @@ for (let styleIndex in wallStyleList)
 	// If true, the first side will not be drawn, leaving the wall open.
 	let skipFirstWall = true;
 
-	placeObject(centerPosition, "other/obelisk", playerID, orientation);
+	g_Map.placeEntityPassable("other/obelisk", playerID, centerPosition, orientation);
 	placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement, style, playerID, orientation, numCorners, irregularity, skipFirstWall);
 }
 

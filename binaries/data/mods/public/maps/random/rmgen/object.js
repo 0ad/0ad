@@ -25,12 +25,10 @@ function SimpleObject(templateName, minCount, maxCount, minDistance, maxDistance
 		throw new Error("SimpleObject: minAngle should be less than or equal to maxAngle");
 }
 
-SimpleObject.prototype.place = function(centerX, centerZ, player, avoidSelf, constraint, maxFailCount = 20)
+SimpleObject.prototype.place = function(centerPosition, playerID, avoidSelf, constraint, maxFailCount = 20)
 {
-	let entities = [];
+	let entitySpecs = [];
 	let failCount = 0;
-
-	let centerPosition = new Vector2D(centerX, centerZ);
 
 	for (let i = 0; i < randIntInclusive(this.minCount, this.maxCount); ++i)
 		while (true)
@@ -41,17 +39,22 @@ SimpleObject.prototype.place = function(centerX, centerZ, player, avoidSelf, con
 			let position = Vector2D.sum([centerPosition, new Vector2D(0.5, 0.5), new Vector2D(distance, 0).rotate(-angle)]);
 
 			if (g_Map.validTile(position) &&
-			    (!avoidSelf || entities.every(ent => new Vector2D(ent.position.x, ent.position.z).distanceTo(position) >= 1)) &&
-			    constraint.allows(position.clone().round()))
+			    (!avoidSelf || entitySpecs.every(entSpec => entSpec.position.distanceTo(position) >= 1)) &&
+			    constraint.allows(position.clone().floor()))
 			{
-				entities.push(new Entity(this.templateName, player, position.x, position.y, randFloat(this.minAngle, this.maxAngle)));
+				entitySpecs.push({
+					"templateName": this.templateName,
+					"playerID": playerID,
+					"position": position,
+					"angle": randFloat(this.minAngle, this.maxAngle)
+				});
 				break;
 			}
 			else if (failCount++ > maxFailCount)
 				return undefined;
 		}
 
-	return entities;
+	return entitySpecs;
 };
 
 /**
@@ -62,7 +65,7 @@ function RandomObject(templateNames, minCount, maxCount, minDistance, maxDistanc
 	this.simpleObject = new SimpleObject(pickRandom(templateNames), minCount, maxCount, minDistance, maxDistance, minAngle, maxAngle);
 }
 
-RandomObject.prototype.place = function(centerX, centerZ, player, avoidSelf, constraint, maxFailCount = 20)
+RandomObject.prototype.place = function(centerPosition, player, avoidSelf, constraint, maxFailCount = 20)
 {
-	return this.simpleObject.place(centerX, centerZ, player, avoidSelf, constraint, maxFailCount);
+	return this.simpleObject.place(centerPosition, player, avoidSelf, constraint, maxFailCount);
 };

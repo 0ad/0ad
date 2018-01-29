@@ -413,7 +413,7 @@ function placeWall(position, wall = [], style, playerId = 0, orientation = 0)
 
 	for (let align of getWallAlignment(position, wall, style, orientation))
 		if (align.templateName)
-			placeObject(align.position, align.templateName, playerId, align.angle);
+			g_Map.placeEntityPassable(align.templateName, playerId, align.position, align.angle);
 }
 
 /**
@@ -518,7 +518,7 @@ function placeLinearWall(startPosition, targetPosition, wallPart = undefined, st
 			let place = Vector2D.add(position, new Vector2D(0, wallEle.indent).rotate(-wallAngle));
 
 			if (wallEle.templateName)
-				placeObject(place, wallEle.templateName, playerId, placeAngle + wallEle.angle);
+				g_Map.placeEntityPassable(wallEle.templateName, playerId, place, placeAngle + wallEle.angle);
 
 			position.add(dist);
 		}
@@ -529,7 +529,7 @@ function placeLinearWall(startPosition, targetPosition, wallPart = undefined, st
 		let wallLength = (wallEle.length - overlap) / 2;
 		position.add(new Vector2D(scaleFactor * wallLength, 0).rotate(-wallAngle));
 		if (wallEle.templateName)
-			placeObject(position, wallEle.templateName, playerId, placeAngle + wallEle.angle);
+			g_Map.placeEntityPassable(wallEle.templateName, playerId, position, placeAngle + wallEle.angle);
 	}
 }
 
@@ -602,7 +602,7 @@ function placeCircularWall(center, radius, wallPart, style, playerId = 0, orient
 
 			// Placement
 			if (wallEle.templateName)
-				placeObject(place, wallEle.templateName, playerId, placeAngle + wallEle.angle);
+				g_Map.placeEntityPassable(wallEle.templateName, playerId, place, placeAngle + wallEle.angle);
 
 			// Prepare for the next wall element
 			actualAngle += addAngle;
@@ -616,7 +616,7 @@ function placeCircularWall(center, radius, wallPart, style, playerId = 0, orient
 		let target = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle - addAngle))
 		let place = Vector2D.average([position, target]);
 		let placeAngle = actualAngle + addAngle / 2;
-		placeObject(place, wallEle.templateName, playerId, placeAngle + wallEle.angle);
+		g_Map.placeEntityPassable(wallEle.templateName, playerId, place, placeAngle + wallEle.angle);
 	}
 }
 
@@ -649,7 +649,7 @@ function placePolygonalWall(centerPosition, radius, wallPart, cornerWallElement 
 	for (let i = 0; i < numCorners; ++i)
 	{
 		let angleToCorner = getAngle(corners[i].x, corners[i].y, centerPosition.x, centerPosition.y);
-		placeObject(corners[i], getWallElement(cornerWallElement, style).templateName, playerId, angleToCorner);
+		g_Map.placeEntityPassable(getWallElement(cornerWallElement, style).templateName, playerId, corners[i], angleToCorner);
 
 		if (!skipFirstWall || i != 0)
 		{
@@ -776,7 +776,7 @@ function placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement =
 	for (let i = 0; i < numCorners; ++i)
 	{
 		let angleToCorner = getAngle(corners[i].x, corners[i].y, centerPosition.x, centerPosition.y);
-		placeObject(corners[i], getWallElement(cornerWallElement, style).templateName, playerId, angleToCorner);
+		g_Map.placeEntityPassable(getWallElement(cornerWallElement, style).templateName, playerId, corners[i], angleToCorner);
 		if (!skipFirstWall || i != 0)
 		{
 			let cornerLength = getWallElement(cornerWallElement, style).length / 2;
@@ -875,7 +875,7 @@ function placeGenericFortress(center, radius = 20, playerId = 0, style, irregula
 		if (element.templateName)
 		{
 			let pos = Vector2D.add(start, new Vector2D(start.distanceTo(target) / 2, 0).rotate(-angle));
-			placeObject(pos, element.templateName, playerId, angle - Math.PI / 2 + element.angle);
+			g_Map.placeEntityPassable(element.templateName, playerId, pos, angle - Math.PI / 2 + element.angle);
 		}
 
 		// Place tower
@@ -883,6 +883,6 @@ function placeGenericFortress(center, radius = 20, playerId = 0, style, irregula
 		angle = getAngle(start.x, start.y, target.x, target.y);
 
 		let tower = getWallElement("tower", style);
-		placeObject(Vector2D.add(center, bestPointDerivation[pointIndex]), tower.templateName, playerId, angle - Math.PI / 2 + tower.angle);
+		g_Map.placeEntityPassable(tower.templateName, playerId, Vector2D.add(center, bestPointDerivation[pointIndex]), angle - Math.PI / 2 + tower.angle);
 	}
 }

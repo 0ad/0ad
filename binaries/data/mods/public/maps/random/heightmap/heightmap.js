@@ -53,41 +53,49 @@ function rescaleHeightmap(minHeight = MIN_HEIGHT, maxHeight = MAX_HEIGHT, height
 
 /**
  * Get start location with the largest minimum distance between players
- * @param {array} [heightRange] - The height range start locations are allowed
+ * @param {object} [heightRange] - The height range start locations are allowed
  * @param {integer} [maxTries=1000] - How often random player distributions are rolled to be compared
  * @param {float} [minDistToBorder=20] - How far start locations have to be away from the map border
  * @param {integer} [numberOfPlayers=g_MapSettings.PlayerData.length] - How many start locations should be placed
  * @param {array} [heightmap=g_Map.height] - The reliefmap for the start locations to be placed on
  * @param {boolean} [isCircular=g_MapSettings.CircularMap] - If the map is circular or rectangular
- * @return {array} [finalStartLoc] - Array of 2D points in the format { "x": float, "y": float}
+ * @return {Vector2D[]}
  */
 function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBorder = 20, numberOfPlayers = g_MapSettings.PlayerData.length - 1, heightmap = g_Map.height, isCircular = g_MapSettings.CircularMap)
 {
 	let validStartLoc = [];
-	let r = 0.5 * (heightmap.length - 1); // Map center x/y as well as radius
-	for (let x = minDistToBorder; x < heightmap.length - minDistToBorder; ++x)
-		for (let y = minDistToBorder; y < heightmap[0].length - minDistToBorder; ++y)
-			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max) // Is in height range
-				if (!isCircular || r - Math.euclidDistance2D(x, y, r, r) >= minDistToBorder) // Is far enough away from map border
-					validStartLoc.push({ "x": x, "y": y });
+	let mapCenter = g_Map.getCenter();
+	let mapSize = g_Map.getSize();
+
+	let heightConstraint = new HeightConstraint(heightRange.min, heightRange.max);
+
+	for (let x = minDistToBorder; x < mapSize - minDistToBorder; ++x)
+		for (let y = minDistToBorder; y < mapSize - minDistToBorder; ++y)
+		{
+			let position = new Vector2D(x, y);
+			if (heightConstraint.allows(position) && (!isCircular || position.distanceTo(mapCenter)) < mapSize / 2 - minDistToBorder)
+				validStartLoc.push(position);
+		}
 
 	let maxMinDist = 0;
 	let finalStartLoc;
+
 	for (let tries = 0; tries < maxTries; ++tries)
 	{
 		let startLoc = [];
 		let minDist = Infinity;
+
 		for (let p = 0; p < numberOfPlayers; ++p)
 			startLoc.push(pickRandom(validStartLoc));
+
 		for (let p1 = 0; p1 < numberOfPlayers - 1; ++p1)
-		{
 			for (let p2 = p1 + 1; p2 < numberOfPlayers; ++p2)
 			{
-				let dist = Math.euclidDistance2D(startLoc[p1].x, startLoc[p1].y, startLoc[p2].x, startLoc[p2].y);
+				let dist = startLoc[p1].distanceTo(startLoc[p2]);
 				if (dist < minDist)
 					minDist = dist;
 			}
-		}
+
 		if (minDist > maxMinDist)
 		{
 			maxMinDist = minDist;
@@ -230,7 +238,7 @@ function globalSmoothHeightmap(strength = 0.8, heightmap = g_Map.height, smoothM
 /**
  * Pushes a rectangular area towards a given height smoothing it into the original terrain
  * @note The window function to determine the smooth is not exactly a gaussian to ensure smooth edges
- * @param {object} [center] - The x and y coordinates of the center point (rounded in this function)
+ * @param {Vector2D} center - The x and y coordinates of the center point (rounded in this function)
  * @param {float} [dx] - Distance from the center in x direction the rectangle ends (half width, rounded in this function)
  * @param {float} [dy] - Distance from the center in y direction the rectangle ends (half depth, rounded in this function)
  * @param {float} [targetHeight] - Height the center of the rectangle will be pushed to

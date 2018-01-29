@@ -271,8 +271,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 				[new SimpleObject("actor|particle/smoke.xml", num, num, 0, 7)],
 				false,
 				clLava,
-				position.x,
-				position.y),
+				position),
 			0,
 		stayClasses(tileClass, 1));
 	}

@@ -173,8 +173,7 @@ createObjectGroup(
 		[new SimpleObject(oMetalLarge, 3, 6, 25, Math.floor(fractionToTiles(0.25)))],
 		true,
 		clBaseResource,
-		mapCenter.x,
-		mapCenter.y),
+		mapCenter),
 	0,
 	[avoidClasses(clBaseResource, 20, clPlayer, 40, clMountain, 4), stayClasses(clHill, 10)]);
 
@@ -183,8 +182,7 @@ createObjectGroup(
 		[new SimpleObject(oStoneLarge, 3, 6, 25, Math.floor(fractionToTiles(0.25)))],
 		true,
 		clBaseResource,
-		mapCenter.x,
-		mapCenter.y),
+		mapCenter),
 		0,
 		[avoidClasses(clBaseResource, 20, clPlayer, 40, clMountain, 4), stayClasses(clHill, 10)]);
 

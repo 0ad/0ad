@@ -59,7 +59,7 @@ if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 	{
 		let marketPos = Vector2D.add(playerPosition[i], new Vector2D(12, 0).rotate(randomAngle())).round();
-		placeObject(marketPos, oMarket, playerIDs[i], BUILDING_ORIENTATION);
+		g_Map.placeEntityPassable(oMarket, playerIDs[i], marketPos, BUILDING_ORIENTATION);
 		addCivicCenterAreaToClass(marketPos, clBaseResource);
 	}
 
