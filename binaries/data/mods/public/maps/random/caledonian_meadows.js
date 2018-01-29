@@ -20,7 +20,7 @@ function placeRandomPathToHeight(
 		{
 			let painters = [new TerrainPainter(texture)];
 
-			if (tileClass !== undefined)
+			if (tileClass)
 				painters.push(new TileClassPainter(tileClass));
 
 			createArea(
@@ -354,7 +354,8 @@ let areas = heighLimits.map(heightLimit => []);
 for (let x = 0; x < tchm.length; ++x)
 	for (let y = 0; y < tchm[0].length; ++y)
 	{
-		if (g_Map.tileClasses[clPath].inclusionCount[x][y] > 0) // Avoid paths
+		let position = new Vector2D(x, y);
+		if (!avoidClasses(clPath, 0).allows(position))
 			continue;
 
 		let minHeight = heightRange.min;
@@ -362,7 +363,7 @@ for (let x = 0; x < tchm.length; ++x)
 		{
 			if (tchm[x][y] >= minHeight && tchm[x][y] <= heighLimits[h])
 			{
-				areas[h].push(new Vector2D(x, y));
+				areas[h].push(position);
 				break;
 			}
 			else

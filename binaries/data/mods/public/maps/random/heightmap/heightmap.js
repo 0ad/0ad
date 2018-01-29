@@ -295,14 +295,14 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 	let r = 0.5 * (heightmap.length - 1); // Map center x/y as well as radius
 	let avoidMap;
 
-	if (avoidClass !== undefined)
-		avoidMap = g_Map.tileClasses[avoidClass].inclusionCount;
+	if (avoidClass)
+		avoidMap = avoidClass.inclusionCount;
 
 	for (let x = minDistance; x < heightmap.length - minDistance; ++x)
 	{
 		for (let y = minDistance; y < heightmap[0].length - minDistance; ++y)
 		{
-			if (avoidClass !== undefined && // Avoid adjecting tiles in avoidClass
+			if (avoidClass &&
 				(avoidMap[Math.max(x - 1, 0)][y] > 0 ||
 				avoidMap[x][Math.max(y - 1, 0)] > 0 ||
 				avoidMap[Math.min(x + 1, avoidMap.length - 1)][y] > 0 ||

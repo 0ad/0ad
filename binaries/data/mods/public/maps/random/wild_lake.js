@@ -226,6 +226,7 @@ function placeMine(position, centerEntity,
 // Groves, only Wood
 let groveActors = [g_Decoratives.grass, g_Decoratives.rockMedium, g_Decoratives.bushMedium];
 let clGrove = g_Map.createTileClass();
+let clGaiaCamp = g_Map.createTileClass();
 
 function placeGrove(point,
 	groveEntities = [
@@ -340,6 +341,8 @@ function placeCamp(position,
 		let dist = randFloat(1, 3);
 		placeObject(Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle)), pickRandom(otherEntities), 0, randomAngle());
 	}
+
+	addCivicCenterAreaToClass(position, clGaiaCamp);
 }
 
 function placeStartLocationResources(
@@ -510,20 +513,12 @@ for (let p = 0; p < playerIDs.length; ++p)
 let tchm = getTileCenteredHeightmap();
 
 /**
- * Add paths (If any)
- */
-let clPath = g_Map.createTileClass();
-
-/**
  * Divide tiles in areas by height and avoid paths
  */
 let areas = heighLimits.map(heightLimit => []);
 for (let x = 0; x < tchm.length; ++x)
 	for (let y = 0; y < tchm[0].length; ++y)
 	{
-		if (g_Map.tileClasses[clPath].inclusionCount[x][y] > 0) // Avoid paths
-			continue;
-
 		let minHeight = heightRange.min;
 		for (let h = 0; h < heighLimits.length; ++h)
 		{
@@ -591,13 +586,18 @@ log("Placing resources...");
 let avoidPoints = clone(startLocations);
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
-let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints, clPath).map(point => new Vector2D(point.x, point.y));
+let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints).map(point => new Vector2D(point.x, point.y));
 
 Engine.SetProgress(55);
 
 log("Placing players...");
 if (isNomad())
-	placePlayersNomad(g_Map.createTileClass(), new HeightConstraint(playerHeightRange.min, playerHeightRange.max));
+	placePlayersNomad(
+		g_Map.createTileClass(),
+		[
+			new HeightConstraint(playerHeightRange.min, playerHeightRange.max),
+			avoidClasses(clGaiaCamp, 8)
+		]);
 else
 	for (let p = 0; p < playerIDs.length; ++p)
 	{

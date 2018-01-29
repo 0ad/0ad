@@ -155,7 +155,7 @@ function placePlayerBase(playerBaseArgs)
 
 	placeCivDefaultStartingEntities(playerBaseArgs.playerPosition, playerBaseArgs.playerID, playerBaseArgs.Walls !== undefined ? playerBaseArgs.Walls : true);
 
-	if (playerBaseArgs.PlayerTileClass !== undefined)
+	if (playerBaseArgs.PlayerTileClass)
 		addCivicCenterAreaToClass(playerBaseArgs.playerPosition, playerBaseArgs.PlayerTileClass);
 
 	for (let functionID of g_PlayerBaseFunctions)

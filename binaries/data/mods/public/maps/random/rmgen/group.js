@@ -51,7 +51,7 @@ SimpleGroup.prototype.place = function(player, constraint)
 		if (g_Map.validTile(position))
 			g_Map.addObject(obj);
 
-		if (this.tileClass !== undefined)
+		if (this.tileClass)
 			this.tileClass.add(position.clone().floor());
 	}
 

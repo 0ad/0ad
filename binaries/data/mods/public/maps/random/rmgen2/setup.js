@@ -461,7 +461,7 @@ function initTileClasses(newClasses)
 {
 	var classNames = g_DefaultTileClasses;
 
-	if (newClasses !== undefined)
+	if (newClasses)
 		classNames = classNames.concat(newClasses);
 
 	g_TileClasses = {};

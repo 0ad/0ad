@@ -195,10 +195,10 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 				else if (g_Map.getHeight(position) >= newHeight && g_Map.getHeight(position) < newHeight + 4)
 					g_Map.setHeight(position, newHeight + 4);
 
-				if (terrain !== undefined)
+				if (terrain)
 					createTerrain(terrain).place(position);
 
-				if (tileClass !== undefined)
+				if (tileClass)
 					tileClass.add(position);
 			}
 	}
@@ -564,7 +564,7 @@ function createPassage(args)
 					(g_Map.getHeight(location) * smoothDistance + passageHeight / smoothDistance) / (smoothDistance + 1 / smoothDistance) :
 					passageHeight);
 
-			if (args.tileClass !== undefined)
+			if (args.tileClass)
 				args.tileClass.add(location);
 
 			if (args.edgeTerrain && smoothDistance > 0)
