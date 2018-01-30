@@ -245,7 +245,14 @@ function placePlayerBaseChicken(args)
 			let position = new Vector2D(0, get("distance", 9)).rotate(randomAngle()).add(basePosition);
 			if (createObjectGroup(
 				new SimpleGroup(
-					[new SimpleObject(get("template", "gaia/fauna_chicken"), 5, 5, 0, get("count", 2))],
+					[
+						new SimpleObject(
+							get("template", "gaia/fauna_chicken"),
+							get("minGroupCount", 5),
+							get("maxGroupCount", 5),
+							get("minGroupDistance", 0),
+							get("maxGroupDistance", 2))
+					],
 					true,
 					args.BaseResourceClass,
 					position),
