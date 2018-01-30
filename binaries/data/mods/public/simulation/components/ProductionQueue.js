@@ -68,18 +68,6 @@ ProductionQueue.prototype.Init = function()
 
 	this.entityCache = [];
 	this.spawnNotified = false;
-
-	this.alertRaiser = undefined;
-};
-
-ProductionQueue.prototype.PutUnderAlert = function(raiser)
-{
-	this.alertRaiser = raiser;
-};
-
-ProductionQueue.prototype.ResetAlert = function()
-{
-	this.alertRaiser = undefined;
 };
 
 /*
@@ -550,8 +538,6 @@ ProductionQueue.prototype.OnOwnershipChanged = function(msg)
 	// created from it. Also it means we don't have to worry about
 	// updating the reserved pop slots.)
 	this.ResetQueue();
-
-	this.ResetAlert();
 };
 
 ProductionQueue.prototype.OnCivChanged = function()
@@ -681,20 +667,11 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 	}
 
 	if (createdEnts.length > 0)
-	{
 		Engine.PostMessage(this.entity, MT_TrainingFinished, {
 			"entities": createdEnts,
 			"owner": cmpOwnership.GetOwner(),
 			"metadata": metadata,
 		});
-
-		if (this.alertRaiser && spawnedEnts.length > 0)
-		{
-			var cmpAlertRaiser = Engine.QueryInterface(this.alertRaiser, IID_AlertRaiser);
-			if (cmpAlertRaiser)
-				cmpAlertRaiser.UpdateUnits(spawnedEnts);
-		}
-	}
 
 	return createdEnts.length;
 };

@@ -746,22 +746,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		this.isGarrisoned = false;
 	},
 
-	"Order.Alert": function(msg) {
-		this.alertRaiser = this.order.data.raiser;
-
-		// Find a target to garrison into, if we don't already have one
-		if (!this.alertGarrisoningTarget)
-			this.alertGarrisoningTarget = this.FindNearbyGarrisonHolder();
-
-		if (this.alertGarrisoningTarget)
-			this.ReplaceOrder("Garrison", {"target": this.alertGarrisoningTarget});
-		else
-		{
-			this.StopMoving();
-			this.FinishOrder();
-		}
-	},
-
 	"Order.Cheering": function(msg) {
 		this.SetNextState("INDIVIDUAL.CHEERING");
 	},
@@ -2898,44 +2882,18 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function() {
-					if (this.IsUnderAlert() && this.alertGarrisoningTarget)
-					{
-						// check that we can garrison in the building we're supposed to garrison in
-						var cmpGarrisonHolder = Engine.QueryInterface(this.alertGarrisoningTarget, IID_GarrisonHolder);
-						if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
-						{
-							// Try to find another nearby building
-							var nearby = this.FindNearbyGarrisonHolder();
-							if (nearby)
-							{
-								this.alertGarrisoningTarget = nearby;
-								this.ReplaceOrder("Garrison", {"target": this.alertGarrisoningTarget});
-							}
-							else
-								this.FinishOrder();
-						}
-						else
-							this.SetNextState("GARRISONED");
-					}
-					else
-						this.SetNextState("GARRISONED");
+					this.SetNextState("GARRISONED");
 				},
 			},
 
 			"GARRISONED": {
 				"enter": function() {
-					// Target is not handled the same way with Alert and direct garrisoning
 					if (this.order.data.target)
 						var target = this.order.data.target;
 					else
 					{
-						if (!this.alertGarrisoningTarget)
-						{
-							// We've been unable to find a target nearby, so give up
-							this.FinishOrder();
-							return true;
-						}
-						var target = this.alertGarrisoningTarget;
+						this.FinishOrder();
+						return true;
 					}
 
 					// Check that we can garrison here
@@ -3281,10 +3239,6 @@ UnitAI.prototype.Init = function()
 
 	this.isGuardOf = undefined;
 
-	// "Town Bell" behaviour
-	this.alertRaiser = undefined;
-	this.alertGarrisoningTarget = undefined;
-
 	// For preventing increased action rate due to Stop orders or target death.
 	this.lastAttacked = undefined;
 	this.lastHealed = undefined;
@@ -3303,22 +3257,6 @@ UnitAI.prototype.IsTurret = function()
 UnitAI.prototype.ReactsToAlert = function(level)
 {
 	return this.template.AlertReactiveLevel <= level;
-};
-
-UnitAI.prototype.IsUnderAlert = function()
-{
-	return this.alertRaiser != undefined;
-};
-
-UnitAI.prototype.ResetAlert = function()
-{
-	this.alertGarrisoningTarget = undefined;
-	this.alertRaiser = undefined;
-};
-
-UnitAI.prototype.GetAlertRaiser = function()
-{
-	return this.alertRaiser;
 };
 
 UnitAI.prototype.IsFormationController = function()
@@ -3387,6 +3325,11 @@ UnitAI.prototype.GetGarrisonHolder = function()
 				return order.data.target;
 	}
 	return INVALID_ENTITY;
+};
+
+UnitAI.prototype.HasGarrisonOrder = function()
+{
+	return this.orderQueue.length && this.orderQueue[0].type == "Garrison";
 };
 
 UnitAI.prototype.IsFleeing = function()
@@ -3843,10 +3786,6 @@ UnitAI.prototype.GetOrderData = function()
 
 UnitAI.prototype.UpdateWorkOrders = function(type)
 {
-	// Under alert, remembered work orders won't be forgotten
-	if (this.IsUnderAlert())
-		return;
-
 	var isWorkType = type => type == "Gather" || type == "Trade" || type == "Repair" || type == "ReturnResource";
 
 	// If we are being re-affected to a work order, forget the previous ones
@@ -4219,34 +4158,6 @@ UnitAI.prototype.FindNearbyFoundation = function()
 	// we process the ConstructionFinished message before the foundation
 	// we're working on has been deleted.)
 	return nearby.find(ent => !Engine.QueryInterface(ent, IID_Foundation).IsFinished());
-};
-
-/**
- * Returns the entity ID of the nearest building in which the unit can garrison,
- * or undefined if none can be found close enough.
- */
-UnitAI.prototype.FindNearbyGarrisonHolder = function()
-{
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
-		return undefined;
-
-	// Find buildings owned by this unit's player
-	var players = [cmpOwnership.GetOwner()];
-
-	var range = 128; // TODO: what's a sensible number?
-
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, players, IID_GarrisonHolder);
-
-	return nearby.find(ent => {
-		// We only want to garrison in buildings, not in moving units like ships,...
-		if (Engine.QueryInterface(ent, IID_UnitAI))
-			return false;
-
-		var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
-		return cmpGarrisonHolder.IsAllowedToGarrison(this.entity) && !cmpGarrisonHolder.IsFull();
-	});
 };
 
 /**
