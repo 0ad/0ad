@@ -129,6 +129,12 @@
 				"config": "gui.session.healrange"
 			},
 			{
+				"type": "boolean",
+				"label": "Rank icon above status bar",
+				"tooltip": "Show rank icons above status bars",
+				"config": "gui.session.rankabovestatusbar"
+			},
+			{
 				"type": "dropdown",
 				"label": "Sort resources and population tooltip",
 				"tooltip": "Dynamically sort players in the resources and population tooltip by value.",

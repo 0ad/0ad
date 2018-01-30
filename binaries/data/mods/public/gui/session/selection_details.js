@@ -84,7 +84,7 @@ function displaySingle(entState)
 		Engine.GetGUIObjectByName("rankIcon").tooltip = sprintf(translate("%(rank)s Rank"), {
 			"rank": translateWithContext("Rank", entState.identity.rank)
 		});
-		Engine.GetGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);
+		Engine.GetGUIObjectByName("rankIcon").sprite = "stretched:session/icons/ranks/" + entState.identity.rank + ".png";
 		Engine.GetGUIObjectByName("rankIcon").hidden = false;
 	}
 	else
@@ -474,20 +474,6 @@ function updateSelectionDetails()
 	// Show health bar for garrisoned units if the garrison panel is visible
 	if (Engine.GetGUIObjectByName("unitGarrisonPanel") && !Engine.GetGUIObjectByName("unitGarrisonPanel").hidden)
 		updateGarrisonHealthBar(entStates[0], g_Selection.toList());
-}
-
-function getRankIconSprite(entState)
-{
-	if (entState.identity.rank == "Elite")
-		return "stretched:session/icons/rank3.png";
-
-	if (entState.identity.rank == "Advanced")
-		return "stretched:session/icons/rank2.png";
-
-	if (entState.identity.classes.indexOf("CitizenSoldier") != -1)
-		return "stretched:session/icons/rank1.png";
-
-	return "";
 }
 
 function tradingGainString(gain, owner)
