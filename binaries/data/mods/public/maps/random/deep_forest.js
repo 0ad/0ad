@@ -180,14 +180,12 @@ for (var x = 0; x < mapSize; x++)
 		if (randBool(tDensActual) && g_Map.validTile(position))
 		{
 			let border = tDensActual < randFloat(0, bushChance * maxTreeDensity);
-			createArea(
-				new RectPlacer(position.x, position.y, position.x, position.y),
-				[
-					new TerrainPainter(border ? terrainWoodBorder : terrainWood),
-					new ElevationPainter(randFloat(0, 1)),
-					new TileClassPainter(clForest)
-				],
-				avoidClasses(clPath, 1, clHill, border ? 0 : 1));
+			if (avoidClasses(clPath, 1, clHill, border ? 0 : 1).allows(position))
+			{
+				createTerrain(border ? terrainWoodBorder : terrainWood).place(position);
+				g_Map.setHeight(position, randFloat(0, 1));
+				clForest.add(position);
+			}
 		}
 
 		// General height map
