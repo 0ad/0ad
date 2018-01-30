@@ -308,18 +308,10 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	let cmpFoundation = QueryMiragedInterface(ent, IID_Foundation);
 	if (cmpFoundation)
-	{
 		ret.foundation = {
-			"progress": cmpFoundation.GetBuildPercentage(),
-			"numBuilders": cmpFoundation.GetNumBuilders()
+			"numBuilders": cmpFoundation.GetNumBuilders(),
+			"buildTime": cmpFoundation.GetBuildTime()
 		};
-		cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
-		if (cmpFoundation)
-		{
-			ret.buildRate = cmpFoundation.GetBuildRate();
-			ret.buildTime = cmpFoundation.GetBuildTime();
-		}
-	}
 
 	let cmpRepairable = QueryMiragedInterface(ent, IID_Repairable);
 	if (cmpRepairable)

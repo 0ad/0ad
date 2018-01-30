@@ -111,19 +111,6 @@ function displaySingle(entState)
 		let healthSize = unitHealthBar.size;
 		healthSize.rright = 100 * Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
-
-		if (entState.foundation && entState.visibility == "visible" && entState.foundation.numBuilders !== 0 && entState.buildTime)
-			Engine.GetGUIObjectByName("health").tooltip = sprintf(
-				translatePlural(
-					"This foundation will be completed in %(seconds)s second.",
-					"This foundation will be completed in %(seconds)s seconds.",
-					Math.ceil(entState.buildTime.timeRemaining)),
-				{
-					"seconds": Math.ceil(entState.buildTime.timeRemaining)
-				});
-		else
-			Engine.GetGUIObjectByName("health").tooltip = "";
-
 		Engine.GetGUIObjectByName("healthStats").caption = sprintf(translate("%(hitpoints)s / %(maxHitpoints)s"), {
 			"hitpoints": Math.ceil(entState.hitpoints),
 			"maxHitpoints": Math.ceil(entState.maxHitpoints)
@@ -248,23 +235,14 @@ function displaySingle(entState)
 		});
 	}
 	// And for number of workers
-	else if (entState.foundation && entState.visibility != "hidden")
+	else if (entState.foundation)
 	{
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
-		if (entState.foundation.numBuilders !== 0 && entState.visibility == "visible" && entState.buildTime)
-			Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(
-				translatePlural(
-					"Number of builders.\nTasking another to this foundation would speed construction up by %(speedup)s second.",
-					"Number of builders.\nTasking another to this foundation would speed construction up by %(speedup)s seconds.",
-					Math.ceil(entState.buildTime.timeSpeedup)),
-				{
-					"speedup": Math.ceil(entState.buildTime.timeSpeedup)
-				});
-		else
-			Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = translate("Number of builders.");
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = getBuildTimeTooltip(entState);
+		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders ?
+			Engine.FormatMillisecondsIntoDateStringGMT(entState.foundation.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss")) + "    " : "";
 	}
 	else if (entState.repairable && entState.repairable.numBuilders > 0 && entState.visibility != "hidden")
 	{
@@ -313,7 +291,6 @@ function displaySingle(entState)
 		getArmorTooltip,
 		getGatherTooltip,
 		getRepairRateTooltip,
-		getBuildRateTooltip,
 		getSpeedTooltip,
 		getGarrisonTooltip,
 		getProjectilesTooltip,

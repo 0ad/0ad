@@ -147,7 +147,7 @@ function testFoundation(...mocks)
 	// Foundation starts with 1 hp, so there's 50 * 99/100 = 49.5 seconds left.
 	TS_ASSERT_UNEVAL_EQUALS(cmpFoundation.GetBuildTime(), {
 		'timeRemaining': 49.5,
-		'timeSpeedup': 49.5 - 49.5 / (2 * twoBuilderMultiplier)
+		'timeRemainingNew': 49.5 / (2 * twoBuilderMultiplier)
 	});
 	cmpFoundation.AddBuilder(11);
 	TS_ASSERT_EQUALS(cmpFoundation.GetNumBuilders(), 2);
@@ -155,7 +155,7 @@ function testFoundation(...mocks)
 	TS_ASSERT_EQUALS(cmpFoundation.totalBuilderRate, 2);
 	TS_ASSERT_UNEVAL_EQUALS(cmpFoundation.GetBuildTime(), {
 		'timeRemaining': 49.5 / (2 * twoBuilderMultiplier),
-		'timeSpeedup': 49.5 / (2 * twoBuilderMultiplier) - 49.5 / (3 * threeBuilderMultiplier)
+		'timeRemainingNew': 49.5 / (3 * threeBuilderMultiplier)
 	});
 	cmpFoundation.AddBuilder(11);
 	TS_ASSERT_EQUALS(cmpFoundation.GetNumBuilders(), 2);
