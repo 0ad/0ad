@@ -103,7 +103,7 @@ placePlayerBases({
 });
 Engine.SetProgress(10);
 
-log("Painting paths...");
+g_Map.log("Painting paths");
 var pathBlending = numPlayers <= 4;
 for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 	for (let j = pathBlending ? 0 : i + 1; j < numPlayers + 1; ++j)
@@ -122,7 +122,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 	}
 Engine.SetProgress(50);
 
-log("Placing expansion resources...");
+g_Map.log("Placing expansion resources");
 for (let i = 0; i < numPlayers; ++i)
 	for (let rIndex = 0; rIndex < resourcePerPlayer.length; ++rIndex)
 	{
@@ -146,11 +146,11 @@ for (let i = 0; i < numPlayers; ++i)
 	}
 Engine.SetProgress(60);
 
-log("Placing temple...");
+g_Map.log("Placing temple");
 g_Map.placeEntityPassable(templateTemple, 0, mapCenter, randomAngle());
 clBaseResource.add(mapCenter);
 
-log("Creating central mountain...");
+g_Map.log("Creating central mountain");
 createArea(
 	new ClumpPlacer(Math.square(radiusEC), 1/2, 1/8, 1, mapCenter),
 	[

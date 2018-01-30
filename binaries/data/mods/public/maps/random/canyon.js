@@ -64,7 +64,7 @@ var playerCanyonRadius = scaleByMapSize(18, 32);
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
-log("Reserving space for the players, their initial forests and some less space therein without trees...");
+g_Map.log("Reserving space for the players, their initial forests and some less space therein without trees");
 for (let i = 0; i < numPlayers; ++i)
 	for (let j = 1; j <= 2; ++j)
 	createArea(
@@ -75,7 +75,7 @@ for (let i = 0; i < numPlayers; ++i)
 			new TileClassPainter(j == 1 || isNomad() ? clLand : clPlayer)
 		]);
 
-log("Creating center area...");
+g_Map.log("Creating center area");
 createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.16)), 0.7, 0.1, 10, mapCenter),
 	[
@@ -88,7 +88,7 @@ createArea(
 	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter),
 	new TileClassPainter(clHill));
 
-log("Creating hills...");
+g_Map.log("Creating hills");
 for (let i = 0; i < scaleByMapSize(9, 16); ++i)
 	createArea(
 		new PathPlacer(
@@ -157,9 +157,9 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 	}
 }
 
+g_Map.log("Creating paths from players to neighbor and center");
 for (let i = 0; i < numPlayers; ++i)
 {
-	log("Creating path from player to center and to neighbor...");
 	let neighbor = i + 1 < numPlayers ? i + 1 : 0;
 	for (let position of [playerPosition[neighbor], mapCenter])
 		createArea(
@@ -179,7 +179,7 @@ for (let i = 0; i < numPlayers; ++i)
 			]);
 }
 
-log("Painting center place...");
+g_Map.log("Painting center place");
 createArea(
 	new ClumpPlacer(150, 0.6, 0.3, 10, mapCenter),
 	new LayeredPainter([tRoad, tRoad], [1]));
@@ -233,7 +233,7 @@ createForests(
 
 Engine.SetProgress(50);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]],
@@ -242,7 +242,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tTier4Terrain,
@@ -250,7 +250,7 @@ createPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -259,7 +259,7 @@ createMines(
  [avoidClasses(clForest, 1, clPlayer, 3, clRock, 10, clHill, 1, clHill2, 1), stayClasses(clLand, 2)],
  clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -292,7 +292,7 @@ createDecoration(
 	],
 	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0));
 
-log("Creating actor trees...");
+g_Map.log("Creating actor trees");
 var group = new SimpleGroup(
 	[new SimpleObject(aTree, 1,1, 0,1)],
 	true
@@ -335,7 +335,7 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
-log("Creating treasures...");
+g_Map.log("Creating treasures");
 for (let i = 0; i < randIntInclusive(3, 8); ++i)
 	for (let template of [oFoodTreasure, oWoodTreasure])
 		g_Map.placeEntityPassable(

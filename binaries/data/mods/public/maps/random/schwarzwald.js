@@ -182,7 +182,7 @@ placePlayerBases({
 	}
 });
 
-log("Creating mines...");
+g_Map.log("Creating mines");
 for (let [minHeight, maxHeight] of [[heighLimits[3], (heighLimits[4] + heighLimits[3]) / 2], [(heighLimits[5] + heighLimits[6]) / 2, heighLimits[7]]])
 	for (let [template, tileClass] of [[oStoneLarge, clRock], [oMetalLarge, clMetal]])
 		createObjectGroups(
@@ -198,7 +198,7 @@ for (let [minHeight, maxHeight] of [[heighLimits[3], (heighLimits[4] + heighLimi
 
 Engine.SetProgress(50);
 
-log("Painting textures...");
+g_Map.log("Painting textures");
 var betweenShallowAndShore = (heighLimits[3] + heighLimits[2]) / 2;
 createArea(
 	new HeightPlacer(Elevation_IncludeMin_IncludeMax, heighLimits[2], betweenShallowAndShore),
@@ -213,7 +213,7 @@ createArea(
 paintTileClassBasedOnHeight(heightRange.min,  heighLimits[2], 1, clWater);
 Engine.SetProgress(60);
 
-log("Painting paths...");
+g_Map.log("Painting paths");
 var pathBlending = numPlayers <= 4;
 for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 	for (let j = pathBlending ? 0 : i + 1; j < numPlayers + 1; ++j)
@@ -232,7 +232,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 	}
 Engine.SetProgress(75);
 
-log("Creating decoration...");
+g_Map.log("Creating decoration");
 createDecoration(
 	[
 		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],
@@ -252,7 +252,7 @@ createDecoration(
 
 Engine.SetProgress(80);
 
-log("Growing fish...");
+g_Map.log("Growing fish");
 createFood(
 	[
 		[new SimpleObject(oFish, 2, 3, 0, 2)]
@@ -265,7 +265,7 @@ createFood(
 
 Engine.SetProgress(85);
 
-log("Planting reeds...");
+g_Map.log("Planting reeds");
 var types = [aReeds];
 for (let type of types)
 	createObjectGroupsDeprecated(
@@ -277,7 +277,7 @@ for (let type of types)
 
 Engine.SetProgress(90);
 
-log("Planting trees...");
+g_Map.log("Planting trees");
 for (var x = 0; x < mapSize; x++)
 	for (var z = 0;z < mapSize;z++)
 	{

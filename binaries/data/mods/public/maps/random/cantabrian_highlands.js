@@ -65,7 +65,7 @@ var playerHillRadius = defaultPlayerBaseRadius() / (isNomad() ? 1.5 : 1);
 
 var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
-log("Creating player hills and ramps...");
+g_Map.log("Creating player hills and ramps");
 for (let i = 0; i < numPlayers; ++i)
 {
 	createArea(
@@ -119,7 +119,7 @@ placePlayerBases({
 });
 Engine.SetProgress(10);
 
-log("Creating lakes...");
+g_Map.log("Creating lakes");
 var numLakes = Math.round(scaleByMapSize(1,4) * numPlayers);
 var waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(100, 250), 0.8, 0.1, 10),
@@ -133,7 +133,7 @@ var waterAreas = createAreas(
 );
 Engine.SetProgress(15);
 
-log("Creating reeds...");
+g_Map.log("Creating reeds");
 var group = new SimpleGroup(
 	[new SimpleObject(aReeds, 5,10, 0,4), new SimpleObject(aLillies, 0,1, 0,4)], true
 );
@@ -144,7 +144,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 );
 Engine.SetProgress(20);
 
-log("Creating fish...");
+g_Map.log("Creating fish");
 createObjectGroupsByAreasDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oFish, 1,1, 0,1)],
@@ -161,7 +161,6 @@ Engine.SetProgress(25);
 createBumps(avoidClasses(clWater, 2, clPlayer, 0));
 Engine.SetProgress(30);
 
-log("Creating hills...");
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 2, clWater, 5, clHill, 15), clHill, scaleByMapSize(1, 4) * numPlayers);
 Engine.SetProgress(35);
 
@@ -173,7 +172,7 @@ createForests(
  forestTrees);
 Engine.SetProgress(40);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tGrass,tGrassA],[tGrassA,tGrassB], [tGrassB,tGrassC]],
@@ -183,7 +182,7 @@ createLayeredPatches(
  clDirt);
 Engine.SetProgress(45);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createLayeredPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  [tGrassPatchBlend, tGrassPatch],
@@ -193,7 +192,7 @@ createLayeredPatches(
  clDirt);
 Engine.SetProgress(50);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -203,7 +202,7 @@ createMines(
  clRock);
 Engine.SetProgress(55);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]

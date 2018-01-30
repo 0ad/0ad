@@ -67,12 +67,13 @@ var treasures = [
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
+g_Map.log("Creating playerbases);
 for (let i = 0; i < numPlayers; ++i)
 {
 	if (isNomad())
 		break;
 
-	log("Creating base for player " + playerIDs[i] + "...");
+	// CC and units
 	for (let dist of [6, 8])
 	{
 		let ents = getStartingEntities(playerIDs[i]);
@@ -83,7 +84,7 @@ for (let i = 0; i < numPlayers; ++i)
 		placeStartingEntities(playerPosition[i], playerIDs[i], ents, dist);
 	}
 
-	log("Creating treasure for player " + playerIDs[i] + "...");
+	// Treasure
 	let bbAngle = BUILDING_ORIENTATION;
 	for (let treasure of treasures)
 	{
@@ -92,7 +93,7 @@ for (let i = 0; i < numPlayers; ++i)
 		bbAngle += Math.PI / 2;
 	}
 
-	log("Painting ground texture for player " + playerIDs[i] + "...");
+	// Ground texture
 	var civ = getCivCode(playerIDs[i]);
 	var tilesSize = civ == "cart" ? 24 : 22;
 	const minBoundX = Math.max(0, playerPosition[i].x - tilesSize);
@@ -115,7 +116,7 @@ for (let i = 0; i < numPlayers; ++i)
 			}
 		}
 
-	log("Placing fortress for player " + playerIDs[i] + "...");
+	// Fortress
 	if (civ == "brit" || civ == "gaul" || civ == "iber")
 	{
 		var wall = ["gate", "tower", "long",
@@ -135,7 +136,7 @@ for (let i = 0; i < numPlayers; ++i)
 	placeCustomFortress(playerPosition[i], new Fortress("Spahbod", wall), civ, playerIDs[i], -Math.PI/4);
 }
 
-log("Creating lakes...");
+g_Map.log("Creating lakes");
 var numLakes = Math.round(scaleByMapSize(1,4) * numPlayers);
 var waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(100,250), 0.8, 0.1, 10),
@@ -149,7 +150,7 @@ var waterAreas = createAreas(
 
 Engine.SetProgress(15);
 
-log("Creating reeds...");
+g_Map.log("Creating reeds");
 createObjectGroupsByAreasDeprecated(
 	new SimpleGroup([new SimpleObject(aReeds, 5,10, 0,4), new SimpleObject(aLillies, 0,1, 0,4)], true),
 	0,
@@ -159,7 +160,7 @@ createObjectGroupsByAreasDeprecated(
 
 Engine.SetProgress(25);
 
-log("Creating fish...");
+g_Map.log("Creating fish");
 createObjectGroupsByAreasDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oFish, 1,1, 0,1)],
@@ -175,11 +176,10 @@ Engine.SetProgress(30);
 createBumps(avoidClasses(clWater, 2, clPlayer, 5));
 Engine.SetProgress(35);
 
-log("Creating hills...");
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 5, clWater, 5, clHill, 15), clHill, scaleByMapSize(1, 4) * numPlayers);
 Engine.SetProgress(40);
 
-log("Creating forests...");
+g_Map.log("Creating forests");
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
 var types = [
 	[[tForestFloor, tGrass, pForestD], [tForestFloor, pForestD]],
@@ -199,7 +199,7 @@ for (let type of types)
 		num);
 Engine.SetProgress(50);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tGrass,tGrassA],[tGrassA,tGrassB], [tGrassB,tGrassC]],
@@ -209,7 +209,7 @@ createLayeredPatches(
  clDirt);
 Engine.SetProgress(55);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tGrassPatch,
@@ -218,7 +218,7 @@ createPatches(
  clDirt);
 Engine.SetProgress(60);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -228,7 +228,7 @@ createMines(
  clRock);
 Engine.SetProgress(65);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]

@@ -73,7 +73,7 @@ var clBaseResource = g_Map.createTileClass();
 var WATER_WIDTH = 0.1;
 var horizontal = randBool();
 
-log("Creating players...");
+g_Map.log("Creating players");
 var startAngle = randBool() ? 0 : Math.PI / 2;
 var playerPosition = playerPlacementLine(startAngle + Math.PI / 2, mapCenter, fractionToTiles(randFloat(0.42, 0.46)));
 
@@ -120,7 +120,7 @@ for (let x of [mapBounds.left, mapBounds.right])
 	});
 Engine.SetProgress(10);
 
-log("Painting elevation...");
+g_Map.log("Painting elevation");
 var noise0 = new Noise2D(scaleByMapSize(4, 16));
 var noise1 = new Noise2D(scaleByMapSize(8, 32));
 var noise2 = new Noise2D(scaleByMapSize(15, 60));
@@ -184,7 +184,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 	}
 Engine.SetProgress(20);
 
-log("Painting terrain...");
+g_Map.log("Painting terrain");
 var noise6 = new Noise2D(scaleByMapSize(10, 40));
 var noise7 = new Noise2D(scaleByMapSize(20, 80));
 var noise8 = new Noise2D(scaleByMapSize(13, 52));
@@ -355,7 +355,7 @@ placePlayerBases({
 });
 Engine.SetProgress(40);
 
-log("Creating bushes...");
+g_Map.log("Creating bushes");
 var group = new SimpleGroup(
 	[new SimpleObject(aBushSmall, 0,2, 0,2), new SimpleObject(aBushSmallDry, 0,2, 0,2),
 	new SimpleObject(aBushMed, 0,1, 0,2), new SimpleObject(aBushMedDry, 0,1, 0,2)]
@@ -366,7 +366,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 Engine.SetProgress(45);
 
-log("Creating rocks...");
+g_Map.log("Creating rocks");
 group = new SimpleGroup(
 	[new SimpleObject(aRockSmall, 0,3, 0,2), new SimpleObject(aRockMed, 0,2, 0,2),
 	new SimpleObject(aRockLarge, 0,1, 0,2)]
@@ -377,20 +377,20 @@ createObjectGroupsDeprecated(group, 0,
 );
 Engine.SetProgress(50);
 
-log("Creating large stone mines...");
+g_Map.log("Creating large stone mines");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 1, clForest, 4, clPlayer, 40, clRock, 60, clMetal, 10, clCliff, 3),
 	scaleByMapSize(4,16), 100
 );
 
-log("Creating small stone mines...");
+g_Map.log("Creating small stone mines");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroups(group, 0,
 	avoidClasses(clForest, 4, clWater, 1, clPlayer, 40, clRock, 30, clMetal, 10, clCliff, 3),
 	scaleByMapSize(4,16), 100
 );
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
 	avoidClasses(clForest, 4, clWater, 1, clPlayer, 40, clMetal, 50, clCliff, 3),
@@ -406,7 +406,7 @@ createStragglerTrees(
 
 Engine.SetProgress(70);
 
-log("Creating straggler cypresses...");
+g_Map.log("Creating straggler cypresses");
 group = new SimpleGroup(
 	[new SimpleObject(oCypress2, 1,3, 0,3), new SimpleObject(oCypress1, 0,2, 0,2)],
 	true
@@ -417,7 +417,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 Engine.SetProgress(80);
 
-log("Creating sheep...");
+g_Map.log("Creating sheep");
 group = new SimpleGroup([new SimpleObject(oSheep, 2,4, 0,2)], true, clFood);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 6, clRock, 6, clFood, 8),
@@ -425,7 +425,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 Engine.SetProgress(85);
 
-log("Creating fish...");
+g_Map.log("Creating fish");
 createObjectGroups(
 	new SimpleGroup([new SimpleObject(oFish, 1, 1, 0, 1)], true, clFood),
 	0,
@@ -438,7 +438,7 @@ createObjectGroups(
 
 Engine.SetProgress(90);
 
-log("Creating deer...");
+g_Map.log("Creating deer");
 group = new SimpleGroup(
 	[new SimpleObject(oDeer, 5,7, 0,4)],
 	true, clFood
@@ -449,7 +449,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 Engine.SetProgress(95);
 
-log("Creating berry bushes...");
+g_Map.log("Creating berry bushes");
 group = new SimpleGroup([new SimpleObject(oBerryBush, 5,7, 0,3)], true, clFood);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 6, clRock, 6, clFood, 8),

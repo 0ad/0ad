@@ -104,7 +104,7 @@ function createSnowflakeSearockWithCenter(sizeID)
 	numIslands = islandID_center + 1;
 	initIsConnected();
 
-	log("Creating central island...");
+	g_Map.log("Creating central island");
 	islandPos[islandID_center] = mapCenter;
 	createIsland(islandID_center, centralIslandRadius, clLand);
 
@@ -119,18 +119,18 @@ function createSnowflakeSearockWithCenter(sizeID)
 		let islandID_betweenPlayerAndCenterNeighbor = playerID_neighbor + 2 * numPlayers;
 		let islandID_tertiary = playerID + 3 * numPlayers;
 
-		log("Creating island between the player and their neighbor...");
+		g_Map.log("Creating island between the player and their neighbor");
 		isConnected[islandID_betweenPlayers][islandID_player] = 1;
 		isConnected[islandID_betweenPlayers][islandID_playerNeighbor] = 1;
 		createIslandAtRadialLocation(playerID, islandID_betweenPlayers, 1, islandBetweenPlayersDist, islandBetweenPlayersRadius);
 
-		log("Creating an island between the player and the center...");
+		g_Map.log("Creating an island between the player and the center");
 		isConnected[islandID_betweenPlayerAndCenter][islandID_player] = 1;
 		isConnected[islandID_betweenPlayerAndCenter][islandID_center] = 1;
 		isConnected[islandID_betweenPlayerAndCenter][islandID_betweenPlayerAndCenterNeighbor] = 1;
 		createIslandAtRadialLocation(playerID, islandID_betweenPlayerAndCenter, 0, islandBetweenPlayerAndCenterDist, islandBetweenPlayerAndCenterRadius);
 
-		log("Creating tertiary island, at the map border...");
+		g_Map.log("Creating tertiary island, at the map border");
 		isConnected[islandID_tertiary][islandID_betweenPlayers] = 1;
 		createIslandAtRadialLocation(playerID, islandID_tertiary, 1, tertiaryIslandDist, tertiaryIslandRadius);
 	}
@@ -168,7 +168,7 @@ function createSnowflakeSearockTiny()
 
 	let islandID_center = numPlayers;
 
-	log("Creating central island...");
+	g_Map.log("Creating central island");
 	islandPos[islandID_center] = mapCenter;
 	createIsland(numPlayers, 1, clLand);
 
@@ -210,7 +210,7 @@ else if (mapSize <= 320)
 else
 	createSnowflakeSearockWithCenter(numPlayers < 6 ? "large1" : "large2");
 
-log("Creating player islands...");
+g_Map.log("Creating player islands");
 for (let i = 0; i < numPlayers; ++i)
 {
 	islandPos[i] = playerPosition[i];
@@ -252,7 +252,7 @@ placePlayerBases({
 });
 Engine.SetProgress(30);
 
-log("Creating connectors...");
+g_Map.log("Creating connectors");
 for (let i = 0; i < numIslands; ++i)
 	for (let j = 0; j < numIslands; ++j)
 		if (isConnected[i][j])
@@ -268,7 +268,7 @@ for (let i = 0; i < numIslands; ++i)
 				"edgeTerrain": tCliff
 			});
 
-log("Creating forests...");
+g_Map.log("Creating forests");
 var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 var types = [
 	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
@@ -288,21 +288,21 @@ for (let type of types)
 		num);
 Engine.SetProgress(55);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10), stayClasses(clLand, 5)],
 	5*scaleByMapSize(4,16), 100
 );
 
-log("Creating small stone quarries...");
+g_Map.log("Creating small stone quarries");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10), stayClasses(clLand, 5)],
 	5*scaleByMapSize(4,16), 100
 );
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5), stayClasses(clLand, 5)],
@@ -310,7 +310,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 Engine.SetProgress(65);
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
@@ -321,7 +321,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		[avoidClasses(clForest, 0, clDirt, 5, clPlayer, 12), stayClasses(clLand, 5)],
 		scaleByMapSize(15, 45));
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
@@ -329,7 +329,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 		[avoidClasses(clForest, 0, clDirt, 5, clPlayer, 12), stayClasses(clLand, 5)],
 		scaleByMapSize(15, 45));
 
-log("Creating small decorative rocks...");
+g_Map.log("Creating small decorative rocks");
 group = new SimpleGroup(
 	[new SimpleObject(aRockMedium, 1,3, 0,1)],
 	true
@@ -340,7 +340,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(16, 262), 50
 );
 
-log("Creating large decorative rocks...");
+g_Map.log("Creating large decorative rocks");
 group = new SimpleGroup(
 	[new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
 	true
@@ -353,7 +353,7 @@ createObjectGroupsDeprecated(
 
 Engine.SetProgress(70);
 
-log("Creating deer...");
+g_Map.log("Creating deer");
 group = new SimpleGroup(
 	[new SimpleObject(oMainHuntableAnimal, 5,7, 0,4)],
 	true, clFood
@@ -365,7 +365,7 @@ createObjectGroupsDeprecated(group, 0,
 
 Engine.SetProgress(75);
 
-log("Creating sheep...");
+g_Map.log("Creating sheep");
 group = new SimpleGroup(
 	[new SimpleObject(oSecondaryHuntableAnimal, 2,3, 0,2)],
 	true, clFood
@@ -375,7 +375,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-log("Creating fruits...");
+g_Map.log("Creating fruits");
 group = new SimpleGroup(
 	[new SimpleObject(oFruitBush, 5,7, 0,4)],
 	true, clFood
@@ -396,7 +396,7 @@ var planetm = 1;
 if (currentBiome() == "generic/tropic")
 	planetm = 8;
 
-log("Creating small grass tufts...");
+g_Map.log("Creating small grass tufts");
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1,2, 0,1, -Math.PI / 8, Math.PI / 8)]
 );
@@ -407,7 +407,7 @@ createObjectGroupsDeprecated(group, 0,
 
 Engine.SetProgress(90);
 
-log("Creating large grass tufts...");
+g_Map.log("Creating large grass tufts");
 group = new SimpleGroup(
 	[new SimpleObject(aGrass, 2,4, 0,1.8, -Math.PI / 8, Math.PI / 8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -Math.PI / 8, Math.PI / 8)]
 );
@@ -417,7 +417,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 Engine.SetProgress(95);
 
-log("Creating bushes...");
+g_Map.log("Creating bushes");
 group = new SimpleGroup(
 	[new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
 );

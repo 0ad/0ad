@@ -19,7 +19,8 @@ function setSelectedBiome()
 
 function setBiome(biomeID)
 {
-	log("Setting biome "+ biomeID);
+	RandomMapLogger.prototype.printDirectly("Setting biome " + biomeID + ".\n");
+
 	loadBiomeFile("defaultbiome");
 
 	setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));

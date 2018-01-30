@@ -56,7 +56,7 @@ var clBaseResource = g_Map.createTileClass();
 var clLand = g_Map.createTileClass();
 var clWomen = g_Map.createTileClass();
 
-log("Creating central area...");
+g_Map.log("Creating central area");
 createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.15)), 0.7, 0.1, 10, mapCenter),
 	[
@@ -71,7 +71,7 @@ var halfway = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0
 var attacker = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.45), mapCenter)[0].map(v => v.round());
 var passage = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0];
 
-log("Creating player bases and attacker points...");
+g_Map.log("Creating player bases, passages, treasure seeker woman and attacker points");
 for (let  i = 0; i < numPlayers; ++i)
 {
 	placeStartingEntities(playerPosition[i], playerIDs[i], getStartingEntities(playerIDs[i]).filter(ent =>
@@ -83,7 +83,7 @@ for (let  i = 0; i < numPlayers; ++i)
 		"BaseResourceClass": clBaseResource
 	});
 
-	log("Creating passage separating players...");
+	// Passage between player and neighbor
 	createArea(
 		new PathPlacer(mapCenter, passage[i], scaleByMapSize(14, 24), 0.4, scaleByMapSize(3, 9), 0.2, 0.05),
 		[
@@ -91,16 +91,16 @@ for (let  i = 0; i < numPlayers; ++i)
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4)
 		]);
 
-	log("Placing treasure seeker woman...");
+	// Treasure seeker woman
 	let femaleLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 3.5, 3).round();
 	clWomen.add(femaleLocation);
 	g_Map.placeEntityPassable(oTreasureSeeker, playerIDs[i], femaleLocation, playerAngle[i] + Math.PI);
 
-	log("Placing attacker spawn point....");
+	// Attacker spawn point
 	g_Map.placeEntityAnywhere(aWaypointFlag, 0, attacker[i], Math.PI / 2);
 	g_Map.placeEntityPassable(triggerPointAttacker, playerIDs[i], attacker[i], Math.PI / 2);
 
-	log("Preventing mountains in the area between player and attackers...");
+	// Preventing mountains in the area between player and attackers at player
 	addCivicCenterAreaToClass(playerPosition[i], clPlayer);
 	clPlayer.add(attacker[i]);
 	clPlayer.add(halfway[i]);
@@ -156,7 +156,7 @@ createHills(
 
 Engine.SetProgress(50);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
 	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
 	[[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]],
@@ -165,7 +165,7 @@ createLayeredPatches(
 	scaleByMapSize(15, 45),
 	clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	tTier4Terrain,

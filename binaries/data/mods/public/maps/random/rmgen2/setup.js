@@ -121,6 +121,8 @@ function pickSize(sizes)
  */
 function addBases(type, distance, groupedDistance, startAngle)
 {
+	g_Map.log("Creating bases");
+
 	let playerIDs = sortAllPlayers();
 	let teamsArray = getTeamsArray();
 

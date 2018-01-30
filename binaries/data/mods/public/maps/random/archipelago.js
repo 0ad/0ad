@@ -65,7 +65,7 @@ var islandRadius = scaleByMapSize(22, 31);
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
-log("Creating player islands...");
+g_Map.log("Creating player islands");
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
 		new ChainPlacer(
@@ -78,7 +78,7 @@ for (let i = 0; i < numPlayers; ++i)
 			[Math.floor(islandRadius)]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4));
 
-log("Creating random islands...");
+g_Map.log("Creating random islands");
 createAreas(
 	new ChainPlacer(
 		Math.floor(scaleByMapSize(4, 8)),
@@ -154,7 +154,7 @@ createForests(
  forestTrees);
 Engine.SetProgress(50);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]],
@@ -163,7 +163,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tTier4Terrain,
@@ -172,7 +172,7 @@ createPatches(
  clDirt);
 Engine.SetProgress(55);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -182,7 +182,7 @@ createMines(
  clRock
 );
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]

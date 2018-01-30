@@ -35,7 +35,7 @@ function createForests(terrainSet, constraint, tileClass, treeCount)
 		}
 	];
 
-	log("Creating forests...");
+	g_Map.log("Creating forests");
 	let numberOfForests = Math.floor(treeCount / (scaleByMapSize(3, 6) * getNumPlayers() * forestVariants.length));
 	for (let forestVariant of forestVariants)
 		createAreas(
@@ -53,7 +53,7 @@ function createForests(terrainSet, constraint, tileClass, treeCount)
  */
 function createStragglerTrees(templateNames, constraint, tileClass, treeCount)
 {
-	log("Creating straggler trees...");
+	g_Map.log("Creating straggler trees");
 	for (let templateName of templateNames)
 		createObjectGroupsDeprecated(
 			new SimpleGroup([new SimpleObject(templateName, 1, 1, 0, 3)], true, tileClass),
@@ -82,7 +82,6 @@ function createMines(objects, constraint, tileClass, count)
  */
 function createStoneMineFormation(position, templateName, terrain, radius = 2.5, count = 8, startAngle = undefined, maxOffset = 1)
 {
-	log("Creating small stone mine circle...");
 	createArea(
 		new ChainPlacer(radius / 2, radius, 2, 1, position, undefined, [5]),
 		new TerrainPainter(terrain));
@@ -102,7 +101,7 @@ function createStoneMineFormation(position, templateName, terrain, radius = 2.5,
  */
 function createFood(objects, counts, constraint, tileClass)
 {
-	log("Creating food...");
+	g_Map.log("Creating food");
 	for (let i = 0; i < objects.length; ++i)
 		createObjectGroupsDeprecated(
 			new SimpleGroup(objects[i], true, tileClass),
@@ -117,7 +116,7 @@ function createFood(objects, counts, constraint, tileClass)
  */
 function createDecoration(objects, counts, constraint)
 {
-	log("Creating decoration...");
+	g_Map.log("Creating decoration");
 	for (let i = 0; i < objects.length; ++i)
 		createObjectGroupsDeprecated(
 			new SimpleGroup(objects[i], true),

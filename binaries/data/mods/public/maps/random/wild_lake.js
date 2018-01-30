@@ -493,7 +493,7 @@ let playerHeightRange = { "min" : heighLimits[3], "max" : heighLimits[4] };
 let resourceSpotHeightRange = { "min" : (heighLimits[2] + heighLimits[3]) / 2, "max" : (heighLimits[4] + heighLimits[5]) / 2 };
 let playerHeight = (playerHeightRange.min + playerHeightRange.max) / 2; // Average player height
 
-log("Chosing starting locations...");
+g_Map.log("Chosing starting locations");
 let [playerIDs, playerPosition] = sortPlayersByLocation(getStartLocationsByHeightmap(playerHeightRange, 1000, 30));
 
 Engine.SetProgress(30);
@@ -513,9 +513,7 @@ for (let p = 0; p < playerIDs.length; ++p)
  */
 let tchm = getTileCenteredHeightmap();
 
-/**
- * Divide tiles in areas by height and avoid paths
- */
+g_Map.log("Get points per height");
 let areas = heighLimits.map(heightLimit => []);
 for (let x = 0; x < tchm.length; ++x)
 	for (let y = 0; y < tchm[0].length; ++y)
@@ -528,14 +526,12 @@ for (let x = 0; x < tchm.length; ++x)
 				areas[h].push(new Vector2D(x, y));
 				break;
 			}
-			else
-				minHeight = heighLimits[h];
+
+			minHeight = heighLimits[h];
 		}
 	}
 
-/**
- * Get max slope of each area
- */
+g_Map.log("Get slope limits per heightrange");
 let slopeMap = getSlopeMap();
 let minSlope = [];
 let maxSlope = [];
@@ -555,9 +551,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 	}
 }
 
-/**
- * Paint areas by height and slope
- */
+g_Map.log("Paint areas by height and slope");
 for (let h = 0; h < heighLimits.length; ++h)
 	for (let point of areas[h])
 	{
@@ -583,7 +577,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 	}
 Engine.SetProgress(80);
 
-log("Placing resources...");
+g_Map.log("Placing resources");
 let avoidPoints = playerPosition.map(pos => pos.clone());
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
@@ -591,7 +585,7 @@ let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints).map(
 
 Engine.SetProgress(55);
 
-log("Placing players...");
+g_Map.log("Placing players");
 if (isNomad())
 	placePlayersNomad(
 		g_Map.createTileClass(),
@@ -607,7 +601,7 @@ else
 	}
 
 let mercenaryCamps = isNomad() ? 0 : Math.ceil(g_Map.size / 256);
-log("Maximum number of mercenary camps: " + mercenaryCamps);
+g_Map.log("Placing at most " + mercenaryCamps + " mercenary camps");
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let choice = i % 5;

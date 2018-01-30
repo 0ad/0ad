@@ -54,7 +54,7 @@ var treasures = [{
 	"count": isNomad() ? 16 : 14
 }];
 
-log("Creating player markets...");
+g_Map.log("Creating player markets");
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 	{
@@ -88,7 +88,7 @@ placePlayerBases({
 });
 Engine.SetProgress(30);
 
-log("Creating central lake...");
+g_Map.log("Creating central lake");
 createArea(
 	new ChainPlacer(
 		2,
@@ -107,7 +107,7 @@ createArea(
 
 Engine.SetProgress(40);
 
-log("Creating small lakes...");
+g_Map.log("Creating small lakes");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(2, 4)), Math.floor(scaleByMapSize(20, 140)), 0.7),
 	[
@@ -123,7 +123,6 @@ Engine.SetProgress(50);
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 Engine.SetProgress(60);
 
-log("Creating hills...");
 createHills(
 	[tPrimary, tPrimary, tSecondary],
 	avoidClasses(clPlayer, 20, clHill, 35),
@@ -131,7 +130,7 @@ createHills(
 	scaleByMapSize(20, 240));
 Engine.SetProgress(65);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
 	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
 	[[tDirt,tHalfSnow], [tHalfSnow,tSnowLimited]],
@@ -140,7 +139,7 @@ createLayeredPatches(
 	scaleByMapSize(15, 45),
 	clDirt);
 
-log("Creating glacier patches...");
+g_Map.log("Creating glacier patches");
 createPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	tSecondary,
@@ -149,7 +148,7 @@ createPatches(
 	clDirt);
 Engine.SetProgress(70);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 	createMines(
 	[
 		[new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -158,7 +157,7 @@ log("Creating stone mines...");
 	avoidClasses(clWater, 3, clPlayer, 20, clRock, 18, clHill, 2),
 	clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
 	[
 		[new SimpleObject(oMetalLarge, 1,1, 0,4)]

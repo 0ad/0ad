@@ -75,7 +75,7 @@ placePlayerBases({
 });
 Engine.SetProgress(20);
 
-log("Creating bumps...");
+g_Map.log("Creating bumps");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.5, 0.08, 1),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
@@ -83,7 +83,7 @@ createAreas(
 	scaleByMapSize(300, 800)
 );
 
-log("Creating the half dried-up lake...");
+g_Map.log("Creating the half dried-up lake");
 createArea(
 	new ChainPlacer(
 		2,
@@ -99,7 +99,7 @@ createArea(
 	],
 	avoidClasses(clPlayer, 2));
 
-log("Creating more shore jaggedness...");
+g_Map.log("Creating more shore jaggedness");
 createAreas(
 	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, 1),
 	[
@@ -116,7 +116,7 @@ paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 paintTileClassBasedOnHeight(-6, 0, 1, clWater);
 Engine.SetProgress(55);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 for (let i = 0; i < scaleByMapSize(12, 30); ++i)
 {
 	let position = new Vector2D(randIntInclusive(1, mapSize - 1), randIntInclusive(1, mapSize - 1));
@@ -127,7 +127,7 @@ for (let i = 0; i < scaleByMapSize(12, 30); ++i)
 	}
 }
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
@@ -136,7 +136,7 @@ createObjectGroupsDeprecated(
 );
 Engine.SetProgress(65);
 
-log("Creating small decorative rocks...");
+g_Map.log("Creating small decorative rocks");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(aRock, 1, 3, 0, 3)],
@@ -148,7 +148,7 @@ createObjectGroupsDeprecated(
 );
 Engine.SetProgress(70);
 
-log("Creating boar...");
+g_Map.log("Creating boar");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oBoar, 1, 2, 0, 4)],
@@ -159,7 +159,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(4, 12), 50
 );
 
-log("Creating tigers...");
+g_Map.log("Creating tigers");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oTiger, 2, 2, 0, 4)],
@@ -170,7 +170,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(4, 12), 50
 );
 
-log("Creating crocodiles...");
+g_Map.log("Creating crocodiles");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oCrocodile, 2, 4, 0, 4)],
@@ -180,7 +180,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(4, 12), 50
 );
 
-log("Creating elephants...");
+g_Map.log("Creating elephants");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
@@ -194,7 +194,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(4, 12), 50
 );
 
-log("Creating rabbits...");
+g_Map.log("Creating rabbits");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oRabbit, 5, 6, 0, 4)],
@@ -215,7 +215,7 @@ createFood(
 	[avoidClasses(clFood, 20), stayClasses(clWater, 2)],
 	clFood);
 
-log("Creating berry bush...");
+g_Map.log("Creating berry bush");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oBerryBush, 5, 7, 0, 4)],
@@ -227,7 +227,7 @@ createObjectGroupsDeprecated(
 );
 Engine.SetProgress(85);
 
-log("Creating trees...");
+g_Map.log("Creating trees");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oTree, 1, 7, 0, 3)],
@@ -238,7 +238,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(70, 500)
 );
 
-log("Creating large grass tufts...");
+g_Map.log("Creating large grass tufts");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(aBush, 2, 4, 0, 1.8, -Math.PI/8, Math.PI/8)]

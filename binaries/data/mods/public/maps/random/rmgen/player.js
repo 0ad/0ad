@@ -133,6 +133,8 @@ function placeStartingWalls(position, playerID, wallType, orientation = BUILDING
  */
 function placePlayerBases(playerBaseArgs)
 {
+	g_Map.log("Creating playerbases");
+
 	let [playerIDs, playerPosition] = playerBaseArgs.PlayerPlacement;
 
 	for (let i = 0; i < getNumPlayers(); ++i)
@@ -150,8 +152,6 @@ function placePlayerBase(playerBaseArgs)
 {
 	if (isNomad())
 		return;
-
-	log("Creating base for player " + playerBaseArgs.playerID + "...");
 
 	placeCivDefaultStartingEntities(playerBaseArgs.playerPosition, playerBaseArgs.playerID, playerBaseArgs.Walls !== undefined ? playerBaseArgs.Walls : true);
 
@@ -436,6 +436,8 @@ function placePlayersNomad(playerClass, constraints)
 	if (!isNomad())
 		return undefined;
 
+	g_Map.log("Placing nomad starting units");
+
 	let distance = scaleByMapSize(60, 240);
 	let constraint = new AndConstraint(constraints);
 
@@ -445,11 +447,10 @@ function placePlayersNomad(playerClass, constraints)
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		log("Determine starting units for player " + playerIDs[i] + "...");
 		let objects = getStartingEntities(playerIDs[i]).filter(ents => ents.Template.startsWith("units/")).map(
 			ents => new SimpleObject(ents.Template, ents.Count || 1, ents.Count || 1, 1, 3));
 
-		log("Ensure resources for a civic center...");
+		// Add treasure if too few resources for a civic center
 		let ccCost = Engine.GetTemplate("structures/" + getCivCode(playerIDs[i]) + "_civil_centre").Cost.Resources;
 		for (let resourceType in ccCost)
 		{
@@ -462,7 +463,7 @@ function placePlayersNomad(playerClass, constraints)
 			objects.push(new SimpleObject(treasureTemplate, count, count, 3, 5));
 		}
 
-		log("Placing player units...");
+		// Try place these entities at a random location
 		let group = new SimpleGroup(objects, true, playerClass);
 		let success = false;
 		for (let distanceFactor of [1, 1/2, 1/4, 0])

@@ -58,7 +58,7 @@ var clLand = g_Map.createTileClass();
 var clRiver = g_Map.createTileClass();
 var clShallow = g_Map.createTileClass();
 
-log("Create the continent body");
+g_Map.log("Create the continent body");
 var startAngle = randomAngle();
 var continentCenter = new Vector2D(fractionToTiles(0.5), fractionToTiles(0.7));
 var continentCenterR = continentCenter.clone().rotateAround(startAngle, mapCenter).round()
@@ -153,7 +153,7 @@ createForests(
 
 Engine.SetProgress(50);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tGrass,tGrassA],[tGrassA,tGrassB], [tGrassB,tGrassC]],
@@ -162,7 +162,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tGrassPatch,
@@ -171,7 +171,7 @@ createPatches(
  clDirt);
 Engine.SetProgress(55);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -180,7 +180,7 @@ createMines(
  [avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clRiver, 1), stayClasses(clLand, 5)],
  clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -207,7 +207,7 @@ createDecoration(
 	],
 	[avoidClasses(clPlayer, 1, clDirt, 1, clRiver, 1), stayClasses(clLand, 6)]);
 
-log("Create water decoration in the shallow parts");
+g_Map.log("Create water decoration in the shallow parts");
 createDecoration(
 	[
 		[new SimpleObject(aReeds, 1, 3, 0, 1)],

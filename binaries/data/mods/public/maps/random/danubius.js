@@ -254,7 +254,7 @@ var fortressDanubiusSpikes = new Fortress(
 var gallicCC = mapSize >= smallMapSize;
 if (gallicCC)
 {
-	log("Creating gallic villages...");
+	g_Map.log("Creating gallic villages");
 	let gaulCityRadius = 12;
 	let gaulCityBorderDistance = mapSize < mediumMapSize ? 10 : 18;
 
@@ -397,16 +397,14 @@ Engine.SetProgress(30);
 
 paintTileClassBasedOnHeight(-Infinity, 0.7, Elevation_ExcludeMin_ExcludeMax, clWater);
 
-log("Creating shores...");
+g_Map.log("Creating shores");
 paintTerrainBasedOnHeight(-Infinity, heightShore, 0, tWater);
 paintTerrainBasedOnHeight(heightShore, heightLand, 0, tShore);
 Engine.SetProgress(35);
 
-log("Creating bumps...");
 createBumps(avoidClasses(clPlayer, 6, clWater, 2, clPath, 1, clGauls, 1), scaleByMapSize(30, 300), 1, 8, 4, 0, 3);
 Engine.SetProgress(40);
 
-log("Creating hills...");
 if (randBool())
 	createHills(
 		[tCliff, tCliff, tCliff],
@@ -431,7 +429,7 @@ createForests(
 
 Engine.SetProgress(50);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createLayeredPatches(
 	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
 	[[tGrass, tGrass2],[tGrass2, tGrass3], [tGrass3, tGrass]],
@@ -442,7 +440,7 @@ createLayeredPatches(
 
 Engine.SetProgress(55);
 
-log("Creating islands...");
+g_Map.log("Creating islands");
 createAreas(
 	new ChainPlacer(Math.floor(scaleByMapSize(3, 4)), Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(50, 80)), 0.5),
 	[
@@ -455,13 +453,12 @@ createAreas(
 
 Engine.SetProgress(60);
 
-log("Creating island bumps...");
 createBumps(stayClasses(clIsland, 2), scaleByMapSize(50, 400), 1, 8, 4, 0, 3);
 
-log("Paint seabed...");
+g_Map.log("Painting seabed");
 paintTerrainBasedOnHeight(-20, -3, 3, tSeaDepths);
 
-log("Creating island metal mines...");
+g_Map.log("Creating island metal mines");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
@@ -469,7 +466,7 @@ createObjectGroupsDeprecated(
 	500,
 	1);
 
-log("Creating island stone mines...");
+g_Map.log("Creating island stone mines");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
 	0,
@@ -478,7 +475,7 @@ createObjectGroupsDeprecated(
 	1);
 Engine.SetProgress(65);
 
-log("Creating island towers...");
+g_Map.log("Creating island towers");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oTower, 1, 1, 0, 4)], true, clTower),
 	0,
@@ -486,7 +483,7 @@ createObjectGroupsDeprecated(
 	500,
 	1);
 
-log("Creating island outposts...");
+g_Map.log("Creating island outposts");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oOutpost, 1, 1, 0, 4)], true, clOutpost),
 	0,
@@ -494,7 +491,7 @@ createObjectGroupsDeprecated(
 	500,
 	1);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
@@ -502,7 +499,7 @@ createObjectGroupsDeprecated(
 	500,
 	1);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
 	0,
@@ -510,7 +507,7 @@ createObjectGroupsDeprecated(
 	500,
 	1);
 
-log("Creating stone ruins...");
+g_Map.log("Creating stone ruins");
 createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oStoneRuins, 1, 1, 0, 4)], true, clRock),
 		0,
@@ -519,7 +516,7 @@ createObjectGroupsDeprecated(
 		1);
 Engine.SetProgress(70);
 
-log("Creating decoratives...");
+g_Map.log("Creating decoratives");
 for (let i = 0; i < 2; ++i)
 	createDecoration(
 		[
@@ -553,7 +550,7 @@ for (let i = 0; i < 2; ++i)
 			[stayClasses(clIsland, 4) , avoidClasses(clForest, 1, clRock, 4, clMetal, 4)]);
 Engine.SetProgress(75);
 
-log("Creating fish...");
+g_Map.log("Creating fish");
 createFood(
 	[
 		[new SimpleObject(oFish, 2, 3, 0, 2)]
@@ -566,7 +563,7 @@ createFood(
 
 Engine.SetProgress(80);
 
-log("Creating huntable animals...");
+g_Map.log("Creating huntable animals");
 createFood(
 	[
 		[new SimpleObject(oSheep, 5, 5, 0, 4)],
@@ -585,7 +582,7 @@ createFood(
 	avoidClasses(clIsland, 2, clFood, 10, clWater, 5, clPlayer, 16, clHill, 2, clGauls, 5, clPath, 1),
 	clFood);
 
-log("Creating violent animals...");
+g_Map.log("Creating violent animals");
 if (!isNomad())
 	createFood(
 		[
@@ -603,7 +600,7 @@ if (!isNomad())
 
 Engine.SetProgress(85);
 
-log("Creating fruits...");
+g_Map.log("Creating fruits");
 createFood(
 	[
 		[new SimpleObject(oApple, 3, 5, 4, 7)],
@@ -632,7 +629,7 @@ createStragglerTrees(
 
 Engine.SetProgress(95);
 
-log("Creating animals on islands...");
+g_Map.log("Creating animals on islands");
 createFood(
 	[
 		[new SimpleObject(oSheep, 4, 6, 0, 4)],
@@ -649,7 +646,7 @@ createFood(
 
 Engine.SetProgress(98);
 
-log("Creating treasures...");
+g_Map.log("Creating treasures");
 for (let i = 0; i < randomTreasureCount; ++i)
 	createObjectGroupsDeprecated(
 		new SimpleGroup(
@@ -661,7 +658,7 @@ for (let i = 0; i < randomTreasureCount; ++i)
 		1,
 		50);
 
-log("Creating gallic decoratives...");
+g_Map.log("Creating gallic decoratives");
 createDecoration(
 	[
 		[new SimpleObject(aBucket, 1, 1, 0, 1)],
@@ -681,7 +678,7 @@ createDecoration(
 	],
 	avoidClasses(clForest, 1, clPlayer, 10, clBaseResource, 5, clHill, 1, clFood, 1, clWater, 5, clRock, 4, clMetal, 4, clGauls, 5, clPath, 1));
 
-log("Creating spawn points for ships...");
+g_Map.log("Creating spawn points for ships");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(triggerPointShipSpawn, 1, 1, 0, 0)], true, clShip),
 	0,
@@ -689,7 +686,7 @@ createObjectGroupsDeprecated(
 	10000,
 	1000);
 
-log("Creating patrol points for ships...");
+g_Map.log("Creating patrol points for ships");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(triggerPointShipPatrol, 1, 1, 0, 0)], true, clShipPatrol),
 	0,
@@ -697,7 +694,7 @@ createObjectGroupsDeprecated(
 	10000,
 	1000);
 
-log("Creating ungarrison points for ships...");
+g_Map.log("Creating ungarrison points for ships");
 for (let i = 0; i < 2; ++i)
 	createObjectGroupsDeprecated(
 		new SimpleGroup(
@@ -712,12 +709,11 @@ for (let i = 0; i < 2; ++i)
 		20000,
 		1);
 
-log("Creating patrol points for land attackers...");
-clMiddle.add(mapCenter);
-
-log("Creating triggerpoint to allow the triggerscript to determine the river direction...");
+g_Map.log("Creating riverdirection triggerpoint");
 g_Map.placeEntityAnywhere(triggerPointRiverDirection, 0, Vector2D.add(mapCenter, new Vector2D(0, 1).rotate(startAngle)), randomAngle());
 
+g_Map.log("Creating patrol points for land attackers");
+clMiddle.add(mapCenter);
 for (let i = 0; i < 2; ++i)
 {
 	createObjectGroupsDeprecated(
@@ -764,7 +760,7 @@ for (let i = 0; i < 2; ++i)
 			100);
 }
 
-log("Creating water logs...");
+g_Map.log("Creating water logs");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(aWaterLog, 1, 1, 0, 0)], true, clWaterLog),
 	0,
@@ -776,7 +772,7 @@ placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clMetal, 4, clRock, 4, clIs
 
 if (randBool(2/3))
 {
-	log("Setting day theme...");
+	g_Map.log("Setting day theme");
 	setSkySet("cumulus");
 
 	setSunColor(0.9, 0.8, 0.5);
@@ -793,7 +789,7 @@ if (randBool(2/3))
 }
 else
 {
-	log("Setting night theme...");
+	g_Map.log("Setting night theme");
 	setSkySet("dark");
 
 	setSunColor(0.4, 0.9, 1.2);

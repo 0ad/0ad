@@ -97,7 +97,7 @@ createForests(
 
 Engine.SetProgress(50);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]],
@@ -106,7 +106,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tTier4Terrain,
@@ -115,7 +115,7 @@ createPatches(
  clDirt);
 Engine.SetProgress(55);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -124,7 +124,7 @@ createMines(
  avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
  clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]

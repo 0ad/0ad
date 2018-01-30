@@ -6,7 +6,7 @@
  */
 function RandomMap(baseHeight, baseTerrain)
 {
-	log("Initializing map...");
+	this.logger = new RandomMapLogger();
 
 	// Size must be 0 to 1024, divisible by patches
 	this.size = g_MapSettings.Size;
@@ -60,6 +60,11 @@ function RandomMap(baseHeight, baseTerrain)
 	// Starting entity ID, arbitrary number to leave some space for player entities
 	this.entityCount = 150;
 }
+
+RandomMap.prototype.log = function(text)
+{
+	this.logger.print(text);
+};
 
 /**
  * Returns the ID of a texture name.
@@ -378,7 +383,7 @@ RandomMap.prototype.exportEntityList = function()
 			if (this.terrainEntities[x][z])
 				this.entities.push(this.terrainEntities[x][z]);
 
-	log("Number of entities: " + this.entities.length);
+	this.logger.printDirectly("Total entities: " + this.entities.length + ".\n")
 	return this.entities;
 };
 
@@ -427,10 +432,10 @@ RandomMap.prototype.exportTerrainTextures = function()
 
 RandomMap.prototype.ExportMap = function()
 {
-	log("Saving map...");
-
 	if (g_Environment.Water.WaterBody.Height === undefined)
 		g_Environment.Water.WaterBody.Height = SEA_LEVEL - 0.1;
+
+	this.logger.close();
 
 	Engine.ExportMap({
 		"entities": this.exportEntityList(),

@@ -860,7 +860,8 @@ function placeGenericFortress(center, radius = 20, playerId = 0, style, irregula
 		}
 		++tries;
 	}
-	log("placeGenericFortress: Reduced overlap to " + minOverlap + " after " + tries + " tries");
+
+	log("placeGenericFortress: Reduced overlap to " + minOverlap + " after " + tries + " tries...");
 
 	// Place wall
 	for (let pointIndex = 0; pointIndex < bestPointDerivation.length; ++pointIndex)

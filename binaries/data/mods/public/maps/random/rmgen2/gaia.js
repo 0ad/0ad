@@ -18,6 +18,8 @@ var g_Props = {
  */
 function addBluffs(constraint, size, deviation, fill, baseHeight)
 {
+	g_Map.log("Creating bluffs");
+
 	var constrastTerrain = g_Terrains.tier2Terrain;
 
 	if (currentBiome() == "generic/tropic")
@@ -298,6 +300,8 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
  */
 function addDecoration(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating decoration");
+
 	var offset = getRandomDeviation(size, deviation);
 	var decorations = [
 		[
@@ -412,6 +416,8 @@ function addElevation(constraint, el)
  */
 function addHills(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating hills");
+
 	addElevation(constraint, {
 		"class": g_TileClasses.hill,
 		"painter": [g_Terrains.mainTerrain, g_Terrains.mainTerrain],
@@ -433,6 +439,8 @@ function addHills(constraint, size, deviation, fill)
  */
 function addLakes(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating lakes");
+
 	var lakeTile = g_Terrains.water;
 
 	if (currentBiome() == "generic/temperate" || currentBiome() == "generic/tropic")
@@ -487,6 +495,8 @@ function addLakes(constraint, size, deviation, fill)
  */
 function addLayeredPatches(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating layered patches");
+
 	var minRadius = 1;
 	var maxRadius = Math.floor(scaleByMapSize(3, 5));
 	var count = fill * scaleByMapSize(15, 45);
@@ -526,6 +536,8 @@ function addLayeredPatches(constraint, size, deviation, fill)
  */
 function addMountains(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating mountains");
+
 	addElevation(constraint, {
 		"class": g_TileClasses.mountain,
 		"painter": [g_Terrains.cliff, g_Terrains.hill],
@@ -547,6 +559,8 @@ function addMountains(constraint, size, deviation, fill)
  */
 function addPlateaus(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating plateaus");
+
 	var plateauTile = g_Terrains.dirt;
 
 	if (currentBiome() == "generic/snowy")
@@ -625,6 +639,8 @@ function addPlateaus(constraint, size, deviation, fill)
  */
 function addProps(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating rare actors");
+
 	var offset = getRandomDeviation(size, deviation);
 
 	var props = [
@@ -666,6 +682,8 @@ function addValleys(constraint, size, deviation, fill, baseHeight)
 {
 	if (baseHeight < 6)
 		return;
+
+	g_Map.log("Creating valleys");
 
 	let minElevation = Math.max(-baseHeight, 1 - baseHeight / (size * (deviation + 1)));
 
@@ -714,6 +732,8 @@ function addValleys(constraint, size, deviation, fill, baseHeight)
  */
 function addAnimals(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating animals");
+
 	var groupOffset = getRandomDeviation(size, deviation);
 
 	var animals = [
@@ -732,6 +752,8 @@ function addAnimals(constraint, size, deviation, fill)
 
 function addBerries(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating berries");
+
 	let groupOffset = getRandomDeviation(size, deviation);
 
 	createObjectGroupsDeprecated(
@@ -744,6 +766,8 @@ function addBerries(constraint, size, deviation, fill)
 
 function addFish(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating fish");
+
 	var groupOffset = getRandomDeviation(size, deviation);
 
 	var fishes = [
@@ -764,6 +788,8 @@ function addForests(constraint, size, deviation, fill)
 {
 	if (currentBiome() == "generic/savanna")
 		return;
+
+	g_Map.log("Creating forests");
 
 	let treeTypes = [
 		[
@@ -811,6 +837,8 @@ function addForests(constraint, size, deviation, fill)
 
 function addMetal(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating metal mines");
+
 	var offset = getRandomDeviation(size, deviation);
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(g_Gaia.metalLarge, offset, offset, 0, 4 * offset)], true, g_TileClasses.metal),
@@ -822,6 +850,8 @@ function addMetal(constraint, size, deviation, fill)
 
 function addSmallMetal(constraint, size, mixes, amounts)
 {
+	g_Map.log("Creating small metal mines");
+
 	let deviation = getRandomDeviation(size, mixes);
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(g_Gaia.metalSmall, 2 * deviation, 5 * deviation, deviation, 3 * deviation)], true, g_TileClasses.metal),
@@ -836,6 +866,8 @@ function addSmallMetal(constraint, size, mixes, amounts)
  */
 function addStone(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating stone mines");
+
 	var offset = getRandomDeviation(size, deviation);
 
 	var mines = [
@@ -862,6 +894,8 @@ function addStone(constraint, size, deviation, fill)
  */
 function addStragglerTrees(constraint, size, deviation, fill)
 {
+	g_Map.log("Creating straggler trees");
+
 	// Ensure minimum distribution on african biome
 	if (currentBiome() == "generic/savanna")
 	{
@@ -995,6 +1029,8 @@ function unreachableBluff(bb, corners, baseLine, endLine)
  */
 function removeBluff(points)
 {
+	g_Map.log("Replacing bluff with plateau");
+
 	for (let point of points)
 		g_TileClasses.mountain.add(point);
 }

@@ -95,7 +95,7 @@ createForests(
 
 Engine.SetProgress(40);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [tGrassDirt,tDirt],
@@ -104,7 +104,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createLayeredPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  [tGrass2,tGrassPatch],
@@ -115,7 +115,7 @@ createLayeredPatches(
 
 Engine.SetProgress(50);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -124,7 +124,7 @@ createMines(
  avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2),
  clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -176,7 +176,7 @@ createFood(
 	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
 	clFood);
 
-log("Creating food treasures...");
+g_Map.log("Creating food treasures");
 var group = new SimpleGroup(
 	[new SimpleObject(oFoodTreasure, 2,3, 0,2)],
 	true, clTreasure
@@ -186,7 +186,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-log("Creating food treasures...");
+g_Map.log("Creating food treasures");
 group = new SimpleGroup(
 	[new SimpleObject(oWoodTreasure, 2,3, 0,2)],
 	true, clTreasure

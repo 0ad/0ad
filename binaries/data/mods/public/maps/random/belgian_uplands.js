@@ -98,7 +98,6 @@ Engine.SetProgress(5);
 // - Restart the loop if start positions are invalid or two players are to close to each other
 var goodStartPositionsFound = false;
 var minDistBetweenPlayers = 16 + mapSize / 16; // Don't set this higher than 25 for tiny maps! It will take forever with 8 players!
-var enoughTiles = false;
 var tries = 0;
 var lowerHeightLimit = textueByHeight[3].upperHeightLimit;
 var upperHeightLimit = textueByHeight[6].upperHeightLimit;
@@ -106,7 +105,7 @@ var upperHeightLimit = textueByHeight[6].upperHeightLimit;
 while (!goodStartPositionsFound)
 {
 	tries++;
-	log("Starting giant while loop try " + tries);
+	g_Map.log("Starting giant while loop try " + tries);
 
 	// Generate reliefmap
 	var myReliefmap = clone(g_Map.height);
@@ -192,16 +191,8 @@ while (!goodStartPositionsFound)
 
 	possibleStartPositions = clone(possibleStartPositionsTemp);
 
-	if(possibleStartPositions.length > numPlayers)
-		enoughTiles = true;
-	else
-	{
-		enoughTiles = false;
-		log("possibleStartPositions.length < numPlayers, possibleStartPositions.length = " + possibleStartPositions.length + ", numPlayers = " + numPlayers);
-	}
-
 	// Find a good start position derivation
-	if (enoughTiles)
+	if (possibleStartPositions.length > numPlayers)
 	{
 		// Get some random start location derivations. NOTE: Iterating over all possible derivations is just too much (valid points * numPlayers)
 		var maxTries = 100000;
@@ -242,16 +233,16 @@ while (!goodStartPositionsFound)
 		if (maxMinDist > minDistBetweenPlayers)
 		{
 			goodStartPositionsFound = true;
-			log("Exiting giant while loop after " +  tries + " tries with a minimum player distance of " + maxMinDist);
+			g_Map.log("Exiting giant while loop after " +  tries + " tries with a minimum player distance of " + maxMinDist);
 		}
 		else
-			log("maxMinDist <= " + minDistBetweenPlayers + ", maxMinDist = " + maxMinDist);
+			g_Map.log("maxMinDist <= " + minDistBetweenPlayers + ", maxMinDist = " + maxMinDist);
 	}
 }
 
 Engine.SetProgress(60);
 
-log("Painting terrain by height and add props...");
+g_Map.log("Painting terrain by height and add props");
 var propDensity = 1; // 1 means as determined in the loop, less for large maps as set below
 if (mapSize > 500)
 	propDensity = 1/4;
@@ -383,7 +374,7 @@ if (isNomad())
 	placePlayersNomad(g_Map.createTileClass(), new HeightConstraint(lowerHeightLimit, upperHeightLimit));
 else
 {
-	log("Placing players and starting resources...");
+	g_Map.log("Placing players and starting resources");
 
 	let playerIDs = sortAllPlayers();
 	let resourceDistance = 8;

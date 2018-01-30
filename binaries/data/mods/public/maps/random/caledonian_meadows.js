@@ -228,12 +228,12 @@ let heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (he
 let heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT; // Water height in RMGEN
 setWaterHeight(heightSeaGround);
 
-log("Generating terrain using diamon-square...");
+g_Map.log("Generating terrain using diamon-square");
 let medH = (heightRange.min + heightRange.max) / 2;
 let initialHeightmap = [[medH, medH], [medH, medH]];
 setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialHeightmap, 0.8);
 
-log("Apply erosion...");
+g_Map.log("Apply erosion");
 for (let i = 0; i < 5; ++i)
 	splashErodeMap(0.1);
 
@@ -256,7 +256,7 @@ let heighLimits = [
 
 let playerHeight = (heighLimits[4] + heighLimits[5]) / 2; // Average player height
 
-log("Determining height-dependent biome...");
+g_Map.log("Determining height-dependent biome");
 // Texture and actor presets
 let myBiome = [];
 myBiome.push({ // 0 Deep water
@@ -318,18 +318,18 @@ myBiome.push({ // 10 Hilltop
 let [playerIDs, playerPosition] = sortPlayersByLocation(getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
 Engine.SetProgress(30);
 
-log("Smooth player locations...");
+g_Map.log("Smooth player locations");
 for (let p = 0; p < playerIDs.length; ++p)
 	rectangularSmoothToHeight(playerPosition[p], 35, 35, playerHeight, 0.7);
 
-log("Creating paths...");
+g_Map.log("Creating paths");
 let tchm = getTileCenteredHeightmap();
 let clPath = g_Map.createTileClass();
 for (let i = 0; i < playerPosition.length; ++i)
 	placeRandomPathToHeight(playerPosition[i], playerPosition[(i + 1) % playerPosition.length], playerHeight, clPath, tPath, 4, 4, 0.08, g_Map.height);
 Engine.SetProgress(45);
 
-log("Determining resource locations...");
+g_Map.log("Determining resource locations");
 let avoidPoints = playerPosition.map(pos => pos.clone());
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
@@ -382,7 +382,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 	}
 }
 
-log("Painting areas by height and slope...");
+g_Map.log("Painting areas by height and slope");
 for (let h = 0; h < heighLimits.length; ++h)
 	for (let point of areas[h])
 	{
@@ -408,7 +408,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 	}
 Engine.SetProgress(80);
 
-log("Placing players...");
+g_Map.log("Placing players");
 if (isNomad())
 	placePlayersNomad(g_Map.createTileClass(), new HeightConstraint(heighLimits[4], heighLimits[5]));
 else
@@ -418,7 +418,7 @@ else
 		placeStartLocationResources(playerPosition[p]);
 	}
 
-log("Placing resources, farmsteads, groves and camps...");
+g_Map.log("Placing resources, farmsteads, groves and camps");
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let pos = new Vector2D(resourceSpots[i].x, resourceSpots[i].y);

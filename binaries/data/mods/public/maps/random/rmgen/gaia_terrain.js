@@ -7,7 +7,7 @@
  */
 function createBumps(constraint, count, minSize, maxSize, spread, failFraction = 0, elevation = 2)
 {
-	log("Creating bumps...");
+	g_Map.log("Creating bumps");
 	createAreas(
 		new ChainPlacer(
 			minSize || 1,
@@ -24,7 +24,7 @@ function createBumps(constraint, count, minSize, maxSize, spread, failFraction =
  */
 function createHills(terrainset, constraint, tileClass, count, minSize, maxSize, spread, failFraction = 0.5, elevation = 18, elevationSmoothing = 2)
 {
-	log("Creating hills...");
+	g_Map.log("Creating hills");
 	createAreas(
 		new ChainPlacer(
 			minSize || 1,
@@ -45,7 +45,7 @@ function createHills(terrainset, constraint, tileClass, count, minSize, maxSize,
  */
 function createMountains(terrain, constraint, tileClass, count, maxHeight, minRadius, maxRadius, numCircles)
 {
-	log("Creating mountains...");
+	g_Map.log("Creating mountains");
 	let mapSize = g_Map.getSize();
 
 	for (let i = 0; i < (count || scaleByMapSize(1, 4) * getNumPlayers()); ++i)
@@ -216,7 +216,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
  */
 function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke, elevationType)
 {
-	log("Creating volcano...");
+	g_Map.log("Creating volcano");
 
 	let clLava = g_Map.createTileClass();
 	let layers = [
@@ -332,7 +332,7 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
  */
 function paintRiver(args)
 {
-	log("Creating river...");
+	g_Map.log("Creating river");
 
 	// Model the river meandering as the sum of two sine curves.
 	let meanderShort = fractionToTiles(args.meanderShort / scaleByMapSize(35, 160));
@@ -449,7 +449,7 @@ function rndRiver(f, seed)
  */
 function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbed, heightRange, maxAngle, tributaryRiverTileClass, shallowTileClass, constraint)
 {
-	log("Creating tributary rivers...");
+	g_Map.log("Creating tributary rivers");
 	let waviness = 0.4;
 	let smoothness = scaleByMapSize(3, 12);
 	let offset = 0.1;
@@ -500,6 +500,8 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 
 	// Create shallows
 	if (shallowTileClass)
+	{
+		g_Map.log("Creating shallows in the tributary rivers...");
 		for (let z of [0.25, 0.75])
 			createPassage({
 				"start": new Vector2D(mapBounds.left, fractionToTiles(z)).rotateAround(riverAngle, mapCenter),
@@ -512,6 +514,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 				"maxHeight": heightShallow,
 				"tileClass": shallowTileClass
 			});
+	}
 }
 
 /**

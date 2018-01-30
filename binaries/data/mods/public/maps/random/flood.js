@@ -66,7 +66,7 @@ const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-log("Creating player islands...")
+g_Map.log("Creating player islands...")
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));
 
 for (let i = 0; i < numPlayers; ++i)
@@ -110,7 +110,7 @@ placePlayerBases({
 });
 Engine.SetProgress(40);
 
-log("Creating central island...");
+g_Map.log("Creating central island");
 createArea(
 	new ChainPlacer(
 		6,
@@ -167,7 +167,7 @@ for (let m = 0; m < randIntInclusive(8, 17); ++m)
 		[avoidClasses(clBaseResource, 2, clPlayer, 40), stayClasses(clHill, 6)]);
 }
 
-log("Creating center bounty...");
+g_Map.log("Creating center bounty");
 createObjectGroup(
 	new SimpleGroup(
 		[new SimpleObject(oMetalLarge, 3, 6, 25, Math.floor(fractionToTiles(0.25)))],
@@ -186,7 +186,7 @@ createObjectGroup(
 		0,
 		[avoidClasses(clBaseResource, 20, clPlayer, 40, clMountain, 4), stayClasses(clHill, 10)]);
 
-log("Creating fish...");
+g_Map.log("Creating fish");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oFish, 2, 3, 0, 2)], true, clFood),
 	0,
@@ -209,7 +209,7 @@ createStragglerTrees(
 	stragglerTrees);
 Engine.SetProgress(65);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 var numb = currentBiome() == "generic/savanna" ? 3 : 1;
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
@@ -221,11 +221,11 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		avoidClasses(clForest, 0, clMountain, 0, clDirt, 5, clPlayer, 10),
 		numb * scaleByMapSize(15, 45));
 
-log("Painting shorelines...");
+g_Map.log("Painting shorelines");
 paintTerrainBasedOnHeight(1, heightLand, 0, tMainTerrain);
 paintTerrainBasedOnHeight(heightSeaGround, 1, 3, tTier1Terrain);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
@@ -233,7 +233,6 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 		avoidClasses(clForest, 0, clMountain, 0, clDirt, 5, clPlayer, 10),
 		numb * scaleByMapSize(15, 45));
 
-log("Creating food...");
 createFood(
 	[
 		[new SimpleObject(oMainHuntableAnimal, 5, 7, 0, 4)],
@@ -255,7 +254,6 @@ createFood(
 
 Engine.SetProgress(85);
 
-log("Creating decoration...");
 var planetm = currentBiome() == "generic/tropic" ? 8 : 1;
 createDecoration(
 	[
@@ -274,7 +272,6 @@ createDecoration(
 	],
 	avoidClasses(clForest, 2, clPlayer, 20, clMountain, 5, clFood, 1, clBaseResource, 2));
 
-log("Creating water forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(0.1));
 createForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
@@ -282,7 +279,7 @@ createForests(
 	clForest,
 	forestTrees);
 
-log("Creating small grass tufts...");
+g_Map.log("Creating small grass tufts");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(aGrassShort, 1, 2, 0, 1)]),
 	0,
