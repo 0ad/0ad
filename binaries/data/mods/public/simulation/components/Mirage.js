@@ -17,8 +17,8 @@ Mirage.prototype.Init = function()
 
 	this.classesList = [];
 
-	this.buildPercentage = 0;
 	this.numBuilders = 0;
+	this.buildTime = {};
 
 	this.maxHitpoints = null;
 	this.hitpoints = null;
@@ -77,12 +77,12 @@ Mirage.prototype.GetClassesList = function() { return this.classesList };
 Mirage.prototype.CopyFoundation = function(cmpFoundation)
 {
 	this.miragedIids.add(IID_Foundation);
-	this.buildPercentage = cmpFoundation.GetBuildPercentage();
 	this.numBuilders = cmpFoundation.GetNumBuilders();
+	this.buildTime = cmpFoundation.GetBuildTime();
 };
 
-Mirage.prototype.GetBuildPercentage = function() { return this.buildPercentage; };
 Mirage.prototype.GetNumBuilders = function() { return this.numBuilders; };
+Mirage.prototype.GetBuildTime = function() { return this.buildTime; };
 
 // Repairable data (numBuilders shared with foundation as entities can't have both)
 

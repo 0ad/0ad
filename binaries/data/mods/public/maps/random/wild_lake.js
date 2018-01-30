@@ -211,21 +211,22 @@ function placeMine(position, centerEntity,
 	]
 )
 {
-	placeObject(position, centerEntity, 0, randomAngle());
+	g_Map.placeEntityPassable(centerEntity, 0, position, randomAngle());
 
 	let quantity = randIntInclusive(11, 23);
 	let dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
-		placeObject(
-			Vector2D.add(position, new Vector2D(randFloat(2, 5), 0).rotate(-dAngle * randFloat(i, i + 1))),
+		g_Map.placeEntityPassable(
 			pickRandom(decorativeActors),
 			0,
+			Vector2D.add(position, new Vector2D(randFloat(2, 5), 0).rotate(-dAngle * randFloat(i, i + 1))),
 			randomAngle());
 }
 
 // Groves, only Wood
 let groveActors = [g_Decoratives.grass, g_Decoratives.rockMedium, g_Decoratives.bushMedium];
 let clGrove = g_Map.createTileClass();
+let clGaiaCamp = g_Map.createTileClass();
 
 function placeGrove(point,
 	groveEntities = [
@@ -239,7 +240,7 @@ function placeGrove(point,
 )
 {
 	let position = new Vector2D(point.x, point.y);
-	placeObject(position, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randomAngle());
+	g_Map.placeEntityPassable(pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, position, randomAngle());
 
 	let quantity = randIntInclusive(20, 30);
 	let dAngle = 2 * Math.PI / quantity;
@@ -252,7 +253,7 @@ function placeGrove(point,
 			objectList = groveActors;
 
 		let pos = Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle));
-		placeObject(pos, pickRandom(objectList), 0, randomAngle());
+		g_Map.placeEntityPassable(pickRandom(objectList), 0, pos, randomAngle());
 
 		let painters = [new TerrainPainter(groveTerrainTexture)];
 		if (groveTileClass)
@@ -330,7 +331,7 @@ function placeCamp(position,
 	]
 )
 {
-	placeObject(position, centerEntity, 0, randomAngle());
+	g_Map.placeEntityPassable(centerEntity, 0, position, randomAngle());
 
 	let quantity = randIntInclusive(5, 11);
 	let dAngle = 2 * Math.PI / quantity;
@@ -338,8 +339,10 @@ function placeCamp(position,
 	{
 		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(1, 3);
-		placeObject(Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle)), pickRandom(otherEntities), 0, randomAngle());
+		g_Map.placeEntityPassable(pickRandom(otherEntities), 0, Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle)), randomAngle());
 	}
+
+	addCivicCenterAreaToClass(position, clGaiaCamp);
 }
 
 function placeStartLocationResources(
@@ -381,7 +384,8 @@ function placeStartLocationResources(
 			objectList = groveActors;
 
 		let position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
-		placeObject(position, pickRandom(objectList), 0, randomAngle());
+		g_Map.placeEntityPassable(pickRandom(objectList), 0, position, randomAngle());
+
 		createArea(
 			new ClumpPlacer(5, 1, 1, 1, position),
 			[
@@ -405,7 +409,7 @@ function placeStartLocationResources(
 	{
 		angle = currentAngle + randFloat(0, dAngle);
 		let dist = getRandDist();
-		placeObject(Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle)), pickRandom(foodEntities), 0, randomAngle());
+		g_Map.placeEntityPassable(pickRandom(foodEntities), 0, Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle)), randomAngle());
 		currentAngle += dAngle;
 	}
 }
@@ -489,8 +493,8 @@ let playerHeightRange = { "min" : heighLimits[3], "max" : heighLimits[4] };
 let resourceSpotHeightRange = { "min" : (heighLimits[2] + heighLimits[3]) / 2, "max" : (heighLimits[4] + heighLimits[5]) / 2 };
 let playerHeight = (playerHeightRange.min + playerHeightRange.max) / 2; // Average player height
 
-log("Chosing starting locations...");
-let [playerIDs, startLocations] = sortPlayersByLocation(getStartLocationsByHeightmap(playerHeightRange, 1000, 30));
+g_Map.log("Chosing starting locations");
+let [playerIDs, playerPosition] = sortPlayersByLocation(getStartLocationsByHeightmap(playerHeightRange, 1000, 30));
 
 Engine.SetProgress(30);
 
@@ -501,7 +505,7 @@ let playerBaseRadius = 35;
 if (g_Map.size < 256)
 	playerBaseRadius = 25;
 for (let p = 0; p < playerIDs.length; ++p)
-	rectangularSmoothToHeight(startLocations[p], playerBaseRadius, playerBaseRadius, playerHeight, 0.7);
+	rectangularSmoothToHeight(playerPosition[p], playerBaseRadius, playerBaseRadius, playerHeight, 0.7);
 
 /**
  * Calculate tile centered height map after start position smoothing but before placing paths
@@ -509,21 +513,11 @@ for (let p = 0; p < playerIDs.length; ++p)
  */
 let tchm = getTileCenteredHeightmap();
 
-/**
- * Add paths (If any)
- */
-let clPath = g_Map.createTileClass();
-
-/**
- * Divide tiles in areas by height and avoid paths
- */
+g_Map.log("Get points per height");
 let areas = heighLimits.map(heightLimit => []);
 for (let x = 0; x < tchm.length; ++x)
 	for (let y = 0; y < tchm[0].length; ++y)
 	{
-		if (g_Map.tileClasses[clPath].inclusionCount[x][y] > 0) // Avoid paths
-			continue;
-
 		let minHeight = heightRange.min;
 		for (let h = 0; h < heighLimits.length; ++h)
 		{
@@ -532,14 +526,12 @@ for (let x = 0; x < tchm.length; ++x)
 				areas[h].push(new Vector2D(x, y));
 				break;
 			}
-			else
-				minHeight = heighLimits[h];
+
+			minHeight = heighLimits[h];
 		}
 	}
 
-/**
- * Get max slope of each area
- */
+g_Map.log("Get slope limits per heightrange");
 let slopeMap = getSlopeMap();
 let minSlope = [];
 let maxSlope = [];
@@ -559,9 +551,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 	}
 }
 
-/**
- * Paint areas by height and slope
- */
+g_Map.log("Paint areas by height and slope");
 for (let h = 0; h < heighLimits.length; ++h)
 	for (let point of areas[h])
 	{
@@ -583,31 +573,35 @@ for (let h = 0; h < heighLimits.length; ++h)
 		g_Map.setTexture(point, texture);
 
 		if (actor)
-			placeObject(Vector2D.add(point, new Vector2D(randFloat(0, 1), randFloat(0, 1))), actor, 0, randomAngle());
+			g_Map.placeEntityAnywhere(actor, 0, randomPositionOnTile(point), randomAngle());
 	}
 Engine.SetProgress(80);
 
-log("Placing resources...");
-let avoidPoints = clone(startLocations);
+g_Map.log("Placing resources");
+let avoidPoints = playerPosition.map(pos => pos.clone());
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
-let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints, clPath).map(point => new Vector2D(point.x, point.y));
+let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints).map(point => new Vector2D(point.x, point.y));
 
 Engine.SetProgress(55);
 
-log("Placing players...");
+g_Map.log("Placing players");
 if (isNomad())
-	placePlayersNomad(g_Map.createTileClass(), new HeightConstraint(playerHeightRange.min, playerHeightRange.max));
+	placePlayersNomad(
+		g_Map.createTileClass(),
+		[
+			new HeightConstraint(playerHeightRange.min, playerHeightRange.max),
+			avoidClasses(clGaiaCamp, 8)
+		]);
 else
 	for (let p = 0; p < playerIDs.length; ++p)
 	{
-		let point = new Vector2D(startLocations[p].x, startLocations[p].y);
-		placeCivDefaultStartingEntities(point, playerIDs[p], g_Map.size > 192);
-		placeStartLocationResources(point);
+		placeCivDefaultStartingEntities(playerPosition[p], playerIDs[p], g_Map.size > 192);
+		placeStartLocationResources(playerPosition[p]);
 	}
 
 let mercenaryCamps = isNomad() ? 0 : Math.ceil(g_Map.size / 256);
-log("Maximum number of mercenary camps: " + mercenaryCamps);
+g_Map.log("Placing at most " + mercenaryCamps + " mercenary camps");
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let choice = i % 5;

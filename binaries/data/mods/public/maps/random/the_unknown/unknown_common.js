@@ -141,7 +141,7 @@ function unknownArchipelago()
 		markPlayerArea("large");
 	}
 
-	log("Creating islands...");
+	g_Map.log("Creating islands");
 	let islandSize = diskArea(scaleByMapSize(17, 29));
 	for (let i = 0; i < numPlayers; ++i)
 		createArea(
@@ -151,7 +151,7 @@ function unknownArchipelago()
 	let type = isNomad() ? randIntInclusive(1, 2) : randIntInclusive(1, 3);
 	if (type == 1)
 	{
-		log("Creating archipelago...");
+		g_Map.log("Creating archipelago");
 		createAreas(
 			new ClumpPlacer(islandSize * randFloat(0.8, 1.2), 0.8, 0.1, 10),
 			[
@@ -161,7 +161,7 @@ function unknownArchipelago()
 			null,
 			scaleByMapSize(2, 5) * randIntInclusive(8, 14));
 
-		log("Creating shore jaggedness with small puddles...");
+		g_Map.log("Creating shore jaggedness with small puddles");
 		createAreas(
 			new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, 1),
 			[
@@ -174,7 +174,7 @@ function unknownArchipelago()
 	}
 	else if (type == 2)
 	{
-		log("Creating islands...");
+		g_Map.log("Creating islands");
 		createAreas(
 			new ClumpPlacer(islandSize * randFloat(0.6, 1.4), 0.8, 0.1, randFloat(0.0, 0.2)),
 			[
@@ -184,7 +184,7 @@ function unknownArchipelago()
 			avoidClasses(clLand, 3, clPlayerTerritory, 3),
 			scaleByMapSize(6, 10) * randIntInclusive(8, 14));
 
-		log("Creating small islands...");
+		g_Map.log("Creating small islands");
 		createAreas(
 			new ClumpPlacer(islandSize * randFloat(0.3, 0.7), 0.8, 0.1, 0.07),
 			[
@@ -197,7 +197,7 @@ function unknownArchipelago()
 	}
 	else if (type == 3)
 	{
-		log("Creating tight islands...");
+		g_Map.log("Creating tight islands");
 		createAreas(
 			new ClumpPlacer(islandSize * randFloat(0.8, 1.2), 0.8, 0.1, 10),
 			[
@@ -218,7 +218,7 @@ function unknownContinent()
 
 	if (!isNomad())
 	{
-		log("Ensuring player area...");
+		g_Map.log("Ensuring player area");
 		[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
 		markPlayerArea("small");
 
@@ -238,7 +238,7 @@ function unknownContinent()
 				]);
 	}
 
-	log("Creating continent...");
+	g_Map.log("Creating continent");
 	createArea(
 		new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, 10, mapCenter),
 		[
@@ -248,7 +248,7 @@ function unknownContinent()
 
 	if (randBool(1/3))
 	{
-		log("Creating peninsula (i.e. half the map not being surrounded by water)...");
+		g_Map.log("Creating peninsula (i.e. half the map not being surrounded by water)");
 		let angle = randomAngle();
 		let peninsulaPosition1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.25), 0).rotate(-angle));
 		createArea(
@@ -258,7 +258,7 @@ function unknownContinent()
 				new TileClassPainter(clLand)
 			]);
 
-		log("Remembering to not paint shorelines into the peninsula...");
+		g_Map.log("Remembering to not paint shorelines into the peninsula");
 		let peninsulaPosition2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.35), 0).rotate(-angle));
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.33)), 0.9, 0.01, 10, peninsulaPosition2),
@@ -308,7 +308,7 @@ function unknownCentralSea()
 
 	if (!g_AllowNaval || randBool())
 	{
-		log("Creating isthmus (i.e. connecting the two riversides with a big land passage)...");
+		g_Map.log("Creating isthmus (i.e. connecting the two riversides with a big land passage)");
 		let [isthmusStart, isthmusEnd] = centralRiverCoordinates(startAngle + Math.PI / 2);
 		createArea(
 			new PathPlacer(
@@ -350,14 +350,14 @@ function unknownCentralRiver()
 		markPlayerArea("large");
 	}
 
-	log("Creating the main river...");
+	g_Map.log("Creating the main river");
 	let [coord1, coord2] = centralRiverCoordinates(startAngle);
 	createArea(
 		new PathPlacer(coord1, coord2, scaleByMapSize(14, 24), 0.5, scaleByMapSize(3, 12), 0.1, 0.01),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 		avoidClasses(clPlayerTerritory, 4));
 
-	log("Creating small water spots at the map border to ensure separation of players...");
+	g_Map.log("Creating small water spots at the map border to ensure separation of players");
 	for (let coord of [coord1, coord2])
 		createArea(
 			new ClumpPlacer(diskArea(scaleByMapSize(5, 10)), 0.95, 0.6, 10, coord),
@@ -366,7 +366,7 @@ function unknownCentralRiver()
 
 	if (!g_AllowNaval || randBool())
 	{
-		log("Creating the shallows of the main river...");
+		g_Map.log("Creating the shallows of the main river");
 		for (let i = 0; i <= randIntInclusive(1, scaleByMapSize(4, 8)); ++i)
 		{
 			let location = fractionToTiles(randFloat(0.15, 0.85));
@@ -418,7 +418,7 @@ function unknownRiversAndLake()
 	let lake = randBool(3/4);
 	if (lake)
 	{
-		log("Creating lake...");
+		g_Map.log("Creating lake");
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.17)), 0.7, 0.1, 10, mapCenter),
 			[
@@ -432,7 +432,7 @@ function unknownRiversAndLake()
 	// Don't do this on nomad because the imbalances on the different islands are too drastic
 	if (!isNomad() && (!lake || randBool(1/3)))
 	{
-		log("Creating small rivers separating players...");
+		g_Map.log("Creating small rivers separating players");
 		for (let river of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
 		{
 			createArea(
@@ -452,7 +452,7 @@ function unknownRiversAndLake()
 				avoidClasses(clPlayer, 5));
 		}
 
-		log("Creating lake...");
+		g_Map.log("Creating lake");
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.04)), 0.7, 0.1, 10, mapCenter),
 			[
@@ -463,7 +463,7 @@ function unknownRiversAndLake()
 
 	if (!isNomad && lake && randBool())
 	{
-		log("Creating small central island...");
+		g_Map.log("Creating small central island");
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, 10, mapCenter),
 			[
@@ -526,7 +526,7 @@ function unknownGulf()
 	let startAngle = randomAngle();
 	if (!isNomad())
 	{
-		log("Determining player locations...");
+		g_Map.log("Determining player locations");
 
 		playerPosition = playerPlacementCustomAngle(
 			fractionToTiles(0.35),
@@ -572,7 +572,7 @@ function unknownLakes()
 		markPlayerArea("large");
 	}
 
-	log("Creating lakes...");
+	g_Map.log("Creating lakes");
 	createAreas(
 		new ClumpPlacer(scaleByMapSize(160, 700), 0.2, 0.1, 1),
 		[
@@ -605,9 +605,9 @@ function unknownPasses()
 	else
 		startAngle = randomAngle();
 
+	g_Map.log("Creating a mountain range between neighboring players");
 	for (let mountain of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
 	{
-		log("Creating a mountain range between neighboring players...");
 		createArea(
 			new PathPlacer(mapCenter, mountain, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 			[
@@ -617,17 +617,17 @@ function unknownPasses()
 			],
 			avoidClasses(clPlayer, 5));
 
-		log("Creating small mountain at the map border between the players to ensure separation of players...");
+		// Small mountain at the map border between the players to ensure separation of players
 		createArea(
 			new ClumpPlacer(diskArea(scaleByMapSize(4, 22)), 0.95, 0.6, 10, mountain),
 			new SmoothElevationPainter(ELEVATION_SET, heightMountain, 0),
 			avoidClasses(clPlayer, 5));
 	}
 
+	g_Map.log("Creating passages between neighboring players");
 	let passes = distributePointsOnCircle(numPlayers * 2, startAngle, fractionToTiles(0.35), mapCenter)[0];
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		log("Create passages between neighboring players...");
 		createArea(
 			new PathPlacer(
 				passes[2 * i],
@@ -642,7 +642,7 @@ function unknownPasses()
 
 	if (randBool(2/5))
 	{
-		log("Create central lake...");
+		g_Map.log("Create central lake");
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.1)), 0.7, 0.1, 10, mapCenter),
 			[
@@ -652,7 +652,7 @@ function unknownPasses()
 	}
 	else
 	{
-		log("Fill area between the paths...");
+		g_Map.log("Fill area between the paths");
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, 10, mapCenter),
 			[
@@ -669,7 +669,7 @@ function unknownLowlands()
 {
 	let heightMountain = 30;
 
-	log("Creating mountain that is going to separate players...");
+	g_Map.log("Creating mountain that is going to separate players");
 	createArea(
 		new MapBoundsPlacer(),
 		new ElevationPainter(heightMountain));
@@ -684,7 +684,7 @@ function unknownLowlands()
 	else
 		startAngle = randomAngle();
 
-	log("Creating valleys enclosed by the mountain...");
+	g_Map.log("Creating valleys enclosed by the mountain");
 	let valleys = numPlayers;
 	if (mapSize >= 128 && numPlayers <= 2 ||
 	    mapSize >= 192 && numPlayers <= 3 ||
@@ -693,9 +693,9 @@ function unknownLowlands()
 	    mapSize >= 448 && numPlayers <= 6)
 		valleys *= 2;
 
+	g_Map.log("Creating player valley");
 	for (let valley of distributePointsOnCircle(valleys, startAngle, fractionToTiles(0.35), mapCenter)[0])
 	{
-		log("Creating player valley...");
 		createArea(
 			new ClumpPlacer(diskArea(scaleByMapSize(18, 32)), 0.65, 0.1, 10, valley),
 			[
@@ -703,7 +703,7 @@ function unknownLowlands()
 				new TileClassPainter(clLand)
 			]);
 
-		log("Creating passes from player areas to the center...");
+		// Passage from player to center
 		createArea(
 			new PathPlacer(mapCenter, valley, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 			[
@@ -712,7 +712,7 @@ function unknownLowlands()
 			]);
 	}
 
-	log("Creating the big central area...");
+	g_Map.log("Creating the big central area");
 	createArea(
 		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.7, 0.1, 10, mapCenter),
 		[
@@ -747,7 +747,7 @@ function centralRiverCoordinates(angle)
 
 function createShoreJaggedness(waterHeight, borderClass, shoreDist, inwards = true)
 {
-	log("Creating shore jaggedness...");
+	g_Map.log("Creating shore jaggedness");
 	for (let i = 0; i < 2; ++i)
 		if (i || inwards)
 			createAreas(
@@ -770,7 +770,7 @@ function createExtensionsOrIslands()
 
 	if (rnd == 1)
 	{
-		log("Creating islands...");
+		g_Map.log("Creating islands");
 		createAreas(
 			new ClumpPlacer(Math.square(randIntInclusive(scaleByMapSize(8, 15), scaleByMapSize(15, 23))), 0.8, 0.1, randFloat(0, 0.2)),
 			[
@@ -782,7 +782,7 @@ function createExtensionsOrIslands()
 	}
 	else if (rnd == 2)
 	{
-		log("Creating extentions...");
+		g_Map.log("Creating extentions");
 		createAreas(
 			new ChainPlacer(Math.floor(scaleByMapSize(4, 7)), Math.floor(scaleByMapSize(7, 10)), Math.floor(scaleByMapSize(16, 40)), 0.07),
 			[
@@ -830,14 +830,14 @@ function paintUnknownMapBasedOnHeight()
  */
 function createUnknownObjects()
 {
-	log("Creating bumps...");
+	g_Map.log("Creating bumps");
 	createAreas(
 		new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 		[avoidClasses(clWater, 2, clPlayer, 10), stayClasses(clLand, 3)],
 		randIntInclusive(0, scaleByMapSize(1, 2) * 200));
 
-	log("Creating hills...");
+	g_Map.log("Creating hills");
 	createAreas(
 		new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 		[
@@ -850,7 +850,7 @@ function createUnknownObjects()
 	);
 	Engine.SetProgress(50);
 
-	log("Creating forests...");
+	g_Map.log("Creating forests");
 	let [numForest, numStragglers] = getTreeCounts(...rBiomeTreeCount(1));
 	let types = [
 		[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
@@ -870,7 +870,7 @@ function createUnknownObjects()
 			num);
 	Engine.SetProgress(50);
 
-	log("Creating dirt patches...");
+	g_Map.log("Creating dirt patches");
 	let patchCount = (currentBiome() == "generic/savanna" ? 3 : 1) * scaleByMapSize(15, 45);
 	for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 		createAreas(
@@ -882,7 +882,7 @@ function createUnknownObjects()
 			[avoidClasses(clForest, 0, clHill, 2, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
 			patchCount);
 
-	log("Creating grass patches...");
+	g_Map.log("Creating grass patches");
 	for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 		createAreas(
 				new ClumpPlacer(size, 0.3, 0.06, 0.5),
@@ -892,7 +892,7 @@ function createUnknownObjects()
 
 	Engine.SetProgress(55);
 
-	log("Creating stone mines...");
+	g_Map.log("Creating stone mines");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
 		0,
@@ -900,7 +900,7 @@ function createUnknownObjects()
 		randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
 		100);
 
-	log("Creating small stone quarries...");
+	g_Map.log("Creating small stone quarries");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock),
 		0,
@@ -908,7 +908,7 @@ function createUnknownObjects()
 		randIntInclusive(scaleByMapSize(2, 9),scaleByMapSize(9, 40)),
 		100);
 
-	log("Creating metal mines...");
+	g_Map.log("Creating metal mines");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 		0,
@@ -917,7 +917,7 @@ function createUnknownObjects()
 		100);
 	Engine.SetProgress(65);
 
-	log("Creating small decorative rocks...");
+	g_Map.log("Creating small decorative rocks");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(aRockMedium, 1, 3, 0, 1)], true),
 		0,
@@ -925,7 +925,7 @@ function createUnknownObjects()
 		scaleByMapSize(16, 262),
 		50);
 
-	log("Creating large decorative rocks...");
+	g_Map.log("Creating large decorative rocks");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)], true),
 		0,
@@ -934,7 +934,7 @@ function createUnknownObjects()
 		50);
 	Engine.SetProgress(70);
 
-	log("Creating deer...");
+	g_Map.log("Creating deer");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oMainHuntableAnimal, 5, 7, 0, 4)], true, clFood),
 		0,
@@ -942,7 +942,7 @@ function createUnknownObjects()
 		randIntInclusive(numPlayers + 3, 5 * numPlayers + 4),
 		50);
 
-	log("Creating berry bush...");
+	g_Map.log("Creating berry bush");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oFruitBush, 5, 7, 0, 4)], true, clFood),
 		0,
@@ -951,7 +951,7 @@ function createUnknownObjects()
 		50);
 	Engine.SetProgress(75);
 
-	log("Creating sheep...");
+	g_Map.log("Creating sheep");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oSecondaryHuntableAnimal, 2, 3, 0, 2)], true, clFood),
 		0,
@@ -959,7 +959,7 @@ function createUnknownObjects()
 		randIntInclusive(numPlayers + 3, 5 * numPlayers + 4),
 		50);
 
-	log("Creating fish...");
+	g_Map.log("Creating fish");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oFish, 2, 3, 0, 2)], true, clFood),
 		0,
@@ -968,7 +968,7 @@ function createUnknownObjects()
 		60);
 	Engine.SetProgress(85);
 
-	log("Creating straggler trees...");
+	g_Map.log("Creating straggler trees");
 	types = [g_Gaia.tree1, g_Gaia.tree2, g_Gaia.tree3, g_Gaia.tree4];
 
 	num = Math.floor(numStragglers / types.length);
@@ -981,7 +981,7 @@ function createUnknownObjects()
 
 	let planetm = currentBiome() == "generic/tropic" ? 8 : 1;
 
-	log("Creating small grass tufts...");
+	g_Map.log("Creating small grass tufts");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(aGrassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]),
 		0,
@@ -989,7 +989,7 @@ function createUnknownObjects()
 		planetm * scaleByMapSize(13, 200));
 	Engine.SetProgress(90);
 
-	log("Creating large grass tufts...");
+	g_Map.log("Creating large grass tufts");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(aGrass, 2, 4, 0, 1.8, -Math.PI / 8, Math.PI / 8), new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5, -Math.PI / 8, Math.PI / 8)]),
 		0,
@@ -997,7 +997,7 @@ function createUnknownObjects()
 		planetm * scaleByMapSize(13, 200));
 	Engine.SetProgress(95);
 
-	log("Creating shallow flora...");
+	g_Map.log("Creating shallow flora");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(aLillies, 1, 2, 0, 2), new SimpleObject(aReeds, 2, 4, 0, 2)]),
 		0,
@@ -1005,7 +1005,7 @@ function createUnknownObjects()
 		60 * scaleByMapSize(13, 200),
 		80);
 
-	log("Creating bushes...");
+	g_Map.log("Creating bushes");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]),
 		0,

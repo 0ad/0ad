@@ -77,7 +77,7 @@ stripWidthsRight = stripWidthsRight.map(strip => [1 - strip[1], 1 - strip[0]]);
 
 var stripWidths = stripWidthsLeft.concat(stripWidthsRight);
 
-log("Creating strips...");
+g_Map.log("Creating strips");
 for (let i = 0; i < stripWidths.length; ++i)
 {
 	clStrip[i] = g_Map.createTileClass();
@@ -110,7 +110,7 @@ var playerPosition = playerPlacementLine(startAngle, mapCenter, fractionToTiles(
 // Either left vs right or top vs bottom
 var playerIDs = randBool() ? sortAllPlayers() : primeSortAllPlayers();
 
-log("Ensuring player territory...");
+g_Map.log("Ensuring player territory");
 var playerRadius = scaleByMapSize(12, 20);
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
@@ -160,7 +160,7 @@ Engine.SetProgress(40);
 
 if (!isNomad())
 {
-	log("Creating gaia...");
+	g_Map.log("Creating gaia");
 	for (let i = 0; i < 2; ++i)
 		for (let j = 0; j < scaleByMapSize(1, 8); ++j)
 			createObjectGroupsDeprecated(
@@ -186,7 +186,7 @@ if (!isNomad())
 				50);
 }
 
-log("Creating hills...");
+g_Map.log("Creating hills");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.1),
 	[
@@ -203,11 +203,10 @@ createAreas(
 	],
 	scaleByMapSize(1, 5));
 
-log("Creating bumps...");
 createBumps(avoidClasses(clPlayer, 8, clWater, 2), scaleByMapSize(20, 150), 2, 8, 4, 1, 4);
 Engine.SetProgress(50);
 
-log("Creating forests...");
+g_Map.log("Creating forests");
 var [forestTrees, stragglerTrees] = getTreeCounts(1000, 4000, 0.7);
 var types = [
 	[[tGrass, tGrass, tGrass, tGrass, pForestD], [tGrass, tGrass, tGrass, pForestD]],
@@ -251,7 +250,7 @@ createStragglerTrees(
 
 Engine.SetProgress(60);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
@@ -268,7 +267,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 			clDirt, 16),
 		scaleByMapSize(20, 80));
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
@@ -285,7 +284,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 			clDirt, 16),
 		scaleByMapSize(20, 80));
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
@@ -305,7 +304,7 @@ createObjectGroupsDeprecated(
 		9 * scaleByMapSize(1, 4),
 		100);
 
-log("Creating small stone mines...");
+g_Map.log("Creating small stone mines");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock),
 	0,
@@ -319,7 +318,7 @@ createObjectGroupsDeprecated(
 		9 * scaleByMapSize(1, 4),
 	100);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
@@ -334,7 +333,7 @@ createObjectGroupsDeprecated(
 	9 * scaleByMapSize(1, 4),
 	100);
 
-log("Creating small decorative rocks...");
+g_Map.log("Creating small decorative rocks");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(aRockMedium, 1, 3, 0, 1)], true),
 	0,
@@ -348,7 +347,7 @@ createObjectGroupsDeprecated(
 	3 * scaleByMapSize(16, 262),
 	50);
 
-log("Creating large decorative rocks...");
+g_Map.log("Creating large decorative rocks");
 createObjectGroupsDeprecated(
 	new SimpleGroup([
 			new SimpleObject(aRockLarge, 1, 2, 0, 1),
@@ -366,7 +365,7 @@ createObjectGroupsDeprecated(
 	3 * scaleByMapSize(8, 131),
 	50);
 
-log("Creating small grass tufts...");
+g_Map.log("Creating small grass tufts");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(aBush1, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]),
 	0,
@@ -380,7 +379,7 @@ createObjectGroupsDeprecated(
 	8 * scaleByMapSize(13, 200));
 Engine.SetProgress(70);
 
-log("Creating large grass tufts...");
+g_Map.log("Creating large grass tufts");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([
 			new SimpleObject(aBush2, 2, 4, 0, 1.8, -Math.PI / 8, Math.PI / 8),
@@ -398,7 +397,7 @@ log("Creating large grass tufts...");
 		8 * scaleByMapSize(13, 200));
 Engine.SetProgress(85);
 
-log("Creating bushes...");
+g_Map.log("Creating bushes");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([
 			new SimpleObject(aBush3, 1, 2, 0, 2),
@@ -412,7 +411,7 @@ log("Creating bushes...");
 			clDirt, 1),
 		8 * scaleByMapSize(13, 200), 50);
 
-log("Creating deer...");
+g_Map.log("Creating deer");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oDeer, 5, 7, 0, 4)], true, clFood),
 		0,
@@ -426,7 +425,7 @@ log("Creating deer...");
 		3 * numPlayers,
 		50);
 
-log("Creating boar...");
+g_Map.log("Creating boar");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oBoar, 2, 4, 0, 4)], true, clFood),
 		0,
@@ -440,7 +439,7 @@ log("Creating boar...");
 		3 * numPlayers,
 		50);
 
-log("Creating tigers...");
+g_Map.log("Creating tigers");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oTiger, 1, 1, 0, 4)], true, clFood),
 	0,
@@ -455,7 +454,7 @@ createObjectGroupsDeprecated(
 	50);
 Engine.SetProgress(95);
 
-log("Creating berry bush...");
+g_Map.log("Creating berry bush");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oBush, 5, 7, 0, 4)], true, clFood),
 	0,
@@ -469,7 +468,7 @@ createObjectGroupsDeprecated(
 		randIntInclusive(1, 4) * numPlayers + 2,
 		50);
 
-log("Creating fish...");
+g_Map.log("Creating fish");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oFish, 2, 3, 0, 2)], true, clFood),
 	0,

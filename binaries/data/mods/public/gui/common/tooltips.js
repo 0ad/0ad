@@ -366,18 +366,28 @@ function getRepairRateTooltip(template)
 	});
 }
 
-function getBuildRateTooltip(template)
+function getBuildTimeTooltip(entState)
 {
-	if (!template.buildRate)
-		return "";
+	if (!entState.foundation.numBuilders)
+		return sprintf(translatePlural(
+			"Add a worker to finish the construction in %(second)s second.",
+			"Add a worker to finish the construction in %(second)s seconds.",
+			Math.round(entState.foundation.buildTime.timeRemainingNew)),
+		{
+			"second": Math.round(entState.foundation.buildTime.timeRemainingNew)
+		});
 
-	return sprintf(translate("%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
-		"buildRateLabel": headerFont(translate("Build Rate:")),
-		"value": template.buildRate.toFixed(1),
-		"health": unitFont(translate("Health")),
-		"second": unitFont(translate("second")),
-		"worker": unitFont(translate("Worker"))
-	});
+	return sprintf(translate("%(label)s %(details)s"), {
+			"label": headerFont(translate("Number of builders:")),
+			"details": entState.foundation.numBuilders
+		}) + "\n" +
+		sprintf(translatePlural(
+			"Add another worker to speed up the construction by %(second)s second.",
+			"Add another worker to speed up the construction by %(second)s seconds.",
+			Math.round(entState.foundation.buildTime.timeRemaining - entState.foundation.buildTime.timeRemainingNew)),
+		{
+			"second": Math.round(entState.foundation.buildTime.timeRemaining - entState.foundation.buildTime.timeRemainingNew)
+		});
 }
 
 /**

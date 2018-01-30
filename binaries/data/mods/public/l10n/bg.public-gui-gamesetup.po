@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 07:19+0000\n"
+"POT-Creation-Date: 2018-01-27 12:54+0100\n"
+"PO-Revision-Date: 2018-01-27 16:36+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -171,329 +171,375 @@ msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr "Всички карти от избрания вид"
 
-#: gui/gamesetup/gamesetup.js:406
+#: gui/gamesetup/gamesetup.js:396
+msgctxt "Match settings tab name"
+msgid "Map"
+msgstr "Карта"
+
+#: gui/gamesetup/gamesetup.js:411
+msgctxt "Match settings tab name"
+msgid "Player"
+msgstr "Играч"
+
+#: gui/gamesetup/gamesetup.js:421
+msgctxt "Match settings tab name"
+msgid "Game Type"
+msgstr "Вид на играта"
+
+#: gui/gamesetup/gamesetup.js:461
 msgid "Map Type"
 msgstr "Вид на картата"
 
-#: gui/gamesetup/gamesetup.js:407
+#: gui/gamesetup/gamesetup.js:462
 msgid "Select a map type."
 msgstr "Изберете вида на картата."
 
-#: gui/gamesetup/gamesetup.js:430
+#: gui/gamesetup/gamesetup.js:485
 msgid "Map Filter"
 msgstr "Категория"
 
-#: gui/gamesetup/gamesetup.js:431
+#: gui/gamesetup/gamesetup.js:486
 msgid "Select a map filter."
 msgstr "Изберете категорията на картата."
 
-#: gui/gamesetup/gamesetup.js:446
+#: gui/gamesetup/gamesetup.js:501
 msgid "Select Map"
 msgstr "Карта"
 
-#: gui/gamesetup/gamesetup.js:447
+#: gui/gamesetup/gamesetup.js:502
 msgid "Select a map to play on."
 msgstr "Изберете картата за игра."
 
-#: gui/gamesetup/gamesetup.js:461
+#: gui/gamesetup/gamesetup.js:516
 msgid "Map Size"
 msgstr "Размер на картата"
 
-#: gui/gamesetup/gamesetup.js:462
+#: gui/gamesetup/gamesetup.js:517
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Изберете размера на картата. (Големите карти може да влошат производителността.)"
 
-#: gui/gamesetup/gamesetup.js:476
+#: gui/gamesetup/gamesetup.js:531
 msgid "Biome"
 msgstr "Биом"
 
-#: gui/gamesetup/gamesetup.js:477
+#: gui/gamesetup/gamesetup.js:532
 msgid "Select the flora and fauna."
 msgstr "Изберете вида на растителността и животните."
 
-#: gui/gamesetup/gamesetup.js:492
+#: gui/gamesetup/gamesetup.js:547
 msgid "Number of Players"
 msgstr "Брой играчи"
 
-#: gui/gamesetup/gamesetup.js:493
+#: gui/gamesetup/gamesetup.js:548
 msgid "Select number of players."
 msgstr "Изберете броя на играчите."
 
-#: gui/gamesetup/gamesetup.js:513
+#: gui/gamesetup/gamesetup.js:568
 msgid "Population Cap"
 msgstr "Максимално население"
 
-#: gui/gamesetup/gamesetup.js:520
+#: gui/gamesetup/gamesetup.js:575
 msgid "Select population limit."
 msgstr "Изберете максималното население."
 
-#: gui/gamesetup/gamesetup.js:523
+#: gui/gamesetup/gamesetup.js:578
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Внимание: Ако всички %(players)s играчи достигнат население от %(popCap)s, производителността на играта може да се намали."
 
-#: gui/gamesetup/gamesetup.js:541
+#: gui/gamesetup/gamesetup.js:596
 msgid "Starting Resources"
 msgstr "Начални ресурси"
 
-#: gui/gamesetup/gamesetup.js:544
+#: gui/gamesetup/gamesetup.js:599
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Начално количество от всеки ресурс: %(resources)s."
 
-#: gui/gamesetup/gamesetup.js:547
+#: gui/gamesetup/gamesetup.js:602
 msgid "Select the game's starting resources."
 msgstr "Изберете началните ресурси в играта."
 
-#: gui/gamesetup/gamesetup.js:562
+#: gui/gamesetup/gamesetup.js:617
 msgid "Ceasefire"
 msgstr "Примирие"
 
-#: gui/gamesetup/gamesetup.js:563
+#: gui/gamesetup/gamesetup.js:618
 msgid "Set time where no attacks are possible."
 msgstr "Изберете време, през което нападенията са забранени."
 
-#: gui/gamesetup/gamesetup.js:576
+#: gui/gamesetup/gamesetup.js:631
 msgid "Victory Condition"
 msgstr "Условие за победа"
 
-#: gui/gamesetup/gamesetup.js:577
+#: gui/gamesetup/gamesetup.js:632
 msgid "Select victory condition."
 msgstr "Изберете условието за победа."
 
-#: gui/gamesetup/gamesetup.js:592
+#: gui/gamesetup/gamesetup.js:647
 msgid "Relic Count"
 msgstr "Брой реликви"
 
-#: gui/gamesetup/gamesetup.js:593
+#: gui/gamesetup/gamesetup.js:648
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "Общ брой реликви, които да бъдат разположени на картата. Победата чрез заграбвани на реликви е най-реалистична, ако броят на реликвите е една или две. Ако те са повече, реликвите са важни за получаване на подобрения на аурите."
 
-#: gui/gamesetup/gamesetup.js:607
+#: gui/gamesetup/gamesetup.js:662
 msgid "Relic Duration"
 msgstr "Времетраене за реликва"
 
-#: gui/gamesetup/gamesetup.js:608
+#: gui/gamesetup/gamesetup.js:663
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Брой минути, след които играчът побеждава чрез реликва."
 
-#: gui/gamesetup/gamesetup.js:622
+#: gui/gamesetup/gamesetup.js:677
 msgid "Wonder Duration"
 msgstr "Времетраене за чудо"
 
-#: gui/gamesetup/gamesetup.js:623
+#: gui/gamesetup/gamesetup.js:678
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr "Брой минути, след които играчът побеждава чрез чудо."
 
-#: gui/gamesetup/gamesetup.js:637
+#: gui/gamesetup/gamesetup.js:692
 msgid "Game Speed"
 msgstr "Скорост на играта"
 
-#: gui/gamesetup/gamesetup.js:638
+#: gui/gamesetup/gamesetup.js:693
 msgid "Select game speed."
 msgstr "Изберете скоростта на играта."
 
-#: gui/gamesetup/gamesetup.js:652
+#: gui/gamesetup/gamesetup.js:707
 msgid "Difficulty"
 msgstr "Трудност"
 
-#: gui/gamesetup/gamesetup.js:654
+#: gui/gamesetup/gamesetup.js:709
 msgid "Select the difficulty of this scenario."
 msgstr "Изберете трудността на този сценарии."
 
-#: gui/gamesetup/gamesetup.js:719
+#: gui/gamesetup/gamesetup.js:774
 msgid "Chose the civilization for this player"
 msgstr "Изберете цивилизацията за този играч."
 
-#: gui/gamesetup/gamesetup.js:759
+#: gui/gamesetup/gamesetup.js:814
 msgid "Hero Garrison"
 msgstr "Геройски гарнизон"
 
-#: gui/gamesetup/gamesetup.js:760
+#: gui/gamesetup/gamesetup.js:815
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Определя дали героите могат да бъдат поставяни на гарнизон."
 
+#: gui/gamesetup/gamesetup.js:827
+msgid "Nomad"
+msgstr "Номад"
+
+#: gui/gamesetup/gamesetup.js:828
+msgid ""
+"In Nomad mode, players start with only few units and have to find a suitable"
+" place to build their city. Ceasefire is recommended."
+msgstr "В режим „Номад“ играчите започват само с няколко единици и трябва да намерят подходящо място, на което да построят града си. Препоръчва се използването на временно примирие."
+
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map options!
-#: gui/gamesetup/gamesetup.js:774
+#. explored map settings!
+#: gui/gamesetup/gamesetup.js:841
 msgid "Revealed Map"
 msgstr "Открита карта"
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map options!
-#: gui/gamesetup/gamesetup.js:777
+#. explored map settings!
+#: gui/gamesetup/gamesetup.js:844
 msgid "Toggle revealed map (see everything)."
 msgstr "Определя дали картата да е открита (да се вижда всичко)."
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map options!
-#: gui/gamesetup/gamesetup.js:793
+#. explored map settings!
+#: gui/gamesetup/gamesetup.js:860
 msgid "Explored Map"
 msgstr "Проучена карта"
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map options!
-#: gui/gamesetup/gamesetup.js:796
+#. explored map settings!
+#: gui/gamesetup/gamesetup.js:863
 msgid "Toggle explored map (see initial map)."
 msgstr "Определя дали картата да е проучена (да се вижда цялата от начало)."
 
-#: gui/gamesetup/gamesetup.js:807
+#: gui/gamesetup/gamesetup.js:874
 msgid "Disable Treasures"
 msgstr "Без съкровища"
 
-#: gui/gamesetup/gamesetup.js:808
+#: gui/gamesetup/gamesetup.js:875
 msgid "Disable all treasures on the map."
 msgstr "Изключва всички съкровища на картата."
 
-#: gui/gamesetup/gamesetup.js:819
+#: gui/gamesetup/gamesetup.js:886
 msgid "Disable Spies"
 msgstr "Без шпиони"
 
-#: gui/gamesetup/gamesetup.js:820
+#: gui/gamesetup/gamesetup.js:887
 msgid "Disable spies during the game."
 msgstr "Забранява шпионите по време на играта."
 
-#: gui/gamesetup/gamesetup.js:831
+#: gui/gamesetup/gamesetup.js:898
 msgid "Teams Locked"
 msgstr "Заключени отбори"
 
-#: gui/gamesetup/gamesetup.js:832
+#: gui/gamesetup/gamesetup.js:899
 msgid "Toggle locked teams."
 msgstr "Определя дали отборите да са заключени."
 
-#: gui/gamesetup/gamesetup.js:846
+#: gui/gamesetup/gamesetup.js:913
 msgid "Last Man Standing"
 msgstr "Последният оцелял"
 
-#: gui/gamesetup/gamesetup.js:847
+#: gui/gamesetup/gamesetup.js:914
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Определя дали последният останал играч или последната останала група съюзници печели играта."
 
-#: gui/gamesetup/gamesetup.js:860
+#: gui/gamesetup/gamesetup.js:927
 msgid "Cheats"
 msgstr "Измами"
 
-#: gui/gamesetup/gamesetup.js:861
+#: gui/gamesetup/gamesetup.js:928
 msgid "Toggle the usability of cheats."
 msgstr "Определя дали да може да се използват измами."
 
-#: gui/gamesetup/gamesetup.js:874
+#: gui/gamesetup/gamesetup.js:941
 msgid "Rated Game"
 msgstr "Игра за класация"
 
-#: gui/gamesetup/gamesetup.js:875
+#: gui/gamesetup/gamesetup.js:942
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Определя дали резултатът от тази игра ще влияе на класирането на играчите."
 
-#: gui/gamesetup/gamesetup.js:901
+#: gui/gamesetup/gamesetup.js:974
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr "Натиснете %(hotkey)s, за да довършите името на играча или настройката автоматично."
 
-#: gui/gamesetup/gamesetup.js:909
+#: gui/gamesetup/gamesetup.js:982
 msgid "Return to the lobby."
 msgstr "Назад към чакалнята."
 
-#: gui/gamesetup/gamesetup.js:910
+#: gui/gamesetup/gamesetup.js:983
 msgid "Return to the main menu."
 msgstr "Назад към главното меню."
 
-#: gui/gamesetup/gamesetup.js:914
+#: gui/gamesetup/gamesetup.js:987
 msgid "Start Game!"
 msgstr "Начало на играта!"
 
-#: gui/gamesetup/gamesetup.js:920
+#: gui/gamesetup/gamesetup.js:993
 msgid "Start a new game with the current settings."
 msgstr "Започване на нова игра с текущите настройки."
 
-#: gui/gamesetup/gamesetup.js:921
+#: gui/gamesetup/gamesetup.js:994
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "Започване на нова игра с текущите настройки (забранено, докато не станат готови всички играчи)"
 
-#: gui/gamesetup/gamesetup.js:975
+#: gui/gamesetup/gamesetup.js:1057
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "Настройка на ИИ: %(description)s."
 
-#: gui/gamesetup/gamesetup.js:1510
+#: gui/gamesetup/gamesetup.js:1157
+#, javascript-format
+msgid "Toggle the %(name)s settings tab."
+msgstr "Превключване на раздела за настройка на %(name)s."
+
+#: gui/gamesetup/gamesetup.js:1158
+#, javascript-format
+msgid "Use %(hotkey)s to move a settings tab down."
+msgstr "Използвайте %(hotkey)s, за да преместите раздел с настройки надолу."
+
+#: gui/gamesetup/gamesetup.js:1159
+#, javascript-format
+msgid "Use %(hotkey)s to move a settings tab up."
+msgstr "Използвайте , за да преместите раздел с настройки нагоре."
+
+#: gui/gamesetup/gamesetup.js:1678
 msgctxt "map selection"
 msgid "Random"
 msgstr "Случайна"
 
-#: gui/gamesetup/gamesetup.js:1512
+#: gui/gamesetup/gamesetup.js:1680
 msgid "Pick any of the given maps at random."
 msgstr "Избиране на случайна карта от посочените."
 
-#: gui/gamesetup/gamesetup.js:1544
+#: gui/gamesetup/gamesetup.js:1712
 msgctxt "biome"
 msgid "Random"
 msgstr "Случаен"
 
-#: gui/gamesetup/gamesetup.js:1545
+#: gui/gamesetup/gamesetup.js:1713
 msgid "Pick a biome at random."
 msgstr "Избиране на случаен биом."
 
-#: gui/gamesetup/gamesetup.js:1866 gui/gamesetup/gamesetup.js:1908
+#: gui/gamesetup/gamesetup.js:2044
 #, javascript-format
-msgid "%(option)s:"
-msgstr "%(option)s:"
+msgctxt "Title for specific setting"
+msgid "%(setting)s:"
+msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:1871
-msgctxt "option value"
+#: gui/gamesetup/gamesetup.js:2049
+msgctxt "settings value"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: gui/gamesetup/gamesetup.js:1901
+#: gui/gamesetup/gamesetup.js:2079
 msgid "Yes"
 msgstr "Да"
 
-#: gui/gamesetup/gamesetup.js:1901
+#: gui/gamesetup/gamesetup.js:2079
 msgid "No"
 msgstr "Не"
 
-#: gui/gamesetup/gamesetup.js:1995
+#: gui/gamesetup/gamesetup.js:2086
+#, javascript-format
+msgid "%(setting)s:"
+msgstr "%(setting)s:"
+
+#: gui/gamesetup/gamesetup.js:2173
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2198
+#: gui/gamesetup/gamesetup.js:2380
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "ИИ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2206
+#: gui/gamesetup/gamesetup.js:2388
 msgid "Unassigned"
 msgstr "Неопределен"
 
-#: gui/gamesetup/gamesetup.js:2282
+#: gui/gamesetup/gamesetup.js:2464
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2289
+#: gui/gamesetup/gamesetup.js:2471
 msgid "Unknown Player"
 msgstr "Неизвестен играч"
 
-#: gui/gamesetup/gamesetup.js:2328
+#: gui/gamesetup/gamesetup.js:2510
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2329
+#: gui/gamesetup/gamesetup.js:2511
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2330
+#: gui/gamesetup/gamesetup.js:2512
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -528,7 +574,6 @@ msgid "Cancel"
 msgstr "Отказ"
 
 #: gui/aiconfig/aiconfig.xml:(caption):52
-#: gui/gamesetup/gamesetup.xml:(caption):314
 msgid "OK"
 msgstr "Добре"
 
@@ -544,87 +589,78 @@ msgstr "Зареждане"
 msgid "Loading map data. Please wait…"
 msgstr "Зареждане на данните за картата. Моля, изчакайте…"
 
-#: gui/gamesetup/gamesetup.xml:(caption):38
+#: gui/gamesetup/gamesetup.xml:(caption):42
 msgid "Player Name"
 msgstr "Име на играча"
 
-#: gui/gamesetup/gamesetup.xml:(caption):42
+#: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Color"
 msgstr "Цвят"
 
-#: gui/gamesetup/gamesetup.xml:(caption):46
+#: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Player Placement"
 msgstr "Място на играча"
 
-#: gui/gamesetup/gamesetup.xml:(caption):50
+#: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Civilization"
 msgstr "Цивилизация"
 
-#: gui/gamesetup/gamesetup.xml:(caption):78
+#: gui/gamesetup/gamesetup.xml:(caption):82
 msgid "Team"
 msgstr "Отбор"
 
-#: gui/gamesetup/gamesetup.xml:(caption):132
+#: gui/gamesetup/gamesetup.xml:(caption):136
 msgid "Show this message in the future"
 msgstr "Показване на това съобщение в бъдеще"
 
-#: gui/gamesetup/gamesetup.xml:(caption):199
+#: gui/gamesetup/gamesetup.xml:(caption):225
 msgid "Send"
 msgstr "Изпращане"
 
-#: gui/gamesetup/gamesetup.xml:(caption):216
+#: gui/gamesetup/gamesetup.xml:(caption):242
 msgid "Cheats enabled."
 msgstr "Измамите са включени."
 
-#: gui/gamesetup/gamesetup.xml:(caption):244
+#: gui/gamesetup/gamesetup.xml:(caption):272
 msgid "Back"
 msgstr "Назад"
 
-#: gui/gamesetup/gamesetup.xml:(caption):258
-#: gui/gamesetup/gamesetup.xml:(caption):270
-msgid "More Options"
-msgstr "Още настройки"
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):60
+#: gui/gamesetup/gamesetup.xml:(tooltip):64
 msgid "View civilization info"
 msgstr "Показва информация за цивилизацията"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):73
+#: gui/gamesetup/gamesetup.xml:(tooltip):77
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Връщане на всички избрани цивилизации към тези по подразбиране (случайни)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):88
+#: gui/gamesetup/gamesetup.xml:(tooltip):92
 msgid "Reset all teams to the default."
 msgstr "Връщане на всички отбори по подразбиране."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):99
+#: gui/gamesetup/gamesetup.xml:(tooltip):103
 msgid "Pick a color."
 msgstr "Изберете цвят."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):102
+#: gui/gamesetup/gamesetup.xml:(tooltip):106
 msgid "Select player."
 msgstr "Изберете играч."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):112
+#: gui/gamesetup/gamesetup.xml:(tooltip):116
 msgid "Configure AI settings."
 msgstr "Промяна на настройките на изкуствения интелект."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):115
+#: gui/gamesetup/gamesetup.xml:(tooltip):119
 msgid "Select player's civilization."
 msgstr "Изберете цивилизацията на играча."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):119
+#: gui/gamesetup/gamesetup.xml:(tooltip):123
 msgid "Select player's team."
 msgstr "Изберете отбора на играча."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):259
-msgid "See more game options"
-msgstr "Преглед на допълнителните настройки за играта."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):315
-msgid "Close more game options window"
-msgstr "Затваря прозореца с допълнителните настройки на играта."
+#: gui/gamesetup/gamesetup.xml:(tooltip):207
+msgid "Show the multiplayer lobby in a dialog window."
+msgstr "Показване на чакалнята в прозорец."
 
 #: gui/text/quotes.txt:1
 msgid ""

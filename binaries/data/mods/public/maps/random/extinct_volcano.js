@@ -78,7 +78,7 @@ var playerMountainSize = defaultPlayerBaseRadius();
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
-log("Creating CC mountains...");
+g_Map.log("Creating CC mountains");
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 	{
@@ -137,7 +137,7 @@ Engine.SetProgress(15);
 createVolcano(mapCenter, clHill, tHillVeryDark, undefined, false, ELEVATION_SET);
 Engine.SetProgress(20);
 
-log("Creating lakes...");
+g_Map.log("Creating lakes");
 createAreas(
 	new ChainPlacer(5, 6, Math.floor(scaleByMapSize(10, 14)), 0.1),
 	[
@@ -153,7 +153,7 @@ createBumps(avoidClasses(clPlayer, 0, clHill, 0), scaleByMapSize(50, 300), 1, 10
 paintTileClassBasedOnHeight(10, 100, 0, clBumps);
 Engine.SetProgress(30);
 
-log("Creating hills...");
+g_Map.log("Creating hills");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 	[
@@ -165,7 +165,7 @@ createAreas(
 	scaleByMapSize(2, 8) * numPlayers);
 Engine.SetProgress(35);
 
-log("Creating forests...");
+g_Map.log("Creating forests");
 var [forestTrees, stragglerTrees] = getTreeCounts(1200, 3000, 0.7);
 var types = [
 	[[tGrassB, tGrassA, pForestD], [tGrassB, pForestD]],
@@ -188,7 +188,7 @@ for (let type of types)
 		num);
 Engine.SetProgress(40);
 
-log("Creating hill patches...");
+g_Map.log("Creating hill patches");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	for (let type of [[tHillMedium1, tHillDark], [tHillDark, tHillMedium2], [tHillMedium1, tHillMedium2]])
 		createAreas(
@@ -206,7 +206,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 			scaleByMapSize(20, 80));
 Engine.SetProgress(45);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createLayeredPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	[tGrassPatchBlend, tGrassPatch],
@@ -222,7 +222,7 @@ createLayeredPatches(
 	clDirt);
 Engine.SetProgress(50);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
@@ -245,7 +245,7 @@ createObjectGroupsDeprecated(
 	100);
 Engine.SetProgress(55);
 
-log("Creating small stone quarries...");
+g_Map.log("Creating small stone quarries");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock),
 	0,
@@ -262,7 +262,7 @@ createObjectGroupsDeprecated(
 	100);
 Engine.SetProgress(60);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
@@ -282,7 +282,7 @@ Engine.SetProgress(65);
 
 if (!isNomad())
 {
-	log("Creating towers...");
+	g_Map.log("Creating towers");
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oTower, 1, 1, 0, 4)], true, clTower),
 		0,
@@ -420,7 +420,7 @@ createStragglerTrees(
 
 Engine.SetProgress(90);
 
-log("Creating straggler bushes...");
+g_Map.log("Creating straggler bushes");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oBush, 1, 3, 0, 3)],
@@ -440,7 +440,7 @@ createObjectGroupsDeprecated(
 	stragglerTrees);
 Engine.SetProgress(95);
 
-log("Creating rain drops...");
+g_Map.log("Creating rain drops");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(aRain, 2, 2, 1, 4)],

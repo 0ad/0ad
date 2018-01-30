@@ -173,7 +173,7 @@ Foundation.prototype.GetBuildTime = function()
 	let rateNew = (this.totalBuilderRate + 1) * this.CalculateBuildMultiplier(this.GetNumBuilders() + 1);
 	return {
 		"timeRemaining": timeLeft / rate,
-		"timeSpeedup": timeLeft / rate - timeLeft / rateNew
+		"timeRemainingNew": timeLeft / rateNew
 	};
 };
 

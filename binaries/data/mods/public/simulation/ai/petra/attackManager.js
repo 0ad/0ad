@@ -589,7 +589,7 @@ m.AttackManager.prototype.getWonderEnemyPlayer = function(gameState, attack)
 
 /**
  * Target the player with the most relics (including gaia).
- */ 
+ */
 m.AttackManager.prototype.getRelicEnemyPlayer = function(gameState, attack)
 {
 	let enemyPlayer;

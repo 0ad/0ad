@@ -97,7 +97,7 @@ placePlayerBases({
 	}
 });
 
-log("Creating central lake...");
+g_Map.log("Creating central lake");
 createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.075)), 0.7, 0.1, 10, mapCenter),
 	[
@@ -106,7 +106,7 @@ createArea(
 		new TileClassPainter(clWater)
 	]);
 
-log("Creating rivers between opponents...");
+g_Map.log("Creating rivers between opponents");
 let numRivers = isNomad() ? randIntInclusive(4, 8) : numPlayers;
 let rivers = distributePointsOnCircle(numRivers, startAngle + Math.PI / numRivers, fractionToTiles(0.5), mapCenter)[0];
 for (let i = 0; i < numRivers; ++i)
@@ -168,7 +168,7 @@ createForests(
 
 Engine.SetProgress(50);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]],
@@ -177,7 +177,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tTier4Terrain,
@@ -186,7 +186,7 @@ createPatches(
  clDirt);
 Engine.SetProgress(55);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -195,7 +195,7 @@ createMines(
  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
  clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]

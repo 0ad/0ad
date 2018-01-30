@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:46+0000\n"
+"POT-Creation-Date: 2018-01-27 12:54+0100\n"
+"PO-Revision-Date: 2018-01-27 15:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -161,14 +161,16 @@ msgstr "ESBORRA"
 #: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
 #: gui/options/options.js:263 gui/options/options.js:316
 #: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:428
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/summary/summary.js:442
 msgid "No"
 msgstr "No"
 
 #: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
 #: gui/options/options.js:263 gui/options/options.js:316
 #: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:428
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/summary/summary.js:442
 msgid "Yes"
 msgstr "Si"
 
@@ -414,55 +416,73 @@ msgstr "Descripció del mapa"
 msgid "Randomly selects a map from the list"
 msgstr "Selecciona aleatòriament un mapa de la llista"
 
-#: gui/common/gamedescription.js:349
+#: gui/common/gamedescription.js:347
+msgid "Nomad Mode"
+msgstr ""
+
+#: gui/common/gamedescription.js:347
+msgid "Civic Centers"
+msgstr ""
+
+#: gui/common/gamedescription.js:350
+msgid ""
+"Players start with only few units and have to find a suitable place to build"
+" their city."
+msgstr ""
+
+#: gui/common/gamedescription.js:351
+msgid "Players start with a Civic Center."
+msgstr ""
+
+#: gui/common/gamedescription.js:358
 msgid "Biome"
 msgstr "Bioma"
 
-#: gui/common/gamedescription.js:350
+#: gui/common/gamedescription.js:359
 msgctxt "biome"
 msgid "Random"
 msgstr "Aleatori"
 
-#: gui/common/gamedescription.js:357
+#: gui/common/gamedescription.js:366
 msgid "Starting Resources"
 msgstr "Recursos inicials"
 
-#: gui/common/gamedescription.js:358
+#: gui/common/gamedescription.js:367
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:368
+#: gui/common/gamedescription.js:377
 msgid "Population Limit"
 msgstr "Límit de població"
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:385
 msgid "Treasures"
 msgstr "Tresors"
 
-#: gui/common/gamedescription.js:378
+#: gui/common/gamedescription.js:387
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Desactivat"
 
-#: gui/common/gamedescription.js:379
+#: gui/common/gamedescription.js:388
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Com queda definit al mapa."
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:392
 msgid "Revealed Map"
 msgstr "Mapa revelat"
 
-#: gui/common/gamedescription.js:388
+#: gui/common/gamedescription.js:397
 msgid "Explored Map"
 msgstr "Mapa explorat"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:402
 msgid "Cheats"
 msgstr "Trucs"
 
-#: gui/common/gamedescription.js:398 gui/common/tooltips.js:126
+#: gui/common/gamedescription.js:407 gui/common/tooltips.js:126
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:222
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:468
 #: gui/common/tooltips.js:758
@@ -470,25 +490,25 @@ msgstr "Trucs"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:401
+#: gui/common/gamedescription.js:410
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "activat"
 
-#: gui/common/gamedescription.js:402
+#: gui/common/gamedescription.js:411
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "desactivat"
 
-#: gui/common/gamedescription.js:418
+#: gui/common/gamedescription.js:427
 msgid "Victorious"
 msgstr "Victoriós"
 
-#: gui/common/gamedescription.js:423
+#: gui/common/gamedescription.js:432
 msgid "Defeated"
 msgstr "Derrotat"
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:441
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr ""
@@ -1256,34 +1276,39 @@ msgstr "Versió: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Segur que voleu sortir del 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:427
+#: gui/pregame/mainmenu.js:251 gui/pregame/mainmenu.js:265
+#: gui/summary/summary.js:441
 msgid "Confirmation"
 msgstr "Confirmació"
 
-#: gui/pregame/mainmenu.js:266
+#: gui/pregame/mainmenu.js:264
+msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
+msgstr ""
+
+#: gui/pregame/mainmenu.js:272
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "L'editor d'escenaris no està disponible o no s'ha pogut carregar. Vegeu els registres del joc per a obtenir informació addicional."
 
-#: gui/pregame/mainmenu.js:267 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "Error"
 
-#: gui/pregame/mainmenu.js:273
+#: gui/pregame/mainmenu.js:279
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Obriu la sala multijugador. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:278 gui/pregame/mainmenu.xml:(caption):68
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
 msgid "Technical Details"
 msgstr "Detalls tècnics"
 
-#: gui/pregame/mainmenu.js:283 gui/pregame/mainmenu.xml:(caption):146
+#: gui/pregame/mainmenu.js:289 gui/pregame/mainmenu.xml:(caption):146
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/reference/common/load.js:267
+#: gui/reference/common/load.js:205
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "De %(health_min)s a %(health_max)s"
@@ -1324,11 +1349,11 @@ msgstr "Gravació incompatible"
 msgid "No summary data available."
 msgstr "No hi ha dades de resum disponibles."
 
-#: gui/replaymenu/replay_actions.js:168
+#: gui/replaymenu/replay_actions.js:169
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Segur que voleu suprimir permanentment la gravació?"
 
-#: gui/replaymenu/replay_actions.js:170
+#: gui/replaymenu/replay_actions.js:171
 msgid "Delete replay"
 msgstr "Suprimeix la gravació"
 
@@ -1386,11 +1411,11 @@ msgstr "%(min)s - %(max)s min"
 msgid "Single- and multiplayer"
 msgstr "Un sol jugador i multijugador"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):464
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):479
 msgid "Single Player"
 msgstr "Un sol jugador"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):479
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):494
 msgid "Multiplayer"
 msgstr "Multijugador"
 
@@ -1428,13 +1453,13 @@ msgstr "aaaa-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "aaaa-MM"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):73
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):81
 msgid "Score"
 msgstr "Puntuació"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:152
-#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):122
+#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):130
 msgid "Player name"
 msgstr "Nom del jugador"
 
@@ -1454,7 +1479,7 @@ msgstr "Puntuació militar"
 msgid "Exploration score"
 msgstr "Puntuació \nd'exploració"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):80
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):88
 msgid "Buildings"
 msgstr "Edificis"
 
@@ -1497,7 +1522,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Estadístiques dels edificis (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):87
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):95
 msgid "Units"
 msgstr "Unitats"
 
@@ -1530,7 +1555,7 @@ msgstr "Comerciants"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Estadístiques de les unitats (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):94
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):102
 msgid "Resources"
 msgstr "Recursos"
 
@@ -1562,7 +1587,7 @@ msgstr "Cria de bestiar"
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Estadístiques de recursos (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):101
+#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):109
 msgid "Market"
 msgstr "Mercat"
 
@@ -1580,7 +1605,7 @@ msgstr "Eficiència\ndel bescanvi"
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s intercanviat"
 
-#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):116
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Altres"
@@ -1694,44 +1719,44 @@ msgstr "Fracassats"
 msgid "∞"
 msgstr "∞Project-Id-Version: A.D.\nPOT-Creation-Date: -- :+\nPO-Revision-Date: -- :+\nLast-Translator: Marc Miró <mmirosanchez@gmail.com>\nLanguage-Team: Catalan (http://www.transifex.com/wildfire-games/ad/language/ca/)\nMIME-Version: \nContent-Type: text/plain; charset=UTF-\nContent-Transfer-Encoding: bit\nLanguage: ca\nPlural-Forms: nplurals=; plural=(n != );\n∞"
 
-#: gui/summary/summary.js:426
+#: gui/summary/summary.js:440
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Segur que voleu sortir de la sala multijugador?"
 
-#: gui/summary/summary.js:489
+#: gui/summary/summary.js:505
 msgid "Current Scores"
 msgstr "Puntuacions actuals"
 
-#: gui/summary/summary.js:491
+#: gui/summary/summary.js:507
 msgid "Scores at the end of the game."
 msgstr "Puntuacions al final del joc."
 
-#: gui/summary/summary.js:493
+#: gui/summary/summary.js:509
 msgid "You have been disconnected."
 msgstr "Us heu desconnectat."
 
-#: gui/summary/summary.js:495
+#: gui/summary/summary.js:511
 msgid "You have left the game."
 msgstr "Heu abandonat el joc."
 
-#: gui/summary/summary.js:497
+#: gui/summary/summary.js:513
 msgid "You have won the battle!"
 msgstr "Heu guanyat la batalla!"
 
-#: gui/summary/summary.js:499
+#: gui/summary/summary.js:515
 msgid "You have been defeated…"
 msgstr ""
 
-#: gui/summary/summary.js:500
+#: gui/summary/summary.js:516
 msgid "You have abandoned the game."
 msgstr "Heu abandonat el joc."
 
-#: gui/summary/summary.js:503
+#: gui/summary/summary.js:519
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Temps de joc transcorregut: %(time)s"
 
-#: gui/summary/summary.js:511
+#: gui/summary/summary.js:527
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1754,7 +1779,7 @@ msgstr "Tanca"
 msgid "0 A.D. Credits"
 msgstr "0 A.D. Crèdits"
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):338
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):380
 msgid "Language"
 msgstr "Idioma"
 
@@ -1824,11 +1849,11 @@ msgid ""
 " and improve performance and compatibility."
 msgstr "Podeu enviar automàticament informes anònims per ajudar a resoldre errors i millorar el rendiment i la compatibilitat."
 
-#: gui/pregame/mainmenu.xml:532
+#: gui/pregame/mainmenu.xml:561
 msgid "Alpha XXIII: Ken Wood"
 msgstr "Alpha XXIII: Ken Wood"
 
-#: gui/pregame/mainmenu.xml:534
+#: gui/pregame/mainmenu.xml:563
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
@@ -1867,72 +1892,73 @@ msgstr "Campanyes"
 msgid "Load Game"
 msgstr "Carrega una partida"
 
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):267
-msgid "Join Game"
-msgstr "Uneix-te a una partida"
-
-#: gui/pregame/mainmenu.xml:(caption):281
-msgid "Host Game"
-msgstr "Comença una partida"
-
-#: gui/pregame/mainmenu.xml:(caption):295
-msgid "Game Lobby"
-msgstr "Sala multijugador"
-
-#: gui/pregame/mainmenu.xml:(caption):324
-msgid "Options"
-msgstr "Opcions"
-
-#: gui/pregame/mainmenu.xml:(caption):352
+#: gui/pregame/mainmenu.xml:(caption):258
+#: gui/pregame/mainmenu.xml:(caption):338
 msgid "Replays"
 msgstr "Repeticions"
 
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):286
+msgid "Join Game"
+msgstr "Uneix-te a una partida"
+
+#: gui/pregame/mainmenu.xml:(caption):300
+msgid "Host Game"
+msgstr "Comença una partida"
+
+#: gui/pregame/mainmenu.xml:(caption):315
+msgid "Game Lobby"
+msgstr "Sala multijugador"
+
 #: gui/pregame/mainmenu.xml:(caption):366
-msgid "Scenario Editor"
-msgstr "Editor d'escenaris"
+msgid "Options"
+msgstr "Opcions"
 
-#: gui/pregame/mainmenu.xml:(caption):379
-msgid "Welcome Screen"
-msgstr "Pantalla de benvinguda"
-
-#: gui/pregame/mainmenu.xml:(caption):395
+#: gui/pregame/mainmenu.xml:(caption):394
 msgid "Mod Selection"
 msgstr "Selecció de mods"
 
-#: gui/pregame/mainmenu.xml:(caption):449
+#: gui/pregame/mainmenu.xml:(caption):406
+msgid "Welcome Screen"
+msgstr "Pantalla de benvinguda"
+
+#: gui/pregame/mainmenu.xml:(caption):464
 msgid "Learn to Play"
 msgstr "Apreneu a jugar"
 
-#: gui/pregame/mainmenu.xml:(caption):494
-msgid "Tools & Options"
-msgstr "Eines i opcions"
-
 #: gui/pregame/mainmenu.xml:(caption):509
+msgid "Settings"
+msgstr "Opcions"
+
+#: gui/pregame/mainmenu.xml:(caption):524
+msgid "Scenario Editor"
+msgstr "Editor d'escenaris"
+
+#: gui/pregame/mainmenu.xml:(caption):538
 msgid "Exit"
 msgstr "Surt"
 
-#: gui/pregame/mainmenu.xml:(caption):544
+#: gui/pregame/mainmenu.xml:(caption):573
 msgid "Website"
 msgstr "Lloc web"
 
-#: gui/pregame/mainmenu.xml:(caption):556
+#: gui/pregame/mainmenu.xml:(caption):585
 msgid "Chat"
 msgstr "Xat"
 
-#: gui/pregame/mainmenu.xml:(caption):568
+#: gui/pregame/mainmenu.xml:(caption):597
 msgid "Report a Bug"
 msgstr "Informa d'errors"
 
-#: gui/pregame/mainmenu.xml:(caption):580
+#: gui/pregame/mainmenu.xml:(caption):609
 msgid "Translate the Game"
 msgstr "Traduïu el joc"
 
-#: gui/pregame/mainmenu.xml:(caption):592
+#: gui/pregame/mainmenu.xml:(caption):621
 msgid "Credits"
 msgstr "Crèdits"
 
-#: gui/pregame/mainmenu.xml:(caption):621
+#: gui/pregame/mainmenu.xml:(caption):650
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1966,85 +1992,86 @@ msgstr "Recreeu la història mitjançant campanyes militars. \\[SENSE IMPLEMENTA
 msgid "Click here to load a saved game."
 msgstr "Feu clic aquí per carregar una partida desada."
 
-#: gui/pregame/mainmenu.xml:(tooltip):268
-msgid "Joining an existing multiplayer game."
-msgstr "Uniu-vos a una partida multijugador existent."
-
-#: gui/pregame/mainmenu.xml:(tooltip):282
-msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "Comenceu una partida multijugador.\\n\\nCal obrir el port UDP 20595."
-
-#: gui/pregame/mainmenu.xml:(tooltip):296
-msgid "Launch the multiplayer lobby."
-msgstr "Obriu la sala multijugador."
-
-#: gui/pregame/mainmenu.xml:(tooltip):325
-msgid "Adjust game settings."
-msgstr "Ajusteu les opcions del joc."
-
+#: gui/pregame/mainmenu.xml:(tooltip):259
 #: gui/pregame/mainmenu.xml:(tooltip):339
-msgid "Choose the language of the game."
-msgstr "Trieu l'idioma del joc."
-
-#: gui/pregame/mainmenu.xml:(tooltip):353
 msgid "Playback previous games."
 msgstr "Jugueu partides anteriors altre cop."
 
+#: gui/pregame/mainmenu.xml:(tooltip):287
+msgid "Joining an existing multiplayer game."
+msgstr "Uniu-vos a una partida multijugador existent."
+
+#: gui/pregame/mainmenu.xml:(tooltip):301
+msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
+msgstr "Comenceu una partida multijugador.\\n\\nCal obrir el port UDP 20595."
+
+#: gui/pregame/mainmenu.xml:(tooltip):316
+msgid "Launch the multiplayer lobby."
+msgstr "Obriu la sala multijugador."
+
 #: gui/pregame/mainmenu.xml:(tooltip):367
-msgid ""
-"Open the Atlas Scenario Editor in a new window. You can run this more "
-"reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Obriu l'Editor d'escenaris d'Atlas en una finestra nova. Podeu executar-lo de manera més segura iniciant el joc amb l'argument de la línia de comandaments \"-editor\"."
+msgid "Adjust game settings."
+msgstr "Ajusteu les opcions del joc."
 
-#: gui/pregame/mainmenu.xml:(tooltip):380
-msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr "Mostra la pantalla de benvinguda. Útil si l'heu amagat per error."
+#: gui/pregame/mainmenu.xml:(tooltip):381
+msgid "Choose the language of the game."
+msgstr "Trieu l'idioma del joc."
 
-#: gui/pregame/mainmenu.xml:(tooltip):396
+#: gui/pregame/mainmenu.xml:(tooltip):395
 msgid "Select mods to use."
 msgstr "Seleccioneu quins mods voleu utilitzar."
 
-#: gui/pregame/mainmenu.xml:(tooltip):450
+#: gui/pregame/mainmenu.xml:(tooltip):407
+msgid "Show the Welcome Screen. Useful if you hid it by mistake."
+msgstr "Mostra la pantalla de benvinguda. Útil si l'heu amagat per error."
+
+#: gui/pregame/mainmenu.xml:(tooltip):465
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Aprengueu a jugar, inicieu el tutorial, descobriu els arbres de tecnologies i la història de les civilitzacions"
 
-#: gui/pregame/mainmenu.xml:(tooltip):465
+#: gui/pregame/mainmenu.xml:(tooltip):480
 msgid "Challenge the computer player to a single player match."
 msgstr "Desafieu l'ordinador a una partida d'un sol jugador."
 
-#: gui/pregame/mainmenu.xml:(tooltip):480
+#: gui/pregame/mainmenu.xml:(tooltip):495
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Lluiteu contra un o més jugadors humans en una partida multijugador."
 
-#: gui/pregame/mainmenu.xml:(tooltip):495
-msgid "Game options and scenario design tools."
-msgstr "Opcions del joc i eines de disseny d'escenaris."
-
 #: gui/pregame/mainmenu.xml:(tooltip):510
+msgid "Game options and mod selection."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(tooltip):525
+msgid ""
+"Open the Atlas Scenario Editor in a new window. You can run this more "
+"reliably by starting the game with the command-line argument \"-editor\"."
+msgstr "Obriu l'Editor d'escenaris d'Atlas en una finestra nova. Podeu executar-lo de manera més segura iniciant el joc amb l'argument de la línia de comandaments \"-editor\"."
+
+#: gui/pregame/mainmenu.xml:(tooltip):539
 msgid "Exits the game."
 msgstr "Sortiu del joc."
 
-#: gui/pregame/mainmenu.xml:(tooltip):545
+#: gui/pregame/mainmenu.xml:(tooltip):574
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Feu clic per obrir play0ad.com en el vostre navegador web."
 
-#: gui/pregame/mainmenu.xml:(tooltip):557
+#: gui/pregame/mainmenu.xml:(tooltip):586
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Feu clic per a obrir el xat IRC de 0 A. D. al vostre navegador. "
 
-#: gui/pregame/mainmenu.xml:(tooltip):569
+#: gui/pregame/mainmenu.xml:(tooltip):598
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Feu clic per a visitar Trac 0 A. D. per a informar d'errors o bugs."
 
-#: gui/pregame/mainmenu.xml:(tooltip):581
+#: gui/pregame/mainmenu.xml:(tooltip):610
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Feu clic per a obrir la pàgina de traducció de 0 A. D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):593
+#: gui/pregame/mainmenu.xml:(tooltip):622
 msgid "Click to see the 0 A.D. credits."
 msgstr "Feu clic per a veure els crèdits 0 A.D."
 
@@ -2060,78 +2087,78 @@ msgstr "Unitats de formació "
 msgid "Replay Games"
 msgstr "Gravacions de partides"
 
-#: gui/replaymenu/replay_menu.xml:(caption):108
+#: gui/replaymenu/replay_menu.xml:(caption):109
 msgid "Filter compatible replays"
 msgstr "Filtreu les gravacions compatibles"
 
-#: gui/replaymenu/replay_menu.xml:(caption):149
+#: gui/replaymenu/replay_menu.xml:(caption):150
 msgid "Map Type:"
 msgstr "Tipus de mapa:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/replaymenu/replay_menu.xml:(caption):165
 msgid "Map Size:"
 msgstr "Mida del mapa:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/replaymenu/replay_menu.xml:(caption):180
 msgid "Victory:"
 msgstr "Victòria:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):212
+#: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):224
+#: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: gui/replaymenu/replay_menu.xml:(caption):230
+#: gui/replaymenu/replay_menu.xml:(caption):231
 msgid "Delete"
 msgstr "Esborra"
 
-#: gui/replaymenu/replay_menu.xml:(caption):236
+#: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
 msgstr "Recarrega la memòria cau"
 
-#: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):33
+#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/summary/summary.xml:(caption):41
 msgid "Summary"
 msgstr "Resum"
 
-#: gui/replaymenu/replay_menu.xml:(caption):249
+#: gui/replaymenu/replay_menu.xml:(caption):250
 msgid "Start Replay"
 msgstr "Reprodueix la gravació"
 
-#: gui/replaymenu/replay_menu.xml:(heading):68
+#: gui/replaymenu/replay_menu.xml:(heading):69
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Data / Hora"
 
-#: gui/replaymenu/replay_menu.xml:(heading):72
+#: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
 msgstr "Jugadors"
 
-#: gui/replaymenu/replay_menu.xml:(heading):76
+#: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Nom del mapa"
 
-#: gui/replaymenu/replay_menu.xml:(heading):80
+#: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
 msgid "Size"
 msgstr "Mida"
 
-#: gui/replaymenu/replay_menu.xml:(heading):84
+#: gui/replaymenu/replay_menu.xml:(heading):85
 msgctxt "replay"
 msgid "Population"
 msgstr "Població"
 
-#: gui/replaymenu/replay_menu.xml:(heading):88
+#: gui/replaymenu/replay_menu.xml:(heading):89
 msgctxt "replay"
 msgid "Duration"
 msgstr "Duració"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):237
+#: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Reconstruïu la cache reproduïda de zero. Pot ser lent!"
 
@@ -2147,44 +2174,44 @@ msgstr "Mostra aquest missatge en el futur"
 msgid "Known Issues (web)"
 msgstr "Problemes coneguts (web)"
 
-#: gui/summary/summary.xml:(caption):115
+#: gui/summary/summary.xml:(caption):123
 msgid "Charts"
 msgstr "Gràfics"
 
-#: gui/summary/summary.xml:(caption):172
+#: gui/summary/summary.xml:(caption):180
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Categoria:"
 
-#: gui/summary/summary.xml:(caption):182
+#: gui/summary/summary.xml:(caption):190
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Valor:"
 
-#: gui/summary/summary.xml:(caption):192
+#: gui/summary/summary.xml:(caption):200
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Tipus:"
 
-#: gui/summary/summary.xml:(caption):211
+#: gui/summary/summary.xml:(caption):219
 msgid "Replay"
 msgstr "Reprodueix"
 
-#: gui/summary/summary.xml:(caption):216
+#: gui/summary/summary.xml:(caption):224
 msgid "Continue"
 msgstr "Continua"
 
-#: gui/summary/summary.xml:(tooltip):178
+#: gui/summary/summary.xml:(tooltip):186
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Categoria"
 
-#: gui/summary/summary.xml:(tooltip):188
+#: gui/summary/summary.xml:(tooltip):196
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Valor"
 
-#: gui/summary/summary.xml:(tooltip):199
+#: gui/summary/summary.xml:(tooltip):207
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Tipus"
@@ -2464,17 +2491,17 @@ msgid "Ceasefire Time Overlay"
 msgstr "Mostra el temps d'alto el foc"
 
 #: gui/options/options.json[0].options[11].list[0].label
-#: gui/options/options.json[3].options[4].list[0].label
+#: gui/options/options.json[3].options[5].list[0].label
 msgid "Everyone"
 msgstr "Tothom"
 
 #: gui/options/options.json[0].options[11].list[1].label
-#: gui/options/options.json[3].options[4].list[1].label
+#: gui/options/options.json[3].options[5].list[1].label
 msgid "Buddies"
 msgstr "Amics"
 
 #: gui/options/options.json[0].options[11].list[2].label
-#: gui/options/options.json[3].options[4].list[2].label
+#: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
 msgstr "Desactivat"
 
@@ -2606,7 +2633,7 @@ msgid "Low"
 msgstr "Baix"
 
 #: gui/options/options.json[1].options[5].list[2].label
-#: gui/options/options.json[3].options[2].list[3].label
+#: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "Mitjà"
 
@@ -2813,73 +2840,81 @@ msgid "Enable Game Setting Tips"
 msgstr "Activeu els consells de la configuració"
 
 #: gui/options/options.json[3].options[1].tooltip
+msgid "Slide the settings panel when opening, closing or resizing"
+msgstr ""
+
+#: gui/options/options.json[3].options[1].label
+msgid "Enable Settings Panel Slide"
+msgstr ""
+
+#: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Deseu i restaureu les opcions de la partida per fer-les servir quan comenceu una altra partida multijugador"
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
 msgstr "Deseu les opcions de la partida"
 
-#: gui/options/options.json[3].options[2].list[0].label
+#: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
 msgstr "Proves"
 
-#: gui/options/options.json[3].options[2].list[1].label
+#: gui/options/options.json[3].options[3].list[1].label
 msgid "Very Easy"
 msgstr "Molt fàcil"
 
-#: gui/options/options.json[3].options[2].list[2].label
+#: gui/options/options.json[3].options[3].list[2].label
 msgid "Easy"
 msgstr "Fàcil"
 
-#: gui/options/options.json[3].options[2].list[4].label
+#: gui/options/options.json[3].options[3].list[4].label
 msgid "Hard"
 msgstr "Difícil"
 
-#: gui/options/options.json[3].options[2].list[5].label
+#: gui/options/options.json[3].options[3].list[5].label
 msgid "Very Hard"
 msgstr "Molt difícil"
 
-#: gui/options/options.json[3].options[2].tooltip
+#: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
 msgstr ""
 
-#: gui/options/options.json[3].options[2].label
+#: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
 msgstr ""
 
-#: gui/options/options.json[3].options[3].list[0].label
+#: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
 msgstr "Aleatori"
 
-#: gui/options/options.json[3].options[3].list[1].label
+#: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
 msgstr ""
 
-#: gui/options/options.json[3].options[3].list[2].label
+#: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
 msgstr "Agressiu"
 
-#: gui/options/options.json[3].options[3].list[3].label
+#: gui/options/options.json[3].options[4].list[3].label
 msgid "Defensive"
 msgstr "Defensiu"
 
-#: gui/options/options.json[3].options[3].tooltip
+#: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
 msgstr ""
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[3].options[4].label
 msgid "Default AI Behavior"
 msgstr ""
 
-#: gui/options/options.json[3].options[4].tooltip
+#: gui/options/options.json[3].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Assigneu automàticament els clients d'unió als espais lliures de jugadors durant la configuració de la partida."
 
-#: gui/options/options.json[3].options[4].label
+#: gui/options/options.json[3].options[5].label
 msgid "Assign Players"
 msgstr "Assigneu jugadors"
 

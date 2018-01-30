@@ -121,6 +121,8 @@ function pickSize(sizes)
  */
 function addBases(type, distance, groupedDistance, startAngle)
 {
+	g_Map.log("Creating bases");
+
 	let playerIDs = sortAllPlayers();
 	let teamsArray = getTeamsArray();
 
@@ -461,7 +463,7 @@ function initTileClasses(newClasses)
 {
 	var classNames = g_DefaultTileClasses;
 
-	if (newClasses !== undefined)
+	if (newClasses)
 		classNames = classNames.concat(newClasses);
 
 	g_TileClasses = {};

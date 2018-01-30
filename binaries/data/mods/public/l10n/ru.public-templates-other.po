@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-17 22:08+0000\n"
+"POT-Creation-Date: 2018-01-27 12:55+0100\n"
+"PO-Revision-Date: 2018-01-27 17:01+0000\n"
 "Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -277,7 +277,7 @@ msgstr "Жираф"
 msgid "Giraffe (Juvenile)"
 msgstr "Жирафёнок"
 
-#: simulation/templates/gaia/fauna_goat.xml:15
+#: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Goat"
 msgstr "Коза"
 
@@ -293,10 +293,9 @@ msgstr "Лев"
 msgid "Lioness"
 msgstr "Львица"
 
-#: simulation/templates/gaia/fauna_mastiff.xml:6
-#: simulation/templates/gaia/fauna_wolfhound.xml:6
-msgid "Coun"
-msgstr "Коун"
+#: simulation/templates/gaia/fauna_mastiff.xml:4
+msgid "Mastiff"
+msgstr "Мастифф"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
@@ -310,7 +309,7 @@ msgstr "Павлин"
 msgid "Pavo cristatus"
 msgstr "Индийский павлин"
 
-#: simulation/templates/gaia/fauna_pig.xml:15
+#: simulation/templates/gaia/fauna_pig.xml:9
 msgid "Pig"
 msgstr "Свинья"
 
@@ -342,7 +341,7 @@ msgstr "Белая акула"
 msgid "Shark"
 msgstr "Акула"
 
-#: simulation/templates/gaia/fauna_sheep.xml:15
+#: simulation/templates/gaia/fauna_sheep.xml:9
 msgid "Sheep"
 msgstr "Овца"
 
@@ -369,6 +368,10 @@ msgstr "Гну"
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
 msgstr "Волк"
+
+#: simulation/templates/gaia/fauna_wolfhound.xml:4
+msgid "Wolfhound"
+msgstr "Волкодав"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"

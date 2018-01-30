@@ -73,7 +73,7 @@ var radiusCentralHill = fractionToTiles(0.12);
 
 var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(radiusPlayers);
 
-log("Determining number of rivers between players...");
+g_Map.log("Determining number of rivers between players");
 var split = 1;
 if (mapSize == 128 && numPlayers <= 2)
 	split = 2;
@@ -114,14 +114,14 @@ else if (mapSize == 448)
 		split = 2;
 }
 
-log("Creating big circular lake...");
+g_Map.log("Creating big circular lake");
 createArea(
 	new ClumpPlacer(diskArea(radiusCentralLake), 1, 1, 10, mapCenter),
 	new SmoothElevationPainter(ELEVATION_SET, heightShallow, 4));
 
+g_Map.log("Creating rivers between players");
 for (let m = 0; m < numPlayers * split; ++m)
 {
-	log("Creating rivers between players...");
 	let angle = startAngle + (m + 0.5) * 2 * Math.PI / (numPlayers * split);
 	let position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.15), 0).rotate(-angle));
 	let position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.6), 0).rotate(-angle));
@@ -129,32 +129,35 @@ for (let m = 0; m < numPlayers * split; ++m)
 		new PathPlacer(position1, position2, scaleByMapSize(14, 40), 0, scaleByMapSize(3, 9), 0.2, 0.05),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		avoidClasses(clPlayer, 5));
+}
 
-	log("Create path from the island to the center...");
-	angle = startAngle + m * 2 * Math.PI / (numPlayers * split);
-	position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.05), 0).rotate(-angle));
-	position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.49), 0).rotate(-angle));
+g_Map.log("Create path from the island to the center");
+for (let m = 0; m < numPlayers * split; ++m)
+{
+	let angle = startAngle + m * 2 * Math.PI / (numPlayers * split);
+	let position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.05), 0).rotate(-angle));
+	let position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.49), 0).rotate(-angle));
 	createArea(
 		new PathPlacer(position1, position2, scaleByMapSize(10, 40), 0, scaleByMapSize(3, 9), 0.2, 0.05),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4));
 }
 
-log("Creating ring of land connecting players...");
+g_Map.log("Creating ring of land connecting players");
 createArea(
 	new ClumpPlacer(diskArea(radiusCentralRingLand), 1, 1, 10, mapCenter),
 	new SmoothElevationPainter(ELEVATION_SET, heightRing, 4));
 
-log("Creating ring of water separating the central hill from the ring...");
+g_Map.log("Creating inner ring of water");
 createArea(
 	new ClumpPlacer(diskArea(radiusCentralWaterRing), 1, 1, 10, mapCenter),
 	new SmoothElevationPainter(ELEVATION_SET, heightShallow, 3));
 
-log("Creating central island...");
+g_Map.log("Creating central island");
 createArea(
 	new ClumpPlacer(diskArea(radiusCentralIsland), 1, 1, 10, mapCenter),
 	new SmoothElevationPainter(ELEVATION_SET, heightRing, 3));
 
-log("Creating hill on the central island...");
+g_Map.log("Creating hill on the central island");
 createArea(
 	new ClumpPlacer(diskArea(radiusCentralHill), 1, 1, 10, mapCenter),
 	new SmoothElevationPainter(ELEVATION_SET, heightHill, 8));
@@ -209,7 +212,7 @@ createForests(
 
 Engine.SetProgress(50);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]],
@@ -218,7 +221,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tTier4Terrain,
@@ -227,7 +230,7 @@ createPatches(
  clDirt);
 Engine.SetProgress(55);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -236,7 +239,7 @@ createMines(
  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
  clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -245,7 +248,7 @@ createMines(
  clMetal
 );
 
-log("Creating fish...");
+g_Map.log("Creating fish");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oFish, 1,1, 0,3)], true, clFood),
 	0,

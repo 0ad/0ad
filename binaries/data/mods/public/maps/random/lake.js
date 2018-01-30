@@ -61,11 +61,11 @@ var clBaseResource = g_Map.createTileClass();
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
-log("Preventing water in player territory...");
+g_Map.log("Preventing water in player territory");
 for (let i = 0; i < numPlayers; ++i)
 	addCivicCenterAreaToClass(playerPosition[i], clPlayer);
 
-log("Creating the lake...")
+g_Map.log("Creating the lake...")
 createArea(
 	new ChainPlacer(
 		2,
@@ -81,7 +81,7 @@ createArea(
 	],
 	avoidClasses(clPlayer, 20));
 
-log("Creating more shore jaggedness...");
+g_Map.log("Creating more shore jaggedness");
 createAreas(
 	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, 1),
 	[
@@ -142,7 +142,7 @@ createForests(
 
 Engine.SetProgress(50);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]],
@@ -151,7 +151,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tTier4Terrain,
@@ -160,7 +160,7 @@ createPatches(
  clDirt);
 Engine.SetProgress(55);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -169,7 +169,7 @@ createMines(
  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
  clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]

@@ -63,7 +63,7 @@ Engine.SetProgress(15);
 createVolcano(mapCenter, clHill, tCliff, [tLava1, tLava2, tLava3], true, ELEVATION_SET);
 Engine.SetProgress(45);
 
-log("Creating hills...");
+g_Map.log("Creating hills");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
 	[
@@ -75,7 +75,7 @@ createAreas(
 	scaleByMapSize(2, 8) * numPlayers
 );
 
-log("Creating forests...");
+g_Map.log("Creating forests");
 var [forestTrees, stragglerTrees] = getTreeCounts(200, 1250, 0.7);
 var types = [
 	[[tGrassB, tGrassA, pForestD], [tGrassB, pForestD]],
@@ -95,7 +95,7 @@ for (let type of types)
 
 Engine.SetProgress(70);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
@@ -127,21 +127,21 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		scaleByMapSize(20, 80)
 	);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1),
 	scaleByMapSize(4,16), 100
 );
 
-log("Creating small stone mines...");
+g_Map.log("Creating small stone mines");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1),
 	scaleByMapSize(4,16), 100
 );
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 1),
@@ -150,7 +150,7 @@ createObjectGroupsDeprecated(group, 0,
 
 Engine.SetProgress(90);
 
-log("Creating small decorative rocks...");
+g_Map.log("Creating small decorative rocks");
 group = new SimpleGroup(
 	[new SimpleObject(aRockMedium, 1,3, 0,1)],
 	true
@@ -161,7 +161,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(16, 262), 50
 );
 
-log("Creating large decorative rocks...");
+g_Map.log("Creating large decorative rocks");
 group = new SimpleGroup(
 	[new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
 	true

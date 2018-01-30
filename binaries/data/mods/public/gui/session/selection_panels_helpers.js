@@ -162,14 +162,14 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 		batchString = translate("%(action)s to train %(number)s.");
 
 	return "[font=\"sans-13\"]" +
-		coloredText(
+		setStringTags(
 			sprintf(batchString, {
 				"action": "[font=\"sans-bold-13\"]" + translate("Shift-click") + "[/font]",
 				"number": totalBatchTrainingCount,
 				"fullBatch": fullBatchesString,
 				"remainderBatch": remainderBatch
 			}),
-			g_HotkeyColor) +
+			g_HotkeyTags) +
 		"[/font]";
 }
 

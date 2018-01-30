@@ -96,7 +96,7 @@ Engine.SetProgress(20);
 createHills([tDirt2, tCliff, tGrassShrubs], avoidClasses(clPlayer, 35, clForest, 20, clHill, 20, clWater, 2), clHill, scaleByMapSize(5, 8));
 Engine.SetProgress(30);
 
-log("Creating water holes...");
+g_Map.log("Creating water holes");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(60, 100)), 5),
 	[
@@ -120,7 +120,7 @@ createForests(
 	clForest,
 	forestTrees);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
 	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
 	[[tDirt,tDirt3], [tDirt2,tDirt4]],
@@ -129,7 +129,7 @@ createLayeredPatches(
 	scaleByMapSize(15, 45),
 	clDirt);
 
-log("Creating shrubs...");
+g_Map.log("Creating shrubs");
 createPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	tGrassShrubs,
@@ -137,7 +137,7 @@ createPatches(
 	scaleByMapSize(15, 45),
 	clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	tSecondary,
@@ -146,7 +146,7 @@ createPatches(
 	clDirt);
 Engine.SetProgress(60);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
 	[
 		[new SimpleObject(oStoneSmall, 0,2, 0,4)],
@@ -155,7 +155,7 @@ createMines(
 	avoidClasses(clWater, 4, clForest, 4, clPlayer, 20, clRock, 10, clHill, 4),
 	clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
 	[
 		[new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -177,7 +177,7 @@ createDecoration(
 	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0));
 Engine.SetProgress(75);
 
-log("Creating giraffes...");
+g_Map.log("Creating giraffes");
 var group = new SimpleGroup(
 	[new SimpleObject(oGiraffe, 2,4, 0,4), new SimpleObject(oGiraffe2, 0,2, 0,4)],
 	true, clFood
@@ -187,7 +187,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,12), 50
 );
 
-log("Creating elephants...");
+g_Map.log("Creating elephants");
 group = new SimpleGroup(
 	[new SimpleObject(oElephant, 2,4, 0,4), new SimpleObject(oElephant2, 0,2, 0,4)],
 	true, clFood
@@ -197,7 +197,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,12), 50
 );
 
-log("Creating lions...");
+g_Map.log("Creating lions");
 group = new SimpleGroup(
 	[new SimpleObject(oLion, 0,1, 0,4), new SimpleObject(oLioness, 2,3, 0,4)],
 	true, clFood

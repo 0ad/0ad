@@ -12,29 +12,34 @@
 //	coherence: How much the radius of the clump varies (1.0 = circle, 0.0 = very random)
 //	smoothness: How smooth the border of the clump is (1.0 = few "peaks", 0.0 = very jagged)
 //	failfraction: Percentage of place attempts allowed to fail (optional)
-//	position: Tile coordinates of placer center (optional)
+//	centerPosition: Tile coordinates of placer center (optional)
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function ClumpPlacer(size, coherence, smoothness, failFraction = 0, position = undefined)
+function ClumpPlacer(size, coherence, smoothness, failFraction = 0, centerPosition = undefined)
 {
 	this.size = size;
 	this.coherence = coherence;
 	this.smoothness = smoothness;
 	this.failFraction = failFraction;
-	this.x = position ? Math.round(position.x) : -1;
-	this.z = position ? Math.round(position.y) : -1;
+	this.centerPosition = undefined;
+
+	if (centerPosition)
+		this.setCenterPosition(centerPosition);
 }
+
+ClumpPlacer.prototype.setCenterPosition = function(position)
+{
+	this.centerPosition = deepfreeze(position.clone().round());
+};
 
 ClumpPlacer.prototype.place = function(constraint)
 {
-	let centerPosition = new Vector2D(this.x, this.z);
-
 	// Preliminary bounds check
-	if (!g_Map.inMapBounds(centerPosition) || !constraint.allows(centerPosition))
+	if (!g_Map.inMapBounds(this.centerPosition) || !constraint.allows(this.centerPosition))
 		return undefined;
 
-	var retVec = [];
+	var points = [];
 
 	var size = g_Map.getSize();
 	var gotRet = new Array(size).fill(0).map(p => new Uint8Array(size)); // booleans
@@ -58,9 +63,9 @@ ClumpPlacer.prototype.place = function(constraint)
 		ctrlVals[i] = randFloat(0, 2);
 	}
 
-	var c = 0;
-	var looped = 0;
-	for (var i=0; i < intPerim; i++)
+	let c = 0;
+	let looped = 0;
+	for (let i = 0; i < intPerim; ++i)
 	{
 		if (ctrlCoords[(c+1) % ctrlPts] < i && !looped)
 		{
@@ -78,40 +83,33 @@ ClumpPlacer.prototype.place = function(constraint)
 			ctrlVals[(c + 2) % ctrlPts]);
 	}
 
-	var failed = 0;
-	for (var p=0; p < intPerim; p++)
+	let failed = 0;
+	for (let stepAngle = 0; stepAngle < intPerim; ++stepAngle)
 	{
-		var th = 2 * Math.PI * p / perim;
-		var r = radius * (1 + (1-this.coherence)*noise[p]);
-		var s = Math.sin(th);
-		var c = Math.cos(th);
-		var xx = this.x;
-		var yy = this.z;
+		let position = this.centerPosition.clone();
+		let radiusUnitVector = new Vector2D(0, 1).rotate(-2 * Math.PI * stepAngle / perim);
+		let maxRadiusSteps = Math.ceil(radius * (1 + (1 - this.coherence) * noise[stepAngle]));
 
-		for (var k = 0; k < Math.ceil(r); ++k)
+		for (let stepRadius = 0; stepRadius < maxRadiusSteps; ++stepRadius)
 		{
-			var i = Math.floor(xx);
-			var j = Math.floor(yy);
-			let position = new Vector2D(i, j);
+			let tilePos = position.clone().floor();
 
-			if (g_Map.inMapBounds(position) && constraint.allows(position))
+			if (g_Map.inMapBounds(tilePos) && constraint.allows(tilePos))
 			{
-				if (!gotRet[i][j])
+				if (!gotRet[tilePos.x][tilePos.y])
 				{
-					// Only include each point once
-					gotRet[i][j] = 1;
-					retVec.push(position);
+					gotRet[tilePos.x][tilePos.y] = 1;
+					points.push(tilePos);
 				}
 			}
 			else
-				failed++;
+				++failed;
 
-			xx += s;
-			yy += c;
+			position.add(radiusUnitVector);
 		}
 	}
 
-	return failed > this.size * this.failFraction ? undefined : retVec;
+	return failed > this.size * this.failFraction ? undefined : points;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -124,145 +122,116 @@ ClumpPlacer.prototype.place = function(constraint)
 //	numCircles: the number of the circles
 //	failfraction: Percentage of place attempts allowed to fail (optional)
 //	position: Tile coordinates of placer center (optional)
-//  fcc: Farthest circle center (optional)
-//  q: a list containing numbers. each time if the list still contains values, pops one from the end and uses it as the radius (optional)
+//  maxDistance: Farthest circle center (optional)
+//  queue: a list containing numbers. each time if the list still contains values, pops one from the end and uses it as the radius (optional)
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, position, fcc, q)
+function ChainPlacer(minRadius, maxRadius, numCircles, failFraction = 0, centerPosition = undefined, maxDistance = 0, queue = [])
 {
 	this.minRadius = minRadius;
 	this.maxRadius = maxRadius;
 	this.numCircles = numCircles;
-	this.failFraction = failFraction !== undefined ? failFraction : 0;
-	this.x = position ? Math.round(position.x) : -1;
-	this.z = position ? Math.round(position.y) : -1;
-	this.fcc = fcc !== undefined ? fcc : 0;
-	this.q = q !== undefined ? q : [];
+	this.failFraction = failFraction;
+	this.maxDistance = maxDistance;
+	this.queue = queue;
+	this.centerPosition = undefined;
+
+	if (centerPosition)
+		this.setCenterPosition(centerPosition);
 }
+
+ChainPlacer.prototype.setCenterPosition = function(position)
+{
+	this.centerPosition = deepfreeze(position.clone().round());
+};
 
 ChainPlacer.prototype.place = function(constraint)
 {
-	let centerPosition = new Vector2D(this.x, this.z);
-
 	// Preliminary bounds check
-	if (!g_Map.inMapBounds(centerPosition) || !constraint.allows(centerPosition))
+	if (!g_Map.inMapBounds(this.centerPosition) || !constraint.allows(this.centerPosition))
 		return undefined;
 
-	var retVec = [];
-	var size = g_Map.getSize();
-	var failed = 0, count = 0;
-	var queueEmpty = !this.q.length;
+	let points = [];
+	let size = g_Map.getSize();
+	let failed = 0;
+	let count = 0;
 
-	var gotRet = new Array(size).fill(0).map(p => new Array(size).fill(-1));
+	let gotRet = new Array(size).fill(0).map(p => new Array(size).fill(-1));
 	--size;
 
 	this.minRadius = Math.min(this.maxRadius, Math.max(this.minRadius, 1));
 
-	var edges = [[this.x, this.z]];
-	for (var i = 0; i < this.numCircles; ++i)
+	let edges = [this.centerPosition];
+
+	for (let i = 0; i < this.numCircles; ++i)
 	{
-		var [cx, cz] = pickRandom(edges);
-		if (queueEmpty)
-			var radius = randIntInclusive(this.minRadius, this.maxRadius);
-		else
-		{
-			var radius = this.q.pop();
-			queueEmpty = !this.q.length;
-		}
+		let chainPos = pickRandom(edges);
+		let radius = this.queue.length ? this.queue.pop() : randIntInclusive(this.minRadius, this.maxRadius);
+		let radius2 = Math.square(radius);
 
-		var sx = cx - radius, lx = cx + radius;
-		var sz = cz - radius, lz = cz + radius;
+		// TODO: get all points in this square to abstract and make the loop onedimensional
+		let sx = Math.max(0, chainPos.x - radius);
+		let sz = Math.max(0, chainPos.y - radius);
+		let lx = Math.min(chainPos.x + radius, size);
+		let lz = Math.min(chainPos.y + radius, size);
 
-		sx = Math.max(0, sx);
-		sz = Math.max(0, sz);
-		lx = Math.min(lx, size);
-		lz = Math.min(lz, size);
-
-		var radius2 = radius * radius;
-		var dx, dz;
-
-		for (var ix = sx; ix <= lx; ++ix)
-			for (var iz = sz; iz <= lz; ++ iz)
+		for (let ix = sx; ix <= lx; ++ix)
+			for (let iz = sz; iz <= lz; ++iz)
 			{
 				let position = new Vector2D(ix, iz);
-				dx = ix - cx;
-				dz = iz - cz;
-				if (dx * dx + dz * dz <= radius2)
+
+				if (position.distanceToSquared(chainPos) >= radius2)
+					continue;
+
+				++count;
+
+				if (!g_Map.inMapBounds(position) || !constraint.allows(position))
 				{
-					if (g_Map.inMapBounds(position) && constraint.allows(position))
-					{
-						var state = gotRet[ix][iz];
-						if (state == -1)
-						{
-							retVec.push(position);
-							gotRet[ix][iz] = -2;
-						}
-						else if (state >= 0)
-						{
-							var s = edges.splice(state, 1);
-							gotRet[ix][iz] = -2;
+					++failed;
+					continue;
+				}
 
-							var edgesLength = edges.length;
-							for (var k = state; k < edges.length; ++k)
-								--gotRet[edges[k][0]][edges[k][1]];
-						}
-					}
-					else
-						++failed;
+				let state = gotRet[ix][iz];
+				if (state == -1)
+				{
+					points.push(position);
+					gotRet[ix][iz] = -2;
+				}
+				else if (state >= 0)
+				{
+					let s = edges.splice(state, 1);
+					gotRet[ix][iz] = -2;
 
-					++count;
+					let edgesLength = edges.length;
+					for (let k = state; k < edges.length; ++k)
+						--gotRet[edges[k].x][edges[k].y];
 				}
 			}
 
-		for (var ix = sx; ix <= lx; ++ix)
-			for (var iz = sz; iz <= lz; ++ iz)
+		for (let ix = sx; ix <= lx; ++ix)
+			for (let iz = sz; iz <= lz; ++ iz)
 			{
-				if (this.fcc)
-					if ((this.x - ix) > this.fcc || (ix - this.x) > this.fcc || (this.z - iz) > this.fcc || (iz - this.z) > this.fcc)
-						continue;
+				let pos = new Vector2D(ix, iz);
 
-				if (gotRet[ix][iz] == -2)
+				if (this.maxDistance &&
+				    (Math.abs(this.centerPosition.x - pos.x) > this.maxDistance ||
+				     Math.abs(this.centerPosition.y - pos.y) > this.maxDistance))
+					continue;
+
+				if (gotRet[pos.x][pos.y] != -2)
+					continue;
+
+				if (pos.x > 0 && gotRet[pos.x - 1][pos.y] == -1 ||
+				    pos.y > 0 && gotRet[pos.x][pos.y - 1] == -1 ||
+				    pos.x < size && gotRet[pos.x + 1][pos.y] == -1 ||
+				    pos.y < size && gotRet[pos.x][pos.y + 1] == -1)
 				{
-					if (ix > 0)
-					{
-						if (gotRet[ix-1][iz] == -1)
-						{
-							edges.push([ix, iz]);
-							gotRet[ix][iz] = edges.length - 1;
-							continue;
-						}
-					}
-					if (iz > 0)
-					{
-						if (gotRet[ix][iz-1] == -1)
-						{
-							edges.push([ix, iz]);
-							gotRet[ix][iz] = edges.length - 1;
-							continue;
-						}
-					}
-					if (ix < size)
-					{
-						if (gotRet[ix+1][iz] == -1)
-						{
-							edges.push([ix, iz]);
-							gotRet[ix][iz] = edges.length - 1;
-							continue;
-						}
-					}
-					if (iz < size)
-					{
-						if (gotRet[ix][iz+1] == -1)
-						{
-							edges.push([ix, iz]);
-							gotRet[ix][iz] = edges.length - 1;
-							continue;
-						}
-					}
+					edges.push(pos);
+					gotRet[pos.x][pos.y] = edges.length - 1;
 				}
 			}
 	}
 
-	return failed > count * this.failFraction ? undefined : retVec;
+	return failed > count * this.failFraction ? undefined : points;
 };

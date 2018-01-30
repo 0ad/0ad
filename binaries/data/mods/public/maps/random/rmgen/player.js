@@ -79,7 +79,7 @@ function placeStartingEntities(location, playerID, civEntities, dist = 6, orient
 	let firstTemplate = civEntities[i].Template;
 	if (firstTemplate.startsWith("structures/"))
 	{
-		placeObject(location, firstTemplate, playerID, orientation);
+		g_Map.placeEntityPassable(firstTemplate, playerID, location, orientation);
 		++i;
 	}
 
@@ -98,7 +98,7 @@ function placeStartingEntities(location, playerID, civEntities, dist = 6, orient
 				new Vector2D(space * (-num + 0.75 * Math.floor(count / 2)), 0).rotate(angle)
 			]);
 
-			placeObject(position, civEntities[j].Template, playerID, angle);
+			g_Map.placeEntityPassable(civEntities[j].Template, playerID, position, angle);
 		}
 	}
 }
@@ -133,6 +133,8 @@ function placeStartingWalls(position, playerID, wallType, orientation = BUILDING
  */
 function placePlayerBases(playerBaseArgs)
 {
+	g_Map.log("Creating playerbases");
+
 	let [playerIDs, playerPosition] = playerBaseArgs.PlayerPlacement;
 
 	for (let i = 0; i < getNumPlayers(); ++i)
@@ -151,11 +153,9 @@ function placePlayerBase(playerBaseArgs)
 	if (isNomad())
 		return;
 
-	log("Creating base for player " + playerBaseArgs.playerID + "...");
-
 	placeCivDefaultStartingEntities(playerBaseArgs.playerPosition, playerBaseArgs.playerID, playerBaseArgs.Walls !== undefined ? playerBaseArgs.Walls : true);
 
-	if (playerBaseArgs.PlayerTileClass !== undefined)
+	if (playerBaseArgs.PlayerTileClass)
 		addCivicCenterAreaToClass(playerBaseArgs.playerPosition, playerBaseArgs.PlayerTileClass);
 
 	for (let functionID of g_PlayerBaseFunctions)
@@ -242,14 +242,13 @@ function placePlayerBaseChicken(args)
 		let success = false;
 		for (let tries = 0; tries < get("maxTries", 30); ++tries)
 		{
-			let loc = new Vector2D(0, get("distance", 9)).rotate(randomAngle()).add(basePosition);
+			let position = new Vector2D(0, get("distance", 9)).rotate(randomAngle()).add(basePosition);
 			if (createObjectGroup(
 				new SimpleGroup(
 					[new SimpleObject(get("template", "gaia/fauna_chicken"), 5, 5, 0, get("count", 2))],
 					true,
 					args.BaseResourceClass,
-					loc.x,
-					loc.y),
+					position),
 				0,
 				baseResourceConstraint))
 			{
@@ -271,14 +270,13 @@ function placePlayerBaseBerries(args)
 	let [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
 	for (let tries = 0; tries < get("maxTries", 30); ++tries)
 	{
-		let loc = new Vector2D(0, get("distance", 12)).rotate(randomAngle()).add(basePosition);
+		let position = new Vector2D(0, get("distance", 12)).rotate(randomAngle()).add(basePosition);
 		if (createObjectGroup(
 			new SimpleGroup(
 				[new SimpleObject(args.template, get("minCount", 5), get("maxCount", 5), get("maxDist", 1), get("maxDist", 3))],
 				true,
 				args.BaseResourceClass,
-				loc.x,
-				loc.y),
+				position),
 			0,
 			baseResourceConstraint))
 			return;
@@ -307,7 +305,7 @@ function placePlayerBaseMines(args)
 		{
 			let angle = startAngle + angleBetweenMines * (i + (mineCount - 1) / 2);
 			pos[i] = new Vector2D(0, get("distance", 12)).rotate(angle).add(basePosition).round();
-			if (!g_Map.validTile(pos[i]) || !baseResourceConstraint.allows(pos[i]))
+			if (!g_Map.validTilePassable(pos[i]) || !baseResourceConstraint.allows(pos[i]))
 			{
 				pos = undefined;
 				break;
@@ -332,8 +330,7 @@ function placePlayerBaseMines(args)
 					[new SimpleObject(args.types[i].template, 1, 1, 0, 0)].concat(groupElements),
 					true,
 					args.BaseResourceClass,
-					pos[i].x,
-					pos[i].y),
+					pos[i]),
 				0);
 		}
 		return;
@@ -350,15 +347,14 @@ function placePlayerBaseTrees(args)
 
 	for (let x = 0; x < get("maxTries", 30); ++x)
 	{
-		let loc = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randomAngle()).add(basePosition).round();
+		let position = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randomAngle()).add(basePosition).round();
 
 		if (createObjectGroup(
 			new SimpleGroup(
 				[new SimpleObject(args.template, num, num, get("minDistGroup", 0), get("maxDistGroup", 5))],
 				false,
 				args.BaseResourceClass,
-				loc.x,
-				loc.y),
+				position),
 			0,
 			baseResourceConstraint))
 			return;
@@ -379,15 +375,14 @@ function placePlayerBaseTreasures(args)
 
 		for (let tries = 0; tries < get("maxTries", 30); ++tries)
 		{
-			let loc = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randomAngle()).add(basePosition).round();
+			let position = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randomAngle()).add(basePosition).round();
 
 			if (createObjectGroup(
 				new SimpleGroup(
 					[new SimpleObject(resourceTypeArgs.template, get("count", 14), get("count", 14), get("minDistGroup", 1), get("maxDistGroup", 3))],
 					false,
 					args.BaseResourceClass,
-					loc.x,
-					loc.y),
+					position),
 				0,
 				baseResourceConstraint))
 			{
@@ -415,15 +410,14 @@ function placePlayerBaseDecoratives(args)
 		let success = false;
 		for (let x = 0; x < get("maxTries", 30); ++x)
 		{
-			let loc = new Vector2D(0, randIntInclusive(get("minDist", 8), get("maxDist", 11))).rotate(randomAngle()).add(basePosition).round();
+			let position = new Vector2D(0, randIntInclusive(get("minDist", 8), get("maxDist", 11))).rotate(randomAngle()).add(basePosition).round();
 
 			if (createObjectGroup(
 				new SimpleGroup(
 					[new SimpleObject(args.template, get("minCount", 2), get("maxCount", 5), 0, 1)],
 					false,
 					args.BaseResourceClass,
-					loc.x,
-					loc.y),
+					position),
 				0,
 				baseResourceConstraint))
 			{
@@ -442,6 +436,8 @@ function placePlayersNomad(playerClass, constraints)
 	if (!isNomad())
 		return undefined;
 
+	g_Map.log("Placing nomad starting units");
+
 	let distance = scaleByMapSize(60, 240);
 	let constraint = new AndConstraint(constraints);
 
@@ -451,11 +447,10 @@ function placePlayersNomad(playerClass, constraints)
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		log("Determine starting units for player " + playerIDs[i] + "...");
 		let objects = getStartingEntities(playerIDs[i]).filter(ents => ents.Template.startsWith("units/")).map(
 			ents => new SimpleObject(ents.Template, ents.Count || 1, ents.Count || 1, 1, 3));
 
-		log("Ensure resources for a civic center...");
+		// Add treasure if too few resources for a civic center
 		let ccCost = Engine.GetTemplate("structures/" + getCivCode(playerIDs[i]) + "_civil_centre").Cost.Resources;
 		for (let resourceType in ccCost)
 		{
@@ -468,7 +463,7 @@ function placePlayersNomad(playerClass, constraints)
 			objects.push(new SimpleObject(treasureTemplate, count, count, 3, 5));
 		}
 
-		log("Placing player units...");
+		// Try place these entities at a random location
 		let group = new SimpleGroup(objects, true, playerClass);
 		let success = false;
 		for (let distanceFactor of [1, 1/2, 1/4, 0])
@@ -476,7 +471,7 @@ function placePlayersNomad(playerClass, constraints)
 			if (createObjectGroups(group, playerIDs[i], new AndConstraint([constraint, avoidClasses(playerClass, distance * distanceFactor)]), 1, 200, false))
 			{
 				success = true;
-				playerPosition[i] = new Vector2D(group.x, group.z);
+				playerPosition[i] = group.centerPosition;
 				break;
 			}
 		}

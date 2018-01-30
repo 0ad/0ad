@@ -136,7 +136,7 @@ if (randBool())
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 3), clHill, scaleByMapSize(3, 15));
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tGrass,tGrassSand50],[tGrassSand50,tGrassSand25], [tGrassSand25,tGrass]],
@@ -147,7 +147,7 @@ createLayeredPatches(
 
 Engine.SetProgress(55);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [tDirt3, tDirt2,[tDirt,tMainDirt], [tDirtCracks,tMainDirt]],
@@ -158,14 +158,14 @@ createLayeredPatches(
 
 Engine.SetProgress(60);
 
-log("Creating undersea bumps...");
+g_Map.log("Creating undersea bumps");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
 	new SmoothElevationPainter(ELEVATION_SET, heightSeaBump, 3),
 	stayClasses(clWater, 6),
 	scaleByMapSize(10, 50));
 
-log("Creating islands...");
+g_Map.log("Creating islands");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(30, 80)), 0.5),
 	[
@@ -181,7 +181,7 @@ paintTerrainBasedOnHeight(-Infinity, heightSeaGround, Elevation_IncludeMin_Inclu
 paintTerrainBasedOnHeight(heightSeaGround, heightCorralsLower, Elevation_ExcludeMin_IncludeMax, tCoralsLower);
 paintTerrainBasedOnHeight(heightCorralsLower, heightCorralsUpper, Elevation_ExcludeMin_IncludeMax, tCoralsUpper);
 
-log("Creating island stone mines...");
+g_Map.log("Creating island stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -190,7 +190,7 @@ createMines(
  stayClasses(clIsland, 4),
  clRock);
 
-log("Creating island metal mines...");
+g_Map.log("Creating island metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -199,7 +199,7 @@ createMines(
  clMetal
 );
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -208,7 +208,7 @@ createMines(
  avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clHill, 1),
  clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]

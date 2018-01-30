@@ -1,7 +1,7 @@
 /**
  * Used to highlight hotkeys in tooltip descriptions.
  */
-var g_HotkeyColor = "255 251 131";
+var g_HotkeyTags = {"color": "255 251 131" };
 
 /**
  * Concatenate integer color values to a string (for use in GUI objects)
@@ -151,7 +151,7 @@ function colorizeHotkey(text, hotkey)
 		});
 
 	return sprintf(text, {
-		"hotkey": coloredText("\\[" + key + "]", g_HotkeyColor)
+		"hotkey": setStringTags("\\[" + key + "]", g_HotkeyTags)
 	});
 }
 
@@ -163,7 +163,7 @@ function colorizeAutocompleteHotkey(string)
 {
 	return sprintf(string || translate("Press %(hotkey)s to autocomplete playernames."), {
 		"hotkey":
-			coloredText("\\[" + translateWithContext("hotkey", "Tab") + "]", g_HotkeyColor)
+			setStringTags("\\[" + translateWithContext("hotkey", "Tab") + "]", g_HotkeyTags)
 	});
 }
 

@@ -15,8 +15,6 @@ m.GameTypeManager = function(Config)
 	this.healersPerCriticalEnt = 2 + Math.round(this.Config.personality.defensive * 2);
 	this.tryCaptureGaiaRelic = false;
 	this.tryCaptureGaiaRelicLapseTime = -1;
-	this.tryCaptureGaiaRelicLocal = false;
-	this.tryCaptureGaiaRelicLocalLapseTime = -1;
 	// Gaia relics which we are targeting currently and have not captured yet
 	this.targetedGaiaRelics = new Set();
 };
@@ -217,7 +215,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 		let entId = evt.entityObj.id();
 		if (this.criticalEnts.has(entId))
 		{
-			this.removeGuardsFromCriticalEnt(gameState, entId);
+			this.removeCriticalEnt(gameState, entId);
 			continue;
 		}
 
@@ -276,12 +274,12 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 
 	for (let evt of events.OwnershipChanged)
 	{
-		if (evt.from === PlayerID && this.criticalEnts.has(evt.entity))
+		if (evt.from == PlayerID && this.criticalEnts.has(evt.entity))
 		{
-			this.removeGuardsFromCriticalEnt(gameState, evt.entity);
+			this.removeCriticalEnt(gameState, evt.entity);
 			continue;
 		}
-		if (evt.from === 0 && this.targetedGaiaRelics.has(evt.entity))
+		if (evt.from == 0 && this.targetedGaiaRelics.has(evt.entity))
 			this.targetedGaiaRelics.delete(evt.entity);
 
 		if (evt.to !== PlayerID)
@@ -293,19 +291,18 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 		{
 			this.criticalEnts.set(ent.id(), { "guardsAssigned": 0, "guards": new Map() });
 			// Move captured relics to the closest base
-			if (ent.hasClass("Unit"))
+			if (ent.hasClass("Relic"))
 			{
 				this.pickCriticalEntRetreatLocation(gameState, ent, false);
-				if (evt.from === 0)
+				if (evt.from == 0)
 					gameState.ai.HQ.attackManager.cancelAttacksAgainstPlayer(gameState, evt.from);
-			}
-			if (ent.hasClass("Relic"))
 				this.targetedGaiaRelics.delete(ent.id());
+			}
 		}
 	}
 };
 
-m.GameTypeManager.prototype.removeGuardsFromCriticalEnt = function(gameState, criticalEntId)
+m.GameTypeManager.prototype.removeCriticalEnt = function(gameState, criticalEntId)
 {
 	for (let [guardId, role] of this.criticalEnts.get(criticalEntId).guards)
 	{
@@ -313,7 +310,7 @@ m.GameTypeManager.prototype.removeGuardsFromCriticalEnt = function(gameState, cr
 		if (!guardEnt)
 			continue;
 
-		if (role === "healer")
+		if (role == "healer")
 			this.guardEnts.set(guardId, false);
 		else
 		{
@@ -567,7 +564,7 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 m.GameTypeManager.prototype.resetCaptureGaiaRelic = function(gameState)
 {
 	// Do not capture gaia relics too frequently as the ai has access to the entire map
-	this.tryCaptureGaiaRelicLapseTime = gameState.ai.elapsedTime + 300 - 30 * (this.Config.difficulty - 3);
+	this.tryCaptureGaiaRelicLapseTime = gameState.ai.elapsedTime + 240 - 30 * (this.Config.difficulty - 3);
 	this.tryCaptureGaiaRelic = false;
 };
 
@@ -576,13 +573,6 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 	// Wait a turn for trigger scripts to spawn any critical ents (i.e. in regicide)
 	if (gameState.ai.playedTurn == 1)
 		this.init(gameState);
-
-/*	for (let [id, data] of this.criticalEnts)
-	{
-		API3.warn(" critical " + id + " data " + uneval(data));
-		for (let [k, v] of data.guards)
-			API3.warn(" --- guard " + k + " >>> " + uneval(v));
-	} */
 
 	this.checkEvents(gameState, events);
 
@@ -614,22 +604,17 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 			this.tryCaptureGaiaRelic = true;
 
 		// Look for some relic that may be on our territory at game-start or if our territory boundaries change
-		if (!this.tryCaptureGaiaRelicLocal && gameState.ai.elapsedTime > this.tryCaptureGaiaRelicLocalLapseTime)
+		let allRelics = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic"));
+		for (let relic of allRelics.values())
 		{
-			let allRelics = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic"));
-			for (let relic of allRelics.values())
-			{
-				let relicPosition = relic.position();
-				if (this.targetedGaiaRelics.has(relic.id()) || relic.owner() != 0 ||
-				    !relicPosition || gameState.ai.HQ.territoryMap.getOwner(relicPosition) != PlayerID)
-					continue;
+			let relicPosition = relic.position();
+			if (this.targetedGaiaRelics.has(relic.id()) || relic.owner() != 0 ||
+			    !relicPosition || gameState.ai.HQ.territoryMap.getOwner(relicPosition) != PlayerID)
+				continue;
 
-				gameState.ai.HQ.attackManager.raidTargetEntity(gameState, relic);
-				this.targetedGaiaRelics.add(relic.id());
-				this.tryCaptureGaiaRelicLocal = false;
-				this.tryCaptureGaiaRelicLocalLapseTime = gameState.ai.elapsedTime + 60 - 30 * (this.Config.difficulty - 3);
-				break;
-			}
+			gameState.ai.HQ.attackManager.raidTargetEntity(gameState, relic);
+			this.targetedGaiaRelics.add(relic.id());
+			break;
 		}
 	}
 };
@@ -642,8 +627,6 @@ m.GameTypeManager.prototype.Serialize = function()
 		"healersPerCriticalEnt": this.healersPerCriticalEnt,
 		"tryCaptureGaiaRelic": this.tryCaptureGaiaRelic,
 		"tryCaptureGaiaRelicLapseTime": this.tryCaptureGaiaRelicLapseTime,
-		"tryCaptureGaiaRelicLocal": this.tryCaptureGaiaRelicLocal,
-		"tryCaptureGaiaRelicLocalLapseTime": this.tryCaptureGaiaRelicLocalLapseTime,
 		"targetedGaiaRelics": this.targetedGaiaRelics
 	};
 };

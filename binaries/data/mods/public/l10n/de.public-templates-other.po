@@ -10,14 +10,14 @@
 # leper <leper@wildfiregames.com>, 2015-2016
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
 # Maximilian Wagenbach <foaly.f@web.de>, 2017
-# Raymond Vetter, 2014-2017
+# Raymond Vetter, 2014-2018
 # xtother90, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-08 19:50+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2018-01-27 12:55+0100\n"
+"PO-Revision-Date: 2018-01-28 13:25+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -276,7 +276,7 @@ msgstr "Giraffe (ausgewachsen)"
 msgid "Giraffe (Juvenile)"
 msgstr "Giraffe (Jungtier)"
 
-#: simulation/templates/gaia/fauna_goat.xml:15
+#: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Goat"
 msgstr "Ziege"
 
@@ -292,10 +292,9 @@ msgstr "Löwe"
 msgid "Lioness"
 msgstr "Löwin"
 
-#: simulation/templates/gaia/fauna_mastiff.xml:6
-#: simulation/templates/gaia/fauna_wolfhound.xml:6
-msgid "Coun"
-msgstr "Coun"
+#: simulation/templates/gaia/fauna_mastiff.xml:4
+msgid "Mastiff"
+msgstr "Dogge"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
@@ -309,7 +308,7 @@ msgstr "Pfau"
 msgid "Pavo cristatus"
 msgstr "Blauer Pfau"
 
-#: simulation/templates/gaia/fauna_pig.xml:15
+#: simulation/templates/gaia/fauna_pig.xml:9
 msgid "Pig"
 msgstr "Schwein"
 
@@ -341,7 +340,7 @@ msgstr "Weißer Hai"
 msgid "Shark"
 msgstr "Hai"
 
-#: simulation/templates/gaia/fauna_sheep.xml:15
+#: simulation/templates/gaia/fauna_sheep.xml:9
 msgid "Sheep"
 msgstr "Schaf"
 
@@ -368,6 +367,10 @@ msgstr "Gnu"
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
 msgstr "Wolf"
+
+#: simulation/templates/gaia/fauna_wolfhound.xml:4
+msgid "Wolfhound"
+msgstr "Wolfshund"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"

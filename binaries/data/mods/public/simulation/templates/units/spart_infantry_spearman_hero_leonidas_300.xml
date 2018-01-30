@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/spart_hero_leonidas">
+  <Identity>
+    <Icon>units/spart_hero_leonidas_300.png</Icon>
+  </Identity>
   <VisualActor>
     <Actor>units/spartans/leonidas_300.xml</Actor>
   </VisualActor>

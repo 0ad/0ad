@@ -95,7 +95,7 @@ placePlayerBases({
 });
 Engine.SetProgress(20);
 
-log("Creating the gulf...");
+g_Map.log("Creating the gulf");
 var gulfLakePositions = [
 	{ "numCircles": 200, "x": fractionToTiles(0), "radius": fractionToTiles(0.175) },
 	{ "numCircles": 120, "x": fractionToTiles(0.3), "radius": fractionToTiles(0.2) },
@@ -142,7 +142,7 @@ createForests(
 
 Engine.SetProgress(60);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tPrimary,tSecondary],[tSecondary,tHalfSnow], [tHalfSnow,tSnowLimited]],
@@ -151,7 +151,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tHalfSnow,
@@ -160,7 +160,7 @@ createPatches(
  clDirt);
 Engine.SetProgress(65);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -169,7 +169,7 @@ createMines(
  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
  clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]

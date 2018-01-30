@@ -1123,33 +1123,55 @@ function updateDebug()
 	debug.caption = text.replace(/\[/g, "\\[");
 }
 
-function getAllyStatTooltip(resource)
+/**
+ * Create ally player stat tooltip.
+ * @param {string} resource - Resource type, on which values will be sorted.
+ * @param {object} playerStates - Playerstates from players whos stats are viewed in the tooltip.
+ * @param {number} sort - 0 no order, -1 descending, 1 ascending order.
+ * @returns {string} Tooltip string.
+ */
+function getAllyStatTooltip(resource, playerStates, sort)
 {
-	let playersState = GetSimState().players;
-	let ret = "";
+	let tooltip = [];
 
-	for (let player in playersState)
-		if (player != 0 &&
-		    player != g_ViewedPlayer &&
-		    g_Players[player].state != "defeated" &&
-		    (g_IsObserver ||
-		       playersState[g_ViewedPlayer].hasSharedLos &&
-		       g_Players[player].isMutualAlly[g_ViewedPlayer]))
-			ret += "\n" + sprintf(translate("%(playername)s: %(statValue)s"), {
-				"playername": colorizePlayernameHelper("■", player) + " " + g_Players[player].name,
-				"statValue": resource == "pop" ?
-					sprintf(translate("%(popCount)s/%(popLimit)s/%(popMax)s"), playersState[player]) :
-					Math.round(playersState[player].resourceCounts[resource])
-			});
-
-	return ret;
+	for (let player in playerStates)
+		tooltip.push({
+			"playername": colorizePlayernameHelper("■", player) + " " + g_Players[player].name,
+			"statValue": resource == "pop" ?
+				sprintf(translate("%(popCount)s/%(popLimit)s/%(popMax)s"), playerStates[player]) :
+				Math.round(playerStates[player].resourceCounts[resource]),
+			"orderValue": resource == "pop" ? playerStates[player].popCount :
+				Math.round(playerStates[player].resourceCounts[resource])
+		});
+	if (sort)
+		tooltip.sort((a, b) => sort * (b.orderValue - a.orderValue));
+	return "\n" + tooltip.map(stat => sprintf(translate("%(playername)s: %(statValue)s"), stat)).join("\n");
 }
 
 function updatePlayerDisplay()
 {
-	let playerState = GetSimState().players[g_ViewedPlayer];
-	if (!playerState)
+	let allPlayerStates = GetSimState().players;
+	let viewedPlayerState = allPlayerStates[g_ViewedPlayer];
+	let viewablePlayerStates = {};
+	for (let player in allPlayerStates)
+		if (player != 0 &&
+			player != g_ViewedPlayer &&
+			g_Players[player].state != "defeated" &&
+			(g_IsObserver ||
+				viewedPlayerState.hasSharedLos &&
+				g_Players[player].isMutualAlly[g_ViewedPlayer]))
+			viewablePlayerStates[player] = allPlayerStates[player];
+
+	if (!viewedPlayerState)
 		return;
+
+	let tooltipSort = +Engine.ConfigDB_GetValue("user", "gui.session.respoptooltipsort");
+
+	let orderHotkeyTooltip = Object.keys(viewablePlayerStates).length <= 1 ? "" :
+		"\n" + sprintf(translate("%(order)s: %(hotkey)s to change order."), {
+		"hotkey": setStringTags("\\[Click]", g_HotkeyTags),
+		"order": tooltipSort == 0 ? translate("Unordered") : tooltipSort == 1 ? translate("Descending") : translate("Ascending")
+	});
 
 	let resCodes = g_ResourceData.GetCodes();
 	for (let r = 0; r < resCodes.length; ++r)
@@ -1167,19 +1189,20 @@ function updatePlayerDisplay()
 		if (descr)
 			tooltip += "\n" + translate(descr);
 
-		tooltip += getAllyStatTooltip(res);
+		tooltip += orderHotkeyTooltip + getAllyStatTooltip(res, viewablePlayerStates, tooltipSort);
 
 		resourceObj.tooltip = tooltip;
 
-		Engine.GetGUIObjectByName("resource[" + r + "]_count").caption = Math.floor(playerState.resourceCounts[res]);
+		Engine.GetGUIObjectByName("resource[" + r + "]_count").caption = Math.floor(viewedPlayerState.resourceCounts[res]);
 	}
 
-	Engine.GetGUIObjectByName("resourcePop").caption = sprintf(translate("%(popCount)s/%(popLimit)s"), playerState);
+	Engine.GetGUIObjectByName("resourcePop").caption = sprintf(translate("%(popCount)s/%(popLimit)s"), viewedPlayerState);
 	Engine.GetGUIObjectByName("population").tooltip = translate("Population (current / limit)") + "\n" +
-		sprintf(translate("Maximum population: %(popCap)s"), { "popCap": playerState.popMax }) +
-		getAllyStatTooltip("pop");
+		sprintf(translate("Maximum population: %(popCap)s"), { "popCap": viewedPlayerState.popMax }) +
+		orderHotkeyTooltip +
+		getAllyStatTooltip("pop", viewablePlayerStates, tooltipSort);
 
-	g_IsTrainingBlocked = playerState.trainingBlocked;
+	g_IsTrainingBlocked = viewedPlayerState.trainingBlocked;
 }
 
 function selectAndMoveTo(ent)

@@ -480,7 +480,7 @@ function createSunkenTerrain()
 		nExp = 0.4;
 	}
 
-	log("Creating central valley...");
+	g_Map.log("Creating central valley");
 	createArea(
 		new ClumpPlacer(diskArea(fractionToTiles(0.29)), 1, 1, 1, mapCenter),
 		[
@@ -489,7 +489,7 @@ function createSunkenTerrain()
 			new TileClassPainter(g_TileClasses.valley)
 		]);
 
-	log("Creating central hill...");
+	g_Map.log("Creating central hill");
 	createArea(
 		new ClumpPlacer(diskArea(fractionToTiles(0.21)), 1, 1, 1, mapCenter),
 		[
@@ -507,7 +507,7 @@ function createSunkenTerrain()
 	{
 		let playerPosition = getCoords(0.4, i, 0);
 
-		log("Creating path from player to expansion...");
+		// Path from player to expansion
 		let expansionPosition = getCoords(expDist, i, expAngle);
 		createArea(
 			new PathPlacer(playerPosition, expansionPosition, 12, 0.7, 0.5, 0.1, -1),
@@ -517,7 +517,7 @@ function createSunkenTerrain()
 				new TileClassPainter(g_TileClasses.step)
 			]);
 
-		log("Creating path from player to the neighbor...");
+		// Path from player to neighbor
 		for (let neighborOffset of [-0.5, 0.5])
 		{
 			let neighborPosition = getCoords(nRoad, i, neighborOffset);
@@ -531,7 +531,7 @@ function createSunkenTerrain()
 				]);
 		}
 
-		log("Creating the den of the player...");
+		// Den
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.1)) / (isNomad() ? 2 : 1), 0.9, 0.3, 1, playerPosition),
 			[
@@ -540,7 +540,7 @@ function createSunkenTerrain()
 				new TileClassPainter(g_TileClasses.valley)
 			]);
 
-		log("Creating the expansion of the player...");
+		// Expansion
 		createArea(
 			new ClumpPlacer(expSize, 0.9, 0.3, 1, expansionPosition),
 			[
@@ -551,7 +551,7 @@ function createSunkenTerrain()
 			[avoidClasses(g_TileClasses.settlement, 2)]);
 	}
 
-	log("Creating the expansions between players after the paths were created...");
+	g_Map.log("Creating the expansions between players");
 	for (let i = 0; i < numPlayers; ++i)
 	{
 		let position = getCoords(nExp, i, 0.5);

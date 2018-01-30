@@ -287,8 +287,7 @@ RandomPathPlacer.prototype.place = function(constraint)
 				-getAngle(this.pathStart.x, this.pathStart.y, this.pathEnd.x, this.pathEnd.y) +
 				-Math.PI / 2 * (randFloat(-1, 1) + (this.blended ? 0.5 : 0)))).round();
 
-		this.clumpPlacer.x = position.x;
-		this.clumpPlacer.z = position.y;
+		this.clumpPlacer.setCenterPosition(position);
 
 		for (let point of this.clumpPlacer.place(constraint) || [])
 			if (points.every(p => p.x != point.x || p.y != point.y))

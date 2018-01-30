@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:42+0000\n"
+"POT-Creation-Date: 2018-01-27 12:54+0100\n"
+"PO-Revision-Date: 2018-01-27 14:24+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -47,182 +47,182 @@ msgstr[1] "Lisätoimintasäde: %(range)s metriä"
 msgid "Cannot build wall here!"
 msgstr "Muuria ei voida rakentaa tähän!"
 
-#: gui/session/menu.js:148
+#: gui/session/menu.js:157
 msgid "Are you sure you want to resign?"
 msgstr "Haluatko varmasti luovuttaa?"
 
-#: gui/session/menu.js:149 gui/session/menu.js:181 gui/session/menu.js:192
+#: gui/session/menu.js:158 gui/session/menu.js:190 gui/session/menu.js:201
 msgid "Confirmation"
 msgstr "Vahvistus"
 
-#: gui/session/menu.js:150 gui/session/menu.js:182 gui/session/menu.js:215
-#: gui/session/session.js:839 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/menu.js:159 gui/session/menu.js:191 gui/session/menu.js:224
+#: gui/session/session.js:844 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ei"
 
-#: gui/session/menu.js:150 gui/session/menu.js:182 gui/session/menu.js:215
-#: gui/session/session.js:839 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/menu.js:159 gui/session/menu.js:191 gui/session/menu.js:224
+#: gui/session/session.js:844 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Kyllä"
 
-#: gui/session/menu.js:162
+#: gui/session/menu.js:171
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "Haluatko varmasti lopettaa? Lopettaminen katkaisee yhteyden muilta pelaajila."
 
-#: gui/session/menu.js:166 gui/session/menu.js:170
+#: gui/session/menu.js:175 gui/session/menu.js:179
 msgid "Are you sure you want to quit?"
 msgstr "Haluatko varasti lopettaa?"
 
-#: gui/session/menu.js:191
+#: gui/session/menu.js:200
 msgid "Do you want to resign or will you return soon?"
 msgstr "Haluatko luovuttaa vai palaatko takaisin pian?"
 
-#: gui/session/menu.js:193
+#: gui/session/menu.js:202
 msgid "I will return"
 msgstr "Palaan takaisin"
 
-#: gui/session/menu.js:193
+#: gui/session/menu.js:202
 msgid "I resign"
 msgstr "Luovutan"
 
-#: gui/session/menu.js:213
+#: gui/session/menu.js:222
 msgid "Destroy everything currently selected?"
 msgstr "Tuhoa kaikki nykyisessä valinnassa?"
 
-#: gui/session/menu.js:214
+#: gui/session/menu.js:223
 msgid "Delete"
 msgstr "Tuhoa"
 
-#: gui/session/menu.js:334
+#: gui/session/menu.js:343
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/session/menu.js:414
+#: gui/session/menu.js:423
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
 msgstr ""
 
-#: gui/session/menu.js:441
+#: gui/session/menu.js:450
 msgctxt "team"
 msgid "None"
 msgstr "Ei mitään"
 
-#: gui/session/menu.js:446 gui/session/messages.js:178
+#: gui/session/menu.js:455 gui/session/messages.js:178
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Liittolainen"
 
-#: gui/session/menu.js:447 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:456 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "Neutraali"
 
-#: gui/session/menu.js:447 gui/session/messages.js:179
+#: gui/session/menu.js:456 gui/session/messages.js:179
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Vihollinen"
 
-#: gui/session/menu.js:460
+#: gui/session/menu.js:469
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:537
+#: gui/session/menu.js:546
 msgid "Request your allies to attack this enemy"
 msgstr "Pyydä liittolaistasi hyökkäämään tähän viholliseen"
 
-#: gui/session/menu.js:554
+#: gui/session/menu.js:563
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
 msgstr ""
 
-#: gui/session/menu.js:586
+#: gui/session/menu.js:595
 msgid "A failed bribe will cost you:"
 msgstr ""
 
-#: gui/session/menu.js:762
+#: gui/session/menu.js:771
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Osta %(resource)s"
 
-#: gui/session/menu.js:763
+#: gui/session/menu.js:772
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Myy %(resource)s"
 
-#: gui/session/menu.js:868
+#: gui/session/menu.js:877
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, ja %(garrisonedString)s."
 
-#: gui/session/menu.js:869
+#: gui/session/menu.js:878
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, ja %(inactiveString)s."
 
-#: gui/session/menu.js:872 gui/session/menu.js:945
+#: gui/session/menu.js:881 gui/session/menu.js:954
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:873 gui/session/menu.js:944
+#: gui/session/menu.js:882 gui/session/menu.js:953
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, ja %(inactiveString)s."
 
-#: gui/session/menu.js:878
+#: gui/session/menu.js:887
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:879
+#: gui/session/menu.js:888
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, ja %(inactiveString)s."
 
-#: gui/session/menu.js:882 gui/session/menu.js:948
+#: gui/session/menu.js:891 gui/session/menu.js:957
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Epäaktiivisia %(inactiveString)s."
 msgstr[1] "Epäaktiivisia %(inactiveString)s."
 
-#: gui/session/menu.js:883
+#: gui/session/menu.js:892
 msgid "There are no land traders."
 msgstr "Maakauppioita ei ole."
 
-#: gui/session/menu.js:891
+#: gui/session/menu.js:900
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s kauppias liikkeellä"
 msgstr[1] "%(numberTrading)s kauppiaita liikkeellä"
 
-#: gui/session/menu.js:901
+#: gui/session/menu.js:910
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s epäaktiivinen"
 msgstr[1] "%(numberOfLandTraders)s epäaktiivinen"
 
-#: gui/session/menu.js:906
+#: gui/session/menu.js:915
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s maakauppias epäaktiivisenö"
 msgstr[1] "%(numberOfLandTraders)s maakauppioita epäaktiivisina"
 
-#: gui/session/menu.js:916
+#: gui/session/menu.js:925
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s vartioi kauppalaivassa"
 msgstr[1] "%(numberGarrisoned)s vartioivat kauppalaivassa"
 
-#: gui/session/menu.js:921
+#: gui/session/menu.js:930
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -233,62 +233,62 @@ msgid_plural ""
 msgstr[0] "%(numberGarrisoned)s kauppias kauppa-aluksessa"
 msgstr[1] " %(numberGarrisoned)s kauppiaita kauppa-aluksessa"
 
-#: gui/session/menu.js:949
+#: gui/session/menu.js:958
 msgid "There are no merchant ships."
 msgstr "Kauppalaivoja ei ole."
 
-#: gui/session/menu.js:956
+#: gui/session/menu.js:965
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "%(numberTrading)s kauppa-alus liikkeellä"
 msgstr[1] "%(numberTrading)s kauppa-aluksia liikkeellä"
 
-#: gui/session/menu.js:966
+#: gui/session/menu.js:975
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s epäaktiivinen"
 msgstr[1] "%(numberOfShipTraders)s epäaktiivisia"
 
-#: gui/session/menu.js:971
+#: gui/session/menu.js:980
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s kauppa-alus epäaktiivinen"
 msgstr[1] "%(numberOfShipTraders)s kauppa-aluksia epäaktiivisena"
 
-#: gui/session/menu.js:1183
+#: gui/session/menu.js:1193
 msgid "Resume"
 msgstr "Jatka"
 
-#: gui/session/menu.js:1183 gui/session/menu.xml:(caption):74
+#: gui/session/menu.js:1193 gui/session/menu.xml:(caption):87
 msgid "Pause"
 msgstr "Tauko"
 
-#: gui/session/menu.js:1187
+#: gui/session/menu.js:1197
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "Pysäytetty %(players)s toimesta"
 
-#: gui/session/menu.js:1188 gui/session/messages.js:695
+#: gui/session/menu.js:1198 gui/session/messages.js:695
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ""
 
-#: gui/session/menu.js:1201 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:1211 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Ohjekirja"
 
-#: gui/session/menu.js:1216
+#: gui/session/menu.js:1226
 msgid "The Developer Overlay was closed."
 msgstr "Kehittäjä paneeli suljettiin."
 
-#: gui/session/menu.js:1217
+#: gui/session/menu.js:1227
 msgid "The Developer Overlay was opened."
 msgstr "Kehittäjä paneeli avattiin."
 
-#: gui/session/menu.js:1243
+#: gui/session/menu.js:1253
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -384,7 +384,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Joukkue"
 
-#: gui/session/messages.js:180 gui/session/session.js:449
+#: gui/session/messages.js:180 gui/session/session.js:441
 msgid "Observer"
 msgstr "Tarkkailija"
 
@@ -744,46 +744,46 @@ msgstr "Nykyiset/maksimi kerääjät"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:425
+#: gui/session/selection_details.js:426
 msgid "Capture Points:"
 msgstr ""
 
-#: gui/session/selection_details.js:433
+#: gui/session/selection_details.js:434
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:434
+#: gui/session/selection_details.js:435
 msgid "Carrying:"
 msgstr "Kantaa:"
 
-#: gui/session/selection_details.js:437 gui/session/selection_details.js:446
+#: gui/session/selection_details.js:438 gui/session/selection_details.js:447
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:442
+#: gui/session/selection_details.js:443
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:443
+#: gui/session/selection_details.js:444
 msgid "Loot:"
 msgstr "Ryöstösaalis:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:518
+#: gui/session/selection_details.js:519
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:542
+#: gui/session/selection_details.js:543
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:549
+#: gui/session/selection_details.js:550
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -978,36 +978,36 @@ msgstr "%(action)s kouluttaaksesi %(number)s."
 msgid "Shift-click"
 msgstr "Shift-klikkaa"
 
-#: gui/session/session.js:375
+#: gui/session/session.js:367
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Kirjoita viesti lähettääksesi."
 
-#: gui/session/session.js:377
+#: gui/session/session.js:369
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr ""
 
-#: gui/session/session.js:380
+#: gui/session/session.js:372
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr ""
 
-#: gui/session/session.js:381
+#: gui/session/session.js:373
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr ""
 
-#: gui/session/session.js:383
+#: gui/session/session.js:375
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr ""
 
-#: gui/session/session.js:387
+#: gui/session/session.js:379
 msgid "Find idle worker"
 msgstr "Etsi joutilas työntekijä"
 
-#: gui/session/session.js:390
+#: gui/session/session.js:382
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -1015,7 +1015,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr ""
 
-#: gui/session/session.js:394
+#: gui/session/session.js:386
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -1024,90 +1024,90 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr ""
 
-#: gui/session/session.js:581
+#: gui/session/session.js:575
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Teknologiapuu"
 
-#: gui/session/session.js:831
+#: gui/session/session.js:836
 msgid "Do you want to quit?"
 msgstr "Tahdotko lopettaa?"
 
-#: gui/session/session.js:837
+#: gui/session/session.js:842
 msgid "VICTORIOUS!"
 msgstr "VOITTO!"
 
-#: gui/session/session.js:838
+#: gui/session/session.js:843
 msgid "DEFEATED!"
 msgstr "TUHOUDUIT!"
 
-#: gui/session/session.js:839
+#: gui/session/session.js:844
 msgid "OK"
 msgstr ""
 
-#: gui/session/session.js:906
+#: gui/session/session.js:911
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Uusinta on päättynyt. Haluatko lopettaa?"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:912
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Vahvistus"
 
-#: gui/session/session.js:908
+#: gui/session/session.js:913
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Ei"
 
-#: gui/session/session.js:908
+#: gui/session/session.js:913
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Kyllä"
 
-#: gui/session/session.js:1133
+#: gui/session/session.js:1138
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1136
+#: gui/session/session.js:1141
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1172
+#: gui/session/session.js:1177
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1173
+#: gui/session/session.js:1178
 msgid "Population (current / limit)"
 msgstr "Väkiluku (nykyinen / raja)"
 
-#: gui/session/session.js:1174
+#: gui/session/session.js:1179
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maksimi väkiluku: %(popCap)s"
 
-#: gui/session/session.js:1357
+#: gui/session/session.js:1362
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versio: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1367
+#: gui/session/session.js:1372
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Huomio: aikasiirtymätila on kehittäjäoptio, sitä ei ole tarkoitettu käytettäväksi pitkiä aikoja. Jos sitä käytetään väärin, se voi aiheuttaa muistin loppumisen tai pelin kaatumisen,"
 
-#: gui/session/session.js:1368
+#: gui/session/session.js:1373
 msgid "Time warp mode"
 msgstr "Aikasiirtymätila"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1385
+#: gui/session/session.js:1390
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr ""
@@ -1374,17 +1374,25 @@ msgstr "Tallenna"
 msgid "Summary"
 msgstr "Katsaus"
 
-#: gui/session/menu.xml:(caption):63
+#: gui/session/menu.xml:(caption):64
+msgid "Lobby"
+msgstr ""
+
+#: gui/session/menu.xml:(caption):76
 msgid "Options"
 msgstr "Vaihtoehdot"
 
-#: gui/session/menu.xml:(caption):85
+#: gui/session/menu.xml:(caption):98
 msgid "Resign"
 msgstr "Luovuta"
 
-#: gui/session/menu.xml:(caption):96 gui/session/session.xml:(caption):56
+#: gui/session/menu.xml:(caption):109 gui/session/session.xml:(caption):56
 msgid "Exit"
 msgstr "Poistu"
+
+#: gui/session/menu.xml:(tooltip):65
+msgid "Show the multiplayer lobby in a dialog window."
+msgstr ""
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15

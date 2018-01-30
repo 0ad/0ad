@@ -4,7 +4,7 @@ Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
-log("Picking a random elevation with a bias towards lower elevations...");
+// Random elevation with a bias towards lower elevations
 var randElevation = randIntInclusive(0, 29);
 if (randElevation < 25)
 	randElevation = randIntInclusive(1, 4);

@@ -81,13 +81,13 @@ var nbBeaches = scaleByMapSize(2, 5);
 var nbPassagesLevel1 = scaleByMapSize(4, 8);
 var nbPassagesLevel2 = scaleByMapSize(2, 4);
 
-log("Creating Corsica and Sardinia...");
+g_Map.log("Creating Corsica and Sardinia");
 var swapAngle = randBool() ? Math.PI / 2 : 0;
 var islandLocations = [new Vector2D(0.05, 0.05), new Vector2D(0.95, 0.95)].map(v => v.mult(mapSize).rotateAround(-swapAngle, mapCenter));
 
 for (let island = 0; island < 2; ++island)
 {
-	log("Creating island area...");
+	g_Map.log("Creating island area");
 	createArea(
 		new ClumpPlacer(diskArea(radiusIsland), 1, 0.5, 10, islandLocations[island]),
 		[
@@ -96,7 +96,7 @@ for (let island = 0; island < 2; ++island)
 			new TileClassPainter(clIsland)
 		]);
 
-	log("Creating subislands...");
+	g_Map.log("Creating subislands");
 	for (let i = 0; i < nbSubIsland + 1; ++i)
 	{
 		let angle = Math.PI * (island + i / (nbSubIsland * 2)) + swapAngle;
@@ -110,7 +110,7 @@ for (let island = 0; island < 2; ++island)
 			]);
 	}
 
-	log("Creating creeks...");
+	g_Map.log("Creating creeks");
 	for (let i = 0; i < nbCreeks + 1; ++i)
 	{
 		let angle = Math.PI * (island + i * (1 / (nbCreeks * 2))) + swapAngle;
@@ -124,7 +124,7 @@ for (let island = 0; island < 2; ++island)
 			]);
 	}
 
-	log("Creating beaches...");
+	g_Map.log("Creating beaches");
 	for (let i = 0; i < nbBeaches + 1; ++i)
 	{
 		let angle = Math.PI * (island + (i / (nbBeaches * 2.5)) + 1 / (nbBeaches * 6) + randFloat(-1, 1) / (nbBeaches * 7)) + swapAngle;
@@ -145,17 +145,17 @@ for (let island = 0; island < 2; ++island)
 		});
 	}
 
-	log("Creating main relief...");
+	g_Map.log("Creating main relief");
 	createArea(
 		new ClumpPlacer(diskArea(radiusIsland), 1, 0.2, 10, islandLocations[island]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetMainRelief, fractionToTiles(0.45)));
 
-	log("Creating first level plateau...");
+	g_Map.log("Creating first level plateau");
 	createArea(
 		new ClumpPlacer(diskArea(radiusLevel1), 0.95, 0.02, 10, islandLocations[island]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetLevel1, 1));
 
-	log("Creating first level passages...");
+	g_Map.log("Creating first level passages");
 	for (let i = 0; i <= nbPassagesLevel1; ++i)
 	{
 		let angle = Math.PI * (i / 7 + 1 / 9 + island) + swapAngle;
@@ -171,7 +171,7 @@ for (let island = 0; island < 2; ++island)
 
 	if (mapSize > 150)
 	{
-		log("Creating second level plateau...");
+		g_Map.log("Creating second level plateau");
 		createArea(
 			new ClumpPlacer(diskArea(radiusLevel2), 0.98, 0.04, 10, islandLocations[island]),
 			[
@@ -179,7 +179,7 @@ for (let island = 0; island < 2; ++island)
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetLevel2, 1)
 			]);
 
-		log("Creating second level passages...");
+		g_Map.log("Creating second level passages");
 		for (let i = 0; i < nbPassagesLevel2; ++i)
 		{
 			let angle = Math.PI * (i / (2 * nbPassagesLevel2) + 1 / (4 * nbPassagesLevel2) + island) + swapAngle;
@@ -196,7 +196,7 @@ for (let island = 0; island < 2; ++island)
 }
 Engine.SetProgress(30);
 
-log("Determining player locations...");
+g_Map.log("Determining player locations");
 var playerIDs = sortAllPlayers();
 var playerPosition = [];
 var playerAngle = [];
@@ -242,7 +242,7 @@ placePlayerBases({
 });
 Engine.SetProgress(40);
 
-log("Creating bumps...");
+g_Map.log("Creating bumps");
 createAreas(
 	new ClumpPlacer(70, 0.6, 0.1, 4),
 	[new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBumps, 3)],
@@ -253,7 +253,7 @@ createAreas(
 	scaleByMapSize(20, 100),
 	5);
 
-log("Creating anti bumps...");
+g_Map.log("Creating anti bumps");
 createAreas(
 	new ClumpPlacer(120, 0.3, 0.1, 4),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetAntiBumps, 6),
@@ -261,10 +261,10 @@ createAreas(
 	scaleByMapSize(20, 100),
 	5);
 
-log("Painting water...");
+g_Map.log("Painting water");
 paintTileClassBasedOnHeight(-Infinity, 0, Elevation_ExcludeMin_ExcludeMax, clWater);
 
-log("Painting land...");
+g_Map.log("Painting land");
 for (let mapX = 0; mapX < mapSize; ++mapX)
 	for (let mapZ = 0; mapZ < mapSize; ++mapZ)
 	{
@@ -336,7 +336,7 @@ function getCosricaSardiniaTerrain(position)
 
 Engine.SetProgress(65);
 
-log("Creating mines...");
+g_Map.log("Creating mines");
 for (let mine of [eMetalMine, eStoneMine])
 	createObjectGroupsDeprecated(
 		new SimpleGroup(
@@ -360,7 +360,7 @@ for (let mine of [eMetalMine, eStoneMine])
 		scaleByMapSize(6, 25),
 		1000);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createAreas(
 	new ClumpPlacer(20, 0.3, 0.06, 0.5),
 	[
@@ -374,7 +374,7 @@ createAreas(
 		clCliffs, 1),
 	scaleByMapSize(10, 40));
 
-log("Creating forests...");
+g_Map.log("Creating forests");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
@@ -401,7 +401,7 @@ createObjectGroupsDeprecated(
 
 Engine.SetProgress(75);
 
-log("Creating small decorative rocks...");
+g_Map.log("Creating small decorative rocks");
 createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
@@ -419,7 +419,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(16, 262),
 	50);
 
-log("Creating large decorative rocks...");
+g_Map.log("Creating large decorative rocks");
 var rocksGroup = new SimpleGroup(
 	[
 		new SimpleObject(aLargeRock, 1, 2, 0, 1),
@@ -446,7 +446,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(100, 800),
 	500);
 
-log("Creating decorative plants...");
+g_Map.log("Creating decorative plants");
 var plantGroups = [
 	new SimpleGroup(
 		[
@@ -475,7 +475,7 @@ for (let group of plantGroups)
 
 Engine.SetProgress(80);
 
-log("Creating animals...");
+g_Map.log("Creating animals");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(ePig, 2,4, 0,3)]),
 	0,
@@ -486,7 +486,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(20, 100),
 	50);
 
-log("Creating fish...");
+g_Map.log("Creating fish");
 createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(eFish, 1,2, 0,3)]),
 	0,

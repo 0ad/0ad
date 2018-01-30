@@ -51,15 +51,14 @@ var clGrass = g_Map.createTileClass();
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
+g_Map.log("Creating big grass patches around the playerbases");
 for (let i = 0; i < numPlayers; ++i)
 {
-	log("Marking player territory larger than the city patch...");
 	if (!isNomad())
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i]),
 			new TileClassPainter(clPlayer));
 
-	log("Creating big grass patches surrounding the city patches...");
 	createArea(
 		new ChainPlacer(
 			2,
@@ -106,14 +105,14 @@ placePlayerBases({
 });
 Engine.SetProgress(20);
 
-log("Creating bumps...");
+g_Map.log("Creating bumps");
 createAreas(
 	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));
 
-log("Creating hills...");
+g_Map.log("Creating hills");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
 	[
@@ -126,7 +125,7 @@ createAreas(
 
 Engine.SetProgress(25);
 
-log("Creating forests...");
+g_Map.log("Creating forests");
 var [forestTrees, stragglerTrees] = getTreeCounts(400, 2000, 0.7);
 var types = [
 	[[tMainDirt, tForestFloor2, pForestP], [tForestFloor2, pForestP]],
@@ -150,7 +149,7 @@ for (let type of types)
 
 Engine.SetProgress(40);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
@@ -159,7 +158,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		scaleByMapSize(50, 90));
 Engine.SetProgress(60);
 
-log("Creating big patches...");
+g_Map.log("Creating big patches");
 for (let size of [scaleByMapSize(6, 30), scaleByMapSize(10, 50), scaleByMapSize(16, 70)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
@@ -168,28 +167,28 @@ for (let size of [scaleByMapSize(6, 30), scaleByMapSize(10, 50), scaleByMapSize(
 		scaleByMapSize(30, 90));
 Engine.SetProgress(70);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0,4), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1, clGrass, 1)],
 	scaleByMapSize(2,8), 100
 );
 
-log("Creating small stone quarries...");
+g_Map.log("Creating small stone quarries");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1, clGrass, 1)],
 	scaleByMapSize(2,8), 100
 );
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 1, clGrass, 1)],
 	scaleByMapSize(2,8), 100
 );
 
-log("Creating small decorative rocks...");
+g_Map.log("Creating small decorative rocks");
 group = new SimpleGroup(
 	[new SimpleObject(aRock, 1,3, 0,1)],
 	true
@@ -200,7 +199,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(16, 262), 50
 );
 
-log("Creating bushes...");
+g_Map.log("Creating bushes");
 group = new SimpleGroup(
 	[new SimpleObject(aBushB, 1,2, 0,1), new SimpleObject(aBushA, 1,3, 0,2)],
 	true
@@ -212,7 +211,7 @@ createObjectGroupsDeprecated(
 );
 Engine.SetProgress(80);
 
-log("Creating gazelle...");
+g_Map.log("Creating gazelle");
 group = new SimpleGroup(
 	[new SimpleObject(oGazelle, 5,7, 0,4)],
 	true, clFood
@@ -222,7 +221,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-log("Creating lions...");
+g_Map.log("Creating lions");
 group = new SimpleGroup(
 	[new SimpleObject(oLion, 2,3, 0,2)],
 	true, clFood
@@ -232,7 +231,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-log("Creating camels...");
+g_Map.log("Creating camels");
 group = new SimpleGroup(
 	[new SimpleObject(oCamel, 2,3, 0,2)],
 	true, clFood

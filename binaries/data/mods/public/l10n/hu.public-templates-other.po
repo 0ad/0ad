@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-12 13:33+0000\n"
+"POT-Creation-Date: 2018-01-27 12:55+0100\n"
+"PO-Revision-Date: 2018-01-28 11:56+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -273,7 +273,7 @@ msgstr "Zsiráf (felnőtt)"
 msgid "Giraffe (Juvenile)"
 msgstr "Zsiráf (fiatal)"
 
-#: simulation/templates/gaia/fauna_goat.xml:15
+#: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Goat"
 msgstr "Kecske"
 
@@ -289,10 +289,9 @@ msgstr "Oroszlán"
 msgid "Lioness"
 msgstr "Nőstény oroszlán"
 
-#: simulation/templates/gaia/fauna_mastiff.xml:6
-#: simulation/templates/gaia/fauna_wolfhound.xml:6
-msgid "Coun"
-msgstr "Coun"
+#: simulation/templates/gaia/fauna_mastiff.xml:4
+msgid "Mastiff"
+msgstr "Masztiff"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
@@ -306,7 +305,7 @@ msgstr "Páva"
 msgid "Pavo cristatus"
 msgstr "Pavo cristatus"
 
-#: simulation/templates/gaia/fauna_pig.xml:15
+#: simulation/templates/gaia/fauna_pig.xml:9
 msgid "Pig"
 msgstr "Disznó"
 
@@ -338,7 +337,7 @@ msgstr "Nagy fehér"
 msgid "Shark"
 msgstr "Cápa"
 
-#: simulation/templates/gaia/fauna_sheep.xml:15
+#: simulation/templates/gaia/fauna_sheep.xml:9
 msgid "Sheep"
 msgstr "Bárány"
 
@@ -365,6 +364,10 @@ msgstr "Gnú"
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
 msgstr "Farkas"
+
+#: simulation/templates/gaia/fauna_wolfhound.xml:4
+msgid "Wolfhound"
+msgstr "Farkaskutya"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"

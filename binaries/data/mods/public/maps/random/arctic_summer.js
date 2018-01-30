@@ -93,7 +93,6 @@ placePlayerBases({
 });
 Engine.SetProgress(20);
 
-log("Creating hills...");
 createHills(
 	[tPrimary, tCliff, tHill],
 	avoidClasses(
@@ -106,7 +105,7 @@ createHills(
 
 Engine.SetProgress(30);
 
-log("Creating lakes...");
+g_Map.log("Creating lakes");
 createAreas(
 	new ChainPlacer(
 		1,
@@ -123,7 +122,6 @@ createAreas(
 
 Engine.SetProgress(45);
 
-log("Creating bumps...");
 createBumps(avoidClasses(clPlayer, 6, clWater, 2), scaleByMapSize(30, 300), 1, 8, 4, 0, 3);
 
 paintTerrainBasedOnHeight(4, 15, 0, tCliff);
@@ -141,7 +139,7 @@ createForests(
 	forestTrees);
 Engine.SetProgress(60);
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 createLayeredPatches(
 	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
 	[[tDirt,tHalfSnow], [tHalfSnow,tSnowLimited]],
@@ -155,7 +153,7 @@ createLayeredPatches(
 	scaleByMapSize(15, 45),
 	clDirt);
 
-log("Creating shrubs...");
+g_Map.log("Creating shrubs");
 createPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	tSecondary,
@@ -168,7 +166,7 @@ createPatches(
 	scaleByMapSize(15, 45),
 	clDirt);
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 createPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	tSecondary,
@@ -182,7 +180,7 @@ createPatches(
 	clDirt);
 Engine.SetProgress(65);
 
-log("Creating stone mines...");
+g_Map.log("Creating stone mines");
 createMines(
 	[
 		[new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)],
@@ -196,7 +194,7 @@ createMines(
 		clHill, 1),
 	clRock);
 
-log("Creating metal mines...");
+g_Map.log("Creating metal mines");
 createMines(
 	[
 		[new SimpleObject(oMetalLarge, 1, 1, 0, 4)]

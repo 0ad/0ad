@@ -73,6 +73,9 @@ var teamPosition = distributePointsOnCircle(numTeams, startAngle, fractionToTile
 var teamRadius = fractionToTiles(0.05);
 
 var teamNo = 0;
+
+g_Map.log("Creating player islands and bases");
+
 for (let i = 0; i < teams.length; ++i)
 {
 	if (!teams[i] || isNomad())
@@ -83,7 +86,6 @@ for (let i = 0; i < teams.length; ++i)
 	let [playerPosition, playerAngle] = distributePointsOnCircle(teams[i].length, startAngle + 2 * Math.PI / teams[i].length, teamRadius, teamPosition[i]);
 	playerPosition.forEach(position => position.round());
 
-	log("Creating island and starting entities for team " + i);
 	for (let p = 0; p < teams[i].length; ++p)
 	{
 		addCivicCenterAreaToClass(playerPosition[p], clPlayer);
@@ -105,18 +107,18 @@ for (let i = 0; i < teams.length; ++i)
 		{ "template": oStoneLarge, "angle": mineAngle + Math.PI / 4 }
 	];
 
-	log("Create starting resources for team " + i);
+	// Mines
 	for (let p = 0; p < teams[i].length; ++p)
 		for (let mine of mines)
 		{
 			let position = Vector2D.add(playerPosition[p], new Vector2D(g_InitialMineDistance, 0).rotate(-playerAngle[p] - mine.angle));
 			createObjectGroup(
-				new SimpleGroup([new SimpleObject(mine.template, 1, 1, 0, 4)], true, clBaseResource, position.x, position.y),
+				new SimpleGroup([new SimpleObject(mine.template, 1, 1, 0, 4)], true, clBaseResource, position),
 				0,
 				[avoidClasses(clBaseResource, 4, clPlayer, 4), stayClasses(clLand, 5)]);
 		}
 
-	log("Place initial trees for team " + i);
+	// Trees
 	for (let p = 0; p < teams[i].length; ++p)
 	{
 		let tries = 10;
@@ -124,11 +126,10 @@ for (let i = 0; i < teams.length; ++i)
 		{
 			let tAngle = playerAngle[p] + randFloat(-1, 1) * 2 * Math.PI / teams[i].length;
 			let treePosition = Vector2D.add(playerPosition[p], new Vector2D(16, 0).rotate(-tAngle)).round();
-			let group = new SimpleGroup(
-				[new SimpleObject(oTree2, g_InitialTrees, g_InitialTrees, 0, 7)],
-				true, clBaseResource, treePosition.x, treePosition.y
-			);
-			if (createObjectGroup(group, 0, [avoidClasses(clBaseResource, 4, clPlayer, 4), stayClasses(clLand, 4)]))
+			if (createObjectGroup(
+				new SimpleGroup([new SimpleObject(oTree2, g_InitialTrees, g_InitialTrees, 0, 7)], true, clBaseResource, treePosition),
+				0,
+				[avoidClasses(clBaseResource, 4, clPlayer, 4), stayClasses(clLand, 4)]))
 				break;
 		}
 	}
@@ -150,26 +151,26 @@ for (let i = 0; i < teams.length; ++i)
 			"baseResourceConstraint": new AndConstraint([avoidClasses(clPlayer, 4), stayClasses(clLand, 5)])
 		});
 
-	log("Creating huntable animals for team " + i + "...");
+	// Huntable animals
 	for (let p = 0; p < teams[i].length; ++p)
 	{
-		let group = new SimpleGroup(
-			[new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, Math.floor(fractionToTiles(0.2)))],
-			true, clBaseResource, teamPosition[i].x, teamPosition[i].y
-		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
+		createObjectGroup(
+			new SimpleGroup([new SimpleObject(oMainHuntableAnimal, 2 * numPlayers / numTeams, 2 * numPlayers / numTeams, 0, Math.floor(fractionToTiles(0.2)))], true, clBaseResource, teamPosition[i]),
+			0,
+			[avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 
-		group = new SimpleGroup(
-			[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, Math.floor(fractionToTiles(0.2)))],
-			true, clBaseResource, teamPosition[i].x, teamPosition[i].y
-		);
-		createObjectGroup(group, 0, [avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
+		createObjectGroup(
+			new SimpleGroup(
+				[new SimpleObject(oSecondaryHuntableAnimal, 4 * numPlayers / numTeams, 4 * numPlayers / numTeams, 0, Math.floor(fractionToTiles(0.2)))],
+				true, clBaseResource, teamPosition[i]),
+			0,
+			[avoidClasses(clBaseResource, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 	}
 }
 
 Engine.SetProgress(40);
 
-log("Creating big islands...");
+g_Map.log("Creating big islands");
 createAreas(
 	new ChainPlacer(
 		Math.floor(scaleByMapSize(4, 8) * (isNomad() ? 2 : 1)),
@@ -187,7 +188,7 @@ createAreas(
 	scaleByMapSize(4, 14) * (isNomad() ? 2 : 1),
 	1);
 
-log("Creating small islands...");
+g_Map.log("Creating small islands");
 createAreas(
 	new ChainPlacer(Math.floor(scaleByMapSize(4, 7)), Math.floor(scaleByMapSize(7, 10)), Math.floor(scaleByMapSize(16, 40)), 0.07, undefined, scaleByMapSize(22, 40)),
 	[
@@ -201,7 +202,7 @@ createAreas(
 
 Engine.SetProgress(70);
 
-log("Smoothing heightmap...");
+g_Map.log("Smoothing heightmap");
 for (let i = 0; i < 5; ++i)
 	globalSmoothHeightmap();
 
@@ -236,7 +237,7 @@ createForests(
  clForest,
  forestTrees);
 
-log("Creating hills...");
+g_Map.log("Creating hills");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
 	[
@@ -279,7 +280,7 @@ createFood(
 
 if (currentBiome() == "generic/desert")
 {
-	log("Creating obelisks");
+	g_Map.log("Creating obelisks");
 	let group = new SimpleGroup(
 		[new SimpleObject(oObelisk, 1, 1, 0, 1)],
 		true
@@ -291,7 +292,7 @@ if (currentBiome() == "generic/desert")
 	);
 }
 
-log("Creating dirt patches...");
+g_Map.log("Creating dirt patches");
 let numb = currentBiome() == "generic/savanna" ? 3 : 1;
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
@@ -303,7 +304,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 4)],
 		numb*scaleByMapSize(15, 45));
 
-log("Creating grass patches...");
+g_Map.log("Creating grass patches");
 for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
@@ -311,7 +312,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 4)],
 		numb * scaleByMapSize(15, 45));
 
-log("Creating small decorative rocks...");
+g_Map.log("Creating small decorative rocks");
 let group = new SimpleGroup(
 	[new SimpleObject(aRockMedium, 1, 3, 0, 1)],
 	true
@@ -322,7 +323,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(16, 262), 50
 );
 
-log("Creating large decorative rocks...");
+g_Map.log("Creating large decorative rocks");
 group = new SimpleGroup(
 	[new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)],
 	true
@@ -333,7 +334,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(8, 131), 50
 );
 
-log("Creating fish...");
+g_Map.log("Creating fish");
 group = new SimpleGroup(
 	[new SimpleObject(oFish, 2, 3, 0, 2)],
 	true, clFood
@@ -343,7 +344,7 @@ createObjectGroupsDeprecated(group, 0,
 	25 * numPlayers, 60
 );
 
-log("Creating Whales...");
+g_Map.log("Creating Whales");
 group = new SimpleGroup(
 	[new SimpleObject(oWhale, 1, 1, 0, 3)],
 	true, clFood
@@ -353,7 +354,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(5, 20), 100
 );
 
-log("Creating shipwrecks...");
+g_Map.log("Creating shipwrecks");
 group = new SimpleGroup(
 	[new SimpleObject(oShipwreck, 1, 1, 0, 1)],
 	true, clFood
@@ -363,7 +364,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(12, 16), 100
 );
 
-log("Creating shipwreck debris...");
+g_Map.log("Creating shipwreck debris");
 group = new SimpleGroup(
 	[new SimpleObject(oShipDebris, 1, 1, 0, 1)],
 	true, clFood
@@ -373,7 +374,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(10, 20), 100
 );
 
-log("Creating small grass tufts...");
+g_Map.log("Creating small grass tufts");
 let planetm = currentBiome() == "generic/tropic" ? 8 : 1;
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]
@@ -385,7 +386,7 @@ createObjectGroupsDeprecated(group, 0,
 
 Engine.SetProgress(95);
 
-log("Creating large grass tufts...");
+g_Map.log("Creating large grass tufts");
 group = new SimpleGroup(
 	[new SimpleObject(aGrass, 2, 4, 0, 1.8, -Math.PI / 8, Math.PI / 8), new SimpleObject(aGrassShort, 3, 6, 1.2,2.5, -Math.PI / 8, Math.PI / 8)]
 );

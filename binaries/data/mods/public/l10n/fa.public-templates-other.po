@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# aarmn aarmn <aarmn80@gmail.com>, 2018
 # Amin Behshad, 2015-2016
 # Etienne Beguin <eti.beguin@gmail.com>, 2017
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 04:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-01-27 12:55+0100\n"
+"PO-Revision-Date: 2018-01-27 22:17+0000\n"
+"Last-Translator: aarmn aarmn <aarmn80@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -178,7 +179,7 @@ msgstr "معبد مصری"
 
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:4
 msgid "Arctic Wolf"
-msgstr ""
+msgstr "گرگ قطبی"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -218,7 +219,7 @@ msgstr "فیل آفریقایی"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
 msgid "African Elephant Calf"
-msgstr ""
+msgstr "بچه فیل آفریقایی"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
@@ -226,7 +227,7 @@ msgstr "فیل آسیایی"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
 msgid "Asian Elephant Calf"
-msgstr ""
+msgstr "بچه فیل آسیایی"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
@@ -240,7 +241,7 @@ msgstr "ماهی تن"
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
 msgid "Gather food from this bountiful oceanic resource."
-msgstr ""
+msgstr "جمع آوری غذا از این منابع سودمند ساحلی"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
@@ -248,7 +249,7 @@ msgstr "ماهی تیلاپیلا"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Gather food from this bountiful riparian resource."
-msgstr ""
+msgstr "جمع آوری غذا از این منابع سودمند کنار رود"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:4
 msgid "Arctic Fox"
@@ -270,7 +271,7 @@ msgstr "زرافه"
 msgid "Giraffe (Juvenile)"
 msgstr "بچه زرافه"
 
-#: simulation/templates/gaia/fauna_goat.xml:15
+#: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Goat"
 msgstr "بز"
 
@@ -286,10 +287,9 @@ msgstr "شیر نر"
 msgid "Lioness"
 msgstr "شیر ماده"
 
-#: simulation/templates/gaia/fauna_mastiff.xml:6
-#: simulation/templates/gaia/fauna_wolfhound.xml:6
-msgid "Coun"
-msgstr "Coun"
+#: simulation/templates/gaia/fauna_mastiff.xml:4
+msgid "Mastiff"
+msgstr "بولداگ"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
@@ -303,7 +303,7 @@ msgstr "طاووس"
 msgid "Pavo cristatus"
 msgstr "طاووس هندي"
 
-#: simulation/templates/gaia/fauna_pig.xml:15
+#: simulation/templates/gaia/fauna_pig.xml:9
 msgid "Pig"
 msgstr "خوک"
 
@@ -317,7 +317,7 @@ msgstr "گراز نر شعله ور"
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
-msgstr ""
+msgstr "اسب پا کوتاه"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
@@ -335,7 +335,7 @@ msgstr "کوسه سفید"
 msgid "Shark"
 msgstr "کوسه"
 
-#: simulation/templates/gaia/fauna_sheep.xml:15
+#: simulation/templates/gaia/fauna_sheep.xml:9
 msgid "Sheep"
 msgstr "گوسفند"
 
@@ -363,13 +363,17 @@ msgstr "گوزن یالدار"
 msgid "Wolf"
 msgstr "گرگ"
 
+#: simulation/templates/gaia/fauna_wolfhound.xml:4
+msgid "Wolfhound"
+msgstr "سگ گرگی شکاری"
+
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
 msgstr "گورخر"
 
 #: simulation/templates/gaia/fauna_zebu.xml:9
 msgid "Zebu"
-msgstr ""
+msgstr "گاو کوهان دار"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
@@ -485,7 +489,7 @@ msgstr "درخت صنوبر"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Black Poplar Tree"
-msgstr ""
+msgstr "درخت صنوبر سیاه"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -708,7 +712,7 @@ msgstr "قلعه چوبی"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:7
 msgid "Wooden Tower"
-msgstr ""
+msgstr "برج چوبی"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
@@ -863,7 +867,7 @@ msgstr "تغییرات در خانه‌های با ظرفیت ۵ نفر، برا
 
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
-msgstr ""
+msgstr "جاسوس"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"

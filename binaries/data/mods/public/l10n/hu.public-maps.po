@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:34+0100\n"
-"PO-Revision-Date: 2018-01-12 13:28+0000\n"
+"POT-Creation-Date: 2018-01-27 12:56+0100\n"
+"PO-Revision-Date: 2018-01-28 11:51+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -267,8 +267,8 @@ msgstr "Angol csatorna"
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
-"A once fertile valley… desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
-msgstr "[color=\"red\"]FONTOS: AZ MI JÁTÉKOSOK NEM MŰKÖDNEK EZEN A TÉRKÉPEN[/color]\n\nEgy egykor termékeny völgy… amelyet a terület közepén lévő régóta szunnyadó vulkán pusztított el. Az évek óta tartó üres, kiégett pusztaságban az élet jelei újra megjelentek, és terjednek. Most már a föld régi teljes bujasága felé jár félúton. De ez nem fog bekövetkezni: egy hosszú aszály után, az északi területek felől érkező megállíthatatlan esők érkeznek. A vízszint drasztikusan növekszik, lassan arra kényszerítve a játékosokat, hogy magasabb területeket keressenek, a kisebb kihunyt tűzhányókon, vagy a most újra szunnyadó kúpján."
+"A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
+msgstr "[color=\"red\"]FONTOS: AZ MI JÁTÉKOSOK NEM MŰKÖDNEK EZEN A TÉRKÉPEN[/color]\n\nEgy egykor termékeny völgy, amelyet a terület közepén lévő régóta szunnyadó vulkán pusztított el. Az évek óta tartó üres, kiégett pusztaságban az élet jelei újra megjelentek, és terjednek. Most már a föld régi teljes bujasága felé jár félúton. De ez nem fog bekövetkezni: egy hosszú aszály után, az északi területek felől érkező megállíthatatlan esők érkeznek. A vízszint drasztikusan növekszik, lassan arra kényszerítve a játékosokat, hogy magasabb területeket keressenek, a kisebb kihunyt tűzhányókon, vagy a most újra szunnyadó kúpján."
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
@@ -668,31 +668,20 @@ msgid "The Nile"
 msgstr "A Nílus"
 
 #: maps/random/unknown.jsonsettings.Description
-msgid "The unknown… Warning: May be a naval map."
-msgstr "Az ismeretlen… Figyelmeztetés: lehet hogy tengeri térkép."
+msgid "The unknown. Warning: May be a naval map."
+msgstr "Az ismeretlen. Figyelmeztetés: lehet hogy tengeri térkép."
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
 msgstr "Ismeretlen"
 
 #: maps/random/unknown_land.jsonsettings.Description
-msgid "The unknown…"
-msgstr "Az ismeretlen…"
+msgid "The unknown."
+msgstr "Az ismeretlen."
 
 #: maps/random/unknown_land.jsonsettings.Name
 msgid "Unknown Land"
 msgstr "Ismeretlen vidék"
-
-#: maps/random/unknown_nomad.jsonsettings.Description
-msgid ""
-"The unknown… Players start with only some citizen soldiers and female "
-"citizens. [color=\"red\"]Warning: The starting resources should be set at "
-"least at Medium.[/color]"
-msgstr "Az ismeretlen… A játékosok csak néhány polgári katonával és női polgárral kezdenek. [color=\"red\"]Figyelmeztetés: a kezdő nyersanyagot legalább közepesre kell állítani.[/color]"
-
-#: maps/random/unknown_nomad.jsonsettings.Name
-msgid "Unknown Nomad"
-msgstr "Ismeretlen nomád"
 
 #: maps/random/volcanic_lands.jsonsettings.Description
 msgid "A charred dead land where players start around a smoking volcano."
@@ -720,31 +709,18 @@ msgstr "Egy hegyekkel körbevett tó"
 msgid "Wild Lake"
 msgstr "Vad tó"
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Description
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
 "abundant conifer forests, making even the more resilient deer and mountain "
 "goats shiver."
 msgstr "Egy terület a magas havas hegyekben. Harapós szelek söpörnek végig a hatalmas tűlevelű erdőkön, amelytől még az ellenállóbb szarvasok és hegyi kecskék is reszketnek."
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Egy terület a magas havas hegyekben. Harapós szelek söpörnek végig a hatalmas tűlevelű erdőkön, amelytől még az ellenállóbb szarvasok és hegyi kecskék is reszketnek. "
-
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Title
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgid "Alpine"
 msgstr "Alpesi"
 
-#: maps/random/rmbiome/biomes/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alpesi"
-
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Description
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgid ""
 "Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
 "intertwined. The native beech and oak trees of this temperate zone display a"
@@ -752,121 +728,55 @@ msgid ""
 "at the approaching winter."
 msgstr "Az ősz csúcspontja. A táj maga a színek kavalkádja. A mérsékelt éghajlatú terület őshonos bükk és tölgyfái sokszínű lombozatot mutatnak, miközben az örökzöld fenyők mit sem változva várják a közelgő telet."
 
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-coloured foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "Az ősz csúcspontja. A táj maga a színek kavalkádja. A mérsékelt éghajlatú terület őshonos bükk és tölgyfái sokszínű lombozatot mutatnak, miközben az örökzöld fenyők mit sem változva várják a közelgő telet."
-
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Title
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgid "Autumn"
 msgstr "Ősz"
 
-#: maps/random/rmbiome/biomes/autumn.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Ősz"
-
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Description
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
 msgid ""
 "A semi-desert area that boasts numerous clumps of date palms and tamarix "
 "trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
 "fright at being disturbed."
 msgstr "Egy félsivatagos terület, amely számos kupac tamariskával és datolyapálmával büszkélkedhet. Tevecsordák kóborolnak a vadonban, és időnként gazellák ugornak fel, mikor megijesztik őket."
 
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Egy félsivatagos terület, amely számos kupac tamariskával és datolyapálmával büszkélkedhet. Tevecsordák kóborolnak a vadonban, és időnként gazellák ugornak fel, mikor megijesztik őket."
-
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Title
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
 msgid "Desert"
 msgstr "Sivatag"
 
-#: maps/random/rmbiome/biomes/desert.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Desert"
-msgstr "Sivatag"
-
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Description
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
 msgid ""
 "Start in a region blessed with the Mediterranean climate, a warm and "
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Kezdj egy mediterrán éghajlattal megáldott területen, egy meleg és hívogató földön. A ciprusok örökös küzdelemben állnak a domináló legyezőpálmákkal, miközben a szarvasok az árnyékban legelnek, boldog tudatlanságban."
 
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Kezdj egy mediterrán éghajlattal megáldott területen, egy meleg és hívogató földön. A ciprusok örökös küzdelemben állnak a domináló legyezőpálmákkal, miközben a szarvasok az árnyékban legelnek, boldog tudatlanságban."
-
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Title
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgid "Mediterranean"
 msgstr "Földközi-tenger"
 
-#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Földközi-tenger"
-
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Description
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
 "The savanna, a dry climate in which only the hardy Baobab trees thrive. "
 "Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
 " giraffes or elephants roam the wild in search of food."
 msgstr "A szavanna, egy száraz klíma, ahol csak a szívós majomkenyérfák nőnek. Magányos gazellák legelnek a kietlen fűben, miközben zebracsordák, gnúk, zsiráfok vagy elefántok kóborolnak a vadonban, élelmet keresve."
 
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "A szavanna, egy száraz klíma, ahol csak a szívós majomkenyérfák nőnek. Magányos gazellák legelnek a kietlen fűben, miközben zebracsordák, gnúk, zsiráfok vagy elefántok kóborolnak a vadonban, élelmet keresve."
-
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Title
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgid "Savanna"
 msgstr "Szavanna"
 
-#: maps/random/rmbiome/biomes/savanna.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Szavanna"
-
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Description
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
 msgid ""
 "Settle in the cold regions of the North, the native habitat of the wooly "
 "muskox. Here you can pine away to your content and also hunt the occasional "
 "walrus or two."
 msgstr "Telepedj le az Észak hideg területein, a keleti pézsmatulok természetes élőhelyén. Itt aztán kedvedre vághatsz fenyőfát, és néha vadászhatsz egy-két rozmárra."
 
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Telepedj le az Észak hideg területein, a keleti pézsmatulok természetes élőhelyén. Itt aztán kedvedre vághatsz fenyőfát, és néha vadászhatsz egy-két rozmárra."
-
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Title
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgid "Snowy"
 msgstr "Havas"
 
-#: maps/random/rmbiome/biomes/snowy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Havas"
-
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Description
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgid ""
 "Lush grasslands carpet the land, in places giving way to magnificent and "
 "diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
@@ -874,25 +784,11 @@ msgid ""
 "dot the land, deer and sheep gorge themselves on this years fallen fruit."
 msgstr "Buja füves puszta fedi a vidéket, néhol káprázatos és változatos lomblevelű erdőnek adva helyet. Nyárfák, fenyők, bükkfák és tölgyek versengenek az elsőbbségért, de ez a gyökérharc egy véget nem érő küzdelem. Számos almafa pettyezi a tájat, szarvasok és birkák falják fel az ez évi lehullott gyümölcsöt."
 
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Buja füves puszta fedi a vidéket, néhol káprázatos és változatos lomblevelű erdőnek adva helyet. Nyárfák, fenyők, bükkfák és tölgyek versengenek az elsőbbségért, de ez a gyökérharc egy véget nem érő küzdelem. Számos almafa pettyezi a tájat, szarvasok és birkák falják fel az ez évi lehullott gyümölcsöt."
-
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Title
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgid "Temperate"
 msgstr "Mérsékelt"
 
-#: maps/random/rmbiome/biomes/temperate.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Mérsékelt"
-
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Description
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
 msgid ""
 "Explore the mysterious tropics. An extremely green, but also extremely humid"
 " environment awaits. The tall Toona trees look on disapprovingly at this "
@@ -900,23 +796,21 @@ msgid ""
 "their territory at all costs."
 msgstr "Fedezd fel a titokzatos trópusokat. Egy rendkívüli módon zöld, de rendkívül párás környezet vár rád. A magas mahagónik rosszallóan figyelik ezt a behatolást, és az ádáz tigrisek eltökéltek, hogy mindenáron megvédjék a területüket."
 
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Fedezd fel a titokzatos trópusokat. Egy rendkívüli módon zöld, de rendkívül párás környezet vár rád. A magas mahagónik rosszallóan figyelik ezt a behatolást, és az ádáz tigrisek eltökéltek, hogy mindenáron megvédjék a területüket."
-
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Title
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgid "Tropic"
 msgstr "Trópusi"
 
-#: maps/random/rmbiome/biomes/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "Trópusi"
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgid "Frozen Lake"
+msgstr "Befagyott tó"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgid "Late Spring"
+msgstr "Késő tavasz"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgid "Winter"
+msgstr "Tél"
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -2138,11 +2032,11 @@ msgstr "Barca (3)"
 
 #: maps/skirmishes/Barcania (3).xml:Description:27
 msgid ""
-"A wild and wooded isle, full of forests, gold, and mystery…  mountains, "
-"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
-"with lots of potential for skirmishing and guerilla warfare as well as tough"
-" defensive fighting or aggressive maneuvers."
-msgstr "Vad és erdős sziget tele erdőséggel, arannyal és titkokkal… a hegyek, a tenger és a sűrű erdő egy nagyon dinamikus és gyors tempójú, 3 játékos által játszható pályává teszi sok lehetőséget adva a csatákra, gerilla-hadviselésre valamint kemény védekező harcra vagy támadó manőverekre."
+"A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
+" and thick forests make for a very dynamic and fast-paced 3-player map with "
+"lots of potential for skirmishing and guerilla warfare as well as tough "
+"defensive fighting or aggressive maneuvers."
+msgstr "Vad és erdős sziget tele erdőséggel, arannyal és titkokkal. A hegyek, a tenger és a sűrű erdő egy nagyon dinamikus és gyors tempójú, 3 játékos által játszható térképpé teszi, sok lehetőséget adva a csatákra, gerilla-hadviselésre valamint kemény védekező harcra vagy támadó manőverekre."
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:39
 msgid ""
@@ -2580,6 +2474,15 @@ msgstr "Egy hatalmas trópusi térkép két tengerrel keleten és nyugaton. Kiv�
 #: maps/skirmishes/Two Seas (6).xml:Name:40
 msgid "Two Seas (6)"
 msgstr "Két tenger (6)"
+
+#: maps/skirmishes/Via Augusta (4).xml:Description:40
+msgid ""
+"All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
+msgstr "Minden út Rómába vezet. A Via Iulia Augustán, az i. e. 13-ban épült római úton keresztül."
+
+#: maps/skirmishes/Via Augusta (4).xml:Name:40
+msgid "Via Augusta"
+msgstr "Via Augusta"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:39
 msgid ""
