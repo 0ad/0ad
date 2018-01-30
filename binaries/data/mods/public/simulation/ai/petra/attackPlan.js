@@ -387,7 +387,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 {
 	// the completing step is used to return resources and regroup the units
 	// so we check that we have no more forced order before starting the attack
-	if (this.state === "completing")
+	if (this.state == "completing")
 	{
 		// if our target was destroyed, go back to "unexecuted" state
 		if (this.targetPlayer === undefined || !this.target || !gameState.getEntityById(this.target.id()))
@@ -473,7 +473,8 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 	// if we're here, it means we must start
 	this.state = "completing";
 
-	if (!this.chooseTarget(gameState))
+	// Raids have their predefined target
+	if (!this.target && !this.chooseTarget(gameState))
 		return 0;
 	if (!this.overseas)
 		this.getPathToTarget(gameState);
@@ -1999,7 +2000,10 @@ m.AttackPlan.prototype.checkEvents = function(gameState, events)
 	{
 		if (!this.target || this.target.id() != evt.entity)
 			continue;
-		this.target = gameState.getEntityById(evt.newentity);
+		if (this.type == "Raid" && !this.isStarted())
+			this.target = undefined;
+		else
+			this.target = gameState.getEntityById(evt.newentity);
 		if (this.target)
 			this.targetPos = this.target.position();
 	}
