@@ -94,14 +94,8 @@ function PathPlacer(start, end, width, waviness, smoothness, offset, tapering, f
 
 PathPlacer.prototype.place = function(constraint)
 {
-	var failed = 0;
-
 	let pathLength = this.start.distanceTo(this.end);
 
-	var size = g_Map.getSize();
-	var gotRet = [];
-	for (var i = 0; i < size; ++i)
-		gotRet[i] = new Uint8Array(size);			// bool / uint8
 	let numStepsWaviness = 1 + Math.floor(pathLength / 4 * this.waviness);
 	let numStepsLength = 1 + Math.floor(pathLength / 4 * this.smoothness);
 	let offset = 1 + Math.floor(pathLength / 4 * this.offset);
@@ -144,87 +138,34 @@ PathPlacer.prototype.place = function(constraint)
 
 		let taperedWidth = (1 - step1 * this.tapering) * this.width / 2;
 
-		let point1 = Vector2D.sub(noiseStart, Vector2D.mult(noisePerpendicular, taperedWidth)).round();
-		let point2 = Vector2D.add(noiseEnd, Vector2D.mult(noisePerpendicular, taperedWidth)).round();
-
-		segments1.push({ "x": point1.x, "z": point1.y });
-		segments2.push({ "x": point2.x, "z": point2.y });
+		segments1.push(Vector2D.sub(noiseStart, Vector2D.mult(noisePerpendicular, taperedWidth)).round());
+		segments2.push(Vector2D.add(noiseEnd, Vector2D.mult(noisePerpendicular, taperedWidth)).round());
 	}
 
-	var retVec = [];
 	// Draw path segments
-	var num = segments1.length - 1;
-	for (var j = 0; j < num; ++j)
+	let size = g_Map.getSize();
+	let gotRet = new Array(size).fill(0).map(i => new Uint8Array(size));
+	let retVec = [];
+	let failed = 0;
+
+	for (let j = 0; j < segments1.length - 1; ++j)
 	{
-		// Fill quad formed by these 4 points
-		// Note the code assumes these points have been rounded to integer values
-		var pt11 = segments1[j];
-		var pt12 = segments1[j+1];
-		var pt21 = segments2[j];
-		var pt22 = segments2[j+1];
+		let points = new ConvexPolygonPlacer([segments1[j], segments1[j + 1], segments2[j], segments2[j + 1]], Infinity).place(new NullConstraint());
+		if (!points)
+			continue;
 
-		var tris = [[pt12, pt11, pt21], [pt12, pt21, pt22]];
-
-		for (var t = 0; t < 2; ++t)
+		for (let point of points)
 		{
-			// Sort vertices by min z
-			var tri = tris[t].sort(
-				function(a, b)
-				{
-					return a.z - b.z;
-				}
-			);
-
-			// Fills in a line from (z, x1) to (z,x2)
-			var fillLine = function(z, x1, x2)
+			if (!constraint.allows(point))
 			{
-				var left = Math.round(Math.min(x1, x2));
-				var right = Math.round(Math.max(x1, x2));
-				for (var x = left; x <= right; x++)
-				{
-					let position = new Vector2D(x, z);
-					if (constraint.allows(position))
-					{
-						if (g_Map.inMapBounds(position) && !gotRet[x][z])
-						{
-							retVec.push(position);
-							gotRet[x][z] = 1;
-						}
-					}
-					else
-						failed++;
-				}
-			};
-
-			var A = tri[0];
-			var B = tri[1];
-			var C = tri[2];
-
-			var dx1 = (B.z != A.z) ? ((B.x - A.x) / (B.z - A.z)) : 0;
-			var dx2 = (C.z != A.z) ? ((C.x - A.x) / (C.z - A.z)) : 0;
-			var dx3 = (C.z != B.z) ? ((C.x - B.x) / (C.z - B.z)) : 0;
-
-			if (A.z == B.z)
-			{
-				fillLine(A.z, A.x, B.x);
+				++failed;
+				continue;
 			}
-			else
+
+			if (g_Map.inMapBounds(point) && !gotRet[point.x][point.y])
 			{
-				for (var z = A.z; z <= B.z; z++)
-				{
-					fillLine(z, A.x + dx1*(z - A.z), A.x + dx2*(z - A.z));
-				}
-			}
-			if (B.z == C.z)
-			{
-				fillLine(B.z, B.x, C.x);
-			}
-			else
-			{
-				for (var z = B.z + 1; z < C.z; z++)
-				{
-					fillLine(z, B.x + dx3*(z - B.z), A.x + dx2*(z - A.z));
-				}
+				retVec.push(point);
+				gotRet[point.x][point.y] = 1;
 			}
 		}
 	}
@@ -269,3 +210,74 @@ RandomPathPlacer.prototype.place = function(constraint)
 
 	return points;
 };
+
+/**
+ * Returns all points on the tilegrid within the convex hull of the given positions.
+ */
+function ConvexPolygonPlacer(points, failFraction = 0)
+{
+	this.polygonVertices = this.getConvexHull(points.map(point => point.clone().round()));
+	this.failFraction = failFraction;
+};
+
+ConvexPolygonPlacer.prototype.place = function(constraint)
+{
+	let points = [];
+	let count = 0;
+	let failed = 0;
+
+	for (let point of getPointsInBoundingBox(getBoundingBox(this.polygonVertices)))
+	{
+		if (this.polygonVertices.some((vertex, i) =>
+		      distanceOfPointFromLine(this.polygonVertices[i], this.polygonVertices[(i + 1) % this.polygonVertices.length], point) > 0))
+			continue;
+
+		++count;
+
+		if (g_Map.inMapBounds(point) && constraint.allows(point))
+			points.push(point);
+		else
+			++failed;
+	}
+
+	return failed <= this.failFraction * count ? points : undefined;
+};
+
+/**
+ * Applies the gift-wrapping algorithm.
+ * Returns a sorted subset of the given points that are the vertices of the convex polygon containing all given points.
+ */
+ConvexPolygonPlacer.prototype.getConvexHull = function(points)
+{
+	let uniquePoints = [];
+	for (let point of points)
+		if (uniquePoints.every(p => p.x != point.x || p.y != point.y))
+			uniquePoints.push(point);
+
+	// Start with the leftmost point
+	let result = [uniquePoints.reduce((leftMost, point) => point.x < leftMost.x ? point : leftMost, uniquePoints[0])];
+
+	// Add the vector most left of the most recently added point until a cycle is reached
+	while (result.length < uniquePoints.length)
+	{
+		let nextLeftmostPoint;
+
+		// Of all points, find the one that is leftmost
+		for (let point of uniquePoints)
+		{
+			if (point == result[result.length - 1])
+				continue;
+
+			if (!nextLeftmostPoint || distanceOfPointFromLine(nextLeftmostPoint, result[result.length - 1], point) <= 0)
+				nextLeftmostPoint = point;
+		}
+
+		// If it was a known one, then the remaining points are inside this hull
+		if (result.indexOf(nextLeftmostPoint) != -1)
+			break;
+
+		result.push(nextLeftmostPoint);
+	}
+
+	return result;
+}

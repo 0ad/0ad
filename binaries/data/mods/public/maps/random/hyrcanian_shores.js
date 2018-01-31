@@ -107,11 +107,6 @@ paintRiver({
 	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0,
-	"landFunc": (position, shoreDist1, shoreDist2) => {
-
-		if (waterPosition + shoreDist1 > highlandsPosition)
-			clHighlands.add(position);
-	},
 	"waterFunc": (position, height, riverFraction) => {
 
 		if (height < heightShore2)
@@ -121,6 +116,18 @@ paintRiver({
 	}
 });
 Engine.SetProgress(20);
+
+g_Map.log("Marking highlands area");
+createArea(
+	new ConvexPolygonPlacer(
+		[
+			new Vector2D(mapBounds.left, mapBounds.top - highlandsPosition),
+			new Vector2D(mapBounds.right, mapBounds.top - highlandsPosition),
+			new Vector2D(mapBounds.left, mapBounds.bottom),
+			new Vector2D(mapBounds.right, mapBounds.bottom)
+		].map(pos => pos.rotateAround(startAngle, mapCenter)),
+		Infinity),
+	new TileClassPainter(clHighlands));
 
 g_Map.log("Creating fish");
 for (let i = 0; i < scaleByMapSize(10, 20); ++i)

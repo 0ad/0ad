@@ -104,14 +104,22 @@ paintRiver({
 	"heightLand": heightLand,
 	"meanderShort": 20,
 	"meanderLong": 0,
-	"landFunc": (position, shoreDist1, shoreDist2) => {
-		if (waterPosition - shoreDist2 > mountainPosition)
-			clMountains.add(position);
-	},
 	"waterFunc": (position, height, riverFraction) => {
 		clWater.add(position);
 	}
 });
+
+g_Map.log("Marking mountain area");
+createArea(
+	new ConvexPolygonPlacer(
+		[
+			new Vector2D(mountainPosition, mapBounds.top),
+			new Vector2D(mountainPosition, mapBounds.bottom),
+			new Vector2D(mapBounds.right, mapBounds.top),
+			new Vector2D(mapBounds.right, mapBounds.bottom)
+		].map(pos => pos.rotateAround(startAngle - Math.PI / 2, mapCenter)),
+		Infinity),
+	new TileClassPainter(clMountains));
 
 g_Map.log("Creating shores");
 for (let i = 0; i < scaleByMapSize(20, 120); ++i)
