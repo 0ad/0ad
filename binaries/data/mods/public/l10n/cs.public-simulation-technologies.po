@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-26 14:49+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2018-01-29 09:04+0100\n"
+"PO-Revision-Date: 2018-01-29 14:18+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -364,8 +364,9 @@ msgid ""
 msgstr "Nejlepší štíty jsou zesíleny buď v rozích (římské scutum) nebo okolo okraje (řecký aspis)."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
-msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr "Pěší bojovníci s oštěpem +1 na brnění proti útokům bodnutím."
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
+msgid "Infantry Spearmen +1 Pierce Armor Level."
+msgstr "Pěší bojovníci s oštěpem +1 ochrana proti bodnutí."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -382,10 +383,6 @@ msgstr "Aspís"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
 msgstr "Bronzové kování, které je vtlučeno do povrchu štítu. "
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
-msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Pěší bojovníci s oštěpem +1 ochrana proti bodnutí."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"

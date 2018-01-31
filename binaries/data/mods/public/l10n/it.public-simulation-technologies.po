@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-19 16:13+0000\n"
-"Last-Translator: George Lungu <lungugeorge88@gmail.com>\n"
+"POT-Creation-Date: 2018-01-29 09:04+0100\n"
+"PO-Revision-Date: 2018-01-29 14:18+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -367,8 +367,9 @@ msgid ""
 msgstr "I migliori scudi hanno rinforzi sia sugli angoli (Scutum Romano) o intorno al cerchio (Aspis Greco)."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
-msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr "Fanteria Lancieri +1 Livelli Armatura a Maglie."
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
+msgid "Infantry Spearmen +1 Pierce Armor Level."
+msgstr "Fanteria Lancieri +1 Livello Perforazione Armatura."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -385,10 +386,6 @@ msgstr "Aspís"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
 msgstr "Uno strato di bronzo battuto sul fronte dello scudo"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
-msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Fanteria Lancieri +1 Livello Perforazione Armatura."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"

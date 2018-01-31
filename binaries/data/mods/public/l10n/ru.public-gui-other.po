@@ -6,7 +6,7 @@
 # Alexander Olkhovskiy, 2016
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Boris Karalnik <eyesucker@gmail.com>, 2015
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2018
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -34,6 +34,7 @@
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
 # Виталий Орехов <7opex0@mail.ru>, 2016
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
 # Евгений Азаров <azarov.evg.ua@gmail.com>, 2017
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 # Олег Шевченко <olegrock@gmail.com>, 2017
@@ -41,8 +42,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 15:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-29 23:24+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -455,21 +456,21 @@ msgstr "Выбрать случайную карту из списка"
 
 #: gui/common/gamedescription.js:347
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Режим Кочевник"
 
 #: gui/common/gamedescription.js:347
 msgid "Civic Centers"
-msgstr ""
+msgstr "Городские Центры"
 
 #: gui/common/gamedescription.js:350
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Игроки начинают с несколькими юнитами и вынуждены искать подходящее место для строительства города."
 
 #: gui/common/gamedescription.js:351
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "Игроки начинают с Городским Центром."
 
 #: gui/common/gamedescription.js:358
 msgid "Biome"
@@ -1338,7 +1339,7 @@ msgstr "Подтверждение"
 
 #: gui/pregame/mainmenu.js:264
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "Вы уверены, что хотите выйти из 0 A.D. и открыть Редактор Сценариев?"
 
 #: gui/pregame/mainmenu.js:272
 msgid ""
@@ -2613,7 +2614,7 @@ msgstr "Время сообщения в чате"
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Отображать радиус атаки выбранных защитных сооружений (можно переключить в игре при помощи горячей клавиши)."
 
 #: gui/options/options.json[0].options[16].label
 msgid "Attack Range Visualization"
@@ -3256,7 +3257,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Хотя достаточно легкий для опытного игрока, уровень ИИ по умолчанию является довольно сложным для новичков, прежде чем они освоят базовые механизмы игры. Новичкам рекомендуется начать играть против более низкого уровня (\"Песочница\" или \"Очень легко\"). Изменение уровня ИИ осуществляется нажатием на значок шестеренки рядом с игроком, уровень которого Вы хотите изменить, в панели выбора игрока сверху."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

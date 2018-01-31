@@ -9,7 +9,7 @@
 # Alex <yanebotan@ngs.ru>, 2015
 # Boris Karalnik <eyesucker@gmail.com>, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2018
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -39,13 +39,14 @@
 # Xxcapog <xx.artem-kokorin@mail.ru>, 2015
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Дмитрий <polsha_d@mail.ru>, 2016
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-31 21:35+0100\n"
-"PO-Revision-Date: 2018-01-23 21:39+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2018-01-29 09:04+0100\n"
+"PO-Revision-Date: 2018-01-29 15:24+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -390,7 +391,8 @@ msgid ""
 msgstr "Улучшенные щиты имеют усиление по углам (римский скутум) или по кругу (греческий аспис)."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
-msgid "Infantry Spearmen +1 Pierce Armor Levels."
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
+msgid "Infantry Spearmen +1 Pierce Armor Level."
 msgstr "Пешие копейщики получают +1 к защите от колющих ударов."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
@@ -408,10 +410,6 @@ msgstr "Аспис"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
 msgstr "Бронзовая оковка лицевой части щита."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
-msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Пешие копейщики получают +1 к защите от колющих ударов."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
@@ -1585,7 +1583,7 @@ msgstr "Усиливает обороноспособность на случа�
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "Увеличивает броню оборонительных башен на 2 уровня."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1661,7 +1659,7 @@ msgstr "Ночной караул увеличивает бдительност�
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Разместите часовых в оборонительных башнях, чтобы увеличить количество выпускаемых стрел на одну."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"

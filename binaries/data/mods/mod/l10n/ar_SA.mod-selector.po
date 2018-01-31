@@ -1,0 +1,117 @@
+# Translation template for Pyrogenesis - Mod Selector.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"POT-Creation-Date: 2017-12-08 09:05+0100\n"
+"PO-Revision-Date: 2014-09-12 20:06+0000\n"
+"Language-Team: Arabic (Saudi Arabia) (http://www.transifex.com/wildfire-games/0ad/language/ar_SA/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar_SA\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/modmod/modmod.js:70 gui/modmod/modmod.js:200
+msgid "Filter"
+msgstr ""
+
+#: gui/modmod/modmod.js:253
+#, javascript-format
+msgid "Dependency not met: %(dep)s"
+msgstr ""
+
+#: gui/modmod/modmod.js:259
+msgid "All dependencies met"
+msgstr ""
+
+#: gui/modmod/modmod.js:335
+msgid "No mod has been selected."
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):12
+msgid "Modifications"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):20
+msgid "Reset Filters"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):46
+msgid "Negate"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):54
+msgid "Available Mods"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):91
+msgid "Description"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):94 gui/modmod/modmod.xml:(caption):162
+msgid "Visit Website"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):98
+msgid "Enable"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):107
+msgid "Enabled Mods"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):142
+msgid "Up"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):146
+msgid "X"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):150
+msgid "Down"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):157
+msgid "Quit"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):167
+msgid "Cancel"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):172
+msgid "Save Configuration"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):177
+msgid "Start Mods"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):72 gui/modmod/modmod.xml:(heading):122
+msgid "Name"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):75 gui/modmod/modmod.xml:(heading):125
+msgid "Version"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):78 gui/modmod/modmod.xml:(heading):128
+msgid "(Folder)"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):131
+msgid "Mod Label"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):84 gui/modmod/modmod.xml:(heading):134
+msgid "Dependencies"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):137
+msgid "Website"
+msgstr ""
