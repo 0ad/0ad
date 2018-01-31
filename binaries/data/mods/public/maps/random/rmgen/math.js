@@ -62,6 +62,35 @@ function testLineIntersection(start1, end1, start2, end2, width)
 }
 
 /**
+ * Returns the topleft and bottomright coordinate of the given two points.
+ */
+function getBoundingBox(points)
+{
+	let min = points[0].clone();
+	let max = points[0].clone();
+
+	for (let point of points)
+	{
+		min.set(Math.min(min.x, point.x), Math.min(min.y, point.y));
+		max.set(Math.max(max.x, point.x), Math.max(max.y, point.y));
+	}
+
+	return {
+		"min": min,
+		"max": max
+	};
+}
+
+function getPointsInBoundingBox(boundingBox)
+{
+	let points = [];
+	for (let x = boundingBox.min.x; x <= boundingBox.max.x; ++x)
+		for (let y = boundingBox.min.y; y <= boundingBox.max.y; ++y)
+			points.push(new Vector2D(x, y));
+	return points;
+}
+
+/**
  * Sorts the given (x, y) points so that the distance between neighboring points becomes minimal (similar to the traveling salesman problem).
  */
 function sortPointsShortestCycle(points)
