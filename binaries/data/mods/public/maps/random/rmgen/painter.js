@@ -36,7 +36,12 @@ TileClassUnPainter.prototype.paint = function(area)
  */
 function MultiPainter(painters)
 {
-	this.painters = painters;
+	if (painters instanceof Array)
+		this.painters = painters;
+	else if (!painters)
+		this.painters = [];
+	else
+		this.painters = [painters];
 }
 
 MultiPainter.prototype.paint = function(area)
