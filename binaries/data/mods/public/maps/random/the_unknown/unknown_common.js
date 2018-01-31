@@ -36,7 +36,7 @@ const oFish = g_Gaia.fish;
 const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
-const oWoodTreasure = "gaia/special_treasure_wood";
+const oWoodTreasure = "gaia/treasure/wood";
 
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;

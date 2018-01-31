@@ -22,10 +22,10 @@ const oBerryBush = "gaia/flora_bush_berry";
 const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
 const oStoneSmall = "gaia/geology_stone_temperate";
 const oMetalLarge = "gaia/geology_metal_temperate_slabs";
-const oFoodTreasure = "gaia/special_treasure_food_bin";
-const oWoodTreasure = "gaia/special_treasure_wood";
-const oStoneTreasure = "gaia/special_treasure_stone";
-const oMetalTreasure = "gaia/special_treasure_metal";
+const oFoodTreasure = "gaia/treasure/food_bin";
+const oWoodTreasure = "gaia/treasure/wood";
+const oStoneTreasure = "gaia/treasure/stone";
+const oMetalTreasure = "gaia/treasure/metal";
 
 const aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";

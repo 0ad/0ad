@@ -5624,7 +5624,7 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1708">
-			<Template>gaia/special_treasure_food_jars</Template>
+			<Template>gaia/treasure/food_jars</Template>
 			<Player>0</Player>
 			<Position x="1919.94861" z="1847.1565"/>
 			<Orientation y="2.35621"/>
@@ -6349,21 +6349,21 @@
 			<Actor seed="31710"/>
 		</Entity>
 		<Entity uid="2153">
-			<Template>gaia/special_treasure_food_barrel</Template>
+			<Template>gaia/treasure/food_barrel</Template>
 			<Player>0</Player>
 			<Position x="406.21055" z="2309.32789"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="51004"/>
 		</Entity>
 		<Entity uid="2154">
-			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Template>gaia/treasure/food_barrels_buried</Template>
 			<Player>0</Player>
 			<Position x="404.18171" z="2304.85767"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19520"/>
 		</Entity>
 		<Entity uid="2155">
-			<Template>gaia/special_treasure_stone</Template>
+			<Template>gaia/treasure/stone</Template>
 			<Player>0</Player>
 			<Position x="519.4856" z="2244.47461"/>
 			<Orientation y="2.35621"/>
@@ -7389,13 +7389,13 @@
 			<Actor seed="21858"/>
 		</Entity>
 		<Entity uid="3002">
-			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Template>gaia/treasure/food_barrels_buried</Template>
 			<Player>0</Player>
 			<Position x="2488.66382" z="1831.50196"/>
 			<Orientation y="2.81063"/>
 		</Entity>
 		<Entity uid="3003">
-			<Template>gaia/special_treasure_food_barrel</Template>
+			<Template>gaia/treasure/food_barrel</Template>
 			<Player>0</Player>
 			<Position x="2565.42188" z="1867.26844"/>
 			<Orientation y="3.17739"/>
@@ -12154,7 +12154,7 @@
 			<Orientation y="0.29891"/>
 		</Entity>
 		<Entity uid="4151">
-			<Template>gaia/special_treasure_food_jars</Template>
+			<Template>gaia/treasure/food_jars</Template>
 			<Player>0</Player>
 			<Position x="2339.96216" z="892.6053"/>
 			<Orientation y="-1.7038"/>

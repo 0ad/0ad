@@ -20,8 +20,8 @@ const oSheep = "gaia/fauna_sheep";
 const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 const oStoneSmall = "gaia/geology_stone_mediterranean";
 const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
-const oWoodTreasure = "gaia/special_treasure_wood";
-const oFoodTreasure = "gaia/special_treasure_food_bin";
+const oWoodTreasure = "gaia/treasure/wood";
+const oFoodTreasure = "gaia/treasure/food_bin";
 
 const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";

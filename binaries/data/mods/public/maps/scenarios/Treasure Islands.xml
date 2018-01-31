@@ -6703,19 +6703,19 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1258">
-			<Template>gaia/special_treasure_golden_fleece</Template>
+			<Template>gaia/treasure/golden_fleece</Template>
 			<Player>0</Player>
 			<Position x="670.48945" z="678.0511"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1259">
-			<Template>gaia/special_treasure_food_jars</Template>
+			<Template>gaia/treasure/food_jars</Template>
 			<Player>0</Player>
 			<Position x="737.20215" z="677.26539"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1260">
-			<Template>gaia/special_treasure_food_crate</Template>
+			<Template>gaia/treasure/food_crate</Template>
 			<Player>0</Player>
 			<Position x="599.5254" z="677.68714"/>
 			<Orientation y="0.1618"/>
@@ -8368,25 +8368,25 @@
 			<Orientation y="-2.41445"/>
 		</Entity>
 		<Entity uid="1558">
-			<Template>gaia/special_treasure_wood</Template>
+			<Template>gaia/treasure/wood</Template>
 			<Player>0</Player>
 			<Position x="623.91498" z="124.2452"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1559">
-			<Template>gaia/special_treasure_wood</Template>
+			<Template>gaia/treasure/wood</Template>
 			<Player>0</Player>
 			<Position x="685.33936" z="108.72007"/>
 			<Orientation y="-2.48221"/>
 		</Entity>
 		<Entity uid="1560">
-			<Template>gaia/special_treasure_wood</Template>
+			<Template>gaia/treasure/wood</Template>
 			<Player>0</Player>
 			<Position x="1316.70813" z="996.50843"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1561">
-			<Template>gaia/special_treasure_wood</Template>
+			<Template>gaia/treasure/wood</Template>
 			<Player>0</Player>
 			<Position x="1354.15943" z="930.54554"/>
 			<Orientation y="0.46933"/>
@@ -9040,37 +9040,37 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1671">
-			<Template>gaia/special_treasure_food_bin</Template>
+			<Template>gaia/treasure/food_bin</Template>
 			<Player>0</Player>
 			<Position x="1134.93787" z="273.22312"/>
 			<Orientation y="0.91955"/>
 		</Entity>
 		<Entity uid="1672">
-			<Template>gaia/special_treasure_food_crate</Template>
+			<Template>gaia/treasure/food_crate</Template>
 			<Player>0</Player>
 			<Position x="1137.23511" z="276.49457"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1673">
-			<Template>gaia/special_treasure_food_jars</Template>
+			<Template>gaia/treasure/food_jars</Template>
 			<Player>0</Player>
 			<Position x="1140.35682" z="273.0092"/>
 			<Orientation y="-1.62855"/>
 		</Entity>
 		<Entity uid="1674">
-			<Template>gaia/special_treasure_food_jars</Template>
+			<Template>gaia/treasure/food_jars</Template>
 			<Player>0</Player>
 			<Position x="359.20173" z="1243.61768"/>
 			<Orientation y="-0.47077"/>
 		</Entity>
 		<Entity uid="1675">
-			<Template>gaia/special_treasure_golden_fleece</Template>
+			<Template>gaia/treasure/golden_fleece</Template>
 			<Player>0</Player>
 			<Position x="285.3154" z="1180.38025"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1676">
-			<Template>gaia/special_treasure_golden_fleece</Template>
+			<Template>gaia/treasure/golden_fleece</Template>
 			<Player>0</Player>
 			<Position x="729.97852" z="1072.36146"/>
 			<Orientation y="-2.06179"/>
@@ -11116,13 +11116,13 @@
 			<Orientation y="0.31022"/>
 		</Entity>
 		<Entity uid="2038">
-			<Template>gaia/special_treasure_stone</Template>
+			<Template>gaia/treasure/stone</Template>
 			<Player>0</Player>
 			<Position x="425.48563" z="953.40357"/>
 			<Orientation y="-1.95913"/>
 		</Entity>
 		<Entity uid="2039">
-			<Template>gaia/special_treasure_stone</Template>
+			<Template>gaia/treasure/stone</Template>
 			<Player>0</Player>
 			<Position x="419.39152" z="950.36695"/>
 			<Orientation y="0.7752"/>
@@ -15569,42 +15569,42 @@
 			<Actor seed="44978"/>
 		</Entity>
 		<Entity uid="2911">
-			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Template>gaia/treasure/food_barrels_buried</Template>
 			<Player>0</Player>
 			<Position x="1143.06141" z="490.76404"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="14661"/>
 		</Entity>
 		<Entity uid="2912">
-			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Template>gaia/treasure/food_barrels_buried</Template>
 			<Player>0</Player>
 			<Position x="1151.19459" z="492.41785"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="63925"/>
 		</Entity>
 		<Entity uid="2913">
-			<Template>gaia/special_treasure_pegasus</Template>
+			<Template>gaia/treasure/pegasus</Template>
 			<Player>0</Player>
 			<Position x="1365.98401" z="526.39698"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="2420"/>
 		</Entity>
 		<Entity uid="2914">
-			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Template>gaia/treasure/metal_persian_small</Template>
 			<Player>0</Player>
 			<Position x="247.33747" z="474.63874"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="8527"/>
 		</Entity>
 		<Entity uid="2915">
-			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Template>gaia/treasure/metal_persian_small</Template>
 			<Player>0</Player>
 			<Position x="1104.74573" z="860.54712"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="33288"/>
 		</Entity>
 		<Entity uid="2916">
-			<Template>gaia/special_treasure_golden_fleece</Template>
+			<Template>gaia/treasure/golden_fleece</Template>
 			<Player>0</Player>
 			<Position x="814.0943" z="363.39841"/>
 			<Orientation y="2.35621"/>

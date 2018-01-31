@@ -80,15 +80,15 @@ var disabledTemplates = (civ) => [
  * Spawn these treasures in regular intervals.
  */
 var treasures = [
-	"gaia/special_treasure_food_barrel",
-	"gaia/special_treasure_food_bin",
-	"gaia/special_treasure_food_crate",
-	"gaia/special_treasure_food_jars",
-	"gaia/special_treasure_metal",
-	"gaia/special_treasure_stone",
-	"gaia/special_treasure_wood",
-	"gaia/special_treasure_wood",
-	"gaia/special_treasure_wood"
+	"gaia/treasure/food_barrel",
+	"gaia/treasure/food_bin",
+	"gaia/treasure/food_crate",
+	"gaia/treasure/food_jars",
+	"gaia/treasure/metal",
+	"gaia/treasure/stone",
+	"gaia/treasure/wood",
+	"gaia/treasure/wood",
+	"gaia/treasure/wood"
 ];
 
 /**

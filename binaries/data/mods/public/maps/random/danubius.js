@@ -46,11 +46,11 @@ const oPopolar = "gaia/flora_tree_poplar_lombardy";
 const oBeech = "gaia/flora_tree_euro_beech_aut";
 const oBeech2 = "gaia/flora_tree_euro_beech";
 const oTreasures = [
-	"gaia/special_treasure_food_barrel",
-	"gaia/special_treasure_food_bin",
-	"gaia/special_treasure_stone",
-	"gaia/special_treasure_wood",
-	"gaia/special_treasure_metal"
+	"gaia/treasure/food_barrel",
+	"gaia/treasure/food_bin",
+	"gaia/treasure/stone",
+	"gaia/treasure/wood",
+	"gaia/treasure/metal"
 ];
 
 // Disable capturing on all parts of the village except the
