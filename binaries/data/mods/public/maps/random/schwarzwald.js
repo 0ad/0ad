@@ -301,15 +301,16 @@ for (var x = 0; x < mapSize; x++)
 			continue;
 
 		let border = tDensActual < randFloat(0, bushChance * maxTreeDensity);
-		createArea(
-			new RectPlacer(x, z, x, z),
-			[
-				new TerrainPainter(border ? terrainWoodBorder : terrainWood),
-				new TileClassPainter(clForest)
-			],
-			border ?
-				avoidClasses(clPath, 1, clOpen, 2, clWater, 3, clMetal, 4, clRock, 4) :
-				avoidClasses(clPath, 2, clOpen, 3, clWater, 4, clMetal, 4, clRock, 4));
+
+		let constraint = border ?
+			avoidClasses(clPath, 1, clOpen, 2, clWater, 3, clMetal, 4, clRock, 4) :
+			avoidClasses(clPath, 2, clOpen, 3, clWater, 4, clMetal, 4, clRock, 4);
+
+		if (constraint.allows(position))
+		{
+			clForest.add(position);
+			createTerrain(border ? terrainWoodBorder : terrainWood).place(position);
+		}
 	}
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clFood, 2, clMetal, 4, clRock, 4));

@@ -1292,7 +1292,8 @@ function recalculateStatusBarDisplay(remove = false)
 
 	Engine.GuiInterfaceCall("SetStatusBars", {
 		"entities": entities,
-		"enabled": g_ShowAllStatusBars && !remove
+		"enabled": g_ShowAllStatusBars && !remove,
+		"showRank": Engine.ConfigDB_GetValue("user", "gui.session.rankabovestatusbar") == "true"
 	});
 }
 

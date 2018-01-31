@@ -5,41 +5,28 @@
  */
 
 /**
- * The RectPlacer provides the points on the tilegrid between (x1, z1) and (x2, z2) that meet the Constraint.
+ * The RectPlacer returns all tiles between the two given points that meet the Constraint.
  */
-function RectPlacer(x1, z1, x2, z2)
+function RectPlacer(start, end, failFraction = Infinity)
 {
-	let mapSize = g_Map.getSize();
-
-	this.x1 = Math.round(Math.max(Math.min(x1, x2), 0));
-	this.x2 = Math.round(Math.min(Math.max(x1, x2), mapSize - 1));
-
-	this.z1 = Math.round(Math.max(Math.min(z1, z2), 0));
-	this.z2 = Math.round(Math.min(Math.max(z1, z2), mapSize - 1));
+	this.bounds = getBoundingBox([start, end]);
+	this.failFraction = failFraction;
 }
 
 RectPlacer.prototype.place = function(constraint)
 {
-	let points = [];
-
-	for (let x = this.x1; x <= this.x2; ++x)
-		for (let z = this.z1; z <= this.z2; ++z)
-		{
-			let position = new Vector2D(x, z);
-			if (constraint.allows(position))
-				points.push(position);
-		}
-
-	return points;
+	let bboxPoints = getPointsInBoundingBox(this.bounds);
+	let points = bboxPoints.filter(point => g_Map.inMapBounds(point) && constraint.allows(point));
+	return (bboxPoints.length - points.length) / bboxPoints.length <= this.failFraction ? points : undefined;
 };
 
 /**
  * The MapBoundsPlacer returns all points on the tilemap that meet the constraint.
  */
-function MapBoundsPlacer()
+function MapBoundsPlacer(failFraction = Infinity)
 {
 	let mapBounds = g_Map.getBounds();
-	this.rectPlacer = new RectPlacer(mapBounds.left, mapBounds.top, mapBounds.right, mapBounds.bottom);
+	this.rectPlacer = new RectPlacer(new Vector2D(mapBounds.left, mapBounds.top), new Vector2D(mapBounds.right, mapBounds.bottom), failFraction);
 }
 
 MapBoundsPlacer.prototype.place = function(constraint)
@@ -75,17 +62,9 @@ function HeightPlacer(mode, minElevation, maxElevation)
 HeightPlacer.prototype.place = function(constraint)
 {
 	let mapSize = g_Map.getSize();
-	let points = [];
 
-	for (let x = 0; x < mapSize; ++x)
-		for (let z = 0; z < mapSize; ++z)
-		{
-			let position = new Vector2D(x, z);
-			if (this.withinHeightRange(position) && constraint.allows(position))
-				points.push(position);
-		}
-
-	return points;
+	return getPointsInBoundingBox(getBoundingBox([new Vector2D(0, 0), new Vector2D(mapSize - 1, mapSize - 1)])).filter(
+		point => this.withinHeightRange(point) && constraint.allows(point));
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

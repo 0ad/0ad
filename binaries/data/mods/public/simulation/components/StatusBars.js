@@ -26,11 +26,13 @@ StatusBars.prototype.Sprites = [
 	"CaptureBar",
 	"HealthBar",
 	"AuraIcons",
-	];
+	"RankIcon"
+];
 
 StatusBars.prototype.Init = function()
 {
 	this.enabled = false;
+	this.showRank = false;
 	this.auraSources = new Map();
 };
 
@@ -48,13 +50,14 @@ StatusBars.prototype.Deserialize = function(data)
 	this.auraSources = data.auraSources;
 };
 
-StatusBars.prototype.SetEnabled = function(enabled)
+StatusBars.prototype.SetEnabled = function(enabled, showRank)
 {
 	// Quick return if no change
-	if (enabled == this.enabled)
+	if (enabled == this.enabled && showRank == this.showRank)
 		return;
 
 	this.enabled = enabled;
+	this.showRank = showRank;
 
 	// Update the displayed sprites
 	this.RegenerateSprites();
@@ -265,6 +268,26 @@ StatusBars.prototype.AddAuraIcons = function(cmpOverlayRenderer, yoffset)
 		);
 		xoffset += iconSize * 1.2;
 	}
+
+	return iconSize + this.template.BarHeight / 2;
+};
+
+StatusBars.prototype.AddRankIcon = function(cmpOverlayRenderer, yoffset)
+{
+	if (!this.enabled || !this.showRank)
+		return 0;
+
+	let cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	if (!cmpIdentity || !cmpIdentity.GetRank())
+		return 0;
+
+	let iconSize = +this.template.BarWidth / 2;
+	cmpOverlayRenderer.AddSprite(
+		"art/textures/ui/session/icons/ranks/" + cmpIdentity.GetRank() + ".png",
+		{ "x": -iconSize / 2, "y": yoffset },
+		{ "x": iconSize / 2, "y": iconSize + yoffset },
+		{ "x": 0, "y": +this.template.HeightOffset + 0.1, "z": 0 },
+		g_NaturalColor);
 
 	return iconSize + this.template.BarHeight / 2;
 };

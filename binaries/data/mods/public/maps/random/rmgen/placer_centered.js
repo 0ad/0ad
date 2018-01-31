@@ -3,19 +3,15 @@
  * The center is determined by the x and z property which can be modified externally, typically by createAreas.
  */
 
-/////////////////////////////////////////////////////////////////////////////////////////
-//	ClumpPlacer
-//
-//	Class for generating a roughly circular clump of points
-//
-//	size: The average number of points in the clump
-//	coherence: How much the radius of the clump varies (1.0 = circle, 0.0 = very random)
-//	smoothness: How smooth the border of the clump is (1.0 = few "peaks", 0.0 = very jagged)
-//	failfraction: Percentage of place attempts allowed to fail (optional)
-//	centerPosition: Tile coordinates of placer center (optional)
-//
-/////////////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Generates a roughly circular clump of points.
+ *
+ * @param {number} size - The average number of points in the clump. Correlates to the area of the circle.
+ * @param {number} coherence - How much the radius of the clump varies (1 = circle, 0 = very random).
+ * @param {number} smoothness - How smooth the border of the clump is (1 = few "peaks", 0 = very jagged).
+ * @param {number} [failfraction] - Percentage of place attempts allowed to fail.
+ * @param {Vector2D} [centerPosition] - Tile coordinates of placer center.
+ */
 function ClumpPlacer(size, coherence, smoothness, failFraction = 0, centerPosition = undefined)
 {
 	this.size = size;
@@ -112,21 +108,17 @@ ClumpPlacer.prototype.place = function(constraint)
 	return failed > this.size * this.failFraction ? undefined : points;
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////
-//	Chain Placer
-//
-//	Class for generating a more random clump of points it randomly creates circles around the edges of the current clump
-//
-//	minRadius: minimum radius of the circles
-//	maxRadius: maximum radius of the circles
-//	numCircles: the number of the circles
-//	failfraction: Percentage of place attempts allowed to fail (optional)
-//	position: Tile coordinates of placer center (optional)
-//  maxDistance: Farthest circle center (optional)
-//  queue: a list containing numbers. each time if the list still contains values, pops one from the end and uses it as the radius (optional)
-//
-/////////////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Generates a more random clump of points. It randomly creates circles around the edges of the current clump.s
+ *
+ * @param {number} minRadius - minimum radius of the circles.
+ * @param {number} maxRadius - maximum radius of the circles.
+ * @param {number} numCircles - number of circles.
+ * @param {number} [failFraction] - Percentage of place attempts allowed to fail.
+ * @param {Vector2D} [centerPosition]
+ * @param {number} [maxDistance] - Farthest distance from the center.
+ * @param {number[]} [queue] - When given, uses these radiuses for the first circles.
+ */
 function ChainPlacer(minRadius, maxRadius, numCircles, failFraction = 0, centerPosition = undefined, maxDistance = 0, queue = [])
 {
 	this.minRadius = minRadius;
@@ -170,67 +162,60 @@ ChainPlacer.prototype.place = function(constraint)
 		let radius = this.queue.length ? this.queue.pop() : randIntInclusive(this.minRadius, this.maxRadius);
 		let radius2 = Math.square(radius);
 
-		// TODO: get all points in this square to abstract and make the loop onedimensional
-		let sx = Math.max(0, chainPos.x - radius);
-		let sz = Math.max(0, chainPos.y - radius);
-		let lx = Math.min(chainPos.x + radius, size);
-		let lz = Math.min(chainPos.y + radius, size);
+		let bbox = getPointsInBoundingBox(getBoundingBox([
+			new Vector2D(Math.max(0, chainPos.x - radius), Math.max(0, chainPos.y - radius)),
+			new Vector2D(Math.min(chainPos.x + radius, size), Math.min(chainPos.y + radius, size))
+		]));
 
-		for (let ix = sx; ix <= lx; ++ix)
-			for (let iz = sz; iz <= lz; ++iz)
+		for (let position of bbox)
+		{
+			if (position.distanceToSquared(chainPos) >= radius2)
+				continue;
+
+			++count;
+
+			if (!g_Map.inMapBounds(position) || !constraint.allows(position))
 			{
-				let position = new Vector2D(ix, iz);
-
-				if (position.distanceToSquared(chainPos) >= radius2)
-					continue;
-
-				++count;
-
-				if (!g_Map.inMapBounds(position) || !constraint.allows(position))
-				{
-					++failed;
-					continue;
-				}
-
-				let state = gotRet[ix][iz];
-				if (state == -1)
-				{
-					points.push(position);
-					gotRet[ix][iz] = -2;
-				}
-				else if (state >= 0)
-				{
-					let s = edges.splice(state, 1);
-					gotRet[ix][iz] = -2;
-
-					let edgesLength = edges.length;
-					for (let k = state; k < edges.length; ++k)
-						--gotRet[edges[k].x][edges[k].y];
-				}
+				++failed;
+				continue;
 			}
 
-		for (let ix = sx; ix <= lx; ++ix)
-			for (let iz = sz; iz <= lz; ++ iz)
+			let state = gotRet[position.x][position.y];
+			if (state == -1)
 			{
-				let pos = new Vector2D(ix, iz);
-
-				if (this.maxDistance &&
-				    (Math.abs(this.centerPosition.x - pos.x) > this.maxDistance ||
-				     Math.abs(this.centerPosition.y - pos.y) > this.maxDistance))
-					continue;
-
-				if (gotRet[pos.x][pos.y] != -2)
-					continue;
-
-				if (pos.x > 0 && gotRet[pos.x - 1][pos.y] == -1 ||
-				    pos.y > 0 && gotRet[pos.x][pos.y - 1] == -1 ||
-				    pos.x < size && gotRet[pos.x + 1][pos.y] == -1 ||
-				    pos.y < size && gotRet[pos.x][pos.y + 1] == -1)
-				{
-					edges.push(pos);
-					gotRet[pos.x][pos.y] = edges.length - 1;
-				}
+				points.push(position);
+				gotRet[position.x][position.y] = -2;
 			}
+			else if (state >= 0)
+			{
+				let s = edges.splice(state, 1);
+				gotRet[position.x][position.y] = -2;
+
+				let edgesLength = edges.length;
+				for (let k = state; k < edges.length; ++k)
+					--gotRet[edges[k].x][edges[k].y];
+			}
+		}
+
+		for (let pos of bbox)
+		{
+			if (this.maxDistance &&
+			    (Math.abs(this.centerPosition.x - pos.x) > this.maxDistance ||
+			     Math.abs(this.centerPosition.y - pos.y) > this.maxDistance))
+				continue;
+
+			if (gotRet[pos.x][pos.y] != -2)
+				continue;
+
+			if (pos.x > 0 && gotRet[pos.x - 1][pos.y] == -1 ||
+			    pos.y > 0 && gotRet[pos.x][pos.y - 1] == -1 ||
+			    pos.x < size && gotRet[pos.x + 1][pos.y] == -1 ||
+			    pos.y < size && gotRet[pos.x][pos.y + 1] == -1)
+			{
+				edges.push(pos);
+				gotRet[pos.x][pos.y] = edges.length - 1;
+			}
+		}
 	}
 
 	return failed > count * this.failFraction ? undefined : points;
