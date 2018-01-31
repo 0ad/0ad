@@ -25,7 +25,7 @@ var oMetalLarge = "gaia/geology_metal_desert_slabs";
 var oDatePalm = "gaia/flora_tree_date_palm";
 var oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
 var eObelisk = "other/obelisk";
-var ePyramid = "other/pyramid_minor";
+var ePyramid = "gaia/ruins/pyramid_minor";
 var oWoodTreasure = "gaia/special_treasure_wood";
 var oFoodTreasure = "gaia/special_treasure_food_bin";
 

@@ -3,7 +3,7 @@ Engine.LoadLibrary("rmgen");
 var templateStone = "gaia/geology_stone_temperate";
 var templateStoneMine = "gaia/geology_stonemine_temperate_quarry";
 var templateMetalMine = "gaia/geology_metal_temperate_slabs";
-var templateTemple = "other/unfinished_greek_temple";
+var templateTemple = "gaia/ruins/unfinished_greek_temple";
 
 var terrainPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d", "temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"];
 var terrainWood = ['temp_grass_mossy|gaia/flora_tree_oak', 'temp_forestfloor_pine|gaia/flora_tree_pine', 'temp_mud_plants|gaia/flora_tree_dead',
