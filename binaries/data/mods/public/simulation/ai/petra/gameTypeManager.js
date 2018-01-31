@@ -16,7 +16,7 @@ m.GameTypeManager = function(Config)
 	this.tryCaptureGaiaRelic = false;
 	this.tryCaptureGaiaRelicLapseTime = -1;
 	// Gaia relics which we are targeting currently and have not captured yet
-	this.targetedGaiaRelics = new Set();
+	this.targetedGaiaRelics = new Map();
 };
 
 /**
@@ -280,9 +280,9 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 			continue;
 		}
 		if (evt.from == 0 && this.targetedGaiaRelics.has(evt.entity))
-			this.targetedGaiaRelics.delete(evt.entity);
+			this.abortCaptureGaiaRelic(gameState, evt.entity);
 
-		if (evt.to !== PlayerID)
+		if (evt.to != PlayerID)
 			continue;
 
 		let ent = gameState.getEntityById(evt.entity);
@@ -292,12 +292,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 			this.criticalEnts.set(ent.id(), { "guardsAssigned": 0, "guards": new Map() });
 			// Move captured relics to the closest base
 			if (ent.hasClass("Relic"))
-			{
 				this.pickCriticalEntRetreatLocation(gameState, ent, false);
-				if (evt.from == 0)
-					gameState.ai.HQ.attackManager.cancelAttacksAgainstPlayer(gameState, evt.from);
-				this.targetedGaiaRelics.delete(ent.id());
-			}
 		}
 	}
 };
@@ -603,20 +598,123 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 		if (!this.tryCaptureGaiaRelic && gameState.ai.elapsedTime > this.tryCaptureGaiaRelicLapseTime)
 			this.tryCaptureGaiaRelic = true;
 
-		// Look for some relic that may be on our territory at game-start or if our territory boundaries change
-		let allRelics = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic"));
-		for (let relic of allRelics.values())
+		// Reinforce (if needed) any raid currently trying to capture a gaia relic
+		for (let relicId of this.targetedGaiaRelics.keys())
+		{
+			let relic = gameState.getEntityById(relicId);
+			if (!relic || relic.owner() != 0)
+				this.abortCaptureGaiaRelic(gameState, relicId);
+			else
+				this.captureGaiaRelic(gameState, relic);
+		}
+		// And look for some new gaia relics visible by any of our units
+		// or that may be on our territory
+		let allGaiaRelics = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic")).filter(relic => relic.owner() == 0);
+		for (let relic of allGaiaRelics.values())
 		{
 			let relicPosition = relic.position();
-			if (this.targetedGaiaRelics.has(relic.id()) || relic.owner() != 0 ||
-			    !relicPosition || gameState.ai.HQ.territoryMap.getOwner(relicPosition) != PlayerID)
+			if (!relicPosition || this.targetedGaiaRelics.has(relic.id()))
+				continue;
+			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(relicPosition);
+			if (territoryOwner == PlayerID)
+			{
+				this.targetedGaiaRelics.set(relic.id(), []);
+				this.captureGaiaRelic(gameState, relic);
+				break;
+			}
+
+			if (territoryOwner != 0 && gameState.isPlayerEnemy(territoryOwner))
 				continue;
 
-			gameState.ai.HQ.attackManager.raidTargetEntity(gameState, relic);
-			this.targetedGaiaRelics.add(relic.id());
-			break;
+			for (let ent of gameState.getOwnUnits().values())
+			{
+				if (!ent.position() || !ent.visionRange())
+					continue;
+				if (API3.SquareVectorDistance(ent.position(), relicPosition) > Math.square(ent.visionRange()))
+					continue;
+				this.targetedGaiaRelics.set(relic.id(), []);
+				this.captureGaiaRelic(gameState, relic);
+				break;
+			}
 		}
 	}
+};
+
+/**
+ * Send an expedition to capture a gaia relic, or reinforce an existing one.
+ */
+m.GameTypeManager.prototype.captureGaiaRelic = function(gameState, relic)
+{
+	let capture = -relic.defaultRegenRate();
+	let sumCapturePoints = relic.capturePoints().reduce((a, b) => a + b);
+	for (let plan of this.targetedGaiaRelics.get(relic.id()))
+	{
+		let attack = gameState.ai.HQ.attackManager.getPlan(plan);
+		if (!attack)
+			continue;
+		for (let ent of attack.unitCollection.values())
+			capture += ent.captureStrength() * m.getAttackBonus(ent, relic, "Capture");
+	}
+	// No need to make a new attack if already enough units
+	if (capture > sumCapturePoints / 50)
+		return;
+	let relicPosition = relic.position();
+	let access = gameState.ai.accessibility.getAccessValue(relicPosition);
+	let units = gameState.getOwnUnits().filter(ent => {
+			if (!ent.position() || !ent.canCapture(relic))
+				return false;
+			if (ent.getMetadata(PlayerID, "transport") !== undefined)
+				return false;
+			if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
+				return false;
+			let plan = ent.getMetadata(PlayerID, "plan");
+			if (plan == -2 || plan == -3)
+				return false;
+			if (plan !== undefined && plan >= 0)
+			{
+				let attack = gameState.ai.HQ.attackManager.getPlan(plan);
+				if (attack && (attack.state != "unexecuted" || attack.type == "Raid"))
+					return false;
+			}
+			if (gameState.ai.accessibility.getAccessValue(ent.position()) != access)
+				return false;
+			return true;
+		}).filterNearest(relicPosition);
+	let expedition = [];
+	for (let ent of units.values())
+	{
+		capture += ent.captureStrength() * m.getAttackBonus(ent, relic, "Capture");
+		expedition.push(ent);
+		if (capture > sumCapturePoints / 25)
+			break;
+	}
+	if (!expedition.length || !plans.length && capture < sumCapturePoints / 100)
+		return;
+	let attack = gameState.ai.HQ.attackManager.raidTargetEntity(gameState, relic);
+	if (!attack)
+		return;
+	let plan = attack.name;
+	attack.rallyPoint = undefined;
+	for (let ent of expedition)
+	{
+		ent.setMetadata(PlayerID, "plan", plan);
+		attack.unitCollection.updateEnt(ent);
+		if (!attack.rallyPoint)
+			attack.rallyPoint = ent.position();
+	}
+	attack.forceStart();
+	this.targetedGaiaRelics.get(relic.id()).push(plan);
+};
+
+m.GameTypeManager.prototype.abortCaptureGaiaRelic = function(gameState, relicId)
+{
+	for (let plan of this.targetedGaiaRelics.get(relicId))
+	{
+		let attack = gameState.ai.HQ.attackManager.getPlan(plan);
+		if (attack)
+			attack.Abort(gameState);
+	}
+	this.targetedGaiaRelics.delete(relicId);
 };
 
 m.GameTypeManager.prototype.Serialize = function()
