@@ -141,13 +141,12 @@ const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clMiddle = g_Map.createTileClass();
 var clPlayer = g_Map.createTileClass();
 var clForest = g_Map.createTileClass();
 var clWater = g_Map.createTileClass();
 var clLand = [g_Map.createTileClass(), g_Map.createTileClass()];
-var clLandPatrolPoint = [g_Map.createTileClass(), g_Map.createTileClass()];
-var clCCAttackerPatrolPoint = [g_Map.createTileClass(), g_Map.createTileClass()];
+var clPatrolPointSiegeEngine = [g_Map.createTileClass(), g_Map.createTileClass()];
+var clPatrolPointSoldier = [g_Map.createTileClass(), g_Map.createTileClass()];
 var clShore = [g_Map.createTileClass(), g_Map.createTileClass()];
 var clShoreUngarrisonPoint = [g_Map.createTileClass(), g_Map.createTileClass()];
 var clShip = g_Map.createTileClass();
@@ -174,7 +173,7 @@ var waterWidth = fractionToTiles(0.3);
 var gallicCCTreasureCount = randIntInclusive(8, 12);
 
 // How many treasures will be placed randomly on the map at most
-var randomTreasureCount = randIntInclusive(0, 3 * numPlayers);
+var randomTreasureCount = randIntInclusive(0, scaleByMapSize(0, 2));
 
 var ritualParticipants = [
 	{
@@ -397,6 +396,18 @@ Engine.SetProgress(30);
 
 paintTileClassBasedOnHeight(-Infinity, 0.7, Elevation_ExcludeMin_ExcludeMax, clWater);
 
+var areasLand = [0, 1].map(i =>
+	createArea(
+		new MapBoundsPlacer(),
+		undefined,
+		stayClasses(clLand[i], 0)));
+
+var areasWater =
+	[createArea(
+		new MapBoundsPlacer(),
+		undefined,
+		new HeightConstraint(-Infinity, heightLand))];
+
 g_Map.log("Creating shores");
 paintTerrainBasedOnHeight(-Infinity, heightShore, 0, tWater);
 paintTerrainBasedOnHeight(heightShore, heightLand, 0, tShore);
@@ -441,14 +452,14 @@ createLayeredPatches(
 Engine.SetProgress(55);
 
 g_Map.log("Creating islands");
-createAreas(
+var areaIslands = createAreas(
 	new ChainPlacer(Math.floor(scaleByMapSize(3, 4)), Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(50, 80)), 0.5),
 	[
 		new LayeredPainter([tWater, tShore, tIsland], [2, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightIsland, 4),
 		new TileClassPainter(clIsland)
 	],
-	[avoidClasses(clIsland, 30), stayClasses (clWater, 10)],
+	[avoidClasses(clIsland, 30), stayClasses(clWater, 10)],
 	scaleByMapSize(1, 4) * numPlayers);
 
 Engine.SetProgress(60);
@@ -459,61 +470,68 @@ g_Map.log("Painting seabed");
 paintTerrainBasedOnHeight(-20, -3, 3, tSeaDepths);
 
 g_Map.log("Creating island metal mines");
-createObjectGroupsDeprecated(
+createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
 	[avoidClasses(clMetal, 50, clRock, 10), stayClasses(clIsland, 5)],
-	500,
-	1);
+	scaleByMapSize(3, 10),
+	20,
+	areaIslands);
 
 g_Map.log("Creating island stone mines");
-createObjectGroupsDeprecated(
+createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
 	0,
 	[avoidClasses(clMetal, 10, clRock, 50), stayClasses(clIsland, 5)],
-	500,
-	1);
+	scaleByMapSize(3, 10),
+	20,
+	areaIslands);
 Engine.SetProgress(65);
 
 g_Map.log("Creating island towers");
-createObjectGroupsDeprecated(
+createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(oTower, 1, 1, 0, 4)], true, clTower),
 	0,
 	[avoidClasses(clMetal, 4, clRock, 4, clTower, 20), stayClasses(clIsland, 7)],
-	500,
-	1);
+	scaleByMapSize(3, 10),
+	20,
+	areaIslands);
 
 g_Map.log("Creating island outposts");
-createObjectGroupsDeprecated(
+createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(oOutpost, 1, 1, 0, 4)], true, clOutpost),
 	0,
 	[avoidClasses(clMetal, 4, clRock, 4, clTower, 5, clOutpost, 20), stayClasses(clIsland, 7)],
-	500,
-	1);
+	scaleByMapSize(3, 10),
+	20,
+	areaIslands);
 
 g_Map.log("Creating metal mines");
-createObjectGroupsDeprecated(
+createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
-	[avoidClasses(clForest, 4, clBaseResource, 20, clMetal, 50, clRock, 20, clWater, 4, clHill, 4, clGauls, 5, clPath, 5)],
-	500,
-	1);
+	avoidClasses(clForest, 4, clBaseResource, 20, clMetal, 50, clRock, 20, clWater, 4, clHill, 4, clGauls, 5, clPath, 5),
+	scaleByMapSize(4, 20),
+	50,
+	areasLand);
 
 g_Map.log("Creating stone mines");
-createObjectGroupsDeprecated(
+createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
 	0,
-	[avoidClasses(clForest, 4, clBaseResource, 20, clMetal, 20, clRock, 50, clWater, 4, clHill, 4, clGauls, 5, clPath, 5)],
-	500,
-	1);
+	avoidClasses(clForest, 4, clBaseResource, 20, clMetal, 20, clRock, 50, clWater, 4, clHill, 4, clGauls, 5, clPath, 5),
+	scaleByMapSize(4, 20),
+	50,
+	areasLand);
 
 g_Map.log("Creating stone ruins");
-createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(oStoneRuins, 1, 1, 0, 4)], true, clRock),
-		0,
-		[avoidClasses(clForest, 2, clPlayer, 12, clMetal, 6, clRock, 25, clWater, 4, clHill, 4, clGauls, 5, clPath, 1)],
-		500,
-		1);
+createObjectGroupsByAreas(
+	new SimpleGroup([new SimpleObject(oStoneRuins, 1, 1, 0, 4)], true, clRock),
+	0,
+	avoidClasses(clForest, 2, clPlayer, 12, clMetal, 6, clRock, 25, clWater, 4, clHill, 4, clGauls, 5, clPath, 1),
+	scaleByMapSize(2, 10),
+	20,
+	areasLand);
 Engine.SetProgress(70);
 
 g_Map.log("Creating decoratives");
@@ -647,16 +665,16 @@ createFood(
 Engine.SetProgress(98);
 
 g_Map.log("Creating treasures");
-for (let i = 0; i < randomTreasureCount; ++i)
-	createObjectGroupsDeprecated(
-		new SimpleGroup(
-			[new SimpleObject(pickRandom(oTreasures), 1, 1, 0, 2)],
-			true, clTreasure
-		),
-		0,
-		avoidClasses(clForest, 1, clPlayer, 15, clHill, 1, clWater, 5, clFood, 1, clRock, 4, clMetal, 4, clTreasure, 10, clGauls, 5),
-		1,
-		50);
+createObjectGroupsByAreas(
+	new SimpleGroup(
+		[new SimpleObject(pickRandom(oTreasures), 1, 1, 0, 2)],
+		true, clTreasure
+	),
+	0,
+	avoidClasses(clForest, 1, clPlayer, 15, clHill, 1, clWater, 5, clFood, 1, clRock, 4, clMetal, 4, clTreasure, 10, clGauls, 5),
+	randomTreasureCount,
+	50,
+	areasLand);
 
 g_Map.log("Creating gallic decoratives");
 createDecoration(
@@ -679,24 +697,32 @@ createDecoration(
 	avoidClasses(clForest, 1, clPlayer, 10, clBaseResource, 5, clHill, 1, clFood, 1, clWater, 5, clRock, 4, clMetal, 4, clGauls, 5, clPath, 1));
 
 g_Map.log("Creating spawn points for ships");
-createObjectGroupsDeprecated(
+createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(triggerPointShipSpawn, 1, 1, 0, 0)], true, clShip),
 	0,
 	[avoidClasses(clShip, 5, clIsland, 4), stayClasses(clWater, 10)],
-	10000,
-	1000);
+	scaleByMapSize(10, 75),
+	10,
+	areasWater);
 
 g_Map.log("Creating patrol points for ships");
-createObjectGroupsDeprecated(
+createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(triggerPointShipPatrol, 1, 1, 0, 0)], true, clShipPatrol),
 	0,
 	[avoidClasses(clShipPatrol, 5, clIsland, 3), stayClasses(clWater, 4)],
-	10000,
-	1000);
+	scaleByMapSize(20, 150),
+	10,
+	areasWater);
 
 g_Map.log("Creating ungarrison points for ships");
 for (let i = 0; i < 2; ++i)
-	createObjectGroupsDeprecated(
+{
+	let areaShore = [createArea(
+		new MapBoundsPlacer(),
+		undefined,
+		stayClasses(clShore[i], 0))];
+
+	createObjectGroupsByAreas(
 		new SimpleGroup(
 			[new SimpleObject(
 				i == 0 ? triggerPointShipUnloadLeft : triggerPointShipUnloadRight,
@@ -705,68 +731,68 @@ for (let i = 0; i < 2; ++i)
 			true,
 			clShoreUngarrisonPoint[i]),
 		0,
-		[avoidClasses(clShoreUngarrisonPoint[i], 4), stayClasses(clShore[i], 0)],
-		20000,
-		1);
+		avoidClasses(clShoreUngarrisonPoint[i], 4),
+		scaleByMapSize(60, 200),
+		20,
+		areaShore);
+}
 
 g_Map.log("Creating riverdirection triggerpoint");
 g_Map.placeEntityAnywhere(triggerPointRiverDirection, 0, Vector2D.add(mapCenter, new Vector2D(0, 1).rotate(startAngle)), randomAngle());
 
-g_Map.log("Creating patrol points for land attackers");
-clMiddle.add(mapCenter);
+g_Map.log("Creating patrol points for siege engines");
 for (let i = 0; i < 2; ++i)
-{
-	createObjectGroupsDeprecated(
+	// Patrol points for siege engines
+	createObjectGroupsByAreas(
 		new SimpleGroup(
 			[new SimpleObject(
 				i == 0 ? triggerPointLandPatrolLeft : triggerPointLandPatrolRight,
 				1, 1,
 				0, 0)],
 			true,
-			clLandPatrolPoint[i]),
+			clPatrolPointSiegeEngine[i]),
 		0,
-		[
-			avoidClasses(clWater, 5, clForest, 3, clHill, 3, clFood, 1, clRock, 5, clMetal, 5, clPlayer, 10, clGauls, 5, clLandPatrolPoint[i], 5),
-			stayClasses(clLand[i], 0)
-		],
-		10000,
-		100);
+		avoidClasses(clWater, 5, clForest, 3, clHill, 3, clFood, 1, clRock, 5, clMetal, 5, clPlayer, 10, clGauls, 5, clPatrolPointSiegeEngine[i], 5),
+		scaleByMapSize(20, 150),
+		10,
+		[areasLand[i]]);
 
-	if (gallicCC)
-		createObjectGroupsDeprecated(
+if (gallicCC)
+{
+	g_Map.log("Creating patrol points for soldiers");
+	for (let i = 0; i < 2; ++i)
+		createObjectGroupsByAreas(
 			new SimpleGroup(
 				[new SimpleObject(
 					i == 0 ? triggerPointCCAttackerPatrolLeft : triggerPointCCAttackerPatrolRight,
 					1, 1,
 					0, 0)],
 				true,
-				clCCAttackerPatrolPoint[i]),
+				clPatrolPointSoldier[i]),
 			0,
-			[
-				// Don't avoid the forest, so that as many places as possible on the border are visited
-				avoidClasses(
-					clWater, 5,
-					clHill, 3,
-					clFood, 1,
-					clRock, 4,
-					clMetal, 4,
-					clPlayer, 15,
-					clGauls, 0,
-					clCCAttackerPatrolPoint[i], 5,
-					clMiddle, mapSize * 0.5 - 15),
-				stayClasses(clLand[i], 0)
-			],
-			10000,
-			100);
+			// Don't avoid the forest, so that as many places as possible on the border are visited
+			avoidClasses(
+				clWater, 5,
+				clHill, 3,
+				clFood, 1,
+				clRock, 4,
+				clMetal, 4,
+				clPlayer, 15,
+				clGauls, 0,
+				clPatrolPointSoldier[i], 5),
+			scaleByMapSize(20, 150),
+			20,
+			[areasLand[i]]);
 }
 
 g_Map.log("Creating water logs");
-createObjectGroupsDeprecated(
-	new SimpleGroup([new SimpleObject(aWaterLog, 1, 1, 0, 0)], true, clWaterLog),
+createObjectGroupsByAreas(
+	new SimpleGroup([new SimpleObject(aWaterLog, 1, 1, 0, 0, startAngle, startAngle)], true, clWaterLog),
 	0,
 	[avoidClasses(clShip, 3, clIsland, 4), stayClasses(clWater, 4)],
-	scaleByMapSize(15, 60),
-	100);
+	scaleByMapSize(1, 4),
+	10,
+	areasWater);
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clMetal, 4, clRock, 4, clIsland, 4, clGauls, 20, clRitualPlace, 20, clForest, 1, clBaseResource, 4, clHill, 4, clFood, 2));
 
