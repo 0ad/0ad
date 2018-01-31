@@ -51,7 +51,6 @@ var clRock = g_Map.createTileClass();
 var clMetal = g_Map.createTileClass();
 var clFood = g_Map.createTileClass();
 var clBaseResource = g_Map.createTileClass();
-var clMountains = g_Map.createTileClass();
 
 var waterPosition = fractionToTiles(0.31);
 var playerPosition = fractionToTiles(0.55);
@@ -110,7 +109,7 @@ paintRiver({
 });
 
 g_Map.log("Marking mountain area");
-createArea(
+var areaMountains = createArea(
 	new ConvexPolygonPlacer(
 		[
 			new Vector2D(mountainPosition, mapBounds.top),
@@ -118,8 +117,7 @@ createArea(
 			new Vector2D(mapBounds.right, mapBounds.top),
 			new Vector2D(mapBounds.right, mapBounds.bottom)
 		].map(pos => pos.rotateAround(startAngle - Math.PI / 2, mapCenter)),
-		Infinity),
-	new TileClassPainter(clMountains));
+		Infinity));
 
 g_Map.log("Creating shores");
 for (let i = 0; i < scaleByMapSize(20, 120); ++i)
@@ -142,15 +140,17 @@ paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 Engine.SetProgress(45);
 
 g_Map.log("Creating hills");
-createAreas(
+createAreasInAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.1),
 	[
 		new LayeredPainter([tCliff, tGrass], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
 		new TileClassPainter(clHill)
 	],
-	[avoidClasses(clPlayer, 20, clHill, 5, clWater, 2, clBaseResource, 2), stayClasses(clMountains, 0)],
-	scaleByMapSize(5, 40) * numPlayers);
+	avoidClasses(clPlayer, 20, clHill, 5, clWater, 2, clBaseResource, 2),
+	scaleByMapSize(5, 100),
+	3,
+	[areaMountains]);
 
 g_Map.log("Creating forests");
 var [forestTrees, stragglerTrees] = getTreeCounts(1000, 6000, 0.7);
