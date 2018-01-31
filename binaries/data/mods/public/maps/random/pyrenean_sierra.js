@@ -54,10 +54,13 @@ const pForestLandVeryLight = [ tGrassLandForest2 + TERRAIN_SEPARATOR + oPine,tGr
 
 const heightInit = -100;
 const heightOcean = -22;
+const heightWaterTerrain = -14;
 const heightBase = -6;
+const heightSand = -2;
+const heightSandTransition = 0;
+const heightGrass = 6;
 const heightWaterLevel = 8;
 const heightPyreneans = 15;
-const heightGrass = 6;
 const heightGrassMidRange = 18;
 const heightGrassHighRange = 30;
 const heightPassage = scaleByMapSize(25, 40);
@@ -352,19 +355,26 @@ var num = scaleByMapSize(80,400);
 var group = new SimpleGroup([new SimpleObject(oPine, 1,2, 1,3),new SimpleObject(oBeech, 1,2, 1,3)], true, clForest);
 createObjectGroupsDeprecated(group, 0,  avoidClasses(clWater, 3, clForest, 1, clPlayer, 8,clPyrenneans, 1), num, 20 );
 
-g_Map.log("Painting the map");
+g_Map.log("Painting terrain by height and slope");
+for (let i = 0; i < terrainPerHeight.length; ++i)
+	for (let steep of [false, true])
+		createArea(
+			new MapBoundsPlacer(),
+			new TerrainPainter(steep ? terrainPerHeight[i].terrainSteep : terrainPerHeight[i].terrainGround),
+			[
+				new NearTileClassConstraint(clPyrenneans, 2),
+				new HeightConstraint(terrainPerHeight[i - 1] ? terrainPerHeight[i - 1].maxHeight : -Infinity, terrainPerHeight[i].maxHeight),
+				steep ?
+					new SlopeConstraint(terrainPerHeight[i].steepness, Infinity) :
+					new SlopeConstraint(-Infinity, terrainPerHeight[i].steepness),
+			]);
+
 for (let x = 0; x < mapSize; ++x)
 	for (let z = 0; z < mapSize; ++z)
 	{
 		let position = new Vector2D(x, z);
 		let height = g_Map.getHeight(position);
 		let heightDiff = g_Map.getSlope(position);
-
-		if (clPyrenneans.countMembersInRadius(position, 2))
-		{
-			let layer = terrainPerHeight.find(layer => height < layer.maxHeight);
-			createTerrain(heightDiff > layer.steepness ? layer.terrainSteep : layer.terrainGround).place(position);
-		}
 
 		let terrainShore = getShoreTerrain(position, height, heightDiff);
 		if (terrainShore)
@@ -373,13 +383,14 @@ for (let x = 0; x < mapSize; ++x)
 
 function getShoreTerrain(position, height, heightDiff)
 {
-	if (height <= -14)
+	if (height <= heightWaterTerrain)
 		return tWater;
 
-	if (height <= -2 && clWater.countMembersInRadius(position, 2))
+	if (height <= heightSand && new NearTileClassConstraint(clWater, 2).allows(position))
 		return heightDiff < 2.5 ? tSand : tMidRangeCliffs;
 
-	if (height <= 0 && clWater.countMembersInRadius(position, 3))
+	// Notice the sand transition is also be painted below height -2
+	if (height <= heightSandTransition && new NearTileClassConstraint(clWater, 3).allows(position))
 		return heightDiff < 2.5 ? tSandTransition : tMidRangeCliffs;
 
 	return undefined;

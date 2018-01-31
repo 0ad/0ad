@@ -85,6 +85,20 @@ StayInTileClassConstraint.prototype.allows = function(position)
 };
 
 /**
+ * The NearTileClassConstraint is met if at least one tile within the given radius of the tile is marked with the given TileClass.
+ */
+function NearTileClassConstraint(tileClass, distance)
+{
+	this.tileClass = tileClass;
+	this.distance = distance;
+}
+
+NearTileClassConstraint.prototype.allows = function(position)
+{
+	return this.tileClass.countMembersInRadius(position, this.distance) > 0;
+};
+
+/**
  * The BorderTileClassConstraint is met if there are
  * tiles not marked with the given TileClass within distanceInside of the tile and
  * tiles marked with the given TileClass within distanceOutside of the tile.
@@ -115,4 +129,18 @@ function HeightConstraint(minHeight, maxHeight)
 HeightConstraint.prototype.allows = function(position)
 {
 	return this.minHeight <= g_Map.getHeight(position) && g_Map.getHeight(position) <= this.maxHeight;
+};
+
+/**
+ * The SlopeConstraint is met if the steepness of the terrain is within the given range.
+ */
+function SlopeConstraint(minSlope, maxSlope)
+{
+	this.minSlope = minSlope;
+	this.maxSlope = maxSlope;
+}
+
+SlopeConstraint.prototype.allows = function(position)
+{
+	return this.minSlope <= g_Map.getSlope(position) && g_Map.getSlope(position) <= this.maxSlope;
 };
