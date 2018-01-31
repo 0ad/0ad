@@ -31,8 +31,8 @@ const oWhale = "gaia/fauna_whale_humpback";
 const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 const oStoneSmall = "gaia/geology_stone_mediterranean";
 const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
-const oShipwreck = "other/special_treasure_shipwreck";
-const oShipDebris = "other/special_treasure_shipwreck_debris";
+const oShipwreck = "gaia/treasure/shipwreck";
+const oShipDebris = "gaia/treasure/shipwreck_debris";
 
 const aRockLarge = "actor|geology/stone_granite_large.xml";
 const aRockMed = "actor|geology/stone_granite_med.xml";
