@@ -1,0 +1,51 @@
+{
+	"Description": {
+		"Title": "Spring",
+		"Description": "Spring in the highlands, yet the heat has already begun making itself felt. The short-lived green grasses are on the retreat, paving the way for scorching summer."
+	},
+	"Environment": {
+		"SunColor": { "r": 1, "g": 0.796, "b": 0.374, "a": 0 },
+		"SunElevation": 0.52359877559,
+		"SunRotation": -1.86532,
+		"TerrainAmbientColor": { "r": 0.329412, "g": 0.419608, "b": 0.501961, "a": 0 },
+		"Fog": {
+			"FogThickness": 0,
+			"FogFactor": 0.002,
+			"FogColor": { "r": 0.852, "g": 0.746, "b": 0.493, "a": 0 }
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Saturation": 0.9,
+			"Contrast": 1.25,
+			"Bloom": 1.4
+		}
+	},
+	"Terrains": {
+		"lakebed1": ["desert_lakebed_dry_b", "desert_lakebed_dry"],
+		"lakebed2": "desert_grass_a_sand",
+		"mainTerrain": ["desert_grass_a", "desert_grass_a", "desert_grass_a", "desert_plants_a"],
+		"forestFloor1": "desert_plants_b_persia",
+		"cliff": ["desert_cliff_persia_1", "desert_cliff_persia_crumbling"],
+		"tier1Terrain": "desert_plants_b_persia",
+		"tier2Terrain": "desert_plants_a",
+		"tier3Terrain": "desert_dirt_persia_rocky",
+		"road": "desert_city_tile_pers_dirt"
+	},
+	"Gaia": {
+		"tree1": "gaia/flora_tree_oak",
+		"fruitBush": "gaia/flora_bush_grapes",
+		"mainHuntableAnimal": "gaia/fauna_camel",
+		"secondaryHuntableAnimal": "gaia/fauna_sheep",
+		"thirdHuntableAnimal": "gaia/fauna_goat",
+		"stoneLarge": "gaia/geology_stonemine_desert_badlands_quarry",
+		"stoneSmall": "gaia/geology_stone_desert_small",
+		"metalLarge": "gaia/geology_metal_desert_slabs"
+	},
+	"Decoratives": {
+		"bush1": "actor|props/flora/bush_desert_a.xml",
+		"bush2": "actor|props/flora/bush_desert_dry_a.xml",
+		"bush3": "actor|props/flora/bush_dry_a.xml",
+		"bush4": "actor|props/flora/plant_desert_a.xml",
+		"rockMedium": "actor|geology/stone_desert_med.xml"
+	}
+}
