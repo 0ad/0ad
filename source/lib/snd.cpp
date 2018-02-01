@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -62,5 +62,7 @@ void snd_detect()
 	} while (*devices);
 
 	// Driver version
-	snd_drv_ver = alGetString(AL_VERSION);
+	const ALCchar* al_version = alGetString(AL_VERSION);
+	if (al_version)
+		snd_drv_ver = al_version;
 }
