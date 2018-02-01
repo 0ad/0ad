@@ -5226,13 +5226,13 @@
 			<Actor seed="6784"/>
 		</Entity>
 		<Entity uid="1632">
-			<Template>other/special_treasure_shipwreck</Template>
+			<Template>gaia/treasure/shipwreck</Template>
 			<Player>0</Player>
 			<Position x="756.79987" z="848.2469"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1633">
-			<Template>other/special_treasure_shipwreck_sail_boat_cut</Template>
+			<Template>gaia/treasure/shipwreck_sail_boat_cut</Template>
 			<Player>0</Player>
 			<Position x="682.60511" z="752.89454"/>
 			<Orientation y="2.35621"/>
@@ -5624,25 +5624,25 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1708">
-			<Template>gaia/special_treasure_food_jars</Template>
+			<Template>gaia/treasure/food_jars</Template>
 			<Player>0</Player>
 			<Position x="1919.94861" z="1847.1565"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1709">
-			<Template>other/special_treasure_shipwreck_ram_bow</Template>
+			<Template>gaia/treasure/shipwreck_ram_bow</Template>
 			<Player>0</Player>
 			<Position x="1931.22034" z="1840.67713"/>
 			<Orientation y="-2.52804"/>
 		</Entity>
 		<Entity uid="1710">
-			<Template>gaia/special_ruins_column_doric</Template>
+			<Template>gaia/ruins/column_doric</Template>
 			<Player>0</Player>
 			<Position x="1916.14087" z="1840.62855"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1711">
-			<Template>gaia/special_ruins</Template>
+			<Template>gaia/ruins/column_doric</Template>
 			<Player>0</Player>
 			<Position x="1906.95093" z="1838.53577"/>
 			<Orientation y="2.35621"/>
@@ -6349,21 +6349,21 @@
 			<Actor seed="31710"/>
 		</Entity>
 		<Entity uid="2153">
-			<Template>gaia/special_treasure_food_barrel</Template>
+			<Template>gaia/treasure/food_barrel</Template>
 			<Player>0</Player>
 			<Position x="406.21055" z="2309.32789"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="51004"/>
 		</Entity>
 		<Entity uid="2154">
-			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Template>gaia/treasure/food_barrels_buried</Template>
 			<Player>0</Player>
 			<Position x="404.18171" z="2304.85767"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19520"/>
 		</Entity>
 		<Entity uid="2155">
-			<Template>gaia/special_treasure_stone</Template>
+			<Template>gaia/treasure/stone</Template>
 			<Player>0</Player>
 			<Position x="519.4856" z="2244.47461"/>
 			<Orientation y="2.35621"/>
@@ -7389,13 +7389,13 @@
 			<Actor seed="21858"/>
 		</Entity>
 		<Entity uid="3002">
-			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Template>gaia/treasure/food_barrels_buried</Template>
 			<Player>0</Player>
 			<Position x="2488.66382" z="1831.50196"/>
 			<Orientation y="2.81063"/>
 		</Entity>
 		<Entity uid="3003">
-			<Template>gaia/special_treasure_food_barrel</Template>
+			<Template>gaia/treasure/food_barrel</Template>
 			<Player>0</Player>
 			<Position x="2565.42188" z="1867.26844"/>
 			<Orientation y="3.17739"/>
@@ -9615,7 +9615,7 @@
 			<Orientation y="1.16271"/>
 		</Entity>
 		<Entity uid="3603">
-			<Template>other/unfinished_greek_temple</Template>
+			<Template>gaia/ruins/unfinished_greek_temple</Template>
 			<Player>0</Player>
 			<Position x="1692.79432" z="1371.63538"/>
 			<Orientation y="0.78638"/>
@@ -9687,49 +9687,49 @@
 			<Orientation y="-1.43685"/>
 		</Entity>
 		<Entity uid="3616">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1684.58924" z="1383.05738"/>
 			<Orientation y="2.35622"/>
 		</Entity>
 		<Entity uid="3617">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1678.79432" z="1378.23108"/>
 			<Orientation y="2.35622"/>
 		</Entity>
 		<Entity uid="3618">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1675.93665" z="1373.18348"/>
 			<Orientation y="2.35622"/>
 		</Entity>
 		<Entity uid="3619">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1688.96277" z="1387.48963"/>
 			<Orientation y="2.35622"/>
 		</Entity>
 		<Entity uid="3620">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1697.14588" z="1350.94007"/>
 			<Orientation y="-0.75211"/>
 		</Entity>
 		<Entity uid="3621">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1701.92017" z="1354.65284"/>
 			<Orientation y="-0.73076"/>
 		</Entity>
 		<Entity uid="3622">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1706.7621" z="1358.71656"/>
 			<Orientation y="-0.73322"/>
 		</Entity>
 		<Entity uid="3623">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1712.38514" z="1363.19764"/>
 			<Orientation y="-0.70604"/>
@@ -12154,7 +12154,7 @@
 			<Orientation y="0.29891"/>
 		</Entity>
 		<Entity uid="4151">
-			<Template>gaia/special_treasure_food_jars</Template>
+			<Template>gaia/treasure/food_jars</Template>
 			<Player>0</Player>
 			<Position x="2339.96216" z="892.6053"/>
 			<Orientation y="-1.7038"/>
@@ -14602,49 +14602,49 @@
 			<Actor seed="4046"/>
 		</Entity>
 		<Entity uid="5129">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1464.1089" z="1088.47925"/>
 			<Orientation y="-0.70604"/>
 		</Entity>
 		<Entity uid="5130">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1458.48584" z="1083.99817"/>
 			<Orientation y="-0.73322"/>
 		</Entity>
 		<Entity uid="5131">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1453.64393" z="1079.93445"/>
 			<Orientation y="-0.73076"/>
 		</Entity>
 		<Entity uid="5132">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1448.86963" z="1076.22168"/>
 			<Orientation y="-0.75211"/>
 		</Entity>
 		<Entity uid="5133">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1440.68653" z="1112.77125"/>
 			<Orientation y="2.35622"/>
 		</Entity>
 		<Entity uid="5134">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1427.66041" z="1098.4651"/>
 			<Orientation y="2.35622"/>
 		</Entity>
 		<Entity uid="5135">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1430.51807" z="1103.5127"/>
 			<Orientation y="2.35622"/>
 		</Entity>
 		<Entity uid="5136">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1436.313" z="1108.339"/>
 			<Orientation y="2.35622"/>
@@ -14710,7 +14710,7 @@
 			<Orientation y="3.07903"/>
 		</Entity>
 		<Entity uid="5147">
-			<Template>other/unfinished_greek_temple</Template>
+			<Template>gaia/ruins/unfinished_greek_temple</Template>
 			<Player>0</Player>
 			<Position x="1444.51807" z="1096.917"/>
 			<Orientation y="0.78638"/>
@@ -29539,35 +29539,35 @@
 			<Actor seed="4046"/>
 		</Entity>
 		<Entity uid="7479">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1632.9491" z="2358.95752"/>
 			<Orientation y="-0.73322"/>
 			<Actor seed="3622"/>
 		</Entity>
 		<Entity uid="7480">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1628.10718" z="2354.89405"/>
 			<Orientation y="-0.73076"/>
 			<Actor seed="3621"/>
 		</Entity>
 		<Entity uid="7481">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1623.3329" z="2351.18116"/>
 			<Orientation y="-0.75211"/>
 			<Actor seed="3620"/>
 		</Entity>
 		<Entity uid="7482">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1615.14979" z="2387.73072"/>
 			<Orientation y="2.35622"/>
 			<Actor seed="3619"/>
 		</Entity>
 		<Entity uid="7483">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1610.77625" z="2383.29834"/>
 			<Orientation y="2.35622"/>
@@ -29647,7 +29647,7 @@
 			<Actor seed="4037"/>
 		</Entity>
 		<Entity uid="7495">
-			<Template>other/unfinished_greek_temple</Template>
+			<Template>gaia/ruins/unfinished_greek_temple</Template>
 			<Player>0</Player>
 			<Position x="1618.98133" z="2371.87647"/>
 			<Orientation y="0.78638"/>
@@ -29894,7 +29894,7 @@
 			<Actor seed="4044"/>
 		</Entity>
 		<Entity uid="7536">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1638.57215" z="2363.43873"/>
 			<Orientation y="-0.70604"/>
@@ -29956,14 +29956,14 @@
 			<Actor seed="1695"/>
 		</Entity>
 		<Entity uid="7546">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1602.12366" z="2373.42457"/>
 			<Orientation y="2.35622"/>
 			<Actor seed="3618"/>
 		</Entity>
 		<Entity uid="7547">
-			<Template>gaia/special_ruins_stone_statues_roman</Template>
+			<Template>gaia/ruins/stone_statues_roman</Template>
 			<Player>0</Player>
 			<Position x="1604.98133" z="2378.47217"/>
 			<Orientation y="2.35622"/>

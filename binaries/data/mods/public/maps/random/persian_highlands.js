@@ -1,49 +1,37 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmbiome");
 
-const tCity = "desert_city_tile_pers_dirt";
-
-if (randBool())
-{
-	log("Summer biome...");
-	var tDirtMain = ["desert_dirt_persia_1", "desert_dirt_persia_2", "grass_field_dry"];
-	var tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
-	var tLakebed2 = ["desert_lakebed_dry_b", "desert_lakebed_dry", "desert_shore_stones", "desert_shore_stones"];
-	var tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_crumbling"];
-	var tForestFloor = "medit_grass_field_dry";
-	var tRocky = "desert_dirt_persia_rocky";
-	var tRocks = "desert_dirt_persia_rocks";
-	var tGrass = "grass_field_dry";
-}
+if (g_MapSettings.Biome)
+	setSelectedBiome();
 else
-{
-	log("Spring biome...");
-	var tDirtMain = ["desert_grass_a", "desert_grass_a", "desert_grass_a", "desert_plants_a"];
-	var tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
-	var tLakebed2 = "desert_grass_a_sand";
-	var tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_crumbling"];
-	var tForestFloor = "desert_plants_b_persia";
-	var tRocky = "desert_plants_b_persia";
-	var tRocks = "desert_plants_a";
-	var tGrass = "desert_dirt_persia_rocky";
+	// TODO: Replace ugly default for atlas by a dropdown
+	setBiome("persian_highlands/summer");
 
-	setTerrainAmbientColor(0.329412, 0.419608, 0.501961);
-}
+const tDirtMain = g_Terrains.mainTerrain;
+const tCity = g_Terrains.road;
+const tCliff = g_Terrains.cliff;
+const tLakebed1 = g_Terrains.lakebed1;
+const tLakebed2 = g_Terrains.lakebed2;
+const tForestFloor = g_Terrains.forestFloor1;
+const tRocky = g_Terrains.tier1Terrain;
+const tRocks = g_Terrains.tier2Terrain;
+const tGrass = g_Terrains.tier3Terrain;
 
-const oGrapesBush = "gaia/flora_bush_grapes";
-const oCamel = "gaia/fauna_camel";
-const oSheep = "gaia/fauna_sheep";
-const oGoat = "gaia/fauna_goat";
-const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
-const oStoneSmall = "gaia/geology_stone_desert_small";
-const oMetalLarge = "gaia/geology_metal_desert_slabs";
-const oOak = "gaia/flora_tree_oak";
+const oOak = g_Gaia.tree1;
+const oGrapesBush = g_Gaia.fruitBush;
+const oCamel = g_Gaia.mainHuntableAnimal;
+const oSheep = g_Gaia.secondaryHuntableAnimal;
+const oGoat = g_Gaia.thirdHuntableAnimal;
+const oStoneLarge = g_Gaia.stoneLarge;
+const oStoneSmall = g_Gaia.stoneSmall;
+const oMetalLarge = g_Gaia.metalLarge;
 
-const aBush1 = "actor|props/flora/bush_desert_a.xml";
-const aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
-const aBush3 = "actor|props/flora/bush_dry_a.xml";
-const aBush4 = "actor|props/flora/plant_desert_a.xml";
+const aDecorativeRock = g_Decoratives.rockMedium;
+const aBush1 = g_Decoratives.bush1;
+const aBush2 = g_Decoratives.bush2;
+const aBush3 = g_Decoratives.bush3;
+const aBush4 = g_Decoratives.bush4;
 const aBushes = [aBush1, aBush2, aBush3, aBush4];
-const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor, tDirtMain, tDirtMain];
 
@@ -310,19 +298,6 @@ createStragglerTrees(
 	avoidClasses(clForest, 1, clHill, 1, clPlayer, 1, clBaseResource, 6, clMetal, 6, clRock, 6, clCP, 2),
 	clForest,
 	stragglerTrees);
-
-setSunColor(1.0, 0.796, 0.374);
-setSunElevation(Math.PI / 6);
-setSunRotation(-1.86532);
-
-setFogFactor(0.2);
-setFogThickness(0.0);
-setFogColor(0.852, 0.746, 0.493);
-
-setPPEffect("hdr");
-setPPContrast(0.75);
-setPPSaturation(0.45);
-setPPBloom(0.3);
 
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 

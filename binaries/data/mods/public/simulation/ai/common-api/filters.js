@@ -180,8 +180,8 @@ m.Filters = {
 				return false;
 
 			// Don't go for floating treasures since we won't be able to reach them and it kills the pathfinder.
-			if (ent.templateName() == "other/special_treasure_shipwreck_debris" ||
-			    ent.templateName() == "other/special_treasure_shipwreck" )
+			if (ent.templateName() == "gaia/treasure/shipwreck_debris" ||
+			    ent.templateName() == "gaia/treasure/shipwreck" )
 				return false;
 
 			if (type.generic == "treasure")

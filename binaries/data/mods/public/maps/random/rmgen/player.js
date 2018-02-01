@@ -3,10 +3,10 @@
  */
 
 var g_NomadTreasureTemplates = {
-	"food": "gaia/special_treasure_food_jars",
-	"wood": "gaia/special_treasure_wood",
-	"stone": "gaia/special_treasure_stone",
-	"metal": "gaia/special_treasure_metal"
+	"food": "gaia/treasure/food_jars",
+	"wood": "gaia/treasure/wood",
+	"stone": "gaia/treasure/stone",
+	"metal": "gaia/treasure/metal"
 };
 
 /**

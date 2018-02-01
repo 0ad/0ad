@@ -414,8 +414,9 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 	if (this.overseas && !gameState.ai.HQ.navalManager.seaTransportShips[this.overseas].length)
 		return 1;
 
-	this.assignUnits(gameState);
-	if (this.type !== "Raid" && gameState.ai.HQ.attackManager.getAttackInPreparation("Raid") !== undefined)
+	if (this.type != "Raid" || !this.forced)    // Forced Raids have special purposes (as relic capture)
+		this.assignUnits(gameState);
+	if (this.type != "Raid" && gameState.ai.HQ.attackManager.getAttackInPreparation("Raid") !== undefined)
 		this.reassignCavUnit(gameState);    // reassign some cav (if any) to fasten raid preparations
 
 	// special case: if we've reached max pop, and we can start the plan, start it.
@@ -480,7 +481,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		this.getPathToTarget(gameState);
 
 	if (this.type == "Raid")
-		this.maxCompletingTime = gameState.ai.elapsedTime + 20;
+		this.maxCompletingTime = this.forced ? 0 : gameState.ai.elapsedTime + 20;
 	else
 	{
 		if (this.type == "Rush" || this.forced)

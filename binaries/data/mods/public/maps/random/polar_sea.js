@@ -20,7 +20,7 @@ var oFish = "gaia/fauna_fish";
 var oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 var oStoneSmall = "gaia/geology_stone_alpine_a";
 var oMetalLarge = "gaia/geology_metal_desert_badlands_slabs";
-var oWoodTreasure = "gaia/special_treasure_wood";
+var oWoodTreasure = "gaia/treasure/wood";
 var oMarket = "skirmish/structures/default_market";
 
 var aRockLarge = "actor|geology/stone_granite_med.xml";

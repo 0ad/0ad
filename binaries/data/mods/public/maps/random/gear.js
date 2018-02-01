@@ -117,7 +117,7 @@ else if (mapSize == 448)
 g_Map.log("Creating big circular lake");
 createArea(
 	new ClumpPlacer(diskArea(radiusCentralLake), 1, 1, 10, mapCenter),
-	new SmoothElevationPainter(ELEVATION_SET, heightShallow, 4));
+	new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4));
 
 g_Map.log("Creating rivers between players");
 for (let m = 0; m < numPlayers * split; ++m)

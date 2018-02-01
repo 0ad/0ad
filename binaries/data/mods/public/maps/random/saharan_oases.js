@@ -22,8 +22,8 @@ const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_desert_slabs";
 const oDatePalm = "gaia/flora_tree_date_palm";
 const oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
-const oWoodTreasure = "gaia/special_treasure_wood";
-const oFoodTreasure = "gaia/special_treasure_food_bin";
+const oWoodTreasure = "gaia/treasure/wood";
+const oFoodTreasure = "gaia/treasure/food_bin";
 
 const aBush1 = "actor|props/flora/bush_desert_a.xml";
 const aBush2 = "actor|props/flora/bush_desert_dry_a.xml";

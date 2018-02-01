@@ -641,15 +641,15 @@ m.AttackManager.prototype.raidTargetEntity = function(gameState, ent)
 {
 	let data = { "target": ent };
 	let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Raid", data);
-	if (!attackPlan.failed)
-	{
-		if (this.Config.debug > 1)
-			API3.warn("Military Manager: Raiding plan " + this.totalNumber);
-		this.totalNumber++;
-		attackPlan.init(gameState);
-		this.upcomingAttacks.Raid.push(attackPlan);
-	}
+	if (attackPlan.failed)
+		return null;
+	if (this.Config.debug > 1)
+		API3.warn("Military Manager: Raiding plan " + this.totalNumber);
 	this.raidNumber++;
+	this.totalNumber++;
+	attackPlan.init(gameState);
+	this.upcomingAttacks.Raid.push(attackPlan);
+	return attackPlan;
 };
 
 /**

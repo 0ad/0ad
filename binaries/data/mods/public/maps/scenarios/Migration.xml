@@ -4601,19 +4601,19 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1000">
-			<Template>gaia/special_ruins</Template>
+			<Template>gaia/ruins/column_doric</Template>
 			<Player>0</Player>
 			<Position x="766.01514" z="744.31965"/>
 			<Orientation y="0.26304"/>
 		</Entity>
 		<Entity uid="1001">
-			<Template>gaia/special_ruins</Template>
+			<Template>gaia/ruins/column_doric</Template>
 			<Player>0</Player>
 			<Position x="775.43384" z="756.29023"/>
 			<Orientation y="-1.32433"/>
 		</Entity>
 		<Entity uid="1002">
-			<Template>gaia/special_ruins</Template>
+			<Template>gaia/ruins/column_doric</Template>
 			<Player>0</Player>
 			<Position x="746.9665" z="742.4491"/>
 			<Orientation y="1.68725"/>
@@ -4637,43 +4637,43 @@
 			<Orientation y="-2.72584"/>
 		</Entity>
 		<Entity uid="1006">
-			<Template>other/special_treasure_shipwreck</Template>
+			<Template>gaia/treasure/shipwreck</Template>
 			<Player>0</Player>
 			<Position x="701.05555" z="560.17933"/>
 			<Orientation y="-2.00618"/>
 		</Entity>
 		<Entity uid="1007">
-			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Template>gaia/treasure/shipwreck_debris</Template>
 			<Player>0</Player>
 			<Position x="715.1861" z="580.15375"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1008">
-			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Template>gaia/treasure/shipwreck_debris</Template>
 			<Player>0</Player>
 			<Position x="690.76935" z="580.56904"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1009">
-			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Template>gaia/treasure/shipwreck_debris</Template>
 			<Player>0</Player>
 			<Position x="699.34192" z="580.62238"/>
 			<Orientation y="-0.10175"/>
 		</Entity>
 		<Entity uid="1010">
-			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Template>gaia/treasure/shipwreck_debris</Template>
 			<Player>0</Player>
 			<Position x="713.36329" z="560.65925"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1011">
-			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Template>gaia/treasure/shipwreck_debris</Template>
 			<Player>0</Player>
 			<Position x="687.29883" z="566.84382"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1012">
-			<Template>other/unfinished_greek_temple</Template>
+			<Template>gaia/ruins/unfinished_greek_temple</Template>
 			<Player>0</Player>
 			<Position x="785.79395" z="738.08033"/>
 			<Orientation y="1.51607"/>
@@ -6720,31 +6720,31 @@
 			<Orientation y="0.97709"/>
 		</Entity>
 		<Entity uid="1414">
-			<Template>other/special_treasure_shipwreck</Template>
+			<Template>gaia/treasure/shipwreck</Template>
 			<Player>0</Player>
 			<Position x="642.49402" z="449.52082"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1415">
-			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Template>gaia/treasure/shipwreck_debris</Template>
 			<Player>0</Player>
 			<Position x="636.89448" z="437.85291"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1416">
-			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Template>gaia/treasure/shipwreck_debris</Template>
 			<Player>0</Player>
 			<Position x="655.24604" z="445.15412"/>
 			<Orientation y="0.89512"/>
 		</Entity>
 		<Entity uid="1417">
-			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Template>gaia/treasure/shipwreck_debris</Template>
 			<Player>0</Player>
 			<Position x="637.95386" z="478.23731"/>
 			<Orientation y="-0.70965"/>
 		</Entity>
 		<Entity uid="1418">
-			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Template>gaia/treasure/shipwreck_debris</Template>
 			<Player>0</Player>
 			<Position x="619.07166" z="439.05396"/>
 			<Orientation y="2.35621"/>
@@ -7180,13 +7180,13 @@
 			<Orientation y="-1.5926"/>
 		</Entity>
 		<Entity uid="1503">
-			<Template>gaia/special_treasure_food_crate</Template>
+			<Template>gaia/treasure/food_crate</Template>
 			<Player>0</Player>
 			<Position x="496.83597" z="957.09571"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1504">
-			<Template>gaia/special_treasure_food_barrel</Template>
+			<Template>gaia/treasure/food_barrel</Template>
 			<Player>0</Player>
 			<Position x="489.17316" z="957.7768"/>
 			<Orientation y="2.35621"/>

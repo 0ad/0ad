@@ -32,7 +32,7 @@ var oFish = "gaia/fauna_fish";
 var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
 var oStoneSmall = "gaia/geology_stone_alpine_a";
 var oMetalLarge = "gaia/geology_metal_alpine_slabs";
-var oWoodTreasure = "gaia/special_treasure_wood";
+var oWoodTreasure = "gaia/treasure/wood";
 
 var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";

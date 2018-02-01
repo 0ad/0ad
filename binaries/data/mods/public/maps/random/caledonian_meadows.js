@@ -66,7 +66,7 @@ g_WallStyles.other = {
 	"fence_short": readyWallElement("other/fence_short", "gaia"),
 	"bench":     { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "other/bench" },
 	"sheep":     { "angle": 0,           "length": 0,    "indent": 0.75, "bend": 0, "templateName": "gaia/fauna_sheep" },
-	"foodBin":   { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "gaia/special_treasure_food_bin" },
+	"foodBin":   { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "gaia/treasure/food_bin" },
 	"farmstead": { "angle": Math.PI,     "length": 0,    "indent": -3,   "bend": 0, "templateName": "structures/brit_farmstead" }
 };
 
@@ -141,7 +141,7 @@ function placeGrove(point)
 // Camps with fire and gold treasure
 function placeCamp(point,
 	centerEntity = "actor|props/special/eyecandy/campfire.xml",
-	otherEntities = ["gaia/special_treasure_metal", "gaia/special_treasure_standing_stone",
+	otherEntities = ["gaia/treasure/metal", "gaia/treasure/standing_stone",
 		"units/brit_infantry_slinger_b", "units/brit_infantry_javelinist_b", "units/gaul_infantry_slinger_b", "units/gaul_infantry_javelinist_b", "units/gaul_champion_fanatic",
 		"actor|props/special/common/waypoint_flag.xml", "actor|props/special/eyecandy/barrel_a.xml", "actor|props/special/eyecandy/basket_celt_a.xml", "actor|props/special/eyecandy/crate_a.xml", "actor|props/special/eyecandy/dummy_a.xml", "actor|props/special/eyecandy/handcart_1.xml", "actor|props/special/eyecandy/handcart_1_broken.xml", "actor|props/special/eyecandy/sack_1.xml", "actor|props/special/eyecandy/sack_1_rough.xml"
 	]

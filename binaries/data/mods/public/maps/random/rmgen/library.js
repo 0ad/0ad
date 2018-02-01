@@ -157,7 +157,7 @@ function createTerrain(terrain)
  * Constructs a new Area shaped by the Placer meeting the Constraints and calls the Painters there.
  * Supports both Centered and Non-Centered Placers.
  */
-function createArea(placer, painter, constraints)
+function createArea(placer, painters, constraints)
 {
 	let points = placer.place(new AndConstraint(constraints));
 	if (!points)
@@ -165,10 +165,7 @@ function createArea(placer, painter, constraints)
 
 	let area = g_Map.createArea(points);
 
-	if (painter instanceof Array)
-		painter = new MultiPainter(painter);
-
-	painter.paint(area);
+	new MultiPainter(painters).paint(area);
 
 	return area;
 }

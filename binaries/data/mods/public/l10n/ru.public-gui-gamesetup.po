@@ -20,7 +20,7 @@
 # Cергей Исаченко <vortexius@gmail.com>, 2014
 # Владимир Смирнов <delpfine2012@gmail.com>, 2014
 # Владимир Смирнов <delpfine2012@gmail.com>, 2014
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2018
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014-2015
 # Eugene Kostrika <testiculi@yandex.ru>, 2013
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -68,6 +68,7 @@
 # Vitalii Mostipaka <imprtat@gmail.com>, 2013
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Дмитрий <polsha_d@mail.ru>, 2016
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
 # Кваша Владислав <vladislav.kwasha@yandex.ua>, 2014
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 # Олег Шевченко <olegrock@gmail.com>, 2017
@@ -76,8 +77,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-01-30 10:36+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,7 +141,7 @@ msgstr "Я не готов!"
 
 #: gui/gamesetup/gamesetup.js:125
 msgid "State that you are not ready to play."
-msgstr "Выберите если не готовы играть."
+msgstr "Выберите, если не готовы играть."
 
 #: gui/gamesetup/gamesetup.js:148
 msgid "Game settings have been changed"
@@ -159,12 +160,12 @@ msgstr "%(username)s вышел"
 #: gui/gamesetup/gamesetup.js:151
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s отключён."
+msgstr "%(username)s отключён"
 
 #: gui/gamesetup/gamesetup.js:152
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s заблокирован."
+msgstr "%(username)s заблокирован"
 
 #: gui/gamesetup/gamesetup.js:153
 #, javascript-format
@@ -234,7 +235,7 @@ msgstr "Все карты выбранного типа."
 #: gui/gamesetup/gamesetup.js:396
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Карта"
 
 #: gui/gamesetup/gamesetup.js:411
 msgctxt "Match settings tab name"
@@ -395,13 +396,13 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:827
 msgid "Nomad"
-msgstr ""
+msgstr "Кочевник"
 
 #: gui/gamesetup/gamesetup.js:828
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "В режиме Кочевника игроки начинают с несколькими юнитами и вынуждены искать подходящее место для строительства города. Рекомендуется включить опцию прекращения военных действий."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -546,7 +547,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2049
 msgctxt "settings value"
@@ -564,7 +565,7 @@ msgstr "Нет"
 #: gui/gamesetup/gamesetup.js:2086
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2173
 #, javascript-format
@@ -727,7 +728,7 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"К разу­ме­нию Добра Зевс ведет путем скор­бей, науча­ет болью нас… [\\...] В серд­це память кап­лет яд. [\\...] Видит грех, видит казнь — в разум вхо­дит чело­век. [\\...] Нас к доб­ру небес­но­го наси­лья нудит бла­гост­ный ярем.\" - Эсхил (\"Орестея\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -751,7 +752,7 @@ msgstr "\"Что ж, время, старясь, может научить вс�
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr "\"Быть, а не казаться\" — Эсхил (\"Семеро против Фив\", 592)"
+msgstr "\"Не показ­ное — под­лин­ное муже­ство.\" — Эсхил (\"Семеро против Фив\", 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
@@ -966,7 +967,7 @@ msgid ""
 "\"I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.\" - Aristotle (Stobaeus, "
 "\"Florilegium\", 223)"
-msgstr ""
+msgstr "\"Я считаю более храбрым того, кто одолевает свои желания, чем того, кто побеждает своих противников; самая сложная победа — над собой.\" - Аристотель (Стобей, \"Флорилегиум\", 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -1179,7 +1180,7 @@ msgid ""
 "the sound, and that second roar was louder than the Macedonian war cry as "
 "five hundred thousand men shouted with one voice.\" - Diodorus Siculus about"
 " the Battle of Issos (\"The Library of History\", XVII., sec. 33)"
-msgstr ""
+msgstr "\"Македон­цы пер­вые соглас­но и оглу­ши­тель­но закричали, им отве­ти­ли вар­ва­ры, и сосед­ние горы откликнулись эхом более гром­ким, чем самый крик: казалось, пятьсот тысяч чело­век одновре­мен­но изда­ли вопль.\" - Диодор Сицилийский о битве при Иссе (\"Историческая библиотека\", книга XVII., часть 33)"
 
 #: gui/text/quotes.txt:69
 msgid ""
@@ -1703,7 +1704,7 @@ msgid ""
 "\"Themistocles robbed his fellow citizens of spear and shield, and degraded "
 "the people of Athens to the rowing-pad and the oar.\" - Plato, no friend of "
 "the Athenian navy (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 3)"
-msgstr ""
+msgstr "\"Феми­стокл отнял у сограж­дан копье и щит и уни­зил афин­ский народ до греб­ной ска­мей­ки и вес­ла.\" - Платон, негативно высказываясь об Афинском флоте (Плутарх, \"Сравнительные жизнеописания\", \"Фемистокл\", часть 3)"
 
 #: gui/text/quotes.txt:143
 msgid ""
@@ -1832,7 +1833,7 @@ msgstr "\"Если мы одер­жим еще одну победу над р�
 msgid ""
 "\"None can be free who is a slave to, and ruled by, his passions.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 18)"
-msgstr ""
+msgstr "\"Человек, оказавшийся в плену своих страстей, свободным быть не может.\" - Пифагор (Стобей, \"Флорилегиум\", 18)"
 
 #: gui/text/quotes.txt:158
 msgid ""
@@ -1844,7 +1845,7 @@ msgstr ""
 msgid ""
 "\"Let your speech be better than silence, or be silent.\" - Pythagoras "
 "(Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Молчи или говори что-нибудь получше молчания.\" - Пифагор (Стобей, \"Флорилегиум\", 24)"
 
 #: gui/text/quotes.txt:160
 msgid ""

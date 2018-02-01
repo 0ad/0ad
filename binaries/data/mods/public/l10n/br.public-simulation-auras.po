@@ -12,12 +12,12 @@
 # tjyu gh <anna.point22@orange.fr>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Youenn Jacquet <youennjacquet@gmail.com>, 2017
-# Younn Keravel <goulvenbreizh@hotmail.fr>, 2017
+# Younn Keravel <goulvenbreizh@hotmail.fr>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2018-01-24 09:39+0000\n"
+"POT-Creation-Date: 2018-01-29 09:04+0100\n"
+"PO-Revision-Date: 2018-01-30 11:47+0000\n"
 "Last-Translator: ernest olory <ernestolory@hotmail.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -146,8 +146,8 @@ msgid "Druids"
 msgstr "Drouized"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
-msgid "-20% resources cost for allies healers."
-msgstr "-20% a goust e mammennoù evit pareerien ar re gevredet."
+msgid "Allies get -20% resource cost to train healers."
+msgstr "Degemer a ra ar gevredidi -20% a zanvez koust evit stummañ pareourien."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -507,7 +507,7 @@ msgstr "Lestrsaver"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "-20% build time and -50% metal cost for ships during his lifespan."
-msgstr ""
+msgstr "-20% a amzer sevel ha -50% a goust metal evit listri e-pad e vuhezpad."
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -515,15 +515,15 @@ msgstr "Arme Kampion"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +10% speed for champion units."
-msgstr ""
+msgstr "+20% a dagusted, +2 a bakusted ha +10% a dizh evit an unanennoù kampion."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
-msgstr ""
+msgstr "Penn Brezelig"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed and +1 armor."
-msgstr ""
+msgstr "An holl soudarded hag ar mekanikoù seziz +15% a dizh ha +1 a houarnwisk."
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
@@ -532,11 +532,11 @@ msgstr "Britannorum Rex"
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "+0.8 HP per second healing rate."
-msgstr ""
+msgstr "+0.8 PB an eilenn a feur pareañ."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
 msgid "Lightning General"
-msgstr ""
+msgstr "Foeltr Jeneral"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
@@ -548,7 +548,7 @@ msgstr "Taktisian"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid "+20% attack and +1 capture for all allied soldiers and siege engines."
-msgstr ""
+msgstr "+20% a dagusted ha +1 a bakusted evit an holl soudarded kevredet hag ar mekanikoù seziz."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -556,7 +556,7 @@ msgstr "Komander Marc'heger"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "+30% attack for cavalry melee soldiers."
-msgstr ""
+msgstr "+30% a argad evit stourmadeg soudarded marc'hegerezh."
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
@@ -564,7 +564,7 @@ msgstr "Preizher Roma"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+15 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "+15 a breizhadenn v/Metal da bep unanenn enebour lazhet."
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
@@ -572,7 +572,7 @@ msgstr "Aotrou brezel keltiek"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
-msgstr ""
+msgstr "+20% a dagusted ha +1 a bakusted evit ar soudarded ha mekanikoù seziz."
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
@@ -584,7 +584,7 @@ msgstr "Kreskiñ a ra ar feurioù dastum eus +15% e-pad e vuhez."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
-msgstr ""
+msgstr "Difenn awenet"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
@@ -594,21 +594,21 @@ msgstr "Pa vez gwarnizonet en ur framm pe ur mekanik seziz, reiñ a ra an haroz 
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
-msgstr ""
+msgstr "Difenner kalonek"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid ""
 "75% more arrows per soldier for the building or siege tower he is garrisoned"
 " in."
-msgstr ""
+msgstr "75% muioc'h a viroù gant pep soudard evit ar savadur pe an dour seziz e-lec'h m'eman gwarnizonet."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
-msgstr ""
+msgstr "Bervidanted Emgann"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "+1 armor for soldiers."
-msgstr ""
+msgstr "+1 a houarnwisk evit ar soudarded."
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -616,11 +616,11 @@ msgstr "Galvadeg"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "-20% training time and -15% resources cost for soldiers."
-msgstr ""
+msgstr "-20% a amzer stumman ha -15% a danvez koust evit soudarded."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "+20% movement speed for soldiers."
-msgstr ""
+msgstr "+20% a dizh evit ar soudarded."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
@@ -630,7 +630,7 @@ msgstr "Preizhadenn"
 msgid ""
 "+100% resources loot increase for every enemy unit killed or structure "
 "destroyed."
-msgstr ""
+msgstr "+100% a danvezioù preizhadenn a gresk evit pep unanenn enebour lazhet pe frammadur distrujet."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
@@ -646,7 +646,7 @@ msgstr "Alouber"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "-50% garrisoned regeneration rate for enemy civic centers."
-msgstr ""
+msgstr "-50% a feur gwarnizonoù azganet evit kreizennoù keodedel enebour."
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -654,7 +654,7 @@ msgstr "Taksiarkes"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid "+20% attack and +20% capture for pikemen."
-msgstr ""
+msgstr "+20% a argad ha +20% a bakadur evit goafourien."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
@@ -662,7 +662,7 @@ msgstr "Seziser"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
 msgid "+10% attack, +10% range and +1 armor for siege engines."
-msgstr ""
+msgstr "+10% a dagusted, +10% a hed-tenn ha +1 a houarnwisk evit ar mekanikoù seziz."
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
@@ -697,27 +697,27 @@ msgstr "Kelenner"
 msgid ""
 "Empower a building with -20% cost and -50% research time while he is "
 "garrisoned in it."
-msgstr ""
+msgstr "Aotrean ur savadur gant -20% a goust ha -50% a amzer enklask tra m'eman gwarnizonet e-barzh."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
-msgstr ""
+msgstr "Azgenel"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
 msgid "Forefront Leader"
-msgstr ""
+msgstr "Rener war al linenn kentan"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for cavalry soldiers."
-msgstr ""
+msgstr "+20% a argad ha +1 a bakadur evit soudarded marc'hegerezh."
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
-msgstr ""
+msgstr "Renerezh"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+10% movement speed for all soldiers, siege engines and traders."
-msgstr ""
+msgstr "+10% a dizh evit an holl soudarded, mekanikoù seziz ha kenwerzhourien."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -725,7 +725,7 @@ msgstr "Merour"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
 msgid "+15% gather rate and build rate for workers."
-msgstr ""
+msgstr "+15% a feur dastum ha feur sevel evit labourerien."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot"
@@ -733,7 +733,7 @@ msgstr "Brogarour"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "-20% attack repeat time for soldiers and siege engines."
-msgstr ""
+msgstr "-20% a amzer pleustradenn argad evit soudarded ha ijinennoù seziz."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -742,11 +742,11 @@ msgstr "Kenseurt"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "+10% health for allied heroes."
-msgstr ""
+msgstr "+10% a yec'hed evit harozed kevredet."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "-10% health for enemy heroes."
-msgstr ""
+msgstr "-10% a yec'hed evit harozed enebour."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"
@@ -754,19 +754,19 @@ msgstr "Rafia"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Goafourien o deus 40% a yec'hed gwelloc'h e-pad e vuhezpad."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
-msgstr ""
+msgstr "Penn Savadur"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "+10% build and repair rate for workers."
-msgstr ""
+msgstr "+10% a sevel ha feur dresan evit labourerien."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron"
-msgstr ""
+msgstr "Penn Goprsoudard"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -50% resources during his lifetime."
@@ -779,11 +779,11 @@ msgstr "Kleze Roma"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "+15% attack for cavalry."
-msgstr ""
+msgstr "+15% a argad evit Marc'hegerezh."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "-10% attack for enemy infantry."
-msgstr ""
+msgstr "-10% a dagusted evit ar soudarded war-droad enebour."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -791,7 +791,7 @@ msgstr "Skoed Roma"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "+2 armor for all units and structures."
-msgstr ""
+msgstr "+2 a houarnwisk evit an holl unanennoù hag ar savadurioù."
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
@@ -799,7 +799,7 @@ msgstr "Enor bras"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
 msgid "+20% attack and +2 capture for soldiers and siege engines."
-msgstr ""
+msgstr "+20% a dagusted ha +2 a bakusted evit ar soudarded ha mekanikoù seziz."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
@@ -815,7 +815,7 @@ msgstr "Alouber brudet"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
 msgid "-20% health for enemy buildings, siege engines and ships."
-msgstr ""
+msgstr "-20% a vuhez evit ar savadurioù enebour, mekanikoù seziz ha bigi."
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"
@@ -823,7 +823,7 @@ msgstr "Zooiarkos"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
 msgid "+20% attack and movement speed for war elephants."
-msgstr ""
+msgstr "+20% a dagusted ha tizh evit an olifanted brezel."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
@@ -831,7 +831,7 @@ msgstr "Adaozadurioù Hiloted"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr ""
+msgstr "+25% a dagusted ha +1 a houarnwisk evit ar soudarded speger war droad."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"
@@ -839,4 +839,4 @@ msgstr "An Hini Diwezhañ War-Sav"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "+25% attack and +1 capture for spear soldiers."
-msgstr ""
+msgstr "+25% a argad ha +1 a bakadur evit goaferien."
