@@ -58,7 +58,17 @@ function heapsPermute(array, cloneFunc, callback)
  */
 function basename(path)
 {
-	return path.slice(path.lastIndexOf("/") + 1);
+	return path.split("/").pop();
+}
+
+/**
+ * Returns the directories of a given path.
+ *
+ * ie. a/b/c/file.ext -> a/b/c
+ */
+function dirname(path)
+{
+	return path.split("/").slice(0, -1).join("/");
 }
 
 /**

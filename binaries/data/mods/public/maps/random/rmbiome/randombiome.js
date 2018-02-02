@@ -31,7 +31,7 @@ function setBiome(biomeID)
 
 	loadBiomeFile(biomeID);
 
-	Engine.LoadLibrary("rmbiome/" + biomeID.slice(0, biomeID.lastIndexOf("/")));
+	Engine.LoadLibrary("rmbiome/" + dirname(biomeID));
 	let setupBiomeFunc = global["setupBiome_" + basename(biomeID)];
 	if (setupBiomeFunc)
 		setupBiomeFunc();
