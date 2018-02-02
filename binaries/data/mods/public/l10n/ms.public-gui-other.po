@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 15:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-01-31 09:03+0100\n"
+"PO-Revision-Date: 2018-02-01 15:20+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +68,7 @@ msgstr "Sejarah %(civilization)s"
 #: gui/common/color.js:149
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Kekunci panas tidak diumpuk: %(hotkeyName)s"
 
 #: gui/common/color.js:164
 #, javascript-format
@@ -85,7 +85,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Membuka %(url)s\n dalam pelayar sesawang lalai. Tunggu sebentar…"
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -101,20 +101,20 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Pemuatan Dihenti Paksa"
 
-#: gui/common/functions_utility.js:20
+#: gui/common/functions_utility.js:29
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/common/functions_utility.js:96
+#: gui/common/functions_utility.js:105
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rawak"
 
-#: gui/common/functions_utility.js:107
+#: gui/common/functions_utility.js:116
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:107
+#: gui/common/functions_utility.js:116
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -401,21 +401,21 @@ msgstr "Pilih peta secara rawak dari senarai"
 
 #: gui/common/gamedescription.js:347
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Mod Nomad"
 
 #: gui/common/gamedescription.js:347
 msgid "Civic Centers"
-msgstr ""
+msgstr "Pusat Sivik"
 
 #: gui/common/gamedescription.js:350
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Pemain bermula dengan hanya beberapa unit dan perlu mencari tempat yang sesuai untuk membina bandar mereka."
 
 #: gui/common/gamedescription.js:351
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "Pemain bermula dengan Pusat Sivik."
 
 #: gui/common/gamedescription.js:358
 msgid "Biome"
@@ -467,8 +467,8 @@ msgstr "Menipu"
 
 #: gui/common/gamedescription.js:407 gui/common/tooltips.js:126
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:222
-#: gui/common/tooltips.js:447 gui/common/tooltips.js:468
-#: gui/common/tooltips.js:758
+#: gui/common/tooltips.js:380 gui/common/tooltips.js:457
+#: gui/common/tooltips.js:478 gui/common/tooltips.js:768
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -596,8 +596,8 @@ msgstr "Pengguna (%(num)s): %(users)s"
 #: gui/common/network.js:161 gui/common/tooltips.js:80
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:208
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
-#: gui/common/tooltips.js:352 gui/common/tooltips.js:623
-#: gui/common/tooltips.js:657 gui/common/tooltips.js:723
+#: gui/common/tooltips.js:352 gui/common/tooltips.js:633
+#: gui/common/tooltips.js:667 gui/common/tooltips.js:733
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
 msgid ", "
 msgstr ", "
@@ -823,8 +823,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:109 gui/common/tooltips.js:315
-#: gui/common/tooltips.js:364 gui/common/tooltips.js:378
-#: gui/common/tooltips.js:655
+#: gui/common/tooltips.js:364 gui/common/tooltips.js:665
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "saat"
@@ -886,7 +885,7 @@ msgstr "%(damage)s %(damageType)s"
 msgid "Interval:"
 msgstr "Sela:"
 
-#: gui/common/tooltips.js:227 gui/common/tooltips.js:653
+#: gui/common/tooltips.js:227 gui/common/tooltips.js:663
 msgid "Rate:"
 msgstr "Kadar:"
 
@@ -895,7 +894,7 @@ msgstr "Kadar:"
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:253 gui/common/tooltips.js:648
+#: gui/common/tooltips.js:253 gui/common/tooltips.js:658
 msgid "Range:"
 msgstr "Julat:"
 
@@ -910,8 +909,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "meter"
 
-#: gui/common/tooltips.js:261 gui/common/tooltips.js:650
-#: gui/common/tooltips.js:680
+#: gui/common/tooltips.js:261 gui/common/tooltips.js:660
+#: gui/common/tooltips.js:690
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "meter"
@@ -941,12 +940,11 @@ msgstr "Had Garison"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:312 gui/common/tooltips.js:642
+#: gui/common/tooltips.js:312 gui/common/tooltips.js:652
 msgid "Heal:"
 msgstr "Penyembuhan:"
 
 #: gui/common/tooltips.js:314 gui/common/tooltips.js:363
-#: gui/common/tooltips.js:377
 msgid "Health"
 msgstr "Hayat"
 
@@ -973,102 +971,109 @@ msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgid "Repair Rate:"
 msgstr "Kadar Baiki:"
 
-#: gui/common/tooltips.js:365 gui/common/tooltips.js:379
-#: gui/summary/layout.js:64
+#: gui/common/tooltips.js:365 gui/summary/layout.js:64
 msgid "Worker"
 msgstr "Pekerja"
 
-#: gui/common/tooltips.js:374
-#, javascript-format
-msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-
 #: gui/common/tooltips.js:375
-msgid "Build Rate:"
-msgstr "Kadar Pembinaan:"
+#, javascript-format
+msgid "Add a worker to finish the construction in %(second)s second."
+msgid_plural "Add a worker to finish the construction in %(second)s seconds."
+msgstr[0] "Tambah pekerja untuk selesaikan pembinaan dalam tempoh %(second)s saat."
 
-#: gui/common/tooltips.js:412 gui/common/tooltips.js:595
+#: gui/common/tooltips.js:381
+msgid "Number of builders:"
+msgstr "Bilangan jurubina:"
+
+#: gui/common/tooltips.js:387
+#, javascript-format
+msgid "Add another worker to speed up the construction by %(second)s second."
+msgid_plural ""
+"Add another worker to speed up the construction by %(second)s seconds."
+msgstr[0] "Tambah pekerja lain untuk cepatkan pembinaan dalam tempoh %(second)s saat."
+
+#: gui/common/tooltips.js:422 gui/common/tooltips.js:605
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:448
+#: gui/common/tooltips.js:458
 msgid "Gather Rates:"
 msgstr "Kadar Pengumpulan:"
 
-#: gui/common/tooltips.js:451 gui/common/tooltips.js:473
+#: gui/common/tooltips.js:461 gui/common/tooltips.js:483
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/common/tooltips.js:469
+#: gui/common/tooltips.js:479
 msgid "Resource Trickle:"
 msgstr "Rebakan Sumber:"
 
-#: gui/common/tooltips.js:470
+#: gui/common/tooltips.js:480
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:522
+#: gui/common/tooltips.js:532
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s ke %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:551
+#: gui/common/tooltips.js:561
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Tembok:  %(costs)s"
 
-#: gui/common/tooltips.js:552
+#: gui/common/tooltips.js:562
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Menara:  %(costs)s"
 
-#: gui/common/tooltips.js:566
+#: gui/common/tooltips.js:576
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Perlukan %(technology)s"
 
-#: gui/common/tooltips.js:578
+#: gui/common/tooltips.js:588
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:579
+#: gui/common/tooltips.js:589
 msgid "Population Bonus:"
 msgstr "Bonus Populasi:"
 
-#: gui/common/tooltips.js:600
+#: gui/common/tooltips.js:610
 msgid "Insufficient resources:"
 msgstr "Sumber tidak mencukupi:"
 
-#: gui/common/tooltips.js:616
+#: gui/common/tooltips.js:626
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:617
+#: gui/common/tooltips.js:627
 msgid "Speed:"
 msgstr "Kelajuan:"
 
-#: gui/common/tooltips.js:619 gui/common/tooltips.js:624
+#: gui/common/tooltips.js:629 gui/common/tooltips.js:634
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:621
+#: gui/common/tooltips.js:631
 msgid "Walk"
 msgstr "Jalan"
 
-#: gui/common/tooltips.js:626
+#: gui/common/tooltips.js:636
 msgid "Run"
 msgstr "Lari"
 
-#: gui/common/tooltips.js:641 gui/common/tooltips.js:647
-#: gui/common/tooltips.js:652 gui/common/tooltips.js:677
+#: gui/common/tooltips.js:651 gui/common/tooltips.js:657
+#: gui/common/tooltips.js:662 gui/common/tooltips.js:687
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1076,50 +1081,50 @@ msgstr[0] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:645
+#: gui/common/tooltips.js:655
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "HP"
 
-#: gui/common/tooltips.js:669
+#: gui/common/tooltips.js:679
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:670
+#: gui/common/tooltips.js:680
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:678
+#: gui/common/tooltips.js:688
 msgctxt "aura"
 msgid "Range:"
 msgstr "Jangkauan:"
 
-#: gui/common/tooltips.js:695
+#: gui/common/tooltips.js:705
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:707
+#: gui/common/tooltips.js:717
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:722
+#: gui/common/tooltips.js:732
 msgid "Classes:"
 msgstr "Kelas:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:749
+#: gui/common/tooltips.js:759
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:759
+#: gui/common/tooltips.js:769
 msgid "Loot:"
 msgstr "Rampasan:"
 
@@ -1257,7 +1262,7 @@ msgstr "Pengesahan"
 
 #: gui/pregame/mainmenu.js:264
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "Anda pasti mahu keluar dari 0 A.D. dan membuka Penyunting Senario?"
 
 #: gui/pregame/mainmenu.js:272
 msgid ""
@@ -2013,7 +2018,7 @@ msgstr "Lawan satu atau lebih pemain manusia dalam permainan pemain berbilang."
 
 #: gui/pregame/mainmenu.xml:(tooltip):510
 msgid "Game options and mod selection."
-msgstr ""
+msgstr "Pilihan permainan dan pemilihan mod."
 
 #: gui/pregame/mainmenu.xml:(tooltip):525
 msgid ""
@@ -2552,6 +2557,35 @@ msgstr "Papar jangkauan penyembuhan bagi unit terpilih (boleh ditogol ketika dal
 msgid "Heal Range Visualization"
 msgstr "Pengvisualan Jangkauan Penyembuhan"
 
+#: gui/options/options.json[0].options[19].tooltip
+msgid "Show rank icons above status bars"
+msgstr "Tunjuk ikon kedudukan di atas palang status"
+
+#: gui/options/options.json[0].options[19].label
+msgid "Rank icon above status bar"
+msgstr "Ikon kedudukan di atas palang status"
+
+#: gui/options/options.json[0].options[20].list[0].label
+msgid "Unordered"
+msgstr "Tidak Bertertib"
+
+#: gui/options/options.json[0].options[20].list[1].label
+msgid "Ascending"
+msgstr "Menaik"
+
+#: gui/options/options.json[0].options[20].list[2].label
+msgid "Descending"
+msgstr "Menurun"
+
+#: gui/options/options.json[0].options[20].tooltip
+msgid ""
+"Dynamically sort players in the resources and population tooltip by value."
+msgstr "Isih pemain secara dinamik dalam tip alatan sumber dan populasi mengikut nilai."
+
+#: gui/options/options.json[0].options[20].label
+msgid "Sort resources and population tooltip"
+msgstr "Isih tip alatan sumber dan populasi"
+
 #: gui/options/options.json[0].label
 msgid "General"
 msgstr "Am"
@@ -2813,11 +2847,11 @@ msgstr "Benarkan Petua Penetapan Permainan"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing"
-msgstr ""
+msgstr "Leret panel tetapan ketika membuka, menutup atau saizkan semula"
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable Settings Panel Slide"
-msgstr ""
+msgstr "Benarkan Meleret Panel Tetapan"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
@@ -3353,7 +3387,7 @@ msgstr "- Boleh dibina dalam wilayah rakan dan neutral."
 msgid ""
 "- Train citizens: female citizens, infantry citizen soldiers and cavalry "
 "citizen soldiers."
-msgstr ""
+msgstr "- Latih rakyat perempuan, askar-rakyat infantri dan askar rakyat berkuda."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3419,25 +3453,25 @@ msgstr "PENGUMPULAN SUMBER"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "- Guna askar-rakyat dan rakyat perempuan menghimpun sumber."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female citizens are faster gathering vegetable resources."
-msgstr ""
+msgstr "- Rakyat perempuan lebih pantas mengumpul sumber tumbuhan."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr ""
+msgstr "- Askar rakyat infantri lebih pantas mengumpul mineral."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr ""
+msgstr "- Askar rakyat berkuda lebih pantas mengumpul daging."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
 "- The higher the level of a citizen soldier (advanced, elite), the better he"
 " fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "- Lebih tinggi tahap askar-rakyat (mahir, elit), lebih baik ia bertempur, tetapi kurang efisyen bila membuat kerja pengumpulan sumber."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
