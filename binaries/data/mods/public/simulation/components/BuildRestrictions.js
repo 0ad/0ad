@@ -233,7 +233,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 
 	let templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
-	let template = cmpTemplateManager.GetTemplate(templateName.substr(templateName.lastIndexOf("|") + 1));
+	let template = cmpTemplateManager.GetTemplate(removeFiltersFromTemplateName(templateName));
 
 	// Check distance restriction
 	if (this.template.Distance)

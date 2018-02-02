@@ -528,3 +528,12 @@ function calculateCarriedResources(carriedResources, tradingGoods)
 	return resources;
 }
 
+/**
+ * Remove filter prefix (mirage, corpse, etc) from template name.
+ *
+ * ie. filter|dir/to/template -> dir/to/template
+ */
+function removeFiltersFromTemplateName(templateName)
+{
+	return templateName.split("|").pop();
+}
