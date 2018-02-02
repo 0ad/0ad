@@ -2,8 +2,10 @@ var PETRA = function(m)
 {
 
 /**
- * Handle events that are important to specific gameTypes
- * In regicide, train and manage healer guards and military guards for the hero.
+ * Handle events that are important to specific victory conditions:
+ *   in capture_the_relic, capture gaia relics and train military guards.
+ *   in regicide, train healer and military guards for the hero.
+ *   in wonder, train military guards.
  */
 
 m.GameTypeManager = function(Config)
@@ -21,7 +23,6 @@ m.GameTypeManager = function(Config)
 
 /**
  * Cache the ids of any inital gameType-critical entities.
- * In regicide, these are the inital heroes that the player starts with.
  */
 m.GameTypeManager.prototype.init = function(gameState)
 {
@@ -36,7 +37,7 @@ m.GameTypeManager.prototype.init = function(gameState)
 		for (let hero of gameState.getOwnEntitiesByClass("Hero", true).values())
 		{
 			let defaultStance = hero.hasClass("Soldier") ? "aggressive" : "passive";
-			if (hero.getStance() !== defaultStance)
+			if (hero.getStance() != defaultStance)
 				hero.setStance(defaultStance);
 			this.criticalEnts.set(hero.id(), {
 				"garrisonEmergency": false,
@@ -44,6 +45,15 @@ m.GameTypeManager.prototype.init = function(gameState)
 				"guardsAssigned": 0, // for non-healer guards
 				"guards": new Map() // ids of ents who are currently guarding this hero
 			});
+		}
+	}
+
+	if (gameState.getVictoryConditions().has("capture_the_relic"))
+	{
+		for (let relic of gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic")).values())
+		{
+			if (relic.owner() == PlayerID)
+				this.criticalEnts.set(relic.id(), { "guardsAssigned": 0, "guards": new Map() });
 		}
 	}
 };
@@ -100,7 +110,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 
 			let plan = target.getMetadata(PlayerID, "plan");
 			let hero = this.criticalEnts.get(evt.target);
-			if (plan !== -2 && plan !== -3)
+			if (plan != -2 && plan != -3)
 			{
 				target.stopMoving();
 
@@ -134,7 +144,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 			for (let entId of evt.entities)
 			{
 				let ent = gameState.getEntityById(entId);
-				if (ent && ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "role") === "criticalEntHealer")
+				if (ent && ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "role") == "criticalEntHealer")
 					this.assignGuardToCriticalEnt(gameState, ent);
 			}
 
@@ -179,7 +189,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 
 				// Current military guards (with Soldier class) will have been assigned plan metadata, but healer guards
 				// are not assigned a plan, and so they could be already moving to garrison somewhere due to low health.
-				if (!guardEnt.hasClass("Soldier") && (plan === -2 || plan === -3))
+				if (!guardEnt.hasClass("Soldier") && (plan == -2 || plan == -3))
 					continue;
 
 				let pos = holderEnt.position();
@@ -209,7 +219,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 	// Check if new healers/guards need to be assigned to an ent
 	for (let evt of events.Destroy)
 	{
-		if (!evt.entityObj || evt.entityObj.owner() !== PlayerID)
+		if (!evt.entityObj || evt.entityObj.owner() != PlayerID)
 			continue;
 
 		let entId = evt.entityObj.id();
@@ -246,8 +256,8 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 			continue;
 
 		// If this ent travelled to a criticalEnt's accessValue, try again to assign as a guard
-		if ((ent.getMetadata(PlayerID, "role") === "criticalEntHealer" ||
-		     ent.getMetadata(PlayerID, "role") === "criticalEntGuard") && !this.guardEnts.get(evt.entity))
+		if ((ent.getMetadata(PlayerID, "role") == "criticalEntHealer" ||
+		     ent.getMetadata(PlayerID, "role") == "criticalEntGuard") && !this.guardEnts.get(evt.entity))
 		{
 			this.assignGuardToCriticalEnt(gameState, ent, ent.getMetadata(PlayerID, "guardedEnt"));
 			continue;
@@ -354,7 +364,7 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 			{
 				let guardEnt = gameState.getEntityById(guardId);
 				if (!guardEnt || !guardEnt.hasClass("CitizenSoldier") ||
-				    guardEnt.getMetadata(PlayerID, "role") !== "criticalEntGuard")
+				    guardEnt.getMetadata(PlayerID, "role") != "criticalEntGuard")
 					continue;
 
 				guardEnt.removeGuard();
@@ -374,6 +384,8 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 		}
 	}
 
+	let minWorkers = 25;
+	let deltaWorkers = 3;
 	for (let [id, data] of this.criticalEnts)
 	{
 		let criticalEnt = gameState.getEntityById(id);
@@ -398,7 +410,7 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 					break;
 			}
 
-			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25)
+			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= minWorkers + deltaWorkers * data.guardsAssigned)
 				break;
 
 			for (let entity of gameState.ai.HQ.attackManager.outOfPlan.values())
@@ -406,11 +418,11 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 				if (!this.tryAssignMilitaryGuard(gameState, entity, criticalEnt, checkForSameAccess))
 					continue;
 				--numWorkers;
-				if (++data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25)
+				if (++data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= minWorkers + deltaWorkers * data.guardsAssigned)
 					break;
 			}
 
-			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25)
+			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25 + deltaWorkers * data.guardsAssigned)
 				break;
 
 			for (let entity of gameState.getOwnEntitiesByClass("Soldier", true).values())
@@ -418,11 +430,11 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 				if (!this.tryAssignMilitaryGuard(gameState, entity, criticalEnt, checkForSameAccess))
 					continue;
 				--numWorkers;
-				if (++data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25)
+				if (++data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= minWorkers + deltaWorkers * data.guardsAssigned)
 					break;
 			}
 
-			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25)
+			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= minWorkers + deltaWorkers * data.guardsAssigned)
 				break;
 		}
 	}
@@ -433,7 +445,7 @@ m.GameTypeManager.prototype.tryAssignMilitaryGuard = function(gameState, guardEn
 	if (guardEnt.getMetadata(PlayerID, "plan") !== undefined ||
 	    guardEnt.getMetadata(PlayerID, "transport") !== undefined || this.criticalEnts.has(guardEnt.id()) ||
 	    checkForSameAccess && (!guardEnt.position() || !criticalEnt.position() ||
-	    m.getLandAccess(gameState, criticalEnt) !== m.getLandAccess(gameState, guardEnt)))
+	    m.getLandAccess(gameState, criticalEnt) != m.getLandAccess(gameState, guardEnt)))
 		return false;
 
 	if (!this.assignGuardToCriticalEnt(gameState, guardEnt, criticalEnt.id()))
@@ -449,14 +461,14 @@ m.GameTypeManager.prototype.pickCriticalEntRetreatLocation = function(gameState,
 	gameState.ai.HQ.defenseManager.garrisonAttackedUnit(gameState, criticalEnt, emergency);
 	let plan = criticalEnt.getMetadata(PlayerID, "plan");
 
-	if (plan === -2 || plan === -3)
+	if (plan == -2 || plan == -3)
 		return;
 
 	if (this.criticalEnts.get(criticalEnt.id()).garrisonEmergency)
 		this.criticalEnts.get(criticalEnt.id()).garrisonEmergency = false;
 
 	// Couldn't find a place to garrison, so the ent will flee from attacks
-	if (!criticalEnt.hasClass("Relic") && criticalEnt.getStance() !== "passive")
+	if (!criticalEnt.hasClass("Relic") && criticalEnt.getStance() != "passive")
 		criticalEnt.setStance("passive");
 	let accessIndex = gameState.ai.accessibility.getAccessValue(criticalEnt.position());
 	let bestBase = m.getBestBase(gameState, criticalEnt, true);
@@ -497,22 +509,24 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 
 	if (!criticalEntId)
 	{
+		let isHealer = guardEnt.hasClass("Healer");
+
 		// Assign to the critical ent with the fewest guards
 		let min = Math.min();
 		for (let [id, data] of this.criticalEnts)
 		{
-			if (guardEnt.hasClass("Healer") && data.healersAssigned === undefined)
+			if (isHealer && (data.healersAssigned === undefined || data.healersAssigned > min))
 				continue;
-			if (data.guards.size > min)
+			if (!isHealer && data.guardsAssigned > min)
 				continue;
 
 			criticalEntId = id;
-			min = data.guards.size;
+			min = isHealer ? data.healersAssigned : data.guardsAssigned;
 		}
 		if (criticalEntId)
 		{
 			let data = this.criticalEnts.get(criticalEntId);
-			if (guardEnt.hasClass("Healer"))
+			if (isHealer)
 				++data.healersAssigned;
 			else
 				++data.guardsAssigned;
@@ -533,16 +547,16 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 		return false;
 	}
 
-	if (guardEnt.getMetadata(PlayerID, "guardedEnt") !== criticalEntId)
+	if (guardEnt.getMetadata(PlayerID, "guardedEnt") != criticalEntId)
 		guardEnt.setMetadata(PlayerID, "guardedEnt", criticalEntId);
 
 	let guardEntAccess = gameState.ai.accessibility.getAccessValue(guardEnt.position());
 	let criticalEntAccess = gameState.ai.accessibility.getAccessValue(criticalEnt.position());
-	if (guardEntAccess === criticalEntAccess)
+	if (guardEntAccess == criticalEntAccess)
 	{
 		let queued = m.returnResources(gameState, guardEnt);
 		guardEnt.guard(criticalEnt, queued);
-		let guardRole = guardEnt.getMetadata(PlayerID, "role") === "criticalEntHealer" ? "healer" : "guard";
+		let guardRole = guardEnt.getMetadata(PlayerID, "role") == "criticalEntHealer" ? "healer" : "guard";
 		this.criticalEnts.get(criticalEntId).guards.set(guardEnt.id(), guardRole);
 
 		// Switch this guard ent to the criticalEnt's base
@@ -552,7 +566,7 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 	else
 		gameState.ai.HQ.navalManager.requireTransport(gameState, guardEnt, guardEntAccess, criticalEntAccess, criticalEnt.position());
 
-	this.guardEnts.set(guardEnt.id(), guardEntAccess === criticalEntAccess);
+	this.guardEnts.set(guardEnt.id(), guardEntAccess == criticalEntAccess);
 	return true;
 };
 
@@ -647,7 +661,8 @@ m.GameTypeManager.prototype.captureGaiaRelic = function(gameState, relic)
 {
 	let capture = -relic.defaultRegenRate();
 	let sumCapturePoints = relic.capturePoints().reduce((a, b) => a + b);
-	for (let plan of this.targetedGaiaRelics.get(relic.id()))
+	let plans = this.targetedGaiaRelics.get(relic.id());
+	for (let plan of plans)
 	{
 		let attack = gameState.ai.HQ.attackManager.getPlan(plan);
 		if (!attack)
