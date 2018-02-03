@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-27 12:56+0100\n"
-"PO-Revision-Date: 2018-01-27 15:53+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-01-31 09:05+0100\n"
+"PO-Revision-Date: 2018-01-31 21:37+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -260,7 +260,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
-msgstr ""
+msgstr "[Color = \"red\"] OHAR GARRANTZITSUA: JOKALARIAK EZ DIRA MAPA HONEKIN JOLASTEN [/ color] \n\nBehin haran emankorra,...eskualdeko geldirik dagoen sumendiaren azken erupzioak suntsitua. Urtetako hondatze huts eta bakartiaren ondoren, bizi arrastoak tarteka azaldu eta zabaldu ziren. Orain lurra aurreko garaiko oparotasunaren erdibidean da. Tamalez, ez du lehorte luze baten ondoren izan behar, amaigabeko euriteak iparraldeko eskualde garaienetan egonkortu dira. Ur maila neurri arriskutsuetara iristen ari da, jokalariak sumendi txiki eta hiletako lekurik garaienetara bultzatuz, edo orain geldirik dagoen konora."
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
@@ -611,6 +611,19 @@ msgstr "Mapa oso latz bat, nagusiki erdian laku bat duen baso bat eta baliabide 
 msgid "Schwarzwald"
 msgstr "Oihan Beltza"
 
+#: maps/random/scythian_rivulet.jsonsettings.Description
+msgid ""
+"Carpeted in snow, the land slumbers in repose, but this fragile peace is "
+"destined to be shattered - and not by spring. Large packs of wolves lurk in "
+"the wild searching for prey, a lone arctic fox scurries away to hide. "
+"Starting in this seemingly hostile terrain, players must conquer - or be "
+"conquered."
+msgstr "Elurrez estaliak, lurrean motelduak, baina bake hauskorra suntsitu beharra dago, eta ez udaberrian. Otso-talde handiek harrapakin bila dabiltza nonahi, artikoko azeri bakarti bat ezkutuan da. Lur itxuraz etsai honetatik hasita, jokalariek konkistatuak izan edo konkistatu behar dute."
+
+#: maps/random/scythian_rivulet.jsonsettings.Name
+msgid "Scythian Rivulet"
+msgstr "Errekatxo Eszita"
+
 #: maps/random/snowflake_searocks.jsonsettings.Description
 msgid "Many small islands connected to each other by narrow passages."
 msgstr "Amaigabeko uharte txiki pila beren artean pasabide estuaz loturik."
@@ -661,7 +674,7 @@ msgstr "Niloa"
 
 #: maps/random/unknown.jsonsettings.Description
 msgid "The unknown. Warning: May be a naval map."
-msgstr ""
+msgstr "Ezezaguna....Kontuz: Itsas mapa izan daiteke"
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
@@ -669,7 +682,7 @@ msgstr "Ezezaguna"
 
 #: maps/random/unknown_land.jsonsettings.Description
 msgid "The unknown."
-msgstr ""
+msgstr "Ezezaguna."
 
 #: maps/random/unknown_land.jsonsettings.Name
 msgid "Unknown Land"
@@ -794,15 +807,15 @@ msgstr "Tropikoa"
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgid "Frozen Lake"
-msgstr ""
+msgstr "Laku izoztua"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgid "Late Spring"
-msgstr ""
+msgstr "Udaberri Berantiarra"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgid "Winter"
-msgstr ""
+msgstr "Negua"
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -2028,7 +2041,7 @@ msgid ""
 " and thick forests make for a very dynamic and fast-paced 3-player map with "
 "lots of potential for skirmishing and guerilla warfare as well as tough "
 "defensive fighting or aggressive maneuvers."
-msgstr ""
+msgstr "Uharte basatia oihan, urre eta misterioz beteriko Mendiak, itsasoak eta baso ilunak 3 jokalarientzako mapa hau bizkorra eta bizia egiten dute, gerrillarako eta borroka txikiak egiteko ahalmen handia emanez, hala nola babes estrategiak landu  edota erasorako amarruetarako."
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:39
 msgid ""
@@ -2470,11 +2483,11 @@ msgstr "Bi Itsaso (6)"
 #: maps/skirmishes/Via Augusta (4).xml:Description:40
 msgid ""
 "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
-msgstr ""
+msgstr "Bide guztiak Erromara daramate. Via Julia Augusta, 13 AAA urtean egindako errepide erromatarra."
 
 #: maps/skirmishes/Via Augusta (4).xml:Name:40
 msgid "Via Augusta"
-msgstr ""
+msgstr "Via Augusta"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:39
 msgid ""

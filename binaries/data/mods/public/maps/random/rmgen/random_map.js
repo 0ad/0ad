@@ -123,8 +123,9 @@ RandomMap.prototype.getBounds = function()
 
 /**
  * Determines whether the given coordinates are within the given distance of the map area.
- * Should be used to restrict terrain texture changes and actor placement.
+ * Should be used to restrict actor placement.
  * Entity placement should be checked against validTilePassable to exclude the map border.
+ * Terrain texture changes should be tested against inMapBounds.
  */
 RandomMap.prototype.validTile = function(position, distance = 0)
 {
@@ -193,7 +194,7 @@ RandomMap.prototype.randomCoordinate = function(passableOnly)
  */
 RandomMap.prototype.getTexture = function(position)
 {
-	if (!this.validTile(position))
+	if (!this.inMapBounds(position))
 		throw new Error("getTexture: invalid tile position " + uneval(position));
 
 	return this.IDToName[this.texture[position.x][position.y]];

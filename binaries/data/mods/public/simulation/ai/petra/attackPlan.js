@@ -880,7 +880,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	if (!target)
 		return undefined;
 	if (this.targetPlayer == 0 && gameState.getVictoryConditions().has("capture_the_relic") && target.hasClass("Relic"))
-		gameState.ai.HQ.gameTypeManager.targetedGaiaRelics.add(target.id());
+		gameState.ai.HQ.gameTypeManager.targetedGaiaRelics.set(target.id(), [this.name]);
 	// Rushes can change their enemy target if nothing found with the preferred enemy
 	// Obstruction also can change the enemy target
 	this.targetPlayer = target.owner();

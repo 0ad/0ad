@@ -1,6 +1,6 @@
 /**
  * @file A Centered Placer generates a shape (array of points) around a variable center location satisfying a Constraint.
- * The center is determined by the x and z property which can be modified externally, typically by createAreas.
+ * The center can be modified externally using setCenterPosition, typically called by createAreas.
  */
 
 /**

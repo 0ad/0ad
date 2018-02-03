@@ -194,6 +194,11 @@ Vector2D.sub = function(v1, v2)
 	return new Vector2D(v1.x - v2.x, v1.y - v2.y);
 };
 
+Vector2D.isEqualTo = function(v1, v2)
+{
+	return v1.x == v2.x && v1.y == v2.y;
+};
+
 Vector2D.mult = function(v, f)
 {
 	return new Vector2D(v.x * f, v.y * f);
@@ -388,6 +393,11 @@ Vector3D.add = function(v1, v2)
 Vector3D.sub = function(v1, v2)
 {
 	return new Vector3D(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+};
+
+Vector3D.isEqualTo = function(v1, v2)
+{
+	return v1.x == v2.x && v1.y == v2.y && v1.z == v2.z;
 };
 
 Vector3D.mult = function(v, f)

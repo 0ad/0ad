@@ -20,6 +20,11 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v2.y, 14);
 }
 
+// Test Vector2D isEqualTo
+{
+	TS_ASSERT(Vector2D.isEqualTo(new Vector2D(4, 5), new Vector2D(2, 2.5).mult(2)));
+}
+
 // Test Vector2D normalization
 {
 	let v3 = new Vector2D(0, 5).normalize();
@@ -200,6 +205,11 @@ var brokenVector = {
 }
 
 // Vector3D tests
+
+// Test Vector3D isEqualTo
+{
+	TS_ASSERT(Vector3D.isEqualTo(new Vector3D(2, 5, 14), new Vector3D(0, 5, 10).add(new Vector3D(2, 0, 4))));
+}
 
 // Test Vector3D distance and compareLength
 {

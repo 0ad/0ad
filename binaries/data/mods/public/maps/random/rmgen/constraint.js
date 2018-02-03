@@ -44,16 +44,29 @@ AvoidAreaConstraint.prototype.allows = function(position)
 };
 
 /**
+ * The StayTextureConstraint is met if the tile has the given texture.
+ */
+function StayTextureConstraint(texture)
+{
+	this.texture = texture;
+}
+
+StayTextureConstraint.prototype.allows = function(position)
+{
+	return g_Map.getTexture(position) == this.texture;
+};
+
+/**
  * The AvoidTextureConstraint is met if the terrain texture of the tile is different from the given texture.
  */
-function AvoidTextureConstraint(textureID)
+function AvoidTextureConstraint(texture)
 {
-	this.textureID = textureID;
+	this.texture = texture;
 }
 
 AvoidTextureConstraint.prototype.allows = function(position)
 {
-	return g_Map.texture[position.x][position.y] != this.textureID;
+	return g_Map.getTexture(position) != this.texture;
 };
 
 /**

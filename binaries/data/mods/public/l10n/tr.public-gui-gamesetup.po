@@ -10,6 +10,7 @@
 # Berk Koçak <tolga.berk.kocak@hotmail.com>, 2017
 # Cem Aktas <cemwstone@gmail.com>, 2015,2017
 # Ebubekir Tabak <tec.1905@windowslive.com>, 2013
+# Ege Arda Anılan <ege_9933@hotmail.com>, 2018
 # Emre AYTAÇ <eaytac@gmail.com>, 2013
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
 # Erdem Aydogan <erdemaydogann@gmail.com>, 2016
@@ -44,8 +45,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-01 22:11+0000\n"
+"Last-Translator: Ege Arda Anılan <ege_9933@hotmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -202,7 +203,7 @@ msgstr "Bu türde seçilen tüm haritalar."
 #: gui/gamesetup/gamesetup.js:396
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Harita"
 
 #: gui/gamesetup/gamesetup.js:411
 msgctxt "Match settings tab name"
@@ -212,7 +213,7 @@ msgstr "Oyuncu"
 #: gui/gamesetup/gamesetup.js:421
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Oyun Tipi"
 
 #: gui/gamesetup/gamesetup.js:461
 msgid "Map Type"
@@ -363,13 +364,13 @@ msgstr "Kahramanın garnizon edilebilirliğini göster."
 
 #: gui/gamesetup/gamesetup.js:827
 msgid "Nomad"
-msgstr ""
+msgstr "Göçebe"
 
 #: gui/gamesetup/gamesetup.js:828
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "Göçebe modunda, oyuncular sadece kısıtlı sayıda birimle başlar ve şehirlerini inşa etmek için uygun bir alan bulmaları gerekir. Ateşkes tavsiye edilir."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -514,7 +515,7 @@ msgstr "Rastgele bir biyom seç."
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s"
 
 #: gui/gamesetup/gamesetup.js:2049
 msgctxt "settings value"
@@ -532,7 +533,7 @@ msgstr "Hayır"
 #: gui/gamesetup/gamesetup.js:2086
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s"
 
 #: gui/gamesetup/gamesetup.js:2173
 #, javascript-format
@@ -615,7 +616,7 @@ msgstr "Yükleniyor"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Harita verisi yükleniyor. Lütfen bekleyin..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):42
 msgid "Player Name"
@@ -688,7 +689,7 @@ msgstr "Oyuncunun takımını seç."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):207
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Diyalog penceresinde çok oyuncu lobisini göster."
 
 #: gui/text/quotes.txt:1
 msgid ""
@@ -757,7 +758,7 @@ msgstr ""
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr ""
+msgstr "\"Kendini beğenmişlik özyıkıma yol açabilir.\" - Ezop (\"Kurbağa ve Öküz\")"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
@@ -777,7 +778,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr ""
+msgstr "Her af dileyiş bir zalime hizmet eder. - Ezop (\"Kurt ve Kuzu\")"
 
 #: gui/text/quotes.txt:17
 msgid ""
@@ -847,7 +848,7 @@ msgstr ""
 msgid ""
 "\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr ""
+msgstr "\"Ben galibiyeti aşırmam.\" - Büyük İskender \nPerslere gece saldırılması önerisi yapıldığında\n(Plutarch, \"Paralel Hayatlar\", \"İskender\", sec. 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
