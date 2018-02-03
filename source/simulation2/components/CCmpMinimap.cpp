@@ -232,7 +232,7 @@ public:
 		if (!cmpPlayer)
 			return;
 
-		CColor color = cmpPlayer->GetColor();
+		CColor color = cmpPlayer->GetDisplayedColor();
 		m_R = (u8) (color.r * 255);
 		m_G = (u8) (color.g * 255);
 		m_B = (u8) (color.b * 255);

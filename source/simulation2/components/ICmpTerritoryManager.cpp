@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,4 +28,5 @@ DEFINE_INTERFACE_METHOD_2("IsConnected", bool, ICmpTerritoryManager, IsConnected
 DEFINE_INTERFACE_METHOD_3("SetTerritoryBlinking", void, ICmpTerritoryManager, SetTerritoryBlinking, entity_pos_t, entity_pos_t, bool)
 DEFINE_INTERFACE_METHOD_2("IsTerritoryBlinking", bool, ICmpTerritoryManager, IsTerritoryBlinking, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_1("GetTerritoryPercentage", u8, ICmpTerritoryManager, GetTerritoryPercentage, player_id_t)
+DEFINE_INTERFACE_METHOD_0("UpdateColors", void, ICmpTerritoryManager, UpdateColors)
 END_INTERFACE_WRAPPER(TerritoryManager)

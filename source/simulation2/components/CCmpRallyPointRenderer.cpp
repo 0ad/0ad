@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -351,6 +351,12 @@ public:
 		return !m_RallyPoints.empty();
 	}
 
+	void UpdateColor()
+	{
+		UpdateLineColor();
+		ConstructAllOverlayLines();
+	}
+
 private:
 
 	/**
@@ -598,7 +604,7 @@ void CCmpRallyPointRenderer::UpdateLineColor()
 	if (!cmpPlayer)
 		return;
 
-	m_LineColor = cmpPlayer->GetColor();
+	m_LineColor = cmpPlayer->GetDisplayedColor();
 }
 
 void CCmpRallyPointRenderer::RecomputeAllRallyPointPaths()

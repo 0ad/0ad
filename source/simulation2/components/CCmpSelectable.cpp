@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -244,7 +244,7 @@ public:
 	/**
 	 * Set the color of the current owner.
 	 */
-	void UpdatePlayerColor();
+	virtual void UpdateColor();
 
 private:
 	SOverlayDescriptor m_OverlayDescriptor;
@@ -333,7 +333,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		if (msgData.from == INVALID_PLAYER || msgData.to == INVALID_PLAYER)
 			break;
 
-		UpdatePlayerColor();
+		UpdateColor();
 		InvalidateStaticOverlay();
 		break;
 	}
@@ -345,7 +345,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		if (!cmpOwnership || msgData.player != cmpOwnership->GetOwner())
 			break;
 
-		UpdatePlayerColor();
+		UpdateColor();
 		break;
 	}
 	case MT_PositionChanged:
@@ -378,7 +378,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	}
 }
 
-void CCmpSelectable::UpdatePlayerColor()
+void CCmpSelectable::UpdateColor()
 {
 	CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
 
@@ -393,7 +393,7 @@ void CCmpSelectable::UpdatePlayerColor()
 	{
 		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(cmpOwnership->GetOwner()));
 		if (cmpPlayer)
-			color = cmpPlayer->GetColor();
+			color = cmpPlayer->GetDisplayedColor();
 	}
 
 	// Update the highlight color, while keeping the current alpha target value intact
@@ -556,7 +556,7 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 	{
 		if (!m_Cached)
 		{
-			UpdatePlayerColor();
+			UpdateColor();
 			m_Cached = true;
 		}
 

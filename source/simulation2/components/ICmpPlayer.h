@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ class CFixedVector3D;
 class ICmpPlayer : public IComponent
 {
 public:
-	virtual CColor GetColor() = 0;
+	virtual CColor GetDisplayedColor() = 0;
 	virtual std::wstring GetCiv() = 0;
 	virtual CFixedVector3D GetStartingCameraPos() = 0;
 	virtual CFixedVector3D GetStartingCameraRot() = 0;

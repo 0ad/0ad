@@ -33,7 +33,7 @@ function hasSameRestrictionCategory(templateName1, templateName2)
 
 function getPlayerHighlightColor(player)
 {
-	return "color:" + rgbToGuiColor(g_Players[player].color) + " 160";
+	return "color:" + rgbToGuiColor(g_DisplayedPlayerColors[player], 160);
 }
 
 /**

@@ -154,7 +154,7 @@ public:
 		if (!cmpPlayer)
 			return;
 
-		CColor color = cmpPlayer->GetColor();
+		CColor color = cmpPlayer->GetDisplayedColor();
 		m_Color = color;
 	}
 

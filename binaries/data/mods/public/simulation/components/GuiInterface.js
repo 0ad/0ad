@@ -769,6 +769,39 @@ GuiInterface.prototype.GetAllBuildableEntities = function(player, cmd)
 	return buildableEnts;
 };
 
+GuiInterface.prototype.UpdateDisplayedPlayerColors = function(player, data)
+{
+	let updateEntityColor = (iids, entities) => {
+		for (let ent of entities)
+			for (let iid of iids)
+			{
+				let cmp = Engine.QueryInterface(ent, iid);
+				if (cmp)
+					cmp.UpdateColor();
+			}
+	};
+
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let i = 1; i < numPlayers; ++i)
+	{
+		let cmpPlayer = QueryPlayerIDInterface(i, IID_Player);
+		if (!cmpPlayer)
+			continue;
+
+		cmpPlayer.SetDisplayDiplomacyColor(data.displayDiplomacyColors);
+		if (data.displayDiplomacyColors)
+			cmpPlayer.SetDiplomacyColor(data.displayedPlayerColors[i]);
+
+		updateEntityColor(data.showAllStatusBars && (i == player || player == -1) ?
+			[IID_Minimap, IID_RangeOverlayRenderer, IID_RallyPointRenderer, IID_StatusBars] :
+			[IID_Minimap, IID_RangeOverlayRenderer, IID_RallyPointRenderer],
+			cmpRangeManager.GetEntitiesByPlayer(i));
+	}
+	updateEntityColor([IID_Selectable, IID_StatusBars], data.selected);
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager).UpdateColors();
+};
+
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
 	let playerColors = {}; // cache of owner -> color map
@@ -791,7 +824,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 			color = { "r":1, "g":1, "b":1 };
 			let cmpPlayer = QueryPlayerIDInterface(owner);
 			if (cmpPlayer)
-				color = cmpPlayer.GetColor();
+				color = cmpPlayer.GetDisplayedColor();
 			playerColors[owner] = color;
 		}
 
@@ -1902,6 +1935,7 @@ let exposedFunctions = {
 	"GetFormationInfoFromTemplate": 1,
 	"IsStanceSelected": 1,
 
+	"UpdateDisplayedPlayerColors": 1,
 	"SetSelectionHighlight": 1,
 	"GetAllBuildableEntities": 1,
 	"SetStatusBars": 1,

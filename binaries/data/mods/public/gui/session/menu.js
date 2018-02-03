@@ -433,7 +433,7 @@ function diplomacySetupTexts(i, rowsize)
 	row.size = size;
 	row.hidden = false;
 
-	row.sprite = "color: " + rgbToGuiColor(g_Players[i].color) + " 32";
+	row.sprite = "color:" + rgbToGuiColor(g_DisplayedPlayerColors[i], 32);
 
 	setOutcomeIcon(g_Players[i].state, "diplomacyPlayerOutcome[" + (i - 1) + "]");
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -102,6 +102,7 @@ public:
 	struct SBoundaryLine
 	{
 		bool blinking;
+		player_id_t owner;
 		CColor color;
 		SOverlayTexturedLine overlay;
 	};
@@ -128,6 +129,7 @@ public:
 		m_DirtyID = 1;
 		m_DirtyBlinkingID = 1;
 		m_Visible = true;
+		m_ColorChanged = false;
 
 		m_AnimTime = 0.0;
 
@@ -258,6 +260,8 @@ public:
 	size_t m_DirtyID;
 	size_t m_DirtyBlinkingID;
 
+	bool m_ColorChanged;
+
 	void MakeDirty()
 	{
 		SAFE_DELETE(m_Territories);
@@ -266,25 +270,24 @@ public:
 		m_TriggerEvent = true;
 	}
 
-	virtual bool NeedUpdate(size_t* dirtyID) const
+	virtual bool NeedUpdateTexture(size_t* dirtyID)
 	{
-		if (*dirtyID != m_DirtyID)
-		{
-			*dirtyID = m_DirtyID;
-			return true;
-		}
-		return false;
+		if (*dirtyID == m_DirtyID && !m_ColorChanged)
+			return false;
+
+		*dirtyID = m_DirtyID;
+		m_ColorChanged = false;
+		return true;
 	}
 
-	virtual bool NeedUpdate(size_t* dirtyID, size_t* dirtyBlinkingID) const
+	virtual bool NeedUpdateAI(size_t* dirtyID, size_t* dirtyBlinkingID) const
 	{
-		if (*dirtyID != m_DirtyID || *dirtyBlinkingID != m_DirtyBlinkingID)
-		{
-			*dirtyID = m_DirtyID;
-			*dirtyBlinkingID = m_DirtyBlinkingID;
-			return true;
-		}
-		return false;
+		if (*dirtyID == m_DirtyID && *dirtyBlinkingID == m_DirtyBlinkingID)
+			return false;
+
+		*dirtyID = m_DirtyID;
+		*dirtyBlinkingID = m_DirtyBlinkingID;
+		return true;
 	}
 
 	void CalculateCostGrid();
@@ -305,6 +308,8 @@ public:
 	{
 		m_Visible = visible;
 	}
+
+	void UpdateColors();
 
 private:
 
@@ -623,10 +628,11 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 		CColor color(1, 0, 1, 1);
 		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(boundaries[i].owner));
 		if (cmpPlayer)
-			color = cmpPlayer->GetColor();
+			color = cmpPlayer->GetDisplayedColor();
 
 		m_BoundaryLines.push_back(SBoundaryLine());
 		m_BoundaryLines.back().blinking = boundaries[i].blinking;
+		m_BoundaryLines.back().owner = boundaries[i].owner;
 		m_BoundaryLines.back().color = color;
 		m_BoundaryLines.back().overlay.m_SimContext = &GetSimContext();
 		m_BoundaryLines.back().overlay.m_TextureBase = textureBase;
@@ -803,6 +809,25 @@ bool CCmpTerritoryManager::IsTerritoryBlinking(entity_pos_t x, entity_pos_t z)
 	u16 i, j;
 	NearestTerritoryTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
 	return (m_Territories->get(i, j) & TERRITORY_BLINKING_MASK) != 0;
+}
+
+void CCmpTerritoryManager::UpdateColors()
+{
+	m_ColorChanged = true;
+
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
+	if (!cmpPlayerManager)
+		return;
+
+	for (SBoundaryLine& boundaryLine : m_BoundaryLines)
+	{
+		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(boundaryLine.owner));
+		if (!cmpPlayer)
+			continue;
+
+		boundaryLine.color = cmpPlayer->GetDisplayedColor();
+		boundaryLine.overlay.m_Color = boundaryLine.color;
+	}
 }
 
 TerritoryOverlay::TerritoryOverlay(CCmpTerritoryManager& manager) :

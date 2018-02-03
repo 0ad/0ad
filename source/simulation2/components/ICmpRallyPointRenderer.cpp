@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,4 +29,5 @@ DEFINE_INTERFACE_METHOD_2("UpdatePosition", void, ICmpRallyPointRenderer, Update
 DEFINE_INTERFACE_METHOD_1("AddPosition", void, ICmpRallyPointRenderer, AddPosition_wrapper, CFixedVector2D)
 DEFINE_INTERFACE_METHOD_0("Reset", void, ICmpRallyPointRenderer, Reset)
 DEFINE_INTERFACE_METHOD_CONST_0("IsSet", bool, ICmpRallyPointRenderer, IsSet)
+DEFINE_INTERFACE_METHOD_0("UpdateColor", void, ICmpRallyPointRenderer, UpdateColor)
 END_INTERFACE_WRAPPER(RallyPointRenderer)

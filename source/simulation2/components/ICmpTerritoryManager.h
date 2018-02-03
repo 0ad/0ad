@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,8 +29,15 @@ class Grid;
 class ICmpTerritoryManager : public IComponent
 {
 public:
-	virtual bool NeedUpdate(size_t* dirtyID) const = 0;
-	virtual bool NeedUpdate(size_t* dirtyID, size_t* dirtyBlinkingID) const = 0;
+	/**
+	 * Returns whether the territory texture needs to be updated.
+	 */
+	virtual bool NeedUpdateTexture(size_t* dirtyID) = 0;
+
+	/**
+	 * Returns whether the AI territory map needs to be updated.
+	 */
+	virtual bool NeedUpdateAI(size_t* dirtyID, size_t* dirtyBlinkingID) const = 0;
 
 	/**
 	 * Number of pathfinder navcells per territory tile.
@@ -90,6 +97,11 @@ public:
 	 * Enables or disables rendering of an territory borders.
 	 */
 	virtual void SetVisibility(bool visible) = 0;
+
+	/**
+	 * Updates the boundary and territory colors.
+	 */
+	virtual void UpdateColors() = 0;
 
 	DECLARE_INTERFACE_TYPE(TerritoryManager)
 };

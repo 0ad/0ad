@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -145,7 +145,10 @@ static CColor GetOwnerPlayerColor(PlayerColorMap& colorMap, entity_id_t id)
 			entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(owner);
 			CmpPtr<ICmpPlayer> cmpPlayer(sim, playerEnt);
 			if (cmpPlayer)
-				color = colorMap[owner] = cmpPlayer->GetColor();
+			{
+				colorMap[owner] = cmpPlayer->GetDisplayedColor();
+				color = colorMap[owner];
+			}
 		}
 	}
 	return color;
