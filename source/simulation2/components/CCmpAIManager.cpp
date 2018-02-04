@@ -1032,11 +1032,11 @@ public:
 			passabilityMap = &cmpPathfinder->GetPassabilityGrid();
 
 		// Get the territory data
-		//	Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
+		// Since getting the territory grid can trigger a recalculation, we check NeedUpdateAI first
 		Grid<u8> dummyGrid2;
 		const Grid<u8>* territoryMap = &dummyGrid2;
 		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
-		if (cmpTerritoryManager && cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID, &m_TerritoriesDirtyBlinkingID))
+		if (cmpTerritoryManager && cmpTerritoryManager->NeedUpdateAI(&m_TerritoriesDirtyID, &m_TerritoriesDirtyBlinkingID))
 			territoryMap = &cmpTerritoryManager->GetTerritoryGrid();
 
 		LoadPathfinderClasses(state);
@@ -1094,9 +1094,9 @@ public:
 		}
 
 		// Update the territory data
-		// Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
+		// Since getting the territory grid can trigger a recalculation, we check NeedUpdateAI first
 		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
-		if (cmpTerritoryManager && (cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID, &m_TerritoriesDirtyBlinkingID) || m_JustDeserialized))
+		if (cmpTerritoryManager && (cmpTerritoryManager->NeedUpdateAI(&m_TerritoriesDirtyID, &m_TerritoriesDirtyBlinkingID) || m_JustDeserialized))
 		{
 			const Grid<u8>& territoryMap = cmpTerritoryManager->GetTerritoryGrid();
 			m_Worker.UpdateTerritoryMap(territoryMap);

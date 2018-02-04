@@ -22,6 +22,21 @@ Player.prototype.Schema =
 	"</element>";
 
 /**
+ * Don't serialize diplomacyColor or displayDiplomacyColor since they're modified by the GUI.
+ */
+Player.prototype.Serialize = function()
+{
+	let state = {};
+	for (let key in this)
+		if (this.hasOwnProperty(key))
+			state[key] = this[key];
+
+	state.diplomacyColor = undefined;
+	state.displayDiplomacyColor = false;
+	return state;
+};
+
+/**
  * Which units will be shown with special icons at the top.
  */
 var panelEntityClasses = "Hero Relic";
@@ -32,6 +47,8 @@ Player.prototype.Init = function()
 	this.name = undefined;	// define defaults elsewhere (supporting other languages)
 	this.civ = undefined;
 	this.color = undefined;
+	this.diplomacyColor = undefined;
+	this.displayDiplomacyColor = false;
 	this.popUsed = 0; // population of units owned or trained by this player
 	this.popBonuses = 0; // sum of population bonuses of player's entities
 	this.maxPop = 300; // maximum population
@@ -122,7 +139,7 @@ Player.prototype.SetColor = function(r, g, b)
 {
 	var colorInitialized = !!this.color;
 
-	this.color = { "r": r/255.0, "g": g/255.0, "b": b/255.0, "a": 1.0 };
+	this.color = { "r": r / 255, "g": g / 255, "b": b / 255, "a": 1 };
 
 	// Used in Atlas
 	if (colorInitialized)
@@ -131,9 +148,24 @@ Player.prototype.SetColor = function(r, g, b)
 		});
 };
 
+Player.prototype.SetDiplomacyColor = function(color)
+{
+	this.diplomacyColor = { "r": color.r / 255, "g": color.g / 255, "b": color.b / 255, "a": 1 };
+};
+
+Player.prototype.SetDisplayDiplomacyColor = function(displayDiplomacyColor)
+{
+	this.displayDiplomacyColor = displayDiplomacyColor;
+};
+
 Player.prototype.GetColor = function()
 {
 	return this.color;
+};
+
+Player.prototype.GetDisplayedColor = function()
+{
+	return this.displayDiplomacyColor ? this.diplomacyColor : this.color;
 };
 
 // Try reserving num population slots. Returns 0 on success or number of missing slots otherwise.

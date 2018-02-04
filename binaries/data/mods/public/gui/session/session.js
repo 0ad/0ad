@@ -12,6 +12,22 @@ const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDu
 var g_GameSpeeds;
 
 /**
+ * Whether to display diplomacy colors (where players see self/ally/neutral/enemy each in different colors and
+ * observers see each team in a different color) or regular player colors.
+ */
+var g_DiplomacyColorsToggle = false;
+
+/**
+ * The array of displayed player colors (either the diplomacy color or regular color for each player).
+ */
+var g_DisplayedPlayerColors;
+
+/**
+ * The self/ally/neutral/enemy color codes.
+ */
+var g_DiplomacyColorPalette;
+
+/**
  * Colors to flash when pop limit reached.
  */
 var g_DefaultPopulationColor = "white";
@@ -278,6 +294,8 @@ function init(initData, hotloadData)
 	for (let slot in Engine.GetGUIObjectByName("panelEntityPanel").children)
 		initPanelEntities(slot);
 
+	g_DiplomacyColorPalette = Engine.ReadJSONFile(g_SettingsDirectory + "diplomacy_colors.json");
+	g_DisplayedPlayerColors = g_Players.map(player => player.color);
 	updateViewedPlayerDropdown();
 
 	// Select "observer" in the view player dropdown when rejoining as a defeated player
@@ -356,6 +374,59 @@ function updatePlayerData()
 	}
 
 	g_Players = playerData;
+}
+
+function updateDiplomacyColorsButton()
+{
+	g_DiplomacyColorsToggle = !g_DiplomacyColorsToggle;
+	let diplomacyColorsButton = Engine.GetGUIObjectByName("diplomacyColorsButton");
+	diplomacyColorsButton.sprite = g_DiplomacyColorsToggle ?
+		"stretched:session/minimap-diplomacy-on.png" :
+		"stretched:session/minimap-diplomacy-off.png";
+	diplomacyColorsButton.sprite_over = g_DiplomacyColorsToggle ?
+		"stretched:session/minimap-diplomacy-on-highlight.png" :
+		"stretched:session/minimap-diplomacy-off-highlight.png";
+	updateDisplayedPlayerColors();
+}
+
+/**
+ * Updates the displayed colors of players in the simulation and GUI.
+ */
+function updateDisplayedPlayerColors()
+{
+	if (g_DiplomacyColorsToggle)
+	{
+		let teamRepresentatives = {};
+		for (let i = 1; i < g_Players.length; ++i)
+			if (g_ViewedPlayer <= 0)
+			{
+				// Observers and gaia see team colors
+				let team = g_Players[i].team;
+				g_DisplayedPlayerColors[i] = g_Players[teamRepresentatives[team] || i].color;
+				if (team != -1 && !teamRepresentatives[team])
+					teamRepresentatives[team] = i;
+			}
+			else
+				// Players see colors depending on diplomacy
+				g_DisplayedPlayerColors[i] =
+					g_ViewedPlayer == i ? g_DiplomacyColorPalette.Self :
+					g_Players[g_ViewedPlayer].isAlly[i] ? g_DiplomacyColorPalette.Ally :
+					g_Players[g_ViewedPlayer].isNeutral[i] ? g_DiplomacyColorPalette.Neutral :
+					g_DiplomacyColorPalette.Enemy;
+
+		g_DisplayedPlayerColors[0] = g_Players[0].color;
+	}
+	else
+		g_DisplayedPlayerColors = g_Players.map(player => player.color);
+
+	Engine.GuiInterfaceCall("UpdateDisplayedPlayerColors", {
+		"displayedPlayerColors": g_DisplayedPlayerColors,
+		"displayDiplomacyColors": g_DiplomacyColorsToggle,
+		"showAllStatusBars": g_ShowAllStatusBars,
+		"selected": g_Selection.toList()
+	});
+
+	updateGUIObjects();
 }
 
 /**
@@ -477,6 +548,7 @@ function selectViewPlayer(playerID)
 	}
 
 	Engine.SetViewedPlayer(g_ViewedPlayer);
+	updateDisplayedPlayerColors();
 	updateTopPanel();
 	updateChatAddressees();
 	updateHotkeyTooltips();
@@ -899,6 +971,7 @@ function updateGUIObjects()
 			global.music.setState(global.music.states[battleState]);
 	}
 
+	updateViewedPlayerDropdown();
 	updateDiplomacy();
 }
 

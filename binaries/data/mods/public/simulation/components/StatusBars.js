@@ -33,6 +33,10 @@ StatusBars.prototype.Init = function()
 {
 	this.enabled = false;
 	this.showRank = false;
+
+	// Whether the status bars used the player colors anywhere (e.g. in the capture bar)
+	this.usedPlayerColors = false;
+
 	this.auraSources = new Map();
 };
 
@@ -100,6 +104,12 @@ StatusBars.prototype.OnResourceSupplyChanged = function(msg)
 StatusBars.prototype.OnPackProgressUpdate = function(msg)
 {
 	if (this.enabled)
+		this.RegenerateSprites();
+};
+
+StatusBars.prototype.UpdateColor = function()
+{
+	if (this.usedPlayerColors)
 		this.RegenerateSprites();
 };
 
@@ -199,6 +209,8 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 	let owner = cmpOwnership.GetOwner();
 	if (owner == INVALID_PLAYER)
 		return 0;
+
+	this.usedPlayerColors = true;
 	let cp = cmpCapturable.GetCapturePoints();
 
 	// Size of health bar (in world-space units)
@@ -210,7 +222,7 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 
 	let setCaptureBarPart = function(playerID, startSize)
 	{
-		let c = QueryPlayerIDInterface(playerID).GetColor();
+		let c = QueryPlayerIDInterface(playerID).GetDisplayedColor();
 		let strColor = (c.r * 255) + " " + (c.g * 255) + " " + (c.b * 255) + " 255";
 		let size = width * cp[playerID] / cmpCapturable.GetMaxCapturePoints();
 

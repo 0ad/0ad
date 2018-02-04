@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ public:
 	virtual bool IsEditorOnly() const = 0;
 
 	/**
-	 * Set the selection highlight state.
+	 * Sets the selection highlight state.
 	 * The highlight is typically a circle/square overlay around the unit.
 	 * @param color color and alpha of the selection highlight. Set color.a = 0 to hide the highlight.
 	 * @param selected whether the entity is selected; affects desaturation for always visible highlights.
@@ -54,7 +54,12 @@ public:
 	}
 
 	/**
-	 * Set the alpha of the selection highlight. Set to 0 to hide the highlight.
+	 * Updates the selection color to match the current owner.
+	 */
+	virtual void UpdateColor() = 0;
+
+	/**
+	 * Sets the alpha of the selection highlight. Set to 0 to hide the highlight.
 	 */
 	virtual void SetSelectionHighlightAlpha(float alpha) = 0;
 

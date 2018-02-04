@@ -331,17 +331,22 @@ var g_NotificationsTypes =
 	},
 	"diplomacy": function(notification, player)
 	{
+		updatePlayerData();
+		if (g_DiplomacyColorsToggle)
+			updateDisplayedPlayerColors();
+
 		addChatMessage({
 			"type": "diplomacy",
 			"sourcePlayer": player,
 			"targetPlayer": notification.targetPlayer,
 			"status": notification.status
 		});
-		updatePlayerData();
 	},
 	"ceasefire-ended": function(notification, player)
 	{
 		updatePlayerData();
+		if (g_DiplomacyColorsToggle)
+			updateDisplayedPlayerColors();
 	},
 	"tutorial": function(notification, player)
 	{
@@ -965,7 +970,7 @@ function colorizePlayernameByGUID(guid)
 
 function colorizePlayernameHelper(username, playerID)
 {
-	let playerColor = playerID > -1 ? rgbToGuiColor(g_Players[playerID].color) : "white";
+	let playerColor = playerID > -1 ? rgbToGuiColor(g_DisplayedPlayerColors[playerID]) : "white";
 	return coloredText(username || translate("Unknown Player"), playerColor);
 }
 

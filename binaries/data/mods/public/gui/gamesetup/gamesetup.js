@@ -1047,7 +1047,7 @@ var g_PlayerMiscElements = {
 		},
 	},
 	"playerColor": {
-		"sprite": (playerIdx) => "color:" + rgbToGuiColor(g_GameAttributes.settings.PlayerData[playerIdx].Color) + " 100",
+		"sprite": (playerIdx) => "color:" + rgbToGuiColor(g_GameAttributes.settings.PlayerData[playerIdx].Color, 100),
 	},
 	"playerConfig": {
 		"hidden": (playerIdx) => !g_GameAttributes.settings.PlayerData[playerIdx].AI,

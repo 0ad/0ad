@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,7 +53,7 @@ void CTerritoryTexture::DeleteTexture()
 bool CTerritoryTexture::UpdateDirty()
 {
 	CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(m_Simulation, SYSTEM_ENTITY);
-	return cmpTerritoryManager && cmpTerritoryManager->NeedUpdate(&m_DirtyID);
+	return cmpTerritoryManager && cmpTerritoryManager->NeedUpdateTexture(&m_DirtyID);
 }
 
 void CTerritoryTexture::BindTexture(int unit)
@@ -178,7 +178,7 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 		CColor color(1, 0, 1, 1);
 		CmpPtr<ICmpPlayer> cmpPlayer(m_Simulation, cmpPlayerManager->GetPlayerByID(p));
 		if (cmpPlayer)
-			color = cmpPlayer->GetColor();
+			color = cmpPlayer->GetDisplayedColor();
 		colors.push_back(color);
 	}
 

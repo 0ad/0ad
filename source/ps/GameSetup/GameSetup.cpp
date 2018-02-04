@@ -1155,6 +1155,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  * -autostart-nonvisual            disable any graphics and sounds
  * -autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME
  *                                 located in simulation/data/settings/victory_conditions/
+ *                                 (default conquest)
  * -autostart-victoryduration=NUM  sets the victory duration NUM for specific victory conditions
  *
  * Multiplayer:
@@ -1460,25 +1461,24 @@ bool Autostart(const CmdLineArgs& args)
 		triggerScriptsVector.push_back(nonVisualScript.FromUTF8());
 	}
 
+	CStr victory = "conquest";
 	if (args.Has("autostart-victory"))
+		victory = args.Get("autostart-victory");
+
+	scriptInterface.SetProperty(settings, "GameType", std::string(victory));
+
+	CStrW scriptPath = L"simulation/data/settings/victory_conditions/" + victory.FromUTF8() + L".json";
+	JS::RootedValue scriptData(cx);
+	JS::RootedValue data(cx);
+	JS::RootedValue victoryScripts(cx);
+	scriptInterface.ReadJSONFile(scriptPath, &scriptData);
+	if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "Data", &data) && !data.isUndefined()
+		&& scriptInterface.GetProperty(data, "Scripts", &victoryScripts) && !victoryScripts.isUndefined())
 	{
-		CStrW scriptName = args.Get("autostart-victory").FromUTF8();
-		CStrW scriptPath = L"simulation/data/settings/victory_conditions/" + scriptName + L".json";
-		JS::RootedValue scriptData(cx);
-		JS::RootedValue data(cx);
-		JS::RootedValue victoryScripts(cx);
-
-		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
-
-		if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "Data", &data) && !data.isUndefined()
-				&& scriptInterface.GetProperty(data, "Scripts", &victoryScripts) && !victoryScripts.isUndefined())
-		{
-			std::vector<CStrW> victoryScriptsVector;
-			FromJSVal_vector(cx, victoryScripts, victoryScriptsVector);
-			triggerScriptsVector.insert(triggerScriptsVector.end(), victoryScriptsVector.begin(), victoryScriptsVector.end());
-		}
+		std::vector<CStrW> victoryScriptsVector;
+		FromJSVal_vector(cx, victoryScripts, victoryScriptsVector);
+		triggerScriptsVector.insert(triggerScriptsVector.end(), victoryScriptsVector.begin(), victoryScriptsVector.end());
 	}
-
 	ToJSVal_vector(cx, &triggerScripts, triggerScriptsVector);
 	scriptInterface.SetProperty(settings, "TriggerScripts", triggerScripts);
 

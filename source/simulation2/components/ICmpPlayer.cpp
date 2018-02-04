@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,9 +33,9 @@ class CCmpPlayerScripted : public ICmpPlayer
 public:
 	DEFAULT_SCRIPT_WRAPPER(PlayerScripted)
 
-	virtual CColor GetColor()
+	virtual CColor GetDisplayedColor()
 	{
-		return m_Script.Call<CColor>("GetColor");
+		return m_Script.Call<CColor>("GetDisplayedColor");
 	}
 
 	virtual std::wstring GetCiv()
