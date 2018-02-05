@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Alex Hex <alexhex14@gmail.com>, 2016
+# Alex Moldovan <the.eclipse27@gmail.com>, 2018
 # Danila Catalin <dlcatalin@ymail.com>, 2016
 # Dumitru Ursu <dima@ceata.org>, 2014
 # Gabriel-Ciprian Stanciu <stanciu.gabriel.ciprian@gmail.com>, 2014
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-03 19:45+0000\n"
+"Last-Translator: Alex Moldovan <the.eclipse27@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +51,7 @@ msgstr "Aleatoriu"
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Alege o civilizatie la intamplare cand incepe jocul ."
 
 #: gui/gamesetup/gamesetup.js:111
 #, javascript-format
@@ -72,11 +73,11 @@ msgstr "* %(username)s este pregătit!"
 
 #: gui/gamesetup/gamesetup.js:118
 msgid "Stay ready"
-msgstr ""
+msgstr "Stai pregatit"
 
 #: gui/gamesetup/gamesetup.js:119
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Stai pregatit cand setarile jocului se schimba setarile"
 
 #: gui/gamesetup/gamesetup.js:124
 msgid "I'm not ready!"
@@ -128,7 +129,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:165
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Toate hartile inafara de cele maritime si demo ."
 
 #: gui/gamesetup/gamesetup.js:171
 msgid "Naval Maps"
@@ -137,7 +138,7 @@ msgstr "Mape Navale"
 #: gui/gamesetup/gamesetup.js:172
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Harti in care este nevoie de nave pentru a ajunge la inamic ."
 
 #: gui/gamesetup/gamesetup.js:177
 msgid "Demo Maps"
@@ -146,7 +147,7 @@ msgstr "Mape Demo"
 #: gui/gamesetup/gamesetup.js:178
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Aceste harti nu pot fi jucate  , sunt doar pentru demonstratie ."
 
 #: gui/gamesetup/gamesetup.js:183
 msgid "New Maps"
@@ -178,7 +179,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:396
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Harta"
 
 #: gui/gamesetup/gamesetup.js:411
 msgctxt "Match settings tab name"

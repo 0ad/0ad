@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-02-01 19:23+0000\n"
+"PO-Revision-Date: 2018-02-04 17:39+0000\n"
 "Last-Translator: ernest olory <ernestolory@hotmail.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -287,23 +287,23 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "Sammad hollek relegoù krouet war ar gartenn. Trec'h relegel eo ar gwirvoudelan gant un hepken pe zaou relegenn. Gant niveroù brasoc'h e vez ar relegoù a-bouez da bakan evit degemer bonuzioù aora."
 
 #: gui/gamesetup/gamesetup.js:662
 msgid "Relic Duration"
-msgstr ""
+msgstr "Padelezh Releg"
 
 #: gui/gamesetup/gamesetup.js:663
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Munutoù betek ma vo echu Trec'h Releg gant ar c'hoarier."
 
 #: gui/gamesetup/gamesetup.js:677
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Padelezh Bamerezh"
 
 #: gui/gamesetup/gamesetup.js:678
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Munutoù betek ma vo echuet Trec'h Bamerezh gant ar c'hoarier."
 
 #: gui/gamesetup/gamesetup.js:692
 msgid "Game Speed"
@@ -315,11 +315,11 @@ msgstr "Diuzit tizh ar c'hoari."
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Difficulty"
-msgstr ""
+msgstr "Diaester"
 
 #: gui/gamesetup/gamesetup.js:709
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Diuziñ diaester ar senario-man."
 
 #: gui/gamesetup/gamesetup.js:774
 msgid "Chose the civilization for this player"
@@ -327,7 +327,7 @@ msgstr "Dibab sevenadurezh ar c'hoarier-mañ "
 
 #: gui/gamesetup/gamesetup.js:814
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Gwarnizon Haroz"
 
 #: gui/gamesetup/gamesetup.js:815
 msgid "Toggle whether heroes can be garrisoned."
@@ -335,13 +335,13 @@ msgstr "Hag-eñ e c'hell bezan lakaet e-barzh an harozed ."
 
 #: gui/gamesetup/gamesetup.js:827
 msgid "Nomad"
-msgstr ""
+msgstr "Kantreer"
 
 #: gui/gamesetup/gamesetup.js:828
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "Er mod Kantreer e vez loc'het un nebeud unanennoù hepken gant ar c'hoarierien ha ret eo dezho kavout ur blasenn dereat evit sevel o c'heoded. Harz-tennañ a zo erbedet."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -420,7 +420,7 @@ msgstr "Dibab ma vo kemeret e kont ar c'hoariadenn-mañ e-barzh ar renkadur-holl
 #: gui/gamesetup/gamesetup.js:974
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr ""
+msgstr "Pouezan war %(hotkey)s evit leunian anvioù ar c'hoarierien pe frammoù e-unan."
 
 #: gui/gamesetup/gamesetup.js:982
 msgid "Return to the lobby."
@@ -432,7 +432,7 @@ msgstr "Distreiñ d'al lañser pennañ."
 
 #: gui/gamesetup/gamesetup.js:987
 msgid "Start Game!"
-msgstr ""
+msgstr "Loc'han C'hoari!"
 
 #: gui/gamesetup/gamesetup.js:993
 msgid "Start a new game with the current settings."
@@ -442,27 +442,27 @@ msgstr "Kregiñ gant ur c'hoariadenn gant an arventennoù-red."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "Loc'han ur c'hoari nevez gant ar frammoù stank (diweredekaet betek ma vo prest an holl c'hoarierien)"
 
 #: gui/gamesetup/gamesetup.js:1057
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Keflunian Al: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1157
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Gwintañ war ar %(name)s taolennadennoù frammoù."
 
 #: gui/gamesetup/gamesetup.js:1158
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Implijout %(hotkey)s evit dilec'hian un daolennadenn frammoù en-diaz."
 
 #: gui/gamesetup/gamesetup.js:1159
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Implijout %(hotkey)s evit dilec'hian un daolennadenn frammoù en-nec'h."
 
 #: gui/gamesetup/gamesetup.js:1678
 msgctxt "map selection"
@@ -471,22 +471,22 @@ msgstr "Dre-zegouezh"
 
 #: gui/gamesetup/gamesetup.js:1680
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Diuzan n'eus forz peseurt kartennoù roet dre-zegouezh."
 
 #: gui/gamesetup/gamesetup.js:1712
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Dre-zegouezh"
 
 #: gui/gamesetup/gamesetup.js:1713
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Diuzan ur biom dre-zegouezh."
 
 #: gui/gamesetup/gamesetup.js:2044
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s"
 
 #: gui/gamesetup/gamesetup.js:2049
 msgctxt "settings value"
@@ -504,7 +504,7 @@ msgstr "Ket"
 #: gui/gamesetup/gamesetup.js:2086
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s "
 
 #: gui/gamesetup/gamesetup.js:2173
 #, javascript-format
@@ -567,7 +567,7 @@ msgstr "Diaester an NA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Al Emzalc'h:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -587,7 +587,7 @@ msgstr "O kargañ"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "O kargañ roadenn ur gartenn. Gortoz mar-plij..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):42
 msgid "Player Name"
@@ -660,26 +660,26 @@ msgstr "Diuzit skipailh ar c'hoarier."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):207
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Diskouez al lobi lies-c'hoarier en ur prenestr diviz."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[…] en doa lakaet e plas e lezenn: furnez a zeu eus ar poanioù. \\[…]  Neuze tud a-enep dezho a zesko evit pleustrin an habaskadur. \\[…] Na kalet ha feuls eo ar gras.\" -Echil (\"Oresteia\", l. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr ""
+msgstr "\"Hi \\[Elen] he doa kaset da Iliom hec'h argouroù, distruj.\" -Echil (\"Oresteia\", l. 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr ""
+msgstr "\"E pep kalon tirant e teu war wel ar poezon-man er fin, pezh a ra n'eo ket kat da gaout fizians en ur mignon bennak.\" -Echil (\"Prometeus Chadennet\", 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -691,7 +691,7 @@ msgstr "\"Dre ma kosha an amzer e kelenn pep tra.\" - Echil (Prometheus Stag)"
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr ""
+msgstr "\"E vennegezh n'eo ket evit embann, hogen evit bezan, ar gwellan.\" -Echil (\"Seizh a-enep da dTheba\", 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
@@ -707,7 +707,7 @@ msgstr "\"An Doueed a skoazell ar re en em skoazell o-unan.\" Esop (Héraclès h
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr ""
+msgstr "\"Arboellus eo aozan hiziv evit c'hoantoù antronoz.\" -Esop (\"Ar Veriennenn hag ar C'hilhog-raden\")"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
@@ -717,65 +717,65 @@ msgstr "\"Digant an unvaniezh e teu an nerzh.\" -  Esop (\"An Horzenn Geuneud\")
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr ""
+msgstr "\"Arabat kaout fizians e alioù un den eman o c'houzanv eus e ziaester hiniennel.\"  -Esop (\"Al Louarn hag ar C'havr\")"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr ""
+msgstr "\"Magan a ra an hardizhegezh an dispriz; digreskin a ra an anaoud ar gwalloù.\" -Esop (\"Al Louarn hag al Leon\")"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr ""
+msgstr "\"Gallout a ra ar fouge kas d'an en em zistruj.\" -Esop (\"Ar ran hag an Ejen\")"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr ""
+msgstr "\"Goustad ha sonn a lak da c'hounit ar redadeg.\" -Esop (\"Ar C'had hag ar Vaot\")"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr ""
+msgstr "\"Gwelloc'h eo bezan fur gant dichansoù ar re all eget gant da hini.\" - Esop (\"Al Leon, An Azen, hag al Louarn Chaseour\")"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr ""
+msgstr "\"Promesaoù enebourien a oa graet evit bezan torret.\" - Esop (\"Ar Glandiourez hag ar Bleiz\")"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr "\"Kement digarez a servijo d'an diraned\" - Ezop (Ar bleiz hag an oan)"
+msgstr "\"Kement digarez a servijo d'an tirant\" - Esop (\"Ar bleiz hag an Oan\")"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaos"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "\"M'am bije graet un dra bennak nobl, pezh a vefe kounadur a-walc'h; Ma n'am bije ket graet, an holl delwennoù er bed ne zalc'hfent ket ma envor.\" - Agesilaos II eus Sparta (Plutarch, \"Moralia\", XVI. \"Komzoù eus Spartiz\", 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr ""
+msgstr "\"Spartiz ne c'houlennont ket pet, met pelec'h eman an enebour hepken.\" - Agis II eus Sparta (Plutarch, \"Moralia\", XVI. \"Komzoù eus Spartiz\", 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr ""
+msgstr "\"Na ouelit ket evidon, evel m'emaon o poanian amjust, en ur stad evurusoc'h emaon eget ma muntrerien.\" - Agis IV eus Sparta o welet unan eus e jahinourien o ouelan (Plutarch, \"Buhezioù A-stur\", \"Agis\", sec. 20) "
 
 #: gui/text/quotes.txt:20
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr ""
+msgstr "\"Revr ha kousket ma-unan a lak ac'hanon da vezan emskiant on gouestlet da varvel.\" - Aleksandr Meur (Plutarch, \"Buhezioù A-stur\", \"Aleksandr\", sec. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -783,7 +783,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "\"Luban kenan eo bevan en orged, met roueel-tre evit labourat start. \\[…] N'anavezez ket eo dibenn ha danvez an aloubiñ evit chom pell diouzh gwalldechoù hag izilded an hini zo tenval e benn?\" - Aleksandr Meur (Plutarch, \"Buhezioù A-stur\", \"Aleksandr\", sec. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -791,7 +791,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.\" - Alexander the Great, addressing his troops "
 "(Arrian, \"The Anabasis of Alexander\", 5.26)"
-msgstr ""
+msgstr "\"Klodus eo oberoù ar re a c'houzanv labour ha war riskl an danjer e vezont; ha kaer eo bevan ur vuhez a dalvoud ha mervel o leuskel a-drenv dezho ur gloar divarvel.\" - Aleksandr Meur, o komz gand e vagadoù (Arrian, \"Anabasis Aleksandr\", 5.26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -799,7 +799,7 @@ msgid ""
 "labours themselves, provided they lead to glorious achievements.\" - "
 "Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
 "Alexander\", 5.26)"
-msgstr ""
+msgstr "\"Me a zo evit ur sonj a lak un den kalonek da gredin ne vez ket dibenn evit labourioù nemet al labourioù o-unan, pa vezont pourvezet e vez renet d'an taolioù-kaer klodus ganto.\" - Aleksandr Meur, o komz gant e vagadoù (Arrian, \"Anabasis Aleksandr\", 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -807,26 +807,26 @@ msgid ""
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the "
 "Great\", 332a-b)"
-msgstr ""
+msgstr "\"Ma ne vefen ket Aleksandr em bije c'hoant da vezan Diojen \\[eus Sinopa].\" - Aleksandr Meur, souezhet-eston gant eeunded ar prederour en doa kejet gantan (Plutarch, \"Moralia\", XXII. \"Diwar-benn Avelioù Aleksandr Meur\", 332a-b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
 "\"To the strongest!\" - Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, \"The Anabasis of Alexander\", 7.26)"
-msgstr ""
+msgstr "\"D'an hini krenvan!\" - Aleksandr Meur, war e wele marv, p'en doa goulennet piv a zeuje d'e heul evit bezan roue (Arrian, \"Anabasis Aleksandr\", 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr ""
+msgstr "\"Ne vez ket laeret an trec'h ganin.\" - Aleksandr Meur, p'en doa kinniget tagan ar Bersianed d'an noz (Plutarch, \"Buhezioù A-stur\", \"Aleksandr\", sec. 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"Written laws are like spiders' webs; they will catch, it is true, the weak"
 " and poor, but will be torn in pieces by the rich and powerful.\" - "
 "Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
-msgstr ""
+msgstr "\"Al lezennoù skrivet a vez henvel ouzh gwiadoù-kevnid; gallout a reont kregin, gwir eo, an den gwan hag ar paour, hogen drailhet e vint gant an den pinvidik ha galloudus.\" - Anarkasis (Plutark, \"Buhezioù A-stur\", \"Solon\", sec. 5)"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -834,7 +834,7 @@ msgid ""
 " covetously.\" - Anacharsis, a Scythian philosopher who travelled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr ""
+msgstr "\"An agora a zo ur blasenn savet evit lakaat tud da druchan an eil hag egile, ha da gaout un emzalc'h c'hoantek.\" - Anarkasis, ur prederour Skytian e oa bet e Gres (Diojen Laertius, \"Buhezioù ha Sonjoù ar Brederourien dreist-kenan\", Anarkasis, sec. 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""

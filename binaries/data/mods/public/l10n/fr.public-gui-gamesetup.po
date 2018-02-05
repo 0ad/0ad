@@ -14,6 +14,7 @@
 # Const Ance <Constoush@yopmail.com>, 2017
 # curieux de l'être <skimandco@gmail.com>, 2017
 # Cyril Roques <cyrilroques@free.fr>, 2017
+# David D, 2018
 # Thibaut Cuvelier <dourouc05@gmail.com>, 2014
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
 # ernest olory <ernestolory@hotmail.fr>, 2017
@@ -69,8 +70,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-04 12:10+0000\n"
+"Last-Translator: David D\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -227,7 +228,7 @@ msgstr "Toutes les cartes du type de carte choisis."
 #: gui/gamesetup/gamesetup.js:396
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Carte"
 
 #: gui/gamesetup/gamesetup.js:411
 msgctxt "Match settings tab name"
@@ -237,7 +238,7 @@ msgstr "Joueur"
 #: gui/gamesetup/gamesetup.js:421
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Type de jeu"
 
 #: gui/gamesetup/gamesetup.js:461
 msgid "Map Type"
@@ -368,11 +369,11 @@ msgstr "Sélectionner la vitesse de jeu."
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Difficulty"
-msgstr ""
+msgstr "Difficulté"
 
 #: gui/gamesetup/gamesetup.js:709
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Sélectionnez la difficulté de ce scénario."
 
 #: gui/gamesetup/gamesetup.js:774
 msgid "Chose the civilization for this player"
@@ -388,13 +389,13 @@ msgstr "Définir si les héros peuvent être placés en garnison."
 
 #: gui/gamesetup/gamesetup.js:827
 msgid "Nomad"
-msgstr ""
+msgstr "Nomade"
 
 #: gui/gamesetup/gamesetup.js:828
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "En mode Nomade, les joueurs commencent avec seulement quelques unités et doivent se trouver un endroit approprié pour construire leur ville. On recommande le cessez-le-feu."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -500,22 +501,22 @@ msgstr "Commencer une nouvelle partie avec les paramètres actuels (désactivé 
 #: gui/gamesetup/gamesetup.js:1057
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Configurer l'IA: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1157
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Bascule l'onglet de paramètres %(name)s."
 
 #: gui/gamesetup/gamesetup.js:1158
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Utilisez %(hotkey)s pour déplacer vers le bas un onglet de paramètres."
 
 #: gui/gamesetup/gamesetup.js:1159
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Utilisez %(hotkey)s pour déplacer vers le haut un onglet de paramètres."
 
 #: gui/gamesetup/gamesetup.js:1678
 msgctxt "map selection"
@@ -539,7 +540,7 @@ msgstr "Sélectionner un biome aléatoirement."
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2049
 msgctxt "settings value"
@@ -557,7 +558,7 @@ msgstr "Non"
 #: gui/gamesetup/gamesetup.js:2086
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2173
 #, javascript-format
@@ -620,7 +621,7 @@ msgstr "Difficulté de l'IA :"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Comportement de l'IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -640,7 +641,7 @@ msgstr "Chargement"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Chargement de la carte. Veuillez patienter..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):42
 msgid "Player Name"
@@ -713,14 +714,14 @@ msgstr "Sélectionner l'équipe du joueur."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):207
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Montrer le salon multijoueurs dans une fenêtre de dialogue."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[…] a établi sa loi : la sagesse passe à travers la souffrance. \\[…] Ainsi les hommes contre leur volonté apprennent à pratiquer la modération. \\[…] Une telle grâce est dure et violente. - Aeschylus (\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -1124,7 +1125,7 @@ msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "\"Je suis Darius, le grand roi, roi des rois, le roi de Perse, le roi des pays, \\[…] 23 terres au total.\" - Darius I. (inscription à Bisotun, colonne I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1134,7 +1135,7 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Phraortes a été capturé et apporté avant moi. J'ai coupé son nez, ses oreilles et sa langue, et retiré un oeil, puis il a été gardé enchaîné à l'entrée de mon palais et tous les gens l'ont vu. Ensuite je l'ai crucifié à Ecbatana; et les hommes qui étaient ses adeptes principaux \\ […] je les ai écorché puis j'ai pendu leurs peaux, farcies avec de la paille.\" - Darius I. (inscription à Bisotun, colonne II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1992,7 +1993,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.\" - Thucydides, "
 "describing Athenians addressing the defeated Melians who are unwilling to "
 "surrender (\"History of the Peloponnesian War\", V. 89.1)"
-msgstr ""
+msgstr "\"Comme va le monde, la justice est seulement un sujet entre égaux, tandis que le fort fait ce qu'il peut et le faible subis ce qu'ils doit.\" - Thucydides, décrivant des Athéniens abordant Melians battu qui veut se rendre (\"l'Histoire de la Guerre du Péloponnèse\", V. 89.1)"
 
 #: gui/text/quotes.txt:181
 msgid ""

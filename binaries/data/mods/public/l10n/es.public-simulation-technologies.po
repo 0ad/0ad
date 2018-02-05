@@ -13,16 +13,16 @@
 # Joaquin Cubelli <jcubellidl@gmail.com>, 2017
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
-# Mihai Pantazi <malexandru_70@hotmail.com>, 2017
+# Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Rafael Cuevas Montero <rafcumon@hotmail.com>, 2017
-# Swyter <Swyterzone@gmail.com>, 2014-2017
+# Swyter <Swyterzone@gmail.com>, 2014-2018
 # vega93 <arkadas_llisa@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-29 09:04+0100\n"
-"PO-Revision-Date: 2018-01-29 14:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-04 19:43+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -705,7 +705,7 @@ msgstr "Las técnicas de artesanía secretas proporcionan a las espadas unas pre
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr "Un +20% de daño por corte para todos los espadachines y mazeros."
+msgstr "Aumenta en un +20% el daño por corte para todos los espadachines y maceros."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -835,7 +835,7 @@ msgstr "Entrenamiento de recolección"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Nets improve the fishing productivity."
-msgstr "Las redes mejoran la productividad de la pesca."
+msgstr "La pesca con red mejora la productividad."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -1587,7 +1587,7 @@ msgstr "Las avanzadas perduran el doble de tiempo en territorio neutral."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr "Pérdida de territorio -50% para las avanzadas"
+msgstr "Pérdida de territorio -50% para las avanzadas."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1623,7 +1623,7 @@ msgstr "Las avanzadas consiguen una mejor visión de exploración."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr "Avanzadas obtienen +50% vision de exploracion"
+msgstr "Avanzadas obtienen +50% de rango de visión."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1861,7 +1861,7 @@ msgstr "El primer objetivo de los comerciantes era comerciar, pero también reco
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr "Permite sobornar a las unidades de otros jugadores para compartir su visión."
+msgstr "Permite sobornar a las unidades de otros jugadores para compartir lo que ven."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
@@ -2241,13 +2241,13 @@ msgstr "Mercenarios celtas de élite"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr "Promover a todos tus mercenarios Íberos al rango de Élite."
+msgstr "Mejora todos tus mercenarios íberos al nivel de élite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Promover a todos tus mercenarios Íberos al rango de Élite.  Esto aumenta su destreza militar, pero disminuye su tasa de recolección de recursos otro -25%"
+msgstr "Mejora a todos tus mercenarios íberos al nivel de élite. Esto aumenta su destreza militar, pero disminuye su tasa de recolección de recursos otro -25%. "
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2255,14 +2255,14 @@ msgstr "Mercenarios íberos de élite"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr "Promover a todos tus Mercenarios Italiotas al rango de Élite."
+msgstr "Mejora todos tus mercenarios italiotas al nivel de élite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr "Promover a todos tus mercenarios Italiotas al rango de Élite. Esto aumenta su destreza militar, pero disminuye su tasa de recolección de recursos otro -25%."
+msgstr "Mejora a todos tus mercenarios italiotas al nivel de élite. Esto aumenta su destreza militar, pero disminuye su tasa de recolección de recursos otro -25%. "
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
@@ -2422,7 +2422,7 @@ msgstr "Los maurianos construían las murallas de la ciudad de madera, un recurs
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr "Los muros de ciudad maurya tienen -20% menos salud [o resistencia para edificios y artefactos] y -20% menos de tiempo de construcción."
+msgstr "Los muros de ciudad maurianos pierden 20% de resistencia pero reducen su tiempo de construcción un 20%."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2454,7 +2454,7 @@ msgstr "Los campeones de infantería Anusiya se reclutan el doble de rápido, pe
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Infantería Campeona Anusiya -50% de tiempo de entrenamiento, pero -10% de salud."
+msgstr "La infantería campeona Anusiya reduce un -50% su tiempo de reclutamiento, pero también pierde -10 puntos de salud."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2525,13 +2525,13 @@ msgstr "Reclutamiento de infantería"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "Toda la caballería -20% de tiempo de entrenamiento, pero -5% de salud.\nDesbloquea el reclutamiento de la Caballería."
+msgstr "La caballería reduce un -20% su tiempo de reclutamiento, pero pierde -5% de salud. Desbloquea el reclutamiento forzoso de caballería."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "Toda la infantería -20% su tiempo de reclutamiento, -5% de los puntos de salud. \nDesbloquea el Reclutamiento de Infantería."
+msgstr "La infantería reduce un -20% su tiempo de reclutamiento, pero pierde -5% de salud. Desbloquea el reclutamiento forzoso de infantería."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

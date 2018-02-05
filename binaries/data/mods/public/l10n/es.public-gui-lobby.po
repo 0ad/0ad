@@ -9,13 +9,13 @@
 # juanda097 <juanda097@protonmail.ch>, 2014,2017
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
-# Swyter <Swyterzone@gmail.com>, 2014-2017
+# Swyter <Swyterzone@gmail.com>, 2014-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-31 12:51+0000\n"
-"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
+"PO-Revision-Date: 2018-02-04 18:09+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr "En línea"
 
 #: gui/lobby/lobby.js:50
 msgid "Away"
-msgstr "Fuera"
+msgstr "Ausente"
 
 #: gui/lobby/lobby.js:51
 msgid "Busy"
@@ -63,7 +63,7 @@ msgstr "Desconectado."
 #: gui/lobby/lobby.js:177
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr "%(nick)s cambiaron el nombre de la sala multijugador a %(subject)s"
+msgstr "%(nick)s cambió el nombre de la sala multijugador a %(subject)s"
 
 #: gui/lobby/lobby.js:188
 #, javascript-format
@@ -122,7 +122,7 @@ msgstr "Aviso"
 
 #: gui/lobby/lobby.js:319
 msgid "Set your state to 'Away'."
-msgstr "Actualiza tu estado a «Ausente»."
+msgstr "Actualiza tu estado a «ausente»."
 
 #: gui/lobby/lobby.js:326
 msgid "Set your state to 'Online'."
@@ -162,7 +162,7 @@ msgstr "Envía un mensaje de texto (incluso cuando empieza con una barra «/»).
 
 #: gui/lobby/lobby.js:377
 msgid "Clear all chat scrollback."
-msgstr "Limpiar todos los mensajes previos del chat."
+msgstr "Borra todos los mensajes previos del chat."
 
 #: gui/lobby/lobby.js:384
 msgid "Return to the main menu."
@@ -170,7 +170,7 @@ msgstr "Volver al menú principal."
 
 #: gui/lobby/lobby.js:442
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Ha sido desconectado de la sala. ¿Desea volver a conectarse?"
+msgstr "Te has desconectado de la sala. ¿Quieres volver a conectarte?"
 
 #: gui/lobby/lobby.js:443 gui/lobby/lobby.js:1182
 msgid "Confirmation"
@@ -387,17 +387,17 @@ msgstr "Introduce tu nombre de usuario"
 
 #: gui/prelobby/prelobby.js:100
 msgid "Invalid username"
-msgstr "Nombre de usuario no válido"
+msgstr "Nombre de usuario incorrecto"
 
 #: gui/prelobby/prelobby.js:107
 msgctxt "login"
 msgid "Please enter your password"
-msgstr "Por favor, introduzca su contraseña"
+msgstr "Introduce tu contraseña"
 
 #: gui/prelobby/prelobby.js:108
 msgctxt "register"
 msgid "Please enter your password"
-msgstr "Por favor, introduzca su contraseña"
+msgstr "Introduce tu contraseña"
 
 #: gui/prelobby/prelobby.js:121
 msgid "Please enter your password again"

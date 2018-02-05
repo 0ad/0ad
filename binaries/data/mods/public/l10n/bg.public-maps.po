@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-31 09:05+0100\n"
-"PO-Revision-Date: 2018-02-01 07:30+0000\n"
+"POT-Creation-Date: 2018-02-02 09:05+0100\n"
+"PO-Revision-Date: 2018-02-03 12:38+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -726,7 +726,20 @@ msgid ""
 "goats shiver."
 msgstr "Регион във високите заснежени планини. Пронизващи ветрове вият през гъстите иглолистни гори, карайки и най-жилавите елени и планински кози да треперят."
 
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A region in the high snowy mountains. Biting winds sweep through the "
+"abundant conifer forests, making even the more resilient deer and mountain "
+"goats shiver."
+msgstr "Регион във високите заснежени планини. Пронизващи ветрове вият през гъстите иглолистни гори, карайки и най-жилавите елени и планински кози да треперят."
+
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgid "Alpine"
+msgstr "Планински"
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
 msgid "Alpine"
 msgstr "Планински"
 
@@ -738,7 +751,21 @@ msgid ""
 "at the approaching winter."
 msgstr "Същинска есен. Пейзажът представлява плетеница от най-разнообразни цветове. Типичните за тази умерена зона букове и дъбове са с многоцветни листа, а вечнозелените борове гледат с безразличие на наближаващата зима."
 
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
+"intertwined. The native beech and oak trees of this temperate zone display a"
+" multi-coloured foliage while the evergreen pines look on with indifference "
+"at the approaching winter."
+msgstr "Същинска есен. Пейзажът представлява плетеница от най-разнообразни цветове. Типичните за тази умерена зона букове и дъбове са с многоцветни листа, а вечнозелените борове гледат с безразличие на наближаващата зима."
+
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+msgid "Autumn"
+msgstr "Есен"
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+msgctxt "biome definition"
 msgid "Autumn"
 msgstr "Есен"
 
@@ -749,7 +776,20 @@ msgid ""
 "fright at being disturbed."
 msgstr "Полупустинна област с многобройни групички финикови палми и ракитовици. Стада камили кръстосват пустошта, и само от време на време някоя газела подскача уплашена от незабележим шум."
 
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
+"fright at being disturbed."
+msgstr "Полупустинна област с многобройни групички финикови палми и ракитовици. Стада камили кръстосват пустошта, и само от време на време някоя газела подскача уплашена от незабележим шум."
+
 #: maps/random/rmbiome/generic/desert.jsonDescription.Title
+msgid "Desert"
+msgstr "Пустиня"
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
+msgctxt "biome definition"
 msgid "Desert"
 msgstr "Пустиня"
 
@@ -760,11 +800,32 @@ msgid ""
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Започвате в район благословен със средиземноморски климат, топла и приветлива земя. Кипарисите са в непрекъсната борба с преобладаващите ветрилни палми, а елените пасат в сенките им, необезпокоявани."
 
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr "Започвате в район благословен със средиземноморски климат, топла и приветлива земя. Кипарисите са в непрекъсната борба с преобладаващите ветрилни палми, а елените пасат в сенките им, необезпокоявани."
+
 #: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgid "Mediterranean"
 msgstr "Средиземно море"
 
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Средиземноморски"
+
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+msgid ""
+"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
+"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
+" giraffes or elephants roam the wild in search of food."
+msgstr "Саваната – сух климат, където само жилавите дървета баобаб могат да оцелеят. Самотни газели пасат оскъдната трева, а стада зебри, гнута, жирафи и слонове кръстосват пустошта в търсене на храна."
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+msgctxt "biome definition"
 msgid ""
 "The savanna, a dry climate in which only the hardy Baobab trees thrive. "
 "Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
@@ -775,6 +836,11 @@ msgstr "Саваната – сух климат, където само жила
 msgid "Savanna"
 msgstr "Савана"
 
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Savanna"
+msgstr "Савана"
+
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Description
 msgid ""
 "Settle in the cold regions of the North, the native habitat of the wooly "
@@ -782,7 +848,20 @@ msgid ""
 "walrus or two."
 msgstr "Установете се в студените райони на севера, естествената родина на мускусния бик. Тук можете да сечете борове на воля, както и да ловувате моржове."
 
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Settle in the cold regions of the North, the native habitat of the wooly "
+"muskox. Here you can pine away to your content and also hunt the occasional "
+"walrus or two."
+msgstr "Установете се в студените райони на севера, естествената родина на мускусния бик. Тук можете да сечете борове на воля, както и да ловувате моржове."
+
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+msgid "Snowy"
+msgstr "Сняг"
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+msgctxt "biome definition"
 msgid "Snowy"
 msgstr "Сняг"
 
@@ -794,7 +873,21 @@ msgid ""
 "dot the land, deer and sheep gorge themselves on this years fallen fruit."
 msgstr "Тучни поляни покриват земята, отстъпвайки място само на величествени и разнообразни широколистни гори. Тополи, борове, дъбове и букове се борят за надмощие, но тази коренова война е неспирна битка. Многобройни ябълкови дървета осейват земята, елени и овце пируват с тазгодишните паднали плодове."
 
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Lush grasslands carpet the land, in places giving way to magnificent and "
+"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
+"supremacy but this root-war is a neverending struggle. Numerous apple trees "
+"dot the land, deer and sheep gorge themselves on this years fallen fruit."
+msgstr "Тучни поляни покриват земята, отстъпвайки място само на величествени и разнообразни широколистни гори. Тополи, борове, дъбове и букове се борят за надмощие, но тази коренова война е неспирна битка. Многобройни ябълкови дървета осейват земята, елени и овце пируват с тазгодишните паднали плодове."
+
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+msgid "Temperate"
+msgstr "Умерен"
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+msgctxt "biome definition"
 msgid "Temperate"
 msgstr "Умерен"
 
@@ -806,21 +899,137 @@ msgid ""
 "their territory at all costs."
 msgstr "Изследвайте загадъчните тропици. Очаква Ви невероятно зелена, но и особено влажна среда. Високите дървета Тоона гледат неодобрително на това нарушаване на личното им пространство, а яростни тигри са готови да защитават територията си на всяка цена."
 
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr "Изследвайте загадъчните тропици. Очаква Ви невероятно зелена, но и особено влажна среда. Високите дървета Тоона гледат неодобрително на това нарушаване на личното им пространство, а яростни тигри са готови да защитават територията си на всяка цена."
+
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgid "Tropic"
 msgstr "Тропически"
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Tropic"
+msgstr "Тропически"
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+msgid ""
+"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
+" The thick ice formed is capable of withstanding any weight."
+msgstr "Затягайки хватката си, суровият студ успява да замрази залива. Оформилият се дебел слой лед може да издържи всяка тежест."
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
+" The thick ice formed is capable of withstanding any weight."
+msgstr "Затягайки хватката си, суровият студ успява да замрази залива. Оформилият се дебел слой лед може да издържи всяка тежест."
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgid "Frozen Lake"
 msgstr "Замръзнало езеро"
 
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Frozen Lake"
+msgstr "Замръзнало езеро"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+msgid ""
+"A late spring breeze ripples through the conifer forests of the Gulf of "
+"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
+"undergrowth."
+msgstr "Лек пролетен бриз се носи над иглолистните гори на Ботническия залив. Стада елени бродят навсякъде, а игриви зайци подскачат из тревите."
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A late spring breeze ripples through the conifer forests of the Gulf of "
+"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
+"undergrowth."
+msgstr "Лек пролетен бриз се носи над иглолистните гори на Ботническия залив. Стада елени бродят навсякъде, а игриви зайци подскачат из тревите."
+
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgid "Late Spring"
 msgstr "Късна пролет"
 
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr "Късна пролет"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+msgid ""
+"Winter has set in, carpeting the land with its first snow. The still "
+"unfrozen gulf offers great fishing opportunities."
+msgstr "Зимата е тук, и покрива земята с първия си сняг. Все още замръзналият залив предоставя прекрасни възможности за риболов."
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Winter has set in, carpeting the land with its first snow. The still "
+"unfrozen gulf offers great fishing opportunities."
+msgstr "Зимата е тук, и покрива земята с първия си сняг. Все още замръзналият залив предоставя прекрасни възможности за риболов."
+
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgid "Winter"
 msgstr "Зима"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Winter"
+msgstr "Зима"
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+msgid ""
+"Spring in the highlands, yet the heat has already begun making itself felt. "
+"The short-lived green grasses are on the retreat, paving the way for "
+"scorching summer."
+msgstr "Пролет във възвишенията, където топлината едва-едва започва да се усеща. Мимолетните треви се отдръпват и очакват настъпването на знойното лято."
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Spring in the highlands, yet the heat has already begun making itself felt. "
+"The short-lived green grasses are on the retreat, paving the way for "
+"scorching summer."
+msgstr "Пролет във възвишенията, където топлината едва-едва започва да се усеща. Мимолетните треви се отдръпват и очакват настъпването на знойното лято."
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+msgid "Spring"
+msgstr "Пролет"
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Spring"
+msgstr "Пролет"
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+msgid ""
+"An arid, hostile land. The blistering heat has baked the ground to a sickly "
+"brown and the remaining trees struggle for survival."
+msgstr "Безплодна и враждебна земя. Изпепеляващата жега е превърнала земята в кафява кора, а малкото останали дървета се борят за оцеляване с последни сили."
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"An arid, hostile land. The blistering heat has baked the ground to a sickly "
+"brown and the remaining trees struggle for survival."
+msgstr "Безплодна и враждебна земя. Изпепеляващата жега е превърнала земята в кафява кора, а малкото останали дървета се борят за оцеляване с последни сили."
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
+msgid "Summer"
+msgstr "Лято"
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Summer"
+msgstr "Лято"
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
