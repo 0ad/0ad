@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -776,7 +776,7 @@ void ScenarioEditor::OnImportHeightmap(wxCommandEvent& WXUNUSED(event))
 
 	wxFileDialog dlg (NULL, wxFileSelectorPromptStr,
 		_T(""), _T(""),
-		_T("Valid Image files|*.png;*.jpg;*.bmp|All files (*.*)|*.*"),
+		_T("Valid image files (*.png, *.bmp)|*.png;*.bmp|All files (*.*)|*.*"),
 		wxFD_OPEN);
 	// Set default filter
 	dlg.SetFilterIndex(0);
