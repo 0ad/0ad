@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -216,25 +216,25 @@ MESSAGEHANDLER(ImportHeightmap)
 	// resize terrain to heightmap size
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	terrain->Resize(terrainSize / PATCH_SIZE);
+	ENSURE(terrainSize + 1 == g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide());
 
 	// copy heightmap data into map
 	u16* heightmap = g_Game->GetWorld()->GetTerrain()->GetHeightMap();
-	ssize_t hmSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 
 	u8* mapdata = tex.get_data();
 	ssize_t bytesPP = tex.m_Bpp / 8;
 	ssize_t mapLineSkip = tex.m_Width * bytesPP;
 
-	for (ssize_t y = 0; y < terrainSize; ++y)
+	for (ssize_t y = 0; y < terrainSize + 1; ++y)
 	{
-		for (ssize_t x = 0; x < terrainSize; ++x)
+		for (ssize_t x = 0; x < terrainSize + 1; ++x)
 		{
-			int offset = y * mapLineSkip + x * bytesPP;
+			// repeat the last pixel of the image for the last vertex of the heightmap
+			int offset = std::min(y, terrainSize - 1) * mapLineSkip + std::min(x, terrainSize - 1) * bytesPP;
 
 			// pick color channel with highest value
 			u16 value = std::max(mapdata[offset+bytesPP*2], std::max(mapdata[offset], mapdata[offset+bytesPP]));
-
-			heightmap[(terrainSize-y-1) * hmSize + x] = clamp(value * 256, 0, 65535);
+			heightmap[(terrainSize - y) * (terrainSize + 1) + x] = clamp(value * 256, 0, 65535);
 		}
 	}
 
