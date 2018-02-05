@@ -331,20 +331,22 @@ m.GameTypeManager.prototype.removeCriticalEnt = function(gameState, criticalEntI
 };
 
 /**
- * Train more healers and affect them to critical entities if needed
+ * Train more healers to be later affected to critical entities if needed
  */
 m.GameTypeManager.prototype.manageCriticalEntHealers = function(gameState, queues)
 {
-	if (this.guardEnts.size > Math.min(gameState.getPopulationMax() / 10, gameState.getPopulation() / 4))
+	if (gameState.ai.HQ.saveResources || queues.healer.hasQueuedUnits() ||
+	    !gameState.getOwnEntitiesByClass("Temple", true).hasEntities() ||
+	    this.guardEnts.size > Math.min(gameState.getPopulationMax() / 10, gameState.getPopulation() / 4))
 		return;
 
-	for (let [id, data] of this.criticalEnts)
+	for (let data of this.criticalEnts.values())
 	{
-		if (data.healersAssigned !== undefined && data.healersAssigned < this.healersPerCriticalEnt)
-		{
-			this.trainCriticalEntHealer(gameState, queues, id);
-			return;
-		}
+		if (data.healersAssigned === undefined || data.healersAssigned >= this.healersPerCriticalEnt)
+			continue;
+		let template = gameState.applyCiv("units/{civ}_support_healer_b");
+		queues.healer.addPlan(new m.TrainingPlan(gameState, template, { "role": "criticalEntHealer", "base": 0 }, 1, 1));
+		return;
 	}
 };
 
@@ -422,7 +424,7 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 					break;
 			}
 
-			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25 + deltaWorkers * data.guardsAssigned)
+			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= minWorkers + deltaWorkers * data.guardsAssigned)
 				break;
 
 			for (let entity of gameState.getOwnEntitiesByClass("Soldier", true).values())
@@ -477,21 +479,6 @@ m.GameTypeManager.prototype.pickCriticalEntRetreatLocation = function(gameState,
 		let bestBasePos = bestBase.anchor.position();
 		criticalEnt.move(bestBasePos[0], bestBasePos[1]);
 	}
-};
-
-/**
- * The number of healers trained per critical ent (dependent on the defensive trait)
- * may not be the number of healers actually guarding an ent at any one time.
- */
-m.GameTypeManager.prototype.trainCriticalEntHealer = function(gameState, queues, id)
-{
-	if (gameState.ai.HQ.saveResources || !gameState.getOwnEntitiesByClass("Temple", true).hasEntities())
-		return;
-
-	let template = gameState.applyCiv("units/{civ}_support_healer_b");
-
-	queues.healer.addPlan(new m.TrainingPlan(gameState, template, { "role": "criticalEntHealer", "base": 0 }, 1, 1));
-	++this.criticalEnts.get(id).healersAssigned;
 };
 
 /**
