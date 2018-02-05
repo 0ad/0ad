@@ -46,7 +46,6 @@ var heightLand = 3;
 var g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
-const mapSize = g_Map.getSize();
 
 var clPlayer = g_Map.createTileClass();
 var clHill = g_Map.createTileClass();
@@ -62,12 +61,13 @@ var treasures = [
 	{ "template": oFoodTreasure, "distance": 5 },
 	{ "template": oWoodTreasure, "distance": 5 },
 	{ "template": oMetalTreasure, "distance": 3 },
-	{ "template": oMetalTreasure, "distance": 2 },
+	{ "template": oStoneTreasure, "distance": 2 }
 ];
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
-g_Map.log("Creating playerbases);
+g_Map.log("Creating playerbases");
+var playerAngle = BUILDING_ORIENTATION;
 for (let i = 0; i < numPlayers; ++i)
 {
 	if (isNomad())
@@ -85,36 +85,26 @@ for (let i = 0; i < numPlayers; ++i)
 	}
 
 	// Treasure
-	let bbAngle = BUILDING_ORIENTATION;
-	for (let treasure of treasures)
-	{
-		let position = Vector2D.add(playerPosition[i], new Vector2D(10, 0).rotate(-bbAngle))
-		createObjectGroup(new SimpleGroup([new SimpleObject(oFoodTreasure, 5, 5, 0, 2)], true, clBaseResource, position), 0);
-		bbAngle += Math.PI / 2;
-	}
+	for (let j = 0; j < treasures.length; ++j)
+		createObjectGroup(
+			new SimpleGroup(
+				[new SimpleObject(treasures[j].template, treasures[j].distance, treasures[j].distance, 0, 2)],
+				false,
+				clBaseResource,
+				Vector2D.add(playerPosition[i], new Vector2D(10, 0).rotate(-j * Math.PI / 2 - playerAngle))),
+			0);
 
 	// Ground texture
 	var civ = getCivCode(playerIDs[i]);
-	var tilesSize = civ == "cart" ? 24 : 22;
-	const minBoundX = Math.max(0, playerPosition[i].x - tilesSize);
-	const minBoundY = Math.max(0, playerPosition[i].y - tilesSize);
-	const maxBoundX = Math.min(mapSize, playerPosition[i].x + tilesSize);
-	const maxBoundY = Math.min(mapSize, playerPosition[i].y + tilesSize);
-
-	for (var tx = minBoundX; tx < maxBoundX; ++tx)
-		for (var ty = minBoundY; ty < maxBoundY; ++ty)
-		{
-			let position = new Vector2D(tx, ty);
-			var unboundSumOfXY = tx + ty - minBoundX - minBoundY;
-			if (unboundSumOfXY > tilesSize &&
-			    unboundSumOfXY < tilesSize * 3 &&
-			    tx - ty + minBoundY - minBoundX < tilesSize &&
-			    ty - tx - minBoundY + minBoundX < tilesSize)
-			{
-				createTerrain(tRoad).place(position);
-				clPlayer.add(position);
-			}
-		}
+	var tilesSize = civ == "cart" ? 23 : 21;
+	createArea(
+		new ConvexPolygonPlacer(
+			new Array(4).fill(0).map((zero, j) => new Vector2D(tilesSize, 0).rotate(j * Math.PI / 2 - playerAngle - Math.PI/4).add(playerPosition[i])),
+			Infinity),
+		[
+			new TerrainPainter(tRoad),
+			new TileClassPainter(clPlayer)
+		]);
 
 	// Fortress
 	if (civ == "brit" || civ == "gaul" || civ == "iber")
@@ -133,7 +123,7 @@ for (let i = 0; i < numPlayers; ++i)
 			"cornerIn", "long", "house", "tower", "long", "tower", "long",
 			"cornerIn", "long", "house", "tower"];
 	}
-	placeCustomFortress(playerPosition[i], new Fortress("Spahbod", wall), civ, playerIDs[i], -Math.PI/4);
+	placeCustomFortress(playerPosition[i], new Fortress("Spahbod", wall), civ, playerIDs[i], playerAngle);
 }
 
 g_Map.log("Creating lakes");
