@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 #include <boost/random/linear_congruential.hpp>
 
 #include <set>
+#include <string>
 
 class CMapGeneratorWorker;
 
@@ -124,6 +125,7 @@ private:
 	static bool LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
 	static void ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);
 	static JS::Value LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& src);
+	static JS::Value LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const std::string& filename);
 	static void SetProgress(ScriptInterface::CxPrivate* pCxPrivate, int progress);
 	static CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
 	static bool TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);

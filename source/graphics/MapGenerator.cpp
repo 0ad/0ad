@@ -20,10 +20,13 @@
 #include "MapGenerator.h"
 
 #include "graphics/MapIO.h"
+#include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 #include "lib/status.h"
 #include "lib/timer.h"
+#include "maths/MathUtil.h"
 #include "ps/CLogger.h"
+#include "ps/FileIo.h"
 #include "ps/Profile.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "scriptinterface/ScriptConversions.h"
@@ -105,6 +108,7 @@ bool CMapGeneratorWorker::Run()
 	JSI_VFS::RegisterScriptFunctions_Maps(*m_ScriptInterface);
 	m_ScriptInterface->RegisterFunction<bool, std::wstring, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");
 	m_ScriptInterface->RegisterFunction<JS::Value, std::wstring, CMapGeneratorWorker::LoadHeightmap>("LoadHeightmapImage");
+	m_ScriptInterface->RegisterFunction<JS::Value, std::string, CMapGeneratorWorker::LoadMapTerrain>("LoadMapTerrain");
 	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
 	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
 	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
@@ -228,7 +232,6 @@ int CMapGeneratorWorker::GetTerrainTileSize(ScriptInterface::CxPrivate* UNUSED(p
 	return TERRAIN_TILE_SIZE;
 }
 
-
 bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 {
 	// Ignore libraries that are already loaded
@@ -285,6 +288,71 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPriv
 	JSAutoRequest rq(cx);
 	JS::RootedValue returnValue(cx);
 	ToJSVal_vector(cx, &returnValue, heightmap);
+	return returnValue;
+}
+
+// See CMapReader::UnpackTerrain, CMapReader::ParseTerrain for the reordering
+JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const std::string& filename)
+{
+	if (!VfsFileExists(filename))
+		throw PSERROR_File_OpenFailed();
+
+	CFileUnpacker unpacker;
+	unpacker.Read(filename, "PSMP");
+
+	if (unpacker.GetVersion() < CMapIO::FILE_READ_VERSION)
+		throw PSERROR_File_InvalidVersion();
+
+	// unpack size
+	ssize_t patchesPerSide = (ssize_t)unpacker.UnpackSize();
+	size_t verticesPerSide = patchesPerSide * PATCH_SIZE + 1;
+
+	// unpack heightmap
+	std::vector<u16> heightmap;
+	heightmap.resize(SQR(verticesPerSide));
+	unpacker.UnpackRaw(&heightmap[0], SQR(verticesPerSide) * sizeof(u16));
+
+	// unpack texture names
+	size_t textureCount = unpacker.UnpackSize();
+	std::vector<std::string> textureNames;
+	textureNames.reserve(textureCount);
+	for (size_t i = 0; i < textureCount; ++i)
+	{
+		CStr texturename;
+		unpacker.UnpackString(texturename);
+		textureNames.push_back(texturename);
+	}
+
+	// unpack texture IDs per tile
+	ssize_t tilesPerSide = patchesPerSide * PATCH_SIZE;
+	std::vector<CMapIO::STileDesc> tiles;
+	tiles.resize(size_t(SQR(tilesPerSide)));
+	unpacker.UnpackRaw(&tiles[0], sizeof(CMapIO::STileDesc) * tiles.size());
+
+	// reorder by patches and store and save texture IDs per tile
+	std::vector<u16> textureIDs;
+	for (ssize_t x = 0; x < tilesPerSide; ++x)
+	{
+		size_t patchX = x / PATCH_SIZE;
+		size_t offX = x % PATCH_SIZE;
+		for (ssize_t y = 0; y < tilesPerSide; ++y)
+		{
+			size_t patchY = y / PATCH_SIZE;
+			size_t offY = y % PATCH_SIZE;
+			// m_Priority and m_Tex2Index unused
+			textureIDs.push_back(tiles[(patchY * patchesPerSide + patchX) * SQR(PATCH_SIZE) + (offY * PATCH_SIZE + offX)].m_Tex1Index);
+		}
+	}
+
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	JSContext* cx = self->m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue returnValue(cx);
+	self->m_ScriptInterface->Eval("({})", &returnValue);
+	self->m_ScriptInterface->SetProperty(returnValue, "height", heightmap);
+	self->m_ScriptInterface->SetProperty(returnValue, "textureNames", textureNames);
+	self->m_ScriptInterface->SetProperty(returnValue, "textureIDs", textureIDs);
+
 	return returnValue;
 }
 
