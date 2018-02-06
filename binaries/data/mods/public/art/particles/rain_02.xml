@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <particles>
-    <texture>art/textures/particles/raindrop.png</texture>
+    <texture>art/textures/particles/raindrop_02.png</texture>
     <blend mode="over"/>
     <start_full/>
     <constant name="emissionrate" value="300.0"/>
@@ -8,8 +8,8 @@
     <uniform name="position.x" min="-50.0" max="50.0"/>
     <uniform name="position.z" min="-50.0" max="50.0"/>
     <uniform name="position.y" min="75.0" max="90.0"/>
-    <uniform name="velocity.x" min="-0.1" max="0.1"/>
-    <uniform name="velocity.y" min="-10.0" max="-16.0"/>
+    <constant name="velocity.x" value="-9.2"/>
+    <constant name="velocity.y" value="-16.0"/>
     <uniform name="size" min="1.0" max="2.0"/>
-    <force y="-6.0"/>
+    <force y="-16.0" x="-9.2"/>
 </particles>
