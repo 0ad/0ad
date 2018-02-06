@@ -97,15 +97,7 @@ function getTemplateListsFromUnit(templateName)
 	let template = loadTemplate(templateName);
 
 	let templateLists = loadProductionQueue(template);
-
-	templateLists.structures = [];
-	if (template.Builder && template.Builder.Entities._string)
-		for (let build of template.Builder.Entities._string.split(" "))
-		{
-			build = build.replace(/\{(civ|native)\}/g, g_SelectedCiv);
-			if (Engine.TemplateExists(build) && templateLists.structures.indexOf(build) === -1)
-				templateLists.structures.push(build);
-		}
+	templateLists.structures = loadBuildQueue(template);
 
 	return templateLists;
 }
@@ -172,4 +164,21 @@ function loadProductionQueue(template)
 		}
 
 	return production;
+}
+
+function loadBuildQueue(template)
+{
+	let buildQueue = [];
+
+	if (!template.Builder || !template.Builder.Entities._string)
+		return buildQueue;
+
+	for (let build of template.Builder.Entities._string.split(" "))
+	{
+		build = build.replace(/\{(civ|native)\}/g, g_SelectedCiv);
+		if (Engine.TemplateExists(build))
+			buildQueue.push(build);
+	}
+
+	return buildQueue;
 }
