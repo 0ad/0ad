@@ -315,12 +315,10 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	let cmpRepairable = QueryMiragedInterface(ent, IID_Repairable);
 	if (cmpRepairable)
-	{
-		ret.repairable = { "numBuilders": cmpRepairable.GetNumBuilders() };
-		cmpRepairable = Engine.QueryInterface(ent, IID_Repairable);
-		if (cmpRepairable)
-			ret.repairRate = cmpRepairable.GetRepairRate();
-	}
+		ret.repairable = {
+			"numBuilders": cmpRepairable.GetNumBuilders(),
+			"buildTime": cmpRepairable.GetBuildTime()
+		};
 
 	let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 	if (cmpOwnership)

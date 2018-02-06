@@ -352,42 +352,48 @@ function getProjectilesTooltip(template)
 	].join(commaFont(translate(", ")));
 }
 
-function getRepairRateTooltip(template)
+function getRepairTimeTooltip(entState)
 {
-	if (!template.repairRate)
-		return "";
-
-	return sprintf(translate("%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
-		"repairRateLabel": headerFont(translate("Repair Rate:")),
-		"value": template.repairRate.toFixed(1),
-		"health": unitFont(translate("Health")),
-		"second": unitFont(translate("second")),
-		"worker": unitFont(translate("Worker"))
-	});
+	return sprintf(translate("%(label)s %(details)s"), {
+			"label": headerFont(translate("Number of repairers:")),
+			"details": entState.repairable.numBuilders
+		}) + "\n" + (entState.repairable.numBuilders ?
+		sprintf(translatePlural(
+			"Add another worker to speed up the repairs by %(second)s second.",
+			"Add another worker to speed up the repairs by %(second)s seconds.",
+			Math.round(entState.repairable.buildTime.timeRemaining - entState.repairable.buildTime.timeRemainingNew)),
+		{
+			"second": Math.round(entState.repairable.buildTime.timeRemaining - entState.repairable.buildTime.timeRemainingNew)
+		}) :
+		sprintf(translatePlural(
+			"Add a worker to finish the repairs in %(second)s second.",
+			"Add a worker to finish the repairs in %(second)s seconds.",
+			Math.round(entState.repairable.buildTime.timeRemainingNew)),
+		{
+			"second": Math.round(entState.repairable.buildTime.timeRemainingNew)
+		}));
 }
 
 function getBuildTimeTooltip(entState)
 {
-	if (!entState.foundation.numBuilders)
-		return sprintf(translatePlural(
-			"Add a worker to finish the construction in %(second)s second.",
-			"Add a worker to finish the construction in %(second)s seconds.",
-			Math.round(entState.foundation.buildTime.timeRemainingNew)),
-		{
-			"second": Math.round(entState.foundation.buildTime.timeRemainingNew)
-		});
-
 	return sprintf(translate("%(label)s %(details)s"), {
 			"label": headerFont(translate("Number of builders:")),
 			"details": entState.foundation.numBuilders
-		}) + "\n" +
+		}) + "\n" + (entState.foundation.numBuilders ?
 		sprintf(translatePlural(
 			"Add another worker to speed up the construction by %(second)s second.",
 			"Add another worker to speed up the construction by %(second)s seconds.",
 			Math.round(entState.foundation.buildTime.timeRemaining - entState.foundation.buildTime.timeRemainingNew)),
 		{
 			"second": Math.round(entState.foundation.buildTime.timeRemaining - entState.foundation.buildTime.timeRemainingNew)
-		});
+		}) :
+		sprintf(translatePlural(
+			"Add a worker to finish the construction in %(second)s second.",
+			"Add a worker to finish the construction in %(second)s seconds.",
+			Math.round(entState.foundation.buildTime.timeRemainingNew)),
+		{
+			"second": Math.round(entState.foundation.buildTime.timeRemainingNew)
+		}));
 }
 
 /**
