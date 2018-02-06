@@ -1,3 +1,5 @@
+const g_TileVertices = deepfreeze([new Vector2D(0, 0), new Vector2D(1, 0), new Vector2D(0, 1), new Vector2D(1, 1)]);
+
 function diskArea(radius)
 {
 	return Math.PI * Math.square(radius);

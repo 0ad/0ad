@@ -117,10 +117,9 @@ function ElevationPainter(elevation)
 ElevationPainter.prototype.paint = function(area)
 {
 	for (let point of area.points)
-		for (let [dx, dz] of [[0, 0], [1, 0], [0, 1], [1, 1]])
+		for (let vertex of g_TileVertices)
 		{
-			let position = Vector2D.add(point, new Vector2D(dx, dz));
-
+			let position = Vector2D.add(point, vertex);
 			if (g_Map.inMapBounds(position))
 				g_Map.setHeight(position, this.elevation);
 		}
@@ -193,9 +192,9 @@ SmoothElevationPainter.prototype.paint = function(area)
 
 	// Every vertex of a tile is considered within the area
 	let withinArea = (areaID, position) => {
-		for (let [dx, dz] of [[0, 0], [1, 0], [0, 1], [1, 1]])
+		for (let vertex of g_TileVertices)
 		{
-			let vertexPos = Vector2D.sub(position, new Vector2D(dx, dz));
+			let vertexPos = Vector2D.sub(position, vertex);
 			if (g_Map.inMapBounds(vertexPos) && g_Map.area[vertexPos.x][vertexPos.y] == areaID)
 				return true;
 		}

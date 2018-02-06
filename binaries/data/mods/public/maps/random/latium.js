@@ -199,15 +199,15 @@ for (var ix = 0; ix < mapSize; ix++)
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
 
-		// get heights of surrounding vertices
-		var h00 = g_Map.getHeight(Vector2D.add(position, new Vector2D(0, 0)));
-		var h01 = g_Map.getHeight(Vector2D.add(position, new Vector2D(0, 1)));
-		var h10 = g_Map.getHeight(Vector2D.add(position, new Vector2D(1, 0)));
-		var h11 = g_Map.getHeight(Vector2D.add(position, new Vector2D(1, 1)));
-
-		// find min and max height
-		var maxH = Math.max(h00, h01, h10, h11);
-		var minH = Math.min(h00, h01, h10, h11);
+		// Compute height difference
+		let minH = +Infinity;
+		let maxH = -Infinity;
+		for (let vertex of g_TileVertices)
+		{
+			let height = g_Map.getHeight(Vector2D.add(position, vertex));
+			minH = Math.min(minH, height);
+			maxH = Math.max(maxH, height);
+		}
 		var diffH = maxH - minH;
 
 		// figure out if we're at the top of a cliff using min adjacent height

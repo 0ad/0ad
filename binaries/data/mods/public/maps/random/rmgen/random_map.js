@@ -244,7 +244,7 @@ RandomMap.prototype.placeEntityAnywhere = function(templateName, playerID, posit
  */
 RandomMap.prototype.placeEntityPassable = function(templateName, playerID, position, orientation)
 {
-	if (g_Map.validTilePassable(position))
+	if (this.validTilePassable(position))
 		this.placeEntityAnywhere(templateName, playerID, position, orientation);
 };
 
@@ -312,9 +312,9 @@ RandomMap.prototype.cornerHeight = function(position)
 	let count = 0;
 	let sumHeight = 0;
 
-	for (let dir of [[-1, -1], [-1, 0], [0, -1], [0, 0]])
+	for (let vertex of g_TileVertices)
 	{
-		let pos = Vector2D.add(position, new Vector2D(dir[0], dir[1]));
+		let pos = Vector2D.sub(position, vertex);
 		if (this.validHeight(pos))
 		{
 			++count;
