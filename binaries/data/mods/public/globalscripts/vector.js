@@ -209,6 +209,16 @@ Vector2D.div = function(v, f)
 	return new Vector2D(v.x / f, v.y / f);
 };
 
+Vector2D.min = function(v1, v2)
+{
+	return new Vector2D(Math.min(v1.x, v2.x), Math.min(v1.y, v2.y));
+};
+
+Vector2D.max = function(v1, v2)
+{
+	return new Vector2D(Math.max(v1.x, v2.x), Math.max(v1.y, v2.y));
+};
+
 Vector2D.average = function(vectorList)
 {
 	return Vector2D.sum(vectorList).div(vectorList.length);

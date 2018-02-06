@@ -160,6 +160,20 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v3.angleTo(v2), -Math.PI / 4);
 }
 
+// Test Vector2D min / max functions
+{
+	let v1 = new Vector2D(-1, 8);
+	let v2 = new Vector2D(-2, -1);
+
+	let min = Vector2D.min(v1, v2)
+	TS_ASSERT_EQUALS(min.x, -2);
+	TS_ASSERT_EQUALS(min.y, -1);
+
+	let max = Vector2D.max(v1, v2)
+	TS_ASSERT_EQUALS(max.x, -1);
+	TS_ASSERT_EQUALS(max.y, 8);
+}
+
 // Test Vector2D list functions
 {
 	let list = [
