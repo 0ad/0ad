@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/base_horse_swordsman.xml" frequency="1" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
+      <props>
+        <prop actor="units/kushites/cavalry_spearman_hero_nastasen_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/kush_crest_bronze.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="hyppikon-horse-texture-plain">
+      <textures>
+        <texture file="skeletal/horse_hele_csw_e_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse-color-chocolate">
+      <color>98 68 58</color>
+    </variant>
+    <variant frequency="0" name="horse-color-ruddish">
+      <color>254 200 160</color>
+    </variant>
+    <variant frequency="0" name="horse-color-sandy">
+      <color>254 214 129</color>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

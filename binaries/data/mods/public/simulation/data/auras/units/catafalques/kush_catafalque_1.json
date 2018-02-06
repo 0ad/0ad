@@ -1,0 +1,10 @@
+{
+	"type": "global",
+	"affects": ["FemaleCitizen"],
+	"affectedPlayers": ["Enemy"],
+	"modifications": [
+		{ "value": "ResourceGatherer/BaseSpeed", "multiply": 0.85 }
+	],
+	"auraName": "Earliest Nubian Queen",
+	"auraDescription": "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\nAwe: All enemy female citizens -15% gather rate."
+}

@@ -1,0 +1,169 @@
+{
+	"Code": "kush",
+	"Culture": "egyptian",
+	"Name": "Kushites",
+	"Emblem": "session/portraits/emblems/kushites.png",
+	"History": "The Kingdom of Kush was an ancient African kingdom situated on the confluences of the Blue Nile, White Nile and River Atbara in what is now the Republic of Sudan. The Kushite era of rule in the region was established after the Bronze Age collapse of the New Kingdom of Egypt, and it was centered at Napata in its early phase. They invaded Egypt in the 8th century BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty of Egypt for a century, until they were expelled by the Assyrians. Kushite culture was influenced heavily by the Egyptians, with Kushite pyramid building and monumental temple architecture still extent. The Kushites even worshipped many Egyptian gods, including Amun. During Classical antiquity, the Kushite imperial capital was at Meroe. In early Greek geography, the Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until the 4th century AD, when it weakened and disintegrated due to internal rebellion, eventually succumbing to the rising power of Axum.",
+	"Music":
+	[
+		{ "File": "Ammon-Ra.ogg", "Type": "peace" },
+		{ "File": "Sands_of_Time.ogg", "Type": "peace" },
+		{ "File": "Land_between_the_two_Seas.ogg", "Type": "peace" },
+		{ "File": "Valley_of_the_Nile.ogg", "Type": "peace" }
+	],
+	"Factions":
+	[
+		{
+			"Name": "Kushite Africans",
+			"Description": "The great African kingdom that straddled the Nile River in Nubia, in the South of Egypt.",
+			"Technologies":
+			[
+				{
+					"Name": "Monumental Architecture",
+					"Description": "+50% HP and -50% build time for Civic Centres, Temples, Pyramids and Wonders."
+				},
+				{
+					"Name": "High Priest of Amun",
+					"History": "Have your priests instructed by the High Priest himself - may Amun bless him.",
+					"Description": "Allow to train elite rank healers"
+				}
+			],
+			"Heroes":
+			[
+				{
+					"Name": "Nastasen",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "emblem.png",
+					"History": ""
+				},
+				{
+					"Name": "Arakamani",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "emblem.png",
+					"History": ""
+				},
+				{
+					"Name": "Amanirenas",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "emblem.png",
+					"History": ""
+				}
+			]
+		}
+	],
+	"CivBonuses":
+	[
+		{
+			"Name": "The Pyramids of Meroe",
+			"Description": "Building a Kushite pyramid increases Civic Center territory influence by +10% for each one built."
+		},
+		{
+			"Name": "Mineral Deposits",
+			"Description": "Kushite players receive a free extra Metal Mine somewhere in their home territory."
+		},
+		{
+			"Name": "Elephant Roundup",
+			"Description": "Can capture Gaia elephants and garrison them into a corral to reduce training costs for War Elephants."
+		}
+	],
+	"TeamBonuses":
+	[
+		{
+			"Name": "Elephant Suppliers",
+			"Description": "Reduces the cost and train time for elephants with 20% for allies of Kushite players."
+		}
+	],
+	"Structures":
+	[
+		{
+			"Name": "Temple of Amun",
+			"Class": "",
+			"Emblem": "emblem.png",
+			"History": "History.",
+			"Requirements": ".",
+			"Phase": "City",
+			"Special": "The Kushites can upgrade individual Temples to Temples of Amun, which can train Napatan Temple Guard champions and heal units faster."
+		},
+		{
+			"Name": "Temple of Apedemak",
+			"Class": "",
+			"Emblem": "emblem.png",
+			"History": "History.",
+			"Requirements": ".",
+			"Phase": "City",
+			"Special": "The Kushites can upgrade individual Temples to Temples of Apedemak, which can train Meroe Temple Guard champions and heal units faster."
+		},
+		{
+			"Name": "Kushite Pyramids",
+			"Class": "",
+			"Emblem": "emblem.png",
+			"History": "The Kushites built over 200 pyramids in Nubia.",
+			"Requirements": ".",
+			"Phase": "Village",
+			"Special": "Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% territory effect to Civic Centers."
+		}
+	],
+	"StartEntities":
+	[
+		{
+			"Template": "structures/kush_civil_centre"
+		},
+		{
+			"Template": "units/kush_support_female_citizen",
+			"Count": 4
+		},
+		{
+			"Template": "units/kush_infantry_spearman_b",
+			"Count": 2
+		},
+		{
+			"Template": "units/kush_infantry_archer_b",
+			"Count": 2
+		},
+		{
+			"Template": "units/kush_cavalry_javelinist_b"
+		}
+	],
+	"WallSets":
+	[
+		"other/wallset_palisade",
+		"structures/kush_wallset_stone"
+	],
+	"Formations":
+	[
+		"special/formations/null",
+		"special/formations/line_closed",
+		"special/formations/line_open",
+		"special/formations/column_closed",
+		"special/formations/wedge",
+		"special/formations/syntagma"
+	],
+	"AINames":
+	[
+		"Kashta",
+		"Alara",
+		"Pebatjma",
+		"Shabaka",
+		"Shebitku",
+		"Qalhata",
+		"Takahatenamun",
+		"Tantamani",
+		"Atlanersa",
+		"Nasalsa",
+		"Malewiebamani",
+		"Harsiotef",
+		"Shanakdakhete",
+		"Amanishakheto"
+	],
+	"SkirmishReplacements":
+	{
+		"skirmish/units/default_infantry_melee_b": "units/kush_infantry_spearman_b",
+		"skirmish/units/default_infantry_ranged_b": "units/kush_infantry_archer_b",
+		"skirmish/units/default_cavalry": "units/kush_cavalry_javelinist_b",
+		"skirmish/structures/default_house_10": "structures/{civ}_house"
+	},
+	"SelectableInGameSetup": true
+}

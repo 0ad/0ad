@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_cavalry_swordsman">
+  <Auras datatype="tokens">
+    units/heroes/kush_hero_arakamani_1
+    units/heroes/kush_hero_arakamani_2
+    units/heroes/kush_hero_arakamani_3
+  </Auras>
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Arakamani</GenericName>
+    <SpecificName>‘Irk.‘Imn</SpecificName>
+    <Icon>units/mace_hero_philip.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/ptolemies/hero_ptolemy_IV.xml</Actor>
+  </VisualActor>
+</Entity>

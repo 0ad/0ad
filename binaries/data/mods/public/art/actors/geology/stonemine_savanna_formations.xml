@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="a">
+      <mesh>gaia/rock_stonemine_desert_bl01.dae</mesh>
+      <textures>
+	  <texture file="gaia/stonequarry_savanna.png" name="baseTex"/>
+	  <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
+	  <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
+	  <texture file="gaia/ao/rock_stonemine_desert_bl01_ao.png" name="aoTex"/>
+	  </textures>
+	   <props>
+        <prop actor="props/structures/decals/gravel_savanna_3v3.xml" attachpoint="root"/>
+      </props>
+	</variant>
+    <variant frequency="1" name="b">
+      <mesh>gaia/rock_stonemine_desert_bl02.dae</mesh>
+	  <textures>
+	  <texture file="gaia/stonequarry_savanna.png" name="baseTex"/>
+	  <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
+	  <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
+	  <texture file="gaia/ao/rock_stonemine_desert_bl02_ao.png" name="aoTex"/>
+	  </textures>
+	   <props>
+        <prop actor="props/structures/decals/gravel_savanna_3v3.xml" attachpoint="root"/>
+      </props>
+    </variant>
+	<variant frequency="1" name="c">
+      <mesh>gaia/rock_stonemine_desert_bl03.dae</mesh>
+	  <textures>
+	  <texture file="gaia/stonequarry_savanna.png" name="baseTex"/>
+	  <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
+	  <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
+	  <texture file="gaia/ao/rock_stonemine_desert_bl03_ao.png" name="aoTex"/>
+	  </textures>
+	  <props>
+        <prop actor="props/structures/decals/gravel_savanna_3v3.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_ao_parallax_spec.xml</material>
+</actor>

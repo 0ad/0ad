@@ -3,10 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="mesh">
-      <mesh>props/dude_head.dae</mesh>
-      <props>
-        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
-      </props>
+      <mesh>props/new/dude_head.dae</mesh>
       <textures>
         <texture file="props/head/african_01.dds" name="baseTex"/>
       </textures>

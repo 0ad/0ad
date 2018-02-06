@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wall_gate">
+  <Footprint>
+    <Square width="42.0" depth="14.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>kush</Civ>
+    <SpecificName>’ryt</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Obstructions>
+      <Right width="14.5" depth="12.5" x="13.5" z="0"/>
+      <Left width="14.5" depth="12.5" x="-13.5" z="0"/>
+      <Door width="11" depth="12.5" x="0" z="0"/>
+    </Obstructions>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/kushites/wall_gate.xml</Actor>
+  </VisualActor>
+  <WallPiece>
+    <Length>34.6</Length>
+  </WallPiece>
+</Entity>

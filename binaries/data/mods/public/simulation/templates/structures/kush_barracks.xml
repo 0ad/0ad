@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <Footprint>
+    <Square width="25.0" depth="25.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>kush</Civ>
+    <SpecificName>pr-ms’yw</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="20.0" depth="20.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}_infantry_clubman_b
+      units/{civ}_infantry_merc_javelinist_b
+      units/{civ}_camelry_javelinist_b
+    </Entities>
+    <Technologies datatype="tokens">
+      upgrade_rank_advanced_mercenary
+    </Technologies>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/kushites/barracks.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_fishing">
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Fishing Boat</GenericName>
+    <SpecificName>Wh’-rmw</SpecificName>
+    <Icon>units/ptol_ship_fishing.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/ptolemies/fishing_boat.xml</Actor>
+  </VisualActor>
+</Entity>

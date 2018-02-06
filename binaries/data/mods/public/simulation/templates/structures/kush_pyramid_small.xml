@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Auras datatype="tokens">
+    structures/kush_pyramids_economic
+  </Auras>
+  <BuildRestrictions>
+    <Category>PyramidSmall</Category>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <food>300</food>
+      <wood>0</wood>
+      <stone>300</stone>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="18.0" depth="18.0"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Health>
+    <Max>2000</Max>
+  </Health>
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Small Pyramid</GenericName>
+    <SpecificName>mr</SpecificName>
+    <VisibleClasses datatype="tokens">-City Village Pyramid</VisibleClasses>
+    <Classes datatype="tokens">Pyramid -ConquestCritical PyramidSmall</Classes>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Icon>structures/kush_pyramid_small.png</Icon>
+  </Identity>
+  <Loot>
+    <wood>0</wood>
+    <stone>60</stone>
+    <metal>0</metal>
+  </Loot>
+  <Obstruction>
+    <Static width="16.0" depth="16.0"/>
+  </Obstruction>
+  <ProductionQueue disable=""/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_temple_10.xml</select>
+      <constructed>interface/complete/building/complete_iber_monument.xml</constructed>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>12.0</HeightOffset>
+  </StatusBars>
+  <Vision>
+    <Range>30</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/kushites/pyramid_small.xml</Actor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+  </VisualActor>
+</Entity>

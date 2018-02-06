@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_trader.xml">
+      <mesh>skeletal/new/m_dress_sleeves.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/trader_staff.xml" attachpoint="weapon_L"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_support_trader.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <props>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/kush_struct.png" name="baseTex"/>
+        <texture file="structural/kush_struct_spec.png" name="specTex"/>
+        <texture file="structural/kush_struct_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>structural/kush_house_1.dae</mesh>
+      <textures>
+        <texture file="structural/ao/kush_house_1.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>structural/kush_house_2.dae</mesh>
+      <textures>
+        <texture file="structural/ao/kush_house_2.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="3">
+      <mesh>structural/kush_house_3.dae</mesh>
+      <textures>
+        <texture file="structural/ao/kush_house_3.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="4">
+      <mesh>structural/kush_house_4.dae</mesh>
+      <textures>
+        <texture file="structural/ao/kush_house_4.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_kush.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wall_tower">
+  <Footprint>
+    <Square width="12" depth="12"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>kush</Civ>
+    <SpecificName>s3wt</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="10" depth="10"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/kushites/wall_tower.xml</Actor>
+  </VisualActor>
+  <WallPiece>
+    <Length>8.6</Length>
+  </WallPiece>
+</Entity>

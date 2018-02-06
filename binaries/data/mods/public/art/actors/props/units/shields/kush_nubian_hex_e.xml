@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Kush Hexagonal Shield">
+      <mesh>props/shield/kush_nubian_hex_front.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/kush_nubian_hex_back_e.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="kush-hex-wicker-elite-1">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_e_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-hex-wicker-elite-2">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_e_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-hex-wicker-elite-3">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_e_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-hex-wicker-elite-4">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_e_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-hex-wicker-elite-5">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_e_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-hex-wicker-elite-6">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_e_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-hex-wicker-elite-7">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_e_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-hex-wicker-elite-8">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_e_08.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

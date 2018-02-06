@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Mesh">
+      <animations>
+        <animation file="quadraped/donkey_idle_01.dae" name="idle" speed="10"/>
+        <animation file="quadraped/donkey_death_01.dae" name="death" speed="40"/>
+        <animation file="quadraped/donkey_walk_01.dae" name="walk" speed="25"/>
+      </animations>
+      <mesh>skeletal/donkey.dae</mesh>
+      <props>
+        <prop actor="props/units/horse/donkey_pack_01.xml" attachpoint="saddle"/>
+      </props>
+      <textures>
+        <texture file="skeletal/animal_donkey.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wall_long">
+  <Footprint>
+    <Square width="40" depth="10.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <VisibleGarrisonPoints>
+      <Archer1>
+        <X>0</X>
+        <Y>11.6</Y>
+        <Z>0</Z>
+      </Archer1>
+      <Archer2>
+        <X>8</X>
+        <Y>11.6</Y>
+        <Z>0</Z>
+      </Archer2>
+      <Archer3>
+        <X>-8</X>
+        <Y>11.6</Y>
+        <Z>0</Z>
+      </Archer3>
+      <Archer4>
+        <X>4</X>
+        <Y>11.6</Y>
+        <Z>0</Z>
+      </Archer4>
+      <Archer5>
+        <X>-4</X>
+        <Y>11.6</Y>
+        <Z>0</Z>
+      </Archer5>
+    </VisibleGarrisonPoints>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>kush</Civ>
+    <SelectionGroupName>structures/ptol_wallset_stone</SelectionGroupName>
+    <SpecificName>sbty</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="38.0" depth="8.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/kushites/wall_long.xml</Actor>
+  </VisualActor>
+  <WallPiece>
+    <Length>34.9</Length>
+  </WallPiece>
+</Entity>

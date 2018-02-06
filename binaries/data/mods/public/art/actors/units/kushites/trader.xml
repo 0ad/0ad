@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>skeletal/celt_trader.dae</mesh>
+      <props>
+        <prop actor="units/kushites/trader_r.xml" attachpoint="trader"/>
+        <prop actor="units/kushites/trader_h.xml" attachpoint="donkey"/>
+      </props>
+      <textures>
+        <texture file="null_white.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

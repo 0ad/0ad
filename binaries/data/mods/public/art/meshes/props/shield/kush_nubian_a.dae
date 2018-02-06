@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53177</authoring_tool>
+    </contributor>
+    <created>2013-03-29T05:00:48</created>
+    <modified>2013-03-29T05:00:48</modified>
+    <unit name="centimeter" meter="0.01"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects/>
+  <library_geometries>
+    <geometry id="nubi_a-mesh" name="nubi_a">
+      <mesh>
+        <source id="nubi_a-mesh-positions">
+          <float_array id="nubi_a-mesh-positions-array" count="48">0 0 1.225014 -0.2492961 0.005492508 1.013901 -0.4606392 0.02713823 0.7071068 -0.6018542 0.05088174 0.3826834 -0.6514422 0.06387549 0 -0.6018542 0.05088174 -0.3826835 -0.4606392 0.02713835 -0.7071068 -0.2492962 0.005492568 -1.0139 -1.27455e-7 1.26138e-7 -1.225014 0.249296 0.005492568 -1.013901 0.460639 0.02713829 -0.707107 0.6018541 0.05088174 -0.3826836 0.6514422 0.06387549 0 0.6018541 0.05088174 0.3826836 0.460639 0.02713823 0.707107 0.2492958 0.005492508 1.013901</float_array>
+          <technique_common>
+            <accessor source="#nubi_a-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="nubi_a-mesh-normals">
+          <float_array id="nubi_a-mesh-normals-array" count="48">0 -1 0 -0.03881949 -0.9992371 0 -0.03881949 -0.9992371 0 0 -0.9999695 0 -0.1109042 -0.9938048 0 -0.1109042 -0.9938048 0 -0.1698965 -0.9854427 0 -0.1698965 -0.9854427 0 -0.2534562 -0.9673147 0 0.03881949 -0.9992371 0 0.03881949 -0.9992371 0 0.1109042 -0.9938048 0 0.1109042 -0.9938048 0 0.1698965 -0.9854427 0 0.1698965 -0.9854427 0 0.2534562 -0.9673147 0</float_array>
+          <technique_common>
+            <accessor source="#nubi_a-mesh-normals-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="nubi_a-mesh-map-0">
+          <float_array id="nubi_a-mesh-map-0-array" count="60">0.5 0.9433594 0.3085938 0.8632813 0.3085938 0.09765625 0.5 0.01757812 0.3085938 0.8632813 0.1523437 0.7480469 0.1523437 0.2128906 0.3085938 0.09765625 0.04296875 0.3359375 0.1523437 0.2128906 0.1523437 0.7480469 0.04296875 0.625 0.04296875 0.3359375 0.04296875 0.625 0.0078125 0.4804688 0.6914063 0.8632813 0.5 0.9433594 0.5 0.01757812 0.6914063 0.09765625 0.6914063 0.09765625 0.8476563 0.2128906 0.8476563 0.7480469 0.6914063 0.8632813 0.9570313 0.625 0.8476563 0.7480469 0.8476563 0.2128906 0.9570313 0.3359375 0.9570313 0.625 0.9570313 0.3359375 0.9921875 0.4804688</float_array>
+          <technique_common>
+            <accessor source="#nubi_a-mesh-map-0-array" count="30" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="nubi_a-mesh-vertices">
+          <input semantic="POSITION" source="#nubi_a-mesh-positions"/>
+        </vertices>
+        <polylist count="8">
+          <input semantic="VERTEX" source="#nubi_a-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#nubi_a-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#nubi_a-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 4 4 3 4 4 4 3 </vcount>
+          <p>0 0 0 1 1 1 7 2 2 8 3 3 1 1 4 2 4 5 6 5 6 7 2 7 5 6 8 6 5 9 2 4 10 3 7 11 5 6 12 3 7 13 4 8 14 15 9 15 0 0 16 8 3 17 9 10 18 9 10 19 10 11 20 14 12 21 15 9 22 13 13 23 14 12 24 10 11 25 11 14 26 13 13 27 11 14 28 12 15 29</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="nubi_a" name="nubi_a" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#nubi_a-mesh"/>
+        <node id="prop-back" name="prop-back" type="NODE">
+          <translate sid="location">0 0 0</translate>
+          <rotate sid="rotationZ">0 0 1 0</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">1 1 1</scale>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

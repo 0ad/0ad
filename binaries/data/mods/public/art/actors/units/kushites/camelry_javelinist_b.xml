@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="quadraped/base_camel.xml" name="Base">
+      <props>
+        <prop actor="units/kushites/camelry_javelinist_b_r.xml" attachpoint="props_main"/>
+      </props>
+      <textures>
+        <texture file="skeletal/ptol_camel_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant file="quadraped/base_camel_death.xml"/>
+    <variant file="quadraped/base_camel_run.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_cavalry_javelin_ready_shield.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_blemmeye.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
+        <prop actor="props/units/shields/kush_beja_rhino.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="tunic">
+      <textures>
+        <texture file="skeletal/kush_merc_cavalry_r_01.png" name="baseTex"/>
+        <texture file="skeletal/kush_merc_cavalry_r_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic 2">
+      <textures>
+        <texture file="skeletal/kush_merc_cavalry_r_02.png" name="baseTex"/>
+        <texture file="skeletal/kush_merc_cavalry_r_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant file="biped/rider_promotion_shield.xml" name="promotion"/>
+    <variant file="biped/attack_ranged_cavalry_javelin.xml" name="attack_ranged"/>
+    <variant file="biped/attack_slaughter_shield_cavalry.xml" name="attack_slaughter">
+      <props>
+        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
+        <prop attachpoint="ammo"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

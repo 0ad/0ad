@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="triple-ostrich-feathers">
+      <mesh>props/heads/feather_ostrich_1.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/kush_nubian_ostrich_feathers_a.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/head/feather_ostrich_white.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

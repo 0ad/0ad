@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/kush_khopesh.dae</mesh>
+      <textures>
+        <texture file="props/weapon/khopesh_diffuse.png" name="baseTex"/>
+        <texture file="props/weapon/khopesh_norm.png" name="normTex"/>
+        <texture file="props/weapon/khopesh_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec_helmet.xml</material>
+</actor>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="5" name="Short Hair">
+      <mesh>props/new/head_female_shorthair.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="African-Female-Red-Hair">
+      <textures>
+        <texture file="props/head/african_fem_a_dark_red.png" name="baseTex"/>
+        <texture file="props/head/african_fem_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="African-Female-Bald">
+      <textures>
+        <texture file="props/head/african_fem_a_dark_bald.png" name="baseTex"/>
+        <texture file="props/head/african_fem_bald_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="African-Female-Black-Hair">
+      <textures>
+        <texture file="props/head/african_fem_a_dark.png" name="baseTex"/>
+        <texture file="props/head/african_fem_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_specmap.xml</material>
+</actor>

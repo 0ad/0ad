@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_female_citizen">
+  <Builder>
+    <Entities datatype="tokens">
+      -structures/{civ}_temple
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>kush</Civ>
+    <SpecificName>Shmt</SpecificName>
+    <GenericName>Kushite Woman</GenericName>
+    <Icon>units/kush_support_female_citizen.png</Icon>
+    <SelectionGroupName>units/kush_support_female_citizen</SelectionGroupName>
+  </Identity>
+  <VisualActor>
+    <Actor>units/kushites/female_citizen.xml</Actor>
+  </VisualActor>
+</Entity>

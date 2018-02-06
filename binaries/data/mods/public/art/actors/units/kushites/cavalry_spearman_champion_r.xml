@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_meroitic_champion.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/kush_spear.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/kush_beja_reinforced_rhino.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="kush_champion_01">
+      <textures>
+        <texture file="skeletal/kush_champion_infantry_01.png" name="baseTex"/>
+        <texture file="skeletal/kush_champion_infantry_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_champion_02">
+      <textures>
+        <texture file="skeletal/kush_champion_infantry_02.png" name="baseTex"/>
+        <texture file="skeletal/kush_champion_infantry_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_champion_03_lightskin">
+      <props>
+        <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_champion_infantry_03.png" name="baseTex"/>
+        <texture file="skeletal/kush_champion_infantry_03_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_champion_04_lightskin">
+      <props>
+        <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_champion_infantry_04.png" name="baseTex"/>
+        <texture file="skeletal/kush_champion_infantry_04_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant file="biped/rider_promotion_shield.xml" name="promotion"/>
+    <variant file="biped/attack_slaughter_shield_cavalry.xml" name="attack_slaughter">
+      <props>
+        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
+        <prop attachpoint="ammo"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

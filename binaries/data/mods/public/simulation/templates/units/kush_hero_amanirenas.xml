@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_archer">
+  <Auras datatype="tokens">
+    units/heroes/kush_hero_amanirenas
+  </Auras>
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Amanirenas</GenericName>
+    <SpecificName>Amnirense qore li kdwe li</SpecificName>
+    <Gender>female</Gender>
+    <Icon>units/ptol_hero_cleopatra.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/kushites/infantry_archer_hero_amanirenas.xml</Actor>
+  </VisualActor>
+</Entity>

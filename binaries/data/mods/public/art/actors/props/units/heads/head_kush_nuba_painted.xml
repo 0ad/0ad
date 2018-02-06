@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base">
+      <mesh>props/new/dude_head.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="Nuba painted face A">
+      <textures>
+        <texture file="props/head/african_nuba_a.png" name="baseTex"/>
+		<texture file="props/head/african_spec_a.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="Nuba painted face B">
+      <textures>
+        <texture file="props/head/african_nuba_b.png" name="baseTex"/>
+		<texture file="props/head/african_spec_a.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="Nuba painted face C">
+      <textures>
+        <texture file="props/head/african_nuba_c.png" name="baseTex"/>
+		<texture file="props/head/african_spec_a.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="Nuba painted face D">
+      <textures>
+        <texture file="props/head/african_nuba_d.png" name="baseTex"/>
+		<texture file="props/head/african_spec_a.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="Nuba painted face E">
+      <textures>
+        <texture file="props/head/african_nuba_e.png" name="baseTex"/>
+		<texture file="props/head/african_spec_a.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+<material>player_trans_spec.xml</material>
+</actor>

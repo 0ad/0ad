@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Nubian with Red Hair">
+      <mesh>props/new/dude_head.dae</mesh>
+      <textures>
+        <texture file="props/head/african_nubian_a_red.png" name="baseTex"/>
+        <texture file="props/head/african_spec_a.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

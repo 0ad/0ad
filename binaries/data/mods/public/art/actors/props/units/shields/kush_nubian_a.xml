@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base">
+      <mesh>props/shield/kush_nubian_a.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/kush_nubian_a_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="Texture-Tower-1">
+      <textures>
+        <texture file="props/shield/kush_nubian_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Texture-Tower-2">
+      <textures>
+        <texture file="props/shield/kush_nubian_a2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Texture-Tower-3">
+      <textures>
+        <texture file="props/shield/kush_nubian_a3.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Texture-Tower-4">
+      <textures>
+        <texture file="props/shield/kush_nubian_a4.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Texture-Tower-5">
+      <textures>
+        <texture file="props/shield/kush_nubian_a5.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

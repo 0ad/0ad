@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Model">
+      <mesh>props/helmet/ptol_quilted.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Kush Metal Helmet 1">
+      <textures>
+        <texture file="props/helmet/kush_metal_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

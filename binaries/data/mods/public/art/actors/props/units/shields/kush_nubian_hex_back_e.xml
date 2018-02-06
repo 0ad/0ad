@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Kush Hexagonal Shield">
+      <mesh>props/shield/kush_nubian_hex_back.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="0" name="kush-hex-wicker-elite-back-1">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_back_e_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="kush-hex-wicker-elite-back-2">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_back_e_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="kush-hex-wicker-elite-back-3">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_back_e_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="kush-hex-wicker-elite-back-4">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_back_e_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

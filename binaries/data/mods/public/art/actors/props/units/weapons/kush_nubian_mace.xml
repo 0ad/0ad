@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="Base">
+      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="kush_maces_a_01">
+      <mesh>props/kush_maces_a_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_a_02">
+      <mesh>props/kush_maces_a_02.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_a_03">
+      <mesh>props/kush_maces_a_03.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_b_01">
+      <mesh>props/kush_maces_b_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_b_02">
+      <mesh>props/kush_maces_b_02.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_b_03">
+      <mesh>props/kush_maces_b_03.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_c_01">
+      <mesh>props/kush_maces_c_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_c_02">
+      <mesh>props/kush_maces_c_02.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_c_03">
+      <mesh>props/kush_maces_c_03.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_d">
+      <mesh>props/kush_maces_d.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_d_bronze">
+      <mesh>props/kush_maces_d_bronze.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_d_bronze_stripes">
+      <mesh>props/kush_maces_d_bronze_stripes.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_e">
+      <mesh>props/kush_maces_e.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_e_bronze">
+      <mesh>props/kush_maces_e_bronze.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kush_maces_e_bronze_stripes">
+      <mesh>props/kush_maces_e_bronze_stripes.dae</mesh>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

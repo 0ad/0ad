@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shield_relax.xml">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
+        <prop actor="props/units/kush_meroitic_scabbard.xml" attachpoint="back"/>
+        <prop actor="props/units/weapons/kush_gladius.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="kush_swordsman_01">
+      <textures>
+        <texture file="skeletal/kush_isw_b_01.png" name="baseTex"/>
+        <texture file="skeletal/kush_isw_b_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_swordsman_02_lightskin">
+      <props>
+        <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_isw_b_02.png" name="baseTex"/>
+        <texture file="skeletal/kush_isw_b_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_swordsman_03_lightskin">
+      <props>
+        <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_isw_b_03.png" name="baseTex"/>
+        <texture file="skeletal/kush_isw_b_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_swordsman_04">
+      <textures>
+        <texture file="skeletal/kush_isw_b_04.png" name="baseTex"/>
+        <texture file="skeletal/kush_isw_b_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_swordsman_05">
+      <textures>
+        <texture file="skeletal/kush_isw_b_05.png" name="baseTex"/>
+        <texture file="skeletal/kush_isw_b_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_swordsman_06_lightskin">
+      <props>
+        <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_isw_b_06.png" name="baseTex"/>
+        <texture file="skeletal/kush_isw_b_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="beja-shield">
+      <props>
+        <prop actor="props/units/shields/kush_beja_rhino.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="numidian-shield">
+      <props>
+        <prop actor="props/units/shields/numidian_round_3.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>
