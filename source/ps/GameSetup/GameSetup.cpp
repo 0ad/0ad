@@ -1156,7 +1156,10 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  * -autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME
  *                                 located in simulation/data/settings/victory_conditions/
  *                                 (default conquest)
- * -autostart-victoryduration=NUM  sets the victory duration NUM for specific victory conditions
+ * -autostart-wonderduration=NUM   sets the victory duration NUM for wonder victory conditions
+ *                                 (default 10 minutes)
+ * -autostart-relicduration=NUM    sets the victory duration NUM for relic victory conditions
+ *                                 (default 10 minutes)
  *
  * Multiplayer:
  * -autostart-playername=NAME      sets local player NAME (default 'anonymous')
@@ -1482,8 +1485,15 @@ bool Autostart(const CmdLineArgs& args)
 	ToJSVal_vector(cx, &triggerScripts, triggerScriptsVector);
 	scriptInterface.SetProperty(settings, "TriggerScripts", triggerScripts);
 
-	if (args.Has("autostart-victoryduration"))
-		scriptInterface.SetProperty(settings, "VictoryDuration", args.Get("autostart-victoryduration").ToInt());
+	int wonderDuration = 10;
+	if (args.Has("autostart-wonderduration"))
+		wonderDuration = args.Get("autostart-wonderduration").ToInt();
+	scriptInterface.SetProperty(settings, "WonderDuration", wonderDuration);
+
+	int relicDuration = 10;
+	if (args.Has("autostart-relicduration"))
+		relicDuration = args.Get("autostart-relicduration").ToInt();
+	scriptInterface.SetProperty(settings, "RelicDuration", relicDuration);
 
 	if (args.Has("autostart-host"))
 	{
