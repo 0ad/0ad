@@ -10,12 +10,13 @@
 # Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014
 # omidh <omid_h28@hotmail.com>, 2013
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
+# علیرضا محمدنژاد <aarmn80@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-31 09:03+0100\n"
-"PO-Revision-Date: 2018-01-31 14:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-04 20:04+0000\n"
+"Last-Translator: علیرضا محمدنژاد <aarmn80@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,7 @@ msgstr[0] "محدوده شلیک: %(range)s متر"
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
+msgstr[0] "میانگین محدوده بونس : %(range)s متر"
 
 #: gui/session/input.js:658
 msgid "Cannot build wall here!"
@@ -45,7 +46,7 @@ msgstr "آیا مطمئن هستید که می‌خواهید تسلیم شوی�
 
 #: gui/session/menu.js:158 gui/session/menu.js:190 gui/session/menu.js:201
 msgid "Confirmation"
-msgstr "تصدیق"
+msgstr "تایید"
 
 #: gui/session/menu.js:159 gui/session/menu.js:191 gui/session/menu.js:224
 #: gui/session/session.js:844 gui/session/dialogs/yes_no.xml:(caption):24
@@ -68,7 +69,7 @@ msgstr "آیا مطمئن هستید که می‌خواهید خارج شوید�
 
 #: gui/session/menu.js:200
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "آیا کناره می گیرید یا بزودی برمیگردید؟"
 
 #: gui/session/menu.js:202
 msgid "I will return"
@@ -95,7 +96,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "زمان باقی مانده از آتش بس : %(time)s"
 
 #: gui/session/menu.js:447
 msgctxt "team"
@@ -128,11 +129,11 @@ msgstr "از متحدان خود بخواهید به این دشمن حمله ک
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "رشوه دادن به یک واحد از این بازی کن برای به اشتراک گذاشتن چشم انداز آن در مدت زمانی محدود"
 
 #: gui/session/menu.js:592
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "یک رشوه نا موفق یه هزینه شماست :"
 
 #: gui/session/menu.js:768
 #, javascript-format
@@ -257,7 +258,7 @@ msgstr "بازی متوقف شد توسط %(players)s"
 #: gui/session/menu.js:1195 gui/session/messages.js:695
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr "،"
 
 #: gui/session/menu.js:1208 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -276,19 +277,19 @@ msgstr "بخش توسعه دهنده باز شد."
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "پیشکش %(resourceAmount)s از %(resourceType)s به %(playerName)s . شیفت کیلک برای پیشکش به میزان %(greaterAmount)s ."
 
 #. Translation: A player that left the game joins again
 #: gui/session/messages.js:106
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s شروع کرد به بازپیوستن به بازی."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/messages.js:108
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)sشروع کرد به پیوستن به بازی. "
 
 #: gui/session/messages.js:112
 #, javascript-format
@@ -299,13 +300,13 @@ msgstr "%(player)s بازی را ترک کرد"
 #: gui/session/messages.js:119
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr " %(player)s بازپیوست به بازی."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/messages.js:121
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s پیوست به بازی."
 
 #: gui/session/messages.js:127
 #, javascript-format
@@ -333,15 +334,15 @@ msgstr "ارتباط با سرور قطع شده."
 #: gui/session/messages.js:154
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "دلیل : %(reason)s."
 
 #: gui/session/messages.js:157
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "منتظر اتصال بازیکنان:"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr ""
+msgstr "همگام سازی محیط بازی با باقی بازیکنان"
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -369,7 +370,7 @@ msgstr "تیم"
 
 #: gui/session/messages.js:180 gui/session/session.js:441
 msgid "Observer"
-msgstr ""
+msgstr "ناظر"
 
 #: gui/session/messages.js:181
 msgid "Private"
@@ -378,45 +379,45 @@ msgstr "خصوصی"
 #: gui/session/messages.js:217
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "گفتگو و اعلانات"
 
 #: gui/session/messages.js:222
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "پیام های گفتگو"
 
 #: gui/session/messages.js:227
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "گفتگو بازیکنان"
 
 #: gui/session/messages.js:234
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "گفتگوی هم پیمانان"
 
 #: gui/session/messages.js:241
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "گفتگوی دشمن"
 
 #: gui/session/messages.js:248
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "گفتگو ناظران"
 
 #: gui/session/messages.js:255
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "گفتگو خصوصی"
 
 #: gui/session/messages.js:261
 msgid "You have won!"
-msgstr ""
+msgstr "شما پیروز شدید!"
 
 #: gui/session/messages.js:262
 msgid "You have been defeated!"
-msgstr ""
+msgstr "شما شکست خوردید!"
 
 #: gui/session/messages.js:270
 #, javascript-format
@@ -451,38 +452,38 @@ msgstr "%(player)s الان نسبت به شما بی طرف است."
 #: gui/session/messages.js:280
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s هم پیمان شد با %(player2)s."
 
 #: gui/session/messages.js:281
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s در ستیز شد با %(player2)s."
 
 #: gui/session/messages.js:282
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s روابطش را طبیعی کرد با %(player2)s."
 
 #: gui/session/messages.js:584
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "کلیک کنید برای خروج از راهنما"
 
 #: gui/session/messages.js:585
 msgid "Quit"
-msgstr ""
+msgstr "خروج"
 
 #: gui/session/messages.js:589
 msgid "Click when ready."
-msgstr ""
+msgstr "وقتی آماده شدید کلیک کنید"
 
 #: gui/session/messages.js:593
 msgid "Follow the instructions."
-msgstr ""
+msgstr "دستور العمل ها را دنبال کنید."
 
 #: gui/session/messages.js:684
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr "،"
 
 #: gui/session/messages.js:690
 #, javascript-format
@@ -588,7 +589,7 @@ msgstr "بازیکنی شناسایی نشد."
 #. elements in an enumeration.
 #: gui/session/messages.js:994
 msgid ", "
-msgstr ""
+msgstr "،"
 
 #: gui/session/messages.js:1026
 #, javascript-format
@@ -831,7 +832,7 @@ msgstr ""
 #: gui/session/selection_panels.js:784
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr "،"
 
 #: gui/session/selection_panels.js:1083
 #, javascript-format

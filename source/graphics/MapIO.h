@@ -18,6 +18,12 @@
 #ifndef INCLUDED_MAPIO
 #define INCLUDED_MAPIO
 
+#include "lib/os_path.h"
+#include "lib/status.h"
+
+// Opens the given texture file and stores it in a one-dimensional u16 vector.
+Status LoadHeightmapImage(const OsPath& filepath, std::vector<u16>& heightmap);
+
 class CMapIO
 {
 public:

@@ -48,7 +48,7 @@
 # Sebastian David Tamayo, 2014
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
 # Spartan2411 <andyyosoy@hotmail.com>, 2014
-# Swyter <Swyterzone@gmail.com>, 2013-2017
+# Swyter <Swyterzone@gmail.com>, 2013-2018
 # Tomato <moreno.alb1@gmail.com>, 2014
 # Trombe <el.jesus.9@hotmail.com>, 2014
 # vega93 <arkadas_llisa@hotmail.com>, 2013,2015
@@ -57,8 +57,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-31 13:09+0000\n"
-"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
+"PO-Revision-Date: 2018-02-04 18:30+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,7 +113,7 @@ msgstr "Preparado"
 
 #: gui/gamesetup/gamesetup.js:119
 msgid "Stay ready even when the game settings change."
-msgstr "Prepárate incluso cuando los ajustes del juego cambien."
+msgstr "Estate preparado incluso cuando los ajustes del juego cambien."
 
 #: gui/gamesetup/gamesetup.js:124
 msgid "I'm not ready!"
@@ -201,7 +201,7 @@ msgstr "Mapas de «triggers»"
 #: gui/gamesetup/gamesetup.js:190
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Mapas que vienen con eventos en guiones y potencialmente generen unidades enemigas."
+msgstr "Mapas que vienen con eventos programados y potencialmente generen unidades enemigas."
 
 #: gui/gamesetup/gamesetup.js:195
 msgid "All Maps"
@@ -225,7 +225,7 @@ msgstr "Jugador"
 #: gui/gamesetup/gamesetup.js:421
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr "Tipo de Juego"
+msgstr "Tipo de juego"
 
 #: gui/gamesetup/gamesetup.js:461
 msgid "Map Type"
@@ -473,7 +473,7 @@ msgstr "Volver al menú principal."
 
 #: gui/gamesetup/gamesetup.js:987
 msgid "Start Game!"
-msgstr "¡Comenzar Partida!"
+msgstr "Comenzar partida"
 
 #: gui/gamesetup/gamesetup.js:993
 msgid "Start a new game with the current settings."
@@ -493,17 +493,17 @@ msgstr "Configurar IA: %(description)s."
 #: gui/gamesetup/gamesetup.js:1157
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Muestra u oculta la pestaña de opciones de %(name)s."
 
 #: gui/gamesetup/gamesetup.js:1158
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Presiona %(hotkey)s para mover una pestaña de opciones hacia abajo."
 
 #: gui/gamesetup/gamesetup.js:1159
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Use %(hotkey)s para mover una pestaña de opciones hacia arriba."
 
 #: gui/gamesetup/gamesetup.js:1678
 msgctxt "map selection"
@@ -512,7 +512,7 @@ msgstr "Al azar"
 
 #: gui/gamesetup/gamesetup.js:1680
 msgid "Pick any of the given maps at random."
-msgstr "Selecciona cualquiera de los mapas al azar."
+msgstr "Elige uno de los mapas al azar."
 
 #: gui/gamesetup/gamesetup.js:1712
 msgctxt "biome"
@@ -701,7 +701,7 @@ msgstr "Elige el equipo del jugador."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):207
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Mostrar la sala multijugador en una ventana de diálogo."
 
 #: gui/text/quotes.txt:1
 msgid ""
@@ -958,7 +958,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "\"El mismo Alejandro, agobiado por la sed, con mucho dolor y dificultad no obstante guió al ejército a pie \\[...]. En este momento algunos de los soldados de armamento ligero \\[...] encontraron un poco de agua \\[...], echaron el agua en un casco y lo llevaron a él. Él la tomó, y elogiando a los hombres que la trajeron, inmediatamente la echó al suelo a la vista de todos.\" - Arriano sobre La marcha de Alejandro a través del desierto de Gedrosia (\"Anábasis de Alejandro Magno\", 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -969,7 +969,7 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "\"Lanzando su lanza hacia la cara de Mitrídates, él \\[Alejandro] lo tiró al suelo. Después Rhoesaces \\[un Persa] \\[...] lo hirió en la cabeza con su espada. \\[...] Alejandro lo tiró también al suelo, perforando con su lanza a través de su armadura su pecho. Sphithridates  \\[un Persa] ya había levantado su espada en contra de Alejandro por la espalda cuando Clitus \\[...]  le cortó su brazo.\" - Arriano sobre la Batalla del Gránico (\"Anábasis de Alejandro Magno\", 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
@@ -1122,7 +1122,7 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Fraortes fue capturado y traído ante mi. Le corté la nariz, las orejas, y su lengua, y le saqué un ojo, y se le mantuvo encadenado en la entrada de mi palacio, y todos le vieron. Entonces le crucifiqué en Ecbatana; y los hombres que eran sus más cercanos seguidores \\[...] los desollé y colgué sus pieles, rellenas de paja.\" - Darío I. (Inscripción de Behistún, columna II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1290,7 +1290,7 @@ msgid ""
 "while the survivors used the heap as a vantage point for throwing missiles "
 "at our men, or catching our spears and throwing them back.\" - Gaius Julius "
 "Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
-msgstr ""
+msgstr "«Pero el enemigo \\[...] mostró tal valor, que cuando el rango frontal de batalla había caído, los hombres detrás de ellos se pusieron sobre ellos y continuaron la lucha sobre los cadáveres; cuando estos fueron muerte / baja (enemiga), la pila de cuerpos creció, mientras que los sobrevivientes usaron el montón como un punto de ventaja para lanzar misiles a nuestros hombres, o cogiendo nuestras lanzas y arrojándolas de vuelta.» - Cayo Julio César sobre la Batalla del Sabis («De Bello Gallico», II. 27)"
 
 #: gui/text/quotes.txt:87
 msgid ""
@@ -1401,7 +1401,7 @@ msgid ""
 "would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
 " reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr ""
+msgstr "«Siendo informado \\[...] que cuando los bárbaros dispararon sus flechas oscurecieron la luz del sol por la multitud de flechas, él \\[Dienekes] \\[...] dijo que su invitado \\[...] le trajo muy buenas noticias, porque si los medos oscurecían la luz del sol, la batalla contra ellos estaría en la sombra y no en el sol.» - Herodoto describiendo a Dienekes, supuestamente el soldado espartano más valiente en las Termópilas (Polibio, «Historias», VII. 226)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1495,7 +1495,7 @@ msgid ""
 "of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr ""
+msgstr "«Hay miles y miles de romanos \\[...]. Aquí y allá, en medio de la rosa asesinada, se alzaba una figura sangrienta cuyas heridas habían empezado a palpitar con el frío del alba y había sido derribada por sus enemigos.» - Livio, describiendo las secuelas de la Batalla de Cannas, donde Aníbal infligió a los romanos la mayor derrota de toda su historia («Ab Urbe Condita», XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1751,7 +1751,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "«Los ateniense siempre están en la posición de un navío sin un comandante. El miedo al enemigo o a una tormenta hacen que la tripulación tenga una sola mente y obedezca al timonel, todo va bien; pero si recuperan \\[...] se pelean entre sí \\[...], y el resultado ha sido a menudo que, después de escapar de los peligros de los mares más anchos y de las tormentas más violento, naufragan su navío en el puerto y cerca de la costa.» - Polybius en la constitución ateniense («Historias», VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1989,7 +1989,7 @@ msgid ""
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr ""
+msgstr "«Cuando los lacedemonios ya no pudieron correr tras ellos, todos los escaramuceros \\[...] cargaron contra ellos a la vez, lanzando piedras, flechas y dardos al hombre más cercano.» - Tucídides, describiendo el desastre espartano en la batalla de Sphacteria («Historia de la Guerra del Peloponeso», IV. 34.2)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -2048,7 +2048,7 @@ msgid ""
 " are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "«He aquí lo que preguntar en invierno alrededor del fuego \\[...]: ¿Quién eres, amigo? ¿Cuál es tu tierra? ¿Y cuántos años tenías cuando los medos \\[persas] vinieron?» - Jenófanes, probablemente refiriéndose a una expedición punitiva contra ciudades griego en Jonia (fragmento 17)"
 
 #: gui/text/quotes.txt:190
 msgid ""

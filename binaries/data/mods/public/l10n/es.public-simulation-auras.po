@@ -12,13 +12,13 @@
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Raúl Fdez. <raulferval@hotmail.com>, 2017
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
-# Swyter <Swyterzone@gmail.com>, 2016-2017
+# Swyter <Swyterzone@gmail.com>, 2016-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-29 09:04+0100\n"
-"PO-Revision-Date: 2018-01-31 12:50+0000\n"
-"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
+"PO-Revision-Date: 2018-02-04 19:41+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgstr "Reparaciones en astilleros"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr "Repara navío guarnecido a 10 PV por segundo"
+msgstr "Repara navíos guarnecidos a 10 PV por segundo."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -65,7 +65,7 @@ msgstr "Lealtad"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr "+50% de tasa de regeneración de lealtad guarnecida para las estructuras."
+msgstr "Las estructuras aumentan la generación de lealtad un +50% al guarnecer."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -127,11 +127,11 @@ msgstr "Amplia a +40 el límite de población con cada maravilla construida. (Ne
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
-msgstr "Taller de Reparaciones"
+msgstr "Taller de reparaciones"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr "Repara unidades guarnecidas a 3 PV por segundo"
+msgstr "Repara las unidades de asedio guarnecidas a un ritmo de 3 PV por segundo."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -147,7 +147,7 @@ msgstr "Druidas"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allies get -20% resource cost to train healers."
-msgstr "A los aliados les cuesta un 20% menos entrenar Curanderos."
+msgstr "Reduce en un -20% el coste de todos los sanadores aliados."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -210,7 +210,7 @@ msgstr "Todos los aliados ganan automáticamente un lento goteo de comida adicio
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
-msgstr "Reclutamiento"
+msgstr "Reclutamiento forzoso"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied infantry."
@@ -261,7 +261,7 @@ msgstr "Fortuna económica"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "-10% cost for economic technologies."
-msgstr "Solón introdujo un nuevo sistema de pesos y medidas, se alentó a los padres a encontrar oficios para sus hijos.\n-10% de coste para las tecnologías económicas."
+msgstr "Solón introdujo un nuevo sistema de pesos y medidas, se alentó a los padres a encontrar oficios para sus hijos.\nReduce en un -10% el coste para las tecnologías sobre la economía."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
@@ -620,7 +620,7 @@ msgstr "-20% de tiempo de entrenamiento y -15% de costo de recursos para los sol
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "+20% movement speed for soldiers."
-msgstr "+20% de velocidad de movimiento para los soldados."
+msgstr "Los soldados se mueven un +20% más rápido."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"

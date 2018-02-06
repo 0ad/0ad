@@ -42,7 +42,7 @@
 # Sander Deryckere, 2016
 # Sebastian David Tamayo, 2014
 # Spartan2411 <andyyosoy@hotmail.com>, 2014
-# Swyter <Swyterzone@gmail.com>, 2013-2017
+# Swyter <Swyterzone@gmail.com>, 2013-2018
 # Tomato <moreno.alb1@gmail.com>, 2014
 # Trombe <el.jesus.9@hotmail.com>, 2014
 # vega93 <arkadas_llisa@hotmail.com>, 2013
@@ -50,8 +50,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-31 09:03+0100\n"
-"PO-Revision-Date: 2018-01-31 14:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-04 18:28+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,7 +133,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr "Tiempo restante para terminar el alto al fuego: %(time)s."
+msgstr "Tiempo restante para terminar el alto el fuego: %(time)s."
 
 #: gui/session/menu.js:447
 msgctxt "team"
@@ -388,7 +388,7 @@ msgstr "Esperando a que se conecten los jugadores:"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr "Sincronizando el juego con los otros jugadores..."
+msgstr "Sincronizando la partida con los otros jugadores..."
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -763,7 +763,7 @@ msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:403
 msgid "Capture Points:"
-msgstr "Puntos de Captura:"
+msgstr "Puntos de captura:"
 
 #: gui/session/selection_details.js:411
 #, javascript-format
@@ -1034,7 +1034,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Empieza eligiendo el recurso que quieres vender de la fila superior. Cada vez que pulses uno de los botones de la parte inferior se venderán %(quantity)s unidades del recurso por la cantidad indicada abajo. Mantén pulsado %(hotkey)s para multiplicar temporalmente todas las cantidades por %(multiplier)s."
+msgstr "Comience eligiendo el recurso que quiere vender de la fila superior. Cada vez que pulse uno de los botones de la parte inferior se venderán %(quantity)s unidades del recurso por la cantidad indicada abajo. Mantenga pulsado %(hotkey)s para multiplicar temporalmente todas las cantidades por %(multiplier)s."
 
 #: gui/session/session.js:575
 #, javascript-format
@@ -1090,19 +1090,19 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1171
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s para cambiar el orden."
 
 #: gui/session/session.js:1173
 msgid "Unordered"
-msgstr ""
+msgstr "Sin ordenar"
 
 #: gui/session/session.js:1173
 msgid "Descending"
-msgstr ""
+msgstr "Descendente"
 
 #: gui/session/session.js:1173
 msgid "Ascending"
-msgstr ""
+msgstr "Ascendente"
 
 #: gui/session/session.js:1199
 #, javascript-format

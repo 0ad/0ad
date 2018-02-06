@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,11 +19,14 @@
 
 #include "MapGenerator.h"
 
+#include "graphics/MapIO.h"
 #include "graphics/Terrain.h"
+#include "lib/status.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "ps/scripting/JSInterface_VFS.h"
+#include "scriptinterface/ScriptConversions.h"
 
 // TODO: what's a good default? perhaps based on map size
 #define RMS_RUNTIME_SIZE 96 * 1024 * 1024
@@ -101,6 +104,7 @@ bool CMapGeneratorWorker::Run()
 	// Functions for RMS
 	JSI_VFS::RegisterScriptFunctions_Maps(*m_ScriptInterface);
 	m_ScriptInterface->RegisterFunction<bool, std::wstring, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");
+	m_ScriptInterface->RegisterFunction<JS::Value, std::wstring, CMapGeneratorWorker::LoadHeightmap>("LoadHeightmapImage");
 	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
 	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
 	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
@@ -261,6 +265,27 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	}
 
 	return true;
+}
+
+JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& vfsPath)
+{
+	OsPath realPath;
+	if (g_VFS->GetRealPath(vfsPath, realPath) != INFO::OK)
+		return JS::UndefinedValue();
+
+	std::vector<u16> heightmap;
+	if (LoadHeightmapImage(realPath, heightmap) != INFO::OK)
+	{
+		LOGERROR("Could not load heightmap file '%s'", utf8_from_wstring(vfsPath).c_str());
+		return JS::UndefinedValue();
+	}
+
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	JSContext* cx = self->m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue returnValue(cx);
+	ToJSVal_vector(cx, &returnValue, heightmap);
+	return returnValue;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

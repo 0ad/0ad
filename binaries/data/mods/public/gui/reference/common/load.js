@@ -108,18 +108,9 @@ function loadUnit(templateName)
 
 	let template = loadTemplate(templateName);
 	let unit = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
-	unit.production = loadProductionQueue(template);
 
-	if (template.Builder && template.Builder.Entities._string)
-	{
-		unit.builder = [];
-		for (let build of template.Builder.Entities._string.split(" "))
-		{
-			build = build.replace(/\{(civ|native)\}/g, g_SelectedCiv);
-			if (Engine.TemplateExists(build))
-				unit.builder.push(build);
-		}
-	}
+	unit.production = loadProductionQueue(template);
+	unit.builder = loadBuildQueue(template);
 
 	if (unit.upgrades)
 		unit.upgrades = getActualUpgradeData(unit.upgrades);

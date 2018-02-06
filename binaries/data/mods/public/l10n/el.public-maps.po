@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-31 09:05+0100\n"
-"PO-Revision-Date: 2018-01-31 14:53+0000\n"
+"POT-Creation-Date: 2018-02-02 09:05+0100\n"
+"PO-Revision-Date: 2018-02-02 14:21+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -733,7 +733,20 @@ msgid ""
 "goats shiver."
 msgstr "Μια περιοχή στα ψηλά χιονισμένα βουνά. Οι τσουχτεροί άνεμοι διαπερνούν μέσα από τα άφθονα δάση των κωνοφόρων, καθιστώντας τα ακόμα πιο ανθεκτικά τα ελάφια και τα αγριοκάτσικα που τρέμουν."
 
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A region in the high snowy mountains. Biting winds sweep through the "
+"abundant conifer forests, making even the more resilient deer and mountain "
+"goats shiver."
+msgstr "Μια περιοχή στα ψηλά χιονισμένα βουνά. Οι τσουχτεροί άνεμοι διαπερνούν μέσα από τα άφθονα δάση των κωνοφόρων, καθιστώντας τα ακόμα πιο ανθεκτικά τα ελάφια και τα αγριοκάτσικα που τρέμουν."
+
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgid "Alpine"
+msgstr "Αλπικό"
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
 msgid "Alpine"
 msgstr "Αλπικό"
 
@@ -745,7 +758,21 @@ msgid ""
 "at the approaching winter."
 msgstr "Το Φθινόπωρο είναι στο αποκορύφωμά του. Το τοπίο είναι ένας εκθαμβωτική καμβάς των χρωμάτων που είναι άριστα συνδεδεμένα. Οι ντόπιες οξιές και οι βελανιδιές αυτής της εύκρατης ζώνης εμφανίζουν ένα πολύχρωμο φύλλωμα, ενώ τα αειθαλή πεύκα κοιτάζουν με αδιαφορία τον χειμώνα που έρχεται."
 
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
+"intertwined. The native beech and oak trees of this temperate zone display a"
+" multi-coloured foliage while the evergreen pines look on with indifference "
+"at the approaching winter."
+msgstr "Το Φθινόπωρο είναι στο αποκορύφωμά του. Το τοπίο είναι ένας εκθαμβωτική καμβάς των χρωμάτων που είναι άριστα συνδεδεμένα. Οι ντόπιες οξιές και οι βελανιδιές αυτής της εύκρατης ζώνης εμφανίζουν ένα πολύχρωμο φύλλωμα, ενώ τα αειθαλή πεύκα κοιτάζουν με αδιαφορία τον χειμώνα που έρχεται."
+
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+msgid "Autumn"
+msgstr "Φθινόπωρο"
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+msgctxt "biome definition"
 msgid "Autumn"
 msgstr "Φθινόπωρο"
 
@@ -756,7 +783,20 @@ msgid ""
 "fright at being disturbed."
 msgstr "Μια ήμι-ερημική περιοχή που μπορεί να υπερηφανεύεται για πολυάριθμες συστάδες χουρμαδιών και δέντρων αλμυρίκια. Τα κοπάδια των καμήλων περιπλανιούνται στην άγρια φύση και η περιστασιακή γαζέλα πηδάει από την τρομάρα της όταν ενοχληθεί."
 
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
+"fright at being disturbed."
+msgstr "Μια ήμι-ερημική περιοχή που μπορεί να υπερηφανεύεται για πολυάριθμες συστάδες χουρμαδιών και δέντρων αλμυρίκια. Τα κοπάδια των καμήλων περιπλανιούνται στην άγρια φύση και η περιστασιακή γαζέλα πηδάει από την τρομάρα της όταν ενοχληθεί."
+
 #: maps/random/rmbiome/generic/desert.jsonDescription.Title
+msgid "Desert"
+msgstr "Έρημος"
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
+msgctxt "biome definition"
 msgid "Desert"
 msgstr "Έρημος"
 
@@ -767,11 +807,32 @@ msgid ""
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Ξεκινήστε σε μια περιοχή ευλογημένη με το μεσογειακό κλίμα, μια ζεστή και φιλόξενη γη. Τα κυπαρίσσια βρίσκονται σε μια αέναη πάλη με τους κυρίαρχους φοίνικες, ενώ τα ελάφια βόσκουν στις σκιές τους, τελείως ανέμελα."
 
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr "Ξεκινήστε σε μια περιοχή ευλογημένη με το μεσογειακό κλίμα, μια ζεστή και φιλόξενη γη. Τα κυπαρίσσια βρίσκονται σε μια αέναη πάλη με τους κυρίαρχους φοίνικες, ενώ τα ελάφια βόσκουν στις σκιές τους, τελείως ανέμελα."
+
 #: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgid "Mediterranean"
 msgstr "Μεσόγειος "
 
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Μεσόγειος"
+
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+msgid ""
+"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
+"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
+" giraffes or elephants roam the wild in search of food."
+msgstr "Σαβάνα, ένα ξηρό κλίμα στο οποίο ευδοκιμούν μόνο οι ανθεκτικές αδανσονίες. Οι μοναχικές γαζέλες βόσκουν το αραιό χορτάρι, ενώ κοπάδια από ζέβρες, γνου, καμηλοπαρδάλεις ή ελέφαντες περιπλανιούνται στην άγρια φύση αναζητώντας φαγητό."
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+msgctxt "biome definition"
 msgid ""
 "The savanna, a dry climate in which only the hardy Baobab trees thrive. "
 "Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
@@ -782,6 +843,11 @@ msgstr "Σαβάνα, ένα ξηρό κλίμα στο οποίο ευδοκι�
 msgid "Savanna"
 msgstr "Σαβάνα"
 
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Savanna"
+msgstr "Σαβάνα"
+
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Description
 msgid ""
 "Settle in the cold regions of the North, the native habitat of the wooly "
@@ -789,7 +855,20 @@ msgid ""
 "walrus or two."
 msgstr "Εγκαταστήσου στις ψυχρές περιοχές του Βορρά, τον εγγενή βιότοπο του μοσχόβους. Εδώ μπορεί να φθαρείς χωρίς πολύ πρωτεΐνη, αλλά και να κυνηγήσεις τον περιστασιακό θαλάσσιο ίππο ή και τα δύο."
 
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Settle in the cold regions of the North, the native habitat of the wooly "
+"muskox. Here you can pine away to your content and also hunt the occasional "
+"walrus or two."
+msgstr "Εγκαταστήσου στις ψυχρές περιοχές του Βορρά, τον εγγενή βιότοπο του μοσχόβους. Εδώ μπορεί να φθαρείς χωρίς πολύ πρωτεΐνη, αλλά και να κυνηγήσεις τον περιστασιακό θαλάσσιο ίππο ή και τα δύο."
+
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+msgid "Snowy"
+msgstr "Χιονισμένο"
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+msgctxt "biome definition"
 msgid "Snowy"
 msgstr "Χιονισμένο"
 
@@ -801,7 +880,21 @@ msgid ""
 "dot the land, deer and sheep gorge themselves on this years fallen fruit."
 msgstr "Πλούσια λιβάδια χαλιώνουν τη γη, κάνοντας χώρο στα υπέροχα και ποικίλα πλατύφυλλα δάση. Οι λεύκες, τα πεύκα, οι οξιές και οι βελανιδιές είναι πάντα έτοιμες για υπεροχή, αλλά αυτός ο πόλεμος των ριζών είναι ένας ατέλειωτος αγώνας. Πολυάριθμες μηλιές στίζουν το έδαφος, το ελάφι και το πρόβατο καταβροχθίζουν τα φετινά πεσμένα φρούτα."
 
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Lush grasslands carpet the land, in places giving way to magnificent and "
+"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
+"supremacy but this root-war is a neverending struggle. Numerous apple trees "
+"dot the land, deer and sheep gorge themselves on this years fallen fruit."
+msgstr "Πλούσια λιβάδια χαλιώνουν τη γη, κάνοντας χώρο στα υπέροχα και ποικίλα πλατύφυλλα δάση. Οι λεύκες, τα πεύκα, οι οξιές και οι βελανιδιές είναι πάντα έτοιμες για υπεροχή, αλλά αυτός ο πόλεμος των ριζών είναι ένας ατέλειωτος αγώνας. Πολυάριθμες μηλιές στίζουν το έδαφος, το ελάφι και το πρόβατο καταβροχθίζουν τα φετινά πεσμένα φρούτα."
+
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+msgid "Temperate"
+msgstr "Εύκρατο"
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+msgctxt "biome definition"
 msgid "Temperate"
 msgstr "Εύκρατο"
 
@@ -813,20 +906,136 @@ msgid ""
 "their territory at all costs."
 msgstr "Εξερεύνησε τα μυστηριώδη τροπικά μέρη. Ένα εξαιρετικά πράσινο, αλλά και εξαιρετικά υγρό περιβάλλον σε περιμένει. Τα ψηλά δέντρα της Μελιίδας φαίνονται ενοχλημένα σε αυτή την εισβολή της ιδιωτικής τους ζωής και οι άγριες τίγρεις είναι αποφασισμένες να υπερασπιστούν το έδαφός τους με κάθε κόστος."
 
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr "Εξερεύνησε τα μυστηριώδη τροπικά μέρη. Ένα εξαιρετικά πράσινο, αλλά και εξαιρετικά υγρό περιβάλλον σε περιμένει. Τα ψηλά δέντρα της Μελιίδας φαίνονται ενοχλημένα σε αυτή την εισβολή της ιδιωτικής τους ζωής και οι άγριες τίγρεις είναι αποφασισμένες να υπερασπιστούν το έδαφός τους με κάθε κόστος."
+
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgid "Tropic"
 msgstr "Τροπικό"
 
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Tropic"
+msgstr "Τροπικό"
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+msgid ""
+"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
+" The thick ice formed is capable of withstanding any weight."
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
+" The thick ice formed is capable of withstanding any weight."
+msgstr ""
+
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgid "Frozen Lake"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Frozen Lake"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+msgid ""
+"A late spring breeze ripples through the conifer forests of the Gulf of "
+"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
+"undergrowth."
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A late spring breeze ripples through the conifer forests of the Gulf of "
+"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
+"undergrowth."
 msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgid "Late Spring"
 msgstr ""
 
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+msgid ""
+"Winter has set in, carpeting the land with its first snow. The still "
+"unfrozen gulf offers great fishing opportunities."
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Winter has set in, carpeting the land with its first snow. The still "
+"unfrozen gulf offers great fishing opportunities."
+msgstr ""
+
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgid "Winter"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Winter"
+msgstr ""
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+msgid ""
+"Spring in the highlands, yet the heat has already begun making itself felt. "
+"The short-lived green grasses are on the retreat, paving the way for "
+"scorching summer."
+msgstr ""
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Spring in the highlands, yet the heat has already begun making itself felt. "
+"The short-lived green grasses are on the retreat, paving the way for "
+"scorching summer."
+msgstr ""
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+msgid "Spring"
+msgstr ""
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Spring"
+msgstr ""
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+msgid ""
+"An arid, hostile land. The blistering heat has baked the ground to a sickly "
+"brown and the remaining trees struggle for survival."
+msgstr ""
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"An arid, hostile land. The blistering heat has baked the ground to a sickly "
+"brown and the remaining trees struggle for survival."
+msgstr ""
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
+msgid "Summer"
+msgstr ""
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Summer"
 msgstr ""
 
 #: maps/random/extinct_volcano_triggers.js:65
