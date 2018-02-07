@@ -15,8 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ICMPRALLYPOINT
-#define INCLUDED_ICMPRALLYPOINT
+#ifndef INCLUDED_ICMPRALLYPOINTRENDERER
+#define INCLUDED_ICMPRALLYPOINTRENDERER
 
 #include "maths/FixedVector2D.h"
 #include "simulation2/helpers/Position.h"
@@ -56,4 +56,4 @@ public:
 	DECLARE_INTERFACE_TYPE(RallyPointRenderer)
 };
 
-#endif // INCLUDED_ICMPRALLYPOINT
+#endif // INCLUDED_ICMPRALLYPOINTRENDERER

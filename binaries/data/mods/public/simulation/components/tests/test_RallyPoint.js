@@ -1,7 +1,6 @@
 Engine.LoadHelperScript("Player.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
-Engine.LoadComponentScript("interfaces/RallyPoint.js");
 Engine.LoadComponentScript("RallyPoint.js");
 
 function initialRallyPointTest(test_function)

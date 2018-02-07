@@ -17,6 +17,16 @@ RallyPoint.prototype.AddPosition = function(x, z)
 	});
 };
 
+RallyPoint.prototype.HasPositions = function()
+{
+	return this.pos.length > 0;
+};
+
+RallyPoint.prototype.GetFirstPosition = function()
+{
+	return this.pos.length ? Vector2D.from3D(this.pos[0]) : new Vector2D(-1, -1);
+};
+
 RallyPoint.prototype.GetPositions = function()
 {
 	// Update positions for moving target entities
