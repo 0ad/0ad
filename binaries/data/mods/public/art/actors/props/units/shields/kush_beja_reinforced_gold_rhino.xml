@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/shield/kush_beja.dae</mesh>
+      <textures>
+        <texture file="props/shield/kush_beja_reinforced_gold_rhino.png" name="baseTex"/>
+        <texture file="props/shield/kush_beja_reinforced_spec.png" name="specTex"/>
+        <texture file="props/shield/kush_beja_reinforced_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Kush flag">
+      <animations>
+        <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="30"/>
+      </animations>
+      <mesh>props/garrison_flag.dae</mesh>
+      <textures>
+        <texture file="props/garrison_kush_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

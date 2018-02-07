@@ -244,13 +244,14 @@ function displaySingle(entState)
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders ?
 			Engine.FormatMillisecondsIntoDateStringGMT(entState.foundation.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss")) + "    " : "";
 	}
-	else if (entState.repairable && entState.repairable.numBuilders > 0 && entState.visibility != "hidden")
+	else if (entState.repairable && entState.needsRepair)
 	{
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.repairable.numBuilders + "    ";
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = translate("Number of builders.");
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = getRepairTimeTooltip(entState);
+		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.repairable.numBuilders ?
+			Engine.FormatMillisecondsIntoDateStringGMT(entState.repairable.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss")) + "    " : "";
 	}
 	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints) && entState.visibility == "visible")
 	{
@@ -290,7 +291,6 @@ function displaySingle(entState)
 		getHealerTooltip,
 		getArmorTooltip,
 		getGatherTooltip,
-		getRepairRateTooltip,
 		getSpeedTooltip,
 		getGarrisonTooltip,
 		getProjectilesTooltip,

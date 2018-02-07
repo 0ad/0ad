@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_temple">
+  <Footprint>
+    <Square width="24.0" depth="36.0"/>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Temple of Apedemak</GenericName>
+    <SpecificName>Pr-‘Iprmk</SpecificName>
+    <Classes datatype="tokens">TempleOfApedemak</Classes>
+  </Identity>
+  <Obstruction>
+    <Static width="18" depth="30.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}_champion_infantry_apedemak
+    </Entities>
+    <Technologies datatype="tokens"/>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/kushites/temple.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
+</Entity>

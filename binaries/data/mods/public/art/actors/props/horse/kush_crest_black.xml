@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="crest">
+      <mesh>props/helmet/kushite_horse_crest.dae</mesh>
+      <textures>
+        <texture file="props/helmet/kush_horse_feathers_black.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

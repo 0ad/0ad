@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_economic_market">
+  <Capturable>
+    <CapturePoints>500</CapturePoints>
+  </Capturable>
+  <Footprint>
+    <Square width="26.0" depth="26.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Desert Trading Post</GenericName>
+    <SpecificName>Ardatašta</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="24.0" depth="24.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      -unlock_shared_los
+      -unlock_shared_dropsites
+      -trade_convoys_speed
+      -trade_convoys_armor
+      -trade_gain_01
+      -trade_gain_02
+      -trade_commercial_treaty
+    </Technologies>
+  </ProductionQueue>
+  <TerritoryDecay disable=""/>
+  <TerritoryInfluence disable=""/>
+  <VisualActor>
+    <Actor>structures/persians/market.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
+</Entity>

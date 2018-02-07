@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/kush_civic_center_statues.dae</mesh>
+      <textures>
+        <texture file="props/kush_statue_lion.png" name="baseTex"/>
+        <texture file="props/kush_statue_lion_norm.png" name="normTex"/>
+        <texture file="structural/ao/kush_statue_lion.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax.xml</material>
+</actor>

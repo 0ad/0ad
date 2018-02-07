@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Mauryan Two-Handed Ax">
+      <mesh>props/kush_axe.dae</mesh>
+      <textures>
+        <texture file="props/weapon/prop_weap_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_spec.xml</material>
+</actor>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_wonder">
+  <Auras datatype="tokens">
+    structures/epic_temple_heal
+  </Auras>
+  <Footprint>
+    <Square width="48.0" depth="66.0"/>
+    <Height>20.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <BuffHeal>8</BuffHeal>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>kush</Civ>
+    <SpecificName>Mnw nht</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="44.0" depth="60.0"/>
+  </Obstruction>
+  <VisualActor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+    <Actor>structures/kushites/wonder.xml</Actor>
+  </VisualActor>
+</Entity>

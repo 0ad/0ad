@@ -17,11 +17,14 @@ in particular, let us know and we can try to clarify it.
   /binaries/data
     GPL version 2 (or later) - see license_gpl-2.0.txt
 
-  /binaries/data/mods/art
-  /binaries/data/mods/audio
+  /binaries/data/mods/*/art
+  /binaries/data/mods/*/audio
     Creative Commons Attribution-Share Alike 3.0 - see
     http://creativecommons.org/licenses/by-sa/3.0/
     and also see LICENSE.txt within those directories
+
+  /binaries/data/mods/*/maps/
+  see LICENSE.txt within those directories
 
   /binaries/system
     Various (unspecified)

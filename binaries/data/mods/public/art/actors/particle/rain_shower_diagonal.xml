@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="Rain Shower">
+      <particles file="rain_01.xml"/>
+    </variant>
+    <variant frequency="1" name="Rain Shower 2">
+      <particles file="rain_02.xml"/>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

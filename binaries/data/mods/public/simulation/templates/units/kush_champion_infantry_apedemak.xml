@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_swordsman">
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Meroitic Temple Guard</GenericName>
+    <SpecificName>rs ‘Iprmk</SpecificName>
+    <VisibleClasses datatype="tokens">Axe</VisibleClasses>
+    <Classes datatype="tokens">ApedemakGuard</Classes>
+    <Icon>units/kush_champion_apedemak.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/kushites/infantry_axeman_champion.xml</Actor>
+  </VisualActor>
+</Entity>

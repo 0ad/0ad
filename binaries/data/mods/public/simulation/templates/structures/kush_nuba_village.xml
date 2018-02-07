@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <Attack disable=""/>
+  <BuildRestrictions>
+    <Territory>own neutral</Territory>
+    <Distance>
+      <FromClass>MercenaryCamp</FromClass>
+      <MinDistance>100</MinDistance>
+    </Distance>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <wood>100</wood>
+      <stone>0</stone>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="25.5" depth="25.5"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Health>
+    <Max>1000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Nuba Village</GenericName>
+    <SpecificName>Nuba Village</SpecificName>
+    <Classes datatype="tokens">MercenaryCamp</Classes>
+    <Tooltip>Train the Nuba Clubman and Nuba Hunter.</Tooltip>
+    <Icon>structures/mercenary_camp.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Obstruction>
+    <Static width="23.5" depth="23.5"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}_infantry_clubman_b
+      units/{civ}_infantry_merc_javelinist_b
+      -units/{civ}_infantry_spearman_b
+      -units/{civ}_infantry_pikeman_b
+      -units/{civ}_infantry_swordsman_b
+      -units/{civ}_infantry_javelinist_b
+      -units/{civ}_infantry_slinger_b
+      -units/{civ}_infantry_archer_b
+      -units/{civ}_cavalry_swordsman_b
+      -units/{civ}_cavalry_spearman_b
+      -units/{civ}_cavalry_javelinist_b
+      -units/{civ}_cavalry_archer_b
+    </Entities>
+    <Technologies datatype="tokens">
+      -heal_barracks
+      -training_conscription
+    </Technologies>
+  </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_gymnasium.xml</select>
+      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence disable=""/>
+  <VisualActor>
+    <Actor>structures/mercenaries/camp_egyptian.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
+</Entity>

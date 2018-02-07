@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Ptolemies Thureos Basic">
+      <mesh>props/shield/ptol_thureos_curved.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="thureos-cow">
+      <textures>
+        <texture file="props/shield/ptol_thureos_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="thureos-cow-2">
+      <textures>
+        <texture file="props/shield/ptol_thureos_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-thureos-cow-1">
+      <textures>
+        <texture file="props/shield/kush_thureos_nubian_cow_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-thureos-cow-2">
+      <textures>
+        <texture file="props/shield/kush_thureos_nubian_cow_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-thureos-cow-3">
+      <textures>
+        <texture file="props/shield/kush_thureos_nubian_cow_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-thureos-cow-4">
+      <textures>
+        <texture file="props/shield/kush_thureos_nubian_cow_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-thureos-cow-5">
+      <textures>
+        <texture file="props/shield/kush_thureos_nubian_cow_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-thureos-cow-6">
+      <textures>
+        <texture file="props/shield/kush_thureos_nubian_cow_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-thureos-cow-7">
+      <textures>
+        <texture file="props/shield/kush_thureos_nubian_cow_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush-thureos-cow-8">
+      <textures>
+        <texture file="props/shield/kush_thureos_nubian_cow_08.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

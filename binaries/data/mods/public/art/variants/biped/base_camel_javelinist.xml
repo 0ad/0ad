@@ -1,0 +1,12 @@
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+    <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
+    <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
+    <animation event="0.59" file="biped/rider_javelin_atk_a.psa" load="0" name="attack_ranged" speed="50"/>
+    <animation event="0.5" file="biped/rider_sword_shield_atk_a.psa" name="attack_slaughter" speed="400"/>
+    <animation event="0.5" file="biped/rider_sword_shield_atk_a.psa" name="gather_meat" speed="300"/>
+    <animation event="0.5" file="biped/rider_sword_shield_atk_a.psa" name="gather_meat" speed="300"/>
+    <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
+  </animations>
+</variant>

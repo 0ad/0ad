@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_dock">
+  <Footprint>
+    <Square width="24.0" depth="22.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>kush</Civ>
+    <SpecificName>Mryt</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="22.0" depth="20.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      -armor_ship_hullsheathing
+    </Technologies>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/kushites/dock.xml</Actor>
+    <FoundationActor>structures/fndn_6x4_dock.xml</FoundationActor>
+  </VisualActor>
+</Entity>

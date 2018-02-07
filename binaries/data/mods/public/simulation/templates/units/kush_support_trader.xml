@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_trader">
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Nilotic Merchant</GenericName>
+    <SpecificName>rmt sbt</SpecificName>
+    <Icon>units/kush_support_trader.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/kushites/trader.xml</Actor>
+  </VisualActor>
+</Entity>

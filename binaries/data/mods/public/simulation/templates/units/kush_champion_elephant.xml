@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_elephant_melee">
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Meroitic War Elephant</GenericName>
+    <SpecificName>Abore ‘h3</SpecificName>
+    <Icon>units/kush_champion_elephant.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/kushites/elephant_champion.xml</Actor>
+  </VisualActor>
+</Entity>

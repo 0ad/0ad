@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_cavalry_spearman_relax.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="kush_barechested_01">
+      <textures>
+        <texture file="skeletal/kush_pike_b_01.png" name="baseTex"/>
+        <texture file="skeletal/kush_pike_b_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_barechested_02_lightskin">
+      <props>
+        <prop actor="props/units/heads/new/head_african_1.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_pike_b_02.png" name="baseTex"/>
+        <texture file="skeletal/kush_pike_b_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_barechested_03">
+      <textures>
+        <texture file="skeletal/kush_pike_b_03.png" name="baseTex"/>
+        <texture file="skeletal/kush_pike_b_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_barechested_04_lightskin">
+      <props>
+        <prop actor="props/units/heads/new/head_african_1.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_pike_b_04.png" name="baseTex"/>
+        <texture file="skeletal/kush_pike_b_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_barechested_05_lightskin">
+      <props>
+        <prop actor="props/units/heads/new/head_african_1.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_pike_b_05.png" name="baseTex"/>
+        <texture file="skeletal/kush_pike_b_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_barechested_06">
+      <textures>
+        <texture file="skeletal/kush_pike_b_06.png" name="baseTex"/>
+        <texture file="skeletal/kush_pike_b_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant file="biped/rider_promotion.xml" name="promotion"/>
+    <variant file="biped/attack_slaughter_cavalry.xml" name="attack_slaughter">
+      <props>
+        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
+        <prop attachpoint="ammo"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

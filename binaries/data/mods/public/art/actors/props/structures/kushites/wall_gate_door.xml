@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="mechanical/hele_wall_gate_closed.dae" name="gate_closed" speed="65"/>
+        <animation file="mechanical/hele_wall_gate_opening.dae" name="gate_opening" speed="65"/>
+        <animation file="mechanical/hele_wall_gate_open.dae" name="gate_open" speed="65"/>
+        <animation file="mechanical/hele_wall_gate_closing.dae" name="gate_closing" speed="65"/>
+      </animations>
+      <mesh>structural/hele_wall_gate.dae</mesh>
+      <textures>
+        <texture file="props/hele_gate.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="structures/kushites/wall_gate.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

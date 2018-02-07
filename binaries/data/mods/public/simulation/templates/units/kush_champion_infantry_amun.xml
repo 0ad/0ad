@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_swordsman">
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Napatan Temple Guard</GenericName>
+    <SpecificName>rs ‘Imn</SpecificName>
+    <Classes datatype="tokens">AmunGuard</Classes>
+    <Icon>units/kush_champion_amun.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/kushites/infantry_swordsman_champion.xml</Actor>
+  </VisualActor>
+</Entity>

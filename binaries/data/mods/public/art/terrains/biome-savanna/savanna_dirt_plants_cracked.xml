@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?> <terrain> <textures> <texture name="baseTex" file="types/savanna_dirt_plants_cracked.png"/>  </textures> <material>terrain_base.xml</material> </terrain>
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/savanna_dirt_plants_cracked.png"/>
+		<texture name="normTex" file="types/savanna_dirt_plants_cracked_norm.png"/>
+		<texture name="specTex" file="types/savanna_dirt_plants_cracked_spec.png"/>
+	</textures>
+	<material>terrain_norm_spec.xml</material>
+</terrain>

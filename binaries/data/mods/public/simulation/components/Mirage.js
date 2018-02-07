@@ -84,12 +84,13 @@ Mirage.prototype.CopyFoundation = function(cmpFoundation)
 Mirage.prototype.GetNumBuilders = function() { return this.numBuilders; };
 Mirage.prototype.GetBuildTime = function() { return this.buildTime; };
 
-// Repairable data (numBuilders shared with foundation as entities can't have both)
+// Repairable data (numBuilders and buildTime shared with foundation as entities can't have both)
 
 Mirage.prototype.CopyRepairable = function(cmpRepairable)
 {
 	this.miragedIids.add(IID_Repairable);
 	this.numBuilders = cmpRepairable.GetNumBuilders();
+	this.buildTime = cmpRepairable.GetBuildTime();
 };
 
 // Health data

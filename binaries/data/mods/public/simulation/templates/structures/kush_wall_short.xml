@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wall_short">
+  <Footprint>
+    <Square width="16.0" depth="10.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>kush</Civ>
+    <SelectionGroupName>structures/mace_wallset_stone</SelectionGroupName>
+    <SpecificName>sbty</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="14.0" depth="8.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/kushites/wall_short.xml</Actor>
+  </VisualActor>
+  <WallPiece>
+    <Length>11</Length>
+  </WallPiece>
+</Entity>

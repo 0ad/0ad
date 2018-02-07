@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_archer">
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Noble Archer</GenericName>
+    <SpecificName>Hry pdty</SpecificName>
+    <Icon>units/kush_champion_archer.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/kushites/infantry_archer_champion.xml</Actor>
+  </VisualActor>
+</Entity>

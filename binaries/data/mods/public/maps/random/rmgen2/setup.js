@@ -311,34 +311,47 @@ function placeRadial(playerIDs, distance, startAngle)
 /**
  * Choose arbitrary starting locations.
  */
-function placeRandom(playerIDs)
+function placeRandom(playerIDs, constraints = undefined)
 {
-	var locations = [];
-	var attempts = 0;
-	var resets = 0;
-	var mapCenter = g_Map.getCenter();
+	let locations = [];
+	let attempts = 0;
+	let resets = 0;
+
+	let mapCenter = g_Map.getCenter();
+	let playerMinDist = fractionToTiles(0.25);
+	let borderDistance = tilesToFraction(0.08);
+
+	let area = createArea(new MapBoundsPlacer(), undefined, new AndConstraint(constraints));
 
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
-		let position = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(randFloat(0, 0.42)), 0).rotate(randomAngle())).round();
+		let position = pickRandom(area.points);
 
 		// Minimum distance between initial bases must be a quarter of the map diameter
-		if (locations.some(loc => loc.distanceTo(position) < fractionToTiles(0.25)))
+		if (locations.some(loc => loc.distanceTo(position) < playerMinDist) ||
+		    position.distanceTo(mapCenter) > mapCenter.x + borderDistance)
 		{
 			--i;
 			++attempts;
 
 			// Reset if we're in what looks like an infinite loop
-			if (attempts > 100)
+			if (attempts > 500)
 			{
 				locations = [];
 				i = -1;
 				attempts = 0;
 				++resets;
 
+				// Reduce minimum player distance progressively
+				if (resets % 25 == 0)
+					playerMinDist *= 0.975;
+
 				// If we only pick bad locations, stop trying to place randomly
-				if (resets == 100)
+				if (resets == 500)
+				{
+					error("Could not place playerbases!");
 					return undefined;
+				}
 			}
 			continue;
 		}

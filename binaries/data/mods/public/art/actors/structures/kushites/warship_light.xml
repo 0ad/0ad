@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>structural/ptol_ship_merchant.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/kushites/bireme_sail.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/merchant_tent.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/kush_ship_bireme.png" name="baseTex"/>
+        <texture file="structural/ptol_merch_ship_norm.png" name="normTex"/>
+        <texture file="structural/ptol_merch_ship_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

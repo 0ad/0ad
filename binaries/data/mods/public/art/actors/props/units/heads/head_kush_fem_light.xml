@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="5" name="Short Hair">
+      <mesh>props/new/head_female_shorthair.dae</mesh>
+    </variant>
+    <variant frequency="5" name="Dreads">
+      <mesh>props/new/head_female_shorthair.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/kush_dread_hair_fem.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="5" name="African Bun">
+      <mesh>props/heads/head_kush_01.dae</mesh>
+    </variant>
+    <variant frequency="5" name="Afro 1">
+      <mesh>props/heads/head_kush_02.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_fem_hair_afro_1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Dudette Head A">
+      <mesh>props/new/dudette_head_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Egyptian 1">
+      <mesh>props/new/head_ptol_female.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Egyptian 2">
+      <mesh>props/new/head_ptol_female_2.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="African-Female-Face-01">
+      <textures>
+        <texture file="props/head/african_fem_a_light.png" name="baseTex"/>
+        <texture file="props/head/african_fem_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_specmap.xml</material>
+</actor>

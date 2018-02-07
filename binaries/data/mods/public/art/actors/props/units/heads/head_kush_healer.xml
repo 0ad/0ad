@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/new/head_beard_small.dae</mesh>
+      <textures>
+        <texture file="props/head/kush_healer.png" name="baseTex"/>
+		<texture file="props/head/kush_healer_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+<material>player_trans_spec.xml</material>
+</actor>

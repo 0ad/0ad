@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_temple">
+  <Footprint>
+    <Square width="23.0" depth="24"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x4</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Shrine</GenericName>
+    <SpecificName>ḥwt-nṯr</SpecificName>
+    <History>?</History>
+  </Identity>
+  <Obstruction>
+    <Static width="20" depth="21"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      -units/{civ}_support_healer_b
+      units/kush_support_healer_e
+    </Entities>
+    <Technologies datatype="tokens">
+      -heal_range
+      -heal_range_2
+      -heal_rate
+      -heal_rate_2
+      -heal_temple
+      -health_regen_units
+    </Technologies>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/kushites/shrine.xml</Actor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
+</Entity>

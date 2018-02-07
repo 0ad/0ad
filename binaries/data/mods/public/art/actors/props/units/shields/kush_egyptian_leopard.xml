@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="egyptian-shield">
+      <mesh>props/shield/kush_egyptian_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="egyptian-shield-horned">
+      <mesh>props/shield/kush_egyptian_01_horned.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="leopard-pelt">
+      <textures>
+        <texture file="props/shield/kush_egyptian_leopard.png" name="baseTex"/>
+        <texture file="props/shield/kush_egyptian_spec.png" name="specTex"/>
+        <texture file="props/shield/kush_egyptian_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

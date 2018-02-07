@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_temple">
+  <Auras datatype="tokens">
+    structures/kush_temple_amun
+  </Auras>
+  <Cost>
+    <PopulationBonus>10</PopulationBonus>
+    <BuildTime>300</BuildTime>
+    <Resources>
+      <stone>500</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="32.0" depth="62.0"/>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>30</Max>
+  </GarrisonHolder>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_8x8</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Temple of Amun</GenericName>
+    <SpecificName>Pr-‘Imn</SpecificName>
+    <Classes datatype="tokens">TempleOfAmun</Classes>
+  </Identity>
+  <Obstruction>
+    <Static width="28" depth="56.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}_champion_infantry_amun
+    </Entities>
+    <Technologies datatype="tokens">
+      kushites/upgrade_rank_elite_healer
+    </Technologies>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/kushites/temple_amun.xml</Actor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+  </VisualActor>
+</Entity>

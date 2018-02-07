@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_swordsman">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/kush_pyramid_small
+      structures/kush_pyramid_large
+      structures/kush_temple_amun
+      structures/kush_temple_apedemak
+      -structures/{civ}_temple
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>kush</Civ>
+    <SelectionGroupName>units/kush_infantry_swordsman_b</SelectionGroupName>
+    <GenericName>Meroitic Swordsman</GenericName>
+    <SpecificName>knw hps</SpecificName>
+    <Icon>units/kush_infantry_swordsman.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Promotion>
+    <Entity>units/kush_infantry_swordsman_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/kushites/infantry_swordsman_b.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,19 @@
+{
+	"genericName": "High Priest of Amun",
+	"description": "Have your priests instructed by the High Priest himself - may Amun bless him.",
+	"cost": { "food": 500, "wood": 0, "stone": 0, "metal": 500 },
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" }, { "civ": "kush" }]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "high_priest.png",
+	"researchTime": 60,
+	"tooltip": "Train elite rank healers.",
+	"modifications": [
+		{ "value": "Promotion/RequiredXp", "replace": 0, "affects": "Basic" },
+		{ "value": "Promotion/RequiredXp", "replace": 0, "affects": "Advanced" }
+	],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml",
+	"affects": ["Healer"]
+}

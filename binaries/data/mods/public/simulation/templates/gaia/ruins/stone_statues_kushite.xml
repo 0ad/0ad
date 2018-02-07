@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_ruins">
+  <Footprint replace="">
+    <Square width="4.0" depth="4.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Stone Ruins</GenericName>
+    <SpecificName>Kushite Statue</SpecificName>
+    <Icon>structures/statue.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="3.5" depth="3.5"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Amount>300</Amount>
+    <Type>stone.ruins</Type>
+  </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_universal.xml</select>
+    </SoundGroups>
+  </Sound>
+  <VisualActor>
+    <Actor>props/special/eyecandy/statues_kush.xml</Actor>
+  </VisualActor>
+</Entity>

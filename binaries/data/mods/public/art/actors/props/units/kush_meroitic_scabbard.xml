@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Bamboo quiver 1">
+      <mesh>props/kush_scabbard.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/kush_gladius.xml" attachpoint="sword"/>
+      </props>
+      <textures>
+        <texture file="props/weapon/kush_scabbard.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="Idle" frequency="1">
+      <props>
+        <prop attachpoint="sword"/>
+      </props>
+    </variant>
+    <variant name="Build"/>
+    <variant name="Build_farm"/>
+    <variant name="carry_meat"/>
+    <variant name="carry_food"/>
+    <variant name="carry_wood"/>
+    <variant name="carry_metal"/>
+    <variant name="gather_fruit"/>
+    <variant name="gather_grain"/>
+    <variant name="gather_meat"/>
+    <variant name="gather_tree"/>
+    <variant name="gather_rock"/>
+    <variant name="gather_ore"/>
+    <variant name="gather_ruins"/>
+    <variant name="gather_treasure"/>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

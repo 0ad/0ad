@@ -1,0 +1,16 @@
+{
+	"type": "range",
+	"radius": 60,
+	"affects": ["Soldier"],
+	"modifications": [
+		{ "value": "Attack/Melee/Hack", "multiply": 1.1 },
+		{ "value": "Attack/Melee/Pierce", "multiply": 1.1 },
+		{ "value": "Attack/Melee/Crush", "multiply": 1.1 },
+		{ "value": "Attack/Ranged/Hack", "multiply": 1.1 },
+		{ "value": "Attack/Ranged/Pierce", "multiply": 1.1 },
+		{ "value": "Attack/Ranged/Crush", "multiply": 1.1 }
+	],
+	"auraName": "Exhortative Presence",
+	"auraDescription": "Soldiers near Large Pyramids +10% attack.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}

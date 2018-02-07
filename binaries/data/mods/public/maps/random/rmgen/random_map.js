@@ -61,9 +61,51 @@ function RandomMap(baseHeight, baseTerrain)
 	this.entityCount = 150;
 }
 
+/**
+ * Prints a timed log entry to stdout and the logfile.
+ */
 RandomMap.prototype.log = function(text)
 {
 	this.logger.print(text);
+};
+
+/**
+ * Loads an imagefile and uses it as the heightmap for the current map.
+ * Scales the map (including height) proportionally with the mapsize.
+ */
+RandomMap.prototype.LoadMapTerrain = function(filename)
+{
+	g_Map.log("Loading terrain file " + filename);
+	let mapTerrain = Engine.LoadMapTerrain("maps/random/" + filename + ".pmp");
+
+	let heightmapPainter = new HeightmapPainter(mapTerrain.height, true);
+
+	createArea(
+		new MapBoundsPlacer(),
+		[
+			heightmapPainter,
+			new TerrainTextureArrayPainter(mapTerrain.textureIDs, mapTerrain.textureNames)
+		]);
+
+	return heightmapPainter.getScale();
+};
+
+/**
+ * Loads PMP terrain file that contains elevation grid and terrain textures created in atlas.
+ * Scales the map (including height) proportionally with the mapsize.
+ * Notice that the image heights can only be between 0 and 255, but the resulting sizes can exceed that range due to the cubic interpolation.
+ */
+RandomMap.prototype.LoadHeightmapImage = function(filename, normalMinHeight, normalMaxHeight)
+{
+	g_Map.log("Loading heightmap " + filename);
+
+	let heightmapPainter = new HeightmapPainter(Engine.LoadHeightmapImage("maps/random/" + filename), true, normalMinHeight, normalMaxHeight);
+
+	createArea(
+		new MapBoundsPlacer(),
+		heightmapPainter);
+
+	return heightmapPainter.getScale();
 };
 
 /**
@@ -244,7 +286,7 @@ RandomMap.prototype.placeEntityAnywhere = function(templateName, playerID, posit
  */
 RandomMap.prototype.placeEntityPassable = function(templateName, playerID, position, orientation)
 {
-	if (g_Map.validTilePassable(position))
+	if (this.validTilePassable(position))
 		this.placeEntityAnywhere(templateName, playerID, position, orientation);
 };
 
@@ -312,9 +354,9 @@ RandomMap.prototype.cornerHeight = function(position)
 	let count = 0;
 	let sumHeight = 0;
 
-	for (let dir of [[-1, -1], [-1, 0], [0, -1], [0, 0]])
+	for (let vertex of g_TileVertices)
 	{
-		let pos = Vector2D.add(position, new Vector2D(dir[0], dir[1]));
+		let pos = Vector2D.sub(position, vertex);
 		if (this.validHeight(pos))
 		{
 			++count;

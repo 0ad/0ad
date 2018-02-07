@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Bamboo quiver 1">
+      <mesh>props/kush_quiver_hip.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/kush_quiver_hip_arrows.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/maur_props_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bamboo quiver 2">
+      <mesh>props/kush_quiver_hip_panther.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/kush_quiver_hip_arrows.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_iar_e_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
