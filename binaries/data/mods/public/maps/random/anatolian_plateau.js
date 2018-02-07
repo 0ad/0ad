@@ -88,7 +88,7 @@ var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
 var num = 4 * Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(2, 3)), 4, 1),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(2, 3)), 4, Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)

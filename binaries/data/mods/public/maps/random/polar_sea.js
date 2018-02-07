@@ -94,7 +94,7 @@ createArea(
 		2,
 		Math.floor(scaleByMapSize(5, 16)),
 		Math.floor(scaleByMapSize(35, 200)),
-		1,
+		Infinity,
 		mapCenter,
 		0,
 		[Math.floor(fractionToTiles(0.17))]),

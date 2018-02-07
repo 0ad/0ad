@@ -124,7 +124,7 @@ var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 4))), 1),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 4))), Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)
@@ -136,7 +136,7 @@ Engine.SetProgress(50);
 g_Map.log("Creating mud patches");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 1),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, Infinity),
 		[
 			new LayeredPainter([tGrassA, tGrassB, tMud], [1, 1]),
 			new TileClassPainter(clDirt)

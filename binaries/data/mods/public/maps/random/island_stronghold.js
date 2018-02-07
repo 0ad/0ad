@@ -91,7 +91,7 @@ for (let i = 0; i < teams.length; ++i)
 		addCivicCenterAreaToClass(playerPosition[p], clPlayer);
 
 		createArea(
-			new ChainPlacer(2, Math.floor(scaleByMapSize(5, 11)), Math.floor(scaleByMapSize(60, 250)), 1, playerPosition[p], 0, [Math.floor(fractionToTiles(0.01))]),
+			new ChainPlacer(2, Math.floor(scaleByMapSize(5, 11)), Math.floor(scaleByMapSize(60, 250)), Infinity, playerPosition[p], 0, [Math.floor(fractionToTiles(0.01))]),
 			[
 				new LayeredPainter([tMainTerrain, tMainTerrain, tMainTerrain], [1, 6]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),

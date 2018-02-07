@@ -82,7 +82,7 @@ g_Map.log("Creating big patches");
 var patches = [tGrass2, tGrass3];
 for (var i = 0; i < patches.length; i++)
 	createAreas(
-		new ChainPlacer(Math.floor(scaleByMapSize(3, 6)), Math.floor(scaleByMapSize(10, 20)), Math.floor(scaleByMapSize(15, 60)), 1),
+		new ChainPlacer(Math.floor(scaleByMapSize(3, 6)), Math.floor(scaleByMapSize(10, 20)), Math.floor(scaleByMapSize(15, 60)), Infinity),
 		new TerrainPainter(patches[i]),
 		avoidClasses(clPlayer, 10),
 		scaleByMapSize(5, 20));
@@ -91,14 +91,14 @@ g_Map.log("Creating small patches");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	for (let patch of [tDirt1, tDirt2, tDirt3])
 		createAreas(
-			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 1),
+			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, Infinity),
 			new TerrainPainter(patch),
 			avoidClasses(clPlayer, 12),
 			scaleByMapSize(4, 15));
 
 g_Map.log("Creating water holes");
 createAreas(
-	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(20, 60)), 1),
+	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(20, 60)), Infinity),
 	[
 		new LayeredPainter([tShore, tWater], [1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 7),

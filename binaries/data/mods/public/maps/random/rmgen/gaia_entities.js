@@ -83,7 +83,7 @@ function createMines(objects, constraint, tileClass, count)
 function createStoneMineFormation(position, templateName, terrain, radius = 2.5, count = 8, startAngle = undefined, maxOffset = 1)
 {
 	createArea(
-		new ChainPlacer(radius / 2, radius, 2, 1, position, undefined, [5]),
+		new ChainPlacer(radius / 2, radius, 2, Infinity, position, undefined, [5]),
 		new TerrainPainter(terrain));
 
 	let angle = startAngle !== undefined ? startAngle : randomAngle();

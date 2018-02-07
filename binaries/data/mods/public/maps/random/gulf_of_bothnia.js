@@ -111,7 +111,7 @@ for (let gulfLake of gulfLakePositions)
 			2,
 			Math.floor(scaleByMapSize(5, 16)),
 			Math.floor(scaleByMapSize(35, gulfLake.numCircles)),
-			1,
+			Infinity,
 			position,
 			0,
 			[Math.floor(gulfLake.radius)]),

@@ -94,7 +94,7 @@ for (let i = 0; i < stripWidths.length; ++i)
 				1,
 				Math.floor(scaleByMapSize(3, connectPlayers && isPlayerStrip ? 8 : 7)),
 				Math.floor(scaleByMapSize(30, 60)),
-				1,
+				Infinity,
 				position),
 			[
 				new LayeredPainter([tGrass, tGrass], [2]),

@@ -228,7 +228,7 @@ function unknownContinent()
 					2,
 					Math.floor(scaleByMapSize(5, 9)),
 					Math.floor(scaleByMapSize(5, 20)),
-					1,
+					Infinity,
 					playerPosition[i],
 					0,
 					[Math.floor(scaleByMapSize(23, 50))]),
@@ -751,7 +751,7 @@ function createShoreJaggedness(waterHeight, borderClass, shoreDist, inwards = tr
 	for (let i = 0; i < 2; ++i)
 		if (i || inwards)
 			createAreas(
-				new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 15, 1),
+				new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 15, Infinity),
 				[
 						new SmoothElevationPainter(ELEVATION_SET, i ? heightLand : waterHeight, 4),
 						i ? new TileClassPainter(clLand) : new TileClassUnPainter(clLand)

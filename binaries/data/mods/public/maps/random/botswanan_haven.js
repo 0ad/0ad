@@ -146,7 +146,7 @@ createAreas(
 g_Map.log("Creating mud patches");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
-		new ChainPlacer(2, Math.floor(scaleByMapSize(3, 6)), size, 1),
+		new ChainPlacer(2, Math.floor(scaleByMapSize(3, 6)), size, Infinity),
 		[
 			new LayeredPainter([tGrassA, tGrassB, tMud], [1, 1]),
 			new TileClassPainter(clDirt)
