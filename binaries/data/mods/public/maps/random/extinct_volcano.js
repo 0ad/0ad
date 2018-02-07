@@ -97,7 +97,7 @@ if (!isNomad())
 
 		// Flatten the initial CC area
 		createArea(
-			new ClumpPlacer(diskArea(playerMountainSize), 0.95, 0.6, 10, playerPosition[i]),
+			new ClumpPlacer(diskArea(playerMountainSize), 0.95, 0.6, Infinity, playerPosition[i]),
 			[
 				new LayeredPainter([tHillVeryDark, tHillMedium1], [playerMountainSize]),
 				new SmoothElevationPainter(ELEVATION_SET, heightPlayerHill, playerMountainSize),
@@ -155,7 +155,7 @@ Engine.SetProgress(30);
 
 g_Map.log("Creating hills");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
+	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, Infinity),
 	[
 		new LayeredPainter([tHillDark, tHillDark, tHillDark], [2, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
@@ -175,7 +175,7 @@ var size = forestTrees / (scaleByMapSize(4, 12) * numPlayers);
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)

@@ -75,7 +75,7 @@ for (let i = 0; i < numPlayers; ++i)
 		forestPosition = Vector2D.add(playerPosition[i], new Vector2D(forestDist, 0).rotate(-forestAngle));
 	} while (
 		!createArea(
-			new ClumpPlacer(70, 1, 0.5, 10, forestPosition),
+			new ClumpPlacer(70, 1, 0.5, Infinity, forestPosition),
 			[
 				new LayeredPainter([tForestFloor, pForestMain], [0]),
 				new TileClassPainter(clBaseResource)
@@ -92,7 +92,7 @@ for (let i = 0; i < numPlayers; ++i)
 		reedsPosition = Vector2D.add(forestPosition, new Vector2D(5, 0).rotate(-waterAngle)).round();
 	} while (
 		!createArea(
-			new ClumpPlacer(diskArea(4.5), 0.9, 0.4, 5, waterPosition),
+			new ClumpPlacer(diskArea(4.5), 0.9, 0.4, Infinity, waterPosition),
 			[
 				new LayeredPainter([tShore, tWater], [1]),
 				new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 3)
@@ -136,7 +136,7 @@ Engine.SetProgress(30);
 
 g_Map.log("Creating central oasis");
 createArea(
-	new ClumpPlacer(diskArea(forestDistance + shoreDistance + waterRadius), 0.8, 0.2, 10, mapCenter),
+	new ClumpPlacer(diskArea(forestDistance + shoreDistance + waterRadius), 0.8, 0.2, Infinity, mapCenter),
 	[
 		new LayeredPainter([pOasisForestLight, tWater], [forestDistance]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, forestDistance + shoreDistance),
@@ -147,21 +147,21 @@ Engine.SetProgress(40);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 3),
 	avoidClasses(clPlayer, 10, clBaseResource, 6, clOasis, 4),
 	scaleByMapSize(30, 70));
 
 g_Map.log("Creating dirt patches");
 createAreas(
-	new ClumpPlacer(80, 0.3, 0.06, 1),
+	new ClumpPlacer(80, 0.3, 0.06, Infinity),
 	new TerrainPainter(tDirt),
 	avoidClasses(clPlayer, 10, clBaseResource, 6, clOasis, 4, clForest, 4),
 	scaleByMapSize(15, 50));
 
 g_Map.log("Creating dunes");
 createAreas(
-	new ClumpPlacer(120, 0.3, 0.06, 1),
+	new ClumpPlacer(120, 0.3, 0.06, Infinity),
 	[
 		new TerrainPainter(tDune),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetDune, 30)

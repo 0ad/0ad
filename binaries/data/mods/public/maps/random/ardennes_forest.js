@@ -299,7 +299,7 @@ var [forestTreesJoin, forestTrees] = getTreeCounts(forestTrees, forestTrees, 0.2
 
 var num = forestTrees / (scaleByMapSize(6, 16) * numPlayers);
 createAreasInAreas(
-	new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
+	new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 	[
 		new TerrainPainter(pForest),
 		new TileClassPainter(clForest)
@@ -312,7 +312,7 @@ createAreasInAreas(
 
 var num = forestTreesJoin / (scaleByMapSize(4,6) * numPlayers);
 createAreasInAreas(
-	new ClumpPlacer(forestTreesJoin / num, 0.1, 0.1, 1),
+	new ClumpPlacer(forestTreesJoin / num, 0.1, 0.1, Infinity),
 	[
 		new TerrainPainter(pForest),
 		new TileClassPainter(clForest),

@@ -255,7 +255,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 
 	for (let i = 0; i < layers.length; ++i)
 		createArea(
-			new ClumpPlacer(layers[i].clumps, 0.7, 0.05, 100, position),
+			new ClumpPlacer(layers[i].clumps, 0.7, 0.05, Infinity, position),
 			[
 				layers[i].painter || new LayeredPainter([terrainTexture, terrainTexture], [3]),
 				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness),
@@ -493,7 +493,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 
 		// Create small puddles at the map border to ensure players being separated
 		createArea(
-			new ClumpPlacer(diskArea(riverWidth / 2), 0.95, 0.6, 10, end),
+			new ClumpPlacer(diskArea(riverWidth / 2), 0.95, 0.6, Infinity, end),
 			new SmoothElevationPainter(ELEVATION_SET, heightRiverbed, 3),
 			constraint);
 	}

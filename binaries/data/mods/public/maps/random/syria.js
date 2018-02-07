@@ -56,7 +56,7 @@ for (let i = 0; i < numPlayers; ++i)
 {
 	if (!isNomad())
 		createArea(
-			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i]),
+			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, Infinity, playerPosition[i]),
 			new TileClassPainter(clPlayer));
 
 	createArea(
@@ -107,7 +107,7 @@ Engine.SetProgress(20);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));

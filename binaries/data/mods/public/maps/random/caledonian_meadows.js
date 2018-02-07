@@ -25,7 +25,7 @@ function placeRandomPathToHeight(start, target, targetHeight, tileClass, texture
 		rectangularSmoothToHeight(position, width * 3, width * 3, targetHeight, strength, heightmap);
 
 		createArea(
-			new ClumpPlacer(diskArea(width), 1, 1, 1, position),
+			new ClumpPlacer(diskArea(width), 1, 1, Infinity, position),
 			painters);
 
 		position.add(new Vector2D(distance, 0).rotate(
@@ -130,7 +130,7 @@ function placeGrove(point)
 		let position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
 		g_Map.placeEntityPassable(pickRandom(objectList), 0, position, randomAngle());
 		createArea(
-			new ClumpPlacer(5, 1, 1, 1, position),
+			new ClumpPlacer(5, 1, 1, Infinity, position),
 			[
 				new TerrainPainter(tGrove),
 				new TileClassPainter(clGrove)
@@ -181,7 +181,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 		let woodPosition = Vector2D.add(point, new Vector2D(randFloat(10, 15), 0).rotate(-angle));
 		g_Map.placeEntityPassable(pickRandom(objectList), 0, woodPosition, randomAngle());
 		createArea(
-			new ClumpPlacer(5, 1, 1, 1, woodPosition),
+			new ClumpPlacer(5, 1, 1, Infinity, woodPosition),
 			[
 				new TerrainPainter("temp_grass_plants"),
 				new TileClassPainter(clGrove)

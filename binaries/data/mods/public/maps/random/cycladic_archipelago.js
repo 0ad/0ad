@@ -91,7 +91,7 @@ function createCycladicArchipelagoIsland(position, tileClass, radius, coralRadiu
 {
 	// Deep ocean rocks
 	createArea(
-		new ClumpPlacer(diskArea(radius + coralRadius), 0.7, 0.1, 10, position),
+		new ClumpPlacer(diskArea(radius + coralRadius), 0.7, 0.1, Infinity, position),
 		[
 			new LayeredPainter([tOceanRockDeep, tOceanCoral], [5]),
 			new TileClassPainter(clCoral)
@@ -101,7 +101,7 @@ function createCycladicArchipelagoIsland(position, tileClass, radius, coralRadiu
 	// Island
 	areas.push(
 		createArea(
-			new ClumpPlacer(diskArea(radius), 0.7, 0.1, 10, position),
+			new ClumpPlacer(diskArea(radius), 0.7, 0.1, Infinity, position),
 			[
 				new LayeredPainter([tOceanCoral, tBeachWet, tBeachDry, tBeach, tBeachBlend, tGrass], [1, 3, 1, 1, 2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 5),
@@ -160,7 +160,7 @@ Engine.SetProgress(20);
 
 g_Map.log("Creating bumps");
 createAreasInAreas(
-	new ClumpPlacer(scaleByMapSize(20, 60), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 60), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 3),
 	avoidClasses(clCity, 0),
 	scaleByMapSize(25, 75),15,
@@ -170,7 +170,7 @@ Engine.SetProgress(34);
 
 g_Map.log("Creating hills");
 createAreasInAreas(
-	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
+	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, Infinity),
 	[
 		new LayeredPainter([tCliff, tCliffShrubs], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
@@ -194,7 +194,7 @@ var forestTypes = [
 
 for (let type of forestTypes)
 	createAreasInAreas(
-		new ClumpPlacer(randIntInclusive(6, 17), 0.1, 0.1, 1),
+		new ClumpPlacer(randIntInclusive(6, 17), 0.1, 0.1, Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)

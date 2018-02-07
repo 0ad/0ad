@@ -65,7 +65,7 @@ Engine.SetProgress(45);
 
 g_Map.log("Creating hills");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
+	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, Infinity),
 	[
 		new LayeredPainter([tCliff, tGrass], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
@@ -85,7 +85,7 @@ var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)

@@ -68,7 +68,7 @@ var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 		createArea(
-			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, 10, playerPosition[i]),
+			new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.9, 0.5, Infinity, playerPosition[i]),
 			new TileClassPainter(clPlayer));
 
 placePlayerBases({

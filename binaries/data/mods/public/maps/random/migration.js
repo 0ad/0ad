@@ -75,7 +75,7 @@ g_Map.log("Creating player islands and docks");
 for (let i = 0; i < numPlayers; ++i)
 {
 	createArea(
-		new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.8, 0.1, 10, playerPosition[i]),
+		new ClumpPlacer(diskArea(defaultPlayerBaseRadius()), 0.8, 0.1, Infinity, playerPosition[i]),
 		[
 			new LayeredPainter([tWater, tShore, tMainTerrain], [1, 4]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
@@ -129,7 +129,7 @@ Engine.SetProgress(15);
 g_Map.log("Create the continent body");
 var continentPosition = Vector2D.add(mapCenter, new Vector2D(0, fractionToTiles(0.38)).rotate(-startAngle)).round()
 createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.4)), 0.8, 0.08, 10, continentPosition),
+	new ClumpPlacer(diskArea(fractionToTiles(0.4)), 0.8, 0.08, Infinity, continentPosition),
 	[
 		new LayeredPainter([tWater, tShore, tMainTerrain], [4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
@@ -140,7 +140,7 @@ Engine.SetProgress(20);
 
 g_Map.log("Creating shore jaggedness");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, 1),
+	new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, Infinity),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
@@ -159,7 +159,7 @@ Engine.SetProgress(25);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	[avoidClasses(clIsland, 10), stayClasses(clLand, 3)],
 	scaleByMapSize(100, 200)
@@ -168,7 +168,7 @@ Engine.SetProgress(30);
 
 g_Map.log("Creating hills");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
+	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, Infinity),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
@@ -192,7 +192,7 @@ var size = forestTrees / (scaleByMapSize(2,8) * numPlayers) *
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)

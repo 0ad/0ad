@@ -137,7 +137,7 @@ for (let i = 0; i < numPlayers; ++i)
 		g_Map.placeEntityPassable(resourcePerPlayer[rIndex], 0, position, randomAngle());
 
 		createArea(
-			new ClumpPlacer(40, 1/2, 1/8, 1, position),
+			new ClumpPlacer(40, 1/2, 1/8, Infinity, position),
 			[
 				new LayeredPainter([terrainHillBorder, terrainHill], [1]),
 				new ElevationPainter(randFloat(1, 2)),
@@ -152,7 +152,7 @@ clBaseResource.add(mapCenter);
 
 g_Map.log("Creating central mountain");
 createArea(
-	new ClumpPlacer(Math.square(radiusEC), 1/2, 1/8, 1, mapCenter),
+	new ClumpPlacer(Math.square(radiusEC), 1/2, 1/8, Infinity, mapCenter),
 	[
 		new LayeredPainter([terrainHillBorder, terrainHill], [radiusEC/4]),
 		new ElevationPainter(randFloat(1, 2)),

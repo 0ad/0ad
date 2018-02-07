@@ -129,7 +129,7 @@ for (let i = 0; i < numPlayers; ++i)
 g_Map.log("Creating lakes");
 var numLakes = Math.round(scaleByMapSize(1,4) * numPlayers);
 var waterAreas = createAreas(
-	new ClumpPlacer(scaleByMapSize(100,250), 0.8, 0.1, 10),
+	new ClumpPlacer(scaleByMapSize(100,250), 0.8, 0.1, Infinity),
 	[
 		new LayeredPainter([tShore, tWater, tWater], [1, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 3),

@@ -77,7 +77,7 @@ Engine.SetProgress(20);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.5, 0.08, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.5, 0.08, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800)

@@ -185,7 +185,7 @@ MountainRangeBuilder.prototype.PaintCurrentEdge = function()
 	// Creating circular mountains at both ends of that mountainrange
 	for (let point of [this.currentEdgeStart, this.currentEdgeEnd])
 		createArea(
-			new ClumpPlacer(diskArea(this.mountainWidth / 2), 0.95, 0.6, 10, point),
+			new ClumpPlacer(diskArea(this.mountainWidth / 2), 0.95, 0.6, Infinity, point),
 			this.painters,
 			this.constraint);
 
@@ -361,7 +361,7 @@ paintTerrainBasedOnHeight(snowlineHeight, heightMountain, 3, tSnowLimited);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 10),
 	scaleByMapSize(100, 200));
@@ -369,7 +369,7 @@ Engine.SetProgress(40);
 
 g_Map.log("Creating hills");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, 1),
+	new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, Infinity),
 	[
 		new LayeredPainter([tCliff, tSnowLimited], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightMountain, 2),
@@ -391,7 +391,7 @@ var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)

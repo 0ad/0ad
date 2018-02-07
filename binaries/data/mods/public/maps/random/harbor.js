@@ -328,7 +328,7 @@ function addHarbors(players)
 	{
 		let harborPosition = Vector2D.add(player.position, Vector2D.sub(mapCenter, player.position).div(2.5).round());
 		createArea(
-			new ClumpPlacer(1200, 0.5, 0.5, 1, harborPosition),
+			new ClumpPlacer(1200, 0.5, 0.5, Infinity, harborPosition),
 			[
 				new LayeredPainter([g_Terrains.shore, g_Terrains.water], [2]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHarbor, 3),

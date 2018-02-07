@@ -260,7 +260,7 @@ function placeGrove(point,
 			painters.push(new TileClassPainter(groveTileClass));
 
 		createArea(
-			new ClumpPlacer(5, 1, 1, 1, pos),
+			new ClumpPlacer(5, 1, 1, Infinity, pos),
 			painters);
 	}
 }
@@ -387,7 +387,7 @@ function placeStartLocationResources(
 		g_Map.placeEntityPassable(pickRandom(objectList), 0, position, randomAngle());
 
 		createArea(
-			new ClumpPlacer(5, 1, 1, 1, position),
+			new ClumpPlacer(5, 1, 1, Infinity, position),
 			[
 				new TerrainPainter(groveTerrainTexture),
 				new TileClassPainter(clGrove)

@@ -82,7 +82,7 @@ Engine.SetProgress(15);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBumpLand, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));
@@ -109,7 +109,7 @@ Engine.SetProgress(40);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBumpWater, 2),
 	stayClasses(clWater, 2),
 	scaleByMapSize(50, 100));
