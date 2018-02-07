@@ -9,8 +9,14 @@
         <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/trader_staff.xml" attachpoint="weapon_L"/>
       </props>
-      <textures><texture file="skeletal/hele_trd.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_trd.dds" name="baseTex"/>
+      </textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

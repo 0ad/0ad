@@ -10,10 +10,6 @@
         <prop actor="props/units/weapons/gastraphetes.xml" attachpoint="shield"/>
         <prop actor="props/units/quiver_back.xml" attachpoint="back"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="epilektos-01">
       <textures>
         <texture file="skeletal/athen_epilektos_1.png" name="baseTex"/>
       </textures>
@@ -24,7 +20,6 @@
     <variant file="biped/attack_ranged_gastraphetes_fire.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
