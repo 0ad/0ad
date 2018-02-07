@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-31 09:03+0100\n"
-"PO-Revision-Date: 2018-01-31 14:58+0000\n"
+"POT-Creation-Date: 2018-02-05 09:02+0100\n"
+"PO-Revision-Date: 2018-02-05 16:10+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -53,12 +53,12 @@ msgid "Confirmation"
 msgstr "確認"
 
 #: gui/session/menu.js:159 gui/session/menu.js:191 gui/session/menu.js:224
-#: gui/session/session.js:844 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:916 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "いいえ"
 
 #: gui/session/menu.js:159 gui/session/menu.js:191 gui/session/menu.js:224
-#: gui/session/session.js:844 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:916 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "はい"
 
@@ -259,7 +259,7 @@ msgstr "一時停止"
 msgid "Paused by %(players)s"
 msgstr "%(players)sにより休止されました。"
 
-#: gui/session/menu.js:1195 gui/session/messages.js:695
+#: gui/session/menu.js:1195 gui/session/messages.js:700
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ", "
@@ -372,7 +372,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "チーム"
 
-#: gui/session/messages.js:180 gui/session/session.js:441
+#: gui/session/messages.js:180 gui/session/session.js:512
 msgid "Observer"
 msgstr "観戦"
 
@@ -468,179 +468,179 @@ msgstr "%(player)sはあなたに%(player2)sしました。"
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)sは%(player2)sと中立になりました。"
 
-#: gui/session/messages.js:584
+#: gui/session/messages.js:589
 msgid "Click to quit this tutorial."
 msgstr "クリックしてチュートリアルを終了する。"
 
-#: gui/session/messages.js:585
+#: gui/session/messages.js:590
 msgid "Quit"
 msgstr "終了"
 
-#: gui/session/messages.js:589
+#: gui/session/messages.js:594
 msgid "Click when ready."
 msgstr "準備ができたらクリック。"
 
-#: gui/session/messages.js:593
+#: gui/session/messages.js:598
 msgid "Follow the instructions."
 msgstr "指示に従ってください。"
 
-#: gui/session/messages.js:684
+#: gui/session/messages.js:689
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:690
+#: gui/session/messages.js:695
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
 msgstr "%(turn)sターンで同期エラーが発生しました。"
 
-#: gui/session/messages.js:694
+#: gui/session/messages.js:699
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
 msgstr "プレイヤー：%(players)s"
 
-#: gui/session/messages.js:699
+#: gui/session/messages.js:704
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
 msgstr "ゲームの状態は、ホストのゲーム状態と同じです。"
 
-#: gui/session/messages.js:700
+#: gui/session/messages.js:705
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
 msgstr "ゲームの状態はホストのゲーム状態とは異なります。"
 
-#: gui/session/messages.js:706
+#: gui/session/messages.js:711
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
 msgstr "AIによる再参加はサポートされていません！"
 
-#: gui/session/messages.js:709
+#: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
 msgstr "すべてのプレイヤーが同じMODを使用していることを確認してください。"
 
-#: gui/session/messages.js:710
+#: gui/session/messages.js:715
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
 msgstr "この問題を解決するには、メインメニューの「バグを報告する」をクリックしてください。"
 
-#: gui/session/messages.js:711
+#: gui/session/messages.js:716
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
 msgstr "%(filepath)sにリプレイを保存しました"
 
-#: gui/session/messages.js:714
+#: gui/session/messages.js:719
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
 msgstr "%(filepath)sに現在の状態をダンプします。"
 
-#: gui/session/messages.js:722 gui/session/messages.js:733
+#: gui/session/messages.js:727 gui/session/messages.js:738
 msgid "Out of Sync"
 msgstr "同期できません"
 
-#: gui/session/messages.js:730
+#: gui/session/messages.js:735
 msgid "Out-Of-Sync error!"
 msgstr "同期エラーが発生しました！"
 
 #. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:732
+#: gui/session/messages.js:737
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
 msgstr "ゲームの状態は元のゲーム状態とは異なります。"
 
-#: gui/session/messages.js:796
+#: gui/session/messages.js:801
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "全ての陣営"
 
-#: gui/session/messages.js:804
+#: gui/session/messages.js:809
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "同盟国"
 
-#: gui/session/messages.js:808
+#: gui/session/messages.js:813
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "敵陣営"
 
-#: gui/session/messages.js:814
+#: gui/session/messages.js:819
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "観戦者"
 
-#: gui/session/messages.js:843 gui/session/selection_details.js:79
+#: gui/session/messages.js:848 gui/session/selection_details.js:79
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[OFFLINE] %(player)s"
 
-#: gui/session/messages.js:924
+#: gui/session/messages.js:929
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/session/messages.js:925
+#: gui/session/messages.js:930
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/session/messages.js:969
+#: gui/session/messages.js:974
 msgid "Unknown Player"
 msgstr "不明なプレイヤー"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/session/messages.js:994
+#: gui/session/messages.js:999
 msgid ", "
 msgstr ""
 
-#: gui/session/messages.js:1026
+#: gui/session/messages.js:1031
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)sはあなたに%(amounts)sを贈りました。"
 
-#: gui/session/messages.js:1028
+#: gui/session/messages.js:1033
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "%(player2)sに%(amounts)sを贈りました。"
 
-#: gui/session/messages.js:1033
+#: gui/session/messages.js:1038
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)sは%(player2)sに%(amounts)sを贈りました。"
 
-#: gui/session/messages.js:1053
+#: gui/session/messages.js:1058
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr "%(player)sは%(amountsBought)sを%(amountsSold)sに交換しました。"
 
-#: gui/session/messages.js:1066
+#: gui/session/messages.js:1071
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "家畜が%(attacker)sに攻撃されました！"
 
-#: gui/session/messages.js:1067
+#: gui/session/messages.js:1072
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "%(attacker)sが攻撃してきました！"
 
-#: gui/session/messages.js:1084
+#: gui/session/messages.js:1089
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)sは%(phaseName)sに移行中です。"
 
-#: gui/session/messages.js:1086
+#: gui/session/messages.js:1091
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "%(player)sの%(phaseName)sは中止されました。"
 
-#: gui/session/messages.js:1089
+#: gui/session/messages.js:1094
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)sは%(phaseName)sに達しました。"
 
-#: gui/session/messages.js:1141
+#: gui/session/messages.js:1146
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -947,36 +947,36 @@ msgstr "%(action)sで%(number)s体養成します。"
 msgid "Shift-click"
 msgstr "Shift+クリック"
 
-#: gui/session/session.js:367
+#: gui/session/session.js:438
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "送信するメッセージを入力します。"
 
-#: gui/session/session.js:369
+#: gui/session/session.js:440
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "%(hotkey)sを押して公開チャットを開きます。"
 
-#: gui/session/session.js:372
+#: gui/session/session.js:443
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "%(hotkey)sを押して観戦者チャットを開きます。 "
 
-#: gui/session/session.js:373
+#: gui/session/session.js:444
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "%(hotkey)sを押して同盟チャットを開きます。  "
 
-#: gui/session/session.js:375
+#: gui/session/session.js:446
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "%(hotkey)sを押して最近選んだプライベートチャットを開きます。  "
 
-#: gui/session/session.js:379
+#: gui/session/session.js:450
 msgid "Find idle worker"
 msgstr "手の空いた労働者を探す"
 
-#: gui/session/session.js:382
+#: gui/session/session.js:453
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -984,7 +984,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr ""
 
-#: gui/session/session.js:386
+#: gui/session/session.js:457
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -993,107 +993,107 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "最初に、上の行から売却する資源を選択します。 下部のボタンが押されるたびに、上部の資源%(quantity)sが、表示された下部の量だけ売却されます。 %(hotkey)sを長押しすると、取引量を一時的に%(multiplier)s倍に増やすことができます。"
 
-#: gui/session/session.js:575
+#: gui/session/session.js:647
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - 建設早見表"
 
-#: gui/session/session.js:836
+#: gui/session/session.js:908
 msgid "Do you want to quit?"
 msgstr "終了しますか？"
 
-#: gui/session/session.js:842
+#: gui/session/session.js:914
 msgid "VICTORIOUS!"
 msgstr "勝利！"
 
-#: gui/session/session.js:843
+#: gui/session/session.js:915
 msgid "DEFEATED!"
 msgstr "敗北！"
 
-#: gui/session/session.js:844
+#: gui/session/session.js:916
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:911
+#: gui/session/session.js:984
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "リプレイが終わりました。終了しますか？"
 
-#: gui/session/session.js:912
+#: gui/session/session.js:985
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/session/session.js:913
+#: gui/session/session.js:986
 msgctxt "replayFinished"
 msgid "No"
 msgstr "いいえ"
 
-#: gui/session/session.js:913
+#: gui/session/session.js:986
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "はい"
 
-#: gui/session/session.js:1141
+#: gui/session/session.js:1214
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1148
+#: gui/session/session.js:1221
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1171
+#: gui/session/session.js:1244
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr ""
 
-#: gui/session/session.js:1173
+#: gui/session/session.js:1246
 msgid "Unordered"
 msgstr ""
 
-#: gui/session/session.js:1173
+#: gui/session/session.js:1246
 msgid "Descending"
 msgstr ""
 
-#: gui/session/session.js:1173
+#: gui/session/session.js:1246
 msgid "Ascending"
 msgstr ""
 
-#: gui/session/session.js:1199
+#: gui/session/session.js:1272
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1200
+#: gui/session/session.js:1273
 msgid "Population (current / limit)"
 msgstr "人口 (現在 / 上限)"
 
-#: gui/session/session.js:1201
+#: gui/session/session.js:1274
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "人口上限：%(popCap)s"
 
-#: gui/session/session.js:1385
+#: gui/session/session.js:1458
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1395
+#: gui/session/session.js:1468
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "注：タイムワープモードは開発者用オプションであり、長時間を超えての使用を想定していません。不適切な使用は、ゲームがメモリーを使い果たす、すなわち異常終了する原因となる場合があります。"
 
-#: gui/session/session.js:1396
+#: gui/session/session.js:1469
 msgid "Time warp mode"
 msgstr "タイムワープモード"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1413
+#: gui/session/session.js:1486
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1378,6 +1378,10 @@ msgstr "終了"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
+msgstr ""
+
+#: gui/session/minimap_panel.xml:(tooltip):42
+msgid "Toggle Diplomacy Colors"
 msgstr ""
 
 #: gui/session/objectives_window.xml:(caption):15

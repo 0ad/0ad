@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-01-29 09:04+0100\n"
-"PO-Revision-Date: 2018-01-29 09:04+0100\n"
+"POT-Creation-Date: 2018-02-07 09:03+0100\n"
+"PO-Revision-Date: 2018-02-07 09:03+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -169,6 +169,8 @@ msgstr ""
 #: simulation/data/technologies/hellenes/spartans_agoge.json:requirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.json:requirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.json:requirementsTooltip
+#: simulation/data/technologies/kushites/monumental_architecture.json:requirementsTooltip
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.json:requirementsTooltip
 #: simulation/data/technologies/persians/immortals.json:requirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.json:requirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.json:requirementsTooltip
@@ -2346,6 +2348,28 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.json:genericName
 msgid "Athenian Long Walls"
+msgstr ""
+
+#: simulation/data/technologies/kushites/monumental_architecture.json:tooltip
+msgid ""
+"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and Wonders."
+msgstr ""
+
+#: simulation/data/technologies/kushites/monumental_architecture.json:genericName
+msgid "Monumental Architecture"
+msgstr ""
+
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.json:description
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless him."
+msgstr ""
+
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.json:tooltip
+msgid "Train elite rank healers."
+msgstr ""
+
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.json:genericName
+msgid "High Priest of Amun"
 msgstr ""
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.json:description
