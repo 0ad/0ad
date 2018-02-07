@@ -45,11 +45,7 @@
     <variant file="biped/carry_wood_idle.xml"/>
     <variant file="biped/carry_stone_idle.xml"/>
     <variant file="biped/carry_metal_idle.xml"/>
-    <variant file="biped/death_infantry.xml">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>
