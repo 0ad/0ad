@@ -9,7 +9,8 @@
  *
  * The heightmap image is reproduced using:
  * wget https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73934/gebco_08_rev_elev_C1_grey_geo.tif
- * lat=22; lon=41; width=30; gdal_translate -projwin $((lon-width/2)) $((lat+width/2)) $((lon+width/2)) $((lat-width/2)) gebco_08_rev_elev_C1_grey_geo.tif red_sea.tif
+ * lat=22; lon=41; width=30;
+ * gdal_translate -projwin $((lon-width/2)) $((lat+width/2)) $((lon+width/2)) $((lat-width/2)) gebco_08_rev_elev_C1_grey_geo.tif red_sea.tif
  * convert red_sea.tif -resize 512 -contrast-stretch 0 red_sea.png
  * No further changes should be applied to the image to keep it easily interchangeable.
  */
@@ -115,7 +116,12 @@ Engine.SetProgress(45);
 if (!isNomad())
 {
 	g_Map.log("Placing players");
-	var playerBases = placeRandom(sortAllPlayers(), new AndConstraint([avoidClasses(g_TileClasses.mountain, 5), stayClasses(g_TileClasses.land, defaultPlayerBaseRadius())]));
+	let playerBases = placeRandom(
+		sortAllPlayers(),
+		[
+			avoidClasses(g_TileClasses.mountain, 5),
+			stayClasses(g_TileClasses.land, defaultPlayerBaseRadius())
+		]);
 
 	g_Map.log("Flatten the initial CC area...");
 	for (let player of playerBases)
@@ -338,7 +344,18 @@ createObjectGroups(
 	20);
 Engine.SetProgress(95);
 
-placePlayersNomad(g_Map.createTileClass());
+placePlayersNomad(
+	g_Map.createTileClass(),
+	[
+		stayClasses(g_TileClasses.land, 5),
+		avoidClasses(
+			g_TileClasses.forest, 2,
+			g_TileClasses.rock, 4,
+			g_TileClasses.metal, 4,
+			g_TileClasses.berries, 2,
+			g_TileClasses.animals, 2,
+			g_TileClasses.mountain, 2)
+	]);
 
 setWindAngle(-0.43);
 setWaterTint(0.161, 0.286, 0.353);

@@ -155,6 +155,7 @@ function createBase(player, walls = true)
 		"playerPosition": player.position,
 		"PlayerTileClass": g_TileClasses.player,
 		"BaseResourceClass": g_TileClasses.baseResource,
+		"baseResourceConstraint": avoidClasses(g_TileClasses.water, 0),
 		"Walls": g_Map.getSize() > 192 && walls,
 		"CityPatch": {
 			"outerTerrain": g_Terrains.roadWild,
@@ -309,9 +310,24 @@ function placeRadial(playerIDs, distance, startAngle)
 }
 
 /**
- * Choose arbitrary starting locations.
+ * Place playerbases on random locations on the map meeting the given constraints.
  */
 function placeRandom(playerIDs, constraints = undefined)
+{
+	let players = randomPlayerLocations(playerIDs, constraints);
+	if (!players)
+		return undefined;
+
+	for (let player of players)
+		createBase(player);
+
+	return players;
+}
+
+/**
+ * Choose arbitrary starting locations.
+ */
+function randomPlayerLocations(playerIDs, constraints = undefined)
 {
 	let locations = [];
 	let attempts = 0;
@@ -319,7 +335,7 @@ function placeRandom(playerIDs, constraints = undefined)
 
 	let mapCenter = g_Map.getCenter();
 	let playerMinDist = fractionToTiles(0.25);
-	let borderDistance = tilesToFraction(0.08);
+	let borderDistance = fractionToTiles(0.08);
 
 	let area = createArea(new MapBoundsPlacer(), undefined, new AndConstraint(constraints));
 
@@ -329,7 +345,7 @@ function placeRandom(playerIDs, constraints = undefined)
 
 		// Minimum distance between initial bases must be a quarter of the map diameter
 		if (locations.some(loc => loc.distanceTo(position) < playerMinDist) ||
-		    position.distanceTo(mapCenter) > mapCenter.x + borderDistance)
+		    position.distanceTo(mapCenter) > mapCenter.x - borderDistance)
 		{
 			--i;
 			++attempts;
@@ -358,12 +374,7 @@ function placeRandom(playerIDs, constraints = undefined)
 
 		locations[i] = position;
 	}
-
-	let players = groupPlayersByLocations(playerIDs, locations);
-	for (let player of players)
-		createBase(player);
-
-	return players;
+	return groupPlayersByLocations(playerIDs, locations);
 }
 
 /**

@@ -10,6 +10,8 @@
 function RectPlacer(start, end, failFraction = Infinity)
 {
 	this.bounds = getBoundingBox([start, end]);
+	this.bounds.min.floor();
+	this.bounds.max.floor();
 	this.failFraction = failFraction;
 }
 
