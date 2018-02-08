@@ -552,7 +552,6 @@ function selectViewPlayer(playerID)
 	updateTopPanel();
 	updateChatAddressees();
 	updateHotkeyTooltips();
-	updateGameSpeedControl();
 
 	// Update GUI and clear player-dependent cache
 	g_TemplateData = {};
