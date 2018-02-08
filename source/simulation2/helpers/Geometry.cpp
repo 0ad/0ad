@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -316,4 +316,44 @@ bool Geometry::TestSquareSquare(
 		return false;
 
 	return true;
+}
+
+int Geometry::GetPerimeterDistance(int x_max, int y_max, int x, int y)
+{
+	if (x_max <= 0 || y_max <= 0)
+		return 0;
+
+	int quarter = x_max + y_max;
+	if (x == x_max && y >= 0)
+		return y;
+	if (y == y_max)
+		return quarter - x;
+	if (x == -x_max)
+		return 2 * quarter - y;
+	if (y == -y_max)
+		return 3 * quarter + x;
+	if (x == x_max)
+		return 4 * quarter + y;
+	return 0;
+}
+
+std::pair<int, int> Geometry::GetPerimeterCoordinates(int x_max, int y_max, int k)
+{
+	if (x_max <= 0 || y_max <= 0)
+		return std::pair<int, int>(0, 0);
+
+	int quarter = x_max + y_max;
+	k %= 4 * quarter;
+	if (k < 0)
+		k += 4 * quarter;
+
+	if (k < y_max)
+		return std::pair<int, int>(x_max, k);
+	if (k < quarter + x_max)
+		return std::pair<int, int>(quarter - k, y_max);
+	if (k < 2 * quarter + y_max)
+		return std::pair<int, int>(-x_max, 2 * quarter - k);
+	if (k < 3 * quarter + x_max)
+		return std::pair<int, int>(k - 3 * quarter, -y_max);
+	return std::pair<int, int>(x_max, k - 4 * quarter);
 }

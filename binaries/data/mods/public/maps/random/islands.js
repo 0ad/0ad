@@ -75,7 +75,7 @@ if (!isNomad())
 	for (let i = 0; i < numPlayers; i++)
 	{
 		createArea(
-			new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, 10, playerPosition[i]),
+			new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, Infinity, playerPosition[i]),
 			[
 				new LayeredPainter([tMainTerrain , tMainTerrain, tMainTerrain], [1, 6]),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
@@ -161,7 +161,7 @@ placePlayerBases({
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	[avoidClasses(clPlayer, 0), stayClasses(clLand, 3)],
 	scaleByMapSize(20, 100));

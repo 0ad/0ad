@@ -97,9 +97,7 @@ void CTooltip::SetupText()
 	GUI<CPos>::GetSetting(this, "offset", offset);
 	GUI<EVAlign>::GetSetting(this, "anchor", anchor);
 
-	// TODO: Calculate the actual width of the wrapped text and use that.
-	// (m_Size.cx is >max_width if the text wraps, which is not helpful)
-	float textwidth = std::min(m_GeneratedTexts[0]->m_Size.cx, (float)max_width);
+	float textwidth = m_GeneratedTexts[0]->m_Size.cx;
 	float textheight = m_GeneratedTexts[0]->m_Size.cy;
 
 	CClientArea size;

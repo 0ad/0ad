@@ -482,7 +482,7 @@ function createSunkenTerrain()
 
 	g_Map.log("Creating central valley");
 	createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.29)), 1, 1, 1, mapCenter),
+		new ClumpPlacer(diskArea(fractionToTiles(0.29)), 1, 1, Infinity, mapCenter),
 		[
 			new LayeredPainter([g_Terrains.cliff, lower], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightValley, 3),
@@ -491,7 +491,7 @@ function createSunkenTerrain()
 
 	g_Map.log("Creating central hill");
 	createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.21)), 1, 1, 1, mapCenter),
+		new ClumpPlacer(diskArea(fractionToTiles(0.21)), 1, 1, Infinity, mapCenter),
 		[
 			new LayeredPainter([g_Terrains.cliff, topTerrain], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
@@ -533,7 +533,7 @@ function createSunkenTerrain()
 
 		// Den
 		createArea(
-			new ClumpPlacer(diskArea(fractionToTiles(0.1)) / (isNomad() ? 2 : 1), 0.9, 0.3, 1, playerPosition),
+			new ClumpPlacer(diskArea(fractionToTiles(0.1)) / (isNomad() ? 2 : 1), 0.9, 0.3, Infinity, playerPosition),
 			[
 				new LayeredPainter([g_Terrains.cliff, base], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, heightDen, 3),
@@ -542,7 +542,7 @@ function createSunkenTerrain()
 
 		// Expansion
 		createArea(
-			new ClumpPlacer(expSize, 0.9, 0.3, 1, expansionPosition),
+			new ClumpPlacer(expSize, 0.9, 0.3, Infinity, expansionPosition),
 			[
 				new LayeredPainter([g_Terrains.cliff, base], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, heightDen, 3),
@@ -556,7 +556,7 @@ function createSunkenTerrain()
 	{
 		let position = getCoords(nExp, i, 0.5);
 		createArea(
-			new ClumpPlacer(expSize, 0.9, 0.3, 1, position),
+			new ClumpPlacer(expSize, 0.9, 0.3, Infinity, position),
 			[
 				new LayeredPainter([g_Terrains.cliff, lower], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, heightValley, 3),

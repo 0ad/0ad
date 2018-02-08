@@ -77,7 +77,7 @@ Engine.SetProgress(20);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.5, 0.08, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.5, 0.08, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800)
@@ -89,7 +89,7 @@ createArea(
 		2,
 		Math.floor(scaleByMapSize(2, 16)),
 		Math.floor(scaleByMapSize(35, 200)),
-		1,
+		Infinity,
 		mapCenter,
 		0,
 		[Math.floor(scaleByMapSize(15, 40))]),
@@ -101,7 +101,7 @@ createArea(
 
 g_Map.log("Creating more shore jaggedness");
 createAreas(
-	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, 1),
+	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, Infinity),
 	[
 		new SmoothElevationPainter(ELEVATION_SET, heightShore, 4),
 		new TileClassUnPainter(clWater)

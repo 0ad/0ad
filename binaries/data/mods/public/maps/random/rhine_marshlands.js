@@ -82,7 +82,7 @@ Engine.SetProgress(15);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBumpLand, 2),
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));
@@ -109,7 +109,7 @@ Engine.SetProgress(40);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBumpWater, 2),
 	stayClasses(clWater, 2),
 	scaleByMapSize(50, 100));
@@ -124,7 +124,7 @@ var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 4))), 1),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 4))), Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)
@@ -136,7 +136,7 @@ Engine.SetProgress(50);
 g_Map.log("Creating mud patches");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 1),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, Infinity),
 		[
 			new LayeredPainter([tGrassA, tGrassB, tMud], [1, 1]),
 			new TileClassPainter(clDirt)

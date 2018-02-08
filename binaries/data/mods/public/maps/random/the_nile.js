@@ -176,7 +176,7 @@ Engine.SetProgress(40);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clWater, 2, clPlayer, 6),
 	scaleByMapSize(100, 200));
@@ -184,7 +184,7 @@ createAreas(
 g_Map.log("Creating ponds");
 var numLakes = Math.round(scaleByMapSize(1, 4) * numPlayers / 2);
 var waterAreas = createAreas(
-	new ClumpPlacer(scaleByMapSize(2, 5) * 50, 0.8, 0.1, 10),
+	new ClumpPlacer(scaleByMapSize(2, 5) * 50, 0.8, 0.1, Infinity),
 	[
 		new LayeredPainter([tShore, tShore, tShore], [1, 1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightPonds, 4),

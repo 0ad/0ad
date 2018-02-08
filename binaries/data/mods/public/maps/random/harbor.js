@@ -298,7 +298,7 @@ function addCenterLake()
 			2,
 			Math.floor(scaleByMapSize(2, 12)),
 			Math.floor(scaleByMapSize(35, 160)),
-			1,
+			Infinity,
 			mapCenter,
 			0,
 			[Math.floor(fractionToTiles(0.2))]),
@@ -328,7 +328,7 @@ function addHarbors(players)
 	{
 		let harborPosition = Vector2D.add(player.position, Vector2D.sub(mapCenter, player.position).div(2.5).round());
 		createArea(
-			new ClumpPlacer(1200, 0.5, 0.5, 1, harborPosition),
+			new ClumpPlacer(1200, 0.5, 0.5, Infinity, harborPosition),
 			[
 				new LayeredPainter([g_Terrains.shore, g_Terrains.water], [2]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHarbor, 3),

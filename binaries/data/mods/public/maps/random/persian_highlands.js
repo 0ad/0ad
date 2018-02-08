@@ -127,7 +127,7 @@ createArea(
 		2,
 		Math.floor(scaleByMapSize(5, 13)),
 		Math.floor(scaleByMapSize(35, 200)),
-		1,
+		Infinity,
 		mapCenter,
 		0,
 		[Math.floor(scaleByMapSize(18, 68))]),
@@ -168,7 +168,7 @@ for (let type of types)
 			Math.floor(scaleByMapSize(1, 2)),
 			Math.floor(scaleByMapSize(2, 5)),
 			Math.floor(size / Math.floor(scaleByMapSize(8, 3))),
-			1),
+			Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)

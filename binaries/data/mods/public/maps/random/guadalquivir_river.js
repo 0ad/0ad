@@ -67,7 +67,7 @@ createArea(
 		2,
 		Math.floor(scaleByMapSize(5, 12)),
 		Math.floor(scaleByMapSize(60, 700)),
-		1,
+		Infinity,
 		continentCenterR,
 		0,
 		[Math.floor(fractionToTiles(0.49))]),

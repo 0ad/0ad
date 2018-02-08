@@ -184,7 +184,7 @@ function RandomPathPlacer(pathStart, pathEnd, pathWidth, offset, blended)
 	this.pathEnd = pathEnd;
 	this.offset = offset;
 	this.blended = blended;
-	this.clumpPlacer = new ClumpPlacer(diskArea(pathWidth), 1, 1, 1);
+	this.clumpPlacer = new ClumpPlacer(diskArea(pathWidth), 1, 1, Infinity);
 	this.maxPathLength = fractionToTiles(2);
 }
 

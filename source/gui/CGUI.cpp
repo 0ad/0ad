@@ -746,8 +746,6 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 				// Append X value.
 				x += Feedback2.m_Size.cx;
 
-				Text.m_Size.cx = std::max(Text.m_Size.cx, x+BufferZone);
-
 				// The first word overrides the width limit, what we
 				//  do, in those cases, are just drawing that word even
 				//  though it'll extend the object.
@@ -783,10 +781,11 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 			}
 
 			// Reset X
-			x = 0.f;
+			x = BufferZone;
 
-			// Update height of all
-			Text.m_Size.cy = std::max(Text.m_Size.cy, y+BufferZone);
+			// Update dimensions
+			Text.m_Size.cx = std::max(Text.m_Size.cx, line_width + BufferZone);
+			Text.m_Size.cy = std::max(Text.m_Size.cy, y + BufferZone);
 
 			FirstLine = false;
 

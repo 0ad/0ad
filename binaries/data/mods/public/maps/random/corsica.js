@@ -89,7 +89,7 @@ for (let island = 0; island < 2; ++island)
 {
 	g_Map.log("Creating island area");
 	createArea(
-		new ClumpPlacer(diskArea(radiusIsland), 1, 0.5, 10, islandLocations[island]),
+		new ClumpPlacer(diskArea(radiusIsland), 1, 0.5, Infinity, islandLocations[island]),
 		[
 			new LayeredPainter([tCliffs, tGrass], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightMain, 0),
@@ -102,7 +102,7 @@ for (let island = 0; island < 2; ++island)
 		let angle = Math.PI * (island + i / (nbSubIsland * 2)) + swapAngle;
 		let location = Vector2D.add(islandLocations[island], new Vector2D(radiusIsland, 0).rotate(-angle));
 		createArea(
-			new ClumpPlacer(diskArea(fractionToTiles(0.09)), 0.6, 0.03, 10, location),
+			new ClumpPlacer(diskArea(fractionToTiles(0.09)), 0.6, 0.03, Infinity, location),
 			[
 				new LayeredPainter([tCliffs, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_SET, heightMain, 1),
@@ -116,7 +116,7 @@ for (let island = 0; island < 2; ++island)
 		let angle = Math.PI * (island + i * (1 / (nbCreeks * 2))) + swapAngle;
 		let location = Vector2D.add(islandLocations[island], new Vector2D(radiusCreeks, 0).rotate(-angle));
 		createArea(
-			new ClumpPlacer(creeksArea(), 0.4, 0.01, 10, location),
+			new ClumpPlacer(creeksArea(), 0.4, 0.01, Infinity, location),
 			[
 				new TerrainPainter(tSteepCliffs),
 				new SmoothElevationPainter(ELEVATION_SET, heightCreeks, 0),
@@ -132,7 +132,7 @@ for (let island = 0; island < 2; ++island)
 		let end = Vector2D.add(islandLocations[island], new Vector2D(radiusBeach, 0).rotate(-angle));
 
 		createArea(
-			new ClumpPlacer(130, 0.7, 0.8, 10, Vector2D.add(start, Vector2D.mult(end, 3)).div(4)),
+			new ClumpPlacer(130, 0.7, 0.8, Infinity, Vector2D.add(start, Vector2D.mult(end, 3)).div(4)),
 			new SmoothElevationPainter(ELEVATION_SET, heightBeaches, 5));
 
 		createPassage({
@@ -147,12 +147,12 @@ for (let island = 0; island < 2; ++island)
 
 	g_Map.log("Creating main relief");
 	createArea(
-		new ClumpPlacer(diskArea(radiusIsland), 1, 0.2, 10, islandLocations[island]),
+		new ClumpPlacer(diskArea(radiusIsland), 1, 0.2, Infinity, islandLocations[island]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetMainRelief, fractionToTiles(0.45)));
 
 	g_Map.log("Creating first level plateau");
 	createArea(
-		new ClumpPlacer(diskArea(radiusLevel1), 0.95, 0.02, 10, islandLocations[island]),
+		new ClumpPlacer(diskArea(radiusLevel1), 0.95, 0.02, Infinity, islandLocations[island]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetLevel1, 1));
 
 	g_Map.log("Creating first level passages");
@@ -173,7 +173,7 @@ for (let island = 0; island < 2; ++island)
 	{
 		g_Map.log("Creating second level plateau");
 		createArea(
-			new ClumpPlacer(diskArea(radiusLevel2), 0.98, 0.04, 10, islandLocations[island]),
+			new ClumpPlacer(diskArea(radiusLevel2), 0.98, 0.04, Infinity, islandLocations[island]),
 			[
 				new LayeredPainter([tCliffs, tGrass], [2]),
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetLevel2, 1)
@@ -245,7 +245,7 @@ Engine.SetProgress(40);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(70, 0.6, 0.1, 4),
+	new ClumpPlacer(70, 0.6, 0.1, Infinity),
 	[new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBumps, 3)],
 	[
 		stayClasses(clIsland, 2),
@@ -256,7 +256,7 @@ createAreas(
 
 g_Map.log("Creating anti bumps");
 createAreas(
-	new ClumpPlacer(120, 0.3, 0.1, 4),
+	new ClumpPlacer(120, 0.3, 0.1, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetAntiBumps, 6),
 	avoidClasses(clPlayer, 6, clPassage, 2, clIsland, 2),
 	scaleByMapSize(20, 100),

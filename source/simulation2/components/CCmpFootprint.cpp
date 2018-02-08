@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,9 +25,10 @@
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpPathfinder.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpRallyPoint.h"
 #include "simulation2/components/ICmpUnitMotion.h"
+#include "simulation2/helpers/Geometry.h"
 #include "simulation2/MessageTypes.h"
-#include "graphics/Terrain.h"	// For TERRAIN_TILE_SIZE
 #include "maths/FixedVector2D.h"
 
 class CCmpFootprint : public ICmpFootprint
@@ -43,6 +44,7 @@ public:
 	entity_pos_t m_Size0; // width/radius
 	entity_pos_t m_Size1; // height/radius
 	entity_pos_t m_Height;
+	entity_pos_t m_MaxSpawnDistance;
 
 	static std::string GetSchema()
 	{
@@ -52,10 +54,12 @@ public:
 			"<a:example>"
 				"<Square width='3.0' height='3.0'/>"
 				"<Height>0.0</Height>"
+				"<MaxSpawnDistance>8</MaxSpawnDistance>"
 			"</a:example>"
 			"<a:example>"
 				"<Circle radius='0.5'/>"
 				"<Height>0.0</Height>"
+				"<MaxSpawnDistance>8</MaxSpawnDistance>"
 			"</a:example>"
 			"<choice>"
 				"<element name='Square' a:help='Set the footprint to a square of the given size'>"
@@ -80,7 +84,12 @@ public:
 			"</choice>"
 			"<element name='Height' a:help='Vertical extent of the footprint (in metres)'>"
 				"<ref name='nonNegativeDecimal'/>"
-			"</element>";
+			"</element>"
+			"<optional>"
+				"<element name='MaxSpawnDistance' a:help='Farthest distance units can spawn away from the edge of this entity'>"
+					"<ref name='nonNegativeDecimal'/>"
+				"</element>"
+			"</optional>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
@@ -104,6 +113,12 @@ public:
 		}
 
 		m_Height = paramNode.GetChild("Height").ToFixed();
+
+		if (paramNode.GetChild("MaxSpawnDistance").IsOk())
+			m_MaxSpawnDistance = paramNode.GetChild("MaxSpawnDistance").ToFixed();
+		else
+			// Pick some default
+			m_MaxSpawnDistance = entity_pos_t::FromInt(8);
 	}
 
 	virtual void Deinit()
@@ -147,7 +162,8 @@ public:
 		if (!cmpObstructionManager)
 			return error;
 
-		entity_pos_t spawnedRadius;
+		// If no spawned obstruction, use a positive radius to avoid division by zero errors.
+		entity_pos_t spawnedRadius = fixed::FromInt(1);
 		ICmpObstructionManager::tag_t spawnedTag;
 
 		CmpPtr<ICmpObstruction> cmpSpawnedObstruction(GetSimContext(), spawned);
@@ -156,9 +172,8 @@ public:
 			spawnedRadius = cmpSpawnedObstruction->GetUnitRadius();
 			spawnedTag = cmpSpawnedObstruction->GetObstruction();
 		}
-		// else use zero radius
 
-		// Get passability class from UnitMotion
+		// Get passability class from UnitMotion.
 		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), spawned);
 		if (!cmpUnitMotion)
 			return error;
@@ -168,94 +183,85 @@ public:
 		if (!cmpPathfinder)
 			return error;
 
+		// Ignore collisions with the spawned entity.
+		SkipTagObstructionFilter filter(spawnedTag);
+
 		CFixedVector2D initialPos = cmpPosition->GetPosition2D();
 		entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
 
-		// Max spawning distance in tiles
-		const i32 maxSpawningDistance = 4;
+		CFixedVector2D u = CFixedVector2D(fixed::Zero(), fixed::FromInt(1)).Rotate(initialAngle);
+		CFixedVector2D v = u.Perpendicular();
 
-		if (m_Shape == CIRCLE)
+		// Obstructions are squares, so multiply its radius by 2*sqrt(2) ~= 3 to determine the distance between units.
+		entity_pos_t gap = spawnedRadius * 3;
+		int rows = std::max(1, (m_MaxSpawnDistance / gap).ToInt_RoundToNegInfinity());
+
+		// The first row of units will be half a gap away from the footprint.
+		CFixedVector2D halfSize = m_Shape == CIRCLE ?
+			CFixedVector2D(m_Size1 + gap / 2, m_Size0 + gap / 2) :
+			CFixedVector2D((m_Size1 + gap) / 2, (m_Size0 + gap) / 2);
+
+		// Figure out how many units can fit on each halfside of the rectangle.
+		// Since 2*pi/6 ~= 1, this is also how many units can fit on a sixth of the circle.
+		int a = std::max(1, (halfSize.X / gap).ToInt_RoundToNegInfinity());
+		int b = std::max(1, (halfSize.Y / gap).ToInt_RoundToNegInfinity());
+
+		// Try more spawning points for large units in case some of them are partially blocked.
+		if (rows == 1)
 		{
-			// Expand outwards from foundation
-			for (i32 dist = 0; dist <= maxSpawningDistance; ++dist)
+			a *= 2;
+			b *= 2;
+		}
+
+		// Store the position of the spawning point within each row that's closest to the spawning angle.
+		std::vector<int> offsetPoints(rows, 0);
+
+		CmpPtr<ICmpRallyPoint> cmpRallyPoint(GetEntityHandle());
+		if (cmpRallyPoint && cmpRallyPoint->HasPositions())
+		{
+			CFixedVector2D rallyPointPos = cmpRallyPoint->GetFirstPosition();
+			if (m_Shape == CIRCLE)
 			{
-				// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
-				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + (int)TERRAIN_TILE_SIZE*dist);
-				entity_pos_t radius = m_Size0 + clearance;
+				entity_angle_t offsetAngle = atan2_approx(rallyPointPos.X - initialPos.X, rallyPointPos.Y - initialPos.Y) - initialAngle;
 
-				// Try equally-spaced points around the circle in alternating directions, starting from the front
-				const i32 numPoints = 31 + 2*dist;
-				for (i32 i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
-				{
-					entity_angle_t angle = initialAngle + (entity_angle_t::Pi()*2).Multiply(entity_angle_t::FromInt(i)/(int)numPoints);
+				// There are 6*(a+r) points in row r, so multiply that by angle/2pi to find the offset within the row.
+				for (int r = 0; r < rows; ++r)
+					offsetPoints[r] = (offsetAngle * 3 * (a + r) / fixed::Pi()).ToInt_RoundToNearest();
+			}
+			else
+			{
+				CFixedVector2D offsetPos = Geometry::NearestPointOnSquare(rallyPointPos - initialPos, u, v, halfSize);
 
-					fixed s, c;
-					sincos_approx(angle, s, c);
-
-					CFixedVector3D pos (initialPos.X + s.Multiply(radius), fixed::Zero(), initialPos.Y + c.Multiply(radius));
-
-					SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
-					if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Z, spawnedRadius, spawnedPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS)
-						return pos; // this position is okay, so return it
-				}
+				// Scale and convert the perimeter coordinates of the point to its offset within the row.
+				int x = (offsetPos.Dot(u) * b / halfSize.X).ToInt_RoundToNearest();
+				int y = (offsetPos.Dot(v) * a / halfSize.Y).ToInt_RoundToNearest();
+				for (int r = 0; r < rows; ++r)
+					offsetPoints[r] = Geometry::GetPerimeterDistance(
+						b + r,
+						a + r,
+						x >= b ? b + r : x <= -b ? -b - r : x,
+						y >= a ? a + r : y <= -a ? -a - r : y);
 			}
 		}
-		else
-		{
-			fixed s, c;
-			sincos_approx(initialAngle, s, c);
 
-			// Expand outwards from foundation
-			for (i32 dist = 0; dist <= maxSpawningDistance; ++dist)
+		for (int k = 0; k < 2 * (a + b + 2 * rows); k = k > 0 ? -k : 1 - k)
+			for (int r = 0; r < rows; ++r)
 			{
-				// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
-				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + (int)TERRAIN_TILE_SIZE*dist);
-
-				for (i32 edge = 0; edge < 4; ++edge)
+				CFixedVector2D pos = initialPos;
+				if (m_Shape == CIRCLE)
+					// Multiply the point by 2pi / 6*(a+r) to get the angle.
+					pos += u.Rotate(fixed::Pi() * (offsetPoints[r] + k) / (3 * (a + r))).Multiply(halfSize.X + gap * r );
+				else
 				{
-					// Try equally-spaced points along the edge in alternating directions, starting from the middle
-					const i32 numPoints = 9 + 2*dist;
-
-					// Compute the direction and length of the current edge
-					CFixedVector2D dir;
-					fixed sx, sy;
-					switch (edge)
-					{
-					case 0:
-						dir = CFixedVector2D(c, -s);
-						sx = m_Size0;
-						sy = m_Size1;
-						break;
-					case 1:
-						dir = CFixedVector2D(-s, -c);
-						sx = m_Size1;
-						sy = m_Size0;
-						break;
-					case 2:
-						dir = CFixedVector2D(s, c);
-						sx = m_Size1;
-						sy = m_Size0;
-						break;
-					case 3:
-						dir = CFixedVector2D(-c, s);
-						sx = m_Size0;
-						sy = m_Size1;
-						break;
-					}
-					CFixedVector2D center = initialPos - dir.Perpendicular().Multiply(sy/2 + clearance);
-					dir = dir.Multiply((sx + clearance*2) / (int)(numPoints-1));
-
-					for (i32 i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
-					{
-						CFixedVector2D pos (center + dir*i);
-
-						SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
-						if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, spawnedRadius, spawnedPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS)
-							return CFixedVector3D(pos.X, fixed::Zero(), pos.Y); // this position is okay, so return it
-					}
+					// Convert the point to coordinates and scale.
+					std::pair<int, int> p = Geometry::GetPerimeterCoordinates(b + r, a + r, offsetPoints[r] + k);
+					pos += u.Multiply((halfSize.X + gap * r) * p.first / (b + r)) +
+					       v.Multiply((halfSize.Y + gap * r) * p.second / (a + r));
 				}
+
+				if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, spawnedRadius, spawnedPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS)
+					return CFixedVector3D(pos.X, fixed::Zero(), pos.Y);
 			}
-		}
 
 		return error;
 	}

@@ -98,7 +98,7 @@ for (let i = 0; i < scaleByMapSize(20, 120); ++i)
 {
 	let position = new Vector2D(fractionToTiles(randFloat(0.1, 0.9)), fractionToTiles(randFloat(0.67, 0.74))).rotateAround(startAngle, mapCenter).round();
 	createArea(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 30)), 1, position),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 30)), Infinity, position),
 		[
 			new LayeredPainter([tSnowA, tSnowA], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
@@ -160,7 +160,7 @@ var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 4))), 1),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 4))), Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)

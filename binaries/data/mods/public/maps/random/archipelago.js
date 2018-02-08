@@ -72,7 +72,7 @@ for (let i = 0; i < numPlayers; ++i)
 			2,
 			Math.floor(scaleByMapSize(5, 10)),
 			Math.floor(scaleByMapSize(25, 60)),
-			1,
+			Infinity,
 			playerPosition[i],
 			0,
 			[Math.floor(islandRadius)]),

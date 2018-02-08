@@ -58,7 +58,7 @@ var clWomen = g_Map.createTileClass();
 
 g_Map.log("Creating central area");
 createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.15)), 0.7, 0.1, 10, mapCenter),
+	new ClumpPlacer(diskArea(fractionToTiles(0.15)), 0.7, 0.1, Infinity, mapCenter),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),

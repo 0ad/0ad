@@ -228,7 +228,7 @@ function placePlayerBaseCityPatch(args)
 			Math.floor(diskArea(get("radius", defaultPlayerBaseRadius() / 3))),
 			get("coherence", 0.6),
 			get("smoothness", 0.3),
-			get("failFraction", 10),
+			get("failFraction", Infinity),
 			basePosition),
 		painters);
 }

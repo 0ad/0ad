@@ -124,7 +124,7 @@ for (let i = 0; i < scaleByMapSize(20, 120); ++i)
 {
 	let position = new Vector2D(fractionToTiles(randFloat(0.28, 0.34)), fractionToTiles(randFloat(0.1, 0.9))).rotateAround(startAngle - Math.PI / 2, mapCenter).round();
 	createArea(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 30)), 1, position),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 30)), Infinity, position),
 		[
 			new LayeredPainter([tGrass, tGrass], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),

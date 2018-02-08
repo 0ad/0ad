@@ -164,7 +164,7 @@ else
 
 g_Map.log("Creating large bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetLargeBumps, 3),
 	avoidClasses(clPlayer, 2),
 	scaleByMapSize(100, 800));

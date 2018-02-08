@@ -290,7 +290,7 @@ if (gallicCC)
 
 			// Create the meeting place near the shoreline at the end of the path
 			createArea(
-				new ClumpPlacer(diskArea(mRadius), 0.6, 0.3, 10, meetingPlacePosition),
+				new ClumpPlacer(diskArea(mRadius), 0.6, 0.3, Infinity, meetingPlacePosition),
 				[
 					new TerrainPainter(tShore),
 					new TileClassPainter(clPath),
@@ -311,7 +311,7 @@ if (gallicCC)
 
 		// Create the city patch
 		createArea(
-			new ClumpPlacer(diskArea(gaulCityRadius), 0.6, 0.3, 10, civicCenterPosition),
+			new ClumpPlacer(diskArea(gaulCityRadius), 0.6, 0.3, Infinity, civicCenterPosition),
 			[
 				new TerrainPainter(tShore),
 				new TileClassPainter(clGauls)

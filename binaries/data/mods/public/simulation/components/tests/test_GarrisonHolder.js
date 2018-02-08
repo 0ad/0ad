@@ -10,7 +10,6 @@ Engine.LoadComponentScript("interfaces/ProductionQueue.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
-Engine.LoadComponentScript("interfaces/RallyPoint.js");
 
 const garrisonedEntitiesList = [25, 26, 27, 28, 29, 30, 31, 32, 33];
 const garrisonHolderId = 15;

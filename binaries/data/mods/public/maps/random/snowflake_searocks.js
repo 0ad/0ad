@@ -81,7 +81,7 @@ function initIsConnected()
 function createIsland(islandID, size, tileClass)
 {
 	createArea(
-		new ClumpPlacer(size * diskArea(playerIslandRadius), 0.95, 0.6, 10, islandPos[islandID]),
+		new ClumpPlacer(size * diskArea(playerIslandRadius), 0.95, 0.6, Infinity, islandPos[islandID]),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, heightIsland, 2),
@@ -279,7 +279,7 @@ var size = forestTrees / (scaleByMapSize(2, 8) * numPlayers) * (currentBiome() =
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)

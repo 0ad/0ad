@@ -111,7 +111,7 @@ Engine.SetProgress(25);
 // Creating small puddles at the map border to ensure players being separated
 for (let riverPosition of riverPositions)
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(5, 10)), 0.95, 0.6, 10, riverPosition),
+		new ClumpPlacer(diskArea(scaleByMapSize(5, 10)), 0.95, 0.6, Infinity, riverPosition),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 2),
 		avoidClasses(clPlayer, 8));
 Engine.SetProgress(30);
@@ -155,7 +155,7 @@ Engine.SetProgress(50);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clWater, 2, clPlayer, 15),
 	scaleByMapSize(100, 200)

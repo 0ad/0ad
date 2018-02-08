@@ -99,7 +99,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	// Lake near the center
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(5, 30)), 0.95, 0.6, 10, riverStart[i]),
+		new ClumpPlacer(diskArea(scaleByMapSize(5, 30)), 0.95, 0.6, Infinity, riverStart[i]),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 			new TileClassPainter(clWater)
@@ -118,7 +118,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	// Lake near the map border
 	createArea(
-		new ClumpPlacer(diskArea(scaleByMapSize(5, 22)), 0.95, 0.6, 10, riverEnd[i]),
+		new ClumpPlacer(diskArea(scaleByMapSize(5, 22)), 0.95, 0.6, Infinity, riverEnd[i]),
 		[
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 			new TileClassPainter(clWater)
@@ -153,14 +153,14 @@ paintTerrainBasedOnHeight(-6, 2, 1, tWater);
 
 g_Map.log("Creating bumps");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
 	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 	avoidClasses(clWater, 2, clPlayer, 20),
 	scaleByMapSize(100, 200));
 
 g_Map.log("Creating hills");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
+	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, Infinity),
 	[
 		new LayeredPainter([tGrass, tCliff, tHill], [1, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),
@@ -179,7 +179,7 @@ var size = forestTrees / (0.5 * scaleByMapSize(2,8) * numPlayers);
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 		[
 			new LayeredPainter(type, [2]),
 			new TileClassPainter(clForest)

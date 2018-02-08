@@ -71,7 +71,7 @@ createArea(
 		2,
 		Math.floor(scaleByMapSize(5, 16)),
 		Math.floor(scaleByMapSize(35, 200)),
-		1,
+		Infinity,
 		mapCenter,
 		0,
 		[Math.floor(fractionToTiles(0.2))]),
@@ -83,7 +83,7 @@ createArea(
 
 g_Map.log("Creating more shore jaggedness");
 createAreas(
-	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, 1),
+	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, Infinity),
 	[
 		new LayeredPainter([tCliff, tHill], [2]),
 		new TileClassUnPainter(clWater)

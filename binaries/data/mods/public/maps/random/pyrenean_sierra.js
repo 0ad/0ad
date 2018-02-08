@@ -294,7 +294,7 @@ for (let ix = 1; ix < mapSize - 1; ++ix)
 g_Map.log("Creating oceans");
 for (let ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48), mapCenter)[0])
 	createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, ocean),
+		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, Infinity, ocean),
 		[
 			new ElevationPainter(heightOcean),
 			new TileClassPainter(clWater)
@@ -326,7 +326,7 @@ Engine.SetProgress(55);
 
 g_Map.log("Creating hills");
 createAreas(
-	new ClumpPlacer(scaleByMapSize(60, 120), 0.3, 0.06, 5),
+	new ClumpPlacer(scaleByMapSize(60, 120), 0.3, 0.06, Infinity),
 	[
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetHill, 4, heightOffsetHillRandom),
 		new TerrainPainter(tGrassSpecific),
@@ -340,7 +340,7 @@ var size = scaleByMapSize(40, 115) * Math.PI;
 var num = Math.floor(scaleByMapSize(8,40) / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(size, 0.2, 0.1, 1),
+		new ClumpPlacer(size, 0.2, 0.1, Infinity),
 		[
 			new LayeredPainter(type, [scaleByMapSize(1, 2), scaleByMapSize(3, 6), scaleByMapSize(3, 6)]),
 			new TileClassPainter(clForest)

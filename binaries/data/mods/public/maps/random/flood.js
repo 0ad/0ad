@@ -71,7 +71,7 @@ var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));
 
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
-		new ClumpPlacer(diskArea(1.4 * defaultPlayerBaseRadius()), 0.8, 0.1, 10, playerPosition[i]),
+		new ClumpPlacer(diskArea(1.4 * defaultPlayerBaseRadius()), 0.8, 0.1, Infinity, playerPosition[i]),
 		[
 			new LayeredPainter([tShore, tMainTerrain], [shoreRadius]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
@@ -116,7 +116,7 @@ createArea(
 		6,
 		Math.floor(scaleByMapSize(10, 15)),
 		Math.floor(scaleByMapSize(200, 300)),
-		1,
+		Infinity,
 		mapCenter,
 		0,
 		[Math.floor(fractionToTiles(0.01))]),
@@ -135,7 +135,7 @@ for (let m = 0; m < randIntInclusive(20, 34); ++m)
 			7,
 			15,
 			Math.floor(scaleByMapSize(15, 20)),
-			1,
+			Infinity,
 			new Vector2D(fractionToTiles(randFloat(0, 1)), fractionToTiles(randFloat(0, 1))),
 			0,
 			[Math.floor(fractionToTiles(0.01))]),
@@ -155,7 +155,7 @@ for (let m = 0; m < randIntInclusive(8, 17); ++m)
 				5,
 				8,
 				Math.floor(scaleByMapSize(15, 20)),
-				1,
+				Infinity,
 				new Vector2D(randIntExclusive(0, mapSize), randIntExclusive(0, mapSize)),
 				0,
 				[Math.floor(fractionToTiles(0.01))]),
