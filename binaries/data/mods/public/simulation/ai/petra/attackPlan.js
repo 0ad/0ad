@@ -824,7 +824,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	this.isBlocked = false;
 	// Temporary variables needed by isValidTarget
 	this.accessibility = gameState.ai.accessibility;
-	this.sameLand = sameLand && position && this.accessibility.getAccessValue(position);
+	this.sameLand = sameLand && sameLand > 1 ? sameLand : false;
 
 	let targets;
 	if (this.uniqueTargetId)
@@ -951,9 +951,11 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 	let minDist = Math.min();
 	for (let building of buildings)
 	{
-		if (building.owner() === 0)
+		if (building.owner() == 0)
 			continue;
 		if (building.hasDefensiveFire())
+			continue;
+		if (!this.isValidTarget(building))
 			continue;
 		let pos = building.position();
 		let defended = false;
@@ -979,13 +981,8 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 	if (target)
 		targets.addEnt(target);
 
-	if (!targets.hasEntities())
-	{
-		if (this.type == "Attack")
-			targets = this.defaultTargetFinder(gameState, playerEnemy);
-		else if (this.type == "Rush" && playerEnemy)
-			targets = this.rushTargetFinder(gameState);
-	}
+	if (!targets.hasEntities() && this.type == "Rush" && playerEnemy)
+		targets = this.rushTargetFinder(gameState);
 
 	return targets;
 };
@@ -1881,7 +1878,7 @@ m.AttackPlan.prototype.UpdateTarget = function(gameState)
 	{
 		if (this.Config.debug > 1)
 			API3.warn("Seems like our target for plan " + this.name + " has been destroyed or captured. Switching.");
-		this.target = this.getNearestTarget(gameState, this.position, true);
+		this.target = this.getNearestTarget(gameState, this.position, this.getAttackAccess(gameState));
 		if (!this.target)
 		{
 			if (this.uniqueTargetId)
@@ -1917,7 +1914,7 @@ m.AttackPlan.prototype.UpdateTarget = function(gameState)
 			{
 				this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
 				if (this.targetPlayer !== undefined)
-					this.target = this.getNearestTarget(gameState, this.position, true);
+					this.target = this.getNearestTarget(gameState, this.position, this.getAttackAccess(gameState));
 				if (!this.target)
 				{
 					if (this.Config.debug > 1)
@@ -2072,6 +2069,18 @@ m.AttackPlan.prototype.hasForceOrder = function(data, value)
 				return true;
 	}
 	return false;
+};
+
+/**
+ * The center position of this attack may be in an inaccessible area. So we use the access
+ * of the unit nearest to this center position.
+ */
+m.AttackPlan.prototype.getAttackAccess = function(gameState)
+{
+	for (let ent of this.unitCollection.filterNearest(this.position, 1).values())
+		return gameState.ai.accessibility.getAccessValue(ent.position());
+
+	return 0;
 };
 
 m.AttackPlan.prototype.debugAttack = function()
