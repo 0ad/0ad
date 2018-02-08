@@ -39,8 +39,15 @@ var mouseX = 0;
 var mouseY = 0;
 var mouseIsOverObject = false;
 
-// Number of pixels the mouse can move before the action is considered a drag
-var maxDragDelta = 4;
+/**
+ * Number of pixels the mouse can move before the action is considered a drag.
+ */
+const g_MaxDragDelta = 4;
+
+/**
+ * Used for remembering mouse coordinates at start of drag operations.
+ */
+var g_DragStart;
 
 /**
  * Store the clicked entity on mousedown or mouseup for single/double/triple clicks to select entities.
@@ -249,9 +256,6 @@ function determineAction(x, y, fromMinimap)
 	return { "type": "none", "cursor": "", "target": target };
 }
 
-
-var dragStart; // used for remembering mouse coordinates at start of drag operations
-
 function tryPlaceBuilding(queued)
 {
 	if (placementSupport.mode !== "building")
@@ -348,13 +352,23 @@ function tryPlaceWall(queued)
 // The coordinates [x0, y0, x1, y1] are returned for further use.
 function updateBandbox(bandbox, ev, hidden)
 {
-	var x0 = dragStart[0];
-	var y0 = dragStart[1];
-	var x1 = ev.x;
-	var y1 = ev.y;
+	let x0 = g_DragStart.x;
+	let y0 = g_DragStart.y;
+	let x1 = ev.x;
+	let y1 = ev.y;
 	// normalize the orientation of the rectangle
-	if (x0 > x1) { let t = x0; x0 = x1; x1 = t; }
-	if (y0 > y1) { let t = y0; y0 = y1; y1 = t; }
+	if (x0 > x1)
+	{
+		let t = x0;
+		x0 = x1;
+		x1 = t;
+	}
+	if (y0 > y1)
+	{
+		let t = y0;
+		y0 = y1;
+		y1 = t;
+	}
 
 	let scale = +Engine.ConfigDB_GetValue("user", "gui.scale");
 
@@ -531,10 +545,8 @@ function handleInputBeforeGui(ev, hoveredObject)
 		case "mousemotion":
 			// If the mouse moved far enough from the original click location,
 			// then switch to drag-orientation mode
-			var dragDeltaX = ev.x - dragStart[0];
-			var dragDeltaY = ev.y - dragStart[1];
-			var maxDragDelta = 16;
-			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
+			let maxDragDelta = 16;
+			if (g_DragStart.distanceTo(ev) >= maxDragDelta)
 			{
 				inputState = INPUT_BUILDING_DRAG;
 				return false;
@@ -677,10 +689,8 @@ function handleInputBeforeGui(ev, hoveredObject)
 		switch (ev.type)
 		{
 		case "mousemotion":
-			var dragDeltaX = ev.x - dragStart[0];
-			var dragDeltaY = ev.y - dragStart[1];
-			var maxDragDelta = 16;
-			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
+			let maxDragDelta = 16;
+			if (g_DragStart.distanceTo(ev) >= maxDragDelta)
 			{
 				// Rotate in the direction of the mouse
 				placementSupport.angle = placementSupport.position.horizAngleTo(Engine.GetTerrainAtScreenPoint(ev.x, ev.y));
@@ -811,7 +821,7 @@ function handleInputAfterGui(ev)
 		case "mousebuttondown":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				dragStart = [ ev.x, ev.y ];
+				g_DragStart = new Vector2D(ev.x, ev.y);
 				inputState = INPUT_SELECTING;
 				// If a single click occured, reset the clickedEntity.
 				// Also set it if we're double/triple clicking and missed the unit earlier.
@@ -902,10 +912,7 @@ function handleInputAfterGui(ev)
 		{
 		case "mousemotion":
 			// If the mouse moved further than a limit, switch to bandbox mode
-			var dragDeltaX = ev.x - dragStart[0];
-			var dragDeltaY = ev.y - dragStart[1];
-
-			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
+			if (g_DragStart.distanceTo(ev) >= g_MaxDragDelta)
 			{
 				inputState = INPUT_BANDBOXING;
 				return false;
@@ -1041,7 +1048,7 @@ function handleInputAfterGui(ev)
 				else
 				{
 					placementSupport.position = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-					dragStart = [ ev.x, ev.y ];
+					g_DragStart = new Vector2D(ev.x, ev.y);
 					inputState = INPUT_BUILDING_CLICK;
 				}
 				return true;
