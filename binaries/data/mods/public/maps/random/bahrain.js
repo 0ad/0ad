@@ -72,11 +72,8 @@ g_Decoratives.bushSmall = "actor|props/flora/bush_medit_la_dry";
 const heightScale = num => num * g_MapSettings.Size / 320;
 
 const heightSeaGround = heightScale(-6);
-const heightReedsMin = heightScale(-2);
-const heightReedsMax = heightScale(-0.5);
 const heightWaterLevel = heightScale(0);
 const heightShoreline = heightScale(0.5);
-const heightHills = heightScale(16);
 
 var g_Map = new RandomMap(0, g_Terrains.mainTerrain);
 var mapBounds = g_Map.getBounds();
