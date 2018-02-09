@@ -30,6 +30,7 @@ g_Terrains.tier1Terrain = "new_alpine_grass_c";
 g_Terrains.tier2Terrain = "new_alpine_grass_b";
 g_Terrains.tier3Terrain = "alpine_grass_a";
 g_Terrains.tier4Terrain = "new_alpine_grass_e";
+
 g_Gaia.mainHuntableAnimal = "gaia/fauna_deer";
 g_Gaia.secondaryHuntableAnimal = "gaia/fauna_pig";
 g_Gaia.fish = "gaia/fauna_fish_tilapia";
@@ -38,6 +39,7 @@ g_Gaia.tree2 = "gaia/flora_tree_toona";
 g_Gaia.tree3 = "gaia/flora_tree_apple";
 g_Gaia.tree4 = "gaia/flora_tree_acacia";
 g_Gaia.tree5 = "gaia/flora_tree_carob";
+
 g_Decoratives.grass = "actor|props/flora/grass_soft_large.xml";
 g_Decoratives.grassShort = "actor|props/flora/grass_tufts_a.xml";
 g_Decoratives.rockLarge = "actor|geology/stone_granite_med.xml";
@@ -71,7 +73,7 @@ globalSmoothHeightmap(0.1);
 Engine.SetProgress(25);
 
 g_Map.log("Creating shallows...");
-for (let i = 0; i < scaleByMapSize(5, 15); ++i)
+for (let i = 0; i < scaleByMapSize(5, 12); ++i)
 {
 	let x = fractionToTiles(randFloat(0, 1));
 	createPassage({
@@ -99,7 +101,7 @@ Engine.SetProgress(30);
 
 g_Map.log("Marking land");
 createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.5)), 1, 1, Infinity, mapCenter),
+	new MapBoundsPlacer(),
 	new TileClassPainter(g_TileClasses.land),
 	avoidClasses(g_TileClasses.water, 0));
 Engine.SetProgress(35);
@@ -146,7 +148,6 @@ placePlayerBases({
 	}
 });
 
-log("Painting terrain...");
 addElements([
 	{
 		"func": addLayeredPatches,
@@ -177,7 +178,6 @@ addElements([
 	}
 ]);
 
-log("Placing resources terrain...");
 addElements(shuffleArray([
 	{
 		"func": addSmallMetal,
@@ -313,7 +313,6 @@ addElements(shuffleArray([
 ]));
 Engine.SetProgress(80);
 
-log("Adding reeds and lillies...");
 createDecoration(
 	[
 		[new SimpleObject(g_Decoratives.reeds, 1, 3, 0, 1)],
@@ -345,14 +344,12 @@ Engine.SetProgress(85);
 placePlayersNomad(
 	g_Map.createTileClass(),
 	[
-		stayClasses(g_TileClasses.land, 5),
+		stayClasses(g_TileClasses.land, 4),
 		avoidClasses(
-			g_TileClasses.forest, 2,
+			g_TileClasses.forest, 1,
 			g_TileClasses.rock, 4,
 			g_TileClasses.metal, 4,
-			g_TileClasses.berries, 2,
-			g_TileClasses.animals, 2,
-			g_TileClasses.mountain, 2)
+			g_TileClasses.animals, 1)
 	]);
 
 setSunColor(0.733, 0.746, 0.574);
