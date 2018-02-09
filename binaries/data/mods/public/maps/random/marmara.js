@@ -55,7 +55,7 @@ g_Decoratives.reeds = "actor|props/flora/reeds_pond_lush_a.xml";
 
 const heightScale = num => num * g_MapSettings.Size / 320;
 
-const heightSeaGround = heightScale(-4);
+const heightSeaGround = heightScale(scaleByMapSize(-6, -4));
 const heightWaterLevel = heightScale(0);
 const heightShoreline = heightScale(0);
 
@@ -70,12 +70,13 @@ Engine.SetProgress(15);
 g_Map.log("Lowering sea ground");
 createArea(
 	new MapBoundsPlacer(),
-	new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 2),
+	// Keep water impassable on all mapsizes
+	new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, scaleByMapSize(1, 3)),
 	new HeightConstraint(-Infinity, heightWaterLevel));
 Engine.SetProgress(20);
 
 g_Map.log("Smoothing heightmap");
-globalSmoothHeightmap(scaleByMapSize(0.1, 0.5));
+globalSmoothHeightmap(scaleByMapSize(0.1, 0.2));
 Engine.SetProgress(25);
 
 g_Map.log("Marking water");
@@ -340,7 +341,7 @@ setSunColor(0.753, 0.586, 0.584);
 setSkySet("sunset");
 
 // Inverted so that water appears on tiny maps and passages are maximized on larger maps
-setWaterHeight(scaleByMapSize(19.5, 18.5));
+setWaterHeight(scaleByMapSize(20, 18));
 setWaterTint(0.25, 0.67, 0.65);
 setWaterColor(0.18, 0.36, 0.39);
 setWaterWaviness(8);
