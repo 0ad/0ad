@@ -542,35 +542,60 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 			let lastFailed = gameState.ai.HQ.lastFailedGather[moreNeed.type];
 			if (lastFailed && gameState.ai.elapsedTime - lastFailed < 20)
 				continue;
+			// Ensure that the most wanted resource is exhausted
+			if (moreNeed.type != "food" && gameState.ai.HQ.isResourceExhausted(moreNeed.type))
+			{
+				if (lessNeed.type != "food" && gameState.ai.HQ.isResourceExhausted(lessNeed.type))
+					continue;
+
+				// And if so, move the gatherer to the less wanted one.
+				nb = this.switchGatherer(gameState, moreNeed.type, lessNeed.type, nb);
+				if (nb == 0)
+					return;
+			}
+
 			// If we assume a mean rate of 0.5 per gatherer, this diff should be > 1
 			// but we require a bit more to avoid too frequent changes
-			if (scale*moreNeed.wanted - moreNeed.current - scale*lessNeed.wanted + lessNeed.current > 1.5)
+			if (scale*moreNeed.wanted - moreNeed.current - scale*lessNeed.wanted + lessNeed.current > 1.5 ||
+			    lessNeed.type != "food" && gameState.ai.HQ.isResourceExhausted(lessNeed.type))
 			{
-				let only;
-				// in average, females are less efficient for stone and metal, and citizenSoldiers for food
-				let gatherers = this.gatherersByType(gameState, lessNeed.type);
-				if (lessNeed.type == "food" && gatherers.filter(API3.Filters.byClass("CitizenSoldier")).hasEntities())
-					only = "CitizenSoldier";
-				else if (moreNeed.type == "food" && gatherers.filter(API3.Filters.byClass("FemaleCitizen")).hasEntities())
-					only = "FemaleCitizen";
-
-				gatherers.forEach( function (ent) {
-					if (!ent.canGather(moreNeed.type))
-						return;
-					if (nb === 0)
-						return;
-					if (only && !ent.hasClass(only))
-						return;
-					--nb;
-					ent.stopMoving();
-					ent.setMetadata(PlayerID, "gather-type", moreNeed.type);
-					gameState.ai.HQ.AddTCResGatherer(moreNeed.type);
-				});
-				if (nb === 0)
+				nb = this.switchGatherer(gameState, lessNeed.type, moreNeed.type, nb);
+				if (nb == 0)
 					return;
 			}
 		}
 	}
+};
+
+/**
+ * Switch some gatherers (limited to number) from resource "from" to resource "to"
+ * and return remaining number of possible switches.
+ * Prefer FemaleCitizen for food and CitizenSoldier for other resources.
+ */
+m.BaseManager.prototype.switchGatherer = function(gameState, from, to, number)
+{
+	let num = number;
+	let only;
+	let gatherers = this.gatherersByType(gameState, from);
+	if (from == "food" && gatherers.filter(API3.Filters.byClass("CitizenSoldier")).hasEntities())
+		only = "CitizenSoldier";
+	else if (to == "food" && gatherers.filter(API3.Filters.byClass("FemaleCitizen")).hasEntities())
+		only = "FemaleCitizen";
+
+	for (let ent of gatherers.values())
+	{
+		if (num == 0)
+			return num;
+		if (!ent.canGather(to))
+			continue;
+		if (only && !ent.hasClass(only))
+			continue;
+		--num;
+		ent.stopMoving();
+		ent.setMetadata(PlayerID, "gather-type", to);
+		gameState.ai.HQ.AddTCResGatherer(to);
+	}
+	return num;
 };
 
 m.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorkers)

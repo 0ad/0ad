@@ -2418,6 +2418,20 @@ m.HQ.prototype.GetTCResGatherer = function(resource)
 };
 
 /**
+ * flag a resource as exhausted
+ */
+m.HQ.prototype.isResourceExhausted = function(resource)
+{
+	if (this.turnCache["exhausted-" + resource] == undefined)
+		this.turnCache["exhausted-" + resource] = this.baseManagers.every(base =>
+			!base.dropsiteSupplies[resource].nearby.length &&
+			!base.dropsiteSupplies[resource].medium.length &&
+			!base.dropsiteSupplies[resource].faraway.length);
+
+	return this.turnCache["exhausted-" + resource];
+};
+
+/**
  * Check if a structure in blinking territory should/can be defended (currently if it has some attacking armies around)
  */
 m.HQ.prototype.isDefendable = function(ent)
