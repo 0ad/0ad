@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -287,9 +287,13 @@ ActorViewer::ActorViewer()
 		debug_warn(L"Failed to load whiteness texture");
 	}
 
-	// Start the simulation
+	// Prepare the simulation
 	m.Simulation2.LoadDefaultScripts();
 	m.Simulation2.ResetState();
+
+	// Set player data
+	m.Simulation2.SetMapSettings(m.Simulation2.GetPlayerDefaults());
+	m.Simulation2.LoadPlayerSettings(true);
 
 	// Tell the simulation we've already loaded the terrain
 	CmpPtr<ICmpTerrain> cmpTerrain(m.Simulation2, SYSTEM_ENTITY);
@@ -300,6 +304,8 @@ ActorViewer::ActorViewer()
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m.Simulation2, SYSTEM_ENTITY);
 	if (cmpRangeManager)
 		cmpRangeManager->SetLosRevealAll(-1, true);
+
+	m.Simulation2.InitGame();
 }
 
 ActorViewer::~ActorViewer()
