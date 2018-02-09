@@ -11,6 +11,7 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # francescogramazio <francescograma@gmail.com>, 2014
 # George Lungu <lungugeorge88@gmail.com>, 2018
+# Luca Errani <luca.errani1@gmail.com>, 2018
 # Martin Falanga <iblaim97@hotmail.it>, 2017
 # Me Lazzi, 2014-2017
 # Michele Marongiu <michelemarongiu@gmail.com>, 2016-2017
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-29 09:04+0100\n"
-"PO-Revision-Date: 2018-01-29 14:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-02-07 09:03+0100\n"
+"PO-Revision-Date: 2018-02-08 11:30+0000\n"
+"Last-Translator: Luca Errani <luca.errani1@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -187,6 +188,8 @@ msgstr "Armatura di metallo per il corpo del cavallo."
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
+#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
@@ -2373,6 +2376,30 @@ msgstr "Costruisci mura di pietra in territorio neutrale."
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
 msgstr "Lunghe Mura Ateniesi"
+
+#: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
+msgid ""
+"+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr "+25% Punti Vita e -50% di tempo necessario per costruire Centri Cittadini, Templi, Piramidi e Meraviglie."
+
+#: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
+msgid "Monumental Architecture"
+msgstr "Architettura Monumentale"
+
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "Fa che i tuoi sacerdoti siano istruiti dall'Alto Sacerdote stesso - possa Amon benedirlo."
+
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
+msgid "Train elite rank healers."
+msgstr "Addestra i guaritori d'elite."
+
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
+msgid "High Priest of Amun"
+msgstr "Alto Sacerdote di Amon"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""

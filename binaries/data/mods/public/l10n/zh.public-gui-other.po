@@ -17,12 +17,13 @@
 # liulitchi <xingzuo88@qq.com>, 2017
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 # 玉堂白鹤 <yjwork@qq.com>, 2015
+# Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-31 09:03+0100\n"
-"PO-Revision-Date: 2018-01-31 15:13+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-02-08 05:36+0000\n"
+"Last-Translator: Lawrence Maxwell <maxwell4432@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,12 +39,12 @@ msgstr ""
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr ""
+msgstr "穿刺"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr ""
+msgstr "冲锋"
 
 #: gui/civinfo/civinfo.js:95
 #, javascript-format
@@ -116,7 +117,7 @@ msgstr "中断载入"
 
 #: gui/common/functions_utility.js:29
 msgid "Gaia"
-msgstr ""
+msgstr "盖亚"
 
 #: gui/common/functions_utility.js:105
 msgctxt "map selection"
@@ -197,28 +198,28 @@ msgstr "无可用的描述。"
 #: gui/common/gamedescription.js:101
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s（%(civ)s，%(AIdescription)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:104
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s（%(civ)s，%(AIdescription)s，%(state)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:110
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s（%(AIdescription)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:113
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s（%(AIdescription)s，%(state)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -414,11 +415,11 @@ msgstr "从列表随机选择地图。"
 
 #: gui/common/gamedescription.js:347
 msgid "Nomad Mode"
-msgstr ""
+msgstr "诺曼底模式"
 
 #: gui/common/gamedescription.js:347
 msgid "Civic Centers"
-msgstr ""
+msgstr "城镇中心"
 
 #: gui/common/gamedescription.js:350
 msgid ""
@@ -428,7 +429,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:351
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "玩家以一个城镇中心开始游戏。"
 
 #: gui/common/gamedescription.js:358
 msgid "Biome"
@@ -459,7 +460,7 @@ msgstr "宝藏"
 #: gui/common/gamedescription.js:387
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "禁用"
 
 #: gui/common/gamedescription.js:388
 msgctxt "treasures"
@@ -480,8 +481,9 @@ msgstr "作弊"
 
 #: gui/common/gamedescription.js:407 gui/common/tooltips.js:126
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:222
-#: gui/common/tooltips.js:380 gui/common/tooltips.js:457
-#: gui/common/tooltips.js:478 gui/common/tooltips.js:768
+#: gui/common/tooltips.js:357 gui/common/tooltips.js:379
+#: gui/common/tooltips.js:463 gui/common/tooltips.js:484
+#: gui/common/tooltips.js:774
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -609,8 +611,8 @@ msgstr "玩家 (%(num)s): %(users)s"
 #: gui/common/network.js:161 gui/common/tooltips.js:80
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:208
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
-#: gui/common/tooltips.js:352 gui/common/tooltips.js:633
-#: gui/common/tooltips.js:667 gui/common/tooltips.js:733
+#: gui/common/tooltips.js:352 gui/common/tooltips.js:639
+#: gui/common/tooltips.js:673 gui/common/tooltips.js:739
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
 msgid ", "
 msgstr "，"
@@ -653,7 +655,7 @@ msgstr "随机"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "平衡的"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -781,7 +783,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:18
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "线性溅射伤害"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -836,7 +838,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:109 gui/common/tooltips.js:315
-#: gui/common/tooltips.js:364 gui/common/tooltips.js:665
+#: gui/common/tooltips.js:671
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "秒"
@@ -898,7 +900,7 @@ msgstr "%(damage)s %(damageType)s"
 msgid "Interval:"
 msgstr "间隔："
 
-#: gui/common/tooltips.js:227 gui/common/tooltips.js:663
+#: gui/common/tooltips.js:227 gui/common/tooltips.js:669
 msgid "Rate:"
 msgstr "频率："
 
@@ -907,7 +909,7 @@ msgstr "频率："
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:253 gui/common/tooltips.js:658
+#: gui/common/tooltips.js:253 gui/common/tooltips.js:664
 msgid "Range:"
 msgstr "范围："
 
@@ -922,8 +924,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "米"
 
-#: gui/common/tooltips.js:261 gui/common/tooltips.js:660
-#: gui/common/tooltips.js:690
+#: gui/common/tooltips.js:261 gui/common/tooltips.js:666
+#: gui/common/tooltips.js:696
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "米"
@@ -953,11 +955,11 @@ msgstr "驻军上限"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:312 gui/common/tooltips.js:652
+#: gui/common/tooltips.js:312 gui/common/tooltips.js:658
 msgid "Heal:"
 msgstr "治疗："
 
-#: gui/common/tooltips.js:314 gui/common/tooltips.js:363
+#: gui/common/tooltips.js:314
 msgid "Health"
 msgstr "生命值"
 
@@ -975,118 +977,122 @@ msgctxt "projectiles"
 msgid "Per Unit"
 msgstr "每单位"
 
-#: gui/common/tooltips.js:360
+#: gui/common/tooltips.js:358
+msgid "Number of repairers:"
+msgstr "修理工数量："
+
+#: gui/common/tooltips.js:364
 #, javascript-format
-msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-
-#: gui/common/tooltips.js:361
-msgid "Repair Rate:"
-msgstr "修复率:"
-
-#: gui/common/tooltips.js:365 gui/summary/layout.js:64
-msgid "Worker"
-msgstr "工人"
-
-#: gui/common/tooltips.js:375
-#, javascript-format
-msgid "Add a worker to finish the construction in %(second)s second."
-msgid_plural "Add a worker to finish the construction in %(second)s seconds."
+msgid "Add another worker to speed up the repairs by %(second)s second."
+msgid_plural ""
+"Add another worker to speed up the repairs by %(second)s seconds."
 msgstr[0] ""
 
-#: gui/common/tooltips.js:381
-msgid "Number of builders:"
-msgstr ""
+#: gui/common/tooltips.js:371
+#, javascript-format
+msgid "Add a worker to finish the repairs in %(second)s second."
+msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
+msgstr[0] ""
 
-#: gui/common/tooltips.js:387
+#: gui/common/tooltips.js:380
+msgid "Number of builders:"
+msgstr "建筑工数量："
+
+#: gui/common/tooltips.js:386
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
 msgstr[0] ""
 
-#: gui/common/tooltips.js:422 gui/common/tooltips.js:605
+#: gui/common/tooltips.js:393
+#, javascript-format
+msgid "Add a worker to finish the construction in %(second)s second."
+msgid_plural "Add a worker to finish the construction in %(second)s seconds."
+msgstr[0] ""
+
+#: gui/common/tooltips.js:428 gui/common/tooltips.js:611
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:458
+#: gui/common/tooltips.js:464
 msgid "Gather Rates:"
 msgstr "采集速率："
 
-#: gui/common/tooltips.js:461 gui/common/tooltips.js:483
+#: gui/common/tooltips.js:467 gui/common/tooltips.js:489
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/common/tooltips.js:479
+#: gui/common/tooltips.js:485
 msgid "Resource Trickle:"
 msgstr ""
 
-#: gui/common/tooltips.js:480
+#: gui/common/tooltips.js:486
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s/%(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:532
+#: gui/common/tooltips.js:538
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s 到 %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:561
+#: gui/common/tooltips.js:567
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "城墙:  %(costs)s"
 
-#: gui/common/tooltips.js:562
+#: gui/common/tooltips.js:568
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "塔楼:  %(costs)s"
 
-#: gui/common/tooltips.js:576
+#: gui/common/tooltips.js:582
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
 
-#: gui/common/tooltips.js:588
+#: gui/common/tooltips.js:594
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:589
+#: gui/common/tooltips.js:595
 msgid "Population Bonus:"
 msgstr "人口奖励"
 
-#: gui/common/tooltips.js:610
+#: gui/common/tooltips.js:616
 msgid "Insufficient resources:"
 msgstr "缺乏资源:"
 
-#: gui/common/tooltips.js:626
+#: gui/common/tooltips.js:632
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:627
+#: gui/common/tooltips.js:633
 msgid "Speed:"
 msgstr "速度:"
 
-#: gui/common/tooltips.js:629 gui/common/tooltips.js:634
+#: gui/common/tooltips.js:635 gui/common/tooltips.js:640
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:631
+#: gui/common/tooltips.js:637
 msgid "Walk"
 msgstr "走"
 
-#: gui/common/tooltips.js:636
+#: gui/common/tooltips.js:642
 msgid "Run"
 msgstr "跑"
 
-#: gui/common/tooltips.js:651 gui/common/tooltips.js:657
-#: gui/common/tooltips.js:662 gui/common/tooltips.js:687
+#: gui/common/tooltips.js:657 gui/common/tooltips.js:663
+#: gui/common/tooltips.js:668 gui/common/tooltips.js:693
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1094,50 +1100,50 @@ msgstr[0] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:655
+#: gui/common/tooltips.js:661
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "HP"
 
-#: gui/common/tooltips.js:679
+#: gui/common/tooltips.js:685
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:680
+#: gui/common/tooltips.js:686
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:688
+#: gui/common/tooltips.js:694
 msgctxt "aura"
 msgid "Range:"
 msgstr "范围: "
 
-#: gui/common/tooltips.js:705
+#: gui/common/tooltips.js:711
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:717
+#: gui/common/tooltips.js:723
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:732
+#: gui/common/tooltips.js:738
 msgid "Classes:"
 msgstr "类型："
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:759
+#: gui/common/tooltips.js:765
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:769
+#: gui/common/tooltips.js:775
 msgid "Loot:"
 msgstr "战利品："
 
@@ -1155,19 +1161,19 @@ msgstr "确定"
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "最小：%(min)s，最大：%(max)s"
 
 #: gui/options/options.js:94
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "最小：%(min)s"
 
 #: gui/options/options.js:96
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "最大：%(max)s"
 
 #: gui/options/options.js:129
 #, javascript-format
@@ -1300,7 +1306,7 @@ msgstr "技术详情"
 msgid "Manual"
 msgstr "手册"
 
-#: gui/reference/common/load.js:205
+#: gui/reference/common/load.js:196
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s到%(health_max)s"
@@ -1520,6 +1526,10 @@ msgstr "单位"
 msgid "Infantry"
 msgstr "步兵"
 
+#: gui/summary/layout.js:64
+msgid "Worker"
+msgstr "工人"
+
 #: gui/summary/layout.js:65
 msgid "Cavalry"
 msgstr "骑兵"
@@ -1669,7 +1679,7 @@ msgstr "捕获"
 
 #: gui/summary/summary.js:65
 msgid "Succeeded"
-msgstr ""
+msgstr "成功"
 
 #: gui/summary/summary.js:70
 msgid "Destroyed"
@@ -1701,13 +1711,13 @@ msgstr "支出"
 
 #: gui/summary/summary.js:105
 msgid "Failed"
-msgstr ""
+msgstr "失败"
 
 #. Translation: Unicode encoded infinity symbol indicating a division by zero
 #. in the summary screen.
 #: gui/summary/summary.js:111
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/summary/summary.js:440
 msgid "Are you sure you want to quit the lobby?"
@@ -1735,7 +1745,7 @@ msgstr "您已胜出！"
 
 #: gui/summary/summary.js:515
 msgid "You have been defeated…"
-msgstr ""
+msgstr "您已战败。"
 
 #: gui/summary/summary.js:516
 msgid "You have abandoned the game."
@@ -1841,7 +1851,7 @@ msgstr "您能自动发送匿名反馈给我们，以便修复错误以及改善
 
 #: gui/pregame/mainmenu.xml:561
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "内测版 23：代号Ken Wood"
 
 #: gui/pregame/mainmenu.xml:563
 msgid ""
@@ -2031,7 +2041,7 @@ msgstr "在多人游戏中和其他的人类玩家作战"
 
 #: gui/pregame/mainmenu.xml:(tooltip):510
 msgid "Game options and mod selection."
-msgstr ""
+msgstr "游戏选项和模组选择。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):525
 msgid ""
@@ -2493,7 +2503,7 @@ msgstr "伙伴"
 #: gui/options/options.json[0].options[11].list[2].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "禁用"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2529,7 +2539,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[14].label
 msgid "Wounded Unit Health"
-msgstr ""
+msgstr "伤员健康状况"
 
 #: gui/options/options.json[0].options[15].tooltip
 msgid ""
@@ -2548,7 +2558,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[16].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "攻击范围可视化"
 
 #: gui/options/options.json[0].options[17].tooltip
 msgid ""
@@ -2568,7 +2578,7 @@ msgstr "显示所选单位的治疗范围(也可以在游戏内通过热键显�
 
 #: gui/options/options.json[0].options[18].label
 msgid "Heal Range Visualization"
-msgstr ""
+msgstr "治疗范围可视化"
 
 #: gui/options/options.json[0].options[19].tooltip
 msgid "Show rank icons above status bars"
@@ -2584,11 +2594,11 @@ msgstr ""
 
 #: gui/options/options.json[0].options[20].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "升序"
 
 #: gui/options/options.json[0].options[20].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "降序"
 
 #: gui/options/options.json[0].options[20].tooltip
 msgid ""
@@ -2613,11 +2623,11 @@ msgstr "偏好高级渲染"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Enable Fog"
-msgstr ""
+msgstr "启用战雾"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Fog"
-msgstr ""
+msgstr "战雾"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
@@ -2800,7 +2810,7 @@ msgstr ""
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
-msgstr ""
+msgstr "图像"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain"
@@ -2897,11 +2907,11 @@ msgstr "非常困难"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "默认的AI难度。"
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "默认AI难度"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -2909,7 +2919,7 @@ msgstr "随机"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "平衡的"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -2921,11 +2931,11 @@ msgstr "防守的"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "AI的默认行为。"
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI Behavior"
-msgstr ""
+msgstr "AI默认行为"
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -2935,11 +2945,11 @@ msgstr ""
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign Players"
-msgstr ""
+msgstr "制定玩家"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr ""
+msgstr "游戏设置"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2995,7 +3005,7 @@ msgstr "以物易物"
 
 #: gui/options/options.json[5].options[3].list[0].label
 msgid "Disable"
-msgstr ""
+msgstr "禁用"
 
 #: gui/options/options.json[5].options[3].list[1].label
 msgid "Completed"
@@ -3021,7 +3031,7 @@ msgstr ""
 
 #: gui/options/options.json[5].label
 msgid "Chat Notifications"
-msgstr ""
+msgstr "聊天通知"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
@@ -3386,7 +3396,7 @@ msgstr "市政中心"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The foundation of your new colony."
-msgstr ""
+msgstr "- 你的新殖民地的基础。"
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -3474,11 +3484,11 @@ msgstr ""
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr ""
+msgstr "- 城邦步兵有更快的矿物收集速度。"
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr ""
+msgstr "- 城邦骑兵有更快的肉类收集速度。"
 
 #: gui/text/tips/gathering.txt:10
 msgid ""

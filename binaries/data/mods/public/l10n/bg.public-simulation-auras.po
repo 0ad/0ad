@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-29 09:04+0100\n"
-"PO-Revision-Date: 2018-01-30 09:09+0000\n"
+"POT-Creation-Date: 2018-02-07 09:03+0100\n"
+"PO-Revision-Date: 2018-02-08 08:31+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -40,6 +40,41 @@ msgstr "Религиозен плам"
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
 msgstr "+20% щети за во̀ините."
+
+#: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
+msgid "Patriotism"
+msgstr "Патриотизъм"
+
+#: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
+msgid "Workers +15% gather rates near pyramids."
+msgstr "+15% бързина на събиране за работниците, намиращи се близо до пирамиди."
+
+#: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
+msgid "Exhortative Presence"
+msgstr "Нравоучително присъствие"
+
+#: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
+msgid "Soldiers near Large Pyramids +10% attack."
+msgstr "+10% атака за во̀ините, намиращи се близо до големи пирамиди."
+
+#: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
+msgid "Meroitic Pyramids"
+msgstr "Мероитски пирамиди"
+
+#: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
+msgid ""
+"Civic Centers +10% territory influence as long as a Pyramid stands built."
+msgstr "+10% териториално влияние за селищните центрове, докато има построена пирамида."
+
+#: simulation/data/auras/structures/kush_temple_amun.jsonauraName
+msgid "Powerful Priesthood"
+msgstr "Могъщо духовенство"
+
+#: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
+msgid ""
+"Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
+"-5% health for heroes per temple built."
+msgstr "Укрепва духовенството на Амон и намалява властта на монарха.\n-5% здраве за героите за всеки построен храм."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -165,6 +200,16 @@ msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
 msgstr "Цената на стрелците се намалява с 20% за съюзниците на играчите, играещи с иберите"
+
+#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
+msgid "Elephant Suppliers"
+msgstr "Доставчици на слонове"
+
+#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Времето за обучение и цената на слоновете се намаляват за съюзниците на играчите, играещи с кушитите."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -324,6 +369,26 @@ msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "+10% health for all soldiers."
 msgstr "След като Андобал паднал в битка, Мандоний отвел оцелелите на безопасно място.\n+10% здраве за всички во̀ини."
+
+#: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
+msgid "Earliest Nubian Queen"
+msgstr "Първата нубийска царица"
+
+#: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraDescription
+msgid ""
+"Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
+"Awe: All enemy female citizens -15% gather rate."
+msgstr "Разполагайки с пълната мощ на Мероитската империя и играейки важна роля в мероитската религия, Шанакдакете представлявала могъществото на Куш – нещо, с което шега не бива.\nСтрахопочитание: -15% скорост на събиране за всички вражески жени."
+
+#: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
+msgid "Temple at Naqa"
+msgstr "Храмът в Нага"
+
+#: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
+msgid ""
+"As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
+"+1 garrisoned heal rate for temples."
+msgstr "Подобно на всяка друга култура, и в Мероитската империя религията имала важна роля. Шанакдакете построила храма около 160 г. пр.н.е., като знак за напредъка на Мероитската империя.\n+1 скорост на лечение за единиците на гарнизон за храмовете."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -622,6 +687,48 @@ msgid ""
 "+100% resources loot increase for every enemy unit killed or structure "
 "destroyed."
 msgstr "+100% плячка в ресурси за всяка убита вражеска единица или разрушена сграда."
+
+#: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
+msgid "Warrior Queen"
+msgstr "Царица-во̀ин"
+
+#: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
+msgid "+20% attack and +2 capture for soldiers and elephants."
+msgstr "+20 атака и +2 пленяване за всички во̀ини и слонове."
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
+msgid "Defier of Tradition"
+msgstr "Противник на традицията"
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraDescription
+msgid "Temple of Amun and its Napatan Temple Guards +20% cost and build time."
+msgstr "+20% цена и време за строеж на храма на Амон и неговите напатски храмови пазители."
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
+msgid "Follower of Apedemak"
+msgstr "Последовател на Апедемак"
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
+msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
+msgstr "-20% цена и време за строеж на храмовете на Апедемак и техния меройски храмов пазител."
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
+msgid "Slaugther of the Faithful"
+msgstr "Клане на верните"
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
+msgid "Enemy healrate reduced by 50%."
+msgstr "Вражеската скорост на лечение се намалява с 50%."
+
+#: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraName
+msgid "Saviour of Kush"
+msgstr "Спасител на Куш"
+
+#: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraDescription
+msgid ""
+"Own units +10% attack.\n"
+"Nastasen acquired lots of bounty from the defeated invaders. Gain +50% loot from killing enemy units."
+msgstr "+10% атака за собствените единици.\nНастасен получил много плячка от победените нашественици. +50% плячка за убиване на вражески единици."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"

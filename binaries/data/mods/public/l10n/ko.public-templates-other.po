@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-27 12:55+0100\n"
-"PO-Revision-Date: 2018-01-27 15:48+0000\n"
+"POT-Creation-Date: 2018-02-07 09:03+0100\n"
+"PO-Revision-Date: 2018-02-07 15:04+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -70,9 +70,8 @@ msgid "Generic Ruins"
 msgstr "일반적인 유적"
 
 #: simulation/templates/template_gaia_ruins.xml:9
-#: simulation/templates/gaia/special_ruins.xml:9
-#: simulation/templates/gaia/special_ruins_column_doric.xml:9
-#: simulation/templates/other/unfinished_greek_temple.xml:9
+#: simulation/templates/gaia/ruins/column_doric.xml:9
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
 msgid "Ruins"
 msgstr "잔해"
 
@@ -85,20 +84,20 @@ msgid "Generic Treasure"
 msgstr "일반 보물"
 
 #: simulation/templates/template_gaia_treasure.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
-#: simulation/templates/gaia/special_treasure_food_bin.xml:9
-#: simulation/templates/gaia/special_treasure_food_crate.xml:9
-#: simulation/templates/gaia/special_treasure_food_jars.xml:9
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
-#: simulation/templates/gaia/special_treasure_pegasus.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:9
-#: simulation/templates/gaia/special_treasure_wood.xml:9
-#: simulation/templates/other/special_treasure_shipwreck.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
+#: simulation/templates/gaia/treasure/food_barrel.xml:9
+#: simulation/templates/gaia/treasure/food_barrels_buried.xml:9
+#: simulation/templates/gaia/treasure/food_bin.xml:9
+#: simulation/templates/gaia/treasure/food_crate.xml:9
+#: simulation/templates/gaia/treasure/food_jars.xml:9
+#: simulation/templates/gaia/treasure/golden_fleece.xml:9
+#: simulation/templates/gaia/treasure/pegasus.xml:9
+#: simulation/templates/gaia/treasure/shipwreck.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_debris.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:9
+#: simulation/templates/gaia/treasure/stone.xml:9
+#: simulation/templates/gaia/treasure/wood.xml:9
 msgid "Treasure"
 msgstr "보물"
 
@@ -504,83 +503,137 @@ msgstr "소금 삼나무"
 msgid "Toona Tree"
 msgstr "투나 나무"
 
-#: simulation/templates/gaia/special_ruins.xml:10
-#: simulation/templates/gaia/special_ruins_column_doric.xml:10
+#: simulation/templates/gaia/ruins/column_doric.xml:10
 msgid "Ancient Ruins"
 msgstr "고대 유적"
 
-#: simulation/templates/gaia/special_ruins_standing_stone.xml:9
-#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
-#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:9
+#: simulation/templates/gaia/ruins/pyramid_great.xml:9
+#: simulation/templates/gaia/ruins/pyramid_minor.xml:9
+msgid "Pyramid"
+msgstr "피라미드"
+
+#: simulation/templates/gaia/ruins/pyramid_great.xml:10
+msgid "Great Pyramid"
+msgstr "큰 피라미드"
+
+#: simulation/templates/gaia/ruins/pyramid_minor.xml:10
+msgid "Minor Pyramid"
+msgstr "작은 피라미드"
+
+#: simulation/templates/gaia/ruins/standing_stone.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_kushite.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_roman.xml:9
 msgid "Stone Ruins"
 msgstr "돌 유적"
 
-#: simulation/templates/gaia/special_ruins_standing_stone.xml:10
-#: simulation/templates/gaia/special_treasure_standing_stone.xml:10
+#: simulation/templates/gaia/ruins/standing_stone.xml:10
+#: simulation/templates/gaia/treasure/standing_stone.xml:10
 msgid "Celtic Standing Stone"
 msgstr "셀틱 기"
 
-#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
+#: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
 msgstr "프톨레마이오스의 이집트 동상"
 
-#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
+#: simulation/templates/gaia/ruins/stone_statues_kushite.xml:10
+msgid "Kushite Statue"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_statues_roman.xml:10
 msgid "Roman Statues"
 msgstr "로마 동상들"
 
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:10
-#: simulation/templates/gaia/special_treasure_food_bin.xml:10
-#: simulation/templates/gaia/special_treasure_food_crate.xml:10
-#: simulation/templates/gaia/special_treasure_food_jars.xml:10
-#: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
-#: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:10
+msgid "Unfinished Greek Temple"
+msgstr "미완성된 그리스 사원"
+
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:11
+msgid "This temple is unfinished and has fallen to ruin."
+msgstr "이 사원은 미완성 되었고, 유적으로 변했습니다."
+
+#: simulation/templates/gaia/treasure/food_barrel.xml:10
+#: simulation/templates/gaia/treasure/food_bin.xml:10
+#: simulation/templates/gaia/treasure/food_crate.xml:10
+#: simulation/templates/gaia/treasure/food_jars.xml:10
+#: simulation/templates/gaia/treasure/food_persian_big.xml:9
+#: simulation/templates/gaia/treasure/food_persian_small.xml:9
 msgid "Food Treasure"
 msgstr "음식 보물"
 
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
+#: simulation/templates/gaia/treasure/food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
 msgstr "반쯤 묻은 원통"
 
-#: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
+#: simulation/templates/gaia/treasure/food_persian_big.xml:10
 msgid "Persian Food Stores"
 msgstr "페르시안 음식 저장고"
 
-#: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
+#: simulation/templates/gaia/treasure/food_persian_small.xml:10
 msgid "Persian Food Treasure"
 msgstr "페르시안 음식 보물"
 
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
+#: simulation/templates/gaia/treasure/golden_fleece.xml:10
 msgid "Golden Fleece"
 msgstr "황금 양털"
 
-#: simulation/templates/gaia/special_treasure_metal.xml:9
-#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
-#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
+#: simulation/templates/gaia/treasure/metal.xml:9
+#: simulation/templates/gaia/treasure/metal_persian_big.xml:9
+#: simulation/templates/gaia/treasure/metal_persian_small.xml:9
 msgid "Metal Treasure"
 msgstr "금속 보물"
 
-#: simulation/templates/gaia/special_treasure_metal.xml:10
+#: simulation/templates/gaia/treasure/metal.xml:10
 msgid "Secret Box"
 msgstr "비밀 상자"
 
-#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
+#: simulation/templates/gaia/treasure/metal_persian_big.xml:10
 msgid "Persian Wares"
 msgstr "페르시아 상품"
 
-#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
+#: simulation/templates/gaia/treasure/metal_persian_small.xml:10
 msgid "Persian Rugs"
 msgstr "페르시아 양탄자들"
 
-#: simulation/templates/gaia/special_treasure_pegasus.xml:10
+#: simulation/templates/gaia/treasure/pegasus.xml:10
 msgid "Pegasus"
 msgstr "페가수스"
 
-#: simulation/templates/gaia/special_treasure_standing_stone.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:10
+#: simulation/templates/gaia/treasure/shipwreck.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:10
+msgid "Shipwreck"
+msgstr "난파선"
+
+#: simulation/templates/gaia/treasure/shipwreck.xml:11
+msgid "A decaying military shipwreck. A good opportunity for any businessman."
+msgstr "썩는 난파선 (군대). 어떤 사업가를 위한 좋은 기회."
+
+#: simulation/templates/gaia/treasure/shipwreck_debris.xml:10
+msgid "Shipwreck Cargo"
+msgstr "난파선화물"
+
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:11
+msgid ""
+"A shipwreck with much loss of life. A good opportunity for any businessman."
+msgstr "생명의 손실이 많은 난파선. 어떤 사업가에게 좋은 기회."
+
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:11
+msgid ""
+"The wreck of a small cargo ship. A good opportunity for any businessman."
+msgstr "작은 화물선의 난파. 어떤 사업가에게 좋은 기회."
+
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:11
+msgid "A cargo ship rammed in half. A good opportunity for any businessman."
+msgstr "절반정도 부딪힌 화물선. 어떤 사업가에게 좋은 "
+
+#: simulation/templates/gaia/treasure/standing_stone.xml:9
+#: simulation/templates/gaia/treasure/stone.xml:10
 msgid "Stone Treasure"
 msgstr "암석 보물"
 
-#: simulation/templates/gaia/special_treasure_wood.xml:10
+#: simulation/templates/gaia/treasure/wood.xml:10
 msgid "Wood Treasure"
 msgstr "목재 보물"
 
@@ -624,6 +677,14 @@ msgstr "도리스 지방의 기둥(칼럼)"
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
 msgstr "추락한 도리스 지방의 기둥(칼럼)"
+
+#: simulation/templates/other/desert_trading_post.xml:15
+msgid "Desert Trading Post"
+msgstr ""
+
+#: simulation/templates/other/desert_trading_post.xml:16
+msgid "Ardatašta"
+msgstr ""
 
 #: simulation/templates/other/fence_long.xml:21
 #: simulation/templates/other/fence_short.xml:21
@@ -770,19 +831,6 @@ msgstr "대못 길이"
 msgid "Tall Spikes"
 msgstr "큰 대못"
 
-#: simulation/templates/other/pyramid_great.xml:9
-#: simulation/templates/other/pyramid_minor.xml:9
-msgid "Pyramid"
-msgstr "피라미드"
-
-#: simulation/templates/other/pyramid_great.xml:10
-msgid "Great Pyramid"
-msgstr "큰 피라미드"
-
-#: simulation/templates/other/pyramid_minor.xml:10
-msgid "Minor Pyramid"
-msgstr "작은 피라미드"
-
 #: simulation/templates/other/sele_colonnade.xml:20
 msgid "Colonnade"
 msgstr "열주(가로수)"
@@ -790,35 +838,6 @@ msgstr "열주(가로수)"
 #: simulation/templates/other/sele_colonnade.xml:21
 msgid "Corinthian Colonnade"
 msgstr "코린트식 열주(가로수)"
-
-#: simulation/templates/other/special_treasure_shipwreck.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
-msgid "Shipwreck"
-msgstr "난파선"
-
-#: simulation/templates/other/special_treasure_shipwreck.xml:11
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "썩는 난파선 (군대). 어떤 사업가를 위한 좋은 기회."
-
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
-msgid "Shipwreck Cargo"
-msgstr "난파선화물"
-
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
-msgid ""
-"A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "생명의 손실이 많은 난파선. 어떤 사업가에게 좋은 기회."
-
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
-msgid ""
-"The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "작은 화물선의 난파. 어떤 사업가에게 좋은 기회."
-
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
-msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "절반정도 부딪힌 화물선. 어떤 사업가에게 좋은 "
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
@@ -845,14 +864,6 @@ msgstr "직사각형 테이블(탁자)"
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
 msgstr "정사각형 테이블(탁자)"
-
-#: simulation/templates/other/unfinished_greek_temple.xml:10
-msgid "Unfinished Greek Temple"
-msgstr "미완성된 그리스 사원"
-
-#: simulation/templates/other/unfinished_greek_temple.xml:11
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "이 사원은 미완성 되었고, 유적으로 변했습니다."
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

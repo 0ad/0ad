@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 08:08+0000\n"
+"POT-Creation-Date: 2018-02-07 09:03+0100\n"
+"PO-Revision-Date: 2018-02-08 08:43+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -435,6 +435,7 @@ msgid ""
 msgstr "Бързо стопява здравето на вражеските кораби. Постепенно губи здраве, тъй като гори, така че ползвайте Огнения кораб бързо."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:35
+#: simulation/templates/units/kush_ship_fishing.xml:5
 msgid "Fishing Boat"
 msgstr "Рибарска лодка"
 
@@ -571,6 +572,16 @@ msgstr "Солон"
 #: simulation/templates/units/iber_infantry_spearman_a.xml:4
 #: simulation/templates/units/iber_infantry_swordsman_a.xml:4
 #: simulation/templates/units/iber_support_healer_a.xml:4
+#: simulation/templates/units/kush_camelry_javelinist_a.xml:4
+#: simulation/templates/units/kush_cavalry_javelinist_a.xml:4
+#: simulation/templates/units/kush_cavalry_spearman_a.xml:4
+#: simulation/templates/units/kush_infantry_archer_a.xml:4
+#: simulation/templates/units/kush_infantry_clubman_a.xml:4
+#: simulation/templates/units/kush_infantry_merc_javelinist_a.xml:4
+#: simulation/templates/units/kush_infantry_pikeman_a.xml:4
+#: simulation/templates/units/kush_infantry_spearman_a.xml:4
+#: simulation/templates/units/kush_infantry_swordsman_a.xml:4
+#: simulation/templates/units/kush_support_healer_a.xml:4
 #: simulation/templates/units/mace_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/mace_cavalry_spearman_a.xml:4
 #: simulation/templates/units/mace_infantry_archer_a.xml:4
@@ -669,6 +680,16 @@ msgstr "Про̀дромос"
 #: simulation/templates/units/iber_infantry_spearman_e.xml:4
 #: simulation/templates/units/iber_infantry_swordsman_e.xml:4
 #: simulation/templates/units/iber_support_healer_e.xml:4
+#: simulation/templates/units/kush_camelry_javelinist_e.xml:4
+#: simulation/templates/units/kush_cavalry_javelinist_e.xml:4
+#: simulation/templates/units/kush_cavalry_spearman_e.xml:4
+#: simulation/templates/units/kush_infantry_archer_e.xml:4
+#: simulation/templates/units/kush_infantry_clubman_e.xml:4
+#: simulation/templates/units/kush_infantry_merc_javelinist_e.xml:4
+#: simulation/templates/units/kush_infantry_pikeman_e.xml:4
+#: simulation/templates/units/kush_infantry_spearman_e.xml:4
+#: simulation/templates/units/kush_infantry_swordsman_e.xml:4
+#: simulation/templates/units/kush_support_healer_e.xml:4
 #: simulation/templates/units/mace_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/mace_cavalry_spearman_e.xml:4
 #: simulation/templates/units/mace_infantry_archer_e.xml:4
@@ -939,6 +960,17 @@ msgstr "Гайсаредос"
 msgid "Raiding Cavalry"
 msgstr "Нахлуващ конник"
 
+#: simulation/templates/units/brit_cavalry_javelinist_hero_boudicca.xml:8
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:8
+msgid "Boudicca (Sword)"
+msgstr "Боудика (меч)"
+
+#: simulation/templates/units/brit_cavalry_javelinist_hero_boudicca.xml:9
+#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:9
+msgid "Boadicea"
+msgstr "Боудика"
+
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul_cavalry_swordsman_b.xml:6
 msgid "Epos"
@@ -978,15 +1010,6 @@ msgstr "Деламоклуда"
 #: simulation/templates/units/brit_hero_boudicca.xml:13
 msgid "Boudicca (Chariot)"
 msgstr "Боудика (колесница)"
-
-#: simulation/templates/units/brit_hero_boudicca.xml:14
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:9
-msgid "Boadicea"
-msgstr "Боудика"
-
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:8
-msgid "Boudicca (Sword)"
-msgstr "Боудика (меч)"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:8
 msgid "Caratacos"
@@ -1280,7 +1303,7 @@ msgstr "Амбиорикс"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
-msgstr "Галска знатен конник"
+msgstr "Галски знатен конник"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:6
 msgid "Gallic Brihent"
@@ -1307,6 +1330,7 @@ msgid "Brennus"
 msgstr "Брен"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:8
+#: simulation/templates/units/gaul_infantry_swordsman_hero_vercingetorix.xml:8
 msgid "Vercingetorix"
 msgstr "Верцингеторикс"
 
@@ -1347,6 +1371,7 @@ msgid "Caros"
 msgstr "Карос"
 
 #: simulation/templates/units/iber_hero_indibil.xml:8
+#: simulation/templates/units/iber_infantry_spearman_hero_indibil.xml:8
 msgid "Indibil"
 msgstr "Андобал"
 
@@ -1409,6 +1434,217 @@ msgstr "Емакумезко апаиз де Атаекина"
 #: simulation/templates/units/iber_support_trader.xml:5
 msgid "Merkatari"
 msgstr "Меркатари"
+
+#: simulation/templates/units/kush_camelry_javelinist_b.xml:11
+#: simulation/templates/units/ptol_cavalry_archer_b.xml:5
+msgid "Camel"
+msgstr "Камила"
+
+#: simulation/templates/units/kush_camelry_javelinist_b.xml:13
+msgid "Blemmye Desert Raider"
+msgstr "Блемийски пустинен ездач"
+
+#: simulation/templates/units/kush_camelry_javelinist_b.xml:14
+msgid "nhw Bulahau gml"
+msgstr "нхл Булахау гмл"
+
+#: simulation/templates/units/kush_catafalque.xml:9
+msgid "Wtn n ‘Ist"
+msgstr "Лтн н ‘лст"
+
+#: simulation/templates/units/kush_cavalry_javelinist_b.xml:6
+msgid "iry hr ssmwtt"
+msgstr "ирй хр ссмлтт"
+
+#: simulation/templates/units/kush_cavalry_javelinist_b.xml:7
+msgid "Napatan Light Cavalry"
+msgstr "Напатски лек конник"
+
+#: simulation/templates/units/kush_cavalry_spearman_b.xml:6
+msgid "Meroitic Heavy Cavalry"
+msgstr "Мероитски тежък конник"
+
+#: simulation/templates/units/kush_cavalry_spearman_b.xml:7
+msgid "Htr"
+msgstr "Хтр"
+
+#: simulation/templates/units/kush_champion_cavalry.xml:5
+msgid "Noble Cavalry"
+msgstr "Знатен конник"
+
+#: simulation/templates/units/kush_champion_cavalry.xml:6
+msgid "Htr Ms’ n mh-ib"
+msgstr "Хтр Мс' х мх-иб"
+
+#: simulation/templates/units/kush_champion_elephant.xml:5
+msgid "Meroitic War Elephant"
+msgstr "Мероитски боен слон"
+
+#: simulation/templates/units/kush_champion_elephant.xml:6
+msgid "Abore ‘h3"
+msgstr "Аборе 'х3"
+
+#: simulation/templates/units/kush_champion_infantry.xml:5
+msgid "Noble Archer"
+msgstr "Знатен стрелец"
+
+#: simulation/templates/units/kush_champion_infantry.xml:6
+msgid "Hry pdty"
+msgstr "Хрй пдтй"
+
+#: simulation/templates/units/kush_champion_infantry_amun.xml:5
+msgid "Napatan Temple Guard"
+msgstr "Напатски храмов пазител"
+
+#: simulation/templates/units/kush_champion_infantry_amun.xml:6
+msgid "rs ‘Imn"
+msgstr "рс 'лмн"
+
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:5
+msgid "Meroitic Temple Guard"
+msgstr "Меройски храмов пазител"
+
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:6
+msgid "rs ‘Iprmk"
+msgstr "рс 'лпрмк"
+
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:7
+msgid "Axe"
+msgstr "Аксе"
+
+#: simulation/templates/units/kush_hero_amanirenas.xml:8
+msgid "Amanirenas"
+msgstr "Аманирений"
+
+#: simulation/templates/units/kush_hero_amanirenas.xml:9
+msgid "Amnirense qore li kdwe li"
+msgstr "Амниренсе куоре лс кдуе ли"
+
+#: simulation/templates/units/kush_hero_arakamani.xml:10
+msgid "Arakamani"
+msgstr "Аркамани"
+
+#: simulation/templates/units/kush_hero_arakamani.xml:11
+msgid "‘Irk.‘Imn"
+msgstr "'лрк.'лмн"
+
+#: simulation/templates/units/kush_hero_nastasen.xml:8
+msgid "Nastasen"
+msgstr "Настасен"
+
+#: simulation/templates/units/kush_hero_nastasen.xml:9
+msgid "Nastasen Ankhkhare"
+msgstr "Настасен Анкхкхаре"
+
+#: simulation/templates/units/kush_hero_nastasen.xml:12
+msgid ""
+"Hero Special: \"Gift of Warships\" - Allows the training of Ptolemaic "
+"trireme-class ships."
+msgstr "Специалност на героя: „Дарът на бойните кораби“ — Позволява строежа на птолемейски кораби от клас „триери“."
+
+#: simulation/templates/units/kush_infantry_archer_b.xml:15
+msgid "Nubian Archer"
+msgstr "Нубийски стрелец"
+
+#: simulation/templates/units/kush_infantry_archer_b.xml:16
+msgid "Pdty Nhsyw"
+msgstr "Пдтй Нхсйл"
+
+#: simulation/templates/units/kush_infantry_clubman_b.xml:30
+msgid "Nuba Clubman"
+msgstr "Нубаитски во̀ин с бухалка"
+
+#: simulation/templates/units/kush_infantry_clubman_b.xml:31
+msgid "nhw Noba"
+msgstr "нхл Ноба"
+
+#: simulation/templates/units/kush_infantry_merc_javelinist_b.xml:24
+msgid "Nuba Skirmisher"
+msgstr "Нубаитски копиехвъргач"
+
+#: simulation/templates/units/kush_infantry_merc_javelinist_b.xml:25
+msgid "nhw ‘h3w Noba"
+msgstr "нхл 'х3л Ноба"
+
+#: simulation/templates/units/kush_infantry_pikeman_b.xml:15
+msgid "Meroitic Pikeman"
+msgstr "Мероитски пиконосец"
+
+#: simulation/templates/units/kush_infantry_pikeman_b.xml:16
+msgid "si3wrd"
+msgstr "си3лрд"
+
+#: simulation/templates/units/kush_infantry_spearman_b.xml:18
+msgid "Nubian Spearman"
+msgstr "Нубийски копиеносец"
+
+#: simulation/templates/units/kush_infantry_spearman_b.xml:19
+msgid "iry-rdwy Nhsyw"
+msgstr "ирй-рдлй Нхсйл"
+
+#: simulation/templates/units/kush_infantry_spearman_b.xml:21
+msgid "Faster than usual spearmen but has less hack armor."
+msgstr "По-бърз от обикновените копиеносци, но има по-малка защита срещу разсичане."
+
+#: simulation/templates/units/kush_infantry_swordsman_b.xml:15
+msgid "Meroitic Swordsman"
+msgstr "Мероитски мечоносец"
+
+#: simulation/templates/units/kush_infantry_swordsman_b.xml:16
+msgid "knw hps"
+msgstr "кнл хпс"
+
+#: simulation/templates/units/kush_mechanical_siege_tower.xml:5
+msgid "Kushite Siege Tower"
+msgstr "Кушитска обсадна кула"
+
+#: simulation/templates/units/kush_mechanical_siege_tower.xml:6
+msgid "iwn n ms"
+msgstr "илн х мс"
+
+#: simulation/templates/units/kush_ship_fishing.xml:6
+msgid "Wh’-rmw"
+msgstr "Лх'-рмл"
+
+#: simulation/templates/units/kush_ship_merchant.xml:9
+msgid "Nile Trading Barge"
+msgstr "Нилска търговски баржа"
+
+#: simulation/templates/units/kush_ship_merchant.xml:10
+msgid "D3y sbt"
+msgstr "Д3й сбт"
+
+#: simulation/templates/units/kush_ship_trireme.xml:11
+msgid "Great Warship"
+msgstr "Голям боен кораб"
+
+#: simulation/templates/units/kush_ship_trireme.xml:12
+msgid "shry ‘3"
+msgstr "шрй '3"
+
+#: simulation/templates/units/kush_support_female_citizen.xml:10
+msgid "Shmt"
+msgstr "Шмт"
+
+#: simulation/templates/units/kush_support_female_citizen.xml:11
+msgid "Kushite Woman"
+msgstr "Кужитска жена"
+
+#: simulation/templates/units/kush_support_healer_b.xml:6
+msgid "Priest"
+msgstr "Свещеник"
+
+#: simulation/templates/units/kush_support_healer_b.xml:7
+msgid "w’b nsw"
+msgstr "л'б нсл"
+
+#: simulation/templates/units/kush_support_trader.xml:5
+msgid "Nilotic Merchant"
+msgstr "Нилотски търговец"
+
+#: simulation/templates/units/kush_support_trader.xml:6
+msgid "rmt sbt"
+msgstr "рмт сбт"
 
 #: simulation/templates/units/mace_catafalque.xml:8
 msgid "Philip V"
@@ -1632,14 +1868,17 @@ msgid "Vachii Gaja"
 msgstr "Вачии гаджа"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:12
+#: simulation/templates/units/maur_infantry_archer_hero_ashoka.xml:8
 msgid "Ashoka the Great"
 msgstr "Ашока Велики"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:13
+#: simulation/templates/units/maur_infantry_archer_hero_ashoka.xml:9
 msgid "Aśoka Devānāmpriya"
 msgstr "Ашока Деванамприя"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:17
+#: simulation/templates/units/maur_infantry_archer_hero_ashoka.xml:11
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
@@ -1980,10 +2219,6 @@ msgstr "Боен самолет на САЩ от Втората световна
 msgid "Ptolemy III Euergetes (Benefactor)"
 msgstr "Птолемей III Евригет (благодетел)"
 
-#: simulation/templates/units/ptol_cavalry_archer_b.xml:5
-msgid "Camel"
-msgstr "Камила"
-
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
 msgstr "Набатейски стрелец на камила"
@@ -2186,10 +2421,12 @@ msgid "Extraordinarius"
 msgstr "Екстраординариус"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:10
+#: simulation/templates/units/rome_infantry_swordsman_hero_marcellus.xml:10
 msgid "Marcus Claudius Marcellus"
 msgstr "Марк Клавдий Марцел"
 
 #: simulation/templates/units/rome_hero_maximus.xml:9
+#: simulation/templates/units/rome_infantry_swordsman_hero_maximus.xml:9
 msgid "Quintus Fabius Maximus"
 msgstr "Квинт Фабий Максим"
 

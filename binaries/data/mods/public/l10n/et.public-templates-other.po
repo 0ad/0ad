@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-27 12:55+0100\n"
-"PO-Revision-Date: 2018-01-27 15:48+0000\n"
+"POT-Creation-Date: 2018-02-07 09:03+0100\n"
+"PO-Revision-Date: 2018-02-07 15:04+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/wildfire-games/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -66,9 +66,8 @@ msgid "Generic Ruins"
 msgstr "Varemed"
 
 #: simulation/templates/template_gaia_ruins.xml:9
-#: simulation/templates/gaia/special_ruins.xml:9
-#: simulation/templates/gaia/special_ruins_column_doric.xml:9
-#: simulation/templates/other/unfinished_greek_temple.xml:9
+#: simulation/templates/gaia/ruins/column_doric.xml:9
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
 msgid "Ruins"
 msgstr "Varemed"
 
@@ -81,20 +80,20 @@ msgid "Generic Treasure"
 msgstr "Varad"
 
 #: simulation/templates/template_gaia_treasure.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
-#: simulation/templates/gaia/special_treasure_food_bin.xml:9
-#: simulation/templates/gaia/special_treasure_food_crate.xml:9
-#: simulation/templates/gaia/special_treasure_food_jars.xml:9
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
-#: simulation/templates/gaia/special_treasure_pegasus.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:9
-#: simulation/templates/gaia/special_treasure_wood.xml:9
-#: simulation/templates/other/special_treasure_shipwreck.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
+#: simulation/templates/gaia/treasure/food_barrel.xml:9
+#: simulation/templates/gaia/treasure/food_barrels_buried.xml:9
+#: simulation/templates/gaia/treasure/food_bin.xml:9
+#: simulation/templates/gaia/treasure/food_crate.xml:9
+#: simulation/templates/gaia/treasure/food_jars.xml:9
+#: simulation/templates/gaia/treasure/golden_fleece.xml:9
+#: simulation/templates/gaia/treasure/pegasus.xml:9
+#: simulation/templates/gaia/treasure/shipwreck.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_debris.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:9
+#: simulation/templates/gaia/treasure/stone.xml:9
+#: simulation/templates/gaia/treasure/wood.xml:9
 msgid "Treasure"
 msgstr "Vara"
 
@@ -500,83 +499,137 @@ msgstr ""
 msgid "Toona Tree"
 msgstr ""
 
-#: simulation/templates/gaia/special_ruins.xml:10
-#: simulation/templates/gaia/special_ruins_column_doric.xml:10
+#: simulation/templates/gaia/ruins/column_doric.xml:10
 msgid "Ancient Ruins"
 msgstr "Iidsed varemed"
 
-#: simulation/templates/gaia/special_ruins_standing_stone.xml:9
-#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
-#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:9
+#: simulation/templates/gaia/ruins/pyramid_great.xml:9
+#: simulation/templates/gaia/ruins/pyramid_minor.xml:9
+msgid "Pyramid"
+msgstr "Püramiid"
+
+#: simulation/templates/gaia/ruins/pyramid_great.xml:10
+msgid "Great Pyramid"
+msgstr "Suur püramiid"
+
+#: simulation/templates/gaia/ruins/pyramid_minor.xml:10
+msgid "Minor Pyramid"
+msgstr "Väike püramiid"
+
+#: simulation/templates/gaia/ruins/standing_stone.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_kushite.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_roman.xml:9
 msgid "Stone Ruins"
 msgstr "Kivist varemed"
 
-#: simulation/templates/gaia/special_ruins_standing_stone.xml:10
-#: simulation/templates/gaia/special_treasure_standing_stone.xml:10
+#: simulation/templates/gaia/ruins/standing_stone.xml:10
+#: simulation/templates/gaia/treasure/standing_stone.xml:10
 msgid "Celtic Standing Stone"
 msgstr ""
 
-#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
+#: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
 msgstr ""
 
-#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
+#: simulation/templates/gaia/ruins/stone_statues_kushite.xml:10
+msgid "Kushite Statue"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_statues_roman.xml:10
 msgid "Roman Statues"
 msgstr ""
 
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:10
-#: simulation/templates/gaia/special_treasure_food_bin.xml:10
-#: simulation/templates/gaia/special_treasure_food_crate.xml:10
-#: simulation/templates/gaia/special_treasure_food_jars.xml:10
-#: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
-#: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:10
+msgid "Unfinished Greek Temple"
+msgstr "Pooleliolev Kreeka tempel"
+
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:11
+msgid "This temple is unfinished and has fallen to ruin."
+msgstr ""
+
+#: simulation/templates/gaia/treasure/food_barrel.xml:10
+#: simulation/templates/gaia/treasure/food_bin.xml:10
+#: simulation/templates/gaia/treasure/food_crate.xml:10
+#: simulation/templates/gaia/treasure/food_jars.xml:10
+#: simulation/templates/gaia/treasure/food_persian_big.xml:9
+#: simulation/templates/gaia/treasure/food_persian_small.xml:9
 msgid "Food Treasure"
 msgstr "Toiduleid"
 
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
+#: simulation/templates/gaia/treasure/food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
 msgstr ""
 
-#: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
+#: simulation/templates/gaia/treasure/food_persian_big.xml:10
 msgid "Persian Food Stores"
 msgstr ""
 
-#: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
+#: simulation/templates/gaia/treasure/food_persian_small.xml:10
 msgid "Persian Food Treasure"
 msgstr ""
 
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
+#: simulation/templates/gaia/treasure/golden_fleece.xml:10
 msgid "Golden Fleece"
 msgstr ""
 
-#: simulation/templates/gaia/special_treasure_metal.xml:9
-#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
-#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
+#: simulation/templates/gaia/treasure/metal.xml:9
+#: simulation/templates/gaia/treasure/metal_persian_big.xml:9
+#: simulation/templates/gaia/treasure/metal_persian_small.xml:9
 msgid "Metal Treasure"
 msgstr "Metallileid"
 
-#: simulation/templates/gaia/special_treasure_metal.xml:10
+#: simulation/templates/gaia/treasure/metal.xml:10
 msgid "Secret Box"
 msgstr ""
 
-#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
+#: simulation/templates/gaia/treasure/metal_persian_big.xml:10
 msgid "Persian Wares"
 msgstr ""
 
-#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
+#: simulation/templates/gaia/treasure/metal_persian_small.xml:10
 msgid "Persian Rugs"
 msgstr ""
 
-#: simulation/templates/gaia/special_treasure_pegasus.xml:10
+#: simulation/templates/gaia/treasure/pegasus.xml:10
 msgid "Pegasus"
 msgstr ""
 
-#: simulation/templates/gaia/special_treasure_standing_stone.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:10
+#: simulation/templates/gaia/treasure/shipwreck.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:10
+msgid "Shipwreck"
+msgstr "Laevavrakk"
+
+#: simulation/templates/gaia/treasure/shipwreck.xml:11
+msgid "A decaying military shipwreck. A good opportunity for any businessman."
+msgstr ""
+
+#: simulation/templates/gaia/treasure/shipwreck_debris.xml:10
+msgid "Shipwreck Cargo"
+msgstr "Laevavraki last"
+
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:11
+msgid ""
+"A shipwreck with much loss of life. A good opportunity for any businessman."
+msgstr ""
+
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:11
+msgid ""
+"The wreck of a small cargo ship. A good opportunity for any businessman."
+msgstr ""
+
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:11
+msgid "A cargo ship rammed in half. A good opportunity for any businessman."
+msgstr ""
+
+#: simulation/templates/gaia/treasure/standing_stone.xml:9
+#: simulation/templates/gaia/treasure/stone.xml:10
 msgid "Stone Treasure"
 msgstr "Kivileid"
 
-#: simulation/templates/gaia/special_treasure_wood.xml:10
+#: simulation/templates/gaia/treasure/wood.xml:10
 msgid "Wood Treasure"
 msgstr "Puiduleid"
 
@@ -620,6 +673,14 @@ msgstr "Dooria sammas"
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
 msgstr "Kukkunud dooria sammas"
+
+#: simulation/templates/other/desert_trading_post.xml:15
+msgid "Desert Trading Post"
+msgstr ""
+
+#: simulation/templates/other/desert_trading_post.xml:16
+msgid "Ardatašta"
+msgstr ""
 
 #: simulation/templates/other/fence_long.xml:21
 #: simulation/templates/other/fence_short.xml:21
@@ -766,54 +827,12 @@ msgstr ""
 msgid "Tall Spikes"
 msgstr ""
 
-#: simulation/templates/other/pyramid_great.xml:9
-#: simulation/templates/other/pyramid_minor.xml:9
-msgid "Pyramid"
-msgstr "Püramiid"
-
-#: simulation/templates/other/pyramid_great.xml:10
-msgid "Great Pyramid"
-msgstr "Suur püramiid"
-
-#: simulation/templates/other/pyramid_minor.xml:10
-msgid "Minor Pyramid"
-msgstr "Väike püramiid"
-
 #: simulation/templates/other/sele_colonnade.xml:20
 msgid "Colonnade"
 msgstr ""
 
 #: simulation/templates/other/sele_colonnade.xml:21
 msgid "Corinthian Colonnade"
-msgstr ""
-
-#: simulation/templates/other/special_treasure_shipwreck.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
-msgid "Shipwreck"
-msgstr "Laevavrakk"
-
-#: simulation/templates/other/special_treasure_shipwreck.xml:11
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr ""
-
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
-msgid "Shipwreck Cargo"
-msgstr "Laevavraki last"
-
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
-msgid ""
-"A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr ""
-
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
-msgid ""
-"The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr ""
-
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
-msgid "A cargo ship rammed in half. A good opportunity for any businessman."
 msgstr ""
 
 #: simulation/templates/other/stall_big.xml:12
@@ -840,14 +859,6 @@ msgstr ""
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
-msgstr ""
-
-#: simulation/templates/other/unfinished_greek_temple.xml:10
-msgid "Unfinished Greek Temple"
-msgstr "Pooleliolev Kreeka tempel"
-
-#: simulation/templates/other/unfinished_greek_temple.xml:11
-msgid "This temple is unfinished and has fallen to ruin."
 msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
