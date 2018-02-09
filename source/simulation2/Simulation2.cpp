@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -737,12 +737,17 @@ void CSimulation2::PreInitGame()
 	GetScriptInterface().CallFunctionVoid(global, "PreInitGame");
 }
 
-void CSimulation2::InitGame(JS::HandleValue data)
+void CSimulation2::InitGame()
 {
 	JSContext* cx = GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
-	GetScriptInterface().CallFunctionVoid(global, "InitGame", data);
+
+	JS::RootedValue settings(cx);
+	JS::RootedValue tmpInitAttributes(cx, GetInitAttributes());
+	GetScriptInterface().GetProperty(tmpInitAttributes, "settings", &settings);
+
+	GetScriptInterface().CallFunctionVoid(global, "InitGame", settings);
 }
 
 void CSimulation2::Update(int turnLength)
