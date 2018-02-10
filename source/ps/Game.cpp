@@ -301,10 +301,7 @@ PSRETURN CGame::ReallyStartGame()
 		if (!g_AtlasGameLoop->running)
 			m_Simulation2->PreInitGame();
 
-		JS::RootedValue settings(cx);
-		JS::RootedValue tmpInitAttributes(cx, m_Simulation2->GetInitAttributes());
-		m_Simulation2->GetScriptInterface().GetProperty(tmpInitAttributes, "settings", &settings);
-		m_Simulation2->InitGame(settings);
+		m_Simulation2->InitGame();
 	}
 
 	// We need to do an initial Interpolate call to set up all the models etc,

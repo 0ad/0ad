@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-29 09:04+0100\n"
-"PO-Revision-Date: 2018-01-29 18:21+0000\n"
+"POT-Creation-Date: 2018-02-07 09:03+0100\n"
+"PO-Revision-Date: 2018-02-07 19:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/wildfire-games/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
@@ -40,6 +40,41 @@ msgstr "Fervor religioso"
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
 msgstr "+20% de daño de ataque para los soldados."
+
+#: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
+msgid "Patriotism"
+msgstr ""
+
+#: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
+msgid "Workers +15% gather rates near pyramids."
+msgstr ""
+
+#: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
+msgid "Exhortative Presence"
+msgstr ""
+
+#: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
+msgid "Soldiers near Large Pyramids +10% attack."
+msgstr ""
+
+#: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
+msgid "Meroitic Pyramids"
+msgstr ""
+
+#: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
+msgid ""
+"Civic Centers +10% territory influence as long as a Pyramid stands built."
+msgstr ""
+
+#: simulation/data/auras/structures/kush_temple_amun.jsonauraName
+msgid "Powerful Priesthood"
+msgstr ""
+
+#: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
+msgid ""
+"Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
+"-5% health for heroes per temple built."
+msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -164,6 +199,16 @@ msgstr ""
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
+msgid "Elephant Suppliers"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
@@ -323,6 +368,26 @@ msgstr ""
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "+10% health for all soldiers."
+msgstr ""
+
+#: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
+msgid "Earliest Nubian Queen"
+msgstr ""
+
+#: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraDescription
+msgid ""
+"Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
+"Awe: All enemy female citizens -15% gather rate."
+msgstr ""
+
+#: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
+msgid "Temple at Naqa"
+msgstr ""
+
+#: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
+msgid ""
+"As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
+"+1 garrisoned heal rate for temples."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
@@ -621,6 +686,48 @@ msgstr ""
 msgid ""
 "+100% resources loot increase for every enemy unit killed or structure "
 "destroyed."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
+msgid "Warrior Queen"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
+msgid "+20% attack and +2 capture for soldiers and elephants."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
+msgid "Defier of Tradition"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraDescription
+msgid "Temple of Amun and its Napatan Temple Guards +20% cost and build time."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
+msgid "Follower of Apedemak"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
+msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
+msgid "Slaugther of the Faithful"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
+msgid "Enemy healrate reduced by 50%."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraName
+msgid "Saviour of Kush"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraDescription
+msgid ""
+"Own units +10% attack.\n"
+"Nastasen acquired lots of bounty from the defeated invaders. Gain +50% loot from killing enemy units."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-05 09:02+0100\n"
-"PO-Revision-Date: 2018-02-05 16:10+0000\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-02-07 14:34+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -709,7 +709,7 @@ msgid "∞"
 msgstr "∞"
 
 #: gui/session/selection_details.js:190 gui/session/selection_details.js:218
-#: gui/session/selection_details.js:260
+#: gui/session/selection_details.js:261
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
@@ -726,20 +726,17 @@ msgstr "%(resource)s:"
 msgid "Gain: %(gain)s"
 msgstr "Buannachd: %(gain)s"
 
-#: gui/session/selection_details.js:245 gui/session/selection_panels.js:624
+#: gui/session/selection_details.js:245 gui/session/selection_details.js:254
+#: gui/session/selection_panels.js:624
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
 
-#: gui/session/selection_details.js:253
-msgid "Number of builders."
-msgstr "Àireamh de luchd-togail."
-
-#: gui/session/selection_details.js:264
+#: gui/session/selection_details.js:265
 msgid "Current/max gatherers"
 msgstr "Cruinnichean an-dràsta/as motha"
 
-#: gui/session/selection_details.js:276
+#: gui/session/selection_details.js:277
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-27 12:55+0100\n"
-"PO-Revision-Date: 2018-01-27 15:48+0000\n"
+"POT-Creation-Date: 2018-02-07 09:03+0100\n"
+"PO-Revision-Date: 2018-02-07 15:04+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -67,9 +67,8 @@ msgid "Generic Ruins"
 msgstr "一般廢墟"
 
 #: simulation/templates/template_gaia_ruins.xml:9
-#: simulation/templates/gaia/special_ruins.xml:9
-#: simulation/templates/gaia/special_ruins_column_doric.xml:9
-#: simulation/templates/other/unfinished_greek_temple.xml:9
+#: simulation/templates/gaia/ruins/column_doric.xml:9
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
 msgid "Ruins"
 msgstr "廢墟"
 
@@ -82,20 +81,20 @@ msgid "Generic Treasure"
 msgstr "一般寶藏"
 
 #: simulation/templates/template_gaia_treasure.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
-#: simulation/templates/gaia/special_treasure_food_bin.xml:9
-#: simulation/templates/gaia/special_treasure_food_crate.xml:9
-#: simulation/templates/gaia/special_treasure_food_jars.xml:9
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
-#: simulation/templates/gaia/special_treasure_pegasus.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:9
-#: simulation/templates/gaia/special_treasure_wood.xml:9
-#: simulation/templates/other/special_treasure_shipwreck.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
+#: simulation/templates/gaia/treasure/food_barrel.xml:9
+#: simulation/templates/gaia/treasure/food_barrels_buried.xml:9
+#: simulation/templates/gaia/treasure/food_bin.xml:9
+#: simulation/templates/gaia/treasure/food_crate.xml:9
+#: simulation/templates/gaia/treasure/food_jars.xml:9
+#: simulation/templates/gaia/treasure/golden_fleece.xml:9
+#: simulation/templates/gaia/treasure/pegasus.xml:9
+#: simulation/templates/gaia/treasure/shipwreck.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_debris.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:9
+#: simulation/templates/gaia/treasure/stone.xml:9
+#: simulation/templates/gaia/treasure/wood.xml:9
 msgid "Treasure"
 msgstr "寶藏"
 
@@ -501,83 +500,137 @@ msgstr "紅荊樹"
 msgid "Toona Tree"
 msgstr "香椿樹"
 
-#: simulation/templates/gaia/special_ruins.xml:10
-#: simulation/templates/gaia/special_ruins_column_doric.xml:10
+#: simulation/templates/gaia/ruins/column_doric.xml:10
 msgid "Ancient Ruins"
 msgstr "古代遺蹟"
 
-#: simulation/templates/gaia/special_ruins_standing_stone.xml:9
-#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
-#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:9
+#: simulation/templates/gaia/ruins/pyramid_great.xml:9
+#: simulation/templates/gaia/ruins/pyramid_minor.xml:9
+msgid "Pyramid"
+msgstr "金字塔"
+
+#: simulation/templates/gaia/ruins/pyramid_great.xml:10
+msgid "Great Pyramid"
+msgstr "大金字塔"
+
+#: simulation/templates/gaia/ruins/pyramid_minor.xml:10
+msgid "Minor Pyramid"
+msgstr "小金字塔"
+
+#: simulation/templates/gaia/ruins/standing_stone.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_kushite.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_roman.xml:9
 msgid "Stone Ruins"
 msgstr "石頭廢墟"
 
-#: simulation/templates/gaia/special_ruins_standing_stone.xml:10
-#: simulation/templates/gaia/special_treasure_standing_stone.xml:10
+#: simulation/templates/gaia/ruins/standing_stone.xml:10
+#: simulation/templates/gaia/treasure/standing_stone.xml:10
 msgid "Celtic Standing Stone"
 msgstr "塞爾特地位石"
 
-#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
+#: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
 msgstr "埃及托勒密雕像"
 
-#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
+#: simulation/templates/gaia/ruins/stone_statues_kushite.xml:10
+msgid "Kushite Statue"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_statues_roman.xml:10
 msgid "Roman Statues"
 msgstr "羅馬雕像"
 
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:10
-#: simulation/templates/gaia/special_treasure_food_bin.xml:10
-#: simulation/templates/gaia/special_treasure_food_crate.xml:10
-#: simulation/templates/gaia/special_treasure_food_jars.xml:10
-#: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
-#: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:10
+msgid "Unfinished Greek Temple"
+msgstr "未完成的希臘神殿"
+
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:11
+msgid "This temple is unfinished and has fallen to ruin."
+msgstr "此神廟未建成就變為廢墟了。"
+
+#: simulation/templates/gaia/treasure/food_barrel.xml:10
+#: simulation/templates/gaia/treasure/food_bin.xml:10
+#: simulation/templates/gaia/treasure/food_crate.xml:10
+#: simulation/templates/gaia/treasure/food_jars.xml:10
+#: simulation/templates/gaia/treasure/food_persian_big.xml:9
+#: simulation/templates/gaia/treasure/food_persian_small.xml:9
 msgid "Food Treasure"
 msgstr "食物寶藏"
 
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
+#: simulation/templates/gaia/treasure/food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
 msgstr "半埋砲管"
 
-#: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
+#: simulation/templates/gaia/treasure/food_persian_big.xml:10
 msgid "Persian Food Stores"
 msgstr "波斯食物儲藏"
 
-#: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
+#: simulation/templates/gaia/treasure/food_persian_small.xml:10
 msgid "Persian Food Treasure"
 msgstr "波斯食物寶藏"
 
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
+#: simulation/templates/gaia/treasure/golden_fleece.xml:10
 msgid "Golden Fleece"
 msgstr "金羊毛"
 
-#: simulation/templates/gaia/special_treasure_metal.xml:9
-#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
-#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
+#: simulation/templates/gaia/treasure/metal.xml:9
+#: simulation/templates/gaia/treasure/metal_persian_big.xml:9
+#: simulation/templates/gaia/treasure/metal_persian_small.xml:9
 msgid "Metal Treasure"
 msgstr "金屬寶藏"
 
-#: simulation/templates/gaia/special_treasure_metal.xml:10
+#: simulation/templates/gaia/treasure/metal.xml:10
 msgid "Secret Box"
 msgstr "祕密寶箱"
 
-#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
+#: simulation/templates/gaia/treasure/metal_persian_big.xml:10
 msgid "Persian Wares"
 msgstr "波斯器具"
 
-#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
+#: simulation/templates/gaia/treasure/metal_persian_small.xml:10
 msgid "Persian Rugs"
 msgstr "波斯地毯"
 
-#: simulation/templates/gaia/special_treasure_pegasus.xml:10
+#: simulation/templates/gaia/treasure/pegasus.xml:10
 msgid "Pegasus"
 msgstr "珀伽索斯"
 
-#: simulation/templates/gaia/special_treasure_standing_stone.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:10
+#: simulation/templates/gaia/treasure/shipwreck.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:10
+msgid "Shipwreck"
+msgstr "沉船"
+
+#: simulation/templates/gaia/treasure/shipwreck.xml:11
+msgid "A decaying military shipwreck. A good opportunity for any businessman."
+msgstr "一個腐朽的軍隊沉船。任何商人的好機會。"
+
+#: simulation/templates/gaia/treasure/shipwreck_debris.xml:10
+msgid "Shipwreck Cargo"
+msgstr "沉船貨物"
+
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:11
+msgid ""
+"A shipwreck with much loss of life. A good opportunity for any businessman."
+msgstr "損失許多生命的船難。任何商人的好機會。"
+
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:11
+msgid ""
+"The wreck of a small cargo ship. A good opportunity for any businessman."
+msgstr "一個小貨船的沉船。任何商人的好機會。"
+
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:11
+msgid "A cargo ship rammed in half. A good opportunity for any businessman."
+msgstr "一個斷成兩截的貨船。任何商人的好機會。"
+
+#: simulation/templates/gaia/treasure/standing_stone.xml:9
+#: simulation/templates/gaia/treasure/stone.xml:10
 msgid "Stone Treasure"
 msgstr "石頭寶藏"
 
-#: simulation/templates/gaia/special_treasure_wood.xml:10
+#: simulation/templates/gaia/treasure/wood.xml:10
 msgid "Wood Treasure"
 msgstr "木頭寶藏"
 
@@ -621,6 +674,14 @@ msgstr "多立克柱"
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
 msgstr "倒下的多立克柱"
+
+#: simulation/templates/other/desert_trading_post.xml:15
+msgid "Desert Trading Post"
+msgstr ""
+
+#: simulation/templates/other/desert_trading_post.xml:16
+msgid "Ardatašta"
+msgstr "Ardatašta"
 
 #: simulation/templates/other/fence_long.xml:21
 #: simulation/templates/other/fence_short.xml:21
@@ -767,19 +828,6 @@ msgstr "高尖刺"
 msgid "Tall Spikes"
 msgstr "高尖刺"
 
-#: simulation/templates/other/pyramid_great.xml:9
-#: simulation/templates/other/pyramid_minor.xml:9
-msgid "Pyramid"
-msgstr "金字塔"
-
-#: simulation/templates/other/pyramid_great.xml:10
-msgid "Great Pyramid"
-msgstr "大金字塔"
-
-#: simulation/templates/other/pyramid_minor.xml:10
-msgid "Minor Pyramid"
-msgstr "小金字塔"
-
 #: simulation/templates/other/sele_colonnade.xml:20
 msgid "Colonnade"
 msgstr "柱廊"
@@ -787,35 +835,6 @@ msgstr "柱廊"
 #: simulation/templates/other/sele_colonnade.xml:21
 msgid "Corinthian Colonnade"
 msgstr "科林斯柱廊"
-
-#: simulation/templates/other/special_treasure_shipwreck.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
-msgid "Shipwreck"
-msgstr "沉船"
-
-#: simulation/templates/other/special_treasure_shipwreck.xml:11
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "一個腐朽的軍隊沉船。任何商人的好機會。"
-
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
-msgid "Shipwreck Cargo"
-msgstr "沉船貨物"
-
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
-msgid ""
-"A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "損失許多生命的船難。任何商人的好機會。"
-
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
-msgid ""
-"The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "一個小貨船的沉船。任何商人的好機會。"
-
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
-msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "一個斷成兩截的貨船。任何商人的好機會。"
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
@@ -842,14 +861,6 @@ msgstr "長桌"
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
 msgstr "方桌"
-
-#: simulation/templates/other/unfinished_greek_temple.xml:10
-msgid "Unfinished Greek Temple"
-msgstr "未完成的希臘神殿"
-
-#: simulation/templates/other/unfinished_greek_temple.xml:11
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "此神廟未建成就變為廢墟了。"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

@@ -16,7 +16,9 @@ function LoadPlayerSettings(settings, newPlayers)
 		settings = {};
 
 	// Add gaia to simplify iteration
-	if (settings.PlayerData && settings.PlayerData[0])
+	// (if gaia is not already the first civ such as when called from Atlas' ActorViewer)
+	if (settings.PlayerData && settings.PlayerData[0] &&
+		(!settings.PlayerData[0].Civ || settings.PlayerData[0].Civ != "gaia"))
 		settings.PlayerData.unshift(null);
 
 	var playerData = settings.PlayerData;

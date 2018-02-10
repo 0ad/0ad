@@ -26,12 +26,13 @@
 # 星臣 星域神族 <yuronglong1996@gmail.com>, 2017
 # 李武军 <lwj7863439@gmail.com>, 2016-2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015
+# Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-08 04:52+0000\n"
+"Last-Translator: Lawrence Maxwell <maxwell4432@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,7 +189,7 @@ msgstr "选定地图类型的所有地图"
 #: gui/gamesetup/gamesetup.js:396
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "地图"
 
 #: gui/gamesetup/gamesetup.js:411
 msgctxt "Match settings tab name"
@@ -198,7 +199,7 @@ msgstr "玩家"
 #: gui/gamesetup/gamesetup.js:421
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "游戏类型"
 
 #: gui/gamesetup/gamesetup.js:461
 msgid "Map Type"
@@ -309,7 +310,7 @@ msgstr "遗迹持有时长"
 
 #: gui/gamesetup/gamesetup.js:663
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "距离玩家获得遗迹胜利只剩数分钟"
 
 #: gui/gamesetup/gamesetup.js:677
 msgid "Wonder Duration"
@@ -317,7 +318,7 @@ msgstr "奇迹保持时长"
 
 #: gui/gamesetup/gamesetup.js:678
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "距离玩家获得奇观胜利只剩数分钟。"
 
 #: gui/gamesetup/gamesetup.js:692
 msgid "Game Speed"
@@ -329,11 +330,11 @@ msgstr "选择游戏速度."
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Difficulty"
-msgstr ""
+msgstr "难度"
 
 #: gui/gamesetup/gamesetup.js:709
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "选择这一场景的难度。"
 
 #: gui/gamesetup/gamesetup.js:774
 msgid "Chose the civilization for this player"
@@ -349,7 +350,7 @@ msgstr "触发英雄是否可以驻守。"
 
 #: gui/gamesetup/gamesetup.js:827
 msgid "Nomad"
-msgstr ""
+msgstr "诺曼底"
 
 #: gui/gamesetup/gamesetup.js:828
 msgid ""
@@ -461,7 +462,7 @@ msgstr "使用当前的设置开始一局新游戏。(禁用直到所有玩家�
 #: gui/gamesetup/gamesetup.js:1057
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "配置AI：%(description)s。"
 
 #: gui/gamesetup/gamesetup.js:1157
 #, javascript-format
@@ -500,7 +501,7 @@ msgstr "随机选择生物群落。"
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s："
 
 #: gui/gamesetup/gamesetup.js:2049
 msgctxt "settings value"
@@ -518,7 +519,7 @@ msgstr "否"
 #: gui/gamesetup/gamesetup.js:2086
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s："
 
 #: gui/gamesetup/gamesetup.js:2173
 #, javascript-format
@@ -581,7 +582,7 @@ msgstr "AI 難度："
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "AI行为："
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -601,7 +602,7 @@ msgstr "加载中"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "正在加载地图。请稍等..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):42
 msgid "Player Name"

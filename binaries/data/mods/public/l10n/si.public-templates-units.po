@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 04:12+0000\n"
+"POT-Creation-Date: 2018-02-07 09:03+0100\n"
+"PO-Revision-Date: 2018-02-07 15:41+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Sinhala (http://www.transifex.com/wildfire-games/0ad/language/si/)\n"
 "MIME-Version: 1.0\n"
@@ -427,6 +427,7 @@ msgid ""
 msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:35
+#: simulation/templates/units/kush_ship_fishing.xml:5
 msgid "Fishing Boat"
 msgstr ""
 
@@ -563,6 +564,16 @@ msgstr ""
 #: simulation/templates/units/iber_infantry_spearman_a.xml:4
 #: simulation/templates/units/iber_infantry_swordsman_a.xml:4
 #: simulation/templates/units/iber_support_healer_a.xml:4
+#: simulation/templates/units/kush_camelry_javelinist_a.xml:4
+#: simulation/templates/units/kush_cavalry_javelinist_a.xml:4
+#: simulation/templates/units/kush_cavalry_spearman_a.xml:4
+#: simulation/templates/units/kush_infantry_archer_a.xml:4
+#: simulation/templates/units/kush_infantry_clubman_a.xml:4
+#: simulation/templates/units/kush_infantry_merc_javelinist_a.xml:4
+#: simulation/templates/units/kush_infantry_pikeman_a.xml:4
+#: simulation/templates/units/kush_infantry_spearman_a.xml:4
+#: simulation/templates/units/kush_infantry_swordsman_a.xml:4
+#: simulation/templates/units/kush_support_healer_a.xml:4
 #: simulation/templates/units/mace_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/mace_cavalry_spearman_a.xml:4
 #: simulation/templates/units/mace_infantry_archer_a.xml:4
@@ -661,6 +672,16 @@ msgstr ""
 #: simulation/templates/units/iber_infantry_spearman_e.xml:4
 #: simulation/templates/units/iber_infantry_swordsman_e.xml:4
 #: simulation/templates/units/iber_support_healer_e.xml:4
+#: simulation/templates/units/kush_camelry_javelinist_e.xml:4
+#: simulation/templates/units/kush_cavalry_javelinist_e.xml:4
+#: simulation/templates/units/kush_cavalry_spearman_e.xml:4
+#: simulation/templates/units/kush_infantry_archer_e.xml:4
+#: simulation/templates/units/kush_infantry_clubman_e.xml:4
+#: simulation/templates/units/kush_infantry_merc_javelinist_e.xml:4
+#: simulation/templates/units/kush_infantry_pikeman_e.xml:4
+#: simulation/templates/units/kush_infantry_spearman_e.xml:4
+#: simulation/templates/units/kush_infantry_swordsman_e.xml:4
+#: simulation/templates/units/kush_support_healer_e.xml:4
 #: simulation/templates/units/mace_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/mace_cavalry_spearman_e.xml:4
 #: simulation/templates/units/mace_infantry_archer_e.xml:4
@@ -931,6 +952,17 @@ msgstr ""
 msgid "Raiding Cavalry"
 msgstr ""
 
+#: simulation/templates/units/brit_cavalry_javelinist_hero_boudicca.xml:8
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:8
+msgid "Boudicca (Sword)"
+msgstr ""
+
+#: simulation/templates/units/brit_cavalry_javelinist_hero_boudicca.xml:9
+#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:9
+msgid "Boadicea"
+msgstr ""
+
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul_cavalry_swordsman_b.xml:6
 msgid "Epos"
@@ -969,15 +1001,6 @@ msgstr ""
 
 #: simulation/templates/units/brit_hero_boudicca.xml:13
 msgid "Boudicca (Chariot)"
-msgstr ""
-
-#: simulation/templates/units/brit_hero_boudicca.xml:14
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:9
-msgid "Boadicea"
-msgstr ""
-
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:8
-msgid "Boudicca (Sword)"
 msgstr ""
 
 #: simulation/templates/units/brit_hero_caratacos.xml:8
@@ -1299,6 +1322,7 @@ msgid "Brennus"
 msgstr ""
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:8
+#: simulation/templates/units/gaul_infantry_swordsman_hero_vercingetorix.xml:8
 msgid "Vercingetorix"
 msgstr ""
 
@@ -1339,6 +1363,7 @@ msgid "Caros"
 msgstr ""
 
 #: simulation/templates/units/iber_hero_indibil.xml:8
+#: simulation/templates/units/iber_infantry_spearman_hero_indibil.xml:8
 msgid "Indibil"
 msgstr ""
 
@@ -1400,6 +1425,217 @@ msgstr ""
 
 #: simulation/templates/units/iber_support_trader.xml:5
 msgid "Merkatari"
+msgstr ""
+
+#: simulation/templates/units/kush_camelry_javelinist_b.xml:11
+#: simulation/templates/units/ptol_cavalry_archer_b.xml:5
+msgid "Camel"
+msgstr ""
+
+#: simulation/templates/units/kush_camelry_javelinist_b.xml:13
+msgid "Blemmye Desert Raider"
+msgstr ""
+
+#: simulation/templates/units/kush_camelry_javelinist_b.xml:14
+msgid "nhw Bulahau gml"
+msgstr ""
+
+#: simulation/templates/units/kush_catafalque.xml:9
+msgid "Wtn n ‘Ist"
+msgstr ""
+
+#: simulation/templates/units/kush_cavalry_javelinist_b.xml:6
+msgid "iry hr ssmwtt"
+msgstr ""
+
+#: simulation/templates/units/kush_cavalry_javelinist_b.xml:7
+msgid "Napatan Light Cavalry"
+msgstr ""
+
+#: simulation/templates/units/kush_cavalry_spearman_b.xml:6
+msgid "Meroitic Heavy Cavalry"
+msgstr ""
+
+#: simulation/templates/units/kush_cavalry_spearman_b.xml:7
+msgid "Htr"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_cavalry.xml:5
+msgid "Noble Cavalry"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_cavalry.xml:6
+msgid "Htr Ms’ n mh-ib"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_elephant.xml:5
+msgid "Meroitic War Elephant"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_elephant.xml:6
+msgid "Abore ‘h3"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_infantry.xml:5
+msgid "Noble Archer"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_infantry.xml:6
+msgid "Hry pdty"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_infantry_amun.xml:5
+msgid "Napatan Temple Guard"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_infantry_amun.xml:6
+msgid "rs ‘Imn"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:5
+msgid "Meroitic Temple Guard"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:6
+msgid "rs ‘Iprmk"
+msgstr ""
+
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:7
+msgid "Axe"
+msgstr ""
+
+#: simulation/templates/units/kush_hero_amanirenas.xml:8
+msgid "Amanirenas"
+msgstr ""
+
+#: simulation/templates/units/kush_hero_amanirenas.xml:9
+msgid "Amnirense qore li kdwe li"
+msgstr ""
+
+#: simulation/templates/units/kush_hero_arakamani.xml:10
+msgid "Arakamani"
+msgstr ""
+
+#: simulation/templates/units/kush_hero_arakamani.xml:11
+msgid "‘Irk.‘Imn"
+msgstr ""
+
+#: simulation/templates/units/kush_hero_nastasen.xml:8
+msgid "Nastasen"
+msgstr ""
+
+#: simulation/templates/units/kush_hero_nastasen.xml:9
+msgid "Nastasen Ankhkhare"
+msgstr ""
+
+#: simulation/templates/units/kush_hero_nastasen.xml:12
+msgid ""
+"Hero Special: \"Gift of Warships\" - Allows the training of Ptolemaic "
+"trireme-class ships."
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_archer_b.xml:15
+msgid "Nubian Archer"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_archer_b.xml:16
+msgid "Pdty Nhsyw"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_clubman_b.xml:30
+msgid "Nuba Clubman"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_clubman_b.xml:31
+msgid "nhw Noba"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_merc_javelinist_b.xml:24
+msgid "Nuba Skirmisher"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_merc_javelinist_b.xml:25
+msgid "nhw ‘h3w Noba"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_pikeman_b.xml:15
+msgid "Meroitic Pikeman"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_pikeman_b.xml:16
+msgid "si3wrd"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_spearman_b.xml:18
+msgid "Nubian Spearman"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_spearman_b.xml:19
+msgid "iry-rdwy Nhsyw"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_spearman_b.xml:21
+msgid "Faster than usual spearmen but has less hack armor."
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_swordsman_b.xml:15
+msgid "Meroitic Swordsman"
+msgstr ""
+
+#: simulation/templates/units/kush_infantry_swordsman_b.xml:16
+msgid "knw hps"
+msgstr ""
+
+#: simulation/templates/units/kush_mechanical_siege_tower.xml:5
+msgid "Kushite Siege Tower"
+msgstr ""
+
+#: simulation/templates/units/kush_mechanical_siege_tower.xml:6
+msgid "iwn n ms"
+msgstr ""
+
+#: simulation/templates/units/kush_ship_fishing.xml:6
+msgid "Wh’-rmw"
+msgstr ""
+
+#: simulation/templates/units/kush_ship_merchant.xml:9
+msgid "Nile Trading Barge"
+msgstr ""
+
+#: simulation/templates/units/kush_ship_merchant.xml:10
+msgid "D3y sbt"
+msgstr ""
+
+#: simulation/templates/units/kush_ship_trireme.xml:11
+msgid "Great Warship"
+msgstr ""
+
+#: simulation/templates/units/kush_ship_trireme.xml:12
+msgid "shry ‘3"
+msgstr ""
+
+#: simulation/templates/units/kush_support_female_citizen.xml:10
+msgid "Shmt"
+msgstr ""
+
+#: simulation/templates/units/kush_support_female_citizen.xml:11
+msgid "Kushite Woman"
+msgstr ""
+
+#: simulation/templates/units/kush_support_healer_b.xml:6
+msgid "Priest"
+msgstr ""
+
+#: simulation/templates/units/kush_support_healer_b.xml:7
+msgid "w’b nsw"
+msgstr ""
+
+#: simulation/templates/units/kush_support_trader.xml:5
+msgid "Nilotic Merchant"
+msgstr ""
+
+#: simulation/templates/units/kush_support_trader.xml:6
+msgid "rmt sbt"
 msgstr ""
 
 #: simulation/templates/units/mace_catafalque.xml:8
@@ -1624,14 +1860,17 @@ msgid "Vachii Gaja"
 msgstr ""
 
 #: simulation/templates/units/maur_hero_ashoka.xml:12
+#: simulation/templates/units/maur_infantry_archer_hero_ashoka.xml:8
 msgid "Ashoka the Great"
 msgstr ""
 
 #: simulation/templates/units/maur_hero_ashoka.xml:13
+#: simulation/templates/units/maur_infantry_archer_hero_ashoka.xml:9
 msgid "Aśoka Devānāmpriya"
 msgstr ""
 
 #: simulation/templates/units/maur_hero_ashoka.xml:17
+#: simulation/templates/units/maur_infantry_archer_hero_ashoka.xml:11
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
@@ -1972,10 +2211,6 @@ msgstr ""
 msgid "Ptolemy III Euergetes (Benefactor)"
 msgstr ""
 
-#: simulation/templates/units/ptol_cavalry_archer_b.xml:5
-msgid "Camel"
-msgstr ""
-
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
 msgstr ""
@@ -2178,10 +2413,12 @@ msgid "Extraordinarius"
 msgstr ""
 
 #: simulation/templates/units/rome_hero_marcellus.xml:10
+#: simulation/templates/units/rome_infantry_swordsman_hero_marcellus.xml:10
 msgid "Marcus Claudius Marcellus"
 msgstr ""
 
 #: simulation/templates/units/rome_hero_maximus.xml:9
+#: simulation/templates/units/rome_infantry_swordsman_hero_maximus.xml:9
 msgid "Quintus Fabius Maximus"
 msgstr ""
 

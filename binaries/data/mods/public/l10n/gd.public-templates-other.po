@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-27 12:55+0100\n"
-"PO-Revision-Date: 2018-01-27 15:48+0000\n"
+"POT-Creation-Date: 2018-02-07 09:03+0100\n"
+"PO-Revision-Date: 2018-02-07 15:04+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -67,9 +67,8 @@ msgid "Generic Ruins"
 msgstr "Làrach ghèitheach"
 
 #: simulation/templates/template_gaia_ruins.xml:9
-#: simulation/templates/gaia/special_ruins.xml:9
-#: simulation/templates/gaia/special_ruins_column_doric.xml:9
-#: simulation/templates/other/unfinished_greek_temple.xml:9
+#: simulation/templates/gaia/ruins/column_doric.xml:9
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:9
 msgid "Ruins"
 msgstr "Làrach"
 
@@ -82,20 +81,20 @@ msgid "Generic Treasure"
 msgstr "Ulaidh gnèiteach"
 
 #: simulation/templates/template_gaia_treasure.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
-#: simulation/templates/gaia/special_treasure_food_bin.xml:9
-#: simulation/templates/gaia/special_treasure_food_crate.xml:9
-#: simulation/templates/gaia/special_treasure_food_jars.xml:9
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
-#: simulation/templates/gaia/special_treasure_pegasus.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:9
-#: simulation/templates/gaia/special_treasure_wood.xml:9
-#: simulation/templates/other/special_treasure_shipwreck.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
+#: simulation/templates/gaia/treasure/food_barrel.xml:9
+#: simulation/templates/gaia/treasure/food_barrels_buried.xml:9
+#: simulation/templates/gaia/treasure/food_bin.xml:9
+#: simulation/templates/gaia/treasure/food_crate.xml:9
+#: simulation/templates/gaia/treasure/food_jars.xml:9
+#: simulation/templates/gaia/treasure/golden_fleece.xml:9
+#: simulation/templates/gaia/treasure/pegasus.xml:9
+#: simulation/templates/gaia/treasure/shipwreck.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_debris.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:9
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:9
+#: simulation/templates/gaia/treasure/stone.xml:9
+#: simulation/templates/gaia/treasure/wood.xml:9
 msgid "Treasure"
 msgstr "Ulaidh"
 
@@ -501,83 +500,137 @@ msgstr "craobh-sheudair salainn"
 msgid "Toona Tree"
 msgstr "Craobh-sheudair dhearg"
 
-#: simulation/templates/gaia/special_ruins.xml:10
-#: simulation/templates/gaia/special_ruins_column_doric.xml:10
+#: simulation/templates/gaia/ruins/column_doric.xml:10
 msgid "Ancient Ruins"
 msgstr "Làrach àrsaidh"
 
-#: simulation/templates/gaia/special_ruins_standing_stone.xml:9
-#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
-#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:9
+#: simulation/templates/gaia/ruins/pyramid_great.xml:9
+#: simulation/templates/gaia/ruins/pyramid_minor.xml:9
+msgid "Pyramid"
+msgstr "Pioramaid"
+
+#: simulation/templates/gaia/ruins/pyramid_great.xml:10
+msgid "Great Pyramid"
+msgstr "Pioramaid Mhòr"
+
+#: simulation/templates/gaia/ruins/pyramid_minor.xml:10
+msgid "Minor Pyramid"
+msgstr "Pioramaid bheag"
+
+#: simulation/templates/gaia/ruins/standing_stone.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_kushite.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_roman.xml:9
 msgid "Stone Ruins"
 msgstr "Làrach chloiche"
 
-#: simulation/templates/gaia/special_ruins_standing_stone.xml:10
-#: simulation/templates/gaia/special_treasure_standing_stone.xml:10
+#: simulation/templates/gaia/ruins/standing_stone.xml:10
+#: simulation/templates/gaia/treasure/standing_stone.xml:10
 msgid "Celtic Standing Stone"
 msgstr "Tursa Ceilteach"
 
-#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
+#: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
 msgstr "Ìomhaighean nan Èipheiteach Ptolamach"
 
-#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
+#: simulation/templates/gaia/ruins/stone_statues_kushite.xml:10
+msgid "Kushite Statue"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_statues_roman.xml:10
 msgid "Roman Statues"
 msgstr "Ìomhaighean Ròmanach"
 
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:10
-#: simulation/templates/gaia/special_treasure_food_bin.xml:10
-#: simulation/templates/gaia/special_treasure_food_crate.xml:10
-#: simulation/templates/gaia/special_treasure_food_jars.xml:10
-#: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
-#: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:10
+msgid "Unfinished Greek Temple"
+msgstr "Teampall Greugach neo-chrìochnaichte"
+
+#: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:11
+msgid "This temple is unfinished and has fallen to ruin."
+msgstr "Cha deach an teampall seo a choileanadh is chan eil ach fuigheall air fhàgail."
+
+#: simulation/templates/gaia/treasure/food_barrel.xml:10
+#: simulation/templates/gaia/treasure/food_bin.xml:10
+#: simulation/templates/gaia/treasure/food_crate.xml:10
+#: simulation/templates/gaia/treasure/food_jars.xml:10
+#: simulation/templates/gaia/treasure/food_persian_big.xml:9
+#: simulation/templates/gaia/treasure/food_persian_small.xml:9
 msgid "Food Treasure"
 msgstr "Ulaidh bhìdh"
 
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
+#: simulation/templates/gaia/treasure/food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
 msgstr "Baraillean le an dàrna leth san ùir"
 
-#: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
+#: simulation/templates/gaia/treasure/food_persian_big.xml:10
 msgid "Persian Food Stores"
 msgstr "Stòrasan bìdh Pearsach"
 
-#: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
+#: simulation/templates/gaia/treasure/food_persian_small.xml:10
 msgid "Persian Food Treasure"
 msgstr "Ulaidh bhìdh Phearsach"
 
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
+#: simulation/templates/gaia/treasure/golden_fleece.xml:10
 msgid "Golden Fleece"
 msgstr "Rùsg òir"
 
-#: simulation/templates/gaia/special_treasure_metal.xml:9
-#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
-#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
+#: simulation/templates/gaia/treasure/metal.xml:9
+#: simulation/templates/gaia/treasure/metal_persian_big.xml:9
+#: simulation/templates/gaia/treasure/metal_persian_small.xml:9
 msgid "Metal Treasure"
 msgstr "Ulaidh mheatailt"
 
-#: simulation/templates/gaia/special_treasure_metal.xml:10
+#: simulation/templates/gaia/treasure/metal.xml:10
 msgid "Secret Box"
 msgstr "Bogsa dìomhair"
 
-#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
+#: simulation/templates/gaia/treasure/metal_persian_big.xml:10
 msgid "Persian Wares"
 msgstr "Bathar Pearsach"
 
-#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
+#: simulation/templates/gaia/treasure/metal_persian_small.xml:10
 msgid "Persian Rugs"
 msgstr "Bratan-ùrlair Pearsach"
 
-#: simulation/templates/gaia/special_treasure_pegasus.xml:10
+#: simulation/templates/gaia/treasure/pegasus.xml:10
 msgid "Pegasus"
 msgstr "Peagasas"
 
-#: simulation/templates/gaia/special_treasure_standing_stone.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:10
+#: simulation/templates/gaia/treasure/shipwreck.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:10
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:10
+msgid "Shipwreck"
+msgstr "Long bhriste"
+
+#: simulation/templates/gaia/treasure/shipwreck.xml:11
+msgid "A decaying military shipwreck. A good opportunity for any businessman."
+msgstr "Long bhriste an airm a’ lobhadh. Cothrom math do neach-ghnothaich sam bith."
+
+#: simulation/templates/gaia/treasure/shipwreck_debris.xml:10
+msgid "Shipwreck Cargo"
+msgstr "Carago long-bhrisidh"
+
+#: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:11
+msgid ""
+"A shipwreck with much loss of life. A good opportunity for any businessman."
+msgstr "Long bhriste le mòran air an caochladh. Cothrom math do neach-ghnothaich sam bith."
+
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:11
+msgid ""
+"The wreck of a small cargo ship. A good opportunity for any businessman."
+msgstr "Long carago bhriste bheag. Cothrom math do neach-ghnothaich sam bith."
+
+#: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:11
+msgid "A cargo ship rammed in half. A good opportunity for any businessman."
+msgstr "Long carago chaidh a bhriseadh le starradh. Cothrom math do neach-ghnothaich sam bith."
+
+#: simulation/templates/gaia/treasure/standing_stone.xml:9
+#: simulation/templates/gaia/treasure/stone.xml:10
 msgid "Stone Treasure"
 msgstr "Ulaidh chloiche"
 
-#: simulation/templates/gaia/special_treasure_wood.xml:10
+#: simulation/templates/gaia/treasure/wood.xml:10
 msgid "Wood Treasure"
 msgstr "Ulaidh fhiodha"
 
@@ -621,6 +674,14 @@ msgstr "Colbh Dorach"
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
 msgstr "Colbh Dorach na laighe"
+
+#: simulation/templates/other/desert_trading_post.xml:15
+msgid "Desert Trading Post"
+msgstr ""
+
+#: simulation/templates/other/desert_trading_post.xml:16
+msgid "Ardatašta"
+msgstr "Ardatašta"
 
 #: simulation/templates/other/fence_long.xml:21
 #: simulation/templates/other/fence_short.xml:21
@@ -767,19 +828,6 @@ msgstr "Spìcean àrda"
 msgid "Tall Spikes"
 msgstr "Spìcean àrda"
 
-#: simulation/templates/other/pyramid_great.xml:9
-#: simulation/templates/other/pyramid_minor.xml:9
-msgid "Pyramid"
-msgstr "Pioramaid"
-
-#: simulation/templates/other/pyramid_great.xml:10
-msgid "Great Pyramid"
-msgstr "Pioramaid Mhòr"
-
-#: simulation/templates/other/pyramid_minor.xml:10
-msgid "Minor Pyramid"
-msgstr "Pioramaid bheag"
-
 #: simulation/templates/other/sele_colonnade.xml:20
 msgid "Colonnade"
 msgstr "Colbh-thrannsa"
@@ -787,35 +835,6 @@ msgstr "Colbh-thrannsa"
 #: simulation/templates/other/sele_colonnade.xml:21
 msgid "Corinthian Colonnade"
 msgstr "Colbh-thrannsa Choirinteach"
-
-#: simulation/templates/other/special_treasure_shipwreck.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
-msgid "Shipwreck"
-msgstr "Long bhriste"
-
-#: simulation/templates/other/special_treasure_shipwreck.xml:11
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "Long bhriste an airm a’ lobhadh. Cothrom math do neach-ghnothaich sam bith."
-
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
-msgid "Shipwreck Cargo"
-msgstr "Carago long-bhrisidh"
-
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
-msgid ""
-"A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "Long bhriste le mòran air an caochladh. Cothrom math do neach-ghnothaich sam bith."
-
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
-msgid ""
-"The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "Long carago bhriste bheag. Cothrom math do neach-ghnothaich sam bith."
-
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
-msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "Long carago chaidh a bhriseadh le starradh. Cothrom math do neach-ghnothaich sam bith."
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
@@ -842,14 +861,6 @@ msgstr "Bòrd ceart-cheàrnach"
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
 msgstr "Bòrd ceàrnagach"
-
-#: simulation/templates/other/unfinished_greek_temple.xml:10
-msgid "Unfinished Greek Temple"
-msgstr "Teampall Greugach neo-chrìochnaichte"
-
-#: simulation/templates/other/unfinished_greek_temple.xml:11
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "Cha deach an teampall seo a choileanadh is chan eil ach fuigheall air fhàgail."
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
