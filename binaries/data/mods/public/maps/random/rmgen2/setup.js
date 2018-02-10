@@ -365,7 +365,7 @@ function randomPlayerLocations(playerIDs, constraints = undefined)
 				// If we only pick bad locations, stop trying to place randomly
 				if (resets == 500)
 				{
-					error("Could not place playerbases!");
+					throw new Error("Could not find suitable playerbase locations!");
 					return undefined;
 				}
 			}
