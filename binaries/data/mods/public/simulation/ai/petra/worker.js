@@ -14,12 +14,27 @@ m.Worker = function(base)
 
 m.Worker.prototype.update = function(gameState, ent)
 {
-	if (!ent.position() || ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
+	if (!ent.position() || ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3)
 		return;
 
 	// If we are waiting for a transport or we are sailing, just wait
 	if (ent.getMetadata(PlayerID, "transport") !== undefined)
-		return;
+	{
+		// Except if builder with their foundation destroyed, in which case cancel the transport if not yet on board
+		if (ent.getMetadata(PlayerID, "subrole") == "builder" &&
+		    ent.getMetadata(PlayerID, "target-foundation") !== undefined)
+		{
+			let targetId = ent.getMetadata(PlayerID, "target-foundation");
+			let target = gameState.getEntityById(targetId);
+			if (!target && ent.position())
+			{
+				let plan = gameState.ai.HQ.navalManager.getPlan(ent.getMetadata(PlayerID, "transport"));
+				plan.removeUnit(ent);
+			}
+		}
+		if (ent.getMetadata(PlayerID, "transport") !== undefined)
+			return;
+	}
 
 	// base 0 for unassigned entities has no accessIndex, so take the one from the entity
 	if (this.baseID === gameState.ai.HQ.baseManagers[0].ID)
@@ -530,6 +545,7 @@ m.Worker.prototype.startGathering = function(gameState)
 			if (foundation.getMetadata(PlayerID, "base") !== this.baseID)
 				this.ent.setMetadata(PlayerID, "base", foundation.getMetadata(PlayerID, "base"));
 			this.ent.setMetadata(PlayerID, "target-foundation", foundation.id());
+			this.ent.setMetadata(PlayerID, "subrole", "builder");
 			this.ent.repair(foundation);
 			return true;
 		}
@@ -599,6 +615,7 @@ m.Worker.prototype.startGathering = function(gameState)
 				if (foundation.getMetadata(PlayerID, "base") !== this.baseID)
 					this.ent.setMetadata(PlayerID, "base", foundation.getMetadata(PlayerID, "base"));
 				this.ent.setMetadata(PlayerID, "target-foundation", foundation.id());
+				this.ent.setMetadata(PlayerID, "subrole", "builder");
 				return true;
 			}
 		}
