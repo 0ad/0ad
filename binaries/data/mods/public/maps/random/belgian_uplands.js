@@ -84,7 +84,9 @@ var playerPositions;
 while (true)
 {
 	g_Map.log("Randomizing heightmap")
-	setRandomHeightmap(heightRange.min, heightRange.max, g_Map.height);
+	createArea(
+		new MapBoundsPlacer(),
+		new RandomElevationPainter(heightRange.min, heightRange.max));
 
 	 // More cycles yield bigger structures
 	g_Map.log("Smoothing map");

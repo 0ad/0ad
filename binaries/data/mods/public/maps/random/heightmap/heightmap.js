@@ -107,19 +107,6 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
 }
 
 /**
- * Sets a given heightmap to entirely random values within a given range
- * @param {float} [minHeight=MIN_HEIGHT] - Lower limit of the random height to be rolled
- * @param {float} [maxHeight=MAX_HEIGHT] - Upper limit of the random height to be rolled
- * @param {array} [heightmap=g_Map.height] - The reliefmap that should be randomized
- */
-function setRandomHeightmap(minHeight = MIN_HEIGHT, maxHeight = MAX_HEIGHT, heightmap = g_Map.height)
-{
-	for (let x = 0; x < heightmap.length; ++x)
-		for (let y = 0; y < heightmap[0].length; ++y)
-			heightmap[x][y] = randFloat(minHeight, maxHeight);
-}
-
-/**
  * Sets the heightmap to a relatively realistic shape
  * The function doubles the size of the initial heightmap (if given, else a random 2x2 one) until it's big enough, then the extend is cut off
  * @note min/maxHeight will not necessarily be present in the heightmap
