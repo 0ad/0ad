@@ -115,7 +115,7 @@ LayeredPainter.prototype.paint = function(area)
  */
 function SmoothingPainter(size, strength, iterations)
 {
-	if (size <= 0)
+	if (size < 1)
 		throw new Error("Invalid size: " + size);
 
 	if (strength <= 0 || strength > 1)
@@ -124,7 +124,7 @@ function SmoothingPainter(size, strength, iterations)
 	if (iterations <= 0)
 		throw new Error("Invalid iterations: " + iterations);
 
-	this.size = size;
+	this.size = Math.floor(size);
 	this.strength = strength;
 	this.iterations = iterations;
 }
@@ -132,7 +132,7 @@ function SmoothingPainter(size, strength, iterations)
 SmoothingPainter.prototype.paint = function(area)
 {
 	let brushPoints = getPointsInBoundingBox(getBoundingBox(
-		new Array(2).fill(0).map((zero, i) => new Vector2D(1, 1).mult(this.size).floor().mult(i ? 1 : -1))));
+		new Array(2).fill(0).map((zero, i) => new Vector2D(1, 1).mult(this.size).mult(i ? 1 : -1))));
 
 	for (let i = 0; i < this.iterations; ++i)
 	{

@@ -155,7 +155,7 @@ function createBase(player, walls = true)
 		"playerPosition": player.position,
 		"PlayerTileClass": g_TileClasses.player,
 		"BaseResourceClass": g_TileClasses.baseResource,
-		"baseResourceConstraint": avoidClasses(g_TileClasses.water, 0),
+		"baseResourceConstraint": avoidClasses(g_TileClasses.water, 0, g_TileClasses.mountain, 0),
 		"Walls": g_Map.getSize() > 192 && walls,
 		"CityPatch": {
 			"outerTerrain": g_Terrains.roadWild,

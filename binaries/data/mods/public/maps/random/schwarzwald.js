@@ -165,9 +165,7 @@ placePlayerBases({
 	"Berries": {
 		"template": "gaia/flora_bush_berry",
 		"minCount": 2,
-		"maxCount": 2,
-		"minDist": 10,
-		"maxDist": 10
+		"maxCount": 2
 	},
 	"Mines": {
 		"types": [
