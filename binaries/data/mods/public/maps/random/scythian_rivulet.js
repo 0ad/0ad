@@ -1,5 +1,4 @@
 Engine.LoadLibrary("rmgen");
-Engine.LoadLibrary("heightmap");
 
 const tMainTerrain = "alpine_snow_a";
 const tTier1Terrain = "snow rough";

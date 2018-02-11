@@ -1,7 +1,6 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
-Engine.LoadLibrary("heightmap");
 
 const g_InitialMineDistance = 14;
 const g_InitialTrees = 50;
@@ -203,8 +202,9 @@ createAreas(
 Engine.SetProgress(70);
 
 g_Map.log("Smoothing heightmap");
-for (let i = 0; i < 5; ++i)
-	globalSmoothHeightmap();
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(1, 0.8, 5));
 
 // repaint clLand to compensate for smoothing
 unPaintTileClassBasedOnHeight(-10, 10, 3, clLand);
@@ -249,8 +249,10 @@ createAreas(
 	scaleByMapSize(4, 13)
 );
 
-for (let i = 0; i < 3; ++i)
-	globalSmoothHeightmap();
+g_Map.log("Smoothing heightmap");
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(0.8, 1, 3));
 
 createStragglerTrees(
 	[oTree1, oTree2, oTree4, oTree3],

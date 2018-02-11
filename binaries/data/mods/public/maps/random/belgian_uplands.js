@@ -6,27 +6,21 @@ const tPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d",
 	"temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"];
 
 const heightLand = 0;
-
 var g_Map = new RandomMap(heightLand, tPrimary);
-
 var numPlayers = getNumPlayers();
-
 var mapSize = g_Map.getSize();
 var mapCenter = g_Map.getCenter();
 
 // Set target min and max height depending on map size to make average stepness the same on all map sizes
 var heightRange = {"min": MIN_HEIGHT * mapSize / 8192, "max": MAX_HEIGHT * mapSize / 8192};
 
-// Set average water coverage
-var averageWaterCoverage = 1/3; // NOTE: Since errosion is not predictable actual water coverage might differ much with the same value
-if (mapSize < 200) // Sink the waterlevel on tiny maps to ensure enough space
-	averageWaterCoverage = 2/3 * averageWaterCoverage;
+// Since erosion is not predictable, actual water coverage can differ much with the same value
+var averageWaterCoverage = scaleByMapSize(1/5, 1/3);
 
 var heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
 var heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT;
 setWaterHeight(heightSeaGround);
 
-// Prepare terrain texture by height placement
 var textueByHeight = [];
 
 // Deep water
@@ -94,8 +88,9 @@ while (true)
 
 	 // More cycles yield bigger structures
 	g_Map.log("Smoothing map");
-	for (let i = 0; i < 50 + mapSize/4; ++i)
-		globalSmoothHeightmap();
+	createArea(
+		new MapBoundsPlacer(),
+		new SmoothingPainter(2, 1, 20));
 
 	g_Map.log("Rescaling map");
 	rescaleHeightmap(heightRange.min, heightRange.max, g_Map.height);

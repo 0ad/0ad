@@ -469,7 +469,10 @@ setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialHeightmap, 
 // Apply simple erosion
 for (let i = 0; i < 5; ++i)
 	splashErodeMap(0.1);
-globalSmoothHeightmap();
+
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(1, 0.8, 1));
 
 // Final rescale
 rescaleHeightmap(heightRange.min, heightRange.max);

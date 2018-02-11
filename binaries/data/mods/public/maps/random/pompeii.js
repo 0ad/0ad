@@ -19,7 +19,6 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
-Engine.LoadLibrary("heightmap");
 
 setBiome("generic/mediterranean");
 
@@ -97,7 +96,9 @@ createArea(
 Engine.SetProgress(20);
 
 g_Map.log("Smoothing heightmap");
-globalSmoothHeightmap(0.8);
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(1, 0.8, 1));
 Engine.SetProgress(25);
 
 g_Map.log("Marking water");

@@ -107,6 +107,72 @@ LayeredPainter.prototype.paint = function(area)
 };
 
 /**
+ * Applies smoothing to the given area using Inverse-Distance-Weighting / Shepard's method.
+ *
+ * @param {Number} size - Determines the number of neighboring heights to interpolate. The area is a square with the length twice this size.
+ * @param {Number} strength - Between 0 (no effect) and 1 (only neighbor heights count). This parameter has the lowest performance impact.
+ * @param {Number} iterations - How often the process should be repeated. Typically 1. Can be used to gain even more smoothing.
+ */
+function SmoothingPainter(size, strength, iterations)
+{
+	if (size <= 0)
+		throw new Error("Invalid size: " + size);
+
+	if (strength <= 0 || strength > 1)
+		throw new Error("Invalid strength: " + strength);
+
+	if (iterations <= 0)
+		throw new Error("Invalid iterations: " + iterations);
+
+	this.size = size;
+	this.strength = strength;
+	this.iterations = iterations;
+}
+
+SmoothingPainter.prototype.paint = function(area)
+{
+	let brushPoints = getPointsInBoundingBox(getBoundingBox(
+		new Array(2).fill(0).map((zero, i) => new Vector2D(1, 1).mult(this.size).floor().mult(i ? 1 : -1))));
+
+	for (let i = 0; i < this.iterations; ++i)
+	{
+		let heightmap = clone(g_Map.height);
+
+		// Additional complexity to process all 4 vertices of each tile, i.e the last row too
+		let seen = new Array(heightmap.length).fill(0).map(zero => new Uint8Array(heightmap.length).fill(0));
+
+		for (let point of area.points)
+			for (let tileVertex of g_TileVertices)
+			{
+				let vertex = Vector2D.add(point, tileVertex);
+				if (!g_Map.validHeight(vertex) || seen[vertex.x][vertex.y])
+					continue;
+
+				seen[vertex.x][vertex.y] = 1;
+
+				let sumWeightedHeights = 0;
+				let sumWeights = 0;
+
+				for (let brushPoint of brushPoints)
+				{
+					let position = Vector2D.add(vertex, brushPoint);
+					let distance = Math.abs(brushPoint.x) + Math.abs(brushPoint.y);
+					if (!distance || !g_Map.validHeight(position))
+						continue;
+
+					sumWeightedHeights += g_Map.getHeight(position) / distance;
+					sumWeights += 1 / distance;
+				}
+
+				g_Map.setHeight(
+					vertex,
+					this.strength * sumWeightedHeights / sumWeights +
+					(1 - this.strength) * g_Map.getHeight(vertex));
+			}
+	}
+};
+
+/**
  * Sets the given height in the given Area.
  */
 function ElevationPainter(elevation)
@@ -120,7 +186,7 @@ ElevationPainter.prototype.paint = function(area)
 		for (let vertex of g_TileVertices)
 		{
 			let position = Vector2D.add(point, vertex);
-			if (g_Map.inMapBounds(position))
+			if (g_Map.validHeight(position))
 				g_Map.setHeight(position, this.elevation);
 		}
 };
@@ -337,7 +403,7 @@ function TerrainTextureArrayPainter(textureIDs, textureNames)
 {
 	this.textureIDs = textureIDs;
 	this.textureNames = textureNames;
-};
+}
 
 TerrainTextureArrayPainter.prototype.paint = function(area)
 {
@@ -353,29 +419,21 @@ TerrainTextureArrayPainter.prototype.paint = function(area)
 
 /**
  * Copies the given heightmap to the given area.
- * Scales the horizontal plane proportionally and optionally uses bicubic interpolation.
+ * Scales the horizontal plane proportionally and applies bicubic interpolation.
  * The heightrange is either scaled proportionally or mapped to the given heightrange.
  *
  * @param {Uint16Array} heightmap - One dimensional array of vertex heights.
  * @param {Number} [normalMinHeight] - The minimum height the elevation grid of 320 tiles would have.
  * @param {Number} [normalMaxHeight] - The maximum height the elevation grid of 320 tiles would have.
  */
-function HeightmapPainter(heightmap, bicubicInterpolation, normalMinHeight = undefined, normalMaxHeight = undefined)
+function HeightmapPainter(heightmap, normalMinHeight = undefined, normalMaxHeight = undefined)
 {
 	this.heightmap = heightmap;
 	this.bicubicInterpolation = bicubicInterpolation;
 	this.verticesPerSide = Math.sqrt(heightmap.length);
 	this.normalMinHeight = normalMinHeight;
 	this.normalMaxHeight = normalMaxHeight;
-};
-
-HeightmapPainter.prototype.paint = function(area)
-{
-	if (this.bicubicInterpolation)
-		this.paintBicubic(area);
-	else
-		this.paintNearest(area);
-};
+}
 
 HeightmapPainter.prototype.getScale = function()
 {
@@ -393,17 +451,7 @@ HeightmapPainter.prototype.scaleHeight = function(height)
 	return minHeight + (maxHeight - minHeight) * height / 0xFFFF;
 };
 
-HeightmapPainter.prototype.paintNearest = function(area)
-{
-	let scale = this.getScale();
-	for (let point of area.points)
-	{
-		let sourcePos = Vector2D.mult(point, scale).floor();
-		g_Map.setHeight(point, scaleHeight(this.heightmap[sourcePos.y * this.verticesPerSide + sourcePos.x]));
-	}
-};
-
-HeightmapPainter.prototype.paintBicubic = function(area)
+HeightmapPainter.prototype.paint = function(area)
 {
 	let scale = this.getScale();
 	let leftBottom = new Vector2D(0, 0);
@@ -412,16 +460,17 @@ HeightmapPainter.prototype.paintBicubic = function(area)
 	let brushCenter = new Vector2D(1, 1);
 
 	// Additional complexity to process all 4 vertices of each tile, i.e the last row too
-	let seen = new Array(g_Map.getSize() + 1).fill(0).map(zero => new Uint8Array(g_Map.getSize() + 1).fill(false));
+	let seen = new Array(g_Map.height.length).fill(0).map(zero => new Uint8Array(g_Map.height.length).fill(0));
 
 	for (let point of area.points)
 		for (let vertex of g_TileVertices)
 		{
 			let vertexPos = Vector2D.add(point, vertex);
-			if (seen[vertexPos.x][vertexPos.y])
+
+			if (!g_Map.validHeight(vertexPos) || seen[vertexPos.x][vertexPos.y])
 				continue;
 
-			seen[vertexPos.x][vertexPos.y] = true;
+			seen[vertexPos.x][vertexPos.y] = 1;
 
 			let sourcePos = Vector2D.mult(vertexPos, scale);
 			let sourceTilePos = sourcePos.clone().floor();

@@ -210,32 +210,6 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 }
 
 /**
- * Smoothens the entire map
- * @param {float} [strength=0.8] - How strong the smooth effect should be: 0 means no effect at all, 1 means quite strong, higher values might cause interferences, better apply it multiple times
- * @param {array} [heightmap=g_Map.height] - The heightmap to be smoothed
- * @param {array} [smoothMap=[[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]]] - Array of offsets discribing the neighborhood tiles to smooth the height of a tile to
- */
-function globalSmoothHeightmap(strength = 0.8, heightmap = g_Map.height, smoothMap = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]])
-{
-	let referenceHeightmap = clone(heightmap);
-	let max_x = heightmap.length;
-	let max_y = heightmap[0].length;
-	for (let x = 0; x < max_x; ++x)
-	{
-		for (let y = 0; y < max_y; ++y)
-		{
-			for (let i = 0; i < smoothMap.length; ++i)
-			{
-				let mapX = x + smoothMap[i][0];
-				let mapY = y + smoothMap[i][1];
-				if (mapX >= 0 && mapX < max_x && mapY >= 0 && mapY < max_y)
-					heightmap[x][y] += strength / smoothMap.length * (referenceHeightmap[mapX][mapY] - referenceHeightmap[x][y]);
-			}
-		}
-	}
-}
-
-/**
  * Pushes a rectangular area towards a given height smoothing it into the original terrain
  * @note The window function to determine the smooth is not exactly a gaussian to ensure smooth edges
  * @param {Vector2D} center - The x and y coordinates of the center point (rounded in this function)

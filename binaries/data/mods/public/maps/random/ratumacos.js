@@ -19,7 +19,6 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
-Engine.LoadLibrary("heightmap");
 
 setBiome("generic/alpine");
 
@@ -69,7 +68,9 @@ g_Map.LoadHeightmapImage("ratumacos.png", -3, 20);
 Engine.SetProgress(15);
 
 g_Map.log("Smoothing heightmap");
-globalSmoothHeightmap(0.1);
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(1, 0.1, 1));
 Engine.SetProgress(25);
 
 g_Map.log("Creating shallows...");

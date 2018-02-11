@@ -116,8 +116,10 @@ var initialReliefmap = [[heightRange.max, heightRange.max, heightRange.max], [he
 
 setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialReliefmap);
 
-for (var i = 0; i < 5; i++)
-	globalSmoothHeightmap();
+g_Map.log("Smoothing map");
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(1, 0.8, 5));
 
 rescaleHeightmap(heightRange.min, heightRange.max);
 

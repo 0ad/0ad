@@ -78,7 +78,7 @@ RandomMap.prototype.LoadMapTerrain = function(filename)
 	g_Map.log("Loading terrain file " + filename);
 	let mapTerrain = Engine.LoadMapTerrain("maps/random/" + filename + ".pmp");
 
-	let heightmapPainter = new HeightmapPainter(mapTerrain.height, true);
+	let heightmapPainter = new HeightmapPainter(mapTerrain.height);
 
 	createArea(
 		new MapBoundsPlacer(),
@@ -99,7 +99,7 @@ RandomMap.prototype.LoadHeightmapImage = function(filename, normalMinHeight, nor
 {
 	g_Map.log("Loading heightmap " + filename);
 
-	let heightmapPainter = new HeightmapPainter(Engine.LoadHeightmapImage("maps/random/" + filename), true, normalMinHeight, normalMaxHeight);
+	let heightmapPainter = new HeightmapPainter(Engine.LoadHeightmapImage("maps/random/" + filename), normalMinHeight, normalMaxHeight);
 
 	createArea(
 		new MapBoundsPlacer(),
@@ -374,14 +374,12 @@ RandomMap.prototype.getAdjacentPoints = function(position)
 {
 	let adjacentPositions = [];
 
-	for (let x = -1; x <= 1; ++x)
-		for (let z = -1; z <= 1; ++z)
-			if (x || z )
-			{
-				let adjacentPos = Vector2D.add(position, new Vector2D(x, z)).round();
-				if (this.inMapBounds(adjacentPos))
-					adjacentPositions.push(adjacentPos);
-			}
+	for (let adjacentCoordinate of g_AdjacentCoordinates)
+	{
+		let adjacentPos = Vector2D.add(position, adjacentCoordinate).round();
+		if (this.inMapBounds(adjacentPos))
+			adjacentPositions.push(adjacentPos);
+	}
 
 	return adjacentPositions;
 };
