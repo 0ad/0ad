@@ -24,6 +24,7 @@ setBiome("generic/mediterranean");
 
 g_Terrains.lavaOuter = "LavaTest06";
 g_Terrains.lavaInner = "LavaTest05";
+g_Terrains.lavaCenter = "LavaTest04";
 g_Terrains.mainTerrain = "ocean_rock_a";
 g_Terrains.forestFloor1 = "dirt_burned";
 g_Terrains.forestFloor2 = "shoreline_stoney_a";
@@ -49,6 +50,8 @@ g_Gaia.stoneSmall = "gaia/geology_stone_alpine_a";
 g_Gaia.columnsDoric = "gaia/ruins/column_doric";
 g_Gaia.romanStatue = "gaia/ruins/stone_statues_roman";
 g_Gaia.unfinishedTemple = "gaia/ruins/unfinished_greek_temple";
+g_Gaia.dock = "structures/rome_dock";
+g_Gaia.dockRubble = "rubble/rubble_rome_dock";
 
 g_Decoratives.smoke1 = "actor|particle/smoke_volcano.xml";
 g_Decoratives.smoke2 = "actor|particle/smoke_curved.xml";
@@ -76,14 +79,16 @@ g_Decoratives.statues = [
 const heightScale = num => num * g_MapSettings.Size / 320;
 
 const heightSeaGround = heightScale(-30);
+const heightShorelineMin = heightScale(-1);
+const heightShorelineMax = heightScale(0);
 const heightWaterLevel = heightScale(0);
-const heightLavaVesuv = heightScale(40);
+const heightLavaVesuv = heightScale(38);
 const heightMountains = 140;
 
 var g_Map = new RandomMap(0, g_Terrains.mainTerrain);
 var mapCenter = g_Map.getCenter();
 
-initTileClasses(["decorative", "lava"]);
+initTileClasses(["decorative", "lava", "dock"]);
 
 g_Map.LoadHeightmapImage("pompeii.png", 0, heightMountains);
 Engine.SetProgress(15);
@@ -108,12 +113,25 @@ createArea(
 	new HeightConstraint(-Infinity, heightWaterLevel));
 Engine.SetProgress(30);
 
+g_Map.log("Marking shoreline");
+var areaShoreline = createArea(
+	new MapBoundsPlacer(),
+	undefined,
+	new HeightConstraint(heightShorelineMin, heightShorelineMax));
+Engine.SetProgress(35);
+
 g_Map.log("Marking land");
 createArea(
 	new MapBoundsPlacer(),
 	new TileClassPainter(g_TileClasses.land),
 	avoidClasses(g_TileClasses.water, 0));
-Engine.SetProgress(35);
+Engine.SetProgress(40);
+
+g_Map.log("Marking dock search location");
+var areaDockStart = createArea(
+	new ClumpPlacer(diskArea(fractionToTiles(0.5)) - 10, 1, 1, Infinity, mapCenter),
+	undefined,
+	stayClasses(g_TileClasses.land, 6));
 
 g_Map.log("Painting cliffs");
 createArea(
@@ -132,7 +150,7 @@ g_Map.log("Painting lava");
 var areaVesuv = createArea(
 	new RectPlacer(new Vector2D(mapCenter.x, fractionToTiles(0.3)), new Vector2D(fractionToTiles(0.7), fractionToTiles(0.15))),
 	[
-		new LayeredPainter([g_Terrains.lavaOuter, g_Terrains.lavaInner], [scaleByMapSize(2, 4)]),
+		new LayeredPainter([g_Terrains.lavaOuter,g_Terrains.lavaInner, g_Terrains.lavaCenter], [scaleByMapSize(1, 3), 2]),
 		new TileClassPainter(g_TileClasses.lava)
 	],
 	new HeightConstraint(heightLavaVesuv, Infinity));
@@ -152,6 +170,34 @@ createObjectGroupsByAreas(
 	20,
 	[areaVesuv]);
 
+g_Map.log("Creating docks");
+for (let i = 0; i < scaleByMapSize(2, 4); ++i)
+{
+	let positionLand = pickRandom(areaDockStart.points);
+
+	// Find closest point on the shoreline and face the resulting direction
+	let dockPosition = areaShoreline.points[0];
+	let shortestDistance = Infinity;
+	for (let positionShoreline of areaShoreline.points)
+	{
+		let currentDistance = positionLand.distanceToSquared(positionShoreline);
+		if (currentDistance < shortestDistance)
+		{
+			shortestDistance = currentDistance;
+			dockPosition = positionShoreline;
+		}
+	}
+
+	if (!avoidClasses(g_TileClasses.mountain, scaleByMapSize(4, 6), g_TileClasses.dock, 10).allows(dockPosition))
+	{
+		--i;
+		continue;
+	}
+	g_Map.placeEntityPassable(randBool(0.4) ? g_Gaia.dock : g_Gaia.dockRubble, 0, dockPosition, -positionLand.angleTo(dockPosition) + Math.PI / 2);
+	g_TileClasses.dock.add(dockPosition);
+}
+Engine.SetProgress(10);
+
 if (!isNomad())
 {
 	g_Map.log("Placing players");
@@ -159,7 +205,7 @@ if (!isNomad())
 		sortAllPlayers(),
 		[
 			avoidClasses(g_TileClasses.mountain, 5),
-			stayClasses(g_TileClasses.land, defaultPlayerBaseRadius() / 3)
+			stayClasses(g_TileClasses.land, scaleByMapSize(5, 15))
 		]);
 
 	g_Map.log("Flatten the initial CC area...");
@@ -338,7 +384,7 @@ createObjectGroups(
 		g_TileClasses.lava, 5,
 		g_TileClasses.decorative, 20
 	),
-	10 * scaleByMapSize(1, 4),
+	scaleByMapSize(1, 4),
 	20);
 Engine.SetProgress(80);
 
@@ -366,8 +412,8 @@ createObjectGroups(
 		g_TileClasses.lava, 5,
 		g_TileClasses.decorative, 20
 	),
-	10 * scaleByMapSize(1, 4),
-	20);
+	scaleByMapSize(3, 15),
+	30);
 Engine.SetProgress(90);
 
 g_Map.log("Adding skeletons...");
@@ -385,8 +431,8 @@ createObjectGroups(
 		g_TileClasses.forest, 2,
 		g_TileClasses.decorative, 2
 	),
-	30 * scaleByMapSize(1, 4),
-	20);
+	scaleByMapSize(1, 5),
+	50);
 Engine.SetProgress(95);
 
 placePlayersNomad(
