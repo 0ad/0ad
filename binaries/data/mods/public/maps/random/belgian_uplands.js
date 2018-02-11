@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("heightmap");
 
 const tPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d",
@@ -9,17 +10,9 @@ const heightLand = 0;
 var g_Map = new RandomMap(heightLand, tPrimary);
 
 var numPlayers = getNumPlayers();
+
 var mapSize = g_Map.getSize();
 var mapCenter = g_Map.getCenter();
-
-// Function to apply a heightmap
-function setReliefmap(reliefmap)
-{
-	// g_Map.height = reliefmap;
-	for (var x = 0; x <= mapSize; x++)
-		for (var y = 0; y <= mapSize; y++)
-			g_Map.setHeight(new Vector2D(x, y), reliefmap[x][y]);
-}
 
 // Set target min and max height depending on map size to make average stepness the same on all map sizes
 var heightRange = {"min": MIN_HEIGHT * mapSize / 8192, "max": MAX_HEIGHT * mapSize / 8192};
@@ -88,158 +81,42 @@ textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 6/6 * (height
 	"temp_mud_plants|gaia/flora_tree_dead", "temp_plants_bog|gaia/flora_tree_oak_large",
 	"temp_dirt_gravel_plants|gaia/flora_tree_aleppo_pine", "temp_forestfloor_autumn|gaia/flora_tree_carob"]});
 
-var minTerrainDistToBorder = 3;
-
 Engine.SetProgress(5);
 
-// - Generate Heightmap
-// - Search valid start position tiles
-// - Choose a good start position derivation (largest distance between closest players)
-// - Restart the loop if start positions are invalid or two players are to close to each other
-var goodStartPositionsFound = false;
-var minDistBetweenPlayers = 16 + mapSize / 16; // Don't set this higher than 25 for tiny maps! It will take forever with 8 players!
-var tries = 0;
 var lowerHeightLimit = textueByHeight[3].upperHeightLimit;
 var upperHeightLimit = textueByHeight[6].upperHeightLimit;
 
-while (!goodStartPositionsFound)
+var playerPositions;
+while (true)
 {
-	tries++;
-	g_Map.log("Starting giant while loop try " + tries);
+	g_Map.log("Randomizing heightmap")
+	setRandomHeightmap(heightRange.min, heightRange.max, g_Map.height);
 
-	// Generate reliefmap
-	var myReliefmap = clone(g_Map.height);
-	setRandomHeightmap(heightRange.min, heightRange.max, myReliefmap);
-	for (var i = 0; i < 50 + mapSize/4; i++) // Cycles depend on mapsize (more cycles -> bigger structures)
-		globalSmoothHeightmap(0.8, myReliefmap);
+	 // More cycles yield bigger structures
+	g_Map.log("Smoothing map");
+	for (let i = 0; i < 50 + mapSize/4; ++i)
+		globalSmoothHeightmap();
 
-	rescaleHeightmap(heightRange.min, heightRange.max, myReliefmap);
-	setReliefmap(myReliefmap);
+	g_Map.log("Rescaling map");
+	rescaleHeightmap(heightRange.min, heightRange.max, g_Map.height);
 
-	// Find good start position tiles
-	var possibleStartPositions = [];
-	var neededDistance = 7;
-	var distToBorder = 2 * neededDistance; // Has to be greater than neededDistance! Otherwise the check if low/high ground is near will fail...
+	g_Map.log("Mark valid heightrange for player starting positions");
+	let tHeightRange = g_Map.createTileClass();
+	let area = createArea(
+		new ClumpPlacer(diskArea(fractionToTiles(0.5) - MAP_BORDER_WIDTH), 1, 1, Infinity, mapCenter),
+		new TileClassPainter(tHeightRange),
+		new HeightConstraint(lowerHeightLimit, upperHeightLimit));
 
-	// Check for valid points by height
-	for (var x = distToBorder + minTerrainDistToBorder; x < mapSize - distToBorder - minTerrainDistToBorder; x++)
-		for (var y = distToBorder + minTerrainDistToBorder; y < mapSize - distToBorder - minTerrainDistToBorder; y++)
-		{
-			let position = new Vector2D(x, y);
-			let actualHeight = g_Map.getHeight(position);
-			if (actualHeight > lowerHeightLimit && actualHeight < upperHeightLimit)
-			{
-				// Check for points within a valid area by height (rectangular since faster)
-				var isPossible = true;
-				for (var offX = - neededDistance; offX <= neededDistance; offX++)
-					for (var offY = - neededDistance; offY <= neededDistance; offY++)
-					{
-						var testHeight = g_Map.getHeight(Vector2D.add(position, new Vector2D(offX, offY)));
-						if (testHeight <= lowerHeightLimit || testHeight >= upperHeightLimit)
-						{
-							isPossible = false;
-							break;
-						}
-					}
-
-				if (isPossible)
-					possibleStartPositions.push([x, y]);
-			}
+	if (area)
+		try {
+			playerPositions = randomPlayerLocations(sortAllPlayers(), new stayClasses(tHeightRange, 15));
+			break;
+		}
+		catch (e) {
 		}
 
-	// Trying to reduce the number of possible start locations...
-
-	// Reduce to tiles in a circle of mapSize / 2 distance to the center (to avoid players placed in corners)
-	var possibleStartPositionsTemp = [];
-	for (var i = 0; i < possibleStartPositions.length; i++)
-	{
-		if (Math.euclidDistance2D(...possibleStartPositions[i], mapCenter.x, mapCenter.y) < mapSize / 2)
-			possibleStartPositionsTemp.push(possibleStartPositions[i]);
-	}
-	possibleStartPositions = clone(possibleStartPositionsTemp);
-	// Reduce to tiles near low and high ground (Rectangular check since faster) to make sure each player has access to all resource types.
-	var possibleStartPositionsTemp = [];
-	var maxDistToResources = distToBorder; // Has to be <= distToBorder!
-	var minNumLowTiles = 10;
-	var minNumHighTiles = 10;
-
-	for (var i = 0; i < possibleStartPositions.length; i++)
-	{
-		var numLowTiles = 0;
-		var numHighTiles = 0;
-		for (var dx = - maxDistToResources; dx < maxDistToResources; dx++)
-		{
-			for (var dy = - maxDistToResources; dy < maxDistToResources; dy++)
-			{
-				var testHeight = g_Map.getHeight(new Vector2D(possibleStartPositions[i][0] + dx, possibleStartPositions[i][1] + dy));
-
-				if (testHeight < lowerHeightLimit)
-					numLowTiles++;
-
-				if (testHeight > upperHeightLimit)
-					numHighTiles++;
-
-				if (numLowTiles > minNumLowTiles && numHighTiles > minNumHighTiles)
-					break;
-			}
-			if (numLowTiles > minNumLowTiles && numHighTiles > minNumHighTiles)
-				break;
-		}
-		if (numLowTiles > minNumLowTiles && numHighTiles > minNumHighTiles)
-			possibleStartPositionsTemp.push(possibleStartPositions[i]);
-	}
-
-	possibleStartPositions = clone(possibleStartPositionsTemp);
-
-	// Find a good start position derivation
-	if (possibleStartPositions.length > numPlayers)
-	{
-		// Get some random start location derivations. NOTE: Iterating over all possible derivations is just too much (valid points * numPlayers)
-		var maxTries = 100000;
-		var possibleDerivations = [];
-		for (var i = 0; i < maxTries; i++)
-		{
-			var vector = [];
-			for (var p = 0; p < numPlayers; p++)
-				vector.push(randIntExclusive(0, possibleStartPositions.length));
-			possibleDerivations.push(vector);
-		}
-
-		// Choose the start location derivation with the greatest minimum distance between players
-		var maxMinDist = 0;
-		for (var d = 0; d < possibleDerivations.length; d++)
-		{
-			var minDist = 2 * mapSize;
-			for (var p1 = 0; p1 < numPlayers - 1; p1++)
-			{
-				for (var p2 = p1 + 1; p2 < numPlayers; p2++)
-				{
-					if (p1 != p2)
-					{
-						minDist = Math.min(minDist, Math.euclidDistance2D(...possibleStartPositions[possibleDerivations[d][p1]], ...possibleStartPositions[possibleDerivations[d][p2]]));
-						if (minDist < maxMinDist)
-							break;
-					}
-				}
-				if (minDist < maxMinDist)
-					break;
-			}
-			if (minDist > maxMinDist)
-			{
-				maxMinDist = minDist;
-				var bestDerivation = possibleDerivations[d];
-			}
-		}
-		if (maxMinDist > minDistBetweenPlayers)
-		{
-			goodStartPositionsFound = true;
-			g_Map.log("Exiting giant while loop after " +  tries + " tries with a minimum player distance of " + maxMinDist);
-		}
-		else
-			g_Map.log("maxMinDist <= " + minDistBetweenPlayers + ", maxMinDist = " + maxMinDist);
-	}
+	g_Map.log("Too few starting locations");
 }
-
 Engine.SetProgress(60);
 
 g_Map.log("Painting terrain by height and add props");
@@ -249,10 +126,13 @@ if (mapSize > 500)
 else if (mapSize > 400)
 	propDensity = 3/4;
 
-for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
-	for (var y = minTerrainDistToBorder; y < mapSize - minTerrainDistToBorder; y++)
+for (let x = 0; x < mapSize; ++x)
+	for (let y = 0; y < mapSize; ++y)
 	{
 		let position = new Vector2D(x, y);
+		if (!g_Map.validHeight(position))
+			continue;
+
 		var textureMinHeight = heightRange.min;
 		for (var i = 0; i < textueByHeight.length; i++)
 		{
@@ -376,15 +256,13 @@ else
 {
 	g_Map.log("Placing players and starting resources");
 
-	let playerIDs = sortAllPlayers();
 	let resourceDistance = 8;
 	let resourceSpacing = 1;
 	let resourceCount = 4;
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let playerPos = new Vector2D(possibleStartPositions[bestDerivation[i]][0], possibleStartPositions[bestDerivation[i]][1]);
-		placeCivDefaultStartingEntities(playerPos, playerIDs[i], false);
+		placeCivDefaultStartingEntities(playerPositions[i].position, playerPositions[i].id, false);
 
 		for (let j = 1; j <= 4; ++j)
 		{
@@ -392,7 +270,7 @@ else
 			for (let k = 0; k < resourceCount; ++k)
 			{
 				let pos = Vector2D.sum([
-					playerPos,
+					playerPositions[i].position,
 					new Vector2D(resourceDistance, 0).rotate(-uAngle),
 					new Vector2D(k * resourceSpacing, 0).rotate(-uAngle - Math.PI/2),
 					new Vector2D(-0.75 * resourceSpacing * Math.floor(resourceCount / 2), 0).rotate(-uAngle - Math.PI/2)

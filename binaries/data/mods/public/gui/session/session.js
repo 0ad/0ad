@@ -449,6 +449,10 @@ function updateHotkeyTooltips()
 		colorizeHotkey("%(hotkey)s" + " ", "selection.idleworker") +
 		translate("Find idle worker");
 
+	Engine.GetGUIObjectByName("diplomacyColorsButton").tooltip =
+		colorizeHotkey("%(hotkey)s" + " ", "diplomacycolors") +
+		translate("Toggle Diplomacy Colors");
+
 	Engine.GetGUIObjectByName("tradeHelp").tooltip = colorizeHotkey(
 		translate("Select one type of goods you want to modify by clicking on it, and then use the arrows of the other types to modify their shares. You can also press %(hotkey)s while selecting one type of goods to bring its share to 100%%."),
 		"session.fulltradeswap");

@@ -36,10 +36,10 @@
 		type="button"
 		size="4 100%-120 119 100%-5"
 		tooltip_style="sessionToolTip"
+		hotkey="diplomacycolors"
 		sprite="stretched:session/minimap-diplomacy-off.png"
 		sprite_over="stretched:session/minimap-diplomacy-off-highlight.png"
 	>
-		<translatableAttribute id="tooltip">Toggle Diplomacy Colors</translatableAttribute>
 		<action on="Press">updateDiplomacyColorsButton()</action>
 	</object>
 </object>

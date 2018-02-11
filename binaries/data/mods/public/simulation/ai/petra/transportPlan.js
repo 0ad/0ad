@@ -179,6 +179,31 @@ m.TransportPlan.prototype.addUnit = function(unit, endPos)
 	this.units.updateEnt(unit);
 };
 
+/** remove a unit from this plan, if not yet on board */
+m.TransportPlan.prototype.removeUnit = function(unit)
+{
+	let shipId = unit.getMetadata(PlayerID, "onBoard");
+	if (shipId == "onBoard")
+		return; // too late, already onBoard
+	unit.setMetadata(PlayerID, "transport", undefined);
+	unit.setMetadata(PlayerID, "endPos", undefined);
+	this.units.updateEnt(unit);
+	if (shipId)
+	{
+		unit.setMetadata(PlayerID, "onBoard", undefined);
+		let ship = gameState.getEntityById(shipId);
+		if (ship && !ship.garrisoned().length &&
+		            !this.units.filter(API3.Filters.byMetadata(PlayerID, "onBoard", shipId)).length)
+		{
+			ship.setMetadata(PlayerID, "transporter", undefined);
+			if (ship.getMetadata(PlayerID, "role") == "switchToTrader")
+				ship.setMetadata(PlayerID, "role", "trader");
+			this.ships.updateEnt(ship); 
+			this.transportShips.updateEnt(ship);
+		}
+	}
+};
+
 m.TransportPlan.prototype.releaseAll = function()
 {
 	this.ships.forEach(function (ship) {
