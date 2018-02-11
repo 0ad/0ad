@@ -216,7 +216,11 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 		if (evt.newentity == evt.entity)  // repaired building
 			continue;
 		let ent = gameState.getEntityById(evt.newentity);
-		if (!ent || ent.owner() != PlayerID || ent.getMetadata(PlayerID, "base") === undefined)
+		if (!ent || ent.owner() != PlayerID)
+			continue;
+		if (ent.hasClass("BarterMarket") && this.maxFields)
+			this.maxFields = false;
+		if (ent.getMetadata(PlayerID, "base") === undefined)
 			continue;
 		let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
 		base.buildings.updateEnt(ent);
@@ -420,6 +424,7 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 			// Let us hope this new base will fix our possible resource shortage
 			this.saveResources = undefined;
 			this.saveSpace = undefined;
+			this.maxFields = false;
 		}
 	}
 
@@ -1276,13 +1281,21 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	if (this.Config.debug > 1)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket
-	if (expectedGain < this.tradeManager.minimalGain ||
-	    expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities()))
-		return false;
+	let idx;
+	if (expectedGain < this.tradeManager.minimalGain)
+	{
+		if (template.hasClass("BarterMarket") &&
+		    !gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
+			idx = -1;	// needed by queueplanBuilding manager to keep that market
+		else
+			return false;
+	}
+	else
+		idx = this.basesMap.map[bestJdx];
 
 	let x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
 	let z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
-	return [x, z, this.basesMap.map[bestJdx], expectedGain];
+	return [x, z, idx, expectedGain];
 };
 
 /**
@@ -1446,9 +1459,9 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 
 	if (queues.economicBuilding.hasQueuedUnitsWithClass("BarterMarket"))
 	{
-		if (!this.navalMap && !queues.economicBuilding.paused)
+		if (!queues.economicBuilding.paused)
 		{
-			// Put available resources in this market when not a naval map
+			// Put available resources in this market
 			let queueManager = gameState.ai.queueManager;
 			let cost = queues.economicBuilding.plans[0].getCost();
 			queueManager.setAccounts(gameState, cost, "economicBuilding");
@@ -1456,7 +1469,7 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 			{
 				for (let q in queueManager.queues)
 				{
-					if (q === "economicBuilding")
+					if (q == "economicBuilding")
 						continue;
 					queueManager.transferAccounts(cost, q, "economicBuilding");
 					if (queueManager.canAfford("economicBuilding", cost))
@@ -1466,8 +1479,6 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 		}
 		return;
 	}
-	if (this.getAccountedPopulation(gameState) < this.Config.Economy.popForMarket)
-		return;
 
 	gameState.ai.queueManager.changePriority("economicBuilding", 3*this.Config.priorities.economicBuilding);
 	let plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
@@ -2619,6 +2630,7 @@ m.HQ.prototype.Serialize = function()
 		"needCorral": this.needCorral,
 		"needFarm": this.needFarm,
 		"needFish": this.needFish,
+		"maxFields": this.maxFields,
 		"canExpand": this.canExpand,
 		"canBuildUnits": this.canBuildUnits,
 		"navalMap": this.navalMap,

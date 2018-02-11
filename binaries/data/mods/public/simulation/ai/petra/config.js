@@ -28,7 +28,6 @@ m.Config = function(difficulty, behavior)
 		"popPhase2" : 38,	// How many units we want before aging to phase2.
 		"workPhase3" : 65,	// How many workers we want before aging to phase3.
 		"workPhase4" : 80,	// How many workers we want before aging to phase4 or higher.
-		"popForMarket" : 50,
 		"popForDock" : 25,
 		"targetNumWorkers" : 40,// dummy, will be changed later
 		"targetNumTraders" : 5,	// Target number of traders
@@ -194,7 +193,6 @@ m.Config.prototype.setConfig = function(gameState)
 		{
 			this.Military.popForBarracks1 = 12;
 			this.Economy.popPhase2 = 50;
-			this.Economy.popForMarket = 60;
 			this.priorities.defenseBuilding = 60;
 			this.priorities.healer = 10;
 		}
@@ -225,7 +223,6 @@ m.Config.prototype.setConfig = function(gameState)
 		this.Economy.popPhase2 = Math.min(Math.max(Math.floor(this.Economy.popPhase2 * this.popScaling), 20), Math.floor(maxPop/2));
 		this.Economy.workPhase3 = Math.min(Math.max(Math.floor(this.Economy.workPhase3 * this.popScaling), 40), Math.floor(maxPop*2/3));
 		this.Economy.workPhase4 = Math.min(Math.max(Math.floor(this.Economy.workPhase4 * this.popScaling), 45), Math.floor(maxPop*2/3));
-		this.Economy.popForMarket = Math.min(Math.max(Math.floor(this.Economy.popForMarket * this.popScaling), 25), Math.floor(maxPop/2));
 		this.Economy.targetNumTraders = Math.round(this.Economy.targetNumTraders * this.popScaling);
 	}
 	this.Economy.targetNumWorkers = Math.max(this.Economy.targetNumWorkers, this.Economy.popPhase2);

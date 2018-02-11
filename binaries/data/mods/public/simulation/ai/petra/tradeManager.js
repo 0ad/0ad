@@ -12,7 +12,7 @@ m.TradeManager = function(Config)
 	this.potentialTradeRoute = undefined;
 	this.routeProspection = false;
 	this.targetNumTraders = this.Config.Economy.targetNumTraders;
-	this.minimalGain = 3;
+	this.minimalGain = 5;
 	this.warnedAllies = {};
 };
 
@@ -576,9 +576,12 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 		return;
 	this.checkRoutes(gameState);
 	let marketPos = gameState.ai.HQ.findMarketLocation(gameState, template);
-	if (!marketPos || marketPos[3] === 0)   // marketPos[3] is the expected gain
+	if (!marketPos || marketPos[3] == 0)   // marketPos[3] is the expected gain
 	{	// no position found
-		gameState.ai.HQ.buildManager.setUnbuildable(gameState, gameState.applyCiv("structures/{civ}_market"));
+		if (gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
+			gameState.ai.HQ.buildManager.setUnbuildable(gameState, gameState.applyCiv("structures/{civ}_market"));
+		else
+			this.routeProspection = false;
 		return;
 	}
 	this.routeProspection = false;
@@ -605,6 +608,8 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 
 m.TradeManager.prototype.isNewMarketWorth = function(expectedGain)
 {
+	if (expectedGain < this.minimalGain)
+		return false;
 	if (this.potentialTradeRoute && expectedGain < 2*this.potentialTradeRoute.gain &&
 		expectedGain < this.potentialTradeRoute.gain + 20)
 		return false;

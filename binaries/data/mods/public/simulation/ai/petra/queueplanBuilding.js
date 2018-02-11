@@ -52,7 +52,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	let pos = this.findGoodPosition(gameState);
 	if (!pos)
 	{
-		gameState.ai.HQ.buildManager.setUnbuildable(gameState, this.type);
+		gameState.ai.HQ.buildManager.setUnbuildable(gameState, this.type, 90, "room");
 		Engine.ProfileStop();
 		return;
 	}
@@ -209,7 +209,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				let z = Math.round(pos[1] / cellSize);
 
 				let struct = ent.foundationProgress() === undefined ? ent : gameState.getBuiltTemplate(ent.templateName());
-				if (struct.resourceDropsiteTypes() && struct.resourceDropsiteTypes().indexOf("food") !== -1)
+				if (struct.resourceDropsiteTypes() && struct.resourceDropsiteTypes().indexOf("food") != -1)
 				{
 					if (template.hasClass("Field") || template.hasClass("Corral"))
 						placement.addInfluence(x, z, 80/cellSize, 50);
@@ -308,13 +308,14 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	//obstructions.dumpIm(template.buildPlacementType() + "_obstructions.png");
 
 	let radius = 0;
-	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_workshop") ||
-		this.type === gameState.applyCiv("structures/{civ}_elephant_stables"))
+	if (template.hasClass("Fortress") || template.hasClass("Workshop") ||
+		this.type == gameState.applyCiv("structures/{civ}_elephant_stables"))
 		radius = Math.floor((template.obstructionRadius().max + 12) / obstructions.cellSize);
-	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") && !template.hasClass("Field"))
+	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") &&
+	         !template.hasClass("Field") && !template.hasClass("BarterMarket"))
 		radius = Math.ceil((template.obstructionRadius().max + 4) / obstructions.cellSize);
 	else
-		radius = Math.ceil((template.obstructionRadius().max + 0.5) / obstructions.cellSize);
+		radius = Math.ceil(template.obstructionRadius().max / obstructions.cellSize);
 
 	let bestTile;
 	if (template.hasClass("House") && !alreadyHasHouses)
