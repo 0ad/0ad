@@ -92,9 +92,9 @@ m.TransportPlan.prototype.init = function(gameState)
 /** count available slots */
 m.TransportPlan.prototype.countFreeSlots = function()
 {
-	let self = this;
 	let slots = 0;
-	this.transportShips.forEach(function (ship) { slots += self.countFreeSlotsOnShip(ship); });
+	for (let ship of this.transportShips.values())
+		slots += this.countFreeSlotsOnShip(ship);
 	return slots;
 };
 
@@ -198,7 +198,7 @@ m.TransportPlan.prototype.removeUnit = function(unit)
 			ship.setMetadata(PlayerID, "transporter", undefined);
 			if (ship.getMetadata(PlayerID, "role") == "switchToTrader")
 				ship.setMetadata(PlayerID, "role", "trader");
-			this.ships.updateEnt(ship); 
+			this.ships.updateEnt(ship);
 			this.transportShips.updateEnt(ship);
 		}
 	}
@@ -267,21 +267,21 @@ m.TransportPlan.prototype.update = function(gameState)
 m.TransportPlan.prototype.onBoarding = function(gameState)
 {
 	let ready = true;
-	let self = this;
 	let time = gameState.ai.elapsedTime;
-	this.units.forEach(function (ent) {
+	for (let ent of this.units.values())
+	{
 		if (!ent.getMetadata(PlayerID, "onBoard"))
 		{
 			ready = false;
-			self.assignUnitToShip(gameState, ent);
+			this.assignUnitToShip(gameState, ent);
 			if (ent.getMetadata(PlayerID, "onBoard"))
 			{
 				let shipId = ent.getMetadata(PlayerID, "onBoard");
 				let ship = gameState.getEntityById(shipId);
-				if (!self.boardingPos[shipId])
+				if (!this.boardingPos[shipId])
 				{
-					self.boardingPos[shipId] = self.getBoardingPos(gameState, ship, self.startIndex, self.sea, ent.position(), false);
-					ship.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
+					this.boardingPos[shipId] = this.getBoardingPos(gameState, ship, this.startIndex, this.sea, ent.position(), false);
+					ship.move(this.boardingPos[shipId][0], this.boardingPos[shipId][1]);
 					ship.setMetadata(PlayerID, "timeGarrison", time);
 				}
 				ent.garrison(ship);
@@ -289,76 +289,77 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 				ent.setMetadata(PlayerID, "posGarrison", ent.position());
 			}
 		}
-		else if (ent.getMetadata(PlayerID, "onBoard") !== "onBoard" && !self.isOnBoard(ent))
+		else if (ent.getMetadata(PlayerID, "onBoard") != "onBoard" && !this.isOnBoard(ent))
 		{
 			ready = false;
 			let shipId = ent.getMetadata(PlayerID, "onBoard");
 			let ship = gameState.getEntityById(shipId);
 			if (!ship)    // the ship must have been destroyed
-				ent.setMetadata(PlayerID, "onBoard", undefined);
-			else
 			{
-				let distShip = API3.SquareVectorDistance(self.boardingPos[shipId], ship.position());
-				if (time - ship.getMetadata(PlayerID, "timeGarrison") > 8 && distShip > self.boardingRange)
+				ent.setMetadata(PlayerID, "onBoard", undefined);
+				continue;
+			}
+			let distShip = API3.SquareVectorDistance(this.boardingPos[shipId], ship.position());
+			if (time - ship.getMetadata(PlayerID, "timeGarrison") > 8 && distShip > this.boardingRange)
+			{
+				if (!this.nTry[shipId])
+					this.nTry[shipId] = 1;
+				else
+					++this.nTry[shipId];
+				if (this.nTry[shipId] > 1)	// we must have been blocked by something ... try with another boarding point
 				{
-					if (!self.nTry[shipId])
-						self.nTry[shipId] = 1;
-					else
-						++self.nTry[shipId];
-					if (self.nTry[shipId] > 1)	// we must have been blocked by something ... try with another boarding point
-					{
-						self.nTry[shipId] = 0;
-						if (self.debug > 1)
-							API3.warn("ship " + shipId + " new attempt for a landing point ");
-						self.boardingPos[shipId] = self.getBoardingPos(gameState, ship, self.startIndex, self.sea, undefined, false);
-					}
-					ship.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
-					ship.setMetadata(PlayerID, "timeGarrison", time);
+					this.nTry[shipId] = 0;
+					if (this.debug > 1)
+						API3.warn("ship " + shipId + " new attempt for a landing point ");
+					this.boardingPos[shipId] = this.getBoardingPos(gameState, ship, this.startIndex, this.sea, undefined, false);
 				}
-				else if (time - ent.getMetadata(PlayerID, "timeGarrison") > 2)
+				ship.move(this.boardingPos[shipId][0], this.boardingPos[shipId][1]);
+				ship.setMetadata(PlayerID, "timeGarrison", time);
+			}
+			else if (time - ent.getMetadata(PlayerID, "timeGarrison") > 2)
+			{
+				let oldPos = ent.getMetadata(PlayerID, "posGarrison");
+				let newPos = ent.position();
+				if (oldPos[0] == newPos[0] && oldPos[1] == newPos[1])
 				{
-					let oldPos = ent.getMetadata(PlayerID, "posGarrison");
-					let newPos = ent.position();
-					if (oldPos[0] === newPos[0] && oldPos[1] === newPos[1])
+					if (distShip < this.boardingRange)	// looks like we are blocked ... try to go out of this trap
 					{
-						if (distShip < self.boardingRange)	// looks like we are blocked ... try to go out of this trap
+						if (!this.nTry[ent.id()])
+							this.nTry[ent.id()] = 1;
+						else
+							++this.nTry[ent.id()];
+						if (this.nTry[ent.id()] > 5)
 						{
-							if (!self.nTry[ent.id()])
-								self.nTry[ent.id()] = 1;
-							else
-								++self.nTry[ent.id()];
-							if (self.nTry[ent.id()] > 5)
-							{
-								if (self.debug > 1)
-									API3.warn("unit blocked, but no ways out of the trap ... destroy it");
-								self.resetUnit(gameState, ent);
-								ent.destroy();
-								return;
-							}
-							if (self.nTry[ent.id()] > 1)
-								ent.moveToRange(newPos[0], newPos[1], 30, 30);
-							ent.garrison(ship, true);
+							if (this.debug > 1)
+								API3.warn("unit blocked, but no ways out of the trap ... destroy it");
+							this.resetUnit(gameState, ent);
+							ent.destroy();
+							continue;
 						}
-						else			// wait for the ship
-							ent.moveToRange(self.boardingPos[shipId][0], self.boardingPos[shipId][1], 0, 15);
+						if (this.nTry[ent.id()] > 1)
+							ent.moveToRange(newPos[0], newPos[1], 30, 30);
+						ent.garrison(ship, true);
 					}
-					else
-						self.nTry[ent.id()] = 0;
-					ent.setMetadata(PlayerID, "timeGarrison", time);
-					ent.setMetadata(PlayerID, "posGarrison", ent.position());
+					else			// wait for the ship
+						ent.moveToRange(this.boardingPos[shipId][0], this.boardingPos[shipId][1], 0, 15);
 				}
+				else
+					this.nTry[ent.id()] = 0;
+				ent.setMetadata(PlayerID, "timeGarrison", time);
+				ent.setMetadata(PlayerID, "posGarrison", ent.position());
 			}
 		}
-	});
+	}
 
 	if (!ready)
 		return;
 
-	this.ships.forEach(function (ship) {
-		self.boardingPos[ship.id()] = undefined;
-		self.boardingPos[ship.id()] = self.getBoardingPos(gameState, ship, self.endIndex, self.sea, self.endPos, true);
-		ship.move(self.boardingPos[ship.id()][0], self.boardingPos[ship.id()][1]);
-	});
+	for (let ship of this.ships.values())
+	{
+		this.boardingPos[ship.id()] = undefined;
+		this.boardingPos[ship.id()] = this.getBoardingPos(gameState, ship, this.endIndex, this.sea, this.endPos, true);
+		ship.move(this.boardingPos[ship.id()][0], this.boardingPos[ship.id()][1]);
+	}
 	this.state = "sailing";
 	this.nTry = {};
 	this.unloaded = [];

@@ -345,7 +345,10 @@ m.SharedScript.prototype.setMetadata = function(player, ent, key, value)
 {
 	let metadata = this._entityMetadata[player][ent.id()];
 	if (!metadata)
-		metadata = this._entityMetadata[player][ent.id()] = {};
+	{
+		this._entityMetadata[player][ent.id()] = {};
+		metadata = this._entityMetadata[player][ent.id()];
+	}
 	metadata[key] = value;
 
 	this.updateEntityCollections('metadata', ent);
