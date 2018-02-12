@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017
+# David Sowa <isithere2@yahoo.com>, 2017-2018
 # enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-05 09:06+0100\n"
-"PO-Revision-Date: 2018-01-05 15:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-10 20:19+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,28 +380,28 @@ msgstr "%(name)s nun pue construyise en tarrén non válidu."
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "propiu"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr ""
+msgstr "propiu desconectáu"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "allied"
-msgstr ""
+msgstr "aliáu"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:196
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr ""
+msgstr "aliáu desconectáu"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -427,7 +427,7 @@ msgstr "%(name)s nun pue construyise en %(territoryType)s. Territorios válidos:
 #: simulation/components/BuildRestrictions.js:253
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr ""
+msgstr "%(name)s ha construyise a una vera válida."
 
 #: simulation/components/BuildRestrictions.js:281
 #, javascript-format
@@ -446,15 +446,15 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s queda demasiao lloñe d'un(a) %(category)s, ha de tar a %(distance)s metru"
+msgstr[1] "%(name)s queda demasiao lloñe d'un(a) %(category)s, ha de tar a %(distance)s metros"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:342
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "propiu"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -490,8 +490,8 @@ msgstr "¡Agora pues atacar!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s gana (el caberu xugador vivu)."
+msgstr[1] "%(players)s y %(lastPlayer)s ganen (los caberos xugadores vivos)."
 
 #: simulation/components/EndGameManager.js:167
 msgid "Last remaining player wins."
@@ -594,7 +594,7 @@ msgstr "Nun hai unidaes sobornables"
 
 #: simulation/helpers/Commands.js:843
 msgid "Unable to ungarrison unit(s)"
-msgstr ""
+msgstr "Nun pue(n) guarnecese la(es) unidá(es)"
 
 #: simulation/helpers/Commands.js:857
 msgid "Some unit(s) can't go back to work"
@@ -670,7 +670,7 @@ msgstr "Perrápido (1.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2x)"
-msgstr ""
+msgstr "Insanu (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
@@ -731,7 +731,7 @@ msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured or in allied victory when the owners alliances change."
-msgstr ""
+msgstr "Sé'l primeru en construyir o tomar una maraviya y caltenela ciertu tiempu pa ganar la partida. El temporizador va reafitase si la maraviya se desfái o se toma o, en casu d'una victoria aliada, cuando los amos cambien d'alianza. "
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -740,12 +740,12 @@ msgstr "Maraviya"
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Perbaxos"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Baxos"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
@@ -755,17 +755,17 @@ msgstr "Medio"
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Altos"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Peraltos"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Toos escontra toos"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
@@ -837,7 +837,7 @@ msgstr "Perfácil"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "Escueyi esta dificultá si tas descubriendo 0 A.D. "
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Name
 msgid "Easy"
@@ -845,12 +845,12 @@ msgstr "Fácil"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "Escueyi esta dificultá si nun te presta tar valtáu."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "Escueyi esta dificultá si tienes yá bien d'esperiencia xugando 0 A.D. "
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Name
 msgid "Hard"
@@ -858,7 +858,7 @@ msgstr "Difícil"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
+msgstr "Escueyi esta dificultá si t'apetez un gran desafíu."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Name
 msgid "Very Hard"
@@ -866,7 +866,7 @@ msgstr "Perdifícil"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
+msgstr "Escueyi esta dificultá si nun te fadia que te barrien."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"

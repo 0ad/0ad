@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:04+0100\n"
-"PO-Revision-Date: 2018-02-07 14:44+0000\n"
+"POT-Creation-Date: 2018-02-09 09:04+0100\n"
+"PO-Revision-Date: 2018-02-09 16:08+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -456,6 +456,25 @@ msgstr "Ένας τυπικός χάρτης χωρίς καθόλου νερό.
 msgid "Mainland"
 msgstr "Ηπειρωτική Χώρα"
 
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "Η Μεσόγειος, ήταν το σπίτι για να τους Φοίνικες, τους Έλληνες, τους Αιγυπτίους και αργότερα των Ρωμαίων. Οι οποίοι πήραν τη στοιχειώδη γνώση και τις αρχές της οργάνωσης από τη Μεσοποταμία και την εξέλιξαν σε κάτι περισσότερο, μετατοπίζοντας έτσι το κέντρο της μάθησης και της γνώσης στις ακτές της Μεσογείου, θέτοντας έτσι τα θεμέλια του πολιτισμού όπως τον ξέρουμε σήμερα. Η Μεσόγειος περικλείεται σχεδόν πλήρως από γη: στα βόρεια από την Ορεινή Γαλατία (Γαλατία των Άλπεων ), Ιταλία, Ελλάδα (Γκρέτσια) και την Ανατολία, στα ανατολικά από τη Συρία, στα νότια από τη Λιβύη και τη Μαυριτανία, και στα δυτικά από την Ιβηρία. Το όνομα Μεντιτεράνιαν προέρχεται από τη λατινική, αλλά και οι ίδιοι οι Ρωμαίοι προτιμούσαν τον όρο «η θάλασσα μας» ή ακόμα και «Μάρε Νόστρουμ»."
+
+#: maps/random/mediterranean.jsonsettings.Name
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgid "Mediterranean"
+msgstr "Μεσόγειος "
+
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
@@ -825,15 +844,6 @@ msgid ""
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Ξεκινήστε σε μια περιοχή ευλογημένη με το μεσογειακό κλίμα, μια ζεστή και φιλόξενη γη. Τα κυπαρίσσια βρίσκονται σε μια αέναη πάλη με τους κυρίαρχους φοίνικες, ενώ τα ελάφια βόσκουν στις σκιές τους, τελείως ανέμελα."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgid "Mediterranean"
-msgstr "Μεσόγειος "
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Μεσόγειος"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
@@ -2778,3 +2788,8 @@ msgstr "Βουνά υψώνονται στη Περσική γη, όπου τα 
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Οροσειρά Ζάγκρος (2)"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Μεσόγειος"

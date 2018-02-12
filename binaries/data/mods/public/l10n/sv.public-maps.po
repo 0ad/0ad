@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:04+0100\n"
-"PO-Revision-Date: 2018-02-07 14:44+0000\n"
+"POT-Creation-Date: 2018-02-09 09:04+0100\n"
+"PO-Revision-Date: 2018-02-09 16:08+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -448,6 +448,25 @@ msgstr "En vanlig karta utan vatten."
 msgid "Mainland"
 msgstr "Fastlandet"
 
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "Medelhavet, hem till Fenicierna, Grekerna, Egyptierna och senare Romarna. De tog rudimentära kunskaper och organisationsprinciper från Mesopotamien och formade om dem till något mer, och flyttade därmed centrum för lärande och kunskap till Medelhavskusten, vilket lade grunden för civilisationen så som vi känner den idag. Medelhavet är nästan helt omgivet av mark: i norr av Gallia Trans (Transalpinska Gallien), Italia, Grekland (Graecia) och Anatolien, i öster av Syrien, i söder av Libyen och Mauretanien, och i väster av Iberiska halvön. Namnet Medelhavet kommer från latin, men romarna själva föredrog begreppet \"Mare Internum\" eller till och med \"Mare Nostrum\"."
+
+#: maps/random/mediterranean.jsonsettings.Name
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgid "Mediterranean"
+msgstr "Medelhavet"
+
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
@@ -817,15 +836,6 @@ msgid ""
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Börja i en region välsignad med Medelhavsklimatet, ett varmt och inbjudande land. Cypresserna är i en ständig kamp med de dominerande palmträden medan rådjur betar i deras skuggor, lyckligt omedvetna."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgid "Mediterranean"
-msgstr "Medelhavet"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Medelhavet"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
@@ -2770,3 +2780,8 @@ msgstr "Bergen som skyddar det Persiska hemlandet som gränslar Persis, Susiana,
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Zagrosbergen (2)"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Medelhavet"

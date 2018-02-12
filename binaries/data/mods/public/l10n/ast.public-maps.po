@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2016-2017
+# David Sowa <isithere2@yahoo.com>, 2016-2018
 # enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:04+0100\n"
-"PO-Revision-Date: 2018-02-08 01:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-02-09 09:04+0100\n"
+"PO-Revision-Date: 2018-02-10 21:59+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -442,6 +442,25 @@ msgstr "Un típicu mapa ensin agua."
 msgid "Mainland"
 msgstr "Tierra firme"
 
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "El Mediterraneu, el llar de los fenicios, griegos, exipcios y más sero los romanos. Axuntaron los rudimentarios conocimientos y principios d'organización de Mesopotamia y fixeron d'ellos dalgo más, treslladando, poro, el centru de deprendimientu y conocencia a la costa mediterránea, y poniendo ansina les bases a la civilización como la coñocemos güei. El mar Mediterraneu ta dicalluéu tou zarráu por tierra: al norte pola Galia Tresalpina, Italia, Grecia y Anatolia, al este por Siria, al sur por Libia y Mauritania, y al oeste por Iberia. El nome Mediterraneu derívase del llatín, pero a los romanos-yos prestaba más nomalu «Mare Intérnum», o mesmamente «Mare Nóstrum»."
+
+#: maps/random/mediterranean.jsonsettings.Name
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgid "Mediterranean"
+msgstr "Mediterraneu"
+
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
@@ -631,7 +650,7 @@ msgstr ""
 
 #: maps/random/scythian_rivulet.jsonsettings.Name
 msgid "Scythian Rivulet"
-msgstr ""
+msgstr "Regatu d'Escitia"
 
 #: maps/random/snowflake_searocks.jsonsettings.Description
 msgid "Many small islands connected to each other by narrow passages."
@@ -683,7 +702,7 @@ msgstr "El Nilu"
 
 #: maps/random/unknown.jsonsettings.Description
 msgid "The unknown. Warning: May be a naval map."
-msgstr ""
+msgstr "Lo descoñocío. Avisu: Esti pue ser un mapa naval. "
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
@@ -691,7 +710,7 @@ msgstr "Descoñocío"
 
 #: maps/random/unknown_land.jsonsettings.Description
 msgid "The unknown."
-msgstr ""
+msgstr "Lo descoñocío."
 
 #: maps/random/unknown_land.jsonsettings.Name
 msgid "Unknown Land"
@@ -740,12 +759,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgid "Alpine"
-msgstr ""
+msgstr "Alpín"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Alpine"
-msgstr ""
+msgstr "Alpín"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgid ""
@@ -766,12 +785,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgid "Autumn"
-msgstr ""
+msgstr "La seronda"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Autumn"
-msgstr ""
+msgstr "La seronda"
 
 #: maps/random/rmbiome/generic/desert.jsonDescription.Description
 msgid ""
@@ -811,15 +830,6 @@ msgid ""
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr ""
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgid "Mediterranean"
-msgstr "Mediterraneu"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Mediterraneu"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
@@ -862,12 +872,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgid "Snowy"
-msgstr ""
+msgstr "Ñeváu"
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Snowy"
-msgstr ""
+msgstr "Ñeváu"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgid ""
@@ -888,12 +898,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgid "Temperate"
-msgstr ""
+msgstr "Templáu"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Temperate"
-msgstr ""
+msgstr "Templáu"
 
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Description
 msgid ""
@@ -936,12 +946,12 @@ msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgid "Frozen Lake"
-msgstr ""
+msgstr "Llagu xeláu"
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Frozen Lake"
-msgstr ""
+msgstr "Llagu xeláu"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
 msgid ""
@@ -960,12 +970,12 @@ msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgid "Late Spring"
-msgstr ""
+msgstr "Tarde na primavera"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Late Spring"
-msgstr ""
+msgstr "Tarde na primavera"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
 msgid ""
@@ -982,12 +992,12 @@ msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgid "Winter"
-msgstr ""
+msgstr "L'iviernu"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Winter"
-msgstr ""
+msgstr "L'iviernu"
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
 msgid ""
@@ -1006,12 +1016,12 @@ msgstr ""
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
 msgid "Spring"
-msgstr ""
+msgstr "La primavera"
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Spring"
-msgstr ""
+msgstr "La primavera"
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
 msgid ""
@@ -1028,12 +1038,12 @@ msgstr ""
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
 msgid "Summer"
-msgstr ""
+msgstr "El branu"
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Summer"
-msgstr ""
+msgstr "El branu"
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -1883,15 +1893,15 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Kushites.xml:PlayerData[1].Name:40
 msgid "Kushites"
-msgstr ""
+msgstr "Los cuxites"
 
 #: maps/scenarios/Sandbox - Kushites.xml:PlayerData[2].Name:40
 msgid "Egyptians"
-msgstr ""
+msgstr "Los exipcios"
 
 #: maps/scenarios/Sandbox - Kushites.xml:Name:40
 msgid "Sandbox - The Kushites"
-msgstr ""
+msgstr "Caxa de sable - los cuxites"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:Description:39
 msgid ""
@@ -2296,11 +2306,11 @@ msgstr ""
 
 #: maps/skirmishes/Butana Steppe (2).xml:PlayerData[1].Name:40
 msgid "West Player"
-msgstr ""
+msgstr "Xugador al oeste"
 
 #: maps/skirmishes/Butana Steppe (2).xml:PlayerData[2].Name:40
 msgid "East Player"
-msgstr ""
+msgstr "Xugador al este"
 
 #: maps/skirmishes/Butana Steppe (2).xml:Name:40
 msgid "Butana Steppe (2)"
@@ -2739,7 +2749,7 @@ msgstr ""
 
 #: maps/skirmishes/Via Augusta (4).xml:Name:40
 msgid "Via Augusta"
-msgstr ""
+msgstr "La Vía Augusta"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:39
 msgid ""
@@ -2764,3 +2774,8 @@ msgstr "Los montes que guarden la patria persa y qu'arrebalguen Persia, Susiana 
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Montes Zagros (2)"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Mediterraneu"

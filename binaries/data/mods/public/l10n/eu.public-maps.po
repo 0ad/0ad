@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:04+0100\n"
-"PO-Revision-Date: 2018-02-07 16:05+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2018-02-09 09:04+0100\n"
+"PO-Revision-Date: 2018-02-09 16:08+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -444,6 +444,25 @@ msgstr "Mapa arrunt bat, inongo ur masarik gabe."
 msgid "Mainland"
 msgstr "Lur Egonkorra"
 
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "Mediterraneoa: Feniziar, Greko, Egiptoar, eta beranduago Erromatarren bizilekua. Mesopotamia klasikoko antolaketaren funtsa hartu eta zerbait hobeagoan bihurtu zuten, jakintzaren zentroa eta ikasketak mediterraneoko kostaldera eramanez eta gaur egungo zibilizazioaren ezagueraren oinarriak jarriz. Itsasoa kostaldeaz ia erabat inguraturik dago: iparretik Alpeak haragoko Galia, Italia, Grezia eta Anatolia. Ekialdean Siria. Hegoaldean Libia eta Mauritania, eta Iberia sartaldean. Izena latinaren mailegua da, baino erromatarrek nahiago zuten «mare internum» edo «mare nostrum» deitu."
+
+#: maps/random/mediterranean.jsonsettings.Name
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgid "Mediterranean"
+msgstr "Mediterraneoa"
+
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
@@ -813,15 +832,6 @@ msgid ""
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Mediterraneoko klimak bedeinkaturiko eskualde batean has zaitez, lurralde bero eta abegikor batean. Altzifrek betiko haizearen kontrako borrokan dihardute oreinak bere itzalean bazkatzen diren bitartean, axolagabe eta zoriontsu. "
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgid "Mediterranean"
-msgstr "Mediterraneoa"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Mediterraneoa"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
@@ -2766,3 +2776,8 @@ msgstr "Persis, Susiana eta Mediaren artean irteten diren mendi neutralak Pertsi
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Zagros Mendiak (2)"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Mediterraneoa"

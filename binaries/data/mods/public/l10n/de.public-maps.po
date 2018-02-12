@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:04+0100\n"
-"PO-Revision-Date: 2018-02-07 14:44+0000\n"
+"POT-Creation-Date: 2018-02-09 09:04+0100\n"
+"PO-Revision-Date: 2018-02-10 13:10+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -456,6 +456,25 @@ msgstr "Eine typische Karte ohne Wasser."
 msgid "Mainland"
 msgstr "Festland"
 
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "Das Mittelmeer, Heimat der Phönizier, Griechen, Ägypter und später auch der Römer. Sie nahmen das rudimentäre Wissen und die Prinzipien der Organisation von Mesopatamien und erschufen daraus etwas Neues, wodurch sich das Zentrum des Lernens und des Wissens zur Mittelmeerküste verschob. So wurde der Grundstein für die Zivilisation, so wie wir sie heute kennen, gelegt. Das Mittelmeer ist fast völlig von Land umschlossen: Im Norden von Gallia Narbonensis, Italien, Griechenland (Graecia) und Anatolien, im Osten von Syrien, im Süden von Lybien und Mauretanien, und im Westen von der Iberischen Halbinsel. Die Römer nannten das Mittelmeer „Mare Internum“ oder sogar „Mare Nostrum“."
+
+#: maps/random/mediterranean.jsonsettings.Name
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgid "Mediterranean"
+msgstr "Mittelmeer"
+
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
@@ -825,15 +844,6 @@ msgid ""
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Starte in einer Region, die mit mediterranem Klima gesegnet ist, ein warmes und einladendes Land. Die Zypressen sind in einem ewigen Kampf mit den dominanten Zwergpalmen, während Wild in ihren Schatten grast, in seliger Unwissenheit."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgid "Mediterranean"
-msgstr "Mittelmeer"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Mediterran"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
@@ -1893,19 +1903,19 @@ msgstr "Sandkasten – Die Iberer"
 
 #: maps/scenarios/Sandbox - Kushites.xml:Description:40
 msgid "Play the Kushites faction in a non-threatening sandbox scenario."
-msgstr ""
+msgstr "Spiele die Kuschiten in einer unbedrohlichen Sandkastenumgebung."
 
 #: maps/scenarios/Sandbox - Kushites.xml:PlayerData[1].Name:40
 msgid "Kushites"
-msgstr ""
+msgstr "Kuschiten"
 
 #: maps/scenarios/Sandbox - Kushites.xml:PlayerData[2].Name:40
 msgid "Egyptians"
-msgstr ""
+msgstr "Ägypter"
 
 #: maps/scenarios/Sandbox - Kushites.xml:Name:40
 msgid "Sandbox - The Kushites"
-msgstr ""
+msgstr "Sandkasten - Die Kuschiten"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:Description:39
 msgid ""
@@ -2306,19 +2316,19 @@ msgstr "Belgisches Moor (2)"
 msgid ""
 "South of the Sahara, East of the Nile, lies a semi-arid region today known "
 "as the Butana Steppe."
-msgstr ""
+msgstr "Südlich der Sahara, östlich des Nils liegt eine semiaride Region, die heute als die Butana-Steppe bekannt ist."
 
 #: maps/skirmishes/Butana Steppe (2).xml:PlayerData[1].Name:40
 msgid "West Player"
-msgstr ""
+msgstr "Westlicher Spieler"
 
 #: maps/skirmishes/Butana Steppe (2).xml:PlayerData[2].Name:40
 msgid "East Player"
-msgstr ""
+msgstr "Östlicher Spieler"
 
 #: maps/skirmishes/Butana Steppe (2).xml:Name:40
 msgid "Butana Steppe (2)"
-msgstr ""
+msgstr "Butana-Steppe (2)"
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:Description:39
 msgid ""
@@ -2778,3 +2788,8 @@ msgstr "Das Gebirge begrenzt das persische Heimatland und überspannt die Territ
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Zāgros-Gebirge (2)"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Mediterran"

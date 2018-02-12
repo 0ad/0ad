@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017
+# David Sowa <isithere2@yahoo.com>, 2017-2018
 # enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-02-07 14:34+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-10 18:25+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +92,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Tiempu del altu'l fueu que queda: %(time)s."
 
 #: gui/session/menu.js:447
 msgctxt "team"
@@ -347,7 +347,7 @@ msgstr "Esperando a que los xugadores se conecten:"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr ""
+msgstr "Sincronizando la xugabilidá cola de los otros xugadores..."
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -1046,19 +1046,19 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1244
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s pa camudar l'orde."
 
 #: gui/session/session.js:1246
 msgid "Unordered"
-msgstr ""
+msgstr "Ensin ordenar"
 
 #: gui/session/session.js:1246
 msgid "Descending"
-msgstr ""
+msgstr "Descendente"
 
 #: gui/session/session.js:1246
 msgid "Ascending"
-msgstr ""
+msgstr "Ascendente"
 
 #: gui/session/session.js:1272
 #, javascript-format
@@ -1361,7 +1361,7 @@ msgstr "Resume"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr ""
+msgstr "Sala"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1377,11 +1377,11 @@ msgstr "Colar"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Amosar la sala multixugador nun ventanu de diálogu."
 
 #: gui/session/minimap_panel.xml:(tooltip):42
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Activar colores diplomátiques"
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-07 09:03+0100\n"
-"PO-Revision-Date: 2018-02-07 15:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-11 09:57+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra attack for melee units,"
 " 4m extra range and 5% better precision for ranged units, faster movement "
 "speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Unit dinaik pangkat ke kelas lanjutan dengan kualiti lebih baik: 20% hayat tambahan, 1 aras perisai tambahan bagi setiap jenis, 20% serangan tambahan untuk unit tempur, 4m jangkauan tambahan dan 5% ketepatan lebih baik untuk unit jarak jauh, kelajuan pergerakan lebih pantas dan kelajuan penyembuhan lebih baik serta jangkauan bomoh lebih jauh."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -415,38 +415,38 @@ msgstr "Argyraspís"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr ""
+msgstr "Pelapik plumbum melindungi badan kapal."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "Pelapik plumbum melindungi badan kapal. +2 tahap pada semua jenis perisai kapal."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
-msgstr ""
+msgstr "Pelapik badan berplumbum"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr ""
+msgstr "Hypozomata mengukuhkan struktur sesebuah kapal."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr ""
+msgstr "Hypozomata mengukuhkan struktur sesebuah kapal. +2 tahap pada semua jenis perisai kapal."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr ""
+msgstr "Pengekatan hypozomata"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
-msgstr ""
+msgstr "Rasuk diperkukuhkan dengan kayu untuk badan kapal."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
 "Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "Rasuk diperkukuhkan dengan kayu untuk badan kapal. +2 tahap pada semua jenis perisai kapal."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -471,7 +471,7 @@ msgstr "Tombak panjang yang direka khusus untuk askar berkuda."
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "Lengkapkan askar kuda melee anda dengan senjata lebih baik. Askar Berkuda +2 Serangan Tetak."
+msgstr "Lengkapkan askar kuda tempur anda dengan senjata lebih baik. Berkuda Tempur +2 Serangan Tetak."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -495,7 +495,7 @@ msgstr "Hasta"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr "Latihan meningkatkan serangan melee."
+msgstr "Latihan meningkatkan serangan tempur."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
@@ -536,7 +536,7 @@ msgstr "Gantikan senjata gangsa dengan besi."
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr ""
+msgstr "Lengkapkan askar berkuda tempur anda dengan senjata lebih baik. +20% serangan berkuda tempur."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -592,7 +592,7 @@ msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
 "been broken."
-msgstr ""
+msgstr "Selalunya askar infantri dapat membawa senjata kedua sebagai tambahan selain dari senjata utama beliau, akan digunakan jika senjata utama tidak berfungsi atau rosak."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
@@ -663,7 +663,7 @@ msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr ""
+msgstr "Kelas Kepakaran Infantri Jarah Jauh"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -690,11 +690,11 @@ msgstr "Dýnamis"
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr ""
+msgstr "Teknik kerja keluli rahsia menjadikan bila pedang lebih jelas dan ada ukiran yang cantik. Bukan sahaja itu, kekerasa keluli juga tidak dapat dibandingkan dengan lain-lain logam."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "+20% serangan Tetak untuk semua unit pedang dan unit cokmar."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -726,7 +726,7 @@ msgid ""
 "extra armor level of every type, 20% extra attack for melee units, extra "
 "range and better precision for ranged units, faster movement speeds and "
 "extra heal speed and range for healers."
-msgstr ""
+msgstr "Unit dinaik pangkat ke kelas elit mendapat kualiti lebih baik: 20% hayat tambahan, 1 aras perisai tambahan bagi setiap jenis, 20% serangan tambahan untuk unit tempur, jangkauan tambahan dan ketepatan lebih baik untuk unit jarak jauh, kelajuan pergerakan lebih pantas dan kelajuan penyembuhan lebih baik serta jangkauan bomoh lebih jauh."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -800,7 +800,7 @@ msgstr "Baja"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid "A horse drawn instrument to turn the sod."
-msgstr ""
+msgstr "Alat yang ditarik dengan kuda untuk mengemburkan tanah."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
@@ -871,7 +871,7 @@ msgstr "Tingkatkan kadar pengumpulan batu."
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Paksa hamba bantu pekerja anda melombong batu. +15% kadar pengumpulan batu."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -1060,7 +1060,7 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr ""
+msgstr "Mesin tenun membolehkan penciptaan pakaian yang lebih baik untuk peneroka. Suri rumah boleh diajar dari usia muda untuk menenun menggunakan mesin tenun, dan memperuntukan masa untuk menjana pendapatan darinya."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
@@ -1096,7 +1096,7 @@ msgstr "Pertukangan Batu Bergeometrik"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
-msgstr "Askar infantri melee +1 serangan tetak."
+msgstr "Askar infantri tempur +1 serangan tetak."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
@@ -1156,7 +1156,7 @@ msgstr "Penyembuhan Garison lwn. Penyembuhan-Kendiri"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
 msgid "Females vs. Population"
-msgstr "Warga Perempuan lwn. Populasi"
+msgstr "Perempuan lwn. Populasi"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
@@ -1334,7 +1334,7 @@ msgid ""
 "open-aired assembly place in the great Forum Romanum called the Comitium. "
 "Here citizens could air grievances and present petitions to the patrician "
 "politicians who ruled their city in the Senate."
-msgstr ""
+msgstr "Tempat perhimpunan umum biasanya dijalankan di pusat sivik masyarakat purba. Athen mempunyai Ekklesia, perhimpunan rakyat yang dianjur di Bukit Pnyx berhampiran agora yang memperlihatkan Akropolis. Puak Rom mempunyai tempat perhimpunan terbuka di Forum Romanum yang dikenali sebagai Comitium. Di sini warga Rom dapat meluahkan perasaan dan menyerahkan petisyen kepada ahli politik bangsawan yang memerintah bandar mereka menerusi Senat."
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
@@ -1352,7 +1352,7 @@ msgstr "Ekklēsía"
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
 "colonnaded enclosures."
-msgstr ""
+msgstr "Taman rumah yang bermula dari kawasan berpagar hinggalah tempat tertutup yang dihias dan mempunyai deretan tiang."
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
@@ -1415,7 +1415,7 @@ msgid ""
 "The javelin thong (the Greeks also called them loops, or bronkhos) increased"
 " the fulcrum action of the throwing arm mid-throw, increasing speed and "
 "range of the javelin."
-msgstr ""
+msgstr "Kendit lembing (puak Yunani menggelarnya gelung, atau bronkhos) dapat meningkatkan tindakan fulkrum lontaran, tingkatkan kelajuan dan jangkauan lembing."
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
 msgid "All Javelin units +2 pierce attack and +4 range."
@@ -1558,13 +1558,13 @@ msgstr "Tapak Kukuh"
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
-msgstr ""
+msgstr "Barualti pada kekotaan membolehkan askar luaskan lagi cahaya api untuk pertahanan menara utama."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid ""
 "Install crenellations and murder holes to have 40% more arrows fired per "
 "garrisoned soldier."
-msgstr ""
+msgstr "Pasang barualti dan lubang pembunuhan supaya dapat 40% lebih anak panah ditembak per askar yang bergarison."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1584,7 +1584,7 @@ msgstr "Tapak Batu"
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
+msgstr "Lubang pembunuhan membolehkan musuh diserang pada bahagian kaki menara."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
@@ -1718,7 +1718,7 @@ msgstr "Pengerahan"
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr ""
+msgstr "Pengerahan cukai askar berkuda semasa tempoh berperang dapat meningkatkan kedudukan askar raja."
 
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
@@ -1728,14 +1728,14 @@ msgstr "Semua askar berkuda -20% masa latihan, dan juga -10 hayat. Dapat Pengera
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
 msgid "Levy Cavalry"
-msgstr "Askar Berkuda Levy"
+msgstr "Cukai Askar Berkuda"
 
 #: simulation/data/technologies/training_levy_infantry.jsondescription
 #: simulation/data/technologies/persians/training_levy_infantry.jsondescription
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr ""
+msgstr "Pengerahan cukai askar infantri semasa tempoh berperang dapat meningkatkan kedudukan askar raja."
 
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
@@ -1745,7 +1745,7 @@ msgstr "Semua askar infantri -10% masa latihan, dan juga -5 hayat. Dapat Pengera
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
 msgid "Levy Infantry"
-msgstr "Infantri Levy"
+msgstr "Cukai Askar Infantri"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
@@ -1810,11 +1810,11 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr ""
+msgstr "Kesinambungan dagangan yang menjurus penubuhan kedai kekal dan keluarga mereka di negara asing, membolehkan mereka mengeksploitasi kemewahan negara tersebut."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr ""
+msgstr "Benarkan penggunaan pusat pengumpulan sekutu."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -1829,13 +1829,13 @@ msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
-msgstr ""
+msgstr "Bergantung pada perdagangan dan pengembaraan manusia jelajah melangkaui tanah asal mereka dan melukis peta berkenaannya sebagai perkongsian dan kenangan penemuan mereka."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr ""
+msgstr "Dapat lihat apa yang dilihat oleh sekutu anda, layari ringkasan mereka dan periksa sumber dan kiraan populasi mereka dalam panel atas."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
@@ -1845,7 +1845,7 @@ msgstr "Kartografi"
 msgid ""
 "Merchants' first goal was trading, but they also gathered information about "
 "the countries they crossed."
-msgstr ""
+msgstr "Matlamat utama pedagang adalah perniagaan, tetapi mereka juga mengumpul maklumat berkenaan negara yang mereka lalui."
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
@@ -1943,13 +1943,13 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr ""
+msgstr "Puak Carthage membina tembok bandar mereka dalam tiga lingkaran sepusat. Tembok-tembok ini sukar dicerobohi. Walaupun bandar telah ditawan oleh puak Rom, ia dilakukan menerusi pelabuhan bandar, bukannya dengan menembusi temboknya."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
 msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "Tembok, pintu pagar, dan menara Carthage mempunyai 3x hayat berbanding tembok biasa, juga masa pembinaan 2x ganda."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2309,11 +2309,11 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr ""
+msgstr "Puak Sparta tidak mempunyai aksar yang terbesar di dunia, tetapi askar yang terbaik di dunia kerana komitmen mereka. Askar mereka kurang kuantitinya tetapi lebih berkualiti. Pernah disebut Sparta tidak memerlukan tembok bandar yang kuat, kerana tembok yang sebenar adalah penduduknya."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population."
-msgstr "Sparta memiliki had populasi maksimum 10% lebih rendah."
+msgstr "Puak Sparta memiliki had populasi maksimum 10% lebih rendah."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2337,11 +2337,11 @@ msgstr "Agoge"
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr ""
+msgstr "Tireme Athens dapat melatih Askar Marin (Epibastes Athenaikos) dan Pemanah Upahan Crete (Toxotes Kretikos)."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Tireme Athens dapat melatih Askar Marin  dan Pemanah Upahan Crete."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -2367,25 +2367,25 @@ msgstr "Tembok Panjang Athen"
 msgid ""
 "+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "+25% Hayat dan -50% masa pembinaan untuk Pusat Sivik, Kuil, Piramid dan Keajaiban."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Senibina Monumental"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "Biarkan pendeta anda diurus oleh Ketua Pendeta sendiri - semoga Amun merahmatinya."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "Latih bomoh berpangkat elit."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "High Priest of Amun"
-msgstr ""
+msgstr "Ketua Pendeta Amun"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
@@ -2449,7 +2449,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr ""
+msgstr "Puak Parsi pernah mengerahkan sejumlah besar askar infantri ketika perang kerana saiz empayar Achaemenid dan proses pengerahan yang sebegitu. Umumnya askar infantri Parsi terlatih dan berperang dengan semangat waja. Walaubagaimanapun askar Parsi lemah dari segi pertarungan tanpa senjata, perlawanan jarak dekat. Dan juga selain dari regimen elit, askar infantri Parsi bukanlah kuasa ketenteraan yang terhebat."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
@@ -2457,7 +2457,7 @@ msgstr "Parsi memilik had populasi maksimum 10% lebih tinggi."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
-msgstr "Raja Agung Levy"
+msgstr "Kerahan Raja Agung"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2479,7 +2479,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "Puak Parsi telah membina Lebuh Raya Diraja sepanjang 1677 batu yang hebat bermula dari Sardis ke Susa; Darius Agung dan Xerses juga telah membina Persepolis yang hebat; Cyrus Agung telah menambahbaik Ecbatana dan 'membina semula' ibu kota Elamite lama di Susa."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid ""
@@ -2495,7 +2495,7 @@ msgstr "Senibina Parsi"
 msgid ""
 "The Persians had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "Bangsa Parsi mempunyai tradisi kehalusan memanah dan gemar menggunakan pemanah secara beramai-ramai di dalam pertempuran."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
@@ -2506,11 +2506,11 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr ""
+msgstr "Pemerintah Achaemenid terawal berjaya membangunkan Parsi sebagai empayar Asia pertama yang menguasai laut. Raja Agung mereka berbaik-baik dengan ramai kaum laut supaya dapat menggunakan perkhidmatan mereka, selain dari mendapat pelbagai inisiatif berkenaan teknologi laut. Ketika pemerintahan Darius Agung, sebagai contoh, satu terusan telah dibina di Mesir dan askar laut Parsi diarah menjelajahi sungai Indus. Mengikut Herodotus, sehingga 300 kapal askar Parsi telah diubahsuai untuk membawa kuda dan penunggangnya."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
-msgstr ""
+msgstr "Trireme Phoenicia memperoleh keupayaan yang dapat melatih unit berkuda."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -2552,7 +2552,7 @@ msgstr "Puak Rom adalah pakar dalam logistik perperangan."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr "Kem Berkubu dan Dinding Kepung Pelindung akan rosak 50% lebih lambat."
+msgstr "Kem Berkubu dan Tembok Kepung Pelindung akan rosak 50% lebih lambat."
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
@@ -2564,7 +2564,7 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr ""
+msgstr "Buku Sibylline atau 'Libri Sibyllini' merupakan satu koleksi ucapan bersifat ramalan, dihasilkan oleh hexameter Yunani, dibeli daripada sibyl oleh raja terakhir Rom, Tarquinius Superbus, dan digunakan ketika kemuncak krisis sepanjang sejarah Republik dan Empayar."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
@@ -2616,7 +2616,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr ""
+msgstr "Baka kuda Nisian yang kini telah pupus merupakan kuda terbesar dan terkuat pada masa lalu. Ia sangat-sangat dikehendaki oleh puak Seleucid dan Parsi sebagai tunggangan dan dikenakan perisai berat sepanjang waktu berlalu."
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
@@ -2636,7 +2636,7 @@ msgstr "Tentera reformasi Seleusid."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Romanized Heavy Swordsman and Seleucid Cataphract."
-msgstr ""
+msgstr "Buka Aksar Berpedang Berat Rom dan Cataphract Seleucid."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -2648,7 +2648,7 @@ msgstr "Tentera tradisi Seleusid."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr ""
+msgstr "Buka Pikeman Berperisai Perak dan Kereta Berkuda Bersabit."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"

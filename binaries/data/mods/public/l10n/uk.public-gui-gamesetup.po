@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-11 20:36+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -178,7 +178,7 @@ msgstr "Кожна мапа обраного типу."
 #: gui/gamesetup/gamesetup.js:396
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Карта"
 
 #: gui/gamesetup/gamesetup.js:411
 msgctxt "Match settings tab name"
@@ -188,7 +188,7 @@ msgstr "Гравець"
 #: gui/gamesetup/gamesetup.js:421
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Тип гри"
 
 #: gui/gamesetup/gamesetup.js:461
 msgid "Map Type"
@@ -339,13 +339,13 @@ msgstr "Переключіть, для розміщення героїв у га
 
 #: gui/gamesetup/gamesetup.js:827
 msgid "Nomad"
-msgstr ""
+msgstr "Кочівник"
 
 #: gui/gamesetup/gamesetup.js:828
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "У режимі Кочівника, гравці починають лише з декількома юнітами й мусять знайти придатне місце для будівництва їхнього міста. Рекомендовано припинення бойових дій."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -456,17 +456,17 @@ msgstr "Налаштувати ШІ: %(description)s."
 #: gui/gamesetup/gamesetup.js:1157
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Переключіть %(name)s вкладку налаштувань."
 
 #: gui/gamesetup/gamesetup.js:1158
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Використовуйте, %(hotkey)s щоб перемістити вкладку налаштувань донизу."
 
 #: gui/gamesetup/gamesetup.js:1159
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Використовуйте, %(hotkey)s щоб перемістити вкладку налаштувань догори."
 
 #: gui/gamesetup/gamesetup.js:1678
 msgctxt "map selection"
@@ -490,7 +490,7 @@ msgstr "Виберіть біом випадковим чином."
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2049
 msgctxt "settings value"
@@ -508,7 +508,7 @@ msgstr "Ні"
 #: gui/gamesetup/gamesetup.js:2086
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2173
 #, javascript-format
@@ -664,7 +664,7 @@ msgstr "Виберіть команду гравця."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):207
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Показати загальний чат у діалоговому вікні"
 
 #: gui/text/quotes.txt:1
 msgid ""
@@ -787,7 +787,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "\"Немає нічого більш рабського, ніж розкіш і млість, і нічого більше царственого, ніж праця? \\[...] Хіба ви не знаєте, що кінцева мета перемоги полягає для нас у тому, щоб не робити того, що роблять підкорені?\" - Александр Великий (Плутарх, \"Паралельні Життєписи\", \"Александр\", ІІ, 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -803,7 +803,7 @@ msgid ""
 "labours themselves, provided they lead to glorious achievements.\" - "
 "Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
 "Alexander\", 5.26)"
-msgstr ""
+msgstr "\"Я, наприклад, вважаю, що до сміливої людини немає кінця праці, крім самої праці, за умови, що вона приносить славні досягнення.\" - Александр Великий звертається до своїх загонів (Арріан, Анабазис Александра, 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -921,7 +921,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "\"Сам Александр, страждаючи спрагою, з великим болем і труднощами, проте, привів армію пішки \\[...]. У цей час кілька легкоозброєних солдатів \\[...] знайшли трохи води \\[...], налили воду в шолом і принесли йому. Він взяв воду і, похваливши тих, хто приніс її, негайно вилив на землю на очах усіх.\" - Арріан про марш Александра через Геродську пустелю (\"Анабазіс Александра\", 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -932,7 +932,7 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "\"Кинувши спис в обличчя Мітрідата, він  \\[Александр] збив його на землю. Тоді Ресас \\[перс] \\[...] вдарив його по голові своїм мечем. Александр кинув і його на землю, пробиваючи його списом через нагрудний знак у панцирі. Спірідат \\[перс] вже підняв був свій меч на Александра ззаду, коли Кліт \\[...] відрубав його руку.\" - Арріан про битву при Гранику (\"Анабазіс Александра\", 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
@@ -1075,7 +1075,7 @@ msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "\"Я Дарій, великий цар, цар царів, цар Персії, цар країн, \\ [...] 23 земель в цілому.\" - Дарій І. (Бейстунський напис, стовпчик І, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1085,7 +1085,7 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Фраорт був схоплений і постав перед мною. Я відрізав йому ніс, вуха і язик, і я виколов одне око, і він був у ланцюгах при вході до мого палацу, і весь народ його бачив. Тоді я розіп'яв його в Екбатані; і чоловіки, які були його найвизначнішими послідовниками \\ [...] Я здер і вивішував їх шкіри, набиті соломою.\" - Дарій І (Бехістунський напис, стопчик ІІ, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1418,7 +1418,7 @@ msgstr "\"Це солодко і благородно померти за кра
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "\"Я - Кір, цар світу...\" - Напис (Циліндр Кіра)"
 
 #: gui/text/quotes.txt:111
 msgid ""
@@ -1667,7 +1667,7 @@ msgid ""
 "\"He \\[Alexander] thought nothing invincible for the courageous, and "
 "nothing secure for the cowardly.\" - Plutarch (\"Parallel Lives\", "
 "\"Alexander\", sec. 58)"
-msgstr ""
+msgstr "\"Він \\ [Александр] вважав, що для сміливих немає жодної перешкоди, а для боягузів ніякої опори.\" - Плутарх (\"Паралельні Життєписи\", \"Александр\", ІІ. 58)"
 
 #: gui/text/quotes.txt:146
 msgid ""
