@@ -18,7 +18,8 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
-Engine.LoadLibrary("heightmap");
+
+TILE_CENTERED_HEIGHT_MAP = true;
 
 setBiome("generic/desert");
 
@@ -73,7 +74,9 @@ createArea(
 Engine.SetProgress(20);
 
 g_Map.log("Smoothing heightmap");
-globalSmoothHeightmap(scaleByMapSize(0.1, 0.5));
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(1, scaleByMapSize(0.1, 0.5), 1));
 Engine.SetProgress(25);
 
 g_Map.log("Marking water");
@@ -119,7 +122,7 @@ if (!isNomad())
 	let playerBases = placeRandom(
 		sortAllPlayers(),
 		[
-			avoidClasses(g_TileClasses.mountain, 5),
+			avoidClasses(g_TileClasses.mountain, scaleByMapSize(5, 10)),
 			stayClasses(g_TileClasses.land, defaultPlayerBaseRadius())
 		]);
 

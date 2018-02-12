@@ -462,7 +462,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	startingSize = startingSize * cell * cell;
 	if (this.Config.debug > 1)
 		API3.warn("starting size " + startingSize + "(cut at 24000 for fish pushing)");
-	if (startingSize < 24000)
+	if (startingSize < 25000)
 	{
 		this.saveSpace = true;
 		this.Config.Economy.popForDock = Math.min(this.Config.Economy.popForDock, 16);
@@ -473,7 +473,13 @@ m.HQ.prototype.configFirstBase = function(gameState)
 				if (gameState.ai.HQ.navalRegions[sea])
 					this.navalManager.updateFishingBoats(sea, num);
 		}
+		this.maxFields = 1;
+		this.needCorral = true;
 	}
+	else if (startingSize < 60000)
+		this.maxFields = 2;
+	else
+		this.maxFields = false;
 
 	// - count the available wood resource, and react accordingly
 	let startingFood = gameState.getResources().food;
@@ -493,7 +499,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	}
 	if (startingFood < 800)
 	{
-		if (startingSize < 24000)
+		if (startingSize < 25000)
 		{
 			this.needFish = true;
 			this.Config.Economy.popForDock = 1;

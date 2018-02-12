@@ -2,8 +2,63 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="structural/kush_pyramid_small.xml"/>
-    <variant file="structural/kush_pyramid_large.xml"/>
+    <variant frequency="1" name="Base">
+      <textures>
+        <texture file="structural/kush_struct_2.png" name="baseTex"/>
+        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
+        <texture file="structural/ptol_struct_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <mesh>structural/kush_pyramid_1.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/kushites/pyramid_paintings.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/ao/kush_pyramid_1.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>structural/kush_pyramid_2.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/kushites/pyramid_paintings.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/ao/kush_pyramid_2.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="3">
+      <mesh>structural/kush_pyramid_3.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_2x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/kushites/pyramid_paintings.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/ao/kush_pyramid_3.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="4">
+      <mesh>structural/kush_pyramid_4.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/kushites/pyramid_paintings.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/ao/kush_pyramid_4.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_kush.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
   </group>
   <group>
     <variant frequency="1" name="alive"/>

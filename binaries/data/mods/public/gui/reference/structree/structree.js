@@ -66,11 +66,11 @@ function selectCiv(civCode)
 
 	for (let u of templateLists.units.keys())
 		if (!g_ParsedData.units[u])
-			g_ParsedData.units[u] = loadUnit(u);
+			g_ParsedData.units[u] = loadEntityTemplate(u);
 
 	for (let s of templateLists.structures.keys())
 		if (!g_ParsedData.structures[s])
-			g_ParsedData.structures[s] = loadStructure(s);
+			g_ParsedData.structures[s] = loadEntityTemplate(s);
 
 	// Load technologies
 	g_ParsedData.techs[civCode] = {};

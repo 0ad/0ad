@@ -1,4 +1,20 @@
-const g_TileVertices = deepfreeze([new Vector2D(0, 0), new Vector2D(1, 0), new Vector2D(0, 1), new Vector2D(1, 1)]);
+const g_TileVertices = deepfreeze([
+	new Vector2D(0, 0),
+	new Vector2D(0, 1),
+	new Vector2D(1, 0),
+	new Vector2D(1, 1)
+]);
+
+const g_AdjacentCoordinates = deepfreeze([
+	new Vector2D(1, 0),
+	new Vector2D(1, 1),
+	new Vector2D(0, 1),
+	new Vector2D(-1, 1),
+	new Vector2D(-1, 0),
+	new Vector2D(-1, -1),
+	new Vector2D(0, -1),
+	new Vector2D(1, -1)
+]);
 
 function diskArea(radius)
 {

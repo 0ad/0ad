@@ -19,7 +19,8 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
-Engine.LoadLibrary("heightmap");
+
+TILE_CENTERED_HEIGHT_MAP = true;
 
 const tWater = "medit_sand_wet";
 const tSnowedRocks = ["alpine_cliff_b", "alpine_cliff_snow"];
@@ -92,7 +93,9 @@ createArea(
 Engine.SetProgress(20);
 
 g_Map.log("Smoothing heightmap");
-globalSmoothHeightmap(scaleByMapSize(0.3, 0.8));
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(1, scaleByMapSize(0.3, 0.8), 1));
 Engine.SetProgress(25);
 
 g_Map.log("Marking water");

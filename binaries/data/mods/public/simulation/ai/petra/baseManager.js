@@ -369,7 +369,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 {
 	for (let type of Resources.GetCodes())
 	{
-		if (type === "food")
+		if (type == "food")
 		{
 			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{
@@ -378,7 +378,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				let numQueue = queues.field.countQueuedUnits();
 
 				// TODO  if not yet farms, add a check on time used/lost and build farmstead if needed
-				if (numFarms + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
+				if (numFarms + numQueue == 0)	// starting game, rely on fruits as long as we have enough of them
 				{
 					if (count < 600)
 					{
@@ -386,7 +386,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 						gameState.ai.HQ.needFarm = true;
 					}
 				}
-				else
+				else if (!gameState.ai.HQ.maxFields || numFarms + numQueue < gameState.ai.HQ.maxFields)
 				{
 					let numFound = gameState.getOwnFoundations().filter(API3.Filters.byClass("Field")).length;
 					let goal = this.Config.Economy.provisionFields;
@@ -395,11 +395,14 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 					if (numFound + numQueue < goal)
 						queues.field.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
 				}
+				else if (gameState.ai.HQ.needCorral && !gameState.getOwnEntitiesByClass("Corral", true).hasEntities() &&
+				         !queues.corral.hasQueuedUnits() && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral"))
+					queues.corral.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_corral", { "base": this.ID }));
+				continue;
 			}
-			else if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_field")) &&
-				 !queues.corral.hasQueuedUnits() &&
-				 !gameState.getOwnEntitiesByClass("Corral", true).hasEntities() &&
-				 gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral"))
+			if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_field")) &&
+			    !gameState.getOwnEntitiesByClass("Corral", true).hasEntities() &&
+			    !queues.corral.hasQueuedUnits() && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral"))
 			{
 				let count = this.getResourceLevel(gameState, type, gameState.currentPhase() > 1);  // animals are not accounted
 				if (count < 600)
@@ -408,53 +411,52 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 					gameState.ai.HQ.needCorral = true;
 				}
 			}
+			continue;
 		}
-		else if (!queues.dropsites.hasQueuedUnits() && !gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).hasEntities() &&
-		         gameState.sharedScript.resourceMaps[type])
-		{
-			if (gameState.ai.playedTurn > this.gatherers[type].nextCheck)
-			{
-				let self = this;
-				this.gatherersByType(gameState, type).forEach(function (ent) {
-					if (ent.unitAIState() === "INDIVIDUAL.GATHER.GATHERING")
-						++self.gatherers[type].used;
-					else if (ent.unitAIState() === "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
-						++self.gatherers[type].lost;
-				});
-				// TODO  add also a test on remaining resources
-				let total = this.gatherers[type].used + this.gatherers[type].lost;
-				if (total > 150 || total > 60 && type !== "wood")
-				{
-					let ratio = this.gatherers[type].lost / total;
-					if (ratio > 0.15)
-					{
-						let newDP = this.findBestDropsiteLocation(gameState, type);
-						if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
-							queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
-						else if (!gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() && !queues.civilCentre.hasQueuedUnits())
-						{
-							// No good dropsite, try to build a new base if no base already planned,
-							// and if not possible, be less strict on dropsite quality
-							if ((!gameState.ai.HQ.canExpand || !gameState.ai.HQ.buildNewBase(gameState, queues, type)) &&
-							    newDP.quality > Math.min(25, 50*0.15/ratio) &&
-							    gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
-								queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
-						}
-					}
-					this.gatherers[type].nextCheck = gameState.ai.playedTurn + 20;
-					this.gatherers[type].used = 0;
-					this.gatherers[type].lost = 0;
-				}
-				else if (total === 0)
-					this.gatherers[type].nextCheck = gameState.ai.playedTurn + 10;
-			}
-		}
-		else
+		// Non food stuff
+		if (!gameState.sharedScript.resourceMaps[type] || queues.dropsites.hasQueuedUnits() ||
+		    gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).hasEntities())
 		{
 			this.gatherers[type].nextCheck = gameState.ai.playedTurn;
 			this.gatherers[type].used = 0;
 			this.gatherers[type].lost = 0;
+			continue;
 		}
+		if (gameState.ai.playedTurn <= this.gatherers[type].nextCheck)	// rototo <
+			continue;
+		for (let ent of this.gatherersByType(gameState, type).values())
+		{
+			if (ent.unitAIState() == "INDIVIDUAL.GATHER.GATHERING")
+				++this.gatherers[type].used;
+			else if (ent.unitAIState() == "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
+				++this.gatherers[type].lost;
+		}
+		// TODO  add also a test on remaining resources.
+		let total = this.gatherers[type].used + this.gatherers[type].lost;
+		if (total > 150 || total > 60 && type != "wood")
+		{
+			let ratio = this.gatherers[type].lost / total;
+			if (ratio > 0.15)
+			{
+				let newDP = this.findBestDropsiteLocation(gameState, type);
+				if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
+					queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
+				else if (!gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() && !queues.civilCentre.hasQueuedUnits())
+				{
+					// No good dropsite, try to build a new base if no base already planned,
+					// and if not possible, be less strict on dropsite quality.
+					if ((!gameState.ai.HQ.canExpand || !gameState.ai.HQ.buildNewBase(gameState, queues, type)) &&
+					    newDP.quality > Math.min(25, 50*0.15/ratio) &&
+					    gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
+						queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
+				}
+			}
+			this.gatherers[type].nextCheck = gameState.ai.playedTurn + 20;
+			this.gatherers[type].used = 0;
+			this.gatherers[type].lost = 0;
+		}
+		else if (total == 0)
+			this.gatherers[type].nextCheck = gameState.ai.playedTurn + 10;
 	}
 
 };

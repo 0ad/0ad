@@ -96,78 +96,63 @@ function loadAuraData(templateName)
 }
 
 /**
- * Load and parse unit from entity template.
+ * Load and parse a structure, unit, resource, etc from its entity template file.
  *
- * @param {string} templateName
- * @return Sanitized object about the requested unit or null if entity template doesn't exist.
+ * @return {(object|null)} Sanitized object about the requested template or null if entity template doesn't exist.
  */
-function loadUnit(templateName)
+function loadEntityTemplate (templateName)
 {
 	if (!Engine.TemplateExists(templateName))
 		return null;
 
 	let template = loadTemplate(templateName);
-	let unit = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
+	let parsed = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
+	parsed.name.internal = templateName;
 
-	unit.production = loadProductionQueue(template);
-	unit.builder = loadBuildQueue(template);
+	parsed.production = loadProductionQueue(template);
+	if (template.Builder)
+		parsed.builder = loadBuildQueue(template);
 
-	if (unit.upgrades)
-		unit.upgrades = getActualUpgradeData(unit.upgrades);
+	if (template.ResourceSupply)
+		parsed.supply = {
+			"type": template.ResourceSupply.Type.split("."),
+			"amount": template.ResourceSupply.Amount,
+		};
 
-	return unit;
-}
+	if (parsed.upgrades)
+		parsed.upgrades = getActualUpgradeData(parsed.upgrades);
 
-/**
- * Load and parse structure from entity template.
- *
- * @param {string} templateName
- * @return {object} Sanitized data about the requested structure or null if entity template doesn't exist.
- */
-function loadStructure(templateName)
-{
-	if (!Engine.TemplateExists(templateName))
-		return null;
-
-	let template = loadTemplate(templateName);
-	let structure = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
-
-	structure.production = loadProductionQueue(template);
-
-	if (structure.upgrades)
-		structure.upgrades = getActualUpgradeData(structure.upgrades);
-
-	if (structure.wallSet)
+	if (parsed.wallSet)
 	{
-		structure.wallset = {};
+		parsed.wallset = {};
 
-		if (!structure.upgrades)
-			structure.upgrades = [];
+		if (!parsed.upgrades)
+			parsed.upgrades = [];
 
 		// Note: An assumption is made here that wall segments all have the same armor and auras
-		let struct = loadStructure(structure.wallSet.templates.long);
-		structure.armour = struct.armour;
-		structure.auras = struct.auras;
+		let struct = loadEntityTemplate(parsed.wallSet.templates.long);
+		parsed.armour = struct.armour;
+		parsed.auras = struct.auras;
 
 		// For technology cost multiplier, we need to use the tower
-		struct = loadStructure(structure.wallSet.templates.tower);
-		structure.techCostMultiplier = struct.techCostMultiplier;
+		struct = loadEntityTemplate(parsed.wallSet.templates.tower);
+		parsed.techCostMultiplier = struct.techCostMultiplier;
 
 		let health;
 
-		for (let wSegm in structure.wallSet.templates)
+		for (let wSegm in parsed.wallSet.templates)
 		{
 			if (wSegm == "fort" || wSegm == "curves")
 				continue;
 
-			let wPart = loadStructure(structure.wallSet.templates[wSegm]);
-			structure.wallset[wSegm] = wPart;
+			let wPart = loadEntityTemplate(parsed.wallSet.templates[wSegm]);
+			parsed.wallset[wSegm] = wPart;
 
 			for (let research of wPart.production.techs)
-				structure.production.techs.push(research);
+				parsed.production.techs.push(research);
 
 			if (wPart.upgrades)
-				structure.upgrades = structure.upgrades.concat(wPart.upgrades);
+				parsed.upgrades = parsed.upgrades.concat(wPart.upgrades);
 
 			if (["gate", "tower"].indexOf(wSegm) != -1)
 				continue;
@@ -182,24 +167,24 @@ function loadStructure(templateName)
 			health.max = Math.max(health.max, wPart.health);
 		}
 
-		if (structure.wallSet.templates.curves)
-			for (let curve of structure.wallSet.templates.curves)
+		if (parsed.wallSet.templates.curves)
+			for (let curve of parsed.wallSet.templates.curves)
 			{
-				let wPart = loadStructure(curve);
+				let wPart = loadEntityTemplate(curve);
 				health.min = Math.min(health.min, wPart.health);
 				health.max = Math.max(health.max, wPart.health);
 			}
 
 		if (health.min == health.max)
-			structure.health = health.min;
+			parsed.health = health.min;
 		else
-			structure.health = sprintf(translate("%(health_min)s to %(health_max)s"), {
+			parsed.health = sprintf(translate("%(health_min)s to %(health_max)s"), {
 				"health_min": health.min,
 				"health_max": health.max
 			});
 	}
 
-	return structure;
+	return parsed;
 }
 
 /**

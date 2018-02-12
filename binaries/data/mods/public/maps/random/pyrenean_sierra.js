@@ -242,20 +242,6 @@ function createPyreneans()
 	}
 }
 
-g_Map.log("Smoothing pyreneans");
-for (let ix = 1; ix < mapSize - 1; ++ix)
-	for (let iz = 1; iz < mapSize - 1; ++iz)
-	{
-		let position = new Vector2D(ix, iz);
-		if (g_Map.validHeight(position) && clPyrenneans.countMembersInRadius(position, 1))
-		{
-			let height = g_Map.getHeight(position);
-			let index = 1 / (1 + Math.max(0, height / 7));
-			g_Map.setHeight(position, height * (1 - index) + g_Map.getAverageHeight(position) * index);
-		}
-	}
-Engine.SetProgress(48);
-
 g_Map.log("Creating passages");
 var passageLocation = 0.35;
 var passageVec = mountainDirection.perpendicular().mult(passageLength);
@@ -278,18 +264,11 @@ for (let passLoc of [passageLocation, 1 - passageLocation])
 	}
 Engine.SetProgress(50);
 
-g_Map.log("Smoothing the mountains");
-for (let ix = 1; ix < mapSize - 1; ++ix)
-	for (let iz = 1; iz < mapSize - 1; ++iz)
-	{
-		let position = new Vector2D(ix, iz);
-		if (g_Map.inMapBounds(position) && clPyrenneans.countMembersInRadius(position, 1))
-		{
-			let heightNeighbor = g_Map.getAverageHeight(position);
-			let index = 1 / (1 + Math.max(0, (g_Map.getHeight(position) - 10) / 7));
-			g_Map.setHeight(position, g_Map.getHeight(position) * (1 - index) + heightNeighbor * index);
-		}
-	}
+g_Map.log("Smoothing the pyreneans");
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(1, 0.3, 1),
+	new NearTileClassConstraint(clPyrenneans, 1));
 
 g_Map.log("Creating oceans");
 for (let ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48), mapCenter)[0])
@@ -301,27 +280,10 @@ for (let ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48),
 		]);
 
 g_Map.log("Smoothing around the water");
-var smoothDist = 5;
-for (let ix = 1; ix < mapSize - 1; ++ix)
-	for (let iz = 1; iz < mapSize - 1; ++iz)
-	{
-		let position = new Vector2D(ix, iz);
-		if (!g_Map.inMapBounds(position) || !clWater.countMembersInRadius(position, smoothDist))
-			continue;
-		let averageHeight = 0;
-		let todivide = 0;
-		for (let xx = -smoothDist; xx <= smoothDist; ++xx)
-			for (let yy = -smoothDist; yy <= smoothDist; ++yy)
-			{
-				let smoothPos = Vector2D.add(position, new Vector2D(xx, yy));
-				if (g_Map.inMapBounds(smoothPos) && (xx != 0 || yy != 0))
-				{
-					averageHeight += g_Map.getHeight(smoothPos) / (Math.abs(xx) + Math.abs(yy));
-					todivide += 1 / (Math.abs(xx) + Math.abs(yy));
-				}
-			}
-		g_Map.setHeight(position, (averageHeight + 2 * g_Map.getHeight(position)) / (todivide + 2));
-	}
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(5, 0.9, 1),
+	new NearTileClassConstraint(clWater, 5));
 Engine.SetProgress(55);
 
 g_Map.log("Creating hills");
