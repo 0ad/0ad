@@ -120,6 +120,8 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
  */
 function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEIGHT, initialHeightmap = undefined, smoothness = 0.5, heightmap = g_Map.height)
 {
+	g_Map.log("Generating map using the diamond-square algorithm");
+
 	initialHeightmap = (initialHeightmap || [[randFloat(minHeight / 2, maxHeight / 2), randFloat(minHeight / 2, maxHeight / 2)], [randFloat(minHeight / 2, maxHeight / 2), randFloat(minHeight / 2, maxHeight / 2)]]);
 	let heightRange = maxHeight - minHeight;
 	if (heightRange <= 0)
@@ -194,56 +196,6 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 	for (let x = 0; x < heightmap.length; ++x)
 		for (let y = 0; y < heightmap[0].length; ++y)
 			heightmap[x][y] = newHeightmap[x + shift[0]][y + shift[1]];
-}
-
-/**
- * Pushes a rectangular area towards a given height smoothing it into the original terrain
- * @note The window function to determine the smooth is not exactly a gaussian to ensure smooth edges
- * @param {Vector2D} center - The x and y coordinates of the center point (rounded in this function)
- * @param {float} [dx] - Distance from the center in x direction the rectangle ends (half width, rounded in this function)
- * @param {float} [dy] - Distance from the center in y direction the rectangle ends (half depth, rounded in this function)
- * @param {float} [targetHeight] - Height the center of the rectangle will be pushed to
- * @param {float} [strength=1] - How strong the height is pushed: 0 means not at all, 1 means the center will be pushed to the target height
- * @param {array} [heightmap=g_Map.height] - The heightmap to be manipulated
- * @todo Make the window function an argument and maybe add some
- */
-function rectangularSmoothToHeight(center, dx, dy, targetHeight, strength = 0.8, heightmap = g_Map.height)
-{
-	let x = Math.round(center.x);
-	let y = Math.round(center.y);
-	dx = Math.round(dx);
-	dy = Math.round(dy);
-
-	let heightmapWin = [];
-	for (let wx = 0; wx < 2 * dx + 1; ++wx)
-	{
-		heightmapWin.push([]);
-		for (let wy = 0; wy < 2 * dy + 1; ++wy)
-		{
-			let actualX = x - dx + wx;
-			let actualY = y - dy + wy;
-			if (actualX >= 0 && actualX < heightmap.length - 1 && actualY >= 0 && actualY < heightmap[0].length - 1) // Is in map
-				heightmapWin[wx].push(heightmap[actualX][actualY]);
-			else
-				heightmapWin[wx].push(targetHeight);
-		}
-	}
-	for (let wx = 0; wx < 2 * dx + 1; ++wx)
-	{
-		for (let wy = 0; wy < 2 * dy + 1; ++wy)
-		{
-			let actualX = x - dx + wx;
-			let actualY = y - dy + wy;
-			if (actualX >= 0 && actualX < heightmap.length - 1 && actualY >= 0 && actualY < heightmap[0].length - 1) // Is in map
-			{
-				// Window function polynomial 2nd degree
-				let scaleX = 1 - (wx / dx - 1) * (wx / dx - 1);
-				let scaleY = 1 - (wy / dy - 1) * (wy / dy - 1);
-
-				heightmap[actualX][actualY] = heightmapWin[wx][wy] + strength * scaleX * scaleY * (targetHeight - heightmapWin[wx][wy]);
-			}
-		}
-	}
 }
 
 /**

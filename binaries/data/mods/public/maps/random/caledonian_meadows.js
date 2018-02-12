@@ -10,30 +10,6 @@ var oGroveEntities = ["structures/gaul_outpost", "gaia/flora_tree_oak_new"];
 var g_Map = new RandomMap(0, "whiteness");
 
 /**
- * Drags a path to a target height smoothing it at the edges and return some points along the path.
- */
-function placeRandomPathToHeight(start, target, targetHeight, tileClass, texture, width, distance, strength, heightmap)
-{
-	let painters = [new TerrainPainter(texture)];
-
-	if (tileClass)
-		painters.push(new TileClassPainter(tileClass));
-
-	let position = start.clone();
-	while (position.distanceTo(target) >= distance / 2)
-	{
-		rectangularSmoothToHeight(position, width * 3, width * 3, targetHeight, strength, heightmap);
-
-		createArea(
-			new ClumpPlacer(diskArea(width), 1, 1, Infinity, position),
-			painters);
-
-		position.add(new Vector2D(distance, 0).rotate(
-			-getAngle(position.x, position.y, target.x, target.y) - randFloat(-1, 1) * Math.PI / 2));
-	}
-}
-
-/**
  * Design resource spots
  */
 // Mines
@@ -318,15 +294,29 @@ myBiome.push({ // 10 Hilltop
 let [playerIDs, playerPosition] = sortPlayersByLocation(getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
 Engine.SetProgress(30);
 
-g_Map.log("Smooth player locations");
-for (let p = 0; p < playerIDs.length; ++p)
-	rectangularSmoothToHeight(playerPosition[p], 35, 35, playerHeight, 0.7);
+g_Map.log("Smoothing player locations");
+for (let position of playerPosition)
+	createArea(
+		new ClumpPlacer(diskArea(35), 1, 1, Infinity, position),
+		new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 35));
 
-g_Map.log("Creating paths");
-let tchm = getTileCenteredHeightmap();
+g_Map.log("Creating paths between players");
 let clPath = g_Map.createTileClass();
 for (let i = 0; i < playerPosition.length; ++i)
-	placeRandomPathToHeight(playerPosition[i], playerPosition[(i + 1) % playerPosition.length], playerHeight, clPath, tPath, 4, 4, 0.08, g_Map.height);
+	createArea(
+		new RandomPathPlacer(playerPosition[i], playerPosition[(i + 1) % playerPosition.length], 4, 2, false),
+		[
+			new TerrainPainter(tPath),
+			new ElevationBlendingPainter(playerHeight, 0.4),
+			new TileClassPainter(clPath)
+		]);
+
+g_Map.log("Smoothing paths");
+createArea(
+	new MapBoundsPlacer(),
+	new SmoothingPainter(5, 1, 1),
+	new NearTileClassConstraint(clPath, 5));
+
 Engine.SetProgress(45);
 
 g_Map.log("Determining resource locations");
@@ -339,6 +329,7 @@ Engine.SetProgress(55);
 /**
  * Divide tiles in areas by height and avoid paths
  */
+let tchm = getTileCenteredHeightmap();
 let areas = heighLimits.map(heightLimit => []);
 for (let x = 0; x < tchm.length; ++x)
 	for (let y = 0; y < tchm[0].length; ++y)

@@ -466,15 +466,16 @@ if (g_Map.size >= 384)
 
 setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialHeightmap, 0.8);
 
-// Apply simple erosion
+g_Map.log("Eroding map");
 for (let i = 0; i < 5; ++i)
 	splashErodeMap(0.1);
 
+g_Map.log("Smoothing map");
 createArea(
 	new MapBoundsPlacer(),
 	new SmoothingPainter(1, 0.8, 1));
 
-// Final rescale
+g_Map.log("Rescaling map");
 rescaleHeightmap(heightRange.min, heightRange.max);
 
 Engine.SetProgress(25);
@@ -499,16 +500,13 @@ let playerHeight = (playerHeightRange.min + playerHeightRange.max) / 2; // Avera
 g_Map.log("Chosing starting locations");
 let [playerIDs, playerPosition] = sortPlayersByLocation(getStartLocationsByHeightmap(playerHeightRange, 1000, 30));
 
-Engine.SetProgress(30);
+g_Map.log("Smoothing starting locations before height calculation");
+for (let position of playerPosition)
+	createArea(
+		new ClumpPlacer(diskArea(20), 0.8, 0.8, Infinity, position),
+		new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 20));
 
-/**
- * Smooth Start Locations before height region calculation
- */
-let playerBaseRadius = 35;
-if (g_Map.size < 256)
-	playerBaseRadius = 25;
-for (let p = 0; p < playerIDs.length; ++p)
-	rectangularSmoothToHeight(playerPosition[p], playerBaseRadius, playerBaseRadius, playerHeight, 0.7);
+Engine.SetProgress(30);
 
 /**
  * Calculate tile centered height map after start position smoothing but before placing paths
@@ -607,6 +605,7 @@ let mercenaryCamps = isNomad() ? 0 : Math.ceil(g_Map.size / 256);
 g_Map.log("Placing at most " + mercenaryCamps + " mercenary camps");
 for (let i = 0; i < resourceSpots.length; ++i)
 {
+	let radius;
 	let choice = i % 5;
 	if (choice == 0)
 		placeMine(resourceSpots[i], g_Gaia.stoneLarge);
@@ -617,22 +616,27 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	if (choice == 3)
 	{
 		placeCamp(resourceSpots[i]);
-		rectangularSmoothToHeight(resourceSpots[i], 5, 5, g_Map.getHeight(resourceSpots[i]) - 10, 0.5);
+		radius = 5;
 	}
 	if (choice == 4)
 	{
 		if (mercenaryCamps)
 		{
 			placeStartingEntities(resourceSpots[i], 0, mercenaryCampGuards[currentBiome()]);
-			rectangularSmoothToHeight(resourceSpots[i], 15, 15, g_Map.getHeight(resourceSpots[i]), 0.5);
+			radius = 15;
 			--mercenaryCamps;
 		}
 		else
 		{
 			placeCustomFortress(resourceSpots[i], pickRandom(fences), "other", 0, randomAngle());
-			rectangularSmoothToHeight(resourceSpots[i], 10, 10, g_Map.getHeight(resourceSpots[i]), 0.5);
+			radius = 10;
 		}
 	}
+
+	if (radius)
+		createArea(
+			new ClumpPlacer(diskArea(radius), 1, 1, Infinity, resourceSpots[i]),
+			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(resourceSpots[i]), radius));
 }
 
 g_Map.ExportMap();

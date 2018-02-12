@@ -136,8 +136,7 @@ var heighLimits = [
 	heightSeaGroundAdjusted + 7/8 * (heightRange.max - heightSeaGroundAdjusted), // 9 Upper forest border
 	heightSeaGroundAdjusted + (heightRange.max - heightSeaGroundAdjusted)]; // 10 Hilltop
 
-var playerHeight = (heighLimits[4] + heighLimits[5]) / 2;
-
+g_Map.log("Locating and smoothing playerbases");
 for (let i = 0; i < numPlayers; ++i)
 {
 	playerPosition[i] = Vector2D.add(
@@ -145,7 +144,9 @@ for (let i = 0; i < numPlayers; ++i)
 		new Vector2D(randFloat(minPlayerRadius, maxPlayerRadius), 0).rotate(
 			-((playerAngleStart + i * playerAngleAddAvrg + randFloat(0, playerAngleMaxOff)) % (2 * Math.PI)))).round();
 
-	rectangularSmoothToHeight(playerPosition[i], 20, 20, playerHeight, 0.8);
+	createArea(
+		new ClumpPlacer(diskArea(20), 0.8, 0.8, Infinity, playerPosition[i]),
+		new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(playerPosition[i]), 20));
 }
 
 placePlayerBases({
