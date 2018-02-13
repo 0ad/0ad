@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -17,7 +17,7 @@
       </animations>
       <mesh>skeletal/sele_champion_elephant.dae</mesh>
       <props>
-        <prop actor="units/seleucids/champion_elephant_driver.xml" attachpoint="rider"/>
+        <prop actor="units/seleucids/elephantry_c_d.xml" attachpoint="rider"/>
         <prop actor="props/units/turret_sele_champ_ele.xml" attachpoint="turret"/>
       </props>
       <textures>

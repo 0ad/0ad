@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -14,6 +14,10 @@
         <texture file="skeletal/sele_hero_antiochus_spec.png" name="specTex"/>
       </textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/death.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

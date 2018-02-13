@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/seleucids/hero_antiochus_the_great_r.xml" attachpoint="rider"/>
+        <prop actor="units/seleucids/hero_cavalry_spearman_antiochus_the_great_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/pers_peytral_spearman.xml" attachpoint="chest"/>
         <prop actor="props/units/horse/sele_crest.xml" attachpoint="head"/>
         <prop actor="props/units/horse_back_blanket_cavalry.xml" attachpoint="rider"/>

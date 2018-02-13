@@ -1,29 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_archer.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/seleucids/cavalry_archer_e_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/pers_peytral_iron.xml" attachpoint="chest"/>
+        <prop actor="units/seleucids/cavalry_archer_b_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="2" name="horse-texture-1">
+    <variant frequency="1" name="horse-texture-1">
       <textures>
-        <texture file="skeletal/horse_pers_csw_e_1.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="horse-texture-2">
-      <textures>
-        <texture file="skeletal/horse_pers_csw_e_2.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="horse-texture-3">
-      <textures>
-        <texture file="skeletal/horse_pers_csw_e_3.dds" name="baseTex"/>
+        <texture file="skeletal/horse_pers_csw_b.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="biped/new/inf_sarissa_rest.dae" name="Idle" speed="25"/>
       </animations>
@@ -10,7 +10,7 @@
       <props>
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_kart_hannibal.xml" attachpoint="head"/>
-        <prop actor="props/units/cape_animated_elephant_driver.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/elephant_driver.xml" attachpoint="root"/>
         <prop actor="props/units/helmets/sele_seleucus_nikator_01.xml" attachpoint="helmet"/>
       </props>
       <textures>
@@ -21,7 +21,11 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/rider/elephant_driver.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>

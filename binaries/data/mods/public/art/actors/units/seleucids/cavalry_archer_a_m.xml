@@ -1,25 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_archer.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/seleucids/cavalry_archer_b_r.xml" attachpoint="rider"/>
+        <prop actor="units/seleucids/cavalry_archer_a_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="horse-texture-1">
+    <variant name="horse-texture-1">
       <textures>
-        <texture file="skeletal/horse_pers_csw_b.dds" name="baseTex"/>
+        <texture file="skeletal/horse_pers_csw_a_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="horse-texture-2">
+      <textures>
+        <texture file="skeletal/horse_pers_csw_a_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="horse-texture-3">
+      <textures>
+        <texture file="skeletal/horse_pers_csw_a_3.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="horse-color-black">
-      <color>41 41 41</color>
+      <color>46 46 46</color>
     </variant>
     <variant frequency="1" name="horse-color-biege">
       <color>247 213 111</color>

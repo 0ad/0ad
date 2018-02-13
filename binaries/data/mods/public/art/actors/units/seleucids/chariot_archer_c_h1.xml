@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -12,26 +12,29 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="horse4a">
+    <variant frequency="1" name="horse1a">
       <textures>
-        <texture file="skeletal/horse_pers_csw_e_1.dds" name="baseTex"/>
+        <texture file="skeletal/horse_pers_csw_e_3.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="horse4b">
+    <variant frequency="1" name="horse1b">
       <textures>
         <texture file="skeletal/horse_pers_csw_e_2.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="4brown">
-      <color>84 53 33</color>
+    <variant frequency="1" name="1brown">
+      <color>74 48 28</color>
     </variant>
-    <variant frequency="1" name="4beige">
-      <color>205 157 114</color>
+    <variant frequency="1" name="1beige">
+      <color>175 141 107</color>
     </variant>
-    <variant frequency="1" name="4gray">
-      <color>106 114 125</color>
+    <variant frequency="1" name="1gray">
+      <color>134 134 134</color>
+    </variant>
+    <variant frequency="1" name="1black">
+      <color>36 36 36</color>
     </variant>
   </group>
   <group>
