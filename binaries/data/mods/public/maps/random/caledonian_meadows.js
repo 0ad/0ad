@@ -291,7 +291,7 @@ myBiome.push({ // 10 Hilltop
 	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|geology/highland1.xml"], 0.0]
 });
 
-let [playerIDs, playerPosition] = sortPlayersByLocation(getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
+let [playerIDs, playerPosition] = groupPlayersCycle(getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
 Engine.SetProgress(30);
 
 g_Map.log("Smoothing player locations");

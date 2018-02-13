@@ -119,18 +119,20 @@ Engine.SetProgress(45);
 if (!isNomad())
 {
 	g_Map.log("Placing players");
-	let playerBases = placeRandom(
-		sortAllPlayers(),
-		[
-			avoidClasses(g_TileClasses.mountain, scaleByMapSize(5, 10)),
-			stayClasses(g_TileClasses.land, defaultPlayerBaseRadius())
-		]);
+	let [playerIDs, playerPosition] = createBases(
+		...playerPlacementRandom(
+			sortAllPlayers(),
+			[
+				avoidClasses(g_TileClasses.mountain, scaleByMapSize(5, 10)),
+				stayClasses(g_TileClasses.land, defaultPlayerBaseRadius())
+			]),
+		true);
 
 	g_Map.log("Flatten the initial CC area...");
-	for (let player of playerBases)
+	for (let position of playerPosition)
 		createArea(
-			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, player.position),
-			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(player.position), 6));
+			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
+			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
 }
 
 addElements(shuffleArray([

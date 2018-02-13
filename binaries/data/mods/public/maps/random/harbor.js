@@ -24,7 +24,7 @@ const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
 const startAngle = randomAngle();
-const players = addBases("radial", fractionToTiles(0.38), fractionToTiles(0.05), startAngle);
+const [playerIDs, playerPosition] = createBasesByPattern("radial", fractionToTiles(0.38), fractionToTiles(0.05), startAngle);
 Engine.SetProgress(20);
 
 addCenterLake();
@@ -32,7 +32,7 @@ Engine.SetProgress(30);
 
 if (mapSize >= 192)
 {
-	addHarbors(players);
+	addHarbors();
 	Engine.SetProgress(40);
 }
 
@@ -322,11 +322,11 @@ function addCenterLake()
 		fDist = 20;
 }
 
-function addHarbors(players)
+function addHarbors()
 {
-	for (let player of players)
+	for (let position of playerPosition)
 	{
-		let harborPosition = Vector2D.add(player.position, Vector2D.sub(mapCenter, player.position).div(2.5).round());
+		let harborPosition = Vector2D.add(position, Vector2D.sub(mapCenter, position).div(2.5).round());
 		createArea(
 			new ClumpPlacer(1200, 0.5, 0.5, Infinity, harborPosition),
 			[

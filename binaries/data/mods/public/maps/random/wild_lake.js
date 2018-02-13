@@ -498,7 +498,7 @@ let resourceSpotHeightRange = { "min" : (heighLimits[2] + heighLimits[3]) / 2, "
 let playerHeight = (playerHeightRange.min + playerHeightRange.max) / 2; // Average player height
 
 g_Map.log("Chosing starting locations");
-let [playerIDs, playerPosition] = sortPlayersByLocation(getStartLocationsByHeightmap(playerHeightRange, 1000, 30));
+let [playerIDs, playerPosition] = groupPlayersCycle(getStartLocationsByHeightmap(playerHeightRange, 1000, 30));
 
 g_Map.log("Smoothing starting locations before height calculation");
 for (let position of playerPosition)
@@ -636,7 +636,7 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	if (radius)
 		createArea(
 			new ClumpPlacer(diskArea(radius), 1, 1, Infinity, resourceSpots[i]),
-			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(resourceSpots[i]), radius));
+			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(resourceSpots[i]), radius / 3));
 }
 
 g_Map.ExportMap();

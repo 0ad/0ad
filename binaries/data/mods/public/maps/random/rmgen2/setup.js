@@ -54,6 +54,29 @@ var g_DefaultTileClasses = [
 
 var g_TileClasses;
 
+var g_PlayerbaseTypes = {
+	"line": {
+		"available": () => g_Map.getSize() >= 384 && getTeamsArray().length >= 2 && getNumPlayers() >= 4,
+		"getPosition": (distance, groupedDistance, startAngle) => placeLine(getTeamsArray(), distance, groupedDistance, startAngle),
+		"walls": false
+	},
+	"radial": {
+		"available": () => true,
+		"getPosition": (distance, groupedDistance, startAngle) => playerPlacementCircle(distance, startAngle),
+		"walls": true
+	},
+	"random": {
+		"available": () => g_Map.getSize() >= 256 && (getTeamsArray().length >= 3 || getNumPlayers() > 4),
+		"getPosition": (distance, groupedDistance, startAngle) => playerPlacementRandom(sortAllPlayers()) || playerPlacementCircle(distance, startAngle),
+		"walls": true
+	},
+	"stronghold": {
+		"available": () => g_Map.getSize() >= 256 && getTeamsArray().length >= 2 && getNumPlayers() >= 4,
+		"getPosition": (distance, groupedDistance, startAngle) => placeStronghold(getTeamsArray(), distance, groupedDistance, startAngle),
+		"walls": false
+	}
+};
+
 /**
  * Adds an array of elements to the map.
  */
@@ -119,27 +142,19 @@ function pickSize(sizes)
  * @param {number} startAngle - determined by the map that might want to place something between players
  * @returns {Array|undefined} - If successful, each element is an object that contains id, angle, x, z for each player
  */
-function addBases(type, distance, groupedDistance, startAngle)
+function createBasesByPattern(type, distance, groupedDistance, startAngle)
+{
+	return createBases(...g_PlayerbaseTypes[type].getPosition(distance, groupedDistance, startAngle), g_PlayerbaseTypes[type].walls);
+}
+
+function createBases(playerIDs, playerPosition, walls)
 {
 	g_Map.log("Creating bases");
 
-	let playerIDs = sortAllPlayers();
-	let teamsArray = getTeamsArray();
+	for (let i = 0; i < getNumPlayers(); ++i)
+		createBase(playerIDs[i], playerPosition[i], walls);
 
-	switch(type)
-	{
-		case "line":
-			return placeLine(teamsArray, distance, groupedDistance, startAngle);
-		case "radial":
-			return placeRadial(playerIDs, distance, startAngle);
-		case "random":
-			return placeRandom(playerIDs) || placeRadial(playerIDs, distance, startAngle);
-		case "stronghold":
-			return placeStronghold(teamsArray, distance, groupedDistance, startAngle);
-		default:
-			warn("Unknown base placement type:" + type);
-			return undefined;
-	}
+	return [playerIDs, playerPosition];
 }
 
 /**
@@ -148,11 +163,11 @@ function addBases(type, distance, groupedDistance, startAngle)
  * @param {Object} player - contains id, angle, x, z
  * @param {boolean} walls - Whether or not iberian gets starting walls
  */
-function createBase(player, walls = true)
+function createBase(playerID, playerPosition, walls)
 {
 	placePlayerBase({
-		"playerID": player.id,
-		"playerPosition": player.position,
+		"playerID": playerID,
+		"playerPosition": playerPosition,
 		"PlayerTileClass": g_TileClasses.player,
 		"BaseResourceClass": g_TileClasses.baseResource,
 		"baseResourceConstraint": avoidClasses(g_TileClasses.water, 0, g_TileClasses.mountain, 0),
@@ -222,24 +237,8 @@ function getTeamsArray()
  */
 function randomStartingPositionPattern(teamsArray)
 {
-	var formats = ["radial"];
-	var mapSize = g_Map.getSize();
-	var numPlayers = getNumPlayers();
-
-	// Enable stronghold if we have a few teams and a big enough map
-	if (teamsArray.length >= 2 && numPlayers >= 4 && mapSize >= 256)
-		formats.push("stronghold");
-
-	// Enable random if we have enough teams or enough players on a big enough map
-	if (mapSize >= 256 && (teamsArray.length >= 3 || numPlayers > 4))
-		formats.push("random");
-
-	// Enable line if we have enough teams and players on a big enough map
-	if (teamsArray.length >= 2 && numPlayers >= 4 && mapSize >= 384)
-		formats.push("line");
-
 	return {
-		"setup": pickRandom(formats),
+		"setup": pickRandom(Object.keys(g_PlayerbaseTypes).filter(type => g_PlayerbaseTypes[type].available())),
 		"distance": fractionToTiles(randFloat(0.2, 0.35)),
 		"separation": fractionToTiles(randFloat(0.05, 0.1))
 	};
@@ -257,7 +256,9 @@ function randomStartingPositionPattern(teamsArray)
  */
 function placeLine(teamsArray, distance, groupedDistance, startAngle)
 {
-	let players = [];
+	let playerIDs = [];
+	let playerPosition = [];
+
 	let mapCenter = g_Map.getCenter();
 	let dist = fractionToTiles(0.45);
 
@@ -269,168 +270,14 @@ function placeLine(teamsArray, distance, groupedDistance, startAngle)
 
 		var teamAngle = startAngle + (i + 1) * 2 * Math.PI / teamsArray.length;
 
-		// Create player base
 		for (let p = 0; p < teamsArray[i].length; ++p)
 		{
-			players[teamsArray[i][p]] = {
-				"id": teamsArray[i][p],
-				"position": Vector2D.add(mapCenter, new Vector2D(safeDist + p * groupedDistance, 0).rotate(-teamAngle)).round()
-			};
-			createBase(players[teamsArray[i][p]], false);
+			playerIDs.push(teamsArray[i][p]);
+			playerPosition.push(Vector2D.add(mapCenter, new Vector2D(safeDist + p * groupedDistance, 0).rotate(-teamAngle)).round());
 		}
 	}
 
-	return players;
-}
-
-/**
- * Place players in a circle-pattern.
- *
- * @param {Array} playerIDs - order of playerIDs to be placed
- * @param {number} distance - radial distance from the center of the map
- * @param {number} startAngle - determined by the map that might want to place something between players
- */
-function placeRadial(playerIDs, distance, startAngle)
-{
-	let mapCenter = g_Map.getCenter();
-	let players = [];
-	let numPlayers = getNumPlayers();
-
-	for (let i = 0; i < numPlayers; ++i)
-	{
-		let angle = startAngle + i * 2 * Math.PI / numPlayers;
-		players[i] = {
-			"id": playerIDs[i],
-			"position": Vector2D.add(mapCenter, new Vector2D(distance, 0).rotate(-angle)).round()
-		};
-		createBase(players[i]);
-	}
-
-	return players;
-}
-
-/**
- * Place playerbases on random locations on the map meeting the given constraints.
- */
-function placeRandom(playerIDs, constraints = undefined)
-{
-	let players = randomPlayerLocations(playerIDs, constraints);
-	if (!players)
-		return undefined;
-
-	for (let player of players)
-		createBase(player);
-
-	return players;
-}
-
-/**
- * Choose arbitrary starting locations.
- */
-function randomPlayerLocations(playerIDs, constraints = undefined)
-{
-	let locations = [];
-	let attempts = 0;
-	let resets = 0;
-
-	let mapCenter = g_Map.getCenter();
-	let playerMinDist = fractionToTiles(0.25);
-	let borderDistance = fractionToTiles(0.08);
-
-	let area = createArea(new MapBoundsPlacer(), undefined, new AndConstraint(constraints));
-
-	for (let i = 0; i < getNumPlayers(); ++i)
-	{
-		let position = pickRandom(area.points);
-
-		// Minimum distance between initial bases must be a quarter of the map diameter
-		if (locations.some(loc => loc.distanceTo(position) < playerMinDist) ||
-		    position.distanceTo(mapCenter) > mapCenter.x - borderDistance)
-		{
-			--i;
-			++attempts;
-
-			// Reset if we're in what looks like an infinite loop
-			if (attempts > 500)
-			{
-				locations = [];
-				i = -1;
-				attempts = 0;
-				++resets;
-
-				// Reduce minimum player distance progressively
-				if (resets % 25 == 0)
-					playerMinDist *= 0.975;
-
-				// If we only pick bad locations, stop trying to place randomly
-				if (resets == 500)
-				{
-					throw new Error("Could not find suitable playerbase locations!");
-					return undefined;
-				}
-			}
-			continue;
-		}
-
-		locations[i] = position;
-	}
-	return groupPlayersByLocations(playerIDs, locations);
-}
-
-/**
- *  Pick locations from the given set so that teams end up grouped.
- *
- *  @param {Array} playerIDs - sorted by teams.
- *  @param {Array} locations - array of Vector2D of possible starting locations.
- */
-function groupPlayersByLocations(playerIDs, locations)
-{
-	playerIDs = sortPlayers(playerIDs);
-
-	let minDist = Infinity;
-	let minLocations;
-
-	// Of all permutations of starting locations, find the one where
-	// the sum of the distances between allies is minimal, weighted by teamsize.
-	heapsPermute(shuffleArray(locations).slice(0, playerIDs.length), v => v.clone(), permutation =>
-	{
-		let dist = 0;
-		let teamDist = 0;
-		let teamSize = 0;
-
-		for (let i = 1; i < playerIDs.length; ++i)
-		{
-			let team1 = getPlayerTeam(playerIDs[i - 1]);
-			let team2 = getPlayerTeam(playerIDs[i]);
-			++teamSize;
-			if (team1 != -1 && team1 == team2)
-				teamDist += permutation[i - 1].distanceTo(permutation[i]);
-			else
-			{
-				dist += teamDist / teamSize;
-				teamDist = 0;
-				teamSize = 0;
-			}
-		}
-
-		if (teamSize)
-			dist += teamDist / teamSize;
-
-		if (dist < minDist)
-		{
-			minDist = dist;
-			minLocations = permutation;
-		}
-	});
-
-	let players = [];
-	for (let i = 0; i < playerIDs.length; ++i)
-		players[i] = {
-			"id": playerIDs[i],
-			"position": minLocations[i]
-		};
-
-	return players;
+	return [playerIDs, playerPosition];
 }
 
 /**
@@ -443,8 +290,10 @@ function groupPlayersByLocations(playerIDs, locations)
  */
 function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 {
-	var players = [];
 	var mapCenter = g_Map.getCenter();
+
+	let playerIDs = [];
+	let playerPosition = [];
 
 	for (let i = 0; i < teamsArray.length; ++i)
 	{
@@ -466,15 +315,12 @@ function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 		for (var p = 0; p < teamsArray[i].length; ++p)
 		{
 			var angle = startAngle + (p + 1) * 2 * Math.PI / teamsArray[i].length;
-			players[teamsArray[i][p]] = {
-				"id": teamsArray[i][p],
-				"position": Vector2D.add(teamPosition, new Vector2D(teamGroupDistance, 0).rotate(-angle)).round()
-			};
-			createBase(players[teamsArray[i][p]], false);
+			playerIDs.push(teamsArray[i][p]);
+			playerPosition.push(Vector2D.add(teamPosition, new Vector2D(teamGroupDistance, 0).rotate(-angle)).round());
 		}
 	}
 
-	return players;
+	return [playerIDs, playerPosition];
 }
 
 /**

@@ -21,7 +21,7 @@ Engine.SetProgress(10);
 
 const teamsArray = getTeamsArray();
 const startAngle = randomAngle();
-addBases("line", fractionToTiles(0.2), fractionToTiles(0.08), startAngle);
+createBasesByPattern("line", fractionToTiles(0.2), fractionToTiles(0.08), startAngle);
 Engine.SetProgress(20);
 
 placeBarriers();
