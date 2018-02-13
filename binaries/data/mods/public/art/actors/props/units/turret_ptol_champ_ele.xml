@@ -5,7 +5,6 @@
     <variant frequency="1" name="Ptolemaic elephant champion howdah gray">
       <mesh>props/ptol_howdah.dae</mesh>
       <props>
-        <prop actor="units/seleucids/champion_elephant_rider1.xml" attachpoint="root"/>
         <prop actor="props/units/shields/ptol_hero_1.xml" attachpoint="shield1"/>
         <prop actor="props/units/shields/ptol_hero_1.xml" attachpoint="shield2"/>
       </props>
@@ -18,7 +17,6 @@
     <variant frequency="1" name="Ptolemaic elephant champion howdah brown">
       <mesh>props/ptol_howdah.dae</mesh>
       <props>
-        <prop actor="units/seleucids/champion_elephant_rider1.xml" attachpoint="root"/>
         <prop actor="props/units/shields/ptol_hero_2.xml" attachpoint="shield1"/>
         <prop actor="props/units/shields/ptol_hero_2.xml" attachpoint="shield2"/>
       </props>
@@ -31,7 +29,6 @@
     <variant frequency="1" name="Ptolemaic elephant champion howdah white">
       <mesh>props/ptol_howdah.dae</mesh>
       <props>
-        <prop actor="units/seleucids/champion_elephant_rider1.xml" attachpoint="root"/>
         <prop actor="props/units/shields/ptol_hero_1.xml" attachpoint="shield1"/>
         <prop actor="props/units/shields/ptol_hero_1.xml" attachpoint="shield2"/>
       </props>
