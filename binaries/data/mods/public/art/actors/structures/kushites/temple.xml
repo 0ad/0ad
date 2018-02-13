@@ -5,7 +5,7 @@
     <variant frequency="1" name="Base">
       <mesh>structural/kush_temple.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_4x6.xml" attachpoint="root"/>
         <prop actor="props/structures/kushites/temple_paintings.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -33,7 +33,7 @@
         <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/kushites/temple_paintings.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_4x6.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
