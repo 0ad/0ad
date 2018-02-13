@@ -1,21 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/iberians/cavalry_spearman_a_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
+        <prop actor="units/iberians/hero_cavalry_spearman_indibil_r.xml" attachpoint="rider"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Horse 1">
-      <textures><texture file="skeletal/horse_iber_csp_a_1.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="Horse 2">
-      <textures><texture file="skeletal/horse_iber_csp_a_2.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="horse-texture-1">
+      <textures>
+        <texture file="skeletal/horse_iber_indibil.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -26,10 +24,13 @@
       <color>247 213 111</color>
     </variant>
     <variant frequency="1" name="horse-color-gray">
-      <color>253 253 253</color>
+      <color>181 181 181</color>
     </variant>
     <variant frequency="1" name="horse-color-brown">
       <color>211 123 44</color>
+    </variant>
+    <variant frequency="1" name="horse-color-white">
+      <color>255 255 255</color>
     </variant>
   </group>
   <group>
@@ -37,5 +38,4 @@
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>objectcolor.xml</material>
 </actor>

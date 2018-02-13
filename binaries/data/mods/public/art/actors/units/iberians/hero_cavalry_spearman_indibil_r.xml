@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="100" name="Base">
+    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
@@ -10,8 +10,14 @@
         <prop actor="props/units/shields/iber_scutum_hero.xml" attachpoint="shield"/>
         <prop actor="props/units/heads/iber_helmet_hero_03.xml" attachpoint="helmet"/>
       </props>
-      <textures><texture file="skeletal/iber_hero_indibil.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/iber_hero_indibil.dds" name="baseTex"/>
+      </textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/death.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

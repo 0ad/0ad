@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shield_fast_relax.xml">
+      <mesh>skeletal/new/m_hero_caros.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/iber_helmet_hero_01.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_L"/>
+        <prop actor="props/units/shields/iberian_buckler_elite.xml" attachpoint="shield_arm"/>
+      </props>
+      <textures>
+        <texture file="skeletal/iber_hero_caros.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

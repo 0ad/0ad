@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/iberians/cavalry_spearman_e_r.xml" attachpoint="rider"/>
+        <prop actor="units/iberians/cavalry_spearman_a_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Horse 1">
-      <textures><texture file="skeletal/horse_iber_csp_e_1.dds" name="baseTex"/></textures>
+      <textures><texture file="skeletal/horse_iber_csp_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Horse 2">
-      <textures><texture file="skeletal/horse_iber_csp_e_2.dds" name="baseTex"/></textures>
+      <textures><texture file="skeletal/horse_iber_csp_a_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
