@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_archer.xml" name="Base">
+    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/kushites/cavalry_archer_a_r.xml" attachpoint="rider"/>
+        <prop actor="units/kushites/cavalry_javelinist_b_r.xml" attachpoint="rider"/>
       </props>
     </variant>
   </group>
@@ -37,7 +37,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant frequency="1" name="Idle"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
