@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shield_ready.xml">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/maur_bell_a.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/heads/new/head_maur_short_hair.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_helmet_metal_plyr.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/maur_earrings_2.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/mace_mauryan.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Scale Iron">
+      <textures>
+        <texture file="skeletal/maur_champion_infantry.png" name="baseTex"/>
+        <texture file="skeletal/maur_champion_infantry_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Scale Gold">
+      <textures>
+        <texture file="skeletal/maur_champion_infantry_2.png" name="baseTex"/>
+        <texture file="skeletal/maur_champion_infantry_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

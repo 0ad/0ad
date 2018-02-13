@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_elephant_archer_ready_2.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_indian_a.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/bow_bamboo_long.xml" attachpoint="weapon_bow"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
+      </props>
+      <textures>
+        <texture file="skeletal/maur_iar_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
