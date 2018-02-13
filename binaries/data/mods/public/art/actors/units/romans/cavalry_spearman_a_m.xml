@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/romans/cavalry_spearman_e_r.xml" attachpoint="rider"/>
+        <prop actor="units/romans/cavalry_spearman_a_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
@@ -26,10 +26,10 @@
   </group>
   <group>
     <variant frequency="2" name="horse-color-white">
-      <color>242 242 242</color>
+      <color>255 255 255</color>
     </variant>
     <variant frequency="2" name="horse-color-beige">
-      <color>164 145 87</color>
+      <color>130 115 68</color>
     </variant>
     <variant frequency="1" name="horse-color-gray">
       <color>116 116 116</color>

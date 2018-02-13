@@ -1,18 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/romans/hero_marcellus_r.xml" attachpoint="rider"/>
+        <prop actor="units/romans/hero_cavalry_swordsman_scipio_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="horse-texture">
-      <textures><texture file="skeletal/horse_rome_marcellus.dds" name="baseTex"/></textures>
+      <textures><texture file="skeletal/horse_rome_scipio.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

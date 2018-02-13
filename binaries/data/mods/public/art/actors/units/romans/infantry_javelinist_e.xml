@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_skirmisher.xml">
+    <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
@@ -11,8 +11,18 @@
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
         <prop actor="props/units/heads/rome_helmet_wolfskin.xml" attachpoint="helmet"/>
       </props>
-      <textures><texture file="skeletal/rome_ijv_e.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/rome_ijv_e.png" name="baseTex"/>
+      </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="biped/base_skirmisher.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -29,16 +39,6 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
-    <variant file="biped/carry_food.xml"/>
-    <variant file="biped/carry_meat.xml"/>
-    <variant file="biped/carry_wood.xml"/>
-    <variant file="biped/carry_stone.xml"/>
-    <variant file="biped/carry_metal.xml"/>
-    <variant file="biped/carry_food_idle.xml"/>
-    <variant file="biped/carry_meat_idle.xml"/>
-    <variant file="biped/carry_wood_idle.xml"/>
-    <variant file="biped/carry_stone_idle.xml"/>
-    <variant file="biped/carry_metal_idle.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
