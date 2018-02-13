@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_cavalry_swordsman">
+<Entity parent="template_unit_hero_elephant_melee">
   <Auras datatype="tokens">
     units/heroes/kush_hero_arakamani_1
     units/heroes/kush_hero_arakamani_2
@@ -12,6 +12,6 @@
     <Icon>units/mace_hero_philip.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>units/ptolemies/hero_cavalry_swordsman_ptolemy_IV_m.xml</Actor>
+    <Actor>units/kushites/hero_elephantry_arakamani_m.xml</Actor>
   </VisualActor>
 </Entity>
