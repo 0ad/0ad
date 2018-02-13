@@ -3,14 +3,14 @@
   <Identity>
     <Civ>ptol</Civ>
     <VisibleClasses datatype="tokens">Camel</VisibleClasses>
-    <SelectionGroupName>units/ptol_camel_archer</SelectionGroupName>
+    <SelectionGroupName>units/ptol_camelry_archer</SelectionGroupName>
     <GenericName>Nabataean Camel Archer</GenericName>
     <SpecificName>Mutsābiq Gamal Nabatu</SpecificName>
     <Icon>units/ptol_camelry_archer.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Promotion>
-    <Entity>units/ptol_cavalry_archer_a</Entity>
+    <Entity>units/ptol_camelry_archer_a</Entity>
   </Promotion>
   <Sound>
     <SoundGroups>
@@ -20,6 +20,6 @@
     </SoundGroups>
   </Sound>
   <VisualActor>
-    <Actor>units/ptolemies/cavalry_archer_b.xml</Actor>
+    <Actor>units/ptolemies/camelry_archer_b_m.xml</Actor>
   </VisualActor>
 </Entity>

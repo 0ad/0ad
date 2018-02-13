@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/ptol_cavalry_archer_a">
+<Entity parent="units/ptol_camelry_archer_a">
   <Identity>
     <Rank>Elite</Rank>
   </Identity>
   <Promotion disable=""/>
   <VisualActor>
-    <Actor>units/ptolemies/cavalry_archer_e.xml</Actor>
+    <Actor>units/ptolemies/camelry_archer_e_m.xml</Actor>
   </VisualActor>
 </Entity>
