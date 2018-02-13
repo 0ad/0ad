@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_javelin_ready_shield.xml" frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_numid_all.xml" attachpoint="head"/>
@@ -12,33 +12,28 @@
     </variant>
   </group>
   <group>
-    <variant name="tunic1">
-      <textures><texture file="skeletal/kart_cjv_b_1.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="tunic1">
+      <textures>
+        <texture file="skeletal/kart_cjv_b_1.dds" name="baseTex"/>
+      </textures>
     </variant>
-    <variant name="tunic2">
-      <textures><texture file="skeletal/kart_cjv_b_2.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="tunic2">
+      <textures>
+        <texture file="skeletal/kart_cjv_b_2.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-  <variant file="biped/rider_promotion_shield.xml" name="promotion"/>
-  <variant file="biped/attack_ranged_cavalry_javelin.xml" name="attack_ranged"/>
-    <variant file="biped/attack_slaughter_shield_cavalry.xml" name="attack_slaughter">
-      <props>
-        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
-      </props>
-    </variant>
-    <variant name="carry_meat">
-      <props>
-        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
-    <variant name="gather_meat">
-      <props>
-        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
-      </props>
-    </variant>
+    <variant file="biped/base_cavalry_javelin_ready_shield.xml"/>
+    <variant file="biped/rider/carry_meat.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_cavalry_javelin.xml" name="attack_ranged"/>
+    <variant file="biped/rider/promotion_shield.xml" />
+    <variant file="biped/rider/attack_slaughter_shield_cart.xml"/>
+    <variant file="biped/rider/gather_meat_cart.xml"/>
+    <variant file="biped/rider/death.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

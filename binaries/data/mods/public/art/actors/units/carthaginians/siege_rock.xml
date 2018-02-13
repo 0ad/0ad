@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="carthaginian ballista">
+    <variant frequency="1" name="carthaginian ballista">
       <animations>
         <animation event="0.58" file="mechanical/kart_ballista.dae" load="0.44" name="attack_ranged" speed="100"/>
       </animations>
@@ -16,4 +16,5 @@
       </textures>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

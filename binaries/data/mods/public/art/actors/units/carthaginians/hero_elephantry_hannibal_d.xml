@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -11,7 +11,7 @@
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/kart_hero_hannibal.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_kart_hannibal.xml" attachpoint="head"/>
-        <prop actor="props/units/cape_animated_elephant_driver.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/elephant_driver.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/kart_hero_hannibal.dds" name="baseTex"/>

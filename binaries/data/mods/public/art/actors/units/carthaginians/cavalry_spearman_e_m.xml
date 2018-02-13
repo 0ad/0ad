@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="UTF-8"  ?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -8,7 +8,9 @@
         <prop actor="units/carthaginians/cavalry_spearman_e_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/crest_1.xml" attachpoint="head"/>
       </props>
-      <textures><texture file="skeletal/horse_kart_csp_e_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_kart_csp_e_1.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

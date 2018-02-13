@@ -1,24 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/carthaginians/champion_unit_3_r.xml" attachpoint="rider"/>
+        <prop actor="units/carthaginians/cavalry_spearman_c_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/pers_peytral_spearman.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Horse Brown">
-      <textures><texture file="skeletal/horse_kart_sacredband_cav_brown.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_kart_sacredband_cav_brown.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Horse White">
-      <textures><texture file="skeletal/horse_kart_sacredband_cav_white.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_kart_sacredband_cav_white.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Horse Black">
-      <textures><texture file="skeletal/horse_kart_sacredband_cav_black.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_kart_sacredband_cav_black.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

@@ -1,17 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/carthaginians/hero_hamilcar_r.xml" attachpoint="rider"/>
+        <prop actor="units/carthaginians/hero_cavalry_swordsman_hamilcar_r.xml" attachpoint="rider"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="horse-texture-1">
-      <textures><texture file="skeletal/horse_kart_hamilcar.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_kart_hamilcar.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

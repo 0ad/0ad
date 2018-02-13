@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="UTF-8"  ?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="units/carthaginians/cavalry_swordsman_e_r.xml" attachpoint="rider"/>
+        <prop actor="units/carthaginians/cavalry_swordsman_b_r.xml" attachpoint="rider"/>
       </props>
     </variant>
   </group>

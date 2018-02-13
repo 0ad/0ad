@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_2_handed_spearman_relax.xml" frequency="100" name="Base">
+    <variant file="biped/base_cavalry_2_handed_spearman_relax.xml" frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/cape_cav_animated_champ_cart.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/spearman_two_handed.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="skeletal/kart_sacredband_cav.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="armor-scale reinforced corselet">
-      <textures><texture file="skeletal/kart_sacredband_cav.dds" name="baseTex"/></textures>
-    </variant>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/death.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
