@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/base_horse_swordsman.xml" frequency="1" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
+      <props>
+        <prop actor="units/kushites/hero_cavalry_spearman_harsiotef_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/kush_crest_bronze.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/horse/kush_e_norm.png" name="normTex"/>
+        <texture file="skeletal/horse/kush_e_spec.png" name="specTex"/>
+        <texture file="skeletal/horse/kush_black_harsiotef.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>no_trans_parallax_spec.xml</material>
+</actor>
