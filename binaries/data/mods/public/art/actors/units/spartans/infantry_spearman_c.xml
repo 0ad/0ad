@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -9,23 +9,21 @@
         <prop actor="props/units/heads/hele_su1.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/hele_aspis_spartan.xml" attachpoint="shield_arm"/>
-        <prop actor="props/units/cape_animated_hoplite.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/hoplite.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="cuirass 1">
       <textures>
-	    <texture file="skeletal/hele_spartitiate_a.dds" name="baseTex"/>
-	</textures>
+        <texture file="skeletal/hele_spartitiate_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/gather_praise.xml"/>
-    <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/hoplite.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>
