@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shield_fast.xml">
+      <mesh>skeletal/new/m_hero_tunic.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/celt_helmet_brito.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_celt_brennus.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/celt_brennus.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
+        <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
+        <prop actor="props/units/capes/swordsman_shield_ready_fast.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="skeletal/celt_brennus.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/swordsman_shield_ready_fast.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

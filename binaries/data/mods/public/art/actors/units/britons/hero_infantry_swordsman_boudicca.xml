@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shield_relax.xml">
+      <mesh>skeletal/new/f_armor_tunic_short_boudicca.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_celt_boudicca.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/celt_round_swirl.xml" attachpoint="shield"/>
+        <prop actor="props/units/capes/brit_boudicca.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="skeletal/celt_boudicca_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/brit_boudicca.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

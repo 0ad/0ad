@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_driver_chariot_celt.xml">
+      <props>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/celt_helmet_a.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="d-Tattoos-1">
+      <mesh>skeletal/new/m_naked.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_ijv_e_01.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="d-Tattoos-2">
+      <mesh>skeletal/new/m_naked.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_ijv_e_02.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="d-Tattoos-3">
+      <mesh>skeletal/new/m_naked.dae</mesh>
+      <textures>
+        <texture file="skeletal/kart_isw_a_01.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="d-Tattoos-4">
+      <mesh>skeletal/new/m_naked.dae</mesh>
+      <textures>
+        <texture file="skeletal/kart_isw_a_02.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="5" name="d-Trousers-1">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/kart_isw_a_03.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="5" name="d-Trousers-2">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/kart_isw_a_04.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="10" name="d-Trousers-3">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/kart_isw_a_05.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
