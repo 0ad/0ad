@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Trader Cart">
+    <variant frequency="1" name="Trader Cart">
       <animations>
         <animation file="mechanical/trader_cart_idle.dae" name="Idle" speed="100"/>
         <animation file="mechanical/trader_cart_move.dae" name="Walk" speed="10"/>

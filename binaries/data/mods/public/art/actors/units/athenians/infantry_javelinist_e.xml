@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -10,7 +10,7 @@
         <prop actor="props/units/shields/hele_pelta_e.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
-        <prop actor="props/units/cape_animated_jav_thracian.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/javelinist_thracian.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -51,7 +51,7 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml">
       <props>
-        <prop actor="props/units/cape_animated_jav_thracian.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/javelinist_thracian.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

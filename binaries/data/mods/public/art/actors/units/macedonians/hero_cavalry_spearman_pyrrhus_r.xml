@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_cavalry_spearman_relax.xml" frequency="1" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/heads/hero_pyrrhus.xml" attachpoint="helmet"/>
+      </props>
+      <textures>
+        <texture file="skeletal/mace_hero_craterus.png" name="baseTex"/>
+        <texture file="skeletal/mace_hero_craterus_norm.png" name="normTex"/>
+        <texture file="skeletal/mace_hero_craterus_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/death.xml"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

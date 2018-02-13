@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shield_ready.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/mace_chalkaspides_a.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/xiphos.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/capes/swordsman_shield_ready.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Thorax-Chainmail">
+      <textures>
+        <texture file="skeletal/mace_thoakrites.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Thorax-Tube and Yoke Corselet">
+      <textures>
+        <texture file="skeletal/mace_thorakites_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/swordsman_shield_ready.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

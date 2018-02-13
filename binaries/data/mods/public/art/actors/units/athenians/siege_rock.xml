@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="pew pew">
+    <variant frequency="1" name="pew pew">
       <animations>
         <animation event=".61" file="mechanical/hele_lithobolos.dae" load=".46" name="attack_ranged" speed="250"/>
         <animation file="mechanical/hele_lithobolos_idle.dae" name="idle" speed="10"/>
