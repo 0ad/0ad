@@ -147,28 +147,28 @@
 			</object>
 
 			<!-- Settings -->
-			<object name="settingsBackground" type="image" sprite="ModernDarkBoxGold" size="100%-635 346 100%-315 100%-60"/>
-			<object name="settingsPanel" type="image" sprite="ModernDarkBoxGold" size="100%-635 351 100%-315 100%-65" hidden="true" z="1">
+			<object name="settingsBackground" type="image" sprite="ModernDarkBoxGold" size="100%-715 346 100%-315 100%-60"/>
+			<object name="settingsPanel" type="image" sprite="ModernDarkBoxGold" size="100%-785 351 100%-315 100%-65" hidden="true" z="1">
 				<repeat count="60" var="n">
 					<object name="settingFrame[n]" size="0 2 320 60">
 						<object
 							name="settingTitle[n]"
 							type="text"
-							size="0 0 50%-27 28"
+							size="0 0 170 30"
 							style="ModernRightLabelText"
 							z="1"
 						/>
 						<object
 							name="settingText[n]"
 							type="text"
-							size="50%-27 0 100% 28"
+							size="175 0 100% 30"
 							style="ModernLeftLabelText"
 							z="1"
 						/>
 						<object
 							name="settingDropdown[n]"
 							type="dropdown"
-							size="50%-22 0 100% 28"
+							size="175 0 100% 30"
 							style="ModernDropDown"
 							tooltip_style="onscreenToolTip"
 							z="1"
@@ -176,7 +176,7 @@
 						<object
 							name="settingCheckbox[n]"
 							type="checkbox"
-							size="50%-22 5 50% 28"
+							size="175 0 193 30"
 							style="ModernTickBox"
 							tooltip_style="onscreenToolTip"
 							z="1"
@@ -213,15 +213,15 @@
 			</object>
 
 			<!-- Chat window -->
-			<object name="chatPanel" size="24 346 100%-640 100%-58" type="image" sprite="ModernDarkBoxGold">
+			<object name="chatPanel" size="24 346 100%-640 100%-60" type="image" sprite="ModernDarkBoxGold">
 				<object name="chatText" size="2 2 100%-2 100%-28" type="text" style="ChatPanel"/>
 
-				<object name="chatInput" size="4 100%-26 100%-76 100%-4" type="input" style="ModernInput">
+				<object name="chatInput" size="4 100%-26 100%-96 100%-4" type="input" style="ModernInput">
 					<action on="Press">submitChatInput();</action>
 					<action on="Tab">autoCompleteNick(this, g_Autocomplete);</action>
 				</object>
 
-				<object size="100%-72 100%-26 100%-4 100%-4" type="button" style="StoneButton">
+				<object size="100%-92 100%-26 100%-4 100%-4" type="button" style="StoneButton">
 					<translatableAttribute id="caption">Send</translatableAttribute>
 					<action on="Press">submitChatInput();</action>
 				</object>

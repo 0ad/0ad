@@ -302,7 +302,12 @@ var g_ChatMessages = [];
 /**
  * Minimum amount of pixels required for the chat panel to be visible.
  */
-var g_MinChatWidth = 74;
+var g_MinChatWidth = 96;
+
+/**
+ * Horizontal space between chat window and settings.
+ */
+var g_ChatSettingsMargin = 10;
 
 /**
  * Filename and translated title of all maps, given the currently selected
@@ -373,9 +378,9 @@ var g_SettingHeight = 32;
 var g_SettingDist = 2;
 
 /**
- * Width of a column in the settings panel.
+ * Maximum width of a column in the settings panel.
  */
-var g_ColumnWidth = 320;
+var g_MaxColumnWidth = 470;
 
 /**
  * Pixels per millisecond the settings panel slides when opening/closing.
@@ -1258,7 +1263,7 @@ function updateSettingsPanelPosition(dt)
 	let chatPanel = Engine.GetGUIObjectByName("chatPanel");
 	let chatSize = chatPanel.size;
 
-	chatSize.right += offset;
+	chatSize.right = size.left - g_ChatSettingsMargin;
 	chatPanel.size = chatSize;
 	chatPanel.hidden = g_MiscControls.chatPanel.hidden();
 
@@ -1380,6 +1385,11 @@ function initSPTips()
  */
 function distributeSettings()
 {
+	let setupWindowSize = Engine.GetGUIObjectByName("setupWindow").getComputedSize();
+	let columnWidth = Math.min(
+		g_MaxColumnWidth,
+		(setupWindowSize.right - setupWindowSize.left + Engine.GetGUIObjectByName("settingTabButtons").size.left) / 2);
+
 	let settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
 	let actualSettingsPanelSize = settingsPanel.getComputedSize();
 
@@ -1405,16 +1415,16 @@ function distributeSettings()
 
 		let childSize = child.size;
 		child.size = new GUISize(
-			column * g_ColumnWidth,
+			column * columnWidth,
 			yPos,
-			column * g_ColumnWidth + g_ColumnWidth - 10,
+			column * columnWidth + columnWidth - 10,
 			yPos + g_SettingHeight - g_SettingDist);
 
 		yPos += g_SettingHeight;
 		++thisColumn;
 	}
 
-	settingsPanelSize.right = settingsPanelSize.left + (column + 1) * g_ColumnWidth;
+	settingsPanelSize.right = settingsPanelSize.left + (column + 1) * columnWidth;
 	settingsPanel.size = settingsPanelSize;
 }
 
