@@ -53,7 +53,7 @@ const heightScale = num => num * g_MapSettings.Size / 320;
 const heightReedsMin = heightScale(-2);
 const heightShallow = heightScale(-1);
 const heightWaterLevel = heightScale(0);
-const heightShoreline = heightScale(1);
+const heightShoreline = heightScale(3);
 const heightPlayer = heightScale(10);
 
 const g_Map = new RandomMap(0, g_Terrains.mainTerrain);
@@ -355,6 +355,7 @@ placePlayersNomad(
 
 setSunColor(0.733, 0.746, 0.574);
 
+setWaterHeight(20 + heightWaterLevel);
 setWaterTint(0.224, 0.271, 0.270);
 setWaterColor(0.224, 0.271, 0.270);
 setWaterWaviness(8);
