@@ -6,34 +6,37 @@
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/kushites/cavalry_archer_e_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
+      <textures>
+        <texture file="skeletal/horse/kush_e_norm.png" name="normTex"/>
+        <texture file="skeletal/horse/kush_e_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="horse texture black">
+    <variant frequency="3" name="kush-cavalry-elite-black">
       <textures>
-        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_black_e.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="horse texture brown">
+    <variant frequency="2" name="kush-cavalry-elite-brown">
       <textures>
-        <texture file="skeletal/horse_brown_a.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_brown_e.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="4" name="horse texture chestnut">
+    <variant frequency="4" name="kush-cavalry-elite-chestnut">
       <textures>
-        <texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_chestnut_e.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="horse texture dun">
+    <variant frequency="1" name="kush-cavalry-elite-white">
       <textures>
-        <texture file="skeletal/horse_dun_a.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_white_e.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="horse texture white">
+    <variant frequency="3" name="kush-cavalry-elite-dun">
       <textures>
-        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_dun_e.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -42,5 +45,5 @@
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>

@@ -6,60 +6,38 @@
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/kushites/cavalry_javelinist_e_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="hyppikon-horse-texture-plain">
       <textures>
-        <texture file="skeletal/horse_hele_csw_e_1.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="hyppikon-horse-texture-plain2">
-      <textures>
-        <texture file="skeletal/horse_hele_csw_e_2.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="hyppikon-horse-texture-blaze">
-      <textures>
-        <texture file="skeletal/horse_hele_csw_e_3.png" name="baseTex"/>
+        <texture file="skeletal/horse/kush_e_norm.png" name="normTex"/>
+        <texture file="skeletal/horse/kush_e_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="horse-color-bay">
-      <color>228 107 27</color>
+    <variant frequency="3" name="kush-cavalry-elite-black">
+      <textures>
+        <texture file="skeletal/horse/kush_black_e.png" name="baseTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="horse-color-red-chestnut">
-      <color>207 132 109</color>
+    <variant frequency="2" name="kush-cavalry-elite-brown">
+      <textures>
+        <texture file="skeletal/horse/kush_brown_e.png" name="baseTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="horse-color-black-chestnut">
-      <color>164 87 68</color>
+    <variant frequency="4" name="kush-cavalry-elite-chestnut">
+      <textures>
+        <texture file="skeletal/horse/kush_chestnut_e.png" name="baseTex"/>
+      </textures>
     </variant>
-    <variant frequency="5" name="horse-color-gray">
-      <color>255 255 255</color>
+    <variant frequency="1" name="kush-cavalry-elite-white">
+      <textures>
+        <texture file="skeletal/horse/kush_white_e.png" name="baseTex"/>
+      </textures>
     </variant>
-    <variant frequency="2" name="horse-color-beige">
-      <color>251 254 146</color>
-    </variant>
-    <variant frequency="1" name="horse-color-black">
-      <color>81 81 85</color>
-    </variant>
-    <variant frequency="1" name="horse-color-chocolate">
-      <color>98 68 58</color>
-    </variant>
-    <variant frequency="1" name="horse-color-chestnut">
-      <color>248 132 86</color>
-    </variant>
-    <variant frequency="1" name="horse-color-roan">
-      <color>242 219 164</color>
-    </variant>
-    <variant frequency="1" name="horse-color-liver">
-      <color>172 95 68</color>
-    </variant>
-    <variant frequency="1" name="horse-color-brown">
-      <color>255 148 89</color>
+    <variant frequency="3" name="kush-cavalry-elite-dun">
+      <textures>
+        <texture file="skeletal/horse/kush_dun_e.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -67,5 +45,5 @@
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>objectcolor.xml</material>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>

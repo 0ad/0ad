@@ -7,32 +7,36 @@
       <props>
         <prop actor="units/kushites/cavalry_javelinist_b_r.xml" attachpoint="rider"/>
       </props>
+      <textures>
+        <texture file="skeletal/horse/kush_b_norm.png" name="normTex"/>
+        <texture file="skeletal/horse/kush_b_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="horse texture black">
+    <variant frequency="3" name="kush-cavalry-basic-black">
       <textures>
-        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_black_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="horse texture brown">
+    <variant frequency="2" name="kush-cavalry-basic-brown">
       <textures>
-        <texture file="skeletal/horse_brown_a.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_brown_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="4" name="horse texture chestnut">
+    <variant frequency="4" name="kush-cavalry-basic-chestnut">
       <textures>
-        <texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_chestnut_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="horse texture dun">
+    <variant frequency="1" name="kush-cavalry-basic-white">
       <textures>
-        <texture file="skeletal/horse_dun_a.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_white_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="horse texture white">
+    <variant frequency="3" name="kush-cavalry-basic-dun">
       <textures>
-        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_dun_b.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -41,5 +45,5 @@
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>
