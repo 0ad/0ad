@@ -186,7 +186,7 @@ var mercenaryCampGuards = {
 	"generic/tropic": [
 		{ "Template" : "structures/merc_camp_egyptian" },
 		{ "Template" : "units/ptol_infantry_javelinist_b", "Count" : 4 },
-		{ "Template" : "units/ptol_camelry_archer_e", "Count" : 3 },
+		{ "Template" : "units/ptol_cavalry_archer_e", "Count" : 3 },
 		{ "Template" : "units/ptol_infantry_slinger_a", "Count" : 4 },
 		{ "Template" : "units/ptol_champion_infantry_pikeman", "Count" : 3 }
 	],
