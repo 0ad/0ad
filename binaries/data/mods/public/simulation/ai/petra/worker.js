@@ -29,7 +29,7 @@ m.Worker.prototype.update = function(gameState, ent)
 			if (!target && ent.position())
 			{
 				let plan = gameState.ai.HQ.navalManager.getPlan(ent.getMetadata(PlayerID, "transport"));
-				plan.removeUnit(ent);
+				plan.removeUnit(gameState, ent);
 			}
 		}
 		if (ent.getMetadata(PlayerID, "transport") !== undefined)

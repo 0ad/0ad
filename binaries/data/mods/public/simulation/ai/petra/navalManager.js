@@ -602,7 +602,7 @@ m.NavalManager.prototype.moveApart = function(gameState)
 			if (API3.SquareVectorDistance(shipPosition, blockingShip.position()) > 900)
 				continue;
 			if (blockingShip.getMetadata(PlayerID, "transporter") === undefined)
-				blockingShip.moveApart(shiPosition, 12);
+				blockingShip.moveApart(shipPosition, 12);
 			else
 				blockingShip.moveApart(shipPosition, 6);
 		}

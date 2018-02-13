@@ -660,8 +660,12 @@ m.AttackManager.prototype.numAttackingUnitsAround = function(pos, dist)
 	let num = 0;
 	for (let attackType in this.startedAttacks)
 		for (let attack of this.startedAttacks[attackType])
+		{
+			if (!attack.position)	// this attack may be inside a transport
+				continue;
 			if (API3.SquareVectorDistance(pos, attack.position) < dist*dist)
 				num += attack.unitCollection.length;
+		}
 	return num;
 };
 
