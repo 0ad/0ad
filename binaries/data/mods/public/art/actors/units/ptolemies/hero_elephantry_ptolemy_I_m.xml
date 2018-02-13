@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -18,8 +18,9 @@
       </animations>
       <mesh>skeletal/elephant_asian_male.dae</mesh>
       <props>
-        <prop actor="units/ptolemies/hero_ptolemy_I_mahout.xml" attachpoint="rider"/>
+        <prop actor="units/ptolemies/hero_elephantry_ptolemy_I_d.xml" attachpoint="rider"/>
         <prop actor="props/units/turret_ptolemy_I.xml" attachpoint="turret"/>
+        <prop actor="units/ptolemies/hero_elephantry_ptolemy_I_r.xml" attachpoint="turret"/>
       </props>
       <textures>
         <texture file="skeletal/maur_elephant_worker.png" name="baseTex"/>

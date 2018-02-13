@@ -3,22 +3,21 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/ptol_romanized_brass.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/ptol_thureos_basic.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
+        <prop actor="props/units/shields/mace_pez_adv.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/heads/spartan_phalangite_helmet.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_egyptian_e.xml" attachpoint="head"/>
       </props>
       <textures>
-        <texture file="skeletal/ptol_thureophoros_a_1.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_a_1_spec.png" name="specTex"/>
+        <texture file="skeletal/ptol_isp_a_1.png" name="baseTex"/>
+        <texture file="skeletal/ptol_isp_a_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_spearman_relax.xml"/>
+    <variant file="biped/pikeman_base.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -12,13 +12,13 @@
         <prop actor="props/units/pers_quiver_hip.xml" attachpoint="l_hip"/>
       </props>
       <textures>
-        <texture file="skeletal/pers_car_a_r.png" name="baseTex"/>
+        <texture file="skeletal/pers_car_b_r_2.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="attack_slaughter">
+    <variant >
       <props>
         <prop actor="props/units/weapons/akin.xml" attachpoint="r_hand"/>
       </props>

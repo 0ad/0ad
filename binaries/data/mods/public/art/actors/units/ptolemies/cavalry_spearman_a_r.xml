@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="100" name="Base">
+    <variant frequency="100" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/ptol_cav_spear_a.xml" attachpoint="shield"/>
-        <prop actor="props/units/cape_cav_animated_spearman_relax_shield.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/spearman_relax_shield.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/>
@@ -17,20 +17,15 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant file="biped/rider_promotion_shield.xml" name="promotion"/>
-    <variant file="biped/attack_slaughter_spear_shield_cavalry.xml" name="attack_slaughter"/>
-    <variant name="carry_meat">
-      <props>
-        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="weapon_R"/>
-      </props>
-    </variant>
-    <variant name="carry_meat">
-      <props>
-        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
+    <variant file="biped/base_cavalry_spearman_relax_shield.xml"/>
+    <variant file="biped/rider/carry_meat.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
+    <variant file="biped/rider/promotion_shield.xml" />
+    <variant file="biped/rider/gather_meat_hele.xml"/>
+    <variant file="biped/rider/death.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
