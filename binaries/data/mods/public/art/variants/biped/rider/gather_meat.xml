@@ -1,0 +1,9 @@
+<variant name="gather_meat">
+  <animations>
+    <animation file="biped/rider_gather_meat.dae" name="gather_meat" speed="70"/>
+  </animations>
+  <props>
+    <prop attachpoint="ammo"/>
+    <prop attachpoint="shield"/>
+  </props>
+</variant>
