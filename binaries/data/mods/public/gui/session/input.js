@@ -348,34 +348,20 @@ function tryPlaceWall(queued)
 	return true;
 }
 
-// Updates the bandbox object with new positions and visibility.
-// The coordinates [x0, y0, x1, y1] are returned for further use.
+/**
+ * Updates the bandbox object with new positions and visibility.
+ * @returns {array} The coordinates of the vertices of the bandbox.
+ */
 function updateBandbox(bandbox, ev, hidden)
 {
-	let x0 = g_DragStart.x;
-	let y0 = g_DragStart.y;
-	let x1 = ev.x;
-	let y1 = ev.y;
-	// normalize the orientation of the rectangle
-	if (x0 > x1)
-	{
-		let t = x0;
-		x0 = x1;
-		x1 = t;
-	}
-	if (y0 > y1)
-	{
-		let t = y0;
-		y0 = y1;
-		y1 = t;
-	}
-
 	let scale = +Engine.ConfigDB_GetValue("user", "gui.scale");
+	let vMin = Vector2D.min(g_DragStart, ev);
+	let vMax = Vector2D.max(g_DragStart, ev);
 
-	bandbox.size = new GUISize(x0 / scale, y0 / scale, x1 / scale, y1 / scale);
+	bandbox.size = new GUISize(vMin.x / scale, vMin.y / scale, vMax.x / scale, vMax.y / scale);
 	bandbox.hidden = hidden;
 
-	return [x0, y0, x1, y1];
+	return [vMin.x, vMin.y, vMax.x, vMax.y];
 }
 
 // Define some useful unit filters for getPreferredEntities

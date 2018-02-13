@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:04+0100\n"
-"PO-Revision-Date: 2018-02-07 14:44+0000\n"
-"Last-Translator: David D\n"
+"POT-Creation-Date: 2018-02-09 09:04+0100\n"
+"PO-Revision-Date: 2018-02-09 16:08+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -464,6 +464,25 @@ msgstr "Une carte typique sans aucune étendue d'eau."
 msgid "Mainland"
 msgstr "Territoire continental"
 
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "La Méditerranée, berceau des Phéniciens, des Grecs, des Égyptiens et plus tard des Romains. Ils ont pris le savoir rudimentaire et les principes d'organisation de la Mésopotamie et les ont perfectionné, faisant de la côte Méditerranéenne le centre de l'apprentissage et du savoir, et posant ainsi les fondations de la civilisation telle que nous la connaissons aujourd'hui. La mer Méditerranée est presque entièrement entourée de terre : au nord par la Gallia Transalpina (Gaule transalpine), l'Italie, la Grèce (Graecia) et l'Anatolie, à l'est par la Syrie, au sud par la Lybie et la Mauritanie, et à l'ouest par l'Ibérie. Le nom Méditerranée est dérivé du latin, mais les Romains eux-mêmes préféraient le terme « Mare internum » ou même « Mare nostrum »."
+
+#: maps/random/mediterranean.jsonsettings.Name
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgid "Mediterranean"
+msgstr "Méditerranée"
+
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
@@ -833,15 +852,6 @@ msgid ""
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Commencez dans une région bénie par le climat méditerranéen, une terre chaleureuse et accueillante. Les cyprès sont dans une lutte perpétuelle contre les palmiers dominants tandis que les cerfs pâlissent dans leur ombre, parfaitement inconscients."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgid "Mediterranean"
-msgstr "Méditerranée"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Méditerranéen "
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
@@ -2786,3 +2796,8 @@ msgstr "Les montagnes tapissant la patrie perse, enjambant la Perside, Élam et 
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Monts Zagros (2)"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Méditerranéen "

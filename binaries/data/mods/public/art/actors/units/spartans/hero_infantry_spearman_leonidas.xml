@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_hoplite.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_xerxes.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/hele_round_leonidas.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/heads/athen_pericles.xml" attachpoint="helmet"/>
+        <prop actor="props/units/capes/hoplite.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="skeletal/hele_leonidas.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/hoplite.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

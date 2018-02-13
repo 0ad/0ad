@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_archer_chariot_ready.xml">
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_pers_b.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/pers_neckguard.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_L"/>
+        <prop actor="props/units/quiver_hip.xml" attachpoint="sheath_L"/>
+        <prop actor="props/units/shields/pers_pelta_a_b_reverse.xml" attachpoint="back"/>
+      </props>
+      <textures><texture file="skeletal/pers_car_e_r.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_archer_hip.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant name="carry_meat"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

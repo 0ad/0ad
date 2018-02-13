@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -14,17 +14,33 @@
   </group>
   <group>
     <variant frequency="1" name="Tunic-1">
-      <textures><texture file="skeletal/kart_csp_b_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/kart_csp_b_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Tunic-2">
-      <textures><texture file="skeletal/kart_csp_b_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/kart_csp_b_2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Tunic-3">
-      <textures><texture file="skeletal/kart_csp_b_3.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/kart_csp_b_3.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Tunic-4">
-      <textures><texture file="skeletal/kart_csp_b_4.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/kart_csp_b_4.dds" name="baseTex"/>
+      </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="biped/base_swordsman_shield_relax.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -40,16 +56,6 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
-    <variant file="biped/carry_food.xml"/>
-    <variant file="biped/carry_meat.xml"/>
-    <variant file="biped/carry_wood.xml"/>
-    <variant file="biped/carry_stone.xml"/>
-    <variant file="biped/carry_metal.xml"/>
-    <variant file="biped/carry_food_idle.xml"/>
-    <variant file="biped/carry_meat_idle.xml"/>
-    <variant file="biped/carry_wood_idle.xml"/>
-    <variant file="biped/carry_stone_idle.xml"/>
-    <variant file="biped/carry_metal_idle.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

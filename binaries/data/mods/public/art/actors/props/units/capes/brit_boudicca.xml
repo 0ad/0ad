@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shield_relax.xml">
+      <mesh>props/new/capes/f_cape_long.dae</mesh>
+      <textures>
+        <texture file="props/cape_celt_boudicca.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_javelinist.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

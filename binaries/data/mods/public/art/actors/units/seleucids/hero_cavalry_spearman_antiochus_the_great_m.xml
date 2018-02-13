@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
+      <props>
+        <prop actor="units/seleucids/hero_cavalry_spearman_antiochus_the_great_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/pers_peytral_spearman.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse/sele_crest.xml" attachpoint="head"/>
+        <prop actor="props/units/horse_back_blanket_cavalry.xml" attachpoint="rider"/>
+      </props>
+      <textures>
+        <texture file="skeletal/horse_rome_maximus.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

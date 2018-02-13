@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_spearman_ready_fast.xml">
+      <mesh>skeletal/new/m_naked.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_celt_fanatic.xml" attachpoint="head"/>
+        <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/celt_round_e.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="nekkid 01">
+      <textures>
+        <texture file="skeletal/kart_isw_a_01.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="nekkid 02">
+      <textures>
+        <texture file="skeletal/kart_isw_a_02.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="nekkid 03">
+      <textures>
+        <texture file="skeletal/celt_ijv_e_01.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="nekkid 04">
+      <textures>
+        <texture file="skeletal/celt_ijv_e_02.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shieldarm.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/thespian.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_corinthian.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/xiphos.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/thespian.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/capes/thespian_black.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="Armour: Black Reinforced">
+      <textures>
+        <texture file="skeletal/thespian_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="4" name="Armour: Black Corselet">
+      <textures>
+        <texture file="skeletal/thespian_b.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Armour: Black Cuirass">
+      <textures>
+        <texture file="skeletal/thespian_c.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armour: White">
+      <textures>
+        <texture file="skeletal/hele_isp_a_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/thespian_black.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

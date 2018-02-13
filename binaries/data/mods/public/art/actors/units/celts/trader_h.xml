@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Mesh">
+    <variant frequency="1" name="Mesh">
       <animations>
         <animation file="quadraped/donkey_idle_01.dae" name="idle" speed="10"/>
         <animation file="quadraped/donkey_death_01.dae" name="death" speed="40"/>

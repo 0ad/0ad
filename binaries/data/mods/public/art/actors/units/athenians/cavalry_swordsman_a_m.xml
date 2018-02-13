@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
+      <props>
+        <prop actor="units/athenians/cavalry_swordsman_a_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="hyppikon-horse-texture-plain">
+      <textures>
+        <texture file="skeletal/horse_hele_a_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="hyppikon-horse-texture-stripe">
+      <textures>
+        <texture file="skeletal/horse_hele_a_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse-color-bay">
+      <color>228 107 27</color>
+    </variant>
+    <variant frequency="1" name="horse-color-red-chestnut">
+      <color>207 132 109</color>
+    </variant>
+    <variant frequency="1" name="horse-color-black-chestnut">
+      <color>164 87 68</color>
+    </variant>
+    <variant frequency="1" name="horse-color-black">
+      <color>42 42 42</color>
+    </variant>
+    <variant frequency="1" name="horse-color-gray">
+      <color>210 210 210</color>
+    </variant>
+    <variant frequency="1" name="horse-color-beige">
+      <color>209 203 131</color>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

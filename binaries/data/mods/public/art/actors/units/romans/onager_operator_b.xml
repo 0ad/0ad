@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -18,6 +18,7 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Idle"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

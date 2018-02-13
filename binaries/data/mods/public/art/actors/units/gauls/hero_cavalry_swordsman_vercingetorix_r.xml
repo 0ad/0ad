@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_cavalry_swordsman_shield_ready.xml" frequency="1" name="Base">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_vercingetorix.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/celt_round_swirl.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
+        <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
+      </props>
+      <textures>
+        <texture file="skeletal/celt_vercingetorix.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/death.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

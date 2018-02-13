@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="capes/base.xml">
+      <textures>
+        <texture file="props/cape_hd_beige.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_cavalry_swordsman_relax.xml"/>
+    <variant file="biped/rider/base_carry_meat.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/attack_slaughter.xml"/>
+    <variant file="biped/rider/promotion.xml"/>
+    <variant file="biped/rider/gather_meat.xml"/>
+    <variant file="biped/rider/death.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

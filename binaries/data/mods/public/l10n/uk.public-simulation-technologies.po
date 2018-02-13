@@ -4,7 +4,7 @@
 # 
 # Translators:
 # AlexKR <alexkr.post@gmail.com>, 2015
-# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
+# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2018
 # Oleg Adept <adeptoleg@gmail.com>, 2016
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # SkiDo <skidoster@gmail.com>, 2015
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-07 09:03+0100\n"
-"PO-Revision-Date: 2018-02-07 15:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-11 20:51+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -699,7 +699,7 @@ msgstr "Секрети ковальської обробки надають ле
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "+20% атаки для всіх мечників та юнітів з булавою."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -1069,7 +1069,7 @@ msgstr "Ткацький верстат дозволив створювати я
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
-msgstr ""
+msgstr "+50% до здоров'я городянок."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1165,7 +1165,7 @@ msgstr "Жінки та Населення"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr ""
+msgstr "Городянки та Населення"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1216,7 +1216,7 @@ msgstr "Фаза Міста"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "Фіктивна технологія для використання в шаблонах, замінює phase_city_generic або phase_city_ {CIV}."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1267,7 +1267,7 @@ msgstr "Фаза Містечка"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "Фіктивна технологія для використання в шаблонах, замінює phase_town_generic або phase_town_{civ}."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1553,7 +1553,7 @@ msgstr "Підсилює обороноздатність у випадку ат
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "Підсилює броню захисної башти на 2 рівня."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1581,7 +1581,7 @@ msgstr "Застави тримаються вдвічі довше на ней�
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "Застави -50% від швидкості території розпаду."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1593,7 +1593,7 @@ msgstr "Бійниці дозволяють уражати ворогів біл
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "Забирає мінімальний радіус дії башт."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1605,7 +1605,7 @@ msgstr "Збільшується дальність стрільби вогня�
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "Збільшує радіус дії захисної вежі на 8 метрів."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1617,7 +1617,7 @@ msgstr "Аванпост додає більшої видимості для р�
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Застави отримують +50% до радіусу огляду."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1629,7 +1629,7 @@ msgstr "Нічна варта збільшує пильність."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Розмістіть вартових у баштах, щоб збільшити кількість стріл, що випускаються."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -2372,25 +2372,25 @@ msgstr "Афінські довгі мури"
 msgid ""
 "+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "+25% ПЗ та -50% від часу побудови Громадських центрів, Храмів, Пірамід та Чудес."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Монументальна архітектура"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "Нехай ваші священики проінструктовані самим Верховним жерцем - може Амон благословить його."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "Тренує елітних цілителів."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "High Priest of Amun"
-msgstr ""
+msgstr "Верховний жрець Амона"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""

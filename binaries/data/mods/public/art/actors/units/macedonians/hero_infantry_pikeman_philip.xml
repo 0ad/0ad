@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/pikeman_base.xml">
+      <props>
+        <prop actor="props/units/heads/new/head_philip.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/mace_round_su3.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/heads/mace_philip.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Armour - Leather Cuirass">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/hele_philip.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Armour - Vergina Cuirass">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/hele_philip_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Armour - Vergina Cuirass - Leather Pteruges">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/hele_philip_3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

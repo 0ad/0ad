@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:04+0100\n"
-"PO-Revision-Date: 2018-02-07 14:44+0000\n"
+"POT-Creation-Date: 2018-02-09 09:04+0100\n"
+"PO-Revision-Date: 2018-02-09 16:08+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -460,6 +460,25 @@ msgstr "Обычная карта без водной части."
 msgid "Mainland"
 msgstr "Материк"
 
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "Средиземное море, ставшее домом для финикийцев, греков, египтян, а позже и для римлян. Они взяли элементарные знания и принципы организации из Месопотамии и преобразовали их в нечто большее, тем самым перенеся культурный и научный центры на средиземноморское побережье, и заложив таким образом основы цивилизации, которую мы знаем сегодня. Средиземное море со всех сторон окружено землей: на севере это Трансальпийская Галлия, Италия, Греция и Анатолии, на востоке Сирия, на юге Ливия и Мавритания, а на западе Иберия. Европейское название Средиземного моря 'Mediterranean' имеет латинские корни, но сами римляне предпочитали термин 'Mare Internum', что означало 'Внутреннее Море', а иногда даже 'Mare Nostrum' - 'Наше Море'."
+
+#: maps/random/mediterranean.jsonsettings.Name
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgid "Mediterranean"
+msgstr "Средиземноморье"
+
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
@@ -829,15 +848,6 @@ msgid ""
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr ""
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgid "Mediterranean"
-msgstr "Средиземноморье"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Средиземноморье"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
@@ -2786,3 +2796,8 @@ msgstr "Горы ограничивают родину персов, охват�
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Горы Загрос (2)"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Средиземноморье"

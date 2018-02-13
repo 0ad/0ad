@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-02-07 15:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-11 10:02+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -441,7 +441,7 @@ msgstr "Had Populasi"
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
-msgstr "Harta Karun"
+msgstr "Khazanah"
 
 #: gui/common/gamedescription.js:387
 msgctxt "treasures"
@@ -753,7 +753,7 @@ msgstr "Tidak Diketahui"
 
 #: gui/common/tooltips.js:9
 msgid "Melee Attack:"
-msgstr "Serangan Melee:"
+msgstr "Serangan Tempur:"
 
 #: gui/common/tooltips.js:10
 msgid "Ranged Attack:"
@@ -965,20 +965,20 @@ msgstr "Per Unit"
 
 #: gui/common/tooltips.js:358
 msgid "Number of repairers:"
-msgstr ""
+msgstr "Bilangan pembaik:"
 
 #: gui/common/tooltips.js:364
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "Tambah pekerja lain untuk cepatkan pembaikan dalam tempoh %(second)s saat."
 
 #: gui/common/tooltips.js:371
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "Tambah pekerja untuk selesaikan pembaikan dalam tempoh %(second)s saat."
 
 #: gui/common/tooltips.js:380
 msgid "Number of builders:"
@@ -1558,7 +1558,7 @@ msgstr "Ufti \n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:120
 msgid "Treasures collected"
-msgstr "Harta karun ditemui"
+msgstr "Khazanah ditemui"
 
 #: gui/summary/layout.js:121
 msgid "Loot"
@@ -3588,7 +3588,7 @@ msgstr "- Berperisai berat dan perlahan. Serangan bawah."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr "- Digunakan terhadap askar berkuda atau lain-lain infantri melee untuk menekan musuh dalam satu tempat."
+msgstr "- Digunakan terhadap askar berkuda atau lain-lain infantri tempur untuk menekan musuh dalam satu tempat."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -3682,7 +3682,7 @@ msgstr "ASKAR BERTOMBAK"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
-msgstr "- Infantri melee asas untuk setiap puak di dalam permainan."
+msgstr "- Infantri tempur asas untuk setiap puak di dalam permainan."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for an attack bonus."
@@ -3726,7 +3726,7 @@ msgstr "- Rumah simpanan murah untuk sumber bukan makanan (kayu, batu, logam)."
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- Kaji teknologi untuk mempertingkatkan keupayaan mengumpul sumber warga anda."
+msgstr "- Kaji teknologi untuk mempertingkatkan keupayaan mengumpul sumber rakyat anda."
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
@@ -3822,7 +3822,7 @@ msgstr "- Kapal Perang Saiz Sederhana."
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr "- Hanay ada pada puak Rom, Carthagi, Yunani, dan Parsi."
+msgstr "- Hanya ada pada puak Rom, Carthagi, Yunani, dan Parsi."
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."

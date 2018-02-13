@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_swordsman_relax.xml" frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/helmets/hele_illyrian_crested.xml" attachpoint="helmet"/>
@@ -14,26 +14,26 @@
   </group>
   <group>
     <variant frequency="1" name="armour-scale">
-      <textures><texture file="skeletal/hele_linothorax_scale.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_linothorax_scale.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="armour-cuirass">
-      <textures><texture file="skeletal/hele_isp_e_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_isp_e_1.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant file="biped/rider_promotion.xml" name="promotion"/>
-    <variant file="biped/attack_slaughter_cavalry.xml" name="attack_slaughter">
-      <props>
-        <prop actor="props/units/weapons/knife.xml" attachpoint="weapon_R"/>
-      </props>
-    </variant>
-    <variant name="carry_meat">
-      <props>
-        <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
+    <variant file="biped/base_cavalry_swordsman_relax.xml"/>
+    <variant file="biped/rider/carry_meat.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/promotion.xml"/>
+    <variant file="biped/rider/attack_slaughter_hele.xml"/>
+    <variant file="biped/rider/gather_meat_hele.xml"/>
+    <variant file="biped/rider/death.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

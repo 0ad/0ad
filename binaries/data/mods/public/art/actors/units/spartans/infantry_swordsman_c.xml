@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shieldarm_fast.xml">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/hele_illyrian_crested.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_spart_e.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/spart_aspis_skiritai.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/xiphos.xml" attachpoint="weapon_R"/>
+      </props>
+      <textures>
+        <texture file="skeletal/mace_ijv_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

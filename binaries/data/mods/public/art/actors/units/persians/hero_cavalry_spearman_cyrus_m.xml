@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
+      <props>
+        <prop actor="units/persians/hero_cavalry_spearman_cyrus_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/pers_peytral_spearman.xml" attachpoint="chest"/>
+        <prop actor="props/units/heads/pers_cav_knot.xml" attachpoint="head"/>
+      </props>
+      <textures><texture file="skeletal/horse_pers_cyrus.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

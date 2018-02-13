@@ -5,6 +5,7 @@
 # Translators:
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2016-2017
+# Dmitry Sokolov <dmitry@scrofa-tridens.ru>, 2018
 # Ilya Andreev <ilia@liuch.ru>, 2017
 # Ivan Korovin <i.d.korovin@gmail.com>, 2017
 # Nergal Sham <sham-nergal@mail.ru>, 2016
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:03+0100\n"
-"PO-Revision-Date: 2018-02-07 19:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-02-09 09:03+0100\n"
+"PO-Revision-Date: 2018-02-11 03:40+0000\n"
+"Last-Translator: Dmitry Sokolov <dmitry@scrofa-tridens.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,11 +57,11 @@ msgstr "+20% к атаке солдат."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
-msgstr ""
+msgstr "Патриотизм"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 msgid "Workers +15% gather rates near pyramids."
-msgstr ""
+msgstr "+15% к коэффициенту сбора для рабочих вблизи пирамид."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -68,11 +69,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers near Large Pyramids +10% attack."
-msgstr ""
+msgstr "Солдаты вблизи Больших Пирамид +10% к атаке."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
-msgstr ""
+msgstr "Мироитские пирамиды"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid ""
@@ -216,7 +217,7 @@ msgstr "Снижает затраты на граждан-солдат стре�
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr ""
+msgstr "Поставщики слонов"
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
 msgid ""
@@ -400,7 +401,7 @@ msgstr ""
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
 "As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
-"+1 garrisoned heal rate for temples."
+"+1 garrisoned heal rate for nearby temples."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
@@ -707,7 +708,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
 msgid "+20% attack and +2 capture for soldiers and elephants."
-msgstr ""
+msgstr "+20% к атаке и +2 к захвату для солдат и слонов."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
@@ -731,7 +732,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy healrate reduced by 50%."
-msgstr ""
+msgstr "Скорость исцеления врагов снижена на 50%."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraName
 msgid "Saviour of Kush"

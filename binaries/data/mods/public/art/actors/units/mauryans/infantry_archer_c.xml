@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_archer_ready.xml">
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_female_test.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_maiden_big_turban.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/bow_long_indian.xml" attachpoint="weapon_L"/>
+        <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
+      </props>
+      <textures>
+        <texture file="skeletal/maur_fem_d.png" name="baseTex"/>
+        <texture file="skeletal/maur_fem_d_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_archer.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

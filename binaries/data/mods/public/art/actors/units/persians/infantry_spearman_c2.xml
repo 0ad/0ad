@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_spearman_ready_smallshield.xml">
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_pers_tiara.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/pers_kidaris_tied.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/gerron_plain.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/spear_ball.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/pers_quiver_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="5" name="Armor Bronze Scales">
+      <textures>
+        <texture file="skeletal/pers_su1_anusiya.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor Iron Scales">
+      <textures>
+        <texture file="skeletal/pers_su1_anusiya_iron.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

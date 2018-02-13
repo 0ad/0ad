@@ -774,7 +774,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		// Only cavalry should hunt far from dropsite (specially for non domestic animals which flee)
  		if (!isCavalry && canFlee && territoryOwner === 0)
 			return;
-		let distanceSquare = isCavalry ? 35000 : ( canFlee ? 7000 : 12000);
+		let distanceSquare = isCavalry ? 35000 : (canFlee ? 7000 : 12000);
 		if (!hasFoodDropsiteWithinDistance(supply.position(), supplyAccess, distanceSquare))
 			return;
 

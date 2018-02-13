@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
   <Attack>
     <Melee>
@@ -23,6 +23,6 @@
     <Icon>units/hele_hero_alexander.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>units/macedonians/alexander.xml</Actor>
+    <Actor>units/macedonians/hero_cavalry_swordsman_alexander_m.xml</Actor>
   </VisualActor>
 </Entity>

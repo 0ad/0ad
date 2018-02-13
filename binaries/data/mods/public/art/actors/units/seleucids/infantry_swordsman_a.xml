@@ -1,31 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_rhomphaia_shield_fast.xml">
+    <variant frequency="1" name="Base">
       <props>
         <prop actor="props/units/heads/floppy_b.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_thrace.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/rhomphaia.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
-		<prop actor="props/units/cape_animated_thrace_cloak.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/cloak_thracian.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Tunic-1">
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
-      <textures><texture file="skeletal/hele_ijv_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_ijv_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Tunic-2">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
-      <textures><texture file="skeletal/hele_ijv_a_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_ijv_a_2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Tunic-3">
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
-      <textures><texture file="skeletal/hele_ijv_a_3.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_ijv_a_3.dds" name="baseTex"/>
+      </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="biped/base_rhomphaia_shield_fast.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -41,17 +55,11 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
-    <variant file="biped/carry_food.xml"/>
-    <variant file="biped/carry_meat.xml"/>
-    <variant file="biped/carry_wood.xml"/>
-    <variant file="biped/carry_stone.xml"/>
-    <variant file="biped/carry_metal.xml"/>
-    <variant file="biped/carry_food_idle.xml"/>
-    <variant file="biped/carry_meat_idle.xml"/>
-    <variant file="biped/carry_wood_idle.xml"/>
-    <variant file="biped/carry_stone_idle.xml"/>
-    <variant file="biped/carry_metal_idle.xml"/>
-    <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/cloak_thracian.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>

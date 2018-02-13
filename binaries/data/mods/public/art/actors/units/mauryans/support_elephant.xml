@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="maur_elephant_asian_support">
       <animations>
-	    <animation event="0.75" file="quadraped/elephant_asian_support_build.dae" load="0.25" name="Build" speed="100"/>
+        <animation event="0.75" file="quadraped/elephant_asian_support_build.dae" load="0.25" name="Build" speed="100"/>
         <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
         <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
         <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
@@ -17,7 +17,7 @@
         <animation file="quadraped/elephant_asian_death.dae" name="Death" speed="75"/>
       </animations>
       <mesh>skeletal/elephant_asian_male.dae</mesh>
-<props>
+      <props>
         <prop actor="props/units/maur_support_turret.xml" attachpoint="turret"/>
       </props>
       <textures>
@@ -39,7 +39,7 @@
         <prop actor="props/units/blood_01.xml" attachpoint="root"/>
       </props>
     </variant>
-	<variant name="Build">
+    <variant name="Build">
       <props>
         <prop actor="props/special/eyecandy/wood_1_a.xml" attachpoint="loaded-beam"/>
       </props>

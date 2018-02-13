@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:04+0100\n"
-"PO-Revision-Date: 2018-02-07 14:44+0000\n"
+"POT-Creation-Date: 2018-02-09 09:04+0100\n"
+"PO-Revision-Date: 2018-02-09 16:08+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -445,6 +445,25 @@ msgstr "一個相當普通的無水地圖。"
 msgid "Mainland"
 msgstr "大陸"
 
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "地中海，曾是腓尼基人、希臘人、埃及人以及稍後的羅馬人的家。他們以美索不達米亞的知室為基礎，雜揉了從地中海沿岸學到的其他東西，由此奠定我們今日所知文明的基礎。地中海幾乎完全被陸地所包圍：從北邊的阿爾卑斯山與安那托利亞，東邊的敘利亞，南邊的利比亞與茅利塔尼亞，以及西邊的伊比利亞。地中海這個名字是源自於拉丁文，但羅馬人自己則偏好稱為 'Mare Internum' 或 'Mare Nostrum'。"
+
+#: maps/random/mediterranean.jsonsettings.Name
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgid "Mediterranean"
+msgstr "地中海"
+
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
@@ -814,15 +833,6 @@ msgid ""
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr ""
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgid "Mediterranean"
-msgstr "地中海"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "地中海"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
@@ -2765,3 +2775,8 @@ msgstr "這座山橫跨了波斯人的家園，包括了波斯、埃蘭、以及
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "札格羅斯山脈 (2)"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "地中海"

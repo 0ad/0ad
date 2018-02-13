@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <animations>
+        <animation file="mechanical/pers_chariot_e_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/pers_chariot_e_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/pers_chariot_e_move.dae" name="Run" speed="10"/>
+      </animations>
+      <mesh>structural/pers_chariot_e.dae</mesh>
+      <props>
+        <prop actor="props/units/pers_chariot_hero_emblem.xml" attachpoint="root"/>
+        <prop actor="units/persians/hero_chariot_archer_darius_h1.xml" attachpoint="horse1"/>
+        <prop actor="units/persians/hero_chariot_archer_darius_h1.xml" attachpoint="horse2"/>
+        <prop actor="units/persians/hero_chariot_archer_darius_h1.xml" attachpoint="horse3"/>
+        <prop actor="units/persians/hero_chariot_archer_darius_h1.xml" attachpoint="horse4"/>
+        <prop actor="units/persians/hero_chariot_archer_darius_r.xml" attachpoint="rider1"/>
+        <prop actor="units/persians/chariot_archer_e_d.xml" attachpoint="rider2"/>
+      </props>
+      <textures>
+        <texture file="structural/pers_chariot_darius.png" name="baseTex"/>
+        <texture file="structural/pers_chariot_hero_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

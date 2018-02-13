@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_elephant_rider_ready_shield_offhand_african.xml" frequency="1" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_numid_all.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/kart_archer_e.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
+      </props>
+      <textures><texture file="skeletal/hele_isp_b_2.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

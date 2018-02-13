@@ -17,14 +17,8 @@
 			},
 			{
 				"type": "boolean",
-				"label": "Windowed Mode",
-				"tooltip": "Start 0 A.D. in a window",
-				"config": "windowed"
-			},
-			{
-				"type": "boolean",
 				"label": "Background Pause",
-				"tooltip": "Pause single player games when window loses focus",
+				"tooltip": "Pause single player games when window loses focus.",
 				"config": "pauseonfocusloss"
 			},
 			{
@@ -32,12 +26,6 @@
 				"label": "Enable Welcome Screen",
 				"tooltip": "If you disable it, the welcome screen will still appear once, each time a new version is available. You can always launch it from the main menu.",
 				"config": "gui.splashscreen.enable"
-			},
-			{
-				"type": "boolean",
-				"label": "Detailed Tooltips",
-				"tooltip": "Show detailed tooltips for trainable units in unit-producing buildings.",
-				"config": "showdetailedtooltips"
 			},
 			{
 				"type": "boolean",
@@ -72,7 +60,7 @@
 			{
 				"type": "dropdown",
 				"label": "Late Observer Joins",
-				"tooltip": "Allow everybody or buddies only to join the game as observer after it started",
+				"tooltip": "Allow everybody or buddies only to join the game as observer after it started.",
 				"config": "network.lateobservers",
 				"list": [
 					{ "value": "everyone", "label": "Everyone" },
@@ -83,67 +71,16 @@
 			{
 				"type": "number",
 				"label": "Observer Limit",
-				"tooltip": "Prevent further observers from joining if the limit is reached",
+				"tooltip": "Prevent further observers from joining if the limit is reached.",
 				"config": "network.observerlimit",
 				"min": 0,
 				"max": 32
-			},
-			{
-				"type": "number",
-				"label": "Batch Training Size",
-				"tooltip": "Number of units trained per batch",
-				"config": "gui.session.batchtrainingsize",
-				"min": 1,
-				"max": 20
-			},
-			{
-				"type": "slider",
-				"label": "Wounded Unit Health",
-				"tooltip": "The wounded unit hotkey considers the selected units as wounded if their health percentage falls below this number",
-				"config": "gui.session.woundedunithotkeythreshold",
-				"min": 0,
-				"max": 100
 			},
 			{
 				"type": "boolean",
 				"label": "Chat Timestamp",
 				"tooltip": "Show time that messages are posted in the lobby, gamesetup and ingame chat.",
 				"config": "chat.timestamp"
-			},
-			{
-				"type": "boolean",
-				"label": "Attack Range Visualization",
-				"tooltip": "Display the attack range of selected defensive structures (can also be toggled in-game with the hotkey).",
-				"config": "gui.session.attackrange"
-			},
-			{
-				"type": "boolean",
-				"label": "Aura Range Visualization",
-				"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
-				"config": "gui.session.aurasrange"
-			},
-			{
-				"type": "boolean",
-				"label": "Heal Range Visualization",
-				"tooltip": "Display the healing range of selected units (can also be toggled in-game with the hotkey).",
-				"config": "gui.session.healrange"
-			},
-			{
-				"type": "boolean",
-				"label": "Rank icon above status bar",
-				"tooltip": "Show rank icons above status bars",
-				"config": "gui.session.rankabovestatusbar"
-			},
-			{
-				"type": "dropdown",
-				"label": "Sort resources and population tooltip",
-				"tooltip": "Dynamically sort players in the resources and population tooltip by value.",
-				"config": "gui.session.respoptooltipsort",
-				"list": [
-					{ "value": 0, "label": "Unordered" },
-					{ "value": -1, "label": "Ascending" },
-					{ "value": 1, "label": "Descending" }
-				]
 			}
 		]
 	},
@@ -154,15 +91,21 @@
 		[
 			{
 				"type": "boolean",
+				"label": "Windowed Mode",
+				"tooltip": "Start 0 A.D. in a window.",
+				"config": "windowed"
+			},
+			{
+				"type": "boolean",
 				"label": "Prefer GLSL",
-				"tooltip": "Use OpenGL 2.0 shaders (recommended)",
+				"tooltip": "Use OpenGL 2.0 shaders (recommended).",
 				"config": "preferglsl",
 				"function": "Renderer_SetPreferGLSLEnabled"
 			},
 			{
 				"type": "boolean",
 				"label": "Fog",
-				"tooltip": "Enable Fog",
+				"tooltip": "Enable Fog.",
 				"dependencies": ["preferglsl"],
 				"config": "fog",
 				"function": "Renderer_SetFogEnabled"
@@ -170,7 +113,7 @@
 			{
 				"type": "boolean",
 				"label": "Post Processing",
-				"tooltip": "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)",
+				"tooltip": "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc).",
 				"config": "postproc",
 				"function": "Renderer_SetPostprocEnabled"
 			},
@@ -185,7 +128,7 @@
 			{
 				"type": "boolean",
 				"label": "Shadows",
-				"tooltip": "Enable shadows",
+				"tooltip": "Enable shadows.",
 				"config": "shadows",
 				"function": "Renderer_SetShadowsEnabled"
 			},
@@ -207,7 +150,7 @@
 			{
 				"type": "boolean",
 				"label": "Shadow Filtering",
-				"tooltip": "Smooth shadows",
+				"tooltip": "Smooth shadows.",
 				"dependencies": ["shadows"],
 				"config": "shadowpcf",
 				"function": "Renderer_SetShadowPCFEnabled"
@@ -215,14 +158,14 @@
 			{
 				"type": "boolean",
 				"label": "Unit Silhouettes",
-				"tooltip": "Show outlines of units behind buildings",
+				"tooltip": "Show outlines of units behind buildings.",
 				"config": "silhouettes",
 				"function": "Renderer_SetSilhouettesEnabled"
 			},
 			{
 				"type": "boolean",
 				"label": "Particles",
-				"tooltip": "Enable particles",
+				"tooltip": "Enable particles.",
 				"config": "particles",
 				"function": "Renderer_SetParticlesEnabled"
 			},
@@ -244,7 +187,7 @@
 			{
 				"type": "boolean",
 				"label": "Real Water Depth",
-				"tooltip": "Use actual water depth in rendering calculations",
+				"tooltip": "Use actual water depth in rendering calculations.",
 				"dependencies": ["watereffects"],
 				"config": "waterrealdepth",
 				"function": "Renderer_SetWaterRealDepthEnabled"
@@ -252,7 +195,7 @@
 			{
 				"type": "boolean",
 				"label": "Water Reflections",
-				"tooltip": "Allow water to reflect a mirror image",
+				"tooltip": "Allow water to reflect a mirror image.",
 				"dependencies": ["watereffects"],
 				"config": "waterreflection",
 				"function": "Renderer_SetWaterReflectionEnabled"
@@ -260,7 +203,7 @@
 			{
 				"type": "boolean",
 				"label": "Water Refraction",
-				"tooltip": "Use a real water refraction map and not transparency",
+				"tooltip": "Use a real water refraction map and not transparency.",
 				"dependencies": ["watereffects"],
 				"config": "waterrefraction",
 				"function": "Renderer_SetWaterRefractionEnabled"
@@ -268,7 +211,7 @@
 			{
 				"type": "boolean",
 				"label": "Shadows on Water",
-				"tooltip": "Cast shadows on water",
+				"tooltip": "Cast shadows on water.",
 				"dependencies": ["watereffects"],
 				"config": "watershadows",
 				"function": "Renderer_SetWaterShadowsEnabled"
@@ -276,14 +219,14 @@
 			{
 				"type": "boolean",
 				"label": "Smooth LOS",
-				"tooltip": "Lift darkness and fog-of-war smoothly",
+				"tooltip": "Lift darkness and fog-of-war smoothly.",
 				"config": "smoothlos",
 				"function": "Renderer_SetSmoothLOSEnabled"
 			},
 			{
 				"type": "boolean",
 				"label": "Show Sky",
-				"tooltip": "Render Sky",
+				"tooltip": "Render Sky.",
 				"config": "showsky",
 				"function": "Renderer_SetShowSkyEnabled"
 			},
@@ -318,7 +261,7 @@
 			{
 				"type": "slider",
 				"label": "Master Volume",
-				"tooltip": "Master audio gain",
+				"tooltip": "Master audio gain.",
 				"config": "sound.mastergain",
 				"function": "SetMasterGain",
 				"min": 0,
@@ -327,7 +270,7 @@
 			{
 				"type": "slider",
 				"label": "Music Volume",
-				"tooltip": "In game music gain",
+				"tooltip": "In game music gain.",
 				"config": "sound.musicgain",
 				"function": "SetMusicGain",
 				"min": 0,
@@ -336,7 +279,7 @@
 			{
 				"type": "slider",
 				"label": "Ambient Volume",
-				"tooltip": "In game ambient sound gain",
+				"tooltip": "In game ambient sound gain.",
 				"config": "sound.ambientgain",
 				"function": "SetAmbientGain",
 				"min": 0,
@@ -345,7 +288,7 @@
 			{
 				"type": "slider",
 				"label": "Action Volume",
-				"tooltip": "In game unit action sound gain",
+				"tooltip": "In game unit action sound gain.",
 				"config": "sound.actiongain",
 				"function": "SetActionGain",
 				"min": 0,
@@ -354,7 +297,7 @@
 			{
 				"type": "slider",
 				"label": "UI Volume",
-				"tooltip": "UI sound gain",
+				"tooltip": "UI sound gain.",
 				"config": "sound.uigain",
 				"function": "SetUIGain",
 				"min": 0,
@@ -363,7 +306,7 @@
 			{
 				"type": "boolean",
 				"label": "Nick Notification",
-				"tooltip": "Receive audio notification when someone types your nick",
+				"tooltip": "Receive audio notification when someone types your nick.",
 				"config": "sound.notify.nick"
 			}
 		]
@@ -381,13 +324,13 @@
 			{
 				"type": "boolean",
 				"label": "Enable Settings Panel Slide",
-				"tooltip": "Slide the settings panel when opening, closing or resizing",
+				"tooltip": "Slide the settings panel when opening, closing or resizing.",
 				"config": "gui.gamesetup.settingsslide"
 			},
 			{
 				"type": "boolean",
 				"label": "Persist Match Settings",
-				"tooltip": "Save and restore match settings for quick reuse when hosting another game",
+				"tooltip": "Save and restore match settings for quick reuse when hosting another game.",
 				"config": "persistmatchsettings"
 			},
 			{
@@ -437,7 +380,7 @@
 			{
 				"type": "number",
 				"label": "Chat Backlog",
-				"tooltip": "Number of backlogged messages to load when joining the lobby",
+				"tooltip": "Number of backlogged messages to load when joining the lobby.",
 				"config": "lobby.history",
 				"min": "0"
 			},
@@ -450,37 +393,94 @@
 		]
 	},
 	{
-		"label": "Chat Notifications",
-		"tooltip": "Regulate the verbosity of chat notifications.",
+		"label": "In-Game",
+		"tooltip": "Change options regarding the in-game settings.",
 		"options":
 		[
 			{
+				"type": "slider",
+				"label": "Wounded Unit Health",
+				"tooltip": "The wounded unit hotkey considers the selected units as wounded if their health percentage falls below this number.",
+				"config": "gui.session.woundedunithotkeythreshold",
+				"min": 0,
+				"max": 100
+			},
+			{
+				"type": "number",
+				"label": "Batch Training Size",
+				"tooltip": "Number of units trained per batch.",
+				"config": "gui.session.batchtrainingsize",
+				"min": 1,
+				"max": 20
+			},
+			{
 				"type": "boolean",
-				"label": "Attack",
-				"tooltip": "Show a chat notification if you are attacked by another player",
+				"label": "Chat Notification Attack",
+				"tooltip": "Show a chat notification if you are attacked by another player.",
 				"config": "gui.session.notifications.attack"
 			},
 			{
 				"type": "boolean",
-				"label": "Tribute",
-				"tooltip": "Show a chat notification if an ally tributes resources to another team member if teams are locked, and all tributes in observer mode",
+				"label": "Chat Notification Tribute",
+				"tooltip": "Show a chat notification if an ally tributes resources to another team member if teams are locked, and all tributes in observer mode.",
 				"config": "gui.session.notifications.tribute"
 			},
 			{
 				"type": "boolean",
-				"label": "Barter",
-				"tooltip": "Show a chat notification to observers when a player bartered resources",
+				"label": "Chat Notification Barter",
+				"tooltip": "Show a chat notification to observers when a player bartered resources.",
 				"config": "gui.session.notifications.barter"
 			},
 			{
 				"type": "dropdown",
-				"label": "Phase",
-				"tooltip": "Show a chat notification if you or an ally have started, aborted or completed a new phase, and phases of all players in observer mode",
+				"label": "Chat Notification Phase",
+				"tooltip": "Show a chat notification if you or an ally have started, aborted or completed a new phase, and phases of all players in observer mode.",
 				"config": "gui.session.notifications.phase",
 				"list": [
 					{ "value": "none", "label": "Disable" },
 					{ "value": "completed", "label": "Completed" },
 					{ "value": "all", "label": "All displayed" }
+				]
+			},
+			{
+				"type": "boolean",
+				"label": "Attack Range Visualization",
+				"tooltip": "Display the attack range of selected defensive structures (can also be toggled in-game with the hotkey).",
+				"config": "gui.session.attackrange"
+			},
+			{
+				"type": "boolean",
+				"label": "Aura Range Visualization",
+				"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
+				"config": "gui.session.aurasrange"
+			},
+			{
+				"type": "boolean",
+				"label": "Heal Range Visualization",
+				"tooltip": "Display the healing range of selected units (can also be toggled in-game with the hotkey).",
+				"config": "gui.session.healrange"
+			},
+			{
+				"type": "boolean",
+				"label": "Rank icon above status bar",
+				"tooltip": "Show rank icons above status bars.",
+				"config": "gui.session.rankabovestatusbar"
+			},
+			{
+				"type": "boolean",
+				"label": "Detailed Tooltips",
+				"tooltip": "Show detailed tooltips for trainable units in unit-producing buildings.",
+				"config": "showdetailedtooltips"
+			},
+			{
+				"type": "dropdown",
+				"label": "Sort resources and population tooltip",
+				"tooltip": "Dynamically sort players in the resources and population tooltip by value.",
+				"config": "gui.session.respoptooltipsort",
+				"list": [
+					{ "value": 0, "label": "Unordered" },
+					{ "value": -1, "label": "Ascending" },
+					{ "value": 1, "label": "Descending" }
 				]
 			}
 		]

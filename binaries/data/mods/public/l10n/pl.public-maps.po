@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:04+0100\n"
-"PO-Revision-Date: 2018-02-07 14:44+0000\n"
+"POT-Creation-Date: 2018-02-09 09:04+0100\n"
+"PO-Revision-Date: 2018-02-09 16:08+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -465,6 +465,25 @@ msgstr "Typowa mapa bez wody."
 msgid "Mainland"
 msgstr "Kontynent"
 
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "Morze śródziemne, ojczyzna Fenicjan, Greków, Egipcjan, a potem Rzymian. Wzięli oni podstawową wiedzę zasady organizacji z Mezopotamii i zmienili je w coś więcej, przesuwając tym samym centrum nauki i wiedzy na wybrzeże Morza Śródziemnego, kładąc podwaliny pod cywilizację jaką znamy. Morze Śródziemne jest niemal całkowicie otoczone przez ląd: na północy przez Gallia Transalpina (Galię Zaalpejską), Italię, Grecję (Graecia) i Anatolię, na wschodzie przez Syrię, na południu Libię i Mauretanię, a na zachodzie Iberię. Nazwa Morze śródziemne pochodzi z łaciny, jednak Rzymianie woleli nazwę 'Mare Internum' lub nawet 'Mare Nostrum'."
+
+#: maps/random/mediterranean.jsonsettings.Name
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgid "Mediterranean"
+msgstr "Śródziemne"
+
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
@@ -834,15 +853,6 @@ msgid ""
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Zacznij od regionu błogosławionego śródziemnomorskim klimatem, ciepłą i zachęcającą krainą. Cyprysy są w ciągłej walce z dominującymi palmami, podczas gdy sarny pasą się w cieniu, błogo nieświadome."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgid "Mediterranean"
-msgstr "Śródziemne"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Śródziemne"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgid ""
@@ -2791,3 +2801,8 @@ msgstr "Góry buforujące perską ojczyznę, strefa pomiędzy Persydą, Seleucj�
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Góry Zagros (2)"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Śródziemne"

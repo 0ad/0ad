@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" file="biped/base_camel_archer.xml">
+      <mesh>skeletal/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/pers_quiver_hip.xml" attachpoint="l_hip"/>
+      </props>
+      <textures>
+        <texture file="skeletal/pers_car_b_r_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant >
+      <props>
+        <prop actor="props/units/weapons/akin.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop actor="props/units/weapons/akin.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

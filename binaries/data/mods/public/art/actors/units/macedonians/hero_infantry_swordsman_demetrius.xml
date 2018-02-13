@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shieldarm.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/heads/hele_demetrius.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/mace_aspis_demetrius.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/capes/swordsman_shield_ready.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="skeletal/hele_demetrius.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/swordsman_shield_ready.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

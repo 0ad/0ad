@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_hoplite.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/mace_hypaspist.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/helmets/hele_su3.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Armour-Linen-Linothorax">
+      <textures>
+        <texture file="skeletal/hele_pezhetairoi_3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armour-Reinforced Linothorax">
+      <textures>
+        <texture file="skeletal/hele_pezhetairoi.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armour-Bronze Cuirass">
+      <textures>
+        <texture file="skeletal/hele_pezhetairoi_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

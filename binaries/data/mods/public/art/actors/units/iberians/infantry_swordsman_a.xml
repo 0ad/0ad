@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_swordsman_shieldsmall_fast.xml">
+    <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
@@ -14,11 +14,23 @@
   </group>
   <group>
     <variant frequency="1" name="tunic-beige">
-      <textures><texture file="skeletal/iber_isw_a_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/iber_isw_a_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="tunic-brown">
-      <textures><texture file="skeletal/iber_isw_a_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/iber_isw_a_2.dds" name="baseTex"/>
+      </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="biped/base_swordsman_shieldsmall_fast.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -34,16 +46,6 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
-    <variant file="biped/carry_food.xml"/>
-    <variant file="biped/carry_meat.xml"/>
-    <variant file="biped/carry_wood.xml"/>
-    <variant file="biped/carry_stone.xml"/>
-    <variant file="biped/carry_metal.xml"/>
-    <variant file="biped/carry_food_idle.xml"/>
-    <variant file="biped/carry_meat_idle.xml"/>
-    <variant file="biped/carry_wood_idle.xml"/>
-    <variant file="biped/carry_stone_idle.xml"/>
-    <variant file="biped/carry_metal_idle.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shieldsmall_fast.xml">
+      <mesh>props/new/capes/m_cape_medium.dae</mesh>
+      <textures>
+        <texture file="props/cape_iber_viriato.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

@@ -1,24 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/pikeman_base.xml">
+    <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/sele_goldshield_j.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/helmets/sele_chalkaspides_e.xml" attachpoint="helmet"/>
-        <prop actor="props/units/cape_animated_pikeman.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/pikeman.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="armor short">
       <textures>
         <texture file="skeletal/spart_phalangite_officer.dds" name="baseTex"/>
       </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="biped/pikeman_base.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -34,17 +38,11 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
-    <variant file="biped/carry_food.xml"/>
-    <variant file="biped/carry_meat.xml"/>
-    <variant file="biped/carry_wood.xml"/>
-    <variant file="biped/carry_stone.xml"/>
-    <variant file="biped/carry_metal.xml"/>
-    <variant file="biped/carry_food_idle.xml"/>
-    <variant file="biped/carry_meat_idle.xml"/>
-    <variant file="biped/carry_wood_idle.xml"/>
-    <variant file="biped/carry_stone_idle.xml"/>
-    <variant file="biped/carry_metal_idle.xml"/>
-    <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/pikeman.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>

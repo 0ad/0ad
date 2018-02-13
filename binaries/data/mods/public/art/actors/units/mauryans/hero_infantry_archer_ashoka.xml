@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_archer_ready.xml">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_maur_ashoka.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_hero_big_turban.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/maur_earrings_2.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/bow_bamboo_long.xml" attachpoint="weapon_L"/>
+        <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
+      </props>
+      <textures>
+        <texture file="skeletal/maur_hero_ashoka.png" name="baseTex"/>
+        <texture file="skeletal/maur_hero_ashoka_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/attack_ranged_archer.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

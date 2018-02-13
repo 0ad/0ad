@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_spearman_relax.xml">
+    <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_lime.xml" attachpoint="head"/>
@@ -13,38 +13,68 @@
   </group>
   <group>
     <variant frequency="1" name="Clothes-1">
-      <textures><texture file="skeletal/celt_isw_a_01.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_01.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Clothes-2">
-      <textures><texture file="skeletal/celt_isw_a_02.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_02.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Clothes-3">
-      <textures><texture file="skeletal/celt_isw_a_03.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_03.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Clothes-4">
-      <textures><texture file="skeletal/celt_isw_a_04.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_04.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Clothes-5">
-      <textures><texture file="skeletal/celt_isw_a_05.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_05.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Clothes-6">
-      <textures><texture file="skeletal/celt_isw_a_06.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_06.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Clothes-7">
-      <textures><texture file="skeletal/celt_isw_a_07.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_07.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Clothes-8">
-      <textures><texture file="skeletal/celt_isw_a_08.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_08.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Clothes-9">
-      <textures><texture file="skeletal/celt_isw_a_09.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_09.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Clothes-10">
-      <textures><texture file="skeletal/celt_isw_a_10.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_10.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Clothes-11">
-      <textures><texture file="skeletal/celt_isw_a_11.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_isw_a_11.dds" name="baseTex"/>
+      </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="biped/base_spearman_relax.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -60,16 +90,6 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
-    <variant file="biped/carry_food.xml"/>
-    <variant file="biped/carry_meat.xml"/>
-    <variant file="biped/carry_wood.xml"/>
-    <variant file="biped/carry_stone.xml"/>
-    <variant file="biped/carry_metal.xml"/>
-    <variant file="biped/carry_food_idle.xml"/>
-    <variant file="biped/carry_meat_idle.xml"/>
-    <variant file="biped/carry_wood_idle.xml"/>
-    <variant file="biped/carry_stone_idle.xml"/>
-    <variant file="biped/carry_metal_idle.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

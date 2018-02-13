@@ -131,15 +131,8 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 	let dropsiteId = dropsite.id();
 	this.dropsites[dropsiteId] = true;
 
-	if (this.ID === gameState.ai.HQ.baseManagers[0].ID)
-	{
-		accessIndex = dropsite.getMetadata(PlayerID, "access");
-		if (!accessIndex)
-		{
-			accessIndex = gameState.ai.accessibility.getAccessValue(dropsitePos);
-			dropsite.setMetadata(PlayerID, "access", accessIndex);
-		}
-	}
+	if (this.ID == gameState.ai.HQ.baseManagers[0].ID)
+		accessIndex = m.getLandAccess(gameState, dropsite);
 
 	let maxDistResourceSquare = this.maxDistResourceSquare;
 	for (let type of dropsite.resourceDropsiteTypes())
@@ -422,7 +415,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 			this.gatherers[type].lost = 0;
 			continue;
 		}
-		if (gameState.ai.playedTurn <= this.gatherers[type].nextCheck)	// rototo <
+		if (gameState.ai.playedTurn < this.gatherers[type].nextCheck)
 			continue;
 		for (let ent of this.gatherersByType(gameState, type).values())
 		{

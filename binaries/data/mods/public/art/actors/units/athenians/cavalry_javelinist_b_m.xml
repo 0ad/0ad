@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Base">
+      <mesh>skeletal/horse.dae</mesh>
+      <props>
+        <prop actor="units/athenians/cavalry_javelinist_b_r.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="horse texture black">
+      <textures>
+        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="horse texture brown">
+      <textures>
+        <texture file="skeletal/horse_brown_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="4" name="horse texture chestnut">
+      <textures>
+        <texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="horse texture dun">
+      <textures>
+        <texture file="skeletal/horse_dun_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="horse texture white">
+      <textures>
+        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

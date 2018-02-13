@@ -4,14 +4,14 @@
   <group>
     <variant frequency="1" name="maur_hero_howdah">
       <mesh>props/maur_maurya_howdah.dae</mesh>
-	  <props>
-		<prop actor="units/mauryans/hero_maurya_r.xml" attachpoint="maurya"/>
+      <props>
+        <prop actor="units/mauryans/hero_elephantry_maurya_r.xml" attachpoint="maurya"/>
       </props>
       <textures>
-		<texture file="props/maur_howdah.png" name="baseTex"/>
-		<texture file="props/maur_howdah_spec.png" name="specTex"/>
+        <texture file="props/maur_howdah.png" name="baseTex"/>
+        <texture file="props/maur_howdah_spec.png" name="specTex"/>
         <texture file="props/maur_howdah_norm.png" name="normTex"/>
-	  </textures>
+      </textures>
     </variant>
   </group>
   <material>player_trans_parallax_spec.xml</material>
