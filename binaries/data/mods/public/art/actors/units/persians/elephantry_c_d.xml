@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_elephant_rider_ready_shield.xml" frequency="100" name="Base">
+      <mesh>skeletal/new/m_pants.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_indian_a.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/axe_single.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/pers_buckler_1.xml" attachpoint="shield"/>
+      </props>
+      <textures>
+        <texture file="skeletal/pers_su2_mahout_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

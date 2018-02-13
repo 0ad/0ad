@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" file="quadraped/base_horse_chariot.xml" name="Chariot Horse">
+      <mesh>skeletal/horse.dae</mesh>
+      <props>
+        <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse_back_blanket_chariot.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse4a">
+      <textures><texture file="skeletal/horse_pers_csw_e_1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="horse4b">
+      <textures><texture file="skeletal/horse_pers_csw_e_2.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="4brown">
+      <color>84 53 33</color>
+    </variant>
+    <variant frequency="1" name="4beige">
+      <color>205 157 114</color>
+    </variant>
+    <variant frequency="1" name="4gray">
+      <color>106 114 125</color>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

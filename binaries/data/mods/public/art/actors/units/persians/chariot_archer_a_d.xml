@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_driver_chariot.xml">
+      <mesh>skeletal/new/m_pants_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_pers_tiara_y.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/pers_kidaris_tied_yellow.xml" attachpoint="helmet"/>
+      </props>
+      <textures><texture file="skeletal/pers_car_b_1.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
