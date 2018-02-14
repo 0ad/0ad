@@ -16,14 +16,15 @@
 # nicolas t <deux718281@yahoo.fr>, 2016
 # PERRUSSEL Valentin <vperrus@gmail.com>, 2014
 # Polakrity <sxk-fr@live.fr>, 2014,2017
+# Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2018
 # Toto AD <ad@imw.fr>, 2014
 # Xavier Tardieu <xapitoun@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 14:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-12 16:34+0000\n"
+"Last-Translator: Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,7 +109,7 @@ msgstr "Vous pouvez à nouveau parler."
 #: gui/lobby/lobby.js:228
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr "%(nick)s peut maintenant parler."
+msgstr "%(nick)s peut maintenant parler à nouveau."
 
 #: gui/lobby/lobby.js:230
 msgid "You are not a moderator anymore."
@@ -138,11 +139,11 @@ msgstr "Changer votre statut en 'En ligne'."
 
 #: gui/lobby/lobby.js:333
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Expulser un(e) utilisateur(trice) du hall. Usage : /kick nom raison"
+msgstr "Expulser un(e) utilisateur(trice) spécifié(e) du hall. Usage : /kick nom raison"
 
 #: gui/lobby/lobby.js:341
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "Bannir un(e) utilisateur(trice) du hall. Usage : /ban nom raison"
+msgstr "Bannir un(e) utilisateur(trice) spécifié(e) du hall. Usage : /ban nom raison"
 
 #: gui/lobby/lobby.js:349
 msgid "Show this help."
