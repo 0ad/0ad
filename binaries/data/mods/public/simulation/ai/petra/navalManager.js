@@ -158,7 +158,7 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 	for (let ship of this.ships.values())
 		this.setShipIndex(gameState, ship);
 	for (let dock of this.docks.values())
-		this.setAccessIndices(gameState, dock);
+		m.setAccessIndices(gameState, dock);
 };
 
 m.NavalManager.prototype.updateFishingBoats = function(sea, num)
@@ -173,12 +173,6 @@ m.NavalManager.prototype.resetFishingBoats = function(gameState, sea)
 		this.wantedFishShips[sea] = 0;
 	else
 		this.wantedFishShips.fill(0);
-};
-
-m.NavalManager.prototype.setAccessIndices = function(gameState, ent)
-{
-	m.getLandAccess(gameState, ent);
-	m.getSeaAccess(gameState, ent);
 };
 
 m.NavalManager.prototype.setShipIndex = function(gameState, ship)
@@ -274,7 +268,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
 		if (ent && ent.isOwn(PlayerID) && ent.foundationProgress() !== undefined && (ent.hasClass("Dock") || ent.hasClass("Shipyard")))
-			this.setAccessIndices(gameState, ent);
+			m.setAccessIndices(gameState, ent);
 	}
 
 	for (let evt of events.TrainingFinished)
@@ -341,7 +335,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
 		if (ent && (ent.hasClass("Dock") || ent.hasClass("Shipyard")))
-			this.setAccessIndices(gameState, ent);
+			m.setAccessIndices(gameState, ent);
 	}
 };
 
@@ -647,6 +641,10 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 		return;
 	if (!this.docks.filter(API3.Filters.byClass("Dock")).hasEntities() ||
 	     this.docks.filter(API3.Filters.byClass("Shipyard")).hasEntities())
+		return;
+	// Use in priority resources to build a market
+	if (!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities() &&
+	    gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
 		return;
 	let template;
 	if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_super_dock"))

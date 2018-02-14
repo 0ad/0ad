@@ -97,7 +97,7 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 			for (let id of ent.garrisoned())
 				ent.unload(id);
 
-		ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(pos));
+		m.setLandAccess(gameState, ent);
 		let bestbase;
 		let territorypos = this.territoryMap.gamePosToMapPos(pos);
 		let territoryIndex = territorypos[0] + territorypos[1]*this.territoryMap.width;
