@@ -184,7 +184,9 @@ m.TransportPlan.prototype.removeUnit = function(gameState, unit)
 {
 	let shipId = unit.getMetadata(PlayerID, "onBoard");
 	if (shipId == "onBoard")
-		return; // too late, already onBoard
+		return;			// too late, already onBoard
+	else if (shipId !== undefined)
+		unit.stopMoving();	// cancel the garrison order
 	unit.setMetadata(PlayerID, "transport", undefined);
 	unit.setMetadata(PlayerID, "endPos", undefined);
 	this.units.updateEnt(unit);
