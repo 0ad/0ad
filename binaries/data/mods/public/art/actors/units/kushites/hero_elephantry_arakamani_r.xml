@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <animations>
+        <animation file="biped/new/inf_sarissa_rest.dae" name="Idle" speed="25"/>
+      </animations>
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_meroitic_champion.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/kush_beja_reinforced_gold_rhino.xml" attachpoint="shield"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_hero_01.png" name="baseTex"/>
+        <texture file="skeletal/kush_hero_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush_hero_01_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml">
+      <props>
+        <prop actor="props/units/capes/rider/elephant_driver.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

@@ -616,11 +616,107 @@ function playerPlacementLine(angle, center, width)
 }
 
 /**
- * Sorts the playerIDs so that team members are as close as possible.
+ * Returns a random location for each player that meets the given constraints and
+ * orders the playerIDs so that players become grouped by team.
  */
-function sortPlayersByLocation(startLocations)
+function playerPlacementRandom(playerIDs, constraints = undefined)
 {
-	// Sort start locations to form a "ring"
+	let locations = [];
+	let attempts = 0;
+	let resets = 0;
+
+	let mapCenter = g_Map.getCenter();
+	let playerMinDist = fractionToTiles(0.25);
+	let borderDistance = fractionToTiles(0.08);
+
+	let area = createArea(new MapBoundsPlacer(), undefined, new AndConstraint(constraints));
+
+	for (let i = 0; i < getNumPlayers(); ++i)
+	{
+		let position = pickRandom(area.points);
+
+		// Minimum distance between initial bases must be a quarter of the map diameter
+		if (locations.some(loc => loc.distanceTo(position) < playerMinDist) ||
+		    position.distanceTo(mapCenter) > mapCenter.x - borderDistance)
+		{
+			--i;
+			++attempts;
+
+			// Reset if we're in what looks like an infinite loop
+			if (attempts > 500)
+			{
+				locations = [];
+				i = -1;
+				attempts = 0;
+				++resets;
+
+				// Reduce minimum player distance progressively
+				if (resets % 25 == 0)
+					playerMinDist *= 0.975;
+
+				// If we only pick bad locations, stop trying to place randomly
+				if (resets == 500)
+					return undefined;
+			}
+			continue;
+		}
+
+		locations[i] = position;
+	}
+	return groupPlayersByArea(playerIDs, locations);
+}
+
+/**
+ *  Pick locations from the given set so that teams end up grouped.
+ */
+function groupPlayersByArea(playerIDs, locations)
+{
+	playerIDs = sortPlayers(playerIDs);
+
+	let minDist = Infinity;
+	let minLocations;
+
+	// Of all permutations of starting locations, find the one where
+	// the sum of the distances between allies is minimal, weighted by teamsize.
+	heapsPermute(shuffleArray(locations).slice(0, playerIDs.length), v => v.clone(), permutation =>
+	{
+		let dist = 0;
+		let teamDist = 0;
+		let teamSize = 0;
+
+		for (let i = 1; i < playerIDs.length; ++i)
+		{
+			let team1 = getPlayerTeam(playerIDs[i - 1]);
+			let team2 = getPlayerTeam(playerIDs[i]);
+			++teamSize;
+			if (team1 != -1 && team1 == team2)
+				teamDist += permutation[i - 1].distanceTo(permutation[i]);
+			else
+			{
+				dist += teamDist / teamSize;
+				teamDist = 0;
+				teamSize = 0;
+			}
+		}
+
+		if (teamSize)
+			dist += teamDist / teamSize;
+
+		if (dist < minDist)
+		{
+			minDist = dist;
+			minLocations = permutation;
+		}
+	});
+
+	return [playerIDs, minLocations];
+}
+
+/**
+ * Sorts the playerIDs so that team members are as close as possible on a ring.
+ */
+function groupPlayersCycle(startLocations)
+{
 	let startLocationOrder = sortPointsShortestCycle(startLocations);
 
 	let newStartLocations = [];

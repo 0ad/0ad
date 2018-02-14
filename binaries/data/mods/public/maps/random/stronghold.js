@@ -16,7 +16,7 @@ createArea(
 
 Engine.SetProgress(20);
 
-addBases("stronghold", fractionToTiles(randFloat(0.2, 0.35)), fractionToTiles(randFloat(0.05, 0.1)), randomAngle());
+createBasesByPattern("stronghold", fractionToTiles(randFloat(0.2, 0.35)), fractionToTiles(randFloat(0.05, 0.1)), randomAngle());
 Engine.SetProgress(30);
 
 addElements(shuffleArray([

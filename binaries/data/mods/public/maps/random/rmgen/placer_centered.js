@@ -126,7 +126,7 @@ function ChainPlacer(minRadius, maxRadius, numCircles, failFraction = 0, centerP
 	this.numCircles = numCircles;
 	this.failFraction = failFraction;
 	this.maxDistance = maxDistance;
-	this.queue = queue;
+	this.queue = queue.map(radius => Math.floor(radius));
 	this.centerPosition = undefined;
 
 	if (centerPosition)

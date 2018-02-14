@@ -8,24 +8,11 @@
         <prop actor="units/kushites/hero_cavalry_spearman_nastasen_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/kush_crest_bronze.xml" attachpoint="head"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="hyppikon-horse-texture-plain">
       <textures>
-        <texture file="skeletal/horse_hele_csw_e_1.dds" name="baseTex"/>
+        <texture file="skeletal/horse/kush_e_norm.png" name="normTex"/>
+        <texture file="skeletal/horse/kush_e_spec.png" name="specTex"/>
+        <texture file="skeletal/horse/kush_black_harsiotef.png" name="baseTex"/>
       </textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="horse-color-chocolate">
-      <color>98 68 58</color>
-    </variant>
-    <variant frequency="0" name="horse-color-ruddish">
-      <color>254 200 160</color>
-    </variant>
-    <variant frequency="0" name="horse-color-sandy">
-      <color>254 214 129</color>
     </variant>
   </group>
   <group>
@@ -33,5 +20,5 @@
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
-  <material>objectcolor.xml</material>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>

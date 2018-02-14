@@ -20,12 +20,6 @@
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      -units/{civ}_cavalry_archer_b
-      units/{civ}_camelry_archer_b
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/ptolemies/barracks.xml</Actor>
   </VisualActor>

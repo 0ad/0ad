@@ -1,5 +1,4 @@
 Engine.LoadLibrary("rmgen");
-Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("heightmap");
 
 const tPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d",
@@ -80,7 +79,9 @@ Engine.SetProgress(5);
 var lowerHeightLimit = textueByHeight[3].upperHeightLimit;
 var upperHeightLimit = textueByHeight[6].upperHeightLimit;
 
-var playerPositions;
+var playerPosition;
+var playerIDs;
+
 while (true)
 {
 	g_Map.log("Randomizing heightmap")
@@ -104,13 +105,12 @@ while (true)
 		new TileClassPainter(tHeightRange),
 		new HeightConstraint(lowerHeightLimit, upperHeightLimit));
 
-	if (area)
-		try {
-			playerPositions = randomPlayerLocations(sortAllPlayers(), new stayClasses(tHeightRange, 15));
-			break;
-		}
-		catch (e) {
-		}
+	let players = area && playerPlacementRandom(sortAllPlayers(), stayClasses(tHeightRange, 15), true);
+	if (players)
+	{
+		[playerIDs, playerPosition] = players;
+		break;
+	}
 
 	g_Map.log("Too few starting locations");
 }
@@ -259,7 +259,7 @@ else
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		placeCivDefaultStartingEntities(playerPositions[i].position, playerPositions[i].id, false);
+		placeCivDefaultStartingEntities(playerPosition[i], playerIDs[i], false);
 
 		for (let j = 1; j <= 4; ++j)
 		{
@@ -267,7 +267,7 @@ else
 			for (let k = 0; k < resourceCount; ++k)
 			{
 				let pos = Vector2D.sum([
-					playerPositions[i].position,
+					playerPosition[i],
 					new Vector2D(resourceDistance, 0).rotate(-uAngle),
 					new Vector2D(k * resourceSpacing, 0).rotate(-uAngle - Math.PI/2),
 					new Vector2D(-0.75 * resourceSpacing * Math.floor(resourceCount / 2), 0).rotate(-uAngle - Math.PI/2)

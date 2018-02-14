@@ -4,7 +4,7 @@
     <Square width="24.0" depth="36.0"/>
   </Footprint>
   <Health>
-    <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>kush</Civ>
@@ -23,6 +23,6 @@
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/kushites/temple.xml</Actor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+    <FoundationActor>structures/fndn_4x6.xml</FoundationActor>
   </VisualActor>
 </Entity>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="1" name="Base">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_meroitic_champion.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/kush_spear.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/kush_beja_reinforced_gold_rhino.xml" attachpoint="shield"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush_hero_01.png" name="baseTex"/>
+        <texture file="skeletal/kush_hero_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush_hero_01_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/death.xml"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

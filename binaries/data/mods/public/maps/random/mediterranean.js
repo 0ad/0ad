@@ -160,31 +160,26 @@ Engine.SetProgress(45);
 
 if (!isNomad())
 {
-	g_Map.log("Placing players");
+	g_Map.log("Finding player positions");
 
-	let playerBases = randomPlayerLocations(
+	let [playerIDs, playerPosition] = playerPlacementRandom(
 		sortAllPlayers(),
 		[
 			avoidClasses(g_TileClasses.mountain, 5),
 			stayClasses(g_TileClasses.land, scaleByMapSize(8, 25))
 		]);
 
-	g_Map.log("Flatten the initial CC area...");
-	for (let player of playerBases)
+	g_Map.log("Flatten the initial CC area and placing playerbases...");
+	for (let i = 0; i < getNumPlayers(); ++i)
 	{
-		for (let zone of climateZones)
-			if (stayClasses(zone.tileClass, 1).allows(player.position))
-			{
-				g_Map.logger.printDuration();
-				setBiome(zone.biome);
-				break;
-			}
+		g_Map.logger.printDuration();
+		setBiome(climateZones.find(zone => stayClasses(zone.tileClass, 1).allows(playerPosition[i])).biome);
 
 		createArea(
-			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, player.position),
-			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(player.position), 6));
+			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, playerPosition[i]),
+			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(playerPosition[i]), 6));
 
-		createBase(player, mapSize >= 384);
+		createBase(playerIDs[i], playerPosition[i], mapSize >= 384);
 	}
 }
 Engine.SetProgress(50);

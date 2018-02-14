@@ -180,7 +180,7 @@ m.TransportPlan.prototype.addUnit = function(unit, endPos)
 };
 
 /** remove a unit from this plan, if not yet on board */
-m.TransportPlan.prototype.removeUnit = function(unit)
+m.TransportPlan.prototype.removeUnit = function(gameState, unit)
 {
 	let shipId = unit.getMetadata(PlayerID, "onBoard");
 	if (shipId == "onBoard")
