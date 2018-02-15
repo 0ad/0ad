@@ -640,7 +640,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 		return added;
 	}
 
-	if (this.type === "Raid")
+	if (this.type == "Raid")
 	{
 		// Raid are fast cavalry attack: assign all cav except some for hunting
 		let num = 0;
@@ -699,9 +699,9 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 			m.dumpEntity(ent);
 			continue;
 		}
-		if (this.type !== "Rush" && ent.getMetadata(PlayerID, "subrole") !== "idle")
-			continue;
 		if (num++ < keep || numbase[baseID] < 5)
+			continue;
+		if (this.type != "Rush" && ent.getMetadata(PlayerID, "subrole") != "idle")
 			continue;
 		ent.setMetadata(PlayerID, "plan", plan);
 		this.unitCollection.updateEnt(ent);

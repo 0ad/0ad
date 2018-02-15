@@ -94,35 +94,61 @@ m.getLandAccess = function(gameState, ent)
 	if (!access)
 	{
 		access = gameState.ai.accessibility.getAccessValue(ent.position());
+		// Docks are sometimes not as expected
+		if (access < 2 && ent.buildPlacementType() == "shore")
+		{
+			let entPos = ent.position();
+			let cosa = Math.cos(ent.angle());
+			let sina = Math.sin(ent.angle());
+			for (let d = 3; d < 15; d += 3)
+			{
+				let pos = [ entPos[0] - d * sina,
+				            entPos[1] - d * cosa];
+				access = gameState.ai.accessibility.getAccessValue(pos);
+				if (access > 1)
+					break;
+			}
+		}
 		ent.setMetadata(PlayerID, "access", access);
 	}
 	return access;
 };
 
-m.getSeaAccess = function(gameState, ent, warning = true)
+m.getSeaAccess = function(gameState, ent)
 {
 	let sea = ent.getMetadata(PlayerID, "sea");
 	if (!sea)
 	{
 		sea = gameState.ai.accessibility.getAccessValue(ent.position(), true);
-		if (sea < 2)	// pre-positioned docks are sometimes not well positionned
+		// Docks are sometimes not as expected
+		if (sea < 2 && ent.buildPlacementType() == "shore")
 		{
 			let entPos = ent.position();
-			let radius = ent.footprintRadius();
-			for (let i = 0; i < 16; ++i)
+			let cosa = Math.cos(ent.angle());
+			let sina = Math.sin(ent.angle());
+			for (let d = 3; d < 15; d += 3)
 			{
-				let pos = [ entPos[0] + radius*Math.cos(i*Math.PI/8),
-				            entPos[1] + radius*Math.sin(i*Math.PI/8) ];
+				let pos = [ entPos[0] + d * sina,
+				            entPos[1] + d * cosa];
 				sea = gameState.ai.accessibility.getAccessValue(pos, true);
-				if (sea >= 2)
+				if (sea > 1)
 					break;
 			}
 		}
-		if (warning && sea < 2)
-			API3.warn("ERROR in Petra getSeaAccess because of position with sea index " + sea);
 		ent.setMetadata(PlayerID, "sea", sea);
 	}
 	return sea;
+};
+
+m.setAccessIndices = function(gameState, ent)
+{
+	m.getLandAccess(gameState, ent);
+	m.getSeaAccess(gameState, ent);
+};
+
+m.setLandAccess = function(gameState, ent)
+{
+	m.getLandAccess(gameState, ent);
 };
 
 /** Decide if we should try to capture (returns true) or destroy (return false) */
@@ -332,15 +358,15 @@ m.gatherTreasure = function(gameState, ent, water = false)
 		let lastGathered = treasure.getMetadata(PlayerID, "lastGathered");
 		if (lastGathered && gameState.ai.elapsedTime - lastGathered < 20)
 			continue;
-		if (!water && access !== m.getLandAccess(gameState, treasure))
+		if (!water && access != m.getLandAccess(gameState, treasure))
 			continue;
-		if (water && access !== m.getSeaAccess(gameState, treasure, false))
+		if (water && access != m.getSeaAccess(gameState, treasure))
 			continue;
 		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(treasure.position());
-		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))
+		if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))
 			continue;
 		let dist = API3.SquareVectorDistance(ent.position(), treasure.position());
-		if (dist > 120000 || territoryOwner !== PlayerID && dist > 14000) // AI has no LOS, so restrict it a bit
+		if (dist > 120000 || territoryOwner != PlayerID && dist > 14000) // AI has no LOS, so restrict it a bit
 			continue;
 		if (dist > distmin)
 			continue;
