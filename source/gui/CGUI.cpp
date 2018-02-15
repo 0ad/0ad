@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -678,7 +678,14 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 				x += Feedback2.m_Size.cx;
 
 				if (WordWrapping && x > width_range[To] && j!=temp_from && !Feedback2.m_NewLine)
+				{
+					// The calculated width of each word includes the space between the current
+					// word and the next. When we're wrapping, we need subtract the width of the
+					// space after the last word on the line before the wrap.
+					CFontMetrics currentFont(Font);
+					line_width -= currentFont.GetCharacterWidth(*L" ");
 					break;
+				}
 
 				// Let line_height be the maximum m_Height we encounter.
 				line_height = std::max(line_height, Feedback2.m_Size.cy);
@@ -784,7 +791,7 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 			x = BufferZone;
 
 			// Update dimensions
-			Text.m_Size.cx = std::max(Text.m_Size.cx, line_width + BufferZone);
+			Text.m_Size.cx = std::max(Text.m_Size.cx, line_width + BufferZone * 2);
 			Text.m_Size.cy = std::max(Text.m_Size.cy, y + BufferZone);
 
 			FirstLine = false;
