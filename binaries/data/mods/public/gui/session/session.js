@@ -450,7 +450,7 @@ function updateHotkeyTooltips()
 		translate("Find idle worker");
 
 	Engine.GetGUIObjectByName("diplomacyColorsButton").tooltip =
-		colorizeHotkey("%(hotkey)s" + " ", "diplomacycolors") +
+		colorizeHotkey("%(hotkey)s" + " ", "session.diplomacycolors") +
 		translate("Toggle Diplomacy Colors");
 
 	Engine.GetGUIObjectByName("tradeHelp").tooltip = colorizeHotkey(
