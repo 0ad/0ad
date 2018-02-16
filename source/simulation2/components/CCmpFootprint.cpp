@@ -203,14 +203,14 @@ public:
 
 		// Figure out how many units can fit on each halfside of the rectangle.
 		// Since 2*pi/6 ~= 1, this is also how many units can fit on a sixth of the circle.
-		int a = std::max(1, (halfSize.X / gap).ToInt_RoundToNegInfinity());
-		int b = std::max(1, (halfSize.Y / gap).ToInt_RoundToNegInfinity());
+		int distX = std::max(1, (halfSize.X / gap).ToInt_RoundToNegInfinity());
+		int distY = std::max(1, (halfSize.Y / gap).ToInt_RoundToNegInfinity());
 
 		// Try more spawning points for large units in case some of them are partially blocked.
 		if (rows == 1)
 		{
-			a *= 2;
-			b *= 2;
+			distX *= 2;
+			distY *= 2;
 		}
 
 		// Store the position of the spawning point within each row that's closest to the spawning angle.
@@ -224,39 +224,39 @@ public:
 			{
 				entity_angle_t offsetAngle = atan2_approx(rallyPointPos.X - initialPos.X, rallyPointPos.Y - initialPos.Y) - initialAngle;
 
-				// There are 6*(a+r) points in row r, so multiply that by angle/2pi to find the offset within the row.
+				// There are 6*(distX+r) points in row r, so multiply that by angle/2pi to find the offset within the row.
 				for (int r = 0; r < rows; ++r)
-					offsetPoints[r] = (offsetAngle * 3 * (a + r) / fixed::Pi()).ToInt_RoundToNearest();
+					offsetPoints[r] = (offsetAngle * 3 * (distX + r) / fixed::Pi()).ToInt_RoundToNearest();
 			}
 			else
 			{
 				CFixedVector2D offsetPos = Geometry::NearestPointOnSquare(rallyPointPos - initialPos, u, v, halfSize);
 
 				// Scale and convert the perimeter coordinates of the point to its offset within the row.
-				int x = (offsetPos.Dot(u) * b / halfSize.X).ToInt_RoundToNearest();
-				int y = (offsetPos.Dot(v) * a / halfSize.Y).ToInt_RoundToNearest();
+				int x = (offsetPos.Dot(u) * distX / halfSize.X).ToInt_RoundToNearest();
+				int y = (offsetPos.Dot(v) * distY / halfSize.Y).ToInt_RoundToNearest();
 				for (int r = 0; r < rows; ++r)
 					offsetPoints[r] = Geometry::GetPerimeterDistance(
-						b + r,
-						a + r,
-						x >= b ? b + r : x <= -b ? -b - r : x,
-						y >= a ? a + r : y <= -a ? -a - r : y);
+						distX + r,
+						distY + r,
+						x >= distX ? distX + r : x <= -distX ? -distX - r : x,
+						y >= distY ? distY + r : y <= -distY ? -distY - r : y);
 			}
 		}
 
-		for (int k = 0; k < 2 * (a + b + 2 * rows); k = k > 0 ? -k : 1 - k)
+		for (int k = 0; k < 2 * (distX + distY + 2 * rows); k = k > 0 ? -k : 1 - k)
 			for (int r = 0; r < rows; ++r)
 			{
 				CFixedVector2D pos = initialPos;
 				if (m_Shape == CIRCLE)
-					// Multiply the point by 2pi / 6*(a+r) to get the angle.
-					pos += u.Rotate(fixed::Pi() * (offsetPoints[r] + k) / (3 * (a + r))).Multiply(halfSize.X + gap * r );
+					// Multiply the point by 2pi / 6*(distX+r) to get the angle.
+					pos += u.Rotate(fixed::Pi() * (offsetPoints[r] + k) / (3 * (distX + r))).Multiply(halfSize.X + gap * r );
 				else
 				{
 					// Convert the point to coordinates and scale.
-					std::pair<int, int> p = Geometry::GetPerimeterCoordinates(b + r, a + r, offsetPoints[r] + k);
-					pos += u.Multiply((halfSize.X + gap * r) * p.first / (b + r)) +
-					       v.Multiply((halfSize.Y + gap * r) * p.second / (a + r));
+					std::pair<int, int> p = Geometry::GetPerimeterCoordinates(distX + r, distY + r, offsetPoints[r] + k);
+					pos += u.Multiply((halfSize.X + gap * r) * p.first / (distX + r)) +
+					       v.Multiply((halfSize.Y + gap * r) * p.second / (distY + r));
 				}
 
 				if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, spawnedRadius, spawnedPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS)
