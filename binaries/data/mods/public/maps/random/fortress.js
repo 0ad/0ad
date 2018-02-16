@@ -107,7 +107,8 @@ for (let i = 0; i < numPlayers; ++i)
 		]);
 
 	// Fortress
-	if (civ == "brit" || civ == "gaul" || civ == "iber")
+	// To take into account houses that offer a lower population bonus
+	if (Engine.GetTemplate("structures/" + civ + "_house").Cost.PopulationBonus <= 5)
 	{
 		var wall = ["gate", "tower", "long",
 			"cornerIn", "long", "barracks", "tower", "long", "tower", "house", "long",
