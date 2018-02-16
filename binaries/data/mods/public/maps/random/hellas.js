@@ -238,6 +238,9 @@ Engine.SetProgress(55);
 
 for (let i = 0; i < numPlayers; ++i)
 {
+	if (isNomad())
+		break;
+
 	let localBiome = constraintHighlands.allows(playerPosition[i]) ? biomes.highlands : biomes.lowlands;
 	placePlayerBase({
 		"playerID": playerIDs[i],
@@ -553,7 +556,7 @@ createObjectGroups(
 	scaleByMapSize(10, 25),
 	20);
 
-placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clFood, 2, clCliffs, 2, clWater, 2));
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clFood, 2, clCliffs, 2, clWater, 15));
 Engine.SetProgress(95);
 
 setWaterColor(0.024, 0.212, 0.024);
