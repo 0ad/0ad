@@ -635,7 +635,7 @@ for (let i = 0; i < resourceSpots.length; ++i)
 
 	if (radius)
 		createArea(
-			new ClumpPlacer(diskArea(radius), 1, 1, Infinity, resourceSpots[i]),
+			new DiskPlacer(radius, resourceSpots[i]),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(resourceSpots[i]), radius / 3));
 }
 

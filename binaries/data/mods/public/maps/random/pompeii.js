@@ -132,7 +132,7 @@ Engine.SetProgress(40);
 
 g_Map.log("Marking dock search location");
 var areaDockStart = createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.5)) - 10, 1, 1, Infinity, mapCenter),
+	new DiskPlacer(fractionToTiles(0.5) - 10, mapCenter),
 	undefined,
 	stayClasses(g_TileClasses.land, 6));
 

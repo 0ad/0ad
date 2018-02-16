@@ -88,7 +88,7 @@ Engine.SetProgress(30);
 
 g_Map.log("Marking land");
 createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.5)), 1, 1, Infinity, mapCenter),
+	new DiskPlacer(fractionToTiles(0.5), mapCenter),
 	new TileClassPainter(g_TileClasses.land),
 	avoidClasses(g_TileClasses.water, 0));
 Engine.SetProgress(35);

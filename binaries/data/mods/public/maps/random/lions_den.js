@@ -482,7 +482,7 @@ function createSunkenTerrain()
 
 	g_Map.log("Creating central valley");
 	createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.29)), 1, 1, Infinity, mapCenter),
+		new DiskPlacer(fractionToTiles(0.29), mapCenter),
 		[
 			new LayeredPainter([g_Terrains.cliff, lower], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightValley, 3),
@@ -491,7 +491,7 @@ function createSunkenTerrain()
 
 	g_Map.log("Creating central hill");
 	createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.21)), 1, 1, Infinity, mapCenter),
+		new DiskPlacer(fractionToTiles(0.21), mapCenter),
 		[
 			new LayeredPainter([g_Terrains.cliff, topTerrain], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightHill, 3),

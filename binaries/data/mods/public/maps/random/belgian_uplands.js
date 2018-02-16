@@ -101,7 +101,7 @@ while (true)
 	g_Map.log("Mark valid heightrange for player starting positions");
 	let tHeightRange = g_Map.createTileClass();
 	let area = createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.5) - MAP_BORDER_WIDTH), 1, 1, Infinity, mapCenter),
+		new DiskPlacer(fractionToTiles(0.5) - MAP_BORDER_WIDTH, mapCenter),
 		new TileClassPainter(tHeightRange),
 		new HeightConstraint(lowerHeightLimit, upperHeightLimit));
 

@@ -186,7 +186,7 @@ function RandomPathPlacer(pathStart, pathEnd, pathWidth, offset, blended)
 	this.pathEnd = pathEnd;
 	this.offset = offset;
 	this.blended = blended;
-	this.clumpPlacer = new ClumpPlacer(diskArea(pathWidth), 1, 1, Infinity);
+	this.diskPlacer = new DiskPlacer(pathWidth);
 	this.maxPathLength = fractionToTiles(2);
 }
 
@@ -203,10 +203,10 @@ RandomPathPlacer.prototype.place = function(constraint)
 				-getAngle(this.pathStart.x, this.pathStart.y, this.pathEnd.x, this.pathEnd.y) +
 				-Math.PI / 2 * (randFloat(-1, 1) + (this.blended ? 0.5 : 0)))).round();
 
-		this.clumpPlacer.setCenterPosition(position);
+		this.diskPlacer.setCenterPosition(position);
 
-		for (let point of this.clumpPlacer.place(constraint) || [])
-			if (points.every(p => p.x != point.x || p.y != point.y))
+		for (let point of this.diskPlacer.place(constraint))
+			if (points.every(p => !Vector2D.isEqualTo(p, point)))
 				points.push(point);
 	}
 
