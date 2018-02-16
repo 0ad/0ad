@@ -64,6 +64,7 @@ Repairable.prototype.RemoveBuilder = function(builderEnt)
  */
 Repairable.prototype.CalculateBuildMultiplier = function(num)
 {
+	// Avoid division by zero, in particular 0/0 = NaN which isn't reliably serialized
 	return num < 2 ? 1 : Math.pow(num, this.buildTimePenalty) / num;
 };
 
@@ -79,7 +80,8 @@ Repairable.prototype.GetBuildTime = function()
 	// The rate if we add another woman to the repairs
 	let rateNew = (this.totalBuilderRate + 1) * this.CalculateBuildMultiplier(this.GetNumBuilders() + 1);
 	return {
-		"timeRemaining": timeLeft / rate,
+		// Avoid division by zero, in particular 0/0 = NaN which isn't reliably serialized
+		"timeRemaining": rate ? timeLeft / rate : 0,
 		"timeRemainingNew": timeLeft / rateNew
 	};
 };
