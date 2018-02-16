@@ -3,7 +3,7 @@
 	<animations>
 		<animation file="biped/new/male_carry_wood.dae" name="Walk" speed="20"/>
 		<animation file="biped/new/male_carry_wood_idle.dae" name="Idle" speed="20"/>
-		<animation file="biped/new/male_carry_ore.dae" name="Run" speed="40"/>
+		<animation file="biped/new/male_carry_wood.dae" name="Run" speed="20"/>
 	</animations>
 	<props>
 		<prop actor="props/units/shuttle_wood.xml" attachpoint="weapon_R"/>
