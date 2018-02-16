@@ -35,6 +35,11 @@ const g_CivData = deepfreeze(loadCivFiles(false));
  */
 var TILE_CENTERED_HEIGHT_MAP = false;
 
+function actorTemplate(templateName)
+{
+	return "actor|" + templateName + ".xml";
+}
+
 function fractionToTiles(f)
 {
 	return g_MapSettings.Size * f;
@@ -253,6 +258,21 @@ function borderClasses(/*class1, idist1, odist1, class2, idist2, odist2, etc*/)
 		return ar[0];
 
 	return new AndConstraint(ar);
+}
+
+/**
+ * Returns a subset of the given heightmap.
+ */
+function extractHeightmap(heightmap, topLeft, size)
+{
+	let result = [];
+	for (let x = 0; x < size; ++x)
+	{
+		result[x] = new Float32Array(size);
+		for (let y = 0; y < size; ++y)
+			result[x][y] = heightmap[x + topLeft.x][y + topLeft.y];
+	}
+	return result;
 }
 
 function convertHeightmap1Dto2D(heightmap)
