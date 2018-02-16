@@ -12,3 +12,24 @@ Area.prototype.getID = function()
 {
 	return this.id;
 };
+
+Area.prototype.getClosestPointTo = function(position)
+{
+	if (!this.points.length)
+		return undefined;
+
+	let closestPoint = this.points[0];
+	let shortestDistance = Infinity;
+
+	for (let point of this.points)
+	{
+		let currentDistance = point.distanceToSquared(position);
+		if (currentDistance < shortestDistance)
+		{
+			shortestDistance = currentDistance;
+			closestPoint = point;
+		}
+	}
+
+	return closestPoint;
+};

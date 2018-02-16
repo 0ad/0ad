@@ -117,7 +117,10 @@ g_Map.log("Marking shoreline");
 var areaShoreline = createArea(
 	new MapBoundsPlacer(),
 	undefined,
-	new HeightConstraint(heightShorelineMin, heightShorelineMax));
+	[
+		new HeightConstraint(heightShorelineMin, heightShorelineMax),
+		new NearTileClassConstraint(g_TileClasses.water, 2)
+	]);
 Engine.SetProgress(35);
 
 g_Map.log("Marking land");
@@ -174,19 +177,7 @@ g_Map.log("Creating docks");
 for (let i = 0; i < scaleByMapSize(2, 4); ++i)
 {
 	let positionLand = pickRandom(areaDockStart.points);
-
-	// Find closest point on the shoreline and face the resulting direction
-	let dockPosition = areaShoreline.points[0];
-	let shortestDistance = Infinity;
-	for (let positionShoreline of areaShoreline.points)
-	{
-		let currentDistance = positionLand.distanceToSquared(positionShoreline);
-		if (currentDistance < shortestDistance)
-		{
-			shortestDistance = currentDistance;
-			dockPosition = positionShoreline;
-		}
-	}
+	let dockPosition = areaShoreline.getClosestPointTo(positionLand);
 
 	if (!avoidClasses(g_TileClasses.mountain, scaleByMapSize(4, 6), g_TileClasses.dock, 10).allows(dockPosition))
 	{
