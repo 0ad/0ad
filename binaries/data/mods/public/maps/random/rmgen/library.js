@@ -254,3 +254,16 @@ function borderClasses(/*class1, idist1, odist1, class2, idist2, odist2, etc*/)
 
 	return new AndConstraint(ar);
 }
+
+function convertHeightmap1Dto2D(heightmap)
+{
+	let result = [];
+	let hmSize = Math.sqrt(heightmap.length);
+	for (let x = 0; x < hmSize; ++x)
+	{
+		result[x] = new Float32Array(hmSize);
+		for (let y = 0; y < hmSize; ++y)
+			result[x][y] = heightmap[y * hmSize + x];
+	}
+	return result;
+}

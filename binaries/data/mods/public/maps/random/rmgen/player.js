@@ -190,7 +190,7 @@ function defaultPlayerBaseRadius()
 function addCivicCenterAreaToClass(position, tileClass)
 {
 	createArea(
-		new ClumpPlacer(diskArea(5), 1, 1, Infinity, position),
+		new DiskPlacer(5, position),
 		new TileClassPainter(tileClass));
 }
 
