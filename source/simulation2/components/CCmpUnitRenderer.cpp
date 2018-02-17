@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -397,7 +397,13 @@ void CCmpUnitRenderer::RenderSubmit(SceneCollector& collector, const CFrustum& f
 
 		unit.culled = true;
 
-		if (!(unit.actor && unit.inWorld))
+		if (!unit.actor)
+			continue;
+
+		if (unit.visibilityDirty)
+			UpdateVisibility(unit);
+
+		if (unit.visibility == ICmpRangeManager::VIS_HIDDEN)
 			continue;
 
 		if (!g_AtlasGameLoop->running && !g_RenderActors && (unit.flags & ACTOR_ONLY))
@@ -407,11 +413,6 @@ void CCmpUnitRenderer::RenderSubmit(SceneCollector& collector, const CFrustum& f
 			continue;
 
 		if (culling && !frustum.IsSphereVisible(unit.sweptBounds.GetCenter(), unit.sweptBounds.GetRadius()))
-			continue;
-
-		if (unit.visibilityDirty)
-			UpdateVisibility(unit);
-		if (unit.visibility == ICmpRangeManager::VIS_HIDDEN)
 			continue;
 
 		unit.culled = false;
