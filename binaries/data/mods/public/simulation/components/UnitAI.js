@@ -3228,8 +3228,6 @@ UnitAI.prototype.Init = function()
 	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
 	this.isGarrisoned = false;
 	this.isIdle = false;
-	// For A19, keep no formations as a default to help pathfinding.
-	this.lastFormationTemplate = "special/formations/null";
 	this.finishedOrder = false; // used to find if all formation members finished the order
 
 	this.heldPosition = undefined;
@@ -4746,14 +4744,9 @@ UnitAI.prototype.GetFormationController = function()
 	return this.formationController;
 };
 
-UnitAI.prototype.SetLastFormationTemplate = function(template)
+UnitAI.prototype.GetFormationTemplate = function()
 {
-	this.lastFormationTemplate = template;
-};
-
-UnitAI.prototype.GetLastFormationTemplate = function()
-{
-	return this.lastFormationTemplate;
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetCurrentTemplateName(this.formationController) || "special/formations/null";
 };
 
 UnitAI.prototype.MoveIntoFormation = function(cmd)
