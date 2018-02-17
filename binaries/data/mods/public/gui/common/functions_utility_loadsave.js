@@ -5,7 +5,7 @@ function sortDecreasingDate(a, b)
 
 function isCompatibleSavegame(metadata, engineInfo)
 {
-	return engineInfo && hasSameEngineVersion(metadata, engineInfo) & hasSameMods(metadata, engineInfo);
+	return engineInfo && hasSameEngineVersion(metadata, engineInfo) & hasSameMods(metadata.mods, engineInfo.mods);
 }
 
 function generateSavegameDateString(metadata, engineInfo)
@@ -35,29 +35,6 @@ function generateSavegameLabel(metadata, engineInfo)
 function hasSameEngineVersion(metadata, engineInfo)
 {
 	return metadata.engine_version && metadata.engine_version == engineInfo.engine_version;
-}
-
-/**
- * Check the mod compatibility between the saved game to be loaded and the engine
- *
- * @param metadata {string[]}
- * @param engineInfo {string[]}
- * @returns {boolean}
- */
-function hasSameMods(metadata, engineInfo)
-{
-	if (!metadata.mods || !engineInfo.mods)
-		return false;
-
-	// Ignore the "user" mod which is loaded for releases but not working-copies
-	let modsA = metadata.mods.filter(mod => mod != "user");
-	let modsB = engineInfo.mods.filter(mod => mod != "user");
-
-	if (modsA.length != modsB.length)
-		return false;
-
-	// Mods must be loaded in the same order
-	return modsA.every((mod, index) => mod == modsB[index]);
 }
 
 function deleteGame()

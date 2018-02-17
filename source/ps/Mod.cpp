@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -98,4 +98,29 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 	}
 
 	return JS::ObjectValue(*obj);
+}
+
+JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
+{
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue availableMods(cx, GetAvailableMods(scriptInterface));
+
+	JS::RootedValue ret(cx, JS::ObjectValue(*JS_NewArrayObject(cx, 0)));
+
+	// Index of the created array
+	size_t j = 0;
+	for (size_t i = 0; i < g_modsLoaded.size(); ++i)
+	{
+		// Ignore user and mod mod as they are irrelevant for compatibility checks
+		if (g_modsLoaded[i] == "mod" || g_modsLoaded[i] == "user")
+			continue;
+		CStr version;
+		JS::RootedValue modData(cx);
+		if (scriptInterface.GetProperty(availableMods, g_modsLoaded[i].c_str(), &modData))
+			scriptInterface.GetProperty(modData, "version", version);
+		scriptInterface.SetPropertyInt(ret, j++, std::vector<CStr>{g_modsLoaded[i], version});
+	}
+	return ret;
 }

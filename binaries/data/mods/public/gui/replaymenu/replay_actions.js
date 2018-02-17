@@ -89,9 +89,8 @@ function displayReplayCompatibilityError(replay)
 	if (replayHasSameEngineVersion(replay))
 	{
 		let gameMods = replay.attribs.mods || [];
-		errMsg = translate("You don't have the same mods active as the replay does.") + "\n";
-		errMsg += sprintf(translate("Required: %(mods)s"), { "mods": gameMods.join(translate(", ")) }) + "\n";
-		errMsg += sprintf(translate("Active: %(mods)s"), { "mods": g_EngineInfo.mods.join(translate(", ")) });
+		errMsg = translate("This replay needs a different sequence of mods:") + "\n" +
+			comparedModsString(gameMods, g_EngineInfo.mods);
 	}
 	else
 	{
