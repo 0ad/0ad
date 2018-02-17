@@ -78,7 +78,7 @@ RandomMap.prototype.LoadMapTerrain = function(filename)
 	g_Map.log("Loading terrain file " + filename);
 	let mapTerrain = Engine.LoadMapTerrain("maps/random/" + filename + ".pmp");
 
-	let heightmapPainter = new HeightmapPainter(mapTerrain.height);
+	let heightmapPainter = new HeightmapPainter(convertHeightmap1Dto2D(mapTerrain.height));
 
 	createArea(
 		new MapBoundsPlacer(),
@@ -99,7 +99,8 @@ RandomMap.prototype.LoadHeightmapImage = function(filename, normalMinHeight, nor
 {
 	g_Map.log("Loading heightmap " + filename);
 
-	let heightmapPainter = new HeightmapPainter(Engine.LoadHeightmapImage("maps/random/" + filename), normalMinHeight, normalMaxHeight);
+	let heightmapPainter = new HeightmapPainter(
+		convertHeightmap1Dto2D(Engine.LoadHeightmapImage("maps/random/" + filename)), normalMinHeight, normalMaxHeight);
 
 	createArea(
 		new MapBoundsPlacer(),

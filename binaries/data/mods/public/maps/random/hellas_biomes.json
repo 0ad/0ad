@@ -1,0 +1,187 @@
+{
+	"water": {
+		"terrains": {
+			"main": "medit_sand_wet"
+		},
+		"gaia": {
+			"fauna": {
+				"fish": "gaia/fauna_fish"
+			}
+		},
+		"actors": {
+			"waterlog": "props/flora/water_log"
+		}
+	},
+	"shoreline": {
+		"gaia": {
+			"dock": "structures/athen_dock"
+		},
+		"actors": {
+			"reeds": "props/flora/reeds_pond_lush_b",
+			"lillies": "props/flora/water_lillies"
+		}
+	},
+	"common": {
+		"terrains": {
+			"cliffs": [
+				"medit_cliff_italia_grass",
+				"medit_cliff_grass",
+				"medit_cliff_aegean",
+				"medit_cliff_italia"
+			],
+			"road": "medit_city_tile",
+			"roadWild": "medit_city_tile"
+		},
+		"gaia": {
+			"mines": {
+				"stoneLarge": "gaia/geology_stonemine_medit_quarry",
+				"stoneSmall": "gaia/geology_stone_mediterranean",
+				"metalLarge": "gaia/geology_metal_mediterranean_slabs",
+				"metalSmall": "gaia/geology_metal_mediterranean"
+			}
+		},
+		"actors": {
+			"grass": "props/flora/grass_soft_large_tall",
+			"grassShort": "props/flora/grass_soft_large",
+			"bushMedium": "props/flora/bush_medit_me",
+			"bushSmall": "props/flora/bush_medit_sm",
+			"campfire": "props/special/eyecandy/campfire"
+		}
+	},
+	"lowlands": {
+		"terrains": {
+			"main": [
+				"medit_grass_field_a",
+				"medit_grass_field_b",
+				"grass1_spring",
+				"grass_field",
+				"grass_field_a"
+			],
+			"forests": [
+				[
+					"medit_grass_shrubs|gaia/flora_tree_oak_large",
+					"medit_grass_shrubs|gaia/flora_tree_oak",
+					"medit_grass_shrubs"
+				],
+				[
+					"medit_grass_field|gaia/flora_tree_euro_beech",
+					"medit_grass_field|gaia/flora_tree_poplar",
+					"medit_grass_field"
+				]
+			],
+			"forestFloors": [
+				"medit_grass_field",
+				"medit_grass_shrubs"
+			],
+			"patches": [
+				"medit_grass_field_b",
+				"medit_grass_field_brown",
+				"medit_grass_field_dry",
+				"medit_shrubs"
+			]
+		},
+		"gaia": {
+			"flora": {
+				"trees": [
+					"gaia/flora_tree_euro_beech",
+					"gaia/flora_tree_poplar",
+					"gaia/flora_tree_oak",
+					"gaia/flora_tree_oak_large"
+				],
+				"fruitBush": "gaia/flora_bush_grapes"
+			},
+			"fauna": {
+				"sheep": "gaia/fauna_sheep",
+				"rabbit": "gaia/fauna_rabbit"
+			},
+			"athen": {
+				"columns": "gaia/ruins/column_doric",
+				"stoa": "other/hellenic_stoa"
+			}
+		},
+		"actors":
+		{
+			"flora": {
+				"flowers": [
+					"flora/grass_field_flowering_tall",
+					"flora/grass_medit_flowering_tall"
+				],
+				"bushes": [
+					"flora/foliagebush",
+					"flora/forage_grapes_prop"
+				]
+			},
+			"stones": [
+				"geology/highland1_moss",
+				"geology/highland2_moss"
+			],
+			"mushroom": "fungi/small_grey",
+			"athen": {
+				"statue": "props/special/eyecandy/statue_aphrodite_huge"
+			}
+		}
+	},
+	"highlands": {
+		"terrains": {
+			"main": [
+				"alpine_grass_c",
+				"alpine_grass_d",
+				"alpine_grass_e"
+			],
+			"forests": [
+				[
+					"alpine_grass_e|gaia/flora_tree_cypress",
+					"alpine_grass_e|gaia/flora_tree_poplar_lombardy",
+					"alpine_grass_e"
+				],
+				[
+					"alpine_grass_d|gaia/flora_tree_cypress",
+					"alpine_grass_d|gaia/flora_tree_aleppo_pine",
+					"alpine_grass_d"
+				]
+			],
+			"forestFloors": [
+				"alpine_grass_d",
+				"alpine_grass_e"
+			],
+			"patches": [
+				"medit_grass_wild"
+			]
+		},
+		"gaia": {
+			"flora": {
+				"trees": [
+					"gaia/flora_tree_poplar_lombardy",
+					"gaia/flora_tree_cypress",
+					"gaia/flora_tree_aleppo_pine"
+				],
+				"fruitBush": "gaia/flora_bush_berry"
+			},
+			"fauna": {
+				"goat": "gaia/fauna_goat",
+				"hawk": "gaia/fauna_hawk",
+				"horse": "gaia/fauna_horse",
+				"pony": "gaia/fauna_pony"
+			},
+			"athen": {
+				"temple": "structures/athen_temple",
+				"oxybeles": "units/athen_mechanical_siege_oxybeles_unpacked"
+			}
+		},
+		"actors": {
+			"stones": [
+				"stone/medit_med",
+				"geology/stone_granite_greek_large",
+				"geology/stone_granite_greek_med",
+				"geology/stone_granite_greek_peak",
+				"geology/stone_granite_greek_small",
+				"geology/stone_granite_large",
+				"geology/stone_granite_med",
+				"geology/stone_granite_peak",
+				"geology/stone_granite_small"
+			],
+			"mushroom": "fungi/medium_beige_reversed",
+			"handcart": "props/special/eyecandy/handcart_1_broken"
+		}
+	}
+}

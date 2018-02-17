@@ -297,7 +297,7 @@ Engine.SetProgress(30);
 g_Map.log("Smoothing player locations");
 for (let position of playerPosition)
 	createArea(
-		new ClumpPlacer(diskArea(35), 1, 1, Infinity, position),
+		new DiskPlacer(35, position),
 		new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 35));
 
 g_Map.log("Creating paths between players");

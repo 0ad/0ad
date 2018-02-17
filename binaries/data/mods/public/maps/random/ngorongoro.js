@@ -106,7 +106,7 @@ Engine.SetProgress(40);
 
 g_Map.log("Marking eden");
 createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.14)), 1, 1, Infinity, mapCenter),
+	new DiskPlacer(fractionToTiles(0.14), mapCenter),
 	new TileClassPainter(g_TileClasses.eden),
 	new HeightConstraint(-Infinity, heightEden));
 Engine.SetProgress(45);

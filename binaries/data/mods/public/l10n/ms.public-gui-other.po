@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-02-11 10:02+0000\n"
+"POT-Creation-Date: 2018-02-14 09:04+0100\n"
+"PO-Revision-Date: 2018-02-15 11:57+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -1292,7 +1292,7 @@ msgstr "Perincian Teknikal"
 msgid "Manual"
 msgstr "Panduan"
 
-#: gui/reference/common/load.js:196
+#: gui/reference/common/load.js:181
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s hingga %(health_max)s"
@@ -2402,391 +2402,305 @@ msgid "Playername (Multiplayer)"
 msgstr "Nama Pemain (Pemain Berbilang)"
 
 #: gui/options/options.json[0].options[2].tooltip
-msgid "Start 0 A.D. in a window"
-msgstr "Mula 0 A.D. dalam tetingkap"
+msgid "Pause single player games when window loses focus."
+msgstr "Jeda permainan seorang pemain bila tetingkap kehilangan fokus."
 
 #: gui/options/options.json[0].options[2].label
-msgid "Windowed Mode"
-msgstr "Mod Bertetingkap"
-
-#: gui/options/options.json[0].options[3].tooltip
-msgid "Pause single player games when window loses focus"
-msgstr "Jeda permainan seorang pemain bila tetingkap kehilangan fokus"
-
-#: gui/options/options.json[0].options[3].label
 msgid "Background Pause"
 msgstr "Jeda Latar Belakang"
 
-#: gui/options/options.json[0].options[4].tooltip
+#: gui/options/options.json[0].options[3].tooltip
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
 msgstr "Jika anda lumpuhkannya, skrin aluan akan kekal muncul sekali, setiap kali versi baharu tersedia. Anda boleh lancarkannya menerusi menu utama."
 
-#: gui/options/options.json[0].options[4].label
+#: gui/options/options.json[0].options[3].label
 msgid "Enable Welcome Screen"
 msgstr "Benarkan Skrin Aluan"
 
-#: gui/options/options.json[0].options[5].tooltip
-msgid ""
-"Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr "Tunjuk tip alat lebih terperinci untuk unit boleh dilatih dalam bangunan pengeluaran-unit."
-
-#: gui/options/options.json[0].options[5].label
-msgid "Detailed Tooltips"
-msgstr "Tip Alat Lebih Terperinci"
-
-#: gui/options/options.json[0].options[6].tooltip
+#: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Tunjuk pemain yang menghadapi sambungan bermasalah dalam permainan pemain berbilang."
 
-#: gui/options/options.json[0].options[6].label
+#: gui/options/options.json[0].options[4].label
 msgid "Network Warnings"
 msgstr "Amaran Rangkaian"
 
-#: gui/options/options.json[0].options[7].tooltip
+#: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Tunjuk bingkai per saat pada bucu kanan atas."
 
-#: gui/options/options.json[0].options[7].label
+#: gui/options/options.json[0].options[5].label
 msgid "FPS Overlay"
 msgstr "Tindihan Atas FPS"
 
-#: gui/options/options.json[0].options[8].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Tunjuk masa sistem semasa pada bucu kanan atas."
 
-#: gui/options/options.json[0].options[8].label
+#: gui/options/options.json[0].options[6].label
 msgid "Realtime Overlay"
 msgstr "Tindihan Atas Masa Nyata"
 
-#: gui/options/options.json[0].options[9].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Tunjuk masa simulasi pada bucu kanan atas."
 
-#: gui/options/options.json[0].options[9].label
+#: gui/options/options.json[0].options[7].label
 msgid "Gametime Overlay"
 msgstr "Tindihan Atas Masa Permainan"
 
-#: gui/options/options.json[0].options[10].tooltip
+#: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Sentiasa tunjuk masa genjatan senjata berbaki."
 
-#: gui/options/options.json[0].options[10].label
+#: gui/options/options.json[0].options[8].label
 msgid "Ceasefire Time Overlay"
 msgstr "Tindihan Atas Masa Genjatan Senjata"
 
-#: gui/options/options.json[0].options[11].list[0].label
+#: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
 msgid "Everyone"
 msgstr "Semua Orang"
 
-#: gui/options/options.json[0].options[11].list[1].label
+#: gui/options/options.json[0].options[9].list[1].label
 #: gui/options/options.json[3].options[5].list[1].label
 msgid "Buddies"
 msgstr "Rakan"
 
-#: gui/options/options.json[0].options[11].list[2].label
+#: gui/options/options.json[0].options[9].list[2].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
 msgstr "Dilumpuhkan"
 
-#: gui/options/options.json[0].options[11].tooltip
+#: gui/options/options.json[0].options[9].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
-"started"
-msgstr "Benarkan sesiapa sahaja atau rakan menyertai permainan sebagai pemerhati selepas ia bermula"
+"started."
+msgstr "Benarkan sesiapa sahaja atau rakan menyertai permainan sebagai pemerhati selepas ia bermula."
 
-#: gui/options/options.json[0].options[11].label
+#: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
 msgstr "Pemerhati Lewat Boleh Sertai"
 
-#: gui/options/options.json[0].options[12].tooltip
-msgid "Prevent further observers from joining if the limit is reached"
-msgstr "Halang pemerhati lain daripada menyertai jika had telah dicapai"
+#: gui/options/options.json[0].options[10].tooltip
+msgid "Prevent further observers from joining if the limit is reached."
+msgstr "Halang pemerhati lain daripada menyertai jika had telah dicapai."
 
-#: gui/options/options.json[0].options[12].label
+#: gui/options/options.json[0].options[10].label
 msgid "Observer Limit"
 msgstr "Had Pemerhati"
 
-#: gui/options/options.json[0].options[13].tooltip
-msgid "Number of units trained per batch"
-msgstr "Bilangan unit dilatih dalam satu kelompok"
-
-#: gui/options/options.json[0].options[13].label
-msgid "Batch Training Size"
-msgstr "Saiz Latihan Berkelompok"
-
-#: gui/options/options.json[0].options[14].tooltip
-msgid ""
-"The wounded unit hotkey considers the selected units as wounded if their "
-"health percentage falls below this number"
-msgstr "Kekunci panas unit cedera menganggap unit terpilih sebagai cedera jika peratus hayat mereka jatuh di bawah nilai ini"
-
-#: gui/options/options.json[0].options[14].label
-msgid "Wounded Unit Health"
-msgstr "Hayat Unit Cedera"
-
-#: gui/options/options.json[0].options[15].tooltip
+#: gui/options/options.json[0].options[11].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Tunjuk masa yang mana mesej dipos dalam ruang legar, persediaan permainan dan sembang ketika permainan berlangsung."
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[11].label
 msgid "Chat Timestamp"
 msgstr "Setem Masa Sembang"
-
-#: gui/options/options.json[0].options[16].tooltip
-msgid ""
-"Display the attack range of selected defensive structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Papar jangkauan serangan struktur pertahanan terpilih (boleh ditogol ketika dalam permainan melalui kekunci panas)."
-
-#: gui/options/options.json[0].options[16].label
-msgid "Attack Range Visualization"
-msgstr "Pengvisualan Jangkauan Serangan"
-
-#: gui/options/options.json[0].options[17].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Papar jangkauan penyembuhan aura bagi unit dan struktur terpilih (boleh ditogol ketika dalam permainan melalui kekunci panas)."
-
-#: gui/options/options.json[0].options[17].label
-msgid "Aura Range Visualization"
-msgstr "Pengvisualan Jangkauan Aura"
-
-#: gui/options/options.json[0].options[18].tooltip
-msgid ""
-"Display the healing range of selected units (can also be toggled in-game "
-"with the hotkey)."
-msgstr "Papar jangkauan penyembuhan bagi unit terpilih (boleh ditogol ketika dalam permainan melalui kekunci panas)."
-
-#: gui/options/options.json[0].options[18].label
-msgid "Heal Range Visualization"
-msgstr "Pengvisualan Jangkauan Penyembuhan"
-
-#: gui/options/options.json[0].options[19].tooltip
-msgid "Show rank icons above status bars"
-msgstr "Tunjuk ikon kedudukan di atas palang status"
-
-#: gui/options/options.json[0].options[19].label
-msgid "Rank icon above status bar"
-msgstr "Ikon kedudukan di atas palang status"
-
-#: gui/options/options.json[0].options[20].list[0].label
-msgid "Unordered"
-msgstr "Tidak Bertertib"
-
-#: gui/options/options.json[0].options[20].list[1].label
-msgid "Ascending"
-msgstr "Menaik"
-
-#: gui/options/options.json[0].options[20].list[2].label
-msgid "Descending"
-msgstr "Menurun"
-
-#: gui/options/options.json[0].options[20].tooltip
-msgid ""
-"Dynamically sort players in the resources and population tooltip by value."
-msgstr "Isih pemain secara dinamik dalam tip alatan sumber dan populasi mengikut nilai."
-
-#: gui/options/options.json[0].options[20].label
-msgid "Sort resources and population tooltip"
-msgstr "Isih tip alatan sumber dan populasi"
 
 #: gui/options/options.json[0].label
 msgid "General"
 msgstr "Am"
 
 #: gui/options/options.json[1].options[0].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr "Guna pelorek OpenGL 2.0 (disarankan)"
+msgid "Start 0 A.D. in a window."
+msgstr "Mula 0 A.D. dalam tetingkap."
 
 #: gui/options/options.json[1].options[0].label
+msgid "Windowed Mode"
+msgstr "Mod Bertetingkap"
+
+#: gui/options/options.json[1].options[1].tooltip
+msgid "Use OpenGL 2.0 shaders (recommended)."
+msgstr "Guna pelorek OpenGL 2.0 (disarankan)."
+
+#: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
 msgstr "Utamakan GLSL"
 
-#: gui/options/options.json[1].options[1].tooltip
-msgid "Enable Fog"
-msgstr "Benarkan Kabus"
+#: gui/options/options.json[1].options[2].tooltip
+msgid "Enable Fog."
+msgstr "Benarkan Kabus."
 
-#: gui/options/options.json[1].options[1].label
+#: gui/options/options.json[1].options[2].label
 msgid "Fog"
 msgstr "Kabus"
 
-#: gui/options/options.json[1].options[2].tooltip
-msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr "Guna penapis pasca-pemprosesan jarak-skrin (HDR, Bloom, DOF, dll)"
+#: gui/options/options.json[1].options[3].tooltip
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
+msgstr "Guna penapis pasca-pemprosesan jarak-skrin (HDR, Bloom, DOF, dll)."
 
-#: gui/options/options.json[1].options[2].label
+#: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
 msgstr "Pasca Pemprosesan"
 
-#: gui/options/options.json[1].options[3].tooltip
+#: gui/options/options.json[1].options[4].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Bilangan kesan pelorek. PERLU MULAKAN SEMULA PERMAINAN"
 
-#: gui/options/options.json[1].options[3].label
+#: gui/options/options.json[1].options[4].label
 msgid "Shader Effects"
 msgstr "Kesan Pelorek"
 
-#: gui/options/options.json[1].options[4].tooltip
-msgid "Enable shadows"
-msgstr "Benarkan bayang"
+#: gui/options/options.json[1].options[5].tooltip
+msgid "Enable shadows."
+msgstr "Benarkan bayang."
 
-#: gui/options/options.json[1].options[4].label
+#: gui/options/options.json[1].options[5].label
 msgid "Shadows"
 msgstr "Bayang"
 
-#: gui/options/options.json[1].options[5].list[0].label
+#: gui/options/options.json[1].options[6].list[0].label
 msgid "Very Low"
 msgstr "Sangat Rendah"
 
-#: gui/options/options.json[1].options[5].list[1].label
+#: gui/options/options.json[1].options[6].list[1].label
 msgid "Low"
 msgstr "Rendah"
 
-#: gui/options/options.json[1].options[5].list[2].label
+#: gui/options/options.json[1].options[6].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "Sederhana"
 
-#: gui/options/options.json[1].options[5].list[3].label
+#: gui/options/options.json[1].options[6].list[3].label
 msgid "High"
 msgstr "Tinggi"
 
-#: gui/options/options.json[1].options[5].list[4].label
+#: gui/options/options.json[1].options[6].list[4].label
 msgid "Very High"
 msgstr "Sangat Tinggi"
 
-#: gui/options/options.json[1].options[5].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
 msgstr "Resolusi peta bayang. Nilai tinggi boleh menyebabkan permainan teganggu ketika menggunakan kad grafik dengan ingatan rendah!"
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[1].options[6].label
 msgid "Shadow Quality"
 msgstr "Kualiti Bayang"
 
-#: gui/options/options.json[1].options[6].tooltip
-msgid "Smooth shadows"
-msgstr "Bayang lancar"
+#: gui/options/options.json[1].options[7].tooltip
+msgid "Smooth shadows."
+msgstr "Bayang lancar."
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
 msgstr "Penapisan Bayang"
 
-#: gui/options/options.json[1].options[7].tooltip
-msgid "Show outlines of units behind buildings"
-msgstr "Tunjuk garis luar unit disebalik bangunan"
+#: gui/options/options.json[1].options[8].tooltip
+msgid "Show outlines of units behind buildings."
+msgstr "Tunjuk garis luar unit disebalik bangunan."
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
 msgstr "Bebayang Unit"
 
-#: gui/options/options.json[1].options[8].tooltip
-msgid "Enable particles"
-msgstr "Benarkan butiran"
+#: gui/options/options.json[1].options[9].tooltip
+msgid "Enable particles."
+msgstr "Benarkan butiran."
 
-#: gui/options/options.json[1].options[8].label
+#: gui/options/options.json[1].options[9].label
 msgid "Particles"
 msgstr "Butiran"
 
-#: gui/options/options.json[1].options[9].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Bila MATI, guna tetapan terendah yang mungkin untuk menerap air. Ia menjadikan tetapan lain tidak relevan."
 
-#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[10].label
 msgid "Water Effects"
 msgstr "Kesan Air"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Guna kesan berkualiti-lebih-tinggi unntuk air, penerapan ombak pantai, bebuih pantai, dan bekas laluan kapal."
 
-#: gui/options/options.json[1].options[10].label
+#: gui/options/options.json[1].options[11].label
 msgid "HQ Water Effects"
 msgstr "Kesan Air KT"
 
-#: gui/options/options.json[1].options[11].tooltip
-msgid "Use actual water depth in rendering calculations"
-msgstr "Guna kedalaman air sebenar di dalam pengiraan penerapan"
+#: gui/options/options.json[1].options[12].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr "Guna kedalaman air sebenar di dalam pengiraan penerapan."
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
 msgstr "Kedalaman Air Sebenar"
 
-#: gui/options/options.json[1].options[12].tooltip
-msgid "Allow water to reflect a mirror image"
-msgstr "Benarkan air memantulkan imej bayangan"
+#: gui/options/options.json[1].options[13].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "Benarkan air memantulkan imej bayangan."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[13].label
 msgid "Water Reflections"
 msgstr "Pantulan Air"
 
-#: gui/options/options.json[1].options[13].tooltip
-msgid "Use a real water refraction map and not transparency"
-msgstr "Guna peta pembiasan air sebenar bukannya kelutsinaran"
+#: gui/options/options.json[1].options[14].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "Guna peta pembiasan air sebenar bukannya kelutsinaran."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
 msgstr "Pembiasan Air"
 
-#: gui/options/options.json[1].options[14].tooltip
-msgid "Cast shadows on water"
-msgstr "Wujudkan bayang pada air"
+#: gui/options/options.json[1].options[15].tooltip
+msgid "Cast shadows on water."
+msgstr "Wujudkan bayang pada air."
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[15].label
 msgid "Shadows on Water"
 msgstr "Bayang pada Air"
 
-#: gui/options/options.json[1].options[15].tooltip
-msgid "Lift darkness and fog-of-war smoothly"
-msgstr "Buang kegelapan dan kabus perang secara lancar"
+#: gui/options/options.json[1].options[16].tooltip
+msgid "Lift darkness and fog-of-war smoothly."
+msgstr "Buang kegelapan dan kabus perang secara lancar."
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[16].label
 msgid "Smooth LOS"
 msgstr "LOS Lancar"
 
-#: gui/options/options.json[1].options[16].tooltip
-msgid "Render Sky"
-msgstr "Terap Langit"
+#: gui/options/options.json[1].options[17].tooltip
+msgid "Render Sky."
+msgstr "Terap Langit."
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
 msgstr "Tunjuk Langit"
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Jalankan segerak menegak untuk membaiki koyakan skrin. PERLU MULAKAN SEMULA PERMAINAN"
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[18].label
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Untuk mengurangkan beban kerja CPU, dikit frekuensi penerap dalam semua menu. Tetapkan ke maksimum untuk lumpuhkan pendikitan."
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[19].label
 msgid "FPS Throttling in Menus"
 msgstr "Pendikitan FPS dalam Menu"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Untuk mengurangkan beban kerja CPU, dikit frekuensi penerap dalam permainan yang berlangsung. Tetapkan ke maksimum untuk lumpuhkan pendikitan."
 
-#: gui/options/options.json[1].options[19].label
+#: gui/options/options.json[1].options[20].label
 msgid "FPS Throttling in Games"
 msgstr "Pendikitan FPS dalam Permainan"
 
@@ -2799,48 +2713,48 @@ msgid "Graphics"
 msgstr "Grafik"
 
 #: gui/options/options.json[2].options[0].tooltip
-msgid "Master audio gain"
-msgstr "Gandaan audio master"
+msgid "Master audio gain."
+msgstr "Gandaan audio master."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
 msgstr "Volum Master"
 
 #: gui/options/options.json[2].options[1].tooltip
-msgid "In game music gain"
-msgstr "Dalam gandaan muzik permainan"
+msgid "In game music gain."
+msgstr "Dalam gandaan muzik dalam permainan."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
 msgstr "Volum Muzik"
 
 #: gui/options/options.json[2].options[2].tooltip
-msgid "In game ambient sound gain"
-msgstr "Dalam gandaan bunyi ambien permainan"
+msgid "In game ambient sound gain."
+msgstr "Gandaan bunyi ambien dalam permainan."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
 msgstr "Volum Ambien"
 
 #: gui/options/options.json[2].options[3].tooltip
-msgid "In game unit action sound gain"
-msgstr "Dalam gandaan bunyi aksi unit"
+msgid "In game unit action sound gain."
+msgstr "Gandaan bunyi aksi unit dalam permainan."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
 msgstr "Volum Aksi"
 
 #: gui/options/options.json[2].options[4].tooltip
-msgid "UI sound gain"
-msgstr "Gandaan bunyi UI"
+msgid "UI sound gain."
+msgstr "Gandaan bunyi UI."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
 msgstr "Volum UI"
 
 #: gui/options/options.json[2].options[5].tooltip
-msgid "Receive audio notification when someone types your nick"
-msgstr "Terima pemberitahuan audio ketika seseorang menaip gelaran anda"
+msgid "Receive audio notification when someone types your nick."
+msgstr "Terima pemberitahuan audio ketika seseorang menaip gelaran anda."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
@@ -2855,8 +2769,8 @@ msgid "Enable Game Setting Tips"
 msgstr "Benarkan Petua Penetapan Permainan"
 
 #: gui/options/options.json[3].options[1].tooltip
-msgid "Slide the settings panel when opening, closing or resizing"
-msgstr "Leret panel tetapan ketika membuka, menutup atau saizkan semula"
+msgid "Slide the settings panel when opening, closing or resizing."
+msgstr "Leret panel tetapan ketika membuka, menutup atau saizkan semula."
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable Settings Panel Slide"
@@ -2864,8 +2778,8 @@ msgstr "Benarkan Meleret Panel Tetapan"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
-"Save and restore match settings for quick reuse when hosting another game"
-msgstr "Simpan dan pulihkan tetapan perlawanan untuk guna semula pantas bila mengehos permainan lain"
+"Save and restore match settings for quick reuse when hosting another game."
+msgstr "Simpan dan pulihkan tetapan perlawanan untuk guna semula pantas bila mengehos permainan lain."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
@@ -2938,8 +2852,8 @@ msgid "Game Setup"
 msgstr "Persediaan Permainan"
 
 #: gui/options/options.json[4].options[0].tooltip
-msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "Bilangan mesej di log untuk dimuatkan bila menyertai lobi"
+msgid "Number of backlogged messages to load when joining the lobby."
+msgstr "Bilangan mesej di log untuk dimuatkan bila menyertai lobi."
 
 #: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
@@ -2964,60 +2878,147 @@ msgid "Lobby"
 msgstr "Ruang Legar"
 
 #: gui/options/options.json[5].options[0].tooltip
-msgid "Show a chat notification if you are attacked by another player"
-msgstr "Tunjuk pemberitahuan sembang jika anda diserang oleh pemain lain"
+msgid ""
+"The wounded unit hotkey considers the selected units as wounded if their "
+"health percentage falls below this number."
+msgstr "Kekunci panas unit cedera menganggap unit terpilih sebagai cedera jika peratus hayat mereka jatuh di bawah nilai ini."
 
 #: gui/options/options.json[5].options[0].label
-msgid "Attack"
-msgstr "Serang"
+msgid "Wounded Unit Health"
+msgstr "Hayat Unit Cedera"
 
 #: gui/options/options.json[5].options[1].tooltip
-msgid ""
-"Show a chat notification if an ally tributes resources to another team "
-"member if teams are locked, and all tributes in observer mode"
-msgstr "Tunjuk pemberitahuan sembang jika sumber ufti sekutu ke ahli pasukan yang lain jika pasukan dikunci, dan semua ufti dalam mod pemerhati"
+msgid "Number of units trained per batch."
+msgstr "Bilangan unit dilatih dalam satu kelompok."
 
 #: gui/options/options.json[5].options[1].label
-msgid "Tribute"
-msgstr "Ufti"
+msgid "Batch Training Size"
+msgstr "Saiz Latihan Berkelompok"
 
 #: gui/options/options.json[5].options[2].tooltip
-msgid "Show a chat notification to observers when a player bartered resources"
-msgstr "Tunjuk pemberitahuan sembang kepada pemerhati jika ada pemain membarter sumber"
+msgid "Show a chat notification if you are attacked by another player."
+msgstr "Tunjuk pemberitahuan sembang jika anda diserang oleh pemain lain."
 
 #: gui/options/options.json[5].options[2].label
-msgid "Barter"
-msgstr "Barter"
-
-#: gui/options/options.json[5].options[3].list[0].label
-msgid "Disable"
-msgstr "Dilumpuhkan"
-
-#: gui/options/options.json[5].options[3].list[1].label
-msgid "Completed"
-msgstr "Selesai"
-
-#: gui/options/options.json[5].options[3].list[2].label
-msgid "All displayed"
-msgstr "Semua dipaparkan"
+msgid "Chat Notification Attack"
+msgstr "Serangan Pemberitahuan Sembang"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid ""
-"Show a chat notification if you or an ally have started, aborted or "
-"completed a new phase, and phases of all players in observer mode"
-msgstr "Tunjuk pemberitahuan sembang jika anda atau sekutu anda telah bermula, dihenti paksa atau melepasi ke fasa baharu, dan fasa bagi semua pemain dalam mod pemerhati"
+"Show a chat notification if an ally tributes resources to another team "
+"member if teams are locked, and all tributes in observer mode."
+msgstr "Tunjuk pemberitahuan sembang jika sumber ufti sekutu ke ahli pasukan yang lain jika pasukan dikunci, dan semua ufti dalam mod pemerhati."
 
 #: gui/options/options.json[5].options[3].label
-msgid "Phase"
-msgstr "Fasa"
+msgid "Chat Notification Tribute"
+msgstr "Ufti Pemberitahuan Sembang"
+
+#: gui/options/options.json[5].options[4].tooltip
+msgid ""
+"Show a chat notification to observers when a player bartered resources."
+msgstr "Tunjuk pemberitahuan sembang kepada pemerhati jika ada pemain membarter sumber."
+
+#: gui/options/options.json[5].options[4].label
+msgid "Chat Notification Barter"
+msgstr "Barter Pemberitahuan Sembang"
+
+#: gui/options/options.json[5].options[5].list[0].label
+msgid "Disable"
+msgstr "Dilumpuhkan"
+
+#: gui/options/options.json[5].options[5].list[1].label
+msgid "Completed"
+msgstr "Selesai"
+
+#: gui/options/options.json[5].options[5].list[2].label
+msgid "All displayed"
+msgstr "Semua dipaparkan"
+
+#: gui/options/options.json[5].options[5].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode."
+msgstr "Tunjuk pemberitahuan sembang jika anda atau sekutu anda telah bermula, dihenti paksa atau melepasi ke fasa baharu, dan fasa bagi semua pemain dalam mod pemerhati."
+
+#: gui/options/options.json[5].options[5].label
+msgid "Chat Notification Phase"
+msgstr "Fasa Pemberitahuan Sembang"
+
+#: gui/options/options.json[5].options[6].tooltip
+msgid ""
+"Display the attack range of selected defensive structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Papar jangkauan serangan struktur pertahanan terpilih (boleh ditogol ketika dalam permainan melalui kekunci panas)."
+
+#: gui/options/options.json[5].options[6].label
+msgid "Attack Range Visualization"
+msgstr "Pengvisualan Jangkauan Serangan"
+
+#: gui/options/options.json[5].options[7].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Papar jangkauan penyembuhan aura bagi unit dan struktur terpilih (boleh ditogol ketika dalam permainan melalui kekunci panas)."
+
+#: gui/options/options.json[5].options[7].label
+msgid "Aura Range Visualization"
+msgstr "Pengvisualan Jangkauan Aura"
+
+#: gui/options/options.json[5].options[8].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr "Papar jangkauan penyembuhan bagi unit terpilih (boleh ditogol ketika dalam permainan melalui kekunci panas)."
+
+#: gui/options/options.json[5].options[8].label
+msgid "Heal Range Visualization"
+msgstr "Pengvisualan Jangkauan Penyembuhan"
+
+#: gui/options/options.json[5].options[9].tooltip
+msgid "Show rank icons above status bars."
+msgstr "Tunjuk ikon kedudukan di atas palang status."
+
+#: gui/options/options.json[5].options[9].label
+msgid "Rank icon above status bar"
+msgstr "Ikon kedudukan di atas palang status"
+
+#: gui/options/options.json[5].options[10].tooltip
+msgid ""
+"Show detailed tooltips for trainable units in unit-producing buildings."
+msgstr "Tunjuk tip alat lebih terperinci untuk unit boleh dilatih dalam bangunan pengeluaran-unit."
+
+#: gui/options/options.json[5].options[10].label
+msgid "Detailed Tooltips"
+msgstr "Tip Alat Lebih Terperinci"
+
+#: gui/options/options.json[5].options[11].list[0].label
+msgid "Unordered"
+msgstr "Tidak Bertertib"
+
+#: gui/options/options.json[5].options[11].list[1].label
+msgid "Ascending"
+msgstr "Menaik"
+
+#: gui/options/options.json[5].options[11].list[2].label
+msgid "Descending"
+msgstr "Menurun"
+
+#: gui/options/options.json[5].options[11].tooltip
+msgid ""
+"Dynamically sort players in the resources and population tooltip by value."
+msgstr "Isih pemain secara dinamik dalam tip alatan sumber dan populasi mengikut nilai."
+
+#: gui/options/options.json[5].options[11].label
+msgid "Sort resources and population tooltip"
+msgstr "Isih tip alatan sumber dan populasi"
 
 #: gui/options/options.json[5].tooltip
-msgid "Regulate the verbosity of chat notifications."
-msgstr "Tentukan kejelaan pemberitahuan sembang."
+msgid "Change options regarding the in-game settings."
+msgstr "Ubah pilih tidak berdasarkan tetapan dalam-permainan."
 
 #: gui/options/options.json[5].label
-msgid "Chat Notifications"
-msgstr "Pemberitahuan Sembang"
+msgid "In-Game"
+msgstr "Dalam-Permainan"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

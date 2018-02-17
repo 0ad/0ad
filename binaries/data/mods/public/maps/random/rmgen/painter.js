@@ -465,7 +465,7 @@ function HeightmapPainter(heightmap, normalMinHeight = undefined, normalMaxHeigh
 {
 	this.heightmap = heightmap;
 	this.bicubicInterpolation = bicubicInterpolation;
-	this.verticesPerSide = Math.sqrt(heightmap.length);
+	this.verticesPerSide = heightmap.length;
 	this.normalMinHeight = normalMinHeight;
 	this.normalMaxHeight = normalMaxHeight;
 }
@@ -519,6 +519,6 @@ HeightmapPainter.prototype.paint = function(area)
 			g_Map.setHeight(vertexPos, bicubicInterpolation(
 				Vector2D.sub(sourcePos, brushPosition).sub(brushCenter),
 				...getPointsInBoundingBox(getBoundingBox([brushPosition, Vector2D.add(brushPosition, brushSize)])).map(pos =>
-					this.scaleHeight(this.heightmap[pos.y * this.verticesPerSide + pos.x]))));
+					this.scaleHeight(this.heightmap[pos.x][pos.y]))));
 		}
 };
