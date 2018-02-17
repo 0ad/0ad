@@ -287,18 +287,3 @@ bool SavedGames::DeleteSavedGame(const std::wstring& name)
 	// Successfully deleted file
 	return true;
 }
-
-JS::Value SavedGames::GetEngineInfo(const ScriptInterface& scriptInterface)
-{
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue metainfo(cx);
-	scriptInterface.Eval("({})", &metainfo);
-	scriptInterface.SetProperty(metainfo, "engine_version", std::string(engine_version));
-	scriptInterface.SetProperty(metainfo, "mods", JS::RootedValue(cx, Mod::GetLoadedModsWithVersions(scriptInterface)));
-
-	scriptInterface.FreezeObject(metainfo, true);
-
-	return metainfo;
-}

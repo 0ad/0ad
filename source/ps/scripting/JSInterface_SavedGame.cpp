@@ -27,11 +27,6 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
 
-JS::Value JSI_SavedGame::GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	return SavedGames::GetEngineInfo(*(pCxPrivate->pScriptInterface));
-}
-
 JS::Value JSI_SavedGame::GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	return SavedGames::GetSavedGames(*(pCxPrivate->pScriptInterface));
@@ -111,7 +106,6 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, 
 
 void JSI_SavedGame::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
-	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
 	scriptInterface.RegisterFunction<JS::Value, &GetSavedGames>("GetSavedGames");
 	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteSavedGame>("DeleteSavedGame");
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, JS::HandleValue, &SaveGame>("SaveGame");

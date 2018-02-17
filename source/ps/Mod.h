@@ -29,5 +29,12 @@ namespace Mod
 {
 	JS::Value GetAvailableMods(const ScriptInterface& scriptInterface);
 	JS::Value GetLoadedModsWithVersions(const ScriptInterface& scriptInterface);
+	/**
+	 * Gets info (version and mods loaded) on the running engine
+	 *
+	 * @param scriptInterface the ScriptInterface in which to create the return data.
+	 * @return list of objects containing saved game data
+	 */
+	JS::Value GetEngineInfo(const ScriptInterface& scriptInterface);
 }
 #endif // INCLUDED_MOD

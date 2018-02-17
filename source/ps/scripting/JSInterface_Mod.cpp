@@ -23,6 +23,11 @@
 
 extern void restart_engine();
 
+JS::Value JSI_Mod::GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
+{
+	return Mod::GetEngineInfo(*(pCxPrivate->pScriptInterface));
+}
+
 /**
  * Returns a JS object containing a listing of available mods that
  * have a modname.json file in their modname folder. The returned
@@ -50,6 +55,7 @@ void JSI_Mod::SetMods(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std:
 
 void JSI_Mod::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
+	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Mod::GetAvailableMods>("GetAvailableMods");
 	scriptInterface.RegisterFunction<void, &JSI_Mod::RestartEngine>("RestartEngine");
 	scriptInterface.RegisterFunction<void, std::vector<CStr>, &JSI_Mod::SetMods>("SetMods");
