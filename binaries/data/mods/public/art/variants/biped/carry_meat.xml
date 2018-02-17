@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="carry_meat">
-	<animations>
-		<animation file="biped/new/male_carry_meat.dae" name="Walk" speed="20"/>
-		<animation file="biped/new/male_carry_meat_idle.dae" name="Idle" speed="20"/>
-		<animation file="biped/new/male_carry_meat.dae" name="Run" speed="20"/>
-	</animations>
-	<props>
-		<prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
-		<prop actor="props/units/shuttle_meat_male_L.xml" attachpoint="weapon_L"/>
-		<prop attachpoint="helmet"/>
-		<prop attachpoint="shield"/>
-		<prop attachpoint="shield_arm"/>
-		<prop attachpoint="ammo"/>
-	</props>
+  <animations>
+    <animation file="biped/new/male_carry_meat.dae" name="Walk" speed="20"/>
+    <animation file="biped/new/male_carry_meat_idle.dae" name="Idle" speed="20"/>
+    <animation file="biped/new/male_carry_meat.dae" name="Run" speed="20"/>
+  </animations>
+  <props>
+    <prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
+    <prop actor="props/units/shuttle_meat_male_L.xml" attachpoint="weapon_L"/>
+    <prop attachpoint="helmet"/>
+    <prop attachpoint="shield"/>
+    <prop attachpoint="shield_arm"/>
+    <prop attachpoint="ammo"/>
+  </props>
 </variant>
