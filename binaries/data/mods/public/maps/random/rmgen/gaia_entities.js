@@ -15,7 +15,7 @@ function getTreeCounts(minTrees, maxTrees, forestRatio)
  * Generates two variants of forests from the given terrain textures and tree templates.
  * The forest border has less trees than the inside.
  */
-function createForests(terrainSet, constraint, tileClass, treeCount)
+function createForests(terrainSet, constraint, tileClass, treeCount, retryFactor)
 {
 	if (!treeCount)
 		return;
@@ -45,13 +45,14 @@ function createForests(terrainSet, constraint, tileClass, treeCount)
 				new TileClassPainter(tileClass)
 			],
 			constraint,
-			numberOfForests);
+			numberOfForests,
+			retryFactor);
 }
 
 /**
  * Places the given amount of Entities at random places meeting the given Constraint, chosing a different template for each.
  */
-function createStragglerTrees(templateNames, constraint, tileClass, treeCount)
+function createStragglerTrees(templateNames, constraint, tileClass, treeCount, retryFactor)
 {
 	g_Map.log("Creating straggler trees");
 	for (let templateName of templateNames)
@@ -59,7 +60,8 @@ function createStragglerTrees(templateNames, constraint, tileClass, treeCount)
 			new SimpleGroup([new SimpleObject(templateName, 1, 1, 0, 3)], true, tileClass),
 			0,
 			constraint,
-			Math.floor(treeCount / templateNames.length));
+			Math.floor(treeCount / templateNames.length),
+			retryFactor);
 }
 
 /**
