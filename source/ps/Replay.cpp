@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,7 @@
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/Mod.h"
 #include "ps/Util.h"
 #include "ps/VisualReplay.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -53,12 +54,15 @@ CReplayLogger::~CReplayLogger()
 
 void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 {
+	JSContext* cx = m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
 	// Add timestamp, since the file-modification-date can change
 	m_ScriptInterface.SetProperty(attribs, "timestamp", (double)std::time(nullptr));
 
 	// Add engine version and currently loaded mods for sanity checks when replaying
 	m_ScriptInterface.SetProperty(attribs, "engine_version", CStr(engine_version));
-	m_ScriptInterface.SetProperty(attribs, "mods", g_modsLoaded);
+	m_ScriptInterface.SetProperty(attribs, "mods", JS::RootedValue(cx, Mod::GetLoadedModsWithVersions(m_ScriptInterface)));
 
 	m_Directory = createDateIndexSubdirectory(VisualReplay::GetDirectoryName());
 	debug_printf("Writing replay to %s\n", m_Directory.string8().c_str());

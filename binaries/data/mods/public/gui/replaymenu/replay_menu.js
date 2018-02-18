@@ -352,7 +352,7 @@ function getReplayDuration(replay)
  */
 function isReplayCompatible(replay)
 {
-	return replayHasSameEngineVersion(replay) && hasSameMods(replay.attribs, g_EngineInfo);
+	return replayHasSameEngineVersion(replay) && hasSameMods(replay.attribs.mods, g_EngineInfo.mods);
 }
 
 /**

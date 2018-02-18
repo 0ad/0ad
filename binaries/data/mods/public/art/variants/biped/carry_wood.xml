@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="carry_wood">
-	<animations>
-		<animation file="biped/new/male_carry_wood.dae" name="Walk" speed="20"/>
-		<animation file="biped/new/male_carry_wood_idle.dae" name="Idle" speed="20"/>
-		<animation file="biped/new/male_carry_wood.dae" name="Run" speed="20"/>
-	</animations>
-	<props>
-		<prop actor="props/units/shuttle_wood.xml" attachpoint="weapon_R"/>
-		<prop attachpoint="weapon_L"/>
-		<prop attachpoint="helmet"/>
-		<prop attachpoint="shield"/>
-		<prop attachpoint="shield_arm"/>
-		<prop attachpoint="ammo"/>
-	</props>
+  <animations>
+    <animation file="biped/new/male_carry_wood.dae" name="Walk" speed="20"/>
+    <animation file="biped/new/male_carry_wood_idle.dae" name="Idle" speed="20"/>
+    <animation file="biped/new/male_carry_wood.dae" name="Run" speed="20"/>
+  </animations>
+  <props>
+    <prop actor="props/units/shuttle_wood.xml" attachpoint="weapon_R"/>
+    <prop attachpoint="weapon_L"/>
+    <prop attachpoint="helmet"/>
+    <prop attachpoint="shield"/>
+    <prop attachpoint="shield_arm"/>
+    <prop attachpoint="ammo"/>
+  </props>
 </variant>

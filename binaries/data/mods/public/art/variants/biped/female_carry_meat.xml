@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="carry_meat">
   <animations>
     <animation file="biped/new/fem_carry_meat_idle.dae" name="Idle" speed="25"/>
     <animation file="biped/new/fem_carry_meat.dae" name="Walk" speed="25"/>
+    <animation file="biped/new/fem_carry_meat.dae" name="Run" speed="25"/>
   </animations>
   <props>
-	<prop actor="props/units/shuttle_meat_female.xml" attachpoint="weapon_R"/>
-	<prop attachpoint="weapon_L"/>
+    <prop actor="props/units/shuttle_meat_female.xml" attachpoint="weapon_R"/>
+    <prop attachpoint="weapon_L"/>
   </props>
 </variant>

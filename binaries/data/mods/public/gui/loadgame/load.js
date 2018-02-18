@@ -114,8 +114,8 @@ function selectionChanged()
 	Engine.GetGUIObjectByName("savedMapSize").caption = translateMapSize(metadata.initAttributes.settings.Size);
 	Engine.GetGUIObjectByName("savedVictory").caption = translateVictoryCondition(metadata.initAttributes.settings.GameType);
 
-	let caption = sprintf(translate("Mods: %(mods)s"), { "mods": metadata.mods.join(translate(", ")) });
-	if (!hasSameMods(metadata, Engine.GetEngineInfo()))
+	let caption = sprintf(translate("Mods: %(mods)s"), { "mods": modsToString(metadata.mods) });
+	if (!hasSameMods(metadata.mods, Engine.GetEngineInfo().mods))
 		caption = coloredText(caption, "orange");
 	Engine.GetGUIObjectByName("savedMods").caption = caption;
 
@@ -133,7 +133,7 @@ function loadGame()
 
 	// Check compatibility before really loading it
 	let engineInfo = Engine.GetEngineInfo();
-	let sameMods = hasSameMods(metadata, engineInfo);
+	let sameMods = hasSameMods(metadata.mods, engineInfo.mods);
 	let sameEngineVersion = hasSameEngineVersion(metadata, engineInfo);
 
 	if (sameEngineVersion && sameMods)
@@ -143,32 +143,27 @@ function loadGame()
 	}
 
 	// Version not compatible ... ask for confirmation
-	let message = translate("This saved game may not be compatible:");
+	let message = "";
 
 	if (!sameEngineVersion)
 		if (metadata.engine_version)
-			message += "\n" + sprintf(translate("It needs 0 A.D. version %(requiredVersion)s, while you are running version %(currentVersion)s."), {
+			message += sprintf(translate("This savegame needs 0 A.D. version %(requiredVersion)s, while you are running version %(currentVersion)s."), {
 				"requiredVersion": metadata.engine_version,
 				"currentVersion": engineInfo.engine_version
-			});
+			}) + "\n";
 		else
-			message += "\n" + translate("It needs an older version of 0 A.D.");
+			message += translate("This savegame needs an older version of 0 A.D.") + "\n";
 
 	if (!sameMods)
 	{
 		if (!metadata.mods)
 			metadata.mods = [];
 
-		message += translate("The savegame needs a different set of mods:") + "\n" +
-			sprintf(translate("Required: %(mods)s"), {
-				"mods": metadata.mods.join(translate(", "))
-			}) + "\n" +
-			sprintf(translate("Active: %(mods)s"), {
-				"mods": engineInfo.mods.join(translate(", "))
-			});
+		message += translate("This savegame needs a different sequence of mods:") + "\n" +
+			comparedModsString(metadata.mods, engineInfo.mods) + "\n";
 	}
 
-	message += "\n" + translate("Do you still want to proceed?");
+	message += translate("Do you still want to proceed?");
 
 	messageBox(
 		500, 250,

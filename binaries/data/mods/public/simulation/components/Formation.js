@@ -294,14 +294,10 @@ Formation.prototype.SetMembers = function(ents)
 {
 	this.members = ents;
 
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
-
 	for (var ent of this.members)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
-		cmpUnitAI.SetLastFormationTemplate(templateName);
 
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		if (cmpAuras && cmpAuras.HasFormationAura())

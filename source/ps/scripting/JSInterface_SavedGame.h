@@ -22,7 +22,6 @@
 
 namespace JSI_SavedGame
 {
-	JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate);
 	bool DeleteSavedGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
 	void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata);

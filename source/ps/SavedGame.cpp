@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -82,7 +82,7 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 	JS::RootedValue initAttributes(cx, simulation.GetInitAttributes());
 	simulation.GetScriptInterface().Eval("({})", &metadata);
 	simulation.GetScriptInterface().SetProperty(metadata, "engine_version", std::string(engine_version));
-	simulation.GetScriptInterface().SetProperty(metadata, "mods", g_modsLoaded);
+	simulation.GetScriptInterface().SetProperty(metadata, "mods", JS::RootedValue(cx, Mod::GetLoadedModsWithVersions(simulation.GetScriptInterface())));
 	simulation.GetScriptInterface().SetProperty(metadata, "time", (double)now);
 	simulation.GetScriptInterface().SetProperty(metadata, "playerID", g_Game->GetPlayerID());
 	simulation.GetScriptInterface().SetProperty(metadata, "initAttributes", initAttributes);
@@ -286,19 +286,4 @@ bool SavedGames::DeleteSavedGame(const std::wstring& name)
 
 	// Successfully deleted file
 	return true;
-}
-
-JS::Value SavedGames::GetEngineInfo(const ScriptInterface& scriptInterface)
-{
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue metainfo(cx);
-	scriptInterface.Eval("({})", &metainfo);
-	scriptInterface.SetProperty(metainfo, "engine_version", std::string(engine_version));
-	scriptInterface.SetProperty(metainfo, "mods", g_modsLoaded);
-
-	scriptInterface.FreezeObject(metainfo, true);
-
-	return metainfo;
 }

@@ -1,14 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="gather_fruit">
   <animations>
-	<animation file="biped/new/male_gather_fruit.dae" name="gather_fruit" speed="100"/>
+    <animation file="biped/new/male_gather_fruit.dae" name="gather_fruit" speed="100"/>
   </animations>
   <props>
-	<prop actor="props/units/tools/basket_berries.xml" attachpoint="root"/>
+    <prop actor="props/units/tools/basket_berries.xml" attachpoint="root"/>
     <prop attachpoint="weapon_R"/>
-	<prop attachpoint="weapon_L"/>
+    <prop attachpoint="weapon_L"/>
     <prop attachpoint="shield"/>
     <prop attachpoint="shield_arm"/>
-	<prop attachpoint="helmet"/>
-	<prop attachpoint="ammo"/>
+    <prop attachpoint="helmet"/>
+    <prop attachpoint="ammo"/>
   </props>
 </variant>
