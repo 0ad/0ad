@@ -82,7 +82,8 @@ var g_OptionType = {
 					Math.max(option.min !== undefined ? option.min : -Infinity,
 						isNaN(+value) ? 0 : value));
 
-			control.sprite = sanitized == value ? "ModernDarkBoxWhite" : "ModernDarkBoxWhiteInvalid";
+			if (control)
+				control.sprite = sanitized == value ? "ModernDarkBoxWhite" : "ModernDarkBoxWhiteInvalid";
 
 			return sanitized;
 		},
@@ -300,10 +301,8 @@ function saveChanges()
 			if (!optionType.sanitizeValue)
 				continue;
 
-			let control = Engine.GetGUIObjectByName("option_control_" + option.type + "[" + i + "]");
-			let value = optionType.guiToValue(control);
-
-			if (value == optionType.sanitizeValue(value, control, option))
+			let value = optionType.configToValue(Engine.ConfigDB_GetValue("user", option.config));
+			if (value == optionType.sanitizeValue(value, undefined, option))
 				continue;
 
 			g_TabCategorySelected = category;
