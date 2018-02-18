@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/hele_tunic.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/fisher/base_hele.xml"/>
+    <variant file="biped/fisher/carry_hele.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/fisher/gather_fish.xml"/>
+    <variant file="biped/fisher/walk.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

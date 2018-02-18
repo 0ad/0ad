@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <float/>
@@ -6,20 +6,43 @@
     <variant frequency="100" name="celt fishing boat a">
       <mesh>structural/celt_fishing_boat.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/fishing_sail.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/fisherman_body.xml" attachpoint="root"/>
-        <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/structures/celts/fishing_sail.xml" attachpoint="sail"/>
+        <prop actor="units/celts/fisherman.xml" attachpoint="fisherman"/>
+        <prop actor="" attachpoint="fish_a"/>
+        <prop actor="" attachpoint="fish_b"/>
+        <prop actor="" attachpoint="fish_c"/>
       </props>
-      <textures><texture file="structural/celt_ship.png" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="100" name="celt fishing boat b">
-      <mesh>structural/celt_fishing_boat.dae</mesh>
-      <props>
-        <prop actor="props/structures/celts/fishing_sail.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/fisherman_body.xml" attachpoint="root"/>
-        <prop actor="props/units/heads/head_celt_2.xml" attachpoint="head"/>
-      </props>
-      <textures><texture file="structural/celt_ship.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/celt_ship.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant frequency="1" name="walk"/>
+    <variant frequency="1" name="run"/>
+    <variant frequency="1" name="gather_fish">
+      <props>
+        <prop actor="props/structures/celts/fishing_sail_folded.xml" attachpoint="sail"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_c"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="carry_fish">
+      <props>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_c"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="carry_idle">
+      <props>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_c"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
 </actor>

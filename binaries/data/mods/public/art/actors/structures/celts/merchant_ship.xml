@@ -1,27 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="ship mesh a">
+    <variant frequency="1" name="ship mesh">
       <mesh>structural/celt_merchant.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/merchant_sail.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/merchant_sail.xml" attachpoint="sail"/>
+      </props>
+      <textures>
+        <texture file="structural/celt_ship.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ship mesh a">
+      <props>
         <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="front"/>
         <prop actor="props/special/eyecandy/basket_hele_a.xml" attachpoint="back"/>
         <prop actor="props/special/eyecandy/vase_hele_a.xml" attachpoint="backb"/>
       </props>
-      <textures><texture file="structural/celt_ship.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="ship mesh b">
-      <mesh>structural/celt_merchant.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/merchant_sail.xml" attachpoint="root"/>
         <prop actor="props/special/eyecandy/anvil.xml" attachpoint="front"/>
         <prop actor="props/special/eyecandy/vase_hele_a.xml" attachpoint="back"/>
         <prop actor="props/special/eyecandy/wood_sm_pile_b.xml" attachpoint="backb"/>
       </props>
-      <textures><texture file="structural/celt_ship.png" name="baseTex"/></textures>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

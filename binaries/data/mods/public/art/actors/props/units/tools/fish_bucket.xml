@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/fish_bucket.dae</mesh>
+      <textures>
+        <texture file="structural/hele_fishing_boat.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant frequency="1" name="walk">
+      <props>
+        <prop actor="" attachpoint="fish_a"/>
+        <prop actor="" attachpoint="fish_b"/>
+        <prop actor="" attachpoint="fish_c"/>
+        <prop actor="" attachpoint="fish_d"/>
+        <prop actor="" attachpoint="fish_e"/>
+        <prop actor="" attachpoint="fish_f"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="gather_fish">
+      <props>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_a"/>
+        <prop actor="" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_c"/>
+        <prop actor="" attachpoint="fish_d"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_e"/>
+        <prop actor="" attachpoint="fish_f"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="carry_fish">
+      <props>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_c"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_d"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_e"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_f"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="carry_fish_idle">
+      <props>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_c"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_d"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_e"/>
+        <prop actor="props/fauna/fish_dead.xml" attachpoint="fish_f"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

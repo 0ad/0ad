@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skeletons>
+  <standard_skeleton title="Fishing Net" id="Fishing Net">
+    <bone name="Sail_Root">
+      <bone name="Sail_A_1">
+        <bone name="Sail_A_2">
+          <bone name="Sail_A_3">
+            <bone name="Sail_A_4"></bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Sail_B_1">
+        <bone name="Sail_B_2">
+          <bone name="Sail_B_3">
+            <bone name="Sail_B_4"></bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Sail_C_1">
+        <bone name="Sail_C_2">
+          <bone name="Sail_C_3">
+            <bone name="Sail_C_4"></bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Sail_D_1">
+        <bone name="Sail_D_2">
+          <bone name="Sail_D_3">
+            <bone name="Sail_D_4"></bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Sail_E_1">
+        <bone name="Sail_E_2">
+          <bone name="Sail_E_3">
+            <bone name="Sail_E_4"></bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton title="Fishing Net" target="Fishing Net">
+    <identifier>
+      <root>Sail_Root</root>
+    </identifier>
+    <bone name="Sail_Root">
+      <target>Sail_Root</target>
+      <bone name="Sail_A_1">
+        <target>Sail_A_1</target>
+        <bone name="Sail_A_2">
+          <target>Sail_A_2</target>
+          <bone name="Sail_A_3">
+            <target>Sail_A_3</target>
+            <bone name="Sail_A_4">
+              <target>Sail_A_4</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Sail_B_1">
+        <target>Sail_B_1</target>
+        <bone name="Sail_B_2">
+          <target>Sail_B_2</target>
+          <bone name="Sail_B_3">
+            <target>Sail_B_3</target>
+            <bone name="Sail_B_4">
+              <target>Sail_B_4</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Sail_C_1">
+        <target>Sail_C_1</target>
+        <bone name="Sail_C_2">
+          <target>Sail_C_2</target>
+          <bone name="Sail_C_3">
+            <target>Sail_C_3</target>
+            <bone name="Sail_C_4">
+              <target>Sail_C_4</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Sail_D_1">
+        <target>Sail_D_1</target>
+        <bone name="Sail_D_2">
+          <target>Sail_D_2</target>
+          <bone name="Sail_D_3">
+            <target>Sail_D_3</target>
+            <bone name="Sail_D_4">
+              <target>Sail_D_4</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Sail_E_1">
+        <target>Sail_E_1</target>
+        <bone name="Sail_E_2">
+          <target>Sail_E_2</target>
+          <bone name="Sail_E_3">
+            <target>Sail_E_3</target>
+            <bone name="Sail_E_4">
+              <target>Sail_E_4</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

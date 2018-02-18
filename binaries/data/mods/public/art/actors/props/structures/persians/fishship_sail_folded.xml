@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="pers">
+      <mesh>props/pers_fishship_sail_folded.dae</mesh>
+      <animations>
+        <animation file="others/pers_sail_folded_idle.dae" name="idle" speed="100"/>
+      </animations>
+      <textures>
+        <texture file="props/pers_trireme_sail_c.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

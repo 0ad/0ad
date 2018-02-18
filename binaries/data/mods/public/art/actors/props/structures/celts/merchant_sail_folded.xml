@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="sail mesh">
+      <mesh>props/celt_merchant_sail_folded.dae</mesh>
+      <animations>
+        <animation file="others/celt_merchant_sail_folded_idle.dae" name="idle" speed="100"/>
+      </animations>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="swirl">
+      <textures>
+        <texture file="props/celt_sail_swirl.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="circle">
+      <textures>
+        <texture file="props/celt_sail_circle.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="face">
+      <textures>
+        <texture file="props/celt_sail_face.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

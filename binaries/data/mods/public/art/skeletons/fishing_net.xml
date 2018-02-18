@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skeletons>
+  <standard_skeleton title="Fishing Net" id="Fishing Net">
+      <bone name="Net_W4">
+        <bone name="Net_W3">
+          <bone name="Net_W2">
+            <bone name="Net_W1">
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_Root"></bone>
+      <bone name="Net_E4">
+        <bone name="Net_E3">
+          <bone name="Net_E2">
+            <bone name="Net_E1">
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_N4">
+        <bone name="Net_N3">
+          <bone name="Net_N2">
+            <bone name="Net_N1">
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_S4">
+        <bone name="Net_S3">
+          <bone name="Net_S2">
+            <bone name="Net_S1">
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_NW4">
+        <bone name="Net_NW3">
+          <bone name="Net_NW2">
+            <bone name="Net_NW1">
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_NE4">
+        <bone name="Net_NE3">
+          <bone name="Net_NE2">
+            <bone name="Net_NE1">
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_SE4">
+        <bone name="Net_SE3">
+          <bone name="Net_SE2">
+            <bone name="Net_SE1">
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_SW4">
+        <bone name="Net_SW3">
+          <bone name="Net_SW2">
+            <bone name="Net_SW1">
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+  </standard_skeleton>
+  <skeleton title="Fishing Net" target="Fishing Net">
+    <identifier>
+      <root>Net_W4</root>
+    </identifier>
+      <bone name="Net_W4"><target>Net_W4</target>
+        <bone name="Net_W3"><target>Net_W3</target>
+          <bone name="Net_W2"><target>Net_W2</target>
+            <bone name="Net_W1"><target>Net_W1</target></bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_Root"><target>Net_Root</target></bone>
+      <bone name="Net_E4"><target>Net_E4</target>
+        <bone name="Net_E3"><target>Net_E3</target>
+          <bone name="Net_E2"><target>Net_E2</target>
+            <bone name="Net_E1"><target>Net_E1</target></bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_N4"><target>Net_N4</target>
+        <bone name="Net_N3"><target>Net_N3</target>
+          <bone name="Net_N2"><target>Net_N2</target>
+            <bone name="Net_N1"><target>Net_N1</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_S4"><target>Net_S4</target>
+        <bone name="Net_S3"><target>Net_S3</target>
+          <bone name="Net_S2"><target>Net_S2</target>
+            <bone name="Net_S1"><target>Net_S1</target></bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_NW4"><target>Net_NW4</target>
+        <bone name="Net_NW3"><target>Net_NW3</target>
+          <bone name="Net_NW2"><target>Net_NW2</target>
+            <bone name="Net_NW1"><target>Net_NW1</target></bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_NE4"><target>Net_NE4</target>
+        <bone name="Net_NE3"><target>Net_NE3</target>
+          <bone name="Net_NE2"><target>Net_NE2</target>
+            <bone name="Net_NE1"><target>Net_NE1</target></bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_SE4"><target>Net_SE4</target>
+        <bone name="Net_SE3"><target>Net_SE3</target>
+          <bone name="Net_SE2"><target>Net_SE2</target>
+            <bone name="Net_SE1"><target>Net_SE1</target></bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Net_SW4"><target>Net_SW4</target>
+        <bone name="Net_SW3"><target>Net_SW3</target>
+          <bone name="Net_SW2"><target>Net_SW2</target>
+            <bone name="Net_SW1"><target>Net_SW1</target></bone>
+          </bone>
+        </bone>
+      </bone>
+  </skeleton>
+</skeletons>

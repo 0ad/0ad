@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="carry_fish">
+  <animations>
+    <animation file="biped/fisher/gaul_move.dae" name="Walk" speed="8"/>
+    <animation file="biped/fisher/gaul_idle_a.dae" name="Idle" speed="35"/>
+  </animations>
+  <props>
+    <prop attachpoint="weapon_R"/>
+    <prop attachpoint="weapon_L"/>
+    <prop attachpoint="helmet"/>
+    <prop attachpoint="shield"/>
+    <prop attachpoint="shield_arm"/>
+    <prop attachpoint="ammo"/>
+  </props>
+</variant>

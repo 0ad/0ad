@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2018-02-05T09:22:03</created>
+    <modified>2018-02-05T09:22:03</modified>
+    <unit name="centimeter" meter="0.01"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="pure_CeltWarshipSail_-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="pure_CeltWarshipSail_-material" name="pure_CeltWarshipSail_">
+      <instance_effect url="#pure_CeltWarshipSail_-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Plane_003-mesh" name="Plane.003">
+      <mesh>
+        <source id="Plane_003-mesh-positions">
+          <float_array id="Plane_003-mesh-positions-array" count="150">-2.101118 -0.02034771 -2.11858 2.465051 -0.02034771 -1.99685 3.83424 -0.01993048 0.08751535 -3.83425 -0.01965844 0.1122002 3.61547 -0.02034771 -0.9364705 0 -0.02146816 -1.601999 -3.293601 -0.02034771 -1.13751 0 -0.0208677 0.09074735 0 -0.02193868 -0.7556262 3.135347 -0.02034771 -1.542009 3.67524 -0.02034771 -0.4244795 -1.505479 -0.02146816 -2.150606 1.719282 -0.02147114 -2.115626 -2.742032 -0.02034771 -1.654906 -3.67524 -0.02034771 -0.3636155 1.910112 -0.02070224 0.08157777 -1.91712 -0.02073824 0.03164052 0 -0.02179992 -0.3339472 -1.689799 -0.02180004 -0.9408727 0 -0.02179992 -1.178811 1.794888 -0.02182066 -1.017027 -1.803922 -0.0214771 -0.3808136 -1.563434 -0.02179992 -1.492835 1.826364 -0.02148056 -0.4677234 1.794888 -0.02182066 -1.566327 1.794888 -0.02172887 -1.566327 1.826364 -0.02138864 -0.4677234 -1.563434 -0.02179992 -1.492835 -1.803922 -0.02138996 -0.3808136 1.794888 -0.02182066 -1.017027 0 -0.02171289 -1.178811 -1.689799 -0.02171289 -0.9408727 0 -0.02171289 -0.3339472 -1.91712 -0.02065098 0.03164052 1.910112 -0.02061045 0.08157777 -3.67524 -0.02026057 -0.3636155 -2.742032 -0.02026057 -1.654906 1.719282 -0.02137923 -2.115626 -1.505479 -0.02138102 -2.150606 3.67524 -0.02026057 -0.4244795 3.135347 -0.02026057 -1.542009 0 -0.02185153 -0.7556262 0 -0.02078044 0.09074735 -3.293601 -0.02026057 -1.13751 0 -0.02138102 -1.601999 3.61547 -0.02026057 -0.9364705 -3.83425 -0.0195713 0.1122002 3.83424 -0.01984322 0.08751535 2.465051 -0.02026057 -1.99685 -2.101118 -0.02026057 -2.11858</float_array>
+          <technique_common>
+            <accessor source="#Plane_003-mesh-positions-array" count="50" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_003-mesh-normals">
+          <float_array id="Plane_003-mesh-normals-array" count="150">5.4935e-4 0.9999997 -7.01947e-4 4.88311e-4 0.9999992 -0.00125128 3.66233e-4 0.9999986 -0.001648008 4.27272e-4 0.9999994 -0.001007139 7.01947e-4 0.9999998 3.66233e-4 5.79869e-4 0.9999999 -1.52597e-4 -3.05194e-5 0.9999979 -0.002075314 0 0.9999992 -0.001312315 0 1 -3.05194e-5 9.46102e-4 0.9999992 8.85063e-4 6.40908e-4 0.9999998 4.57791e-4 0.00137335 0.9999983 0.00125128 8.85063e-4 0.9999994 7.01947e-4 0 0.9999999 4.88311e-4 0 0.9999998 7.62986e-4 -4.27272e-4 0.9999994 -0.001037657 -3.35714e-4 0.9999992 -0.001281797 -4.88311e-4 0.9999999 -2.13636e-4 -4.88311e-4 0.9999999 -3.96753e-4 -3.66233e-4 0.9999998 -6.71428e-4 -7.01947e-4 0.9999998 1.83117e-4 -6.10389e-4 0.9999998 5.4935e-4 -6.71427e-4 0.9999995 7.32466e-4 -9.46102e-4 0.9999993 8.24024e-4 -0.00125128 0.9999982 0.001434385 6.71427e-4 -0.9999995 -7.32466e-4 0.00125128 -0.9999982 -0.001434385 6.40908e-4 -0.9999998 -4.57791e-4 9.15583e-4 -0.9999993 -7.62985e-4 4.88311e-4 -0.9999999 2.13636e-4 7.01947e-4 -0.9999998 -1.83117e-4 0 -0.9999998 -7.62986e-4 0 -0.9999999 -4.88311e-4 0 -1 3.05185e-5 3.96753e-4 -0.9999995 9.46102e-4 4.88311e-4 -0.9999999 3.96753e-4 3.35714e-4 -0.9999992 0.001281797 3.96753e-4 -0.9999998 6.71428e-4 0 -0.9999992 0.001312315 3.05194e-5 -0.9999979 0.002075314 -9.15583e-4 -0.9999994 -6.10388e-4 -6.10389e-4 -0.9999998 -4.57791e-4 -5.79869e-4 -0.9999999 9.15583e-5 -0.001342833 -0.9999985 -0.001159727 -9.15583e-4 -0.9999993 -8.85063e-4 -7.01947e-4 -0.9999998 -3.66233e-4 -4.27272e-4 -0.9999994 0.001007139 -3.66233e-4 -0.9999986 0.001648008 -5.4935e-4 -0.9999997 7.01947e-4 -4.88311e-4 -0.9999992 0.00125128</float_array>
+          <technique_common>
+            <accessor source="#Plane_003-mesh-normals-array" count="50" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_003-mesh-map-0">
+          <float_array id="Plane_003-mesh-map-0-array" count="384">0.99903 0.72591 0.99903 0.91431 0.74944 0.91431 0.99903 0.72591 0.74944 0.91431 0.74944 0.72591 0.99903 0.53884 0.99903 0.72591 0.74944 0.72591 0.99903 0.53884 0.74944 0.72591 0.74944 0.53884 0.74944 0.72591 0.74944 0.91431 0.50152 0.91431 0.74944 0.72591 0.50152 0.91431 0.50152 0.72591 0.74944 0.53884 0.74944 0.72591 0.50152 0.72591 0.74944 0.53884 0.50152 0.72591 0.50152 0.53884 0.99903 0.35167 0.99903 0.53884 0.74944 0.53884 0.99903 0.35167 0.74944 0.53884 0.74944 0.35167 0.99903 0.1641899 0.99903 0.35167 0.74944 0.35167 0.99903 0.1641899 0.74944 0.35167 0.74944 0.1641899 0.74944 0.35167 0.74944 0.53884 0.50152 0.53884 0.74944 0.35167 0.50152 0.53884 0.50152 0.35167 0.74944 0.1641899 0.74944 0.35167 0.50152 0.35167 0.74944 0.1641899 0.50152 0.35167 0.50152 0.1641899 0.50152 0.72591 0.50152 0.91431 0.25361 0.72591 0.50152 0.91431 0.25361 0.91431 0.25361 0.72591 0.50152 0.53884 0.50152 0.72591 0.25361 0.53884 0.50152 0.72591 0.25361 0.72591 0.25361 0.53884 0.25361 0.72591 0.25361 0.91431 0.004349946 0.72591 0.25361 0.91431 0.004349946 0.91431 0.004349946 0.72591 0.25361 0.53884 0.25361 0.72591 0.004349946 0.53884 0.25361 0.72591 0.004349946 0.72591 0.004349946 0.53884 0.50152 0.35167 0.50152 0.53884 0.25361 0.35167 0.50152 0.53884 0.25361 0.53884 0.25361 0.35167 0.50152 0.1641899 0.50152 0.35167 0.25361 0.1641899 0.50152 0.35167 0.25361 0.35167 0.25361 0.1641899 0.25361 0.35167 0.25361 0.53884 0.004349946 0.35167 0.25361 0.53884 0.004349946 0.53884 0.004349946 0.35167 0.25361 0.1641899 0.25361 0.35167 0.004349946 0.1641899 0.25361 0.35167 0.004349946 0.35167 0.004349946 0.1641899 0.25361 0.1641899 0.004349946 0.1641899 0.25361 0.35167 0.004349946 0.1641899 0.004349946 0.35167 0.25361 0.35167 0.25361 0.35167 0.004349946 0.35167 0.25361 0.53884 0.004349946 0.35167 0.004349946 0.53884 0.25361 0.53884 0.50152 0.1641899 0.25361 0.1641899 0.50152 0.35167 0.25361 0.1641899 0.25361 0.35167 0.50152 0.35167 0.50152 0.35167 0.25361 0.35167 0.50152 0.53884 0.25361 0.35167 0.25361 0.53884 0.50152 0.53884 0.25361 0.53884 0.004349946 0.53884 0.25361 0.72591 0.004349946 0.53884 0.004349946 0.72591 0.25361 0.72591 0.25361 0.72591 0.004349946 0.72591 0.25361 0.91431 0.004349946 0.72591 0.004349946 0.91431 0.25361 0.91431 0.50152 0.53884 0.25361 0.53884 0.50152 0.72591 0.25361 0.53884 0.25361 0.72591 0.50152 0.72591 0.50152 0.72591 0.25361 0.72591 0.50152 0.91431 0.25361 0.72591 0.25361 0.91431 0.50152 0.91431 0.74944 0.1641899 0.50152 0.1641899 0.50152 0.35167 0.74944 0.1641899 0.50152 0.35167 0.74944 0.35167 0.74944 0.35167 0.50152 0.35167 0.50152 0.53884 0.74944 0.35167 0.50152 0.53884 0.74944 0.53884 0.99903 0.1641899 0.74944 0.1641899 0.74944 0.35167 0.99903 0.1641899 0.74944 0.35167 0.99903 0.35167 0.99903 0.35167 0.74944 0.35167 0.74944 0.53884 0.99903 0.35167 0.74944 0.53884 0.99903 0.53884 0.74944 0.53884 0.50152 0.53884 0.50152 0.72591 0.74944 0.53884 0.50152 0.72591 0.74944 0.72591 0.74944 0.72591 0.50152 0.72591 0.50152 0.91431 0.74944 0.72591 0.50152 0.91431 0.74944 0.91431 0.99903 0.53884 0.74944 0.53884 0.74944 0.72591 0.99903 0.53884 0.74944 0.72591 0.99903 0.72591 0.99903 0.72591 0.74944 0.72591 0.74944 0.91431 0.99903 0.72591 0.74944 0.91431 0.99903 0.91431</float_array>
+          <technique_common>
+            <accessor source="#Plane_003-mesh-map-0-array" count="192" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane_003-mesh-vertices">
+          <input semantic="POSITION" source="#Plane_003-mesh-positions"/>
+        </vertices>
+        <triangles material="pure_CeltWarshipSail_-material" count="64">
+          <input semantic="VERTEX" source="#Plane_003-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane_003-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane_003-mesh-map-0" offset="2" set="0"/>
+          <p>35 0 0 46 1 1 33 2 2 35 0 3 33 2 4 28 3 5 43 4 6 35 0 7 28 3 8 43 4 9 28 3 10 31 5 11 28 3 12 33 2 13 42 6 14 28 3 15 42 6 16 32 7 17 31 5 18 28 3 19 32 7 20 31 5 21 32 7 22 41 8 23 36 9 24 43 4 25 31 5 26 36 9 27 31 5 28 27 10 29 49 11 30 36 9 31 27 10 32 49 11 33 27 10 34 38 12 35 27 10 36 31 5 37 41 8 38 27 10 39 41 8 40 30 13 41 38 12 42 27 10 43 30 13 44 38 12 45 30 13 46 44 14 47 32 7 48 42 6 49 26 15 50 42 6 51 34 16 52 26 15 53 41 8 54 32 7 55 29 17 56 32 7 57 26 15 58 29 17 59 26 15 60 34 16 61 39 18 62 34 16 63 47 19 64 39 18 65 29 17 66 26 15 67 45 20 68 26 15 69 39 18 70 45 20 71 30 13 72 41 8 73 25 21 74 41 8 75 29 17 76 25 21 77 44 14 78 30 13 79 37 22 80 30 13 81 25 21 82 37 22 83 25 21 84 29 17 85 40 23 86 29 17 87 45 20 88 40 23 89 37 22 90 25 21 91 48 24 92 25 21 93 40 23 94 48 24 95 12 25 96 1 26 97 24 27 98 1 26 99 9 28 100 24 27 101 24 27 102 9 28 103 20 29 104 9 28 105 4 30 106 20 29 107 5 31 108 12 25 109 19 32 110 12 25 111 24 27 112 19 32 113 19 32 114 24 27 115 8 33 116 24 27 117 20 29 118 8 33 119 20 29 120 4 30 121 23 34 122 4 30 123 10 35 124 23 34 125 23 34 126 10 35 127 15 36 128 10 35 129 2 37 130 15 36 131 8 33 132 20 29 133 17 38 134 20 29 135 23 34 136 17 38 137 17 38 138 23 34 139 7 39 140 23 34 141 15 36 142 7 39 143 11 40 144 5 31 145 19 32 146 11 40 147 19 32 148 22 41 149 22 41 150 19 32 151 8 33 152 22 41 153 8 33 154 18 42 155 0 43 156 11 40 157 22 41 158 0 43 159 22 41 160 13 44 161 13 44 162 22 41 163 18 42 164 13 44 165 18 42 166 6 45 167 18 42 168 8 33 169 17 38 170 18 42 171 17 38 172 21 46 173 21 46 174 17 38 175 7 39 176 21 46 177 7 39 178 16 47 179 6 45 180 18 42 181 21 46 182 6 45 183 21 46 184 14 48 185 14 48 186 21 46 187 16 47 188 14 48 189 16 47 190 3 49 191</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers>
+    <controller id="Sail_Celt_fishing_ship_sail_folded-skin" name="Sail">
+      <skin source="#Plane_003-mesh">
+        <bind_shape_matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</bind_shape_matrix>
+        <source id="Sail_Celt_fishing_ship_sail_folded-skin-joints">
+          <Name_array id="Sail_Celt_fishing_ship_sail_folded-skin-joints-array" count="20">Sail_A_1 Sail_A_2 Sail_A_3 Sail_A_4 Sail_B_1 Sail_B_2 Sail_B_3 Sail_B_4 Sail_C_1 Sail_C_2 Sail_C_3 Sail_C_4 Sail_D_1 Sail_D_2 Sail_D_3 Sail_D_4 Sail_E_1 Sail_E_2 Sail_E_3 Sail_E_4</Name_array>
+          <technique_common>
+            <accessor source="#Sail_Celt_fishing_ship_sail_folded-skin-joints-array" count="20" stride="1">
+              <param name="JOINT" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Sail_Celt_fishing_ship_sail_folded-skin-bind_poses">
+          <float_array id="Sail_Celt_fishing_ship_sail_folded-skin-bind_poses-array" count="320">0.8971714 -0.3063108 0.3182091 3.404166 0.3063105 -0.08754688 -0.9478973 1.297508 0.3182095 0.9478973 0.01528161 1.202633 0 0 0 1 0.6766157 -0.6533144 0.3396635 2.591279 0.4486455 0 -0.8937098 1.323769 0.5838734 0.7570868 0.2931066 2.274526 0 0 0 1 0.5987522 -0.5033054 0.6230405 2.65833 0.7210212 0 -0.6929131 1.593891 0.3487469 0.8641086 0.3628939 1.582029 0 0 0 1 0.3449109 -0.8102038 0.4739264 1.705254 0.8085431 -5.66244e-7 -0.5884367 1.259455 0.476754 0.5861484 0.6550846 2.406724 0 0 0 1 0.9298328 -0.264662 0.2556656 1.76675 0.2646618 -0.001727402 -0.9643398 0.5376944 0.2556657 0.9643396 0.06843972 0.5164199 0 0 0 1 0.9601106 -0.199667 0.1957573 1.800509 0.1996671 -5.6538e-4 -0.9798638 -0.0131365 0.1957571 0.9798637 0.03932416 0.3977264 0 0 0 1 0.9501937 -0.2231648 0.2175534 1.803544 0.2231647 -7.66739e-5 -0.9747809 -0.5402005 0.2175534 0.9747808 0.0497297 0.4441944 0 0 0 1 0.9923014 -0.08776646 0.08737832 1.679168 0.08776682 5.68315e-4 -0.9961411 -1.35 0.08737802 0.9961411 0.008266925 0.1794235 0 0 0 1 1 0 0 0 0 -0.002195239 -0.9999976 0.09052091 0 0.9999976 -0.002195179 0.02981215 0 0 0 1 1 0 0 0 0 -3.28858e-4 -1 -0.3341184 0 0.9999999 -3.28826e-4 0.03043586 0 0 0 1 1 0 0 0 0 3.27562e-4 -0.9999999 -0.7557772 0 0.9999999 3.27595e-4 0.03093194 0 0 0 1 1 0 0 0 0 7.83942e-4 -0.9999998 -1.178948 0 0.9999997 7.83976e-4 0.03147 0 0 0 1 0.9772511 0.1507214 -0.1492083 -1.850073 -0.1507213 -0.001400709 -0.9885752 0.3683398 -0.1492084 0.9885753 0.02134805 0.3123762 0 0 0 1 0.9967247 0.05720895 -0.05715495 -1.845395 -0.05720865 -7.01599e-4 -0.998362 -0.3626557 -0.05715537 0.998362 0.002573549 0.1357652 0 0 0 1 0.9999999 1.60188e-7 0 -1.794888 0 8.34749e-5 -0.9999999 -1.017186 -2.16067e-7 1 8.3515e-5 0.03069531 0 0 0 1 0.9814192 0.1363537 -0.1349956 -1.968839 -0.1363542 6.30572e-4 -0.99066 -1.307098 -0.1349951 0.9906603 0.01921129 0.3026739 0 0 0 1 0.9119729 0.2965782 -0.283455 -3.463457 -0.296578 -7.7828e-4 -0.9550082 1.220553 -0.2834553 0.9550082 0.08724886 1.1066 0 0 0 1 0.9865549 0.1159529 -0.1151704 -3.671358 -0.1159525 0 -0.9932546 0.004376888 -0.1151708 0.9932548 0.01344513 0.4578871 0 0 0 1 0.613999 0.6212896 -0.486831 -2.657801 -0.6212897 0 -0.7835807 1.512327 -0.4868306 0.7835812 0.3860008 2.144459 0 0 0 1 0.3152809 0.827477 -0.4646288 -1.680978 -0.8274779 0 -0.5614979 1.728505 -0.4646266 0.5614998 0.6847191 2.529056 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Sail_Celt_fishing_ship_sail_folded-skin-bind_poses-array" count="20" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Sail_Celt_fishing_ship_sail_folded-skin-weights">
+          <float_array id="Sail_Celt_fishing_ship_sail_folded-skin-weights-array" count="80">1 1 1 1 0.5 0.5 1 0.5 0.5 1 0.5 0.5 0.5 0.5 0.5 0.5 1 1 0.5 0.5 0.5 0.5 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1 1 0.5 0.5 0.5 0.5 1 1 0.5 0.5 0.5 0.5 0.5 0.5 1 0.5 0.5 1 0.5 0.5 1 1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Sail_Celt_fishing_ship_sail_folded-skin-weights-array" count="80" stride="1">
+              <param name="WEIGHT" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <joints>
+          <input semantic="JOINT" source="#Sail_Celt_fishing_ship_sail_folded-skin-joints"/>
+          <input semantic="INV_BIND_MATRIX" source="#Sail_Celt_fishing_ship_sail_folded-skin-bind_poses"/>
+        </joints>
+        <vertex_weights count="50">
+          <input semantic="JOINT" source="#Sail_Celt_fishing_ship_sail_folded-skin-joints" offset="0"/>
+          <input semantic="WEIGHT" source="#Sail_Celt_fishing_ship_sail_folded-skin-weights" offset="1"/>
+          <vcount>1 1 1 1 2 1 2 1 2 2 2 1 1 2 2 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 2 2 1 1 2 2 2 1 2 1 2 1 1 1 1 </vcount>
+          <v>3 0 19 1 16 2 0 3 17 4 18 5 11 6 1 7 2 8 8 9 9 10 10 11 18 12 19 13 16 14 17 15 7 16 15 17 2 18 3 19 0 20 1 21 12 22 4 23 8 24 9 25 5 26 6 27 10 28 11 29 13 30 14 31 4 32 5 33 6 34 7 35 12 36 13 37 14 38 15 39 14 40 15 41 12 42 13 43 6 44 7 45 4 46 5 47 13 48 14 49 10 50 11 51 5 52 6 53 8 54 9 55 4 56 12 57 0 58 1 59 2 60 3 61 15 62 7 63 16 64 17 65 18 66 19 67 9 68 10 69 8 70 1 71 2 72 11 73 17 74 18 75 0 76 16 77 19 78 3 79</v>
+        </vertex_weights>
+      </skin>
+    </controller>
+  </library_controllers>
+  <library_visual_scenes>
+    <visual_scene id="infantry" name="infantry">
+      <node id="Sail" name="Sail" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="Sail_Sail_Root" name="Sail_Root" sid="Sail_Root" type="JOINT">
+          <matrix sid="transform">1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1</matrix>
+          <node id="Sail_Sail_C_1" name="Sail_C_1" sid="Sail_C_1" type="JOINT">
+            <matrix sid="transform">1 0 0 0 0 0.9999976 0.002195374 0.9094138 0 -0.002195374 0.9999976 -0.02961347 0 0 0 1</matrix>
+            <node id="Sail_Sail_C_2" name="Sail_C_2" sid="Sail_C_2" type="JOINT">
+              <matrix sid="transform">1 0 0 0 0 0.9999983 -0.001866398 0.4246956 0 0.001866398 0.9999983 0 0 0 0 1</matrix>
+              <node id="Sail_Sail_C_3" name="Sail_C_3" sid="Sail_C_3" type="JOINT">
+                <matrix sid="transform">1 0 0 0 0 0.9999999 -6.5642e-4 0.4216791 0 6.5642e-4 0.9999998 0 0 0 0 1</matrix>
+                <node id="Sail_Sail_C_4" name="Sail_C_4" sid="Sail_C_4" type="JOINT">
+                  <matrix sid="transform">1 0 0 0 0 0.9999998 -4.56379e-4 0.4231846 0 4.56379e-4 0.9999998 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <roll sid="roll" type="float">0</roll>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">3.31769e-4</tip_y>
+                      <tip_z sid="tip_z" type="float">-0.4231886</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                    <roll sid="roll" type="float">0</roll>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                  <roll sid="roll" type="float">0</roll>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <roll sid="roll" type="float">0</roll>
+              </technique>
+            </extra>
+          </node>
+          <node id="Sail_Sail_B_1" name="Sail_B_1" sid="Sail_B_1" type="JOINT">
+            <matrix sid="transform">0.9298329 0.2646619 0.2556657 -1.91712 -0.2556656 0.9643397 -0.06843961 0.9685206 -0.264662 -0.001727532 0.9643398 -0.02948401 0 0 0 1</matrix>
+            <node id="Sail_Sail_B_2" name="Sail_B_2" sid="Sail_B_2" type="JOINT">
+              <matrix sid="transform">0.9956349 -0.06471072 -0.06725737 2.38419e-7 0.06567301 0.9977666 0.01219499 0.4277065 0.06631799 -0.01655877 0.9976611 5.96046e-8 0 0 0 1</matrix>
+              <node id="Sail_Sail_B_3" name="Sail_B_3" sid="Sail_B_3" type="JOINT">
+                <matrix sid="transform">0.9994372 0.02345774 0.02397873 1.19209e-7 -0.02332403 0.9997108 -0.00584114 0.5715684 -0.02410881 0.005278576 0.9996954 5.96046e-8 0 0 0 1</matrix>
+                <node id="Sail_Sail_B_4" name="Sail_B_4" sid="Sail_B_4" type="JOINT">
+                  <matrix sid="transform">0.9814743 -0.1334452 -0.137479 -1.19209e-7 0.1362787 0.9906052 0.01136491 0.5662422 0.1346709 -0.02988983 0.9904395 -5.96046e-8 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <roll sid="roll" type="float">-2.08849e-7</roll>
+                      <tip_x sid="tip_x" type="float">0.05795407</tip_x>
+                      <tip_y sid="tip_y" type="float">3.75289e-4</tip_y>
+                      <tip_z sid="tip_z" type="float">-0.6577715</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                    <roll sid="roll" type="float">0</roll>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                  <roll sid="roll" type="float">-1.36439e-7</roll>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <roll sid="roll" type="float">1.35973e-7</roll>
+              </technique>
+            </extra>
+          </node>
+          <node id="Sail_Sail_D_1" name="Sail_D_1" sid="Sail_D_1" type="JOINT">
+            <matrix sid="transform">0.9772513 -0.1507213 -0.1492085 1.910112 0.1492084 0.9885754 -0.02134795 0.9185834 0.1507214 -0.001400849 0.9885752 -0.02944575 0 0 0 1</matrix>
+            <node id="Sail_Sail_D_2" name="Sail_D_2" sid="Sail_D_2" type="JOINT">
+              <matrix sid="transform">0.9912012 0.09295101 0.09423537 0 -0.09380578 0.9955795 0.004671952 0.5556494 -0.09338455 -0.01347066 0.9955389 -2.98023e-8 0 0 0 1</matrix>
+              <node id="Sail_Sail_D_3" name="Sail_D_3" sid="Sail_D_3" type="JOINT">
+                <matrix sid="transform">0.9967248 0.05715979 0.05720404 -1.19209e-7 -0.05720866 0.998362 -7.84928e-4 0.5502052 -0.05715521 -0.002490208 0.9983621 0 0 0 0 1</matrix>
+                <node id="Sail_Sail_D_4" name="Sail_D_4" sid="Sail_D_4" type="JOINT">
+                  <matrix sid="transform">0.9814193 -0.1363543 -0.1349949 0 0.135007 0.9906599 -0.01912857 0.5492996 0.1363423 5.47892e-4 0.9906616 1.86265e-9 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <roll sid="roll" type="float">5.56465e-7</roll>
+                      <tip_x sid="tip_x" type="float">-0.07560551</tip_x>
+                      <tip_y sid="tip_y" type="float">3.49652e-4</tip_y>
+                      <tip_z sid="tip_z" type="float">-0.5492996</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                    <roll sid="roll" type="float">-1.71391e-7</roll>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                  <roll sid="roll" type="float">-3.73766e-7</roll>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <roll sid="roll" type="float">0</roll>
+              </technique>
+            </extra>
+          </node>
+          <node id="Sail_Sail_E_1" name="Sail_E_1" sid="Sail_E_1" type="JOINT">
+            <matrix sid="transform">0.9119729 -0.296578 -0.2834553 3.83424 0.2834551 0.9550084 -0.08724872 0.9126458 0.2965782 -7.78383e-4 0.9550082 -0.02867625 0 0 0 1</matrix>
+            <node id="Sail_Sail_E_2" name="Sail_E_2" sid="Sail_E_2" type="JOINT">
+              <matrix sid="transform">0.9667462 0.1757976 0.185734 2.38419e-7 -0.1826921 0.9829555 0.02054387 0.5361158 -0.1789567 -0.05379285 0.9823852 0 0 0 0 1</matrix>
+              <node id="Sail_Sail_E_3" name="Sail_E_3" sid="Sail_E_3" type="JOINT">
+                <matrix sid="transform">0.7338528 -0.5226913 -0.4338825 2.38419e-7 0.4123525 0.8503355 -0.3269478 0.5154684 0.5398384 0.06101897 0.8395541 0 0 0 0 1</matrix>
+                <node id="Sail_Sail_E_4" name="Sail_E_4" sid="Sail_E_4" type="JOINT">
+                  <matrix sid="transform">0.9338806 -0.2347161 -0.2697689 -2.38419e-7 0.1681933 0.9540827 -0.247865 0.7727842 0.3155598 0.186103 0.9304771 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <roll sid="roll" type="float">1.96695e-6</roll>
+                      <tip_x sid="tip_x" type="float">-0.6702979</tip_x>
+                      <tip_y sid="tip_y" type="float">0</tip_y>
+                      <tip_z sid="tip_z" type="float">-0.4548409</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                    <roll sid="roll" type="float">3.42727e-7</roll>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                  <roll sid="roll" type="float">-3.79397e-7</roll>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <roll sid="roll" type="float">-1.99303e-7</roll>
+              </technique>
+            </extra>
+          </node>
+          <node id="Sail_Sail_A_1" name="Sail_A_1" sid="Sail_A_1" type="JOINT">
+            <matrix sid="transform">0.8971714 0.3063105 0.3182095 -3.83425 -0.3182092 0.9478974 -0.01528151 0.8717103 -0.3063108 -0.08754705 0.9478973 0.01635337 0 0 0 1</matrix>
+            <node id="Sail_Sail_A_2" name="Sail_A_2" sid="Sail_A_2" type="JOINT">
+              <matrix sid="transform">0.9152417 0.1181253 0.3852 4.76837e-7 -0.05751604 0.9845698 -0.165269 0.5191135 -0.3987788 0.1291059 0.9079137 2.38419e-7 0 0 0 1</matrix>
+              <node id="Sail_Sail_A_3" name="Sail_A_3" sid="Sail_A_3" type="JOINT">
+                <matrix sid="transform">0.9455659 0.2524968 -0.2053051 0 -0.28819 0.9427462 -0.1678581 0.8527949 0.1511667 0.2178878 0.9641957 2.38419e-7 0 0 0 1</matrix>
+                <node id="Sail_Sail_A_4" name="Sail_A_4" sid="Sail_A_4" type="JOINT">
+                  <matrix sid="transform">0.9095715 0.1174973 0.39859 2.38419e-7 -0.07970183 0.9907124 -0.1101669 0.7471864 -0.4078324 0.06843632 0.9104884 1.19209e-7 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <roll sid="roll" type="float">0.002827584</roll>
+                      <tip_x sid="tip_x" type="float">0.6395993</tip_x>
+                      <tip_y sid="tip_y" type="float">-3.78117e-7</tip_y>
+                      <tip_z sid="tip_z" type="float">-0.4654839</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                    <roll sid="roll" type="float">-0.2778551</roll>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                  <roll sid="roll" type="float">0.2467049</roll>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <roll sid="roll" type="float">3.55299e-7</roll>
+              </technique>
+            </extra>
+          </node>
+          <extra>
+            <technique profile="blender">
+              <layer sid="layer" type="string">0</layer>
+              <roll sid="roll" type="float">0</roll>
+              <tip_x sid="tip_x" type="float">0</tip_x>
+              <tip_y sid="tip_y" type="float">1.50996e-7</tip_y>
+              <tip_z sid="tip_z" type="float">-1</tip_z>
+            </technique>
+          </extra>
+        </node>
+      </node>
+      <node id="Celt_fishing_ship_sail_folded" name="Celt_fishing_ship_sail_folded" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_controller url="#Sail_Celt_fishing_ship_sail_folded-skin">
+          <skeleton>#Sail_Sail_Root</skeleton>
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="pure_CeltWarshipSail_-material" target="#pure_CeltWarshipSail_-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_controller>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#infantry"/>
+  </scene>
+</COLLADA>

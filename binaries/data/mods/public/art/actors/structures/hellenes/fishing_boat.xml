@@ -1,34 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="Greek Fishing Boata">
+    <variant frequency="1" name="Greek Fishing Boat">
       <animations>
+        <animation file="mechanical/rowing_boat_idle.dae" name="idle" speed="100"/>
         <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="10"/>
         <animation file="mechanical/rowing_boat_move.dae" name="Run" speed="10"/>
         <animation file="mechanical/rowing_boat_move.dae" name="carry_food" speed="10"/>
       </animations>
       <mesh>structural/hele_fishing_boat.dae</mesh>
       <props>
-        <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="units/hellenes/fisherman.xml" attachpoint="fisherman"/>
+        <prop actor="props/units/tools/fish_bucket.xml" attachpoint="fish_bucket"/>
+        <prop actor="" attachpoint="fish_a"/>
+        <prop actor="" attachpoint="fish_b"/>
+        <prop actor="" attachpoint="fish_c"/>
       </props>
-      <textures><texture file="structural/hele_fishing_boat.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_fishing_boat.dds" name="baseTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="Greek Fishing Boatb">
-      <animations>
-        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="10"/>
-        <animation file="mechanical/rowing_boat_move.dae" name="Run" speed="10"/>
-        <animation file="mechanical/rowing_boat_move.dae" name="carry_food" speed="10"/>
-      </animations>
-      <mesh>structural/hele_fishing_boat.dae</mesh>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant frequency="1" name="walk"/>
+    <variant frequency="1" name="run"/>
+    <variant frequency="1" name="gather_fish">
       <props>
-        <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
-        <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/hele_straw.xml" attachpoint="head"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_c"/>
       </props>
-      <textures><texture file="structural/hele_fishing_boat.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="carry_fish">
+      <props>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_c"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="carry_idle">
+      <props>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_c"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>
