@@ -823,7 +823,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 {
 	this.isBlocked = false;
 	// Temporary variables needed by isValidTarget
-	this.accessibility = gameState.ai.accessibility;
+	this.gameState = gameState;
 	this.sameLand = sameLand && sameLand > 1 ? sameLand : false;
 
 	let targets;
@@ -926,8 +926,14 @@ m.AttackPlan.prototype.isValidTarget = function(ent)
 {
 	if (!ent.position())
 		return false;
-	if (this.sameLand && this.accessibility.getAccessValue(ent.position()) != this.sameLand)
-		return false;
+	if (this.sameLand)
+	{
+		if (ent.hasClass("Structure"))
+			if (m.getLandAccess(this.gameState, ent) != this.sameLand)
+				return false;
+		else if (this.gameState.ai.accessibility.getAccessValue(ent.position()) != this.sameLand)
+				return false;
+	}
 	return !ent.decaying() || ent.getDefaultArrow() || ent.isGarrisonHolder() && ent.garrisoned().length;
 };
 
