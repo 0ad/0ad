@@ -1,6 +1,6 @@
-Engine.LoadComponentScript("StatisticsTracker.js");
-Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
+Engine.LoadComponentScript("StatisticsTracker.js");
 
 AddMock(SYSTEM_ENTITY, IID_Timer, {
 	"SetInterval": () => true
