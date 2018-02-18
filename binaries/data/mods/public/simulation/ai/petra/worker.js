@@ -24,13 +24,10 @@ m.Worker.prototype.update = function(gameState, ent)
 		if (ent.getMetadata(PlayerID, "subrole") == "builder" &&
 		    ent.getMetadata(PlayerID, "target-foundation") !== undefined)
 		{
-			let targetId = ent.getMetadata(PlayerID, "target-foundation");
-			let target = gameState.getEntityById(targetId);
-			if (!target && ent.position())
-			{
-				let plan = gameState.ai.HQ.navalManager.getPlan(ent.getMetadata(PlayerID, "transport"));
+			let plan = gameState.ai.HQ.navalManager.getPlan(ent.getMetadata(PlayerID, "transport"));
+			let target = gameState.getEntityById(ent.getMetadata(PlayerID, "target-foundation"));
+			if (!target && plan && plan.state == "boarding" && ent.position())
 				plan.removeUnit(gameState, ent);
-			}
 		}
 		if (ent.getMetadata(PlayerID, "transport") !== undefined)
 			return;
@@ -54,29 +51,37 @@ m.Worker.prototype.update = function(gameState, ent)
 	this.ent = ent;
 
 	let unitAIState = ent.unitAIState();
-	if ((subrole === "hunter" || subrole === "gatherer") &&
-	    (unitAIState === "INDIVIDUAL.GATHER.GATHERING" || unitAIState === "INDIVIDUAL.GATHER.APPROACHING" ||
-	     unitAIState === "INDIVIDUAL.COMBAT.APPROACHING"))
+	if ((subrole == "hunter" || subrole == "gatherer") &&
+	    (unitAIState == "INDIVIDUAL.GATHER.GATHERING" || unitAIState == "INDIVIDUAL.GATHER.APPROACHING" ||
+	     unitAIState == "INDIVIDUAL.COMBAT.APPROACHING"))
 	{
-		if (this.isInaccessibleSupply(gameState) && !this.retryGathering(gameState, subrole))
+		if (this.isInaccessibleSupply(gameState))
+		{
+			if (this.retryWorking(gameState, subrole))
+				return;
 			ent.stopMoving();
+		}
 
-		// Check that we have not drifted too far
-		if (unitAIState === "INDIVIDUAL.COMBAT.APPROACHING" && ent.unitAIOrderData().length)
+		if (unitAIState == "INDIVIDUAL.COMBAT.APPROACHING" && ent.unitAIOrderData().length)
 		{
 			let orderData = ent.unitAIOrderData()[0];
 			if (orderData && orderData.target)
 			{
-				let supply = gameState.getEntityById(orderData.target);
-				if (supply && supply.resourceSupplyType() && supply.resourceSupplyType().generic === "food")
+				// Check that we have not drifted too far when hunting
+				let target = gameState.getEntityById(orderData.target);
+				if (target && target.resourceSupplyType() && target.resourceSupplyType().generic == "food")
 				{
-					let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
-					if (gameState.isPlayerEnemy(territoryOwner) && !this.retryGathering(gameState, subrole))
+					let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(target.position());
+					if (gameState.isPlayerEnemy(territoryOwner))
+					{
+						if (this.retryWorking(gameState, subrole))
+							return;
 						ent.stopMoving();
+					}
 					else if (!gameState.isPlayerAlly(territoryOwner))
 					{
 						let distanceSquare = ent.hasClass("Cavalry") ? 90000 : 30000;
-						let supplyAccess = gameState.ai.accessibility.getAccessValue(supply.position());
+						let targetAccess = gameState.ai.accessibility.getAccessValue(target.position());
 						let foodDropsites = gameState.playerData.hasSharedDropsites ?
 						                    gameState.getAnyDropsites("food") : gameState.getOwnDropsites("food");
 						let hasFoodDropsiteWithinDistance = false;
@@ -85,19 +90,23 @@ m.Worker.prototype.update = function(gameState, ent)
 							if (!dropsite.position())
 								continue;
 							let owner = dropsite.owner();
-							// owner !== PlayerID can only happen when hasSharedDropsites === true, so no need to test it again
-							if (owner !== PlayerID && (!dropsite.isSharedDropsite() || !gameState.isPlayerMutualAlly(owner)))
+							// owner != PlayerID can only happen when hasSharedDropsites == true, so no need to test it again
+							if (owner != PlayerID && (!dropsite.isSharedDropsite() || !gameState.isPlayerMutualAlly(owner)))
 								continue;
-							if (supplyAccess !== m.getLandAccess(gameState, dropsite))
+							if (targetAccess != m.getLandAccess(gameState, dropsite))
 								continue;
-							if (API3.SquareVectorDistance(supply.position(), dropsite.position()) < distanceSquare)
+							if (API3.SquareVectorDistance(target.position(), dropsite.position()) < distanceSquare)
 							{
 								hasFoodDropsiteWithinDistance = true;
 								break;
 							}
 						}
-						if (!hasFoodDropsiteWithinDistance && !this.retryGathering(gameState, subrole))
+						if (!hasFoodDropsiteWithinDistance)
+						{
+							 if (this.retryWorking(gameState, subrole))
+								return;
 							ent.stopMoving();
+						}
 					}
 				}
 			}
@@ -110,18 +119,34 @@ m.Worker.prototype.update = function(gameState, ent)
 	}
 
 	let unitAIStateOrder = unitAIState.split(".")[1];
-	// If we're fighting or hunting, let's not start gathering
+	// If we're fighting or hunting, let's not start gathering except if inaccessible target
 	// but for fishers where UnitAI must have made us target a moving whale.
 	// Also, if we are attacking, do not capture
 	if (unitAIStateOrder === "COMBAT")
 	{
-		if (subrole === "fisher")
+		if (subrole == "fisher")
 			this.startFishing(gameState);
-		else if (unitAIState === "INDIVIDUAL.COMBAT.ATTACKING" && ent.unitAIOrderData().length &&
+		else if (unitAIState == "INDIVIDUAL.COMBAT.APPROACHING" && ent.unitAIOrderData().length && 
 			!ent.getMetadata(PlayerID, "PartOfArmy"))
 		{
 			let orderData = ent.unitAIOrderData()[0];
-			if (orderData && orderData.target && orderData.attackType && orderData.attackType === "Capture")
+			if (orderData && orderData.target)
+			{
+				let target = gameState.getEntityById(orderData.target);
+				if (target && (!target.position() ||
+					m.getLandAccess(gameState, target) != gameState.ai.accessibility.getAccessValue(ent.position())))
+				{
+					if (this.retryWorking(gameState, subrole))
+						return;
+					ent.stopMoving();
+				}
+			}
+		}
+		else if (unitAIState == "INDIVIDUAL.COMBAT.ATTACKING" && ent.unitAIOrderData().length &&
+			!ent.getMetadata(PlayerID, "PartOfArmy"))
+		{
+			let orderData = ent.unitAIOrderData()[0];
+			if (orderData && orderData.target && orderData.attackType && orderData.attackType == "Capture")
 			{
 				// If we are here, an enemy structure must have targeted one of our workers
 				// and UnitAI sent it fight back with allowCapture=true
@@ -378,7 +403,7 @@ m.Worker.prototype.update = function(gameState, ent)
 	}
 };
 
-m.Worker.prototype.retryGathering = function(gameState, subrole)
+m.Worker.prototype.retryWorking = function(gameState, subrole)
 {
 	switch (subrole)
 	{
@@ -388,9 +413,23 @@ m.Worker.prototype.retryGathering = function(gameState, subrole)
 		return this.startHunting(gameState);
 	case "fisher":
 		return this.startFishing(gameState);
+	case "builder":
+		return this.startBuilding(gameState);
 	default:
 		return false;
 	}
+};
+
+m.Worker.prototype.startBuilding = function(gameState)
+{
+	let target = gameState.getEntityById(this.ent.getMetadata(PlayerID, "target-foundation"));
+	if (!target || target.foundationProgress() === undefined && target.needsRepair() == false)
+		return false;
+	let targetAccess = m.getLandAccess(gameState, target);
+	if (targetAccess != gameState.ai.accessibility.getAccessValue(this.ent.position()))
+		return false;
+	this.ent.repair(target, target.hasClass("House"));  // autocontinue=true for houses
+	return true;
 };
 
 m.Worker.prototype.startGathering = function(gameState)
