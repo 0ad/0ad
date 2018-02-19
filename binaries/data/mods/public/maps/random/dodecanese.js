@@ -105,9 +105,8 @@ for (let position of playerPosition)
 		[
 			new TerrainPainter(tPrimary),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-			new TileClassPainter(clIsland),
-			new TileClassPainter(clPlayerIsland),
-		]);
+			new TileClassPainter(clIsland)
+		].concat(isNomad() ? [] : [new TileClassPainter(clPlayerIsland)]));
 Engine.SetProgress(10);
 
 g_Map.log("Creating islands");
@@ -250,13 +249,15 @@ Engine.SetProgress(75);
 g_Map.log("Creating metal mines");
 createMines(
 	[
-		[new SimpleObject(oMetalSmall, 0, 1, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)],
-		[new SimpleObject(oStoneSmall, 2, 5, 1, 3)]
+		[new SimpleObject(oMetalSmall, 0, 1, 0, 4), new SimpleObject(oMetalLarge, 1, 1, 0, 4)],
+		[new SimpleObject(oMetalSmall, 2, 5, 1, 3)]
 	],
 	avoidClasses(clWater, 4, clPlayerIsland, 0, clVolcano, 4, clBaseResource, 4, clForest, 3, clMetal, 4, clRock, 4),
 	clMetal,
 	scaleByMapSize(4, 16));
 Engine.SetProgress(80);
+
+placePlayersNomad(clPlayer, avoidClasses(clWater, 12, clVolcano, 4, clMetal, 4, clRock, 4, clHill, 4));
 
 var [forestTrees, stragglerTrees] = getTreeCounts(800, 6000, 0.7);
 createForests(
@@ -360,11 +361,16 @@ for (let bridgeStart of shuffleArray(areaShoreline.points))
 		g_Map.placeEntityAnywhere(aBridge, 0, bridgeCenter, direction % 2 ? 0 : Math.PI / 2);
 
 		createArea(
-			new RectPlacer(bridgeStart, bridgeEnd),
+			new RectPlacer(bridgeStart, Vector2D.add(bridgeEnd, new Vector2D(1, 1))),
 			[
 				new ElevationPainter(heightBridge),
 				new TileClassPainter(clBridge)
 			]);
+
+		for (let center of [bridgeStart, bridgeEnd])
+			createArea(
+				new DiskPlacer(2, center),
+				new SmoothingPainter(1, 1, 1));
 
 		break;
 	}
@@ -393,8 +399,6 @@ if (areasVolcano.length)
 		areasVolcano);
 }
 Engine.SetProgress(90);
-
-placePlayersNomad(clPlayer, avoidClasses(clWater, 12, clVolcano, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4));
 
 setSkySet("cumulus");
 setSunColor(0.87, 0.78, 0.49);
