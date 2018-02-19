@@ -24,10 +24,6 @@
     <Icon>units/spart_champion_infantry_sword.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
-  <Loot>
-    <food op="mul">2.0</food>
-    <metal op="mul">2.0</metal>
-  </Loot>
   <Promotion disable=""/>
   <VisualActor>
     <Actor>units/spartans/infantry_swordsman_c.xml</Actor>
