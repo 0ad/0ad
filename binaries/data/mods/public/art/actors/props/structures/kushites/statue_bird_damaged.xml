@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="kushite statue">
+      <mesh>props/kush_bird_statue_damaged.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="base">
+      <textures>
+        <texture file="props/bird_statue_a.png" name="baseTex"/>
+        <texture file="props/bird_statue_norm.png" name="normTex"/>
+        <texture file="props/bird_statue_spec.png" name="specTex"/>
+        <texture file="props/ao/bird_statue_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="double colour">
+      <textures>
+        <texture file="props/bird_statue_b.png" name="baseTex"/>
+        <texture file="props/bird_statue_norm.png" name="normTex"/>
+        <texture file="props/bird_statue_spec.png" name="specTex"/>
+        <texture file="props/ao/bird_statue_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

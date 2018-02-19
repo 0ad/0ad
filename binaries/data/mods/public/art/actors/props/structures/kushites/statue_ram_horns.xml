@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="kushite statue">
+      <mesh>props/kush_ram_statue_horns.dae</mesh>
+      <textures>
+        <texture file="props/ram_horns.png" name="baseTex"/>
+        <texture file="props/ram_horns_norm.png" name="normTex"/>
+        <texture file="props/ram_horns_spec.png" name="specTex"/>
+        <texture file="props/ao/ram_horns_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
