@@ -22,6 +22,7 @@
 #include "graphics/MapIO.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
+#include "lib/external_libraries/libsdl.h"
 #include "lib/status.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
@@ -29,11 +30,23 @@
 #include "ps/FileIo.h"
 #include "ps/Profile.h"
 #include "ps/scripting/JSInterface_VFS.h"
+#include "scriptinterface/ScriptRuntime.h"
 #include "scriptinterface/ScriptConversions.h"
 
 // TODO: what's a good default? perhaps based on map size
 #define RMS_RUNTIME_SIZE 96 * 1024 * 1024
 
+static bool
+MapGeneratorInterruptCallback(JSContext* UNUSED(cx))
+{
+	if (SDL_QuitRequested())
+	{
+		LOGWARNING("Quit requested!");
+		return false;
+	}
+
+	return true;
+}
 
 CMapGeneratorWorker::CMapGeneratorWorker()
 {
@@ -68,7 +81,12 @@ void* CMapGeneratorWorker::RunThread(void *data)
 
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(data);
 
-	self->m_ScriptInterface = new ScriptInterface("Engine", "MapGenerator", ScriptInterface::CreateRuntime(g_ScriptRuntime, RMS_RUNTIME_SIZE));
+	shared_ptr<ScriptRuntime> mapgenRuntime = ScriptInterface::CreateRuntime(g_ScriptRuntime, RMS_RUNTIME_SIZE);
+
+	// Enable the script to be aborted
+	JS_SetInterruptCallback(mapgenRuntime->m_rt, MapGeneratorInterruptCallback);
+
+	self->m_ScriptInterface = new ScriptInterface("Engine", "MapGenerator", mapgenRuntime);
 
 	// Run map generation scripts
 	if (!self->Run() || self->m_Progress > 0)
