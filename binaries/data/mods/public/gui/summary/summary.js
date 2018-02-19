@@ -530,6 +530,9 @@ function initGUILabelsAndButtons()
 		});
 
 	Engine.GetGUIObjectByName("replayButton").hidden = g_GameData.gui.isInGame || !g_GameData.gui.replayDirectory;
+
+	Engine.GetGUIObjectByName("lobbyButton").tooltip = colorizeHotkey(translate("%(hotkey)s: Toggle the multiplayer lobby in a dialog window."), "lobby");
+	Engine.GetGUIObjectByName("lobbyButton").hidden = g_GameData.gui.isInGame || !Engine.HasXmppClient();
 }
 
 function initTeamData()
