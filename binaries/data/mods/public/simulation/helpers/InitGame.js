@@ -42,7 +42,7 @@ function InitGame(settings)
 	}
 
 	// Sandbox, Very Easy, Easy, Medium, Hard, Very Hard
-	let rate = [ 0.50, 0.64, 0.80, 1.00, 1.25, 1.56 ];
+	let rate = [ 0.42, 0.56, 0.75, 1.00, 1.25, 1.56 ];
 	let cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
 	for (let i = 0; i < settings.PlayerData.length; ++i)
 	{

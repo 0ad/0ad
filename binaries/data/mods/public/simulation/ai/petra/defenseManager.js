@@ -531,7 +531,21 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (attacker && gameState.isEntityAlly(attacker))
 			continue;
 
-		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
+		if (target.hasClass("FishingBoat"))
+		{
+			let unitAIState = target.unitAIState();
+			let unitAIStateOrder = unitAIState ? unitAIState.split(".")[1] : "";
+			if (target.isIdle() || unitAIStateOrder == "GATHER")
+			{
+				let pos = attacker.position();
+				let range = attacker.attackRange("Ranged") ? attacker.attackRange("Ranged").max + 15 : 25;
+				if (range * range > API3.SquareVectorDistance(pos, target.position()))
+					target.moveToRange(pos[0], pos[1], range, range);
+			}
+			continue;
+		}
+
+		if (target.hasClass("Ship"))    // TODO integrate other ships later, need to be sure it is accessible
 			continue;
 
 		// If a building on a blinking tile is attacked, check if it can be defended

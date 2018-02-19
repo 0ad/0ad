@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="gather_fish">
+  <animations>
+    <animation file="biped/fisher/hele_gather_fish.dae" name="gather_fish" id="gather_fish" speed="120"/>
+  </animations>
+  <props>
+    <prop actor="" attachpoint="weapon_L"/>
+    <prop actor="props/units/tools/fishing_net_hele.xml" attachpoint="weapon_R"/>
+  </props>
+</variant>

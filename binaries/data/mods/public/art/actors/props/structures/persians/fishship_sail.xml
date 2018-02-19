@@ -1,10 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="mesh">
+    <variant frequency="100" name="pers">
       <mesh>props/pers_fishship_sail.dae</mesh>
-      <textures><texture file="props/pers_trireme_sail_c.dds" name="baseTex"/></textures>
+      <animations>
+        <animation file="others/pers_sail_idle.dae" name="idle" speed="100"/>
+        <animation file="others/pers_sail_move.dae" name="Walk" speed="10"/>
+        <animation file="others/pers_sail_move.dae" name="Run" speed="14"/>
+        <animation file="others/pers_sail_move.dae" name="carry_food" speed="10"/>
+        <animation file="others/pers_sail_move.dae" name="carry_fish" speed="10"/>
+      </animations>
+      <textures>
+        <texture file="props/pers_trireme_sail_c.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

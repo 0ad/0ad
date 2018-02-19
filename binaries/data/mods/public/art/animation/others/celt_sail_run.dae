@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2018-02-02T15:55:26</created>
+    <modified>2018-02-02T15:55:26</modified>
+    <unit name="centimeter" meter="0.01"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="pure_CeltWarshipSail_-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="pure_CeltWarshipSail_-material" name="pure_CeltWarshipSail_">
+      <instance_effect url="#pure_CeltWarshipSail_-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Plane_002-mesh" name="Plane.002">
+      <mesh>
+        <source id="Plane_002-mesh-positions">
+          <float_array id="Plane_002-mesh-positions-array" count="150">-3.47193 -0.1234615 -4.68641 3.47193 -0.1234615 -4.68641 3.83424 -0.04385155 0.1282896 -3.83425 0.008038401 0.1282896 3.61547 -0.1234615 -2.27906 0 -0.3372015 -4.81832 -3.61547 -0.1234615 -2.27906 0 -0.2226515 -0.003620147 0 -0.4269816 -2.41097 3.61547 -0.1234615 -3.48274 3.67524 -0.1234615 -1.07539 -1.73597 -0.3372015 -4.76696 1.73597 -0.3372015 -4.76696 -3.61547 -0.1234615 -3.48274 -3.67524 -0.1234615 -1.07539 1.91712 -0.1979615 0.04772996 -1.91712 -0.1979615 0.04772996 0 -0.4005116 -1.20729 -1.80774 -0.4005116 -2.35962 0 -0.4005116 -3.61464 1.80774 -0.4005116 -2.35962 -1.83762 -0.3389115 -1.15594 -1.80774 -0.4005116 -3.56329 1.83762 -0.3389115 -1.15594 1.80774 -0.4005116 -3.56329 1.80774 -0.3838816 -3.56329 1.83762 -0.3222815 -1.15594 -1.80774 -0.3838716 -3.56329 -1.83762 -0.3222815 -1.15594 1.80774 -0.3838816 -2.35962 0 -0.3838816 -3.61464 -1.80774 -0.3838816 -2.35962 0 -0.3838816 -1.20729 -1.91712 -0.1813215 0.04772996 1.91712 -0.1813215 0.04772996 -3.67524 -0.1068215 -1.07539 -3.61547 -0.1068215 -3.48274 1.73597 -0.3205615 -4.76696 -1.73597 -0.3205615 -4.76696 3.67524 -0.1068215 -1.07539 3.61547 -0.1068215 -3.48274 0 -0.4103416 -2.41097 0 -0.2060115 -0.003620147 -3.61547 -0.1068215 -2.27906 0 -0.3205615 -4.81832 3.61547 -0.1068215 -2.27906 -3.83425 0.02466845 0.1282896 3.83424 -0.02721154 0.1282896 3.47193 -0.1068215 -4.68641 -3.47193 -0.1068215 -4.68641</float_array>
+          <technique_common>
+            <accessor source="#Plane_002-mesh-positions-array" count="50" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_002-mesh-normals">
+          <float_array id="Plane_002-mesh-normals-array" count="150">0.1107242 0.9925199 -0.05142509 0.1024227 0.9902287 -0.09464031 0.06216657 0.9920711 -0.1092264 0.07394808 0.9941946 -0.07815974 0.1395634 0.990189 -0.006927788 0.0849027 0.9961571 -0.02151554 0 0.990856 -0.1349239 0 0.9960865 -0.08838367 0 0.999993 -0.00375384 0.1518338 0.98837 0.008453845 0.07568752 0.9967869 0.02621597 0.1422188 0.9892752 0.03329628 0.05951201 0.9966589 0.05594128 0 0.9992952 0.03753876 0 0.9986197 0.05252355 -0.07394808 0.9941946 -0.07815974 -0.05737632 0.9931602 -0.1016904 -0.0849027 0.9961571 -0.02151554 -0.1019954 0.9940741 -0.03759974 -0.07767009 0.995429 -0.05557453 -0.1395634 0.990189 -0.006927788 -0.07568752 0.9967869 0.02621597 -0.05951201 0.9966589 0.05594128 -0.1518338 0.98837 0.008453845 -0.1422188 0.9892752 0.03329628 0.05951201 -0.9966589 -0.05594128 0.1422188 -0.9892752 -0.03329628 0.07568752 -0.9967869 -0.02621597 0.1518338 -0.98837 -0.008453845 0.0849027 -0.9961571 0.02151554 0.1395634 -0.990189 0.006927788 0 -0.9986197 -0.05252355 0 -0.9992952 -0.03753876 0 -0.999993 0.00375384 0.07394826 -0.9941969 0.07812941 0.1019954 -0.9940741 0.03759974 0.05737632 -0.9931602 0.1016904 0.07767009 -0.995429 0.05557453 0 -0.9960865 0.08838367 0 -0.990856 0.1349239 -0.05951201 -0.9966589 -0.05594128 -0.07568752 -0.9967869 -0.02621597 -0.0849027 -0.9961571 0.02151554 -0.1422188 -0.9892752 -0.03329628 -0.1518338 -0.98837 -0.008453845 -0.1395634 -0.990189 0.006927788 -0.07394826 -0.9941969 0.07812941 -0.06216657 -0.9920711 0.1092264 -0.1107242 -0.9925199 0.05142509 -0.1024227 -0.9902287 0.09464031</float_array>
+          <technique_common>
+            <accessor source="#Plane_002-mesh-normals-array" count="50" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_002-mesh-map-0">
+          <float_array id="Plane_002-mesh-map-0-array" count="384">0.99903 0.72591 0.99903 0.91431 0.74944 0.91431 0.99903 0.72591 0.74944 0.91431 0.74944 0.72591 0.99903 0.53884 0.99903 0.72591 0.74944 0.72591 0.99903 0.53884 0.74944 0.72591 0.74944 0.53884 0.74944 0.72591 0.74944 0.91431 0.50152 0.91431 0.74944 0.72591 0.50152 0.91431 0.50152 0.72591 0.74944 0.53884 0.74944 0.72591 0.50152 0.72591 0.74944 0.53884 0.50152 0.72591 0.50152 0.53884 0.99903 0.35167 0.99903 0.53884 0.74944 0.53884 0.99903 0.35167 0.74944 0.53884 0.74944 0.35167 0.99903 0.1641899 0.99903 0.35167 0.74944 0.35167 0.99903 0.1641899 0.74944 0.35167 0.74944 0.1641899 0.74944 0.35167 0.74944 0.53884 0.50152 0.53884 0.74944 0.35167 0.50152 0.53884 0.50152 0.35167 0.74944 0.1641899 0.74944 0.35167 0.50152 0.35167 0.74944 0.1641899 0.50152 0.35167 0.50152 0.1641899 0.50152 0.72591 0.50152 0.91431 0.25361 0.72591 0.50152 0.91431 0.25361 0.91431 0.25361 0.72591 0.50152 0.53884 0.50152 0.72591 0.25361 0.53884 0.50152 0.72591 0.25361 0.72591 0.25361 0.53884 0.25361 0.72591 0.25361 0.91431 0.004349946 0.72591 0.25361 0.91431 0.004349946 0.91431 0.004349946 0.72591 0.25361 0.53884 0.25361 0.72591 0.004349946 0.53884 0.25361 0.72591 0.004349946 0.72591 0.004349946 0.53884 0.50152 0.35167 0.50152 0.53884 0.25361 0.35167 0.50152 0.53884 0.25361 0.53884 0.25361 0.35167 0.50152 0.1641899 0.50152 0.35167 0.25361 0.1641899 0.50152 0.35167 0.25361 0.35167 0.25361 0.1641899 0.25361 0.35167 0.25361 0.53884 0.004349946 0.35167 0.25361 0.53884 0.004349946 0.53884 0.004349946 0.35167 0.25361 0.1641899 0.25361 0.35167 0.004349946 0.1641899 0.25361 0.35167 0.004349946 0.35167 0.004349946 0.1641899 0.25361 0.1641899 0.004349946 0.1641899 0.25361 0.35167 0.004349946 0.1641899 0.004349946 0.35167 0.25361 0.35167 0.25361 0.35167 0.004349946 0.35167 0.25361 0.53884 0.004349946 0.35167 0.004349946 0.53884 0.25361 0.53884 0.50152 0.1641899 0.25361 0.1641899 0.50152 0.35167 0.25361 0.1641899 0.25361 0.35167 0.50152 0.35167 0.50152 0.35167 0.25361 0.35167 0.50152 0.53884 0.25361 0.35167 0.25361 0.53884 0.50152 0.53884 0.25361 0.53884 0.004349946 0.53884 0.25361 0.72591 0.004349946 0.53884 0.004349946 0.72591 0.25361 0.72591 0.25361 0.72591 0.004349946 0.72591 0.25361 0.91431 0.004349946 0.72591 0.004349946 0.91431 0.25361 0.91431 0.50152 0.53884 0.25361 0.53884 0.50152 0.72591 0.25361 0.53884 0.25361 0.72591 0.50152 0.72591 0.50152 0.72591 0.25361 0.72591 0.50152 0.91431 0.25361 0.72591 0.25361 0.91431 0.50152 0.91431 0.74944 0.1641899 0.50152 0.1641899 0.50152 0.35167 0.74944 0.1641899 0.50152 0.35167 0.74944 0.35167 0.74944 0.35167 0.50152 0.35167 0.50152 0.53884 0.74944 0.35167 0.50152 0.53884 0.74944 0.53884 0.99903 0.1641899 0.74944 0.1641899 0.74944 0.35167 0.99903 0.1641899 0.74944 0.35167 0.99903 0.35167 0.99903 0.35167 0.74944 0.35167 0.74944 0.53884 0.99903 0.35167 0.74944 0.53884 0.99903 0.53884 0.74944 0.53884 0.50152 0.53884 0.50152 0.72591 0.74944 0.53884 0.50152 0.72591 0.74944 0.72591 0.74944 0.72591 0.50152 0.72591 0.50152 0.91431 0.74944 0.72591 0.50152 0.91431 0.74944 0.91431 0.99903 0.53884 0.74944 0.53884 0.74944 0.72591 0.99903 0.53884 0.74944 0.72591 0.99903 0.72591 0.99903 0.72591 0.74944 0.72591 0.74944 0.91431 0.99903 0.72591 0.74944 0.91431 0.99903 0.91431</float_array>
+          <technique_common>
+            <accessor source="#Plane_002-mesh-map-0-array" count="192" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane_002-mesh-vertices">
+          <input semantic="POSITION" source="#Plane_002-mesh-positions"/>
+        </vertices>
+        <triangles material="pure_CeltWarshipSail_-material" count="64">
+          <input semantic="VERTEX" source="#Plane_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane_002-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane_002-mesh-map-0" offset="2" set="0"/>
+          <p>35 0 0 46 1 1 33 2 2 35 0 3 33 2 4 28 3 5 43 4 6 35 0 7 28 3 8 43 4 9 28 3 10 31 5 11 28 3 12 33 2 13 42 6 14 28 3 15 42 6 16 32 7 17 31 5 18 28 3 19 32 7 20 31 5 21 32 7 22 41 8 23 36 9 24 43 4 25 31 5 26 36 9 27 31 5 28 27 10 29 49 11 30 36 9 31 27 10 32 49 11 33 27 10 34 38 12 35 27 10 36 31 5 37 41 8 38 27 10 39 41 8 40 30 13 41 38 12 42 27 10 43 30 13 44 38 12 45 30 13 46 44 14 47 32 7 48 42 6 49 26 15 50 42 6 51 34 16 52 26 15 53 41 8 54 32 7 55 29 17 56 32 7 57 26 15 58 29 17 59 26 15 60 34 16 61 39 18 62 34 16 63 47 19 64 39 18 65 29 17 66 26 15 67 45 20 68 26 15 69 39 18 70 45 20 71 30 13 72 41 8 73 25 21 74 41 8 75 29 17 76 25 21 77 44 14 78 30 13 79 37 22 80 30 13 81 25 21 82 37 22 83 25 21 84 29 17 85 40 23 86 29 17 87 45 20 88 40 23 89 37 22 90 25 21 91 48 24 92 25 21 93 40 23 94 48 24 95 12 25 96 1 26 97 24 27 98 1 26 99 9 28 100 24 27 101 24 27 102 9 28 103 20 29 104 9 28 105 4 30 106 20 29 107 5 31 108 12 25 109 19 32 110 12 25 111 24 27 112 19 32 113 19 32 114 24 27 115 8 33 116 24 27 117 20 29 118 8 33 119 20 29 120 4 30 121 23 34 122 4 30 123 10 35 124 23 34 125 23 34 126 10 35 127 15 36 128 10 35 129 2 37 130 15 36 131 8 33 132 20 29 133 17 38 134 20 29 135 23 34 136 17 38 137 17 38 138 23 34 139 7 39 140 23 34 141 15 36 142 7 39 143 11 40 144 5 31 145 19 32 146 11 40 147 19 32 148 22 41 149 22 41 150 19 32 151 8 33 152 22 41 153 8 33 154 18 42 155 0 43 156 11 40 157 22 41 158 0 43 159 22 41 160 13 44 161 13 44 162 22 41 163 18 42 164 13 44 165 18 42 166 6 45 167 18 42 168 8 33 169 17 38 170 18 42 171 17 38 172 21 46 173 21 46 174 17 38 175 7 39 176 21 46 177 7 39 178 16 47 179 6 45 180 18 42 181 21 46 182 6 45 183 21 46 184 14 48 185 14 48 186 21 46 187 16 47 188 14 48 189 16 47 190 3 49 191</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_animations>
+    <animation id="Sail_skeleton_Sail_Root_pose_matrix">
+      <source id="Sail_skeleton_Sail_Root_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_Root_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_Root_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_Root_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_Root_pose_matrix-output-array" count="256">1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1 1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_Root_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_Root_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_Root_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_Root_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_Root_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_Root_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_Root_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_Root_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_Root_pose_matrix-sampler" target="Sail_skeleton_Sail_Root/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_C_1_pose_matrix">
+      <source id="Sail_skeleton_Sail_C_1_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_C_1_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_1_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_C_1_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_C_1_pose_matrix-output-array" count="256">1 -6.906e-5 -1.75101e-5 -1.13225e-9 6.5819e-5 0.8014233 0.5980974 0.9996953 -2.72716e-5 -0.5980974 0.8014233 -0.2140415 0 0 0 1 1 3.63989e-5 5.60275e-6 -1.13225e-9 -3.52128e-5 0.9004695 0.4349189 0.9996953 1.07854e-5 -0.4349189 0.9004695 -0.2140415 0 0 0 1 1 4.35458e-6 5.83093e-7 -1.13225e-9 -4.22524e-6 0.916835 0.3992661 0.9996953 1.20403e-6 -0.3992661 0.916835 -0.2140415 0 0 0 1 1 -9.6511e-5 -1.34639e-5 -1.13225e-9 9.35666e-5 0.9123874 0.4093276 0.9996953 -2.72203e-5 -0.4093276 0.9123874 -0.2140415 0 0 0 1 1 1.14885e-4 1.99326e-5 -1.13225e-9 -1.10818e-4 0.8832383 0.4689243 0.9996953 3.62672e-5 -0.4689243 0.8832383 -0.2140415 0 0 0 1 0.9999999 -3.09863e-4 -6.70289e-5 -1.13225e-9 2.96982e-4 0.8415967 0.5401063 0.9996953 -1.10948e-4 -0.5401062 0.8415968 -0.2140415 0 0 0 1 1 -1.75116e-4 -5.12022e-5 -1.13225e-9 1.65918e-4 0.756131 0.6544202 0.9996953 -7.58836e-5 -0.6544201 0.756131 -0.2140415 0 0 0 1 1 -1.12812e-4 -2.99094e-5 -1.13225e-9 1.0733e-4 0.7882619 0.6153398 0.9996953 -4.58416e-5 -0.6153398 0.7882619 -0.2140415 0 0 0 1 1 -6.63661e-5 -1.57356e-5 -1.13225e-9 6.34087e-5 0.8195898 0.5729507 0.9996953 -2.51277e-5 -0.5729507 0.8195898 -0.2140415 0 0 0 1 1 -3.86834e-5 -8.20587e-6 -1.13225e-9 3.70987e-5 0.8458958 0.5333481 0.9996953 -1.36904e-5 -0.5333481 0.8458958 -0.2140415 0 0 0 1 1 -3.08234e-5 -6.17134e-6 -1.13225e-9 2.96136e-5 0.8578633 0.513878 0.9996953 -1.05453e-5 -0.5138779 0.8578633 -0.2140415 0 0 0 1 1 -2.46847e-5 -5.08477e-6 -1.13225e-9 2.36953e-5 0.8521131 0.5233576 0.9996953 -8.58614e-6 -0.5233575 0.8521131 -0.2140415 0 0 0 1 0.9999999 -2.55437e-4 -5.62163e-5 -1.13225e-9 2.4468e-4 0.8376967 0.5461357 0.9996953 -9.24108e-5 -0.5461356 0.8376968 -0.2140415 0 0 0 1 1 2.16053e-5 5.06075e-6 -1.13225e-9 -2.06514e-5 0.8226897 0.5684907 0.9996953 8.11896e-6 -0.5684906 0.8226897 -0.2140415 0 0 0 1 1 -4.60545e-5 -1.1324e-5 -1.13225e-9 4.3944e-5 0.8099726 0.5864677 0.9996953 -1.78374e-5 -0.5864677 0.8099726 -0.2140415 0 0 0 1 1 -6.906e-5 -1.75101e-5 -1.13225e-9 6.5819e-5 0.8014233 0.5980974 0.9996953 -2.72716e-5 -0.5980974 0.8014233 -0.2140415 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_1_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_C_1_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_C_1_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_1_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_C_1_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_C_1_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_C_1_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_C_1_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_C_1_pose_matrix-sampler" target="Sail_skeleton_Sail_C_1/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_C_2_pose_matrix">
+      <source id="Sail_skeleton_Sail_C_2_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_C_2_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_2_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_C_2_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_C_2_pose_matrix-output-array" count="256">1 -1.29942e-4 1.55894e-5 1.81899e-12 1.27137e-4 0.9362642 -0.3512961 1.217151 3.10525e-5 0.3512961 0.9362644 2.98023e-8 0 0 0 1 1 -6.87417e-5 3.40597e-6 1.81899e-12 6.7838e-5 0.9760816 -0.2174035 1.217151 1.16202e-5 0.2174035 0.9760818 2.98023e-8 0 0 0 1 0.9999992 -0.001260204 3.80033e-5 1.81899e-12 0.001246561 0.9837604 -0.1794816 1.217151 1.88797e-4 0.1794815 0.9837613 2.98023e-8 0 0 0 1 0.9999996 -8.11316e-4 3.25959e-5 1.81899e-12 8.01559e-4 0.9799718 -0.1991339 1.217151 1.29618e-4 0.1991338 0.9799722 2.98023e-8 0 0 0 1 0.999998 -0.001964321 1.48883e-4 1.81899e-12 0.001932309 0.9633775 -0.2681411 1.217151 3.83285e-4 0.2681408 0.9633796 2.98023e-8 0 0 0 1 0.9999996 -8.36043e-4 8.88246e-5 1.81899e-12 8.19366e-4 0.945438 -0.3258004 1.217151 1.88405e-4 0.3258003 0.9454385 2.98023e-8 0 0 0 1 0.9999998 7.15378e-4 -1.31112e-4 1.81899e-12 -6.94501e-4 0.8857457 -0.4641699 1.217151 -2.15925e-4 0.4641699 0.8857461 2.98023e-8 0 0 0 1 0.9999997 7.64067e-4 -1.11982e-4 1.81899e-12 -7.45133e-4 0.9166345 -0.3997252 1.217151 -2.0277e-4 0.3997251 0.9166349 2.98023e-8 0 0 0 1 0.9999999 4.07964e-4 -4.22701e-5 1.81899e-12 -3.99955e-4 0.9471195 -0.32088 1.217151 -9.08727e-5 0.3208799 0.9471198 2.98023e-8 0 0 0 1 0.9999999 -5.25999e-4 3.57419e-5 1.81899e-12 5.17922e-4 0.9674468 -0.2530732 1.217151 9.85378e-5 0.253073 0.9674471 2.98023e-8 0 0 0 1 0.9999996 -8.37559e-4 5.17432e-5 1.81899e-12 8.25316e-4 0.9704839 -0.2411635 1.217151 1.51773e-4 0.2411635 0.9704845 2.98023e-8 0 0 0 1 0.9999986 -0.001699787 1.42225e-4 1.81899e-12 0.00167048 0.9590615 -0.2831921 1.217151 3.44964e-4 0.2831919 0.9590631 2.98023e-8 0 0 0 1 0.9999999 -4.55298e-4 5.0121e-5 1.81899e-12 4.46007e-4 0.9429384 -0.3329663 1.217151 1.04338e-4 0.3329661 0.9429387 2.98023e-8 0 0 0 1 0.9999995 -0.001034497 1.26792e-4 1.81899e-12 0.001011838 0.9344525 -0.356086 1.217151 2.49889e-4 0.3560858 0.9344532 2.98023e-8 0 0 0 1 0.9999999 -4.82895e-4 5.8894e-5 1.81899e-12 4.72353e-4 0.9348764 -0.3549726 1.217151 1.16356e-4 0.3549725 0.9348766 2.98023e-8 0 0 0 1 1 -1.29942e-4 1.55894e-5 1.81899e-12 1.27137e-4 0.9362642 -0.3512961 1.217151 3.10525e-5 0.3512961 0.9362644 2.98023e-8 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_2_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_C_2_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_C_2_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_2_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_C_2_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_C_2_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_C_2_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_C_2_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_C_2_pose_matrix-sampler" target="Sail_skeleton_Sail_C_2/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_C_3_pose_matrix">
+      <source id="Sail_skeleton_Sail_C_3_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_C_3_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_3_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_C_3_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_C_3_pose_matrix-output-array" count="256">1 1.7934e-4 -1.57268e-5 0 -1.7842e-4 0.9756265 -0.2194376 1.207165 -2.40105e-5 0.2194376 0.9756264 5.96046e-8 0 0 0 1 1 -1.01791e-4 8.77718e-6 0 1.01276e-4 0.9762553 -0.2166232 1.207165 1.34816e-5 0.2166231 0.9762552 5.96046e-8 0 0 0 1 0.9999994 0.001131681 -9.72777e-5 0 -0.001125965 0.9763737 -0.2160854 1.207165 -1.4956e-4 0.2160853 0.9763744 5.96046e-8 0 0 0 1 0.9999999 4.22253e-4 -3.40467e-5 0 -4.20224e-4 0.9786066 -0.2057395 1.207165 -5.35558e-5 0.2057395 0.9786067 5.96046e-8 0 0 0 1 0.9999987 0.001643039 -1.19062e-4 0 -0.001635766 0.9818165 -0.1898252 1.207165 -1.94993e-4 0.1898251 0.9818178 5.96046e-8 0 0 0 1 0.9999997 8.74678e-4 -6.58322e-5 0 -8.70693e-4 0.9807452 -0.1952897 1.207165 -1.06251e-4 0.1952896 0.9807454 5.96046e-8 0 0 0 1 1 2.26958e-4 -7.58657e-6 0 -2.26364e-4 0.9936075 -0.1128898 1.207165 -1.80832e-5 0.1128897 0.9936074 5.96046e-8 0 0 0 1 1 1.27573e-4 -6.48488e-6 0 -1.27136e-4 0.9890866 -0.1473355 1.207165 -1.23819e-5 0.1473355 0.9890865 5.96046e-8 0 0 0 1 1 -9.10603e-5 7.09599e-6 0 9.0634e-5 0.9796942 -0.2004973 1.207165 1.13054e-5 0.2004972 0.9796941 5.96046e-8 0 0 0 1 0.9999997 8.45245e-4 -8.64436e-5 0 -8.40338e-4 0.9688775 -0.2475392 1.207165 -1.25478e-4 0.2475391 0.9688777 5.96046e-8 0 0 0 1 0.9999998 6.98416e-4 -7.55756e-5 0 -6.94169e-4 0.9659026 -0.2589048 1.207165 -1.07825e-4 0.2589047 0.9659027 5.96046e-8 0 0 0 1 0.9999995 0.001108582 -1.06084e-4 0 -0.001102483 0.9720193 -0.234898 1.207165 -1.57288e-4 0.2348979 0.9720199 5.96046e-8 0 0 0 1 1 -1.81776e-4 1.48088e-5 0 1.80895e-4 0.9782608 -0.2073783 1.207165 2.32094e-5 0.2073782 0.9782608 5.96046e-8 0 0 0 1 0.9999999 5.29199e-4 -4.31516e-5 0 -5.26635e-4 0.9782328 -0.2075099 1.207165 -6.76018e-5 0.2075098 0.9782328 5.96046e-8 0 0 0 1 1 2.68323e-4 -2.50417e-5 0 -2.66876e-4 0.9731123 -0.2303306 1.207165 -3.74346e-5 0.2303306 0.9731123 5.96046e-8 0 0 0 1 1 1.7934e-4 -1.57268e-5 0 -1.7842e-4 0.9756265 -0.2194376 1.207165 -2.40105e-5 0.2194376 0.9756264 5.96046e-8 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_3_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_C_3_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_C_3_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_3_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_C_3_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_C_3_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_C_3_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_C_3_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_C_3_pose_matrix-sampler" target="Sail_skeleton_Sail_C_3/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_C_4_pose_matrix">
+      <source id="Sail_skeleton_Sail_C_4_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_C_4_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_4_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_C_4_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_C_4_pose_matrix-output-array" count="256">1 -1.13783e-4 -5.76328e-7 0 1.13748e-4 0.9997913 -0.02043753 1.203961 2.90166e-6 0.02043755 0.999791 1.19209e-7 0 0 0 1 1 -2.41457e-4 -3.93285e-6 0 2.41464e-4 0.9999982 0.002003808 1.203961 3.44902e-6 -0.0020038 0.9999979 1.19209e-7 0 0 0 1 1 -2.35565e-4 4.73398e-6 0 2.3531e-4 0.9974979 -0.0706974 1.203961 1.19317e-5 0.07069743 0.9974977 1.19209e-7 0 0 0 1 1 5.84224e-6 -3.02376e-7 0 -5.83025e-6 0.9910359 -0.133597 1.203961 -4.80835e-7 0.133597 0.9910356 1.19209e-7 0 0 0 1 1 -1.46819e-4 1.43787e-5 0 1.46311e-4 0.9746119 -0.2239016 1.203961 1.88594e-5 0.2239017 0.9746116 1.19209e-7 0 0 0 1 0.9999999 -3.8576e-4 5.56383e-5 0 3.83879e-4 0.9501578 -0.3117696 1.203961 6.7403e-5 0.3117697 0.9501576 1.19209e-7 0 0 0 1 0.9999974 -0.00229811 -5.90876e-5 0 0.002298842 0.9997803 0.02084043 1.203961 1.11811e-5 -0.0208405 0.9997827 1.19209e-7 0 0 0 1 0.9999986 -0.00167016 -5.09358e-5 0 0.001670936 0.9995365 0.03040205 1.203961 1.35951e-7 -0.03040209 0.9995376 1.19209e-7 0 0 0 1 1 -2.64349e-5 -4.87153e-7 0 2.64374e-5 0.9999804 0.006284613 1.203961 3.21016e-7 -0.006284598 0.9999802 1.19209e-7 0 0 0 1 1 -9.0737e-5 -5.03102e-7 0 9.071e-5 0.9998104 -0.01947871 1.203961 2.27045e-6 0.01947873 0.9998102 1.19209e-7 0 0 0 1 0.9999996 9.20661e-4 -7.82563e-7 0 -9.20207e-4 0.9994791 -0.03226393 1.203961 -2.8922e-5 0.03226394 0.9994793 1.19209e-7 0 0 0 1 0.9999982 0.001907833 -3.7134e-5 0 -0.001905807 0.9975846 -0.06943657 1.203961 -9.54291e-5 0.06943653 0.9975863 1.19209e-7 0 0 0 1 0.9999979 0.002079047 -9.40376e-5 0 -0.0020752 0.99269 -0.1206752 1.203961 -1.57539e-4 0.1206752 0.992692 1.19209e-7 0 0 0 1 0.9999992 0.001304056 -8.73628e-5 0 -0.001300777 0.9865233 -0.1636168 1.203961 -1.2718e-4 0.1636169 0.9865239 1.19209e-7 0 0 0 1 0.9999999 4.07595e-4 -3.16296e-5 0 -4.06438e-4 0.9828516 -0.1843991 1.203961 -4.40729e-5 0.1843992 0.9828514 1.19209e-7 0 0 0 1 1 -1.13783e-4 -5.76328e-7 0 1.13748e-4 0.9997913 -0.02043753 1.203961 2.90166e-6 0.02043755 0.999791 1.19209e-7 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_4_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_C_4_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_C_4_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_C_4_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_C_4_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_C_4_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_C_4_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_C_4_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_C_4_pose_matrix-sampler" target="Sail_skeleton_Sail_C_4/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_B_1_pose_matrix">
+      <source id="Sail_skeleton_Sail_B_1_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_B_1_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_1_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_B_1_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_B_1_pose_matrix-output-array" count="256">0.9922196 0.06474246 0.1063431 -1.91712 -0.1140762 0.8149113 0.5682486 0.95227 -0.04987035 -0.5759586 0.8159565 -0.1896416 0 0 0 1 0.9934287 0.06464821 0.09444637 -1.91712 -0.0984918 0.903216 0.4177325 0.95227 -0.05829981 -0.4242896 0.9036481 -0.1896416 0 0 0 1 0.9935747 0.06458908 0.09293788 -1.91712 -0.09648887 0.9125983 0.3973091 0.95227 -0.05915311 -0.4037238 0.9129668 -0.1896416 0 0 0 1 0.9934084 0.06460993 0.0946859 -1.91712 -0.09877388 0.9016418 0.4210534 0.95227 -0.05816852 -0.4276305 0.9020803 -0.1896416 0 0 0 1 0.9930348 0.06463815 0.0985086 -1.91712 -0.1037815 0.8756894 0.4715908 0.95227 -0.05578016 -0.4785294 0.8762982 -0.1896416 0 0 0 1 0.9926289 0.0643781 0.102681 -1.91712 -0.1090616 0.8439912 0.5251521 0.95227 -0.05285354 -0.5324797 0.8447912 -0.1896416 0 0 0 1 0.9918369 0.06506698 0.1096627 -1.91712 -0.118563 0.7871053 0.6053168 0.95227 -0.04692993 -0.6133775 0.7883946 -0.1896416 0 0 0 1 0.9921772 0.06495476 0.1066082 -1.91712 -0.1145552 0.8131157 0.5707192 0.95227 -0.04961389 -0.5784671 0.8141957 -0.1896416 0 0 0 1 0.9925029 0.06488637 0.1035758 -1.91712 -0.1105711 0.8377786 0.5346974 0.95227 -0.05207902 -0.5421411 0.8386722 -0.1896416 0 0 0 1 0.9927237 0.06466889 0.1015754 -1.91712 -0.1078131 0.8530358 0.5105942 0.95227 -0.05362784 -0.5178301 0.8538011 -0.1896416 0 0 0 1 0.9927562 0.06462402 0.1012857 -1.91712 -0.1074034 0.8551784 0.5070846 0.95227 -0.05384745 -0.5142898 0.8559245 -0.1896416 0 0 0 1 0.9926999 0.06450244 0.1019143 -1.91712 -0.1081423 0.8501683 0.5152857 0.95227 -0.05340709 -0.5225453 0.8509374 -0.1896416 0 0 0 1 0.99261 0.06442086 0.1028368 -1.91712 -0.1092944 0.8428359 0.5269561 0.95227 -0.05272761 -0.5343014 0.8436481 -0.1896416 0 0 0 1 0.9924513 0.06470466 0.1041822 -1.91712 -0.1112406 0.8326036 0.5425838 0.95227 -0.05163471 -0.5500773 0.8335162 -0.1896416 0 0 0 1 0.9923145 0.06470783 0.1054753 -1.91712 -0.1129264 0.8220596 0.5580915 0.95227 -0.05059404 -0.5657132 0.8230487 -0.1896416 0 0 0 1 0.9922196 0.06474246 0.1063431 -1.91712 -0.1140762 0.8149113 0.5682486 0.95227 -0.04987035 -0.5759586 0.8159565 -0.1896416 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_1_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_B_1_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_B_1_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_1_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_B_1_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_B_1_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_B_1_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_B_1_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_B_1_pose_matrix-sampler" target="Sail_skeleton_Sail_B_1/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_B_2_pose_matrix">
+      <source id="Sail_skeleton_Sail_B_2_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_B_2_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_2_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_B_2_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_B_2_pose_matrix-output-array" count="256">0.9973103 -0.06816117 -0.02695047 0 0.05498065 0.9388521 -0.339902 1.2145 0.04847062 0.3375058 0.9400748 0 0 0 0 1 0.9976794 -0.05834611 -0.0350951 0 0.04939899 0.975 -0.2166433 1.2145 0.04685802 0.2144068 0.97562 0 0 0 0 1 0.9976494 -0.05841235 -0.03582847 0 0.0499753 0.9779431 -0.2028036 1.2145 0.04688443 0.2005363 0.9785639 0 0 0 0 1 0.9975445 -0.06163613 -0.03325857 0 0.05164182 0.9680976 -0.2451934 1.2145 0.04731033 0.2428737 0.9689037 0 0 0 0 1 0.9972959 -0.06717107 -0.02981728 0 0.05543977 0.9539625 -0.2947569 1.2145 0.04824369 0.2923066 0.9551072 0 0 0 0 1 0.9972072 -0.06897116 -0.02865008 0 0.05671211 0.9489069 -0.3104175 1.2145 0.0485961 0.3079257 0.9501686 0 0 0 0 1 0.9975577 -0.06568727 -0.02374267 0 0.05084126 0.9159648 -0.3980241 1.2145 0.04789256 0.3958447 0.9170679 0 0 0 0 1 0.997586 -0.06392383 -0.02712541 0 0.05056671 0.9364457 -0.3471484 1.2145 0.04759252 0.3449387 0.937418 0 0 0 0 1 0.9976102 -0.06203227 -0.03042834 0 0.05034698 0.954255 -0.2947239 1.2145 0.04731879 0.2924875 0.955098 0 0 0 0 1 0.9974199 -0.06456126 -0.031389 0 0.05358071 0.9605162 -0.2730151 1.2145 0.04777584 0.2706289 0.9614977 0 0 0 0 1 0.9973591 -0.0658849 -0.03056318 0 0.05449965 0.9570708 -0.2846834 1.2145 0.04800746 0.2822656 0.9581344 0 0 0 0 1 0.9972319 -0.06848738 -0.02894903 0 0.0563593 0.9501968 -0.3065113 1.2145 0.04849944 0.3040312 0.9514269 0 0 0 0 1 0.9972588 -0.06831093 -0.02843251 0 0.05589877 0.9473203 -0.3153715 1.2145 0.04847801 0.3129175 0.9485425 0 0 0 0 1 0.9973345 -0.0673323 -0.02811062 0 0.05469354 0.944889 -0.3227893 1.2145 0.04829556 0.3203912 0.9460534 0 0 0 0 1 0.9973281 -0.06760857 -0.02767412 0 0.05476067 0.9426165 -0.3293554 1.2145 0.04835333 0.3269598 0.9438006 0 0 0 0 1 0.9973103 -0.06816117 -0.02695047 0 0.05498065 0.9388521 -0.339902 1.2145 0.04847062 0.3375058 0.9400748 0 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_2_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_B_2_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_B_2_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_2_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_B_2_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_B_2_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_B_2_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_B_2_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_B_2_pose_matrix-sampler" target="Sail_skeleton_Sail_B_2/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_B_3_pose_matrix">
+      <source id="Sail_skeleton_Sail_B_3_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_B_3_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_3_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_B_3_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_B_3_pose_matrix-output-array" count="256">0.99936 -0.03259891 -0.01471652 -1.19209e-7 0.02453904 0.9242602 -0.3809729 1.205626 0.0260212 0.3803679 0.9244695 0 0 0 0 1 0.9993948 -0.03058612 -0.01656362 -1.19209e-7 0.02333841 0.9427446 -0.3326973 1.205626 0.02579119 0.3321093 0.9428887 0 0 0 0 1 0.99932 -0.0320195 -0.01827422 -1.19209e-7 0.02588139 0.9622919 -0.2707839 1.205626 0.02625551 0.2701268 0.9624672 0 0 0 0 1 0.9992124 -0.03405939 -0.02035175 -1.19209e-7 0.02939356 0.9799826 -0.1968994 1.205626 0.02665064 0.196146 0.980213 0 0 0 0 1 0.9992292 -0.0335112 -0.02044092 -1.19209e-7 0.02888172 0.9803171 -0.1953045 1.205626 0.02658347 0.1945635 0.9805301 0 0 0 0 1 0.9992194 -0.0356437 -0.01702493 -1.19209e-7 0.02899722 0.9545617 -0.2965987 1.205626 0.02682323 0.2958735 0.954851 0 0 0 0 1 0.9989018 -0.04469901 -0.0140293 -1.19209e-7 0.03711348 0.9377595 -0.3452957 1.205626 0.02859049 0.3443958 0.9383895 0 0 0 0 1 0.9991096 -0.03960244 -0.01452783 -1.19209e-7 0.03193124 0.9350744 -0.3530096 1.205626 0.02756464 0.3522314 0.9355074 0 0 0 0 1 0.9993668 -0.03233036 -0.0148436 -1.19209e-7 0.02431235 0.9252893 -0.3784814 1.205626 0.02597107 0.3778809 0.9254904 0 0 0 0 1 0.9995905 -0.02344275 -0.01639542 -1.19209e-7 0.01553307 0.9260483 -0.3770844 1.205626 0.02402285 0.3766753 0.9260342 0 0 0 0 1 0.999456 -0.02867736 -0.01628126 -1.19209e-7 0.02113002 0.9359602 -0.3514707 1.205626 0.02531787 0.3509355 0.9360577 0 0 0 0 1 0.999338 -0.03238937 -0.01655715 -1.19209e-7 0.02526648 0.9455082 -0.3246155 1.205626 0.02616902 0.3239822 0.9457016 0 0 0 0 1 0.99923 -0.03589036 -0.01584303 -1.19209e-7 0.02862345 0.9431192 -0.3312196 1.205626 0.02682946 0.330511 0.943421 0 0 0 0 1 0.9991091 -0.03968898 -0.01432994 -1.19209e-7 0.03193159 0.9331288 -0.3581207 1.205626 0.02758513 0.3573441 0.9335657 0 0 0 0 1 0.9992106 -0.03734331 -0.01354144 -1.19209e-7 0.02907743 0.919871 -0.391141 1.205626 0.02706289 0.3904384 0.9202316 0 0 0 0 1 0.99936 -0.03259891 -0.01471652 -1.19209e-7 0.02453904 0.9242602 -0.3809729 1.205626 0.0260212 0.3803679 0.9244695 0 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_3_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_B_3_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_B_3_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_3_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_B_3_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_B_3_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_B_3_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_B_3_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_B_3_pose_matrix-sampler" target="Sail_skeleton_Sail_B_3/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_B_4_pose_matrix">
+      <source id="Sail_skeleton_Sail_B_4_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_B_4_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_4_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_B_4_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_B_4_pose_matrix-output-array" count="256">0.9963374 0.05120569 0.06848514 -1.19209e-7 -0.06177862 0.9847798 0.1624584 1.203671 -0.05912415 -0.1660943 0.9843354 1.19209e-7 0 0 0 1 0.9956999 0.06814887 0.06275131 -1.19209e-7 -0.07103749 0.9964579 0.04501134 1.203671 -0.05946173 -0.04927555 0.9970132 1.19209e-7 0 0 0 1 0.9964573 0.06061102 0.05830537 -1.19209e-7 -0.0593899 0.9979826 -0.02245517 1.203671 -0.05954893 0.01891281 0.9980458 1.19209e-7 0 0 0 1 0.9966924 0.06040373 0.05436865 -1.19209e-7 -0.05548274 0.9945859 -0.08787155 1.203671 -0.05938222 0.08456434 0.9946465 1.19209e-7 0 0 0 1 0.9965915 0.06110762 0.05542197 -1.19209e-7 -0.05715542 0.9958879 -0.07029261 1.203671 -0.05948966 0.06688531 0.9959852 1.19209e-7 0 0 0 1 0.9962254 0.06068405 0.06207032 -1.19209e-7 -0.06323607 0.9971966 0.04001024 1.203671 -0.05946849 -0.04378433 0.997269 1.19209e-7 0 0 0 1 0.9938408 0.08816757 0.06713707 -1.19209e-7 -0.09405094 0.991473 0.09020162 1.203671 -0.05861189 -0.09596039 0.9936575 1.19209e-7 0 0 0 1 0.993566 0.09299674 0.06464254 -1.19209e-7 -0.09648871 0.9939131 0.05317242 1.203671 -0.05930437 -0.05906762 0.9964904 1.19209e-7 0 0 0 1 0.9950899 0.07418851 0.06551607 -1.19209e-7 -0.07943574 0.9935036 0.08149378 1.203671 -0.0590447 -0.08629799 0.9945177 1.19209e-7 0 0 0 1 0.9964399 0.05244125 0.06601492 -1.19209e-7 -0.05991521 0.9913393 0.1168646 1.203671 -0.05931481 -0.1204039 0.9909509 1.19209e-7 0 0 0 1 0.9965249 0.05071726 0.06607838 -1.19209e-7 -0.05843669 0.9909704 0.1206793 1.203671 -0.05936135 -0.1241214 0.9904893 1.19209e-7 0 0 0 1 0.9964576 0.0525339 0.06567067 -1.19209e-7 -0.05959617 0.9920691 0.1106703 1.203671 -0.05933606 -0.1141921 0.9916847 1.19209e-7 0 0 0 1 0.9963919 0.05300054 0.06629079 -1.19209e-7 -0.06074317 0.9908125 0.1208371 1.203671 -0.05927747 -0.1244279 0.9904559 1.19209e-7 0 0 0 1 0.9963491 0.05165651 0.06797423 -1.19209e-7 -0.06155162 0.9863657 0.1526264 1.203671 -0.05916347 -0.1562531 0.985943 1.19209e-7 0 0 0 1 0.9966611 0.04311204 0.06934298 -1.19209e-7 -0.05595692 0.9790989 0.1955368 1.203671 -0.0594638 -0.1987642 0.9782412 1.19209e-7 0 0 0 1 0.9963374 0.05120569 0.06848514 -1.19209e-7 -0.06177862 0.9847798 0.1624584 1.203671 -0.05912415 -0.1660943 0.9843354 1.19209e-7 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_4_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_B_4_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_B_4_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_B_4_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_B_4_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_B_4_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_B_4_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_B_4_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_B_4_pose_matrix-sampler" target="Sail_skeleton_Sail_B_4/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_D_1_pose_matrix">
+      <source id="Sail_skeleton_Sail_D_1_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_D_1_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_1_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_D_1_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_D_1_pose_matrix-output-array" count="256">0.9921958 -0.06484495 -0.1065023 1.91712 0.114348 0.8137831 0.5698087 0.95227 0.04972052 -0.57754 0.814847 -0.1896416 0 0 0 1 0.9934418 -0.06462607 -0.09432338 1.91712 0.09831499 0.9039809 0.4161167 0.95227 0.05837453 -0.4226611 0.9044061 -0.1896416 0 0 0 1 0.993598 -0.06461167 -0.09267291 1.91712 0.09616361 0.9142286 0.3936229 0.95227 0.05929157 -0.4000147 0.914589 -0.1896416 0 0 0 1 0.9934205 -0.06473116 -0.0944747 1.91712 0.09859221 0.9031125 0.4179326 0.95227 0.05826801 -0.4244973 0.9035526 -0.1896416 0 0 0 1 0.9930837 -0.06438134 -0.09818308 1.91712 0.10317 0.8776836 0.4680041 0.95227 0.05604293 -0.4748968 0.8782554 -0.1896416 0 0 0 1 0.9926053 -0.06477444 -0.1026601 1.91712 0.1093019 0.844811 0.5237824 0.95227 0.05280066 -0.5311301 0.8456438 -0.1896416 0 0 0 1 0.9917603 -0.06521313 -0.1102661 1.91712 0.1194243 0.7821252 0.6115704 0.95227 0.04635948 -0.6196997 0.7834688 -0.1896416 0 0 0 1 0.9921107 -0.06507418 -0.1071535 1.91712 0.1153362 0.8087668 0.5767097 0.95227 0.04913322 -0.5845186 0.8098916 -0.1896416 0 0 0 1 0.9924778 -0.06495883 -0.1037702 1.91712 0.1108724 0.8363568 0.5368565 0.95227 0.05191532 -0.5443234 0.8372677 -0.1896416 0 0 0 1 0.9927286 -0.06469153 -0.1015139 1.91712 0.1077483 0.853541 0.5097631 0.95227 0.05366891 -0.5169943 0.8543049 -0.1896416 0 0 0 1 0.9927677 -0.06468502 -0.1011345 1.91712 0.107248 0.856419 0.5050196 0.95227 0.05394632 -0.5122136 0.8571624 -0.1896416 0 0 0 1 0.9927254 -0.06454508 -0.1016386 1.91712 0.1078108 0.8523584 0.5117249 0.95227 0.0536032 -0.51896 0.8531165 -0.1896416 0 0 0 1 0.992602 -0.06480275 -0.1026739 1.91712 0.109339 0.8447499 0.5238731 0.95227 0.05278532 -0.5312237 0.8455859 -0.1896416 0 0 0 1 0.9924583 -0.06469429 -0.1041213 1.91712 0.1111544 0.8330756 0.5418766 0.95227 0.05168455 -0.5493635 0.8339837 -0.1896416 0 0 0 1 0.9922924 -0.06481211 -0.1056184 1.91712 0.1131798 0.8210785 0.5594825 0.95227 0.0504597 -0.5671241 0.8220854 -0.1896416 0 0 0 1 0.9921958 -0.06484495 -0.1065023 1.91712 0.114348 0.8137831 0.5698087 0.95227 0.04972052 -0.57754 0.814847 -0.1896416 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_1_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_D_1_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_D_1_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_1_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_D_1_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_D_1_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_D_1_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_D_1_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_D_1_pose_matrix-sampler" target="Sail_skeleton_Sail_D_1/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_D_2_pose_matrix">
+      <source id="Sail_skeleton_Sail_D_2_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_D_2_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_2_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_D_2_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_D_2_pose_matrix-output-array" count="256">0.9972628 0.06902438 0.02652584 2.38419e-7 -0.05568646 0.9370413 -0.3447486 1.2145 -0.04865197 0.3423277 0.9383196 -2.98023e-8 0 0 0 1 0.9976875 0.05813099 0.03523683 2.38419e-7 -0.04927108 0.9755247 -0.2142968 1.2145 -0.04683179 0.212065 0.9761323 -2.98023e-8 0 0 0 1 0.997825 0.05493719 0.03644657 2.38419e-7 -0.0467905 0.979579 -0.1955371 1.2145 -0.04644465 0.1934064 0.9800183 -2.98023e-8 0 0 0 1 0.9976627 0.05944241 0.03371807 2.38419e-7 -0.04963021 0.9693847 -0.2404773 1.2145 -0.04698043 0.2382417 0.9700685 -2.98023e-8 0 0 0 1 0.9975775 0.06239314 0.03077878 2.38419e-7 -0.05093228 0.9563239 -0.2878359 1.2145 -0.04739358 0.2855709 0.9571845 -2.98023e-8 0 0 0 1 0.9973529 0.06660704 0.02918558 2.38419e-7 -0.05449716 0.9503148 -0.3064813 1.2145 -0.04814941 0.3040794 0.9514287 -2.98023e-8 0 0 0 1 0.9973606 0.06916068 0.0221271 2.38419e-7 -0.05384827 0.9088657 -0.413597 1.2145 -0.04871532 0.4113138 0.9101905 -2.98023e-8 0 0 0 1 0.9974267 0.0669027 0.02579115 2.38419e-7 -0.05307703 0.930761 -0.361754 1.2145 -0.04820782 0.3594541 0.9319162 -2.98023e-8 0 0 0 1 0.9975597 0.06307623 0.0299548 2.38419e-7 -0.0511831 0.952314 -0.3007949 1.2145 -0.04749949 0.2985276 0.9532177 -2.98023e-8 0 0 0 1 0.9974334 0.06422938 0.03165893 2.38419e-7 -0.05339042 0.9616747 -0.2689429 1.2145 -0.04771973 0.2665623 0.9626352 -2.98023e-8 0 0 0 1 0.9974679 0.0639662 0.03110253 2.38419e-7 -0.05278448 0.9588102 -0.2790987 1.2145 -0.04767441 0.2767502 0.959758 -2.98023e-8 0 0 0 1 0.9974741 0.06445758 0.0298642 2.38419e-7 -0.05259548 0.9526555 -0.2994666 1.2145 -0.0477533 0.2971393 0.9536387 -2.98023e-8 0 0 0 1 0.9973119 0.06737335 0.0288302 2.38419e-7 -0.055117 0.9488772 -0.3107947 1.2145 -0.04829569 0.3083701 0.9500392 -2.98023e-8 0 0 0 1 0.9973377 0.06733146 0.02802252 2.38419e-7 -0.05464682 0.9443933 -0.3242438 1.2145 -0.0482962 0.3218491 0.9455578 -2.98023e-8 0 0 0 1 0.9972852 0.06843755 0.02720031 2.38419e-7 -0.05539906 0.9405129 -0.3352098 1.2145 -0.04852328 0.3327928 0.9417502 -2.98023e-8 0 0 0 1 0.9972628 0.06902438 0.02652584 2.38419e-7 -0.05568646 0.9370413 -0.3447486 1.2145 -0.04865197 0.3423277 0.9383196 -2.98023e-8 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_2_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_D_2_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_D_2_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_2_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_D_2_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_D_2_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_D_2_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_D_2_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_D_2_pose_matrix-sampler" target="Sail_skeleton_Sail_D_2/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_D_3_pose_matrix">
+      <source id="Sail_skeleton_Sail_D_3_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_D_3_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_3_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_D_3_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_D_3_pose_matrix-output-array" count="256">0.9993926 0.03141386 0.01506826 -2.38419e-7 -0.02343858 0.9261863 -0.3763368 1.205625 -0.02577818 0.3757553 0.9263604 1.19209e-7 0 0 0 1 0.9994108 0.03003593 0.01658696 -2.38419e-7 -0.02276094 0.9420998 -0.3345589 1.205625 -0.02567533 0.3339844 0.9422289 1.19209e-7 0 0 0 1 0.9992398 0.03465502 0.01783643 -2.38419e-7 -0.02841441 0.9609573 -0.2752333 1.205625 -0.02667823 0.2745174 0.961212 1.19209e-7 0 0 0 1 0.9991806 0.034991 0.02032408 -2.38419e-7 -0.0303484 0.980216 -0.1955901 1.205625 -0.02676585 0.1948131 0.9804751 1.19209e-7 0 0 0 1 0.9991075 0.03711995 0.02014123 -2.38419e-7 -0.03244945 0.9799808 -0.1964296 1.205625 -0.02702945 0.1956008 0.980311 1.19209e-7 0 0 0 1 0.9991555 0.03752971 0.01670866 -2.38419e-7 -0.03082624 0.9537764 -0.2989317 1.205625 -0.02715512 0.2981643 0.9541281 1.19209e-7 0 0 0 1 0.9989522 0.04334645 0.01465776 -2.38419e-7 -0.03596648 0.9418517 -0.3340981 1.205625 -0.02828737 0.333221 0.9424243 1.19209e-7 0 0 0 1 0.9991337 0.03882517 0.01496048 -2.38419e-7 -0.03130923 0.9383613 -0.344235 1.205625 -0.02740329 0.3434685 0.9387643 1.19209e-7 0 0 0 1 0.9993696 0.03218003 0.01497691 -2.38419e-7 -0.0242161 0.9266458 -0.3751548 1.205625 -0.02595075 0.3745557 0.9268413 1.19209e-7 0 0 0 1 0.9995983 0.02320167 0.01625723 -2.38419e-7 -0.01519326 0.9233679 -0.3836154 1.205625 -0.02391189 0.3832145 0.9233498 1.19209e-7 0 0 0 1 0.9994307 0.029697 0.01598934 -2.38419e-7 -0.02206836 0.9342854 -0.3558421 1.205625 -0.02550602 0.3552868 0.9344093 1.19209e-7 0 0 0 1 0.999269 0.0346216 0.01619341 -2.38419e-7 -0.0274539 0.9449278 -0.3261251 1.205625 -0.02659255 0.3254423 0.945188 1.19209e-7 0 0 0 1 0.9992765 0.03443363 0.01612631 -2.38419e-7 -0.02721752 0.9439399 -0.3289931 1.205625 -0.02655067 0.3283163 0.9441947 1.19209e-7 0 0 0 1 0.999211 0.03678538 0.01495057 -2.38419e-7 -0.02913093 0.9349722 -0.3535225 1.205625 -0.02698279 0.3528082 0.9353065 1.19209e-7 0 0 0 1 0.9992841 0.03509979 0.01409555 -2.38419e-7 -0.02692724 0.9218601 -0.3865859 1.205625 -0.02656318 0.3859298 0.9221457 1.19209e-7 0 0 0 1 0.9993926 0.03141386 0.01506826 -2.38419e-7 -0.02343858 0.9261863 -0.3763368 1.205625 -0.02577818 0.3757553 0.9263604 1.19209e-7 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_3_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_D_3_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_D_3_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_3_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_D_3_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_D_3_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_D_3_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_D_3_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_D_3_pose_matrix-sampler" target="Sail_skeleton_Sail_D_3/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_D_4_pose_matrix">
+      <source id="Sail_skeleton_Sail_D_4_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_D_4_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_4_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_D_4_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_D_4_pose_matrix-output-array" count="256">0.9963657 -0.05096093 -0.06824908 -2.38419e-7 0.06127596 0.9854126 0.1587698 1.20367 0.05916268 -0.162375 0.9849539 2.38419e-7 0 0 0 1 0.9956926 -0.06802551 -0.0629948 -2.38419e-7 0.07115841 0.9962659 0.04890226 1.20367 0.05943319 -0.05317435 0.9968151 2.38419e-7 0 0 0 1 0.99642 -0.06099387 -0.05853793 -2.38419e-7 0.05999257 0.9980237 -0.01871204 1.20367 0.05956379 0.01513311 0.9981098 2.38419e-7 0 0 0 1 0.9966996 -0.06046386 -0.05416236 -2.38419e-7 0.05535695 0.9942858 -0.09128006 1.20367 0.05937224 0.08798049 0.9943513 2.38419e-7 0 0 0 1 0.9965962 -0.06130308 -0.05511351 -2.38419e-7 0.05706931 0.9955222 -0.0753602 1.20367 0.05948679 0.07195836 0.9956322 2.38419e-7 0 0 0 1 0.9962353 -0.06085882 -0.06173418 -2.38419e-7 0.06305686 0.9974204 0.03430538 1.20367 0.05948739 -0.03806908 0.9975029 2.38419e-7 0 0 0 1 0.9936259 -0.09042922 -0.067304 -2.38419e-7 0.09632258 0.9912558 0.09019241 1.20367 0.05855967 -0.09610052 0.9936476 2.38419e-7 0 0 0 1 0.993426 -0.09427965 -0.06492904 -2.38419e-7 0.09795454 0.993617 0.05595181 1.20367 0.05923972 -0.06194419 0.99632 2.38419e-7 0 0 0 1 0.9951561 -0.07304038 -0.06579393 -2.38419e-7 0.07863086 0.9931159 0.08682574 1.20367 0.05899943 -0.09157874 0.9940485 2.38419e-7 0 0 0 1 0.9965064 -0.05075841 -0.06631885 -2.38419e-7 0.05876079 0.9904283 0.1248982 1.20367 0.05934466 -0.1283589 0.9899507 2.38419e-7 0 0 0 1 0.9966306 -0.0485315 -0.06611964 -2.38419e-7 0.05652608 0.9905494 0.1249694 1.20367 0.05943004 -0.128286 0.989955 2.38419e-7 0 0 0 1 0.9966493 -0.04914309 -0.06538209 -2.38419e-7 0.05618265 0.9922764 0.1105964 1.20367 0.05944229 -0.1138992 0.9917125 2.38419e-7 0 0 0 1 0.9966393 -0.04888324 -0.06572719 -2.38419e-7 0.0563645 0.9915001 0.117265 1.20367 0.05943647 -0.1205757 0.9909233 2.38419e-7 0 0 0 1 0.9966055 -0.04723667 -0.06742299 -2.38419e-7 0.05699535 0.98688 0.1510628 1.20367 0.05940292 -0.1543929 0.9862222 2.38419e-7 0 0 0 1 0.9967979 -0.04032367 -0.06904644 -2.38419e-7 0.05322777 0.9790232 0.1966746 1.20367 0.05966765 -0.1997202 0.9780346 2.38419e-7 0 0 0 1 0.9963657 -0.05096093 -0.06824908 -2.38419e-7 0.06127596 0.9854126 0.1587698 1.20367 0.05916268 -0.162375 0.9849539 2.38419e-7 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_4_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_D_4_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_D_4_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_D_4_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_D_4_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_D_4_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_D_4_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_D_4_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_D_4_pose_matrix-sampler" target="Sail_skeleton_Sail_D_4/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_E_1_pose_matrix">
+      <source id="Sail_skeleton_Sail_E_1_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_E_1_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_1_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_E_1_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_E_1_pose_matrix-output-array" count="256">0.9713581 -0.1446847 -0.1884915 3.83424 0.2093345 0.8963999 0.3907002 0.8717103 0.1124353 -0.4189677 0.9010133 -0.03553163 0 0 0 1 0.975658 -0.1346465 -0.1730928 3.83424 0.1823792 0.9364988 0.2995136 0.8717103 0.1217727 -0.3237915 0.9382595 -0.03553163 0 0 0 1 0.9760651 -0.129814 -0.1744836 3.83424 0.1800937 0.9322251 0.3138838 0.8717103 0.1219114 -0.3377946 0.9332914 -0.03553163 0 0 0 1 0.9754051 -0.1296321 -0.1782691 3.83424 0.1847456 0.9219403 0.3404348 0.8717103 0.1202221 -0.3649963 0.9232144 -0.03553163 0 0 0 1 0.9742819 -0.1312252 -0.183178 3.83424 0.1922651 0.9080634 0.3720962 0.8717103 0.1175087 -0.3977454 0.90994 -0.03553163 0 0 0 1 0.9727927 -0.1350926 -0.1882121 3.83424 0.2016314 0.893781 0.4006256 0.8717103 0.1140988 -0.4276753 0.8967028 -0.03553163 0 0 0 1 0.969598 -0.1538079 -0.1903215 3.83424 0.2186175 0.893895 0.3913549 0.8717103 0.1099338 -0.4210646 0.9003441 -0.03553163 0 0 0 1 0.9709558 -0.1489813 -0.1872132 3.83424 0.2111541 0.9015306 0.3776997 0.8717103 0.1125081 -0.4062608 0.9068047 -0.03553163 0 0 0 1 0.972369 -0.1421042 -0.1852144 3.83424 0.2033258 0.9053472 0.3728345 0.8717103 0.1147019 -0.4001917 0.9092253 -0.03553163 0 0 0 1 0.9732346 -0.1371717 -0.1843846 3.83424 0.1984302 0.9063121 0.373128 0.8717103 0.1159272 -0.3997287 0.9092735 -0.03553163 0 0 0 1 0.9733594 -0.1368404 -0.1839721 3.83424 0.1976562 0.9074357 0.3708004 0.8717103 0.1162022 -0.3972854 0.9103087 -0.03553163 0 0 0 1 0.9731898 -0.137719 -0.1842131 3.83424 0.1986458 0.9069874 0.3713679 0.8717103 0.1159344 -0.3980048 0.9100286 -0.03553163 0 0 0 1 0.9728028 -0.1393857 -0.1850022 3.83424 0.2009306 0.9051568 0.374591 0.8717103 0.1152432 -0.4015759 0.9085463 -0.03553163 0 0 0 1 0.972285 -0.1413829 -0.1862048 3.83424 0.2039739 0.9021996 0.3800409 0.8717103 0.1142625 -0.4074891 0.9060338 -0.03553163 0 0 0 1 0.9717066 -0.1432954 -0.1877551 3.83424 0.2073605 0.8981633 0.3876917 0.8717103 0.1130801 -0.4156557 0.9024654 -0.03553163 0 0 0 1 0.9713581 -0.1446847 -0.1884915 3.83424 0.2093345 0.8963999 0.3907002 0.8717103 0.1124353 -0.4189677 0.9010133 -0.03553163 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_1_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_E_1_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_E_1_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_1_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_E_1_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_E_1_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_E_1_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_E_1_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_E_1_pose_matrix-sampler" target="Sail_skeleton_Sail_E_1/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_E_2_pose_matrix">
+      <source id="Sail_skeleton_Sail_E_2_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_E_2_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_2_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_E_2_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_E_2_pose_matrix-output-array" count="256">0.9915022 0.1135129 0.06354602 -2.38419e-7 -0.0956523 0.9672096 -0.2352804 1.216743 -0.08816962 0.2272029 0.9698479 -5.96046e-8 0 0 0 1 0.9921107 0.1049412 0.06858287 -2.38419e-7 -0.09002678 0.9771029 -0.1927843 1.216743 -0.08724349 0.1850892 0.9788414 -5.96046e-8 0 0 0 1 0.9917284 0.1079593 0.06942288 -2.38419e-7 -0.09376955 0.9787272 -0.1824853 1.216743 -0.08764699 0.1744662 0.9807545 -5.96046e-8 0 0 0 1 0.9909598 0.1154082 0.0684078 -2.38419e-7 -0.1008252 0.9770291 -0.1877473 1.216743 -0.08850396 0.1791528 0.9798323 -5.96046e-8 0 0 0 1 0.990616 0.1201565 0.06513191 -2.38419e-7 -0.1036322 0.9710503 -0.2152259 1.216743 -0.0891071 0.2064566 0.9743898 -5.96046e-8 0 0 0 1 0.9907854 0.1210724 0.06070893 -2.38419e-7 -0.1018843 0.9615821 -0.2549121 1.216743 -0.0892394 0.2463781 0.9650565 -5.96046e-8 0 0 0 1 0.9922805 0.1040971 0.06740358 -2.38419e-7 -0.08831703 0.9747283 -0.2051965 1.216743 -0.08706047 0.1976597 0.9763969 -5.96046e-8 0 0 0 1 0.9926689 0.1002455 0.06752145 -2.38419e-7 -0.08435987 0.9747201 -0.2068937 1.216743 -0.08655463 0.199681 0.9760306 -5.96046e-8 0 0 0 1 0.9925283 0.1029667 0.06546204 -2.38419e-7 -0.08579938 0.9704458 -0.2255528 1.216743 -0.08675171 0.218251 0.972029 -5.96046e-8 0 0 0 1 0.99141 0.1150262 0.06224983 -2.38419e-7 -0.09643798 0.9644188 -0.2461643 1.216743 -0.08835019 0.2380466 0.9672269 -5.96046e-8 0 0 0 1 0.9914018 0.1152616 0.06194648 -2.38419e-7 -0.09649999 0.9637387 -0.2487893 1.216743 -0.08837602 0.2406725 0.9665745 -5.96046e-8 0 0 0 1 0.9912307 0.1165831 0.06220867 -2.38419e-7 -0.09805372 0.9645097 -0.2451673 1.216743 -0.08858318 0.2369177 0.9674827 -5.96046e-8 0 0 0 1 0.9912836 0.1157278 0.06295865 -2.38419e-7 -0.09761573 0.9661208 -0.2389193 1.216743 -0.08847523 0.2306912 0.9689961 -5.96046e-8 0 0 0 1 0.991357 0.1146767 0.06372128 -2.38419e-7 -0.09698765 0.9677132 -0.2326484 1.216743 -0.08834322 0.2244576 0.970471 -5.96046e-8 0 0 0 1 0.991375 0.1144204 0.0639026 -2.38419e-7 -0.09683286 0.9680874 -0.2311511 1.216743 -0.08831164 0.2229697 0.970817 -5.96046e-8 0 0 0 1 0.9915022 0.1135129 0.06354602 -2.38419e-7 -0.0956523 0.9672096 -0.2352804 1.216743 -0.08816962 0.2272029 0.9698479 -5.96046e-8 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_2_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_E_2_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_E_2_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_2_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_E_2_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_E_2_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_E_2_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_E_2_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_E_2_pose_matrix-sampler" target="Sail_skeleton_Sail_E_2/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_E_3_pose_matrix">
+      <source id="Sail_skeleton_Sail_E_3_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_E_3_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_3_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_E_3_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_E_3_pose_matrix-output-array" count="256">0.999031 -0.00409025 0.04382424 -4.76837e-7 0.01492129 0.9681855 -0.2497874 1.205153 -0.0414083 0.2501992 0.9673085 0 0 0 0 1 0.9988669 -0.008706197 0.04678866 -4.76837e-7 0.0150386 0.9904918 -0.136746 1.205153 -0.04515322 0.1372946 0.9895007 0 0 0 0 1 0.9982279 0.04373834 0.0403505 -4.76837e-7 -0.03501002 0.9799541 -0.1961222 1.205153 -0.04811969 0.1943619 0.979749 0 0 0 0 1 0.9985034 0.03919477 0.03814186 -4.76837e-7 -0.02826056 0.9668621 -0.2537297 1.205153 -0.04682278 0.252272 0.9665231 0 0 0 0 1 0.9987823 0.03140761 0.0380462 -4.76837e-7 -0.01954062 0.9599534 -0.2794772 1.205153 -0.04530028 0.2783934 0.9593983 0 0 0 0 1 0.9990297 0.01776242 0.04030248 -4.76837e-7 -0.006188706 0.9626043 -0.27084 1.205153 -0.0436061 0.2703277 0.9617804 0 0 0 0 1 0.9987854 -0.01966023 0.04517882 -4.76837e-7 0.03191011 0.9567673 -0.2890981 1.205153 -0.03754186 0.2901886 0.9562328 0 0 0 0 1 0.9990206 -0.007044353 0.04368426 -4.76837e-7 0.01870956 0.9619001 -0.2727596 1.205153 -0.04009847 0.2733097 0.9610901 0 0 0 0 1 0.9990425 -0.001488462 0.043726 -4.76837e-7 0.01197536 0.9705571 -0.2405725 1.205153 -0.04208048 0.2408657 0.9696458 0 0 0 0 1 0.9989843 -0.004687555 0.04481798 -4.76837e-7 0.01403137 0.9774885 -0.2105208 1.205153 -0.0428222 0.2109357 0.9765616 0 0 0 0 1 0.9989406 0.0172476 0.04266148 -4.76837e-7 -0.008129328 0.9786628 -0.2053114 1.205153 -0.04529232 0.2047471 0.9777665 0 0 0 0 1 0.9989463 0.01765853 0.04236104 -4.76837e-7 -0.008251138 0.9770766 -0.212727 1.205153 -0.04514641 0.2121533 0.9761931 0 0 0 0 1 0.9989372 0.01995365 0.04155189 -4.76837e-7 -0.009950027 0.9735401 -0.2282991 1.205153 -0.04500781 0.2276429 0.972704 0 0 0 0 1 0.9989965 0.01747968 0.04123674 -4.76837e-7 -0.006828338 0.9693766 -0.2454834 1.205153 -0.04426488 0.2449554 0.9685234 0 0 0 0 1 0.9990781 0.009443834 0.04187952 -4.76837e-7 0.001641877 0.9663861 -0.2570894 1.205153 -0.04289968 0.2569211 0.9654798 0 0 0 0 1 0.999031 -0.00409025 0.04382424 -4.76837e-7 0.01492129 0.9681855 -0.2497874 1.205153 -0.0414083 0.2501992 0.9673085 0 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_3_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_E_3_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_E_3_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_3_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_E_3_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_E_3_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_E_3_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_E_3_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_E_3_pose_matrix-sampler" target="Sail_skeleton_Sail_E_3/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_E_4_pose_matrix">
+      <source id="Sail_skeleton_Sail_E_4_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_E_4_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_4_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_E_4_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_E_4_pose_matrix-output-array" count="256">0.9938883 -0.05889086 -0.09337173 0 0.03048497 0.9593465 -0.2805793 1.20368 0.1060994 0.2760181 0.9552783 0 0 0 0 1 0.9950941 -0.02257395 -0.09632586 0 -0.008146532 0.9516196 -0.3071701 1.20368 0.09859961 0.3064479 0.9467669 0 0 0 0 1 0.9876781 -0.1321371 -0.08385771 0 0.1043637 0.9554005 -0.2762566 1.20368 0.1166214 0.2641008 0.9574183 0 0 0 0 1 0.9861695 -0.1412526 -0.08670561 0 0.1161426 0.9621618 -0.2464859 1.20368 0.1182416 0.2330066 0.9652599 0 0 0 0 1 0.986022 -0.1411908 -0.08846469 0 0.1172518 0.9652281 -0.2336371 1.20368 0.118376 0.2199987 0.968291 0 0 0 0 1 0.9891692 -0.1145982 -0.09171632 0 0.09072088 0.9685376 -0.231742 1.20368 0.1153879 0.2209114 0.9684439 0 0 0 0 1 0.9947729 0.002227858 -0.1020903 0 -0.03032677 0.9610994 -0.2745325 1.20368 0.09750731 0.2761935 0.9561428 0 0 0 0 1 0.9947636 -0.02418425 -0.09930171 0 -0.003000468 0.9642712 -0.2648998 1.20368 0.1021602 0.2638106 0.9591491 0 0 0 0 1 0.9942296 -0.04770118 -0.09608659 0 0.0204047 0.9634368 -0.267157 1.20368 0.1053171 0.2636547 0.9588504 0 0 0 0 1 0.9931261 -0.07148919 -0.09268389 0 0.04400793 0.9617739 -0.2702853 1.20368 0.1084634 0.2643485 0.9583085 0 0 0 0 1 0.9905952 -0.1041065 -0.08878866 0 0.07704799 0.960668 -0.2667965 1.20368 0.1130717 0.2574463 0.959654 0 0 0 0 1 0.9905042 -0.1050928 -0.08864105 0 0.07802422 0.960545 -0.2669553 1.20368 0.1131988 0.2575041 0.9596235 0 0 0 0 1 0.9904734 -0.1054363 -0.08857803 0 0.0783556 0.9604756 -0.2671083 1.20368 0.1132399 0.257623 0.9595867 0 0 0 0 1 0.991327 -0.0961411 -0.08960009 0 0.06887858 0.9607298 -0.2688004 1.20368 0.1119242 0.2602974 0.9590192 0 0 0 0 1 0.9927827 -0.0778985 -0.09118521 0 0.04990097 0.9596993 -0.2765625 1.20368 0.1090542 0.2700162 0.9566599 0 0 0 0 1 0.9938883 -0.05889086 -0.09337173 0 0.03048497 0.9593465 -0.2805793 1.20368 0.1060994 0.2760181 0.9552783 0 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_4_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_E_4_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_E_4_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_E_4_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_E_4_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_E_4_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_E_4_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_E_4_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_E_4_pose_matrix-sampler" target="Sail_skeleton_Sail_E_4/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_A_1_pose_matrix">
+      <source id="Sail_skeleton_Sail_A_1_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_A_1_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_1_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_A_1_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_A_1_pose_matrix-output-array" count="256">0.9702491 0.1495076 0.1904321 -3.83425 -0.2159228 0.8901435 0.4012752 0.8717102 -0.1095182 -0.4304555 0.8959429 0.01635339 0 0 0 1 0.9746909 0.137581 0.1762084 -3.83425 -0.1889206 0.9283273 0.3201832 0.8717102 -0.119528 -0.345369 0.9308239 0.01635339 0 0 0 1 0.9751401 0.1327311 0.1774382 -3.83425 -0.1863934 0.9243575 0.3328971 0.8717102 -0.1198305 -0.3576946 0.9261183 0.01635339 0 0 0 1 0.974526 0.1327091 0.1807964 -3.83425 -0.1906236 0.9148462 0.3559761 0.8717102 -0.1181596 -0.381372 0.9168389 0.01635339 0 0 0 1 0.9732805 0.1359091 0.1850778 -3.83425 -0.1986061 0.9027936 0.3814697 0.8717102 -0.1152419 -0.4080347 0.9056638 0.01635339 0 0 0 1 0.9718406 0.1400325 0.189517 -3.83425 -0.2074011 0.8900851 0.4058734 0.8717102 -0.1118508 -0.4337502 0.8940638 0.01635339 0 0 0 1 0.9686827 0.156379 0.1928717 -3.83425 -0.2242098 0.8846503 0.4088076 0.8717102 -0.1066951 -0.4392486 0.8920072 0.01635339 0 0 0 1 0.9700332 0.1519183 0.1896221 -3.83425 -0.2168638 0.8932797 0.3937277 0.8717102 -0.1095712 -0.423051 0.8994564 0.01635339 0 0 0 1 0.9713438 0.1461138 0.1874623 -3.83425 -0.2096604 0.8982564 0.3862356 0.8717102 -0.1119549 -0.414471 0.90315 0.01635339 0 0 0 1 0.9721894 0.1417628 0.1864171 -3.83425 -0.2049223 0.9002751 0.3840725 0.8717102 -0.1133795 -0.4115921 0.9042881 0.01635339 0 0 0 1 0.97229 0.1418436 0.1858297 -3.83425 -0.2042637 0.9020709 0.3801898 0.8717102 -0.1137041 -0.407613 0.906048 0.01635339 0 0 0 1 0.9720368 0.1436027 0.1858028 -3.83425 -0.2056374 0.9025903 0.3782113 0.8717102 -0.1133917 -0.4058433 0.9068812 0.01635339 0 0 0 1 0.9716863 0.1450076 0.1865438 -3.83425 -0.207664 0.9007285 0.3815283 0.8717102 -0.1127008 -0.4094642 0.9053383 0.01635339 0 0 0 1 0.9711239 0.1469079 0.1879801 -3.83425 -0.2109181 0.8969035 0.3886872 0.8717102 -0.1114988 -0.4171118 0.9019899 0.01635339 0 0 0 1 0.9706203 0.1479902 0.1897245 -3.83425 -0.2138783 0.8918839 0.3984959 0.8717102 -0.1102387 -0.4273661 0.8973324 0.01635339 0 0 0 1 0.9702491 0.1495076 0.1904321 -3.83425 -0.2159228 0.8901435 0.4012752 0.8717102 -0.1095182 -0.4304555 0.8959429 0.01635339 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_1_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_A_1_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_A_1_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_1_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_A_1_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_A_1_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_A_1_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_A_1_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_A_1_pose_matrix-sampler" target="Sail_skeleton_Sail_A_1/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_A_2_pose_matrix">
+      <source id="Sail_skeleton_Sail_A_2_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_A_2_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_2_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_A_2_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_A_2_pose_matrix-output-array" count="256">0.9897814 -0.126656 -0.06550645 0 0.1074721 0.9645408 -0.2410606 1.221237 0.09371547 0.2315572 0.9682968 0 0 0 0 1 0.9912103 -0.1117343 -0.07083669 0 0.0955259 0.9749049 -0.2010838 1.221237 0.09152706 0.1925496 0.9770095 0 0 0 0 1 0.9905224 -0.1171338 -0.07173068 0 0.1016804 0.9764297 -0.1903829 1.221237 0.0923403 0.1812849 0.9790859 0 0 0 0 1 0.9898497 -0.123148 -0.0709385 0 0.1073093 0.9749027 -0.1950613 1.221237 0.09317958 0.185469 0.9782224 0 0 0 0 1 0.9890463 -0.1309512 -0.06811197 0 0.1135052 0.96973 -0.2161943 1.221237 0.09436115 0.2060951 0.9739718 0 0 0 0 1 0.9893218 -0.1309058 -0.06407946 0 0.1110187 0.9617007 -0.2506115 1.221237 0.09443182 0.2408214 0.9659648 0 0 0 0 1 0.9908069 -0.116606 -0.06859227 0 0.09903541 0.9705876 -0.2194339 1.221237 0.09216215 0.2106235 0.9732133 0 0 0 0 1 0.9913747 -0.1113902 -0.06905559 0 0.09396169 0.971413 -0.2180082 1.221237 0.09136551 0.2096392 0.9735009 0 0 0 0 1 0.9911806 -0.1141647 -0.06728689 0 0.09566464 0.967797 -0.2328448 1.221237 0.09170275 0.2243542 0.9701835 0 0 0 0 1 0.9906058 -0.1202757 -0.06507073 0 0.1005998 0.9632643 -0.2490003 1.221237 0.09262908 0.240115 0.9663151 0 0 0 0 1 0.9902999 -0.1229159 -0.06479187 0 0.1031668 0.9628103 -0.2497044 1.221237 0.09307499 0.2405978 0.9661521 0 0 0 0 1 0.9896956 -0.1273996 -0.06536162 0 0.1081536 0.9642658 -0.2418547 1.221237 0.09383823 0.2322934 0.9681088 0 0 0 0 1 0.9897739 -0.126375 -0.06615962 0 0.1075799 0.9658878 -0.2355564 1.221237 0.09367125 0.2260301 0.9696063 0 0 0 0 1 0.989683 -0.1269224 -0.0664707 0 0.1083364 0.9665363 -0.2325304 1.221237 0.09375967 0.2229301 0.9703151 0 0 0 0 1 0.9896368 -0.1274393 -0.06616805 0 0.1086848 0.9659352 -0.2348535 1.221237 0.09384369 0.2252282 0.9697762 0 0 0 0 1 0.9897814 -0.126656 -0.06550645 0 0.1074721 0.9645408 -0.2410606 1.221237 0.09371547 0.2315572 0.9682968 0 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_2_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_A_2_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_A_2_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_2_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_A_2_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_A_2_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_A_2_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_A_2_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_A_2_pose_matrix-sampler" target="Sail_skeleton_Sail_A_2/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_A_3_pose_matrix">
+      <source id="Sail_skeleton_Sail_A_3_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_A_3_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_3_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_A_3_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_A_3_pose_matrix-output-array" count="256">0.9988863 0.01369609 -0.04515221 -4.76837e-7 -0.02432279 0.9694663 -0.2440144 1.205153 0.04043152 0.2448408 0.9687197 0 0 0 0 1 0.9989582 -8.51922e-4 -0.04563205 -4.76837e-7 -0.00629513 0.9876972 -0.15625 1.205153 0.04520379 0.1563744 0.9866628 0 0 0 0 1 0.998476 -0.03761985 -0.04038452 -4.76837e-7 0.02838307 0.9775327 -0.2088631 1.205153 0.0473346 0.2073984 0.9771105 0 0 0 0 1 0.9985684 -0.03736788 -0.03827692 -4.76837e-7 0.02635096 0.9663332 -0.2559401 1.205153 0.04655222 0.254565 0.9659343 0 0 0 0 1 0.9988896 -0.02663059 -0.03886854 -4.76837e-7 0.01488141 0.9610389 -0.2760116 1.205153 0.04470455 0.2751266 0.960368 0 0 0 0 1 0.999075 -0.0123864 -0.04118223 -4.76837e-7 9.57571e-4 0.9637927 -0.2666501 1.205153 0.04299399 0.2663639 0.9629131 0 0 0 0 1 0.9985767 0.02663302 -0.04620994 -4.76837e-7 -0.03888705 0.9565266 -0.2890397 1.205153 0.03650305 0.2904253 0.956201 0 0 0 0 1 0.9989863 0.009590223 -0.04398686 -4.76837e-7 -0.02134395 0.9611535 -0.2751871 1.205153 0.03963905 0.2758469 0.9603838 0 0 0 0 1 0.9990408 0.002049364 -0.04374417 -4.76837e-7 -0.01261236 0.9700446 -0.2425985 1.205153 0.04193664 0.2429174 0.9691399 0 0 0 0 1 0.999031 -0.005529754 -0.04366776 -4.76837e-7 -0.003888689 0.9771097 -0.2126992 1.205153 0.04384439 0.2126628 0.9761413 0 0 0 0 1 0.9989169 -0.0188858 -0.04252985 -4.76837e-7 0.009811934 0.978875 -0.2042226 1.205153 0.04548834 0.203584 0.9780001 0 0 0 0 1 0.998984 -0.01425166 -0.04275768 -4.76837e-7 0.004875816 0.9772949 -0.2118267 1.205153 0.04480577 0.2114029 0.9763713 0 0 0 0 1 0.9990132 -0.01352112 -0.04231026 -4.76837e-7 0.003526889 0.9736814 -0.2278848 1.205153 0.044278 0.2275106 0.9727682 0 0 0 0 1 0.9990679 -0.00756865 -0.04250179 -4.76837e-7 -0.003056616 0.9696388 -0.2445218 1.205153 0.04306211 0.2444237 0.9687117 0 0 0 0 1 0.9990552 0.001971774 -0.04341752 -4.76837e-7 -0.01300302 0.9667744 -0.2552994 1.205153 0.04147157 0.2556227 0.9658866 0 0 0 0 1 0.9988863 0.01369609 -0.04515221 -4.76837e-7 -0.02432279 0.9694663 -0.2440144 1.205153 0.04043152 0.2448408 0.9687197 0 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_3_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_A_3_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_A_3_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_3_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_A_3_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_A_3_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_A_3_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_A_3_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_A_3_pose_matrix-sampler" target="Sail_skeleton_Sail_A_3/transform"/>
+    </animation>
+    <animation id="Sail_skeleton_Sail_A_4_pose_matrix">
+      <source id="Sail_skeleton_Sail_A_4_pose_matrix-input">
+        <float_array id="Sail_skeleton_Sail_A_4_pose_matrix-input-array" count="16">0 0.3333333 0.375 0.4583333 0.5833333 0.6666667 0.9583333 1.041667 1.125 1.291667 1.375 1.625 1.708333 1.75 1.958333 2.083333</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_4_pose_matrix-input-array" count="16" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_A_4_pose_matrix-output">
+        <float_array id="Sail_skeleton_Sail_A_4_pose_matrix-output-array" count="256">0.9939502 0.05771534 0.09344484 2.38419e-7 -0.02922604 0.9591114 -0.281516 1.203681 -0.1058718 0.2770818 0.9549958 5.96046e-8 0 0 0 1 0.9946601 0.04046862 0.09494004 2.38419e-7 -0.01106057 0.9564161 -0.2917981 1.203681 -0.1026109 0.2891898 0.9517565 5.96046e-8 0 0 0 1 0.9883519 0.1256228 0.08590381 2.38419e-7 -0.09859926 0.9585475 -0.2673293 1.203681 -0.1159255 0.2557454 0.9597687 5.96046e-8 0 0 0 1 0.9862514 0.1407619 0.08656783 2.38419e-7 -0.1155196 0.9618659 -0.2479299 1.203681 -0.1181657 0.234521 0.9649025 5.96046e-8 0 0 0 1 0.9860108 0.1418685 0.0874981 2.38419e-7 -0.1173356 0.963618 -0.2401514 1.203681 -0.1183847 0.2265252 0.9667841 5.96046e-8 0 0 0 1 0.9892012 0.1150204 0.09083574 2.38419e-7 -0.0905209 0.9668998 -0.2385599 1.203681 -0.1152683 0.2277613 0.9668703 5.96046e-8 0 0 0 1 0.9947861 0.001852319 0.101967 2.38419e-7 0.02567265 0.9630889 -0.2679567 1.203681 -0.09869959 0.2691774 0.9580199 5.96046e-8 0 0 0 1 0.9945376 0.03394356 0.09870517 2.38419e-7 -0.007501796 0.9664454 -0.2567624 1.203681 -0.1041086 0.2546195 0.9614211 5.96046e-8 0 0 0 1 0.9936581 0.05990165 0.09515942 2.38419e-7 -0.03325397 0.964981 -0.260204 1.203681 -0.1074137 0.2553893 0.9608532 5.96046e-8 0 0 0 1 0.9920654 0.08687333 0.09088026 2.38419e-7 -0.05962671 0.9615104 -0.268221 1.203681 -0.1106835 0.2606739 0.9590613 5.96046e-8 0 0 0 1 0.9901927 0.1085454 0.08795717 2.38419e-7 -0.08132146 0.9597324 -0.2688879 1.203681 -0.1136019 0.259098 0.959147 5.96046e-8 0 0 0 1 0.9904177 0.1064313 0.08800635 2.38419e-7 -0.07903246 0.9593827 -0.2708113 1.203681 -0.1132546 0.261261 0.9586012 5.96046e-8 0 0 0 1 0.9907562 0.1027578 0.08855999 2.38419e-7 -0.07539413 0.9598341 -0.2702486 1.203681 -0.112773 0.2610736 0.9587091 5.96046e-8 0 0 0 1 0.9917908 0.09060411 0.0902324 2.38419e-7 -0.06324661 0.9608768 -0.2696587 1.203681 -0.1111344 0.2617381 0.9587192 5.96046e-8 0 0 0 1 0.9930587 0.07346232 0.09185737 2.38419e-7 -0.04550994 0.9601231 -0.2758491 1.203681 -0.1084589 0.2697539 0.9568018 5.96046e-8 0 0 0 1 0.9939502 0.05771534 0.09344484 2.38419e-7 -0.02922604 0.9591114 -0.281516 1.203681 -0.1058718 0.2770818 0.9549958 5.96046e-8 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_4_pose_matrix-output-array" count="16" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Sail_skeleton_Sail_A_4_pose_matrix-interpolation">
+        <Name_array id="Sail_skeleton_Sail_A_4_pose_matrix-interpolation-array" count="16">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#Sail_skeleton_Sail_A_4_pose_matrix-interpolation-array" count="16" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Sail_skeleton_Sail_A_4_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Sail_skeleton_Sail_A_4_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Sail_skeleton_Sail_A_4_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Sail_skeleton_Sail_A_4_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#Sail_skeleton_Sail_A_4_pose_matrix-sampler" target="Sail_skeleton_Sail_A_4/transform"/>
+    </animation>
+  </library_animations>
+  <library_controllers>
+    <controller id="Sail_skeleton_Celt_fishing_ship_sail-skin" name="Sail_skeleton">
+      <skin source="#Plane_002-mesh">
+        <bind_shape_matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</bind_shape_matrix>
+        <source id="Sail_skeleton_Celt_fishing_ship_sail-skin-joints">
+          <Name_array id="Sail_skeleton_Celt_fishing_ship_sail-skin-joints-array" count="20">Sail_A_1 Sail_A_2 Sail_A_3 Sail_A_4 Sail_B_1 Sail_B_2 Sail_B_3 Sail_B_4 Sail_C_1 Sail_C_2 Sail_C_3 Sail_C_4 Sail_D_1 Sail_D_2 Sail_D_3 Sail_D_4 Sail_E_1 Sail_E_2 Sail_E_3 Sail_E_4</Name_array>
+          <technique_common>
+            <accessor source="#Sail_skeleton_Celt_fishing_ship_sail-skin-joints-array" count="20" stride="1">
+              <param name="JOINT" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Sail_skeleton_Celt_fishing_ship_sail-skin-bind_poses">
+          <float_array id="Sail_skeleton_Celt_fishing_ship_sail-skin-bind_poses-array" count="320">0.9810014 -0.1302042 0.1438176 3.745084 0.1302042 -0.1076736 -0.9856234 0.6274415 0.1438176 0.9856234 -0.08867478 0.5466906 0 0 0 1 0.9975405 -0.04959529 0.0495342 3.713758 0.04959523 0 -0.9987695 -0.8917927 0.04953426 0.9987694 0.002459645 0.2996953 0 0 0 1 1 0 0 3.61547 0 0 -1 -2.279061 0 1 0 0.1151415 0 0 0 1 0.9859783 -0.1184129 0.1175798 3.960641 0.1184129 0 -0.9929646 -3.030119 0.1175797 0.9929644 0.01402157 0.5882712 0 0 0 1 0.9951525 -0.06545907 0.0733934 1.89191 0.06545907 -0.1160601 -0.9910827 0.1507874 0.0733934 0.9910828 -0.1112126 0.3339627 0 0 0 1 0.9993526 -0.02478373 0.02607607 1.858379 0.02478379 -0.05109387 -0.9983864 -1.125423 0.02607607 0.9983863 -0.05044656 0.3196677 0 0 0 1 1 0 0 1.80774 0 4.10527e-6 -1 -2.359619 0 1 4.17232e-6 0.3922064 0 0 0 1 0.996643 -0.0594384 0.0562995 1.978972 0.05943864 0.05243194 -0.9968542 -3.424068 0.0562995 0.996854 0.05578893 0.6915249 0 0 0 1 1 0 0 0 0 -0.14399 -0.9895792 -0.03051829 0 0.9895792 -0.14399 0.2118548 0 0 0 1 1 0 0 0 0 -0.02432346 -0.9997043 -1.213276 0 0.9997042 -0.02432346 0.3598945 0 0 0 1 1 0 0 0 0 0.02198147 -0.9997583 -2.401185 0 0.9997584 0.02198153 0.4715573 0 0 0 1 1 0 0 0 0 0.05252856 -0.9986193 -3.589048 0 0.9986195 0.05252856 0.5815271 0 0 0 1 0.9951525 0.06545907 -0.0733934 -1.89191 -0.06545907 -0.1160601 -0.9910827 0.1507874 -0.0733934 0.9910828 -0.1112126 0.3339627 0 0 0 1 0.9993526 0.02478373 -0.02607607 -1.858379 -0.02478379 -0.05109387 -0.9983864 -1.125423 -0.02607607 0.9983863 -0.05044656 0.3196677 0 0 0 1 1 0 0 -1.80774 0 0 -1 -2.359621 0 0.9999999 0 0.3921965 0 0 0 1 0.996643 0.0594384 -0.05629932 -1.978971 -0.05943858 0.05243605 -0.9968537 -3.424064 -0.05629926 0.9968536 0.05579298 0.6915438 0 0 0 1 0.9817278 0.1306768 -0.1383242 -3.741792 -0.1306768 -0.06542879 -0.9892637 0.6256338 -0.1383242 0.9892637 -0.04715681 0.5715679 0 0 0 1 0.9975404 0.04959523 -0.04953426 -3.713758 -0.04959523 0 -0.9987693 -0.8917923 -0.0495342 0.9987694 0.002459645 0.2996951 0 0 0 1 1 0 0 -3.61547 0 0 -1 -2.27906 0 1 0 0.1151415 0 0 0 1 0.9859782 0.1184129 -0.1175798 -3.96064 -0.1184129 0 -0.9929645 -3.030119 -0.1175797 0.9929644 0.01402157 0.5882711 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Sail_skeleton_Celt_fishing_ship_sail-skin-bind_poses-array" count="20" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Sail_skeleton_Celt_fishing_ship_sail-skin-weights">
+          <float_array id="Sail_skeleton_Celt_fishing_ship_sail-skin-weights-array" count="80">1 1 1 1 0.5 0.5 1 0.5 0.5 1 0.5 0.5 0.5 0.5 0.5 0.5 1 1 0.5 0.5 0.5 0.5 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1 1 0.5 0.5 0.5 0.5 1 1 0.5 0.5 0.5 0.5 0.5 0.5 1 0.5 0.5 1 0.5 0.5 1 1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Sail_skeleton_Celt_fishing_ship_sail-skin-weights-array" count="80" stride="1">
+              <param name="WEIGHT" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <joints>
+          <input semantic="JOINT" source="#Sail_skeleton_Celt_fishing_ship_sail-skin-joints"/>
+          <input semantic="INV_BIND_MATRIX" source="#Sail_skeleton_Celt_fishing_ship_sail-skin-bind_poses"/>
+        </joints>
+        <vertex_weights count="50">
+          <input semantic="JOINT" source="#Sail_skeleton_Celt_fishing_ship_sail-skin-joints" offset="0"/>
+          <input semantic="WEIGHT" source="#Sail_skeleton_Celt_fishing_ship_sail-skin-weights" offset="1"/>
+          <vcount>1 1 1 1 2 1 2 1 2 2 2 1 1 2 2 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 2 2 1 1 2 2 2 1 2 1 2 1 1 1 1 </vcount>
+          <v>3 0 19 1 16 2 0 3 17 4 18 5 11 6 1 7 2 8 8 9 9 10 10 11 18 12 19 13 16 14 17 15 7 16 15 17 2 18 3 19 0 20 1 21 12 22 4 23 8 24 9 25 5 26 6 27 10 28 11 29 13 30 14 31 4 32 5 33 6 34 7 35 12 36 13 37 14 38 15 39 14 40 15 41 12 42 13 43 6 44 7 45 4 46 5 47 13 48 14 49 10 50 11 51 5 52 6 53 8 54 9 55 4 56 12 57 0 58 1 59 2 60 3 61 15 62 7 63 16 64 17 65 18 66 19 67 9 68 10 69 8 70 1 71 2 72 11 73 17 74 18 75 0 76 16 77 19 78 3 79</v>
+        </vertex_weights>
+      </skin>
+    </controller>
+  </library_controllers>
+  <library_visual_scenes>
+    <visual_scene id="infantry" name="infantry">
+      <node id="Sail_skeleton" name="Sail_skeleton" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <node id="Sail_skeleton_Sail_Root" name="Sail_Root" sid="Sail_Root" type="JOINT">
+          <matrix sid="transform">1 0 0 0 0 1.50996e-7 1 -9.03991e-8 0 -1 1.19209e-7 1 0 0 0 1</matrix>
+          <node id="Sail_skeleton_Sail_C_1" name="Sail_C_1" sid="Sail_C_1" type="JOINT">
+            <matrix sid="transform">1 0 0 -1.13225e-9 0 0.9895791 0.1439902 0.9996953 0 -0.1439902 0.9895791 -0.2140415 0 0 0 1</matrix>
+            <node id="Sail_skeleton_Sail_C_2" name="Sail_C_2" sid="Sail_C_2" type="JOINT">
+              <matrix sid="transform">1 9.37938e-10 9.61036e-10 0 -8.15968e-10 0.9927887 -0.1198774 1.217151 -1.06654e-9 0.1198774 0.9927887 1.49012e-8 0 0 0 1</matrix>
+              <node id="Sail_skeleton_Sail_C_3" name="Sail_C_3" sid="Sail_C_3" type="JOINT">
+                <matrix sid="transform">1 -9.81422e-10 -9.16586e-10 -4.44089e-16 9.37938e-10 0.9989281 -0.04629265 1.207165 9.61037e-10 0.04629264 0.9989279 2.98023e-8 0 0 0 1</matrix>
+                <node id="Sail_skeleton_Sail_C_4" name="Sail_C_4" sid="Sail_C_4" type="JOINT">
+                  <matrix sid="transform">1 0 0 0 0 0.9995328 -0.03056469 1.203961 0 0.0305647 0.9995328 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.06331503</tip_y>
+                      <tip_z sid="tip_z" type="float">-1.20368</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+              </technique>
+            </extra>
+          </node>
+          <node id="Sail_skeleton_Sail_B_1" name="Sail_B_1" sid="Sail_B_1" type="JOINT">
+            <matrix sid="transform">0.9951525 0.06545912 0.07339346 -1.91712 -0.07339346 0.9910828 0.1112127 0.95227 -0.06545912 -0.1160602 0.9910828 -0.1896416 0 0 0 1</matrix>
+            <node id="Sail_skeleton_Sail_B_2" name="Sail_B_2" sid="Sail_B_2" type="JOINT">
+              <matrix sid="transform">0.9980446 -0.04526683 -0.04310626 -1.19209e-7 0.04244957 0.9970356 -0.06416915 1.2145 0.04588321 0.06221382 0.9970075 -2.98023e-8 0 0 0 1</matrix>
+              <node id="Sail_skeleton_Sail_B_3" name="Sail_B_3" sid="Sail_B_3" type="JOINT">
+                <matrix sid="transform">0.9993526 -0.02607619 -0.02478364 0 0.02478378 0.998386 -0.05109802 1.205626 0.02607609 0.05045072 0.9983861 0 0 0 0 1</matrix>
+                <node id="Sail_skeleton_Sail_B_4" name="Sail_B_4" sid="Sail_B_4" type="JOINT">
+                  <matrix sid="transform">0.9966431 0.05943845 0.05629957 1.19209e-7 -0.05629981 0.9968542 -0.05578478 1.20367 -0.05943823 0.05242786 0.9968543 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0.07177007</tip_x>
+                      <tip_y sid="tip_y" type="float">0.06331002</tip_y>
+                      <tip_z sid="tip_z" type="float">-1.20367</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+              </technique>
+            </extra>
+          </node>
+          <node id="Sail_skeleton_Sail_D_1" name="Sail_D_1" sid="Sail_D_1" type="JOINT">
+            <matrix sid="transform">0.9951525 -0.06545912 -0.07339346 1.91712 0.07339346 0.9910828 0.1112127 0.95227 0.06545912 -0.1160602 0.9910828 -0.1896416 0 0 0 1</matrix>
+            <node id="Sail_skeleton_Sail_D_2" name="Sail_D_2" sid="Sail_D_2" type="JOINT">
+              <matrix sid="transform">0.9980446 0.04526683 0.04310626 1.19209e-7 -0.04244957 0.9970356 -0.06416915 1.2145 -0.04588321 0.06221382 0.9970075 -2.98023e-8 0 0 0 1</matrix>
+              <node id="Sail_skeleton_Sail_D_3" name="Sail_D_3" sid="Sail_D_3" type="JOINT">
+                <matrix sid="transform">0.9993526 0.02607609 0.02478375 0 -0.02478378 0.9983863 -0.05109387 1.205626 -0.02607609 0.05044657 0.9983864 0 0 0 0 1</matrix>
+                <node id="Sail_skeleton_Sail_D_4" name="Sail_D_4" sid="Sail_D_4" type="JOINT">
+                  <matrix sid="transform">0.9966431 -0.05943857 -0.05629933 -2.38419e-7 0.05629939 0.9968539 -0.05579305 1.20367 0.05943847 0.05243613 0.9968539 -2.98023e-8 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">-0.07177007</tip_x>
+                      <tip_y sid="tip_y" type="float">0.06331503</tip_y>
+                      <tip_z sid="tip_z" type="float">-1.20367</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+              </technique>
+            </extra>
+          </node>
+          <node id="Sail_skeleton_Sail_E_1" name="Sail_E_1" sid="Sail_E_1" type="JOINT">
+            <matrix sid="transform">0.9817281 -0.1306768 -0.1383242 3.83424 0.1383243 0.9892637 0.04715698 0.8717103 0.1306768 -0.06542892 0.9892637 -0.03553159 0 0 0 1</matrix>
+            <node id="Sail_skeleton_Sail_E_2" name="Sail_E_2" sid="Sail_E_2" type="JOINT">
+              <matrix sid="transform">0.9926459 0.08946492 0.0815466 -4.76837e-7 -0.08459789 0.9945273 -0.06130856 1.216743 -0.08658528 0.05395903 0.9947821 5.96046e-8 0 0 0 1</matrix>
+              <node id="Sail_skeleton_Sail_E_3" name="Sail_E_3" sid="Sail_E_3" type="JOINT">
+                <matrix sid="transform">0.9975405 0.04953426 0.04959527 2.38419e-7 -0.04959523 0.9987693 -7.70834e-9 1.205153 -0.04953424 -0.002459684 0.9987693 0 0 0 0 1</matrix>
+                <node id="Sail_skeleton_Sail_E_4" name="Sail_E_4" sid="Sail_E_4" type="JOINT">
+                  <matrix sid="transform">0.9859785 -0.1184129 -0.1175798 0 0.1175798 0.9929644 -0.01402161 1.20368 0.1184129 -7.9964e-10 0.9929644 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">-0.1435399</tip_x>
+                      <tip_y sid="tip_y" type="float">0</tip_y>
+                      <tip_z sid="tip_z" type="float">-1.20367</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+              </technique>
+            </extra>
+          </node>
+          <node id="Sail_skeleton_Sail_A_1" name="Sail_A_1" sid="Sail_A_1" type="JOINT">
+            <matrix sid="transform">0.9810011 0.1302041 0.1438176 -3.83425 -0.1438176 0.9856232 0.08867493 0.8717103 -0.1302041 -0.1076737 0.9856232 0.01635338 0 0 0 1</matrix>
+            <node id="Sail_skeleton_Sail_A_2" name="Sail_A_2" sid="Sail_A_2" type="JOINT">
+              <matrix sid="transform">0.9921697 -0.0949876 -0.08109703 2.38419e-7 0.08640191 0.9908679 -0.1035158 1.221237 0.0901892 0.09569834 0.9913163 5.96046e-8 0 0 0 1</matrix>
+              <node id="Sail_skeleton_Sail_A_3" name="Sail_A_3" sid="Sail_A_3" type="JOINT">
+                <matrix sid="transform">0.9975405 -0.04953422 -0.0495953 -2.38419e-7 0.04959522 0.9987693 8.28713e-9 1.205153 0.04953428 -0.002459698 0.9987693 -2.98023e-8 0 0 0 1</matrix>
+                <node id="Sail_skeleton_Sail_A_4" name="Sail_A_4" sid="Sail_A_4" type="JOINT">
+                  <matrix sid="transform">0.9859784 0.1184129 0.1175798 0 -0.1175798 0.9929646 -0.01402161 1.20368 -0.1184129 -1.73096e-9 0.9929644 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0.1435399</tip_x>
+                      <tip_y sid="tip_y" type="float">0</tip_y>
+                      <tip_z sid="tip_z" type="float">-1.20367</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+              </technique>
+            </extra>
+          </node>
+          <extra>
+            <technique profile="blender">
+              <layer sid="layer" type="string">0</layer>
+              <tip_x sid="tip_x" type="float">0</tip_x>
+              <tip_y sid="tip_y" type="float">1.50996e-7</tip_y>
+              <tip_z sid="tip_z" type="float">-1</tip_z>
+            </technique>
+          </extra>
+        </node>
+      </node>
+      <node id="Celt_fishing_ship_sail" name="Celt_fishing_ship_sail" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_controller url="#Sail_skeleton_Celt_fishing_ship_sail-skin">
+          <skeleton>#Sail_skeleton_Sail_Root</skeleton>
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="pure_CeltWarshipSail_-material" target="#pure_CeltWarshipSail_-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_controller>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#infantry"/>
+  </scene>
+</COLLADA>

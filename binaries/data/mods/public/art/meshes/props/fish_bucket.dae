@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2018-02-02T03:46:32</created>
+    <modified>2018-02-02T03:46:32</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Material-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.25 0.25 0.25 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Material-material" name="Material">
+      <instance_effect url="#Material-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="rowingboat-mesh_002-mesh" name="rowingboat-mesh.002">
+      <mesh>
+        <source id="rowingboat-mesh_002-mesh-positions">
+          <float_array id="rowingboat-mesh_002-mesh-positions-array" count="72">-0.300695 -0.3006945 -0.008898138 -0.410757 0.1100616 -0.008898138 -0.110062 0.4107566 -0.008898138 0.300695 0.3006947 -0.008898138 0.4107569 -0.1100623 -0.008898138 0.1100619 -0.4107564 -0.008898138 -0.378097 -0.3780964 0.8088982 -0.5164902 0.1383926 0.8088982 -0.1383934 0.5164895 0.8088982 0.3780967 0.3780966 0.8088982 0.5164902 -0.1383924 0.8088982 0.1383937 -0.5164894 0.8088982 -0.3105465 -0.3105472 0.8088983 -0.4242144 0.1136678 0.8088983 -0.1136682 0.4242143 0.8088983 0.3105462 0.3105475 0.8088983 0.4242146 -0.1136676 0.8088983 0.1136683 -0.424214 0.8088983 -0.3232479 0.08661365 0.1418582 -0.2366338 -0.2366341 0.1418582 -0.08661413 0.3232473 0.1418582 0.2366335 0.2366341 0.1418582 0.3232479 -0.08661341 0.1418582 0.08661431 -0.3232471 0.1418582</float_array>
+          <technique_common>
+            <accessor source="#rowingboat-mesh_002-mesh-positions-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rowingboat-mesh_002-mesh-normals">
+          <float_array id="rowingboat-mesh_002-mesh-normals-array" count="120">0 0 1 0 0 1 0 0 1 1.53641e-7 0 1 0.2564654 0.9571526 0.1344782 0.256465 0.9571529 0.1344779 -0.700684 0.7006837 0.1344779 -0.700684 0.7006837 0.134478 -0.9571519 -0.2564685 0.1344778 -0.9571517 -0.2564694 0.1344775 -0.2564658 -0.9571526 0.1344782 -0.256466 -0.9571525 0.1344782 0.700684 -0.7006838 0.1344779 0.7006838 -0.700684 0.1344778 0.9571521 0.2564677 0.1344777 0.957152 0.2564684 0.1344774 -3.36844e-7 -6.95907e-7 1 -4.10121e-7 -6.95918e-7 1 2.52633e-7 -5.09439e-7 1 1.64046e-6 -5.09438e-7 1 1.34738e-6 1.86468e-7 1 0 1.86468e-7 1 0 6.95908e-7 1 4.10121e-7 6.95918e-7 1 -2.52633e-7 5.09439e-7 1 -1.64046e-6 5.09439e-7 1 0 -1.86468e-7 1 -1.64045e-6 -1.86466e-7 1 -0.5860061 -0.5860061 0.5596372 -0.7008562 -0.7008562 -0.1326695 0.2565152 -0.957392 -0.1326676 0.2144918 -0.8004989 0.5596382 0.957392 -0.2565152 -0.1326676 0.8004989 -0.2144918 0.5596382 0.7008562 0.7008562 -0.1326695 0.5860061 0.5860061 0.5596372 -0.2565152 0.957392 -0.1326676 -0.2144918 0.8004989 0.5596382 -0.957392 0.2565152 -0.1326676 -0.8004989 0.2144918 0.5596382</float_array>
+          <technique_common>
+            <accessor source="#rowingboat-mesh_002-mesh-normals-array" count="40" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rowingboat-mesh_002-mesh-map-0">
+          <float_array id="rowingboat-mesh_002-mesh-map-0-array" count="240">0.1172626 0.603575 0.1174795 0.6840845 0.05875009 0.5635443 0.1174795 0.6840845 4.54267e-4 0.6040232 0.05875009 0.5635443 0.1174795 0.6840845 0.05918359 0.7245635 4.54267e-4 0.6040232 4.54267e-4 0.6040232 0.05918359 0.7245635 6.71101e-4 0.6845328 0.898599 0.7491272 0.684827 0.7491272 0.6584486 0.6513508 0.898599 0.7491272 0.6584486 0.6513508 0.9249771 0.6513508 0.8985296 0.749197 0.6847571 0.749197 0.658379 0.6514201 0.8985296 0.749197 0.658379 0.6514201 0.9249078 0.6514201 0.898599 0.7491272 0.684827 0.7491272 0.6584486 0.6513508 0.898599 0.7491272 0.6584486 0.6513508 0.9249771 0.6513508 0.898599 0.7491272 0.684827 0.7491272 0.6584486 0.6513508 0.898599 0.7491272 0.6584486 0.6513508 0.9249771 0.6513508 0.8985296 0.749197 0.6847571 0.749197 0.9249078 0.6514201 0.6847571 0.749197 0.658379 0.6514201 0.9249078 0.6514201 0.898599 0.7491272 0.684827 0.7491272 0.6584486 0.6513508 0.898599 0.7491272 0.6584486 0.6513508 0.9249771 0.6513508 0.3944292 0.6545963 0.3944292 0.8471117 0.3164311 0.8020796 0.3944292 0.6545963 0.3164311 0.8020796 0.3164311 0.6996286 0.3944292 0.6545963 0.3944292 0.8471117 0.3164311 0.8020796 0.3944292 0.6545963 0.3164311 0.8020796 0.3164311 0.6996286 0.3944293 0.6545963 0.3944292 0.8471117 0.3164311 0.6996286 0.3944292 0.8471117 0.3164311 0.8020796 0.3164311 0.6996286 0.3944292 0.6545963 0.3944293 0.8471117 0.3164311 0.8020796 0.3944292 0.6545963 0.3164311 0.8020796 0.3164311 0.6996286 0.3944292 0.6545963 0.3944293 0.8471117 0.3164311 0.8020796 0.3944292 0.6545963 0.3164311 0.8020796 0.3164311 0.6996286 0.3944293 0.6545963 0.3944293 0.8471117 0.3164311 0.8020796 0.3944293 0.6545963 0.3164311 0.8020796 0.3164311 0.6996286 0.9252668 0.6510052 0.8979162 0.8703079 0.6854118 0.8703079 0.9252668 0.6510052 0.6854118 0.8703079 0.6580612 0.6510049 0.6854118 0.8703081 0.6580612 0.6510049 0.9252668 0.6510052 0.6854118 0.8703081 0.9252668 0.6510052 0.8979163 0.8703083 0.6854116 0.8703081 0.6580612 0.6510049 0.9252668 0.6510049 0.6854116 0.8703081 0.9252668 0.6510049 0.8979166 0.8703083 0.6854116 0.8703083 0.6580612 0.6510052 0.9252668 0.6510052 0.6854116 0.8703083 0.9252668 0.6510052 0.8979163 0.8703083 0.6854116 0.8703083 0.6580612 0.6510052 0.9252668 0.6510052 0.6854116 0.8703083 0.9252668 0.6510052 0.897916 0.8703081 0.6854116 0.8703083 0.6580612 0.6510052 0.9252668 0.6510052 0.6854116 0.8703083 0.9252668 0.6510052 0.8979162 0.8703083</float_array>
+          <technique_common>
+            <accessor source="#rowingboat-mesh_002-mesh-map-0-array" count="120" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="rowingboat-mesh_002-mesh-vertices">
+          <input semantic="POSITION" source="#rowingboat-mesh_002-mesh-positions"/>
+        </vertices>
+        <triangles material="Material-material" count="40">
+          <input semantic="VERTEX" source="#rowingboat-mesh_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#rowingboat-mesh_002-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#rowingboat-mesh_002-mesh-map-0" offset="2" set="0"/>
+          <p>18 0 0 19 0 1 20 0 2 19 1 3 21 1 4 20 1 5 19 2 6 23 2 7 21 2 8 21 3 9 23 3 10 22 3 11 12 4 12 17 4 13 23 4 14 12 5 15 23 5 16 19 5 17 17 6 18 16 6 19 22 6 20 17 7 21 22 7 22 23 7 23 16 8 24 15 8 25 21 8 26 16 9 27 21 9 28 22 9 29 15 10 30 14 10 31 20 10 32 15 11 33 20 11 34 21 11 35 14 12 36 13 12 37 20 12 38 13 13 39 18 13 40 20 13 41 13 14 42 12 14 43 19 14 44 13 15 45 19 15 46 18 15 47 6 16 48 11 16 49 17 16 50 6 17 51 17 17 52 12 17 53 11 18 54 10 18 55 16 18 56 11 19 57 16 19 58 17 19 59 10 20 60 9 20 61 16 20 62 9 21 63 15 21 64 16 21 65 9 22 66 8 22 67 14 22 68 9 23 69 14 23 70 15 23 71 8 24 72 7 24 73 13 24 74 8 25 75 13 25 76 14 25 77 7 26 78 6 26 79 12 26 80 7 27 81 12 27 82 13 27 83 6 28 84 0 29 85 5 30 86 6 28 87 5 30 88 11 31 89 4 32 90 10 33 91 11 31 92 4 32 93 11 31 94 5 30 95 3 34 96 9 35 97 10 33 98 3 34 99 10 33 100 4 32 101 2 36 102 8 37 103 9 35 104 2 36 105 9 35 106 3 34 107 1 38 108 7 39 109 8 37 110 1 38 111 8 37 112 2 36 113 0 29 114 6 28 115 7 39 116 0 29 117 7 39 118 1 38 119</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="infantry" name="infantry">
+      <node id="fish_bucket" name="fish_bucket" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#rowingboat-mesh_002-mesh" name="fish_bucket">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material-material" target="#Material-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <node id="prop_fish_a" name="prop_fish_a" type="NODE">
+          <matrix sid="transform">-0.1565455 -0.392858 0.9061766 0.1928002 -0.9380265 -0.2280834 -0.2609295 0.0203559 0.3091921 -0.8908651 -0.3328057 0.6246899 0 0 0 1</matrix>
+        </node>
+        <node id="prop_fish_b" name="prop_fish_b" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 0.1554073 0.9878505 -0.3165137 0 -0.9878505 0.1554073 0.618306 0 0 0 1</matrix>
+        </node>
+        <node id="prop_fish_d" name="prop_fish_d" type="NODE">
+          <matrix sid="transform">0.84412 0.08332231 0.5296403 -0.2065961 -0.5361543 0.1311824 0.8338643 -0.2419688 0 -0.9878505 0.1554073 0.618306 0 0 0 1</matrix>
+        </node>
+        <node id="prop_fish_c" name="prop_fish_c" type="NODE">
+          <matrix sid="transform">0.2523396 0.1503782 0.9558824 -0.2790112 -0.9676387 0.03921543 0.2492738 0.005094618 0 -0.9878505 0.1554073 0.618306 0 0 0 1</matrix>
+        </node>
+        <node id="prop_fish_f" name="prop_fish_f" type="NODE">
+          <matrix sid="transform">-0.5769456 0.126934 0.806859 -0.193817 -0.8167825 -0.08966158 -0.569936 0.2308594 0 -0.9878505 0.1554073 0.618306 0 0 0 1</matrix>
+        </node>
+        <node id="prop_fish_e" name="prop_fish_e" type="NODE">
+          <matrix sid="transform">-0.2984008 0.3246393 0.8975335 -0.08127691 -0.952313 -0.03851533 -0.3026821 0.03315223 -0.06369372 -0.9450534 0.3206513 0.6268089 0 0 0 1</matrix>
+        </node>
+        <extra>
+          <technique profile="blender">
+            <Copiar_posición_constraint>
+              <type sid="type" type="int">9</type>
+              <enforce sid="enforce" type="float">1</enforce>
+              <flag sid="flag" type="int">512</flag>
+              <headtail sid="headtail" type="float">0</headtail>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <own_space sid="own_space" type="int">0</own_space>
+              <rot_error sid="rot_error" type="float">0</rot_error>
+              <tar_space sid="tar_space" type="int">0</tar_space>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <target_id sid="target_id" type="string">RowingBoat</target_id>
+            </Copiar_posición_constraint>
+            <Copiar_rotación_constraint>
+              <type sid="type" type="int">8</type>
+              <enforce sid="enforce" type="float">1</enforce>
+              <flag sid="flag" type="int">528</flag>
+              <headtail sid="headtail" type="float">0</headtail>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <own_space sid="own_space" type="int">0</own_space>
+              <rot_error sid="rot_error" type="float">0</rot_error>
+              <tar_space sid="tar_space" type="int">0</tar_space>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <target_id sid="target_id" type="string">RowingBoat</target_id>
+            </Copiar_rotación_constraint>
+          </technique>
+        </extra>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#infantry"/>
+  </scene>
+</COLLADA>

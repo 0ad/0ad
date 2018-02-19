@@ -1,20 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="100" name="sail mesh">
-      <mesh>props/celt_merchant.dae</mesh>
+      <mesh>props/celt_merchant_sail.dae</mesh>
+      <animations>
+        <animation file="others/celt_merchant_sail_idle.dae" name="idle" speed="100"/>
+        <animation file="others/celt_merchant_sail_move.dae" name="Walk" speed="8"/>
+        <animation file="others/celt_merchant_sail_run.dae" name="Run" speed="6"/>
+      </animations>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="swirl">
-      <textures><texture file="props/celt_sail_swirl.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/celt_sail_swirl.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="circle">
-      <textures><texture file="props/celt_sail_circle.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/celt_sail_circle.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face">
-      <textures><texture file="props/celt_sail_face.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/celt_sail_face.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

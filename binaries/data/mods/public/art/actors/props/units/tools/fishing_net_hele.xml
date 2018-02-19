@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/fishing_net.dae</mesh>
+      <textures>
+        <texture file="props/prop_fishnet.png" name="baseTex"/>
+      </textures>
+      <animations>
+        <animation file="others/fishing_net_action_hele.dae" name="gather_fish" speed="120"/>
+      </animations>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

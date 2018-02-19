@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Mesh">
+      <mesh>skeletal/fish_single.dae</mesh>
+      <animations>
+        <animation file="others/fish_dead.dae" name="idle" speed="100"/>
+      </animations>
+      <textures>
+        <texture file="skeletal/animal_fish_generic.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

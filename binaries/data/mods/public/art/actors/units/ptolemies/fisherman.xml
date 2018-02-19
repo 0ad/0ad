@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_african_1.xml" attachpoint="head"/>
+        <prop actor="props/units/row.xml" attachpoint="weapon_L"/>
+      </props>
+      <textures>
+        <texture file="skeletal/ptol_iar_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/fisher/base_ptol.xml"/>
+    <variant file="biped/fisher/carry_ptol.xml">
+      <props>
+        <prop actor="props/units/row.xml" attachpoint="weapon_L"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/fisher/gather_fish.xml"/>
+    <variant file="biped/fisher/walk.xml">
+      <props>
+        <prop actor="props/units/row.xml" attachpoint="weapon_L"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

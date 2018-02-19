@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skeletons>
+  <standard_skeleton title="fish" id="fish">
+    <bone name="Fish_root">
+      <bone name="Fish_spine">
+        <bone name="Fish_spine2">
+          <bone name="Fish_head"></bone>
+          <bone name="Fish_fin_L"></bone>
+          <bone name="Fish_fin_R"></bone>
+        </bone>
+        <bone name="Fish_tail"></bone>
+        <bone name="Fish_fin"></bone>
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton title="fish" target="fish">
+    <identifier>
+      <root>Fish_root</root>
+    </identifier>
+    <bone name="Fish_root">
+      <target>Fish_root</target>
+      <bone name="Fish_spine">
+        <target>Fish_spine</target>
+        <bone name="Fish_spine2">
+          <target>Fish_spine2</target>
+          <bone name="Fish_head">
+            <target>Fish_head</target>
+          </bone>
+          <bone name="Fish_fin_L">
+            <target>Fish_fin_L</target>
+          </bone>
+          <bone name="Fish_fin_R">
+            <target>Fish_fin_R</target>
+          </bone>
+        </bone>
+        <bone name="Fish_tail">
+          <target>Fish_tail</target>
+        </bone>
+        <bone name="Fish_fin">
+          <target>Fish_fin</target>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_indian_a.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/maur_isp_b.png" name="baseTex"/>
+        <texture file="skeletal/maur_isp_b_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/fisher/base_maur.xml"/>
+    <variant file="biped/fisher/carry_maur.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/fisher/gather_fish.xml"/>
+    <variant file="biped/fisher/walk.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>
