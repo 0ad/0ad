@@ -7,6 +7,8 @@
       <mesh>structural/kush_dock.dae</mesh>
       <props>
         <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
+        <prop actor="props/structures/kushites/statue_bird.xml" attachpoint="statue_01"/>
+        <prop actor="props/structures/kushites/statue_bird.xml" attachpoint="statue_02"/>
       </props>
       <textures>
         <texture file="structural/kush_struct.png" name="baseTex"/>
