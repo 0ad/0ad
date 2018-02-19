@@ -50,12 +50,14 @@ SimpleGroup.prototype.place = function(player, constraint)
 		entitySpecsResult = entitySpecsResult.concat(entitySpecs);
 	}
 
+
 	// Create and place entities as specified
 	let entities = [];
 	for (let entitySpecs of entitySpecsResult)
 	{
+		// The Object must ensure that non-actor entities are not placed at the impassable map-border
 		entities.push(
-			g_Map.placeEntityPassable(entitySpecs.templateName, entitySpecs.playerID, entitySpecs.position, entitySpecs.angle));
+			g_Map.placeEntityAnywhere(entitySpecs.templateName, entitySpecs.playerID, entitySpecs.position, entitySpecs.angle));
 
 		if (this.tileClass)
 			this.tileClass.add(entitySpecs.position.clone().floor());
