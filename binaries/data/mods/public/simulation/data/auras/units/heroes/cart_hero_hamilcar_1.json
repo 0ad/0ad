@@ -1,5 +1,6 @@
 {
-	"type": "global",
+	"type": "range",
+	"radius": 60,
 	"affects": ["Soldier", "Siege"],
 	"modifications": [
 		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 },
