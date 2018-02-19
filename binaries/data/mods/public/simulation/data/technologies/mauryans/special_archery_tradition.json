@@ -1,17 +1,19 @@
 {
 	"genericName": "Archery Tradition",
 	"description": "The Indians had a tradition of fine archery and a penchant for using massed archers in battle.",
-	"cost": {"food": 500, "wood": 500, "stone": 0, "metal": 250},
-	"requirements": {"all": [{"tech": "phase_village"}, {"civ": "maur"}]},
+	"cost": { "food": 500, "wood": 500, "stone": 0, "metal": 250 },
+	"requirements": { "all": [{ "tech": "phase_village" }, { "civ": "maur" }] },
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "armor_plates_ranged.png",
 	"researchTime": 60,
-	"tooltip": "Range +10 meters for bow-wielding units. Archer units train time -20%, but also -20% health.",
+	"tooltip": "Range +10 meters for bow-wielding units. Archer units better accuracy and -20% train time, but also -20% health.",
 	"modifications": [
-		{"value": "Attack/Ranged/MaxRange", "add": 10.0},
-		{"value": "Vision/Range", "add": 10.0},
-		{"value": "Cost/BuildTime", "multiply": 0.8},
-		{"value": "Health/Max", "multiply": 0.8}],
+		{ "value": "Attack/Ranged/MaxRange", "add": 10.0 },
+		{ "value": "Attack/Ranged/Spread", "multiply": 0.8 },
+		{ "value": "Vision/Range", "add": 10.0 },
+		{ "value": "Cost/BuildTime", "multiply": 0.8 },
+		{ "value": "Health/Max", "multiply": 0.8 }
+	],
 	"affects": ["Archer"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
