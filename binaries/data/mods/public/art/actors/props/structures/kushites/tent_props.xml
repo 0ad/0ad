@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>structural/tent_kush_props.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/kush_nubian_hex_e.xml" attachpoint="shield"/>
+      </props>
+      <textures>
+        <texture file="structural/ptol_struct.png" name="baseTex"/>
+        <texture file="structural/ptol_struct_norm.png" name="normTex"/>
+        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/tent_greek.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
