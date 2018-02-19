@@ -4088,7 +4088,7 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 		return undefined;
 
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position)
-	if (!cmpPosition)
+	if (!cmpPosition || !cmpPosition.IsInWorld())
 		return undefined;
 
 	let pos = cmpPosition.GetPosition2D();

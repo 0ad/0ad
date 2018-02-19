@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Daniel Bautista <danielbautista@live.com>, 2014
+# Dianiel García <jdangarr@gmail.com>, 2018
 # Edgar Carballo <karvayoEdgar@gmail.com>, 2015
 # Ivan <navicgamboa@gmail.com>, 2015
 # Joel Toledo Montero <joel.jtm@gmail.com>, 2014
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-02-07 14:34+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-17 19:28+0000\n"
+"Last-Translator: Dianiel García <jdangarr@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -318,7 +319,7 @@ msgstr "%(player)s se ha reincorporado al juego."
 #: gui/session/messages.js:121
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)sse ha unido al juego."
 
 #: gui/session/messages.js:127
 #, javascript-format
@@ -382,7 +383,7 @@ msgstr "Equipo"
 
 #: gui/session/messages.js:180 gui/session/session.js:512
 msgid "Observer"
-msgstr ""
+msgstr "Observador"
 
 #: gui/session/messages.js:181
 msgid "Private"
@@ -425,11 +426,11 @@ msgstr ""
 
 #: gui/session/messages.js:261
 msgid "You have won!"
-msgstr ""
+msgstr "¡Has ganado!"
 
 #: gui/session/messages.js:262
 msgid "You have been defeated!"
-msgstr ""
+msgstr "¡Has sido derrotado!"
 
 #: gui/session/messages.js:270
 #, javascript-format
@@ -567,12 +568,12 @@ msgstr ""
 #: gui/session/messages.js:809
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "Aliados"
 
 #: gui/session/messages.js:813
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "Enemigos"
 
 #: gui/session/messages.js:819
 msgctxt "chat addressee"
@@ -1427,11 +1428,11 @@ msgstr ""
 
 #: gui/session/trade_window.xml:(caption):23
 msgid "Sell:"
-msgstr ""
+msgstr "Vender:"
 
 #: gui/session/trade_window.xml:(caption):27
 msgid "Buy:"
-msgstr ""
+msgstr "Comprar:"
 
 #: gui/session/trade_window.xml:(caption):31
 msgid "No Markets Available"
@@ -1493,7 +1494,7 @@ msgstr "Haz click para seleccionar unidades agrupadas, doble-click para enfocar 
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr ""
+msgstr "Velocidad del juego"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"

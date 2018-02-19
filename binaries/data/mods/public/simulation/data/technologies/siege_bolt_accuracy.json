@@ -5,7 +5,7 @@
 	"requirements": {
 		"all": [
 			{ "tech": "phase_city" },
-			{ "notciv": "brit"},
+			{ "notciv": "brit" },
 			{ "notciv": "gaul" },
 			{ "notciv": "iber" },
 			{ "notciv": "maur" },
@@ -16,7 +16,7 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "accuracy_bolt.png",
 	"researchTime": 40,
-	"tooltip": "Bolt shooter accuracy increased 25%.",
+	"tooltip": "Bolt shooter increased accuracy.",
 	"modifications": [{ "value": "Attack/Ranged/Spread", "multiply": 0.8 }],
 	"affects": ["BoltShooter"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

@@ -358,28 +358,37 @@ m.NavalManager.prototype.addPlan = function(plan)
  * (many units can then call this separately and end up in the same plan)
  * TODO  check garrison classes
  */
-m.NavalManager.prototype.requireTransport = function(gameState, entity, startIndex, endIndex, endPos)
+m.NavalManager.prototype.requireTransport = function(gameState, ent, startIndex, endIndex, endPos)
 {
-	if (!entity.canGarrison())
+	if (!ent.canGarrison())
 		return false;
 
-	if (entity.getMetadata(PlayerID, "transport") !== undefined)
+	if (ent.getMetadata(PlayerID, "transport") !== undefined)
 	{
 		if (this.Config.debug > 0)
-			API3.warn("Petra naval manager error: unit " + entity.id() + " has already required a transport");
+			API3.warn("Petra naval manager error: unit " + ent.id() + " has already required a transport");
 		return false;
 	}
 
+	let plans = [];
 	for (let plan of this.transportPlans)
 	{
-		if (plan.startIndex !== startIndex || plan.endIndex !== endIndex)
+		if (plan.startIndex != startIndex || plan.endIndex != endIndex || plan.state != "boarding")
 			continue;
-		if (plan.state !== "boarding")
+		// Limit the number of siege units per transport to avoid problems when ungarrisoning
+		if (m.isSiegeUnit(ent) && plan.units.filter(unit => m.isSiegeUnit(unit)).length > 3)
 			continue;
-		plan.addUnit(entity, endPos);
+		plans.push(plan);
+	}
+
+	if (plans.length)
+	{
+		plans.sort(plan => plan.units.length);
+		plans[0].addUnit(ent, endPos);
 		return true;
 	}
-	let plan = new m.TransportPlan(gameState, [entity], startIndex, endIndex, endPos);
+
+	let plan = new m.TransportPlan(gameState, [ent], startIndex, endIndex, endPos);
 	if (plan.failed)
 	{
 		if (this.Config.debug > 1)
@@ -405,18 +414,17 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
 	}
 	newplan.init(gameState);
 
-	let nbUnits = 0;
-	plan.units.forEach(function (ent) {
-		if (ent.getMetadata(PlayerID, "onBoard"))
-			return;
-		++nbUnits;
+	for (let ent of plan.needSplit)
+	{
+		if (ent.getMetadata(PlayerID, "onBoard"))	// Should never happen.
+			continue;
 		newplan.addUnit(ent, ent.getMetadata(PlayerID, "endPos"));
-	});
-	if (this.Config.debug > 1)
-		API3.warn(">>>> previous plan left with units " + plan.units.length);
-	if (nbUnits)
+		plan.units.updateEnt(ent);
+	}
+
+	if (newplan.units.length)
 		this.transportPlans.push(newplan);
-	return nbUnits !== 0;
+	return newplan.units.length != 0;
 };
 
 /**
@@ -570,7 +578,7 @@ m.NavalManager.prototype.moveApart = function(gameState)
 		// if transporter ship not idle, move away other ships which could block it
 		for (let blockingShip of this.seaShips[sea].values())
 		{
-			if (blockingShip == ship || !blockingShip.isIdle())
+			if (blockingShip.id() == ship.id() || !blockingShip.isIdle())
 				continue;
 			if (API3.SquareVectorDistance(shipPosition, blockingShip.position()) > 900)
 				continue;
@@ -591,7 +599,7 @@ m.NavalManager.prototype.moveApart = function(gameState)
 		let sea = ship.getMetadata(PlayerID, "sea");
 		for (let blockingShip of this.seaShips[sea].values())
 		{
-			if (blockingShip == ship || !blockingShip.isIdle())
+			if (blockingShip.id() == ship.id() || blockingShip.getMetadata(PlayerID, "transporter") !== undefined)
 				continue;
 			if (API3.SquareVectorDistance(shipPosition, blockingShip.position()) > 900)
 				continue;

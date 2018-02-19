@@ -11,13 +11,14 @@
 # Mário Branco <branco.ana8@gmail.com>, 2017
 # mogafi, 2014
 # Pedro matias <pmsm1100@gmail.com>, 2015
+# Ricardo Amendoeira <ricardo.amendoeira@ist.utl.pt>, 2018
 # Sérgio Marques <smarquespt@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-14 09:04+0100\n"
-"PO-Revision-Date: 2018-02-14 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-17 02:05+0000\n"
+"Last-Translator: Ricardo Amendoeira <ricardo.amendoeira@ist.utl.pt>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,17 +29,17 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr ""
+msgstr "Corte"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr ""
+msgstr "Perfuração"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr ""
+msgstr "Esmagamento"
 
 #: gui/civinfo/civinfo.js:95
 #, javascript-format
@@ -79,12 +80,12 @@ msgstr "História dos %(civilization)s"
 #: gui/common/color.js:149
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Atalho não configurado: %(hotkeyName)s"
 
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "Pressione %(hotkey)s para autocompletar nomes de jogadores"
 
 #: gui/common/color.js:166
 msgctxt "hotkey"
@@ -96,7 +97,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "A abrir %(url)s no browser principal. Por favor espere..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -175,7 +176,7 @@ msgstr "Sim"
 #: gui/common/functions_utility_loadsave.js:97
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "Apague o elemento seleccionado com %(hotkey)s"
 
 #: gui/common/functions_utility_loadsave.js:102
 #, javascript-format
@@ -195,28 +196,28 @@ msgstr "Desculpe, nenhuma descrição disponível."
 #: gui/common/gamedescription.js:101
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s(%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:104
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:110
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:113
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu

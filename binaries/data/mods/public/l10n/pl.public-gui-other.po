@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-14 09:04+0100\n"
-"PO-Revision-Date: 2018-02-15 22:55+0000\n"
+"PO-Revision-Date: 2018-02-17 18:05+0000\n"
 "Last-Translator: Hubert Ślósarski <schlussarz@u-kreskowane.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1998,7 +1998,7 @@ msgstr "Opcje"
 
 #: gui/pregame/mainmenu.xml:(caption):394
 msgid "Mod Selection"
-msgstr "Wybór mod-u:"
+msgstr "Wybór modyfikacji"
 
 #: gui/pregame/mainmenu.xml:(caption):406
 msgid "Welcome Screen"
@@ -2101,7 +2101,7 @@ msgstr "Zmień język interfejsu."
 
 #: gui/pregame/mainmenu.xml:(tooltip):395
 msgid "Select mods to use."
-msgstr "Wybierz mod-y do użycia."
+msgstr "Wybierz modyfikacje do użycia."
 
 #: gui/pregame/mainmenu.xml:(tooltip):407
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -2199,7 +2199,7 @@ msgstr "Usuń"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
-msgstr "Przeładuj Cache"
+msgstr "Przeładuj pamięć podręczną"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):41
@@ -2603,7 +2603,7 @@ msgstr "Ogólne"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Uruchom 0 A.D. w oknie."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed Mode"
@@ -2611,15 +2611,15 @@ msgstr "Tryb okienkowy"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr ""
+msgstr "Użyj shaderów OpenGL 2.0 (zalecane)."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
-msgstr "Wybierz GLSL"
+msgstr "Preferuj GLSL"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
-msgstr ""
+msgstr "Włącz mgłę."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
@@ -2627,7 +2627,7 @@ msgstr "Mgła"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Użyj filtrów postprocessingu (głębia ostrości, HDR, rozmycie, itp.)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
@@ -2643,7 +2643,7 @@ msgstr "Efekty shadera"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "Włącz cienie."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
@@ -2682,7 +2682,7 @@ msgstr "Jakość cieni"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "Wygładzone cienie."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
@@ -2690,7 +2690,7 @@ msgstr "Filtrowanie cieni"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind buildings."
-msgstr ""
+msgstr "Pokaż zarys jednostek znajdujących się za budynkami."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
@@ -2698,7 +2698,7 @@ msgstr "Zarys jednostek"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "Włącz efekty cząsteczkowe."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
@@ -2734,7 +2734,7 @@ msgstr "Realistyczna głębokość wody"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr ""
+msgstr "Zezwalaj na lustrzane odbicia na powierzchni wody."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water Reflections"
@@ -2766,7 +2766,7 @@ msgstr "Płynna krawędź obszaru zasięgu widzenia"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr ""
+msgstr "Renderuj niebo."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
@@ -2846,7 +2846,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
-msgstr "Głośność UI"
+msgstr "Głośność interfejsu użytkownika"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."

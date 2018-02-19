@@ -26,13 +26,6 @@
 
 	<object type="image" sprite="ModernFade" name="fadeImage"/>
 
-	<object hotkey="lobby">
-		<action on="Press">
-			if (Engine.HasXmppClient())
-				Engine.PushGuiPage("page_lobby.xml", { "dialog": true });
-		</action>
-	</object>
-
 	<object name="summaryWindow"
 		type="image"
 		style="ModernWindow"
@@ -213,6 +206,21 @@
 			</repeat>
 
 			<object name="chartLegend" type="text" style="ModernLabelText" size="15 100%-35 100%-15 100%-5"/>
+		</object>
+
+		<!-- View Lobby Button -->
+		<object name="lobbyButton"
+			type="button"
+			sprite="iconBubbleGold"
+			sprite_over="iconBubbleWhite"
+			size="100%-336 100%-45 100%-320 100%-29"
+			hidden="true"
+			hotkey="lobby"
+		>
+			<action on="Press">
+				if (Engine.HasXmppClient())
+					Engine.PushGuiPage("page_lobby.xml", { "dialog": true });
+			</action>
 		</object>
 
 		<object type="button" name="replayButton" style="ModernButtonRed" size="100%-310 100%-48 100%-170 100%-20">

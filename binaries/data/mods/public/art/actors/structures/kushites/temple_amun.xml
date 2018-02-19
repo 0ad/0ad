@@ -7,6 +7,8 @@
       <props>
         <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
         <prop actor="props/structures/kushites/temple_amun_paintings.xml" attachpoint="root"/>
+        <prop actor="props/structures/kushites/statue_pedestal_rectangular_lion.xml" attachpoint="statue_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/kushites/statue_pedestal_rectangular_lion.xml" attachpoint="statue_02" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="structural/kush_struct_2.png" name="baseTex"/>
