@@ -114,12 +114,12 @@ m.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 
 	for (let ship of this.transportShips.values())
 	{
-		if (this.countFreeSlotsOnShip(ship) === 0)
+		if (this.countFreeSlotsOnShip(ship) == 0)
 			continue;
 		ent.setMetadata(PlayerID, "onBoard", ship.id());
 		if (this.debug > 1)
 		{
-			if (ent.getMetadata(PlayerID, "role") === "attack")
+			if (ent.getMetadata(PlayerID, "role") == "attack")
 				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,0,0]});
 			else
 				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,2,0]});
@@ -128,9 +128,15 @@ m.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 	}
 
 	if (this.flotilla)
+	{
 		this.needTransportShips = true;
+		return;
+	}
+
+	if (!this.needSplit)
+		this.needSplit = [ent];
 	else
-		gameState.ai.HQ.navalManager.splitTransport(gameState, this);
+		this.needSplit.push(ent);
 };
 
 m.TransportPlan.prototype.assignShip = function(gameState)
@@ -353,6 +359,12 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 		}
 	}
 
+	if (this.needSplit)
+	{
+		gameState.ai.HQ.navalManager.splitTransport(gameState, this);
+		this.needSplit = undefined;
+	}
+
 	if (!ready)
 		return;
 
@@ -506,7 +518,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 				ent.destroy();
 			}
 		}
-		else if (gameState.ai.accessibility.getAccessValue(ent.position()) !== this.endIndex)
+		else if (gameState.ai.accessibility.getAccessValue(ent.position()) != this.endIndex)
 		{
 			// unit unloaded on a wrong region - try to regarrison it and move a bit the ship
 			if (this.debug > 1)
@@ -529,6 +541,14 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		}
 		else
 		{
+			// And make some room for other units
+			let pos = ent.position();
+			let goal = ent.getMetadata(PlayerID, "endPos");
+			let dist = goal ? API3.VectorDistance(pos, goal) : 0;
+			if (dist > 30)
+				ent.moveToRange(goal[0], goal[1], dist-20, dist-20);
+			else
+				ent.moveToRange(pos[0], pos[1], 20, 20);
 			ent.setMetadata(PlayerID, "transport", undefined);
 			ent.setMetadata(PlayerID, "onBoard", undefined);
 			ent.setMetadata(PlayerID, "endPos", undefined);
@@ -580,9 +600,9 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 
 		if (!remaining && !recovering)   // when empty, release the ship and move apart to leave room for other ships. TODO fight
 		{
-			ship.moveApart(this.boardingPos[shipId], 15);
+			ship.moveApart(this.boardingPos[shipId], 30);
 			ship.setMetadata(PlayerID, "transporter", undefined);
-			if (ship.getMetadata(PlayerID, "role") === "switchToTrader")
+			if (ship.getMetadata(PlayerID, "role") == "switchToTrader")
 				ship.setMetadata(PlayerID, "role", "trader");
 			continue;
 		}
