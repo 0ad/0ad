@@ -183,8 +183,8 @@ public:
 		if (!cmpPathfinder)
 			return error;
 
-		// Ignore collisions with the spawned entity.
-		SkipTagObstructionFilter filter(spawnedTag);
+		// Ignore collisions with the spawned entity and entities that don't block movement.
+		SkipTagRequireFlagsObstructionFilter filter(spawnedTag, ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
 
 		CFixedVector2D initialPos = cmpPosition->GetPosition2D();
 		entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
