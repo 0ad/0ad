@@ -338,9 +338,9 @@ for (let mine of minesStone)
 	createObjectGroups(
 		new SimpleGroup(mine, true, clRock),
 		0,
-		[avoidClasses(clForest, 1, clPlayer, 20, clRock, 20, clCliffs, 2, clWater, 2, clDock, 6)],
-		scaleByMapSize(1, 6),
-		40);
+		[avoidClasses(clForest, 1, clPlayer, 20, clRock, 18, clCliffs, 2, clWater, 2, clDock, 6)],
+		scaleByMapSize(2, 12),
+		50);
 Engine.SetProgress(75);
 
 g_Map.log("Creating metal mines");
@@ -352,9 +352,9 @@ for (let mine of minesMetal)
 	createObjectGroups(
 		new SimpleGroup(mine, true, clMetal),
 		0,
-		[avoidClasses(clForest, 1, clPlayer, 20, clRock, 8, clMetal, 20, clCliffs, 2, clWater, 2, clDock, 6)],
-		scaleByMapSize(1, 6),
-		40);
+		[avoidClasses(clForest, 1, clPlayer, 20, clRock, 8, clMetal, 18, clCliffs, 2, clWater, 2, clDock, 6)],
+		scaleByMapSize(2, 12),
+		50);
 Engine.SetProgress(80);
 
 for (let biome of ["lowlands", "highlands"])
@@ -371,15 +371,16 @@ Engine.SetProgress(85);
 createFood(
 	[
 		[new SimpleObject(biomes.highlands.gaia.fauna.horse, 3, 5, 0, 4)],
-		[new SimpleObject(biomes.highlands.gaia.fauna.pony, 2, 3, 0, 4)]
+		[new SimpleObject(biomes.highlands.gaia.fauna.pony, 2, 3, 0, 4)],
+		[new SimpleObject(biomes.highlands.gaia.flora.fruitBush, 5, 7, 0, 4)]
 	],
 	[
-		scaleByMapSize(1, 8),
-		scaleByMapSize(1, 6),
-		scaleByMapSize(2, 12)
+		scaleByMapSize(2, 16),
+		scaleByMapSize(2, 12),
+		scaleByMapSize(2, 20)
 	],
 	[
-		avoidClasses(clForest, 0, clPlayer, 20, clFood, 20, clCliffs, 2, clWater, 2, clRock, 4, clMetal, 4, clDock, 6),
+		avoidClasses(clForest, 0, clPlayer, 20, clFood, 16, clCliffs, 2, clWater, 2, clRock, 4, clMetal, 4, clDock, 6),
 		constraintHighlands
 	],
 	clFood);
@@ -392,16 +393,16 @@ createFood(
 		[new SimpleObject(biomes.lowlands.gaia.flora.fruitBush, 5, 7, 0, 4)]
 	],
 	[
-		scaleByMapSize(1, 8),
+		scaleByMapSize(2, 16),
 		scaleByMapSize(2, 12),
-		scaleByMapSize(1, 6)
+		scaleByMapSize(1, 20)
 	],
 	[
-		avoidClasses(clForest, 0, clPlayer, 20, clFood, 20, clCliffs, 2, clWater, 2, clRock, 4, clMetal, 4, clDock, 6),
+		avoidClasses(clForest, 0, clPlayer, 20, clFood, 16, clCliffs, 2, clWater, 2, clRock, 4, clMetal, 4, clDock, 6),
 		constraintLowlands
 	],
 	clFood);
-Engine.SetProgress(95);
+Engine.SetProgress(93);
 
 createFood(
 	[
@@ -424,7 +425,7 @@ g_Map.log("Creating fish");
 createObjectGroups(
 	new SimpleGroup([new SimpleObject(biomes.water.gaia.fauna.fish, 1, 1, 0, 3)], true, clFood),
 	0,
-	[stayClasses(clWater, 1), avoidClasses(clFood, 8, clDock, 6)],
+	[stayClasses(clWater, 8), avoidClasses(clFood, 8, clDock, 6)],
 	scaleByMapSize(15, 50),
 	100);
 Engine.SetProgress(95);
@@ -441,7 +442,7 @@ for (let biome of ["lowlands", "highlands"])
 			],
 			scaleByMapSize(15, 45) / biomes[biome].terrains.patches.length,
 			clDirt);
-Engine.SetProgress(95);
+Engine.SetProgress(96);
 
 for (let biome of ["lowlands", "highlands"])
 {
@@ -480,7 +481,7 @@ for (let biome of ["lowlands", "highlands"])
 				avoidClasses(clWater, 4, clPlayer, 15, clForest, 1, clRock, 4, clMetal, 4),
 			]);
 }
-Engine.SetProgress(70);
+Engine.SetProgress(98);
 
 g_Map.log("Creating temple");
 createObjectGroups(
@@ -557,7 +558,7 @@ createObjectGroups(
 	20);
 
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clFood, 2, clCliffs, 2, clWater, 15));
-Engine.SetProgress(95);
+Engine.SetProgress(99);
 
 setWaterColor(0.024, 0.212, 0.024);
 setWaterTint(0.133, 0.725, 0.855);
