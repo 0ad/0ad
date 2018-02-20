@@ -6,7 +6,7 @@
       <Pierce>12.0</Pierce>
       <Crush>2.5</Crush>
       <MaxRange>55.0</MaxRange>
-      <MinRange>0.0</MinRange>
+      <MinRange>10.0</MinRange>
       <ElevationBonus>10</ElevationBonus>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <Gravity>9.81</Gravity>
@@ -29,7 +29,7 @@
     <GarrisonArrowClasses>Infantry</GarrisonArrowClasses>
   </BuildingAI>
   <Cost>
-    <BuildTime>60</BuildTime>
+    <BuildTime>40</BuildTime>
     <Resources>
       <wood>500</wood>
       <metal>300</metal>
