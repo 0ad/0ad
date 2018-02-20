@@ -5,7 +5,7 @@
 /**
  * The SimpleObject attempts to find locations for a random amount of entities with a random distance to the given center.
  */
-function SimpleObject(templateName, minCount, maxCount, minDistance, maxDistance, minAngle = 0, maxAngle = 2 * Math.PI)
+function SimpleObject(templateName, minCount, maxCount, minDistance, maxDistance, minAngle = 0, maxAngle = 2 * Math.PI, avoidDistance = 1)
 {
 	this.templateName = templateName;
 	this.minCount = minCount;
@@ -14,6 +14,7 @@ function SimpleObject(templateName, minCount, maxCount, minDistance, maxDistance
 	this.maxDistance = maxDistance;
 	this.minAngle = minAngle;
 	this.maxAngle = maxAngle;
+	this.avoidDistance = avoidDistance;
 
 	if (minCount > maxCount)
 		throw new Error("SimpleObject: minCount should be less than or equal to maxCount");
@@ -25,7 +26,7 @@ function SimpleObject(templateName, minCount, maxCount, minDistance, maxDistance
 		throw new Error("SimpleObject: minAngle should be less than or equal to maxAngle");
 }
 
-SimpleObject.prototype.place = function(centerPosition, playerID, avoidSelf, constraint, maxRetries = 20)
+SimpleObject.prototype.place = function(centerPosition, playerID, avoidPositions, constraint, maxRetries)
 {
 	let entitySpecs = [];
 	let numRetries = 0;
@@ -40,7 +41,9 @@ SimpleObject.prototype.place = function(centerPosition, playerID, avoidSelf, con
 			let position = Vector2D.sum([centerPosition, new Vector2D(0.5, 0.5), new Vector2D(distance, 0).rotate(-angle)]);
 
 			if (validTile(position) &&
-			    (!avoidSelf || entitySpecs.every(entSpec => entSpec.position.distanceTo(position) >= 1)) &&
+			    (!avoidPositions ||
+			        entitySpecs.every(entSpec => entSpec.position.distanceTo(position) >= this.avoidDistance) &&
+			        avoidPositions.every(avoid => avoid.position.distanceTo(position) >= Math.max(this.avoidDistance, avoid.distance))) &&
 			    constraint.allows(position.clone().floor()))
 			{
 				entitySpecs.push({
@@ -66,7 +69,7 @@ function RandomObject(templateNames, minCount, maxCount, minDistance, maxDistanc
 	this.simpleObject = new SimpleObject(pickRandom(templateNames), minCount, maxCount, minDistance, maxDistance, minAngle, maxAngle);
 }
 
-RandomObject.prototype.place = function(centerPosition, player, avoidSelf, constraint, maxRetries = 20)
+RandomObject.prototype.place = function(centerPosition, player, avoidPositions, constraint, maxRetries)
 {
-	return this.simpleObject.place(centerPosition, player, avoidSelf, constraint, maxRetries);
+	return this.simpleObject.place(centerPosition, player, avoidPositions, constraint, maxRetries);
 };

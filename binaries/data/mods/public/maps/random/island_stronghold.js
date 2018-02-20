@@ -215,20 +215,18 @@ Engine.SetProgress(85);
 createBumps(avoidClasses(clPlayer, 20));
 
 createMines(
-[
-	[new SimpleObject(oMetalLarge, 1, 1, 3, (numPlayers * 2) + 1)]
-],
-[avoidClasses(clForest, 1, clPlayer, 40, clRock, 20), stayClasses(clLand, 4)],
-clMetal
-);
+	[
+		[new SimpleObject(oMetalLarge, 1, 1, 0, 4)]
+	],
+	[avoidClasses(clForest, 1, clPlayer, 40, clRock, 20), stayClasses(clLand, 4)],
+	clMetal);
 
 createMines(
-[
-	[new SimpleObject(oStoneLarge, 1, 1, 3, (numPlayers * 2) + 1)], [new SimpleObject(oStoneSmall, 2, 2, 2, (numPlayers * 2) + 1)]
-],
-[avoidClasses(clForest, 1, clPlayer, 40, clMetal, 20), stayClasses(clLand, 4)],
-clRock
-);
+	[
+		[new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)]
+	],
+	[avoidClasses(clForest, 1, clPlayer, 40, clMetal, 20), stayClasses(clLand, 4)],
+	clRock);
 
 var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createForests(

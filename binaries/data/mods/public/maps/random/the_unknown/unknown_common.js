@@ -894,7 +894,7 @@ function createUnknownObjects()
 
 	g_Map.log("Creating stone mines");
 	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
+		new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock),
 		0,
 		[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 2), stayClasses(clLand, 3)],
 		randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),

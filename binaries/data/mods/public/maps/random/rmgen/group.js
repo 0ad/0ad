@@ -34,22 +34,28 @@ SimpleGroup.prototype.setCenterPosition = function(position)
 	this.centerPosition = deepfreeze(position.clone().round());
 };
 
-SimpleGroup.prototype.place = function(player, constraint)
+SimpleGroup.prototype.place = function(playerID, constraint)
 {
 	let entitySpecsResult = [];
+	let avoidPositions = this.avoidSelf ? [] : undefined;
 
 	// Test if the Objects can be placed at the given location
 	// Place none of them if one can't be placed.
 	for (let object of this.objects)
 	{
-		let entitySpecs = object.place(this.centerPosition, player, this.avoidSelf, constraint);
+		let entitySpecs = object.place(this.centerPosition, playerID, avoidPositions, constraint, 20);
 
 		if (!entitySpecs)
 			return undefined;
 
 		entitySpecsResult = entitySpecsResult.concat(entitySpecs);
-	}
 
+		if (this.avoidSelf)
+			avoidPositions = avoidPositions.concat(entitySpecs.map(entitySpec => ({
+				"position": entitySpec.position,
+				"distance": object.avoidDistance
+			})));
+	}
 
 	// Create and place entities as specified
 	let entities = [];
@@ -79,7 +85,7 @@ RandomGroup.prototype.setCenterPosition = function(position)
 	this.simpleGroup.setCenterPosition(position);
 };
 
-RandomGroup.prototype.place = function(player, constraint)
+RandomGroup.prototype.place = function(playerID, constraint)
 {
-	return this.simpleGroup.place(player, constraint);
+	return this.simpleGroup.place(playerID, constraint);
 };

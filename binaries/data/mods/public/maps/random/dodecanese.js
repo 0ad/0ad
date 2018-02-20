@@ -238,7 +238,7 @@ Engine.SetProgress(70);
 g_Map.log("Creating stone mines");
 createMines(
 	[
-		[new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)],
+		[new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
 		[new SimpleObject(oStoneSmall, 2, 5, 1, 3)]
 	],
 	avoidClasses(clWater, 4, clVolcano, 4, clPlayerIsland, 0, clBaseResource, 4, clForest, 3, clMetal, 4, clRock, 4),

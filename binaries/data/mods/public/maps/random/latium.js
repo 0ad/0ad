@@ -378,7 +378,7 @@ createObjectGroupsDeprecated(group, 0,
 Engine.SetProgress(50);
 
 g_Map.log("Creating large stone mines");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
+group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 1, clForest, 4, clPlayer, 40, clRock, 60, clMetal, 10, clCliff, 3),
 	scaleByMapSize(4,16), 100

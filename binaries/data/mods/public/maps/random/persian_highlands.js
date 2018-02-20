@@ -182,35 +182,53 @@ for (let type of types)
 Engine.SetProgress(50);
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock);
-createObjectGroupsDeprecated(group, 0,
+createObjectGroupsDeprecated(
+	new SimpleGroup(
+		[
+			new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1),
+			new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4),
+			new RandomObject(aBushes, 2, 4, 0, 2)
+		],
+		true,
+		clRock),
+	0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1, clCP, 1)],
-	scaleByMapSize(2,8), 100
-);
+	scaleByMapSize(2,8),
+	100);
 
 g_Map.log("Creating small stone quarries");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
-createObjectGroupsDeprecated(group, 0,
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock),
+	0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1, clCP, 1)],
-	scaleByMapSize(2,8), 100
-);
+	scaleByMapSize(2, 8),
+	100);
 
 g_Map.log("Creating metal mines");
-group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clMetal);
-createObjectGroupsDeprecated(group, 0,
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4), new RandomObject(aBushes, 2, 4, 0, 2)], true, clMetal),
+	0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 1, clCP, 1)],
-	scaleByMapSize(2,8), 100
-);
+	scaleByMapSize(2,8),
+	100);
 
 g_Map.log("Creating centeral stone mines");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
-createObjectGroupsDeprecated(group, 0,
+createObjectGroupsDeprecated(
+	new SimpleGroup(
+		[
+			new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1),
+			new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4),
+			new RandomObject(aBushes, 2,4, 0,2)
+		],
+		true,
+		clRock),
+	0,
 	stayClasses(clCP, 6),
-	5*scaleByMapSize(5,30), 50
-);
+	5*scaleByMapSize(5, 30),
+	50);
 
 g_Map.log("Creating small stone quarries");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	stayClasses(clCP, 6),
 	5*scaleByMapSize(5,30), 50
