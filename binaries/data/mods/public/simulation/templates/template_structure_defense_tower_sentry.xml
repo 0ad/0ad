@@ -9,13 +9,10 @@
     <Ranged>
       <Pierce>9</Pierce>
       <MaxRange>70</MaxRange>
-      <MinRange>0</MinRange>
+      <MinRange>10</MinRange>
       <ElevationBonus>9</ElevationBonus>
     </Ranged>
   </Attack>
-  <Capturable>
-    <CapturePoints>800</CapturePoints>
-  </Capturable>
   <Cost>
     <BuildTime>40</BuildTime>
     <Resources>
@@ -30,7 +27,7 @@
     <Max>3</Max>
   </GarrisonHolder>
   <Health>
-    <Max>250</Max>
+    <Max>500</Max>
   </Health>
   <Identity>
     <GenericName>Sentry Tower</GenericName>
