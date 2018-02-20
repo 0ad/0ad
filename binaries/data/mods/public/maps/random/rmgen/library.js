@@ -11,6 +11,12 @@ Engine.LoadLibrary("rmgen/placer/centered");
  */
 Engine.LoadLibrary("rmgen/placer/noncentered");
 
+/**
+ * A Painter modifies an arbitrary feature in a given Area, for instance terrain textures, elevation or calling other painters on that Area.
+ * Typically the area is determined by a Placer called from createArea or createAreas.
+ */
+Engine.LoadLibrary("rmgen/painter");
+
 const TERRAIN_SEPARATOR = "|";
 const SEA_LEVEL = 20.0;
 const HEIGHT_UNITS_PER_METRE = 92;
