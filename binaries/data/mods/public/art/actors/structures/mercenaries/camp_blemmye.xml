@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/kush_mercenary_camp_01.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="structures/tent_kush.xml" attachpoint="kush_tent_01" minheight="-20" maxheight="20"/>
+        <prop actor="structures/tent_big.xml" attachpoint="kush_tent_03" minheight="-20" maxheight="20"/>
+        <prop actor="structures/tent_arab.xml" attachpoint="kush_tent_02" minheight="-20" maxheight="20"/>
+        <prop actor="structures/tent_arab.xml" attachpoint="kush_tent_04" minheight="-20" maxheight="20"/>
+        <prop actor="props/special/eyecandy/well_woodbit.xml" attachpoint="camel_barrier_01" minheight="-20" maxheight="20"/>
+        <prop actor="props/special/eyecandy/well_woodbit.xml" attachpoint="camel_barrier_02" minheight="-20" maxheight="20"/>
+        <prop actor="units/persians/trader.xml" attachpoint="camel_01" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root" minheight="-20" maxheight="20"/>
+        <prop actor="units/persians/trader.xml" attachpoint="camel_02" minheight="-20" maxheight="20"/>
+        <prop actor="fauna/goat.xml" attachpoint="goat_01" minheight="-20" maxheight="20"/>
+        <prop actor="fauna/goat.xml" attachpoint="goat_02" minheight="-20" maxheight="20"/>
+        <prop actor="flora/trees/palm_cretan_date_patch.xml" attachpoint="palm_tree" minheight="-20" maxheight="20"/>
+        <prop actor="props/flora/shrub_tropic_palm.xml" attachpoint="plant" minheight="-20" maxheight="20"/>
+        <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="fire_camp" minheight="-20" maxheight="20"/>
+        <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="fire_camp" minheight="-20" maxheight="20"/>
+      </props>
+      <textures>
+        <texture file="null_white.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="ungarrisoned" frequency="1"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_kush.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

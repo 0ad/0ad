@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2018-02-19T23:29:57</created>
+    <modified>2018-02-19T23:29:57</modified>
+    <unit name="centimeter" meter="0.01"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="Plane-mesh" name="Plane">
+      <mesh>
+        <source id="Plane-mesh-positions">
+          <float_array id="Plane-mesh-positions-array" count="9">8.00133e-4 -0.006063222 0 -0.001600265 -0.003662824 0 8.00133e-4 -0.003662824 0</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-positions-array" count="3" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane-mesh-normals">
+          <float_array id="Plane-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane-mesh-map-0">
+          <float_array id="Plane-mesh-map-0-array" count="6">0 1.69744e-7 0.9999998 0 1 1</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-map-0-array" count="3" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane-mesh-vertices">
+          <input semantic="POSITION" source="#Plane-mesh-positions"/>
+        </vertices>
+        <triangles count="1">
+          <input semantic="VERTEX" source="#Plane-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 2 0 1 1 0 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="blemmye_camp_root" name="blemmye_camp_root" type="NODE">
+        <matrix sid="transform">-4.37114e-8 -1 0 0 1 -4.37114e-8 0 -2.235421 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Plane-mesh" name="blemmye_camp_root"/>
+        <node id="prop_kush_tent_01" name="prop_kush_tent_01" type="NODE">
+          <matrix sid="transform">0.988942 -0.1483011 6.38962e-4 -1.742623 0.1483021 0.9889225 -0.006216793 8.694142 2.90073e-4 0.006242807 0.9999804 0.08013683 0 0 0 1</matrix>
+        </node>
+        <node id="prop_kush_tent_02" name="prop_kush_tent_02" type="NODE">
+          <matrix sid="transform">-0.9083579 -0.4181921 -0.001120312 -2.029829 0.4181933 -0.9083509 -0.003608921 -8.247802 4.91586e-4 -0.003746699 0.9999928 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_kush_tent_03" name="prop_kush_tent_03" type="NODE">
+          <matrix sid="transform">-0.4448607 0.8955997 2.75494e-4 9.993453 -0.8955939 -0.4448566 -0.003768755 -4.970417 -0.00325274 -0.001923301 0.9999928 -0.02477086 0 0 0 1</matrix>
+        </node>
+        <node id="prop_camel_01" name="prop_camel_01" type="NODE">
+          <matrix sid="transform">0.6868875 0.7267584 -0.002789981 -6.193531 -0.7267638 0.6868827 -0.002548612 -1.950512 6.41643e-5 0.003778267 0.9999928 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_fire_camp" name="prop_fire_camp" type="NODE">
+          <matrix sid="transform">0.9959572 -0.08982895 2.75495e-4 1.262411 0.08982935 0.99595 -0.003768755 0.4277143 6.41645e-5 0.003778266 0.9999928 1.67754e-10 0 0 0 1</matrix>
+        </node>
+        <node id="prop_camel_barrier_01" name="prop_camel_barrier_01" type="NODE">
+          <matrix sid="transform">0.7088213 -0.7053783 0.00372163 -7.925068 0.7053847 0.7088243 -6.54889e-4 -3.788894 -0.002176038 0.00308938 0.9999928 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_camel_02" name="prop_camel_02" type="NODE">
+          <matrix sid="transform">-0.9009026 -0.434018 0.001697654 -7.602657 0.4340213 -0.9008963 0.003376002 7.604084 6.41649e-5 0.003778267 0.9999928 -9.51389e-7 0 0 0 1</matrix>
+        </node>
+        <node id="prop_goat_01" name="prop_goat_01" type="NODE">
+          <matrix sid="transform">0.9197972 -0.3923914 0.001423551 -3.981113 0.3923939 0.9197906 -0.003500417 1.99861 6.41646e-5 0.003778267 0.9999928 0.1357993 0 0 0 1</matrix>
+        </node>
+        <node id="prop_goat_02" name="prop_goat_02" type="NODE">
+          <matrix sid="transform">0.8303408 -0.5572559 2.75494e-4 -6.396457 0.5572528 0.8303344 -0.003768755 2.777714 0.001871408 0.003282871 0.9999928 0.01952744 0 0 0 1</matrix>
+        </node>
+        <node id="prop_kush_tent_04" name="prop_kush_tent_04" type="NODE">
+          <matrix sid="transform">0.2812396 0.9596375 2.75495e-4 10.06777 -0.9596305 0.2812386 -0.003768754 6.769026 -0.003694118 7.95549e-4 0.9999928 0.02273735 0 0 0 1</matrix>
+        </node>
+        <node id="prop_palm_tree" name="prop_palm_tree" type="NODE">
+          <matrix sid="transform">0.8875353 -0.4607395 2.75495e-4 3.547134 0.4607372 0.8875286 -0.003768755 8.932029 0.001491905 0.003471834 0.9999928 -0.05346711 0 0 0 1</matrix>
+        </node>
+        <node id="prop_projectile" name="prop_projectile" type="NODE">
+          <matrix sid="transform">0.2812396 0.9596375 2.75495e-4 10.06777 -0.9596305 0.2812386 -0.003768754 6.769026 -0.003694118 7.95549e-4 0.9999928 0.02273735 0 0 0 1</matrix>
+        </node>
+        <node id="prop_plant" name="prop_plant" type="NODE">
+          <matrix sid="transform">0.8875353 -0.4607395 2.75495e-4 4.159277 0.4607372 0.8875286 -0.003768755 -9.409424 0.001491905 0.003471834 0.9999928 -0.4656571 0 0 0 1</matrix>
+        </node>
+        <node id="prop_garrisoned" name="prop_garrisoned" type="NODE">
+          <matrix sid="transform">0.9959572 -0.08982895 2.75495e-4 9.97978 0.08982935 0.99595 -0.003768755 -4.850808 6.41645e-5 0.003778266 0.9999928 3.57652 0 0 0 1</matrix>
+        </node>
+        <node id="prop_camel_barrier_02" name="prop_camel_barrier_02" type="NODE">
+          <matrix sid="transform">0.07114911 0.9974614 -0.002926736 -8.034113 -0.9974633 0.07114223 -0.002390321 9.95077 -0.002176038 0.003089381 0.9999928 -7.99754e-10 0 0 0 1</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

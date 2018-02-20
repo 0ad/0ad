@@ -30,6 +30,8 @@ const BUILDING_ORIENTATION = -1/4 * Math.PI;
 
 const g_CivData = deepfreeze(loadCivFiles(false));
 
+const g_ActorPrefix = "actor|";
+
 /**
  * Sets whether setHeight operates on the center of a tile or on the vertices.
  */
@@ -37,7 +39,7 @@ var TILE_CENTERED_HEIGHT_MAP = false;
 
 function actorTemplate(templateName)
 {
-	return "actor|" + templateName + ".xml";
+	return g_ActorPrefix + templateName + ".xml";
 }
 
 function fractionToTiles(f)

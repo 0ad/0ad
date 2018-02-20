@@ -39,6 +39,7 @@ enum
 	ID_MapKW_Naval,
 	ID_RandomScript,
 	ID_RandomSize,
+	ID_RandomNomad,
 	ID_RandomSeed,
 	ID_RandomReseed,
 	ID_RandomGenerate,
@@ -322,6 +323,9 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 		gridSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Map size")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		gridSizer->Add(sizeChoice, wxSizerFlags().Expand());
 
+		gridSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Nomad")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+		gridSizer->Add(Tooltipped(new wxCheckBox(scrolledWindow, ID_RandomNomad, wxEmptyString), _("Place only some units instead of starting bases.")));
+
 		gridSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Random seed")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxBoxSizer* seedSizer = new wxBoxSizer(wxHORIZONTAL);
 		seedSizer->Add(Tooltipped(new wxTextCtrl(scrolledWindow, ID_RandomSeed, _T("0"), wxDefaultPosition, wxDefaultSize, 0, wxTextValidator(wxFILTER_NUMERIC)),
@@ -544,6 +548,8 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 	wxString size;
 	size << (intptr_t)sizeChoice->GetClientData(sizeChoice->GetSelection());
 	settings.setInt("Size", wxAtoi(size));
+
+	settings.setBool("Nomad", wxDynamicCast(FindWindow(ID_RandomNomad), wxCheckBox)->GetValue());
 
 	settings.setInt("Seed", wxAtoi(wxDynamicCast(FindWindow(ID_RandomSeed), wxTextCtrl)->GetValue()));
 

@@ -233,7 +233,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 Engine.SetProgress(46);
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1), stayClasses(clLand, 7)],
 	scaleByMapSize(4,16), 100

@@ -17,7 +17,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="25.5" depth="25.5"/>
+    <Square width="29.0" depth="29.0"/>
     <Height>12.0</Height>
   </Footprint>
   <Health>
@@ -34,7 +34,7 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Obstruction>
-    <Static width="23.5" depth="23.5"/>
+    <Static width="29.0" depth="29.0"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
@@ -64,7 +64,7 @@
   </Sound>
   <TerritoryInfluence disable=""/>
   <VisualActor>
-    <Actor>structures/mercenaries/camp_egyptian.xml</Actor>
+    <Actor>structures/mercenaries/camp_blemmye.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>

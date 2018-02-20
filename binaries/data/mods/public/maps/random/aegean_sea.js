@@ -183,12 +183,12 @@ paintTerrainBasedOnHeight(heightCorralsLower, heightCorralsUpper, Elevation_Excl
 
 g_Map.log("Creating island stone mines");
 createMines(
- [
-  [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
-  [new SimpleObject(oStoneSmall, 2,5, 1,3)]
- ],
- stayClasses(clIsland, 4),
- clRock);
+	[
+		[new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
+		[new SimpleObject(oStoneSmall, 2,5, 1,3)]
+	],
+	stayClasses(clIsland, 4),
+	clRock);
 
 g_Map.log("Creating island metal mines");
 createMines(
@@ -201,12 +201,12 @@ createMines(
 
 g_Map.log("Creating stone mines");
 createMines(
- [
-  [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
-  [new SimpleObject(oStoneSmall, 2,5, 1,3)]
- ],
- avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clHill, 1),
- clRock);
+	[
+		[new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
+		[new SimpleObject(oStoneSmall, 2,5, 1,3)]
+	],
+	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clHill, 1),
+	clRock);
 
 g_Map.log("Creating metal mines");
 createMines(

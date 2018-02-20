@@ -331,8 +331,8 @@ Engine.SetProgress(70);
 
 g_Map.log("Creating stone mines");
 var minesStone = [
-	[new SimpleObject(biomes.common.gaia.mines.stoneLarge, 1, 1, 0, 4)],
-	[new SimpleObject(biomes.common.gaia.mines.stoneSmall, 2, 3, 1, 3)]
+	[new SimpleObject(biomes.common.gaia.mines.stoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
+	[new SimpleObject(biomes.common.gaia.mines.stoneSmall, 2, 3, 1, 3, 0, 2 * Math.PI, 1)]
 ];
 for (let mine of minesStone)
 	createObjectGroups(
@@ -345,8 +345,8 @@ Engine.SetProgress(75);
 
 g_Map.log("Creating metal mines");
 var minesMetal = [
-	[new SimpleObject(biomes.common.gaia.mines.metalLarge, 1, 1, 0, 4)],
-	[new SimpleObject(biomes.common.gaia.mines.metalSmall, 2, 3, 1, 3)]
+	[new SimpleObject(biomes.common.gaia.mines.metalLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
+	[new SimpleObject(biomes.common.gaia.mines.metalSmall, 2, 3, 1, 3, 0, 2 * Math.PI, 1)]
 ];
 for (let mine of minesMetal)
 	createObjectGroups(
