@@ -3,8 +3,14 @@
   <Attack>
     <Melee>
       <Hack>6.0</Hack>
-      <Pierce>13.0</Pierce>
-      <RepeatTime>3500</RepeatTime>
+      <Pierce>5.0</Pierce>
+      <Bonuses>
+        <BonusCavMelee>
+          <Classes>Cavalry</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusCavMelee>
+      </Bonuses>
+      <RepeatTime>2000</RepeatTime>
     </Melee>
   </Attack>
   <Cost>
@@ -15,11 +21,12 @@
   <Identity>
     <VisibleClasses datatype="tokens">Spear</VisibleClasses>
     <GenericName>Cavalry Spearman</GenericName>
+    <Tooltip>Counters: 1.5x vs. Cavalry.</Tooltip>
   </Identity>
   <UnitMotion>
-    <WalkSpeed op="mul">1.25</WalkSpeed>
+    <WalkSpeed op="mul">1.1</WalkSpeed>
     <Run>
-      <Speed op="mul">1.25</Speed>
+      <Speed op="mul">1.1</Speed>
     </Run>
   </UnitMotion>
 </Entity>

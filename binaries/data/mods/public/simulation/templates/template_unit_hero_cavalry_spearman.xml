@@ -7,17 +7,24 @@
   <Attack>
     <Melee>
       <Hack>24.0</Hack>
-      <Pierce>52.0</Pierce>
+      <Pierce>20.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
+      <Bonuses>
+        <BonusCavMelee>
+          <Classes>Cavalry</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusCavMelee>
+      </Bonuses>
       <PrepareTime>500</PrepareTime>
-      <RepeatTime>3500</RepeatTime>
+      <RepeatTime>2000</RepeatTime>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Melee>
   </Attack>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
     <GenericName>Hero Cavalry Spearman</GenericName>
+    <Tooltip>Counters: 1.5x vs. Cavalry.</Tooltip>
   </Identity>
   <UnitMotion>
     <WalkSpeed op="mul">1.0</WalkSpeed>
