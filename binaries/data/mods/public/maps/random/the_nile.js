@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 var tPrimary = "desert_sand_dunes_100";
 var tCity = "desert_city_tile";

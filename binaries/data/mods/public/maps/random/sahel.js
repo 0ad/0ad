@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 const tPrimary = "savanna_grass_a";
 const tGrass2 = "savanna_grass_b";

@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 const tForestFloor = "temp_plants_bog";

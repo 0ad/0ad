@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("heightmap");
 
 const tPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d",

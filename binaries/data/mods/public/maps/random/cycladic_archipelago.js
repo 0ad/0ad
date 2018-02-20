@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 const tOceanRockDeep = "medit_sea_coral_deep";
 const tOceanCoral = "medit_sea_coral_plants";

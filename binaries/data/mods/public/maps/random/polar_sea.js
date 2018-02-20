@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 var tPrimary = ["polar_snow_a"];
 var tSecondary = "polar_snow_glacial";

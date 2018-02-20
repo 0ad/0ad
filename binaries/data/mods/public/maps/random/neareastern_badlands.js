@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 const tPrimary = ["desert_sand_smooth", "desert_sand_smooth_b"];
 const tCity = "desert_city_tile";
