@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-05 09:06+0100\n"
-"PO-Revision-Date: 2018-01-05 15:33+0000\n"
+"POT-Creation-Date: 2018-02-19 09:05+0100\n"
+"PO-Revision-Date: 2018-02-19 15:57+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -425,12 +425,12 @@ msgid ""
 "%(validTerritories)s"
 msgstr "Non é posíbel construír a estrutura «%(name)s» en territorio de tipo «%(territoryType)s». Só pode construírse en territorios dos seguintes tipos: %(validTerritories)s."
 
-#: simulation/components/BuildRestrictions.js:253
+#: simulation/components/BuildRestrictions.js:228
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "A estrutura «%(name)s» só se pode construír na costa."
 
-#: simulation/components/BuildRestrictions.js:281
+#: simulation/components/BuildRestrictions.js:256
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -441,7 +441,7 @@ msgid_plural ""
 msgstr[0] "%(name)s demasiado próximo unha unidade de %(category)s, debe estar polo menos a %(distance)s metro de distancia."
 msgstr[1] "%(name)s demasiado próximo unha unidade de %(category)s, debe estar polo menos a %(distance)s metros de distancia."
 
-#: simulation/components/BuildRestrictions.js:302
+#: simulation/components/BuildRestrictions.js:277
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -452,28 +452,28 @@ msgstr[1] "%(name)s demasiado afastado dunha unidade de %(category)s, debe estar
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:342
+#: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
 msgstr "propio"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:344
+#: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "aliado"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:346
+#: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neutral"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:348
+#: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "inimigo"
@@ -513,26 +513,26 @@ msgstr "Acadouse o límite de adestramento de «%(category)s» (%(limit)s)."
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "Acadouse o límite de «%(category)s» (%(limit)s)."
 
-#: simulation/components/Player.js:304
+#: simulation/components/Player.js:336
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Recursos insuficientes. Necesítanse %(resourceAmount1)s unidades de %(resourceType1)s."
 
-#: simulation/components/Player.js:306
+#: simulation/components/Player.js:338
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Recursos insuficientes. Necesítanse %(resourceAmount1)s unidades de %(resourceType1)s e %(resourceAmount2)s unidades de %(resourceType2)s."
 
-#: simulation/components/Player.js:308
+#: simulation/components/Player.js:340
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Recursos insuficientes. Necesítanse %(resourceAmount1)s unidades de %(resourceType1)s, %(resourceAmount2)s unidades de %(resourceType2)s e %(resourceAmount3)s unidades de %(resourceType3)s."
 
-#: simulation/components/Player.js:310
+#: simulation/components/Player.js:342
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -540,11 +540,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Recursos insuficientes. Necesítanse %(resourceAmount1)s unidades de %(resourceType1)s, %(resourceAmount2)s unidades de %(resourceType2)s, %(resourceAmount3)s unidades de %(resourceType3)s e %(resourceAmount4)s unidades de %(resourceType4)s."
 
-#: simulation/components/ProductionQueue.js:412
+#: simulation/components/ProductionQueue.js:400
 msgid "The production queue is full."
 msgstr "A cola de produción está completa."
 
-#: simulation/components/ProductionQueue.js:798
+#: simulation/components/ProductionQueue.js:775
 msgid "Can't find free space to spawn trained units"
 msgstr "Non é posíbel atopar espazo libre no que facer aparecer as unidades adestradas."
 
@@ -768,6 +768,48 @@ msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "Partida a morte"
 
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+msgid "Very Easy"
+msgstr "Moi baixa"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+msgid "Easy"
+msgstr "Baixa"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
+#: simulation/data/settings/map_sizes.jsonData[2].Name
+msgid "Medium"
+msgstr "Medios"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+msgid "Hard"
+msgstr "Alta"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+msgid "Very Hard"
+msgstr "Moi alta"
+
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
 msgstr "Moi pequeno"
@@ -785,11 +827,6 @@ msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
 msgstr ""
-
-#: simulation/data/settings/map_sizes.jsonData[2].Name
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Name
-msgid "Medium"
-msgstr "Medios"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
@@ -832,43 +869,6 @@ msgstr ""
 msgid "Giant"
 msgstr "Xigante"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Name
-msgid "Very Easy"
-msgstr "Moi baixa"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
-msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Name
-msgid "Easy"
-msgstr "Baixa"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
-msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
-msgid ""
-"Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Name
-msgid "Hard"
-msgstr "Alta"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
-msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Name
-msgid "Very Hard"
-msgstr "Moi alta"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
-msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
-
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
 msgstr "Petra"
@@ -877,5 +877,5 @@ msgstr "Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
 msgstr ""

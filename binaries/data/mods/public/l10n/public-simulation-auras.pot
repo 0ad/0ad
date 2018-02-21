@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-02-09 09:03+0100\n"
-"PO-Revision-Date: 2018-02-09 09:03+0100\n"
+"POT-Creation-Date: 2018-02-21 09:05+0100\n"
+"PO-Revision-Date: 2018-02-21 09:05+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -244,7 +244,7 @@ msgid "Conscription"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.json:auraDescription
-msgid "-20% training time for allied infantry."
+msgid "-20% training time for allied citizen-soldier infantry."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.json:auraName
@@ -618,12 +618,20 @@ msgstr ""
 msgid "+0.8 HP per second healing rate."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.json:auraName
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.json:auraName
 msgid "Lightning General"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.json:auraDescription
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.json:auraDescription
 msgid "All soldiers and siege engines +15% speed."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.json:auraName
+msgid "Subduer of Mercenaries"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.json:auraDescription
+msgid "-20% attack for enemy mercenaries."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.json:auraName
@@ -843,7 +851,7 @@ msgid "Leadership"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.json:auraDescription
-msgid "+10% movement speed for all soldiers, siege engines and traders."
+msgid "+15% movement speed for all soldiers, siege engines and traders."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.json:auraName
@@ -896,7 +904,7 @@ msgid "Mercenary Patron"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.json:auraDescription
-msgid "Mercenaries cost -50% resources during his lifetime."
+msgid "Mercenaries cost -35% resources during his lifetime."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.json:auraName
@@ -957,7 +965,7 @@ msgid "Helot Reforms"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.json:auraDescription
-msgid "+25% attack and +1 armor for javelin infantry soldiers."
+msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.json:auraName

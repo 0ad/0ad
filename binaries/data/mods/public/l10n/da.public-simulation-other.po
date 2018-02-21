@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-05 09:06+0100\n"
-"PO-Revision-Date: 2018-01-05 15:33+0000\n"
+"POT-Creation-Date: 2018-02-19 09:05+0100\n"
+"PO-Revision-Date: 2018-02-19 15:57+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -425,12 +425,12 @@ msgid ""
 "%(validTerritories)s"
 msgstr "%(name)s kan ikke bygges i %(territoryType)s territorium. Gyldige territorier: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:253
+#: simulation/components/BuildRestrictions.js:228
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s skal bygges på en gyldig kystlinje"
 
-#: simulation/components/BuildRestrictions.js:281
+#: simulation/components/BuildRestrictions.js:256
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -441,7 +441,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: simulation/components/BuildRestrictions.js:302
+#: simulation/components/BuildRestrictions.js:277
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -452,28 +452,28 @@ msgstr[1] ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:342
+#: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
 msgstr "eget"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:344
+#: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "allieret"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:346
+#: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neutral"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:348
+#: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "fjendligt"
@@ -513,26 +513,26 @@ msgstr ""
 msgid "%(category)s limit of %(limit)s reached"
 msgstr ""
 
-#: simulation/components/Player.js:304
+#: simulation/components/Player.js:336
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "utilstrækkelige ressourcer - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:306
+#: simulation/components/Player.js:338
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Utilstrækkelige ressourcer - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:308
+#: simulation/components/Player.js:340
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Utilstrækkelige ressourcer - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:310
+#: simulation/components/Player.js:342
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -540,11 +540,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Utilstrækkelige ressourcer - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:412
+#: simulation/components/ProductionQueue.js:400
 msgid "The production queue is full."
 msgstr "Produktionskøen er fuld."
 
-#: simulation/components/ProductionQueue.js:798
+#: simulation/components/ProductionQueue.js:775
 msgid "Can't find free space to spawn trained units"
 msgstr ""
 
@@ -768,6 +768,48 @@ msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "Dødskamp"
 
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+msgid "Very Easy"
+msgstr "Meget let"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+msgid "Easy"
+msgstr "Let"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
+#: simulation/data/settings/map_sizes.jsonData[2].Name
+msgid "Medium"
+msgstr "Mellem"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+msgid "Hard"
+msgstr "Svær"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+msgid "Very Hard"
+msgstr "Meget Svær"
+
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
 msgstr "Lillebitte"
@@ -785,11 +827,6 @@ msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
 msgstr ""
-
-#: simulation/data/settings/map_sizes.jsonData[2].Name
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Name
-msgid "Medium"
-msgstr "Mellem"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
@@ -832,43 +869,6 @@ msgstr ""
 msgid "Giant"
 msgstr "Enorm"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Name
-msgid "Very Easy"
-msgstr "Meget let"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
-msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Name
-msgid "Easy"
-msgstr "Let"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
-msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
-msgid ""
-"Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Name
-msgid "Hard"
-msgstr "Svær"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
-msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Name
-msgid "Very Hard"
-msgstr "Meget Svær"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
-msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
-
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
 msgstr "Petra Bot"
@@ -877,5 +877,5 @@ msgstr "Petra Bot"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
 msgstr ""

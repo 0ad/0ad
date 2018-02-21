@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-14 09:04+0100\n"
-"PO-Revision-Date: 2018-02-14 16:12+0000\n"
+"POT-Creation-Date: 2018-02-19 09:04+0100\n"
+"PO-Revision-Date: 2018-02-19 14:57+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Franco-Provençal (Arpitan) (http://www.transifex.com/wildfire-games/0ad/language/frp/)\n"
 "MIME-Version: 1.0\n"
@@ -135,41 +135,41 @@ msgstr ""
 msgid "%(dateString)s %(map)s"
 msgstr ""
 
-#: gui/common/functions_utility_loadsave.js:76
+#: gui/common/functions_utility_loadsave.js:53
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr ""
 
-#: gui/common/functions_utility_loadsave.js:78
+#: gui/common/functions_utility_loadsave.js:55
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr ""
 
-#: gui/common/functions_utility_loadsave.js:79
+#: gui/common/functions_utility_loadsave.js:56
 msgid "DELETE"
 msgstr ""
 
-#: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
-#: gui/options/options.js:263 gui/options/options.js:316
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
+#: gui/options/options.js:264 gui/options/options.js:315
+#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "No"
 msgstr "Non"
 
-#: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
-#: gui/options/options.js:263 gui/options/options.js:316
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
+#: gui/options/options.js:264 gui/options/options.js:315
+#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "Yes"
 msgstr "Ouè"
 
-#: gui/common/functions_utility_loadsave.js:97
+#: gui/common/functions_utility_loadsave.js:74
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
 msgstr ""
 
-#: gui/common/functions_utility_loadsave.js:102
+#: gui/common/functions_utility_loadsave.js:79
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr ""
@@ -606,7 +606,6 @@ msgstr ""
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:639
 #: gui/common/tooltips.js:673 gui/common/tooltips.js:739
-#: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
 msgid ", "
 msgstr ""
 
@@ -1163,46 +1162,46 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: gui/options/options.js:92
+#: gui/options/options.js:93
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
 msgstr ""
 
-#: gui/options/options.js:94
+#: gui/options/options.js:95
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
 msgstr ""
 
-#: gui/options/options.js:96
+#: gui/options/options.js:97
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr ""
 
-#: gui/options/options.js:129
+#: gui/options/options.js:130
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr ""
 
-#: gui/options/options.js:261
+#: gui/options/options.js:262
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:262 gui/options/options.js:315
-#: gui/options/options.js:341
+#: gui/options/options.js:263 gui/options/options.js:314
+#: gui/options/options.js:340
 msgid "Warning"
 msgstr ""
 
-#: gui/options/options.js:314
+#: gui/options/options.js:313
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:340
+#: gui/options/options.js:339
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -1295,7 +1294,7 @@ msgid ""
 "for additional information."
 msgstr ""
 
-#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:119
 msgid "Error"
 msgstr ""
 
@@ -1318,46 +1317,36 @@ msgid "%(health_min)s to %(health_max)s"
 msgstr ""
 
 #: gui/replaymenu/replay_actions.js:92
-msgid "You don't have the same mods active as the replay does."
+msgid "This replay needs a different sequence of mods:"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:93
-#, javascript-format
-msgid "Required: %(mods)s"
-msgstr ""
-
-#: gui/replaymenu/replay_actions.js:94
-#, javascript-format
-msgid "Active: %(mods)s"
-msgstr ""
-
-#: gui/replaymenu/replay_actions.js:98
+#: gui/replaymenu/replay_actions.js:97
 msgid "This replay is not compatible with your version of the game!"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:99
+#: gui/replaymenu/replay_actions.js:98
 #, javascript-format
 msgid "Your version: %(version)s"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:100
+#: gui/replaymenu/replay_actions.js:99
 #, javascript-format
 msgid "Required version: %(version)s"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:103
+#: gui/replaymenu/replay_actions.js:102
 msgid "Incompatible replay"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:120
+#: gui/replaymenu/replay_actions.js:119
 msgid "No summary data available."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:168
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:171
+#: gui/replaymenu/replay_actions.js:170
 msgid "Delete replay"
 msgstr ""
 

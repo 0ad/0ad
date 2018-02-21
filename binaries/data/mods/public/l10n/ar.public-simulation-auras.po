@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-09 09:03+0100\n"
-"PO-Revision-Date: 2018-02-09 19:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-20 09:38+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,31 +32,31 @@ msgstr "إصلاحات حوض بناء السفن"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr "اصلاح السفن المخزنة بـ 10 نقاط حياة كل ثانية"
+msgstr "تُصلح السفينة المحتمية بمعدّل 10 نقاط إصابة لكلّ ثانية."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
-msgstr "مباركة الألهة"
+msgstr "مباركة الآلهة"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
-msgstr "يعالج الوحدات القريبة بـ 3 نقاط حياة فى الثانية"
+msgstr "تُعالج الوحدات بمعدّل 3 نقاط إصابة لكلّ ثانية."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
-msgstr "الحماسة الدينية"
+msgstr "الاندفاع الدينيّ"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
-msgstr "زيادة ضرر الهجوم للجنود بنسبة 20%."
+msgstr "يزيد ضرر الهجوم للجنود بنسبة 20%."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
-msgstr ""
+msgstr "الوطنيّة"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 msgid "Workers +15% gather rates near pyramids."
-msgstr ""
+msgstr "يزيد معدّلات جمع العاملين بنسبة 15% قرب الأهرام."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -92,7 +92,7 @@ msgstr "قوّة المعرفة"
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr "تقليل كلفة البحث في التّقنيّات والوقت اللازم بنسبة 10% لكلّ مكتبة مملوكة."
+msgstr "تقلّ كلفة البحث في التّقنيّات والوقت اللازم بنسبة 10% لكلّ مكتبة مملوكة."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -104,11 +104,11 @@ msgstr "50% تجدد الولاء للمباني المثكونة"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
-msgstr "مرسوم أشوكا"
+msgstr "مرسوم آشوكا"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "+20% movement speed for traders."
-msgstr "+٢٠٪ سرعة الحركة للتجار."
+msgstr "تزيد سرعة حركة التجّار بمعدّل ٢٠٪."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -116,7 +116,7 @@ msgstr "علاوة زراعة"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "+25% gather rate for workers in the grainfields."
-msgstr "+٢٥٪ معدل جمع العمال في حقول القمح."
+msgstr "يزيد معدّل الجمع للعاملين في حقول القمح بنسبة ٢٥٪."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -132,11 +132,11 @@ msgstr "الهَلْيَنة"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr "زيادة تأثير الإقليم بـــ20% لكل \"ثيارتون\" تملكها."
+msgstr "يزيد أثر الإقليم بنسبة 20% لكلّ ثيارتون تملكه."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr "جدار حماية"
+msgstr "حماية الجدران"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."
@@ -182,7 +182,7 @@ msgstr "الدّرويد"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allies get -20% resource cost to train healers."
-msgstr ""
+msgstr "تقلّ تكلفة موارد تدريب الحلفاء للمعالجين بنسبة 20%."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -222,11 +222,11 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
-msgstr "عملة موحدة."
+msgstr "عملة موحّدة"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "+20% sell prices at market."
-msgstr "+٢٠٪ أسعار البيع في السوق."
+msgstr "تزيد أسعار البيع في السوق بنسبة ٢٠٪."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
