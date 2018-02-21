@@ -52,7 +52,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 		if (rendered[0] === undefined)
 			continue;
 
-		var points = rendered[0].points;
+		var points = rendered[0].getPoints();
 
 		var corners = findCorners(points);
 

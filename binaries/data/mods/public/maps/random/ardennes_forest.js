@@ -79,7 +79,7 @@ createArea(
 	]);
 Engine.SetProgress(5);
 
-// Find all hills
+g_Map.log("Finding hills");
 var noise0 = new Noise2D(20);
 for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
@@ -253,16 +253,11 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 
 Engine.SetProgress(50);
 
-var explorablePoints = [];
-
 for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
 		let position = new Vector2D(ix, iz);
 		let h = g_Map.getHeight(position);
-
-		if (h > 15 && h < 45 && clPlayer.countMembersInRadius(position, 1) == 0)
-			explorablePoints.push(position);
 
 		if (h > 35 && randBool(0.1) ||
 		    h < 15 && randBool(0.05) && clHillDeco.countMembersInRadius(position, 1) == 0)
@@ -273,7 +268,13 @@ for (var ix = 0; ix < mapSize; ix++)
 				randomAngle());
 	}
 
-var explorableArea = g_Map.createArea(explorablePoints);
+var explorableArea = createArea(
+	new MapBoundsPlacer(),
+	undefined,
+	[
+		new HeightConstraint(15, 45),
+		avoidClasses(clPlayer, 1)
+	]);
 
 Engine.SetProgress(55);
 

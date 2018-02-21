@@ -177,7 +177,7 @@ createObjectGroupsByAreas(
 g_Map.log("Creating docks");
 for (let i = 0; i < scaleByMapSize(2, 4); ++i)
 {
-	let positionLand = pickRandom(areaDockStart.points);
+	let positionLand = pickRandom(areaDockStart.getPoints());
 	let dockPosition = areaShoreline.getClosestPointTo(positionLand);
 
 	if (!avoidClasses(g_TileClasses.mountain, scaleByMapSize(4, 6), g_TileClasses.dock, 10).allows(dockPosition))

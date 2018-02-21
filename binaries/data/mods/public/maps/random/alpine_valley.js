@@ -33,7 +33,7 @@ function MountainRangeBuilder(args)
 	/**
 	 * Array of Vector2D locations where a mountainrange can start or end.
 	 */
-	this.vertices = args.points;
+	this.vertices = args.getPoints();
 
 	/**
 	 * Number of mountainranges starting or ending at the given point.

@@ -333,7 +333,7 @@ createDecoration(
 
 g_Map.log("Placing bridges");
 var bridges = 0;
-for (let bridgeStart of shuffleArray(areaShoreline.points))
+for (let bridgeStart of shuffleArray(areaShoreline.getPoints()))
 {
 	if (new NearTileClassConstraint(clBridge, bridgeLength * 8).allows(bridgeStart))
 		continue;

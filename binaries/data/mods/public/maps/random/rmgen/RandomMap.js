@@ -28,12 +28,9 @@ function RandomMap(baseHeight, baseTerrain)
 
 	// Create 2D arrays for terrain objects and areas
 	this.terrainEntities = [];
-	this.area = [];
 
 	for (let i = 0; i < this.size; ++i)
 	{
-		this.area[i] = new Uint16Array(this.size);
-
 		this.terrainEntities[i] = [];
 		for (let j = 0; j < this.size; ++j)
 			this.terrainEntities[i][j] = undefined;
@@ -54,8 +51,6 @@ function RandomMap(baseHeight, baseTerrain)
 	}
 
 	this.entities = [];
-
-	this.areaID = 0;
 
 	// Starting entity ID, arbitrary number to leave some space for player entities
 	this.entityCount = 150;
@@ -313,17 +308,6 @@ RandomMap.prototype.setTerrainEntity = function(templateName, playerID, position
 
 	this.terrainEntities[tilePosition.x][tilePosition.y] =
 		new Entity(this.getEntityID(), templateName, playerID, position, orientation);
-};
-
-/**
- * Constructs a new Area object and informs the Map which points correspond to this area.
- */
-RandomMap.prototype.createArea = function(points)
-{
-	let areaID = ++this.areaID;
-	for (let p of points)
-		this.area[p.x][p.y] = areaID;
-	return new Area(points, areaID);
 };
 
 RandomMap.prototype.createTileClass = function()

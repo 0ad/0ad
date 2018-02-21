@@ -9,6 +9,6 @@ function ElevationBlendingPainter(targetHeight, strength)
 
 ElevationBlendingPainter.prototype.paint = function(area)
 {
-	for (let point of area.points)
+	for (let point of area.getPoints())
 		g_Map.setHeight(point, this.strength * this.targetHeight + (1 - this.strength) * g_Map.getHeight(point));
 };

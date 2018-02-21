@@ -8,6 +8,6 @@ function TileClassPainter(tileClass)
 
 TileClassPainter.prototype.paint = function(area)
 {
-	for (let point of area.points)
+	for (let point of area.getPoints())
 		this.tileClass.add(point);
 };

@@ -9,6 +9,6 @@ function TerrainPainter(terrain)
 
 TerrainPainter.prototype.paint = function(area)
 {
-	for (let point of area.points)
+	for (let point of area.getPoints())
 		this.terrain.place(point);
 };

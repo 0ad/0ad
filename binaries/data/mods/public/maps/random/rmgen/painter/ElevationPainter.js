@@ -8,7 +8,7 @@ function ElevationPainter(elevation)
 
 ElevationPainter.prototype.paint = function(area)
 {
-	for (let point of area.points)
+	for (let point of area.getPoints())
 		for (let vertex of g_TileVertices)
 		{
 			let position = Vector2D.add(point, vertex);
