@@ -5187,6 +5187,21 @@ UnitAI.prototype.SetupTradeRoute = function(target, source, route, queued)
 		return;
 	}
 
+	// AI has currently no access to BackToWork
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	if (cmpPlayer && cmpPlayer.IsAI() && !this.IsFormationController() &&
+	    this.workOrders.length && this.workOrders[0].type == "Trade")
+	{
+		let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+		if (cmpTrader.HasBothMarkets() && 
+		   (cmpTrader.GetFirstMarket() == target && cmpTrader.GetSecondMarket() == source ||
+		    cmpTrader.GetFirstMarket() == source && cmpTrader.GetSecondMarket() == target))
+		{
+			this.BackToWork();
+			return;
+		}
+	}
+
 	var marketsChanged = this.SetTargetMarket(target, source);
 	if (!marketsChanged)
 		return;
@@ -5210,7 +5225,7 @@ UnitAI.prototype.SetupTradeRoute = function(target, source, route, queued)
 		if (this.IsFormationController())
 		{
 			this.CallMemberFunction("AddOrder", ["Trade", data, queued]);
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 			if (cmpFormation)
 				cmpFormation.Disband();
 		}
