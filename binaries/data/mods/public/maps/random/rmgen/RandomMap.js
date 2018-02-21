@@ -399,6 +399,8 @@ RandomMap.prototype.getSlope = function(position)
  */
 RandomMap.prototype.exportEntityList = function()
 {
+	let nonTerrainCount = this.entities.length;
+
 	// Change rotation from simple 2d to 3d befor giving to engine
 	for (let entity of this.entities)
 		entity.rotation.y = Math.PI / 2 - entity.rotation.y;
@@ -409,7 +411,11 @@ RandomMap.prototype.exportEntityList = function()
 			if (this.terrainEntities[x][z])
 				this.entities.push(this.terrainEntities[x][z]);
 
-	this.logger.printDirectly("Total entities: " + this.entities.length + ".\n")
+	this.logger.printDirectly(
+		"Total entities: " + this.entities.length + ", " +
+		"Terrain entities: " + (this.entities.length - nonTerrainCount) + ", " +
+		"Textures: " + this.IDToName.length + ".\n");
+
 	return this.entities;
 };
 

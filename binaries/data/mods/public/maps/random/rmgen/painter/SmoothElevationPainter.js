@@ -63,17 +63,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 			}
 		}
 
-	// Every vertex of a tile is considered within the area
-	let withinArea = (area, position) => {
-		for (let vertex of g_TileVertices)
-		{
-			let vertexPos = Vector2D.sub(position, vertex);
-			if (g_Map.inMapBounds(vertexPos) && area.contains(vertexPos))
-				return true;
-		}
-
-		return false;
-	};
+	let withinArea = (area, position) => g_TileVertices.some(vertexPos => area.contains(Vector2D.sub(position, vertexPos)));
 
 	// Change height inside the area depending on the distance to the border
 	breadthFirstSearchPaint({

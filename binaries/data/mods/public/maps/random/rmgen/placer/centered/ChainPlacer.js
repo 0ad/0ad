@@ -78,10 +78,9 @@ ChainPlacer.prototype.place = function(constraint)
 			}
 			else if (state >= 0)
 			{
-				let s = edges.splice(state, 1);
+				edges.splice(state, 1);
 				gotRet[position.x][position.y] = -2;
 
-				let edgesLength = edges.length;
 				for (let k = state; k < edges.length; ++k)
 					--gotRet[edges[k].x][edges[k].y];
 			}
