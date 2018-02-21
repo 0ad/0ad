@@ -105,7 +105,7 @@ public:
 	bool any_set_in_square(int i0, int j0, int i1, int j1) const
 	{
 	#if GRID_BOUNDS_DEBUG
-		ENSURE(i0 >= 0 && j0 >= 0 && i1 < m_W && j1 < m_H);
+		ENSURE(i0 >= 0 && j0 >= 0 && i1 <= m_W && j1 <= m_H);
 	#endif
 		for (int j = j0; j < j1; ++j)
 		{
