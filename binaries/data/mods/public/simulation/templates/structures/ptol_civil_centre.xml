@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
   <Footprint>
-    <Square width="42.0" depth="35"/>
+    <Square width="41" depth="33"/>
     <Height>8.0</Height>
   </Footprint>
   <Identity>
@@ -9,7 +9,7 @@
     <SpecificName>pr-'a</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="40.0" depth="37"/>
+    <Static width="39" depth="31"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
