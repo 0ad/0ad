@@ -310,6 +310,15 @@ RandomMap.prototype.setTerrainEntity = function(templateName, playerID, position
 		new Entity(this.getEntityID(), templateName, playerID, position, orientation);
 };
 
+RandomMap.prototype.deleteTerrainEntity = function(position)
+{
+	let tilePosition = position.clone().floor();
+	if (!this.validTilePassable(tilePosition))
+		throw new Error("setTerrainEntity: invalid tile position " + uneval(position));
+
+	this.terrainEntities[tilePosition.x][tilePosition.y] = undefined;
+};
+
 RandomMap.prototype.createTileClass = function()
 {
 	return new TileClass(this.size);

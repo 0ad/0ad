@@ -44,6 +44,21 @@ StayAreasConstraint.prototype.allows = function(position)
 };
 
 /**
+ * The StayAreasConstraint is met if the point is adjacent to one of the given Areas and not contained by that Area.
+  */
+function AdjacentToAreaConstraint(areas)
+{
+	this.areas = areas;
+}
+
+AdjacentToAreaConstraint.prototype.allows = function(position)
+{
+	return this.areas.some(area =>
+		!area.contains(position) &&
+		g_Map.getAdjacentPoints(position).some(adjacentPosition => area.contains(adjacentPosition)));
+};
+
+/**
  * The AvoidAreasConstraint is met if none of the given Areas contain the point.
  */
 function AvoidAreasConstraint(areas)

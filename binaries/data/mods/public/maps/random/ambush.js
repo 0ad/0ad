@@ -8,28 +8,31 @@ setSelectedBiome();
 var heightLand = 2;
 
 var g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
+var mapCenter = g_Map.getCenter();
+var mapSize = g_Map.getSize();
 
-initTileClasses();
-
+initTileClasses(["bluffsPassage", "nomadArea"]);
 createArea(
 	new MapBoundsPlacer(),
 	new TileClassPainter(g_TileClasses.land));
 
 Engine.SetProgress(10);
 
-const playerbasePattern = randomStartingPositionPattern(getTeamsArray());
-createBasesByPattern(playerbasePattern.setup, playerbasePattern.distance, playerbasePattern.separation, randomAngle());
+var playerIDs;
+var playerPosition;
+if (!isNomad())
+{
+	let playerbasePattern = randomStartingPositionPattern(getTeamsArray());
+	[playerIDs, playerPosition] = createBasesByPattern(playerbasePattern.setup, playerbasePattern.distance, playerbasePattern.groupedDistance, randomAngle());
+	markPlayerAvoidanceArea(playerPosition, defaultPlayerBaseRadius());
+}
 Engine.SetProgress(20);
 
 addElements([
 	{
 		"func": addBluffs,
 		"baseHeight": heightLand,
-		"avoid": [
-			g_TileClasses.bluff, 12,
-			g_TileClasses.hill, 5,
-			g_TileClasses.player, 35
-		],
+		"avoid": [g_TileClasses.bluffIgnore, 0],
 		"sizes": ["normal", "big", "huge"],
 		"mixes": ["same"],
 		"amounts": ["tons"]
@@ -48,11 +51,15 @@ addElements([
 ]);
 Engine.SetProgress(30);
 
+if (!isNomad())
+	createBluffsPassages(playerPosition);
+
 addElements([
 	{
 		"func": addLayeredPatches,
 		"avoid": [
 			g_TileClasses.bluff, 2,
+			g_TileClasses.bluffsPassage, 4,
 			g_TileClasses.dirt, 5,
 			g_TileClasses.forest, 2,
 			g_TileClasses.mountain, 2,
@@ -67,6 +74,7 @@ addElements([
 		"func": addDecoration,
 		"avoid": [
 			g_TileClasses.bluff, 2,
+			g_TileClasses.bluffsPassage, 4,
 			g_TileClasses.forest, 2,
 			g_TileClasses.mountain, 2,
 			g_TileClasses.player, 12,
@@ -83,6 +91,7 @@ addElements(shuffleArray([
 	{
 		"func": addMetal,
 		"avoid": [
+			g_TileClasses.bluffsPassage, 4,
 			g_TileClasses.berries, 5,
 			g_TileClasses.forest, 3,
 			g_TileClasses.mountain, 2,
@@ -99,6 +108,7 @@ addElements(shuffleArray([
 	{
 		"func": addStone,
 		"avoid": [
+			g_TileClasses.bluffsPassage, 4,
 			g_TileClasses.berries, 5,
 			g_TileClasses.forest, 3,
 			g_TileClasses.mountain, 2,
@@ -116,6 +126,7 @@ addElements(shuffleArray([
 	{
 		"func": addForests,
 		"avoid": [
+			g_TileClasses.bluffsPassage, 4,
 			g_TileClasses.forest, 6,
 			g_TileClasses.metal, 3,
 			g_TileClasses.mountain, 5,
@@ -132,6 +143,7 @@ addElements(shuffleArray([
 	{
 		"func": addForests,
 		"avoid": [
+			g_TileClasses.bluffsPassage, 4,
 			g_TileClasses.bluff, 10,
 			g_TileClasses.forest, 10,
 			g_TileClasses.metal, 3,
@@ -152,6 +164,7 @@ addElements(shuffleArray([
 		"func": addBerries,
 		"avoid": [
 			g_TileClasses.bluff, 5,
+			g_TileClasses.bluffsPassage, 4,
 			g_TileClasses.forest, 5,
 			g_TileClasses.metal, 10,
 			g_TileClasses.mountain, 2,
@@ -167,6 +180,7 @@ addElements(shuffleArray([
 		"func": addAnimals,
 		"avoid": [
 			g_TileClasses.bluff, 5,
+			g_TileClasses.bluffsPassage, 4,
 			g_TileClasses.forest, 2,
 			g_TileClasses.metal, 2,
 			g_TileClasses.mountain, 1,
@@ -176,13 +190,14 @@ addElements(shuffleArray([
 		],
 		"sizes": ["small"],
 		"mixes": ["similar"],
-		"amounts": ["normal", "many"]
+		"amounts": ["few"]
 	},
 	{
 		"func": addStragglerTrees,
 		"avoid": [
 			g_TileClasses.berries, 5,
 			g_TileClasses.bluff, 5,
+			g_TileClasses.bluffsPassage, 4,
 			g_TileClasses.forest, 7,
 			g_TileClasses.metal, 2,
 			g_TileClasses.mountain, 1,
@@ -197,15 +212,26 @@ addElements(shuffleArray([
 ]));
 Engine.SetProgress(90);
 
-placePlayersNomad(
-	g_TileClasses.player,
-	avoidClasses(
-		g_TileClasses.bluff, 4,
-		g_TileClasses.water, 4,
-		g_TileClasses.forest, 1,
-		g_TileClasses.metal, 4,
-		g_TileClasses.rock, 4,
-		g_TileClasses.mountain, 4,
-		g_TileClasses.animals, 2));
+if (isNomad())
+{
+	g_Map.log("Preventing units to be spawned at the map border");
+	createArea(
+		new DiskPlacer(mapSize / 2 - scaleByMapSize(15, 35), mapCenter),
+		new TileClassPainter(g_TileClasses.nomadArea));
+
+	placePlayersNomad(
+		g_TileClasses.player,
+		[
+			stayClasses(g_TileClasses.nomadArea, 0),
+			avoidClasses(
+				g_TileClasses.bluff, 2,
+				g_TileClasses.water, 4,
+				g_TileClasses.forest, 1,
+				g_TileClasses.metal, 4,
+				g_TileClasses.rock, 4,
+				g_TileClasses.mountain, 4,
+				g_TileClasses.animals, 2)
+		]);
+}
 
 g_Map.ExportMap();
