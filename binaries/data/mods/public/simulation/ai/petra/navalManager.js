@@ -541,72 +541,154 @@ m.NavalManager.prototype.assignShipsToPlans = function(gameState)
 			plan.assignShip(gameState);
 };
 
+/** Return true if this ship is likeky (un)garrisoning units */ 
+m.NavalManager.prototype.isShipBoarding = function(ship)
+{
+	if (!ship.position())
+		return false;
+	let plan = this.getPlan(ship.getMetadata(PlayerID, "transporter"));
+	if (!plan || !plan.boardingPos[ship.id()])
+		return false;
+	return API3.SquareVectorDistance(plan.boardingPos[ship.id()], ship.position()) < plan.boardingRange;
+};
+
 /** let blocking ships move apart from active ships (waiting for a better pathfinder) */
 m.NavalManager.prototype.moveApart = function(gameState)
 {
+	let blockedShips = [];
+
 	for (let ship of this.ships.values())
 	{
-		if (ship.hasClass("FishingBoat"))   // small ships should not be a problem
-			continue;
 		let shipPosition = ship.position();
 		if (!shipPosition)
 			continue;
-		let sea = ship.getMetadata(PlayerID, "sea");
-		if (ship.getMetadata(PlayerID, "transporter") === undefined)
-		{
-			if (ship.isIdle())
-			{
-				// Check if there are some treasure around
-				let treasurePosChecked = ship.getMetadata(PlayerID, "treasurePosChecked");
-				if ((!treasurePosChecked || treasurePosChecked[0] != shipPosition[0] ||
-				                            treasurePosChecked[1] != shipPosition[1]) &&
-				     m.gatherTreasure(gameState, ship, true))
-					continue;
-				ship.setMetadata(PlayerID, "treasurePosChecked", shipPosition);
-				// Do not stay idle near a dock to not disturb other ships
-				for (let dock of gameState.getAllyStructures().filter(API3.Filters.byClass("Dock")).values())
-				{
-					if (dock.getMetadata(PlayerID, "sea") != sea)
-						continue;
-					if (API3.SquareVectorDistance(shipPosition, dock.position()) > 2500)
-						continue;
-					ship.moveApart(dock.position(), 50);
-				}
-			}
+		if (ship.getMetadata(PlayerID, "transporter") !== undefined && this.isShipBoarding(ship))
 			continue;
-		}
-		// if transporter ship not idle, move away other ships which could block it
-		for (let blockingShip of this.seaShips[sea].values())
+
+		let unitAIState = ship.unitAIState();
+		if (ship.getMetadata(PlayerID, "transporter") !== undefined ||
+		    unitAIState == "INDIVIDUAL.GATHER.APPROACHING" ||
+		    unitAIState == "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
 		{
-			if (blockingShip.id() == ship.id() || !blockingShip.isIdle())
+			let previousPosition = ship.getMetadata(PlayerID, "previousPosition");
+			if (!previousPosition || previousPosition[0] != shipPosition[0] ||
+			                         previousPosition[1] != shipPosition[1])
+			{
+				ship.setMetadata(PlayerID, "previousPosition", shipPosition)
 				continue;
-			if (API3.SquareVectorDistance(shipPosition, blockingShip.position()) > 900)
+			}
+			ship.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
+			blockedShips.push(ship);
+		}
+		else if (ship.isIdle())
+		{
+			let previousIdlePosition = ship.getMetadata(PlayerID, "previousIdlePosition");
+			if (previousIdlePosition && previousIdlePosition[0] == shipPosition[0] &&
+			                            previousIdlePosition[1] == shipPosition[1])
 				continue;
-			if (blockingShip.getMetadata(PlayerID, "transporter") === undefined)
-				blockingShip.moveApart(shipPosition, 12);
-			else
-				blockingShip.moveApart(shipPosition, 6);
+			ship.setMetadata(PlayerID, "previousIdlePosition", shipPosition);
+			// Check if there are some treasure around
+		 	let rates = ship.resourceGatherRates();
+			if (!rates || !rates.treasure || rates.treasure <= 0)
+				continue;
+			if (m.gatherTreasure(gameState, ship, true))
+				continue;
+			// Do not stay idle near a dock to not disturb other ships
+			let sea = ship.getMetadata(PlayerID, "sea");
+			for (let dock of gameState.getAllyStructures().filter(API3.Filters.byClass("Dock")).values())
+			{
+				if (m.getSeaAccess(gameState, dock) != sea)
+					continue;
+				if (API3.SquareVectorDistance(shipPosition, dock.position()) > 4900)
+					continue;
+				ship.moveToRange(dock.position()[0], dock.position()[1], 70, 70);
+			}
+
 		}
 	}
 
 	for (let ship of gameState.ai.HQ.tradeManager.traders.filter(API3.Filters.byClass("Ship")).values())
 	{
-		if (ship.getMetadata(PlayerID, "route") === undefined)
-			continue;
 		let shipPosition = ship.position();
 		if (!shipPosition)
 			continue;
+
+		let unitAIState = ship.unitAIState();
+		if (unitAIState == "INDIVIDUAL.TRADE.APPROACHINGMARKET")
+		{
+			let previousPosition = ship.getMetadata(PlayerID, "previousPosition");
+			if (!previousPosition || previousPosition[0] != shipPosition[0] ||
+			                         previousPosition[1] != shipPosition[1])
+			{
+				ship.setMetadata(PlayerID, "previousPosition", shipPosition)
+				continue;
+			}
+			ship.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
+			blockedShips.push(ship);
+		}
+		else if (ship.isIdle())
+		{
+			let previousIdlePosition = ship.getMetadata(PlayerID, "previousIdlePosition");
+			if (previousIdlePosition && previousIdlePosition[0] == shipPosition[0] &&
+			                            previousIdlePosition[1] == shipPosition[1])
+				continue;
+			ship.setMetadata(PlayerID, "previousIdlePosition", shipPosition);
+			// Check if there are some treasure around
+		 	let rates = ship.resourceGatherRates();
+			if (!rates || !rates.treasure || rates.treasure <= 0)
+				continue;
+			if (m.gatherTreasure(gameState, ship, true))
+				continue;
+			// Do not stay idle near a dock to not disturb other ships
+			let sea = ship.getMetadata(PlayerID, "sea");
+			for (let dock of gameState.getAllyStructures().filter(API3.Filters.byClass("Dock")).values())
+			{
+				if (m.getSeaAccess(gameState, dock) != sea)
+					continue;
+				if (API3.SquareVectorDistance(shipPosition, dock.position()) > 4900)
+					continue;
+				ship.moveToRange(dock.position()[0], dock.position()[1], 70, 70);
+			}
+		}
+	}
+
+	for (let ship of blockedShips)
+	{
+		let shipPosition = ship.position();
 		let sea = ship.getMetadata(PlayerID, "sea");
 		for (let blockingShip of this.seaShips[sea].values())
 		{
-			if (blockingShip.id() == ship.id() || blockingShip.getMetadata(PlayerID, "transporter") !== undefined)
+			if (blockedShips.indexOf(ship.id()) != -1 || !blockingShip.position())
 				continue;
-			if (API3.SquareVectorDistance(shipPosition, blockingShip.position()) > 900)
+			let distSquare = API3.SquareVectorDistance(shipPosition, blockingShip.position());
+			let unitAIState = blockingShip.unitAIState();
+			if (blockingShip.getMetadata(PlayerID, "transporter") === undefined &&
+			    unitAIState != "INDIVIDUAL.GATHER.APPROACHING" &&
+			    unitAIState != "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
+			{
+				if (distSquare < 1600)
+					blockingShip.moveToRange(shipPosition[0], shipPosition[1], 40, 40);
+			}
+			else if (distSquare < 900)
+				blockingShip.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
+
+		}
+
+		for (let blockingShip of gameState.ai.HQ.tradeManager.traders.filter(API3.Filters.byClass("Ship")).values())
+		{
+			if (blockingShip.getMetadata(PlayerID, "sea") != sea)
 				continue;
-			if (blockingShip.getMetadata(PlayerID, "transporter") === undefined)
-				blockingShip.moveApart(shipPosition, 12);
-			else
-				blockingShip.moveApart(shipPosition, 6);
+			if (blockedShips.indexOf(ship.id()) != -1 || !blockingShip.position())
+				continue;
+			let distSquare = API3.SquareVectorDistance(shipPosition, blockingShip.position());
+			let unitAIState = blockingShip.unitAIState();
+			if (unitAIState != "INDIVIDUAL.TRADE.APPROACHINGMARKET")
+			{
+				if (distSquare < 1600)
+					blockingShip.moveToRange(shipPosition[0], shipPosition[1], 40, 40);
+			}
+			else if (distSquare < 900)
+				blockingShip.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
 		}
 	}
 };
