@@ -36,11 +36,15 @@ function loadTemplate(templateName)
 	{
 		// We need to clone the template because we want to perform some translations.
 		let data = clone(Engine.GetTemplate(templateName));
-		translateObjectKeys(data, ["GenericName", "SpecificName", "Tooltip"]);
+		translateObjectKeys(data, ["GenericName", "SpecificName", "Tooltip", "History"]);
 
 		if (data.Auras)
 			for (let auraID of data.Auras._string.split(/\s+/))
 				loadAuraData(auraID);
+
+		if (data.Identity.Civ != "gaia" && g_SelectedCiv != "gaia" && data.Identity.Civ != g_SelectedCiv)
+			warn("The \"" + templateName + "\" template has a defined civ of \"" + data.Identity.Civ + "\". " +
+				"This does not match the currently selected civ \"" + g_SelectedCiv + "\".");
 
 		g_TemplateData[templateName] = data;
 	}
@@ -61,7 +65,7 @@ function loadTechData(templateName)
 	if (!(templateName in g_TechnologyData))
 	{
 		let data = Engine.ReadJSONFile(g_TechnologyPath + templateName + ".json");
-		translateObjectKeys(data, ["genericName", "tooltip"]);
+		translateObjectKeys(data, ["genericName", "tooltip", "description"]);
 
 		g_TechnologyData[templateName] = data;
 	}
@@ -100,7 +104,7 @@ function loadAuraData(templateName)
  *
  * @return {(object|null)} Sanitized object about the requested template or null if entity template doesn't exist.
  */
-function loadEntityTemplate (templateName)
+function loadEntityTemplate(templateName)
 {
 	if (!Engine.TemplateExists(templateName))
 		return null;
@@ -109,9 +113,17 @@ function loadEntityTemplate (templateName)
 	let parsed = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
 	parsed.name.internal = templateName;
 
+	parsed.history = template.Identity.History;
+
 	parsed.production = loadProductionQueue(template);
 	if (template.Builder)
 		parsed.builder = loadBuildQueue(template);
+
+	if (template.Identity.Rank)
+		parsed.promotion = {
+			"current_rank": template.Identity.Rank,
+			"entity": template.Promotion && template.Promotion.Entity
+		};
 
 	if (template.ResourceSupply)
 		parsed.supply = {
@@ -197,6 +209,7 @@ function loadTechnology(techName)
 {
 	let template = loadTechData(techName);
 	let tech = GetTechnologyDataHelper(template, g_SelectedCiv, g_ResourceData);
+	tech.name.internal = techName;
 
 	if (template.pair !== undefined)
 	{

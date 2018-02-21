@@ -96,12 +96,12 @@
 				<repeat count="6" var="t">
 					<object type="image" style="StructBox" name="trainer[t]">
 						<object type="text" style="StructNameSpecific" name="trainer[t]_name"/>
-						<object type="image" style="StructIcon" name="trainer[t]_icon"
+						<object type="button" style="StructIcon" name="trainer[t]_icon"
 							sprite="stretched:pregame/shell/logo/wfg_logo_white.png"
 						/>
 						<object name="trainer[t]_row">
 							<repeat count="4" var="p">
-								<object type="image" style="ProdBox" name="trainer[t]_prod[p]"/>
+								<object type="button" style="ProdBox" name="trainer[t]_prod[p]"/>
 							</repeat>
 						</object>
 					</object>

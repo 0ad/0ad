@@ -2,7 +2,10 @@ var g_TooltipTextFormats = {
 	"unit": { "font": "sans-10", "color": "orange" },
 	"header": { "font": "sans-bold-13" },
 	"body": { "font": "sans-13" },
-	"comma": { "font": "sans-12" }
+	"comma": { "font": "sans-12" },
+	"nameSpecificBig": { "font": "sans-bold-16" },
+	"nameSpecificSmall": { "font": "sans-bold-12" },
+	"nameGeneric": { "font": "sans-bold-16" }
 };
 
 var g_AttackTypes = {
@@ -110,12 +113,47 @@ function getSecondsString(seconds)
 	});
 }
 
+/**
+ * Entity templates have a `Tooltip` tag in the Identity component.
+ * (The contents of which are copied to a `tooltip` attribute in globalscripts.)
+ *
+ * Technologies have a `tooltip` attribute.
+ */
 function getEntityTooltip(template)
 {
 	if (!template.tooltip)
 		return "";
 
 	return bodyFont(template.tooltip);
+}
+
+/**
+ * Technologies have a `description` attribute, and Auras have an `auraDescription`
+ * attribute, which becomes `description`.
+ *
+ * (For technologies, this happens in globalscripts.)
+ *
+ * (For auras, this happens either in the Auras component (for session gui) or
+ * reference/common/load.js (for Reference Suite gui))
+ */
+function getDescriptionTooltip(template)
+{
+	if (!template.description)
+		return "";
+
+	return bodyFont(template.description);
+}
+
+/**
+ * Entity templates have a `History` tag in the Identity component.
+ * (The contents of which are copied to a `history` attribute in globalscripts.)
+ */
+function getHistoryTooltip(template)
+{
+	if (!template.history)
+		return "";
+
+	return bodyFont(template.history);
 }
 
 function getHealthTooltip(template)
@@ -569,7 +607,15 @@ function getEntityCostTooltip(template, entity, buildingsCountToTrainFullBatch, 
 	}
 
 	if (template.cost)
-		return getEntityCostComponentsTooltipString(template, entity, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch).join("  ");
+	{
+		let costs = getEntityCostComponentsTooltipString(template, entity, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch).join("  ");
+		if (costs)
+			// Translation: Label in tooltip showing cost of a unit, structure or technology.
+			return sprintf(translate("%(label)s %(costs)s"), {
+				"label": headerFont(translate("Cost:")),
+				"costs": costs
+			});
+	}
 
 	return "";
 }
@@ -717,15 +763,15 @@ function getEntityNames(template)
 function getEntityNamesFormatted(template)
 {
 	if (!template.name.specific)
-		return '[font="sans-bold-16"]' + template.name.generic + "[/font]";
+		return setStringTags(template.name.generic, g_TooltipTextFormats.nameSpecificBig);
 
 	// Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian Marine)[/font]"
 	return sprintf(translate("%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"), {
 		"specificName":
-			'[font="sans-bold-16"]' + template.name.specific[0] + '[/font]' +
-			'[font="sans-bold-12"]' + template.name.specific.slice(1).toUpperCase() + '[/font]',
+			setStringTags(template.name.specific[0], g_TooltipTextFormats.nameSpecificBig) +
+			setStringTags(template.name.specific.slice(1).toUpperCase(), g_TooltipTextFormats.nameSpecificSmall),
 		"genericName": template.name.generic,
-		"fontStart": '[font="sans-bold-16"]',
+		"fontStart": '[font="' + g_TooltipTextFormats.nameGeneric.font + '"]',
 		"fontEnd": '[/font]'
 	});
 }
@@ -775,4 +821,16 @@ function getLootTooltip(template)
 		"label": headerFont(translate("Loot:")),
 		"details": lootLabels.join("  ")
 	});
+}
+
+function showTemplateViewerOnRightClickTooltip()
+{
+	// Translation: Appears in a tooltip to indicate that right-clicking the corresponding GUI element will open the Template Details GUI page.
+	return translate("Right-click to view more information.");
+}
+
+function showTemplateViewerOnClickTooltip()
+{
+	// Translation: Appears in a tooltip to indicate that clicking the corresponding GUI element will open the Template Details GUI page.
+	return translate("Click to view more information.");
 }

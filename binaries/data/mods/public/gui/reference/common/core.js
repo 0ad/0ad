@@ -1,4 +1,4 @@
-var g_SelectedCiv = "";
+var g_SelectedCiv = "gaia";
 var g_CallbackSet = false;
 
 function closePage()
@@ -94,6 +94,11 @@ function getTemplateListsFromUnit(templateName)
 	if (!templateName || !Engine.TemplateExists(templateName))
 		return {};
 
+	// If this is a non-promotion variant (ie. {civ}_support_female_citizen_house)
+	// then it is functionally equivalent to another unit being processed, so skip it.
+	if (getBaseTemplateName(templateName) != templateName)
+		return {};
+
 	let template = loadTemplate(templateName);
 
 	let templateLists = loadProductionQueue(template);
@@ -144,7 +149,7 @@ function loadProductionQueue(template)
 		{
 			templateName = templateName.replace(/\{(civ|native)\}/g, g_SelectedCiv);
 			if (Engine.TemplateExists(templateName))
-				production.units.push(templateName);
+				production.units.push(getBaseTemplateName(templateName));
 		}
 
 	if (template.ProductionQueue.Technologies && template.ProductionQueue.Technologies._string)
@@ -181,4 +186,47 @@ function loadBuildQueue(template)
 	}
 
 	return buildQueue;
+}
+
+/**
+ * Returns the name of a template's base form (without `_house`, `_trireme`, or similar),
+ * or the template's own name if the base is of a different promotion rank.
+ */
+function getBaseTemplateName(templateName)
+{
+	if (!templateName || !Engine.TemplateExists(templateName))
+		return undefined;
+
+	templateName = removeFiltersFromTemplateName(templateName);
+	let template = loadTemplate(templateName);
+
+	if (dirname(template["@parent"]) != dirname(templateName))
+		return templateName;
+
+	let parentTemplate = loadTemplate(template["@parent"]);
+
+	if (parentTemplate.Identity && parentTemplate.Identity.Rank &&
+		parentTemplate.Identity.Rank != template.Identity.Rank)
+		return templateName;
+
+	if (!parentTemplate.Cost)
+		return templateName;
+
+	for (let res in parentTemplate.Cost.Resources)
+		if (parentTemplate.Cost.Resources[res])
+			return getBaseTemplateName(template["@parent"]);
+
+	return templateName;
+}
+
+function setViewerOnPress(guiObjectName, templateName)
+{
+	let viewerFunc = () => {
+		Engine.PushGuiPage("page_viewer.xml", {
+			"templateName": templateName,
+			"civ": g_SelectedCiv
+		});
+	};
+	Engine.GetGUIObjectByName(guiObjectName).onPress = viewerFunc;
+	Engine.GetGUIObjectByName(guiObjectName).onPressRight = viewerFunc;
 }
