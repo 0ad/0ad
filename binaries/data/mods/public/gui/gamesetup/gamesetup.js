@@ -2632,6 +2632,7 @@ function sendRegisterGameStanzaImmediate()
 		"players": clients.list,
 		"stunIP": g_StunEndpoint ? g_StunEndpoint.ip : "",
 		"stunPort": g_StunEndpoint ? g_StunEndpoint.port : "",
+		"mods": JSON.stringify(Engine.GetEngineInfo().mods),
 	};
 
 	// Only send the stanza if the relevant settings actually changed
