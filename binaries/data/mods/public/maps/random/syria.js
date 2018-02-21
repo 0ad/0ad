@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 const tMainDirt = ["desert_dirt_rocks_1", "desert_dirt_cracks"];
 const tForestFloor1 = "forestfloor_dirty";

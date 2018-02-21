@@ -17,6 +17,7 @@
  */
 
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 

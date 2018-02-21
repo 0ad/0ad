@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,8 +42,8 @@ struct ShaderModelDef : public CModelDefRPrivate
 	/// Static per-CModelDef vertex array
 	VertexArray m_Array;
 
-	/// UV coordinates are stored in the static array
-	VertexArray::Attribute m_UV;
+	/// The number of UVs is determined by the model
+	std::vector<VertexArray::Attribute> m_UVs;
 
 	ShaderModelDef(const CModelDefPtr& mdef);
 };
@@ -54,16 +54,22 @@ ShaderModelDef::ShaderModelDef(const CModelDefPtr& mdef)
 {
 	size_t numVertices = mdef->GetNumVertices();
 
-	m_UV.type = GL_FLOAT;
-	m_UV.elems = 2;
-	m_Array.AddAttribute(&m_UV);
+	m_UVs.resize(mdef->GetNumUVsPerVertex());
+	for (size_t i = 0; i < mdef->GetNumUVsPerVertex(); ++i)
+	{
+		m_UVs[i].type = GL_FLOAT;
+		m_UVs[i].elems = 2;
+		m_Array.AddAttribute(&m_UVs[i]);
+	}
 
 	m_Array.SetNumVertices(numVertices);
 	m_Array.Layout();
 
-	VertexArrayIterator<float[2]> UVit = m_UV.GetIterator<float[2]>();
-
-	ModelRenderer::BuildUV(mdef, UVit, 0);
+	for (size_t i = 0; i < mdef->GetNumUVsPerVertex(); ++i)
+	{
+		VertexArrayIterator<float[2]> UVit = m_UVs[i].GetIterator<float[2]>();
+		ModelRenderer::BuildUV(mdef, UVit, i);
+	}
 
 	m_Array.Upload();
 	m_Array.FreeBackingStore();
@@ -254,13 +260,14 @@ void ShaderModelVertexRenderer::PrepareModelDef(const CShaderProgramPtr& shader,
 
 	ENSURE(m->shadermodeldef);
 
-	if (streamflags & STREAM_UV0)
-	{
-		u8* base = m->shadermodeldef->m_Array.Bind();
-		GLsizei stride = (GLsizei)m->shadermodeldef->m_Array.GetStride();
+	u8* base = m->shadermodeldef->m_Array.Bind();
+	GLsizei stride = (GLsizei)m->shadermodeldef->m_Array.GetStride();
 
-		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->shadermodeldef->m_UV.offset);
-	}
+	if (streamflags & STREAM_UV0)
+		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->shadermodeldef->m_UVs[0].offset);
+
+	if ((streamflags & STREAM_UV1) && def.GetNumUVsPerVertex() >= 2)
+		shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, base + m->shadermodeldef->m_UVs[1].offset);
 }
 
 

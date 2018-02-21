@@ -43,7 +43,7 @@ SimpleGroup.prototype.place = function(playerID, constraint)
 	// Place none of them if one can't be placed.
 	for (let object of this.objects)
 	{
-		let entitySpecs = object.place(this.centerPosition, playerID, avoidPositions, constraint, 20);
+		let entitySpecs = object.place(this.centerPosition, playerID, avoidPositions, constraint, 30);
 
 		if (!entitySpecs)
 			return undefined;

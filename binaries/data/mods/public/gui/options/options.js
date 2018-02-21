@@ -305,8 +305,7 @@ function saveChanges()
 			if (value == optionType.sanitizeValue(value, undefined, option))
 				continue;
 
-			g_TabCategorySelected = category;
-			displayOptions();
+			selectPanel(category);
 
 			messageBox(
 				500, 200,

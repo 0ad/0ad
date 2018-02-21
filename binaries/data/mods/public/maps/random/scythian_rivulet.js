@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 const tMainTerrain = "alpine_snow_a";
 const tTier1Terrain = "snow rough";

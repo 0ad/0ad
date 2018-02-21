@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 const tPrimary = ["medit_rocks_grass", "medit_rocks_grass", "medit_rocks_grass",
 	"medit_rocks_grass", "medit_rocks_grass_shrubs", "medit_rocks_shrubs"];

@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 const tPrimary = ["temp_forestfloor_pine", "temp_forestfloor_pine", "alpine_cliff_c", "alpine_grass_rocky"];
 const tGrass = ["new_alpine_grass_b", "new_alpine_grass_c", "new_alpine_grass_d"];

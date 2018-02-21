@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 // Spawn ships away from the shoreline, but patrol close to the shoreline
 const triggerPointShipSpawn = "trigger/trigger_point_A";

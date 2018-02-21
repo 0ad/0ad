@@ -8,9 +8,9 @@
         <prop actor="props/units/heads/ptol_romanized_crest.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/ptol_thureos_elite.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
-        <prop actor="props/units/capes/spearman_shield_relax.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/hoplite.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/ptol_thureophoros_e_1.png" name="baseTex"/>
@@ -19,7 +19,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_spearman_relax.xml"/>
+    <variant file="biped/base_hoplite.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
@@ -42,7 +42,7 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml">
       <props>
-        <prop actor="props/units/capes/spearman_shield_relax.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/hoplite.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

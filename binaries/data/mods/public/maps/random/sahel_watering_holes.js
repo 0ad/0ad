@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 const tGrass = "savanna_grass_a";
 const tForestFloor = "savanna_forestfloor_a";

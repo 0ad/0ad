@@ -1,3 +1,22 @@
+/**
+ * A Centered Placer generates a shape (array of Vector2D points) around a variable center location satisfying a Constraint.
+ * The center can be modified externally using setCenterPosition, typically called by createAreas.
+ */
+Engine.LoadLibrary("rmgen/placer/centered");
+
+/**
+ * A Non-Centered Placer generates a shape (array of Vector2D points) at a fixed location meeting a Constraint and
+ * is typically called by createArea.
+ * Since this type of Placer has no x and z property, its location cannot be randomized using createAreas.
+ */
+Engine.LoadLibrary("rmgen/placer/noncentered");
+
+/**
+ * A Painter modifies an arbitrary feature in a given Area, for instance terrain textures, elevation or calling other painters on that Area.
+ * Typically the area is determined by a Placer called from createArea or createAreas.
+ */
+Engine.LoadLibrary("rmgen/painter");
+
 const TERRAIN_SEPARATOR = "|";
 const SEA_LEVEL = 20.0;
 const HEIGHT_UNITS_PER_METRE = 92;

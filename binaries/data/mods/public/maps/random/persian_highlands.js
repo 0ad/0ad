@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
 if (g_MapSettings.Biome)

@@ -16,6 +16,7 @@
  */
 
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 

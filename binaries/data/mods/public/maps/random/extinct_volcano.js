@@ -1,4 +1,5 @@
 Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen-common");
 
 const tHillDark = "cliff volcanic light";
 const tHillMedium1 = "ocean_rock_a";
