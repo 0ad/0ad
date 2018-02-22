@@ -576,7 +576,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	// Try to help building one if any accessible foundation available
 	let foundations = gameState.getOwnFoundations().toEntityArray();
 	let shouldBuild = this.ent.isBuilder() && foundations.some(function(foundation) {
-		if (!foundation || foundation.getMetadata(PlayerID, "access") !== access)
+		if (!foundation || m.getLandAccess(gameState, foundation) != access)
 			return false;
 		let structure = gameState.getBuiltTemplate(foundation.templateName());
 		if (structure.resourceDropsiteTypes() && structure.resourceDropsiteTypes().indexOf(resource) !== -1)

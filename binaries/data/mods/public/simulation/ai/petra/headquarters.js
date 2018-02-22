@@ -753,7 +753,7 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 	if (!accessIndex)
 		return false;
 	// sorting bases by whether they are on the same accessindex or not.
-	let baseBest = this.baseManagers.slice().sort(function (a,b) {
+	let baseBest = this.baseManagers.slice().sort((a,b) => {
 		if (a.accessIndex == accessIndex && b.accessIndex != accessIndex)
 			return -1;
 		else if (b.accessIndex == accessIndex && a.accessIndex != accessIndex)
@@ -765,7 +765,7 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 	let workers = new API3.EntityCollection(gameState.sharedScript);
 	for (let base of baseBest)
 	{
-		if (base.ID === baseRef.ID)
+		if (base.ID == baseRef.ID)
 			continue;
 		base.pickBuilders(gameState, workers, needed);
 		if (workers.length < number)
