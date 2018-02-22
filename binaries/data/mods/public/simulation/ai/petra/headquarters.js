@@ -1446,9 +1446,15 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 	// Try to build a temple earlier if in regicide to recruit healer guards
 	if (this.currentPhase < 3 && !gameState.getVictoryConditions().has("regicide"))
 		return;
-	if (!this.canBuild(gameState, "structures/{civ}_temple"))
+
+	let templateName = "structures/{civ}_temple";
+	if (this.canBuild(gameState, "structures/{civ}_temple_apedemak"))
+		templateName = "structures/{civ}_temple_apedemak";
+	else if (this.canBuild(gameState, "structures/{civ}_temple_vesta"))
+		templateName = "structures/{civ}_temple_vesta";
+	else if (!this.canBuild(gameState, templateName))
 		return;
-	queues.economicBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_temple"));
+	queues.economicBuilding.addPlan(new m.ConstructionPlan(gameState, templateName));
 };
 
 m.HQ.prototype.buildMarket = function(gameState, queues)
