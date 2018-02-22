@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model_waterfall"/>
-    <alpha_blending/>
-    <renderquery name="sim_time"/>
-    <uniform name="translation" value="0.0 -0.4"/>
-    
-    <uniform name="specularPower" value="16.0"/>
-    <uniform name="specularColor" value="1.0 1.0 1.0"/>
-
-	<required_texture name="baseTex"/>
+  <alpha_blending/>
+  <renderquery name="sim_time"/>
+  <required_texture name="baseTex"/>
+  <uniform name="translation" value="0.0 -0.4"/>
+  <uniform name="specularPower" value="16.0"/>
+  <uniform name="specularColor" value="1.0 1.0 1.0"/>
+  <shader effect="model_waterfall"/>
 </material>

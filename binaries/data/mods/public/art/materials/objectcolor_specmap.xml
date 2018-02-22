@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model"/>
-
-    <define name="USE_OBJECTCOLOR" value="1"/>
-
-    <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
-	
-	<required_texture name="baseTex"/>
-	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+  <define name="USE_OBJECTCOLOR" value="1"/>
+  <required_texture name="baseTex"/>
+  <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+  <shader effect="model"/>
+  <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
 </material>

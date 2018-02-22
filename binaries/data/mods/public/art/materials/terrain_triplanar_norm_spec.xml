@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="terrain_base"/>
-    <alternative material="terrain_triplanar_norm.xml" quality="2"/>
-
-    <define name="USE_TRIPLANAR" value="1"/>
-    
-    <uniform name="effectSettings" value="1.0 15.0 0.0 0.0"/>
-	<required_texture name="baseTex"/>
-	<required_texture name="normTex" define="USE_NORMAL_MAP"/>
-	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+  <alternative material="terrain_triplanar_norm.xml" quality="2"/>
+  <define name="USE_TRIPLANAR" value="1"/>
+  <required_texture name="baseTex"/>
+  <required_texture name="normTex" define="USE_NORMAL_MAP"/>
+  <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+  <shader effect="terrain_base"/>
+  <uniform name="effectSettings" value="1.0 15.0 0.0 0.0"/>
 </material>

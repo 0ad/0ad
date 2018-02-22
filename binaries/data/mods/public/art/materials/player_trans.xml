@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model"/>
-    <define name="USE_PLAYERCOLOR" value="1"/>
-	<required_texture name="baseTex"/>
+  <define name="USE_PLAYERCOLOR" value="1"/>
+  <required_texture name="baseTex"/>
+  <shader effect="model"/>
 </material>

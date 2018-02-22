@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-  <alternative material="player_trans_ao.xml" quality="3"/>
-  <define name="USE_PLAYERCOLOR" value="1"/>
+  <alternative material="player_trans_ao_spec.xml" quality="8"/>
+  <define name="USE_PLAYERCOLOR" value="0"/>
+  <define name="USE_PARALLAX" value="1"/>
   <required_texture name="baseTex"/>
   <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
   <required_texture name="normTex" define="USE_NORMAL_MAP"/>
   <required_texture name="aoTex" define="USE_AO"/>
   <shader effect="model"/>
-  <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
+  <uniform name="effectSettings" value="1.0 10.0 0.0075 0.85"/>
 </material>

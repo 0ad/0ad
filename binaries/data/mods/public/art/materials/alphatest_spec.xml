@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model_transparent"/>
-    <define name="USE_TRANSPARENT" value="1"/>
-    <define name="USE_ALPHATEST" value="1"/>
-
-    <define name="USE_SPECULAR" value="1"/>
-    <uniform name="specularPower" value="16.0"/>
-    <uniform name="specularColor" value="1.0 1.0 1.0"/>
-	<required_texture name="baseTex"/>
+  <define name="USE_TRANSPARENT" value="1"/>
+  <define name="USE_ALPHATEST" value="1"/>
+  <define name="USE_SPECULAR" value="1"/>
+  <uniform name="specularPower" value="16.0"/>
+  <uniform name="specularColor" value="1.0 1.0 1.0"/>
+  <required_texture name="baseTex"/>
+  <shader effect="model_transparent"/>
 </material>

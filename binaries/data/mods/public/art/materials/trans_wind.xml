@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model"/>
-    <renderquery name="sim_time"/>
-    <define name="USE_WIND" value="1"/>
-    <uniform name="windData" value="1.0 1.0"/>
-	<required_texture name="baseTex"/>
+  <define name="USE_WIND" value="1"/>
+  <renderquery name="sim_time"/>
+  <required_texture name="baseTex"/>
+  <shader effect="model"/>
+  <uniform name="windData" value="1.0 1.0"/>
 </material>
