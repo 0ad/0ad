@@ -801,7 +801,7 @@ g_SelectionPanels.Research = {
 				for (let selectedEntity of data.unitEntStates)
 					if (selectedEntity.id == data.item.researchFacilityId)
 						researcherTemplate = selectedEntity.template;
-				showTemplateDetails(data.item.tech, GetTemplateData(researcherTemplate).nativeCiv);
+				showTemplateDetails(tech, GetTemplateData(researcherTemplate).nativeCiv);
 			};
 
 			if (data.item.tech.pair)
