@@ -6,13 +6,12 @@
 # Omar Anwar <omaraglan91@yahoo.com>, 2017
 # صفا الفليج <safaalfulaij@hotmail.com>, 2017
 # Khaled Chaban <therealkorak@gmail.com>, 2017
-# ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2018-01-29 09:05+0100\n"
 "PO-Revision-Date: 2018-01-29 09:05+0100\n"
-"Last-Translator: ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2017\n"
+"Last-Translator: Khaled Chaban <therealkorak@gmail.com>, 2017\n"
 "Language-Team: Arabic (https://www.transifex.com/wildfire-games/teams/17418/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -30,6 +29,8 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"أوّلًا انقر باليسار على مواطنة، ثمّ انقر باليمين على شجيرة توت لأمر تلك "
+"المواطنة بجمع الطعام. تجمع المواطنات الخضارَ أسرع من الوحدات الأخرى."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -37,6 +38,8 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
+"اختر الجنديّ وانقر بيمين الفأرة على شجرة بقرب مركز المدينة ليبدأ جمع الخشب. "
+"يجمع الجنود الخشبَ أسرع من المواطنات."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -63,8 +66,8 @@ msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
-"اختر مواطنتين خاملتين وابنِ منزلاً بالقرب باختيار ايقونة المنزل. ضع المنزل "
-"بالضغط على يسار الفأرة على قطعة من الارض."
+"اختر المواطنتين الخاملتين وابنِ منزلًا بالجوار باختيار أيقونة المنزل. ضع "
+"المنزل بالنّقر بيسار الفأرة على قطعة أرض."
 
 #: maps/tutorials/Introductory_Tutorial.js:54
 msgid ""
@@ -82,17 +85,17 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "انقر أيقونة المناوش."
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
-msgstr ""
+msgstr "ابنِ عزبة في مساحة مفتوحة قرب مركز المدينة مستخدمًا أيّ بنّاء خامل."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr ""
+msgstr "لننتظر اكتمال بناء العزبة."
 
 #: maps/tutorials/Introductory_Tutorial.js:112
 msgid ""
@@ -100,6 +103,8 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
+"ما إن يكتمل بناء العزبة، سيبدأ بنّاؤوها بجمع الطعام من حولهم آليًّا (إن "
+"وُجد). حدّد البنّاؤون واجعلهم يشيّدون حقلًا بجانب العزبة بدل ذلك."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -107,6 +112,8 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"سيبدأ بنّاؤو الحقل بجمع الطعام آليًّا من الحقل. استخدم مجموعة المناوشين "
+"الجديدة التي أنشأتها، واجعلهم يبنون منزل آخر بالجوار."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -124,6 +131,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"اختر مركز المدينة، وثمّ ضع المؤشّر فوق الشجرة وانقر باليمين عندما يتحوّل شكل"
+" المؤشّر إلى أيقونة خشب."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -138,12 +147,17 @@ msgid ""
 "'II' icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"اختر مركز المدينة ثانيةً وتقدّم به إلى طَور البلدة بنقر أيقونة ”II“ (عليك "
+"انتظار اكتمال بناء النقطة الحدوديّة أوّلًا). سيتيح هذا بناء المباني من طَور "
+"البلدة."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reaffect your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"أثناء انتظار اكتمال التقدّم، قد ترغب وتجعل العمّال الخاملين يجمعون الموارد "
+"الناقصة لديك."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
@@ -153,13 +167,15 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
-msgstr ""
+msgstr "انقر أيقونة المواطنة."
 
 #: maps/tutorials/Introductory_Tutorial.js:258
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
 msgstr ""
+"ابنِ ثكنة بالجوار. ما إن تصل لحدّ السّكّانيّة، ابنِ منزلًا آخر مستخدمًا أيّة"
+" وحدة بناء متوفّرة."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
@@ -175,29 +191,32 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
-msgstr ""
+msgstr "العدوّ قادم، درّب مزيدًا من الجنود لتحارب الأعداء."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
-msgstr ""
+msgstr "حاول صدّ الهجوم."
 
 #: maps/tutorials/Introductory_Tutorial.js:300
 msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"لقد أحبطت هجوم العدوّ. ابنِ الآن متجرًا ومعبدًا وأنت تُسند الوحدات الجديدة "
+"لجمع الموارد المطلوبة."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
-msgstr ""
+msgstr "ما إن تستوفي متطلّبات طَور المدينة، اختر مركز المدينة وتقدّم إليه."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "barracks."
 msgstr ""
+"أثناء انتظار تغيّر الطَّور، قد ترغب وتدرّب مزيدًا من الجنود في الثكنة."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
@@ -211,14 +230,17 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"أوقِف كلّ الجنود من جمع الموارد وبدل ذلك أرسِل مجموعات صغيرة ليجدوا مركز "
+"المدينة للعدوّ على الخريطة. ما إن تعرف مكان قاعدة العدوّ، أرسِل أسلحة الحصار"
+" وكلّ ما بقي من جنود لتدميرها."
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
-msgstr ""
+msgstr "يجب أن تتابع المواطنات جمع الموارد."
 
 #: maps/tutorials/Introductory_Tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
-msgstr ""
+msgstr "لقد هُزم العدوّ. اكتملت الآن مهام الدّرس التّعليميّ."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -227,6 +249,10 @@ msgid ""
 " ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to 'Town Phase' and 'City Phase' afterward.\n"
 msgstr ""
+"سيعلّمك هذا الدّرس أساسيّات تطوير نظامك الاقتصاديّ. كما تجري العادة، تبدأ "
+"اللعبة بمركز المدينة وبضعة وحدات في ”طور القرية“، وجوهر اللعب هو تطوير "
+"الإمبراطوريّة وتوسيعها، ويكون ذلك غالبًا بالتّطوّر إلى ”طور البلدة“ وبعدها "
+"”طور المدينة“."
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -234,16 +260,20 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"\n"
+"قبل البدء، يمكنك التّبديل بين وضعي ملء الشّاشة والنّافذة باستخدام %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"يمكنك أيضًا تغيير مستوى التّقريب باستخدام عجلة الفأرة، وكذلك منظور الكمرة "
+"باستخدام أيّ من مفاتيح الأسهم على لوحة المفاتيح.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
-msgstr ""
+msgstr "اضبط نافذة اللعبة لتناسب ما تفضّل.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 #, javascript-format
@@ -251,6 +281,8 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"\n"
+"قد ترغب أيضًا بعرض/إخفاء لوحة الدرس هذا في أيّ وقت باستخدام %(hotkey)s.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""

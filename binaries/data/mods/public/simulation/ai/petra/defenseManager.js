@@ -531,7 +531,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (attacker && gameState.isEntityAlly(attacker))
 			continue;
 
-		if (target.hasClass("FishingBoat"))
+		if (attacker && target.hasClass("FishingBoat"))
 		{
 			let unitAIState = target.unitAIState();
 			let unitAIStateOrder = unitAIState ? unitAIState.split(".")[1] : "";

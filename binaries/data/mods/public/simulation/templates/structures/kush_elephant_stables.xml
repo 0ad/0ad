@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_elephant_stables">
-  <Footprint>
-    <Square width="33.0" depth="33.0"/>
-    <Height>8.0</Height>
-  </Footprint>
   <Identity>
     <Civ>kush</Civ>
     <SpecificName>Kushite Elephant Stables</SpecificName>
   </Identity>
-  <Obstruction>
-    <Static width="30.0" depth="30.0"/>
-  </Obstruction>
   <VisualActor>
     <Actor>structures/kushites/elephant_stable.xml</Actor>
   </VisualActor>

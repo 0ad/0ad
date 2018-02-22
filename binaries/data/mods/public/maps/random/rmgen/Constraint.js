@@ -31,16 +31,44 @@ AndConstraint.prototype.allows = function(position)
 };
 
 /**
- * The AvoidAreaConstraint is met if the tile is not part of the given Area.
- */
-function AvoidAreaConstraint(area)
+ * The StayAreasConstraint is met if some of the given Areas contains the point.
+  */
+function StayAreasConstraint(areas)
 {
-	this.area = area;
+	this.areas = areas;
 }
 
-AvoidAreaConstraint.prototype.allows = function(position)
+StayAreasConstraint.prototype.allows = function(position)
 {
-	return g_Map.area[position.x][position.y] != this.area.getID();
+	return this.areas.some(area => area.contains(position));
+};
+
+/**
+ * The StayAreasConstraint is met if the point is adjacent to one of the given Areas and not contained by that Area.
+  */
+function AdjacentToAreaConstraint(areas)
+{
+	this.areas = areas;
+}
+
+AdjacentToAreaConstraint.prototype.allows = function(position)
+{
+	return this.areas.some(area =>
+		!area.contains(position) &&
+		g_Map.getAdjacentPoints(position).some(adjacentPosition => area.contains(adjacentPosition)));
+};
+
+/**
+ * The AvoidAreasConstraint is met if none of the given Areas contain the point.
+ */
+function AvoidAreasConstraint(areas)
+{
+	this.areas = areas;
+}
+
+AvoidAreasConstraint.prototype.allows = function(position)
+{
+	return this.areas.every(area => !area.contains(position))
 };
 
 /**

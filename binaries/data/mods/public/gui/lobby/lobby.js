@@ -34,13 +34,14 @@ const g_LobbyServer = Engine.ConfigDB_GetValue("user", "lobby.server");
 var g_GameColors = {
 	"init": "0 219 0",
 	"waiting": "255 127 0",
-	"running": "219 0 0"
+	"running": "219 0 0",
+	"incompatible": "gray"
 };
 
 /**
  * Initial sorting order of the gamelist.
  */
-var g_GameStatusOrder = ["init", "waiting", "running"];
+var g_GameStatusOrder = ["init", "waiting", "running", "incompatible"];
 
 /**
  * The playerlist will be assembled using these values.
@@ -1016,6 +1017,9 @@ function updateGameList()
 				Math.round(playerRatings.reduce((sum, current) => sum + current) / playerRatings.length) :
 				g_DefaultLobbyRating;
 
+		if (!hasSameMods(JSON.parse(game.mods), Engine.GetEngineInfo().mods))
+			game.state = "incompatible";
+
 		return game;
 	}).filter(game => !filterGame(game)).sort((a, b) => {
 		let sortA, sortB;
@@ -1170,7 +1174,16 @@ function joinButton()
 	let rating = getRejoinRating(game);
 	let username = rating ? g_Username + " (" + rating + ")" : g_Username;
 
-	if (game.state == "init" || stringifiedTeamListToPlayerData(game.players).some(player => player.Name == username))
+	if (game.state == "incompatible")
+		messageBox(
+			400, 200,
+			translate("Your active mods do not match the mods of this game.") + "\n\n" +
+				comparedModsString(JSON.parse(game.mods), Engine.GetEngineInfo().mods),
+			translate("Incompatible mods"),
+			[translate("Ok")],
+			[null]
+		);
+	else if (game.state == "init" || stringifiedTeamListToPlayerData(game.players).some(player => player.Name == username))
 		joinSelectedGame();
 	else
 		messageBox(

@@ -1,4 +1,14 @@
 /**
+ * Functions used to collate the contents of a tooltip.
+ */
+var g_StructreeTooltipFunctions = [
+	getEntityNamesFormatted,
+	getEntityCostTooltip,
+	getEntityTooltip,
+	getAurasTooltip
+].concat(g_StatsFunctions);
+
+/**
  * Draw the structree
  *
  * (Actually resizes and changes visibility of elements, and populates text)
@@ -44,11 +54,12 @@ function draw()
 				"stretched:session/portraits/"+stru.icon;
 
 			Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_icon").tooltip =
-				buildText(stru, g_TooltipFunctions);
+				compileTooltip(stru);
 
 			Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_name").caption =
 				translate(stru.name.specific);
 
+			setViewerOnPress("phase["+i+"]_struct["+s+"]_icon", stru.name.internal);
 			thisEle.hidden = false;
 
 			for (let r in g_DrawLimits[pha].prodQuant)
@@ -154,8 +165,9 @@ function draw()
 
 		trainer = g_ParsedData.units[trainer];
 		Engine.GetGUIObjectByName("trainer["+t+"]_icon").sprite = "stretched:session/portraits/"+trainer.icon;
-		Engine.GetGUIObjectByName("trainer["+t+"]_icon").tooltip = buildText(trainer, g_TooltipFunctions);
+		Engine.GetGUIObjectByName("trainer["+t+"]_icon").tooltip = compileTooltip(trainer);
 		Engine.GetGUIObjectByName("trainer["+t+"]_name").caption = translate(trainer.name.specific);
+		setViewerOnPress("trainer["+t+"]_icon", trainer.name.internal);
 		thisEle.hidden = false;
 
 		let p = 0;
@@ -242,9 +254,15 @@ function drawProdIcon(phase, parentID, rowID, iconID, template)
 	}
 
 	prodEle.sprite = "stretched:session/portraits/"+template.icon;
-	prodEle.tooltip = buildText(template, g_TooltipFunctions);
+	prodEle.tooltip = compileTooltip(template);
 	prodEle.hidden = false;
+	setViewerOnPress(prodEle.name, template.name.internal);
 	return true;
+}
+
+function compileTooltip(template)
+{
+	return buildText(template, g_StructreeTooltipFunctions) + "\n" + showTemplateViewerOnClickTooltip();
 }
 
 /**

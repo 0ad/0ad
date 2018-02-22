@@ -20,7 +20,7 @@ createArea(
 Engine.SetProgress(20);
 
 const playerbasePattern = randomStartingPositionPattern(getTeamsArray());
-createBasesByPattern(playerbasePattern.setup, playerbasePattern.distance, playerbasePattern.separation, randomAngle());
+createBasesByPattern(playerbasePattern.setup, playerbasePattern.distance, playerbasePattern.groupedDistance, randomAngle());
 Engine.SetProgress(40);
 
 var features = [

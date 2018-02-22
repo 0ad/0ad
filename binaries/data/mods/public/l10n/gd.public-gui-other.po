@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-14 09:04+0100\n"
-"PO-Revision-Date: 2018-02-14 16:12+0000\n"
+"POT-Creation-Date: 2018-02-19 09:04+0100\n"
+"PO-Revision-Date: 2018-02-19 14:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -143,41 +143,41 @@ msgstr "%(dateString)s %(map)s – %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:76
+#: gui/common/functions_utility_loadsave.js:53
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "“%(label)s”"
 
-#: gui/common/functions_utility_loadsave.js:78
+#: gui/common/functions_utility_loadsave.js:55
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Thèid an geama air a shàbhaladh a sguabadh às gu buan, a bheil thu cinnteach?"
 
-#: gui/common/functions_utility_loadsave.js:79
+#: gui/common/functions_utility_loadsave.js:56
 msgid "DELETE"
 msgstr "SGUAB ÀS"
 
-#: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
-#: gui/options/options.js:263 gui/options/options.js:316
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
+#: gui/options/options.js:264 gui/options/options.js:315
+#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "No"
 msgstr "Chan eil"
 
-#: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
-#: gui/options/options.js:263 gui/options/options.js:316
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
+#: gui/options/options.js:264 gui/options/options.js:315
+#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "Yes"
 msgstr "Tha"
 
-#: gui/common/functions_utility_loadsave.js:97
+#: gui/common/functions_utility_loadsave.js:74
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
 msgstr "Sguab às an nì a thagh thu le %(hotkey)s."
 
-#: gui/common/functions_utility_loadsave.js:102
+#: gui/common/functions_utility_loadsave.js:79
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "Cum %(hotkey)s sìos gus nì a sguabadh às gun dearbhadh."
@@ -622,7 +622,6 @@ msgstr "Cleachdaichean (%(num)s): %(users)s"
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:639
 #: gui/common/tooltips.js:673 gui/common/tooltips.js:739
-#: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
 msgid ", "
 msgstr ", "
 
@@ -1205,46 +1204,46 @@ msgstr "%(nick)s – %(name)s"
 msgid "OK"
 msgstr "Ceart ma-thà"
 
-#: gui/options/options.js:92
+#: gui/options/options.js:93
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
 msgstr ""
 
-#: gui/options/options.js:94
+#: gui/options/options.js:95
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
 msgstr ""
 
-#: gui/options/options.js:96
+#: gui/options/options.js:97
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr ""
 
-#: gui/options/options.js:129
+#: gui/options/options.js:130
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Luach: %(val)s (as lugha: %(min)s, as motha: %(max)s)"
 
-#: gui/options/options.js:261
+#: gui/options/options.js:262
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Ma dh’ath-shuidhicheas tu na roghainnean, thèid na roghainnean air an sàbhaladh agad atharrachadh. A bheil thu airson leantainn air adhart?"
 
-#: gui/options/options.js:262 gui/options/options.js:315
-#: gui/options/options.js:341
+#: gui/options/options.js:263 gui/options/options.js:314
+#: gui/options/options.js:340
 msgid "Warning"
 msgstr "Rabhadh"
 
-#: gui/options/options.js:314
+#: gui/options/options.js:313
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:340
+#: gui/options/options.js:339
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Tha atharraichean gun sàbhaladh agad, a bheil thu airson an uinneag seo a dhùnadh?"
 
@@ -1337,7 +1336,7 @@ msgid ""
 "for additional information."
 msgstr "Chan eil deasaiche nan cnàmh-sgeul ri làimh no dh’fhàillig leis an luchdadh. Thoir sùil air logaichean a’ gheama airson barrachd fiosrachaidh."
 
-#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:119
 msgid "Error"
 msgstr "Mearachd"
 
@@ -1360,46 +1359,36 @@ msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s gu %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
-msgid "You don't have the same mods active as the replay does."
-msgstr "Chan eil na h-aon tuilleadain gnìomhach agad ’s a tha aig an ath-chluiche."
+msgid "This replay needs a different sequence of mods:"
+msgstr ""
 
-#: gui/replaymenu/replay_actions.js:93
-#, javascript-format
-msgid "Required: %(mods)s"
-msgstr "Feum air: %(mods)s"
-
-#: gui/replaymenu/replay_actions.js:94
-#, javascript-format
-msgid "Active: %(mods)s"
-msgstr "Gnìomhach: %(mods)s"
-
-#: gui/replaymenu/replay_actions.js:98
+#: gui/replaymenu/replay_actions.js:97
 msgid "This replay is not compatible with your version of the game!"
 msgstr "Chan eil an t-ath-chluiche co-chòrdail leis an tionndadh agad dhen gheama!"
 
-#: gui/replaymenu/replay_actions.js:99
+#: gui/replaymenu/replay_actions.js:98
 #, javascript-format
 msgid "Your version: %(version)s"
 msgstr "An tionndadh a th’ agad: %(version)s"
 
-#: gui/replaymenu/replay_actions.js:100
+#: gui/replaymenu/replay_actions.js:99
 #, javascript-format
 msgid "Required version: %(version)s"
 msgstr "An tionndadh riatanach: %(version)s"
 
-#: gui/replaymenu/replay_actions.js:103
+#: gui/replaymenu/replay_actions.js:102
 msgid "Incompatible replay"
 msgstr "Ath-chluiche neo-chòrdail"
 
-#: gui/replaymenu/replay_actions.js:120
+#: gui/replaymenu/replay_actions.js:119
 msgid "No summary data available."
 msgstr "Chan eil dàta gearr-chunntais ri fhaighinn."
 
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:168
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "A bheil thu cinnteach gu bheil thu airson an t-ath-chluiche seo a sguabadh às gu buan?"
 
-#: gui/replaymenu/replay_actions.js:171
+#: gui/replaymenu/replay_actions.js:170
 msgid "Delete replay"
 msgstr "Sguab às an t-ath-chluiche"
 

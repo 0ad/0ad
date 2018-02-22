@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_wonder">
   <Footprint replace="">
-    <Circle radius="30.0"/>
+    <Circle radius="31"/>
     <Height>10.0</Height>
   </Footprint>
   <Identity>
@@ -9,7 +9,7 @@
     <SpecificName>Great Stupa</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="59.0" depth="59.0"/>
+    <Static width="57" depth="57"/>
   </Obstruction>
   <VisualActor>
     <FoundationActor>structures/fndn_theatron.xml</FoundationActor>

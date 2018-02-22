@@ -6,14 +6,14 @@
 			<repeat count="20" var="s">
 				<object type="image" style="StructBox" name="phase[k]_struct[s]">
 					<object type="text" style="StructNameSpecific" name="phase[k]_struct[s]_name"/>
-					<object type="image" style="StructIcon" name="phase[k]_struct[s]_icon"
+					<object type="button" style="StructIcon" name="phase[k]_struct[s]_icon"
 						sprite="stretched:pregame/shell/logo/wfg_logo_white.png"
 					/>
 					<object name="phase[k]_struct[s]_rows">
 						<repeat count="4" var="r">
 							<object name="phase[k]_struct[s]_row[r]">
 								<repeat count="24" var="p">
-									<object type="image" style="ProdBox" name="phase[k]_struct[s]_row[r]_prod[p]"/>
+									<object type="button" style="ProdBox" name="phase[k]_struct[s]_row[r]_prod[p]"/>
 								</repeat>
 							</object>
 						</repeat>

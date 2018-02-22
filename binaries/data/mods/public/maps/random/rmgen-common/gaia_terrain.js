@@ -532,6 +532,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
  * @property {number} [tileClass] - Marks the passage with this tile class.
  * @property {string} [terrain] - Texture to be painted on the passage area.
  * @property {string} [edgeTerrain] - Texture to be painted on the borders of the passage.
+ * @returns {Area}
  */
 function createPassage(args)
 {
@@ -543,6 +544,7 @@ function createPassage(args)
 	let passageVec = Vector2D.sub(args.end, args.start);
 	let widthDirection = passageVec.perpendicular().normalize();
 	let lengthStep = 1 / (2 * passageVec.length());
+	let points = [];
 
 	for (let lengthFraction = 0; lengthFraction <= 1; lengthFraction += lengthStep)
 	{
@@ -557,6 +559,8 @@ function createPassage(args)
 			if (!g_Map.inMapBounds(location) ||
 			    args.maxHeight !== undefined && g_Map.getHeight(location) > args.maxHeight)
 				continue;
+
+			points.push(location);
 
 			let smoothDistance = args.smoothWidth + Math.abs(stepWidth) - halfPassageWidth;
 
@@ -575,6 +579,8 @@ function createPassage(args)
 				createTerrain(args.terrain).place(location);
 		}
 	}
+
+	return new Area(points);
 }
 
 /**

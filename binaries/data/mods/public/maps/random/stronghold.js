@@ -17,7 +17,9 @@ createArea(
 
 Engine.SetProgress(20);
 
-createBasesByPattern("stronghold", fractionToTiles(randFloat(0.2, 0.35)), fractionToTiles(randFloat(0.05, 0.1)), randomAngle());
+const [playerIDs, playerPosition] = createBasesByPattern("stronghold", fractionToTiles(randFloat(0.2, 0.35)), fractionToTiles(randFloat(0.05, 0.1)), randomAngle());
+markPlayerAvoidanceArea(playerPosition, defaultPlayerBaseRadius());
+
 Engine.SetProgress(30);
 
 addElements(shuffleArray([
@@ -97,6 +99,10 @@ addElements(shuffleArray([
 		"amounts": g_AllAmounts
 	}
 ]));
+
+if (!isNomad())
+	createBluffsPassages(playerPosition);
+
 Engine.SetProgress(60);
 
 addElements([

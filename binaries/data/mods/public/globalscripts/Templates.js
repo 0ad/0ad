@@ -390,6 +390,7 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 		ret.tooltip = template.Identity.Tooltip;
 		ret.requiredTechnology = template.Identity.RequiredTechnology;
 		ret.visibleIdentityClasses = GetVisibleIdentityClasses(template.Identity);
+		ret.nativeCiv = template.Identity.Civ;
 	}
 
 	if (template.UnitMotion)

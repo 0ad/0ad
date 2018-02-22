@@ -9,7 +9,7 @@
 # Benny <benediktwindolph@posteo.de>, 2014
 # xtother90, 2017-2018
 # Enno Holz <eh@idh20.de>, 2017
-# Maximilian Wagenbach <foaly.f@web.de>, 2016
+# Maximilian Wagenbach <foaly@posteo.de>, 2016
 # SteinQuadrat, 2017
 # James Jakubczyk <beshir75@gmail.com>, 2016
 # Johann Hackl <jhackl1234@gmail.com>, 2016
@@ -25,7 +25,7 @@
 # Matthias Meger <JSoko@online.de>, 2016
 # Maximilian <camellion@gmx.de>, 2014
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
-# Maximilian Wagenbach <foaly.f@web.de>, 2016-2018
+# Maximilian Wagenbach <foaly@posteo.de>, 2016-2018
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # Michael Vetter <jubalh@openmailbox.org>, 2016
 # nautilusx, 2016
@@ -44,9 +44,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-14 09:04+0100\n"
-"PO-Revision-Date: 2018-02-16 17:18+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2018-02-19 09:04+0100\n"
+"PO-Revision-Date: 2018-02-19 14:58+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,41 +172,41 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:76
+#: gui/common/functions_utility_loadsave.js:53
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "„%(label)s“"
 
-#: gui/common/functions_utility_loadsave.js:78
+#: gui/common/functions_utility_loadsave.js:55
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Bist du sicher, dass das gespeicherte Spiel dauerhaft gelöscht werden soll?"
 
-#: gui/common/functions_utility_loadsave.js:79
+#: gui/common/functions_utility_loadsave.js:56
 msgid "DELETE"
 msgstr "LÖSCHEN"
 
-#: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
-#: gui/options/options.js:263 gui/options/options.js:316
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
+#: gui/options/options.js:264 gui/options/options.js:315
+#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "No"
 msgstr "Nein"
 
-#: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
-#: gui/options/options.js:263 gui/options/options.js:316
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
+#: gui/options/options.js:264 gui/options/options.js:315
+#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/common/functions_utility_loadsave.js:97
+#: gui/common/functions_utility_loadsave.js:74
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
 msgstr "Löschen des gewählten Eintrags durch %(hotkey)s"
 
-#: gui/common/functions_utility_loadsave.js:102
+#: gui/common/functions_utility_loadsave.js:79
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "Halte %(hotkey)s zum Löschen ohne Nachfragen."
@@ -643,7 +643,6 @@ msgstr "Benutzer (%(num)s): %(users)s"
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:639
 #: gui/common/tooltips.js:673 gui/common/tooltips.js:739
-#: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
 msgid ", "
 msgstr ", "
 
@@ -1200,46 +1199,46 @@ msgstr "%(nick)s – %(name)s"
 msgid "OK"
 msgstr "OK"
 
-#: gui/options/options.js:92
+#: gui/options/options.js:93
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
 msgstr "Min: %(min)s, Max: %(max)s"
 
-#: gui/options/options.js:94
+#: gui/options/options.js:95
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
 msgstr "Min: %(min)s"
 
-#: gui/options/options.js:96
+#: gui/options/options.js:97
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr "Max: %(max)s"
 
-#: gui/options/options.js:129
+#: gui/options/options.js:130
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Wert: %(val)s (min: %(min)s, max: %(max)s)"
 
-#: gui/options/options.js:261
+#: gui/options/options.js:262
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Das Zurücksetzen der Optionen wird deine gespeicherten Einstellungen löschen. Willst du fortfahren?"
 
-#: gui/options/options.js:262 gui/options/options.js:315
-#: gui/options/options.js:341
+#: gui/options/options.js:263 gui/options/options.js:314
+#: gui/options/options.js:340
 msgid "Warning"
 msgstr "Warnung"
 
-#: gui/options/options.js:314
+#: gui/options/options.js:313
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Einige Einstellungen sind ungültig! Bist du sicher, dass du speichern willst?"
 
-#: gui/options/options.js:340
+#: gui/options/options.js:339
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Du hast ungespeicherte Änderungen, willst du dieses Fenster schließen?"
 
@@ -1332,7 +1331,7 @@ msgid ""
 "for additional information."
 msgstr "Der Szenario-Editor ist nicht verfügbar oder kann nicht geladen werden. Siehe Spiel-Log für zusätzliche Informationen."
 
-#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:119
 msgid "Error"
 msgstr "Fehler"
 
@@ -1355,46 +1354,36 @@ msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s - %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
-msgid "You don't have the same mods active as the replay does."
-msgstr "Du hast nicht die gleichen Mods wie die Wiederholung aktiviert."
+msgid "This replay needs a different sequence of mods:"
+msgstr ""
 
-#: gui/replaymenu/replay_actions.js:93
-#, javascript-format
-msgid "Required: %(mods)s"
-msgstr "Erfordert: %(mods)s"
-
-#: gui/replaymenu/replay_actions.js:94
-#, javascript-format
-msgid "Active: %(mods)s"
-msgstr "Aktiv: %(mods)s"
-
-#: gui/replaymenu/replay_actions.js:98
+#: gui/replaymenu/replay_actions.js:97
 msgid "This replay is not compatible with your version of the game!"
 msgstr "Diese Wiederholung ist nicht kompatibel mit deiner Spielversion!"
 
-#: gui/replaymenu/replay_actions.js:99
+#: gui/replaymenu/replay_actions.js:98
 #, javascript-format
 msgid "Your version: %(version)s"
 msgstr "Deine Version: %(version)s"
 
-#: gui/replaymenu/replay_actions.js:100
+#: gui/replaymenu/replay_actions.js:99
 #, javascript-format
 msgid "Required version: %(version)s"
 msgstr "Benötigte Version: %(version)s"
 
-#: gui/replaymenu/replay_actions.js:103
+#: gui/replaymenu/replay_actions.js:102
 msgid "Incompatible replay"
 msgstr "Inkompatible Wiederholung"
 
-#: gui/replaymenu/replay_actions.js:120
+#: gui/replaymenu/replay_actions.js:119
 msgid "No summary data available."
 msgstr "Keine Zusammenfassung verfügbar."
 
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:168
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Bist du sicher, dass du diese Wiederholung dauerhaft löschen willst?"
 
-#: gui/replaymenu/replay_actions.js:171
+#: gui/replaymenu/replay_actions.js:170
 msgid "Delete replay"
 msgstr "Wiederholung löschen"
 

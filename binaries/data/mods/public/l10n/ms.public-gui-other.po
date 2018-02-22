@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-14 09:04+0100\n"
-"PO-Revision-Date: 2018-02-15 11:57+0000\n"
-"Last-Translator: abuyop <abuyop@gmail.com>\n"
+"POT-Creation-Date: 2018-02-19 09:04+0100\n"
+"PO-Revision-Date: 2018-02-19 14:58+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,41 +132,41 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:76
+#: gui/common/functions_utility_loadsave.js:53
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/common/functions_utility_loadsave.js:78
+#: gui/common/functions_utility_loadsave.js:55
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Permainan tersimpan akan dipadam secara kekal, anda pasti mahu teruskan?"
 
-#: gui/common/functions_utility_loadsave.js:79
+#: gui/common/functions_utility_loadsave.js:56
 msgid "DELETE"
 msgstr "PADAM"
 
-#: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
-#: gui/options/options.js:263 gui/options/options.js:316
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
+#: gui/options/options.js:264 gui/options/options.js:315
+#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "No"
 msgstr "Tidak"
 
-#: gui/common/functions_utility_loadsave.js:80 gui/common/tooltips.js:287
-#: gui/options/options.js:263 gui/options/options.js:316
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:172
+#: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
+#: gui/options/options.js:264 gui/options/options.js:315
+#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "Yes"
 msgstr "Ya"
 
-#: gui/common/functions_utility_loadsave.js:97
+#: gui/common/functions_utility_loadsave.js:74
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
 msgstr "Padam masukan terpilih menggunakan %(hotkey)s."
 
-#: gui/common/functions_utility_loadsave.js:102
+#: gui/common/functions_utility_loadsave.js:79
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "Tahan %(hotkey)s untuk memadam tanpa pengesahan."
@@ -599,7 +599,6 @@ msgstr "Pengguna (%(num)s): %(users)s"
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:639
 #: gui/common/tooltips.js:673 gui/common/tooltips.js:739
-#: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
 msgid ", "
 msgstr ", "
 
@@ -1143,46 +1142,46 @@ msgstr "%(nick)s - %(name)s"
 msgid "OK"
 msgstr "OK"
 
-#: gui/options/options.js:92
+#: gui/options/options.js:93
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
 msgstr "Min: %(min)s, Maks: %(max)s"
 
-#: gui/options/options.js:94
+#: gui/options/options.js:95
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
 msgstr "Min: %(min)s"
 
-#: gui/options/options.js:96
+#: gui/options/options.js:97
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr "Maks: %(max)s"
 
-#: gui/options/options.js:129
+#: gui/options/options.js:130
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Nilai: %(val)s (min: %(min)s, maks: %(max)s)"
 
-#: gui/options/options.js:261
+#: gui/options/options.js:262
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Menetap semula pilihan ini akan memadam tetapan tersimpan anda. Anda mahu teruskan jua?"
 
-#: gui/options/options.js:262 gui/options/options.js:315
-#: gui/options/options.js:341
+#: gui/options/options.js:263 gui/options/options.js:314
+#: gui/options/options.js:340
 msgid "Warning"
 msgstr "Amaran"
 
-#: gui/options/options.js:314
+#: gui/options/options.js:313
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Sesetengah nilai tetapan tidak sah! Anda pasti mahu menyimpannya?"
 
-#: gui/options/options.js:340
+#: gui/options/options.js:339
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Anda mempunyai perubahan tidak disimpan, anda pasti mahu menutup tetingkap ini?"
 
@@ -1275,7 +1274,7 @@ msgid ""
 "for additional information."
 msgstr "Penyunting senario tidak tersedia atau gagal dimuatkan. Sila rujuk log permainan untuk maklumat lanjut."
 
-#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:119
 msgid "Error"
 msgstr "Ralat"
 
@@ -1298,46 +1297,36 @@ msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s hingga %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
-msgid "You don't have the same mods active as the replay does."
-msgstr "Anda tidak mempunyai mod aktif yang sama sepertimana main semula ada."
+msgid "This replay needs a different sequence of mods:"
+msgstr ""
 
-#: gui/replaymenu/replay_actions.js:93
-#, javascript-format
-msgid "Required: %(mods)s"
-msgstr "Diperlukan: %(mods)s"
-
-#: gui/replaymenu/replay_actions.js:94
-#, javascript-format
-msgid "Active: %(mods)s"
-msgstr "Aktif: %(mods)s"
-
-#: gui/replaymenu/replay_actions.js:98
+#: gui/replaymenu/replay_actions.js:97
 msgid "This replay is not compatible with your version of the game!"
 msgstr "Main semula ini tidak serasi dengan versi permainan anda!"
 
-#: gui/replaymenu/replay_actions.js:99
+#: gui/replaymenu/replay_actions.js:98
 #, javascript-format
 msgid "Your version: %(version)s"
 msgstr "Versi anda: %(version)s"
 
-#: gui/replaymenu/replay_actions.js:100
+#: gui/replaymenu/replay_actions.js:99
 #, javascript-format
 msgid "Required version: %(version)s"
 msgstr "Versi diperlukan: %(version)s"
 
-#: gui/replaymenu/replay_actions.js:103
+#: gui/replaymenu/replay_actions.js:102
 msgid "Incompatible replay"
 msgstr "Main semula tidak serasi"
 
-#: gui/replaymenu/replay_actions.js:120
+#: gui/replaymenu/replay_actions.js:119
 msgid "No summary data available."
 msgstr "Tiada data ringkasan tersedia."
 
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:168
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Anda pasti mahu memadam main semula ini secara kekal?"
 
-#: gui/replaymenu/replay_actions.js:171
+#: gui/replaymenu/replay_actions.js:170
 msgid "Delete replay"
 msgstr "Padam main semula"
 

@@ -1332,6 +1332,9 @@ function updateResearchDisplay()
 		size.top = size.left + Math.round(researchStarted[tech].progress * (size.right - size.left));
 		Engine.GetGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size = size;
 
+		Engine.GetGUIObjectByName("researchStartedTimeRemaining[" + numButtons + "]").caption =
+			Engine.FormatMillisecondsIntoDateStringGMT(researchStarted[tech].timeRemaining, translateWithContext("countdown format", "m:ss"));
+
 		++numButtons;
 	}
 

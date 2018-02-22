@@ -7,6 +7,8 @@ var g_DisplayingSystemMessage = false;
 
 function init()
 {
+	Engine.GetGUIObjectByName("rememberPassword").checked =
+		Engine.ConfigDB_GetValue("user", "lobby.rememberpassword") == "true";
 	g_EncryptedPassword = Engine.ConfigDB_GetValue("user", "lobby.password");
 	if (Engine.ConfigDB_GetValue("user", "lobby.login") && g_EncryptedPassword)
 		switchPage("connect");
@@ -196,7 +198,14 @@ function onTick()
 			// We only store the encrypted password, so make sure to re-encrypt it if changed before saving.
 			if (password != g_EncryptedPassword.substring(0, 10))
 				g_EncryptedPassword = Engine.EncryptPassword(password, username);
-			saveSettingAndWriteToUserConfig("lobby.password", g_EncryptedPassword);
+			Engine.ConfigDB_CreateValue("user", "lobby.password", g_EncryptedPassword);
+			if (Engine.ConfigDB_GetValue("user", "lobby.rememberpassword") == "true")
+				Engine.ConfigDB_WriteValueToFile("user", "lobby.password", g_EncryptedPassword, "config/user.cfg");
+			else
+			{
+				Engine.ConfigDB_RemoveValue("user", "lobby.password");
+				Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+			}
 			break;
 		}
 		}
@@ -276,4 +285,23 @@ function prelobbyCancel()
 		switchPage("welcome");
 	else
 		Engine.PopGuiPage();
+}
+
+function toggleRememberPassword()
+{
+	let checkbox = Engine.GetGUIObjectByName("rememberPassword");
+	let enabled = Engine.ConfigDB_GetValue("user", "lobby.rememberpassword") == "true";
+	if (!checkbox.checked && enabled && Engine.ConfigDB_GetValue("user", "lobby.password"))
+	{
+		messageBox(
+			360, 160,
+			translate("Are you sure you want to delete the password after connecting?"),
+			translate("Confirmation"),
+			[translate("No"), translate("Yes")],
+			[function() { checkbox.checked = true; },
+			 function() { saveSettingAndWriteToUserConfig("lobby.rememberpassword", String(!enabled)); }]
+		);
+	}
+	else
+		saveSettingAndWriteToUserConfig("lobby.rememberpassword", String(!enabled));
 }

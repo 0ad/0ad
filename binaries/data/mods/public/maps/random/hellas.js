@@ -119,7 +119,7 @@ while (true)
 	if (!passableLandArea)
 		continue;
 
-	landRatio = passableLandArea.points.length / diskArea(fractionToTiles(0.5));
+	landRatio = passableLandArea.getPoints().length / diskArea(fractionToTiles(0.5));
 	g_Map.log("Land ratio: " + landRatio.toFixed(3));
 	if (landRatio < minLandRatio || landRatio > maxLandRatio)
 		continue;
@@ -153,7 +153,7 @@ while (true)
 				new SlopeConstraint(2, Infinity)
 			]);
 
-		cliffsRatio = cliffsArea.points.length / Math.square(g_Map.getSize());
+		cliffsRatio = cliffsArea.getPoints().length / Math.square(g_Map.getSize());
 		g_Map.log("Smoothing heightmap, cliff ratio: " + cliffsRatio.toFixed(3));
 		if (cliffsRatio < maxCliffRatio)
 			break;
@@ -295,11 +295,11 @@ var areaWater = createArea(
 	stayClasses(clWater, 2));
 
 g_Map.log("Creating docks");
-if (areaWater && areaWater.points.length)
+if (areaWater && areaWater.getPoints().length)
 	for (let i = 0; i < scaleByMapSize(1, 2); ++i)
 		for (let tryNr = 0; tryNr < 60; ++tryNr)
 		{
-			let positionLand = pickRandom(areaLand.points);
+			let positionLand = pickRandom(areaLand.getPoints());
 			let positionDock = areaWater.getClosestPointTo(positionLand);
 
 			if (!g_Map.inMapBounds(positionDock) || !avoidClasses(clDock, 50, clPlayer, 30).allows(positionDock))

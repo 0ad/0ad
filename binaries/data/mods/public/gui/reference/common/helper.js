@@ -24,6 +24,7 @@ function getActualUpgradeData(upgradesInfo)
 		upgrade.entity = upgrade.entity.replace(/\{(civ|native)\}/g, g_SelectedCiv);
 
 		let data = GetTemplateDataHelper(loadTemplate(upgrade.entity), null, g_AuraData, g_ResourceData, g_DamageTypes);
+		data.name.internal = upgrade.entity;
 		data.cost = upgrade.cost;
 		data.icon = upgrade.icon || data.icon;
 		data.tooltip = upgrade.tooltip || data.tooltip;

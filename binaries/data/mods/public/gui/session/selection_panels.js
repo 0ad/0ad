@@ -259,6 +259,7 @@ g_SelectionPanels.Construction = {
 			});
 
 		data.button.onPress = function() { startBuildingPlacement(data.item, data.playerState); };
+		data.button.onPressRight = function() { showTemplateDetails(data.item); };
 
 		let tooltips = [
 			getEntityNamesFormatted,
@@ -267,7 +268,8 @@ g_SelectionPanels.Construction = {
 			getEntityTooltip,
 			getEntityCostTooltip,
 			getGarrisonTooltip,
-			getPopulationBonusTooltip
+			getPopulationBonusTooltip,
+			showTemplateViewerOnRightClickTooltip
 		].map(func => func(template));
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
@@ -742,7 +744,8 @@ g_SelectionPanels.Research = {
 			let tooltips = [
 				getEntityNamesFormatted,
 				getEntityTooltip,
-				getEntityCostTooltip
+				getEntityCostTooltip,
+				showTemplateViewerOnRightClickTooltip
 			].map(func => func(template));
 
 			if (!requirementsPassed)
@@ -791,6 +794,14 @@ g_SelectionPanels.Research = {
 
 			button.onPress = function() {
 				addResearchToQueue(data.item.researchFacilityId, tech);
+			};
+
+			button.onPressRight = function () {
+				let researcherTemplate;
+				for (let selectedEntity of data.unitEntStates)
+					if (selectedEntity.id == data.item.researchFacilityId)
+						researcherTemplate = selectedEntity.template;
+				showTemplateDetails(data.item.tech, GetTemplateData(researcherTemplate).nativeCiv);
 			};
 
 			if (data.item.tech.pair)
@@ -980,6 +991,9 @@ g_SelectionPanels.Training = {
 		data.button.onPress = function() {
 			addTrainingToQueue(data.unitEntStates.map(state => state.id), data.item, data.playerState);
 		};
+		data.button.onPressRight = function() {
+			showTemplateDetails(data.item);
+		};
 
 		data.countDisplay.caption = trainNum > 1 ? trainNum : "";
 
@@ -1008,6 +1022,7 @@ g_SelectionPanels.Training = {
 				getSpeedTooltip
 			].map(func => func(template)));
 
+		tooltips.push(showTemplateViewerOnRightClickTooltip());
 		tooltips.push(
 			formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch),
 			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology, GetSimState().players[data.player].civ),
@@ -1093,7 +1108,8 @@ g_SelectionPanels.Upgrade = {
 				getEntityCostComponentsTooltipString(data.item, undefined, data.unitEntStates.length),
 				formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
 				getRequiredTechnologyTooltip(technologyEnabled, data.item.requiredTechnology, GetSimState().players[data.player].civ),
-				getNeededResourcesTooltip(neededResources));
+				getNeededResourcesTooltip(neededResources),
+				showTemplateViewerOnRightClickTooltip());
 
 			tooltip = tooltips.filter(tip => tip).join("\n");
 
@@ -1111,6 +1127,10 @@ g_SelectionPanels.Upgrade = {
 		}
 		data.button.enabled = controlsPlayer(data.player);
 		data.button.tooltip = tooltip;
+
+		data.button.onPressRight = function() {
+			showTemplateDetails(data.item.entity);
+		};
 
 		let modifier = "";
 		if (!isUpgrading)
@@ -1145,6 +1165,25 @@ g_SelectionPanels.Upgrade = {
 		return true;
 	}
 };
+
+/**
+ * Pauses game and opens the template details viewer for a selected entity or technology.
+ *
+ * Technologies don't have a set civ, so we pass along the native civ of
+ * the template of the entity that's researching it.
+ *
+ * @param {string} [civCode] - The template name of the entity that researches the selected technology.
+ */
+function showTemplateDetails(templateName, civCode)
+{
+	pauseGame();
+
+	Engine.PushGuiPage("page_viewer.xml", {
+		"templateName": templateName,
+		"callback": "resumeGame",
+		"civ": civCode
+	});
+}
 
 /**
  * If two panels need the same space, so they collide,

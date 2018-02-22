@@ -215,7 +215,7 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 m.TradeManager.prototype.performBarter = function(gameState)
 {
 	let barterers = gameState.getOwnEntitiesByClass("BarterMarket", true).filter(API3.Filters.isBuilt()).toEntityArray();
-	if (barterers.length === 0)
+	if (barterers.length == 0)
 		return false;
 
 	// Available resources after account substraction
@@ -231,21 +231,23 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	// loop through each missing resource checking if we could barter and help finishing a queue quickly.
 	for (let buy of Resources.GetCodes())
 	{
-		if (needs[buy] === 0 || needs[buy] < rates[buy]*30) // check if our rate allows to gather it fast enough
+		// Check if our rate allows to gather it fast enough
+		if (needs[buy] == 0 || needs[buy] < rates[buy] * 30)
 			continue;
 
-		// pick the best resource to barter.
+		// Pick the best resource to barter.
 		let bestToSell;
 		let bestRate = 0;
 		for (let sell of Resources.GetCodes())
 		{
-			if (sell === buy)
+			if (sell == buy)
 				continue;
-			if (needs[sell] > 0 || available[sell] < 500)    // do not sell if we need it or do not have enough buffer
+			// Do not sell if we need it or do not have enough buffer
+			if (needs[sell] > 0 || available[sell] < 500)
 				continue;
 
 			let barterRateMin;
-			if (sell === "food")
+			if (sell == "food")
 			{
 				barterRateMin = 30;
 				if (available[sell] > 40000)
@@ -258,9 +260,11 @@ m.TradeManager.prototype.performBarter = function(gameState)
 			else
 			{
 				barterRateMin = 70;
-				if (available[sell] > 1000)
+				if (available[sell] > 5000)
+					barterRateMin = 30;
+				else if (available[sell] > 1000)
 					barterRateMin = 50;
-				if (buy === "food")
+				if (buy == "food")
 					barterRateMin += 20;
 			}
 
@@ -273,11 +277,14 @@ m.TradeManager.prototype.performBarter = function(gameState)
 		}
 		if (bestToSell !== undefined)
 		{
-			barterers[0].barter(buy, bestToSell, 100);
+			let amount = available[bestToSell] > 5000 ? 500 : 100;
+			barterers[0].barter(buy, bestToSell, amount);
 			if (this.Config.debug > 2)
-				API3.warn("Necessity bartering: sold " + bestToSell +" for " + buy + " >> need sell " + needs[bestToSell] +
-					  " need buy " + needs[buy] + " rate buy " + rates[buy] + " available sell " + available[bestToSell] +
-					  " available buy " + available[buy] + " barterRate " + bestRate);
+				API3.warn("Necessity bartering: sold " + bestToSell +" for " + buy +
+				          " >> need sell " + needs[bestToSell] + " need buy " + needs[buy] +
+				          " rate buy " + rates[buy] + " available sell " + available[bestToSell] +
+				          " available buy " + available[buy] + " barterRate " + bestRate +
+				          " amount " + amount);
 			return true;
 		}
 	}
@@ -289,7 +296,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	let bestChoice = 0;
 	for (let buy of Resources.GetCodes())
 	{
-		if (buy === "food")
+		if (buy == "food")
 			continue;
 		let barterRateMin = 80;
 		if (available[buy] < 5000 && available.food > 5000)
@@ -306,10 +313,13 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	}
 	if (bestToBuy !== undefined)
 	{
-		barterers[0].barter(bestToBuy, "food", 100);
+		let amount = available.food > 5000 ? 500 : 100;
+		barterers[0].barter(bestToBuy, "food", amount);
 		if (this.Config.debug > 2)
-			API3.warn("Contingency bartering: sold food for " + bestToBuy + " available sell " + available.food +
-				  " available buy " + available[bestToBuy] + " barterRate " + getBarterRate(barterPrices, bestToBuy, "food"));
+			API3.warn("Contingency bartering: sold food for " + bestToBuy +
+			          " available sell " + available.food + " available buy " + available[bestToBuy] +
+			          " barterRate " + getBarterRate(barterPrices, bestToBuy, "food") +
+			          " amount " + amount);
 		return true;
 	}
 

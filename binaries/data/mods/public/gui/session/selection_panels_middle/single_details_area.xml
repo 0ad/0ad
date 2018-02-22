@@ -67,7 +67,7 @@
 		</object>
 
 		<!-- Big unit icon -->
-		<object size="-8 -8 88 88" type="image" name="iconBorder" sprite="iconBorder" tooltip_style="sessionToolTip">
+		<object size="-8 -8 88 88" type="button" name="iconBorder" sprite="iconBorder" tooltip_style="sessionToolTip">
 			<object size="1 1 100%-1 100%-1" type="image" name="icon" ghost="true"/>
 
 			<!-- Experience bar -->

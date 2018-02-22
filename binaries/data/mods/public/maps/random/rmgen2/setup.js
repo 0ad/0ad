@@ -31,7 +31,7 @@ var g_DefaultTileClasses = [
 	"baseResource",
 	"berries",
 	"bluff",
-	"bluffSlope",
+	"bluffIgnore", // performance improvement
 	"dirt",
 	"fish",
 	"food",
@@ -58,21 +58,29 @@ var g_PlayerbaseTypes = {
 	"line": {
 		"available": () => g_Map.getSize() >= 384 && getTeamsArray().length >= 2 && getNumPlayers() >= 4,
 		"getPosition": (distance, groupedDistance, startAngle) => placeLine(getTeamsArray(), distance, groupedDistance, startAngle),
+		"distance": fractionToTiles(randFloat(0.2, 0.35)),
+		"groupedDistance": fractionToTiles(randFloat(0.05, 0.1)),
 		"walls": false
 	},
 	"radial": {
 		"available": () => true,
 		"getPosition": (distance, groupedDistance, startAngle) => playerPlacementCircle(distance, startAngle),
+		"distance": fractionToTiles(randFloat(0.25, 0.35)),
+		"groupedDistance": fractionToTiles(randFloat(0.07, 0.1)),
 		"walls": true
 	},
 	"random": {
 		"available": () => g_Map.getSize() >= 256 && (getTeamsArray().length >= 3 || getNumPlayers() > 4),
 		"getPosition": (distance, groupedDistance, startAngle) => playerPlacementRandom(sortAllPlayers()) || playerPlacementCircle(distance, startAngle),
+		"distance": fractionToTiles(randFloat(0.25, 0.35)),
+		"groupedDistance": fractionToTiles(randFloat(0.07, 0.1)),
 		"walls": true
 	},
 	"stronghold": {
 		"available": () => g_Map.getSize() >= 256 && getTeamsArray().length >= 2 && getNumPlayers() >= 4,
 		"getPosition": (distance, groupedDistance, startAngle) => placeStronghold(getTeamsArray(), distance, groupedDistance, startAngle),
+		"distance": fractionToTiles(randFloat(0.2, 0.35)),
+		"groupedDistance": fractionToTiles(randFloat(0.07, 0.1)),
 		"walls": false
 	}
 };
@@ -237,10 +245,11 @@ function getTeamsArray()
  */
 function randomStartingPositionPattern(teamsArray)
 {
+	let type = pickRandom(Object.keys(g_PlayerbaseTypes).filter(type => g_PlayerbaseTypes[type].available()));
 	return {
-		"setup": pickRandom(Object.keys(g_PlayerbaseTypes).filter(type => g_PlayerbaseTypes[type].available())),
-		"distance": fractionToTiles(randFloat(0.2, 0.35)),
-		"separation": fractionToTiles(randFloat(0.05, 0.1))
+		"setup": type,
+		"distance": g_PlayerbaseTypes[type].distance,
+		"groupedDistance": g_PlayerbaseTypes[type].groupedDistance
 	};
 }
 

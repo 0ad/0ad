@@ -59,6 +59,14 @@
 					lobbyStartConnect();
 				</action>
 			</object>
+			<object name="rememberPassword" type="checkbox" size="50%-19 115 50% 135" style="ModernTickBox">
+				<action on="Press">
+					toggleRememberPassword();
+				</action>
+			</object>
+			<object type="text" size="50%+10 115 100%-20 135" style="ModernLeftLabelText">
+				<translatableAttribute id="caption">Remember Password</translatableAttribute>
+			</object>
 		</object>
 		<object name="pageRegister" size="0 32 100% 100%" hidden="true">
 

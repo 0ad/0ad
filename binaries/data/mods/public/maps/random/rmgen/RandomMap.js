@@ -28,12 +28,9 @@ function RandomMap(baseHeight, baseTerrain)
 
 	// Create 2D arrays for terrain objects and areas
 	this.terrainEntities = [];
-	this.area = [];
 
 	for (let i = 0; i < this.size; ++i)
 	{
-		this.area[i] = new Uint16Array(this.size);
-
 		this.terrainEntities[i] = [];
 		for (let j = 0; j < this.size; ++j)
 			this.terrainEntities[i][j] = undefined;
@@ -54,8 +51,6 @@ function RandomMap(baseHeight, baseTerrain)
 	}
 
 	this.entities = [];
-
-	this.areaID = 0;
 
 	// Starting entity ID, arbitrary number to leave some space for player entities
 	this.entityCount = 150;
@@ -315,15 +310,13 @@ RandomMap.prototype.setTerrainEntity = function(templateName, playerID, position
 		new Entity(this.getEntityID(), templateName, playerID, position, orientation);
 };
 
-/**
- * Constructs a new Area object and informs the Map which points correspond to this area.
- */
-RandomMap.prototype.createArea = function(points)
+RandomMap.prototype.deleteTerrainEntity = function(position)
 {
-	let areaID = ++this.areaID;
-	for (let p of points)
-		this.area[p.x][p.y] = areaID;
-	return new Area(points, areaID);
+	let tilePosition = position.clone().floor();
+	if (!this.validTilePassable(tilePosition))
+		throw new Error("setTerrainEntity: invalid tile position " + uneval(position));
+
+	this.terrainEntities[tilePosition.x][tilePosition.y] = undefined;
 };
 
 RandomMap.prototype.createTileClass = function()
@@ -415,6 +408,8 @@ RandomMap.prototype.getSlope = function(position)
  */
 RandomMap.prototype.exportEntityList = function()
 {
+	let nonTerrainCount = this.entities.length;
+
 	// Change rotation from simple 2d to 3d befor giving to engine
 	for (let entity of this.entities)
 		entity.rotation.y = Math.PI / 2 - entity.rotation.y;
@@ -425,7 +420,11 @@ RandomMap.prototype.exportEntityList = function()
 			if (this.terrainEntities[x][z])
 				this.entities.push(this.terrainEntities[x][z]);
 
-	this.logger.printDirectly("Total entities: " + this.entities.length + ".\n")
+	this.logger.printDirectly(
+		"Total entities: " + this.entities.length + ", " +
+		"Terrain entities: " + (this.entities.length - nonTerrainCount) + ", " +
+		"Textures: " + this.IDToName.length + ".\n");
+
 	return this.entities;
 };
 

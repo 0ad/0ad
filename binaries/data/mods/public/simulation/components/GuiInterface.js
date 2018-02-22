@@ -594,9 +594,15 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 		ret[tech] = { "researcher": cmpTechnologyManager.GetResearcher(tech) };
 		let cmpProductionQueue = Engine.QueryInterface(ret[tech].researcher, IID_ProductionQueue);
 		if (cmpProductionQueue)
+		{
 			ret[tech].progress = cmpProductionQueue.GetQueue()[0].progress;
+			ret[tech].timeRemaining = cmpProductionQueue.GetQueue()[0].timeRemaining;
+		}
 		else
+		{
 			ret[tech].progress = 0;
+			ret[tech].timeRemaining = 0;
+		}
 	}
 	return ret;
 };

@@ -4,6 +4,7 @@
 		<object name="researchStartedButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" tooltip_style="sessionToolTipBottom">
 			<object name="researchStartedIcon[n]" ghost="true" type="image" size="3 3 37 37"/>
 			<object name="researchStartedProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="3 3 37 37"/>
+			<object name="researchStartedTimeRemaining[n]" ghost="true" style="iconButtonProgress" type="text"/>
 		</object>
 	</repeat>
 </object>

@@ -43,7 +43,7 @@ HeightmapPainter.prototype.paint = function(area)
 	// Additional complexity to process all 4 vertices of each tile, i.e the last row too
 	let seen = new Array(g_Map.height.length).fill(0).map(zero => new Uint8Array(g_Map.height.length).fill(0));
 
-	for (let point of area.points)
+	for (let point of area.getPoints())
 		for (let vertex of g_TileVertices)
 		{
 			let vertexPos = Vector2D.add(point, vertex);

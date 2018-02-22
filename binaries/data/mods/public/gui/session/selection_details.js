@@ -284,6 +284,10 @@ function displaySingle(entState)
 
 	// TODO: we should require all entities to have icons
 	Engine.GetGUIObjectByName("icon").sprite = template.icon ? ("stretched:session/portraits/" + template.icon) : "BackgroundBlack";
+	if (template.icon)
+		Engine.GetGUIObjectByName("iconBorder").onPressRight = () => {
+			showTemplateDetails(entState.template);
+		};
 
 	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = [
 		getAttackTooltip,
@@ -306,7 +310,8 @@ function displaySingle(entState)
 	iconTooltips = iconTooltips.concat([
 		getVisibleEntityClassesFormatted,
 		getAurasTooltip,
-		getEntityTooltip
+		getEntityTooltip,
+		showTemplateViewerOnRightClickTooltip
 	].map(func => func(template)));
 
 	Engine.GetGUIObjectByName("iconBorder").tooltip = iconTooltips.filter(tip => tip).join("\n");

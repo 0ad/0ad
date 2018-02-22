@@ -5,7 +5,7 @@
     <PlacementType>shore</PlacementType>
   </BuildRestrictions>
   <Footprint replace="">
-    <Circle radius="15.5"/>
+    <Circle radius="17"/>
     <Height>8.0</Height>
   </Footprint>
   <Identity>
@@ -18,7 +18,7 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Obstruction>
-    <Static width="29.0" depth="29.0"/>
+    <Static width="29" depth="29"/>
   </Obstruction>
   <Position>
     <Floating>true</Floating>
