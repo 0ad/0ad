@@ -1,41 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="camel">
-      <animations>
-        <animation file="quadraped/camel_walk.dae" name="Walk" speed="50"/>
-        <animation file="quadraped/camel_walk.dae" name="carry_meat" speed="50"/>
-        <animation file="quadraped/camel_run.dae" name="Run" speed="30"/>
-        <animation file="quadraped/camel_death.dae" name="Death" speed="90"/>
-        <animation file="quadraped/camel_idle_01.dae" name="Idle" speed="50"/>
-        <animation file="quadraped/camel_idle_02.dae" name="Idle" speed="50"/>
-      </animations>
-      <mesh>skeletal/camel_1.dae</mesh>
+    <variant frequency="100" file="quadraped/base_camel_archer.xml">
+      <mesh>skeletal/camel.dae</mesh>
       <props>
-        <prop actor="units/ptolemies/camelry_archer_e_r.xml" attachpoint="props_main"/>
+        <prop actor="units/ptolemies/camelry_archer_e_r.xml" attachpoint="rider"/>
+        <prop actor="props/camel/camel_rein.xml" attachpoint="head"/>
+        <prop actor="props/camel/camel_blanket.xml" attachpoint="root"/>
+        <prop actor="props/camel/teeths.xml" attachpoint="mouth_bot"/>
+        <prop actor="props/units/quiver_cavalry_right.xml" attachpoint="quiver_R"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="texture">
+    <variant frequency="3" name="Dark Brown">
       <textures>
-        <texture file="skeletal/ptol_camel_e.png" name="baseTex"/>
+        <texture file="skeletal/animal_camel_a_belt.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Beige">
+      <textures>
+        <texture file="skeletal/animal_camel_b_belt.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Light Brown">
+      <textures>
+        <texture file="skeletal/animal_camel_c_belt.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="run">
-      <props>
-        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_camel_run.xml" />
+    <variant file="quadraped/base_camel_death.xml" />
   </group>
   <material>player_trans.xml</material>
 </actor>

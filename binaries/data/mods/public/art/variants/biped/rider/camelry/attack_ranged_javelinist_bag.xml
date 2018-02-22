@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="attack_ranged">
+  <animations>
+    <animation file="biped/camel_rider_javelinist_attack_bag.dae" event="0.40" name="attack_ranged" load="0.85" speed="100"/>
+  </animations>
+  <props>
+    <prop attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-weapon_R"/>
+    <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+  </props>
+</variant>

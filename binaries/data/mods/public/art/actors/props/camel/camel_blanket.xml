@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+	<castshadow/>
+	<group>
+		<variant frequency="100" file="quadraped/base_camel_archer.xml">
+			<mesh>props/camel_blanket.dae</mesh>
+			<textures>
+        <texture file="props/camel_blanket.png" name="baseTex"/>
+        <texture file="props/camel_blanket_norm.png" name="normTex"/>
+        <texture file="props/camel_blanket_spec.png" name="specTex"/>
+      </textures>
+		</variant>
+	</group>
+	<material>player_trans_parallax_spec.xml</material>
+</actor>

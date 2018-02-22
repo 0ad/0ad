@@ -1,0 +1,95 @@
+<skeletons>
+  <standard_skeleton title="Rein" id="Rein">
+    <bone name="root">
+      <bone name="Rein_1">
+        <bone name="Rein_R_2">
+          <bone name="Rein_R_3">
+            <bone name="Rein_R_4">
+              <bone name="Rein_R_5">
+                <bone name="Rein_R_6">
+                  <bone name="Rein_R_7">
+                    <bone name="Rein_R_8">
+                      <bone name="Rein_R_9">
+                        <bone name="Rein_R_10">
+                          <bone name="Rein_R_11">
+                          </bone>
+                        </bone>
+                      </bone>
+                    </bone>
+                 </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Rein_L_2">
+          <bone name="Rein_L_3">
+            <bone name="Rein_L_4">
+              <bone name="Rein_L_5">
+                <bone name="Rein_L_6">
+                  <bone name="Rein_L_7">
+                    <bone name="Rein_L_8">
+                      <bone name="Rein_L_9">
+                        <bone name="Rein_L_10">
+                          <bone name="Rein_L_11">
+                          </bone>
+                        </bone>
+                      </bone>
+                    </bone>
+                 </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+   </bone>
+  </standard_skeleton>
+  <skeleton title="Rein" target="Rein">
+    <identifier>
+      <root>Rein_1</root>
+    </identifier>
+    <bone name="Rein_1"><target>Rein_1</target>
+        <bone name="Rein_R_2"><target>Rein_R_2</target>
+          <bone name="Rein_R_3"><target>Rein_R_3</target>
+            <bone name="Rein_R_4"><target>Rein_R_4</target>
+              <bone name="Rein_R_5"><target>Rein_R_5</target>
+                <bone name="Rein_R_6"><target>Rein_R_6</target>
+                  <bone name="Rein_R_7"><target>Rein_R_7</target>
+                    <bone name="Rein_R_8"><target>Rein_R_8</target>
+                      <bone name="Rein_R_9"><target>Rein_R_9</target>
+                        <bone name="Rein_R_10"><target>Rein_R_10</target>
+                          <bone name="Rein_R_11"><target>Rein_R_11</target>
+                          </bone>
+                        </bone>
+                      </bone>
+                    </bone>
+                 </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Rein_L_2"><target>Rein_L_2</target>
+          <bone name="Rein_L_3"><target>Rein_L_3</target>
+            <bone name="Rein_L_4"><target>Rein_L_4</target>
+              <bone name="Rein_L_5"><target>Rein_L_5</target>
+                <bone name="Rein_L_6"><target>Rein_L_6</target>
+                  <bone name="Rein_L_7"><target>Rein_L_7</target>
+                    <bone name="Rein_L_8"><target>Rein_L_8</target>
+                      <bone name="Rein_L_9"><target>Rein_L_9</target>
+                        <bone name="Rein_L_10"><target>Rein_L_10</target>
+                          <bone name="Rein_L_11"><target>Rein_L_11</target>
+                          </bone>
+                        </bone>
+                      </bone>
+                    </bone>
+                 </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

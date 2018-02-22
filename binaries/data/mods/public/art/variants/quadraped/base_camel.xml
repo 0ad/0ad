@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <variant name="Base" frequency="1">
   <animations>
-    <animation file="quadraped/camel_walk.dae" name="Walk" speed="50"/>
-    <animation file="quadraped/camel_run.dae" name="Run" speed="30"/>
-    <animation file="quadraped/camel_death.dae" name="Death" speed="90"/>
-    <animation file="quadraped/camel_idle_01.dae" name="Idle1" speed="50"/>
-    <animation file="quadraped/camel_idle_02.dae" name="Idle2" speed="50"/>
+    <animation file="quadraped/camel_idle.dae" name="Idle" speed="80"/>
   </animations>
   <mesh>skeletal/camel_1.dae</mesh>
 </variant>

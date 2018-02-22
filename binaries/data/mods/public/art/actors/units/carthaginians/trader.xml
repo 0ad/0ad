@@ -1,31 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="camel">
-      <animations>
-        <animation file="quadraped/camel_walk.dae" name="Walk" speed="50"/>
-        <animation file="quadraped/camel_run.dae" name="Run" speed="30"/>
-        <animation file="quadraped/camel_death.dae" name="Death" speed="90"/>
-        <animation file="quadraped/camel_idle_01.dae" name="Idle" speed="50"/>
-        <animation file="quadraped/camel_idle_02.dae" name="Idle" speed="50"/>
-      </animations>
-      <mesh>skeletal/camel_1.dae</mesh>
+    <variant frequency="100" file="quadraped/base_camel_trader.xml">
+      <mesh>skeletal/camel.dae</mesh>
       <props>
-        <prop actor="props/units/kart_camel_props.xml" attachpoint="props_main"/>
+        <prop actor="props/units/pers_camel_props.xml" attachpoint="saddle"/>
+        <prop actor="props/camel/teeths.xml" attachpoint="mouth_bot"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Dark Brown">
       <textures>
-        <texture file="skeletal/animal_camel.png" name="baseTex"/>
+        <texture file="skeletal/animal_camel_a_belt.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Beige">
+      <textures>
+        <texture file="skeletal/animal_camel_b_belt.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Light Brown">
+      <textures>
+        <texture file="skeletal/animal_camel_c_belt.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant frequency="100" name="Idle"/>
+    <variant file="quadraped/base_camel_run.xml" />
+    <variant file="quadraped/base_camel_death.xml" />
   </group>
-  <material>player_trans.xml</material>
+  <material>default.xml</material>
 </actor>

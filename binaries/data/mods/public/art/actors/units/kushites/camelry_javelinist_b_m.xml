@@ -2,19 +2,38 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_camel.xml" name="Base">
+    <variant frequency="100" file="quadraped/base_camel_archer.xml">
+      <mesh>skeletal/camel.dae</mesh>
       <props>
-        <prop actor="units/kushites/camelry_javelinist_b_r.xml" attachpoint="props_main"/>
+        <prop actor="units/kushites/camelry_javelinist_b_r.xml" attachpoint="rider"/>
+        <prop actor="props/camel/camel_rein.xml" attachpoint="head"/>
+        <prop actor="props/camel/camel_blanket.xml" attachpoint="root"/>
+        <prop actor="props/camel/teeths.xml" attachpoint="mouth_bot"/>
+        <prop actor="props/units/jav_bag.xml" attachpoint="quiver_R"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Dark Brown">
       <textures>
-        <texture file="skeletal/ptol_camel_e.png" name="baseTex"/>
+        <texture file="skeletal/animal_camel_a_belt.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Beige">
+      <textures>
+        <texture file="skeletal/animal_camel_b_belt.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Light Brown">
+      <textures>
+        <texture file="skeletal/animal_camel_c_belt.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_camel_death.xml"/>
-    <variant file="quadraped/base_camel_run.xml"/>
+    <variant frequency="100" name="Idle"/>
+    <variant file="quadraped/base_camel_run.xml" />
+    <variant file="quadraped/base_camel_death.xml" />
   </group>
   <material>player_trans.xml</material>
 </actor>

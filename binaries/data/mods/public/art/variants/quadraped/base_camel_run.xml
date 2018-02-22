@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<variant name="Run" frequency="1">
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Run">
+  <animations>
+    <animation file="quadraped/camel_run.dae" name="Run" speed="65"/>
+  </animations>
   <props>
     <prop actor="particle/dust_cav.xml" attachpoint="root"/>
   </props>
