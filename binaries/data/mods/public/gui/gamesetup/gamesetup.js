@@ -1024,7 +1024,7 @@ var g_MiscControls = {
 			let spTips = Engine.GetGUIObjectByName("spTips");
 			return g_IsNetworked ||
 				Engine.ConfigDB_GetValue("user", "gui.gamesetup.enabletips") !== "true" ||
-				spTips.size.right > settingsPanel.getComputedSize().left
+				spTips.size.right > settingsPanel.getComputedSize().left;
 		}
 	}
 };
