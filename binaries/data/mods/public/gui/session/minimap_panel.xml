@@ -40,6 +40,6 @@
 		sprite="stretched:session/minimap-diplomacy-off.png"
 		sprite_over="stretched:session/minimap-diplomacy-off-highlight.png"
 	>
-		<action on="Press">updateDiplomacyColorsButton()</action>
+		<action on="Press">updateDiplomacyColorsButton();</action>
 	</object>
 </object>
