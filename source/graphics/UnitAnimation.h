@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,6 +90,11 @@ public:
 	 * This should be called whenever the unit is changed externally, to keep this in sync.
 	 */
 	void ReloadUnit(CModel* model, const CObjectEntry* object);
+
+	/**
+	 * Reload animation so any changes take immediate effect.
+	 */
+	void ReloadAnimation();
 
 private:
 
