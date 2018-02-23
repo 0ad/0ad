@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-09 09:03+0100\n"
-"PO-Revision-Date: 2018-02-09 19:32+0000\n"
+"POT-Creation-Date: 2018-02-21 09:05+0100\n"
+"PO-Revision-Date: 2018-02-21 18:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -258,8 +258,8 @@ msgid "Conscription"
 msgstr "Enrolladur"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied infantry."
-msgstr "-20% a amzer stummañ evit soudarded war-droad ar re gevredet."
+msgid "-20% training time for allied citizen-soldier infantry."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -599,13 +599,21 @@ msgstr "Britannorum Rex"
 msgid "+0.8 HP per second healing rate."
 msgstr "+0.8 PB an eilenn a feur pareañ."
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
 msgstr "Foeltr Jeneral"
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
 msgstr "An holl soudarded hag ar mekanikoù seziz +15% a dizh."
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
+msgid "Subduer of Mercenaries"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
+msgid "-20% attack for enemy mercenaries."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -823,8 +831,8 @@ msgid "Leadership"
 msgstr "Renerezh"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
-msgid "+10% movement speed for all soldiers, siege engines and traders."
-msgstr "+10% a dizh evit an holl soudarded, mekanikoù seziz ha kenwerzhourien."
+msgid "+15% movement speed for all soldiers, siege engines and traders."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -876,8 +884,8 @@ msgid "Mercenary Patron"
 msgstr "Penn Goprsoudard"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
-msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr "Digresket e vez koust ar c'hoprsoudarded eus -50% er mammenoù e-pad e vuhez."
+msgid "Mercenaries cost -35% resources during his lifetime."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -937,8 +945,8 @@ msgid "Helot Reforms"
 msgstr "Adaozadurioù Hiloted"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr "+25% a dagusted ha +1 a houarnwisk evit ar soudarded speger war droad."
+msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

@@ -8,7 +8,7 @@
 # Fabian Gref <fabian.gref@gmail.com>, 2017
 # leper <leper@wildfiregames.com>, 2014-2016
 # MartinusMagnus <martinkleemann@web.de>, 2014
-# Maximilian Wagenbach <foaly.f@web.de>, 2016-2017
+# Maximilian Wagenbach <foaly@posteo.de>, 2016-2017
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # Michael Vetter <jubalh@openmailbox.org>, 2016
 # Patrick B <chessplayer95.pb@googlemail.com>, 2016
@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:03+0100\n"
-"PO-Revision-Date: 2018-02-10 13:12+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2018-02-21 09:05+0100\n"
+"PO-Revision-Date: 2018-02-21 16:05+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,10 +34,10 @@ msgstr ""
 #: simulation/data/technologies/advanced_unit_bonus.jsontooltip
 msgid ""
 "Units promoted to the advanced class gain a lot of quality: 20% extra "
-"health, 1 extra armor level of every type, 20% extra attack for melee units,"
-" 4m extra range and 5% better precision for ranged units, faster movement "
-"speeds and extra heal speed and range for healers."
-msgstr "Einheiten, die zur Fortgeschrittenenklasse befördert werden, erhalten viele Boni: +20% Gesundheit, eine um 1 erhöhte Rüstungsstufe für jeden Rüstungstyp, +20% Angriff für Nahkampfeinheiten, eine um 4m erhöhte Reichweite und 5% bessere Treffgenauigkeit für Fernkampfeinheiten, schnellere Bewegungsgeschwindigkeiten und eine erhöhe Heilungsrate und -reichweite für Heiler."
+"health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
+"for melee units, 4m extra range and better precision for ranged units, "
+"faster movement speeds and extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -736,11 +736,11 @@ msgstr "Bruchstein"
 
 #: simulation/data/technologies/elite_unit_bonus.jsontooltip
 msgid ""
-"Units trained to the elite class gain a lot of quality: 20% extra health, 1 "
-"extra armor level of every type, 20% extra attack for melee units, extra "
-"range and better precision for ranged units, faster movement speeds and "
-"extra heal speed and range for healers."
-msgstr "Einheiten, die zur Eliteklasse ausgebildet wurden, erhalten viele Boni: 20% zusätzliche Gesundheit, 1 zusätzliche Rüstungsstufe für jeden Typ, +20% Angriff für Nahkampfeinheiten, erhöhte Reichweite und bessere Treffgenauigkeit für Fernkampfeinheiten, höhere Bewegungsgeschwindigkeiten und eine höhere Heilrate und -reichweite für Heiler."
+"Units promoted to the elite class gain a lot of quality: 20% extra health, 1"
+" extra armor level of every type, 20% extra loot, 20% extra attack for melee"
+" units, 4m extra range and better precision for ranged units, faster "
+"movement speeds and extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1480,8 +1480,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "Verbesserung der Zielgenauigkeit"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%."
-msgstr "Treffsicherheit des Bolzengeschützes um 25% erhöht."
+msgid "Bolt shooter increased accuracy."
+msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -2432,9 +2432,9 @@ msgstr "Die Inder hatten eine Tradition ausgefeilter Bogenschießkunst und neigt
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
-"Range +10 meters for bow-wielding units. Archer units train time -20%, but "
-"also -20% health."
-msgstr "Reichweite +10 Meter für bogentragende Einheiten. Bogenschützen werden um 20 Prozent schneller erstellt, aber haben -20 Prozent Lebenspunkte."
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName

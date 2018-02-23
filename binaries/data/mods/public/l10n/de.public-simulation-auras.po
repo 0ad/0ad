@@ -7,10 +7,10 @@
 # xtother90, 2018
 # Enno Holz <eh@idh20.de>, 2017
 # Fabian Gref <fabian.gref@gmail.com>, 2017
-# Maximilian Wagenbach <foaly.f@web.de>, 2016
+# Maximilian Wagenbach <foaly@posteo.de>, 2016
 # ... ... <jon12@gmx.de>, 2017
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
-# Maximilian Wagenbach <foaly.f@web.de>, 2016-2017
+# Maximilian Wagenbach <foaly@posteo.de>, 2016-2017
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # Nico Laus <omaoma75@web.de>, 2017
 # Ole Gehrmann <ole.internet22@gmail.com>, 2017
@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-09 09:03+0100\n"
-"PO-Revision-Date: 2018-02-10 12:32+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2018-02-21 09:05+0100\n"
+"PO-Revision-Date: 2018-02-21 18:43+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -265,8 +265,8 @@ msgid "Conscription"
 msgstr "Wehrpflicht"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied infantry."
-msgstr "-20% Ausbildungszeit für verbündete Infanterie."
+msgid "-20% training time for allied citizen-soldier infantry."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -606,13 +606,21 @@ msgstr "Britannorum Rex"
 msgid "+0.8 HP per second healing rate."
 msgstr "Heilrate +0,8 TP pro Sekunde."
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
 msgstr "Blitzgeneral"
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
 msgstr "Alle Soldaten und Belagerungswaffen bekommen +15% Geschwindigkeit."
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
+msgid "Subduer of Mercenaries"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
+msgid "-20% attack for enemy mercenaries."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -830,8 +838,8 @@ msgid "Leadership"
 msgstr "Führung"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
-msgid "+10% movement speed for all soldiers, siege engines and traders."
-msgstr "+10% Bewegungsgeschwindigkeit für alle Soldaten, Belagerungsmaschinen und Händler."
+msgid "+15% movement speed for all soldiers, siege engines and traders."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -883,8 +891,8 @@ msgid "Mercenary Patron"
 msgstr "Söldnerpatron"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
-msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr "Söldner kosten -50% Ressourcen während seiner Lebenszeit."
+msgid "Mercenaries cost -35% resources during his lifetime."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -944,8 +952,8 @@ msgid "Helot Reforms"
 msgstr "Heloten-Reformen"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr "+25% Angriff und +1 Rüstung für Wurfspeerinfanteriesoldaten."
+msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

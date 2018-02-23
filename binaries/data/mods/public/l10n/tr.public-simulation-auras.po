@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-09 09:03+0100\n"
-"PO-Revision-Date: 2018-02-09 19:32+0000\n"
+"POT-Creation-Date: 2018-02-21 09:05+0100\n"
+"PO-Revision-Date: 2018-02-21 18:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -264,8 +264,8 @@ msgid "Conscription"
 msgstr "Zorunlu Hizmet"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied infantry."
-msgstr "Müttefik piyadeler için -20% eğitim süresi."
+msgid "-20% training time for allied citizen-soldier infantry."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -605,13 +605,21 @@ msgstr "Britanyalılar ın Kralı"
 msgid "+0.8 HP per second healing rate."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
 msgstr "Şimşek gibi General"
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
 msgstr "Tüm askerler ve kuşatma araçları +15%  hızlı."
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
+msgid "Subduer of Mercenaries"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
+msgid "-20% attack for enemy mercenaries."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -829,8 +837,8 @@ msgid "Leadership"
 msgstr "Liderlik"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
-msgid "+10% movement speed for all soldiers, siege engines and traders."
-msgstr "Tüm askerler, kuşatma araçları ve tüccarlar için  +10% hareket hızı."
+msgid "+15% movement speed for all soldiers, siege engines and traders."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -882,8 +890,8 @@ msgid "Mercenary Patron"
 msgstr "Paralı Asker Müdavimi"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
-msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr "Paralı askerler yaşamları boyunca kaynaklara %-50 oranında etki ederler."
+msgid "Mercenaries cost -35% resources during his lifetime."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -943,8 +951,8 @@ msgid "Helot Reforms"
 msgstr "Köle Reformları"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr "Cirit piyade askerleri için +25% saldırı ve +1 Zırh."
+msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

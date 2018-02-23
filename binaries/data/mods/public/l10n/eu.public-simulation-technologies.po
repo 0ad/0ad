@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:03+0100\n"
-"PO-Revision-Date: 2018-02-07 16:25+0000\n"
+"POT-Creation-Date: 2018-02-21 09:05+0100\n"
+"PO-Revision-Date: 2018-02-22 16:33+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -23,10 +23,10 @@ msgstr ""
 #: simulation/data/technologies/advanced_unit_bonus.jsontooltip
 msgid ""
 "Units promoted to the advanced class gain a lot of quality: 20% extra "
-"health, 1 extra armor level of every type, 20% extra attack for melee units,"
-" 4m extra range and 5% better precision for ranged units, faster movement "
-"speeds and extra heal speed and range for healers."
-msgstr "Klase aurreratura sustatutako unitateek kalitate asko irabazten dute: % 20 osasun gehiago , maila 1 gehiago armadura mota guztietan, % 20 gehiago erasoan buruz buruko unitateentzat, 4m gehiago hedaduran eta %5 zehaztasun gehiago urrutirako unitateentzat, mugimendu abiadura azkarragoa eta sendagileentzako abiadura estra sendatzean eta mailan."
+"health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
+"for melee units, 4m extra range and better precision for ranged units, "
+"faster movement speeds and extra heal speed and range for healers."
+msgstr "Klase aurreratura sustatutako unitateek kalitate asko irabazten dute: % 20 osasun gehiago , maila 1 gehiago armadura mota guztietan, % 20 gehiago erasoan buruz buruko unitateentzat, 4m gehiago hedaduran eta zehaztasun gehiago urrutirako unitateentzat, mugimendu abiadura azkarragoa eta sendagileentzako abiadura estra sendatzean eta mailan."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -725,11 +725,11 @@ msgstr "Zaborren berrerabiltzea"
 
 #: simulation/data/technologies/elite_unit_bonus.jsontooltip
 msgid ""
-"Units trained to the elite class gain a lot of quality: 20% extra health, 1 "
-"extra armor level of every type, 20% extra attack for melee units, extra "
-"range and better precision for ranged units, faster movement speeds and "
-"extra heal speed and range for healers."
-msgstr "Elite mailara igotako unitateek kalitate handia lortzen dute: %20 osasunean, maila 1 gehiago armadura mota bakoitzeko, %20 gehiago erasoan aurrez aurreko unitateentzat, luzerako irismen osagarria eta zehaztasun handiagoa luzerako unitateentzat, abiadura handiagoa mugitzean eta abiadura handiagoa sendatzean eta irismenean sendagileentzat."
+"Units promoted to the elite class gain a lot of quality: 20% extra health, 1"
+" extra armor level of every type, 20% extra loot, 20% extra attack for melee"
+" units, 4m extra range and better precision for ranged units, faster "
+"movement speeds and extra heal speed and range for healers."
+msgstr "Elite klasera sustatutako unitateek kalitate asko irabazten dute: % 20 osasun gehiago , maila 1 gehiago armadura mota guztietan, % 20 gehiago erasoan buruz buruko unitateentzat, 4m gehiago hedaduran eta zehaztasun gehiago urrutirako unitateentzat, mugimendu abiadura azkarragoa eta sendagileentzako abiadura estra sendatzean eta mailan."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1469,8 +1469,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "Jaurtigaien zehaztasuna hobetzen du"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%."
-msgstr "Tiratzailearen zehaztasuna %25 handitzen da."
+msgid "Bolt shooter increased accuracy."
+msgstr "Tiratzailearen zehaztasuna handitzen da."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -2421,9 +2421,9 @@ msgstr "Indiarrek arkulari usadio handia zuten eta borrokan arkulari asko erabil
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
-"Range +10 meters for bow-wielding units. Archer units train time -20%, but "
-"also -20% health."
-msgstr "+10 metro maila arkuz hornitutako unitateentzat. Arkulariak erreklutatzeko denbora %20- baino baita bizitza %20-."
+"Range +10 meters for bow-wielding units. Archer units better accuracy and "
+"-20% train time, but also -20% health."
+msgstr "+10 metro maila arkuz hornitutako unitateentzat. Arkulariak zehaztasuna %20- trebatzean, baino baita bizitza %20-."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-09 09:03+0100\n"
-"PO-Revision-Date: 2018-02-11 08:59+0000\n"
+"POT-Creation-Date: 2018-02-21 09:05+0100\n"
+"PO-Revision-Date: 2018-02-23 04:32+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -249,8 +249,8 @@ msgid "Conscription"
 msgstr "Pengerahan"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied infantry."
-msgstr "-20% masa latihan untuk askar infantri sekutu."
+msgid "-20% training time for allied citizen-soldier infantry."
+msgstr "-20% masa latihan untuk askar-rakyat infantri sekutu."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -590,13 +590,21 @@ msgstr "Britannorum Rex"
 msgid "+0.8 HP per second healing rate."
 msgstr "+0.8% HP per saat kadar penyembuhan."
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
 msgstr "Jeneral Lightning"
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
 msgstr "Semua askar dan alat pengepung +15% kelajuan."
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
+msgid "Subduer of Mercenaries"
+msgstr "Penunduk Askar Upahan"
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
+msgid "-20% attack for enemy mercenaries."
+msgstr "-20% serangan untuk askar upahan pihak musuh."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -814,8 +822,8 @@ msgid "Leadership"
 msgstr "Kepimpinan"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
-msgid "+10% movement speed for all soldiers, siege engines and traders."
-msgstr "+10% kelajuan gerakan untuk semua askar, alat pengepung dan pedagang."
+msgid "+15% movement speed for all soldiers, siege engines and traders."
+msgstr "+15% kelajuan gerakan untuk semua askar, alat pengepung dan pedagang."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -867,8 +875,8 @@ msgid "Mercenary Patron"
 msgstr "Penaung Askar Upahan"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
-msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr "Kos askar upahan -50% sumber semasa hayat beliau."
+msgid "Mercenaries cost -35% resources during his lifetime."
+msgstr "Kos askar upahan -35% sumber semasa hayat beliau."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -928,8 +936,8 @@ msgid "Helot Reforms"
 msgstr "Reformasi Helot"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr "+25% serangan dan +1 perisai untuk untuk aksar infantri bertombak."
+msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
+msgstr "+25% serangan dan +1 perisai untuk aksar-rakyat infantri bertombak."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

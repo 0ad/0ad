@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-02-07 09:03+0100\n"
-"PO-Revision-Date: 2018-02-07 09:03+0100\n"
+"POT-Creation-Date: 2018-02-23 09:05+0100\n"
+"PO-Revision-Date: 2018-02-23 09:05+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,32 +30,32 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:83
 #: simulation/templates/template_structure_civic_civil_centre.xml:45
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr ""
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:33
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:31
 #: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr ""
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:34
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:32
 msgid "Klēroukhía"
 msgstr ""
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:33
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Stoa"
 msgstr ""
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:35
 msgid "Hellenic Royal Stoa"
 msgstr ""
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:35
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:36
 msgid "Recruit special units."
 msgstr ""
 
-#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:38
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:39
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_defense_tower_stone.xml:32
 #: simulation/templates/template_structure_economic_market.xml:26
@@ -64,8 +64,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_kennel.xml:43
 #: simulation/templates/structures/cart_super_dock.xml:46
 #: simulation/templates/structures/gaul_tavern.xml:28
-#: simulation/templates/structures/kush_pyramid.xml:28
-#: simulation/templates/structures/kush_pyramid_large.xml:31
+#: simulation/templates/structures/kush_pyramid_small.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:7
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid "Town"
@@ -77,13 +76,12 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_tower_outpost.xml:51
-#: simulation/templates/template_structure_defense_tower_sentry.xml:39
+#: simulation/templates/template_structure_defense_tower_sentry.xml:36
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:28
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:20
-#: simulation/templates/structures/kush_pyramid_small.xml:29
 msgid "Village"
 msgstr ""
 
@@ -109,7 +107,7 @@ msgid "Defensive Structure"
 msgstr ""
 
 #: simulation/templates/template_structure_defense_tower.xml:30
-#: simulation/templates/template_structure_defense_tower_sentry.xml:39
+#: simulation/templates/template_structure_defense_tower_sentry.xml:36
 #: simulation/templates/template_structure_defense_tower_stone.xml:32
 msgid "DefenseTower"
 msgstr ""
@@ -126,21 +124,21 @@ msgstr ""
 msgid "Outpost"
 msgstr ""
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:36
+#: simulation/templates/template_structure_defense_tower_sentry.xml:33
 msgid "Sentry Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:39
+#: simulation/templates/template_structure_defense_tower_sentry.xml:36
 msgid "SentryTower"
 msgstr ""
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:40
+#: simulation/templates/template_structure_defense_tower_sentry.xml:37
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
 msgstr ""
 
-#: simulation/templates/template_structure_defense_tower_sentry.xml:61
+#: simulation/templates/template_structure_defense_tower_sentry.xml:58
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr ""
 
@@ -305,12 +303,10 @@ msgid "Dock"
 msgstr ""
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:32
-#: simulation/templates/structures/cart_elephant_stables.xml:24
 msgid "Elephant Stables"
 msgstr ""
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:35
-#: simulation/templates/structures/cart_elephant_stables.xml:27
 msgid "Train elephant units."
 msgstr ""
 
@@ -762,31 +758,35 @@ msgid ""
 "other docks."
 msgstr ""
 
+#: simulation/templates/structures/cart_elephant_stables.xml:5
+msgid "Carthaginian Elephant Stables"
+msgstr ""
+
 #: simulation/templates/structures/cart_embassy.xml:21
 msgid "Hire mercenaries."
 msgstr ""
 
-#: simulation/templates/structures/cart_embassy_celtic.xml:20
+#: simulation/templates/structures/cart_embassy_celtic.xml:19
 msgid "Celtic Embassy"
 msgstr ""
 
-#: simulation/templates/structures/cart_embassy_celtic.xml:21
+#: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
 msgstr ""
 
-#: simulation/templates/structures/cart_embassy_iberian.xml:13
+#: simulation/templates/structures/cart_embassy_iberian.xml:12
 msgid "Iberian Embassy"
 msgstr ""
 
-#: simulation/templates/structures/cart_embassy_iberian.xml:14
+#: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
 msgstr ""
 
-#: simulation/templates/structures/cart_embassy_italiote.xml:20
+#: simulation/templates/structures/cart_embassy_italiote.xml:19
 msgid "Italian Embassy"
 msgstr ""
 
-#: simulation/templates/structures/cart_embassy_italiote.xml:21
+#: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
 msgstr ""
 
@@ -1024,7 +1024,7 @@ msgstr ""
 msgid "Blemmye Camp"
 msgstr ""
 
-#: simulation/templates/structures/kush_blemmye_camp.xml:32
+#: simulation/templates/structures/kush_blemmye_camp.xml:31
 msgid "Train Blemmye Desert Raiders."
 msgstr ""
 
@@ -1044,7 +1044,7 @@ msgstr ""
 msgid "Mryt"
 msgstr ""
 
-#: simulation/templates/structures/kush_elephant_stables.xml:9
+#: simulation/templates/structures/kush_elephant_stables.xml:5
 msgid "Kushite Elephant Stables"
 msgstr ""
 
@@ -1073,7 +1073,7 @@ msgstr ""
 msgid "Nuba Village"
 msgstr ""
 
-#: simulation/templates/structures/kush_nuba_village.xml:32
+#: simulation/templates/structures/kush_nuba_village.xml:31
 msgid "Train the Nuba Clubman and Nuba Hunter."
 msgstr ""
 
@@ -1709,10 +1709,6 @@ msgstr ""
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedes Martis"
-msgstr ""
-
-#: simulation/templates/structures/rome_temple_mars.xml:14
-msgid "Train healers. Garrison units to heal them at a quick rate."
 msgstr ""
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17

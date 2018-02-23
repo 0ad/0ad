@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-19 09:04+0100\n"
-"PO-Revision-Date: 2018-02-19 20:25+0000\n"
+"POT-Creation-Date: 2018-02-21 09:04+0100\n"
+"PO-Revision-Date: 2018-02-21 18:43+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -156,16 +156,16 @@ msgid "DELETE"
 msgstr "ИЗТРИВАНЕ"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
-#: gui/options/options.js:264 gui/options/options.js:315
-#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/options/options.js:264 gui/options/options.js:314
+#: gui/options/options.js:340 gui/pregame/mainmenu.js:252
 #: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "No"
 msgstr "Не"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
-#: gui/options/options.js:264 gui/options/options.js:315
-#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/options/options.js:264 gui/options/options.js:314
+#: gui/options/options.js:340 gui/pregame/mainmenu.js:252
 #: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "Yes"
@@ -1199,16 +1199,16 @@ msgid ""
 "continue?"
 msgstr "Възстановяването ще заличи запазените Ви настройки. Искате ли да продължите?"
 
-#: gui/options/options.js:263 gui/options/options.js:314
-#: gui/options/options.js:340
+#: gui/options/options.js:263 gui/options/options.js:313
+#: gui/options/options.js:339
 msgid "Warning"
 msgstr "Внимание"
 
-#: gui/options/options.js:313
+#: gui/options/options.js:312
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Някои стойности на настройките са неправилни? Наистина ли искате да ги запазите?"
 
-#: gui/options/options.js:339
+#: gui/options/options.js:338
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Има незапазени промени. Искате ли да затворите този прозорец?"
 
@@ -1453,13 +1453,13 @@ msgstr "yyyy-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):81
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
 msgstr "Резултат"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:152
-#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):130
+#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):123
 msgid "Player name"
 msgstr "Име на играч"
 
@@ -1479,7 +1479,7 @@ msgstr "Военни точки"
 msgid "Exploration score"
 msgstr "Точки за разузнаване"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):88
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
 msgid "Buildings"
 msgstr "Сгради"
 
@@ -1522,7 +1522,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Статистика за сградите (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):95
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
 msgstr "Единици"
 
@@ -1559,7 +1559,7 @@ msgstr "Търговци"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Статистика за единиците (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):102
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
 msgstr "Ресурси"
 
@@ -1591,7 +1591,7 @@ msgstr "Развъден добитък"
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Статистика за ресурсите (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):109
+#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):102
 msgid "Market"
 msgstr "Пазар"
 
@@ -1609,7 +1609,7 @@ msgstr "Полза от размените"
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "Разменено: %(resourceFirstWord)s"
 
-#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):116
+#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Разни"
@@ -1764,6 +1764,11 @@ msgstr "Игрално време: %(time)s"
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s — %(mapType)s"
+
+#: gui/summary/summary.js:534
+#, javascript-format
+msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
+msgstr "%(hotkey)s: Превключване на чакалнята в прозорец."
 
 #: gui/civinfo/civinfo.xml:(caption):14
 msgid "Civilizations"
@@ -2124,7 +2129,7 @@ msgid "Reload Cache"
 msgstr "Презареждане на кеша"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
-#: gui/summary/summary.xml:(caption):41
+#: gui/summary/summary.xml:(caption):34
 msgid "Summary"
 msgstr "Обобщение"
 
@@ -2178,44 +2183,44 @@ msgstr "Показване на това съобщение в бъдеще"
 msgid "Known Issues (web)"
 msgstr "Известни проблеми (в Интернет)"
 
-#: gui/summary/summary.xml:(caption):123
+#: gui/summary/summary.xml:(caption):116
 msgid "Charts"
 msgstr "Графики"
 
-#: gui/summary/summary.xml:(caption):180
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Категория:"
 
-#: gui/summary/summary.xml:(caption):190
+#: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Стойност:"
 
-#: gui/summary/summary.xml:(caption):200
+#: gui/summary/summary.xml:(caption):193
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Вид:"
 
-#: gui/summary/summary.xml:(caption):219
+#: gui/summary/summary.xml:(caption):227
 msgid "Replay"
 msgstr "Пускане на записа"
 
-#: gui/summary/summary.xml:(caption):224
+#: gui/summary/summary.xml:(caption):232
 msgid "Continue"
 msgstr "Напред"
 
-#: gui/summary/summary.xml:(tooltip):186
+#: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Категория"
 
-#: gui/summary/summary.xml:(tooltip):196
+#: gui/summary/summary.xml:(tooltip):189
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Стойност"
 
-#: gui/summary/summary.xml:(tooltip):207
+#: gui/summary/summary.xml:(tooltip):200
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Вид"

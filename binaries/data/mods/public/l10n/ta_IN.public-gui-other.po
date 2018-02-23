@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-19 09:04+0100\n"
-"PO-Revision-Date: 2018-02-19 14:57+0000\n"
+"POT-Creation-Date: 2018-02-21 09:04+0100\n"
+"PO-Revision-Date: 2018-02-21 15:28+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/wildfire-games/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
@@ -151,16 +151,16 @@ msgid "DELETE"
 msgstr "அழி"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
-#: gui/options/options.js:264 gui/options/options.js:315
-#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/options/options.js:264 gui/options/options.js:314
+#: gui/options/options.js:340 gui/pregame/mainmenu.js:252
 #: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "No"
 msgstr "இல்லை"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
-#: gui/options/options.js:264 gui/options/options.js:315
-#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/options/options.js:264 gui/options/options.js:314
+#: gui/options/options.js:340 gui/pregame/mainmenu.js:252
 #: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "Yes"
@@ -1194,16 +1194,16 @@ msgid ""
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:263 gui/options/options.js:314
-#: gui/options/options.js:340
+#: gui/options/options.js:263 gui/options/options.js:313
+#: gui/options/options.js:339
 msgid "Warning"
 msgstr "எச்சரிக்கை"
 
-#: gui/options/options.js:313
+#: gui/options/options.js:312
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:339
+#: gui/options/options.js:338
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -1448,13 +1448,13 @@ msgstr ""
 msgid "yyyy-MM"
 msgstr ""
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):81
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
 msgstr ""
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:152
-#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):130
+#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):123
 msgid "Player name"
 msgstr ""
 
@@ -1474,7 +1474,7 @@ msgstr "ராணுவ புள்ளிகள்"
 msgid "Exploration score"
 msgstr ""
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):88
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
 msgid "Buildings"
 msgstr ""
 
@@ -1517,7 +1517,7 @@ msgid ""
 "%(lost)s)"
 msgstr ""
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):95
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
 msgstr ""
 
@@ -1554,7 +1554,7 @@ msgstr ""
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr ""
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):102
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
 msgstr ""
 
@@ -1586,7 +1586,7 @@ msgstr ""
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr ""
 
-#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):109
+#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):102
 msgid "Market"
 msgstr ""
 
@@ -1604,7 +1604,7 @@ msgstr ""
 msgid "%(resourceFirstWord)s exchanged"
 msgstr ""
 
-#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):116
+#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr ""
@@ -1758,6 +1758,11 @@ msgstr ""
 #: gui/summary/summary.js:527
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
+msgstr ""
+
+#: gui/summary/summary.js:534
+#, javascript-format
+msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):14
@@ -2119,7 +2124,7 @@ msgid "Reload Cache"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
-#: gui/summary/summary.xml:(caption):41
+#: gui/summary/summary.xml:(caption):34
 msgid "Summary"
 msgstr ""
 
@@ -2173,44 +2178,44 @@ msgstr ""
 msgid "Known Issues (web)"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):123
+#: gui/summary/summary.xml:(caption):116
 msgid "Charts"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):180
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Category:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):190
+#: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Value:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):200
+#: gui/summary/summary.xml:(caption):193
 msgctxt "summary chart"
 msgid "Type:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):219
+#: gui/summary/summary.xml:(caption):227
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):224
+#: gui/summary/summary.xml:(caption):232
 msgid "Continue"
 msgstr ""
 
-#: gui/summary/summary.xml:(tooltip):186
+#: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Category"
 msgstr ""
 
-#: gui/summary/summary.xml:(tooltip):196
+#: gui/summary/summary.xml:(tooltip):189
 msgctxt "summary chart"
 msgid "Value"
 msgstr ""
 
-#: gui/summary/summary.xml:(tooltip):207
+#: gui/summary/summary.xml:(tooltip):200
 msgctxt "summary chart"
 msgid "Type"
 msgstr ""
