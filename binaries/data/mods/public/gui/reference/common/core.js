@@ -21,47 +21,36 @@ function compileTemplateLists(civCode)
 	if (!civCode || civCode == "gaia")
 		return {};
 
+	let templatesToParse = [];
+	for (let entity of g_CivData[civCode].StartEntities)
+		templatesToParse.push(entity.Template);
+
 	let templateLists = {
 		"units": new Map(),
 		"structures": new Map(),
-		"techs": new Map()
+		"techs": new Map(),
+		"wallsetPieces": new Map()
 	};
 
-	// Get starting entities from {civ}.json
-	for (let entity of g_CivData[civCode].StartEntities)
-		if (entity.Template.startsWith("units"))
-			templateLists.units.set(entity.Template, []);
-		else if (entity.Template.startsWith("struct"))
-			templateLists.structures.set(entity.Template, []);
+	do {
+		const templatesThisIteration = templatesToParse;
+		templatesToParse = [];
 
-	let unitCount = 0;
-	do
-	{
-		unitCount = templateLists.units.size;
-
-		for (let templateName of templateLists.units.keys())
+		for (let templateBeingParsed of templatesThisIteration)
 		{
-			let newList = getTemplateListsFromUnit(templateName);
-			for (let key in newList)
-				for (let entity of newList[key])
-					if (!templateLists[key].has(entity))
-						templateLists[key].set(entity, [templateName]);
-					else if (templateLists[key].get(entity).indexOf(templateName) === -1)
-						templateLists[key].get(entity).push(templateName);
+			let list = getTemplateListsFromTemplate(templateBeingParsed);
+			for (let type in list)
+				for (let templateName of list[type])
+					if (!templateLists[type].has(templateName))
+					{
+						templateLists[type].set(templateName, [templateBeingParsed]);
+						if (type != "techs")
+							templatesToParse.push(templateName);
+					}
+					else if (templateLists[type].get(templateName).indexOf(templateBeingParsed) == -1)
+						templateLists[type].get(templateName).push(templateBeingParsed);
 		}
-
-		for (let templateName of templateLists.structures.keys())
-		{
-			let newList = getTemplateListsFromStructure(templateName);
-			for (let key in newList)
-				for (let entity of newList[key])
-					if (!templateLists[key].has(entity))
-						templateLists[key].set(entity, [templateName]);
-					else if (templateLists[key].get(entity).indexOf(templateName) === -1)
-						templateLists[key].get(entity).push(templateName);
-		}
-
-	} while (unitCount < templateLists.units.size);
+	} while (templatesToParse.length);
 
 	// Expand/filter tech pairs
 	for (let [techCode, researcherList] of templateLists.techs)
@@ -74,22 +63,23 @@ function compileTemplateLists(civCode)
 				templateLists.techs.set(subTech, researcherList);
 			else
 				for (let researcher of researcherList)
-					if (templateLists.techs.get(subTech).indexOf(researcher) === -1)
+					if (templateLists.techs.get(subTech).indexOf(researcher) == -1)
 						templateLists.techs.get(subTech).push(researcher);
 
 		templateLists.techs.delete(techCode);
 	}
+
+	// Remove wallset pieces, as they've served their purpose.
+	delete templateLists.wallsetPieces;
 
 	return templateLists;
 }
 
 /**
  * Compiles lists of buildable, trainable, or researchable entities from
- * a named unit template.
- *
- * @param {string} templateName
+ * a named template.
  */
-function getTemplateListsFromUnit(templateName)
+function getTemplateListsFromTemplate(templateName)
 {
 	if (!templateName || !Engine.TemplateExists(templateName))
 		return {};
@@ -104,32 +94,16 @@ function getTemplateListsFromUnit(templateName)
 	let templateLists = loadProductionQueue(template);
 	templateLists.structures = loadBuildQueue(template);
 
-	return templateLists;
-}
-
-/**
- * Compiles lists of buildable or researchable entities from a named
- * structure template.
- *
- * @param {string} templateName
- */
-function getTemplateListsFromStructure(templateName)
-{
-	if (!templateName || !Engine.TemplateExists(templateName))
-		return {};
-
-	let template = loadTemplate(templateName);
-
-	let templateLists = loadProductionQueue(template);
-
 	if (template.WallSet)
-		for (let wSegm in template.WallSet.Templates)
+	{
+		templateLists.wallsetPieces = [];
+		for (let segment in template.WallSet.Templates)
 		{
-			let wEntities = getTemplateListsFromStructure(template.WallSet.Templates[wSegm]);
-			for (let entity of wEntities.techs)
-				if (templateLists.techs.indexOf(entity) === -1)
-					templateLists.techs.push(entity);
+			segment = template.WallSet.Templates[segment].replace(/\{(civ|native)\}/g, g_SelectedCiv);
+			if (Engine.TemplateExists(segment))
+				templateLists.wallsetPieces.push(segment);
 		}
+	}
 
 	return templateLists;
 }
@@ -200,7 +174,7 @@ function getBaseTemplateName(templateName)
 	templateName = removeFiltersFromTemplateName(templateName);
 	let template = loadTemplate(templateName);
 
-	if (dirname(template["@parent"]) != dirname(templateName))
+	if (!dirname(templateName) || dirname(template["@parent"]) != dirname(templateName))
 		return templateName;
 
 	let parentTemplate = loadTemplate(template["@parent"]);
