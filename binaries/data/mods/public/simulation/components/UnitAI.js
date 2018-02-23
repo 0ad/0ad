@@ -1604,6 +1604,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"leave": function(msg) {
 				this.StopTimer();
+				this.SetDefaultAnimationVariant();
 			},
 
 			"MoveCompleted": function() {
@@ -1628,12 +1629,14 @@ UnitAI.prototype.UnitFsmSpec = {
 				}
 
 				this.StartTimer(0, 1000);
+				this.SetAnimationVariant("combat");
 				this.SelectAnimation("move");
 			},
 
 			"leave": function() {
 				this.StopTimer();
 				delete this.patrolStartPosOrder;
+				this.SetDefaultAnimationVariant();
 			},
 
 			"Timer": function(msg) {
@@ -1680,6 +1683,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				"leave": function(msg) {
 					this.SetMoveSpeed(this.GetWalkSpeed());
 					this.StopTimer();
+					this.SetDefaultAnimationVariant();
 				},
 
 				"MoveStarted": function(msg) {
@@ -1708,6 +1712,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				"enter": function () {
 					this.StartTimer(1000, 1000);
 					this.SetHeldPositionOnEntity(this.entity);
+					this.SetAnimationVariant("combat");
 					this.SelectAnimation("idle");
 					return false;
 				},
@@ -1744,6 +1749,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"leave": function(msg) {
 					this.StopTimer();
+					this.SetDefaultAnimationVariant();
 				},
 			},
 		},
@@ -1892,6 +1898,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						if (cmpFormation)
 							animationName = cmpFormation.GetFormationAnimation(this.entity, animationName);
 					}
+					this.SetAnimationVariant("combat");
 					this.SelectAnimation(animationName, false, 1.0, animationName);
 					this.SetAnimationSync(prepare, this.attackTimers.repeat);
 					this.StartTimer(prepare, this.attackTimers.repeat);
@@ -1912,6 +1919,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpBuildingAI)
 						cmpBuildingAI.SetUnitAITarget(0);
 					this.StopTimer();
+					this.SetDefaultAnimationVariant();
 				},
 
 				"Timer": function(msg) {
@@ -2197,6 +2205,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
 					delete this.gatheringTarget;
+					this.SetDefaultAnimationVariant();
 				},
 			},
 
