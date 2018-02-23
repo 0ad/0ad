@@ -1,0 +1,14 @@
+{
+	"settings" : {
+		"Name" : "Elephantine",
+		"Script" : "elephantine.js",
+		"Description" : "The unknown.",
+		"Preview" : "elephantine.png",
+		"Keywords": ["new", "naval"],
+		"CircularMap": true,
+		"TriggerScripts" : [
+			"scripts/TriggerHelper.js",
+			"random/elephantine_triggers.js"
+		]
+	}
+}
