@@ -753,7 +753,7 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 	if (!accessIndex)
 		return false;
 	// sorting bases by whether they are on the same accessindex or not.
-	let baseBest = this.baseManagers.slice().sort(function (a,b) {
+	let baseBest = this.baseManagers.slice().sort((a,b) => {
 		if (a.accessIndex == accessIndex && b.accessIndex != accessIndex)
 			return -1;
 		else if (b.accessIndex == accessIndex && a.accessIndex != accessIndex)
@@ -765,7 +765,7 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 	let workers = new API3.EntityCollection(gameState.sharedScript);
 	for (let base of baseBest)
 	{
-		if (base.ID === baseRef.ID)
+		if (base.ID == baseRef.ID)
 			continue;
 		base.pickBuilders(gameState, workers, needed);
 		if (workers.length < number)
@@ -1446,9 +1446,15 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 	// Try to build a temple earlier if in regicide to recruit healer guards
 	if (this.currentPhase < 3 && !gameState.getVictoryConditions().has("regicide"))
 		return;
-	if (!this.canBuild(gameState, "structures/{civ}_temple"))
+
+	let templateName = "structures/{civ}_temple";
+	if (this.canBuild(gameState, "structures/{civ}_temple_apedemak"))
+		templateName = "structures/{civ}_temple_apedemak";
+	else if (this.canBuild(gameState, "structures/{civ}_temple_vesta"))
+		templateName = "structures/{civ}_temple_vesta";
+	else if (!this.canBuild(gameState, templateName))
 		return;
-	queues.economicBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_temple"));
+	queues.economicBuilding.addPlan(new m.ConstructionPlan(gameState, templateName));
 };
 
 m.HQ.prototype.buildMarket = function(gameState, queues)

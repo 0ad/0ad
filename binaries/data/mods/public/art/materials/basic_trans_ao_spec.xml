@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model_transparent"/>
-    <alpha_blending/>
-    <define name="USE_TRANSPARENT" value="1"/>
-    <alternative material="basic_trans_ao.xml" quality="3"/>
-
-    <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
-    <!-- Settings for effects above:
-     First value: Normal mapping intensity.
-	 Second value: Specular power.
-	 Third value: Parallax scale.
-	 Fourth value: AO amount. -->
-	
-	<required_texture name="baseTex"/>
-	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>
-	<required_texture name="aoTex" define="USE_AO"/>
+  <alpha_blending/>
+  <alternative material="basic_trans_ao.xml" quality="3"/>
+  <define name="USE_TRANSPARENT" value="1"/>
+  <required_texture name="baseTex"/>
+  <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+  <required_texture name="aoTex" define="USE_AO"/>
+  <shader effect="model_transparent"/>
+  <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
 </material>

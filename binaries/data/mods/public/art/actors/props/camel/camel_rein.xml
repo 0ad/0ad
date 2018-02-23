@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+	<castshadow/>
+	<group>
+		<variant frequency="1" name="camel rein">
+			<mesh>props/camel_rein.dae</mesh>
+			<textures><texture file="structural/hele_siege.dds" name="baseTex"/></textures>
+			<animations>
+        <animation file="others/camel_rein_idle.dae" name="idle" speed="80"/>
+				<animation file="others/camel_rein_trot.dae" name="walk" speed="10"/>
+				<animation file="others/camel_rein_run.dae" name="run" speed="14"/>
+				<animation file="others/camel_rein_drop.dae" name="attack_ranged" speed="100"/>
+        <animation file="others/camel_rein_drop.dae" name="attack_capture" speed="100"/>
+        <animation file="others/camel_rein_attack_melee.dae" name="attack_slaughter" speed="100"/>
+        <animation file="others/camel_rein_drop.dae" name="promotion" speed="100"/>
+				<animation file="others/camel_rein_death.dae" name="death" speed="100"/>
+				<animation file="others/camel_rein_trot.dae" name="carry_meat" speed="10"/>
+				<animation file="others/camel_rein_sit_drop.dae" name="gather_meat" speed="100"/>
+			</animations>
+		</variant>
+	</group>
+	<material>basic_trans.xml</material>
+</actor>

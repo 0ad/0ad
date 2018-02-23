@@ -76,7 +76,17 @@
 
 	<object name="diplomacyCeasefireCounter" size="32 100%-90 100%-32 100%-62" type="text" style="DiplomacyText" ghost="true"/>
 
-	<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
+	<object size="50%-228 100%-50 50%+100 100%-22">
+		<object name="diplomacyColorsWindowButton" size="0 0 28 28" type="button" style="iconButton" tooltip_style="sessionToolTip">
+			<object name="diplomacyColorsWindowButtonIcon" size="0 0 100% 100%" type="image" sprite="stretched:session/icons/diplomacy.png" ghost="true"/>
+			<action on="Press">updateDiplomacyColorsButton();</action>
+		</object>
+		<object size="32 0 100% 28" type="text" style="DiplomacyText" text_valign="center">
+			<translatableAttribute id="caption">Toggle Diplomacy Colors</translatableAttribute>
+		</object>
+	</object>
+
+	<object size="50%+100 100%-50 50%+228 100%-22" type="button" style="StoneButton">
 		<translatableAttribute id="caption">Close</translatableAttribute>
 		<action on="Press">closeDiplomacy();</action>
 	</object>

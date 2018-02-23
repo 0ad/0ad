@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="attack_slaughter">
+  <animations>
+    <animation file="biped/camel_rider_attack_slaughter.dae" event="0.5" name="attack_slaughter" id="attack1" speed="100"/>
+    <animation file="biped/camel_rider_attack_slaughter.dae" event="0.5" name="attack_slaughter" id="attack2" speed="100"/>
+  </animations>
+  <props>
+    <prop actor="props/units/weapons/knife.xml" attachpoint="weapon_R"/>
+    <prop attachpoint="weapon_L"/>
+    <prop attachpoint="shield"/>
+    <prop attachpoint="shield_arm"/>
+  </props>
+</variant>

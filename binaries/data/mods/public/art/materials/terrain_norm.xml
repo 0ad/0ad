@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="terrain_base"/>
-    <alternative material="terrain_base.xml" quality="2"/>
-
-    <uniform name="effectSettings" value="1.0 15.0 0.0 0.0"/>
-	<required_texture name="baseTex"/>
-	<required_texture name="normTex" define="USE_NORMAL_MAP"/>
+  <alternative material="terrain_base.xml" quality="2"/>
+  <required_texture name="baseTex"/>
+  <required_texture name="normTex" define="USE_NORMAL_MAP"/>
+  <shader effect="terrain_base"/>
+  <uniform name="effectSettings" value="1.0 15.0 0.0 0.0"/>
 </material>

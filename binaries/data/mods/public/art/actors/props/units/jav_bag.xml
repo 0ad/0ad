@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Javelins Bag Right">
+      <mesh>props/jav_bag.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="jav_a"/>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="jav_b"/>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="jav_c"/>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="jav_d"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="quiver brown">
+      <textures>
+        <texture file="props/jav_bag.png" name="baseTex"/>
+        <texture file="props/jav_bag_norm.png" name="normTex"/>
+        <texture file="props/jav_bag_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

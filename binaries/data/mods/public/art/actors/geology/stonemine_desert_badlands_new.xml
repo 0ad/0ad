@@ -5,42 +5,39 @@
     <variant frequency="1" name="a">
       <mesh>gaia/rock_stonemine_desert_bl01.dae</mesh>
       <textures>
-	  <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
-	  <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
-	  <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
-	  <texture file="gaia/ao/rock_stonemine_desert_bl01_ao.png" name="aoTex"/>
-	  </textures>
-	   <props>
+        <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
+        <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
+        <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
+        <texture file="gaia/ao/rock_stonemine_desert_bl01_ao.png" name="aoTex"/>
+      </textures>
+      <props>
         <prop actor="geology/decal_stone_desert_b.xml" attachpoint="root"/>
       </props>
-	  </variant>
+    </variant>
     <variant frequency="1" name="b">
       <mesh>gaia/rock_stonemine_desert_bl02.dae</mesh>
-	  <textures>
-	  <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
-	  <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
-	  <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
-	  <texture file="gaia/ao/rock_stonemine_desert_bl02_ao.png" name="aoTex"/>
-	  </textures>
-	   <props>
+      <textures>
+        <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
+        <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
+        <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
+        <texture file="gaia/ao/rock_stonemine_desert_bl02_ao.png" name="aoTex"/>
+      </textures>
+      <props>
         <prop actor="geology/decal_stone_desert_b.xml" attachpoint="root"/>
       </props>
     </variant>
-	
-	 <variant frequency="1" name="c">
+    <variant frequency="1" name="c">
       <mesh>gaia/rock_stonemine_desert_bl03.dae</mesh>
-	  <textures>
-	  <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
-	  <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
-	  <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
-	  <texture file="gaia/ao/rock_stonemine_desert_bl03_ao.png" name="aoTex"/>
-	  </textures>
-	  <props>
+      <textures>
+        <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
+        <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
+        <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
+        <texture file="gaia/ao/rock_stonemine_desert_bl03_ao.png" name="aoTex"/>
+      </textures>
+      <props>
         <prop actor="geology/decal_stone_desert_b.xml" attachpoint="root"/>
       </props>
     </variant>
-   
   </group>
-
-  <material>rock_bump_spec_ao_test.xml</material>
+  <material>rock_norm_spec_ao.xml</material>
 </actor>

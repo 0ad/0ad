@@ -5,10 +5,6 @@
   <group>
     <variant name="a">
       <mesh>gaia/rock_scandiv_01.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant>
       <textures>
         <texture file="gaia/stone_scandiv_template.png" name="baseTex"/>
         <texture file="gaia/stone_scandiv_template_norm.png" name="normTex"/>
@@ -17,5 +13,5 @@
       </textures>
     </variant>
   </group>
-  <material>rock_bump_spec_ao_test.xml</material>
+  <material>rock_norm_spec_ao.xml</material>
 </actor>

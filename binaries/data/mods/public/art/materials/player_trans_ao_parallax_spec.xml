@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model"/>
-    <alternative material="player_trans_ao_spec.xml" quality="8"/>
-    <define name="USE_PLAYERCOLOR" value="1"/>
-
-    <define name="USE_PARALLAX" value="1"/>
-    
-    <!-- Settings for effects above:
-         First value: Normal mapping intensity.
-	 Second value: Specular power.
-	 Third value: Parallax scale.
-	 Fourth value: AO amount. -->
-    <uniform name="effectSettings" value="1.0 50.0 0.0075 0.6"/>
-	
-	<required_texture name="baseTex"/>
-	<required_texture name="normTex" define="USE_NORMAL_MAP"/>
-	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>
-	<required_texture name="aoTex" define="USE_AO"/>
+  <alternative material="player_trans_ao_spec.xml" quality="8"/>
+  <define name="USE_PLAYERCOLOR" value="1"/>
+  <define name="USE_PARALLAX" value="1"/>
+  <required_texture name="baseTex"/>
+  <required_texture name="normTex" define="USE_NORMAL_MAP"/>
+  <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+  <required_texture name="aoTex" define="USE_AO"/>
+  <shader effect="model"/>
+  <uniform name="effectSettings" value="1.0 50.0 0.0075 0.6"/>
 </material>

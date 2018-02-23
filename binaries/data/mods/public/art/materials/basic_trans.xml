@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model_transparent"/>
-    <alpha_blending/>
-    <define name="USE_TRANSPARENT" value="1"/>
-    <alternative material="alphatest.xml" if="CFG_FORCE_ALPHATEST"/>
-	
-	<required_texture name="baseTex"/>
+  <alpha_blending/>
+  <alternative material="alphatest.xml" if="CFG_FORCE_ALPHATEST"/>
+  <define name="USE_TRANSPARENT" value="1"/>
+  <required_texture name="baseTex"/>
+  <shader effect="model_transparent"/>
 </material>

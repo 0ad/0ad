@@ -386,6 +386,9 @@ function updateDiplomacyColorsButton()
 	diplomacyColorsButton.sprite_over = g_DiplomacyColorsToggle ?
 		"stretched:session/minimap-diplomacy-on-highlight.png" :
 		"stretched:session/minimap-diplomacy-off-highlight.png";
+	Engine.GetGUIObjectByName("diplomacyColorsWindowButtonIcon").sprite = g_DiplomacyColorsToggle ?
+		"stretched:session/icons/diplomacy-on.png" :
+		"stretched:session/icons/diplomacy.png";
 	updateDisplayedPlayerColors();
 }
 
@@ -450,6 +453,10 @@ function updateHotkeyTooltips()
 		translate("Find idle worker");
 
 	Engine.GetGUIObjectByName("diplomacyColorsButton").tooltip =
+		colorizeHotkey("%(hotkey)s" + " ", "session.diplomacycolors") +
+		translate("Toggle Diplomacy Colors");
+
+	Engine.GetGUIObjectByName("diplomacyColorsWindowButton").tooltip =
 		colorizeHotkey("%(hotkey)s" + " ", "session.diplomacycolors") +
 		translate("Toggle Diplomacy Colors");
 

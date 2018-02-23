@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant file="quadraped/base_camel.xml">
+  <animations>
+    <animation file="quadraped/camel_trot.dae" name="Walk" speed="10"/>
+    <animation file="quadraped/camel_idle.dae" name="attack_ranged" speed="100"/>
+    <animation file="quadraped/camel_idle.dae" name="attack_slaughter" speed="100"/>
+    <animation file="quadraped/camel_idle.dae" name="attack_capture" speed="100"/>
+    <animation file="quadraped/camel_sit.dae" name="gather_meat" speed="100"/>
+    <animation file="quadraped/camel_trot.dae" name="carry_meat" speed="10"/>
+  </animations>
+</variant>

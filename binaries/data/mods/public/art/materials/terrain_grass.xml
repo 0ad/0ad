@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="terrain_grass"/>
-    <!--define name="USE_NORMAL_MAP" value="1"/-->
-    <!--define name="USE_SPECULAR_MAP" value="1"/-->
-    
-    <!--uniform name="specularPower" value="15.0"/-->
-	<required_texture name="baseTex"/>
+  <shader effect="terrain_grass"/>
+  <required_texture name="baseTex"/>
 </material>

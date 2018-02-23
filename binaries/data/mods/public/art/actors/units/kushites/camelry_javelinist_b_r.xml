@@ -7,7 +7,6 @@
       <props>
         <prop actor="props/units/heads/head_kush_blemmeye.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
         <prop actor="props/units/shields/kush_beja_rhino.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
@@ -27,16 +26,15 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_javelin_ready_shield.xml"/>
-    <variant file="biped/rider/carry_meat.xml"/>
+    <variant file="biped/rider/camelry/base_javelinist_relax.xml"/>
+    <variant file="biped/rider/camelry/carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_ranged_cavalry_javelin.xml" name="attack_ranged"/>
-    <variant file="biped/rider/promotion_shield.xml" />
-    <variant file="biped/rider/attack_slaughter_shield_kush.xml"/>
-    <variant file="biped/rider/gather_meat_kush.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/rider/camelry/promotion.xml"/>
+    <variant file="biped/rider/camelry/attack_ranged_javelinist_bag.xml"/>
+    <variant file="biped/rider/camelry/attack_slaughter_kush.xml"/>
+    <variant file="biped/rider/camelry/gather_meat_kush.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

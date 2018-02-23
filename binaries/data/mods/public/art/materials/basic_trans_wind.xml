@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model_transparent"/>
-    <alternative material="basic_trans.xml" quality="1"/>
-    <alpha_blending/>
-    <define name="USE_TRANSPARENT" value="1"/>
-    <renderquery name="sim_time"/>
-    <define name="USE_WIND" value="1"/>
-    <uniform name="windData" value="1.0 1.0"/>
-	<required_texture name="baseTex"/>
+  <alpha_blending/>
+  <alternative material="basic_trans.xml" quality="1"/>
+  <define name="USE_TRANSPARENT" value="1"/>
+  <define name="USE_WIND" value="1"/>
+  <renderquery name="sim_time"/>
+  <required_texture name="baseTex"/>
+  <shader effect="model_transparent"/>
+  <uniform name="windData" value="1.0 1.0"/>
 </material>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model_waterfall"/>
-    <alpha_blending/>
-    <renderquery name="sim_time"/>
-    <uniform name="translation" value="0.0 -0.1"/>
-	<define name="USE_SELF_LIGHT" value="1"/>
-	<uniform name="specularPower" value="100.0"/>
-    <uniform name="specularColor" value="1.0 1.0 1.0"/>
-	<required_texture name="baseTex"/>
-	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+  <alpha_blending/>
+  <define name="USE_SELF_LIGHT" value="1"/>
+  <renderquery name="sim_time"/>
+  <required_texture name="baseTex"/>
+  <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+  <shader effect="model_waterfall"/>
+  <uniform name="translation" value="0.0 -0.1"/>
+  <uniform name="specularPower" value="100.0"/>
+  <uniform name="specularColor" value="1.0 1.0 1.0"/>
 </material>

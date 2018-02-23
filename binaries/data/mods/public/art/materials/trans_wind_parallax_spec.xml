@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model_transparent"/>
-    <alpha_blending/>
-    <define name="USE_TRANSPARENT" value="1"/>
-    <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
-	
-    <renderquery name="sim_time"/>
-    <define name="USE_WIND" value="1"/>
-    <uniform name="windData" value="1.0 1.0"/>
-
-	<required_texture name="baseTex"/>
-	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>
-	<required_texture name="normTex" define="USE_NORMAL_MAP"/>
+  <alpha_blending/>
+  <define name="USE_TRANSPARENT" value="1"/>
+  <define name="USE_WIND" value="1"/>
+  <define name="USE_PARALLAX" value="1"/>
+  <renderquery name="sim_time"/>
+  <required_texture name="baseTex"/>
+  <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+  <required_texture name="normTex" define="USE_NORMAL_MAP"/>
+  <shader effect="model_transparent"/>
+  <uniform name="windData" value="1.0 1.0"/>
+  <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
 </material>
