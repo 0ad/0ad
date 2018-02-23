@@ -5,6 +5,18 @@
 	<script directory="gui/common/"/>
 	<script directory="gui/gamesetup/"/>
 
+	<object	hotkey="civinfo">
+		<action on="Press">
+			Engine.PushGuiPage("page_civinfo.xml", { "civ": g_CivInfo.code, "callback": "storeCivInfoPage" });
+		</action>
+	</object>
+
+	<object	hotkey="structree">
+		<action on="Press">
+			Engine.PushGuiPage("page_structree.xml", { "civ": g_CivInfo.code, "callback": "storeCivInfoPage" });
+		</action>
+	</object>
+
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" style="ModernWindow" size="0 0 100% 100%">
 
@@ -61,10 +73,9 @@
 						sprite_over="iconInfoWhite"
 						size="85%-37 0 85%-21 16"
 					>
-						<translatableAttribute id="tooltip">View civilization info</translatableAttribute>
-						<action on="Press"><![CDATA[
-							Engine.PushGuiPage("page_civinfo.xml");
-						]]></action>
+						<action on="Press">
+							Engine.PushGuiPage(g_CivInfo.page, { "civ": g_CivInfo.code, "callback": "storeCivInfoPage" });
+						</action>
 					</object>
 
 					<object name="civResetButton"

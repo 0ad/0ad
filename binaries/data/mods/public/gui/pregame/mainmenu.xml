@@ -175,9 +175,10 @@
 					type="button"
 					size="0 64 100% 92"
 					tooltip_style="pgToolTip"
+					name="structreeButton"
+					hotkey="structree"
 				>
 					<translatableAttribute id="caption">Structure Tree</translatableAttribute>
-					<translatableAttribute id="tooltip">View the structure tree of civilizations featured in 0 A.D.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						Engine.PushGuiPage("page_structree.xml", {});
@@ -190,9 +191,10 @@
 					type="button"
 					size="0 96 100% 124"
 					tooltip_style="pgToolTip"
+					name="civInfoButton"
+					hotkey="civinfo"
 				>
 					<translatableAttribute id="caption">History</translatableAttribute>
-					<translatableAttribute id="tooltip">Learn about the many civilizations featured in 0 A.D.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						Engine.PushGuiPage("page_civinfo.xml");
@@ -310,10 +312,10 @@
 					style="StoneButtonFancy"
 					size="0 64 100% 92"
 					tooltip_style="pgToolTip"
+					name="lobbyButton"
 					hotkey="lobby"
 				>
 					<translatableAttribute id="caption">Game Lobby</translatableAttribute>
-					<translatableAttribute id="tooltip">Launch the multiplayer lobby.</translatableAttribute>
 					<action on="Press">
 						if (!Engine.StartXmppClient)
 							return;
