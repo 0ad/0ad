@@ -552,13 +552,13 @@ var g_Commands = {
 		}
 	},
 
-	"increase-alert-level": function(player, cmd, data)
+	"alert-raise": function(player, cmd, data)
 	{
 		for (let ent of data.entities)
 		{
 			var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
-			if (!cmpAlertRaiser || !cmpAlertRaiser.IncreaseAlertLevel())
-				notifyAlertFailure(player);
+			if (cmpAlertRaiser)
+				cmpAlertRaiser.RaiseAlert();
 		}
 	},
 
@@ -855,20 +855,6 @@ function notifyBackToWorkFailure(player)
 		"type": "text",
 		"players": [player],
 		"message": markForTranslation("Some unit(s) can't go back to work"),
-		"translateMessage": true
-	});
-}
-
-/**
- * Sends a GUI notification about Alerts that failed to be raised
- */
-function notifyAlertFailure(player)
-{
-	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGUIInterface.PushNotification({
-		"type": "text",
-		"players": [player],
-		"message": "You can't raise the alert to a higher level!",
 		"translateMessage": true
 	});
 }

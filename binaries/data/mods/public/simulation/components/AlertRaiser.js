@@ -1,72 +1,64 @@
 function AlertRaiser() {}
 
 AlertRaiser.prototype.Schema =
-	"<element name='MaximumLevel'><data type='nonNegativeInteger'/></element>" +
-	"<element name='Range'><data type='nonNegativeInteger'/></element>";
+	"<element name='List' a:help='Classes of entities which are affected by this alert raiser'>" +
+		"<attribute name='datatype'>" +
+			"<value>tokens</value>" +
+		"</attribute>" +
+		"<text/>" +
+	"</element>" +
+	"<element name='RaiseAlertRange'><data type='integer'/></element>" +
+	"<element name='EndOfAlertRange'><data type='integer'/></element>" +
+	"<element name='SearchRange'><data type='integer'/></element>";
 
 AlertRaiser.prototype.Init = function()
 {
-	this.level = 0;
-
-	// Range at which units will search for garrison holders
-	this.searchRange = 100;
-
-	// Extra allowance for units to garrison in buildings outside the alert range
-	this.bufferRange = 50;
+	// Store the last time the alert was used so players can't lag the game by raising alerts repeatedly.
+	this.lastTime = 0;
 };
 
-AlertRaiser.prototype.GetLevel = function()
+AlertRaiser.prototype.UnitFilter = function(unit)
 {
-	return this.level;
+	let cmpIdentity = Engine.QueryInterface(unit, IID_Identity);
+	return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), this.template.List._string);
 };
 
-AlertRaiser.prototype.HasRaisedAlert = function()
+AlertRaiser.prototype.RaiseAlert = function()
 {
-	return this.level > 0;
-};
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	if (cmpTimer.GetTime() == this.lastTime)
+		return;
 
-AlertRaiser.prototype.CanIncreaseLevel = function()
-{
-	return this.template.MaximumLevel > this.level;
-};
+	this.lastTime = cmpTimer.GetTime();
+	PlaySound("alert_raise", this.entity);
 
-AlertRaiser.prototype.SoundAlert = function()
-{
-	PlaySound("alert" + this.level, this.entity);
-};
-
-AlertRaiser.prototype.IncreaseAlertLevel = function()
-{
-	if (!this.CanIncreaseLevel())
-		return false;
-
-	++this.level;
-	this.SoundAlert();
-
-	// Find buildings/units owned by this unit's player
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
-		return false;
+		return;
 
-	let players = [cmpOwnership.GetOwner()];
+	let owner = cmpOwnership.GetOwner();
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	let mutualAllies = cmpPlayer ? cmpPlayer.GetMutualAllies() : [owner];
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
-	// Select units to put under alert, according to their reaction to this level
-	let units = cmpRangeManager.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_UnitAI).filter(ent =>
-		Engine.QueryInterface(ent, IID_UnitAI).ReactsToAlert(this.level)
-	);
-
-	// Store the number of available garrison spots, so that units don't try to garrison in buildings that will be full
+	// Store the number of available garrison spots so that units don't try to garrison in buildings that will be full
 	let reserved = new Map();
+
+	let units = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.RaiseAlertRange, [owner], IID_UnitAI).filter(ent => this.UnitFilter(ent));
 	for (let unit of units)
 	{
-		let holder = cmpRangeManager.ExecuteQuery(unit, 0, this.searchRange, players, IID_GarrisonHolder).find(ent => {
+		let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
+
+		let holder = cmpRangeManager.ExecuteQuery(unit, 0, +this.template.SearchRange, mutualAllies, IID_GarrisonHolder).find(ent => {
 			// Ignore moving garrison holders
 			if (Engine.QueryInterface(ent, IID_UnitAI))
 				return false;
 
 			// Ensure that the garrison holder is within range of the alert raiser
-			if (DistanceBetweenEntities(this.entity, ent) > +this.template.Range + this.bufferRange)
+			if (+this.template.EndOfAlertRange > 0 && DistanceBetweenEntities(this.entity, ent) > +this.template.EndOfAlertRange)
+				return false;
+
+			if (!cmpUnitAI.CheckTargetVisible(ent))
 				return false;
 
 			let cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
@@ -76,47 +68,49 @@ AlertRaiser.prototype.IncreaseAlertLevel = function()
 			return cmpGarrisonHolder.IsAllowedToGarrison(unit) && reserved.get(ent);
 		});
 
-		let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
 		if (holder)
 		{
 			reserved.set(holder, reserved.get(holder) - 1);
 			cmpUnitAI.ReplaceOrder("Garrison", { "target": holder, "force": true });
 		}
 		else
-			// If no available spots, move to the alert raiser
-			cmpUnitAI.ReplaceOrder("WalkToTarget", { "target": this.entity, "force": true });
+			// If no available spots, stop moving
+			cmpUnitAI.ReplaceOrder("Stop", { "force": true });
 	}
-	return true;
 };
 
 AlertRaiser.prototype.EndOfAlert = function()
 {
-	this.SoundAlert();
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	if (cmpTimer.GetTime() == this.lastTime)
+		return;
+
+	this.lastTime = cmpTimer.GetTime();
+	PlaySound("alert_end", this.entity);
 
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
-		return false;
+		return;
 
-	let players = [cmpOwnership.GetOwner()];
-
-	// Units that are not garrisoned should stop and go back to work
+	let owner = cmpOwnership.GetOwner();
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	let mutualAllies = cmpPlayer ? cmpPlayer.GetMutualAllies() : [owner];
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let units = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.Range + this.bufferRange, players, IID_UnitAI).filter(ent =>
-		Engine.QueryInterface(ent, IID_UnitAI).ReactsToAlert(this.level)
-	);
 
+	// Units that are not garrisoned should go back to work
+	let units = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.EndOfAlertRange, [owner], IID_UnitAI).filter(ent => this.UnitFilter(ent));
 	for (let unit of units)
 	{
 		let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
-		if (cmpUnitAI.HasWorkOrders() && (cmpUnitAI.HasGarrisonOrder() || cmpUnitAI.IsIdle()))
+		if (cmpUnitAI.HasWorkOrders() && cmpUnitAI.ShouldRespondToEndOfAlert())
 			cmpUnitAI.BackToWork();
-		else if (cmpUnitAI.HasGarrisonOrder())
+		else if (cmpUnitAI.ShouldRespondToEndOfAlert())
 			// Stop rather than continue to try to garrison
-			cmpUnitAI.ReplaceOrder("Stop", undefined);
+			cmpUnitAI.ReplaceOrder("Stop", { "force": true });
 	}
 
 	// Units that are garrisoned should ungarrison and go back to work
-	let holders = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.Range + this.bufferRange, players, IID_GarrisonHolder);
+	let holders = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.EndOfAlertRange, mutualAllies, IID_GarrisonHolder);
 	if (Engine.QueryInterface(this.entity, IID_GarrisonHolder))
 		holders.push(this.entity);
 
@@ -126,10 +120,10 @@ AlertRaiser.prototype.EndOfAlert = function()
 			continue;
 
 		let cmpGarrisonHolder = Engine.QueryInterface(holder, IID_GarrisonHolder);
-		let units = cmpGarrisonHolder.GetEntities().filter(ent =>
-			Engine.QueryInterface(ent, IID_UnitAI).ReactsToAlert(this.level) &&
-			Engine.QueryInterface(ent, IID_Ownership).GetOwner() == players[0]
-		);
+		let units = cmpGarrisonHolder.GetEntities().filter(ent => {
+			let cmpOwner = Engine.QueryInterface(ent, IID_Ownership);
+			return cmpOwner && cmpOwner.GetOwner() == owner && this.UnitFilter(ent);
+		});
 
 		for (let unit of units)
 			if (cmpGarrisonHolder.PerformEject([unit], false))
@@ -139,12 +133,9 @@ AlertRaiser.prototype.EndOfAlert = function()
 					cmpUnitAI.BackToWork();
 				else
 					// Stop rather than walk to the rally point
-					cmpUnitAI.ReplaceOrder("Stop", undefined);
+					cmpUnitAI.ReplaceOrder("Stop", { "force": true });
 			}
 	}
-
-	this.level = 0;
-	return true;
 };
 
 Engine.RegisterComponentType(IID_AlertRaiser, "AlertRaiser", AlertRaiser);

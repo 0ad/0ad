@@ -3,9 +3,6 @@ function UnitAI() {}
 UnitAI.prototype.Schema =
 	"<a:help>Controls the unit's movement, attacks, etc, in response to commands from the player.</a:help>" +
 	"<a:example/>" +
-	"<element name='AlertReactiveLevel'>" +
-		"<data type='nonNegativeInteger'/>" +
-	"</element>" +
 	"<element name='DefaultStance'>" +
 		"<choice>" +
 			"<value>violent</value>" +
@@ -3261,11 +3258,6 @@ UnitAI.prototype.IsTurret = function()
 	return cmpPosition && cmpPosition.GetTurretParent() != INVALID_ENTITY;
 };
 
-UnitAI.prototype.ReactsToAlert = function(level)
-{
-	return this.template.AlertReactiveLevel <= level;
-};
-
 UnitAI.prototype.IsFormationController = function()
 {
 	return (this.template.FormationController == "true");
@@ -3334,9 +3326,9 @@ UnitAI.prototype.GetGarrisonHolder = function()
 	return INVALID_ENTITY;
 };
 
-UnitAI.prototype.HasGarrisonOrder = function()
+UnitAI.prototype.ShouldRespondToEndOfAlert = function()
 {
-	return this.orderQueue.length && this.orderQueue[0].type == "Garrison";
+	return !this.orderQueue.length || this.orderQueue[0].type == "Garrison";
 };
 
 UnitAI.prototype.IsFleeing = function()

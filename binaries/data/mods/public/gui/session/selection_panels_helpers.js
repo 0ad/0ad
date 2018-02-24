@@ -461,23 +461,10 @@ function removeGuard()
 function raiseAlert()
 {
 	Engine.PostNetworkCommand({
-		"type": "increase-alert-level",
+		"type": "alert-raise",
 		"entities": g_Selection.toList().filter(ent => {
 			let state = GetEntityState(ent);
-			return state && state.alertRaiser && !state.alertRaiser.hasRaisedAlert;
-		})
-	});
-}
-
-function increaseAlertLevel()
-{
-	raiseAlert();
-
-	Engine.PostNetworkCommand({
-		"type": "increase-alert-level",
-		"entities": g_Selection.toList().filter(ent => {
-			let state = GetEntityState(ent);
-			return state && state.alertRaiser && state.alertRaiser.canIncreaseLevel;
+			return state && !!state.alertRaiser;
 		})
 	});
 }
@@ -488,7 +475,7 @@ function endOfAlert()
 		"type": "alert-end",
 		"entities": g_Selection.toList().filter(ent => {
 			let state = GetEntityState(ent);
-			return state && state.alertRaiser && state.alertRaiser.hasRaisedAlert;
+			return state && !!state.alertRaiser;
 		})
 	});
 }
