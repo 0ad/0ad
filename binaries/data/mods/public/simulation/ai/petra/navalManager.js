@@ -588,9 +588,6 @@ m.NavalManager.prototype.moveApart = function(gameState)
 				continue;
 			ship.setMetadata(PlayerID, "previousIdlePosition", shipPosition);
 			// Check if there are some treasure around
-		 	let rates = ship.resourceGatherRates();
-			if (!rates || !rates.treasure || rates.treasure <= 0)
-				continue;
 			if (m.gatherTreasure(gameState, ship, true))
 				continue;
 			// Do not stay idle near a dock to not disturb other ships
@@ -634,9 +631,6 @@ m.NavalManager.prototype.moveApart = function(gameState)
 				continue;
 			ship.setMetadata(PlayerID, "previousIdlePosition", shipPosition);
 			// Check if there are some treasure around
-		 	let rates = ship.resourceGatherRates();
-			if (!rates || !rates.treasure || rates.treasure <= 0)
-				continue;
 			if (m.gatherTreasure(gameState, ship, true))
 				continue;
 			// Do not stay idle near a dock to not disturb other ships
