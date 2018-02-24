@@ -370,7 +370,7 @@ function unloadTemplate(template, owner)
 		// Filter out all entities that aren't garrisonable.
 		"garrisonHolders": g_Selection.toList().filter(ent => {
 			let state = GetEntityState(ent);
-			return state && state.garrisonHolder;
+			return state && !!state.garrisonHolder;
 		})
 	});
 }
@@ -404,7 +404,7 @@ function unloadAll()
 {
 	let garrisonHolders = g_Selection.toList().filter(e => {
 		let state = GetEntityState(e);
-		return state && state.garrisonHolder;
+		return state && !!state.garrisonHolder;
 	});
 
 	if (!garrisonHolders.length)
