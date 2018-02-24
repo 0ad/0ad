@@ -42,6 +42,14 @@ const oStoneLarge = "gaia/geology_stonemine_savanna_quarry";
 const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_savanna_slabs";
 const oMetalSmall = "gaia/geology_metal_desert_small";
+
+const oTreasure = [
+	"gaia/treasure/food_barrel",
+	"gaia/treasure/food_bin",
+	"gaia/treasure/wood",
+	"gaia/treasure/metal",
+	"gaia/treasure/stone"
+];
 const oBerryBush = "gaia/flora_bush_berry_desert";
 const oGazelle = "gaia/fauna_gazelle";
 const oRhino = "gaia/fauna_rhino";
@@ -145,6 +153,7 @@ const clTemple = g_Map.createTileClass();
 const clTower = g_Map.createTileClass();
 const clStatue = g_Map.createTileClass();
 const clSoldier = g_Map.createTileClass();
+const clTreasure = g_Map.createTileClass();
 
 const riverAngle = 0.22 * Math.PI;
 const riverWidthBorder = fractionToTiles(0.27);
@@ -152,7 +161,7 @@ const riverWidthCenter = fractionToTiles(0.35);
 
 const avoidCollisions = avoidClasses(
 	clPlayer, 15, clWater, 1, clForest, 1, clRock, 4, clMetal, 4, clFood, 6,
-	clTemple, 10, clCliff, 0, clStatue, 2, clSoldier, 3, clTower, 1);
+	clTemple, 8, clCliff, 0, clStatue, 2, clSoldier, 3, clTower, 1, clTreasure, 1);
 
 g_Map.LoadHeightmapImage("elephantine.png", minHeight, maxHeight);
 Engine.SetProgress(3);
@@ -266,7 +275,7 @@ createObjectGroups(
 Engine.SetProgress(37);
 
 g_Map.log("Painting city patches");
-createArea(
+var areaCityPatch = createArea(
 	new MapBoundsPlacer(),
 	new TerrainPainter(tRoadIsland),
 	new NearTileClassConstraint(clTemple, 8));
@@ -278,7 +287,7 @@ createMines(
 		[new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
 		[new SimpleObject(oStoneSmall, 2, 5, 1, 3, 0, 2 * Math.PI, 1)]
 	],
-	avoidClasses(clWater, 4, clPlayer, 20, clRock, 10),
+	avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clRock, 10),
 	clRock,
 	scaleByMapSize(6, 24));
 Engine.SetProgress(43);
@@ -289,7 +298,7 @@ createMines(
 		[new SimpleObject(oMetalSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oMetalLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
 		[new SimpleObject(oMetalSmall, 2, 5, 1, 3, 0, 2 * Math.PI, 1)]
 	],
-	avoidClasses(clWater, 4, clPlayer, 20, clMetal, 10, clRock, 5),
+	avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clMetal, 10, clRock, 5),
 	clMetal,
 	scaleByMapSize(6, 24));
 Engine.SetProgress(46);
@@ -344,6 +353,16 @@ createObjectGroups(
 	scaleByMapSize(2, 10),
 	400);
 Engine.SetProgress(61);
+
+g_Map.log("Creating treasure");
+createObjectGroupsByAreas(
+	new SimpleGroup([new RandomObject(oTreasure, 1, 2, 0, 1)], true, clTreasure),
+	0,
+	avoidCollisions,
+	scaleByMapSize(4, 10),
+	100,
+	[areaCityPatch]);
+Engine.SetProgress(62);
 
 g_Map.log("Creating hero");
 createObjectGroups(
@@ -439,7 +458,7 @@ Engine.SetProgress(88);
 
 g_Map.log("Creating crocodiles");
 createObjectGroups(
-	new SimpleGroup([new SimpleObject(oCrocodile, 2, 3, 2, 4)], true, clFood),
+	new SimpleGroup([new SimpleObject(oCrocodile, 2, 3, 3, 5)], true, clFood),
 	0,
 	[
 		new NearTileClassConstraint(clWater, 3),
