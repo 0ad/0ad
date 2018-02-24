@@ -27,9 +27,9 @@
 #include "wx/busyinfo.h"
 #include "wx/filename.h"
 
-#define CREATE_CHECKBOX(parentSizer, name, description, ID) parentSizer->Add(new wxStaticText(this, wxID_ANY, _(name)), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT)); \
-	parentSizer->Add(Tooltipped(new wxCheckBox(this, ID, wxEmptyString), _(description)));
-
+#define CREATE_CHECKBOX(window, parentSizer, name, description, ID) \
+	parentSizer->Add(new wxStaticText(window, wxID_ANY, _(name)), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT)); \
+	parentSizer->Add(Tooltipped(new wxCheckBox(window, ID, wxEmptyString), _(description)));
 
 enum
 {
@@ -162,19 +162,19 @@ void MapSettingsControl::CreateWidgets()
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Preview")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(Tooltipped(new wxTextCtrl(this, ID_MapPreview, wxEmptyString),
 		_("Texture used for map preview")), wxSizerFlags().Expand());
-	CREATE_CHECKBOX(gridSizer, "Reveal map", "If checked, players won't need to explore", ID_MapReveal);
+	CREATE_CHECKBOX(this, gridSizer, "Reveal map", "If checked, players won't need to explore", ID_MapReveal);
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Game type")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(Tooltipped(new wxChoice(this, ID_MapType, wxDefaultPosition, wxDefaultSize, gameTypes),
 		_("Select the game type (or victory condition)")), wxSizerFlags().Expand());
-	CREATE_CHECKBOX(gridSizer, "Lock teams", "If checked, teams will be locked", ID_MapTeams);
+	CREATE_CHECKBOX(this, gridSizer, "Lock teams", "If checked, teams will be locked", ID_MapTeams);
 	sizer->Add(gridSizer, wxSizerFlags().Expand());
 
 	sizer->AddSpacer(5);
 
 	wxStaticBoxSizer* keywordsSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keywords"));
 	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(4, 5, 5);
-	CREATE_CHECKBOX(kwGridSizer, "Demo", "If checked, map will only be visible using filters in game setup", ID_MapKW_Demo);
-	CREATE_CHECKBOX(kwGridSizer, "Naval", "If checked, map will only be visible using filters in game setup", ID_MapKW_Naval);
+	CREATE_CHECKBOX(this, kwGridSizer, "Demo", "If checked, map will only be visible using filters in game setup", ID_MapKW_Demo);
+	CREATE_CHECKBOX(this, kwGridSizer, "Naval", "If checked, map will only be visible using filters in game setup", ID_MapKW_Naval);
 	keywordsSizer->Add(kwGridSizer);
 	sizer->Add(keywordsSizer, wxSizerFlags().Expand());
 }
@@ -319,7 +319,7 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 		gridSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Map size")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		gridSizer->Add(sizeChoice, wxSizerFlags().Expand());
 
-		CREATE_CHECKBOX(gridSizer, "Nomad", "Place only some units instead of starting bases.", ID_RandomNomad);
+		CREATE_CHECKBOX(scrolledWindow, gridSizer, "Nomad", "Place only some units instead of starting bases.", ID_RandomNomad);
 
 		gridSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Random seed")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxBoxSizer* seedSizer = new wxBoxSizer(wxHORIZONTAL);
