@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-19 09:04+0100\n"
-"PO-Revision-Date: 2018-02-20 16:10+0000\n"
-"Last-Translator: Antón Chinaev <Chinaev_Anton@outlook.es>\n"
+"POT-Creation-Date: 2018-02-21 09:04+0100\n"
+"PO-Revision-Date: 2018-02-21 15:28+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,16 +164,16 @@ msgid "DELETE"
 msgstr "ELIMINAR"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
-#: gui/options/options.js:264 gui/options/options.js:315
-#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/options/options.js:264 gui/options/options.js:314
+#: gui/options/options.js:340 gui/pregame/mainmenu.js:252
 #: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "No"
 msgstr "No"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:287
-#: gui/options/options.js:264 gui/options/options.js:315
-#: gui/options/options.js:341 gui/pregame/mainmenu.js:252
+#: gui/options/options.js:264 gui/options/options.js:314
+#: gui/options/options.js:340 gui/pregame/mainmenu.js:252
 #: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
 #: gui/summary/summary.js:442
 msgid "Yes"
@@ -1207,16 +1207,16 @@ msgid ""
 "continue?"
 msgstr "Restaurar los valores originales borrará tus ajustes. ¿Quieres continuar?"
 
-#: gui/options/options.js:263 gui/options/options.js:314
-#: gui/options/options.js:340
+#: gui/options/options.js:263 gui/options/options.js:313
+#: gui/options/options.js:339
 msgid "Warning"
 msgstr "Cuidado"
 
-#: gui/options/options.js:313
+#: gui/options/options.js:312
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "¡Algunos valores de configuración no son válidos! ¿Estás seguro de que quieres guardarlos?"
 
-#: gui/options/options.js:339
+#: gui/options/options.js:338
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Tienes cambios sin guardar. ¿Quieres cerrar la ventana?"
 
@@ -1461,13 +1461,13 @@ msgstr "yyyy-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):81
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
 msgstr "Puntuación"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:152
-#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):130
+#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):123
 msgid "Player name"
 msgstr "Nombre del jugador"
 
@@ -1487,7 +1487,7 @@ msgstr "Puntuación militar"
 msgid "Exploration score"
 msgstr "Puntuación exploración"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):88
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
 msgid "Buildings"
 msgstr "Edificios"
 
@@ -1530,7 +1530,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Estadísticas de edificios (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):95
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
 msgstr "Unidades"
 
@@ -1567,7 +1567,7 @@ msgstr "Comerciantes"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Estadísticas de unidades (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):102
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
 msgstr "Recursos"
 
@@ -1599,7 +1599,7 @@ msgstr "Ganado criado"
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Estadísticas de recursos (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):109
+#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):102
 msgid "Market"
 msgstr "Mercado"
 
@@ -1617,7 +1617,7 @@ msgstr "Habilidad de intercambio"
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s intercambiado"
 
-#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):116
+#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Otros"
@@ -1772,6 +1772,11 @@ msgstr "Tiempo de partida transcurrido: %(time)s"
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
+
+#: gui/summary/summary.js:534
+#, javascript-format
+msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
+msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):14
 msgid "Civilizations"
@@ -2132,7 +2137,7 @@ msgid "Reload Cache"
 msgstr "Recargar caché"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
-#: gui/summary/summary.xml:(caption):41
+#: gui/summary/summary.xml:(caption):34
 msgid "Summary"
 msgstr "Resumen"
 
@@ -2186,44 +2191,44 @@ msgstr "Mostrar este mensaje en el futuro"
 msgid "Known Issues (web)"
 msgstr "Problemas conocidos (web)"
 
-#: gui/summary/summary.xml:(caption):123
+#: gui/summary/summary.xml:(caption):116
 msgid "Charts"
 msgstr "Diagramas"
 
-#: gui/summary/summary.xml:(caption):180
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Categoría:"
 
-#: gui/summary/summary.xml:(caption):190
+#: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Valor:"
 
-#: gui/summary/summary.xml:(caption):200
+#: gui/summary/summary.xml:(caption):193
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Tipo:"
 
-#: gui/summary/summary.xml:(caption):219
+#: gui/summary/summary.xml:(caption):227
 msgid "Replay"
 msgstr "Repetición"
 
-#: gui/summary/summary.xml:(caption):224
+#: gui/summary/summary.xml:(caption):232
 msgid "Continue"
 msgstr "Continuar"
 
-#: gui/summary/summary.xml:(tooltip):186
+#: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Categoría"
 
-#: gui/summary/summary.xml:(tooltip):196
+#: gui/summary/summary.xml:(tooltip):189
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Valor"
 
-#: gui/summary/summary.xml:(tooltip):207
+#: gui/summary/summary.xml:(tooltip):200
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Tipo"

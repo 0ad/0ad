@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,6 +85,12 @@ void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
 	}
 }
 
+void CUnitAnimation::ReloadAnimation()
+{
+	UpdateAnimationID();
+	ReloadUnit(m_Model, m_Object);
+}
+
 void CUnitAnimation::ReloadUnit(CModel* model, const CObjectEntry* object)
 {
 	m_Model = model;
@@ -108,9 +114,7 @@ void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed,
 	if (name != m_State)
 	{
 		m_State = name;
-		UpdateAnimationID();
-
-		ReloadUnit(m_Model, m_Object);
+		ReloadAnimation();
 	}
 }
 

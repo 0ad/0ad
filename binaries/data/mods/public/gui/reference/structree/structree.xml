@@ -5,6 +5,12 @@
 	<script directory="gui/reference/common/"/>
 	<script directory="gui/reference/structree/"/>
 
+	<object	hotkey="structree">
+		<action on="Press">
+			close();
+		</action>
+	</object>
+
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="BackgroundTranslucent"/>
 
@@ -109,16 +115,29 @@
 			</object>
 		</object>
 
+		<!-- History page -->
+		<object
+			type="button"
+			style="StoneButton"
+			size="100%-309 100%-44 100%-169 100%-16"
+			name="civinfo"
+			hotkey="civinfo"
+		>
+			<translatableAttribute id="caption">History</translatableAttribute>
+			<action on="Press">switchToCivInfoPage();</action>
+		</object>
 		<!-- Close dialog -->
 		<object
 			type="button"
 			style="StoneButton"
 			size="100%-164 100%-44 100%-16 100%-16"
+			name="close"
 			hotkey="cancel"
 		>
 			<translatableAttribute id="caption">Close</translatableAttribute>
-			<action on="Press">closePage();</action>
+			<action on="Press">
+				close();
+			</action>
 		</object>
-
 	</object>
 </objects>

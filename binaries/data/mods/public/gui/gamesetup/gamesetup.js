@@ -18,6 +18,14 @@ var g_GameSpeeds = getGameSpeedChoices(false);
 const g_CivData = loadCivData(false, false);
 
 /**
+ * Store civilization code and page (structree or history) opened in civilization info.
+ */
+var g_CivInfo = {
+	"code": "",
+	"page": "page_civinfo.xml"
+};
+
+/**
  * Highlight the "random" dropdownlist item.
  */
 var g_ColorRandom = "orange";
@@ -1108,6 +1116,12 @@ function init(attribs)
 	supplementDefaults();
 
 	setTimeout(displayGamestateNotifications, 1000);
+
+	Engine.GetGUIObjectByName("civInfoButton").tooltip = sprintf(
+		translate("%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\nLast opened will be reopened on click."), {
+			"hotkey_civinfo": colorizeHotkey("%(hotkey)s", "civinfo"),
+			"hotkey_structree": colorizeHotkey("%(hotkey)s", "structree")
+	});
 }
 
 function initDefaults()
@@ -2680,4 +2694,10 @@ function updateAutocompleteEntries()
 		}
 
 	g_Autocomplete = Object.keys(autocomplete).sort().reverse().reduce((all, priority) => all.concat(autocomplete[priority]), []);
+}
+
+function storeCivInfoPage(data)
+{
+	g_CivInfo.code = data.civ;
+	g_CivInfo.page = data.page;
 }

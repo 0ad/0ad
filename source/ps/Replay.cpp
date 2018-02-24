@@ -62,7 +62,8 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 
 	// Add engine version and currently loaded mods for sanity checks when replaying
 	m_ScriptInterface.SetProperty(attribs, "engine_version", CStr(engine_version));
-	m_ScriptInterface.SetProperty(attribs, "mods", JS::RootedValue(cx, Mod::GetLoadedModsWithVersions(m_ScriptInterface)));
+	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(m_ScriptInterface));
+	m_ScriptInterface.SetProperty(attribs, "mods", mods);
 
 	m_Directory = createDateIndexSubdirectory(VisualReplay::GetDirectoryName());
 	debug_printf("Writing replay to %s\n", m_Directory.string8().c_str());

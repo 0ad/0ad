@@ -26,6 +26,14 @@ var STEP = 5;
 var g_IdleTraderTextColor = "orange";
 
 /**
+ * Store civilization code and page (structree or history) opened in civilization info.
+ */
+var g_CivInfo = {
+	"code": "",
+	"page": "page_structree.xml"
+};
+
+/**
  * The barter constants should match with the simulation
  * Quantity of goods to sell per click.
  */
@@ -1108,10 +1116,18 @@ function openStrucTree()
 	pauseGame();
 
 	// TODO add info about researched techs and unlocked entities
-	Engine.PushGuiPage("page_structree.xml", {
-		"civ": g_Players[g_ViewedPlayer].civ,
-		"callback": "resumeGame",
+
+	Engine.PushGuiPage(g_CivInfo.page, {
+		"civ": g_CivInfo.code || g_Players[g_ViewedPlayer].civ,
+		"callback": "storeCivInfoPage"
 	});
+}
+
+function storeCivInfoPage(data)
+{
+	g_CivInfo.code = data.civ;
+	g_CivInfo.page = data.page;
+	resumeGame();
 }
 
 /**

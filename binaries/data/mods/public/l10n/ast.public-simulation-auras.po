@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-09 09:03+0100\n"
-"PO-Revision-Date: 2018-02-10 02:27+0000\n"
+"POT-Creation-Date: 2018-02-21 09:05+0100\n"
+"PO-Revision-Date: 2018-02-21 23:37+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -250,8 +250,8 @@ msgid "Conscription"
 msgstr "Serviciu militar"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "-20% training time for allied infantry."
-msgstr "-20% de tiempu d'entrenamientu pa infantería aliada."
+msgid "-20% training time for allied citizen-soldier infantry."
+msgstr "El -20% de tiempu de llevantamientu pa los ciudadanos-soldáu aliaos."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -591,13 +591,21 @@ msgstr "Rei los Britanos"
 msgid "+0.8 HP per second healing rate."
 msgstr "+0.8 PS per segundu na tasa de curación."
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
 msgstr "Xeneral rellampu"
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
 msgstr "Aumenta nun +15% la velocidá a tolos soldaos y máquines d'asediu."
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
+msgid "Subduer of Mercenaries"
+msgstr "Sometedor de mercenarios"
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
+msgid "-20% attack for enemy mercenaries."
+msgstr "El -20% d'ataque pa los mercenarios enemigos."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -815,8 +823,8 @@ msgid "Leadership"
 msgstr "Lideralgu"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
-msgid "+10% movement speed for all soldiers, siege engines and traders."
-msgstr "Aumenta nun +10% la velocidá movimientu a tolos soldaos, máquines d'asediu y comerciantes."
+msgid "+15% movement speed for all soldiers, siege engines and traders."
+msgstr "El +15% de velocidá al andar pa tolos soldaos, equipos d'asediu y comerciantes."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -868,8 +876,8 @@ msgid "Mercenary Patron"
 msgstr "Patrocinador mercenariu"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
-msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr "Los mercenarios cuesten un -50% menos demientres viva."
+msgid "Mercenaries cost -35% resources during his lifetime."
+msgstr "Los mercenarios cuesten el -35% de los recursos mentanto viva."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -929,8 +937,8 @@ msgid "Helot Reforms"
 msgstr "Reformes de los ilotes"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr "Aumenta nun +25% l'ataque y en +1 l'armadura a la infantería que llanza xavalines."
+msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
+msgstr "El +25% d'ataque y +1 armadura pa los ciudadanos-soldáu d'a pie con xavalines."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

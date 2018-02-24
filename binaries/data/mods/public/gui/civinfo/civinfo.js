@@ -4,16 +4,29 @@
 const g_CivData = loadCivData(true, false);
 
 /**
+ * Callback function name on closing gui via Engine.PopGuiPage().
+ */
+var g_Callback = "";
+
+var g_SelectedCiv = "";
+
+/**
  * Initialize the dropdown containing all the available civs.
  */
-function init(settings)
+function init(data = {})
 {
+	if (data.callback)
+		g_Callback = data.callback;
+
 	var civList = Object.keys(g_CivData).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
 	var civSelection = Engine.GetGUIObjectByName("civSelection");
 
 	civSelection.list = civList.map(civ => civ.name);
 	civSelection.list_data = civList.map(civ => civ.code);
-	civSelection.selected = 0;
+	civSelection.selected = data.civ ? civSelection.list_data.indexOf(data.civ) : 0;
+
+	Engine.GetGUIObjectByName("structreeButton").tooltip = colorizeHotkey(translate("%(hotkey)s: Switch to Structure Tree."), "structree");
+	Engine.GetGUIObjectByName("close").tooltip = colorizeHotkey(translate("%(hotkey)s: Close History."), "cancel");
 }
 
 /**
@@ -79,6 +92,20 @@ function subHeading(obj)
 	return coloredText(string + "\n", "white");
 }
 
+function switchToStrucTreePage()
+{
+	Engine.PopGuiPage();
+	Engine.PushGuiPage("page_structree.xml", { "civ": g_SelectedCiv, "callback": g_Callback });
+}
+
+function close()
+{
+	if (g_Callback)
+		Engine.PopGuiPageCB({ "civ": g_SelectedCiv, "page": "page_civinfo.xml" });
+	else
+		Engine.PopGuiPage();
+}
+
 /**
  * Updates the GUI after the user selected a civ from dropdown.
  *
@@ -87,6 +114,8 @@ function subHeading(obj)
 function selectCiv(code)
 {
 	var civInfo = g_CivData[code];
+
+	g_SelectedCiv = code;
 
 	if(!civInfo)
 		error(sprintf("Error loading civ data for \"%(code)s\"", { "code": code }));

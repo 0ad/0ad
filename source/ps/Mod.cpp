@@ -131,9 +131,10 @@ JS::Value Mod::GetEngineInfo(const ScriptInterface& scriptInterface)
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue metainfo(cx);
+	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(scriptInterface));
 	scriptInterface.Eval("({})", &metainfo);
 	scriptInterface.SetProperty(metainfo, "engine_version", std::string(engine_version));
-	scriptInterface.SetProperty(metainfo, "mods", JS::RootedValue(cx, Mod::GetLoadedModsWithVersions(scriptInterface)));
+	scriptInterface.SetProperty(metainfo, "mods", mods);
 
 	scriptInterface.FreezeObject(metainfo, true);
 

@@ -38,6 +38,15 @@ function init(initData, hotloadData)
 		guiObj.sprite = g_BackgroundLayerset[i].sprite;
 		guiObj.z = i;
 	}
+	Engine.GetGUIObjectByName("structreeButton").tooltip = colorizeHotkey(
+		translate("%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."),
+		"structree");
+	Engine.GetGUIObjectByName("civInfoButton").tooltip = colorizeHotkey(
+		translate("%(hotkey)s: Learn about the many civilizations featured in 0 A.D."),
+		"civinfo");
+	Engine.GetGUIObjectByName("lobbyButton").tooltip = colorizeHotkey(
+		translate("%(hotkey)s: Launch the multiplayer lobby."),
+		"lobby");
 }
 
 function getHotloadData()

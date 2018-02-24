@@ -36,6 +36,18 @@
 		<action on="Press">openGameSummary();</action>
 	</object>
 
+	<object	hotkey="civinfo">
+		<action on="Press">
+			Engine.PushGuiPage("page_civinfo.xml", { "civ": g_CivInfo.code, "callback": "storeCivInfoPage" });
+		</action>
+	</object>
+
+	<object	hotkey="structree">
+		<action on="Press">
+			Engine.PushGuiPage("page_structree.xml", { "civ": g_CivInfo.code, "callback": "storeCivInfoPage" });
+		</action>
+	</object>
+
 	<object hotkey="silhouettes">
 		<action on="Press">toggleConfigBool("silhouettes");</action>
 	</object>

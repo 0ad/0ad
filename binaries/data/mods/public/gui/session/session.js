@@ -654,9 +654,13 @@ function updateTopPanel()
 	if (isPlayer)
 	{
 		civIcon.sprite = "stretched:" + g_CivData[g_Players[g_ViewedPlayer].civ].Emblem;
-		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), {
-			"civ": g_CivData[g_Players[g_ViewedPlayer].civ].Name
-		});
+		Engine.GetGUIObjectByName("civIconOverlay").tooltip =
+			sprintf(
+				translate("%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\nLast opened will be reopened on click."), {
+					"civ": setStringTags(g_CivData[g_Players[g_ViewedPlayer].civ].Name, { "font": "sans-bold-stroke-14" }),
+					"hotkey_civinfo": colorizeHotkey("%(hotkey)s", "civinfo"),
+					"hotkey_structree": colorizeHotkey("%(hotkey)s", "structree")
+			});
 	}
 
 	Engine.GetGUIObjectByName("optionFollowPlayer").hidden = !g_IsObserver || !isPlayer;

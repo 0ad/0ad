@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -418,10 +418,17 @@ public:
 
 	virtual void SetVariant(const CStr& key, const CStr& selection)
 	{
+		if (m_VariantSelections[key] == selection)
+			return;
+
 		m_VariantSelections[key] = selection;
 
 		if (m_Unit)
+		{
 			m_Unit->SetEntitySelection(key, selection);
+			if (m_Unit->GetAnimation())
+				m_Unit->GetAnimation()->ReloadAnimation();
+		}
 	}
 
 	virtual std::string GetAnimationName() const

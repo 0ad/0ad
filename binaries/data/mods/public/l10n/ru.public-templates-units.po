@@ -40,8 +40,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-07 09:03+0100\n"
-"PO-Revision-Date: 2018-02-14 18:15+0000\n"
+"POT-Creation-Date: 2018-02-21 09:04+0100\n"
+"PO-Revision-Date: 2018-02-22 23:26+0000\n"
 "Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgid "Basic"
 msgstr "Основной"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:19
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
 #: simulation/templates/template_unit_champion_elephant_melee.xml:15
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:28
@@ -106,7 +106,7 @@ msgstr "Основной"
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:34
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
 #: simulation/templates/template_unit_dog.xml:44
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
 #: simulation/templates/template_unit_hero_elephant_melee.xml:35
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -123,11 +123,11 @@ msgstr "Ближний бой"
 msgid "Melee Cavalry"
 msgstr "Конница ближнего боя"
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:16
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:22
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:34
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
@@ -135,9 +135,15 @@ msgstr "Конница ближнего боя"
 msgid "Spear"
 msgstr "Копьё"
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:17
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:23
 msgid "Cavalry Spearman"
 msgstr "Конный копейщик"
+
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:24
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:27
+msgid "Counters: 1.5x vs. Cavalry."
+msgstr "Контрудары: 1.5x против Конницы."
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
@@ -223,7 +229,7 @@ msgstr "Конный лучник-чемпион."
 msgid "Champion Cavalry Skirmisher"
 msgstr "Конный застрельщик-чемпион"
 
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
 msgstr "Конный копейщик-чемпион"
 
@@ -344,7 +350,7 @@ msgstr "Конный герой лучник"
 msgid "Hero Cavalry Skirmisher"
 msgstr "Конный герой застрельщик"
 
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:20
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 msgid "Hero Cavalry Spearman"
 msgstr "Конный герой копейщик"
 
@@ -811,10 +817,12 @@ msgid "Greek Gastraphetes"
 msgstr "Греческие гастрафеты"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:10
+#: simulation/templates/units/athen_hero_xenophon.xml:6
 msgid "Iphicrates"
 msgstr "Ификрат"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:11
+#: simulation/templates/units/athen_hero_xenophon.xml:7
 msgid "Iphikratēs"
 msgstr "Ификратес"
 
@@ -1184,11 +1192,11 @@ msgstr "Священный отряд пикинёров"
 msgid "Mašal"
 msgstr "Машал"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:8
+#: simulation/templates/units/cart_hero_hamilcar.xml:9
 msgid "Ḥimelqart Baraq"
 msgstr "Гимелкарт Барак"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:9
+#: simulation/templates/units/cart_hero_hamilcar.xml:10
 msgid "Hamilcar Barca"
 msgstr "Гамилкар Барка"
 
@@ -1335,11 +1343,11 @@ msgstr "Галльская благородная кавалерия"
 msgid "Gallic Brihent"
 msgstr "Галльский бригент"
 
-#: simulation/templates/units/gaul_champion_fanatic.xml:19
+#: simulation/templates/units/gaul_champion_fanatic.xml:16
 msgid "Naked Fanatic"
 msgstr "Голый фанатик"
 
-#: simulation/templates/units/gaul_champion_fanatic.xml:20
+#: simulation/templates/units/gaul_champion_fanatic.xml:17
 msgid "Gaesata"
 msgstr "Гастаты"
 
@@ -1536,7 +1544,7 @@ msgstr ""
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:7
 msgid "Axe"
-msgstr ""
+msgstr "Секира"
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:8
 msgid "Amanirenas"
@@ -1554,14 +1562,17 @@ msgstr "Аркамани"
 msgid "‘Irk.‘Imn"
 msgstr ""
 
+#: simulation/templates/units/kush_hero_harsiotef.xml:8
 #: simulation/templates/units/kush_hero_nastasen.xml:8
 msgid "Nastasen"
 msgstr "Настасен"
 
+#: simulation/templates/units/kush_hero_harsiotef.xml:9
 #: simulation/templates/units/kush_hero_nastasen.xml:9
 msgid "Nastasen Ankhkhare"
 msgstr ""
 
+#: simulation/templates/units/kush_hero_harsiotef.xml:12
 #: simulation/templates/units/kush_hero_nastasen.xml:12
 msgid ""
 "Hero Special: \"Gift of Warships\" - Allows the training of Ptolemaic "
@@ -1894,17 +1905,17 @@ msgid "Vachii Gaja"
 msgstr "Вачии Гайа"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:12
-#: simulation/templates/units/maur_infantry_archer_hero_ashoka.xml:8
+#: simulation/templates/units/maur_hero_infantry_archer_ashoka.xml:8
 msgid "Ashoka the Great"
 msgstr "Ашока Великий"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:13
-#: simulation/templates/units/maur_infantry_archer_hero_ashoka.xml:9
+#: simulation/templates/units/maur_hero_infantry_archer_ashoka.xml:9
 msgid "Aśoka Devānāmpriya"
 msgstr "Асока Деванамприя"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:17
-#: simulation/templates/units/maur_infantry_archer_hero_ashoka.xml:11
+#: simulation/templates/units/maur_hero_infantry_archer_ashoka.xml:11
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
@@ -2446,13 +2457,13 @@ msgstr "Италийский тяжёлый пехотинец"
 msgid "Extraordinarius"
 msgstr "Экстраординариус"
 
+#: simulation/templates/units/rome_hero_infantry_swordsman_marcellus.xml:10
 #: simulation/templates/units/rome_hero_marcellus.xml:10
-#: simulation/templates/units/rome_infantry_swordsman_hero_marcellus.xml:10
 msgid "Marcus Claudius Marcellus"
 msgstr "Марк Клавдий Марцелл"
 
+#: simulation/templates/units/rome_hero_infantry_swordsman_maximus.xml:9
 #: simulation/templates/units/rome_hero_maximus.xml:9
-#: simulation/templates/units/rome_infantry_swordsman_hero_maximus.xml:9
 msgid "Quintus Fabius Maximus"
 msgstr "Квинт Фабий Максим"
 

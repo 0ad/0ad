@@ -80,9 +80,10 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 
 	JS::RootedValue metadata(cx);
 	JS::RootedValue initAttributes(cx, simulation.GetInitAttributes());
+	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(simulation.GetScriptInterface()));
 	simulation.GetScriptInterface().Eval("({})", &metadata);
 	simulation.GetScriptInterface().SetProperty(metadata, "engine_version", std::string(engine_version));
-	simulation.GetScriptInterface().SetProperty(metadata, "mods", JS::RootedValue(cx, Mod::GetLoadedModsWithVersions(simulation.GetScriptInterface())));
+	simulation.GetScriptInterface().SetProperty(metadata, "mods", mods);
 	simulation.GetScriptInterface().SetProperty(metadata, "time", (double)now);
 	simulation.GetScriptInterface().SetProperty(metadata, "playerID", g_Game->GetPlayerID());
 	simulation.GetScriptInterface().SetProperty(metadata, "initAttributes", initAttributes);
