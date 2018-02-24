@@ -214,7 +214,6 @@
 			sprite="iconBubbleGold"
 			sprite_over="iconBubbleWhite"
 			size="100%-336 100%-45 100%-320 100%-29"
-			hidden="true"
 			hotkey="lobby"
 		>
 			<action on="Press">
@@ -228,7 +227,7 @@
 			<action on="Press">confirmStartReplay();</action>
 		</object>
 
-		<object type="button" style="ModernButtonRed" size="100%-160 100%-48 100%-20 100%-20">
+		<object type="button" name="continueButton" style="ModernButtonRed" size="100%-160 100%-48 100%-20 100%-20">
 			<translatableAttribute id="caption">Continue</translatableAttribute>
 			<action on="Press">continueButton();</action>
 		</object>
