@@ -552,10 +552,14 @@ m.NavalManager.prototype.isShipBoarding = function(ship)
 	return API3.SquareVectorDistance(plan.boardingPos[ship.id()], ship.position()) < plan.boardingRange;
 };
 
-/** let blocking ships move apart from active ships (waiting for a better pathfinder) */
+/** let blocking ships move apart from active ships (waiting for a better pathfinder)
+ * TODO Ships entity collections are currently in two parts as the trader ships are dealt with
+ * in the tradeManager. That should be modified to avoid dupplicating all the code here. 
+ */
 m.NavalManager.prototype.moveApart = function(gameState)
 {
 	let blockedShips = [];
+	let blockedIds = [];
 
 	for (let ship of this.ships.values())
 	{
@@ -574,11 +578,16 @@ m.NavalManager.prototype.moveApart = function(gameState)
 			if (!previousPosition || previousPosition[0] != shipPosition[0] ||
 			                         previousPosition[1] != shipPosition[1])
 			{
-				ship.setMetadata(PlayerID, "previousPosition", shipPosition)
+				ship.setMetadata(PlayerID, "previousPosition", shipPosition);
+				ship.setMetadata(PlayerID, "turnPreviousPosition", gameState.ai.playedTurn);
 				continue;
 			}
+			// New transport ships receive boarding commands only on the following turn.
+			if (gameState.ai.playedTurn < ship.getMetadata(PlayerID, "turnPreviousPosition") + 2)
+				continue;
 			ship.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
 			blockedShips.push(ship);
+			blockedIds.push(ship.id());
 		}
 		else if (ship.isIdle())
 		{
@@ -609,6 +618,9 @@ m.NavalManager.prototype.moveApart = function(gameState)
 		let shipPosition = ship.position();
 		if (!shipPosition)
 			continue;
+		let role = ship.getMetadata(PlayerID, "role");
+		if (!role || role != "trader")	// already accounted before
+			continue;
 
 		let unitAIState = ship.unitAIState();
 		if (unitAIState == "INDIVIDUAL.TRADE.APPROACHINGMARKET")
@@ -617,11 +629,16 @@ m.NavalManager.prototype.moveApart = function(gameState)
 			if (!previousPosition || previousPosition[0] != shipPosition[0] ||
 			                         previousPosition[1] != shipPosition[1])
 			{
-				ship.setMetadata(PlayerID, "previousPosition", shipPosition)
+				ship.setMetadata(PlayerID, "previousPosition", shipPosition);
+				ship.setMetadata(PlayerID, "turnPreviousPosition", gameState.ai.playedTurn);
 				continue;
 			}
+			// New transport ships receives boarding commands only on the following turn.
+			if (gameState.ai.playedTurn < ship.getMetadata(PlayerID, "turnPreviousPosition") + 2)
+				continue;
 			ship.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
 			blockedShips.push(ship);
+			blockedIds.push(ship.id());
 		}
 		else if (ship.isIdle())
 		{
@@ -652,7 +669,7 @@ m.NavalManager.prototype.moveApart = function(gameState)
 		let sea = ship.getMetadata(PlayerID, "sea");
 		for (let blockingShip of this.seaShips[sea].values())
 		{
-			if (blockedShips.indexOf(ship.id()) != -1 || !blockingShip.position())
+			if (blockedIds.indexOf(blockingShip.id()) != -1 || !blockingShip.position())
 				continue;
 			let distSquare = API3.SquareVectorDistance(shipPosition, blockingShip.position());
 			let unitAIState = blockingShip.unitAIState();
@@ -665,14 +682,16 @@ m.NavalManager.prototype.moveApart = function(gameState)
 			}
 			else if (distSquare < 900)
 				blockingShip.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
-
 		}
 
 		for (let blockingShip of gameState.ai.HQ.tradeManager.traders.filter(API3.Filters.byClass("Ship")).values())
 		{
 			if (blockingShip.getMetadata(PlayerID, "sea") != sea)
 				continue;
-			if (blockedShips.indexOf(ship.id()) != -1 || !blockingShip.position())
+			if (blockedIds.indexOf(blockingShip.id()) != -1 || !blockingShip.position())
+				continue;
+			let role = blockingShip.getMetadata(PlayerID, "role");
+			if (!role || role != "trader")	// already accounted before
 				continue;
 			let distSquare = API3.SquareVectorDistance(shipPosition, blockingShip.position());
 			let unitAIState = blockingShip.unitAIState();
