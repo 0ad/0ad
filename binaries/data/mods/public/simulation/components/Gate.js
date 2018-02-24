@@ -199,7 +199,7 @@ Gate.prototype.OpenGate = function()
 	PlaySound("gate_opening", this.entity);
 	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
-		cmpVisual.SelectAnimation("gate_opening", true, 1.0, "");
+		cmpVisual.SelectAnimation("gate_opening", true, 1.0);
 };
 
 /**
@@ -238,7 +238,7 @@ Gate.prototype.CloseGate = function()
 	PlaySound("gate_closing", this.entity);
 	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
-		cmpVisual.SelectAnimation("gate_closing", true, 1.0, "");
+		cmpVisual.SelectAnimation("gate_closing", true, 1.0);
 };
 
 Engine.RegisterComponentType(IID_Gate, "Gate", Gate);

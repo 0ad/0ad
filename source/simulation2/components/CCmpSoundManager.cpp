@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,27 +62,26 @@ public:
 
 	virtual void PlaySoundGroup(const std::wstring& name, entity_id_t source)
 	{
-		if ( ! g_SoundManager || (source == INVALID_ENTITY) )
+		if (!g_SoundManager || (source == INVALID_ENTITY))
 			return;
 
-		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 		int currentPlayer = GetSimContext().GetCurrentDisplayedPlayer();
 
-		if ( !cmpRangeManager ||
-				( cmpRangeManager->GetLosVisibility(source, currentPlayer) != ICmpRangeManager::VIS_VISIBLE ) )
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
+		if (!cmpRangeManager || (cmpRangeManager->GetLosVisibility(source, currentPlayer) != ICmpRangeManager::VIS_VISIBLE))
 			return;
 
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
-		if (cmpPosition && cmpPosition->IsInWorld())
-		{
-			bool playerOwned = false;
-			CmpPtr<ICmpOwnership> cmpOwnership( GetSimContext(), source);
-			if (cmpOwnership)
-				playerOwned = cmpOwnership->GetOwner() == currentPlayer;
+		if (!cmpPosition || !cmpPosition->IsInWorld())
+			return;
 
-			CVector3D sourcePos = CVector3D(cmpPosition->GetPosition());
-			g_SoundManager->PlayAsGroup(name, sourcePos, source, playerOwned);
-		}
+		bool playerOwned = false;
+		CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), source);
+		if (cmpOwnership)
+			playerOwned = cmpOwnership->GetOwner() == currentPlayer;
+
+		CVector3D sourcePos = CVector3D(cmpPosition->GetPosition());
+		g_SoundManager->PlayAsGroup(name, sourcePos, source, playerOwned);
 	}
 
 	virtual void PlaySoundGroupAtPosition(const std::wstring& name, const CFixedVector3D& sourcePos)

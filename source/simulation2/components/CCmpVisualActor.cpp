@@ -31,6 +31,7 @@
 #include "ICmpUnitMotion.h"
 #include "ICmpValueModificationManager.h"
 #include "ICmpVisibility.h"
+#include "ICmpSound.h"
 
 #include "simulation2/serialization/SerializeTemplates.h"
 
@@ -206,7 +207,7 @@ public:
 
 		InitModel(paramNode);
 
-		SelectAnimation("idle", false, fixed::FromInt(1), L"");
+		SelectAnimation("idle");
 	}
 
 	virtual void Deinit()
@@ -436,16 +437,20 @@ public:
 		return m_AnimName;
 	}
 
-	virtual void SelectAnimation(const std::string& name, bool once, fixed speed, const std::wstring& soundgroup)
+	virtual void SelectAnimation(const std::string& name, bool once = false, fixed speed = fixed::FromInt(1))
 	{
 		m_AnimRunThreshold = fixed::Zero();
 		m_AnimName = name;
 		m_AnimOnce = once;
 		m_AnimSpeed = speed;
-		m_SoundGroup = soundgroup;
+		m_SoundGroup = L"";
 		m_AnimDesync = fixed::FromInt(1)/20; // TODO: make this an argument
 		m_AnimSyncRepeatTime = fixed::Zero();
 		m_AnimSyncOffsetTime = fixed::Zero();
+		
+		CmpPtr<ICmpSound> cmpSound(GetSimContext(), m_Unit->GetID());
+		if(cmpSound)
+			m_SoundGroup = cmpSound->GetSoundGroup(wstring_from_utf8(m_AnimName));
 
 		SetVariant("animation", m_AnimName);
 
@@ -467,7 +472,6 @@ public:
 
 	virtual void SelectMovementAnimation(fixed runThreshold)
 	{
-		SelectAnimation("walk", false, fixed::FromFloat(1.f), L"");
 		m_AnimRunThreshold = runThreshold;
 	}
 
@@ -795,6 +799,6 @@ void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 
 	// Selecting the animation is going to reset the anim run threshold, so save it
 	fixed runThreshold = m_AnimRunThreshold;
-	SelectAnimation(name, false, speed, L"");
+	SelectAnimation(name, false, speed);
 	m_AnimRunThreshold = runThreshold;
 }

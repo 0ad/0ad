@@ -22,7 +22,7 @@ const PACKING_INTERVAL = 250;
 let timerActivated = false;
 
 AddMock(ent, IID_Visual, {
-	"SelectAnimation": (name, once, speed, soundgroup) => name
+	"SelectAnimation": (name, once, speed) => name
 });
 
 AddMock(ent, IID_Ownership, {

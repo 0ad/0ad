@@ -76,7 +76,7 @@ Pack.prototype.Unpack = function()
 
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
-		cmpVisual.SelectAnimation("unpacking", true, 1.0, "unpacking");
+		cmpVisual.SelectAnimation("unpacking", true, 1.0);
 };
 
 Pack.prototype.CancelPack = function()
@@ -91,7 +91,7 @@ Pack.prototype.CancelPack = function()
 	// Clear animation
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
-		cmpVisual.SelectAnimation("idle", false, 1.0, "");
+		cmpVisual.SelectAnimation("idle", false, 1.0);
 };
 
 Pack.prototype.GetPackTime = function()

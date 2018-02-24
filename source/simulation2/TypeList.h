@@ -162,6 +162,9 @@ COMPONENT(Selectable)
 INTERFACE(Settlement)
 COMPONENT(SettlementScripted)
 
+INTERFACE(Sound)
+COMPONENT(SoundScripted)
+
 INTERFACE(SoundManager)
 COMPONENT(SoundManager)
 

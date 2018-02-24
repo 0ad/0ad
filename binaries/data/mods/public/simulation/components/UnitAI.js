@@ -1896,7 +1896,7 @@ UnitAI.prototype.UnitFsmSpec = {
 							animationName = cmpFormation.GetFormationAnimation(this.entity, animationName);
 					}
 					this.SetAnimationVariant("combat");
-					this.SelectAnimation(animationName, false, 1.0, animationName);
+					this.SelectAnimation(animationName);
 					this.SetAnimationSync(prepare, this.attackTimers.repeat);
 					this.StartTimer(prepare, this.attackTimers.repeat);
 					// TODO: we should probably only bother syncing projectile attacks, not melee
@@ -2308,7 +2308,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						this.SetDefaultAnimationVariant();
 						var typename = "gather_" + this.order.data.type.specific;
-						this.SelectAnimation(typename, false, 1.0, typename);
+						this.SelectAnimation(typename);
 					}
 					return false;
 				},
@@ -2512,7 +2512,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						prepare = Math.max(prepare, repeatLeft);
 					}
 
-					this.SelectAnimation("heal", false, 1.0, "heal");
+					this.SelectAnimation("heal");
 					this.SetAnimationSync(prepare, this.healTimers.repeat);
 					this.StartTimer(prepare, this.healTimers.repeat);
 
@@ -2735,7 +2735,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpBuilderList)
 						cmpBuilderList.AddBuilder(this.entity);
 
-					this.SelectAnimation("build", false, 1.0, "build");
+					this.SelectAnimation("build");
 					this.StartTimer(1000, 1000);
 					return false;
 				},
@@ -4226,9 +4226,9 @@ UnitAI.prototype.SetDefaultAnimationVariant = function()
 	this.SetAnimationVariant("");
 };
 
-UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)
+UnitAI.prototype.SelectAnimation = function(name, once = false, speed = 1.0)
 {
-	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (!cmpVisual)
 		return;
 
@@ -4237,29 +4237,11 @@ UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)
 	if (name == "move")
 	{
 		// Speed to switch from walking to running animations
-		var runThreshold = (this.GetWalkSpeed() + this.GetRunSpeed()) / 2;
-
-		cmpVisual.SelectMovementAnimation(runThreshold);
+		cmpVisual.SelectMovementAnimation((this.GetWalkSpeed() + this.GetRunSpeed()) / 2);
 		return;
 	}
 
-	var soundgroup;
-	if (sound)
-	{
-		var cmpSound = Engine.QueryInterface(this.entity, IID_Sound);
-		if (cmpSound)
-			soundgroup = cmpSound.GetSoundGroup(sound);
-	}
-
-	// Set default values if unspecified
-	if (once === undefined)
-		once = false;
-	if (speed === undefined)
-		speed = 1.0;
-	if (soundgroup === undefined)
-		soundgroup = "";
-
-	cmpVisual.SelectAnimation(name, once, speed, soundgroup);
+	cmpVisual.SelectAnimation(name, once, speed);
 };
 
 UnitAI.prototype.SetAnimationSync = function(actiontime, repeattime)

@@ -317,7 +317,7 @@ Health.prototype.CreateCorpse = function(leaveResources)
 	cmpCorpseVisual.SetActorSeed(cmpVisual.GetActorSeed());
 
 	// Make it fall over
-	cmpCorpseVisual.SelectAnimation("death", true, 1.0, "");
+	cmpCorpseVisual.SelectAnimation("death", true, 1.0);
 
 	return corpse;
 };
