@@ -193,7 +193,7 @@ testFoundation([foundationEnt, IID_Visual, {
 		TS_ASSERT_EQUALS(key, "numbuilders");
 		TS_ASSERT(num == 1 || num == 2);
 	},
-	"SelectAnimation": (name, once, speed) => name
+	"SelectAnimation": (name, once, speed) => name,
 	"HasConstructionPreview": () => true,
 }]);
 
