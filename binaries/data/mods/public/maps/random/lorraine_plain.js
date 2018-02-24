@@ -129,7 +129,7 @@ for (let i = 0; i <= randIntInclusive(3, scaleByMapSize(4, 6)); ++i)
 		"smoothWidth": 2,
 		"startHeight": heightShallows,
 		"endHeight": heightShallows,
-		"maxHeight": heightShallows,
+		"constraint": new HeightConstraint(-Infinity, heightShallows),
 		"tileClass": clShallow
 	});
 }

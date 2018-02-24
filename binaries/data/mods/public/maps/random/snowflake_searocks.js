@@ -263,7 +263,7 @@ for (let i = 0; i < numIslands; ++i)
 				"startWidth": 11,
 				"endWidth": 11,
 				"smoothWidth": 3,
-				"maxHeight": heightIsland - 1,
+				"constraint": new HeightConstraint(-Infinity, heightIsland - 1),
 				"tileClass": clLand,
 				"terrain": tHill,
 				"edgeTerrain": tCliff
