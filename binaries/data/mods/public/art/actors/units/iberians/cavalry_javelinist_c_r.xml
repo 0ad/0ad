@@ -29,7 +29,11 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_ranged_cavalry_javelin.xml" name="attack_ranged"/>
+    <variant file="biped/attack_ranged_cavalry_javelin.xml" name="attack_ranged">
+      <props>
+        <prop actor="props/units/weapons/jav_projectile_flame.xml" attachpoint="projectile"/>
+      </props>
+    </variant>
     <variant file="biped/rider/attack_slaughter_shield_iber.xml"/>
     <variant file="biped/rider/death.xml"/>
   </group>
