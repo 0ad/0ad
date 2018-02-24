@@ -64,7 +64,6 @@ function init(data)
 function loadMods()
 {
 	g_Mods = Engine.GetAvailableMods();
-	translateObjectKeys(g_Mods, ["label", "description"]);
 	deepfreeze(g_Mods);
 }
 
