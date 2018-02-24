@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="Base" frequency="1">
   <animations>
     <animation file="quadraped/pony_idle.dae" name="Idle" id="idle1" speed="60"/>
@@ -5,12 +6,7 @@
     <animation file="quadraped/pony_idle_c.dae" name="Idle" id="idle3" speed="60"/>
     <animation file="quadraped/pony_idle.dae" name="attack_melee" speed="60"/>
     <animation file="quadraped/pony_idle.dae" name="attack_ranged" speed="60"/>
-    <animation file="quadraped/pony_walk_relax.dae" name="Walk" id="walk1" speed="25"/>
-    <animation file="quadraped/pony_walk_relax.dae" name="Walk" id="walk2" speed="26"/>
-    <animation file="quadraped/pony_walk_relax.dae" name="Walk" id="walk3" speed="27"/>
-    <animation file="quadraped/pony_walk.dae" name="Run" id="run1" speed="10"/>
-    <animation file="quadraped/pony_walk.dae" name="Run" id="run2" speed="9"/>
-    <animation file="quadraped/pony_walk.dae" name="Run" id="run3" speed="11"/>
-    <animation file="quadraped/pony_death.dae" name="death" speed="120"/>
+    <animation file="quadraped/pony_death.dae" id="death1" name="Death" speed="120"/>
+    <animation file="quadraped/pony_death.dae" id="death2" name="Death" speed="120"/>
   </animations>
 </variant>

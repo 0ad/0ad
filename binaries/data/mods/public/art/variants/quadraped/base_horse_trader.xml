@@ -1,8 +1,6 @@
-<variant name="Base" frequency="1">
+<?xml version="1.0" encoding="UTF-8"?>
+<variant file="quadraped/base_horse.xml">
   <animations>
-    <animation file="quadraped/horse_idle.dae" name="Idle" id="idle1" speed="60"/>
-    <animation file="quadraped/horse_idle_b.dae" name="Idle" id="idle2" speed="60"/>
-    <animation file="quadraped/horse_idle_c.dae" name="Idle" id="idle3" speed="60"/>
     <animation file="quadraped/horse_walk_relax.dae" name="Walk" speed="20"/>
     <animation file="quadraped/horse_walk.dae" name="Run" speed="10"/>
     <animation file="quadraped/horse_death_b.dae" name="death" speed="140"/>
