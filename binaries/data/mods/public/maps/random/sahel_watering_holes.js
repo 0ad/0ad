@@ -135,7 +135,7 @@ for (let i = 0; i < numPlayers; ++i)
 		"smoothWidth": 4,
 		"startHeight": heightShallows,
 		"endHeight": heightShallows,
-		"maxHeight": heightShallows,
+		"constraint": new HeightConstraint(-Infinity, heightShallows),
 		"tileClass": clShallows
 	});
 

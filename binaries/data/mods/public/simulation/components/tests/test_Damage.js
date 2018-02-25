@@ -12,7 +12,6 @@ Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Loot.js");
 Engine.LoadComponentScript("interfaces/Player.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
-Engine.LoadComponentScript("interfaces/Sound.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("Attack.js");

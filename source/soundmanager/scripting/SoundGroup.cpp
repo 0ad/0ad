@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -156,50 +156,46 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& position, entity_id_t source)
 {
 #if CONFIG2_AUDIO
-	if ( !g_SoundManager )
+	if (!g_SoundManager)
 		return;
 
 	bool isOnscreen = false;
-	ALfloat	initialRolllOff = 0.1f;
-	ALfloat	itemRollOff = initialRolllOff;
-
-
-	float offSet = RadiansOffCenter(position, isOnscreen, itemRollOff);
-	bool 	shouldBePlayed = isOnscreen || TestFlag(eDistanceless) || TestFlag(eOmnipresent);
-
-	if ( !shouldBePlayed )
+	ALfloat itemRollOff = 0.1f;
+	float offset = RadiansOffCenter(position, isOnscreen, itemRollOff);
+	
+	if (!isOnscreen && !TestFlag(eDistanceless) && !TestFlag(eOmnipresent))
 		return;
 
 	if (snd_group.size() == 0)
 		Reload();
 
-	if ( snd_group.size() <= theIndex )
+	if (snd_group.size() <= theIndex)
 		return;
 
 	CSoundData* sndData = snd_group[theIndex];
-	if ( sndData == NULL )
+	if (sndData == nullptr)
 		return;
 
-	ISoundItem*	hSound = ((CSoundManager*)g_SoundManager)->ItemForEntity( source, sndData);
-	if ( hSound == NULL )
+	ISoundItem* hSound = static_cast<CSoundManager*>(g_SoundManager)->ItemForEntity(source, sndData);
+	if (hSound == nullptr)
 		return;
 
 	if (!TestFlag(eOmnipresent))
 	{
 		CVector3D origin = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
 		float sndDist = origin.Y;
-		float itemDist = ( position - origin ).Length();
+		float itemDist = (position - origin).Length();
 
-		if ( (sndDist * 2) < itemDist )
+		if ((sndDist * 2) < itemDist)
 			sndDist = itemDist;
 
 		if (TestFlag(eDistanceless))
 			itemRollOff = 0;
 
-		if ( sndData->IsStereo() )
+		if (sndData->IsStereo())
 			LOGWARNING("OpenAL: stereo sounds can't be positioned: %s", sndData->GetFileName().string8());
 
-		hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, - sndDist * cos(offSet)));
+		hSound->SetLocation(CVector3D((sndDist * sin(offset)), 0, -sndDist * cos(offset)));
 		hSound->SetRollOff(itemRollOff);
 	}
 
@@ -208,12 +204,11 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 	else
 		hSound->SetPitch(m_Pitch);
 
-	ALfloat theGain = m_Gain;
 	if (TestFlag(eRandGain))
-		theGain = RandFloat(m_GainLower, m_GainUpper);
+		m_Gain = RandFloat(m_GainLower, m_GainUpper);
 
 	hSound->SetCone(m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
-	((CSoundManager*)g_SoundManager)->PlayGroupItem(hSound, theGain);
+	static_cast<CSoundManager*>(g_SoundManager)->PlayGroupItem(hSound, m_Gain);
 
 #else // !CONFIG2_AUDIO
 	UNUSED2(theIndex);

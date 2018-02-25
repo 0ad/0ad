@@ -10,7 +10,6 @@ Engine.LoadComponentScript("interfaces/Guard.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Pack.js");
 Engine.LoadComponentScript("interfaces/Player.js");
-Engine.LoadComponentScript("interfaces/Sound.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Pack.js");
@@ -22,7 +21,7 @@ const PACKING_INTERVAL = 250;
 let timerActivated = false;
 
 AddMock(ent, IID_Visual, {
-	"SelectAnimation": (name, once, speed, soundgroup) => name
+	"SelectAnimation": (name, once, speed) => name
 });
 
 AddMock(ent, IID_Ownership, {

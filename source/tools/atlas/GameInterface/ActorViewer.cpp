@@ -425,19 +425,11 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation, player_id_
 		else if (anim.Find("gather_") == 0)
 			sound = anim;
 
-		std::wstring soundgroup;
-		if (!sound.empty())
-		{
-			CStr code = "var cmp = Engine.QueryInterface("+CStr::FromUInt(m.Entity)+", IID_Sound); " +
-				"if (cmp) cmp.GetSoundGroup('"+sound+"'); else '';";
-			m.Simulation2.GetScriptInterface().Eval(code.c_str(), soundgroup);
-		}
-
 		CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
 		if (cmpVisual)
 		{
 			// TODO: SetEntitySelection(anim)
-			cmpVisual->SelectAnimation(anim, false, fixed::FromFloat(speed), soundgroup);
+			cmpVisual->SelectAnimation(anim, false, fixed::FromFloat(speed));
 			if (repeattime)
 				cmpVisual->SetAnimationSyncRepeat(fixed::FromFloat(repeattime));
 		}

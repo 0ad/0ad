@@ -42,6 +42,14 @@ const oStoneLarge = "gaia/geology_stonemine_savanna_quarry";
 const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_savanna_slabs";
 const oMetalSmall = "gaia/geology_metal_desert_small";
+
+const oTreasure = [
+	"gaia/treasure/food_barrel",
+	"gaia/treasure/food_bin",
+	"gaia/treasure/wood",
+	"gaia/treasure/metal",
+	"gaia/treasure/stone"
+];
 const oBerryBush = "gaia/flora_bush_berry_desert";
 const oGazelle = "gaia/fauna_gazelle";
 const oRhino = "gaia/fauna_rhino";
@@ -131,7 +139,6 @@ const g_Map = new RandomMap(0, tPrimary);
 const mapBounds = g_Map.getBounds();
 const mapCenter = g_Map.getCenter();
 
-const clDune = g_Map.createTileClass();
 const clWater = g_Map.createTileClass();
 const clIsland  = g_Map.createTileClass();
 const clCliff = g_Map.createTileClass();
@@ -146,6 +153,7 @@ const clTemple = g_Map.createTileClass();
 const clTower = g_Map.createTileClass();
 const clStatue = g_Map.createTileClass();
 const clSoldier = g_Map.createTileClass();
+const clTreasure = g_Map.createTileClass();
 
 const riverAngle = 0.22 * Math.PI;
 const riverWidthBorder = fractionToTiles(0.27);
@@ -153,7 +161,7 @@ const riverWidthCenter = fractionToTiles(0.35);
 
 const avoidCollisions = avoidClasses(
 	clPlayer, 15, clWater, 1, clForest, 1, clRock, 4, clMetal, 4, clFood, 6,
-	clTemple, 10, clCliff, 0, clStatue, 2, clSoldier, 1, clTower, 1, clDune, 0);
+	clTemple, 8, clCliff, 0, clStatue, 2, clSoldier, 3, clTower, 1, clTreasure, 1);
 
 g_Map.LoadHeightmapImage("elephantine.png", minHeight, maxHeight);
 Engine.SetProgress(3);
@@ -197,7 +205,7 @@ createArea(
 	stayClasses(clIsland, 0));
 Engine.SetProgress(16);
 
-g_Map.log("Painting shoreline");
+g_Map.log("Painting water and shoreline");
 createArea(
 	new MapBoundsPlacer(),
 	new TerrainPainter(tWater),
@@ -267,7 +275,7 @@ createObjectGroups(
 Engine.SetProgress(37);
 
 g_Map.log("Painting city patches");
-createArea(
+var areaCityPatch = createArea(
 	new MapBoundsPlacer(),
 	new TerrainPainter(tRoadIsland),
 	new NearTileClassConstraint(clTemple, 8));
@@ -279,7 +287,7 @@ createMines(
 		[new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
 		[new SimpleObject(oStoneSmall, 2, 5, 1, 3, 0, 2 * Math.PI, 1)]
 	],
-	avoidClasses(clWater, 4, clPlayer, 20, clRock, 10),
+	avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clRock, 10),
 	clRock,
 	scaleByMapSize(6, 24));
 Engine.SetProgress(43);
@@ -290,7 +298,7 @@ createMines(
 		[new SimpleObject(oMetalSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oMetalLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
 		[new SimpleObject(oMetalSmall, 2, 5, 1, 3, 0, 2 * Math.PI, 1)]
 	],
-	avoidClasses(clWater, 4, clPlayer, 20, clMetal, 10, clRock, 5),
+	avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clMetal, 10, clRock, 5),
 	clMetal,
 	scaleByMapSize(6, 24));
 Engine.SetProgress(46);
@@ -328,7 +336,7 @@ g_Map.log("Creating dirt patches");
 createPatches(
 	[scaleByMapSize(5, 15)],
 	tDirt,
-	avoidClasses(clWater, 0, clIsland, 0, clForest, 0, clDirt, 5, clPlayer, 12, clDune, 1),
+	avoidClasses(clWater, 0, clIsland, 0, clForest, 0, clDirt, 5, clPlayer, 12),
 	scaleByMapSize(5, 30),
 	clDirt);
 Engine.SetProgress(58);
@@ -345,6 +353,16 @@ createObjectGroups(
 	scaleByMapSize(2, 10),
 	400);
 Engine.SetProgress(61);
+
+g_Map.log("Creating treasure");
+createObjectGroupsByAreas(
+	new SimpleGroup([new RandomObject(oTreasure, 1, 2, 0, 1)], true, clTreasure),
+	0,
+	avoidCollisions,
+	scaleByMapSize(4, 10),
+	100,
+	[areaCityPatch]);
+Engine.SetProgress(62);
 
 g_Map.log("Creating hero");
 createObjectGroups(
@@ -374,11 +392,11 @@ Engine.SetProgress(67);
 
 g_Map.log("Creating berries");
 createObjectGroups(
-	new SimpleGroup([new SimpleObject(oBerryBush, 3, 5, 1, 4)], true, clFood),
+	new SimpleGroup([new SimpleObject(oBerryBush, 3, 5, 1, 2)], true, clFood),
 	0,
 	avoidCollisions,
-	clFood,
-	scaleByMapSize(2, 12));
+	scaleByMapSize(4, 12),
+	250);
 Engine.SetProgress(70);
 
 g_Map.log("Creating rhinos");
@@ -440,7 +458,7 @@ Engine.SetProgress(88);
 
 g_Map.log("Creating crocodiles");
 createObjectGroups(
-	new SimpleGroup([new SimpleObject(oCrocodile, 2, 3, 2, 4)], true, clFood),
+	new SimpleGroup([new SimpleObject(oCrocodile, 2, 3, 3, 5)], true, clFood),
 	0,
 	[
 		new NearTileClassConstraint(clWater, 3),
@@ -492,11 +510,17 @@ createDecoration(
 	[avoidClasses(clIsland, 0), avoidCollisions]);
 Engine.SetProgress(98);
 
+createDecoration(
+	aBushesIslands.map(bush => [new SimpleObject(bush, 0, 3, 2, 4)]),
+	aBushesIslands.map(bush => scaleByMapSize(100, 800)),
+	[new HeightConstraint(heightWaterLevel, heightShore)]);
+Engine.SetProgress(99);
+
 setSunRotation(randomAngle());
 setSunColor(0.85, 0.63, 0.4);
 setSunElevation(Math.PI * randFloat(1/4, 1/2));
 
-setWaterColor(0.2, 0.2, 0.4);
+setWaterColor(0.541, 0.506, 0.416);
 setWaterTint(0.75, 0.75, 0.75);
 setWaterMurkiness(0.92);
 setWaterWaviness(0.5);

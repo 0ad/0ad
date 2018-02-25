@@ -378,7 +378,7 @@ function unknownCentralRiver()
 				"smoothWidth": 2,
 				"startHeight": heightShallow,
 				"endHeight": heightShallow,
-				"maxHeight": heightShallow,
+				"constraint": new HeightConstraint(-Infinity, heightShallow),
 				"tileClass": clShallow
 			});
 		}

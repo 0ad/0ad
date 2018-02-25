@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -103,7 +103,7 @@ public:
 	 * @param speed animation speed multiplier (typically 1.0 for the default speed)
 	 * @param soundgroup VFS path of sound group .xml, relative to audio/, or empty string for none
 	 */
-	virtual void SelectAnimation(const std::string& name, bool once, fixed speed, const std::wstring& soundgroup) = 0;
+	virtual void SelectAnimation(const std::string& name, bool once, fixed speed) = 0;
 
 	/**
 	 * Replaces a specified animation with another. Only affects the special speed-based

@@ -36,23 +36,11 @@ let g_SelectionPanels = {};
 g_SelectionPanels.Alert = {
 	"getMaxNumberOfItems": function()
 	{
-		return 3;
+		return 2;
 	},
-	"conflictsWith": ["Barter"],
 	"getItems": function(unitEntStates)
 	{
-		let ret = [];
-
-		if (unitEntStates.some(state => state.alertRaiser && !state.alertRaiser.hasRaisedAlert))
-			ret.push("raise");
-
-		if (unitEntStates.some(state => state.alertRaiser && state.alertRaiser.hasRaisedAlert && state.alertRaiser.canIncreaseLevel))
-			ret.push("increase");
-
-		if (unitEntStates.some(state => state.alertRaiser && state.alertRaiser.hasRaisedAlert))
-			ret.push("end");
-
-		return ret;
+		return unitEntStates.some(state => !!state.alertRaiser) ? ["raise", "end"] : [];
 	},
 	"setupButton": function(data)
 	{
@@ -61,9 +49,6 @@ g_SelectionPanels.Alert = {
 			{
 			case "raise":
 				raiseAlert();
-				return;
-			case "increase":
-				increaseAlertLevel();
 				return;
 			case "end":
 				endOfAlert();
@@ -77,10 +62,6 @@ g_SelectionPanels.Alert = {
 			data.icon.sprite = "stretched:session/icons/bell_level1.png";
 			data.button.tooltip = translate("Raise an alert!");
 			break;
-		case "increase":
-			data.icon.sprite = "stretched:session/icons/bell_level2.png";
-			data.button.tooltip = translate("Increase the alert level to protect more units");
-			break;
 		case "end":
 			data.button.tooltip = translate("End of alert.");
 			data.icon.sprite = "stretched:session/icons/bell_level0.png";
@@ -88,7 +69,7 @@ g_SelectionPanels.Alert = {
 		}
 		data.button.enabled = controlsPlayer(data.player);
 
-		setPanelObjectPosition(data.button, this.getMaxNumberOfItems() - data.i - 1, data.rowLength);
+		setPanelObjectPosition(data.button, this.getMaxNumberOfItems() - data.i, data.rowLength);
 		return true;
 	}
 };
@@ -99,7 +80,7 @@ g_SelectionPanels.Barter = {
 		return 4;
 	},
 	"rowLength": 4,
-	"conflictsWith": ["Alert", "Garrison"],
+	"conflictsWith": ["Garrison"],
 	"getItems": function(unitEntStates)
 	{
 		// If more than `rowLength` resources, don't display icons.

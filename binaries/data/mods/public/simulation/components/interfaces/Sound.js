@@ -1,1 +1,0 @@
-Engine.RegisterInterface("Sound");

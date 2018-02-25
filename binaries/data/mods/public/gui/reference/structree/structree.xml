@@ -31,7 +31,7 @@
 				<translatableAttribute id="caption">Civilization:</translatableAttribute>
 			</object>
 
-			<object name="civSelection" type="dropdown" style="ModernDropDown" size="100%-160 8 100% 34" dropdown_size="350">
+			<object name="civSelection" type="dropdown" style="ModernDropDown" size="100%-160 8 100% 34" dropdown_size="424">
 				<action on="SelectionChange">selectCiv(this.list_data[this.selected]);</action>
 			</object>
 		</object>

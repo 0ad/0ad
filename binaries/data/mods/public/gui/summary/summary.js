@@ -158,7 +158,9 @@ function init(data)
 	initGUIWindow();
 	initPlayerBoxPositions();
 	initGUICharts();
-	initGUILabelsAndButtons();
+	initGUILabels();
+	initGUIButtons();
+
 	selectPanel(Engine.GetGUIObjectByName(g_SelectedPanel));
 	for (let button of g_PanelButtons)
 	{
@@ -496,7 +498,7 @@ function startReplay()
 	});
 }
 
-function initGUILabelsAndButtons()
+function initGUILabels()
 {
 	let assignedState = g_GameData.sim.playerStates[g_GameData.gui.assignedPlayer || -1];
 
@@ -528,11 +530,23 @@ function initGUILabelsAndButtons()
 			"mapName": translate(g_GameData.sim.mapSettings.Name),
 			"mapType": mapSize ? mapSize.Name : (mapType ? mapType.Title : "")
 		});
+}
 
-	Engine.GetGUIObjectByName("replayButton").hidden = g_GameData.gui.isInGame || !g_GameData.gui.replayDirectory;
+function initGUIButtons()
+{
+	let replayButton = Engine.GetGUIObjectByName("replayButton");
+	replayButton.hidden = g_GameData.gui.isInGame || !g_GameData.gui.replayDirectory;
 
-	Engine.GetGUIObjectByName("lobbyButton").tooltip = colorizeHotkey(translate("%(hotkey)s: Toggle the multiplayer lobby in a dialog window."), "lobby");
-	Engine.GetGUIObjectByName("lobbyButton").hidden = g_GameData.gui.isInGame || !Engine.HasXmppClient();
+	let lobbyButton = Engine.GetGUIObjectByName("lobbyButton");
+	lobbyButton.tooltip = colorizeHotkey(translate("%(hotkey)s: Toggle the multiplayer lobby in a dialog window."), "lobby");
+	lobbyButton.hidden = g_GameData.gui.isInGame || !Engine.HasXmppClient();
+
+	// Right-align lobby button
+	let lobbyButtonSize = lobbyButton.size;
+	let lobbyButtonWidth = lobbyButtonSize.right - lobbyButtonSize.left;
+	lobbyButtonSize.right = (replayButton.hidden ? Engine.GetGUIObjectByName("continueButton").size.left : replayButton.size.left) - 10;
+	lobbyButtonSize.left = lobbyButtonSize.right - lobbyButtonWidth;
+	lobbyButton.size = lobbyButtonSize;
 }
 
 function initTeamData()

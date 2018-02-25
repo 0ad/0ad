@@ -4,6 +4,7 @@
   <group>
     <variant frequency="1" name="Siege Tower">
       <animations>
+        <animation file="mechanical/hele_siege_tower_idle.dae" name="Idle" speed="15"/>
         <animation file="mechanical/hele_siege_tower_move.dae" name="Walk" speed="15"/>
         <animation file="mechanical/hele_siege_tower_move.dae" name="Run" speed="24"/>
         <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
@@ -13,7 +14,9 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
-      <textures><texture file="structural/hele_siege_tower.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_siege_tower.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

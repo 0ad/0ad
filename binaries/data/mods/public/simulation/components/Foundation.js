@@ -246,7 +246,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 		// Switch foundation to scaffold variant
 		var cmpFoundationVisual = Engine.QueryInterface(this.entity, IID_Visual);
 		if (cmpFoundationVisual)
-			cmpFoundationVisual.SelectAnimation("scaffold", false, 1.0, "");
+			cmpFoundationVisual.SelectAnimation("scaffold", false, 1.0);
 
 		// Create preview entity and copy various parameters from the foundation
 		if (cmpFoundationVisual && cmpFoundationVisual.HasConstructionPreview())
