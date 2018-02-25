@@ -63,6 +63,7 @@ const oElephantInfant = "gaia/fauna_elephant_african_infant";
 const oLion = "gaia/fauna_lion";
 const oLioness = "gaia/fauna_lioness";
 const oHawk = "gaia/fauna_hawk";
+const oPyramid = "structures/kush_pyramid_large";
 
 const aRock = actorTemplate("geology/stone_savanna_med");
 const aBushes = [
@@ -97,6 +98,7 @@ const clForest = g_Map.createTileClass();
 const clRock = g_Map.createTileClass();
 const clMetal = g_Map.createTileClass();
 const clFood = g_Map.createTileClass();
+const clPyramid = g_Map.createTileClass();
 
 g_Map.log("Loading heightmaps");
 const heightmapLand = convertHeightmap1Dto2D(Engine.LoadHeightmapImage("maps/random/lower_nubia_heightmap.png"));
@@ -108,6 +110,8 @@ for (let x = 0; x < heightmapLand.length; ++x)
 {
 	heightmapCombined[x] = new Float32Array(heightmapLand.length);
 	for (let y = 0; y < heightmapLand.length; ++y)
+		// Reduce ahistorical Lake Nasser and lakes in the valleys west of the Nile.
+		// The heightmap does not correlate with water distribution in this arid climate at all.
 		heightmapCombined[x][y] = heightmapLandThreshold[x][y] || heightmapWaterThreshold[x][y] ? heightmapLand[x][y] : minHeight;
 }
 
@@ -284,6 +288,14 @@ createMines(
 	clMetal,
 	scaleByMapSize(10, 30));
 
+g_Map.log("Creating pyramid");
+createObjectGroups(
+	new SimpleGroup([new SimpleObject(oPyramid, 1, 1, 1, 1)], true, clPyramid),
+	0,
+	[new NearTileClassConstraint(clWater, 10), avoidClasses(clWater, 6, clCliff, 6, clPlayer, 30, clMetal, 6, clRock, 6)],
+	1,
+	500);
+
 g_Map.log("Creating forests");
 createObjectGroups(
 	new SimpleGroup([new RandomObject(oPalms, 1, 2, 1, 1)], true, clForest),
@@ -291,19 +303,19 @@ createObjectGroups(
 	[
 		new NearTileClassConstraint(clWater, scaleByMapSize(1, 8)),
 		new HeightConstraint(heightNileForests, Infinity),
-		avoidClasses(clWater, 0, clCliff, 0, clForest, 1, clPlayer, 12, clBaseResource, 5)
+		avoidClasses(clWater, 0, clCliff, 0, clForest, 1, clPlayer, 12, clBaseResource, 5, clPyramid, 6)
 	],
 	scaleByMapSize(100, 1000),
 	200);
 
 createStragglerTrees(
 	[oAcacia, oTreeDead],
-	avoidClasses(clWater, 10, clCliff, 1, clPlayer, 12, clBaseResource, 5),
+	avoidClasses(clWater, 10, clCliff, 1, clPlayer, 12, clBaseResource, 5, clPyramid, 6),
 	clForest,
 	scaleByMapSize(15, 400),
 	200);
 
-const avoidCollisions = avoidClasses(clPlayer, 12, clBaseResource, 5, clWater, 1, clForest, 1, clRock, 4, clMetal, 4, clFood, 6, clCliff, 0);
+const avoidCollisions = avoidClasses(clPlayer, 12, clBaseResource, 5, clWater, 1, clForest, 1, clRock, 4, clMetal, 4, clFood, 6, clCliff, 0, clPyramid, 6);
 
 g_Map.log("Creating gazelles");
 createObjectGroups(
@@ -373,10 +385,5 @@ setPPEffect("hdr");
 setPPContrast(0.67);
 setPPSaturation(0.42);
 setPPBloom(0.23);
-if (false)
-createArea(
-	new MapBoundsPlacer(),
-	new TerrainPainter("blue"),
-	new NearTileClassConstraint(clWater, 0));
 
 g_Map.ExportMap();
