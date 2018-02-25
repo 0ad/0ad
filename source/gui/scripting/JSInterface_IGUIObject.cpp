@@ -156,6 +156,17 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			break;
 		}
 
+		case GUIST_uint:
+		{
+			u32 value;
+			GUI<u32>::GetSetting(e, propName, value);
+			if (value >= std::numeric_limits<u32>::max())
+				LOGERROR("Integer overflow on converting to GUIST_uint");
+			else
+				vp.set(JS::Int32Value(value));
+			break;
+		}
+
 		case GUIST_float:
 		{
 			float value;
@@ -447,6 +458,19 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		else
 		{
 			JS_ReportError(cx, "Cannot convert value to int");
+			return false;
+		}
+		break;
+	}
+
+	case GUIST_uint:
+	{
+		u32 value;
+		if (ScriptInterface::FromJSVal(cx, vp, value))
+			GUI<u32>::SetSetting(e, propName, value);
+		else
+		{
+			JS_ReportError(cx, "Cannot convert value to u32");
 			return false;
 		}
 		break;

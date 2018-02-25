@@ -47,6 +47,13 @@ bool __ParseString<int>(const CStrW& Value, int& Output)
 }
 
 template <>
+bool __ParseString<u32>(const CStrW& Value, u32& Output)
+{
+	Output = Value.ToUInt();
+	return true;
+}
+
+template <>
 bool __ParseString<float>(const CStrW& Value, float& Output)
 {
 	Output = Value.ToFloat();

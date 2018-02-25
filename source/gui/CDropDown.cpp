@@ -31,6 +31,7 @@ CDropDown::CDropDown()
 	AddSetting(GUIST_float,					"button_width");
 	AddSetting(GUIST_float,					"dropdown_size");
 	AddSetting(GUIST_float,					"dropdown_buffer");
+	AddSetting(GUIST_uint,					"minimum_visible_items");
 //	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_CStrW,					"sound_closed");
 	AddSetting(GUIST_CStrW,					"sound_disabled");
@@ -85,6 +86,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 			Message.value == "absolute" ||
 			Message.value == "dropdown_size" ||
 			Message.value == "dropdown_buffer" ||
+			Message.value == "minimum_visible_items" ||
 			Message.value == "scrollbar_style" ||
 			Message.value == "button_width")
 		{
@@ -389,23 +391,63 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 
 void CDropDown::SetupListRect()
 {
-	float size, buffer;
+	extern int g_yres;
+	extern float g_GuiScale;
+	float size, buffer, yres;
+	yres = g_yres / g_GuiScale;
+	u32 minimumVisibleItems;
 	GUI<float>::GetSetting(this, "dropdown_size", size);
 	GUI<float>::GetSetting(this, "dropdown_buffer", buffer);
+	GUI<u32>::GetSetting(this, "minimum_visible_items", minimumVisibleItems);
 
-	if (m_ItemsYPositions.empty() || m_ItemsYPositions.back() > size)
+	if (m_ItemsYPositions.empty())
 	{
-		m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom+buffer,
-								 m_CachedActualSize.right, m_CachedActualSize.bottom+buffer + size);
+		m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom + buffer,
+		                         m_CachedActualSize.right, m_CachedActualSize.bottom + buffer + size);
+		m_HideScrollBar = false;
+	}
+	// Too many items so use a scrollbar
+	else if (m_ItemsYPositions.back() > size)
+	{
+		// Place items below if at least some items can be placed below
+		if (m_CachedActualSize.bottom + buffer + size <= yres)
+			m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom + buffer,
+			                         m_CachedActualSize.right, m_CachedActualSize.bottom + buffer + size);
+		else if ((m_ItemsYPositions.size() > minimumVisibleItems && yres - m_CachedActualSize.bottom - buffer >= m_ItemsYPositions[minimumVisibleItems]) ||
+		         m_CachedActualSize.top < yres - m_CachedActualSize.bottom)
+			m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom + buffer,
+			                         m_CachedActualSize.right, yres);
+		// Not enough space below, thus place items above
+		else
+			m_CachedListRect = CRect(m_CachedActualSize.left, std::max(0.f, m_CachedActualSize.top - buffer - size),
+			                         m_CachedActualSize.right, m_CachedActualSize.top - buffer);
 
 		m_HideScrollBar = false;
 	}
 	else
 	{
-		m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom+buffer,
-								 m_CachedActualSize.right, m_CachedActualSize.bottom+buffer + m_ItemsYPositions.back());
-
-		m_HideScrollBar = true;
+		// Enough space below, no scrollbar needed
+		if (m_CachedActualSize.bottom + buffer + m_ItemsYPositions.back() <= yres)
+		{
+			m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom + buffer,
+			                         m_CachedActualSize.right, m_CachedActualSize.bottom + buffer + m_ItemsYPositions.back());
+			m_HideScrollBar = true;
+		}
+		// Enough space below for some items, but not all, so place items below and use a scrollbar
+		else if ((m_ItemsYPositions.size() > minimumVisibleItems && yres - m_CachedActualSize.bottom - buffer >= m_ItemsYPositions[minimumVisibleItems]) ||
+		         m_CachedActualSize.top < yres - m_CachedActualSize.bottom)
+		{
+			m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom + buffer,
+			                         m_CachedActualSize.right, yres);
+			m_HideScrollBar = false;
+		}
+		// Not enough space below, thus place items above. Hide the scrollbar accordingly
+		else
+		{
+			m_CachedListRect = CRect(m_CachedActualSize.left, std::max(0.f, m_CachedActualSize.top - buffer - m_ItemsYPositions.back()),
+			                         m_CachedActualSize.right, m_CachedActualSize.top - buffer);
+			m_HideScrollBar = m_CachedActualSize.top > m_ItemsYPositions.back() + buffer;
+		}
 	}
 }
 
@@ -421,9 +463,8 @@ bool CDropDown::MouseOver()
 
 	if (m_Open)
 	{
-		CRect rect(m_CachedActualSize.left, m_CachedActualSize.top,
-				   m_CachedActualSize.right, GetListRect().bottom);
-
+		CRect rect(m_CachedActualSize.left, std::min(m_CachedActualSize.top, GetListRect().top),
+		           m_CachedActualSize.right, std::max(m_CachedActualSize.bottom, GetListRect().bottom));
 		return rect.PointInside(GetMousePos());
 	}
 	else

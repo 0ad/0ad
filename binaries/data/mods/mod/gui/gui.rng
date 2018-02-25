@@ -215,6 +215,11 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="minimum_visible_items">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="enabled">
           <ref name="bool"/>
         </attribute>
