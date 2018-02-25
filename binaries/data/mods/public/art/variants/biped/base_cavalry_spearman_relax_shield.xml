@@ -1,10 +1,7 @@
-<variant name="Base" frequency="1">
+<?xml version="1.0" encoding="UTF-8"?>
+<variant file="biped/rider/cavalry/base_spearman_shield_normal_attack.xml">
   <animations>
     <animation file="biped/rider_idle_shield_relax_spear.dae" name="idle" speed="98"/>
     <animation file="biped/rider_walk_shield_relax_spear.dae" name="Walk" speed="7"/>
-    <animation file="biped/rider_run_shield.dae" name="Run" speed="11"/>
-    <animation file="biped/rider_attack_shield_stab_long.dae" event="0.5" name="attack_melee" id="attack1" speed="350"/>
-    <animation file="biped/rider_attack_shield_stab.dae" event="0.5" name="attack_melee" id="attack2" speed="350"/>
-    <animation file="biped/rider_attack_shield_stab.dae" event="0.5" name="attack_melee" id="attack3" speed="350"/>
   </animations>
 </variant>
