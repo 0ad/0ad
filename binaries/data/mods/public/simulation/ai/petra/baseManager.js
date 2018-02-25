@@ -86,7 +86,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 	this.anchor.setMetadata(PlayerID, "base", this.ID);
 	this.anchor.setMetadata(PlayerID, "baseAnchor", true);
 	this.buildings.updateEnt(this.anchor);
-	this.accessIndex = gameState.ai.accessibility.getAccessValue(this.anchor.position());
+	this.accessIndex = m.getLandAccess(gameState, this.anchor);
 	gameState.ai.HQ.resetBaseCache();
 	// in case some of our other bases were destroyed, reaffect these destroyed bases to this base
 	for (let base of gameState.ai.HQ.baseManagers)
@@ -153,16 +153,10 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 				return;
 			if (supply.hasClass("Field"))     // fields are treated separately
 				return;
-			if (supply.resourceSupplyType().generic === "treasure")  // treasures are treated separately
+			if (supply.resourceSupplyType().generic == "treasure")  // treasures are treated separately
 				return;
 			// quick accessibility check
-			let access = supply.getMetadata(PlayerID, "access");
-			if (!access)
-			{
-				access = gameState.ai.accessibility.getAccessValue(supply.position());
-				supply.setMetadata(PlayerID, "access", access);
-			}
-			if (access !== accessIndex)
+			if (m.getLandAccess(gameState, supply) != accessIndex)
 				return;
 
 			let dist = API3.SquareVectorDistance(supply.position(), dropsitePos);
@@ -975,10 +969,6 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 		}
 		return;
 	}
-
-	if (this.anchor.getMetadata(PlayerID, "access") != this.accessIndex)
-		API3.warn("Petra baseManager " + this.ID + " problem with accessIndex " + this.accessIndex +
-			  " while metadata access is " + this.anchor.getMetadata(PlayerID, "access"));
 
 	Engine.ProfileStart("Base update - base " + this.ID);
 

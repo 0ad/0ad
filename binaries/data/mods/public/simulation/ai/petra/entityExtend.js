@@ -87,9 +87,12 @@ m.getMaxStrength = function(ent, againstClass)
 	return strength * ent.maxHitpoints() / 100.0;
 };
 
-/** Get access and cache it in metadata if not already done */
+/** Get access and cache it (except for units as it can change) in metadata if not already done */
 m.getLandAccess = function(gameState, ent)
 {
+	if (ent.hasClass("Unit"))
+		return gameState.ai.accessibility.getAccessValue(ent.position());
+
 	let access = ent.getMetadata(PlayerID, "access");
 	if (!access)
 	{
@@ -114,6 +117,7 @@ m.getLandAccess = function(gameState, ent)
 	return access;
 };
 
+/** Sea access always cached as it never changes */
 m.getSeaAccess = function(gameState, ent)
 {
 	let sea = ent.getMetadata(PlayerID, "sea");
@@ -140,15 +144,9 @@ m.getSeaAccess = function(gameState, ent)
 	return sea;
 };
 
-m.setAccessIndices = function(gameState, ent)
+m.setSeaAccess = function(gameState, ent)
 {
-	m.getLandAccess(gameState, ent);
 	m.getSeaAccess(gameState, ent);
-};
-
-m.setLandAccess = function(gameState, ent)
-{
-	m.getLandAccess(gameState, ent);
 };
 
 /** Decide if we should try to capture (returns true) or destroy (return false) */
@@ -220,8 +218,9 @@ m.returnResources = function(gameState, ent)
 
 	let closestDropsite;
 	let distmin = Math.min();
-	let access = gameState.ai.accessibility.getAccessValue(ent.position());
-	let dropsiteCollection = gameState.playerData.hasSharedDropsites ? gameState.getAnyDropsites(resource) : gameState.getOwnDropsites(resource);
+	let access = m.getLandAccess(gameState, ent);
+	let dropsiteCollection = gameState.playerData.hasSharedDropsites ?
+	                         gameState.getAnyDropsites(resource) : gameState.getOwnDropsites(resource);
 	for (let dropsite of dropsiteCollection.values())
 	{
 		if (!dropsite.position())
@@ -230,13 +229,7 @@ m.returnResources = function(gameState, ent)
 		// owner !== PlayerID can only happen when hasSharedDropsites === true, so no need to test it again
 		if (owner !== PlayerID && (!dropsite.isSharedDropsite() || !gameState.isPlayerMutualAlly(owner)))
 			continue;
-		let dropsiteAccess = dropsite.getMetadata(PlayerID, "access");
-		if (!dropsiteAccess)
-		{
-			dropsiteAccess = gameState.ai.accessibility.getAccessValue(dropsite.position());
-			dropsite.setMetadata(PlayerID, "access", dropsiteAccess);
-		}
-		if (dropsiteAccess !== access)
+		if (m.getLandAccess(gameState, dropsite) != access)
 			continue;
 		let dist = API3.SquareVectorDistance(ent.position(), dropsite.position());
 		if (dist > distmin)
@@ -283,7 +276,7 @@ m.getBestBase = function(gameState, ent, onlyConstructedBase = false)
 		if (!base.anchor || onlyConstructedBase && base.anchor.foundationProgress() !== undefined)
 			continue;
 		let dist = API3.SquareVectorDistance(base.anchor.position(), pos);
-		if (base.accessIndex !== accessIndex)
+		if (base.accessIndex != accessIndex)
 			dist += 100000000;
 		if (dist > distmin)
 			continue;
@@ -349,7 +342,7 @@ m.gatherTreasure = function(gameState, ent, water = false)
 		return false;
 	let treasureFound;
 	let distmin = Math.min();
-	let access = gameState.ai.accessibility.getAccessValue(ent.position(), water);
+	let access = water ? m.getSeaAccess(gameState, ent) : m.getLandAccess(gameState, ent);
 	for (let treasure of gameState.ai.HQ.treasures.values())
 	{
 		if (m.IsSupplyFull(gameState, treasure))

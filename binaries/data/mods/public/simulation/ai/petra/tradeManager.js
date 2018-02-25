@@ -126,7 +126,7 @@ m.TradeManager.prototype.updateTrader = function(gameState, ent)
 	// TODO if the trader is idle and has workOrders, restore them to avoid losing the current gain
 
 	Engine.ProfileStart("Trade Manager");
-	let access = ent.hasClass("Ship") ? ent.getMetadata(PlayerID, "sea") : gameState.ai.accessibility.getAccessValue(ent.position());
+	let access = ent.hasClass("Ship") ? m.getSeaAccess(gameState, ent) : m.getLandAccess(gameState, ent);
 	let route = this.checkRoutes(gameState, access);
 	if (!route)
 	{
@@ -461,19 +461,19 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 			{
 				if (accessIndex)
 				{
-					if (gameState.ai.accessibility.regionType[accessIndex] === "water" && sea === accessIndex)
+					if (gameState.ai.accessibility.regionType[accessIndex] == "water" && sea == accessIndex)
 					{
 						if (gain < bestIndex.gain)
 							continue;
 						bestIndex = { "source": m1, "target": m2, "gain": gain, "land": land, "sea": sea };
 					}
-					else if (gameState.ai.accessibility.regionType[accessIndex] === "land" && land === accessIndex)
+					else if (gameState.ai.accessibility.regionType[accessIndex] == "land" && land == accessIndex)
 					{
 						if (gain < bestIndex.gain)
 							continue;
 						bestIndex = { "source": m1, "target": m2, "gain": gain, "land": land, "sea": sea };
 					}
-					else if (gameState.ai.accessibility.regionType[accessIndex] === "land")
+					else if (gameState.ai.accessibility.regionType[accessIndex] == "land")
 					{
 						if (gain < bestLand.gain)
 							continue;
@@ -528,7 +528,7 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 	{
 		if (bestIndex.gain > 0)
 			return bestIndex;
-		else if (gameState.ai.accessibility.regionType[accessIndex] === "land" && bestLand.gain > 0)
+		else if (gameState.ai.accessibility.regionType[accessIndex] == "land" && bestLand.gain > 0)
 			return bestLand;
 		return false;
 	}
@@ -549,7 +549,7 @@ m.TradeManager.prototype.checkTrader = function(gameState, ent)
 		return;
 	}
 
-	let access = ent.hasClass("Ship") ? ent.getMetadata(PlayerID, "sea") : gameState.ai.accessibility.getAccessValue(ent.position());
+	let access = ent.hasClass("Ship") ? m.getSeaAccess(gameState, ent) : m.getLandAccess(gameState, ent);
 	let possibleRoute = this.checkRoutes(gameState, access);
 	// Warning:  presentRoute is from metadata, so contains entity ids
 	if (!possibleRoute ||

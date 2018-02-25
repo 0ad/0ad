@@ -472,7 +472,7 @@ m.GameTypeManager.prototype.pickCriticalEntRetreatLocation = function(gameState,
 	// Couldn't find a place to garrison, so the ent will flee from attacks
 	if (!criticalEnt.hasClass("Relic") && criticalEnt.getStance() != "passive")
 		criticalEnt.setStance("passive");
-	let accessIndex = gameState.ai.accessibility.getAccessValue(criticalEnt.position());
+	let accessIndex = m.getLandAccess(gameState, criticalEnt);
 	let bestBase = m.getBestBase(gameState, criticalEnt, true);
 	if (bestBase.accessIndex == accessIndex)
 	{
@@ -537,8 +537,8 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 	if (guardEnt.getMetadata(PlayerID, "guardedEnt") != criticalEntId)
 		guardEnt.setMetadata(PlayerID, "guardedEnt", criticalEntId);
 
-	let guardEntAccess = gameState.ai.accessibility.getAccessValue(guardEnt.position());
-	let criticalEntAccess = gameState.ai.accessibility.getAccessValue(criticalEnt.position());
+	let guardEntAccess = m.getLandAccess(gameState, guardEnt);
+	let criticalEntAccess = m.getLandAccess(gameState, criticalEnt);
 	if (guardEntAccess == criticalEntAccess)
 	{
 		let queued = m.returnResources(gameState, guardEnt);
@@ -661,7 +661,7 @@ m.GameTypeManager.prototype.captureGaiaRelic = function(gameState, relic)
 	if (capture > sumCapturePoints / 50)
 		return;
 	let relicPosition = relic.position();
-	let access = gameState.ai.accessibility.getAccessValue(relicPosition);
+	let access = m.getLandAccess(gameState, relic);
 	let units = gameState.getOwnUnits().filter(ent => {
 			if (!ent.position() || !ent.canCapture(relic))
 				return false;
@@ -678,7 +678,7 @@ m.GameTypeManager.prototype.captureGaiaRelic = function(gameState, relic)
 				if (attack && (attack.state != "unexecuted" || attack.type == "Raid"))
 					return false;
 			}
-			if (gameState.ai.accessibility.getAccessValue(ent.position()) != access)
+			if (m.getLandAccess(gameState, ent) != access)
 				return false;
 			return true;
 		}).filterNearest(relicPosition);

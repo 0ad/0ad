@@ -341,7 +341,7 @@ m.DefenseArmy.prototype.assignUnit = function(gameState, entID)
 	else
 		return false;
 
-	let ownIndex = gameState.ai.accessibility.getAccessValue(ent.position());
+	let ownIndex = m.getLandAccess(gameState, ent);
 	let foeEnt = gameState.getEntityById(idFoe);
 	let foePosition = foeEnt.position();
 	let foeIndex = gameState.ai.accessibility.getAccessValue(foePosition);

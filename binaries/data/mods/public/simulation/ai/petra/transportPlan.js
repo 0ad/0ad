@@ -470,7 +470,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		if (this.debug > 1)
 			API3.warn(">>> transport " + this.ID + " reloading failed ... <<<");
 		// destroy the unit if inaccessible otherwise leave it there
-		let index = gameState.ai.accessibility.getAccessValue(ent.position());
+		let index = m.getLandAccess(gameState, ent);
 		if (gameState.ai.HQ.landRegions[index])
 		{
 			if (this.debug > 1)
@@ -518,7 +518,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 				ent.destroy();
 			}
 		}
-		else if (gameState.ai.accessibility.getAccessValue(ent.position()) != this.endIndex)
+		else if (m.getLandAccess(gameState, ent) != this.endIndex)
 		{
 			// unit unloaded on a wrong region - try to regarrison it and move a bit the ship
 			if (this.debug > 1)
