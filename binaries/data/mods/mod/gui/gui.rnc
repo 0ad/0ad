@@ -55,6 +55,7 @@ ex_settings =
   attribute clip { bool }?&
   attribute dropdown_size { xsd:decimal }?&
   attribute dropdown_buffer { xsd:decimal }?&
+  attribute minimum_visible_items { xsd:nonNegativeInteger }?&
   attribute enabled { bool }?&
   attribute font { text }?&
   attribute fov_wedge_color { ccolor }?&

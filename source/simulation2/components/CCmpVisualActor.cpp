@@ -447,15 +447,17 @@ public:
 		m_AnimDesync = fixed::FromInt(1)/20; // TODO: make this an argument
 		m_AnimSyncRepeatTime = fixed::Zero();
 		m_AnimSyncOffsetTime = fixed::Zero();
-		
-		CmpPtr<ICmpSound> cmpSound(GetSimContext(), m_Unit->GetID());
-		if(cmpSound)
-			m_SoundGroup = cmpSound->GetSoundGroup(wstring_from_utf8(m_AnimName));
 
 		SetVariant("animation", m_AnimName);
 
-		if (m_Unit && m_Unit->GetAnimation())
-			m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
+		if (!m_Unit || !m_Unit->GetAnimation() || !m_Unit->GetID())
+			return;
+
+		CmpPtr<ICmpSound> cmpSound(GetSimContext(), m_Unit->GetID());
+		if (cmpSound)
+			m_SoundGroup = cmpSound->GetSoundGroup(wstring_from_utf8(m_AnimName));
+
+		m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());	
 	}
 
 	virtual void ReplaceMoveAnimation(const std::string& name, const std::string& replace)

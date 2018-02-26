@@ -156,9 +156,9 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 
 	// Assign our initial docks and ships
 	for (let ship of this.ships.values())
-		this.setShipIndex(gameState, ship);
+		m.setSeaAccess(gameState, ship);
 	for (let dock of this.docks.values())
-		m.setAccessIndices(gameState, dock);
+		m.setSeaAccess(gameState, dock);
 };
 
 m.NavalManager.prototype.updateFishingBoats = function(sea, num)
@@ -173,12 +173,6 @@ m.NavalManager.prototype.resetFishingBoats = function(gameState, sea)
 		this.wantedFishShips[sea] = 0;
 	else
 		this.wantedFishShips.fill(0);
-};
-
-m.NavalManager.prototype.setShipIndex = function(gameState, ship)
-{
-	let sea = gameState.ai.accessibility.getAccessValue(ship.position(), true);
-	ship.setMetadata(PlayerID, "sea", sea);
 };
 
 /** Get the sea, cache it if not yet done and check if in opensea */
@@ -251,10 +245,10 @@ m.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
 {
 	let seas = gameState.ai.accessibility.regionLinks[region].slice();
 	this.docks.forEach(function (dock) {
-		if (!dock.hasClass("Dock") || dock.getMetadata(PlayerID, "access") !== region)
+		if (!dock.hasClass("Dock") || m.getLandAccess(gameState, dock) != region)
 			return;
-		let i = seas.indexOf(dock.getMetadata(PlayerID, "sea"));
-		if (i !== -1)
+		let i = seas.indexOf(m.getSeaAccess(gameState, dock));
+		if (i != -1)
 			seas.splice(i--,1);
 	});
 	return seas;
@@ -268,7 +262,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
 		if (ent && ent.isOwn(PlayerID) && ent.foundationProgress() !== undefined && (ent.hasClass("Dock") || ent.hasClass("Shipyard")))
-			m.setAccessIndices(gameState, ent);
+			m.setSeaAccess(gameState, ent);
 	}
 
 	for (let evt of events.TrainingFinished)
@@ -280,7 +274,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			let ent = gameState.getEntityById(entId);
 			if (!ent || !ent.hasClass("Ship") || !ent.isOwn(PlayerID))
 				continue;
-			this.setShipIndex(gameState, ent);
+			m.setSeaAccess(gameState, ent);
 		}
 	}
 
@@ -297,7 +291,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		let shipId = evt.entityObj.id();
 		if (this.Config.debug > 1)
 			API3.warn("one ship " + shipId + " from plan " + plan.ID + " destroyed during " + plan.state);
-		if (plan.state === "boarding")
+		if (plan.state == "boarding")
 		{
 			// just reset the units onBoard metadata and wait for a new ship to be assigned to this plan
 			plan.units.forEach(function (ent) {
@@ -307,14 +301,14 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			});
 			plan.needTransportShips = !plan.transportShips.hasEntities();
 		}
-		else if (plan.state === "sailing")
+		else if (plan.state == "sailing")
 		{
 			let endIndex = plan.endIndex;
 			for (let ent of plan.units.values())
 			{
 				if (!ent.position())  // unit from another ship of this plan ... do nothing
 					continue;
-				let access = gameState.ai.accessibility.getAccessValue(ent.position());
+				let access = m.getLandAccess(gameState, ent);
 				let endPos = ent.getMetadata(PlayerID, "endPos");
 				ent.setMetadata(PlayerID, "transport", undefined);
 				ent.setMetadata(PlayerID, "onBoard", undefined);
@@ -323,7 +317,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 				// otherwise, we should require another transport
 				// TODO if attacking and no more ships available, remove the units from the attack
 				// to avoid delaying it too much
-				if (access !== endIndex)
+				if (access != endIndex)
 					this.requireTransport(gameState, ent, access, endIndex, endPos);
 			}
 		}
@@ -335,7 +329,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
 		if (ent && (ent.hasClass("Dock") || ent.hasClass("Shipyard")))
-			m.setAccessIndices(gameState, ent);
+			m.setSeaAccess(gameState, ent);
 	}
 };
 

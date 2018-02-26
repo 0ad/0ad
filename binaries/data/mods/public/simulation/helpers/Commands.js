@@ -152,6 +152,14 @@ var g_Commands = {
 		});
 	},
 
+	"walk-custom": function(player, cmd, data)
+	{
+		for (let ent in data.entities)
+			GetFormationUnitAIs([data.entities[ent]], player).forEach(cmpUnitAI => {
+				cmpUnitAI.Walk(cmd.targetPositions[ent].x, cmd.targetPositions[ent].y, cmd.queued);
+			});
+	},
+
 	"walk-to-range": function(player, cmd, data)
 	{
 		// Only used by the AI
@@ -170,6 +178,15 @@ var g_Commands = {
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.targetClasses, allowCapture, cmd.queued);
 		});
+	},
+
+	"attack-walk-custom": function(player, cmd, data)
+	{
+		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
+		for (let ent in data.entities)
+			GetFormationUnitAIs([data.entities[ent]], player).forEach(cmpUnitAI => {
+				cmpUnitAI.WalkAndFight(cmd.targetPositions[ent].x, cmd.targetPositions[ent].y, cmd.targetClasses, allowCapture, cmd.queued);
+			});
 	},
 
 	"attack": function(player, cmd, data)

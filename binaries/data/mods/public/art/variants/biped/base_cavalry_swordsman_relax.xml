@@ -1,10 +1,7 @@
-<variant name="Base" frequency="1">
+<?xml version="1.0" encoding="UTF-8"?>
+<variant file="biped/rider/cavalry/base_swordsman_no_shield.xml">
   <animations>
     <animation file="biped/rider_idle_relax.dae" name="idle" speed="58"/>
     <animation file="biped/rider_walk_relax.dae" name="Walk" speed="7"/>
-    <animation file="biped/rider_run.dae" name="Run" speed="11"/>
-    <animation file="biped/rider_attack_stab_long.dae" event="0.5" name="attack_melee" id="attack1" speed="140"/>
-    <animation file="biped/rider_attack_cut.dae" event="0.5" name="attack_melee" id="attack2" speed="140"/>
-    <animation file="biped/rider_attack_cut_b.dae" event="0.5" name="attack_melee" id="attack3" speed="140"/>
   </animations>
 </variant>

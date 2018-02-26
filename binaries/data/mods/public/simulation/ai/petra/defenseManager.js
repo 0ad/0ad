@@ -707,7 +707,7 @@ m.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target, dat
 		if (dist >= range*range)
 			return false;
 	}
-	let index = gameState.ai.accessibility.getAccessValue(target.position());
+	let access = m.getLandAccess(gameState, target);
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	let garrisonArrowClasses = target.getGarrisonArrowClasses();
 	let typeGarrison = data.type || "protection";
@@ -739,7 +739,7 @@ m.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target, dat
 				if (typeGarrison != "decay" && subrole && (subrole == "completing" || subrole == "walking" || subrole == "attacking"))
 					return false;
 			}
-			if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)
+			if (m.getLandAccess(gameState, ent) != access)
 				return false;
 			return true;
 		}).filterNearest(target.position());
@@ -769,7 +769,7 @@ m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 {
 	let distmin = Math.min();
 	let nearest;
-	let unitAccess = gameState.ai.accessibility.getAccessValue(unit.position());
+	let unitAccess = m.getLandAccess(gameState, unit);
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	for (let ent of gameState.getAllyStructures().values())
 	{
@@ -803,7 +803,7 @@ m.DefenseManager.prototype.garrisonAttackedUnit = function(gameState, unit, emer
 {
 	let distmin = Math.min();
 	let nearest;
-	let unitAccess = gameState.ai.accessibility.getAccessValue(unit.position());
+	let unitAccess = m.getLandAccess(gameState, unit);
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	for (let ent of gameState.getAllyStructures().values())
 	{
@@ -869,12 +869,9 @@ m.DefenseManager.prototype.switchToAttack = function(gameState, army)
 		for (let entId of army.ownEntities)
 		{
 			let ent = gameState.getEntityById(entId);
-			if (!ent)
+			if (!ent || !ent.position() || m.getLandAccess(gameState, ent) != targetAccess)
 				continue;
-			let pos = ent.position();
-			if (!pos || gameState.ai.accessibility.getAccessValue(pos) !== targetAccess)
-				continue;
-			if (API3.SquareVectorDistance(targetPos, pos) > 14400)
+			if (API3.SquareVectorDistance(targetPos, ent.position()) > 14400)
 				continue;
 			gameState.ai.HQ.attackManager.switchDefenseToAttack(gameState, target, { "armyID": army.ID, "uniqueTarget": true });
 			return;

@@ -27,6 +27,7 @@ to handle every possible type.
 
 TYPE(bool)
 TYPE(int)
+TYPE(uint)
 TYPE(float)
 TYPE(CColor)
 TYPE(CClientArea)

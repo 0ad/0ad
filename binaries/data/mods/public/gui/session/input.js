@@ -30,6 +30,8 @@ const INPUT_PRESELECTEDACTION = 7;
 const INPUT_BUILDING_WALL_CLICK = 8;
 const INPUT_BUILDING_WALL_PATHING = 9;
 const INPUT_MASSTRIBUTING = 10;
+const INPUT_UNIT_POSITION_START = 11;
+const INPUT_UNIT_POSITION = 12;
 
 var inputState = INPUT_NORMAL;
 
@@ -38,6 +40,27 @@ const INVALID_ENTITY = 0;
 var mouseX = 0;
 var mouseY = 0;
 var mouseIsOverObject = false;
+
+/**
+ * Containing the ingame position which span the line.
+ */
+var g_FreehandSelection_InputLine = [];
+
+/**
+ * Minimum squared distance when a mouse move is called a drag.
+ */
+const g_FreehandSelection_ResolutionInputLineSquared = 1;
+
+/**
+ * Minimum length a dragged line should have to use the freehand selection.
+ */
+const g_FreehandSelection_MinLengthOfLine = 8;
+
+/**
+ * To start the freehandSelection function you need a minimum number of units.
+ * Minimum must be 2, for better performance you could set it higher.
+ */
+const g_FreehandSelection_MinNumberOfUnits = 2;
 
 /**
  * Number of pixels the mouse can move before the action is considered a drag.
@@ -525,6 +548,16 @@ function handleInputBeforeGui(ev, hoveredObject)
 		}
 		break;
 
+	case INPUT_UNIT_POSITION:
+		switch (ev.type)
+		{
+		case "mousemotion":
+			return positionUnitsFreehandSelectionMouseMove(ev);
+		case "mousebuttonup":
+			return positionUnitsFreehandSelectionMouseUp(ev);
+		}
+		break;
+
 	case INPUT_BUILDING_CLICK:
 		switch (ev.type)
 		{
@@ -817,10 +850,8 @@ function handleInputAfterGui(ev)
 			}
 			else if (ev.button == SDL_BUTTON_RIGHT)
 			{
-				var action = determineAction(ev.x, ev.y);
-				if (!action)
-					break;
-				return doAction(action, ev);
+				g_DragStart = new Vector2D(ev.x, ev.y);
+				inputState = INPUT_UNIT_POSITION_START;
 			}
 			break;
 
@@ -982,6 +1013,29 @@ function handleInputAfterGui(ev)
 		}
 		break;
 
+	case INPUT_UNIT_POSITION_START:
+		switch (ev.type)
+		{
+		case "mousemotion":
+			// If the mouse moved further than a limit, switch to unit position mode
+			if (g_DragStart.distanceToSquared(ev) >= Math.square(g_MaxDragDelta))
+			{
+				inputState = INPUT_UNIT_POSITION;
+				return false;
+			}
+			break;
+		case "mousebuttonup":
+			inputState = INPUT_NORMAL;
+			if (ev.button == SDL_BUTTON_RIGHT)
+			{
+				let action = determineAction(ev.x, ev.y);
+				if (action)
+					return doAction(action, ev);
+			}
+			break;
+		}
+		break;
+
 	case INPUT_BUILDING_PLACEMENT:
 		switch (ev.type)
 		{
@@ -1104,6 +1158,78 @@ function doAction(action, ev)
 
 	error("Invalid action.type " + action.type);
 	return false;
+}
+
+function positionUnitsFreehandSelectionMouseMove(ev)
+{
+	// Converting the input line into a List of points.
+	// For better performance the points must have a minimum distance to each other.
+	let target = Vector2D.from3D(Engine.GetTerrainAtScreenPoint(ev.x, ev.y));
+	if (!g_FreehandSelection_InputLine.length ||
+	    target.distanceToSquared(g_FreehandSelection_InputLine[g_FreehandSelection_InputLine.length - 1]) >=
+	    g_FreehandSelection_ResolutionInputLineSquared)
+		g_FreehandSelection_InputLine.push(target);
+	return false;
+}
+
+function positionUnitsFreehandSelectionMouseUp(ev)
+{
+	inputState = INPUT_NORMAL;
+	let inputLine = g_FreehandSelection_InputLine;
+	g_FreehandSelection_InputLine = [];
+	if (!ev.button == SDL_BUTTON_RIGHT)
+		return true;
+
+	let lengthOfLine = 0;
+	for (let i = 1; i < inputLine.length; ++i)
+		lengthOfLine += inputLine[i].distanceTo(inputLine[i - 1]);
+
+	let selection = g_Selection.toList().filter(ent => GetEntityState(ent).unitAI).sort((a, b) => a - b);
+
+	// Checking the line for a minimum length to save performance.
+	if (lengthOfLine < g_FreehandSelection_MinLengthOfLine || selection.length < g_FreehandSelection_MinNumberOfUnits)
+	{
+		let action = determineAction(ev.x, ev.y);
+		return action && doAction(action, ev);
+	}
+
+	// Even distribution of the units on the line.
+	let p0 = inputLine[0];
+	let entityDistribution = [p0];
+	let distanceBetweenEnts = lengthOfLine / (selection.length - 1);
+	let freeDist = -distanceBetweenEnts;
+
+	for (let i = 1; i < inputLine.length; ++i)
+	{
+		let p1 = inputLine[i];
+		freeDist += inputLine[i - 1].distanceTo(p1);
+
+		while (freeDist >= 0)
+		{
+			p0 = Vector2D.sub(p0, p1).normalize().mult(freeDist).add(p1);
+			entityDistribution.push(p0);
+			freeDist -= distanceBetweenEnts;
+		}
+	}
+
+	// Rounding errors can lead to missing or too many points.
+	entityDistribution.slice(0, selection.length);
+	entityDistribution = entityDistribution.concat(new Array(selection.length - entityDistribution.length).fill(inputLine[inputLine.length - 1]));
+
+	if (Vector2D.from3D(GetEntityState(selection[0]).position).distanceTo(entityDistribution[0]) +
+	    Vector2D.from3D(GetEntityState(selection[selection.length - 1]).position).distanceTo(entityDistribution[selection.length - 1]) >
+	    Vector2D.from3D(GetEntityState(selection[0]).position).distanceTo(entityDistribution[selection.length - 1]) +
+	    Vector2D.from3D(GetEntityState(selection[selection.length - 1]).position).distanceTo(entityDistribution[0]))
+		entityDistribution.reverse();
+
+	Engine.PostNetworkCommand({
+		"type": Engine.HotkeyIsPressed("session.attackmove") ? "attack-walk-custom" : "walk-custom",
+		"entities": selection,
+		"targetPositions": entityDistribution.map(pos => pos.toFixed(2)),
+		"targetClasses": Engine.HotkeyIsPressed("session.attackmoveUnit") ? { "attack": ["Unit"] } : { "attack": ["Unit", "Structure"] },
+		"queued": Engine.HotkeyIsPressed("session.queue")
+	});
+	return true;
 }
 
 function handleMinimapEvent(target)

@@ -97,7 +97,6 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 			for (let id of ent.garrisoned())
 				ent.unload(id);
 
-		m.setLandAccess(gameState, ent);
 		let bestbase;
 		let territorypos = this.territoryMap.gamePosToMapPos(pos);
 		let territoryIndex = territorypos[0] + territorypos[1]*this.territoryMap.width;
@@ -373,12 +372,10 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 				return;
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
-			let access = gameState.ai.accessibility.getAccessValue(ent.position());
+			let access = m.getLandAccess(gameState, ent);
 			for (let cc of allycc)
 			{
-				if (!cc.position())
-					continue;
-				if (gameState.ai.accessibility.getAccessValue(cc.position()) != access)
+				if (!cc.position() || m.getLandAccess(gameState, cc) != access)
 					continue;
 				--num;
 				--num1;
@@ -394,12 +391,10 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 				return;
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
-			let access = gameState.ai.accessibility.getAccessValue(ent.position());
+			let access = m.getLandAccess(gameState, ent);
 			for (let cc of allycc)
 			{
-				if (!cc.position())
-					continue;
-				if (gameState.ai.accessibility.getAccessValue(cc.position()) != access)
+				if (!cc.position() || m.getLandAccess(gameState, cc) != access)
 					continue;
 				--num;
 				--num2;
@@ -415,12 +410,10 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 				return;
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
-			let access = gameState.ai.accessibility.getAccessValue(ent.position());
+			let access = m.getLandAccess(gameState, ent);
 			for (let cc of allycc)
 			{
-				if (!cc.position())
-					continue;
-				if (gameState.ai.accessibility.getAccessValue(cc.position()) != access)
+				if (!cc.position() || m.getLandAccess(gameState, cc) != access)
 					continue;
 				if (!ent.hasClass("Support"))
 					--num;

@@ -537,7 +537,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
  */
 function createPassage(args)
 {
-	let bound = x => Math.max(0, Math.min(Math.round(x), g_Map.getSize()));
+	let bound = x => Math.max(0, Math.min(Math.round(x), g_Map.height.length - 1));
 
 	let startHeight = args.startHeight !== undefined ? args.startHeight : g_Map.getHeight(new Vector2D(bound(args.start.x), bound(args.start.y)));
 	let endHeight = args.endHeight !== undefined ? args.endHeight : g_Map.getHeight(new Vector2D(bound(args.end.x), bound(args.end.y)));

@@ -39,7 +39,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	{
 		if (!base.anchor || !base.anchor.position())
 			continue;
-		let access = gameState.ai.accessibility.getAccessValue(base.anchor.position());
+		let access = m.getLandAccess(gameState, base.anchor);
 		if (!rallyPoint)
 		{
 			rallyPoint = base.anchor.position();
@@ -54,7 +54,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 		{
 			if (!ent.position())
 				continue;
-			let access = gameState.ai.accessibility.getAccessValue(ent.position());
+			let access = m.getLandAccess(gameState, ent);
 			rallyPoint = ent.position();
 			rallyAccess = access;
 			allAccesses[access] = rallyPoint;
@@ -74,7 +74,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 		{
 			if (!structure.position())
 				continue;
-			let access = gameState.ai.accessibility.getAccessValue(structure.position());
+			let access = m.getLandAccess(gameState, structure);
 			if (access in allAccesses)
 			{
 				this.overseas = 0;
@@ -521,8 +521,8 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		let queued = false;
 		if (ent.resourceCarrying() && ent.resourceCarrying().length)
 			queued = m.returnResources(gameState, ent);
-		let index = gameState.ai.accessibility.getAccessValue(ent.position());
-		if (index === rallyIndex)
+		let index = m.getLandAccess(gameState, ent);
+		if (index == rallyIndex)
 			ent.moveToRange(rallyPoint[0], rallyPoint[1], 0, 15, queued);
 		else
 			gameState.ai.HQ.navalManager.requireTransport(gameState, ent, index, rallyIndex, rallyPoint);
@@ -764,9 +764,9 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 	this.targetPos = this.target.position();
 	// redefine a new rally point for this target if we have a base on the same land
 	// find a new one on the pseudo-nearest base (dist weighted by the size of the island)
-	let targetIndex = gameState.ai.accessibility.getAccessValue(this.targetPos);
+	let targetIndex = m.getLandAccess(gameState, this.target);
 	let rallyIndex = gameState.ai.accessibility.getAccessValue(this.rallyPoint);
-	if (targetIndex !== rallyIndex)
+	if (targetIndex != rallyIndex)
 	{
 		let distminSame = Math.min();
 		let rallySame;
@@ -778,7 +778,7 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 			if (!anchor || !anchor.position())
 				continue;
 			let dist = API3.SquareVectorDistance(anchor.position(), this.targetPos);
-			if (base.accessIndex === targetIndex)
+			if (base.accessIndex == targetIndex)
 			{
 				if (dist >= distminSame)
 					continue;
@@ -926,14 +926,8 @@ m.AttackPlan.prototype.isValidTarget = function(ent)
 {
 	if (!ent.position())
 		return false;
-	if (this.sameLand)
-	{
-		if (ent.hasClass("Structure"))
-			if (m.getLandAccess(this.gameState, ent) != this.sameLand)
-				return false;
-		else if (this.gameState.ai.accessibility.getAccessValue(ent.position()) != this.sameLand)
-				return false;
-	}
+	if (this.sameLand && m.getLandAccess(this.gameState, ent) != this.sameLand)
+		return false;
 	return !ent.decaying() || ent.getDefaultArrow() || ent.isGarrisonHolder() && ent.garrisoned().length;
 };
 
@@ -1013,11 +1007,10 @@ m.AttackPlan.prototype.raidTargetFinder = function(gameState)
  */
 m.AttackPlan.prototype.checkTargetObstruction = function(gameState, target, position)
 {
-
-	let targetPos = target.position();
-	if (gameState.ai.accessibility.getAccessValue(targetPos) !== gameState.ai.accessibility.getAccessValue(position))
+	if (m.getLandAccess(gameState, target) != gameState.ai.accessibility.getAccessValue(position))
 		return target;
 
+	let targetPos = target.position();
 	let startPos = { "x": position[0], "y": position[1] };
 	let endPos = { "x": targetPos[0], "y": targetPos[1] };
 	let blocker;
@@ -1203,7 +1196,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 			ent.setMetadata(PlayerID, "subrole", "walking");
 		this.unitCollection.setStance("aggressive");
 
-		if (gameState.ai.accessibility.getAccessValue(this.targetPos) === gameState.ai.accessibility.getAccessValue(this.rallyPoint))
+		if (gameState.ai.accessibility.getAccessValue(this.targetPos) == gameState.ai.accessibility.getAccessValue(this.rallyPoint))
 		{
 			if (!this.path[0][0] || !this.path[0][1])
 			{
@@ -1516,7 +1509,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			else if (ent.hasClass("Cavalry"))
 				range += 30;
 			range = range * range;
-			let entIndex = gameState.ai.accessibility.getAccessValue(ent.position());
+			let entAccess = m.getLandAccess(gameState, ent);
 			// Checking for gates if we're a siege unit.
 			if (siegeUnit)
 			{
@@ -1525,9 +1518,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						return false;
 					if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
 						return false;
-					if (enemy.foundationProgress() === 0)
+					if (enemy.foundationProgress() == 0)
 						return false;
-					if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
+					if (m.getLandAccess(gameState, enemy) != entAccess)
 						return false;
 					return true;
 				}).toEntityArray();
@@ -1583,7 +1576,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					let dist = API3.SquareVectorDistance(enemy.position(), ent.position());
 					if (dist > range)
 						return false;
-					if (gameState.ai.accessibility.getAccessValue(enemy.position()) != entIndex)
+					if (m.getLandAccess(gameState, enemy) != entAccess)
 						return false;
 					// if already too much units targeting this enemy, let's continue towards our main target
 					if (veto[enemy.id()] && API3.SquareVectorDistance(this.targetPos, ent.position()) > 2500)
@@ -1641,7 +1634,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 							return false;
 						if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
 							return false;
-						if (gameState.ai.accessibility.getAccessValue(enemy.position()) != entIndex)
+						if (m.getLandAccess(gameState, enemy) != entAccess)
 							return false;
 						return true;
 					}, this).toEntityArray();
@@ -1958,7 +1951,7 @@ m.AttackPlan.prototype.Abort = function(gameState)
 			{
 				if (!base.anchor || !base.anchor.position())
 					continue;
-				if (gameState.ai.accessibility.getAccessValue(base.anchor.position()) != access)
+				if (m.getLandAccess(gameState, base.anchor) != access)
 					continue;
 				let newdist = API3.SquareVectorDistance(this.position, base.anchor.position());
 				if (newdist > dist)
@@ -2034,12 +2027,12 @@ m.AttackPlan.prototype.checkEvents = function(gameState, events)
 			continue;
 		if (!gameState.isPlayerEnemy(ent.owner()))
 			continue;
-		let access = gameState.ai.accessibility.getAccessValue(ent.position());
+		let access = m.getLandAccess(gameState, ent);
 		for (let base of gameState.ai.HQ.baseManagers)
 		{
 			if (!base.anchor || !base.anchor.position())
 				continue;
-			if (base.accessIndex !== access)
+			if (base.accessIndex != access)
 				continue;
 			this.overseas = 0;
 			this.rallyPoint = base.anchor.position();
@@ -2084,7 +2077,7 @@ m.AttackPlan.prototype.hasForceOrder = function(data, value)
 m.AttackPlan.prototype.getAttackAccess = function(gameState)
 {
 	for (let ent of this.unitCollection.filterNearest(this.position, 1).values())
-		return gameState.ai.accessibility.getAccessValue(ent.position());
+		return m.getLandAccess(gameState, ent);
 
 	return 0;
 };

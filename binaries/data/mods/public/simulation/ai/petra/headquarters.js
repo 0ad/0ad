@@ -254,8 +254,6 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent)
 			continue;
-		if (ent.position())
-		    ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(ent.position()));
 		if (ent.hasClass("Unit"))
 		{
 			m.getBestBase(gameState, ent).assignEntity(gameState, ent);
@@ -274,7 +272,7 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 				ent.setMetadata(PlayerID, "subrole", "idle");
 			}
 			if (ent.hasClass("Ship"))
-				ent.setMetadata(PlayerID, "sea", gameState.ai.accessibility.getAccessValue(ent.position(), true));
+				m.setSeaAccess(gameState, ent);
 			if (!ent.hasClass("Support") && !ent.hasClass("Ship") && ent.attackTypes() !== undefined)
 				ent.setMetadata(PlayerID, "plan", -1);
 			continue;
@@ -377,12 +375,12 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 					continue;
 				let dropsites = gameState.getOwnDropsites(type.generic);
 				let pos = ent.position();
-				let access = gameState.ai.accessibility.getAccessValue(pos);
+				let access = m.getLandAccess(gameState, ent);
 				let distmin = Math.min();
 				let goal;
 				for (let dropsite of dropsites.values())
 				{
-					if (!dropsite.position() || dropsite.getMetadata(PlayerID, "access") !== access)
+					if (!dropsite.position() || m.getLandAccess(gameState, dropsite) != access)
 						continue;
 					let dist = API3.SquareVectorDistance(pos, dropsite.position());
 					if (dist > distmin)
@@ -1972,7 +1970,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 		{
 			if (!base.anchor || !base.anchor.position())
 				continue;
-			if (base.anchor.getMetadata(PlayerID, "access") !== access)
+			if (m.getLandAccess(gameState, base.anchor) != access)
 				continue;
 			if (!base.anchor.trainableEntities(civ))	// base still in construction
 				continue;

@@ -179,7 +179,7 @@ m.AttackManager.prototype.assignBombers = function(gameState)
 
 		let range =  ent.attackRange("Ranged").max;
 		let entPos = ent.position();
-		let access = gameState.ai.accessibility.getAccessValue(entPos);
+		let access = m.getLandAccess(gameState, ent);
 		for (let struct of gameState.getEnemyStructures().values())
 		{
 			let structPos = struct.position();
@@ -499,17 +499,16 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 			if (ourcc.owner() != PlayerID)
 				continue;
 			let ourPos = ourcc.position();
-			let access = gameState.ai.accessibility.getAccessValue(ourPos);
+			let access = m.getLandAccess(gameState, ourcc);
 			for (let enemycc of ccEnts.values())
 			{
 				if (veto[enemycc.owner()])
 					continue;
 				if (!gameState.isPlayerEnemy(enemycc.owner()))
 					continue;
-				let enemyPos = enemycc.position();
-				if (access != gameState.ai.accessibility.getAccessValue(enemyPos))
+				if (access != m.getLandAccess(gameState, enemycc))
 					continue;
-				let dist = API3.SquareVectorDistance(ourPos, enemyPos);
+				let dist = API3.SquareVectorDistance(ourPos, enemycc.position());
 				if (distmin && dist > distmin)
 					continue;
 				ccmin = enemycc;
