@@ -5,6 +5,7 @@
 # Translators:
 # Alex Flocioiu <flocioiualex@gmail.com>, 2016
 # Alex Hex <alexhex14@gmail.com>, 2016
+# Andres Petrescu <skillparkninja@yahoo.com>, 2018
 # Marius Nan <waasszyie.x@gmail.com>, 2016
 # Bogdan Mințoi <mintoi.bogdan@gmail.com>, 2015
 # Raz Taz <qvovadis@yahoo.com>, 2016
@@ -12,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 14:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-02-23 09:04+0100\n"
+"PO-Revision-Date: 2018-02-25 18:52+0000\n"
+"Last-Translator: Andres Petrescu <skillparkninja@yahoo.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,431 +23,447 @@ msgstr ""
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
-#: gui/lobby/lobby.js:49
+#: gui/lobby/lobby.js:50
 msgid "Online"
 msgstr "Online"
 
-#: gui/lobby/lobby.js:50
+#: gui/lobby/lobby.js:51
 msgid "Away"
 msgstr "Plecat"
 
-#: gui/lobby/lobby.js:51
+#: gui/lobby/lobby.js:52
 msgid "Busy"
 msgstr "Ocupat"
 
-#: gui/lobby/lobby.js:52
+#: gui/lobby/lobby.js:53
 msgid "Offline"
 msgstr "Offline"
 
-#: gui/lobby/lobby.js:53
+#: gui/lobby/lobby.js:54
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: gui/lobby/lobby.js:57
+#: gui/lobby/lobby.js:58
 msgid "Moderator"
 msgstr "Moderator"
 
-#: gui/lobby/lobby.js:58
+#: gui/lobby/lobby.js:59
 msgid "Player"
 msgstr "Jucător"
 
-#: gui/lobby/lobby.js:59
+#: gui/lobby/lobby.js:60
 msgid "Muted Player"
-msgstr ""
+msgstr "Jucător cu sunet dezactivat"
 
-#: gui/lobby/lobby.js:155
+#: gui/lobby/lobby.js:156
 msgid "Disconnected."
 msgstr "Deconectat"
 
-#: gui/lobby/lobby.js:177
+#: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "%(nick)s a schimbat subiectul lobby-ului în %(subject)s"
 
-#: gui/lobby/lobby.js:188
+#: gui/lobby/lobby.js:189
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s s-a conectat."
 
-#: gui/lobby/lobby.js:198
+#: gui/lobby/lobby.js:199
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s s-a decoectat."
 
-#: gui/lobby/lobby.js:219
-msgid "You have been muted."
-msgstr ""
-
 #: gui/lobby/lobby.js:220
+msgid "You have been muted."
+msgstr "Ți-a fost dezactivat microfonul."
+
+#: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
-
-#: gui/lobby/lobby.js:223
-msgid "You are now a moderator."
-msgstr ""
+msgstr "Lui %(nick)s i-a fost oprit microfonul."
 
 #: gui/lobby/lobby.js:224
+msgid "You are now a moderator."
+msgstr "Ai devenit moderator."
+
+#: gui/lobby/lobby.js:225
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
-
-#: gui/lobby/lobby.js:227
-msgid "You have been unmuted."
-msgstr ""
+msgstr "%(nick)s este acum moderator."
 
 #: gui/lobby/lobby.js:228
+msgid "You have been unmuted."
+msgstr "Ți-a fost activat microfonul."
+
+#: gui/lobby/lobby.js:229
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
-
-#: gui/lobby/lobby.js:230
-msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "Lui %(nick)s i-a fost activat microfonul."
 
 #: gui/lobby/lobby.js:231
+msgid "You are not a moderator anymore."
+msgstr "Nu mai ești moderator."
+
+#: gui/lobby/lobby.js:232
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)s nu mai este moderator."
 
-#: gui/lobby/lobby.js:246
+#: gui/lobby/lobby.js:247
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s și-a schimbat numele în %(newnick)s."
 
-#: gui/lobby/lobby.js:278
+#: gui/lobby/lobby.js:279
 msgid "Notice"
-msgstr ""
+msgstr "Anunț"
 
-#: gui/lobby/lobby.js:319
+#: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "Schimbă-ți statusul în 'Indisponibil'."
 
-#: gui/lobby/lobby.js:326
+#: gui/lobby/lobby.js:327
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "Schimbă-ți statusul în 'Online'."
 
-#: gui/lobby/lobby.js:333
+#: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "Scoate un jucător din lobby. Folosiți comanda: /kick nume motiv"
 
-#: gui/lobby/lobby.js:341
+#: gui/lobby/lobby.js:342
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "Banează un jucător din lobby. Folosiți comanda: /ban nume motiv"
 
-#: gui/lobby/lobby.js:349
+#: gui/lobby/lobby.js:350
 msgid "Show this help."
-msgstr ""
+msgstr "Arată ajutor."
 
-#: gui/lobby/lobby.js:352
+#: gui/lobby/lobby.js:353
 msgid "Chat commands:"
-msgstr ""
+msgstr "Comenzi chat:"
 
 #. Translation: Chat command help format
-#: gui/lobby/lobby.js:356
+#: gui/lobby/lobby.js:357
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s - %(description)s"
 
-#: gui/lobby/lobby.js:369
+#: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "Trimite un mesaj în chat despre tine. Exemplu: /me înot."
 
-#: gui/lobby/lobby.js:373
+#: gui/lobby/lobby.js:374
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "Trimite un text ca mesaj în chat ( chiar dacă începe cu '/' ). Exemplu: /say /help este o comanda folositoare."
 
-#: gui/lobby/lobby.js:377
+#: gui/lobby/lobby.js:378
 msgid "Clear all chat scrollback."
-msgstr ""
+msgstr "Șterge conținutul din chat."
 
-#: gui/lobby/lobby.js:384
+#: gui/lobby/lobby.js:385
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Înapoi la meniul principal."
 
-#: gui/lobby/lobby.js:442
+#: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "Ai fost deconectat din lobby. Dorești să te reconectezi?"
 
-#: gui/lobby/lobby.js:443 gui/lobby/lobby.js:1182
+#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1192 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
 msgstr "Confirmare"
 
-#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1183
+#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/prelobby/prelobby.js:300
 msgid "No"
 msgstr "Nu"
 
-#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1183
+#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/prelobby/prelobby.js:300
 msgid "Yes"
 msgstr "Da"
 
-#: gui/lobby/lobby.js:459
+#: gui/lobby/lobby.js:460
 msgctxt "previous page"
 msgid "Back"
 msgstr "Înapoi"
 
-#: gui/lobby/lobby.js:460
+#: gui/lobby/lobby.js:461
 msgctxt "previous page"
 msgid "Main Menu"
 msgstr "Meniul Principal"
 
-#: gui/lobby/lobby.js:529
+#: gui/lobby/lobby.js:530
 msgctxt "map size"
 msgid "Any"
 msgstr "Oricare"
 
-#: gui/lobby/lobby.js:534
+#: gui/lobby/lobby.js:535
 msgctxt "player number"
 msgid "Any"
 msgstr "Oricare"
 
-#: gui/lobby/lobby.js:538 gui/lobby/lobby.js:552
+#: gui/lobby/lobby.js:539 gui/lobby/lobby.js:553
 msgctxt "map"
 msgid "Any"
 msgstr "Oricare"
 
-#: gui/lobby/lobby.js:546
-#, javascript-format
-msgctxt "gamelist filter"
-msgid "> %(rating)s"
-msgstr ""
-
 #: gui/lobby/lobby.js:547
 #, javascript-format
 msgctxt "gamelist filter"
-msgid "< %(rating)s"
-msgstr ""
+msgid "> %(rating)s"
+msgstr "> %(rating)s"
 
-#: gui/lobby/lobby.js:620
-msgid "You have been banned from the lobby!"
-msgstr ""
+#: gui/lobby/lobby.js:548
+#, javascript-format
+msgctxt "gamelist filter"
+msgid "< %(rating)s"
+msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:621
-msgid "You have been kicked from the lobby!"
-msgstr ""
+msgid "You have been banned from the lobby!"
+msgstr "Ai fost dat afară din lobby!"
 
-#: gui/lobby/lobby.js:623
-#, javascript-format
-msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+#: gui/lobby/lobby.js:622
+msgid "You have been kicked from the lobby!"
+msgstr "Ai fost scos din lobby!"
 
 #: gui/lobby/lobby.js:624
 #, javascript-format
-msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgid "%(nick)s has been banned from the lobby."
+msgstr "%(nick)s a fost dat afară din lobby."
 
-#: gui/lobby/lobby.js:627
+#: gui/lobby/lobby.js:625
+#, javascript-format
+msgid "%(nick)s has been kicked from the lobby."
+msgstr "%(nick)s a fost scos din lobby."
+
+#: gui/lobby/lobby.js:628
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Motiv: %(reason)s"
 
-#: gui/lobby/lobby.js:655
+#: gui/lobby/lobby.js:656
 msgid "BANNED"
-msgstr ""
+msgstr "INTERDICȚIE"
 
-#: gui/lobby/lobby.js:655
+#: gui/lobby/lobby.js:656
 msgid "KICKED"
-msgstr ""
+msgstr "DAT AFARĂ"
 
-#: gui/lobby/lobby.js:686
+#: gui/lobby/lobby.js:687
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Demarchează amic"
 
-#: gui/lobby/lobby.js:686
+#: gui/lobby/lobby.js:687
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Marchează ca amic."
 
-#: gui/lobby/lobby.js:882 gui/lobby/lobby.js:883 gui/lobby/lobby.js:884
-#: gui/lobby/lobby.js:885 gui/lobby/lobby.js:886 gui/lobby/lobby.js:887
+#: gui/lobby/lobby.js:880 gui/lobby/lobby.js:881 gui/lobby/lobby.js:882
+#: gui/lobby/lobby.js:883 gui/lobby/lobby.js:884 gui/lobby/lobby.js:885
 msgid "N/A"
 msgstr "N/A"
 
-#: gui/lobby/lobby.js:915
+#: gui/lobby/lobby.js:913
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "Jucătorul \"%(nick)s\" nu a fost găsit."
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:1133
+#: gui/lobby/lobby.js:1134
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "Jocul a început la %(time)s"
 
-#: gui/lobby/lobby.js:1134 gui/lobby/lobby.js:1496
+#: gui/lobby/lobby.js:1135 gui/lobby/lobby.js:1506
 msgid "HH:mm"
 msgstr "OO:mm"
 
-#: gui/lobby/lobby.js:1138
+#: gui/lobby/lobby.js:1139
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Jucători: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1181
-msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+#: gui/lobby/lobby.js:1180
+msgid "Your active mods do not match the mods of this game."
+msgstr "Modurile active personale nu se potrivesc cu modurile acestui joc."
 
-#: gui/lobby/lobby.js:1215
+#: gui/lobby/lobby.js:1182
+msgid "Incompatible mods"
+msgstr "Moduri inompatibile"
+
+#: gui/lobby/lobby.js:1183
+msgid "Ok"
+msgstr "Ok"
+
+#: gui/lobby/lobby.js:1191
+msgid "The game has already started. Do you want to join as observer?"
+msgstr "Jocul a început deja. Dorești să intri ca observator?"
+
+#: gui/lobby/lobby.js:1225
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Adresa jocului, '%(ip)s', nu este validă."
 
-#: gui/lobby/lobby.js:1331
+#: gui/lobby/lobby.js:1341
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr ""
+msgstr "Comanda '%(cmd)s' nu exista."
 
-#: gui/lobby/lobby.js:1343
+#: gui/lobby/lobby.js:1353
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr ""
+msgstr "Comanda '%(cmd)s' este permisă doar moderatorilor."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1416
+#: gui/lobby/lobby.js:1426
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1421
+#: gui/lobby/lobby.js:1431
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1430 gui/lobby/lobby.js:1451 gui/lobby/lobby.js:1478
+#: gui/lobby/lobby.js:1440 gui/lobby/lobby.js:1461 gui/lobby/lobby.js:1488
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:1435 gui/lobby/lobby.js:1456 gui/lobby/lobby.js:1483
+#: gui/lobby/lobby.js:1445 gui/lobby/lobby.js:1466 gui/lobby/lobby.js:1493
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:1445
+#: gui/lobby/lobby.js:1455
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/lobby/lobby.js:1473
+#: gui/lobby/lobby.js:1483
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr "(%(private)s) <%(sender)s>"
 
-#: gui/lobby/lobby.js:1474
+#: gui/lobby/lobby.js:1484
 msgid "Private"
 msgstr "Privat"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:1499
+#: gui/lobby/lobby.js:1509
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1504
+#: gui/lobby/lobby.js:1514
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1543
+#: gui/lobby/lobby.js:1553
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1559
+#: gui/lobby/lobby.js:1569
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1561
+#: gui/lobby/lobby.js:1571
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/prelobby/prelobby.js:41
+#: gui/prelobby/prelobby.js:43
 msgid "Connecting…"
-msgstr ""
+msgstr "Se conectează..."
 
-#: gui/prelobby/prelobby.js:64
+#: gui/prelobby/prelobby.js:66
 msgid "Registering…"
-msgstr ""
+msgstr "Se înregistrează..."
 
-#: gui/prelobby/prelobby.js:94
+#: gui/prelobby/prelobby.js:96
 msgid "Please enter your username"
 msgstr "Introdu un nume"
 
-#: gui/prelobby/prelobby.js:100
+#: gui/prelobby/prelobby.js:102
 msgid "Invalid username"
-msgstr ""
+msgstr "Nume de utilizator invalid"
 
-#: gui/prelobby/prelobby.js:107
+#: gui/prelobby/prelobby.js:109
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Introduceți parola"
 
-#: gui/prelobby/prelobby.js:108
+#: gui/prelobby/prelobby.js:110
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Introduceți parola"
 
-#: gui/prelobby/prelobby.js:121
+#: gui/prelobby/prelobby.js:123
 msgid "Please enter your password again"
 msgstr "Introdu din nou parola"
 
-#: gui/prelobby/prelobby.js:127
+#: gui/prelobby/prelobby.js:129
 msgid "Passwords do not match"
 msgstr "Parolele nu corespund"
 
-#: gui/prelobby/prelobby.js:133
+#: gui/prelobby/prelobby.js:135
 msgid "Please read the Terms of Service"
 msgstr "Vă rugăm citiți termenii serviciului"
 
-#: gui/prelobby/prelobby.js:139
+#: gui/prelobby/prelobby.js:141
 msgid "Please read the Terms of Use"
 msgstr "Vă rugăm citiți condițiile de utilizare"
 
-#: gui/prelobby/prelobby.js:145
+#: gui/prelobby/prelobby.js:147
 msgid "Please agree to the Terms of Service and Terms of Use"
 msgstr "Vă rugăm să fiți de acord cu termenii serviciului și conditiile de utilizare"
 
-#: gui/prelobby/prelobby.js:177
+#: gui/prelobby/prelobby.js:179
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "Eroare necunoscută. Această eroare apare deoarece nu se poate înregistra mai mult de un cont pe aceeași adresă IP în mai puțin de o oră."
 
-#: gui/prelobby/prelobby.js:183
+#: gui/prelobby/prelobby.js:185
 msgid "Registered"
 msgstr "Înregistrat"
 
-#: gui/prelobby/prelobby.js:243
+#: gui/prelobby/prelobby.js:249
 msgid "Register"
 msgstr "Înregistrează-te"
 
-#: gui/prelobby/prelobby.js:249 gui/prelobby/prelobby.xml:(caption):108
+#: gui/prelobby/prelobby.js:255 gui/prelobby/prelobby.xml:(caption):116
 msgid "Connect"
 msgstr "Conectează-te"
 
-#: gui/prelobby/prelobby.js:259 gui/prelobby/prelobby.xml:(caption):85
+#: gui/prelobby/prelobby.js:265 gui/prelobby/prelobby.xml:(caption):93
 msgid "Terms of Service"
 msgstr "Termenii serviciului"
 
-#: gui/prelobby/prelobby.js:268 gui/prelobby/prelobby.xml:(caption):90
+#: gui/prelobby/prelobby.js:274 gui/prelobby/prelobby.xml:(caption):98
 msgid "Terms of Use"
 msgstr "Termenii de utilizare"
 
+#: gui/prelobby/prelobby.js:298
+msgid "Are you sure you want to delete the password after connecting?"
+msgstr "Sunteți sigur ca vreți să ștergeți parola după conectare?"
+
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Lobby Multiplayer"
 
 #: gui/lobby/lobby_panels.xml:(heading):24
 msgid "Status"
@@ -545,7 +562,7 @@ msgstr "Găzduieşte un joc"
 
 #: gui/lobby/lobby_panels.xml:(caption):244
 msgid "Show only open games"
-msgstr ""
+msgstr "Afișați doar jocurile disponibile."
 
 #: gui/lobby/lobby_panels.xml:(caption):267
 msgid "Send"
@@ -570,7 +587,7 @@ msgstr "Vezi profilul"
 
 #: gui/lobby/lobby_panels.xml:(caption):356
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Introduceți un nume."
 
 #: gui/prelobby/prelobby.xml:(caption):30
 msgid "Create a new account"
@@ -582,37 +599,41 @@ msgstr "Conectare la un cont existent"
 
 #: gui/prelobby/prelobby.xml:(caption):40
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Conectare la lobby-ul jocului"
 
 #: gui/prelobby/prelobby.xml:(caption):43
-#: gui/prelobby/prelobby.xml:(caption):70
+#: gui/prelobby/prelobby.xml:(caption):78
 msgid "Login:"
 msgstr "Autentificare:"
 
 #: gui/prelobby/prelobby.xml:(caption):51
-#: gui/prelobby/prelobby.xml:(caption):75
+#: gui/prelobby/prelobby.xml:(caption):83
 msgid "Password:"
 msgstr "Parolă:"
 
-#: gui/prelobby/prelobby.xml:(caption):66
+#: gui/prelobby/prelobby.xml:(caption):68
+msgid "Remember Password"
+msgstr "Reține parola"
+
+#: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"
 msgstr "Înregistrare"
 
-#: gui/prelobby/prelobby.xml:(caption):80
+#: gui/prelobby/prelobby.xml:(caption):88
 msgid "Password again:"
 msgstr "Parola din nou:"
 
-#: gui/prelobby/prelobby.xml:(caption):95
+#: gui/prelobby/prelobby.xml:(caption):103
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
 msgstr "Am citit și sunt de acord cu termenii serviciului și condițiile de utilizare:"
 
-#: gui/prelobby/prelobby.xml:(caption):104
+#: gui/prelobby/prelobby.xml:(caption):112
 msgid "Cancel"
 msgstr "Anulează"
 
 #: gui/prelobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "Termenii și Condițiile de Lobby pentru 0 A.D. Empires Ascendant Multiplayer"
 
 #: gui/prelobby/Terms_of_Service.txt:2 gui/prelobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -622,7 +643,7 @@ msgstr "Definiții:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* \"Servicul\" este lobby-ul furnizat de 0 A.D. Empires Ascendant Multiplayer al Wildfire Games (WFG)."
 
 #: gui/prelobby/Terms_of_Service.txt:4 gui/prelobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -630,17 +651,17 @@ msgstr "* \"Tu\" ești utilizatorul serviciului."
 
 #: gui/prelobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* \"Noi\" suntem tot colectivul membrilor echipei Wildfire Games (WFG)."
 
 #: gui/prelobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* \"Evaluare\" se referă la procesul de analiză a diferitelor statistici ale utilizatorilor în scopul generării unui scor unic."
 
 #: gui/prelobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* \"Moderat\" se referă la procesul de aplicare a politicilor de utilizare."
 
 #: gui/prelobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
@@ -706,11 +727,11 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Modificați acest document în orice mod; oricând; cu condiția ca utilizatorul acestui serviciu să fie informat corespunzător cu privire la schimbare (definirea unui anunț adecvat va fi determinată la momentul respectiv de un grup de membri ai echipei Wildfire Games (WFG))."
 
 #: gui/prelobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "Termeni de Utilizare ai lobby-ului 0 A.D. Empires Ascendant Multiplayer"
 
 #: gui/prelobby/Terms_of_Use.txt:5
 msgid ""
@@ -722,17 +743,17 @@ msgstr "* \"Personificare\" se referă la acțiunea în care tu încerci de a ex
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "* \"Spam-ul\" se referă la mesaje, lipsite de importanță sau nepotrivite, trimise unui număr mare de destinatari."
 
 #: gui/prelobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "* \"Clasificarea\" se referă la scorul total al fiecărui utilizator."
 
 #: gui/prelobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "* \"Meciurile clasificate\" se referă la meciurile în care sunt urmărite statisticile care schimbă clasamentul."
 
 #: gui/prelobby/Terms_of_Use.txt:9
 msgid "You agree to:"
@@ -742,30 +763,30 @@ msgstr "Ești de acord să:"
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. Creați un singur cont pe un utilizator unic pe acest serviciu decât dacă este autorizat de un membru al echipei Wildfire Games (WFG)."
 
 #: gui/prelobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. Nu postați afirmații profane, umor nepoliticos, conținut pornografic sau comentarii discriminatorii asupra serviciului."
 
 #: gui/prelobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. Nu distruge în mod intenționat imaginea altora folosind acest serviciu."
 
 #: gui/prelobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. Nu folosiți acest serviciu pentru a promova bunuri, servicii sau produse."
 
 #: gui/prelobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. Nu pretindeți că sunteți alți utilizatori ai acestui serviciu."
 
 #: gui/prelobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. Nu spamați acest serviciu."
 
 #: gui/prelobby/Terms_of_Use.txt:16
 msgid ""
@@ -773,13 +794,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. Nu încercați să ajustați în mod artificial evaluările utilizatorilor din clasamentul determinat de acest serviciu sau oricare dintre statisticile care îl influențează. (Exemple pentru acest lucru sunt următoarele, dar nu se limitează doar la: trișarea în jocuri clasificate, ingineria inversă a serviciului și profitarea de alți utilizatori ai serviciului.)"
 
 #: gui/prelobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Permiteți-vă să fiți eliminat din serviciu dacă în orice moment un moderator determină că comportamentul dvs. nu este în concordanță cu aceste reguli."
 
 #: gui/prelobby/Terms_of_Use.txt:19
 msgid ""
@@ -787,4 +808,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Modificați acest document în orice mod; oricând; cu condiția ca utilizatorul acestui serviciu să fie informat corespunzător cu privire la schimbare (definirea unui anunț adecvat va fi determinată la momentul respectiv de un grup de membri ai echipei Wildfire Games (WFG))."

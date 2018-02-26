@@ -16,13 +16,13 @@
 # slimkhan, 2014
 # Tux-Tn <sarhanaissi@gmail.com>, 2013
 # Youssef Aharbil <aharbil@gmail.com>, 2017
-# صفا الفليج <safaalfulaij@hotmail.com>, 2014,2016-2017
+# صفا الفليج <safaalfulaij@hotmail.com>, 2014,2016-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-02-07 14:34+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-02-23 15:21+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,7 +112,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "وقت الهدنة المتبقّي: %(time)s."
 
 #: gui/session/menu.js:447
 msgctxt "team"
@@ -145,11 +145,11 @@ msgstr "اطلب من حلفائك مهاجمة هذا العدوّ"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "أرشى وحدة عشوائية من وحدات هذا اللاعب و شارك رؤيته لوقت محدد."
+msgstr "ارشُ وحدة عشوائيّة من وحدات هذا اللاعب وشارك معه مجال بصره لفترة محدّدة."
 
 #: gui/session/menu.js:592
 msgid "A failed bribe will cost you:"
-msgstr "الرشوة الفاشلة سوف تكلفك :"
+msgstr "سيكلّفك فشل الرشوة:"
 
 #: gui/session/menu.js:768
 #, javascript-format
@@ -403,7 +403,7 @@ msgstr "ينتظر اتّصال اللاعبين:"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr ""
+msgstr "يزامن أسلوب اللعب مع اللاعبين الآخرين…"
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -549,7 +549,7 @@ msgstr "، و"
 #: gui/session/messages.js:695
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "خطأ فشل-المزامنة  في الدور %(turn)s."
+msgstr "خطأ ”فشلت المزامنة“ في الدور %(turn)s."
 
 #: gui/session/messages.js:699
 #, javascript-format
@@ -596,11 +596,11 @@ msgstr "يفرّغ الحالة الحاليّة في%(filepath)s"
 
 #: gui/session/messages.js:727 gui/session/messages.js:738
 msgid "Out of Sync"
-msgstr "فشل المزامنة"
+msgstr "فشلت المزامنة"
 
 #: gui/session/messages.js:735
 msgid "Out-Of-Sync error!"
-msgstr "خطأ فشل المزامنة!"
+msgstr "خطأ ”فشلت المزامنة!“"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/messages.js:737
@@ -1222,7 +1222,7 @@ msgstr "اعطى الامر لوحدات المحدده لكى تصلح مبنى
 
 #: gui/session/unit_actions.js:1166
 msgid "Focus on Rally Point."
-msgstr "ركز على نقطه التجمع."
+msgstr "ركّز على نقطه التجمّع."
 
 #: gui/session/unit_actions.js:1201
 msgid "Back to Work"
@@ -1300,7 +1300,7 @@ msgstr "ألغِ"
 #: gui/session/chat_window.xml:(caption):98
 msgctxt "chat"
 msgid "History"
-msgstr "تاريخ"
+msgstr "التأريخ"
 
 #: gui/session/chat_window.xml:(caption):103
 msgid "Send"
@@ -1437,7 +1437,7 @@ msgstr "اخرج"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "اعرض ردهة اللاعبين في نافذة حواريّ."
 
 #: gui/session/minimap_panel.xml:(tooltip):42
 msgid "Toggle Diplomacy Colors"

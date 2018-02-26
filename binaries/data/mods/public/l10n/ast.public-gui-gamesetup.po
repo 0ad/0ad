@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-02-22 00:40+0000\n"
+"PO-Revision-Date: 2018-02-24 18:11+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Nengún"
 
 #: gui/aiconfig/aiconfig.js:7
 msgid "AI will be disabled for this player."
-msgstr "La IA va desactivase-y a esti xugador."
+msgstr "Va desactivase la IA d'esti xugador."
 
 #: gui/gamesetup/gamesetup.js:56
 msgctxt "team"
@@ -44,7 +44,7 @@ msgstr "Escueye al debalu una civilización al entamar la partida."
 #: gui/gamesetup/gamesetup.js:111
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr "* %(username)s nun ta llistu."
+msgstr "* %(username)s nun ta preparáu."
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "I'm ready"
@@ -52,7 +52,7 @@ msgstr "Toi preparáu"
 
 #: gui/gamesetup/gamesetup.js:113
 msgid "State that you are ready to play."
-msgstr "Conseña que tas llistu pa xugar."
+msgstr "Conseñar que tas preparáu pa xugar."
 
 #: gui/gamesetup/gamesetup.js:117
 #, javascript-format
@@ -65,7 +65,7 @@ msgstr "Siguir preparáu"
 
 #: gui/gamesetup/gamesetup.js:119
 msgid "Stay ready even when the game settings change."
-msgstr "Calténte llistu inclusive cuando cambien los axustes del xuegu."
+msgstr "Siguir preparáu mesmamente cuando cambien los axustes de la partida."
 
 #: gui/gamesetup/gamesetup.js:124
 msgid "I'm not ready!"
@@ -73,7 +73,7 @@ msgstr "¡Nun toi preparáu!"
 
 #: gui/gamesetup/gamesetup.js:125
 msgid "State that you are not ready to play."
-msgstr "Conseña que nun tas llistu pa xugar."
+msgstr "Conseñar que nun tas preparáu pa xugar."
 
 #: gui/gamesetup/gamesetup.js:148
 msgid "Game settings have been changed"
@@ -82,12 +82,12 @@ msgstr "Cambiaron los axustes"
 #: gui/gamesetup/gamesetup.js:149
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr "%(username)s xunióse"
+msgstr "Xunióse %(username)s"
 
 #: gui/gamesetup/gamesetup.js:150
 #, javascript-format
 msgid "%(username)s has left"
-msgstr "%(username)s coló"
+msgstr "Coló %(username)s"
 
 #: gui/gamesetup/gamesetup.js:151
 #, javascript-format
@@ -117,7 +117,7 @@ msgstr "Por defeutu"
 #: gui/gamesetup/gamesetup.js:165
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr "Tolos mapes sacantes los mapes navales y los mapes de demostranza."
+msgstr "Tolos mapes sacantes los navales y los de demostranza."
 
 #: gui/gamesetup/gamesetup.js:171
 msgid "Naval Maps"
@@ -126,7 +126,7 @@ msgstr "Mapes navales"
 #: gui/gamesetup/gamesetup.js:172
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Mapes nos que faen falta embarcaciones p'algamar al enemigu."
+msgstr "Mapes u faen falta barcos p'algamar al enemigu."
 
 #: gui/gamesetup/gamesetup.js:177
 msgid "Demo Maps"
@@ -153,7 +153,7 @@ msgstr "Mapes disparadores"
 #: gui/gamesetup/gamesetup.js:190
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Mapes que tienen eventos programaos y que xenerarán unidaes."
+msgstr "Mapes que tienen acontecimientos programaos y que xenerarán unidaes."
 
 #: gui/gamesetup/gamesetup.js:195
 msgid "All Maps"
@@ -162,7 +162,7 @@ msgstr "Tolos mapes"
 #: gui/gamesetup/gamesetup.js:196
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr "Tolos mapes del tipu de mapa escoyíu."
+msgstr "Cada mapa del tipu de mapa escoyíu."
 
 #: gui/gamesetup/gamesetup.js:396
 msgctxt "Match settings tab name"
@@ -185,7 +185,7 @@ msgstr "Tipu de mapa"
 
 #: gui/gamesetup/gamesetup.js:462
 msgid "Select a map type."
-msgstr "Escueyi'l tipu de mapa."
+msgstr "Esbilla'l tipu de mapa."
 
 #: gui/gamesetup/gamesetup.js:485
 msgid "Map Filter"
@@ -280,7 +280,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "El conxuntu de les reliquies que se xeneraron en mapa. El trunfu per reliquia ye más realista con namái una reliquia o dos. Con más, cal prindar les reliquies pa recibir bonificaciones d'aura."
 
 #: gui/gamesetup/gamesetup.js:662
 msgid "Relic Duration"
@@ -334,7 +334,7 @@ msgstr "Nómada"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "En mou nómada, los xugadores entamen con namái unes poques unidaes y tienen qu'atopar un llugar afayadizu onde construyir la ciudá. Aconséyase l'altu'l fueu."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -445,17 +445,17 @@ msgstr "Configurar la IA: %(description)s."
 #: gui/gamesetup/gamesetup.js:1157
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Activar la llingüeta d'axustes de %(name)s."
 
 #: gui/gamesetup/gamesetup.js:1158
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Emplega %(hotkey)s pa mover una llingüeta d'axustes p'abaxo."
 
 #: gui/gamesetup/gamesetup.js:1159
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Emplega %(hotkey)s pa mover una llingüeta d'axustes p'arriba."
 
 #: gui/gamesetup/gamesetup.js:1678
 msgctxt "map selection"
