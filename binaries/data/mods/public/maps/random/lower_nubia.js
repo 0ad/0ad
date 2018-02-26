@@ -99,12 +99,15 @@ const clRock = g_Map.createTileClass();
 const clMetal = g_Map.createTileClass();
 const clFood = g_Map.createTileClass();
 const clPyramid = g_Map.createTileClass();
+const clPassage = g_Map.createTileClass();
 
 g_Map.log("Loading heightmaps");
 const heightmapLand = convertHeightmap1Dto2D(Engine.LoadHeightmapImage("maps/random/lower_nubia_heightmap.png"));
 const heightmapLandThreshold = convertHeightmap1Dto2D(Engine.LoadHeightmapImage("maps/random/lower_nubia_land_threshold.png"));
 const heightmapWaterThreshold = convertHeightmap1Dto2D(Engine.LoadHeightmapImage("maps/random/lower_nubia_water_threshold.png"));
+Engine.SetProgress(3);
 
+g_Map.log("Composing heightmap");
 var heightmapCombined = [];
 for (let x = 0; x < heightmapLand.length; ++x)
 {
@@ -114,11 +117,13 @@ for (let x = 0; x < heightmapLand.length; ++x)
 		// The heightmap does not correlate with water distribution in this arid climate at all.
 		heightmapCombined[x][y] = heightmapLandThreshold[x][y] || heightmapWaterThreshold[x][y] ? heightmapLand[x][y] : minHeight;
 }
+Engine.SetProgress(6);
 
-g_Map.log("Copying heightmap");
+g_Map.log("Applying heightmap");
 createArea(
 	new MapBoundsPlacer(),
 	new HeightmapPainter(heightmapCombined, minHeight, maxHeight));
+Engine.SetProgress(9);
 
 g_Map.log("Lowering sea ground");
 createArea(
@@ -128,66 +133,68 @@ createArea(
 		new TileClassPainter(clWater)
 	],
 	new HeightConstraint(-Infinity, heightSeaGround));
+Engine.SetProgress(15);
 
-g_Map.log("Creating shallows...");
+g_Map.log("Creating Nile passages...");
 const riverAngle = Math.PI * 3 / 4;
-for (let i = 0; i < scaleByMapSize(3, 8); ++i)
+for (let i = 0; i < scaleByMapSize(8, 15); ++i)
 {
 	let x = fractionToTiles(randFloat(0, 1));
-	createPassage({
-		"start": new Vector2D(x, mapBounds.bottom).rotateAround(riverAngle, mapCenter),
-		"end": new Vector2D(x, mapBounds.top).rotateAround(riverAngle, mapCenter),
-		"startWidth": scaleByMapSize(4, 6),
-		"endWidth": scaleByMapSize(4, 6),
-		"smoothWidth": 1,
-		"startHeight": heightNileForests,
-		"endHeight": heightNileForests,
-		"constraint": new NearTileClassConstraint(clWater, 2)
-	});
+	createArea(
+		new PathPlacer(
+			new Vector2D(x, mapBounds.bottom).rotateAround(riverAngle, mapCenter),
+			new Vector2D(x, mapBounds.top).rotateAround(riverAngle, mapCenter),
+			scaleByMapSize(5, 7),
+			0.2,
+			5,
+			0.2,
+			0,
+			Infinity),
+		[
+			new ElevationBlendingPainter(heightNileForests, 0.5),
+			new SmoothingPainter(2, 1, 2),
+			new TileClassPainter(clPassage)
+		],
+		[
+			new NearTileClassConstraint(clWater, 4),
+			avoidClasses(clPassage, scaleByMapSize(15, 25))
+		]);
 }
+Engine.SetProgress(18);
 
 g_Map.log("Smoothing heightmap");
 createArea(
 	new MapBoundsPlacer(),
 	new SmoothingPainter(1, scaleByMapSize(0.5, 1), 1));
-
-g_Map.log("Smoothing plateau passage");
-const passageStart = new Vector2D(263, 189).div(heightmapLand.length);
-const passageEnd = new Vector2D(110, 350).div(heightmapLand.length);
-createArea(
-	new PathPlacer(
-		new Vector2D(fractionToTiles(passageStart.x), mapBounds.top - fractionToTiles(passageStart.y)),
-		new Vector2D(fractionToTiles(passageEnd.x), mapBounds.top - fractionToTiles(passageEnd.y)),
-		scaleByMapSize(10, 40),
-		0,
-		scaleByMapSize(3, 9),
-		0.2,
-		0.05),
-	new SmoothingPainter(4, 1, 1));
+Engine.SetProgress(22);
 
 g_Map.log("Marking water");
 createArea(
 	new MapBoundsPlacer(),
 	new TileClassPainter(clWater),
 	new HeightConstraint(-Infinity, heightSeaGround));
+Engine.SetProgress(28);
 
 g_Map.log("Marking cliffs");
 createArea(
 	new MapBoundsPlacer(),
 	new TileClassPainter(clCliff),
 	new SlopeConstraint(2, Infinity));
+Engine.SetProgress(32);
 
 g_Map.log("Painting water and shoreline");
 createArea(
 	new MapBoundsPlacer(),
 	new TerrainPainter(tWater),
 	new HeightConstraint(-Infinity, heightWaterLevel));
+Engine.SetProgress(35);
 
 g_Map.log("Painting plateau");
 createArea(
 	new MapBoundsPlacer(),
 	new TerrainPainter(tPlateau),
 	new HeightConstraint(heightPlateau2, Infinity));
+Engine.SetProgress(38);
 
 var playerIDs = [];
 var playerPosition = [];
@@ -202,6 +209,7 @@ if (!isNomad())
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
 }
+Engine.SetProgress(43);
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
@@ -249,6 +257,7 @@ placePlayerBases({
 		"template": pickRandom(aBushes)
 	}
 });
+Engine.SetProgress(50);
 
 g_Map.log("Painting lower cliffs");
 createArea(
@@ -258,6 +267,7 @@ createArea(
 		new SlopeConstraint(2, Infinity),
 		new NearTileClassConstraint(clWater, 2)
 	]);
+Engine.SetProgress(55);
 
 g_Map.log("Painting upper cliffs");
 createArea(
@@ -267,6 +277,7 @@ createArea(
 		avoidClasses(clWater, 2),
 		new SlopeConstraint(2, Infinity)
 	]);
+Engine.SetProgress(60);
 
 g_Map.log("Creating stone mines");
 createMines(
@@ -277,6 +288,7 @@ createMines(
 	avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clRock, 10),
 	clRock,
 	scaleByMapSize(10, 30));
+Engine.SetProgress(63);
 
 g_Map.log("Creating metal mines");
 createMines(
@@ -287,6 +299,7 @@ createMines(
 	avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clMetal, 10, clRock, 5),
 	clMetal,
 	scaleByMapSize(10, 30));
+Engine.SetProgress(67);
 
 g_Map.log("Creating pyramid");
 createObjectGroups(
@@ -295,6 +308,7 @@ createObjectGroups(
 	[new NearTileClassConstraint(clWater, 10), avoidClasses(clWater, 6, clCliff, 6, clPlayer, 30, clMetal, 6, clRock, 6)],
 	1,
 	500);
+Engine.SetProgress(70);
 
 g_Map.log("Creating forests");
 createObjectGroups(
@@ -307,6 +321,7 @@ createObjectGroups(
 	],
 	scaleByMapSize(100, 1000),
 	200);
+Engine.SetProgress(73);
 
 createStragglerTrees(
 	[oAcacia, oTreeDead],
@@ -314,6 +329,7 @@ createStragglerTrees(
 	clForest,
 	scaleByMapSize(15, 400),
 	200);
+Engine.SetProgress(77);
 
 const avoidCollisions = avoidClasses(clPlayer, 12, clBaseResource, 5, clWater, 1, clForest, 1, clRock, 4, clMetal, 4, clFood, 6, clCliff, 0, clPyramid, 6);
 
@@ -324,6 +340,7 @@ createObjectGroups(
 	avoidCollisions,
 	scaleByMapSize(2, 10),
 	50);
+Engine.SetProgress(80);
 
 if (!isNomad())
 {
@@ -335,6 +352,7 @@ if (!isNomad())
 		scaleByMapSize(2, 10),
 		50);
 }
+Engine.SetProgress(83);
 
 g_Map.log("Creating elephants");
 createObjectGroups(
@@ -343,26 +361,31 @@ createObjectGroups(
 	avoidCollisions,
 	scaleByMapSize(2, 10),
 	50);
+Engine.SetProgress(86);
 
-placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 2, clRock, 4, clMetal, 4, clFood, 2, clCliff, 2));
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 2, clRock, 4, clMetal, 4, clFood, 2, clCliff, 2, clPyramid, 6));
+Engine.SetProgress(90);
 
 g_Map.log("Creating hawk");
 for (let i = 0; i < scaleByMapSize(0, 2); ++i)
 	g_Map.placeEntityAnywhere(oHawk, 0, mapCenter, randomAngle());
+Engine.SetProgress(90);
 
 createDecoration(
 	aBushes.map(bush => [new SimpleObject(bush, 0, 3, 2, 4)]),
-	aBushes.map(bush => scaleByMapSize(200, 800) * randIntInclusive(1, 3)),
+	aBushes.map(bush => scaleByMapSize(100, 800) * randIntInclusive(1, 3)),
 	[
 		new NearTileClassConstraint(clWater, 2),
 		new HeightConstraint(heightWaterLevel, Infinity),
 		avoidClasses(clForest, 0)
 	]);
+Engine.SetProgress(92);
 
 createDecoration(
 	[[new SimpleObject(aRock, 0, 4, 2, 4)]],
 	[[scaleByMapSize(100, 600)]],
 	avoidClasses(clWater, 0));
+Engine.SetProgress(95);
 
 setWindAngle(-0.43);
 setWaterTint(0.161, 0.286, 0.353);
