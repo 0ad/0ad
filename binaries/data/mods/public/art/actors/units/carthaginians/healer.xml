@@ -8,12 +8,14 @@
         <prop actor="props/units/heads/new/head_kart_priestess.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/kart_healer_staff.xml" attachpoint="weapon_L"/>
       </props>
+      <textures>
+        <texture file="skeletal/kart_fem_01.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Peplos-DarkBrown">
-      <textures><texture file="skeletal/kart_fem_01.dds" name="baseTex"/></textures>
-    </variant>
+    <variant name="Idle" frequency="1"/>
+    <variant file="biped/female_death.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

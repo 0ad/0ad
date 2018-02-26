@@ -20,11 +20,7 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/death_infantry.xml">
-      <props>
-        <prop actor="props/units/capes/hoplite.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="biped/death_hoplite.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>
