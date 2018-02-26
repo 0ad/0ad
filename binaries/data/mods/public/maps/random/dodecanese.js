@@ -120,7 +120,7 @@ createAreas(
 	],
 	avoidClasses(clIsland, 6),
 	scaleByMapSize(25, 80));
-Engine.SetProgress(30);
+Engine.SetProgress(20);
 
 // Notice that the Constraints become much shorter when avoiding water rather than staying on islands
 g_Map.log("Marking water");
@@ -128,7 +128,7 @@ createArea(
 	new MapBoundsPlacer(),
 	new TileClassPainter(clWater),
 	new HeightConstraint(-Infinity, heightShoreLower));
-Engine.SetProgress(20);
+Engine.SetProgress(30);
 
 g_Map.log("Creating undersea bumps");
 createAreas(
@@ -174,8 +174,6 @@ createAreas(
 	],
 	avoidClasses(clWater, 1, clPlayer, 12, clVolcano, 0, clHill, 15),
 	scaleByMapSize(4, 13));
-Engine.SetProgress(50);
-
 Engine.SetProgress(50);
 
 g_Map.log("Painting corals");
@@ -287,7 +285,7 @@ createFood(
 	avoidClasses(clWater, 1, clPlayer, 15, clVolcano, 4, clBaseResource, 4, clHill, 2, clMetal, 4, clRock, 4),
 	clFood);
 
-Engine.SetProgress(70);
+Engine.SetProgress(87);
 
 createFood(
 	[

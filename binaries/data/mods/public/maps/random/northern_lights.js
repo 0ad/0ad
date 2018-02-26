@@ -229,7 +229,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
 	scaleByMapSize(8,32), 100
 );
-Engine.SetProgress(95);
+Engine.SetProgress(80);
 
 createStragglerTrees(
 	[oPine],
@@ -247,7 +247,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-Engine.SetProgress(75);
+Engine.SetProgress(90);
 
 g_Map.log("Creating sheep");
 group = new SimpleGroup(

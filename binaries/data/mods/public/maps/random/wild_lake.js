@@ -577,7 +577,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 		if (actor)
 			g_Map.placeEntityAnywhere(actor, 0, randomPositionOnTile(point), randomAngle());
 	}
-Engine.SetProgress(80);
+Engine.SetProgress(40);
 
 g_Map.log("Placing resources");
 let avoidPoints = playerPosition.map(pos => pos.clone());

@@ -502,7 +502,7 @@ createDecoration(
 	aBushesIslands.map(bush => [new SimpleObject(bush, 0, 4, 2, 4)]),
 	aBushesIslands.map(bush => scaleByMapSize(20, 150) * randIntInclusive(1, 3)),
 	[stayClasses(clIsland, 0), avoidCollisions]);
-Engine.SetProgress(99);
+Engine.SetProgress(97);
 
 createDecoration(
 	[[new SimpleObject(aRock, 0, 4, 2, 4)]],

@@ -117,7 +117,7 @@ var areaIsland = createArea(
 	new RectPlacer(new Vector2D(fractionToTiles(0.4), mapBounds.top), new Vector2D(fractionToTiles(0.6), mapCenter.y), Infinity),
 	new TileClassPainter(g_TileClasses.island),
 	avoidClasses(g_TileClasses.water, 0));
-Engine.SetProgress(35);
+Engine.SetProgress(37);
 
 g_Map.log("Painting shoreline");
 createArea(

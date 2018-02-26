@@ -33,7 +33,7 @@ function MountainRangeBuilder(args)
 	/**
 	 * Array of Vector2D locations where a mountainrange can start or end.
 	 */
-	this.vertices = args.getPoints();
+	this.vertices = args.points;
 
 	/**
 	 * Number of mountainranges starting or ending at the given point.
@@ -204,7 +204,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function()
 
 	while (this.possibleEdges.length)
 	{
-		Engine.SetProgress(20 + 15 * this.possibleEdges.length / max)
+		Engine.SetProgress(35 - 15 * this.possibleEdges.length / max);
 
 		this.index = randIntExclusive(0, this.possibleEdges.length);
 		this.UpdateCurrentEdge();

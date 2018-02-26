@@ -130,7 +130,7 @@ createArea(
 		new TileClassPainter(g_TileClasses.mountain),
 	],
 	new SlopeConstraint(2, Infinity));
-Engine.SetProgress(45);
+Engine.SetProgress(55);
 
 if (!isNomad())
 {

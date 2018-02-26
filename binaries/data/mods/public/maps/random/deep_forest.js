@@ -102,7 +102,7 @@ placePlayerBases({
 		"count": 2
 	}
 });
-Engine.SetProgress(10);
+Engine.SetProgress(30);
 
 g_Map.log("Painting paths");
 var pathBlending = numPlayers <= 4;

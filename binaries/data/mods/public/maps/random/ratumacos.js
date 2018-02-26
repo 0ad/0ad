@@ -340,7 +340,7 @@ addElements([
 		"amounts": ["few"]
 	}
 ]);
-Engine.SetProgress(85);
+Engine.SetProgress(95);
 
 placePlayersNomad(
 	g_Map.createTileClass(),

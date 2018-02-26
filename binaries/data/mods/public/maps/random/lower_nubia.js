@@ -369,7 +369,7 @@ Engine.SetProgress(90);
 g_Map.log("Creating hawk");
 for (let i = 0; i < scaleByMapSize(0, 2); ++i)
 	g_Map.placeEntityAnywhere(oHawk, 0, mapCenter, randomAngle());
-Engine.SetProgress(90);
+Engine.SetProgress(91);
 
 createDecoration(
 	aBushes.map(bush => [new SimpleObject(bush, 0, 3, 2, 4)]),
