@@ -1184,7 +1184,7 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 	for (let i = 1; i < inputLine.length; ++i)
 		lengthOfLine += inputLine[i].distanceTo(inputLine[i - 1]);
 
-	let selection = g_Selection.toList().filter(ent => GetEntityState(ent).unitAI).sort((a, b) => a - b);
+	let selection = g_Selection.toList().filter(ent => !!GetEntityState(ent).unitAI).sort((a, b) => a - b);
 
 	// Checking the line for a minimum length to save performance.
 	if (lengthOfLine < g_FreehandSelection_MinLengthOfLine || selection.length < g_FreehandSelection_MinNumberOfUnits)
