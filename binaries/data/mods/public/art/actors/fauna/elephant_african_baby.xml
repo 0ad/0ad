@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="elephant_african_bush [infant]">
+    <variant file="quadraped/base_elephant_african_bush_infant.xml">
       <mesh>skeletal/elephant_african_baby.dae</mesh>
-      <textures><texture file="skeletal/animal-elephant-base-baby.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal-elephant-base-baby.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_elephant_death.xml"/>
+    <variant file="quadraped/base_elephant_run.xml"/>
   </group>
+  <material>basic_trans.xml</material>
 </actor>

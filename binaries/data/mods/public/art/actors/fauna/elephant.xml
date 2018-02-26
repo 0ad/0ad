@@ -1,21 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Mesh">
       <mesh>skeletal/elephant.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="hide-brown">
-      <textures><texture file="skeletal/animal_elephant.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_elephant.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="hide-gray">
-      <textures><texture file="skeletal/animal_elephant2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_elephant2.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
+  <material>basic_trans.xml</material>
 </actor>

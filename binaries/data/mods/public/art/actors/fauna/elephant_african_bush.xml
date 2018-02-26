@@ -1,22 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="elephant_african_bush [adult]">
-      <animations>
-        <animation file="quadraped/elephant_african_bush_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_african_bush_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_african_bush_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_african_bush_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_african_bush_idle_02.dae" name="Idle" speed="85"/>
-        <animation file="quadraped/elephant_african_bush_idle_03.dae" name="Idle" speed="50"/>
-        <animation file="quadraped/elephant_african_bush_idle_03.dae" name="Idle" speed="75"/>
-        <animation file="quadraped/elephant_african_bush_idle_03.dae" name="Idle" speed="150"/>
-        <animation file="quadraped/elephant_african_bush_walk.dae" name="Walk" speed="30"/>
-        <animation file="quadraped/elephant_african_bush_walk.dae" name="Run" speed="35"/>
-        <animation file="quadraped/elephant_african_bush_attack.dae" name="attack_melee" speed="100"/>
-        <animation file="quadraped/elephant_african_bush_death.dae" name="Death" speed="100"/>
-      </animations>	
+    <variant file="quadraped/base_elephant_african_bush.xml">
       <mesh>skeletal/elephant_african_bush.dae</mesh>
       <textures>
         <texture file="skeletal/animal-elephant-base.dds" name="baseTex"/>
@@ -26,16 +12,8 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Run">
-      <props>
-        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_elephant_death.xml"/>
+    <variant file="quadraped/base_elephant_run.xml"/>
   </group>
-  <material>basic_specmap.xml</material>
+  <material>basic_trans_spec.xml</material>
 </actor>

@@ -2,19 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="maur_elephant_asian_armor">
-      <animations>
-        <animation file="quadraped/elephant_asian_armor_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_asian_armor_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_asian_armor_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_asian_armor_idle_02.dae" name="Idle" speed="85"/>
-        <animation file="quadraped/elephant_asian_armor_idle_03.dae" name="Idle" speed="75"/>
-        <animation file="quadraped/elephant_asian_armor_idle_03.dae" name="Idle" speed="75"/>
-        <animation file="quadraped/elephant_asian_armor_walk.dae" name="Walk" speed="20"/>
-        <animation file="quadraped/elephant_asian_armor_walk.dae" name="Run" speed="20"/>
-        <animation file="quadraped/elephant_asian_armor_attack.dae" name="attack_melee" speed="75"/>
-        <animation file="quadraped/elephant_asian_armor_death.dae" name="Death" speed="75"/>
-      </animations>
+    <variant file="quadraped/base_elephant_asian_armor.xml">
       <mesh>skeletal/maur_elephant_siege.dae</mesh>
       <props>
         <prop actor="units/mauryans/elephantry_c_d.xml" attachpoint="rider"/>
@@ -28,16 +16,8 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Run">
-      <props>
-        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_elephant_death.xml"/>
+    <variant file="quadraped/base_elephant_run.xml"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

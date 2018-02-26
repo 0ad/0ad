@@ -2,20 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="elephant_asian [adult male]">
-      <animations>
-        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_asian_idle_02.dae" name="Idle" speed="85"/>
-        <animation file="quadraped/elephant_asian_idle_03.dae" name="Idle" speed="75"/>
-        <animation file="quadraped/elephant_asian_idle_03.dae" name="Idle" speed="75"/>
-        <animation file="quadraped/elephant_asian_walk.dae" name="Walk" speed="20"/>
-        <animation file="quadraped/elephant_asian_walk.dae" name="Run" speed="20"/>
-        <animation file="quadraped/elephant_asian_attack.dae" name="attack_melee" speed="75"/>
-        <animation file="quadraped/elephant_asian_death.dae" id="death1" name="Death" speed="75"/>
-        <animation file="quadraped/elephant_asian_death.dae" id="death2" name="Death" speed="75"/>
-      </animations>
+    <variant file="quadraped/base_elephant_asian.xml">
       <mesh>skeletal/elephant_asian_male.dae</mesh>
       <props>
         <prop actor="units/carthaginians/hero_elephantry_hannibal_r.xml" attachpoint="rider"/>
@@ -29,17 +16,9 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
-    <variant name="Run">
-      <props>
-        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant frequency="100" name="Idle"/>
+    <variant file="quadraped/base_elephant_death.xml"/>
+    <variant file="quadraped/base_elephant_run.xml"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>
