@@ -112,7 +112,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 {
 	let template = this.template;
 
-	if (template.buildPlacementType() === "shore")
+	if (template.buildPlacementType() == "shore")
 		return this.findDockPosition(gameState);
 
 	let HQ = gameState.ai.HQ;

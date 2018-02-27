@@ -365,7 +365,8 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 	for (let evt of events.Create)
 	{
 		let ent = gameState.getEntityById(evt.entity);
-		if (!ent || ent.foundationProgress() !== undefined || !ent.hasClass("Market") || !gameState.isPlayerAlly(ent.owner()))
+		if (!ent || ent.foundationProgress() !== undefined || !ent.hasClass("Market") ||
+		    !gameState.isPlayerAlly(ent.owner()))
 			continue;
 		this.activateProspection(gameState);
 		return true;
