@@ -1190,7 +1190,7 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 	if (lengthOfLine < g_FreehandSelection_MinLengthOfLine || selection.length < g_FreehandSelection_MinNumberOfUnits)
 	{
 		let action = determineAction(ev.x, ev.y);
-		return action && doAction(action, ev);
+		return !!action && doAction(action, ev);
 	}
 
 	// Even distribution of the units on the line.
