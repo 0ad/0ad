@@ -2,7 +2,7 @@
  * @file An Area is a set of Vector2D points and a cache to lookup membership quickly.
  */
 
-function Area(points, id)
+function Area(points)
 {
 	this.points = deepfreeze(points);
 

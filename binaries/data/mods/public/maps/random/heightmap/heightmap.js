@@ -36,8 +36,8 @@ function getMinAndMaxHeight(heightmap = g_Map.height)
 
 /**
  * Rescales a heightmap so its minimum and maximum height is as the arguments told preserving it's global shape
- * @param {float} [minHeight=MIN_HEIGHT] - Minimum height that should be used for the resulting heightmap
- * @param {float} [maxHeight=MAX_HEIGHT] - Maximum height that should be used for the resulting heightmap
+ * @param {Number} [minHeight=MIN_HEIGHT] - Minimum height that should be used for the resulting heightmap
+ * @param {Number} [maxHeight=MAX_HEIGHT] - Maximum height that should be used for the resulting heightmap
  * @param {array} [heightmap=g_Map.height] - A reliefmap
  * @todo Add preserveCostline to leave a certain height untoucht and scale below and above that seperately
  */
@@ -55,7 +55,7 @@ function rescaleHeightmap(minHeight = MIN_HEIGHT, maxHeight = MAX_HEIGHT, height
  * Get start location with the largest minimum distance between players
  * @param {object} [heightRange] - The height range start locations are allowed
  * @param {integer} [maxTries=1000] - How often random player distributions are rolled to be compared
- * @param {float} [minDistToBorder=20] - How far start locations have to be away from the map border
+ * @param {Number} [minDistToBorder=20] - How far start locations have to be away from the map border
  * @param {integer} [numberOfPlayers=g_MapSettings.PlayerData.length] - How many start locations should be placed
  * @param {array} [heightmap=g_Map.height] - The reliefmap for the start locations to be placed on
  * @param {boolean} [isCircular=g_MapSettings.CircularMap] - If the map is circular or rectangular
@@ -112,10 +112,10 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
  * @note min/maxHeight will not necessarily be present in the heightmap
  * @note On circular maps the edges (given by initialHeightmap) may not be in the playable map area
  * @note The impact of the initial heightmap depends on its size and target map size
- * @param {float} [minHeight=MIN_HEIGHT] - Lower limit of the random height to be rolled
- * @param {float} [maxHeight=MAX_HEIGHT] - Upper limit of the random height to be rolled
+ * @param {Number} [minHeight=MIN_HEIGHT] - Lower limit of the random height to be rolled
+ * @param {Number} [maxHeight=MAX_HEIGHT] - Upper limit of the random height to be rolled
  * @param {array} [initialHeightmap] - Optional, Small (e.g. 3x3) heightmap describing the global shape of the map e.g. an island [[MIN_HEIGHT, MIN_HEIGHT, MIN_HEIGHT], [MIN_HEIGHT, MAX_HEIGHT, MIN_HEIGHT], [MIN_HEIGHT, MIN_HEIGHT, MIN_HEIGHT]]
- * @param {float} [smoothness=0.5] - Float between 0 (rough, more local structures) to 1 (smoother, only larger scale structures)
+ * @param {Number} [smoothness=0.5] - Float between 0 (rough, more local structures) to 1 (smoother, only larger scale structures)
  * @param {array} [heightmap=g_Map.height] - The reliefmap that will be set by this function
  */
 function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEIGHT, initialHeightmap = undefined, smoothness = 0.5, heightmap = g_Map.height)
