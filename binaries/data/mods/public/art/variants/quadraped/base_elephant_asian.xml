@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant frequency="1" name="elephant-asian">
+  <animations>
+    <animation file="quadraped/elephant_asian_idle_01.dae" frequency="1" name="Idle" speed="25"/>
+    <animation file="quadraped/elephant_asian_idle_01.dae" frequency="1" name="Idle" speed="25"/>
+    <animation file="quadraped/elephant_asian_idle_01.dae" frequency="1" name="Idle" speed="25"/>
+    <animation file="quadraped/elephant_asian_idle_02.dae" frequency="1" name="Idle" speed="85"/>
+    <animation file="quadraped/elephant_asian_idle_03.dae" frequency="1" name="Idle" speed="75"/>
+    <animation file="quadraped/elephant_asian_idle_03.dae" frequency="1" name="Idle" speed="75"/>
+    <animation file="quadraped/elephant_asian_walk.dae" name="Walk" speed="20"/>
+    <animation file="quadraped/elephant_asian_walk.dae" name="Run" speed="20"/>
+    <animation event="0.5" file="quadraped/elephant_asian_attack.dae" name="attack_melee" speed="75"/>
+    <animation file="quadraped/elephant_asian_death.dae" id="death1" name="Death" speed="75"/>
+    <animation file="quadraped/elephant_asian_death.dae" id="death2" name="Death" speed="75"/>
+  </animations>
+</variant>

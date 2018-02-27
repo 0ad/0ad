@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-01-27 16:36+0000\n"
+"POT-Creation-Date: 2018-02-23 09:04+0100\n"
+"PO-Revision-Date: 2018-02-24 11:21+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -23,427 +23,443 @@ msgstr ""
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/lobby/lobby.js:49
+#: gui/lobby/lobby.js:50
 msgid "Online"
 msgstr "На линия"
 
-#: gui/lobby/lobby.js:50
+#: gui/lobby/lobby.js:51
 msgid "Away"
 msgstr "Отсъстващ"
 
-#: gui/lobby/lobby.js:51
+#: gui/lobby/lobby.js:52
 msgid "Busy"
 msgstr "Зает"
 
-#: gui/lobby/lobby.js:52
+#: gui/lobby/lobby.js:53
 msgid "Offline"
 msgstr "Извън линия"
 
-#: gui/lobby/lobby.js:53
+#: gui/lobby/lobby.js:54
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: gui/lobby/lobby.js:57
+#: gui/lobby/lobby.js:58
 msgid "Moderator"
 msgstr "Модератор"
 
-#: gui/lobby/lobby.js:58
+#: gui/lobby/lobby.js:59
 msgid "Player"
 msgstr "Играч"
 
-#: gui/lobby/lobby.js:59
+#: gui/lobby/lobby.js:60
 msgid "Muted Player"
 msgstr "Заглушен играч"
 
-#: gui/lobby/lobby.js:155
+#: gui/lobby/lobby.js:156
 msgid "Disconnected."
 msgstr "Разкачен"
 
-#: gui/lobby/lobby.js:177
+#: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
 msgstr "%(nick)s промени темата на чакалнята на „%(subject)s“"
 
-#: gui/lobby/lobby.js:188
+#: gui/lobby/lobby.js:189
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s се присъедини."
 
-#: gui/lobby/lobby.js:198
+#: gui/lobby/lobby.js:199
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s напусна."
 
-#: gui/lobby/lobby.js:219
+#: gui/lobby/lobby.js:220
 msgid "You have been muted."
 msgstr "Вие бяхте заглушен(а)."
 
-#: gui/lobby/lobby.js:220
+#: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been muted."
 msgstr "%(nick)s беше заглушен."
 
-#: gui/lobby/lobby.js:223
+#: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
 msgstr "Вече сте модератор."
 
-#: gui/lobby/lobby.js:224
+#: gui/lobby/lobby.js:225
 #, javascript-format
 msgid "%(nick)s is now a moderator."
 msgstr "%(nick)s вече е модератор."
 
-#: gui/lobby/lobby.js:227
+#: gui/lobby/lobby.js:228
 msgid "You have been unmuted."
 msgstr "Заглушаването Ви беше премахнато."
 
-#: gui/lobby/lobby.js:228
+#: gui/lobby/lobby.js:229
 #, javascript-format
 msgid "%(nick)s has been unmuted."
 msgstr "Заглушаването на %(nick)s беше премахнато."
 
-#: gui/lobby/lobby.js:230
+#: gui/lobby/lobby.js:231
 msgid "You are not a moderator anymore."
 msgstr "Вече не сте модератор."
 
-#: gui/lobby/lobby.js:231
+#: gui/lobby/lobby.js:232
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
 msgstr "%(nick)s вече не е модератор."
 
-#: gui/lobby/lobby.js:246
+#: gui/lobby/lobby.js:247
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s вече използва името %(newnick)s."
 
-#: gui/lobby/lobby.js:278
+#: gui/lobby/lobby.js:279
 msgid "Notice"
 msgstr "Забележка"
 
-#: gui/lobby/lobby.js:319
+#: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."
 msgstr "Задаване на състоянието Ви на „Отсъстващ“."
 
-#: gui/lobby/lobby.js:326
+#: gui/lobby/lobby.js:327
 msgid "Set your state to 'Online'."
 msgstr "Задаване на състоянието Ви на „На линия“."
 
-#: gui/lobby/lobby.js:333
+#: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
 msgstr "Изритване на определен потребител от чакалнята. Начин на ползване: /kick псевдоним причина"
 
-#: gui/lobby/lobby.js:341
+#: gui/lobby/lobby.js:342
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
 msgstr "Блокиране на достъпа на определен потребител до чакалнята. Начин на ползване: /ban псевдоним причина"
 
-#: gui/lobby/lobby.js:349
+#: gui/lobby/lobby.js:350
 msgid "Show this help."
 msgstr "Показване на това съобщение."
 
-#: gui/lobby/lobby.js:352
+#: gui/lobby/lobby.js:353
 msgid "Chat commands:"
 msgstr "Команди в чата:"
 
 #. Translation: Chat command help format
-#: gui/lobby/lobby.js:356
+#: gui/lobby/lobby.js:357
 #, javascript-format
 msgid "%(command)s - %(description)s"
 msgstr "%(command)s — %(description)s"
 
-#: gui/lobby/lobby.js:369
+#: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
 msgstr "Изпращане на съобщение за Вас. Пример: /me отива да плува."
 
-#: gui/lobby/lobby.js:373
+#: gui/lobby/lobby.js:374
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
 msgstr "Изпращане на всякакъв текст като съобщение (дори да започва с наклонена черта). Пример: /say /help е страхотна команда."
 
-#: gui/lobby/lobby.js:377
+#: gui/lobby/lobby.js:378
 msgid "Clear all chat scrollback."
 msgstr "Изчистване на историята в чата."
 
-#: gui/lobby/lobby.js:384
+#: gui/lobby/lobby.js:385
 msgid "Return to the main menu."
 msgstr "Връщане към главното меню."
 
-#: gui/lobby/lobby.js:442
+#: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "Връзката Ви с чакалнята се разпадна. Искате ли да се свържете отново?"
 
-#: gui/lobby/lobby.js:443 gui/lobby/lobby.js:1182
+#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1192 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
 msgstr "Потвърждение"
 
-#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1183
+#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/prelobby/prelobby.js:300
 msgid "No"
 msgstr "Не"
 
-#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1183
+#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/prelobby/prelobby.js:300
 msgid "Yes"
 msgstr "Да"
 
-#: gui/lobby/lobby.js:459
+#: gui/lobby/lobby.js:460
 msgctxt "previous page"
 msgid "Back"
 msgstr "Назад"
 
-#: gui/lobby/lobby.js:460
+#: gui/lobby/lobby.js:461
 msgctxt "previous page"
 msgid "Main Menu"
 msgstr "Главно меню"
 
-#: gui/lobby/lobby.js:529
+#: gui/lobby/lobby.js:530
 msgctxt "map size"
 msgid "Any"
 msgstr "Без зн."
 
-#: gui/lobby/lobby.js:534
+#: gui/lobby/lobby.js:535
 msgctxt "player number"
 msgid "Any"
 msgstr "Без зн."
 
-#: gui/lobby/lobby.js:538 gui/lobby/lobby.js:552
+#: gui/lobby/lobby.js:539 gui/lobby/lobby.js:553
 msgctxt "map"
 msgid "Any"
 msgstr "Без зн."
 
-#: gui/lobby/lobby.js:546
+#: gui/lobby/lobby.js:547
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
 msgstr "> %(rating)s"
 
-#: gui/lobby/lobby.js:547
+#: gui/lobby/lobby.js:548
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
 msgstr "< %(rating)s"
 
-#: gui/lobby/lobby.js:620
+#: gui/lobby/lobby.js:621
 msgid "You have been banned from the lobby!"
 msgstr "Вие получихте забрана за достъп до лобито!"
 
-#: gui/lobby/lobby.js:621
+#: gui/lobby/lobby.js:622
 msgid "You have been kicked from the lobby!"
 msgstr "Вие бяхте изритан(а) от лобито."
 
-#: gui/lobby/lobby.js:623
+#: gui/lobby/lobby.js:624
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
 msgstr "%(nick)s получи забрана за достъп до лобито."
 
-#: gui/lobby/lobby.js:624
+#: gui/lobby/lobby.js:625
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
 msgstr "%(nick)s беше изритан(а) от лобито."
 
-#: gui/lobby/lobby.js:627
+#: gui/lobby/lobby.js:628
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
 msgstr "Причина: %(reason)s"
 
-#: gui/lobby/lobby.js:655
+#: gui/lobby/lobby.js:656
 msgid "BANNED"
 msgstr "БЛОКИРАН"
 
-#: gui/lobby/lobby.js:655
+#: gui/lobby/lobby.js:656
 msgid "KICKED"
 msgstr "ИЗРИТАН"
 
-#: gui/lobby/lobby.js:686
+#: gui/lobby/lobby.js:687
 msgid "Unmark as Buddy"
 msgstr "Премахване на приятелството"
 
-#: gui/lobby/lobby.js:686
+#: gui/lobby/lobby.js:687
 msgid "Mark as Buddy"
 msgstr "Отбелязване като приятел"
 
-#: gui/lobby/lobby.js:882 gui/lobby/lobby.js:883 gui/lobby/lobby.js:884
-#: gui/lobby/lobby.js:885 gui/lobby/lobby.js:886 gui/lobby/lobby.js:887
+#: gui/lobby/lobby.js:880 gui/lobby/lobby.js:881 gui/lobby/lobby.js:882
+#: gui/lobby/lobby.js:883 gui/lobby/lobby.js:884 gui/lobby/lobby.js:885
 msgid "N/A"
 msgstr "Няма инф."
 
-#: gui/lobby/lobby.js:915
+#: gui/lobby/lobby.js:913
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr "Играчът „%(nick)s“ не е намерен."
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:1133
+#: gui/lobby/lobby.js:1134
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "Играта е започнала в %(time)s"
 
-#: gui/lobby/lobby.js:1134 gui/lobby/lobby.js:1496
+#: gui/lobby/lobby.js:1135 gui/lobby/lobby.js:1506
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/lobby.js:1138
+#: gui/lobby/lobby.js:1139
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Играчи: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1181
+#: gui/lobby/lobby.js:1180
+msgid "Your active mods do not match the mods of this game."
+msgstr "Включените модификации не съвпадат с модификациите на тази игра."
+
+#: gui/lobby/lobby.js:1182
+msgid "Incompatible mods"
+msgstr "Несъвместими модификации"
+
+#: gui/lobby/lobby.js:1183
+msgid "Ok"
+msgstr "Добре"
+
+#: gui/lobby/lobby.js:1191
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "Тази игра вече е започнала. Искате ли да се присъедините като наблюдател?"
 
-#: gui/lobby/lobby.js:1215
+#: gui/lobby/lobby.js:1225
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Адресът на играта „%(ip)s“ изглежда грешен."
 
-#: gui/lobby/lobby.js:1331
+#: gui/lobby/lobby.js:1341
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
 msgstr "Командата „%(cmd)s“ не се поддържа."
 
-#: gui/lobby/lobby.js:1343
+#: gui/lobby/lobby.js:1353
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
 msgstr "Командата „%(cmd)s“ е само за модератори."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1416
+#: gui/lobby/lobby.js:1426
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1421
+#: gui/lobby/lobby.js:1431
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1430 gui/lobby/lobby.js:1451 gui/lobby/lobby.js:1478
+#: gui/lobby/lobby.js:1440 gui/lobby/lobby.js:1461 gui/lobby/lobby.js:1488
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:1435 gui/lobby/lobby.js:1456 gui/lobby/lobby.js:1483
+#: gui/lobby/lobby.js:1445 gui/lobby/lobby.js:1466 gui/lobby/lobby.js:1493
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:1445
+#: gui/lobby/lobby.js:1455
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/lobby/lobby.js:1473
+#: gui/lobby/lobby.js:1483
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr "(%(private)s) <%(sender)s>"
 
-#: gui/lobby/lobby.js:1474
+#: gui/lobby/lobby.js:1484
 msgid "Private"
 msgstr "Лично"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:1499
+#: gui/lobby/lobby.js:1509
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1504
+#: gui/lobby/lobby.js:1514
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1543
+#: gui/lobby/lobby.js:1553
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1559
+#: gui/lobby/lobby.js:1569
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "—"
 
-#: gui/lobby/lobby.js:1561
+#: gui/lobby/lobby.js:1571
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/prelobby/prelobby.js:41
+#: gui/prelobby/prelobby.js:43
 msgid "Connecting…"
 msgstr "Свързване…"
 
-#: gui/prelobby/prelobby.js:64
+#: gui/prelobby/prelobby.js:66
 msgid "Registering…"
 msgstr "Регистриране…"
 
-#: gui/prelobby/prelobby.js:94
+#: gui/prelobby/prelobby.js:96
 msgid "Please enter your username"
 msgstr "Моля, въведете потребителското си име"
 
-#: gui/prelobby/prelobby.js:100
+#: gui/prelobby/prelobby.js:102
 msgid "Invalid username"
 msgstr "Неправилно потребителско име"
 
-#: gui/prelobby/prelobby.js:107
+#: gui/prelobby/prelobby.js:109
 msgctxt "login"
 msgid "Please enter your password"
 msgstr "Моля, въведете паролата си"
 
-#: gui/prelobby/prelobby.js:108
+#: gui/prelobby/prelobby.js:110
 msgctxt "register"
 msgid "Please enter your password"
 msgstr "Моля, въведете паролата си"
 
-#: gui/prelobby/prelobby.js:121
+#: gui/prelobby/prelobby.js:123
 msgid "Please enter your password again"
 msgstr "Моля, въведете паролата отново"
 
-#: gui/prelobby/prelobby.js:127
+#: gui/prelobby/prelobby.js:129
 msgid "Passwords do not match"
 msgstr "Паролите не съвпадат"
 
-#: gui/prelobby/prelobby.js:133
+#: gui/prelobby/prelobby.js:135
 msgid "Please read the Terms of Service"
 msgstr "Моля, прочетете условията на услугата"
 
-#: gui/prelobby/prelobby.js:139
+#: gui/prelobby/prelobby.js:141
 msgid "Please read the Terms of Use"
 msgstr "Моля, прочетете условията за ползване"
 
-#: gui/prelobby/prelobby.js:145
+#: gui/prelobby/prelobby.js:147
 msgid "Please agree to the Terms of Service and Terms of Use"
 msgstr "Моля, съгласете се с условията на услугата и условията за ползване"
 
-#: gui/prelobby/prelobby.js:177
+#: gui/prelobby/prelobby.js:179
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
 msgstr "Неизвестна грешка. Това обикновено става, ако един и същ IP адрес се използва за създаване на повече от една регистрация в рамките на един час."
 
-#: gui/prelobby/prelobby.js:183
+#: gui/prelobby/prelobby.js:185
 msgid "Registered"
 msgstr "Регистриран"
 
-#: gui/prelobby/prelobby.js:243
+#: gui/prelobby/prelobby.js:249
 msgid "Register"
 msgstr "Регистриране"
 
-#: gui/prelobby/prelobby.js:249 gui/prelobby/prelobby.xml:(caption):108
+#: gui/prelobby/prelobby.js:255 gui/prelobby/prelobby.xml:(caption):116
 msgid "Connect"
 msgstr "Свързване"
 
-#: gui/prelobby/prelobby.js:259 gui/prelobby/prelobby.xml:(caption):85
+#: gui/prelobby/prelobby.js:265 gui/prelobby/prelobby.xml:(caption):93
 msgid "Terms of Service"
 msgstr "Условия на услугата"
 
-#: gui/prelobby/prelobby.js:268 gui/prelobby/prelobby.xml:(caption):90
+#: gui/prelobby/prelobby.js:274 gui/prelobby/prelobby.xml:(caption):98
 msgid "Terms of Use"
 msgstr " Условия за ползване"
+
+#: gui/prelobby/prelobby.js:298
+msgid "Are you sure you want to delete the password after connecting?"
+msgstr "Наистина ли искате да изтриете паролата след свързване?"
 
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
@@ -586,28 +602,32 @@ msgid "Connect to the game lobby"
 msgstr "Свързване с чакалнята за игри"
 
 #: gui/prelobby/prelobby.xml:(caption):43
-#: gui/prelobby/prelobby.xml:(caption):70
+#: gui/prelobby/prelobby.xml:(caption):78
 msgid "Login:"
 msgstr "Потребителско име:"
 
 #: gui/prelobby/prelobby.xml:(caption):51
-#: gui/prelobby/prelobby.xml:(caption):75
+#: gui/prelobby/prelobby.xml:(caption):83
 msgid "Password:"
 msgstr "Парола:"
 
-#: gui/prelobby/prelobby.xml:(caption):66
+#: gui/prelobby/prelobby.xml:(caption):68
+msgid "Remember Password"
+msgstr "Запомняне на паролата"
+
+#: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"
 msgstr "Регистриране"
 
-#: gui/prelobby/prelobby.xml:(caption):80
+#: gui/prelobby/prelobby.xml:(caption):88
 msgid "Password again:"
 msgstr "Повторете паролата:"
 
-#: gui/prelobby/prelobby.xml:(caption):95
+#: gui/prelobby/prelobby.xml:(caption):103
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
 msgstr "Прочетох и се съгласявам с условията на услугата и условията за ползване:"
 
-#: gui/prelobby/prelobby.xml:(caption):104
+#: gui/prelobby/prelobby.xml:(caption):112
 msgid "Cancel"
 msgstr "Отказ"
 

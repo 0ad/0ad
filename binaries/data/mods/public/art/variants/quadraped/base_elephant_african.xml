@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant frequency="1" name="elephant-african-armor">
+  <animations>
+    <animation file="quadraped/elephant_african_idle_01.dae" name="Idle" speed="25"/>
+    <animation file="quadraped/elephant_african_idle_01.dae" name="Idle" speed="25"/>
+    <animation file="quadraped/elephant_african_idle_01.dae" name="Idle" speed="25"/>
+    <animation file="quadraped/elephant_african_idle_02.dae" name="Idle" speed="85"/>
+    <animation file="quadraped/elephant_african_idle_03.dae" name="Idle" speed="75"/>
+    <animation file="quadraped/elephant_african_idle_03.dae" name="Idle" speed="75"/>
+    <animation file="quadraped/elephant_african_walk.dae" name="Walk" speed="30"/>
+    <animation file="quadraped/elephant_african_walk.dae" name="Run" speed="20"/>
+    <animation event="0.5" file="quadraped/elephant_african_attack.dae" name="attack_melee" speed="75"/>
+    <animation file="quadraped/elephant_african_death.dae" id="death1" name="Death" speed="50"/>
+    <animation file="quadraped/elephant_african_death.dae" id="death2" name="Death" speed="50"/>
+  </animations>
+</variant>

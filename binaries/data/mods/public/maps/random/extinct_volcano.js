@@ -450,7 +450,7 @@ createObjectGroupsDeprecated(
 	0,
 	avoidClasses(clRain, 5),
 	scaleByMapSize(80, 250));
-Engine.SetProgress(95);
+Engine.SetProgress(98);
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clHill, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 

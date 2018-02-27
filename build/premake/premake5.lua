@@ -186,6 +186,8 @@ function project_set_build_flags()
 	-- various platform-specific build flags
 	if os.istarget("windows") then
 
+		flags { "MultiProcessorCompile" }
+
 		-- use native wchar_t type (not typedef to unsigned short)
 		nativewchar "on"
 

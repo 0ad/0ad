@@ -272,7 +272,7 @@ createObjectGroupsDeprecated(group, 0,
 	8 * scaleByMapSize(13, 200), 50
 );
 
-Engine.SetProgress(95);
+Engine.SetProgress(96);
 
 createStragglerTrees(
 	[oTree, oPalm],
@@ -290,7 +290,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-Engine.SetProgress(75);
+Engine.SetProgress(97);
 
 g_Map.log("Creating berry bush");
 group = new SimpleGroup(

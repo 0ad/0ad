@@ -848,7 +848,7 @@ function createUnknownObjects()
 		[avoidClasses(clPlayer, 15, clHill, randIntInclusive(6, 18)), stayClasses(clLand, 0)],
 		randIntInclusive(0, scaleByMapSize(4, 8))*randIntInclusive(1, scaleByMapSize(4, 9))
 	);
-	Engine.SetProgress(50);
+	Engine.SetProgress(30);
 
 	g_Map.log("Creating forests");
 	let [numForest, numStragglers] = getTreeCounts(...rBiomeTreeCount(1));

@@ -9,12 +9,14 @@
         <prop actor="props/units/heads/iber_helmet_02.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/iber_healer_staff.xml" attachpoint="weapon_L"/>
       </props>
+      <textures>
+        <texture file="skeletal/iber_healer.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Iberian healer">
-      <textures><texture file="skeletal/iber_healer.dds" name="baseTex"/></textures>
-    </variant>
+    <variant name="Idle" frequency="1"/>
+    <variant file="biped/female_death.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

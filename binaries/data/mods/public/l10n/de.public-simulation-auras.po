@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-21 09:05+0100\n"
-"PO-Revision-Date: 2018-02-21 18:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-02-23 09:05+0100\n"
+"PO-Revision-Date: 2018-02-23 21:30+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -266,7 +266,7 @@ msgstr "Wehrpflicht"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied citizen-soldier infantry."
-msgstr ""
+msgstr "-20% Ausbildungszeit für verbündete Bürgersoldaten-Infanterie."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -611,24 +611,25 @@ msgid "Lightning General"
 msgstr "Blitzgeneral"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
-msgid "All soldiers and siege engines +15% speed."
-msgstr "Alle Soldaten und Belagerungswaffen bekommen +15% Geschwindigkeit."
+msgid "Nearby soldiers and siege engines +15% speed."
+msgstr "Soldaten und Belagerungswaffen in der Nähe +15% Geschwindigkeit."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
 msgid "Subduer of Mercenaries"
-msgstr ""
+msgstr "Bezwinger der Söldner"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
 msgid "-20% attack for enemy mercenaries."
-msgstr ""
+msgstr "-20% Angriff für gegnerische Söldner."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
 msgstr "Taktiker"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
-msgid "+20% attack and +1 capture for all allied soldiers and siege engines."
-msgstr "+20% Angriff und +1 Einnehmen für alle verbündeten Soldaten und Belagerungsmaschinen."
+msgid ""
+"+20% attack and +1 capture for nearby allied soldiers and siege engines."
+msgstr "+20% Angriff und +1 Einnehmen für verbündete Soldaten und Belagerungswaffen in der Nähe."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -839,7 +840,7 @@ msgstr "Führung"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers, siege engines and traders."
-msgstr ""
+msgstr "+15% Bewegungsgeschwindigkeit für alle Soldaten, Belagerungswaffen und Händler."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -892,7 +893,7 @@ msgstr "Söldnerpatron"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -35% resources during his lifetime."
-msgstr ""
+msgstr "Söldner kosten -35% Ressourcen, solange er am Leben ist."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -953,7 +954,7 @@ msgstr "Heloten-Reformen"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
-msgstr ""
+msgstr "+25% Angriff und +1 Rüstung für Infanterie-Bürgersoldaten mit Wurfspeeren."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

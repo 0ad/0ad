@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Build">
+  <animations>
+    <animation event="0.75" file="quadraped/elephant_asian_support_build.dae" load="0.25" name="Build" speed="100"/>
+  </animations>
+  <props>
+    <prop actor="props/special/eyecandy/wood_1_a.xml" attachpoint="loaded-beam"/>
+  </props>
+</variant>

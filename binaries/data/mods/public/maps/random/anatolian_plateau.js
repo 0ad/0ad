@@ -127,7 +127,7 @@ createLayeredPatches(
  scaleByMapSize(30, 90),
  clDirt);
 
-Engine.SetProgress(55);
+Engine.SetProgress(60);
 
 g_Map.log("Creating stone mines");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);

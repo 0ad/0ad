@@ -158,7 +158,7 @@ var areaVesuv = createArea(
 		new TileClassPainter(g_TileClasses.lava)
 	],
 	new HeightConstraint(heightLavaVesuv, Infinity));
-Engine.SetProgress(20);
+Engine.SetProgress(46);
 
 g_Map.log("Adding smoke...");
 createObjectGroupsByAreas(
@@ -188,7 +188,7 @@ for (let i = 0; i < scaleByMapSize(2, 4); ++i)
 	g_Map.placeEntityPassable(randBool(0.4) ? g_Gaia.dock : g_Gaia.dockRubble, 0, dockPosition, -positionLand.angleTo(dockPosition) + Math.PI / 2);
 	g_TileClasses.dock.add(dockPosition);
 }
-Engine.SetProgress(10);
+Engine.SetProgress(47);
 
 if (!isNomad())
 {
@@ -208,7 +208,7 @@ if (!isNomad())
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
 }
-Engine.SetProgress(50);
+Engine.SetProgress(48);
 
 addElements([
 	{
