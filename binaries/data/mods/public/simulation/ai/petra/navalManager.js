@@ -586,10 +586,16 @@ m.NavalManager.prototype.moveApart = function(gameState)
 		else if (ship.isIdle())
 		{
 			let previousIdlePosition = ship.getMetadata(PlayerID, "previousIdlePosition");
-			if (previousIdlePosition && previousIdlePosition[0] == shipPosition[0] &&
-			                            previousIdlePosition[1] == shipPosition[1])
+			if (!previousIdlePosition || previousIdlePosition[0] != shipPosition[0] ||
+			                             previousIdlePosition[1] != shipPosition[1])
+			{
+				ship.setMetadata(PlayerID, "previousIdlePosition", shipPosition);
+				ship.setMetadata(PlayerID, "stationnary", undefined);
 				continue;
-			ship.setMetadata(PlayerID, "previousIdlePosition", shipPosition);
+			}
+			if (ship.getMetadata(PlayerID, "stationnary"))
+					continue;
+			ship.setMetadata(PlayerID, "stationnary", true);
 			// Check if there are some treasure around
 			if (m.gatherTreasure(gameState, ship, true))
 				continue;
@@ -637,10 +643,16 @@ m.NavalManager.prototype.moveApart = function(gameState)
 		else if (ship.isIdle())
 		{
 			let previousIdlePosition = ship.getMetadata(PlayerID, "previousIdlePosition");
-			if (previousIdlePosition && previousIdlePosition[0] == shipPosition[0] &&
-			                            previousIdlePosition[1] == shipPosition[1])
+			if (!previousIdlePosition || previousIdlePosition[0] != shipPosition[0] ||
+			                             previousIdlePosition[1] != shipPosition[1])
+			{
+				ship.setMetadata(PlayerID, "previousIdlePosition", shipPosition);
+				ship.setMetadata(PlayerID, "stationnary", undefined);
 				continue;
-			ship.setMetadata(PlayerID, "previousIdlePosition", shipPosition);
+			}
+			if (ship.getMetadata(PlayerID, "stationnary"))
+					continue;
+			ship.setMetadata(PlayerID, "stationnary", true);
 			// Check if there are some treasure around
 			if (m.gatherTreasure(gameState, ship, true))
 				continue;
@@ -819,8 +831,6 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 m.NavalManager.prototype.update = function(gameState, queues, events)
 {
 	Engine.ProfileStart("Naval Manager update");
-
-	this.checkEvents(gameState, queues, events);
 
 	// close previous transport plans if finished
 	for (let i = 0; i < this.transportPlans.length; ++i)

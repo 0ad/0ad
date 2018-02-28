@@ -714,6 +714,7 @@ m.AttackManager.prototype.switchDefenseToAttack = function(gameState, target, da
 			if (unit && attackPlan.isAvailableUnit(gameState, unit))
 			{
 				unit.setMetadata(PlayerID, "plan", attackPlan.name);
+				unit.setMetadata(PlayerID, "role", "attack");
 				attackPlan.unitCollection.updateEnt(unit);
 			}
 		}
@@ -723,6 +724,8 @@ m.AttackManager.prototype.switchDefenseToAttack = function(gameState, target, da
 		attackPlan.Abort(gameState);
 		return false;
 	}
+	for (let unit of attackPlan.unitCollection.values())
+		unit.setMetadata(PlayerID, "role", "attack");
 	attackPlan.targetPlayer = target.owner();
 	attackPlan.targetPos = pos;
 	attackPlan.target = target;

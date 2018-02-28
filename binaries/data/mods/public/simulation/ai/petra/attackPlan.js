@@ -72,6 +72,8 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	{
 		for (let structure of gameState.getEnemyStructures().values())
 		{
+			if (this.target && structure.id() != this.target.id())
+				continue;
 			if (!structure.position())
 				continue;
 			let access = m.getLandAccess(gameState, structure);
@@ -85,7 +87,15 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 			{
 				let sea = gameState.ai.HQ.getSeaBetweenIndices(gameState, rallyAccess, access);
 				if (!sea)
+				{
+					if (this.target)
+					{
+						API3.warn("Petra: " + this.type + " " + this.name + " has an inaccessible target.");
+						this.failed = true;
+						return false;
+					}
 					continue;
+				}
 				this.overseas = sea;
 				gameState.ai.HQ.navalManager.setMinimalTransportShips(gameState, sea, 1);
 			}
@@ -804,11 +814,17 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 		{
 			rallyIndex = gameState.ai.accessibility.getAccessValue(rallyDiff);
 			this.rallyPoint = rallyDiff;
-			this.overseas = gameState.ai.HQ.getSeaBetweenIndices(gameState, rallyIndex, targetIndex);
-			if (this.overseas)
+			let sea = gameState.ai.HQ.getSeaBetweenIndices(gameState, rallyIndex, targetIndex);
+			if (sea)
+			{
+				this.overseas = sea;
 				gameState.ai.HQ.navalManager.setMinimalTransportShips(gameState, this.overseas, this.neededShips);
+			}
 			else
+			{
+				API3.warn("Petra: " + this.type + " " + this.name + " has an inaccessible target.");
 				return false;
+			}
 		}
 	}
 	else if (this.overseas)
@@ -1120,10 +1136,10 @@ m.AttackPlan.prototype.checkTargetObstruction = function(gameState, target, posi
 	return target;
 };
 
-m.AttackPlan.prototype.getPathToTarget = function(gameState)
+m.AttackPlan.prototype.getPathToTarget = function(gameState, fixedRallyPoint = false)
 {
 	let startAccess = gameState.ai.accessibility.getAccessValue(this.rallyPoint);
-	let endAccess = gameState.ai.accessibility.getAccessValue(this.targetPos);
+	let endAccess = m.getLandAccess(gameState, this.target);
 	if (startAccess != endAccess)
 		return false;
 
@@ -1138,7 +1154,8 @@ m.AttackPlan.prototype.getPathToTarget = function(gameState)
 	this.path.push(this.rallyPoint);
 	this.path.reverse();
 	// Change the rally point to something useful
-	this.setRallyPoint(gameState);
+	if (!fixedRallyPoint)
+		this.setRallyPoint(gameState);
 	Engine.ProfileStop();
 
 	return true;
@@ -1178,52 +1195,41 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 		API3.warn("start attack " + this.name + " with type " + this.type);
 
 	// if our target was destroyed during preparation, choose a new one
-	if (this.targetPlayer === undefined || !this.target || !gameState.getEntityById(this.target.id()))
+	if ((this.targetPlayer === undefined || !this.target || !gameState.getEntityById(this.target.id())) &&
+	    !this.chooseTarget(gameState))
+		return false;
+
+	// erase our queue. This will stop any leftover unit from being trained.
+	gameState.ai.queueManager.removeQueue("plan_" + this.name);
+	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
+	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
+
+	for (let ent of this.unitCollection.values())
+		ent.setMetadata(PlayerID, "subrole", "walking");
+	this.unitCollection.setStance("aggressive");
+
+	let rallyAccess = gameState.ai.accessibility.getAccessValue(this.rallyPoint);
+	let targetAccess = m.getLandAccess(gameState, this.target);
+	if (rallyAccess == targetAccess)
 	{
-		if (!this.chooseTarget(gameState))
+		if (!this.path)
+			this.getPathToTarget(gameState, true);
+		if (!this.path || !this.path[0][0] || !this.path[0][1])
 			return false;
-	}
-
-	// check we have a target and a path.
-	if (this.targetPos && (this.overseas || this.path))
-	{
-		// erase our queue. This will stop any leftover unit from being trained.
-		gameState.ai.queueManager.removeQueue("plan_" + this.name);
-		gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
-		gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
-
-		for (let ent of this.unitCollection.values())
-			ent.setMetadata(PlayerID, "subrole", "walking");
-		this.unitCollection.setStance("aggressive");
-
-		if (gameState.ai.accessibility.getAccessValue(this.targetPos) == gameState.ai.accessibility.getAccessValue(this.rallyPoint))
-		{
-			if (!this.path[0][0] || !this.path[0][1])
-			{
-				if (this.Config.debug > 1)
-					API3.warn("StartAttack: Problem with path " + uneval(this.path));
-				return false;
-			}
-			this.state = "walking";
-			this.unitCollection.moveToRange(this.path[0][0], this.path[0][1], 0, 15);
-		}
-		else
-		{
-			this.state = "transporting";
-			let startIndex = gameState.ai.accessibility.getAccessValue(this.rallyPoint);
-			let endIndex = gameState.ai.accessibility.getAccessValue(this.targetPos);
-			let endPos = this.targetPos;
-			// TODO require a global transport for the collection,
-			// and put back its state to "walking" when the transport is finished
-			for (let ent of this.unitCollection.values())
-				gameState.ai.HQ.navalManager.requireTransport(gameState, ent, startIndex, endIndex, endPos);
-		}
+		this.overseas = 0;
+		this.state = "walking";
+		this.unitCollection.moveToRange(this.path[0][0], this.path[0][1], 0, 15);
 	}
 	else
 	{
-		gameState.ai.gameFinished = true;
-		API3.warn("I do not have any target. So I'll just assume I won the game.");
-		return false;
+		this.overseas = gameState.ai.HQ.getSeaBetweenIndices(gameState, rallyAccess, targetAccess);
+		if (!this.overseas)
+			return false;
+		this.state = "transporting";
+		// TODO require a global transport for the collection,
+		// and put back its state to "walking" when the transport is finished
+		for (let ent of this.unitCollection.values())
+			gameState.ai.HQ.navalManager.requireTransport(gameState, ent, rallyAccess, targetAccess, this.targetPos);
 	}
 	return true;
 };
@@ -1963,7 +1969,7 @@ m.AttackPlan.prototype.Abort = function(gameState)
 
 		for (let ent of this.unitCollection.values())
 		{
-			if (ent.getMetadata(PlayerID, "role") === "attack")
+			if (ent.getMetadata(PlayerID, "role") == "attack")
 				ent.stopMoving();
 			if (rallyPoint)
 				ent.moveToRange(rallyPoint[0], rallyPoint[1], 0, 15);
@@ -1981,9 +1987,12 @@ m.AttackPlan.prototype.Abort = function(gameState)
 
 m.AttackPlan.prototype.removeUnit = function(ent, update)
 {
-	if (ent.hasClass("CitizenSoldier") && ent.getMetadata(PlayerID, "role") !== "worker")
+	if (ent.getMetadata(PlayerID, "role") == "attack")
 	{
-		ent.setMetadata(PlayerID, "role", "worker");
+		if (ent.hasClass("CitizenSoldier"))
+			ent.setMetadata(PlayerID, "role", "worker");
+		else
+			ent.setMetadata(PlayerID, "role", undefined);
 		ent.setMetadata(PlayerID, "subrole", undefined);
 	}
 	ent.setMetadata(PlayerID, "plan", -1);

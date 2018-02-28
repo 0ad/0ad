@@ -2057,7 +2057,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	return true;
 };
 
-m.HQ.prototype.canBuild = function(gameState, structure, debug = false)
+m.HQ.prototype.canBuild = function(gameState, structure)
 {
 	let type = gameState.applyCiv(structure);
 	if (this.buildManager.isUnbuildable(gameState, type))
@@ -2539,6 +2539,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	} */
 
 	this.checkEvents(gameState, events);
+	this.navalManager.checkEvents(gameState, queues, events);
 
 	if (this.phasing)
 		this.checkPhaseRequirements(gameState, queues);

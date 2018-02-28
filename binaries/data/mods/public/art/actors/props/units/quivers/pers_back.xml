@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="quiver back">
+      <mesh>props/quivers/pers_back.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_a"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_b"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_c"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_d"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_e"/>
+      </props>
+      <textures>
+        <texture file="props/quivers/pers_back.png" name="baseTex"/>
+        <texture file="props/quivers/pers_back_norm.png" name="normTex"/>
+        <texture file="props/quivers/pers_back_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
