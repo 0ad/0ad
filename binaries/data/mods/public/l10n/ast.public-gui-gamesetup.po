@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-02-24 18:11+0000\n"
+"POT-Creation-Date: 2018-02-26 09:04+0100\n"
+"PO-Revision-Date: 2018-02-28 00:41+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -27,310 +27,310 @@ msgstr "Nengún"
 msgid "AI will be disabled for this player."
 msgstr "Va desactivase la IA d'esti xugador."
 
-#: gui/gamesetup/gamesetup.js:56
+#: gui/gamesetup/gamesetup.js:64
 msgctxt "team"
 msgid "None"
 msgstr "Nengún"
 
-#: gui/gamesetup/gamesetup.js:72
+#: gui/gamesetup/gamesetup.js:80
 msgctxt "civilization"
 msgid "Random"
 msgstr "Al debalu"
 
-#: gui/gamesetup/gamesetup.js:73
+#: gui/gamesetup/gamesetup.js:81
 msgid "Picks one civilization at random when the game starts."
 msgstr "Escueye al debalu una civilización al entamar la partida."
 
-#: gui/gamesetup/gamesetup.js:111
+#: gui/gamesetup/gamesetup.js:119
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nun ta preparáu."
 
-#: gui/gamesetup/gamesetup.js:112
+#: gui/gamesetup/gamesetup.js:120
 msgid "I'm ready"
 msgstr "Toi preparáu"
 
-#: gui/gamesetup/gamesetup.js:113
+#: gui/gamesetup/gamesetup.js:121
 msgid "State that you are ready to play."
 msgstr "Conseñar que tas preparáu pa xugar."
 
-#: gui/gamesetup/gamesetup.js:117
+#: gui/gamesetup/gamesetup.js:125
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* ¡%(username)s ta preparáu!"
 
-#: gui/gamesetup/gamesetup.js:118
+#: gui/gamesetup/gamesetup.js:126
 msgid "Stay ready"
 msgstr "Siguir preparáu"
 
-#: gui/gamesetup/gamesetup.js:119
+#: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready even when the game settings change."
 msgstr "Siguir preparáu mesmamente cuando cambien los axustes de la partida."
 
-#: gui/gamesetup/gamesetup.js:124
+#: gui/gamesetup/gamesetup.js:132
 msgid "I'm not ready!"
 msgstr "¡Nun toi preparáu!"
 
-#: gui/gamesetup/gamesetup.js:125
+#: gui/gamesetup/gamesetup.js:133
 msgid "State that you are not ready to play."
 msgstr "Conseñar que nun tas preparáu pa xugar."
 
-#: gui/gamesetup/gamesetup.js:148
+#: gui/gamesetup/gamesetup.js:156
 msgid "Game settings have been changed"
 msgstr "Cambiaron los axustes"
 
-#: gui/gamesetup/gamesetup.js:149
+#: gui/gamesetup/gamesetup.js:157
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "Xunióse %(username)s"
 
-#: gui/gamesetup/gamesetup.js:150
+#: gui/gamesetup/gamesetup.js:158
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "Coló %(username)s"
 
-#: gui/gamesetup/gamesetup.js:151
+#: gui/gamesetup/gamesetup.js:159
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "Espuxóse a %(username)s"
 
-#: gui/gamesetup/gamesetup.js:152
+#: gui/gamesetup/gamesetup.js:160
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s ta bloquiáu"
 
-#: gui/gamesetup/gamesetup.js:153
+#: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:154
+#: gui/gamesetup/gamesetup.js:162
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:164
+#: gui/gamesetup/gamesetup.js:172
 msgctxt "map filter"
 msgid "Default"
 msgstr "Por defeutu"
 
-#: gui/gamesetup/gamesetup.js:165
+#: gui/gamesetup/gamesetup.js:173
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
 msgstr "Tolos mapes sacantes los navales y los de demostranza."
 
-#: gui/gamesetup/gamesetup.js:171
+#: gui/gamesetup/gamesetup.js:179
 msgid "Naval Maps"
 msgstr "Mapes navales"
 
-#: gui/gamesetup/gamesetup.js:172
+#: gui/gamesetup/gamesetup.js:180
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "Mapes u faen falta barcos p'algamar al enemigu."
 
-#: gui/gamesetup/gamesetup.js:177
+#: gui/gamesetup/gamesetup.js:185
 msgid "Demo Maps"
 msgstr "Mapes de demostranza"
 
-#: gui/gamesetup/gamesetup.js:178
+#: gui/gamesetup/gamesetup.js:186
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "Estos mapes nun puen xugase sinón que sirven de demostranza."
 
-#: gui/gamesetup/gamesetup.js:183
+#: gui/gamesetup/gamesetup.js:191
 msgid "New Maps"
 msgstr "Mapes nuevos"
 
-#: gui/gamesetup/gamesetup.js:184
+#: gui/gamesetup/gamesetup.js:192
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
 msgstr "Mapes que s'estrenaron nesta versión del xuegu."
 
-#: gui/gamesetup/gamesetup.js:189
+#: gui/gamesetup/gamesetup.js:197
 msgid "Trigger Maps"
 msgstr "Mapes disparadores"
 
-#: gui/gamesetup/gamesetup.js:190
+#: gui/gamesetup/gamesetup.js:198
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Mapes que tienen acontecimientos programaos y que xenerarán unidaes."
 
-#: gui/gamesetup/gamesetup.js:195
+#: gui/gamesetup/gamesetup.js:203
 msgid "All Maps"
 msgstr "Tolos mapes"
 
-#: gui/gamesetup/gamesetup.js:196
+#: gui/gamesetup/gamesetup.js:204
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr "Cada mapa del tipu de mapa escoyíu."
 
-#: gui/gamesetup/gamesetup.js:396
+#: gui/gamesetup/gamesetup.js:409
 msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Mapa"
 
-#: gui/gamesetup/gamesetup.js:411
+#: gui/gamesetup/gamesetup.js:424
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Xugador"
 
-#: gui/gamesetup/gamesetup.js:421
+#: gui/gamesetup/gamesetup.js:434
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Tipu de partida"
 
-#: gui/gamesetup/gamesetup.js:461
+#: gui/gamesetup/gamesetup.js:474
 msgid "Map Type"
 msgstr "Tipu de mapa"
 
-#: gui/gamesetup/gamesetup.js:462
+#: gui/gamesetup/gamesetup.js:475
 msgid "Select a map type."
 msgstr "Esbilla'l tipu de mapa."
 
-#: gui/gamesetup/gamesetup.js:485
+#: gui/gamesetup/gamesetup.js:498
 msgid "Map Filter"
 msgstr "Peñera de mapes"
 
-#: gui/gamesetup/gamesetup.js:486
+#: gui/gamesetup/gamesetup.js:499
 msgid "Select a map filter."
 msgstr "Escueyi una peñera mapes."
 
-#: gui/gamesetup/gamesetup.js:501
+#: gui/gamesetup/gamesetup.js:514
 msgid "Select Map"
 msgstr "Escoyer mapa"
 
-#: gui/gamesetup/gamesetup.js:502
+#: gui/gamesetup/gamesetup.js:515
 msgid "Select a map to play on."
 msgstr "Escueyi un mapa nel que xugar."
 
-#: gui/gamesetup/gamesetup.js:516
+#: gui/gamesetup/gamesetup.js:529
 msgid "Map Size"
 msgstr "Tamañu del mapa"
 
-#: gui/gamesetup/gamesetup.js:517
+#: gui/gamesetup/gamesetup.js:530
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Escueyi'l tamañu del mapa. (Los tamaños más grandes puen reducir el rindimientu)."
 
-#: gui/gamesetup/gamesetup.js:531
+#: gui/gamesetup/gamesetup.js:544
 msgid "Biome"
 msgstr "Bioma"
 
-#: gui/gamesetup/gamesetup.js:532
+#: gui/gamesetup/gamesetup.js:545
 msgid "Select the flora and fauna."
 msgstr "Esbilla la flora y la fauna."
 
-#: gui/gamesetup/gamesetup.js:547
+#: gui/gamesetup/gamesetup.js:560
 msgid "Number of Players"
 msgstr "Númberu de xugadores"
 
-#: gui/gamesetup/gamesetup.js:548
+#: gui/gamesetup/gamesetup.js:561
 msgid "Select number of players."
 msgstr "Escueyi'l númberu de xugadores."
 
-#: gui/gamesetup/gamesetup.js:568
+#: gui/gamesetup/gamesetup.js:581
 msgid "Population Cap"
 msgstr "Capacidá de población"
 
-#: gui/gamesetup/gamesetup.js:575
+#: gui/gamesetup/gamesetup.js:588
 msgid "Select population limit."
 msgstr "Escueyi la llende de la capacidá población."
 
-#: gui/gamesetup/gamesetup.js:578
+#: gui/gamesetup/gamesetup.js:591
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Avisu: Pue que heba problemes de rindimientu si tolos xugadores %(players)s algamen una población de %(popCap)s."
 
-#: gui/gamesetup/gamesetup.js:596
+#: gui/gamesetup/gamesetup.js:609
 msgid "Starting Resources"
 msgstr "Recursos nicieros"
 
-#: gui/gamesetup/gamesetup.js:599
+#: gui/gamesetup/gamesetup.js:612
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "La cantidá ñiciera de cada recursu: %(resources)s."
 
-#: gui/gamesetup/gamesetup.js:602
+#: gui/gamesetup/gamesetup.js:615
 msgid "Select the game's starting resources."
 msgstr "Escueyi los recursos nicieros de la partida."
 
-#: gui/gamesetup/gamesetup.js:617
+#: gui/gamesetup/gamesetup.js:630
 msgid "Ceasefire"
 msgstr "Altu'l fueu"
 
-#: gui/gamesetup/gamesetup.js:618
+#: gui/gamesetup/gamesetup.js:631
 msgid "Set time where no attacks are possible."
 msgstr "Tiempu determináu no que naide nun ye a atacar."
 
-#: gui/gamesetup/gamesetup.js:631
+#: gui/gamesetup/gamesetup.js:644
 msgid "Victory Condition"
 msgstr "Condición de victoria"
 
-#: gui/gamesetup/gamesetup.js:632
+#: gui/gamesetup/gamesetup.js:645
 msgid "Select victory condition."
 msgstr "Escueyi la condición de victoria."
 
-#: gui/gamesetup/gamesetup.js:647
+#: gui/gamesetup/gamesetup.js:660
 msgid "Relic Count"
 msgstr "Númberu de reliquies"
 
-#: gui/gamesetup/gamesetup.js:648
+#: gui/gamesetup/gamesetup.js:661
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "El conxuntu de les reliquies que se xeneraron en mapa. El trunfu per reliquia ye más realista con namái una reliquia o dos. Con más, cal prindar les reliquies pa recibir bonificaciones d'aura."
 
-#: gui/gamesetup/gamesetup.js:662
+#: gui/gamesetup/gamesetup.js:675
 msgid "Relic Duration"
 msgstr "Duración de reliquies"
 
-#: gui/gamesetup/gamesetup.js:663
+#: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Minutos hasta que'l xugador algamó la victoria de reliquies."
 
-#: gui/gamesetup/gamesetup.js:677
+#: gui/gamesetup/gamesetup.js:690
 msgid "Wonder Duration"
 msgstr "Duración de maraviya"
 
-#: gui/gamesetup/gamesetup.js:678
+#: gui/gamesetup/gamesetup.js:691
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr "Minutos hasta que'l xugador algamó la victoria de maraviyes."
 
-#: gui/gamesetup/gamesetup.js:692
+#: gui/gamesetup/gamesetup.js:705
 msgid "Game Speed"
 msgstr "Velocidá del xuegu"
 
-#: gui/gamesetup/gamesetup.js:693
+#: gui/gamesetup/gamesetup.js:706
 msgid "Select game speed."
 msgstr "Escueyi la velocidá del xuegu."
 
-#: gui/gamesetup/gamesetup.js:707
+#: gui/gamesetup/gamesetup.js:720
 msgid "Difficulty"
 msgstr "Dificultá"
 
-#: gui/gamesetup/gamesetup.js:709
+#: gui/gamesetup/gamesetup.js:722
 msgid "Select the difficulty of this scenario."
 msgstr "Escueyi la dificultá d'esti escenariu."
 
-#: gui/gamesetup/gamesetup.js:774
+#: gui/gamesetup/gamesetup.js:787
 msgid "Chose the civilization for this player"
 msgstr "Escueyi la civilización d'esti xugador"
 
-#: gui/gamesetup/gamesetup.js:814
+#: gui/gamesetup/gamesetup.js:827
 msgid "Hero Garrison"
 msgstr "Guarnición de los héroes"
 
-#: gui/gamesetup/gamesetup.js:815
+#: gui/gamesetup/gamesetup.js:828
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Activa si quies guarecer a los héroes."
 
-#: gui/gamesetup/gamesetup.js:827
+#: gui/gamesetup/gamesetup.js:840
 msgid "Nomad"
 msgstr "Nómada"
 
-#: gui/gamesetup/gamesetup.js:828
+#: gui/gamesetup/gamesetup.js:841
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -338,201 +338,208 @@ msgstr "En mou nómada, los xugadores entamen con namái unes poques unidaes y t
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:841
+#: gui/gamesetup/gamesetup.js:854
 msgid "Revealed Map"
 msgstr "Mapa descubiertu"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:844
+#: gui/gamesetup/gamesetup.js:857
 msgid "Toggle revealed map (see everything)."
 msgstr "Activa'l mapa descubiertu (velo too)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:860
+#: gui/gamesetup/gamesetup.js:873
 msgid "Explored Map"
 msgstr "Mapa esploráu"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:863
+#: gui/gamesetup/gamesetup.js:876
 msgid "Toggle explored map (see initial map)."
 msgstr "Activa'l mapa esploráu (ver el mapa inicial)."
 
-#: gui/gamesetup/gamesetup.js:874
+#: gui/gamesetup/gamesetup.js:887
 msgid "Disable Treasures"
 msgstr "Desactivar les ayalgues"
 
-#: gui/gamesetup/gamesetup.js:875
+#: gui/gamesetup/gamesetup.js:888
 msgid "Disable all treasures on the map."
 msgstr "Desactiva toles ayalgues del mapa."
 
-#: gui/gamesetup/gamesetup.js:886
+#: gui/gamesetup/gamesetup.js:899
 msgid "Disable Spies"
 msgstr "Desactivar a los espíes"
 
-#: gui/gamesetup/gamesetup.js:887
+#: gui/gamesetup/gamesetup.js:900
 msgid "Disable spies during the game."
 msgstr "Desactiva a los espíes demientres la partida."
 
-#: gui/gamesetup/gamesetup.js:898
+#: gui/gamesetup/gamesetup.js:911
 msgid "Teams Locked"
 msgstr "Equipos fixos"
 
-#: gui/gamesetup/gamesetup.js:899
+#: gui/gamesetup/gamesetup.js:912
 msgid "Toggle locked teams."
 msgstr "Activa equipos fixos."
 
-#: gui/gamesetup/gamesetup.js:913
+#: gui/gamesetup/gamesetup.js:926
 msgid "Last Man Standing"
 msgstr "El caberu home de pie"
 
-#: gui/gamesetup/gamesetup.js:914
+#: gui/gamesetup/gamesetup.js:927
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Activa si quies que gane'l caberu xugador o'l caberu grupu d'aliaos."
 
-#: gui/gamesetup/gamesetup.js:927
+#: gui/gamesetup/gamesetup.js:940
 msgid "Cheats"
 msgstr "Trampes"
 
-#: gui/gamesetup/gamesetup.js:928
+#: gui/gamesetup/gamesetup.js:941
 msgid "Toggle the usability of cheats."
 msgstr "Activa l'usu de trucos."
 
-#: gui/gamesetup/gamesetup.js:941
+#: gui/gamesetup/gamesetup.js:954
 msgid "Rated Game"
 msgstr "Partida evaluada"
 
-#: gui/gamesetup/gamesetup.js:942
+#: gui/gamesetup/gamesetup.js:955
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Activa si esta partida va evaluase pa la tabla de posiciones."
 
-#: gui/gamesetup/gamesetup.js:974
+#: gui/gamesetup/gamesetup.js:987
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr "Calca %(hotkey)s p'autocompletar los nomes de los xugadores o los axustes."
 
-#: gui/gamesetup/gamesetup.js:982
+#: gui/gamesetup/gamesetup.js:995
 msgid "Return to the lobby."
 msgstr "Tornar a la sala d'espera."
 
-#: gui/gamesetup/gamesetup.js:983
+#: gui/gamesetup/gamesetup.js:996
 msgid "Return to the main menu."
 msgstr "Tornar al menú principal."
 
-#: gui/gamesetup/gamesetup.js:987
+#: gui/gamesetup/gamesetup.js:1000
 msgid "Start Game!"
 msgstr "¡Aniciar partida!"
 
-#: gui/gamesetup/gamesetup.js:993
+#: gui/gamesetup/gamesetup.js:1006
 msgid "Start a new game with the current settings."
 msgstr "Entama una partida nueva cola configuración actual."
 
-#: gui/gamesetup/gamesetup.js:994
+#: gui/gamesetup/gamesetup.js:1007
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "Entama una partida nueva cola configuración actual (desactivao fasta que tolos xugadores tean llistos)"
 
-#: gui/gamesetup/gamesetup.js:1057
+#: gui/gamesetup/gamesetup.js:1070
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "Configurar la IA: %(description)s."
 
-#: gui/gamesetup/gamesetup.js:1157
+#: gui/gamesetup/gamesetup.js:1121
+#, javascript-format
+msgid ""
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"Last opened will be reopened on click."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ver hestoria / Esquema n'árbole\nL'últimu abiertu va reabrise en calcando. "
+
+#: gui/gamesetup/gamesetup.js:1173
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "Activar la llingüeta d'axustes de %(name)s."
 
-#: gui/gamesetup/gamesetup.js:1158
+#: gui/gamesetup/gamesetup.js:1174
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "Emplega %(hotkey)s pa mover una llingüeta d'axustes p'abaxo."
 
-#: gui/gamesetup/gamesetup.js:1159
+#: gui/gamesetup/gamesetup.js:1175
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Emplega %(hotkey)s pa mover una llingüeta d'axustes p'arriba."
 
-#: gui/gamesetup/gamesetup.js:1678
+#: gui/gamesetup/gamesetup.js:1692
 msgctxt "map selection"
 msgid "Random"
 msgstr "Al debalu"
 
-#: gui/gamesetup/gamesetup.js:1680
+#: gui/gamesetup/gamesetup.js:1694
 msgid "Pick any of the given maps at random."
 msgstr "Escueyi al debalu cualesquier mapa dau."
 
-#: gui/gamesetup/gamesetup.js:1712
+#: gui/gamesetup/gamesetup.js:1726
 msgctxt "biome"
 msgid "Random"
 msgstr "Al debalu"
 
-#: gui/gamesetup/gamesetup.js:1713
+#: gui/gamesetup/gamesetup.js:1727
 msgid "Pick a biome at random."
 msgstr "Escueye un bioma al debalu."
 
-#: gui/gamesetup/gamesetup.js:2044
+#: gui/gamesetup/gamesetup.js:2058
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2049
+#: gui/gamesetup/gamesetup.js:2063
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Desconozse"
 
-#: gui/gamesetup/gamesetup.js:2079
+#: gui/gamesetup/gamesetup.js:2093
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/gamesetup/gamesetup.js:2079
+#: gui/gamesetup/gamesetup.js:2093
 msgid "No"
 msgstr "Non"
 
-#: gui/gamesetup/gamesetup.js:2086
+#: gui/gamesetup/gamesetup.js:2100
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2173
+#: gui/gamesetup/gamesetup.js:2187
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2380
+#: gui/gamesetup/gamesetup.js:2394
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2388
+#: gui/gamesetup/gamesetup.js:2402
 msgid "Unassigned"
 msgstr "Non asignáu"
 
-#: gui/gamesetup/gamesetup.js:2464
+#: gui/gamesetup/gamesetup.js:2478
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2471
+#: gui/gamesetup/gamesetup.js:2485
 msgid "Unknown Player"
 msgstr "Xugador desconocíu"
 
-#: gui/gamesetup/gamesetup.js:2510
+#: gui/gamesetup/gamesetup.js:2524
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2511
+#: gui/gamesetup/gamesetup.js:2525
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2512
+#: gui/gamesetup/gamesetup.js:2526
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -570,88 +577,84 @@ msgstr "Encaboxar"
 msgid "OK"
 msgstr "ACORDIES"
 
-#: gui/gamesetup/gamesetup.xml:(caption):12
+#: gui/gamesetup/gamesetup.xml:(caption):24
 msgid "Match Setup"
 msgstr "Configuración de la partida"
 
-#: gui/gamesetup/gamesetup.xml:(caption):18
+#: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading"
 msgstr "Cargando"
 
-#: gui/gamesetup/gamesetup.xml:(caption):22
+#: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
 msgstr "Cargando los datos del mapa. Espera por favor..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):42
+#: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
 msgstr "Nome del xugador"
 
-#: gui/gamesetup/gamesetup.xml:(caption):46
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Color"
 msgstr "Color"
 
-#: gui/gamesetup/gamesetup.xml:(caption):50
+#: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Player Placement"
 msgstr "Allugamientu del xugador"
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Civilization"
 msgstr "Civilización"
 
-#: gui/gamesetup/gamesetup.xml:(caption):82
+#: gui/gamesetup/gamesetup.xml:(caption):93
 msgid "Team"
 msgstr "Equipu"
 
-#: gui/gamesetup/gamesetup.xml:(caption):136
+#: gui/gamesetup/gamesetup.xml:(caption):147
 msgid "Show this message in the future"
 msgstr "Amuesa esti mensax nel futuru"
 
-#: gui/gamesetup/gamesetup.xml:(caption):225
+#: gui/gamesetup/gamesetup.xml:(caption):236
 msgid "Send"
 msgstr "Unviar"
 
-#: gui/gamesetup/gamesetup.xml:(caption):242
+#: gui/gamesetup/gamesetup.xml:(caption):253
 msgid "Cheats enabled."
 msgstr "Trucos activaos."
 
-#: gui/gamesetup/gamesetup.xml:(caption):272
+#: gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Back"
 msgstr "Atrás"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):64
-msgid "View civilization info"
-msgstr "Ver la información de la civilización"
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):77
+#: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Reafitar cualquier civilización que s'esbillare a la predeterminada (al debalu)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):92
+#: gui/gamesetup/gamesetup.xml:(tooltip):103
 msgid "Reset all teams to the default."
 msgstr "Reafitar tolos equipos al predetermináu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):103
+#: gui/gamesetup/gamesetup.xml:(tooltip):114
 msgid "Pick a color."
 msgstr "Escueyi una color."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):106
+#: gui/gamesetup/gamesetup.xml:(tooltip):117
 msgid "Select player."
 msgstr "Escueyi xugador."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):116
+#: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Configure AI settings."
 msgstr "Configurar los axustes de la IA."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):119
+#: gui/gamesetup/gamesetup.xml:(tooltip):130
 msgid "Select player's civilization."
 msgstr "Escueyi la civilización del xugador."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):123
+#: gui/gamesetup/gamesetup.xml:(tooltip):134
 msgid "Select player's team."
 msgstr "Escueyi l'equipu del xugador."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):207
+#: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Amosar la sala multixugador nun ventanu de diálogu."
 
@@ -660,7 +663,7 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "«Zeus \\[...] perafitó como llei que: \"en careciendo algámase la sabencia\". \\[...] Asina que, ensin querer, los homes han deprender a templase. \\[...] Tala gracia ye dura y violenta.» - Esquilu («Orestíada», I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -776,7 +779,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "«De los siervos peryé vivir a lo pavo, pero de los nobles trabayar. \\[...] ¿Nun sabéis que l'envís de conquistar ye safase de les zunes y malures de los vencíos?» - Alexandru'l Grande (Plutarcu, «Vides paraleles», «Alexandru», seic. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""

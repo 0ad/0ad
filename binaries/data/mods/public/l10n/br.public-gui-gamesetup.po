@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-27 12:54+0100\n"
-"PO-Revision-Date: 2018-02-23 17:33+0000\n"
+"POT-Creation-Date: 2018-02-26 09:04+0100\n"
+"PO-Revision-Date: 2018-02-27 12:08+0000\n"
 "Last-Translator: ernest olory <ernestolory@hotmail.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -34,310 +34,310 @@ msgstr "Hini ebet"
 msgid "AI will be disabled for this player."
 msgstr "An NA a vo diweredekaet evit ar c'hoarier-mañ."
 
-#: gui/gamesetup/gamesetup.js:56
+#: gui/gamesetup/gamesetup.js:64
 msgctxt "team"
 msgid "None"
 msgstr "Hini ebet"
 
-#: gui/gamesetup/gamesetup.js:72
+#: gui/gamesetup/gamesetup.js:80
 msgctxt "civilization"
 msgid "Random"
 msgstr "Dre-zegouezh"
 
-#: gui/gamesetup/gamesetup.js:73
+#: gui/gamesetup/gamesetup.js:81
 msgid "Picks one civilization at random when the game starts."
 msgstr "Lakaat ur sevenadurezh dre-zegouezh pa grogo ganti ar c'hoariadenn."
 
-#: gui/gamesetup/gamesetup.js:111
+#: gui/gamesetup/gamesetup.js:119
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s n'eo ket prest."
 
-#: gui/gamesetup/gamesetup.js:112
+#: gui/gamesetup/gamesetup.js:120
 msgid "I'm ready"
 msgstr "Prest on"
 
-#: gui/gamesetup/gamesetup.js:113
+#: gui/gamesetup/gamesetup.js:121
 msgid "State that you are ready to play."
 msgstr "Lavarit emaoc'h prest da c'hoari."
 
-#: gui/gamesetup/gamesetup.js:117
+#: gui/gamesetup/gamesetup.js:125
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s a zo prest!"
 
-#: gui/gamesetup/gamesetup.js:118
+#: gui/gamesetup/gamesetup.js:126
 msgid "Stay ready"
 msgstr "Bezit prest"
 
-#: gui/gamesetup/gamesetup.js:119
+#: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready even when the game settings change."
 msgstr "Bezit prest 'zoken ma cheñchfe dibarzhioù ar c'hoari."
 
-#: gui/gamesetup/gamesetup.js:124
+#: gui/gamesetup/gamesetup.js:132
 msgid "I'm not ready!"
 msgstr "N'on ket prest!"
 
-#: gui/gamesetup/gamesetup.js:125
+#: gui/gamesetup/gamesetup.js:133
 msgid "State that you are not ready to play."
 msgstr "Lavarit n'emaoc'h ket prest da c'hoari."
 
-#: gui/gamesetup/gamesetup.js:148
+#: gui/gamesetup/gamesetup.js:156
 msgid "Game settings have been changed"
 msgstr "Kemmet eo bet dibarzhioù ar c'hoari"
 
-#: gui/gamesetup/gamesetup.js:149
+#: gui/gamesetup/gamesetup.js:157
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s a gemer-perzh bremañ"
 
-#: gui/gamesetup/gamesetup.js:150
+#: gui/gamesetup/gamesetup.js:158
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s en deus kuitaet"
 
-#: gui/gamesetup/gamesetup.js:151
+#: gui/gamesetup/gamesetup.js:159
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s a zo skarzhet kuit"
 
-#: gui/gamesetup/gamesetup.js:152
+#: gui/gamesetup/gamesetup.js:160
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s a zo bet forbannet"
 
-#: gui/gamesetup/gamesetup.js:153
+#: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:154
+#: gui/gamesetup/gamesetup.js:162
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:164
+#: gui/gamesetup/gamesetup.js:172
 msgctxt "map filter"
 msgid "Default"
 msgstr "Dre Ziouer"
 
-#: gui/gamesetup/gamesetup.js:165
+#: gui/gamesetup/gamesetup.js:173
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
 msgstr "An holl kartennoù war-bouez ar re war vor hag ar re diskouez"
 
-#: gui/gamesetup/gamesetup.js:171
+#: gui/gamesetup/gamesetup.js:179
 msgid "Naval Maps"
 msgstr "Kartennoù-Mor"
 
-#: gui/gamesetup/gamesetup.js:172
+#: gui/gamesetup/gamesetup.js:180
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "Kartennoù e-lec'h ma vez bigi o deus ezhomm da dizhout an enebour."
 
-#: gui/gamesetup/gamesetup.js:177
+#: gui/gamesetup/gamesetup.js:185
 msgid "Demo Maps"
 msgstr "Kartenn Diskouez"
 
-#: gui/gamesetup/gamesetup.js:178
+#: gui/gamesetup/gamesetup.js:186
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "Ar c'hartennoù-se n'int ket gouest da vezan c'hoariet met evit abegoù diskouez hepken."
 
-#: gui/gamesetup/gamesetup.js:183
+#: gui/gamesetup/gamesetup.js:191
 msgid "New Maps"
 msgstr "Kartennoù nevez"
 
-#: gui/gamesetup/gamesetup.js:184
+#: gui/gamesetup/gamesetup.js:192
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
 msgstr "Kartennoù a zo ur merk nevez e dilaosk ar c'hoari. "
 
-#: gui/gamesetup/gamesetup.js:189
+#: gui/gamesetup/gamesetup.js:197
 msgid "Trigger Maps"
 msgstr "Kartennoù Distenn"
 
-#: gui/gamesetup/gamesetup.js:190
+#: gui/gamesetup/gamesetup.js:198
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Kartennoù a zeu gant darvoudoù skrivet en-araok ha gallout a reont produin unanennoù enebour."
 
-#: gui/gamesetup/gamesetup.js:195
+#: gui/gamesetup/gamesetup.js:203
 msgid "All Maps"
 msgstr "An holl gartennoù"
 
-#: gui/gamesetup/gamesetup.js:196
+#: gui/gamesetup/gamesetup.js:204
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr "An holl gartennoù eus ar seurt dibabet."
 
-#: gui/gamesetup/gamesetup.js:396
+#: gui/gamesetup/gamesetup.js:409
 msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Kartenn"
 
-#: gui/gamesetup/gamesetup.js:411
+#: gui/gamesetup/gamesetup.js:424
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "C'hoarier"
 
-#: gui/gamesetup/gamesetup.js:421
+#: gui/gamesetup/gamesetup.js:434
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "C'hoari Skouer"
 
-#: gui/gamesetup/gamesetup.js:461
+#: gui/gamesetup/gamesetup.js:474
 msgid "Map Type"
 msgstr "Doare ar gartenn"
 
-#: gui/gamesetup/gamesetup.js:462
+#: gui/gamesetup/gamesetup.js:475
 msgid "Select a map type."
 msgstr "Diuzit un doare kartenn."
 
-#: gui/gamesetup/gamesetup.js:485
+#: gui/gamesetup/gamesetup.js:498
 msgid "Map Filter"
 msgstr "Sil kartennoù"
 
-#: gui/gamesetup/gamesetup.js:486
+#: gui/gamesetup/gamesetup.js:499
 msgid "Select a map filter."
 msgstr "Diuzit ur sil kartenn."
 
-#: gui/gamesetup/gamesetup.js:501
+#: gui/gamesetup/gamesetup.js:514
 msgid "Select Map"
 msgstr "Dibab ur gartenn"
 
-#: gui/gamesetup/gamesetup.js:502
+#: gui/gamesetup/gamesetup.js:515
 msgid "Select a map to play on."
 msgstr "Diuzit ur gartenn da c'hoari."
 
-#: gui/gamesetup/gamesetup.js:516
+#: gui/gamesetup/gamesetup.js:529
 msgid "Map Size"
 msgstr "Ment ar gartenn"
 
-#: gui/gamesetup/gamesetup.js:517
+#: gui/gamesetup/gamesetup.js:530
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Diuzit ment ar gartenn. (Ledanderioù brasañ a c'hallfe izelaat ar perzhioù.)"
 
-#: gui/gamesetup/gamesetup.js:531
+#: gui/gamesetup/gamesetup.js:544
 msgid "Biome"
 msgstr "Biom"
 
-#: gui/gamesetup/gamesetup.js:532
+#: gui/gamesetup/gamesetup.js:545
 msgid "Select the flora and fauna."
 msgstr "Diuziñ ar flora ha loened ar vro."
 
-#: gui/gamesetup/gamesetup.js:547
+#: gui/gamesetup/gamesetup.js:560
 msgid "Number of Players"
 msgstr "Niver a C'hoarierien"
 
-#: gui/gamesetup/gamesetup.js:548
+#: gui/gamesetup/gamesetup.js:561
 msgid "Select number of players."
 msgstr "Diuzit an niver a c'hoarierien."
 
-#: gui/gamesetup/gamesetup.js:568
+#: gui/gamesetup/gamesetup.js:581
 msgid "Population Cap"
 msgstr "Bevenn ar Boblañs"
 
-#: gui/gamesetup/gamesetup.js:575
+#: gui/gamesetup/gamesetup.js:588
 msgid "Select population limit."
 msgstr "Dibab bevenn ar boblañs"
 
-#: gui/gamesetup/gamesetup.js:578
+#: gui/gamesetup/gamesetup.js:591
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Diwall: Gallout a raje bezan kudennoù digonusted ma vo tizhet %(popCap)s ar boblans gant %(players)s a c'hoarierien."
 
-#: gui/gamesetup/gamesetup.js:596
+#: gui/gamesetup/gamesetup.js:609
 msgid "Starting Resources"
 msgstr "Mammennoù el Loc'hañ"
 
-#: gui/gamesetup/gamesetup.js:599
+#: gui/gamesetup/gamesetup.js:612
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Kementad kentan eus pep danvez: %(resources)s"
 
-#: gui/gamesetup/gamesetup.js:602
+#: gui/gamesetup/gamesetup.js:615
 msgid "Select the game's starting resources."
 msgstr "Diuzit ar mammennoù hegerzus evit kregiñ gant ar c'hoariadenn."
 
-#: gui/gamesetup/gamesetup.js:617
+#: gui/gamesetup/gamesetup.js:630
 msgid "Ceasefire"
 msgstr "Harz-tennañ"
 
-#: gui/gamesetup/gamesetup.js:618
+#: gui/gamesetup/gamesetup.js:631
 msgid "Set time where no attacks are possible."
 msgstr "Dibabit e-pad pegeit amzer ez eo dibosupl d'ober tagadennoù."
 
-#: gui/gamesetup/gamesetup.js:631
+#: gui/gamesetup/gamesetup.js:644
 msgid "Victory Condition"
 msgstr "Amplegad an Trec'h"
 
-#: gui/gamesetup/gamesetup.js:632
+#: gui/gamesetup/gamesetup.js:645
 msgid "Select victory condition."
 msgstr "Dibabit amplegad an trec'h."
 
-#: gui/gamesetup/gamesetup.js:647
+#: gui/gamesetup/gamesetup.js:660
 msgid "Relic Count"
 msgstr "Niver a relegoù"
 
-#: gui/gamesetup/gamesetup.js:648
+#: gui/gamesetup/gamesetup.js:661
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "Sammad hollek relegoù krouet war ar gartenn. Trec'h relegel eo ar gwirvoudelan gant un hepken pe zaou relegenn. Gant niveroù brasoc'h e vez ar relegoù a-bouez da bakan evit degemer bonuzioù aora."
 
-#: gui/gamesetup/gamesetup.js:662
+#: gui/gamesetup/gamesetup.js:675
 msgid "Relic Duration"
 msgstr "Padelezh Releg"
 
-#: gui/gamesetup/gamesetup.js:663
+#: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Munutoù betek ma vo echu Trec'h Releg gant ar c'hoarier."
 
-#: gui/gamesetup/gamesetup.js:677
+#: gui/gamesetup/gamesetup.js:690
 msgid "Wonder Duration"
 msgstr "Padelezh Bamerezh"
 
-#: gui/gamesetup/gamesetup.js:678
+#: gui/gamesetup/gamesetup.js:691
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr "Munutoù betek ma vo echuet Trec'h Bamerezh gant ar c'hoarier."
 
-#: gui/gamesetup/gamesetup.js:692
+#: gui/gamesetup/gamesetup.js:705
 msgid "Game Speed"
 msgstr "Tizh ar c'hoari"
 
-#: gui/gamesetup/gamesetup.js:693
+#: gui/gamesetup/gamesetup.js:706
 msgid "Select game speed."
 msgstr "Diuzit tizh ar c'hoari."
 
-#: gui/gamesetup/gamesetup.js:707
+#: gui/gamesetup/gamesetup.js:720
 msgid "Difficulty"
 msgstr "Diaester"
 
-#: gui/gamesetup/gamesetup.js:709
+#: gui/gamesetup/gamesetup.js:722
 msgid "Select the difficulty of this scenario."
 msgstr "Diuziñ diaester ar senario-man."
 
-#: gui/gamesetup/gamesetup.js:774
+#: gui/gamesetup/gamesetup.js:787
 msgid "Chose the civilization for this player"
 msgstr "Dibab sevenadurezh ar c'hoarier-mañ "
 
-#: gui/gamesetup/gamesetup.js:814
+#: gui/gamesetup/gamesetup.js:827
 msgid "Hero Garrison"
 msgstr "Gwarnizon Haroz"
 
-#: gui/gamesetup/gamesetup.js:815
+#: gui/gamesetup/gamesetup.js:828
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Hag-eñ e c'hell bezan lakaet e-barzh an harozed ."
 
-#: gui/gamesetup/gamesetup.js:827
+#: gui/gamesetup/gamesetup.js:840
 msgid "Nomad"
 msgstr "Kantreer"
 
-#: gui/gamesetup/gamesetup.js:828
+#: gui/gamesetup/gamesetup.js:841
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -345,201 +345,208 @@ msgstr "Er mod Kantreer e vez loc'het un nebeud unanennoù hepken gant ar c'hoar
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:841
+#: gui/gamesetup/gamesetup.js:854
 msgid "Revealed Map"
 msgstr "Kartenn Dizoloet"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:844
+#: gui/gamesetup/gamesetup.js:857
 msgid "Toggle revealed map (see everything)."
 msgstr "Gwintañ pe get war-du dizoloiñ ar gartenn (gwelet kement-tra)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:860
+#: gui/gamesetup/gamesetup.js:873
 msgid "Explored Map"
 msgstr "Kartenn Ergerzhet"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:863
+#: gui/gamesetup/gamesetup.js:876
 msgid "Toggle explored map (see initial map)."
 msgstr "Gwintañ pe get war-du ur gartenn ergerzhet (gwelet ar gartenn deraouek)."
 
-#: gui/gamesetup/gamesetup.js:874
+#: gui/gamesetup/gamesetup.js:887
 msgid "Disable Treasures"
 msgstr "Diweredekaat an Teñzorioù"
 
-#: gui/gamesetup/gamesetup.js:875
+#: gui/gamesetup/gamesetup.js:888
 msgid "Disable all treasures on the map."
 msgstr "Diweredekaat holl deñzorioù ar gartenn."
 
-#: gui/gamesetup/gamesetup.js:886
+#: gui/gamesetup/gamesetup.js:899
 msgid "Disable Spies"
 msgstr "Diweredekaat ar Spierien"
 
-#: gui/gamesetup/gamesetup.js:887
+#: gui/gamesetup/gamesetup.js:900
 msgid "Disable spies during the game."
 msgstr "Diweredekaat spierien e-pad ar c'hoari."
 
-#: gui/gamesetup/gamesetup.js:898
+#: gui/gamesetup/gamesetup.js:911
 msgid "Teams Locked"
 msgstr "Skipailhoù Morailhet"
 
-#: gui/gamesetup/gamesetup.js:899
+#: gui/gamesetup/gamesetup.js:912
 msgid "Toggle locked teams."
 msgstr "Gwintañ pe get war-du skipailhoù morailhet."
 
-#: gui/gamesetup/gamesetup.js:913
+#: gui/gamesetup/gamesetup.js:926
 msgid "Last Man Standing"
 msgstr "An Den Diwezhañ War-Sav"
 
-#: gui/gamesetup/gamesetup.js:914
+#: gui/gamesetup/gamesetup.js:927
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Diskouez ma vez ar c'hoarier diwezhañ pe ar strollad tud kevredet da ziwezhañ o kaout ar maout ganto."
 
-#: gui/gamesetup/gamesetup.js:927
+#: gui/gamesetup/gamesetup.js:940
 msgid "Cheats"
 msgstr "Truchadurioù"
 
-#: gui/gamesetup/gamesetup.js:928
+#: gui/gamesetup/gamesetup.js:941
 msgid "Toggle the usability of cheats."
 msgstr "Gwintañ pe get ar gwir da implijout truchadurioù."
 
-#: gui/gamesetup/gamesetup.js:941
+#: gui/gamesetup/gamesetup.js:954
 msgid "Rated Game"
 msgstr "C'hoariadenn Renket"
 
-#: gui/gamesetup/gamesetup.js:942
+#: gui/gamesetup/gamesetup.js:955
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Dibab ma vo kemeret e kont ar c'hoariadenn-mañ e-barzh ar renkadur-hollek."
 
-#: gui/gamesetup/gamesetup.js:974
+#: gui/gamesetup/gamesetup.js:987
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr "Pouezan war %(hotkey)s evit leunian anvioù ar c'hoarierien pe frammoù e-unan."
 
-#: gui/gamesetup/gamesetup.js:982
+#: gui/gamesetup/gamesetup.js:995
 msgid "Return to the lobby."
 msgstr "Distreiñ d'an hall."
 
-#: gui/gamesetup/gamesetup.js:983
+#: gui/gamesetup/gamesetup.js:996
 msgid "Return to the main menu."
 msgstr "Distreiñ d'al lañser pennañ."
 
-#: gui/gamesetup/gamesetup.js:987
+#: gui/gamesetup/gamesetup.js:1000
 msgid "Start Game!"
 msgstr "Loc'han C'hoari!"
 
-#: gui/gamesetup/gamesetup.js:993
+#: gui/gamesetup/gamesetup.js:1006
 msgid "Start a new game with the current settings."
 msgstr "Kregiñ gant ur c'hoariadenn gant an arventennoù-red."
 
-#: gui/gamesetup/gamesetup.js:994
+#: gui/gamesetup/gamesetup.js:1007
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "Loc'han ur c'hoari nevez gant ar frammoù stank (diweredekaet betek ma vo prest an holl c'hoarierien)"
 
-#: gui/gamesetup/gamesetup.js:1057
+#: gui/gamesetup/gamesetup.js:1070
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "Keflunian Al: %(description)s."
 
-#: gui/gamesetup/gamesetup.js:1157
+#: gui/gamesetup/gamesetup.js:1121
+#, javascript-format
+msgid ""
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"Last opened will be reopened on click."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1173
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "Gwintañ war ar %(name)s taolennadennoù frammoù."
 
-#: gui/gamesetup/gamesetup.js:1158
+#: gui/gamesetup/gamesetup.js:1174
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "Implijout %(hotkey)s evit dilec'hian un daolennadenn frammoù en-diaz."
 
-#: gui/gamesetup/gamesetup.js:1159
+#: gui/gamesetup/gamesetup.js:1175
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Implijout %(hotkey)s evit dilec'hian un daolennadenn frammoù en-nec'h."
 
-#: gui/gamesetup/gamesetup.js:1678
+#: gui/gamesetup/gamesetup.js:1692
 msgctxt "map selection"
 msgid "Random"
 msgstr "Dre-zegouezh"
 
-#: gui/gamesetup/gamesetup.js:1680
+#: gui/gamesetup/gamesetup.js:1694
 msgid "Pick any of the given maps at random."
 msgstr "Diuzan n'eus forz peseurt kartennoù roet dre-zegouezh."
 
-#: gui/gamesetup/gamesetup.js:1712
+#: gui/gamesetup/gamesetup.js:1726
 msgctxt "biome"
 msgid "Random"
 msgstr "Dre-zegouezh"
 
-#: gui/gamesetup/gamesetup.js:1713
+#: gui/gamesetup/gamesetup.js:1727
 msgid "Pick a biome at random."
 msgstr "Diuzan ur biom dre-zegouezh."
 
-#: gui/gamesetup/gamesetup.js:2044
+#: gui/gamesetup/gamesetup.js:2058
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s"
 
-#: gui/gamesetup/gamesetup.js:2049
+#: gui/gamesetup/gamesetup.js:2063
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Dianav"
 
-#: gui/gamesetup/gamesetup.js:2079
+#: gui/gamesetup/gamesetup.js:2093
 msgid "Yes"
 msgstr "Ya"
 
-#: gui/gamesetup/gamesetup.js:2079
+#: gui/gamesetup/gamesetup.js:2093
 msgid "No"
 msgstr "Ket"
 
-#: gui/gamesetup/gamesetup.js:2086
+#: gui/gamesetup/gamesetup.js:2100
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s "
 
-#: gui/gamesetup/gamesetup.js:2173
+#: gui/gamesetup/gamesetup.js:2187
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2380
+#: gui/gamesetup/gamesetup.js:2394
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "NA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2388
+#: gui/gamesetup/gamesetup.js:2402
 msgid "Unassigned"
 msgstr "Nann-dereet"
 
-#: gui/gamesetup/gamesetup.js:2464
+#: gui/gamesetup/gamesetup.js:2478
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2471
+#: gui/gamesetup/gamesetup.js:2485
 msgid "Unknown Player"
 msgstr "C'hoarier dianav"
 
-#: gui/gamesetup/gamesetup.js:2510
+#: gui/gamesetup/gamesetup.js:2524
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2511
+#: gui/gamesetup/gamesetup.js:2525
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2512
+#: gui/gamesetup/gamesetup.js:2526
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -577,88 +584,84 @@ msgstr "Nullañ"
 msgid "OK"
 msgstr "Mat eo"
 
-#: gui/gamesetup/gamesetup.xml:(caption):12
+#: gui/gamesetup/gamesetup.xml:(caption):24
 msgid "Match Setup"
 msgstr "Kefluniadur ar C'hrogad"
 
-#: gui/gamesetup/gamesetup.xml:(caption):18
+#: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading"
 msgstr "O kargañ"
 
-#: gui/gamesetup/gamesetup.xml:(caption):22
+#: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
 msgstr "O kargañ roadenn ur gartenn. Gortoz mar-plij..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):42
+#: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
 msgstr "Anv ar c'hoarier"
 
-#: gui/gamesetup/gamesetup.xml:(caption):46
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Color"
 msgstr "Liv"
 
-#: gui/gamesetup/gamesetup.xml:(caption):50
+#: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Player Placement"
 msgstr "Lec'hiadur ar C'hoarier"
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Civilization"
 msgstr "Sevenadurezh"
 
-#: gui/gamesetup/gamesetup.xml:(caption):82
+#: gui/gamesetup/gamesetup.xml:(caption):93
 msgid "Team"
 msgstr "Skipailh"
 
-#: gui/gamesetup/gamesetup.xml:(caption):136
+#: gui/gamesetup/gamesetup.xml:(caption):147
 msgid "Show this message in the future"
 msgstr "Diskouez ar gemennadenn-mañ en amzer da zont"
 
-#: gui/gamesetup/gamesetup.xml:(caption):225
+#: gui/gamesetup/gamesetup.xml:(caption):236
 msgid "Send"
 msgstr "Kas"
 
-#: gui/gamesetup/gamesetup.xml:(caption):242
+#: gui/gamesetup/gamesetup.xml:(caption):253
 msgid "Cheats enabled."
 msgstr "Truchadurioù a zo gweredekaet."
 
-#: gui/gamesetup/gamesetup.xml:(caption):272
+#: gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Back"
 msgstr "Distreiñ"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):64
-msgid "View civilization info"
-msgstr "Gwelet titouroù ar Sevenadurezh"
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):77
+#: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Addereouekat an holl sevenadurezhioù diuzet d'o zalvoudegezh dre ziouer (dre zegouezh)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):92
+#: gui/gamesetup/gamesetup.xml:(tooltip):103
 msgid "Reset all teams to the default."
 msgstr "Adderaouekaat an holl skipailhoù d'o zalvoudegezh dre ziouer."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):103
+#: gui/gamesetup/gamesetup.xml:(tooltip):114
 msgid "Pick a color."
 msgstr "Dibabit ul liv."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):106
+#: gui/gamesetup/gamesetup.xml:(tooltip):117
 msgid "Select player."
 msgstr "Diuzit ur c'hoarier."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):116
+#: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Configure AI settings."
 msgstr "Keflunit dibarzhioù an NA."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):119
+#: gui/gamesetup/gamesetup.xml:(tooltip):130
 msgid "Select player's civilization."
 msgstr "Diuzit sevenadurezh ar c'hoarier."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):123
+#: gui/gamesetup/gamesetup.xml:(tooltip):134
 msgid "Select player's team."
 msgstr "Diuzit skipailh ar c'hoarier."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):207
+#: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Diskouez al lobi lies-c'hoarier en ur prenestr diviz."
 
@@ -1699,7 +1702,7 @@ msgid ""
 " both individually and collectively; so that a formation can fight in any "
 "direction, with the maniples nearest to the point of danger wheeling around "
 "to face it.\" - Polybius (\"Histories\", XV. 15)"
-msgstr ""
+msgstr "\"Al linenn emgann Roman a zo diaes da derriñ, abaoe m'eo aotreet an holl soudarded d'en em gannañ e-unan hag a-stroll; neuze e c'hell ur stummidigezh en em gannañ e n'eus forzh peseurt stur, gant an unanennoù lejion tostoc'h ouzh poent an dañjer o treiñ war e dro evit reiñ fas dezhañ.\" - Polibius (\"Istorioù\", XV. 15)"
 
 #: gui/text/quotes.txt:150
 msgid ""
@@ -1710,7 +1713,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"Ar bobl Atenian a vez dalc'hmat e lec'hiadur ur vag hep komandant ebet. An aon rak an enebour pe ur gorventenn a lak ar strollad da vezañ unan ha sujjañ a ra d'ar marc'h, pep tra ez a mat; hogen m'en em gavout a reont \\[…] e taelint an eil ouzh egile \\[…], hag an disoc'h a vez bet evel se alies, goude bezañ tec'het kuit diouzh dañjerioù ar morioù ar pellañ hag ar c'horventennoù feuls, e tistrujont o bag er porzh ha tost ouzh an aod.\" - Polibius diwar-benn ar skrid-diazez Atenian (\"Istorioù\", VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1719,7 +1722,7 @@ msgid ""
 "and there were only a very few who attempted to save themselves by flight.\""
 " - Polybius on the Battle of Bagradas where a Roman army was annihilated "
 "during the First Punic War (\"Histories\", I. 34)"
-msgstr ""
+msgstr "\"An darn vrasañ eus ar Romaned a oa flastret marv gant pouez divent an olifanted; ar peurest a oa kannet en o renk gant ar marc'hegerezh niverus: hag e oa un nebeud hepken o doa klasket da saveteiñ o-unan dre an tec'h.\" - Polibius diwar-benn Emgann Bagradas e-lec'h ma oa bet kaset un arme Roman da get e-pad ar Brezel Punek Kentañ (\"Istorioù\", I. 34)"
 
 #: gui/text/quotes.txt:152
 msgid ""
@@ -1727,7 +1730,7 @@ msgid ""
 "the troops lying in ambush on the hills to do the same, and thus delivered "
 "an assault upon the enemy at every point at once.\" - Polybius on the "
 "beginning of a Roman disaster at the Trasymene Lake (\"Histories\", III. 84)"
-msgstr ""
+msgstr "\"Hannibal en doa roet arouez an argad; hag er memes koulz en doa kaset urzhioù d'ar bagadoù gourvezet e spi-brezel war an tuchennoù evit ober an hevelep tra, ha neuze en doa roet un arsailh war an enebour en holl boentoù er memes amzer.\" - Polibius diwar-benn deroù ur freuz ha reuz Roman el Lenn Trasymen (\"Istorioù\", III. 84)"
 
 #: gui/text/quotes.txt:153
 msgid ""
@@ -1737,7 +1740,7 @@ msgid ""
 "shields and flee.\" - Polybius, describing the defeat of Philip V. of "
 "Macedon by Flaminius in the Battle of Cynoscephalae (\"Histories\", XVIII. "
 "26)"
-msgstr ""
+msgstr "\"Er falañj, ar soudarded ne c'hellont ket treiñ en doare hiniennel hag en em zifenn o-unan: an tribun-mañ, eta, en doa karget anezho \\[eus an a-dreñv] ha lazhet en doa an holl ma c'helle tizhout; betek ma vint, dic'houest da zerc'hel, rediet da deurel o skoedoù ha da dec'hout kuit.\" - Polibius, o teskrivañ trec'h Fulup V. eus Makedonia gant Flaminius en Emgann Kynoscefalae (\"Istorioù\", XVIII. 26)"
 
 #: gui/text/quotes.txt:154
 msgid ""
@@ -1748,7 +1751,7 @@ msgid ""
 "detachment, or in a single maniple, or even by himself.\" - Polybius, "
 "explaining how the Romans can defeat the Macedonian phalanx (\"Histories\", "
 "XVIII. 32)"
-msgstr ""
+msgstr "\"An urzh Roman war an tu all a zo plegus: evit pep Roman, ur wech armet ha war ar vaezienn, a vez aveet mat ivez evit pep plas, amzer, pe neuz an enebour. Ouzhpenn-se eo prest a-walc'h hag ezhomm en deus da chom hep lakaat da gemmañ, pe ma vez goulennet digantañ kannañ er c'horf pennañ, pe en ur rannad, pe en un unanenn lejion, pe dre e-unan zoken.\" - Polibius, o tisplegañ penaos e c'hell ar Romaned trec'hiñ ar falañj Makedonian (\"Istorioù\", XVIII. 32)"
 
 #: gui/text/quotes.txt:155
 msgid ""

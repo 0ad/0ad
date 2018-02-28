@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-23 09:04+0100\n"
-"PO-Revision-Date: 2018-02-23 16:02+0000\n"
+"POT-Creation-Date: 2018-02-26 09:04+0100\n"
+"PO-Revision-Date: 2018-02-26 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
@@ -34,38 +34,48 @@ msgctxt "damage type"
 msgid "Crush"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:95
+#: gui/civinfo/civinfo.js:28
+#, javascript-format
+msgid "%(hotkey)s: Switch to Structure Tree."
+msgstr ""
+
+#: gui/civinfo/civinfo.js:29
+#, javascript-format
+msgid "%(hotkey)s: Close History."
+msgstr ""
+
+#: gui/civinfo/civinfo.js:124
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:98
+#: gui/civinfo/civinfo.js:127
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bonus de Civilización"
 msgstr[1] "Bonuses de Civilización"
 
-#: gui/civinfo/civinfo.js:103
+#: gui/civinfo/civinfo.js:132
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bonus de Equipo"
 msgstr[1] "Bonuses de Equipo"
 
-#: gui/civinfo/civinfo.js:110
+#: gui/civinfo/civinfo.js:139
 msgid "Special Technologies"
 msgstr "Tecnologías Especiales"
 
-#: gui/civinfo/civinfo.js:116
+#: gui/civinfo/civinfo.js:145
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Edificio Especial"
 msgstr[1] "Edificios Especiales"
 
-#: gui/civinfo/civinfo.js:123 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:152 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr "Héroes"
 
-#: gui/civinfo/civinfo.js:133
+#: gui/civinfo/civinfo.js:162
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Historia de las %(civilization)s"
@@ -152,17 +162,17 @@ msgstr "ELIMINAR"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/options/options.js:264 gui/options/options.js:314
-#: gui/options/options.js:340 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:442
+#: gui/options/options.js:340 gui/pregame/mainmenu.js:261
+#: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
+#: gui/summary/summary.js:444
 msgid "No"
 msgstr "No"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/options/options.js:264 gui/options/options.js:314
-#: gui/options/options.js:340 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:442
+#: gui/options/options.js:340 gui/pregame/mainmenu.js:261
+#: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
+#: gui/summary/summary.js:444
 msgid "Yes"
 msgstr "Sí"
 
@@ -378,7 +388,7 @@ msgstr ""
 msgid "Ceasefire"
 msgstr ""
 
-#: gui/common/gamedescription.js:306 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:306 gui/pregame/mainmenu.js:95
 msgid "disabled"
 msgstr "deshabilitado"
 
@@ -1183,7 +1193,7 @@ msgstr ""
 msgid "%(nick)s - %(name)s"
 msgstr ""
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:156
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:165
 #: gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
 msgstr "OK"
@@ -1231,47 +1241,63 @@ msgstr ""
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:89
+#: gui/pregame/mainmenu.js:42
+#, javascript-format
+msgid ""
+"%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
+msgstr ""
+
+#: gui/pregame/mainmenu.js:45
+#, javascript-format
+msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
+msgstr ""
+
+#: gui/pregame/mainmenu.js:48
+#, javascript-format
+msgid "%(hotkey)s: Launch the multiplayer lobby."
+msgstr ""
+
+#: gui/pregame/mainmenu.js:98
 msgid "connecting to server"
 msgstr "conectando a servidor"
 
-#: gui/pregame/mainmenu.js:92
+#: gui/pregame/mainmenu.js:101
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "subiendo (%f%%)"
 
-#: gui/pregame/mainmenu.js:98
+#: gui/pregame/mainmenu.js:107
 msgid "upload succeeded"
 msgstr "subido completado"
 
-#: gui/pregame/mainmenu.js:99
+#: gui/pregame/mainmenu.js:108
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "subido fallado (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:103
+#: gui/pregame/mainmenu.js:112
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "subido fallado (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:105
+#: gui/pregame/mainmenu.js:114
 msgid "unknown"
 msgstr "desconocido"
 
-#: gui/pregame/mainmenu.js:120
+#: gui/pregame/mainmenu.js:129
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:130
 msgid "Anonymous feedback is currently enabled."
 msgstr ""
 
-#: gui/pregame/mainmenu.js:122
+#: gui/pregame/mainmenu.js:131
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr ""
 
-#: gui/pregame/mainmenu.js:146
+#: gui/pregame/mainmenu.js:155
 #, javascript-format
 msgid ""
 "%(warning)s You appear to be using non-shader (fixed function) graphics. "
@@ -1284,56 +1310,56 @@ msgstr ""
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:154
+#: gui/pregame/mainmenu.js:163
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Apreta \"Leer Más\" para más información u \"OK\" para continuar."
 
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:164
 msgid "WARNING!"
 msgstr "ALERTA!"
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:165
 msgid "Read More"
 msgstr "Leer más"
 
-#: gui/pregame/mainmenu.js:238
+#: gui/pregame/mainmenu.js:247
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Construir: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:250
+#: gui/pregame/mainmenu.js:259
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Estás seguro que quieres salir de 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:251 gui/pregame/mainmenu.js:265
-#: gui/summary/summary.js:441
+#: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
+#: gui/summary/summary.js:443
 msgid "Confirmation"
 msgstr "Confirmar"
 
-#: gui/pregame/mainmenu.js:264
+#: gui/pregame/mainmenu.js:273
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:272
+#: gui/pregame/mainmenu.js:281
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr ""
 
-#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:119
+#: gui/pregame/mainmenu.js:282 gui/replaymenu/replay_actions.js:119
 msgid "Error"
 msgstr "Error"
 
-#: gui/pregame/mainmenu.js:279
+#: gui/pregame/mainmenu.js:288
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):68
+#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
 msgid "Technical Details"
 msgstr "Detalles técnicos"
 
-#: gui/pregame/mainmenu.js:289 gui/pregame/mainmenu.xml:(caption):146
+#: gui/pregame/mainmenu.js:298 gui/pregame/mainmenu.xml:(caption):146
 msgid "Manual"
 msgstr "Manual"
 
@@ -1363,6 +1389,16 @@ msgstr ""
 #: gui/reference/common/load.js:193
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
+msgstr ""
+
+#: gui/reference/structree/structree.js:49
+#, javascript-format
+msgid "%(hotkey)s: Switch to History."
+msgstr ""
+
+#: gui/reference/structree/structree.js:50
+#, javascript-format
+msgid "%(hotkey)s: Close Structure Tree."
 msgstr ""
 
 #. Translation: Label before a list of the names of units that build the
@@ -1495,11 +1531,11 @@ msgstr ""
 msgid "Single- and multiplayer"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):479
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):481
 msgid "Single Player"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):494
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):496
 msgid "Multiplayer"
 msgstr "Multijugador"
 
@@ -1801,64 +1837,70 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-#: gui/summary/summary.js:440
+#: gui/summary/summary.js:442
 msgid "Are you sure you want to quit the lobby?"
 msgstr ""
 
-#: gui/summary/summary.js:505
+#: gui/summary/summary.js:507
 msgid "Current Scores"
 msgstr ""
 
-#: gui/summary/summary.js:507
+#: gui/summary/summary.js:509
 msgid "Scores at the end of the game."
 msgstr ""
 
-#: gui/summary/summary.js:509
+#: gui/summary/summary.js:511
 msgid "You have been disconnected."
 msgstr ""
 
-#: gui/summary/summary.js:511
+#: gui/summary/summary.js:513
 msgid "You have left the game."
 msgstr "Abandonaste la partida."
 
-#: gui/summary/summary.js:513
+#: gui/summary/summary.js:515
 msgid "You have won the battle!"
 msgstr "Ganaste la batalla!"
 
-#: gui/summary/summary.js:515
+#: gui/summary/summary.js:517
 msgid "You have been defeated…"
 msgstr ""
 
-#: gui/summary/summary.js:516
+#: gui/summary/summary.js:518
 msgid "You have abandoned the game."
 msgstr "Abandonaste la partida."
 
-#: gui/summary/summary.js:519
+#: gui/summary/summary.js:521
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tiempo de juego transcurrido: %(time)s"
 
-#: gui/summary/summary.js:527
+#: gui/summary/summary.js:529
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr ""
 
-#: gui/summary/summary.js:534
+#: gui/summary/summary.js:541
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr ""
 
-#: gui/civinfo/civinfo.xml:(caption):14
+#: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
 msgstr "Civilizaciones"
 
-#: gui/civinfo/civinfo.xml:(caption):26
+#: gui/civinfo/civinfo.xml:(caption):32
 msgid "Civilization Selection"
 msgstr ""
 
-#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):32
+#: gui/civinfo/civinfo.xml:(caption):125
+#: gui/pregame/mainmenu.xml:(caption):181
+#: gui/reference/structree/structree.xml:(caption):19
+msgid "Structure Tree"
+msgstr ""
+
+#: gui/civinfo/civinfo.xml:(caption):137 gui/credits/credits.xml:(caption):32
 #: gui/options/options.xml:(caption):56
-#: gui/reference/structree/structree.xml:(caption):119
+#: gui/reference/structree/structree.xml:(caption):137
 #: gui/reference/viewer/viewer.xml:(caption):37
 msgid "Close"
 msgstr "Cerrar"
@@ -1867,7 +1909,7 @@ msgstr "Cerrar"
 msgid "0 A.D. Credits"
 msgstr ""
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):380
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):382
 msgid "Language"
 msgstr ""
 
@@ -1937,11 +1979,11 @@ msgid ""
 " and improve performance and compatibility."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:561
+#: gui/pregame/mainmenu.xml:562
 msgid "Alpha XXIII: Ken Wood"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:563
+#: gui/pregame/mainmenu.xml:564
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
@@ -1959,94 +2001,94 @@ msgstr ""
 msgid "Tutorial"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):179
-#: gui/reference/structree/structree.xml:(caption):13
-msgid "Structure Tree"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(caption):194
+#: gui/pregame/mainmenu.xml:(caption):197
+#: gui/reference/structree/structree.xml:(caption):126
 msgid "History"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):217
+#: gui/pregame/mainmenu.xml:(caption):219
 msgid "Matches"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):231
+#: gui/pregame/mainmenu.xml:(caption):233
 msgid "Campaigns"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):244
+#: gui/pregame/mainmenu.xml:(caption):246
 msgid "Load Game"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):258
-#: gui/pregame/mainmenu.xml:(caption):338
+#: gui/pregame/mainmenu.xml:(caption):260
+#: gui/pregame/mainmenu.xml:(caption):340
 msgid "Replays"
 msgstr ""
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):286
+#: gui/pregame/mainmenu.xml:(caption):288
 msgid "Join Game"
 msgstr "Unirse a la partida"
 
-#: gui/pregame/mainmenu.xml:(caption):300
+#: gui/pregame/mainmenu.xml:(caption):302
 msgid "Host Game"
 msgstr "Hostear una partida"
 
-#: gui/pregame/mainmenu.xml:(caption):315
+#: gui/pregame/mainmenu.xml:(caption):318
 msgid "Game Lobby"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):366
+#: gui/pregame/mainmenu.xml:(caption):368
 msgid "Options"
 msgstr "Opciones"
 
-#: gui/pregame/mainmenu.xml:(caption):394
+#: gui/pregame/mainmenu.xml:(caption):396
 msgid "Mod Selection"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):406
+#: gui/pregame/mainmenu.xml:(caption):408
 msgid "Welcome Screen"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):464
+#: gui/pregame/mainmenu.xml:(caption):466
 msgid "Learn to Play"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):509
+#: gui/pregame/mainmenu.xml:(caption):511
 msgid "Settings"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):524
+#: gui/pregame/mainmenu.xml:(caption):526
 msgid "Scenario Editor"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):538
+#: gui/pregame/mainmenu.xml:(caption):540
 msgid "Exit"
 msgstr "Salir"
 
-#: gui/pregame/mainmenu.xml:(caption):573
+#: gui/pregame/mainmenu.xml:(caption):574
 msgid "Website"
 msgstr "Sitio web"
 
-#: gui/pregame/mainmenu.xml:(caption):585
+#: gui/pregame/mainmenu.xml:(caption):586
 msgid "Chat"
 msgstr "Chat"
 
-#: gui/pregame/mainmenu.xml:(caption):597
+#: gui/pregame/mainmenu.xml:(caption):598
 msgid "Report a Bug"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):609
+#: gui/pregame/mainmenu.xml:(caption):610
 msgid "Translate the Game"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):621
+#: gui/pregame/mainmenu.xml:(caption):622
+msgid "Donate"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):634
 msgid "Credits"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):650
+#: gui/pregame/mainmenu.xml:(caption):663
 msgid "WILDFIRE GAMES"
 msgstr ""
 
@@ -2058,116 +2100,108 @@ msgstr "Abrir el manual de 0 A.D."
 msgid "Start the economic tutorial."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):180
-msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):195
-msgid "Learn about the many civilizations featured in 0 A.D."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):218
+#: gui/pregame/mainmenu.xml:(tooltip):220
 msgid "Click here to start a new single player game."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):232
+#: gui/pregame/mainmenu.xml:(tooltip):234
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):245
+#: gui/pregame/mainmenu.xml:(tooltip):247
 msgid "Click here to load a saved game."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):259
-#: gui/pregame/mainmenu.xml:(tooltip):339
+#: gui/pregame/mainmenu.xml:(tooltip):261
+#: gui/pregame/mainmenu.xml:(tooltip):341
 msgid "Playback previous games."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):287
+#: gui/pregame/mainmenu.xml:(tooltip):289
 msgid "Joining an existing multiplayer game."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):301
+#: gui/pregame/mainmenu.xml:(tooltip):303
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):316
-msgid "Launch the multiplayer lobby."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:(tooltip):367
+#: gui/pregame/mainmenu.xml:(tooltip):369
 msgid "Adjust game settings."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):381
+#: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Choose the language of the game."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):395
+#: gui/pregame/mainmenu.xml:(tooltip):397
 msgid "Select mods to use."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):407
+#: gui/pregame/mainmenu.xml:(tooltip):409
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):465
+#: gui/pregame/mainmenu.xml:(tooltip):467
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):480
+#: gui/pregame/mainmenu.xml:(tooltip):482
 msgid "Challenge the computer player to a single player match."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):495
+#: gui/pregame/mainmenu.xml:(tooltip):497
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):510
+#: gui/pregame/mainmenu.xml:(tooltip):512
 msgid "Game options and mod selection."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):525
+#: gui/pregame/mainmenu.xml:(tooltip):527
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):539
+#: gui/pregame/mainmenu.xml:(tooltip):541
 msgid "Exits the game."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):574
+#: gui/pregame/mainmenu.xml:(tooltip):575
 msgid "Click to open play0ad.com in your web browser."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):586
+#: gui/pregame/mainmenu.xml:(tooltip):587
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):598
+#: gui/pregame/mainmenu.xml:(tooltip):599
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):610
+#: gui/pregame/mainmenu.xml:(tooltip):611
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):622
+#: gui/pregame/mainmenu.xml:(tooltip):623
+msgid "Help with the project expenses by donating."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(tooltip):635
 msgid "Click to see the 0 A.D. credits."
 msgstr ""
 
-#: gui/reference/structree/structree.xml:(caption):25
+#: gui/reference/structree/structree.xml:(caption):31
 msgid "Civilization:"
 msgstr "Civilización:"
 
-#: gui/reference/structree/structree.xml:(caption):92
+#: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
 msgstr ""
 
@@ -2285,11 +2319,11 @@ msgctxt "summary chart"
 msgid "Type:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):227
+#: gui/summary/summary.xml:(caption):226
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):232
+#: gui/summary/summary.xml:(caption):231
 msgid "Continue"
 msgstr "Continuar"
 
@@ -2306,14 +2340,6 @@ msgstr ""
 #: gui/summary/summary.xml:(tooltip):200
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
-
-#: mod.jsondescription
-msgid "A free, open-source, historical RTS game."
-msgstr ""
-
-#: mod.jsonlabel
-msgid "0 A.D. Empires Ascendant"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle

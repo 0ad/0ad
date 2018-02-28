@@ -41,8 +41,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-23 09:04+0100\n"
-"PO-Revision-Date: 2018-02-23 16:02+0000\n"
+"POT-Creation-Date: 2018-02-26 09:04+0100\n"
+"PO-Revision-Date: 2018-02-26 14:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -66,12 +66,22 @@ msgctxt "damage type"
 msgid "Crush"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:95
+#: gui/civinfo/civinfo.js:28
+#, javascript-format
+msgid "%(hotkey)s: Switch to Structure Tree."
+msgstr ""
+
+#: gui/civinfo/civinfo.js:29
+#, javascript-format
+msgid "%(hotkey)s: Close History."
+msgstr ""
+
+#: gui/civinfo/civinfo.js:124
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s - Особенности"
 
-#: gui/civinfo/civinfo.js:98
+#: gui/civinfo/civinfo.js:127
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Бонус цивилизации"
@@ -79,7 +89,7 @@ msgstr[1] "Бонусы цивилизации"
 msgstr[2] "Бонусы цивилизации"
 msgstr[3] "Бонусы цивилизации"
 
-#: gui/civinfo/civinfo.js:103
+#: gui/civinfo/civinfo.js:132
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Командный бонус"
@@ -87,11 +97,11 @@ msgstr[1] "Командные бонусы"
 msgstr[2] "Командные бонусы"
 msgstr[3] "Командные бонусы"
 
-#: gui/civinfo/civinfo.js:110
+#: gui/civinfo/civinfo.js:139
 msgid "Special Technologies"
 msgstr "Особые технологии"
 
-#: gui/civinfo/civinfo.js:116
+#: gui/civinfo/civinfo.js:145
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Особое строение"
@@ -99,11 +109,11 @@ msgstr[1] "Особые строения"
 msgstr[2] "Особые строения"
 msgstr[3] "Особые строения"
 
-#: gui/civinfo/civinfo.js:123 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:152 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr "Герои"
 
-#: gui/civinfo/civinfo.js:133
+#: gui/civinfo/civinfo.js:162
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s, исторические факты"
@@ -190,17 +200,17 @@ msgstr "УДАЛИТЬ"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/options/options.js:264 gui/options/options.js:314
-#: gui/options/options.js:340 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:442
+#: gui/options/options.js:340 gui/pregame/mainmenu.js:261
+#: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
+#: gui/summary/summary.js:444
 msgid "No"
 msgstr "Нет"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/options/options.js:264 gui/options/options.js:314
-#: gui/options/options.js:340 gui/pregame/mainmenu.js:252
-#: gui/pregame/mainmenu.js:266 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:442
+#: gui/options/options.js:340 gui/pregame/mainmenu.js:261
+#: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
+#: gui/summary/summary.js:444
 msgid "Yes"
 msgstr "Да"
 
@@ -422,7 +432,7 @@ msgstr "Если один игрок выигрывает, то его или е
 msgid "Ceasefire"
 msgstr "Прекращение военных действий"
 
-#: gui/common/gamedescription.js:306 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:306 gui/pregame/mainmenu.js:95
 msgid "disabled"
 msgstr "отключён"
 
@@ -1255,7 +1265,7 @@ msgstr ""
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:156
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:165
 #: gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
 msgstr "OK"
@@ -1303,47 +1313,63 @@ msgstr "Некоторые параметры настроек некоррек�
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "У вас есть не сохраненные изменения, вы уверены, что хотите закрыть окно?"
 
-#: gui/pregame/mainmenu.js:89
+#: gui/pregame/mainmenu.js:42
+#, javascript-format
+msgid ""
+"%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
+msgstr ""
+
+#: gui/pregame/mainmenu.js:45
+#, javascript-format
+msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
+msgstr ""
+
+#: gui/pregame/mainmenu.js:48
+#, javascript-format
+msgid "%(hotkey)s: Launch the multiplayer lobby."
+msgstr ""
+
+#: gui/pregame/mainmenu.js:98
 msgid "connecting to server"
 msgstr "подключение к серверу"
 
-#: gui/pregame/mainmenu.js:92
+#: gui/pregame/mainmenu.js:101
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "загрузка (%f%%)"
 
-#: gui/pregame/mainmenu.js:98
+#: gui/pregame/mainmenu.js:107
 msgid "upload succeeded"
 msgstr "загрузка завершена"
 
-#: gui/pregame/mainmenu.js:99
+#: gui/pregame/mainmenu.js:108
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "Ошибка загрузки (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:103
+#: gui/pregame/mainmenu.js:112
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "Ошибка загрузки  (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:105
+#: gui/pregame/mainmenu.js:114
 msgid "unknown"
 msgstr "неизвестно"
 
-#: gui/pregame/mainmenu.js:120
+#: gui/pregame/mainmenu.js:129
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Благодарим вас за помощь в улучшении 0 A.D.!"
 
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:130
 msgid "Anonymous feedback is currently enabled."
 msgstr "Анонимный сбор информации включён."
 
-#: gui/pregame/mainmenu.js:122
+#: gui/pregame/mainmenu.js:131
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Статус: %(status)s."
 
-#: gui/pregame/mainmenu.js:146
+#: gui/pregame/mainmenu.js:155
 #, javascript-format
 msgid ""
 "%(warning)s You appear to be using non-shader (fixed function) graphics. "
@@ -1356,56 +1382,56 @@ msgstr "%(warning)s Похоже Вы используете графику бе
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:154
+#: gui/pregame/mainmenu.js:163
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Пожалуйста, нажмите на кнопку \"Подробнее\" для получения дополнительной информации или \"OK\" для продолжения."
 
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:164
 msgid "WARNING!"
 msgstr "ВНИМАНИЕ!"
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:165
 msgid "Read More"
 msgstr "Подробнее"
 
-#: gui/pregame/mainmenu.js:238
+#: gui/pregame/mainmenu.js:247
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Сборка: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:250
+#: gui/pregame/mainmenu.js:259
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Вы действительно хотите покинуть 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:251 gui/pregame/mainmenu.js:265
-#: gui/summary/summary.js:441
+#: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
+#: gui/summary/summary.js:443
 msgid "Confirmation"
 msgstr "Подтверждение"
 
-#: gui/pregame/mainmenu.js:264
+#: gui/pregame/mainmenu.js:273
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Вы уверены, что хотите выйти из 0 A.D. и открыть Редактор Сценариев?"
 
-#: gui/pregame/mainmenu.js:272
+#: gui/pregame/mainmenu.js:281
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Редактор сценариев недоступен или не запускается. Посмотрите логи игры для более подробной информации."
 
-#: gui/pregame/mainmenu.js:273 gui/replaymenu/replay_actions.js:119
+#: gui/pregame/mainmenu.js:282 gui/replaymenu/replay_actions.js:119
 msgid "Error"
 msgstr "Ошибка"
 
-#: gui/pregame/mainmenu.js:279
+#: gui/pregame/mainmenu.js:288
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Включить многопользовательскую комнату. \\[ОТКЛЮЧЕНО В СБОРКЕ]"
 
-#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):68
+#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
 msgid "Technical Details"
 msgstr "Технические детали"
 
-#: gui/pregame/mainmenu.js:289 gui/pregame/mainmenu.xml:(caption):146
+#: gui/pregame/mainmenu.js:298 gui/pregame/mainmenu.xml:(caption):146
 msgid "Manual"
 msgstr "Руководство"
 
@@ -1436,6 +1462,16 @@ msgstr "∞"
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s - %(health_max)s"
+
+#: gui/reference/structree/structree.js:49
+#, javascript-format
+msgid "%(hotkey)s: Switch to History."
+msgstr ""
+
+#: gui/reference/structree/structree.js:50
+#, javascript-format
+msgid "%(hotkey)s: Close Structure Tree."
+msgstr ""
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
@@ -1571,11 +1607,11 @@ msgstr "%(min)s - %(max)s min"
 msgid "Single- and multiplayer"
 msgstr "Одно- и многопользовательский режим"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):479
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):481
 msgid "Single Player"
 msgstr "Одиночная игра"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):494
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):496
 msgid "Multiplayer"
 msgstr "Многопользовательская игра"
 
@@ -1877,64 +1913,70 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-#: gui/summary/summary.js:440
+#: gui/summary/summary.js:442
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Вы уверены, что хотите выйти из комнаты? "
 
-#: gui/summary/summary.js:505
+#: gui/summary/summary.js:507
 msgid "Current Scores"
 msgstr "Текущий счёт"
 
-#: gui/summary/summary.js:507
+#: gui/summary/summary.js:509
 msgid "Scores at the end of the game."
 msgstr "Счет в конце игры."
 
-#: gui/summary/summary.js:509
+#: gui/summary/summary.js:511
 msgid "You have been disconnected."
 msgstr "Соединение с сервером разорвано."
 
-#: gui/summary/summary.js:511
+#: gui/summary/summary.js:513
 msgid "You have left the game."
 msgstr "Вы вышли из игры."
 
-#: gui/summary/summary.js:513
+#: gui/summary/summary.js:515
 msgid "You have won the battle!"
 msgstr "Вы выиграли битву!"
 
-#: gui/summary/summary.js:515
+#: gui/summary/summary.js:517
 msgid "You have been defeated…"
 msgstr "Вы потерпели поражение..."
 
-#: gui/summary/summary.js:516
+#: gui/summary/summary.js:518
 msgid "You have abandoned the game."
 msgstr "Вы покинули игру."
 
-#: gui/summary/summary.js:519
+#: gui/summary/summary.js:521
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Прошло времени в игре: %(time)s"
 
-#: gui/summary/summary.js:527
+#: gui/summary/summary.js:529
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:534
+#: gui/summary/summary.js:541
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr ""
 
-#: gui/civinfo/civinfo.xml:(caption):14
+#: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
 msgstr "Цивилизации"
 
-#: gui/civinfo/civinfo.xml:(caption):26
+#: gui/civinfo/civinfo.xml:(caption):32
 msgid "Civilization Selection"
 msgstr "Выбор цивилизации"
 
-#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):32
+#: gui/civinfo/civinfo.xml:(caption):125
+#: gui/pregame/mainmenu.xml:(caption):181
+#: gui/reference/structree/structree.xml:(caption):19
+msgid "Structure Tree"
+msgstr "Юниты и постройки"
+
+#: gui/civinfo/civinfo.xml:(caption):137 gui/credits/credits.xml:(caption):32
 #: gui/options/options.xml:(caption):56
-#: gui/reference/structree/structree.xml:(caption):119
+#: gui/reference/structree/structree.xml:(caption):137
 #: gui/reference/viewer/viewer.xml:(caption):37
 msgid "Close"
 msgstr "Закрыть"
@@ -1943,7 +1985,7 @@ msgstr "Закрыть"
 msgid "0 A.D. Credits"
 msgstr "Внесшие вклад в 0 A.D. "
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):380
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):382
 msgid "Language"
 msgstr "Язык"
 
@@ -2013,11 +2055,11 @@ msgid ""
 " and improve performance and compatibility."
 msgstr "Вы можете автоматически посылать нам анонимную информацию, которая поможет исправить ошибки, улучшить производительность и совместимость."
 
-#: gui/pregame/mainmenu.xml:561
+#: gui/pregame/mainmenu.xml:562
 msgid "Alpha XXIII: Ken Wood"
 msgstr "Альфа XXIII: Ken Wood"
 
-#: gui/pregame/mainmenu.xml:563
+#: gui/pregame/mainmenu.xml:564
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
@@ -2035,94 +2077,94 @@ msgstr "Выключить обратную связь"
 msgid "Tutorial"
 msgstr "Обучение"
 
-#: gui/pregame/mainmenu.xml:(caption):179
-#: gui/reference/structree/structree.xml:(caption):13
-msgid "Structure Tree"
-msgstr "Юниты и постройки"
-
-#: gui/pregame/mainmenu.xml:(caption):194
+#: gui/pregame/mainmenu.xml:(caption):197
+#: gui/reference/structree/structree.xml:(caption):126
 msgid "History"
 msgstr "История"
 
-#: gui/pregame/mainmenu.xml:(caption):217
+#: gui/pregame/mainmenu.xml:(caption):219
 msgid "Matches"
 msgstr "Сражения"
 
-#: gui/pregame/mainmenu.xml:(caption):231
+#: gui/pregame/mainmenu.xml:(caption):233
 msgid "Campaigns"
 msgstr "Кампании"
 
-#: gui/pregame/mainmenu.xml:(caption):244
+#: gui/pregame/mainmenu.xml:(caption):246
 msgid "Load Game"
 msgstr "Загрузить игру"
 
-#: gui/pregame/mainmenu.xml:(caption):258
-#: gui/pregame/mainmenu.xml:(caption):338
+#: gui/pregame/mainmenu.xml:(caption):260
+#: gui/pregame/mainmenu.xml:(caption):340
 msgid "Replays"
 msgstr "Повторы"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):286
+#: gui/pregame/mainmenu.xml:(caption):288
 msgid "Join Game"
 msgstr "Присоединиться к игре"
 
-#: gui/pregame/mainmenu.xml:(caption):300
+#: gui/pregame/mainmenu.xml:(caption):302
 msgid "Host Game"
 msgstr "Создать игру"
 
-#: gui/pregame/mainmenu.xml:(caption):315
+#: gui/pregame/mainmenu.xml:(caption):318
 msgid "Game Lobby"
 msgstr "Игровая комната"
 
-#: gui/pregame/mainmenu.xml:(caption):366
+#: gui/pregame/mainmenu.xml:(caption):368
 msgid "Options"
 msgstr "Настройки"
 
-#: gui/pregame/mainmenu.xml:(caption):394
+#: gui/pregame/mainmenu.xml:(caption):396
 msgid "Mod Selection"
 msgstr "Выбор модов"
 
-#: gui/pregame/mainmenu.xml:(caption):406
+#: gui/pregame/mainmenu.xml:(caption):408
 msgid "Welcome Screen"
 msgstr "Экран приветствия"
 
-#: gui/pregame/mainmenu.xml:(caption):464
+#: gui/pregame/mainmenu.xml:(caption):466
 msgid "Learn to Play"
 msgstr "Обучение"
 
-#: gui/pregame/mainmenu.xml:(caption):509
+#: gui/pregame/mainmenu.xml:(caption):511
 msgid "Settings"
 msgstr "Настройки"
 
-#: gui/pregame/mainmenu.xml:(caption):524
+#: gui/pregame/mainmenu.xml:(caption):526
 msgid "Scenario Editor"
 msgstr "Редактор сценариев"
 
-#: gui/pregame/mainmenu.xml:(caption):538
+#: gui/pregame/mainmenu.xml:(caption):540
 msgid "Exit"
 msgstr "Выход"
 
-#: gui/pregame/mainmenu.xml:(caption):573
+#: gui/pregame/mainmenu.xml:(caption):574
 msgid "Website"
 msgstr "Сайт"
 
-#: gui/pregame/mainmenu.xml:(caption):585
+#: gui/pregame/mainmenu.xml:(caption):586
 msgid "Chat"
 msgstr "Чат"
 
-#: gui/pregame/mainmenu.xml:(caption):597
+#: gui/pregame/mainmenu.xml:(caption):598
 msgid "Report a Bug"
 msgstr "Сообщить об ошибке"
 
-#: gui/pregame/mainmenu.xml:(caption):609
+#: gui/pregame/mainmenu.xml:(caption):610
 msgid "Translate the Game"
 msgstr "Перевести Игру"
 
-#: gui/pregame/mainmenu.xml:(caption):621
+#: gui/pregame/mainmenu.xml:(caption):622
+msgid "Donate"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):634
 msgid "Credits"
 msgstr "Внесшие вклад"
 
-#: gui/pregame/mainmenu.xml:(caption):650
+#: gui/pregame/mainmenu.xml:(caption):663
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -2134,116 +2176,108 @@ msgstr "Открыть игровое руководство 0 A.D."
 msgid "Start the economic tutorial."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):180
-msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr "Посмотреть описание юнитов и построек цивилизаций, представленных в 0 A.D."
-
-#: gui/pregame/mainmenu.xml:(tooltip):195
-msgid "Learn about the many civilizations featured in 0 A.D."
-msgstr "Познакомьтесь со множеством цивилизаций, представленных в 0 A.D."
-
-#: gui/pregame/mainmenu.xml:(tooltip):218
+#: gui/pregame/mainmenu.xml:(tooltip):220
 msgid "Click here to start a new single player game."
 msgstr "Нажмите здесь, чтобы начать новую одиночную игру."
 
-#: gui/pregame/mainmenu.xml:(tooltip):232
+#: gui/pregame/mainmenu.xml:(tooltip):234
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Воспроизведите историю в исторических военных кампаниях. \\[НЕ РЕАЛИЗОВАНО]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):245
+#: gui/pregame/mainmenu.xml:(tooltip):247
 msgid "Click here to load a saved game."
 msgstr "Нажмите здесь, чтобы загрузить сохранённую игру."
 
-#: gui/pregame/mainmenu.xml:(tooltip):259
-#: gui/pregame/mainmenu.xml:(tooltip):339
+#: gui/pregame/mainmenu.xml:(tooltip):261
+#: gui/pregame/mainmenu.xml:(tooltip):341
 msgid "Playback previous games."
 msgstr "Воспроизвести предыдущие игры."
 
-#: gui/pregame/mainmenu.xml:(tooltip):287
+#: gui/pregame/mainmenu.xml:(tooltip):289
 msgid "Joining an existing multiplayer game."
 msgstr "Присоединиться к существующей многопользовательской игре."
 
-#: gui/pregame/mainmenu.xml:(tooltip):301
+#: gui/pregame/mainmenu.xml:(tooltip):303
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Создать многопользовательскую игру.\\n\\nПорт UDP 20595 должен быть открыт."
 
-#: gui/pregame/mainmenu.xml:(tooltip):316
-msgid "Launch the multiplayer lobby."
-msgstr "Запустить комнату мультиплеера."
-
-#: gui/pregame/mainmenu.xml:(tooltip):367
+#: gui/pregame/mainmenu.xml:(tooltip):369
 msgid "Adjust game settings."
 msgstr "Настроить параметры игры."
 
-#: gui/pregame/mainmenu.xml:(tooltip):381
+#: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Choose the language of the game."
 msgstr "Выбрать язык игры."
 
-#: gui/pregame/mainmenu.xml:(tooltip):395
+#: gui/pregame/mainmenu.xml:(tooltip):397
 msgid "Select mods to use."
 msgstr "Выбрать используемые моды."
 
-#: gui/pregame/mainmenu.xml:(tooltip):407
+#: gui/pregame/mainmenu.xml:(tooltip):409
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Показать Экран приветствия. Полезно, если это скрыто по ошибке."
 
-#: gui/pregame/mainmenu.xml:(tooltip):465
+#: gui/pregame/mainmenu.xml:(tooltip):467
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Узнать, как играть, начать обучающую кампанию, изучить деревья технологий и историю цивилизаций"
 
-#: gui/pregame/mainmenu.xml:(tooltip):480
+#: gui/pregame/mainmenu.xml:(tooltip):482
 msgid "Challenge the computer player to a single player match."
 msgstr "Сразиться с компьютерным игроком в однопользовательской игре."
 
-#: gui/pregame/mainmenu.xml:(tooltip):495
+#: gui/pregame/mainmenu.xml:(tooltip):497
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Сразиться с одним или несколькими игроками в многопользовательской игре."
 
-#: gui/pregame/mainmenu.xml:(tooltip):510
+#: gui/pregame/mainmenu.xml:(tooltip):512
 msgid "Game options and mod selection."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):525
+#: gui/pregame/mainmenu.xml:(tooltip):527
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Открыть редактор сценариев Atlas в новом окне. Вы также можете перейти в режим редактора, запустив игру с аргументом командной строки \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:(tooltip):539
+#: gui/pregame/mainmenu.xml:(tooltip):541
 msgid "Exits the game."
 msgstr "Выйти из игры."
 
-#: gui/pregame/mainmenu.xml:(tooltip):574
+#: gui/pregame/mainmenu.xml:(tooltip):575
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Нажмите, чтобы открыть play0ad.com в браузере."
 
-#: gui/pregame/mainmenu.xml:(tooltip):586
+#: gui/pregame/mainmenu.xml:(tooltip):587
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Нажмите, чтобы открыть IRC-чат 0 A.D. в браузере. (#0ad на webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):598
+#: gui/pregame/mainmenu.xml:(tooltip):599
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Нажмите, чтобы посетить 0 A.D. Trac для отчета о баге, вылете или ошибке."
 
-#: gui/pregame/mainmenu.xml:(tooltip):610
+#: gui/pregame/mainmenu.xml:(tooltip):611
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Открыть страницу перевода 0 A.D. в браузере."
 
-#: gui/pregame/mainmenu.xml:(tooltip):622
+#: gui/pregame/mainmenu.xml:(tooltip):623
+msgid "Help with the project expenses by donating."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(tooltip):635
 msgid "Click to see the 0 A.D. credits."
 msgstr "Нажмите, чтобы увидеть список тех, кто внес вклад в 0 A.D."
 
-#: gui/reference/structree/structree.xml:(caption):25
+#: gui/reference/structree/structree.xml:(caption):31
 msgid "Civilization:"
 msgstr "Цивилизация:"
 
-#: gui/reference/structree/structree.xml:(caption):92
+#: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
 msgstr "Тренера"
 
@@ -2361,11 +2395,11 @@ msgctxt "summary chart"
 msgid "Type:"
 msgstr "Тип:"
 
-#: gui/summary/summary.xml:(caption):227
+#: gui/summary/summary.xml:(caption):226
 msgid "Replay"
 msgstr "Просмотр повтора"
 
-#: gui/summary/summary.xml:(caption):232
+#: gui/summary/summary.xml:(caption):231
 msgid "Continue"
 msgstr "Продолжить"
 
@@ -2383,14 +2417,6 @@ msgstr "Значение"
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Тип"
-
-#: mod.jsondescription
-msgid "A free, open-source, historical RTS game."
-msgstr "Бесплатная, с открытым исходным кодом, историческая игра в жанре RTS."
-
-#: mod.jsonlabel
-msgid "0 A.D. Empires Ascendant"
-msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
