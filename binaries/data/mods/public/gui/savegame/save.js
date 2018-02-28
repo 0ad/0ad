@@ -39,7 +39,7 @@ function init(data)
 	let engineInfo = Engine.GetEngineInfo();
 	gameSelection.list = savedGames.map(game => generateSavegameLabel(game.metadata, engineInfo));
 	gameSelection.list_data = savedGames.map(game => game.id);
-	gameSelection.selected = -1;
+	gameSelection.selected = Math.min(gameSelection.selected, gameSelection.list.length - 1);
 
 	Engine.GetGUIObjectByName("deleteGameButton").tooltip = deleteTooltip();
 }
