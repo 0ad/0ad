@@ -127,7 +127,7 @@ m.Worker.prototype.update = function(gameState, ent)
 	{
 		if (subrole == "fisher")
 			this.startFishing(gameState);
-		else if (unitAIState == "INDIVIDUAL.COMBAT.APPROACHING" && ent.unitAIOrderData().length && 
+		else if (unitAIState == "INDIVIDUAL.COMBAT.APPROACHING" && ent.unitAIOrderData().length &&
 			!ent.getMetadata(PlayerID, "PartOfArmy"))
 		{
 			let orderData = ent.unitAIOrderData()[0];

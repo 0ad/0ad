@@ -230,6 +230,7 @@ m.TransportPlan.prototype.releaseAll = function()
 	this.units.unregister();
 };
 
+/** TODO not currently used ... to be fixed */
 m.TransportPlan.prototype.cancelTransport = function(gameState)
 {
 	let ent = this.units.toEntityArray()[0];
