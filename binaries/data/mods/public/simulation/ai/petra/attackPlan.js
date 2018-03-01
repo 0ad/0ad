@@ -1883,7 +1883,8 @@ m.AttackPlan.prototype.UpdateTarget = function(gameState)
 	{
 		if (this.Config.debug > 1)
 			API3.warn("Seems like our target for plan " + this.name + " has been destroyed or captured. Switching.");
-		this.target = this.getNearestTarget(gameState, this.position, this.getAttackAccess(gameState));
+		let accessIndex = this.getAttackAccess(gameState);
+		this.target = this.getNearestTarget(gameState, this.position, accessIndex);
 		if (!this.target)
 		{
 			if (this.uniqueTargetId)
@@ -1891,19 +1892,18 @@ m.AttackPlan.prototype.UpdateTarget = function(gameState)
 
 			// Check if we could help any current attack
 			let attackManager = gameState.ai.HQ.attackManager;
-			let accessIndex = gameState.ai.accessibility.getAccessValue(this.position);
 			for (let attackType in attackManager.startedAttacks)
 			{
 				for (let attack of attackManager.startedAttacks[attackType])
 				{
-					if (attack.name === this.name)
+					if (attack.name == this.name)
 						continue;
 					if (!attack.target || !gameState.getEntityById(attack.target.id()) ||
 					    !gameState.isPlayerEnemy(attack.target.owner()))
 						continue;
-					if (accessIndex !== gameState.ai.accessibility.getAccessValue(attack.targetPos))
+					if (accessIndex != m.getLandAccess(gameState, attack.target))
 						continue;
-					if (attack.target.owner() === 0 && attack.targetPlayer !== 0)	// looks like it has resigned
+					if (attack.target.owner() == 0 && attack.targetPlayer != 0)	// looks like it has resigned
 						continue;
 					if (!gameState.isPlayerEnemy(attack.targetPlayer))
 						continue;
@@ -1919,7 +1919,7 @@ m.AttackPlan.prototype.UpdateTarget = function(gameState)
 			{
 				this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
 				if (this.targetPlayer !== undefined)
-					this.target = this.getNearestTarget(gameState, this.position, this.getAttackAccess(gameState));
+					this.target = this.getNearestTarget(gameState, this.position, accessIndex);
 				if (!this.target)
 				{
 					if (this.Config.debug > 1)
@@ -1945,7 +1945,7 @@ m.AttackPlan.prototype.Abort = function(gameState)
 		let rallyPoint;
 		if (this.isStarted())
 		{
-			let access = gameState.ai.accessibility.getAccessValue(this.position);
+			let access = this.getAttackAccess(gameState);
 			let dist = Math.min();
 			if (this.rallyPoint && gameState.ai.accessibility.getAccessValue(this.rallyPoint) == access)
 			{

@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-23 09:06+0100\n"
-"PO-Revision-Date: 2018-02-24 11:22+0000\n"
+"POT-Creation-Date: 2018-02-26 09:06+0100\n"
+"PO-Revision-Date: 2018-02-27 06:45+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -268,9 +268,14 @@ msgid "Dodecanese"
 msgstr "Додеканезите"
 
 #: maps/random/elephantine.jsonsettings.Description
-#: maps/random/unknown_land.jsonsettings.Description
-msgid "The unknown."
-msgstr "Непозната карта."
+msgid ""
+"Forming the traditional frontier between ancient Kush and Egypt, the "
+"fortified Island of Elephantine was situated on the Nile River at the first "
+"cataract. As the border between Upper Egypt and Lower Nubia, Elephantine "
+"became an important way-station for the trade in ivory and other goods. It "
+"was considered to be the home of the god Khnum, guardian of the source of "
+"the Nile, and boasted an impressive temple complex."
+msgstr "Стоейки на границата между древните държави Куш и Египет, укрепеният остров Елефантина се намира в река Нил при първите бързеи. Като граница между Горен Египет и Долна Нубия, Елефантина бил важна точка за търговията със слонова кост и други стоки. Смятало се, че там е домът на бог Хнум, пазител на изворите на Нил, и затова в негова чест на острова бил построен огромен храм."
 
 #: maps/random/elephantine.jsonsettings.Name
 msgid "Elephantine"
@@ -488,6 +493,15 @@ msgstr "Играчите започват в почти равно галско 
 #: maps/random/lorraine_plain.jsonsettings.Name
 msgid "Lorraine Plain"
 msgstr "Лотарингска равнина"
+
+#: maps/random/lower_nubia.jsonsettings.Description
+#: maps/random/unknown_land.jsonsettings.Description
+msgid "The unknown."
+msgstr "Непозната карта."
+
+#: maps/random/lower_nubia.jsonsettings.Name
+msgid "Lower Nubia"
+msgstr "Долна Нубия"
 
 #: maps/random/mainland.jsonsettings.Description
 msgid "A typical map without any water."
@@ -1808,6 +1822,16 @@ msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
 msgstr "Малка карта с много ресурси и малко вода, подходяща за изпробване на функционалностите в несъревнователни мрежови игри."
+
+#: maps/scenarios/Napata Reconstruction.xml:Name:40
+msgid "Napata Reconstruction"
+msgstr "Реконструкция на Напата"
+
+#: maps/scenarios/Napata Reconstruction.xml:Description:40
+msgid ""
+"This map displays a reconstruction of the ancient city Napata. "
+"[color=\"red\"]Note:[/color] The map is not intended to be playable."
+msgstr "Тази карта показва реконструкция на древния град Напата. [color=\"red\"]Забележка:[/color] тази карта не е предназначена за игра."
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
