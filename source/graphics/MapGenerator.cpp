@@ -214,7 +214,11 @@ void CMapGeneratorWorker::SetProgress(ScriptInterface::CxPrivate* pCxPrivate, in
 
 	// Copy data
 	CScopeLock lock(self->m_WorkerMutex);
-	self->m_Progress = progress;
+
+	if (progress >= self->m_Progress)
+		self->m_Progress = progress;
+	else
+		LOGWARNING("The random map script tried to reduce the loading progress from %d to %d", self->m_Progress, progress);
 }
 
 CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName)

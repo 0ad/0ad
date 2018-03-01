@@ -176,7 +176,7 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::Handl
 	RegMemFun(this, &CMapReader::LoadPlayerSettings, L"CMapReader::LoadPlayerSettings", 50);
 
 	// load map generator with random map script
-	RegMemFun(this, &CMapReader::GenerateMap, L"CMapReader::GenerateMap", 5000);
+	RegMemFun(this, &CMapReader::GenerateMap, L"CMapReader::GenerateMap", 20000);
 
 	// parse RMS results into terrain structure
 	RegMemFun(this, &CMapReader::ParseTerrain, L"CMapReader::ParseTerrain", 500);
