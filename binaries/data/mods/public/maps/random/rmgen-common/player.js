@@ -475,7 +475,7 @@ function placePlayersNomad(playerClass, constraints)
 		let success = false;
 		for (let distanceFactor of [1, 1/2, 1/4, 0])
 		{
-			if (createObjectGroups(group, playerIDs[i], new AndConstraint([constraint, avoidClasses(playerClass, distance * distanceFactor)]), 1, 200, false))
+			if (createObjectGroups(group, playerIDs[i], new AndConstraint([constraint, avoidClasses(playerClass, distance * distanceFactor)]), 1, 200, false).length)
 			{
 				success = true;
 				playerPosition[i] = group.centerPosition;
