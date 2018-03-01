@@ -14,23 +14,22 @@
 /**
  * Get the height range of a heightmap
  * @param {array} [heightmap=g_Map.height] - The reliefmap the minimum and maximum height should be determined for
- * @return {object} [height] - Height range with 2 floats in properties "min" and "max"
+ * @return {object} Height range with 2 floats in properties "min" and "max"
  */
 function getMinAndMaxHeight(heightmap = g_Map.height)
 {
-	let height = {};
-	height.min = Infinity;
-	height.max = - Infinity;
+	let height = {
+		"min": Infinity,
+		"max": -Infinity
+	};
+
 	for (let x = 0; x < heightmap.length; ++x)
-	{
 		for (let y = 0; y < heightmap[x].length; ++y)
 		{
-			if (heightmap[x][y] < height.min)
-				height.min = heightmap[x][y];
-			else if (heightmap[x][y] > height.max)
-				height.max = heightmap[x][y];
+			height.min = Math.min(height.min, heightmap[x][y]);
+			height.max = Math.max(height.max, heightmap[x][y]);
 		}
-	}
+
 	return height;
 }
 
@@ -44,11 +43,35 @@ function getMinAndMaxHeight(heightmap = g_Map.height)
 function rescaleHeightmap(minHeight = MIN_HEIGHT, maxHeight = MAX_HEIGHT, heightmap = g_Map.height)
 {
 	let oldHeightRange = getMinAndMaxHeight(heightmap);
-	let max_x = heightmap.length;
-	let max_y = heightmap[0].length;
-	for (let x = 0; x < max_x; ++x)
-		for (let y = 0; y < max_y; ++y)
+	for (let x = 0; x < heightmap.length; ++x)
+		for (let y = 0; y < heightmap[x].length; ++y)
 			heightmap[x][y] = minHeight + (heightmap[x][y] - oldHeightRange.min) / (oldHeightRange.max - oldHeightRange.min) * (maxHeight - minHeight);
+	return heightmap;
+}
+
+/**
+ * Translates the heightmap by the given vector, i.e. moves the heights in that direction.
+ *
+ * @param {Vector2D} offset - A vector indicating direction and distance.
+ * @param {Number} [defaultHeight] - The elevation to be set for vertices that don't have a corresponding location on the source heightmap.
+ * @param {Array} [heightmap=g_Map.height] - A reliefmap
+ */
+function translateHeightmap(offset, defaultHeight = undefined, heightmap = g_Map.height)
+{
+	if (defaultHeight === undefined)
+		defaultHeight = getMinAndMaxHeight(heightmap).min;
+	offset.round();
+
+	let sourceHeightmap = clone(heightmap);
+	for (let x = 0; x < heightmap.length; ++x)
+		for (let y = 0; y < heightmap[x].length; ++y)
+			heightmap[x][y] =
+				sourceHeightmap[x + offset.x] !== undefined &&
+				sourceHeightmap[x + offset.x][y + offset.y] !== undefined ?
+					sourceHeightmap[x + offset.x][y + offset.y] :
+					defaultHeight;
+
+	return heightmap;
 }
 
 /**
@@ -196,6 +219,8 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 	for (let x = 0; x < heightmap.length; ++x)
 		for (let y = 0; y < heightmap[0].length; ++y)
 			heightmap[x][y] = newHeightmap[x + shift[0]][y + shift[1]];
+
+	return heightmap;
 }
 
 /**
@@ -220,8 +245,7 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 		avoidMap = avoidClass.inclusionCount;
 
 	for (let x = minDistance; x < heightmap.length - minDistance; ++x)
-	{
-		for (let y = minDistance; y < heightmap[0].length - minDistance; ++y)
+		for (let y = minDistance; y < heightmap[x].length - minDistance; ++y)
 		{
 			if (avoidClass &&
 				(avoidMap[Math.max(x - 1, 0)][y] > 0 ||
@@ -234,7 +258,6 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 				(!isCircular || r - Math.euclidDistance2D(x, y, r, r) >= minDistance)) // Enough distance to the map border
 				validVertices.push({ "x": x, "y": y , "dist": minDistance});
 		}
-	}
 
 	for (let tries = 0; tries < maxTries; ++tries)
 	{
@@ -387,4 +410,5 @@ function splashErodeMap(strength = 1, heightmap = g_Map.height)
 			heightmap[x][prev_y] += drain[3];
 		}
 	}
+	return heightmap;
 }

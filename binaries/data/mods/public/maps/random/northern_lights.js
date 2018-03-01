@@ -101,7 +101,7 @@ for (let i = 0; i < scaleByMapSize(20, 120); ++i)
 	createArea(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 30)), Infinity, position),
 		[
-			new LayeredPainter([tSnowA, tSnowA], [2]),
+			new TerrainPainter(tSnowA),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 			new TileClassUnPainter(clWater)
 		]);
@@ -111,7 +111,7 @@ g_Map.log("Creating islands");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.1),
 	[
-		new LayeredPainter([tSnowA, tSnowA], [3]),
+		new TerrainPainter(tSnowA),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 		new TileClassPainter(clIsland),
 		new TileClassUnPainter(clWater)
@@ -198,7 +198,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
-			new LayeredPainter([tSnowE, tSnowE], [1]),
+			new TerrainPainter(tSnowE),
 			new TileClassPainter(clDirt)
 		],
 		avoidClasses(

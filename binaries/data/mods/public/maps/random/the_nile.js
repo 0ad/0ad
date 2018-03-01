@@ -187,7 +187,7 @@ var numLakes = Math.round(scaleByMapSize(1, 4) * numPlayers / 2);
 var waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(2, 5) * 50, 0.8, 0.1, Infinity),
 	[
-		new LayeredPainter([tShore, tShore, tShore], [1, 1]),
+		new TerrainPainter(tShore),
 		new SmoothElevationPainter(ELEVATION_SET, heightPonds, 4),
 		new TileClassPainter(clPond)
 	],

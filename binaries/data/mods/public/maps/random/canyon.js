@@ -71,7 +71,7 @@ for (let i = 0; i < numPlayers; ++i)
 	createArea(
 		new ClumpPlacer(diskArea(playerCanyonRadius / j), 0.65, 0.1, Infinity, playerPosition[i]),
 		[
-			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+			new TerrainPainter(tMainTerrain),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
 			new TileClassPainter(j == 1 || isNomad() ? clLand : clPlayer)
 		]);
@@ -80,7 +80,7 @@ g_Map.log("Creating center area");
 createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.16)), 0.7, 0.1, Infinity, mapCenter),
 	[
-		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
+		new TerrainPainter(tMainTerrain),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 		new TileClassPainter(clLand)
 	]);
@@ -113,7 +113,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 	let newarea = createArea(
 		new ClumpPlacer(diskArea(fractionToTiles(0.06)), 0.7, 0.1, Infinity, position),
 		[
-			new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
+			new TerrainPainter(tMainTerrain),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 			new TileClassPainter(clLand)
 		],
@@ -151,7 +151,7 @@ for (let g = 0; g < scaleByMapSize(5, 30); ++g)
 				createArea(
 					new PathPlacer(position, playerPosition[playerID], scaleByMapSize(11, 17), 0.4, scaleByMapSize(3, 12), 0.1, 0.1),
 					[
-						new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
+						new TerrainPainter(tMainTerrain),
 						new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 						new TileClassPainter(clLand)
 					]);
@@ -183,7 +183,7 @@ for (let i = 0; i < numPlayers; ++i)
 g_Map.log("Painting center place");
 createArea(
 	new ClumpPlacer(150, 0.6, 0.3, Infinity, mapCenter),
-	new LayeredPainter([tRoad, tRoad], [1]));
+	new TerrainPainter(tRoad));
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],

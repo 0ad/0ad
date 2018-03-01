@@ -84,28 +84,24 @@ function randomPositionOnTile(tilePosition)
 /**
  * Retries the given function with those arguments as often as specified.
  */
-function retryPlacing(placeFunc, retryFactor, amount, getResult, behaveDeprecated = false)
+function retryPlacing(placeFunc, retryFactor, amount, behaveDeprecated = false)
 {
 	let maxFail = amount * retryFactor;
 
 	let results = [];
-	let good = 0;
 	let bad = 0;
 
-	while (good < amount && bad <= maxFail)
+	while (results.length < amount && bad <= maxFail)
 	{
 		let result = placeFunc();
 
 		if (result !== undefined || behaveDeprecated)
-		{
-			++good;
-			if (getResult)
-				results.push(result);
-		}
+			results.push(result);
 		else
 			++bad;
 	}
-	return getResult ? results : good;
+
+	return results;
 }
 
 // TODO this is a hack to simulate the old behaviour of those functions
@@ -131,7 +127,7 @@ function createAreas(centeredPlacer, painter, constraint, amount, retryFactor = 
 		return createArea(centeredPlacer, painter, constraint);
 	};
 
-	return retryPlacing(placeFunc, retryFactor, amount, true, false);
+	return retryPlacing(placeFunc, retryFactor, amount, false);
 }
 
 /**
@@ -145,7 +141,7 @@ function createAreasInAreas(centeredPlacer, painter, constraint, amount, retryFa
 		return createArea(centeredPlacer, painter, constraint);
 	};
 
-	return retryPlacing(placeFunc, retryFactor, amount, true, false);
+	return retryPlacing(placeFunc, retryFactor, amount, false);
 }
 
 /**
@@ -159,7 +155,7 @@ function createObjectGroups(group, player, constraint, amount, retryFactor = 10,
 		return createObjectGroup(group, player, constraint);
 	};
 
-	return retryPlacing(placeFunc, retryFactor, amount, false, behaveDeprecated);
+	return retryPlacing(placeFunc, retryFactor, amount, behaveDeprecated);
 }
 
 /**
@@ -173,7 +169,7 @@ function createObjectGroupsByAreas(group, player, constraint, amount, retryFacto
 		return createObjectGroup(group, player, constraint);
 	};
 
-	return retryPlacing(placeFunc, retryFactor, amount, false, behaveDeprecated);
+	return retryPlacing(placeFunc, retryFactor, amount, behaveDeprecated);
 }
 
 function createTerrain(terrain)

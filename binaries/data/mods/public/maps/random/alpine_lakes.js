@@ -136,7 +136,7 @@ g_Map.log("Creating lakes");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(40, 180)), 0.7),
 	[
-		new LayeredPainter([tShore, tWater, tWater], [1, 3]),
+		new LayeredPainter([tShore, tWater], [1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
 		new TileClassPainter(clWater)
 	],

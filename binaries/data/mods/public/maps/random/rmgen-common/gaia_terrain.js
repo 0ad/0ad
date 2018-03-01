@@ -528,7 +528,6 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
  * @property {number} endWidth
  * @property {number} [startHeight] - Fixed height to be used if the height at the location shouldn't be used.
  * @property {number} [endHeight]
- * @property {number} [maxHeight] - If given, do not touch any terrain above this height.
  * @property {number} smoothWidth - Number of tiles at the passage border to apply height interpolation.
  * @property {number} [tileClass] - Marks the passage with this tile class.
  * @property {string} [terrain] - Texture to be painted on the passage area.

@@ -61,7 +61,7 @@ g_Map.log("Creating central area");
 createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.15)), 0.7, 0.1, Infinity, mapCenter),
 	[
-		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
+		new TerrainPainter(tMainTerrain),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 		new TileClassPainter(clLand)
 	]);
@@ -88,7 +88,7 @@ for (let  i = 0; i < numPlayers; ++i)
 	createArea(
 		new PathPlacer(mapCenter, passage[i], scaleByMapSize(14, 24), 0.4, scaleByMapSize(3, 9), 0.2, 0.05),
 		[
-			new LayeredPainter([tMainTerrain, tMainTerrain], [1]),
+			new TerrainPainter(tMainTerrain),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4)
 		]);
 

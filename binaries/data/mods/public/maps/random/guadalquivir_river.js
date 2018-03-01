@@ -73,7 +73,7 @@ createArea(
 		0,
 		[Math.floor(fractionToTiles(0.49))]),
 	[
-		new LayeredPainter([tGrass, tGrass, tGrass], [4, 2]),
+		new TerrainPainter(tGrass),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 		new TileClassPainter(clLand)
 	]);

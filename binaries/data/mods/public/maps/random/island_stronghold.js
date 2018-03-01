@@ -93,7 +93,7 @@ for (let i = 0; i < teams.length; ++i)
 		createArea(
 			new ChainPlacer(2, Math.floor(scaleByMapSize(5, 11)), Math.floor(scaleByMapSize(60, 250)), Infinity, playerPosition[p], Infinity, [defaultPlayerBaseRadius() * 3/4]),
 			[
-				new LayeredPainter([tMainTerrain, tMainTerrain, tMainTerrain], [1, 6]),
+				new TerrainPainter(tMainTerrain),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
 				new TileClassPainter(clLand)
 			]);
@@ -180,7 +180,7 @@ createAreas(
 		undefined,
 		scaleByMapSize(30, 70)),
 	[
-		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+		new TerrainPainter(tMainTerrain),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 		new TileClassPainter(clLand)
 	],

@@ -98,7 +98,7 @@ for (let i = 0; i < stripWidths.length; ++i)
 				Infinity,
 				position),
 			[
-				new LayeredPainter([tGrass, tGrass], [2]),
+				new TerrainPainter(tGrass),
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 				new TileClassPainter(clStrip[i])
 			]);
@@ -117,7 +117,7 @@ for (let i = 0; i < numPlayers; ++i)
 	createArea(
 		new ChainPlacer(1, 6, 40, 1, playerPosition[i], 0, [Math.floor(playerRadius)]),
 		[
-			new LayeredPainter([tGrass, tGrass, tGrass], [1, 4]),
+			new TerrainPainter(tGrass),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 			new TileClassPainter(clPlayerTerritory)
 		]);
@@ -273,7 +273,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
-			new LayeredPainter([tPlants, tPlants], [1]),
+			new TerrainPainter(tPlants),
 			new TileClassPainter(clDirt)
 		],
 		avoidClasses(

@@ -275,6 +275,7 @@ RandomMap.prototype.placeEntityAnywhere = function(templateName, playerID, posit
 {
 	let entity = new Entity(this.getEntityID(), templateName, playerID, position, orientation);
 	this.entities.push(entity);
+	return entity;
 };
 
 /**
@@ -282,8 +283,10 @@ RandomMap.prototype.placeEntityAnywhere = function(templateName, playerID, posit
  */
 RandomMap.prototype.placeEntityPassable = function(templateName, playerID, position, orientation)
 {
-	if (this.validTilePassable(position))
-		this.placeEntityAnywhere(templateName, playerID, position, orientation);
+	if (!this.validTilePassable(position))
+		return undefined;
+
+	return this.placeEntityAnywhere(templateName, playerID, position, orientation);
 };
 
 /**

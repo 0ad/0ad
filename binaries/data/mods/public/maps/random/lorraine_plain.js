@@ -109,7 +109,7 @@ createArea(
 	avoidClasses(clPlayer, 4));
 Engine.SetProgress(25);
 
-// Creating small puddles at the map border to ensure players being separated
+g_Map.log("Creating small puddles at the map border to ensure players being separated");
 for (let riverPosition of riverPositions)
 	createArea(
 		new ClumpPlacer(diskArea(scaleByMapSize(5, 10)), 0.95, 0.6, Infinity, riverPosition),

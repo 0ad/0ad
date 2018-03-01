@@ -111,7 +111,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
-			new LayeredPainter([tGrassB, tGrassB], [1]),
+			new TerrainPainter(tGrassB),
 			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clHill, 0, clPlayer, 12),
@@ -121,7 +121,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
-			new LayeredPainter([tGrassC, tGrassC], [1]),
+			new TerrainPainter(tGrassC),
 			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clForest, 0, clHill, 0, clPlayer, 12),

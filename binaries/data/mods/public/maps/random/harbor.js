@@ -304,19 +304,11 @@ function addCenterLake()
 			0,
 			[Math.floor(fractionToTiles(0.2))]),
 		[
-			new LayeredPainter(
-				[
-					g_Terrains.shore,
-					g_Terrains.water,
-					g_Terrains.water
-				],
-				[1, 100]
-			),
+			new LayeredPainter([g_Terrains.shore, g_Terrains.water], [1]),
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 10),
 			new TileClassPainter(g_TileClasses.water)
 		],
-		avoidClasses(g_TileClasses.player, 20)
-	);
+		avoidClasses(g_TileClasses.player, 20));
 
 	let fDist = 50;
 	if (mapSize <= 192)

@@ -117,7 +117,7 @@ for (let gulfLake of gulfLakePositions)
 			0,
 			[Math.floor(gulfLake.radius)]),
 		[
-			new LayeredPainter([tPrimary, tPrimary, tPrimary, tPrimary], [1, 4, 2]),
+			new TerrainPainter(tPrimary),
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 			new TileClassPainter(clWater)
 		],

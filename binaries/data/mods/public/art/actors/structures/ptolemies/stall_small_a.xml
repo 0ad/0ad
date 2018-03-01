@@ -5,28 +5,27 @@
     <variant frequency="100" name="stall_small_a">
       <mesh>structural/stall_small_a.dae</mesh>
       <props>
-       <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>	  
-	   <prop actor="props/structures/ptolemies/stall_small_a_plants.xml" attachpoint="root"/>
-       <prop actor="props/structures/ptolemies/stall_small_a_cloth.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/stall_small_a_plants.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/stall_small_a_cloth.xml" attachpoint="root"/>
       </props>
       <textures>
-		<texture file="structural/ptol_struct.png" name="baseTex"/>
-		<texture file="structural/ptol_struct_norm.png" name="normTex"/>
+        <texture file="structural/ptol_struct.png" name="baseTex"/>
+        <texture file="structural/ptol_struct_norm.png" name="normTex"/>
         <texture file="structural/ptol_struct_spec.png" name="specTex"/>
-		<texture file="structural/ao/stall_small_a.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/ao/stall_small_a.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
-	    <prop actor="props/structures/ptolemies/farmstead_cart.xml" attachpoint="cart"/>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
-	    <prop actor="props/structures/ptolemies/stall_small_a_plants.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/stall_small_a_plants.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/stall_small_a_cloth.xml" attachpoint="root"/>
       </props>
     </variant>

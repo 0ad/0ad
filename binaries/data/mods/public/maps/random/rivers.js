@@ -102,7 +102,7 @@ g_Map.log("Creating central lake");
 createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.075)), 0.7, 0.1, Infinity, mapCenter),
 	[
-		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
+		new LayeredPainter([tShore, tWater], [1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		new TileClassPainter(clWater)
 	]);
