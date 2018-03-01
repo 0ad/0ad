@@ -185,3 +185,29 @@ SlopeConstraint.prototype.allows = function(position)
 {
 	return this.minSlope <= g_Map.getSlope(position) && g_Map.getSlope(position) <= this.maxSlope;
 };
+
+/**
+ * The StaticConstraint is used for performance improvements of existing Constraints.
+ * It is evaluated for the entire map when the Constraint is created.
+ * So when a createAreas or createObjectGroups call uses this, it can rely on the cache,
+ * rather than reevaluating it for every randomized coordinate.
+ * Account for the fact that the cache is never updated!
+ */
+function StaticConstraint(constraints)
+{
+	let mapSize = g_Map.getSize();
+	let constraint = new AndConstraint(constraints);
+
+	this.cache = [];
+	for (let x = 0; x < mapSize; ++x)
+	{
+		this.cache[x] = new Uint8Array(mapSize);
+		for (let y = 0; y < mapSize; ++y)
+			this.cache[x][y] = constraint.allows(new Vector2D(x, y));
+	}
+}
+
+StaticConstraint.prototype.allows = function(position)
+{
+	return !!this.cache[position.x][position.y];
+};
