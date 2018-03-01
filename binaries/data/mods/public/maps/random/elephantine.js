@@ -24,7 +24,8 @@ const tPrimary = ["savanna_dirt_rocks_a_red", "savanna_dirt_a_red", "savanna_dir
 const tDirt = ["new_savanna_dirt_c", "new_savanna_dirt_d", "savanna_dirt_b_red", "savanna_dirt_plants_cracked"];
 const tWater = "desert_sand_wet";
 const tRoad =  "savanna_tile_a_red";
-const tRoadIsland =  "savanna_tile_a";
+const tRoadIsland = "savanna_tile_a";
+const tRoadWildIsland = "savanna_dirt_rocks_a";
 const tGrass = ["savanna_shrubs_a_wetseason", "alpine_grass_b_wild", "medit_shrubs_a", "steppe_grass_green_a"];
 const tForestFloorLand = "savanna_forestfloor_b_red";
 const tForestFloorIsland = pickRandom(tGrass);
@@ -64,6 +65,8 @@ const oCrocodile = "gaia/fauna_crocodile";
 const oFish = "gaia/fauna_fish";
 const oHawk = "gaia/fauna_hawk";
 
+// The main temple on elephantine was very similar looking (Greco-Roman-Egyptian):
+const oWonder = "structures/ptol_wonder";
 const oTemples = ["structures/kush_temple_amun", "structures/kush_temple_apedemak"];
 const oPyramid = "structures/kush_pyramid_large";
 const oTowers = new Array(2).fill("uncapturable|structures/kush_sentry_tower").concat(["uncapturable|structures/kush_defense_tower"]);
@@ -82,9 +85,8 @@ const aStatues = [
 	"props/structures/kushites/statue_ram"
 ].map(actorTemplate);
 
-const aBushesIslands = [
+const aBushesShoreline = [
 	...new Array(4).fill("props/flora/ferns"),
-	...new Array(3).fill("props/flora/foliagebush"),
 	"props/flora/bush",
 	"props/flora/bush_medit_la",
 	"props/flora/bush_medit_la_lush",
@@ -93,6 +95,8 @@ const aBushesIslands = [
 	"props/flora/bush_medit_sm_lush",
 	"props/flora/bush_tempe_la_lush"
 ].map(actorTemplate);
+
+const aBushesIslands = aBushesShoreline.concat(new Array(3).fill(actorTemplate("props/flora/foliagebush")));
 
 const aBushesDesert = [
 	"props/flora/bush_dry_a",
@@ -132,6 +136,7 @@ const heightScale = num => num * g_MapSettings.Size / 320;
 const heightSeaGround = heightScale(-15);
 const heightWaterLevel = heightScale(0);
 const heightShore = heightScale(1);
+const heightOffsetPath = heightScale(-4);
 const minHeight = -1;
 const maxHeight = 2;
 
@@ -154,14 +159,15 @@ const clTower = g_Map.createTileClass();
 const clStatue = g_Map.createTileClass();
 const clSoldier = g_Map.createTileClass();
 const clTreasure = g_Map.createTileClass();
+const clPath = g_Map.createTileClass();
 
 const riverAngle = 0.22 * Math.PI;
 const riverWidthBorder = fractionToTiles(0.27);
 const riverWidthCenter = fractionToTiles(0.35);
 
 const avoidCollisions = avoidClasses(
-	clPlayer, 15, clWater, 1, clForest, 1, clRock, 4, clMetal, 4, clFood, 6,
-	clTemple, 8, clCliff, 0, clStatue, 2, clSoldier, 3, clTower, 1, clTreasure, 1);
+	clPlayer, 15, clWater, 1, clForest, 1, clRock, 4, clMetal, 4, clFood, 6, clPath, 1,
+	clTemple, 11, clCliff, 0, clStatue, 2, clSoldier, 3, clTower, 2, clTreasure, 1);
 
 g_Map.LoadHeightmapImage("elephantine.png", minHeight, maxHeight);
 Engine.SetProgress(3);
@@ -243,8 +249,49 @@ placePlayerBases({
 });
 Engine.SetProgress(22);
 
-createBumps(avoidClasses(clPlayer, 10, clWater, 2), scaleByMapSize(10, 500), 1, 8, 4, 0.2, 3);
-Engine.SetProgress(25);
+g_Map.log("Creating temple");
+var groupTemple = createObjectGroups(
+	new SimpleGroup([new RandomObject(g_Map.getSize() >= 320 ? [oWonder] : oTemples, 1, 1, 0, 1, riverAngle, riverAngle)], true, clTemple),
+	0,
+	stayClasses(clIsland, scaleByMapSize(10, 15)),
+	1,
+	200);
+Engine.SetProgress(34);
+
+g_Map.log("Creating pyramid");
+var groupPyramid = createObjectGroups(
+	new SimpleGroup([new SimpleObject(oPyramid, 1, 1, 0, 1, riverAngle, riverAngle)], true, clTemple),
+	0,
+	[stayClasses(clIsland, scaleByMapSize(8, 24)), avoidClasses(clTemple, scaleByMapSize(1, 80)), avoidCollisions],
+	1,
+	200);
+Engine.SetProgress(37);
+
+g_Map.log("Painting city patches");
+var cityCenters = [
+	groupTemple[0] && groupTemple[0][0] && { "pos": Vector2D.from3D(groupTemple[0][0].position), "radius": 10 },
+	groupPyramid[0] && groupPyramid[0][0] &&  { "pos": Vector2D.from3D(groupPyramid[0][0].position), "radius": 6 },].filter(pos => !!pos);
+
+var areaCityPatch = cityCenters.map(cityCenter =>
+	createArea(
+		new DiskPlacer(cityCenter.radius, cityCenter.pos),
+		new LayeredPainter([tRoadWildIsland, tRoadIsland], [2]),
+		stayClasses(clIsland, 2)));
+Engine.SetProgress(40);
+
+g_Map.log("Painting city path");
+if (cityCenters.length == 2)
+	createArea(
+		new PathPlacer(cityCenters[0].pos, cityCenters[1].pos, 4, 0.4, 4, 0.2, 0.05),
+		[
+			new LayeredPainter([tRoadWildIsland, tRoadIsland], [1]),
+			new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetPath, 4),
+			new TileClassPainter(clPath)
+		]);
+Engine.SetProgress(42);
+
+createBumps(avoidClasses(clPlayer, 10, clWater, 2, clTemple, 10, clPath, 1), scaleByMapSize(10, 500), 1, 8, 4, 0.2, 3);
+Engine.SetProgress(43);
 
 g_Map.log("Marking cliffs");
 createArea(
@@ -254,32 +301,7 @@ createArea(
 		avoidClasses(clWater, 2),
 		new SlopeConstraint(2, Infinity)
 	]);
-Engine.SetProgress(30);
-
-g_Map.log("Creating temple");
-createObjectGroups(
-	new SimpleGroup([new RandomObject(oTemples, 1, 1, 0, 1)], true, clTemple),
-	0,
-	stayClasses(clIsland, scaleByMapSize(8, 24)),
-	1,
-	200);
-Engine.SetProgress(34);
-
-g_Map.log("Creating pyramid");
-createObjectGroups(
-	new SimpleGroup([new SimpleObject(oPyramid, 1, 1, 0, 1)], true, clTemple),
-	0,
-	[stayClasses(clIsland, scaleByMapSize(8, 24)), avoidCollisions],
-	1,
-	200);
-Engine.SetProgress(37);
-
-g_Map.log("Painting city patches");
-var areaCityPatch = createArea(
-	new MapBoundsPlacer(),
-	new TerrainPainter(tRoadIsland),
-	new NearTileClassConstraint(clTemple, 8));
-Engine.SetProgress(40);
+Engine.SetProgress(44);
 
 g_Map.log("Creating stone mines");
 createMines(
@@ -287,10 +309,10 @@ createMines(
 		[new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
 		[new SimpleObject(oStoneSmall, 2, 5, 1, 3, 0, 2 * Math.PI, 1)]
 	],
-	avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clRock, 10),
+	avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clRock, 10, clPath, 1),
 	clRock,
 	scaleByMapSize(6, 24));
-Engine.SetProgress(43);
+Engine.SetProgress(45);
 
 g_Map.log("Creating metal mines");
 createMines(
@@ -298,7 +320,7 @@ createMines(
 		[new SimpleObject(oMetalSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oMetalLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
 		[new SimpleObject(oMetalSmall, 2, 5, 1, 3, 0, 2 * Math.PI, 1)]
 	],
-	avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clMetal, 10, clRock, 5),
+	avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clMetal, 10, clRock, 5, clPath, 1),
 	clMetal,
 	scaleByMapSize(6, 24));
 Engine.SetProgress(46);
@@ -308,9 +330,9 @@ createObjectGroups(
 	new SimpleGroup([new RandomObject(oTowers, 1, 1, 0, 1)], true, clTower),
 	0,
 	[
-		stayClasses(clIsland, scaleByMapSize(4, 24)),
+		stayClasses(clIsland, scaleByMapSize(4, 8)),
 		new NearTileClassConstraint(clTemple, 25),
-		avoidClasses(clTower, 12, clTemple, 12, clPlayer, 30),
+		avoidClasses(clTower, 12, clPlayer, 30),
 		avoidCollisions
 	],
 	scaleByMapSize(4, 12),
@@ -347,7 +369,7 @@ createObjectGroups(
 	0,
 	[
 		stayClasses(clIsland, scaleByMapSize(8, 24)),
-		new NearTileClassConstraint(clTemple, 8),
+		new NearTileClassConstraint(clTemple, 10),
 		avoidCollisions
 	],
 	scaleByMapSize(2, 10),
@@ -361,7 +383,7 @@ createObjectGroupsByAreas(
 	avoidCollisions,
 	scaleByMapSize(4, 10),
 	100,
-	[areaCityPatch]);
+	areaCityPatch);
 Engine.SetProgress(62);
 
 g_Map.log("Creating hero");
@@ -382,8 +404,11 @@ createObjectGroups(
 	new SimpleGroup([new RandomObject(oUnits, 1, 1, 0, 1)], true, clSoldier),
 	0,
 	[
-		stayClasses(clIsland, scaleByMapSize(2, 24)),
-		new NearTileClassConstraint(clTemple, 20),
+		new StaticConstraint(
+			[
+				stayClasses(clIsland, scaleByMapSize(2, 24)),
+				new NearTileClassConstraint(clTemple, 20)
+			]),
 		avoidCollisions
 	],
 	scaleByMapSize(12, 60),
@@ -477,7 +502,7 @@ g_Map.log("Creating fish");
 createObjectGroups(
 	new SimpleGroup([new SimpleObject(oFish, 1, 2, 0, 1)], true, clFood),
 	0,
-	[stayClasses(clWater, 4), avoidClasses(clFood, 16)],
+	[stayClasses(clWater, 8), avoidClasses(clFood, 16)],
 	scaleByMapSize(15, 80),
 	50);
 Engine.SetProgress(91);
@@ -511,9 +536,9 @@ createDecoration(
 Engine.SetProgress(98);
 
 createDecoration(
-	aBushesIslands.map(bush => [new SimpleObject(bush, 0, 3, 2, 4)]),
-	aBushesIslands.map(bush => scaleByMapSize(100, 800)),
-	[new HeightConstraint(heightWaterLevel, heightShore)]);
+	aBushesShoreline.map(bush => [new SimpleObject(bush, 0, 3, 2, 4)]),
+	aBushesShoreline.map(bush => scaleByMapSize(100, 800)),
+	[new HeightConstraint(heightWaterLevel, heightShore), avoidCollisions]);
 Engine.SetProgress(99);
 
 setSunRotation(randomAngle());

@@ -9,9 +9,13 @@ Trigger.prototype.InitElephantine = function()
 			Engine.QueryInterface(ent, IID_UnitAI).SwitchToStance("defensive");
 	}
 
-	this.SpawnAndGarrisonBuilding(gaiaEnts, "Tower", ["kush_infantry_archer_e", "kush_infantry_spearman_e"]);
-	this.SpawnAndGarrisonBuilding(gaiaEnts, "Temple", ["kush_support_healer_e", "kush_support_female_citizen"]);
-	this.SpawnAndGarrisonBuilding(gaiaEnts, "Pyramid", ["kush_support_healer_e", "kush_support_female_citizen"]);
+	let kushSupportUnits = ["kush_support_healer_e", "kush_support_female_citizen"];
+	let kushInfantryUnits = ["kush_infantry_archer_e", "kush_infantry_spearman_e"];
+
+	this.SpawnAndGarrisonBuilding(gaiaEnts, "Tower", kushInfantryUnits);
+
+	for (let identityClass of ["Wonder", "Temple", "Pyramid"])
+		this.SpawnAndGarrisonBuilding(gaiaEnts, identityClass, kushInfantryUnits.concat(kushSupportUnits));
 };
 
 // Shameless copy of Danubius
