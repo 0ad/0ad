@@ -100,7 +100,7 @@ createArea(
 		0,
 		[Math.floor(fractionToTiles(0.17))]),
 	[
-		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
+		new LayeredPainter([tShore, tWater], [1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		new TileClassPainter(clWater)
 	],
@@ -112,7 +112,7 @@ g_Map.log("Creating small lakes");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(2, 4)), Math.floor(scaleByMapSize(20, 140)), 0.7),
 	[
-		new LayeredPainter([tShore, tWater, tWater], [1, 3]),
+		new LayeredPainter([tShore, tWater], [1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
 		new TileClassPainter(clWater)
 	],

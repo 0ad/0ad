@@ -332,7 +332,7 @@ g_Map.log("Creating grass patches");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
-		new LayeredPainter([[tGrass, tGrassPatch], [tGrassPatch, tGrass], [tGrass, tGrassPatch]], [1, 1]),
+		new TerrainPainter([tGrass, tGrassPatch]),
 		avoidClasses(clForest, 0, clHill, 2, clPlayer, 5),
 		scaleByMapSize(15, 45));
 

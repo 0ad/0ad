@@ -54,7 +54,8 @@ SimpleObject.prototype.place = function(centerPosition, playerID, avoidPositions
 				});
 				break;
 			}
-			else if (numRetries++ > maxRetries)
+
+			if (numRetries++ > maxRetries)
 				return undefined;
 		}
 

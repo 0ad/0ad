@@ -284,7 +284,7 @@ if (gallicCC)
 			createArea(
 				new PathPlacer(pathStart, meetingPlacePosition, 4, 0.4, 4, 0.2, 0.05),
 				[
-					new LayeredPainter([tShore, tRoad, tRoad], [1, 3]),
+					new LayeredPainter([tShore, tRoad], [1]),
 					new SmoothElevationPainter(ELEVATION_SET, heightPath, 4),
 					new TileClassPainter(clPath)
 				]);

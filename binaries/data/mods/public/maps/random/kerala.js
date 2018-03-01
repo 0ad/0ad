@@ -192,7 +192,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
-			new LayeredPainter([tPlants, tPlants], [1]),
+			new TerrainPainter(tPlants),
 			new TileClassPainter(clDirt)
 		],
 		avoidClasses(clWater, 8, clForest, 0, clHill, 0, clPlayer, 12, clDirt, 16),

@@ -97,7 +97,7 @@ createAreas(
 		Math.floor(scaleByMapSize(25, 60)),
 		0.07),
 	[
-		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+		new TerrainPainter(tMainTerrain),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 		new TileClassPainter(clLand)
 	],
@@ -112,7 +112,7 @@ createAreas(
 		Math.floor(scaleByMapSize(16, 40)),
 		0.07),
 	[
-		new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+		new TerrainPainter(tMainTerrain),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
 		new TileClassPainter(clLand)
 	],

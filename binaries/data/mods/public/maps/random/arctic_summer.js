@@ -114,7 +114,7 @@ createAreas(
 		Math.floor(scaleByMapSize(40, 180)),
 		Infinity),
 	[
-		new LayeredPainter([tShore, tWater, tWater], [1, 3]),
+		new LayeredPainter([tShore, tWater], [1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
 		new TileClassPainter(clWater)
 	],
