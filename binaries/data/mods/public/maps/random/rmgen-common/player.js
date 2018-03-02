@@ -446,7 +446,7 @@ function placePlayersNomad(playerClass, constraints)
 	g_Map.log("Placing nomad starting units");
 
 	let distance = scaleByMapSize(60, 240);
-	let constraint = new AndConstraint(constraints);
+	let constraint = new StaticConstraint(constraints);
 
 	let numPlayers = getNumPlayers();
 	let playerIDs = shuffleArray(sortAllPlayers());

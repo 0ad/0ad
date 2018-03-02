@@ -509,7 +509,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 				"startWidth": scaleByMapSize(8, 12),
 				"endWidth": scaleByMapSize(8, 12),
 				"smoothWidth": 2,
-				"constraint": new HeightConstraint(-Infinity, heightShallow),
+				"constraints": new HeightConstraint(-Infinity, heightShallow),
 				"startHeight": heightShallow,
 				"endHeight": heightShallow,
 				"tileClass": shallowTileClass
@@ -523,7 +523,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
  *
  * @property {Vector2D} start - Location of the passage.
  * @property {Vector2D} end
- * @property {Constraint} [constraint] - Only tiles that meet this constraint are changed.
+ * @property {Constraint|Array} [constraints] - Only tiles that meet these constraints are changed.
  * @property {number} startWidth - Size of the passage (perpendicular to the direction of the passage).
  * @property {number} endWidth
  * @property {number} [startHeight] - Fixed height to be used if the height at the location shouldn't be used.
@@ -546,6 +546,8 @@ function createPassage(args)
 	let lengthStep = 1 / (2 * passageVec.length());
 	let points = [];
 
+	let constraint = args.constraints && new StaticConstraint(args.constraints);
+
 	for (let lengthFraction = 0; lengthFraction <= 1; lengthFraction += lengthStep)
 	{
 		let locationLength = Vector2D.add(args.start, Vector2D.mult(passageVec, lengthFraction));
@@ -557,7 +559,7 @@ function createPassage(args)
 			let location = Vector2D.add(locationLength, Vector2D.mult(widthDirection, stepWidth)).round();
 
 			if (!g_Map.inMapBounds(location) ||
-			    args.constraint && !args.constraint.allows(location))
+			    constraint && !constraint.allows(location))
 				continue;
 
 			points.push(location);
