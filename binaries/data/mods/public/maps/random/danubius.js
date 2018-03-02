@@ -132,7 +132,7 @@ const ShorelineDistance = 15;
 const heightSeaGround = -3;
 const heightShore = 1;
 const heightLand = 3;
-const heightPath = 5;
+const heightPath = 1.5;
 const heightIsland = 6;
 
 var g_Map = new RandomMap(heightLand, tPrimary);
