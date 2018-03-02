@@ -89,6 +89,7 @@ function init()
 		gameSelection.selected = g_SavedGamesMetadata.length - 1;
 	else if (gameSelection.selected == -1 && g_SavedGamesMetadata.length)
 		gameSelection.selected = 0;
+	selectionChanged();
 
 	Engine.GetGUIObjectByName("deleteGameButton").tooltip = deleteTooltip();
 }

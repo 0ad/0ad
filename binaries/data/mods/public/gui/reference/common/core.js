@@ -186,6 +186,11 @@ function getBaseTemplateName(templateName)
 	if (!parentTemplate.Cost)
 		return templateName;
 
+	if (parentTemplate.Upgrade)
+		for (let upgrade in parentTemplate.Upgrade)
+			if (parentTemplate.Upgrade[upgrade].Entity)
+				return templateName;
+
 	for (let res in parentTemplate.Cost.Resources)
 		if (parentTemplate.Cost.Resources[res])
 			return getBaseTemplateName(template["@parent"]);
