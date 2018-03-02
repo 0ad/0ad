@@ -65,7 +65,7 @@ SimpleObject.prototype.place = function(centerPosition, playerID, avoidPositions
 /**
  * Same as SimpleObject, but choses one of the given templates at random.
  */
-function RandomObject(templateNames, minCount, maxCount, minDistance, maxDistance, minAngle, maxAngle)
+function RandomObject(templateNames, minCount, maxCount, minDistance, maxDistance, minAngle, maxAngle, avoidDistance = 1)
 {
 	this.templateNames = templateNames;
 	this.minCount = minCount;
@@ -74,10 +74,11 @@ function RandomObject(templateNames, minCount, maxCount, minDistance, maxDistanc
 	this.maxDistance = maxDistance;
 	this.minAngle = minAngle;
 	this.maxAngle = maxAngle;
+	this.avoidDistance = avoidDistance;
 }
 
 RandomObject.prototype.place = function(centerPosition, player, avoidPositions, constraint, maxRetries)
 {
-	return new SimpleObject(pickRandom(this.templateNames), this.minCount, this.maxCount, this.minDistance, this.maxDistance, this.minAngle, this.maxAngle).place(
+	return new SimpleObject(pickRandom(this.templateNames), this.minCount, this.maxCount, this.minDistance, this.maxDistance, this.minAngle, this.maxAngle, this.avoidDistance).place(
 		centerPosition, player, avoidPositions, constraint, maxRetries);
 };
