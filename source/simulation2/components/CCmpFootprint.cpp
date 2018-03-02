@@ -118,7 +118,7 @@ public:
 			m_MaxSpawnDistance = paramNode.GetChild("MaxSpawnDistance").ToFixed();
 		else
 			// Pick some default
-			m_MaxSpawnDistance = entity_pos_t::FromInt(8);
+			m_MaxSpawnDistance = entity_pos_t::FromInt(7);
 	}
 
 	virtual void Deinit()
@@ -194,7 +194,7 @@ public:
 
 		// Obstructions are squares, so multiply its radius by 2*sqrt(2) ~= 3 to determine the distance between units.
 		entity_pos_t gap = spawnedRadius * 3;
-		int rows = std::max(1, (m_MaxSpawnDistance / gap).ToInt_RoundToNegInfinity());
+		int rows = std::max(1, (m_MaxSpawnDistance / gap).ToInt_RoundToInfinity());
 
 		// The first row of units will be half a gap away from the footprint.
 		CFixedVector2D halfSize = m_Shape == CIRCLE ?
