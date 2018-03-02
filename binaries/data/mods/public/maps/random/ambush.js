@@ -35,7 +35,7 @@ addElements([
 		"avoid": [g_TileClasses.bluffIgnore, 0],
 		"sizes": ["normal", "big", "huge"],
 		"mixes": ["same"],
-		"amounts": ["tons"]
+		"amounts": ["many"]
 	},
 	{
 		"func": addHills,

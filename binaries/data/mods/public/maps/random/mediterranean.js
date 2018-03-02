@@ -174,7 +174,7 @@ if (!isNomad())
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
 		g_Map.logger.printDuration();
-		setBiome(climateZones.find(zone => stayClasses(zone.tileClass, 1).allows(playerPosition[i])).biome);
+		setBiome(climateZones.find(zone => zone.tileClass.has(playerPosition[i])).biome);
 
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, playerPosition[i]),
