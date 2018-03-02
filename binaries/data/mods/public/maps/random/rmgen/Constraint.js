@@ -196,18 +196,15 @@ SlopeConstraint.prototype.allows = function(position)
 function StaticConstraint(constraints)
 {
 	let mapSize = g_Map.getSize();
-	let constraint = new AndConstraint(constraints);
 
-	this.cache = [];
-	for (let x = 0; x < mapSize; ++x)
-	{
-		this.cache[x] = new Uint8Array(mapSize);
-		for (let y = 0; y < mapSize; ++y)
-			this.cache[x][y] = constraint.allows(new Vector2D(x, y));
-	}
+	this.constraint = new AndConstraint(constraints);
+	this.cache = new Array(mapSize).fill(0).map(() => new Uint8Array(mapSize));
 }
 
 StaticConstraint.prototype.allows = function(position)
 {
-	return !!this.cache[position.x][position.y];
+	if (!this.cache[position.x][position.y])
+		this.cache[position.x][position.y] = this.constraint.allows(position) ? 2 : 1;
+
+	return this.cache[position.x][position.y] == 2;
 };
