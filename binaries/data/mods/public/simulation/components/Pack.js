@@ -98,8 +98,7 @@ Pack.prototype.GetPackTime = function()
 {
 	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
-	return ApplyValueModificationsToEntity("Pack/Time", +this.template.Time, this.entity) *
-		cmpPlayer.GetCheatTimeMultiplier();
+	return ApplyValueModificationsToEntity("Pack/Time", +this.template.Time, this.entity) * cmpPlayer.GetTimeMultiplier();
 };
 
 Pack.prototype.GetElapsedTime = function()

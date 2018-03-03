@@ -33,7 +33,7 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 });
 
 AddMock(11, IID_Player, {
-	"GetCheatTimeMultiplier": () => 1
+	"GetTimeMultiplier": () => 1
 });
 
 AddMock(ent, IID_Sound, {
@@ -127,11 +127,11 @@ TS_ASSERT_EQUALS(cmpPack.GetElapsedTime(), 400);
 TS_ASSERT_EQUALS(cmpPack.timer, 7);
 TS_ASSERT(timerActivated);
 
-// Cancel 
+// Cancel
 cmpPack.CancelPack();
 
 TS_ASSERT(!cmpPack.IsPacking());
-TS_ASSERT_EQUALS(cmpPack.GetElapsedTime(), 0)
+TS_ASSERT_EQUALS(cmpPack.GetElapsedTime(), 0);
 TS_ASSERT_EQUALS(cmpPack.GetProgress(), 0);
 TS_ASSERT_EQUALS(cmpPack.timer, undefined);
 TS_ASSERT(!timerActivated);

@@ -69,9 +69,7 @@ ResourceGatherer.prototype.GetCarryingStatus = function()
 ResourceGatherer.prototype.GiveResources = function(resources)
 {
 	for (let resource of resources)
-	{
 		this.carrying[resource.type] = +(resource.amount);
-	}
 
 	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
@@ -98,8 +96,8 @@ ResourceGatherer.prototype.GetLastCarriedType = function()
 {
 	if (this.lastCarriedType && this.lastCarriedType.generic in this.carrying)
 		return this.lastCarriedType;
-	else
-		return undefined;
+
+	return undefined;
 };
 
 // Since this code is very performancecritical and applying technologies quite slow, cache it.
@@ -179,7 +177,7 @@ ResourceGatherer.prototype.TryInstantGather = function(target)
 
 	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 	if (cmpTrigger && cmpPlayer)
-		cmpTrigger.CallEvent("TreasureCollected", {"player": cmpPlayer.GetPlayerID(), "type": type.specific, "amount": status.amount });
+		cmpTrigger.CallEvent("TreasureCollected", { "player": cmpPlayer.GetPlayerID(), "type": type.specific, "amount": status.amount });
 
 	return true;
 };
@@ -247,10 +245,6 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 		rate = this.GetGatherRate(type.generic+"."+type.specific);
 	if (rate == 0 && type.generic)
 		rate = this.GetGatherRate(type.generic);
-
-	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-	let cheatMultiplier = cmpPlayer ? cmpPlayer.GetCheatTimeMultiplier() : 1;
-	rate = rate / cheatMultiplier;
 
 	if ("Mirages" in cmpResourceSupply)
 		return rate;
