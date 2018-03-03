@@ -53,7 +53,7 @@ SimpleGroup.prototype.place = function(playerID, constraint)
 		if (this.avoidSelf)
 			avoidPositions = avoidPositions.concat(entitySpecs.map(entitySpec => ({
 				"position": entitySpec.position,
-				"distance": object.avoidDistance
+				"distanceSquared": object.avoidDistanceSquared
 			})));
 	}
 

@@ -7,7 +7,7 @@ function RandomPathPlacer(pathStart, pathEnd, pathWidth, offset, blended)
 {
 	this.pathStart = Vector2D.add(pathStart, Vector2D.sub(pathEnd, pathStart).normalize().mult(offset)).round();
 	this.pathEnd = pathEnd;
-	this.offset = offset;
+	this.offsetSquared = Math.square(offset);
 	this.blended = blended;
 	this.diskPlacer = new DiskPlacer(pathWidth);
 	this.maxPathLength = fractionToTiles(2);
@@ -19,7 +19,7 @@ RandomPathPlacer.prototype.place = function(constraint)
 	let points = [];
 	let position = this.pathStart;
 
-	while (position.distanceTo(this.pathEnd) >= this.offset && pathLength++ < this.maxPathLength)
+	while (position.distanceToSquared(this.pathEnd) >= this.offsetSquared && pathLength++ < this.maxPathLength)
 	{
 		position.add(
 			new Vector2D(1, 0).rotate(

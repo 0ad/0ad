@@ -14,7 +14,7 @@ function SimpleObject(templateName, minCount, maxCount, minDistance, maxDistance
 	this.maxDistance = maxDistance;
 	this.minAngle = minAngle;
 	this.maxAngle = maxAngle;
-	this.avoidDistance = avoidDistance;
+	this.avoidDistanceSquared = Math.square(avoidDistance);
 
 	if (minCount > maxCount)
 		throw new Error("SimpleObject: minCount should be less than or equal to maxCount");
@@ -42,8 +42,8 @@ SimpleObject.prototype.place = function(centerPosition, playerID, avoidPositions
 
 			if (validTile(position) &&
 			    (!avoidPositions ||
-			        entitySpecs.every(entSpec => entSpec.position.distanceTo(position) >= this.avoidDistance) &&
-			        avoidPositions.every(avoid => avoid.position.distanceTo(position) >= Math.max(this.avoidDistance, avoid.distance))) &&
+			        entitySpecs.every(entSpec => entSpec.position.distanceToSquared(position) >= this.avoidDistanceSquared) &&
+			        avoidPositions.every(avoid => avoid.position.distanceToSquared(position) >= Math.max(this.avoidDistanceSquared, avoid.distanceSquared))) &&
 			    constraint.allows(position.clone().floor()))
 			{
 				entitySpecs.push({
