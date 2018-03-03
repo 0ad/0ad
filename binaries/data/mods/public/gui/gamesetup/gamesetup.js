@@ -823,151 +823,151 @@ var g_PlayerDropdowns = {
  * Contains the logic of all boolean gamesettings.
  */
 var g_Checkboxes = {
-	"regicideGarrison": {
-		"title": () => translate("Hero Garrison"),
-		"tooltip": () => translate("Toggle whether heroes can be garrisoned."),
-		"default": () => false,
-		"defined": () => g_GameAttributes.settings.RegicideGarrison !== undefined,
-		"get": () => g_GameAttributes.settings.RegicideGarrison,
-		"set": checked => {
-			g_GameAttributes.settings.RegicideGarrison = checked;
+		"regicideGarrison": {
+			"title": () => translate("Hero Garrison"),
+			"tooltip": () => translate("Toggle whether heroes can be garrisoned."),
+			"default": () => false,
+			"defined": () => g_GameAttributes.settings.RegicideGarrison !== undefined,
+			"get": () => g_GameAttributes.settings.RegicideGarrison,
+			"set": checked => {
+				g_GameAttributes.settings.RegicideGarrison = checked;
+			},
+			"hidden": () => g_GameAttributes.settings.GameType != "regicide",
+			"enabled": () => g_GameAttributes.mapType != "scenario",
+			"initOrder": 1000
 		},
-		"hidden": () => g_GameAttributes.settings.GameType != "regicide",
-		"enabled": () => g_GameAttributes.mapType != "scenario",
-		"initOrder": 1000
-	},
-	"nomad": {
-		"title": () => translate("Nomad"),
-		"tooltip": () => translate("In Nomad mode, players start with only few units and have to find a suitable place to build their city. Ceasefire is recommended."),
-		"default": () => false,
-		"defined": () => g_GameAttributes.settings.Nomad !== undefined,
-		"get": () => g_GameAttributes.settings.Nomad,
-		"set": checked => {
-			g_GameAttributes.settings.Nomad = checked;
+		"nomad": {
+			"title": () => translate("Nomad"),
+			"tooltip": () => translate("In Nomad mode, players start with only few units and have to find a suitable place to build their city. Ceasefire is recommended."),
+			"default": () => false,
+			"defined": () => g_GameAttributes.settings.Nomad !== undefined,
+			"get": () => g_GameAttributes.settings.Nomad,
+			"set": checked => {
+				g_GameAttributes.settings.Nomad = checked;
+			},
+			"hidden": () => g_GameAttributes.mapType != "random",
+			"initOrder": 1000
 		},
-		"hidden": () => g_GameAttributes.mapType != "random",
-		"initOrder": 1000
-	},
-	"revealMap": {
-		"title": () =>
-			// Translation: Make sure to differentiate between the revealed map and explored map settings!
-			translate("Revealed Map"),
-		"tooltip":
-			// Translation: Make sure to differentiate between the revealed map and explored map settings!
-			() => translate("Toggle revealed map (see everything)."),
-		"default": () => false,
-		"defined": () => g_GameAttributes.settings.RevealMap !== undefined,
-		"get": () => g_GameAttributes.settings.RevealMap,
-		"set": checked => {
-			g_GameAttributes.settings.RevealMap = checked;
+		"revealMap": {
+			"title": () =>
+				// Translation: Make sure to differentiate between the revealed map and explored map settings!
+				translate("Revealed Map"),
+			"tooltip":
+				// Translation: Make sure to differentiate between the revealed map and explored map settings!
+				() => translate("Toggle revealed map (see everything)."),
+			"default": () => false,
+			"defined": () => g_GameAttributes.settings.RevealMap !== undefined,
+			"get": () => g_GameAttributes.settings.RevealMap,
+			"set": checked => {
+				g_GameAttributes.settings.RevealMap = checked;
 
-			if (checked)
-				g_Checkboxes.exploreMap.set(true);
+				if (checked)
+					g_Checkboxes.exploreMap.set(true);
+			},
+			"enabled": () => g_GameAttributes.mapType != "scenario",
+			"initOrder": 1000
 		},
-		"enabled": () => g_GameAttributes.mapType != "scenario",
-		"initOrder": 1000
-	},
-	"exploreMap": {
-		"title":
-			// Translation: Make sure to differentiate between the revealed map and explored map settings!
-			() => translate("Explored Map"),
-		"tooltip":
-			// Translation: Make sure to differentiate between the revealed map and explored map settings!
-			() => translate("Toggle explored map (see initial map)."),
-		"default": () => false,
-		"defined": () => g_GameAttributes.settings.ExploreMap !== undefined,
-		"get": () => g_GameAttributes.settings.ExploreMap,
-		"set": checked => {
-			g_GameAttributes.settings.ExploreMap = checked;
+		"exploreMap": {
+			"title":
+				// Translation: Make sure to differentiate between the revealed map and explored map settings!
+				() => translate("Explored Map"),
+			"tooltip":
+				// Translation: Make sure to differentiate between the revealed map and explored map settings!
+				() => translate("Toggle explored map (see initial map)."),
+			"default": () => false,
+			"defined": () => g_GameAttributes.settings.ExploreMap !== undefined,
+			"get": () => g_GameAttributes.settings.ExploreMap,
+			"set": checked => {
+				g_GameAttributes.settings.ExploreMap = checked;
+			},
+			"enabled": () => g_GameAttributes.mapType != "scenario" && !g_GameAttributes.settings.RevealMap,
+			"initOrder": 1000
 		},
-		"enabled": () => g_GameAttributes.mapType != "scenario" && !g_GameAttributes.settings.RevealMap,
-		"initOrder": 1000
-	},
-	"disableTreasures": {
-		"title": () => translate("Disable Treasures"),
-		"tooltip": () => translate("Disable all treasures on the map."),
-		"default": () => false,
-		"defined": () => g_GameAttributes.settings.DisableTreasures !== undefined,
-		"get": () => g_GameAttributes.settings.DisableTreasures,
-		"set": checked => {
-			g_GameAttributes.settings.DisableTreasures = checked;
+		"disableTreasures": {
+			"title": () => translate("Disable Treasures"),
+			"tooltip": () => translate("Disable all treasures on the map."),
+			"default": () => false,
+			"defined": () => g_GameAttributes.settings.DisableTreasures !== undefined,
+			"get": () => g_GameAttributes.settings.DisableTreasures,
+			"set": checked => {
+				g_GameAttributes.settings.DisableTreasures = checked;
+			},
+			"enabled": () => g_GameAttributes.mapType != "scenario",
+			"initOrder": 1000
 		},
-		"enabled": () => g_GameAttributes.mapType != "scenario",
-		"initOrder": 1000
-	},
-	"disableSpies": {
-		"title": () => translate("Disable Spies"),
-		"tooltip": () => translate("Disable spies during the game."),
-		"default": () => false,
-		"defined": () => g_GameAttributes.settings.DisableSpies !== undefined,
-		"get": () => g_GameAttributes.settings.DisableSpies,
-		"set": checked => {
-			g_GameAttributes.settings.DisableSpies = checked;
+		"disableSpies": {
+			"title": () => translate("Disable Spies"),
+			"tooltip": () => translate("Disable spies during the game."),
+			"default": () => false,
+			"defined": () => g_GameAttributes.settings.DisableSpies !== undefined,
+			"get": () => g_GameAttributes.settings.DisableSpies,
+			"set": checked => {
+				g_GameAttributes.settings.DisableSpies = checked;
+			},
+			"enabled": () => g_GameAttributes.mapType != "scenario",
+			"initOrder": 1000
 		},
-		"enabled": () => g_GameAttributes.mapType != "scenario",
-		"initOrder": 1000
-	},
-	"lockTeams": {
-		"title": () => translate("Teams Locked"),
-		"tooltip": () => translate("Toggle locked teams."),
-		"default": () => Engine.HasXmppClient(),
-		"defined": () => g_GameAttributes.settings.LockTeams !== undefined,
-		"get": () => g_GameAttributes.settings.LockTeams,
-		"set": checked => {
-			g_GameAttributes.settings.LockTeams = checked;
-			g_GameAttributes.settings.LastManStanding = false;
+		"lockTeams": {
+			"title": () => translate("Teams Locked"),
+			"tooltip": () => translate("Toggle locked teams."),
+			"default": () => Engine.HasXmppClient(),
+			"defined": () => g_GameAttributes.settings.LockTeams !== undefined,
+			"get": () => g_GameAttributes.settings.LockTeams,
+			"set": checked => {
+				g_GameAttributes.settings.LockTeams = checked;
+				g_GameAttributes.settings.LastManStanding = false;
+			},
+			"enabled": () =>
+				g_GameAttributes.mapType != "scenario" &&
+				!g_GameAttributes.settings.RatingEnabled,
+			"initOrder": 1000
 		},
-		"enabled": () =>
-			g_GameAttributes.mapType != "scenario" &&
-			!g_GameAttributes.settings.RatingEnabled,
-		"initOrder": 1000
-	},
-	"lastManStanding": {
-		"title": () => translate("Last Man Standing"),
-		"tooltip": () => translate("Toggle whether the last remaining player or the last remaining set of allies wins."),
-		"default": () => false,
-		"defined": () => g_GameAttributes.settings.LastManStanding !== undefined,
-		"get": () => g_GameAttributes.settings.LastManStanding,
-		"set": checked => {
-			g_GameAttributes.settings.LastManStanding = checked;
+		"lastManStanding": {
+			"title": () => translate("Last Man Standing"),
+			"tooltip": () => translate("Toggle whether the last remaining player or the last remaining set of allies wins."),
+			"default": () => false,
+			"defined": () => g_GameAttributes.settings.LastManStanding !== undefined,
+			"get": () => g_GameAttributes.settings.LastManStanding,
+			"set": checked => {
+				g_GameAttributes.settings.LastManStanding = checked;
+			},
+			"enabled": () =>
+				g_GameAttributes.mapType != "scenario" &&
+				!g_GameAttributes.settings.LockTeams,
+			"initOrder": 1000
 		},
-		"enabled": () =>
-			g_GameAttributes.mapType != "scenario" &&
-			!g_GameAttributes.settings.LockTeams,
-		"initOrder": 1000
-	},
-	"enableCheats": {
-		"title": () => translate("Cheats"),
-		"tooltip": () => translate("Toggle the usability of cheats."),
-		"default": () => !g_IsNetworked,
-		"hidden": () => !g_IsNetworked,
-		"defined": () => g_GameAttributes.settings.CheatsEnabled !== undefined,
-		"get": () => g_GameAttributes.settings.CheatsEnabled,
-		"set": checked => {
-			g_GameAttributes.settings.CheatsEnabled = !g_IsNetworked ||
-				checked && !g_GameAttributes.settings.RatingEnabled;
+		"enableCheats": {
+			"title": () => translate("Cheats"),
+			"tooltip": () => translate("Toggle the usability of cheats."),
+			"default": () => !g_IsNetworked,
+			"hidden": () => !g_IsNetworked,
+			"defined": () => g_GameAttributes.settings.CheatsEnabled !== undefined,
+			"get": () => g_GameAttributes.settings.CheatsEnabled,
+			"set": checked => {
+				g_GameAttributes.settings.CheatsEnabled = !g_IsNetworked ||
+					checked && !g_GameAttributes.settings.RatingEnabled;
+			},
+			"enabled": () => !g_GameAttributes.settings.RatingEnabled,
+			"initOrder": 1000
 		},
-		"enabled": () => !g_GameAttributes.settings.RatingEnabled,
-		"initOrder": 1000
-	},
-	"enableRating": {
-		"title": () => translate("Rated Game"),
-		"tooltip": () => translate("Toggle if this game will be rated for the leaderboard."),
-		"default": () => Engine.HasXmppClient(),
-		"hidden": () => !Engine.HasXmppClient(),
-		"defined": () => g_GameAttributes.settings.RatingEnabled !== undefined,
-		"get": () => !!g_GameAttributes.settings.RatingEnabled,
-		"set": checked => {
-			g_GameAttributes.settings.RatingEnabled = Engine.HasXmppClient() ? checked : undefined;
-			Engine.SetRankedGame(!!g_GameAttributes.settings.RatingEnabled);
-			if (checked)
-			{
-				g_Checkboxes.lockTeams.set(true);
-				g_Checkboxes.enableCheats.set(false);
-			}
+		"enableRating": {
+			"title": () => translate("Rated Game"),
+			"tooltip": () => translate("Toggle if this game will be rated for the leaderboard."),
+			"default": () => Engine.HasXmppClient(),
+			"hidden": () => !Engine.HasXmppClient(),
+			"defined": () => g_GameAttributes.settings.RatingEnabled !== undefined,
+			"get": () => !!g_GameAttributes.settings.RatingEnabled,
+			"set": checked => {
+				g_GameAttributes.settings.RatingEnabled = Engine.HasXmppClient() ? checked : undefined;
+				Engine.SetRankedGame(!!g_GameAttributes.settings.RatingEnabled);
+				if (checked)
+				{
+					g_Checkboxes.lockTeams.set(true);
+					g_Checkboxes.enableCheats.set(false);
+				}
+			},
+			"initOrder": 1000
 		},
-		"initOrder": 1000
-	},
 };
 
 /**

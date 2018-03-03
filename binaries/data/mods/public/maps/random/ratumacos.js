@@ -86,7 +86,7 @@ for (let i = 0; i < scaleByMapSize(5, 12); ++i)
 		"smoothWidth": 2,
 		"startHeight": heightShallow,
 		"endHeight": heightShallow,
-		"constraint": new HeightConstraint(-Infinity, heightShallow)
+		"constraints": new HeightConstraint(-Infinity, heightShallow)
 	});
 }
 

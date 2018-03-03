@@ -12,63 +12,63 @@
 
 const showDebugLog = false;
 
-var shipTemplate = "gaul_ship_trireme";
-var siegeTemplate = "gaul_mechanical_siege_ram";
+var shipTemplate = "units/gaul_ship_trireme";
+var siegeTemplate = "units/gaul_mechanical_siege_ram";
 
 var heroTemplates = [
-	"gaul_hero_viridomarus",
-	"gaul_hero_vercingetorix",
-	"gaul_hero_brennus"
+	"units/gaul_hero_viridomarus",
+	"units/gaul_hero_vercingetorix",
+	"units/gaul_hero_brennus"
 ];
 
-var femaleTemplate = "gaul_support_female_citizen";
-var healerTemplate = "gaul_support_healer_b";
+var femaleTemplate = "units/gaul_support_female_citizen";
+var healerTemplate = "units/gaul_support_healer_b";
 
 var citizenInfantryTemplates = [
-	"gaul_infantry_javelinist_b",
-	"gaul_infantry_spearman_b",
-	"gaul_infantry_slinger_b"
+	"units/gaul_infantry_javelinist_b",
+	"units/gaul_infantry_spearman_b",
+	"units/gaul_infantry_slinger_b"
 ];
 
 var citizenCavalryTemplates = [
-	"gaul_cavalry_javelinist_b",
-	"gaul_cavalry_swordsman_b"
+	"units/gaul_cavalry_javelinist_b",
+	"units/gaul_cavalry_swordsman_b"
 ];
 
 var citizenTemplates = [...citizenInfantryTemplates, ...citizenCavalryTemplates];
 
 var championInfantryTemplates = [
-	"gaul_champion_fanatic",
-	"gaul_champion_infantry"
+	"units/gaul_champion_fanatic",
+	"units/gaul_champion_infantry"
 ];
 
 var championCavalryTemplates = [
-	"gaul_champion_cavalry"
+	"units/gaul_champion_cavalry"
 ];
 
 var championTemplates = [...championInfantryTemplates, ...championCavalryTemplates];
 
 var ccDefenders = [
-	{ "count": 8, "template": "units/" + pickRandom(citizenInfantryTemplates) },
-	{ "count": 8, "template": "units/" + pickRandom(championInfantryTemplates) },
-	{ "count": 4, "template": "units/" + pickRandom(championCavalryTemplates) },
-	{ "count": 4, "template": "units/" + healerTemplate },
-	{ "count": 5, "template": "units/" + femaleTemplate },
+	{ "count": 8, "template": pickRandom(citizenInfantryTemplates) },
+	{ "count": 8, "template": pickRandom(championInfantryTemplates) },
+	{ "count": 4, "template": pickRandom(championCavalryTemplates) },
+	{ "count": 4, "template": healerTemplate },
+	{ "count": 5, "template": femaleTemplate },
 	{ "count": 10, "template": "gaia/fauna_sheep" }
 ];
 
 var gallicBuildingGarrison = [
 	{
-		"buildings": ["House"],
-		"units": [femaleTemplate, healerTemplate]
+		"buildingClasses": ["House"],
+		"unitTemplates": [femaleTemplate, healerTemplate]
 	},
 	{
-		"buildings": ["CivCentre", "Temple"],
-		"units": championTemplates
+		"buildingClasses": ["CivCentre", "Temple"],
+		"unitTemplates": championTemplates
 	},
 	{
-		"buildings": ["DefenseTower", "Outpost"],
-		"units": championInfantryTemplates
+		"buildingClasses": ["DefenseTower", "Outpost"],
+		"unitTemplates": championInfantryTemplates
 	}
 ];
 
@@ -216,64 +216,16 @@ Trigger.prototype.debugLog = function(txt)
 			Math.round(Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000) + "] " + txt + "\n");
 };
 
-/**
- * Return a random amount of these templates whose sum is count.
- */
-Trigger.prototype.RandomAttackerTemplates = function(templates, count)
-{
-	let ratios = new Array(templates.length).fill(1).map(i => randFloat(0, 1));
-	let ratioSum = ratios.reduce((current, sum) => current + sum, 0);
-
-	let remainder = count;
-	let templateCounts = {};
-
-	for (let i in templates)
-	{
-		let currentCount = +i == templates.length - 1 ? remainder : Math.round(ratios[i] / ratioSum * count);
-		if (!currentCount)
-			continue;
-
-		templateCounts[templates[i]] = currentCount;
-		remainder -= currentCount;
-	}
-
-	if (remainder != 0)
-		warn("Not as many templates as expected: " + count + " vs " + uneval(templateCounts));
-
-	return templateCounts;
-};
-
 Trigger.prototype.GarrisonAllGallicBuildings = function(gaiaEnts)
 {
 	this.debugLog("Garrisoning all gallic buildings");
 
 	for (let buildingGarrison of gallicBuildingGarrison)
-		for (let building of buildingGarrison.buildings)
-			this.SpawnAndGarrisonBuilding(gaiaEnts, building, buildingGarrison.units);
-};
-
-/**
- * Garrisons all targetEnts that match the targetClass with newly spawned entities of the given template.
- */
-Trigger.prototype.SpawnAndGarrisonBuilding = function(gaiaEnts, targetClass, templates)
-{
-	for (let gaiaEnt of gaiaEnts)
-	{
-		let cmpIdentity = Engine.QueryInterface(gaiaEnt, IID_Identity);
-		if (!cmpIdentity || !cmpIdentity.HasClass(targetClass))
-			continue;
-
-		let cmpGarrisonHolder = Engine.QueryInterface(gaiaEnt, IID_GarrisonHolder);
-		if (!cmpGarrisonHolder)
-			continue;
-
-		let unitCounts = this.RandomAttackerTemplates(templates, cmpGarrisonHolder.GetCapacity());
-		this.debugLog("Garrisoning " + uneval(unitCounts) + " at " + targetClass);
-
-		for (let template in unitCounts)
-			for (let newEnt of TriggerHelper.SpawnUnits(gaiaEnt, "units/" + template, unitCounts[template], gaulPlayer))
-				Engine.QueryInterface(gaiaEnt, IID_GarrisonHolder).Garrison(newEnt);
-	}
+		for (let buildingClass of buildingGarrison.buildingClasses)
+		{
+			let unitCounts = this.SpawnAndGarrison(gaulPlayer, buildingClass, buildingGarrison.unitTemplates, 1);
+			this.debugLog("Garrisoning at " + buildingClass + ": " + uneval(unitCounts));
+		}
 };
 
 /**
@@ -316,7 +268,7 @@ Trigger.prototype.SpawnCCAttackers = function()
 
 		for (let spawn of toSpawn)
 		{
-			let ents = TriggerHelper.SpawnUnits(gaiaCC, "units/" + spawn.template, spawn.count, gaulPlayer);
+			let ents = TriggerHelper.SpawnUnits(gaiaCC, spawn.template, spawn.count, gaulPlayer);
 
 			if (spawn.hero && ents[0])
 				this.heroes.push({ "template": spawn.template, "ent": ents[0] });
@@ -399,7 +351,7 @@ Trigger.prototype.SpawnShips = function()
 	this.debugLog("Spawning " + shipSpawnCount + " ships");
 
 	while (this.ships.length < shipSpawnCount)
-		this.ships.push(TriggerHelper.SpawnUnits(pickRandom(this.GetTriggerPoints(triggerPointShipSpawn)), "units/" + shipTemplate, 1, gaulPlayer)[0]);
+		this.ships.push(TriggerHelper.SpawnUnits(pickRandom(this.GetTriggerPoints(triggerPointShipSpawn)), shipTemplate, 1, gaulPlayer)[0]);
 
 	for (let ship of this.ships)
 		this.AttackAndPatrol([ship], shipTargetClass, triggerPointShipPatrol, "Ships");
@@ -436,7 +388,7 @@ Trigger.prototype.GetAttackerComposition = function(attackerCount, addSiege)
 	remainder -= healerCount;
 
 	let championCount = Math.round(championRatio(time) * remainder);
-	let championTemplateCounts = this.RandomAttackerTemplates(championTemplates, championCount);
+	let championTemplateCounts = this.RandomTemplateComposition(championTemplates, championCount);
 	for (let template in championTemplateCounts)
 	{
 		let count = championTemplateCounts[template];
@@ -445,7 +397,7 @@ Trigger.prototype.GetAttackerComposition = function(attackerCount, addSiege)
 		remainder -= count;
 	}
 
-	let citizenTemplateCounts = this.RandomAttackerTemplates(citizenTemplates, remainder);
+	let citizenTemplateCounts = this.RandomTemplateComposition(citizenTemplates, remainder);
 	for (let template in citizenTemplateCounts)
 	{
 		let count = citizenTemplateCounts[template];
@@ -478,7 +430,7 @@ Trigger.prototype.FillShips = function()
 
 			for (let i = 0; i < spawn.count; ++i)
 			{
-				let ent = Engine.AddEntity("units/" + spawn.template);
+				let ent = Engine.AddEntity(spawn.template);
 				Engine.QueryInterface(ent, IID_Ownership).SetOwner(gaulPlayer);
 
 				if (spawn.hero)

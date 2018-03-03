@@ -143,7 +143,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 		var pn = playerNearness(x, z);
 
 		let c = startAngle ? z : x;
-		let distToWater = stayClasses(clWater, 1).allows(position) ? 0 : (0.5 - WATER_WIDTH - Math.abs(c - 0.5));
+		let distToWater = clWater.has(position) ? 0 : (0.5 - WATER_WIDTH - Math.abs(c - 0.5));
 		let h = distToWater ? heightHill * (1 - Math.abs(c - 0.5) / (0.5 - WATER_WIDTH)) : g_Map.getHeight(position);
 
 		// add some base noise

@@ -261,4 +261,62 @@ TriggerHelper.HasDealtWithTech = function(playerID, techName)
 	                                cmpTechnologyManager.IsTechnologyResearched(techName));
 };
 
+/**
+ * Composes a random set of the given templates of the given total size.
+ * Returns an object where the keys are template names and values are amounts.
+ */
+Trigger.prototype.RandomTemplateComposition = function(templates, count)
+{
+	let ratios = new Array(templates.length).fill(1).map(i => randFloat(0, 1));
+	let ratioSum = ratios.reduce((current, sum) => current + sum, 0);
+
+	let remainder = count;
+	let templateCounts = {};
+
+	for (let i = 0; i < templates.length; ++i)
+	{
+		let currentCount = i == templates.length - 1 ? remainder : Math.round(ratios[i] / ratioSum * count);
+		if (!currentCount)
+			continue;
+
+		templateCounts[templates[i]] = currentCount;
+		remainder -= currentCount;
+	}
+
+	if (remainder != 0)
+		error("Could not chose as many templates as intended: " + count + " vs " + uneval(templateCounts));
+
+	return templateCounts;
+};
+
+/**
+ * This will spawn random compositions of entities of the given templates at all garrisonholders of the given targetClass of the given player.
+ * The garrisonholder will be filled to capacityPercent.
+ * Returns an object where keys are entityIDs of the affected garrisonholders and the properties are template compositions, see RandomTemplateComposition.
+ */
+Trigger.prototype.SpawnAndGarrison = function(playerID, targetClass, templates, capacityPercent)
+{
+	let results = {};
+
+	for (let entGarrisonHolder of Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(playerID))
+	{
+		let cmpIdentity = Engine.QueryInterface(entGarrisonHolder, IID_Identity);
+		if (!cmpIdentity || !cmpIdentity.HasClass(targetClass))
+			continue;
+
+		let cmpGarrisonHolder = Engine.QueryInterface(entGarrisonHolder, IID_GarrisonHolder);
+		if (!cmpGarrisonHolder)
+			continue;
+
+		// TODO: account for already garrisoned entities
+		results[entGarrisonHolder] = this.RandomTemplateComposition(templates, Math.floor(cmpGarrisonHolder.GetCapacity() * capacityPercent));
+
+		for (let template in results[entGarrisonHolder])
+			for (let entSpawned of TriggerHelper.SpawnUnits(entGarrisonHolder, template, results[entGarrisonHolder][template], playerID))
+				Engine.QueryInterface(entGarrisonHolder, IID_GarrisonHolder).Garrison(entSpawned);
+	}
+
+	return results;
+};
+
 Engine.RegisterGlobal("TriggerHelper", TriggerHelper);

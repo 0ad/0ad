@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-27 02:01+0000\n"
+"PO-Revision-Date: 2018-03-01 22:27+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -323,7 +323,7 @@ msgstr "Númberu de reliquies"
 
 #: gui/common/gamedescription.js:261
 msgid "Hero Garrison"
-msgstr "Guarnición de los héroes"
+msgstr "Guarecimientu de los héroes"
 
 #: gui/common/gamedescription.js:262
 msgid "Heroes can be garrisoned."
@@ -335,7 +335,7 @@ msgstr "Héroes espuestos"
 
 #: gui/common/gamedescription.js:267
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
-msgstr "Los héroes nun son a guarecese, y los asaltos puen mancalos."
+msgstr "Los héroes nun son a guarecese y puen mancase n'asaltos."
 
 #: gui/common/gamedescription.js:274
 msgid "Rated game"
@@ -959,7 +959,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:342
 msgid "Garrison Limit"
-msgstr "Capacidá guarnición"
+msgstr "Llende de guarecimientu"
 
 #: gui/common/tooltips.js:349
 #, javascript-format
@@ -1195,7 +1195,7 @@ msgstr "%(nick)s - %(name)s"
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:165
 #: gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
-msgstr "ACEUTAR"
+msgstr "Aceutar"
 
 #: gui/options/options.js:93
 #, javascript-format
@@ -2538,7 +2538,7 @@ msgstr "Posar les partíes d'un xugador si se vuelve ensarañada la ventana."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
-msgstr ""
+msgstr "Posa de fondu"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -2725,7 +2725,7 @@ msgstr "Filtráu de solombres"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind buildings."
-msgstr ""
+msgstr "Amosar los contornos de les unidaes detrás de les construcciones. "
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
@@ -3020,7 +3020,7 @@ msgstr "Salú d'unidá mancada"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch."
-msgstr ""
+msgstr "El númberu d'unidaes que se llevanten por grupu."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
@@ -3083,7 +3083,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[6].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "Vista previa del algame d'ataque"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3093,7 +3093,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[7].label
 msgid "Aura Range Visualization"
-msgstr ""
+msgstr "Vista previa del algame d'aura"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3103,7 +3103,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[8].label
 msgid "Heal Range Visualization"
-msgstr ""
+msgstr "Vista previa del algame de cura"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid "Show rank icons above status bars."

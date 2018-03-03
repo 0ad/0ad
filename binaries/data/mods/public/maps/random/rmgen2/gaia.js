@@ -37,10 +37,10 @@ function createBluffsPassages(playerPosition)
 		for (let tryCount = 0; tryCount < 80; ++tryCount)
 		{
 			let angle = position.angleTo(g_Map.getCenter()) + randFloat(-1, 1) * Math.PI / 2;
-			let start = Vector2D.add(position, new Vector2D(defaultPlayerBaseRadius() * 0.7, 0).rotate(angle).perpendicular());
-			let end = Vector2D.add(position, new Vector2D(defaultPlayerBaseRadius() * randFloat(1.7, 2), 0).rotate(angle).perpendicular());
+			let start = Vector2D.add(position, new Vector2D(defaultPlayerBaseRadius() * 0.7, 0).rotate(angle).perpendicular()).round();
+			let end = Vector2D.add(position, new Vector2D(defaultPlayerBaseRadius() * randFloat(1.7, 2), 0).rotate(angle).perpendicular()).round();
 
-			if (!(new AndConstraint(avoidClasses(g_TileClasses.forest, 0), stayClasses(g_TileClasses.bluff, 16)).allows(end)))
+			if (g_TileClasses.forest.has(end) || !stayClasses(g_TileClasses.bluff, 12).allows(end))
 				continue;
 
 			if ((g_Map.getHeight(end.clone().floor()) - g_Map.getHeight(start.clone().floor())) / start.distanceTo(end) > 1.5)
