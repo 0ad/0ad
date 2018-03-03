@@ -1,6 +1,6 @@
 {
   "name": "Petra Bot",
-  "description": "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n\nThe AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack.",
+  "description": "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n\nThe AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack.",
   "moduleName" : "PETRA",
   "constructor": "PetraBot",
   "useShared": true
