@@ -951,9 +951,11 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 		targets = validTargets.filter(API3.Filters.byClass("Town"));
 	if (!targets.hasEntities())
 		targets = validTargets.filter(API3.Filters.byClass("Village"));
-	// no buildings, attack anything conquest critical, units included
+	// No buildings, attack anything conquest critical, units included.
+	// TODO Should add naval attacks against the last remaining ships.
 	if (!targets.hasEntities())
-		targets = gameState.getEntities(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
+		targets = gameState.getEntities(playerEnemy).filter(API3.Filters.byClass("ConquestCritical")).
+		                                       filter(API3.Filters.not(API3.Filters.byClass("Ship")));
 	return targets;
 };
 
