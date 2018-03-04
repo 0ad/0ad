@@ -6,10 +6,9 @@ function Area(points)
 {
 	this.points = deepfreeze(points);
 
-	this.cache = [];
-	for (let x = 0; x < g_Map.getSize(); ++x)
-		this.cache[x] = new Uint8Array(g_Map.getSize());
+	let mapSize = g_Map.getSize();
 
+	this.cache = new Array(mapSize).fill(0).map(() => new Uint8Array(mapSize));
 	for (let point of points)
 		this.cache[point.x][point.y] = 1;
 }
