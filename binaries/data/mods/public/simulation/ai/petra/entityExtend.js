@@ -257,11 +257,15 @@ m.IsSupplyFull = function(gameState, ent)
 };
 
 /**
- * get the best base (in terms of distance and accessIndex) for an entity
+ * Get the best base (in terms of distance and accessIndex) for an entity.
+ * It should be on the same accessIndex for structures.
+ * If nothing found, return the base[0] for units and undefined for structures.
+ * If exclude is given, we exclude the base with ID = exclude.
  */
-m.getBestBase = function(gameState, ent, onlyConstructedBase = false)
+m.getBestBase = function(gameState, ent, onlyConstructedBase = false, exclude = false)
 {
 	let pos = ent.position();
+	let accessIndex;
 	if (!pos)
 	{
 		let holder = m.getHolder(gameState, ent);
@@ -272,23 +276,48 @@ m.getBestBase = function(gameState, ent, onlyConstructedBase = false)
 			return gameState.ai.HQ.baseManagers[0];
 		}
 		pos = holder.position();
+		accessIndex = m.getLandAccess(gameState, holder);
 	}
+	else
+		accessIndex = m.getLandAccess(gameState, ent);
+
 	let distmin = Math.min();
+	let dist;
 	let bestbase;
-	let accessIndex = gameState.ai.accessibility.getAccessValue(pos);
 	for (let base of gameState.ai.HQ.baseManagers)
 	{
-		if (!base.anchor || onlyConstructedBase && base.anchor.foundationProgress() !== undefined)
+		if (base.ID == gameState.ai.HQ.baseManagers[0].ID || exclude && base.ID == exclude)
 			continue;
-		let dist = API3.SquareVectorDistance(base.anchor.position(), pos);
+		if (onlyConstructedBase && (!base.anchor || base.anchor.foundationProgress() !== undefined))
+			continue;
+		if (ent.hasClass("Structure") && base.accessIndex != accessIndex)
+			continue;
+		if (base.anchor && base.anchor.position())
+			dist = API3.SquareVectorDistance(base.anchor.position(), pos);
+		else
+		{
+			let found = false;
+			for (let structure of base.buildings.values())
+			{
+				if (!structure.position())
+					continue;
+				dist = API3.SquareVectorDistance(structure.position(), pos);
+				found = true;
+				break;
+			}
+			if (!found)
+				continue;
+		}
 		if (base.accessIndex != accessIndex)
-			dist += 100000000;
+			dist += 50000000;
+		if (!base.anchor)
+			dist += 50000000;
 		if (dist > distmin)
 			continue;
 		distmin = dist;
 		bestbase = base;
 	}
-	if (!bestbase)
+	if (!bestbase && !ent.hasClass("Structure"))
 		bestbase = gameState.ai.HQ.baseManagers[0];
 	return bestbase;
 };

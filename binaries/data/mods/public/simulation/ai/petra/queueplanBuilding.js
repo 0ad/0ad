@@ -311,7 +311,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	let radius = 0;
 	if (template.hasClass("Fortress") || template.hasClass("Workshop") ||
 		this.type == gameState.applyCiv("structures/{civ}_elephant_stables"))
-		radius = Math.floor((template.obstructionRadius().max + 12) / obstructions.cellSize);
+		radius = Math.floor((template.obstructionRadius().max + 8) / obstructions.cellSize);
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") &&
 	         !template.hasClass("Field") && !template.hasClass("BarterMarket"))
 		radius = Math.ceil((template.obstructionRadius().max + 4) / obstructions.cellSize);
@@ -475,8 +475,6 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	{
 		for (let base of gameState.ai.HQ.baseManagers)
 		{
-			if (!base.anchor || !base.anchor.position())
-				continue;
 			if (base.accessIndex !== bestLand)
 				continue;
 			baseIndex = base.ID;

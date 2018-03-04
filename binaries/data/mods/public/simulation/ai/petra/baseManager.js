@@ -64,6 +64,19 @@ m.BaseManager.prototype.init = function(gameState, state)
 	}
 };
 
+m.BaseManager.prototype.reset = function(gameState, state)
+{
+	if (state == "unconstructed")
+		this.constructing = true;
+	else
+		this.constructing = false;
+
+	if (state != "captured")
+		this.neededDefenders = 0;
+	else
+		this.neededDefenders = this.Config.difficulty > 2 ? 3 + 2*(this.Config.difficulty - 3) : 0;
+};
+
 m.BaseManager.prototype.assignEntity = function(gameState, ent)
 {
 	ent.setMetadata(PlayerID, "base", this.ID);
@@ -77,24 +90,17 @@ m.BaseManager.prototype.assignEntity = function(gameState, ent)
 m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 {
 	if (!anchorEntity.hasClass("CivCentre"))
+		warn("Error: Petra base " + this.ID + " has been assigned " + ent.templateName() + " as anchor.");
+	else
 	{
-		warn("Error: Petra base " + this.ID + " has been assigned an anchor that is not a civil centre.");
-		return false;
+		this.anchor = anchorEntity;
+		this.anchorId = anchorEntity.id();
+		this.anchor.setMetadata(PlayerID, "baseAnchor", true);
+		gameState.ai.HQ.resetBaseCache();
 	}
-	this.anchor = anchorEntity;
-	this.anchorId = anchorEntity.id();
-	this.anchor.setMetadata(PlayerID, "base", this.ID);
-	this.anchor.setMetadata(PlayerID, "baseAnchor", true);
-	this.buildings.updateEnt(this.anchor);
-	this.accessIndex = m.getLandAccess(gameState, this.anchor);
-	gameState.ai.HQ.resetBaseCache();
-	// in case some of our other bases were destroyed, reaffect these destroyed bases to this base
-	for (let base of gameState.ai.HQ.baseManagers)
-	{
-		if (base.anchor || base.newbaseID)
-			continue;
-		base.newbaseID = this.ID;
-	}
+	anchorEntity.setMetadata(PlayerID, "base", this.ID);
+	this.buildings.updateEnt(anchorEntity);
+	this.accessIndex = m.getLandAccess(gameState, anchorEntity);
 	return true;
 };
 
@@ -104,13 +110,19 @@ m.BaseManager.prototype.anchorLost = function (gameState, ent)
 	this.anchor = undefined;
 	this.anchorId = undefined;
 	this.neededDefenders = 0;
-	let bestbase = m.getBestBase(gameState, ent);
-	this.newbaseID = bestbase.ID;
-	for (let entity of this.units.values())
-		bestbase.assignEntity(gameState, entity);
-	for (let entity of this.buildings.values())
-		bestbase.assignEntity(gameState, entity);
 	gameState.ai.HQ.resetBaseCache();
+};
+
+/** Set a building of an anchorless base */
+m.BaseManager.prototype.setAnchorlessEntity = function(gameState, ent)
+{
+	if (!ent.resourceDropsiteTypes())
+		warn("Error: Petra base " + this.ID + " has been assigned " + ent.templateName() + " as origin.");
+
+	ent.setMetadata(PlayerID, "base", this.ID);
+	this.buildings.updateEnt(ent);
+	this.accessIndex = m.getLandAccess(gameState, ent);
+	return true;
 };
 
 /**
@@ -926,21 +938,33 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	}
 };
 
+/** Return false when the base is not active (no workers on it) */
 m.BaseManager.prototype.update = function(gameState, queues, events)
 {
-	if (this.ID === gameState.ai.HQ.baseManagers[0].ID)	// base for unaffected units
+	if (this.ID == gameState.ai.HQ.baseManagers[0].ID)	// base for unaffected units
 	{
 		// if some active base, reassigns the workers/buildings
 		// otherwise look for anything useful to do, i.e. treasures to gather
 		if (gameState.ai.HQ.numActiveBases() > 0)
 		{
 			for (let ent of this.units.values())
-				m.getBestBase(gameState, ent).assignEntity(gameState, ent);
+			{
+				let bestBase = m.getBestBase(gameState, ent);
+				if (bestBase.ID != this.ID)
+					bestBase.assignEntity(gameState, ent);
+			}
 			for (let ent of this.buildings.values())
 			{
-				if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
+				let bestBase = m.getBestBase(gameState, ent);
+				if (!bestBase)
+				{
+					if (ent.hasClass("Dock"))
+						API3.warn("Petra: dock in baseManager[0]. It may be useful to do an anchorless base for " + ent.templateName());
+					continue;
+				}
+				if (ent.resourceDropsiteTypes())
 					this.removeDropsite(gameState, ent);
-				m.getBestBase(gameState, ent).assignEntity(gameState, ent);
+				bestBase.assignEntity(gameState, ent);
 			}
 		}
 		else if (gameState.ai.HQ.canBuildUnits)
@@ -953,21 +977,54 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 			for (let ent of this.workers.values())
 				this.workerObject.update(gameState, ent);
 		}
-		return;
+		return false;
 	}
 
-	if (!this.anchor)   // this base has been destroyed
+	if (!this.anchor)   // This anchor has been destroyed, but the base may still be usable
 	{
-		// transfer possible remaining units (probably they were in training during previous transfers)
-		if (this.newbaseID)
+		if (!this.buildings.hasEntities())
 		{
-			let newbaseID = this.newbaseID;
+			// Reassign all remaining entities to its nearest base
 			for (let ent of this.units.values())
-				ent.setMetadata(PlayerID, "base", newbaseID);
-			for (let ent of this.buildings.values())
-				ent.setMetadata(PlayerID, "base", newbaseID);
+			{
+				let base = m.getBestBase(gameState, ent, false, this.ID);
+				base.assignEntity(gameState, ent);
+			}
+			return false;
 		}
-		return;
+	 	// If we have a base with anchor on the same land, reassign everything to it
+		let reassignedBase;
+		for (let ent of this.buildings.values())
+		{
+			if (!ent.position())
+				continue;
+			let base = m.getBestBase(gameState, ent);
+			if (base.anchor)
+				reassignedBase = base;
+			break;
+		}
+
+		if (reassignedBase)
+		{
+			for (let ent of this.units.values())
+				reassignedBase.assignEntity(gameState, ent);
+			for (let ent of this.buildings.values())
+			{
+				if (ent.resourceDropsiteTypes())
+					this.removeDropsite(gameState, ent);
+				reassignedBase.assignEntity(gameState, ent);
+			}
+			return false;
+		}
+
+		this.assignToFoundations(gameState);
+		if (gameState.ai.elapsedTime > this.timeNextIdleCheck)
+			this.setWorkersIdleByPriority(gameState);
+		this.assignRolelessUnits(gameState);
+		this.reassignIdleWorkers(gameState);
+		for (let ent of this.workers.values())
+			this.workerObject.update(gameState, ent);
+		return true;
 	}
 
 	Engine.ProfileStart("Base update - base " + this.ID);
@@ -978,13 +1035,13 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 	if (this.constructing)
 	{
 		let owner = gameState.ai.HQ.territoryMap.getOwner(this.anchor.position());
-		if(owner !== 0 && !gameState.isPlayerAlly(owner))
+		if(owner != 0 && !gameState.isPlayerAlly(owner))
 		{
 			// we're in enemy territory. If we're too close from the enemy, destroy us.
 			let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
 			for (let cc of ccEnts.values())
 			{
-				if (cc.owner() !== owner)
+				if (cc.owner() != owner)
 					continue;
 				if (API3.SquareVectorDistance(cc.position(), this.anchor.position()) > 8000)
 					continue;
@@ -1008,6 +1065,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 		this.workerObject.update(gameState, ent);
 
 	Engine.ProfileStop();
+	return true;
 };
 
 m.BaseManager.prototype.Serialize = function()
