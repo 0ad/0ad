@@ -57,7 +57,8 @@ m.ConstructionPlan.prototype.start = function(gameState)
 		return;
 	}
 
-	if (this.metadata && this.metadata.expectedGain)
+	if (this.metadata && this.metadata.expectedGain && (!this.template.hasClass("BarterMarket") ||
+	    gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities()))
 	{
 		// Check if this market is still worth building (others may have been built making it useless)
 		let tradeManager = gameState.ai.HQ.tradeManager;
