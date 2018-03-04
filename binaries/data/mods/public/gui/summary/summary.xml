@@ -201,7 +201,8 @@
 					</object>
 
 					<object type="image" sprite="color: 255 255 255 20" size="0 75 100% 100%"/>
-					<object name="chart[k]" type="chart" size="5 80 100%-5 100%-5"/>
+					<object name="chart[k]" type="chart" style="ModernChart" format_x="DURATION_SHORT" format_y="INTEGER" size="5 80 100%-5 100%-25"/>
+					<object name="chart[k]XAxisLabel" type="text" style="ModernLabelText" size="5 100%-25 100%-5 100%-5"/>
 				</object>
 			</repeat>
 

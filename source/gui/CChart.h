@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_CCHART
 
 #include "GUI.h"
+#include "IGUITextOwner.h"
 #include "graphics/Color.h"
 #include "maths/Vector2D.h"
 #include <vector>
@@ -35,7 +36,7 @@ struct CChartData
  *
  * @see IGUIObject
  */
-class CChart : public IGUIObject
+class CChart : public IGUITextOwner
 {
 	GUI_OBJECT(CChart)
 
@@ -58,13 +59,36 @@ protected:
 
 	void UpdateSeries();
 
+	void SetupText();
+
 	std::vector<CChartData> m_Series;
+
+	CVector2D m_LeftBottom, m_RightTop;
+
+	CStrW m_FormatX, m_FormatY;
+
+	std::vector<CPos> m_TextPositions;
+
+	float m_AxisWidth;
+
+	bool m_EqualX, m_EqualY;
 
 private:
 	/**
-	 * Helper function
+	 * Helper functions
 	 */
 	void DrawLine(const CShaderProgramPtr& shader, const CColor& color, const std::vector<float>& vertices) const;
+
+	// Draws the triangle sequence so that the each next triangle has a common edge with the previous one.
+	// If we need to draw n triangles, we need only n + 2 points.
+	void DrawTriangleStrip(const CShaderProgramPtr& shader, const CColor& color, const std::vector<float>& vertices) const;
+
+	// Represents axes as triangles and draws them with DrawTriangleStrip.
+	void DrawAxes(const CShaderProgramPtr& shader) const;
+
+	CSize AddFormattedValue(const CStrW& format, const float value, const CStrW& font, const float buffer_zone);
+
+	void UpdateBounds();
 };
 
 #endif // INCLUDED_CCHART

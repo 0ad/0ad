@@ -178,4 +178,13 @@
 		sprite="ModernTabVerticalBackground"
 		sound_pressed="audio/interface/ui/ui_button_click.ogg"
 	/>
+	<style name="ModernChart"
+		axis_color="209 174 132 255"
+		axis_width="2"
+		buffer_zone="4"
+		font="sans-stroke-14"
+		format_x="DECIMAL2"
+		format_y="DECIMAL2"
+		text_align="left"
+	/>
 </styles>

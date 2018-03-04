@@ -58,6 +58,8 @@ ex_settings =
   attribute minimum_visible_items { xsd:nonNegativeInteger }?&
   attribute enabled { bool }?&
   attribute font { text }?&
+  attribute format_x { text }?&
+  attribute format_y { text }?&
   attribute fov_wedge_color { ccolor }?&
   attribute heading_height { text }?&
   attribute hotkey { text }?&
@@ -161,7 +163,7 @@ column =
   }
 \include =
   element include {
-	attribute file { text }|
+    attribute file { text }|
     attribute directory { text }
 }
 item =
@@ -236,6 +238,8 @@ tooltip =
     attribute name { text }&
     attribute sprite { text }?&
     attribute anchor { valign }?&
+    attribute axis_color { ccolor }?&
+    attribute axis_width { xsd:decimal { minInclusive = "0" } }?&
     attribute buffer_zone { xsd:decimal }?&
     attribute font { text }?&
     attribute maxwidth { xsd:decimal }?&
