@@ -501,7 +501,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 	// Create shallows
 	if (shallowTileClass)
 	{
-		g_Map.log("Creating shallows in the tributary rivers...");
+		g_Map.log("Creating shallows in the tributary rivers");
 		for (let z of [0.25, 0.75])
 			createPassage({
 				"start": new Vector2D(mapBounds.left, fractionToTiles(z)).rotateAround(riverAngle, mapCenter),

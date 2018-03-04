@@ -187,7 +187,7 @@ Engine.SetProgress(35);
 
 if (!isNomad())
 {
-	g_Map.log("Flattening initial CC area...");
+	g_Map.log("Flattening initial CC area");
 	let playerRadius = defaultPlayerBaseRadius() * 0.8;
 	for (let position of playerPosition)
 		createArea(

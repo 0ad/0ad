@@ -130,7 +130,7 @@ if (!isNomad())
 			]),
 		true);
 
-	g_Map.log("Flatten the initial CC area...");
+	g_Map.log("Flatten the initial CC area");
 	for (let position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
@@ -309,7 +309,7 @@ addElements(shuffleArray([
 ]));
 Engine.SetProgress(80);
 
-log("Adding reeds...");
+g_Map.log("Adding reeds");
 createObjectGroups(
 	new SimpleGroup(
 		[

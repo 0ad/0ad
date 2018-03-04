@@ -378,7 +378,7 @@ for (let bridgeStart of shuffleArray(areaShoreline.getPoints()))
 		break
 }
 
-g_Map.log("Adding smoke...");
+g_Map.log("Adding smoke");
 if (areasVolcano.length)
 {
 	createObjectGroupsByAreas(

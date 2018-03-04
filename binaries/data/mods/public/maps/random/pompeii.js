@@ -146,7 +146,7 @@ var areaVesuv = createArea(
 	new HeightConstraint(heightLavaVesuv, Infinity));
 Engine.SetProgress(46);
 
-g_Map.log("Adding smoke...");
+g_Map.log("Adding smoke");
 createObjectGroupsByAreas(
 	new SimpleGroup(
 		[
@@ -173,7 +173,7 @@ if (!isNomad())
 			]),
 		false);
 
-	g_Map.log("Flatten the initial CC area...");
+	g_Map.log("Flatten the initial CC area");
 	for (let position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
@@ -334,7 +334,7 @@ addElements(shuffleArray([
 ]));
 Engine.SetProgress(70);
 
-g_Map.log("Adding gatherable stone statues...");
+g_Map.log("Adding gatherable stone statues");
 createObjectGroups(
 	new SimpleGroup(
 		[new SimpleObject(g_Gaia.romanStatue, 1, 1, 1, 4)],
@@ -354,7 +354,7 @@ createObjectGroups(
 	50);
 Engine.SetProgress(75);
 
-g_Map.log("Adding stone ruins...");
+g_Map.log("Adding stone ruins");
 createObjectGroups(
 	new SimpleGroup(
 		[
@@ -377,7 +377,7 @@ createObjectGroups(
 	20);
 Engine.SetProgress(80);
 
-g_Map.log("Adding shipwrecks...");
+g_Map.log("Adding shipwrecks");
 createObjectGroups(
 	new SimpleGroup(g_Decoratives.shipwrecks.map(shipwreck => new SimpleObject(shipwreck, 0, 1, 1, 20)), true, g_TileClasses.decorative),
 	0,
@@ -389,7 +389,7 @@ createObjectGroups(
 	20);
 Engine.SetProgress(85);
 
-g_Map.log("Adding more statues...");
+g_Map.log("Adding more statues");
 createObjectGroups(
 	new SimpleGroup(g_Decoratives.statues.map(ruin => new SimpleObject(ruin, 0, 1, 1, 20)), true, g_TileClasses.decorative),
 	0,
@@ -405,7 +405,7 @@ createObjectGroups(
 	30);
 Engine.SetProgress(90);
 
-g_Map.log("Adding skeletons...");
+g_Map.log("Adding skeletons");
 createObjectGroups(
 	new SimpleGroup(
 		[new SimpleObject(g_Decoratives.skeleton, 3, 10, 1, 7)],
