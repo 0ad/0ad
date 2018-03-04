@@ -100,10 +100,15 @@ m.getLandAccess = function(gameState, ent)
 		// Docks are sometimes not as expected
 		if (access < 2 && ent.buildPlacementType() == "shore")
 		{
+			let halfDepth = 0;
+			if (ent.get("Footprint/Square"))
+				halfDepth = +ent.get("Footprint/Square/@depth") / 2;
+			else if (ent.get("Footprint/Circle"))
+				halfDepth = +ent.get("Footprint/Circle/@radius");
 			let entPos = ent.position();
 			let cosa = Math.cos(ent.angle());
 			let sina = Math.sin(ent.angle());
-			for (let d = 3; d < 15; d += 3)
+			for (let d = 3; d < halfDepth; d += 3)
 			{
 				let pos = [ entPos[0] - d * sina,
 				            entPos[1] - d * cosa];
