@@ -282,33 +282,18 @@ for (let i = 0; i < numPlayers; ++i)
 }
 Engine.SetProgress(60);
 
-g_Map.log("Marking dock search start location");
-var areaLand = createArea(
-	new DiskPlacer(fractionToTiles(0.5) - 10, mapCenter),
-	undefined,
-	avoidClasses(clWater, 2));
-
-g_Map.log("Marking dock search end location");
-var areaWater = createArea(
-	new DiskPlacer(fractionToTiles(0.5) - 10, mapCenter),
-	undefined,
-	stayClasses(clWater, 2));
-
-g_Map.log("Creating docks");
-if (areaWater && areaWater.getPoints().length)
-	for (let i = 0; i < scaleByMapSize(1, 2); ++i)
-		for (let tryNr = 0; tryNr < 60; ++tryNr)
-		{
-			let positionLand = pickRandom(areaLand.getPoints());
-			let positionDock = areaWater.getClosestPointTo(positionLand);
-
-			if (!g_Map.inMapBounds(positionDock) || !avoidClasses(clDock, 50, clPlayer, 30).allows(positionDock))
-				continue;
-
-			g_Map.placeEntityPassable(biomes.shoreline.gaia.dock, 0, positionDock, -positionLand.angleTo(positionDock) + Math.PI / 2);
-			clDock.add(positionDock);
-			break;
-		}
+g_Map.log("Placing docks");
+placeDocks(
+	biomes.shoreline.gaia.dock,
+	0,
+	scaleByMapSize(1, 2) * 100,
+	clWater,
+	clDock,
+	heightReedsMax,
+	heightShoreline,
+	[avoidClasses(clDock, 50), new StaticConstraint(avoidClasses(clPlayer, 30, clCliffs, 8))],
+	0,
+	50)
 Engine.SetProgress(65);
 
 let [forestTrees, stragglerTrees] = getTreeCounts(600, 4000, 0.7);
