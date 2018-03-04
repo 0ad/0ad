@@ -429,6 +429,22 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 	if (this.type != "Raid" && gameState.ai.HQ.attackManager.getAttackInPreparation("Raid") !== undefined)
 		this.reassignCavUnit(gameState);    // reassign some cav (if any) to fasten raid preparations
 
+ 	// Fasten the end game.
+	if (gameState.ai.playedTurn % 5 == 0 && this.hasSiegeUnits())
+	{
+		let totEnemies = 0;
+		let hasEnemies = false;
+		for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
+		{
+			if (!gameState.isPlayerEnemy(i) || gameState.ai.HQ.attackManager.defeated[i])
+				continue;
+			hasEnemies = true;
+			totEnemies += gameState.getEnemyUnits(i).length;
+		}
+		if (hasEnemies && this.unitCollection.length > 20 + 2 * totEnemies)
+			this.forceStart();
+	}
+
 	// special case: if we've reached max pop, and we can start the plan, start it.
 	if (gameState.getPopulationMax() - gameState.getPopulation() < 5)
 	{
@@ -456,17 +472,20 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 					  " huge " + am.startedAttacks.HugeAttack.length);
 			}
 			return 0;
-	    }
+		}
 	}
-	else if (this.mustStart() && gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) > 0)
+	else if (this.mustStart())
 	{
-		// keep on while the units finish being trained, then we'll start
-		this.queue.empty();
-		this.queueChamp.empty();
-		this.queueSiege.empty();
-		return 1;
+		if (gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) > 0)
+		{
+			// keep on while the units finish being trained, then we'll start
+			this.queue.empty();
+			this.queueChamp.empty();
+			this.queueSiege.empty();
+			return 1;
+		}
 	}
-	else if (!this.mustStart())
+	else
 	{
 		if (this.canBuildUnits)
 		{
@@ -932,9 +951,11 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 		targets = validTargets.filter(API3.Filters.byClass("Town"));
 	if (!targets.hasEntities())
 		targets = validTargets.filter(API3.Filters.byClass("Village"));
-	// no buildings, attack anything conquest critical, units included
+	// No buildings, attack anything conquest critical, units included.
+	// TODO Should add naval attacks against the last remaining ships.
 	if (!targets.hasEntities())
-		targets = gameState.getEntities(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
+		targets = gameState.getEntities(playerEnemy).filter(API3.Filters.byClass("ConquestCritical")).
+		                                       filter(API3.Filters.not(API3.Filters.byClass("Ship")));
 	return targets;
 };
 

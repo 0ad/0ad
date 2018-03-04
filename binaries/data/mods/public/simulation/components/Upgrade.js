@@ -277,7 +277,7 @@ Upgrade.prototype.GetUpgradeTime = function(templateArg)
 
 	let cmpPlayer = QueryPlayerIDInterface(this.owner, IID_Player);
 	return ApplyValueModificationsToEntity("Upgrade/Time", +this.template[choice].Time, this.entity) *
-		cmpPlayer.GetCheatTimeMultiplier();
+		cmpPlayer.GetTimeMultiplier();
 };
 
 Upgrade.prototype.GetElapsedTime = function()

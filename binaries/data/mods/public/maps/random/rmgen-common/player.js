@@ -626,7 +626,7 @@ function playerPlacementRandom(playerIDs, constraints = undefined)
 	let resets = 0;
 
 	let mapCenter = g_Map.getCenter();
-	let playerMinDist = fractionToTiles(0.25);
+	let playerMinDistSquared = Math.square(fractionToTiles(0.25));
 	let borderDistance = fractionToTiles(0.08);
 
 	let area = createArea(new MapBoundsPlacer(), undefined, new AndConstraint(constraints));
@@ -636,8 +636,8 @@ function playerPlacementRandom(playerIDs, constraints = undefined)
 		let position = pickRandom(area.getPoints());
 
 		// Minimum distance between initial bases must be a quarter of the map diameter
-		if (locations.some(loc => loc.distanceTo(position) < playerMinDist) ||
-		    position.distanceTo(mapCenter) > mapCenter.x - borderDistance)
+		if (locations.some(loc => loc.distanceToSquared(position) < playerMinDistSquared) ||
+		    position.distanceToSquared(mapCenter) > Math.square(mapCenter.x - borderDistance))
 		{
 			--i;
 			++attempts;
@@ -652,7 +652,7 @@ function playerPlacementRandom(playerIDs, constraints = undefined)
 
 				// Reduce minimum player distance progressively
 				if (resets % 25 == 0)
-					playerMinDist *= 0.975;
+					playerMinDistSquared *= 0.95;
 
 				// If we only pick bad locations, stop trying to place randomly
 				if (resets == 500)

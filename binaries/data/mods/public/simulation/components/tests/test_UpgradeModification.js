@@ -63,14 +63,14 @@ let templateTechModifications = {
 };
 let entityTechModifications = {
 	"without": {
-		'Upgrade/Cost/stone': { 20: { "origValue": 100, "newValue": 100 } },
-		'Upgrade/Cost/wood': { 20: { "origValue": 50, "newValue": 50 } },
-		'Upgrade/Time': { 20: { "origValue": 100, "newValue": 100 } }
+		'Upgrade/Cost/stone': { "20": { "origValue": 100, "newValue": 100 } },
+		'Upgrade/Cost/wood': { "20": { "origValue": 50, "newValue": 50 } },
+		'Upgrade/Time': { "20": { "origValue": 100, "newValue": 100 } }
 	},
 	"with": {
-		'Upgrade/Cost/stone': { 20: { "origValue": 100, "newValue": 160 } },
-		'Upgrade/Cost/wood': { 20: { "origValue": 50, "newValue": 25 } },
-		'Upgrade/Time': { 20: { "origValue": 100, "newValue": 90 } }
+		'Upgrade/Cost/stone': { "20": { "origValue": 100, "newValue": 160 } },
+		'Upgrade/Cost/wood': { "20": { "origValue": 50, "newValue": 25 } },
+		'Upgrade/Time': { "20": { "origValue": 100, "newValue": 90 } }
 	}
 };
 
@@ -93,7 +93,7 @@ AddMock(SYSTEM_ENTITY, IID_Timer, {
 AddMock(10, IID_Player, {
 	"AddResources": () => {}, // Called in components/Upgrade.js::CancelUpgrade().
 	"GetPlayerID": () => playerID, // Called in helpers/Player.js::QueryOwnerInterface() (and several times below).
-	"GetCheatTimeMultiplier": () => 1.0, // Called in components/Upgrade.js::GetUpgradeTime().
+	"GetTimeMultiplier": () => 1.0, // Called in components/Upgrade.js::GetUpgradeTime().
 	"TrySubtractResources": () => true // Called in components/Upgrade.js::Upgrade().
 });
 AddMock(10, IID_TechnologyManager, {

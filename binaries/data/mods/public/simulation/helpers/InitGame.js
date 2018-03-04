@@ -42,7 +42,10 @@ function InitGame(settings)
 	}
 
 	// Sandbox, Very Easy, Easy, Medium, Hard, Very Hard
+	// rate apply on resource stockpiling as gathering and trading
+	// time apply on building, upgrading, packing, training and technologies
 	let rate = [ 0.42, 0.56, 0.75, 1.00, 1.25, 1.56 ];
+	let time = [ 1.30, 1.15, 1.00, 1.00, 1.00, 1.00 ];
 	let cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
 	for (let i = 0; i < settings.PlayerData.length; ++i)
 	{
@@ -56,6 +59,7 @@ function InitGame(settings)
 			AIDiff = Math.min(AIDiff, rate.length - 1);
 			cmpPlayer.SetGatherRateMultiplier(rate[AIDiff]);
 			cmpPlayer.SetTradeRateMultiplier(rate[AIDiff]);
+			cmpPlayer.SetTimeMultiplier(time[AIDiff]);
 		}
 		if (settings.PopulationCap)
 			cmpPlayer.SetMaxPopulation(settings.PopulationCap);

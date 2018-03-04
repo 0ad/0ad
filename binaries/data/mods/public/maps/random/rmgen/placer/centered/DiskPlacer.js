@@ -3,7 +3,7 @@
  */
 function DiskPlacer(radius, centerPosition = undefined)
 {
-	this.radius = radius;
+	this.radiusSquared = Math.square(radius);
 	this.centerPosition = undefined;
 
 	if (centerPosition)
@@ -23,7 +23,7 @@ DiskPlacer.prototype.place = function(constraint)
 		for (let y = 0; y < g_Map.getSize(); ++y)
 		{
 			let point = new Vector2D(x, y);
-			if (this.centerPosition.distanceTo(point) <= this.radius && constraint.allows(point))
+			if (this.centerPosition.distanceToSquared(point) <= this.radiusSquared && constraint.allows(point))
 				points.push(point);
 		}
 
