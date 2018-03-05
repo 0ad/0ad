@@ -108,45 +108,34 @@ for (let  i = 0; i < numPlayers; ++i)
 }
 Engine.SetProgress(20);
 
-paintTerrainBasedOnHeight(3.12, 29, 1, tCliff);
-paintTileClassBasedOnHeight(3.12, 29, 1, clHill);
+paintTerrainBasedOnHeight(heightLand + 0.12, heightHill - 1, Elevation_IncludeMin_ExcludeMax, tCliff);
+paintTileClassBasedOnHeight(heightLand + 0.12, heightHill - 1, Elevation_IncludeMin_ExcludeMax, clHill);
+Engine.SetProgress(30);
+
+var landConstraint = new StaticConstraint(stayClasses(clLand, 5));
 
 for (let triggerPointTreasure of triggerPointTreasures)
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(triggerPointTreasure, 1, 1, 0, 0)], true, clWomen),
 		0,
-		[avoidClasses(clForest, 5, clPlayer, 5, clHill, 5), stayClasses(clLand, 5)],
-		scaleByMapSize(40, 140), 100
-	);
-Engine.SetProgress(25);
+		[avoidClasses(clPlayer, 5, clHill, 5), landConstraint],
+		scaleByMapSize(40, 140),
+		100);
+Engine.SetProgress(35);
 
-createBumps(stayClasses(clLand, 5));
-
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
-createForests(
-	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
-	[avoidClasses(clPlayer, 20, clForest, 5, clHill, 0, clBaseResource,2, clWomen, 5), stayClasses(clLand, 4)],
-	clForest,
-	forestTrees);
-Engine.SetProgress(30);
-
-if (randBool())
-	createHills(
-		[tMainTerrain, tCliff, tHill],
-		[avoidClasses(clPlayer, 20, clHill, 5, clBaseResource, 3, clWomen, 5), stayClasses(clLand, 5)],
-		clHill,
-		scaleByMapSize(10, 60) * numPlayers);
-else
-	createMountains(
-		tCliff,
-		[avoidClasses(clPlayer, 20, clHill, 5, clBaseResource, 3, clWomen, 5), stayClasses(clLand, 5)],
-		clHill,
-		scaleByMapSize(10, 60) * numPlayers);
+createBumps(landConstraint);
 Engine.SetProgress(40);
+
+var hillConstraint = new AndConstraint([avoidClasses(clHill, 5), new StaticConstraint(avoidClasses(clPlayer, 20, clBaseResource, 3, clWomen, 5))]);
+if (randBool())
+	createHills([tMainTerrain, tCliff, tHill], [hillConstraint, landConstraint], clHill, scaleByMapSize(10, 60) * numPlayers);
+else
+	createMountains(tCliff, [hillConstraint, landConstraint], clHill, scaleByMapSize(10, 60) * numPlayers);
+Engine.SetProgress(45);
 
 createHills(
 	[tCliff, tCliff, tHill],
-	avoidClasses(clPlayer, 20, clHill, 5, clBaseResource, 3, clWomen, 5, clLand, 5),
+	[hillConstraint, avoidClasses(clLand, 5)],
 	clHill,
 	scaleByMapSize(15, 90) * numPlayers,
 	undefined,
@@ -154,25 +143,35 @@ createHills(
 	undefined,
 	undefined,
 	55);
-
 Engine.SetProgress(50);
+
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+createForests(
+	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
+	[avoidClasses(clForest, 5), new StaticConstraint([avoidClasses(clPlayer, 20, clHill, 0, clBaseResource, 2, clWomen, 5), stayClasses(clLand, 4)])],
+	clForest,
+	forestTrees);
+
+Engine.SetProgress(60);
 
 g_Map.log("Creating dirt patches");
 createLayeredPatches(
 	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
 	[[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]],
 	[1, 1],
-	[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12, clWomen, 5), stayClasses(clLand, 5)],
+	[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12, clWomen, 5), landConstraint],
 	scaleByMapSize(15, 45),
 	clDirt);
+Engine.SetProgress(70);
 
 g_Map.log("Creating grass patches");
 createPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	tTier4Terrain,
-	[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12, clWomen, 5), stayClasses(clLand, 5)],
+	[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12, clWomen, 5), landConstraint],
 	scaleByMapSize(15, 45),
 	clDirt);
+Engine.SetProgress(80);
 
 var planetm = 1;
 if (currentBiome() == "generic/tropic")
@@ -193,12 +192,15 @@ createDecoration(
 		planetm * scaleByMapSize(13, 200),
 		planetm * scaleByMapSize(13, 200)
 	],
-	[avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 5)]);
+	[avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), landConstraint]);
+Engine.SetProgress(90);
 
 createStragglerTrees(
 	[oTree1, oTree2, oTree4, oTree3],
 	[avoidClasses(clForest, 7, clHill, 1, clPlayer, 9), stayClasses(clLand, 7)],
 	clForest,
 	stragglerTrees);
+
+Engine.SetProgress(95);
 
 g_Map.ExportMap();
