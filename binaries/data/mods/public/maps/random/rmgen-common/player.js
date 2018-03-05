@@ -95,7 +95,7 @@ function placeStartingEntities(location, playerID, civEntities, dist = 6, orient
 			let position = Vector2D.sum([
 				location,
 				new Vector2D(dist, 0).rotate(-angle),
-				new Vector2D(space * (-num + 0.75 * Math.floor(count / 2)), 0).rotate(angle)
+				new Vector2D(space * (-num + (count - 1) / 2), 0).rotate(angle)
 			]);
 
 			g_Map.placeEntityPassable(civEntities[j].Template, playerID, position, angle);
@@ -474,14 +474,13 @@ function placePlayersNomad(playerClass, constraints)
 		let group = new SimpleGroup(objects, true, playerClass);
 		let success = false;
 		for (let distanceFactor of [1, 1/2, 1/4, 0])
-		{
 			if (createObjectGroups(group, playerIDs[i], new AndConstraint([constraint, avoidClasses(playerClass, distance * distanceFactor)]), 1, 200, false).length)
 			{
 				success = true;
 				playerPosition[i] = group.centerPosition;
 				break;
 			}
-		}
+
 		if (!success)
 			throw new Error("Could not place starting units for player " + playerIDs[i] + "!");
 	}
@@ -594,7 +593,7 @@ function playerPlacementRiver(angle, width, center = undefined)
 	return [primeSortAllPlayers(), playerPosition];
 }
 
-/***
+/**
  * Returns starting positions located on two parallel lines.
  * The locations on the first line are shifted in comparison to the other line.
  */
@@ -678,8 +677,7 @@ function groupPlayersByArea(playerIDs, locations)
 
 	// Of all permutations of starting locations, find the one where
 	// the sum of the distances between allies is minimal, weighted by teamsize.
-	heapsPermute(shuffleArray(locations).slice(0, playerIDs.length), v => v.clone(), permutation =>
-	{
+	heapsPermute(shuffleArray(locations).slice(0, playerIDs.length), v => v.clone(), permutation => {
 		let dist = 0;
 		let teamDist = 0;
 		let teamSize = 0;

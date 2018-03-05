@@ -90,7 +90,8 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 				{
 					if (this.target)
 					{
-						API3.warn("Petra: " + this.type + " " + this.name + " has an inaccessible target.");
+						API3.warn("Petra: " + this.type + " " + this.name + " has an inaccessible target " +
+						          this.target.templateName() + " indices " + rallyAccess, + " " + access);
 						this.failed = true;
 						return false;
 					}
@@ -841,7 +842,8 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 			}
 			else
 			{
-				API3.warn("Petra: " + this.type + " " + this.name + " has an inaccessible target.");
+				API3.warn("Petra: " + this.type + " " + this.name + " has an inaccessible target" +
+				          " with indices " + rallyIndex + " " + targetIndex + " from " + this.target.templateName());
 				return false;
 			}
 		}

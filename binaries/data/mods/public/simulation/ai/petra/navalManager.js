@@ -535,7 +535,7 @@ m.NavalManager.prototype.assignShipsToPlans = function(gameState)
 			plan.assignShip(gameState);
 };
 
-/** Return true if this ship is likeky (un)garrisoning units */ 
+/** Return true if this ship is likeky (un)garrisoning units */
 m.NavalManager.prototype.isShipBoarding = function(ship)
 {
 	if (!ship.position())
@@ -548,7 +548,7 @@ m.NavalManager.prototype.isShipBoarding = function(ship)
 
 /** let blocking ships move apart from active ships (waiting for a better pathfinder)
  * TODO Ships entity collections are currently in two parts as the trader ships are dealt with
- * in the tradeManager. That should be modified to avoid dupplicating all the code here. 
+ * in the tradeManager. That should be modified to avoid dupplicating all the code here.
  */
 m.NavalManager.prototype.moveApart = function(gameState)
 {

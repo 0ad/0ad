@@ -180,6 +180,18 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="axis_color">
+          <ref name="ccolor"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="axis_width">
+          <data type="decimal">
+            <param name="minInclusive">0</param>
+          </data>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="buffer_zone">
           <data type="decimal"/>
         </attribute>
@@ -226,6 +238,12 @@
       </optional>
       <optional>
         <attribute name="font"/>
+      </optional>
+      <optional>
+        <attribute name="format_x"/>
+      </optional>
+      <optional>
+        <attribute name="format_y"/>
       </optional>
       <optional>
         <attribute name="fov_wedge_color">

@@ -147,14 +147,14 @@ if (!isNomad())
 			]),
 		true);
 
-	g_Map.log("Flatten the initial CC area...");
+	g_Map.log("Flatten the initial CC area");
 	for (let position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
 }
 
-log("Render lowlands...");
+g_Map.log("Render lowlands");
 setBiomeLowlands();
 addElements([
 	{
@@ -290,7 +290,7 @@ addElements(shuffleArray([
 ]));
 Engine.SetProgress(60);
 
-log("Render highlands...");
+g_Map.log("Render highlands");
 setBiomeHighlands();
 addElements([
 	{
@@ -401,7 +401,7 @@ addElements(shuffleArray([
 ]));
 Engine.SetProgress(70);
 
-log("Render eden...");
+g_Map.log("Render eden");
 setBiomeEden();
 addElements([
 	{

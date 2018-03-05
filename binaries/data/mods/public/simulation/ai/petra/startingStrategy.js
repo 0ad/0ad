@@ -26,12 +26,10 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 	this.baseManagers.push(nobase);   // baseManagers[0] will deal with unit/structure without base
 	let ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre"));
 	for (let cc of ccEnts.values())
-	{
-		let newbase = new m.BaseManager(gameState, this.Config);
-		newbase.init(gameState);
-		newbase.setAnchor(gameState, cc);
-		this.baseManagers.push(newbase);
-	}
+		if (cc.foundationProgress() === undefined)
+			this.createBase(gameState, cc);
+		else
+			this.createBase(gameState, cc, "unconstructed");
 	this.updateTerritories(gameState);
 
 	// Assign entities and resources in the different bases
@@ -103,7 +101,8 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 		for (let i = 1; i < this.baseManagers.length; ++i)
 		{
 			let base = this.baseManagers[i];
-			if (base.territoryIndices.indexOf(territoryIndex) === -1)
+			if ((!ent.getMetadata(PlayerID, "base") || ent.getMetadata(PlayerID, "base") != base.ID) &&
+			    base.territoryIndices.indexOf(territoryIndex) == -1)
 				continue;
 			base.assignEntity(gameState, ent);
 			bestbase = base;
@@ -111,7 +110,10 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 		}
 		if (!bestbase)	// entity outside our territory
 		{
-			bestbase = m.getBestBase(gameState, ent);
+			if (ent.hasClass("Structure") && !ent.decaying() && ent.resourceDropsiteTypes())
+				bestbase = this.createBase(gameState, ent, "anchorless");
+			else
+				bestbase = m.getBestBase(gameState, ent) || this.baseManagers[0];
 			bestbase.assignEntity(gameState, ent);
 		}
 		// now assign entities garrisoned inside this entity

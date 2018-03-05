@@ -135,7 +135,7 @@ createArea(
 	new HeightConstraint(-Infinity, heightSeaGround));
 Engine.SetProgress(15);
 
-g_Map.log("Creating Nile passages...");
+g_Map.log("Creating Nile passages");
 const riverAngle = Math.PI * 3 / 4;
 for (let i = 0; i < scaleByMapSize(8, 15); ++i)
 {
@@ -200,10 +200,10 @@ var playerIDs = [];
 var playerPosition = [];
 if (!isNomad())
 {
-	g_Map.log("Finding player locations...");
+	g_Map.log("Finding player locations");
 	[playerIDs, playerPosition] = playerPlacementRandom(sortAllPlayers(), avoidClasses(clWater, scaleByMapSize(8, 12), clCliff, scaleByMapSize(8, 12)));
 
-	g_Map.log("Flatten the initial CC area...");
+	g_Map.log("Flatten the initial CC area");
 	for (let position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),

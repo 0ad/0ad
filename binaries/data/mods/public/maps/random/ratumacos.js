@@ -74,7 +74,7 @@ createArea(
 	new SmoothingPainter(1, 0.1, 1));
 Engine.SetProgress(25);
 
-g_Map.log("Creating shallows...");
+g_Map.log("Creating shallows");
 for (let i = 0; i < scaleByMapSize(5, 12); ++i)
 {
 	let x = fractionToTiles(randFloat(0, 1));
@@ -327,7 +327,7 @@ createDecoration(
 );
 Engine.SetProgress(90);
 
-g_Map.log("Placing fish...");
+g_Map.log("Placing fish");
 addElements([
 	{
 		"func": addFish,

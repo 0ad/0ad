@@ -28,6 +28,7 @@ m.HQ = function(Config)
 	this.lastFailedGather = {};
 
 	this.firstBaseConfig = false;
+	this.currentBase = 0;	// Only one base (from baseManager) is run every turn.
 
 	// Workers configuration
 	this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
@@ -114,6 +115,70 @@ m.HQ.prototype.postinit = function(gameState)
 };
 
 /**
+ * Create a new base in the baseManager:
+ * If an existing one without anchor already exist, use it.
+ * Otherwise create a new one.
+ * TODO when buildings, criteria should depend on distance
+ * allowedType: undefined       => new base with an anchor
+ *              "unconstructed" => new base with a foundation anchor
+ *              "captured"      => captured base with an anchor
+ *              "anchorless"    => anchorless base, currently with dock
+ */
+m.HQ.prototype.createBase = function(gameState, ent, type)
+{
+	let access = m.getLandAccess(gameState, ent);
+	let newbase;
+	for (let base of this.baseManagers)
+	{
+		if (base.accessIndex != access)
+			continue;
+		if (type != "anchorless" && base.anchor)
+			continue;
+		if (type != "anchorless")
+		{
+			// TODO we keep the fisrt one, we should rather use the nearest if buildings
+			// and possibly also cut on distance
+			newbase = base;
+			break;
+		}
+		else
+		{
+			// TODO here also test on distance instead of first
+			if (newbase && !base.anchor)
+				continue;
+			newbase = base;
+			if (newbase.anchor)
+				break;
+		}
+	}
+
+	if (this.Config.debug > 0)
+	{
+		API3.warn(" ----------------------------------------------------------");
+		API3.warn(" HQ createBase entrance avec access " + access + " and type " + type);
+		API3.warn(" with access " + uneval(this.baseManagers.map(base => base.accessIndex)) +
+			  " and base nbr " + uneval(this.baseManagers.map(base => base.ID)) +
+			  " and anchor " + uneval(this.baseManagers.map(base => !!base.anchor)));
+	}
+
+	if (!newbase)
+	{
+		newbase = new m.BaseManager(gameState, this.Config);
+		newbase.init(gameState, type);
+		this.baseManagers.push(newbase);
+	}
+	else
+		newbase.reset(type);
+
+	if (type != "anchorless")
+		newbase.setAnchor(gameState, ent);
+	else
+		newbase.setAnchorlessEntity(gameState, ent);
+
+	return newbase;
+};
+
+/**
  * returns the sea index linking regions 1 and region 2 (supposed to be different land region)
  * otherwise return undefined
  * for the moment, only the case land-sea-land is supported
@@ -133,6 +198,7 @@ m.HQ.prototype.getSeaBetweenIndices = function (gameState, index1, index2)
 	return undefined;
 };
 
+/** TODO check if the new anchorless bases should be added to addBase */
 m.HQ.prototype.checkEvents = function (gameState, events)
 {
 	let addBase = false;
@@ -161,7 +227,7 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 			if (ent.owner() != PlayerID)
 				continue;
 			// A new base foundation was created and destroyed on the same (AI) turn
-			if (evt.metadata[PlayerID].base == -1)
+			if (evt.metadata[PlayerID].base == -1 || evt.metadata[PlayerID].base == -2)
 				continue;
 			let base = this.getBaseByID(evt.metadata[PlayerID].base);
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
@@ -191,16 +257,27 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 		if (!ent || ent.owner() != PlayerID || ent.foundationProgress() === undefined)
 			continue;
 
-		if (ent.getMetadata(PlayerID, "base") == -1)
+		if (ent.getMetadata(PlayerID, "base") == -1)	// Standard base around a cc
 		{
 			// Okay so let's try to create a new base around this.
-			let newbase = new m.BaseManager(gameState, this.Config);
-			newbase.init(gameState, "unconstructed");
-			newbase.setAnchor(gameState, ent);
-			this.baseManagers.push(newbase);
+			let newbase = this.createBase(gameState, ent, "unconstructed");
 			// Let's get a few units from other bases there to build this.
 			let builders = this.bulkPickWorkers(gameState, newbase, 10);
 			if (builders !== false)
+			{
+				builders.forEach(function (worker) {
+					worker.setMetadata(PlayerID, "base", newbase.ID);
+					worker.setMetadata(PlayerID, "subrole", "builder");
+					worker.setMetadata(PlayerID, "target-foundation", ent.id());
+				});
+			}
+		}
+		else if (ent.getMetadata(PlayerID, "base") == -2)	// anchorless base around a dock
+		{
+			let newbase = this.createBase(gameState, ent, "anchorless");
+			// Let's get a few units from other bases there to build this.
+			let builders = this.bulkPickWorkers(gameState, newbase, 4);
+			if (builders != false)
 			{
 				builders.forEach(function (worker) {
 					worker.setMetadata(PlayerID, "base", newbase.ID);
@@ -279,22 +356,25 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 		}
 		if (ent.hasClass("CivCentre"))   // build a new base around it
 		{
-			let newbase = new m.BaseManager(gameState, this.Config);
+			let newbase;
 			if (ent.foundationProgress() !== undefined)
-				newbase.init(gameState, "unconstructed");
+				newbase = this.createBase(gameState, ent, "unconstructed");
 			else
 			{
-				newbase.init(gameState, "captured");
+				newbase = this.createBase(gameState, ent, "captured");
 				addBase = true;
 			}
-			newbase.setAnchor(gameState, ent);
-			this.baseManagers.push(newbase);
 			newbase.assignEntity(gameState, ent);
 		}
 		else
 		{
-			// TODO should be reassigned later if a better base is captured
-			m.getBestBase(gameState, ent).assignEntity(gameState, ent);
+			let base;
+			// If dropsite on new island, create a base around it
+			if (!ent.decaying() && ent.resourceDropsiteTypes())
+				base = this.createBase(gameState, ent, "anchorless");
+			else
+				base = m.getBestBase(gameState, ent) || this.baseManagers[0];
+			base.assignEntity(gameState, ent);
 			if (ent.decaying())
 			{
 				if (ent.isGarrisonHolder() && this.garrisonManager.addDecayingStructure(gameState, evt.entity, true))
@@ -351,11 +431,11 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 			if (plan !== undefined && plan >= 0)
 			{
 				let attack = this.attackManager.getPlan(plan);
-				if (!attack || attack.state !== "unexecuted")
+				if (!attack || attack.state != "unexecuted")
 					ent.setMetadata(PlayerID, "plan", -1);
 			}
 			// Assign it immediately to something useful to do
-			if (ent.getMetadata(PlayerID, "role") === "worker")
+			if (ent.getMetadata(PlayerID, "role") == "worker")
 			{
 				let base;
 				if (ent.getMetadata(PlayerID, "base") === undefined)
@@ -2132,16 +2212,19 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		if (this.territoryMap.getOwnerIndex(j) != PlayerID)
 		{
 			// If this tile was already accounted, remove it
-			if (this.basesMap.map[j] === 0)
+			if (this.basesMap.map[j] == 0)
 				continue;
 			let base = this.getBaseByID(this.basesMap.map[j]);
-			let index = base.territoryIndices.indexOf(j);
-			if (index == -1)
+			if (base)
 			{
-				API3.warn(" problem in headquarters::updateTerritories for base " + this.basesMap.map[j]);
-				continue;
+				let index = base.territoryIndices.indexOf(j);
+				if (index != -1)
+					base.territoryIndices.splice(index, 1);
+				else
+					API3.warn(" problem in headquarters::updateTerritories for base " + this.basesMap.map[j]);
 			}
-			base.territoryIndices.splice(index, 1);
+			else
+				API3.warn(" problem in headquarters::updateTerritories without base " + this.basesMap.map[j]);
 			this.basesMap.map[j] = 0;
 		}
 		else
@@ -2181,8 +2264,8 @@ m.HQ.prototype.updateTerritories = function(gameState)
 			if (onFrontier && !(this.borderMap.map[j] & m.narrowFrontier_Mask))
 				this.borderMap.map[j] |= m.largeFrontier_Mask;
 
-			// If this tile was not already accounted, add it
-			if (this.basesMap.map[j] !== 0)
+			// If this tile was not already accounted, add it.
+			if (this.basesMap.map[j] != 0)
 				continue;
 			let landPassable = false;
 			let ind = API3.getMapIndices(j, this.territoryMap, passabilityMap);
@@ -2230,16 +2313,56 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		this.tradeManager.routeProspection = true;
 };
 
+/** Reassign territories when a base is going to be deleted */
+m.HQ.prototype.reassignTerritories = function(deletedBase)
+{
+	let cellSize = this.territoryMap.cellSize;
+	let width = this.territoryMap.width;
+	for (let j = 0; j < this.territoryMap.length; ++j)
+	{
+		if (this.basesMap.map[j] != deletedBase.ID)
+			continue;
+		if (this.territoryMap.getOwnerIndex(j) != PlayerID)
+		{
+			API3.warn("Petra reassignTerritories: should never happen");
+			this.basesMap.map[j] = 0;
+			continue;
+		}
+
+		let distmin = Math.min();
+		let baseID;
+		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+		for (let base of this.baseManagers)
+		{
+			if (!base.anchor || !base.anchor.position())
+				continue;
+			if (base.accessIndex != deletedBase.accessIndex)
+				continue;
+			let dist = API3.SquareVectorDistance(base.anchor.position(), pos);
+			if (dist >= distmin)
+				continue;
+			distmin = dist;
+			baseID = base.ID;
+		}
+		if (baseID)
+		{
+			this.getBaseByID(baseID).territoryIndices.push(j);
+			this.basesMap.map[j] = baseID;
+		}
+		else
+			this.basesMap.map[j] = 0;
+	}
+};
+
 /**
  * returns the base corresponding to baseID
  */
 m.HQ.prototype.getBaseByID = function(baseID)
 {
 	for (let base of this.baseManagers)
-		if (base.ID === baseID)
+		if (base.ID == baseID)
 			return base;
 
-	API3.warn("Petra error: no base found with ID " + baseID);
 	return undefined;
 };
 
@@ -2596,9 +2719,16 @@ m.HQ.prototype.update = function(gameState, queues, events)
 		this.buildDefenses(gameState, queues);
 
 	this.assignGatherers();
-	for (let i = 0; i < this.baseManagers.length; ++i)
-		if ((i + gameState.ai.playedTurn)%this.baseManagers.length == 0)
-			this.baseManagers[i].update(gameState, queues, events);
+	let nbBases = this.baseManagers.length;
+	let activeBase;	// We will loop only on 1 active base per turn
+	do
+	{
+		this.currentBase %= this.baseManagers.length;
+		activeBase = this.baseManagers[this.currentBase++].update(gameState, queues, events);
+		--nbBases;
+// TODO what to do with this.reassignTerritories(this.baseManagers[this.currentBase]);
+	}
+	while (!activeBase && nbBases != 0);
 
 	this.navalManager.update(gameState, queues, events);
 
@@ -2620,6 +2750,7 @@ m.HQ.prototype.Serialize = function()
 {
 	let properties = {
 		"phasing": this.phasing,
+		"currentBase": this.currentBase,
 		"wantedRates": this.wantedRates,
 		"currentRates": this.currentRates,
 		"lastFailedGather": this.lastFailedGather,

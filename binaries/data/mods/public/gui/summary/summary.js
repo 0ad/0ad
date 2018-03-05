@@ -234,8 +234,8 @@ function initGUICharts()
 
 	let chartLegend = Engine.GetGUIObjectByName("chartLegend");
 	chartLegend.caption = g_GameData.sim.playerStates.slice(1).map(
-		(state, index) => coloredText("■", player_colors[index]) + state.name
-	).join("  ");
+		(state, index) => coloredText("■", player_colors[index]) + " " + state.name
+	).join("   ");
 
 	let chart1Part = Engine.GetGUIObjectByName("chart[1]Part");
 	let chart1PartSize = chart1Part.size;
@@ -331,6 +331,8 @@ function updateChart(number, category, item, itemNumber, type)
 	if (!g_ScorePanelsData[category].counters[itemNumber].fn)
 		return;
 	let chart = Engine.GetGUIObjectByName("chart[" + number + "]");
+	chart.format_y = g_ScorePanelsData[category].headings[itemNumber + 1].format || "INTEGER";
+	Engine.GetGUIObjectByName("chart[" + number + "]XAxisLabel").caption = translate("Time elapsed");
 	let series = [];
 	for (let j = 1; j <= g_PlayerCount; ++j)
 	{

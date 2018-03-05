@@ -170,7 +170,7 @@ if (!isNomad())
 			stayClasses(g_TileClasses.land, scaleByMapSize(8, 25))
 		]);
 
-	g_Map.log("Flatten the initial CC area and placing playerbases...");
+	g_Map.log("Flatten the initial CC area and placing playerbases");
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
 		g_Map.logger.printDuration();
@@ -395,7 +395,7 @@ createArea(
 
 Engine.SetProgress(70);
 
-g_Map.log("Placing fish...");
+g_Map.log("Placing fish");
 g_Gaia.fish = "gaia/fauna_fish";
 addElements([
 	{
@@ -411,7 +411,7 @@ addElements([
 ]);
 Engine.SetProgress(85);
 
-g_Map.log("Placing whale...");
+g_Map.log("Placing whale");
 g_Gaia.fish = "gaia/fauna_whale_fin";
 addElements([
 	{

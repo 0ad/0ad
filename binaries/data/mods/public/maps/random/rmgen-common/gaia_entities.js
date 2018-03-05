@@ -127,3 +127,75 @@ function createDecoration(objects, counts, constraint)
 			counts[i],
 			5);
 }
+
+/**
+ * Places docks in situations where the location of land and water is not known in advance.
+ * Do determine the position, it picks a random point on the land, find the closest, significantly large body of water,
+ * then places the dock at the first point close to that body of water within the given heightrange.
+ *
+ * @param {String} template - The template name of the dock to be placed.
+ * @param {Number} playerID - The owner of the dock.
+ * @param {Number} count - The number of docks to be placed.
+ * @param {Object} tileClassWater - The tileclass the water area is marked with.
+ * @param {Object} tileClassDock - The dock position is marked with this class.
+ * @param {Number} heightMin - The lowest height a dock could be placed.
+ * @param {Number} heightMax - The greatest height a dock could be placed.
+ * @param {Array|Constraint} constraints - Only consider dock positions valid that meet this Constraint.
+ * @param {Number} offset - How many tiles to move the dock towards the direction of the water after having found a location.
+ * @param {Number} retryFactor- How many different locations should be tested.
+ */
+function placeDocks(template, playerID, count, tileClassWater, tileClassDock, heightMin, heightMax, constraints, offset, retryFactor)
+{
+	let mapCenter = g_Map.getCenter();
+
+	g_Map.log("Marking dock search start area");
+	let areaSearchStart = createArea(
+		new DiskPlacer(fractionToTiles(0.5) - 10, mapCenter),
+		undefined,
+		avoidClasses(tileClassWater, 6));
+
+	g_Map.log("Marking dock search end area");
+	let areaSearchEnd = createArea(
+		new DiskPlacer(fractionToTiles(0.5) - 10, mapCenter),
+		undefined,
+		stayClasses(tileClassWater, 20));
+
+	g_Map.log("Marking land area");
+	let areaLand = createArea(
+		new MapBoundsPlacer(),
+		undefined,
+		avoidClasses(tileClassWater, 0));
+
+	g_Map.log("Marking water area");
+	let areaWater = createArea(
+		new MapBoundsPlacer(),
+		undefined,
+		stayClasses(tileClassWater, 0));
+
+	if (!areaSearchEnd || !areaSearchEnd.getPoints().length)
+		return;
+
+	// TODO: computing the exact intersection with the waterplane would both not require us to pass reasonable heights and be more precise
+	let constraint = new AndConstraint(constraints);
+	g_Map.log("Placing docks");
+	for (let i = 0; i < count; ++i)
+		for (let tries = 0; tries < retryFactor; ++tries)
+		{
+			let positionLand = pickRandom(areaSearchStart.getPoints());
+			let positionWaterLarge = areaSearchEnd.getClosestPointTo(positionLand);
+			let positionDock = findLocationInDirectionBasedOnHeight(positionWaterLarge, positionLand, heightMin, heightMax, offset);
+			if (!positionDock)
+				continue;
+
+			positionDock.round();
+
+			if (!g_Map.inMapBounds(positionDock) || !constraint.allows(positionDock))
+				continue;
+
+			let angle = positionDock.angleTo(Vector2D.average(new DiskPlacer(8, positionDock).place(stayClasses(tileClassWater, 0))));
+
+			g_Map.placeEntityPassable(template, playerID, positionDock, -angle + Math.PI / 2);
+			tileClassDock.add(positionDock);
+			break;
+		}
+}

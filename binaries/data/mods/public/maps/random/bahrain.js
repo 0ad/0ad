@@ -154,7 +154,7 @@ if (!isNomad())
 			]),
 		"towers");
 
-	g_Map.log("Flatten the initial CC area...");
+	g_Map.log("Flatten the initial CC area");
 	for (let position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
@@ -319,7 +319,7 @@ addElements(shuffleArray([
 ]));
 Engine.SetProgress(65);
 
-g_Map.log("Painting island...");
+g_Map.log("Painting island");
 setIslandBiome();
 
 addElements([
@@ -397,7 +397,7 @@ addElements(shuffleArray([
 
 Engine.SetProgress(80);
 
-g_Map.log("Adding more decoratives...");
+g_Map.log("Adding more decoratives");
 createObjectGroups(
 	new SimpleGroup(
 		[
@@ -416,7 +416,7 @@ createObjectGroups(
 	20);
 Engine.SetProgress(85);
 
-g_Map.log("Creating treasures...");
+g_Map.log("Creating treasures");
 for (let treasure of [g_Gaia.woodTreasure, g_Gaia.foodTreasure])
 	createObjectGroups(
 		new SimpleGroup([new SimpleObject(treasure, 1, 1, 0, 2)], true),
@@ -429,7 +429,7 @@ for (let treasure of [g_Gaia.woodTreasure, g_Gaia.foodTreasure])
 		20);
 Engine.SetProgress(90);
 
-g_Map.log("Creating shipwrecks...");
+g_Map.log("Creating shipwrecks");
 createObjectGroups(
 	new SimpleGroup([new SimpleObject(g_Gaia.shipWreck, 1, 1, 0, 1)], true),
 	0,

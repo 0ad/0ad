@@ -208,3 +208,15 @@ StaticConstraint.prototype.allows = function(position)
 
 	return this.cache[position.x][position.y] == 2;
 };
+
+/**
+ * Constrains the area to any tile on the map that is passable.
+ */
+function PassableMapAreaConstraint()
+{
+}
+
+PassableMapAreaConstraint.prototype.allows = function(position)
+{
+	return g_Map.validTilePassable(position);
+};

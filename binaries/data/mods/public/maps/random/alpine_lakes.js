@@ -3,7 +3,7 @@ Engine.LoadLibrary("rmgen-common");
 
 if (randBool())
 {
-	log("Late spring biome...");
+	g_Map.log("Late spring biome");
 
 	setFogThickness(0.26);
 	setFogFactor(0.4);
@@ -43,7 +43,7 @@ if (randBool())
 }
 else
 {
-	log("Winter biome...");
+	g_Map.log("Winter biome");
 
 	setFogFactor(0.35);
 	setFogThickness(0.19);

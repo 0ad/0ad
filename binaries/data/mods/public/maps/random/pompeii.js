@@ -80,9 +80,11 @@ g_Decoratives.statues = [
 const heightScale = num => num * g_MapSettings.Size / 320;
 
 const heightSeaGround = heightScale(-30);
+const heightDockMin = heightScale(-6);
 const heightShorelineMin = heightScale(-1);
 const heightShorelineMax = heightScale(0);
 const heightWaterLevel = heightScale(0);
+const heightDockMax = heightScale(1);
 const heightLavaVesuv = heightScale(38);
 const heightMountains = 140;
 
@@ -114,28 +116,12 @@ createArea(
 	new HeightConstraint(-Infinity, heightWaterLevel));
 Engine.SetProgress(30);
 
-g_Map.log("Marking shoreline");
-var areaShoreline = createArea(
-	new MapBoundsPlacer(),
-	undefined,
-	[
-		new HeightConstraint(heightShorelineMin, heightShorelineMax),
-		new NearTileClassConstraint(g_TileClasses.water, 2)
-	]);
-Engine.SetProgress(35);
-
 g_Map.log("Marking land");
 createArea(
 	new MapBoundsPlacer(),
 	new TileClassPainter(g_TileClasses.land),
 	avoidClasses(g_TileClasses.water, 0));
-Engine.SetProgress(40);
-
-g_Map.log("Marking dock search location");
-var areaDockStart = createArea(
-	new DiskPlacer(fractionToTiles(0.5) - 10, mapCenter),
-	undefined,
-	stayClasses(g_TileClasses.land, 6));
+Engine.SetProgress(35);
 
 g_Map.log("Painting cliffs");
 createArea(
@@ -160,7 +146,7 @@ var areaVesuv = createArea(
 	new HeightConstraint(heightLavaVesuv, Infinity));
 Engine.SetProgress(46);
 
-g_Map.log("Adding smoke...");
+g_Map.log("Adding smoke");
 createObjectGroupsByAreas(
 	new SimpleGroup(
 		[
@@ -173,22 +159,7 @@ createObjectGroupsByAreas(
 	scaleByMapSize(4, 12),
 	20,
 	[areaVesuv]);
-
-g_Map.log("Creating docks");
-for (let i = 0; i < scaleByMapSize(2, 4); ++i)
-{
-	let positionLand = pickRandom(areaDockStart.getPoints());
-	let dockPosition = areaShoreline.getClosestPointTo(positionLand);
-
-	if (!avoidClasses(g_TileClasses.mountain, scaleByMapSize(4, 6), g_TileClasses.dock, 10).allows(dockPosition))
-	{
-		--i;
-		continue;
-	}
-	g_Map.placeEntityPassable(randBool(0.4) ? g_Gaia.dock : g_Gaia.dockRubble, 0, dockPosition, -positionLand.angleTo(dockPosition) + Math.PI / 2);
-	g_TileClasses.dock.add(dockPosition);
-}
-Engine.SetProgress(47);
+Engine.SetProgress(48);
 
 if (!isNomad())
 {
@@ -202,13 +173,37 @@ if (!isNomad())
 			]),
 		false);
 
-	g_Map.log("Flatten the initial CC area...");
+	g_Map.log("Flatten the initial CC area");
 	for (let position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
 }
-Engine.SetProgress(48);
+Engine.SetProgress(50);
+
+g_Map.log("Placing docks");
+var dockTypes = [
+	{ "template": g_Gaia.dock, "count": scaleByMapSize(1, 2) },
+	{ "template": g_Gaia.dockRubble, "count": scaleByMapSize(2, 3) }
+];
+for (let dockType of dockTypes)
+	placeDocks(
+		dockType.template,
+		0,
+		dockType.count,
+		g_TileClasses.water,
+		g_TileClasses.dock,
+		heightDockMin,
+		heightDockMax,
+		[
+			avoidClasses(g_TileClasses.dock, scaleByMapSize(10, 25)),
+			new StaticConstraint(avoidClasses(
+				g_TileClasses.mountain, scaleByMapSize(6, 8),
+				g_TileClasses.baseResource, 10))
+		],
+		0,
+		50)
+Engine.SetProgress(55);
 
 addElements([
 	{
@@ -239,7 +234,7 @@ addElements([
 		"amounts": ["normal"]
 	}
 ]);
-Engine.SetProgress(50);
+Engine.SetProgress(60);
 
 addElements(shuffleArray([
 	{
@@ -290,7 +285,7 @@ addElements(shuffleArray([
 		"amounts": ["many"]
 	}
 ]));
-Engine.SetProgress(60);
+Engine.SetProgress(65);
 
 addElements(shuffleArray([
 	{
@@ -337,9 +332,9 @@ addElements(shuffleArray([
 		"amounts": ["tons"]
 	}
 ]));
-Engine.SetProgress(65);
+Engine.SetProgress(70);
 
-g_Map.log("Adding gatherable stone statues...");
+g_Map.log("Adding gatherable stone statues");
 createObjectGroups(
 	new SimpleGroup(
 		[new SimpleObject(g_Gaia.romanStatue, 1, 1, 1, 4)],
@@ -359,7 +354,7 @@ createObjectGroups(
 	50);
 Engine.SetProgress(75);
 
-g_Map.log("Adding stone ruins...");
+g_Map.log("Adding stone ruins");
 createObjectGroups(
 	new SimpleGroup(
 		[
@@ -382,7 +377,7 @@ createObjectGroups(
 	20);
 Engine.SetProgress(80);
 
-g_Map.log("Adding shipwrecks...");
+g_Map.log("Adding shipwrecks");
 createObjectGroups(
 	new SimpleGroup(g_Decoratives.shipwrecks.map(shipwreck => new SimpleObject(shipwreck, 0, 1, 1, 20)), true, g_TileClasses.decorative),
 	0,
@@ -394,7 +389,7 @@ createObjectGroups(
 	20);
 Engine.SetProgress(85);
 
-g_Map.log("Adding more statues...");
+g_Map.log("Adding more statues");
 createObjectGroups(
 	new SimpleGroup(g_Decoratives.statues.map(ruin => new SimpleObject(ruin, 0, 1, 1, 20)), true, g_TileClasses.decorative),
 	0,
@@ -410,7 +405,7 @@ createObjectGroups(
 	30);
 Engine.SetProgress(90);
 
-g_Map.log("Adding skeletons...");
+g_Map.log("Adding skeletons");
 createObjectGroups(
 	new SimpleGroup(
 		[new SimpleObject(g_Decoratives.skeleton, 3, 10, 1, 7)],
