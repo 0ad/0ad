@@ -44,49 +44,59 @@ Trigger.prototype.CheckCaptureTheRelicVictory = function(data)
 	else
 		++this.playerRelicsCount[data.to];
 
+	this.DeleteCaptureTheRelicVictoryMessages();
 	this.CheckCaptureTheRelicCountdown();
 };
 
 /**
- * Check if an individual player or team has acquired all relics.
- * Also check if the countdown needs to be stopped if a player/team no longer has all relics.
- * Reset the countdown if any of the original allies tries to change their diplomacy with one of these allies.
+ * Check if a group of mutually allied players have acquired all relics.
+ * The winning players are the relic owners and all players mutually allied to all relic owners.
+ * Reset the countdown if the group of winning players changes or extends.
  */
-Trigger.prototype.CheckCaptureTheRelicCountdown = function(data)
+Trigger.prototype.CheckCaptureTheRelicCountdown = function()
 {
-	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-
-	for (let playerID = 1; playerID < TriggerHelper.GetNumberOfPlayers(); ++playerID)
+	if (this.playerRelicsCount[0])
 	{
-		let playerAndAllies = cmpEndGameManager.GetAlliedVictory() ?
-			QueryPlayerIDInterface(playerID).GetMutualAllies() : [playerID];
-
-		let teamRelicsOwned = 0;
-
-		for (let ally of playerAndAllies)
-			teamRelicsOwned += this.playerRelicsCount[ally];
-
-		if (teamRelicsOwned == this.relics.length)
-		{
-			if (!data ||
-			    !this.relicsVictoryCountdownPlayers.length ||
-			    this.relicsVictoryCountdownPlayers.indexOf(data.player) != -1 &&
-			    this.relicsVictoryCountdownPlayers.indexOf(data.otherPlayer) != -1)
-			{
-				this.relicsVictoryCountdownPlayers = playerAndAllies;
-				this.StartCaptureTheRelicCountdown(playerAndAllies);
-			}
-			return;
-		}
+		this.DeleteCaptureTheRelicVictoryMessages();
+		return;
 	}
 
-	this.DeleteCaptureTheRelicVictoryMessages();
+	let activePlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNonGaiaPlayers().filter(
+		playerID => QueryPlayerIDInterface(playerID).GetState() == "active");
+	let relicOwners = activePlayers.filter(playerID => this.playerRelicsCount[playerID]);
+	if (!relicOwners.length)
+	{
+		this.DeleteCaptureTheRelicVictoryMessages();
+		return;
+	}
+
+	let winningPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).GetAlliedVictory() ?
+		activePlayers.filter(playerID => relicOwners.every(owner => QueryPlayerIDInterface(playerID).IsMutualAlly(owner))) :
+		[relicOwners[0]];
+
+	// All relicOwners should be mutually allied
+	if (relicOwners.some(owner => winningPlayers.indexOf(owner) == -1))
+	{
+		this.DeleteCaptureTheRelicVictoryMessages();
+		return;
+	}
+
+	// Reset the timer when playerAndAllies isn't the same as this.relicsVictoryCountdownPlayers
+	if (winningPlayers.length != this.relicsVictoryCountdownPlayers.length ||
+	    winningPlayers.some(player => this.relicsVictoryCountdownPlayers.indexOf(player) == -1))
+	{
+		this.relicsVictoryCountdownPlayers = winningPlayers;
+		this.StartCaptureTheRelicCountdown(winningPlayers);
+	}
 };
 
 Trigger.prototype.DeleteCaptureTheRelicVictoryMessages = function()
 {
-	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	cmpTimer.CancelTimer(this.relicsVictoryTimer);
+	if (!this.relicsVictoryTimer)
+		return;
+
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).CancelTimer(this.relicsVictoryTimer);
+	this.relicsVictoryTimer = undefined;
 
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGuiInterface.DeleteTimeNotification(this.ownRelicsVictoryMessage);
@@ -94,7 +104,7 @@ Trigger.prototype.DeleteCaptureTheRelicVictoryMessages = function()
 	this.relicsVictoryCountdownPlayers = [];
 };
 
-Trigger.prototype.StartCaptureTheRelicCountdown = function(playerAndAllies)
+Trigger.prototype.StartCaptureTheRelicCountdown = function(winningPlayers)
 {
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
@@ -116,7 +126,7 @@ Trigger.prototype.StartCaptureTheRelicCountdown = function(playerAndAllies)
 		if (cmpPlayer.GetState() == "won")
 			return;
 
-		if (playerAndAllies.indexOf(playerID) == -1)
+		if (winningPlayers.indexOf(playerID) == -1)
 			others.push(playerID);
 	}
 
@@ -124,10 +134,10 @@ Trigger.prototype.StartCaptureTheRelicCountdown = function(playerAndAllies)
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	let captureTheRelicDuration = cmpEndGameManager.GetGameTypeSettings().relicDuration;
 
-	let isTeam = playerAndAllies.length > 1;
+	let isTeam = winningPlayers.length > 1;
 	this.ownRelicsVictoryMessage = cmpGuiInterface.AddTimeNotification({
 		"message": isTeam ?
-			markForTranslation("%(_player_)s's team has captured all relics and will win in %(time)s.") :
+			markForTranslation("%(_player_)s and their allies have captured all relics and will win in %(time)s.") :
 			markForTranslation("%(_player_)s has captured all relics and will win in %(time)s."),
 		"players": others,
 		"parameters": {
@@ -139,21 +149,21 @@ Trigger.prototype.StartCaptureTheRelicCountdown = function(playerAndAllies)
 
 	this.othersRelicsVictoryMessage = cmpGuiInterface.AddTimeNotification({
 		"message": isTeam ?
-			markForTranslation("Your team has captured all relics and will win in %(time)s.") :
+			markForTranslation("You and your allies have captured all relics and will win in %(time)s.") :
 			markForTranslation("You have captured all relics and will win in %(time)s."),
-		"players": playerAndAllies,
+		"players": winningPlayers,
 		"translateMessage": true
 	}, captureTheRelicDuration);
 
 	this.relicsVictoryTimer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Trigger,
-		"CaptureTheRelicVictorySetWinner", captureTheRelicDuration, playerAndAllies[0]);
+		"CaptureTheRelicVictorySetWinner", captureTheRelicDuration, winningPlayers);
 };
 
-Trigger.prototype.CaptureTheRelicVictorySetWinner = function(playerID)
+Trigger.prototype.CaptureTheRelicVictorySetWinner = function(winningPlayers)
 {
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	cmpEndGameManager.MarkPlayerAsWon(
-		playerID,
+	cmpEndGameManager.MarkPlayersAsWon(
+		winningPlayers,
 		n => markForPluralTranslation(
 			"%(lastPlayer)s has won (Capture the Relic).",
 			"%(players)s and %(lastPlayer)s have won (Capture the Relic).",
@@ -177,4 +187,5 @@ Trigger.prototype.CaptureTheRelicVictorySetWinner = function(playerID)
 	cmpTrigger.RegisterTrigger("OnDiplomacyChanged", "CheckCaptureTheRelicCountdown", { "enabled": true });
 	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckCaptureTheRelicVictory", { "enabled": true });
 	cmpTrigger.RegisterTrigger("OnPlayerWon", "DeleteCaptureTheRelicVictoryMessages", { "enabled": true });
+	cmpTrigger.RegisterTrigger("OnPlayerDefeated", "CheckCaptureTheRelicCountdown", { "enabled": true });
 }

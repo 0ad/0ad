@@ -171,7 +171,7 @@ TriggerHelper.GetResourceType = function(entity)
 TriggerHelper.SetPlayerWon = function(playerID, victoryReason, defeatReason)
 {
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	cmpEndGameManager.MarkPlayerAsWon(playerID, victoryReason, defeatReason);
+	cmpEndGameManager.MarkPlayerAndAlliesAsWon(playerID, victoryReason, defeatReason);
 };
 
 /**

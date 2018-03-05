@@ -101,6 +101,17 @@ PlayerManager.prototype.GetAllPlayers = function()
 	return players;
 };
 
+/**
+ * Returns IDs of all players excluding gaia.
+ */
+PlayerManager.prototype.GetNonGaiaPlayers = function()
+{
+	let players = [];
+	for (let i = 1; i < this.playerEntities.length; ++i)
+		players.push(i);
+	return players;
+};
+
 PlayerManager.prototype.RemoveAllPlayers = function()
 {
 	// Destroy existing player entities
