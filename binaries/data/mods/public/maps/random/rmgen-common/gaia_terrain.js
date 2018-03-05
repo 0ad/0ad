@@ -5,7 +5,7 @@
 /**
  * Bumps add slight, diverse elevation differences to otherwise completely level terrain.
  */
-function createBumps(constraint, count, minSize, maxSize, spread, failFraction = 0, elevation = 2)
+function createBumps(constraints, count, minSize, maxSize, spread, failFraction = 0, elevation = 2)
 {
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -15,14 +15,14 @@ function createBumps(constraint, count, minSize, maxSize, spread, failFraction =
 			spread || Math.floor(scaleByMapSize(2, 5)),
 			failFraction),
 		new SmoothElevationPainter(ELEVATION_MODIFY, elevation, 2),
-		constraint,
+		constraints,
 		count || scaleByMapSize(100, 200));
 }
 
 /**
  * Hills are elevated, planar, impassable terrain areas.
  */
-function createHills(terrainset, constraint, tileClass, count, minSize, maxSize, spread, failFraction = 0.5, elevation = 18, elevationSmoothing = 2)
+function createHills(terrainset, constraints, tileClass, count, minSize, maxSize, spread, failFraction = 0.5, elevation = 18, elevationSmoothing = 2)
 {
 	g_Map.log("Creating hills");
 	createAreas(
@@ -36,14 +36,14 @@ function createHills(terrainset, constraint, tileClass, count, minSize, maxSize,
 			new SmoothElevationPainter(ELEVATION_SET, elevation, elevationSmoothing),
 			new TileClassPainter(tileClass)
 		],
-		constraint,
+		constraints,
 		count || scaleByMapSize(1, 4) * getNumPlayers());
 }
 
 /**
  * Mountains are impassable smoothened cones.
  */
-function createMountains(terrain, constraint, tileClass, count, maxHeight, minRadius, maxRadius, numCircles)
+function createMountains(terrain, constraints, tileClass, count, maxHeight, minRadius, maxRadius, numCircles)
 {
 	g_Map.log("Creating mountains");
 	let mapSize = g_Map.getSize();
@@ -54,7 +54,7 @@ function createMountains(terrain, constraint, tileClass, count, maxHeight, minRa
 			minRadius || Math.floor(scaleByMapSize(3, 4)),
 			maxRadius || Math.floor(scaleByMapSize(6, 12)),
 			numCircles || Math.floor(scaleByMapSize(4, 10)),
-			constraint,
+			constraints,
 			randIntExclusive(0, mapSize),
 			randIntExclusive(0, mapSize),
 			terrain,
@@ -280,7 +280,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 /**
  * Paint the given terrain texture in the given sizes at random places of the map to diversify monotone land texturing.
  */
-function createPatches(sizes, terrain, constraint, count,  tileClass, failFraction =  0.5)
+function createPatches(sizes, terrain, constraints, count,  tileClass, failFraction =  0.5)
 {
 	for (let size of sizes)
 		createAreas(
@@ -289,14 +289,14 @@ function createPatches(sizes, terrain, constraint, count,  tileClass, failFracti
 				new TerrainPainter(terrain),
 				new TileClassPainter(tileClass)
 			],
-			constraint,
+			constraints,
 			count);
 }
 
 /**
  * Same as createPatches, but each patch consists of a set of textures drawn depending to the distance of the patch border.
  */
-function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count, tileClass, failFraction = 0.5)
+function createLayeredPatches(sizes, terrains, terrainWidths, constraints, count, tileClass, failFraction = 0.5)
 {
 	for (let size of sizes)
 		createAreas(
@@ -305,7 +305,7 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
 				new LayeredPainter(terrains, terrainWidths),
 				new TileClassPainter(tileClass)
 			],
-			constraint,
+			constraints,
 			count);
 }
 
