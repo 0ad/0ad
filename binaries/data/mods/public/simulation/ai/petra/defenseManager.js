@@ -204,9 +204,9 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 {
 	const nbPlayers = gameState.sharedScript.playersData.length;
 	let i = gameState.ai.playedTurn % nbPlayers;
- 	this.attackingUnits[i] = undefined;
+	this.attackingUnits[i] = undefined;
 
-	if (i === PlayerID)
+	if (i == PlayerID)
 	{
 		if (!this.armies.length)
 		{
@@ -317,7 +317,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 	if (gameState.ai.playedTurn % 5 !== 0)
 		return;
 	// Check if any army is no more dangerous (possibly because it has defeated us and destroyed our base)
- 	this.attackingArmies = {};
+	this.attackingArmies = {};
 	for (let i = 0; i < this.armies.length; ++i)
 	{
 		let army = this.armies[i];
@@ -355,7 +355,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 		// TODO check smaller distance with all our buildings instead of only ccs with big distance
 		let stillDangerous = false;
 		let bases = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
-	 	for (let base of bases.values())
+		for (let base of bases.values())
 		{
 			if (!gameState.isEntityAlly(base))
 				continue;
@@ -394,7 +394,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 
 		// Okay for now needsDef is the total needed strength.
 		// we're dumb so we don't choose if we have a defender shortage.
-		armiesNeeding.push( {"army": army, "need": needsDef} );
+		armiesNeeding.push({ "army": army, "need": needsDef });
 	}
 
 	if (!armiesNeeding.length)
@@ -521,7 +521,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			if (attacker.position() && attacker.isGarrisonHolder() && attacker.getArrowMultiplier() &&
 			    (target.owner() != 0 || !target.hasClass("Unit") ||
 			     target.unitAIState() && target.unitAIState().split(".")[1] == "COMBAT"))
-				this.garrisonUnitsInside(gameState, attacker, {"attacker": target});
+				this.garrisonUnitsInside(gameState, attacker, { "attacker": target });
 		}
 
 		if (!gameState.isEntityOwn(target))
@@ -629,7 +629,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 
 		if (target.isGarrisonHolder() && target.getArrowMultiplier())
-			this.garrisonUnitsInside(gameState, target, {"attacker": attacker});
+			this.garrisonUnitsInside(gameState, target, { "attacker": attacker });
 
 		if (target.hasClass("Unit") && attacker.hasClass("Unit"))
 		{
@@ -681,11 +681,11 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 					if (minEnt)
 					{
 						capturableTarget.ents.delete(minEnt.id());
-						minEnt.attack(attacker.id(),  m.allowCapture(gameState, minEnt, attacker));
+						minEnt.attack(attacker.id(), m.allowCapture(gameState, minEnt, attacker));
 					}
 				}
 			}
-			target.attack(attacker.id(),  m.allowCapture(gameState, target, attacker));
+			target.attack(attacker.id(), m.allowCapture(gameState, target, attacker));
 		}
 	}
 };
@@ -882,7 +882,7 @@ m.DefenseManager.prototype.switchToAttack = function(gameState, army)
 m.DefenseManager.prototype.Serialize = function()
 {
 	let properties = {
-		"targetList" : this.targetList,
+		"targetList": this.targetList,
 		"armyMergeSize": this.armyMergeSize,
 		"attackingUnits": this.attackingUnits,
 		"attackingArmies": this.attackingArmies,

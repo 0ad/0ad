@@ -65,7 +65,7 @@ m.BuildManager.prototype.checkEvents = function(gameState, events)
 		if (events.Create.some(e => e.entity == evt.entity) || !evt.entityObj)
 			continue;
 		let ent = evt.entityObj;
-		if (ent &&  ent.isOwn(PlayerID) && ent.hasClass("Unit"))
+		if (ent && ent.isOwn(PlayerID) && ent.hasClass("Unit"))
 			this.incrementBuilderCounters(civ, ent, -1);
 	}
 

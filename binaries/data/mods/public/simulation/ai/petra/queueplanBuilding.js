@@ -44,9 +44,9 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	let builder = gameState.findBuilder(this.type);
 	if (!builder)
 	{
-			API3.warn("petra error: builder not found when starting construction.");
-			Engine.ProfileStop();
-			return;
+		API3.warn("petra error: builder not found when starting construction.");
+		Engine.ProfileStop();
+		return;
 	}
 
 	let pos = this.findGoodPosition(gameState);
@@ -306,7 +306,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	// also not for fields who can be stacked quite a bit
 
 	let obstructions = m.createObstructionMap(gameState, 0, template);
-	//obstructions.dumpIm(template.buildPlacementType() + "_obstructions.png");
+	// obstructions.dumpIm(template.buildPlacementType() + "_obstructions.png");
 
 	let radius = 0;
 	if (template.hasClass("Fortress") || template.hasClass("Workshop") ||
@@ -354,7 +354,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	let territoryMap = gameState.ai.HQ.territoryMap;
 
 	let obstructions = m.createObstructionMap(gameState, 0, template);
-	//obstructions.dumpIm(template.buildPlacementType() + "_obstructions.png");
+	// obstructions.dumpIm(template.buildPlacementType() + "_obstructions.png");
 
 	let bestIdx;
 	let bestJdx;
@@ -582,7 +582,7 @@ m.ConstructionPlan.prototype.checkDockPlacement = function(gameState, x, z, half
 	if (gameState.ai.accessibility.landPassMap[j] != land)
 		return null;
 	let water = 0;
- 	let sp = 15 * Math.sin(angle);
+	let sp = 15 * Math.sin(angle);
 	let cp = 15 * Math.cos(angle);
 	for (let i = 1; i < 5; ++i)
 	{
@@ -609,7 +609,7 @@ m.ConstructionPlan.prototype.checkDockPlacement = function(gameState, x, z, half
 			break;
 		water += 4;
 	}
-	return {"land": land, "water": water};
+	return { "land": land, "water": water };
 };
 
 /**
@@ -617,8 +617,8 @@ m.ConstructionPlan.prototype.checkDockPlacement = function(gameState, x, z, half
  * if the (object) wantedLand is given, this nearest land should have one of these accessibility
  * if wantedSea is given, this tile should be inside this sea
  */
-const around = [ [ 1.0, 0.0], [ 0.87, 0.50], [ 0.50, 0.87], [ 0.0, 1.0], [-0.50, 0.87], [-0.87, 0.50],
-                 [-1.0, 0.0], [-0.87,-0.50], [-0.50,-0.87], [ 0.0,-1.0], [ 0.50,-0.87], [ 0.87,-0.50] ];
+const around = [[ 1.0, 0.0], [ 0.87, 0.50], [ 0.50, 0.87], [ 0.0, 1.0], [-0.50, 0.87], [-0.87, 0.50],
+                [-1.0, 0.0], [-0.87,-0.50], [-0.50,-0.87], [ 0.0,-1.0], [ 0.50,-0.87], [ 0.87,-0.50]];
 
 m.ConstructionPlan.prototype.isDockLocation = function(gameState, j, dimension, wantedLand, wantedSea)
 {

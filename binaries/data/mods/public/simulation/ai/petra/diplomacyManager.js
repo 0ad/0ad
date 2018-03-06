@@ -122,7 +122,7 @@ m.DiplomacyManager.prototype.tributes = function(gameState)
 	}
 };
 
-m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
+m.DiplomacyManager.prototype.checkEvents = function(gameState, events)
 {
 	// Increase slowly the cooperative personality trait either when we receive tribute from our allies
 	// or if our allies attack enemies inside our territory

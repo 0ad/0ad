@@ -201,7 +201,7 @@ m.debugMap = function(gameState, map)
 {
 	let width = map.width;
 	let cell = map.cellSize;
-	gameState.getEntities().forEach( function (ent) {
+	gameState.getEntities().forEach(ent => {
 		let pos = ent.position();
 		if (!pos)
 			return;
@@ -209,11 +209,11 @@ m.debugMap = function(gameState, map)
 		let z = Math.round(pos[1] / cell);
 		let id = x + width*z;
 		if (map.map[id] == 1)
-			Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,0,0]});
+			Engine.PostCommand(PlayerID, { "type": "set-shading-color", "entities": [ent.id()], "rgb": [2, 0, 0] });
 		else if (map.map[id] == 2)
-			Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,2,0]});
+			Engine.PostCommand(PlayerID, { "type": "set-shading-color", "entities": [ent.id()], "rgb": [0, 2, 0] });
 		else if (map.map[id] == 3)
-			Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0,2]});
+			Engine.PostCommand(PlayerID, { "type": "set-shading-color", "entities": [ent.id()], "rgb": [0, 0, 2] });
 	});
 };
 

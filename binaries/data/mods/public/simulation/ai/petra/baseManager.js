@@ -105,7 +105,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 };
 
 /* we lost our anchor. Let's reaffect our units and buildings */
-m.BaseManager.prototype.anchorLost = function (gameState, ent)
+m.BaseManager.prototype.anchorLost = function(gameState, ent)
 {
 	this.anchor = undefined;
 	this.anchorId = undefined;
@@ -129,7 +129,7 @@ m.BaseManager.prototype.setAnchorlessEntity = function(gameState, ent)
  * Assign the resources around the dropsites of this basis in three areas according to distance, and sort them in each area.
  * Moving resources (animals) and buildable resources (fields) are treated elsewhere.
  */
-m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite)
+m.BaseManager.prototype.assignResourceToDropsite = function(gameState, dropsite)
 {
 	if (this.dropsites[dropsite.id()])
 	{
@@ -212,7 +212,7 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 };
 
 // completely remove the dropsite resources from our list.
-m.BaseManager.prototype.removeDropsite = function (gameState, ent)
+m.BaseManager.prototype.removeDropsite = function(gameState, ent)
 {
 	if (!ent.id())
 		return;
@@ -283,7 +283,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 			if (res !== "food")
 				total += gameState.sharedScript.resourceMaps[res].map[j];
 
-		total = 0.7*total;   // Just a normalisation factor as the locateMap is limited to 255
+		total *= 0.7;   // Just a normalisation factor as the locateMap is limited to 255
 		if (total <= bestVal)
 			continue;
 
@@ -332,14 +332,14 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		warn(" for dropsite best is " + bestVal);
 
 	if (bestVal <= 0)
-		return {"quality": bestVal, "pos": [0, 0]};
+		return { "quality": bestVal, "pos": [0, 0] };
 
 	let x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
 	let z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 	return { "quality": bestVal, "pos": [x, z] };
 };
 
-m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly = false)
+m.BaseManager.prototype.getResourceLevel = function(gameState, type, nearbyOnly = false)
 {
 	let count = 0;
 	let check = {};
@@ -364,7 +364,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly
 };
 
 /** check our resource levels and react accordingly */
-m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
+m.BaseManager.prototype.checkResourceLevels = function(gameState, queues)
 {
 	for (let type of Resources.GetCodes())
 	{
@@ -471,23 +471,23 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 		// I use some logarithms.
 		// TODO: this should take into account for unit speed and/or distance to target
 
-		this.gatherersByType(gameState, res).forEach(function (ent) {
+		this.gatherersByType(gameState, res).forEach(ent => {
 			if (ent.isIdle() || !ent.position())
 				return;
 			let gRate = ent.currentGatherRate();
 			if (gRate)
 				currentRates[res] += Math.log(1+gRate)/1.1;
 		});
-		if (res === "food")
+		if (res == "food")
 		{
-			this.workersBySubrole(gameState, "hunter").forEach(function (ent) {
+			this.workersBySubrole(gameState, "hunter").forEach(ent => {
 				if (ent.isIdle() || !ent.position())
 					return;
 				let gRate = ent.currentGatherRate();
 				if (gRate)
 					currentRates[res] += Math.log(1+gRate)/1.1;
 			});
-			this.workersBySubrole(gameState, "fisher").forEach(function (ent) {
+			this.workersBySubrole(gameState, "fisher").forEach(ent => {
 				if (ent.isIdle() || !ent.position())
 					return;
 				let gRate = ent.currentGatherRate();
@@ -666,7 +666,7 @@ m.BaseManager.prototype.gatherersByType = function(gameState, type)
  */
 m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 {
-	let availableWorkers = this.workers.filter(function (ent) {
+	let availableWorkers = this.workers.filter(ent => {
 		if (!ent.position() || !ent.isBuilder())
 			return false;
 		if (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3)
@@ -675,7 +675,7 @@ m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 			return false;
 		return true;
 	}).toEntityArray();
-	availableWorkers.sort(function (a,b) {
+	availableWorkers.sort((a, b) => {
 		let vala = 0;
 		let valb = 0;
 		if (a.getMetadata(PlayerID, "subrole") == "builder")
@@ -726,7 +726,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	{
 		foundations = foundations.filter(API3.Filters.byMetadata(PlayerID, "baseAnchor", true));
 		let tID = foundations.toEntityArray()[0].id();
-		workers.forEach(function (ent) {
+		workers.forEach(ent => {
 			let target = ent.getMetadata(PlayerID, "target-foundation");
 			if (target && target != tID)
 			{
@@ -742,7 +742,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (fromOtherBase)
 		{
 			let baseID = this.ID;
-			fromOtherBase.forEach(function (worker) {
+			fromOtherBase.forEach(worker => {
 				worker.setMetadata(PlayerID, "base", baseID);
 				worker.setMetadata(PlayerID, "subrole", "builder");
 				workers.updateEnt(worker);
@@ -788,7 +788,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			maxTotalBuilders = 2;
 		if (target.hasClass("House") && gameState.getPopulationLimit() < gameState.getPopulation() + 5 &&
 		    gameState.getPopulationLimit() < gameState.getPopulationMax())
-			maxTotalBuilders = maxTotalBuilders + 2;
+			maxTotalBuilders += 2;
 		let targetNB = 2;
 		if (target.hasClass("Fortress") || target.hasClass("Wonder") ||
 		    target.getMetadata(PlayerID, "phaseUp") == true)
@@ -839,15 +839,14 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			return true;
 		}).toEntityArray();
 		let time = target.buildTime();
-		nonBuilderWorkers.sort(function (workerA,workerB)
-		{
-			let coeffA = API3.SquareVectorDistance(target.position(),workerA.position());
+		nonBuilderWorkers.sort((workerA, workerB) => {
+			let coeffA = API3.SquareVectorDistance(target.position(), workerA.position());
 			// elephant moves slowly, so when far away they are only useful if build time is long
 			if (workerA.hasClass("Elephant"))
 				coeffA *= 0.5 * (1 + Math.sqrt(coeffA)/5/time);
 			else if (workerA.getMetadata(PlayerID, "gather-type") == "food")
 				coeffA *= 3;
-			let coeffB = API3.SquareVectorDistance(target.position(),workerB.position());
+			let coeffB = API3.SquareVectorDistance(target.position(), workerB.position());
 			if (workerB.hasClass("Elephant"))
 				coeffB *= 0.5 * (1 + Math.sqrt(coeffB)/5/time);
 			else if (workerB.getMetadata(PlayerID, "gather-type") == "food")
@@ -992,7 +991,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 			}
 			return false;
 		}
-	 	// If we have a base with anchor on the same land, reassign everything to it
+		// If we have a base with anchor on the same land, reassign everything to it
 		let reassignedBase;
 		for (let ent of this.buildings.values())
 		{

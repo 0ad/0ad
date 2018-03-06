@@ -182,7 +182,7 @@ m.NavalManager.prototype.getFishSea = function(gameState, fish)
 	if (sea)
 		return sea;
 	const ntry = 4;
-	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
+	const around = [[-0.7, 0.7], [0, 1], [0.7, 0.7], [1, 0], [0.7, -0.7], [0, -1], [-0.7, -0.7], [-1, 0]];
 	let pos = gameState.ai.accessibility.gamePosToMapPos(fish.position());
 	let width = gameState.ai.accessibility.width;
 	let k = pos[0] + pos[1]*width;
@@ -219,7 +219,7 @@ m.NavalManager.prototype.canFishSafely = function(gameState, fish)
 	if (fish.getMetadata(PlayerID, "opensea"))
 		return true;
 	const ntry = 2;
-	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
+	const around = [[-0.7, 0.7], [0, 1], [0.7, 0.7], [1, 0], [0.7, -0.7], [0, -1], [-0.7, -0.7], [-1, 0]];
 	let territoryMap = gameState.ai.HQ.territoryMap;
 	let width = territoryMap.width;
 	let radius = 120 / territoryMap.cellSize / ntry;
@@ -244,12 +244,12 @@ m.NavalManager.prototype.canFishSafely = function(gameState, fish)
 m.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
 {
 	let seas = gameState.ai.accessibility.regionLinks[region].slice();
-	this.docks.forEach(function (dock) {
+	this.docks.forEach(dock => {
 		if (!dock.hasClass("Dock") || m.getLandAccess(gameState, dock) != region)
 			return;
 		let i = seas.indexOf(m.getSeaAccess(gameState, dock));
 		if (i != -1)
-			seas.splice(i--,1);
+			seas.splice(i--, 1);
 	});
 	return seas;
 };
@@ -294,9 +294,9 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		if (plan.state == "boarding")
 		{
 			// just reset the units onBoard metadata and wait for a new ship to be assigned to this plan
-			plan.units.forEach(function (ent) {
-				if (ent.getMetadata(PlayerID, "onBoard") === "onBoard" && ent.position() ||
-				    ent.getMetadata(PlayerID, "onBoard") === shipId)
+			plan.units.forEach(ent => {
+				if (ent.getMetadata(PlayerID, "onBoard") == "onBoard" && ent.position() ||
+				    ent.getMetadata(PlayerID, "onBoard") == shipId)
 					ent.setMetadata(PlayerID, "onBoard", undefined);
 			});
 			plan.needTransportShips = !plan.transportShips.hasEntities();
@@ -456,7 +456,7 @@ m.NavalManager.prototype.setMinimalTransportShips = function(gameState, sea, num
 {
 	if (!sea)
 		return;
-	if (this.wantedTransportShips[sea] < number )
+	if (this.wantedTransportShips[sea] < number)
 		this.wantedTransportShips[sea] = number;
 };
 
@@ -594,7 +594,7 @@ m.NavalManager.prototype.moveApart = function(gameState)
 				continue;
 			}
 			if (ship.getMetadata(PlayerID, "stationnary"))
-					continue;
+				continue;
 			ship.setMetadata(PlayerID, "stationnary", true);
 			// Check if there are some treasure around
 			if (m.gatherTreasure(gameState, ship, true))
@@ -651,7 +651,7 @@ m.NavalManager.prototype.moveApart = function(gameState)
 				continue;
 			}
 			if (ship.getMetadata(PlayerID, "stationnary"))
-					continue;
+				continue;
 			ship.setMetadata(PlayerID, "stationnary", true);
 			// Check if there are some treasure around
 			if (m.gatherTreasure(gameState, ship, true))

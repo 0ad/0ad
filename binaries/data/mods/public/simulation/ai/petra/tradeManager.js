@@ -54,7 +54,7 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 				numLandTraders += item.count;
 		}
 	});
-        if (numTraders >= this.targetNumTraders &&
+	if (numTraders >= this.targetNumTraders &&
 		(!this.tradeRoute.sea && numLandTraders >= Math.floor(this.targetNumTraders/2) ||
 		  this.tradeRoute.sea && numSeaTraders >= Math.floor(this.targetNumTraders/2)))
 		return;
@@ -203,7 +203,7 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 		tradingGoods[mostNeeded[1].type] += nextNeed;
 	else
 		tradingGoods[mostNeeded[0].type] += nextNeed;
-	Engine.PostCommand(PlayerID, {"type": "set-trading-goods", "tradingGoods": tradingGoods});
+	Engine.PostCommand(PlayerID, { "type": "set-trading-goods", "tradingGoods": tradingGoods });
 	if (this.Config.debug > 2)
 		API3.warn(" trading goods set to " + uneval(tradingGoods));
 };

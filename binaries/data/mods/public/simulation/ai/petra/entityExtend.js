@@ -188,7 +188,7 @@ m.allowCapture = function(gameState, ent, target)
 		}
 		capture = capturable.strength;
 	}
-	capture *= 1 / ( 0.1 + 0.9*target.healthLevel());
+	capture *= 1 / (0.1 + 0.9*target.healthLevel());
 	let sumCapturePoints = target.capturePoints().reduce((a, b) => a + b);
 	if (target.hasDefensiveFire() && target.isGarrisonHolder() && target.garrisoned())
 		return capture > antiCapture + sumCapturePoints/50;

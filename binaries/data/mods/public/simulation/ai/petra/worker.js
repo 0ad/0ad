@@ -785,7 +785,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 			continue;
 
 		// Only cavalry should hunt far from dropsite (specially for non domestic animals which flee)
- 		if (!isCavalry && canFlee && territoryOwner == 0)
+		if (!isCavalry && canFlee && territoryOwner == 0)
 			continue;
 		let distanceSquare = isCavalry ? 35000 : (canFlee ? 7000 : 12000);
 		if (!hasFoodDropsiteWithinDistance(supply.position(), supplyAccess, distanceSquare))
@@ -898,7 +898,7 @@ m.Worker.prototype.startFishing = function(gameState)
 		this.ent.setMetadata(PlayerID, "target-foundation", undefined);
 		return true;
 	}
-	if (this.ent.getMetadata(PlayerID,"subrole") == "fisher")
+	if (this.ent.getMetadata(PlayerID, "subrole") == "fisher")
 		this.ent.setMetadata(PlayerID, "subrole", "idle");
 	return false;
 };
