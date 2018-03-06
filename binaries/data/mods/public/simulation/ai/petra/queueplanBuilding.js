@@ -81,7 +81,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	else
 		this.metadata.access = gameState.ai.accessibility.getAccessValue([pos.x, pos.z]);
 
-	if (this.template.buildPlacementType() === "shore")
+	if (this.template.buildPlacementType() == "shore")
 	{
 		// adjust a bit the position if needed
 		let cosa = Math.cos(pos.angle);
@@ -209,7 +209,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				let x = Math.round(pos[0] / cellSize);
 				let z = Math.round(pos[1] / cellSize);
 
-				let struct = ent.foundationProgress() === undefined ? ent : gameState.getBuiltTemplate(ent.templateName());
+				let struct = m.getBuiltEntity(gameState, ent);
 				if (struct.resourceDropsiteTypes() && struct.resourceDropsiteTypes().indexOf("food") != -1)
 				{
 					if (template.hasClass("Field") || template.hasClass("Corral"))
@@ -234,7 +234,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 					placement.addInfluence(x, z, 120/cellSize, -50);
 				else if (template.hasClass("Military"))
 					placement.addInfluence(x, z, 40/cellSize, -40);
-				else if (template.genericName() === "Rotary Mill" && ent.hasClass("Field"))
+				else if (template.genericName() == "Rotary Mill" && ent.hasClass("Field"))
 					placement.addInfluence(x, z, 60/cellSize, 40);
 			});
 		}
@@ -664,7 +664,7 @@ m.ConstructionPlan.prototype.getFrontierProximity = function(gameState, j)
 	let alliedVictory = gameState.getAlliedVictory();
 	let territoryMap = gameState.ai.HQ.territoryMap;
 	let territoryOwner = territoryMap.getOwnerIndex(j);
-	if (territoryOwner === PlayerID || alliedVictory && gameState.isPlayerAlly(territoryOwner))
+	if (territoryOwner == PlayerID || alliedVictory && gameState.isPlayerAlly(territoryOwner))
 		return 0;
 
 	let borderMap = gameState.ai.HQ.borderMap;
@@ -686,13 +686,13 @@ m.ConstructionPlan.prototype.getFrontierProximity = function(gameState, j)
 			if (borderMap.map[jx+width*jz] & m.outside_Mask)
 				continue;
 			territoryOwner = territoryMap.getOwnerIndex(jx+width*jz);
-			if (alliedVictory && gameState.isPlayerAlly(territoryOwner) || territoryOwner === PlayerID)
+			if (alliedVictory && gameState.isPlayerAlly(territoryOwner) || territoryOwner == PlayerID)
 			{
 				best = Math.min(best, i);
 				break;
 			}
 		}
-		if (best === 1)
+		if (best == 1)
 			break;
 	}
 
@@ -715,9 +715,9 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 	let nbcell = 0;
 	for (let k of types)
 	{
-		if (k === "food" || !resourceMaps[k])
+		if (k == "food" || !resourceMaps[k])
 			continue;
-		let weigh0 = k === "wood" ? 2 : 1;
+		let weigh0 = k == "wood" ? 2 : 1;
 		for (let dy = 0; dy <= size; ++dy)
 		{
 			let dxmax = size - dy;
@@ -735,7 +735,7 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 					nbcell += weight;
 				}
 			}
-			if (dy === 0)
+			if (dy == 0)
 				continue;
 			ky = iy - dy;
 			if (ky >= 0 && ky < w)
@@ -758,7 +758,7 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 
 m.ConstructionPlan.prototype.isGo = function(gameState)
 {
-	if (this.goRequirement && this.goRequirement === "houseNeeded")
+	if (this.goRequirement && this.goRequirement == "houseNeeded")
 	{
 		if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_house"))
 			return false;

@@ -90,7 +90,7 @@ m.BaseManager.prototype.assignEntity = function(gameState, ent)
 m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 {
 	if (!anchorEntity.hasClass("CivCentre"))
-		warn("Error: Petra base " + this.ID + " has been assigned " + ent.templateName() + " as anchor.");
+		API3.warn("Error: Petra base " + this.ID + " has been assigned " + ent.templateName() + " as anchor.");
 	else
 	{
 		this.anchor = anchorEntity;
@@ -116,12 +116,18 @@ m.BaseManager.prototype.anchorLost = function(gameState, ent)
 /** Set a building of an anchorless base */
 m.BaseManager.prototype.setAnchorlessEntity = function(gameState, ent)
 {
-	if (!ent.resourceDropsiteTypes())
-		warn("Error: Petra base " + this.ID + " has been assigned " + ent.templateName() + " as origin.");
+	if (!this.buildings.hasEntities())
+	{
+		if (!m.getBuiltEntity(gameState, ent).resourceDropsiteTypes())
+			API3.warn("Error: Petra base " + this.ID + " has been assigned " + ent.templateName() + " as origin.");
+		this.accessIndex = m.getLandAccess(gameState, ent);
+	}
+	else if (this.accessIndex != m.getLandAccess(gameState, ent))
+		API3.warn(" Error: Petra base " + this.ID + " with access " + this.accessIndex +
+		          " has been assigned " + ent.templateName() + " with access" + m.getLandAccess(gameState, ent));
 
 	ent.setMetadata(PlayerID, "base", this.ID);
 	this.buildings.updateEnt(ent);
-	this.accessIndex = m.getLandAccess(gameState, ent);
 	return true;
 };
 

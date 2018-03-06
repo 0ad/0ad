@@ -332,6 +332,15 @@ m.getHolder = function(gameState, ent)
 	return undefined;
 };
 
+/** return the template of the built foundation if a foundation, otherwise return the entity itself */
+m.getBuiltEntity = function(gameState, ent)
+{
+	if (ent.foundationProgress() !== undefined)
+		return gameState.getBuiltTemplate(ent.templateName());
+
+	return ent;
+};
+
 /**
  * return true if it is not worth finishing this building (it would surely decay)
  * TODO implement the other conditions
