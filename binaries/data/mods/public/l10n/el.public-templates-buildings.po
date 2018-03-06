@@ -13,6 +13,7 @@
 # Dimitrios Kekakos <mitsoskekakos@gmail.com>, 2014-2015
 # crippledmoon <domas392@in.gr>, 2016
 # George Charoupas <labaxp@gmail.com>, 2015
+# George Spere <g.sperelakis@gmail.com>, 2018
 # manitarious gr <manitarious@gmail.com>, 2015
 # malvanos <malvanos@gmail.com>, 2014
 # manitarious gr <manitarious@gmail.com>, 2016
@@ -34,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-21 09:03+0200\n"
-"PO-Revision-Date: 2017-11-16 11:00+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"PO-Revision-Date: 2018-03-02 12:46+0000\n"
+"Last-Translator: George Spere <g.sperelakis@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -294,13 +295,13 @@ msgstr "Ερεύνησε για αναβαθμίσεις όπλων και τι�
 #: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_blacksmith.xml:29
 msgid "Blacksmith"
-msgstr "Σιδηρουργός"
+msgstr "Σιδηρουργείο"
 
 #: simulation/templates/template_structure_military_dock.xml:25
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Χτίσε πάνω σε μία ακτογραμμή για να δημιουργήσεις ναυτικά σκάφη και να ανοίξεις θαλάσσιο εμπόριο. Ερεύνησε ναυτικές βελτιώσεις."
+msgstr "Χτίστε πάνω σε μία ακτογραμμή για να κατασκευάσετε ναυτικά σκάφη και να ανοίξεις θαλάσσιο εμπόριο. Ερευνήστε ναυτικές βελτιώσεις."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -323,7 +324,7 @@ msgstr "Φρούριο"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr "Εκπαίδευσε ήρωες και πολιορκητικές μηχανές. Κάνε έρευνες για την βελτίωση των μηχανών."
+msgstr "Εκπαίδευστε ήρωες, πρωταθλητές και πολιορκητικές μηχανές. Ερευνήστε βελτιώσεις  των πολιορκητικων μηχανών."
 
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
@@ -343,7 +344,7 @@ msgstr "Πόροι"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Ανέθρεψε κοπάδια ζώων για τροφή. Τοποθέτησε τα οικόσιτα ζώα εδώ για να έχεις μία μικρή αλλά σταθερή ροή τροφής ή άλλα πλεονεκτήματα (Δεν έχει προστεθεί ακόμα)."
+msgstr "Αναθρέψτε κοπάδια ζώων για τροφή. Τοποθέτησε τα οικόσιτα ζώα εδώ για να έχεις μία μικρή αλλά σταθερή ροή τροφής ή άλλα πλεονεκτήματα (Δεν έχει προστεθεί ακόμα)."
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -357,7 +358,7 @@ msgstr "Χωράφι"
 
 #: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Μάζεψε λαχανικά. Μέγιστος αριθμός συλλεκτών: 5."
+msgstr "Συγκομίστε λαχανικά. Μέγιστος αριθμός συλλεκτών: 5."
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:36
@@ -366,7 +367,7 @@ msgstr "Ειδικό κτήριο"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr "Αυτό είναι ένα ειδικό κτίριο, μοναδικό για ένα συγκεκριμένο πολιτισμό."
+msgstr "Ειδικό κτίριο, μοναδικό για κάθε  ένα συγκεκριμένο πολιτισμό."
 
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Library"
@@ -374,7 +375,7 @@ msgstr "Βιβλιοθήκη"
 
 #: simulation/templates/template_structure_special_library.xml:19
 msgid "Research special technologies."
-msgstr "Έρευνα ειδικών τεχνολογιών"
+msgstr "Ερευνήστε εξειδικευμένες τεχνολογίες"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "Rotary Mill"
@@ -396,7 +397,7 @@ msgstr "Θέατρον"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Φέρτε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας."
+msgstr "Κομίστε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας."
 
 #: simulation/templates/template_structure_wonder.xml:52
 #: simulation/templates/template_structure_wonder.xml:50
@@ -459,7 +460,7 @@ msgstr "Επιτείχισμα"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr "Κατασκευάσετε πολιορκητικές μηχανές. Οχύρωσε στρατιώτες μέσα για σθεναρή άμυνα."
+msgstr "Κατασκευάστε πολιορκητικές μηχανές. Οχύρωσε στρατιώτες μέσα για σθεναρή άμυνα."
 
 #: simulation/templates/structures/athen_gymnasion.xml:23
 msgid "Gymnasium"
@@ -568,7 +569,7 @@ msgstr "Ναός Παρθενών "
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Μεγαλούργησε και πρόσθεσε μεγάλες εκτάσεις γης στην αυτοκρατορία σου. Περιφρούρησε μονάδες σε αυτό για να θεραπευτούν με εξαιρετικά γρήγορο ρυθμό."
+msgstr "Κομίστε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας.. Οχυρώστε μονάδες  για να θεραπευτούν με εξαιρετικά γρήγορο ρυθμό."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -725,11 +726,11 @@ msgstr "Namel"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "Κατασκευάσε Αλιευτικά για να συγκεντρωθούν κρέας και εμπορικά πλοία για εμπορικές συναλλαγές με άλλα λιμάνια."
+msgstr "Κατασκευάστε Αλιευτικά για να συγκεντρώσετε κρέας ψαριού και εμπορικά πλοία για πραγματοποιειτε συναλλαγές με άλλα λιμάνια."
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
-msgstr "Προσέλαβε μισθοφόρους."
+msgstr "Προσλάβετε μισθοφόρους."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Celtic Embassy"
@@ -737,7 +738,7 @@ msgstr "Πρεσβεία Κελτών"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "Στρατολόγησε Κέλτες μισθοφόρους. Ερεύνησε βελτιώσεις για αυτούς τους μισθοφόρους"
+msgstr "Στρατολογήστε Κέλτες μισθοφόρους. Ερεύνηστε βελτιώσεις για αυτούς τους μισθοφόρους"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Iberian Embassy"
@@ -745,7 +746,7 @@ msgstr "Πρεσβεία Ιβήρων"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr "Στρατολόγησε Ιβήριους μισθοφόρους. Ερεύνησε βελτιώσεις για αυτούς τους μισθοφόρους"
+msgstr "Στρατολόγηστε Ιβήριους μισθοφόρους. Ερευνήστε βελτιώσεις για αυτούς τους μισθοφόρους"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italian Embassy"
@@ -753,7 +754,7 @@ msgstr "Πρεσβεία Ιταλών"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr "Στρατολόγησε Ιταλούς μισθοφόρους. Ερεύνησε βελτιώσεις για αυτούς τους μισθοφόρους"
+msgstr "Στρατολογήστε Ιταλούς μισθοφόρους. Ερευνήστε βελτιώσεις για αυτούς τους μισθοφόρους"
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
@@ -781,7 +782,7 @@ msgstr "Šūq"
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
-msgstr "Καρχηδονική Προφυλακή"
+msgstr "Καρχηδονικό Φυλάκιο"
 
 #: simulation/templates/structures/cart_s_wall_long.xml:6
 #: simulation/templates/structures/cart_s_wall_medium.xml:6
@@ -819,7 +820,7 @@ msgstr "Μάγδας"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr "Εκπαίδευσε ιερείς για να θεραπεύεις τα στρατεύματά σου. Εκπαίδευσε λογχοφόρους ιερής μπάντας. Θέσε μονάδες σε φρουρά για να τις θεραπεύσεις σε γρήγορο ρυθμό."
+msgstr "Εκπαίδεύστε ιερείς για να θεραπεύετε τα στρατεύματά σας.  Εκπαιδεύστε Ιερούς Λόχους με λογχοφόρους.  Οχυρώστε εντός μονάδες για να τις θεραπεύσετε με γρήγορο ρυθμό."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -845,11 +846,11 @@ msgstr "Γαλατικό δινάριο"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "Εκπαίδευσε Γαλάτες ήρωες και πρωταθλητές. Κατασκεύασε πολιορκητικούς κριούς."
+msgstr "Εκπαιδεύστε Γαλάτες ήρωες και πρωταθλητές. Κατασκευάστε πολιορκητικούς κριούς."
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
-msgstr "Γαλατική Προφυλακή"
+msgstr "Γαλατικό Φυλάκιο"
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
@@ -1062,7 +1063,7 @@ msgstr "Κίονας"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
 msgid "Edict Pillar of Ashoka"
-msgstr "Πυλώνας διατάγματος του Ashoka"
+msgstr "Στήλη του Ashoka"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:35
 msgid "Śāsana Stambha Aśokā"
@@ -1180,7 +1181,7 @@ msgstr "Διδά"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Εκπαίδευσε Πρωταθλητές Ιππικό και κατασκεύασε Πολιορκητικούς Κριούς."
+msgstr "Εκπαιδεύστε Πρωταθλητές Ιππικό και κατασκευάστε Πολιορκητικούς Κριούς."
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Persian Hall"
@@ -1234,7 +1235,7 @@ msgstr "Στάβλος"
 
 #: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
-msgstr "Εκπαίδευσε μονάδες πολιτών-ιππέων."
+msgstr "Εκπαίδεύστε μονάδες πολιτών-ιππέων."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
@@ -1271,7 +1272,7 @@ msgstr "ḥwt-n-mš'"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr "Εκπαίδευσε πολίτες-στρατιώτες από την Αίγυπτο και τη Μέση Ανατολή. Ερεύνησε βελτιώσεις εκπαίδευσης."
+msgstr "Εκπαιδεύστε πολίτες-στρατιώτες από την Αίγυπτο και τη Μέση Ανατολή. Ερευνήστε βελτιώσεις εκπαίδευσης."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
@@ -1337,18 +1338,18 @@ msgstr "Στρατοπεδεία Μισθοφόρων"
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Φθηνό κτήριο παρόμοιο με στρατώνα που μπορεί να χτιστεί σε ουδέτερη περιοχή, όμως δεν δίνει καθόλου επιρροή περιοχής. Εκπαίδευσε Μισθοφόρους."
+msgstr "Φθηνό κτήριο παρόμοιο με στρατώνα οικοδομήσιμο σε ουδέτερη περιοχή, όμως δεν δίνει καθόλου εδαφική επιρροή . Εκπαίδεύστε Μισθοφόρους."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
-msgstr "Klēroukhia"
+msgstr "Κληρουχία"
 
 #: simulation/templates/structures/ptol_military_colony.xml:12
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Αυτό είναι το κτήριο επέκτασης των Πτολεμαίων, παρόμοιο με τα Αστικά Κέντρα για άλλες   φατρίες. Είναι πιο αδύναμο και δίνει μικρότερη επιρροή περιοχής, αλλά είναι φθηνότερο και χτίζεται γρηγορότερα. Εκπαίδευσε αποικιακούς στρατιώτες διαφόρων εθνικοτήτων."
+msgstr "Αυτό είναι το κτήριο επέκτασης των Πτολεμαίων, παρόμοιο με τα Αστικά Κέντρα για άλλους πολιτισμούς. Είναι πιο αδύναμο και δίνει μικρότερη εδαφική επιρροή , αλλά είναι φθηνότερο και χτίζεται γρηγορότερα. Εκπαίδεύστε  στρατιώτες-αποίκους διαφόρων εθνικοτήτων."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1401,7 +1402,7 @@ msgstr "Castrum Vallum"
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Κτίσε σε ουδέτερη ή εχθρική περιοχή. Κατασκεύασε πολιορκητικά όπλα και εκπαίδευσε πολίτες-στρατιώτες. Θεράπευσε τις έγκλειστες μονάδες αργά."
+msgstr "Κτίστε σε ουδέτερη ή εχθρική περιοχή. Κατασκευάστε πολιορκητικά όπλα και εκπαίδεύστε πολίτες-στρατιώτες. Θεραπεύστε τις οχυρωμένες μονάδες αργά."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1578,7 +1579,7 @@ msgstr "Φρούριον"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr "Χτίσε μηχανές πολιορκίας και εκπαίδευσε Πρωταθλητές. Θέσε στρατιώτες σε φρουρά για δυνατή άμυνα."
+msgstr "Χτίστε μηχανές πολιορκίας και εκπαιδεύστε Πρωταθλητές. Θέστε στρατιώτες  για δυνατή άμυνα."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1593,7 +1594,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Αυτό είναι το  κτήριο επέκτασης των Σελευκιδών, παρόμοιο με τα Αστικά Κέντρα για άλλες φατρίες. Είναι πιο αδύναμο και δίνει μικρότερη επιρροή περιοχής, αλλά είναι φθηνότερο και χτίζεται γρηγορότερα. Εκπαίδευσε αποικιακούς στρατιώτες διαφόρων εθνικοτήτων."
+msgstr "Αυτό είναι το  κτήριο επέκτασης των Σελευκιδών, παρόμοιο με τα Αστικά Κέντρα για άλλους πολιτισμους. Είναι πιο αδύναμο και δίνει μικρότερη εδαφική επιρροή, αλλά είναι φθηνότερο και χτίζεται γρηγορότερα. Εκπαιδεύστε  στρατιώτες-αποίκους διαφόρων εθνικοτήτων."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1644,4 +1645,4 @@ msgstr "Εκπαίδευση Σπαρτιατών ηρώων και πρωταθ
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr "Φέρε δόξα στον πολιτισμό σου και πρόσθεσε μεγάλες εκτάσεις γης στην αυτοκρατορία σου. Θέσε μονάδες σε φρουρά για να τις θεραπεύσεις σε γρήγορο ρυθμό."
+msgstr "Κομίστε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας.. Οχυρώστε μονάδες  για να θεραπευτούν με εξαιρετικά γρήγορο ρυθμό."
