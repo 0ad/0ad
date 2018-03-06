@@ -11,11 +11,7 @@ m.EntityCollection = function(sharedAI, entities = new Map(), filters = [])
 		if (filter.dynamicProperties.length)
 			this.dynamicProp = this.dynamicProp.concat(filter.dynamicProperties);
 
-	Object.defineProperty(this, "length", {
-		get: function () {
-			return this._entities.size;
-		}
-	});
+	Object.defineProperty(this, "length", { "get": () => this._entities.size });
 	this.frozen = false;
 };
 
@@ -84,8 +80,8 @@ m.EntityCollection.prototype.toString = function()
 
 m.EntityCollection.prototype.filter = function(filter, thisp)
 {
-	if (typeof filter === "function")
-		filter = {"func": filter, "dynamicProperties": []};
+	if (typeof filter == "function")
+		filter = { "func": filter, "dynamicProperties": [] };
 
 	let ret = new Map();
 	for (let [id, ent] of this._entities)
@@ -148,53 +144,53 @@ m.EntityCollection.prototype.hasEntities = function()
 
 m.EntityCollection.prototype.move = function(x, z, queued = false)
 {
-	Engine.PostCommand(PlayerID,{"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
+	Engine.PostCommand(PlayerID, { "type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued });
 	return this;
 };
 
 m.EntityCollection.prototype.moveToRange = function(x, z, min, max, queued = false)
 {
-	Engine.PostCommand(PlayerID,{"type": "walk-to-range", "entities": this.toIdArray(), "x": x, "z": z,
+	Engine.PostCommand(PlayerID, { "type": "walk-to-range", "entities": this.toIdArray(), "x": x, "z": z,
 		"min": min, "max": max, "queued": queued });
 	return this;
 };
 
 m.EntityCollection.prototype.attackMove = function(x, z, targetClasses, allowCapture = true, queued = false)
 {
-	Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z,
-		"targetClasses": targetClasses, "allowCapture": allowCapture, "queued": queued});
+	Engine.PostCommand(PlayerID, { "type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z,
+		"targetClasses": targetClasses, "allowCapture": allowCapture, "queued": queued });
 	return this;
 };
 
 m.EntityCollection.prototype.moveIndiv = function(x, z, queued = false)
 {
 	for (let id of this._entities.keys())
-		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [id], "x": x, "z": z, "queued": queued});
+		Engine.PostCommand(PlayerID, { "type": "walk", "entities": [id], "x": x, "z": z, "queued": queued });
 	return this;
 };
 
 m.EntityCollection.prototype.garrison = function(target)
 {
-	Engine.PostCommand(PlayerID,{"type": "garrison", "entities": this.toIdArray(), "target": target.id()});
+	Engine.PostCommand(PlayerID, { "type": "garrison", "entities": this.toIdArray(), "target": target.id() });
 	return this;
 };
 
 m.EntityCollection.prototype.destroy = function()
 {
-	Engine.PostCommand(PlayerID,{"type": "delete-entities", "entities": this.toIdArray()});
+	Engine.PostCommand(PlayerID, { "type": "delete-entities", "entities": this.toIdArray() });
 	return this;
 };
 
 m.EntityCollection.prototype.attack = function(unitId)
 {
-	Engine.PostCommand(PlayerID,{"type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false});
+	Engine.PostCommand(PlayerID, { "type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false });
 	return this;
 };
 
 /** violent, aggressive, defensive, passive, standground */
 m.EntityCollection.prototype.setStance = function(stance)
 {
-	Engine.PostCommand(PlayerID,{"type": "stance", "entities": this.toIdArray(), "name" : stance, "queued": false});
+	Engine.PostCommand(PlayerID, { "type": "stance", "entities": this.toIdArray(), "name": stance, "queued": false });
 	return this;
 };
 
@@ -209,7 +205,7 @@ m.EntityCollection.prototype.getCentrePosition = function()
 			continue;
 		sumPos[0] += ent.position()[0];
 		sumPos[1] += ent.position()[1];
-		count ++;
+		count++;
 	}
 
 	return count ? [sumPos[0]/count, sumPos[1]/count] : undefined;

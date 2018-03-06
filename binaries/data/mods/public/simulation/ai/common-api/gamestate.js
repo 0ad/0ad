@@ -546,8 +546,8 @@ m.GameState.prototype.getEnemyUnits = function(enemyID)
 /** if maintain is true, this will be stored. Otherwise it's one-shot. */
 m.GameState.prototype.getOwnEntitiesByMetadata = function(key, value, maintain)
 {
-	if (maintain === true)
-		return this.updatingCollection(key + "-" + value, m.Filters.byMetadata(this.player, key, value),this.getOwnEntities());
+	if (maintain)
+		return this.updatingCollection(key + "-" + value, m.Filters.byMetadata(this.player, key, value), this.getOwnEntities());
 	return this.getOwnEntities().filter(m.Filters.byMetadata(this.player, key, value));
 };
 
@@ -559,7 +559,7 @@ m.GameState.prototype.getOwnEntitiesByRole = function(role, maintain)
 m.GameState.prototype.getOwnEntitiesByType = function(type, maintain)
 {
 	let filter = m.Filters.byType(type);
-	if (maintain === true)
+	if (maintain)
 		return this.updatingCollection("type-" + type, filter, this.getOwnEntities());
 	return this.getOwnEntities().filter(filter);
 };
@@ -627,7 +627,7 @@ m.GameState.prototype.countFoundationsByType = function(type, maintain)
 {
 	let foundationType = "foundation|" + type;
 
-	if (maintain === true)
+	if (maintain)
 		return this.updatingCollection("foundation-type-" + type, m.Filters.byType(foundationType), this.getOwnFoundations()).length;
 
 	let count = 0;
@@ -733,7 +733,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 		if (category && limits[category] && current[category] >= limits[category])
 			continue;
 
-		ret.push( [trainable, template] );
+		ret.push([trainable, template]);
 	}
 	return ret;
 };
@@ -765,15 +765,15 @@ m.GameState.prototype.findAvailableTech = function()
 		{
 			let techs = template.getPairedTechs();
 			if (this.canResearch(techs[0]._templateName))
-				ret.push([techs[0]._templateName, techs[0]] );
+				ret.push([techs[0]._templateName, techs[0]]);
 			if (this.canResearch(techs[1]._templateName))
-				ret.push([techs[1]._templateName, techs[1]] );
+				ret.push([techs[1]._templateName, techs[1]]);
 		}
 		else if (this.canResearch(tech))
 		{
 			// Phases are treated separately
 			if (this.phases.every(phase => template._templateName != phase.name))
-				ret.push( [tech, template] );
+				ret.push([tech, template]);
 		}
 	}
 	return ret;

@@ -156,8 +156,8 @@ m.Template = m.Class({
 		if (left && right)
 		{
 			let w = +right["@x"] + right["@width"]/2 - left["@x"] + left["@width"]/2;
-			let h = Math.max(+right["@z"] + right["@depth"]/2, +left["@z"] + left["@depth"]/2)
-			      - Math.min(+right["@z"] - right["@depth"]/2, +left["@z"] - left["@depth"]/2);
+			let h = Math.max(+right["@z"] + right["@depth"]/2, +left["@z"] + left["@depth"]/2) -
+			        Math.min(+right["@z"] - right["@depth"]/2, +left["@z"] - left["@depth"]/2);
 			return { "max": Math.sqrt(w*w + h*h) / 2, "min": Math.min(h, w) / 2 };
 		}
 
@@ -223,8 +223,8 @@ m.Template = m.Class({
 			return undefined;
 
 		return {
-			max: +this.get("Attack/" + type +"/MaxRange"),
-			min: +(this.get("Attack/" + type +"/MinRange") || 0)
+			"max": +this.get("Attack/" + type +"/MaxRange"),
+			"min": +(this.get("Attack/" + type +"/MinRange") || 0)
 		};
 	},
 
@@ -251,8 +251,8 @@ m.Template = m.Class({
 			return undefined;
 
 		return {
-			prepare: +(this.get("Attack/" + type + "/PrepareTime") || 0),
-			repeat: +(this.get("Attack/" + type + "/RepeatTime") || 1000)
+			"prepare": +(this.get("Attack/" + type + "/PrepareTime") || 0),
+			"repeat": +(this.get("Attack/" + type + "/RepeatTime") || 1000)
 		};
 	},
 
@@ -740,17 +740,17 @@ m.Entity = m.Class({
 	},
 
 	"move": function(x, z, queued = false) {
-		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
+		Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
 		return this;
 	},
 
 	"moveToRange": function(x, z, min, max, queued = false) {
-		Engine.PostCommand(PlayerID,{"type": "walk-to-range", "entities": [this.id()], "x": x, "z": z, "min": min, "max": max, "queued": queued });
+		Engine.PostCommand(PlayerID, { "type": "walk-to-range", "entities": [this.id()], "x": x, "z": z, "min": min, "max": max, "queued": queued });
 		return this;
 	},
 
 	"attackMove": function(x, z, targetClasses, allowCapture = true, queued = false) {
-		Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "queued": queued });
+		Engine.PostCommand(PlayerID, { "type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "queued": queued });
 		return this;
 	},
 
@@ -758,18 +758,18 @@ m.Entity = m.Class({
 	"setStance": function(stance, queued = false) {
 		if (this.getStance() === undefined)
 			return undefined;
-		Engine.PostCommand(PlayerID,{"type": "stance", "entities": [this.id()], "name" : stance, "queued": queued });
+		Engine.PostCommand(PlayerID, { "type": "stance", "entities": [this.id()], "name": stance, "queued": queued });
 		return this;
 	},
 
 	"stopMoving": function() {
-		Engine.PostCommand(PlayerID,{"type": "stop", "entities": [this.id()], "queued": false});
+		Engine.PostCommand(PlayerID, { "type": "stop", "entities": [this.id()], "queued": false });
 	},
 
 	"unload": function(id) {
 		if (!this.get("GarrisonHolder"))
 			return undefined;
-		Engine.PostCommand(PlayerID,{"type": "unload", "garrisonHolder": this.id(), "entities": [id]});
+		Engine.PostCommand(PlayerID, { "type": "unload", "garrisonHolder": this.id(), "entities": [id] });
 		return this;
 	},
 
@@ -777,17 +777,17 @@ m.Entity = m.Class({
 	"unloadAll": function() {
 		if (!this.get("GarrisonHolder"))
 			return undefined;
-		Engine.PostCommand(PlayerID,{"type": "unload-all-by-owner", "garrisonHolders": [this.id()]});
+		Engine.PostCommand(PlayerID, { "type": "unload-all-by-owner", "garrisonHolders": [this.id()] });
 		return this;
 	},
 
 	"garrison": function(target, queued = false) {
-		Engine.PostCommand(PlayerID,{"type": "garrison", "entities": [this.id()], "target": target.id(),"queued": queued});
+		Engine.PostCommand(PlayerID, { "type": "garrison", "entities": [this.id()], "target": target.id(), "queued": queued });
 		return this;
 	},
 
 	"attack": function(unitId, allowCapture = true, queued = false) {
-		Engine.PostCommand(PlayerID,{"type": "attack", "entities": [this.id()], "target": unitId, "allowCapture": allowCapture, "queued": queued});
+		Engine.PostCommand(PlayerID, { "type": "attack", "entities": [this.id()], "target": unitId, "allowCapture": allowCapture, "queued": queued });
 		return this;
 	},
 
@@ -803,7 +803,7 @@ m.Entity = m.Class({
 				direction[0] /= norm;
 				direction[1] /= norm;
 			}
-			Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": this.position()[0] + direction[0]*dist, "z": this.position()[1] + direction[1]*dist, "queued": false});
+			Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": this.position()[0] + direction[0]*dist, "z": this.position()[1] + direction[1]*dist, "queued": false });
 		}
 		return this;
 	},
@@ -813,53 +813,53 @@ m.Entity = m.Class({
 		if (this.position() !== undefined && unitToFleeFrom.position() !== undefined) {
 			let FleeDirection = [this.position()[0] - unitToFleeFrom.position()[0],
 			                     this.position()[1] - unitToFleeFrom.position()[1]];
-			let dist = m.VectorDistance(unitToFleeFrom.position(), this.position() );
+			let dist = m.VectorDistance(unitToFleeFrom.position(), this.position());
 			FleeDirection[0] = 40 * FleeDirection[0]/dist;
 			FleeDirection[1] = 40 * FleeDirection[1]/dist;
 
-			Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0], "z": this.position()[1] + FleeDirection[1], "queued": false});
+			Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0], "z": this.position()[1] + FleeDirection[1], "queued": false });
 		}
 		return this;
 	},
 
 	"gather": function(target, queued = false) {
-		Engine.PostCommand(PlayerID,{"type": "gather", "entities": [this.id()], "target": target.id(), "queued": queued});
+		Engine.PostCommand(PlayerID, { "type": "gather", "entities": [this.id()], "target": target.id(), "queued": queued });
 		return this;
 	},
 
 	"repair": function(target, autocontinue = false, queued = false) {
-		Engine.PostCommand(PlayerID,{"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": autocontinue, "queued": queued});
+		Engine.PostCommand(PlayerID, { "type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": autocontinue, "queued": queued });
 		return this;
 	},
 
 	"returnResources": function(target, queued = false) {
-		Engine.PostCommand(PlayerID,{"type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued});
+		Engine.PostCommand(PlayerID, { "type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued });
 		return this;
 	},
 
 	"destroy": function() {
-		Engine.PostCommand(PlayerID,{"type": "delete-entities", "entities": [this.id()] });
+		Engine.PostCommand(PlayerID, { "type": "delete-entities", "entities": [this.id()] });
 		return this;
 	},
 
 	"barter": function(buyType, sellType, amount) {
-		Engine.PostCommand(PlayerID,{"type": "barter", "sell" : sellType, "buy" : buyType, "amount" : amount });
+		Engine.PostCommand(PlayerID, { "type": "barter", "sell": sellType, "buy": buyType, "amount": amount });
 		return this;
 	},
 
 	"tradeRoute": function(target, source) {
-		Engine.PostCommand(PlayerID,{"type": "setup-trade-route", "entities": [this.id()], "target": target.id(), "source": source.id(), "route": undefined, "queued": false });
+		Engine.PostCommand(PlayerID, { "type": "setup-trade-route", "entities": [this.id()], "target": target.id(), "source": source.id(), "route": undefined, "queued": false });
 		return this;
 	},
 
 	"setRallyPoint": function(target, command) {
-		let data = {"command": command, "target": target.id()};
-		Engine.PostCommand(PlayerID, {"type": "set-rallypoint", "entities": [this.id()], "x": target.position()[0], "z": target.position()[1], "data": data});
+		let data = { "command": command, "target": target.id() };
+		Engine.PostCommand(PlayerID, { "type": "set-rallypoint", "entities": [this.id()], "x": target.position()[0], "z": target.position()[1], "data": data });
 		return this;
 	},
 
 	"unsetRallyPoint": function() {
-		Engine.PostCommand(PlayerID, {"type": "unset-rallypoint", "entities": [this.id()]});
+		Engine.PostCommand(PlayerID, { "type": "unset-rallypoint", "entities": [this.id()] });
 		return this;
 	},
 
@@ -877,7 +877,7 @@ m.Entity = m.Class({
 			return this;
 		}
 
-		Engine.PostCommand(PlayerID,{
+		Engine.PostCommand(PlayerID, {
 			"type": "train",
 			"entities": [this.id()],
 			"template": type,
@@ -892,7 +892,7 @@ m.Entity = m.Class({
 		// TODO: verify this unit can construct this, just for internal
 		// sanity-checking and error reporting
 
-		Engine.PostCommand(PlayerID,{
+		Engine.PostCommand(PlayerID, {
 			"type": "construct",
 			"entities": [this.id()],
 			"template": template,
@@ -902,18 +902,18 @@ m.Entity = m.Class({
 			"autorepair": false,
 			"autocontinue": false,
 			"queued": false,
-			"metadata" : metadata	// can be undefined
+			"metadata": metadata	// can be undefined
 		});
 		return this;
 	},
 
 	"research": function(template) {
-		Engine.PostCommand(PlayerID,{ "type": "research", "entity": this.id(), "template": template });
+		Engine.PostCommand(PlayerID, { "type": "research", "entity": this.id(), "template": template });
 		return this;
 	},
 
 	"stopProduction": function(id) {
-		Engine.PostCommand(PlayerID,{ "type": "stop-production", "entity": this.id(), "id": id });
+		Engine.PostCommand(PlayerID, { "type": "stop-production", "entity": this.id(), "id": id });
 		return this;
 	},
 
@@ -923,7 +923,7 @@ m.Entity = m.Class({
 			return true;	// no queue, so technically we stopped all production.
 		for (let item of queue)
 			if (item.progress < percentToStopAt)
-				Engine.PostCommand(PlayerID,{ "type": "stop-production", "entity": this.id(), "id": item.id });
+				Engine.PostCommand(PlayerID, { "type": "stop-production", "entity": this.id(), "id": item.id });
 		return this;
 	},
 
