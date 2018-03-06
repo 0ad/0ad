@@ -9,19 +9,24 @@ const dryRun = false;
 const debugLog = false;
 
 /**
- * Least and greatest number of minutes to pass between spawning new treasures.
+ * Get the number of minutes to pass between spawning new treasures.
  */
-var treasureTime = [3, 5];
+var treasureTime = () => randFloat(3, 5);
 
 /**
- * Earliest and latest time when the first wave of attackers will be spawned.
+ * Get the time in minutes when the first wave of attackers will be spawned.
  */
-var firstWaveTime = [4, 6];
+var firstWaveTime = () => randFloat(4, 6);
 
 /**
- * Smallest and largest number of minutes between two consecutive waves.
+ * Maximum time in minutes between two consecutive waves.
  */
-var waveTime = [2, 4];
+var maxWaveTime = 4;
+
+/**
+ * Get the next attacker wave delay.
+ */
+var waveTime = () => randFloat(0.5, 1) * maxWaveTime;
 
 /**
  * Roughly the number of attackers on the first wave.
@@ -36,17 +41,17 @@ var percentPerMinute = 1.05;
 /**
  * Greatest amount of attackers that can be spawned.
  */
-var totalAttackerLimit = 150;
+var totalAttackerLimit = 200;
 
 /**
  * Least and greatest amount of siege engines per wave.
  */
-var siegeFraction = [0.2, 0.5];
+var siegeFraction = () => randFloat(0.2, 0.5);
 
 /**
  * Potentially / definitely spawn a gaia hero after this number of minutes.
  */
-var heroTime = [20, 60];
+var heroTime = () => randFloat(20, 60);
 
 /**
  * The following templates can't be built by any player.
@@ -118,32 +123,12 @@ Trigger.prototype.debugLog = function(txt)
 
 Trigger.prototype.LoadAttackerTemplates = function()
 {
-	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-
-	for (let templateName of cmpTemplateManager.FindAllTemplates(false))
-	{
-		if (!templateName.startsWith("units/") || templateName.endsWith("_unpacked") || templateName.endsWith("_barracks"))
-			continue;
-
-		let identity = cmpTemplateManager.GetTemplate(templateName).Identity;
-
-		if (!attackerUnitTemplates[identity.Civ])
-			attackerUnitTemplates[identity.Civ] = {
-				"heroes": [],
-				"champions": [],
-				"siege": []
-			};
-
-		let classes = GetIdentityClasses(identity);
-
-		// Notice some heroes are elephants and war elephants are champions
-		if (classes.indexOf("Hero") != -1)
-			attackerUnitTemplates[identity.Civ].heroes.push(templateName);
-		else if (classes.indexOf("Siege") != -1 || classes.indexOf("Elephant") != -1 && classes.indexOf("Melee") != -1)
-			attackerUnitTemplates[identity.Civ].siege.push(templateName);
-		else if (classes.indexOf("Champion") != -1)
-			attackerUnitTemplates[identity.Civ].champions.push(templateName);
-	}
+	for (let civ of ["gaia", ...Object.keys(loadCivFiles(false))])
+		attackerUnitTemplates[civ] = {
+			"heroes": TriggerHelper.GetTemplateNamesByClasses("Hero", civ, undefined, true),
+			"champions": TriggerHelper.GetTemplateNamesByClasses("Champion+!Elephant", civ, undefined, true),
+			"siege": TriggerHelper.GetTemplateNamesByClasses("Siege Champion+Elephant", civ, "packed", undefined)
+		};
 
 	this.debugLog("Attacker templates:");
 	this.debugLog(uneval(attackerUnitTemplates));
@@ -185,7 +170,7 @@ Trigger.prototype.InitStartingUnits = function()
 
 Trigger.prototype.InitializeEnemyWaves = function()
 {
-	let time = randFloat(...firstWaveTime) * 60 * 1000;
+	let time = firstWaveTime() * 60 * 1000;
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).AddTimeNotification({
 		"message": markForTranslation("The first wave will start in %(time)s!"),
 		"translateMessage": true
@@ -196,72 +181,39 @@ Trigger.prototype.InitializeEnemyWaves = function()
 Trigger.prototype.StartAnEnemyWave = function()
 {
 	let currentMin = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000;
-	let nextWaveTime = randFloat(...waveTime);
+	let nextWaveTime = waveTime();
 	let civ = pickRandom(Object.keys(attackerUnitTemplates));
 
 	// Determine total attacker count of the current wave.
 	// Exponential increase with time, capped to the limit and fluctuating proportionally with the current wavetime.
 	let totalAttackers = Math.ceil(Math.min(totalAttackerLimit,
-		initialAttackers * Math.pow(percentPerMinute, currentMin) * nextWaveTime / waveTime[1]));
+		initialAttackers * Math.pow(percentPerMinute, currentMin) * nextWaveTime / maxWaveTime));
 
-	this.debugLog("Spawning " + totalAttackers + " attackers");
+	let siegeRatio = siegeFraction();
 
-	let attackerTemplates = [];
+	this.debugLog("Spawning " + totalAttackers + " attackers, siege ratio " + siegeRatio.toFixed(2));
 
-	// Add hero
-	if (currentMin > randFloat(...heroTime) && attackerUnitTemplates[civ].heroes.length)
-	{
-		this.debugLog("Spawning hero");
+	let attackerCount = TriggerHelper.BalancedTemplateComposition(
+		[
+			{
+				"templates": attackerUnitTemplates[civ].heroes,
+				"count": currentMin > heroTime() && attackerUnitTemplates[civ].heroes.length ? 1 : 0
+			},
+			{
+				"templates": attackerUnitTemplates[civ].siege,
+				"frequency": siegeRatio
+			},
+			{
+				"templates": attackerUnitTemplates[civ].champions,
+				"frequency": 1 - siegeRatio
+			}
+		],
+		totalAttackers);
 
-		attackerTemplates.push({
-			"template": pickRandom(attackerUnitTemplates[civ].heroes),
-			"count": 1,
-			"hero": true
-		});
-		--totalAttackers;
-	}
-
-	// Random siege to champion ratio
-	let siegeRatio = randFloat(...siegeFraction);
-	let siegeCount = Math.round(siegeRatio * totalAttackers);
-
-	this.debugLog("Siege Ratio: " + Math.round(siegeRatio * 100) + "%");
-
-	let attackerTypeCounts = {
-		"siege": siegeCount,
-		"champions": totalAttackers - siegeCount
-	};
-
-	this.debugLog("Spawning:" + uneval(attackerTypeCounts));
-
-	// Random ratio of the given templates
-	for (let attackerType in attackerTypeCounts)
-	{
-		let attackerTypeTemplates = attackerUnitTemplates[civ][attackerType];
-		let attackerEntityRatios = new Array(attackerTypeTemplates.length).fill(1).map(i => randFloat(0, 1));
-		let attackerEntityRatioSum = attackerEntityRatios.reduce((current, sum) => current + sum, 0);
-
-		let remainder = attackerTypeCounts[attackerType];
-		for (let i in attackerTypeTemplates)
-		{
-			let count =
-				+i == attackerTypeTemplates.length - 1 ?
-				remainder :
-				Math.round(attackerEntityRatios[i] / attackerEntityRatioSum * attackerTypeCounts[attackerType]);
-
-			attackerTemplates.push({
-				"template": attackerTypeTemplates[i],
-				"count": count
-			});
-			remainder -= count;
-		}
-		if (remainder != 0)
-			warn("Didn't spawn as many attackers as intended: " + remainder);
-	}
-
-	this.debugLog("Templates: " + uneval(attackerTemplates));
+	this.debugLog("Templates: " + uneval(attackerCount));
 
 	// Spawn the templates
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let spawned = false;
 	for (let point of this.GetTriggerPoints("A"))
 	{
@@ -271,23 +223,25 @@ Trigger.prototype.StartAnEnemyWave = function()
 			break;
 		}
 
-		// Don't spawn attackers for defeated players and players that lost there cc after win
+		// Don't spawn attackers for defeated players and players that lost their cc after win
 		let playerID = QueryOwnerInterface(point, IID_Player).GetPlayerID();
 		let civicCentre = this.playerCivicCenter[playerID];
 		if (!civicCentre)
 			continue;
 
-		// Check in case the cc is garrisoned in another building
+		// Check if the cc is garrisoned in another building
 		let cmpPosition = Engine.QueryInterface(civicCentre, IID_Position);
 		if (!cmpPosition || !cmpPosition.IsInWorld())
 			continue;
 
 		let targetPos = cmpPosition.GetPosition2D();
 
-		for (let attackerTemplate of attackerTemplates)
+		for (let templateName in attackerCount)
 		{
+			let isHero = attackerUnitTemplates[civ].heroes.indexOf(templateName) != -1;
+
 			// Don't spawn gaia hero if the previous one is still alive
-			if (attackerTemplate.hero && this.gaiaHeroes[playerID])
+			if (this.gaiaHeroes[playerID] && isHero)
 			{
 				let cmpHealth = Engine.QueryInterface(this.gaiaHeroes[playerID], IID_Health);
 				if (cmpHealth && cmpHealth.GetHitpoints() != 0)
@@ -300,7 +254,8 @@ Trigger.prototype.StartAnEnemyWave = function()
 			if (dryRun)
 				continue;
 
-			let entities = TriggerHelper.SpawnUnits(point, attackerTemplate.template, attackerTemplate.count, 0);
+			let entities = TriggerHelper.SpawnUnits(point, templateName, attackerCount[templateName], 0);
+
 			ProcessCommand(0, {
 				"type": "attack-walk",
 				"entities": entities,
@@ -311,7 +266,7 @@ Trigger.prototype.StartAnEnemyWave = function()
 				"queued": true
 			});
 
-			if (attackerTemplate.hero)
+			if (isHero)
 				this.gaiaHeroes[playerID] = entities[0];
 		}
 		spawned = true;
@@ -320,11 +275,11 @@ Trigger.prototype.StartAnEnemyWave = function()
 	if (!spawned)
 		return;
 
-	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGUIInterface.PushNotification({
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
 		"message": markForTranslation("An enemy wave is attacking!"),
 		"translateMessage": true
 	});
+
 	this.DoAfterDelay(nextWaveTime * 60 * 1000, "StartAnEnemyWave", {});
 };
 
@@ -335,7 +290,7 @@ Trigger.prototype.PlaceTreasures = function()
 	for (let point of triggerPoints)
 		TriggerHelper.SpawnUnits(point, pickRandom(treasures), 1, 0);
 
-	this.DoAfterDelay(randFloat(...treasureTime) * 60 * 1000, "PlaceTreasures", {});
+	this.DoAfterDelay(treasureTime() * 60 * 1000, "PlaceTreasures", {});
 };
 
 Trigger.prototype.OnOwnershipChanged = function(data)

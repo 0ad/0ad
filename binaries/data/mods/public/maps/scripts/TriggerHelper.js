@@ -115,7 +115,7 @@ TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
 			entities.push(ent);
 		}
 		else
-			error("failed to garrison entity " + template + " inside " + entity);
+			error("failed to garrison entity " + ent + " (" + template + ") inside " + entity);
 	}
 
 	return entities;
@@ -262,31 +262,143 @@ TriggerHelper.HasDealtWithTech = function(playerID, techName)
 };
 
 /**
- * Composes a random set of the given templates of the given total size.
- * Returns an object where the keys are template names and values are amounts.
+ * Returns all names of templates that match the given identity classes, constrainted to an optional civ.
+ *
+ * @param {String} classes - See MatchesClassList for the accepted formats, for example "Class1 Class2+!Class3".
+ * @param [String] civ - Optionally only retrieve templates of the given civ. Can be left undefined.
+ * @param [String] packedState - When retrieving siege engines filter for the "packed" or "unpacked" state
+ * @param [String] rank - If given, only return templates that have no or the given rank. For example "Elite".
+ * @param [Boolean] excludeBarracksVariants - Optionally exclude templates whose name ends with "_barracks"
  */
-Trigger.prototype.RandomTemplateComposition = function(templates, count)
+TriggerHelper.GetTemplateNamesByClasses = function(classes, civ, packedState, rank, excludeBarracksVariants)
 {
-	let ratios = new Array(templates.length).fill(1).map(i => randFloat(0, 1));
-	let ratioSum = ratios.reduce((current, sum) => current + sum, 0);
-
-	let remainder = count;
-	let templateCounts = {};
-
-	for (let i = 0; i < templates.length; ++i)
+	let templateNames = [];
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	for (let templateName of cmpTemplateManager.FindAllTemplates(false))
 	{
-		let currentCount = i == templates.length - 1 ? remainder : Math.round(ratios[i] / ratioSum * count);
-		if (!currentCount)
+		if (templateName.startsWith("campaigns/army_"))
 			continue;
 
-		templateCounts[templates[i]] = currentCount;
-		remainder -= currentCount;
+		if (excludeBarracksVariants && templateName.endsWith("_barracks"))
+			continue;
+
+		let template = cmpTemplateManager.GetTemplate(templateName);
+
+		if (civ && (!template.Identity || template.Identity.Civ != civ))
+			continue;
+
+		if (!MatchesClassList(GetIdentityClasses(template.Identity), classes))
+			continue;
+
+		if (rank && template.Identity.Rank && template.Identity.Rank != rank)
+			continue;
+
+		if (packedState && template.Pack && packedState != template.Pack.State)
+			continue;
+
+		templateNames.push(templateName);
 	}
 
-	if (remainder != 0)
-		error("Could not chose as many templates as intended: " + count + " vs " + uneval(templateCounts));
+	return templateNames;
+};
+/**
+ * Composes a random set of the given templates of the given total size.
+ *
+ * @param {String[]} templateNames - for example ["brit_infantry_javelinist_b", "brit_cavalry_swordsman_e"]
+ * @param {Number} totalCount - total amount of templates, in this  example 12
+ * @returns an object where the keys are template names and values are amounts,
+ *          for example { "brit_infantry_javelinist_b": 4, "brit_cavalry_swordsman_e": 8 }
+ */
+TriggerHelper.RandomTemplateComposition = function(templateNames, totalCount)
+{
+	let frequencies = templateNames.map(() => randFloat(0, 1));
+	let frequencySum = frequencies.reduce((sum, frequency) => sum + frequency, 0);
+
+	let remainder = totalCount;
+	let templateCounts = {};
+
+	for (let i = 0; i < templateNames.length; ++i)
+	{
+		let count = i == templateNames.length - 1 ? remainder : Math.min(remainder, Math.round(frequencies[i] / frequencySum * totalCount));
+		if (!count)
+			continue;
+
+		templateCounts[templateNames[i]] = count;
+		remainder -= count;
+	}
 
 	return templateCounts;
+};
+
+/**
+ * Composes a random set of the given templates so that the sum of templates matches totalCount.
+ * For each template array that has a count item, it choses exactly that number of templates at random.
+ * The remaining template arrays are chosen depending on the given frequency.
+ * If a unique_entities array is given, it will only select the template if none of the given entityIDs
+ * already have that entity (useful to let heroes remain unique).
+ *
+ * @param {Object[]} templateBalancing - for example
+ *     [
+ *        { "templates": ["template1", "template2"], "frequency": 2 },
+ *        { "templates": ["template3"], "frequency": 1 },
+ *        { "templates": ["hero1", "hero2"], "unique_entities": [380, 495], "count": 1 }
+ *     ]
+ * @param {Number} totalCount - total amount of templates, for example 5.
+ *
+ * @returns an object where the keys are template names and values are amounts,
+ *    for example { "template1": 1, "template2": 3, "template3": 2, "hero1": 1 }
+ */
+TriggerHelper.BalancedTemplateComposition = function(templateBalancing, totalCount)
+{
+	// Remove all unavailable unique templates (heroes) and empty template arrays
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	let templateBalancingFiltered = [];
+	for (let templateBalance of templateBalancing)
+	{
+		let templateBalanceNew = clone(templateBalance);
+
+		if (templateBalanceNew.unique_entities)
+			templateBalanceNew.templates = templateBalanceNew.templates.filter(templateName =>
+				templateBalanceNew.unique_entities.every(ent => templateName != cmpTemplateManager.GetCurrentTemplateName(ent)));
+
+		if (templateBalanceNew.templates.length)
+			templateBalancingFiltered.push(templateBalanceNew);
+	}
+
+	// Helper function to add randomized templates to the result
+	let remainder = totalCount;
+	let results = {};
+	let addTemplates = (templateNames, count) => {
+		let templateCounts = TriggerHelper.RandomTemplateComposition(templateNames, count);
+		for (let templateName in templateCounts)
+		{
+			if (!results[templateName])
+				results[templateName] = 0;
+
+			results[templateName] += templateCounts[templateName]
+			remainder -= templateCounts[templateName];
+		}
+	};
+
+	// Add template groups with fixed counts
+	for (let templateBalance of templateBalancingFiltered)
+		if (templateBalance.count)
+			addTemplates(templateBalance.templates, Math.min(remainder, templateBalance.count));
+
+	// Add template groups with frequency weights
+	let templateBalancingFrequencies = templateBalancingFiltered.filter(templateBalance => !!templateBalance.frequency);
+	let templateBalancingFrequencySum = templateBalancingFrequencies.reduce((sum, templateBalance) => sum + templateBalance.frequency, 0);
+	for (let i = 0; i < templateBalancingFrequencies.length; ++i)
+		addTemplates(
+			templateBalancingFrequencies[i].templates,
+			i == templateBalancingFrequencies.length - 1 ?
+				remainder :
+				Math.min(remainder, Math.round(templateBalancingFrequencies[i].frequency / templateBalancingFrequencySum * totalCount)));
+
+	if (remainder != 0)
+		warn("Could not chose as many templates as intended, remaining " + remainder + ", chosen: " + uneval(results));
+
+	return results;
 };
 
 /**
@@ -294,14 +406,14 @@ Trigger.prototype.RandomTemplateComposition = function(templates, count)
  * The garrisonholder will be filled to capacityPercent.
  * Returns an object where keys are entityIDs of the affected garrisonholders and the properties are template compositions, see RandomTemplateComposition.
  */
-Trigger.prototype.SpawnAndGarrison = function(playerID, targetClass, templates, capacityPercent)
+TriggerHelper.SpawnAndGarrisonAtClasses = function(playerID, classes, templates, capacityPercent)
 {
 	let results = {};
 
 	for (let entGarrisonHolder of Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(playerID))
 	{
 		let cmpIdentity = Engine.QueryInterface(entGarrisonHolder, IID_Identity);
-		if (!cmpIdentity || !cmpIdentity.HasClass(targetClass))
+		if (!cmpIdentity || !MatchesClassList(cmpIdentity.GetClassesList(), classes))
 			continue;
 
 		let cmpGarrisonHolder = Engine.QueryInterface(entGarrisonHolder, IID_GarrisonHolder);
@@ -312,8 +424,7 @@ Trigger.prototype.SpawnAndGarrison = function(playerID, targetClass, templates, 
 		results[entGarrisonHolder] = this.RandomTemplateComposition(templates, Math.floor(cmpGarrisonHolder.GetCapacity() * capacityPercent));
 
 		for (let template in results[entGarrisonHolder])
-			for (let entSpawned of TriggerHelper.SpawnUnits(entGarrisonHolder, template, results[entGarrisonHolder][template], playerID))
-				Engine.QueryInterface(entGarrisonHolder, IID_GarrisonHolder).Garrison(entSpawned);
+			TriggerHelper.SpawnGarrisonedUnits(entGarrisonHolder, template, results[entGarrisonHolder][template], playerID);
 	}
 
 	return results;
