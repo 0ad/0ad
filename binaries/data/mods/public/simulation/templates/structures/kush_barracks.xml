@@ -11,16 +11,6 @@
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}_infantry_clubman_b
-      units/{civ}_infantry_merc_javelinist_b
-      units/{civ}_cavalry_javelinist_b
-    </Entities>
-    <Technologies datatype="tokens">
-      upgrade_rank_advanced_mercenary
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/kushites/barracks.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>

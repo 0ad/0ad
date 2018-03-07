@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_embassy">
-  <Attack disable=""/>
-  <BuildRestrictions>
-    <Territory>own neutral</Territory>
-    <Distance>
-      <FromClass>MercenaryCamp</FromClass>
-      <MinDistance>100</MinDistance>
-    </Distance>
-  </BuildRestrictions>
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
@@ -30,7 +22,6 @@
     <SpecificName>Nuba Village</SpecificName>
     <Tooltip>Train the Nuba Clubman and Nuba Hunter.</Tooltip>
     <Icon>structures/mercenary_camp.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Obstruction>
     <Static width="23.5" depth="23.5"/>
@@ -41,14 +32,6 @@
       units/{civ}_infantry_javelinist_merc_b
     </Entities>
   </ProductionQueue>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_gymnasium.xml</select>
-      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>structures/mercenaries/camp_egyptian.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
