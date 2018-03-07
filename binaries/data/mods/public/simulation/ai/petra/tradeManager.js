@@ -12,7 +12,6 @@ m.TradeManager = function(Config)
 	this.potentialTradeRoute = undefined;
 	this.routeProspection = false;
 	this.targetNumTraders = this.Config.Economy.targetNumTraders;
-	this.minimalGain = 5;
 	this.warnedAllies = {};
 };
 
@@ -20,6 +19,7 @@ m.TradeManager.prototype.init = function(gameState)
 {
 	this.traders = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "role", "trader"));
 	this.traders.registerUpdates();
+	this.minimalGain = gameState.ai.HQ.navalMap ? 3 : 5;
 };
 
 m.TradeManager.prototype.hasTradeRoute = function()

@@ -419,9 +419,9 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 	{
 		let pos = [i%width+0.5, Math.floor(i/width)+0.5];
 		pos = [cell*pos[0], cell*pos[1]];
-		let dist = API3.SquareVectorDistance(startPos, pos);
+		let dist = API3.VectorDistance(startPos, pos);
 		if (destination)
-			dist += API3.SquareVectorDistance(pos, destination);
+			dist += API3.VectorDistance(pos, destination);
 		if (avoidEnnemy)
 		{
 			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(pos);
@@ -435,11 +435,16 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 			    API3.SquareVectorDistance(this.boardingPos[shipId], pos) < this.boardingRange)
 				dist += 1000000;
 		// and not too near our allied docks to not disturb naval traffic
+		let distSquare;
 		for (let dock of alliedDocks)
 		{
+			if (dock.foundationProgress() !== undefined)
+				distSquare = 900;
+			else
+				distSquare = 4900;
 			let dockDist = API3.SquareVectorDistance(dock.position(), pos);
-			if (dockDist < 4900)
-			    dist += 100000 * (4900 - dockDist) / 4900;
+			if (dockDist < distSquare)
+				dist += 100000 * (distSquare - dockDist) / distSquare;
 		}
 		if (dist > distmin)
 			continue;

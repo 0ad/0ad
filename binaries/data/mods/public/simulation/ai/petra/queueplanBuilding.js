@@ -145,6 +145,14 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": 0 };
+			// No possible location, try to build instead a dock in a not-enemy island
+			let templateName = gameState.applyCiv("structures/{civ}_dock");
+			if (gameState.ai.HQ.canBuild(gameState, templateName) && !gameState.isTemplateDisabled(templateName))
+			{
+				template = gameState.getTemplate(templateName);
+				if (template && gameState.getResources().canAfford(new API3.Resources(template.cost())))
+					this.buildOverseaDock(gameState, template);
+			}
 			return false;
 		}
 		else if (template.hasClass("DefenseTower") || template.hasClass("Fortress") || template.hasClass("ArmyCamp"))
@@ -347,6 +355,12 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 /**
  * Placement of buildings with Dock build category
  * metadata.proximity is defined when first dock without any territory
+ * => we try to minimize distance from our current point
+ * metadata.oversea is defined for dock in oversea islands
+ * => we try to maximize distance to our current docks (for trade)
+ * otherwise standard dock on an island where we already have a cc
+ * => we try not to be too far from our territory
+ * In all cases, we add a bonus for nearby resources, and when a large extend of water in front ot it.
  */
 m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 {
@@ -371,7 +385,8 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	let wantedLand = this.metadata && this.metadata.land ? this.metadata.land : null;
 	let wantedSea = this.metadata && this.metadata.sea ? this.metadata.sea : null;
 	let proxyAccess = this.metadata && this.metadata.proximity ? gameState.ai.accessibility.getAccessValue(this.metadata.proximity) : null;
-	if (nbShips === 0 && proxyAccess && proxyAccess > 1)
+	let oversea = this.metadata && this.metadata.oversea ? this.metadata.oversea : null;
+	if (nbShips == 0 && proxyAccess && proxyAccess > 1)
 	{
 		wantedLand = {};
 		wantedLand[proxyAccess] = true;
@@ -399,66 +414,108 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	// water is a measure of the water space around, and maxWater is the max value that can be returned by checkDockPlacement
 	const maxRes = 10;
 	const maxWater = 16;
+	let ccEnts = oversea ? gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")) : null;
+	let docks = oversea ? gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")) : null;
+	// Normalisation factors (only guessed, no attempt to optimize them)
+	let factor = proxyAccess ? 1 : oversea ? 0.2 : 40;
 	for (let j = 0; j < territoryMap.length; ++j)
 	{
 		if (!this.isDockLocation(gameState, j, halfDepth, wantedLand, wantedSea))
 			continue;
-		let dist;
-		if (!proxyAccess)
+		let score = 0;
+		if (!proxyAccess && !oversea)
 		{
 			// if not in our (or allied) territory, we do not want it too far to be able to defend it
-			dist = this.getFrontierProximity(gameState, j);
-			if (dist > 4)
+			score = this.getFrontierProximity(gameState, j);
+			if (score > 4)
 				continue;
+			score *= factor;
 		}
 		let i = territoryMap.getNonObstructedTile(j, radius, obstructions);
 		if (i < 0)
 			continue;
-		if (wantedSea && navalPassMap[i] !== wantedSea)
+		if (wantedSea && navalPassMap[i] != wantedSea)
 			continue;
 
 		let res = dropsiteTypes ? Math.min(maxRes, this.getResourcesAround(gameState, dropsiteTypes, j, 80)) : maxRes;
 		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+
+		// If proximity is given, we look for the nearest point
 		if (proxyAccess)
+			score = API3.VectorDistance(this.metadata.proximity, pos);
+
+		// Bonus for resources
+		score += 20 * (maxRes - res);
+
+		if (oversea)
 		{
-			// if proximity is given, we look for the nearest point
-			dist = API3.SquareVectorDistance(this.metadata.proximity, pos);
-			dist = Math.sqrt(dist) + 20 * (maxRes - res);
+			// Not much farther to one of our cc than to enemy ones
+			let enemyDist;
+			let ownDist;
+			for (let cc of ccEnts.values())
+			{
+				let owner = cc.owner();
+				if (owner != PlayerID && !gameState.isPlayerEnemy(owner))
+					continue;
+				let dist = API3.SquareVectorDistance(pos, cc.position());
+				if (owner == PlayerID && (!ownDist || dist < ownDist))
+					ownDist = dist;
+				if (gameState.isPlayerEnemy(owner) && (!enemyDist || dist < enemyDist))
+					enemyDist = dist;
+			}
+			if (ownDist && enemyDist && enemyDist < 0.5 * ownDist)
+				continue;
+
+			// And maximize distance for trade.
+			let dockDist = 0;
+			for (let dock of docks.values())
+			{
+				if (m.getSeaAccess(gameState, dock) != navalPassMap[i])
+					continue;
+				let dist = API3.SquareVectorDistance(pos, dock.position());
+				if (dist > dockDist)
+					dockDist = dist;
+			}
+			if (dockDist > 0)
+			{
+				dockDist = Math.sqrt(dockDist);
+				if (dockDist > width * cellSize) // Could happen only on square maps, but anyway we don't want to be too far away
+					continue;
+				score += factor * (width * cellSize - dockDist);
+			}
 		}
-		else
-			dist += 0.6 * (maxRes - res);
 
 		// Add a penalty if on the map border as ship movement will be difficult
 		if (gameState.ai.HQ.borderMap.map[j] & m.fullBorder_Mask)
-			dist += 2;
-		// do a pre-selection, supposing we will have the best possible water
-		if (bestIdx !== undefined && dist > bestVal + maxWater)
+			score += 20;
+
+		// Do a pre-selection, supposing we will have the best possible water
+		if (bestIdx !== undefined && score > bestVal + 5 * maxWater && !oversea)
 			continue;
 
 		let x = (i % obstructions.width + 0.5) * obstructions.cellSize;
 		let z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
 		let angle = this.getDockAngle(gameState, x, z, halfSize);
-		if (angle === false)
+		if (angle == false)
 			continue;
 		let ret = this.checkDockPlacement(gameState, x, z, halfDepth, halfWidth, angle);
 		if (!ret || !gameState.ai.HQ.landRegions[ret.land])
 			continue;
-		// final selection now that the checkDockPlacement water is known
-		if (bestIdx !== undefined && dist + maxWater - ret.water > bestVal)
+		// Final selection now that the checkDockPlacement water is known
+		if (bestIdx !== undefined && score + 5 * (maxWater - ret.water) > bestVal)
 			continue;
 		if (this.metadata.proximity && gameState.ai.accessibility.regionSize[ret.land] < 4000)
 			continue;
 		if (gameState.ai.HQ.isDangerousLocation(gameState, pos, halfSize))
 			continue;
 
-		bestVal = dist + maxWater - ret.water;
+		bestVal = score + maxWater - ret.water;
 		bestIdx = i;
 		bestJdx = j;
 		bestAngle = angle;
 		bestLand = ret.land;
 		bestWater = ret.water;
 	}
-
 	if (bestVal < 0)
 		return false;
 
@@ -472,24 +529,93 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	// Assign this dock to a base
 	let baseIndex = gameState.ai.HQ.basesMap.map[bestJdx];
 	if (!baseIndex)
-	{
-		for (let base of gameState.ai.HQ.baseManagers)
-		{
-			if (base.accessIndex !== bestLand)
-				continue;
-			baseIndex = base.ID;
-			break;
-		}
-		if (!baseIndex)
-		{
-			if (gameState.ai.HQ.numActiveBases() > 0)
-				API3.warn("Petra: dock constructed without base index " + baseIndex);
-			else
-				baseIndex = gameState.ai.HQ.baseManagers[0].ID;
-		}
-	}
+		baseIndex = -2;	// We'll do an anchorless base around it
 
 	return { "x": x, "z": z, "angle": bestAngle, "base": baseIndex, "access": bestLand };
+};
+
+/**
+ * Find a good island to build a dock.
+ */
+m.ConstructionPlan.prototype.buildOverseaDock = function(gameState, template)
+{
+	let docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
+	if (!docks.hasEntities())
+		return;
+
+	let passabilityMap = gameState.getPassabilityMap();
+	let cellArea = passabilityMap.cellSize * passabilityMap.cellSize;
+	let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
+
+	let land = {};
+	let found;
+	for (let i = 0; i < gameState.ai.accessibility.regionSize.length; ++i)
+	{
+		if (gameState.ai.accessibility.regionType[i] != "land" ||
+		    cellArea * gameState.ai.accessibility.regionSize[i] < 3600)
+			continue;
+		let keep = true;
+		for (let dock of docks.values())
+		{
+			if (m.getLandAccess(gameState, dock) != i)
+				continue;
+			keep = false;
+			break;
+		}
+		if (!keep)
+			continue;
+		let sea;
+		for (let cc of ccEnts.values())
+		{
+			let ccAccess = m.getLandAccess(gameState, cc);
+			if (ccAccess != i)
+			{
+				if (cc.owner() == PlayerID && !sea)
+					sea = gameState.ai.HQ.getSeaBetweenIndices(gameState, ccAccess, i);
+				continue;
+			}
+			// Docks on island where we have a cc are already done elsewhere
+			if (cc.owner() == PlayerID || gameState.isPlayerEnemy(cc.owner()))
+			{
+				keep = false;
+				break;
+			}
+		}
+		if (!keep || !sea)
+			continue;
+		land[i] = true;
+		found = true;
+	}
+	if (!found)
+		return;
+	if (!gameState.ai.HQ.navalMap)
+		API3.warn("petra.findOverseaLand on a non-naval map??? we should never go there ");
+
+	let oldTemplate = this.template;
+	let oldMetadata = this.metadata;
+	this.template = template;
+	let pos;
+	this.metadata = { "land": land, "oversea": true };
+	pos = this.findDockPosition(gameState);
+	if (pos)
+	{
+		let type = template.templateName();
+		let builder = gameState.findBuilder(type);
+		this.metadata.base = pos.base;
+		// Adjust a bit the position if needed
+		let cosa = Math.cos(pos.angle);
+		let sina = Math.sin(pos.angle);
+		let shiftMax = gameState.ai.HQ.territoryMap.cellSize;
+		for (let shift = 0; shift <= shiftMax; shift += 2)
+		{
+			builder.construct(type, pos.x-shift*sina, pos.z-shift*cosa, pos.angle, this.metadata);
+			if (shift > 0)
+				builder.construct(type, pos.x+shift*sina, pos.z+shift*cosa, pos.angle, this.metadata);
+		}
+	}
+	this.template = oldTemplate;
+	this.metadata = oldMetadata;
+	return;
 };
 
 /** Algorithm taken from the function GetDockAngle in simulation/helpers/Commands.js */
@@ -513,7 +639,7 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 			    pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
 				continue;
 			let j = pos[0] + pos[1]*gameState.ai.accessibility.width;
-			if (gameState.ai.accessibility.navalPassMap[j] === seaRef)
+			if (gameState.ai.accessibility.navalPassMap[j] == seaRef)
 				waterPoints.push(i);
 		}
 		let length = waterPoints.length;
@@ -645,7 +771,7 @@ m.ConstructionPlan.prototype.isDockLocation = function(gameState, j, dimension, 
 		if (pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
 			continue;
 		k = pos[0] + pos[1]*gameState.ai.accessibility.width;
-		if (wantedSea && gameState.ai.accessibility.navalPassMap[k] !== wantedSea)
+		if (wantedSea && gameState.ai.accessibility.navalPassMap[k] != wantedSea)
 			continue;
 		else if (!wantedSea && gameState.ai.accessibility.navalPassMap[k] < 2)
 			continue;
