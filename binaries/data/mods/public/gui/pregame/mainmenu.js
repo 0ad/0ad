@@ -45,7 +45,7 @@ function init(initData, hotloadData)
 		translate("%(hotkey)s: Learn about the many civilizations featured in 0 A.D."),
 		"civinfo");
 	Engine.GetGUIObjectByName("lobbyButton").tooltip = colorizeHotkey(
-		translate("%(hotkey)s: Launch the multiplayer lobby."),
+		translate("%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible games and chat with other players."),
 		"lobby");
 }
 
@@ -285,7 +285,7 @@ function pressedScenarioEditorButton()
 
 function getLobbyDisabledByBuild()
 {
-	return translate("Launch the multiplayer lobby. \\[DISABLED BY BUILD]");
+	return translate("Launch the multiplayer lobby to join and host publicly visible games and chat with other players. \\[DISABLED BY BUILD]");
 }
 
 function getTechnicalDetails()
