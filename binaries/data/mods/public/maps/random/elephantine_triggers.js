@@ -10,7 +10,7 @@ Trigger.prototype.InitElephantine_DefenderStance = function()
 	{
 		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 		if (cmpIdentity && cmpIdentity.HasClass("Soldier"))
-			Engine.QueryInterface(ent, IID_UnitAI).SwitchToStance("defensive");
+			TriggerHelper.SetUnitStance(ent, "defensive");
 	}
 };
 

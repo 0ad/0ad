@@ -21,6 +21,13 @@ TriggerHelper.GetOwner = function(ent)
 	return -1;
 };
 
+TriggerHelper.SetUnitStance = function(ent, stance)
+{
+	let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+	if (cmpUnitAI)
+		cmpUnitAI.SwitchToStance(stance);
+};
+
 /**
  * Can be used to "force" a building/unit to spawn a group of entities.
  *
@@ -91,8 +98,8 @@ TriggerHelper.SpawnUnits = function(source, template, count, owner)
 TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
 {
 	let entities = [];
-	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
 
+	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
 	if (!cmpGarrisonHolder)
 	{
 		error("tried to create garrisoned entities inside a non-garrisonholder");
@@ -105,13 +112,17 @@ TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
 	for (let i = 0; i < count; ++i)
 	{
 		let ent = Engine.AddEntity(template);
+
 		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		if (cmpOwnership)
 			cmpOwnership.SetOwner(owner);
+
 		if (cmpGarrisonHolder.PerformGarrison(ent))
 		{
-			if (Engine.QueryInterface(ent, IID_UnitAI))
-				Engine.QueryInterface(ent, IID_UnitAI).Autogarrison(entity);
+			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+				cmpUnitAI.Autogarrison(entity);
+
 			entities.push(ent);
 		}
 		else

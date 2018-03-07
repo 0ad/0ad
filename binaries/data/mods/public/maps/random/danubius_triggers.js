@@ -224,7 +224,7 @@ Trigger.prototype.SpawnInitialCCDefenders = function(gaiaEnts)
 
 		for (let ccDefender of ccDefenders)
 			for (let ent of TriggerHelper.SpawnUnits(gaiaEnt, pickRandom(ccDefender.templates), ccDefender.count, gaulPlayer))
-				Engine.QueryInterface(ent, IID_UnitAI).SwitchToStance("defensive");
+				TriggerHelper.SetUnitStance(ent, "defensive");
 	}
 };
 
@@ -281,9 +281,7 @@ Trigger.prototype.StartCelticRitual = function(gaiaEnts)
 		if (randBool(ritualProbability))
 			this.ritualEnts.add(ent);
 
-		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (cmpUnitAI)
-			cmpUnitAI.SwitchToStance("defensive");
+		TriggerHelper.SetUnitStance(ent, "defensive");
 	}
 
 	this.DoRepeatedly(5 * 1000, "UpdateCelticRitual", {});
