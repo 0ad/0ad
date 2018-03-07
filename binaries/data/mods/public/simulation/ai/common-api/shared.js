@@ -131,7 +131,7 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	for (let player of this._players)
 	{
 		this.gameState[player] = new m.GameState();
-		this.gameState[player].init(this,state, player);
+		this.gameState[player].init(this, state, player);
 	}
 };
 
@@ -227,7 +227,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	{
 		if (!this._entities.has(evt.id))
 			continue;	// might happen in some rare cases of foundations getting destroyed, perhaps.
-						// Apply metadata (here for buildings for example)
+		// Apply metadata (here for buildings for example)
 		for (let key in evt.metadata)
 			this.setMetadata(evt.owner, this._entities.get(evt.id), key, evt.metadata[key]);
 	}
@@ -380,9 +380,9 @@ m.SharedScript.prototype.deleteMetadata = function(player, ent, key)
 m.copyPrototype = function(descendant, parent)
 {
 	let sConstructor = parent.toString();
-	let aMatch = sConstructor.match( /\s*function (.*)\(/ );
+	let aMatch = sConstructor.match(/\s*function (.*)\(/);
 
-	if ( aMatch != null )
+	if (aMatch != null)
 		descendant.prototype[aMatch[1]] = parent;
 
 	for (let p in parent.prototype)

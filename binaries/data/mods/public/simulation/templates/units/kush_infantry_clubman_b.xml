@@ -15,6 +15,8 @@
       structures/kush_pyramid_large
       structures/kush_temple_amun
       structures/kush_temple_apedemak
+      structures/kush_blemmye_camp
+      structures/kush_nuba_village
       -structures/{civ}_temple
     </Entities>
   </Builder>
@@ -31,6 +33,7 @@
     <SpecificName>nhw Noba</SpecificName>
     <Icon>units/kush_infantry_clubman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
   </Identity>
   <Promotion>
     <Entity>units/kush_infantry_clubman_a</Entity>

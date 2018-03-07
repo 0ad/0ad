@@ -11,17 +11,6 @@
   <Obstruction>
     <Static width="24.0" depth="22.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}_infantry_merc_javelinist_b
-      -units/{civ}_cavalry_swordsman_b
-      -units/{civ}_cavalry_spearman_b
-      -units/{civ}_cavalry_javelinist_b
-      -units/{civ}_cavalry_archer_b
-    </Entities>
-    <Technologies datatype="tokens">
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/kushites/range.xml</Actor>
   </VisualActor>

@@ -37,7 +37,7 @@ m.QueueManager = function(Config, queues)
 		this.queueArrays.push([q, this.queues[q]]);
 	}
 	let priorities = this.priorities;
-	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
+	this.queueArrays.sort((a, b) => priorities[b[0]] - priorities[a[0]]);
 };
 
 m.QueueManager.prototype.getAvailableResources = function(gameState)
@@ -59,7 +59,7 @@ m.QueueManager.prototype.getTotalAccountedResources = function()
 m.QueueManager.prototype.currentNeeds = function(gameState)
 {
 	let needed = new API3.Resources();
-	//queueArrays because it's faster.
+	// queueArrays because it's faster.
 	for (let q of this.queueArrays)
 	{
 		let queue = q[1];
@@ -104,7 +104,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 		totalLong[res] = this.Config.queues.long[res] || this.Config.queues.long.default;
 	}
 	let total;
-	//queueArrays because it's faster.
+	// queueArrays because it's faster.
 	for (let q of this.queueArrays)
 	{
 		let queue = q[1];
@@ -158,8 +158,8 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 m.QueueManager.prototype.printQueues = function(gameState)
 {
 	let numWorkers = 0;
-	gameState.getOwnUnits().forEach (function (ent) {
-		if (ent.getMetadata(PlayerID, "role") === "worker" && ent.getMetadata(PlayerID, "plan") === undefined)
+	gameState.getOwnUnits().forEach(ent => {
+		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") === undefined)
 			numWorkers++;
 	});
 	API3.warn("---------- QUEUES ------------ with pop " + gameState.getPopulation() + " and workers " + numWorkers);
@@ -522,7 +522,7 @@ m.QueueManager.prototype.addQueue = function(queueName, priority)
 	for (let q in this.queues)
 		this.queueArrays.push([q, this.queues[q]]);
 	let priorities = this.priorities;
-	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
+	this.queueArrays.sort((a, b) => priorities[b[0]] - priorities[a[0]]);
 };
 
 m.QueueManager.prototype.removeQueue = function(queueName)
@@ -538,7 +538,7 @@ m.QueueManager.prototype.removeQueue = function(queueName)
 	for (let q in this.queues)
 		this.queueArrays.push([q, this.queues[q]]);
 	let priorities = this.priorities;
-	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
+	this.queueArrays.sort((a, b) => priorities[b[0]] - priorities[a[0]]);
 };
 
 m.QueueManager.prototype.getPriority = function(queueName)
@@ -553,7 +553,7 @@ m.QueueManager.prototype.changePriority = function(queueName, newPriority)
 	if (this.queues[queueName] !== undefined)
 		this.priorities[queueName] = newPriority;
 	let priorities = this.priorities;
-	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
+	this.queueArrays.sort((a, b) => priorities[b[0]] - priorities[a[0]]);
 };
 
 m.QueueManager.prototype.Serialize = function()
@@ -592,7 +592,7 @@ m.QueueManager.prototype.Deserialize = function(gameState, data)
 		this.accounts[q].Deserialize(data.accounts[q]);
 		this.queueArrays.push([q, this.queues[q]]);
 	}
-	this.queueArrays.sort((a,b) => data.priorities[b[0]] - data.priorities[a[0]]);
+	this.queueArrays.sort((a, b) => data.priorities[b[0]] - data.priorities[a[0]]);
 };
 
 return m;

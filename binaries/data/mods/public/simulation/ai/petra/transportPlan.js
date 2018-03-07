@@ -120,9 +120,9 @@ m.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 		if (this.debug > 1)
 		{
 			if (ent.getMetadata(PlayerID, "role") == "attack")
-				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,0,0]});
+				Engine.PostCommand(PlayerID, { "type": "set-shading-color", "entities": [ent.id()], "rgb": [2, 0, 0] });
 			else
-				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,2,0]});
+				Engine.PostCommand(PlayerID, { "type": "set-shading-color", "entities": [ent.id()], "rgb": [0, 2, 0] });
 		}
 		return;
 	}
@@ -153,7 +153,7 @@ m.TransportPlan.prototype.assignShip = function(gameState)
 	// and choose the nearest available ship from this unit
 	let distmin = Math.min();
 	let nearest;
-	gameState.ai.HQ.navalManager.seaTransportShips[this.sea].forEach(function (ship) {
+	gameState.ai.HQ.navalManager.seaTransportShips[this.sea].forEach(ship => {
 		if (ship.getMetadata(PlayerID, "transporter"))
 			return;
 		if (pos)
@@ -214,16 +214,16 @@ m.TransportPlan.prototype.removeUnit = function(gameState, unit)
 
 m.TransportPlan.prototype.releaseAll = function()
 {
-	this.ships.forEach(function (ship) {
+	this.ships.forEach(ship => {
 		ship.setMetadata(PlayerID, "transporter", undefined);
 		if (ship.getMetadata(PlayerID, "role") === "switchToTrader")
 			ship.setMetadata(PlayerID, "role", "trader");
 	});
-	this.units.forEach(function (ent) {
+	this.units.forEach(ent => {
 		ent.setMetadata(PlayerID, "endPos", undefined);
 		ent.setMetadata(PlayerID, "onBoard", undefined);
 		ent.setMetadata(PlayerID, "transport", undefined);
-// TODO if the index of the endPos of the entity is !== , require again another transport (we could need land-sea-land-sea-land)
+	// TODO if the index of the endPos of the entity is != , require again another transport (we could need land-sea-land-sea-land)
 	});
 	this.transportShips.unregister();
 	this.ships.unregister();
@@ -528,7 +528,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 			if (ship && !this.canceled)
 			{
 				shipsToMove[ship.id()] = ship;
-				this.recovered.push( {"entId": ent.id(), "entPos": ent.position(), "shipId": ship.id()} );
+				this.recovered.push({ "entId": ent.id(), "entPos": ent.position(), "shipId": ship.id() });
 				ent.garrison(ship);
 				ent.setMetadata(PlayerID, "onBoard", "onBoard");
 			}

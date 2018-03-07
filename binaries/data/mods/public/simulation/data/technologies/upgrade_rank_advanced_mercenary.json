@@ -5,7 +5,15 @@
 	"requirements": {
 		"all": [
 			{ "tech": "phase_town" },
-			{ "any": [{ "civ": "athen" }, { "civ": "cart" }, { "civ": "mace" }, { "civ": "ptol" }, { "civ": "sele" }] }]
+			{ "any": [
+				{ "civ": "athen" },
+				{ "civ": "cart" },
+				{ "civ": "kush" },
+				{ "civ": "mace" },
+				{ "civ": "ptol" },
+				{ "civ": "sele" }
+			]}
+		]
 	},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "upgrade_advanced.png",

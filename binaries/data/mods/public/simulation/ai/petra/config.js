@@ -17,33 +17,33 @@ m.Config = function(difficulty, behavior)
 	this.popScaling = 1;	// scale factor depending on the max population
 
 	this.Military = {
-		"towerLapseTime" : 90,	// Time to wait between building 2 towers
-		"fortressLapseTime" : 390,	// Time to wait between building 2 fortresses
-		"popForBarracks1" : 25,
-		"popForBarracks2" : 95,
-		"popForBlacksmith" : 65,
-		"numSentryTowers" : 1
+		"towerLapseTime": 90,	// Time to wait between building 2 towers
+		"fortressLapseTime": 390,	// Time to wait between building 2 fortresses
+		"popForBarracks1": 25,
+		"popForBarracks2": 95,
+		"popForBlacksmith": 65,
+		"numSentryTowers": 1
 	};
 	this.Economy = {
-		"popPhase2" : 38,	// How many units we want before aging to phase2.
-		"workPhase3" : 65,	// How many workers we want before aging to phase3.
-		"workPhase4" : 80,	// How many workers we want before aging to phase4 or higher.
-		"popForDock" : 25,
-		"targetNumWorkers" : 40,// dummy, will be changed later
-		"targetNumTraders" : 5,	// Target number of traders
-		"targetNumFishers" : 1,	// Target number of fishers per sea
-		"supportRatio" : 0.35,	// fraction of support workers among the workforce
-		"provisionFields" : 2
+		"popPhase2": 38,	// How many units we want before aging to phase2.
+		"workPhase3": 65,	// How many workers we want before aging to phase3.
+		"workPhase4": 80,	// How many workers we want before aging to phase4 or higher.
+		"popForDock": 25,
+		"targetNumWorkers": 40,	// dummy, will be changed later
+		"targetNumTraders": 5,	// Target number of traders
+		"targetNumFishers": 1,	// Target number of fishers per sea
+		"supportRatio": 0.35,	// fraction of support workers among the workforce
+		"provisionFields": 2
 	};
 
 	// Note: attack settings are set directly in attack_plan.js
 	// defense
 	this.Defense =
 	{
-		"defenseRatio" : { "ally": 1.4, "neutral": 1.8, "own": 2 },	// ratio of defenders/attackers.
-		"armyCompactSize" : 2000,	// squared. Half-diameter of an army.
-		"armyBreakawaySize" : 3500,	// squared.
-		"armyMergeSize" : 1400	// squared.
+		"defenseRatio": { "ally": 1.4, "neutral": 1.8, "own": 2 },	// ratio of defenders/attackers.
+		"armyCompactSize": 2000,	// squared. Half-diameter of an army.
+		"armyBreakawaySize": 3500,	// squared.
+		"armyMergeSize": 1400	// squared.
 	};
 
 	this.buildings =
@@ -57,7 +57,8 @@ m.Config = function(difficulty, behavior)
 				 "structures/{civ}_embassy_italiote"],
 			"gaul": ["structures/{civ}_rotarymill", "structures/{civ}_tavern"],
 			"iber": ["structures/{civ}_monument"],
-			"kush": ["structures/{civ}_pyramid_large"],
+			"kush": ["structures/{civ}_pyramid_large", "structures/{civ}_blemmye_camp",
+				 "structures/{civ}_nuba_village"],
 			"mace": ["structures/{civ}_library", "structures/{civ}_theatron"],
 			"maur": ["structures/{civ}_pillar_ashoka"],
 			"pers": ["structures/{civ}_apadana", "structures/{civ}_hall"],
@@ -146,7 +147,7 @@ m.Config.prototype.setConfig = function(gameState)
 		let max = personalityList[this.behavior].max;
 		this.personality = {
 			"aggressive": min + aggressive * (max - min),
-			"defensive":  1 - max + defensive * (max - min),
+			"defensive": 1 - max + defensive * (max - min),
 			"cooperative": randFloat(0, 1)
 		};
 	}

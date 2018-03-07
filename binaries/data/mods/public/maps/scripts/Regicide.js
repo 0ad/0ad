@@ -20,7 +20,7 @@ Trigger.prototype.InitRegicideGame = function(msg)
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	for (let templateName of cmpTemplateManager.FindAllTemplates(false))
 	{
-		if (templateName.substring(0,6) != "units/")
+		if (!templateName.startsWith("units/"))
 			continue;
 
 		let identity = cmpTemplateManager.GetTemplate(templateName).Identity;
@@ -67,8 +67,10 @@ Trigger.prototype.InitRegicideGame = function(msg)
 		if (!regicideGarrison && TriggerHelper.EntityMatchesClassList(spawnPoints[0], "Ship"))
 		{
 			let shipPosition = Engine.QueryInterface(spawnPoints[0], IID_Position).GetPosition2D();
+
 			let distanceToShip = entity =>
-				Engine.QueryInterface(entity, IID_Position).GetPosition2D().distanceTo(shipPosition);
+				Engine.QueryInterface(entity, IID_Position).GetPosition2D().distanceToSquared(shipPosition);
+
 			spawnPoints = TriggerHelper.GetLandSpawnPoints().sort((entity1, entity2) =>
 				distanceToShip(entity1) - distanceToShip(entity2));
 		}

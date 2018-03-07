@@ -71,7 +71,7 @@ m.BaseAI.prototype.OnUpdate = function()
 
 m.BaseAI.prototype.chat = function(message)
 {
-	Engine.PostCommand(PlayerID,{"type": "aichat", "message": message});
+	Engine.PostCommand(PlayerID, { "type": "aichat", "message": message });
 };
 
 return m;

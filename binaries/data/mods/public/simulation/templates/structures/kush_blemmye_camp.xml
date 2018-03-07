@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_embassy">
-  <Attack disable=""/>
-  <BuildRestrictions>
-    <Territory>own neutral</Territory>
-    <Distance>
-      <FromClass>MercenaryCamp</FromClass>
-      <MinDistance>100</MinDistance>
-    </Distance>
-  </BuildRestrictions>
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
       <wood>100</wood>
       <stone>0</stone>
-      <food>100</food>
+      <metal>100</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -21,7 +13,7 @@
     <Height>12.0</Height>
   </Footprint>
   <Health>
-    <Max>800</Max>
+    <Max>1000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -30,7 +22,6 @@
     <SpecificName>Blemmye Camp</SpecificName>
     <Tooltip>Train Blemmye Desert Raiders.</Tooltip>
     <Icon>structures/mercenary_camp.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Obstruction>
     <Static width="29.0" depth="29.0"/>
@@ -40,14 +31,6 @@
       units/{civ}_cavalry_javelinist_merc_b
     </Entities>
   </ProductionQueue>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_gymnasium.xml</select>
-      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>structures/mercenaries/camp_blemmye.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>

@@ -128,7 +128,7 @@ m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 		if (!tech[1]._template.modifications)
 			continue;
 		let template = tech[1]._template;
-	    	if (phase2)
+		if (phase2)
 		{
 			let cost = template.cost;
 			let costMax = 0;

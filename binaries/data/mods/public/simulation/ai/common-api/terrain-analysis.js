@@ -86,15 +86,15 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 	{
 		if (this.map[i] !== 0)
 		{	// any non-painted, non-inacessible area.
-			if (this.landPassMap[i] === 0 && this.floodFill(i,this.regionID,false))
+			if (this.landPassMap[i] == 0 && this.floodFill(i, this.regionID, false))
 				this.regionType[this.regionID++] = "land";
-			if (this.navalPassMap[i] === 0 && this.floodFill(i,this.regionID,true))
+			if (this.navalPassMap[i] == 0 && this.floodFill(i, this.regionID, true))
 				this.regionType[this.regionID++] = "water";
 		}
-		else if (this.landPassMap[i] === 0)
+		else if (this.landPassMap[i] == 0)
 		{	// any non-painted, inacessible area.
-			this.floodFill(i,1,false);
-			this.floodFill(i,1,true);
+			this.floodFill(i, 1, false);
+			this.floodFill(i, 1, true);
 		}
 	}
 
@@ -136,8 +136,8 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 		}
 	}
 
-	//Engine.DumpImage("LandPassMap.png", this.landPassMap, this.width, this.height, 255);
-	//Engine.DumpImage("NavalPassMap.png", this.navalPassMap, this.width, this.height, 255);
+	// Engine.DumpImage("LandPassMap.png", this.landPassMap, this.width, this.height, 255);
+	// Engine.DumpImage("NavalPassMap.png", this.navalPassMap, this.width, this.height, 255);
 };
 
 m.Accessibility.prototype.getAccessValue = function(position, onWater)
@@ -149,7 +149,7 @@ m.Accessibility.prototype.getAccessValue = function(position, onWater)
 	if (ret === 1)
 	{
 		// quick spiral search.
-		let indx = [ [-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]];
+		let indx = [ [-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]];
 		for (let i of indx)
 		{
 			let id0 = gamePos[0] + i[0];
@@ -251,7 +251,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		return false;
 	}
 
-	if (!onWater && this.landPassMap[startIndex] !== 0 || onWater && this.navalPassMap[startIndex] !== 0 )
+	if (!onWater && this.landPassMap[startIndex] != 0 || onWater && this.navalPassMap[startIndex] != 0)
 		return false;	// already painted.
 
 	let floodFor = "land";

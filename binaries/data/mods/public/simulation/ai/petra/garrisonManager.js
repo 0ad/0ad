@@ -181,7 +181,7 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 		if (!ent || ent.owner() !== PlayerID)
 			this.decayingStructures.delete(id);
 		else if (this.numberOfGarrisonedUnits(ent) < gmin)
-			gameState.ai.HQ.defenseManager.garrisonUnitsInside(gameState, ent, {"min": gmin, "type": "decay"});
+			gameState.ai.HQ.defenseManager.garrisonUnitsInside(gameState, ent, { "min": gmin, "type": "decay" });
 	}
 };
 

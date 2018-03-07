@@ -78,9 +78,9 @@ m.HQ.prototype.init = function(gameState, queues)
 		this.currentRates[res] = 0;
 	}
 
-	this.treasures = gameState.getEntities().filter(function (ent) {
+	this.treasures = gameState.getEntities().filter(ent => {
 		let type = ent.resourceSupplyType();
-		return type && type.generic === "treasure";
+		return type && type.generic == "treasure";
 	});
 	this.treasures.registerUpdates();
 	this.currentPhase = gameState.currentPhase();
@@ -100,7 +100,7 @@ m.HQ.prototype.postinit = function(gameState)
 
 	for (let ent of gameState.getOwnEntities().values())
 	{
-		if (!ent.resourceDropsiteTypes() || ent.hasClass("Elephant"))
+		if (!ent.resourceDropsiteTypes() || !ent.hasClass("Structure"))
 			continue;
 		// Entities which have been built or have changed ownership after the last AI turn have no base.
 		// they will be dealt with in the next checkEvents
@@ -183,10 +183,10 @@ m.HQ.prototype.createBase = function(gameState, ent, type)
  * otherwise return undefined
  * for the moment, only the case land-sea-land is supported
  */
-m.HQ.prototype.getSeaBetweenIndices = function (gameState, index1, index2)
+m.HQ.prototype.getSeaBetweenIndices = function(gameState, index1, index2)
 {
 	let path = gameState.ai.accessibility.getTrajectToIndex(index1, index2);
-	if (path && path.length == 3 && gameState.ai.accessibility.regionType[path[1]] === "water")
+	if (path && path.length == 3 && gameState.ai.accessibility.regionType[path[1]] == "water")
 		return path[1];
 
 	if (this.Config.debug > 1)
@@ -199,7 +199,7 @@ m.HQ.prototype.getSeaBetweenIndices = function (gameState, index1, index2)
 };
 
 /** TODO check if the new anchorless bases should be added to addBase */
-m.HQ.prototype.checkEvents = function (gameState, events)
+m.HQ.prototype.checkEvents = function(gameState, events)
 {
 	let addBase = false;
 
@@ -230,7 +230,7 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 			if (evt.metadata[PlayerID].base == -1 || evt.metadata[PlayerID].base == -2)
 				continue;
 			let base = this.getBaseByID(evt.metadata[PlayerID].base);
-			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
+			if (ent.resourceDropsiteTypes() && ent.hasClass("Structure"))
 				base.removeDropsite(gameState, ent);
 			if (evt.metadata[PlayerID].baseAnchor && evt.metadata[PlayerID].baseAnchor === true)
 				base.anchorLost(gameState, ent);
@@ -265,7 +265,7 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 			let builders = this.bulkPickWorkers(gameState, newbase, 10);
 			if (builders !== false)
 			{
-				builders.forEach(function (worker) {
+				builders.forEach(worker => {
 					worker.setMetadata(PlayerID, "base", newbase.ID);
 					worker.setMetadata(PlayerID, "subrole", "builder");
 					worker.setMetadata(PlayerID, "target-foundation", ent.id());
@@ -279,7 +279,7 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 			let builders = this.bulkPickWorkers(gameState, newbase, 4);
 			if (builders != false)
 			{
-				builders.forEach(function (worker) {
+				builders.forEach(worker => {
 					worker.setMetadata(PlayerID, "base", newbase.ID);
 					worker.setMetadata(PlayerID, "subrole", "builder");
 					worker.setMetadata(PlayerID, "target-foundation", ent.id());
@@ -320,7 +320,7 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 			if (!ent || ent.getMetadata(PlayerID, "base") === undefined)
 				continue;
 			let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
-			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
+			if (ent.resourceDropsiteTypes() && ent.hasClass("Structure"))
 				base.removeDropsite(gameState, ent);
 			if (ent.getMetadata(PlayerID, "baseAnchor") === true)
 				base.anchorLost(gameState, ent);
@@ -644,8 +644,8 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	// counting the workers that aren't part of a plan
 	let numberOfWorkers = 0;   // all workers
 	let numberOfSupports = 0;  // only support workers (i.e. non fighting)
-	gameState.getOwnUnits().forEach (function (ent) {
-		if (ent.getMetadata(PlayerID, "role") === "worker" && ent.getMetadata(PlayerID, "plan") === undefined)
+	gameState.getOwnUnits().forEach(ent => {
+		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") === undefined)
 		{
 			++numberOfWorkers;
 			if (ent.hasClass("Support"))
@@ -765,17 +765,17 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 		let toAdd = true;
 		for (let param of parameters)
 		{
-			if (param[0] !== "costsResource" || param[2] !== type)
+			if (param[0] != "costsResource" || param[2] != type)
 				continue;
-			param[1] = Math.min( param[1], costsResource );
+			param[1] = Math.min(param[1], costsResource);
 			toAdd = false;
 			break;
 		}
 		if (toAdd)
-			parameters.push( [ "costsResource", costsResource, type ] );
+			parameters.push(["costsResource", costsResource, type]);
 	}
 
-	units.sort(function(a, b) {
+	units.sort((a, b) => {
 		let aCost = 1 + a[1].costSum();
 		let bCost = 1 + b[1].costSum();
 		let aValue = 0.1;
@@ -831,7 +831,7 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 	if (!accessIndex)
 		return false;
 	// sorting bases by whether they are on the same accessindex or not.
-	let baseBest = this.baseManagers.slice().sort((a,b) => {
+	let baseBest = this.baseManagers.slice().sort((a, b) => {
 		if (a.accessIndex == accessIndex && b.accessIndex != accessIndex)
 			return -1;
 		else if (b.accessIndex == accessIndex && a.accessIndex != accessIndex)
@@ -1131,7 +1131,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	for (let cc of ccEnts.values())
 	{
 		let ally = gameState.isPlayerAlly(cc.owner());
-		ccList.push({"pos": cc.position(), "ally": ally});
+		ccList.push({ "pos": cc.position(), "ally": ally });
 		if (ally)
 			++numAllyCC;
 	}
@@ -1969,7 +1969,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.getAccountedPopulation(gameState) < 80 || !this.bAdvanced.length)
 		return;
 
-	//build advanced military buildings
+	// Build advanced military buildings
 	let nAdvanced = 0;
 	for (let advanced of this.bAdvanced)
 		nAdvanced += gameState.countEntitiesAndQueuedByType(advanced, true);
@@ -2193,7 +2193,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 
 m.HQ.prototype.updateTerritories = function(gameState)
 {
-	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
+	const around = [ [-0.7, 0.7], [0, 1], [0.7, 0.7], [1, 0], [0.7, -0.7], [0, -1], [-0.7, -0.7], [-1, 0] ];
 	let alliedVictory = gameState.getAlliedVictory();
 	let passabilityMap = gameState.getPassabilityMap();
 	let width = this.territoryMap.width;
@@ -2387,15 +2387,15 @@ m.HQ.prototype.numPotentialBases = function()
 
 m.HQ.prototype.updateBaseCache = function()
 {
-		this.turnCache.base = { "active": 0, "potential": 0 };
-		for (let base of this.baseManagers)
-		{
-			if (!base.anchor)
-				continue;
-			++this.turnCache.base.potential;
-			if (base.anchor.foundationProgress() === undefined)
-				++this.turnCache.base.active;
-		}
+	this.turnCache.base = { "active": 0, "potential": 0 };
+	for (let base of this.baseManagers)
+	{
+		if (!base.anchor)
+			continue;
+		++this.turnCache.base.potential;
+		if (base.anchor.foundationProgress() === undefined)
+			++this.turnCache.base.active;
+	}
 };
 
 m.HQ.prototype.resetBaseCache = function()
@@ -2675,7 +2675,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 			this.trainMoreWorkers(gameState, queues);
 
 		if (gameState.ai.playedTurn % 4 == 1)
-			this.buildMoreHouses(gameState,queues);
+			this.buildMoreHouses(gameState, queues);
 
 		if ((!this.saveResources || this.canBarter) && gameState.ai.playedTurn % 4 == 2)
 			this.buildFarmstead(gameState, queues);

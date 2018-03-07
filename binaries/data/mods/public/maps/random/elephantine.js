@@ -189,7 +189,7 @@ createArea(
 Engine.SetProgress(10);
 
 g_Map.log("Marking islands");
-createArea(
+var areaIsland = createArea(
 	new ConvexPolygonPlacer(
 		[
 			new Vector2D(mapCenter.x - riverWidthBorder / 2, mapBounds.top),
@@ -250,21 +250,23 @@ placePlayerBases({
 Engine.SetProgress(22);
 
 g_Map.log("Creating temple");
-var groupTemple = createObjectGroups(
+var groupTemple = createObjectGroupsByAreas(
 	new SimpleGroup([new RandomObject(g_Map.getSize() >= 320 ? [oWonder] : oTemples, 1, 1, 0, 1, riverAngle, riverAngle)], true, clTemple),
 	0,
-	stayClasses(clIsland, scaleByMapSize(10, 15)),
+	stayClasses(clIsland, scaleByMapSize(10, 20)),
 	1,
-	200);
+	200,
+	[areaIsland]);
 Engine.SetProgress(34);
 
 g_Map.log("Creating pyramid");
-var groupPyramid = createObjectGroups(
+var groupPyramid = createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(oPyramid, 1, 1, 0, 1, riverAngle, riverAngle)], true, clTemple),
 	0,
-	[stayClasses(clIsland, scaleByMapSize(8, 24)), avoidClasses(clTemple, scaleByMapSize(1, 80)), avoidCollisions],
+	[stayClasses(clIsland, scaleByMapSize(10, 20)), avoidClasses(clTemple, scaleByMapSize(20, 50)), avoidCollisions],
 	1,
-	200);
+	200,
+	[areaIsland]);
 Engine.SetProgress(37);
 
 g_Map.log("Painting city patches");
@@ -282,7 +284,7 @@ Engine.SetProgress(40);
 g_Map.log("Painting city path");
 if (cityCenters.length == 2)
 	createArea(
-		new PathPlacer(cityCenters[0].pos, cityCenters[1].pos, 4, 0.4, 4, 0.2, 0.05),
+		new PathPlacer(cityCenters[0].pos, cityCenters[1].pos, 4, 0.3, 4, 0.2, 0.05),
 		[
 			new LayeredPainter([tRoadWildIsland, tRoadIsland], [1]),
 			new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetPath, 4),
@@ -364,7 +366,7 @@ createPatches(
 Engine.SetProgress(58);
 
 g_Map.log("Creating statues");
-createObjectGroups(
+createObjectGroupsByAreas(
 	new SimpleGroup([new RandomObject(aStatues, 1, 1, 0, 1)], true, clStatue),
 	0,
 	[
@@ -373,7 +375,8 @@ createObjectGroups(
 		avoidCollisions
 	],
 	scaleByMapSize(2, 10),
-	400);
+	400,
+	[areaIsland]);
 Engine.SetProgress(61);
 
 g_Map.log("Creating treasure");
@@ -537,7 +540,7 @@ Engine.SetProgress(98);
 
 createDecoration(
 	aBushesShoreline.map(bush => [new SimpleObject(bush, 0, 3, 2, 4)]),
-	aBushesShoreline.map(bush => scaleByMapSize(100, 800)),
+	aBushesShoreline.map(bush => scaleByMapSize(200, 1000)),
 	[new HeightConstraint(heightWaterLevel, heightShore), avoidCollisions]);
 Engine.SetProgress(99);
 
