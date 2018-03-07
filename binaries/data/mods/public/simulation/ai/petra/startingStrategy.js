@@ -234,11 +234,11 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 m.HQ.prototype.structureAnalysis = function(gameState)
 {
 	let civref = gameState.playerData.civ;
-	let civ = civref in this.Config.buildings.advanced ? civref : 'default';
+	let civ = civref in this.Config.buildings ? civref : 'default';
 	this.bAdvanced = [];
-	for (let advanced of this.Config.buildings.advanced[civ])
-		if (gameState.isTemplateAvailable(gameState.applyCiv(advanced)))
-			this.bAdvanced.push(gameState.applyCiv(advanced));
+	for (let building of this.Config.buildings[civ])
+		if (gameState.isTemplateAvailable(gameState.applyCiv(building)))
+			this.bAdvanced.push(gameState.applyCiv(building));
 };
 
 /**

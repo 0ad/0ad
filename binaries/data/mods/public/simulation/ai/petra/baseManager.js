@@ -877,10 +877,12 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		// Don't repair if we're still under attack, unless it's a vital (civcentre or wall) building
 		// that's being destroyed.
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
+		{
 			if (target.healthLevel() > 0.5 ||
 			    !target.hasClass("CivCentre") && !target.hasClass("StoneWall") &&
 			    (!target.hasClass("Wonder") || !gameState.getVictoryConditions().has("wonder")))
 				continue;
+		}
 		else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
 

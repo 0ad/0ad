@@ -46,28 +46,28 @@ m.Config = function(difficulty, behavior)
 		"armyMergeSize": 1400	// squared.
 	};
 
+	// Additional buildings that the AI does not yet know when to build 
+	// and that it will try to build on phase 3 when enough resources.
 	this.buildings =
 	{
-		"advanced": {
-			"default": [],
-			"athen": ["structures/{civ}_gymnasion", "structures/{civ}_prytaneion",
-				  "structures/{civ}_theatron", "structures/{civ}_royal_stoa"],
-			"brit": ["structures/{civ}_rotarymill"],
-			"cart": ["structures/{civ}_embassy_celtic", "structures/{civ}_embassy_iberian",
-				 "structures/{civ}_embassy_italiote"],
-			"gaul": ["structures/{civ}_rotarymill", "structures/{civ}_tavern"],
-			"iber": ["structures/{civ}_monument"],
-			"kush": ["structures/{civ}_pyramid_large", "structures/{civ}_blemmye_camp",
-				 "structures/{civ}_nuba_village"],
-			"mace": ["structures/{civ}_library", "structures/{civ}_theatron"],
-			"maur": ["structures/{civ}_pillar_ashoka"],
-			"pers": ["structures/{civ}_apadana", "structures/{civ}_hall"],
-			"ptol": ["structures/{civ}_library"],
-			"rome": ["structures/{civ}_army_camp"],
-			"sele": ["structures/{civ}_library"],
-			"spart": ["structures/{civ}_syssiton", "structures/{civ}_theatron",
-			          "structures/{civ}_royal_stoa"]
-		}
+		"default": [],
+		"athen": ["structures/{civ}_gymnasion", "structures/{civ}_prytaneion",
+			  "structures/{civ}_theatron", "structures/{civ}_royal_stoa"],
+		"brit": ["structures/{civ}_rotarymill"],
+		"cart": ["structures/{civ}_embassy_celtic", "structures/{civ}_embassy_iberian",
+			 "structures/{civ}_embassy_italiote"],
+		"gaul": ["structures/{civ}_rotarymill", "structures/{civ}_tavern"],
+		"iber": ["structures/{civ}_monument"],
+		"kush": ["structures/{civ}_pyramid_large", "structures/{civ}_blemmye_camp",
+			 "structures/{civ}_nuba_village"],
+		"mace": ["structures/{civ}_library", "structures/{civ}_theatron"],
+		"maur": ["structures/{civ}_pillar_ashoka"],
+		"pers": ["structures/{civ}_apadana", "structures/{civ}_hall"],
+		"ptol": ["structures/{civ}_library"],
+		"rome": ["structures/{civ}_army_camp"],
+		"sele": ["structures/{civ}_library"],
+		"spart": ["structures/{civ}_syssiton", "structures/{civ}_theatron",
+		          "structures/{civ}_royal_stoa"]
 	};
 
 	this.priorities =
