@@ -21,6 +21,16 @@ TriggerHelper.GetOwner = function(ent)
 	return -1;
 };
 
+TriggerHelper.GetEntitiesByPlayer = function(playerID)
+{
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(playerID);
+};
+
+TriggerHelper.GetAllPlayersEntities = function()
+{
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities();
+};
+
 TriggerHelper.SetUnitStance = function(ent, stance)
 {
 	let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
@@ -212,12 +222,27 @@ TriggerHelper.GetNumberOfPlayers = function()
  * See globalscripts/Templates.js for details of MatchesClassList.
  *
  * @param entity - ID of the entity that we want to check for classes.
- * @param classlist - List of the classes we are checking if the entity matches.
+ * @param classes - List of the classes we are checking if the entity matches.
  */
-TriggerHelper.EntityMatchesClassList = function(entity, classlist)
+TriggerHelper.EntityMatchesClassList = function(entity, classes)
 {
 	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-	return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), classlist);
+	return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), classes);
+};
+
+TriggerHelper.MatchEntitiesByClass = function(entities, classes)
+{
+	return entities.filter(ent => TriggerHelper.EntityMatchesClassList(ent, classes));
+};
+
+TriggerHelper.GetPlayerEntitiesByClass = function(playerID, classes)
+{
+	return TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetEntitiesByPlayer(playerID), classes);
+};
+
+TriggerHelper.GetAllPlayersEntitiesByClass = function(playerID, classes)
+{
+	return TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetAllPlayersEntities(), classes);
 };
 
 /**

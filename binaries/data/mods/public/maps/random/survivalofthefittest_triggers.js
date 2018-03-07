@@ -148,23 +148,11 @@ Trigger.prototype.SetDisableTemplates = function()
  */
 Trigger.prototype.InitStartingUnits = function()
 {
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	for (let i = 1; i < TriggerHelper.GetNumberOfPlayers(); ++i)
+	for (let playerID = 1; playerID < TriggerHelper.GetNumberOfPlayers(); ++playerID)
 	{
-		let playerEntities = cmpRangeManager.GetEntitiesByPlayer(i);
-
-		for (let entity of playerEntities)
-		{
-			if (TriggerHelper.EntityMatchesClassList(entity, "CivilCentre"))
-				this.playerCivicCenter[i] = entity;
-			else if (TriggerHelper.EntityMatchesClassList(entity, "FemaleCitizen"))
-			{
-				this.treasureFemale[i] = entity;
-
-				let cmpDamageReceiver = Engine.QueryInterface(entity, IID_DamageReceiver);
-				cmpDamageReceiver.SetInvulnerability(true);
-			}
-		}
+		this.playerCivicCenter[playerID] = TriggerHelper.GetPlayerEntitiesByClass(playerID, "CivilCentre")[0];
+		this.treasureFemale[playerID] = TriggerHelper.GetPlayerEntitiesByClass(playerID, "FemaleCitizen")[0];
+		Engine.QueryInterface(this.treasureFemale[playerID], IID_DamageReceiver).SetInvulnerability(true);
 	}
 };
 

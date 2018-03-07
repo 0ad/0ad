@@ -195,7 +195,7 @@ Trigger.prototype.debugLog = function(txt)
 			Math.round(Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000) + "] " + txt + "\n");
 };
 
-Trigger.prototype.GarrisonAllGallicBuildings = function(gaiaEnts)
+Trigger.prototype.GarrisonAllGallicBuildings = function()
 {
 	this.debugLog("Garrisoning all gallic buildings");
 
@@ -210,22 +210,14 @@ Trigger.prototype.GarrisonAllGallicBuildings = function(gaiaEnts)
 /**
  * Spawn units of the template at each gaia Civic Center and set them to defensive.
  */
-Trigger.prototype.SpawnInitialCCDefenders = function(gaiaEnts)
+Trigger.prototype.SpawnInitialCCDefenders = function()
 {
 	this.debugLog("To defend CCs, spawning " + uneval(ccDefenders));
 
-	for (let gaiaEnt of gaiaEnts)
-	{
-		let cmpIdentity = Engine.QueryInterface(gaiaEnt, IID_Identity);
-		if (!cmpIdentity || !cmpIdentity.HasClass("CivCentre"))
-			continue;
-
-		this.civicCenters.add(gaiaEnt);
-
+	for (let ent of this.civicCenters)
 		for (let ccDefender of ccDefenders)
-			for (let ent of TriggerHelper.SpawnUnits(gaiaEnt, pickRandom(ccDefender.templates), ccDefender.count, gaulPlayer))
+			for (let ent of TriggerHelper.SpawnUnits(ent, pickRandom(ccDefender.templates), ccDefender.count, gaulPlayer))
 				TriggerHelper.SetUnitStance(ent, "defensive");
-	}
 };
 
 Trigger.prototype.SpawnCCAttackers = function()
@@ -270,14 +262,10 @@ Trigger.prototype.SpawnCCAttackers = function()
  * Remember most Humans present at the beginning of the match (before spawning any unit) and
  * make them defensive.
  */
-Trigger.prototype.StartCelticRitual = function(gaiaEnts)
+Trigger.prototype.StartCelticRitual = function()
 {
-	for (let ent of gaiaEnts)
+	for (let ent of TriggerHelper.GetPlayerEntitiesByClass(gaulPlayer, "Human"))
 	{
-		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		if (!cmpIdentity || !cmpIdentity.HasClass("Human"))
-			continue;
-
 		if (randBool(ritualProbability))
 			this.ritualEnts.add(ent);
 
@@ -336,7 +324,7 @@ Trigger.prototype.SpawnShips = function()
 				gaulPlayer)[0]);
 
 	for (let ship of this.ships)
-		this.AttackAndPatrol([ship], shipTargetClass, triggerPointShipPatrol, "Ships");
+		this.AttackAndPatrol([ship], shipTargetClass, triggerPointShipPatrol, "Ship");
 
 	this.DoAfterDelay(shipRespawnTime(time) * 60 * 1000, "SpawnShips", {});
 
@@ -408,13 +396,8 @@ Trigger.prototype.AttackAndPatrol = function(attackers, targetClass, triggerPoin
 	if (!attackers.length)
 		return;
 
-	let allTargets = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities().filter(ent => {
-		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), targetClass);
-	});
-
-	let targets = allTargets.sort((ent1, ent2) =>
-		DistanceBetweenEntities(attackers[0], ent1) - DistanceBetweenEntities(attackers[0], ent2)).slice(0, targetCount);
+	let targets = TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetAllPlayersEntities(), targetClass).sort(
+		(ent1, ent2) => DistanceBetweenEntities(attackers[0], ent1) - DistanceBetweenEntities(attackers[0], ent2)).slice(0, targetCount);
 
 	this.debugLog(debugName + " " + uneval(attackers) + " attack " + uneval(targets));
 
@@ -458,12 +441,8 @@ Trigger.prototype.GetActiveRiversides = function()
 	let left = false;
 	let right = false;
 
-	for (let ent of Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities())
+	for (let ent of TriggerHelper.GetAllPlayersEntitiesByClass(siegeTargetClass))
 	{
-		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		if (!cmpIdentity || !cmpIdentity.HasClass(siegeTargetClass))
-			continue;
-
 		if (this.IsLeftRiverside(ent))
 			left = true;
 		else
@@ -603,7 +582,7 @@ Trigger.prototype.InitDanubius = function()
 	this.heroes = new Set();
 
 	// Remember gaia CCs to spawn attackers from
-	this.civicCenters = new Set();
+	this.civicCenters = new Set(TriggerHelper.GetPlayerEntitiesByClass(gaulPlayer, "CivCentre"))
 
 	// Maps from gaia ship entity ID to ungarrison trigger point entity ID and land patrol triggerpoint name
 	this.shipTarget = {};
@@ -616,10 +595,9 @@ Trigger.prototype.InitDanubius = function()
 		Engine.QueryInterface(this.GetTriggerPoints(triggerPointRiverDirection)[0], IID_Position).GetPosition2D(),
 		this.mapCenter);
 
-	let gaiaEnts = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(0);
-	this.StartCelticRitual(gaiaEnts);
-	this.GarrisonAllGallicBuildings(gaiaEnts);
-	this.SpawnInitialCCDefenders(gaiaEnts);
+	this.StartCelticRitual();
+	this.GarrisonAllGallicBuildings();
+	this.SpawnInitialCCDefenders();
 	this.SpawnCCAttackers();
 
 	this.SpawnShips();
