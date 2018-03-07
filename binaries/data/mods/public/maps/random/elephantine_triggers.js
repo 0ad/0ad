@@ -2,7 +2,7 @@ Trigger.prototype.InitElephantine = function()
 {
 	this.InitElephantine_DefenderStance();
 	this.InitElephantine_GarrisonBuildings();
-}
+};
 
 Trigger.prototype.InitElephantine_DefenderStance = function()
 {

@@ -375,7 +375,7 @@ TriggerHelper.BalancedTemplateComposition = function(templateBalancing, totalCou
 			if (!results[templateName])
 				results[templateName] = 0;
 
-			results[templateName] += templateCounts[templateName]
+			results[templateName] += templateCounts[templateName];
 			remainder -= templateCounts[templateName];
 		}
 	};
