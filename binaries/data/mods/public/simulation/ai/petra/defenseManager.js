@@ -721,28 +721,28 @@ m.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target, dat
 			allowMelee = true;
 	}
 	let units = gameState.getOwnUnits().filter(ent => {
-			if (!ent.position())
+		if (!ent.position())
+			return false;
+		if (!MatchesClassList(ent.classes(), garrisonArrowClasses))
+			return false;
+		if (typeGarrison != "decay" && !allowMelee && ent.attackTypes().indexOf("Melee") != -1)
+			return false;
+		if (ent.getMetadata(PlayerID, "transport") !== undefined)
+			return false;
+		let army = ent.getMetadata(PlayerID, "PartOfArmy") ? this.getArmy(ent.getMetadata(PlayerID, "PartOfArmy")) : undefined;
+		if (!army && (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3))
+			return false;
+		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") >= 0)
+		{
+			let subrole = ent.getMetadata(PlayerID, "subrole");
+			// when structure decaying (usually because we've just captured it in enemy territory), also allow units from an attack plan
+			if (typeGarrison != "decay" && subrole && (subrole == "completing" || subrole == "walking" || subrole == "attacking"))
 				return false;
-			if (!MatchesClassList(ent.classes(), garrisonArrowClasses))
-				return false;
-			if (typeGarrison != "decay" && !allowMelee && ent.attackTypes().indexOf("Melee") != -1)
-				return false;
-			if (ent.getMetadata(PlayerID, "transport") !== undefined)
-				return false;
-			let army = ent.getMetadata(PlayerID, "PartOfArmy") ? this.getArmy(ent.getMetadata(PlayerID, "PartOfArmy")) : undefined;
-			if (!army && (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3))
-				return false;
-			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") >= 0)
-			{
-				let subrole = ent.getMetadata(PlayerID, "subrole");
-				// when structure decaying (usually because we've just captured it in enemy territory), also allow units from an attack plan
-				if (typeGarrison != "decay" && subrole && (subrole == "completing" || subrole == "walking" || subrole == "attacking"))
-					return false;
-			}
-			if (m.getLandAccess(gameState, ent) != access)
-				return false;
-			return true;
-		}).filterNearest(target.position());
+		}
+		if (m.getLandAccess(gameState, ent) != access)
+			return false;
+		return true;
+	}).filterNearest(target.position());
 
 	let ret = false;
 	for (let ent of units.values())

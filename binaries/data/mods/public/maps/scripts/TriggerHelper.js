@@ -21,6 +21,23 @@ TriggerHelper.GetOwner = function(ent)
 	return -1;
 };
 
+TriggerHelper.GetEntitiesByPlayer = function(playerID)
+{
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(playerID);
+};
+
+TriggerHelper.GetAllPlayersEntities = function()
+{
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities();
+};
+
+TriggerHelper.SetUnitStance = function(ent, stance)
+{
+	let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+	if (cmpUnitAI)
+		cmpUnitAI.SwitchToStance(stance);
+};
+
 /**
  * Can be used to "force" a building/unit to spawn a group of entities.
  *
@@ -91,8 +108,8 @@ TriggerHelper.SpawnUnits = function(source, template, count, owner)
 TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
 {
 	let entities = [];
-	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
 
+	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
 	if (!cmpGarrisonHolder)
 	{
 		error("tried to create garrisoned entities inside a non-garrisonholder");
@@ -105,13 +122,17 @@ TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
 	for (let i = 0; i < count; ++i)
 	{
 		let ent = Engine.AddEntity(template);
+
 		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		if (cmpOwnership)
 			cmpOwnership.SetOwner(owner);
+
 		if (cmpGarrisonHolder.PerformGarrison(ent))
 		{
-			if (Engine.QueryInterface(ent, IID_UnitAI))
-				Engine.QueryInterface(ent, IID_UnitAI).Autogarrison(entity);
+			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+				cmpUnitAI.Autogarrison(entity);
+
 			entities.push(ent);
 		}
 		else
@@ -201,12 +222,27 @@ TriggerHelper.GetNumberOfPlayers = function()
  * See globalscripts/Templates.js for details of MatchesClassList.
  *
  * @param entity - ID of the entity that we want to check for classes.
- * @param classlist - List of the classes we are checking if the entity matches.
+ * @param classes - List of the classes we are checking if the entity matches.
  */
-TriggerHelper.EntityMatchesClassList = function(entity, classlist)
+TriggerHelper.EntityMatchesClassList = function(entity, classes)
 {
 	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-	return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), classlist);
+	return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), classes);
+};
+
+TriggerHelper.MatchEntitiesByClass = function(entities, classes)
+{
+	return entities.filter(ent => TriggerHelper.EntityMatchesClassList(ent, classes));
+};
+
+TriggerHelper.GetPlayerEntitiesByClass = function(playerID, classes)
+{
+	return TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetEntitiesByPlayer(playerID), classes);
+};
+
+TriggerHelper.GetAllPlayersEntitiesByClass = function(playerID, classes)
+{
+	return TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetAllPlayersEntities(), classes);
 };
 
 /**
@@ -375,7 +411,7 @@ TriggerHelper.BalancedTemplateComposition = function(templateBalancing, totalCou
 			if (!results[templateName])
 				results[templateName] = 0;
 
-			results[templateName] += templateCounts[templateName]
+			results[templateName] += templateCounts[templateName];
 			remainder -= templateCounts[templateName];
 		}
 	};

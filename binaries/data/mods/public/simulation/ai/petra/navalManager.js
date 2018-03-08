@@ -189,26 +189,25 @@ m.NavalManager.prototype.getFishSea = function(gameState, fish)
 	sea = gameState.ai.accessibility.navalPassMap[k];
 	fish.setMetadata(PlayerID, "sea", sea);
 	let radius = 120 / gameState.ai.accessibility.cellSize / ntry;
-	if (around.every(a =>
+	if (around.every(a => {
+		for (let t = 0; t < ntry; ++t)
 		{
-			for (let t = 0; t < ntry; ++t)
+			let i = pos[0] + Math.round(a[0]*radius*(ntry-t));
+			let j = pos[1] + Math.round(a[1]*radius*(ntry-t));
+			if (i < 0 || i >= width || j < 0 || j >= width)
+				continue;
+			if (gameState.ai.accessibility.landPassMap[i + j*width] === 1)
 			{
-				let i = pos[0] + Math.round(a[0]*radius*(ntry-t));
-				let j = pos[1] + Math.round(a[1]*radius*(ntry-t));
-				if (i < 0 || i >= width || j < 0 || j >= width)
+				let navalPass = gameState.ai.accessibility.navalPassMap[i + j*width];
+				if (navalPass == sea)
+					return true;
+				else if (navalPass == 1)  // we could be outside the map
 					continue;
-				if (gameState.ai.accessibility.landPassMap[i + j*width] === 1)
-				{
-					let navalPass = gameState.ai.accessibility.navalPassMap[i + j*width];
-					if (navalPass == sea)
-						return true;
-					else if (navalPass == 1)  // we could be outside the map
-						continue;
-				}
-				return false;
 			}
-			return true;
-		}))
+			return false;
+		}
+		return true;
+	}))
 		fish.setMetadata(PlayerID, "opensea", true);
 	return sea;
 };
@@ -224,20 +223,19 @@ m.NavalManager.prototype.canFishSafely = function(gameState, fish)
 	let width = territoryMap.width;
 	let radius = 120 / territoryMap.cellSize / ntry;
 	let pos = territoryMap.gamePosToMapPos(fish.position());
-	return around.every(a =>
+	return around.every(a => {
+		for (let t = 0; t < ntry; ++t)
 		{
-			for (let t = 0; t < ntry; ++t)
-			{
-				let i = pos[0] + Math.round(a[0]*radius*(ntry-t));
-				let j = pos[1] + Math.round(a[1]*radius*(ntry-t));
-				if (i < 0 || i >= width || j < 0 || j >= width)
-					continue;
-				let owner = territoryMap.getOwnerIndex(i + j*width);
-				if (owner != 0 && gameState.isPlayerEnemy(owner))
-					return false;
-			}
-			return true;
-		});
+			let i = pos[0] + Math.round(a[0]*radius*(ntry-t));
+			let j = pos[1] + Math.round(a[1]*radius*(ntry-t));
+			if (i < 0 || i >= width || j < 0 || j >= width)
+				continue;
+			let owner = territoryMap.getOwnerIndex(i + j*width);
+			if (owner != 0 && gameState.isPlayerEnemy(owner))
+				return false;
+		}
+		return true;
+	});
 };
 
 /** get the list of seas (or lands) around this region not connected by a dock */

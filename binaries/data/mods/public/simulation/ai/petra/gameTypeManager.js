@@ -663,25 +663,25 @@ m.GameTypeManager.prototype.captureGaiaRelic = function(gameState, relic)
 	let relicPosition = relic.position();
 	let access = m.getLandAccess(gameState, relic);
 	let units = gameState.getOwnUnits().filter(ent => {
-			if (!ent.position() || !ent.canCapture(relic))
+		if (!ent.position() || !ent.canCapture(relic))
+			return false;
+		if (ent.getMetadata(PlayerID, "transport") !== undefined)
+			return false;
+		if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
+			return false;
+		let plan = ent.getMetadata(PlayerID, "plan");
+		if (plan == -2 || plan == -3)
+			return false;
+		if (plan !== undefined && plan >= 0)
+		{
+			let attack = gameState.ai.HQ.attackManager.getPlan(plan);
+			if (attack && (attack.state != "unexecuted" || attack.type == "Raid"))
 				return false;
-			if (ent.getMetadata(PlayerID, "transport") !== undefined)
-				return false;
-			if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
-				return false;
-			let plan = ent.getMetadata(PlayerID, "plan");
-			if (plan == -2 || plan == -3)
-				return false;
-			if (plan !== undefined && plan >= 0)
-			{
-				let attack = gameState.ai.HQ.attackManager.getPlan(plan);
-				if (attack && (attack.state != "unexecuted" || attack.type == "Raid"))
-					return false;
-			}
-			if (m.getLandAccess(gameState, ent) != access)
-				return false;
-			return true;
-		}).filterNearest(relicPosition);
+		}
+		if (m.getLandAccess(gameState, ent) != access)
+			return false;
+		return true;
+	}).filterNearest(relicPosition);
 	let expedition = [];
 	for (let ent of units.values())
 	{
