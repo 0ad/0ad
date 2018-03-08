@@ -228,7 +228,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function()
 
 if (randBool())
 {
-	g_Map.log("Late spring biome");
+	RandomMapLogger.prototype.printDirectly("Setting late spring biome.\n");
 	var tPrimary = ["alpine_dirt_grass_50"];
 	var tForestFloor = "alpine_forrestfloor";
 	var tCliff = ["alpine_cliff_a", "alpine_cliff_b", "alpine_cliff_c"];
@@ -256,7 +256,7 @@ if (randBool())
 }
 else
 {
-	g_Map.log("Winter biome");
+	RandomMapLogger.prototype.printDirectly("Setting winter biome.\n");
 	var tPrimary = ["alpine_snow_a", "alpine_snow_b"];
 	var tForestFloor = "alpine_forrestfloor_snow";
 	var tCliff = ["alpine_cliff_snow"];
