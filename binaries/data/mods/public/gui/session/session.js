@@ -663,7 +663,8 @@ function updateTopPanel()
 			});
 	}
 
-	Engine.GetGUIObjectByName("optionFollowPlayer").hidden = !g_IsObserver || !isPlayer;
+	Engine.GetGUIObjectByName("optionFollowPlayer").hidden = !g_IsObserver ||
+		!isPlayer && (g_ViewedPlayer != 0 || g_GameAttributes.settings.Keywords.indexOf("trigger") == -1);
 
 	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
 	viewPlayer.hidden = !g_IsObserver && !g_DevSettings.changePerspective;
