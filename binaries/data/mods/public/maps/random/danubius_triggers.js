@@ -151,10 +151,10 @@ var shipUngarrisonDistance = 50;
 var formationProbability = 0.2;
 
 var unitFormations = [
-	"box",
-	"battle_line",
-	"line_closed",
-	"column_closed"
+	"special/formations/box",
+	"special/formations/battle_line",
+	"special/formations/line_closed",
+	"special/formations/column_closed"
 ];
 
 /**
@@ -324,7 +324,7 @@ Trigger.prototype.SpawnShips = function()
 				gaulPlayer)[0]);
 
 	for (let ship of this.ships)
-		this.AttackAndPatrol([ship], shipTargetClass, triggerPointShipPatrol, "Ship");
+		this.AttackAndPatrol([ship], shipTargetClass, triggerPointShipPatrol, "Ship", true);
 
 	this.DoAfterDelay(shipRespawnTime(time) * 60 * 1000, "SpawnShips", {});
 
@@ -391,10 +391,27 @@ Trigger.prototype.FillShips = function()
 /**
  * Attack the closest enemy ships around, then patrol the sea.
  */
-Trigger.prototype.AttackAndPatrol = function(attackers, targetClass, triggerPointRef, debugName, attack = true)
+Trigger.prototype.AttackAndPatrol = function(entities, targetClass, triggerPointRef, debugName, attack)
 {
-	if (!attackers.length)
+	if (!entities.length)
 		return;
+
+	let healers = TriggerHelper.MatchEntitiesByClass(entities, "Healer");
+	if (healers.length)
+	{
+		let healerTargets = TriggerHelper.MatchEntitiesByClass(entities, "Hero Champion");
+		if (!healerTargets.length)
+			healerTargets = TriggerHelper.MatchEntitiesByClass(entities, "Soldier");
+
+		ProcessCommand(gaulPlayer, {
+			"type": "guard",
+			"entities": healers,
+			"target": pickRandom(healerTargets),
+			"queued": false
+		});
+	}
+
+	let attackers = TriggerHelper.MatchEntitiesByClass(entities, "!Healer");
 
 	let targets = TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetAllPlayersEntities(), targetClass).sort(
 		(ent1, ent2) => DistanceBetweenEntities(attackers[0], ent1) - DistanceBetweenEntities(attackers[0], ent2)).slice(0, targetCount);
@@ -533,25 +550,26 @@ Trigger.prototype.CheckShipRange = function()
 		if (!cmpGarrisonHolder)
 			continue;
 
-		let attackers = cmpGarrisonHolder.GetEntities();
-		let siegeEngines = attackers.filter(ent => Engine.QueryInterface(ent, IID_Identity).HasClass("Siege"));
-		let others = attackers.filter(ent => siegeEngines.indexOf(ent) == -1);
+		let humans = TriggerHelper.MatchEntitiesByClass(cmpGarrisonHolder.GetEntities(), "Human");
+		let siegeEngines = TriggerHelper.MatchEntitiesByClass(cmpGarrisonHolder.GetEntities(), "Siege");
 
 		this.debugLog("Ungarrisoning ship " + ship + " at " + uneval(this.shipTarget[ship]));
 		cmpGarrisonHolder.UnloadAll();
+		this.AttackAndPatrol([ship], shipTargetClass, triggerPointShipPatrol, "Ships", true);
 
 		if (randBool(formationProbability))
 			ProcessCommand(gaulPlayer, {
 				"type": "formation",
-				"entities": others,
-				"name": "special/formations/" + pickRandom(unitFormations)
+				"entities": humans,
+				"name": pickRandom(unitFormations)
 			});
 
-		this.AttackAndPatrol(siegeEngines, siegeTargetClass, this.shipTarget[ship].landPointRef, "Siege");
-		this.AttackAndPatrol(others, unitTargetClass, this.shipTarget[ship].landPointRef, "Units");
-		delete this.shipTarget[ship];
+		this.AttackAndPatrol(siegeEngines, siegeTargetClass, this.shipTarget[ship].landPointRef, "Siege Engines", true);
 
-		this.AttackAndPatrol([ship], shipTargetClass, triggerPointShipPatrol, "Ships");
+		// Order soldiers at last, so the follow-player observer feature focuses the soldiers
+		this.AttackAndPatrol(humans, unitTargetClass, this.shipTarget[ship].landPointRef, "Units", true);
+
+		delete this.shipTarget[ship];
 	}
 };
 
