@@ -952,7 +952,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		ccList.push({ "ent": cc, "pos": cc.position(), "ally": gameState.isPlayerAlly(cc.owner()) });
 	let dpList = [];
 	for (let dp of dpEnts.values())
-		dpList.push({ "pos": dp.position() });
+		dpList.push({ "ent": dp, "pos": dp.position(), "territory": this.territoryMap.getOwner(dp.position()) });
 
 	let bestIdx;
 	let bestVal;
@@ -984,15 +984,19 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	let maxAccessDisfavored = Math.square(360 - reduce);	// Disfavor if quite far from an accessible ally cc
 	let maxNoAccessDisfavored = Math.square(500);		// Disfavor if quite far from an inaccessible ally cc
 
+	let cut = 60;
+	if (fromStrategic || proximity)  // be less restrictive
+		cut = 30;
+
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
 		if (this.territoryMap.getOwnerIndex(j) !== 0)
 			continue;
-		// with enough room around to build the cc
+		// With enough room around to build the cc
 		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
 		if (i < 0)
 			continue;
-		// we require that it is accessible
+		// We require that it is accessible
 		let index = gameState.ai.accessibility.landPassMap[i];
 		if (!this.landRegions[index])
 			continue;
@@ -1000,10 +1004,12 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 			continue;
 
 		let norm = 0.5;   // TODO adjust it, knowing that we will sum 5 maps
-		// checking distance to other cc
+		// Checking distance to other cc
 		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+		// We will be more tolerant for cc around our oversea docks
+		let oversea = false;
 
-		if (proximity)	// this is our first cc, let's do it near our units
+		if (proximity)	// This is our first cc, let's do it near our units
 			norm /= 1 + API3.SquareVectorDistance(proximity, pos) / scale;
 		else
 		{
@@ -1051,18 +1057,23 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 					norm *= 0.5;
 			}
 
-			for (let dp of dpList)
+			// Not near any of our dropsite, except for oversea docks
+			oversea = !accessible && dpList.some(dp => m.getLandAccess(gameState, dp.ent) == index);
+			if (!oversea)
 			{
-				let dist = API3.SquareVectorDistance(dp.pos, pos);
-				if (dist < 3600)
+				for (let dp of dpList)
 				{
-					norm = 0;
-					break;
+					let dist = API3.SquareVectorDistance(dp.pos, pos);
+					if (dist < 3600)
+					{
+						norm = 0;
+						break;
+					}
+					else if (dist < 6400)
+						norm *= 0.5;
 				}
-				else if (dist < 6400)
-					norm *= 0.5;
 			}
-			if (norm === 0)
+			if (norm == 0)
 				continue;
 		}
 
@@ -1071,10 +1082,13 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 
 		let val = 2*gameState.sharedScript.ccResourceMaps[resource].map[j];
 		for (let res in gameState.sharedScript.resourceMaps)
-			if (res !== "food")
+			if (res != "food")
 				val += gameState.sharedScript.ccResourceMaps[res].map[j];
-
 		val *= norm;
+
+		// If oversea, be just above threshold to be accepted if nothing else 
+		if (oversea)
+			val = Math.max(val, cut + 0.1);
 
 		if (bestVal !== undefined && val < bestVal)
 			continue;
@@ -1088,9 +1102,6 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 
 	if (bestVal === undefined)
 		return false;
-	let cut = 60;
-	if (fromStrategic || proximity)  // be less restrictive
-		cut = 30;
 	if (this.Config.debug > 1)
 		API3.warn("we have found a base for " + resource + " with best (cut=" + cut + ") = " + bestVal);
 	// not good enough.
@@ -1104,7 +1115,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	let indexIdx = gameState.ai.accessibility.landPassMap[bestIdx];
 	for (let base of this.baseManagers)
 	{
-		if (!base.anchor || base.accessIndex === indexIdx)
+		if (!base.anchor || base.accessIndex == indexIdx)
 			continue;
 		let sea = this.getSeaBetweenIndices(gameState, base.accessIndex, indexIdx);
 		if (sea !== undefined)
@@ -1247,7 +1258,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	let indexIdx = gameState.ai.accessibility.landPassMap[bestIdx];
 	for (let base of this.baseManagers)
 	{
-		if (!base.anchor || base.accessIndex === indexIdx)
+		if (!base.anchor || base.accessIndex == indexIdx)
 			continue;
 		let sea = this.getSeaBetweenIndices(gameState, base.accessIndex, indexIdx);
 		if (sea !== undefined)

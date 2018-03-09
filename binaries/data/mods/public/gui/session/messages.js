@@ -436,9 +436,10 @@ var g_NotificationsTypes =
 
 		let cmd = notification.cmd;
 
-		// Ignore boring animals
+		// Ignore rallypoint commands of trained animals
 		let entState = cmd.entities && cmd.entities[0] && GetEntityState(cmd.entities[0]);
-		if (entState && entState.identity && entState.identity.classes &&
+		if (g_ViewedPlayer != 0 &&
+		    entState && entState.identity && entState.identity.classes &&
 		    entState.identity.classes.indexOf("Animal") != -1)
 			return;
 

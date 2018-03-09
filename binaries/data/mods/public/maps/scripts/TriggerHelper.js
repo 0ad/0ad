@@ -240,7 +240,7 @@ TriggerHelper.GetPlayerEntitiesByClass = function(playerID, classes)
 	return TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetEntitiesByPlayer(playerID), classes);
 };
 
-TriggerHelper.GetAllPlayersEntitiesByClass = function(playerID, classes)
+TriggerHelper.GetAllPlayersEntitiesByClass = function(classes)
 {
 	return TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetAllPlayersEntities(), classes);
 };

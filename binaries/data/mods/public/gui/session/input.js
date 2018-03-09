@@ -1229,6 +1229,17 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 		"targetClasses": Engine.HotkeyIsPressed("session.attackmoveUnit") ? { "attack": ["Unit"] } : { "attack": ["Unit", "Structure"] },
 		"queued": Engine.HotkeyIsPressed("session.queue")
 	});
+
+	// Add target markers with a minimum distance of 5 to each other.
+	let entitiesBetweenMarker = Math.ceil(5 / distanceBetweenEnts);
+	for (let i = 0; i < entityDistribution.length; i += entitiesBetweenMarker)
+		DrawTargetMarker({ "x": entityDistribution[i].x, "z": entityDistribution[i].y });
+
+	Engine.GuiInterfaceCall("PlaySound", {
+		"name": "order_walk",
+		"entity": selection[0]
+	});
+
 	return true;
 }
 
