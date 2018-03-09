@@ -1464,24 +1464,37 @@ bool Autostart(const CmdLineArgs& args)
 		triggerScriptsVector.push_back(nonVisualScript.FromUTF8());
 	}
 
-	CStr victory = "conquest";
+	std::vector<CStr> victoryConditions(1, "conquest");
 	if (args.Has("autostart-victory"))
-		victory = args.Get("autostart-victory");
+		victoryConditions = args.GetMultiple("autostart-victory");
 
-	scriptInterface.SetProperty(settings, "GameType", std::string(victory));
+	if (victoryConditions.size() == 1 && victoryConditions[0] == "endless")
+		victoryConditions.clear();
 
-	CStrW scriptPath = L"simulation/data/settings/victory_conditions/" + victory.FromUTF8() + L".json";
-	JS::RootedValue scriptData(cx);
-	JS::RootedValue data(cx);
-	JS::RootedValue victoryScripts(cx);
-	scriptInterface.ReadJSONFile(scriptPath, &scriptData);
-	if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "Data", &data) && !data.isUndefined()
-		&& scriptInterface.GetProperty(data, "Scripts", &victoryScripts) && !victoryScripts.isUndefined())
+	scriptInterface.SetProperty(settings, "VictoryConditions", victoryConditions);
+
+	for (const CStr& victory : victoryConditions)
 	{
-		std::vector<CStrW> victoryScriptsVector;
-		FromJSVal_vector(cx, victoryScripts, victoryScriptsVector);
-		triggerScriptsVector.insert(triggerScriptsVector.end(), victoryScriptsVector.begin(), victoryScriptsVector.end());
+		JS::RootedValue scriptData(cx);
+		JS::RootedValue data(cx);
+		JS::RootedValue victoryScripts(cx);
+
+		CStrW scriptPath = L"simulation/data/settings/victory_conditions/" + victory.FromUTF8() + L".json";
+		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
+		if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "Data", &data) && !data.isUndefined()
+			&& scriptInterface.GetProperty(data, "Scripts", &victoryScripts) && !victoryScripts.isUndefined())
+		{
+			std::vector<CStrW> victoryScriptsVector;
+			FromJSVal_vector(cx, victoryScripts, victoryScriptsVector);
+			triggerScriptsVector.insert(triggerScriptsVector.end(), victoryScriptsVector.begin(), victoryScriptsVector.end());
+		}
+		else
+		{
+			LOGERROR("Autostart: Error reading victory script '%s'", utf8_from_wstring(scriptPath));
+			throw PSERROR_Game_World_MapLoadFailed("Error reading victory script.\nCheck application log for details.");
+		}
 	}
+
 	ToJSVal_vector(cx, &triggerScripts, triggerScriptsVector);
 	scriptInterface.SetProperty(settings, "TriggerScripts", triggerScripts);
 

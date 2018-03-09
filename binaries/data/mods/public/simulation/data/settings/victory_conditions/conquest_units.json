@@ -3,12 +3,14 @@
 	"Data":
 	{
 		"Title": "Conquest Units",
-		"Description": "Kill all enemy units to win.",
+		"Description": "Defeat opponents by killing all their units.",
 		"Scripts":
 		[
 			"scripts/TriggerHelper.js",
 			"scripts/ConquestCommon.js",
 			"scripts/ConquestUnits.js"
-		]
+		],
+		"DisabledWhenChecked": ["conquest"],
+		"GUIOrder": 1
 	}
 }

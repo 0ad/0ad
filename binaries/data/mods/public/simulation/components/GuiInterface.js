@@ -154,7 +154,7 @@ GuiInterface.prototype.GetSimulationState = function()
 
 	// Add the game type and allied victory
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	ret.gameType = cmpEndGameManager.GetGameType();
+	ret.victoryConditions = cmpEndGameManager.GetVictoryConditions();
 	ret.alliedVictory = cmpEndGameManager.GetAlliedVictory();
 
 	// Add basic statistics to each player

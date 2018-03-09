@@ -175,22 +175,22 @@
 				<object size="5 254 100%-5 255" type="image" sprite="ModernWhiteLine" z="25"/>
 
 				<!-- Victory Condition Caption -->
-				<object size="5 255 50% 285" type="image" sprite="ModernItemBackShadeLeft">
+				<object size="5 255 50% 295" type="image" sprite="ModernItemBackShadeLeft">
 					<object size="0 0 100%-10 100%" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Victory:</translatableAttribute>
 					</object>
 				</object>
 
 				<!-- Victory Condition Label -->
-				<object size="50% 255 100%-5 285" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgVictory" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+				<object size="50% 255 100%-5 295" type="image" sprite="ModernItemBackShadeRight">
+					<object name="sgVictory" size="0 0 100% 100%" type="text" style="ModernText" font="sans-bold-stroke-14"/>
 				</object>
 
 				<!-- Separator Line -->
-				<object size="5 284 100%-5 285" type="image" sprite="ModernWhiteLine" z="25"/>
+				<object size="5 294 100%-5 295" type="image" sprite="ModernWhiteLine" z="25"/>
 
 				<!-- Map Description Text -->
-				<object type="image" sprite="ModernDarkBoxWhite" size="5 290 100%-5 40%+170">
+				<object type="image" sprite="ModernDarkBoxWhite" size="5 300 100%-5 40%+170">
 					<object name="sgMapDescription" size="0 1 100% 100%-1" type="text" style="ModernText" font="sans-12"/>
 				</object>
 

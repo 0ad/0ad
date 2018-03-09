@@ -216,12 +216,23 @@ function formatPlayerInfo(playerDataArray, playerStates)
 function getGameDescription(extended = false)
 {
 	let titles = [];
+	if (!g_GameAttributes.settings.VictoryConditions.length)
+		titles.push({
+			"label": translateWithContext("victory condition", "Endless Game"),
+			"value": translate("No winner will be determined, even if everyone is defeated.")
+		});
 
-	let victoryIdx = g_VictoryConditions.Name.indexOf(g_GameAttributes.settings.GameType || g_VictoryConditions.Default);
-	if (victoryIdx != -1)
+	let victoryConditions = g_GameAttributes.settings.VictoryConditions.map(victoryConditionName =>
+		g_VictoryConditions.find(victoryCondition => victoryCondition.Name == victoryConditionName) || {
+			"Name": victoryConditionName,
+			"Description": ""
+		});
+
+	for (let victoryCondition of victoryConditions.sort((a, b) =>
+		a.GUIOrder - b.GUIOrder || (a.Title > b.Title ? 1 : a.Title > b.Title ? -1 : 0)))
 	{
-		let title = g_VictoryConditions.Title[victoryIdx];
-		if (g_VictoryConditions.Name[victoryIdx] == "wonder")
+		let title = translateVictoryCondition(victoryCondition.Name);
+		if (victoryCondition.Name == "wonder")
 			title = sprintf(
 				translatePluralWithContext(
 					"victory condition",
@@ -232,7 +243,7 @@ function getGameDescription(extended = false)
 				{ "min": g_GameAttributes.settings.WonderDuration }
 			);
 
-		let isCaptureTheRelic = g_VictoryConditions.Name[victoryIdx] == "capture_the_relic";
+		let isCaptureTheRelic = victoryCondition.Name == "capture_the_relic";
 		if (isCaptureTheRelic)
 			title = sprintf(
 				translatePluralWithContext(
@@ -246,7 +257,7 @@ function getGameDescription(extended = false)
 
 		titles.push({
 			"label": title,
-			"value": g_VictoryConditions.Description[victoryIdx]
+			"value": victoryCondition.Description
 		});
 
 		if (isCaptureTheRelic)
@@ -255,7 +266,7 @@ function getGameDescription(extended = false)
 				"value": g_GameAttributes.settings.RelicCount
 			});
 
-		if (g_VictoryConditions.Name[victoryIdx] == "regicide")
+		if (victoryCondition.Name == "regicide")
 			if (g_GameAttributes.settings.RegicideGarrison)
 				titles.push({
 					"label": translate("Hero Garrison"),
@@ -264,7 +275,7 @@ function getGameDescription(extended = false)
 			else
 				titles.push({
 					"label": translate("Exposed Heroes"),
-					"value": translate("Heroes cannot be garrisoned, and they are vulnerable to raids.")
+					"value": translate("Heroes cannot be garrisoned and they are vulnerable to raids.")
 				});
 	}
 

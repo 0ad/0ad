@@ -12,7 +12,7 @@ Trigger.prototype.InitCaptureTheRelic = function()
 	}
 
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	let numSpawnedRelics = cmpEndGameManager.GetGameTypeSettings().relicCount;
+	let numSpawnedRelics = cmpEndGameManager.GetGameSettings().relicCount;
 	this.playerRelicsCount = new Array(TriggerHelper.GetNumberOfPlayers()).fill(0, 1);
 	this.playerRelicsCount[0] = numSpawnedRelics;
 
@@ -132,7 +132,7 @@ Trigger.prototype.StartCaptureTheRelicCountdown = function(winningPlayers)
 
 	let cmpPlayer = QueryOwnerInterface(this.relics[0], IID_Player);
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	let captureTheRelicDuration = cmpEndGameManager.GetGameTypeSettings().relicDuration;
+	let captureTheRelicDuration = cmpEndGameManager.GetGameSettings().relicDuration;
 
 	let isTeam = winningPlayers.length > 1;
 	this.ownRelicsVictoryMessage = cmpGuiInterface.AddTimeNotification({

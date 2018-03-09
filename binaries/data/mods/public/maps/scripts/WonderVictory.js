@@ -54,7 +54,7 @@ Trigger.prototype.WonderVictoryStartTimer = function(ent, player)
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 
-	let wonderDuration = cmpEndGameManager.GetGameTypeSettings().wonderDuration;
+	let wonderDuration = cmpEndGameManager.GetGameSettings().wonderDuration;
 	this.wonderVictoryMessages[ent] = {
 		"playerID": player,
 		"allies": new Set(allies),

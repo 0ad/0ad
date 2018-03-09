@@ -1,5 +1,5 @@
 /**
- * System component to store the gametype, gametype settings and
+ * System component to store the victory conditions and their settings and
  * check for allied victory / last-man-standing.
  */
 function EndGameManager() {}
@@ -9,11 +9,9 @@ EndGameManager.prototype.Schema =
 
 EndGameManager.prototype.Init = function()
 {
-	this.gameType = "conquest";
-
 	// Contains settings specific to the victory condition,
 	// for example wonder victory duration.
-	this.gameTypeSettings = {};
+	this.gameSettings = {};
 
 	// Allied victory means allied players can win if victory conditions are met for each of them
 	// False for a "last man standing" game
@@ -28,24 +26,23 @@ EndGameManager.prototype.Init = function()
 	this.endlessGame = false;
 };
 
-EndGameManager.prototype.GetGameType = function()
+EndGameManager.prototype.GetGameSettings = function()
 {
-	return this.gameType;
+	return this.gameSettings;
 };
 
-EndGameManager.prototype.GetGameTypeSettings = function()
+EndGameManager.prototype.GetVictoryConditions = function()
 {
-	return this.gameTypeSettings;
+	return this.gameSettings.victoryConditions;
 };
 
-EndGameManager.prototype.SetGameType = function(newGameType, newSettings = {})
+EndGameManager.prototype.SetGameSettings = function(newSettings = {})
 {
-	this.gameType = newGameType;
-	this.gameTypeSettings = newSettings;
+	this.gameSettings = newSettings;
 	this.skipAlliedVictoryCheck = false;
-	this.endlessGame = newGameType == "endless";
+	this.endlessGame = !this.gameSettings.victoryConditions.length;
 
-	Engine.BroadcastMessage(MT_GameTypeChanged, {});
+	Engine.BroadcastMessage(MT_VictoryConditionsChanged, {});
 };
 
 /**

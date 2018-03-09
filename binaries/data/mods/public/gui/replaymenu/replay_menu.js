@@ -36,7 +36,7 @@ var g_MapNames = [];
 /**
  * Sorted list of the victory conditions occuring in the replays
  */
-var g_VictoryConditions = [];
+var g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
 /**
  * Directory name of the currently selected replay. Used to restore the selection after changing filters.
@@ -108,10 +108,6 @@ function loadReplays(replaySelectionData, compareFiles)
 		if (g_MapNames.indexOf(replay.attribs.settings.Name) == -1 && replay.attribs.settings.Name != "")
 			g_MapNames.push(replay.attribs.settings.Name);
 
-		// Extract victory conditions
-		if (replay.attribs.settings.GameType && g_VictoryConditions.indexOf(replay.attribs.settings.GameType) == -1)
-			g_VictoryConditions.push(replay.attribs.settings.GameType);
-
 		// Extract playernames
 		for (let playerData of replay.attribs.settings.PlayerData)
 		{
@@ -138,7 +134,6 @@ function loadReplays(replaySelectionData, compareFiles)
 	}
 
 	g_MapNames.sort();
-	g_VictoryConditions.sort();
 
 	// Reload filters (since they depend on g_Replays and its derivatives)
 	initFilters(replaySelectionData && replaySelectionData.filters);
@@ -181,9 +176,6 @@ function sanitizeGameAttributes(attribs)
 
 	if (!attribs.settings.mapType)
 		attribs.settings.mapType = "skirmish";
-
-	if (!attribs.settings.GameType)
-		attribs.settings.GameType = "conquest";
 
 	// Remove gaia
 	if (attribs.settings.PlayerData.length && attribs.settings.PlayerData[0] == null)
@@ -276,7 +268,8 @@ function displayReplayDetails()
 	Engine.GetGUIObjectByName("sgMapName").caption = translate(replay.attribs.settings.Name);
 	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(replay.attribs.settings.Size);
 	Engine.GetGUIObjectByName("sgMapType").caption = translateMapType(replay.attribs.settings.mapType);
-	Engine.GetGUIObjectByName("sgVictory").caption = translateVictoryCondition(replay.attribs.settings.GameType);
+	Engine.GetGUIObjectByName("sgVictory").caption = replay.attribs.settings.VictoryConditions.map(victoryConditionName =>
+		translateVictoryCondition(victoryConditionName)).join(translate(", "));
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = sprintf(translate("Players: %(numberOfPlayers)s"),
 		{ "numberOfPlayers": replay.attribs.settings.PlayerData.length });
 	Engine.GetGUIObjectByName("replayFilename").caption = Engine.GetReplayDirectoryName(replay.directory);

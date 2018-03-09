@@ -65,7 +65,7 @@ AddMock(SYSTEM_ENTITY, IID_Barter, {
 });
 
 AddMock(SYSTEM_ENTITY, IID_EndGameManager, {
-	GetGameType: function() { return "conquest"; },
+	GetVictoryConditions: () => ["conquest", "wonder"],
 	GetAlliedVictory: function() { return false; }
 });
 
@@ -365,7 +365,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 	],
 	circularMap: false,
 	timeElapsed: 0,
-	gameType: "conquest",
+	"victoryConditions": ["conquest", "wonder"],
 	alliedVictory: false
 });
 
@@ -518,7 +518,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 	],
 	"circularMap": false,
 	"timeElapsed": 0,
-	"gameType": "conquest",
+	"victoryConditions": ["conquest", "wonder"],
 	"alliedVictory": false
 });
 

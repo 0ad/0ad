@@ -97,17 +97,17 @@
 				<translatableAttribute id="caption">Map Size:</translatableAttribute>
 			</object>
 			<object name="savedMapSize" size="50% 310 100%-15 330" type="text" style="ModernLeftLabelText" />
-			<object size="0 330 50% 350" type="text" style="ModernLeftLabelText">
+			<object size="0 330 50% 370" type="text" style="ModernLeftLabelText">
 				<translatableAttribute id="caption">Victory:</translatableAttribute>
 			</object>
-			<object name="savedVictory" size="50% 330 100%-15 350" type="text" style="ModernLeftLabelText" />
+			<object name="savedVictory" size="50% 330 100%-15 370" type="text" style="ModernText" font="sans-bold-stroke-14" />
 
-			<object size="0 352 100%-15 353" type="image" sprite="ModernWhiteLine" z="25" />
+			<object size="0 372 100%-15 373" type="image" sprite="ModernWhiteLine" z="25" />
 
-			<object name="savedMods" size="0 355 100%-15 395" type="text" style="ModernLeftLabelText" />
+			<object name="savedMods" size="0 375 100%-15 415" type="text" style="ModernLeftLabelText" />
 
-			<object size="0 397 100%-15 398" type="image" sprite="ModernWhiteLine" z="25" />
-			<object name="savedPlayersNames" size="0 400 100%-10 100%-32" type="text" style="MapPlayerList" />
+			<object size="0 417 100%-15 418" type="image" sprite="ModernWhiteLine" z="25" />
+			<object name="savedPlayersNames" size="0 420 100%-10 100%-32" type="text" style="MapPlayerList" />
 			<object size="0 100%-32 100%-15 100%-31" type="image" sprite="ModernWhiteLine" z="25" />
 		</object>
 

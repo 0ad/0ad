@@ -9,7 +9,7 @@ Trigger.prototype.CheckRegicideDefeat = function(data)
 Trigger.prototype.InitRegicideGame = function(msg)
 {
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	let regicideGarrison = cmpEndGameManager.GetGameTypeSettings().regicideGarrison;
+	let regicideGarrison = cmpEndGameManager.GetGameSettings().regicideGarrison;
 
 	let playersCivs = [];
 	for (let playerID = 1; playerID < TriggerHelper.GetNumberOfPlayers(); ++playerID)
