@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,6 +51,11 @@ public:
 	 * Switch to fullscreen or windowed mode.
 	 */
 	bool SetFullscreen(bool fullscreen);
+
+	/**
+	* Returns true if window runs in fullscreen mode.
+	*/
+	bool IsInFullscreen() const;
 
 	/**
 	 * Switch between fullscreen and windowed mode.
