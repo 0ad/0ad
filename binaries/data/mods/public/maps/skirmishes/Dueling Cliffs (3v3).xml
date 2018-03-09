@@ -41,7 +41,6 @@
 {
   "CircularMap": true,
   "Description": "A foggy alpine landscape becomes a battleground as each team has an ally squashed precariously between two enemies. Two forest cliffs overlook the center lake, accessible from the sides of the map.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": true,
   "Name": "Dueling Cliffs (3v3)",
@@ -139,7 +138,10 @@
     }
   ],
   "Preview": "dueling_cliffs.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

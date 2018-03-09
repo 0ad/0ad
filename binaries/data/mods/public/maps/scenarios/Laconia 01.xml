@@ -29,7 +29,6 @@
   "CircularMap": true,
   "Preview" : "laconia_1.png",
   "Description": "The Peloponnesian valley of Laconia, homeland of the Spartans.\u000a\u000aThe Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Laconia",
@@ -91,7 +90,10 @@
       "Team": 1
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

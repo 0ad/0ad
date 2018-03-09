@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Two players square off across the heavily forested Deccan Plateau of central India.\u000a\u000aEach player starts the match with a free farmstead and free storehouse.\u000a\u000aVirgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Deccan Plateau (2)",
@@ -63,7 +62,10 @@
     }
   ],
   "Preview": "deccan_plateau_01.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

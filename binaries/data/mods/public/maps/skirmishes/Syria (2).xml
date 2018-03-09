@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n\nThe player who sets up a profitable trade caravan earliest may gain a decisive advantage.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Syria (2)",
@@ -65,7 +64,10 @@
     }
   ],
   "Preview": "syria_skirmish_2.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

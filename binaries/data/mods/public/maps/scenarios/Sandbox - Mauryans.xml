@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Mauryan Indian faction showcase map.",
-  "GameType": "conquest",
   "Preview": "sandbox-themauryans.png",
   "Keywords": [
     "demo"
@@ -83,7 +82,10 @@
       "Team": -1
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

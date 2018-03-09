@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "A large oasis acts as the hub of mountainous spokes that divide the home territories of each player.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Median Oasis (2)",
@@ -63,7 +62,10 @@
     }
   ],
   "Preview": "median_oasis_1v1.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

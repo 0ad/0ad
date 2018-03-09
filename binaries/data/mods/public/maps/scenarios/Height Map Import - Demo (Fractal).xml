@@ -29,7 +29,6 @@
   "CircularMap": true,
   "Preview" : "fractal.png",
   "Description": "Importation of a height map created with fractals.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -39,7 +38,8 @@
     {
     }
   ],
-  "RevealMap": true
+  "RevealMap": true,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities/>

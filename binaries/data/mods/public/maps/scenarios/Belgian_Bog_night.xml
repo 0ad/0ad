@@ -43,7 +43,6 @@
   "DisabledTemplates": [
     "structures/ptol_lighthouse"
   ],
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Belgian Bog Night",
@@ -70,7 +69,10 @@
     }
   ],
   "Preview": "belgian_bog_night.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

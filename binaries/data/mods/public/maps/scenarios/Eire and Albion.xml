@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "A demo map of the British Isles, created with the assistance of a height map.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -68,7 +67,8 @@
       "Team": -1
     }
   ],
-  "RevealMap": true
+  "RevealMap": true,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

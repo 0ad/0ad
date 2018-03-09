@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Explore the Carthaginian Buildings and Units.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -81,7 +80,8 @@
     }
   ],
   "Preview": "Sandbox - Carthaginians.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

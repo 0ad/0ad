@@ -41,7 +41,6 @@
 {
   "CircularMap": true,
   "Description": "A forest battle map where all players fight for supremacy and control over the middle.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Forest Battle (4)",
@@ -60,7 +59,10 @@
     }
   ],
   "Preview": "forest_battle.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

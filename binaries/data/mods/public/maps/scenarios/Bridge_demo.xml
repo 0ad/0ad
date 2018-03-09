@@ -27,7 +27,6 @@
 	<ScriptSettings><![CDATA[
 {
   "Description": "Demo map showing how to simulate bridges in the Atlas map editor.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -55,7 +54,8 @@
       "Name": "Other",
       "Team": -1
     }
-  ]
+  ],
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

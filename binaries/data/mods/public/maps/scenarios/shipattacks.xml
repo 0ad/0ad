@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "Move ships around. Attack other ships.",
-  "GameType": "conquest",
   "Keywords": [
     "demo"
   ],
@@ -43,7 +42,10 @@
       "Civ": "athen"
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

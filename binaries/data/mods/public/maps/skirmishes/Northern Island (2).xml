@@ -41,7 +41,6 @@
 {
   "CircularMap": true,
   "Description": "Stranded in the cold North, 2 players fight for supremacy over the Island. One player starts in the Mountains to the West, the other player starts near the Bay in the East.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Northern Island (2)",
@@ -51,7 +50,10 @@
     {}
   ],
   "Preview": "northern_island.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

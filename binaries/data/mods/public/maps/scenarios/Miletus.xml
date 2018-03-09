@@ -27,7 +27,6 @@
 	<ScriptSettings><![CDATA[
 {
   "Description": "A sandbox scenario for one player.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -86,6 +85,9 @@
       },
       "Team": -1
     }
+  ],
+  "VictoryConditions": [
+    "conquest"
   ]
 }
 ]]></ScriptSettings>

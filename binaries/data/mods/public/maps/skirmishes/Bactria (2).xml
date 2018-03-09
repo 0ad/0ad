@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "The arid and mineral-rich lands of Bactria (modern-day Afghanistan) at the foot of the Hindu Kush mountains.\u000a\u000aThe center of the map is a dried up mountain. On either side are mountains and foothills pierced by treacherous passes and old trade routes.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Bactria (2)",
@@ -53,7 +52,10 @@
     }
   ],
   "Preview": "bactria_2.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

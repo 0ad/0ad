@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Demo map for new fancy water effects.",
-  "GameType": "conquest",
   "Keywords": [
     "demo"
   ],
@@ -103,7 +102,10 @@
     }
   ],
   "Preview": "polynesia.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

@@ -41,7 +41,6 @@
 {
   "CircularMap": true,
   "Description": "Two Mediterranean land masses connected by a narrow spit of land, called an 'Isthmus'.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": true,
   "Name": "Corinthian Isthmus (4)",
@@ -60,7 +59,10 @@
     }
   ],
   "Preview": "corinthian_isthmus_4.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

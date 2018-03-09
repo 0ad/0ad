@@ -31,7 +31,6 @@
   "CircularMap": true,
   "Preview" : "azure_coast_2.png",
   "Description": "Help the young Massilia to settle or expel the Greeks from Gaul.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Azure Coast 2",
@@ -59,7 +58,10 @@
   ],
   "RevealMap": false,
   "Script": "new_rms_test.js",
-  "Size": 384
+  "Size": 384,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

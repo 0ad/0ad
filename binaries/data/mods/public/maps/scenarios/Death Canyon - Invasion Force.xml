@@ -41,7 +41,6 @@
   "CircularMap": true,
   "Preview": "death_canyon_invasion_force.png",
   "Description": "A deep rocky canyon slicing through the desert. Good for multiplayer.\u000a\u000a2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": true,
   "Name": "Death Canyon - Invasion Force",
@@ -110,7 +109,10 @@
       "Team": 1
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

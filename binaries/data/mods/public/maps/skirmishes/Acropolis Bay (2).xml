@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\u000a\u000aTo the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Acropolis Bay (2)",
@@ -53,7 +52,10 @@
     }
   ],
   "Preview": "acropolis_bay.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

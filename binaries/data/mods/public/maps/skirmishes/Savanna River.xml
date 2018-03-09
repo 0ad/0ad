@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "A large savanna is bisected by a narrow jungle stream.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Savanna River (2)",
@@ -53,7 +52,10 @@
     }
   ],
   "Preview": "savanna_river.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

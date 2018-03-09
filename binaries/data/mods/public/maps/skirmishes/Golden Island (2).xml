@@ -41,7 +41,6 @@
 {
   "CircularMap": true,
   "Description": "A ring of land borders a resource-rich island in the Mediterranean. Players can access the center via a narrow strip of land or via boat.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Golden Island (2)",
@@ -51,7 +50,10 @@
     {}
   ],
   "Preview": "golden_island.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

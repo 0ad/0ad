@@ -29,7 +29,6 @@
   "CircularMap": true,
   "Preview" : "migration_scenario.png",
   "Description": "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\u000a\u000aThis is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine.",
-  "GameType": "conquest",
   "Keywords": [
     "naval"
   ],
@@ -85,7 +84,10 @@
       "Team": -1
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

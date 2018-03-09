@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "The high peaks and valleys of the Alps.\n\nEach player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Alpine Valleys (2)",
@@ -53,7 +52,10 @@
     }
   ],
   "Preview": "alpine_valley_skirmish.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

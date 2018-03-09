@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\u000a\u000aScout the lands to find free treasures and to secure new resources..",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Greek Acropolis (4)",
@@ -59,7 +58,10 @@
     }
   ],
   "Preview": "acropolis_4.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

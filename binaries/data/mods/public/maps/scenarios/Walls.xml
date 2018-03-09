@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "Walls.",
-  "GameType": "conquest",
   "Keywords": [
     "demo"
   ],
@@ -94,7 +93,10 @@
       "Team": -1
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

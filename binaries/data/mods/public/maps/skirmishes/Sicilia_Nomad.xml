@@ -36,7 +36,6 @@
 {
   "CircularMap": true,
   "Description": "The large Mediterranean island of Sicily is open for conquest.\n[color=\"orange\"]Tip: docks are useful dropsite when you have no territory yet.[/color]",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": true,
   "Name": "Sicilia Nomad (2)",
@@ -89,7 +88,10 @@
     "3434": [3435, 3436, 3437, 3438, 3439, 3440, 3441, 3442, 3443, 3444, 3429, 3430, 3431, 3432, 3433],
     "3445": [3446, 3447, 3448, 3449, 3450, 3451, 3452, 3453, 3454, 3455, 3456, 3457, 3458, 3459, 3460]
   },
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

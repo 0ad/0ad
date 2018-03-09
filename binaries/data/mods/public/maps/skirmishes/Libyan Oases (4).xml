@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\u000a\u000aThis represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Libyan Oases (4)",
@@ -103,7 +102,10 @@
     }
   ],
   "Preview": "oasis_4.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

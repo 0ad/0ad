@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "The large Mediterranean island of Sicily is open for conquest.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": true,
   "Name": "Sicilia (2)",
@@ -65,7 +64,10 @@
     }
   ],
   "Preview": "sicilia.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

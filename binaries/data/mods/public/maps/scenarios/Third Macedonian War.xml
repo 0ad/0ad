@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "The Romans encroach upon Macedonian lands for the third and final time. Can the once-proud Macedonians prevail against the Roman juggernaut?",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": true,
   "Name": "Third Macedonian War",
@@ -65,7 +64,10 @@
       "Team": 1
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

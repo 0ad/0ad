@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Demo Map. Play with the Persian civilisation in a sandbox setting.",
-  "GameType": "endless",
   "Preview": "sandbox-thepersians.png",
   "Keywords": [
     "demo"
@@ -107,7 +106,8 @@
       "Team": 1
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

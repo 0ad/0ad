@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "A riparian gorge meanders its way through the South lands of Gaul.",
-  "GameType": "conquest",
   "Keywords": [
     "hidden"
   ],
@@ -42,7 +41,10 @@
       "Civ": "cart"
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

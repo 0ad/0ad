@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "A demo map showing the territory effects of each type of structure.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -60,7 +59,8 @@
       "Civ": "athen"
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

@@ -41,7 +41,6 @@
 {
   "CircularMap": true,
   "Description": "South of the Sahara, East of the Nile, lies a semi-arid region today known as the Butana Steppe.",
-  "GameType": "conquest_structures",
   "Keywords": [
     "new"
   ],
@@ -67,7 +66,10 @@
     }
   ],
   "Preview": "butana_steppe_2.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest_structures"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

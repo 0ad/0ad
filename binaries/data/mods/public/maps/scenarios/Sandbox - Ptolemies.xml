@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "An islands map good for intense naval combat.",
-  "GameType": "endless",
   "Keywords": [
     "demo",
     "naval"
@@ -78,7 +77,8 @@
     }
   ],
   "Preview": "cycladic_archipelago_6.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

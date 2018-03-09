@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "\"It has always been the Greek Dream to go East.\"\u000a\u000a\"Beware such pride. The East has a way of swallowing men and their dreams.\"\u000a\u000aWill Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?",
-  "GameType": "conquest",
   "Keywords": [
     "hidden"
   ],
@@ -77,7 +76,10 @@
     }
   ],
   "Preview": "The Persian Gates.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>
