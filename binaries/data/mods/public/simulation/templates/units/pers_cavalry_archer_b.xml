@@ -11,18 +11,11 @@
     <GenericName>Babylonian Scythed Chariot</GenericName>
     <SpecificName>Babiruviya Ratha</SpecificName>
     <Icon>units/pers_chariot_archer.png</Icon>
-    <Tooltip>Causes trample damage to enemy units.</Tooltip>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion>
     <Entity>units/pers_cavalry_archer_a</Entity>
   </Promotion>
-  <ResourceGatherer>
-    <MaxDistance>5.0</MaxDistance>
-    <Capacities>
-      <food>50</food>
-    </Capacities>
-  </ResourceGatherer>
   <VisualActor>
     <Actor>units/persians/chariot_archer_b_m.xml</Actor>
   </VisualActor>

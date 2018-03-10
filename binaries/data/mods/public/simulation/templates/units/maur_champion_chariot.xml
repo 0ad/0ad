@@ -11,14 +11,7 @@
     <SpecificName>Rath</SpecificName>
     <SelectionGroupName>units/maur_champion_chariot</SelectionGroupName>
     <Icon>units/maur_champion_chariot.png</Icon>
-    <Tooltip>Deals Trample Damage.</Tooltip>
   </Identity>
-  <ResourceGatherer>
-    <MaxDistance>5.0</MaxDistance>
-    <Capacities>
-      <food>50</food>
-    </Capacities>
-  </ResourceGatherer>
   <VisualActor>
     <Actor>units/mauryans/chariot_archer_c_m.xml</Actor>
   </VisualActor>
