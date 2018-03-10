@@ -1,0 +1,14 @@
+{
+	"settings" : {
+		"Name" : "Jebel Barkal",
+		"Script" : "jebel_barkal.js",
+		"Description" : "The unknown.",
+		"Preview" : "jebel_barkal.png",
+		"Keywords": ["new", "trigger"],
+		"CircularMap": true,
+		"TriggerScripts" : [
+			"scripts/TriggerHelper.js",
+			"random/jebel_barkal_triggers.js"
+		]
+	}
+}
