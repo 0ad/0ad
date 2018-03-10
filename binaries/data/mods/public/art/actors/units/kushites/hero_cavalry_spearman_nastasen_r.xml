@@ -5,7 +5,8 @@
     <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_kush_healer.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/kush_skull_cap_cavalry_crown.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/kush_spear.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/kush_beja_reinforced_gold_rhino.xml" attachpoint="shield"/>
       </props>
