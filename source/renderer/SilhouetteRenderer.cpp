@@ -182,10 +182,6 @@ static void ComputeScreenBounds(Occluder& occluder, const CBoundingBoxAligned& b
 				y0 = std::min(y0,  static_cast<u16>(g_HalfMaxCoord + static_cast<u16>(g_HalfMaxCoord * svec.Y / svec.W)));
 				x1 = std::max(x1,  static_cast<u16>(g_HalfMaxCoord + static_cast<u16>(g_HalfMaxCoord * svec.X / svec.W)));
 				y1 = std::max(y1,  static_cast<u16>(g_HalfMaxCoord + static_cast<u16>(g_HalfMaxCoord * svec.Y / svec.W)));
-				std::clog << x0 << std::endl;
-				std::clog << y0 << std::endl;
-				std::clog << y1 << std::endl;
-				std::clog << x1 << std::endl;
 				z0 = std::min(z0, svec.Z / svec.W);
 			}
 		}
