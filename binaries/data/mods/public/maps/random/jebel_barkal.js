@@ -280,7 +280,7 @@ createArea(
 		translateHeightmap(
 			new Vector2D(-12, scaleByMapSize(-12, -25)),
 			undefined,
-			convertHeightmap1Dto2D(Engine.LoadMapTerrain("maps/random/jebel_barkal_hill.pmp").height)),
+			convertHeightmap1Dto2D(Engine.LoadMapTerrain("maps/random/jebel_barkal.pmp").height)),
 		minHeightSource,
 		maxHeightSource));
 
