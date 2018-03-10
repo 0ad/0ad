@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -84,7 +83,8 @@
     }
   ],
   "Preview": "nile_river.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

@@ -27,7 +27,6 @@
 	<ScriptSettings><![CDATA[
 {
   "Description": "A small desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation.\u000a\u000aGameplay is tight and fast, with no time to stop and smell the roses.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Fast Oasis",
@@ -98,7 +97,10 @@
     }
   ],
   "Preview": "fast_oasis.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

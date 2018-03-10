@@ -41,7 +41,6 @@
 {
   "CircularMap": true,
   "Description": "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n\nThe rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Punjab (2)",
@@ -54,7 +53,10 @@
     }
   ],
   "Preview": "punjab_2.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

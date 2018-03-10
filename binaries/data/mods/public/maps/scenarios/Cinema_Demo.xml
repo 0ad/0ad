@@ -46,7 +46,6 @@
   ],
   "CircularMap": true,
   "Description": "Demo map for cinematic camera movements.",
-  "GameType": "conquest",
   "Keywords": [
     "demo"
   ],
@@ -105,6 +104,9 @@
   "TriggerScripts": [
     "scenarios/Cinema_Demo.js",
     "scripts/TriggerHelper.js"
+  ],
+  "VictoryConditions": [
+    "conquest"
   ]
 }
 ]]></ScriptSettings>

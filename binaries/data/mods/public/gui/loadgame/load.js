@@ -113,7 +113,7 @@ function selectionChanged()
 	Engine.GetGUIObjectByName("savedPlayedTime").caption = timeToString(metadata.gui.timeElapsed ? metadata.gui.timeElapsed : 0);
 	Engine.GetGUIObjectByName("savedMapType").caption = translateMapType(metadata.initAttributes.mapType);
 	Engine.GetGUIObjectByName("savedMapSize").caption = translateMapSize(metadata.initAttributes.settings.Size);
-	Engine.GetGUIObjectByName("savedVictory").caption = translateVictoryCondition(metadata.initAttributes.settings.GameType);
+	Engine.GetGUIObjectByName("savedVictory").caption = metadata.initAttributes.settings.VictoryConditions.map(victoryConditionName => translateVictoryCondition(victoryConditionName)).join(translate(", "));
 
 	let caption = sprintf(translate("Mods: %(mods)s"), { "mods": modsToString(metadata.mods) });
 	if (!hasSameMods(metadata.mods, Engine.GetEngineInfo().mods))

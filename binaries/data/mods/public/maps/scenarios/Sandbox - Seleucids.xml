@@ -46,7 +46,6 @@
   ],
   "CircularMap": true,
   "Description": "A sandbox scenario for players to try out the Seleucid civilisation.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -91,7 +90,8 @@
   "Preview": "sandbox-theseleucids.png",
   "RevealMap": false,
   "Script": "oasis.js",
-  "Size": 256
+  "Size": 256,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

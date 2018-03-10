@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "A sheltered natural harbour on the Mediterranean coast provides the resources for battle.",
-  "GameType": "wonder",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Mediterranean Coves (2)",
@@ -53,7 +52,10 @@
     }
   ],
   "Preview": "mediterranean_coves.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "wonder"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

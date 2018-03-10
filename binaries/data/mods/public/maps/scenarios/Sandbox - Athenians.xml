@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Play with the Athenians faction in a non-threatening sandbox environment.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -99,7 +98,8 @@
     }
   ],
   "Preview": "fractal.png",
-  "RevealMap": true
+  "RevealMap": true,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

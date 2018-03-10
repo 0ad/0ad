@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "An oasis surrounded by mountains and desert. Farmlands near the water's edge provide much-needed boost in farming, but foraging and hunting are in short supply.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": true,
   "Name": "Team Oasis (2v2)",
@@ -83,7 +82,10 @@
     }
   ],
   "Preview": "median_oasis_5.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

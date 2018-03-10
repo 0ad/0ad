@@ -7,8 +7,9 @@ const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 const g_TriggerDifficulties = prepareForDropdown(g_Settings && g_Settings.TriggerDifficulties);
 const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
 const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.StartingResources);
-const g_VictoryConditions = prepareForDropdown(g_Settings && g_Settings.VictoryConditions);
 const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDurations);
+const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
+
 var g_GameSpeeds = getGameSpeedChoices(false);
 
 /**
@@ -433,7 +434,7 @@ var g_SettingsTabsGUI = [
 	{
 		"label": translateWithContext("Match settings tab name", "Game Type"),
 		"settings": [
-			"victoryCondition",
+			...g_VictoryConditions.map(victoryCondition => victoryCondition.Name),
 			"relicCount",
 			"relicDuration",
 			"wonderDuration",
@@ -640,22 +641,6 @@ var g_Dropdowns = {
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 		"initOrder": 1000
 	},
-	"victoryCondition": {
-		"title": () => translate("Victory Condition"),
-		"tooltip": (hoverIdx) => g_VictoryConditions.Description[hoverIdx] || translate("Select victory condition."),
-		"labels": () => g_VictoryConditions.Title,
-		"ids": () => g_VictoryConditions.Name,
-		"default": () => g_VictoryConditions.Default,
-		"defined": () => g_GameAttributes.settings.GameType !== undefined,
-		"get": () => g_GameAttributes.settings.GameType,
-		"select": (itemIdx) => {
-			g_GameAttributes.settings.GameType = g_VictoryConditions.Name[itemIdx];
-			g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[itemIdx];
-		},
-		"enabled": () => g_GameAttributes.mapType != "scenario",
-		"autocomplete": 0,
-		"initOrder": 1000
-	},
 	"relicCount": {
 		"title": () => translate("Relic Count"),
 		"tooltip": (hoverIdx) => translate("Total number of relics spawned on the map. Relic victory is most realistic with only one or two relics. With greater numbers, the relics are important to capture to receive aura bonuses."),
@@ -667,7 +652,7 @@ var g_Dropdowns = {
 		"select": (itemIdx) => {
 			g_GameAttributes.settings.RelicCount = g_RelicCountList[itemIdx];
 		},
-		"hidden": () => g_GameAttributes.settings.GameType != "capture_the_relic",
+		"hidden": () => g_GameAttributes.settings.VictoryConditions.indexOf("capture_the_relic") == -1,
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 		"initOrder": 1000
 	},
@@ -682,7 +667,7 @@ var g_Dropdowns = {
 		"select": (itemIdx) => {
 			g_GameAttributes.settings.RelicDuration = g_VictoryDurations.Duration[itemIdx];
 		},
-		"hidden": () => g_GameAttributes.settings.GameType != "capture_the_relic",
+		"hidden": () => g_GameAttributes.settings.VictoryConditions.indexOf("capture_the_relic") == -1,
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 		"initOrder": 1000
 	},
@@ -697,7 +682,7 @@ var g_Dropdowns = {
 		"select": (itemIdx) => {
 			g_GameAttributes.settings.WonderDuration = g_VictoryDurations.Duration[itemIdx];
 		},
-		"hidden": () => g_GameAttributes.settings.GameType != "wonder",
+		"hidden": () => g_GameAttributes.settings.VictoryConditions.indexOf("wonder") == -1,
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 		"initOrder": 1000
 	},
@@ -822,7 +807,34 @@ var g_PlayerDropdowns = {
 /**
  * Contains the logic of all boolean gamesettings.
  */
-var g_Checkboxes = {
+var g_Checkboxes = Object.assign(
+	{},
+	g_VictoryConditions.reduce((obj, victoryCondition) => {
+		obj[victoryCondition.Name] = {
+			"title": () => victoryCondition.Title,
+			"tooltip": () => victoryCondition.Description,
+			// Defaults are set in supplementDefault directly from g_VictoryConditions since we use an array
+			"defined": () => true,
+			"get": () => g_GameAttributes.settings.VictoryConditions.indexOf(victoryCondition.Name) != -1,
+			"set": checked => {
+				if (checked)
+				{
+					g_GameAttributes.settings.VictoryConditions.push(victoryCondition.Name);
+					if (victoryCondition.Set)
+						for (let setting in victoryCondition.ChangeWhenChecked)
+							g_Checkboxes[setting].set(victoryCondition.ChangeOnChecked[setting]);
+				}
+				else
+					g_GameAttributes.settings.VictoryConditions = g_GameAttributes.settings.VictoryConditions.filter(victoryConditionName => victoryConditionName != victoryCondition.Name);
+			},
+			"enabled": () =>
+				g_GameAttributes.mapType != "scenario" &&
+				(!victoryCondition.DisabledWhenChecked ||
+				victoryCondition.DisabledWhenChecked.every(victoryConditionName => g_GameAttributes.settings.VictoryConditions.indexOf(victoryConditionName) == -1))
+		};
+		return obj;
+	}, {}),
+	{
 		"regicideGarrison": {
 			"title": () => translate("Hero Garrison"),
 			"tooltip": () => translate("Toggle whether heroes can be garrisoned."),
@@ -832,7 +844,7 @@ var g_Checkboxes = {
 			"set": checked => {
 				g_GameAttributes.settings.RegicideGarrison = checked;
 			},
-			"hidden": () => g_GameAttributes.settings.GameType != "regicide",
+			"hidden": () => g_GameAttributes.settings.VictoryConditions.indexOf("regicide") == -1,
 			"enabled": () => g_GameAttributes.mapType != "scenario",
 			"initOrder": 1000
 		},
@@ -968,7 +980,8 @@ var g_Checkboxes = {
 			},
 			"initOrder": 1000
 		},
-};
+	}
+);
 
 /**
  * For setting up arbitrary GUI objects.
@@ -1149,6 +1162,9 @@ function initDefaults()
  */
 function supplementDefaults()
 {
+	g_GameAttributes.settings.VictoryConditions = g_GameAttributes.settings.VictoryConditions ||
+		g_VictoryConditions.filter(victoryCondition => !!victoryCondition.Default).map(victoryCondition => victoryCondition.Name);
+
 	for (let dropdown in g_Dropdowns)
 		if (!g_Dropdowns[dropdown].defined())
 			g_Dropdowns[dropdown].select(g_Dropdowns[dropdown].default());
@@ -1987,13 +2003,7 @@ function selectMap(name)
 	let mapSettings = mapData && mapData.settings ? clone(mapData.settings) : {};
 
 	if (g_GameAttributes.mapType != "random")
-	{
 		delete g_GameAttributes.settings.Nomad;
-
-		let victoryIdx = g_VictoryConditions.Name.indexOf(mapSettings.GameType || "") != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
-		g_GameAttributes.settings.GameType = g_VictoryConditions.Name[victoryIdx];
-		g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[victoryIdx];
-	}
 
 	if (g_GameAttributes.mapType == "scenario")
 	{
@@ -2134,19 +2144,18 @@ function launchGame()
 
 	// Select random map
 	if (g_GameAttributes.map == "random")
-	{
-		let victoryScriptsSelected = g_GameAttributes.settings.VictoryScripts;
-		let gameTypeSelected = g_GameAttributes.settings.GameType;
 		selectMap(pickRandom(g_Dropdowns.mapSelection.ids().slice(1)));
-		g_GameAttributes.settings.VictoryScripts = victoryScriptsSelected;
-		g_GameAttributes.settings.GameType = gameTypeSelected;
-	}
 
 	if (g_GameAttributes.settings.Biome == "random")
 		g_GameAttributes.settings.Biome = pickRandom(
 			typeof g_GameAttributes.settings.SupportedBiomes == "string" ?
 				g_BiomeList.Id.slice(1).filter(biomeID => biomeID.startsWith(g_GameAttributes.settings.SupportedBiomes)) :
 				g_GameAttributes.settings.SupportedBiomes);
+
+	g_GameAttributes.settings.VictoryScripts = g_GameAttributes.settings.VictoryConditions.reduce(
+		(scripts, victoryConditionName) => scripts.concat(g_VictoryConditions[g_VictoryConditions.map(data =>
+			data.Name).indexOf(victoryConditionName)].Scripts.filter(script => scripts.indexOf(script) == -1)),
+		[]);
 
 	g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttributes.settings.TriggerScripts || []);
 
@@ -2640,7 +2649,7 @@ function sendRegisterGameStanzaImmediate()
 		"niceMapName": getMapDisplayName(g_GameAttributes.map),
 		"mapSize": g_GameAttributes.mapType == "random" ? g_GameAttributes.settings.Size : "Default",
 		"mapType": g_GameAttributes.mapType,
-		"victoryCondition": g_GameAttributes.settings.GameType,
+		"victoryConditions": g_GameAttributes.settings.VictoryConditions.join(","),
 		"nbp": clients.connectedPlayers,
 		"maxnbp": g_GameAttributes.settings.PlayerData.length,
 		"players": clients.list,

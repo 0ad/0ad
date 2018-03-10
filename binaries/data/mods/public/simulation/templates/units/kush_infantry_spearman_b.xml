@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
-  <Armour>
-    <Hack op="add">-1</Hack>
-  </Armour>
   <Builder>
     <Entities datatype="tokens">
       structures/kush_pyramid_small
       structures/kush_pyramid_large
       structures/kush_temple_amun
-      structures/kush_temple_apedemak
       structures/kush_blemmye_camp
       structures/kush_nuba_village
-      -structures/{civ}_temple
     </Entities>
   </Builder>
   <Identity>
@@ -20,18 +15,11 @@
     <GenericName>Nubian Spearman</GenericName>
     <SpecificName>iry-rdwy Nhsyw</SpecificName>
     <RequiredTechnology>phase_village</RequiredTechnology>
-    <Tooltip>Faster than usual spearmen but has less hack armor.</Tooltip>
     <Icon>units/kush_infantry_spearman.png</Icon>
   </Identity>
   <Promotion>
     <Entity>units/kush_infantry_spearman_a</Entity>
   </Promotion>
-  <UnitMotion>
-    <WalkSpeed op="mul">1.2</WalkSpeed>
-    <Run>
-      <Speed op="mul">1.2</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/kushites/infantry_spearman_b.xml</Actor>
   </VisualActor>

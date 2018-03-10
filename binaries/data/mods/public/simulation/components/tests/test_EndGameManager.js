@@ -23,7 +23,10 @@ AddMock(playerEnt1, IID_Player, {
 TS_ASSERT_EQUALS(cmpEndGameManager.skipAlliedVictoryCheck, true);
 cmpEndGameManager.SetAlliedVictory(true);
 TS_ASSERT_EQUALS(cmpEndGameManager.GetAlliedVictory(), true);
-cmpEndGameManager.SetGameType("wonder", { "wonderDuration": wonderDuration });
+cmpEndGameManager.SetGameSettings({
+	"victoryConditions": ["wonder"],
+	"wonderDuration": wonderDuration
+});
 TS_ASSERT_EQUALS(cmpEndGameManager.skipAlliedVictoryCheck, false);
-TS_ASSERT(cmpEndGameManager.GetGameType() == "wonder");
-TS_ASSERT_EQUALS(cmpEndGameManager.GetGameTypeSettings().wonderDuration, wonderDuration);
+TS_ASSERT_UNEVAL_EQUALS(cmpEndGameManager.GetVictoryConditions(), ["wonder"]);
+TS_ASSERT_EQUALS(cmpEndGameManager.GetGameSettings().wonderDuration, wonderDuration);

@@ -41,7 +41,6 @@
 {
   "CircularMap": true,
   "Description": "The unknown.",
-  "GameType": "conquest",
   "Keywords": ["new"],
   "LockTeams": true,
   "Name": "Egypt",
@@ -103,7 +102,10 @@
       "Team": 1
     }
   ],
-  "Preview": "egypt.png"
+  "Preview": "egypt.png",
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

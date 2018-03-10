@@ -56,7 +56,10 @@
 				"Civ": "spart"
 			}
 		],
-		"CircularMap": true
+		"CircularMap": true,
+		"VictoryConditions": [
+			"conquest"
+		]
 	}
 	]]></ScriptSettings>
 </Scenario>

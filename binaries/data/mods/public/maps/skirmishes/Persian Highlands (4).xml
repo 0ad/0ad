@@ -48,7 +48,6 @@
   ],
   "CircularMap": true,
   "Description": "A dry central basin rich in minerals surrounded by rocky hills and highlands.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Persian Highlands (4)",
@@ -69,7 +68,10 @@
   "Preview": "persian_highlands_skirmish.png",
   "RevealMap": false,
   "Script": "persian_highlands.js",
-  "Size": 320
+  "Size": 320,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

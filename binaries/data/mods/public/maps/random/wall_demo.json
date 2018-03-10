@@ -1,13 +1,13 @@
 {
 	"settings" : {
 		"Name" : "Wall Demo",
-		"GameType" : "endless",
 		"Script" : "wall_demo.js",
 		"Description" : "A demonstration of wall placement methods/code in random maps. Giant map size is recommended!",
 		"Keywords": ["demo"],
 		"CircularMap" : false,
 		"TriggerScripts" : [
 			"random/wall_demo_triggers.js"
-		]
+		],
+		"VictoryConditions": []
 	}
 }

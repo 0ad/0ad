@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "Give an interesting description of your map.",
-  "GameType": "conquest",
   "Keywords": [
     "hidden"
   ],
@@ -42,7 +41,10 @@
       "Civ": "athen"
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities/>

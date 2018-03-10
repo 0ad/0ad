@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -399,6 +399,11 @@ bool CVideoMode::SetFullscreen(bool fullscreen)
 bool CVideoMode::ToggleFullscreen()
 {
 	return SetFullscreen(!m_IsFullscreen);
+}
+
+bool CVideoMode::IsInFullscreen() const
+{
+	return m_IsFullscreen;
 }
 
 void CVideoMode::UpdatePosition(int x, int y)

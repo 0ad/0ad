@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "A demonstration of the new trading feature.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -66,7 +65,8 @@
       "Team": 0
     }
   ],
-  "RevealMap": true
+  "RevealMap": true,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

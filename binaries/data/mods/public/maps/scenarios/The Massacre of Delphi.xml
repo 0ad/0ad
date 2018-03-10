@@ -39,7 +39,6 @@
 	<ScriptSettings><![CDATA[
 {
   "Description": "The Celts invade Greece. Fight through the central valley or cut through the rich highlands in order to secure the lands around Delphi!",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Massacre of Delphi",
@@ -66,7 +65,10 @@
     }
   ],
   "Preview": "massacre_of_delphi.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

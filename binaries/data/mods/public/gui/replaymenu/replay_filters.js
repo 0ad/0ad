@@ -152,8 +152,8 @@ function initSingleplayerFilter(filters)
 function initVictoryConditionFilter(filters)
 {
 	let victoryConditionFilter = Engine.GetGUIObjectByName("victoryConditionFilter");
-	victoryConditionFilter.list = [translateWithContext("victory condition", "Any gametype")].concat(g_VictoryConditions.map(vc => translateVictoryCondition(vc)));
-	victoryConditionFilter.list_data = [""].concat(g_VictoryConditions);
+	victoryConditionFilter.list = [translate("Any Victory Condition")].concat(g_VictoryConditions.map(victoryCondition => translateVictoryCondition(victoryCondition.Name)));
+	victoryConditionFilter.list_data = [""].concat(g_VictoryConditions.map(victoryCondition => victoryCondition.Name));
 
 	if (filters && filters.victoryCondition)
 		victoryConditionFilter.selected = victoryConditionFilter.list_data.indexOf(filters.victoryCondition);
@@ -243,7 +243,8 @@ function filterReplay(replay)
 
 	// Filter by victory condition
 	let victoryConditionFilter = Engine.GetGUIObjectByName("victoryConditionFilter");
-	if (victoryConditionFilter.selected > 0 && replay.attribs.settings.GameType != victoryConditionFilter.list_data[victoryConditionFilter.selected])
+	if (victoryConditionFilter.selected > 0 &&
+	    replay.attribs.settings.VictoryConditions.indexOf(victoryConditionFilter.list_data[victoryConditionFilter.selected]) == -1)
 		return false;
 
 	// Filter by rating

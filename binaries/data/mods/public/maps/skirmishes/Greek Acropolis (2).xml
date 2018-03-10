@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\u000a\u000aScout the lands to find free treasures and to secure new resources.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Greek Acropolis (2)",
@@ -63,7 +62,10 @@
     }
   ],
   "Preview": "acropolis_3.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

@@ -53,17 +53,17 @@ function LoadMapSettings(settings)
 	}
 
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	let gameTypeSettings = {};
-	if (settings.GameType && settings.GameType == "capture_the_relic")
-		gameTypeSettings.relicCount = settings.RelicCount;
-	if (settings.GameType && settings.GameType == "capture_the_relic")
-		gameTypeSettings.relicDuration = settings.RelicDuration * 60 * 1000;
-	if (settings.GameType && settings.GameType == "wonder")
-		gameTypeSettings.wonderDuration = settings.WonderDuration * 60 * 1000;
-	if (settings.GameType && settings.GameType == "regicide")
-		gameTypeSettings.regicideGarrison = settings.RegicideGarrison;
-	if (settings.GameType)
-		cmpEndGameManager.SetGameType(settings.GameType, gameTypeSettings);
+	let gameSettings = { "victoryConditions": settings.VictoryConditions };
+	if (gameSettings.victoryConditions.indexOf("capture_the_relic") != -1)
+	{
+		gameSettings.relicCount = settings.RelicCount;
+		gameSettings.relicDuration = settings.RelicDuration * 60 * 1000;
+	}
+	if (gameSettings.victoryConditions.indexOf("wonder") != -1)
+		gameSettings.wonderDuration = settings.WonderDuration * 60 * 1000;
+	if (gameSettings.victoryConditions.indexOf("regicide") != -1)
+		gameSettings.regicideGarrison = settings.RegicideGarrison;
+	cmpEndGameManager.SetGameSettings(gameSettings);
 
 	cmpEndGameManager.SetAlliedVictory(settings.LockTeams || !settings.LastManStanding);
 	if (settings.LockTeams && settings.LastManStanding)

@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\u000a\u000aThis represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\u000a\u000aIberians do not receive their circuit walls here. Instead, all factions receive 4 free Defense Towers.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Libyan Oasis (2)",
@@ -101,7 +100,10 @@
     }
   ],
   "Preview": "arabian_oasis_skirmish.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

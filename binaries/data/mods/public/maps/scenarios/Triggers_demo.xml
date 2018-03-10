@@ -44,7 +44,6 @@
   ],
   "CircularMap": true,
   "Description": "Demo map listening to various triggers and printing warning messages about them",
-  "GameType": "endless",
   "Keywords": [
     "trigger",
     "demo"
@@ -66,7 +65,8 @@
   "RevealMap": false,
   "Script": "pyrenean_sierra.js",
   "Size": 256,
-  "TriggerScripts": ["scenarios/Triggers_demo.js"]
+  "TriggerScripts": ["scenarios/Triggers_demo.js"],
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

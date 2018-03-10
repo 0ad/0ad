@@ -41,7 +41,6 @@
 {
   "CircularMap": true,
   "Description": "A map filled with impassable mountains and a great number of natural resources.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Alpine Mountains (3)",
@@ -52,7 +51,10 @@
     {}
   ],
   "Preview": "alpine_mountains.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

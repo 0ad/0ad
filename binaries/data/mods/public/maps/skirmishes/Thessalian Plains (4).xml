@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "The rolling Thessalian plain is traversed with narrow streams, easily forded. Wide-open spaces allow for massive expansion, while each player starts the match safe atop a large acropolis.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Thessalian Plains (4)",
@@ -59,7 +58,10 @@
     }
   ],
   "Preview": "boeotian_plains.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

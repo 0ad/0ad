@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "This is a basic tutorial to get you started playing 0 A.D.",
-  "GameType": "endless",
   "Keywords": ["demo"],
   "LockTeams": false,
   "Name": "Introductory Tutorial",
@@ -86,7 +85,8 @@
     "scripts/TriggerHelper.js",
     "scripts/Tutorial.js",
     "tutorials/Introductory_Tutorial.js"
-  ]
+  ],
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

@@ -3,12 +3,14 @@
 	"Data":
 	{
 		"Title": "Conquest Structures",
-		"Description": "Destroy all enemy structures to win.",
+		"Description": "Defeat opponents by destroying all their structures.",
 		"Scripts":
 		[
 			"scripts/TriggerHelper.js",
 			"scripts/ConquestCommon.js",
 			"scripts/ConquestStructures.js"
-		]
+		],
+		"DisabledWhenChecked": ["conquest"],
+		"GUIOrder": 1
 	}
 }

@@ -3,6 +3,9 @@
   <Auras datatype="tokens">
     structures/kush_temple_amun
   </Auras>
+  <BuildRestrictions>
+    <Category>TempleOfAmun</Category>
+  </BuildRestrictions>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
     <BuildTime>300</BuildTime>
@@ -17,13 +20,18 @@
     <Max>30</Max>
   </GarrisonHolder>
   <Health>
-    <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
+    <Max>3000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>kush</Civ>
-    <GenericName>Temple of Amun</GenericName>
+    <GenericName>Grand Temple of Amun</GenericName>
     <SpecificName>Pr-‘Imn</SpecificName>
+    <Tooltip>Train priests to heal your troops. Train Napatan Temple Guards and research unique technologies. Garrison units to heal them at a quick rate.</Tooltip>
+    <Icon>structures/temple_epic.png</Icon>
     <Classes datatype="tokens">TempleOfAmun</Classes>
+    <VisibleClasses datatype="tokens">City -Town</VisibleClasses>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Obstruction>
     <Static width="28" depth="56.0"/>

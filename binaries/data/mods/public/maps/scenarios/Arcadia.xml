@@ -40,7 +40,6 @@
 {
   "CircularMap": false,
   "Description": "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n\nPlayers start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Arcadia",
@@ -67,7 +66,10 @@
     }
   ],
   "Preview": "arcadia.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

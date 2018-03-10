@@ -41,7 +41,6 @@
   "CircularMap": true,
   "Preview": "necropolis.png",
   "Description": "4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n\nScouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Necropolis",
@@ -111,7 +110,10 @@
       "Team": -1
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

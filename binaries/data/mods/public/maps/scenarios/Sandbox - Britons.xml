@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Play around with the Gallic faction in an idyllic sandbox setting.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -147,7 +146,8 @@
     }
   ],
   "Preview": "sandbox-thebritons.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

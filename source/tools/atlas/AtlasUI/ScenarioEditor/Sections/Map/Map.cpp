@@ -41,6 +41,12 @@ enum
 	ID_MapTeams,
 	ID_MapKW_Demo,
 	ID_MapKW_Naval,
+	ID_VC_Conquest,
+	ID_VC_ConquestUnits,
+	ID_VC_ConquestStructures,
+	ID_VC_CaptureTheRelic,
+	ID_VC_Wonder,
+	ID_VC_Regicide,
 	ID_RandomScript,
 	ID_RandomSize,
 	ID_RandomNomad,
@@ -97,13 +103,17 @@ public:
 	AtObj UpdateSettingsObject();
 private:
 	void SendToEngine();
+	void OnConquestChanged();
 
-	void OnEdit(wxCommandEvent& WXUNUSED(evt))
+	void OnEdit(wxCommandEvent& evt)
 	{
 		SendToEngine();
+		if (evt.GetId() == ID_VC_Conquest)
+			OnConquestChanged();
 	}
 
 	std::set<std::wstring> m_MapSettingsKeywords;
+	std::set<std::wstring> m_MapSettingsVictoryConditions;
 	std::vector<wxChoice*> m_PlayerCivChoices;
 	Observable<AtObj>& m_MapSettings;
 
@@ -146,28 +156,31 @@ void MapSettingsControl::CreateWidgets()
 
 	sizer->AddSpacer(5);
 
-	// TODO: replace by filenames in binaries/data/mods/public/simulation/data/settings/victory_conditions/
-	wxArrayString gameTypes;
-	gameTypes.Add(_T("conquest"));
-	gameTypes.Add(_T("conquest_structures"));
-	gameTypes.Add(_T("conquest_units"));
-	gameTypes.Add(_T("wonder"));
-	gameTypes.Add(_T("endless"));
-	gameTypes.Add(_T("regicide"));
-	gameTypes.Add(_T("capture_the_relic"));
-
 	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
 	gridSizer->AddGrowableCol(1);
+
 	// TODO: have preview selector tool?
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Preview")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(Tooltipped(new wxTextCtrl(this, ID_MapPreview, wxEmptyString),
 		_("Texture used for map preview")), wxSizerFlags().Expand());
 	CREATE_CHECKBOX(this, gridSizer, "Reveal map", "If checked, players won't need to explore", ID_MapReveal);
-	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Game type")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-	gridSizer->Add(Tooltipped(new wxChoice(this, ID_MapType, wxDefaultPosition, wxDefaultSize, gameTypes),
-		_("Select the game type (or victory condition)")), wxSizerFlags().Expand());
 	CREATE_CHECKBOX(this, gridSizer, "Lock teams", "If checked, teams will be locked", ID_MapTeams);
 	sizer->Add(gridSizer, wxSizerFlags().Expand());
+
+	sizer->AddSpacer(5);
+
+	// TODO: replace by names in binaries/data/mods/public/simulation/data/settings/victory_conditions/
+	wxStaticBoxSizer* victoryConditionSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Victory Conditions"));
+	wxFlexGridSizer* vcGridSizer = new wxFlexGridSizer(2, 0, 5);
+	vcGridSizer->AddGrowableCol(1);
+	CREATE_CHECKBOX(this, vcGridSizer, "Conquest", "Select Conquest victory condition", ID_VC_Conquest);
+	CREATE_CHECKBOX(this, vcGridSizer, "Conquest Units", "Select Conquest Units victory condition", ID_VC_ConquestUnits);
+	CREATE_CHECKBOX(this, vcGridSizer, "Conquest Structures", "Select Conquest Structures victory condition", ID_VC_ConquestStructures);
+	CREATE_CHECKBOX(this, vcGridSizer, "Capture the Relic", "Select Capture the Relic victory condition", ID_VC_CaptureTheRelic);
+	CREATE_CHECKBOX(this, vcGridSizer, "Wonder", "Select Wonder victory condition", ID_VC_Wonder);
+	CREATE_CHECKBOX(this, vcGridSizer, "Regicide", "Select Regicide victory condition", ID_VC_Regicide);
+	victoryConditionSizer->Add(vcGridSizer);
+	sizer->Add(victoryConditionSizer, wxSizerFlags().Expand());
 
 	sizer->AddSpacer(5);
 
@@ -201,11 +214,24 @@ void MapSettingsControl::ReadFromEngine()
 	// reveal map
 	wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->SetValue(wxString(m_MapSettings["RevealMap"]) == L"true");
 
-	// game type / victory conditions
-	if (m_MapSettings["GameType"].defined())
-		wxDynamicCast(FindWindow(ID_MapType), wxChoice)->SetStringSelection(wxString(m_MapSettings["GameType"]));
-	else
-		wxDynamicCast(FindWindow(ID_MapType), wxChoice)->SetSelection(0);
+	// victory conditions
+	m_MapSettingsVictoryConditions.clear();
+	for (AtIter victoryCondition = m_MapSettings["VictoryConditions"]["item"]; victoryCondition.defined(); ++victoryCondition)
+		m_MapSettingsVictoryConditions.insert(std::wstring(victoryCondition));
+
+	wxWindow* window;
+#define INIT_CHECKBOX(ID, mapSettings, value) \
+	window = FindWindow(ID); \
+	if (window != nullptr) \
+		wxDynamicCast(window, wxCheckBox)->SetValue(mapSettings.count(value) != 0);
+
+	INIT_CHECKBOX(ID_VC_Conquest, m_MapSettingsVictoryConditions, L"conquest");
+	INIT_CHECKBOX(ID_VC_ConquestUnits, m_MapSettingsVictoryConditions, L"conquest_units");
+	INIT_CHECKBOX(ID_VC_ConquestStructures, m_MapSettingsVictoryConditions, L"conquest_structures");
+	INIT_CHECKBOX(ID_VC_CaptureTheRelic, m_MapSettingsVictoryConditions, L"capture_the_relic");
+	INIT_CHECKBOX(ID_VC_Wonder, m_MapSettingsVictoryConditions, L"wonder");
+	INIT_CHECKBOX(ID_VC_Regicide, m_MapSettingsVictoryConditions, L"regicide");
+	OnConquestChanged();
 
 	// lock teams
 	wxDynamicCast(FindWindow(ID_MapTeams), wxCheckBox)->SetValue(wxString(m_MapSettings["LockTeams"]) == L"true");
@@ -216,9 +242,11 @@ void MapSettingsControl::ReadFromEngine()
 		for (AtIter keyword = m_MapSettings["Keywords"]["item"]; keyword.defined(); ++keyword)
 			m_MapSettingsKeywords.insert(std::wstring(keyword));
 
-		wxDynamicCast(FindWindow(ID_MapKW_Demo), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"demo") != 0);
-		wxDynamicCast(FindWindow(ID_MapKW_Naval), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"naval") != 0);
+		INIT_CHECKBOX(ID_MapKW_Demo, m_MapSettingsKeywords, L"demo");
+		INIT_CHECKBOX(ID_MapKW_Naval, m_MapSettingsKeywords, L"naval");
 	}
+
+#undef INIT_CHECKBOX
 }
 
 void MapSettingsControl::SetMapSettings(const AtObj& obj)
@@ -227,6 +255,22 @@ void MapSettingsControl::SetMapSettings(const AtObj& obj)
 	m_MapSettings.NotifyObservers();
 
 	SendToEngine();
+}
+
+// TODO Use the json data for this
+void MapSettingsControl::OnConquestChanged()
+{
+	bool conqestEnabled = wxDynamicCast(FindWindow(ID_VC_Conquest), wxCheckBox)->GetValue();
+
+	wxCheckBox* conquestUnitsCheckbox = wxDynamicCast(FindWindow(ID_VC_ConquestUnits), wxCheckBox);
+	conquestUnitsCheckbox->Enable(!conqestEnabled);
+	wxCheckBox* conquestStructuresCheckbox = wxDynamicCast(FindWindow(ID_VC_ConquestStructures), wxCheckBox);
+	conquestStructuresCheckbox->Enable(!conqestEnabled);
+	if (conqestEnabled)
+	{
+		conquestUnitsCheckbox->SetValue(false);
+		conquestStructuresCheckbox->SetValue(false);
+	}
 }
 
 AtObj MapSettingsControl::UpdateSettingsObject()
@@ -243,8 +287,27 @@ AtObj MapSettingsControl::UpdateSettingsObject()
 	// reveal map
 	m_MapSettings.setBool("RevealMap", wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->GetValue());
 
-	// game type / victory conditions
-	m_MapSettings.set("GameType", wxDynamicCast(FindWindow(ID_MapType), wxChoice)->GetStringSelection());
+	// victory conditions
+#define INSERT_VICTORY_CONDITION_CHECKBOX(name, ID) \
+	if (wxDynamicCast(FindWindow(ID), wxCheckBox)->GetValue()) \
+		m_MapSettingsVictoryConditions.insert(name); \
+	else \
+		m_MapSettingsVictoryConditions.erase(name);
+
+	INSERT_VICTORY_CONDITION_CHECKBOX(L"conquest", ID_VC_Conquest);
+	INSERT_VICTORY_CONDITION_CHECKBOX(L"conquest_units", ID_VC_ConquestUnits);
+	INSERT_VICTORY_CONDITION_CHECKBOX(L"conquest_structures", ID_VC_ConquestStructures);
+	INSERT_VICTORY_CONDITION_CHECKBOX(L"capture_the_relic", ID_VC_CaptureTheRelic);
+	INSERT_VICTORY_CONDITION_CHECKBOX(L"wonder", ID_VC_Wonder);
+	INSERT_VICTORY_CONDITION_CHECKBOX(L"regicide", ID_VC_Regicide);
+
+#undef INSERT_VICTORY_CONDITION_CHECKBOX
+
+	AtObj victoryConditions;
+	victoryConditions.set("@array", L"");
+	for (std::set<std::wstring>::iterator it = m_MapSettingsVictoryConditions.begin(); it != m_MapSettingsVictoryConditions.end(); ++it)
+		victoryConditions.add("item", it->c_str());
+	m_MapSettings.set("VictoryConditions", victoryConditions);
 
 	// keywords
 	{

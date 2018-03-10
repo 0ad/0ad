@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "Fly some Mustangs.",
-  "GameType": "conquest",
   "Keywords": [
     "demo"
   ],
@@ -80,7 +79,10 @@
       }
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

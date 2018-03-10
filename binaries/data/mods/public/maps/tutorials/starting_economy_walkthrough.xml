@@ -48,7 +48,6 @@
   ],
   "CircularMap": true,
   "Description": "This map will give a rough guide for starting the game effectively.  Early in the game the most important thing is to gather resources as fast as possible so you are able to build enough troops later.",
-  "GameType": "endless",
   "Keywords": ["trigger"],
   "LockTeams": false,
   "Name": "Starting Economy Walkthrough",
@@ -71,7 +70,8 @@
     "scripts/Tutorial.js",
     "tutorials/starting_economy_walkthrough.js"
   ],
-  "Size": 256
+  "Size": 256,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

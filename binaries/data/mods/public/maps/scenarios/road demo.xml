@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "Demo map showcasing Temperate Road decals.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -40,7 +39,8 @@
       "Civ": "athen"
     }
   ],
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

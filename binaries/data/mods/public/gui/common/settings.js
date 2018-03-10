@@ -247,7 +247,7 @@ function loadBiomes()
 }
 
 /**
- * Loads available gametypes.
+ * Loads available victoryCondtions from json files.
  *
  * @returns {Array|undefined}
  */
@@ -256,23 +256,14 @@ function loadVictoryConditions()
 	let subdir = "victory_conditions/";
 
 	let victoryConditions = listFiles(g_SettingsDirectory + subdir, ".json", false).map(victoryScriptName => {
-		let vc = loadSettingValuesFile(subdir + victoryScriptName + ".json");
-		if (vc)
-			vc.Name = victoryScriptName;
-		return vc;
+		let victoryCondition = loadSettingValuesFile(subdir + victoryScriptName + ".json");
+		if (victoryCondition)
+			victoryCondition.Name = victoryScriptName;
+		return victoryCondition;
 	});
 
-	if (victoryConditions.some(vc => vc == undefined))
+	if (victoryConditions.some(victoryCondition => victoryCondition == undefined))
 		return undefined;
-
-	// TODO: We might support enabling victory conditions separately sometime.
-	// Until then, we supplement the endless gametype here.
-	victoryConditions.push({
-		"Name": "endless",
-		"Title": translateWithContext("victory condition", "None"),
-		"Description": translate("Endless game."),
-		"Scripts": []
-	});
 
 	return victoryConditions;
 }
@@ -428,11 +419,11 @@ function translatePopulationCapacity(population)
 /**
  * Returns title or placeholder.
  *
- * @param {string} gameType - for example "conquest"
+ * @param {string} victoryConditionName - For example "conquest".
  * @returns {string}
  */
-function translateVictoryCondition(gameType)
+function translateVictoryCondition(victoryConditionName)
 {
-	let victoryCondition = g_Settings.VictoryConditions.find(vc => vc.Name == gameType);
-	return victoryCondition ? victoryCondition.Title : translateWithContext("victory condition", "Unknown");
+	let victoryCondition = g_Settings.VictoryConditions.find(victoryCondition => victoryCondition.Name == victoryConditionName);
+	return victoryCondition ? victoryCondition.Title : translate("Unknown Victory Condition");
 }

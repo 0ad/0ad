@@ -41,7 +41,6 @@
 {
   "CircularMap": true,
   "Description": "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE.",
-  "GameType": "conquest",
   "Keywords": ["new"],
   "LockTeams": false,
   "Name": "Via Augusta",
@@ -52,7 +51,10 @@
     {}
   ],
   "Preview": "via_augusta.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

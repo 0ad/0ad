@@ -29,7 +29,6 @@
   "CircularMap": true,
   "Preview" : "heightmap-greece.png",
   "Description": "An example of height map importation. Image was 512x512 grayscale PNG. This image can be found in the scenarios folder, but can be placed anywhere.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -39,7 +38,8 @@
     {
     }
   ],
-  "RevealMap": true
+  "RevealMap": true,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities/>

@@ -3,13 +3,18 @@
 	"Data":
 	{
 		"Title": "Conquest",
-		"Description": "Defeat all opponents to win.",
+		"Description": "Defeat opponents by killing all their units and destroying all their structures.",
 		"Scripts":
 		[
 			"scripts/TriggerHelper.js",
 			"scripts/ConquestCommon.js",
 			"scripts/Conquest.js"
 		],
-		"Default": true
+		"Default": true,
+		"ChangeOnChecked": {
+			"conquest_units": false,
+			"conquest_structures": false
+		},
+		"GUIOrder": 0
 	}
 }

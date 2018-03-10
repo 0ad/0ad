@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "An Egyptian desert map bisected by the broad Nile River. Organic resources cluster near the river, while mineral resources can be found in the desert hinterlands.",
-  "GameType": "conquest",
   "Keywords": [
     "naval"
   ],
@@ -65,7 +64,10 @@
     }
   ],
   "Preview": "nile_river.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

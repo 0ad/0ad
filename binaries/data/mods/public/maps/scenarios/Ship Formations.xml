@@ -28,7 +28,6 @@
 {
   "CircularMap": true,
   "Description": "Ship formations mockup.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -59,7 +58,8 @@
       "Team": -1
     }
   ],
-  "RevealMap": true
+  "RevealMap": true,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>

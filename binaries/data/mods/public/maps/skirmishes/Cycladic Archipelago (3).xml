@@ -44,7 +44,6 @@
   ],
   "CircularMap": true,
   "Description": "A \"small island\"-style map set in the Aegean Sea.\u000a\u000aMap size: Very Large",
-  "GameType": "conquest",
   "Keywords": [
     "naval"
   ],
@@ -78,7 +77,10 @@
   ],
   "Preview": "cycladic_archipelago_skirm_3.png",
   "RevealMap": false,
-  "Size": 384
+  "Size": 384,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

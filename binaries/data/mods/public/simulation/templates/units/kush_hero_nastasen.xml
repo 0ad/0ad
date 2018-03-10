@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
   <Auras datatype="tokens">
-    units/heroes/kush_hero_nastasen
+    units/heroes/kush_hero_nastasen_1
+    units/heroes/kush_hero_nastasen_2
   </Auras>
   <Identity>
     <Civ>kush</Civ>
     <GenericName>Nastasen</GenericName>
     <SpecificName>Nastasen Ankhkhare</SpecificName>
-    <Classes datatype="tokens">Nastasen</Classes>
-    <Icon>units/hele_hero_alexander.png</Icon>
-    <Tooltip>Hero Special: "Gift of Warships" - Allows the training of Ptolemaic trireme-class ships.</Tooltip>
+    <Icon>units/mace_hero_philip.png</Icon>
   </Identity>
   <VisualActor>
     <Actor>units/kushites/hero_cavalry_spearman_nastasen_m.xml</Actor>

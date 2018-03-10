@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "The 'Cappadocia' region of Central-Eastern Anatolia.\u000a\u000aAll players start on the Western end of the map, with a vast unclaimed wilderness lying open before them ripe for conquest and depredation.\u000a\u000aStone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Neareastern Badlands (2)",
@@ -54,7 +53,10 @@
     }
   ],
   "Preview": "neareastern_badlands_1.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

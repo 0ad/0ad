@@ -40,7 +40,6 @@
 {
   "CircularMap": true,
   "Description": "Situated Southside of the Atlas mountain range in North Africa.\u000a\u000aA somewhat open map with an abundance of animals and mineral resources, while wood is scarce.",
-  "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Sahel (4)",
@@ -59,7 +58,10 @@
     }
   ],
   "Preview": "sahel_scenario.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

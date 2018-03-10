@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -304,8 +304,7 @@ static void Frame()
 #endif
 	ENSURE(realTimeSinceLastFrame > 0.0f);
 
-	// decide if update/render is necessary
-	bool need_render = !g_app_minimized;
+	// Decide if update is necessary
 	bool need_update = true;
 
 	// If we are not running a multiplayer game, disable updates when the game is
@@ -369,9 +368,11 @@ static void Frame()
 	g_UserReporter.Update();
 
 	g_Console->Update(realTimeSinceLastFrame);
-
 	ogl_WarnIfError();
-	if (need_render)
+
+	// We do not have to render an inactive fullscreen frame, because it can
+	// lead to errors for some graphic card families.
+	if (!g_app_minimized && (g_app_has_focus || !g_VideoMode.IsInFullscreen()))
 	{
 		Render();
 

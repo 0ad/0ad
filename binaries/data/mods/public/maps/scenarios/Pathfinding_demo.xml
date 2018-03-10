@@ -40,7 +40,6 @@
 {
   "DefaultStance": "defensive",
   "Description": "A map for testing unit movement algorithms.",
-  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -55,7 +54,8 @@
       "Civ": "brit"
     }
   ],
-  "RevealMap": true
+  "RevealMap": true,
+  "VictoryConditions": []
 }
 ]]></ScriptSettings>
 	<Entities>
