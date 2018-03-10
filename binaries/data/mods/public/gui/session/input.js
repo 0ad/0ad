@@ -1333,6 +1333,15 @@ var g_BatchTrainingEntities;
 var g_BatchTrainingType;
 var g_NumberOfBatches;
 var g_BatchTrainingEntityAllowedCount;
+var g_BatchSize = getDefaultBatchTrainingSize();
+
+function OnTrainMouseWheel(dir)
+{
+	if (Engine.HotkeyIsPressed("session.batchtrain"))
+		g_BatchSize += dir / Engine.ConfigDB_GetValue("user", "gui.session.scrollbatchratio");
+	if (g_BatchSize < 1 || !Number.isFinite(g_BatchSize))
+		g_BatchSize = 1;
+}
 
 function getBuildingsWhichCanTrainEntity(entitiesToCheck, trainEntType)
 {
@@ -1343,10 +1352,16 @@ function getBuildingsWhichCanTrainEntity(entitiesToCheck, trainEntType)
 	});
 }
 
-function getBatchTrainingSize()
+function getDefaultBatchTrainingSize()
 {
 	let num = +Engine.ConfigDB_GetValue("user", "gui.session.batchtrainingsize");
 	return Number.isInteger(num) && num > 0 ? num : 5;
+}
+
+function getBatchTrainingSize()
+{
+	let ret = Math.round(g_BatchSize);
+	return ret > 0 ? ret : 1;
 }
 
 // Add the unit shown at position to the training queue for all entities in the selection
@@ -1381,8 +1396,6 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 	if (!decrement)
 		template = GetTemplateData(trainEntType);
 
-	let batchIncrementSize = getBatchTrainingSize();
-
 	// Batch training only possible if we can train at least 2 units
 	if (Engine.HotkeyIsPressed("session.batchtrain") && (canBeAddedCount == undefined || canBeAddedCount > 1))
 	{
@@ -1404,10 +1417,10 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 						inputState = INPUT_NORMAL;
 				}
 				else if (canBeAddedCount == undefined ||
-				         canBeAddedCount > g_NumberOfBatches * batchIncrementSize * appropriateBuildings.length)
+				         canBeAddedCount > g_NumberOfBatches * getBatchTrainingSize() * appropriateBuildings.length)
 				{
 					if (Engine.GuiInterfaceCall("GetNeededResources", {
-						"cost": multiplyEntityCosts(template, (g_NumberOfBatches + 1) * batchIncrementSize)
+						"cost": multiplyEntityCosts(template, (g_NumberOfBatches + 1) * getBatchTrainingSize())
 					}))
 						return;
 
@@ -1424,7 +1437,7 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 
 		// Don't start a new batch if decrementing or unable to afford it.
 		if (decrement || Engine.GuiInterfaceCall("GetNeededResources", { "cost":
-			multiplyEntityCosts(template, batchIncrementSize) }))
+			multiplyEntityCosts(template, getBatchTrainingSize()) }))
 			return;
 
 		inputState = INPUT_BATCHTRAINING;
@@ -1455,14 +1468,13 @@ function addTrainingToQueue(selection, trainEntType, playerState)
  */
 function getTrainingStatus(selection, trainEntType, playerState)
 {
-	let batchIncrementSize = getBatchTrainingSize();
 	let appropriateBuildings = getBuildingsWhichCanTrainEntity(selection, trainEntType);
 	let nextBatchTrainingCount = 0;
 
 	let canBeAddedCount;
 	if (inputState == INPUT_BATCHTRAINING && g_BatchTrainingType == trainEntType)
 	{
-		nextBatchTrainingCount = g_NumberOfBatches * batchIncrementSize;
+		nextBatchTrainingCount = g_NumberOfBatches * getBatchTrainingSize();
 		canBeAddedCount = g_BatchTrainingEntityAllowedCount;
 	}
 	else
@@ -1471,7 +1483,7 @@ function getTrainingStatus(selection, trainEntType, playerState)
 	// We need to calculate count after the next increment if it's possible
 	if ((canBeAddedCount == undefined || canBeAddedCount > nextBatchTrainingCount * appropriateBuildings.length) &&
 	    Engine.HotkeyIsPressed("session.batchtrain"))
-		nextBatchTrainingCount += batchIncrementSize;
+		nextBatchTrainingCount += getBatchTrainingSize();
 
 	nextBatchTrainingCount = Math.max(nextBatchTrainingCount, 1);
 

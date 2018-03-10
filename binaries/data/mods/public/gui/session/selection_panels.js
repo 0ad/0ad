@@ -970,7 +970,8 @@ g_SelectionPanels.Training = {
 			});
 
 		data.button.onPress = function() {
-			addTrainingToQueue(data.unitEntStates.map(state => state.id), data.item, data.playerState);
+			if (!neededResources)
+				addTrainingToQueue(data.unitEntStates.map(state => state.id), data.item, data.playerState);
 		};
 		data.button.onPressRight = function() {
 			showTemplateDetails(data.item);
@@ -1017,13 +1018,12 @@ g_SelectionPanels.Training = {
 			data.button.enabled = false;
 			modifier = "color:0 0 0 127:grayscale:";
 		}
-		else if (neededResources)
-		{
-			data.button.enabled = false;
-			modifier = resourcesToAlphaMask(neededResources) + ":";
-		}
 		else
+		{
 			data.button.enabled = controlsPlayer(data.player);
+			if (neededResources)
+				modifier = resourcesToAlphaMask(neededResources) + ":";
+		}
 
 		if (template.icon)
 			data.icon.sprite = modifier + "stretched:session/portraits/" + template.icon;

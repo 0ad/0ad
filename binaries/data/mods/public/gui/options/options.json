@@ -408,10 +408,18 @@
 			{
 				"type": "number",
 				"label": "Batch Training Size",
-				"tooltip": "Number of units trained per batch.",
+				"tooltip": "Number of units trained per batch by default.",
 				"config": "gui.session.batchtrainingsize",
 				"min": 1,
 				"max": 20
+			},
+			{
+				"type": "slider",
+				"label": "Scroll Batch Increment Ratio",
+				"tooltip": "Number of times you have to scroll to increase/decrease the batchsize by 1.",
+				"config": "gui.session.scrollbatchratio",
+				"min": 0.1,
+				"max": 30
 			},
 			{
 				"type": "boolean",
