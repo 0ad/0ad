@@ -47,11 +47,9 @@ Trigger.prototype.SpawnWolvesAndAttack = function()
 		if (!firstAttacker)
 			continue;
 
-		let cmpAttackerPos = Engine.QueryInterface(firstAttacker, IID_Position);
-		if (!cmpAttackerPos || !cmpAttackerPos.IsInWorld())
+		let attackerPos = TriggerHelper.GetEntityPosition2D(firstAttacker);
+		if (!attackerPos)
 			continue;
-
-		let attackerPos = cmpAttackerPos.GetPosition2D();
 
 		// The returned entities are sorted by RangeManager already
 		let targets = cmpDamage.EntitiesNearPoint(attackerPos, 200, players).filter(ent => {
@@ -71,10 +69,8 @@ Trigger.prototype.SpawnWolvesAndAttack = function()
 				});
 
 			let getDistance = target => {
-				let cmpPositionTarget = Engine.QueryInterface(target, IID_Position);
-				if (!cmpPositionTarget || !cmpPositionTarget.IsInWorld())
-					return Infinity;
-				return attackerPos.distanceToSquared(cmpPositionTarget.GetPosition2D());
+				let targetPos = TriggerHelper.GetEntityPosition2D(target);
+				return targetPos ? attackerPos.distanceToSquared(targetPos) : Infinity;
 			};
 
 			goodTargets = [];

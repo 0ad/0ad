@@ -118,7 +118,7 @@ Trigger.prototype.debugLog = function(txt)
 	if (!debugLog)
 		return;
 
-	print("DEBUG [" + Math.round(Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000) + "]  " + txt + "\n");
+	print("DEBUG [" + Math.round(TriggerHelper.GetMinutes()) + "]  " + txt + "\n");
 };
 
 Trigger.prototype.LoadAttackerTemplates = function()
@@ -168,7 +168,7 @@ Trigger.prototype.InitializeEnemyWaves = function()
 
 Trigger.prototype.StartAnEnemyWave = function()
 {
-	let currentMin = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000;
+	let currentMin = TriggerHelper.GetMinutes();
 	let nextWaveTime = waveTime();
 	let civ = pickRandom(Object.keys(attackerUnitTemplates));
 
@@ -201,7 +201,6 @@ Trigger.prototype.StartAnEnemyWave = function()
 	this.debugLog("Templates: " + uneval(attackerCount));
 
 	// Spawn the templates
-	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let spawned = false;
 	for (let point of this.GetTriggerPoints("A"))
 	{
@@ -218,11 +217,9 @@ Trigger.prototype.StartAnEnemyWave = function()
 			continue;
 
 		// Check if the cc is garrisoned in another building
-		let cmpPosition = Engine.QueryInterface(civicCentre, IID_Position);
-		if (!cmpPosition || !cmpPosition.IsInWorld())
+		let targetPos = TriggerHelper.GetEntityPosition2D(civicCentre);
+		if (!targetPos)
 			continue;
-
-		let targetPos = cmpPosition.GetPosition2D();
 
 		for (let templateName in attackerCount)
 		{

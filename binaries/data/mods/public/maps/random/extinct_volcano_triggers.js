@@ -86,8 +86,7 @@ Trigger.prototype.DebugLog = function(txt)
 	if (!debugLog)
 		return;
 
-	let time = Math.round(Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000);
-	print("DEBUG [" + time + "] " + txt + "\n");
+	print("DEBUG [" + Math.round(TriggerHelper.GetMinutes()) + "] " + txt + "\n");
 };
 
 Trigger.prototype.GarrisonWoodenTowers = function()

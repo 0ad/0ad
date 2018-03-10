@@ -36,7 +36,7 @@ function getAngle(x1, z1, x2, z2)
  */
 function distributePointsOnCircle(pointCount, startAngle, radius, center)
 {
-	return distributePointsOnCircularSegment(pointCount, Math. PI * 2, startAngle, radius, center);
+	return distributePointsOnCircularSegment(pointCount, 2 * Math.PI, startAngle, radius, center);
 }
 
 function distributePointsOnCircularSegment(pointCount, maxAngle, startAngle, radius, center)
