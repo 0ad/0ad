@@ -1,7 +1,7 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Soldier", "Elephant"],
+	"affects": ["Champion"],
 	"modifications": [
 		{ "value": "Attack/Melee/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Pierce", "multiply": 1.2 },
@@ -12,6 +12,6 @@
 		{ "value": "Attack/Capture/Value", "add": 2 }
 	],
 	"auraName": "Warrior Queen",
-	"auraDescription": "+20% attack and +2 capture for soldiers and elephants.",
+	"auraDescription": "+20% attack and +2 capture for champion units.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }

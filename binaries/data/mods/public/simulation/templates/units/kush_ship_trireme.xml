@@ -2,14 +2,15 @@
 <Entity parent="template_unit_mechanical_ship_trireme">
   <Cost>
     <Resources>
-      <wood op="add">30</wood>
-      <metal op="add">30</metal>
+      <wood op="add">50</wood>
+      <metal op="add">50</metal>
     </Resources>
   </Cost>
   <Identity>
     <Civ>kush</Civ>
-    <GenericName>Great Warship</GenericName>
+    <GenericName>Ptolemaic Mercenary Trireme</GenericName>
     <SpecificName>shry ‘3</SpecificName>
+    <Classes datatype="tokens">KushTrireme</Classes>
     <Icon>units/ptol_ship_trireme.png</Icon>
   </Identity>
   <VisualActor>

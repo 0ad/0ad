@@ -1,0 +1,10 @@
+{
+	"type": "global",
+	"affects": ["KushTrireme"],
+	"modifications": [
+		{ "value": "Cost/Resources/wood", "add": -50 },
+		{ "value": "Cost/Resources/metal", "add": -50 }
+	],
+	"auraName": "Gift of Warships",
+	"auraDescription": "Train Ptolemaic Mercenary Triremes at -25% resource cost.\nCrushing the Ptolemaic invasion of Kush, Nastasen seized numerous enemy warships."
+}

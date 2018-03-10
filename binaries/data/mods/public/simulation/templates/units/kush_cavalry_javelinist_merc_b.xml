@@ -8,13 +8,12 @@
   </Cost>
   <Identity>
     <Civ>kush</Civ>
-    <VisibleClasses datatype="tokens">Camel</VisibleClasses>
     <SelectionGroupName>units/kush_cavalry_javelinist_merc_b</SelectionGroupName>
     <GenericName>Blemmye Desert Raider</GenericName>
     <SpecificName>nhw Bulahau gml</SpecificName>
     <Icon>units/kush_merc_camelry.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
+    <VisibleClasses datatype="tokens">Camel Mercenary</VisibleClasses>
   </Identity>
   <Promotion>
     <Entity>units/kush_cavalry_javelinist_a</Entity>

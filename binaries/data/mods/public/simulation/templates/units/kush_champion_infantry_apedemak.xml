@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
+  <Armour>
+    <Hack op="add">-1</Hack>
+    <Pierce op="add">-1</Pierce>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Bonuses>
+        <Bonus1>
+          <Classes>Champion</Classes>
+          <Multiplier>1.3</Multiplier>
+        </Bonus1>
+        <Bonus2>
+          <Classes>Hero</Classes>
+          <Multiplier>1.3</Multiplier>
+        </Bonus2>
+      </Bonuses>
+    </Melee>
+  </Attack>
   <Identity>
     <Civ>kush</Civ>
     <GenericName>Meroitic Temple Guard</GenericName>
     <SpecificName>rs ‘Iprmk</SpecificName>
+    <Tooltip>Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes.</Tooltip>
     <VisibleClasses datatype="tokens">Axe</VisibleClasses>
     <Classes datatype="tokens">ApedemakGuard</Classes>
     <Icon>units/kush_champion_apedemak.png</Icon>
