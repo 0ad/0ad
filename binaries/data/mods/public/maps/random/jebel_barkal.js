@@ -346,7 +346,7 @@ paintRiver({
 Engine.SetProgress(30);
 
 g_Map.log("Computing player locations");
-const playerIDs = sortAllPlayers();
+const playerIDs = primeSortAllPlayers();
 const playerPosition = playerPlacementCustomAngle(
 	fractionToTiles(0.38),
 	mapCenter,

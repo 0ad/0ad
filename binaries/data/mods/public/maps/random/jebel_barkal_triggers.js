@@ -12,7 +12,7 @@ const dryRun = false;
 /**
  * If enabled, prints the number of units to the command line output.
  */
-const showDebugLog = true;
+const showDebugLog = false;
 
 // TODO: patrols repair buildings
 // TODO: harass attackers
@@ -179,7 +179,7 @@ var jebelBarkal_attackerGroup_balancing = [
 		"unitComposition": (time, heroes) => [
 			{
 				"templates": jebelBarkal_templates.heroes,
-				"count": randBool(scaleByTime(time, 0, 2)) ? 1 : 0,
+				"count": randBool(scaleByTime(time, -0.5, 2)) ? 1 : 0,
 				"unique_entities": heroes
 			},
 			{
@@ -210,7 +210,7 @@ var jebelBarkal_attackerGroup_balancing = [
 		"unitComposition": (time, heroes) => [
 			{
 				"templates": jebelBarkal_templates.heroes,
-				"count": randBool(scaleByTime(time, 0, 1.5)) ? 1 : 0,
+				"count": randBool(scaleByTime(time, -0.5, 1.5)) ? 1 : 0,
 				"unique_entities": heroes
 			},
 			{
@@ -225,7 +225,7 @@ var jebelBarkal_attackerGroup_balancing = [
 		"unitComposition": (time, heroes) => [
 			{
 				"templates": jebelBarkal_templates.heroes,
-				"count": randBool(scaleByTime(time, 0, 1)) ? 1 : 0,
+				"count": randBool(scaleByTime(time, -0.5, 1)) ? 1 : 0,
 				"unique_entities": heroes
 			},
 			{
@@ -248,7 +248,7 @@ var jebelBarkal_attackerGroup_balancing = [
 		"unitComposition": (time, heroes) => [
 			{
 				"templates": jebelBarkal_templates.heroes,
-				"count": randBool(scaleByTime(time, 0, 0.5)) ? 1 : 0,
+				"count": randBool(scaleByTime(time, -0.5, 0.5)) ? 1 : 0,
 				"unique_entities": heroes
 			},
 			{
@@ -500,7 +500,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 		});
 	}
 
-	if (!spawnedAnything)
+	if (spawnedAnything)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
 			"message": markForTranslation("Napata is attacking!"),
 			"translateMessage": true
