@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -174,7 +174,7 @@ static bool ShouldUseLargePages(size_t allocationSize, DWORD allocationType, Pag
 	// default: use a heuristic.
 	{
 		// internal fragmentation would be excessive.
-		if(allocationSize <= largePageSize/2)
+		if(allocationSize <= g_LargePageSize / 2)
 			return false;
 
 		// a previous attempt already took too long.
@@ -278,36 +278,35 @@ CACHE_ALIGNED(struct AddressRangeDescriptor)	// POD
 			return INFO::SKIPPED;
 
 		ENSURE(size != 0);		// probably indicates a bug in caller
-		ENSURE((commitSize % largePageSize) == 0 || pageType == kSmall);
+		ENSURE((commitSize % g_LargePageSize) == 0 || pageType == kSmall);
 		ASSERT(pageType == kLarge || pageType == kSmall || pageType == kDefault);
 		ASSERT(prot == PROT_NONE || (prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC)) == 0);
-		this->commitSize = commitSize;
-		this->pageType = pageType;
-		this->prot = prot;
-
-		alignment = (pageType == kSmall)? pageSize : largePageSize;
-		totalSize = round_up(size+alignment-1, alignment);
+		m_CommitSize = commitSize;
+		m_PageType = pageType;
+		m_Prot = prot;
+		m_Alignment = pageType == kSmall ? g_PageSize : g_LargePageSize;
+		m_TotalSize = round_up(size + m_Alignment - 1, m_Alignment);
 
 		// NB: it is meaningless to ask for large pages when reserving
 		// (see ShouldUseLargePages). pageType only affects subsequent commits.
-		base = (intptr_t)AllocateLargeOrSmallPages(0, totalSize, MEM_RESERVE);
+		base = (intptr_t)AllocateLargeOrSmallPages(0, m_TotalSize, MEM_RESERVE);
 		if(!base)
 		{
-			debug_printf("AllocateLargeOrSmallPages of %lld failed\n", (u64)totalSize);
+			debug_printf("AllocateLargeOrSmallPages of %lld failed\n", (u64)m_TotalSize);
 			DEBUG_DISPLAY_ERROR(ErrorString());
 			return ERR::NO_MEM;	// NOWARN (error string is more helpful)
 		}
 
-		alignedBase = round_up(uintptr_t(base), alignment);
-		alignedEnd = alignedBase + round_up(size, alignment);
+		alignedBase = round_up(uintptr_t(base), m_Alignment);
+		alignedEnd = alignedBase + round_up(size, m_Alignment);
 		return INFO::OK;
 	}
 
 	void Free()
 	{
-		vm::Free((void*)base, totalSize);
-		alignment = alignedBase = alignedEnd = 0;
-		totalSize = 0;
+		vm::Free((void*)base, m_TotalSize);
+		m_Alignment = alignedBase = alignedEnd = 0;
+		m_TotalSize = 0;
 		COMPILER_FENCE;
 		base = 0;	// release descriptor for subsequent reuse
 	}
@@ -324,15 +323,15 @@ CACHE_ALIGNED(struct AddressRangeDescriptor)	// POD
 	bool Commit(uintptr_t address)
 	{
 		// (safe because Allocate rounded up to alignment)
-		const uintptr_t alignedAddress = round_down(address, alignment);
-		ENSURE(alignedBase <= alignedAddress && alignedAddress+commitSize <= alignedEnd);
-		return vm::Commit(alignedAddress, commitSize, pageType, prot);
+		const uintptr_t alignedAddress = round_down(address, m_Alignment);
+		ENSURE(alignedBase <= alignedAddress && alignedAddress + m_CommitSize <= alignedEnd);
+		return vm::Commit(alignedAddress, m_CommitSize, m_PageType, m_Prot);
 	}
 
 	// corresponds to the respective page size (Windows requires
 	// naturally aligned addresses and sizes when committing large pages).
 	// note that VirtualAlloc's alignment defaults to 64 KiB.
-	uintptr_t alignment;
+	uintptr_t m_Alignment;
 
 	uintptr_t alignedBase;	// multiple of alignment
 	uintptr_t alignedEnd;	// "
@@ -340,12 +339,12 @@ CACHE_ALIGNED(struct AddressRangeDescriptor)	// POD
 	// (actual requested size / allocated address is required by
 	// ReleaseAddressSpace due to variable alignment.)
 	volatile intptr_t base;	// (type is dictated by cpu_CAS)
-	size_t totalSize;
+	size_t m_TotalSize;
 
 	// parameters to be relayed to vm::Commit
-	size_t commitSize;
-	PageType pageType;
-	int prot;
+	size_t m_CommitSize;
+	PageType m_PageType;
+	int m_Prot;
 
 //private:
 	static const wchar_t* ErrorString()
@@ -498,7 +497,7 @@ static LONG CALLBACK VectoredHandler(const PEXCEPTION_POINTERS ep)
 	// NB: the first access to a page isn't necessarily at offset 0
 	// (memcpy isn't guaranteed to copy sequentially). rounding down
 	// is safe and necessary - see AddressRangeDescriptor::alignment.
-	const uintptr_t alignedAddress = round_down(address, d->alignment);
+	const uintptr_t alignedAddress = round_down(address, d->m_Alignment);
 	bool ok = d->Commit(alignedAddress);
 	if(!ok)
 	{

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -111,7 +111,7 @@ Status sys_cursor_set(sys_cursor cursor)
 {
 	// restore default cursor.
 	if(!cursor)
-		cursor = cursor_from_HCURSOR(LoadCursor(0, MAKEINTRESOURCE(IDC_ARROW)));
+		cursor = cursor_from_HCURSOR(LoadCursor(0, IDC_ARROW));
 
 	(void)SetCursor(HCURSOR_from_cursor(cursor));
 	// return value (previous cursor) is useless.

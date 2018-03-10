@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -118,7 +118,7 @@ static char* stringStorage;
 static char* stringStoragePos;
 
 // pointers to dynamically allocated structures
-static Structures structures;
+static Structures g_Structures;
 
 static void Cleanup()	// called via atexit
 {
@@ -127,11 +127,11 @@ static void Cleanup()	// called via atexit
 
 	// free each allocated structure
 #define STRUCTURE(name, id)\
-	while(structures.name##_)\
+	while(g_Structures.name##_)\
 	{\
-		name* next = structures.name##_->next;\
-		SAFE_FREE(structures.name##_);\
-		structures.name##_ = next;\
+		name* next = g_Structures.name##_->next;\
+		SAFE_FREE(g_Structures.name##_);\
+		g_Structures.name##_ = next;\
 	}
 	STRUCTURES
 #undef STRUCTURE
@@ -449,7 +449,7 @@ static Status InitStructures()
 
 		switch(header->id)
 		{
-#define STRUCTURE(name, id) case id: AddStructure(header, strings, structures.name##_); break;
+#define STRUCTURE(name, id) case id: AddStructure(header, strings, g_Structures.name##_); break;
 			STRUCTURES
 #undef STRUCTURE
 
@@ -693,7 +693,7 @@ const Structures* GetStructures()
 	// (callers have to check if member pointers are nonzero anyway, so
 	// we always return a valid pointer to simplify most use cases.)
 	UNUSED2(ret);
-	return &structures;
+	return &g_Structures;
 }
 
 

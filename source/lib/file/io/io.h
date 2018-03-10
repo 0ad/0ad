@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -64,31 +64,31 @@ static inline UniqueRange Allocate(size_t size, size_t alignment = maxSectorSize
 // but also applies to synchronous I/O and has shorter/nicer names.)
 struct Operation
 {
-	// @param buf can be 0, in which case temporary block buffers are allocated.
+	// @param m_Buffer can be 0, in which case temporary block buffers are allocated.
 	// otherwise, it must be aligned and padded to the I/O alignment, e.g. via
 	// io::Allocate.
 	Operation(const File& file, void* buf, off_t size, off_t offset = 0)
-		: fd(file.Descriptor()), opcode((file.Flags() & O_WRONLY)? LIO_WRITE : LIO_READ)
-		, offset(offset), size(size), buf((void*)buf)
+		: m_FileDescriptor(file.Descriptor()), m_OpenFlag((file.Flags() & O_WRONLY)? LIO_WRITE : LIO_READ)
+		, m_Offset(offset), m_Size(size), m_Buffer(buf)
 	{
 	}
 
 	void Validate() const
 	{
-		ENSURE(fd >= 0);
-		ENSURE(opcode == LIO_READ || opcode == LIO_WRITE);
+		ENSURE(m_FileDescriptor >= 0);
+		ENSURE(m_OpenFlag == LIO_READ || m_OpenFlag == LIO_WRITE);
 
-		ENSURE(offset >= 0);
-		ENSURE(size >= 0);
-		// buf can legitimately be 0 (see above)
+		ENSURE(m_Offset >= 0);
+		ENSURE(m_Size >= 0);
+		// m_Buffer can legitimately be 0 (see above)
 	}
 
-	int fd;
-	int opcode;
+	int m_FileDescriptor;
+	int m_OpenFlag;
 
-	off_t offset;
-	off_t size;
-	void* buf;
+	off_t m_Offset;
+	off_t m_Size;
+	void* m_Buffer;
 };
 
 
@@ -123,14 +123,14 @@ struct Parameters
 		if(blockSize != 0)
 		{
 			ENSURE(is_pow2(blockSize));
-			ENSURE(pageSize <= blockSize);	// (don't bother checking an upper bound)
+			ENSURE(g_PageSize <= blockSize);	// (don't bother checking an upper bound)
 		}
 
 		ENSURE(1 <= queueDepth && queueDepth <= maxQueueDepth);
 
-		ENSURE(IsAligned(op.offset, alignment));
+		ENSURE(IsAligned(op.m_Offset, alignment));
 		// op.size doesn't need to be aligned
-		ENSURE(IsAligned(op.buf, alignment));
+		ENSURE(IsAligned(op.m_Buffer, alignment));
 	}
 
 	// (ATTO only allows 10, which improves upon 8)
@@ -186,18 +186,18 @@ public:
 	ControlBlockRingBuffer(const Operation& op, const Parameters& p)
 		: controlBlocks()	// zero-initialize
 	{
-		const size_t blockSize = p.blockSize? p.blockSize : (size_t)op.size;
+		const size_t blockSize = p.blockSize? p.blockSize : static_cast<size_t>(op.m_Size);
 
-		const bool temporaryBuffersRequested = (op.buf == 0);
+		const bool temporaryBuffersRequested = (op.m_Buffer == 0);
 		if(temporaryBuffersRequested)
 			buffers = io::Allocate(blockSize * p.queueDepth, p.alignment);
 
 		for(size_t i = 0; i < ARRAY_SIZE(controlBlocks); i++)
 		{
 			aiocb& cb = operator[](i);
-			cb.aio_fildes = op.fd;
+			cb.aio_fildes = op.m_FileDescriptor;
 			cb.aio_nbytes = blockSize;
-			cb.aio_lio_opcode = op.opcode;
+			cb.aio_lio_opcode = op.m_OpenFlag;
 			if(temporaryBuffersRequested)
 				cb.aio_buf = (volatile void*)(uintptr_t(buffers.get()) + i * blockSize);
 		}
@@ -242,17 +242,17 @@ static inline Status Run(const Operation& op, const Parameters& p = Parameters()
 	COMPILER_FENCE;
 #endif
 
-	const off_t numBlocks = p.blockSize? (off_t)DivideRoundUp((u64)op.size, (u64)p.blockSize) : 1;
-	for(off_t blocksIssued = 0, blocksCompleted = 0; blocksCompleted < numBlocks; blocksCompleted++)
+	size_t numBlocks = p.blockSize? DivideRoundUp(static_cast<size_t>(op.m_Size), p.blockSize) : 1;
+	for(size_t blocksIssued = 0, blocksCompleted = 0; blocksCompleted < numBlocks; blocksCompleted++)
 	{
 		for(; blocksIssued != numBlocks && blocksIssued < blocksCompleted + (off_t)p.queueDepth; blocksIssued++)
 		{
 			aiocb& cb = controlBlockRingBuffer[blocksIssued];
-			cb.aio_offset = op.offset + blocksIssued * p.blockSize;
-			if(op.buf)
-				cb.aio_buf = (volatile void*)(uintptr_t(op.buf) + blocksIssued * p.blockSize);
+			cb.aio_offset = op.m_Offset + blocksIssued * p.blockSize;
+			if(op.m_Buffer)
+				cb.aio_buf = (volatile void*)(uintptr_t(op.m_Buffer) + blocksIssued * p.blockSize);
 			if(blocksIssued == numBlocks-1)
-				cb.aio_nbytes = round_up(size_t(op.size - blocksIssued * p.blockSize), size_t(p.alignment));
+				cb.aio_nbytes = round_up(size_t(op.m_Size - blocksIssued * p.blockSize), size_t(p.alignment));
 
 			RETURN_STATUS_FROM_CALLBACK(issueHook(cb));
 
@@ -268,7 +268,7 @@ static inline Status Run(const Operation& op, const Parameters& p = Parameters()
 #if ENABLE_IO_STATS
 	COMPILER_FENCE;
 	const double t1 = timer_Time();
-	const off_t totalSize = p.blockSize? numBlocks*p.blockSize : op.size;
+	const off_t totalSize = p.blockSize? numBlocks*p.blockSize : op.m_Size;
 	debug_printf("IO: %.2f MB/s (%.2f)\n", totalSize/(t1-t0)/1e6, (t1-t0)*1e3);
 #endif
 
@@ -305,7 +305,7 @@ static inline Status Store(const OsPath& pathname, const void* data, size_t size
 	io::Operation op(file, (void*)data, size);
 
 #if OS_WIN
-	(void)waio_Preallocate(op.fd, (off_t)size);
+	UNUSED2(waio_Preallocate(op.m_FileDescriptor, (off_t)size));
 #endif
 
 	RETURN_STATUS_IF_ERR(io::Run(op, p, completedHook, issueHook));

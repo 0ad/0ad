@@ -63,7 +63,7 @@ enum PageType
  *   (an error dialog will also be raised).
  *   must be freed via ReleaseAddressSpace.
 **/
-LIB_API void* ReserveAddressSpace(size_t size, size_t commitSize = largePageSize, PageType pageType = kDefault, int prot = PROT_READ|PROT_WRITE);
+LIB_API void* ReserveAddressSpace(size_t size, size_t commitSize = g_LargePageSize, PageType pageType = kDefault, int prot = PROT_READ|PROT_WRITE);
 
 /**
  * release address space and decommit any memory.

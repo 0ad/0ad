@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,16 +78,12 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	#undef AT
 	#undef EL
 
-	CMaterial material;
-
-	XMBElement root = xeroFile.GetRoot();
-
 	CPreprocessorWrapper preprocessor;
 	preprocessor.AddDefine("CFG_FORCE_ALPHATEST", g_Renderer.m_Options.m_ForceAlphaTest ? "1" : "0");
+	CMaterial material;
+	material.AddStaticUniform("qualityLevel", CVector4D(qualityLevel, 0, 0, 0));
 
-	CVector4D vec(qualityLevel,0,0,0);
-	material.AddStaticUniform("qualityLevel", vec);
-
+	XMBElement root = xeroFile.GetRoot();
 	XERO_ITER_EL(root, node)
 	{
 		int token = node.GetNodeName();

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,15 +32,15 @@
 #define mat_pad(A) (A[W][X]=A[X][W]=A[W][Y]=A[Y][W]=A[W][Z]=A[Z][W]=0,A[W][W]=1)
 
 /** Copy nxn matrix A to C using "gets" for assignment **/
-#define mat_copy(C,gets,A,n) {int i,j; for(i=0;i<n;i++) for(j=0;j<n;j++)\
+#define mat_copy(C,gets,A,n) {for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j)\
     C[i][j] gets (A[i][j]);}
 
 /** Copy transpose of nxn matrix A to C using "gets" for assignment **/
-#define mat_tpose(AT,gets,A,n) {int i,j; for(i=0;i<n;i++) for(j=0;j<n;j++)\
+#define mat_tpose(AT,gets,A,n) {for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j)\
     AT[i][j] gets (A[j][i]);}
 
 /** Assign nxn matrix C the element-wise combination of A and B using "op" **/
-#define mat_binop(C,gets,A,op,B,n) {int i,j; for(i=0;i<n;i++) for(j=0;j<n;j++)\
+#define mat_binop(C,gets,A,op,B,n) {for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j)\
     C[i][j] gets (A[i][j]) op (B[i][j]);}
 
 /** Multiply the upper left 3x3 parts of A and B to get AB **/
@@ -276,7 +276,6 @@ float polar_decomp(HMatrix M, HMatrix Q, HMatrix S)
 #define TOL 1.0e-6
     HMatrix Mk, MadjTk, Ek;
     float det, M_one, M_inf, MadjT_one, MadjT_inf, E_one, gamma, g1, g2;
-    int i, j;
     mat_tpose(Mk,=,M,3);
     M_one = norm_one(Mk);  M_inf = norm_inf(Mk);
     do {
@@ -295,7 +294,7 @@ float polar_decomp(HMatrix M, HMatrix Q, HMatrix S)
     } while (E_one>(M_one*TOL));
     mat_tpose(Q,=,Mk,3); mat_pad(Q);
     mat_mult(Mk, M, S);	 mat_pad(S);
-    for (i=0; i<3; i++) for (j=i; j<3; j++)
+	for (int i = 0; i < 3; i++) for (int j = i; j < 3; j++)
 	S[i][j] = S[j][i] = 0.5*(S[i][j]+S[j][i]);
     return (det);
 }
@@ -325,48 +324,68 @@ float polar_decomp(HMatrix M, HMatrix Q, HMatrix S)
  */
 HVect spect_decomp(HMatrix S, HMatrix U)
 {
-    HVect kv;
-    double Diag[3],OffD[3]; /* OffD is off-diag (by omitted index) */
-    double g,h,fabsh,fabsOffDi,t,theta,c,s,tau,ta,OffDq,a,b;
-    static char nxt[] = {Y,Z,X};
-    int sweep, i, j;
-    mat_copy(U,=,mat_id,4);
-    Diag[X] = S[X][X]; Diag[Y] = S[Y][Y]; Diag[Z] = S[Z][Z];
-    OffD[X] = S[Y][Z]; OffD[Y] = S[Z][X]; OffD[Z] = S[X][Y];
-    for (sweep=20; sweep>0; sweep--) {
-	float sm = fabs(OffD[X])+fabs(OffD[Y])+fabs(OffD[Z]);
-	if (sm==0.0) break;
-	for (i=Z; i>=X; i--) {
-	    int p = nxt[i]; int q = nxt[p];
-	    fabsOffDi = fabs(OffD[i]);
-	    g = 100.0*fabsOffDi;
-	    if (fabsOffDi>0.0) {
-		h = Diag[q] - Diag[p];
-		fabsh = fabs(h);
-		if (fabsh+g==fabsh) {
-		    t = OffD[i]/h;
-		} else {
-		    theta = 0.5*h/OffD[i];
-		    t = 1.0/(fabs(theta)+sqrt(theta*theta+1.0));
-		    if (theta<0.0) t = -t;
+	HVect kv;
+	double Diag[3], OffD[3]; /* OffD is off-diag (by omitted index) */
+	double g, h, fabsh, fabsOffDi, t, theta, c, s, tau, ta, OffDq, a, b;
+	static char nxt[] = {Y, Z, X};
+	mat_copy(U, =, mat_id, 4);
+	Diag[X] = S[X][X];
+	Diag[Y] = S[Y][Y];
+	Diag[Z] = S[Z][Z];
+	OffD[X] = S[Y][Z];
+	OffD[Y] = S[Z][X];
+	OffD[Z] = S[X][Y];
+	for (int sweep = 20; sweep > 0; --sweep)
+	{
+		float sm = fabs(OffD[X]) + fabs(OffD[Y]) + fabs(OffD[Z]);
+		if (sm == 0.0)
+			break;
+		for (int i = Z; i >= X; --i)
+		{
+			int p = nxt[i];
+			int q = nxt[p];
+			fabsOffDi = fabs(OffD[i]);
+			g = 100.0 * fabsOffDi;
+			if (fabsOffDi > 0.0)
+			{
+				h = Diag[q] - Diag[p];
+				fabsh = fabs(h);
+				if (fabsh + g == fabsh)
+				{
+					t = OffD[i] / h;
+				}
+				else
+				{
+					theta = 0.5 * h / OffD[i];
+					t = 1.0 / (fabs(theta) + sqrt(theta * theta + 1.0));
+					if (theta < 0.0)
+						t = -t;
+				}
+				c = 1.0 / sqrt(t * t + 1.0);
+				s = t * c;
+				tau = s / (c + 1.0);
+				ta = t * OffD[i];
+				OffD[i] = 0.0;
+				Diag[p] -= ta;
+				Diag[q] += ta;
+				OffDq = OffD[q];
+				OffD[q] -= s * (OffD[p] + tau * OffD[q]);
+				OffD[p] += s * (OffDq - tau * OffD[p]);
+				for (int j = Z; j >= X; --j)
+				{
+					a = U[j][p];
+					b = U[j][q];
+					U[j][p] -= s * (b + tau * a);
+					U[j][q] += s * (a - tau * b);
+				}
+			}
 		}
-		c = 1.0/sqrt(t*t+1.0); s = t*c;
-		tau = s/(c+1.0);
-		ta = t*OffD[i]; OffD[i] = 0.0;
-		Diag[p] -= ta; Diag[q] += ta;
-		OffDq = OffD[q];
-		OffD[q] -= s*(OffD[p] + tau*OffD[q]);
-		OffD[p] += s*(OffDq   - tau*OffD[p]);
-		for (j=Z; j>=X; j--) {
-		    a = U[j][p]; b = U[j][q];
-		    U[j][p] -= s*(b + tau*a);
-		    U[j][q] += s*(a - tau*b);
-		}
-	    }
 	}
-    }
-    kv.x = Diag[X]; kv.y = Diag[Y]; kv.z = Diag[Z]; kv.w = 1.0;
-    return (kv);
+	kv.x = Diag[X];
+	kv.y = Diag[Y];
+	kv.z = Diag[Z];
+	kv.w = 1.0;
+	return kv;
 }
 
 /******* Spectral Axis Adjustment *******/
@@ -387,7 +406,7 @@ Quat snuggle(Quat q, HVect *k)
 		    else   {a[3]=a[2]; a[2]=a[1]; a[1]=a[0]; a[0]=a[3];}
     Quat p;
     float ka[4];
-    int i, turn = -1;
+    int turn = -1;
     ka[X] = k->x; ka[Y] = k->y; ka[Z] = k->z;
     if (ka[X]==ka[Y]) {if (ka[X]==ka[Z]) turn = W; else turn = Z;}
     else {if (ka[X]==ka[Z]) turn = Y; else if (ka[Y]==ka[Z]) turn = X;}
@@ -395,8 +414,8 @@ Quat snuggle(Quat q, HVect *k)
 	Quat qtoz, qp;
 	unsigned neg[3], win;
 	double mag[3], t;
-	static Quat qxtoz = {0,SQRTHALF,0,SQRTHALF};
-	static Quat qytoz = {SQRTHALF,0,0,SQRTHALF};
+	static Quat qxtoz = {.0f, static_cast<float>(SQRTHALF), .0f, static_cast<float>(SQRTHALF)};
+	static Quat qytoz = {static_cast<float>(SQRTHALF), .0f, .0f, static_cast<float>(SQRTHALF)};
 	static Quat qppmm = { 0.5, 0.5,-0.5,-0.5};
 	static Quat qpppp = { 0.5, 0.5, 0.5, 0.5};
 	static Quat qmpmm = {-0.5, 0.5,-0.5,-0.5};
@@ -413,7 +432,7 @@ Quat snuggle(Quat q, HVect *k)
 	mag[0] = (double)q.z*q.z+(double)q.w*q.w-0.5;
 	mag[1] = (double)q.x*q.z-(double)q.y*q.w;
 	mag[2] = (double)q.y*q.z+(double)q.x*q.w;
-	for (i=0; i<3; i++) if ((neg[i] = (mag[i]<0.0)) != 0) mag[i] = -mag[i];
+	for (int i = 0; i < 3; ++i) if ((neg[i] = (mag[i] < 0.0)) != 0) mag[i] = -mag[i];
 	if (mag[0]>mag[1]) {if (mag[0]>mag[2]) win = 0; else win = 2;}
 	else		   {if (mag[1]>mag[2]) win = 1; else win = 2;}
 	switch (win) {
@@ -430,7 +449,7 @@ Quat snuggle(Quat q, HVect *k)
 	unsigned lo, hi, neg[4], par = 0;
 	double all, big, two;
 	qa[0] = q.x; qa[1] = q.y; qa[2] = q.z; qa[3] = q.w;
-	for (i=0; i<4; i++) {
+	for (int i = 0; i < 4; ++i) {
 	    pa[i] = 0.0;
 	    if ((neg[i] = (qa[i]<0.0)) != 0) qa[i] = -qa[i];
 	    par ^= neg[i];

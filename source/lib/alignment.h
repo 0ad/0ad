@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -80,8 +80,8 @@ static const size_t cacheLineSize = 64;	// (L2)
 // MMU pages
 //
 
-static const size_t pageSize = 0x1000;	// 4 KB
-static const size_t largePageSize = 0x200000;	// 2 MB
+static const size_t g_PageSize = 4 * 1024;	// 4 KB
+static const size_t g_LargePageSize = 2 * 1024 * 1024;	// 2 MB
 
 
 //

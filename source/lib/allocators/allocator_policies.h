@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ namespace Allocators {
 // Growth
 
 // O(N) allocations, O(1) wasted space.
-template<size_t increment = pageSize>
+template<size_t increment = g_PageSize>
 struct Growth_Linear
 {
 	size_t operator()(size_t oldSize) const
@@ -210,7 +210,7 @@ class Storage_Commit
 	NONCOPYABLE(Storage_Commit);
 public:
 	Storage_Commit(size_t maxCapacity_)
-		: maxCapacity(Align<pageSize>(maxCapacity_))	// see Expand
+		: maxCapacity(Align<g_PageSize>(maxCapacity_))	// see Expand
 		, storage(allocator.allocate(maxCapacity))
 		, capacity(0)
 	{
@@ -242,7 +242,7 @@ public:
 		// reduce the number of expensive commits by accurately
 		// reflecting the actual capacity. this is safe because
 		// we also round up maxCapacity.
-		newCapacity = Align<pageSize>(newCapacity);
+		newCapacity = Align<g_PageSize>(newCapacity);
 		if(newCapacity > maxCapacity)
 			return false;
 		if(!vm::Commit(Address()+capacity, newCapacity-capacity))
@@ -269,7 +269,7 @@ class Storage_AutoCommit
 	NONCOPYABLE(Storage_AutoCommit);
 public:
 	Storage_AutoCommit(size_t maxCapacity_)
-		: maxCapacity(Align<pageSize>(maxCapacity_))	// match user's expectation
+		: maxCapacity(Align<g_PageSize>(maxCapacity_))	// match user's expectation
 		, storage(allocator.allocate(maxCapacity))
 	{
 		vm::BeginOnDemandCommits();

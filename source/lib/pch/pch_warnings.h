@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -33,7 +33,10 @@
 # pragma warning(disable:4103)	// alignment changed after including header (boost has #pragma pack/pop in separate headers)
 # pragma warning(disable:4127)	// conditional expression is constant; rationale: see STMT in lib.h.
 # pragma warning(disable:4324)	// structure was padded due to __declspec(align())
+# pragma warning(disable:4574)	// macro is defined to be 0
+#if MSC_VERSION <= 140
 # pragma warning(disable:4351)	// yes, default init of array entries is desired
+#endif
 # pragma warning(disable:4355)	// 'this' used in base member initializer list
 # pragma warning(disable:4512)	// assignment operator could not be generated
 # pragma warning(disable:4718)	// recursive call has no side effects, deleting
@@ -61,7 +64,9 @@
 # pragma warning(default:4545 4546 4547 4549) // ill-formed comma expressions; exclude 4548 since _SECURE_SCL triggers it frequently
 # pragma warning(default:4557)   // __assume contains effect
 //# pragma warning(default:4710)   // function not inlined (often happens in STL)
+#if MSC_VERSION <= 140
 # pragma warning(default:4836)   // local types or unnamed types cannot be used as template arguments
+#endif
 # pragma warning(default:4905)   // wide string literal cast to LPSTR
 # pragma warning(default:4906)   // string literal cast to LPWSTR
 # pragma warning(default:4928)   // illegal copy-initialization; more than one user-defined conversion has been implicitly applied

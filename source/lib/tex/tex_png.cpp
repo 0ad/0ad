@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -182,7 +182,7 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 
 	const size_t img_size = pitch * h;
 	shared_ptr<u8> data;
-	AllocateAligned(data, img_size, pageSize);
+	AllocateAligned(data, img_size, g_PageSize);
 
 	std::vector<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);
 	png_read_image(png_ptr, (png_bytepp)&rows[0]);

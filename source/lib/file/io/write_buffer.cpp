@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -33,7 +33,7 @@ static const size_t BLOCK_SIZE = 512*KiB;
 
 
 WriteBuffer::WriteBuffer()
-	: m_capacity(pageSize), m_data((u8*)rtl_AllocateAligned(m_capacity, maxSectorSize), AlignedDeleter()), m_size(0)
+	: m_capacity(g_PageSize), m_data((u8*)rtl_AllocateAligned(m_capacity, maxSectorSize), AlignedDeleter()), m_size(0)
 {
 }
 

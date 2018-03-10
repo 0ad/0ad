@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -300,12 +300,12 @@ void CTextRenderer::Render()
 				vertexes[idx*4+3].x = g->x1 + x;
 				vertexes[idx*4+3].y = g->y1 + y;
 
-				indexes[idx*6+0] = idx*4+0;
-				indexes[idx*6+1] = idx*4+1;
-				indexes[idx*6+2] = idx*4+2;
-				indexes[idx*6+3] = idx*4+2;
-				indexes[idx*6+4] = idx*4+3;
-				indexes[idx*6+5] = idx*4+0;
+				indexes[idx*6+0] = static_cast<u16>(idx*4+0);
+				indexes[idx*6+1] = static_cast<u16>(idx*4+1);
+				indexes[idx*6+2] = static_cast<u16>(idx*4+2);
+				indexes[idx*6+3] = static_cast<u16>(idx*4+2);
+				indexes[idx*6+4] = static_cast<u16>(idx*4+3);
+				indexes[idx*6+5] = static_cast<u16>(idx*4+0);
 
 				x += g->xadvance;
 

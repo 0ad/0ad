@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -26,6 +26,12 @@
 
 #ifndef INCLUDED_SYSDEP
 #define INCLUDED_SYSDEP
+
+#ifdef _MSC_VER
+#if _MSC_VER > 1800
+# pragma warning(disable:4091) // hides previous local declaration
+#endif
+#endif
 
 #include "lib/debug.h"	// ErrorReactionInternal
 #include "lib/os_path.h"

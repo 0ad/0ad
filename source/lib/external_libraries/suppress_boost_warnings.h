@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -29,6 +29,19 @@
 
 #if MSC_VERSION
 # pragma warning(disable:4710) // function not inlined
+#if _MSC_VER > 1800
+# pragma warning(disable:4626) // assignment operator was implicitly defined as deleted because a base class assignment operator is inaccessible or deleted
+# pragma warning(disable:4625) // copy constructor was implicitly defined as deleted
+# pragma warning(disable:4668) // 'symbol' is not defined as a preprocessor macro, replacing with '0' for 'directives'
+# pragma warning(disable:5027) // 'type': move assignment operator was implicitly defined as deleted
+# pragma warning(disable:4365) // signed/unsigned mismatch
+# pragma warning(disable:4619) // there is no warning for 'warning'
+# pragma warning(disable:5031) // #pragma warning(pop): likely mismatch, popping warning state pushed in different file
+# pragma warning(disable:5026) // 'type': move constructor was implicitly defined as deleted
+# pragma warning(disable:4820) // incorrect padding
+# pragma warning(disable:4514) // unreferenced inlined function has been removed
+# pragma warning(disable:4571) // Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
+#endif
 #endif
 #if ICC_VERSION
 # pragma warning(push)

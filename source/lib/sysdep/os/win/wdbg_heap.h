@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -26,6 +26,12 @@
 
 #ifndef INCLUDED_WDBG_HEAP
 #define INCLUDED_WDBG_HEAP
+
+#ifdef _MSC_VER
+#if _MSC_VER > 1800
+# pragma warning(disable:4091) // hides previous local declaration
+#endif
+#endif
 
 // this module provides a more convenient interface to the MS CRT's
 // debug heap checks. it also hooks into allocations to record the

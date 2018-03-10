@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -311,13 +311,13 @@ void SkinReduceInfluences(FCDSkinController* skin, size_t maxInfluenceCount, flo
 		FCDSkinControllerVertex& influence = *skin->GetVertexInfluence(i);
 
 		std::vector<FCDJointWeightPair> newWeights;
-		for (size_t i = 0; i < influence.GetPairCount(); ++i)
+		for (size_t j = 0; j < influence.GetPairCount(); ++j)
 		{
-			FCDJointWeightPair* weight = influence.GetPair(i);
+			FCDJointWeightPair* weight = influence.GetPair(j);
 
-			for (size_t j = 0; j < newWeights.size(); ++j)
+			for (size_t k = 0; k < newWeights.size(); ++k)
 			{
-				FCDJointWeightPair& newWeight = newWeights[j];
+				FCDJointWeightPair& newWeight = newWeights[k];
 				if (weight->jointIndex == newWeight.jointIndex)
 				{
 					newWeight.weight += weight->weight;

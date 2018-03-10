@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,6 +25,7 @@
 
 #include "lib/bits.h"	// PopulationCount
 #include "lib/alignment.h"
+#include "lib/lib.h"
 #include "lib/timer.h"
 #include "lib/module_init.h"
 #include "lib/sysdep/vm.h"
@@ -292,13 +293,13 @@ static Status InitTopology()
 
 size_t numa_NumNodes()
 {
-	(void)ModuleInit(&initState, InitTopology);
+	UNUSED2(ModuleInit(&initState, InitTopology));
 	return numNodes;
 }
 
 size_t numa_NodeFromProcessor(size_t processor)
 {
-	(void)ModuleInit(&initState, InitTopology);
+	UNUSED2(ModuleInit(&initState, InitTopology));
 	ENSURE(processor < os_cpu_NumProcessors());
 	Node* node = FindNodeWithProcessor(processor);
 	ENSURE(node);
@@ -307,14 +308,14 @@ size_t numa_NodeFromProcessor(size_t processor)
 
 uintptr_t numa_ProcessorMaskFromNode(size_t node)
 {
-	(void)ModuleInit(&initState, InitTopology);
+	UNUSED2(ModuleInit(&initState, InitTopology));
 	ENSURE(node < numNodes);
 	return nodes[node].processorMask;
 }
 
 static UCHAR NodeNumberFromNode(size_t node)
 {
-	(void)ModuleInit(&initState, InitTopology);
+	UNUSED2(ModuleInit(&initState, InitTopology));
 	ENSURE(node < numa_NumNodes());
 	return nodes[node].nodeNumber;
 }
@@ -393,7 +394,7 @@ static double MeasureRelativeDistance()
 		maxTime = std::max(maxTime, elapsedTime);
 	}
 
-	(void)os_cpu_SetThreadAffinityMask(previousProcessorMask);
+	UNUSED2(os_cpu_SetThreadAffinityMask(previousProcessorMask));
 
 	vm::Free(mem, size);
 
@@ -425,8 +426,8 @@ static Status InitRelativeDistance()
 
 double numa_Factor()
 {
-	static ModuleInitState initState;
-	(void)ModuleInit(&initState, InitRelativeDistance);
+	static ModuleInitState _initState;
+	UNUSED2(ModuleInit(&_initState, InitRelativeDistance));
 	return relativeDistance;
 }
 
@@ -455,8 +456,8 @@ static Status InitMemoryInterleaved()
 
 bool numa_IsMemoryInterleaved()
 {
-	static ModuleInitState initState;
-	(void)ModuleInit(&initState, InitMemoryInterleaved);
+	static ModuleInitState _initState;
+	UNUSED2(ModuleInit(&_initState, InitMemoryInterleaved));
 	return isMemoryInterleaved;
 }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -1778,9 +1778,8 @@ void wdbg_sym_WriteMinidump(EXCEPTION_POINTERS* exception_pointers)
 	// (UserStreamParam), since we will need to generate a plain text file on
 	// non-Windows platforms. users will just have to send us both files.
 
-	HANDLE hProcess = GetCurrentProcess();
 	DWORD pid = GetCurrentProcessId();
-	if(!pMiniDumpWriteDump || !pMiniDumpWriteDump(hProcess, pid, hFile, MiniDumpNormal, &mei, 0, 0))
+	if(!pMiniDumpWriteDump || !pMiniDumpWriteDump(GetCurrentProcess(), pid, hFile, MiniDumpNormal, &mei, 0, 0))
 		DEBUG_DISPLAY_ERROR(L"wdbg_sym_WriteMinidump: unable to generate minidump.");
 
 	CloseHandle(hFile);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -549,10 +549,10 @@ public:
 
 		for (size_t i = 0; i < m_QueryTypes.size(); ++i)
 		{
-			GLuint id = NewQuery(i);
-			pglBeginPerfQueryINTEL(id);
+			GLuint local_id = NewQuery(i);
+			pglBeginPerfQueryINTEL(local_id);
 			ogl_WarnIfError();
-			event.queries.push_back(id);
+			event.queries.push_back(local_id);
 		}
 
 		frame.activeRegions.push_back(frame.events.size());
