@@ -70,50 +70,66 @@ UnitAI.prototype.Schema =
 // do worry around armies slaughtering the guy standing next to you), etc.
 var g_Stances = {
 	"violent": {
-		targetVisibleEnemies: true,
-		targetAttackersAlways: true,
-		respondFlee: false,
-		respondChase: true,
-		respondChaseBeyondVision: true,
-		respondStandGround: false,
-		respondHoldGround: false,
+		"targetVisibleEnemies": true,
+		"targetAttackersAlways": true,
+		"respondFlee": false,
+		"respondChase": true,
+		"respondChaseBeyondVision": true,
+		"respondStandGround": false,
+		"respondHoldGround": false,
+		"selectable": true
 	},
 	"aggressive": {
-		targetVisibleEnemies: true,
-		targetAttackersAlways: false,
-		respondFlee: false,
-		respondChase: true,
-		respondChaseBeyondVision: false,
-		respondStandGround: false,
-		respondHoldGround: false,
+		"targetVisibleEnemies": true,
+		"targetAttackersAlways": false,
+		"respondFlee": false,
+		"respondChase": true,
+		"respondChaseBeyondVision": false,
+		"respondStandGround": false,
+		"respondHoldGround": false,
+		"selectable": true
 	},
 	"defensive": {
-		targetVisibleEnemies: true,
-		targetAttackersAlways: false,
-		respondFlee: false,
-		respondChase: false,
-		respondChaseBeyondVision: false,
-		respondStandGround: false,
-		respondHoldGround: true,
+		"targetVisibleEnemies": true,
+		"targetAttackersAlways": false,
+		"respondFlee": false,
+		"respondChase": false,
+		"respondChaseBeyondVision": false,
+		"respondStandGround": false,
+		"respondHoldGround": true,
+		"selectable": true
 	},
 	"passive": {
-		targetVisibleEnemies: false,
-		targetAttackersAlways: false,
-		respondFlee: true,
-		respondChase: false,
-		respondChaseBeyondVision: false,
-		respondStandGround: false,
-		respondHoldGround: false,
+		"targetVisibleEnemies": false,
+		"targetAttackersAlways": false,
+		"respondFlee": true,
+		"respondChase": false,
+		"respondChaseBeyondVision": false,
+		"respondStandGround": false,
+		"respondHoldGround": false,
+		"selectable": true
 	},
 	"standground": {
-		targetVisibleEnemies: true,
-		targetAttackersAlways: false,
-		respondFlee: false,
-		respondChase: false,
-		respondChaseBeyondVision: false,
-		respondStandGround: true,
-		respondHoldGround: false,
+		"targetVisibleEnemies": true,
+		"targetAttackersAlways": false,
+		"respondFlee": false,
+		"respondChase": false,
+		"respondChaseBeyondVision": false,
+		"respondStandGround": true,
+		"respondHoldGround": false,
+		"selectable": true
 	},
+	"none": {
+		// Only to be used by AI or trigger scripts
+		"targetVisibleEnemies": false,
+		"targetAttackersAlways": false,
+		"respondFlee": false,
+		"respondChase": false,
+		"respondChaseBeyondVision": false,
+		"respondStandGround": false,
+		"respondHoldGround": false,
+		"selectable": false
+	}
 };
 
 // See ../helpers/FSM.js for some documentation of this FSM specification syntax
@@ -1366,7 +1382,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"WALKING": {
-			"enter": function () {
+			"enter": function() {
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 				if (cmpFormation && cmpVisual)
@@ -1577,7 +1593,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"WALKING": {
-			"enter": function () {
+			"enter": function() {
 				this.SelectAnimation("move");
 			},
 
@@ -1587,7 +1603,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"WALKINGANDFIGHTING": {
-			"enter": function () {
+			"enter": function() {
 				// Show weapons rather than carried resources.
 				this.SetAnimationVariant("combat");
 
@@ -1610,7 +1626,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"PATROL": {
-			"enter": function () {
+			"enter": function() {
 				// Memorize the origin position in case that we want to go back
 				let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 				if (!cmpPosition || !cmpPosition.IsInWorld())
@@ -1656,7 +1672,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"ESCORTING": {
-				"enter": function () {
+				"enter": function() {
 					// Show weapons rather than carried resources.
 					this.SetAnimationVariant("combat");
 
@@ -1706,7 +1722,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"GUARDING": {
-				"enter": function () {
+				"enter": function() {
 					this.StartTimer(1000, 1000);
 					this.SetHeldPositionOnEntity(this.entity);
 					this.SetAnimationVariant("combat");
@@ -1793,7 +1809,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"APPROACHING": {
-				"enter": function () {
+				"enter": function() {
 					// Show weapons rather than carried resources.
 					this.SetAnimationVariant("combat");
 
@@ -2031,7 +2047,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"CHASING": {
-				"enter": function () {
+				"enter": function() {
 					// Show weapons rather than carried resources.
 					this.SetAnimationVariant("combat");
 
@@ -2106,7 +2122,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 						// Try to find another nearby target of the same specific type
 						// Also don't switch to a different type of huntable animal
-						var nearby = this.FindNearbyResource(function (ent, type, template) {
+						var nearby = this.FindNearbyResource(function(ent, type, template) {
 							return (
 								ent != oldTarget
 								 && ((type.generic == "treasure" && oldType.generic == "treasure")
@@ -2171,7 +2187,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 						// Try to find another nearby target of the same specific type
 						// Also don't switch to a different type of huntable animal
-						var nearby = this.FindNearbyResource(function (ent, type, template) {
+						var nearby = this.FindNearbyResource(function(ent, type, template) {
 							return (
 								ent != oldTarget
 								&& ((type.generic == "treasure" && oldType.generic == "treasure")
@@ -2218,7 +2234,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// Try to find another nearby target of the same specific type
 					// Also don't switch to a different type of huntable animal
-					var nearby = this.FindNearbyResource(function (ent, type, template) {
+					var nearby = this.FindNearbyResource(function(ent, type, template) {
 						return (
 							(type.generic == "treasure" && resourceType.generic == "treasure")
 							|| (type.specific == resourceType.specific
@@ -2427,7 +2443,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// Try to find a new resource of the same specific type near our current position:
 					// Also don't switch to a different type of huntable animal
-					var nearby = this.FindNearbyResource(function (ent, type, template) {
+					var nearby = this.FindNearbyResource(function(ent, type, template) {
 						return (
 							(type.generic == "treasure" && resourceType.generic == "treasure")
 							|| (type.specific == resourceType.specific
@@ -2471,7 +2487,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"APPROACHING": {
-				"enter": function () {
+				"enter": function() {
 					this.SelectAnimation("move");
 					this.StartTimer(1000, 1000);
 				},
@@ -2572,12 +2588,12 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 			},
 			"CHASING": {
-				"enter": function () {
+				"enter": function() {
 					this.SelectAnimation("move");
 					this.StartTimer(1000, 1000);
 				},
 
-				"leave": function () {
+				"leave": function() {
 					this.StopTimer();
 				},
 				"Timer": function(msg) {
@@ -2591,7 +2607,7 @@ UnitAI.prototype.UnitFsmSpec = {
 							this.WalkToHeldPosition();
 					}
 				},
-				"MoveCompleted": function () {
+				"MoveCompleted": function() {
 					this.SetNextState("HEALING");
 				},
 			},
@@ -2600,7 +2616,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		// Returning to dropsite
 		"RETURNRESOURCE": {
 			"APPROACHING": {
-				"enter": function () {
+				"enter": function() {
 					this.SelectAnimation("move");
 				},
 
@@ -2658,7 +2674,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"APPROACHINGMARKET": {
-				"enter": function () {
+				"enter": function() {
 					this.SelectAnimation("move");
 				},
 
@@ -2686,7 +2702,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"REPAIR": {
 			"APPROACHING": {
-				"enter": function () {
+				"enter": function() {
 					this.SelectAnimation("move");
 				},
 
@@ -2834,7 +2850,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					var types = cmpResourceDropsite.GetTypes();
 					// TODO: Slightly undefined behavior here, we don't know what type of resource will be collected,
 					//   may cause problems for AIs (especially hunting fast animals), but avoid ugly hacks to fix that!
-					var nearby = this.FindNearbyResource(function (ent, type, template) {
+					var nearby = this.FindNearbyResource(function(ent, type, template) {
 						return (types.indexOf(type.generic) != -1);
 					}, msg.data.newentity);
 					if (nearby)
@@ -4527,7 +4543,7 @@ UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, typ
 	var pos = cmpPosition.GetPosition();
 	var heldPosition = this.heldPosition;
 	if (heldPosition === undefined)
-		heldPosition = {"x": pos.x, "z": pos.z};
+		heldPosition = { "x": pos.x, "z": pos.z };
 
 	return Math.euclidDistance2D(pos.x, pos.z, heldPosition.x, heldPosition.z) < halfvision + range.max;
 };
@@ -5526,8 +5542,8 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var entities = cmpRangeManager.ResetActiveQuery(this.losRangeQuery);
-	var targets = entities.filter(function (v) { return cmpAttack.CanAttack(v) && attackfilter(v); })
-		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
+	var targets = entities.filter(function(v) { return cmpAttack.CanAttack(v) && attackfilter(v); })
+		.sort(function(a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
 
 	return targets;
 };
@@ -5595,11 +5611,11 @@ UnitAI.prototype.GetStance = function()
 	return g_Stances[this.stance];
 };
 
-UnitAI.prototype.GetPossibleStances = function()
+UnitAI.prototype.GetSelectableStances = function()
 {
 	if (this.IsTurret())
 		return [];
-	return Object.keys(g_Stances);
+	return Object.keys(g_Stances).filter(key => g_Stances[key].selectable);
 };
 
 UnitAI.prototype.GetStanceName = function()

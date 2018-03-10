@@ -916,7 +916,7 @@ g_SelectionPanels.Stance = {
 		if (unitEntStates.some(state => !state.unitAI || !hasClass(state, "Unit") || hasClass(state, "Animal")))
 			return [];
 
-		return unitEntStates[0].unitAI.possibleStances;
+		return unitEntStates[0].unitAI.selectableStances;
 	},
 	"setupButton": function(data)
 	{
