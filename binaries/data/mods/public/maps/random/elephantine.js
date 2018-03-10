@@ -67,7 +67,7 @@ const oHawk = "gaia/fauna_hawk";
 
 // The main temple on elephantine was very similar looking (Greco-Roman-Egyptian):
 const oWonder = "structures/ptol_wonder";
-const oTemples = ["structures/kush_temple_amun", "structures/kush_temple_apedemak"];
+const oTemples = ["structures/kush_temple_amun", "structures/kush_temple"];
 const oPyramid = "structures/kush_pyramid_large";
 const oTowers = new Array(2).fill("uncapturable|structures/kush_sentry_tower").concat(["uncapturable|structures/kush_defense_tower"]);
 
