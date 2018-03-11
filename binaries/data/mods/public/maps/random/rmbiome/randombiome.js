@@ -55,7 +55,7 @@ function loadBiomeFile(file)
 	let copyProperties = (from, to) => {
 		for (let prop in from)
 		{
-			if (typeof from[prop] == "object" && !Array.isArray(from[prop]))
+			if (from[prop] !== null && typeof from[prop] == "object" && !Array.isArray(from[prop]))
 			{
 				if (!to[prop])
 					to[prop] = {};
