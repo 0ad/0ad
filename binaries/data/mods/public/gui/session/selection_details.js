@@ -206,68 +206,62 @@ function displaySingle(entState)
 
 	}
 
+	let resourceCarryingIcon = Engine.GetGUIObjectByName("resourceCarryingIcon");
+	let resourceCarryingText = Engine.GetGUIObjectByName("resourceCarryingText");
+	resourceCarryingIcon.hidden = false;
+	resourceCarryingText.hidden = false;
+
 	// Resource carrying
 	if (entState.resourceCarrying && entState.resourceCarrying.length)
 	{
 		// We should only be carrying one resource type at once, so just display the first
 		let carried = entState.resourceCarrying[0];
-
-		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/" + carried.type + ".png";
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = sprintf(translate("%(amount)s / %(max)s"), { "amount": carried.amount, "max": carried.max });
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "";
+		resourceCarryingIcon.sprite = "stretched:session/icons/resources/" + carried.type + ".png";
+		resourceCarryingText.caption = sprintf(translate("%(amount)s / %(max)s"), { "amount": carried.amount, "max": carried.max });
+		resourceCarryingIcon.tooltip = "";
 	}
 	// Use the same indicators for traders
 	else if (entState.trader && entState.trader.goods.amount)
 	{
-		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/" + entState.trader.goods.type + ".png";
+		resourceCarryingIcon.sprite = "stretched:session/icons/resources/" + entState.trader.goods.type + ".png";
 		let totalGain = entState.trader.goods.amount.traderGain;
 		if (entState.trader.goods.amount.market1Gain)
 			totalGain += entState.trader.goods.amount.market1Gain;
 		if (entState.trader.goods.amount.market2Gain)
 			totalGain += entState.trader.goods.amount.market2Gain;
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = totalGain;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Gain: %(gain)s"), {
+		resourceCarryingText.caption = totalGain;
+		resourceCarryingIcon.tooltip = sprintf(translate("Gain: %(gain)s"), {
 			"gain": getTradingTooltip(entState.trader.goods.amount)
 		});
 	}
 	// And for number of workers
 	else if (entState.foundation)
 	{
-		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = getBuildTimeTooltip(entState);
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders ?
-			Engine.FormatMillisecondsIntoDateStringGMT(entState.foundation.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss")) + "    " : "";
+		resourceCarryingIcon.sprite = "stretched:session/icons/repair.png";
+		resourceCarryingIcon.tooltip = getBuildTimeTooltip(entState);
+		resourceCarryingText.caption = entState.foundation.numBuilders ?
+			Engine.FormatMillisecondsIntoDateStringGMT(entState.foundation.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss")) : "";
 	}
 	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints))
 	{
-		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = sprintf(translate("%(amount)s / %(max)s"), {
+		resourceCarryingIcon.sprite = "stretched:session/icons/repair.png";
+		resourceCarryingText.caption = sprintf(translate("%(amount)s / %(max)s"), {
 			"amount": entState.resourceSupply.numGatherers,
 			"max": entState.resourceSupply.maxGatherers
-		}) + "    ";
+		});
 		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = translate("Current/max gatherers");
 	}
 	else if (entState.repairable && entState.needsRepair)
 	{
-		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = getRepairTimeTooltip(entState);
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.repairable.numBuilders ?
-			Engine.FormatMillisecondsIntoDateStringGMT(entState.repairable.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss")) + "    " : "";
+		resourceCarryingIcon.sprite = "stretched:session/icons/repair.png";
+		resourceCarryingIcon.tooltip = getRepairTimeTooltip(entState);
+		resourceCarryingText.caption = entState.repairable.numBuilders ?
+			Engine.FormatMillisecondsIntoDateStringGMT(entState.repairable.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss")) : "";
 	}
 	else
 	{
-		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = true;
-		Engine.GetGUIObjectByName("resourceCarryingText").hidden = true;
+		resourceCarryingIcon.hidden = true;
+		resourceCarryingText.hidden = true;
 	}
 
 	Engine.GetGUIObjectByName("specific").caption = specificName;
