@@ -241,7 +241,8 @@ function loadBiomes()
 		return {
 			"Id": biomeID,
 			"Title": translateWithContext("biome definition", description.Title),
-			"Description": description.Description ? translateWithContext("biome definition", description.Description) : ""
+			"Description": description.Description ? translateWithContext("biome definition", description.Description) : "",
+			"Preview": description.Preview || undefined
 		};
 	});
 }

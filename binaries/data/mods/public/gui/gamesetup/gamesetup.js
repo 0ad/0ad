@@ -1636,6 +1636,10 @@ function getMapDisplayName(map)
 
 function getMapPreview(map)
 {
+	let mapBiome = g_Settings.Biomes.find(biome => biome.Id == g_GameAttributes.settings.Biome);
+	if (mapBiome && mapBiome.Preview)
+		return mapBiome.Preview;
+
 	let mapData = loadMapData(map);
 	if (!mapData || !mapData.settings || !mapData.settings.Preview)
 		return "nopreview.png";
