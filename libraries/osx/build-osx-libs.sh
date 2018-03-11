@@ -21,9 +21,9 @@
 # --------------------------------------------------------------
 # Library versions for ease of updating:
 ZLIB_VERSION="zlib-1.2.11"
-CURL_VERSION="curl-7.54.0"
+CURL_VERSION="curl-7.58.0"
 ICONV_VERSION="libiconv-1.15"
-XML2_VERSION="libxml2-2.9.4"
+XML2_VERSION="libxml2-2.9.8"
 SDL2_VERSION="SDL2-2.0.5"
 BOOST_VERSION="boost_1_64_0"
 # NOTE: remember to also update LIB_URL below when changing version
