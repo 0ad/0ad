@@ -7,6 +7,7 @@
       <props>
         <prop actor="units/athenians/cavalry_javelinist_e_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
+        <prop actor="props/horse/cav_blanket_fur.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -64,8 +65,16 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml" name="Javelinist Horse">
+      <props>
+        <prop actor="props/horse/cav_blanket_fur.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml" name="Javelinist Horse">
+      <props>
+        <prop actor="props/horse/cav_blanket_fur.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>objectcolor.xml</material>
 </actor>

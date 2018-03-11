@@ -5,16 +5,26 @@
     <variant frequency="1" file="quadraped/base_horse_chariot.xml" name="Chariot Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="props/units/horse/pers_peytral_iron.xml" attachpoint="chest"/>
-        <prop actor="props/units/horse_back_blanket_chariot.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_blanket_back_pers.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_iron.xml" attachpoint="root"/>
       </props>
       <textures><texture file="skeletal/horse_pers_cyrus.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_back_pers.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_iron.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_back_pers.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_iron.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>

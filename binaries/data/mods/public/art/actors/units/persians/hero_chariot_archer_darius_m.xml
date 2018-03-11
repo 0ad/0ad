@@ -7,6 +7,8 @@
         <animation file="mechanical/pers_chariot_e_idle.dae" name="Idle" speed="100"/>
         <animation file="mechanical/pers_chariot_e_move.dae" name="Walk" speed="10"/>
         <animation file="mechanical/pers_chariot_e_move.dae" name="Run" speed="10"/>
+        <animation file="mechanical/pers_chariot_e_idle.dae" name="Death" id="death1" speed="100"/>
+        <animation file="mechanical/pers_chariot_e_idle.dae" name="Death" id="death2" speed="100"/>
       </animations>
       <mesh>structural/pers_chariot_e.dae</mesh>
       <props>

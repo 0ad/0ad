@@ -2,10 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/carthaginians/hero_cavalry_spearman_maharbal_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_armor_kart.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/horse_kart_maharbal.dds" name="baseTex"/>
@@ -14,8 +15,16 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml">
+      <props>
+        <prop actor="props/horse/cav_armor_kart.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml">
+      <props>
+        <prop actor="props/horse/cav_armor_kart.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>

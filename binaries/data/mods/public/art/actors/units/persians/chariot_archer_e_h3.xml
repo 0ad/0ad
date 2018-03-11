@@ -2,19 +2,19 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_chariot.xml" name="Chariot Horse">
+    <variant file="quadraped/base_horse_chariot.xml" frequency="1" name="Chariot Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
-        <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
-        <prop actor="props/units/horse_back_blanket_chariot.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_blanket_back_pers.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="horse3a">
+    <variant frequency="1" name="horse_a">
       <textures><texture file="skeletal/horse_pers_csw_e_1.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="1" name="horse3b">
+    <variant frequency="1" name="horse_b">
       <textures><texture file="skeletal/horse_pers_csw_e_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
@@ -37,8 +37,18 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_back_pers.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_back_pers.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>objectcolor.xml</material>
 </actor>

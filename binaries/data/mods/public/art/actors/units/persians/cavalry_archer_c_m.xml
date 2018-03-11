@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/base_horse_archer.xml" frequency="1" name="Base">
+    <variant file="quadraped/base_horse_archer.xml" frequency="1" name="Archer Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/persians/cavalry_archer_c_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
         <prop actor="props/units/heads/pers_cav_knot.xml" attachpoint="head"/>
-        <prop actor="props/units/horse_back_blanket_cavalry.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_blanket_pers.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_winged_armor.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -50,8 +50,18 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_pers.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_winged_armor.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_pers.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_winged_armor.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>objectcolor.xml</material>
 </actor>

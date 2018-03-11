@@ -2,20 +2,31 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/persians/hero_cavalry_spearman_cyrus_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/pers_peytral_spearman.xml" attachpoint="chest"/>
         <prop actor="props/units/heads/pers_cav_knot.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_blanket_pers_hero.xml" attachpoint="root"/>
       </props>
       <textures><texture file="skeletal/horse_pers_cyrus.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_pers_hero.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_pers_hero.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>
