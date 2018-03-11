@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -44,69 +44,69 @@ struct Cache	// POD (may be used before static constructors)
 	/**
 	 * 1..maxLevels
 	 **/
-	size_t level;
+	size_t m_Level;
 
 	/**
 	 * never kNull
 	 **/
-	Type type;
+	Type m_Type;
 
 	/**
 	 * if 0, the cache is disabled and all other values are zero
 	 **/
-	size_t numEntries;
+	size_t m_NumEntries;
 
 	/**
 	 * NB: cache entries are lines, TLB entries are pages
 	 **/
-	size_t entrySize;
+	size_t m_EntrySize;
 
 	/**
-	 * = fullyAssociative or the actual ways of associativity
+	 * = fullyAssociative or the actual ways of m_Associativity
 	 **/
-	size_t associativity;
+	size_t m_Associativity;
 
 	/**
 	 * how many logical processors share this cache?
 	 **/
-	size_t sharedBy;
+	size_t m_SharedBy;
 
 	void Initialize(size_t level, Type type)
 	{
-		this->level   = level;
-		this->type    = type;
-		numEntries    = 0;
-		entrySize     = 0;
-		associativity = 0;
-		sharedBy      = 0;
+		m_Level   = level;
+		m_Type    = type;
+		m_NumEntries    = 0;
+		m_EntrySize     = 0;
+		m_Associativity = 0;
+		m_SharedBy      = 0;
 
 		ENSURE(Validate());
 	}
 
 	bool Validate() const
 	{
-		if(!(1 <= level && level <= maxLevels))
+		if(!(1 <= m_Level && m_Level <= maxLevels))
 			return false;
 
-		if(type == kNull)
+		if(m_Type == kNull)
 			return false;
 
-		if(numEntries == 0)	// disabled
+		if(m_NumEntries == 0)	// disabled
 		{
-			if(entrySize != 0)
+			if(m_EntrySize != 0)
 				return false;
-			if(associativity != 0)
+			if(m_Associativity != 0)
 				return false;
-			if(sharedBy != 0)
+			if(m_SharedBy != 0)
 				return false;
 		}
 		else
 		{
-			if(entrySize == 0)
+			if(m_EntrySize == 0)
 				return false;
-			if(associativity == 0 || associativity > fullyAssociative)
+			if(m_Associativity == 0 || m_Associativity > fullyAssociative)
 				return false;
-			if(sharedBy == 0)
+			if(m_SharedBy == 0)
 				return false;
 		}
 
@@ -115,7 +115,7 @@ struct Cache	// POD (may be used before static constructors)
 
 	u64 TotalSize() const
 	{
-		return u64(numEntries)*entrySize;
+		return u64(m_NumEntries)*m_EntrySize;
 	}
 };
 
@@ -135,7 +135,7 @@ enum IdxCache
 
 /**
  * @return 0 if idxCache >= TLB+numTLBs, otherwise a valid pointer to
- * a Cache whose numEntries is 0 if disabled / not present.
+ * a Cache whose m_NumEntries is 0 if disabled / not present.
  **/
 LIB_API const Cache* Caches(size_t idxCache);
 

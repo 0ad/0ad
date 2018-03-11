@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -126,7 +126,7 @@ private:
 				pauseTime = 50;
 
 			{
-				CScopeLock lock(m_WorkerMutex);
+				CScopeLock workerLock(m_WorkerMutex);
 
 				ItemsList::iterator lstr = m_Items->begin();
 				ItemsList* nextItemList = new ItemsList;
@@ -143,7 +143,7 @@ private:
 					}
 					else
 					{
-						CScopeLock lock(m_DeadItemsMutex);
+						CScopeLock deadItemsLock(m_DeadItemsMutex);
 						m_DeadItems->push_back(*lstr);
 					}
 					++lstr;

@@ -12,6 +12,16 @@ TriggerHelper.GetPlayerIDFromEntity = function(ent)
 	return -1;
 };
 
+TriggerHelper.GetEntityPosition2D = function(ent)
+{
+	let cmpPosition = Engine.QueryInterface(ent, IID_Position);
+
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+		return undefined;
+
+	return cmpPosition.GetPosition2D();
+};
+
 TriggerHelper.GetOwner = function(ent)
 {
 	let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
@@ -19,6 +29,38 @@ TriggerHelper.GetOwner = function(ent)
 		return cmpOwnership.GetOwner();
 
 	return -1;
+};
+
+/**
+ * This returns the mapsize in number of tiles, the value corresponding to map_sizes.json, also used by random map scripts.
+ */
+TriggerHelper.GetMapSizeTiles = function()
+{
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetTilesPerSide();
+};
+
+/**
+ * This returns the mapsize in the the coordinate system used in the simulation/, especially cmpPosition.
+ */
+TriggerHelper.GetMapSizeTerrain = function()
+{
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetMapSize();
+};
+
+/**
+ * Returns the elapsed ingame time in milliseconds since the gamestart.
+ */
+TriggerHelper.GetTime = function()
+{
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
+};
+
+ /**
+  * Returns the elpased ingame time in minutes since the gamestart. Useful for balancing.
+  */
+TriggerHelper.GetMinutes = function()
+{
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000;
 };
 
 TriggerHelper.GetEntitiesByPlayer = function(playerID)
@@ -36,6 +78,15 @@ TriggerHelper.SetUnitStance = function(ent, stance)
 	let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 	if (cmpUnitAI)
 		cmpUnitAI.SwitchToStance(stance);
+};
+
+TriggerHelper.SetUnitFormation = function(playerID, entities, formation)
+{
+	ProcessCommand(playerID, {
+		"type": "formation",
+		"entities": entities,
+		"name": formation
+	});
 };
 
 /**

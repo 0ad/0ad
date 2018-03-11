@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -263,7 +263,7 @@ struct Handle
 	FIELD(F_HEX, u64, uuid1, "")\
 	FIELD(0, SystemWakeUpType, wakeUpType, "")\
 	FIELD(0, const char*, skuNumber, "")\
-	FIELD(0, const char*, family, "")
+	FIELD(0, const char*, m_Family, "")
 
 
 //-----------------------------------------------------------------------------
@@ -436,7 +436,7 @@ struct Handle
 #define Processor_FIELDS\
 	FIELD(0, const char*, socket, "")\
 	FIELD(0, ProcessorType, type, "")\
-	FIELD(0, u8, family, "") /* we don't bother providing enumerators for > 200 families */\
+	FIELD(0, u8, m_Family, "") /* we don't bother providing enumerators for > 200 families */\
 	FIELD(0, const char*, manufacturer, "")\
 	FIELD(F_HEX, u64, id, "")\
 	FIELD(0, const char*, version, "")\
@@ -521,7 +521,7 @@ struct Handle
 	FIELD(0, u8, speed, " ns")\
 	FIELD(0, ECC, ecc, "")\
 	FIELD(0, CacheType, type, "")\
-	FIELD(0, CacheAssociativity, associativity, "")\
+	FIELD(0, CacheAssociativity, m_Associativity, "")\
 	FIELD(F_DERIVED, size_t, level, "") /* 1..8 */\
 	FIELD(F_DERIVED, CacheLocation, location, "")\
 	FIELD(F_DERIVED, CacheMode, mode, "")\

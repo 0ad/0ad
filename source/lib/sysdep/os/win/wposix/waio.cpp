@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -224,7 +224,7 @@ struct OvlAllocator	// POD
 	}
 
 	// one 4 KiB page is enough for 64 OVERLAPPED per file (i.e. plenty).
-	static const size_t storageSize = pageSize;
+	static const size_t storageSize = g_PageSize;
 
 	void* storage;
 

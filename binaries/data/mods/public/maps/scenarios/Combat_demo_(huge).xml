@@ -73,8 +73,8 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 	{
-		"Name":"Combat Demo (Huge)",
-		"Description":"1296 units. Extremely slow (we need more optimisation).",
+		"Name": "Combat Demo (Huge)",
+		"Description": "1296 units. Extremely slow (we need more optimisation).",
 		"Keywords": ["demo"],
 		"PlayerData":
 		[
@@ -86,7 +86,10 @@
 				"AI": ""
 			}
 		],
-		"RevealMap":true
+		"RevealMap": true,
+		"VictoryCondition": [
+			"conquest"
+		]
 	}
 	]]></ScriptSettings>
 	<Entities/>

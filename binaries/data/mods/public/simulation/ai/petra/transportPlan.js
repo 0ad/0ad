@@ -34,7 +34,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos, ship)
 	this.startIndex = startIndex;
 	// TODO only cases with land-sea-land are allowed for the moment
 	// we could also have land-sea-land-sea-land
-	if (startIndex === 1)
+	if (startIndex == 1)
 	{
 		// special transport from already garrisoned ship
 		if (!ship)
@@ -44,6 +44,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos, ship)
 		}
 		this.sea = ship.getMetadata(PlayerID, "sea");
 		ship.setMetadata(PlayerID, "transporter", this.ID);
+		ship.setStance("none");
 		for (let ent of units)
 			ent.setMetadata(PlayerID, "onBoard", "onBoard");
 	}
@@ -171,6 +172,7 @@ m.TransportPlan.prototype.assignShip = function(gameState)
 		return false;
 
 	nearest.setMetadata(PlayerID, "transporter", this.ID);
+	nearest.setStance("none");
 	this.ships.updateEnt(nearest);
 	this.transportShips.updateEnt(nearest);
 	this.needTransportShips = false;
@@ -203,28 +205,45 @@ m.TransportPlan.prototype.removeUnit = function(gameState, unit)
 		if (ship && !ship.garrisoned().length &&
 		            !this.units.filter(API3.Filters.byMetadata(PlayerID, "onBoard", shipId)).length)
 		{
-			ship.setMetadata(PlayerID, "transporter", undefined);
-			if (ship.getMetadata(PlayerID, "role") == "switchToTrader")
-				ship.setMetadata(PlayerID, "role", "trader");
+			this.releaseShip(ship);
 			this.ships.updateEnt(ship);
 			this.transportShips.updateEnt(ship);
 		}
 	}
 };
 
+m.TransportPlan.prototype.releaseShip = function(ship)
+{
+	if (ship.getMetadata(PlayerID, "transporter") != this.ID)
+	{
+		API3.warn(" Petra: try removing a transporter ship with " + ship.getMetadata(PlayerID, "transporter") +
+		          " from " + this.ID + " and stance " + ship.getStance());
+		return;
+	}
+
+	let defaultStance = ship.get("UnitAI/DefaultStance");
+	if (defaultStance)
+		ship.setStance(defaultStance);
+
+	ship.setMetadata(PlayerID, "transporter", undefined);
+	if (ship.getMetadata(PlayerID, "role") == "switchToTrader")
+		ship.setMetadata(PlayerID, "role", "trader");
+};
+
 m.TransportPlan.prototype.releaseAll = function()
 {
-	this.ships.forEach(ship => {
-		ship.setMetadata(PlayerID, "transporter", undefined);
-		if (ship.getMetadata(PlayerID, "role") === "switchToTrader")
-			ship.setMetadata(PlayerID, "role", "trader");
-	});
-	this.units.forEach(ent => {
+	for (let ship of this.ships.values())
+		this.releaseShip(ship);
+
+	for (let ent of this.units.values())
+	{
 		ent.setMetadata(PlayerID, "endPos", undefined);
 		ent.setMetadata(PlayerID, "onBoard", undefined);
 		ent.setMetadata(PlayerID, "transport", undefined);
-	// TODO if the index of the endPos of the entity is != , require again another transport (we could need land-sea-land-sea-land)
-	});
+		// TODO if the index of the endPos of the entity is !=, 
+		// require again another transport (we could need land-sea-land-sea-land)
+	}
+
 	this.transportShips.unregister();
 	this.ships.unregister();
 	this.units.unregister();
@@ -277,6 +296,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 {
 	let ready = true;
 	let time = gameState.ai.elapsedTime;
+	let shipTested = {};
 	for (let ent of this.units.values())
 	{
 		if (!ent.getMetadata(PlayerID, "onBoard"))
@@ -311,6 +331,9 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 			let distShip = API3.SquareVectorDistance(this.boardingPos[shipId], ship.position());
 			if (time - ship.getMetadata(PlayerID, "timeGarrison") > 8 && distShip > this.boardingRange)
 			{
+				if (shipTested[shipId])
+					continue;
+				shipTested[shipId] = true;
 				if (!this.nTry[shipId])
 					this.nTry[shipId] = 1;
 				else
@@ -607,12 +630,9 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		if (!remaining && !recovering)   // when empty, release the ship and move apart to leave room for other ships. TODO fight
 		{
 			ship.moveApart(this.boardingPos[shipId], 30);
-			ship.setMetadata(PlayerID, "transporter", undefined);
-			if (ship.getMetadata(PlayerID, "role") == "switchToTrader")
-				ship.setMetadata(PlayerID, "role", "trader");
+			this.releaseShip(ship);
 			continue;
 		}
-
 		if (dist > this.boardingRange)
 		{
 			if (!this.nTry[shipId])

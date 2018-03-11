@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -244,12 +244,12 @@ public:
 				// Iterate over all curves to find the earliest and latest keys
 				const FCDAnimated* anim = transform->GetAnimated();
 				const FCDAnimationCurveListList& curvesList = anim->GetCurves();
-				for (size_t j = 0; j < curvesList.size(); ++j)
+				for (size_t k = 0; k < curvesList.size(); ++k)
 				{
-					const FCDAnimationCurveTrackList& curves = curvesList[j];
-					for (size_t k = 0; k < curves.size(); ++k)
+					const FCDAnimationCurveTrackList& curves = curvesList[k];
+					for (size_t l = 0; l < curves.size(); ++l)
 					{
-						const FCDAnimationCurve* curve = curves[k];
+						const FCDAnimationCurve* curve = curves[l];
 						timeStart = std::min(timeStart, curve->GetKeys()[0]->input);
 						timeEnd = std::max(timeEnd, curve->GetKeys()[curve->GetKeyCount()-1]->input);
 					}

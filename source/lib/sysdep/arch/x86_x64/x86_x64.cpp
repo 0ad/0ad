@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -218,8 +218,8 @@ Vendors Vendor()
 //-----------------------------------------------------------------------------
 // signature
 
-static size_t model;
-static size_t family;
+static size_t m_Model;
+static size_t m_Family;
 static ModuleInitState signatureInitState;
 
 static Status InitSignature()
@@ -228,27 +228,27 @@ static Status InitSignature()
 	regs.eax = 1;
 	if(!cpuid(&regs))
 		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
-	model = bits(regs.eax, 4, 7);
-	family = bits(regs.eax, 8, 11);
+	m_Model = bits(regs.eax, 4, 7);
+	m_Family = bits(regs.eax, 8, 11);
 	const size_t extendedModel = bits(regs.eax, 16, 19);
 	const size_t extendedFamily = bits(regs.eax, 20, 27);
-	if(family == 0xF)
-		family += extendedFamily;
-	if(family == 0xF || (Vendor() == x86_x64::VENDOR_INTEL && family == 6))
-		model += extendedModel << 4;
+	if(m_Family == 0xF)
+		m_Family += extendedFamily;
+	if(m_Family == 0xF || (Vendor() == x86_x64::VENDOR_INTEL && m_Family == 6))
+		m_Model += extendedModel << 4;
 	return INFO::OK;
 }
 
 size_t Model()
 {
 	ModuleInit(&signatureInitState, InitSignature);
-	return model;
+	return m_Model;
 }
 
 size_t Family()
 {
 	ModuleInit(&signatureInitState, InitSignature);
-	return family;
+	return m_Family;
 }
 
 

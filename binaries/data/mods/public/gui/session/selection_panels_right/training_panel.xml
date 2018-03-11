@@ -5,8 +5,14 @@
 	<object size="0 0 100% 100%">
 	<repeat count="24">
 		<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
-		<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
-		<object name="unitTrainingCount[n]" ghost="true" style="groupIconsText" type="text" z="20"/>
+			<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+			<object name="unitTrainingCount[n]" ghost="true" style="groupIconsText" type="text" z="20"/>
+			<action on="MouseWheelUp">
+				OnTrainMouseWheel(1);
+			</action>
+			<action on="MouseWheelDown">
+				OnTrainMouseWheel(-1);
+			</action>
 		</object>
 	</repeat>
 	</object>

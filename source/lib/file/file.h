@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -46,7 +46,7 @@ class File
 {
 public:
 	File()
-		: pathname(), fd(-1)
+		: m_PathName(), m_FileDescriptor(-1)
 	{
 	}
 
@@ -60,40 +60,40 @@ public:
 		Close();
 	}
 
-	Status Open(const OsPath& pathname, int oflag)
+	Status Open(const OsPath& pathName, int openFlag)
 	{
-		Status ret = FileOpen(pathname, oflag);
+		Status ret = FileOpen(pathName, openFlag);
 		RETURN_STATUS_IF_ERR(ret);
-		this->pathname = pathname;
-		this->fd = (int)ret;
-		this->oflag = oflag;
+		m_PathName = pathName;
+		m_FileDescriptor = static_cast<int>(ret);
+		m_OpenFlag = openFlag;
 		return INFO::OK;
 	}
 
 	void Close()
 	{
-		FileClose(fd);
+		FileClose(m_FileDescriptor);
 	}
 
 	const OsPath& Pathname() const
 	{
-		return pathname;
+		return m_PathName;
 	}
 
 	int Descriptor() const
 	{
-		return fd;
+		return m_FileDescriptor;
 	}
 
 	int Flags() const
 	{
-		return oflag;
+		return m_OpenFlag;
 	}
 
 private:
-	OsPath pathname;
-	int fd;
-	int oflag;
+	OsPath m_PathName;
+	int m_FileDescriptor;
+	int m_OpenFlag;
 };
 
 typedef shared_ptr<File> PFile;

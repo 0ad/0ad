@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -198,9 +198,9 @@ static void UpdateTimerState()
 	// reads of the state variables consistent, done by latching them all and
 	// retrying if an update came in the middle of this.
 
-	const u64 counter = Counter();
-	const u64 deltaTicks = CounterDelta(ts->counter, counter);
-	ts2->counter = counter;
+	const u64 currentCounter = Counter();
+	const u64 deltaTicks = CounterDelta(ts->counter, currentCounter);
+	ts2->counter = currentCounter;
 	ts2->time = ts->time + deltaTicks/nominalFrequency;
 	ts = (volatile TimerState*)InterlockedExchangePointer((volatile PVOID*)&ts2, (PVOID)ts);
 }
@@ -208,12 +208,8 @@ static void UpdateTimerState()
 double whrt_Time()
 {
 	// latch timer state (counter and time must be from the same update)
-    const volatile TimerState* state = ts;
-	const double time = state->time;
-	const u64 counter = state->counter;
-
-	const u64 deltaTicks = CounterDelta(counter, Counter());
-	return (time + deltaTicks/nominalFrequency);
+	const volatile TimerState* state = ts;
+	return (state->time + CounterDelta(state->counter, Counter()) / nominalFrequency);
 }
 
 

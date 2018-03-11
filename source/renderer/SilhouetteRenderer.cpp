@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,7 +100,8 @@ void SilhouetteRenderer::AddCaster(CModel* model)
  * that lets us pack and sort the edge/point list efficiently.
  */
 
-static const int MAX_COORD = 16384;
+static const u16 g_MaxCoord = 1 << 14;
+static const u16 g_HalfMaxCoord = g_MaxCoord / 2;
 
 struct Occluder
 {
@@ -165,20 +166,22 @@ struct ActiveList
 
 static void ComputeScreenBounds(Occluder& occluder, const CBoundingBoxAligned& bounds, CMatrix3D& proj)
 {
-	int x0 = INT_MAX, y0 = INT_MAX, x1 = INT_MIN, y1 = INT_MIN;
-	float z0 = FLT_MAX;
-	for (size_t ix = 0; ix <= 1; ix++)
+	u16 x0 = std::numeric_limits<u16>::max();
+	u16 y0 = std::numeric_limits<u16>::max();
+	u16 x1 = std::numeric_limits<u16>::min();
+	u16 y1 = std::numeric_limits<u16>::min();
+	float z0 = std::numeric_limits<float>::max();
+	for (size_t ix = 0; ix <= 1; ++ix)
 	{
-		for (size_t iy = 0; iy <= 1; iy++)
+		for (size_t iy = 0; iy <= 1; ++iy)
 		{
-			for (size_t iz = 0; iz <= 1; iz++)
+			for (size_t iz = 0; iz <= 1; ++iz)
 			{
-				CVector4D vec(bounds[ix].X, bounds[iy].Y, bounds[iz].Z, 1.0f);
-				CVector4D svec = proj.Transform(vec);
-				x0 = std::min(x0, MAX_COORD/2 + (int)(MAX_COORD/2 * svec.X / svec.W));
-				y0 = std::min(y0, MAX_COORD/2 + (int)(MAX_COORD/2 * svec.Y / svec.W));
-				x1 = std::max(x1, MAX_COORD/2 + (int)(MAX_COORD/2 * svec.X / svec.W));
-				y1 = std::max(y1, MAX_COORD/2 + (int)(MAX_COORD/2 * svec.Y / svec.W));
+				CVector4D svec = proj.Transform(CVector4D(bounds[ix].X, bounds[iy].Y, bounds[iz].Z, 1.0f));
+				x0 = std::min(x0,  static_cast<u16>(g_HalfMaxCoord + static_cast<u16>(g_HalfMaxCoord * svec.X / svec.W)));
+				y0 = std::min(y0,  static_cast<u16>(g_HalfMaxCoord + static_cast<u16>(g_HalfMaxCoord * svec.Y / svec.W)));
+				x1 = std::max(x1,  static_cast<u16>(g_HalfMaxCoord + static_cast<u16>(g_HalfMaxCoord * svec.X / svec.W)));
+				y1 = std::max(y1,  static_cast<u16>(g_HalfMaxCoord + static_cast<u16>(g_HalfMaxCoord * svec.Y / svec.W)));
 				z0 = std::min(z0, svec.Z / svec.W);
 			}
 		}
@@ -186,24 +189,21 @@ static void ComputeScreenBounds(Occluder& occluder, const CBoundingBoxAligned& b
 	// TODO: there must be a quicker way to do this than to test every vertex,
 	// given the symmetry of the bounding box
 
-	occluder.x0 = clamp(x0, 0, MAX_COORD-1);
-	occluder.y0 = clamp(y0, 0, MAX_COORD-1);
-	occluder.x1 = clamp(x1, 0, MAX_COORD-1);
-	occluder.y1 = clamp(y1, 0, MAX_COORD-1);
+	occluder.x0 = clamp(x0, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	occluder.y0 = clamp(y0, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	occluder.x1 = clamp(x1, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	occluder.y1 = clamp(y1, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
 	occluder.z = z0;
 }
 
 static void ComputeScreenPos(Caster& caster, const CVector3D& pos, CMatrix3D& proj)
 {
-	CVector4D vec(pos.X, pos.Y, pos.Z, 1.0f);
-	CVector4D svec = proj.Transform(vec);
-	int x = MAX_COORD/2 + (int)(MAX_COORD/2 * svec.X / svec.W);
-	int y = MAX_COORD/2 + (int)(MAX_COORD/2 * svec.Y / svec.W);
-	float z = svec.Z / svec.W;
-
-	caster.x = clamp(x, 0, MAX_COORD-1);
-	caster.y = clamp(y, 0, MAX_COORD-1);
-	caster.z = z;
+	CVector4D svec = proj.Transform(CVector4D(pos.X, pos.Y, pos.Z, 1.0f));
+	u16 x = g_HalfMaxCoord + static_cast<int>(g_HalfMaxCoord * svec.X / svec.W);
+	u16 y = g_HalfMaxCoord + static_cast<int>(g_HalfMaxCoord * svec.Y / svec.W);
+	caster.x = clamp(x, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	caster.y = clamp(y, std::numeric_limits<u16>::min(), static_cast<u16>(g_MaxCoord - 1));
+	caster.z = svec.Z / svec.W;
 }
 
 void SilhouetteRenderer::ComputeSubmissions(const CCamera& camera)
@@ -276,7 +276,7 @@ void SilhouetteRenderer::ComputeSubmissions(const CCamera& camera)
 			if (d.x0 == d.x1 || d.y0 == d.y1)
 				continue;
 
-			size_t id = occluders.size();
+			u16 id = static_cast<u16>(occluders.size());
 			occluders.push_back(d);
 
 			entries.push_back(EntryCreate(EDGE_IN, id, d.x0));
@@ -297,7 +297,7 @@ void SilhouetteRenderer::ComputeSubmissions(const CCamera& camera)
 			if (d.x0 == d.x1 || d.y0 == d.y1)
 				continue;
 
-			size_t id = occluders.size();
+			u16 id = static_cast<u16>(occluders.size());
 			occluders.push_back(d);
 
 			entries.push_back(EntryCreate(EDGE_IN, id, d.x0));
@@ -314,7 +314,7 @@ void SilhouetteRenderer::ComputeSubmissions(const CCamera& camera)
 			d.rendered = false;
 			ComputeScreenPos(d, pos, proj);
 
-			size_t id = casters.size();
+			u16 id = static_cast<u16>(casters.size());
 			casters.push_back(d);
 
 			entries.push_back(EntryCreate(POINT, id, d.x));
@@ -464,7 +464,7 @@ void SilhouetteRenderer::RenderDebugOverlays(const CCamera& camera)
 	m.Translate(0.0f, (float)g_yres, -1000.0f);
 
 	CMatrix3D proj;
-	proj.SetOrtho(0.f, MAX_COORD, 0.f, MAX_COORD, -1.f, 1000.f);
+	proj.SetOrtho(0.f, g_MaxCoord, 0.f, g_MaxCoord, -1.f, 1000.f);
 	m = proj * m;
 
 	shader->Uniform(str_transform, proj);

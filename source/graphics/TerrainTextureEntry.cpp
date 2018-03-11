@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -91,15 +91,15 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 				ENSURE(textures_element.GetNodeName() == el_texture);
 
 				CStr name;
-				VfsPath path;
-				XERO_ITER_ATTR(textures_element, se)
+				VfsPath terrainTexturePath;
+				XERO_ITER_ATTR(textures_element, relativePath)
 				{
-					if (se.Name == at_file)
-						path = VfsPath("art/textures/terrain") / se.Value.FromUTF8();
-					else if (se.Name == at_name)
-						name = se.Value;
+					if (relativePath.Name == at_file)
+						terrainTexturePath = VfsPath("art/textures/terrain") / relativePath.Value.FromUTF8();
+					else if (relativePath.Name == at_name)
+						name = relativePath.Value;
 				}
-				samplers.emplace_back(name, path);
+				samplers.emplace_back(name, terrainTexturePath);
 			}
 
 		}

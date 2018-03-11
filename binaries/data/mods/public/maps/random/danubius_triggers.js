@@ -190,9 +190,7 @@ var gaulPlayer = 0;
 Trigger.prototype.debugLog = function(txt)
 {
 	if (showDebugLog)
-		print(
-			"DEBUG [" +
-			Math.round(Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000) + "] " + txt + "\n");
+		print("DEBUG [" + Math.round(TriggerHelper.GetMinutes()) + "] " + txt + "\n");
 };
 
 Trigger.prototype.GarrisonAllGallicBuildings = function()
@@ -216,19 +214,19 @@ Trigger.prototype.SpawnInitialCCDefenders = function()
 
 	for (let ent of this.civicCenters)
 		for (let ccDefender of ccDefenders)
-			for (let ent of TriggerHelper.SpawnUnits(ent, pickRandom(ccDefender.templates), ccDefender.count, gaulPlayer))
-				TriggerHelper.SetUnitStance(ent, "defensive");
+			for (let spawnedEnt of TriggerHelper.SpawnUnits(ent, pickRandom(ccDefender.templates), ccDefender.count, gaulPlayer))
+				TriggerHelper.SetUnitStance(spawnedEnt, "defensive");
 };
 
 Trigger.prototype.SpawnCCAttackers = function()
 {
-	let time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000;
+	let time = TriggerHelper.GetMinutes();
 
 	let [spawnLeft, spawnRight] = this.GetActiveRiversides();
 
 	for (let gaiaCC of this.civicCenters)
 	{
-		let isLeft = this.IsLeftRiverside(gaiaCC)
+		let isLeft = this.IsLeftRiverside(gaiaCC);
 		if (isLeft && !spawnLeft || !isLeft && !spawnRight)
 			continue;
 
@@ -309,7 +307,7 @@ Trigger.prototype.UpdateCelticRitual = function()
  */
 Trigger.prototype.SpawnShips = function()
 {
-	let time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000;
+	let time = TriggerHelper.GetMinutes();
 	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 
 	let shipSpawnCount = shipCount(time, numPlayers) - this.ships.size;
@@ -364,7 +362,7 @@ Trigger.prototype.GetAttackerComposition = function(time, siegeEngines)
 
 Trigger.prototype.FillShips = function()
 {
-	let time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000;
+	let time = TriggerHelper.GetMinutes();
 	for (let ship of this.ships)
 	{
 		let cmpGarrisonHolder = Engine.QueryInterface(ship, IID_GarrisonHolder);
@@ -433,14 +431,14 @@ Trigger.prototype.AttackAndPatrol = function(entities, targetClass, triggerPoint
 
 	for (let patrolTarget of patrolTargets)
 	{
-		let pos = Engine.QueryInterface(patrolTarget, IID_Position).GetPosition2D();
+		let targetPos = TriggerHelper.GetEntityPosition2D(patrolTarget);
 		ProcessCommand(gaulPlayer, {
 			"type": "patrol",
 			"entities": attackers,
-			"x": pos.x,
-			"z": pos.y,
+			"x": targetPos.x,
+			"z": targetPos.y,
 			"targetClasses": {
-				"attack": [targetClass]
+				"attack": targetClass
 			},
 			"queued": true,
 			"allowCapture": false
@@ -474,7 +472,7 @@ Trigger.prototype.GetActiveRiversides = function()
 
 Trigger.prototype.IsLeftRiverside = function(ent)
 {
-	return this.riverDirection.cross(Vector2D.sub(Engine.QueryInterface(ent, IID_Position).GetPosition2D(), this.mapCenter)) > 0;
+	return this.riverDirection.cross(Vector2D.sub(TriggerHelper.GetEntityPosition2D(ent), this.mapCenter)) > 0;
 };
 
 /**
@@ -524,7 +522,7 @@ Trigger.prototype.UngarrisonShipsOrder = function()
 		for (let ship of side.ships)
 		{
 			let ungarrisonPoint = pickRandom(this.GetTriggerPoints(side.ungarrisonPointRef));
-			let ungarrisonPos = Engine.QueryInterface(ungarrisonPoint, IID_Position).GetPosition2D();
+			let ungarrisonPos = TriggerHelper.GetEntityPosition2D(ungarrisonPoint);
 
 			this.debugLog("Ship " + ship + " will ungarrison at " + side.ungarrisonPointRef +
 				" (" + ungarrisonPos.x + "," + ungarrisonPos.y + ")");
@@ -558,11 +556,7 @@ Trigger.prototype.CheckShipRange = function()
 		this.AttackAndPatrol([ship], shipTargetClass, triggerPointShipPatrol, "Ships", true);
 
 		if (randBool(formationProbability))
-			ProcessCommand(gaulPlayer, {
-				"type": "formation",
-				"entities": humans,
-				"name": pickRandom(unitFormations)
-			});
+			TriggerHelper.SetUnitFormation(gaulPlayer, humans, pickRandom(unitFormations));
 
 		this.AttackAndPatrol(siegeEngines, siegeTargetClass, this.shipTarget[ship].landPointRef, "Siege Engines", true);
 
@@ -600,17 +594,17 @@ Trigger.prototype.InitDanubius = function()
 	this.heroes = new Set();
 
 	// Remember gaia CCs to spawn attackers from
-	this.civicCenters = new Set(TriggerHelper.GetPlayerEntitiesByClass(gaulPlayer, "CivCentre"))
+	this.civicCenters = new Set(TriggerHelper.GetPlayerEntitiesByClass(gaulPlayer, "CivCentre"));
 
 	// Maps from gaia ship entity ID to ungarrison trigger point entity ID and land patrol triggerpoint name
 	this.shipTarget = {};
 	this.fillShipsTimer = undefined;
 
 	// Be able to distinguish between the left and right riverside
-	let mapSize = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetMapSize();
+	let mapSize = TriggerHelper.GetMapSizeTerrain();
 	this.mapCenter = new Vector2D(mapSize / 2, mapSize / 2);
 	this.riverDirection = Vector2D.sub(
-		Engine.QueryInterface(this.GetTriggerPoints(triggerPointRiverDirection)[0], IID_Position).GetPosition2D(),
+		TriggerHelper.GetEntityPosition2D(this.GetTriggerPoints(triggerPointRiverDirection)[0]),
 		this.mapCenter);
 
 	this.StartCelticRitual();

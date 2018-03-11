@@ -39,7 +39,10 @@
     }
   ],
   "RevealMap": true,
-  "DefaultStance": "defensive"
+  "DefaultStance": "defensive",
+  "VictoryConditions": [
+    "conquest"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

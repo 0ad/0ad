@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/helmet/kush_skull_cap_cavalry_crown.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/kush_skull_cap_crown_snake.xml" attachpoint="snake"/>
+      </props>
+      <textures>
+        <texture file="props/helmet/kush_skull_cap_crown.png" name="baseTex"/>
+        <texture file="props/helmet/kush_skull_cap_crown_norm.png" name="normTex"/>
+        <texture file="null_white.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec_helmet.xml</material>
+</actor>

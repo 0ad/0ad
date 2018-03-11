@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="5" name="Base">
+      <mesh>props/new/head_female_shorthair_amanirenas.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="normal">
+      <textures>
+        <texture file="props/head/african_fem_amanirenas.png" name="baseTex"/>
+        <texture file="props/head/african_fem_amanirenas_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="half blind">
+      <textures>
+        <texture file="props/head/african_fem_amanirenas_blind.png" name="baseTex"/>
+        <texture file="props/head/african_fem_amanirenas_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

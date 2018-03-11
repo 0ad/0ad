@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -24,7 +24,7 @@
 #include "lib/frequency_filter.h"
 
 static const double errorTolerance = 0.25;
-static const double sensitivity = 0.10;
+static const double g_Sensitivity = 0.10;
 static const double sampleTime = 2.0; // seconds
 
 /**
@@ -192,7 +192,7 @@ class FrequencyFilter : public IFrequencyFilter
 	NONCOPYABLE(FrequencyFilter);
 public:
 	FrequencyFilter(double resolution, double expectedFrequency)
-		: m_frequencyEstimator(resolution), m_controller(expectedFrequency), m_iirFilter(sensitivity, expectedFrequency)
+		: m_frequencyEstimator(resolution), m_controller(expectedFrequency), m_iirFilter(g_Sensitivity, expectedFrequency)
 		, m_stableFrequency((int)expectedFrequency), m_smoothedFrequency(expectedFrequency), m_averagedFrequency(expectedFrequency)
 		, m_numberOfSamples((int)(sampleTime * expectedFrequency) + 1)
 	{

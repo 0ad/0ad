@@ -1537,9 +1537,7 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 		return;
 
 	let templateName = "structures/{civ}_temple";
-	if (this.canBuild(gameState, "structures/{civ}_temple_apedemak"))
-		templateName = "structures/{civ}_temple_apedemak";
-	else if (this.canBuild(gameState, "structures/{civ}_temple_vesta"))
+	if (this.canBuild(gameState, "structures/{civ}_temple_vesta"))
 		templateName = "structures/{civ}_temple_vesta";
 	else if (!this.canBuild(gameState, templateName))
 		return;

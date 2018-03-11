@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -113,7 +113,7 @@ static size_t MaxLogicalPerCore()
 
 static size_t MaxLogicalPerCache()
 {
-	return x86_x64::Caches(x86_x64::L2D)->sharedBy;
+	return x86_x64::Caches(x86_x64::L2D)->m_SharedBy;
 }
 
 

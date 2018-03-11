@@ -7,9 +7,9 @@
       <textures>
         <texture file="props/helmet/kush_skull_cap.png" name="baseTex"/>
         <texture file="props/helmet/kush_skull_cap_norm.png" name="normTex"/>
-        <texture file="props/helmet/kush_skull_cap_spec.png" name="specTex"/>
+        <texture file="null_white.dds" name="specTex"/>
       </textures>
     </variant>
-    </group>
-    <material>player_trans_parallax_spec_helmet.xml</material>
-  </actor>
+  </group>
+  <material>player_trans_parallax_spec_helmet.xml</material>
+</actor>

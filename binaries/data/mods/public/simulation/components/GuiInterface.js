@@ -286,7 +286,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	var cmpUpgrade = Engine.QueryInterface(ent, IID_Upgrade);
 	if (cmpUpgrade)
 		ret.upgrade = {
-			"upgrades" : cmpUpgrade.GetUpgrades(),
+			"upgrades": cmpUpgrade.GetUpgrades(),
 			"progress": cmpUpgrade.GetProgress(),
 			"template": cmpUpgrade.GetUpgradingTo()
 		};
@@ -349,8 +349,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"canGuard": cmpUnitAI.CanGuard(),
 			"isGuarding": cmpUnitAI.IsGuardOf(),
 			"canPatrol": cmpUnitAI.CanPatrol(),
-			"possibleStances": cmpUnitAI.GetPossibleStances(),
-			"isIdle":cmpUnitAI.IsIdle(),
+			"selectableStances": cmpUnitAI.GetSelectableStances(),
+			"isIdle": cmpUnitAI.IsIdle(),
 		};
 
 	let cmpGuard = Engine.QueryInterface(ent, IID_Guard);
@@ -816,7 +816,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		let color = playerColors[owner];
 		if (!color)
 		{
-			color = { "r":1, "g":1, "b":1 };
+			color = { "r": 1, "g": 1, "b": 1 };
 			let cmpPlayer = QueryPlayerIDInterface(owner);
 			if (cmpPlayer)
 				color = cmpPlayer.GetDisplayedColor();
@@ -895,7 +895,7 @@ GuiInterface.prototype.GetPlayerEntities = function(player)
 
 GuiInterface.prototype.GetNonGaiaEntities = function()
 {
-    return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities();
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities();
 };
 
 /**
