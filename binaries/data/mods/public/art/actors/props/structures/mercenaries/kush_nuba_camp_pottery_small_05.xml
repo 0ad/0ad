@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/kush_nuba_camp_pottery_small_05.dae</mesh>
+      <textures>
+        <texture file="structural/kush_nuba_camp.png" name="baseTex"/>
+        <texture file="structural/kush_nuba_camp_norm.png" name="normTex"/>
+        <texture file="structural/kush_nuba_camp_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+      </animations>
+      <mesh>structural/kush_nuba_camp_struct.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+        <prop maxheight="20" minheight="-20" actor="props/units/shields/kush_nubian_hex_e.xml" attachpoint="shield_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/units/shields/kush_nubian_hex_e.xml" attachpoint="shield_02"/>
+        <prop maxheight="20" minheight="-20" actor="props/units/shields/kush_nubian_hex_e.xml" attachpoint="shield_03"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_roofs_walls.xml" attachpoint="root"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_big_01.xml" attachpoint="pottery_big_01_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_big_01.xml" attachpoint="pottery_big_01_02"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_big_01.xml" attachpoint="pottery_big_01_03"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_big_01.xml" attachpoint="pottery_big_01_04"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_big_01.xml" attachpoint="pottery_big_01_05"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_big_01.xml" attachpoint="pottery_big_01_06"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_big_02.xml" attachpoint="pottery_big_02_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_big_02.xml" attachpoint="pottery_big_02_02"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_big_02.xml" attachpoint="pottery_big_02_03"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_medium_01.xml" attachpoint="pottery_medium_01_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_medium_02.xml" attachpoint="pottery_medium_02_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_small_01.xml" attachpoint="pottery_small_01_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_small_02.xml" attachpoint="pottery_small_02_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_small_03.xml" attachpoint="pottery_small_03_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_small_04.xml" attachpoint="pottery_small_04_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_pottery_small_05.xml" attachpoint="pottery_small_05_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_drum_big_01.xml" attachpoint="drum_big_01_01"/>
+        <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="root" minheight="-20" maxheight="20"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_drum_medium_01.xml" attachpoint="drum_medium_01_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_drum_medium_02.xml" attachpoint="drum_medium_02_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_drum_small_01.xml" attachpoint="drum_small_01_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_drum_small_01.xml" attachpoint="drum_small_01_02"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_drum_small_02.xml" attachpoint="drum_small_02_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_drum_small_02.xml" attachpoint="drum_small_02_02"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_bench.xml" attachpoint="bench_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_bench.xml" attachpoint="bench_02"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_drum_sticks_01.xml" attachpoint="drum_sticks_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_hay_stack_01.xml" attachpoint="hay_stack_01"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_hay_stack_02.xml" attachpoint="hay_stack_02"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_hay_stack_03.xml" attachpoint="hay_stack_03"/>
+      </props>
+      <textures>
+        <texture file="structural/kush_nuba_camp.png" name="baseTex"/>
+        <texture file="structural/kush_nuba_camp_norm.png" name="normTex"/>
+        <texture file="structural/kush_nuba_camp_spec.png" name="specTex"/>
+        <texture file="structural/ao/kush_nuba_camp.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_kush.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

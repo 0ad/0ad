@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2018-03-11T18:35:42</created>
+    <modified>2018-03-11T18:35:42</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="NUBA_STRUCT-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="NUBA_STRUCT-material" name="NUBA_STRUCT">
+      <instance_effect url="#NUBA_STRUCT-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cylinder004Mesh_009-mesh" name="Cylinder004Mesh.009">
+      <mesh>
+        <source id="Cylinder004Mesh_009-mesh-positions">
+          <float_array id="Cylinder004Mesh_009-mesh-positions-array" count="90">0.7042313 0.5942583 -1.045409 -0.1625308 0.9070082 -1.045409 -0.8667584 0.3127451 -1.045409 -0.7042255 -0.594265 -1.045409 0.1625366 -0.9070129 -1.045409 0.866765 -0.3127537 -1.045409 0.763917 0.6446247 0.6715233 -0.1763057 0.983881 0.6715233 -0.940218 0.3392515 0.6715233 -0.7639122 -0.6446323 0.6715233 0.1763105 -0.9838886 0.6715233 0.9402237 -0.3392582 0.6715233 0.7258635 0.6125097 0.709646 -0.1675186 0.9348688 0.709646 -0.8933811 0.3223524 0.709646 -0.7258568 -0.6125183 0.709646 0.1675271 -0.9348765 0.709646 0.8933897 -0.3223581 0.709646 0.7258635 0.6125097 0.709646 -0.1675186 0.9348688 0.709646 -0.8933811 0.3223524 0.709646 -0.7258568 -0.6125183 0.709646 0.1675271 -0.9348765 0.709646 0.8933897 -0.3223581 0.709646 0.7042313 0.5942583 -1.045409 -0.1625308 0.9070082 -1.045409 -0.8667584 0.3127451 -1.045409 -0.7042255 -0.594265 -1.045409 0.1625366 -0.9070129 -1.045409 0.866765 -0.3127537 -1.045409</float_array>
+          <technique_common>
+            <accessor source="#Cylinder004Mesh_009-mesh-positions-array" count="30" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cylinder004Mesh_009-mesh-normals">
+          <float_array id="Cylinder004Mesh_009-mesh-normals-array" count="60">-0.8722466 0.3147168 0.3743519 -0.7634617 -0.6442548 -0.04541212 -0.7086845 -0.5980221 0.3743475 0.7086845 0.5980221 0.3743475 -0.1761891 0.9833083 -0.04541301 -0.1635543 0.9127486 0.3743529 0.8722466 -0.3147168 0.3743519 0.1761891 -0.9833083 -0.04541301 0.9396772 -0.3390346 -0.04541212 0.7634617 0.6442548 -0.04541212 -0.9396772 0.3390346 -0.04541212 -0.1071822 0.598383 0.7940088 0.4645959 0.3920209 0.7940217 -0.5718305 0.2063069 0.7940072 -0.4645959 -0.3920209 0.7940217 0.1072123 -0.598381 0.7940062 0.5718443 -0.206312 0.7939959 0 0 1 0 0 -1 0.1635543 -0.9127486 0.3743529</float_array>
+          <technique_common>
+            <accessor source="#Cylinder004Mesh_009-mesh-normals-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cylinder004Mesh_009-mesh-map-0">
+          <float_array id="Cylinder004Mesh_009-mesh-map-0-array" count="192">0.7842838 0.5413892 0.8113486 0.4150738 0.8112875 0.5413892 0.727016 0.5399254 0.7538682 0.4150737 0.7570794 0.5413892 0.7587242 0.5413892 0.7843147 0.4150737 0.7571971 0.4150738 0.7587242 0.5413892 0.7314882 0.4150738 0.7317562 0.5413892 0.7842838 0.5413892 0.7538682 0.4150737 0.7823379 0.4150737 0.727016 0.5399254 0.7589852 0.5416273 0.7275004 0.5416273 0.7570794 0.5413892 0.7855051 0.5416273 0.7589852 0.5416273 0.7842838 0.5413892 0.811833 0.5416273 0.7855051 0.5416273 0.8112875 0.5413892 0.7845552 0.5416273 0.811833 0.5416273 0.7845552 0.5416273 0.7587242 0.5413892 0.7596692 0.5416273 0.7587242 0.5413892 0.7323016 0.5416273 0.7596692 0.5416273 0.729301 0.5408515 0.7286049 0.5400477 0.7295331 0.5400477 0.7611512 0.3212317 0.7476105 0.3215855 0.7995746 0.3202281 0.7842345 0.5413892 0.8113486 0.4150738 0.7843147 0.4150737 0.7842838 0.5413892 0.7823379 0.4150737 0.8113486 0.4150738 0.727016 0.5399254 0.727016 0.4145603 0.7538682 0.4150737 0.7587242 0.5413892 0.7842345 0.5413892 0.7843147 0.4150737 0.7587242 0.5413892 0.7571971 0.4150738 0.7314882 0.4150738 0.7842838 0.5413892 0.7570794 0.5413892 0.7538682 0.4150737 0.727016 0.5399254 0.7570794 0.5413892 0.7589852 0.5416273 0.7570794 0.5413892 0.7842838 0.5413892 0.7855051 0.5416273 0.7842838 0.5413892 0.8112875 0.5413892 0.811833 0.5416273 0.8112875 0.5413892 0.7842345 0.5413892 0.7845552 0.5416273 0.7845552 0.5416273 0.7842345 0.5413892 0.7587242 0.5413892 0.7587242 0.5413892 0.7317562 0.5413892 0.7323016 0.5416273 0.729301 0.5392438 0.7295331 0.5400477 0.7286049 0.5400477 0.729301 0.5408515 0.728837 0.5408515 0.7286049 0.5400477 0.7286049 0.5400477 0.728837 0.5392438 0.729301 0.5392438 0.7995746 0.3202281 0.7860333 0.3205818 0.7746925 0.320878 0.7746925 0.320878 0.7611512 0.3212317 0.7995746 0.3202281 0.7476105 0.3215855 0.8131159 0.3198744 0.7995746 0.3202281 0.7842345 0.5413892 0.8112875 0.5413892 0.8113486 0.4150738</float_array>
+          <technique_common>
+            <accessor source="#Cylinder004Mesh_009-mesh-map-0-array" count="96" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cylinder004Mesh_009-mesh-vertices">
+          <input semantic="POSITION" source="#Cylinder004Mesh_009-mesh-positions"/>
+        </vertices>
+        <triangles material="NUBA_STRUCT-material" count="32">
+          <input semantic="VERTEX" source="#Cylinder004Mesh_009-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cylinder004Mesh_009-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cylinder004Mesh_009-mesh-map-0" offset="2" set="0"/>
+          <p>8 0 0 3 1 1 9 2 2 6 3 3 1 4 4 7 5 5 11 6 6 4 7 7 5 8 8 11 6 9 0 9 10 6 3 11 8 0 12 1 4 13 2 10 14 6 3 15 13 11 16 12 12 17 7 5 18 14 13 19 13 11 20 8 0 21 15 14 22 14 13 23 9 2 24 16 15 25 15 14 26 16 15 27 11 6 28 17 16 29 11 6 30 12 12 31 17 16 32 19 17 33 21 17 34 18 17 35 27 18 36 26 18 37 24 18 38 10 19 39 3 1 40 4 7 41 8 0 42 2 10 43 3 1 44 6 3 45 0 9 46 1 4 47 11 6 48 10 19 49 4 7 50 11 6 51 5 8 52 0 9 53 8 0 54 7 5 55 1 4 56 6 3 57 7 5 58 13 11 59 7 5 60 8 0 61 14 13 62 8 0 63 9 2 64 15 14 65 9 2 66 10 19 67 16 15 68 16 15 69 10 19 70 11 6 71 11 6 72 6 3 73 12 12 74 23 17 75 18 17 76 21 17 77 19 17 78 20 17 79 21 17 80 21 17 81 22 17 82 23 17 83 24 18 84 29 18 85 28 18 86 28 18 87 27 18 88 24 18 89 26 18 90 25 18 91 24 18 92 10 19 93 9 2 94 3 1 95</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="drum_005" name="drum_005" type="NODE">
+        <matrix sid="transform">-0.1541687 0.3995505 0 0 -0.3995505 -0.1541687 0 0 0 0 0.4282619 0.4309181 0 0 0 1</matrix>
+        <instance_geometry url="#Cylinder004Mesh_009-mesh" name="drum_005">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="NUBA_STRUCT-material" target="#NUBA_STRUCT-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
