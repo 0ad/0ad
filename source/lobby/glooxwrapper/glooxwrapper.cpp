@@ -216,18 +216,14 @@ public:
 		m_Wrapped->handleRegistrationResult(fromWrapped, regResult);
 	}
 
-	virtual void handleDataForm(const gloox::JID& from, const gloox::DataForm& UNUSED(form))
+	virtual void handleDataForm(const gloox::JID& UNUSED(from), const gloox::DataForm& UNUSED(form))
 	{
-		glooxwrapper::JID fromWrapped(from);
 		/* DataForm not supported */
-		m_Wrapped->handleDataForm(fromWrapped, *(glooxwrapper::DataForm*)NULL);
 	}
 
-	virtual void handleOOB(const gloox::JID& from, const gloox::OOB& UNUSED(oob))
+	virtual void handleOOB(const gloox::JID& UNUSED(from), const gloox::OOB& UNUSED(oob))
 	{
-		glooxwrapper::JID fromWrapped(from);
 		/* OOB not supported */
-		m_Wrapped->handleOOB(fromWrapped, *(glooxwrapper::OOB*)NULL);
 	}
 };
 
