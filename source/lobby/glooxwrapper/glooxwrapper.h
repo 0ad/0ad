@@ -394,7 +394,7 @@ namespace glooxwrapper
 
 		bool connect(bool block = true);
 		gloox::ConnectionError recv(int timeout = -1);
-		std::string getID();
+		const string getID() const;
 		void send(const IQ& iq);
 
 		void setTls(gloox::TLSPolicy tls);

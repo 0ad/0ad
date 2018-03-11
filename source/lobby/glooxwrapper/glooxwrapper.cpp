@@ -342,7 +342,7 @@ gloox::ConnectionError glooxwrapper::Client::recv(int timeout)
 	return m_Wrapped->recv(timeout);
 }
 
-std::string glooxwrapper::Client::getID()
+const glooxwrapper::string glooxwrapper::Client::getID() const
 {
 	return m_Wrapped->getID();
 }
