@@ -213,7 +213,7 @@ m.BaseManager.prototype.assignResourceToDropsite = function(gameState, dropsite)
 	Engine.PostCommand(PlayerID, {
 		"type": "set-dropsite-sharing",
 		"entities": [dropsiteId],
-		"shared": dropsiteId !== this.anchorId
+		"shared": dropsiteId != this.anchorId
 	});
 };
 
@@ -266,8 +266,8 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 
 	let obstructions = m.createObstructionMap(gameState, this.accessIndex, template);
 
-	let dpEnts = gameState.getOwnEntitiesByClass("Storehouse", true).toEntityArray();
-	let ccEnts = gameState.getOwnEntitiesByClass("CivCentre", true).toEntityArray();
+	let ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+	let dpEnts = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Storehouse", "Dock"])).toEntityArray();
 
 	let bestIdx;
 	let bestVal = 0;
@@ -286,7 +286,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		// we add 3 times the needed resource and once the others (except food)
 		let total = 2*gameState.sharedScript.resourceMaps[resource].map[j];
 		for (let res in gameState.sharedScript.resourceMaps)
-			if (res !== "food")
+			if (res != "food")
 				total += gameState.sharedScript.resourceMaps[res].map[j];
 
 		total *= 0.7;   // Just a normalisation factor as the locateMap is limited to 255
