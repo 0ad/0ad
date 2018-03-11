@@ -1,0 +1,30 @@
+{
+	"Description": {
+		"Title": "Rainy Season",
+		"Description": "Revelling in the much awaited rain, the baked land transforms into a lush haven for both man and beast."
+	},
+	"Environment": {
+		"SkySet": "stormy",
+		"Water": {
+			"WaterBody": {
+				"Murkiness": 0.75
+			}
+		}
+	},
+	"Terrains": {
+		"mainDirt" : ["savanna_grass_b_wetseason", "savanna_shrubs_a_wetseason"],
+		"secondaryDirt" : "savanna_grass_a_wetseason",
+		"dirt" : "savanna_shrubs_a"
+	},
+	"Gaia": {
+		"berry" : "gaia/flora_bush_berry"
+	},
+	"Decoratives": {
+		"bushA" :"actor|props/flora/bush_desert_a.xml",
+		"bushB" :"actor|props/flora/bush_desert_a.xml",
+		"rain": "actor|particle/rain_shower.xml"
+	},
+	"Heights": {
+		"seaGround": -5
+	}
+}

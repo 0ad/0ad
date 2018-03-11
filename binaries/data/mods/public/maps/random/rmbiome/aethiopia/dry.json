@@ -1,0 +1,30 @@
+{
+	"Description": {
+		"Title": "Dry Season",
+		"Description": "The vitalizing waters of the Nile sustain life along its banks, while the long dry season scorches the land."
+	},
+	"Environment": {
+		"SkySet": "sunny",
+		"Water": {
+			"WaterBody": {
+				"Murkiness": 0.83
+			}
+		}
+	},
+	"Terrains": {
+		"mainDirt" : ["savanna_dirt_b", "savanna_dirt_rocks_a"],
+		"secondaryDirt" : "savanna_dirt_a",
+		"dirt" : "savanna_dirt_rocks_c"
+	},
+	"Gaia": {
+		"berry" : "gaia/flora_bush_berry_desert"
+	},
+	"Decoratives": {
+		"bushA" :"actor|props/flora/bush_desert_dry_a.xml",
+		"bushB" :"actor|props/flora/bush_desert_dry_a.xml",
+		"rain": null
+	},
+	"Heights": {
+		"seaGround": -4
+	}
+}

@@ -1,22 +1,28 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
+Engine.LoadLibrary("rmbiome");
 
-const tMainDirt = ["savanna_dirt_b", "savanna_dirt_rocks_a"];
-const tForestFloor = "savanna_forestfloor_b";
-const tSecondaryDirt = "savanna_dirt_a";
-const tDirt = "savanna_dirt_rocks_c";
-const tRoad = "savanna_tile_a";
-const tRoadWild = "desert_city_tile";
-const tRiverBank = "savanna_riparian_wet";
+if (g_MapSettings.Biome)
+	setSelectedBiome();
+else
+	setBiome("aethiopia/dry");
+
+const tMainDirt = g_Terrains.mainDirt;
+const tSecondaryDirt = g_Terrains.secondaryDirt;
+const tDirt = g_Terrains.dirt;
 const tLush = "desert_grass_a";
 const tSLush = "desert_grass_a_sand";
 const tFarmland = "desert_farmland";
+const tRoad = "savanna_tile_a";
+const tRoadWild = "desert_city_tile";
+const tRiverBank = "savanna_riparian_wet";
+const tForestFloor = "savanna_forestfloor_b";
 
+const oBush = g_Gaia.berry;
 const oBaobab = "gaia/flora_tree_baobab";
 const oAcacia = "gaia/flora_tree_acacia";
 const oDatePalm = "gaia/flora_tree_date_palm";
 const oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
-const oBush = "gaia/flora_bush_grapes";
 const oGazelle = "gaia/fauna_gazelle";
 const oGiraffe = "gaia/fauna_giraffe";
 const oLion = "gaia/fauna_lion";
@@ -32,15 +38,16 @@ const oPyramid = "structures/kush_pyramid_small";
 const oPyramidLarge = "structures/kush_pyramid_large";
 const oKushSoldiers = "units/kush_infantry_javelinist_merc_e";
 
-const aRock = "actor|geology/stone_desert_med.xml";
-const aBushA = "actor|props/flora/bush_desert_dry_a.xml";
-const aBushB = "actor|props/flora/bush_desert_dry_a.xml";
+const aRain = g_Decoratives.rain;
+const aBushA = g_Decoratives.bushA;
+const aBushB = g_Decoratives.bushB;
 const aBushes = [aBushA, aBushB];
 const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
+const aRock = "actor|geology/stone_desert_med.xml";
 
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oAcacia, tForestFloor];
 
-const heightSeaGround = -4;
+const heightSeaGround = g_Heights.seaGround;
 const heightReedsDepth = -2.5;
 const heightShore = 1;
 const heightLand = 2;
@@ -63,6 +70,7 @@ var clRock = g_Map.createTileClass();
 var clMetal = g_Map.createTileClass();
 var clFood = g_Map.createTileClass();
 var clBaseResource = g_Map.createTileClass();
+var clRain = g_Map.createTileClass();
 
 var kushVillageBuildings = {
 	"houseA": { "template": oHouse, "offset": new Vector2D(5, 5) },
@@ -91,7 +99,6 @@ const riverTextures = [
 
 const riverAngle = Math.PI/5;
 
-g_Map.log("Creating Nile");
 paintRiver({
 	"parallel": false,
 	"start": new Vector2D(fractionToTiles(0.25), mapBounds.top).rotateAround(riverAngle, mapCenter),
@@ -340,15 +347,22 @@ createObjectGroups(
 	50);
 Engine.SetProgress(95);
 
+g_Map.log("Creating rain drops");
+if (aRain)
+	createObjectGroups(
+		new SimpleGroup([new SimpleObject(aRain, 1, 1, 1, 4)], true, clRain),
+		0,
+		avoidClasses(clRain, 5),
+		scaleByMapSize(60, 200));
+Engine.SetProgress(98);
+
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clKushiteVillages, 18, clMetal, 4, clRock, 4, clDunes, 4, clFood, 2, clRiver, 5));
 
-setSkySet("sunny");
 setSunElevation(Math.PI / 8);
 setSunRotation(randomAngle());
 setSunColor(0.746, 0.718, 0.539);
 setWaterColor(0.292, 0.347, 0.691);
 setWaterTint(0.550, 0.543, 0.437);
-setWaterMurkiness(0.83);
 
 setFogColor(0.8, 0.76, 0.61);
 setFogThickness(0.2);
