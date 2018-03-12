@@ -216,18 +216,14 @@ public:
 		m_Wrapped->handleRegistrationResult(fromWrapped, regResult);
 	}
 
-	virtual void handleDataForm(const gloox::JID& from, const gloox::DataForm& UNUSED(form))
+	virtual void handleDataForm(const gloox::JID& UNUSED(from), const gloox::DataForm& UNUSED(form))
 	{
-		glooxwrapper::JID fromWrapped(from);
 		/* DataForm not supported */
-		m_Wrapped->handleDataForm(fromWrapped, *(glooxwrapper::DataForm*)NULL);
 	}
 
-	virtual void handleOOB(const gloox::JID& from, const gloox::OOB& UNUSED(oob))
+	virtual void handleOOB(const gloox::JID& UNUSED(from), const gloox::OOB& UNUSED(oob))
 	{
-		glooxwrapper::JID fromWrapped(from);
 		/* OOB not supported */
-		m_Wrapped->handleOOB(fromWrapped, *(glooxwrapper::OOB*)NULL);
 	}
 };
 
@@ -346,7 +342,7 @@ gloox::ConnectionError glooxwrapper::Client::recv(int timeout)
 	return m_Wrapped->recv(timeout);
 }
 
-std::string glooxwrapper::Client::getID()
+const glooxwrapper::string glooxwrapper::Client::getID() const
 {
 	return m_Wrapped->getID();
 }
@@ -484,6 +480,15 @@ gloox::IQ::IqType glooxwrapper::IQ::subtype() const
 	return m_Wrapped->subtype();
 }
 
+const glooxwrapper::string glooxwrapper::IQ::id() const
+{
+	return m_Wrapped->id();
+}
+
+const gloox::JID& glooxwrapper::IQ::from() const
+{
+	return m_Wrapped->from();
+}
 
 glooxwrapper::JID::JID()
 {

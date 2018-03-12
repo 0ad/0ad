@@ -1516,7 +1516,7 @@ bool Autostart(const CmdLineArgs& args)
 		if (args.Has("autostart-host-players"))
 			maxPlayers = args.Get("autostart-host-players").ToUInt();
 
-		g_NetServer = new CNetServer(maxPlayers);
+		g_NetServer = new CNetServer(false, maxPlayers);
 
 		g_NetServer->UpdateGameAttributes(&attrs, scriptInterface);
 

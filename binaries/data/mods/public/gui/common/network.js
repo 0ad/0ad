@@ -73,6 +73,7 @@ function getDisconnectReason(id, wasConnected)
 	case 6: return translate("You have been banned");
 	case 7: return translate("Playername in use. If you were disconnected, retry in few seconds");
 	case 8: return translate("Server full");
+	case 9: return translate("Secure lobby authentication failed. Join via lobby");
 	default:
 		warn("Unknown disconnect-reason ID received: " + id);
 		return sprintf(translate("\\[Invalid value %(id)s]"), { "id": id });

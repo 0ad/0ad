@@ -573,18 +573,24 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (target.hasClass("Ship"))    // TODO integrate other ships later, need to be sure it is accessible
 			continue;
 
-		// If a building on a blinking tile is attacked, check if it can be defended
-		if (target.hasClass("Structure") && this.territoryMap.isBlinking(target.position()) &&
-		    !gameState.ai.HQ.isDefendable(target))
+		// If a building on a blinking tile is attacked, check if it can be defended.
+		// Same thing for a building in an isolated base (not connected to a base with anchor).
+		if (target.hasClass("Structure"))
 		{
-			let capture = target.capturePoints();
-			if (!capture)
+			let base = gameState.ai.HQ.getBaseByID(target.getMetadata(PlayerID, "base"));
+			if (this.territoryMap.isBlinking(target.position()) && !gameState.ai.HQ.isDefendable(target) ||
+			    !base || gameState.ai.HQ.baseManagers.every(b => !b.anchor || b.accessIndex != base.accessIndex))
+			{
+				let capture = target.capturePoints();
+				if (!capture)
+					continue;
+				let captureRatio = capture[PlayerID] / capture.reduce((a, b) => a + b);
+				if (captureRatio > 0.50 && captureRatio < 0.70)
+					target.destroy();
 				continue;
-			let captureRatio = capture[PlayerID] / capture.reduce((a, b) => a + b);
-			if (captureRatio > 0.50 && captureRatio < 0.75)
-				target.destroy();
-			continue;
+			}
 		}
+
 
 		// If inside a started attack plan, let the plan deal with this unit
 		let plan = target.getMetadata(PlayerID, "plan");

@@ -284,7 +284,7 @@ function displayReplayDetails()
 				metadata.playerStates.map(pState => pState.state)
 		);
 
-	let mapData = getMapDescriptionAndPreview(replay.attribs.settings.mapType, replay.attribs.map);
+	let mapData = getMapDescriptionAndPreview(replay.attribs.settings.mapType, replay.attribs.map, replay.attribs);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
 
 	Engine.GetGUIObjectByName("summaryButton").hidden = !Engine.HasReplayMetadata(replay.directory);

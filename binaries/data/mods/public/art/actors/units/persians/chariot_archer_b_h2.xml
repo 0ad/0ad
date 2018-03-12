@@ -6,7 +6,7 @@
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
-        <prop actor="props/units/horse_back_blanket_chariot.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_blanket_cloth.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -31,8 +31,16 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_cloth.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_cloth.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>objectcolor.xml</material>
 </actor>

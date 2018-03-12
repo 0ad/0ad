@@ -2,48 +2,56 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Base">
+    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Javelinist Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/kushites/cavalry_javelinist_b_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_straps_head_kush.xml" attachpoint="head"/>
       </props>
-      <textures>
-        <texture file="skeletal/horse/kush_b_norm.png" name="normTex"/>
-        <texture file="skeletal/horse/kush_b_spec.png" name="specTex"/>
-      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="kush-cavalry-basic-black">
+    <variant frequency="3" name="kush-cavalry-elite-black">
       <textures>
-        <texture file="skeletal/horse/kush_black_b.png" name="baseTex"/>
+        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="kush-cavalry-basic-brown">
+    <variant frequency="2" name="kush-cavalry-elite-brown">
       <textures>
-        <texture file="skeletal/horse/kush_brown_b.png" name="baseTex"/>
+        <texture file="skeletal/horse_brown_a.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="4" name="kush-cavalry-basic-chestnut">
+    <variant frequency="4" name="kush-cavalry-elite-chestnut">
       <textures>
-        <texture file="skeletal/horse/kush_chestnut_b.png" name="baseTex"/>
+        <texture file="skeletal/horse_tan_a.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="kush-cavalry-basic-white">
+    <variant frequency="1" name="kush-cavalry-elite-white">
       <textures>
-        <texture file="skeletal/horse/kush_white_b.png" name="baseTex"/>
+        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="kush-cavalry-basic-dun">
+    <variant frequency="3" name="kush-cavalry-elite-dun">
       <textures>
-        <texture file="skeletal/horse/kush_dun_b.png" name="baseTex"/>
+        <texture file="skeletal/horse_dun_a.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml" name="Javelinist Horse">
+      <props>
+        <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_straps_head_kush.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml" name="Javelinist Horse">
+      <props>
+        <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_straps_head_kush.xml" attachpoint="head"/>
+      </props>
+    </variant>
   </group>
-  <material>no_trans_parallax_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>

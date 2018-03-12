@@ -41,6 +41,7 @@ public:
 	virtual void SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
 	virtual void SendIqUnregisterGame() = 0;
 	virtual void SendIqChangeStateGame(const std::string& nbp, const std::string& players) = 0;
+	virtual void SendIqLobbyAuth(const std::string& to, const std::string& token) = 0;
 	virtual void SetNick(const std::string& nick) = 0;
 	virtual void GetNick(std::string& nick) = 0;
 	virtual void kick(const std::string& nick, const std::string& reason) = 0;

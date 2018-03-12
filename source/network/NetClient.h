@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,6 +89,12 @@ public:
 	 * This must not be called after the connection setup.
 	 */
 	void SetUserName(const CStrW& username);
+
+	/**
+	 * Set the name of the hosting player.
+	 * This is needed for the secure lobby authentication.
+	 */
+	void SetHostingPlayerName(const CStr& hostingPlayerName);
 
 	/**
 	 * Returns the GUID of the local client.
@@ -218,10 +224,14 @@ public:
 	void SendPausedMessage(bool pause);
 
 private:
+
+	void SendAuthenticateMessage();
+
 	// Net message / FSM transition handlers
 	static bool OnConnect(void* context, CFsmEvent* event);
 	static bool OnHandshake(void* context, CFsmEvent* event);
 	static bool OnHandshakeResponse(void* context, CFsmEvent* event);
+	static bool OnAuthenticateRequest(void* context, CFsmEvent* event);
 	static bool OnAuthenticate(void* context, CFsmEvent* event);
 	static bool OnChat(void* context, CFsmEvent* event);
 	static bool OnReady(void* context, CFsmEvent* event);
@@ -251,6 +261,7 @@ private:
 
 	CGame *m_Game;
 	CStrW m_UserName;
+	CStr m_HostingPlayerName;
 
 	/// Current network session (or NULL if not connected)
 	CNetClientSession* m_Session;

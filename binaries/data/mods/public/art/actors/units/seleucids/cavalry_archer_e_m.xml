@@ -2,11 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_archer.xml" name="Base">
+    <variant frequency="1" file="quadraped/base_horse_archer.xml" name="Archer Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/seleucids/cavalry_archer_e_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/pers_peytral_iron.xml" attachpoint="chest"/>
+        <prop actor="props/horse/cav_front_armor_iron.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -43,8 +43,16 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml">
+      <props>
+        <prop actor="props/horse/cav_front_armor_iron.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml">
+      <props>
+        <prop actor="props/horse/cav_front_armor_iron.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>objectcolor.xml</material>
 </actor>

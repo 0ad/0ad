@@ -39,13 +39,13 @@ JS::Value JSI_Network::FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, 
 	return StunClient::FindStunEndpointHost(*(pCxPrivate->pScriptInterface), port);
 }
 
-void JSI_Network::StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort)
+void JSI_Network::StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName, bool useLobbyAuth)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
 	ENSURE(!g_Game);
 
-	g_NetServer = new CNetServer();
+	g_NetServer = new CNetServer(useLobbyAuth);
 	if (!g_NetServer->SetupConnection(serverPort))
 	{
 		pCxPrivate->pScriptInterface->ReportError("Failed to start server");
@@ -56,6 +56,7 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const
 	g_Game = new CGame();
 	g_NetClient = new CNetClient(g_Game, true);
 	g_NetClient->SetUserName(playerName);
+	g_NetClient->SetHostingPlayerName(hostLobbyName);
 
 	if (!g_NetClient->SetupConnection("127.0.0.1", serverPort))
 	{
@@ -106,6 +107,7 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const
 	g_Game = new CGame();
 	g_NetClient = new CNetClient(g_Game, false);
 	g_NetClient->SetUserName(playerName);
+	g_NetClient->SetHostingPlayerName(hostJID.substr(0, hostJID.find("@")));
 
 	if (g_XmppClient && useSTUN)
 		StunClient::SendHolePunchingMessages(enetClient, serverAddress.c_str(), serverPort);
@@ -213,7 +215,7 @@ void JSI_Network::RegisterScriptFunctions(const ScriptInterface& scriptInterface
 {
 	scriptInterface.RegisterFunction<u16, &GetDefaultPort>("GetDefaultPort");
 	scriptInterface.RegisterFunction<JS::Value, int, &FindStunEndpoint>("FindStunEndpoint");
-	scriptInterface.RegisterFunction<void, CStrW, u16, &StartNetworkHost>("StartNetworkHost");
+	scriptInterface.RegisterFunction<void, CStrW, u16, CStr, bool, &StartNetworkHost>("StartNetworkHost");
 	scriptInterface.RegisterFunction<void, CStrW, CStr, u16, bool, CStr, &StartNetworkJoin>("StartNetworkJoin");
 	scriptInterface.RegisterFunction<void, &DisconnectNetworkGame>("DisconnectNetworkGame");
 	scriptInterface.RegisterFunction<CStr, &GetPlayerGUID>("GetPlayerGUID");

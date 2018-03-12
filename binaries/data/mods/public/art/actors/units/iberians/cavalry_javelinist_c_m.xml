@@ -2,10 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Base">
+    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Javelinist Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/iberians/cavalry_javelinist_c_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_blanket_iber_c.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -36,8 +37,16 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_iber_c.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_iber_c.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>objectcolor.xml</material>
 </actor>

@@ -26,7 +26,7 @@ namespace JSI_Network
 	u16 GetDefaultPort(ScriptInterface::CxPrivate* pCxPrivate);
 	void StartNetworkGame(ScriptInterface::CxPrivate* pCxPrivate);
 	void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs1);
-	void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort);
+	void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName, bool useLobbyAuth);
 	void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID);
 	JS::Value FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, int port);
 	void DisconnectNetworkGame(ScriptInterface::CxPrivate* pCxPrivate);

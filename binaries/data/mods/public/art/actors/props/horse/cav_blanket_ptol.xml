@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/base_horse_spearman.xml" name="Spearman Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_swordsman.xml"  name="Swordsman Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_javelin.xml"  name="Javelinist Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_chariot.xml"  name="Chariot Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_archer.xml" name="Archer Horse"/>
+  </group>
+  <group>
+    <variant file="quadraped/props/blanket_ptol.xml" name="horse-blanket-ptolemaic"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

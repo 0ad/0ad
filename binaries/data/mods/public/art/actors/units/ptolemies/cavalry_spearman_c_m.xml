@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Cavalry">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/ptolemies/cavalry_spearman_c_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/pers_peytral_spearman.xml" attachpoint="chest"/>
         <prop actor="props/units/horse/crest_1.xml" attachpoint="head"/>
-        <prop actor="props/units/horse_back_blanket_cavalry.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_blanket_ptol.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -61,8 +61,18 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_ptol.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml">
+      <props>
+        <prop actor="props/horse/cav_blanket_ptol.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>objectcolor.xml</material>
 </actor>

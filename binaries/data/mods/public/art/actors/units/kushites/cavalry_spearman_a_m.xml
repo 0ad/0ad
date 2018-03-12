@@ -2,48 +2,59 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/kushites/cavalry_spearman_a_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_straps_head_kush.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_straps_kush_adv.xml" attachpoint="root"/>
       </props>
-      <textures>
-        <texture file="skeletal/horse/kush_a_norm.png" name="normTex"/>
-        <texture file="skeletal/horse/kush_a_spec.png" name="specTex"/>
-      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="kush-cavalry-advanced-black">
+    <variant frequency="3" name="kush-cavalry-elite-black">
       <textures>
-        <texture file="skeletal/horse/kush_black_a.png" name="baseTex"/>
+        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="kush-cavalry-advanced-brown">
+    <variant frequency="2" name="kush-cavalry-elite-brown">
       <textures>
-        <texture file="skeletal/horse/kush_brown_a.png" name="baseTex"/>
+        <texture file="skeletal/horse_brown_a.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="4" name="kush-cavalry-advanced-chestnut">
+    <variant frequency="4" name="kush-cavalry-elite-chestnut">
       <textures>
-        <texture file="skeletal/horse/kush_chestnut_a.png" name="baseTex"/>
+        <texture file="skeletal/horse_tan_a.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="kush-cavalry-advanced-white">
+    <variant frequency="1" name="kush-cavalry-elite-white">
       <textures>
-        <texture file="skeletal/horse/kush_white_a.png" name="baseTex"/>
+        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="kush-cavalry-advanced-dun">
+    <variant frequency="3" name="kush-cavalry-elite-dun">
       <textures>
-        <texture file="skeletal/horse/kush_dun_a.png" name="baseTex"/>
+        <texture file="skeletal/horse_dun_a.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_death.xml" name="Spearman Horse">
+      <props>
+        <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_straps_head_kush.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_straps_kush_adv.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant file="quadraped/base_horse_run.xml" name="Spearman Horse">
+      <props>
+        <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_straps_head_kush.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_straps_kush_adv.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
-  <material>no_trans_parallax_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>

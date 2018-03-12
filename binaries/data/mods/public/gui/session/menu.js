@@ -1062,7 +1062,7 @@ function openObjectives()
 	let playerState = player && player.state;
 	let isActive = !playerState || playerState == "active";
 
-	Engine.GetGUIObjectByName("gameDescriptionText").caption = getGameDescription(true);
+	Engine.GetGUIObjectByName("gameDescriptionText").caption = getGameDescription();
 
 	let objectivesPlayerstate = Engine.GetGUIObjectByName("objectivesPlayerstate");
 	objectivesPlayerstate.hidden = isActive;
