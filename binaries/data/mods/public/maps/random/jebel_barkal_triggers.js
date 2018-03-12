@@ -14,9 +14,7 @@ const dryRun = false;
  */
 const showDebugLog = false;
 
-// TODO: patrols repair buildings
 // TODO: harass attackers
-// TODO: The hill itself could be reinforced every now and then.
 
 // TODO: use Object.assign to remove redundancy
 
@@ -295,39 +293,13 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": 1
 			}
 		]
-	}/*,
-	{
-		"buildingClasses": ["Workshop"],
-		"unitComposition": time => [
-		]
-	}*/
-];
-
-var jebelBarkal_repairedBuildings = [
-	{
-		"classes": ["Wonder"],
-		"frequency": 1
-	},
-	{
-		"classes": ["DefenseTower"],
-		"frequency": 0.9
-	},
-	{
-		"classes": ["Temple", "Fortress", "CivCentre", "ElephantStables"],
-		"frequency": 0.8
-	},
-	{
-		"classes": ["Barracks", "Stables"],
-		"frequency": 0.5
-	},
+	}
 ];
 
 Trigger.prototype.debugLog = function(txt)
 {
 	if (showDebugLog)
-		print(
-			"DEBUG [" +
-			Math.round(TriggerHelper.GetMinutes()) + "] " + txt + "\n");
+		print("DEBUG [" + Math.round(TriggerHelper.GetMinutes()) + "] " + txt + "\n");
 };
 
 Trigger.prototype.JebelBarkal_Init = function()
@@ -379,6 +351,9 @@ Trigger.prototype.JebelBarkal_GarrisonBuildings = function()
  */
 Trigger.prototype.JebelBarkal_SpawnCityPatrolGroups = function()
 {
+	if (!this.jebelBarkal_patrolGroupSpawnPoints.length)
+		return;
+
 	// TODO: the patrol group size should be increased
 	let time = TriggerHelper.GetMinutes();
 	let groupCount = Math.floor(Math.max(0, jebelBarkal_cityPatrolGroup_count(time)) - this.jebelBarkal_patrolingUnits.length);
@@ -397,6 +372,9 @@ Trigger.prototype.JebelBarkal_SpawnCityPatrolGroups = function()
 		let groupEntities = this.JebelBarkal_SpawnTemplates(spawnEnt, templateCounts);
 
 		this.jebelBarkal_patrolingUnits.push(groupEntities);
+
+		for (let ent of groupEntities)
+			TriggerHelper.SetUnitStance(ent, "defensive");
 
 		TriggerHelper.SetUnitFormation(jebelBarkal_playerID, groupEntities, pickRandom(jebelBarkal_formations));
 
@@ -434,10 +412,6 @@ Trigger.prototype.JebelBarkal_SpawnTemplates = function(spawnEnt, templateCounts
 		if (jebelBarkal_templates.heroes.indexOf(templateName) != -1 && ents[0])
 			this.jebelBarkal_heroes.push(ents[0]);
 	}
-
-	for (let ent of groupEntities)
-		TriggerHelper.SetUnitStance(ent, "defensive");
-
 
 	return groupEntities;
 };
