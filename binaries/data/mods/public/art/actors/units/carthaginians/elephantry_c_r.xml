@@ -2,15 +2,50 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_elephant_rider_ready_shield_offhand_african.xml" frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+    <variant>
+      <animations>
+        <animation file="biped/new/inf_sarissa_rest.dae" name="Idle" speed="25"/>
+      </animations>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_numid_all.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/kart_archer_e.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
+        <prop actor="props/units/shields/kart_round_su1.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/heads/kart_thracian_su1.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
       </props>
-      <textures><texture file="skeletal/hele_isp_b_2.dds" name="baseTex"/></textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Carth-Sacred Band-ShortSleeve">
+      <textures>
+        <texture file="skeletal/kart_su1_sacredband_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Carth-Sacred Band-LongSleeve">
+      <textures>
+        <texture file="skeletal/kart_su1_sacredband_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Carth-Sacred Band-LongSleeve-dirty">
+      <textures>
+        <texture file="skeletal/kart_su1_sacredband_4.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Carth-Sacred Band-Brown">
+      <textures>
+        <texture file="skeletal/kart_su1_sacredband_3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Carth-Sacred Band-Yellow">
+      <textures>
+        <texture file="skeletal/kart_su1_sacredband_5.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
