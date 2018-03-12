@@ -37,7 +37,7 @@ var g_BuddySymbol = '•';
 /**
  * Returns map description and preview image or placeholder.
  */
-function getMapDescriptionAndPreview(mapType, mapName)
+function getMapDescriptionAndPreview(mapType, mapName, gameAttributes = undefined)
 {
 	let mapData;
 	if (mapType == "random" && mapName == "random")
@@ -47,9 +47,12 @@ function getMapDescriptionAndPreview(mapType, mapName)
 	else if (Engine.FileExists(mapName + ".xml"))
 		mapData = Engine.LoadMapSettings(mapName + ".xml");
 
+	let mapBiome = gameAttributes && g_Settings.Biomes.find(biome => biome.Id == gameAttributes.settings.Biome);
+
 	return deepfreeze({
 		"description": mapData && mapData.settings && mapData.settings.Description ? translate(mapData.settings.Description) : translate("Sorry, no description available."),
-		"preview": mapData && mapData.settings && mapData.settings.Preview ? mapData.settings.Preview : "nopreview.png"
+		"preview": mapBiome && mapBiome.Preview ? mapBiome.Preview :
+			mapData && mapData.settings && mapData.settings.Preview ? mapData.settings.Preview : "nopreview.png"
 	});
 }
 
