@@ -24,11 +24,6 @@ var g_DiplomacyColorsToggle = false;
 var g_DisplayedPlayerColors;
 
 /**
- * The self/ally/neutral/enemy color codes.
- */
-var g_DiplomacyColorPalette;
-
-/**
  * Colors to flash when pop limit reached.
  */
 var g_DefaultPopulationColor = "white";
@@ -295,7 +290,6 @@ function init(initData, hotloadData)
 	for (let slot in Engine.GetGUIObjectByName("panelEntityPanel").children)
 		initPanelEntities(slot);
 
-	g_DiplomacyColorPalette = Engine.ReadJSONFile(g_SettingsDirectory + "diplomacy_colors.json");
 	g_DisplayedPlayerColors = g_Players.map(player => player.color);
 	updateViewedPlayerDropdown();
 
@@ -311,7 +305,7 @@ function init(initData, hotloadData)
 		g_Selection.selected = hotloadData.selection;
 
 	Engine.SetBoundingBoxDebugOverlay(false);
-
+	updateEnabledRangeOverlayTypes();
 	initChatWindow();
 
 	sendLobbyPlayerlistUpdate();
@@ -400,6 +394,10 @@ function updateDisplayedPlayerColors()
 {
 	if (g_DiplomacyColorsToggle)
 	{
+		let getDiplomacyColor = stance =>
+			guiToRgbColor(Engine.ConfigDB_GetValue("user", "gui.session.diplomacycolors." + stance)) ||
+			guiToRgbColor(Engine.ConfigDB_GetValue("default", "gui.session.diplomacycolors." + stance));
+
 		let teamRepresentatives = {};
 		for (let i = 1; i < g_Players.length; ++i)
 			if (g_ViewedPlayer <= 0)
@@ -413,10 +411,10 @@ function updateDisplayedPlayerColors()
 			else
 				// Players see colors depending on diplomacy
 				g_DisplayedPlayerColors[i] =
-					g_ViewedPlayer == i ? g_DiplomacyColorPalette.Self :
-					g_Players[g_ViewedPlayer].isAlly[i] ? g_DiplomacyColorPalette.Ally :
-					g_Players[g_ViewedPlayer].isNeutral[i] ? g_DiplomacyColorPalette.Neutral :
-					g_DiplomacyColorPalette.Enemy;
+					g_ViewedPlayer == i ? getDiplomacyColor("self") :
+					g_Players[g_ViewedPlayer].isAlly[i] ? getDiplomacyColor("ally") :
+					g_Players[g_ViewedPlayer].isNeutral[i] ? getDiplomacyColor("neutral") :
+					getDiplomacyColor("enemy");
 
 		g_DisplayedPlayerColors[0] = g_Players[0].color;
 	}
@@ -891,12 +889,6 @@ function onSimulationUpdate()
 	updateCinemaPath();
 	handleNotifications();
 	updateGUIObjects();
-
-	for (let type of ["Attack", "Auras", "Heal"])
-		Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
-			"type": type,
-			"enabled": Engine.ConfigDB_GetValue("user", "gui.session." + type.toLowerCase() + "range") == "true"
-		});
 
 	if (g_ConfirmExit)
 		confirmExit();
@@ -1421,6 +1413,15 @@ function toggleRangeOverlay(type)
 		"entities": selected,
 		"enabled": enabled
 	});
+}
+
+function updateEnabledRangeOverlayTypes()
+{
+	for (let type of ["Attack", "Auras", "Heal"])
+		Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
+			"type": type,
+			"enabled": Engine.ConfigDB_GetValue("user", "gui.session." + type.toLowerCase() + "range") == "true"
+		});
 }
 
 // Update the additional list of entities to be highlighted.

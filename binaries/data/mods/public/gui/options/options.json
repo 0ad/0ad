@@ -454,19 +454,22 @@
 				"type": "boolean",
 				"label": "Attack Range Visualization",
 				"tooltip": "Display the attack range of selected defensive structures (can also be toggled in-game with the hotkey).",
-				"config": "gui.session.attackrange"
+				"config": "gui.session.attackrange",
+				"callback": "updateEnabledRangeOverlayTypes"
 			},
 			{
 				"type": "boolean",
 				"label": "Aura Range Visualization",
 				"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
-				"config": "gui.session.aurasrange"
+				"config": "gui.session.aurasrange",
+				"callback": "updateEnabledRangeOverlayTypes"
 			},
 			{
 				"type": "boolean",
 				"label": "Heal Range Visualization",
 				"tooltip": "Display the healing range of selected units (can also be toggled in-game with the hotkey).",
-				"config": "gui.session.healrange"
+				"config": "gui.session.healrange",
+				"callback": "updateEnabledRangeOverlayTypes"
 			},
 			{
 				"type": "boolean",
@@ -490,6 +493,34 @@
 					{ "value": -1, "label": "Ascending" },
 					{ "value": 1, "label": "Descending" }
 				]
+			},
+			{
+				"type": "color",
+				"label": "Diplomacy Colors: Self",
+				"tooltip": "Color of your units when diplomacy colors are enabled.",
+				"config": "gui.session.diplomacycolors.self",
+				"callback": "updateDisplayedPlayerColors"
+			},
+			{
+				"type": "color",
+				"label": "Diplomacy Colors: Ally",
+				"tooltip": "Color of allies when diplomacy colors are enabled.",
+				"config": "gui.session.diplomacycolors.ally",
+				"callback": "updateDisplayedPlayerColors"
+			},
+			{
+				"type": "color",
+				"label": "Diplomacy Colors: Neutral",
+				"tooltip": "Color of neutral players when diplomacy colors are enabled.",
+				"config": "gui.session.diplomacycolors.neutral",
+				"callback": "updateDisplayedPlayerColors"
+			},
+			{
+				"type": "color",
+				"label": "Diplomacy Colors: Enemy",
+				"tooltip": "Color of enemies when diplomacy colors are enabled.",
+				"config": "gui.session.diplomacycolors.enemy",
+				"callback": "updateDisplayedPlayerColors"
 			}
 		]
 	}

@@ -17,10 +17,25 @@ function rgbToGuiColor(color, alpha)
 	if (color && ("r" in color) && ("g" in color) && ("b" in color))
 		ret = color.r + " " + color.g + " " + color.b;
 
-	if (alpha)
+	if (alpha !== undefined)
 		ret += " " + alpha;
 
 	return ret;
+}
+
+function guiToRgbColor(string)
+{
+	let color = string.split(" ");
+	if (color.length != 3 && color.length != 4 ||
+	    color.some(num => !Number.isInteger(+num) || num < 0 || num > 255))
+		return undefined;
+
+	return {
+		"r": +color[0],
+		"g": +color[1],
+		"b": +color[2],
+		"alpha": color.length == 4 ? +color[3] : undefined
+	};
 }
 
 /**
