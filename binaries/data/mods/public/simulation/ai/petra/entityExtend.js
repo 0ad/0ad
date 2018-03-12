@@ -428,9 +428,12 @@ m.dumpEntity = function(ent)
 		  " subrole " + ent.getMetadata(PlayerID, "subrole"));
 	API3.warn("owner " + ent.owner() + " health " + ent.hitpoints() + " healthMax " + ent.maxHitpoints() +
 	          " foundationProgress " + ent.foundationProgress());
-	API3.warn(" garrisoning " + ent.getMetadata(PlayerID, "garrisoning") + " garrisonHolder " + ent.getMetadata(PlayerID, "garrisonHolder") +
-		  " plan " + ent.getMetadata(PlayerID, "plan")	+ " transport " + ent.getMetadata(PlayerID, "transport") +
-		  " gather-type " + ent.getMetadata(PlayerID, "gather-type") + " target-foundation " + ent.getMetadata(PlayerID, "target-foundation") +
+	API3.warn(" garrisoning " + ent.getMetadata(PlayerID, "garrisoning") +
+		  " garrisonHolder " + ent.getMetadata(PlayerID, "garrisonHolder") +
+		  " plan " + ent.getMetadata(PlayerID, "plan")	+ " transport " + ent.getMetadata(PlayerID, "transport"));
+	API3.warn(" stance " + ent.getStance() + " transporter " + ent.getMetadata(PlayerID, "transporter") +
+		  " gather-type " + ent.getMetadata(PlayerID, "gather-type") +
+		  " target-foundation " + ent.getMetadata(PlayerID, "target-foundation") +
 		  " PartOfArmy " + ent.getMetadata(PlayerID, "PartOfArmy"));
 };
 

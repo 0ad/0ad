@@ -577,7 +577,7 @@ m.NavalManager.prototype.moveApart = function(gameState)
 			// New transport ships receive boarding commands only on the following turn.
 			if (gameState.ai.playedTurn < ship.getMetadata(PlayerID, "turnPreviousPosition") + 2)
 				continue;
-			ship.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
+			ship.moveToRange(shipPosition[0] + randFloat(-1, 1), shipPosition[1] + randFloat(-1, 1), 30, 30);
 			blockedShips.push(ship);
 			blockedIds.push(ship.id());
 		}
@@ -634,7 +634,7 @@ m.NavalManager.prototype.moveApart = function(gameState)
 			// New transport ships receives boarding commands only on the following turn.
 			if (gameState.ai.playedTurn < ship.getMetadata(PlayerID, "turnPreviousPosition") + 2)
 				continue;
-			ship.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
+			ship.moveToRange(shipPosition[0] + randFloat(-1, 1), shipPosition[1] + randFloat(-1, 1), 30, 30);
 			blockedShips.push(ship);
 			blockedIds.push(ship.id());
 		}
