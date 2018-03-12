@@ -16,37 +16,35 @@ const showDebugLog = false;
 
 // TODO: harass attackers
 
-// TODO: use Object.assign to remove redundancy
-
 var jebelBarkal_rank = "Advanced";
 
 /**
  * These are the templates spawned at the gamestart and during the game.
  */
-var jebelBarkal_templates = deepfreeze({
-	"heroes": TriggerHelper.GetTemplateNamesByClasses("Hero", "kush", undefined, jebelBarkal_rank, true),
-	"champions": TriggerHelper.GetTemplateNamesByClasses("Champion+!Elephant", "kush", undefined, jebelBarkal_rank, true),
-	"elephants": TriggerHelper.GetTemplateNamesByClasses("Champion+Elephant", "kush", undefined, jebelBarkal_rank, true),
-	"champion_infantry": TriggerHelper.GetTemplateNamesByClasses("Champion+Infantry", "kush", undefined, jebelBarkal_rank, true),
-	"champion_infantry_melee": TriggerHelper.GetTemplateNamesByClasses("Champion+Infantry+Melee", "kush", undefined, jebelBarkal_rank, true),
-	"champion_infantry_ranged": TriggerHelper.GetTemplateNamesByClasses("Champion+Infantry+Ranged", "kush", undefined, jebelBarkal_rank, true),
-	"champion_cavalry": TriggerHelper.GetTemplateNamesByClasses("Champion+Cavalry", "kush", undefined, jebelBarkal_rank, true),
-	"citizenSoldiers": TriggerHelper.GetTemplateNamesByClasses("CitizenSoldier", "kush", undefined, jebelBarkal_rank, true),
-	"citizenSoldier_infantry": TriggerHelper.GetTemplateNamesByClasses("CitizenSoldier+Infantry", "kush", undefined, jebelBarkal_rank, true),
-	"citizenSoldier_infantry_melee": TriggerHelper.GetTemplateNamesByClasses("CitizenSoldier+Infantry+Melee", "kush", undefined, jebelBarkal_rank, true),
-	"citizenSoldier_infantry_ranged": TriggerHelper.GetTemplateNamesByClasses("CitizenSoldier+Infantry+Ranged", "kush", undefined, jebelBarkal_rank, true),
-	"citizenSoldier_cavalry": TriggerHelper.GetTemplateNamesByClasses("CitizenSoldier+Cavalry", "kush", undefined, jebelBarkal_rank, true),
-	"healers": TriggerHelper.GetTemplateNamesByClasses("Healer","kush", undefined, jebelBarkal_rank, true),
-	"females": TriggerHelper.GetTemplateNamesByClasses("FemaleCitizen","kush", undefined, jebelBarkal_rank),
-	"siege_towers": TriggerHelper.GetTemplateNamesByClasses("SiegeTower", "kush", undefined, jebelBarkal_rank)
+var jebelBarkal_templateClasses = deepfreeze({
+	"heroes": "Hero",
+	"champions": "Champion+!Elephant",
+	"elephants": "Champion+Elephant",
+	"champion_infantry": "Champion+Infantry",
+	"champion_infantry_melee": "Champion+Infantry+Melee",
+	"champion_infantry_ranged": "Champion+Infantry+Ranged",
+	"champion_cavalry": "Champion+Cavalry",
+	"citizenSoldiers": "CitizenSoldier",
+	"citizenSoldier_infantry": "CitizenSoldier+Infantry",
+	"citizenSoldier_infantry_melee": "CitizenSoldier+Infantry+Melee",
+	"citizenSoldier_infantry_ranged": "CitizenSoldier+Infantry+Ranged",
+	"citizenSoldier_cavalry": "CitizenSoldier+Cavalry",
+	"healers": "Healer",
+	"females": "FemaleCitizen"
 });
+
+var jebelBarkal_templates = deepfreeze(Object.keys(jebelBarkal_templateClasses).reduce((templates, name) => {
+	templates[name] = TriggerHelper.GetTemplateNamesByClasses(jebelBarkal_templateClasses[name], "kush", undefined, jebelBarkal_rank, true);
+	return templates;
+}, {}));
 
 /**
  * These are the formations patroling and attacking units can use.
- * TODO: use?
- * "special/formations/line_open",
- * "special/formations/wedge",
- * "special/formations/syntagma"
 */
 var jebelBarkal_formations = [
 	"special/formations/line_closed",
@@ -354,7 +352,6 @@ Trigger.prototype.JebelBarkal_SpawnCityPatrolGroups = function()
 	if (!this.jebelBarkal_patrolGroupSpawnPoints.length)
 		return;
 
-	// TODO: the patrol group size should be increased
 	let time = TriggerHelper.GetMinutes();
 	let groupCount = Math.floor(Math.max(0, jebelBarkal_cityPatrolGroup_count(time)) - this.jebelBarkal_patrolingUnits.length);
 
@@ -378,7 +375,6 @@ Trigger.prototype.JebelBarkal_SpawnCityPatrolGroups = function()
 
 		TriggerHelper.SetUnitFormation(jebelBarkal_playerID, groupEntities, pickRandom(jebelBarkal_formations));
 
-		// TODO: order waypoints
 		for (let entTriggerPoint of this.GetTriggerPoints(jebelBarkal_triggerPointPath))
 		{
 			let pos = TriggerHelper.GetEntityPosition2D(entTriggerPoint);
@@ -448,8 +444,6 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 
 		let groupEntities = this.JebelBarkal_SpawnTemplates(spawnEnt, templateCounts);
 		spawnedAnything = true;
-
-		// TODO Move to some place, 30 seconds later attack
 
 		let isElephant = TriggerHelper.EntityMatchesClassList(groupEntities[0], "Elephant");
 

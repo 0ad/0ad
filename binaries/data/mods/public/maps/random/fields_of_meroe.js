@@ -5,7 +5,7 @@ Engine.LoadLibrary("rmbiome");
 if (g_MapSettings.Biome)
 	setSelectedBiome();
 else
-	setBiome("aethiopia/dry");
+	setBiome("fields_of_meroe/dry");
 
 const tMainDirt = g_Terrains.mainDirt;
 const tSecondaryDirt = g_Terrains.secondaryDirt;

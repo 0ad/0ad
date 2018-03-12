@@ -495,7 +495,7 @@ createArea(
 	]);
 Engine.SetProgress(50);
 
-for (let i = 0; i < playerIDs.length; ++i)
+for (let i = 0; i < numPlayers; ++i)
 {
 	let isDesert = clDesert.has(playerPosition[i]);
 	placePlayerBase({
