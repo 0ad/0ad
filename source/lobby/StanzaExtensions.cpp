@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -123,13 +123,13 @@ BoardListQuery::~BoardListQuery()
  * the listing of games from the server, and register/
  * unregister/changestate games on the server.
  */
-GameListQuery::GameListQuery( const glooxwrapper::Tag* tag )
+GameListQuery::GameListQuery(const glooxwrapper::Tag* tag)
 	: StanzaExtension(EXTGAMELISTQUERY)
 {
 	if (!tag || tag->name() != "query" || tag->xmlns() != XMLNS_GAMELIST)
 		return;
 
-	const glooxwrapper::Tag* c = tag->findTag_clone( "query/game" );
+	const glooxwrapper::Tag* c = tag->findTag_clone("query/game");
 	if (c)
 		m_Command = c->cdata();
 	glooxwrapper::Tag::free(c);
@@ -237,4 +237,49 @@ ProfileQuery::~ProfileQuery()
 	for (const glooxwrapper::Tag* const& t : m_StanzaProfile)
 		glooxwrapper::Tag::free(t);
 	m_StanzaProfile.clear();
+}
+
+/******************************************************
+ * LobbyAuth, a custom IQ Stanza, used to send and
+ * receive a security token for hosting authentication.
+ */
+LobbyAuth::LobbyAuth(const glooxwrapper::Tag* tag)
+	: StanzaExtension(EXTLOBBYAUTH)
+{
+	if (!tag || tag->name() != "auth" || tag->xmlns() != XMLNS_LOBBYAUTH)
+		return;
+
+	const glooxwrapper::Tag* c = tag->findTag_clone("auth/token");
+	if (c)
+		m_Token = c->cdata();
+
+	glooxwrapper::Tag::free(c);
+}
+
+/**
+ * Required by gloox, used to find the LobbyAuth element in a received IQ.
+ */
+const glooxwrapper::string& LobbyAuth::filterString() const
+{
+	static const glooxwrapper::string filter = "/iq/auth[@xmlns='" XMLNS_LOBBYAUTH "']";
+	return filter;
+}
+
+/**
+ * Required by gloox, used to serialize the auth object into XML for sending.
+ */
+glooxwrapper::Tag* LobbyAuth::tag() const
+{
+	glooxwrapper::Tag* t = glooxwrapper::Tag::allocate("auth");
+	t->setXmlns(XMLNS_LOBBYAUTH);
+
+	// Check for the auth token
+	if (!m_Token.empty())
+		t->addChild(glooxwrapper::Tag::allocate("token", m_Token));
+	return t;
+}
+
+glooxwrapper::StanzaExtension* LobbyAuth::clone() const
+{
+	return new LobbyAuth();
 }

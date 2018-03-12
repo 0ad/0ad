@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 #include "lib/byte_order.h"
 #include "lib/external_libraries/enet.h"
 #include "lib/sysdep/sysdep.h"
+#include "lobby/IXmppClient.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/Compress.h"
@@ -88,6 +89,7 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 
 	AddTransition(NCS_HANDSHAKE, (uint)NMT_SERVER_HANDSHAKE_RESPONSE, NCS_AUTHENTICATE, (void*)&OnHandshakeResponse, context);
 
+	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE, NCS_AUTHENTICATE, (void*)&OnAuthenticateRequest, context);
 	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE_RESULT, NCS_INITIAL_GAMESETUP, (void*)&OnAuthenticate, context);
 
 	AddTransition(NCS_INITIAL_GAMESETUP, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
@@ -156,6 +158,11 @@ void CNetClient::SetUserName(const CStrW& username)
 	ENSURE(!m_Session); // must be called before we start the connection
 
 	m_UserName = username;
+}
+
+void CNetClient::SetHostingPlayerName(const CStr& hostingPlayerName)
+{
+	m_HostingPlayerName = hostingPlayerName;
 }
 
 bool CNetClient::SetupConnection(const CStr& server, const u16 port, ENetHost* enetClient)
@@ -476,6 +483,15 @@ void CNetClient::LoadFinished()
 	SendMessage(&loaded);
 }
 
+void CNetClient::SendAuthenticateMessage()
+{
+	CAuthenticateMessage authenticate;
+	authenticate.m_Name = m_UserName;
+	authenticate.m_Password = L""; // TODO
+	authenticate.m_IsLocalClient = m_IsLocalClient;
+	SendMessage(&authenticate);
+}
+
 bool CNetClient::OnConnect(void* context, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_CONNECT_COMPLETE);
@@ -516,12 +532,34 @@ bool CNetClient::OnHandshakeResponse(void* context, CFsmEvent* event)
 	CSrvHandshakeResponseMessage* message = (CSrvHandshakeResponseMessage*)event->GetParamRef();
 	client->m_GUID = message->m_GUID;
 
-	CAuthenticateMessage authenticate;
-	authenticate.m_Name = client->m_UserName;
-	authenticate.m_Password = L""; // TODO
-	authenticate.m_IsLocalClient = client->m_IsLocalClient;
-	client->SendMessage(&authenticate);
+	if (message->m_Flags & PS_NETWORK_FLAG_REQUIRE_LOBBYAUTH)
+	{
+		if (g_XmppClient && !client->m_HostingPlayerName.empty())
+			g_XmppClient->SendIqLobbyAuth(client->m_HostingPlayerName, client->m_GUID);
+		else
+		{
+			JSContext* cx = client->GetScriptInterface().GetContext();
+			JSAutoRequest rq(cx);
 
+			JS::RootedValue msg(cx);
+			client->GetScriptInterface().Eval("({'type':'netstatus','status':'disconnected'})", &msg);
+			client->GetScriptInterface().SetProperty(msg, "reason", (int)NDR_LOBBY_AUTH_FAILED, false);
+			client->PushGuiMessage(msg);
+			LOGMESSAGE("Net client: Couldn't send lobby auth xmpp message");
+		}
+		return true;
+	}
+
+	client->SendAuthenticateMessage();
+	return true;
+}
+
+bool CNetClient::OnAuthenticateRequest(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_AUTHENTICATE);
+
+	CNetClient* client = (CNetClient*)context;
+	client->SendAuthenticateMessage();
 	return true;
 }
 

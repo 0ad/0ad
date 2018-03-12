@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,10 @@
 /// Global Profile Extension
 #define EXTPROFILEQUERY 1406
 #define XMLNS_PROFILE "jabber:iq:profile"
+
+/// Global Lobby Authentication Extension
+#define EXTLOBBYAUTH 1407
+#define XMLNS_LOBBYAUTH "jabber:iq:lobbyauth"
 
 class GameReport : public glooxwrapper::StanzaExtension
 {
@@ -110,5 +114,22 @@ public:
 
 	glooxwrapper::string m_Command;
 	std::vector<const glooxwrapper::Tag*> m_StanzaProfile;
+};
+
+class LobbyAuth : public glooxwrapper::StanzaExtension
+{
+public:
+	LobbyAuth(const glooxwrapper::Tag* tag = 0);
+
+	// Following four methods are all required by gloox
+	virtual StanzaExtension* newInstance(const glooxwrapper::Tag* tag) const
+	{
+		return new LobbyAuth(tag);
+	}
+	virtual const glooxwrapper::string& filterString() const;
+	virtual glooxwrapper::Tag* tag() const;
+	virtual glooxwrapper::StanzaExtension* clone() const;
+
+	glooxwrapper::string m_Token;
 };
 #endif // STANZAEXTENSIONS_H

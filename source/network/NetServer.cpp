@@ -127,8 +127,9 @@ private:
  * See http://trac.wildfiregames.com/ticket/654
  */
 
-CNetServerWorker::CNetServerWorker(int autostartPlayers) :
+CNetServerWorker::CNetServerWorker(bool useLobbyAuth, int autostartPlayers) :
 	m_AutostartPlayers(autostartPlayers),
+	m_LobbyAuth(useLobbyAuth),
 	m_Shutdown(false),
 	m_ScriptInterface(NULL),
 	m_NextHostID(1), m_Host(NULL), m_HostGUID(), m_Stats(NULL),
@@ -407,6 +408,7 @@ bool CNetServerWorker::RunStep()
 
 	std::vector<bool> newStartGame;
 	std::vector<std::string> newGameAttributes;
+	std::vector<std::pair<CStr, CStr>> newLobbyAuths;
 	std::vector<u32> newTurnLength;
 
 	{
@@ -417,6 +419,7 @@ bool CNetServerWorker::RunStep()
 
 		newStartGame.swap(m_StartGameQueue);
 		newGameAttributes.swap(m_GameAttributesQueue);
+		newLobbyAuths.swap(m_LobbyAuthQueue);
 		newTurnLength.swap(m_TurnLengthQueue);
 	}
 
@@ -433,6 +436,13 @@ bool CNetServerWorker::RunStep()
 	// Do StartGame last, so we have the most up-to-date game attributes when we start
 	if (!newStartGame.empty())
 		StartGame();
+
+	while (!newLobbyAuths.empty())
+	{
+		const std::pair<CStr, CStr>& auth = newLobbyAuths.back();
+		ProcessLobbyAuth(auth.first, auth.second);
+		newLobbyAuths.pop_back();
+	}
 
 	// Perform file transfers
 	for (CNetServerSession* session : m_Sessions)
@@ -631,6 +641,9 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 
 	session->AddTransition(NSS_HANDSHAKE, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED);
 	session->AddTransition(NSS_HANDSHAKE, (uint)NMT_CLIENT_HANDSHAKE, NSS_AUTHENTICATE, (void*)&OnClientHandshake, context);
+
+	session->AddTransition(NSS_LOBBY_AUTHENTICATE, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED);
+	session->AddTransition(NSS_LOBBY_AUTHENTICATE, (uint)NMT_AUTHENTICATE, NSS_PREGAME, (void*)&OnAuthenticate, context);
 
 	session->AddTransition(NSS_AUTHENTICATE, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED);
 	session->AddTransition(NSS_AUTHENTICATE, (uint)NMT_AUTHENTICATE, NSS_PREGAME, (void*)&OnAuthenticate, context);
@@ -856,6 +869,24 @@ void CNetServerWorker::SetTurnLength(u32 msecs)
 		m_ServerTurnManager->SetTurnLength(msecs);
 }
 
+void CNetServerWorker::ProcessLobbyAuth(const CStr& name, const CStr& token)
+{
+	LOGMESSAGE("Net Server: Received lobby auth message from %s with %s", name, token);
+	// Find the user with that guid
+	std::vector<CNetServerSession*>::iterator it = std::find_if(m_Sessions.begin(), m_Sessions.end(),
+		[&](CNetServerSession* session)
+		{ return session->GetGUID() == token; });
+
+	if (it == m_Sessions.end())
+		return;
+
+	(*it)->SetUserName(name.FromUTF8());
+	// Send an empty message to request the authentication message from the client
+	// after its identity has been confirmed via the lobby
+	CAuthenticateMessage emptyMessage;
+	(*it)->SendMessage(&emptyMessage);
+}
+
 bool CNetServerWorker::OnClientHandshake(void* context, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_CLIENT_HANDSHAKE);
@@ -892,6 +923,13 @@ bool CNetServerWorker::OnClientHandshake(void* context, CFsmEvent* event)
 	handshakeResponse.m_UseProtocolVersion = PS_PROTOCOL_VERSION;
 	handshakeResponse.m_GUID = guid;
 	handshakeResponse.m_Flags = 0;
+
+	if (server.m_LobbyAuth)
+	{
+		handshakeResponse.m_Flags |= PS_NETWORK_FLAG_REQUIRE_LOBBYAUTH;
+		session->SetNextState(NSS_LOBBY_AUTHENTICATE);
+	}
+
 	session->SendMessage(&handshakeResponse);
 
 	return true;
@@ -914,20 +952,36 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 
 	CAuthenticateMessage* message = (CAuthenticateMessage*)event->GetParamRef();
 	CStrW username = SanitisePlayerName(message->m_Name);
+	CStrW usernameWithoutRating(username.substr(0, username.find(L" (")));
+
+	// Compare the lowercase names as specified by https://xmpp.org/extensions/xep-0029.html#sect-idm139493404168176
+	// "[...] comparisons will be made in case-normalized canonical form."
+	if (server.m_LobbyAuth && usernameWithoutRating.LowerCase() != session->GetUserName().LowerCase())
+	{
+		LOGERROR("Net server: lobby auth: %s tried joining as %s",
+			usernameWithoutRating.ToUTF8(),
+			session->GetUserName().ToUTF8());
+		session->Disconnect(NDR_LOBBY_AUTH_FAILED);
+		return true;
+	}
 
 	// Either deduplicate or prohibit join if name is in use
 	bool duplicatePlayernames = false;
 	CFG_GET_VAL("network.duplicateplayernames", duplicatePlayernames);
 	if (duplicatePlayernames)
 		username = server.DeduplicatePlayerName(username);
-	else if (std::find_if(
+	else
+	{
+		std::vector<CNetServerSession*>::iterator it = std::find_if(
 			server.m_Sessions.begin(), server.m_Sessions.end(),
 			[&username] (const CNetServerSession* session)
-			{ return session->GetUserName() == username; })
-		!= server.m_Sessions.end())
-	{
-		session->Disconnect(NDR_PLAYERNAME_IN_USE);
-		return true;
+			{ return session->GetUserName() == username; });
+
+		if (it != server.m_Sessions.end() && (*it) != session)
+		{
+			session->Disconnect(NDR_PLAYERNAME_IN_USE);
+			return true;
+		}
 	}
 
 	// Disconnect banned usernames
@@ -984,7 +1038,6 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 			}
 			else if (observerLateJoin == "buddies")
 			{
-				CStrW usernameWithoutRating(username.substr(0, username.find(L" (")));
 				CStr buddies;
 				CFG_GET_VAL("lobby.buddies", buddies);
 				std::wstringstream buddiesStream(wstring_from_utf8(buddies));
@@ -1481,8 +1534,8 @@ void CNetServerWorker::SendHolePunchingMessage(const CStr& ipStr, u16 port)
 
 
 
-CNetServer::CNetServer(int autostartPlayers) :
-	m_Worker(new CNetServerWorker(autostartPlayers))
+CNetServer::CNetServer(bool useLobbyAuth, int autostartPlayers) :
+	m_Worker(new CNetServerWorker(useLobbyAuth, autostartPlayers))
 {
 }
 
@@ -1510,6 +1563,12 @@ void CNetServer::UpdateGameAttributes(JS::MutableHandleValue attrs, const Script
 
 	CScopeLock lock(m_Worker->m_WorkerMutex);
 	m_Worker->m_GameAttributesQueue.push_back(attrsJSON);
+}
+
+void CNetServer::OnLobbyAuth(const CStr& name, const CStr& token)
+{
+	CScopeLock lock(m_Worker->m_WorkerMutex);
+	m_Worker->m_LobbyAuthQueue.push_back(std::make_pair(name, token));
 }
 
 void CNetServer::SetTurnLength(u32 msecs)

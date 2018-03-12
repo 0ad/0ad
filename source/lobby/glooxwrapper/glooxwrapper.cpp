@@ -480,6 +480,15 @@ gloox::IQ::IqType glooxwrapper::IQ::subtype() const
 	return m_Wrapped->subtype();
 }
 
+const glooxwrapper::string glooxwrapper::IQ::id() const
+{
+	return m_Wrapped->id();
+}
+
+const gloox::JID& glooxwrapper::IQ::from() const
+{
+	return m_Wrapped->from();
+}
 
 glooxwrapper::JID::JID()
 {

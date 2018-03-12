@@ -75,24 +75,23 @@ IXmppClient* IXmppClient::create(const std::string& sUsername, const std::string
  * @param regOpt If we are just registering or not.
  */
 XmppClient::XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize, bool regOpt)
-	: m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_nick(sNick), m_initialLoadComplete(false), m_isConnected(false), m_sessionManager()
+	: m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_room(sRoom), m_nick(sNick), m_initialLoadComplete(false), m_isConnected(false), m_sessionManager()
 {
 	// Read lobby configuration from default.cfg
-	std::string sServer;
 	std::string sXpartamupp;
-	CFG_GET_VAL("lobby.server", sServer);
+	CFG_GET_VAL("lobby.server", m_server);
 	CFG_GET_VAL("lobby.xpartamupp", sXpartamupp);
 
-	m_xpartamuppId = sXpartamupp + "@" + sServer + "/CC";
-	glooxwrapper::JID clientJid(sUsername + "@" + sServer + "/0ad");
-	glooxwrapper::JID roomJid(sRoom + "@conference." + sServer + "/" + sNick);
+	m_xpartamuppId = sXpartamupp + "@" + m_server + "/CC";
+	glooxwrapper::JID clientJid(sUsername + "@" + m_server + "/0ad");
+	glooxwrapper::JID roomJid(m_room + "@conference." + m_server + "/" + sNick);
 
 	// If we are connecting, use the full jid and a password
 	// If we are registering, only use the server name
 	if (!regOpt)
 		m_client = new glooxwrapper::Client(clientJid, sPassword);
 	else
-		m_client = new glooxwrapper::Client(sServer);
+		m_client = new glooxwrapper::Client(m_server);
 
 	// Disable TLS as we haven't set a certificate on the server yet
 	m_client->setTls(gloox::TLSDisabled);
@@ -117,6 +116,9 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 
 	m_client->registerStanzaExtension(new ProfileQuery());
 	m_client->registerIqHandler(this, EXTPROFILEQUERY);
+
+	m_client->registerStanzaExtension(new LobbyAuth());
+	m_client->registerIqHandler(this, EXTLOBBYAUTH);
 
 	m_client->registerMessageHandler(this);
 
@@ -413,6 +415,25 @@ void XmppClient::SendIqChangeStateGame(const std::string& nbp, const std::string
 	glooxwrapper::IQ iq(gloox::IQ::Set, xpartamuppJid, m_client->getID());
 	iq.addExtension(g);
 	DbgXMPP("SendIqChangeStateGame [" << tag_xml(iq) << "]");
+	m_client->send(iq);
+}
+
+/*****************************************************
+ * iq to clients                                     *
+ *****************************************************/
+
+/**
+ * Send lobby authentication token.
+ */
+void XmppClient::SendIqLobbyAuth(const std::string& to, const std::string& token)
+{
+	LobbyAuth* auth = new LobbyAuth();
+	auth->m_Token = token;
+
+	glooxwrapper::JID clientJid(to + "@" + m_server + "/0ad");
+	glooxwrapper::IQ iq(gloox::IQ::Set, clientJid, m_client->getID());
+	iq.addExtension(auth);
+	DbgXMPP("SendIqLobbyAuth [" << tag_xml(iq) << "]");
 	m_client->send(iq);
 }
 
@@ -740,6 +761,20 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 				m_Profile.emplace_back(t->clone());
 
 			CreateGUIMessage("game", "profile");
+		}
+	}
+	else if (iq.subtype() == gloox::IQ::Set)
+	{
+		const LobbyAuth* lobbyAuth = iq.findExtension<LobbyAuth>(EXTLOBBYAUTH);
+		if (lobbyAuth)
+		{
+			LOGMESSAGE("XmppClient: Received lobby auth: %s from %s", lobbyAuth->m_Token.to_string(), iq.from().username());
+
+			glooxwrapper::IQ response(gloox::IQ::Result, iq.from(), iq.id());
+			m_client->send(response);
+
+			if (g_NetServer)
+				g_NetServer->OnLobbyAuth(iq.from().username(), lobbyAuth->m_Token.to_string());
 		}
 	}
 	else if (iq.subtype() == gloox::IQ::Error)

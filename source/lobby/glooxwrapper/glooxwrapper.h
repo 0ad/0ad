@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -462,6 +462,8 @@ namespace glooxwrapper
 		}
 
 		gloox::IQ::IqType subtype() const;
+		const string id() const;
+		const gloox::JID& from() const;
 
 		gloox::StanzaError error_error() const; // wrapper for ->error()->error()
 		Tag* tag() const;

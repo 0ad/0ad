@@ -71,6 +71,9 @@ enum NetServerSessionState
 	// to agree on the protocol version
 	NSS_HANDSHAKE,
 
+	// The client has handshook and we're waiting for its lobby authentication message
+	NSS_LOBBY_AUTHENTICATE,
+
 	// The client has handshook and we're waiting for its authentication message,
 	// to find its name and check its password etc
 	NSS_AUTHENTICATE,
@@ -104,7 +107,7 @@ public:
 	 * @param autostartPlayers if positive then StartGame will be called automatically
 	 * once this many players are connected (intended for the command-line testing mode).
 	 */
-	CNetServer(int autostartPlayers = -1);
+	CNetServer(bool useLobbyAuth = false, int autostartPlayers = -1);
 
 	~CNetServer();
 
@@ -133,6 +136,8 @@ public:
 	 * TODO: we should replace this with some adapative lag-dependent computation.
 	 */
 	void SetTurnLength(u32 msecs);
+
+	void OnLobbyAuth(const CStr& name, const CStr& token);
 
 	void SendHolePunchingMessage(const CStr& ip, u16 port);
 
@@ -178,7 +183,7 @@ private:
 	friend class CNetServer;
 	friend class CNetFileReceiveTask_ServerRejoin;
 
-	CNetServerWorker(int autostartPlayers);
+	CNetServerWorker(bool useLobbyAuth, int autostartPlayers);
 	~CNetServerWorker();
 
 	/**
@@ -228,6 +233,8 @@ private:
 	 * TODO: we should replace this with some adaptive lag-dependent computation.
 	 */
 	void SetTurnLength(u32 msecs);
+
+	void ProcessLobbyAuth(const CStr& name, const CStr& token);
 
 	void AddPlayer(const CStr& guid, const CStrW& name);
 	void RemovePlayer(const CStr& guid);
@@ -291,6 +298,7 @@ private:
 	JS::PersistentRootedValue m_GameAttributes;
 
 	int m_AutostartPlayers;
+	bool m_LobbyAuth;
 
 	ENetHost* m_Host;
 	std::vector<CNetServerSession*> m_Sessions;
@@ -351,12 +359,14 @@ private:
 	pthread_t m_WorkerThread;
 	CMutex m_WorkerMutex;
 
-	bool m_Shutdown; // protected by m_WorkerMutex
+	// protected by m_WorkerMutex
+	bool m_Shutdown;
 
-	// Queues for messages sent by the game thread:
-	std::vector<bool> m_StartGameQueue; // protected by m_WorkerMutex
-	std::vector<std::string> m_GameAttributesQueue; // protected by m_WorkerMutex
-	std::vector<u32> m_TurnLengthQueue; // protected by m_WorkerMutex
+	// Queues for messages sent by the game thread (protected by m_WorkerMutex):
+	std::vector<bool> m_StartGameQueue;
+	std::vector<std::string> m_GameAttributesQueue;
+	std::vector<std::pair<CStr, CStr>> m_LobbyAuthQueue;
+	std::vector<u32> m_TurnLengthQueue;
 };
 
 /// Global network server for the standard game
