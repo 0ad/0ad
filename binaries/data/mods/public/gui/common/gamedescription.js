@@ -213,7 +213,7 @@ function formatPlayerInfo(playerDataArray, playerStates)
  *
  * Requires g_GameAttributes and g_VictoryConditions.
  */
-function getGameDescription(extended = false)
+function getGameDescription()
 {
 	let titles = [];
 	if (!g_GameAttributes.settings.VictoryConditions.length)
@@ -308,112 +308,115 @@ function getGameDescription(extended = false)
 			"value": translate("If one player wins, his or her allies win too. If one group of allies remains, they win.")
 		});
 
-	if (extended)
-	{
-		titles.push({
-			"label": translate("Ceasefire"),
-			"value":
-				g_GameAttributes.settings.Ceasefire == 0 ?
-					translate("disabled") :
-					sprintf(translatePlural(
-						"For the first minute, other players will stay neutral.",
-						"For the first %(min)s minutes, other players will stay neutral.",
-						g_GameAttributes.settings.Ceasefire),
-					{ "min": g_GameAttributes.settings.Ceasefire })
-		});
+	titles.push({
+		"label": translate("Ceasefire"),
+		"value":
+			g_GameAttributes.settings.Ceasefire == 0 ?
+				translate("disabled") :
+				sprintf(translatePlural(
+					"For the first minute, other players will stay neutral.",
+					"For the first %(min)s minutes, other players will stay neutral.",
+					g_GameAttributes.settings.Ceasefire),
+				{ "min": g_GameAttributes.settings.Ceasefire })
+	});
 
+	if (g_GameAttributes.map == "random")
+		titles.push({
+			"label": translateWithContext("Map Selection", "Random Map"),
+			"value": translate("Randomly select a map from the list.")
+		});
+	else
+	{
 		titles.push({
 			"label": translate("Map Name"),
 			"value": translate(g_GameAttributes.settings.Name)
 		});
-
 		titles.push({
-			"label": translate("Map Type"),
-			"value": g_MapTypes.Title[g_MapTypes.Name.indexOf(g_GameAttributes.mapType)]
+			"label": translate("Map Description"),
+			"value": g_GameAttributes.settings.Description ?
+					translate(g_GameAttributes.settings.Description) :
+					translate("Sorry, no description available.")
 		});
-
-		if (g_GameAttributes.mapType == "random")
-		{
-			let mapSize = g_MapSizes.Name[g_MapSizes.Tiles.indexOf(g_GameAttributes.settings.Size)];
-			if (mapSize)
-				titles.push({
-					"label": translate("Map Size"),
-					"value": mapSize
-				});
-		}
 	}
 
 	titles.push({
-		"label": translate("Map Description"),
-		"value":
-			g_GameAttributes.map == "random" ?
-				translate("Randomly selects a map from the list") :
-				g_GameAttributes.settings.Description ?
-					translate(g_GameAttributes.settings.Description) :
-					translate("Sorry, no description available.")
+		"label": translate("Map Type"),
+		"value": g_MapTypes.Title[g_MapTypes.Name.indexOf(g_GameAttributes.mapType)]
 	});
 
-	if (extended || g_GameAttributes.settings.Nomad)
+	if (typeof g_MapFilterList !== "undefined")
 		titles.push({
-			"label": g_GameAttributes.settings.Nomad ? translate("Nomad Mode") : translate("Civic Centers"),
-			"value":
-				g_GameAttributes.settings.Nomad ?
-					translate("Players start with only few units and have to find a suitable place to build their city.") :
-					translate("Players start with a Civic Center.")
+			"label": translate("Map Filter"),
+			"value": g_MapFilterList.name[g_MapFilterList.id.findIndex(id => id == g_GameAttributes.mapFilter)]
 		});
+
+	if (g_GameAttributes.mapType == "random")
+	{
+		let mapSize = g_MapSizes.Name[g_MapSizes.Tiles.indexOf(g_GameAttributes.settings.Size)];
+		if (mapSize)
+			titles.push({
+				"label": translate("Map Size"),
+				"value": mapSize
+			});
+	}
 
 	if (g_GameAttributes.settings.Biome)
 	{
 		let biome = g_Settings.Biomes.find(b => b.Id == g_GameAttributes.settings.Biome);
 		titles.push({
-			"label": translate("Biome"),
-			"value": biome ? biome.Title : translateWithContext("biome", "Random")
+			"label": biome ? biome.Title : translateWithContext("biome", "Random Biome"),
+			"value": biome ? biome.Description : translate("Randomly select a biome from the list.")
 		});
 	}
 
-	if (extended)
-	{
-		titles.push({
-			"label": translate("Starting Resources"),
-			"value": sprintf(translate("%(startingResourcesTitle)s (%(amount)s)"), {
-				"startingResourcesTitle":
-					g_StartingResources.Title[
-						g_StartingResources.Resources.indexOf(
-							g_GameAttributes.settings.StartingResources)],
-				"amount": g_GameAttributes.settings.StartingResources
-			})
-		});
+	titles.push({
+		"label": g_GameAttributes.settings.Nomad ? translate("Nomad Mode") : translate("Civic Centers"),
+		"value":
+			g_GameAttributes.settings.Nomad ?
+				translate("Players start with only few units and have to find a suitable place to build their city.") :
+				translate("Players start with a Civic Center.")
+	});
 
-		titles.push({
-			"label": translate("Population Limit"),
-			"value":
-				g_PopulationCapacities.Title[
-					g_PopulationCapacities.Population.indexOf(
-						g_GameAttributes.settings.PopulationCap)]
-		});
+	titles.push({
+		"label": translate("Starting Resources"),
+		"value": sprintf(translate("%(startingResourcesTitle)s (%(amount)s)"), {
+			"startingResourcesTitle":
+				g_StartingResources.Title[
+					g_StartingResources.Resources.indexOf(
+						g_GameAttributes.settings.StartingResources)],
+			"amount": g_GameAttributes.settings.StartingResources
+		})
+	});
 
-		titles.push({
-			"label": translate("Treasures"),
-			"value": g_GameAttributes.settings.DisableTreasures ?
-				translateWithContext("treasures", "Disabled") :
-				translateWithContext("treasures", "As defined by the map.")
-		});
+	titles.push({
+		"label": translate("Population Limit"),
+		"value":
+			g_PopulationCapacities.Title[
+				g_PopulationCapacities.Population.indexOf(
+					g_GameAttributes.settings.PopulationCap)]
+	});
 
-		titles.push({
-			"label": translate("Revealed Map"),
-			"value": g_GameAttributes.settings.RevealMap
-		});
+	titles.push({
+		"label": translate("Treasures"),
+		"value": g_GameAttributes.settings.DisableTreasures ?
+			translateWithContext("treasures", "Disabled") :
+			translateWithContext("treasures", "As defined by the map.")
+	});
 
-		titles.push({
-			"label": translate("Explored Map"),
-			"value": g_GameAttributes.settings.ExploreMap
-		});
+	titles.push({
+		"label": translate("Revealed Map"),
+		"value": g_GameAttributes.settings.RevealMap
+	});
 
-		titles.push({
-			"label": translate("Cheats"),
-			"value": g_GameAttributes.settings.CheatsEnabled
-		});
-	}
+	titles.push({
+		"label": translate("Explored Map"),
+		"value": g_GameAttributes.settings.ExploreMap
+	});
+
+	titles.push({
+		"label": translate("Cheats"),
+		"value": g_GameAttributes.settings.CheatsEnabled
+	});
 
 	return titles.map(title => sprintf(translate("%(label)s %(details)s"), {
 		"label": coloredText(title.label, g_DescriptionHighlight),
