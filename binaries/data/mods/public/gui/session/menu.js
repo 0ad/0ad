@@ -252,8 +252,17 @@ function openOptions()
 	pauseGame();
 
 	Engine.PushGuiPage("page_options.xml", {
-		"callback": "resumeGame"
+		"callback": "optionsPageClosed"
 	});
+}
+
+function optionsPageClosed(data)
+{
+	for (let callback of data)
+		if (global[callback])
+			global[callback]();
+
+	resumeGame();
 }
 
 function openChat(command = "")
