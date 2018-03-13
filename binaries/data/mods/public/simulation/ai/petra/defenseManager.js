@@ -123,6 +123,8 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 				let myBuildings = gameState.getOwnStructures();
 				for (let building of myBuildings.values())
 				{
+					if (building.foundationProgress() == 0)
+						continue;
 					if (API3.SquareVectorDistance(building.position(), entity.position()) > 30000)
 						continue;
 					this.targetList.push(targetId);
@@ -366,6 +368,16 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 				continue;
 			if(this.Config.debug > 1)
 				API3.warn("army in neutral territory, but still near one of our CC");
+			stillDangerous = true;
+			break;
+		}
+		if (stillDangerous)
+			continue;
+		// Need to also check docks because of oversea bases
+		for (let dock of gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).values())
+		{
+			if (API3.SquareVectorDistance(dock.position(), army.foePosition) > 10000)
+				continue;
 			stillDangerous = true;
 			break;
 		}
