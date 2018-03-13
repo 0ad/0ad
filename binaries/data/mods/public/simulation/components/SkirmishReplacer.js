@@ -35,7 +35,7 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
 
-	let specialFilters = templateName.split("|").splice(0, -1).join("|");
+	let specialFilters = templateName.split("|").splice(0, -1).join("|") + "|";
 	templateName = removeFiltersFromTemplateName(templateName);
 
 	if (templateName in replacementEntities)
