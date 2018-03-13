@@ -78,32 +78,32 @@ var g_SummaryTypes = {
 	"lost": {
 		"color": g_TypeColors.red,
 		"caption": translate("Lost"),
-		"postfix": "\n"
+		"postfix": ""
 	},
 	"used": {
 		"color": g_TypeColors.red,
 		"caption": translate("Used"),
-		"postfix": "\n"
+		"postfix": ""
 	},
 	"received": {
 		"color": g_TypeColors.red,
 		"caption": translate("Received"),
-		"postfix": "\n"
+		"postfix": ""
 	},
 	"sold": {
 		"color": g_TypeColors.red,
 		"caption": translate("Sold"),
-		"postfix": "\n"
+		"postfix": ""
 	},
 	"outcome": {
 		"color": g_TypeColors.red,
 		"caption": translate("Outcome"),
-		"postfix": "\n"
+		"postfix": ""
 	},
 	"failed": {
 		"color": g_TypeColors.red,
 		"caption": translate("Failed"),
-		"postfix": "\n"
+		"postfix": ""
 	}
 };
 
