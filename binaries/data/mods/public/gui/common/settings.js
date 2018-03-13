@@ -266,7 +266,7 @@ function loadVictoryConditions()
 	if (victoryConditions.some(victoryCondition => victoryCondition == undefined))
 		return undefined;
 
-	return victoryConditions;
+	return victoryConditions.sort((a, b) => a.GUIOrder - b.GUIOrder || (a.Title > b.Title ? 1 : a.Title > b.Title ? -1 : 0));
 }
 
 /**
