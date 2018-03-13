@@ -323,6 +323,16 @@ QUERYHANDLER(VFSFileExists)
 	msg->exists = VfsFileExists(*msg->path);
 }
 
+QUERYHANDLER(VFSFileRealPath)
+{
+	VfsPath pathname(*msg->path);
+	if (pathname.empty())
+		return;
+	OsPath realPathname;
+	if (g_VFS->GetRealPath(pathname, realPathname) == INFO::OK)
+		msg->realPath = realPathname.string();
+}
+
 static Status AddToFilenames(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	std::vector<std::wstring>& filenames = *(std::vector<std::wstring>*)cbData;
@@ -332,13 +342,15 @@ static Status AddToFilenames(const VfsPath& pathname, const CFileInfo& UNUSED(fi
 
 QUERYHANDLER(GetMapList)
 {
-	std::vector<std::wstring> scenarioFilenames;
-	vfs::ForEachFile(g_VFS, L"maps/scenarios/", AddToFilenames, (uintptr_t)&scenarioFilenames, L"*.xml", vfs::DIR_RECURSIVE);
-	msg->scenarioFilenames = scenarioFilenames;
+#define GET_FILE_LIST(path, list) \
+	std::vector<std::wstring> list; \
+	vfs::ForEachFile(g_VFS, path, AddToFilenames, (uintptr_t)&list, L"*.xml", vfs::DIR_RECURSIVE); \
+	msg->list = list;
 
-	std::vector<std::wstring> skirmishFilenames;
-	vfs::ForEachFile(g_VFS, L"maps/skirmishes/", AddToFilenames, (uintptr_t)&skirmishFilenames, L"*.xml", vfs::DIR_RECURSIVE);
-	msg->skirmishFilenames = skirmishFilenames;
+	GET_FILE_LIST(L"maps/scenarios/", scenarioFilenames);
+	GET_FILE_LIST(L"maps/skirmishes/", skirmishFilenames);
+	GET_FILE_LIST(L"maps/tutorials/", tutorialFilenames);
+#undef GET_FILE_LIST
 }
 
 }

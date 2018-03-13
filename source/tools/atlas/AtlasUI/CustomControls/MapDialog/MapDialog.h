@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,9 +34,9 @@ public:
 	MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon);
 
 	/**
-	 * Returns VFS path of selected map with .xml extension, else empty string
+	 * Returns VFS path of the selected map with .xml extension, else empty string
 	 */
-	wxString GetFilename() const;
+	wxString GetSelectedFilePath() const;
 
 private:
 
@@ -50,10 +50,8 @@ private:
 	void OpenFile();
 	void SaveFile();
 
-	wxArrayString m_MapFilenames;
-	wxString m_Filename;
+	wxString m_FileName;
 	MapDialogType m_Type;
-	int m_SelectedPage;
 
 	DECLARE_EVENT_TABLE();
 };

@@ -29,15 +29,17 @@ enum {
 	ID_MapDialogFilename = 1,
 	ID_MapDialogNotebook,
 	ID_ScenarioPage,
-	ID_SkirmishPage
+	ID_SkirmishPage,
+	ID_TutorialPage
 };
 
 static const wxString scenarioPath(L"maps/scenarios/");
 static const wxString skirmishPath(L"maps/skirmishes/");
+static const wxString tutorialPath(L"maps/tutorials/");
 
 MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
 	: wxDialog(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(600,400), wxCAPTION|wxRESIZE_BORDER|wxCLOSE_BOX|wxSYSTEM_MENU),
-	m_Type(type), m_SelectedPage(0)
+	m_Type(type)
 {
 	Freeze();
 
@@ -59,14 +61,13 @@ MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
 		wxSizer* pageSizer = new wxBoxSizer(wxVERTICAL);
 		// TODO: Should display something nicer than raw VFS paths
 		wxListBox* listBox = new wxListBox(page, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_HSCROLL);
-		const std::vector<std::wstring>& scenarioFilenames = *qry.scenarioFilenames;
-		for (size_t i = 0; i < scenarioFilenames.size(); ++i)
+		for (const std::wstring& filename : *qry.scenarioFilenames)
 		{
-			wxString name = scenarioFilenames[i].substr(scenarioPath.Length());
-			listBox->Append(name, new wxStringClientData(scenarioFilenames[i]));
+			wxString name = filename.substr(scenarioPath.Length());
+			listBox->Append(name, new wxStringClientData(filename));
 		}
 
-		pageSizer->Add(listBox,  wxSizerFlags().Proportion(1).Expand().Align(wxBOTTOM));
+		pageSizer->Add(listBox, wxSizerFlags().Proportion(1).Expand());
 		page->SetSizer(pageSizer);
 		notebook->AddPage(page, _("Scenarios"));
 	}
@@ -75,16 +76,30 @@ MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
 		wxSizer* pageSizer = new wxBoxSizer(wxVERTICAL);
 		// TODO: Should display something nicer than raw VFS paths
 		wxListBox* listBox = new wxListBox(page, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_HSCROLL);
-		const std::vector<std::wstring>& skirmishFilenames = *qry.skirmishFilenames;
-		for (size_t i = 0; i < skirmishFilenames.size(); ++i)
+		for (const std::wstring& filename : *qry.skirmishFilenames)
 		{
-			wxString name = skirmishFilenames[i].substr(skirmishPath.Length());
-			listBox->Append(name, new wxStringClientData(skirmishFilenames[i]));
+			wxString name = filename.substr(skirmishPath.Length());
+			listBox->Append(name, new wxStringClientData(filename));
 		}
 
-		pageSizer->Add(listBox,  wxSizerFlags().Proportion(1).Expand());
+		pageSizer->Add(listBox, wxSizerFlags().Proportion(1).Expand());
 		page->SetSizer(pageSizer);
 		notebook->AddPage(page, _("Skirmishes"));
+	}
+	{
+		wxPanel* page = new wxPanel(notebook, ID_TutorialPage);
+		wxSizer* pageSizer = new wxBoxSizer(wxVERTICAL);
+		// TODO: Should display something nicer than raw VFS paths
+		wxListBox* listBox = new wxListBox(page, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE | wxLB_HSCROLL);
+		for (const std::wstring& filename : *qry.tutorialFilenames)
+		{
+			wxString name = filename.substr(tutorialPath.Length());
+			listBox->Append(name, new wxStringClientData(filename));
+		}
+
+		pageSizer->Add(listBox, wxSizerFlags().Proportion(1).Expand());
+		page->SetSizer(pageSizer);
+		notebook->AddPage(page, _("Tutorials"));
 	}
 
 	notebook->SetSelection(0);
@@ -95,14 +110,12 @@ MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
 
 	wxSizer* filenameSizer = new wxBoxSizer(wxHORIZONTAL);
 	filenameSizer->AddSpacer(10);
-	filenameSizer->Add(new wxStaticText(this, wxID_ANY, _("Map name: ")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
-	wxTextCtrl* filename = new wxTextCtrl(this, ID_MapDialogFilename, wxEmptyString);
-	if (m_Type == MAPDIALOG_OPEN)
-		filename->Disable();
+	filenameSizer->Add(new wxStaticText(this, wxID_ANY, _(m_Type == MAPDIALOG_SAVE ? "Map name: " : "Map path: ")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+	wxTextCtrl* filename = new wxTextCtrl(this, ID_MapDialogFilename, wxEmptyString, wxDefaultPosition, wxDefaultSize, m_Type == MAPDIALOG_OPEN ? wxTE_READONLY : 0L);
 	filenameSizer->Add(filename, wxSizerFlags().Proportion(1).Expand());
 	sizer->Add(filenameSizer, wxSizerFlags().Expand());
 
-	sizer->AddSpacer(20);
+	sizer->AddSpacer(10);
 
 	wxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
 	if (m_Type == MAPDIALOG_OPEN)
@@ -120,26 +133,48 @@ MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
 	Thaw();
 }
 
-wxString MapDialog::GetFilename() const
+wxString MapDialog::GetSelectedFilePath() const
 {
-	wxFileName filename(m_Filename, wxPATH_UNIX);
-	filename.SetExt(L"xml");
-	if (m_SelectedPage == 0)
-		return scenarioPath + filename.GetFullPath(wxPATH_UNIX);
-	else if (m_SelectedPage == 1)
-		return skirmishPath + filename.GetFullPath(wxPATH_UNIX);
-	else
+	wxNotebook* notebook = wxDynamicCast(FindWindow(ID_MapDialogNotebook), wxNotebook);
+	if (!notebook)
 		return wxEmptyString;
+
+	wxFileName fileName(m_FileName, wxPATH_UNIX);
+	fileName.SetExt(L"xml");
+	switch (notebook->GetSelection())
+	{
+	case 0:
+		return scenarioPath + fileName.GetFullPath(wxPATH_UNIX);
+	case 1:
+		return skirmishPath + fileName.GetFullPath(wxPATH_UNIX);
+	case 2:
+		return tutorialPath + fileName.GetFullPath(wxPATH_UNIX);
+	default:
+		return wxEmptyString;
+	}
 }
 
 void MapDialog::OnListBox(wxCommandEvent& evt)
 {
 	if (evt.GetInt() < 0)
-		m_Filename = wxEmptyString;
+		m_FileName = wxEmptyString;
 	else
-		m_Filename = evt.GetString();
+		m_FileName = evt.GetString();
 
-	wxDynamicCast(FindWindow(ID_MapDialogFilename), wxTextCtrl)->ChangeValue(m_Filename);
+	if (m_Type == MAPDIALOG_SAVE)
+		wxDynamicCast(FindWindow(ID_MapDialogFilename), wxTextCtrl)->ChangeValue(m_FileName);
+	else
+	{
+		wxString filePath = GetSelectedFilePath();
+		AtlasMessage::qVFSFileExists qry(filePath.wc_str());
+		qry.Post();
+		if (!filePath.IsEmpty() && qry.exists)
+		{
+			AtlasMessage::qVFSFileRealPath qry(filePath.wc_str());
+			qry.Post();
+			wxDynamicCast(FindWindow(ID_MapDialogFilename), wxTextCtrl)->ChangeValue(*qry.realPath);
+		}
+	}
 
 	if (evt.GetEventType() == wxEVT_COMMAND_LISTBOX_DOUBLECLICKED)
 	{
@@ -167,21 +202,26 @@ void MapDialog::OnSave(wxCommandEvent& WXUNUSED(evt))
 
 void MapDialog::OnFilename(wxCommandEvent& evt)
 {
-	m_Filename = evt.GetString();
+	m_FileName = evt.GetString();
 }
 
 void MapDialog::OnNotebookChanged(wxBookCtrlEvent& evt)
 {
-	m_SelectedPage = evt.GetSelection();
+	if (m_Type != MAPDIALOG_OPEN)
+		return;
+
+	wxWindow* window = FindWindow(ID_MapDialogFilename);
+	if (window)
+		wxDynamicCast(window, wxTextCtrl)->ChangeValue(wxEmptyString);
 }
 
 void MapDialog::OpenFile()
 {
-	wxString filename = GetFilename();
-	if (filename.empty())
+	wxString filePath = GetSelectedFilePath();
+	if (filePath.empty())
 		return;
 
-	AtlasMessage::qVFSFileExists qry(filename.wc_str());
+	AtlasMessage::qVFSFileExists qry(filePath.wc_str());
 	qry.Post();
 	if (!qry.exists)
 		return;
@@ -191,16 +231,16 @@ void MapDialog::OpenFile()
 
 void MapDialog::SaveFile()
 {
-	wxString filename = GetFilename();
-	if (filename.empty())
+	wxString filePath = GetSelectedFilePath();
+	if (filePath.empty())
 		return;
 
 	// TODO: this test would work better outside the VFS
-	AtlasMessage::qVFSFileExists qry(filename.wc_str());
+	AtlasMessage::qVFSFileExists qry(filePath.wc_str());
 	qry.Post();
 	if (qry.exists)
 	{
-		if (wxMessageBox(_("WARNING: '") + filename + _("' already exists, it may be overwritten. Continue?"), _("Overwrite map confirmation"), wxICON_EXCLAMATION | wxYES_NO) != wxYES)
+		if (wxMessageBox(_("WARNING: '") + filePath + _("' already exists, it may be overwritten. Continue?"), _("Overwrite map confirmation"), wxICON_EXCLAMATION | wxYES_NO) != wxYES)
 			return;
 	}
 
