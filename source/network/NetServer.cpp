@@ -959,8 +959,8 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	if (server.m_LobbyAuth && usernameWithoutRating.LowerCase() != session->GetUserName().LowerCase())
 	{
 		LOGERROR("Net server: lobby auth: %s tried joining as %s",
-			usernameWithoutRating.ToUTF8(),
-			session->GetUserName().ToUTF8());
+			session->GetUserName().ToUTF8(),
+			usernameWithoutRating.ToUTF8());
 		session->Disconnect(NDR_LOBBY_AUTH_FAILED);
 		return true;
 	}
