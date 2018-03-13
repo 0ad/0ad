@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -205,7 +205,7 @@ void MapDialog::OnFilename(wxCommandEvent& evt)
 	m_FileName = evt.GetString();
 }
 
-void MapDialog::OnNotebookChanged(wxBookCtrlEvent& evt)
+void MapDialog::OnNotebookChanged(wxBookCtrlEvent& WXUNUSED(evt))
 {
 	if (m_Type != MAPDIALOG_OPEN)
 		return;
