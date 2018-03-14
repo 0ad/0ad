@@ -413,8 +413,8 @@ createStragglerTrees(
 			clForest, 1,
 			clHill, 1,
 			clPlayer, 0,
-			clMetal, 1,
-			clRock, 1)
+			clMetal, 4,
+			clRock, 4)
 	],
 	clForest,
 	stragglerTrees);
@@ -435,8 +435,8 @@ createObjectGroupsDeprecated(
 			clWater, 1,
 			clForest, 1,
 			clPlayer, 0,
-			clMetal, 1,
-			clRock, 1)
+			clMetal, 4,
+			clRock, 4)
 	],
 	stragglerTrees);
 Engine.SetProgress(95);

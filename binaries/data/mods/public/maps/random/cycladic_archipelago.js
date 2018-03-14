@@ -217,7 +217,7 @@ Engine.SetProgress(46);
 g_Map.log("Creating small stone mines");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroupsByAreasDeprecated(group, 0,
-	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 2)],
+	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 6)],
 	scaleByMapSize(4,16), 200, areas
 );
 Engine.SetProgress(50);
@@ -307,7 +307,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 5, clForest, 1, clHill, 1, clCity, 10, clMetal, 6, clRock, 2, clFood, 8),
+	avoidClasses(clWater, 5, clForest, 1, clHill, 1, clCity, 10, clMetal, 6, clRock, 4, clFood, 8),
 	3 * numPlayers, 50
 );
 Engine.SetProgress(82);
@@ -315,7 +315,7 @@ Engine.SetProgress(82);
 g_Map.log("Creating berry bushes");
 group = new SimpleGroup([new SimpleObject(oBerryBush, 5,7, 0,3)], true, clFood);
 createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clWater, 2, clForest, 1, clHill, 1, clCity, 10, clMetal, 6, clRock, 2, clFood, 8),
+	avoidClasses(clWater, 2, clForest, 1, clHill, 1, clCity, 10, clMetal, 6, clRock, 4, clFood, 8),
 	1.5 * numPlayers, 100
 );
 Engine.SetProgress(86);

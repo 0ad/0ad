@@ -223,7 +223,7 @@ createObjectGroupsDeprecated(
 		true, clFood
 	),
 	0,
-	avoidClasses(clWater, 3, clPlayer, 20, clFood, 12, clRock, 7, clMetal, 2),
+	avoidClasses(clWater, 3, clPlayer, 20, clFood, 12, clRock, 4, clMetal, 4),
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 Engine.SetProgress(85);
@@ -235,7 +235,7 @@ createObjectGroupsDeprecated(
 		true, clForest
 	),
 	0,
-	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 1, clRock, 7, clWater, 1),
+	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 4, clRock, 4, clWater, 1),
 	scaleByMapSize(70, 500)
 );
 

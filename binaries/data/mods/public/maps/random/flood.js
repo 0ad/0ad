@@ -198,14 +198,14 @@ createObjectGroupsDeprecated(
 var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(0.7));
 createForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
-	[avoidClasses(clPlayer, 25, clForest, 10, clBaseResource, 3, clMetal, 6, clRock, 3, clMountain, 2), stayClasses(clHill, 6)],
+	[avoidClasses(clPlayer, 25, clForest, 10, clBaseResource, 3, clMetal, 6, clRock, 6, clMountain, 2), stayClasses(clHill, 6)],
 	clForest,
 	forestTrees);
 
 let types = [oTree1, oTree2, oTree4, oTree3];
 createStragglerTrees(
 	types,
-	[avoidClasses(clBaseResource, 2, clMetal, 6, clRock, 3, clMountain, 2, clPlayer, 25), stayClasses(clHill, 6)],
+	[avoidClasses(clBaseResource, 2, clMetal, 6, clRock, 6, clMountain, 2, clPlayer, 25), stayClasses(clHill, 6)],
 	clForest,
 	stragglerTrees);
 Engine.SetProgress(65);
