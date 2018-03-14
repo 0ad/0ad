@@ -690,10 +690,14 @@ SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const 
 				// Let line_height be the maximum m_Height we encounter.
 				line_height = std::max(line_height, Feedback2.m_Size.cy);
 
-				line_width += Feedback2.m_Size.cx;
-
+				// If the current word is an explicit new line ("\n"),
+				// break now before adding the width of this character.
+				// ("\n" doesn't have a glyph, thus is given the same width as
+				// the "missing glyph" character by CFont::GetCharacterWidth().)
 				if (WordWrapping && Feedback2.m_NewLine)
 					break;
+
+				line_width += Feedback2.m_Size.cx;
 			}
 
 			float dx = 0.f;

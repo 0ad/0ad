@@ -144,13 +144,11 @@ g_SelectionPanels.Command = {
 		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
 
 		let size = data.button.size;
-		// count on square buttons, so size.bottom is the width too
-		let spacer = size.bottom + 1;
 		// relative to the center ( = 50%)
 		size.rleft = 50;
 		size.rright = 50;
-		// offset from the center calculation
-		size.left = (data.i - data.numberOfItems / 2) * spacer;
+		// offset from the center calculation, count on square buttons, so size.bottom is the width too
+		size.left = (data.i - data.numberOfItems / 2) * (size.bottom + 1);
 		size.right = size.left + size.bottom;
 		data.button.size = size;
 		return true;
@@ -198,13 +196,11 @@ g_SelectionPanels.AllyCommand = {
 		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + data.item.icon;
 
 		let size = data.button.size;
-		// count on square buttons, so size.bottom is the width too
-		let spacer = size.bottom + 1;
 		// relative to the center ( = 50%)
 		size.rleft = 50;
 		size.rright = 50;
-		// offset from the center calculation
-		size.left = (data.i - data.numberOfItems / 2) * spacer;
+		// offset from the center calculation, count on square buttons, so size.bottom is the width too
+		size.left = (data.i - data.numberOfItems / 2) * (size.bottom + 1);
 		size.right = size.left + size.bottom;
 		data.button.size = size;
 
@@ -278,8 +274,7 @@ g_SelectionPanels.Construction = {
 		if (template.icon)
 			data.icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
 
-		let index = data.i + getNumberOfRightPanelButtons();
-		setPanelObjectPosition(data.button, index, data.rowLength);
+		setPanelObjectPosition(data.button, data.i + getNumberOfRightPanelButtons(), data.rowLength);
 		return true;
 	}
 };
@@ -314,13 +309,14 @@ g_SelectionPanels.Formation = {
 
 		let formationInfo = g_FormationsInfo.get(data.item);
 		let formationOk = canMoveSelectionIntoFormation(data.item);
+		let unitIds = data.unitEntStates.map(state => state.id);
 		let formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
-			"ents": data.unitEntStates.map(state => state.id),
+			"ents": unitIds,
 			"formationTemplate": data.item
 		});
 
 		data.button.onPress = function() {
-			performFormation(data.unitEntStates.map(state => state.id), data.item);
+			performFormation(unitIds, data.item);
 		};
 
 		let tooltip = translate(formationInfo.name);
@@ -372,26 +368,21 @@ g_SelectionPanels.Garrison = {
 
 		data.countDisplay.caption = data.item.ents.length || "";
 
-		let garrisonedUnitOwner = entState.player;
-
 		let canUngarrison =
 			g_ViewedPlayer == data.player ||
-			g_ViewedPlayer == garrisonedUnitOwner;
+			g_ViewedPlayer == entState.player;
 
 		data.button.enabled = canUngarrison && controlsPlayer(g_ViewedPlayer);
 
-		let tooltip = canUngarrison || g_IsObserver ?
+		data.button.tooltip = (canUngarrison || g_IsObserver ?
 			sprintf(translate("Unload %(name)s"), { "name": getEntityNames(template) }) + "\n" +
 			translate("Single-click to unload 1. Shift-click to unload all of this type.") :
-			getEntityNames(template);
+			getEntityNames(template)) + "\n" +
+			sprintf(translate("Player: %(playername)s"), {
+				"playername": g_Players[entState.player].name
+			});
 
-		tooltip += "\n" + sprintf(translate("Player: %(playername)s"), {
-			"playername": g_Players[garrisonedUnitOwner].name
-		});
-
-		data.button.tooltip = tooltip;
-
-		data.guiSelection.sprite = getPlayerHighlightColor(garrisonedUnitOwner);
+		data.guiSelection.sprite = getPlayerHighlightColor(entState.player);
 		data.button.sprite_disabled = data.button.sprite;
 
 		// Selection panel buttons only appear disabled if they
@@ -442,8 +433,7 @@ g_SelectionPanels.Gate = {
 		data.guiSelection.hidden = data.item.hidden;
 		data.icon.sprite = "stretched:" + data.item.icon;
 
-		let index = data.i + getNumberOfRightPanelButtons();
-		setPanelObjectPosition(data.button, index, data.rowLength);
+		setPanelObjectPosition(data.button, data.i + getNumberOfRightPanelButtons(), data.rowLength);
 		return true;
 	}
 };
@@ -524,8 +514,7 @@ g_SelectionPanels.Pack = {
 
 		data.button.enabled = controlsPlayer(data.player);
 
-		let index = data.i + getNumberOfRightPanelButtons();
-		setPanelObjectPosition(data.button, index, data.rowLength);
+		setPanelObjectPosition(data.button, data.i + getNumberOfRightPanelButtons(), data.rowLength);
 		return true;
 	}
 };
@@ -680,7 +669,6 @@ g_SelectionPanels.Research = {
 			g_SelectionPanels.Research.hideItem(data.i, data.rowLength);
 			return false;
 		}
-		let techs = data.item.tech.pair ? [data.item.tech.bottom, data.item.tech.top] : [data.item.tech];
 
 		// Start position (start at the bottom)
 		let position = data.i + data.rowLength;
@@ -696,11 +684,9 @@ g_SelectionPanels.Research = {
 
 		// Handle one or two techs (tech pair)
 		let player = data.player;
-		for (let i in techs)
+		let playerState = GetSimState().players[player];
+		for (let tech of data.item.tech.pair ? [data.item.tech.bottom, data.item.tech.top] : [data.item.tech])
 		{
-			let tech = techs[i];
-			let playerState = GetSimState().players[player];
-
 			// Don't change the object returned by GetTechnologyData
 			let template = clone(GetTechnologyData(tech, playerState.civ));
 			if (!template)
@@ -778,18 +764,15 @@ g_SelectionPanels.Research = {
 			};
 
 			button.onPressRight = function () {
-				let researcherTemplate;
-				for (let selectedEntity of data.unitEntStates)
-					if (selectedEntity.id == data.item.researchFacilityId)
-						researcherTemplate = selectedEntity.template;
-				showTemplateDetails(tech, GetTemplateData(researcherTemplate).nativeCiv);
+				showTemplateDetails(
+					tech,
+					GetTemplateData(data.unitEntStates.find(state => state.id == data.item.researchFacilityId).template).nativeCiv);
 			};
 
 			if (data.item.tech.pair)
 			{
 				// On mouse enter, show a cross over the other icon
-				let otherPosition = (position + data.rowLength) % (2 * data.rowLength);
-				let unchosenIcon = Engine.GetGUIObjectByName("unitResearchUnchosenIcon[" + otherPosition + "]");
+				let unchosenIcon = Engine.GetGUIObjectByName("unitResearchUnchosenIcon[" + (position + data.rowLength) % (2 * data.rowLength) + "]");
 				button.onMouseEnter = function() {
 					unchosenIcon.hidden = false;
 				};
@@ -920,13 +903,14 @@ g_SelectionPanels.Stance = {
 	},
 	"setupButton": function(data)
 	{
-		data.button.onPress = function() { performStance(data.unitEntStates.map(state => state.id), data.item); };
+		let unitIds = data.unitEntStates.map(state => state.id);
+		data.button.onPress = function() { performStance(unitIds, data.item); };
 
 		data.button.tooltip = getStanceDisplayName(data.item) + "\n" +
 			"[font=\"sans-13\"]" + getStanceTooltip(data.item) + "[/font]";
 
 		data.guiSelection.hidden = !Engine.GuiInterfaceCall("IsStanceSelected", {
-			"ents": data.unitEntStates.map(state => state.id),
+			"ents": unitIds,
 			"stance": data.item
 		});
 		data.icon.sprite = "stretched:session/icons/stances/" + data.item + ".png";
@@ -957,8 +941,9 @@ g_SelectionPanels.Training = {
 			"player": data.player
 		});
 
+		let unitIds = data.unitEntStates.map(status => status.id)
 		let [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
-			getTrainingStatus(data.unitEntStates.map(status => status.id), data.item, data.playerState);
+			getTrainingStatus(unitIds, data.item, data.playerState);
 
 		let trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 
@@ -971,7 +956,7 @@ g_SelectionPanels.Training = {
 
 		data.button.onPress = function() {
 			if (!neededResources)
-				addTrainingToQueue(data.unitEntStates.map(state => state.id), data.item, data.playerState);
+				addTrainingToQueue(unitIds, data.item, data.playerState);
 		};
 		data.button.onPressRight = function() {
 			showTemplateDetails(data.item);
@@ -986,7 +971,7 @@ g_SelectionPanels.Training = {
 			getVisibleEntityClassesFormatted(template),
 			getAurasTooltip(template),
 			getEntityTooltip(template),
-			getEntityCostTooltip(template, data.unitEntStates[0].id, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
+			getEntityCostTooltip(template, unitIds[0], buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
 		];
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
@@ -1141,8 +1126,7 @@ g_SelectionPanels.Upgrade = {
 		}
 		progressOverlay.hidden = !isUpgrading;
 
-		let index = data.i + getNumberOfRightPanelButtons();
-		setPanelObjectPosition(data.button, index, data.rowLength);
+		setPanelObjectPosition(data.button, data.i + getNumberOfRightPanelButtons(), data.rowLength);
 		return true;
 	}
 };

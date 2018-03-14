@@ -6,8 +6,9 @@
       <mesh>skeletal/elephant_african_forest.dae</mesh>
       <props>
         <prop actor="units/ptolemies/elephantry_c_d.xml" attachpoint="rider"/>
-        <prop actor="props/units/turret_ptol_champ_ele.xml" attachpoint="turret"/>
-        <prop actor="units/seleucids/elephantry_c_r.xml" attachpoint="turret"/>
+        <prop actor="props/units/elephant/ptol_turret_small.xml" attachpoint="turret"/>
+        <prop actor="props/units/elephant/cushion.xml" attachpoint="turret"/>
+        <prop actor="units/ptolemies/elephantry_c_r.xml" attachpoint="turret"/>
       </props>
     </variant>
   </group>

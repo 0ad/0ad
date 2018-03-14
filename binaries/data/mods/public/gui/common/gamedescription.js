@@ -225,15 +225,11 @@ function getGameDescription()
 			"value": translate("No winner will be determined, even if everyone is defeated.")
 		});
 
-	let victoryConditions = g_GameAttributes.settings.VictoryConditions.map(victoryConditionName =>
-		g_VictoryConditions.find(victoryCondition => victoryCondition.Name == victoryConditionName) || {
-			"Name": victoryConditionName,
-			"Description": ""
-		});
-
-	for (let victoryCondition of victoryConditions.sort((a, b) =>
-		a.GUIOrder - b.GUIOrder || (a.Title > b.Title ? 1 : a.Title > b.Title ? -1 : 0)))
+	for (let victoryCondition of g_VictoryConditions)
 	{
+		if (g_GameAttributes.settings.VictoryConditions.indexOf(victoryCondition.Name) == -1)
+			continue;
+
 		let title = translateVictoryCondition(victoryCondition.Name);
 		if (victoryCondition.Name == "wonder")
 			title = sprintf(

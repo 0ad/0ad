@@ -761,9 +761,9 @@ void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 	MapDialog dlg (NULL, MAPDIALOG_OPEN, m_Icon);
 	if (dlg.ShowModal() == wxID_OK)
 	{
-		wxString filename = dlg.GetFilename();
-		if (!OpenFile(filename, filename))
-			wxLogError(_("Map '%ls' does not exist"), filename.c_str());
+		wxString filePath = dlg.GetSelectedFilePath();
+		if (!OpenFile(filePath, filePath))
+			wxLogError(_("Map '%ls' does not exist"), filePath.c_str());
 	}
 
 	// TODO: Make this a non-undoable command
@@ -846,16 +846,16 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 	MapDialog dlg(NULL, MAPDIALOG_SAVE, m_Icon);
 	if (dlg.ShowModal() == wxID_OK)
 	{
-		wxString filename(dlg.GetFilename());
-		wxBusyInfo busy(_("Saving ") + filename);
+		wxString filePath(dlg.GetSelectedFilePath());
+		wxBusyInfo busy(_("Saving ") + filePath);
 		wxBusyCursor busyc;
 
 		m_ToolManager.SetCurrentTool(_T(""));
 
-		std::wstring map(filename.wc_str());
+		std::wstring map(filePath.wc_str());
 		POST_MESSAGE(SaveMap, (map));
 
-		SetOpenFilename(filename);
+		SetOpenFilename(filePath);
 
 		// Wait for it to finish saving
 		qPing qry;

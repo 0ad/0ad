@@ -820,8 +820,8 @@ var g_Checkboxes = Object.assign(
 				if (checked)
 				{
 					g_GameAttributes.settings.VictoryConditions.push(victoryCondition.Name);
-					if (victoryCondition.Set)
-						for (let setting in victoryCondition.ChangeWhenChecked)
+					if (victoryCondition.ChangeOnChecked)
+						for (let setting in victoryCondition.ChangeOnChecked)
 							g_Checkboxes[setting].set(victoryCondition.ChangeOnChecked[setting]);
 				}
 				else

@@ -55,7 +55,6 @@ function setupUnitPanel(guiName, unitEntStates, playerState)
 		return;
 	}
 
-	let selection = g_Selection.toList();
 	let items = g_SelectionPanels[guiName].getItems(unitEntStates);
 
 	if (!items || !items.length)
@@ -138,8 +137,9 @@ function updateUnitCommands(entStates, supplementalDetailsPanel, commandsPanel)
 
 	if (g_IsObserver || entStates.every(entState => controlsPlayer(entState.player)))
 	{
-		for (var guiName of g_PanelsOrder)
+		for (let guiName of g_PanelsOrder)
 		{
+
 			if (g_SelectionPanels[guiName].conflictsWith &&
 			    g_SelectionPanels[guiName].conflictsWith.some(p => g_SelectionPanels[p].used))
 				continue;
@@ -168,7 +168,7 @@ function updateUnitCommands(entStates, supplementalDetailsPanel, commandsPanel)
 	}
 
 	// Hides / unhides Unit Panels (panels should be grouped by type, not by order, but we will leave that for another time)
-	for (var panelName in g_SelectionPanels)
+	for (let panelName in g_SelectionPanels)
 		Engine.GetGUIObjectByName("unit" + panelName + "Panel").hidden = !g_SelectionPanels[panelName].used;
 }
 

@@ -349,9 +349,9 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 					}
 				}
 
-				else if ((unitAIState != "INDIVIDUAL.PICKUP.LOADING" &&
-				          time - ship.getMetadata(PlayerID, "timeGarrison") > 5) ||
-				          time - ship.getMetadata(PlayerID, "timeGarrison") > 8)
+				else if (unitAIState != "INDIVIDUAL.PICKUP.LOADING" &&
+				         time - ship.getMetadata(PlayerID, "timeGarrison") > 5 ||
+				         time - ship.getMetadata(PlayerID, "timeGarrison") > 8)
 				{
 					retry = true;
 					ent.setMetadata(PlayerID, "timeGarrison", time);
