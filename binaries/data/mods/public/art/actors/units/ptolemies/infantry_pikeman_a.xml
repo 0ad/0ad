@@ -3,6 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/shields/mace_pez_adv.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
@@ -12,58 +13,49 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Armour-Linen-Quilted">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="Armor-Linen-Quilted-01">
       <textures>
-        <texture file="skeletal/ptol_pikeman_a.png" name="baseTex"/>
+        <texture file="skeletal/ptol_pikeman_a_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armour-Linen-Quilted 1">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+    <variant frequency="1" name="Armor-Linen-Quilted-02">
       <textures>
-        <texture file="skeletal/ptol_isp_a_1.png" name="baseTex"/>
+        <texture file="skeletal/ptol_pikeman_a_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armour-Linen-Quilted 2">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="Armor-Linen-Quilted-03">
       <textures>
-        <texture file="skeletal/ptol_pikeman_a_2.png" name="baseTex"/>
+        <texture file="skeletal/ptol_pikeman_a_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armour-Linen-Quilted 3">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="Armor-Linen-Quilted-04">
       <textures>
-        <texture file="skeletal/ptol_pikeman_a_3.png" name="baseTex"/>
+        <texture file="skeletal/ptol_pikeman_a_04.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armour-Linen-Quilted 4">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="Armor-Linen-Quilted-05">
       <textures>
-        <texture file="skeletal/ptol_pikeman_a_4.png" name="baseTex"/>
+        <texture file="skeletal/ptol_pikeman_a_05.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armour-Linen-Quilted 5">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="Armor-Linen-Quilted-06">
       <textures>
-        <texture file="skeletal/ptol_pikeman_a_5.png" name="baseTex"/>
+        <texture file="skeletal/ptol_pikeman_a_06.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armour-Linen-Quilted 6">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="Armor-Linen-Quilted-07">
       <textures>
-        <texture file="skeletal/ptol_pikeman_a_6.png" name="baseTex"/>
+        <texture file="skeletal/ptol_pikeman_a_07.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armour-Linen-Quilted 7">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="Armor-Linen-Quilted-08">
       <textures>
-        <texture file="skeletal/ptol_pikeman_a_7.png" name="baseTex"/>
+        <texture file="skeletal/ptol_pikeman_a_08.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Armour-Linen-Quilted 8">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="Armor-Linen-Quilted-09">
       <textures>
-        <texture file="skeletal/ptol_pikeman_a_8.png" name="baseTex"/>
+        <texture file="skeletal/ptol_pikeman_a_09.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
