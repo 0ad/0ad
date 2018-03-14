@@ -83,8 +83,8 @@ function distanceToPlayers(x, z)
 	let r = Infinity;
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		var dx = x - playerPosition[i].x;
-		var dz = z - playerPosition[i].y;
+		var dx = x - tilesToFraction(playerPosition[i].x);
+		var dz = z - tilesToFraction(playerPosition[i].y);
 		r = Math.min(r, Math.square(dx) + Math.square(dz));
 	}
 	return Math.sqrt(r);
