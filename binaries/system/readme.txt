@@ -16,7 +16,8 @@ Autostart:
 -autostart-team=PLAYER:TEAM     sets the team for PLAYER (e.g. 2:2).
 -autostart-nonvisual            disable any graphics and sounds
 -autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME located in simulation/data/settings/victory_conditions/
--autostart-victoryduration=NUM  sets the victory duration NUM for specific victory conditions
+-autostart-wonderduration=NUM   sets the victory duration NUM for wonder victory conditions (default 10 minutes)
+-autostart-relicduration=NUM    sets the victory duration NUM for relic victory conditions (default 10 minutes)
 Multiplayer:
 -autostart-playername=NAME      sets local player NAME (default 'anonymous')
 -autostart-host                 sets multiplayer host mode
