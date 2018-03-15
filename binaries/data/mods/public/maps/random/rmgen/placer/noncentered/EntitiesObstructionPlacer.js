@@ -17,7 +17,6 @@ EntitiesObstructionPlacer.prototype.place = function(constraint)
 	{
 		let halfObstructionSize = getObstructionSize(entity.templateName, this.margin).div(2);
 
-		// Place the entity if all points are within the boundaries and don't collide with the other entities
 		let obstructionCorners = [
 			new Vector2D(-halfObstructionSize.x, -halfObstructionSize.y),
 			new Vector2D(-halfObstructionSize.x, +halfObstructionSize.y),

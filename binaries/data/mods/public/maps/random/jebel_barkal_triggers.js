@@ -14,8 +14,6 @@ const dryRun = false;
  */
 const showDebugLog = false;
 
-// TODO: harass attackers
-
 var jebelBarkal_rank = "Advanced";
 
 /**
@@ -29,11 +27,13 @@ var jebelBarkal_templateClasses = deepfreeze({
 	"champion_infantry_melee": "Champion+Infantry+Melee",
 	"champion_infantry_ranged": "Champion+Infantry+Ranged",
 	"champion_cavalry": "Champion+Cavalry",
+	"champion_cavalry_melee": "Champion+Cavalry+Melee",
 	"citizenSoldiers": "CitizenSoldier",
 	"citizenSoldier_infantry": "CitizenSoldier+Infantry",
 	"citizenSoldier_infantry_melee": "CitizenSoldier+Infantry+Melee",
 	"citizenSoldier_infantry_ranged": "CitizenSoldier+Infantry+Ranged",
 	"citizenSoldier_cavalry": "CitizenSoldier+Cavalry",
+	"citizenSoldier_cavalry_melee": "CitizenSoldier+Cavalry+Melee",
 	"healers": "Healer",
 	"females": "FemaleCitizen"
 });
@@ -71,7 +71,7 @@ var scaleByMapSize = (min, max) => min + (max - min) * (TriggerHelper.GetMapSize
 var jebelBarkal_cityPatrolGroup_count = time => scaleByTime(time, 3, scaleByMapSize(3, 10));
 var jebelBarkal_cityPatrolGroup_interval = time => scaleByTime(time, 5, 3);
 var jebelBarkal_cityPatrolGroup_balancing = {
-	"buildingClasses": ["Wonder", "Temple", "CivCentre", "Fortress", "Barracks", "Embassy"],
+	"buildingClasses": ["Wonder", "Temple", "CivCentre", "Fortress", "Barracks+!Stables", "Embassy"],
 	"unitCount": time => Math.min(20, scaleByTime(time, 10, 45)),
 	"unitComposition": (time, heroes) => [
 		{
@@ -90,7 +90,8 @@ var jebelBarkal_cityPatrolGroup_balancing = {
 			"templates": jebelBarkal_templates.citizenSoldier_infantry_ranged,
 			"frequency": scaleByTime(time, 3, 0)
 		}
-	]
+	],
+	"targetClasses": "Unit+!Ship"
 };
 
 /**
@@ -99,19 +100,19 @@ var jebelBarkal_cityPatrolGroup_balancing = {
 var jebelBarkal_attackInterval = time => randFloat(5, 7);
 
 /**
- * Frequently cavalry is spawned at few buildings to harass the enemy trade.
- */
-var jebelBarkal_harassInterval = time => randFloat(6, 8);
-
-/**
  * Assume gaia to be the native kushite player.
  */
 var jebelBarkal_playerID = 0;
 
 /**
- * Soldiers will patrol along the city grid.
+ * City patrols soldiers will patrol along these triggerpoints on the crossings of the city paths.
  */
-var jebelBarkal_triggerPointPath = "A";
+var jebelBarkal_CityPatrolGroup_triggerPointPath = "A";
+
+/**
+ * Attackers will patrol these points after having finished the attack-walk order.
+ */
+var jebelBarkal_AttackGroup_triggerPointPatrol = "B";
 
 /**
  * Attacker groups approach these player buildings and attack enemies of the given classes encountered.
@@ -119,14 +120,9 @@ var jebelBarkal_triggerPointPath = "A";
 var jebelBarkal_pathTargetClasses = "CivCentre Wonder";
 
 /**
- * Soldiers and siege towers prefer these targets when attacking or patroling.
+ * Number of points the attackers patrol.
  */
-var jebelBarkal_soldierTargetClasses = "Unit+!Ship";
-
-/**
- * Elephants focus these units when attacking.
- */
-var jebelBarkal_elephantTargetClasses = "Defensive SiegeEngine";
+var jebelBarkal_patrolPointCount = 6;
 
 /**
  * This defines which units are spawned and garrisoned at the gamestart per building.
@@ -137,7 +133,7 @@ var jebelBarkal_buildingGarrison = [
 		"unitTemplates": jebelBarkal_templates.champions
 	},
 	{
-		"buildingClasses": ["Barracks", "Embassy"],
+		"buildingClasses": ["Barracks+!Stables", "Embassy"],
 		"unitTemplates": [...jebelBarkal_templates.citizenSoldiers, ...jebelBarkal_templates.champions]
 	},
 	{
@@ -149,7 +145,7 @@ var jebelBarkal_buildingGarrison = [
 		"unitTemplates": jebelBarkal_templates.elephants
 	},
 	{
-		"buildingClasses": ["Stable"],
+		"buildingClasses": ["Stables"],
 		"unitTemplates": jebelBarkal_templates.champion_cavalry
 	},
 	{
@@ -170,6 +166,7 @@ var jebelBarkal_buildingGarrison = [
  */
 var jebelBarkal_attackerGroup_balancing = [
 	{
+		// This should be the most influential building
 		"buildingClasses": ["Wonder"],
 		"unitCount": time => scaleByTime(time, 0, 85),
 		"unitComposition": (time, heroes) => [
@@ -198,7 +195,8 @@ var jebelBarkal_attackerGroup_balancing = [
 				"templates": jebelBarkal_templates.citizenSoldier_infantry_ranged,
 				"frequency": scaleByTime(time, 1, 0)
 			}
-		]
+		],
+		"targetClasses": "Unit+!Ship"
 	},
 	{
 		"buildingClasses": ["Fortress"],
@@ -212,12 +210,18 @@ var jebelBarkal_attackerGroup_balancing = [
 			{
 				"templates": jebelBarkal_templates.champions,
 				"frequency": scaleByTime(time, 0, 1)
+			},
+			{
+				"templates": jebelBarkal_templates.citizenSoldiers,
+				"frequency": scaleByTime(time, 1, 0)
 			}
-		]
+		],
+		"targetClasses": "Unit+!Ship"
 	},
 	{
+		// These should only train the strongest units
 		"buildingClasses": ["Temple"],
-		"unitCount": time => Math.min(45, scaleByTime(time, 0, 90)),
+		"unitCount": time => Math.min(45, scaleByTime(time, -30, 90)),
 		"unitComposition": (time, heroes) => [
 			{
 				"templates": jebelBarkal_templates.heroes,
@@ -236,7 +240,8 @@ var jebelBarkal_attackerGroup_balancing = [
 				"templates": jebelBarkal_templates.healers,
 				"frequency": randFloat(0.05, 0.2)
 			}
-		]
+		],
+		"targetClasses": "Unit+!Ship"
 	},
 	{
 		"buildingClasses": ["CivCentre"],
@@ -255,32 +260,34 @@ var jebelBarkal_attackerGroup_balancing = [
 				"templates": jebelBarkal_templates.citizenSoldiers,
 				"frequency": scaleByTime(time, 1, 0)
 			}
-		]
+		],
+		"targetClasses": "Unit+!Ship"
 	},
 	{
-		"buildingClasses": ["Stable"],
+		"buildingClasses": ["Stables"],
 		"unitCount": time => Math.min(30, scaleByTime(time, 0, 80)),
-		"harasserSize": time => Math.min(20, scaleByTime(time, 0, 50)),
 		"unitComposition": (time, heroes) => [
 			{
-				"templates": jebelBarkal_templates.citizenSoldier_cavalry,
+				"templates": jebelBarkal_templates.citizenSoldier_cavalry_melee,
 				"frequency": scaleByTime(time, 2, 0)
 			},
 			{
-				"templates": jebelBarkal_templates.champion_cavalry,
+				"templates": jebelBarkal_templates.champion_cavalry_melee,
 				"frequency": scaleByTime(time, 0, 1)
 			}
-		]
+		],
+		"targetClasses": "Trader+!Ship SiegeEngine FemaleCitizen"
 	},
 	{
-		"buildingClasses": ["Barracks", "Embassy"],
+		"buildingClasses": ["Barracks+!Stables", "Embassy"],
 		"unitCount": time => Math.min(35, scaleByTime(time, 0, 70)),
 		"unitComposition": (time, heroes) => [
 			{
 				"templates": jebelBarkal_templates.citizenSoldier_infantry,
 				"frequency": 1
 			}
-		]
+		],
+		"targetClasses": "Unit+!Ship"
 	},
 	{
 		"buildingClasses": ["ElephantStables"],
@@ -290,7 +297,8 @@ var jebelBarkal_attackerGroup_balancing = [
 				"templates": jebelBarkal_templates.elephants,
 				"frequency": 1
 			}
-		]
+		],
+		"targetClasses": "Defensive SiegeEngine Monument"
 	}
 ];
 
@@ -355,6 +363,8 @@ Trigger.prototype.JebelBarkal_SpawnCityPatrolGroups = function()
 	let time = TriggerHelper.GetMinutes();
 	let groupCount = Math.floor(Math.max(0, jebelBarkal_cityPatrolGroup_count(time)) - this.jebelBarkal_patrolingUnits.length);
 
+	this.debugLog("Spawning " + groupCount + " city patrol groups, " + this.jebelBarkal_patrolingUnits.length + " exist");
+
 	for (let i = 0; i < groupCount; ++i)
 	{
 		let spawnEnt = pickRandom(this.jebelBarkal_patrolGroupSpawnPoints);
@@ -363,8 +373,7 @@ Trigger.prototype.JebelBarkal_SpawnCityPatrolGroups = function()
 			jebelBarkal_cityPatrolGroup_balancing.unitComposition(time, this.jebelBarkal_heroes),
 			jebelBarkal_cityPatrolGroup_balancing.unitCount(time));
 
-		this.debugLog("Spawning " + groupCount + " city patrol groups, " +
-			this.jebelBarkal_patrolingUnits.length + " exist, templates:\n" + uneval(templateCounts));
+		this.debugLog(uneval(templateCounts));
 
 		let groupEntities = this.JebelBarkal_SpawnTemplates(spawnEnt, templateCounts);
 
@@ -375,16 +384,16 @@ Trigger.prototype.JebelBarkal_SpawnCityPatrolGroups = function()
 
 		TriggerHelper.SetUnitFormation(jebelBarkal_playerID, groupEntities, pickRandom(jebelBarkal_formations));
 
-		for (let entTriggerPoint of this.GetTriggerPoints(jebelBarkal_triggerPointPath))
+		for (let patrolTarget of shuffleArray(this.GetTriggerPoints(jebelBarkal_CityPatrolGroup_triggerPointPath)))
 		{
-			let pos = TriggerHelper.GetEntityPosition2D(entTriggerPoint);
+			let pos = TriggerHelper.GetEntityPosition2D(patrolTarget);
 			ProcessCommand(jebelBarkal_playerID, {
 				"type": "patrol",
 				"entities": groupEntities,
 				"x": pos.x,
 				"z": pos.y,
 				"targetClasses": {
-					"attack": jebelBarkal_soldierTargetClasses
+					"attack": jebelBarkal_cityPatrolGroup_balancing.targetClasses
 				},
 				"queued": true,
 				"allowCapture": false
@@ -417,12 +426,15 @@ Trigger.prototype.JebelBarkal_SpawnTemplates = function(spawnEnt, templateCounts
  */
 Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 {
-	let time = TriggerHelper.GetMinutes();
-	this.debugLog("Attacker wave");
+	if (!this.jebelBarkal_attackerGroupSpawnPoints)
+		return;
 
 	let targets = TriggerHelper.GetAllPlayersEntitiesByClass(jebelBarkal_pathTargetClasses);
 	if (!targets.length)
 		return;
+
+	let time = TriggerHelper.GetMinutes();
+	this.debugLog("Attacker wave");
 
 	let spawnedAnything = false;
 	for (let spawnEnt of this.jebelBarkal_attackerGroupSpawnPoints)
@@ -432,7 +444,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 
 		let unitCount = Math.round(spawnPointBalancing.unitCount(time));
 
-		if (!unitCount)
+		if (unitCount <= 0)
 			continue;
 
 		let templateCounts = TriggerHelper.BalancedTemplateComposition(spawnPointBalancing.unitComposition(time, this.jebelBarkal_heroes), unitCount);
@@ -447,25 +459,29 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 
 		let isElephant = TriggerHelper.EntityMatchesClassList(groupEntities[0], "Elephant");
 
-		for (let ent of groupEntities)
-			TriggerHelper.SetUnitStance(ent, isElephant ? "aggressive" : "violent");
-
 		if (!isElephant)
 			TriggerHelper.SetUnitFormation(jebelBarkal_playerID, groupEntities, pickRandom(jebelBarkal_formations));
 
-		let targetPos = TriggerHelper.GetEntityPosition2D(pickRandom(targets));
-		if (!targetPos)
+		let target = pickRandom(targets);
+		if (!target)
 			continue;
 
-		ProcessCommand(jebelBarkal_playerID, {
-			"type": "attack-walk",
-			"entities": groupEntities,
-			"x": targetPos.x,
-			"z": targetPos.y,
-			"targetClasses": isElephant ? jebelBarkal_elephantTargetClasses : jebelBarkal_soldierTargetClasses,
-			"allowCapture": false,
-			"queued": false
-		});
+		let patrolTargets = [target].concat(shuffleArray(this.GetTriggerPoints(jebelBarkal_AttackGroup_triggerPointPatrol))).slice(0, jebelBarkal_patrolPointCount);
+		for (let patrolTarget of patrolTargets)
+		{
+			let pos = TriggerHelper.GetEntityPosition2D(patrolTarget);
+			ProcessCommand(jebelBarkal_playerID, {
+				"type": "patrol",
+				"entities": groupEntities,
+				"x": pos.x,
+				"z": pos.y,
+				"targetClasses": {
+					"attack": spawnPointBalancing.targetClasses
+				},
+				"queued": true,
+				"allowCapture": false
+			});
+		}
 	}
 
 	if (spawnedAnything)
@@ -474,13 +490,20 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 			"translateMessage": true
 		});
 
-	this.DoAfterDelay(jebelBarkal_attackInterval(TriggerHelper.GetMinutes()) * 60 * 1000, "JebelBarkal_SpawnAttackerGroups", {});
+	let nextAttack = jebelBarkal_attackInterval(TriggerHelper.GetMinutes()) * 60 * 1000;
+
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).AddTimeNotification({
+		"message": markForTranslation("Napata will attack in %(time)s!"),
+		"players": [-1, 0],
+		"translateMessage": true
+	}, nextAttack);
+
+	this.DoAfterDelay(nextAttack, "JebelBarkal_SpawnAttackerGroups", {});
 };
 
 /**
  * Keep track of heroes, so that each of them remains unique.
  * Keep track of spawn points, as only there units should be spawned.
- * 
  */
 Trigger.prototype.JebelBarkal_OwnershipChange = function(data)
 {
