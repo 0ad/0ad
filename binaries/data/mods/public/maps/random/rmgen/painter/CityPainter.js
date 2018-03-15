@@ -7,11 +7,7 @@ function CityPainter(templates, angle, playerID)
 	this.playerID = playerID;
 	this.templates = templates.map(template => {
 
-		let obstructionSize = Engine.GetTemplate(template.templateName).Obstruction.Static;
-
-		let depth = obstructionSize["@depth"] / TERRAIN_TILE_SIZE + 2 * (template.margin || 0);
-		let width = obstructionSize["@width"] / TERRAIN_TILE_SIZE + 2 * (template.margin || 0);
-
+		let obstructionSize = getObstructionSize(template.templateName, template.margin || 0);
 		return {
 			"templateName": template.templateName,
 			"maxCount": template.maxCount !== undefined ? template.maxCount : Infinity,
@@ -19,9 +15,9 @@ function CityPainter(templates, angle, playerID)
 			"painter": template.painters && new MultiPainter(template.painters),
 			"obstructionCorners": [
 				new Vector2D(0, 0),
-				new Vector2D(depth, 0),
-				new Vector2D(0, width),
-				new Vector2D(depth, width)
+				new Vector2D(obstructionSize.x, 0),
+				new Vector2D(0, obstructionSize.y),
+				obstructionSize
 			]
 		};
 	});

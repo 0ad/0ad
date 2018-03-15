@@ -311,13 +311,7 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 	var cmpCost = Engine.QueryInterface(targetEntity, IID_Cost);
 	var costs = cmpCost && cmpCost.GetResourceCosts();
 
-	var cmpTargetOwnership = Engine.QueryInterface(targetEntity, IID_Ownership);
-
-	// Ignore gaia
-	if (cmpTargetOwnership.GetOwner() == 0)
-		return;
-
-	if (cmpTargetEntityIdentity.HasClass("Unit") && !cmpTargetEntityIdentity.HasClass("Domestic"))
+	if (cmpTargetEntityIdentity.HasClass("Unit") && !cmpTargetEntityIdentity.HasClass("Animal"))
 	{
 		for (let type of this.unitsClasses)
 			this.CounterIncrement(cmpTargetEntityIdentity, "enemyUnitsKilled", type);

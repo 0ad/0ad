@@ -315,7 +315,7 @@ Engine.SetProgress(80);
 
 createStragglerTrees(
 	[oToona, oBaobab, oBush, oBush],
-	avoidClasses(clForest, 1, clWater, 1, clHill, 1, clPlayer, 13, clMetal, 1, clRock, 1),
+	avoidClasses(clForest, 1, clWater, 1, clHill, 1, clPlayer, 13, clMetal, 4, clRock, 4),
 	clForest,
 	scaleByMapSize(60, 500));
 Engine.SetProgress(85);

@@ -384,7 +384,7 @@ group = new SimpleGroup(
 );
 createObjectGroupsDeprecated(
 	group, 0,
-	[avoidClasses(clWater, 4, clForest, 3, clPlayer, 20, clMetal, 6, clRock, 2, clPond, 4, clTreasure, 2), stayClasses(clDesert, 3)],
+	[avoidClasses(clWater, 4, clForest, 3, clPlayer, 20, clMetal, 6, clRock, 6, clPond, 4, clTreasure, 2), stayClasses(clDesert, 3)],
 	scaleByMapSize(5, 30), 50
 );
 

@@ -540,10 +540,5 @@ placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clH
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randomAngle());
 setSunElevation(Math.PI * randFloat(1/5, 1/3));
-setWaterColor(0.0, 0.047, 0.286);				// dark majestic blue
-setWaterTint(0.471, 0.776, 0.863);				// light blue
-setWaterMurkiness(0.72);
-setWaterWaviness(2.0);
-setWaterType("lake");
 
 g_Map.ExportMap();

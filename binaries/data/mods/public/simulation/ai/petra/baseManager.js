@@ -549,7 +549,7 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 			let lastFailed = gameState.ai.HQ.lastFailedGather[moreNeed.type];
 			if (lastFailed && gameState.ai.elapsedTime - lastFailed < 20)
 				continue;
-			// Ensure that the most wanted resource is exhausted
+			// Ensure that the most wanted resource is not exhausted
 			if (moreNeed.type != "food" && gameState.ai.HQ.isResourceExhausted(moreNeed.type))
 			{
 				if (lessNeed.type != "food" && gameState.ai.HQ.isResourceExhausted(lessNeed.type))
@@ -641,6 +641,8 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorkers)
 						continue;
 					let lastFailed = gameState.ai.HQ.lastFailedGather[needed.type];
 					if (lastFailed && gameState.ai.elapsedTime - lastFailed < 20)
+						continue;
+					if (needed.type != "food" && gameState.ai.HQ.isResourceExhausted(needed.type))
 						continue;
 					ent.setMetadata(PlayerID, "subrole", "gatherer");
 					ent.setMetadata(PlayerID, "gather-type", needed.type);

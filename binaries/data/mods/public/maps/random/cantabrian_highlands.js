@@ -138,7 +138,7 @@ g_Map.log("Creating reeds");
 var group = new SimpleGroup(
 	[new SimpleObject(aReeds, 5,10, 0,4), new SimpleObject(aLillies, 0,1, 0,4)], true
 );
-createObjectGroupsByAreasDeprecated(group, 0,
+createObjectGroupsByAreas(group, 0,
 	[borderClasses(clWater, 3, 0), stayClasses(clWater, 1)],
 	numLakes, 100,
 	waterAreas
@@ -146,7 +146,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 Engine.SetProgress(20);
 
 g_Map.log("Creating fish");
-createObjectGroupsByAreasDeprecated(
+createObjectGroupsByAreas(
 	new SimpleGroup(
 		[new SimpleObject(oFish, 1,1, 0,1)],
 		true, clFood

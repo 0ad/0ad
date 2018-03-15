@@ -10,9 +10,17 @@
         <prop actor="props/units/shields/pelte_simple_player.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Armor-Linen-Quilted-01">
       <textures>
-        <texture file="skeletal/ptol_isp_b_1.png" name="baseTex"/>
-        <texture file="skeletal/ptol_isp_b_1_spec.png" name="specTex"/>
+        <texture file="skeletal/ptol_pikeman_b_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-Linen-Quilted-02">
+      <textures>
+        <texture file="skeletal/ptol_pikeman_b_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -40,5 +48,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>

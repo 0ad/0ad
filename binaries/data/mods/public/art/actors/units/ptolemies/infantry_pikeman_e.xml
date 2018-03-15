@@ -16,6 +16,18 @@
       </textures>
     </variant>
   </group>
+    <group>
+    <variant frequency="1" name="Armor-01">
+      <textures>
+        <texture file="skeletal/ptol_pikeman_e_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-02">
+      <textures>
+        <texture file="skeletal/ptol_pikeman_e_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
   <group>
     <variant file="biped/pikeman_base.xml"/>
     <variant file="biped/carry_food.xml"/>
