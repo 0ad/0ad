@@ -414,8 +414,8 @@ var g_SettingsTabsGUI = [
 			"mapSelection",
 			"mapSize",
 			"biome",
-			"nomad",
 			"triggerDifficulty",
+			"nomad",
 			"disableTreasures",
 			"exploreMap",
 			"revealMap"

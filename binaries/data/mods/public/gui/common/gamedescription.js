@@ -368,6 +368,15 @@ function getGameDescription()
 		});
 	}
 
+	if (g_GameAttributes.settings.TriggerDifficulty !== undefined)
+	{
+		let difficulty = g_Settings.TriggerDifficulties.find(difficulty => difficulty.Difficulty == g_GameAttributes.settings.TriggerDifficulty);
+		titles.push({
+			"label": difficulty.Title,
+			"value": difficulty.Tooltip
+		});
+	}
+
 	titles.push({
 		"label": g_GameAttributes.settings.Nomad ? translate("Nomad Mode") : translate("Civic Centers"),
 		"value":
