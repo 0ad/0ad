@@ -17,17 +17,53 @@ m.Worker.prototype.update = function(gameState, ent)
 	if (!ent.position() || ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3)
 		return;
 
+	let subrole = ent.getMetadata(PlayerID, "subrole");
+
 	// If we are waiting for a transport or we are sailing, just wait
 	if (ent.getMetadata(PlayerID, "transport") !== undefined)
 	{
 		// Except if builder with their foundation destroyed, in which case cancel the transport if not yet on board
-		if (ent.getMetadata(PlayerID, "subrole") == "builder" &&
-		    ent.getMetadata(PlayerID, "target-foundation") !== undefined)
+		if (subrole == "builder" && ent.getMetadata(PlayerID, "target-foundation") !== undefined)
 		{
 			let plan = gameState.ai.HQ.navalManager.getPlan(ent.getMetadata(PlayerID, "transport"));
 			let target = gameState.getEntityById(ent.getMetadata(PlayerID, "target-foundation"));
 			if (!target && plan && plan.state == "boarding" && ent.position())
 				plan.removeUnit(gameState, ent);
+		}
+		// and gatherer if there are no more dropsite accessible in the base the ent is going to
+		if (subrole == "gatherer" || subrole == "hunter")
+		{
+			let plan = gameState.ai.HQ.navalManager.getPlan(ent.getMetadata(PlayerID, "transport"));
+			if (plan.state == "boarding" && ent.position())
+			{
+				let hasDropsite = false;
+				let gatherType = ent.getMetadata(PlayerID, "gather-type") || "food";
+				for (let structure of gameState.getOwnStructures().values())
+				{
+					if (m.getLandAccess(gameState, structure) != plan.endIndex)
+						continue;
+					let resourceDropsiteTypes = m.getBuiltEntity(gameState, structure).resourceDropsiteTypes();
+					if (!resourceDropsiteTypes || resourceDropsiteTypes.indexOf(gatherType) == -1)
+						continue;
+					hasDropsite = true;
+					break;
+				}
+				if (!hasDropsite)
+				{
+					for (let unit of gameState.getOwnUnits().filter(API3.Filters.byClass("Support")).values())
+					{
+						if (!unit.position() || m.getLandAccess(gameState, unit) != plan.endIndex)
+							continue;
+						let resourceDropsiteTypes = unit.resourceDropsiteTypes();
+						if (!resourceDropsiteTypes || resourceDropsiteTypes.indexOf(gatherType) == -1)
+							continue;
+						hasDropsite = true;
+						break;
+					}
+				}
+				if (!hasDropsite)
+					plan.removeUnit(gameState, ent);
+			}
 		}
 		if (ent.getMetadata(PlayerID, "transport") !== undefined)
 			return;
@@ -40,7 +76,6 @@ m.Worker.prototype.update = function(gameState, ent)
 	else
 		this.baseAccess = this.base.accessIndex;
 
-	let subrole = ent.getMetadata(PlayerID, "subrole");
 	if (!subrole)	// subrole may-be undefined after a transport, garrisoning, army, ...
 	{
 		ent.setMetadata(PlayerID, "subrole", "idle");

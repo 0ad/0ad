@@ -161,6 +161,14 @@ m.DefenseArmy.prototype.removeOwn = function(gameState, id, Entity)
 		ent.setMetadata(PlayerID, "subrole", undefined);
 	ent.setMetadata(PlayerID, "formerSubrole", undefined);
 
+	// Remove from tranport plan if not yet on Board
+	if (ent.getMetadata(PlayerID, "transport") !== undefined)
+	{
+		let plan = gameState.ai.HQ.navalManager.getPlan(ent.getMetadata(PlayerID, "transport"));
+		if (plan && plan.state == "boarding" && ent.position())
+			plan.removeUnit(gameState, ent);
+	}
+
 /*
 	// TODO be sure that all units in the transport need the cancelation
 	if (!ent.position())	// this unit must still be in a transport plan ... try to cancel it
