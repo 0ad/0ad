@@ -14,6 +14,7 @@ Autostart:
 -autostart-aiseed=AISEED        sets the seed used for the AI random generator (default 0, use -1 for random)
 -autostart-civ=PLAYER:CIV       sets PLAYER's civilisation to CIV (skirmish and random maps only)
 -autostart-team=PLAYER:TEAM     sets the team for PLAYER (e.g. 2:2).
+-autostart-ceasefire=NUM        sets a ceasefire duration NUM (default 0 minutes)
 -autostart-nonvisual            disable any graphics and sounds
 -autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME located in simulation/data/settings/victory_conditions/
 -autostart-wonderduration=NUM   sets the victory duration NUM for wonder victory condition (default 10 minutes)

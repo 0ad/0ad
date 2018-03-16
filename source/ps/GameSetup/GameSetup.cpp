@@ -1152,6 +1152,8 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  * -autostart-civ=PLAYER:CIV       sets PLAYER's civilisation to CIV
  *                                 (skirmish and random maps only)
  * -autostart-team=PLAYER:TEAM     sets the team for PLAYER (e.g. 2:2).
+ * -autostart-ceasefire=NUM        sets a ceasefire duration NUM
+ *                                 (default 0 minutes)
  * -autostart-nonvisual            disable any graphics and sounds
  * -autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME
  *                                 located in simulation/data/settings/victory_conditions/
@@ -1349,6 +1351,11 @@ bool Autostart(const CmdLineArgs& args)
 			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
 		}
 	}
+
+	int ceasefire = 0;
+	if (args.Has("autostart-ceasefire"))
+		ceasefire = args.Get("autostart-ceasefire").ToInt();
+	scriptInterface.SetProperty(settings, "Ceasefire", ceasefire);
 
 	if (args.Has("autostart-ai"))
 	{
