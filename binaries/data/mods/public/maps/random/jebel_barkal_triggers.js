@@ -127,34 +127,55 @@ var jebelBarkal_patrolPointCount = 6;
 /**
  * This defines which units are spawned and garrisoned at the gamestart per building.
  */
-var jebelBarkal_buildingGarrison = [
+var jebelBarkal_buildingGarrison = difficulty => [
 	{
 		"buildingClasses": ["Wonder", "Temple", "CivCentre", "Fortress"],
-		"unitTemplates": jebelBarkal_templates.champions
+		"unitTemplates": jebelBarkal_templates.champions,
+		"capacityRatio": 1
 	},
 	{
 		"buildingClasses": ["Barracks+!Stables", "Embassy"],
-		"unitTemplates": [...jebelBarkal_templates.citizenSoldiers, ...jebelBarkal_templates.champions]
+		"unitTemplates": [...jebelBarkal_templates.citizenSoldiers, ...jebelBarkal_templates.champions],
+		"capacityRatio": 1
 	},
 	{
 		"buildingClasses": ["DefenseTower"],
-		"unitTemplates": jebelBarkal_templates.champion_infantry
+		"unitTemplates": jebelBarkal_templates.champion_infantry,
+		"capacityRatio": 1
 	},
 	{
 		"buildingClasses": ["ElephantStables"],
-		"unitTemplates": jebelBarkal_templates.elephants
+		"unitTemplates": jebelBarkal_templates.elephants,
+		"capacityRatio": 1
+
 	},
 	{
 		"buildingClasses": ["Stables"],
-		"unitTemplates": jebelBarkal_templates.champion_cavalry
+		"unitTemplates": jebelBarkal_templates.champion_cavalry,
+		"capacityRatio": 1
+
 	},
 	{
 		"buildingClasses": ["Pyramid"],
-		"unitTemplates": [...jebelBarkal_templates.citizenSoldiers, ...jebelBarkal_templates.healers]
+		"unitTemplates": [...jebelBarkal_templates.citizenSoldiers, ...jebelBarkal_templates.healers],
+		"capacityRatio": 1
+
 	},
 	{
 		"buildingClasses": ["House"],
-		"unitTemplates": [...jebelBarkal_templates.females, ...jebelBarkal_templates.healers]
+		"unitTemplates": [...jebelBarkal_templates.females, ...jebelBarkal_templates.healers],
+		"capacityRatio": 0.5
+
+	},
+	{
+		"buildingClasses": ["StoneWall+Tower"],
+		"unitTemplates": jebelBarkal_templates.champion_infantry_ranged,
+		"capacityRatio": difficulty > 3 ? 1 : 0
+	},
+	{
+		"buildingClasses": ["StoneWall+!Tower"],
+		"unitTemplates": difficulty > 3 ? jebelBarkal_templates.champion_infantry_ranged : jebelBarkal_templates.citizenSoldier_infantry_ranged,
+		"capacityRatio": (difficulty - 2) / 3
 	}
 ];
 
@@ -348,8 +369,8 @@ Trigger.prototype.JebelBarkal_SetDefenderStance = function()
 
 Trigger.prototype.JebelBarkal_GarrisonBuildings = function()
 {
-	for (let buildingGarrison of jebelBarkal_buildingGarrison)
-		TriggerHelper.SpawnAndGarrisonAtClasses(jebelBarkal_playerID, buildingGarrison.buildingClasses, buildingGarrison.unitTemplates, 1);
+	for (let buildingGarrison of jebelBarkal_buildingGarrison(this.GetDifficulty()))
+		TriggerHelper.SpawnAndGarrisonAtClasses(jebelBarkal_playerID, buildingGarrison.buildingClasses, buildingGarrison.unitTemplates, buildingGarrison.capacityRatio);
 };
 
 /**

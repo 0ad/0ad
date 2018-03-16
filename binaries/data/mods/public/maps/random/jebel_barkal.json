@@ -9,6 +9,16 @@
 		"TriggerScripts" : [
 			"scripts/TriggerHelper.js",
 			"random/jebel_barkal_triggers.js"
-		]
+		],
+		"SupportedTriggerDifficulties": {
+			"Values": [
+				"Very Easy",
+				"Easy",
+				"Medium",
+				"Hard",
+				"Very Hard"
+			],
+			"Default": "Medium"
+		}
 	}
 }

@@ -321,3 +321,17 @@ function convertHeightmap1Dto2D(heightmap)
 	}
 	return result;
 }
+
+function getDifficulties()
+{
+	return Engine.ReadJSONFile("simulation/data/settings/trigger_difficulties.json").Data;
+}
+
+/**
+ * Returns the numeric difficulty level the player chose.
+ */
+function getDifficulty()
+{
+	let level = g_MapSettings.TriggerDifficulty || 3;
+	return getDifficulties().find(difficulty => difficulty.Difficulty == level).Difficulty;
+}
