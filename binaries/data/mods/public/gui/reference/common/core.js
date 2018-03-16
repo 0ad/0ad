@@ -192,7 +192,7 @@ function getBaseTemplateName(templateName)
 				return templateName;
 
 	for (let res in parentTemplate.Cost.Resources)
-		if (parentTemplate.Cost.Resources[res])
+		if (+parentTemplate.Cost.Resources[res])
 			return getBaseTemplateName(template["@parent"]);
 
 	return templateName;
