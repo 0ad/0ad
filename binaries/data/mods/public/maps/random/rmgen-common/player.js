@@ -516,15 +516,15 @@ function sortAllPlayers()
  */
 function primeSortPlayers(playerIDs)
 {
-	if (!playerIDs.length)
-		return [];
-
 	let prime = [];
-	for (let i = 0; i < Math.ceil(playerIDs.length / 2); ++i)
+	for (let i = 0; i < Math.floor(playerIDs.length / 2); ++i)
 	{
 		prime.push(playerIDs[i]);
 		prime.push(playerIDs[playerIDs.length - 1 - i]);
 	}
+
+	if (playerIDs.length % 2)
+		prime.push(playerIDs[Math.floor(playerIDs.length / 2)]);
 
 	return prime;
 }
