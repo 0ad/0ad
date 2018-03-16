@@ -1152,14 +1152,18 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  * -autostart-civ=PLAYER:CIV       sets PLAYER's civilisation to CIV
  *                                 (skirmish and random maps only)
  * -autostart-team=PLAYER:TEAM     sets the team for PLAYER (e.g. 2:2).
+ * -autostart-ceasefire=NUM        sets a ceasefire duration NUM
+ *                                 (default 0 minutes)
  * -autostart-nonvisual            disable any graphics and sounds
  * -autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME
  *                                 located in simulation/data/settings/victory_conditions/
  *                                 (default conquest)
- * -autostart-wonderduration=NUM   sets the victory duration NUM for wonder victory conditions
+ * -autostart-wonderduration=NUM   sets the victory duration NUM for wonder victory condition
  *                                 (default 10 minutes)
- * -autostart-relicduration=NUM    sets the victory duration NUM for relic victory conditions
+ * -autostart-relicduration=NUM    sets the victory duration NUM for relic victory condition
  *                                 (default 10 minutes)
+ * -autostart-reliccount=NUM       sets the number of relics for relic victory condition
+ *                                 (default 2 relics)
  *
  * Multiplayer:
  * -autostart-playername=NAME      sets local player NAME (default 'anonymous')
@@ -1348,6 +1352,11 @@ bool Autostart(const CmdLineArgs& args)
 		}
 	}
 
+	int ceasefire = 0;
+	if (args.Has("autostart-ceasefire"))
+		ceasefire = args.Get("autostart-ceasefire").ToInt();
+	scriptInterface.SetProperty(settings, "Ceasefire", ceasefire);
+
 	if (args.Has("autostart-ai"))
 	{
 		std::vector<CStr> aiArgs = args.GetMultiple("autostart-ai");
@@ -1507,6 +1516,11 @@ bool Autostart(const CmdLineArgs& args)
 	if (args.Has("autostart-relicduration"))
 		relicDuration = args.Get("autostart-relicduration").ToInt();
 	scriptInterface.SetProperty(settings, "RelicDuration", relicDuration);
+
+	int relicCount = 2;
+	if (args.Has("autostart-reliccount"))
+		relicCount = args.Get("autostart-reliccount").ToInt();
+	scriptInterface.SetProperty(settings, "RelicCount", relicCount);
 
 	if (args.Has("autostart-host"))
 	{

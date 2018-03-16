@@ -128,7 +128,7 @@ public:
 	SColor4ub EvaluateTerrainDiffuseFactor(const CVector3D& normal) const
 	{
 		float dot = -normal.Dot(m_SunDir);
-		u8 c = clamp(static_cast<u8>(dot * 255), static_cast<u8>(0), static_cast<u8>(255));
+		u8 c = static_cast<u8>(clamp(dot * 255.f, 0.f, 255.f));
 		return SColor4ub(c, c, c, 255);
 	}
 
