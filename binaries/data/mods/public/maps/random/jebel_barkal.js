@@ -78,6 +78,7 @@ const oWallMedium = "structures/kush_wall_medium";
 const oWallGate = "structures/kush_wall_gate";
 const oWallTower = "structures/kush_wall_tower";
 const oKushCitizenArcher = "units/kush_infantry_archer_e";
+const oKushHealer = "units/kush_support_healer_e";
 const oKushChampionArcher = "units/kush_champion_infantry";
 const oKushChampions = [
 	oKushChampionArcher,
@@ -166,6 +167,7 @@ const clSoldier = g_Map.createTileClass();
 const clTower = g_Map.createTileClass();
 const clFortress = g_Map.createTileClass();
 const clTemple = g_Map.createTileClass();
+const clRitualPlace = g_Map.createTileClass();
 const clPyramid = g_Map.createTileClass();
 const clHouse = g_Map.createTileClass();
 const clBlacksmith = g_Map.createTileClass();
@@ -230,7 +232,7 @@ var layoutKushTemples = [
 	({
 		"template": oTempleApedemak,
 		"pathOffset": new Vector2D(0, 9),
-		"minMapSize": i == 0 ? 0 : 320
+		"minMapSize": i == 0 ? 320 : 0
 	}))
 ].filter(temple => mapSize >= temple.minMapSize);
 
@@ -674,11 +676,12 @@ Engine.SetProgress(70);
 
 g_Map.log("Placing kushite temples");
 var entitiesTemples = [];
+var templePosition = [];
 for (let i = 0; i < layoutKushTemples.length; ++i)
 {
 	let x = i + (gridPointsX - layoutKushTemples.length) / 2;
-	let templePosition = Vector2D.add(cityGridPosition[0][x], layoutKushTemples[i].pathOffset.rotate(-Math.PI / 2 - cityGridAngle[0][x]));
-	entitiesTemples.push(g_Map.placeEntityPassable(layoutKushTemples[i].template, 0, templePosition, cityGridAngle[0][x]));
+	templePosition[i] = Vector2D.add(cityGridPosition[0][x], layoutKushTemples[i].pathOffset.rotate(-Math.PI / 2 - cityGridAngle[0][x]));
+	entitiesTemples[i] = g_Map.placeEntityPassable(layoutKushTemples[i].template, 0, templePosition[i], cityGridAngle[0][x]);
 }
 
 g_Map.log("Marking temple area");
@@ -710,7 +713,7 @@ createArea(
 	new TerrainPainter(tPathWild),
 	[
 		new NearTileClassConstraint(clTemple, 1),
-		avoidClasses(clPath, 0, clCliff, 0)
+		avoidClasses(clPath, 0, clCliff, 1)
 	]);
 
 g_Map.log("Placing lion statues in the central path");
@@ -752,6 +755,24 @@ for (let x of [gridPointXCenter - 1, gridPointXCenter + 1])
 	g_Map.placeEntityAnywhere(aStatueKush, 0, cityGridPosition[gridPointYCenter][x], cityGridAngle[gridPointYCenter][x]);
 	clPathStatues.add(cityGridPosition[gridPointYCenter][x]);
 }
+
+g_Map.log("Creating ritual place near the wonder");
+var ritualPosition = Vector2D.average([
+	templePosition[Math.floor(templePosition.length / 2) - 1],
+	templePosition[Math.ceil(templePosition.length / 2) - 1]
+]);
+createArea(
+	new DiskPlacer(scaleByMapSize(4, 6), ritualPosition),
+	[
+		new LayeredPainter([tPathWild, tPath], [1]),
+		new TileClassPainter(clRitualPlace)
+	],
+	avoidClasses(clCliff, 1));
+
+g_Map.log("Placing healers at the ritual place");
+var [healerPosition, healerAngle] = distributePointsOnCircle(scaleByMapSize(3, 12), 0, scaleByMapSize(2, 3), ritualPosition);
+for (let i = 0; i < healerPosition.length; ++i)
+	g_Map.placeEntityPassable(oKushHealer, 0, healerPosition[i], healerAngle[i] + Math.PI);
 
 g_Map.log("Painting city paths");
 var areaPaths = createArea(
@@ -909,7 +930,9 @@ const stayFertileLand = new StaticConstraint(stayClasses(clFertileLand, 0));
 const nearWater = new NearTileClassConstraint(clWater, 3);
 var avoidCollisions = new AndConstraint(
 	[
-		new StaticConstraint(avoidClasses(clCliff, 0, clHill, 0, clPlayer, 15, clWater, 1, clPath, 2, clTemple, 4, clPyramid, 7, clCity, 4, clWall, 4, clGate, 8)),
+		new StaticConstraint(avoidClasses(
+			clCliff, 0, clHill, 0, clPlayer, 15, clWater, 1, clPath, 2, clRitualPlace, 2,
+			clTemple, 4, clPyramid, 7, clCity, 4, clWall, 4, clGate, 8)),
 		avoidClasses(clForest, 1, clRock, 4, clMetal, 4, clFood, 6, clSoldier, 1, clTreasure, 1)
 	]);
 
@@ -926,7 +949,7 @@ createForests(
 const avoidCollisionsMines = new StaticConstraint([
 	isNomad() ? new NullConstraint() : avoidClasses(clFertileLand, 10),
 	avoidClasses(
-		clWater, 4, clCliff, 4, clCity, 4,
+		clWater, 4, clCliff, 4, clCity, 4, clRitualPlace, 2,
 		clPlayer, 20, clForest, 4, clPyramid, 6, clTemple, 4, clPath, 4, clGate, 8)]);
 
 g_Map.log("Creating stone mines");
@@ -1121,7 +1144,7 @@ g_Map.log("Placing treasures on the hilltop");
 createObjectGroupsByAreas(
 	new SimpleGroup([new RandomObject(oTreasuresHill, 1, 1, 2, 2)], true, clTreasure),
 	0,
-	new StaticConstraint([avoidClasses(clCliff, 1, clTreasure, 1)]),
+	avoidClasses(clCliff, 1, clTreasure, 1),
 	scaleByMapSize(8, 35),
 	250,
 	[areaHilltop]);
