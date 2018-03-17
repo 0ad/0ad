@@ -297,7 +297,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": scaleByTime(time, 0, 1)
 			}
 		],
-		"targetClasses": "Trader+!Ship SiegeEngine FemaleCitizen"
+		"targetClasses": "Unit+!Ship"
 	},
 	{
 		"buildingClasses": ["Barracks+!Stables", "Embassy"],
@@ -319,7 +319,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": 1
 			}
 		],
-		"targetClasses": "Defensive SiegeEngine Monument"
+		"targetClasses": "Defensive SiegeEngine Monument Wonder"
 	}
 ];
 
