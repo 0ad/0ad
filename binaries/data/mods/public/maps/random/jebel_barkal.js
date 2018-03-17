@@ -176,6 +176,7 @@ const clBarracks = g_Map.createTileClass();
 const clBlemmyeCamp = g_Map.createTileClass();
 const clNubaVillage = g_Map.createTileClass();
 const clMarket = g_Map.createTileClass();
+const clDecorative = g_Map.createTileClass();
 
 const riverAngle = Math.PI * 0.05;
 
@@ -186,7 +187,7 @@ const pathWidth = 4;
 const pathWidthCenter = 10;
 const pathWidthSecondary = 6;
 
-const placeNapataWall = true;
+const placeNapataWall = getDifficulty() >= 3;
 
 const layoutFertileLandTextures = [
 	{
@@ -240,59 +241,70 @@ var layoutKushTemples = [
 const layoutKushCity = [
 	{
 		"templateName": "uncapturable|" + oHouse,
+		"difficulty": "Very Easy",
 		"painters": new TileClassPainter(clHouse)
 	},
 	{
 		"templateName": "uncapturable|" + oFortress,
+		"difficulty": "Medium",
 		"constraints": [avoidClasses(clFortress, 25), new NearTileClassConstraint(clPath, 8)],
 		"painters": new TileClassPainter(clFortress)
 	},
 	{
 		"templateName": "uncapturable|" + oCivicCenter,
+		"difficulty": "Easy",
 		"constraints": [avoidClasses(clCivicCenter, 60), new NearTileClassConstraint(clPath, 8)],
 		"painters": new TileClassPainter(clCivicCenter)
 	},
 	{
 		"templateName": "uncapturable|" + oElephantStables,
+		"difficulty": "Medium",
 		"constraints": avoidClasses(clElephantStables, 10),
 		"painters": new TileClassPainter(clElephantStables)
 	},
 	{
 		"templateName": "uncapturable|" + oStable,
+		"difficulty": "Easy",
 		"constraints": avoidClasses(clStable, 20),
 		"painters": new TileClassPainter(clStable)
 	},
 	{
 		"templateName": "uncapturable|" + oBarracks,
+		"difficulty": "Easy",
 		"constraints": avoidClasses(clBarracks, 12),
 		"painters": new TileClassPainter(clBarracks)
 	},
 	{
 		"templateName": "uncapturable|" + oTower,
+		"difficulty": "Medium",
 		"constraints": avoidClasses(clTower, 17),
 		"painters": new TileClassPainter(clTower)
 	},
 	{
 		"templateName": "uncapturable|" + oMarket,
+		"difficulty": "Very Easy",
 		"constraints": avoidClasses(clMarket, 15),
 		"painters": new TileClassPainter(clMarket)
 	},
 	{
 		"templateName": "uncapturable|" + oBlacksmith,
+		"difficulty": "Very Easy",
 		"constraints": avoidClasses(clBlacksmith, 30),
 		"painters": new TileClassPainter(clBlacksmith)
 	},
 	{
 		"templateName": "uncapturable|" + oNubaVillage,
+		"difficulty": "Easy",
 		"constraints": avoidClasses(clNubaVillage, 30),
 		"painters": new TileClassPainter(clNubaVillage)
 	},
 	{
 		"templateName": "uncapturable|" + oBlemmyeCamp,
+		"difficulty": "Easy",
 		"constraints": avoidClasses(clBlemmyeCamp, 30),
 		"painters": new TileClassPainter(clBlemmyeCamp)
 	}
-];
+].filter(building => getDifficulty() >= getDifficulties().find(difficulty => difficulty.Name == building.difficulty).Difficulty);
 
 g_WallStyles.napata = {
 	"short": readyWallElement("uncapturable|" + oWallMedium),
@@ -867,23 +879,26 @@ createObjectGroupsByAreas(
 	15,
 	[areaCityPalms]);
 
-g_Map.log("Marking wall palm area");
-var areaWallPalms = createArea(
-	new MapBoundsPlacer(),
-	undefined,
-	new StaticConstraint([
-		new NearTileClassConstraint(clWall, 2),
-		avoidClasses(clPath, 1, clWall, 1, clGate, 3, clTemple, 2, clHill, 6)
-	]));
+if (placeNapataWall)
+{
+	g_Map.log("Marking wall palm area");
+	var areaWallPalms = createArea(
+		new MapBoundsPlacer(),
+		undefined,
+		new StaticConstraint([
+			new NearTileClassConstraint(clWall, 2),
+			avoidClasses(clPath, 1, clWall, 1, clGate, 3, clTemple, 2, clHill, 6)
+		]));
 
-g_Map.log("Placing city palms");
-createObjectGroupsByAreas(
-	new SimpleGroup([new SimpleObject(oPalmPath, 1, 1, 0, 0)], true, clForest),
-	0,
-	avoidClasses(clForest, 2),
-	scaleByMapSize(40, 200),
-	50,
-	[areaWallPalms]);
+	g_Map.log("Placing city palms");
+	createObjectGroupsByAreas(
+		new SimpleGroup([new SimpleObject(oPalmPath, 1, 1, 0, 0)], true, clForest),
+		0,
+		avoidClasses(clForest, 2),
+		scaleByMapSize(40, 200),
+		50,
+		[areaWallPalms]);
+}
 
 createBumps(new StaticConstraint(avoidClasses(clPlayer, 6, clCity, 0, clWater, 2, clHill, 0, clPath, 0, clTemple, 4, clPyramid, 8)), scaleByMapSize(30, 300), 1, 8, 4, 0, 3);
 Engine.SetProgress(75);
@@ -1112,10 +1127,10 @@ createObjectGroupsByAreas(
 	[areaHilltop]);
 
 g_Map.log("Placing treasures in the city");
-var pathBorderConstraint = [
+var pathBorderConstraint = new AndConstraint([
 	new StaticConstraint([new NearTileClassConstraint(clCity, 1)]),
 	avoidClasses(clTreasure, 2, clStatue, 10, clPathStatues, 4, clWall, 2, clForest, 1)
-];
+]);
 createObjectGroupsByAreas(
 	new SimpleGroup([new RandomObject(oTreasuresCity, 1, 1, 0, 2)], true, clTreasure),
 	0,
@@ -1126,18 +1141,18 @@ createObjectGroupsByAreas(
 
 g_Map.log("Placing handcarts on the paths");
 createObjectGroupsByAreas(
-	new SimpleGroup([new SimpleObject(aHandcart, 1, 1, 1, 1)], true),
+	new SimpleGroup([new SimpleObject(aHandcart, 1, 1, 1, 1)], true, clDecorative),
 	0,
-	pathBorderConstraint,
+	[pathBorderConstraint, avoidClasses(clDecorative, 10)],
 	scaleByMapSize(0, 5),
 	250,
 	[areaPaths]);
 
 g_Map.log("Placing fence in fertile land");
 createObjectGroupsByAreas(
-	new SimpleGroup([new SimpleObject(aPlotFence, 1, 1, 1, 1)], true),
+	new SimpleGroup([new SimpleObject(aPlotFence, 1, 1, 1, 1)], true, clDecorative),
 	0,
-	new StaticConstraint(avoidCollisions, avoidClasses(clWater, 4)),
+	new StaticConstraint(avoidCollisions, avoidClasses(clWater, 6, clDecorative, 10)),
 	scaleByMapSize(1, 10),
 	250,
 	[areaFertileLand]);

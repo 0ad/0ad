@@ -321,7 +321,7 @@ for (var ix = 0; ix < mapSize; ix++)
 Engine.SetProgress(30);
 
 placePlayerBases({
-	"PlayerPlacement": [sortAllPlayers(), playerPosition],
+	"PlayerPlacement": [primeSortAllPlayers(), playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"baseResourceConstraint": avoidClasses(clCliff, 4),

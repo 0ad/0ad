@@ -178,7 +178,7 @@ TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
 		if (cmpOwnership)
 			cmpOwnership.SetOwner(owner);
 
-		if (cmpGarrisonHolder.PerformGarrison(ent))
+		if (cmpGarrisonHolder.Garrison(ent))
 		{
 			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if (cmpUnitAI)

@@ -693,6 +693,7 @@ m.AttackManager.prototype.switchDefenseToAttack = function(gameState, target, da
 	attackPlan.init(gameState);
 	this.startedAttacks[attackType].push(attackPlan);
 
+	let targetAccess = m.getLandAccess(gameState, target);
 	for (let army of gameState.ai.HQ.defenseManager.armies)
 	{
 		if (data.range)
@@ -711,7 +712,9 @@ m.AttackManager.prototype.switchDefenseToAttack = function(gameState, target, da
 			let unitId = army.ownEntities[0];
 			army.removeOwn(gameState, unitId);
 			let unit = gameState.getEntityById(unitId);
-			if (unit && attackPlan.isAvailableUnit(gameState, unit))
+			let accessOk = unit.getMetadata(PlayerID, "transport") !== undefined ||
+			               unit.position() && m.getLandAccess(gameState, unit) == targetAccess;
+			if (unit && accessOk && attackPlan.isAvailableUnit(gameState, unit))
 			{
 				unit.setMetadata(PlayerID, "plan", attackPlan.name);
 				unit.setMetadata(PlayerID, "role", "attack");

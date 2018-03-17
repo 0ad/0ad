@@ -262,7 +262,8 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	// and if our first market, put it on border if possible to maximize distance with next market
 	let favorBorder = template.hasClass("BarterMarket");
 	let disfavorBorder = gameState.currentPhase() > 1 && !template.hasDefensiveFire();
-	let militaryBase = this.metadata && this.metadata.militaryBase ? HQ.findBestBaseForMilitary(gameState) : undefined;
+	let favoredBase = this.metadata && (this.metadata.favoredBase ||
+		         (this.metadata.militaryBase ? HQ.findBestBaseForMilitary(gameState) : undefined));
 	if (this.metadata && this.metadata.base !== undefined)
 	{
 		let base = this.metadata.base;
@@ -301,8 +302,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				let z = (Math.floor(j / placement.width) + 0.5) * cellSize;
 				if (HQ.isNearInvadingArmy([x, z]))
 					placement.map[j] = 0;
-				else if (militaryBase && HQ.basesMap.map[j] == militaryBase)
+				else if (favoredBase && HQ.basesMap.map[j] == favoredBase)
 					placement.map[j] += 200;
+
 			}
 		}
 	}
