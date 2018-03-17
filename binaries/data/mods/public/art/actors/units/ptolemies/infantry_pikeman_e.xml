@@ -11,12 +11,11 @@
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
-        <texture file="skeletal/ptol_isp_e_1.png" name="baseTex"/>
         <texture file="skeletal/ptol_isp_e_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-    <group>
+  <group>
     <variant frequency="1" name="Armor-01">
       <textures>
         <texture file="skeletal/ptol_pikeman_e_01.png" name="baseTex"/>
@@ -25,6 +24,11 @@
     <variant frequency="1" name="Armor-02">
       <textures>
         <texture file="skeletal/ptol_pikeman_e_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-03">
+      <textures>
+        <texture file="skeletal/ptol_isp_e_1.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
