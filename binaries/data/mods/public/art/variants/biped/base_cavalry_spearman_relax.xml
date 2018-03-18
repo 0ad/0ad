@@ -3,8 +3,8 @@
   <animations>
     <animation file="biped/rider_idle_2hand_spear_relax.dae" name="idle" speed="58"/>
     <animation file="biped/rider_walk_2_hand_spear_relax.dae" name="Walk" speed="7"/>
-    <animation file="biped/rider_attack_stab_long.dae" event="0.5" name="attack_melee" id="attack1" speed="350"/>
-    <animation file="biped/rider_attack_stab.dae" event="0.5" name="attack_melee" id="attack2" speed="350"/>
-    <animation file="biped/rider_attack_stab.dae" event="0.5" name="attack_melee" id="attack3" speed="350"/>
+    <animation file="biped/rider_attack_stab_long.dae" event="0.5" name="attack_melee" id="attack_melee1" speed="350"/>
+    <animation file="biped/rider_attack_stab.dae" event="0.5" name="attack_melee" id="attack_melee2" speed="350"/>
+    <animation file="biped/rider_attack_stab.dae" event="0.5" name="attack_melee" id="attack_melee3" speed="350"/>
   </animations>
 </variant>
