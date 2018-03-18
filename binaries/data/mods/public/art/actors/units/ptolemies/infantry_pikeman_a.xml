@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/shields/mace_pez_adv.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
@@ -56,6 +56,11 @@
     <variant frequency="1" name="Armor-Linen-Quilted-09">
       <textures>
         <texture file="skeletal/ptol_pikeman_a_09.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-Linen-Quilted-10">
+      <textures>
+        <texture file="skeletal/ptol_isp_a_1.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -125,6 +125,11 @@ var jebelBarkal_pathTargetClasses = "CivCentre Wonder";
 var jebelBarkal_patrolPointCount = 6;
 
 /**
+ * Healers near the wonder run these animations when idle.
+ */
+var jebelBarkal_RitualAnimations = ["attack_capture", "promotion", "heal"];
+
+/**
  * This defines which units are spawned and garrisoned at the gamestart per building.
  */
 var jebelBarkal_buildingGarrison = difficulty => [
@@ -297,7 +302,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": scaleByTime(time, 0, 1)
 			}
 		],
-		"targetClasses": "Trader+!Ship SiegeEngine FemaleCitizen"
+		"targetClasses": "Unit+!Ship"
 	},
 	{
 		"buildingClasses": ["Barracks+!Stables", "Embassy"],
@@ -319,7 +324,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": 1
 			}
 		],
-		"targetClasses": "Defensive SiegeEngine Monument"
+		"targetClasses": "Defensive SiegeEngine Monument Wonder"
 	}
 ];
 
@@ -333,6 +338,7 @@ Trigger.prototype.JebelBarkal_Init = function()
 {
 	this.JebelBarkal_TrackUnits();
 	this.JebelBarkal_SetDefenderStance();
+	this.JebelBarkal_StartRitualAnimations();
 	this.JebelBarkal_GarrisonBuildings();
 	this.JebelBarkal_SpawnCityPatrolGroups();
 	this.JebelBarkal_SpawnAttackerGroups();
@@ -342,6 +348,7 @@ Trigger.prototype.JebelBarkal_TrackUnits = function()
 {
 	// Each item is an entity ID
 	this.jebelBarkal_heroes = [];
+	this.jebelBarkal_ritualHealers = TriggerHelper.GetPlayerEntitiesByClass(jebelBarkal_playerID, "Healer");
 
 	// Each item is an array of entity IDs
 	this.jebelBarkal_patrolingUnits = [];
@@ -363,8 +370,27 @@ Trigger.prototype.JebelBarkal_TrackUnits = function()
 
 Trigger.prototype.JebelBarkal_SetDefenderStance = function()
 {
-	for (let ent of TriggerHelper.GetPlayerEntitiesByClass(jebelBarkal_playerID, "Soldier"))
+	for (let ent of TriggerHelper.GetPlayerEntitiesByClass(jebelBarkal_playerID, "Human"))
 		TriggerHelper.SetUnitStance(ent, "defensive");
+};
+
+Trigger.prototype.JebelBarkal_StartRitualAnimations = function()
+{
+	this.DoRepeatedly(5 * 1000, "JebelBarkal_UpdateRitualAnimations", {});
+};
+
+Trigger.prototype.JebelBarkal_UpdateRitualAnimations = function()
+{
+	for (let ent of this.jebelBarkal_ritualHealers)
+	{
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (!cmpUnitAI || cmpUnitAI.GetCurrentState() != "INDIVIDUAL.IDLE")
+			continue;
+
+		let cmpVisual = Engine.QueryInterface(ent, IID_Visual);
+		if (cmpVisual && jebelBarkal_RitualAnimations.indexOf(cmpVisual.GetAnimationName()) == -1)
+			cmpVisual.SelectAnimation(pickRandom(jebelBarkal_RitualAnimations), false, 1, "");
+	}
 };
 
 Trigger.prototype.JebelBarkal_GarrisonBuildings = function()
@@ -531,7 +557,15 @@ Trigger.prototype.JebelBarkal_OwnershipChange = function(data)
 	if (data.from != 0)
 		return;
 
-	for (let array of [this.jebelBarkal_heroes, this.jebelBarkal_patrolGroupSpawnPoints, this.jebelBarkal_attackerGroupSpawnPoints, ...this.jebelBarkal_patrolingUnits])
+	let trackedEntityArrays = [
+		this.jebelBarkal_heroes,
+		this.jebelBarkal_ritualHealers,
+		this.jebelBarkal_patrolGroupSpawnPoints,
+		this.jebelBarkal_attackerGroupSpawnPoints,
+		...this.jebelBarkal_patrolingUnits,
+	];
+
+	for (let array of trackedEntityArrays)
 	{
 		let idx = array.indexOf(data.entity);
 		if (idx != -1)
