@@ -45,7 +45,7 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 	gameState.getOwnTrainingFacilities().forEach(function(ent) {
 		for (let item of ent.trainingQueue())
 		{
-			if (!item.metadata || !item.metadata.role || item.metadata.role !== "trader")
+			if (!item.metadata || !item.metadata.role || item.metadata.role != "trader")
 				continue;
 			numTraders += item.count;
 			if (item.metadata.sea !== undefined)
@@ -71,7 +71,7 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 		gameState.ai.HQ.navalManager.seaTransportShips[this.tradeRoute.sea].forEach(function(ship) {
 			if (already || !ship.hasClass("Trader"))
 				return;
-			if (ship.getMetadata(PlayerID, "role") === "switchToTrader")
+			if (ship.getMetadata(PlayerID, "role") == "switchToTrader")
 			{
 				already = true;
 				return;
@@ -113,7 +113,7 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 
 m.TradeManager.prototype.updateTrader = function(gameState, ent)
 {
-	if (ent.hasClass("Ship") && gameState.ai.playedTurn % 5 === 0 &&
+	if (ent.hasClass("Ship") && gameState.ai.playedTurn % 5 == 0 &&
 	    !ent.unitAIState().startsWith("INDIVIDUAL.GATHER") &&
 	    m.gatherTreasure(gameState, ent, true))
 		return;
@@ -141,7 +141,7 @@ m.TradeManager.prototype.updateTrader = function(gameState, ent)
 	if (API3.SquareVectorDistance(route.target.position(), ent.position()) < API3.SquareVectorDistance(route.source.position(), ent.position()))
 		nearerSource = false;
 
-	if (!ent.hasClass("Ship") && route.land !== access)
+	if (!ent.hasClass("Ship") && route.land != access)
 	{
 		if (nearerSource)
 			gameState.ai.HQ.navalManager.requireTransport(gameState, ent, access, route.land, route.source.position());
@@ -162,18 +162,19 @@ m.TradeManager.prototype.updateTrader = function(gameState, ent)
 m.TradeManager.prototype.setTradingGoods = function(gameState)
 {
 	let tradingGoods = {};
-	for (let res in gameState.ai.HQ.wantedRates)
+	for (let res of Resources.GetCodes())
 		tradingGoods[res] = 0;
 	// first, try to anticipate future needs
 	let stocks = gameState.ai.HQ.getTotalResourceLevel(gameState);
 	let mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
+	let wantedRates = gameState.ai.HQ.GetWantedGatherRates(gameState);
 	let remaining = 100;
 	let targetNum = this.Config.Economy.targetNumTraders;
 	for (let res in stocks)
 	{
-		if (res === "food")
+		if (res == "food")
 			continue;
-		let wantedRate = gameState.ai.HQ.wantedRates[res];
+		let wantedRate = wantedRates[res];
 		if (stocks[res] < 200)
 		{
 			tradingGoods[res] = wantedRate > 0 ? 20 : 10;
@@ -339,9 +340,9 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 			let route = trader.getMetadata(PlayerID, "route");
 			if (!route)
 				continue;
-			if (route.source === evt.entity)
+			if (route.source == evt.entity)
 				route.source = evt.newentity;
-			else if (route.target === evt.entity)
+			else if (route.target == evt.entity)
 				route.target = evt.newentity;
 			else
 				continue;
@@ -516,9 +517,9 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 	if (this.Config.chat)
 	{
 		let owner = this.tradeRoute.source.owner();
-		if (owner === PlayerID)
+		if (owner == PlayerID)
 			owner = this.tradeRoute.target.owner();
-		if (owner !== PlayerID && !this.warnedAllies[owner])
+		if (owner != PlayerID && !this.warnedAllies[owner])
 		{	// Warn an ally that we have a trade route with him
 			m.chatNewTradeRoute(gameState, owner);
 			this.warnedAllies[owner] = true;
