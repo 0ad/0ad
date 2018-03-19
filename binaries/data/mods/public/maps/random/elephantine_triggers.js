@@ -18,9 +18,7 @@ Trigger.prototype.InitElephantine_GarrisonBuildings = function()
 	let kushSupportUnits = TriggerHelper.GetTemplateNamesByClasses("FemaleCitizen Healer", "kush", undefined, "Elite", true);
 
 	TriggerHelper.SpawnAndGarrisonAtClasses(elephantinePlayerID, "Tower", kushInfantryUnits, 1);
-
-	for (let identityClass of ["Wonder", "Temple", "Pyramid"])
-		TriggerHelper.SpawnAndGarrisonAtClasses(elephantinePlayerID, identityClass, kushInfantryUnits.concat(kushSupportUnits), 1);
+	TriggerHelper.SpawnAndGarrisonAtClasses(elephantinePlayerID, "Wonder Temple Pyramid", kushInfantryUnits.concat(kushSupportUnits), 1);
 };
 
 {
