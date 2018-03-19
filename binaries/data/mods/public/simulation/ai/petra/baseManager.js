@@ -467,7 +467,7 @@ m.BaseManager.prototype.checkResourceLevels = function(gameState, queues)
 };
 
 /** Adds the estimated gather rates from this base to the currentRates */
-m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
+m.BaseManager.prototype.addGatherRates = function(gameState, currentRates)
 {
 	for (let res in currentRates)
 	{

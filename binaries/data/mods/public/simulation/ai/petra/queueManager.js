@@ -185,7 +185,7 @@ m.QueueManager.prototype.printQueues = function(gameState)
 	    API3.warn(p + ": " + uneval(this.accounts[p]));
 	API3.warn("Current Resources: " + uneval(gameState.getResources()));
 	API3.warn("Available Resources: " + uneval(this.getAvailableResources(gameState)));
-	API3.warn("Wanted Gather Rates: " + uneval(this.wantedGatherRates(gameState)));
+	API3.warn("Wanted Gather Rates: " + uneval(gameState.ai.HQ.GetWantedGatherRates(gameState)));
 	API3.warn("Current Gather Rates: " + uneval(gameState.ai.HQ.GetCurrentGatherRates(gameState)));
 	API3.warn("Most needed resources: " + uneval(gameState.ai.HQ.pickMostNeededResources(gameState)));
 	API3.warn("------------------------------------");

@@ -5570,8 +5570,11 @@ UnitAI.prototype.GetQueryRange = function(iid)
 		if (!cmpRanged)
 			return ret;
 		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetFullAttackRange();
+		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+		if (!cmpVision)
+			return ret;
 		ret.min = range.min;
-		ret.max = range.max;
+		ret.max = Math.min(range.max, cmpVision.GetRange());
 	}
 	else if (this.GetStance().respondChase)
 	{
@@ -5590,8 +5593,8 @@ UnitAI.prototype.GetQueryRange = function(iid)
 		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
 		if (!cmpVision)
 			return ret;
-		var halfvision = cmpVision.GetRange() / 2;
-		ret.max = range.max + halfvision;
+		var vision = cmpVision.GetRange();
+		ret.max = Math.min(range.max + vision / 2, vision);
 	}
 	// We probably have stance 'passive' and we wouldn't have a range,
 	// but as it is the default for healers we need to set it to something sane.

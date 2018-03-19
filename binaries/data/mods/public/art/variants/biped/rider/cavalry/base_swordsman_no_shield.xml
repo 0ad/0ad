@@ -8,9 +8,9 @@
     <animation file="biped/rider_death.dae" name="death" id="death1" speed="120"/>
     <animation file="biped/rider_death_b.dae" name="death" id="death2" speed="120"/>
     <animation file="biped/rider_attack_capture.dae" name="attack_capture" speed="120"/>
-    <animation file="biped/rider_attack_stab_long.dae" name="attack_melee" event="0.5" id="attack1" speed="140"/>
-    <animation file="biped/rider_attack_cut.dae" name="attack_melee" event="0.5" id="attack2" speed="140"/>
-    <animation file="biped/rider_attack_cut_b.dae" name="attack_melee" event="0.5" id="attack3" speed="140"/>
+    <animation file="biped/rider_attack_stab_long.dae" name="attack_melee" event="0.5" id="attack_melee1" speed="140"/>
+    <animation file="biped/rider_attack_cut.dae" name="attack_melee" event="0.5" id="attack_melee2" speed="140"/>
+    <animation file="biped/rider_attack_cut_b.dae" name="attack_melee" event="0.5" id="attack_melee3" speed="140"/>
   </animations>
 </variant>
 
