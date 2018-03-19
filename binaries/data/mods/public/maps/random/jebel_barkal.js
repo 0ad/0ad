@@ -759,20 +759,39 @@ for (let x of [gridPointXCenter - 1, gridPointXCenter + 1])
 g_Map.log("Creating ritual place near the wonder");
 var ritualPosition = Vector2D.average([
 	templePosition[Math.floor(templePosition.length / 2) - 1],
-	templePosition[Math.ceil(templePosition.length / 2) - 1]
-]);
+	templePosition[Math.ceil(templePosition.length / 2) - 1],
+	cityGridPosition[0][gridPointXCenter],
+	cityGridPosition[0][gridPointXCenter - 1]
+]).round();
+
+var ritualAngle = (cityGridAngle[0][gridPointXCenter] + cityGridAngle[0][gridPointXCenter - 1]) / 2 + Math.PI / 2;
+
+g_Map.placeEntityPassable(aStatueKush, 0, ritualPosition, ritualAngle - Math.PI / 2);
+
 createArea(
 	new DiskPlacer(scaleByMapSize(4, 6), ritualPosition),
 	[
 		new LayeredPainter([tPathWild, tPath], [1]),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetPath, 2),
 		new TileClassPainter(clRitualPlace)
 	],
 	avoidClasses(clCliff, 1));
 
 g_Map.log("Placing healers at the ritual place");
-var [healerPosition, healerAngle] = distributePointsOnCircle(scaleByMapSize(3, 12), 0, scaleByMapSize(2, 3), ritualPosition);
+var [healerPosition, healerAngle] = distributePointsOnCircularSegment(scaleByMapSize(2, 10), Math.PI, ritualAngle, scaleByMapSize(2, 3), ritualPosition);
 for (let i = 0; i < healerPosition.length; ++i)
 	g_Map.placeEntityPassable(oKushHealer, 0, healerPosition[i], healerAngle[i] + Math.PI);
+
+g_Map.log("Placing statues at the ritual place");
+var [statuePosition, statueAngle] = distributePointsOnCircularSegment(scaleByMapSize(4, 8), Math.PI, ritualAngle, scaleByMapSize(3, 4), ritualPosition);
+for (let i = 0; i < statuePosition.length; ++i)
+	g_Map.placeEntityPassable(pickRandom(aStatues), 0, statuePosition[i], statueAngle[i] + Math.PI);
+
+g_Map.log("Placing palms at the ritual place");
+var [palmPosition, palmAngle] = distributePointsOnCircularSegment(scaleByMapSize(6, 16), Math.PI, ritualAngle, scaleByMapSize(4, 5), ritualPosition);
+for (let i = 0; i < palmPosition.length; ++i)
+	if (avoidClasses(clTemple, 1).allows(palmPosition[i]))
+		g_Map.placeEntityPassable(oPalmPath, 0, palmPosition[i], randomAngle());
 
 g_Map.log("Painting city paths");
 var areaPaths = createArea(
@@ -862,6 +881,19 @@ if (placeNapataWall)
 			new NearTileClassConstraint(clWall, 1),
 			avoidClasses(clCliff, 0)
 		]);
+
+	g_Map.log("Painting gate terrain");
+	for (let entity of entitiesGates)
+		createArea(
+			new DiskPlacer(pathWidth, entity.GetPosition2D()),
+			[
+				new LayeredPainter([tPathWild, tPath], [1]),
+				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetPath, 2),
+			],
+			[
+				avoidClasses(clCliff, 0, clPath, 0, clCity, 0),
+				new NearTileClassConstraint(clPath, pathWidth + 1)
+			]);
 }
 Engine.SetProgress(70);
 
@@ -875,6 +907,7 @@ var areaCityPalms =
 			avoidClasses(
 				clPath, 0,
 				clPyramid, 20,
+				clRitualPlace, 8,
 				clTemple, 3,
 				clWall, 3,
 				clTower, 1,
@@ -895,7 +928,7 @@ g_Map.log("Placing city palms");
 createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(oPalmPath, 1, 1, 0, 0)], true, clForest),
 	0,
-	avoidClasses(clForest, 2),
+	avoidClasses(clForest, 3),
 	scaleByMapSize(40, 400),
 	15,
 	[areaCityPalms]);
@@ -931,7 +964,7 @@ const nearWater = new NearTileClassConstraint(clWater, 3);
 var avoidCollisions = new AndConstraint(
 	[
 		new StaticConstraint(avoidClasses(
-			clCliff, 0, clHill, 0, clPlayer, 15, clWater, 1, clPath, 2, clRitualPlace, 2,
+			clCliff, 0, clHill, 0, clPlayer, 15, clWater, 1, clPath, 2, clRitualPlace, 10,
 			clTemple, 4, clPyramid, 7, clCity, 4, clWall, 4, clGate, 8)),
 		avoidClasses(clForest, 1, clRock, 4, clMetal, 4, clFood, 6, clSoldier, 1, clTreasure, 1)
 	]);
@@ -949,7 +982,7 @@ createForests(
 const avoidCollisionsMines = new StaticConstraint([
 	isNomad() ? new NullConstraint() : avoidClasses(clFertileLand, 10),
 	avoidClasses(
-		clWater, 4, clCliff, 4, clCity, 4, clRitualPlace, 2,
+		clWater, 4, clCliff, 4, clCity, 4, clRitualPlace, 10,
 		clPlayer, 20, clForest, 4, clPyramid, 6, clTemple, 4, clPath, 4, clGate, 8)]);
 
 g_Map.log("Creating stone mines");
