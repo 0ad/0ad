@@ -6,6 +6,9 @@
   <Gate>
     <PassRange>20</PassRange>
   </Gate>
+  <Health>
+    <Max op="mul">0.85</Max>
+  </Health>
   <Identity>
     <Classes datatype="tokens">Gates</Classes>
     <GenericName>City Gate</GenericName>
@@ -21,6 +24,9 @@
     </Obstructions>
   </Obstruction>
   <RallyPoint disable=""/>
+  <Repairable>
+    <RepairTimeRatio op="mul">0.85</RepairTimeRatio>
+  </Repairable>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_gate.xml</select>
