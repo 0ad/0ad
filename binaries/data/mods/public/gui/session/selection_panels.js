@@ -759,15 +759,15 @@ g_SelectionPanels.Research = {
 			tooltips.push(getNeededResourcesTooltip(neededResources));
 			button.tooltip = tooltips.filter(tip => tip).join("\n");
 
-			button.onPress = function() {
-				addResearchToQueue(data.item.researchFacilityId, tech);
-			};
+			button.onPress = (t => function() {
+				addResearchToQueue(data.item.researchFacilityId, t);
+			})(tech);
 
-			button.onPressRight = function () {
+			button.onPressRight = (t => function () {
 				showTemplateDetails(
-					tech,
+					t,
 					GetTemplateData(data.unitEntStates.find(state => state.id == data.item.researchFacilityId).template).nativeCiv);
-			};
+			})(tech);
 
 			if (data.item.tech.pair)
 			{
