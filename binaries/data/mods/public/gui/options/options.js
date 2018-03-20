@@ -11,7 +11,7 @@ var g_HasCallback;
 /**
  * Functions to call after closing the page.
  */
-var g_Callbacks;
+var g_CloseCallbacks;
 
 /**
  * Vertical size of a tab button.
@@ -42,6 +42,11 @@ var g_OptionControlDist = 2;
  * Horizontal indentation to distinguish options that depend on another option.
  */
 var g_DependentLabelIndentation = 25;
+
+/**
+ * Color used to indicate that the string entered by the player isn't a sane color.
+ */
+var g_InsaneColor = "255 0 255";
 
 /**
  * Defines the parsing of config strings and GUI control interaction for the different option types.
@@ -87,7 +92,7 @@ var g_OptionType = {
 			if (control)
 			{
 				control.sprite = sanitized == value ? "ModernDarkBoxWhite" : "ModernDarkBoxWhiteInvalid";
-				control.children[1].sprite = sanitized == value ? "color:" + value : "color:255 0 255";
+				control.children[1].sprite = sanitized == value ? "color:" + value : "color:" + g_InsaneColor;
 			}
 			return sanitized;
 		},
@@ -165,7 +170,7 @@ var g_OptionType = {
 
 function init(data, hotloadData)
 {
-	g_Callbacks = new Set();
+	g_CloseCallbacks = new Set();
 	g_HasCallback = hotloadData && hotloadData.callback || data && data.callback;
 	g_TabCategorySelected = hotloadData ? hotloadData.tabCategorySelected : 0;
 
@@ -247,7 +252,7 @@ function displayOptions()
 				Engine[option.function](value);
 
 			if (option.callback)
-				g_Callbacks.add(option.callback);
+				g_CloseCallbacks.add(option.callback);
 
 			enableButtons();
 		};
@@ -378,7 +383,7 @@ function closePage()
 function closePageWithoutConfirmation()
 {
 	if (g_HasCallback)
-		Engine.PopGuiPageCB(g_Callbacks);
+		Engine.PopGuiPageCB(g_CloseCallbacks);
 	else
 		Engine.PopGuiPage();
 }

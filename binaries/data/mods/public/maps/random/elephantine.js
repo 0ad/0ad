@@ -544,25 +544,60 @@ createDecoration(
 	[new HeightConstraint(heightWaterLevel, heightShore), avoidCollisions]);
 Engine.SetProgress(99);
 
-setSunRotation(randomAngle());
-setSunColor(0.85, 0.63, 0.4);
-setSunElevation(Math.PI * randFloat(1/4, 1/2));
-
-setWaterColor(0.541, 0.506, 0.416);
-setWaterTint(0.75, 0.75, 0.75);
-setWaterMurkiness(0.92);
-setWaterWaviness(0.5);
-setWaterType("clap");
-
-setFogThickness(0.76);
-setFogFactor(0);
-
-setPPEffect("hdr");
-setPPContrast(0.6);
-setPPSaturation(0.45);
-setPPBloom(0.4);
-
-setTerrainAmbientColor(0.7, 0.6, 0.7);
-setUnitsAmbientColor(0.6, 0.5, 0.6);
+g_Environment = {
+	"SkySet": "cloudless",
+	"SunColor": {
+		"r": 1,
+		"g": 0.964706,
+		"b": 0.909804,
+		"a": 0
+	},
+	"SunElevation": 0.908117,
+	"SunRotation": -0.558369,
+	"TerrainAmbientColor": {
+		"r": 0.54902,
+		"g": 0.419608,
+		"b": 0.352941,
+		"a": 0
+	},
+	"UnitsAmbientColor": { "r": 0.721569, "g": 0.529412, "b": 0.4, "a": 0 },
+	"Fog": {
+		"FogFactor": 0.00195313,
+		"FogThickness": 0,
+		"FogColor": {
+			"r": 0.941176,
+			"g": 0.917647,
+			"b": 0.807843,
+			"a": 0
+		}
+	},
+	"Water": {
+		"WaterBody": {
+			"Type": "lake",
+			"Color": {
+				"r": 0.443137,
+				"g": 0.341176,
+				"b": 0.14902,
+				"a": 0
+			},
+			"Tint": {
+				"r": 0.705882,
+				"g": 0.67451,
+				"b": 0.454902,
+				"a": 0
+			},
+			"Waviness": 8.4668,
+			"Murkiness": 0.92,
+			"WindAngle": 0.625864
+		}
+	},
+	"Postproc": {
+		"Brightness": 0.0234375,
+		"Contrast": 1.09961,
+		"Saturation": 0.828125,
+		"Bloom": 0.142969,
+		"PostprocEffect": "hdr"
+	}
+};
 
 g_Map.ExportMap();
