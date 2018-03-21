@@ -3,16 +3,13 @@
   <castshadow/>
   <group>
     <variant>
-      <animations>
-        <animation file="biped/new/inf_sarissa_rest.dae" name="Idle" speed="25"/>
-      </animations>
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/ptol_thureophoros_e.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/ptol_pike_e.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/capes/pikeman.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/elephant_driver_african.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/ptol_isp_e_1.png" name="baseTex"/>
@@ -21,11 +18,11 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/elephantry/turret_idle.xml"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/death_infantry.xml">
+    <variant file="biped/rider/elephantry/african_turret_death.xml">
       <props>
-        <prop actor="props/units/capes/pikeman.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/elephant_driver_african.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
