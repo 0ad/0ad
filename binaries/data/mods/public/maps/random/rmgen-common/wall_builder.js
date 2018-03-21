@@ -415,7 +415,7 @@ function placeWall(position, wall = [], style, playerId = 0, orientation = 0, co
 	let constraint = new StaticConstraint(constraints);
 
 	for (let align of getWallAlignment(position, wall, style, orientation))
-		if (align.templateName && constraint.allows(align.position.clone().floor()))
+		if (align.templateName && g_Map.inMapBounds(align.position) && constraint.allows(align.position.clone().floor()))
 			entities.push(g_Map.placeEntityPassable(align.templateName, playerId, align.position, align.angle));
 
 	return entities;
@@ -523,7 +523,7 @@ function placeLinearWall(startPosition, targetPosition, wallPart = undefined, st
 			// Indent correction
 			let place = Vector2D.add(position, new Vector2D(0, wallEle.indent).rotate(-wallAngle));
 
-			if (wallEle.templateName && constraint.allows(place.clone().floor()))
+			if (wallEle.templateName && g_Map.inMapBounds(place) && constraint.allows(place.clone().floor()))
 				entities.push(g_Map.placeEntityPassable(wallEle.templateName, playerId, place, placeAngle + wallEle.angle));
 
 			position.add(dist);
@@ -534,7 +534,7 @@ function placeLinearWall(startPosition, targetPosition, wallPart = undefined, st
 		let wallEle = getWallElement(wallPart[0], style);
 		let wallLength = (wallEle.length - overlap) / 2;
 		position.add(new Vector2D(scaleFactor * wallLength, 0).rotate(-wallAngle));
-		if (wallEle.templateName && constraint.allows(position.clone().floor()))
+		if (wallEle.templateName && g_Map.inMapBounds(position) && constraint.allows(position.clone().floor()))
 			entities.push(g_Map.placeEntityPassable(wallEle.templateName, playerId, position, placeAngle + wallEle.angle));
 	}
 
@@ -611,7 +611,7 @@ function placeCircularWall(center, radius, wallPart, style, playerId = 0, orient
 			place.sub(new Vector2D(wallEle.indent, 0).rotate(-placeAngle));
 
 			// Placement
-			if (wallEle.templateName && constraint.allows(place.clone().floor()))
+			if (wallEle.templateName && g_Map.inMapBounds(place) && constraint.allows(place.clone().floor()))
 				entities.push(g_Map.placeEntityPassable(wallEle.templateName, playerId, place, placeAngle + wallEle.angle));
 
 			// Prepare for the next wall element
@@ -626,7 +626,7 @@ function placeCircularWall(center, radius, wallPart, style, playerId = 0, orient
 		let target = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle - addAngle))
 		let place = Vector2D.average([position, target]);
 		let placeAngle = actualAngle + addAngle / 2;
-		if (constraint.allows(place.clone().floor()))
+		if (g_Map.inMapBounds(place) && constraint.allows(place.clone().floor()))
 			entities.push(g_Map.placeEntityPassable(wallEle.templateName, playerId, place, placeAngle + wallEle.angle));
 	}
 
@@ -664,7 +664,7 @@ function placePolygonalWall(centerPosition, radius, wallPart, cornerWallElement 
 	for (let i = 0; i < numCorners; ++i)
 	{
 		let angleToCorner = getAngle(corners[i].x, corners[i].y, centerPosition.x, centerPosition.y);
-		if (constraint.allows(corners[i].clone().floor()))
+		if (g_Map.inMapBounds(corners[i]) && constraint.allows(corners[i].clone().floor()))
 			entities.push(
 				g_Map.placeEntityPassable(getWallElement(cornerWallElement, style).templateName, playerId, corners[i], angleToCorner));
 
@@ -797,10 +797,11 @@ function placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement =
 
 	// Place Corners and walls
 	let entities = [];
+	let constraint = new StaticConstraint(constraints);
 	for (let i = 0; i < numCorners; ++i)
 	{
 		let angleToCorner = getAngle(corners[i].x, corners[i].y, centerPosition.x, centerPosition.y);
-		if (constraint.allows(corners[i]))
+		if (g_Map.inMapBounds(corners[i]) && constraint.allows(corners[i].clone().floor()))
 			entities.push(
 				g_Map.placeEntityPassable(getWallElement(cornerWallElement, style).templateName, playerId, corners[i], angleToCorner));
 
@@ -907,7 +908,7 @@ function placeGenericFortress(center, radius = 20, playerId = 0, style, irregula
 		if (element.templateName)
 		{
 			let pos = Vector2D.add(start, new Vector2D(start.distanceTo(target) / 2, 0).rotate(-angle));
-			if (constraint.allows(pos.clone().floor()))
+			if (g_Map.inMapBounds(pos) && constraint.allows(pos.clone().floor()))
 				entities.push(g_Map.placeEntityPassable(element.templateName, playerId, pos, angle - Math.PI / 2 + element.angle));
 		}
 
@@ -917,9 +918,10 @@ function placeGenericFortress(center, radius = 20, playerId = 0, style, irregula
 
 		let tower = getWallElement("tower", style);
 		let pos = Vector2D.add(center, bestPointDerivation[pointIndex]);
-		if (constraint.allows(pos.clone().floor()))
+		if (g_Map.inMapBounds(pos) && constraint.allows(pos.clone().floor()))
 			entities.push(
 				g_Map.placeEntityPassable(tower.templateName, playerId, pos, angle - Math.PI / 2 + tower.angle));
 	}
+
 	return entities;
 }
