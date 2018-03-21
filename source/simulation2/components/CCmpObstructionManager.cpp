@@ -476,6 +476,7 @@ public:
 	virtual void GetUnitObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const;
 	virtual void GetStaticObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const;
 	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter, bool strict = false) const;
+	virtual void GetStaticObstructionsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter) const;
 
 	virtual void SetPassabilityCircular(bool enabled)
 	{
@@ -890,7 +891,7 @@ void CCmpObstructionManager::Rasterize(Grid<NavcellData>& grid, const std::vecto
 		{
 		case PathfinderPassability::PATHFINDING:
 		{
-			auto it = pathfindingMasks.find(passability.m_Clearance);
+			std::map<entity_pos_t, u16>::iterator it = pathfindingMasks.find(passability.m_Clearance);
 			if (it == pathfindingMasks.end())
 				pathfindingMasks[passability.m_Clearance] = passability.m_Mask;
 			else
@@ -979,7 +980,7 @@ void CCmpObstructionManager::GetUnitObstructionsInRange(const IObstructionTestFi
 	m_UnitSubdivision.GetInRange(unitShapes, CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
 	for (entity_id_t& unitShape : unitShapes)
 	{
-		auto it = m_UnitShapes.find(unitShape);
+		std::map<u32, UnitShape>::const_iterator it = m_UnitShapes.find(unitShape);
 		ENSURE(it != m_UnitShapes.end());
 
 		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
@@ -1007,7 +1008,7 @@ void CCmpObstructionManager::GetStaticObstructionsInRange(const IObstructionTest
 	m_StaticSubdivision.GetInRange(staticShapes, CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
 	for (entity_id_t& staticShape : staticShapes)
 	{
-		auto it = m_StaticShapes.find(staticShape);
+		std::map<u32, StaticShape>::const_iterator it = m_StaticShapes.find(staticShape);
 		ENSURE(it != m_StaticShapes.end());
 
 		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
@@ -1030,7 +1031,7 @@ void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& squa
 	PROFILE("GetUnitsOnObstruction");
 
 	// In order to avoid getting units on impassable cells, we want to find all
-	// units s.t. the RasterizeRectWithClearance of the building's shape with the
+	// units subject to the RasterizeRectWithClearance of the building's shape with the
 	// unit's clearance covers the navcell the unit is on.
 
 	std::vector<entity_id_t> unitShapes;
@@ -1044,7 +1045,7 @@ void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& squa
 
 	for (const u32& unitShape : unitShapes)
 	{
-		auto it = m_UnitShapes.find(unitShape);
+		std::map<u32, UnitShape>::const_iterator it = m_UnitShapes.find(unitShape);
 		ENSURE(it != m_UnitShapes.end());
 
 		const UnitShape& shape = it->second;
@@ -1082,6 +1083,40 @@ void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& squa
 				out.push_back(shape.entity);
 				break;
 			}
+		}
+	}
+}
+
+void CCmpObstructionManager::GetStaticObstructionsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter) const
+{
+	PROFILE("GetStaticObstructionsOnObstruction");
+
+	std::vector<entity_id_t> staticShapes;
+	CFixedVector2D center(square.x, square.z);
+	CFixedVector2D expandedBox = Geometry::GetHalfBoundingBox(square.u, square.v, CFixedVector2D(square.hw, square.hh));
+	m_StaticSubdivision.GetInRange(staticShapes, center - expandedBox, center + expandedBox);
+
+	for (const u32& staticShape : staticShapes)
+	{
+		std::map<u32, StaticShape>::const_iterator it = m_StaticShapes.find(staticShape);
+		ENSURE(it != m_StaticShapes.end());
+
+		const StaticShape& shape = it->second;
+
+		if (!filter.TestShape(STATIC_INDEX_TO_TAG(staticShape), shape.flags, shape.group, shape.group2))
+			continue;
+
+		if (Geometry::TestSquareSquare(
+		    center,
+		    square.u,
+		    square.v,
+		    CFixedVector2D(square.hw, square.hh),
+		    CFixedVector2D(shape.x, shape.z),
+		    shape.u,
+		    shape.v,
+		    CFixedVector2D(shape.hw, shape.hh)))
+		{
+			out.push_back(shape.entity);
 		}
 	}
 }

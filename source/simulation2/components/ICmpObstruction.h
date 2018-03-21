@@ -89,10 +89,17 @@ public:
 	virtual bool CheckDuplicateFoundation() const = 0;
 
 	/**
-	 * Returns a list of units that are colliding with this entity,
+	 * Returns a list of units that are colliding with this entity.
 	 * @return vector of blocking units
 	 */
 	virtual std::vector<entity_id_t> GetUnitCollisions() const = 0;
+
+	/**
+	 * Returns a list of entities that are colliding with this entity (excluding self).
+	 * This can be used to retrieve units with static obstructions, such as animal corpses.
+	 * @return vector of blocking units
+	 */
+	virtual std::vector<entity_id_t> GetEntityCollisions() const = 0;
 
 	/**
 	 * Detects collisions between foundation-blocking entities and

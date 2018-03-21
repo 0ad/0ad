@@ -624,7 +624,7 @@ public:
 			return ret; // error
 
 		// There are four 'block' flags: construction, foundation, movement,
-		// and pathfinding. Structures have all of these flags, while units
+		// and pathfinding. Structures have all of these flags, while most units
 		// block only movement and construction.
 		flags_t flags = ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION;
 
@@ -638,6 +638,27 @@ public:
 			return ret; // error
 
 		cmpObstructionManager->GetUnitsOnObstruction(square, ret, filter);
+
+		return ret;
+	}
+
+	virtual std::vector<entity_id_t> GetEntityCollisions() const
+	{
+		std::vector<entity_id_t> ret;
+
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+		if (!cmpObstructionManager)
+			return ret; // error
+
+		// Ignore collisions within the same control group.
+		SkipControlGroupsRequireFlagObstructionFilter filter(true, m_ControlGroup, m_ControlGroup2, 0);
+
+		ICmpObstructionManager::ObstructionSquare square;
+		if (!GetObstructionSquare(square))
+			return ret; // error
+
+		cmpObstructionManager->GetUnitsOnObstruction(square, ret, filter, false);
+		cmpObstructionManager->GetStaticObstructionsOnObstruction(square, ret, filter);
 
 		return ret;
 	}

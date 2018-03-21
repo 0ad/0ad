@@ -62,7 +62,7 @@ function testFoundation(...mocks)
 
 	AddMock(foundationEnt, IID_Obstruction, {
 		"GetBlockMovementFlag": () => true,
-		"GetUnitCollisions": () => [],
+		"GetEntityCollisions": () => [],
 		"SetDisableBlockMovementPathfinding": () => {},
 	});
 

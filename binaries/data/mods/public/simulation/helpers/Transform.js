@@ -190,8 +190,7 @@ function ObstructionsBlockingTemplateChange(ent, templateArg)
 			var cmpNewObstruction = Engine.QueryInterface(previewEntity, IID_Obstruction);
 			if (cmpNewObstruction && cmpNewObstruction.GetBlockMovementFlag())
 			{
-				// Check for units
-				var collisions = cmpNewObstruction.GetUnitCollisions();
+				let collisions = cmpNewObstruction.GetEntityCollisions();
 				if (collisions.length)
 					return DeleteEntityAndReturn(previewEntity, cmpPosition, pos, angle, cmpNewPosition, true);
 			}
