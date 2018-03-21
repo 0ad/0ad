@@ -51,6 +51,7 @@ DEFINE_INTERFACE_METHOD_CONST_0("CheckShorePlacement", bool, ICmpObstruction, Ch
 DEFINE_INTERFACE_METHOD_CONST_2("CheckFoundation", std::string, ICmpObstruction, CheckFoundation_wrapper, std::string, bool)
 DEFINE_INTERFACE_METHOD_CONST_0("CheckDuplicateFoundation", bool, ICmpObstruction, CheckDuplicateFoundation)
 DEFINE_INTERFACE_METHOD_CONST_0("GetUnitCollisions", std::vector<entity_id_t>, ICmpObstruction, GetUnitCollisions)
+DEFINE_INTERFACE_METHOD_CONST_0("GetEntityCollisions", std::vector<entity_id_t>, ICmpObstruction, GetEntityCollisions)
 DEFINE_INTERFACE_METHOD_1("SetActive", void, ICmpObstruction, SetActive, bool)
 DEFINE_INTERFACE_METHOD_3("SetDisableBlockMovementPathfinding", void, ICmpObstruction, SetDisableBlockMovementPathfinding, bool, bool, int32_t)
 DEFINE_INTERFACE_METHOD_CONST_0("GetBlockMovementFlag", bool, ICmpObstruction, GetBlockMovementFlag)

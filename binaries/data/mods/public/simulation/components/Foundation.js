@@ -196,7 +196,9 @@ Foundation.prototype.Build = function(builderEnt, work)
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
 	{
-		var collisions = cmpObstruction.GetUnitCollisions();
+		// Remove all obstructions at the new entity, especially animal corpses
+		let collisions = cmpObstruction.GetEntityCollisions();
+
 		if (collisions.length)
 		{
 			var cmpFoundationOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
