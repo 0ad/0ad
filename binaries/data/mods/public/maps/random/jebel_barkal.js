@@ -112,16 +112,18 @@ const aBushesFertileLand = [
 	"props/flora/bush_medit_sm_lush",
 	"props/flora/bush_tempe_la_lush"
 ].map(actorTemplate);
-const aBushesDesert = [
+const aBushesCity = [
 	"props/flora/bush_dry_a",
 	"props/flora/bush_medit_la_dry",
 	"props/flora/bush_medit_me_dry",
 	"props/flora/bush_medit_sm",
 	"props/flora/bush_medit_sm_dry",
+].map(actorTemplate);
+const aBushesDesert = [
 	"props/flora/bush_tempe_me_dry",
 	"props/flora/grass_soft_dry_large_tall",
 	"props/flora/grass_soft_dry_small_tall"
-].map(actorTemplate);
+].map(actorTemplate).concat(aBushesCity);
 const aWaterDecoratives = ["props/flora/reeds_pond_lush_a"].map(actorTemplate);
 
 const pForestPalms = [
@@ -897,12 +899,12 @@ if (placeNapataWall)
 }
 Engine.SetProgress(70);
 
-g_Map.log("Marking city palm area");
-var areaCityPalms =
+g_Map.log("Marking city bush area");
+var areaCityBushes =
 	createArea(
 		new MapBoundsPlacer(),
 		undefined,
-		new StaticConstraint([
+		[
 			new NearTileClassConstraint(clPath, 1),
 			avoidClasses(
 				clPath, 0,
@@ -922,7 +924,17 @@ var areaCityPalms =
 				clBlemmyeCamp, 1,
 				clNubaVillage, 1,
 				clMarket, 1)
-		]));
+		]);
+
+g_Map.log("Marking city palm area");
+var areaCityPalms =
+	createArea(
+		new MapBoundsPlacer(),
+		undefined,
+		[
+			new StayAreasConstraint([areaCityBushes]),
+			avoidClasses(clElephantStables, 3)
+		]);
 
 g_Map.log("Placing city palms");
 createObjectGroupsByAreas(
@@ -932,6 +944,15 @@ createObjectGroupsByAreas(
 	scaleByMapSize(40, 400),
 	15,
 	[areaCityPalms]);
+
+g_Map.log("Placing city bushes");
+createObjectGroupsByAreas(
+	new SimpleGroup([new RandomObject(aBushesCity, 1, 1, 0, 0)], true, clForest),
+	0,
+	avoidClasses(clForest, 1),
+	scaleByMapSize(20, 200),
+	15,
+	[areaCityBushes]);
 
 if (placeNapataWall)
 {
@@ -944,7 +965,7 @@ if (placeNapataWall)
 			avoidClasses(clPath, 1, clWall, 1, clGate, 3, clTemple, 2, clHill, 6)
 		]));
 
-	g_Map.log("Placing city palms");
+	g_Map.log("Placing wall palms");
 	createObjectGroupsByAreas(
 		new SimpleGroup([new SimpleObject(oPalmPath, 1, 1, 0, 0)], true, clForest),
 		0,
