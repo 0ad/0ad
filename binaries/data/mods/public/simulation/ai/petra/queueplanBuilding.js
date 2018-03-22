@@ -492,7 +492,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 			score += 20;
 
 		// Do a pre-selection, supposing we will have the best possible water
-		if (bestIdx !== undefined && score > bestVal + 5 * maxWater && !oversea)
+		if (bestIdx !== undefined && score > bestVal + 5 * maxWater)
 			continue;
 
 		let x = (i % obstructions.width + 0.5) * obstructions.cellSize;

@@ -3,9 +3,6 @@
   <castshadow/>
   <group>
     <variant>
-      <animations>
-        <animation file="biped/new/inf_sarissa_rest.dae" name="Idle" speed="25"/>
-      </animations>
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/shields/kart_round_su1.xml" attachpoint="shield_arm"/>
@@ -43,9 +40,9 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/elephantry/turret_idle.xml"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/rider/elephantry/african_turret_death.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

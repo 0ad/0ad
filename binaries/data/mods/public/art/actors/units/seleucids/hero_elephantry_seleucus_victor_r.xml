@@ -3,14 +3,11 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <animations>
-        <animation file="biped/new/inf_sarissa_rest.dae" name="Idle" speed="25"/>
-      </animations>
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_kart_hannibal.xml" attachpoint="head"/>
-        <prop actor="props/units/capes/rider/elephant_driver.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/elephant_driver_asian.xml" attachpoint="root"/>
         <prop actor="props/units/helmets/sele_seleucus_nikator_01.xml" attachpoint="helmet"/>
       </props>
       <textures>
@@ -19,11 +16,11 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/elephantry/turret_idle.xml"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/death_infantry.xml">
+    <variant file="biped/rider/elephantry/asian_turret_death.xml">
       <props>
-        <prop actor="props/units/capes/rider/elephant_driver.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/elephant_driver_asian.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
