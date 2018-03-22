@@ -33,7 +33,7 @@ while (<$f>) {
     }
 }
 
-print "var graphData = [\n";
+print "[\n";
 my $n = 0;
 for my $k (sort keys %s) {
     print ",\n" if $n++;
@@ -44,4 +44,4 @@ for my $k (sort keys %s) {
     }
     print "]}";
 }
-print "\n];\n";
+print "\n]\n";

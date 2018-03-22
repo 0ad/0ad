@@ -1,61 +1,28 @@
 <!DOCTYPE html>
-<script src="jquery.js"></script>
-<script src="jquery.flot.js"></script>
-<script src="jquery.flot.navigate.js"></script>
-<script src="data.js"></script>
-<script>
-var newGraphData = [];
-for (var i = 0; i < graphData.length; ++i) {
-    var d = graphData[i];
-
-    if (d.label == "allocated bytes" || d.label == "max nominal heap bytes" || d.label == "max JS_malloc bytes")
-        d.yaxis = 2;
-
-    // Uninteresting:
-    if (d.label == "max nominal heap bytes" || d.label == "max JS_malloc bytes" || d.label == "number of GCs" || d.label == "allocated bytes")
-        continue;
-
-    // Bogus data:
-    if (d.label == "unlogged")
-        continue;
-
-    newGraphData.push(d);
-}
-
-function showTooltip(x, y, contents) {
-    $('<div id="tooltip">' + contents + '</div>').css( {
-        position: 'absolute',
-        top: y + 5,
-        left: x + 5,
-        border: '1px solid #fdd',
-        padding: '2px',
-        'background-color': '#fee',
-        opacity: 0.80
-    }).appendTo("body");
-}
-
-$(function () {
-    $.plot($("#placeholder"), newGraphData, {
-        grid: { hoverable: true },
-        zoom: { interactive: true },
-        pan: { interactive: true },
-        legend: { position: "nw" }
-    });
-
-    $("#placeholder").bind("plothover", function (event, pos, item) {
-        $("#tooltip").remove();
-        if (item) {
-            var x = item.datapoint[0].toFixed(2);
-            var y = item.datapoint[1].toFixed(2);
-            showTooltip(item.pageX, item.pageY, item.series.label + " at " + Math.round(x) + ": " + y);
-        }
-    });
-
-});
-</script>
-
-<div id="placeholder" style="width:1100px; height:600px;"></div>
-<p>x axis: turn number / 20
-<p>y axis (left): time per frame / msecs
-<p>y axis (right): bytes
-<p>Drag to pan, mouse-wheel to zoom
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>0 A.D. Simulation Profiling</title>
+		<link rel="stylesheet" type="text/css" href="graph.css">
+		<script src="jquery.js"></script>
+		<script src="jquery.flot.js"></script>
+		<script src="jquery.flot.navigate.js"></script>
+		<script src="graph.js"></script>
+	</head>
+	<body>
+		<div>
+			<label>Graph:
+				<select id="replayGraphSelection" size="1" onchange="showReplayData()">
+					<option value="time" selected="selected">Performance</option>
+					<option value="bytes">Memory</option>
+					<option value="garbageCollection">Garbage Collections</option>
+				</select>
+			</label>
+		</div>
+		<div id="replayGraphLegend" style="width:300px;float:left"></div>
+		<div>
+			<div id="replayGraph" style="width:1100px; height:600px; float:left"></div>
+			<div id="replayGraphDescription" style="float:top"></div>
+		</div>
+	</body>
+</html>

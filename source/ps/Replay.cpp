@@ -42,6 +42,12 @@
 #include <ctime>
 #include <fstream>
 
+/**
+ * Number of turns between two saved profiler snapshots.
+ * Keep in sync with source/tools/replayprofile/graph.js
+ */
+static const int PROFILE_TURN_INTERVAL = 20;
+
 CReplayLogger::CReplayLogger(const ScriptInterface& scriptInterface) :
 	m_ScriptInterface(scriptInterface), m_Stream(NULL)
 {
@@ -234,13 +240,11 @@ void CReplayPlayer::Replay(bool serializationtest, int rejointestturn, bool oosl
 
 			g_Profiler.Frame();
 
-			if (turn % 20 == 0)
+			if (turn % PROFILE_TURN_INTERVAL == 0)
 				g_ProfileViewer.SaveToFile();
 		}
 		else
-		{
 			debug_printf("Unrecognised replay token %s\n", type.c_str());
-		}
 	}
 	}
 
