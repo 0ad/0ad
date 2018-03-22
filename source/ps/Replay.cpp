@@ -125,6 +125,47 @@ void CReplayPlayer::Load(const OsPath& path)
 	ENSURE(m_Stream->good());
 }
 
+CStr CReplayPlayer::ModListToString(const std::vector<std::vector<CStr>>& list) const
+{
+	CStr text;
+	for (const std::vector<CStr>& mod : list)
+		text += mod[0] + " (" + mod[1] + ")\n";
+	return text;
+}
+
+void CReplayPlayer::CheckReplayMods(const ScriptInterface& scriptInterface, JS::HandleValue attribs) const
+{
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	std::vector<std::vector<CStr>> replayMods;
+	scriptInterface.GetProperty(attribs, "mods", replayMods);
+
+	std::vector<std::vector<CStr>> enabledMods;
+	JS::RootedValue enabledModsJS(cx, Mod::GetLoadedModsWithVersions(scriptInterface));
+	scriptInterface.FromJSVal(cx, enabledModsJS, enabledMods);
+
+	CStr warn;
+	if (replayMods.size() != enabledMods.size())
+		warn = "The number of enabled mods does not match the mods of the replay.";
+	else
+		for (size_t i = 0; i < replayMods.size(); ++i)
+		{
+			if (replayMods[i][0] != enabledMods[i][0])
+			{
+				warn = "The enabled mods don't match the mods of the replay.";
+				break;
+			}
+			else if (replayMods[i][1] != enabledMods[i][1])
+			{
+				warn = "The mod '" + replayMods[i][0] + "' with version '" + replayMods[i][1] + "' is required by the replay file, but version '" + enabledMods[i][1] + "' is present!";
+				break;
+			}
+		}
+
+	if (!warn.empty())
+		LOGWARNING("%s\nThe mods of the replay are:\n%s\nThese mods are enabled:\n%s", warn, ModListToString(replayMods), ModListToString(enabledMods));
+}
 void CReplayPlayer::Replay(bool serializationtest, int rejointestturn, bool ooslog)
 {
 	ENSURE(m_Stream);
@@ -162,6 +203,7 @@ void CReplayPlayer::Replay(bool serializationtest, int rejointestturn, bool oosl
 	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
 	std::string type;
+
 	while ((*m_Stream >> type).good())
 	{
 		if (type == "start")
@@ -171,16 +213,7 @@ void CReplayPlayer::Replay(bool serializationtest, int rejointestturn, bool oosl
 			JS::RootedValue attribs(cx);
 			ENSURE(g_Game->GetSimulation2()->GetScriptInterface().ParseJSON(line, &attribs));
 
-			std::vector<CStr> replayModList;
-			g_Game->GetSimulation2()->GetScriptInterface().GetProperty(attribs, "mods", replayModList);
-
-			for (const CStr& mod : replayModList)
-				if (mod != "user" && std::find(g_modsLoaded.begin(), g_modsLoaded.end(), mod) == g_modsLoaded.end())
-					LOGWARNING("The mod '%s' is required by the replay file, but wasn't passed as an argument!", mod);
-
-			for (const CStr& mod : g_modsLoaded)
-				if (mod != "user" && std::find(replayModList.begin(), replayModList.end(), mod) == replayModList.end())
-					LOGWARNING("The mod '%s' wasn't used when creating this replay file, but was passed as an argument!", mod);
+			CheckReplayMods(g_Game->GetSimulation2()->GetScriptInterface(), attribs);
 
 			g_Game->StartGame(&attribs, "");
 
