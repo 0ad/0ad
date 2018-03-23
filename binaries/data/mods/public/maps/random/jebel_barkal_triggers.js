@@ -91,7 +91,7 @@ var jebelBarkal_cityPatrolGroup_balancing = {
 			"frequency": scaleByTime(time, 3, 0)
 		}
 	],
-	"targetClasses": "Unit+!Ship"
+	"targetClasses": () => "Unit+!Ship"
 };
 
 /**
@@ -222,7 +222,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": scaleByTime(time, 1, 0)
 			}
 		],
-		"targetClasses": "Unit+!Ship"
+		"targetClasses": () => "Unit+!Ship"
 	},
 	{
 		"buildingClasses": ["Fortress"],
@@ -242,7 +242,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": scaleByTime(time, 1, 0)
 			}
 		],
-		"targetClasses": "Unit+!Ship"
+		"targetClasses": () => "Unit+!Ship"
 	},
 	{
 		// These should only train the strongest units
@@ -267,7 +267,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": randFloat(0.05, 0.2)
 			}
 		],
-		"targetClasses": "Unit+!Ship"
+		"targetClasses": () => "Unit+!Ship"
 	},
 	{
 		"buildingClasses": ["CivCentre"],
@@ -287,7 +287,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": scaleByTime(time, 1, 0)
 			}
 		],
-		"targetClasses": "Unit+!Ship"
+		"targetClasses": () => "Unit+!Ship"
 	},
 	{
 		"buildingClasses": ["Stables"],
@@ -302,7 +302,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": scaleByTime(time, 0, 1)
 			}
 		],
-		"targetClasses": "Unit+!Ship"
+		"targetClasses": () => "Unit+!Ship"
 	},
 	{
 		"buildingClasses": ["Barracks+!Stables", "Embassy"],
@@ -313,18 +313,18 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": 1
 			}
 		],
-		"targetClasses": "Unit+!Ship"
+		"targetClasses": () => "Unit+!Ship"
 	},
 	{
 		"buildingClasses": ["ElephantStables"],
-		"unitCount": time => scaleByTime(time, 0, 10),
+		"unitCount": time => scaleByTime(time, 0, 15),
 		"unitComposition": (time, heroes) => [
 			{
 				"templates": jebelBarkal_templates.elephants,
 				"frequency": 1
 			}
 		],
-		"targetClasses": "Defensive SiegeEngine Monument Wonder"
+		"targetClasses": () => pickRandom(["Defensive SiegeEngine Monument Wonder", "Structure"])
 	}
 ];
 
@@ -440,7 +440,7 @@ Trigger.prototype.JebelBarkal_SpawnCityPatrolGroups = function()
 				"x": pos.x,
 				"z": pos.y,
 				"targetClasses": {
-					"attack": jebelBarkal_cityPatrolGroup_balancing.targetClasses
+					"attack": jebelBarkal_cityPatrolGroup_balancing.targetClasses()
 				},
 				"queued": true,
 				"allowCapture": false
@@ -523,7 +523,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 				"x": pos.x,
 				"z": pos.y,
 				"targetClasses": {
-					"attack": spawnPointBalancing.targetClasses
+					"attack": spawnPointBalancing.targetClasses()
 				},
 				"queued": true,
 				"allowCapture": false

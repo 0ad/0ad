@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -307,7 +307,10 @@ JSVAL_VECTOR(u32)
 JSVAL_VECTOR(u16)
 JSVAL_VECTOR(std::string)
 JSVAL_VECTOR(std::wstring)
+JSVAL_VECTOR(std::vector<std::wstring>)
 JSVAL_VECTOR(CStr8)
+JSVAL_VECTOR(std::vector<CStr8>)
+JSVAL_VECTOR(std::vector<std::string>)
 
 
 class IComponent;

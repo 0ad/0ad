@@ -18,6 +18,7 @@
 #ifndef INCLUDED_REPLAY
 #define INCLUDED_REPLAY
 
+#include "ps/CStr.h"
 #include "scriptinterface/ScriptTypes.h"
 
 struct SimulationCommand;
@@ -101,6 +102,8 @@ public:
 
 private:
 	std::istream* m_Stream;
+	CStr ModListToString(const std::vector<std::vector<CStr>>& list) const;
+	void CheckReplayMods(const ScriptInterface& scriptInterface, JS::HandleValue attribs) const;
 };
 
 #endif // INCLUDED_REPLAY
