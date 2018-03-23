@@ -89,6 +89,7 @@ const oPtolSiege = ["units/ptol_mechanical_siege_lithobolos_unpacked", "units/pt
 const oTriggerPointCityPath = "trigger/trigger_point_A";
 const oTriggerPointAttackerPatrol = "trigger/trigger_point_B";
 
+const aPalmPath = actorTemplate("flora/trees/palm_cretan_date_tall");
 const aRock = actorTemplate("geology/stone_savanna_med");
 const aHandcart = actorTemplate("props/special/eyecandy/handcart_1");
 const aPlotFence = actorTemplate("props/special/common/plot_fence");
@@ -943,7 +944,7 @@ var areaCityPalms =
 
 g_Map.log("Placing city palms");
 createObjectGroupsByAreas(
-	new SimpleGroup([new SimpleObject(oPalmPath, 1, 1, 0, 0)], true, clForest),
+	new SimpleGroup([new SimpleObject(aPalmPath, 1, 1, 0, 0)], true, clForest),
 	0,
 	avoidClasses(clForest, 3),
 	scaleByMapSize(40, 400),
