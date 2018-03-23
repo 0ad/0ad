@@ -343,6 +343,7 @@ const heightHilltop = heightHill + heightScale(90);
 const heightHillArchers = (heightHilltop + heightHill) / 2;
 const heightOffsetPath = heightScale(-2.5);
 const heightOffsetWalls = heightScale(2.5);
+const heightOffsetStatue = heightScale(2.5);
 
 g_Map.log("Flattening land");
 createArea(
@@ -778,6 +779,10 @@ createArea(
 		new TileClassPainter(clRitualPlace)
 	],
 	avoidClasses(clCliff, 1));
+
+createArea(
+	new DiskPlacer(0, new Vector2D(-1, -1).add(ritualPosition)),
+	new ElevationPainter(heightDesert + heightOffsetStatue));
 
 g_Map.log("Placing healers at the ritual place");
 var [healerPosition, healerAngle] = distributePointsOnCircularSegment(scaleByMapSize(2, 10), Math.PI, ritualAngle, scaleByMapSize(2, 3), ritualPosition);
@@ -1279,7 +1284,7 @@ g_Map.log("Creating hawk");
 for (let i = 0; i < scaleByMapSize(0, 2); ++i)
 	g_Map.placeEntityAnywhere(oHawk, 0, mapCenter, randomAngle());
 
-placePlayersNomad(clPlayer, [stayClasses(clFertileLand, 0), avoidClasses(clCity, 15), avoidCollisions]);
+placePlayersNomad(clPlayer, [avoidClasses(clHill, 15, clSoldier, 15, clCity, 15), avoidCollisions]);
 
 setWindAngle(-0.43);
 setWaterHeight(heightWaterLevel + SEA_LEVEL);
