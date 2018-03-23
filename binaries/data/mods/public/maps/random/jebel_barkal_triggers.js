@@ -97,7 +97,14 @@ var jebelBarkal_cityPatrolGroup_balancing = {
 /**
  * Frequently the buildings spawn different units that attack the players groupwise.
  */
-var jebelBarkal_attackInterval = time => randFloat(5, 7);
+var jebelBarkal_attackInterval = () => randFloat(5, 7);
+
+/**
+ * Delay the first attack in nomad mode.
+ */
+var jebelBarkal_firstAttackTime = () =>
+	jebelBarkal_attackInterval() +
+	(TriggerHelper.GetAllPlayersEntitiesByClass("CivCentre").length ? 4 : 0);
 
 /**
  * Assume gaia to be the native kushite player.
@@ -341,7 +348,7 @@ Trigger.prototype.JebelBarkal_Init = function()
 	this.JebelBarkal_StartRitualAnimations();
 	this.JebelBarkal_GarrisonBuildings();
 	this.JebelBarkal_SpawnCityPatrolGroups();
-	this.JebelBarkal_SpawnAttackerGroups();
+	this.JebelBarkal_StartAttackTimer(jebelBarkal_firstAttackTime());
 };
 
 Trigger.prototype.JebelBarkal_TrackUnits = function()
@@ -537,7 +544,12 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 			"translateMessage": true
 		});
 
-	let nextAttack = jebelBarkal_attackInterval(TriggerHelper.GetMinutes()) * 60 * 1000;
+	this.JebelBarkal_StartAttackTimer(jebelBarkal_attackInterval());
+};
+
+Trigger.prototype.JebelBarkal_StartAttackTimer = function(delay)
+{
+	let nextAttack = delay * 60 * 1000;
 
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).AddTimeNotification({
 		"message": markForTranslation("Napata will attack in %(time)s!"),
