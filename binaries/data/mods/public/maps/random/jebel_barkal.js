@@ -89,6 +89,7 @@ const oPtolSiege = ["units/ptol_mechanical_siege_lithobolos_unpacked", "units/pt
 const oTriggerPointCityPath = "trigger/trigger_point_A";
 const oTriggerPointAttackerPatrol = "trigger/trigger_point_B";
 
+const aPalmPath = actorTemplate("flora/trees/palm_cretan_date_tall");
 const aRock = actorTemplate("geology/stone_savanna_med");
 const aHandcart = actorTemplate("props/special/eyecandy/handcart_1");
 const aPlotFence = actorTemplate("props/special/common/plot_fence");
@@ -343,6 +344,7 @@ const heightHilltop = heightHill + heightScale(90);
 const heightHillArchers = (heightHilltop + heightHill) / 2;
 const heightOffsetPath = heightScale(-2.5);
 const heightOffsetWalls = heightScale(2.5);
+const heightOffsetStatue = heightScale(2.5);
 
 g_Map.log("Flattening land");
 createArea(
@@ -779,6 +781,10 @@ createArea(
 	],
 	avoidClasses(clCliff, 1));
 
+createArea(
+	new DiskPlacer(0, new Vector2D(-1, -1).add(ritualPosition)),
+	new ElevationPainter(heightDesert + heightOffsetStatue));
+
 g_Map.log("Placing healers at the ritual place");
 var [healerPosition, healerAngle] = distributePointsOnCircularSegment(scaleByMapSize(2, 10), Math.PI, ritualAngle, scaleByMapSize(2, 3), ritualPosition);
 for (let i = 0; i < healerPosition.length; ++i)
@@ -938,7 +944,7 @@ var areaCityPalms =
 
 g_Map.log("Placing city palms");
 createObjectGroupsByAreas(
-	new SimpleGroup([new SimpleObject(oPalmPath, 1, 1, 0, 0)], true, clForest),
+	new SimpleGroup([new SimpleObject(aPalmPath, 1, 1, 0, 0)], true, clForest),
 	0,
 	avoidClasses(clForest, 3),
 	scaleByMapSize(40, 400),
@@ -1279,7 +1285,7 @@ g_Map.log("Creating hawk");
 for (let i = 0; i < scaleByMapSize(0, 2); ++i)
 	g_Map.placeEntityAnywhere(oHawk, 0, mapCenter, randomAngle());
 
-placePlayersNomad(clPlayer, [stayClasses(clFertileLand, 0), avoidClasses(clCity, 15), avoidCollisions]);
+placePlayersNomad(clPlayer, [avoidClasses(clHill, 15, clSoldier, 15, clCity, 15), avoidCollisions]);
 
 setWindAngle(-0.43);
 setWaterHeight(heightWaterLevel + SEA_LEVEL);

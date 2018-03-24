@@ -97,7 +97,14 @@ var jebelBarkal_cityPatrolGroup_balancing = {
 /**
  * Frequently the buildings spawn different units that attack the players groupwise.
  */
-var jebelBarkal_attackInterval = time => randFloat(5, 7);
+var jebelBarkal_attackInterval = () => randFloat(5, 7);
+
+/**
+ * Delay the first attack in nomad mode.
+ */
+var jebelBarkal_firstAttackTime = () =>
+	jebelBarkal_attackInterval() +
+	(TriggerHelper.GetAllPlayersEntitiesByClass("CivCentre").length ? 0 : 4);
 
 /**
  * Assume gaia to be the native kushite player.
@@ -107,12 +114,13 @@ var jebelBarkal_playerID = 0;
 /**
  * City patrols soldiers will patrol along these triggerpoints on the crossings of the city paths.
  */
-var jebelBarkal_CityPatrolGroup_triggerPointPath = "A";
+var jebelBarkal_cityPatrolGroup_triggerPointPath = "A";
 
 /**
  * Attackers will patrol these points after having finished the attack-walk order.
  */
-var jebelBarkal_AttackGroup_triggerPointPatrol = "B";
+var jebelBarkal_attackerGroup_triggerPointPatrol = "B";
+
 
 /**
  * Attacker groups approach these player buildings and attack enemies of the given classes encountered.
@@ -127,7 +135,7 @@ var jebelBarkal_patrolPointCount = 6;
 /**
  * Healers near the wonder run these animations when idle.
  */
-var jebelBarkal_RitualAnimations = ["attack_capture", "promotion", "heal"];
+var jebelBarkal_ritualAnimations = ["attack_capture", "promotion", "heal"];
 
 /**
  * This defines which units are spawned and garrisoned at the gamestart per building.
@@ -341,7 +349,7 @@ Trigger.prototype.JebelBarkal_Init = function()
 	this.JebelBarkal_StartRitualAnimations();
 	this.JebelBarkal_GarrisonBuildings();
 	this.JebelBarkal_SpawnCityPatrolGroups();
-	this.JebelBarkal_SpawnAttackerGroups();
+	this.JebelBarkal_StartAttackTimer(jebelBarkal_firstAttackTime());
 };
 
 Trigger.prototype.JebelBarkal_TrackUnits = function()
@@ -388,8 +396,8 @@ Trigger.prototype.JebelBarkal_UpdateRitualAnimations = function()
 			continue;
 
 		let cmpVisual = Engine.QueryInterface(ent, IID_Visual);
-		if (cmpVisual && jebelBarkal_RitualAnimations.indexOf(cmpVisual.GetAnimationName()) == -1)
-			cmpVisual.SelectAnimation(pickRandom(jebelBarkal_RitualAnimations), false, 1, "");
+		if (cmpVisual && jebelBarkal_ritualAnimations.indexOf(cmpVisual.GetAnimationName()) == -1)
+			cmpVisual.SelectAnimation(pickRandom(jebelBarkal_ritualAnimations), false, 1, "");
 	}
 };
 
@@ -431,7 +439,7 @@ Trigger.prototype.JebelBarkal_SpawnCityPatrolGroups = function()
 
 		TriggerHelper.SetUnitFormation(jebelBarkal_playerID, groupEntities, pickRandom(jebelBarkal_formations));
 
-		for (let patrolTarget of shuffleArray(this.GetTriggerPoints(jebelBarkal_CityPatrolGroup_triggerPointPath)))
+		for (let patrolTarget of shuffleArray(this.GetTriggerPoints(jebelBarkal_cityPatrolGroup_triggerPointPath)))
 		{
 			let pos = TriggerHelper.GetEntityPosition2D(patrolTarget);
 			ProcessCommand(jebelBarkal_playerID, {
@@ -478,7 +486,10 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 
 	let targets = TriggerHelper.GetAllPlayersEntitiesByClass(jebelBarkal_pathTargetClasses);
 	if (!targets.length)
+	{
+		this.JebelBarkal_StartAttackTimer(jebelBarkal_attackInterval());
 		return;
+	}
 
 	let time = TriggerHelper.GetMinutes();
 	this.debugLog("Attacker wave");
@@ -513,7 +524,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 		if (!target)
 			continue;
 
-		let patrolTargets = [target].concat(shuffleArray(this.GetTriggerPoints(jebelBarkal_AttackGroup_triggerPointPatrol))).slice(0, jebelBarkal_patrolPointCount);
+		let patrolTargets = [target].concat(shuffleArray(this.GetTriggerPoints(jebelBarkal_attackerGroup_triggerPointPatrol))).slice(0, jebelBarkal_patrolPointCount);
 		for (let patrolTarget of patrolTargets)
 		{
 			let pos = TriggerHelper.GetEntityPosition2D(patrolTarget);
@@ -537,7 +548,12 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 			"translateMessage": true
 		});
 
-	let nextAttack = jebelBarkal_attackInterval(TriggerHelper.GetMinutes()) * 60 * 1000;
+	this.JebelBarkal_StartAttackTimer(jebelBarkal_attackInterval());
+};
+
+Trigger.prototype.JebelBarkal_StartAttackTimer = function(delay)
+{
+	let nextAttack = delay * 60 * 1000;
 
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).AddTimeNotification({
 		"message": markForTranslation("Napata will attack in %(time)s!"),

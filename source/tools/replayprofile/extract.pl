@@ -3,12 +3,12 @@
 use strict;
 use warnings;
 
-# Run the game normally to generate a simulation command log.
-# Run the replay mode like:
-#  ./pyrogenesis -mod=public -replay=$HOME/.config/0ad/logs/sim_log/99999/commands.txt
+# Run the game normally to generate a replay.
+# Run the non-visual replay like:
+#  ./pyrogenesis -mod=public -replay=$HOME/.local/share/0ad/replays/0.0.23/2018-03-23_0010/commands.txt
 # to generate profile.txt.
 # Then run:
-#  perl extract.pl > data.js
+#  perl extract.pl > data.json
 # then open graph.html.
 
 open my $f, '../../../binaries/system/profile.txt' or die $!;
