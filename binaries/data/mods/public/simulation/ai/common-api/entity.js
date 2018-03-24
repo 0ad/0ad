@@ -414,6 +414,8 @@ m.Template = m.Class({
 
 	"promotion": function() { return this.get("Promotion/Entity"); },
 
+	"isPackable": function() { return this.get("Pack") != undefined; },
+
 	/**
 	 * Returns whether this is an animal that is too difficult to hunt.
 	 */
