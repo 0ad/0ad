@@ -350,6 +350,8 @@ Trigger.prototype.debugLog = function(txt)
 Trigger.prototype.JebelBarkal_Init = function()
 {
 	this.JebelBarkal_TrackUnits();
+	this.RegisterTrigger("OnOwnershipChanged", "JebelBarkal_OwnershipChange", { "enabled": true });
+
 	this.JebelBarkal_SetDefenderStance();
 	this.JebelBarkal_StartRitualAnimations();
 	this.JebelBarkal_GarrisonBuildings();
@@ -600,7 +602,5 @@ Trigger.prototype.JebelBarkal_OwnershipChange = function(data)
 
 
 {
-	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	cmpTrigger.RegisterTrigger("OnInitGame", "JebelBarkal_Init", { "enabled": true });
-	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "JebelBarkal_OwnershipChange", { "enabled": true });
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger).RegisterTrigger("OnInitGame", "JebelBarkal_Init", { "enabled": true });
 }
