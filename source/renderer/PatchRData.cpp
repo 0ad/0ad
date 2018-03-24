@@ -1281,28 +1281,28 @@ void CPatchRData::BuildWater()
 {
 	PROFILE3("build water");
 
-	// number of vertices in each direction in each patch
-	ENSURE((PATCH_SIZE % water_cell_size) == 0);
+	// Number of vertices in each direction in each patch
+	ENSURE(PATCH_SIZE % water_cell_size == 0);
 
 	if (m_VBWater)
 	{
 		g_VBMan.Release(m_VBWater);
-		m_VBWater = 0;
+		m_VBWater = nullptr;
 	}
 	if (m_VBWaterIndices)
 	{
 		g_VBMan.Release(m_VBWaterIndices);
-		m_VBWaterIndices = 0;
+		m_VBWaterIndices = nullptr;
 	}
 	if (m_VBWaterShore)
 	{
 		g_VBMan.Release(m_VBWaterShore);
-		m_VBWaterShore = 0;
+		m_VBWaterShore = nullptr;
 	}
 	if (m_VBWaterIndicesShore)
 	{
 		g_VBMan.Release(m_VBWaterIndicesShore);
-		m_VBWaterIndicesShore = 0;
+		m_VBWaterIndicesShore = nullptr;
 	}
 	m_WaterBounds.SetEmpty();
 
@@ -1329,32 +1329,47 @@ void CPatchRData::BuildWater()
 	CPatch* patch = m_Patch;
 	CTerrain* terrain = patch->m_Parent;
 
-	ssize_t mapSize = (size_t)terrain->GetVerticesPerSide();
+	ssize_t mapSize = terrain->GetVerticesPerSide();
 
-	//Top-left coordinates of our patch.
-	ssize_t x1 = m_Patch->m_X*PATCH_SIZE;
-	ssize_t z1 = m_Patch->m_Z*PATCH_SIZE;
+	// Top-left coordinates of our patch.
+	ssize_t px = m_Patch->m_X * PATCH_SIZE;
+	ssize_t pz = m_Patch->m_Z * PATCH_SIZE;
 
-	// to whoever implements different water heights, this is a TODO: water height)
+	// To whoever implements different water heights, this is a TODO: water height)
 	float waterHeight = cmpWaterManager->GetExactWaterLevel(0.0f,0.0f);
 
 	// The 4 points making a water tile.
-	int moves[4][2] = { {0,0}, {water_cell_size,0}, {0,water_cell_size}, {water_cell_size,water_cell_size} };
+	int moves[4][2] = {
+		{0,0},
+		{water_cell_size,0},
+		{0,water_cell_size},
+		{water_cell_size,water_cell_size}
+	};
 	// Where to look for when checking for water for shore tiles.
-	int check[10][2] = { {0,0},{water_cell_size,0},{water_cell_size*2,0},{0,water_cell_size},{0,water_cell_size*2},{water_cell_size,water_cell_size},{water_cell_size*2,water_cell_size*2}, {-water_cell_size,0}, {0,-water_cell_size}, {-water_cell_size,-water_cell_size} };
+	int check[10][2] = {
+		{0, 0},
+		{water_cell_size, 0},
+		{water_cell_size*2, 0},
+		{0, water_cell_size},
+		{0, water_cell_size*2},
+		{water_cell_size, water_cell_size},
+		{water_cell_size*2, water_cell_size*2},
+		{-water_cell_size, 0},
+		{0, -water_cell_size},
+		{-water_cell_size, -water_cell_size}
+	};
 
 	// build vertices, uv, and shader varying
 	for (ssize_t z = 0; z < PATCH_SIZE; z += water_cell_size)
 	{
 		for (ssize_t x = 0; x < PATCH_SIZE; x += water_cell_size)
 		{
-
 			// Check that this tile is close to water
-			bool nearWat = false;
+			bool nearWater = false;
 			for (size_t test = 0; test < 10; ++test)
-				if (terrain->GetVertexGroundLevel(x+x1+check[test][0], z+z1+check[test][1]) < waterHeight)
-					nearWat = true;
-			if (!nearWat)
+				if (terrain->GetVertexGroundLevel(x + px + check[test][0], z + pz + check[test][1]) < waterHeight)
+					nearWater = true;
+			if (!nearWater)
 				continue;
 
 			// This is actually lying and I should call CcmpTerrain
@@ -1369,8 +1384,8 @@ void CPatchRData::BuildWater()
 				if (water_index_map[z+moves[i][1]][x+moves[i][0]] != 0xFFFF)
 					continue;
 
-				ssize_t zz = z+z1+moves[i][1];
-				ssize_t xx = x+x1+moves[i][0];
+				ssize_t xx = x + px + moves[i][0];
+				ssize_t zz = z + pz + moves[i][1];
 
 				SWaterVertex vertex;
 				terrain->CalcPosition(xx,zz, vertex.m_Position);
@@ -1394,18 +1409,18 @@ void CPatchRData::BuildWater()
 
 			// Check id this tile is partly over land.
 			// If so add a square over the terrain. This is necessary to render waves that go on shore.
-			if (terrain->GetVertexGroundLevel(x+x1, z+z1) < waterHeight
-				&& terrain->GetVertexGroundLevel(x+x1 + water_cell_size, z+z1) < waterHeight
-				&& terrain->GetVertexGroundLevel(x+x1, z+z1+water_cell_size) < waterHeight
-				&& terrain->GetVertexGroundLevel(x+x1 + water_cell_size, z+z1+water_cell_size) < waterHeight)
+			if (terrain->GetVertexGroundLevel(x+px, z+pz) < waterHeight
+				&& terrain->GetVertexGroundLevel(x+px + water_cell_size, z+pz) < waterHeight
+				&& terrain->GetVertexGroundLevel(x+px, z+pz+water_cell_size) < waterHeight
+				&& terrain->GetVertexGroundLevel(x+px + water_cell_size, z+pz+water_cell_size) < waterHeight)
 				continue;
 
 			for (int i = 0; i < 4; ++i)
 			{
 				if (water_shore_index_map[z+moves[i][1]][x+moves[i][0]] != 0xFFFF)
 					continue;
-				ssize_t zz = z+z1+moves[i][1];
-				ssize_t xx = x+x1+moves[i][0];
+				ssize_t xx = x + px + moves[i][0];
+				ssize_t zz = x + pz + moves[i][1];
 
 				SWaterVertex vertex;
 				terrain->CalcPosition(xx,zz, vertex.m_Position);
@@ -1418,7 +1433,7 @@ void CPatchRData::BuildWater()
 				water_shore_index_map[z+moves[i][1]][x+moves[i][0]] = water_vertex_data_shore.size();
 				water_vertex_data_shore.push_back(vertex);
 			}
-			if (terrain->GetTriangulationDir(x+x1,z+z1))
+			if (terrain->GetTriangulationDir(x + px, z + pz))
 			{
 				water_indices_shore.push_back(water_shore_index_map[z + moves[2][1]][x + moves[2][0]]);
 				water_indices_shore.push_back(water_shore_index_map[z + moves[0][1]][x + moves[0][0]]);
@@ -1439,8 +1454,8 @@ void CPatchRData::BuildWater()
 		}
 	}
 
-	// no vertex buffers if no data generated
-	if (water_indices.size() != 0)
+	// No vertex buffers if no data generated
+	if (!water_indices.empty())
 	{
 		m_VBWater = g_VBMan.Allocate(sizeof(SWaterVertex), water_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
 		m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater, &water_vertex_data[0]);
@@ -1449,7 +1464,7 @@ void CPatchRData::BuildWater()
 		m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices, &water_indices[0]);
 	}
 
-	if (water_indices_shore.size() != 0)
+	if (!water_indices_shore.empty())
 	{
 		m_VBWaterShore = g_VBMan.Allocate(sizeof(SWaterVertex), water_vertex_data_shore.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
 		m_VBWaterShore->m_Owner->UpdateChunkVertices(m_VBWaterShore, &water_vertex_data_shore[0]);
@@ -1457,7 +1472,8 @@ void CPatchRData::BuildWater()
 		// Construct indices buffer
 		m_VBWaterIndicesShore = g_VBMan.Allocate(sizeof(GLushort), water_indices_shore.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
 		m_VBWaterIndicesShore->m_Owner->UpdateChunkVertices(m_VBWaterIndicesShore, &water_indices_shore[0]);
-	}}
+	}
+}
 
 void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fixedPipeline)
 {
