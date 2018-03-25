@@ -10,7 +10,7 @@ var API3 = function(m)
 m.Map = function Map(sharedScript, type, originalMap, actualCopy)
 {
 	// get the correct dimensions according to the map type
-	let map = type === "territory" || type === "resource" ? sharedScript.territoryMap : sharedScript.passabilityMap;
+	let map = type == "territory" || type == "resource" ? sharedScript.territoryMap : sharedScript.passabilityMap;
 	this.width = map.width;
 	this.height = map.height;
 	this.cellSize = map.cellSize;
@@ -19,7 +19,7 @@ m.Map = function Map(sharedScript, type, originalMap, actualCopy)
 	this.maxVal = 255;
 
 	// sanity check
-	if (originalMap && originalMap.length !== this.length)
+	if (originalMap && originalMap.length != this.length)
 		warn("AI map size incompatibility with type " + type + ": original " + originalMap.length + " new " + this.length);
 
 	if (originalMap && actualCopy)
@@ -47,8 +47,8 @@ m.Map.prototype.gamePosToMapPos = function(p)
 m.Map.prototype.point = function(p)
 {
 	let q = this.gamePosToMapPos(p);
-	q[0] = q[0] >= this.width ? this.width-1 : (q[0] < 0 ? 0 : q[0]);
-	q[1] = q[1] >= this.width ? this.width-1 : (q[1] < 0 ? 0 : q[1]);
+	q[0] = q[0] >= this.width ? this.width-1 : q[0] < 0 ? 0 : q[0];
+	q[1] = q[1] >= this.width ? this.width-1 : q[1] < 0 ? 0 : q[1];
 	return this.map[q[0] + this.width * q[1]];
 };
 
@@ -63,7 +63,7 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 	let maxDist2 = maxDist * maxDist;
 
 	// code duplicating for speed
-	if (type === "linear")
+	if (type == "linear")
 	{
 		let str = strength / maxDist;
 		for (let y = y0; y < y1; ++y)
@@ -75,18 +75,12 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 				let r2 = dx*dx + dy*dy;
 				if (r2 >= maxDist2)
 					continue;
-				let quant = str * (maxDist - Math.sqrt(r2));
 				let w = x + y * this.width;
-				if (this.map[w] + quant < 0)
-					this.map[w] = 0;
-				else if (this.map[w] + quant > this.maxVal)
-					this.map[w] = this.maxVal;	// avoids overflow.
-				else
-					this.map[w] += quant;
+				this.set(w, this.map[w] + str * (maxDist - Math.sqrt(r2)));
 			}
 		}
 	}
-	else if (type === "quadratic")
+	else if (type == "quadratic")
 	{
 		let str = strength / maxDist2;
 		for (let y = y0; y < y1; ++y)
@@ -98,14 +92,8 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 				let r2 = dx*dx + dy*dy;
 				if (r2 >= maxDist2)
 					continue;
-				let quant = str * (maxDist2 - r2);
 				let w = x + y * this.width;
-				if (this.map[w] + quant < 0)
-					this.map[w] = 0;
-				else if (this.map[w] + quant > this.maxVal)
-					this.map[w] = this.maxVal;	// avoids overflow.
-				else
-					this.map[w] += quant;
+				this.set(w, this.map[w] + str * (maxDist2 - r2));
 			}
 		}
 	}
@@ -121,12 +109,7 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 				if (r2 >= maxDist2)
 					continue;
 				let w = x + y * this.width;
-				if (this.map[w] + strength < 0)
-					this.map[w] = 0;
-				else if (this.map[w] + strength > this.maxVal)
-					this.map[w] = this.maxVal;	// avoids overflow.
-				else
-					this.map[w] += strength;
+				this.set(w, this.map[w] + strength);
 			}
 		}
 	}
@@ -142,7 +125,7 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type = "
 	let y1 = Math.min(this.height, cy + maxDist);
 	let maxDist2 = maxDist * maxDist;
 
-	if (type === "linear")
+	if (type == "linear")
 	{
 		let str = strength / maxDist;
 		for (let y = y0; y < y1; ++y)
@@ -154,17 +137,12 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type = "
 				let r2 = dx*dx + dy*dy;
 				if (r2 >= maxDist2)
 					continue;
-				let quant = str * (maxDist - Math.sqrt(r2)) * this.map[x + y * this.width];
-				if (quant < 0)
-					this.map[x + y * this.width] = 0;
-				else if (quant > this.maxVal)
-					this.map[x + y * this.width] = this.maxVal;
-				else
-					this.map[x + y * this.width] = quant;
+				let w = x + y * this.width;
+				this.set(w, str * (maxDist - Math.sqrt(r2)) * this.map[w]);
 			}
 		}
 	}
-	else if (type === "quadratic")
+	else if (type == "quadratic")
 	{
 		let str = strength / maxDist2;
 		for (let y = y0; y < y1; ++y)
@@ -176,13 +154,8 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type = "
 				let r2 = dx*dx + dy*dy;
 				if (r2 >= maxDist2)
 					continue;
-				let quant = str * (maxDist2 - r2) * this.map[x + y * this.width];
-				if (quant < 0)
-					this.map[x + y * this.width] = 0;
-				else if (quant > this.maxVal)
-					this.map[x + y * this.width] = this.maxVal;
-				else
-					this.map[x + y * this.width] = quant;
+				let w = x + y * this.width;
+				this.set(w, str * (maxDist2 - r2) * this.map[w]);
 			}
 		}
 	}
@@ -197,13 +170,8 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type = "
 				let r2 = dx*dx + dy*dy;
 				if (r2 >= maxDist2)
 					continue;
-				let quant = this.map[x + y * this.width] * strength;
-				if (quant < 0)
-					this.map[x + y * this.width] = 0;
-				else if (quant > this.maxVal)
-					this.map[x + y * this.width] = this.maxVal;
-				else
-					this.map[x + y * this.width] = quant;
+				let w = x + y * this.width;
+				this.set(w, this.map[w] * strength);
 			}
 		}
 	}
@@ -213,14 +181,13 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type = "
 m.Map.prototype.add = function(map)
 {
 	for (let i = 0; i < this.length; ++i)
-	{
-		if (this.map[i] + map.map[i] < 0)
-			this.map[i] = 0;
-		else if (this.map[i] + map.map[i] > this.maxVal)
-			this.map[i] = this.maxVal;
-		else
-			this.map[i] += map.map[i];
-	}
+		this.set(i, this.map[i] + map.map[i]);
+};
+
+/** Set the value taking overflow into account */
+m.Map.prototype.set = function(i, value)
+{
+	this.map[i] = value < 0 ? 0 : value > this.maxVal ? this.maxVal : value;
 };
 
 /** Find the best non-obstructed tile */
