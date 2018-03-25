@@ -107,6 +107,11 @@ var jebelBarkal_firstAttackTime = () =>
 	(TriggerHelper.GetAllPlayersEntitiesByClass("CivCentre").length ? 0 : 4);
 
 /**
+ * Account for varying mapsizes and number of players when spawning attackers.
+ */
+var jebelBarkal_attackerGroup_sizeFactor = (numPlayers, numInitialSpawnPoints) => 4.5 * numPlayers / numInitialSpawnPoints;
+
+/**
  * Assume gaia to be the native kushite player.
  */
 var jebelBarkal_playerID = 0;
@@ -345,6 +350,8 @@ Trigger.prototype.debugLog = function(txt)
 Trigger.prototype.JebelBarkal_Init = function()
 {
 	this.JebelBarkal_TrackUnits();
+	this.RegisterTrigger("OnOwnershipChanged", "JebelBarkal_OwnershipChange", { "enabled": true });
+
 	this.JebelBarkal_SetDefenderStance();
 	this.JebelBarkal_StartRitualAnimations();
 	this.JebelBarkal_GarrisonBuildings();
@@ -372,6 +379,8 @@ Trigger.prototype.JebelBarkal_TrackUnits = function()
 	this.jebelBarkal_attackerGroupSpawnPoints = TriggerHelper.GetPlayerEntitiesByClass(
 		jebelBarkal_playerID,
 		jebelBarkal_attackerGroup_balancing.reduce((classes, attackerSpawning) => classes.concat(attackerSpawning.buildingClasses), []));
+
+	this.numInitialSpawnPoints = this.jebelBarkal_attackerGroupSpawnPoints.length;
 
 	this.debugLog("Attacker spawn points: " + uneval(this.jebelBarkal_attackerGroupSpawnPoints));
 };
@@ -492,6 +501,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 	}
 
 	let time = TriggerHelper.GetMinutes();
+	let groupSizeFactor = jebelBarkal_attackerGroup_sizeFactor(TriggerHelper.GetNumberOfPlayers(), this.numInitialSpawnPoints);
 	this.debugLog("Attacker wave");
 
 	let spawnedAnything = false;
@@ -500,8 +510,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 		let spawnPointBalancing = jebelBarkal_attackerGroup_balancing.find(balancing =>
 			TriggerHelper.EntityMatchesClassList(spawnEnt, balancing.buildingClasses));
 
-		let unitCount = Math.round(spawnPointBalancing.unitCount(time));
-
+		let unitCount = Math.round(groupSizeFactor * spawnPointBalancing.unitCount(time));
 		if (unitCount <= 0)
 			continue;
 
@@ -593,7 +602,5 @@ Trigger.prototype.JebelBarkal_OwnershipChange = function(data)
 
 
 {
-	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	cmpTrigger.RegisterTrigger("OnInitGame", "JebelBarkal_Init", { "enabled": true });
-	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "JebelBarkal_OwnershipChange", { "enabled": true });
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger).RegisterTrigger("OnInitGame", "JebelBarkal_Init", { "enabled": true });
 }

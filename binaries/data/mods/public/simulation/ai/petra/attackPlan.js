@@ -1228,8 +1228,12 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
 
 	for (let ent of this.unitCollection.values())
+	{
 		ent.setMetadata(PlayerID, "subrole", "walking");
-	this.unitCollection.setStance("aggressive");
+		let stance = ent.isPackable() ? "standground" : "aggressive";
+		if (ent.getStance() != stance)
+			ent.setStance(stance);
+	}
 
 	let rallyAccess = gameState.ai.accessibility.getAccessValue(this.rallyPoint);
 	let targetAccess = m.getLandAccess(gameState, this.target);
