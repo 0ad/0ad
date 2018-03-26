@@ -201,13 +201,13 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			let base = this.metadata.base;
 			for (let j = 0; j < placement.map.length; ++j)
 				if (HQ.basesMap.map[j] == base)
-					placement.map[j] = 45;
+					placement.set(j, 45);
 		}
 		else
 		{
 			for (let j = 0; j < placement.map.length; ++j)
 				if (HQ.basesMap.map[j] != 0)
-					placement.map[j] = 45;
+					placement.set(j, 45);
 		}
 
 		if (!HQ.requireHouses || !template.hasClass("House"))
@@ -251,9 +251,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			for (let j = 0; j < placement.map.length; ++j)
 			{
 				let value = placement.map[j] - gameState.sharedScript.resourceMaps.wood.map[j]/3;
-				placement.map[j] = value >= 0 ? value : 0;
 				if (HQ.borderMap.map[j] & m.fullBorder_Mask)
-					placement.map[j] /= 2;	// we need space around farmstead, so disfavor map border
+					value /= 2;	// we need space around farmstead, so disfavor map border
+				placement.set(j, value);
 			}
 		}
 	}
@@ -274,9 +274,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			else if (placement.map[j] > 0)
 			{
 				if (favorBorder && HQ.borderMap.map[j] & m.border_Mask)
-					placement.map[j] += 50;
+					placement.set(j, placement.map[j] + 50);
 				else if (disfavorBorder && !(HQ.borderMap.map[j] & m.fullBorder_Mask))
-					placement.map[j] += 10;
+					placement.set(j, placement.map[j] + 10);
 
 				let x = (j % placement.width + 0.5) * cellSize;
 				let z = (Math.floor(j / placement.width) + 0.5) * cellSize;
@@ -294,17 +294,16 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			else if (placement.map[j] > 0)
 			{
 				if (favorBorder && HQ.borderMap.map[j] & m.border_Mask)
-					placement.map[j] += 50;
+					placement.set(j, placement.map[j] + 50);
 				else if (disfavorBorder && !(HQ.borderMap.map[j] & m.fullBorder_Mask))
-					placement.map[j] += 10;
+					placement.set(j, placement.map[j] + 10);
 
 				let x = (j % placement.width + 0.5) * cellSize;
 				let z = (Math.floor(j / placement.width) + 0.5) * cellSize;
 				if (HQ.isNearInvadingArmy([x, z]))
 					placement.map[j] = 0;
 				else if (favoredBase && HQ.basesMap.map[j] == favoredBase)
-					placement.map[j] += 200;
-
+					placement.set(j, placement.map[j] + 100);
 			}
 		}
 	}
