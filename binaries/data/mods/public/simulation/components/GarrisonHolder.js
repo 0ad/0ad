@@ -675,7 +675,7 @@ GarrisonHolder.prototype.OnGlobalInitGame = function(msg)
 	{
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		if (cmpUnitAI && cmpUnitAI.CanGarrison(this.entity) && this.Garrison(ent))
-			cmpUnitAI.SetGarrisoned();
+			cmpUnitAI.Autogarrison(this.entity);
 	}
 	this.initGarrison = undefined;
 };
