@@ -89,17 +89,22 @@ public:
 	virtual bool CheckDuplicateFoundation() const = 0;
 
 	/**
-	 * Returns a list of units that are colliding with this entity.
-	 * @return vector of blocking units
+	 * Returns a list of entities that have an obstruction matching the given flag and intersect the current obstruction.
+	 * @return vector of blocking entities
 	 */
-	virtual std::vector<entity_id_t> GetUnitCollisions() const = 0;
+	virtual std::vector<entity_id_t> GetEntitiesByFlags(ICmpObstructionManager::flags_t flags) const = 0;
 
 	/**
-	 * Returns a list of entities that are colliding with this entity (excluding self).
-	 * This can be used to retrieve units with static obstructions, such as animal corpses.
-	 * @return vector of blocking units
+	 * Returns a list of entities that are blocking construction of a foundation.
+	 * @return vector of blocking entities
 	 */
-	virtual std::vector<entity_id_t> GetEntityCollisions() const = 0;
+	virtual std::vector<entity_id_t> GetEntitiesBlockingConstruction() const = 0;
+
+	/**
+	 * Returns a list of entities that shall be deleted when a construction on this obstruction starts,
+	 * for example sheep carcasses.
+	 */
+	virtual std::vector<entity_id_t> GetEntitiesDeletedUponConstruction() const = 0;
 
 	/**
 	 * Detects collisions between foundation-blocking entities and

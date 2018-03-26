@@ -168,6 +168,9 @@ public:
 			"<element name='BlockConstruction' a:help='Whether players should be unable to begin constructing buildings placed on top of this entity'>"
 				"<data type='boolean'/>"
 			"</element>"
+			"<element name='DeleteUponConstruction' a:help='Whether this entity should be deleted when construction on a buildings placed on top of this entity is started.'>"
+				"<data type='boolean'/>"
+			"</element>"
 			"<element name='DisableBlockMovement' a:help='If true, BlockMovement will be overridden and treated as false. (This is a special case to handle foundations)'>"
 				"<data type='boolean'/>"
 			"</element>"
@@ -195,6 +198,8 @@ public:
 			m_TemplateFlags |= ICmpObstructionManager::FLAG_BLOCK_FOUNDATION;
 		if (paramNode.GetChild("BlockConstruction").ToBool())
 			m_TemplateFlags |= ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION;
+		if (paramNode.GetChild("DeleteUponConstruction").ToBool())
+			m_TemplateFlags |= ICmpObstructionManager::FLAG_DELETE_UPON_CONSTRUCTION;
 
 		m_Flags = m_TemplateFlags;
 		if (paramNode.GetChild("DisableBlockMovement").ToBool())
@@ -615,18 +620,13 @@ public:
 			return !cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL );
 	}
 
-	virtual std::vector<entity_id_t> GetUnitCollisions() const
+	virtual std::vector<entity_id_t> GetEntitiesByFlags(flags_t flags) const
 	{
 		std::vector<entity_id_t> ret;
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 		if (!cmpObstructionManager)
 			return ret; // error
-
-		// There are four 'block' flags: construction, foundation, movement,
-		// and pathfinding. Structures have all of these flags, while most units
-		// block only movement and construction.
-		flags_t flags = ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION;
 
 		// Ignore collisions within the same control group, or with other shapes that don't match the filter.
 		// Note that, since the control group for each entity defaults to the entity's ID, this is typically
@@ -637,30 +637,20 @@ public:
 		if (!GetObstructionSquare(square))
 			return ret; // error
 
-		cmpObstructionManager->GetUnitsOnObstruction(square, ret, filter);
-
-		return ret;
-	}
-
-	virtual std::vector<entity_id_t> GetEntityCollisions() const
-	{
-		std::vector<entity_id_t> ret;
-
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-		if (!cmpObstructionManager)
-			return ret; // error
-
-		// Ignore collisions within the same control group.
-		SkipControlGroupsRequireFlagObstructionFilter filter(true, m_ControlGroup, m_ControlGroup2, 0);
-
-		ICmpObstructionManager::ObstructionSquare square;
-		if (!GetObstructionSquare(square))
-			return ret; // error
-
 		cmpObstructionManager->GetUnitsOnObstruction(square, ret, filter, false);
 		cmpObstructionManager->GetStaticObstructionsOnObstruction(square, ret, filter);
 
 		return ret;
+	}
+
+	virtual std::vector<entity_id_t> GetEntitiesBlockingConstruction() const
+	{
+		return GetEntitiesByFlags(ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION);
+	}
+
+	virtual std::vector<entity_id_t> GetEntitiesDeletedUponConstruction() const
+	{
+		return GetEntitiesByFlags(ICmpObstructionManager::FLAG_DELETE_UPON_CONSTRUCTION);
 	}
 
 	virtual void SetMovingFlag(bool enabled)

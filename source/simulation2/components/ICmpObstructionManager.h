@@ -71,11 +71,12 @@ public:
 	 */
 	enum EFlags
 	{
-		FLAG_BLOCK_MOVEMENT     = (1 << 0), // prevents units moving through this shape
-		FLAG_BLOCK_FOUNDATION   = (1 << 1), // prevents foundations being placed on this shape
-		FLAG_BLOCK_CONSTRUCTION = (1 << 2), // prevents buildings being constructed on this shape
-		FLAG_BLOCK_PATHFINDING  = (1 << 3), // prevents the tile pathfinder choosing paths through this shape
-		FLAG_MOVING             = (1 << 4)  // indicates this unit is currently moving
+		FLAG_BLOCK_MOVEMENT           = (1 << 0), // prevents units moving through this shape
+		FLAG_BLOCK_FOUNDATION         = (1 << 1), // prevents foundations being placed on this shape
+		FLAG_BLOCK_CONSTRUCTION       = (1 << 2), // prevents buildings being constructed on this shape
+		FLAG_BLOCK_PATHFINDING        = (1 << 3), // prevents the tile pathfinder choosing paths through this shape
+		FLAG_MOVING                   = (1 << 4), // indicates this unit is currently moving
+		FLAG_DELETE_UPON_CONSTRUCTION = (1 << 5)  // this entity is deleted when construction of a building placed on top of this entity starts
 	};
 
 	/**

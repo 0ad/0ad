@@ -122,6 +122,9 @@ function placeStartingWalls(position, playerID, wallType, orientation = BUILDING
 	if (civ != "iber" || g_Map.getSize() <= 128)
 		return;
 
+	// TODO: should prevent trees inside walls
+	// When fixing, remove the DeleteUponConstruction flag from template_gaia_flora.xml
+
 	if (wallType == "towers")
 		placePolygonalWall(position, 15, ["entry"], "tower", civ, playerID, orientation, 7);
 	else if (wallType)
