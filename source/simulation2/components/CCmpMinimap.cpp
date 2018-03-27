@@ -66,7 +66,6 @@ public:
 					"<value>stone</value>"
 					"<value>metal</value>"
 					"<value>structure</value>"
-					"<value>settlement</value>"
 					"<value>unit</value>"
 					"<value>support</value>"
 					"<value>hero</value>"

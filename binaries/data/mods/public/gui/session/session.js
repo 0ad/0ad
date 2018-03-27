@@ -500,7 +500,7 @@ function getEntityOrHolder(ent)
 {
 	let entState = GetEntityState(ent);
 	if (entState && !entState.position && entState.unitAI && entState.unitAI.orders.length &&
-			(entState.unitAI.orders[0].type == "Garrison" || entState.unitAI.orders[0].type == "Autogarrison"))
+			entState.unitAI.orders[0].type == "Garrison")
 		return getEntityOrHolder(entState.unitAI.orders[0].data.target);
 
 	return ent;

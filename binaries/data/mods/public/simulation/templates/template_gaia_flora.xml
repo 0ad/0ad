@@ -10,6 +10,8 @@
   </Minimap>
   <Obstruction>
     <Static width="1.6" depth="1.6"/>
+    <!-- Trees are deleted as a workaround for gates until random maps are smart enough to not place trees inside walls -->
+    <DeleteUponConstruction>true</DeleteUponConstruction>
   </Obstruction>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>

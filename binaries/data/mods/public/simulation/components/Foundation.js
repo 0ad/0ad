@@ -191,31 +191,22 @@ Foundation.prototype.Build = function(builderEnt, work)
 	if (this.GetBuildProgress() == 1.0)
 		return;
 
-	// If there's any units in the way, ask them to move away
-	// and return early from this method.
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	// If there are any units in the way, ask them to move away and return early from this method.
 	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
 	{
-		// Remove all obstructions at the new entity, especially animal corpses
-		let collisions = cmpObstruction.GetEntityCollisions();
+		// Remove animal corpses
+		for (let ent of cmpObstruction.GetEntitiesDeletedUponConstruction())
+			Engine.DestroyEntity(ent);
 
+		let collisions = cmpObstruction.GetEntitiesBlockingConstruction();
 		if (collisions.length)
 		{
-			var cmpFoundationOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 			for (var ent of collisions)
 			{
 				var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 				if (cmpUnitAI)
 					cmpUnitAI.LeaveFoundation(this.entity);
-				else
-				{
-					// If obstructing fauna is gaia or our own but doesn't have UnitAI, just destroy it
-					var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-					var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-					if (cmpOwnership && cmpIdentity && cmpIdentity.HasClass("Animal")
-						&& (cmpOwnership.GetOwner() == 0 || cmpFoundationOwnership && cmpOwnership.GetOwner() == cmpFoundationOwnership.GetOwner()))
-						Engine.DestroyEntity(ent);
-				}
 
 				// TODO: What if an obstruction has no UnitAI?
 			}

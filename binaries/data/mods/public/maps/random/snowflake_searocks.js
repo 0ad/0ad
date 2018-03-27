@@ -2,6 +2,8 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+TILE_CENTERED_HEIGHT_MAP = true;
+
 setSelectedBiome();
 
 const tMainTerrain = g_Terrains.mainTerrain;
@@ -84,7 +86,7 @@ function createIsland(islandID, size, tileClass)
 	createArea(
 		new ClumpPlacer(size * diskArea(playerIslandRadius), 0.95, 0.6, Infinity, islandPos[islandID]),
 		[
-			new LayeredPainter([tCliff, tHill], [2]),
+			new TerrainPainter(tHill),
 			new SmoothElevationPainter(ELEVATION_SET, heightIsland, 2),
 			new TileClassPainter(tileClass)
 		]);
@@ -218,6 +220,25 @@ for (let i = 0; i < numPlayers; ++i)
 	createIsland(i, 1, isNomad() ? clLand : clPlayer);
 }
 
+g_Map.log("Creating connectors");
+for (let i = 0; i < numIslands; ++i)
+	for (let j = 0; j < numIslands; ++j)
+		if (isConnected[i][j])
+			createArea(
+				new PathPlacer(islandPos[i], islandPos[j], 11, 0, 1, 0, 0, Infinity),
+				[
+					new SmoothElevationPainter(ELEVATION_SET, heightIsland, 2),
+					new TerrainPainter(tHill),
+					new TileClassPainter(clLand)
+				]);
+
+g_Map.log("Painting cliffs")
+createArea(
+	new MapBoundsPlacer(),
+	new TerrainPainter(tCliff),
+	new SlopeConstraint(2, Infinity));
+Engine.SetProgress(30);
+
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
 	// PlayerTileClass already marked above
@@ -251,23 +272,7 @@ placePlayerBases({
 		"template": aGrassShort
 	}
 });
-Engine.SetProgress(30);
-
-g_Map.log("Creating connectors");
-for (let i = 0; i < numIslands; ++i)
-	for (let j = 0; j < numIslands; ++j)
-		if (isConnected[i][j])
-			createPassage({
-				"start": islandPos[i],
-				"end": islandPos[j],
-				"startWidth": 11,
-				"endWidth": 11,
-				"smoothWidth": 3,
-				"constraints": new HeightConstraint(-Infinity, heightIsland - 1),
-				"tileClass": clLand,
-				"terrain": tHill,
-				"edgeTerrain": tCliff
-			});
+Engine.SetProgress(40);
 
 g_Map.log("Creating forests");
 var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));

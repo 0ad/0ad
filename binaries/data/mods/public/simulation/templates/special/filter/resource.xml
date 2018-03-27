@@ -14,7 +14,8 @@
     <BlockMovement>false</BlockMovement>
     <BlockPathfinding>false</BlockPathfinding>
     <BlockFoundation>false</BlockFoundation>
-    <BlockConstruction>false</BlockConstruction>
+    <BlockConstruction>true</BlockConstruction>
+    <DeleteUponConstruction>true</DeleteUponConstruction>
     <DisableBlockMovement>false</DisableBlockMovement>
     <DisableBlockPathfinding>false</DisableBlockPathfinding>
     <Static width="2.0" depth="2.0"/>

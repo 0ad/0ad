@@ -190,7 +190,11 @@ function ObstructionsBlockingTemplateChange(ent, templateArg)
 			var cmpNewObstruction = Engine.QueryInterface(previewEntity, IID_Obstruction);
 			if (cmpNewObstruction && cmpNewObstruction.GetBlockMovementFlag())
 			{
-				let collisions = cmpNewObstruction.GetEntityCollisions();
+				// Remove all obstructions at the new entity, especially animal corpses
+				for (let ent of cmpNewObstruction.GetEntitiesDeletedUponConstruction())
+					Engine.DestroyEntity(ent);
+
+				let collisions = cmpNewObstruction.GetEntitiesBlockingConstruction();
 				if (collisions.length)
 					return DeleteEntityAndReturn(previewEntity, cmpPosition, pos, angle, cmpNewPosition, true);
 			}

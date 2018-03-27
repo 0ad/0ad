@@ -718,7 +718,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 		else if (this.IsGarrisoned())
 		{
-			this.SetNextState("INDIVIDUAL.AUTOGARRISON");
+			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 			return;
 		}
 
@@ -742,16 +742,6 @@ UnitAI.prototype.UnitFsmSpec = {
 			this.StopMoving();
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 		}
-	},
-
-	"Order.Autogarrison": function(msg) {
-		if (this.IsTurret())
-		{
-			this.SetNextState("IDLE");
-			return;
-		}
-
-		this.SetNextState("INDIVIDUAL.AUTOGARRISON");
 	},
 
 	"Order.Ungarrison": function() {
@@ -2918,6 +2908,9 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 
+					if (this.IsGarrisoned())
+						return false;
+
 					// Check that we can garrison here
 					if (this.CanGarrison(target))
 					{
@@ -3005,16 +2998,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				"leave": function() {
 				}
 			},
-		},
-
-		"AUTOGARRISON": {
-			"enter": function() {
-				this.isGarrisoned = true;
-				return false;
-			},
-
-			"leave": function() {
-			}
 		},
 
 		"CHEERING": {
@@ -3336,7 +3319,7 @@ UnitAI.prototype.GetGarrisonHolder = function()
 	if (this.IsGarrisoned())
 	{
 		for (let order of this.orderQueue)
-			if (order.type == "Garrison" || order.type == "Autogarrison")
+			if (order.type == "Garrison")
 				return order.data.target;
 	}
 	return INVALID_ENTITY;
@@ -5070,12 +5053,12 @@ UnitAI.prototype.Ungarrison = function()
 };
 
 /**
- * Adds autogarrison order to the queue (only used by ProductionQueue for auto-garrisoning
- * and Promotion when promoting already garrisoned entities).
+ * Adds a garrison order for units that are already garrisoned in the garrison holder.
  */
 UnitAI.prototype.Autogarrison = function(target)
 {
-	this.AddOrder("Autogarrison", { "target": target }, false);
+	this.isGarrisoned = true;
+	this.PushOrderFront("Garrison", { "target": target });
 };
 
 /**

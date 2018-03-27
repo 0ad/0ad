@@ -140,14 +140,19 @@ Gate.prototype.IsLocked = function()
 Gate.prototype.LockGate = function()
 {
 	this.locked = true;
+
+	// Delete animal corpses to prevent units trying to gather the unreachable entity
+	let cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
+		for (let ent of cmpObstruction.GetEntitiesDeletedUponConstruction())
+			Engine.DestroyEntity(ent);
+
 	// If the door is closed, enable 'block pathfinding'
 	// Else 'block pathfinding' will be enabled the next time the gate close
 	if (!this.opened)
 	{
-		var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-		if (!cmpObstruction)
-			return;
-		cmpObstruction.SetDisableBlockMovementPathfinding(false, false, 0);
+		if (cmpObstruction)
+			cmpObstruction.SetDisableBlockMovementPathfinding(false, false, 0);
 	}
 	else
 		this.OperateGate();
@@ -215,7 +220,7 @@ Gate.prototype.CloseGate = function()
 		return;
 
 	// The gate can't be closed if there are entities colliding with it.
-	var collisions = cmpObstruction.GetUnitCollisions();
+	var collisions = cmpObstruction.GetEntitiesBlockingConstruction();
 	if (collisions.length)
 	{
 		if (!this.timer)

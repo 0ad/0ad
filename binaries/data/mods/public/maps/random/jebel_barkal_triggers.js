@@ -330,7 +330,7 @@ var jebelBarkal_attackerGroup_balancing = [
 	},
 	{
 		"buildingClasses": ["ElephantStables"],
-		"unitCount": time => scaleByTime(time, 0, 15),
+		"unitCount": time => scaleByTime(time, 0, 12),
 		"unitComposition": (time, heroes) => [
 			{
 				"templates": jebelBarkal_templates.elephants,

@@ -13,6 +13,7 @@
        (but can still be used for testing this entity for collisions against others) -->
   <Obstruction merge="">
     <Active>false</Active>
+    <DeleteUponConstruction>false</DeleteUponConstruction>
   </Obstruction>
   <Ownership merge=""/>
   <Position merge=""/>
