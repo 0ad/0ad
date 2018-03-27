@@ -73,6 +73,9 @@
       <attack_ranged>attack/siege/ballist_attack.xml</attack_ranged>
     </SoundGroups>
   </Sound>
+  <UnitAI>
+    <DefaultStance>standground</DefaultStance>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">0.8</WalkSpeed>
     <Run>
