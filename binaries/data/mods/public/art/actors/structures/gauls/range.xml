@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="New">
+      <mesh>structural/gaul_range.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/celt_struct.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/gaul_range.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/fortress_props_new.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/fortress_b_roof.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

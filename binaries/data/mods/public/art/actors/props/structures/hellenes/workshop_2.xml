@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="struct">
+      <mesh>props/hele_workshop_2.dae</mesh>
+      <textures>
+        <texture file="structural/hele_struct_2.dds" name="baseTex"/>
+        <texture file="structural/ao/hele_workshop.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>
