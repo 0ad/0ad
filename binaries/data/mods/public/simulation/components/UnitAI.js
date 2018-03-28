@@ -203,7 +203,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		// 2. If unpacked, we first need to pack, then follow case 1.
 		if (this.CanPack())
 		{
-			// Case 2: pack
 			this.PushOrderFront("Pack", { "force": true });
 			return;
 		}
@@ -276,7 +275,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		// 2. If unpacked, we first need to pack, then follow case 1.
 		if (this.CanPack())
 		{
-			// Case 2: pack
 			this.PushOrderFront("Pack", { "force": true });
 			return;
 		}
@@ -305,7 +303,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		// 2. If unpacked, we first need to pack, then follow case 1.
 		if (this.CanPack())
 		{
-			// Case 2: pack
 			this.PushOrderFront("Pack", { "force": true });
 			return;
 		}
@@ -332,7 +329,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		// 2. If unpacked, we first need to pack, then follow case 1.
 		if (this.CanPack())
 		{
-			// Case 2: pack
 			this.PushOrderFront("Pack", { "force": true });
 			return;
 		}
@@ -447,15 +443,6 @@ UnitAI.prototype.UnitFsmSpec = {
 			// 2. If packed, we first need to unpack, then follow case 1.
 			if (this.CanUnpack())
 			{
-				// Ignore unforced attacks
-				// TODO: use special stances instead?
-				if (!this.order.data.force)
-				{
-					this.FinishOrder();
-					return;
-				}
-
-				// Case 2: unpack
 				this.PushOrderFront("Unpack", { "force": true });
 				return;
 			}
@@ -480,23 +467,10 @@ UnitAI.prototype.UnitFsmSpec = {
 		// For packable units out of attack range:
 		// 1. If packed, we need to move to attack range and then unpack.
 		// 2. If unpacked, we first need to pack, then follow case 1.
-		var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
-		if (cmpPack)
+		if (this.CanPack())
 		{
-			// Ignore unforced attacks
-			// TODO: use special stances instead?
-			if (!this.order.data.force)
-			{
-				this.FinishOrder();
-				return;
-			}
-
-			if (this.CanPack())
-			{
-				// Case 2: pack
-				this.PushOrderFront("Pack", { "force": true });
-				return;
-			}
+			this.PushOrderFront("Pack", { "force": true });
+			return;
 		}
 
 		// If we can't reach the target, but are standing ground, then abandon this attack order.
@@ -727,7 +701,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		// 2. If unpacked, we first need to pack, then follow case 1.
 		if (this.CanPack())
 		{
-			// Case 2: pack
 			this.PushOrderFront("Pack", { "force": true });
 			return;
 		}
@@ -2015,7 +1988,9 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (this.FindNewTargets())
 					{
 						// Attempt to immediately re-enter the timer function, to avoid wasting the attack.
-						if (this.orderQueue.length > 0 && this.orderQueue[0].data.attackType == this.oldAttackType)
+						// Packable units may have switched to PACKING state, thus canceling the timer and having order.data.attackType undefined.
+						if (this.orderQueue.length > 0 && this.orderQueue[0].data && this.orderQueue[0].data.attackType &&
+						    this.orderQueue[0].data.attackType == this.oldAttackType)
 							this.TimerHandler(msg.data, msg.lateness);
 						return;
 					}
@@ -4674,19 +4649,14 @@ UnitAI.prototype.ShouldChaseTargetedEntity = function(target, force)
 	if (this.IsTurret())
 		return false;
 
-	// TODO: use special stances instead?
-	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
-	if (cmpPack)
-		return false;
-
 	if (this.GetStance().respondChase)
 		return true;
 
 	// If we are guarding/escorting, chase at least as long as the guarded unit is in target range of the attacker
 	if (this.isGuardOf)
 	{
-		var cmpUnitAI =  Engine.QueryInterface(target, IID_UnitAI);
-		var cmpAttack = Engine.QueryInterface(target, IID_Attack);
+		let cmpUnitAI =  Engine.QueryInterface(target, IID_UnitAI);
+		let cmpAttack = Engine.QueryInterface(target, IID_Attack);
 		if (cmpUnitAI && cmpAttack &&
 		    cmpAttack.GetAttackTypes().some(type => cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type)))
 			return true;
@@ -5833,19 +5803,19 @@ UnitAI.prototype.CanRepair = function(target)
 UnitAI.prototype.CanPack = function()
 {
 	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
-	return (cmpPack && !cmpPack.IsPacking() && !cmpPack.IsPacked());
+	return cmpPack && !cmpPack.IsPacking() && !cmpPack.IsPacked();
 };
 
 UnitAI.prototype.CanUnpack = function()
 {
 	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
-	return (cmpPack && !cmpPack.IsPacking() && cmpPack.IsPacked());
+	return cmpPack && !cmpPack.IsPacking() && cmpPack.IsPacked();
 };
 
 UnitAI.prototype.IsPacking = function()
 {
 	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
-	return (cmpPack && cmpPack.IsPacking());
+	return cmpPack && cmpPack.IsPacking();
 };
 
 //// Formation specific functions ////

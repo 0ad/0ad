@@ -70,6 +70,9 @@
       <attack_ranged>attack/weapon/arrowfly.xml</attack_ranged>
     </SoundGroups>
   </Sound>
+  <UnitAI>
+    <DefaultStance>standground</DefaultStance>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">0.9</WalkSpeed>
     <Run>

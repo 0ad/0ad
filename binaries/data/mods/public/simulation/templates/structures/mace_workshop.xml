@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_workshop">
   <Footprint>
-    <Square width="24.0" depth="24.0"/>
+    <Square width="30.0" depth="30.0"/>
   </Footprint>
   <Health>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x4</SpawnEntityOnDeath>
@@ -11,10 +11,10 @@
     <SpecificName>Synergeîon Poliorkētṓn</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="24.0" depth="24.0"/>
+    <Static width="29.0" depth="29.0"/>
   </Obstruction>
   <VisualActor>
-    <Actor>structures/hellenes/blacksmith.xml</Actor>
+    <Actor>structures/hellenes/workshop.xml</Actor>
     <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>
 </Entity>
