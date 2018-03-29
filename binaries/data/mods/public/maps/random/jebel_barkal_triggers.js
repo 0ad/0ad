@@ -14,7 +14,10 @@ const dryRun = false;
  */
 const showDebugLog = false;
 
-var jebelBarkal_rank = "Advanced";
+/**
+ * Since Gaia doesn't have a TechnologyManager, Advanced and Elite soldiers have the same statistics as Basic.
+ */
+var jebelBarkal_rank = "Basic";
 
 /**
  * These are the templates spawned at the gamestart and during the game.
@@ -102,14 +105,16 @@ var jebelBarkal_attackInterval = () => randFloat(5, 7);
 /**
  * Delay the first attack in nomad mode.
  */
-var jebelBarkal_firstAttackTime = () =>
+var jebelBarkal_firstAttackTime = difficulty =>
 	jebelBarkal_attackInterval() +
+	2 * Math.max(0, 3 - difficulty) +
 	(TriggerHelper.GetAllPlayersEntitiesByClass("CivCentre").length ? 0 : 4);
 
 /**
  * Account for varying mapsizes and number of players when spawning attackers.
  */
-var jebelBarkal_attackerGroup_sizeFactor = (numPlayers, numInitialSpawnPoints) => 4.5 * numPlayers / numInitialSpawnPoints;
+var jebelBarkal_attackerGroup_sizeFactor = (numPlayers, numInitialSpawnPoints, difficulty) =>
+	1.5 * numPlayers / numInitialSpawnPoints * difficulty;
 
 /**
  * Assume gaia to be the native kushite player.
@@ -356,7 +361,7 @@ Trigger.prototype.JebelBarkal_Init = function()
 	this.JebelBarkal_StartRitualAnimations();
 	this.JebelBarkal_GarrisonBuildings();
 	this.JebelBarkal_SpawnCityPatrolGroups();
-	this.JebelBarkal_StartAttackTimer(jebelBarkal_firstAttackTime());
+	this.JebelBarkal_StartAttackTimer(jebelBarkal_firstAttackTime(this.GetDifficulty()));
 };
 
 Trigger.prototype.JebelBarkal_TrackUnits = function()
@@ -501,7 +506,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 	}
 
 	let time = TriggerHelper.GetMinutes();
-	let groupSizeFactor = jebelBarkal_attackerGroup_sizeFactor(TriggerHelper.GetNumberOfPlayers(), this.numInitialSpawnPoints);
+	let groupSizeFactor = jebelBarkal_attackerGroup_sizeFactor(TriggerHelper.GetNumberOfPlayers(), this.numInitialSpawnPoints, this.GetDifficulty());
 	this.debugLog("Attacker wave");
 
 	let spawnedAnything = false;

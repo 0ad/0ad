@@ -77,8 +77,8 @@ const oElephantStables = "structures/kush_elephant_stables";
 const oWallMedium = "structures/kush_wall_medium";
 const oWallGate = "structures/kush_wall_gate";
 const oWallTower = "structures/kush_wall_tower";
-const oKushCitizenArcher = "units/kush_infantry_archer_e";
-const oKushHealer = "units/kush_support_healer_e";
+const oKushCitizenArcher = "units/kush_infantry_archer_b";
+const oKushHealer = "units/kush_support_healer_b";
 const oKushChampionArcher = "units/kush_champion_infantry";
 const oKushChampions = [
 	oKushChampionArcher,
@@ -546,7 +546,7 @@ for (let i = 0; i < numPlayers; ++i)
 		"PlayerTileClass": clPlayer,
 		"BaseResourceClass": clBaseResource,
 		"baseResourceConstraint": avoidClasses(clPlayer, 4, clWater, 4),
-		"Walls": mapSize <= 256 ? "towers" : "walls",
+		"Walls": mapSize <= 256 || getDifficulty() >= 3 ? "towers" : "walls",
 		"CityPatch": {
 			"outerTerrain": isDesert ? tRoadDesert : tRoadFertileLand,
 			"innerTerrain": isDesert ? tRoadDesert : tRoadFertileLand
@@ -1155,7 +1155,7 @@ createObjectGroupsByAreas(
 	new SimpleGroup([new RandomObject([oKushCitizenArcher, oKushChampionArcher], scaleByMapSize(4, 10), scaleByMapSize(6, 20), 1, 4)], true, clSoldier),
 	0,
 	new StaticConstraint([avoidClasses(clCliff, 1), new NearTileClassConstraint(clCliff, 5)]),
-	scaleByMapSize(1, 5),
+	scaleByMapSize(1, 5) / 3 * getDifficulty(),
 	250,
 	[areaHilltop]);
 
@@ -1168,7 +1168,7 @@ createObjectGroupsByAreas(
 		avoidClasses(clCliff, 1, clSoldier, 1),
 		new NearTileClassConstraint(clCliff, 5)
 	]),
-	scaleByMapSize(8, 100),
+	scaleByMapSize(8, 100) / 3 * getDifficulty(),
 	250,
 	[areaHill]);
 
@@ -1177,7 +1177,7 @@ createObjectGroupsByAreas(
 	new SimpleGroup([new RandomObject(oPtolSiege, 1, 1, 1, 3)], true, clSoldier),
 	0,
 	new StaticConstraint([new NearTileClassConstraint(clCliff, 5), avoidClasses(clCliff, 1, clSoldier, 1)]),
-	scaleByMapSize(1, 6),
+	scaleByMapSize(1, 6) / 3 * getDifficulty(),
 	250,
 	[areaHilltop]);
 
