@@ -636,7 +636,7 @@ var cityGridPosition = [];
 var cityGridAngle = [];
 for (let y = 0; y < gridPointsY; ++y)
 	[cityGridPosition[y], cityGridAngle[y]] = distributePointsOnCircularSegment(
-		gridPointsX, gridMaxAngle * (gridPointsX + 1) / gridPointsX, gridStartAngle, gridRadius(y), gridCenter);
+		gridPointsX, gridMaxAngle * gridPointsX / (gridPointsX - 1), gridStartAngle, gridRadius(y), gridCenter);
 
 g_Map.log("Marking city path crossings");
 for (let y in cityGridPosition)
@@ -837,7 +837,7 @@ if (placeNapataWall)
 	let wallGridMaxAngleSummand = Math.PI / 32;
 	let wallGridStartAngle = gridStartAngle - wallGridMaxAngleSummand / 2;
 	let wallGridRadiusFront = gridRadius(gridPointsY - 1) + pathWidth - 1;
-	let wallGridMaxAngleFront = (gridMaxAngle + wallGridMaxAngleSummand) * gridPointsX / gridPointsX - wallGridMaxAngleSummand / 2;
+	let wallGridMaxAngleFront = gridMaxAngle + wallGridMaxAngleSummand;
 	let entitiesWalls = placeCircularWall(
 		gridCenter,
 		wallGridRadiusFront,
@@ -846,13 +846,13 @@ if (placeNapataWall)
 		0,
 		wallGridStartAngle,
 		wallGridMaxAngleFront,
-		0,
 		true,
+		0,
 		0);
 
 	g_Map.log("Placing side and back walls");
 	let wallGridRadiusBack = hillRadius - scaleByMapSize(15, 25);
-	let wallGridMaxAngleBack = (gridMaxAngle + wallGridMaxAngleSummand) * (gridPointsX + 1) / gridPointsX;
+	let wallGridMaxAngleBack = (gridMaxAngle + wallGridMaxAngleSummand) * gridPointsX / (gridPointsX - 1);
 	let wallGridPositionFront = distributePointsOnCircularSegment(gridPointsX, wallGridMaxAngleBack, wallGridStartAngle, wallGridRadiusFront, gridCenter)[0];
 	let wallGridPositionBack = distributePointsOnCircularSegment(gridPointsX, wallGridMaxAngleBack, wallGridStartAngle, wallGridRadiusBack, gridCenter)[0];
 	let wallGridPosition = [wallGridPositionFront[0], ...wallGridPositionBack, wallGridPositionFront[wallGridPositionFront.length - 1]];
