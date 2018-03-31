@@ -62,7 +62,7 @@ const oElephantInfant = "gaia/fauna_elephant_african_infant";
 const oLion = "gaia/fauna_lion";
 const oLioness = "gaia/fauna_lioness";
 const oCrocodile = "gaia/fauna_crocodile";
-const oFish = "gaia/fauna_fish";
+const oFish = "gaia/fauna_fish_tilapia";
 const oHawk = "gaia/fauna_hawk";
 
 // The main temple on elephantine was very similar looking (Greco-Roman-Egyptian):

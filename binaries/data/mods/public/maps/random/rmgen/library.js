@@ -218,21 +218,21 @@ function createArea(placer, painters, constraints)
  */
 function paintTerrainBasedOnHeight(minHeight, maxHeight, mode, terrain)
 {
-	createArea(
+	return createArea(
 		new HeightPlacer(mode, minHeight, maxHeight),
 		new TerrainPainter(terrain));
 }
 
 function paintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
 {
-	createArea(
+	return createArea(
 		new HeightPlacer(mode, minHeight, maxHeight),
 		new TileClassPainter(tileClass));
 }
 
 function unPaintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
 {
-	createArea(
+	return createArea(
 		new HeightPlacer(mode, minHeight, maxHeight),
 		new TileClassUnPainter(tileClass));
 }
