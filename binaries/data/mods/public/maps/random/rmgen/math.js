@@ -36,17 +36,21 @@ function getAngle(x1, z1, x2, z2)
  */
 function distributePointsOnCircle(pointCount, startAngle, radius, center)
 {
-	return distributePointsOnCircularSegment(pointCount, 2 * Math.PI, startAngle, radius, center);
+	return distributePointsOnCircularSegment(pointCount, 2 * Math.PI * (pointCount - 1) / pointCount, startAngle, radius, center);
 }
 
+/**
+ * Get pointCount points equidistantly located on a circular segment, including both endpoints.
+ */
 function distributePointsOnCircularSegment(pointCount, maxAngle, startAngle, radius, center)
 {
 	let points = [];
 	let angle = [];
+	pointCount = Math.round(pointCount);
 
 	for (let i = 0; i < pointCount; ++i)
 	{
-		angle[i] = startAngle + maxAngle * i / pointCount;
+		angle[i] = startAngle + maxAngle * i / Math.max(1, pointCount - 1);
 		points[i] = Vector2D.add(center, new Vector2D(radius, 0).rotate(-angle[i]));
 	}
 

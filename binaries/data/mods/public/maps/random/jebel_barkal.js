@@ -636,7 +636,7 @@ var cityGridPosition = [];
 var cityGridAngle = [];
 for (let y = 0; y < gridPointsY; ++y)
 	[cityGridPosition[y], cityGridAngle[y]] = distributePointsOnCircularSegment(
-		gridPointsX, gridMaxAngle * gridPointsX / (gridPointsX - 1), gridStartAngle, gridRadius(y), gridCenter);
+		gridPointsX, gridMaxAngle, gridStartAngle, gridRadius(y), gridCenter);
 
 g_Map.log("Marking city path crossings");
 for (let y in cityGridPosition)
@@ -786,17 +786,20 @@ createArea(
 	new ElevationPainter(heightDesert + heightOffsetStatue));
 
 g_Map.log("Placing healers at the ritual place");
-var [healerPosition, healerAngle] = distributePointsOnCircularSegment(scaleByMapSize(2, 10), Math.PI, ritualAngle, scaleByMapSize(2, 3), ritualPosition);
+var [healerPosition, healerAngle] = distributePointsOnCircularSegment(
+	scaleByMapSize(2, 10), Math.PI, ritualAngle, scaleByMapSize(2, 3), ritualPosition);
 for (let i = 0; i < healerPosition.length; ++i)
 	g_Map.placeEntityPassable(oKushHealer, 0, healerPosition[i], healerAngle[i] + Math.PI);
 
 g_Map.log("Placing statues at the ritual place");
-var [statuePosition, statueAngle] = distributePointsOnCircularSegment(scaleByMapSize(4, 8), Math.PI, ritualAngle, scaleByMapSize(3, 4), ritualPosition);
+var [statuePosition, statueAngle] = distributePointsOnCircularSegment(
+	scaleByMapSize(4, 8), Math.PI, ritualAngle, scaleByMapSize(3, 4), ritualPosition);
 for (let i = 0; i < statuePosition.length; ++i)
 	g_Map.placeEntityPassable(pickRandom(aStatues), 0, statuePosition[i], statueAngle[i] + Math.PI);
 
 g_Map.log("Placing palms at the ritual place");
-var [palmPosition, palmAngle] = distributePointsOnCircularSegment(scaleByMapSize(6, 16), Math.PI, ritualAngle, scaleByMapSize(4, 5), ritualPosition);
+var [palmPosition, palmAngle] = distributePointsOnCircularSegment(
+	scaleByMapSize(6, 16), Math.PI, ritualAngle, scaleByMapSize(4, 5), ritualPosition);
 for (let i = 0; i < palmPosition.length; ++i)
 	if (avoidClasses(clTemple, 1).allows(palmPosition[i]))
 		g_Map.placeEntityPassable(oPalmPath, 0, palmPosition[i], randomAngle());
@@ -852,7 +855,7 @@ if (placeNapataWall)
 
 	g_Map.log("Placing side and back walls");
 	let wallGridRadiusBack = hillRadius - scaleByMapSize(15, 25);
-	let wallGridMaxAngleBack = (gridMaxAngle + wallGridMaxAngleSummand) * gridPointsX / (gridPointsX - 1);
+	let wallGridMaxAngleBack = gridMaxAngle + wallGridMaxAngleSummand;
 	let wallGridPositionFront = distributePointsOnCircularSegment(gridPointsX, wallGridMaxAngleBack, wallGridStartAngle, wallGridRadiusFront, gridCenter)[0];
 	let wallGridPositionBack = distributePointsOnCircularSegment(gridPointsX, wallGridMaxAngleBack, wallGridStartAngle, wallGridRadiusBack, gridCenter)[0];
 	let wallGridPosition = [wallGridPositionFront[0], ...wallGridPositionBack, wallGridPositionFront[wallGridPositionFront.length - 1]];
