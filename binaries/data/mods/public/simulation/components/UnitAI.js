@@ -3318,7 +3318,7 @@ UnitAI.prototype.IsWalking = function()
 };
 
 /**
- * return true if in WalkAndFight looking for new targets
+ * Return true if the current order is WalkAndFight or Patrol.
  */
 UnitAI.prototype.IsWalkingAndFighting = function()
 {
@@ -3328,7 +3328,7 @@ UnitAI.prototype.IsWalkingAndFighting = function()
 		return (cmpUnitAI && cmpUnitAI.IsWalkingAndFighting());
 	}
 
-	return (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight");
+	return this.orderQueue.length > 0 && (this.orderQueue[0].type == "WalkAndFight" || this.orderQueue[0].type == "Patrol");
 };
 
 UnitAI.prototype.OnCreate = function()
