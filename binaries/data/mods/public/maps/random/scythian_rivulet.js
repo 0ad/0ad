@@ -23,7 +23,6 @@ const oDeer = "gaia/fauna_deer";
 const oRabbit = "gaia/fauna_rabbit";
 const oWolf1 = "gaia/fauna_wolf";
 const oWolf2 = "gaia/fauna_arctic_wolf";
-const oFox = "gaia/fauna_fox_arctic";
 const oHawk = "gaia/fauna_hawk";
 const oFish = "gaia/fauna_fish";
 const oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
@@ -246,7 +245,6 @@ createFood(
 		[new SimpleObject(oHawk, 1, 1, 0, 3)],
 		[new SimpleObject(oWolf1, 4, 6, 0, 4)],
 		[new SimpleObject(oWolf2, 4, 8, 0, 4)],
-		[new SimpleObject(oFox, 2, 3, 0, 4)],
 		[new SimpleObject(oDeer, 4, 6, 0, 2)],
 		[new SimpleObject(oRabbit, 1, 3, 4, 6)]
 	],
@@ -254,7 +252,6 @@ createFood(
 		scaleByMapSize(3, 10),
 		scaleByMapSize(3, 10),
 		scaleByMapSize(3, 10),
-		scaleByMapSize(5, 20),
 		scaleByMapSize(5, 20),
 		scaleByMapSize(5, 20)
 	],
