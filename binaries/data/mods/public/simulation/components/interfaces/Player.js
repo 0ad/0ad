@@ -40,3 +40,9 @@ Engine.RegisterMessageType("PlayerWon");
  * sent from Player component whenever a tribute is sent.
  */
 Engine.RegisterMessageType("TributeExchanged");
+
+/**
+ * Message of the form { "player": player, "type": "cheat" }
+ * sent from Player when some multiplier of that player has changed
+ */
+Engine.RegisterMessageType("MultiplierChanged");

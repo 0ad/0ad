@@ -250,11 +250,13 @@ Player.prototype.GetSpyCostMultiplier = function()
 Player.prototype.SetGatherRateMultiplier = function(value)
 {
 	this.gatherRateMultiplier = value;
+	Engine.BroadcastMessage(MT_MultiplierChanged, { "player": this.playerID, "type": "gather" });
 };
 
 Player.prototype.SetTimeMultiplier = function(value)
 {
 	this.timeMultiplier = value;
+	Engine.BroadcastMessage(MT_MultiplierChanged, { "player": this.playerID, "type": "time" });
 };
 
 Player.prototype.SetTradeRateMultiplier = function(value)
@@ -846,6 +848,7 @@ Player.prototype.GetCheatsEnabled = function()
 Player.prototype.SetCheatTimeMultiplier = function(time)
 {
 	this.cheatTimeMultiplier = time;
+	Engine.BroadcastMessage(MT_MultiplierChanged, { "player": this.playerID, "type": "cheat" });
 };
 
 Player.prototype.GetCheatTimeMultiplier = function()
