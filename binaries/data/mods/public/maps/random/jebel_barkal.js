@@ -1184,24 +1184,27 @@ createObjectGroupsByAreas(
 	250,
 	[areaHilltop]);
 
-g_Map.log("Placing soldiers near pyramids");
 const avoidCollisionsPyramids = new StaticConstraint([avoidCollisions, new NearTileClassConstraint(clPyramid, 10)]);
-createObjectGroupsByAreas(
-	new SimpleGroup([new SimpleObject(oKushCitizenArcher, 1, 1, 1, 1)], true, clSoldier),
-	0,
-	avoidCollisionsPyramids,
-	scaleByMapSize(3, 8),
-	250,
-	[areaPyramids]);
+if (!isNomad())
+{
+	g_Map.log("Placing soldiers near pyramids");
+	createObjectGroupsByAreas(
+		new SimpleGroup([new SimpleObject(oKushCitizenArcher, 1, 1, 1, 1)], true, clSoldier),
+		0,
+		avoidCollisionsPyramids,
+		scaleByMapSize(3, 8),
+		250,
+		[areaPyramids]);
 
-g_Map.log("Placing treasures at the pyramid");
-createObjectGroupsByAreas(
-	new SimpleGroup([new RandomObject(oTreasuresHill, 1, 1, 2, 2)], true, clTreasure),
-	0,
-	avoidCollisionsPyramids,
-	scaleByMapSize(1, 10),
-	250,
-	[areaPyramids]);
+	g_Map.log("Placing treasures at the pyramid");
+	createObjectGroupsByAreas(
+		new SimpleGroup([new RandomObject(oTreasuresHill, 1, 1, 2, 2)], true, clTreasure),
+		0,
+		avoidCollisionsPyramids,
+		scaleByMapSize(1, 10),
+		250,
+		[areaPyramids]);
+}
 
 g_Map.log("Placing treasures on the hilltop");
 createObjectGroupsByAreas(
@@ -1288,7 +1291,7 @@ g_Map.log("Creating hawk");
 for (let i = 0; i < scaleByMapSize(0, 2); ++i)
 	g_Map.placeEntityAnywhere(oHawk, 0, mapCenter, randomAngle());
 
-placePlayersNomad(clPlayer, [avoidClasses(clHill, 15, clSoldier, 15, clCity, 15), avoidCollisions]);
+placePlayersNomad(clPlayer, [avoidClasses(clHill, 15, clSoldier, 20, clCity, 15), avoidCollisions]);
 
 setWindAngle(-0.43);
 setWaterHeight(heightWaterLevel + SEA_LEVEL);
