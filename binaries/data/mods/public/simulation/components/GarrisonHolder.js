@@ -45,6 +45,11 @@ GarrisonHolder.prototype.Schema =
 						"<element name='Z'>" +
 							"<data type='decimal'/>" +
 						"</element>" +
+						"<optional>" +
+							"<element name='Angle' a:help='Angle in degrees relative to the garrisonHolder direction'>" +
+								"<data type='decimal'/>" +
+							"</element>" +
+						"</optional>" +
 					"</interleave>" +
 				"</element>" +
 			"</zeroOrMore>" +
@@ -73,6 +78,7 @@ GarrisonHolder.prototype.Init = function()
 					"y": +points[point].Y,
 					"z": +points[point].Z
 				},
+				"angle": points[point].Angle ? +points[point].Angle * Math.PI / 180 : null,
 				"entity": null
 			});
 	}
@@ -200,10 +206,24 @@ GarrisonHolder.prototype.Garrison = function(entity, vgpEntity)
 	if (visibleGarrisonPoint)
 	{
 		visibleGarrisonPoint.entity = entity;
-		cmpPosition.SetTurretParent(this.entity, visibleGarrisonPoint.offset);
+		// Angle of turrets:
+		// Renamed entities (vgpEntity != undefined) should keep their angle.
+		// Otherwise if an angle is given in the visibleGarrisonPoint, use it.
+		// If no such angle given (usually walls for which outside/inside not well defined), we keep
+		// the current angle as it was used for garrisoning and thus quite often was from inside to
+		// outside, except when garrisoning from outWorld where we take as default PI.
+		let cmpTurretPosition = Engine.QueryInterface(this.entity, IID_Position);
+		if (!vgpEntity && visibleGarrisonPoint.angle != null)
+			cmpPosition.SetYRotation(cmpTurretPosition.GetRotation().y + visibleGarrisonPoint.angle);
+		else if (!vgpEntity && !cmpPosition.IsInWorld())
+			cmpPosition.SetYRotation(cmpTurretPosition.GetRotation().y + Math.PI);
+		let cmpUnitMotion = Engine.QueryInterface(entity, IID_UnitMotion);
+		if (cmpUnitMotion)
+			cmpUnitMotion.SetFacePointAfterMove(false);
 		let cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 		if (cmpUnitAI)
 			cmpUnitAI.SetTurretStance();
+		cmpPosition.SetTurretParent(this.entity, visibleGarrisonPoint.offset);
 	}
 	else
 		cmpPosition.MoveOutOfWorld();
@@ -289,38 +309,41 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 		pos = cmpPosition.GetPosition();
 	}
 
-	let cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	this.entities.splice(entityIndex, 1);
+	let cmpEntPosition = Engine.QueryInterface(entity, IID_Position);
+	let cmpEntUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 
-	let cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 	for (let vgp of this.visibleGarrisonPoints)
 	{
 		if (vgp.entity != entity)
 			continue;
-		cmpNewPosition.SetTurretParent(INVALID_ENTITY, new Vector3D());
-		if (cmpUnitAI)
-			cmpUnitAI.ResetTurretStance();
+		cmpEntPosition.SetTurretParent(INVALID_ENTITY, new Vector3D());
+		let cmpEntUnitMotion = Engine.QueryInterface(entity, IID_UnitMotion);
+		if (cmpEntUnitMotion)
+			cmpEntUnitMotion.SetFacePointAfterMove(true);
+		if (cmpEntUnitAI)
+			cmpEntUnitAI.ResetTurretStance();
 		vgp.entity = null;
 		break;
 	}
 
-	if (cmpUnitAI)
-		cmpUnitAI.Ungarrison();
+	if (cmpEntUnitAI)
+		cmpEntUnitAI.Ungarrison();
 
-	let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
-	if (cmpProductionQueue)
-		cmpProductionQueue.UnpauseProduction();
+	let cmpEntProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
+	if (cmpEntProductionQueue)
+		cmpEntProductionQueue.UnpauseProduction();
 
-	let cmpAura = Engine.QueryInterface(entity, IID_Auras);
-	if (cmpAura && cmpAura.HasGarrisonAura())
-		cmpAura.RemoveGarrisonBonus(this.entity);
+	let cmpEntAura = Engine.QueryInterface(entity, IID_Auras);
+	if (cmpEntAura && cmpEntAura.HasGarrisonAura())
+		cmpEntAura.RemoveGarrisonBonus(this.entity);
 
-	cmpNewPosition.JumpTo(pos.x, pos.z);
-	cmpNewPosition.SetHeightOffset(0);
+	cmpEntPosition.JumpTo(pos.x, pos.z);
+	cmpEntPosition.SetHeightOffset(0);
 
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (cmpPosition)
-		cmpNewPosition.SetYRotation(cmpPosition.GetPosition().horizAngleTo(pos));
+		cmpEntPosition.SetYRotation(cmpPosition.GetPosition().horizAngleTo(pos));
 
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added": [], "removed": [entity] });
 

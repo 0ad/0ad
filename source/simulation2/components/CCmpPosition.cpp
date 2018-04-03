@@ -309,6 +309,7 @@ public:
 
 	virtual void SetTurretParent(entity_id_t id, const CFixedVector3D& offset)
 	{
+		entity_angle_t angle = GetRotation().Y;
 		if (m_TurretParent != INVALID_ENTITY)
 		{
 			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TurretParent);
@@ -325,6 +326,7 @@ public:
 			if (cmpPosition)
 				cmpPosition->GetTurrets()->insert(GetEntityId());
 		}
+		SetYRotation(angle);
 		UpdateTurretPosition();
 	}
 
