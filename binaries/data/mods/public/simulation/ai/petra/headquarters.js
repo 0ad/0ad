@@ -549,7 +549,7 @@ m.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 	for (let entityReq of requirements)
 	{
 		// Village requirements are met elsewhere by constructing more houses
-		if (entityReq.class === "Village" || entityReq.class === "NotField")
+		if (entityReq.class == "Village" || entityReq.class == "NotField")
 			continue;
 		if (gameState.getOwnEntitiesByClass(entityReq.class, true).length >= entityReq.count)
 			continue;
@@ -592,7 +592,7 @@ m.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 		default:
 			// All classes not dealt with inside vanilla game.
 			// We put them for the time being on the economic queue, except if wonder
-			queue = entityReq.class === "Wonder" ? "wonder" : "economicBuilding";
+			queue = entityReq.class == "Wonder" ? "wonder" : "economicBuilding";
 			if (!queues[queue].hasQueuedUnits())
 			{
 				let structure = this.buildManager.findStructureWithClass(gameState, [entityReq.class]);
@@ -648,7 +648,8 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		for (let item of ent.trainingQueue())
 		{
 			numberInTraining += item.count;
-			if (item.metadata && item.metadata.role && item.metadata.role === "worker" && item.metadata.plan === undefined)
+			if (item.metadata && item.metadata.role && item.metadata.role == "worker" &&
+			    item.metadata.plan === undefined)
 			{
 				numberOfWorkers += item.count;
 				if (item.metadata.support)
@@ -740,7 +741,7 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 	else						// We do not want hero when not explicitely specified
 		units = gameState.findTrainableUnits(classes, ["Hero"]);
 
-	if (units.length === 0)
+	if (!units.length)
 		return undefined;
 
 	let parameters = requirements.slice();
@@ -837,10 +838,9 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 		if (base.ID == baseRef.ID)
 			continue;
 		base.pickBuilders(gameState, workers, needed);
-		if (workers.length < number)
-			needed = number - workers.length;
-		else
+		if (workers.length >= number)
 			break;
+		needed = number - workers.length;
 	}
 	if (!workers.length)
 		return false;
@@ -2699,7 +2699,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	    this.canExpand && gameState.ai.playedTurn % 10 == 7 && this.currentPhase > 1)
 		this.checkBaseExpansion(gameState, queues);
 
-	if (this.currentPhase > 1)
+	if (this.currentPhase > 1 && gameState.ai.playedTurn % 3 == 0)
 	{
 		if (!this.canBarter)
 			this.buildMarket(gameState, queues);

@@ -69,7 +69,7 @@ ResourceGatherer.prototype.GetCarryingStatus = function()
 ResourceGatherer.prototype.GiveResources = function(resources)
 {
 	for (let resource of resources)
-		this.carrying[resource.type] = +(resource.amount);
+		this.carrying[resource.type] = +resource.amount;
 
 	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
@@ -223,7 +223,7 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	return {
 		"amount": status.amount,
 		"exhausted": status.exhausted,
-		"filled": (this.carrying[type.generic] >= this.GetCapacity(type.generic))
+		"filled": this.carrying[type.generic] >= this.GetCapacity(type.generic)
 	};
 };
 
@@ -266,14 +266,14 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
  */
 ResourceGatherer.prototype.CanCarryMore = function(type)
 {
-	let amount = (this.carrying[type] || 0);
+	let amount = this.carrying[type] || 0;
 	return amount < this.GetCapacity(type);
 };
 
 
 ResourceGatherer.prototype.IsCarrying = function(type)
 {
-	let amount = (this.carrying[type] || 0);
+	let amount = this.carrying[type] || 0;
 	return amount > 0;
 };
 
@@ -343,6 +343,12 @@ ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
 ResourceGatherer.prototype.OnGlobalInitGame = function(msg)
 {
 	this.RecalculateGatherRatesAndCapacities();
+};
+
+ResourceGatherer.prototype.OnMultiplierChanged = function(msg)
+{
+	if (msg.player == QueryOwnerInterface(this.entity, IID_Player).GetPlayerID())
+		this.RecalculateGatherRatesAndCapacities();
 };
 
 Engine.RegisterComponentType(IID_ResourceGatherer, "ResourceGatherer", ResourceGatherer);
