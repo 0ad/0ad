@@ -14,8 +14,22 @@
         <animation file="quadraped/zebu_death_left_02.dae" name="Death" speed="100"/>
       </animations>
       <mesh>skeletal/zebu.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Zebu">
       <textures>
         <texture file="skeletal/animal_zebu.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Black Zebu">
+      <textures>
+        <texture file="skeletal/animal_zebu_black.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Brown Zebu">
+      <textures>
+        <texture file="skeletal/animal_zebu_brown.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
