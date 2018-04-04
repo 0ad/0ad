@@ -269,42 +269,17 @@ function init(initData, hotloadData)
 
 		if (initData.savedGUIData)
 			restoreSavedGameData(initData.savedGUIData);
-
-		Engine.GetGUIObjectByName("gameSpeedButton").hidden = g_IsNetworked;
 	}
 	else if (g_IsReplay)// Needed for autostart loading option
 		g_PlayerAssignments.local.player = -1;
 
 	LoadModificationTemplates();
-
 	updatePlayerData();
-
-	g_BarterSell = g_ResourceData.GetCodes()[0];
-
 	initializeMusic(); // before changing the perspective
-
-	initSessionMenuButtons();
-
-	for (let slot in Engine.GetGUIObjectByName("panelEntityPanel").children)
-		initPanelEntities(slot);
-
-	g_DisplayedPlayerColors = g_Players.map(player => player.color);
-	updateViewedPlayerDropdown();
-
-	// Select "observer" in the view player dropdown when rejoining as a defeated player
-	let player = g_Players[Engine.GetPlayerID()];
-	Engine.GetGUIObjectByName("viewPlayer").selected = player && player.state == "defeated" ? 0 : Engine.GetPlayerID() + 1;
-
-	// If in Atlas editor, disable the exit button
-	if (Engine.IsAtlasRunning())
-		Engine.GetGUIObjectByName("menuExitButton").enabled = false;
+	initGUIObjects();
 
 	if (hotloadData)
 		g_Selection.selected = hotloadData.selection;
-
-	Engine.SetBoundingBoxDebugOverlay(false);
-	updateEnabledRangeOverlayTypes();
-	initChatWindow();
 
 	sendLobbyPlayerlistUpdate();
 	onSimulationUpdate();
@@ -319,6 +294,19 @@ function init(initData, hotloadData)
 	// and it generates a massive amount of data to transmit and store
 	// setTimeout(function() { reportPerformance(5); }, 5000);
 	// setTimeout(function() { reportPerformance(60); }, 60000);
+}
+
+function initGUIObjects()
+{
+	initMenu();
+	updateGameSpeedControl();
+	resizeDiplomacyDialog();
+	resizeTradeDialog();
+	initPanelEntities();
+	initViewedPlayerDropdown();
+	initChatWindow();
+	Engine.SetBoundingBoxDebugOverlay(false);
+	updateEnabledRangeOverlayTypes();
 }
 
 function updatePlayerData()
@@ -372,16 +360,21 @@ function updatePlayerData()
 function updateDiplomacyColorsButton()
 {
 	g_DiplomacyColorsToggle = !g_DiplomacyColorsToggle;
+
 	let diplomacyColorsButton = Engine.GetGUIObjectByName("diplomacyColorsButton");
+
 	diplomacyColorsButton.sprite = g_DiplomacyColorsToggle ?
 		"stretched:session/minimap-diplomacy-on.png" :
 		"stretched:session/minimap-diplomacy-off.png";
+
 	diplomacyColorsButton.sprite_over = g_DiplomacyColorsToggle ?
 		"stretched:session/minimap-diplomacy-on-highlight.png" :
 		"stretched:session/minimap-diplomacy-off-highlight.png";
+
 	Engine.GetGUIObjectByName("diplomacyColorsWindowButtonIcon").sprite = g_DiplomacyColorsToggle ?
 		"stretched:session/icons/diplomacy-on.png" :
 		"stretched:session/icons/diplomacy.png";
+
 	updateDisplayedPlayerColors();
 }
 
@@ -469,26 +462,27 @@ function updateHotkeyTooltips()
 		});
 }
 
-function initPanelEntities(slot)
+function initPanelEntities()
 {
-	let button = Engine.GetGUIObjectByName("panelEntityButton[" + slot + "]");
+	Engine.GetGUIObjectByName("panelEntityPanel").children.forEach((button, slot) => {
 
-	button.onPress = function() {
-		let panelEnt = g_PanelEntities.find(ent => ent.slot !== undefined && ent.slot == slot);
-		if (!panelEnt)
-			return;
+		button.onPress = function() {
+			let panelEnt = g_PanelEntities.find(ent => ent.slot !== undefined && ent.slot == slot);
+			if (!panelEnt)
+				return;
 
-		if (!Engine.HotkeyIsPressed("selection.add"))
-			g_Selection.reset();
+			if (!Engine.HotkeyIsPressed("selection.add"))
+				g_Selection.reset();
 
-		g_Selection.addList([panelEnt.ent]);
-	};
+			g_Selection.addList([panelEnt.ent]);
+		};
 
-	button.onDoublePress = function() {
-		let panelEnt = g_PanelEntities.find(ent => ent.slot !== undefined && ent.slot == slot);
-		if (panelEnt)
-			selectAndMoveTo(getEntityOrHolder(panelEnt.ent));
-	};
+		button.onDoublePress = function() {
+			let panelEnt = g_PanelEntities.find(ent => ent.slot !== undefined && ent.slot == slot);
+			if (panelEnt)
+				selectAndMoveTo(getEntityOrHolder(panelEnt.ent));
+		};
+	});
 }
 
 /**
@@ -511,6 +505,16 @@ function initializeMusic()
 		global.music.storeTracks(g_CivData[g_Players[g_ViewedPlayer].civ].Music);
 	global.music.setState(global.music.states.PEACE);
 	playAmbient();
+}
+
+function initViewedPlayerDropdown()
+{
+	g_DisplayedPlayerColors = g_Players.map(player => player.color);
+	updateViewedPlayerDropdown();
+
+	// Select "observer" in the view player dropdown when rejoining as a defeated player
+	let player = g_Players[Engine.GetPlayerID()];
+	Engine.GetGUIObjectByName("viewPlayer").selected = player && player.state == "defeated" ? 0 : Engine.GetPlayerID() + 1;
 }
 
 function updateViewedPlayerDropdown()
@@ -903,8 +907,7 @@ function confirmExit()
 	closeOpenDialogs();
 
 	// Don't ask for exit if other humans are still playing
-	let isHost = g_IsController && g_IsNetworked;
-	let askExit = !isHost || isHost && g_Players.every((player, i) =>
+	let askExit = !Engine.HasNetServer() || g_Players.every((player, i) =>
 		i == 0 ||
 		player.state != "active" ||
 		g_GameAttributes.settings.PlayerData[i].AI != "");

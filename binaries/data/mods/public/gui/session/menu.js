@@ -74,17 +74,10 @@ var g_SummarySelectedData;
 // Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
 var g_FlushTributing = function() {};
 
-function initSessionMenuButtons()
-{
-	initMenuPosition();
-	updateGameSpeedControl();
-	resizeDiplomacyDialog();
-	resizeTradeDialog();
-}
-
-function initMenuPosition()
+function initMenu()
 {
 	Engine.GetGUIObjectByName("menu").size = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
+	Engine.GetGUIObjectByName("menuExitButton").enabled = !Engine.IsAtlasRunning();
 }
 
 function updateMenuPosition(dt)
@@ -777,6 +770,8 @@ function updateTraderTexts()
  */
 function barterOpenCommon(resourceCode, idx, prefix)
 {
+	g_BarterSell = g_BarterSell || g_ResourceData.GetCodes()[0];
+
 	let barterButton = {};
 	for (let action of g_BarterActions)
 		barterButton[action] = Engine.GetGUIObjectByName(prefix + action + "Button[" + idx + "]");
@@ -1025,6 +1020,8 @@ function toggleTutorial()
 
 function updateGameSpeedControl()
 {
+	Engine.GetGUIObjectByName("gameSpeedButton").hidden = g_IsNetworked;
+
 	let player = g_Players[Engine.GetPlayerID()];
 	g_GameSpeeds = getGameSpeedChoices(!player || player.state != "active");
 
