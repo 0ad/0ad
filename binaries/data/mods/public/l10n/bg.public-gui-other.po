@@ -10,12 +10,12 @@
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2015
 # Любомир Василев, 2016-2018
-# Симонъ Болокановъ <sbolokanov@abv.bg>, 2014
+# Симонъ–Севаръ С. Болокановъ <sbolokanov@abv.bg>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 20:09+0000\n"
+"POT-Creation-Date: 2018-03-05 09:05+0100\n"
+"PO-Revision-Date: 2018-03-06 11:39+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -169,7 +169,7 @@ msgstr "ИЗТРИВАНЕ"
 #: gui/options/options.js:264 gui/options/options.js:314
 #: gui/options/options.js:340 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:446
 msgid "No"
 msgstr "Не"
 
@@ -177,7 +177,7 @@ msgstr "Не"
 #: gui/options/options.js:264 gui/options/options.js:314
 #: gui/options/options.js:340 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:446
 msgid "Yes"
 msgstr "Да"
 
@@ -1337,7 +1337,7 @@ msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Наистина ли искате да излезете от 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
-#: gui/summary/summary.js:443
+#: gui/summary/summary.js:445
 msgid "Confirmation"
 msgstr "Потвърждаване"
 
@@ -1842,49 +1842,53 @@ msgstr "разход"
 msgid "Failed"
 msgstr "неуспешни"
 
-#: gui/summary/summary.js:442
+#: gui/summary/summary.js:335
+msgid "Time elapsed"
+msgstr "Изминало време"
+
+#: gui/summary/summary.js:444
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Наистина ли искате да напуснете чакалнята?"
 
-#: gui/summary/summary.js:507
+#: gui/summary/summary.js:509
 msgid "Current Scores"
 msgstr "Текущи резултати"
 
-#: gui/summary/summary.js:509
+#: gui/summary/summary.js:511
 msgid "Scores at the end of the game."
 msgstr "Резултати в края на играта."
 
-#: gui/summary/summary.js:511
+#: gui/summary/summary.js:513
 msgid "You have been disconnected."
 msgstr "Връзката беше прекъсната."
 
-#: gui/summary/summary.js:513
+#: gui/summary/summary.js:515
 msgid "You have left the game."
 msgstr "Вие напуснахте играта."
 
-#: gui/summary/summary.js:515
+#: gui/summary/summary.js:517
 msgid "You have won the battle!"
 msgstr "Вие спечелихте битката!"
 
-#: gui/summary/summary.js:517
+#: gui/summary/summary.js:519
 msgid "You have been defeated…"
 msgstr "Вие загубихте…"
 
-#: gui/summary/summary.js:518
+#: gui/summary/summary.js:520
 msgid "You have abandoned the game."
 msgstr "Вие напуснахте играта."
 
-#: gui/summary/summary.js:521
+#: gui/summary/summary.js:523
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Игрално време: %(time)s"
 
-#: gui/summary/summary.js:529
+#: gui/summary/summary.js:531
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s — %(mapType)s"
 
-#: gui/summary/summary.js:541
+#: gui/summary/summary.js:543
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Превключване на чакалнята в прозорец."
@@ -2324,11 +2328,11 @@ msgctxt "summary chart"
 msgid "Type:"
 msgstr "Вид:"
 
-#: gui/summary/summary.xml:(caption):226
+#: gui/summary/summary.xml:(caption):227
 msgid "Replay"
 msgstr "Пускане на записа"
 
-#: gui/summary/summary.xml:(caption):231
+#: gui/summary/summary.xml:(caption):232
 msgid "Continue"
 msgstr "Напред"
 

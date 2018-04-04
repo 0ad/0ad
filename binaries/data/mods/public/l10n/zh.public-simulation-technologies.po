@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Charles Yang <mryang@minelandcn.com>, 2018
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
@@ -10,12 +11,13 @@
 # Siwei Chen <chensiwei@tsinghua.edu.cn>, 2016
 # yhcvb <yhcvb@126.com>, 2014
 # 李武军 <lwj7863439@gmail.com>, 2016
+# 越 杨 <tsugaku@163.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-21 09:05+0100\n"
-"PO-Revision-Date: 2018-02-21 16:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-25 17:49+0000\n"
+"Last-Translator: Charles Yang <mryang@minelandcn.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +31,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "单位升级至高级以后将获得以下属性加成：+20%生命值，+1点装甲（针对所有类型的护甲），+20%的战利品收益，近战单位+20%攻击值，远程攻击单位+4米射程并拥有更高的攻击精度，更快的移动速度，医疗兵获得额外的治疗速度和治疗距离。"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -700,7 +702,7 @@ msgstr "秘密的钢铁加工技术让剑锋有著独特而美丽的纹路。不
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "所有的剑士和钉锤兵+20%劈砍攻击力"
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -830,7 +832,7 @@ msgstr "采集训练"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Nets improve the fishing productivity."
-msgstr ""
+msgstr "渔网可以提高捕鱼效率。"
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -958,7 +960,7 @@ msgstr "楔槌"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets for foraging."
-msgstr ""
+msgstr "采集食物用的篮子"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -1070,7 +1072,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
-msgstr ""
+msgstr "女性居民+50%健康值"
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1166,7 +1168,7 @@ msgstr "女性 vs. 人口"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr ""
+msgstr "女性市民 vs. 人口"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1542,7 +1544,7 @@ msgstr ""
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr ""
+msgstr "让您的单位的贿赂费用增加50％。"
 
 #: simulation/data/technologies/spy_counter.jsongenericName
 msgid "Counterintelligence"
@@ -1582,7 +1584,7 @@ msgstr "在中立领土上可以存活比正常的前哨站多一倍的时间。
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "前哨-50%领土衰退率。"
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1618,7 +1620,7 @@ msgstr "哨塔获得更远的视野。"
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "前哨+50%视野范围。"
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1860,7 +1862,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
-msgstr ""
+msgstr "间谍活动"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -1910,7 +1912,7 @@ msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
-msgstr ""
+msgstr "职业化战争"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
@@ -2391,7 +2393,7 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "High Priest of Amun"
-msgstr ""
+msgstr "阿蒙大祭司"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
@@ -2544,13 +2546,13 @@ msgstr "步兵征兵制"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "所有骑兵训练时间-20%，但同时-5%健康值。解锁骑兵招募。"
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "所有步兵训练时间-20%，但同时-5%健康值。解锁步兵招募。"
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

@@ -6,7 +6,7 @@
 # Envel PICHON <envel_ras@hotmail.fr>, 2016
 # ernest olory <ernestolory@hotmail.fr>, 2016,2018
 # Feñch Gallig <ducraig@hotmail.fr>, 2017
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2017
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-28 09:44+0000\n"
-"Last-Translator: ernest olory <ernestolory@hotmail.fr>\n"
+"PO-Revision-Date: 2018-03-29 17:41+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,7 +133,7 @@ msgstr "Kartennoù-Mor"
 #: gui/gamesetup/gamesetup.js:180
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Kartennoù e-lec'h ma vez bigi o deus ezhomm da dizhout an enebour."
+msgstr "Kartennoù e-lec'h ma vez ezhomm bigi evit tizhout an enebour."
 
 #: gui/gamesetup/gamesetup.js:185
 msgid "Demo Maps"
@@ -142,7 +142,7 @@ msgstr "Kartenn Diskouez"
 #: gui/gamesetup/gamesetup.js:186
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Ar c'hartennoù-se n'int ket gouest da vezan c'hoariet met evit abegoù diskouez hepken."
+msgstr "Ar c'hartennoù-se n'int ket da vezañ c'hoariet outo met evit diskouez hepken."
 
 #: gui/gamesetup/gamesetup.js:191
 msgid "New Maps"
@@ -151,7 +151,7 @@ msgstr "Kartennoù nevez"
 #: gui/gamesetup/gamesetup.js:192
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr "Kartennoù a zo ur merk nevez e dilaosk ar c'hoari. "
+msgstr "Kartennoù a zo nevez flamm e stumm-mañ ar c'hoari."
 
 #: gui/gamesetup/gamesetup.js:197
 msgid "Trigger Maps"
@@ -160,7 +160,7 @@ msgstr "Kartennoù Distenn"
 #: gui/gamesetup/gamesetup.js:198
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Kartennoù a zeu gant darvoudoù skrivet en-araok ha gallout a reont produin unanennoù enebour."
+msgstr "Kartennoù a zeu gant darvoudoù skrivet ha gellout a reont lakaat stummañ unanennoù enebour."
 
 #: gui/gamesetup/gamesetup.js:203
 msgid "All Maps"
@@ -184,7 +184,7 @@ msgstr "C'hoarier"
 #: gui/gamesetup/gamesetup.js:434
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr "C'hoari Skouer"
+msgstr "Doare C'hoari"
 
 #: gui/gamesetup/gamesetup.js:474
 msgid "Map Type"
@@ -224,7 +224,7 @@ msgstr "Biom"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Select the flora and fauna."
-msgstr "Diuziñ ar flora ha loened ar vro."
+msgstr "Diuziñ ar flora hag al loened."
 
 #: gui/gamesetup/gamesetup.js:560
 msgid "Number of Players"
@@ -247,7 +247,7 @@ msgstr "Dibab bevenn ar boblañs"
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Diwall: Gallout a raje bezan kudennoù digonusted ma vo tizhet %(popCap)s ar boblans gant %(players)s a c'hoarierien."
+msgstr "Diwallit: Kudennoù efedusted a c'hallfe bezañ ma tizhfe an holl %(players)s c'hoarierien%(popCap)s poblañs."
 
 #: gui/gamesetup/gamesetup.js:609
 msgid "Starting Resources"
@@ -256,7 +256,7 @@ msgstr "Mammennoù el Loc'hañ"
 #: gui/gamesetup/gamesetup.js:612
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr "Kementad kentan eus pep danvez: %(resources)s"
+msgstr "Kementad deraouek evit pep danvez: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:615
 msgid "Select the game's starting resources."
@@ -287,23 +287,23 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "Sammad hollek relegoù krouet war ar gartenn. Trec'h relegel eo ar gwirvoudelan gant un hepken pe zaou relegenn. Gant niveroù brasoc'h e vez ar relegoù a-bouez da bakan evit degemer bonuzioù aora."
+msgstr "Sammad hollek relegoù krouet war ar gartenn. Trec'h ar relegennoù a zo realistoc'h gant ur relegenn hepken pe ziv. Gant niveroù brasoc'h, ar relegoù a vez a-bouez da bakañ evit kaout bonuzioù aora."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Relic Duration"
-msgstr "Padelezh Releg"
+msgstr "Padelezh ar relegenn"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Munutoù betek ma vo echu Trec'h Releg gant ar c'hoarier."
+msgstr "Munutoù betek ma peurechuo ar c'hoarier Trec'h ar Releg."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Wonder Duration"
-msgstr "Padelezh Bamerezh"
+msgstr "Padelezh ar Varzenn"
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr "Munutoù betek ma vo echuet Trec'h Bamerezh gant ar c'hoarier."
+msgstr "Munutoù betek ma peurechuo ar c'hoarier Trec'h ar Varzenn."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Game Speed"
@@ -319,7 +319,7 @@ msgstr "Diaester"
 
 #: gui/gamesetup/gamesetup.js:722
 msgid "Select the difficulty of this scenario."
-msgstr "Diuziñ diaester ar senario-man."
+msgstr "Diuziñ diaester ar senario-mañ."
 
 #: gui/gamesetup/gamesetup.js:787
 msgid "Chose the civilization for this player"
@@ -327,7 +327,7 @@ msgstr "Dibab sevenadurezh ar c'hoarier-mañ "
 
 #: gui/gamesetup/gamesetup.js:827
 msgid "Hero Garrison"
-msgstr "Gwarnizon Haroz"
+msgstr "Gwarnizon an Haroz"
 
 #: gui/gamesetup/gamesetup.js:828
 msgid "Toggle whether heroes can be garrisoned."
@@ -341,7 +341,7 @@ msgstr "Kantreer"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "Er mod Kantreer e vez loc'het un nebeud unanennoù hepken gant ar c'hoarierien ha ret eo dezho kavout ur blasenn dereat evit sevel o c'heoded. Harz-tennañ a zo erbedet."
+msgstr "Er mod Kantreer, ar c'hoarierien a stag e-barzh gant un dornadig unanennoù, hepken, ha ret eo dezho kavout ul lec'h dereat evit sevel o c'hêriadenn. An harz-tennañ a zo erbedet."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -420,7 +420,7 @@ msgstr "Dibab ma vo kemeret e kont ar c'hoariadenn-mañ e-barzh ar renkadur-holl
 #: gui/gamesetup/gamesetup.js:987
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr "Pouezan war %(hotkey)s evit leunian anvioù ar c'hoarierien pe frammoù e-unan."
+msgstr "Pouezañ war %(hotkey)s evit em-leuniañ anvioù ar c'hoarierien pe an arventennoù."
 
 #: gui/gamesetup/gamesetup.js:995
 msgid "Return to the lobby."
@@ -432,7 +432,7 @@ msgstr "Distreiñ d'al lañser pennañ."
 
 #: gui/gamesetup/gamesetup.js:1000
 msgid "Start Game!"
-msgstr "Loc'han C'hoari!"
+msgstr "Stagañ ganti!"
 
 #: gui/gamesetup/gamesetup.js:1006
 msgid "Start a new game with the current settings."
@@ -442,34 +442,34 @@ msgstr "Kregiñ gant ur c'hoariadenn gant an arventennoù-red."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr "Loc'han ur c'hoari nevez gant ar frammoù stank (diweredekaet betek ma vo prest an holl c'hoarierien)"
+msgstr "Loc'han ur c'hoari nevez gant an arventennoù red (diweredekaet keit ha ma ne vo ket prest an holl c'hoarierien)"
 
 #: gui/gamesetup/gamesetup.js:1070
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "Keflunian Al: %(description)s."
+msgstr "Kefluniañ an NA: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1121
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s : Gwelet ar Roll-Istor / Gwezenn an Teknologiezhioù\nAn hini diwezhañ digoret a vo addigoret dindan ur c'hlik."
 
 #: gui/gamesetup/gamesetup.js:1173
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr "Gwintañ war ar %(name)s taolennadennoù frammoù."
+msgstr "Gwintañ a ra ivinell an arventennoù %(name)s."
 
 #: gui/gamesetup/gamesetup.js:1174
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr "Implijout %(hotkey)s evit dilec'hian un daolennadenn frammoù en-diaz."
+msgstr "Implijit %(hotkey)s evit fiñval un ivinell arventennoù war-du an traoñ."
 
 #: gui/gamesetup/gamesetup.js:1175
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr "Implijout %(hotkey)s evit dilec'hian un daolennadenn frammoù en-nec'h."
+msgstr "Implijit %(hotkey)s evit fiñval un ivinell arventennoù war-du an nec'h."
 
 #: gui/gamesetup/gamesetup.js:1692
 msgctxt "map selection"
@@ -478,7 +478,7 @@ msgstr "Dre-zegouezh"
 
 #: gui/gamesetup/gamesetup.js:1694
 msgid "Pick any of the given maps at random."
-msgstr "Diuzan n'eus forz peseurt kartennoù roet dre-zegouezh."
+msgstr "Diuziñ unan eus ar c'hartennoù roet dre-zegouezh."
 
 #: gui/gamesetup/gamesetup.js:1726
 msgctxt "biome"
@@ -487,13 +487,13 @@ msgstr "Dre-zegouezh"
 
 #: gui/gamesetup/gamesetup.js:1727
 msgid "Pick a biome at random."
-msgstr "Diuzan ur biom dre-zegouezh."
+msgstr "Diuziñ ur biom dre-zegouezh."
 
 #: gui/gamesetup/gamesetup.js:2058
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr "%(setting)s"
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2063
 msgctxt "settings value"
@@ -511,7 +511,7 @@ msgstr "Ket"
 #: gui/gamesetup/gamesetup.js:2100
 #, javascript-format
 msgid "%(setting)s:"
-msgstr "%(setting)s "
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2187
 #, javascript-format
@@ -574,7 +574,7 @@ msgstr "Diaester an NA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr "Al Emzalc'h:"
+msgstr "Emzalc'h an NA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -594,7 +594,7 @@ msgstr "O kargañ"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr "O kargañ roadenn ur gartenn. Gortoz mar-plij..."
+msgstr "O kargañ roadenn ar gartenn. Gortozit mar plij..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
@@ -663,26 +663,26 @@ msgstr "Diuzit skipailh ar c'hoarier."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Diskouez al lobi lies-c'hoarier en ur prenestr diviz."
+msgstr "Diskouez an hall lies-c'hoarier en ur prenestr diviz."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr "\"Zeus \\[…] en doa lakaet e plas e lezenn: furnez a zeu eus ar poanioù. \\[…]  Neuze tud a-enep dezho a zesko evit pleustrin an habaskadur. \\[…] Na kalet ha feuls eo ar gras.\" -Echil (\"Oresteia\", l. 176-183)"
+msgstr "\"Zeus \\[…] en doa lakaet e plas e lezenn: ar furnez a zeu eus ar poanioù. \\[…]  An dud a zesko diwar o c'houst neuze evit heuliañ an habaskadur. \\[…] Ur gras eus ar seurt a zo kalet ha feuls.\" -Echil (\"Oresteia\", l. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr "\"Hi \\[Elen] he doa kaset da Iliom hec'h argouroù, distruj.\" -Echil (\"Oresteia\", l. 406)"
+msgstr "\"Hi \\[Elen] he deus degaset ganti da Iliom hec'h argouroù, ar rask.\" -Echil (\"Oresteia\", l. 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr "\"E pep kalon tirant e teu war wel ar poezon-man er fin, pezh a ra n'eo ket kat da gaout fizians en ur mignon bennak.\" -Echil (\"Prometeus Chadennet\", 224-225)"
+msgstr "\"E kalon pep tiran, e teu war wel, a-benn ar fin, ar poezon-mañ, ne c'hall kaout fiziañs e-barzh mignon ebet.\" -Echil (\"Prometeus Chadennet\", 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -694,7 +694,7 @@ msgstr "\"Dre ma kosha an amzer e kelenn pep tra.\" - Echil (Prometheus Stag)"
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr "\"E vennegezh n'eo ket evit embann, hogen evit bezan, ar gwellan.\" -Echil (\"Seizh a-enep da dTheba\", 592)"
+msgstr "\"N'eus ket c'hoant diskouez bezañ an hini gwellañ, c'hoant en deus da vezañ an hini gwellañ.\" -Echil (\"Seizh a-enep Theba\", 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
@@ -710,7 +710,7 @@ msgstr "\"An Doueed a skoazell ar re en em skoazell o-unan.\" Esop (Héraclès h
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr "\"Arboellus eo aozan hiziv evit c'hoantoù antronoz.\" -Esop (\"Ar Veriennenn hag ar C'hilhog-raden\")"
+msgstr "\"Poellek eo d'en em aozañ hiziv evit ezhommoù antronoz.\" -Esop (\"Ar Verienenn hag al Lammerez\")"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
@@ -720,39 +720,39 @@ msgstr "\"Digant an unvaniezh e teu an nerzh.\" -  Esop (\"An Horzenn Geuneud\")
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr "\"Arabat kaout fizians e alioù un den eman o c'houzanv eus e ziaester hiniennel.\"  -Esop (\"Al Louarn hag ar C'havr\")"
+msgstr "\"Arabat kaout fiziañs e-barzh alioù un den hag a zo o c'houzañv diwar e ziaesterioù personel.\"  -Esop (\"Al Louarn hag ar C'havr\")"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr "\"Magan a ra an hardizhegezh an dispriz; digreskin a ra an anaoud ar gwalloù.\" -Esop (\"Al Louarn hag al Leon\")"
+msgstr "\"An hardizhegezh a vag an dispriz; ar vignoniezh a lak da zigreskiñ ar rakvarnioù.\" -Esop (\"Al Louarn hag al Leon\")"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr "\"Gallout a ra ar fouge kas d'an en em zistruj.\" -Esop (\"Ar ran hag an Ejen\")"
+msgstr "\"Gallout a ra ar fouge kas d'an em-zistruj.\" -Esop (\"Ar ran hag an Ejen\")"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr "\"Goustad ha sonn a lak da c'hounit ar redadeg.\" -Esop (\"Ar C'had hag ar Vaot\")"
+msgstr "\"Goustadik ha sonnik a c'hounez ar redadeg.\" -Esop (\"Ar C'had hag ar Vaot\")"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr "\"Gwelloc'h eo bezan fur gant dichansoù ar re all eget gant da hini.\" - Esop (\"Al Leon, An Azen, hag al Louarn Chaseour\")"
+msgstr "\"Gwelloc'h eo bezañ fur gant dichansoù ar re all evit gant ho hini.\" - Esop (\"Al Leon, An Azen, hag al Louarn Chaseour\")"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr "\"Promesaoù enebourien a oa graet evit bezan torret.\" - Esop (\"Ar Glandiourez hag ar Bleiz\")"
+msgstr "\"Promesaoù enebourien a zo graet evit bezañ torret.\" - Esop (\"Ar Glandiourez hag ar Bleiz\")"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr "\"Kement digarez a servijo d'an tirant\" - Esop (\"Ar bleiz hag an Oan\")"
+msgstr "\"Kement digarez a servijo d'an tiran\" - Esop (\"Ar bleiz hag an Oan\")"
 
 #: gui/text/quotes.txt:17
 msgid ""
@@ -1775,25 +1775,25 @@ msgstr "\"Un trec'h evel-se ouzhpenn ha kollet e vo an abeg!\" - Pyrrhus eus Epi
 msgid ""
 "\"None can be free who is a slave to, and ruled by, his passions.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 18)"
-msgstr ""
+msgstr "\"Den a c'hell bezañ dieub ma vo sklav evit, ha renet gant, e basionoù.\" - Pitagoras (Stobaeus, \"Florilegiom\", 18)"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"Do not say few things in many words, but many things in few words.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Na lar ket un nebeud traoù e kalz gerioù, met kalz traoù en nebeud gerioù.\" - Pitagoras (Stobaeus, \"Florilegiom\", 24)"
 
 #: gui/text/quotes.txt:159
 msgid ""
 "\"Let your speech be better than silence, or be silent.\" - Pythagoras "
 "(Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Lez da brezegenn bezañ gwelloc'h eget an didrouz, pe chom mut.\" - Pitagoras (Stobaeus, \"Florilegiom\", 24)"
 
 #: gui/text/quotes.txt:160
 msgid ""
 "\"Unity strengthens even small states, while discord undermines the "
 "mightiest empires.\" - Sallust (\"The Jugurthine War\", 10.6)"
-msgstr ""
+msgstr "\"Kreñvaat a ra an unanenn stadoù bihan zoken, tra ma vrall an dispeoc'h an impalaeriezhioù galloudusañ.\" - Sallust (\"Emgann Jugurthin\", 10.6)"
 
 #: gui/text/quotes.txt:161
 msgid ""
@@ -1801,14 +1801,14 @@ msgid ""
 "Africanus in his epitaph, after he who defeated Hannibal was repeatedly "
 "accused of crimes by the Roman Senate (Valerius Maximus, \"Nine books on "
 "memorable deeds and sayings\", 5.3.2)"
-msgstr ""
+msgstr "\"Mammvro zizanaoudek, n'az po ket ma skern zoken!\" - Scipio an Afrikan en e vezskrid, goude bezañ trec'het Hannibal a oa taolet torfedoù warnañ meur a wech gant ar Sened Roman (Valerius Maksimus, \"Nav levr diwar-benn oberoù ha lavaroù da zerc'hel eñvor\", 5.3.2)"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
 "Zama (Livius, \"Ab Urbe Condita\", XXX. 31)"
-msgstr ""
+msgstr "\"Dit en em aozañ evit an emgann, abaoe ma n'out ket bet deuet da zerc'hel ur peoc'h.\" - Scipio an Afrikan, o respont da ginnig prantadoù peoc'h Hannibal a-raok  Emgann Zama (Livius, \"Ab Urbe Kondita\", XXX. 31)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -1817,7 +1817,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.1.6)"
-msgstr ""
+msgstr "\"Met ul lodenn eus ar vicher jeneral eo ar skiant kadoniel. Ur jeneral a rank bezañ gouest da aveiñ e nerzhioù ha da bourvezañ evit e soudarded. Rankout a ra ivez kaout ijin, bezañ labourer, hag aketus, penn kalet ha kann, karantezus ha drouk, eeun ha lemm e spered.\" - Sokrat (Ksenofon, \"Memorabilia\", 3.1.6)"
 
 #: gui/text/quotes.txt:164
 msgid ""

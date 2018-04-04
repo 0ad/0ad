@@ -3,16 +3,18 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2018
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
 # Максим Дронь <dronmax@gmail.com>, 2014
+# Ilya Andreev, 2018
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2018
 # Woratiklis, 2015
 # Yegor <revolver45@inbox.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-08 09:05+0100\n"
-"PO-Revision-Date: 2018-01-17 22:09+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2018-03-25 21:54+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +29,7 @@ msgstr "Фильтр"
 #: gui/modmod/modmod.js:253
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
-msgstr ""
+msgstr "Зависимость не выполнена: %(dep)s"
 
 #: gui/modmod/modmod.js:259
 msgid "All dependencies met"
@@ -47,7 +49,7 @@ msgstr "Сбросить фильтры"
 
 #: gui/modmod/modmod.xml:(caption):46
 msgid "Negate"
-msgstr "Недействительно"
+msgstr "Инвертировать"
 
 #: gui/modmod/modmod.xml:(caption):54
 msgid "Available Mods"
@@ -59,7 +61,7 @@ msgstr "Описание"
 
 #: gui/modmod/modmod.xml:(caption):94 gui/modmod/modmod.xml:(caption):162
 msgid "Visit Website"
-msgstr "Перейти на Вебсайт"
+msgstr "Перейти на веб-сайт"
 
 #: gui/modmod/modmod.xml:(caption):98
 msgid "Enable"
@@ -119,4 +121,4 @@ msgstr "Зависимости"
 
 #: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):137
 msgid "Website"
-msgstr "Вебсайт"
+msgstr "Веб-сайт"

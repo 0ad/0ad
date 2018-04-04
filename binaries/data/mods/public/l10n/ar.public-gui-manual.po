@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Ahmed Saadawi <9597011@gmail.com>, 2015
+# Eslam obeidat <islamobidat92@gmail.com>, 2018
 # jalal natsheh <jalal-natsheh@hotmail.com>, 2017
 # Odai Alali <odai.massar@gmail.com>, 2015
 # Omar Anwar <omaraglan91@yahoo.com>, 2017
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-02-23 16:07+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
+"PO-Revision-Date: 2018-03-14 11:51+0000\n"
+"Last-Translator: Eslam obeidat <islamobidat92@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -237,11 +238,11 @@ msgstr "Shift + F2 لأخذ لقطة شاشة ضخمة (6400 بكسل × 4800 ب
 
 #: gui/manual/intro.txt:52
 msgid "Alt + S: Switch to the next tab."
-msgstr ""
+msgstr "حول إلى التبويب التالي : Alt + S"
 
 #: gui/manual/intro.txt:53
 msgid "Alt + W: Switch to the previous tab."
-msgstr ""
+msgstr "حول الى التبويب السابق : Alt + W"
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -323,7 +324,7 @@ msgstr "/ (سلاش مأئل): حدد محارب خامل"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr ""
+msgstr "إضافة مقاتل لا يعمل للمجموعة المحدده : / + Shift"
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
@@ -335,7 +336,7 @@ msgstr ". (نقطة) لاختيار عامل خامل (بما في ذلك الم
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "إضافة عامل خامل للتحديد ( بلإضافة الجنود المدنيين ) : . + Shift"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
@@ -343,15 +344,15 @@ msgstr "Alt + . لتحديد كلّ العاملين الخاملين (بما ف
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr ""
+msgstr "اختر وحدة خاملة : \\ (BackSlash)"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr ""
+msgstr "إضافة وحدة خاملة للتحديد : \\ + Shift"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
-msgstr ""
+msgstr "حدد جميع الوحدات الخاملة : / + Alt"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
@@ -397,7 +398,7 @@ msgstr "F5، وF6، وF7، وF8 لتحريك الكاميرا إلى موقع م
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M : أثناء تحديد مباني التدريب إضافة الوحدة الظاهرة الأولى، الثانية...  إلى طابور التدريب لكل المباني المحددة."
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -417,15 +418,15 @@ msgstr "Tab: إظهار كل التقارير (ايضا سوف يظهر تقدم
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
-msgstr ""
+msgstr "تبديل نافذة التلخيص: Ctrl + Tab"
 
 #: gui/manual/intro.txt:93
 msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr ""
+msgstr "تبديل صفحة المقايضة/التجارة داخل اللعبة : Ctrl + B."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr ""
+msgstr "تبديل صفحة التمرين داخل اللعبة : Ctrl + P ."
 
 #: gui/manual/intro.txt:96
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -452,7 +453,7 @@ msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
-msgstr ""
+msgstr "Alt + Right Click : اطلب وحدة واحدة من التحديد الحالي لنقل / بناء / تجميع / إلخ وإلغاء تحديدها. تستخدم لإرسال وحدات بسرعة مع مهام محددة."
 
 #: gui/manual/intro.txt:102
 msgid ""
@@ -476,7 +477,7 @@ msgstr "Alt + السحب بزر الفأرة الأيسر على وحدات في
 
 #: gui/manual/intro.txt:106
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr ""
+msgstr "فقط حدد الوحدات الغير عسكرية : Alt + Y + سحب فوق الوحدات على الخريطة ."
 
 #: gui/manual/intro.txt:107
 msgid "I + Left Drag over units on map: Only select idle units"
@@ -484,7 +485,7 @@ msgstr "I + السحب بزر الفأرة الأيسر فوق الوحدات ع
 
 #: gui/manual/intro.txt:108
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr ""
+msgstr "فقط حدد الوحدات الجدد : O + سحب فوق الوحدات على الخريطة ."
 
 #: gui/manual/intro.txt:109
 msgid ""
@@ -535,13 +536,13 @@ msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + Shift + W : تبديل وضع إطار السلك (اضغط مرة واحدة للحصول على إطارات سلكية متراكبة فوق النماذج المخططة ، مرتين للحصول على الإطار السلكي الملون من القوام فقط ، ثلاث مرات للعودة إلى الوضع العادي المعتاد)."
 
 #: gui/manual/intro.txt:120
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr "Alt + Shift + S : تبديل وحدة الصور الظلية (قد يعطي دفعة أداء صغيرة)."
 
 #: gui/manual/intro.txt:121
 msgid "Alt + Z: Toggle sky"
@@ -550,7 +551,7 @@ msgstr "Alt + Z لتبديل السّماء"
 #: gui/manual/intro.txt:122
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
+msgstr "Alt + C : تبديل تصورات نطاق الهجوم للهياكل الدفاعية المحددة ."
 
 #: gui/manual/intro.txt:123
 msgid ""

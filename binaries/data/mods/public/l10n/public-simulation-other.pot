@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-03-05 09:07+0100\n"
-"PO-Revision-Date: 2018-03-05 09:07+0100\n"
+"POT-Creation-Date: 2018-04-04 14:47+0200\n"
+"PO-Revision-Date: 2018-04-04 14:47+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -469,14 +469,14 @@ msgstr ""
 msgid "You can attack now!"
 msgstr ""
 
-#: simulation/components/EndGameManager.js:159
+#: simulation/components/EndGameManager.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: simulation/components/EndGameManager.js:167
+#: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."
 msgstr ""
 
@@ -495,26 +495,26 @@ msgstr ""
 msgid "%(category)s limit of %(limit)s reached"
 msgstr ""
 
-#: simulation/components/Player.js:350
-#, javascript-format
-msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
-
 #: simulation/components/Player.js:352
 #, javascript-format
-msgid ""
-"Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
-"(resourceAmount2)s %(resourceType2)s"
+msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr ""
 
 #: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
-"(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+"(resourceAmount2)s %(resourceType2)s"
 msgstr ""
 
 #: simulation/components/Player.js:356
+#, javascript-format
+msgid ""
+"Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
+"(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+msgstr ""
+
+#: simulation/components/Player.js:358
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
@@ -678,7 +678,9 @@ msgid "Capture the Relic"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.json:Data.Description
-msgid "Defeat all opponents to win."
+msgid ""
+"Defeat opponents by killing all their units and destroying all their "
+"structures."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.json:Data.Title
@@ -686,7 +688,7 @@ msgid "Conquest"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_structures.json:Data.Description
-msgid "Destroy all enemy structures to win."
+msgid "Defeat opponents by destroying all their structures."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_structures.json:Data.Title
@@ -694,7 +696,7 @@ msgid "Conquest Structures"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_units.json:Data.Description
-msgid "Kill all enemy units to win."
+msgid "Defeat opponents by killing all their units."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_units.json:Data.Title

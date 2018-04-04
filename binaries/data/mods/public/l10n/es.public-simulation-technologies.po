@@ -5,6 +5,7 @@
 # Translators:
 # Albert, 2016-2017
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
+# Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
 # Albert, 2016
 # Camilo Zuluaga <czuluagaz@gmail.com>, 2017
 # dreogan dreogan <garikoitz.bv@gmail.com>, 2017
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-21 09:05+0100\n"
-"PO-Revision-Date: 2018-03-04 10:58+0000\n"
-"Last-Translator: Federico Castro <dwcels@gmail.com>\n"
+"PO-Revision-Date: 2018-03-14 10:12+0000\n"
+"Last-Translator: Antonio Martín <antonio.martinperez1991@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr "Las unidades mejoradas a la clase avanzada son mejoradas: 20% de salud extra, 1 nivel de armadura extra de cada tipo, 20% extra de botín, 20% de ataque extra para las unidades melee, 4m de rango extra y mayor precisión de las unidades a distancia, velocidad de movimiento y de curación extra y mayor rango de sanadores."
+msgstr "Las unidades mejoradas a la clase avanzada recibirán: 20% de salud extra, 1 nivel de armadura extra de cada tipo, 20% extra de botín, 20% de ataque extra para las unidades cuerpo a cuerpo, 4m de alcance extra y mayor precisión para las unidades a distancia, velocidad de movimiento y de curación extra y mayor alcance para los sanadores."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -741,7 +742,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Las unidades ascendidas a clase de élite ganan numerosas cualidades: un 20% extra de salud, 1 punto extra de armadura de cada tipo, un 20% extra de saqueo, un 20% extra de ataque a las unidades cuerpo a cuerpo, 4m de aumento de alcance y mayor precisión a las unidades a distancia, mayor velocidad de movimiento y mayor velocidad de sanación y alcance para las unidades sanadoras."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1482,7 +1483,7 @@ msgstr "Mejora la precisión de los proyectiles"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
-msgstr ""
+msgstr "Mejora de precisión de los saeteros."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -2435,7 +2436,7 @@ msgstr "Los hindúes tenían una fuerte tradición arquera y un predilección po
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "+10 metros de alcance para las unidades con arco. Las unidades arqueras tienen más precisión y su tiempo de reclutamiento se reduce un 20%, pero tienen un 20% menos de salud."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName

@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Arthur Paim Arnold <arthurpaimarnold@gmail.com>, 2015
-# borg 2k <estevanborg@gmail.com>, 2017
+# borg 2k <estevanborg@gmail.com>, 2017-2018
 # Cleiton Nunes <umarekhawari@gmail.com>, 2014
 # Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2015
 # Ernan, 2014
@@ -21,14 +21,15 @@
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
 # magalidade <tazer.extreme@gmail.com>, 2014
+# Tiago, 2018
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 # Washington Ramon Santos nascimento <washington_ramon123@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-21 09:05+0100\n"
-"PO-Revision-Date: 2018-02-21 16:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-25 13:48+0000\n"
+"Last-Translator: Tiago\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +43,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Unidades promovidas para a classe avançada ganham muita qualidade: +20% de vida extra, +1 nível de armadura extra de cada tipo, 20% de saque extra, 20% de ataque extra para unidades corpo a corpo, 4 metros de alcance extra e melhor precisão para unidades a distancia, velocidade de movimento mais rápida e velocidade de cura extra e alcance para curandeiros."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -115,7 +116,7 @@ msgstr "Barda"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Desbloqueado na Fase de Vilarejo"
+msgstr "Desbloqueado na Fase de Vila"
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -208,7 +209,7 @@ msgstr "Armadura de metal para o corpo do cavalo."
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Desbloqueado na \"Fase Metropóle\""
+msgstr "Desbloqueado na Fase de Cidade"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
@@ -481,7 +482,7 @@ msgstr "Casco Reforçado"
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Desbloqueado na Fase de Vilarejo"
+msgstr "Desbloqueado na Fase de Aldeia"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
@@ -745,7 +746,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Unidades promovidas para a classe de elite ganham: +20% de saúde, +1 de armadura de cada tipo, +20% de saque, +20 de ataque para unidades de combate corpo a corpo, 4m de alcance e precisão para unidades a distância, velocidades de movimento e velocidade de cura e alcance para curandeiros."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -795,7 +796,7 @@ msgstr "Salgando Peixes"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "Destravado na Fase de Cidade. Requer Rede de Pesca."
+msgstr "Desbloqueado na Fase de Vila. Requer Rede de Pesca."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -1224,13 +1225,13 @@ msgstr "Tempo de construção de Muralhas va. Robustez"
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
-msgstr "Fase \"Cidade\""
+msgstr "Fase de Cidade"
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "Tecnologia fictícia para uso em requisitos de modelos, substituída por phase_city_generic ou phase_city_ {civ}."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1262,7 +1263,7 @@ msgstr "Megalópole"
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr "Acança de uma cidade promissora para uma autêntica metrópole, repleta com as maravilhas do mundo moderno."
+msgstr "Avança de uma cidade promissora para uma autêntica metrópole, repleta com as maravilhas do mundo moderno."
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
@@ -1281,14 +1282,14 @@ msgstr "Fase de Vila"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "Tecnologia fictícia para uso em requisitos de modelos, substituída por phase_town_generic ou phase_town_ {civ}."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "Avança de um diminuto vilarejo para uma promissora cidade, pronta para expansão. Esta é a fase de cidade ateniense, onde as taxas de coleta de metal são impulsionadas  devido ao efeito do bônus 'Corujas de Prata'."
+msgstr "Avança de uma pequena aldeia para uma promissora cidade, pronta para expansão. Esta é a fase de cidade ateniense, onde as taxas de coleta de metal são impulsionadas  devido ao efeito do bônus 'Corujas de Prata'."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1302,7 +1303,7 @@ msgstr "Avance para Fase de Vila, que permite mais estruturas e unidades. Raio t
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Requer 5 estruturas da Fase de Vila (exceto Paliçadas e Fazendas)."
+msgstr "Requer 5 estruturas da Fase de Aldeia (exceto Paliçadas e Fazendas)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1313,7 +1314,7 @@ msgstr "Kōmópolis"
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Avança de um pequeno vilarejo a uma cidade promissora, pronta para expandir rapidamente."
+msgstr "Avança de uma pequena aldeia a uma cidade promissora, pronta para expandir rapidamente."
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
@@ -1324,7 +1325,7 @@ msgstr "Avance para Fase de Vila, que permite mais estruturas e unidades. Raio t
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr "Fase \"Vilarejo\""
+msgstr "Fase de Aldeia"
 
 #: simulation/data/technologies/pop_civic_01.jsondescription
 msgid ""
@@ -1486,7 +1487,7 @@ msgstr "Melhoria na precisão em arremeso de projéteis"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
-msgstr ""
+msgstr "Aumenta a precisão do atirador de dardos."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1595,7 +1596,7 @@ msgstr "Os postos avançados duram o dobro do tempo em território neutro."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "Postos avançados têm -50% de taxa de perca do território."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -2386,25 +2387,25 @@ msgstr "Muralhas Longas Atenienses"
 msgid ""
 "+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "+25% de HP e -50% de tempo de construção para Centros Cívicos, Templos, Pirâmides e Maravilhas."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Arquitetura Monumental"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "Peça a seus sacerdotes que sejam instruídos pelo próprio Sumo Sacerdote - que Amon o abençoe."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "Treine curandeiros de elite."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "High Priest of Amun"
-msgstr ""
+msgstr "Sumo Sacerdote de Amun"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
@@ -2439,7 +2440,7 @@ msgstr "Os indianos tinham uma tradição em arco e flecha e uma tendência a us
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "+10 metros de alcance para unidades de arco e flecha. Arqueiros tem melhor precisão e -20% de tempo de treinamento, mas também -20% de saúde."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName

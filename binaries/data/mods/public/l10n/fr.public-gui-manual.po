@@ -17,12 +17,13 @@
 # nicolas t <deux718281@yahoo.fr>, 2016
 # oiseauroch <tobollive@aol.com>, 2018
 # Polakrity <sxk-fr@live.fr>, 2017
+# oiseauroch <tobollive@aol.com>, 2018
 # Toto AD <ad@imw.fr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-02-28 16:36+0000\n"
+"PO-Revision-Date: 2018-03-12 15:43+0000\n"
 "Last-Translator: oiseauroch <tobollive@aol.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -351,7 +352,7 @@ msgstr "Alt + . : Sélectionner tous les travailleurs inactifs (y compris les ci
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr ""
+msgstr "/ (Slash) : Sélectionner une unité inactive."
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
@@ -429,11 +430,11 @@ msgstr "Ctrl + Tab : basculer l'affichage de la fenêtre de résumé"
 
 #: gui/manual/intro.txt:93
 msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Ctrl + B: basculer l'affichage de la page trocs et échanges"
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Ctrl + B: basculer l'affichage du tutoriel"
 
 #: gui/manual/intro.txt:96
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -484,7 +485,7 @@ msgstr "Alt + Glissement Gauche \\[sur unité(s)] : Ne sélectionner que les uni
 
 #: gui/manual/intro.txt:106
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr ""
+msgstr "Alt + Y + Glissement Gauche sur des unités: Ne sélectionner que les unités non-militaires"
 
 #: gui/manual/intro.txt:107
 msgid "I + Left Drag over units on map: Only select idle units"
@@ -492,7 +493,7 @@ msgstr "I + Glissement Gauche \\[sur unité(s)] : Ne sélectionner que les unit�
 
 #: gui/manual/intro.txt:108
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr ""
+msgstr "I + Glissement Gauche sur des unités : Ne sélectionner que les unités blessées"
 
 #: gui/manual/intro.txt:109
 msgid ""
@@ -543,13 +544,13 @@ msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + Maj + W: Basculer entre les modes fil de fer (appuyez une fois pour obtenir des fils de fer superposés sur les modèles texturés, deux fois pour obtenir seulement les fils de fer colorés par les textures, trois fois pour revenir au mode texturé normal)"
 
 #: gui/manual/intro.txt:120
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr "Alt + Maj + S : Basculer l'affichage des silhouettes des unités (peut améliorer sensiblement les performances)"
 
 #: gui/manual/intro.txt:121
 msgid "Alt + Z: Toggle sky"
@@ -558,7 +559,7 @@ msgstr "Alt + Z : Basculer l'affichage du ciel"
 #: gui/manual/intro.txt:122
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
+msgstr "Alt + V : Basculer l'affichage de la portée des batiments défensifs sélectionnés"
 
 #: gui/manual/intro.txt:123
 msgid ""

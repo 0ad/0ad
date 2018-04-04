@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-03-02 09:04+0100\n"
-"PO-Revision-Date: 2018-03-04 19:06+0000\n"
+"POT-Creation-Date: 2018-03-05 09:07+0100\n"
+"PO-Revision-Date: 2018-03-15 09:19+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -311,7 +311,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
-msgstr ""
+msgstr "[color=\"red\"]AN AIRE: CHAN OBRAICH CLUICHEADAIREAN LEIS A’ MHAPA SEO[/color]\n\nSeo gleann a bhiodh torrach uair. Às dèid linntean ’na cadal, rinn spreadhadh beinne-teine ann an teis-mheadhan na sgìre fàsach dheth. Bha an gleann loisgte marbh iomadh bliadhna ach thòisich beatha air a thilleadh dha ’s a sgaoileadh ann a-rithist. Ràinig torrachas na tìre letheach mheud dhe na bhiodh e o shean. Gu mì-fhortanach, às dèidh an tairt mhòir, tha an t-uisge ann gun sgur sna sgìrean àrda gu tuath. Tha an tuil ag èirigh gu mòr agus a’ sparradh air na cluicheadairean gun lorg iad tìr nas àirde beag air bheag far a bheil beanntan-teine beaga ’s am mòr-shloc ’nan cadal a-rithist."
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
@@ -512,7 +512,7 @@ msgstr ""
 
 #: maps/random/lower_nubia.jsonsettings.Name
 msgid "Lower Nubia"
-msgstr ""
+msgstr "Nuibia ìochdarach"
 
 #: maps/random/mainland.jsonsettings.Description
 msgid "A typical map without any water."
@@ -835,15 +835,16 @@ msgstr "An Nìl"
 
 #: maps/random/unknown.jsonsettings.Description
 msgid "The unknown. Warning: May be a naval map."
-msgstr ""
+msgstr "An t-aineol. Rabhadh: Dh’fhaoidte gur e mapa-mara a bhios ann."
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
 msgstr "An t-aineol"
 
-#: maps/random/unknown_land.jsonsettings.Description
+#: maps/random/unknown_land.jsonsettings.Description maps/skirmishes/Egypt
+#: (4).xml:Description:40
 msgid "The unknown."
-msgstr ""
+msgstr "An t-aineol."
 
 #: maps/random/unknown_land.jsonsettings.Name
 msgid "Unknown Land"
@@ -861,7 +862,7 @@ msgstr "Tìr na beinne-theine"
 msgid ""
 "A demonstration of wall placement methods/code in random maps. Giant map "
 "size is recommended!"
-msgstr ""
+msgstr "Seo taisbeanadh air dòighean/còd gus ballachan a chur ann am mapaichean air thuaiream. Mholamaid mapa anabarrach mòr!"
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
@@ -892,12 +893,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgid "Alpine"
-msgstr ""
+msgstr "Alpach"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Alpine"
-msgstr ""
+msgstr "Alpach"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgid ""
@@ -918,12 +919,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgid "Autumn"
-msgstr ""
+msgstr "Foghar"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Autumn"
-msgstr ""
+msgstr "Foghar"
 
 #: maps/random/rmbiome/generic/desert.jsonDescription.Description
 msgid ""
@@ -942,12 +943,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/desert.jsonDescription.Title
 msgid "Desert"
-msgstr ""
+msgstr "Fàsach"
 
 #: maps/random/rmbiome/generic/desert.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Desert"
-msgstr ""
+msgstr "Fàsach"
 
 #: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
 msgid ""
@@ -981,12 +982,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgid "Savanna"
-msgstr ""
+msgstr "Sabhanna"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Savanna"
-msgstr ""
+msgstr "Sabhanna"
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Description
 msgid ""
@@ -1005,12 +1006,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgid "Snowy"
-msgstr ""
+msgstr "Sneachdach"
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Snowy"
-msgstr ""
+msgstr "Sneachdach"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgid ""
@@ -1031,12 +1032,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgid "Temperate"
-msgstr ""
+msgstr "Measarra"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Temperate"
-msgstr ""
+msgstr "Measarra"
 
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Description
 msgid ""
@@ -1057,12 +1058,12 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgid "Tropic"
-msgstr ""
+msgstr "Tropaig"
 
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Tropic"
-msgstr ""
+msgstr "Tropaig"
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgid ""
@@ -1079,12 +1080,12 @@ msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgid "Frozen Lake"
-msgstr ""
+msgstr "Loch reòite"
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Frozen Lake"
-msgstr ""
+msgstr "Loch reòite"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
 msgid ""
@@ -1103,12 +1104,12 @@ msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgid "Late Spring"
-msgstr ""
+msgstr "Earrach blàth"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Late Spring"
-msgstr ""
+msgstr "Earrach blàth"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
 msgid ""
@@ -1125,12 +1126,12 @@ msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgid "Winter"
-msgstr ""
+msgstr "Geamhradh"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Winter"
-msgstr ""
+msgstr "Geamhradh"
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
 msgid ""
@@ -1149,12 +1150,12 @@ msgstr ""
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
 msgid "Spring"
-msgstr ""
+msgstr "Earrach"
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Spring"
-msgstr ""
+msgstr "Earrach"
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
 msgid ""
@@ -1171,12 +1172,12 @@ msgstr ""
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
 msgid "Summer"
-msgstr ""
+msgstr "Samhradh"
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Summer"
-msgstr ""
+msgstr "Samhradh"
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -1844,13 +1845,13 @@ msgstr "Mapa beag le mòran stòrasan is beagan uisge gus cluiche a’ gheama fh
 
 #: maps/scenarios/Napata Reconstruction.xml:Name:40
 msgid "Napata Reconstruction"
-msgstr ""
+msgstr "Ath-thogail Napata"
 
 #: maps/scenarios/Napata Reconstruction.xml:Description:40
 msgid ""
 "This map displays a reconstruction of the ancient city Napata. "
 "[color=\"red\"]Note:[/color] The map is not intended to be playable."
-msgstr ""
+msgstr "Seallaidh am mapa seo an coltas a bhiodh air Napata. [color=\"red\"]Note:[/color] Chan eil am mapa seo iomchaidh airson cluich."
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
@@ -2036,7 +2037,7 @@ msgstr "Bogsa-gainmhich – Na h‑Ibèirich"
 
 #: maps/scenarios/Sandbox - Kushites.xml:Description:40
 msgid "Play the Kushites faction in a non-threatening sandbox scenario."
-msgstr ""
+msgstr "Cluich mar Kuluš ann an àrainneachd bogsa-gainmhich neo-bhagarrach."
 
 #: maps/scenarios/Sandbox - Kushites.xml:PlayerData[1].Name:40
 msgid "Kushites"
@@ -2044,7 +2045,7 @@ msgstr "Kuluš"
 
 #: maps/scenarios/Sandbox - Kushites.xml:PlayerData[2].Name:40
 msgid "Egyptians"
-msgstr ""
+msgstr "Èipheitich"
 
 #: maps/scenarios/Sandbox - Kushites.xml:Name:40
 msgid "Sandbox - The Kushites"
@@ -2432,7 +2433,7 @@ msgid ""
 " and thick forests make for a very dynamic and fast-paced 3-player map with "
 "lots of potential for skirmishing and guerilla warfare as well as tough "
 "defensive fighting or aggressive maneuvers."
-msgstr ""
+msgstr "Seo eilean fiadhaich làn choilltean, òr is rùn. Air sàilleabh nam beanntan is na mara ’s nan dlùth-choilltean, ’s e mapa glè fhiùghantach ’s luath airson 3 cluicheadairean a th’ ann le iomadh cothrom air còmhstri is strèipe is guerilla cho math ri dìon-shabaid mhòr no innleachdan ionnsaigheach."
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:39
 msgid ""
@@ -2453,11 +2454,11 @@ msgstr ""
 
 #: maps/skirmishes/Butana Steppe (2).xml:PlayerData[1].Name:40
 msgid "West Player"
-msgstr ""
+msgstr "Cluicheadair an iar"
 
 #: maps/skirmishes/Butana Steppe (2).xml:PlayerData[2].Name:40
 msgid "East Player"
-msgstr ""
+msgstr "Cluicheadair an ear"
 
 #: maps/skirmishes/Butana Steppe (2).xml:Name:40
 msgid "Butana Steppe (2)"
@@ -2558,6 +2559,26 @@ msgstr "Thèid monadh ceòthach ’na bhlàr on a tha caidreabhach aig gach sgio
 #: maps/skirmishes/Dueling Cliffs (3v3).xml:Name:40
 msgid "Dueling Cliffs (3v3)"
 msgstr "Creagan na còmhraige (3 an aghaidh 3)"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[0].Name:40
+msgid "Alexandria"
+msgstr ""
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[1].Name:40
+msgid "Theben"
+msgstr ""
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[2].Name:40
+msgid "Siwa"
+msgstr ""
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[3].Name:40
+msgid "Sinai"
+msgstr ""
+
+#: maps/skirmishes/Egypt (4).xml:Name:40
+msgid "Egypt"
+msgstr "An Èipheit"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""
@@ -2892,11 +2913,11 @@ msgstr "Dà mhuir (6)"
 #: maps/skirmishes/Via Augusta (4).xml:Description:40
 msgid ""
 "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
-msgstr ""
+msgstr "Tha a h-uile rathad a’ dol dhan Ròimh. Chaidh an rathad Ròmanach Via Julia Augusta a thogail ann an 13 RC."
 
 #: maps/skirmishes/Via Augusta (4).xml:Name:40
 msgid "Via Augusta"
-msgstr ""
+msgstr "Via Augusta"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:39
 msgid ""

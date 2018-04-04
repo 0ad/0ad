@@ -6,7 +6,7 @@
 # alrope <alexandre.rp@gmail.com>, 2014
 # Angelo Florentino <angelodarosaflorentino@gmail.com>, 2017
 # Arthur Paim Arnold <arthurpaimarnold@gmail.com>, 2015
-# borg 2k <estevanborg@gmail.com>, 2017
+# borg 2k <estevanborg@gmail.com>, 2017-2018
 # Caio Northfleet <caio.northfleet@gmail.com>, 2014
 # Dalcio Marçal <dalciomarcal@gmail.com>, 2016
 # Diana K. Cury <dianakac@gmail.com>, 2014
@@ -59,8 +59,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-23 16:43+0000\n"
+"Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1024,7 +1024,7 @@ msgstr "Encontrar trabalhador ocioso"
 #: gui/session/session.js:457 gui/session/session.js:461
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Alternar as Cores da Diplomacia"
 
 #: gui/session/session.js:464
 #, javascript-format
@@ -1049,7 +1049,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Visualizar histórico / árvore de estrutura\nÚltima abertura será reaberta no clique."
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1100,7 +1100,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s:%(hotkey)s para mudar a ordem."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
@@ -1431,7 +1431,7 @@ msgstr "Sair"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Mostrar o lobby multijogador em uma janela de diálogo."
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15

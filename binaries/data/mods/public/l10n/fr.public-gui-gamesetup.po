@@ -6,7 +6,8 @@
 # adrien vigneron <adrienvigneron@ml1.net>, 2017
 # Antoine Adet <antoine.adet@gmail.com>, 2013
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
-# Barth Frey <frey.barthelemy@gmail.com>, 2017
+# ay sapik <tonio2000@gmail.com>, 2018
+# Barth Frey <frey.barthelemy@gmail.com>, 2017-2018
 # Brian BERNARD <brianbernard16@gmail.com>, 2017
 # Buggi, 2014
 # Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2015
@@ -23,7 +24,7 @@
 # Hadri man <hadriman@live.fr>, 2017
 # Jérémi Mapas <jeremi.mapas@gmail.com>, 2017
 # Jibi, 2013
-# Jo Du <jojo337@live.fr>, 2017
+# Jo Du <jojo337@live.fr>, 2017-2018
 # Julien Bernard, 2013
 # jy jrts <lucashavard35@hotmail.fr>, 2017
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
@@ -55,12 +56,13 @@
 # Sander Deryckere, 2014
 # slimkhan, 2014
 # Slim Khan, 2014
-# Polakrity <sxk-fr@live.fr>, 2014,2017
+# Polakrity <sxk-fr@live.fr>, 2014,2017-2018
 # tavariz <guipoi@yahoo.fr>, 2014
 # Thedemos <thekingadn@gmail.com>, 2014
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # Timothee KNOBLOCH <inactive+nouillorque@transifex.com>, 2014
 # Tito221 <Titanomachy221@hotmail.fr>, 2013
+# oiseauroch <tobollive@aol.com>, 2018
 # Loki <tontonloul@hotmail.fr>, 2013
 # Toto AD <ad@imw.fr>, 2014
 # Valentin Chevalier <valche5@hotmail.com>, 2015
@@ -71,8 +73,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-17 15:00+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +103,7 @@ msgstr "Aléatoire"
 
 #: gui/gamesetup/gamesetup.js:81
 msgid "Picks one civilization at random when the game starts."
-msgstr "Choisit aléatoirement une civilisation lorsque la partie débute."
+msgstr "Choisit une civilisation au hasard en début de partie."
 
 #: gui/gamesetup/gamesetup.js:119
 #, javascript-format
@@ -279,7 +281,7 @@ msgstr "Biome"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Select the flora and fauna."
-msgstr "Sélectionnez la flore et la faune"
+msgstr "Sélectionner la flore et la faune."
 
 #: gui/gamesetup/gamesetup.js:560
 msgid "Number of Players"
@@ -509,7 +511,7 @@ msgstr "Configurer l'IA: %(description)s."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s/%(hotkey_structree)s: affiche l'historique / l'arbre technologique\nla dernière civilisation ouverte sera ouverte par défault "
 
 #: gui/gamesetup/gamesetup.js:1173
 #, javascript-format
@@ -533,7 +535,7 @@ msgstr "Aléatoire"
 
 #: gui/gamesetup/gamesetup.js:1694
 msgid "Pick any of the given maps at random."
-msgstr "Sélectionner une carte au hasard"
+msgstr "Sélectionner une carte au hasard."
 
 #: gui/gamesetup/gamesetup.js:1726
 msgctxt "biome"
@@ -629,7 +631,7 @@ msgstr "Difficulté de l'IA :"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr "Comportement de l'IA:"
+msgstr "Comportement de l'IA :"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -841,7 +843,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "\"Rien n'est plus servile que de vivre dans le luxe ; rien de plus digne d'un roi que le travail. \\[...] Ignorez-vous que le moyen de rendre nos victoires durables, c'est de ne pas imiter les vaincus ?\" - Alexandre le Grand (Plutarque, \"Vies parallèles\", \"Alexandre\", ch. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -975,7 +977,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "\"Alexandre lui-même, en proie à la soif, avec beaucoup de peine et de difficultés, a néanmoins mené l'armée à pied \\[...]. A ce moment là, quelques éclaireurs \\[...] trouvèrent de l'eau \\[...], remplirent un casque avec l'eau et le lui portèrent. Il le prit, et tout en saluant les soldats qui le lui apportèrent, le renversa immédiatement sur le sol à la vue de tous.\" - Arrien à propos de la marche d'Alexandre à travers le désert Gedrosien (\"Anabase\" ou \"Expédition d'Alexandre\", 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -986,7 +988,7 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "\"Élançant sa lance au visage de Mithridate, il \\[Alexandre]  le projeta au sol. Alors Rhoesaces \\[un Perse] \\[...] le frappa à la tête avec son épée. \\[...] Alexandre le projeta lui-aussi au sol, perçant de sa lance son plastron et son torse. Sphithridates \\[un Perse] avait déjà levé son épée dans le dos d'Alexandre lorsque Clitus \\[...] trancha son bras.\" - Arrien à propos de la Bataille de Granique (\"Anabase\" ou \"Expédition d'Alexandre\", 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
@@ -1307,7 +1309,7 @@ msgid ""
 "while the survivors used the heap as a vantage point for throwing missiles "
 "at our men, or catching our spears and throwing them back.\" - Gaius Julius "
 "Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
-msgstr ""
+msgstr "\"Mais l'ennemi \\[...] a fait preuve de tellement de courage que, quand la première rangée tombait, les hommes derrière la piétinaient et continuaient à se battre au dessus des cadavres; quand ceux-là étaient tués, la pile de corps grandissait et les survivants gravissaient la pile pour lancer des missiles à nos hommes ou pour attraper au vol nos lances et nous les renvoyer.\" - Jules César à propos de la Bataille du Sabis (\"De Bello Gallico\", II. 27)"
 
 #: gui/text/quotes.txt:87
 msgid ""
@@ -1418,7 +1420,7 @@ msgid ""
 "would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
 " reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr ""
+msgstr "\"Ayant entendu dire \\[...] que le soleil serait obscurci par les flèches des Barbares, tant était grande leur multitude, il \\[Diénécès] répondit \\[...]: « Notre hôte \\[...] nous annonce toutes sortes d'avantages; si les Mèdes cachent le soleil, on combattra à l'ombre, sans être exposé à son ardeur.\" - Hérodote décrivant Diénécès réputé pour avoir été le plus brave des soldats spartiates aux Thermopyles  (Polymnie, \"Histoire\", VII. 226)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1472,7 +1474,7 @@ msgstr "\"Il est pur et honorable de mourir pour son pays.\" - Horace (\"Les Ode
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "\"Je suis Cyrus, roi du monde...\" - Inscription (Cylindre de Cyrus)"
 
 #: gui/text/quotes.txt:111
 msgid ""
@@ -1512,7 +1514,7 @@ msgid ""
 "of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr ""
+msgstr "\"Là gisaient des milliers de Romains \\[...]. Certains, se levant du milieu des cadavres, sanglants, réveillés par le froid du matin qui pinçait leurs plaies, furent tués par les ennemis.\" - Tite-Live décrivant le lendemain de la bataille de Cannes, où Hannibal infligea aux Romains la plus cuisante défaite de leur histoire (Tite-Live, \"Ab Urbe Condita\", XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1623,7 +1625,7 @@ msgid ""
 "all.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 40.2)"
-msgstr ""
+msgstr "\"La parole n'est pas nuisible à l'action, ce qui l'est, c'est de ne pas se renseigner par la parole avant de se lancer dans l'action.\" - Périclès dans son Oraison funèbre pour les Athéniens morts pendant la première année de la guerre (Thucydide, \"Histoire de la guerre du Péloponnèse\", II, 40.2)"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -1631,14 +1633,14 @@ msgid ""
 "nothing, we think he is good for nothing.\" - Pericles in his Funeral "
 "Oration for Athenians that died in the first year of the war (Thucydides, "
 "\"History of the Peloponnesian War\", II. 40.2)"
-msgstr ""
+msgstr "\"Nous seuls ne pensons pas qu'un homme ignorant sur la politique n'interfère avec rien, nous pensons qu'il est bon à rien.\" - Périclès dans son Oraison funèbre pour les Athéniens morts pendant la première année de la guerre (Thucydide, \"Histoire de la guerre du Péloponnèse\", II, 40.2)"
 
 #: gui/text/quotes.txt:134
 msgid ""
 "\"Future ages will wonder at us, as the present age wonders at us now.\" - "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
 " the war (Thucydides, \"History of the Peloponnesian War\", II. 41.5)"
-msgstr ""
+msgstr "\"Cette puissance est affirmée par d'importants témoignages et d'une façon éclatante à nos yeux et à ceux de nos descendants.\"  - Périclès dans son Oraison funèbre pour les Athéniens morts pendant la première année de la guerre (Thucydide, \"Histoire de la guerre du Péloponnèse\", II, 41.5)"
 
 #: gui/text/quotes.txt:135
 msgid ""
@@ -1648,7 +1650,7 @@ msgid ""
 "virtue.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.2)"
-msgstr ""
+msgstr "\"Quand vous réalisez la puissance d'Athènes, considérez qu'elle a été gagnée par des hommes vaillants qui connaissaient leur devoir, avaient un sentiment de déshonneur dans le combat et, si leurs entreprises échouaient, préféraient donner leur vie plutôt que de manquer de civisme.\" - Périclès dans son Oraison funèbre pour les Athéniens morts au cours de la première année de la guerre (Thucydide, \"Histoire de la guerre du Péloponnèse\", II, 43.2)"
 
 #: gui/text/quotes.txt:136
 msgid ""
@@ -1657,7 +1659,7 @@ msgid ""
 " that will outlast any monument.\" - Pericles in his Funeral Oration for "
 "Athenians that died in the first year of the war (Thucydides, \"History of "
 "the Peloponnesian War\", II. 43.3)"
-msgstr ""
+msgstr "\"Les hommes éminents ont la terre entière pour tombeau. Ce qui les signale à l'attention, ce n'est pas seulement dans leur patrie les inscriptions funéraires gravées sur la pierre ; même dans les pays les plus éloignés leur souvenir persiste, à défaut d'épitaphe, conservé dans la pensée et non dans les monuments.\" - Périclès dans son Oraison funèbre pour les Athéniens morts pendant la première année de la guerre (Thucydide, \"Histoire de la guerre du Péloponnèse\", II, 43.3)"
 
 #: gui/text/quotes.txt:137
 msgid ""
@@ -1665,7 +1667,7 @@ msgid ""
 "courage.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.4)"
-msgstr ""
+msgstr "\"Dites-vous que la liberté se confond avec le bonheur et que la liberté dépends du courage.\" - Périclès dans son Oraison funèbre pour les Athéniens morts pendant la première année de la guerre (Thucydide, \"Histoire de la guerre du Péloponnèse\", II, 43.4)"
 
 #: gui/text/quotes.txt:138
 msgid ""
@@ -1673,7 +1675,7 @@ msgid ""
 "for good or ill.\" - Pericles in his Funeral Oration for Athenians that died"
 " in the first year of the war (Thucydides, \"History of the Peloponnesian "
 "War\", II. 45.2)"
-msgstr ""
+msgstr "\"Toute leur gloire des femmes veuves consiste à ne pas se montrer inférieures à leur nature et à faire parler d'elles le moins possible parmi les hommes, en bien comme en mal.\" - Périclès dans son Oraison funèbre pour les Athéniens morts pendant la première année de la guerre (Thucydide, \"Histoire de la guerre du Péloponnèse\", II, 45.2)"
 
 #: gui/text/quotes.txt:139
 msgid ""
@@ -1731,7 +1733,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
 "about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
-msgstr ""
+msgstr "\"On lui a tiré une flèche avec une telle précision et force qu'il a percé son plastron et s'est coincé dans ses côtes. [...] Alexandre recula et tomba à genoux. [...] Enfin, Alexandre tua le barbare. Mais il reçut beaucoup de blessures, fut frappé au cou avec une massue et s'appuya contre le mur de la ville, les yeux toujours fixés sur ses ennemis.\" - Plutarque à propos de la campagne de Mallian (\"Vies parallèles\", \"Alexandre\", section 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1749,7 +1751,7 @@ msgid ""
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
 "ready to die at their posts.\" - Polybius (\"Histories\", VI. 24)"
-msgstr ""
+msgstr "«Ils \\[les Romains] ne veulent pas que les centurions soient aventureux et audacieux, qu'ils soient des chefs naturels, qu'ils aient un esprit stable et fiable. Ils ne veulent pas d'hommes qui vont lancer des attaques et ouvrir la bataille, mais des hommes qui tiendront leur position une fois battus et durement pressés, qui seront prêts à mourir à leurs postes. \" - Polybe (\"Histoires\", VI, 24)"
 
 #: gui/text/quotes.txt:149
 msgid ""
@@ -1757,7 +1759,7 @@ msgid ""
 " both individually and collectively; so that a formation can fight in any "
 "direction, with the maniples nearest to the point of danger wheeling around "
 "to face it.\" - Polybius (\"Histories\", XV. 15)"
-msgstr ""
+msgstr "\"La ligne de bataille romaine est difficile à rompre, car elle permet à chaque homme de se battre individuellement et collectivement, de sorte qu'une formation peut se battre dans n'importe quelle direction, avec les manipules les plus proches du danger l'entourant pour y faire face.\" - Polybe (\"Histoires\", XV. 15)"
 
 #: gui/text/quotes.txt:150
 msgid ""
@@ -1768,7 +1770,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"Le peuple athénien est toujours dans la position d'un navire sans commandant. La peur de l'ennemi ou la tempête font que l'équipage est d'un même esprit et obéit au timonier, tout va bien, mais s'ils se rétablissent \\[…] ils se querellent les uns après les autres \\[…], et le résultat a souvent été que, après avoir échappé aux plus grands dangers des mers les plus larges et des tempêtes les plus violentes, ils ont détruit leur navire dans le port et près du rivage.\" - Polybe sur la constitution athénienne (\"Histoires\", VI, 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1816,7 +1818,7 @@ msgid ""
 "all cities, nations, and authorities must, like men, meet their doom.\" - "
 "Polybius, eyewitness to the destruction of Carthage (\"Histories\", XXXVIII."
 " 22)"
-msgstr ""
+msgstr "\"Scipion \\[Aemilianus], quand il porta son regard sur la cité \\[Carthage], alors qu'elle périssait tout à fait dans les dernières affres de sa complète destruction, est dit avoir versé des larmes et pleuré ouvertement pour ses ennemis. Et il réalisa que toutes les cités, nations et autorités devaient, comme les hommes, rencontrer leur fin.\" - Polybe, témoin oculaire de la destruction de Carthage (\"Histoires\", XXXVIII. 22)"
 
 #: gui/text/quotes.txt:156
 msgid ""
@@ -1872,7 +1874,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.1.6)"
-msgstr ""
+msgstr "\"Mais la science tactique n'est qu'une partie du commandement. Un général doit être capable d'équiper ses forces et de subvenir aux besoins de ses hommes, il doit aussi être inventif, travailleur et vigilant, lucide et brillant, amical et féroce, direct et subtil.\" - Socrate (Xénophon, \"Mémorables\", 3.1.6)"
 
 #: gui/text/quotes.txt:164
 msgid ""
@@ -1880,14 +1882,14 @@ msgid ""
 "that, if the city is stronger, one may recommend her to go to war, but if "
 "weaker than the enemy, may persuade her to beware.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.6.9)"
-msgstr ""
+msgstr "\"Il est nécessaire de connaître la force de la ville et de l'ennemi, afin que, si la ville est plus forte, on lui recommande d'aller à la guerre, mais si elle est plus faible que l'ennemi, qu'on puisse la persuader de se méfier.\" - Socrate (Xénophon, \"Mémorables\", 3.6.9)"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "\"The unexamined life is not worth living.\" - Socrates, in his defense when"
 " trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 38a)"
-msgstr ""
+msgstr "\"Une vie sans examen ne vaut pas la peine d'être vécue.\" - Socrate, dans son plaidoyer quand il fut jugé pour avoir corrompu la jeunesse et ne pas révérer les bons dieux (il but plus tard de la ciguë, après avoir été condamné à mort) - Platon (\"Apologie\", 38a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
@@ -2006,7 +2008,7 @@ msgid ""
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr ""
+msgstr "\"Quand les Lacédémoniens ne furent plus en mesure de les pourchasser, les tirailleurs \\[...] chargèrent tous ensemble, lançant pierres, flèches et dards sur l'homme le plus proche.\" -Thucydide, décrivant le désastre spartiate à la Bataille de Sphactérie (\"Histoire de la Guerre du Péloponnèse\", IV. 34.2)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -2065,7 +2067,7 @@ msgid ""
 " are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "99%\nmatch\n\"Voilà les bonnes questions à poser, en hiver, autour du feu \\[...]: Qui es-tu, mon ami ? D'où viens-tu ? Et quel âge avais-tu quand les Mèdes \\[Perses] vinrent ?\" - Xénophane, se référant vraisemblablement à une expédition punitive contre les villes Grecques d'Ionie (fragment 17)"
 
 #: gui/text/quotes.txt:190
 msgid ""

@@ -25,6 +25,7 @@
 # Eugene Kostrika <testiculi@yandex.ru>, 2013
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Igor <ggg2134@mail.ru>, 2013
+# Ilya Andreev, 2018
 # insolor, 2014
 # Ivan Korovin <i.d.korovin@gmail.com>, 2017
 # Ivan <lis84@mail.ru>, 2013
@@ -49,6 +50,7 @@
 # Woratiklis, 2015-2016
 # Yegor <revolver45@inbox.ru>, 2014
 # zake1313 <mihfay@gmail.com>, 2014
+# Александр Волосников <Volosnikov.aleksandr@bk.ru>, 2018
 # Vitalii Mostipaka <imprtat@gmail.com>, 2013
 # Владимир Бочкарёв <zacharovannyu@gmail.com>, 2016
 # Дмитрий <polsha_d@mail.ru>, 2016
@@ -62,8 +64,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-31 10:16+0000\n"
+"Last-Translator: Ilya Andreev\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -422,7 +424,7 @@ msgstr "Ожидание подключения игроков"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr ""
+msgstr "Синхронизация игры с другими игроками..."
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -568,7 +570,7 @@ msgstr ", "
 #: gui/session/messages.js:695
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr ""
+msgstr "Ошибка синхронизации на %(turn)s ходу."
 
 #: gui/session/messages.js:699
 #, javascript-format
@@ -579,22 +581,22 @@ msgstr "Игроки: %(players)s"
 #: gui/session/messages.js:704
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr ""
+msgstr "Состояние вашей игры идентично состоянию игр хостов."
 
 #: gui/session/messages.js:705
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr ""
+msgstr "Состояние вашей игры отличается от состояния игр хостов."
 
 #: gui/session/messages.js:711
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr ""
+msgstr "Переподключение к многопользовательским играм с ИИ ещё не поддерживается!"
 
 #: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr ""
+msgstr "Убедитесь, что все игроки используют одни и те же моды моды."
 
 #: gui/session/messages.js:715
 msgctxt "Out-Of-Sync"
@@ -1051,7 +1053,7 @@ msgstr "Найти свободных рабочих"
 #: gui/session/session.js:457 gui/session/session.js:461
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Переключить цвета дипломатии"
 
 #: gui/session/session.js:464
 #, javascript-format
@@ -1059,7 +1061,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Выберите тип товаров, который вы хотите изменить, кликнув по нему, и затем используйте стрелки других типов для изменения их доли. Вы также можете нажать %(hotkey)s во время выбора типа товаров чтобы поднять его долю до 100 %%."
 
 #: gui/session/session.js:468
 #, javascript-format
@@ -1068,7 +1070,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Начните с выбора ресурса, который хотите продать из верхнего ряда. Каждый раз при нажатии нижних кнопок, %(quantity)s верхнего ресурса будет продано за отображаемое количество нижнего. Зажмите и держите %(hotkey)s чтобы  временно умножить количество продаваемого ресурса на %(multiplier)s."
 
 #: gui/session/session.js:659
 #, javascript-format
@@ -1076,7 +1078,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Посмотреть Историю / Дерево технологий\nПоследнее открытое будет вновь открыто при нажатии."
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1127,11 +1129,11 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s изменить порядок."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
-msgstr ""
+msgstr "Неупорядоченный"
 
 #: gui/session/session.js:1260
 msgid "Descending"
@@ -1442,7 +1444,7 @@ msgstr "Итог"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr ""
+msgstr "Лобби "
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1458,7 +1460,7 @@ msgstr "Выход"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Показатель многопользовательское лобби в диалоговом окне."
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15

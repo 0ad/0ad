@@ -5,6 +5,8 @@
 # Translators:
 # Ahmed Albahhar <tomucazipu@getapet.net>, 2017
 # Ali Alherz <aliherz86@gmail.com>, 2017
+# Eslam obeidat <islamobidat92@gmail.com>, 2018
+# Eslam obeidat <islamobidat92@gmail.com>, 2018
 # Ibrahim Al-Darra <achtenacht88@gmail.com>, 2017
 # ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2017
 # Mohamed Moanis <mohamed_moanis@outlook.com>, 2017
@@ -12,13 +14,14 @@
 # Omar Anwar <omaraglan91@yahoo.com>, 2016-2017
 # Omar Rashad <o.rashad2020@gmail.com>, 2017
 # Saber Bousba <saber.bousba@gmail.com>, 2017
+# Yehia Yehia <yehia.s.elzoridy@gmail.com>, 2018
 # صفا الفليج <safaalfulaij@hotmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-23 09:05+0100\n"
-"PO-Revision-Date: 2018-02-23 19:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-03 03:23+0000\n"
+"Last-Translator: Yehia Yehia <yehia.s.elzoridy@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,34 +59,34 @@ msgstr "الوطنيّة"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 msgid "Workers +15% gather rates near pyramids."
-msgstr "يزيد معدّلات جمع العاملين بنسبة 15% قرب الأهرام."
+msgstr "يزيد معدّلات جمع العاملين بنسبة +15% قرب الأهرام."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr ""
+msgstr "وجود استثنائي"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers near Large Pyramids +10% attack."
-msgstr ""
+msgstr "يزيد هجوم الجنود بقرب الأهرام الكبيرة بنسبة 10%."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
-msgstr ""
+msgstr "الأهرام الميرويّة"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid ""
 "Civic Centers +10% territory influence as long as a Pyramid stands built."
-msgstr ""
+msgstr "نفوذ إقليم +10% للمراكز المدنيه مادامت الاهرامات قائمه"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
-msgstr ""
+msgstr "قِسّ قويّ"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid ""
 "Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
 "-5% health for heroes per temple built."
-msgstr ""
+msgstr "عزّز من قوّة كهنة آمون وقوّض نفوذ مَلكك.\nتقلّ صحّة الأبطال بنسبة 5% لكلّ معبد مبنيّ."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -124,7 +127,7 @@ msgstr "العلاج الطبي"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
-msgstr "تعالج الوحدات القريبة بنسبة: 1 ن،ص/ثانية."
+msgstr "يُعالج الوحدات القريبة بمقدار نقطة إصابة واحدة لكل ثانية."
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
@@ -140,7 +143,7 @@ msgstr "حماية الجدران"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr "الجنود على الحائط لديهم +3 درع و رؤية أعلى."
+msgstr "يزداد درع الجنود المعتلين الجدران بمقدار 3 ويزيد مدى الرّؤية."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
@@ -148,17 +151,17 @@ msgstr "رمز العظمة"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
-msgstr "زيادة الحد السكانى بـ 10 لكل أعجوبة تملكها."
+msgstr "زِد حدّ السّكّانيّة بمقدار 10 لكل عجيبة مملوكة."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
-msgstr "التوسع العظيم"
+msgstr "التّوسّع العظيم"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr "مزيد من الزيادة للحد السكانى بـــ 40 لكل أعجوبة تملكها(يتطلب تقنية\"التوسعة العظيمة\")."
+msgstr "زِد حدّ السّكانيّة أكثر فأكثر بنسبة 40 لكل عجيبة مملوكة (تتطلّب تقنيّة ”التّوسّع العظيم“)."
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
@@ -166,7 +169,7 @@ msgstr "إصلاحات الوِرش"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr ""
+msgstr "تصليح وحدات الحصار المحميه بمعدل 3 نقاط صحه لكل ثانيه."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -212,13 +215,13 @@ msgstr "تقليل سعر الجنود المدنيين بنسبة 20% للحل�
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr ""
+msgstr "مزودون الفيلة"
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
 msgid ""
 "Reduces the cost and train time for elephants with 20% for allies of Kushite"
 " players."
-msgstr ""
+msgstr "تُقلّل من تكلفة ووقت تدريب الفيلة بنسبة 20% لحلفاء اللاعبين الكوشيّين."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -239,7 +242,7 @@ msgstr "معابد الحلفاء وتقنياتها -50% سعر, والوقت �
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr "الطريق الملكى "
+msgstr "الطريق الملكيّ"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."
@@ -255,11 +258,11 @@ msgstr "كل الحلفاء تلقائيا يكسبون دخل بطئ من دخ�
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
-msgstr "تجنيد إلزامي."
+msgstr "التّجنيد الإلزاميّ"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied citizen-soldier infantry."
-msgstr ""
+msgstr "وقت تدريب -20% للحلفاء من الجنود-المدنيين المشاه."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -272,7 +275,7 @@ msgstr "تنزيل سعر مركز المدينة بنسبة 20% للحلفاء 
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
-msgstr "الرابطة البيلوبونيزية"
+msgstr "الحلف البيلوبونيسيّ"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid ""
@@ -381,23 +384,23 @@ msgstr "بعد سقوط انديبيل في المعركة , قاد ماندون
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
-msgstr ""
+msgstr "أحدث ملكة نوبيّة"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraDescription
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Awe: All enemy female citizens -15% gather rate."
-msgstr ""
+msgstr "بحكمها المطلق في الإمبراطوريّة الميرويّة ولعبها دورًا مهمًّا في الدّيانة الميرويّة، مثّلت شاناكداخيتو بأس مملكة كوش، وهو أمر ينبغي ألا تستهين به.\nالرّهبة: يقلّ معدّل جمع مواطنات العدوّ كلّهن بنسبة -15%."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
-msgstr ""
+msgstr "معبد في نقا"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
 "As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
 "+1 garrisoned heal rate for nearby temples."
-msgstr ""
+msgstr "كما في كل الثقافات , لعبت الديانة دور جوهري في الامبروطورية الماروية. كان لدى شاناكداخيتو معبد بُنيَ قرابة 160 قبل الميلاد كرمز لِتقدم ماراوي.\nمعدل المعالجة +1 للمتحصنين قرب المعابد."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -491,7 +494,7 @@ msgstr "شجع أنطاكوس الهجرة اليونانية إلى مملكت�
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
 msgid "Basileus Megas"
-msgstr "أنطيوخوس الثالث"
+msgstr "بازيليوس ميغاس"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
@@ -605,15 +608,15 @@ msgstr "جنرال البرق"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "Nearby soldiers and siege engines +15% speed."
-msgstr ""
+msgstr "سرعة +15% للجنود ومحركات الحصار القريبه."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
 msgid "Subduer of Mercenaries"
-msgstr ""
+msgstr "قاهر المرتزقه"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
 msgid "-20% attack for enemy mercenaries."
-msgstr ""
+msgstr "هجوم -20% للمرتزقه الاعداء."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -622,7 +625,7 @@ msgstr "التكتيكي"
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid ""
 "+20% attack and +1 capture for nearby allied soldiers and siege engines."
-msgstr ""
+msgstr "هجوم +20% و احتلال +1 للحلفاء من جنود و محركات الحصار القريبة."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -650,7 +653,7 @@ msgstr "+٢٠٪ هجوم و +1 احتلال للجنود و أسلحة الحص�
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
-msgstr "التجهيز للحرب"
+msgstr "التّجهيز للحرب"
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Gathering rates increased with +15% during his lifetime."
@@ -708,45 +711,45 @@ msgstr "+١٠٠٪ زيادة غنيمة الموارد لكل وحدة أو مب
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"
-msgstr ""
+msgstr "ملكة محاربة"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
 msgid "+20% attack and +2 capture for soldiers and elephants."
-msgstr ""
+msgstr "هجوم +20% و احتلال +2 للجنود و الفيلة."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
-msgstr ""
+msgstr "متحدي التقاليد"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraDescription
 msgid "Temple of Amun and its Napatan Temple Guards +20% cost and build time."
-msgstr ""
+msgstr "التكلفة و وقت البناء +20% لمعبد آمون وحراس معبد نبتان."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
 msgid "Follower of Apedemak"
-msgstr ""
+msgstr "اتباع أبادماك"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
 msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
-msgstr ""
+msgstr "التكلفة و وقت البناء -20% لمعابد أبادماك و حراس معبد مروي."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaugther of the Faithful"
-msgstr ""
+msgstr "سفاح المؤمنين"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy healrate reduced by 50%."
-msgstr ""
+msgstr "معدل المعالجه للعدو تقل بقدار 50%."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraName
 msgid "Saviour of Kush"
-msgstr ""
+msgstr "منقذ كوش"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraDescription
 msgid ""
 "Own units +10% attack.\n"
 "Nastasen acquired lots of bounty from the defeated invaders. Gain +50% loot from killing enemy units."
-msgstr ""
+msgstr "هجوم +10% لوحداتك.\nاكتسب ناستاسن الكثير من الغنائم من الغزاة المهزومين. تحصل على غنيمة +50% من قتل وحدات العدو."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
@@ -833,7 +836,7 @@ msgstr "القيادة"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers, siege engines and traders."
-msgstr ""
+msgstr "سرعة حركة  +15% لجميع الجنود , ومحركات الحصار و التجار."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -886,7 +889,7 @@ msgstr "راعي المرتزقة"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -35% resources during his lifetime."
-msgstr ""
+msgstr "تكلف المرتزقة -35% من الموارد خلال فترة حياته."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -947,7 +950,7 @@ msgstr "إصلاحات الهيلوت"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
-msgstr ""
+msgstr "هجوم +25% و درع +1 لرماة الرمح الخفيف من الجنود-المدنيين."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

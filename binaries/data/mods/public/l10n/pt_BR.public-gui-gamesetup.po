@@ -5,7 +5,7 @@
 # Translators:
 # alrope <alexandre.rp@gmail.com>, 2014
 # Arthur Paim Arnold <arthurpaimarnold@gmail.com>, 2014
-# borg 2k <estevanborg@gmail.com>, 2017
+# borg 2k <estevanborg@gmail.com>, 2017-2018
 # Caio Northfleet <caio.northfleet@gmail.com>, 2014
 # Diana K. Cury <dianakac@gmail.com>, 2014
 # Elisa Silva Ramos <inactive+elisasr@transifex.com>, 2014
@@ -55,8 +55,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-24 20:18+0000\n"
+"Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -213,7 +213,7 @@ msgstr "Cada mapa do tipo de mapa escolhido"
 #: gui/gamesetup/gamesetup.js:409
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Mapa"
 
 #: gui/gamesetup/gamesetup.js:424
 msgctxt "Match settings tab name"
@@ -223,7 +223,7 @@ msgstr "Jogador"
 #: gui/gamesetup/gamesetup.js:434
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Tipo de jogo"
 
 #: gui/gamesetup/gamesetup.js:474
 msgid "Map Type"
@@ -380,7 +380,7 @@ msgstr "Nômade"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "No modo Nômade, os jogadores começam com apenas algumas unidades e devem procurar um local adequado para construir sua cidade. É recomendado o cessar-fogo."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -493,22 +493,22 @@ msgstr "Configurar Inteligência Artificial: %(description)s."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Visualizar histórico / árvore de estrutura\nÚltima abertura será reaberta no clique."
 
 #: gui/gamesetup/gamesetup.js:1173
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Alternar o %(name)s guia de configurações."
 
 #: gui/gamesetup/gamesetup.js:1174
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Use %(hotkey)s para mover o guia de configurações para baixo."
 
 #: gui/gamesetup/gamesetup.js:1175
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Use %(hotkey)s para mover o guia de configurações para cima."
 
 #: gui/gamesetup/gamesetup.js:1692
 msgctxt "map selection"
@@ -532,7 +532,7 @@ msgstr "Escolha um bioma aleatoriamente."
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2063
 msgctxt "settings value"
@@ -550,7 +550,7 @@ msgstr "Não"
 #: gui/gamesetup/gamesetup.js:2100
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2187
 #, javascript-format
@@ -702,14 +702,14 @@ msgstr "Selecionar equipe do jogador."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Mostrar o lobby multijogador em uma janela de diálogo."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[...] estabeleceu sua lei: a sabedoria vem através do sofrimento. \\[...] Assim, os homens contra a sua vontade aprendem a praticar a moderação. [...] Essa graça é dura e violenta\". - Ésquilo (\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -825,7 +825,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "\"É muito servil viver em luxo, mas muito nobre para trabalhar duro. \\[...] Você não sabe que o fim e o objetivo da conquista é evitar os vícios e enfermidades dos subjugados?\" - Alexandre, o Grande (Plutarco, \"Vidas Paralelas\", \"Alexandre\", seção 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -849,7 +849,7 @@ msgid ""
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the "
 "Great\", 332a-b)"
-msgstr "\"Se eu não fosse Alexandre, eu gostaria de ser Diógenes [de Sinope]\". - Alexandre, o Grande, impressionado com a simplicidade do filósofo que conheceu (Plutarco, \"Moralia\", XXII, \"Sobre as Fortunas de Alexandre, o Grande\", 332a-b)"
+msgstr "\"Se eu não fosse Alexandre, eu gostaria de ser Diógenes \\[de Sinope]\". - Alexandre o Grande, impressionado com a simplicidade do filósofo que conheceu (Plutarco, \"Moralia\", XXII, \"Sobre as Fortunas de Alexandre o Grande\", 332a-b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
@@ -1476,7 +1476,7 @@ msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms (Plutarch, \"Moralia\", XVI. "
 "\"Sayings of Spartans\", 225c)"
-msgstr "\"Venha e pegue-os!\" - Leonidas, ao mensageiro persa que exigia que ele e seus homens abaixassem suas armas (Plutarco, \"Moralia\", XVI, \"Provérbios dos espartanos\", 225c)"
+msgstr "\"Venha e pegue-os!\" - Leonidas, ao mensageiro persa que exigia que ele e seus homens abaixassem suas armas (Plutarco, \"Moralia\", XVI. \"Provérbios dos espartanos\", 225c)"
 
 #: gui/text/quotes.txt:114
 msgid ""
@@ -1487,7 +1487,7 @@ msgid ""
 "Livius, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (\"Ab Urbe "
 "Condita\", XXII. 51)"
-msgstr "\"Alguns foram descobertos ali vivos, com coxas e tendões cortados, descobrindo seus pescoços e gargantas, e pedindo que seus conquistadores drenassem o resto do sangue. Outros foram encontrados com as cabeças enterradas em furos escavados no chão. Eles aparentemente fizeram esses poços para eles mesmos.\" - Livius, descrevendo as conseqüências da Batalha de Cannae, onde Hannibal infligiu a maior derrota aos romanos em toda sua história (\"Ab Urbe Condita\", XXII, 51)"
+msgstr "\"Alguns foram descobertos ali vivos, com coxas e tendões cortados, descobrindo seus pescoços e gargantas, e pedindo que seus conquistadores drenassem o resto do sangue. Outros foram encontrados com as cabeças enterradas em furos escavados no chão. Eles aparentemente fizeram esses poços para eles mesmos.\" - Lívio, descrevendo as conseqüências da Batalha de Canas, onde Hannibal infligiu a maior derrota aos romanos em toda sua história (\"Ab Urbe Condita\", XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""

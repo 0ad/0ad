@@ -19,7 +19,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr ""
+msgstr "Fàilte gu oideachadh 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
@@ -27,6 +27,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Dèan briogadh clì air saoranach boireann an toiseach agus an uairsin "
+"briogadh deas air preas-dhearc am fagas ach an cruinnich an saoranach biadh."
+" Cruinnichidh saoranaich boireann glasraich nas luaithe na càch."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -34,6 +37,9 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
+"Tagh saighdear-dùthcha ’s dèan briogadh deas air craobh faisg air an ionad "
+"shìobhalta ach an tòisich thu air fiodh a chruinneachadh. Cruinnichidh "
+"saighdearan-dùthcha fiodh nas luaithe na saoranaich boireann."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -41,6 +47,8 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"Tagh togalach an ionaid shìobhalta agus dèan aon bhriogadh le %(hotkey)s air"
+" ìomhaigheag an hoiplid ach an tòisich thu air grunn hoiplidean a thrèanadh."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -50,16 +58,21 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
+"Cuimhnich gun dèan thu briogadh le grad-iuchair nan grunnan còmhla gus "
+"iomadh ionad a thrèanadh."
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
-msgstr ""
+msgstr "Dèan briogadh air ìomhaigheag an hoiplid."
 
 #: maps/tutorials/Introductory_Tutorial.js:46
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
+"Tagh an dà shaoranach boireann ’nan tàmh agus tog taigh am fagas ’s tu a’ "
+"taghadh ìomhaigheag an taighe. Dèan briogadh clì air an tìr far a bheil thu "
+"airson an taigh a thogail."
 
 #: maps/tutorials/Introductory_Tutorial.js:54
 msgid ""
@@ -67,6 +80,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"Nuair a bhios iad deiseil, tagh na hoiplidean air an ùr-thrèanadh agus cuir "
+"iad a thogail taigh-stòrais ri taobh chraobhan. Tòisichidh iad air fiodh a "
+"chruinneachadh nuair a bhios an taigh air a thogail."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -74,20 +90,25 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Trèanaich grunn de streupairean ’s tu a’ dèanamh briogadh clì air "
+"ìomhaigheag an streupaire san ionad shìobhalta fad ’s a bhios tu a’ cumail "
+"sìos %(hotkey)s."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "Briog air ìomhaigheag an streupaire."
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Tog tuathanas air àite fosgailte ri taobh an ionaid shìobhalta le luchd-"
+"togail sam bith a tha ’nan tàmh."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr ""
+msgstr "Fuirichidh sinn gus am bi an tuathanas deiseil."
 
 #: maps/tutorials/Introductory_Tutorial.js:112
 msgid ""
@@ -95,6 +116,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
+"Nuair a bhios an tuathanas air a thogail, tòisichidh an luchd-togail air "
+"biadh a chruinneachadh gu fèin-obrachail ma tha gin am fagas. Tagh an luchd-"
+"togail is cuir orra achadh a thogail ri taobh an tuathanais an àite seo."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -102,6 +126,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"Tòisichidh luchd-togail an achaidh air biadh a chruinneachadh on achadh gu "
+"fèin-obrachail. Cleachd am buidheann de streupairean a tha thu air ùr-"
+"chruthachadh gus taigh eile a thogail am fagas."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -109,16 +136,23 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"Trèanaich grunn hoiplidean san ionad shìobhalta. Tagh an t-ionad sìobhalta "
+"’s fhad ’s a tha e air a thaghadh, dèan briogadh deas air craobh am fagas. "
+"Tòisichidh aonadan on ionad shìobhalta air fiodh a chruinneachadh gu fèin-"
+"obrachail a-nis."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr ""
+msgstr "Dèan briogadh air ìomhaigheag an hoiplid."
 
 #: maps/tutorials/Introductory_Tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Tagh an t-ionad sìobhalta, cuir an luchag os cionn na craoibhe an uairsin "
+"agus dèan briogadh deas nuair a bhios an cùrsair air a dhol ’na ìomhaigheag "
+"fiodha."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -126,6 +160,9 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
+"Cuir air na streupairean ’nan tàmh gearastan a thogail gu ear-thuath ri oir "
+"do ranntair. ’S an an còigeamh togalach a thog thu rè linn nan clachan a "
+"bhios ann is leigidh seo leat àrdachadh gu linn nam bailtean."
 
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
@@ -133,72 +170,99 @@ msgid ""
 "'II' icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Tagh an t-ionad sìobhalta a-rithist agus àrdaich gu linn nam bailtean ’s tu "
+"a’ briogadh air an ìomhaigh “II” (feumaidh tu feitheamh an toiseach gus am "
+"bi an gearastan air a thogail). Leigidh seo leat togalaichean aig linn nam "
+"bailtean a thogail."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reaffect your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"Fhad ’s a tha thu a’ feitheamh air an linn ùr, ’s urrainn dhut òrduighean "
+"ùra a thoirt dhan luchd-obrach ’na thàmh agad ach an cruinnich iad na "
+"stòrasan a tha gann."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Tòisich air grunn shaoranach boireann a thrèanadh san ionad shìobhalta agus "
+"cuir a cheann-cruinneachaidh air an tuathanas (dèan briogadh deas air)."
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
-msgstr ""
+msgstr "Dèan briogadh air ìomhaigheag an t-saoranaich bhoirinn."
 
 #: maps/tutorials/Introductory_Tutorial.js:258
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
 msgstr ""
+"Tog taigh-feachd am fagas. Tog taigh a bharrachd le aonad togail sam bith a "
+"bhios ri làimh dhut gach turas a ruigeas tu na tha ceadaichte dhut de "
+"shluagh."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
+"Ullaich airson ionnsaigh le cluicheadair nàmhad. Trèanaich barrachd "
+"shaighdearan san taigh-fheachd agus faigh greim air saighdearan ’nan tàmh "
+"gus tùr dìona a thogail faisg air a’ ghearastan agad."
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
 msgstr ""
+"Tog gobha agus rannsaich teicneolas trèanaidh na coisridh (ìomhaigheag a’ "
+"chlaidheimh) gus piseach a thoirt air ionnsaigh spealgaidh do choisridh."
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
 msgstr ""
+"Tha an nàmhaid a’ tighinn. Trèanaich barrachd shaighdearan gus seasamh ’nan "
+"aghaidh."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
-msgstr ""
+msgstr "Feuch an seas thu an aghaidh na h-ionnsaighe."
 
 #: maps/tutorials/Introductory_Tutorial.js:300
 msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"Chaidh ionnsaigh an nàmhad a bhacadh. Tog margaid ’s teampall a-nis fhad ’s "
+"a chuireas tu aonadan ùra gun cruinnich iad an stòras air a bheil feum."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"Nuar a bhios tu air riatanasan linn nam mòr-bhailtean a choileanadh, tagh an"
+" t-ionad sìobhalta agad agus àrdaich gu linn nam mòr-bhailtean."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "barracks."
 msgstr ""
+"Fhad ’s a tha thu a’ feitheamh air an linn ùr, ’s urrainn dhut barrachd "
+"shaighdearan a thrèanadh aig an taigh-fheachd."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Nise on a tha thu ann an linn nam mòr-bhailtean, tog dùn am fagas agus "
+"cleachd e gus 2 reithe-sèiste a thogail."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -206,14 +270,21 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Thoir air na h-uile saighdear agad nach cruinnich iad stòras tuilleadh agus "
+"cuir air buidhnean beaga dhiubh gun lorg iad ionad sìobhalta an nàmhad air "
+"a’ mhapa. Nuair a bhios tu air bunait an nàmhad a lorg, cuir na h-innealan-"
+"sèiste agad agus na shaighdearan uile agad a-null gus a mhilleadh."
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
 msgstr ""
+"Bu chòir do na saoranaich bhoireann cumail orra ri stòras a chruinneachadh."
 
 #: maps/tutorials/Introductory_Tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr ""
+"Chaidh ruaig a chur air an nàmhaid. Tha gach saothair an oideachaidh seo "
+"coileanta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -222,6 +293,11 @@ msgid ""
 " ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to 'Town Phase' and 'City Phase' afterward.\n"
 msgstr ""
+"Ionnsaichidh an t-oideachadh seo dhut na tha bunasach mu leasachadh na "
+"h-eaconamaidh agad. Mar as trice, tòisichidh tu le ionad sìobhalta agus "
+"beagan aonadan ri “linn nan clachan” agus ’s e an t-amas deireannach agad a "
+"th’ ann gun leasaich is leudaich thu an impireachd agad. Ruigidh tu linntean"
+" nam “bailtean” ’s nam “mòr-bhailtean” an uairsin gu tric."
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -229,16 +305,20 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"\n"
+"Mus tòisich thu, ’s urrainn dhut leum a ghearradh eadar na modhan làn-sgrìn is uinneagach le %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"’S urrainn dhut ìre an t-sùm atharrachadh cuideachd le cuibhle na luchaige "
+"agus sealladh a’ chamara leis na h-iuchraichean saighde air a’ mheur-chlàr."
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
-msgstr ""
+msgstr "Nise, cuir gleus air uinneag a’ gheama mar a thogras tu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 #, javascript-format
@@ -246,6 +326,8 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"\n"
+"’S urrainn dhut panail an oideachaidh seo a shealltainn no fhalach uair sam bith le %(hotkey)s.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -267,6 +349,15 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Nise on a tha thu air an ionad shìobhalta a thaghadh, chì thu gun deach "
+"panail saothrachaidh fhosgladh taobh deas aig bonn na sgrìn a sheallas dhut "
+"dè na gnìomhan ris a chuireas an togalach taic. Air an dàrna làimh, bidh "
+"coltas àbhaisteach air na gnìomhan as urrainn dhut gabhail aig an àm. Air an"
+" làimh eile, seallaidh ìomhaigheag liath dhut nach deach a’ ghlas a thoirt "
+"far a’ ghnìomh fhathast agus ìomhaigheag dhearg nach eil stòras gu leòr agad"
+" gus an gnìomh a ghabhail aig an àm. A bharrachd air sin, ’s urrainn dhut an"
+" luchag a chumail os cionn ìomhaigheag sam bith gus gliocas-sgrìn a "
+"shealltainn le barrachd fiosrachaidh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -276,6 +367,12 @@ msgid ""
 "that advancing to 'Town Phase' requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"Chì thu dealbhan nan aonadan as urrainn dhut trèanadh san togalach air an "
+"ràgh aig a’ bharr agus teicneolasan a ghabhas rannsachadh san ràgh no dhà "
+"eile aig a’ bhonn. Cum an luchag agad os cionn na h-ìomhaigheige “II”. "
+"Innsidh an gliocas-sgrìn dhut gum feum thu barrachd togalaichean a thogail "
+"agus stòras dhe bhiadh is fiodh a chruinneachadh mus dèan thu àrdachadh gu "
+"“linn nam bailtean”."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -287,6 +384,15 @@ msgid ""
 "citizen soldiers can gather any land resources while cavalry citizen "
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Bidh dà sheòrsa de dh’aonadan agad aig an toiseach: saoranaich bhoireann "
+"agus saighdearan-dùthcha. Chan e ach aonadan eaconamach a tha sna saoranaich"
+" bhoireann; chan eil cus puingean-beatha aca, chan eil armachd sam bith orra"
+" agus ’s gann gu bheil comas ionnsaighe aca. ’S e luchd-obrach a tha sna "
+"saighdearan-dùthcha cuideachd ach cleachdaidh iad airm airson sabaid ri "
+"amannan èiginneach. Am measg nan saighdearan-dùthcha, tha dà sheòrsa ann: "
+"coisridh is eachraidh. Cruinnichidh saoranaich bhoireann agus coisridh-"
+"dùthcha stòras sam bith on tìr fhad ’s nach cruinnich an eachraidh-dùthcha "
+"ach feòil o bheathaichean ri an sealg.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -304,16 +410,22 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"Aig an ìre seo, ’s e am biadh is am fiodh a tha sna stòrasan as cudromaiche "
+"airson leasachadh na h-eaconamaidh agad agus tòisicheamaid le cruinneachadh "
+"bìdh. Cruinnichidh saoranaich boireann glasraich nas luaithe na aonad sam "
+"bith eile."
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
-msgstr ""
+msgstr "Tha trì prìomh-dhòighean ann gus aonadan a thaghadh:\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:42
 msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
 msgstr ""
+"1) Cum sìos putan clì na luchaige agus slaod ceart-cheàrnach taghaidh "
+"timcheall air na h-aonadan a bu toigh leat taghadh.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:43
 msgid ""
@@ -321,6 +433,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Briog air aonad agus cum sìos Shift le briogadh air barrachd aonadan gus "
+"an cur ris an taghadh an uairsin (obraichidh seo leis a’ cheart-cheàrnach "
+"taghaidh gu h-àrd cuideachd).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -328,6 +443,10 @@ msgid ""
 "the specified unit in your visible window. Triple-click will select all "
 "units of the same type on the entire map.\n"
 msgstr ""
+"3) Dèan briogadh dùbailte air aonad. Taghaidh seo gach aonad dhen aon seòrsa"
+" ’s a tha an t-aonad a shònraich thu am broinn na h-uinneige a chì thu. Ma "
+"nì thu trì briogaidhean, taghaidh seo gach aonad dhen aon seòrsa air a’ "
+"mhapa gu lèir.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
@@ -336,6 +455,12 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"’S urrainn dhut briogadh air ionad bàn air a’ mhapa gus an taghadh ath-"
+"shuidheachadh. Feuch gach tè dhe na dòighean sin mus iarr thu air na "
+"saoranaich bhoireann agad uile na fìon-dhearcan a chruinneachadh a tha gu "
+"ear-dheas air an ionad sìobhalta. Gus seo a dhèanamh, tagh na saoranaich "
+"bhoireann agad uile an toiseach agus dèan briogadh deas air na fìon-dhearcan"
+" an uairsin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -352,11 +477,16 @@ msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"Tha eachraidh-dùthcha math air sealg. Tagh an eachraidh agad agus iarr air "
+"gun sealg e na circ a tha timcheall an ionaid shìobhalta agad air an aon "
+"dòigh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
+"Tha na h-aonadan uile agad a’ cruinneachadh stòrasan a-nis. Bu chòir dhuinn "
+"barrachd aonadan a thrèanadh!"
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
@@ -367,23 +497,38 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"An toiseach, suidhichidh sinn ceann-cruinneachaidh. Ma shuidhicheas tu "
+"ceann-cruinneachaidh air togalach a nì trèanadh air aonadan, thèid saothair "
+"iomruineadh dha na h-aonadan ùra nuair a bhios iad deiseil. Bu mhiann leinn "
+"na h-aonadan ùra a chur gun bhadan chraobhan gu deas air an ionad shìobhalta"
+" ach an cruinnich iad fiodha. Gus seo a dhèanamh, briog air an ionad "
+"sìobhalta gus a thaghadh agus dèan briogadh deas air tè dhe na craobhan an "
+"uairsin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally-Points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"Thèid cinn-chruinneachaidh a chomharrachadh dhut le bratach bheag air "
+"deireadh loidhne ghuirme.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Tagh an t-ionad sìobhalta, cuir an luchag os cionn craoibhe an uairsin agus "
+"dèan briogadh deas nuair a bhios an cùrsair air a dhol ’na ìomhaigheag "
+"fiodha."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
 "Now that the rally-point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"Nise on a tha sinn air a’ cheann-chruinneachaidh a shuidheachadh, ’s urrainn"
+" dhuinn barrachd aonadan a dhèanamh agus tòisichidh iad air an obair aca gu "
+"fèin-obrachail.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -393,19 +538,27 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Tha saighdearan-dùthcha nas fhearr air fiodh a chruinneachadh na saoranaich "
+"bhoireann. Tagh an t-ionad sìobhalta agus dèan briogadh le Shift air an "
+"dàrna ìomhaigheag aonaid; ’s e sin na hoiplidean (trèanaidh briogadh le "
+"Shift grunn dhe chòig aonadan). ’S urrainn dhut aonadan fa leth a thrèanadh "
+"cuideachd le briogadh simplidh ach bidh trèanadh ghrunn de chòignear nas "
+"luaithe na trèanadh chòignear fa leth."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
+"Cuimhnich gun cum thu sìos Shift fhad ’s a bhios tu a’ briogadh gus iomadh "
+"aonad a thrèanadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Cum sìos Shift is dèan briogadh air ìomhaigheag an hoiplid."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Fuirichidh sinn gus am bi na h-aonadan air an trèanadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
@@ -415,6 +568,11 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"Fhad ’s a bhios sinn a’ fuireach, nach doir thu sùil air a’ phanail air barr"
+" na sgrìn? Air an taobh chlì, chì thu na th’ agad dhe na stòrasan (biadh, "
+"fiodh, clach is meatailt). Fhad ’s a bheir an luchd-obrach stòras dhan ionad"
+" shìobhalta (no ionad-stòrais sam bith eile), chì thu gum meudaich na th’ "
+"agad dheth."
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -423,12 +581,18 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Tha e cudromach gun doir thu an aire air sin: feumaidh tu na stòrasan a "
+"chruinnicheas tu a thoirt gu ionad-stòrais mus fhaigh thu air a’ chunntas "
+"agad iad agus b’ feairrde thu feuchainn nach bi an t-astar eadar an stòras "
+"agus an ionad-stòrais ro fhada ach an cruinnich thu na stòrasan nas luaithe."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
 msgstr ""
+"Tha na h-aonadan air an ùr-thrèanadh a’ dol dha na craobhan gu fèin-"
+"obrachail agus a’ tòiseachadh air fiodh a chruinneachadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -440,24 +604,38 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Ach on a dh’fheumas iad a thoirt dhan ionad shìobhalta, chan eil iad cho "
+"èifeachdach ’s a bu chòir air sàilleibh an astair. Gus sin a chàradh, ’s "
+"urrainn dhuinn taigh-stòrais – sin ionad-stòrais dha dh’fhiodh, clach is "
+"meatailt – a thogail faisg air na craobhan. Gus seo a dhèanamh, tagh an "
+"còignear shaighdearan-dùthcha a thrèanaich thu agus thoir sùil air a’ "
+"phanail togalach taobh deas aig bonn na sgrìn. Briog air ìomhaigheag an "
+"taighe-stòrais, gluais an luchag cho faisg air na craobhan ’s a ghabhas agus"
+" briog air ionad dligheach gus an t-ionad-stòrais a thogail."
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
 msgstr ""
+"Thèid ionadan nach eil dligheach a chomharradh dhut le dath dearg orra san "
+"ro-shealladh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"Tòisichidh na saoranaich a thagh thu air an togalach a thogail nuair a bhios"
+" tu air a’ bhonn a chur ann."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
 "When construction finishes, the builders default to gathering Wood "
 "automatically.\n"
 msgstr ""
+"Nuair a bhios an togail deiseil, cruinnichidh an luchd-togail fiodh gu fèin-"
+"obrachail."
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
@@ -465,14 +643,19 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
+"Nach trèanaich sinn saoranaich bhoireann gus barrachd bìdh a chruinneachadh?"
+" Tagh an t-ionad sìobhalta agus dèan briogadh le Shift air ìomhaigheag an "
+"t-saoranaich bhoirinn gus còignear dhiubh a thrèanadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
+"Cuimhnich gun dèan thu briogadh le Shift gus grunn ionadan a thrèanadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
 msgstr ""
+"Cum sìos Shift is dèan briogadh air ìomhaigheag an t-saoranaich bhoirinn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -481,10 +664,16 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally-point is crossed out)."
 msgstr ""
+"San eadar-àm, tha coltas gu bheil luchd-obrach gu leòr againn gus fiodh a "
+"chruinneachadh. Bu chòir dhuinn ceann-cruinneachaidh an ionaid shìobhalta a "
+"ghluasad air falbh on fhiodh. Air an adhbhar sin, dèan briogadh deas air an "
+"ionad shìobhalta às dèidh a thaghadh. Chì thu crois sguabaidh às thar "
+"ìomhaigheag a’ bhrataich a sheallas dhut far a bheil an ceann-"
+"cruinneachaidh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "Bu chòir dha na h-aonadan agad a bhith deiseil a dh’aithghearr."
 
 #: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
@@ -494,6 +683,11 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"San eadar-àm, thoir an aire air a’ chunntas-sluaigh sa phanail aig a’ bharr."
+" ’S e an còigeamh nì on taobh chlì ’s às dèidh nan stòrasan a th’ ann. Biodh"
+" e glic sùil a chumail air. Innsidh e dhut dè na th’ agad a shluagh (a’ "
+"gabhail a-steach an fheadhainn a tha ’gan trèanadh) agus an tomhas-sluaigh "
+"as motha a-rèir nan togalaichean a thog thu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
@@ -501,12 +695,18 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the house.\n"
 msgstr ""
+"Chan fhada gus an ruig thu an tomhas-sluaigh, mar sin feumaidh tu a "
+"mheudachadh le togalaichean ùra mus urrainn dhut barrachd aonadan a "
+"thrèanadh. ’S e an taigh a tha san togalach as èifeachdaiche gus an tomhas-"
+"sluaigh agad a mheudachadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
 msgstr ""
+"Nise, on a tha na h-aonadan ùra deiseil, togamaid iomadh taigh taobh ri "
+"thaobh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
@@ -521,12 +721,25 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Tagh dithis dhe na saoranaich bhoireann ùra agus iarr orra gun tog iad na "
+"taighean sin san raon fhalamh gu ear air an ionad shìobhalta. Gus seo a "
+"dhèanamh, tagh na saoranaich bhoireann, briog air ìomhaigheag an taighe sa "
+"phanail taobh deas aig a’ bhonn agus dèan briogadh le Shift air an ionad air"
+" a mhapa far a bheil thu airson an dàrna taigh a thogail agus briogadh le "
+"Shift eile air ionad an taighe eile (is ciall dha Shift gun cuir thu na "
+"h-òrdguighean ri ciutha; leanaidh na h-aonadan iad air adhart leis an ath-"
+"òrdugh sa chiutha nuair a bhios iad air an òrdugh làithreach a choileanadh)."
+" Brùth air Escape ach am faigh thu cuidhteas dhe chùrsair an taighe ach nach"
+" lìon thu am mapa gu lèir le taighean."
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two female citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"Cuimhnich: Gus dithis shaoranach boireann a-mhàin a thaghadh, briog air an "
+"dàrna tè agus an uairsin briog le Shift air an tèile gus a cur ris an "
+"taghadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -534,12 +747,17 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
+"’S dòcha gun do mhothaich thu nach mair dearcan gu buan. Tha sinn feumach "
+"air tùs bìdh nas seasmhaiche. Seo na bheir achaidhean dhut: biadh gun chrìch"
+" ach a bheir nas fhaide a bhuan na cruinneachadh mheasan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a farmstead."
 msgstr ""
+"Togamaid tuathanas an toiseach ach nach bi astar ro mhòr eadar na "
+"h-achaidhean agus an ionad-stòrais."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
@@ -547,6 +765,9 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Tagh an triùir shaoranach boireann a tha air fhàgail dhut (’nan tàmh) agus "
+"iarr orra gun tog iad tuathanas ann am meadhan an raoin mhòir fhosgailte gu "
+"siar air an ionad shìobhalta.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -554,6 +775,10 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Bidh feum againn air cnap mhath a thìr timcheall air an tuathanas ach an tog"
+" sinn achaidhean ann. A bharrachd air sin, chì sinn gobhair air an taobh "
+"shiar a b’ urrainn dhuinn cleachdadh ’nan tùs bìdh èifeachdach nan "
+"cuireamaid romhainn an sealg.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -564,18 +789,32 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Ma dh’fheuchas tu ris an triùir shaoranach boireann ’na thàmh a thaghadh le "
+"briogadh is slaodadh ceart-cheàrnaich, is mòr an seans gun gabh thu luchd-"
+"obrach nach eil thu ag iarraidh a-steach dhan taghadh agad. Cum sìos an "
+"iuchair “i” (“idle”) fhad ’s a nì thu an taghadh gus sin a sheachnadh – cha "
+"dèid ach ionadan a tha ’nan tàmh a thaghadh mar sin. Ma thaghas sin an "
+"t-aonad eachraidh a tha ’na thàmh le mearachd, cum sìos an iuchair Ctrl agus"
+" briog air an ìomhaigheag aige sa phanail taghaidh aig a’ bhonn gus an "
+"t-aonad eachdraidh a thoirt air falbh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Nuair a bhios an tuathanas air a thogail, tòisichidh an luchd-obrach a thog "
+"e air biadh a shireadh gu fèin-obrachail agus an turas seo, thèid iad an "
+"toir air na gobhair am fagas."
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"Gidheadh, bidh an luchd-obrach a thog na taighean a’ sireadh rud eile ri "
+"thogail agus mura lorg iad dad, thèid iad ’nan tàmh. Fuiricheamaid gus am bi"
+" iad deiseil le togail nan taighean."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -583,12 +822,17 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Nuair a bhios an dà thaigh air a thogail, tagh an dithis shaoranach boireann"
+" agad agus iarr orra gun tog iad achadh ri taobh an tuathanais far an dèid "
+"gach seòrsa dhe bhiadh a stòradh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the field is constructed, the builders will automatically start "
 "gathering it.\n"
 msgstr ""
+"Nuair a bhios an t-achadh air a thogail, tòisichidh an luchd-obrach a thog e"
+" air a bhuain sa bhad."
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -597,6 +841,11 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"Tha sinn an dùil gum bi an t-eachraidh air na circ uile a mharbhadh a-nis. "
+"Tagh e agus rùraich an sgìre gu iar-dheas: tha loch ann le càmhalan faisg "
+"air. Gluais an t-eachraidh agad le briogadh deas air a’ cheann-uidhe agus "
+"nuair a chì thu càmhalan, dèan briogadh deas air fear dhiubh shiar gus an "
+"sealg a chum bìdh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -606,6 +855,11 @@ msgid ""
 "sent by a rally-point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"Faodaidh suas ri còignear obair air an achadh. Gus barrachd thuathanach a "
+"chur ris, tagh an t-ionad sìobhalta agus dèan briogadh deas air an achadh "
+"gus an ceann-cruinneachaidh a shuidheachadh air. Mur eil an achadh deiseil "
+"fhathast, cuidichidh an luchd-obrach ùr leis an togail agus ma tha, "
+"tòisichidh iad air a bhuan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -616,20 +870,24 @@ msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Nise, briog trì tursan air ìomhaigheag an t-saoranaich bhoirinn sa phanail "
+"taobh deas aig a’ bhonn gus triùir thuathanach a bharrachd a thrèanadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "Dèan briogadh às aonais Shift gus aon aonad a-mhàin a thrèanadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Briog air ìomhaigheag an t-saoranaich bhoirinn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
 msgstr ""
+"Bheir thu piseach air dè cho luath ’s a chruinnicheas an luchd-obrach agad "
+"stòrasan le teicneolasan a tha ri am faighinn ann an cuid a thogalaichean."
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -639,6 +897,12 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Mar eisimpleir, ’s urrainn dhut piseach a thoirt air dè cho luath ’s a thèid"
+" achaidhean a bhuan le teicneolas a rannsaicheas tu san tuathanas. Tagh an "
+"tuathanas agus thoir sùil air panail an t-saothrachaidh aige taobh deas aig "
+"a’ bhonn. Chì thu grunn theicneolas a ghabhas rannsachadh. Cum an luchag os "
+"an cionn ach am faic thu dè chosgas is dè nì iad agus briog air am fear a bu"
+" toigh leat rannsachadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -646,6 +910,10 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the 'Town Phase' icon to see what is still needed.\n"
 msgstr ""
+"Bu chòir dhuinn ar n-ullachadh a-nis ach an ruig sinn “linn nam bailtean” a "
+"bheir a’ ghlas far barrachd aonadan is thogalaichean dhuinn. Tagh an t-ionad"
+" sìobhalta agus cum an luchag os cionn na h-ìomhaigheige “Linn nam bailtean”"
+" ach am faic thu dè tha a dhìth ort fhathast.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -653,6 +921,10 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build barracks.\n"
 msgstr ""
+"Tha stòras gu leòr againn a-nis ach tha aon togalach a dhìth oirnn fhathast."
+" Ged as e oideachadh mun eaconamaidh a tha seo, cha bhitheamaid nas bu "
+"mhiosa dheth nan robh sinn ullaichte air eagal gun doireadh nàmhaid "
+"ionnsaigh oirnn. Mar sin, togamaid taigh-feachd a-nis.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -661,6 +933,11 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Tagh ceathrar dhe na saighdearan agad agus iarr orra gun tog iad taigh-"
+"feachd: mar a rinn sinn roimhe, tòisich le taghadh nan saighdearan, briog "
+"air ìomhaigheag an taigh-fheachd sa phanail saothrachaidh agus cuir sìos "
+"bonn faisg air an ionad shìobhalta agad far a bheil thu airson a thogail "
+"ann."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -682,12 +959,16 @@ msgid ""
 "You should now be able to research 'Town Phase'. Select the Civic Center and"
 " click on the technology icon.\n"
 msgstr ""
+"Bu chòir dhut a bhith ullamh a-nis gus “linn nam bailtean” a rannsachadh. "
+"Tagh an t-ionad sìobhalta agus briog air ìomhaigheag an teicneolais."
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"Ma tha stòras no dhà a dhìth ort fhathast (bith dath dearg air an "
+"ìomhaigheag), fuirich gus am bi an luchd-obrach agad air a chruinneachadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -696,6 +977,12 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather Stone and the other half to gather Metal.\n"
 msgstr ""
+"Ri linntean nas adhartaiche, bidh feum agad air clach is meatailt gus "
+"togalaichean mòra a thogail agus saighdearan nas fhearr a thrèanadh. Air an "
+"adhbhar sin, fhad ’s a bhios sinn a’ feitheamh air an rannsachadh, cuir an "
+"dàrna leth dhe na saighdearan-dùthcha a tha ’nan tàmh (an fheadhainn a tha "
+"air an taigh-feachd a thogail) gus clach a chruinneachadh agus an leth eile "
+"gus meatailt a chruinneachadh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -705,6 +992,13 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"Gus seo a dhèanamh, b’ urrainn dhuinn triùir shaighdearan-dùthcha a thaghadh"
+" agus briogadh deas a dhèanamh air a’ mhèinn cloiche gu siar air an ionad "
+"shìobhalta (atharraichidh an cùrsair nuair a chumas tu an luchag os cionn na"
+" mèinne fhad ’s a bhios na saighdearan agad air an taghadh). Gidheadh, "
+"chruinnich na saighdearan sin fiodh roimhe agus mar sin dh’fhaoidte gu bheil"
+" iad a’ giùlan fiodh fhathast a chailleadh tu nan robh thu a’ tòiseachadh "
+"air stòras eile a chruinneachadh sa bhad."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -714,12 +1008,20 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"A thoradh air sin, bu chòir dhuinn iarraidh orra gun cuir iad am fiodh aca "
+"dhan ionad shìobhalta air an t-slighe a-null. Gus seo a dhèanamh, nì sinn "
+"briogadh le Shift a chuireas na h-òrduighean againn ri ciutha: tagh na "
+"saighdearan agad, cum sìos Shift is dèan briogadh deas air an ionad "
+"shìobhalta gus am fiodh aca fhàgail ann agus an uairsin cum sìos Shift is "
+"dèan briogadh deas air a’ mhèinn cloiche gus a thochladh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
 msgstr ""
+"Cruthaich ciutha òrduighean coltach ris dha na saighdearan a tha air fhàgail"
+" dhut cuideachd ach cuir dhan mhèinn meatailt air an taobh siar iad."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
@@ -731,7 +1033,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Seo oideachadh bunasach ach an tòisich thu air 0 A.D. a chluich."
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
@@ -740,11 +1042,11 @@ msgstr "Cluicheadair 1"
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
-msgstr ""
+msgstr "Cluicheadair 2"
 
 #: maps/tutorials/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "Bun-oideachadh"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""

@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 14:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-03-05 09:05+0100\n"
+"PO-Revision-Date: 2018-03-22 15:52+0000\n"
+"Last-Translator: Facundo Abiega <abiegafacundo@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,7 +164,7 @@ msgstr "ELIMINAR"
 #: gui/options/options.js:264 gui/options/options.js:314
 #: gui/options/options.js:340 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:446
 msgid "No"
 msgstr "No"
 
@@ -172,7 +172,7 @@ msgstr "No"
 #: gui/options/options.js:264 gui/options/options.js:314
 #: gui/options/options.js:340 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:446
 msgid "Yes"
 msgstr "Sí"
 
@@ -320,11 +320,11 @@ msgstr[1] ""
 
 #: gui/common/gamedescription.js:254
 msgid "Relic Count"
-msgstr ""
+msgstr "Conteo de reliquias"
 
 #: gui/common/gamedescription.js:261
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Guarnicion de Héroe."
 
 #: gui/common/gamedescription.js:262
 msgid "Heroes can be garrisoned."
@@ -366,7 +366,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:291
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Último hombre en pie"
 
 #: gui/common/gamedescription.js:292
 msgid ""
@@ -386,7 +386,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:303
 msgid "Ceasefire"
-msgstr ""
+msgstr "Alto el fuego"
 
 #: gui/common/gamedescription.js:306 gui/pregame/mainmenu.js:95
 msgid "disabled"
@@ -404,11 +404,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:320
 msgid "Map Type"
-msgstr ""
+msgstr "Tipo de mapa"
 
 #: gui/common/gamedescription.js:329
 msgid "Map Size"
-msgstr ""
+msgstr "Tamaño de map"
 
 #: gui/common/gamedescription.js:336
 msgid "Map Description"
@@ -438,16 +438,16 @@ msgstr ""
 
 #: gui/common/gamedescription.js:358
 msgid "Biome"
-msgstr ""
+msgstr "Bioma"
 
 #: gui/common/gamedescription.js:359
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Aleatorio."
 
 #: gui/common/gamedescription.js:366
 msgid "Starting Resources"
-msgstr ""
+msgstr "Recursos al iniciar"
 
 #: gui/common/gamedescription.js:367
 #, javascript-format
@@ -474,15 +474,15 @@ msgstr ""
 
 #: gui/common/gamedescription.js:392
 msgid "Revealed Map"
-msgstr ""
+msgstr "Mapa revelado"
 
 #: gui/common/gamedescription.js:397
 msgid "Explored Map"
-msgstr ""
+msgstr "Mapa explorado"
 
 #: gui/common/gamedescription.js:402
 msgid "Cheats"
-msgstr ""
+msgstr "Trucos"
 
 #: gui/common/gamedescription.js:407 gui/common/tooltips.js:164
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:260
@@ -982,7 +982,7 @@ msgstr ""
 #: gui/common/tooltips.js:382
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Por defecto"
 
 #: gui/common/tooltips.js:387
 msgctxt "projectiles"
@@ -1332,7 +1332,7 @@ msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Estás seguro que quieres salir de 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
-#: gui/summary/summary.js:443
+#: gui/summary/summary.js:445
 msgid "Confirmation"
 msgstr "Confirmar"
 
@@ -1837,49 +1837,53 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-#: gui/summary/summary.js:442
+#: gui/summary/summary.js:335
+msgid "Time elapsed"
+msgstr ""
+
+#: gui/summary/summary.js:444
 msgid "Are you sure you want to quit the lobby?"
 msgstr ""
 
-#: gui/summary/summary.js:507
+#: gui/summary/summary.js:509
 msgid "Current Scores"
 msgstr ""
 
-#: gui/summary/summary.js:509
+#: gui/summary/summary.js:511
 msgid "Scores at the end of the game."
 msgstr ""
 
-#: gui/summary/summary.js:511
+#: gui/summary/summary.js:513
 msgid "You have been disconnected."
 msgstr ""
 
-#: gui/summary/summary.js:513
+#: gui/summary/summary.js:515
 msgid "You have left the game."
 msgstr "Abandonaste la partida."
 
-#: gui/summary/summary.js:515
+#: gui/summary/summary.js:517
 msgid "You have won the battle!"
 msgstr "Ganaste la batalla!"
 
-#: gui/summary/summary.js:517
+#: gui/summary/summary.js:519
 msgid "You have been defeated…"
 msgstr ""
 
-#: gui/summary/summary.js:518
+#: gui/summary/summary.js:520
 msgid "You have abandoned the game."
 msgstr "Abandonaste la partida."
 
-#: gui/summary/summary.js:521
+#: gui/summary/summary.js:523
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tiempo de juego transcurrido: %(time)s"
 
-#: gui/summary/summary.js:529
+#: gui/summary/summary.js:531
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr ""
 
-#: gui/summary/summary.js:541
+#: gui/summary/summary.js:543
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr ""
@@ -2294,7 +2298,7 @@ msgstr "¡Bienvenido!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):18
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Mostrar este mensaje en el futuro"
 
 #: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
@@ -2319,11 +2323,11 @@ msgctxt "summary chart"
 msgid "Type:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):226
+#: gui/summary/summary.xml:(caption):227
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):231
+#: gui/summary/summary.xml:(caption):232
 msgid "Continue"
 msgstr "Continuar"
 

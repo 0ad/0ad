@@ -22,6 +22,8 @@
 # Matthijs de Rijk <MrTheRich@gmail.com>, 2013
 # niektb <niektb95@gmail.com>, 2015
 # Oscar Schrover <oscarschrover@gmail.com>, 2015
+# Pieter Eikelboom <eikelboom.pieter@gmail.com>, 2018
+# Robin van der Kruit <Robin.Kruit@hotmail.com>, 2018
 # TheBuG <Ruben.bilo@gmail.com>, 2014
 # Sander Deryckere, 2013
 # Sander Deryckere, 2014-2016
@@ -36,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-03 18:41+0000\n"
+"Last-Translator: Pieter Eikelboom <eikelboom.pieter@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -194,7 +196,7 @@ msgstr "Alle kaarten van het gekozen type."
 #: gui/gamesetup/gamesetup.js:409
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Kaart"
 
 #: gui/gamesetup/gamesetup.js:424
 msgctxt "Match settings tab name"
@@ -204,7 +206,7 @@ msgstr "Speler"
 #: gui/gamesetup/gamesetup.js:434
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Game Type"
 
 #: gui/gamesetup/gamesetup.js:474
 msgid "Map Type"
@@ -240,11 +242,11 @@ msgstr "Selecteer een kaartgrootte. (Grotere kaarten kunnen performance verminde
 
 #: gui/gamesetup/gamesetup.js:544
 msgid "Biome"
-msgstr ""
+msgstr "Biome"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Selecteer de dieren- en natuurwereld."
 
 #: gui/gamesetup/gamesetup.js:560
 msgid "Number of Players"
@@ -335,11 +337,11 @@ msgstr "Selecteer de snelheid van het spel."
 
 #: gui/gamesetup/gamesetup.js:720
 msgid "Difficulty"
-msgstr ""
+msgstr "Moeilijkheidsgraad"
 
 #: gui/gamesetup/gamesetup.js:722
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Selecteer de moeilijkheidsgraad van dit scenario."
 
 #: gui/gamesetup/gamesetup.js:787
 msgid "Chose the civilization for this player"
@@ -355,7 +357,7 @@ msgstr "In/uitschakelen of helden structuren kunnen bemannen."
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Nomad"
-msgstr ""
+msgstr "Nomade"
 
 #: gui/gamesetup/gamesetup.js:841
 msgid ""
@@ -452,7 +454,7 @@ msgstr "Terugkeren naar het hoofdmenu."
 
 #: gui/gamesetup/gamesetup.js:1000
 msgid "Start Game!"
-msgstr ""
+msgstr "Start spel!"
 
 #: gui/gamesetup/gamesetup.js:1006
 msgid "Start a new game with the current settings."
@@ -683,7 +685,7 @@ msgstr "Selecteer het team voor de speler."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Toon de multiplayer lobby in een dialoogvenster."
 
 #: gui/text/quotes.txt:1
 msgid ""
@@ -718,7 +720,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr ""
+msgstr "\"Een welvarend dwaas is een zware last.\" - Aeschylus (fragment 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
@@ -1750,7 +1752,7 @@ msgid ""
 "the troops lying in ambush on the hills to do the same, and thus delivered "
 "an assault upon the enemy at every point at once.\" - Polybius on the "
 "beginning of a Roman disaster at the Trasymene Lake (\"Histories\", III. 84)"
-msgstr ""
+msgstr "\"Hannibal gaf het signaal tot de aanval; en stuurde tegelijkertijd bevelen naar de troepen, die op de heuvel in hinderlaag lagen, om hetzelfde te doen, en leverde zo een aanval op de vijand van alle kanten.\" - Polybius over het begin van een Romeinse tragedie bij het Trasimeense Meer (\"Geschiedenissen\", III. 84)"
 
 #: gui/text/quotes.txt:153
 msgid ""
@@ -1801,13 +1803,13 @@ msgstr ""
 msgid ""
 "\"Do not say few things in many words, but many things in few words.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Zeg niet weinig inhoud in veel woorden, maar veel inhoud in weinig woorden.\" - Pythagoras (Stobaeus, \"Florilegium\", 24)"
 
 #: gui/text/quotes.txt:159
 msgid ""
 "\"Let your speech be better than silence, or be silent.\" - Pythagoras "
 "(Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Laat uw spraak beter zijn dan stilte, of weest stil.\" - Pythagoras (Stobaeus, \"Florilegium\", 24)"
 
 #: gui/text/quotes.txt:160
 msgid ""
@@ -1866,7 +1868,7 @@ msgstr ""
 msgid ""
 "\"Walls and ships are nothing without men living together inside them.\" - "
 "Sophocles (\"Oedipus Rex\")"
-msgstr ""
+msgstr "\"Muren en schepen zijn niks zonder de mannen die samen erin leven.\" - Sophocles (\"Oedipus Rex\")"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -1887,13 +1889,13 @@ msgstr ""
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
-msgstr ""
+msgstr "\"Gematigdheid in alles.\" - Terentius (\"Andria\", 61)"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"Fortune favors the bold.\" - Terence in a play about a great Athenian "
 "admiral (\"Phormio\", 203)"
-msgstr ""
+msgstr "\"Fortuin bevoordeeld de dapperen.\" - Terentius in een toneelstuk over een grootse Atheense Admiraal (\"Phormio\", 203)"
 
 #: gui/text/quotes.txt:172
 msgid ""

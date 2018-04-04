@@ -19,14 +19,15 @@
 # Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
 # Rodeo65 <Rodeo65@centrum.cz>, 2014
+# Tomáš Matýs <thommathys@gmail.com>, 2018
 # Vit Pelcak, 2014
 # Vít Pelčák, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-21 07:54+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1002,7 +1003,7 @@ msgstr "Najít nečinného dělníka"
 #: gui/session/session.js:457 gui/session/session.js:461
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Přepnout barvy diplomacie"
 
 #: gui/session/session.js:464
 #, javascript-format
@@ -1019,7 +1020,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Začněte vybráním suroviny, kterou chcete prodat z horní řady. Za každé doby, kdy jsou stisknuta spodní tlačítka, %(quantity)s hořejší surovina bude prodána za zobrazené množství suroviny spodní. Stiskněte a podržte %(hotkey)s abyste dočasně vynásobil obchodovatelnou částku %(multiplier)s."
 
 #: gui/session/session.js:659
 #, javascript-format
@@ -1027,7 +1028,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Ukázat historii/strom staveb\nNaposledy otevřený bude znovuotevřen při klepnutí."
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1078,19 +1079,19 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s:%(hotkey)spro změnění pořadí."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
-msgstr ""
+msgstr "Nezařazený"
 
 #: gui/session/session.js:1260
 msgid "Descending"
-msgstr ""
+msgstr "Sestupný"
 
 #: gui/session/session.js:1260
 msgid "Ascending"
-msgstr ""
+msgstr "Vzestupný"
 
 #: gui/session/session.js:1286
 #, javascript-format
@@ -1393,7 +1394,7 @@ msgstr "Shrnutí"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr "Lobby"
+msgstr "Herní skupina"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1409,7 +1410,7 @@ msgstr "Ukončit"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Ukázat skupinu hry pro více hráčů v dialogovém okně."
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15

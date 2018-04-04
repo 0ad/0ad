@@ -7,7 +7,7 @@
 # Alex <yanebotan@ngs.ru>, 2015
 # Владимир Смирнов <delpfine2012@gmail.com>, 2015
 # Владимир Смирнов <delpfine2012@gmail.com>, 2015
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2018
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Igor Kustov, 2014
@@ -33,14 +33,15 @@
 # Woratiklis, 2015-2017
 # Виталий Орехов <7opex0@mail.ru>, 2016
 # Дмитрий <polsha_d@mail.ru>, 2016
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 # Олег Шевченко <olegrock@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-21 09:03+0200\n"
-"PO-Revision-Date: 2018-01-22 15:31+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2018-03-08 22:00+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +63,7 @@ msgstr "Городской центр"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr "Постройте, чтобы завладеть большим количеством территорий. Позволяет обучать горожан. "
+msgstr "Постройте, чтобы получить контроль над большой территорией. Позволяет обучать горожан. "
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:76
 #: simulation/templates/template_structure_civic_civil_centre.xml:38
@@ -131,7 +132,7 @@ msgstr "Дом"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr "Позволяет обучать целителей и исследовать технологии лечения и религии. Позволяет разместить гарнизон для ускоренного восстановления здоровья (3 единицы здоровья в секунду). "
+msgstr "Используется для обучения целителей и исследования технологий, связанных с врачеванием и религией. Позволяет размещать юнитов внутри для ускоренного восстановления здоровья (3 единицы здоровья в секунду). "
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -371,7 +372,7 @@ msgstr "Особое строение"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr "Это особое строение, уникальное для каждой цивилизации."
+msgstr "Это особая постройка, уникальная для каждой цивилизации."
 
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Library"

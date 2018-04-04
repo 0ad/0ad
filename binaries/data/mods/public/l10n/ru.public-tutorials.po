@@ -7,13 +7,14 @@
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2017
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2017
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
-# Матвей Зарубежнов <zarubezhnov@gmail.com>, 2018
+# Матвей Зарубежнов <zarubezhnov@gmail.com>, 2017
+# Ilya Andreev, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2018-01-29 09:05+0100\n"
 "PO-Revision-Date: 2018-01-29 09:05+0100\n"
-"Last-Translator: Матвей Зарубежнов <zarubezhnov@gmail.com>, 2018\n"
+"Last-Translator: Ilya Andreev, 2018\n"
 "Language-Team: Russian (https://www.transifex.com/wildfire-games/teams/17418/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr ""
+msgstr "Добро пожаловать в обучение 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
@@ -31,9 +32,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
-"Кликните левой кнопкой мыши на горожанке, а затем - правой на ягодном кусте,"
-" чтобы отправить горожанку заниматься сбором еды. Горожанки собирают еду "
-"быстрее других юнитов."
+"Щелкните ЛКМ на горожанке, а затем - ПКМ на ягодном кусте, чтобы отправить "
+"горожанку заниматься сбором еды. Горожанки собирают еду быстрее других "
+"юнитов."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -41,8 +42,8 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
-"Выберете городских солдат, и нажмите ПКМ на деревья возле Городского Центра "
-"для начала сбора древесины. Городские солдаты собирают дерево быстрее "
+"Выберете горожанина солдат, и нажмите ПКМ на деревья возле Городского Центра"
+" для начала сбора древесины. Горожане солдаты собирают дерево быстрее "
 "горожанок."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
@@ -51,7 +52,7 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
-"Выберите здание городского центра и, зажав клавишу %(hotkey)s, кликните один"
+"Выберите здание Городского Центра и, зажав клавишу %(hotkey)s, щелкните один"
 " раз по иконке Гоплита, чтобы начать обучение нескольких гоплитов."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
@@ -62,7 +63,7 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
-"Не забывайте удерживать горячую клавишу при клике на иконке юнита, чтобы "
+"Не забывайте удерживать горячую клавишу при щелчке на иконке юнита, чтобы "
 "запустить создание нескольких юнитов."
 
 #: maps/tutorials/Introductory_Tutorial.js:38
@@ -75,8 +76,7 @@ msgid ""
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
 "Выберите двух не занятых горожанок и постройте дом неподалёку, выбрав иконку"
-" дома. Разместите дом, кликнув левой кнопкой мыши на свободном участке "
-"земли."
+" дома. Разместите дом, щелкнув ЛКМ на свободном участке земли."
 
 #: maps/tutorials/Introductory_Tutorial.js:54
 msgid ""
@@ -151,8 +151,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
-"Выберите городской центр, затем наведите курсор на дерево и нажмите ПКМ, "
-"когда увидите, что курсор сменился на изображение Древесины"
+"Выберите Городской Центр, затем наведите курсор на дерево и нажмите ПКМ, "
+"когда увидите, что курсор сменился на изображение Древесины."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -287,10 +287,9 @@ msgid ""
 "evolving to 'Town Phase' and 'City Phase' afterward.\n"
 msgstr ""
 "Это руководство научит вас основам развития вашей экономики. Обычно вы "
-"начинаете с городским центром и несколькими юнитами «этапа деревни», и, в "
-"конечном итоге, ваша цель будет заключаться в развитии и расширении вашей "
-"Империи, часто с переходом на «этап небольшого города» и «этап большого "
-"города».\n"
+"начинаете с Городским Центром и несколькими юнитами на «Этапе Деревни», и, в"
+" конечном итоге, Вашей целью будет развитие и расширение Вашей Империи, "
+"часто с переходом на «Этап Небольшого Города» и «Этап Большого Города».\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -393,9 +392,9 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
-"На данный момент, еда и древесина являются наиболее важными ресурсами для "
-"развития вашей экономики, так что давайте начнем с сбора продовольствия. "
-"Женщины собирают овощи быстрее, чем другие единицы"
+"На данный момент еда и древесина являются наиболее важными ресурсами для "
+"развития Вашей экономики, так что давайте начнем со сбора продовольствия. "
+"Женщины собирают овощи быстрее других юнитов.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -406,6 +405,8 @@ msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
 msgstr ""
+"1) Удерживая левую кнопку мыши, с помощью прямоугольника выбора охватите "
+"юнитов, которых Вы хотите выбрать.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:43
 msgid ""
@@ -413,6 +414,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Кликнуть по одному из них, а затем добавить дополнительных юнитов к "
+"выбранному, удерживая Shift и щелкая на каждого дополнительного юнита (или "
+"используя прямоугольник выбора, как описано выше).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -420,6 +424,9 @@ msgid ""
 "the specified unit in your visible window. Triple-click will select all "
 "units of the same type on the entire map.\n"
 msgstr ""
+"3) Дважды кликните по юниту. Это позволит выбрать всех юнитов того же типа, "
+"что и выбранный юнит, на видимом участке карты. Тройной клик позволяет "
+"выделить всех юнитов одного типа на всей карте.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
@@ -428,6 +435,10 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"Для того чтобы сбросить выделение, можно кликнуть на свободном участке "
+"карты. Попробуйте каждый из этих способов, прежде чем отправить Ваших "
+"горожанок на сбор винограда к юго-востоку от Городского Центра, щелкнув "
+"правой кнопкой мыши на винограднике, когда все горожанки будут Вами выбраны."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -621,6 +632,10 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally-point is crossed out)."
 msgstr ""
+"Тем временем у нас, кажется, достаточно рабочих, собирающих Древесину. "
+"Следует убрать нынешнюю точку сбора Городского Центра от заготовки "
+"Древесины. Для этого щелкните правой кнопкой мыши на Городском Центре, когда"
+" он выбран (значок флага, указывающий на точку сбора, c крестиком)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -673,6 +688,15 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Выберите двух недавно обученных горожанок и попросите их построить дома в "
+"пустом пространстве к востоку от Городского Центра. Для этого, выбрав "
+"горожанок, кликните по иконке дома на панели в правом нижнем углу и, "
+"удерживая Shift, нажмите сначала на место на карте, где вы хотите разместить"
+" первый дом, а затем нажмите на место, где Вы хотите разместить второй дом "
+"(когда Вы даете команду, удерживайте клавишу Shift, команды встают в "
+"очередь; юниты автоматически переходят к следующей команде в очереди, когда "
+"закончат текущую команду). Нажмите Esc, чтобы избавиться от курсора дома, и "
+"не застроить домами всю карту.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
@@ -688,6 +712,9 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
+"Можете заметить, что ягоды - это конечный запас продовольствия. Нам "
+"понадобится более постоянный источник пищи. Поля имеют неограниченный "
+"производственный ресурс, но сбор с них медленнее, нежели чем с ягод."
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
@@ -712,6 +739,10 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Нам понадобится приличный кусок свободного пространства вокруг усадьбы, "
+"чтобы строить поля. Кроме того, мы можем видеть коз на западной стороне, "
+"чтобы еще больше повысить эффективность сбора пищи, если мы когда-нибудь "
+"решим охотиться на них.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -722,6 +753,12 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Если вы попытаетесь выбрать трех неработающих горожанок, щелкнув и перетащив"
+" прямоугольник выбора над ними, вы можете случайно выбрать ненужных юнитов. "
+"Чтобы избежать этого, удерживайте клавишу I при выборе, чтобы были выбраны "
+"только незанятые юниты. Если вы случайно выбрали конницу, удерживая клавишу "
+"Ctrl, щелкните по значку кавалерийский отряд на панели выбора в нижней части"
+" экрана, чтобы удалить кавалерийский отряд из текущего выбора."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
@@ -780,6 +817,11 @@ msgid ""
 "sent by a rally-point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"На поле может работать до пяти фермеров. Чтобы добавить дополнительных "
+"собирателей, выберите Городской Центр и установите точку сбора на поле, "
+"щелкнув ПКМ. До тех пор, пока поле еще не построено, новые рабочие, "
+"отправленные на точку сбора, помогут его построить, когда поле будет "
+"построено, они приступят к сбору урожая ."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -830,6 +872,10 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the 'Town Phase' icon to see what is still needed.\n"
 msgstr ""
+"Мы должны начать подготовку к поэтапному переходу в \"Этап небольшого "
+"города\", которая откроет много новых юнитов и зданий. Выберите Городской "
+"Центр и наведите курсор на значок 'фаза города', чтобы увидеть, что еще "
+"необходимо.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -848,6 +894,10 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Выберите четырех ваших солдат и попросите их построить казарму: как и "
+"раньше, начните выбирать солдат, нажмите на значок казармы на панели "
+"производства, а затем заложите фундамент недалеко от вашего Городского "
+"Центра, где вы хотите построить."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -857,18 +907,28 @@ msgid ""
 " on it (you should see a hammer icon), and then produce two more builders by"
 " clicking on the hoplite icon twice."
 msgstr ""
+"Давайте подождем, пока построят казармы. Поскольку это строительство долгое,"
+" вы можете добавить еще двух солдат, чтобы построить быстрее. Чтобы сделать "
+"это, выберите свой Городской Центр  и укажите точку сбора на фундаменте "
+"казармы, щелкнув правой кнопкой мыши на нем (вы должны увидеть значок "
+"молотка), а затем обучите еще двух строителей, дважды щелкнув значок "
+"Гоплита."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
 "You should now be able to research 'Town Phase'. Select the Civic Center and"
 " click on the technology icon.\n"
 msgstr ""
+"Теперь вы должны быть в состоянии исследовать \"Этап небольшого города\". "
+"Выберите Городской Центр и щелкните на значок технологии.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"Если вам все еще не хватает некоторых ресурсов (значок будет красным), "
+"подождите, пока они будут собраны вашими работниками."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -877,6 +937,11 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather Stone and the other half to gather Metal.\n"
 msgstr ""
+"На новых этапах вам обычно нужно камень и металл, чтобы построить большие "
+"сооружения и обучить лучших солдат. Таким образом, в ожидании исследования, "
+"которое будет сделано, вы отправите половину ваших не занятых  горожан "
+"солдат (которые закончили строительство казарм), чтобы собрать камень, а "
+"другую половину - чтобы собрать металл.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -886,6 +951,11 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"Чтобы сделать это, мы могли бы выбрать трех горожан солдат и щелкнуть правой"
+" кнопкой мыши на каменной шахте, на западе от Городского Центра (курсор "
+"меняется при наведении на каменную шахту если выбраны солдаты). Раньше, эти "
+"солдаты собирали древесину. Они  все еще могут отнести немного древесины, "
+"которая будет потеряна, когда начинают собирать другие ресурсы."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -895,22 +965,32 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"Таким образом, мы должны приказать им по пути к каменной шахте отнести "
+"собранную ими древесину в Городской Центр. Чтобы сделать это, мы удерживая "
+"клавишу Shift создать последовательность команд : выберите ваших солдат, "
+"удерживайте Shift и щелкните правой кнопкой мыши на Городской Центр, что бы "
+"сложить древесину, а затем зажмите Shift и щелкните правой кнопкой мыши на "
+"каменной шахты, чтобы приступить к добыче камня.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
 msgstr ""
+"Зделатке аналогичную последовательность команд с оставшимися солдатами для "
+"рудной шахтой на Западе."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
 msgstr ""
+"На этом обучение закончено. Оно должно дать вам хорошее представление об "
+"основах создания вашей экономики."
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Это базовое обучение, чтобы вы начали играть 0 A. D."
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
@@ -931,6 +1011,9 @@ msgid ""
 "in the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"Эта карта даст примерное руководство для эффективного начало игры. В начале "
+"игры самое главное-собрать ресурсы как можно быстрее, чтобы потом вы смогли "
+"обучить достаточное количество войск."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"

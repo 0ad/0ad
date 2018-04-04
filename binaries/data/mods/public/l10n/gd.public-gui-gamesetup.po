@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2014-2017
+# GunChleoc, 2014-2018
 # GunChleoc, 2014
 # GunChleoc, 2014-2015
 # Michael Bauer, 2014
@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-03-04 18:25+0000\n"
+"PO-Revision-Date: 2018-03-15 09:09+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -169,7 +169,7 @@ msgstr "Gach mapa dhen t-seòrsa a thagh thu."
 #: gui/gamesetup/gamesetup.js:409
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Mapa"
 
 #: gui/gamesetup/gamesetup.js:424
 msgctxt "Match settings tab name"
@@ -179,7 +179,7 @@ msgstr "Cluicheadair"
 #: gui/gamesetup/gamesetup.js:434
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Seòrsa a’ gheama"
 
 #: gui/gamesetup/gamesetup.js:474
 msgid "Map Type"
@@ -219,7 +219,7 @@ msgstr "Gnàth-shìde"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Tagh na lusan is na beathaichean."
 
 #: gui/gamesetup/gamesetup.js:560
 msgid "Number of Players"
@@ -286,19 +286,19 @@ msgstr "An àireamh shlàn de thaisean a thèid a ghintinn air a’ mhapa. Bidh 
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Relic Duration"
-msgstr ""
+msgstr "Fad nan taisean"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Na mionaidean a dh’fhalbhas gus am buannaich cluicheadair le taise."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Fad nam mìorbhailean"
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Na mionaidean a dh’fhalbhas gus am buannaich cluicheadair le mìorbhail."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Game Speed"
@@ -310,11 +310,11 @@ msgstr "Tagh luaths a’ gheama."
 
 #: gui/gamesetup/gamesetup.js:720
 msgid "Difficulty"
-msgstr ""
+msgstr "Duilgheadas"
 
 #: gui/gamesetup/gamesetup.js:722
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Tagh duilgheadas a’ chnàmh-sgeòil seo."
 
 #: gui/gamesetup/gamesetup.js:787
 msgid "Chose the civilization for this player"
@@ -330,13 +330,13 @@ msgstr "Toglaich am faod curaidhean a dhol ’nan gearastan gus nach fhaod."
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Nomad"
-msgstr ""
+msgstr "Iniltear"
 
 #: gui/gamesetup/gamesetup.js:841
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "Sa mhodh inilteir, tòisichidh na cluicheadairean le beagan aonadan agus feumaidh iad àite iomchaidh a lorg gus am baile aca a thogail. Mholamaid gun tagh thu fois-losgaidh."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -442,29 +442,29 @@ msgstr "Tòisich air geama ùr leis na roghainnean làithreach (à comas gus am 
 #: gui/gamesetup/gamesetup.js:1070
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Rèitich an IF: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1121
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Seann an eachdraidh / Craobh nan sìobhaltas\nThèid am fear mu dheireadh air an robh thu fhosgladh a-rithist nuair a nì thu briogadh."
 
 #: gui/gamesetup/gamesetup.js:1173
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Toglaich taba roghainnean %(name)s."
 
 #: gui/gamesetup/gamesetup.js:1174
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Cleachd %(hotkey)s gus taba roghainnean a ghluasad sìos."
 
 #: gui/gamesetup/gamesetup.js:1175
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Cleachd %(hotkey)s gus taba roghainnean a ghluasad suas."
 
 #: gui/gamesetup/gamesetup.js:1692
 msgctxt "map selection"
@@ -482,13 +482,13 @@ msgstr "Air thuaiream"
 
 #: gui/gamesetup/gamesetup.js:1727
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Tagh gnàth-shìde air thuaiream."
 
 #: gui/gamesetup/gamesetup.js:2058
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2063
 msgctxt "settings value"
@@ -506,7 +506,7 @@ msgstr "Chan eil"
 #: gui/gamesetup/gamesetup.js:2100
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2187
 #, javascript-format
@@ -569,7 +569,7 @@ msgstr "Duilgheadas na h-IF:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Giùlan na h-IF:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -589,7 +589,7 @@ msgstr "’Ga luchdadh"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "A’ luchdadh dàta a’ mhapa. Fuirich greis…"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"

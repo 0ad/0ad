@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Eslam obeidat <islamobidat92@gmail.com>, 2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Omar Anwar <omaraglan91@yahoo.com>, 2017
 # nitro361 <nitro361@gmail.com>, 2015
@@ -10,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-19 09:05+0100\n"
-"PO-Revision-Date: 2018-02-19 15:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-03-05 09:07+0100\n"
+"PO-Revision-Date: 2018-03-13 20:37+0000\n"
+"Last-Translator: Eslam obeidat <islamobidat92@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -452,12 +453,12 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(name)s بعيد جداً عن %(category)s , يجب أن يكون في حدود %(distance)s متر"
+msgstr[1] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
+msgstr[2] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
+msgstr[3] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
+msgstr[4] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
+msgstr[5] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -526,26 +527,26 @@ msgstr "%(category)s الحد الأقصى تدريب %(limit)s بلغ"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "بلغت الحدّ الأقصى (%(limit)s) من %(category)s"
 
-#: simulation/components/Player.js:336
+#: simulation/components/Player.js:350
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "الموارد غير كافية - %(resourceAmount1)s من %(resourceType1)s"
 
-#: simulation/components/Player.js:338
+#: simulation/components/Player.js:352
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "الموارد غير كافية - %(resourceAmount1)s من %(resourceType1)s، و%(resourceAmount2)s من %(resourceType2)s"
 
-#: simulation/components/Player.js:340
+#: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "الموارد غير كافية - %(resourceAmount1)s من %(resourceType1)s، و%(resourceAmount2)s من %(resourceType2)s، و%(resourceAmount3)s من %(resourceType3)s"
 
-#: simulation/components/Player.js:342
+#: simulation/components/Player.js:356
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -553,11 +554,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "موارد غير كافية -  %(resourceAmount1)s %(resourceType1)s،  %(resourceAmount2)s %(resourceType2)s،  %(resourceAmount3)s %(resourceType3)s،  %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:400
+#: simulation/components/ProductionQueue.js:394
 msgid "The production queue is full."
 msgstr "صفّ الإنتاج ممتلئ."
 
-#: simulation/components/ProductionQueue.js:775
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr "لا يمكن إيجاد مساحة حرة لتنزيل الوحدات المدربة"
 
@@ -578,43 +579,43 @@ msgstr "(غشّ - التّحكّم بكلّ الوحدات)"
 msgid "(Cheat - reveal map)"
 msgstr "(غشّ - كُشفت الخريطة)"
 
-#: simulation/helpers/Commands.js:449
+#: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s قد انسحب."
 
-#: simulation/helpers/Commands.js:591
+#: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
 msgstr "(غشّ - رُقّيت وحدات)"
 
-#: simulation/helpers/Commands.js:705
+#: simulation/helpers/Commands.js:722
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "لا يمكن التطوير اذ ان متطلبات المساحة ليس مؤكدة او ان التربة غير مستوية."
 
-#: simulation/helpers/Commands.js:715
+#: simulation/helpers/Commands.js:732
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "لا يمكن تطوير كيان فى ثكنة."
 
-#: simulation/helpers/Commands.js:758
+#: simulation/helpers/Commands.js:775
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "طُلب الهجوم على %(_player_)s."
 
-#: simulation/helpers/Commands.js:797
+#: simulation/helpers/Commands.js:814
 msgid "There are no bribable units"
 msgstr "ليست هناك وحدات يمكن رشوتها"
 
-#: simulation/helpers/Commands.js:843
+#: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
 msgstr "غير قادر على إخراج الوحدة(الوحدات)"
 
-#: simulation/helpers/Commands.js:857
+#: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
 msgstr "بعض الوحدات(وحدة) لا يمكنها الرجوع الى العمل"
 
-#: simulation/helpers/Commands.js:1111
+#: simulation/helpers/Commands.js:1114
 msgid "The building's technology requirements are not met."
 msgstr "تقنية المبنى غير متوافرة بعد."
 
@@ -706,7 +707,7 @@ msgstr "إحتل كل الأثار في الخريطة وإحتفظ بهم لف�
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr ""
+msgstr "استولي على الأثر المقدس"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
@@ -745,7 +746,7 @@ msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured or in allied victory when the owners alliances change."
-msgstr ""
+msgstr "كن أول من يبني أو يستولي على أعجوبة و تُبقي عليها لوقت معين لتفوز في اللعبة. المؤقت سيعيد الضبط عندما تتدمر الأعجوبة أو يستولى عليها أو في نصر الحلفاء عندما يتغير أصحاب التحالفات."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -783,7 +784,7 @@ msgstr "قتال حتى الموت"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "اختر هذه الصعوبه إذا كنت تكتشف 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
@@ -791,7 +792,7 @@ msgstr "سهل جداً"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "اختر هذه الصعوبه إذا كنت لا تحب ان تغلب."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -800,7 +801,7 @@ msgstr "سهل"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "اختر هذه الصعوبه إذا كان لديك خبرة جيدة مع 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
 #: simulation/data/settings/map_sizes.jsonData[2].Name
@@ -809,7 +810,7 @@ msgstr "متوسّطة"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
+msgstr "اختر هذه الصعوبه إذا كنت تريد تحدي حقيقي."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -817,7 +818,7 @@ msgstr "صعب"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
+msgstr "اختر هذه الصعوبه إذا لم يكن لديك مانع من أن تنسف."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -890,5 +891,5 @@ msgstr "الآلة پترا"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "بترا هي بوت الذكاء الاصطناعي الافتراضية لـ 0 A.D. . الرجاء تبليغ المشاكل لـ Wildfire Games ( انظر الى الرابط في القائمة الرئيسية).\n\nالذكاء الاصطناعي هو مكافأة/مشكلة علىتخزين الموارد (إما معدّلات الجمع أو مكاسب تجارية) تتراوح من -60% لصندوق اللعب إلى +60% للصعب جداً (متوسط 0%) و المستويات الأسهل لها معدل إنتاج وبناء أبطأ. بلإضافة, مستوى صندوق اللعب لا يوسع ولا يهاجم."

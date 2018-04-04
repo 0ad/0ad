@@ -4,6 +4,7 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014-2016
+# Matias Fågel <matias.fagel2@gmail.com>, 2018
 # Max Ihalempia, 2016
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-21 09:03+0200\n"
-"PO-Revision-Date: 2018-01-16 08:14+0000\n"
-"Last-Translator: Some Dude <jonpajanen2@gmail.com>\n"
+"PO-Revision-Date: 2018-04-02 10:57+0000\n"
+"Last-Translator: Matias Fågel <matias.fagel2@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -501,7 +502,7 @@ msgstr "Apothḗkē"
 
 #: simulation/templates/structures/athen_temple.xml:9
 msgid "Naṓs"
-msgstr ""
+msgstr "\nNaṓs"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -910,7 +911,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr ""
+msgstr "Kaikki joukot tämän monumentin lähellä taistelevat kovemmin. Rakennukset monumentin alueella eivät rappeudu."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -950,7 +951,7 @@ msgstr "Teíchisma"
 #: simulation/templates/structures/mace_fortress.xml:10
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Kouluta mestareita ja sankareita. Kokoa sotilaita sisälle vahvaan puolustusasemaan."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1040,7 +1041,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
-msgstr ""
+msgstr "Pylväs"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
 msgid "Edict Pillar of Ashoka"
@@ -1113,7 +1114,7 @@ msgstr "Apadana"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr ""
+msgstr "\"Satapry Tribute\": Saat hieman ruokaa, puuta, kiveä ja metalliresursseja. Kouluta persialaisia sankareita, ja heidän \"kuolemattomia\" henkivartijoita."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1166,15 +1167,15 @@ msgstr "Kouluta mestariluokan ratsuväkeä ja rakenna piirityskoneita."
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Persian Hall"
-msgstr ""
+msgstr "Persialainen halli"
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Duvarthi Visadahyu"
-msgstr ""
+msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:31
 msgid "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "Kouluta sotanorsuja ja karkadesi-palkkasotilaita."
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
@@ -1192,7 +1193,7 @@ msgstr "Babylonin Ištarin portti"
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr ""
+msgstr "Nostaa lähellä olevien rakennusten uskollisuutta, tehden niiden kaappaamisesta vaikeampaa."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1224,7 +1225,7 @@ msgstr "Asiyah"
 
 #: simulation/templates/structures/pers_tacara.xml:27
 msgid "Taçara"
-msgstr ""
+msgstr "Taçara"
 
 #: simulation/templates/structures/pers_temple.xml:12
 msgid "Ayadana"
@@ -1253,7 +1254,7 @@ msgstr "ḥwt-n-mš'"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "Kouluta egyptiläisiä ja Keski-Idän kansalaissotilaita. Tutki koulutuksen parannuksia."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
@@ -1287,7 +1288,7 @@ msgstr "ḥwt"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "Nosta väestön määrän rajoitusta. Koska ne tehdään mutatiileistä, egyptiläiset talot ovat ilmaisia tehdä, mutta ne ovat todella heikkoja."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1323,14 +1324,14 @@ msgstr "Halpa kasarmin kaltainen rakenne, joka on rakennettavissa neutraalille a
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
-msgstr ""
+msgstr "Klēroukhia"
 
 #: simulation/templates/structures/ptol_military_colony.xml:12
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Tämä on Ptolemialaisten rakennusten laajennus, samanlainen kuin kansalaiskeskus eri kansakunnilla. Se on heikompi ja vaikuttaa vähemmän alueiden hallintaan, mutta se on halvempi ja nopeampi rakentaa. Kouluta uudisasukassotilaita eri kansallisuuksista. "
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1369,7 +1370,7 @@ msgstr "Rooman imperiumin erikoisrakennus"
 
 #: simulation/templates/structures/rome_army_camp.xml:35
 msgid "ArmyCamp"
-msgstr ""
+msgstr "Armeijan leiri"
 
 #: simulation/templates/structures/rome_army_camp.xml:68
 msgid "Entrenched Army Camp"
@@ -1383,7 +1384,7 @@ msgstr "Castrum Vallum"
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "Rakenna neutraalille tai vastustajan alueelle. Rakenna piiritysaseita ja kouluta kansalaissotilaita. Paranna hitaasti joukkueissa olevat yksiköt. "
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1575,7 +1576,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Tämä on Seleucidien rakennusten laajennus, samanlainen kuin kansalaiskeskus eri kansakunnilla. Se on heikompi ja vaikuttaa vähemmän alueiden hallintaan, mutta se on halvempi ja nopeampi rakentaa. Kouluta uudisasukassotilaita eri kansallisuuksista. "
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1587,7 +1588,7 @@ msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Temple of Pythian Apollo"
-msgstr ""
+msgstr "Pythian Apollon temppeli"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
@@ -1626,4 +1627,4 @@ msgstr "Kouluta spartalaisia sankareita ja Homoioi-hopliittisankareita."
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Tuo kunniaa sivilisaatioosi ja lisää suuria maa-alueita imperiumiisi. Sijoita joukkoja varuskuntaasi parantaaksesi heitä nopeasti."

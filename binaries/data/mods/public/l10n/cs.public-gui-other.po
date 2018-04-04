@@ -7,6 +7,7 @@
 # Filip Kružík <fildakr@gmail.com>, 2015
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
 # Josef Hrdina <hrdinajosef11@gmail.com>, 2016
+# Katie Trochimovičová <Kattienika@gmail.com>, 2018
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
 # Marek Harok <kenturin@seznam.cz>, 2017
 # fri, 2014-2017
@@ -18,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 14:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-03-05 09:05+0100\n"
+"PO-Revision-Date: 2018-03-21 07:54+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,7 +177,7 @@ msgstr "SMAZAT"
 #: gui/options/options.js:264 gui/options/options.js:314
 #: gui/options/options.js:340 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:446
 msgid "No"
 msgstr "Ne"
 
@@ -184,7 +185,7 @@ msgstr "Ne"
 #: gui/options/options.js:264 gui/options/options.js:314
 #: gui/options/options.js:340 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:446
 msgid "Yes"
 msgstr "Ano"
 
@@ -1103,7 +1104,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr ""
+msgstr "Cena:"
 
 #: gui/common/tooltips.js:628
 #, javascript-format
@@ -1209,13 +1210,13 @@ msgstr "Kořist:"
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:829
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "Klikněte, pravým tlačítkem myši, pro zobrazení více informací."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "Klikněte pro zobrazení více informací."
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1361,13 +1362,13 @@ msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Opravdu chcete ukončit 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
-#: gui/summary/summary.js:443
+#: gui/summary/summary.js:445
 msgid "Confirmation"
 msgstr "Potvrzení"
 
 #: gui/pregame/mainmenu.js:273
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "Opravdu chcete vypnout hru a spustit Editor scénářů?"
 
 #: gui/pregame/mainmenu.js:281
 msgid ""
@@ -1868,49 +1869,53 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-#: gui/summary/summary.js:442
+#: gui/summary/summary.js:335
+msgid "Time elapsed"
+msgstr ""
+
+#: gui/summary/summary.js:444
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Opravdu si přejete opustit herní skupinu?"
 
-#: gui/summary/summary.js:507
+#: gui/summary/summary.js:509
 msgid "Current Scores"
 msgstr "Nynější bodový stav"
 
-#: gui/summary/summary.js:509
+#: gui/summary/summary.js:511
 msgid "Scores at the end of the game."
 msgstr "Bodový stav na konci hry."
 
-#: gui/summary/summary.js:511
+#: gui/summary/summary.js:513
 msgid "You have been disconnected."
 msgstr "Byl jste odpojen."
 
-#: gui/summary/summary.js:513
+#: gui/summary/summary.js:515
 msgid "You have left the game."
 msgstr "Opustil jste hru."
 
-#: gui/summary/summary.js:515
+#: gui/summary/summary.js:517
 msgid "You have won the battle!"
 msgstr "Vyhrál jste bitvu!"
 
-#: gui/summary/summary.js:517
+#: gui/summary/summary.js:519
 msgid "You have been defeated…"
 msgstr "Byl jsi poražen..."
 
-#: gui/summary/summary.js:518
+#: gui/summary/summary.js:520
 msgid "You have abandoned the game."
 msgstr "Opustil jste hru."
 
-#: gui/summary/summary.js:521
+#: gui/summary/summary.js:523
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Uplynulý herní čas: %(time)s"
 
-#: gui/summary/summary.js:529
+#: gui/summary/summary.js:531
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:541
+#: gui/summary/summary.js:543
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr ""
@@ -2350,11 +2355,11 @@ msgctxt "summary chart"
 msgid "Type:"
 msgstr "Dosah aury"
 
-#: gui/summary/summary.xml:(caption):226
+#: gui/summary/summary.xml:(caption):227
 msgid "Replay"
 msgstr "Záznam"
 
-#: gui/summary/summary.xml:(caption):231
+#: gui/summary/summary.xml:(caption):232
 msgid "Continue"
 msgstr "Pokračovat"
 
@@ -2670,7 +2675,7 @@ msgstr "Obecné"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Spustit hru v okně."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed Mode"
@@ -3156,7 +3161,7 @@ msgstr "Podrobné nástrojové rady"
 
 #: gui/options/options.json[5].options[11].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "Nezařazené"
 
 #: gui/options/options.json[5].options[11].list[1].label
 msgid "Ascending"
@@ -3164,7 +3169,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[11].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "Sestupný"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid ""

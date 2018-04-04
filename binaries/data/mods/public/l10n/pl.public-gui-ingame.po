@@ -7,7 +7,8 @@
 # Agata Pawlik <zuaagacia@gmail.com>, 2014
 # Andrzej Preibisz <andrzejjpreibisz@gmail.com>, 2016
 # Andrzej Udodik <udo1992@gmail.com>, 2013
-# Bartosz B <bartosz@bobin.eu>, 2017
+# Bartosz Bobin <bartosz@bobin.eu>, 2017-2018
+# Bartosz Bobin <bartosz@bobin.eu>, 2018
 # Daniel Koć <daniel@xn--ko-wla.pl>, 2014
 # Dominik Pieczyński <inactive+RiviPN@transifex.com>, 2014
 # domino1162, 2014
@@ -60,8 +61,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-25 22:12+0000\n"
+"Last-Translator: Bartosz Bobin <bartosz@bobin.eu>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -633,7 +634,7 @@ msgstr "Wszyscy"
 #: gui/session/messages.js:809
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr "Spmirzeńcy"
+msgstr "Sojusznicy"
 
 #: gui/session/messages.js:813
 msgctxt "chat addressee"
@@ -1049,7 +1050,7 @@ msgstr "Znajdź niepracującego robotnika"
 #: gui/session/session.js:457 gui/session/session.js:461
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Przełącz kolory dyplomacji"
 
 #: gui/session/session.js:464
 #, javascript-format
@@ -1074,7 +1075,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Widok Historii / Drzewko konstrukcyjne\nTen sam widok zostanie otwarty ponownie po kliknięciu."
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1125,7 +1126,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s by zmienić kolejność."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
@@ -1456,7 +1457,7 @@ msgstr "Wyjście"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Pokaż poczekalnię w oknie dialogowym"
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15

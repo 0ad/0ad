@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-19 09:05+0100\n"
-"PO-Revision-Date: 2018-02-19 15:57+0000\n"
+"POT-Creation-Date: 2018-03-05 09:07+0100\n"
+"PO-Revision-Date: 2018-03-05 15:08+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -510,26 +510,26 @@ msgstr ""
 msgid "%(category)s limit of %(limit)s reached"
 msgstr ""
 
-#: simulation/components/Player.js:336
+#: simulation/components/Player.js:350
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr ""
 
-#: simulation/components/Player.js:338
+#: simulation/components/Player.js:352
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr ""
 
-#: simulation/components/Player.js:340
+#: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr ""
 
-#: simulation/components/Player.js:342
+#: simulation/components/Player.js:356
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -537,11 +537,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:400
+#: simulation/components/ProductionQueue.js:394
 msgid "The production queue is full."
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:775
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr ""
 
@@ -562,43 +562,43 @@ msgstr ""
 msgid "(Cheat - reveal map)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:449
+#: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr ""
 
-#: simulation/helpers/Commands.js:591
+#: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:705
+#: simulation/helpers/Commands.js:722
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr ""
 
-#: simulation/helpers/Commands.js:715
+#: simulation/helpers/Commands.js:732
 msgid "Cannot upgrade a garrisoned entity."
 msgstr ""
 
-#: simulation/helpers/Commands.js:758
+#: simulation/helpers/Commands.js:775
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr ""
 
-#: simulation/helpers/Commands.js:797
+#: simulation/helpers/Commands.js:814
 msgid "There are no bribable units"
 msgstr ""
 
-#: simulation/helpers/Commands.js:843
+#: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:857
+#: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
 msgstr ""
 
-#: simulation/helpers/Commands.js:1111
+#: simulation/helpers/Commands.js:1114
 msgid "The building's technology requirements are not met."
 msgstr ""
 
@@ -874,5 +874,5 @@ msgstr ""
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
 msgstr ""

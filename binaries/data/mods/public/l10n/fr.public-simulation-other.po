@@ -12,6 +12,7 @@
 # curieux de l'être <skimandco@gmail.com>, 2017
 # François Poirotte <clicky@erebot.net>, 2016
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2017
+# Jo Du <jojo337@live.fr>, 2018
 # l p <llenaick.lp23@gmail.com>, 2018
 # Marco tom Suden, 2014
 # Marsan <hugomarsan@free.fr>, 2016
@@ -22,14 +23,14 @@
 # nicolas t <deux718281@yahoo.fr>, 2016
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
 # silure, 2014
-# Polakrity <sxk-fr@live.fr>, 2014,2017
+# Polakrity <sxk-fr@live.fr>, 2014,2017-2018
 # Valentin Guidal <valentin.guidal@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-19 09:05+0100\n"
-"PO-Revision-Date: 2018-02-19 15:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-03-05 09:07+0100\n"
+"PO-Revision-Date: 2018-03-17 11:55+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,7 +160,7 @@ msgstr "%(_player_)s et moi sommes maintenant ennemis."
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr "Je ne peux pas accepter votre offre de devenir alliés, %(_player_)s."
+msgstr "Je ne peux pas accepter votre offre pour devenir alliés, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:64
 #, javascript-format
@@ -531,26 +532,26 @@ msgstr "%(category)s : capacité d'entraînement de %(limit)s atteinte"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s : capacité de %(limit)s atteinte"
 
-#: simulation/components/Player.js:336
+#: simulation/components/Player.js:350
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:338
+#: simulation/components/Player.js:352
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:340
+#: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:342
+#: simulation/components/Player.js:356
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -558,11 +559,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:400
+#: simulation/components/ProductionQueue.js:394
 msgid "The production queue is full."
 msgstr "La file de production est pleine."
 
-#: simulation/components/ProductionQueue.js:775
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr "Pas assez de place pour produire les unités entrainées."
 
@@ -583,43 +584,43 @@ msgstr "(Triche - contrôler toutes les unités)"
 msgid "(Cheat - reveal map)"
 msgstr "(Triche - révéler la carte)"
 
-#: simulation/helpers/Commands.js:449
+#: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s a abandonné."
 
-#: simulation/helpers/Commands.js:591
+#: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
 msgstr "(Triche - promotion des unités)"
 
-#: simulation/helpers/Commands.js:705
+#: simulation/helpers/Commands.js:722
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Amélioration impossible en raison de contraintes de distance ou de terrain non respectées."
 
-#: simulation/helpers/Commands.js:715
+#: simulation/helpers/Commands.js:732
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Impossible d'améliorer une entité en garnison."
 
-#: simulation/helpers/Commands.js:758
+#: simulation/helpers/Commands.js:775
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Une attaque contre %(_player_)s a été demandée."
 
-#: simulation/helpers/Commands.js:797
+#: simulation/helpers/Commands.js:814
 msgid "There are no bribable units"
 msgstr "Il n'y a pas d'unités à soudoyées."
 
-#: simulation/helpers/Commands.js:843
+#: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
 msgstr "Impossible de décharger la ou les unité(s)."
 
-#: simulation/helpers/Commands.js:857
+#: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
 msgstr "Une ou plusieurs unité(s) ne peuvent pas retourner travailler"
 
-#: simulation/helpers/Commands.js:1111
+#: simulation/helpers/Commands.js:1114
 msgid "The building's technology requirements are not met."
 msgstr "Les technologies nécessaires à la construction n'ont pas été recherchées."
 
@@ -895,5 +896,5 @@ msgstr "Petra Bot"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra est l'IA par défaut de 0 A.D. Vous pouvez reporter les problèmes rencontrés à Wildfire Games (voir le lien dans le menu principal).\n\nL'IA possède un bonus/malus sur la gestion des ressources (soit le taux de collecte soit les gains commerciaux) variant de -60% pour le niveau Bac à Sable à +60% pour le niveau Très Difficile (Moyen 0%). De plus les niveaux les plus faciles ont un temps de production et un taux de construction plus longs. Enfin, l'IA du niveau Bac à Sable ne s'étends pas ni n'attaque."

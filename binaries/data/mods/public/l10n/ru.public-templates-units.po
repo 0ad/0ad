@@ -15,6 +15,7 @@
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Igor Kustov, 2014
 # Igor Kustov, 2014
+# Ilya Andreev, 2018
 # Ivan, 2014
 # Ivan Korovin <i.d.korovin@gmail.com>, 2017
 # Ivan, 2014
@@ -25,6 +26,7 @@
 # micha030201 <micha030201@gmail.com>, 2015
 # Nick Zhivotenko <inactive+niko.zvt@transifex.com>, 2014
 # Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
+# Ryan Addariy <durganful@gmail.com>, 2018
 # Simple88, 2014
 # Simple88, 2014
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
@@ -37,12 +39,13 @@
 # Дмитрий <polsha_d@mail.ru>, 2016
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
 # Максим Дронь <dronmax@gmail.com>, 2016
+# Матвей Зарубежнов <zarubezhnov@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-21 09:04+0100\n"
-"PO-Revision-Date: 2018-02-28 21:57+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2018-04-01 14:08+0000\n"
+"Last-Translator: Ilya Andreev\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -275,7 +278,7 @@ msgstr "Воин с булавой"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:29
 msgid "Champion Maceman"
-msgstr ""
+msgstr "Элитный булатник"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -473,7 +476,7 @@ msgstr "Рыбацкая лодка"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:36
 msgid "Fish the waters for food."
-msgstr ""
+msgstr "Ловите рыбу в водоемах для пищи."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 msgid "Merchantman"
@@ -1476,23 +1479,23 @@ msgstr "Верблюд"
 
 #: simulation/templates/units/kush_camelry_javelinist_b.xml:13
 msgid "Blemmye Desert Raider"
-msgstr ""
+msgstr "Блеммийски Пустынный Налетчик"
 
 #: simulation/templates/units/kush_camelry_javelinist_b.xml:14
 msgid "nhw Bulahau gml"
-msgstr ""
+msgstr "нхв Булахау гмл"
 
 #: simulation/templates/units/kush_catafalque.xml:9
 msgid "Wtn n ‘Ist"
-msgstr ""
+msgstr "Втн н Ист"
 
 #: simulation/templates/units/kush_cavalry_javelinist_b.xml:6
 msgid "iry hr ssmwtt"
-msgstr ""
+msgstr "ири хр ссмвтт"
 
 #: simulation/templates/units/kush_cavalry_javelinist_b.xml:7
 msgid "Napatan Light Cavalry"
-msgstr ""
+msgstr "Напатанская лёгкая конница"
 
 #: simulation/templates/units/kush_cavalry_spearman_b.xml:6
 msgid "Meroitic Heavy Cavalry"
@@ -1500,15 +1503,15 @@ msgstr "Мероитская тяжёлая кавалерия"
 
 #: simulation/templates/units/kush_cavalry_spearman_b.xml:7
 msgid "Htr"
-msgstr ""
+msgstr "Хтр"
 
 #: simulation/templates/units/kush_champion_cavalry.xml:5
 msgid "Noble Cavalry"
-msgstr ""
+msgstr "Благородная кавалерия"
 
 #: simulation/templates/units/kush_champion_cavalry.xml:6
 msgid "Htr Ms’ n mh-ib"
-msgstr ""
+msgstr "Хтр Мс н мх-иб"
 
 #: simulation/templates/units/kush_champion_elephant.xml:5
 msgid "Meroitic War Elephant"
@@ -1516,23 +1519,23 @@ msgstr "Мероитский боевой слон"
 
 #: simulation/templates/units/kush_champion_elephant.xml:6
 msgid "Abore ‘h3"
-msgstr ""
+msgstr "Аборэ х3"
 
 #: simulation/templates/units/kush_champion_infantry.xml:5
 msgid "Noble Archer"
-msgstr ""
+msgstr "Благородный Лучник"
 
 #: simulation/templates/units/kush_champion_infantry.xml:6
 msgid "Hry pdty"
-msgstr ""
+msgstr "Хру пдти"
 
 #: simulation/templates/units/kush_champion_infantry_amun.xml:5
 msgid "Napatan Temple Guard"
-msgstr ""
+msgstr "Страж Храма Напатан"
 
 #: simulation/templates/units/kush_champion_infantry_amun.xml:6
 msgid "rs ‘Imn"
-msgstr ""
+msgstr "рс Имн"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:5
 msgid "Meroitic Temple Guard"
@@ -1540,7 +1543,7 @@ msgstr "Мероитская храмовая стража"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:6
 msgid "rs ‘Iprmk"
-msgstr ""
+msgstr "лс Ипрмк"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:7
 msgid "Axe"
@@ -1552,7 +1555,7 @@ msgstr "Аманиренас"
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:9
 msgid "Amnirense qore li kdwe li"
-msgstr ""
+msgstr "Амниренсе коре ли кдве ли"
 
 #: simulation/templates/units/kush_hero_arakamani.xml:10
 msgid "Arakamani"
@@ -1560,7 +1563,7 @@ msgstr "Аркамани"
 
 #: simulation/templates/units/kush_hero_arakamani.xml:11
 msgid "‘Irk.‘Imn"
-msgstr ""
+msgstr "Ирк лмн"
 
 #: simulation/templates/units/kush_hero_harsiotef.xml:8
 #: simulation/templates/units/kush_hero_nastasen.xml:8
@@ -1577,7 +1580,7 @@ msgstr "Настасен Анкхкаре"
 msgid ""
 "Hero Special: \"Gift of Warships\" - Allows the training of Ptolemaic "
 "trireme-class ships."
-msgstr ""
+msgstr "Героическая специальность: \"Дар военных кораблей\" - Позволяет тренировать триремы класса Птолемей"
 
 #: simulation/templates/units/kush_infantry_archer_b.xml:15
 msgid "Nubian Archer"
@@ -1585,15 +1588,15 @@ msgstr "Нубийский лучник"
 
 #: simulation/templates/units/kush_infantry_archer_b.xml:16
 msgid "Pdty Nhsyw"
-msgstr ""
+msgstr "Пдти Нхсув"
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:30
 msgid "Nuba Clubman"
-msgstr ""
+msgstr "Член клуба Нуба"
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:31
 msgid "nhw Noba"
-msgstr ""
+msgstr "нхв Ноба"
 
 #: simulation/templates/units/kush_infantry_merc_javelinist_b.xml:24
 msgid "Nuba Skirmisher"
@@ -1601,7 +1604,7 @@ msgstr "Нубийский застрельщик"
 
 #: simulation/templates/units/kush_infantry_merc_javelinist_b.xml:25
 msgid "nhw ‘h3w Noba"
-msgstr ""
+msgstr "нхв х3в Ноба"
 
 #: simulation/templates/units/kush_infantry_pikeman_b.xml:15
 msgid "Meroitic Pikeman"
@@ -1609,7 +1612,7 @@ msgstr "Мероитский пикинёр"
 
 #: simulation/templates/units/kush_infantry_pikeman_b.xml:16
 msgid "si3wrd"
-msgstr ""
+msgstr "си3врд"
 
 #: simulation/templates/units/kush_infantry_spearman_b.xml:18
 msgid "Nubian Spearman"
@@ -1617,11 +1620,11 @@ msgstr "Нубийский копейщик"
 
 #: simulation/templates/units/kush_infantry_spearman_b.xml:19
 msgid "iry-rdwy Nhsyw"
-msgstr ""
+msgstr "ири-рдву Нхсув"
 
 #: simulation/templates/units/kush_infantry_spearman_b.xml:21
 msgid "Faster than usual spearmen but has less hack armor."
-msgstr ""
+msgstr "Быстрее, чем обычные копейщик, но с меньшей рубящей бронёй."
 
 #: simulation/templates/units/kush_infantry_swordsman_b.xml:15
 msgid "Meroitic Swordsman"
@@ -1629,7 +1632,7 @@ msgstr "Мероитский мечник"
 
 #: simulation/templates/units/kush_infantry_swordsman_b.xml:16
 msgid "knw hps"
-msgstr ""
+msgstr "кнв хпс"
 
 #: simulation/templates/units/kush_mechanical_siege_tower.xml:5
 msgid "Kushite Siege Tower"
@@ -1637,11 +1640,11 @@ msgstr "Кушитская осадная башня"
 
 #: simulation/templates/units/kush_mechanical_siege_tower.xml:6
 msgid "iwn n ms"
-msgstr ""
+msgstr "ивн н мс"
 
 #: simulation/templates/units/kush_ship_fishing.xml:6
 msgid "Wh’-rmw"
-msgstr ""
+msgstr "Вх-рмв"
 
 #: simulation/templates/units/kush_ship_merchant.xml:9
 msgid "Nile Trading Barge"
@@ -1649,19 +1652,19 @@ msgstr "Нильская торговая баржа"
 
 #: simulation/templates/units/kush_ship_merchant.xml:10
 msgid "D3y sbt"
-msgstr ""
+msgstr "Д3у сбт"
 
 #: simulation/templates/units/kush_ship_trireme.xml:11
 msgid "Great Warship"
-msgstr ""
+msgstr "Великий боевой корабль"
 
 #: simulation/templates/units/kush_ship_trireme.xml:12
 msgid "shry ‘3"
-msgstr ""
+msgstr "шри 3"
 
 #: simulation/templates/units/kush_support_female_citizen.xml:10
 msgid "Shmt"
-msgstr ""
+msgstr "схмт"
 
 #: simulation/templates/units/kush_support_female_citizen.xml:11
 msgid "Kushite Woman"
@@ -1673,7 +1676,7 @@ msgstr "Священник"
 
 #: simulation/templates/units/kush_support_healer_b.xml:7
 msgid "w’b nsw"
-msgstr ""
+msgstr "вб нсв"
 
 #: simulation/templates/units/kush_support_trader.xml:5
 msgid "Nilotic Merchant"
@@ -1681,7 +1684,7 @@ msgstr "Нилотский торговец"
 
 #: simulation/templates/units/kush_support_trader.xml:6
 msgid "rmt sbt"
-msgstr ""
+msgstr "рмт сбт"
 
 #: simulation/templates/units/mace_catafalque.xml:8
 msgid "Philip V"

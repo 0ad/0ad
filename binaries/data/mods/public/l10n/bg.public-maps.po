@@ -11,12 +11,12 @@
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2015
 # Любомир Василев, 2016-2018
-# Симонъ Болокановъ <sbolokanov@abv.bg>, 2014
+# Симонъ–Севаръ С. Болокановъ <sbolokanov@abv.bg>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-03-02 09:04+0100\n"
-"PO-Revision-Date: 2018-03-02 20:14+0000\n"
+"POT-Creation-Date: 2018-03-05 09:07+0100\n"
+"PO-Revision-Date: 2018-03-06 11:38+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -847,7 +847,8 @@ msgstr "Непозната карта. Внимание: Може да бъде 
 msgid "Unknown"
 msgstr "Непозната"
 
-#: maps/random/unknown_land.jsonsettings.Description
+#: maps/random/unknown_land.jsonsettings.Description maps/skirmishes/Egypt
+#: (4).xml:Description:40
 msgid "The unknown."
 msgstr "Непозната карта."
 
@@ -2560,6 +2561,26 @@ msgstr "Мъглив планински пейзаж се превръща бо�
 #: maps/skirmishes/Dueling Cliffs (3v3).xml:Name:40
 msgid "Dueling Cliffs (3v3)"
 msgstr "Дуелиращи се планини (3 срещу 3)"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[0].Name:40
+msgid "Alexandria"
+msgstr "Александрия"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[1].Name:40
+msgid "Theben"
+msgstr "Тива"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[2].Name:40
+msgid "Siwa"
+msgstr "Сиуа"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[3].Name:40
+msgid "Sinai"
+msgstr "Синай"
+
+#: maps/skirmishes/Egypt (4).xml:Name:40
+msgid "Egypt"
+msgstr "Египет"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""

@@ -12,13 +12,14 @@
 # liulitchi <xingzuo88@qq.com>, 2014
 # 李武军 <lwj7863439@gmail.com>, 2016-2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015
+# 越 杨 <tsugaku@163.com>, 2018
 # 邬贝超 <wubeichao2000@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-23 09:04+0100\n"
-"PO-Revision-Date: 2018-02-23 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-09 11:45+0000\n"
+"Last-Translator: 越 杨 <tsugaku@163.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -173,7 +174,7 @@ msgstr "返回到主菜单."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "您已与大厅断开连接。是否重新连接？"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1192 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
@@ -291,11 +292,11 @@ msgstr "玩家 :  %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1180
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "当前Mods与此游戏Mods不匹配。"
 
 #: gui/lobby/lobby.js:1182
 msgid "Incompatible mods"
-msgstr ""
+msgstr "无法兼容的Mods。"
 
 #: gui/lobby/lobby.js:1183
 msgid "Ok"
@@ -462,7 +463,7 @@ msgstr "使用条款"
 
 #: gui/prelobby/prelobby.js:298
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr ""
+msgstr "确定要在连接后清除密码？"
 
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
@@ -616,7 +617,7 @@ msgstr "密码："
 
 #: gui/prelobby/prelobby.xml:(caption):68
 msgid "Remember Password"
-msgstr ""
+msgstr "记住密码"
 
 #: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"
