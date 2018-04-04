@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_2_handed_spearman_ready.xml" frequency="100" name="Base">
+    <variant file="biped/base_cavalry_2_handed_spearman.xml" frequency="100" name="Base">
       <mesh>skeletal/new/m_armor_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_b.xml" attachpoint="head"/>
@@ -40,6 +40,10 @@
         <prop actor="props/units/pers_bactrian_arm_right_bronze.xml" attachpoint="shoulderpad_R"/>
       </props>
     </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/death_2h.xml"/>
   </group>
   <material>player_trans_spec_helmet.xml</material>
 </actor>

@@ -2,14 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="100" name="Base">
+    <variant file="biped/base_cavalry_spearman_relax_shield_c.xml" frequency="100" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/mace_chalkaspides_a.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/ptol_cav_spear_e.xml" attachpoint="shield"/>
-        <prop actor="props/units/capes/rider/spearman_relax_shield.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/ptol_cav_spear_e.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/capes/rider/spearman_relax_shield_c.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/spart_phalangite_officer.dds" name="baseTex"/>
@@ -17,15 +17,15 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield.xml"/>
+    <variant file="biped/base_cavalry_spearman_relax_shield_c.xml"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
     <variant file="biped/rider/promotion_shield.xml" />
-    <variant file="biped/rider/gather_meat_hele.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_shield_c.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

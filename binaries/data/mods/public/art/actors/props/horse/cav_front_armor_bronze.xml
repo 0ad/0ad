@@ -21,10 +21,5 @@
     <variant file="quadraped/props/peytral_base_bronze_01.xml" name="horse-armor-peytral-bronze-01"/>
     <variant file="quadraped/props/peytral_base_bronze_02.xml" name="horse-armor-peytral-bronze-02"/>
   </group>
-  <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
-  </group>
 	<material>player_trans_parallax_spec.xml</material>
 </actor>

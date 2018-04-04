@@ -6,6 +6,7 @@
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/britons/hero_cavalry_javelinist_boudicca_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_rein_javelin.xml" attachpoint="head"/>
       </props>
       <textures>
         <texture file="skeletal/horse_celt_boudicca_a.dds" name="baseTex"/>

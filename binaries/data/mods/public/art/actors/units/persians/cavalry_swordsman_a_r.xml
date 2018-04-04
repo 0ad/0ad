@@ -9,7 +9,7 @@
         <prop actor="props/units/heads/pers_kidaris_loose_yellow.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/pers_pelta_e_reverse.xml" attachpoint="back"/>
         <prop actor="props/units/weapons/axe_sagaris.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/pers_buckler_1.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/pers_buckler_1.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
   </group>
@@ -33,8 +33,8 @@
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/promotion_shield.xml" />
     <variant file="biped/rider/attack_slaughter_shield_pers.xml"/>
-    <variant file="biped/rider/gather_meat_pers.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_shield_a.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

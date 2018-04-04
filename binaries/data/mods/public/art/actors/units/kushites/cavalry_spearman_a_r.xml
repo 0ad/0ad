@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/kush_beja_rhino.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/kush_beja_rhino.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
   </group>
@@ -66,8 +66,8 @@
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/rider/attack_slaughter_shield_kush.xml"/>
-    <variant file="biped/rider/gather_meat_kush.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_shield_b.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

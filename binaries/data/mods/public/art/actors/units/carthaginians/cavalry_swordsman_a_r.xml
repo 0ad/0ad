@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/heads/new/head_iber_adv.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/kart_csw_round_a.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/kart_csw_round_a.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/heads/iber_helmet_04.xml" attachpoint="helmet"/>
       </props>
       <textures>
@@ -23,8 +23,8 @@
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/promotion_shield.xml" />
     <variant file="biped/rider/attack_slaughter_shield_iber.xml"/>
-    <variant file="biped/rider/gather_meat_iber.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_shield_a.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

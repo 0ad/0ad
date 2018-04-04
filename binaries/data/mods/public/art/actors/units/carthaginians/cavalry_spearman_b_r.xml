@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/kart_round_isp_basic.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/kart_round_isp_basic.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/heads/samnite_test.xml" attachpoint="helmet"/>
       </props>
     </variant>
@@ -43,7 +43,7 @@
     <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
     <variant file="biped/rider/promotion_shield.xml" />
     <variant file="biped/rider/gather_meat_hele.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/rider/death_shield_a.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

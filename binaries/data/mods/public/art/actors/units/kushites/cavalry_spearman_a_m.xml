@@ -9,6 +9,7 @@
         <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_straps_head_kush.xml" attachpoint="head"/>
         <prop actor="props/horse/cav_straps_kush_adv.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_spearman_shield.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
@@ -41,18 +42,12 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml" name="Spearman Horse">
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+    <variant name="gather_meat">
       <props>
-        <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_straps_head_kush.xml" attachpoint="head"/>
-        <prop actor="props/horse/cav_straps_kush_adv.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant file="quadraped/base_horse_run.xml" name="Spearman Horse">
-      <props>
-        <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_straps_head_kush.xml" attachpoint="head"/>
-        <prop actor="props/horse/cav_straps_kush_adv.xml" attachpoint="root"/>
+        <prop actor="" attachpoint="rider"/>
+        <prop actor="units/kushites/cavalry_spearman_a_r.xml" attachpoint="rider_R"/>
       </props>
     </variant>
   </group>

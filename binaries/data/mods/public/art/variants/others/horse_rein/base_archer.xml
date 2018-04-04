@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant file="others/horse_rein/base.xml">
+  <animations>
+    <animation file="other/horse_rein_idle_drop.dae" name="attack_ranged" speed="80"/>
+    <animation file="other/horse_rein_idle_drop.dae" name="attack_capture" speed="80"/>
+    <animation file="other/horse_rein_idle_drop.dae" name="gather_meat" speed="80"/>
+    <animation file="other/horse_rein_gallop.dae" name="Run" speed="7"/>
+    <animation file="other/horse_rein_death_drop.dae" name="death" speed="120"/>
+    <animation file="other/horse_rein_gallop.dae" name="Run" speed="7"/>
+    <animation file="other/horse_rein_drop_death.dae" name="death" speed="120"/>
+  </animations>
+</variant>

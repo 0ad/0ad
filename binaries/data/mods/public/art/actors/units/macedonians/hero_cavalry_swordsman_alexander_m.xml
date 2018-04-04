@@ -6,6 +6,7 @@
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/macedonians/hero_cavalry_swordsman_alexander_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_rein_swordsman.xml" attachpoint="head"/>
       </props>
       <textures>
         <texture file="skeletal/horse_hele_alex.dds" name="baseTex"/>

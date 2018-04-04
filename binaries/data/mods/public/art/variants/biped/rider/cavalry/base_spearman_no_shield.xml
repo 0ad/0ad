@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant file="biped/rider/cavalry/base_spearman.xml">
   <animations>
-    <animation file="biped/rider_idle_carry_meat.dae" name="carry_meat_idle" speed="12"/>
-    <animation file="biped/rider_carry_meat.dae" name="carry_meat" speed="7"/>
-    <animation file="biped/rider_gather_meat.dae" name="gather_meat" speed="70"/>
-    <animation file="biped/rider_run.dae" name="Run" speed="11"/>
-    <animation file="biped/rider_death.dae" name="death" id="death1" speed="120"/>
-    <animation file="biped/rider_death_b.dae" name="death" id="death2" speed="120"/>
-    <animation file="biped/rider_attack_capture_spear.dae" name="attack_capture" speed="100"/>
+    <animation file="biped/rider/cavalry/gallop.dae" name="Run" speed="7"/>
+    <animation file="biped/rider/cavalry/death.dae" name="death" speed="120"/>
+    <animation file="biped/rider/cavalry/attack_capture.dae" name="attack_capture" speed="100"/>
+    <animation file="biped/rider/cavalry/attack_stab_long.dae" name="attack_melee" event="0.5" id="attack1" speed="230"/>
+    <animation file="biped/rider/cavalry/attack_stab.dae" event="0.5" name="attack_melee" id="attack2" speed="230"/>
+    <animation file="biped/rider/cavalry/attack_stab.dae" event="0.5" name="attack_melee" id="attack3" speed="230"/>
+    <animation file="biped/rider/cavalry/attack_stab.dae" event="0.5" name="attack_melee" id="attack4" speed="230"/>
   </animations>
 </variant>

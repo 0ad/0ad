@@ -7,6 +7,7 @@
       <props>
         <prop actor="units/macedonians/hero_cavalry_spearman_philip_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/cav_blanket_mace_hero.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_spearman_shield.xml" attachpoint="head"/>
       </props>
       <textures>
         <texture file="skeletal/horse_hele_philip.dds" name="baseTex"/>
@@ -15,16 +16,8 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml" name="Spearman Horse">
-      <props>
-        <prop actor="props/horse/cav_blanket_mace_hero.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant file="quadraped/base_horse_run.xml" name="Spearman Horse">
-      <props>
-        <prop actor="props/horse/cav_blanket_mace_hero.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_horse_death.xml" name="Spearman Horse"/>
+    <variant file="quadraped/base_horse_run.xml" name="Spearman Horse"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
