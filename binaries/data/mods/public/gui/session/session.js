@@ -122,12 +122,11 @@ var g_StatusBarUpdate = 200;
  */
 var g_ReplaySelectionData;
 
-var g_PlayerAssignments = {
-	"local": {
-		"name": singleplayerName(),
-		"player": 1
-	}
-};
+/**
+ * Remembers which clients are assigned to which player slots.
+ * The keys are guids or "local" in Singleplayer.
+ */
+var g_PlayerAssignments;
 
 /**
  * Cache dev-mode settings that are frequently or widely used.
@@ -261,17 +260,21 @@ function init(initData, hotloadData)
 		return;
 	}
 
+	// Fallback used by atlas
+	g_PlayerAssignments = initData ? initData.playerAssignments : { "local": { "player": 1 } };
+
+	// Fallback used by atlas and autostart games
+	if (g_PlayerAssignments.local && !g_PlayerAssignments.local.name)
+		g_PlayerAssignments.local.name = singleplayerName();
+
 	if (initData)
 	{
-		g_PlayerAssignments = initData.playerAssignments;
 		g_ReplaySelectionData = initData.replaySelectionData;
 		g_HasRejoined = initData.isRejoining;
 
 		if (initData.savedGUIData)
 			restoreSavedGameData(initData.savedGUIData);
 	}
-	else if (g_IsReplay)// Needed for autostart loading option
-		g_PlayerAssignments.local.player = -1;
 
 	LoadModificationTemplates();
 	updatePlayerData();

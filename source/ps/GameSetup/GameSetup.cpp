@@ -495,6 +495,32 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, ScriptInterface* srcSc
 	g_GUI->SwitchPage(gui_page, srcScriptInterface, initData);
 }
 
+void InitPsAutostart(bool networked, JS::HandleValue attrs)
+{
+	// The GUI has not been initialized yet, so use the simulation scriptinterface for this variable
+	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue playerAssignments(cx);
+	scriptInterface.Eval("({})", &playerAssignments);
+
+	if (!networked)
+	{
+		JS::RootedValue localPlayer(cx);
+		scriptInterface.Eval("({})", &localPlayer);
+		scriptInterface.SetProperty(localPlayer, "player", g_Game->GetPlayerID());
+		scriptInterface.SetProperty(playerAssignments, "local", localPlayer);
+	}
+
+	JS::RootedValue sessionInitData(cx);
+	scriptInterface.Eval("({})", &sessionInitData);
+	scriptInterface.SetProperty(sessionInitData, "attribs", attrs);
+	scriptInterface.SetProperty(sessionInitData, "playerAssignments", playerAssignments);
+
+	InitPs(true, L"page_loading.xml", &scriptInterface, sessionInitData);
+}
+
 
 static void InitInput()
 {
@@ -1149,6 +1175,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  *                                 (0: sandbox, 5: very hard)
  * -autostart-aiseed=AISEED        sets the seed used for the AI random
  *                                 generator (default 0, use -1 for random)
+ * -autostart-player=NUMBER        sets the playerID in non-networked games (default 1, use -1 for observer)
  * -autostart-civ=PLAYER:CIV       sets PLAYER's civilisation to CIV
  *                                 (skirmish and random maps only)
  * -autostart-team=PLAYER:TEAM     sets the team for PLAYER (e.g. 2:2).
@@ -1180,10 +1207,16 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  * Examples:
  * 1) "Bob" will host a 2 player game on the Arcadia map:
  * -autostart="scenarios/Arcadia" -autostart-host -autostart-host-players=2 -autostart-playername="Bob"
+ *  "Alice" joins the match as player 2:
+ * -autostart="scenarios/Arcadia" -autostart-client=127.0.0.1 -autostart-playername="Alice"
+ * The players use the developer overlay to control players.
  *
  * 2) Load Alpine Lakes random map with random seed, 2 players (Athens and Britons), and player 2 is PetraBot:
  * -autostart="random/alpine_lakes" -autostart-seed=-1 -autostart-players=2 -autostart-civ=1:athen -autostart-civ=2:brit -autostart-ai=2:petra
-*/
+ *
+ * 3) Observe the PetraBot on a triggerscript map:
+ * -autostart="random/jebel_barkal" -autostart-seed=-1 -autostart-players=2 -autostart-civ=1:athen -autostart-civ=2:brit -autostart-ai=1:petra -autostart-ai=2:petra -autostart-player=-1
+ */
 bool Autostart(const CmdLineArgs& args)
 {
 	CStr autoStartName = args.Get("autostart");
@@ -1448,10 +1481,6 @@ bool Autostart(const CmdLineArgs& args)
 	// Add map settings to game attributes
 	scriptInterface.SetProperty(attrs, "settings", settings);
 
-	JS::RootedValue mpInitData(cx);
-	scriptInterface.Eval("({isNetworked:true, playerAssignments:{}})", &mpInitData);
-	scriptInterface.SetProperty(mpInitData, "attribs", attrs);
-
 	// Get optional playername
 	CStrW userName = L"anonymous";
 	if (args.Has("autostart-playername"))
@@ -1524,7 +1553,7 @@ bool Autostart(const CmdLineArgs& args)
 
 	if (args.Has("autostart-host"))
 	{
-		InitPs(true, L"page_loading.xml", &scriptInterface, mpInitData);
+		InitPsAutostart(true, attrs);
 
 		size_t maxPlayers = 2;
 		if (args.Has("autostart-host-players"))
@@ -1543,7 +1572,7 @@ bool Autostart(const CmdLineArgs& args)
 	}
 	else if (args.Has("autostart-client"))
 	{
-		InitPs(true, L"page_loading.xml", &scriptInterface, mpInitData);
+		InitPsAutostart(true, attrs);
 
 		g_NetClient = new CNetClient(g_Game, false);
 		g_NetClient->SetUserName(userName);
@@ -1557,18 +1586,18 @@ bool Autostart(const CmdLineArgs& args)
 	}
 	else
 	{
-		g_Game->SetPlayerID(1);
+		g_Game->SetPlayerID(args.Has("autostart-player") ? args.Get("autostart-player").ToInt() : 1);
+
 		g_Game->StartGame(&attrs, "");
 
-		LDR_NonprogressiveLoad();
-
-		PSRETURN ret = g_Game->ReallyStartGame();
-		ENSURE(ret == PSRETURN_OK);
-
 		if (nonVisual)
-			return true;
-
-		InitPs(true, L"page_session.xml", NULL, JS::UndefinedHandleValue);
+		{
+			// TODO: Non progressive load can fail - need a decent way to handle this
+			LDR_NonprogressiveLoad();
+			ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
+		}
+		else
+			InitPsAutostart(false, attrs);
 	}
 
 	return true;
@@ -1583,14 +1612,13 @@ bool AutostartVisualReplay(const std::string& replayFile)
 	g_Game->SetPlayerID(-1);
 	g_Game->StartVisualReplay(replayFile);
 
-	// TODO: Non progressive load can fail - need a decent way to handle this
-	LDR_NonprogressiveLoad();
-
-	ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
-
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue attrs(cx, g_Game->GetSimulation2()->GetInitAttributes());
 
-	InitPs(true, L"page_session.xml", &scriptInterface, JS::UndefinedHandleValue);
+	InitPsAutostart(false, attrs);
+
 	return true;
 }
 
