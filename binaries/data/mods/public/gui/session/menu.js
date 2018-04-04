@@ -77,7 +77,10 @@ var g_FlushTributing = function() {};
 function initMenu()
 {
 	Engine.GetGUIObjectByName("menu").size = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
-	Engine.GetGUIObjectByName("menuExitButton").enabled = !Engine.IsAtlasRunning();
+
+	// TODO: Atlas should pass g_GameAttributes.settings
+	for (let button of ["menuExitButton", "summaryButton", "objectivesButton", "diplomacyButton"])
+		Engine.GetGUIObjectByName(button).enabled = !Engine.IsAtlasRunning();
 }
 
 function updateMenuPosition(dt)

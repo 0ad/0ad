@@ -696,8 +696,8 @@ function updateTopPanel()
 	resPop.size = resPopSize;
 
 	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("diplomacyButton1").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("tradeButton1").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("diplomacyButton").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("tradeButton").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("observerText").hidden = isPlayer;
 
 	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
