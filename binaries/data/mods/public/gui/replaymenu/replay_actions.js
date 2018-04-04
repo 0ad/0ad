@@ -73,7 +73,6 @@ function reallyStartVisualReplay(replayDirectory)
 			}
 		},
 		"savedGUIData": "",
-		"isReplay": true,
 		"replaySelectionData": createReplaySelectionData(replayDirectory)
 	});
 }

@@ -51,7 +51,7 @@ var jebelBarkal_templates = deepfreeze(Object.keys(jebelBarkal_templateClasses).
 */
 var jebelBarkal_formations = [
 	"special/formations/line_closed",
-	"special/formations/column_closed"
+	"special/formations/box"
 ];
 
 /**
@@ -108,7 +108,7 @@ var jebelBarkal_attackInterval = () => randFloat(5, 7);
 var jebelBarkal_firstAttackTime = difficulty =>
 	jebelBarkal_attackInterval() +
 	2 * Math.max(0, 3 - difficulty) +
-	(TriggerHelper.GetAllPlayersEntitiesByClass("CivCentre").length ? 0 : 4);
+	(TriggerHelper.GetAllPlayersEntitiesByClass("CivCentre").length ? 0 : 9 - difficulty);
 
 /**
  * Account for varying mapsizes and number of players when spawning attackers.
@@ -240,6 +240,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": scaleByTime(time, 1, 0)
 			}
 		],
+		"formations": jebelBarkal_formations,
 		"targetClasses": () => "Unit+!Ship"
 	},
 	{
@@ -260,6 +261,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": scaleByTime(time, 1, 0)
 			}
 		],
+		"formations": jebelBarkal_formations,
 		"targetClasses": () => "Unit+!Ship"
 	},
 	{
@@ -285,6 +287,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": randFloat(0.05, 0.2)
 			}
 		],
+		"formations": jebelBarkal_formations,
 		"targetClasses": () => "Unit+!Ship"
 	},
 	{
@@ -305,6 +308,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": scaleByTime(time, 1, 0)
 			}
 		],
+		"formations": jebelBarkal_formations,
 		"targetClasses": () => "Unit+!Ship"
 	},
 	{
@@ -320,6 +324,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": scaleByTime(time, 0, 1)
 			}
 		],
+		"formations": jebelBarkal_formations,
 		"targetClasses": () => "Unit+!Ship"
 	},
 	{
@@ -331,10 +336,11 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": 1
 			}
 		],
+		"formations": jebelBarkal_formations,
 		"targetClasses": () => "Unit+!Ship"
 	},
 	{
-		"buildingClasses": ["ElephantStables"],
+		"buildingClasses": ["ElephantStables", "Wonder"],
 		"unitCount": time => scaleByTime(time, 0, 12),
 		"unitComposition": (time, heroes) => [
 			{
@@ -342,6 +348,7 @@ var jebelBarkal_attackerGroup_balancing = [
 				"frequency": 1
 			}
 		],
+		"formations": [],
 		"targetClasses": () => pickRandom(["Defensive SiegeEngine Monument Wonder", "Structure"])
 	}
 ];
@@ -507,54 +514,51 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 
 	let time = TriggerHelper.GetMinutes();
 	let groupSizeFactor = jebelBarkal_attackerGroup_sizeFactor(TriggerHelper.GetNumberOfPlayers(), this.numInitialSpawnPoints, this.GetDifficulty());
+	let patrolPoints = this.GetTriggerPoints(jebelBarkal_attackerGroup_triggerPointPatrol);
 	this.debugLog("Attacker wave");
 
 	let spawnedAnything = false;
-	for (let spawnEnt of this.jebelBarkal_attackerGroupSpawnPoints)
-	{
-		let spawnPointBalancing = jebelBarkal_attackerGroup_balancing.find(balancing =>
-			TriggerHelper.EntityMatchesClassList(spawnEnt, balancing.buildingClasses));
-
-		let unitCount = Math.round(groupSizeFactor * spawnPointBalancing.unitCount(time));
-		if (unitCount <= 0)
-			continue;
-
-		let templateCounts = TriggerHelper.BalancedTemplateComposition(spawnPointBalancing.unitComposition(time, this.jebelBarkal_heroes), unitCount);
-
-		this.debugLog("Spawning " + unitCount + " attackers at " + uneval(spawnPointBalancing.buildingClasses) + " " + spawnEnt + ":\n" + uneval(templateCounts));
-
-		if (dryRun)
-			continue;
-
-		let groupEntities = this.JebelBarkal_SpawnTemplates(spawnEnt, templateCounts);
-		spawnedAnything = true;
-
-		let isElephant = TriggerHelper.EntityMatchesClassList(groupEntities[0], "Elephant");
-
-		if (!isElephant)
-			TriggerHelper.SetUnitFormation(jebelBarkal_playerID, groupEntities, pickRandom(jebelBarkal_formations));
-
-		let target = pickRandom(targets);
-		if (!target)
-			continue;
-
-		let patrolTargets = [target].concat(shuffleArray(this.GetTriggerPoints(jebelBarkal_attackerGroup_triggerPointPatrol))).slice(0, jebelBarkal_patrolPointCount);
-		for (let patrolTarget of patrolTargets)
+	for (let spawnPointBalancing of jebelBarkal_attackerGroup_balancing)
+		for (let spawnEnt of TriggerHelper.MatchEntitiesByClass(this.jebelBarkal_attackerGroupSpawnPoints, spawnPointBalancing.buildingClasses))
 		{
-			let pos = TriggerHelper.GetEntityPosition2D(patrolTarget);
-			ProcessCommand(jebelBarkal_playerID, {
-				"type": "patrol",
-				"entities": groupEntities,
-				"x": pos.x,
-				"z": pos.y,
-				"targetClasses": {
-					"attack": spawnPointBalancing.targetClasses()
-				},
-				"queued": true,
-				"allowCapture": false
-			});
+			let unitCount = Math.round(groupSizeFactor * spawnPointBalancing.unitCount(time));
+			if (unitCount <= 0)
+				continue;
+
+			let templateCounts = TriggerHelper.BalancedTemplateComposition(spawnPointBalancing.unitComposition(time, this.jebelBarkal_heroes), unitCount);
+
+			this.debugLog("Spawning " + unitCount + " attackers at " + uneval(spawnPointBalancing.buildingClasses) + " " +
+				spawnEnt + ":\n" + uneval(templateCounts));
+
+			if (dryRun)
+				continue;
+
+			let spawnedEntities = this.JebelBarkal_SpawnTemplates(spawnEnt, templateCounts);
+			spawnedAnything = true;
+
+			let formation = pickRandom(spawnPointBalancing.formations);
+			if (formation)
+				TriggerHelper.SetUnitFormation(jebelBarkal_playerID, spawnedEntities, formation);
+
+			let entityGroups = formation ? [spawnedEntities] : spawnedEntities.reduce((entityGroup, ent) => entityGroup.concat([[ent]]), []);
+
+			for (let i = 0; i < jebelBarkal_patrolPointCount; ++i)
+				for (let entities of entityGroups)
+				{
+					let pos = TriggerHelper.GetEntityPosition2D(pickRandom(i == 0 ? targets : patrolPoints));
+					ProcessCommand(jebelBarkal_playerID, {
+						"type": "patrol",
+						"entities": entities,
+						"x": pos.x,
+						"z": pos.y,
+						"targetClasses": {
+							"attack": spawnPointBalancing.targetClasses()
+						},
+						"queued": true,
+						"allowCapture": false
+					});
+				}
 		}
-	}
 
 	if (spawnedAnything)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
