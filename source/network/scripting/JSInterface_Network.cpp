@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,11 @@
 u16 JSI_Network::GetDefaultPort(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return PS_DEFAULT_PORT;
+}
+
+bool JSI_Network::HasNetClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return !!g_NetClient;
 }
 
 JS::Value JSI_Network::FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, int port)
@@ -214,6 +219,7 @@ void JSI_Network::SetTurnLength(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), 
 void JSI_Network::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<u16, &GetDefaultPort>("GetDefaultPort");
+	scriptInterface.RegisterFunction<bool, &HasNetClient>("HasNetClient");
 	scriptInterface.RegisterFunction<JS::Value, int, &FindStunEndpoint>("FindStunEndpoint");
 	scriptInterface.RegisterFunction<void, CStrW, u16, CStr, bool, &StartNetworkHost>("StartNetworkHost");
 	scriptInterface.RegisterFunction<void, CStrW, CStr, u16, bool, CStr, &StartNetworkJoin>("StartNetworkJoin");

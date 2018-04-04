@@ -52,7 +52,7 @@ var g_IsController;
 /**
  * True if this is a multiplayer game.
  */
-var g_IsNetworked = false;
+const g_IsNetworked = Engine.HasNetClient();
 
 /**
  * Whether we have finished the synchronization and
@@ -263,7 +263,6 @@ function init(initData, hotloadData)
 
 	if (initData)
 	{
-		g_IsNetworked = initData.isNetworked;
 		g_IsController = initData.isController;
 		g_PlayerAssignments = initData.playerAssignments;
 		g_ReplaySelectionData = initData.replaySelectionData;

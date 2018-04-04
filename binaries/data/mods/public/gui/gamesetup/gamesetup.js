@@ -225,7 +225,7 @@ var g_TriggerDifficultyList;
 /**
  * Whether this is a single- or multiplayer match.
  */
-var g_IsNetworked;
+const g_IsNetworked = Engine.HasNetClient();
 
 /**
  * Is this user in control of game settings (i.e. singleplayer or host of a multiplayergame).
@@ -1106,7 +1106,6 @@ function init(attribs)
 		return;
 	}
 
-	g_IsNetworked = attribs.type != "offline";
 	g_IsController = attribs.type != "client";
 	g_IsTutorial = !!attribs.tutorial;
 	g_ServerName = attribs.serverName;
@@ -1507,7 +1506,6 @@ function handleGamestartMessage(message)
 
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": g_GameAttributes,
-		"isNetworked": g_IsNetworked,
 		"playerAssignments": g_PlayerAssignments,
 		"isController": g_IsController
 	});
@@ -2237,7 +2235,6 @@ function launchGame()
 		Engine.StartGame(g_GameAttributes, playerID);
 		Engine.SwitchGuiPage("page_loading.xml", {
 			"attribs": g_GameAttributes,
-			"isNetworked": g_IsNetworked,
 			"playerAssignments": g_PlayerAssignments
 		});
 	}
