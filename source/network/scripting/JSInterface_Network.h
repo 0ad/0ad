@@ -24,6 +24,7 @@
 namespace JSI_Network
 {
 	u16 GetDefaultPort(ScriptInterface::CxPrivate* pCxPrivate);
+	bool HasNetServer(ScriptInterface::CxPrivate* pCxPrivate);
 	bool HasNetClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void StartNetworkGame(ScriptInterface::CxPrivate* pCxPrivate);
 	void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs1);

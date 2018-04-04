@@ -228,9 +228,9 @@ var g_TriggerDifficultyList;
 const g_IsNetworked = Engine.HasNetClient();
 
 /**
- * Is this user in control of game settings (i.e. singleplayer or host of a multiplayergame).
+ * Is this user in control of game settings (i.e. is a network server, or offline player).
  */
-var g_IsController;
+const g_IsController = !g_IsNetworked || Engine.HasNetServer();
 
 /**
  * Whether this is a tutorial.
@@ -1106,7 +1106,6 @@ function init(attribs)
 		return;
 	}
 
-	g_IsController = attribs.type != "client";
 	g_IsTutorial = !!attribs.tutorial;
 	g_ServerName = attribs.serverName;
 	g_ServerPort = attribs.serverPort;
@@ -1506,8 +1505,7 @@ function handleGamestartMessage(message)
 
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": g_GameAttributes,
-		"playerAssignments": g_PlayerAssignments,
-		"isController": g_IsController
+		"playerAssignments": g_PlayerAssignments
 	});
 }
 
@@ -2363,7 +2361,6 @@ function openAIConfig(playerSlot)
 
 	Engine.PushGuiPage("page_aiconfig.xml", {
 		"callback": "AIConfigCallback",
-		"isController": g_IsController,
 		"playerSlot": playerSlot,
 		"id": g_GameAttributes.settings.PlayerData[playerSlot].AI,
 		"difficulty": g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,

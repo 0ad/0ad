@@ -45,14 +45,14 @@ var g_Ambient = ["audio/ambient/dayscape/day_temperate_gen_03.ogg"];
 const g_GameAttributes = deepfreeze(Engine.GetInitAttributes());
 
 /**
- * Is this user in control of game settings (i.e. is a network server, or offline player).
- */
-var g_IsController;
-
-/**
  * True if this is a multiplayer game.
  */
 const g_IsNetworked = Engine.HasNetClient();
+
+/**
+ * Is this user in control of game settings (i.e. is a network server, or offline player).
+ */
+var g_IsController = !g_IsNetworked || Engine.HasNetServer();
 
 /**
  * Whether we have finished the synchronization and
@@ -263,7 +263,6 @@ function init(initData, hotloadData)
 
 	if (initData)
 	{
-		g_IsController = initData.isController;
 		g_PlayerAssignments = initData.playerAssignments;
 		g_ReplaySelectionData = initData.replaySelectionData;
 		g_HasRejoined = initData.isRejoining;

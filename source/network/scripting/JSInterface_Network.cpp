@@ -34,9 +34,14 @@ u16 JSI_Network::GetDefaultPort(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return PS_DEFAULT_PORT;
 }
 
+bool JSI_Network::HasNetServer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return g_NetServer;
+}
+
 bool JSI_Network::HasNetClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	return !!g_NetClient;
+	return g_NetClient;
 }
 
 JS::Value JSI_Network::FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, int port)
@@ -219,6 +224,7 @@ void JSI_Network::SetTurnLength(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), 
 void JSI_Network::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<u16, &GetDefaultPort>("GetDefaultPort");
+	scriptInterface.RegisterFunction<bool, &HasNetServer>("HasNetServer");
 	scriptInterface.RegisterFunction<bool, &HasNetClient>("HasNetClient");
 	scriptInterface.RegisterFunction<JS::Value, int, &FindStunEndpoint>("FindStunEndpoint");
 	scriptInterface.RegisterFunction<void, CStrW, u16, CStr, bool, &StartNetworkHost>("StartNetworkHost");
