@@ -7,6 +7,7 @@
       <props>
         <prop actor="units/carthaginians/cavalry_swordsman_b_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/cav_blanket_iber_basic.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_swordsman_shield.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
@@ -26,14 +27,12 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml">
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+    <variant name="gather_meat">
       <props>
-        <prop actor="props/horse/cav_blanket_iber_basic.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant file="quadraped/base_horse_run.xml">
-      <props>
-        <prop actor="props/horse/cav_blanket_iber_basic.xml" attachpoint="root"/>
+        <prop actor="" attachpoint="rider"/>
+        <prop actor="units/carthaginians/cavalry_swordsman_b_r.xml" attachpoint="rider_R"/>
       </props>
     </variant>
   </group>

@@ -26,6 +26,7 @@
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Homunkul <Behal.inc@gmail.com>, 2014
 # Igor <ggg2134@mail.ru>, 2013
+# Ilya Andreev, 2018
 # insolor, 2014
 # Ivan <lis84@mail.ru>, 2013
 # Ivan, 2014-2015
@@ -57,7 +58,7 @@
 # Vic Grin <aliented@mail.ru>, 2016
 # Vitalii Mostipaka <imprtat@gmail.com>, 2013
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
-# Vladislav Belov <vladislavbelovdev@gmail.com>, 2015-2017
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2015-2018
 # Vladislav <swsh0t@gmail.com>, 2013
 # vlitomsk <kvas.omsk@gmail.com>, 2014
 # webslavic <webslavic@yahoo.com>, 2014
@@ -79,8 +80,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-31 18:18+0000\n"
+"Last-Translator: Ilya Andreev\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -283,7 +284,7 @@ msgstr "Выберите размер карты. (Большие размеры
 
 #: gui/gamesetup/gamesetup.js:544
 msgid "Biome"
-msgstr ""
+msgstr "Биом"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Select the flora and fauna."
@@ -350,23 +351,23 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "Общее число реликвий, появившихся на карте. Победа Реликвии наиболее вероятна только с одной или двумя реликвиями. Важно захватывать много реликвий для получения бонусов ауры."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Relic Duration"
-msgstr ""
+msgstr "Длительность реликвии"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Количество минут до того как игрок не достиг Победы Реликвии."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Продолжительность Чуда"
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Количество минут до того как игрок не достиг Победы Чуда."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Game Speed"
@@ -390,11 +391,11 @@ msgstr "Выберите цивилизацию для этого игрока"
 
 #: gui/gamesetup/gamesetup.js:827
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Герой Гарнизона"
 
 #: gui/gamesetup/gamesetup.js:828
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "Переключить, могут ли герои быть гарнизонами."
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Nomad"
@@ -517,22 +518,22 @@ msgstr "Настройте Искусственный Интеллект"
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Посмотреть Историю / Дерево технологий\nПоследнее открытое будет вновь открыто при нажатии."
 
 #: gui/gamesetup/gamesetup.js:1173
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Переключить %(name)s вкладку настроек."
 
 #: gui/gamesetup/gamesetup.js:1174
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Используйте %(hotkey)s для перемещения вкладки настроек вниз."
 
 #: gui/gamesetup/gamesetup.js:1175
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Используйте %(hotkey)s для перемещения вкладки настроек вверх."
 
 #: gui/gamesetup/gamesetup.js:1692
 msgctxt "map selection"
@@ -541,16 +542,16 @@ msgstr "Случайный"
 
 #: gui/gamesetup/gamesetup.js:1694
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Выбор случайной карты из имеющихся."
 
 #: gui/gamesetup/gamesetup.js:1726
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Случайная"
 
 #: gui/gamesetup/gamesetup.js:1727
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Выбор случайного биома."
 
 #: gui/gamesetup/gamesetup.js:2058
 #, javascript-format
@@ -726,7 +727,7 @@ msgstr "Выбрать команду"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Показать многопользовательское лобби в диалоговом окне."
 
 #: gui/text/quotes.txt:1
 msgid ""
@@ -958,7 +959,7 @@ msgstr "\"Человек по своей природе есть политич�
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle (\"Politics, V. 1311a.11)"
-msgstr ""
+msgstr "\"Олигарх и тиран не доверяют народу и потому лишают их оружия\". - Аристотель (\"Политика, V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
@@ -1157,7 +1158,7 @@ msgstr "\"Чтобы сделаться богатым, нужно стать б
 
 #: gui/text/quotes.txt:64
 msgid "\"It is hard to be governed by one's inferior.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"Тяжело быть под управлением подчинённого.\" - Демокрит (фрагмент)"
 
 #: gui/text/quotes.txt:65
 msgid ""
@@ -1254,7 +1255,7 @@ msgstr "\"Кто доблестен, дерзай, бездействуют ли
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides (\"Meleager\")"
-msgstr ""
+msgstr "\"Трусов не считают в сражении; они там, но не в нём.\" - Эврипид (\"Мелеагр\")"
 
 #: gui/text/quotes.txt:79
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
@@ -1631,7 +1632,7 @@ msgid ""
 "all.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 40.2)"
-msgstr ""
+msgstr "\"Вместо того чтобы смотреть на дискуссию как камень преткновения на пути к действию, мы считаем это обязательным перед любым разумным действием.\" - Перикл в своей похоронной речи в честь афинян, погибших в первый год войны (Фукидид, \"История Пелопоннесской войны\", II. 40.2)"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -1646,7 +1647,7 @@ msgid ""
 "\"Future ages will wonder at us, as the present age wonders at us now.\" - "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
 " the war (Thucydides, \"History of the Peloponnesian War\", II. 41.5)"
-msgstr ""
+msgstr "\"Будущие века будут удивлять нас так же, как настоящее время удивляет нас сейчас\" - Перикл в своей похоронной речи в честь афинян, погибших в первый год войны (Фукидид, \"История Пелопоннесской войны\", II. 41.5)"
 
 #: gui/text/quotes.txt:135
 msgid ""
@@ -1824,7 +1825,7 @@ msgid ""
 "all cities, nations, and authorities must, like men, meet their doom.\" - "
 "Polybius, eyewitness to the destruction of Carthage (\"Histories\", XXXVIII."
 " 22)"
-msgstr ""
+msgstr "\"Сципион \\[Эмилиан] смотрел на погибающий город \\[Карфаген] и в последние минуты его полного разрушения он, как говорят, прослезился и стал при всех рыдать за своих врагов. И понял он, что все города, народы и власть имущие должны как мужчины, встретить свою погибель.\" - Полибий, очевидец разрушения Карфагена (\"История\", XXXVIII. 22)"
 
 #: gui/text/quotes.txt:156
 msgid ""
@@ -1844,7 +1845,7 @@ msgstr "\"Человек, оказавшийся в плену своих стр
 msgid ""
 "\"Do not say few things in many words, but many things in few words.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Говори не о немногих вещах во многих словах, а о многих вещах в немногих словах.\" - Пифагор, (Стобей, \"Флорилегиум\", 24) "
 
 #: gui/text/quotes.txt:159
 msgid ""
@@ -2155,4 +2156,4 @@ msgstr "\"Мужчины у меня превратились в женщин, �
 msgid ""
 "\"For a thinking man is where Wisdom is at home.\" - Zoroaster, founder of "
 "the Zoroastrian religion (\"Ahunuvaiti Gatha\", yasna 30.9)"
-msgstr ""
+msgstr "\"Для думающего человека  — там, где Мудрость  там и дом\". - Зоростер, основатель зороастрийской религии (\"Ахунувайти Гата\", ясна 30.9)"

@@ -11,12 +11,13 @@
 # curieux de l'être <skimandco@gmail.com>, 2017
 # Jo Du <jojo337@live.fr>, 2017
 # David D, 2018
+# oiseauroch <tobollive@aol.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2018-01-29 09:05+0100\n"
 "PO-Revision-Date: 2018-01-29 09:05+0100\n"
-"Last-Translator: David D, 2018\n"
+"Last-Translator: oiseauroch <tobollive@aol.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/wildfire-games/teams/17418/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -99,6 +100,8 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Entraînez un groupe  tirailleurs en maintenant %(hotkey)s et en cliquant sur"
+" l'icone tirailleurs dans le Centre-ville."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
@@ -143,6 +146,10 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"Entrainez un groupe de Hoplites depuis le centre ville. Sélectionnez le "
+"centre ville puis, avec ce dernier sélectionné, faites un clic droit sur un "
+"arbre proche. Les unités du centre ville iront automatiquement collecter du "
+"bois."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
@@ -257,12 +264,17 @@ msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "barracks."
 msgstr ""
+"Pendant que vous attendez que la phase change, vous devriez créer plus de "
+"soldats à la caserne."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Maintenant que vous êtes en phase des cités, construisez une forteresse à "
+"proximité (collectez de la pierre si besoin) et utilisez la pour créer 2 "
+"béliers."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -270,6 +282,10 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Stoppez tout vos soldats collectant des ressources et formez à la place des "
+"petits groupes pour trouver le centre ville ennemi sur la carte. Une fois la"
+" base ennemie trouvée, envoyez vos armes de siège et tout vos soldats "
+"restants la détruire.\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
@@ -298,12 +314,16 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"\n"
+"Avant de commencer, vous pouver basculer entre les modes plein écran et fenêtre en utilisant %(hotkey)s"
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Vous pouvez changer le niveau de zoom en utilisant la molette de la souris "
+"et la vue caméra en utilisant n'importe qu'elle flèche du clavier\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
@@ -315,6 +335,9 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"\n"
+"vous pouvez aussi basculer l'affichage du tutoriel à n'importe quel moment en utilisant %(hotkey)s.\n"
+" \n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -336,6 +359,14 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Maintenant que le centre ville est sélectionné, vous pouvez constater qu'un "
+"tableau de production va apparaitre en bas à droite de l'écran, détaillant "
+"les actions que le bâtiment supporte. Dans ce tableau de production, les "
+"actions disponibles ne sont pas masquées. Les icônes masquées par du gris ou"
+" du rouge indiquent respectivement que l'action n'a pas été débloquée ou que"
+" vous n'avez pas assez de ressources pour effectuer cette action. Vous "
+"pouvez aussi survoler n'importe quelle icône avec votre curseur pour voir "
+"une info-bulle avec plus de détails.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -345,6 +376,11 @@ msgid ""
 "that advancing to 'Town Phase' requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"La première rangée de boutons contient les unités qui peuvent être "
+"entrainées. Les rangées en dessous indiquent des technologies à rechercher. "
+"Passer le curseur de la souris sur l'icône \"II\". L'info-bulle indique "
+"qu'avancer vers la \"phase des villes\" nécessite de construire plus de "
+"structures ainsi que plus de ressources de nourriture et de bois."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -356,6 +392,15 @@ msgid ""
 "citizen soldiers can gather any land resources while cavalry citizen "
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Au départ, vous possédez deux types d'unités principales : les citoyennes et"
+" les citoyens-soldats. Les citoyennes sont des unités purement économiques; "
+"elles ont peu de PV, pas d'armure et peu ou pas d'attaque. Les citoyens-"
+"soldats sont par défaut des ouvriers mais en cas de besoin, ils peuvent "
+"utiliser une arme pour combattre. Vous avez deux catégories de citoyens-"
+"soldats : l'infanterie et la cavalerie. Les citoyennes et l'infanterie des "
+"citoyens-soldats peuvent récupérer toutes les ressources terrestres tandis "
+"que la cavalerie des citoyens-soldats peut seulement récupérer la viande "
+"provenant des animaux chassés.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -373,6 +418,10 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"pour l'instant, la nourriture et le bois sont les ressources les plus "
+"importantes pour développer votre économie, commençons donc par collecter de"
+" la nourriture. Les femmes collectent plus rapidement de la nourriture ne "
+"provenant pas des animaux que leurs homologues masculins.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -393,6 +442,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Cliquez sur une d'entre elles puis ajoutez des unités additionnelles à "
+"votre sélection avec un clic sur chaque unité supplémentaire tout en "
+"maintenant maj appuyé (vous pouvez aussi utiliser la selection rectangle).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -411,6 +463,11 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"Vous pouvez cliquer sur une partie vide de la carte pour annuler la "
+"sélection. Essayez chacune des méthodes avant d'indiquer à toutes vos "
+"citoyennes d'aller collecter le raisin au sud est de votre centre ville à "
+"l'aide d'un clic droit sur les vignes quand vous avez toutes les citoyennes "
+"sélectionnées."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -466,6 +523,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Sélectionnez le Centre Ville, puis placez le curseur sur un arbre et faites "
+"un clic droit quand vous voyez votre curseur changer pour une icône de bois."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
@@ -484,14 +543,22 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Les citoyens soldats sont meilleurs que les citoyennes pour récupérer du "
+"bois, sélectionnez le centre ville et cliquez sur la seconde icône d'unité,"
+"  l'hoplite en maintenant Maj appuyé. (maintenir maj appuyé produit un lot "
+"de 5 unités). Vous pouvez également entrainer des unités individuellement en"
+" cliquant simplement, mais entrainer 5 unités ensemble prends moins de temps"
+" que 5 unités individuellement."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
+"N'oubliez pas de maintenir Maj appuyé et cliquez pour entraîner plusieurs "
+"unités. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Maintenez Maj appuyé et cliquez sur l'icône 'Hoplite' "
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
@@ -542,6 +609,14 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Mais comme ils doivent les ramener au centre ville pour les déposer, "
+"l’efficacité de leur collecte souffre de la distance. Pour régler ça, nous "
+"pouvons construire un entrepôt, un dépôt pour le bois, la pierre et le "
+"métal, près des arbres. Pour ça, sélectionnez vos 5 nouveaux citoyens "
+"soldats et regardez le panneau de construction en bas à droite, cliquez sur "
+"l'icône de l'entrepôt et bougez la souris au plus proche des arbres que vous"
+" voulez collecter puis cliquez sur un emplacement valide pour construire le "
+"dépôt.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -555,6 +630,8 @@ msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"Les travailleurs sélectionnés commenceront automatiquement à construire le "
+"bâtiment une fois que vous aurez placé la fondation."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
@@ -570,14 +647,18 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
+"Créons quelquesCitoyennes pour cueillir plus de nourriture. Sélectionnez le "
+"centre ville et cliquez sur l'icone 'Citoyenne' tout en mainteant Maj "
+"enfoncé pour en entrainer 5."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
+"Noubliez pas de maintenir Maj et cliquez pour entraîner plusieurs unités. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "Maintenez Maj appuyé et cliquez sur l'icône 'Citoyenne' "
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -642,12 +723,25 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Sélectionnez deux de vos nouvelles citoyennes et demandez leur de construire"
+" ces maisons dans les espaces vides à l'est du centre ville. Pour cela, "
+"après avoir sélectionné les citoyennes, cliquez sur l'icône de la maison en "
+"bas à droite, et cliquez sur un emplacement de la carte ou vous voulez "
+"construire la première maison en maintenant Maj appuyé, cliquez ensuite sur "
+"l'emplacement de la seconde maison en maintenant toujours la touche Maj. "
+"(Quand on donne des ordres, maintenir Maj met à la suite les ordres dans la "
+"queue et les unités iront automatiquement sur les prochains ordres quand ils"
+" auront fini leurs travaux). Appuyez sur echap pour enlever le curseur "
+"maison pour éviter de créer des maisons sur toute la carte. \n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two female citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"Rappel : Pour sélectionner uniquement 2 citoyennes, cliquez sur la première,"
+" puis en maintenant maj appuyé, cliquez sur la seconde pour l'ajouter à la "
+"sélection."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -674,6 +768,8 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Sélectionnez les trois autres citoyennes (inactives) et ordonnez leurs de "
+"construire une ferme au centre du vaste espace à l'ouest du centre ville.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -695,6 +791,13 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Si vous essayez de selestionner les trois citoyennes inactives en "
+"selectionnant un rectangle autour d'elles, vous risquez de selectionner "
+"accidentellement d'autre unités. Pour éviter ça, maintenez la touche I "
+"pendant la selection afin de ne selectionner ques les unités inactives. Si "
+"vous selectionnez accidentellement une unité de cavalerie, maintenez la "
+"touche Ctrl et cliquez sur l'icone cavalerie du panneau de selection en bas "
+"de l'écran pour retirer l'unité de cavalerie de la selection courante.  "
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
@@ -720,6 +823,9 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Lorsque les deux maisons seront construites, sélectionnez vos deux "
+"citoyennes et demandez-leurs de construire un champ le plus près possible de"
+" la ferme, qui est un dépôt pour tous types de nourriture."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
@@ -766,14 +872,16 @@ msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Maintenant, cliquez trois fois sur l'icône de la Citoyenne en bas à droite "
+"pour entraîner trois fermiers supplémentaires."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "cliquez sans maintenir Maj appuyé pour entraîner une seule unité."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Cliquez sur l'icône 'Citoyenne'."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -791,6 +899,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Le taux de récolte d'agriculture, par exemple, peut être amélioré avec une "
+"technologie disponible dans la ferme. Sélectionnez la ferme et cherchez dans"
+" son tableau de production en bas à droite. Vous verrez les recherches "
+"technologiques disponibles. Survoler les icônes avec votre curseur pour voir"
+" les coûts et bénéfices puis cliquez sur celle que vous voulez rechercher. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -798,6 +911,10 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the 'Town Phase' icon to see what is still needed.\n"
 msgstr ""
+"Nous devrions commencer à nous préparer à passer à la \"Phase des Villes\", "
+"qui débloquera beaucoup d'unités et de bâtiments. Sélectionnez le centre "
+"ville et passez votre curseur sur l'icône Phase des Villes pour voir ce qui "
+"est nécessaire.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -874,6 +991,12 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"Pour cela, nous pourrions sélectionner trois citoyens soldats et faire un "
+"clic droit sur la mine de pierre à l'ouest du centre ville (un curseur de "
+"pierre apparait quand vous la survolez avec la souris pendant qu'un citoyen "
+"est sélectionné). Cependant ces soldats récoltaient du bois, et portent "
+"peut-être du bois qui serait perdu  s'ils commencaient à récolter une autre "
+"ressource."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -883,6 +1006,11 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"C'est pourquoi, nous devrions leur ordonner de déposer leur bois dans le "
+"centre ville qui est sur le chemin. Pour ce faire, on va ordonner à la suite"
+" en maintenant la touche Maj appuyée : Sélectionnez vos soldats, clic droit"
+"  sur le centre ville puis finalement clic droit sur la mine de pierre pour "
+"la récolter tout en maintenant la touche Maj appuyée.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""

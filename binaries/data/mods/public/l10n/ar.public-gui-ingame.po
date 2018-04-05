@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Eslam obeidat <islamobidat92@gmail.com>, 2018
 # Hamza ESSAD <essadhamza@outlook.fr>, 2017
 # ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2017
 # jalal natsheh <jalal-natsheh@hotmail.com>, 2017
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-13 21:02+0000\n"
+"Last-Translator: Eslam obeidat <islamobidat92@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1034,7 +1035,7 @@ msgstr "جِد عاملًا خاملًا"
 #: gui/session/session.js:457 gui/session/session.js:461
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "تبديل ألوان الدبلوماسية"
 
 #: gui/session/session.js:464
 #, javascript-format
@@ -1059,7 +1060,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: عرض السجل / بنية الشجرة\nستتم إعادة فتح آخر ما فتح سابقاً عند النقر."
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1110,19 +1111,19 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s لتغيير الترتيب."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
-msgstr ""
+msgstr "غير مرتب"
 
 #: gui/session/session.js:1260
 msgid "Descending"
-msgstr ""
+msgstr "تنازلي"
 
 #: gui/session/session.js:1260
 msgid "Ascending"
-msgstr ""
+msgstr "تصاعدي"
 
 #: gui/session/session.js:1286
 #, javascript-format
@@ -1425,7 +1426,7 @@ msgstr "الملخّص"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr ""
+msgstr "ردهة "
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"

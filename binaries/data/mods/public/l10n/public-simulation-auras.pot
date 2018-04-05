@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-02-23 09:05+0100\n"
-"PO-Revision-Date: 2018-02-23 09:05+0100\n"
+"POT-Creation-Date: 2018-04-04 14:47+0200\n"
+"PO-Revision-Date: 2018-04-04 14:47+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -730,7 +730,8 @@ msgid "Warrior Queen"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.json:auraDescription
-msgid "+20% attack and +2 capture for soldiers and elephants."
+#: simulation/data/auras/units/heroes/mace_hero_philip.json:auraDescription
+msgid "+20% attack and +2 capture for champion units."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.json:auraName
@@ -757,15 +758,26 @@ msgstr ""
 msgid "Enemy healrate reduced by 50%."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/kush_hero_nastasen.json:auraName
-msgid "Saviour of Kush"
+#: simulation/data/auras/units/heroes/kush_hero_nastasen_1.json:auraName
+msgid "Savior of Kush"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/kush_hero_nastasen.json:auraDescription
+#: simulation/data/auras/units/heroes/kush_hero_nastasen_1.json:auraDescription
 msgid ""
 "Own units +10% attack.\n"
 "Nastasen acquired lots of bounty from the defeated invaders. Gain +50% loot "
 "from killing enemy units."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_nastasen_2.json:auraName
+msgid "Gift of Warships"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/kush_hero_nastasen_2.json:auraDescription
+msgid ""
+"Train Ptolemaic Mercenary Triremes at -25% resource cost.\n"
+"Crushing the Ptolemaic invasion of Kush, Nastasen seized numerous enemy "
+"warships."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.json:auraName
@@ -802,10 +814,6 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.json:auraName
 msgid "Rise of Macedon"
-msgstr ""
-
-#: simulation/data/auras/units/heroes/mace_hero_philip.json:auraDescription
-msgid "+20% attack and +2 capture for champion units."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.json:auraName

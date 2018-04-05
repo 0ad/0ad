@@ -5,7 +5,7 @@
 # Translators:
 # Envel PICHON <envel_ras@hotmail.fr>, 2016
 # ernest olory <ernestolory@hotmail.fr>, 2017
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2017
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-29 16:12+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,7 +136,7 @@ msgstr "Gouestlaouit un unanenn dre-zegouezh eus ar c'hoarier-mañ ha rannit gan
 
 #: gui/session/menu.js:600
 msgid "A failed bribe will cost you:"
-msgstr "Ur gammdro c'hwitet a gousto dit:"
+msgstr "Ur c'hildornad c'hwitet a gousto deoc'h:"
 
 #: gui/session/menu.js:776
 #, javascript-format
@@ -981,7 +981,7 @@ msgstr "Kavout ul labourer dioberiant"
 #: gui/session/session.js:457 gui/session/session.js:461
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Eilpennañ livioù an diplomategezh"
 
 #: gui/session/session.js:464
 #, javascript-format
@@ -1006,7 +1006,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Gwelet Istor / Frammadur Gwezenn\nAn hini diwezhañ digoret a vo digoret adarre war glik."
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1057,19 +1057,19 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s evit cheñch urzh."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
-msgstr ""
+msgstr "Dizurzhiet"
 
 #: gui/session/session.js:1260
 msgid "Descending"
-msgstr ""
+msgstr "War zigresk"
 
 #: gui/session/session.js:1260
 msgid "Ascending"
-msgstr ""
+msgstr "War gresk"
 
 #: gui/session/session.js:1286
 #, javascript-format
@@ -1372,7 +1372,7 @@ msgstr "E berr-ha-berr"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr ""
+msgstr "Hall"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"

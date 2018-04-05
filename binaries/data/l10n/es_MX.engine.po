@@ -5,13 +5,14 @@
 # Translators:
 # Daniel Bautista <danielbautista@live.com>, 2014
 # Edgar Carballo <karvayoEdgar@gmail.com>, 2015-2016
+# Fredy García <frealgagu@gmail.com>, 2018
 # Ivan <navicgamboa@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:40+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-31 18:58+0000\n"
+"Last-Translator: Fredy García <frealgagu@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,7 +87,7 @@ msgstr "El servidor ha cortado toda comunicación"
 
 #: lobby/XmppClient.cpp:1064
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "Ocurrió un error de lectura/escritura"
 
 #: lobby/XmppClient.cpp:1066
 msgid "The connection was refused by the server"
@@ -104,11 +105,11 @@ msgstr "El sistema no tiene suficiente memoria"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "El certificado del servidor no pudo ser verificado o la verificación de TLS no se completó satisfactoriamente"
 
 #: lobby/XmppClient.cpp:1071
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "El servidor no ofreció el cifrado TLS requerido"
 
 #: lobby/XmppClient.cpp:1073
 msgid "Authentication failed. Incorrect password or account does not exist"
@@ -124,15 +125,15 @@ msgstr "No hay conexión activa"
 
 #: lobby/XmppClient.cpp:1096
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "Su cuenta ha sido registrada satisfactoriamente"
 
 #: lobby/XmppClient.cpp:1097
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "No se ha suministrado toda la información necesaria"
 
 #: lobby/XmppClient.cpp:1098
 msgid "Username already exists"
-msgstr ""
+msgstr "El nombre de usuario ya existe"
 
 #: ps/SavedGame.cpp:127
 #, c-format

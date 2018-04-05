@@ -7,6 +7,7 @@
 # abdul-rahman sawalmah <abdulrahman1123@gmail.com>, 2015
 # Ahmed Albahhar <tomucazipu@getapet.net>, 2017
 # Dar Games <dar@bonah.org>, 2015
+# Eslam obeidat <islamobidat92@gmail.com>, 2018
 # Houssem Mhamdi <houss.sword@gmail.com>, 2014
 # Mohamed Moanis <mohamed_moanis@outlook.com>, 2017
 # nitro361 <nitro361@gmail.com>, 2015
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-21 09:03+0200\n"
-"PO-Revision-Date: 2018-01-05 08:26+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
+"PO-Revision-Date: 2018-04-02 22:01+0000\n"
+"Last-Translator: Eslam obeidat <islamobidat92@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,7 +141,7 @@ msgstr "برج الدفاع"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr " اقم مباني في المناطق المحايدة و امتلك المزيد من المقاطعات لاكتشاف مساحات من الخريطة. تتحول ببطئ الى غايا عندما تكون في المنطقة المحايدة."
+msgstr "ابنِها في الأقاليم المحايدة والمملوكة لاكتشاف المناطق في الخريطة. تتحوّل ببطء لتصبح ملكًا للطّبيعة إن كانت في إقليم محايد."
 
 #: simulation/templates/template_structure_defense_outpost.xml:65
 #: simulation/templates/template_structure_defense_outpost.xml:33
@@ -928,14 +929,14 @@ msgstr "لُوكِي"
 
 #: simulation/templates/structures/iber_wall_gate.xml:9
 msgid "Biko Sarbide"
-msgstr ""
+msgstr "بوابة المدينة"
 
 #: simulation/templates/structures/iber_wall_long.xml:29
 #: simulation/templates/structures/iber_wall_medium.xml:23
 #: simulation/templates/structures/iber_wall_short.xml:10
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
-msgstr ""
+msgstr "جدار المدينة"
 
 #: simulation/templates/structures/iber_wonder.xml:9
 msgid "Cancho Roano"
@@ -1096,7 +1097,7 @@ msgstr "مخيّم المرتزقة (مصريّ)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
-msgstr ""
+msgstr "معسكر مرتزقة مصري"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
@@ -1249,7 +1250,7 @@ msgstr "حدائق بابل المعلّقة"
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
-msgstr ""
+msgstr "ثكنات"
 
 #: simulation/templates/structures/ptol_barracks.xml:18
 msgid ""
@@ -1263,27 +1264,27 @@ msgstr "بر عا - قصر الفرعون"
 
 #: simulation/templates/structures/ptol_corral.xml:19
 msgid "h-n-ssmt.w"
-msgstr ""
+msgstr "زريبة"
 
 #: simulation/templates/structures/ptol_defense_tower.xml:9
 msgid "mktr-n-ḏw"
-msgstr ""
+msgstr "برج الدفاع"
 
 #: simulation/templates/structures/ptol_dock.xml:12
 msgid "ḥwt-n-dpt.w"
-msgstr ""
+msgstr "رصيف السفن"
 
 #: simulation/templates/structures/ptol_farmstead.xml:19
 msgid "pr-n-t"
-msgstr ""
+msgstr "المزرعة و مبانيها"
 
 #: simulation/templates/structures/ptol_fortress.xml:9
 msgid "mktr-'a"
-msgstr ""
+msgstr "قلعة"
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid "ḥwt"
-msgstr ""
+msgstr "منزل"
 
 #: simulation/templates/structures/ptol_house.xml:20
 msgid ""
@@ -1307,7 +1308,7 @@ msgstr "ابنيها على طول الشاطئ لكي تكشف خط الشاط�
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
-msgstr ""
+msgstr "سوق"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
@@ -1336,26 +1337,26 @@ msgstr "هذا مبنى توسيع بطلمي ، يشبه المبنى المد�
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
-msgstr ""
+msgstr "نقطة مراقبة"
 
 #: simulation/templates/structures/ptol_storehouse.xml:18
 msgid "h-n-ḫt.w"
-msgstr ""
+msgstr "مخزن"
 
 #: simulation/templates/structures/ptol_wall_gate.xml:9
 msgid "sba-n-njwt"
-msgstr ""
+msgstr "بوابة المدينة"
 
 #: simulation/templates/structures/ptol_wall_long.xml:30
 #: simulation/templates/structures/ptol_wall_medium.xml:24
 #: simulation/templates/structures/ptol_wall_short.xml:11
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
 msgid "h-n-njwt"
-msgstr ""
+msgstr "جدار المدينة"
 
 #: simulation/templates/structures/ptol_wall_tower.xml:9
 msgid "mktr"
-msgstr ""
+msgstr "برج الحائط"
 
 #: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Temple of Edfu"

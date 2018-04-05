@@ -20,10 +20,5 @@
     <variant file="quadraped/props/straps_kush_base.xml" name="horse-straps-kushites"/>
     <variant file="quadraped/props/straps_kush_01.xml" name="horse-straps-kushites-01"/>
   </group>
-  <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
-  </group>
   <material>basic_trans_parallax_spec.xml</material>
 </actor>

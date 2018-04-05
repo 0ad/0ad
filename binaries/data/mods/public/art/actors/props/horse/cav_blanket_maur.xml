@@ -20,10 +20,5 @@
     <variant file="quadraped/props/blanket_maur.xml" name="horse-blanket-mauryan"/>
     <variant file="quadraped/props/blanket_maur_01.xml" name="horse-blanket-mauryan-01"/>
   </group>
-  <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
-  </group>
   <material>player_trans.xml</material>
 </actor>

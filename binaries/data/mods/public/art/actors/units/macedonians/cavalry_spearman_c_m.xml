@@ -7,6 +7,7 @@
       <props>
         <prop actor="units/macedonians/cavalry_spearman_c_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/cav_blanket_mace.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
@@ -82,16 +83,8 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml" name="Spearman Horse">
-      <props>
-        <prop actor="props/horse/cav_blanket_mace.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant file="quadraped/base_horse_run.xml" name="Spearman Horse">
-      <props>
-        <prop actor="props/horse/cav_blanket_mace.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_horse_death.xml" name="Spearman Horse"/>
+    <variant file="quadraped/base_horse_run.xml" name="Spearman Horse"/>
   </group>
   <material>objectcolor.xml</material>
 </actor>

@@ -2,11 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
+    <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Swordsman Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/athenians/cavalry_swordsman_a_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
+        <prop actor="props/horse/cav_rein_swordsman.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
@@ -46,6 +47,12 @@
     <variant frequency="1" name="Idle"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
+    <variant name="gather_meat">
+      <props>
+        <prop actor="" attachpoint="rider"/>
+        <prop actor="units/athenians/cavalry_swordsman_a_r.xml" attachpoint="rider_R"/>
+      </props>
+    </variant>
   </group>
   <material>objectcolor.xml</material>
 </actor>

@@ -1,8 +1,6 @@
 <variant file="biped/rider/cavalry/base_archer.xml">
   <animations>
-    <animation file="biped/rider_archer_idle_relax.dae" name="idle" id="idle1" speed="50"/>
-    <animation file="biped/rider_archer_idle_relax.dae" name="idle" id="idle2" speed="50"/>
-    <animation file="biped/rider_archer_idle_relax.dae" name="idle" id="idle3" speed="50"/>
-    <animation file="biped/rider_archer_walk_relax.dae" name="Walk" speed="7"/>
+    <animation file="biped/rider/cavalry/idle_relax_archer.dae" name="idle" speed="80"/>
+    <animation file="biped/rider/cavalry/trot_archer.dae" name="Walk" speed="7"/>
   </animations>
 </variant>

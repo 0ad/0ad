@@ -11,8 +11,10 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
     <variant file="biped/rider/promotion_shield.xml" />
-    <variant file="biped/rider/attack_slaughter_shield.xml" />
+    <variant file="biped/rider/gather_meat.xml"/>
+    <variant file="biped/rider/death_shield_a.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

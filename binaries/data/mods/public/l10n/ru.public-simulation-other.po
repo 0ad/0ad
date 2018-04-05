@@ -9,6 +9,7 @@
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2017
 # Максим Дронь <dronmax@gmail.com>, 2014-2015
 # Григорий Световидов <grin.sv@gmail.com>, 2015
+# Ilya Andreev, 2018
 # Ivan, 2014
 # Ivan, 2014
 # John Smith <mae_mbllo@mail.ru>, 2016
@@ -18,7 +19,7 @@
 # Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
 # Simple88, 2016
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
-# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016,2018
 # Woratiklis, 2015-2016
 # Yegor <revolver45@inbox.ru>, 2014
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
@@ -29,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-19 09:05+0100\n"
-"PO-Revision-Date: 2018-02-19 23:24+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2018-03-05 09:07+0100\n"
+"PO-Revision-Date: 2018-03-25 21:42+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -539,26 +540,26 @@ msgstr "%(category)s лимит обучения в количестве %(limit
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s лимит в количестве %(limit)s достигнут"
 
-#: simulation/components/Player.js:336
+#: simulation/components/Player.js:350
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Не хватает ресурса - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:338
+#: simulation/components/Player.js:352
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:340
+#: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:342
+#: simulation/components/Player.js:356
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -566,11 +567,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:400
+#: simulation/components/ProductionQueue.js:394
 msgid "The production queue is full."
 msgstr "Очередь заполнена."
 
-#: simulation/components/ProductionQueue.js:775
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr "Невозможно найти свободное место для подготовленных юнитов"
 
@@ -591,43 +592,43 @@ msgstr "(Обман - управлять всеми юнитами)"
 msgid "(Cheat - reveal map)"
 msgstr "(Обман - открыть всю карту)"
 
-#: simulation/helpers/Commands.js:449
+#: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s сдался."
 
-#: simulation/helpers/Commands.js:591
+#: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
 msgstr "(Обман - помогать юнитам)"
 
-#: simulation/helpers/Commands.js:705
+#: simulation/helpers/Commands.js:722
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Не удаётся улучшить, так как требования к расстоянию неверны или имеются препятствия на местности. "
 
-#: simulation/helpers/Commands.js:715
+#: simulation/helpers/Commands.js:732
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Невозможно добавить гарнизон"
 
-#: simulation/helpers/Commands.js:758
+#: simulation/helpers/Commands.js:775
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Запрос атаки на %(_player_)s."
 
-#: simulation/helpers/Commands.js:797
+#: simulation/helpers/Commands.js:814
 msgid "There are no bribable units"
 msgstr "Нет юнитов, которых можно было бы подкупить"
 
-#: simulation/helpers/Commands.js:843
+#: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
 msgstr "Невозможно вывести гарнизон"
 
-#: simulation/helpers/Commands.js:857
+#: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
 msgstr "Некоторые юниты не могут вернуться к работе"
 
-#: simulation/helpers/Commands.js:1111
+#: simulation/helpers/Commands.js:1114
 msgid "The building's technology requirements are not met."
 msgstr "Технологии, необходимые для здания, отсутствуют."
 
@@ -796,7 +797,7 @@ msgstr "Смертельный бой"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "Выберите этот уровень сложности, если Вы исследуете 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
@@ -804,7 +805,7 @@ msgstr "Очень легко"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "Выберите этот уровень сложности, если Вы не любите, когда вас уничтожают."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -813,7 +814,7 @@ msgstr "Легко"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "Выберите этот уровень сложности, если у Вас уже хороший опыт в 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
 #: simulation/data/settings/map_sizes.jsonData[2].Name
@@ -822,7 +823,7 @@ msgstr "Нормальная"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
+msgstr "Выберите этот уровень сложности, если Вы хотите, чтобы Вам бросили вызов."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -830,7 +831,7 @@ msgstr "Сложно"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
+msgstr "Выберите этот уровень сложности, если Вы не возражаете, что Вас сметут."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -903,5 +904,5 @@ msgstr "Бот Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
-msgstr "Петра - стандартный 0 A.D. бот ИИ. Пожалуйста, сообщайте о проблемах в Wildfire Games (см. ссылку в главном меню).\nИИ имеет штраф/бонус на накопление ресурсов (скорость сбора, либо прибыль от торговли) в диапазоне от -60% для Песочницы до +60% на Очень сложном уровне (на среднем - 0%).  Кроме того, на уровень \"Песочница\" он не захватывает новые территории и не атакует.\n"
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Петра - стандартный 0 A.D. бот ИИ. Пожалуйста, сообщайте о проблемах в Wildfire Games (см. ссылку в главном меню).\n\nИИ имеет штраф/бонус на накопление ресурсов (скорость сбора, либо прибыль от торговли) в диапазоне от -60% для Песочницы до +60% на Очень сложном уровне (на среднем - 0%), а на простых уровнях - более медленный рост производства и строительства. Кроме того, на уровень \"Песочница\" он не захватывает новые территории и не атакует."

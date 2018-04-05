@@ -6,7 +6,7 @@
 # Envel PICHON <envel_ras@hotmail.fr>, 2016
 # ernest olory <ernestolory@hotmail.fr>, 2016-2018
 # Feñch Gallig <ducraig@hotmail.fr>, 2017
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2017
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
 # nolwenn briand <briandnolwenn22@orange.fr>, 2017
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # tjyu gh <anna.point22@orange.fr>, 2017
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-23 09:05+0100\n"
-"PO-Revision-Date: 2018-02-23 19:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-29 17:28+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgstr "Kempennadurioù al Listri"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr "Dresan a ra bagoù ar gwarisoned e 10 HP dre eilenn."
+msgstr "Kempenn a ra al listri gwarisonet da 10 PB an eilenn."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -52,38 +52,38 @@ msgstr "+20% a c'halloud freuzañ evit ar soudarded."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
-msgstr ""
+msgstr "Brogarouriezh"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 msgid "Workers +15% gather rates near pyramids."
-msgstr ""
+msgstr "+15% a feur dastum evit al labourerien kichenik ar piramidoù."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr ""
+msgstr "Présence Exhortative"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers near Large Pyramids +10% attack."
-msgstr ""
+msgstr "+10% a dagusted evit ar soudarded e-kichen ar piramidoù ledan."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
-msgstr ""
+msgstr "Piramidoù Meroitek"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid ""
 "Civic Centers +10% territory influence as long as a Pyramid stands built."
-msgstr ""
+msgstr "+10% a levezon tiriadel evit ar c'hreizennoù keodedel keit ha ma chomo savet ar biramidenn."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
-msgstr ""
+msgstr "Belegiezh greñv"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid ""
 "Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
 "-5% health for heroes per temple built."
-msgstr ""
+msgstr "Kreñvaat a ra belegiezh Amon ha gwanaat a ra levezon ho unpenn.\n-5% a yec'hed evit an harozed dre dempl savet."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -100,7 +100,7 @@ msgstr "Fealded"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr "An holl savadurioù tos a vez kreskaet o feur lealded gwarnizon eus +50%."
+msgstr "+50% a feur adtiñvat lealded evit ar savadur gwarnizonet."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -162,11 +162,11 @@ msgstr "Lakaat da greskiñ bevenn ar boblañs eus 40 dre varzenn perc'hennet (re
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
-msgstr "Dresoù stal"
+msgstr "Stalioù kempenn"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr "Dresañ a ra unanennoù seziz gwarnizoned e 3 PB dre eilenn."
+msgstr "Kempenn a ra unanennoù seziz gwarnizoned da 3 FB an eilenn."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -182,7 +182,7 @@ msgstr "Drouized"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allies get -20% resource cost to train healers."
-msgstr "Degemer a ra ar gevredidi -20% a zanvez koust evit stummañ pareourien."
+msgstr "Ar re gevreded o deus -20% a goust danvez evit stummañ pareourien."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -198,7 +198,7 @@ msgstr "Furnez an drouized"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "-20% research time for technologies of allies."
-msgstr "-20% a amzer enklask evit teknologiezhioù ar gevredidi."
+msgstr "-20% a amzer enklask evit teknologiezhioù ar re gevreded."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -212,13 +212,13 @@ msgstr "Digreskiñ ar c'houst evit ar geodedourien-soudarded-dennerien eus 20% e
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr ""
+msgstr "Pourvezer olifanted"
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
 msgid ""
 "Reduces the cost and train time for elephants with 20% for allies of Kushite"
 " players."
-msgstr ""
+msgstr "Digreskiñ a ra koust hag amzer-stummañ an olifanted eus 20% evit pep c'hoarier Kushite kevredet."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -255,11 +255,11 @@ msgstr "An holl re gevredet a c'hounez en un doare emgefreek ur buzad moan a vou
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
-msgstr "Enrolladur"
+msgstr "Enrollañ en arme"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied citizen-soldier infantry."
-msgstr ""
+msgstr "-20% a amzer stummañ evit ar soudarded-keodourien gevredet."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -286,7 +286,7 @@ msgstr "Awen"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "+10% build rate and gather rate for citizen soldiers."
-msgstr "+10% a feur saverezh ha feur dastum evit soudarded keodedel."
+msgstr "+10% a feur saverezh ha feur dastum evit ar soudarded keodedel."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -296,7 +296,7 @@ msgstr "Adaozadurioù an Ekonomiezh"
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "+15% gather rate for workers."
-msgstr "Solon en doa savet meur a gempennadur ekonomikel o kalonekaat an armerzh hag al labour-douar.\n+15% a feur dastum evit labourerien."
+msgstr "Solon en doa lakaet sevel meur a reform ekonomikel o kalonekaat ar c'henwerzh hag al labour-douar.\n+15% a feur dastum evit labourerien."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -317,7 +317,7 @@ msgstr "Taktikel Gerilha"
 msgid ""
 "Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
 "+15% movement speed and vision range for all soldiers."
-msgstr "O welet an difenn staliet bezan didalvoud a-enep d'an arme Roman en doa divizet Kasivelaonus a-benn ar fin implijout kadoniezh kerc'hvell. Pezh a oa bet implijet diwezhatoc'h gant pennoù all ivez.\n+15% a dizh finv hag astenn gwel evit an holl soudarded."
+msgstr "O stadañ diefedusted an difenn kaeet a-enep an arme Roman, Kasivelaonus a reas gant an taktikoù gerilha. Ar pezh a zo bet implijet diwezhatoc'h gant pennoù-bras all ivez.\n+15% a dizh hag hed-sell evit an holl soudarded."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
@@ -327,7 +327,7 @@ msgstr "Harellerezh an Dennataerien"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "+20% attack range for skirmisher javelins."
-msgstr "Kasivelaonus en doa kaset krogadoùigoù fonnus da skuizhan ar bagadoù hag ar bennaouerien Roman.\n+20% a astenn tagadenn evit krogad spegoù."
+msgstr "Kasivelaonus en doa displeget tennataerien fonnus da vlinaat ar bagadoù hag ar gutuilhourien Roman.\n+20% a dagusted a-bell evit an dennataerien spegoù."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -337,17 +337,17 @@ msgstr "Komandant ar Varc'hegerezh-Pounner"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "+1 armor, +10% health for melee cavalry."
-msgstr "Penn ar marc'hegerezh pounner Kartajinian e Trebia ha Kanna e-lec'h ma oa bet kaset efedoù gwast d'an enebour gant e drede argad.\n+1 a harnez, +10% a yec'hed d'ar veskadeg varc'hegerezh. "
+msgstr "Penn-bras ar marc'hegerezh pounner Kartajinian e Trebia ha Kanna, el lec'h ma 'z eus bet efedoù gwast gant e dri argad war an enebour.\n+1 a houarnwisk, +10% a yec'hed er stourmadegoù marc'hegerezh."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
-msgstr "Spi-brezel Lazhadeg "
+msgstr "Lazhadeg dre spi-brezel"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers require 25% less experience to promote and gain a 5% attack bonus."
-msgstr "O vrezeliñ a-enep d'ar Romaned en doa merzhet Ambioriks e oa dister un emgann digor ha divizet en doa kentoc'h implijout kaderezhioù spi-brezel. Ar C'halianed o doa desket buan pelec'h ha pegoulz sevel tagadennoù souezh.\nGoulenn a ra ar soudarded 25% nebeutoc'h a skiant-prenet evit harpañ ha gounit 5% a vonuz tagadenn."
+msgstr "O vrezeliñ a-enep d'ar Romaned, Ambioriks en doa merzhet e oa dister un emgann digor ha divizet en doa kentoc'h ober gant an taktik spi-brezel. Ar C'halianed o doa desket buan pelec'h ha pegoulz kas da-benn tagadennoù souezh.\nGoulenn a ra 25% nebeutoc'h a skiant-prenet digant ar soudarded evit kas war-raok ha gounit 5% a vonuz tagañ."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -357,7 +357,7 @@ msgstr "Enor Roma"
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "-10% farming rate."
-msgstr "Pa gouezhas an arme Roman e diouer a bourvezioù boued e oa bet urzhiet d'ar meuriadoù Gallian dilezel dija ul lodenn eus o dastum tanav. An Eburoned dindan Ambioriks ne oant ket a-du evit ober se, neuze gant an dra-se e kasas Kaesar bagadoù evit pakan anezho dre nerzh.\n-10% a feur labour-douar."
+msgstr "P'en em gavas berr a-fet boued an arme Roman, ar meuriadoù Galian a oa bet goulennet diganto dilezel ul lodenn eus o eostoù tanav. An Eburoned dindan Ambioriks ne oant ket a-du evit en ober, Kaesar a gasas e vagadoù evit kemer an dra-se dre an nerzh.\n-10% a c'hounidoù labour-douar."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -367,7 +367,7 @@ msgstr "Komander Goprsoudard"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "-25% metal cost for all allied citizen-soldier mercenaries."
-msgstr "Gant e vreur Indibil en doa urzhiet Mandoniuz an nevezaianted hag ar soudarded gopr Iberian o doa kemeret perzh er Brezelioù Punek.\n-25% a goust metal evit an holl soudarded keodedel gopr kevredidi."
+msgstr "Gant e vreur Indibil, Mandoniuz en doa urzhiet an nevezianted hag ar c'hopr-soudarded Iberian o doa kemeret perzh er Brezelioù Punek.\n-25% a goust metal evit holl c'hoprsoudarded keodedel ar re gevreded."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -377,11 +377,11 @@ msgstr "Espernour Buhezioù"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "+10% health for all soldiers."
-msgstr "Da heul drouklamm Indibil en emgann en doa renet Mandoniuz ar re chomet bev d'ar surentez.\n+10% a yec'hed evit an holl soudarded."
+msgstr "Da heul drouklamm Indibil en emgann, Mandoniuz a gasas ar re chomet bev betek ar surentez.\n+10% a yec'hed evit an holl soudarded."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
-msgstr ""
+msgstr "Rouanez nubian kentañ"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraDescription
 msgid ""
@@ -391,7 +391,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
-msgstr ""
+msgstr "Templ Naka"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
@@ -407,7 +407,7 @@ msgstr "Preizher kêrioù"
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
 "+5 food and wood for every enemy unit killed or structure destroyed."
-msgstr "E-pad ar Brezel Kentañ Makedonian o doa gwastet Fulup hag e vagadoù Thermum, kêrbenn relijiel ha politikel Aetolia.\n+5 a voued ha koad evit pep unanenn enebour lazhet pe stummadur distrujet."
+msgstr "E-pad ar C'hentañ Brezel Makedonian, Fulup hag e vagadoù o doa gwastet Thermum, kêrbenn relijiel ha politikel Aetolia.\n+5 a voued ha koad evit kement unanenn enebour lazhet pe stummadur distrujet."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
@@ -417,7 +417,7 @@ msgstr "Startaer an Impalaeriezh"
 msgid ""
 "Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
 "+20% territory influence."
-msgstr "Mab Chandragupta Maurya en doa kreñvaet Bindusara an impalaeriezh en ur grouiñ ur stad stabil d'e vab Ashoka evit an herezh.\n+20% a levezon diriadel."
+msgstr "Mab Chandragupta Maurya, Bindusara en doa kreñvaet an impalaeriezh, en ur grouiñ ur stad stabil az eas d'e vab Ashoka evel herezh.\n+20% a levezon tiriadel."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"
@@ -427,7 +427,7 @@ msgstr "Vamba Moriyar"
 msgid ""
 "Bindusara is said to have conquered lands to the south of the empire.\n"
 "+15% unit capture rate."
-msgstr "Lavaret eo en doa aloubet Bindusara douaroù e Su an impalaeriezh.\n+15% a feur pakusted unanenn."
+msgstr "Lavaret eo en doa aloubet Bindusara douaroù e Su an impalaeriezh.\n+15% a feur pakusted evit an unanennoù."
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
@@ -437,7 +437,7 @@ msgstr "Saver-Meur"
 msgid ""
 "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
 "+5% health and -10% resource cost for all buildings."
-msgstr "A-hed e ren e oa bet kaset kalz a binvidigezh Artakserksez da sevel raktresoù savadurioù. Nevesaet en doa Palez Darius I e Suza ha kêr gozh Ekbatana.\n+5% a yec'hed ha -10% a danvez koust evit an holl savadurioù."
+msgstr "A-hed e ren, kalz binvidigezh Artakserksez a oa bet kaset da sevel raktresoù savadurioù. Nevesaet en doa Palez Darius I e Suza ha kêr gozh Ekbatana.\n+5% a yec'hed ha -10% a goust danvez evit an holl savadurioù."
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -447,7 +447,7 @@ msgstr "Levraoueger Meur"
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "-10% resource cost for all technologies."
-msgstr "En ur genderc'hel  labour e ziaraogerien war Levraoueg Vras Aleksandria en doa mentet an holl levrioù prenet d'ar Gêr hag evel se en doa lezet d'e bobl ur pikol berniad a furnez dalc'het.\n-10% a goust danvez evit an holl deknologiezhioù."
+msgstr "En ur lakaat da beurbadout labour e ziagentourien war Levraoueg Vras Aleksandria, mentet en doa an holl levrioù prenet e kêr, dre-se en deus lezet d'e bobl ur pikol berniad furnez.\n-10% a goust danvez evit an holl deknologiezhioù."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -457,7 +457,7 @@ msgstr "Veñjer Lukresia"
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
 "Female citizens cost 20% less and work 10% faster."
-msgstr "Goude forzh Lukresia gant mab ar Roue Tarkinius Superbus ha da heul hec'h emzistruj en doa touet Brutus venjiñ anezhi ha diskar an unpenniezh.\nKoust a ra ar c'heodedourezed 20% nebeutoc'h ha labourat a reont 10% buanoc'h."
+msgstr "Goude palfors Lukresia gant mab Roue Tarkinius Superbus ha da heul hec'h emzistruj, Brutus a douas veñjiñ anezhi ha diskar ar vonarkiezh.\nAr c'heodedourezed a  goust 20% nebeutoc'h ha labourat a reont 10% buanoc'h."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -467,7 +467,7 @@ msgstr "Krouer ha Difenner ar Republik"
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "+1 armor for all units and siege engines."
-msgstr "Brutus a oa unan eus an tresoù alc'hwez e diskar an unpenniezh ha krouidigezh ar Republik Roman. Diwezhatoc'h evel koñsul en doa renet un arme Roman d'an trec'h a-enep d'ar Roue Etruskat Tarkinius en doa klasket adkemer an tron.\n+1 a houarnwisk evit an holl unanennoù ha mekanikoù seziz."
+msgstr "Brutus a oa unan eus an dud-pennañ e-barzh diskar ar vonarkiezh ha savidigezh ar Republik Roman. Diwezhatoc'h, pa oa koñsul kaset en deus un arme Roman d'an trec'h a-enep ar Roue Etruskat Tarkinius en doa klasket adkemer an tron.\n+1 a houarnwisk evit an holl unanennoù ha mekanikoù seziz."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
@@ -477,7 +477,7 @@ msgstr "Krouer Templ Ezida"
 msgid ""
 "Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
 "-10% resource cost for temples and temple technologies."
-msgstr "Antiochus I en doa staliet an diazez evit Templ Ezida e Borsippa.\n-10% a goust danvez evit temploù ha teknologiezhioù temploù."
+msgstr "Antiochus I eo en doa diazezet an Templ Ezida e Borsippa.\n-10% a goust e mammennoù evit an temploù ha teknologiezhioù an temploù."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
@@ -487,7 +487,7 @@ msgstr "Enbroerezh"
 msgid ""
 "Antiochus encouraged Greek immigration to his realm and established many new cities in Asia Minor to serve as counterweights to the Gauls.\n"
 "+5% maximum population."
-msgstr "Kalonekaet en doa Antiochus an enbroerezh C'hrek evit e rouantelezh ha staliet kalz a geodedoù nevez en Azia vMinor evit servijan evel enneppouez d'ar C'halianed.\n+5% a vrasan poblans."
+msgstr "Antiokus en doa kalonekaet an enbroerezh C'hrek betek e rouantelezh ha diazezet kalz a gêrioù nevez en Azia vMinor evit servijout evel gourzhpouezhañ ar Galianed.\n+5% a boblañs maksimom."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
 msgid "Basileus Megas"
@@ -497,7 +497,7 @@ msgstr "Basileus Megas"
 msgid ""
 "Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "-10% cost for War Elephants."
-msgstr "Mab Selekus Nikator, Antiokus en doa deuet a-benn da virout el labour dreist an impalaeriezh a-bezh  tra ma veze kavet temploù ha trec'het aloubadeg ar C'halianed gant olifanted brezel.\n-10% a goust evit an Olifanted Brezel."
+msgstr "Mab Selekus Nikator, Antiokus a zo deuet war e lerc'h evit stagañ e-barzh al labour hep e bar evit derc'hel a-sav an impalaeriezh en e-bezh,  tra ma veze savet temploù gantañ ha reiñ lamm da aloubadeg ar Galianed gant olifanted brezel.\n-10% a goust evit an Olifanted Brezel."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -508,7 +508,7 @@ msgstr "Adaozadurioù Soudardel Lycurgan"
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
 "-10% resource cost for citizen spear infantry."
-msgstr "Ensavet en doa Likurgus meur a gempennadur milourel neuze e oa bet sevenet al lealded leun ha unan ouzh Sparta eus he c'heodedourien dindan e c'houarnamant.\n-10% a danvez koust evit ar soudarded keodedek war droad gant goafioù."
+msgstr "Likurgus a ensavas meur a reform milourel, e-se sentur klok hag unvan ar geodedourien ouzh Sparta a oa bet lakaet e-pleustr dindan e c'houarnamant.\n-10% a goust e mammennoù evit ar geodedourien gant goafioù war droad."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "-5% resource cost for spear infantry champions."
@@ -522,7 +522,7 @@ msgstr "Pelanorioù e Houarn"
 msgid ""
 "To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
 "+15% metal gather rate for workers."
-msgstr "Evit lakaat ingalded dalc'her da vont war-raok en doa difennet Likurgus implij an aour hag an arc'hant en ur enlakaat ur moneiz metal nevez graet anezhan pelanorioù.\n+15% a feur dastum metal evit labourerien."
+msgstr "Evit lakaat muioc'h a ingalded, Likurgus en doa lakaet berz war implij an aour hag an arc'hant, en ur zegas e-barzh ur moneiz metal nevez a veze graet anezhañ pelanorioù.\n+15% a feur dastum metal evit al labourerien."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -530,7 +530,7 @@ msgstr "Adaozadurioù ar Stummidigezh"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "All soldiers in his formation +15% speed and +3 armor."
-msgstr "Evit an holl soudarded en e stummadur +15% a dizh ha +3 a harnez."
+msgstr "An holl soudarded en e stummidigezh +15% a dizh ha +3 a houarnwisk."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -546,7 +546,7 @@ msgstr "Program Saverezh Periklean"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "+15% build and repair rate for workers."
-msgstr "+15% a frammadur ha feur dresan evit labourerien."
+msgstr "+15% a feur sevel ha kempenn evit al labourerien."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple to Athena"
@@ -554,7 +554,7 @@ msgstr "Templ Atena"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
-msgstr "-25% a goust maen ha +2 a feur pareans gwarnisonoù  evit temploù."
+msgstr "-25% a goust maen ha +2 a feur pareañ evit an temploù gwarnizonet."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -564,7 +564,7 @@ msgstr "Komander an Arme-vor"
 msgid ""
 "When garrisoned in a ship, the ship is +50% faster and trains batches of "
 "units faster."
-msgstr "Pa vez gwarnizonoù en ur vag e vez ar vag buanoc'h +50% ha buanoc'h e vez unanennoù strolladoù stummadurioù."
+msgstr "Pa vez gwarnizonet en ur vag, ar vag az a +50% buanoc'h ha fonnusoc’h e kas ar strolladoù unanennoù."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
@@ -572,7 +572,7 @@ msgstr "Lestrsaver"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "-20% build time and -50% metal cost for ships during his lifespan."
-msgstr "-20% a amzer sevel ha -50% a goust metal evit listri e-pad e vuhezpad."
+msgstr "-20% a amzer sevel ha -50% a goust metal evit al listri e-pad e vuhez pad."
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -584,7 +584,7 @@ msgstr "+20% a dagusted, +2 a bakusted ha +10% a dizh evit an unanennoù kampion
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
-msgstr "Penn Brezelig"
+msgstr "Penn Gerilha"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed and +1 armor."
@@ -601,19 +601,19 @@ msgstr "+0.8 PB an eilenn a feur pareañ."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
-msgstr "Foeltr Jeneral"
+msgstr "Jeneral Luc'hedus"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "Nearby soldiers and siege engines +15% speed."
-msgstr ""
+msgstr "Ar soudarded hag ar mekanikoù seziz e-kichen +15% a dizh."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
 msgid "Subduer of Mercenaries"
-msgstr ""
+msgstr "Deboch ar c'hoprsoudarded"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
 msgid "-20% attack for enemy mercenaries."
-msgstr ""
+msgstr "-20% a dagusted evit gopr-soudarded an enebourien."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -622,7 +622,7 @@ msgstr "Taktisian"
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid ""
 "+20% attack and +1 capture for nearby allied soldiers and siege engines."
-msgstr ""
+msgstr "+20% a dagusted ha +1 a bakusted evit soudarded ar re gevredet hag ar mekanikoù seziz."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -630,7 +630,7 @@ msgstr "Komander Marc'heger"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "+30% attack for cavalry melee soldiers."
-msgstr "+30% a argad evit stourmadeg soudarded marc'hegerezh."
+msgstr "+30% a dagusted evit marc'hegerien ar stourmadeg."
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
@@ -674,11 +674,11 @@ msgstr "Difenner kalonek"
 msgid ""
 "75% more arrows per soldier for the building or siege tower he is garrisoned"
 " in."
-msgstr "75% muioc'h a viroù gant pep soudard evit ar savadur pe an dour seziz e-lec'h m'eman gwarnizonet."
+msgstr "75% a viroù ouzhpenn gant pep soudard en ur savadur pe e-barzh un tour seziz m'emaint gwarnizonet enno."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
-msgstr "Bervidanted Emgann"
+msgstr "Bervidanted an Emgann"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "+1 armor for soldiers."
@@ -690,7 +690,7 @@ msgstr "Galvadeg"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "-20% training time and -15% resources cost for soldiers."
-msgstr "-20% a amzer stumman ha -15% a danvez koust evit soudarded."
+msgstr "-20% a amzer stummañ ha -15% a goust danvez evit ar soudarded."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "+20% movement speed for soldiers."
@@ -704,43 +704,43 @@ msgstr "Preizhadenn"
 msgid ""
 "+100% resources loot increase for every enemy unit killed or structure "
 "destroyed."
-msgstr "+100% a danvezioù preizhadenn a gresk evit pep unanenn enebour lazhet pe frammadur distrujet."
+msgstr "+100% a zanvezioù preizhet evit kement unanenn enebour lazhet pe frammadur distrujet."
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"
-msgstr ""
+msgstr "Rouanez Brezelourez"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
 msgid "+20% attack and +2 capture for soldiers and elephants."
-msgstr ""
+msgstr "+20% a dagusted ha +2 a bakusted evit ar soudarded hag olifanted."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
-msgstr ""
+msgstr "Daeour hengoun"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraDescription
 msgid "Temple of Amun and its Napatan Temple Guards +20% cost and build time."
-msgstr ""
+msgstr "+20% a goust hag en amzer evit sevel templ Amon ha Gwarded templ Napata."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
 msgid "Follower of Apedemak"
-msgstr ""
+msgstr "Heulier Apedemak"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
 msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
-msgstr ""
+msgstr "-20% a goust hag en en amzer evit sevel templ Apedemak ha gwarded templ Meroe."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaugther of the Faithful"
-msgstr ""
+msgstr "Marv ar feiz"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy healrate reduced by 50%."
-msgstr ""
+msgstr "Ar feur paerañ a zo digresket eus 50%."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraName
 msgid "Saviour of Kush"
-msgstr ""
+msgstr "Savetaer Koush"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraDescription
 msgid ""
@@ -833,7 +833,7 @@ msgstr "Renerezh"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers, siege engines and traders."
-msgstr ""
+msgstr "+15% a dizh evit an holl soudarded, mekanikoù seziz ha kenwerzhourien."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -886,7 +886,7 @@ msgstr "Penn Goprsoudard"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -35% resources during his lifetime."
-msgstr ""
+msgstr "Digresket e vez koust ar c'hoprsoudarded eus -35% e mammenoù e-pad e vuhez."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -947,7 +947,7 @@ msgstr "Adaozadurioù Hiloted"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
-msgstr ""
+msgstr "+25% a dagusted ha +1 a houarnwisk evit ar geodedourien speger war droad."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Antonio Buonomo <hyd.antonio@gmail.com>, 2017
-# Christian Bellagamba <christiandes00@gmail.com>, 2017
+# Christian Bellagamba <christiandes00@gmail.com>, 2017-2018
 # Claudio <claudiudurneac97@yahoo.it>, 2015
 # Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2016
 # Davide, 2016
@@ -20,12 +20,13 @@
 # Nicola Jelmorini, 2014-2015
 # Paper Jack <jackthief315@gmail.com>, 2017
 # Samuele Marazzita <samuelemarazzita@gmail.com>, 2016
+# Simone Bondi <simonebondi456@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-03-02 09:04+0100\n"
-"PO-Revision-Date: 2018-03-04 18:11+0000\n"
-"Last-Translator: mattia_b89 <mattia.b89@gmail.com>\n"
+"POT-Creation-Date: 2018-03-05 09:07+0100\n"
+"PO-Revision-Date: 2018-03-21 21:22+0000\n"
+"Last-Translator: Simone Bondi <simonebondi456@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr ""
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
-msgstr "I giocatori iniziano su due lati di un mare con isole sparse"
+msgstr "I giocatori iniziano su due lati di un mare con isole sparse."
 
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
@@ -46,11 +47,11 @@ msgid ""
 "Aethiopia, land of the Kushites. Arid and hostile as the terrain might look,"
 " the region is surprisingly lush. The presence of several life-bringing "
 "oases serve to make this a prized haven for man and beast alike."
-msgstr ""
+msgstr "Etiopia, terra dei Kushiti. Per quanto il territorio possa apparire arido e ostile, la regione è sorprendentemente lussureggiante. La presenza di svariate oasi, portatrici di vita, fa di questa regione un'ambito paradiso sia per gli uomini che per le bestie."
 
 #: maps/random/aethiopia.jsonsettings.Name
 msgid "Aethiopia"
-msgstr "Aethiopia"
+msgstr "Etiopia"
 
 #: maps/random/african_plains.jsonsettings.Description
 msgid ""
@@ -280,7 +281,7 @@ msgid ""
 " subject to numerous yet short-lived invasions. Ultimately consolidating "
 "power with Rhodes at their lead, these islands developed into great "
 "maritime, commercial and cultural centers. Will you acheive the same?"
-msgstr ""
+msgstr "Dato che controlla l'accesso al Mar Egeo dal lato Est, il Dodecaneso è stato soggetto a numerose, seppur brevi, invasioni. Consolidando infine il potere insieme a Rodi sotto la sua guida, queste isole si svilupparono in potenti centri marittimi, culturali e commerciali. Riuscirai a fare altrettanto?"
 
 #: maps/random/dodecanese.jsonsettings.Name
 msgid "Dodecanese"
@@ -294,11 +295,11 @@ msgid ""
 "became an important way-station for the trade in ivory and other goods. It "
 "was considered to be the home of the god Khnum, guardian of the source of "
 "the Nile, and boasted an impressive temple complex."
-msgstr ""
+msgstr "Formando la tradizionale frontiera tra l'antico Kush e l'Egitto, l'isola fortificata di Elefantina era situata sul Nilo vicino la prima cateratta. Rappresentando il confine tra l'Alto Egitto e la Bassa Nubia, l'isola divenne un importante punto di passaggio dei commerci di avorio e altre merci. Si pensava fosse la casa del dio Khnum, il guardiano della sorgente del nilo, e si vantava di un impressionante complesso templare."
 
 #: maps/random/elephantine.jsonsettings.Name
 msgid "Elephantine"
-msgstr ""
+msgstr "Elefantina"
 
 #: maps/random/empire.jsonsettings.Description
 msgid ""
@@ -406,7 +407,7 @@ msgid ""
 "western civilization. Yet the land lacks unity, countless cit-states vie for"
 " dominance. Will you lead your polis to glory and greatness or see it fall "
 "into oblivion, erased from the histories?"
-msgstr ""
+msgstr "Hellas, casa dei Greci e, grazie a loro, delle fondamenta della civiltà occidentale. Sebbene la terra sia scomposta, innumerevoli città-stato competono per il dominio sul territorio. Porterai la tua polis alla gloria e alla grandezza o la vedrai cadere nell'oblio, cancellata dalla storia?"
 
 #: maps/random/hellas.jsonsettings.Name
 msgid "Hellas"
@@ -522,7 +523,7 @@ msgid ""
 "place to live, but the control of this ancient corridor was vital for any "
 "power seeking to control the lucrative trade routes on the Nile and affords "
 "access to the rich goldfields of the Nubian desert."
-msgstr ""
+msgstr "Conosciuta nel mondo Greco-Romano come Triakontaschoinos, la Bassa Nubia era l'area tra la prima e la seconda cateratta del Nilo e formava la tradizionale regione di frontiera tra il Kush e l'Egitto. Il deserto arido, le valli ripide e le pareti rocciose di quest'area lo rendono un paese inospitale alla vita, ma il controllo di questo antico corridoio era vitale per qualsiasi civiltà che tentasse di assumere il controllo delle lucrose vie commerciali sul Nilo e permettersi l'accesso alle ricche miniere d'oro del deserto Nubiano."
 
 #: maps/random/lower_nubia.jsonsettings.Name
 msgid "Lower Nubia"
@@ -855,7 +856,8 @@ msgstr "L'ignoto. Attenzione: Potrebbe essere una mappa navale."
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: maps/random/unknown_land.jsonsettings.Description
+#: maps/random/unknown_land.jsonsettings.Description maps/skirmishes/Egypt
+#: (4).xml:Description:40
 msgid "The unknown."
 msgstr "L'ignoto."
 
@@ -1854,13 +1856,13 @@ msgstr "Piccola mappa con un sacco di risorse e un po' d'acqua, per le prove di 
 
 #: maps/scenarios/Napata Reconstruction.xml:Name:40
 msgid "Napata Reconstruction"
-msgstr ""
+msgstr "Ricostruzione della città di Napata"
 
 #: maps/scenarios/Napata Reconstruction.xml:Description:40
 msgid ""
 "This map displays a reconstruction of the ancient city Napata. "
 "[color=\"red\"]Note:[/color] The map is not intended to be playable."
-msgstr ""
+msgstr "Questa mappa rappresenta una ricostruzione dell'antica città di Napata. [color=\"red\"]Nota:[/color] La mappa non è stata pensata per giocare."
 
 #: maps/scenarios/Necropolis.xml:Description:39
 msgid ""
@@ -2568,6 +2570,26 @@ msgstr "Un paesaggio alpino nebbioso diventa un campo di battaglia, ogni squadra
 #: maps/skirmishes/Dueling Cliffs (3v3).xml:Name:40
 msgid "Dueling Cliffs (3v3)"
 msgstr "Duello tra le rupi (3v3)"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[0].Name:40
+msgid "Alexandria"
+msgstr "Alessandria"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[1].Name:40
+msgid "Theben"
+msgstr "Tebe"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[2].Name:40
+msgid "Siwa"
+msgstr "Siwa"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[3].Name:40
+msgid "Sinai"
+msgstr "Sinai"
+
+#: maps/skirmishes/Egypt (4).xml:Name:40
+msgid "Egypt"
+msgstr "Egitto"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""

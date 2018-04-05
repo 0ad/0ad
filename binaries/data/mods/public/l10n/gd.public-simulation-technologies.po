@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2014-2017
+# GunChleoc, 2014-2018
 # GunChleoc, 2014
 # GunChleoc, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-21 09:05+0100\n"
-"PO-Revision-Date: 2018-02-21 16:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-15 08:24+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Nuair a thèid aonadan àrdachadh dhan chlas adhartach, gheibh iad iomadh buannachd às: 20% a shlàinte a bharrachd, 1 leibheil de dh’armachd a bharrachd airson gach seòrsa dhi, 20% a spùinn a bharrachd, 20% a dh’ionnsaigh dhlùth a bharrachd, meudachadh de 4m air an astar agus piseach air a’ phongalachd do dh’aonadan astair, gluasad agus slànachadh nas luaithe agus meudachadh air an astar dha lighichean."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -696,7 +696,7 @@ msgstr "Seo ceàrd obair stàilinn a bheil comharrachaidhean suaicheanta snasail
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "+20% air ionnsaighean spealgaidh gach claidheamhair is màsair."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -728,7 +728,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Nuair a thèid aonadan àrdachadh gu seann-ghaisgich, gheibh iad iomadh buannachd às: 20% a shlàinte a bharrachd, 1 leibheil de dh’armachd a bharrachd airson gach seòrsa dhi, 20% a spùinn a bharrachd, 20% a dh’ionnsaigh dhlùth a bharrachd, meudachadh de 4m air an astar agus piseach air a’ phongalachd do dh’aonadan astair, gluasad agus slànachadh nas luaithe agus meudachadh air an astar dha lighichean."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1066,7 +1066,7 @@ msgstr "Gabhaidh clò as grinne a chruthachadh le beart gus aodach a chur air na
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
-msgstr ""
+msgstr "+50% de shlàinte airson shaoranach boireann."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1162,7 +1162,7 @@ msgstr "Boireannaich no sluagh"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr ""
+msgstr "Boireannaich no sluagh"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1213,7 +1213,7 @@ msgstr "Linn nam mòr-bhailtean"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "Glèidheadair-àite teicneolais a chum iarrtasan teamplaide, thèid phase_city_generic no phase_city_{civ} a chur ’na àite."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1264,7 +1264,7 @@ msgstr "Linn nam bailtean"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "Glèidheadair-àite teicneolais a chum iarrtasan teamplaide, thèid phase_town_generic no phase_town_{civ} a chur ’na àite."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1469,7 +1469,7 @@ msgstr "Leasachadh air pongalachd nan astasan"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
-msgstr ""
+msgstr "Gheibh losgaidhean crainn pongalachd leasaichte."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1550,7 +1550,7 @@ msgstr "Neartaich na buinn gus ullachadh an aghaidh ionnsaighe."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "Meudaichidh seo armachd nan tùr dìona le 2 leibheil."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1578,7 +1578,7 @@ msgstr "Mairidh gearastanan an dà chuid as fhaide air ranntair neo-phàirteach.
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "Crìonadh ranntair de -50% airson ghearastanan."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1590,7 +1590,7 @@ msgstr "Leigidh tuill-mharbhaidh leat bualadh air nàimhdean a tha aig dearbh-bh
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "Bheir seo cuingeachadh air falbh ach an urrainn dha na tùir-dhìona ’gan dìon fhèin an aghaidh nàimhdean a tha dìreach aig am bonn."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1602,7 +1602,7 @@ msgstr "Cuiridh torain ris an astar as motha aig saighdean."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "Meudaichidh seo an t-astar as motha aig tùir dhìona le 8 meatairean."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1614,7 +1614,7 @@ msgstr "Gheibh gearastanan lèirsinn nas fhaide airson rabhadh."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Gheibh gearastanan +50% air an astar lèirsinne."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1626,7 +1626,7 @@ msgstr "Cuiridh faire na h-oidhche ris an fhurachas."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Cuir luchd-faire ann gus saighead a chur ris na tùir dìona."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -2369,25 +2369,25 @@ msgstr "Ballachan fada na h-Àithne"
 msgid ""
 "+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "+25% de puingean-beatha agus -50% air an ùine togail airson ionadan sìobhalta for, teampallan, pioramaidean is mìorbhailean."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Ailtireachd-laighe"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "Thèid na sagartan agad oideachadh leis an àrd-shagart fhèin – beannachd Amun air."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "Trèanaich lighichean seann-ghaisgeach."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "High Priest of Amun"
-msgstr ""
+msgstr "Àrd-shagart Amuin"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
@@ -2422,7 +2422,7 @@ msgstr "Bhiodh na h-Innseanaich glè mhath air boghadaireachd is chleachdadh iad
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "Gheibh aonadan le bogha +10 meatairean de rainse. Gheibh boghadairean pongalachd leasaichte is thèid iad a thrèanadh nas luaithe le -20% ach caillidh iad slàinte cuideachd le -20%."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName

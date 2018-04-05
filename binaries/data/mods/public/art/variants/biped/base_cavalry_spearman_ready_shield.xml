@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<variant file="biped/rider/cavalry/base_spearman_shield_normal_attack.xml">
+<variant file="biped/rider/cavalry/base_spearman_shield.xml">
   <animations>
-    <animation file="biped/rider_idle_shield_ready_spear.dae" name="idle" speed="98"/>
-    <animation file="biped/rider_walk_shield_ready_spear.dae" name="Walk" speed="7"/>
+    <animation file="biped/rider/cavalry/idle_ready_shield.dae" name="idle" speed="80"/>
+    <animation file="biped/rider/cavalry/trot_shield.dae" name="Walk" speed="7"/>
   </animations>
 </variant>

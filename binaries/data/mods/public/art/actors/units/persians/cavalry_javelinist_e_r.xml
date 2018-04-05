@@ -9,7 +9,6 @@
         <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/pers_hair.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/pers_pelta_a_b_reverse.xml" attachpoint="back"/>
-        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
       </props>
     </variant>
@@ -32,7 +31,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_javelin_ready_shield.xml"/>
+    <variant file="biped/base_cavalry_javelin_relax.xml"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
@@ -40,8 +39,8 @@
     <variant file="biped/attack_ranged_cavalry_javelin.xml"/>
     <variant file="biped/rider/promotion_shield.xml" />
     <variant file="biped/rider/attack_slaughter_shield_pers.xml"/>
-    <variant file="biped/rider/gather_meat_pers.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_javelin.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

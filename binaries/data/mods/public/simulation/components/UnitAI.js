@@ -3323,10 +3323,7 @@ UnitAI.prototype.IsWalking = function()
 UnitAI.prototype.IsWalkingAndFighting = function()
 {
 	if (this.IsFormationMember())
-	{
-		var cmpUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
-		return (cmpUnitAI && cmpUnitAI.IsWalkingAndFighting());
-	}
+		return false;
 
 	return this.orderQueue.length > 0 && (this.orderQueue[0].type == "WalkAndFight" || this.orderQueue[0].type == "Patrol");
 };

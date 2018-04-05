@@ -6,7 +6,6 @@
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
-        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/thracian_horned_cav_e.xml" attachpoint="helmet"/>
@@ -17,7 +16,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_javelin_ready_shield.xml"/>
+    <variant file="biped/base_cavalry_javelin_relax.xml"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
@@ -25,8 +24,8 @@
     <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
     <variant file="biped/attack_ranged_cavalry_javelin.xml"/>
     <variant file="biped/rider/promotion_shield.xml"/>
-    <variant file="biped/rider/gather_meat_hele.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_javelin.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

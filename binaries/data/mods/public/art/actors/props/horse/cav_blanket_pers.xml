@@ -20,10 +20,5 @@
     <variant file="quadraped/props/blanket_pers.xml" name="horse-blanket-pers"/>
     <variant file="quadraped/props/blanket_pers_01.xml" name="horse-blanket-pers-01"/>
   </group>
-  <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
-  </group>
   <material>basic_trans.xml</material>
 </actor>

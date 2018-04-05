@@ -1,3 +1,8 @@
+/**
+ * Is this user in control of game settings (i.e. is a network server, or offline player).
+ */
+const g_IsController = !Engine.HasNetClient() || Engine.HasNetServer();
+
 var g_PlayerSlot;
 
 var g_AIDescriptions = [{
@@ -33,11 +38,11 @@ function init(settings)
 		let control = Engine.GetGUIObjectByName(name);
 		control.list = g_AIControls[name].labels;
 		control.selected = g_AIControls[name].selected(settings);
-		control.hidden = !settings.isController;
+		control.hidden = !g_IsController;
 
 		let label = Engine.GetGUIObjectByName(name + "Text");
 		label.caption = control.list[control.selected];
-		label.hidden = settings.isController;
+		label.hidden = g_IsController;
 	}
 
 	checkBehavior();

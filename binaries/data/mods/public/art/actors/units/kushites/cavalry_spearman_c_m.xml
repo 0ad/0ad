@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Base">
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/kushites/cavalry_spearman_c_r.xml" attachpoint="rider"/>
@@ -10,6 +10,7 @@
         <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_straps_kush_hero.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_straps_head_kush_gold.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_rein_spearman_shield.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
@@ -42,22 +43,8 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml" name="Spearman Horse">
-      <props>
-        <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_pelt_kush.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_straps_kush_hero.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_straps_head_kush_gold.xml" attachpoint="head"/>
-      </props>
-    </variant>
-    <variant file="quadraped/base_horse_run.xml" name="Spearman Horse">
-      <props>
-        <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_pelt_kush.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_straps_kush_hero.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_straps_head_kush_gold.xml" attachpoint="head"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

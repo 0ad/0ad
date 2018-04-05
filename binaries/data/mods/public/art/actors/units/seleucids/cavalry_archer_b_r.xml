@@ -15,7 +15,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_archer_ready.xml"/>
+    <variant file="biped/base_cavalry_archer_relax.xml"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
@@ -23,8 +23,8 @@
     <variant file="biped/attack_ranged_cavalry_archer_hip.xml"/>
     <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
-    <variant file="biped/rider/gather_meat_hele.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_archer.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

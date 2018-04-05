@@ -16,14 +16,15 @@
 # Victor Ptah, 2015
 # Yaroslav Yenkala <hyper-news@yandex.ru>, 2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
+# Микола Франчук <thekolian1996@gmail.com>, 2018
 # Сергій Дубик <dubyk@ukr.net>, 2014,2017
 # Ярослав Смук <Smuk.Slavko@yandex.ua>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-26 09:01+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +108,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Залишилось часу до відновлення бойових дій: %(time)s."
 
 #: gui/session/menu.js:455
 msgctxt "team"
@@ -144,7 +145,7 @@ msgstr "Підкупити випадкового юніта даного гра
 
 #: gui/session/menu.js:600
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "Невдала спроба підкупу коштувала:"
 
 #: gui/session/menu.js:776
 #, javascript-format
@@ -371,7 +372,7 @@ msgstr "Очікуємо на підключення гравців:"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr ""
+msgstr "Синхронізація гри з іншими гравцями..."
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -618,7 +619,7 @@ msgstr "Невідомий гравець"
 #. elements in an enumeration.
 #: gui/session/messages.js:999
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:1031
 #, javascript-format
@@ -743,7 +744,7 @@ msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:408
 msgid "Capture Points:"
-msgstr ""
+msgstr "Точки Захоплення:"
 
 #: gui/session/selection_details.js:416
 #, javascript-format
@@ -1075,7 +1076,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s для зміни порядку."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
@@ -1083,11 +1084,11 @@ msgstr ""
 
 #: gui/session/session.js:1260
 msgid "Descending"
-msgstr ""
+msgstr "По спаданню"
 
 #: gui/session/session.js:1260
 msgid "Ascending"
-msgstr ""
+msgstr "По зростанню"
 
 #: gui/session/session.js:1286
 #, javascript-format
@@ -1390,7 +1391,7 @@ msgstr "Підсумок"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr ""
+msgstr "Лоббі"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1406,7 +1407,7 @@ msgstr "Вихід"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Показати лоббі багатокористувацького режиму в діалоговому вікні."
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
@@ -1523,4 +1524,4 @@ msgstr "Меню"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIII : Ken Wood"
-msgstr ""
+msgstr "ALPHA XXIII : Ken Wood"

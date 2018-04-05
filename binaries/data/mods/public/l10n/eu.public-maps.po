@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-03-02 09:04+0100\n"
-"PO-Revision-Date: 2018-03-03 08:50+0000\n"
+"POT-Creation-Date: 2018-03-05 09:07+0100\n"
+"PO-Revision-Date: 2018-03-05 21:27+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -842,7 +842,8 @@ msgstr "Ezezaguna....Kontuz: Itsas mapa izan daiteke"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: maps/random/unknown_land.jsonsettings.Description
+#: maps/random/unknown_land.jsonsettings.Description maps/skirmishes/Egypt
+#: (4).xml:Description:40
 msgid "The unknown."
 msgstr "Ezezaguna."
 
@@ -2555,6 +2556,26 @@ msgstr "Alpeetako paisai lainotsu bat guda zelai bihurtuko da non talde bakoitza
 #: maps/skirmishes/Dueling Cliffs (3v3).xml:Name:40
 msgid "Dueling Cliffs (3v3)"
 msgstr "Aurrez-aurreko Labarrak (3v3)"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[0].Name:40
+msgid "Alexandria"
+msgstr "Alexandria"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[1].Name:40
+msgid "Theben"
+msgstr "Theben"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[2].Name:40
+msgid "Siwa"
+msgstr "Siwa"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[3].Name:40
+msgid "Sinai"
+msgstr "Sinai"
+
+#: maps/skirmishes/Egypt (4).xml:Name:40
+msgid "Egypt"
+msgstr "Egipto"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""

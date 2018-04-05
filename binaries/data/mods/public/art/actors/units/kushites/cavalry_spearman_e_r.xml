@@ -2,14 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield.xml" frequency="1" name="Base">
+    <variant>
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/ptol_quilted_b.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/kush_beja_rhino.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/kush_beja_rhino.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
   </group>
@@ -61,8 +61,8 @@
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/rider/attack_slaughter_shield_kush.xml"/>
-    <variant file="biped/rider/gather_meat_kush.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_shield_b.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

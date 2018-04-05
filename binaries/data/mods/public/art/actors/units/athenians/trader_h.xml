@@ -46,18 +46,8 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml">
-      <props>
-        <prop actor="props/horse/trader_blanket.xml" attachpoint="root"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
-      </props>
-    </variant>
-    <variant file="quadraped/base_horse_run.xml">
-      <props>
-        <prop actor="props/horse/trader_blanket.xml" attachpoint="root"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
   </group>
   <material>objectcolor.xml</material>
 </actor>

@@ -21,10 +21,5 @@
     <variant file="quadraped/props/blanket_rome_01.xml" name="horse-blanket-roman-01"/>
     <variant file="quadraped/props/blanket_rome_02.xml" name="horse-blanket-roman-02"/>
   </group>
-  <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
-  </group>
   <material>player_trans.xml</material>
 </actor>

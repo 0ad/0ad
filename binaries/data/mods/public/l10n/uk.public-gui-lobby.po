@@ -10,12 +10,13 @@
 # Victor Ptah, 2015
 # Victor Ptah, 2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2016
+# Микола Франчук <thekolian1996@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-23 09:04+0100\n"
-"PO-Revision-Date: 2018-02-23 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-20 16:15+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +64,7 @@ msgstr "Від'єднано."
 #: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "%(nick)s змінив тему лоббі на %(subject)s"
 
 #: gui/lobby/lobby.js:189
 #, javascript-format
@@ -118,7 +119,7 @@ msgstr "%(oldnick)s тепер відомий як %(newnick)s."
 
 #: gui/lobby/lobby.js:279
 msgid "Notice"
-msgstr ""
+msgstr "Примітка"
 
 #: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."
@@ -170,7 +171,7 @@ msgstr "Повернутись до головного меню."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "Ви були роз'єднані з лоббі. Хочете під'єднатися знову?"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1192 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
@@ -288,11 +289,11 @@ msgstr "Гравці: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1180
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "Ваші активні моди не відповідають модам цієї гри."
 
 #: gui/lobby/lobby.js:1182
 msgid "Incompatible mods"
-msgstr ""
+msgstr "Несумісні моди"
 
 #: gui/lobby/lobby.js:1183
 msgid "Ok"
@@ -387,11 +388,11 @@ msgstr "%(percentage)s%%"
 
 #: gui/prelobby/prelobby.js:43
 msgid "Connecting…"
-msgstr ""
+msgstr "Підключення..."
 
 #: gui/prelobby/prelobby.js:66
 msgid "Registering…"
-msgstr ""
+msgstr "Реєстрація..."
 
 #: gui/prelobby/prelobby.js:96
 msgid "Please enter your username"
@@ -399,17 +400,17 @@ msgstr "Будь ласка введіть ім'я користувача"
 
 #: gui/prelobby/prelobby.js:102
 msgid "Invalid username"
-msgstr ""
+msgstr "Невірне ім'я користувача"
 
 #: gui/prelobby/prelobby.js:109
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Будь ласка, введіть свій пароль"
 
 #: gui/prelobby/prelobby.js:110
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Будь ласка, введіть свій пароль"
 
 #: gui/prelobby/prelobby.js:123
 msgid "Please enter your password again"
@@ -459,7 +460,7 @@ msgstr "Умови використання"
 
 #: gui/prelobby/prelobby.js:298
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr ""
+msgstr "Ви впевнені, що хочете видалити пароль після підключення?"
 
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
@@ -613,7 +614,7 @@ msgstr "Пароль:"
 
 #: gui/prelobby/prelobby.xml:(caption):68
 msgid "Remember Password"
-msgstr ""
+msgstr "Запам'ятайте пароль"
 
 #: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"

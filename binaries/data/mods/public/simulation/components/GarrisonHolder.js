@@ -220,10 +220,10 @@ GarrisonHolder.prototype.Garrison = function(entity, vgpEntity)
 		let cmpUnitMotion = Engine.QueryInterface(entity, IID_UnitMotion);
 		if (cmpUnitMotion)
 			cmpUnitMotion.SetFacePointAfterMove(false);
+		cmpPosition.SetTurretParent(this.entity, visibleGarrisonPoint.offset);
 		let cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 		if (cmpUnitAI)
 			cmpUnitAI.SetTurretStance();
-		cmpPosition.SetTurretParent(this.entity, visibleGarrisonPoint.offset);
 	}
 	else
 		cmpPosition.MoveOutOfWorld();

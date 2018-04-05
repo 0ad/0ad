@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Cavalry">
+    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/ptolemies/cavalry_spearman_c_r.xml" attachpoint="rider"/>
@@ -61,18 +61,8 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml">
-      <props>
-        <prop actor="props/horse/cav_blanket_ptol.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant file="quadraped/base_horse_run.xml">
-      <props>
-        <prop actor="props/horse/cav_blanket_ptol.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
   </group>
   <material>objectcolor.xml</material>
 </actor>

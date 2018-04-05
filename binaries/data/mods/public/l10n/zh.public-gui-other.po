@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Charles Yang <mryang@minelandcn.com>, 2018
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # Jason Chen <wonton.cc@gmail.com>, 2017
@@ -21,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 14:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-03-05 09:05+0100\n"
+"PO-Revision-Date: 2018-03-26 01:20+0000\n"
+"Last-Translator: Charles Yang <mryang@minelandcn.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +50,7 @@ msgstr "冲锋"
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s：切换到建筑树。"
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
@@ -109,7 +110,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "正在使用默认浏览器打开%(url)s\n请稍候… "
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -173,7 +174,7 @@ msgstr "删除"
 #: gui/options/options.js:264 gui/options/options.js:314
 #: gui/options/options.js:340 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:446
 msgid "No"
 msgstr "否"
 
@@ -181,7 +182,7 @@ msgstr "否"
 #: gui/options/options.js:264 gui/options/options.js:314
 #: gui/options/options.js:340 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:171
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:446
 msgid "Yes"
 msgstr "是"
 
@@ -334,7 +335,7 @@ msgstr "英雄驻军"
 
 #: gui/common/gamedescription.js:262
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "英雄可以驻守。"
 
 #: gui/common/gamedescription.js:266
 msgid "Exposed Heroes"
@@ -352,7 +353,7 @@ msgstr "排位赛"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "当这场比赛的获胜者确定后，大厅的分数将被调整。"
 
 #: gui/common/gamedescription.js:280
 msgid "Locked Teams"
@@ -435,7 +436,7 @@ msgstr "城镇中心"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "玩家从少数单位开局并需要找到一个合适的地方来建造他们的城市。"
 
 #: gui/common/gamedescription.js:351
 msgid "Players start with a Civic Center."
@@ -716,7 +717,7 @@ msgstr "随机"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "每次创建一个具有不同资源分布的独特地图。自由选择玩家和队伍的数量。"
 
 #: gui/common/settings.js:231
 msgctxt "map"
@@ -1296,7 +1297,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr ""
+msgstr "%(warning)s你似乎在使用不支持着色器（固定功能）的图形处理器。此选项将在 0 A.D.的未来版本中删除，以支持更高级的图形功能。我们建议您将显卡升级到支持着色器的型号。"
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1324,13 +1325,13 @@ msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "确定要退出 0 A.D. 吗?"
 
 #: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
-#: gui/summary/summary.js:443
+#: gui/summary/summary.js:445
 msgid "Confirmation"
 msgstr "确认"
 
 #: gui/pregame/mainmenu.js:273
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "确定要退出 0 A.D. ，并打开剧情编辑器吗？"
 
 #: gui/pregame/mainmenu.js:281
 msgid ""
@@ -1827,49 +1828,53 @@ msgstr "支出"
 msgid "Failed"
 msgstr "失败"
 
-#: gui/summary/summary.js:442
+#: gui/summary/summary.js:335
+msgid "Time elapsed"
+msgstr ""
+
+#: gui/summary/summary.js:444
 msgid "Are you sure you want to quit the lobby?"
 msgstr "你确定要退出大厅吗？"
 
-#: gui/summary/summary.js:507
+#: gui/summary/summary.js:509
 msgid "Current Scores"
 msgstr "目前分数"
 
-#: gui/summary/summary.js:509
+#: gui/summary/summary.js:511
 msgid "Scores at the end of the game."
 msgstr "游戏结束时的积分。"
 
-#: gui/summary/summary.js:511
+#: gui/summary/summary.js:513
 msgid "You have been disconnected."
 msgstr "连接已断开。"
 
-#: gui/summary/summary.js:513
+#: gui/summary/summary.js:515
 msgid "You have left the game."
 msgstr "您已经离开了游戏。"
 
-#: gui/summary/summary.js:515
+#: gui/summary/summary.js:517
 msgid "You have won the battle!"
 msgstr "您已胜出！"
 
-#: gui/summary/summary.js:517
+#: gui/summary/summary.js:519
 msgid "You have been defeated…"
 msgstr "您已战败。"
 
-#: gui/summary/summary.js:518
+#: gui/summary/summary.js:520
 msgid "You have abandoned the game."
 msgstr "您放弃了游戏。"
 
-#: gui/summary/summary.js:521
+#: gui/summary/summary.js:523
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "游戏时间已过: %(time)s"
 
-#: gui/summary/summary.js:529
+#: gui/summary/summary.js:531
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:541
+#: gui/summary/summary.js:543
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr ""
@@ -2309,11 +2314,11 @@ msgctxt "summary chart"
 msgid "Type:"
 msgstr "类型: "
 
-#: gui/summary/summary.xml:(caption):226
+#: gui/summary/summary.xml:(caption):227
 msgid "Replay"
 msgstr "重玩游戏"
 
-#: gui/summary/summary.xml:(caption):231
+#: gui/summary/summary.xml:(caption):232
 msgid "Continue"
 msgstr "继续"
 

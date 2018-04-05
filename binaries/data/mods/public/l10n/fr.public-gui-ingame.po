@@ -51,12 +51,14 @@
 # Sander Deryckere, 2014
 # slimkhan, 2014
 # Slim Khan, 2014
-# Polakrity <sxk-fr@live.fr>, 2014,2017
+# Polakrity <sxk-fr@live.fr>, 2014,2017-2018
 # tavariz <guipoi@yahoo.fr>, 2014
 # Thedemos <thekingadn@gmail.com>, 2014
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
+# Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2018
 # Timothee KNOBLOCH <inactive+nouillorque@transifex.com>, 2014
 # Tito221 <Titanomachy221@hotmail.fr>, 2013
+# oiseauroch <tobollive@aol.com>, 2018
 # Loki <tontonloul@hotmail.fr>, 2013
 # Toto AD <ad@imw.fr>, 2014
 # Valentin Ambroise <valentin.amb@hotmail.com>, 2015
@@ -66,8 +68,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-28 16:28+0000\n"
-"Last-Translator: oiseauroch <tobollive@aol.com>\n"
+"PO-Revision-Date: 2018-03-17 10:49+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -186,7 +188,7 @@ msgstr "Soudoyer une unité aléatoire de ce joueur et partager son champ de vis
 
 #: gui/session/menu.js:600
 msgid "A failed bribe will cost you:"
-msgstr "Un échec de pot-de-vin vous coutera :"
+msgstr "Un échec de pot-de-vin vous coûtera :"
 
 #: gui/session/menu.js:776
 #, javascript-format
@@ -404,7 +406,7 @@ msgstr "En attente de la connexion de joueurs :"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr "Synchronisation du jeux avec les autres joueurs..."
+msgstr "Synchronisation du jeu avec les autres joueurs..."
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -536,11 +538,11 @@ msgstr "Quitter"
 
 #: gui/session/messages.js:594
 msgid "Click when ready."
-msgstr "Cliquer quand prêt."
+msgstr "Cliquez quand vous êtes prêt."
 
 #: gui/session/messages.js:598
 msgid "Follow the instructions."
-msgstr "Suivre les instructions."
+msgstr "Suivez les instructions."
 
 #: gui/session/messages.js:689
 msgctxt "Separator for a list of client loading messages"
@@ -571,7 +573,7 @@ msgstr "L'état de votre partie est différent de celui de l'hôte."
 #: gui/session/messages.js:711
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Rejoindre des parties multijoueurs avec des IAs n'est pas encore possible pour le moment !"
+msgstr "Rejoindre des parties multijoueurs avec des IAs n'est pas encore possible pour le moment!"
 
 #: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
@@ -587,7 +589,7 @@ msgstr "Cliquez sur \"Rapporter un bug\" dans le menu principal pour aider à sa
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr "Partie sauvegardée dans %(filepath)s"
+msgstr "Replay sauvegardé dans %(filepath)s"
 
 #: gui/session/messages.js:719
 #, javascript-format
@@ -1056,7 +1058,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Affiche l'historique / l'arbre technologique\nLa dernière civilisation ouverte sera réouverte par défaut. "
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1107,7 +1109,7 @@ msgstr "%(playername)s : %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr "%(order)s:%(hotkey)s pour changer l'ordre."
+msgstr "%(order)s: %(hotkey)s pour changer l'ordre."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
@@ -1219,7 +1221,7 @@ msgstr "Décharger"
 
 #: gui/session/unit_actions.js:1147
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr "Ordonne aux unités sélectionnées de réparer un bâtiment ou une unité mécanique."
+msgstr "Ordonner aux unités sélectionnées de réparer un bâtiment ou une unité mécanique."
 
 #: gui/session/unit_actions.js:1166
 msgid "Focus on Rally Point."
@@ -1240,15 +1242,15 @@ msgstr "Ne plus garder"
 #: gui/session/unit_actions.js:1255
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr "Troc et Échange"
+msgstr "Troquer et échanger"
 
 #: gui/session/unit_actions.js:1273
 msgid "Patrol"
-msgstr "Patrouille"
+msgstr "Patrouiller"
 
 #: gui/session/unit_actions.js:1274
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr "Attaquer toutes les unités ennemies rencontrées en évitant les batiments."
+msgstr "Attaquer toutes les unités ennemies rencontrées tout en évitant les batiments."
 
 #: gui/session/unit_actions.js:1300
 msgid "Press to allow allies to use this dropsite"
@@ -1268,7 +1270,7 @@ msgstr "L'utilisation de ce dépôt vous est interdite"
 
 #: gui/session/unit_actions.js:1447
 msgid "The entity has to be killed before it can be gathered from"
-msgstr "L'entité doit être tuée avant d'y récolter des ressources"
+msgstr "L'entité doit être tuée avant de pouvoir en récolter des ressources"
 
 #: gui/session/unit_actions.js:1450
 msgid ""
@@ -1469,11 +1471,11 @@ msgstr "Mode spectateur"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr "Troc et Échange de Marchandises"
+msgstr "Troquer et échanger des marchandises"
 
 #: gui/session/trade_window.xml:(caption):16
 msgid "Barter"
-msgstr "Troc"
+msgstr "Troquer"
 
 #: gui/session/trade_window.xml:(caption):23
 msgid "Sell:"

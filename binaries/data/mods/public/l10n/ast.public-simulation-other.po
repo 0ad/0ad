@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-19 09:05+0100\n"
-"PO-Revision-Date: 2018-02-22 00:05+0000\n"
+"POT-Creation-Date: 2018-03-05 09:07+0100\n"
+"PO-Revision-Date: 2018-03-05 18:03+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -512,26 +512,26 @@ msgstr "Algamóse la llende d'entrenamientu de %(limit)s de %(category)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "Algamóse la llende de %(limit)s de %(category)s"
 
-#: simulation/components/Player.js:336
+#: simulation/components/Player.js:350
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:338
+#: simulation/components/Player.js:352
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:340
+#: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:342
+#: simulation/components/Player.js:356
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -539,11 +539,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:400
+#: simulation/components/ProductionQueue.js:394
 msgid "The production queue is full."
 msgstr "La cola de producción ta enllena."
 
-#: simulation/components/ProductionQueue.js:775
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr "Nun pue alcontrase un espaciu llibre p'aprucir unidaes entrenaes"
 
@@ -564,43 +564,43 @@ msgstr "(Trampa - controlar toles unidaes)"
 msgid "(Cheat - reveal map)"
 msgstr "(Trampa - revelar mapa)"
 
-#: simulation/helpers/Commands.js:449
+#: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s rindióse."
 
-#: simulation/helpers/Commands.js:591
+#: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
 msgstr "(Trampa - unidaes ascendíes)"
 
-#: simulation/helpers/Commands.js:705
+#: simulation/helpers/Commands.js:722
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Nun pue anovase darréu que los requirimientos de distrancia nun se verificaron o'l tarrén ta obstruyíu."
 
-#: simulation/helpers/Commands.js:715
+#: simulation/helpers/Commands.js:732
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Nun pue anovase una entidá guarnecida."
 
-#: simulation/helpers/Commands.js:758
+#: simulation/helpers/Commands.js:775
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Solicitóse l'ataque escontra %(_player_)s."
 
-#: simulation/helpers/Commands.js:797
+#: simulation/helpers/Commands.js:814
 msgid "There are no bribable units"
 msgstr "Nun hai unidaes sobornables"
 
-#: simulation/helpers/Commands.js:843
+#: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
 msgstr "Nun pue(n) guarnecese la(es) unidá(es)"
 
-#: simulation/helpers/Commands.js:857
+#: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
 msgstr "Delles unidaes nun puen volver al trabayu"
 
-#: simulation/helpers/Commands.js:1111
+#: simulation/helpers/Commands.js:1114
 msgid "The building's technology requirements are not met."
 msgstr "Nun se cumplen los requisitos de la teunoloxía de la construcción."
 
@@ -876,5 +876,5 @@ msgstr "Robó de Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra ye'l robó por defeutu de la IA de 0 A.D. Fai'l favor d'informar de problemes a Wildfire Games (mira l'enllaz del menú principal).\n\nLa IA tien una bonificación/penalización na aneyadura de recursos (yá seya la velocidá de recoyida o la ganancia del comerciu) que va del -60% pa Sableru al +60% pa Perdifícil (Medio 0%). Amás, el nivel sableru nun medra nin ataca."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra ye'l robó por defeutu de la IA de 0 A.D. Informa de problemes a Wildfire Games (mira l'enllaz del menú principal), por favor.\n\nLa IA tien una bonificación/penalización na aneyadura de recursos (yá seya la velocidá de recoyida o la ganancia del comerciu) que va del -60% pa Sableru al +60% pa Perdifícil (Medio 0%) y nos niveles más fáciles son más lentes les velocidaes de producción y construcción. Amás, en nivel Sableru nun medra nin ataca."

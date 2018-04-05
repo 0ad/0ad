@@ -1,105 +1,153 @@
 <skeletons>
-  <standard_skeleton title="Horse01 Biped" id="Horse01">
+  <standard_skeleton title="Horse_armature" id="Horse">
     <bone name="root">
-      <bone name="pelvis">
-        <bone name="spine">
-          <bone name="spine1">
+      <bone name="spine">
+        <bone name="spine1">
+          <bone name="spine2">
             <bone name="neck">
               <bone name="neck1">
-                <bone name="head"/></bone>
-              <bone name="l_clavicle">
-                <bone name="l_upperarm">
-                  <bone name="l_forearm">
-                    <bone name="l_hand">
-                      <bone name="l_wrist">
-                        <bone name="l_finger"/></bone>
+                <bone name="neck2">
+                  <bone name="head">
+                    <bone name="r_ear">
+                      <bone name="r_ear_2"/>
+                    </bone>
+                    <bone name="l_ear">
+                      <bone name="l_ear_2"/>
                     </bone>
                   </bone>
                 </bone>
               </bone>
-              <bone name="r_clavicle">
-                <bone name="r_upperarm">
+            </bone>
+            <bone name="l_shoulder">
+              <bone name="l_upperarm">
+                <bone name="l_arm">
+                  <bone name="l_forearm">
+                    <bone name="l_hand">
+                      <bone name="l_hoof"/>
+                    </bone>
+                  </bone>
+                </bone>  
+              </bone>
+            </bone>
+            <bone name="r_shoulder">
+              <bone name="r_upperarm">
+                <bone name="r_arm">
                   <bone name="r_forearm">
                     <bone name="r_hand">
-                      <bone name="r_wrist">
-                        <bone name="r_finger"/></bone>
+                      <bone name="r_hoof"/>
+                    </bone>
+                  </bone>
+                </bone>  
+              </bone>
+            </bone>
+          </bone>
+          <bone name="belly"/>
+        </bone>
+          <bone name="l_femur">
+            <bone name="l_thigh">
+              <bone name="l_leg">
+                <bone name="l_shin">
+                  <bone name="l_foot">
+                    <bone name="l_hoof_back"/>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="r_femur">
+            <bone name="r_thigh">
+              <bone name="r_leg">
+                <bone name="r_shin">
+                  <bone name="r_foot">
+                    <bone name="r_hoof_back"/>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        <bone name="tail_base">
+          <bone name="tail">
+            <bone name="tail2">
+              <bone name="tail3">
+                <bone name="tail4">
+                  <bone name="tail5">
+                    <bone name="tail6">
+                      <bone name="tail7">
+                      </bone>
                     </bone>
                   </bone>
                 </bone>
               </bone>
             </bone>
           </bone>
-        </bone>
-        <bone name="l_thigh">
-          <bone name="l_foot">
-            <bone name="l_ankle">
-              <bone name="l_toe"/></bone>
-          </bone>
-        </bone>
-        <bone name="r_thigh">
-          <bone name="r_foot">
-            <bone name="r_ankle">
-              <bone name="r_toe"/></bone>
-          </bone>
-        </bone>
-        <bone name="tail">
-          <bone name="tail1">
-            <bone name="tail2"/></bone>
         </bone>
       </bone>
     </bone>
   </standard_skeleton>
-  <skeleton title="3ds Max Horse01 biped" target="Horse01">
+  <skeleton title="Hore_armature" target="Horse">
     <identifier>
-      <root>Horse01</root>
+      <root>Horse_root</root>
     </identifier>
-    <bone name="Horse01">
+    <bone name="Horse_root">
       <target>root</target>
-      <bone name="Horse01_Pelvis">
-        <target>pelvis</target>
-        <bone name="Horse01_Spine">
-          <target>spine</target>
-          <bone name="Horse01_Spine1">
-            <target>spine1</target>
-            <bone name="Horse01_Neck">
+      <bone name="Horse_Spine">
+        <target>spine</target>
+        <bone name="Horse_Spine_1">
+          <target>spine1</target>
+          <bone name="Horse_Spine_2">
+            <target>spine2</target>
+            <bone name="Horse_Neck">
               <target>neck</target>
-              <bone name="Horse01_Neck1">
+              <bone name="Horse_Neck_1">
                 <target>neck1</target>
-                <bone name="Horse01_Head">
-                  <target>head</target>
-                </bone>
-              </bone>
-              <bone name="Horse01_L_Clavicle">
-                <target>l_clavicle</target>
-                <bone name="Horse01_L_UpperArm">
-                  <target>l_upperarm</target>
-                  <bone name="Horse01_L_Forearm">
-                    <target>l_forearm</target>
-                    <bone name="Horse01_L_Hand">
-                      <target>l_hand</target>
-                      <bone name="Horse01_L_Wrist">
-                        <target>l_wrist</target>
-                        <bone name="Horse01_L_Finger0">
-                          <target>l_finger</target>
-                        </bone>
-                      </bone>
+                <bone name="Horse_Neck_2">
+                  <target>neck2</target>
+                  <bone name="Horse_Head">
+                    <target>head</target>
+                    <bone name="Horse_ear_R">
+                      <target>r_ear</target>
+                      <bone name="Horse_ear_2_R"/>
+                        <target>r_ear_2</target>
+                    </bone>
+                    <bone name="Horse_ear_L">
+                      <target>l_ear</target>
+                      <bone name="Horse_ear_2_L"/>
+                        <target>l_ear_2</target>
                     </bone>
                   </bone>
                 </bone>
               </bone>
-              <bone name="Horse01_R_Clavicle">
-                <target>r_clavicle</target>
-                <bone name="Horse01_R_UpperArm">
-                  <target>r_upperarm</target>
-                  <bone name="Horse01_R_Forearm">
+            </bone>
+            <bone name="Horse_shoulder_R">
+              <target>r_shoulder</target>
+              <bone name="Horse_upperarm_R">
+                <target>r_upperarm</target>
+                <bone name="Horse_Arm_R">
+                  <target>r_arm</target>
+                  <bone name="Horse_Forearm_R">
                     <target>r_forearm</target>
-                    <bone name="Horse01_R_Hand">
+                    <bone name="Horse_Hand_R">
                       <target>r_hand</target>
-                      <bone name="Horse01_R_Wrist">
-                        <target>r_wrist</target>
-                        <bone name="Horse01_R_Finger0">
-                          <target>r_finger</target>
-                        </bone>
+                      <bone name="Horse_Hoof_R">
+                        <target>r_hoof</target>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="Horse_shoulder_L">
+              <target>l_shoulder</target>
+              <bone name="Horse_upperarm_L">
+                <target>l_upperarm</target>
+                <bone name="Horse_Arm_L">
+                  <target>l_arm</target>
+                  <bone name="Horse_Forearm_L">
+                    <target>l_forearm</target>
+                    <bone name="Horse_Hand_L">
+                      <target>l_hand</target>
+                      <bone name="Horse_Hoof_L">
+                        <target>l_hoof</target>
                       </bone>
                     </bone>
                   </bone>
@@ -107,40 +155,70 @@
               </bone>
             </bone>
           </bone>
+          <bone name="Horse_Belly">
+            <target>belly</target>
+          </bone>
         </bone>
-        <bone name="Horse01_L_Thigh">
+      </bone>
+      <bone name="Horse_Femur_L">
+        <target>l_femur</target>
+        <bone name="Horse_Thigh_L">
           <target>l_thigh</target>
-          <bone name="Horse01_L_Foot">
-            <target>l_foot</target>
-            <bone name="Horse01_L_Ankle">
-              <target>l_ankle</target>
-              <bone name="Horse01_L_Toe0">
-                <target>l_toe</target>
+          <bone name="Horse_Leg_L">
+            <target>l_leg</target>
+            <bone name="Horse_Shin_L">
+              <target>l_shin</target>
+              <bone name="Horse_Foot_L">
+                <target>l_foot</target>
+                <bone name="Horse_Hoof_back_L">
+                  <target>l_hoof_back</target>
+                </bone>
               </bone>
             </bone>
           </bone>
         </bone>
-        <bone name="Horse01_R_Thigh">
+      </bone>
+      <bone name="Horse_Femur_R">
+        <target>r_femur</target>
+        <bone name="Horse_Thigh_R">
           <target>r_thigh</target>
-          <bone name="Horse01_R_Foot">
-            <target>r_foot</target>
-            <bone name="Horse01_R_Ankle">
-              <target>r_ankle</target>
-              <bone name="Horse01_R_Toe0">
-                <target>r_toe</target>
+          <bone name="Horse_Leg_R">
+            <target>r_leg</target>
+            <bone name="Horse_Shin_R">
+              <target>r_shin</target>
+              <bone name="Horse_Foot_R">
+                <target>r_foot</target>
+                <bone name="Horse_Hoof_back_R">
+                  <target>r_hoof_back</target>
+                </bone>
               </bone>
             </bone>
           </bone>
         </bone>
-        <bone name="Horse01_Tail">
-          <target>tail</target>
-          <bone name="Horse01_Tail1">
-            <target>tail1</target>
-            <bone name="Horse01_Tail2">
+      </bone>
+      <bone name="Horse_Tail_base">
+        <target>tail_base</target>
+        <bone name="Horse_Tail">
+            <target>tail</target>
+            <bone name="Horse_Tail_2">
               <target>tail2</target>
+              <bone name="Horse_Tail_3">
+              <target>tail3</target>
+              <bone name="Horse_Tail_4">
+                <target>tail4</target>
+                <bone name="Horse_Tail_5">
+                  <target>tail5</target>
+                  <bone name="Horse_Tail_6">
+                    <target>tail6</target>
+                    <bone name="Horse_Tail_7">
+                      <target>tail7</target>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
             </bone>
-          </bone>
         </bone>
+      </bone>
       </bone>
     </bone>
   </skeleton>

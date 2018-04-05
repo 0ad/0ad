@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Facundo Abiega <abiegafacundo@gmail.com>, 2018
 # Franco Falleti <ezefran256@gmail.com>, 2016
 # Mateo Ceballos <ceballosmateo50@gmail.com>, 2016
 # Jorge Telechea <f00ck6006l3@gmail.com>, 2015
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-23 16:58+0000\n"
+"Last-Translator: Facundo Abiega <abiegafacundo@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "Aleatorio "
 
 #: gui/gamesetup/gamesetup.js:81
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Selecciona una civilización aleatoriamente al comenzar el juego."
 
 #: gui/gamesetup/gamesetup.js:119
 #, javascript-format
@@ -49,11 +50,11 @@ msgstr "* %(username)s no está listo"
 
 #: gui/gamesetup/gamesetup.js:120
 msgid "I'm ready"
-msgstr "estoy listo."
+msgstr "Estoy listo."
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Indica que estás listo para jugar."
 
 #: gui/gamesetup/gamesetup.js:125
 #, javascript-format
@@ -62,11 +63,11 @@ msgstr "* ¡ %(username)s está listo!"
 
 #: gui/gamesetup/gamesetup.js:126
 msgid "Stay ready"
-msgstr ""
+msgstr "Mantenerse listo"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Mantenerse listo incluso cuando las preferencias del juego cambien."
 
 #: gui/gamesetup/gamesetup.js:132
 msgid "I'm not ready!"
@@ -113,12 +114,12 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:172
 msgctxt "map filter"
 msgid "Default"
-msgstr ""
+msgstr "Por defecto"
 
 #: gui/gamesetup/gamesetup.js:173
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Todos los mapas excepto los navales y los de muestra,"
 
 #: gui/gamesetup/gamesetup.js:179
 msgid "Naval Maps"
@@ -127,7 +128,7 @@ msgstr "Mapas navales"
 #: gui/gamesetup/gamesetup.js:180
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Mapas donde son necesarias las embarcaciones para alcanzar al enemigo."
 
 #: gui/gamesetup/gamesetup.js:185
 msgid "Demo Maps"
@@ -136,25 +137,25 @@ msgstr "Mapas de demostración"
 #: gui/gamesetup/gamesetup.js:186
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Estos mapas se pueden usar únicamente para propósitos de demostración."
 
 #: gui/gamesetup/gamesetup.js:191
 msgid "New Maps"
-msgstr ""
+msgstr "Nuevos mapas"
 
 #: gui/gamesetup/gamesetup.js:192
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Mapas que son nuevos en ésta última entrega del juego."
 
 #: gui/gamesetup/gamesetup.js:197
 msgid "Trigger Maps"
-msgstr ""
+msgstr "Mapas escenario"
 
 #: gui/gamesetup/gamesetup.js:198
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Mapas que tienen eventos programados y potencialmente unidades enemigas ya generadas."
 
 #: gui/gamesetup/gamesetup.js:203
 msgid "All Maps"
@@ -163,12 +164,12 @@ msgstr "Todos los mapas"
 #: gui/gamesetup/gamesetup.js:204
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Todos los mapas el tipo elegido."
 
 #: gui/gamesetup/gamesetup.js:409
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Mapa"
 
 #: gui/gamesetup/gamesetup.js:424
 msgctxt "Match settings tab name"
@@ -178,11 +179,11 @@ msgstr "Jugador"
 #: gui/gamesetup/gamesetup.js:434
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Tipo de juego"
 
 #: gui/gamesetup/gamesetup.js:474
 msgid "Map Type"
-msgstr ""
+msgstr "Tipo de mapa"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Select a map type."
@@ -190,7 +191,7 @@ msgstr "Selecciona un tipo de mapa."
 
 #: gui/gamesetup/gamesetup.js:498
 msgid "Map Filter"
-msgstr ""
+msgstr "Filtro de mapas"
 
 #: gui/gamesetup/gamesetup.js:499
 msgid "Select a map filter."
@@ -198,7 +199,7 @@ msgstr "Selecciona un filtro de mapa."
 
 #: gui/gamesetup/gamesetup.js:514
 msgid "Select Map"
-msgstr ""
+msgstr "Seleccionar mapa"
 
 #: gui/gamesetup/gamesetup.js:515
 msgid "Select a map to play on."
@@ -206,7 +207,7 @@ msgstr "Selecciona un mapa para jugar."
 
 #: gui/gamesetup/gamesetup.js:529
 msgid "Map Size"
-msgstr ""
+msgstr "Tamaño de mapa"
 
 #: gui/gamesetup/gamesetup.js:530
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -214,15 +215,15 @@ msgstr "Selecciona el tamaño del mapa. (Los mapas grandes pueden reducir el ren
 
 #: gui/gamesetup/gamesetup.js:544
 msgid "Biome"
-msgstr ""
+msgstr "Bioma"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Selecciona la flora y la fauna."
 
 #: gui/gamesetup/gamesetup.js:560
 msgid "Number of Players"
-msgstr ""
+msgstr "Número de jugadores"
 
 #: gui/gamesetup/gamesetup.js:561
 msgid "Select number of players."
@@ -230,27 +231,27 @@ msgstr "Selecciona el número de jugadores."
 
 #: gui/gamesetup/gamesetup.js:581
 msgid "Population Cap"
-msgstr ""
+msgstr "Límite de población"
 
 #: gui/gamesetup/gamesetup.js:588
 msgid "Select population limit."
-msgstr ""
+msgstr "Selecciona el límite de población"
 
 #: gui/gamesetup/gamesetup.js:591
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Advertencia: Podría haber problemas de rendimiento si todos los %(players)s jugadores alcanzan %(popCap)s de población"
 
 #: gui/gamesetup/gamesetup.js:609
 msgid "Starting Resources"
-msgstr ""
+msgstr "Recursos al iniciar"
 
 #: gui/gamesetup/gamesetup.js:612
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Cantidad inicial de cada recurso: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:615
 msgid "Select the game's starting resources."
@@ -258,7 +259,7 @@ msgstr "Selecciona los recursos iniciales del juego."
 
 #: gui/gamesetup/gamesetup.js:630
 msgid "Ceasefire"
-msgstr ""
+msgstr "Alto el fuego"
 
 #: gui/gamesetup/gamesetup.js:631
 msgid "Set time where no attacks are possible."
@@ -266,7 +267,7 @@ msgstr "Selecciona el tiempo en el que los ataques no son posibles."
 
 #: gui/gamesetup/gamesetup.js:644
 msgid "Victory Condition"
-msgstr ""
+msgstr "Condiciones de victoria"
 
 #: gui/gamesetup/gamesetup.js:645
 msgid "Select victory condition."
@@ -274,34 +275,34 @@ msgstr "Selecciona la condición de victoria."
 
 #: gui/gamesetup/gamesetup.js:660
 msgid "Relic Count"
-msgstr ""
+msgstr "Conteo de reliquias"
 
 #: gui/gamesetup/gamesetup.js:661
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "Número total de reliquias generadas en el mapa. La victoria por reliquias es más realista con una o dos reliquias en el mapa. Al incrementarse en número, es importante capturar reliquias para recibir beneficios adicionales. "
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Relic Duration"
-msgstr ""
+msgstr "Duración de reliquias"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Cantidad de minutos transcurridos hasta que el jugador obtiene la victoria por reliquias"
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Duración de Maravillas."
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Cantidad de minutos transcurridos hasta que el jugador obtiene Victoria por Maravilla."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Game Speed"
-msgstr ""
+msgstr "Velocidad de juego"
 
 #: gui/gamesetup/gamesetup.js:706
 msgid "Select game speed."
@@ -309,39 +310,39 @@ msgstr "Selecciona la velocidad del juego."
 
 #: gui/gamesetup/gamesetup.js:720
 msgid "Difficulty"
-msgstr ""
+msgstr "Dificultad"
 
 #: gui/gamesetup/gamesetup.js:722
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Selecciona la dificultad en este escenario."
 
 #: gui/gamesetup/gamesetup.js:787
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "Selecciona la civilización de este jugador"
 
 #: gui/gamesetup/gamesetup.js:827
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Guarnicion de Héroes."
 
 #: gui/gamesetup/gamesetup.js:828
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "Permite guarecer héroes."
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Nomad"
-msgstr ""
+msgstr "Nómade"
 
 #: gui/gamesetup/gamesetup.js:841
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "En modo nómade, los jugadores comienzan solamente con unas pocas unidades y deben encontrar un lugar apropiado para construir su civilización. Se recomienda Alto el fuego."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:854
 msgid "Revealed Map"
-msgstr ""
+msgstr "Mapa revelado"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -353,7 +354,7 @@ msgstr "Activa o desactiva el mapa revelado (ver todo)."
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:873
 msgid "Explored Map"
-msgstr ""
+msgstr "Mapa explorado"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -363,7 +364,7 @@ msgstr "Activa o desactiva el mapa explorado (ver mapa inicial)."
 
 #: gui/gamesetup/gamesetup.js:887
 msgid "Disable Treasures"
-msgstr ""
+msgstr "Deshabilitar tesoros"
 
 #: gui/gamesetup/gamesetup.js:888
 msgid "Disable all treasures on the map."
@@ -371,15 +372,15 @@ msgstr "Desactiva todos los tesoros del mapa."
 
 #: gui/gamesetup/gamesetup.js:899
 msgid "Disable Spies"
-msgstr ""
+msgstr "Deshabilitar espías "
 
 #: gui/gamesetup/gamesetup.js:900
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Deshabilita espías durante el juego."
 
 #: gui/gamesetup/gamesetup.js:911
 msgid "Teams Locked"
-msgstr ""
+msgstr "Equipos cerrados"
 
 #: gui/gamesetup/gamesetup.js:912
 msgid "Toggle locked teams."
@@ -387,7 +388,7 @@ msgstr "Activa o desactiva equipos cerrados."
 
 #: gui/gamesetup/gamesetup.js:926
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Último hombre en pie"
 
 #: gui/gamesetup/gamesetup.js:927
 msgid ""
@@ -397,7 +398,7 @@ msgstr "Seleccionar entre si gana el último jugador que queda o el último grup
 
 #: gui/gamesetup/gamesetup.js:940
 msgid "Cheats"
-msgstr ""
+msgstr "Trucos"
 
 #: gui/gamesetup/gamesetup.js:941
 msgid "Toggle the usability of cheats."
@@ -414,7 +415,7 @@ msgstr "Activa o desactiva la puntuación de la tabla de clasificación de este 
 #: gui/gamesetup/gamesetup.js:987
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr ""
+msgstr "Presiona %(hotkey)s para autocompletar los nombres de los jugadores y las preferencias."
 
 #: gui/gamesetup/gamesetup.js:995
 msgid "Return to the lobby."
@@ -426,7 +427,7 @@ msgstr "Volver al menú principal."
 
 #: gui/gamesetup/gamesetup.js:1000
 msgid "Start Game!"
-msgstr ""
+msgstr "¡Comienza el juego!"
 
 #: gui/gamesetup/gamesetup.js:1006
 msgid "Start a new game with the current settings."
@@ -436,34 +437,34 @@ msgstr "Empieza un nuevo juego con la configuración actual."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "Comienza un nuevo juego con las preferencias actuales (desactivado hasta que todos los jugadores estén listos)"
 
 #: gui/gamesetup/gamesetup.js:1070
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Configurar IA: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1121
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s/%(hotkey_structree)s: Ver Historia/Árbol de estructuras\nEl último abierto se reabre con un click."
 
 #: gui/gamesetup/gamesetup.js:1173
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Selecciona la tabla de preferencias %(name)s."
 
 #: gui/gamesetup/gamesetup.js:1174
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Presiona %(hotkey)s para mover la tabla de preferencias hacia abajo."
 
 #: gui/gamesetup/gamesetup.js:1175
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Presiona %(hotkey)s para mover la tabla de preferencias hacia arriba."
 
 #: gui/gamesetup/gamesetup.js:1692
 msgctxt "map selection"
@@ -472,22 +473,22 @@ msgstr "Aleatorio"
 
 #: gui/gamesetup/gamesetup.js:1694
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Selecciona cualquiera de los mapas de manera aleatoria."
 
 #: gui/gamesetup/gamesetup.js:1726
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Aleatorio."
 
 #: gui/gamesetup/gamesetup.js:1727
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Selecciona un bioma de manera aleatoria."
 
 #: gui/gamesetup/gamesetup.js:2058
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2063
 msgctxt "settings value"
@@ -505,7 +506,7 @@ msgstr "No"
 #: gui/gamesetup/gamesetup.js:2100
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2187
 #, javascript-format
@@ -533,16 +534,16 @@ msgstr "Jugador Desconocido"
 #: gui/gamesetup/gamesetup.js:2524
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:2525
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:2526
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -568,7 +569,7 @@ msgstr "Dificultad de la IA"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Comportamiento de IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -588,7 +589,7 @@ msgstr "Cargando"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Cargando mapa. Por favor espera..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
@@ -612,7 +613,7 @@ msgstr "Equipo"
 
 #: gui/gamesetup/gamesetup.xml:(caption):147
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Mostrar este mensaje en el futuro"
 
 #: gui/gamesetup/gamesetup.xml:(caption):236
 msgid "Send"
@@ -657,116 +658,116 @@ msgstr "Selecciona el equipo del jugador."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Muestra la sala de multijugador en una ventana."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[…] estableció su ley: no hay sabiduría sin sufrimiento \\[…] Entonces los hombres contra su propia voluntad aprenden a practicar la moderación \\[…] Esta gracia es dura y violenta.\" - Esquilo (Orestíada, vv. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr ""
+msgstr "\"Ella \\[Helena] llevó en vez de dote la ruina para Ilión\" -Esquilo (Orestíada, V. 406) "
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr ""
+msgstr "\"Sin duda, es un vicio inherente a la tiranía, no confiar en los amigos\". Esquilo (Prometeo encadenado , v. 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr ""
+msgstr "\"El tiempo, al envejecer, todo lo enseña\". -Esquilo (Prometeo encadenado, v.981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr ""
+msgstr "\"Más quiere bueno ser que parecerlo\". -Esquilo (Los siete conra Tebas, 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr ""
+msgstr "\"Un tonto próspero es una carga dolorosa\". -Esquilo (fragmento 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "\"Los dioses ayudan a los que se ayudan a sí mismos\". -Esopo (Hercules y el Carretero)"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr ""
+msgstr "\"Es sensato prepararse hoy para las necesidades de mañana\".- Esopo (La Hormiga y la Cigarra)"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr ""
+msgstr "\"La unión hace la fuerza\".-Esopo (El manojo de varas)"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr ""
+msgstr "\"Nunca confíes en el consejo de quien está en la agonía de su propia adversidad\". Esopo (El zorro y la cabra)"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr ""
+msgstr "\"Donde hay confianza, hay asco\"- Esopo (El zorro y el león)"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr ""
+msgstr "\"El autoengaño lleva a la autodestrucción\". -Esopo (La rana y el buey)"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr ""
+msgstr "\"La paciencia y la tenacidad siempre llevan al éxito. -Esopo (La liebre y la tortuga)"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr ""
+msgstr "\"Es mejor aprender del error ajeno que del propio\". -Esopo (El leon, el asno y la zorra)"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr ""
+msgstr "\"Las promesas del enemigo están hechas para ser rotas\". -Esopo (El lobo, la niñera y el niño)"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr ""
+msgstr "\"Cualquier excusa sirve al tirano\". -Esopo (El lobo y el cordero)"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaos"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "\"Si alguna hazaña notable llevé a cabo, ésa será mi mejor monumento; de los contrario, todas las estatuas del mundo no bastarán a ilustrar mi memoria\". -Agesilao II de Esparta "
 
 #: gui/text/quotes.txt:18
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr ""
+msgstr "\"Los espartanos no preguntan cuántos son, sino dónde están los enemigos\". -Agis II de Esparta"
 
 #: gui/text/quotes.txt:19
 msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr ""
+msgstr "\"No lloren por mi, porque si bien sufro injustamente, me siento mejor que mis asesinos\". -Agis IV de Esparta al ver llorar a uno de sus verdugos."
 
 #: gui/text/quotes.txt:20
 msgid ""

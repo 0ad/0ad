@@ -487,7 +487,6 @@ function startReplay()
 
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": Engine.GetReplayAttributes(g_GameData.gui.replayDirectory),
-		"isNetworked": false,
 		"playerAssignments": {
 			"local": {
 				"name": singleplayerName(),

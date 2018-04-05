@@ -191,7 +191,6 @@ function reallyLoadGame(gameId)
 
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": metadata.initAttributes,
-		"isNetworked": false,
 		"playerAssignments": {
 			"local": {
 				"name": pData ? pData.Name : singleplayerName(),

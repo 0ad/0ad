@@ -6,6 +6,7 @@
 # Antoine Sobocinski <antoine.sobocinski@live.fr>, 2016
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2014
+# Cyril Mercier <cyril.mercier21@gmail.com>, 2018
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
 # François Poirotte <clicky@erebot.net>, 2016
 # Jo Du <jojo337@live.fr>, 2017
@@ -17,7 +18,7 @@
 # nicolas t <deux718281@yahoo.fr>, 2016
 # oiseauroch <tobollive@aol.com>, 2018
 # PERRUSSEL Valentin <vperrus@gmail.com>, 2014
-# Polakrity <sxk-fr@live.fr>, 2014,2017
+# Polakrity <sxk-fr@live.fr>, 2014,2017-2018
 # Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2018
 # Toto AD <ad@imw.fr>, 2014
 # Xavier Tardieu <xapitoun@gmail.com>, 2016
@@ -25,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-23 09:04+0100\n"
-"PO-Revision-Date: 2018-02-28 16:30+0000\n"
-"Last-Translator: oiseauroch <tobollive@aol.com>\n"
+"PO-Revision-Date: 2018-03-17 10:47+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -299,11 +300,11 @@ msgstr "Joueurs : %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1180
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "Vos mods actifs ne correspondent pas à ceux de la partie."
 
 #: gui/lobby/lobby.js:1182
 msgid "Incompatible mods"
-msgstr ""
+msgstr "Mods incompatibles"
 
 #: gui/lobby/lobby.js:1183
 msgid "Ok"
@@ -398,7 +399,7 @@ msgstr "%(percentage)s%%"
 
 #: gui/prelobby/prelobby.js:43
 msgid "Connecting…"
-msgstr "Connection..."
+msgstr "Connexion en cours..."
 
 #: gui/prelobby/prelobby.js:66
 msgid "Registering…"
@@ -470,7 +471,7 @@ msgstr "Conditions Générales d'Utilisation"
 
 #: gui/prelobby/prelobby.js:298
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr "êtes vous sûr de vouloir supprimer votre mot de passe après la connection ?"
+msgstr "Êtes-vous sûr(e) de vouloir supprimer votre mot de passe après la connexion ?"
 
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
@@ -624,7 +625,7 @@ msgstr "Mot de passe :"
 
 #: gui/prelobby/prelobby.xml:(caption):68
 msgid "Remember Password"
-msgstr "mot de passe oublié"
+msgstr "Se souvenir du mot de passe"
 
 #: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"

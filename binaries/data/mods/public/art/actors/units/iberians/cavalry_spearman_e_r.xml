@@ -25,15 +25,15 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shieldsmall.xml"/>
+    <variant file="biped/base_cavalry_spearman_relax_shield_b.xml"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/rider/attack_slaughter_shield_iber.xml"/>
-    <variant file="biped/rider/gather_meat_iber.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_shield_b.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

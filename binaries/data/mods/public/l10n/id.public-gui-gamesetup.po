@@ -12,7 +12,7 @@
 # IndoGuy <Fresh.Farz@gmail.com>, 2013-2014
 # Joshua Randiny <jrandiny2@gmail.com>, 2015
 # Joshua Randiny <jrandiny2@gmail.com>, 2014-2015
-# Joshua Randiny <jrandiny2@gmail.com>, 2017
+# Joshua Randiny <jrandiny2@gmail.com>, 2017-2018
 # Joshua Randiny <jrandiny2@gmail.com>, 2013-2014
 # La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>, 2014
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017
@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-03-26 13:37+0000\n"
+"Last-Translator: Joshua Randiny <jrandiny2@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -181,7 +181,7 @@ msgstr "Semua peta dari tipe peta yang terpilih."
 #: gui/gamesetup/gamesetup.js:409
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Peta"
 
 #: gui/gamesetup/gamesetup.js:424
 msgctxt "Match settings tab name"
@@ -191,7 +191,7 @@ msgstr "Pemain"
 #: gui/gamesetup/gamesetup.js:434
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Tiper Permainan"
 
 #: gui/gamesetup/gamesetup.js:474
 msgid "Map Type"
@@ -231,7 +231,7 @@ msgstr "Bioma"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Pilih flora dan fauna."
 
 #: gui/gamesetup/gamesetup.js:560
 msgid "Number of Players"
@@ -302,15 +302,15 @@ msgstr "Durasi Relik"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Menit sampai seorang pemain mencapai Kemenangan Pusaka.."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Durasi Keajaiban"
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Menit sampai seorang pemain mencapai Kemenangan Keajaiban.."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Game Speed"
@@ -322,11 +322,11 @@ msgstr "Pilih kecepatan permainan."
 
 #: gui/gamesetup/gamesetup.js:720
 msgid "Difficulty"
-msgstr ""
+msgstr "Kesulitan"
 
 #: gui/gamesetup/gamesetup.js:722
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Pilih kesulitan dari skenario ini."
 
 #: gui/gamesetup/gamesetup.js:787
 msgid "Chose the civilization for this player"
@@ -342,13 +342,13 @@ msgstr "Aktifkan/nonaktifkan apakah pahlawan dapat dimasukkan atau tidak."
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Nomad"
-msgstr ""
+msgstr "Nomaden"
 
 #: gui/gamesetup/gamesetup.js:841
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "Dalam mode Nomaden, pemain memulai dengan hanya beberapa unit yang harus mencari tempat yang cocok untuk membangun kota mereka. Gencatan senjata direkomendasikan."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -454,7 +454,7 @@ msgstr "Memulai permainan dengan pengaturan ini (dimatikan sampai semua pemain s
 #: gui/gamesetup/gamesetup.js:1070
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Konfigurasi AI: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1121
 #, javascript-format

@@ -9,6 +9,7 @@
         <prop actor="props/units/horse/sele_crest.xml" attachpoint="head"/>
         <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_blanket_sele.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_spearman_2h.xml" attachpoint="head"/>
       </props>
       <textures>
         <texture file="skeletal/horse_rome_maximus.png" name="baseTex"/>
@@ -30,18 +31,8 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml">
-      <props>
-        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_blanket_sele.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant file="quadraped/base_horse_run.xml">
-      <props>
-        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_blanket_sele.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
   </group>
   <material>playercolor_spec.xml</material>
 </actor>

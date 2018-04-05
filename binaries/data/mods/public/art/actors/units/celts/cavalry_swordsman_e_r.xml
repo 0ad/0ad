@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/celt_round_e.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/celt_round_e.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/heads/celt_helmet_a.xml" attachpoint="helmet"/>
       </props>
     </variant>
@@ -30,10 +30,10 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/promotion.xml"/>
+    <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/rider/attack_slaughter_shield_celt.xml"/>
-    <variant file="biped/rider/gather_meat_celt.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_shield_a.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

@@ -20,10 +20,5 @@
     <variant file="quadraped/props/blanket_sele.xml" name="horse-blanket-cataphract"/>
     <variant file="quadraped/props/blanket_sele_01.xml" name="horse-blanket-cataphract-01"/>
   </group>
-  <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
-  </group>
   <material>basic_trans_parallax_spec.xml</material>
 </actor>

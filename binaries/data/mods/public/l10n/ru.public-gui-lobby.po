@@ -10,13 +10,15 @@
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Igor Kustov, 2014
+# Ilya Andreev, 2018
 # Ivan, 2014
 # Simple88, 2016
 # v00d00911 <agroworker@mail.ru>, 2014
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
-# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016-2017
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016-2018
 # Woratiklis, 2015
+# Александр Волосников <Volosnikov.aleksandr@bk.ru>, 2018
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
@@ -26,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-23 09:04+0100\n"
-"PO-Revision-Date: 2018-02-23 23:00+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2018-03-31 09:56+0000\n"
+"Last-Translator: Ilya Andreev\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +77,7 @@ msgstr "Отключен."
 #: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "%(nick)s изменило комнату мультиплеера на %(subject)s"
 
 #: gui/lobby/lobby.js:189
 #, javascript-format
@@ -142,11 +144,11 @@ msgstr "Установить ваш статус как \"онлайн\"."
 
 #: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "выгнать указанного игрока из лобби "
 
 #: gui/lobby/lobby.js:342
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "Заблокировать указанного игрока в лобби "
 
 #: gui/lobby/lobby.js:350
 msgid "Show this help."
@@ -164,13 +166,13 @@ msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "Отправьте сообщение в чат о себе. Например: /me идёт плавать."
 
 #: gui/lobby/lobby.js:374
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "Отправить сообщение в чат (даже если оно начинается на / )"
 
 #: gui/lobby/lobby.js:378
 msgid "Clear all chat scrollback."
@@ -182,7 +184,7 @@ msgstr "Вернуться в главное меню."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "Вы отключены от лобби "
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1192 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
@@ -267,11 +269,11 @@ msgstr "ИЗГНАН"
 
 #: gui/lobby/lobby.js:687
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Снять отметку Друга"
 
 #: gui/lobby/lobby.js:687
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Отметить как Друга"
 
 #: gui/lobby/lobby.js:880 gui/lobby/lobby.js:881 gui/lobby/lobby.js:882
 #: gui/lobby/lobby.js:883 gui/lobby/lobby.js:884 gui/lobby/lobby.js:885
@@ -300,11 +302,11 @@ msgstr "Игроки: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1180
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "Ваши моды не соответствуют модам в этой игре"
 
 #: gui/lobby/lobby.js:1182
 msgid "Incompatible mods"
-msgstr ""
+msgstr "Несовместимые моды"
 
 #: gui/lobby/lobby.js:1183
 msgid "Ok"
@@ -447,7 +449,7 @@ msgstr "Пожалуйста, согласитесь с Условиями се�
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr "Неизвестная ошибка. Обычно это происходит потому, что для одного и тот же IP-адреса не разрешено регистрировать более одного аккаунта в течение одного часа."
+msgstr "Неизвестная ошибка. Обычно это происходит потому, что для одного и того же IP-адреса не разрешено регистрировать более одного аккаунта в течение одного часа."
 
 #: gui/prelobby/prelobby.js:185
 msgid "Registered"

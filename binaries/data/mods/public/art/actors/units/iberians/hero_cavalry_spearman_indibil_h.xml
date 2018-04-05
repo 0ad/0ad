@@ -6,6 +6,7 @@
       <mesh>skeletal/horse.dae</mesh>
       <props>
         <prop actor="units/iberians/hero_cavalry_spearman_indibil_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_rein_spearman_shield.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>

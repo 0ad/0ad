@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-03-02 09:04+0100\n"
-"PO-Revision-Date: 2018-03-02 14:34+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-03-05 09:07+0100\n"
+"PO-Revision-Date: 2018-03-05 18:58+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,11 +31,11 @@ msgid ""
 "Aethiopia, land of the Kushites. Arid and hostile as the terrain might look,"
 " the region is surprisingly lush. The presence of several life-bringing "
 "oases serve to make this a prized haven for man and beast alike."
-msgstr ""
+msgstr "Etiopía, la tierra de los cuxites. Por suriono y contrario que paeza'l terrén, la rexón ye ablucantemente taramuda. La presencia de dellos oasis sirven pa facer d'ella un abellugu preciáu pol home y el bichu."
 
 #: maps/random/aethiopia.jsonsettings.Name
 msgid "Aethiopia"
-msgstr ""
+msgstr "Etiopía"
 
 #: maps/random/african_plains.jsonsettings.Description
 msgid ""
@@ -507,7 +507,7 @@ msgid ""
 "place to live, but the control of this ancient corridor was vital for any "
 "power seeking to control the lucrative trade routes on the Nile and affords "
 "access to the rich goldfields of the Nubian desert."
-msgstr ""
+msgstr "Coñocida en mundu griegu-romanu como'l Triacontascenu, la Baxa Nubia foi la faza ente la primera y segunda catarata del Nilu y formó la llende tradicional ente Cux y Exiptu. Inda que la calor del ermu, lo pindio de los valles y l'altor de les maedes de la fastera dexábenla poco acoyedora, el dominiu d'esti corredor antiguu convieno a cualesquier poder que buscaba controlar la bayura de les rutes comerciales del Nilu y dio entrada a la riqueza de los campos d'oru del ermu nubiu. "
 
 #: maps/random/lower_nubia.jsonsettings.Name
 msgid "Lower Nubia"
@@ -840,7 +840,8 @@ msgstr "Lo descoñocío. Avisu: Esti pue ser un mapa naval. "
 msgid "Unknown"
 msgstr "Descoñocío"
 
-#: maps/random/unknown_land.jsonsettings.Description
+#: maps/random/unknown_land.jsonsettings.Description maps/skirmishes/Egypt
+#: (4).xml:Description:40
 msgid "The unknown."
 msgstr "Lo descoñocío."
 
@@ -2553,6 +2554,26 @@ msgstr "Un ñubláu terrén de los Alpes camúdase nun campu batalla, yá que ca
 #: maps/skirmishes/Dueling Cliffs (3v3).xml:Name:40
 msgid "Dueling Cliffs (3v3)"
 msgstr "Galardeyos amarradiegos (3-3)"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[0].Name:40
+msgid "Alexandria"
+msgstr "Alexandría"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[1].Name:40
+msgid "Theben"
+msgstr "Tebes"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[2].Name:40
+msgid "Siwa"
+msgstr "Siwa"
+
+#: maps/skirmishes/Egypt (4).xml:PlayerData[3].Name:40
+msgid "Sinai"
+msgstr "El Sinaí"
+
+#: maps/skirmishes/Egypt (4).xml:Name:40
+msgid "Egypt"
+msgstr "Exiptu"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""
