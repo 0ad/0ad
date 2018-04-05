@@ -282,7 +282,7 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
-placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2, clHill, 4));
 
 setWaterWaviness(3.0);
 setWaterType("lake");
