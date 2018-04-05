@@ -763,6 +763,11 @@ function updateTraderTexts()
 	Engine.GetGUIObjectByName("traderCountText").caption = getIdleLandTradersText(traderNumber) + "\n\n" + getIdleShipTradersText(traderNumber);
 }
 
+function initBarterButtons()
+{
+	g_BarterSell = g_ResourceData.GetCodes()[0];
+}
+
 /**
  * Code common to both the Barter Panel and the Trade/Barter Dialog, that
  * only needs to be run when the panel or dialog is opened by the player.
@@ -773,8 +778,6 @@ function updateTraderTexts()
  */
 function barterOpenCommon(resourceCode, idx, prefix)
 {
-	g_BarterSell = g_BarterSell || g_ResourceData.GetCodes()[0];
-
 	let barterButton = {};
 	for (let action of g_BarterActions)
 		barterButton[action] = Engine.GetGUIObjectByName(prefix + action + "Button[" + idx + "]");
