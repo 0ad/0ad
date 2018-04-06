@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-03-05 09:07+0100\n"
-"PO-Revision-Date: 2018-03-06 11:38+0000\n"
+"POT-Creation-Date: 2018-04-04 14:47+0200\n"
+"PO-Revision-Date: 2018-04-05 10:26+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -32,17 +32,6 @@ msgstr "Играчите започват от двете страни на мо
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
 msgstr "Егейско море"
-
-#: maps/random/aethiopia.jsonsettings.Description
-msgid ""
-"Aethiopia, land of the Kushites. Arid and hostile as the terrain might look,"
-" the region is surprisingly lush. The presence of several life-bringing "
-"oases serve to make this a prized haven for man and beast alike."
-msgstr "Древна Етиопия, земя на кушитите. Колкото и безплоден и враждебен да изглежда теренът, регионът е учудващо тучен. Наличието на няколко жизнени оазиса правят това място ценено убежище както за хората, така и за животните."
-
-#: maps/random/aethiopia.jsonsettings.Name
-msgid "Aethiopia"
-msgstr "Древна Етиопия"
 
 #: maps/random/african_plains.jsonsettings.Description
 msgid ""
@@ -323,6 +312,19 @@ msgstr "[color=\"red\"]ВАЖНО: КОМПЮТЪРНО-УПРАВЛЯВАНИТ
 msgid "Extinct Volcano"
 msgstr "Угаснал вулкан"
 
+#: maps/random/fields_of_meroe.jsonsettings.Description
+msgid ""
+"The \"Island of Meroë\", a vast peninsula flanked by the Nile and Atbarah "
+"rivers, formed the heartland of ancient Kush. Where the harsh deserts start "
+"making way for the semi-arid savannahs and small acacia forests dot the "
+"landscape. The area is rich in resources and the ever-present Nile brings "
+"life, but grave threats loom on the opposite riverbank."
+msgstr "„Остров Мерое“ – огромен полуостров, ограден от реките Нил и Атбара, бил в сърцето на древен Куш. Там, където суровите пустини започват да отстъпват място на почти безплодни савани, и на места се виждат малки акациеви горички. Местността е богата на ресурси, а река Нил носи живот, но на другия бряг дебнат опасности."
+
+#: maps/random/fields_of_meroe.jsonsettings.Name
+msgid "Fields of Meroë"
+msgstr "Полята на Мерое"
+
 #: maps/random/flood.jsonsettings.Description
 msgid ""
 "A great flood has moved across the valley enabling ships and troops to "
@@ -455,6 +457,22 @@ msgstr "Играчите започват на малки острови, а о�
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
 msgstr "Острови"
+
+#: maps/random/jebel_barkal.jsonsettings.Description
+msgid ""
+"Starting near the fertile banks of the Nile, the players besiege the heavily"
+" defended city Napata which lies at the foot of the hill Jebel Barkal, the "
+"\"Pure Mountain\". It is the Southern home of Amun, and according to "
+"Kushites and Egyptians alike, the birthplace of man. Known as the Throne of "
+"the Two Lands, the ancient religious capital of Napata lay in its shadow. "
+"This is where Kings were made... and unmade! Abutting a rich floodplain "
+"downstream from the 4th cataract, this area became the breadbasket of "
+"ancient Kush."
+msgstr "Започвайки близо до плодородните брегове на Нил, играчите трябва да обсадят силно защитения град Напата, който се намира в полите на хълма Джебел Баркал – „Чистата планина“. Това е южният дом на Амон, а според кушитите и египтяните, и родното място на човека. Позната като „тронът на двете земи“, древната религиозна столица Напата лежи в сянката му. Тук царете се създават… и унищожават! Използвайки богата наводняваща се част след 4-тия бързей на Нил, тази област била житницата на древен Куш."
+
+#: maps/random/jebel_barkal.jsonsettings.Name
+msgid "Jebel Barkal"
+msgstr "Джебел Баркал"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
@@ -810,6 +828,19 @@ msgstr "Отборите започват с почти съседни сели�
 msgid "Stronghold"
 msgstr "Крепост"
 
+#: maps/random/sudd.jsonsettings.Description
+msgid ""
+"The Sudd is a vast swamp. The White Nile and its many branches meander "
+"through the area. Floating mats of vegetation cover the shallow water, with "
+"the occasional little islets and dry patches protruding from the waters. At "
+"some places small islets pop up, enough for a few huts and palm trees, or "
+"sometimes an entire village."
+msgstr "Суд е огромно блато. Бели Нил и многото му притоци се лутат из тази област. Плаващи килими от растения покриват плитката вода, а на места се подават малки островчета и части суха земя. На някои места малките островчета са достатъчно големи за няколко колиби и палмови дървета, а дори и за цяло село."
+
+#: maps/random/sudd.jsonsettings.Name
+msgid "Sudd"
+msgstr "Суд"
+
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
@@ -847,8 +878,7 @@ msgstr "Непозната карта. Внимание: Може да бъде 
 msgid "Unknown"
 msgstr "Непозната"
 
-#: maps/random/unknown_land.jsonsettings.Description maps/skirmishes/Egypt
-#: (4).xml:Description:40
+#: maps/random/unknown_land.jsonsettings.Description
 msgid "The unknown."
 msgstr "Непозната карта."
 
@@ -882,6 +912,68 @@ msgstr "Заградено от хълмове езеро."
 msgid "Wild Lake"
 msgstr "Диво езеро"
 
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Preview
+msgid "fields_of_meroe_dry.png"
+msgstr ""
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "fields_of_meroe_dry.png"
+msgstr ""
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Живителните води на Нил поддържат живота по бреговете му, докато дългият сух сезон изгаря земята."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Живителните води на Нил поддържат живота по бреговете му, докато дългият сух сезон изгаря земята."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgid "Dry Season"
+msgstr "Сух сезон"
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "Сух сезон"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Preview
+msgid "fields_of_meroe_rainy.png"
+msgstr ""
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "fields_of_meroe_rainy.png"
+msgstr ""
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "Наслаждавайки се на дългоочаквания дъжд, пресушената земя се превръща в рай за хора и животни."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "Наслаждавайки се на дългоочаквания дъжд, пресушената земя се превръща в рай за хора и животни."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgid "Rainy Season"
+msgstr "Дъждовен сезон"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Rainy Season"
+msgstr "Дъждовен сезон"
+
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
@@ -1071,6 +1163,15 @@ msgctxt "biome definition"
 msgid "Tropic"
 msgstr "Тропически"
 
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Preview
+msgid "gulf_of_bothnia_frozen_lake.png"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "gulf_of_bothnia_frozen_lake.png"
+msgstr ""
+
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgid ""
 "Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
@@ -1092,6 +1193,15 @@ msgstr "Замръзнало езеро"
 msgctxt "biome definition"
 msgid "Frozen Lake"
 msgstr "Замръзнало езеро"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Preview
+msgid "gulf_of_bothnia_late_spring.png"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "gulf_of_bothnia_late_spring.png"
+msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
 msgid ""
@@ -1116,6 +1226,15 @@ msgstr "Късна пролет"
 msgctxt "biome definition"
 msgid "Late Spring"
 msgstr "Късна пролет"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Preview
+msgid "gulf_of_bothnia_winter.png"
+msgstr ""
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "gulf_of_bothnia_winter.png"
+msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
 msgid ""
@@ -1201,16 +1320,25 @@ msgstr "Трябва да намерим сухо място, земите ни 
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "Езерата поглъщат земята. Трябва да намерим убежище!"
 
-#: maps/random/survivalofthefittest_triggers.js:190
+#: maps/random/jebel_barkal_triggers.js:565
+msgid "Napata is attacking!"
+msgstr "Напата напада!"
+
+#: maps/random/jebel_barkal_triggers.js:577
+#, javascript-format
+msgid "Napata will attack in %(time)s!"
+msgstr "Напата ще нападне след %(time)s!"
+
+#: maps/random/survivalofthefittest_triggers.js:163
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "Първата вълна започва след %(time)s!"
 
-#: maps/random/survivalofthefittest_triggers.js:325
+#: maps/random/survivalofthefittest_triggers.js:264
 msgid "An enemy wave is attacking!"
 msgstr "Вражеска вълна напада!"
 
-#: maps/random/survivalofthefittest_triggers.js:349
+#: maps/random/survivalofthefittest_triggers.js:289
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s беше победен(а) (загуби селищния си център)."
@@ -2562,25 +2690,50 @@ msgstr "Мъглив планински пейзаж се превръща бо�
 msgid "Dueling Cliffs (3v3)"
 msgstr "Дуелиращи се планини (3 срещу 3)"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:Name:40
+msgid "Egypt (3v3)"
+msgstr "Египет (3 срещу 3)"
+
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[1].Name:40
 msgid "Alexandria"
 msgstr "Александрия"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[2].Name:40
 msgid "Theben"
 msgstr "Тива"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[2].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[3].Name:40
 msgid "Siwa"
 msgstr "Сиуа"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[3].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[4].Name:40
 msgid "Sinai"
 msgstr "Синай"
 
-#: maps/skirmishes/Egypt (4).xml:Name:40
-msgid "Egypt"
-msgstr "Египет"
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[5].Name:40
+msgid "Memphis"
+msgstr "Мемфис"
+
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[6].Name:40
+msgid "Cyrene"
+msgstr "Кирена"
+
+#: maps/skirmishes/Egypt (3v3).xml:Description:40
+msgid ""
+"Fight for the remains of ancient Egypt!\n"
+"\n"
+"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
+"\n"
+"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
+"Locations:\n"
+"- Alexandria: library, harbor\n"
+"- Memphis: Necropolis, pyramids, Apis shrine\n"
+"- Thebes: temple district, Valley of the Kings \n"
+"- Cyrene: mediterranean Macchie, olive groves\n"
+"- Fayyum: crocodile shrine, nile dam\n"
+"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
+"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
+msgstr "Борете се за останките от Древен Египет!\n\nИграчите започват с напълно развити градове и малки войски, като всеки има различни предимства и недостатъци. Внемавайте, защото има 7 могъщи крепости и нападащи бандити!\n\nТова е последният век преди новата ера и Египет е на път да бъде разделен между гръцките (Александрия, представена от селевкидите) и традиционните влияния (Мемфис, представен от птолемейците). Тива в южните части на Нил вече е превзета от Куш. В северозападната част на Ал Ябал ал Акдар, средиземноморският град Кирена е на пътя на римското настъпление. От източната пустиня Ат-тих и планината Синай враговете (представени от персийците) напредват, а оазисите Сиуа и Хагра (представени от Картаген) в югозападната пустиня също се опитват да получат своя дял.\nМеста:\n– Александрия: библиотека, пристанище;\n– Мемфис: некропол, пирамиди, олтар на Апис;\n– Тива: храмов район, Долина на царете;\n– Кирена: средиземноморска Макие, европейски маслини;\n– Фаюм: крокодилски олтар, язовир на Нил;\n– Източна пустиня: планината Синай, дълбоко уади, рифове на Червено море;\n– Западна пустиня: оазисите Хагра и Сиуа, депресията Катара.\n"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""
