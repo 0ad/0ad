@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-03-05 09:07+0100\n"
-"PO-Revision-Date: 2018-03-15 11:48+0000\n"
-"Last-Translator: George Lungu <lungugeorge88@gmail.com>\n"
+"POT-Creation-Date: 2018-04-04 14:47+0200\n"
+"PO-Revision-Date: 2018-04-04 16:12+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -502,14 +502,14 @@ msgstr "Puoi attaccare in %(time)s"
 msgid "You can attack now!"
 msgstr "Puoi attaccare ora!"
 
-#: simulation/components/EndGameManager.js:159
+#: simulation/components/EndGameManager.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] "%(lastPlayer)s ha vinto (ultimo giocatore in vita)"
 msgstr[1] "%(players)s e %(lastPlayer)s hanno vinto (ultimi giocatori in vita)"
 
-#: simulation/components/EndGameManager.js:167
+#: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."
 msgstr "L'ultimo giocatore rimasto vince."
 
@@ -528,26 +528,26 @@ msgstr "Raggiunto il limite di addestramento di %(limit)s %(category)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "Raggiunto il limite di %(limit)s %(category)s"
 
-#: simulation/components/Player.js:350
+#: simulation/components/Player.js:352
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Risorse Insufficienti - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:352
+#: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Risorse Insufficienti - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:354
+#: simulation/components/Player.js:356
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Risorse Insufficienti - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:356
+#: simulation/components/Player.js:358
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -711,24 +711,26 @@ msgid "Capture the Relic"
 msgstr "Cattura la Reliquia"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
-msgid "Defeat all opponents to win."
-msgstr "Sconfiggi tutti gli avversari per vincere."
+msgid ""
+"Defeat opponents by killing all their units and destroying all their "
+"structures."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
 msgstr "Conquista"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Destroy all enemy structures to win."
-msgstr "Distruggi tutte le strutture nemiche per vincere."
+msgid "Defeat opponents by destroying all their structures."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
 msgstr "Conquista Strutture"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Kill all enemy units to win."
-msgstr "Uccidi tutte le unità nemiche per vincere."
+msgid "Defeat opponents by killing all their units."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"

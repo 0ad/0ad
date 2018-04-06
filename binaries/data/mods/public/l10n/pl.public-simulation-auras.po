@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Bartosz Bobin <bartosz@bobin.eu>, 2018
+# Bartosz Bobin <bartosz@bobin.eu>, 2018
 # 9Cube-dpustula <dpustula@ninecube.pl>, 2017
 # Daniel Whatever <Deynyel@protonmail.com>, 2017
 # Hubert Ślósarski <schlussarz@u-kreskowane.com>, 2018
@@ -22,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-23 09:05+0100\n"
-"PO-Revision-Date: 2018-03-14 05:45+0000\n"
+"POT-Creation-Date: 2018-04-04 14:47+0200\n"
+"PO-Revision-Date: 2018-04-04 20:12+0000\n"
 "Last-Translator: Bartosz Bobin <bartosz@bobin.eu>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -717,8 +718,9 @@ msgid "Warrior Queen"
 msgstr "Królowa Wojownik"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
-msgid "+20% attack and +2 capture for soldiers and elephants."
-msgstr "+20% ataku i +2 przejmowania dla wojowników i słoni."
+#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
+msgid "+20% attack and +2 capture for champion units."
+msgstr "+20 ataku i +2 przejmowanie dla elitarnych jednostek."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
@@ -744,15 +746,25 @@ msgstr "Wymordowanie Wiernych"
 msgid "Enemy healrate reduced by 50%."
 msgstr "Poziom leczenia wrogów zmniejszony o 50%"
 
-#: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraName
-msgid "Saviour of Kush"
-msgstr "Zbawiciel Kush"
+#: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
+msgid "Savior of Kush"
+msgstr "Zbawiciel Kusz"
 
-#: simulation/data/auras/units/heroes/kush_hero_nastasen.jsonauraDescription
+#: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid ""
 "Own units +10% attack.\n"
 "Nastasen acquired lots of bounty from the defeated invaders. Gain +50% loot from killing enemy units."
 msgstr "Własne jednostki +10% do ataku.\nNastasen zyskał dużo nagród po pokonanych najeźdźcach. Zdobądź +50% łupów za zabicie wrogich jednostek."
+
+#: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
+msgid "Gift of Warships"
+msgstr "Okręt Wojenny w podarunku"
+
+#: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
+msgid ""
+"Train Ptolemaic Mercenary Triremes at -25% resource cost.\n"
+"Crushing the Ptolemaic invasion of Kush, Nastasen seized numerous enemy warships."
+msgstr "Wyszkól Ptolemejskie najemne Triremy przy -25% kosztach.\nMiażdżąc inwazję Ptolemeusza na Kush, Nastasen przechwycił liczne wrogie okręty wojenne."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
@@ -789,10 +801,6 @@ msgstr "+10% ataku, +10% zasięgu i +1 pancerza dla maszyn oblężniczych."
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
 msgstr "Rozkwit Macedonii"
-
-#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
-msgid "+20% attack and +2 capture for champion units."
-msgstr "+20 ataku i +2 przejmowanie dla elitarnych jednostek."
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraName
 msgid "Pyrrhic Victory"

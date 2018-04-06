@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-03-25 17:41+0000\n"
-"Last-Translator: Charles Yang <mryang@minelandcn.com>\n"
+"POT-Creation-Date: 2018-04-04 14:45+0200\n"
+"PO-Revision-Date: 2018-04-04 14:29+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,319 +41,311 @@ msgstr ""
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/aiconfig/aiconfig.js:6
+#: gui/aiconfig/aiconfig.js:11
 msgctxt "ai"
 msgid "None"
 msgstr "无"
 
-#: gui/aiconfig/aiconfig.js:7
+#: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
 msgstr "这个玩家将被禁使用电脑玩家。"
 
-#: gui/gamesetup/gamesetup.js:64
+#: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
 msgid "None"
 msgstr "无"
 
-#: gui/gamesetup/gamesetup.js:80
+#: gui/gamesetup/gamesetup.js:81
 msgctxt "civilization"
 msgid "Random"
 msgstr "随机"
 
-#: gui/gamesetup/gamesetup.js:81
+#: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
 msgstr "当游戏开始时，随机挑选一个文明。"
 
-#: gui/gamesetup/gamesetup.js:119
+#: gui/gamesetup/gamesetup.js:120
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s 未准备完成."
 
-#: gui/gamesetup/gamesetup.js:120
+#: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
 msgstr "我已经准备好了"
 
-#: gui/gamesetup/gamesetup.js:121
+#: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
 msgstr "表明您准备就绪。"
 
-#: gui/gamesetup/gamesetup.js:125
+#: gui/gamesetup/gamesetup.js:126
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s 就绪!"
 
-#: gui/gamesetup/gamesetup.js:126
+#: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
 msgstr "保持就绪"
 
-#: gui/gamesetup/gamesetup.js:127
+#: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
 msgstr "保持就绪即使游戏设置更改。"
 
-#: gui/gamesetup/gamesetup.js:132
+#: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
 msgstr "我还没准备好 ！"
 
-#: gui/gamesetup/gamesetup.js:133
+#: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
 msgstr "表明您未准备就绪。"
 
-#: gui/gamesetup/gamesetup.js:156
+#: gui/gamesetup/gamesetup.js:157
 msgid "Game settings have been changed"
 msgstr "游戏设置已更改"
 
-#: gui/gamesetup/gamesetup.js:157
+#: gui/gamesetup/gamesetup.js:158
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s 已加入"
 
-#: gui/gamesetup/gamesetup.js:158
+#: gui/gamesetup/gamesetup.js:159
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s 已离开"
 
-#: gui/gamesetup/gamesetup.js:159
+#: gui/gamesetup/gamesetup.js:160
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s 已被踢出"
 
-#: gui/gamesetup/gamesetup.js:160
+#: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s  已被禁用"
 
-#: gui/gamesetup/gamesetup.js:161
+#: gui/gamesetup/gamesetup.js:162
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:162
+#: gui/gamesetup/gamesetup.js:163
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:172
+#: gui/gamesetup/gamesetup.js:173
 msgctxt "map filter"
 msgid "Default"
 msgstr "默认"
 
-#: gui/gamesetup/gamesetup.js:173
+#: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
 msgstr "除海战和演示地图以外的所有地图。"
 
-#: gui/gamesetup/gamesetup.js:179
+#: gui/gamesetup/gamesetup.js:180
 msgid "Naval Maps"
 msgstr "海事地图"
 
-#: gui/gamesetup/gamesetup.js:180
+#: gui/gamesetup/gamesetup.js:181
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "需要船只才能到达敌人的地图。"
 
-#: gui/gamesetup/gamesetup.js:185
+#: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
 msgstr "演示地图"
 
-#: gui/gamesetup/gamesetup.js:186
+#: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "这些地图不是可玩的，只是出于演示目的。"
 
-#: gui/gamesetup/gamesetup.js:191
+#: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
 msgstr "新地图"
 
-#: gui/gamesetup/gamesetup.js:192
+#: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
 msgstr "在游戏发布的时候，地图是全新的。"
 
-#: gui/gamesetup/gamesetup.js:197
+#: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
 msgstr "触发地图"
 
-#: gui/gamesetup/gamesetup.js:198
+#: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "有脚本事件和潜在生成的敌人单位的地图。"
 
-#: gui/gamesetup/gamesetup.js:203
+#: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
 msgstr "所有地图"
 
-#: gui/gamesetup/gamesetup.js:204
+#: gui/gamesetup/gamesetup.js:205
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr "选定地图类型的所有地图"
 
-#: gui/gamesetup/gamesetup.js:409
+#: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "地图"
 
-#: gui/gamesetup/gamesetup.js:424
+#: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "玩家"
 
-#: gui/gamesetup/gamesetup.js:434
+#: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "游戏类型"
 
-#: gui/gamesetup/gamesetup.js:474
+#: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
 msgstr "地图类型"
 
-#: gui/gamesetup/gamesetup.js:475
+#: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
 msgstr "选择一个地图类型."
 
-#: gui/gamesetup/gamesetup.js:498
+#: gui/gamesetup/gamesetup.js:499
 msgid "Map Filter"
 msgstr "地图筛选器"
 
-#: gui/gamesetup/gamesetup.js:499
+#: gui/gamesetup/gamesetup.js:500
 msgid "Select a map filter."
 msgstr "选择一个地图筛选器."
 
-#: gui/gamesetup/gamesetup.js:514
+#: gui/gamesetup/gamesetup.js:515
 msgid "Select Map"
 msgstr "选择地图"
 
-#: gui/gamesetup/gamesetup.js:515
+#: gui/gamesetup/gamesetup.js:516
 msgid "Select a map to play on."
 msgstr "选择一个地图来开始游戏."
 
-#: gui/gamesetup/gamesetup.js:529
+#: gui/gamesetup/gamesetup.js:530
 msgid "Map Size"
 msgstr "地图尺寸"
 
-#: gui/gamesetup/gamesetup.js:530
+#: gui/gamesetup/gamesetup.js:531
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "选择地图大小. (大的地图可能会影响性能)"
 
-#: gui/gamesetup/gamesetup.js:544
+#: gui/gamesetup/gamesetup.js:545
 msgid "Biome"
 msgstr "生物群系"
 
-#: gui/gamesetup/gamesetup.js:545
+#: gui/gamesetup/gamesetup.js:546
 msgid "Select the flora and fauna."
 msgstr "选择动植物群落"
 
-#: gui/gamesetup/gamesetup.js:560
+#: gui/gamesetup/gamesetup.js:561
 msgid "Number of Players"
 msgstr "玩家数"
 
-#: gui/gamesetup/gamesetup.js:561
+#: gui/gamesetup/gamesetup.js:562
 msgid "Select number of players."
 msgstr "选择玩家数量"
 
-#: gui/gamesetup/gamesetup.js:581
+#: gui/gamesetup/gamesetup.js:582
 msgid "Population Cap"
 msgstr "人口上限"
 
-#: gui/gamesetup/gamesetup.js:588
+#: gui/gamesetup/gamesetup.js:589
 msgid "Select population limit."
 msgstr "选择人口上限"
 
-#: gui/gamesetup/gamesetup.js:591
+#: gui/gamesetup/gamesetup.js:592
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "警告：当所有的%(players)s玩家都到达人口上限%(popCap)s时，会有性能问题"
 
-#: gui/gamesetup/gamesetup.js:609
+#: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
 msgstr "初始资源"
 
-#: gui/gamesetup/gamesetup.js:612
+#: gui/gamesetup/gamesetup.js:613
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "初始资源数%(resources)s"
 
-#: gui/gamesetup/gamesetup.js:615
+#: gui/gamesetup/gamesetup.js:616
 msgid "Select the game's starting resources."
 msgstr "选择游戏初始资源."
 
-#: gui/gamesetup/gamesetup.js:630
+#: gui/gamesetup/gamesetup.js:631
 msgid "Ceasefire"
 msgstr "停火"
 
-#: gui/gamesetup/gamesetup.js:631
+#: gui/gamesetup/gamesetup.js:632
 msgid "Set time where no attacks are possible."
 msgstr "在没有攻击时设置时间是可能的。"
 
-#: gui/gamesetup/gamesetup.js:644
-msgid "Victory Condition"
-msgstr "胜利条件"
-
 #: gui/gamesetup/gamesetup.js:645
-msgid "Select victory condition."
-msgstr "选择胜利条件."
-
-#: gui/gamesetup/gamesetup.js:660
 msgid "Relic Count"
 msgstr "遗迹数"
 
-#: gui/gamesetup/gamesetup.js:661
+#: gui/gamesetup/gamesetup.js:646
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "地图上的遗迹总数。若地图上仅有一两个遗迹，遗迹胜利模式下的游戏体验会更加逼真。若地图上存在大量遗迹，玩家要通过捕获遗迹获得遗迹光环奖励。"
 
-#: gui/gamesetup/gamesetup.js:675
+#: gui/gamesetup/gamesetup.js:660
 msgid "Relic Duration"
 msgstr "遗迹持有时长"
 
-#: gui/gamesetup/gamesetup.js:676
+#: gui/gamesetup/gamesetup.js:661
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "距离玩家获得遗迹胜利只剩数分钟"
 
-#: gui/gamesetup/gamesetup.js:690
+#: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
 msgstr "奇迹保持时长"
 
-#: gui/gamesetup/gamesetup.js:691
+#: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
 msgstr "距离玩家获得奇观胜利只剩数分钟。"
 
-#: gui/gamesetup/gamesetup.js:705
+#: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
 msgstr "游戏速度"
 
-#: gui/gamesetup/gamesetup.js:706
+#: gui/gamesetup/gamesetup.js:691
 msgid "Select game speed."
 msgstr "选择游戏速度."
 
-#: gui/gamesetup/gamesetup.js:720
+#: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
 msgstr "难度"
 
-#: gui/gamesetup/gamesetup.js:722
+#: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
 msgstr "选择这一场景的难度。"
 
-#: gui/gamesetup/gamesetup.js:787
+#: gui/gamesetup/gamesetup.js:772
 msgid "Chose the civilization for this player"
 msgstr "选择一个文明"
 
-#: gui/gamesetup/gamesetup.js:827
+#: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
 msgstr "英雄驻军"
 
-#: gui/gamesetup/gamesetup.js:828
+#: gui/gamesetup/gamesetup.js:840
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "触发英雄是否可以驻守。"
 
-#: gui/gamesetup/gamesetup.js:840
+#: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
 msgstr "诺曼底"
 
-#: gui/gamesetup/gamesetup.js:841
+#: gui/gamesetup/gamesetup.js:853
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -361,208 +353,208 @@ msgstr "在游牧模式下，玩家从少数单位开局并需要找到一个合
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:854
+#: gui/gamesetup/gamesetup.js:866
 msgid "Revealed Map"
 msgstr "显示的地图"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:857
+#: gui/gamesetup/gamesetup.js:869
 msgid "Toggle revealed map (see everything)."
 msgstr "-- 切换显示全地图 （显示所有）。"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:873
+#: gui/gamesetup/gamesetup.js:885
 msgid "Explored Map"
 msgstr "探索过的地图"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
-#: gui/gamesetup/gamesetup.js:876
+#: gui/gamesetup/gamesetup.js:888
 msgid "Toggle explored map (see initial map)."
 msgstr "切换已经勘探过的地图 ( 显示最初的地图 ) 。"
 
-#: gui/gamesetup/gamesetup.js:887
+#: gui/gamesetup/gamesetup.js:899
 msgid "Disable Treasures"
 msgstr "取消宝藏系统"
 
-#: gui/gamesetup/gamesetup.js:888
+#: gui/gamesetup/gamesetup.js:900
 msgid "Disable all treasures on the map."
 msgstr "停用在地图上的所有宝藏。"
 
-#: gui/gamesetup/gamesetup.js:899
+#: gui/gamesetup/gamesetup.js:911
 msgid "Disable Spies"
 msgstr "禁用间谍"
 
-#: gui/gamesetup/gamesetup.js:900
+#: gui/gamesetup/gamesetup.js:912
 msgid "Disable spies during the game."
 msgstr "游戏中禁用间谍。"
 
-#: gui/gamesetup/gamesetup.js:911
+#: gui/gamesetup/gamesetup.js:923
 msgid "Teams Locked"
 msgstr "锁定组队"
 
-#: gui/gamesetup/gamesetup.js:912
+#: gui/gamesetup/gamesetup.js:924
 msgid "Toggle locked teams."
 msgstr "开启组队锁定."
 
-#: gui/gamesetup/gamesetup.js:926
+#: gui/gamesetup/gamesetup.js:938
 msgid "Last Man Standing"
 msgstr "最后屹立在战场上者"
 
-#: gui/gamesetup/gamesetup.js:927
+#: gui/gamesetup/gamesetup.js:939
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "不论最后是切换为剩余玩家还是剩余的盟友，都可一起获得胜利。"
 
-#: gui/gamesetup/gamesetup.js:940
+#: gui/gamesetup/gamesetup.js:952
 msgid "Cheats"
 msgstr "作弊"
 
-#: gui/gamesetup/gamesetup.js:941
+#: gui/gamesetup/gamesetup.js:953
 msgid "Toggle the usability of cheats."
 msgstr "开启允许秘籍."
 
-#: gui/gamesetup/gamesetup.js:954
+#: gui/gamesetup/gamesetup.js:966
 msgid "Rated Game"
 msgstr "排位赛"
 
-#: gui/gamesetup/gamesetup.js:955
+#: gui/gamesetup/gamesetup.js:967
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "-- 切换本比赛是否算入排位。"
 
-#: gui/gamesetup/gamesetup.js:987
+#: gui/gamesetup/gamesetup.js:1000
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr "按 %(hotkey)s 自动输入玩家名字或设置"
 
-#: gui/gamesetup/gamesetup.js:995
+#: gui/gamesetup/gamesetup.js:1008
 msgid "Return to the lobby."
 msgstr "返回大厅。"
 
-#: gui/gamesetup/gamesetup.js:996
+#: gui/gamesetup/gamesetup.js:1009
 msgid "Return to the main menu."
 msgstr "返回到主菜单."
 
-#: gui/gamesetup/gamesetup.js:1000
+#: gui/gamesetup/gamesetup.js:1013
 msgid "Start Game!"
 msgstr "开始游戏!"
 
-#: gui/gamesetup/gamesetup.js:1006
+#: gui/gamesetup/gamesetup.js:1019
 msgid "Start a new game with the current settings."
 msgstr "使用当前的设置开始一局新游戏."
 
-#: gui/gamesetup/gamesetup.js:1007
+#: gui/gamesetup/gamesetup.js:1020
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "使用当前的设置开始一局新游戏。(禁用直到所有玩家准备好)"
 
-#: gui/gamesetup/gamesetup.js:1070
+#: gui/gamesetup/gamesetup.js:1083
 #, javascript-format
 msgid "Configure AI: %(description)s."
 msgstr "配置AI：%(description)s。"
 
-#: gui/gamesetup/gamesetup.js:1121
+#: gui/gamesetup/gamesetup.js:1132
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1173
+#: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "切换%(name)s设置选项卡。"
 
-#: gui/gamesetup/gamesetup.js:1174
+#: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "使用%(hotkey)s向下移动设置选项卡。"
 
-#: gui/gamesetup/gamesetup.js:1175
+#: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "使用%(hotkey)s向上移动设置选项卡。"
 
-#: gui/gamesetup/gamesetup.js:1692
+#: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
 msgid "Random"
 msgstr "随机"
 
-#: gui/gamesetup/gamesetup.js:1694
+#: gui/gamesetup/gamesetup.js:1710
 msgid "Pick any of the given maps at random."
 msgstr "随机选择地图"
 
-#: gui/gamesetup/gamesetup.js:1726
+#: gui/gamesetup/gamesetup.js:1742
 msgctxt "biome"
 msgid "Random"
 msgstr "随机"
 
-#: gui/gamesetup/gamesetup.js:1727
+#: gui/gamesetup/gamesetup.js:1743
 msgid "Pick a biome at random."
 msgstr "随机选择生物群落。"
 
-#: gui/gamesetup/gamesetup.js:2058
+#: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s："
 
-#: gui/gamesetup/gamesetup.js:2063
+#: gui/gamesetup/gamesetup.js:2073
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/gamesetup/gamesetup.js:2093
+#: gui/gamesetup/gamesetup.js:2103
 msgid "Yes"
 msgstr "是"
 
-#: gui/gamesetup/gamesetup.js:2093
+#: gui/gamesetup/gamesetup.js:2103
 msgid "No"
 msgstr "否"
 
-#: gui/gamesetup/gamesetup.js:2100
+#: gui/gamesetup/gamesetup.js:2110
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s："
 
-#: gui/gamesetup/gamesetup.js:2187
+#: gui/gamesetup/gamesetup.js:2196
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2394
+#: gui/gamesetup/gamesetup.js:2401
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "电脑: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2402
+#: gui/gamesetup/gamesetup.js:2409
 msgid "Unassigned"
 msgstr "未指定"
 
-#: gui/gamesetup/gamesetup.js:2478
+#: gui/gamesetup/gamesetup.js:2485
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2485
+#: gui/gamesetup/gamesetup.js:2492
 msgid "Unknown Player"
 msgstr "未知玩家"
 
-#: gui/gamesetup/gamesetup.js:2524
+#: gui/gamesetup/gamesetup.js:2531
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2525
+#: gui/gamesetup/gamesetup.js:2532
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2526
+#: gui/gamesetup/gamesetup.js:2533
 msgid "HH:mm"
 msgstr "HH:mm"
 

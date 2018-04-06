@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-03-05 09:07+0100\n"
-"PO-Revision-Date: 2018-03-05 21:27+0000\n"
+"POT-Creation-Date: 2018-04-04 14:47+0200\n"
+"PO-Revision-Date: 2018-04-04 17:04+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -27,17 +27,6 @@ msgstr "Jokalariak sakabanatutako irlak dituen itsaso baten bi aldetara hasten d
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
 msgstr "Egeo Itsasoa"
-
-#: maps/random/aethiopia.jsonsettings.Description
-msgid ""
-"Aethiopia, land of the Kushites. Arid and hostile as the terrain might look,"
-" the region is surprisingly lush. The presence of several life-bringing "
-"oases serve to make this a prized haven for man and beast alike."
-msgstr "Aethiopia, Kushiten lurraldea. Lurraren itxura gogor eta etsigarria, eskualdea harrigarri oparoa da. Hainbat oasi agertzen da hauek babes preziatua eginez berdin gizaki edo animalientzat."
-
-#: maps/random/aethiopia.jsonsettings.Name
-msgid "Aethiopia"
-msgstr "Aethiopia"
 
 #: maps/random/african_plains.jsonsettings.Description
 msgid ""
@@ -318,6 +307,19 @@ msgstr "[Color = \"red\"] OHAR GARRANTZITSUA: JOKALARIAK EZ DIRA MAPA HONEKIN JO
 msgid "Extinct Volcano"
 msgstr "Sumendi Hila"
 
+#: maps/random/fields_of_meroe.jsonsettings.Description
+msgid ""
+"The \"Island of Meroë\", a vast peninsula flanked by the Nile and Atbarah "
+"rivers, formed the heartland of ancient Kush. Where the harsh deserts start "
+"making way for the semi-arid savannahs and small acacia forests dot the "
+"landscape. The area is rich in resources and the ever-present Nile brings "
+"life, but grave threats loom on the opposite riverbank."
+msgstr "\"Meroë uhartea\", Nilo eta Atbarah ibaiek inguratutako penintsula zabala, Kush antzinako koroaren bihotza izan zen. Basamortu gogorrak sabana erdi elkortu bihurtu eta akazia baso txikiak tartekatzen dira. Baliabide aberatsak daude, eta Nilok bizitza ekartzen du, baina mehatxu larriak kontrako ibaiertzera inguratzen dira."
+
+#: maps/random/fields_of_meroe.jsonsettings.Name
+msgid "Fields of Meroë"
+msgstr "Meroé zelaiak"
+
 #: maps/random/flood.jsonsettings.Description
 msgid ""
 "A great flood has moved across the valley enabling ships and troops to "
@@ -450,6 +452,22 @@ msgstr "Jokalariek uharte txikienetan hasiko dute partida, nahiz inguruan beste 
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
 msgstr "Irlak"
+
+#: maps/random/jebel_barkal.jsonsettings.Description
+msgid ""
+"Starting near the fertile banks of the Nile, the players besiege the heavily"
+" defended city Napata which lies at the foot of the hill Jebel Barkal, the "
+"\"Pure Mountain\". It is the Southern home of Amun, and according to "
+"Kushites and Egyptians alike, the birthplace of man. Known as the Throne of "
+"the Two Lands, the ancient religious capital of Napata lay in its shadow. "
+"This is where Kings were made... and unmade! Abutting a rich floodplain "
+"downstream from the 4th cataract, this area became the breadbasket of "
+"ancient Kush."
+msgstr "Niloko ibaiertz oparoetan hasirik, Jokalariek ondo babestutako Napata hiria setiatzen dute, Jebel Barkal mendixkaren oinetan aurkitzen dena, \"Mendi Purua\". Amón hegoaldeko etxea da, eta kushiten eta egiptoarren arabera gizakiaren sortze lekua. Bi Lurren Tronua bezala ezaguturik, Napata kapital erlijiosoa bere itzalean zetzan. Hemen egin ziren erregeak...eta desegin ere bai! Lautada alubial baten ertzean 4. ur jauzitik behera, gune hau Kushen mandio bihurtu zen."
+
+#: maps/random/jebel_barkal.jsonsettings.Name
+msgid "Jebel Barkal"
+msgstr "Jebel Barkal"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
@@ -805,6 +823,19 @@ msgstr "Taldeak ia elkarren kontrako gizarte zentroetan hasiko dira, laguntza mi
 msgid "Stronghold"
 msgstr "Gotorlekua"
 
+#: maps/random/sudd.jsonsettings.Description
+msgid ""
+"The Sudd is a vast swamp. The White Nile and its many branches meander "
+"through the area. Floating mats of vegetation cover the shallow water, with "
+"the occasional little islets and dry patches protruding from the waters. At "
+"some places small islets pop up, enough for a few huts and palm trees, or "
+"sometimes an entire village."
+msgstr "Sudd urtegi handi bat da. Nilo Zuria eta bere emariak gunean sigi-saga doaz. Ur azaleko estepak azaleko urak estaltzen dituzte, tarteka uhartetxoak azalduz, eta mantxa lehorrak irteten dira uretatik. Toki batzuetan uhartetxoak azaltzen dira, nahikoa txabola txiki eta palmera batzuentzako, eta tarteka herri oso baterako."
+
+#: maps/random/sudd.jsonsettings.Name
+msgid "Sudd"
+msgstr "Sudd"
+
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
@@ -842,8 +873,7 @@ msgstr "Ezezaguna....Kontuz: Itsas mapa izan daiteke"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: maps/random/unknown_land.jsonsettings.Description maps/skirmishes/Egypt
-#: (4).xml:Description:40
+#: maps/random/unknown_land.jsonsettings.Description
 msgid "The unknown."
 msgstr "Ezezaguna."
 
@@ -876,6 +906,68 @@ msgstr "Mendi tontorrak inguratutako lakua."
 #: maps/random/wild_lake.jsonsettings.Name
 msgid "Wild Lake"
 msgstr "Laku basatia"
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Preview
+msgid "fields_of_meroe_dry.png"
+msgstr "fields_of_meroe_dry.png"
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "fields_of_meroe_dry.png"
+msgstr "fields_of_meroe_dry.png"
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Nilo ibaiko ur bizigarriek ertzetako bizitza mantentzen dute, urtaro lehor luzeak lurra erretzen duen bitartean."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Nilo ibaiko ur bizigarriek ertzetako bizitza mantentzen dute, urtaro lehor luzeak lurra erretzen duen bitartean."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgid "Dry Season"
+msgstr "Urtaro Lehorra"
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "Urtaro Lehorra "
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Preview
+msgid "fields_of_meroe_rainy.png"
+msgstr "fields_of_meroe_rainy.png"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "fields_of_meroe_rainy.png"
+msgstr "fields_of_meroe_rainy.png "
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "Horrenbeste denboraz esperotako euritan, berotutako ura aterpe emankor bihurtzen da gizaki eta piztientzako."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "Horrenbeste denboraz esperotako euritan, berotutako ura aterpe emankor bihurtzen da gizaki eta piztientzako."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgid "Rainy Season"
+msgstr "Euri garaia"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Rainy Season"
+msgstr "Euri garaia"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 msgid ""
@@ -1066,6 +1158,15 @@ msgctxt "biome definition"
 msgid "Tropic"
 msgstr "Tropikoa"
 
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Preview
+msgid "gulf_of_bothnia_frozen_lake.png"
+msgstr "gulf_of_bothnia_frozen_lake.png"
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "gulf_of_bothnia_frozen_lake.png"
+msgstr "gulf_of_bothnia_frozen_lake.png"
+
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgid ""
 "Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
@@ -1087,6 +1188,15 @@ msgstr "Laku izoztua"
 msgctxt "biome definition"
 msgid "Frozen Lake"
 msgstr "Laku izoztua"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Preview
+msgid "gulf_of_bothnia_late_spring.png"
+msgstr "gulf_of_bothnia_late_spring.png"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "gulf_of_bothnia_late_spring.png"
+msgstr "gulf_of_bothnia_late_spring.png"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
 msgid ""
@@ -1111,6 +1221,15 @@ msgstr "Udaberri Berantiarra"
 msgctxt "biome definition"
 msgid "Late Spring"
 msgstr "Udaberri Berantiarra"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Preview
+msgid "gulf_of_bothnia_winter.png"
+msgstr "gulf_of_bothnia_winter.png"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "gulf_of_bothnia_winter.png"
+msgstr "gulf_of_bothnia_winter.png"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
 msgid ""
@@ -1196,16 +1315,25 @@ msgstr "Lur lehorra aurkitu beharrean gaude, gure lurrak laster itoko dira!"
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "Lakuak lurra jaten hasi dira, aterpea aurkitu beharrean gaude!"
 
-#: maps/random/survivalofthefittest_triggers.js:190
+#: maps/random/jebel_barkal_triggers.js:565
+msgid "Napata is attacking!"
+msgstr "Napata erasotzen ari da!"
+
+#: maps/random/jebel_barkal_triggers.js:577
+#, javascript-format
+msgid "Napata will attack in %(time)s!"
+msgstr "Napata erasoan %(time)s!"
+
+#: maps/random/survivalofthefittest_triggers.js:163
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "Lehenengo saldoa %(time)s tan hasiko da!"
 
-#: maps/random/survivalofthefittest_triggers.js:325
+#: maps/random/survivalofthefittest_triggers.js:264
 msgid "An enemy wave is attacking!"
 msgstr "Etsaien saldoa eraso dator!"
 
-#: maps/random/survivalofthefittest_triggers.js:349
+#: maps/random/survivalofthefittest_triggers.js:289
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s menderatua izan da (gizarte zentroak galdu du). "
@@ -2557,25 +2685,50 @@ msgstr "Alpeetako paisai lainotsu bat guda zelai bihurtuko da non talde bakoitza
 msgid "Dueling Cliffs (3v3)"
 msgstr "Aurrez-aurreko Labarrak (3v3)"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:Name:40
+msgid "Egypt (3v3)"
+msgstr "Egipto (3v3)"
+
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[1].Name:40
 msgid "Alexandria"
 msgstr "Alexandria"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[2].Name:40
 msgid "Theben"
 msgstr "Theben"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[2].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[3].Name:40
 msgid "Siwa"
 msgstr "Siwa"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[3].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[4].Name:40
 msgid "Sinai"
 msgstr "Sinai"
 
-#: maps/skirmishes/Egypt (4).xml:Name:40
-msgid "Egypt"
-msgstr "Egipto"
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[5].Name:40
+msgid "Memphis"
+msgstr "Memphis"
+
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[6].Name:40
+msgid "Cyrene"
+msgstr "Cyrene"
+
+#: maps/skirmishes/Egypt (3v3).xml:Description:40
+msgid ""
+"Fight for the remains of ancient Egypt!\n"
+"\n"
+"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
+"\n"
+"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
+"Locations:\n"
+"- Alexandria: library, harbor\n"
+"- Memphis: Necropolis, pyramids, Apis shrine\n"
+"- Thebes: temple district, Valley of the Kings \n"
+"- Cyrene: mediterranean Macchie, olive groves\n"
+"- Fayyum: crocodile shrine, nile dam\n"
+"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
+"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
+msgstr "Antzinako Egiptoko aztarnen alde borrokatu!\n\nJokalariak garaturik diren hiri eta armada txikiekin hasten dira, bakoitzak abantaila eta desabantaila desberdinak dituzte. Kontuz, badira 7 indartsu boteretsu eta lapur maltzurrak.\n\nHau 0 A.D. aurreko mendea da. Egipto zatiturik dago barnean helenístico (Alejandría,  seleuzidak ordezkaturik) eta barne influentzien (Memphis, Ptolomeok ordezkaturik) artean Tebas Kushek hartua izan da NIlo hegoaldeko kliman. Al-Dschabal al-Achdaren ipar-mendebaldean, Cirene mediterraneoko hiria aurkitzen den lekuan, erromatarrak inbasioa prestatzen ari dira. Tih basamortua eta Sinai menditik, etsaiak (persiarrak ordezkaturik) Siwa oasira aldera doaz. Chargak ere (Kartagok ordezkaturik) hego-mendebaldeko basamortuan, pastelaren zati bat bereganatu nahi du.\nTokiak:\n- Alejandria: Liburutegia, kaia\n- Memphis: Necropoli, piramide, Apis santutegia\n- Tebas: tenpluaren distritua, Erregeen harana\n- Cirene: Macchie mediterraneo, olibondoak\n- Fayyum: krokodiloen santutegia, Niloko aldaparoa\n- Ekialdeko basamortua: Sinaí mendia, Wadi sakona, Itsas Gorriaren labarrak\n- Mendebaldeko basamortua: Oasis Charga eta Siwa, Qattarako sakonunea\n"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""

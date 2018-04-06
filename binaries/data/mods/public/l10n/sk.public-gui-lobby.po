@@ -8,6 +8,7 @@
 # Marián Mižik <inactive+marian.mizik@transifex.com>, 2015
 # Mário Bulejko, 2015
 # Martin Plávala <martinplavala@gmail.com>, 2014
+# Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
 # MiroslavR <miroslavr256@gmail.com>, 2015
 # SuroX <peter.surovcik@gmail.com>, 2016
 # Peter Tuharsky <peter.tuharsky@gmail.com>, 2016
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-23 09:04+0100\n"
-"PO-Revision-Date: 2018-02-23 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-04 19:45+0000\n"
+"Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -173,7 +174,7 @@ msgstr "Návrat do hlavného menu."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "Boli ste odpojený z lobby. Chceš sa znova pripojiť? "
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1192 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
@@ -226,21 +227,21 @@ msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:621
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Bol si zabanovaný z lobby! "
 
 #: gui/lobby/lobby.js:622
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Bol si vyhodený z lobby! "
 
 #: gui/lobby/lobby.js:624
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s bol zabanovaný z lobby. "
 
 #: gui/lobby/lobby.js:625
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s bol vyhodený z lobby. "
 
 #: gui/lobby/lobby.js:628
 #, javascript-format
@@ -250,19 +251,19 @@ msgstr "Dôvod: %(reason)s"
 
 #: gui/lobby/lobby.js:656
 msgid "BANNED"
-msgstr ""
+msgstr "ZABANOVANÝ "
 
 #: gui/lobby/lobby.js:656
 msgid "KICKED"
-msgstr ""
+msgstr "VYHODENÝ "
 
 #: gui/lobby/lobby.js:687
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Odstrániť označenie Kamaráta"
 
 #: gui/lobby/lobby.js:687
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Označiť ako Kamaráta"
 
 #: gui/lobby/lobby.js:880 gui/lobby/lobby.js:881 gui/lobby/lobby.js:882
 #: gui/lobby/lobby.js:883 gui/lobby/lobby.js:884 gui/lobby/lobby.js:885
@@ -291,11 +292,11 @@ msgstr "Hráčov: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1180
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "Tvoje aktivované módy sa nezhodujú s módmi tohto zápasu. "
 
 #: gui/lobby/lobby.js:1182
 msgid "Incompatible mods"
-msgstr ""
+msgstr "Nekompatibilné módy "
 
 #: gui/lobby/lobby.js:1183
 msgid "Ok"
@@ -303,7 +304,7 @@ msgstr "Ok"
 
 #: gui/lobby/lobby.js:1191
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "Hra už začala. Chcete sa pripojiť ako pozorovateľ? "
 
 #: gui/lobby/lobby.js:1225
 #, javascript-format
@@ -402,7 +403,7 @@ msgstr "Zadajte svoje používateľské meno"
 
 #: gui/prelobby/prelobby.js:102
 msgid "Invalid username"
-msgstr "Nesprávne meno"
+msgstr "Nesprávne užívateľské meno"
 
 #: gui/prelobby/prelobby.js:109
 msgctxt "login"
@@ -462,7 +463,7 @@ msgstr "Podmienky použitia"
 
 #: gui/prelobby/prelobby.js:298
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr ""
+msgstr "Ste si istý že chcete vymazať heslo po pripojení? "
 
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
@@ -616,7 +617,7 @@ msgstr "Heslo:"
 
 #: gui/prelobby/prelobby.xml:(caption):68
 msgid "Remember Password"
-msgstr ""
+msgstr "Zapamätať heslo "
 
 #: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"

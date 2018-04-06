@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-03-05 09:07+0100\n"
-"PO-Revision-Date: 2018-03-05 18:58+0000\n"
+"POT-Creation-Date: 2018-04-04 14:47+0200\n"
+"PO-Revision-Date: 2018-04-04 23:53+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -25,17 +25,6 @@ msgstr "Los xugadores entamen a entrambos llaos d'una mar d'islles esperdigaes."
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
 msgstr "Mar Exéu"
-
-#: maps/random/aethiopia.jsonsettings.Description
-msgid ""
-"Aethiopia, land of the Kushites. Arid and hostile as the terrain might look,"
-" the region is surprisingly lush. The presence of several life-bringing "
-"oases serve to make this a prized haven for man and beast alike."
-msgstr "Etiopía, la tierra de los cuxites. Por suriono y contrario que paeza'l terrén, la rexón ye ablucantemente taramuda. La presencia de dellos oasis sirven pa facer d'ella un abellugu preciáu pol home y el bichu."
-
-#: maps/random/aethiopia.jsonsettings.Name
-msgid "Aethiopia"
-msgstr "Etiopía"
 
 #: maps/random/african_plains.jsonsettings.Description
 msgid ""
@@ -316,6 +305,19 @@ msgstr "[color=\"red\"]NOTA IMPORTANTE: LOS XUGADORES AI NUN FURRULEN NESTI MAPA
 msgid "Extinct Volcano"
 msgstr "Volcán desaniciáu"
 
+#: maps/random/fields_of_meroe.jsonsettings.Description
+msgid ""
+"The \"Island of Meroë\", a vast peninsula flanked by the Nile and Atbarah "
+"rivers, formed the heartland of ancient Kush. Where the harsh deserts start "
+"making way for the semi-arid savannahs and small acacia forests dot the "
+"landscape. The area is rich in resources and the ever-present Nile brings "
+"life, but grave threats loom on the opposite riverbank."
+msgstr "La «islla de Meroe», una península espurrida ente los ríos Nilu y Atbara, formó'l cogollu del Cux antiguu. U la durez de los ermos entama a ceder énte la secor moderao de les sabanes y los viescos d'alcacies chisquen el terrenu. La fastera ye rica en recursos y la omnipresencia del Nilu da vida, anque amenaces graves arremielguen na otra ribera."
+
+#: maps/random/fields_of_meroe.jsonsettings.Name
+msgid "Fields of Meroë"
+msgstr "Campos de Meroe"
+
 #: maps/random/flood.jsonsettings.Description
 msgid ""
 "A great flood has moved across the valley enabling ships and troops to "
@@ -448,6 +450,22 @@ msgstr "Los xugadores entamen n'islles pequeñes que tán arrodiaes per dayures 
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
 msgstr "Islles"
+
+#: maps/random/jebel_barkal.jsonsettings.Description
+msgid ""
+"Starting near the fertile banks of the Nile, the players besiege the heavily"
+" defended city Napata which lies at the foot of the hill Jebel Barkal, the "
+"\"Pure Mountain\". It is the Southern home of Amun, and according to "
+"Kushites and Egyptians alike, the birthplace of man. Known as the Throne of "
+"the Two Lands, the ancient religious capital of Napata lay in its shadow. "
+"This is where Kings were made... and unmade! Abutting a rich floodplain "
+"downstream from the 4th cataract, this area became the breadbasket of "
+"ancient Kush."
+msgstr "Entamando cerca de les ribes vicioses del Nilu, los xugadores asedien la ciudá fortificada de Napata, que ta al pie del cuetu Xebel Barcal, el «monte puru». Ye'l llar sureñu d'Amón, y según los cuxites, asina como los exipcios, onde ñació l'home. Coñocida como'l tronu de les dos tierres, l'antigua capital relixosa de Napata queda a la solombra. Esto ye u los reis se fixeron... ¡y desfixeron! Llendando cola riqueza d'un terrén inundable que pasa la 4a catarata ríu abaxo, esta fastera conviértese na panera del Cux antiguu."
+
+#: maps/random/jebel_barkal.jsonsettings.Name
+msgid "Jebel Barkal"
+msgstr "Xebel Barcal"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
@@ -803,6 +821,19 @@ msgstr "Los equipos entamen con centros cívicos cuasimente llendadores, facilit
 msgid "Stronghold"
 msgstr "Fortificación"
 
+#: maps/random/sudd.jsonsettings.Description
+msgid ""
+"The Sudd is a vast swamp. The White Nile and its many branches meander "
+"through the area. Floating mats of vegetation cover the shallow water, with "
+"the occasional little islets and dry patches protruding from the waters. At "
+"some places small islets pop up, enough for a few huts and palm trees, or "
+"sometimes an entire village."
+msgstr "El Sudd ye un trieme estensu. El Nilu blancu y los munchos ramales sos culebrien pela fastera. Mates flotantes de vexetación cubren l'agua somero, coles islluques y sitios secos ocasionales que sobresalen de les agües. En dellos llugares les islluques surden abondo pa unos chozos y palmeres, o dacuando un pueblu enteru."
+
+#: maps/random/sudd.jsonsettings.Name
+msgid "Sudd"
+msgstr "Sudd"
+
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
@@ -840,8 +871,7 @@ msgstr "Lo descoñocío. Avisu: Esti pue ser un mapa naval. "
 msgid "Unknown"
 msgstr "Descoñocío"
 
-#: maps/random/unknown_land.jsonsettings.Description maps/skirmishes/Egypt
-#: (4).xml:Description:40
+#: maps/random/unknown_land.jsonsettings.Description
 msgid "The unknown."
 msgstr "Lo descoñocío."
 
@@ -875,6 +905,68 @@ msgstr "Un llagu arrodiáu de llombes."
 msgid "Wild Lake"
 msgstr "Llagu bravu"
 
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Preview
+msgid "fields_of_meroe_dry.png"
+msgstr "fields_of_meroe_dry.png"
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "fields_of_meroe_dry.png"
+msgstr "fields_of_meroe_dry.png"
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Les agües del Nilu sostienen la vida a lo llargo de les sos orielles, de la que la seca llonga quema la tierra."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Les agües del Nilu sostienen la vida a lo llargo de les sos orielles, de la que la seca llonga quema la tierra. "
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgid "Dry Season"
+msgstr "Seca"
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "Seca"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Preview
+msgid "fields_of_meroe_rainy.png"
+msgstr "fields_of_meroe_rainy.png"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "fields_of_meroe_rainy.png"
+msgstr "fields_of_meroe_rainy.png"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "Engayolándose nel lloviu mui esperao, la tierra cocío tresfórmase nun ablugu llozanu tanto pal home como pal bichu."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "Engayolándose nel lloviu mui esperao, la tierra cocío tresfórmase nun ablugu llozanu tanto pal home como pal bichu."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgid "Rainy Season"
+msgstr "Temporada lluviosa"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Rainy Season"
+msgstr "Temporada lluviosa"
+
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
@@ -1064,6 +1156,15 @@ msgctxt "biome definition"
 msgid "Tropic"
 msgstr "Trópicu"
 
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Preview
+msgid "gulf_of_bothnia_frozen_lake.png"
+msgstr "gulf_of_bothnia_frozen_lake.png"
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "gulf_of_bothnia_frozen_lake.png"
+msgstr "gulf_of_bothnia_frozen_lake.png"
+
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgid ""
 "Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
@@ -1085,6 +1186,15 @@ msgstr "Llagu xeláu"
 msgctxt "biome definition"
 msgid "Frozen Lake"
 msgstr "Llagu xeláu"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Preview
+msgid "gulf_of_bothnia_late_spring.png"
+msgstr "gulf_of_bothnia_late_spring.png"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "gulf_of_bothnia_late_spring.png"
+msgstr "gulf_of_bothnia_late_spring.png"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
 msgid ""
@@ -1109,6 +1219,15 @@ msgstr "Tarde na primavera"
 msgctxt "biome definition"
 msgid "Late Spring"
 msgstr "Tarde na primavera"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Preview
+msgid "gulf_of_bothnia_winter.png"
+msgstr "gulf_of_bothnia_winter.png"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Preview
+msgctxt "biome definition"
+msgid "gulf_of_bothnia_winter.png"
+msgstr "gulf_of_bothnia_winter.png"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
 msgid ""
@@ -1194,16 +1313,25 @@ msgstr "¡Hemos de dar con tierra seco, les nueses tierres van añagase pronto!"
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "¡Los llagos entamen a tragar la tierra, hai qu'atopar abellugu!"
 
-#: maps/random/survivalofthefittest_triggers.js:190
+#: maps/random/jebel_barkal_triggers.js:565
+msgid "Napata is attacking!"
+msgstr "¡Nepata ta atacando!"
+
+#: maps/random/jebel_barkal_triggers.js:577
+#, javascript-format
+msgid "Napata will attack in %(time)s!"
+msgstr "¡Nepata va atacar en %(time)s!"
+
+#: maps/random/survivalofthefittest_triggers.js:163
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "¡La primer onda va entamar en %(time)s!"
 
-#: maps/random/survivalofthefittest_triggers.js:325
+#: maps/random/survivalofthefittest_triggers.js:264
 msgid "An enemy wave is attacking!"
 msgstr "¡Una onda enemiga ta atacando!"
 
-#: maps/random/survivalofthefittest_triggers.js:349
+#: maps/random/survivalofthefittest_triggers.js:289
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "Derrotaron a %(player)s (perdió'l centru cívicu)."
@@ -2555,25 +2683,50 @@ msgstr "Un ñubláu terrén de los Alpes camúdase nun campu batalla, yá que ca
 msgid "Dueling Cliffs (3v3)"
 msgstr "Galardeyos amarradiegos (3-3)"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:Name:40
+msgid "Egypt (3v3)"
+msgstr "Exiptu (3-3)"
+
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[1].Name:40
 msgid "Alexandria"
 msgstr "Alexandría"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[2].Name:40
 msgid "Theben"
 msgstr "Tebes"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[2].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[3].Name:40
 msgid "Siwa"
 msgstr "Siwa"
 
-#: maps/skirmishes/Egypt (4).xml:PlayerData[3].Name:40
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[4].Name:40
 msgid "Sinai"
 msgstr "El Sinaí"
 
-#: maps/skirmishes/Egypt (4).xml:Name:40
-msgid "Egypt"
-msgstr "Exiptu"
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[5].Name:40
+msgid "Memphis"
+msgstr "Menfis"
+
+#: maps/skirmishes/Egypt (3v3).xml:PlayerData[6].Name:40
+msgid "Cyrene"
+msgstr "Cirene"
+
+#: maps/skirmishes/Egypt (3v3).xml:Description:40
+msgid ""
+"Fight for the remains of ancient Egypt!\n"
+"\n"
+"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
+"\n"
+"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
+"Locations:\n"
+"- Alexandria: library, harbor\n"
+"- Memphis: Necropolis, pyramids, Apis shrine\n"
+"- Thebes: temple district, Valley of the Kings \n"
+"- Cyrene: mediterranean Macchie, olive groves\n"
+"- Fayyum: crocodile shrine, nile dam\n"
+"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
+"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
+msgstr "¡Llucha polo que resta del antiguu Exiptu!\n\nLos xugadores entamen con una ciudá madura y un exércitu pequeñu, caúna con distintes ventayes y desventayes. Repara, ¡hai 7 fuertes y bandíos qu'anden a la chisba!\n\nYe'l sieglu últimu endenantes de 0 A.D. Exiptu ta dixebráu internamente ente les influyencies helenístiques (Alexandría, representaes polos seléucides) y les tradicionales (Menfis, representaes polos tolemaicos). Tebes, na fastera al sur del ríu Nilu, tomáronla yá los cuxites. Al noroeste d'Al-Dschabal al-Achdar, u s'asitia la ciudá mediterránea de Cirene, los romanos tán preparando pa invadir. Dende l'ermu oriental d'at-Tih, el monte Sinaí y l'oasis de Siwa los enemigos (representaos polos perses) tán avanzando. Los del ermu suroccidental de Kharga (representada por Cartagu) tán tentando de pescanciar una porción tamién.\nLos allugamientos:\n- Alexandría: La biblioteca, el puertu\n- Menfis: La necrópolis, les pirámides, el santuariu d'Apis\n- Tebes: El distritu del templu, el Valle de los Reis\n- Cirene: La maquia mediterránea, les mates d'olivares\n- Fayyún: El santuariu del cocodrilu, la presa del Nilu\n- L'ermu oriental: El monte Sinaí, el Wadi fonderu, los petones de la Mar Bermeya\n- L'ermu occidental: L'oasis de Kharga y Siwa, la fondigonada de Qattara"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""
