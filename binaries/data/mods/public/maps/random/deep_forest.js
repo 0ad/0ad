@@ -119,7 +119,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 				new SmoothElevationPainter(ELEVATION_SET, heightPath, 2, heightOffsetRandomPath),
 				new TileClassPainter(clPath)
 			],
-			avoidClasses(clHill, 0, clBaseResource, 4));
+			avoidClasses(clBaseResource, 4));
 	}
 Engine.SetProgress(50);
 
@@ -196,6 +196,6 @@ for (var x = 0; x < mapSize; x++)
 	}
 Engine.SetProgress(95);
 
-placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clBaseResource, 4));
+placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clBaseResource, 4, clHill, 4));
 
 g_Map.ExportMap();

@@ -498,7 +498,7 @@ createObjectGroupsByAreas(
 	20,
 	[areaWater]);
 
-placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2));
+placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clFood, 2, clHill, 4));
 
 setSunColor(0.6, 0.6, 0.6);
 setSunElevation(Math.PI/ 3);

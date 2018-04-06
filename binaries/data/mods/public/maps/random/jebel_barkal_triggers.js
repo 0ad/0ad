@@ -114,7 +114,7 @@ var jebelBarkal_firstAttackTime = difficulty =>
  * Account for varying mapsizes and number of players when spawning attackers.
  */
 var jebelBarkal_attackerGroup_sizeFactor = (numPlayers, numInitialSpawnPoints, difficulty) =>
-	1.5 * numPlayers / numInitialSpawnPoints * difficulty;
+	numPlayers / numInitialSpawnPoints * difficulty;
 
 /**
  * Assume gaia to be the native kushite player.

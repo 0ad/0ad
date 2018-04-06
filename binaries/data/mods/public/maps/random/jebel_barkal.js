@@ -192,7 +192,7 @@ const pathWidth = 4;
 const pathWidthCenter = 10;
 const pathWidthSecondary = 6;
 
-const placeNapataWall = getDifficulty() >= 3;
+const placeNapataWall = getDifficulty() >= 3 && mapSize >= 192;
 
 const layoutFertileLandTextures = [
 	{
@@ -263,7 +263,7 @@ const layoutKushCity = [
 	},
 	{
 		"templateName": "uncapturable|" + oElephantStables,
-		"difficulty": "Medium",
+		"difficulty": "Easy",
 		"constraints": avoidClasses(clElephantStables, 10),
 		"painters": new TileClassPainter(clElephantStables)
 	},

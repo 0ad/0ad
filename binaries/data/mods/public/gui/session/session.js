@@ -305,6 +305,7 @@ function initGUIObjects()
 	updateGameSpeedControl();
 	resizeDiplomacyDialog();
 	resizeTradeDialog();
+	initBarterButtons();
 	initPanelEntities();
 	initViewedPlayerDropdown();
 	initChatWindow();
