@@ -1,62 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <lists>
-
   <attachpoints>
-    <item>root       </item>
-    <item>head       </item>
-    <item>helmet     </item>
-    <item>head_extra </item>
-    <item>l_hand     </item>
-    <item>shield     </item>
-    <item>l_forearm  </item>
-    <item>l_shoulder </item>
-    <item>r_hand     </item>
-    <item>r_forearm  </item>
-    <item>r_shoulder </item>
-    <item>chest      </item>
-    <item>back       </item>
-    <item>shoulders  </item>
-    <item>l_leg      </item>
-    <item>r_leg      </item>
-    <item>l_hip      </item>
-    <item>r_hip      </item>
-    <item>tree       </item>
-    <item>props_main </item>
+    <item>root</item>
+    <item>head</item>
+    <item>helmet</item>
+    <item>head_extra</item>
+    <item>l_hand</item>
+    <item>shield</item>
+    <item>l_forearm</item>
+    <item>l_shoulder</item>
+    <item>r_hand</item>
+    <item>r_forearm</item>
+    <item>r_shoulder</item>
+    <item>chest</item>
+    <item>back</item>
+    <item>shoulders</item>
+    <item>l_leg</item>
+    <item>r_leg</item>
+    <item>l_hip</item>
+    <item>r_hip</item>
+    <item>tree</item>
+    <item>props_main</item>
     <item>props_fancy</item>
   </attachpoints>
-  
   <textures>
-    <item>baseTex </item>
-    <item>aoTex   </item>
-    <item>normTex </item>
-    <item>specTex </item>
+    <item>baseTex</item>
+    <item>aoTex</item>
+    <item>normTex</item>
+    <item>specTex</item>
   </textures>
-
   <animations>
-    <item>idle            </item>
-    <item>walk            </item>
-    <item>run             </item>
-    <item>attack_melee    </item>
-    <item>attack_ranged   </item>
-    <item>attack_capture   </item>
+    <item>idle</item>
+    <item>walk</item>
+    <item>run</item>
+    <item>attack_melee</item>
+    <item>attack_ranged</item>
+    <item>attack_capture</item>
     <item>attack_slaughter</item>
-    <item>death           </item>
-    <item>build           </item>
-    <item>heal            </item>
-    <item>promotion       </item>
-    <item>gather_fruit    </item>
-    <item>gather_grain    </item>
-    <item>gather_meat     </item>
-    <item>gather_tree     </item>
-    <item>gather_rock     </item>
-    <item>gather_ore      </item>
-    <item>gather_ruins    </item>
-    <item>gather_treasure </item>
-    <item>feeding         </item>
-    <item>garrisoned      </item>
-    <item>gate_closed     </item>
-    <item>gate_closing    </item>
-    <item>gate_open       </item>
-    <item>gate_opening    </item>
+    <item>death</item>
+    <item>build</item>
+    <item>heal</item>
+    <item>promotion</item>
+    <item>gather_fruit</item>
+    <item>gather_grain</item>
+    <item>gather_meat</item>
+    <item>gather_tree</item>
+    <item>gather_rock</item>
+    <item>gather_ore</item>
+    <item>gather_praise</item>
+    <item>gather_ruins</item>
+    <item>gather_treasure</item>
+    <item>feeding</item>
+    <item>garrisoned</item>
+    <item>gate_closed</item>
+    <item>gate_closing</item>
+    <item>gate_open</item>
+    <item>carry_meat</item>
+    <item>carry_wood</item>
+    <item>carry_metal</item>
+    <item>phalanx_idle</item>
+    <item>phalanx_back_idle</item>
+    <item>phalanx_walk</item>
+    <item>phalanx_run</item>
   </animations>
-
 </lists>
