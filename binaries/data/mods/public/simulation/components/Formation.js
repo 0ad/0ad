@@ -165,7 +165,7 @@ Formation.prototype.GetMembers = function()
 Formation.prototype.GetClosestMember = function(ent, filter)
 {
 	var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
-	if (!cmpEntPosition)
+	if (!cmpEntPosition || !cmpEntPosition.IsInWorld())
 		return INVALID_ENTITY;
 
 	var entPosition = cmpEntPosition.GetPosition2D();
