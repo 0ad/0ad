@@ -1465,7 +1465,7 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 
 	if (formedEnts.length == 0)
 	{
-		// No units support the foundation - return all the others
+		// No units support the formation - return all the others
 		return nonformedUnitAIs;
 	}
 
@@ -1528,6 +1528,14 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 			}
 
 			RemoveFromFormation(cluster);
+
+			if (formationTemplate == "special/formations/null")
+			{
+				for (let ent of cluster)
+					nonformedUnitAIs.push(Engine.QueryInterface(ent, IID_UnitAI));
+
+				continue;
+			}
 
 			// Create the new controller
 			var formationEnt = Engine.AddEntity(formationTemplate);
