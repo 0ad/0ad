@@ -210,7 +210,7 @@ for (let island = 0; island < 2; ++island)
 	{
 		playerAngle[p] = Math.PI * ((i + 0.5) / (2 * playersPerIsland) + island) + swapAngle;
 		playerPosition[p] = Vector2D.add(islandLocations[island], new Vector2D(radiusPlayer).rotate(-playerAngle[p]));
-		addCivicCenterAreaToClass(playerPosition[i], clPlayer);
+		addCivicCenterAreaToClass(playerPosition[p], clPlayer);
 		++p;
 	}
 }
