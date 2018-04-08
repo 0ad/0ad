@@ -18,60 +18,62 @@
 #include "precompiled.h"
 
 #include "pkcs5_pbkdf2.h"
-#include "sha.h"
 
-static void hmac_sha256(unsigned char (&digest)[SHA_DIGEST_SIZE],
+// This does not match libsodium crypto_auth_hmacsha256, which has a constant key_len.
+static void hmac_sha256(unsigned char (&digest)[crypto_hash_sha256_BYTES],
 						const unsigned char* text, size_t text_len,
 						const unsigned char* key, size_t key_len)
 {
-	SHA256 hash;
-	unsigned char tk[SHA_DIGEST_SIZE]; // temporary key incase we need to pad the key with zero unsigned chars
-	if (key_len > SHA_DIGEST_SIZE)
+	crypto_hash_sha256_state state;
+	crypto_hash_sha256_init(&state);
+
+	unsigned char tk[crypto_hash_sha256_BYTES]; // temporary key in case we need to pad the key with zero unsigned chars
+	if (key_len > crypto_hash_sha256_BYTES)
 	{
-		hash.update(key, key_len);
-		hash.finish(tk);
+		crypto_hash_sha256_update(&state, key, key_len);
+		crypto_hash_sha256_final(&state, tk);
 		key = tk;
-		key_len = SHA_DIGEST_SIZE;
+		key_len = crypto_hash_sha256_BYTES;
 	}
- 
-	unsigned char k_pad[SHA_DIGEST_SIZE];
- 
+
+	unsigned char k_pad[crypto_hash_sha256_BYTES];
+
 	memset(k_pad, 0, sizeof k_pad);
 	memcpy(k_pad, key, key_len);
-	for (int i = 0; i < SHA_DIGEST_SIZE; ++i)
+	for (unsigned int i = 0; i < crypto_hash_sha256_BYTES; ++i)
 		k_pad[i] ^= 0x36;
-	hash.init();
-	hash.update(k_pad, SHA_DIGEST_SIZE);
-	hash.update(text, text_len);
-	hash.finish(digest);
- 
- 
+	crypto_hash_sha256_init(&state);
+	crypto_hash_sha256_update(&state, k_pad, crypto_hash_sha256_BYTES);
+	crypto_hash_sha256_update(&state, text, text_len);
+	crypto_hash_sha256_final(&state, digest);
+
+
 	memset(k_pad, 0, sizeof k_pad);
 	memcpy(k_pad, key, key_len);
-	for (int i = 0; i < SHA_DIGEST_SIZE; ++i)
+	for (unsigned int i = 0; i < crypto_hash_sha256_BYTES; ++i)
 		k_pad[i] ^= 0x5c;
- 
-	hash.init();
-	hash.update(k_pad, SHA_DIGEST_SIZE);
-	hash.update(digest, SHA_DIGEST_SIZE);
-	hash.finish(digest);
+
+	crypto_hash_sha256_init(&state);
+	crypto_hash_sha256_update(&state, k_pad, crypto_hash_sha256_BYTES);
+	crypto_hash_sha256_update(&state, digest, crypto_hash_sha256_BYTES);
+	crypto_hash_sha256_final(&state, digest);
 }
- 
- 
-int pbkdf2(unsigned char (&output)[SHA_DIGEST_SIZE],
+
+
+int pbkdf2(unsigned char (&output)[crypto_hash_sha256_BYTES],
 			const unsigned char* key, size_t key_len,
 			const unsigned char* salt, size_t salt_len,
 			unsigned rounds)
 {
-	unsigned char asalt[SHA_DIGEST_SIZE + 4], obuf[SHA_DIGEST_SIZE], d1[SHA_DIGEST_SIZE], d2[SHA_DIGEST_SIZE];
- 
+	unsigned char asalt[crypto_hash_sha256_BYTES + 4], obuf[crypto_hash_sha256_BYTES], d1[crypto_hash_sha256_BYTES], d2[crypto_hash_sha256_BYTES];
+
 	if (rounds < 1 || key_len == 0 || salt_len == 0)
 		return -1;
- 
-	if (salt_len > SHA_DIGEST_SIZE) salt_len = SHA_DIGEST_SIZE; // length cap for the salt
+
+	if (salt_len > crypto_hash_sha256_BYTES) salt_len = crypto_hash_sha256_BYTES; // length cap for the salt
 	memset(asalt, 0, salt_len);
 	memcpy(asalt, salt, salt_len);
- 
+
 	for (unsigned count = 1; ; ++count)
 	{
 		asalt[salt_len + 0] = (count >> 24) & 0xff;
@@ -79,21 +81,21 @@ int pbkdf2(unsigned char (&output)[SHA_DIGEST_SIZE],
 		asalt[salt_len + 2] = (count >> 8) & 0xff;
 		asalt[salt_len + 3] = count & 0xff;
 		hmac_sha256(d1, asalt, salt_len + 4, key, key_len);
-		memcpy(obuf, d1, SHA_DIGEST_SIZE);
- 
+		memcpy(obuf, d1, crypto_hash_sha256_BYTES);
+
 		for (unsigned i = 1; i < rounds; i++)
 		{
-			hmac_sha256(d2, d1, SHA_DIGEST_SIZE, key, key_len);
-			memcpy(d1, d2, SHA_DIGEST_SIZE);
-			for (unsigned j = 0; j < SHA_DIGEST_SIZE; j++)
+			hmac_sha256(d2, d1, crypto_hash_sha256_BYTES, key, key_len);
+			memcpy(d1, d2, crypto_hash_sha256_BYTES);
+			for (unsigned j = 0; j < crypto_hash_sha256_BYTES; j++)
 				obuf[j] ^= d1[j];
 		}
- 
-		memcpy(output, obuf, SHA_DIGEST_SIZE);
-		key += SHA_DIGEST_SIZE;
-		if (key_len < SHA_DIGEST_SIZE)
+
+		memcpy(output, obuf, crypto_hash_sha256_BYTES);
+		key += crypto_hash_sha256_BYTES;
+		if (key_len < crypto_hash_sha256_BYTES)
 			break;
-		key_len -= SHA_DIGEST_SIZE;
+		key_len -= crypto_hash_sha256_BYTES;
 	};
 	return 0;
 }

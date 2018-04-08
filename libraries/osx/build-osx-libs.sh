@@ -42,6 +42,7 @@ NSPR_VERSION="4.15"
 ICU_VERSION="icu4c-59_1"
 ENET_VERSION="enet-1.3.13"
 MINIUPNPC_VERSION="miniupnpc-2.0.20180222"
+SODIUM_VERSION="libsodium-1.0.16"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey 38
@@ -615,6 +616,36 @@ then
   popd
   # TODO: how can we not build the dylibs?
   rm -f lib/*.dylib
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building libsodium..."
+
+LIB_VERSION="${SODIUM_VERSION}"
+LIB_ARCHIVE="$SODIUM_VERSION.tar.gz"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="https://download.libsodium.org/libsodium/releases/"
+
+mkdir -p libsodium
+pushd libsodium > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  rm -f .already-built
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY include lib
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=${INSTALL_DIR} && make clean && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS} && make check && INSTALLPREFIX="$INSTALL_DIR" make install) || die "libsodium build failed"
+  popd
   touch .already-built
 else
   already_built
