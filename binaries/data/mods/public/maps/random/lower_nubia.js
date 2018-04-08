@@ -43,6 +43,7 @@ const tWater = "desert_sand_wet";
 
 const oAcacia = "gaia/flora_tree_acacia";
 const oTreeDead = "gaia/flora_tree_dead";
+const oBushBadlands = "gaia/flora_bush_badlands";
 const oBerryBush = "gaia/flora_bush_berry_desert";
 const oPalms = [
 	"gaia/flora_tree_cretan_date_palm_tall",
@@ -305,33 +306,39 @@ g_Map.log("Creating pyramid");
 createObjectGroups(
 	new SimpleGroup([new SimpleObject(oPyramid, 1, 1, 1, 1)], true, clPyramid),
 	0,
-	[new NearTileClassConstraint(clWater, 10), avoidClasses(clWater, 6, clCliff, 6, clPlayer, 30, clMetal, 6, clRock, 6)],
+	[new NearTileClassConstraint(clWater, 10), avoidClasses(clWater, 6, clCliff, 6, clPlayer, 40, clMetal, 6, clRock, 6)],
 	1,
 	500);
 Engine.SetProgress(70);
 
-g_Map.log("Creating forests");
+g_Map.log("Creating trees near the Nile");
 createObjectGroups(
 	new SimpleGroup([new RandomObject(oPalms, 1, 2, 1, 1)], true, clForest),
 	0,
 	[
 		new NearTileClassConstraint(clWater, scaleByMapSize(1, 8)),
 		new HeightConstraint(heightNileForests, Infinity),
-		avoidClasses(clWater, 0, clCliff, 0, clForest, 1, clPlayer, 12, clBaseResource, 5, clPyramid, 6)
+		avoidClasses(clWater, 0, clCliff, 0, clForest, 1, clPlayer, 12, clBaseResource, 5, clMetal, 4, clRock, 4, clPyramid, 6)
 	],
 	scaleByMapSize(100, 1000),
 	200);
 Engine.SetProgress(73);
 
-createStragglerTrees(
-	[oAcacia, oTreeDead],
-	avoidClasses(clWater, 10, clCliff, 1, clPlayer, 12, clBaseResource, 5, clPyramid, 6),
-	clForest,
-	scaleByMapSize(15, 400),
-	200);
-Engine.SetProgress(77);
-
 const avoidCollisions = avoidClasses(clPlayer, 12, clBaseResource, 5, clWater, 1, clForest, 1, clRock, 4, clMetal, 4, clFood, 6, clCliff, 0, clPyramid, 6);
+
+g_Map.log("Creating straggler trees and bushes");
+var stragglerTreeObjects = [
+	[new SimpleObject(oAcacia, 1, 1, 0, 0), new SimpleObject(oBushBadlands, 0, 1, 2, 2)],
+	[new SimpleObject(oTreeDead, 1, 1, 0, 0), new SimpleObject(oBushBadlands, 0, 1, 2, 2)]
+];
+for (let objects of stragglerTreeObjects)
+	createObjectGroups(
+		new SimpleGroup(objects, true, clForest),
+		0,
+		[avoidCollisions, avoidClasses(clWater, 10, clForest, 4)],
+		scaleByMapSize(10, 180),
+		10);
+Engine.SetProgress(77);
 
 g_Map.log("Creating gazelles");
 createObjectGroups(
