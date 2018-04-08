@@ -179,12 +179,6 @@ var jebelBarkal_buildingGarrison = difficulty => [
 
 	},
 	{
-		"buildingClasses": ["Pyramid"],
-		"unitTemplates": [...jebelBarkal_templates.citizenSoldiers, ...jebelBarkal_templates.healers],
-		"capacityRatio": 1
-
-	},
-	{
 		"buildingClasses": ["House"],
 		"unitTemplates": [...jebelBarkal_templates.females, ...jebelBarkal_templates.healers],
 		"capacityRatio": 0.5

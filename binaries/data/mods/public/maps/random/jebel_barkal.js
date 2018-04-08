@@ -601,7 +601,7 @@ const areaPyramids = createArea(new DiskPlacer(scaleByMapSize(5, 14), positionPy
 createObjectGroupsByAreas(
 	new SimpleGroup(
 		[new RandomObject(
-			["uncapturable|" + oPyramidLarge, "uncapturable|" + oPyramidSmall],
+			[oPyramidLarge, oPyramidSmall],
 			scaleByMapSize(1, 6),
 			scaleByMapSize(2, 8),
 			scaleByMapSize(6, 8),
@@ -923,7 +923,6 @@ var areaCityBushes =
 				clWall, 3,
 				clTower, 1,
 				clFortress, 1,
-				clPyramid, 1,
 				clHouse, 1,
 				clBlacksmith, 1,
 				clElephantStables, 1,
