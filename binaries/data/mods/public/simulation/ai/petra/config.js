@@ -169,13 +169,13 @@ m.Config.prototype.setConfig = function(gameState)
 	{
 		this.Economy.supportRatio = 0.5;
 		this.Economy.provisionFields = 1;
-		this.Military.numSentryTowers = this.personality.defensive > 0.66 ? 1 : 0;
+		this.Military.numSentryTowers = this.personality.defensive > this.personalityCut.strong ? 1 : 0;
 	}
 	else if (this.difficulty < 3)
 	{
 		this.Economy.supportRatio = 0.4;
 		this.Economy.provisionFields = 1;
-		this.Military.numSentryTowers = this.personality.defensive > 0.66 ? 1 : 0;
+		this.Military.numSentryTowers = this.personality.defensive > this.personalityCut.strong ? 1 : 0;
 	}
 	else
 	{
@@ -185,9 +185,9 @@ m.Config.prototype.setConfig = function(gameState)
 			this.Military.numSentryTowers = 1;
 		else
 			this.Military.numSentryTowers = 2;
-		if (this.personality.defensive > 0.66)
+		if (this.personality.defensive > this.personalityCut.strong)
 			++this.Military.numSentryTowers;
-		else if (this.personality.defensive < 0.33)
+		else if (this.personality.defensive < this.personalityCut.weak)
 			--this.Military.numSentryTowers;
 
 		if (this.personality.aggressive > this.personalityCut.strong)

@@ -71,10 +71,10 @@ m.BaseManager.prototype.reset = function(gameState, state)
 	else
 		this.constructing = false;
 
-	if (state != "captured")
+	if (state != "captured" || this.Config.difficulty < 3)
 		this.neededDefenders = 0;
 	else
-		this.neededDefenders = this.Config.difficulty > 2 ? 3 + 2*(this.Config.difficulty - 3) : 0;
+		this.neededDefenders = 3 + 2 * (this.Config.difficulty - 3);
 };
 
 m.BaseManager.prototype.assignEntity = function(gameState, ent)
@@ -243,7 +243,6 @@ m.BaseManager.prototype.removeDropsite = function(gameState, ent)
 	}
 
 	this.dropsites[ent.id()] = undefined;
-	return;
 };
 
 /**
