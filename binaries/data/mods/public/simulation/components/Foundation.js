@@ -401,7 +401,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 
 		var cmpBuildingHealth = Engine.QueryInterface(building, IID_Health);
 		if (cmpBuildingHealth)
-			cmpBuildingHealth.SetHitpoints(cmpHealth.GetHitpoints());
+			cmpBuildingHealth.SetHitpoints(progress * cmpBuildingHealth.GetMaxHitpoints());
 
 		PlaySound("constructed", building);
 
