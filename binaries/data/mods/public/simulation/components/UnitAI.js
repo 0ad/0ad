@@ -3577,6 +3577,8 @@ UnitAI.prototype.FinishOrder = function()
 		return true;
 	}
 
+	this.orderQueue = [];
+	this.order = undefined;
 	this.SetNextState("IDLE");
 
 	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
@@ -3612,7 +3614,7 @@ UnitAI.prototype.PushOrder = function(type, data)
 	{
 		this.order = order;
 		let ret = this.UnitFsm.ProcessMessage(this,
-			{"type": "Order."+this.order.type, "data": this.order.data}
+			{ "type": "Order."+this.order.type, "data": this.order.data }
 		);
 
 		// If the order was rejected then immediately take it off
@@ -3648,7 +3650,7 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 		this.orderQueue.unshift(order);
 		this.order = order;
 		let ret = this.UnitFsm.ProcessMessage(this,
-			{"type": "Order."+this.order.type, "data": this.order.data}
+			{ "type": "Order."+this.order.type, "data": this.order.data }
 		);
 
 		// If the order was rejected then immediately take it off again;
@@ -4863,7 +4865,7 @@ UnitAI.prototype.RemoveGuard = function()
 		return;
 
 	if (this.order.type == "Guard")
-		this.UnitFsm.ProcessMessage(this, {"type": "RemoveGuard"});
+		this.UnitFsm.ProcessMessage(this, { "type": "RemoveGuard" });
 	else
 		for (let i = 1; i < this.orderQueue.length; ++i)
 			if (this.orderQueue[i].type == "Guard")
