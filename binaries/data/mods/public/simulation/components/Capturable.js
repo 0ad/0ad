@@ -76,7 +76,7 @@ Capturable.prototype.Reduce = function(amount, playerID)
 	if (numberOfEnemies == 0)
 		return 0;
 
-	// distribute the capture points over all enemies
+	// Distribute the capture points over all enemies.
 	let distributedAmount = amount / numberOfEnemies;
 	let removedAmount = 0;
 	while (distributedAmount > 0.0001)
@@ -130,8 +130,8 @@ Capturable.prototype.CanCapture = function(playerID)
 //// Private functions ////
 
 /**
- * this has to be called whenever the capture points are changed.
- * It notifies other components of the change, and switches ownership when needed
+ * This has to be called whenever the capture points are changed.
+ * It notifies other components of the change, and switches ownership when needed.
  */
 Capturable.prototype.RegisterCapturePointsChanged = function()
 {
@@ -145,7 +145,7 @@ Capturable.prototype.RegisterCapturePointsChanged = function()
 	if (owner == INVALID_PLAYER || this.cp[owner] > 0)
 		return;
 
-	// if all cp has been taken from the owner, convert it to the best player
+	// If all cp has been taken from the owner, convert it to the best player.
 	var bestPlayer = 0;
 	for (let i in this.cp)
 		if (this.cp[i] >= this.cp[bestPlayer])
@@ -185,8 +185,8 @@ Capturable.prototype.TimerTick = function()
 	var owner = cmpOwnership.GetOwner();
 	var modifiedCp = 0;
 
-	// special handle for the territory decay
-	// reduce cp from the owner in favour of all neighbours (also allies)
+	// Special handle for the territory decay.
+	// Reduce cp from the owner in favour of all neighbours (also allies).
 	var cmpTerritoryDecay = Engine.QueryInterface(this.entity, IID_TerritoryDecay);
 	if (cmpTerritoryDecay && cmpTerritoryDecay.IsDecaying())
 	{
@@ -214,7 +214,7 @@ Capturable.prototype.TimerTick = function()
 	if (modifiedCp)
 		return;
 
-	// nothing changed, stop the timer
+	// Nothing changed, stop the timer.
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	cmpTimer.CancelTimer(this.timer);
 	this.timer = 0;
@@ -295,7 +295,7 @@ Capturable.prototype.OnOwnershipChanged = function(msg)
 	}
 	else
 	{
-		// initialise the capture points when created
+		// Initialise the capture points when created.
 		let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 		for (let i = 0; i < numPlayers; ++i)
 			if (i == msg.to)
@@ -303,6 +303,23 @@ Capturable.prototype.OnOwnershipChanged = function(msg)
 			else
 				this.cp[i] = 0;
 	}
+	this.CheckTimer();
+};
+
+/**
+ * When a player is defeated, reassign the cp of non-owned entities to gaia.
+ * Those owned by the defeated player are dealt with onOwnershipChanged.
+ */
+Capturable.prototype.OnPlayerDefeated = function(msg)
+{
+	if (!this.cp[msg.playerId])
+		return;
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership && cmpOwnership.GetOwner() == msg.playerId)
+		return;
+	this.cp[0] += this.cp[msg.playerId];
+	this.cp[msg.playerId] = 0;
+	this.RegisterCapturePointsChanged();
 	this.CheckTimer();
 };
 

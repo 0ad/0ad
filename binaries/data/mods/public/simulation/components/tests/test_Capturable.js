@@ -14,7 +14,7 @@ let testData = {
 	"structure": 20,
 	"playerID": 1,
 	"regenRate": 2,
-	"garrisonedEntities": [30,31,32,33],
+	"garrisonedEntities": [30, 31, 32, 33],
 	"garrisonRegenRate": 5,
 	"decay": false,
 	"decayRate": 30,
@@ -66,14 +66,14 @@ function testCapturable(testData, test_function)
 	});
 
 	AddMock(testData.structure, IID_StatisticsTracker, {
-		"LostEntity" : () => {},
+		"LostEntity": () => {},
 		"CapturedBuilding": () => {}
 	});
 
 	let cmpCapturable = ConstructComponent(testData.structure, "Capturable", {
-		"CapturePoints" : testData.maxCp,
-		"RegenRate" : testData.regenRate,
-		"GarrisonRegenRate" : testData.garrisonRegenRate
+		"CapturePoints": testData.maxCp,
+		"RegenRate": testData.regenRate,
+		"GarrisonRegenRate": testData.garrisonRegenRate
 	});
 
 	AddMock(testData.structure, IID_TerritoryDecay, {
@@ -90,7 +90,7 @@ function testCapturable(testData, test_function)
 // Tests initialisation of the capture points when the entity is created
 testCapturable(testData, cmpCapturable => {
 	Engine.PostMessage = function(ent, iid, message) {
-		TS_ASSERT_UNEVAL_EQUALS(message, { "regenerating": true, "regenRate": cmpCapturable.GetRegenRate() , "territoryDecay": 0 });
+		TS_ASSERT_UNEVAL_EQUALS(message, { "regenerating": true, "regenRate": cmpCapturable.GetRegenRate(), "territoryDecay": 0 });
 	};
 	cmpCapturable.OnOwnershipChanged({ "from": INVALID_PLAYER, "to": testData.playerID });
 	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [0, 3000, 0, 0]);
@@ -99,17 +99,17 @@ testCapturable(testData, cmpCapturable => {
 // Tests if the message is sent when capture points change
 testCapturable(testData, cmpCapturable => {
 	cmpCapturable.SetCapturePoints([0, 2000, 0 , 1000]);
-	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [0, 2000, 0 , 1000]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [0, 2000, 0, 1000]);
 	Engine.PostMessage = function(ent, iid, message)
 	{
-		TS_ASSERT_UNEVAL_EQUALS(message, { "capturePoints": [0, 2000, 0 , 1000] });
+		TS_ASSERT_UNEVAL_EQUALS(message, { "capturePoints": [0, 2000, 0, 1000] });
 	};
 	cmpCapturable.RegisterCapturePointsChanged();
 });
 
 // Tests reducing capture points (after a capture attack or a decay)
 testCapturable(testData, cmpCapturable => {
-	cmpCapturable.SetCapturePoints([0, 2000, 0 , 1000]);
+	cmpCapturable.SetCapturePoints([0, 2000, 0, 1000]);
 	cmpCapturable.CheckTimer();
 	Engine.PostMessage = function(ent, iid, message) {
 		if (iid == MT_CapturePointsChanged)
@@ -123,9 +123,9 @@ testCapturable(testData, cmpCapturable => {
 
 // Tests reducing capture points (after a capture attack or a decay)
 testCapturable(testData, cmpCapturable => {
-	cmpCapturable.SetCapturePoints([0, 2000, 0 , 1000]);
+	cmpCapturable.SetCapturePoints([0, 2000, 0, 1000]);
 	cmpCapturable.CheckTimer();
-	TS_ASSERT_EQUALS(cmpCapturable.Reduce(2500, 3),2000);
+	TS_ASSERT_EQUALS(cmpCapturable.Reduce(2500, 3), 2000);
 	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [0, 0, 0, 3000]);
 });
 
@@ -144,7 +144,7 @@ function testRegen(testData, cpIn, cpOut, regenerating)
 }
 
 // With our testData, the total regen rate is 22. That should be taken from the ennemies
-testRegen(testData, [12, 2950, 2 , 36], [1, 2972, 2, 25], true);
+testRegen(testData, [12, 2950, 2, 36], [1, 2972, 2, 25], true);
 testRegen(testData, [0, 2994, 2, 4], [0, 2998, 2, 0], true);
 testRegen(testData, [0, 2998, 2, 0], [0, 2998, 2, 0], false);
 
@@ -176,7 +176,7 @@ testData.decay = false;
 function testReduce(testData, amount, player, taken)
 {
 	testCapturable(testData, cmpCapturable => {
-		cmpCapturable.SetCapturePoints([0, 2000, 0 , 1000]);
+		cmpCapturable.SetCapturePoints([0, 2000, 0, 1000]);
 		cmpCapturable.CheckTimer();
 		TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.Reduce(amount, player), taken);
 	});
@@ -191,3 +191,10 @@ testReduce(testData, 0, 3, 0);
 testReduce(testData, 1500, 3, 1500);
 testReduce(testData, 2000, 3, 2000);
 testReduce(testData, 3000, 3, 2000);
+
+// Test defeated player
+testCapturable(testData, cmpCapturable => {
+	cmpCapturable.SetCapturePoints([500, 1000, 0, 250]);
+	cmpCapturable.OnPlayerDefeated({ "playerId": 3 });
+	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [750, 1000, 0, 0]);
+});
