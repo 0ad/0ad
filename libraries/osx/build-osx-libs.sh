@@ -196,7 +196,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-ipv6 --without-gnutls --without-gssapi --without-libmetalink --without-librtmp --without-libssh2 --without-nss --without-polarssl --without-spnego --without-ssl --disable-ares --disable-ldap --disable-ldaps --without-libidn --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libcurl build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-ipv6 --with-darwinssl --without-gssapi --without-libmetalink --without-librtmp --without-libssh2 --without-nss --without-polarssl --without-spnego --disable-ares --disable-ldap --disable-ldaps --without-libidn --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libcurl build failed"
   popd
   touch .already-built
 else

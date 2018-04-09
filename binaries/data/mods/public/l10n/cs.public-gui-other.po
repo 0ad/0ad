@@ -10,7 +10,7 @@
 # Katie Trochimovičová <Kattienika@gmail.com>, 2018
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
 # Marek Harok <kenturin@seznam.cz>, 2017
-# fri, 2014-2017
+# fri, 2014-2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Radek Mašek <warrriog@gmail.com>, 2018
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-04 16:10+0000\n"
-"Last-Translator: Petr Hála <halapetr@selfnet.cz>\n"
+"PO-Revision-Date: 2018-04-07 15:09+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1222,13 +1222,13 @@ msgstr "Kořist:"
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:829
 msgid "Right-click to view more information."
-msgstr "Klikněte, pravým tlačítkem myši, pro zobrazení více informací."
+msgstr "Pro zobrazení více informací klepněte pravým tlačítkem myši."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr "Klikněte pro zobrazení více informací."
+msgstr "Klepněte pro zobrazení více informací."
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1387,7 +1387,7 @@ msgstr "Potvrzení"
 
 #: gui/pregame/mainmenu.js:273
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "Opravdu chcete vypnout hru a spustit Editor scénářů?"
+msgstr "Opravdu chcete vypnout hru a spustit editor scénářů?"
 
 #: gui/pregame/mainmenu.js:281
 msgid ""
@@ -1875,11 +1875,11 @@ msgstr "Použito"
 
 #: gui/summary/summary.js:90
 msgid "Received"
-msgstr "Obdržet"
+msgstr "Přijato"
 
 #: gui/summary/summary.js:95
 msgid "Sold"
-msgstr "Prodat"
+msgstr "Prodáno"
 
 #: gui/summary/summary.js:100
 msgid "Outcome"
@@ -2055,7 +2055,7 @@ msgstr "Zakázat zpětnou vazbu"
 
 #: gui/pregame/mainmenu.xml:(caption):165
 msgid "Tutorial"
-msgstr "Tutorial"
+msgstr "Výuka"
 
 #: gui/pregame/mainmenu.xml:(caption):197
 #: gui/reference/structree/structree.xml:(caption):126
@@ -2134,7 +2134,7 @@ msgstr "Nahlásit chybu"
 
 #: gui/pregame/mainmenu.xml:(caption):610
 msgid "Translate the Game"
-msgstr "Přelož hru"
+msgstr "Překládat hru"
 
 #: gui/pregame/mainmenu.xml:(caption):622
 msgid "Donate"
@@ -2299,7 +2299,7 @@ msgstr "Smazat"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
-msgstr "Znovunačíst mezipaměť"
+msgstr "Znovunahrát vyrovnávací paměť"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34
@@ -3063,7 +3063,7 @@ msgstr ""
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
-msgstr "Lobby"
+msgstr "Herní skupina"
 
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""

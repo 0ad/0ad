@@ -7,11 +7,11 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2015, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2018, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
- * are also available at http://curl.haxx.se/docs/copyright.html.
+ * are also available at https://curl.haxx.se/docs/copyright.html.
  *
  * You may opt to use, copy, modify, merge, publish, distribute and/or sell
  * copies of the Software, and permit persons to whom the Software is
@@ -26,16 +26,16 @@
    a script at release-time. This was made its own header file in 7.11.2 */
 
 /* This is the global package copyright */
-#define LIBCURL_COPYRIGHT "1996 - 2015 Daniel Stenberg, <daniel@haxx.se>."
+#define LIBCURL_COPYRIGHT "1996 - 2018 Daniel Stenberg, <daniel@haxx.se>."
 
 /* This is the version number of the libcurl package from which this header
    file origins: */
-#define LIBCURL_VERSION "7.45.0"
+#define LIBCURL_VERSION "7.59.0"
 
 /* The numeric version number is also available "in parts" by using these
    defines: */
 #define LIBCURL_VERSION_MAJOR 7
-#define LIBCURL_VERSION_MINOR 45
+#define LIBCURL_VERSION_MINOR 59
 #define LIBCURL_VERSION_PATCH 0
 
 /* This is the numeric version of the libcurl version number, meant for easier
@@ -57,18 +57,18 @@
    CURL_VERSION_BITS() macro since curl's own configure script greps for it
    and needs it to contain the full number.
 */
-#define LIBCURL_VERSION_NUM 0x072d00
+#define LIBCURL_VERSION_NUM 0x073b00
 
 /*
  * This is the date and time when the full source package was created. The
  * timestamp is not stored in git, as the timestamp is properly set in the
  * tarballs by the maketgz script.
  *
- * The format of the date should follow this template:
+ * The format of the date follows this template:
  *
- * "Mon Feb 12 11:35:33 UTC 2007"
+ * "2007-11-23"
  */
-#define LIBCURL_TIMESTAMP "ons  7 okt 2015 08:14:10 UTC"
+#define LIBCURL_TIMESTAMP "2018-03-14"
 
 #define CURL_VERSION_BITS(x,y,z) ((x)<<16|(y)<<8|z)
 #define CURL_AT_LEAST_VERSION(x,y,z) \
