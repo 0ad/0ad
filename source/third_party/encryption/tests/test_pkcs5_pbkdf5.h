@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ public:
 	void test_pkcs5_pbkd2()
 	{
 		// Mock salt.
-		const unsigned char salt_buffer[SHA_DIGEST_SIZE] = {
+		const unsigned char salt_buffer[crypto_hash_sha256_BYTES] = {
 			244, 243, 249, 244, 32, 33, 34, 35, 10, 11, 12, 13, 14, 15, 16, 17,
 			18, 19, 20, 32, 33, 244, 224, 127, 129, 130, 140, 153, 133, 123, 234, 123 };
 		// Mock passwords.
@@ -33,9 +33,9 @@ public:
 		const char password2[] = "0adIsAws0me";
 
 		// Run twice with the same input.
-		unsigned char encrypted1A[SHA_DIGEST_SIZE], encrypted1B[SHA_DIGEST_SIZE];
-		pbkdf2(encrypted1A, (unsigned char*)password1, sizeof(password1), salt_buffer, SHA_DIGEST_SIZE, 50);
-		pbkdf2(encrypted1B, (unsigned char*)password1, sizeof(password1), salt_buffer, SHA_DIGEST_SIZE, 50);
+		unsigned char encrypted1A[crypto_hash_sha256_BYTES], encrypted1B[crypto_hash_sha256_BYTES];
+		pbkdf2(encrypted1A, (unsigned char*)password1, sizeof(password1), salt_buffer, crypto_hash_sha256_BYTES, 50);
+		pbkdf2(encrypted1B, (unsigned char*)password1, sizeof(password1), salt_buffer, crypto_hash_sha256_BYTES, 50);
 
 		// Test that the result does not equal input.
 		TS_ASSERT_DIFFERS(*password1, *encrypted1A);
@@ -45,9 +45,9 @@ public:
 		TS_ASSERT_EQUALS(*encrypted1A, *encrypted1B);
 
 		// Run twice again with more iterations.
-		unsigned char encrypted2A[SHA_DIGEST_SIZE], encrypted2B[SHA_DIGEST_SIZE];
-		pbkdf2(encrypted2A, (unsigned char*)password1, sizeof(password1), salt_buffer, SHA_DIGEST_SIZE, 100);
-		pbkdf2(encrypted2B, (unsigned char*)password1, sizeof(password1), salt_buffer, SHA_DIGEST_SIZE, 100);
+		unsigned char encrypted2A[crypto_hash_sha256_BYTES], encrypted2B[crypto_hash_sha256_BYTES];
+		pbkdf2(encrypted2A, (unsigned char*)password1, sizeof(password1), salt_buffer, crypto_hash_sha256_BYTES, 100);
+		pbkdf2(encrypted2B, (unsigned char*)password1, sizeof(password1), salt_buffer, crypto_hash_sha256_BYTES, 100);
 
 		// Test determinism.
 		TS_ASSERT_EQUALS(*encrypted2A, *encrypted2B);
@@ -56,9 +56,9 @@ public:
 		TS_ASSERT_DIFFERS(*encrypted1A, *encrypted2A);
 
 		// Run twice again with different password.
-		unsigned char encrypted3A[SHA_DIGEST_SIZE], encrypted3B[SHA_DIGEST_SIZE];
-		pbkdf2(encrypted3A, (unsigned char*)password2, sizeof(password2), salt_buffer, SHA_DIGEST_SIZE, 50);
-		pbkdf2(encrypted3B, (unsigned char*)password2, sizeof(password2), salt_buffer, SHA_DIGEST_SIZE, 50);
+		unsigned char encrypted3A[crypto_hash_sha256_BYTES], encrypted3B[crypto_hash_sha256_BYTES];
+		pbkdf2(encrypted3A, (unsigned char*)password2, sizeof(password2), salt_buffer, crypto_hash_sha256_BYTES, 50);
+		pbkdf2(encrypted3B, (unsigned char*)password2, sizeof(password2), salt_buffer, crypto_hash_sha256_BYTES, 50);
 
 		// Test determinism.
 		TS_ASSERT_EQUALS(*encrypted3A, *encrypted3B);

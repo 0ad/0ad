@@ -393,6 +393,22 @@ extern_lib_defs = {
 			})
 		end,
 	},
+	libsodium = {
+		compile_settings = function()
+			if os.istarget("windows") or os.istarget("macosx") then
+				add_default_include_paths("libsodium")
+			end
+		end,
+		link_settings = function()
+			if os.istarget("windows") or os.istarget("macosx") then
+				add_default_lib_paths("libsodium")
+			end
+			add_default_links({
+				win_names  = { "libsodium" },
+				unix_names = { "sodium" },
+			})
+		end,
+	},
 	libxml2 = {
 		compile_settings = function()
 			if os.istarget("windows") then

@@ -165,7 +165,7 @@ public:
 	template<typename U>
 	bool compare_sizes(const Grid<U>* g) const
 	{
-		return m_W == g->m_W && m_H == g->m_H;
+		return g && m_W == g->m_W && m_H == g->m_H;
 	}
 
 	u16 m_W, m_H;

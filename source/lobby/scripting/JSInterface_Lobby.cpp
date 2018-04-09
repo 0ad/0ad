@@ -24,8 +24,8 @@
 #include "lobby/IXmppClient.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
+
 #include "third_party/encryption/pkcs5_pbkdf2.h"
-#include "third_party/encryption/sha.h"
 
 void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
@@ -320,10 +320,25 @@ std::wstring JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::CxPrivate* UNUSED(pC
 }
 
 // Non-public secure PBKDF2 hash function with salting and 1,337 iterations
+//
+// TODO: We should use libsodium's crypto_pwhash instead of this. The first reason is that
+// libsodium doesn't propose a bare PBKDF2 hash in its API and it's too bad to rely on custom
+// code when we have a fully-fledged library available; the second reason is that Argon2 (the
+// default algorithm for crypto_pwhash) is better than what we use (and it's the default one
+// in the lib for a reason).
+// However changing the hashing method should be planned carefully, by trying to login with a
+// password hashed the old way, and, if successful, updating the password in the database using
+// the new hashing method. Dropping the old hashing code can only be done either by giving users
+// a way to reset their password, or by keeping track of successful password updates and dropping
+// old unused accounts after some time.
 std::string JSI_Lobby::EncryptPassword(const std::string& password, const std::string& username)
 {
-	const int DIGESTSIZE = SHA_DIGEST_SIZE;
+	ENSURE(sodium_init() >= 0);
+
+	const int DIGESTSIZE = crypto_hash_sha256_BYTES;
 	const int ITERATIONS = 1337;
+
+	cassert(DIGESTSIZE == 32);
 
 	static const unsigned char salt_base[DIGESTSIZE] = {
 			244, 243, 249, 244, 32, 33, 34, 35, 10, 11, 12, 13, 14, 15, 16, 17,
@@ -331,10 +346,13 @@ std::string JSI_Lobby::EncryptPassword(const std::string& password, const std::s
 
 	// initialize the salt buffer
 	unsigned char salt_buffer[DIGESTSIZE] = {0};
-	SHA256 hash;
-	hash.update(salt_base, sizeof(salt_base));
-	hash.update(username.c_str(), username.length());
-	hash.finish(salt_buffer);
+	crypto_hash_sha256_state state;
+	crypto_hash_sha256_init(&state);
+
+	crypto_hash_sha256_update(&state, salt_base, sizeof(salt_base));
+	crypto_hash_sha256_update(&state, (unsigned char*)username.c_str(), username.length());
+
+	crypto_hash_sha256_final(&state, salt_buffer);
 
 	// PBKDF2 to create the buffer
 	unsigned char encrypted[DIGESTSIZE];

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -552,6 +552,16 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability/* = true */)
 
 		SAFE_DELETE(m_TerrainOnlyGrid);
 		m_TerrainOnlyGrid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
+
+		// If this update comes from a map resizing, we must reinitialize the other grids as well
+		if (!m_TerrainOnlyGrid->compare_sizes(m_Grid))
+		{
+			SAFE_DELETE(m_Grid);
+			m_Grid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
+
+			m_DirtinessInformation = { true, true, Grid<u8>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE) };
+			m_AIPathfinderDirtinessInformation = m_DirtinessInformation;
+		}
 	}
 
 	Grid<u16> shoreGrid = ComputeShoreGrid();

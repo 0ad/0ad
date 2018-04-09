@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,8 +23,7 @@
 #ifndef PKCS5_PBKD2_INCLUDED
 #define PKCS5_PBKD2_INCLUDED
 
-// We need to know SHA_DIGEST_SIZE.
-#include "third_party/encryption/sha.h"
+#include <sodium.h>
 
 /**
  * Simple PBKDF2 implementation for hard to crack passwords
@@ -36,7 +35,7 @@
  * @param iterations Number of salting iterations
  * @return 0 on success, -1 on error
  */
-int pbkdf2(unsigned char (&output)[SHA_DIGEST_SIZE],
+int pbkdf2(unsigned char (&output)[crypto_hash_sha256_BYTES],
 			const unsigned char* key, size_t key_len,
 			const unsigned char* salt, size_t salt_len,
 			unsigned iterations);
