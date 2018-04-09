@@ -28,8 +28,10 @@ const oGiraffe = "gaia/fauna_giraffe";
 const oLion = "gaia/fauna_lion";
 const oFish = "gaia/fauna_fish";
 const oHawk = "gaia/fauna_hawk";
-const oStoneSmall = "gaia/geology_stone_savanna_small";
+const oStoneLarge = "gaia/geology_stonemine_savanna_quarry";
+const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_savanna_slabs";
+const oMetalSmall = "gaia/geology_metal_desert_small";
 
 const oHouse = "structures/kush_house";
 const oFarmstead = "structures/kush_farmstead";
@@ -43,16 +45,20 @@ const aBushA = g_Decoratives.bushA;
 const aBushB = g_Decoratives.bushB;
 const aBushes = [aBushA, aBushB];
 const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-const aRock = "actor|geology/stone_desert_med.xml";
+const aRockA = g_Decoratives.rock;
+const aRockB = "actor|geology/shoreline_large.xml";
+const aRockC = "actor|geology/shoreline_small.xml";
 
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oAcacia, tForestFloor];
 
 const heightSeaGround = g_Heights.seaGround;
 const heightReedsDepth = -2.5;
+const heightCataract = -1;
 const heightShore = 1;
 const heightLand = 2;
 const heightDunes = 11;
 const heightOffsetBump = 1.4;
+const heightOffsetBumpPassage = 4;
 
 const g_Map = new RandomMap(heightLand, tMainDirt);
 
@@ -71,6 +77,7 @@ var clMetal = g_Map.createTileClass();
 var clFood = g_Map.createTileClass();
 var clBaseResource = g_Map.createTileClass();
 var clRain = g_Map.createTileClass();
+var clCataract = g_Map.createTileClass();
 
 var kushVillageBuildings = {
 	"houseA": { "template": oHouse, "offset": new Vector2D(5, 5) },
@@ -126,6 +133,44 @@ paintRiver({
 });
 Engine.SetProgress(10);
 
+g_Map.log("Creating cataracts");
+for (let x of [fractionToTiles(randFloat(0.15, 0.25)), fractionToTiles(randFloat(0.75, 0.85))])
+{
+	let anglePassage = riverAngle + Math.PI / 2 * randFloat(0.8, 1.2);
+
+	let areaPassage = createArea(
+		new PathPlacer(
+			new Vector2D(x, mapBounds.bottom).rotateAround(anglePassage, mapCenter),
+			new Vector2D(x, mapBounds.top).rotateAround(anglePassage, mapCenter),
+			scaleByMapSize(20, 30),
+			0,
+			1,
+			0,
+			0,
+			Infinity),
+		[
+			new SmoothElevationPainter(ELEVATION_SET, heightCataract, 2),
+			new TileClassPainter(clCataract)
+		],
+		new HeightConstraint(-Infinity, 0));
+
+	createAreasInAreas(
+		new ClumpPlacer(4, 0.4, 0.6, 0.5),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBumpPassage, 2),
+		undefined,
+		scaleByMapSize(15, 30),
+		20,
+		[areaPassage]);
+
+	createObjectGroupsByAreas(
+		new SimpleGroup([new SimpleObject(aReeds, 2, 4, 0, 1)], true),
+		0,
+		undefined,
+		scaleByMapSize(20, 50),
+		20,
+		[areaPassage])
+}
+
 var [playerIDs, playerPosition] = playerPlacementRandom(sortAllPlayers(), avoidClasses(clRiver, 15, clPlayer, 30));
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
@@ -165,7 +210,7 @@ var kushiteTownPositions = [];
 for (let retryCount = 0; retryCount < scaleByMapSize(3, 10); ++retryCount)
 {
 	let coordinate = g_Map.randomCoordinate(true);
-	if (new AndConstraint(avoidClasses(clPlayer, 40, clForest, 5, clKushiteVillages, 50, clRiver, 10)).allows(coordinate))
+	if (new AndConstraint(avoidClasses(clPlayer, 40, clForest, 5, clKushiteVillages, 50, clRiver, 15)).allows(coordinate))
 	{
 		kushiteTownPositions.push(coordinate);
 		createArea(
@@ -241,34 +286,50 @@ Engine.SetProgress(60);
 
 g_Map.log("Creating stone mines");
 createObjectGroups(
-	new SimpleGroup([new SimpleObject(oStoneSmall, 1, 1, 0, 4), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock),
+	new SimpleGroup(
+		[
+			new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1),
+			new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)
+		], true, clRock),
 	0,
-	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clDunes, 1, clRiver, 15, clKushiteVillages, 10)],
+	avoidClasses(clRiver, 4, clCataract, 4, clPlayer, 20, clRock, 15, clKushiteVillages, 5, clDunes, 2, clForest, 4),
 	scaleByMapSize(2, 8),
-	100);
+	50);
 
 g_Map.log("Creating small stone quarries");
 createObjectGroups(
-	new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock),
+	new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3, 0, 2 * Math.PI, 1)], true, clRock),
 	0,
-	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clDunes, 1, clRiver, 15, clKushiteVillages, 10)],
+	avoidClasses(clRiver, 4, clCataract, 4, clPlayer, 20, clRock, 15, clKushiteVillages, 5, clDunes, 2, clForest, 4),
 	scaleByMapSize(2, 8),
-	100);
+	50);
 
 g_Map.log("Creating metal mines");
 createObjectGroups(
-	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4), new RandomObject(aBushes, 2, 4, 0, 2)], true, clMetal),
+	new SimpleGroup(
+		[
+			new SimpleObject(oMetalSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1),
+			new SimpleObject(oMetalLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)
+		], true, clMetal),
 	0,
-	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clDunes, 1, clRiver, 15, clKushiteVillages, 10)],
+	avoidClasses(clRiver, 4, clCataract, 4, clPlayer, 20, clRock, 10, clMetal, 15, clKushiteVillages, 5, clDunes, 2, clForest, 4),
 	scaleByMapSize(2, 8),
-	100);
+	50);
+
+g_Map.log("Creating small metal quarries");
+createObjectGroups(
+	new SimpleGroup([new SimpleObject(oMetalSmall, 2, 5, 1, 3, 0, 2 * Math.PI, 1)], true, clMetal),
+	0,
+	avoidClasses(clRiver, 4, clCataract, 4, clPlayer, 20, clRock, 10, clMetal, 15, clKushiteVillages, 5, clDunes, 2, clForest, 4),
+	scaleByMapSize(2, 8),
+	50);
 Engine.SetProgress(70);
 
 g_Map.log("Creating gazelle");
 createObjectGroups(
 	new SimpleGroup([new SimpleObject(oGazelle, 4, 6, 1, 4)], true, clFood),
 	0,
-	avoidClasses(clForest, 0, clKushiteVillages, 10, clPlayer, 5, clDunes, 1, clFood, 25, clRiver, 2),
+	avoidClasses(clForest, 0, clKushiteVillages, 10, clPlayer, 5, clDunes, 1, clFood, 25, clRiver, 2, clMetal, 4, clRock, 4),
 	2 * numPlayers,
 	50);
 
@@ -276,7 +337,7 @@ g_Map.log("Creating giraffe");
 createObjectGroups(
 	new SimpleGroup([new SimpleObject(oGiraffe, 4, 6, 1, 4)], true, clFood),
 	0,
-	avoidClasses(clForest, 0, clKushiteVillages, 10, clPlayer, 5, clDunes, 1, clFood, 25, clRiver, 2),
+	avoidClasses(clForest, 0, clKushiteVillages, 10, clPlayer, 5, clDunes, 1, clFood, 25, clRiver, 2, clMetal, 4, clRock, 4),
 	2 * numPlayers,
 	50);
 
@@ -285,7 +346,7 @@ if (!isNomad())
 	createObjectGroups(
 		new SimpleGroup([new SimpleObject(oLion, 2, 3, 0, 2)], true, clFood),
 		0,
-		avoidClasses(clForest, 0, clKushiteVillages, 10, clPlayer, 5, clDunes, 1, clFood, 25, clRiver, 2),
+		avoidClasses(clForest, 0, clKushiteVillages, 10, clPlayer, 5, clDunes, 1, clFood, 25, clRiver, 2, clMetal, 4, clRock, 4),
 		3 * numPlayers,
 		50);
 
@@ -297,7 +358,7 @@ g_Map.log("Creating fish");
 createObjectGroups(
 	new SimpleGroup([new SimpleObject(oFish, 1, 2, 0, 1)], true, clFood),
 	0,
-	[stayClasses(clRiver, 4), avoidClasses(clFood, 16)],
+	[stayClasses(clRiver, 4), avoidClasses(clFood, 16, clCataract, 10)],
 	scaleByMapSize(15, 80),
 	50);
 Engine.SetProgress(80);
@@ -322,27 +383,39 @@ createStragglerTrees(
 
 Engine.SetProgress(90);
 
-g_Map.log("Creating reeds on the shore.");
+g_Map.log("Creating reeds on the shore");
 createObjectGroups(
 	new SimpleGroup([new SimpleObject(aReeds, 3, 5, 0, 1)], true),
 	0,
-	new HeightConstraint(heightReedsDepth, heightShore),
+	[
+		new HeightConstraint(heightReedsDepth, heightShore),
+		avoidClasses(clCataract, 2)
+	],
 	scaleByMapSize(500, 1000),
 	50);
 
 g_Map.log("Creating small decorative rocks");
 createObjectGroups(
-	new SimpleGroup([new SimpleObject(aRock, 1, 3, 0, 1)], true),
+	new SimpleGroup([new SimpleObject(aRockA, 2, 4, 0, 1)], true),
 	0,
-	avoidClasses(clForest, 0, clPlayer, 0, clDunes, 0),
+	avoidClasses(clForest, 0, clPlayer, 0, clDunes, 0, clRiver, 5, clCataract, 5, clMetal, 4, clRock, 4),
 	scaleByMapSize(16, 262),
+	50);
+createObjectGroups(
+	new SimpleGroup([new SimpleObject(aRockB, 1, 2, 0, 1), new SimpleObject(aRockC, 1, 3, 0, 1)], true),
+	0,
+	[
+		new NearTileClassConstraint(clCataract, 5),
+		new HeightConstraint(-Infinity, heightShore)
+	],
+	scaleByMapSize(30, 50),
 	50);
 
 g_Map.log("Creating bushes");
 createObjectGroups(
 	new SimpleGroup([new SimpleObject(aBushB, 1, 2, 0, 1), new SimpleObject(aBushA, 1, 3, 0, 2)], true),
 	0,
-	avoidClasses(clForest, 0, clPlayer, 0, clDunes, 0, clRiver, 15),
+	avoidClasses(clForest, 0, clPlayer, 0, clDunes, 0, clRiver, 15, clMetal, 4, clRock, 4),
 	scaleByMapSize(50, 500),
 	50);
 Engine.SetProgress(95);
