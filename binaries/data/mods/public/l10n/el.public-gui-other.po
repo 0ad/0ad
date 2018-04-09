@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-04 16:10+0000\n"
-"Last-Translator: Sotiris K <sotok42@gmail.com>\n"
+"PO-Revision-Date: 2018-04-06 17:13+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -691,7 +691,7 @@ msgstr "Τυχαίο"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Ισορροπημένη"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -2972,11 +2972,11 @@ msgstr "Πολύ δύσκολο"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "Ο προκαθορισμένος βαθμός δυσκολίας της Τεχνητής Νοημοσύνης."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "Προκαθορισμένη δυσκολία Τεχνητής Νοημοσύνης"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -2984,7 +2984,7 @@ msgstr "Τυχαίο"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Ισορροπημένη"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -2996,11 +2996,11 @@ msgstr "Αμυντικός"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "Η προκαθορισμένη συμπεριφορά της Τεχνητής Νοημοσύνης."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI Behavior"
-msgstr ""
+msgstr "Προκαθορισμένη συμπεριφορά Τεχνητής Νοημοσύνης"
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -3018,7 +3018,7 @@ msgstr "Διαμόρφωση Παιχνιδιού"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr ""
+msgstr "Ο αριθμός των προηγούμενων μηνυμάτων που θα φορτωθεί όταν γίνει σύνδεση με το λόμπι."
 
 #: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
@@ -3075,26 +3075,26 @@ msgstr ""
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat Notification Attack"
-msgstr ""
+msgstr "Ειδοποίηση στη Συνομιλία για Επίθεση"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος προσφέρει πόρους σε ένα μέλος μίας άλλης ομάδας αν οι ομάδες είναι κλειδωμένες και όλοι οι φόροι σε λειτουργία παρατήρησης."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr ""
+msgstr "Ειδοποίηση στη Συνομιλία για Εισφορές"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "Δείχνει μία ειδοποίηση στη συζήτηση των παρατηρητών όταν ένας παίχτης κάνει ανταλλαγή πόρων."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr ""
+msgstr "Ειδοποίηση στη Συνομιλία για Ανταλαγή"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3116,7 +3116,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr ""
+msgstr "Ειδοποίηση στη Συνομιλία για Φάση Πόλης"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3167,7 +3167,7 @@ msgstr "Λεπτομερείς Επεξηγήσεις"
 
 #: gui/options/options.json[5].options[12].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "Χωρίς ταξινόμηση"
 
 #: gui/options/options.json[5].options[12].list[1].label
 msgid "Ascending"
@@ -3224,7 +3224,7 @@ msgstr ""
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
-msgstr ""
+msgstr "Σε παιχνίδι"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

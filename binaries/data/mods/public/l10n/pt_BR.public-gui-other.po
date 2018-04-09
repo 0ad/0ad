@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-04 16:10+0000\n"
-"Last-Translator: borg 2k <estevanborg@gmail.com>\n"
+"PO-Revision-Date: 2018-04-07 03:10+0000\n"
+"Last-Translator: Tiago\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,7 +335,7 @@ msgstr "Jogo Interminável"
 
 #: gui/common/gamedescription.js:225
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Nenhum vencedor será determinado, mesmo que todos sejam derrotados."
 
 #: gui/common/gamedescription.js:236
 #, javascript-format
@@ -371,7 +371,7 @@ msgstr "Heróis expostos"
 
 #: gui/common/gamedescription.js:277
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Heróis não podem ser guarnecidos e estão vulneráveis a ataques."
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
@@ -436,11 +436,11 @@ msgstr[1] "Pelos primeiros %(min)s minutos, outros jogadores estarão neutros."
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Mapa Aleatório"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Seleciona aleatoriamente um mapa da lista."
 
 #: gui/common/gamedescription.js:330
 msgid "Map Name"
@@ -465,11 +465,11 @@ msgstr "Tamanho do mapa"
 #: gui/common/gamedescription.js:366
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "Bioma Aleatório"
 
 #: gui/common/gamedescription.js:367
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "Seleciona aleatoriamente um bioma da lista."
 
 #: gui/common/gamedescription.js:381
 msgid "Nomad Mode"
@@ -808,7 +808,7 @@ msgstr "Desconhecido"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "Condição de Vitória Desconhecida"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
@@ -1239,7 +1239,7 @@ msgstr "OK"
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "Padrão: %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
@@ -1588,7 +1588,7 @@ msgstr "Multijogador"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "Qualquer Condição de Vitória"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -3071,7 +3071,7 @@ msgstr "Saúde de Unidade Ferida"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "Número de unidades treinadas por lote por padrão."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
@@ -3080,7 +3080,7 @@ msgstr "Tamanho do Treinamento em Conjunto"
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "Número de vezes que você precisa rolar para aumentar/diminuir o tamanho do lote em 1."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
@@ -3205,7 +3205,7 @@ msgstr "Ordenar recursos e dicas de população"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr ""
+msgstr "Cor de suas unidades quando as cores da diplomacia estão ativadas."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Diplomacy Colors: Self"
@@ -3213,27 +3213,27 @@ msgstr ""
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr ""
+msgstr "Cor dos aliados quando as cores da diplomacia estão ativadas."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Ally"
-msgstr ""
+msgstr "Cores da Diplomacia: Aliado"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr ""
+msgstr "Cor de jogadores neutros quando as cores da diplomacia estão ativadas."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Neutral"
-msgstr ""
+msgstr "Cores da Diplomacia: Neutro"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
-msgstr ""
+msgstr "Cor dos inimigos quando as cores da diplomacia estão ativadas."
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Enemy"
-msgstr ""
+msgstr "Cores da Diplomacia: Inimigo"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3688,7 +3688,7 @@ msgstr ""
 msgid ""
 "- Gain an advantage on the battleground by tactically positioning your "
 "units!"
-msgstr ""
+msgstr "- Ganhe vantagem no campo de batalha posicionando taticamente suas unidades!"
 
 #: gui/text/tips/freehand_position.txt:4
 msgid ""

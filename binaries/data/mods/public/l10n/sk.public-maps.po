@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-05 13:16+0000\n"
+"PO-Revision-Date: 2018-04-06 21:51+0000\n"
 "Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -1346,11 +1346,11 @@ msgstr "Útočí nepriateľská vlna!"
 #: maps/random/survivalofthefittest_triggers.js:289
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr ""
+msgstr "%(player)s bol porazený (stratené Občianske Centrum). "
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
-msgstr ""
+msgstr "Cutscéna začne po 5 sekundách "
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
@@ -1409,9 +1409,9 @@ msgstr "Vyhráte, ak porazíte nepriateľa!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(lastPlayer)s vyhral (poklady zozbierané). "
+msgstr[1] "%(lastPlayer)s vyhrali (poklady zozbierané). "
+msgstr[2] "%(players)s a %(lastPlayer)s vyhrali (poklady zozbierané). "
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
@@ -2182,7 +2182,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Kushites.xml:PlayerData[2].Name:40
 msgid "Egyptians"
-msgstr ""
+msgstr "Egypťania "
 
 #: maps/scenarios/Sandbox - Kushites.xml:Name:40
 msgid "Sandbox - The Kushites"

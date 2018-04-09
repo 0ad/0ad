@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-04-04 15:23+0000\n"
+"PO-Revision-Date: 2018-04-06 21:42+0000\n"
 "Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -144,7 +144,7 @@ msgstr ""
 
 #: gui/session/menu.js:600
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "Neúspešný úplatok ťa bude stáť: "
 
 #: gui/session/menu.js:776
 #, javascript-format
@@ -318,7 +318,7 @@ msgstr "%(player)s sa začal znovu pripájať do hry."
 #: gui/session/messages.js:108
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)s sa pripája to hry. "
 
 #: gui/session/messages.js:112
 #, javascript-format
@@ -335,7 +335,7 @@ msgstr "%(player)s sa znovu pripojil do hry."
 #: gui/session/messages.js:121
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s sa pripojil do hry. "
 
 #: gui/session/messages.js:127
 #, javascript-format
@@ -499,7 +499,7 @@ msgstr "Klikni pre ukončenie tutoriálu"
 
 #: gui/session/messages.js:590
 msgid "Quit"
-msgstr ""
+msgstr "Ukončiť"
 
 #: gui/session/messages.js:594
 msgid "Click when ready."
@@ -523,17 +523,17 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "Hráči: %(players)s"
 
 #: gui/session/messages.js:704
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr ""
+msgstr "Tvoj stav hry je identický so stavom hostiteľa. "
 
 #: gui/session/messages.js:705
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr ""
+msgstr "Tvoj stav hry sa odlišuje od stavu hostiteľa. "
 
 #: gui/session/messages.js:711
 msgctxt "Out-Of-Sync"
@@ -543,7 +543,7 @@ msgstr ""
 #: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr ""
+msgstr "Uisti sa že všetci hráči používajú rovnaké módy. "
 
 #: gui/session/messages.js:715
 msgctxt "Out-Of-Sync"
@@ -554,7 +554,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr ""
+msgstr "Záznam uložený do %(filepath)s"
 
 #: gui/session/messages.js:719
 #, javascript-format
@@ -564,7 +564,7 @@ msgstr ""
 
 #: gui/session/messages.js:727 gui/session/messages.js:738
 msgid "Out of Sync"
-msgstr ""
+msgstr "Mimo synchronizáciu "
 
 #: gui/session/messages.js:735
 msgid "Out-Of-Sync error!"
@@ -618,7 +618,7 @@ msgstr "Neznámy hráč"
 #. elements in an enumeration.
 #: gui/session/messages.js:999
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:1031
 #, javascript-format
@@ -628,7 +628,7 @@ msgstr "Hráč %(player)s vám poslal %(amounts)s."
 #: gui/session/messages.js:1033
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "Poslal si %(player2)s %(amounts)s."
 
 #: gui/session/messages.js:1038
 #, javascript-format
@@ -663,7 +663,7 @@ msgstr ""
 #: gui/session/messages.js:1094
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr ""
+msgstr "%(player)sdosiahol %(phaseName)s"
 
 #: gui/session/messages.js:1146
 #, javascript-format
@@ -748,7 +748,7 @@ msgstr ""
 #: gui/session/selection_details.js:416
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s%(details)s\n"
 
 #: gui/session/selection_details.js:417
 msgid "Carrying:"
@@ -851,7 +851,7 @@ msgstr[2] ""
 #: gui/session/selection_panels.js:767
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Zostáva: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:768
 msgctxt "Separator for a list of entity counts"
@@ -990,7 +990,7 @@ msgstr "Stlačením %(hotkey)s otvoríte spojenecký pokec."
 #: gui/session/session.js:449
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Stlačením %(hotkey)s otvoríš predošlý súkromný pokec."
 
 #: gui/session/session.js:453
 msgid "Find idle worker"
@@ -999,7 +999,7 @@ msgstr "Nájsť nečinného robotníka"
 #: gui/session/session.js:457 gui/session/session.js:461
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Prepnúť diplomatické farby "
 
 #: gui/session/session.js:464
 #, javascript-format
@@ -1024,7 +1024,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Pozrieť históriu/Strom štruktúry\nPosledné otvorenie sa otvorí po kliknutí."
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1040,7 +1040,7 @@ msgstr "PORÁŽKA!"
 
 #: gui/session/session.js:930
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: gui/session/session.js:998
 msgctxt "replayFinished"
@@ -1124,7 +1124,7 @@ msgstr "Mód time warp"
 #: gui/session/session.js:1503
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s(%(speed)sx)"
 
 #: gui/session/unit_actions.js:560
 msgid "Origin trade market."
@@ -1283,7 +1283,7 @@ msgstr "Filtrovať históriu chatu."
 #: gui/session/chat_window.xml:(tooltip):56
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Vyber adresáta pokecu. "
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1406,7 +1406,7 @@ msgstr "Ukončiť"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Ukázať predsieň viacerých hráčov v dialógovom okne. "
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
@@ -1441,19 +1441,19 @@ msgstr ""
 
 #: gui/session/trade_window.xml:(caption):16
 msgid "Barter"
-msgstr ""
+msgstr "Výmenný obchod "
 
 #: gui/session/trade_window.xml:(caption):23
 msgid "Sell:"
-msgstr ""
+msgstr "Predať:"
 
 #: gui/session/trade_window.xml:(caption):27
 msgid "Buy:"
-msgstr ""
+msgstr "Kúpiť:"
 
 #: gui/session/trade_window.xml:(caption):31
 msgid "No Markets Available"
-msgstr ""
+msgstr "Žiadne Trhoviská nie sú k dispozícii "
 
 #: gui/session/trade_window.xml:(caption):66
 msgid "Trade"
@@ -1461,7 +1461,7 @@ msgstr "Obchodovať"
 
 #: gui/session/trade_window.xml:(caption):74
 msgid "Goods:"
-msgstr ""
+msgstr "Zbožie:"
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
@@ -1511,7 +1511,7 @@ msgstr "Kliknite pre označenie skupiny jednotiek, kliknite dva krát, aby ste p
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr ""
+msgstr "Rýchlosť hry"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"
