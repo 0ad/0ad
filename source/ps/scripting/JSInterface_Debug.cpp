@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,8 +78,8 @@ std::wstring JSI_Debug::GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCx
 	char buf[200];
 	if (mode == -1) // Date, time and revision.
 	{
-		UDate dateTime = g_L10n.ParseDateTime(__DATE__ " " __TIME__, "MMM d yyyy HH:mm:ss", Locale::getUS());
-		std::string dateTimeString = g_L10n.LocalizeDateTime(dateTime, L10n::DateTime, SimpleDateFormat::DATE_TIME);
+		UDate dateTime = g_L10n.ParseDateTime(__DATE__ " " __TIME__, "MMM d yyyy HH:mm:ss", icu::Locale::getUS());
+		std::string dateTimeString = g_L10n.LocalizeDateTime(dateTime, L10n::DateTime, icu::SimpleDateFormat::DATE_TIME);
 		char svnRevision[32];
 		sprintf_s(svnRevision, ARRAY_SIZE(svnRevision), "%ls", svn_revision);
 		if (strcmp(svnRevision, "custom build") == 0)
@@ -96,14 +96,14 @@ std::wstring JSI_Debug::GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCx
 	}
 	else if (mode == 0) // Date.
 	{
-		UDate dateTime = g_L10n.ParseDateTime(__DATE__, "MMM d yyyy", Locale::getUS());
-		std::string dateTimeString = g_L10n.LocalizeDateTime(dateTime, L10n::Date, SimpleDateFormat::MEDIUM);
+		UDate dateTime = g_L10n.ParseDateTime(__DATE__, "MMM d yyyy", icu::Locale::getUS());
+		std::string dateTimeString = g_L10n.LocalizeDateTime(dateTime, L10n::Date, icu::SimpleDateFormat::MEDIUM);
 		sprintf_s(buf, ARRAY_SIZE(buf), "%s", dateTimeString.c_str());
 	}
 	else if (mode == 1) // Time.
 	{
-		UDate dateTime = g_L10n.ParseDateTime(__TIME__, "HH:mm:ss", Locale::getUS());
-		std::string dateTimeString = g_L10n.LocalizeDateTime(dateTime, L10n::Time, SimpleDateFormat::MEDIUM);
+		UDate dateTime = g_L10n.ParseDateTime(__TIME__, "HH:mm:ss", icu::Locale::getUS());
+		std::string dateTimeString = g_L10n.LocalizeDateTime(dateTime, L10n::Time, icu::SimpleDateFormat::MEDIUM);
 		sprintf_s(buf, ARRAY_SIZE(buf), "%s", dateTimeString.c_str());
 	}
 	else if (mode == 2) // Revision.
