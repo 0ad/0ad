@@ -165,6 +165,10 @@ m.Config.prototype.setConfig = function(gameState)
 		this.personality.cooperative = Math.min(1, this.personality.cooperative + 0.15);
 
 	// changing settings based on difficulty or personality
+	this.Military.towerLapseTime = Math.round(this.Military.towerLapseTime * (1.1 - 0.2 * this.personality.defensive));
+	this.Military.fortressLapseTime = Math.round(this.Military.fortressLapseTime * (1.1 - 0.2 * this.personality.defensive));
+	this.priorities.defenseBuilding = Math.round(this.priorities.defenseBuilding * ( 0.9 + 0.2 * this.personality.defensive));
+
 	if (this.difficulty < 2)
 	{
 		this.Economy.supportRatio = 0.5;
@@ -179,8 +183,6 @@ m.Config.prototype.setConfig = function(gameState)
 	}
 	else
 	{
-		this.Military.towerLapseTime -= Math.round(20*(this.personality.defensive - 0.5));
-		this.Military.fortressLapseTime -= Math.round(60*(this.personality.defensive - 0.5));
 		if (this.difficulty == 3)
 			this.Military.numSentryTowers = 1;
 		else
@@ -194,7 +196,6 @@ m.Config.prototype.setConfig = function(gameState)
 		{
 			this.Military.popForBarracks1 = 12;
 			this.Economy.popPhase2 = 50;
-			this.priorities.defenseBuilding = 60;
 			this.priorities.healer = 10;
 		}
 	}
