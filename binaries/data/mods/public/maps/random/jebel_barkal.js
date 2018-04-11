@@ -466,6 +466,7 @@ for (let area of irrigationCanalAreas)
 	}
 
 g_Map.log("Creating passages");
+var areasPassages = [];
 irrigationCanalLocations.sort((a, b) => a - b);
 for (let i = 0; i < irrigationCanalLocations.length; ++i)
 {
@@ -488,17 +489,28 @@ for (let i = 0; i < irrigationCanalLocations.length; ++i)
 			break;
 	}
 
-	createPassage({
-		"start": new Vector2D(x1, y).rotateAround(-riverAngle, mapCenter),
-		"end": new Vector2D(x2, y).rotateAround(-riverAngle, mapCenter),
-		"startHeight": heightPassage,
-		"endHeight": heightPassage,
-		"constraints": [new HeightConstraint(-Infinity, heightPassage), stayClasses(clFertileLand, 2)],
-		"tileClass": clPassage,
-		"startWidth": 10,
-		"endWidth": 10,
-		"smoothWidth": 2
-	});
+	let area =
+		createArea(
+			new PathPlacer(
+				new Vector2D(x1, y).rotateAround(-riverAngle, mapCenter),
+				new Vector2D(x2, y).rotateAround(-riverAngle, mapCenter),
+				10,
+				0,
+				1,
+				0,
+				0,
+				Infinity),
+			[
+				new SmoothElevationPainter(ELEVATION_SET, heightPassage, 2),
+				new TileClassPainter(clPassage)
+			],
+			[
+				new HeightConstraint(-Infinity, heightPassage),
+				stayClasses(clFertileLand, 2)
+			]);
+
+	if (area && area.getPoints().length)
+		areasPassages.push(area);
 }
 Engine.SetProgress(40);
 
@@ -1285,6 +1297,16 @@ createObjectGroupsByAreas(
 	scaleByMapSize(50, 400),
 	20,
 	[areaWater]);
+
+g_Map.log("Creating reeds at the irrigation canals");
+if (areasPassages.length)
+	createObjectGroupsByAreas(
+		new SimpleGroup([new RandomObject(aWaterDecoratives, 2, 4, 1, 2)], true),
+		0,
+		undefined,
+		scaleByMapSize(50, 250),
+		20,
+		areasPassages);
 
 g_Map.log("Creating hawk");
 for (let i = 0; i < scaleByMapSize(0, 2); ++i)
