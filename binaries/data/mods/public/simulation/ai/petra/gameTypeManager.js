@@ -494,6 +494,13 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 	if (guardEnt.getMetadata(PlayerID, "transport") !== undefined || !guardEnt.canGuard())
 		return false;
 
+	if (criticalEntId && !this.criticalEnts.get(criticalEntId))
+	{
+		criticalEntId = undefined;
+		if (guardEnt.getMetadata(PlayerID, "guardedEnt"))
+			guardEnt.setMetadata(PlayerID, "guardedEnt", undefined);
+	}
+
 	if (!criticalEntId)
 	{
 		let isHealer = guardEnt.hasClass("Healer");
