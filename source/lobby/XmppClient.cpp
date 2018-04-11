@@ -984,7 +984,7 @@ std::time_t XmppClient::ComputeTimestamp(const glooxwrapper::Message& msg) const
 	// The locale is irrelevant, because the XMPP date format doesn't contain written month names
 	for (const std::string& format : std::vector<std::string>{ "Y-M-d'T'H:m:sZ", "Y-M-d'T'H:m:s.SZ" })
 	{
-		UDate dateTime = g_L10n.ParseDateTime(msg.when()->stamp().to_string(), format, Locale::getUS());
+		UDate dateTime = g_L10n.ParseDateTime(msg.when()->stamp().to_string(), format, icu::Locale::getUS());
 		if (dateTime)
 			return dateTime / 1000.0;
 	}

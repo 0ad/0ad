@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -86,7 +86,7 @@ public:
 	 * @sa GetAllLocales()
 	 * @sa ReevaluateCurrentLocaleAndReload()
 	 */
-	Locale GetCurrentLocale() const;
+	icu::Locale GetCurrentLocale() const;
 
 	/**
 	 * Returns the code of the current locale.
@@ -130,7 +130,7 @@ public:
 	 */
 	bool SaveLocale(const std::string& localeCode) const;
 	///@overload SaveLocale
-	bool SaveLocale(const Locale& locale) const;
+	bool SaveLocale(const icu::Locale& locale) const;
 
 	/**
 	 * Returns an array of supported locale codes sorted alphabetically.
@@ -232,7 +232,7 @@ public:
 	 */
 	std::vector<std::wstring> GetDictionariesForLocale(const std::string& locale) const;
 
-	std::wstring GetFallbackToAvailableDictLocale(const Locale& locale) const;
+	std::wstring GetFallbackToAvailableDictLocale(const icu::Locale& locale) const;
 
 	std::wstring GetFallbackToAvailableDictLocale(const std::string& locale) const;
 
@@ -280,7 +280,7 @@ public:
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	void GetDictionaryLocale(const std::string& configLocaleString, Locale& outLocale) const;
+	void GetDictionaryLocale(const std::string& configLocaleString, icu::Locale& outLocale) const;
 
 	/**
 	 * Determines the best, supported locale for the current user, makes it the
@@ -311,7 +311,7 @@ public:
 	 * @return Whether @p locale is supported by both ICU and the game (@c true)
 	 *         or not (@c false).
 	 */
-	bool ValidateLocale(const Locale& locale) const;
+	bool ValidateLocale(const icu::Locale& locale) const;
 	///@overload ValidateLocale
 	bool ValidateLocale(const std::string& localeCode) const;
 
@@ -408,7 +408,7 @@ public:
 	 * @sa http://en.wikipedia.org/wiki/Unix_time
 	 * @sa https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
 	 */
-	UDate ParseDateTime(const std::string& dateTimeString, const std::string& dateTimeFormat, const Locale& locale) const;
+	UDate ParseDateTime(const std::string& dateTimeString, const std::string& dateTimeFormat, const icu::Locale& locale) const;
 
 	/**
 	 * Returns the specified date using the specified date format.
@@ -424,7 +424,7 @@ public:
 	 * @sa http://en.wikipedia.org/wiki/Unix_time
 	 * @sa http://icu-project.org/apiref/icu4c521/classicu_1_1DateFormat.html
 	 */
-	std::string LocalizeDateTime(const UDate dateTime, const DateTimeType& type, const DateFormat::EStyle& style) const;
+	std::string LocalizeDateTime(const UDate dateTime, const DateTimeType& type, const icu::DateFormat::EStyle& style) const;
 
 	/**
 	 * Returns the specified date using the specified date format.
@@ -505,7 +505,7 @@ private:
 	 *   2. Reload the translation dictionary with\n
 	 *      ReevaluateCurrentLocaleAndReload().
 	 */
-	Locale currentLocale;
+	icu::Locale currentLocale;
 
 	/**
 	 * Vector with the locales that the game supports.
@@ -516,7 +516,7 @@ private:
 	 * @sa GetSupportedLocaleBaseNames()
 	 * @sa GetSupportedLocaleDisplayNames()
 	 */
-	std::vector<Locale*> availableLocales;
+	std::vector<icu::Locale*> availableLocales;
 
 	/**
 	 * Whether the game is using the default game locale (@c true), ‘en_US’, or
@@ -587,7 +587,7 @@ private:
 	 *        parsing.
 	 * @return ICU date formatter.
 	 */
-	DateFormat* CreateDateTimeInstance(const DateTimeType& type, const DateFormat::EStyle& style, const Locale& locale) const;
+	icu::DateFormat* CreateDateTimeInstance(const DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale) const;
 };
 
 #endif // L10N_H

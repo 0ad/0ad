@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -67,12 +67,12 @@ L10n::~L10n()
 {
 	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 
-	for (Locale* const& locale : availableLocales)
+	for (icu::Locale* const& locale : availableLocales)
 		delete locale;
 	delete dictionary;
 }
 
-Locale L10n::GetCurrentLocale() const
+icu::Locale L10n::GetCurrentLocale() const
 {
 	return currentLocale;
 }
@@ -84,10 +84,10 @@ bool L10n::SaveLocale(const std::string& localeCode) const
 		g_ConfigDB.SetValueString(CFG_USER, "locale", "long");
 		return true;
 	}
-	return SaveLocale(Locale(Locale::createCanonical(localeCode.c_str())));
+	return SaveLocale(icu::Locale(icu::Locale::createCanonical(localeCode.c_str())));
 }
 
-bool L10n::SaveLocale(const Locale& locale) const
+bool L10n::SaveLocale(const icu::Locale& locale) const
 {
 	if (!ValidateLocale(locale))
 		return false;
@@ -98,13 +98,13 @@ bool L10n::SaveLocale(const Locale& locale) const
 
 bool L10n::ValidateLocale(const std::string& localeCode) const
 {
-	return ValidateLocale(Locale::createCanonical(localeCode.c_str()));
+	return ValidateLocale(icu::Locale::createCanonical(localeCode.c_str()));
 }
 
 // Returns true if both of these conditions are true:
 //  1. ICU has resources for that locale (which also ensures it's a valid locale string)
 //  2. Either a dictionary for language_country or for language is available.
-bool L10n::ValidateLocale(const Locale& locale) const
+bool L10n::ValidateLocale(const icu::Locale& locale) const
 {
 	if (locale.isBogus())
 		return false;
@@ -117,7 +117,7 @@ std::vector<std::wstring> L10n::GetDictionariesForLocale(const std::string& loca
 	std::vector<std::wstring> ret;
 	VfsPaths filenames;
 
-	std::wstring dictName = GetFallbackToAvailableDictLocale(Locale::createCanonical(locale.c_str()));
+	std::wstring dictName = GetFallbackToAvailableDictLocale(icu::Locale::createCanonical(locale.c_str()));
 	vfs::GetPathnames(g_VFS, L"l10n/", dictName.append(L".*.po").c_str(), filenames);
 
 	for (const VfsPath& path : filenames)
@@ -128,14 +128,14 @@ std::vector<std::wstring> L10n::GetDictionariesForLocale(const std::string& loca
 
 std::wstring L10n::GetFallbackToAvailableDictLocale(const std::string& locale) const
 {
-	return GetFallbackToAvailableDictLocale(Locale::createCanonical(locale.c_str()));
+	return GetFallbackToAvailableDictLocale(icu::Locale::createCanonical(locale.c_str()));
 }
 
-std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale) const
+std::wstring L10n::GetFallbackToAvailableDictLocale(const icu::Locale& locale) const
 {
 	std::wstringstream stream;
 
-	std::function<bool(const Locale* const&)> checkLangAndCountry = [&locale](const Locale* const& l) {
+	std::function<bool(const icu::Locale* const&)> checkLangAndCountry = [&locale](const icu::Locale* const& l) {
 		return strcmp(locale.getLanguage(), l->getLanguage()) == 0
 		       && strcmp(locale.getCountry(), l->getCountry()) == 0;
 	};
@@ -147,7 +147,7 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale) const
 		return stream.str();
 	}
 
-	std::function<bool(const Locale* const&)> checkLang = [&locale](const Locale* const& l) {
+	std::function<bool(const icu::Locale* const&)> checkLang = [&locale](const icu::Locale* const& l) {
 		return strcmp(locale.getLanguage(), l->getLanguage()) == 0;
 	};
 
@@ -162,17 +162,17 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale) const
 
 std::string L10n::GetDictionaryLocale(const std::string& configLocaleString) const
 {
-	Locale out;
+	icu::Locale out;
 	GetDictionaryLocale(configLocaleString, out);
 	return out.getName();
 }
 
 // First, try to get a valid locale from the config, then check if the system locale can be used and otherwise fall back to en_US.
-void L10n::GetDictionaryLocale(const std::string& configLocaleString, Locale& outLocale) const
+void L10n::GetDictionaryLocale(const std::string& configLocaleString, icu::Locale& outLocale) const
 {
 	if (!configLocaleString.empty())
 	{
-		Locale configLocale = Locale::createCanonical(configLocaleString.c_str());
+		icu::Locale configLocale = icu::Locale::createCanonical(configLocaleString.c_str());
 		if (ValidateLocale(configLocale))
 		{
 			outLocale = configLocale;
@@ -182,11 +182,11 @@ void L10n::GetDictionaryLocale(const std::string& configLocaleString, Locale& ou
 			LOGWARNING("The configured locale is not valid or no translations are available. Falling back to another locale.");
 	}
 
-	Locale systemLocale = Locale::getDefault();
+	icu::Locale systemLocale = icu::Locale::getDefault();
 	if (ValidateLocale(systemLocale))
 		outLocale = systemLocale;
 	else
-		outLocale = Locale::getUS();
+		outLocale = icu::Locale::getUS();
 }
 
 // Try to find the best dictionary locale based on user configuration and system locale, set the currentLocale and reload the dictionary.
@@ -198,14 +198,14 @@ void L10n::ReevaluateCurrentLocaleAndReload()
 	if (locale == "long")
 	{
 		// Set ICU to en_US to have a valid language for displaying dates
-		currentLocale = Locale::getUS();
+		currentLocale = icu::Locale::getUS();
 		currentLocaleIsOriginalGameLocale = false;
 		useLongStrings = true;
 	}
 	else
 	{
 		GetDictionaryLocale(locale, currentLocale);
-		currentLocaleIsOriginalGameLocale = (currentLocale == Locale::getUS()) == TRUE;
+		currentLocaleIsOriginalGameLocale = (currentLocale == icu::Locale::getUS()) == TRUE;
 		useLongStrings = false;
 	}
 	LoadDictionaryForCurrentLocale();
@@ -216,7 +216,7 @@ std::vector<std::string> L10n::GetAllLocales() const
 {
 	std::vector<std::string> ret;
 	int32_t count;
-	const Locale* icuSupportedLocales = Locale::getAvailableLocales(count);
+	const icu::Locale* icuSupportedLocales = icu::Locale::getAvailableLocales(count);
 	for (int i=0; i<count; ++i)
 		ret.push_back(icuSupportedLocales[i].getName());
 	return ret;
@@ -231,7 +231,7 @@ bool L10n::UseLongStrings() const
 std::vector<std::string> L10n::GetSupportedLocaleBaseNames() const
 {
 	std::vector<std::string> supportedLocaleCodes;
-	for (Locale* const& locale : availableLocales)
+	for (icu::Locale* const& locale : availableLocales)
 	{
 		if (!InDevelopmentCopy() && strcmp(locale->getBaseName(), "long") == 0)
 			continue;
@@ -243,7 +243,7 @@ std::vector<std::string> L10n::GetSupportedLocaleBaseNames() const
 std::vector<std::wstring> L10n::GetSupportedLocaleDisplayNames() const
 {
 	std::vector<std::wstring> supportedLocaleDisplayNames;
-	for (Locale* const& locale : availableLocales)
+	for (icu::Locale* const& locale : availableLocales)
 	{
 		if (strcmp(locale->getBaseName(), "long") == 0)
 		{
@@ -252,10 +252,10 @@ std::vector<std::wstring> L10n::GetSupportedLocaleDisplayNames() const
 			continue;
 		}
 
-		UnicodeString utf16LocaleDisplayName;
+		icu::UnicodeString utf16LocaleDisplayName;
 		locale->getDisplayName(*locale, utf16LocaleDisplayName);
 		char localeDisplayName[512];
-		CheckedArrayByteSink sink(localeDisplayName, ARRAY_SIZE(localeDisplayName));
+		icu::CheckedArrayByteSink sink(localeDisplayName, ARRAY_SIZE(localeDisplayName));
 		utf16LocaleDisplayName.toUTF8(sink);
 		ENSURE(!sink.Overflowed());
 
@@ -271,25 +271,25 @@ std::string L10n::GetCurrentLocaleString() const
 
 std::string L10n::GetLocaleLanguage(const std::string& locale) const
 {
-	Locale loc = Locale::createCanonical(locale.c_str());
+	icu::Locale loc = icu::Locale::createCanonical(locale.c_str());
 	return loc.getLanguage();
 }
 
 std::string L10n::GetLocaleBaseName(const std::string& locale) const
 {
-	Locale loc = Locale::createCanonical(locale.c_str());
+	icu::Locale loc = icu::Locale::createCanonical(locale.c_str());
 	return loc.getBaseName();
 }
 
 std::string L10n::GetLocaleCountry(const std::string& locale) const
 {
-	Locale loc = Locale::createCanonical(locale.c_str());
+	icu::Locale loc = icu::Locale::createCanonical(locale.c_str());
 	return loc.getCountry();
 }
 
 std::string L10n::GetLocaleScript(const std::string& locale) const
 {
-	Locale loc = Locale::createCanonical(locale.c_str());
+	icu::Locale loc = icu::Locale::createCanonical(locale.c_str());
 	return loc.getScript();
 }
 
@@ -347,27 +347,27 @@ std::string L10n::TranslateLines(const std::string& sourceString) const
 	return targetString;
 }
 
-UDate L10n::ParseDateTime(const std::string& dateTimeString, const std::string& dateTimeFormat, const Locale& locale) const
+UDate L10n::ParseDateTime(const std::string& dateTimeString, const std::string& dateTimeFormat, const icu::Locale& locale) const
 {
 	UErrorCode success = U_ZERO_ERROR;
-	UnicodeString utf16DateTimeString = UnicodeString::fromUTF8(dateTimeString.c_str());
-	UnicodeString utf16DateTimeFormat = UnicodeString::fromUTF8(dateTimeFormat.c_str());
+	icu::UnicodeString utf16DateTimeString = icu::UnicodeString::fromUTF8(dateTimeString.c_str());
+	icu::UnicodeString utf16DateTimeFormat = icu::UnicodeString::fromUTF8(dateTimeFormat.c_str());
 
-	DateFormat* dateFormatter = new SimpleDateFormat(utf16DateTimeFormat, locale, success);
+	icu::DateFormat* dateFormatter = new icu::SimpleDateFormat(utf16DateTimeFormat, locale, success);
 	UDate date = dateFormatter->parse(utf16DateTimeString, success);
 	delete dateFormatter;
 
 	return date;
 }
 
-std::string L10n::LocalizeDateTime(const UDate dateTime, const DateTimeType& type, const DateFormat::EStyle& style) const
+std::string L10n::LocalizeDateTime(const UDate dateTime, const DateTimeType& type, const icu::DateFormat::EStyle& style) const
 {
-	UnicodeString utf16Date;
+	icu::UnicodeString utf16Date;
 
-	DateFormat* dateFormatter = CreateDateTimeInstance(type, style, currentLocale);
+	icu::DateFormat* dateFormatter = CreateDateTimeInstance(type, style, currentLocale);
 	dateFormatter->format(dateTime, utf16Date);
 	char utf8Date[512];
-	CheckedArrayByteSink sink(utf8Date, ARRAY_SIZE(utf8Date));
+	icu::CheckedArrayByteSink sink(utf8Date, ARRAY_SIZE(utf8Date));
 	utf16Date.toUTF8(sink);
 	ENSURE(!sink.Overflowed());
 	delete dateFormatter;
@@ -378,18 +378,18 @@ std::string L10n::LocalizeDateTime(const UDate dateTime, const DateTimeType& typ
 std::string L10n::FormatMillisecondsIntoDateString(const UDate milliseconds, const std::string& formatString, bool useLocalTimezone) const
 {
 	UErrorCode status = U_ZERO_ERROR;
-	UnicodeString dateString;
+	icu::UnicodeString dateString;
 	std::string resultString;
 
-	UnicodeString unicodeFormat = UnicodeString::fromUTF8(formatString.c_str());
-	SimpleDateFormat* dateFormat = new SimpleDateFormat(unicodeFormat, status);
+	icu::UnicodeString unicodeFormat = icu::UnicodeString::fromUTF8(formatString.c_str());
+	icu::SimpleDateFormat* dateFormat = new icu::SimpleDateFormat(unicodeFormat, status);
 	if (U_FAILURE(status))
 		LOGERROR("Error creating SimpleDateFormat: %s", u_errorName(status));
 
-	const TimeZone* timeZone = useLocalTimezone ? TimeZone::createDefault() : TimeZone::getGMT() ;
+	const icu::TimeZone* timeZone = useLocalTimezone ? icu::TimeZone::createDefault() : icu::TimeZone::getGMT() ;
 
 	status = U_ZERO_ERROR;
-	Calendar* calendar = Calendar::createInstance(*timeZone, currentLocale, status);
+	icu::Calendar* calendar = icu::Calendar::createInstance(*timeZone, currentLocale, status);
 	if (U_FAILURE(status))
 		LOGERROR("Error creating calendar: %s", u_errorName(status));
 
@@ -404,11 +404,11 @@ std::string L10n::FormatMillisecondsIntoDateString(const UDate milliseconds, con
 std::string L10n::FormatDecimalNumberIntoString(double number) const
 {
 	UErrorCode success = U_ZERO_ERROR;
-	UnicodeString utf16Number;
-	NumberFormat* numberFormatter = NumberFormat::createInstance(currentLocale, UNUM_DECIMAL, success);
+	icu::UnicodeString utf16Number;
+	icu::NumberFormat* numberFormatter = icu::NumberFormat::createInstance(currentLocale, UNUM_DECIMAL, success);
 	numberFormatter->format(number, utf16Number);
 	char utf8Number[512];
-	CheckedArrayByteSink sink(utf8Number, ARRAY_SIZE(utf8Number));
+	icu::CheckedArrayByteSink sink(utf8Number, ARRAY_SIZE(utf8Number));
 	utf16Number.toUTF8(sink);
 	ENSURE(!sink.Overflowed());
 
@@ -497,11 +497,11 @@ void L10n::LoadDictionaryForCurrentLocale()
 
 void L10n::LoadListOfAvailableLocales()
 {
-	for (Locale* const& locale : availableLocales)
+	for (icu::Locale* const& locale : availableLocales)
 		delete locale;
 	availableLocales.clear();
 
-	Locale* defaultLocale = new Locale(Locale::getUS());
+	icu::Locale* defaultLocale = new icu::Locale(icu::Locale::getUS());
 	availableLocales.push_back(defaultLocale); // Always available.
 
 	VfsPaths filenames;
@@ -514,9 +514,9 @@ void L10n::LoadListOfAvailableLocales()
 		std::string filename = utf8_from_wstring(path.string()).substr(strlen("l10n/"));
 		size_t lengthToFirstDot = filename.find('.');
 		std::string localeCode = filename.substr(0, lengthToFirstDot);
-		Locale* locale = new Locale(Locale::createCanonical(localeCode.c_str()));
+		icu::Locale* locale = new icu::Locale(icu::Locale::createCanonical(localeCode.c_str()));
 
-		auto it = std::find_if(availableLocales.begin(), availableLocales.end(), [&locale](Locale* const& l) {
+		std::vector<icu::Locale*>::iterator it = std::find_if(availableLocales.begin(), availableLocales.end(), [&locale](icu::Locale* const& l) {
 			return *locale == *l;
 		});
 		if (it != availableLocales.end())
@@ -542,18 +542,18 @@ void L10n::ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dicti
 	}
 }
 
-DateFormat* L10n::CreateDateTimeInstance(const L10n::DateTimeType& type, const DateFormat::EStyle& style, const Locale& locale) const
+icu::DateFormat* L10n::CreateDateTimeInstance(const L10n::DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale) const
 {
 	switch(type)
 	{
 	case Date:
-		return SimpleDateFormat::createDateInstance(style, locale);
+		return icu::SimpleDateFormat::createDateInstance(style, locale);
 
 	case Time:
-		return SimpleDateFormat::createTimeInstance(style, locale);
+		return icu::SimpleDateFormat::createTimeInstance(style, locale);
 
 	case DateTime:
 	default:
-		return SimpleDateFormat::createDateTimeInstance(style, style, locale);
+		return icu::SimpleDateFormat::createDateTimeInstance(style, style, locale);
 	}
 }
