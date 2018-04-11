@@ -494,7 +494,7 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 	if (guardEnt.getMetadata(PlayerID, "transport") !== undefined || !guardEnt.canGuard())
 		return false;
 
-	if (criticalEntId && !this.criticalEnts.get(criticalEntId))
+	if (criticalEntId && !this.criticalEnts.has(criticalEntId))
 	{
 		criticalEntId = undefined;
 		if (guardEnt.getMetadata(PlayerID, "guardedEnt"))
