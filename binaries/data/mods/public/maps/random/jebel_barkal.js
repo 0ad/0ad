@@ -501,7 +501,7 @@ for (let i = 0; i < irrigationCanalLocations.length; ++i)
 				0,
 				Infinity),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, heightPassage, 2),
+				new ElevationPainter(heightPassage),
 				new TileClassPainter(clPassage)
 			],
 			[
@@ -1304,7 +1304,7 @@ if (areasPassages.length)
 		new SimpleGroup([new RandomObject(aWaterDecoratives, 2, 4, 1, 2)], true),
 		0,
 		undefined,
-		scaleByMapSize(50, 250),
+		scaleByMapSize(50, 200),
 		20,
 		areasPassages);
 
