@@ -10,6 +10,12 @@
       <RepeatTime>100</RepeatTime>
     </Melee>
   </Attack>
+  <Cost>
+    <BuildTime>30</BuildTime>
+    <Resources>
+      <wood>300</wood>
+    </Resources>
+  </Cost>
   <DeathDamage>
     <Shape>Circular</Shape>
     <Range>30</Range>
@@ -18,12 +24,6 @@
     <Pierce>300.0</Pierce>
     <Crush>300.0</Crush>
   </DeathDamage>
-  <Cost>
-    <BuildTime>30</BuildTime>
-    <Resources>
-      <wood>300</wood>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="8.0" depth="24.0"/>
     <Height>8.0</Height>

@@ -4,14 +4,14 @@
     <Square width="1.2" depth="2.0"/>
     <Height>1.0</Height>
   </Footprint>
+  <Health>
+    <Max>10</Max>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Rabbit</SpecificName>
     <Icon>gaia/fauna_rabbit.png</Icon>
   </Identity>
-  <Health>
-    <Max>10</Max>
-  </Health>
   <Obstruction>
     <BlockMovement>false</BlockMovement>
   </Obstruction>

@@ -8,12 +8,6 @@
       <RepeatTime>1000</RepeatTime>
     </Melee>
   </Attack>
-  <UnitMotion>
-    <WalkSpeed op="mul">1.6</WalkSpeed>
-    <Run>
-      <Speed op="mul">1.6</Speed>
-    </Run>
-  </UnitMotion>
   <Sound>
     <SoundGroups>
       <select>voice/global/civ_dog_bark.xml</select>
@@ -28,4 +22,10 @@
       <trained>interface/complete/building/complete_kennel.xml</trained>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.6</WalkSpeed>
+    <Run>
+      <Speed op="mul">1.6</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>
