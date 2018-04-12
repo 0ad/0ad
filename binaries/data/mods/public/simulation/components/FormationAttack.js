@@ -64,7 +64,7 @@ FormationAttack.prototype.GetRange = function(target)
 
 	if (result.max >= 0)
 		result.max += extraRange;
-	result.min += extraRange;
+
 	return result;
 };
 
