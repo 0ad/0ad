@@ -48,7 +48,7 @@ m.HQ = function(Config)
 	this.researchManager = new m.ResearchManager(this.Config);
 	this.diplomacyManager = new m.DiplomacyManager(this.Config);
 	this.garrisonManager = new m.GarrisonManager(this.Config);
-	this.gameTypeManager = new m.GameTypeManager(this.Config);
+	this.victoryManager = new m.VictoryManager(this.Config);
 
 	this.capturableTargets = new Map();
 	this.capturableTargetsTime = 0;
@@ -1597,7 +1597,7 @@ m.HQ.prototype.buildFarmstead = function(gameState, queues)
 
 /**
  * Try to build a wonder when required
- * force = true when called from the gameTypeManager in case of Wonder mode
+ * force = true when called from the victoryManager in case of Wonder victory condition.
  */
 m.HQ.prototype.buildWonder = function(gameState, queues, force = false)
 {
@@ -2745,7 +2745,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 	this.diplomacyManager.update(gameState, events);
 
-	this.gameTypeManager.update(gameState, events, queues);
+	this.victoryManager.update(gameState, events, queues);
 
 	// We update the capture strength at the end as it can change attack orders
 	if (gameState.ai.elapsedTime - this.capturableTargetsTime > 3)
@@ -2800,7 +2800,7 @@ m.HQ.prototype.Serialize = function()
 		API3.warn(" researchManager " + uneval(this.researchManager.Serialize()));
 		API3.warn(" diplomacyManager " + uneval(this.diplomacyManager.Serialize()));
 		API3.warn(" garrisonManager " + uneval(this.garrisonManager.Serialize()));
-		API3.warn(" gameTypeManager " + uneval(this.gameTypeManager.Serialize()));
+		API3.warn(" victoryManager " + uneval(this.victoryManager.Serialize()));
 	}
 
 	return {
@@ -2815,7 +2815,7 @@ m.HQ.prototype.Serialize = function()
 		"researchManager": this.researchManager.Serialize(),
 		"diplomacyManager": this.diplomacyManager.Serialize(),
 		"garrisonManager": this.garrisonManager.Serialize(),
-		"gameTypeManager": this.gameTypeManager.Serialize(),
+		"victoryManager": this.victoryManager.Serialize(),
 	};
 };
 
@@ -2863,8 +2863,8 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 	this.garrisonManager = new m.GarrisonManager(this.Config);
 	this.garrisonManager.Deserialize(data.garrisonManager);
 
-	this.gameTypeManager = new m.GameTypeManager(this.Config);
-	this.gameTypeManager.Deserialize(data.gameTypeManager);
+	this.victoryManager = new m.VictoryManager(this.Config);
+	this.victoryManager.Deserialize(data.victoryManager);
 };
 
 return m;

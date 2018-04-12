@@ -747,7 +747,7 @@ m.AttackPlan.prototype.isAvailableUnit = function(gameState, ent)
 	if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1 ||
 	    ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
 		return false;
-	if (gameState.ai.HQ.gameTypeManager.criticalEnts.has(ent.id()) && (this.overseas || ent.healthLevel() < 0.8))
+	if (gameState.ai.HQ.victoryManager.criticalEnts.has(ent.id()) && (this.overseas || ent.healthLevel() < 0.8))
 		return false;
 	return true;
 };
@@ -893,7 +893,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	for (let ent of targets.values())
 	{
 		if (this.targetPlayer == 0 && gameState.getVictoryConditions().has("capture_the_relic") &&
-		   (!ent.hasClass("Relic") || gameState.ai.HQ.gameTypeManager.targetedGaiaRelics.has(ent.id())))
+		   (!ent.hasClass("Relic") || gameState.ai.HQ.victoryManager.targetedGaiaRelics.has(ent.id())))
 			continue;
 		// Do not bother with some pointless targets
 		if (!this.isValidTarget(ent))
@@ -917,7 +917,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	if (!target)
 		return undefined;
 	if (this.targetPlayer == 0 && gameState.getVictoryConditions().has("capture_the_relic") && target.hasClass("Relic"))
-		gameState.ai.HQ.gameTypeManager.targetedGaiaRelics.set(target.id(), [this.name]);
+		gameState.ai.HQ.victoryManager.targetedGaiaRelics.set(target.id(), [this.name]);
 	// Rushes can change their enemy target if nothing found with the preferred enemy
 	// Obstruction also can change the enemy target
 	this.targetPlayer = target.owner();

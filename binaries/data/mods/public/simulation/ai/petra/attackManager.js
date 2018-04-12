@@ -597,7 +597,7 @@ m.AttackManager.prototype.getRelicEnemyPlayer = function(gameState, attack)
 	for (let i = 0; i < gameState.sharedScript.playersData.length; ++i)
 	{
 		if (!gameState.isPlayerEnemy(i) || this.defeated[i] ||
-		    i == 0 && !gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelic)
+		    i == 0 && !gameState.ai.HQ.victoryManager.tryCaptureGaiaRelic)
 			continue;
 
 		let relicsCount = allRelics.filter(relic => relic.owner() == i).length;
@@ -611,7 +611,7 @@ m.AttackManager.prototype.getRelicEnemyPlayer = function(gameState, attack)
 		if (attack.targetPlayer === undefined)
 			this.currentEnemyPlayer = enemyPlayer;
 		if (enemyPlayer == 0)
-			gameState.ai.HQ.gameTypeManager.resetCaptureGaiaRelic(gameState);
+			gameState.ai.HQ.victoryManager.resetCaptureGaiaRelic(gameState);
 	}
 	return enemyPlayer;
 };

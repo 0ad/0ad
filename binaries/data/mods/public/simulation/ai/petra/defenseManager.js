@@ -438,7 +438,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		if (ent.getMetadata(PlayerID, "transport") !== undefined ||
 		    ent.getMetadata(PlayerID, "transporter") !== undefined)
 			return;
-		if (gameState.ai.HQ.gameTypeManager.criticalEnts.has(ent.id()))
+		if (gameState.ai.HQ.victoryManager.criticalEnts.has(ent.id()))
 			return;
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") != -1)
 		{
@@ -521,7 +521,7 @@ m.DefenseManager.prototype.abortArmy = function(gameState, army)
  * If our defense structures are attacked, garrison soldiers inside when possible
  * and if a support unit is attacked and has less than 55% health, garrison it inside the nearest healing structure
  * and if a ranged siege unit (not used for defense) is attacked, garrison it in the nearest fortress
- * If our hero is attacked in regicide game mode, the gameTypeManager will handle it
+ * If our hero is attacked with regicide victory condition, the victoryManager will handle it
  */
 m.DefenseManager.prototype.checkEvents = function(gameState, events)
 {
