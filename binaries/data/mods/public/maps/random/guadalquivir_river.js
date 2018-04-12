@@ -61,15 +61,15 @@ var clShallow = g_Map.createTileClass();
 
 g_Map.log("Create the continent body");
 var startAngle = randomAngle();
-var continentCenter = new Vector2D(fractionToTiles(0.5), fractionToTiles(0.7));
-var continentCenterR = continentCenter.clone().rotateAround(startAngle, mapCenter).round()
+var continentCenter = new Vector2D(fractionToTiles(0.5), fractionToTiles(0.7)).rotateAround(startAngle, mapCenter).round();
+
 createArea(
 	new ChainPlacer(
 		2,
 		Math.floor(scaleByMapSize(5, 12)),
 		Math.floor(scaleByMapSize(60, 700)),
 		Infinity,
-		continentCenterR,
+		continentCenter,
 		0,
 		[Math.floor(fractionToTiles(0.49))]),
 	[
@@ -78,13 +78,17 @@ createArea(
 		new TileClassPainter(clLand)
 	]);
 
-var playerPosition = playerPlacementCustomAngle(
-	fractionToTiles(0.35),
+var playerIDs = sortAllPlayers();
+var playerPosition = playerPlacementArcs(
+	playerIDs,
 	continentCenter,
-	i => Math.PI * (-0.46 / numPlayers * (i + i % 2) - (i % 2) / 2))[0].map(pos => pos.rotateAround(startAngle, mapCenter));
+	fractionToTiles(0.35),
+	-startAngle - 0.5 * Math.PI,
+	0,
+	0.65 * Math.PI);
 
 placePlayerBases({
-	"PlayerPlacement": [primeSortAllPlayers(), playerPosition],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,

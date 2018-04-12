@@ -183,7 +183,7 @@ const clNubaVillage = g_Map.createTileClass();
 const clMarket = g_Map.createTileClass();
 const clDecorative = g_Map.createTileClass();
 
-const riverAngle = Math.PI * 0.05;
+const riverAngle = 0.05 * Math.PI;
 
 const hillRadius = scaleByMapSize(40, 120);
 const positionPyramids = new Vector2D(fractionToTiles(0.15), fractionToTiles(0.75));
@@ -396,11 +396,14 @@ paintRiver({
 Engine.SetProgress(30);
 
 g_Map.log("Computing player locations");
-const playerIDs = primeSortAllPlayers();
-const playerPosition = playerPlacementCustomAngle(
-	fractionToTiles(0.38),
+const playerIDs = sortAllPlayers();
+const playerPosition = playerPlacementArcs(
+	playerIDs,
 	mapCenter,
-	i => Math.PI * (-0.42 / numPlayers * (i + i % 2) - (i % 2) / 2))[0];
+	fractionToTiles(0.38),
+	riverAngle - 0.5 * Math.PI,
+	0.05 * Math.PI,
+	0.55 * Math.PI);
 
 if (!isNomad())
 {
