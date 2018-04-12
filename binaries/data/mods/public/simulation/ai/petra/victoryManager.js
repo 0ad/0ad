@@ -8,7 +8,7 @@ var PETRA = function(m)
  *   in wonder, train military guards.
  */
 
-m.GameTypeManager = function(Config)
+m.VictoryManager = function(Config)
 {
 	this.Config = Config;
 	this.criticalEnts = new Map();
@@ -22,9 +22,9 @@ m.GameTypeManager = function(Config)
 };
 
 /**
- * Cache the ids of any inital gameType-critical entities.
+ * Cache the ids of any inital victory-critical entities.
  */
-m.GameTypeManager.prototype.init = function(gameState)
+m.VictoryManager.prototype.init = function(gameState)
 {
 	if (gameState.getVictoryConditions().has("wonder"))
 	{
@@ -59,11 +59,11 @@ m.GameTypeManager.prototype.init = function(gameState)
 };
 
 /**
- * In regicide mode, if the hero has less than 70% health, try to garrison it in a healing structure
+ * In regicide victory condition, if the hero has less than 70% health, try to garrison it in a healing structure
  * If it is less than 40%, try to garrison in the closest possible structure
  * If the hero cannot garrison, retreat it to the closest base
  */
-m.GameTypeManager.prototype.checkEvents = function(gameState, events)
+m.VictoryManager.prototype.checkEvents = function(gameState, events)
 {
 	if (gameState.getVictoryConditions().has("wonder"))
 	{
@@ -307,7 +307,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 	}
 };
 
-m.GameTypeManager.prototype.removeCriticalEnt = function(gameState, criticalEntId)
+m.VictoryManager.prototype.removeCriticalEnt = function(gameState, criticalEntId)
 {
 	for (let [guardId, role] of this.criticalEnts.get(criticalEntId).guards)
 	{
@@ -333,7 +333,7 @@ m.GameTypeManager.prototype.removeCriticalEnt = function(gameState, criticalEntI
 /**
  * Train more healers to be later affected to critical entities if needed
  */
-m.GameTypeManager.prototype.manageCriticalEntHealers = function(gameState, queues)
+m.VictoryManager.prototype.manageCriticalEntHealers = function(gameState, queues)
 {
 	if (gameState.ai.HQ.saveResources || queues.healer.hasQueuedUnits() ||
 	    !gameState.getOwnEntitiesByClass("Temple", true).hasEntities() ||
@@ -355,7 +355,7 @@ m.GameTypeManager.prototype.manageCriticalEntHealers = function(gameState, queue
  * If we have too low a population and require units for other needs, remove guards so they can be reassigned.
  * TODO: Swap citizen soldier guards with champions if they become available.
  */
-m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
+m.VictoryManager.prototype.manageCriticalEntGuards = function(gameState)
 {
 	let numWorkers = gameState.getOwnEntitiesByRole("worker", true).length;
 	if (numWorkers < 20)
@@ -442,7 +442,7 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 	}
 };
 
-m.GameTypeManager.prototype.tryAssignMilitaryGuard = function(gameState, guardEnt, criticalEnt, checkForSameAccess)
+m.VictoryManager.prototype.tryAssignMilitaryGuard = function(gameState, guardEnt, criticalEnt, checkForSameAccess)
 {
 	if (guardEnt.getMetadata(PlayerID, "plan") !== undefined ||
 	    guardEnt.getMetadata(PlayerID, "transport") !== undefined || this.criticalEnts.has(guardEnt.id()) ||
@@ -458,7 +458,7 @@ m.GameTypeManager.prototype.tryAssignMilitaryGuard = function(gameState, guardEn
 	return true;
 };
 
-m.GameTypeManager.prototype.pickCriticalEntRetreatLocation = function(gameState, criticalEnt, emergency)
+m.VictoryManager.prototype.pickCriticalEntRetreatLocation = function(gameState, criticalEnt, emergency)
 {
 	gameState.ai.HQ.defenseManager.garrisonAttackedUnit(gameState, criticalEnt, emergency);
 	let plan = criticalEnt.getMetadata(PlayerID, "plan");
@@ -489,7 +489,7 @@ m.GameTypeManager.prototype.pickCriticalEntRetreatLocation = function(gameState,
  * which will be used once its transport has finished.
  * Return false if the guardEnt is not a valid guard unit (i.e. cannot guard or is being transported).
  */
-m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guardEnt, criticalEntId)
+m.VictoryManager.prototype.assignGuardToCriticalEnt = function(gameState, guardEnt, criticalEntId)
 {
 	if (guardEnt.getMetadata(PlayerID, "transport") !== undefined || !guardEnt.canGuard())
 		return false;
@@ -564,14 +564,14 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 	return true;
 };
 
-m.GameTypeManager.prototype.resetCaptureGaiaRelic = function(gameState)
+m.VictoryManager.prototype.resetCaptureGaiaRelic = function(gameState)
 {
 	// Do not capture gaia relics too frequently as the ai has access to the entire map
 	this.tryCaptureGaiaRelicLapseTime = gameState.ai.elapsedTime + 240 - 30 * (this.Config.difficulty - 3);
 	this.tryCaptureGaiaRelic = false;
 };
 
-m.GameTypeManager.prototype.update = function(gameState, events, queues)
+m.VictoryManager.prototype.update = function(gameState, events, queues)
 {
 	// Wait a turn for trigger scripts to spawn any critical ents (i.e. in regicide)
 	if (gameState.ai.playedTurn == 1)
@@ -651,7 +651,7 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 /**
  * Send an expedition to capture a gaia relic, or reinforce an existing one.
  */
-m.GameTypeManager.prototype.captureGaiaRelic = function(gameState, relic)
+m.VictoryManager.prototype.captureGaiaRelic = function(gameState, relic)
 {
 	let capture = -relic.defaultRegenRate();
 	let sumCapturePoints = relic.capturePoints().reduce((a, b) => a + b);
@@ -715,7 +715,7 @@ m.GameTypeManager.prototype.captureGaiaRelic = function(gameState, relic)
 	this.targetedGaiaRelics.get(relic.id()).push(plan);
 };
 
-m.GameTypeManager.prototype.abortCaptureGaiaRelic = function(gameState, relicId)
+m.VictoryManager.prototype.abortCaptureGaiaRelic = function(gameState, relicId)
 {
 	for (let plan of this.targetedGaiaRelics.get(relicId))
 	{
@@ -726,7 +726,7 @@ m.GameTypeManager.prototype.abortCaptureGaiaRelic = function(gameState, relicId)
 	this.targetedGaiaRelics.delete(relicId);
 };
 
-m.GameTypeManager.prototype.Serialize = function()
+m.VictoryManager.prototype.Serialize = function()
 {
 	return {
 		"criticalEnts": this.criticalEnts,
@@ -738,7 +738,7 @@ m.GameTypeManager.prototype.Serialize = function()
 	};
 };
 
-m.GameTypeManager.prototype.Deserialize = function(data)
+m.VictoryManager.prototype.Deserialize = function(data)
 {
 	for (let key in data)
 		this[key] = data[key];
