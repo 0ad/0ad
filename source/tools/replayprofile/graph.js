@@ -135,7 +135,22 @@ function showTooltip(x, y, displayedColumn, label, turn, value)
 		}));
 }
 
-$.getJSON("data.json", function(data) {
-	replayData = data;
-	showReplayData();
-});
+function loadReplayGraphData()
+{
+	$.ajax({
+		"dataType": "json",
+		"url": $("#filename").val(),
+		"success": function(data) {
+			$("#errorMsg").hide();
+			$("#replayGraphContainer").show();
+			replayData = data;
+			showReplayData();
+		},
+		"error": function() {
+			$("#replayGraphContainer").hide();
+			$("#errorMsg").show();
+		}
+	});
+}
+
+$(loadReplayGraphData);

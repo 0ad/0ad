@@ -283,6 +283,7 @@ function TestMoveIntoFormationWhileAttacking()
 		SetSpeed: function(speed) { },
 		MoveToPointRange: function(x, z, minRange, maxRange) { },
 		IsInTargetRange: function(target, min, max) { return true; },
+		StopMoving: function() { },
 		GetPassabilityClassName: function() { return "default"; },
 	});
 

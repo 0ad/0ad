@@ -10,18 +10,24 @@
 	</head>
 	<body>
 		<div>
+			<label>File:
+				<input type="text" id="filename" value="data.json" onKeyUp="loadReplayGraphData()"></input>
+			</label>
 			<label>Graph:
-				<select id="replayGraphSelection" size="1" onchange="showReplayData()">
+				<select id="replayGraphSelection" size="1" onChange="showReplayData()">
 					<option value="time" selected="selected">Performance</option>
 					<option value="bytes">Memory</option>
 					<option value="garbageCollection">Garbage Collections</option>
 				</select>
 			</label>
 		</div>
-		<div id="replayGraphLegend" style="width:300px;float:left"></div>
-		<div>
-			<div id="replayGraph" style="width:1100px; height:600px; float:left"></div>
-			<div id="replayGraphDescription" style="float:top"></div>
+		<div id="errorMsg">File does not exist!</div>
+		<div id="replayGraphContainer">
+			<div id="replayGraphLegend" style="width:300px;float:left"></div>
+			<div>
+				<div id="replayGraph" style="width:1100px; height:600px; float:left"></div>
+				<div id="replayGraphDescription" style="float:top"></div>
+			</div>
 		</div>
 	</body>
 </html>

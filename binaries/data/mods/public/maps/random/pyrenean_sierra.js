@@ -159,11 +159,17 @@ for (var ix = 0; ix < mapSize; ix++)
 	}
 }
 
+var playerIDs = sortAllPlayers();
+var playerPosition = playerPlacementArcs(
+	playerIDs,
+	mapCenter,
+	fractionToTiles(0.35),
+	oceanAngle,
+	0.1 * Math.PI,
+	0.9 * Math.PI);
+
 placePlayerBases({
-	"PlayerPlacement": [primeSortAllPlayers(), ...playerPlacementCustomAngle(
-		fractionToTiles(0.35),
-		mapCenter,
-		i => oceanAngle + Math.PI * (i % 2 ? 1 : -1) * ((1/2 + 1/3 * (2/numPlayers * (i + 1 - i % 2) - 1))))],
+	"PlayerPlacement": [playerIDs, playerPosition],
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {

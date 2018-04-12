@@ -1255,6 +1255,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"enter": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(false);
+				this.StopMoving();
 				this.StartTimer(1000, 1000);
 			},
 
@@ -1277,6 +1278,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"leave": function(msg) {
 				this.StopTimer();
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.MoveToMembersCenter();
 			},
 		},
 	},
