@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
   <!--
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Formation</GenericName>
+    <Undeletable>true</Undeletable>
+  </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/128x128.png</MainTexture>
+        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <VisualActor>
     <Actor>props/special/common/waypoint_flag.xml</Actor>
+    <SilhouetteDisplay>true</SilhouetteDisplay>
+    <SilhouetteOccluder>false</SilhouetteOccluder>
+    <VisibleInAtlasOnly>false</VisibleInAtlasOnly>
   </VisualActor>
   -->
   <Formation>

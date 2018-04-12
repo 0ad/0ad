@@ -15,6 +15,12 @@ FormationAttack.prototype.CanAttackAsFormation = function()
 	return this.canAttackAsFormation;
 };
 
+// Only called when making formation entities selectable for debugging
+FormationAttack.prototype.GetAttackTypes = function()
+{
+	return [];
+};
+
 FormationAttack.prototype.GetRange = function(target)
 {
 	var result = {"min": 0, "max": this.canAttackAsFormation ? -1 : 0};
