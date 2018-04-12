@@ -1302,14 +1302,14 @@ createObjectGroupsByAreas(
 	[areaWater]);
 
 g_Map.log("Creating reeds at the irrigation canals");
-if (areasPassages.length)
+for (let area of areasPassages)
 	createObjectGroupsByAreas(
 		new SimpleGroup([new RandomObject(aWaterDecoratives, 2, 4, 1, 2)], true),
 		0,
 		undefined,
-		scaleByMapSize(50, 200),
+		15,
 		20,
-		areasPassages);
+		[area]);
 
 g_Map.log("Creating hawk");
 for (let i = 0; i < scaleByMapSize(0, 2); ++i)
