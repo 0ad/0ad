@@ -9,15 +9,15 @@
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2015-2016
 # pilino1234 <pilino1234@zoho.eu>, 2016-2017
-# pilino1234 <pilino1234@zoho.eu>, 2017
+# pilino1234 <pilino1234@zoho.eu>, 2017-2018
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-23 09:04+0100\n"
-"PO-Revision-Date: 2018-02-23 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-12 11:53+0000\n"
+"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,7 +172,7 @@ msgstr "Återgå till huvudmenyn."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "Du har blivit frånkopplad ifrån lobbyn. Vill du återansluta?"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1192 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
@@ -290,11 +290,11 @@ msgstr "Spelare: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1180
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "Dina aktiva mods matchar inte spelets mods."
 
 #: gui/lobby/lobby.js:1182
 msgid "Incompatible mods"
-msgstr ""
+msgstr "Inkompatibla mods"
 
 #: gui/lobby/lobby.js:1183
 msgid "Ok"
@@ -389,11 +389,11 @@ msgstr "%(percentage)s%%"
 
 #: gui/prelobby/prelobby.js:43
 msgid "Connecting…"
-msgstr ""
+msgstr "Ansluter…"
 
 #: gui/prelobby/prelobby.js:66
 msgid "Registering…"
-msgstr ""
+msgstr "Registrerar…"
 
 #: gui/prelobby/prelobby.js:96
 msgid "Please enter your username"
@@ -461,7 +461,7 @@ msgstr "Avändarvillkor"
 
 #: gui/prelobby/prelobby.js:298
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr ""
+msgstr "Är du säker att du vill ta bort lösenordet efter anslutning?"
 
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
@@ -615,7 +615,7 @@ msgstr "Lösenord:"
 
 #: gui/prelobby/prelobby.xml:(caption):68
 msgid "Remember Password"
-msgstr ""
+msgstr "Kom ihåg lösenord"
 
 #: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"
