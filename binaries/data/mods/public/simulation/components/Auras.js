@@ -483,7 +483,7 @@ Auras.prototype.OnGlobalResearchFinished = function(msg)
 /**
  * Only update playerauras, since units and structures are updated OnOwnershipChanged.
  */
-Auras.prototype.OnPlayerDefeated = function(msg)
+Auras.prototype.OnGlobalPlayerDefeated = function(msg)
 {
 	if (!Engine.QueryInterface(this.entity, IID_Player))
 		return;

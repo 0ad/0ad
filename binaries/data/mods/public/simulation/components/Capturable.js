@@ -310,7 +310,7 @@ Capturable.prototype.OnOwnershipChanged = function(msg)
  * When a player is defeated, reassign the cp of non-owned entities to gaia.
  * Those owned by the defeated player are dealt with onOwnershipChanged.
  */
-Capturable.prototype.OnPlayerDefeated = function(msg)
+Capturable.prototype.OnGlobalPlayerDefeated = function(msg)
 {
 	if (!this.cp[msg.playerId])
 		return;
