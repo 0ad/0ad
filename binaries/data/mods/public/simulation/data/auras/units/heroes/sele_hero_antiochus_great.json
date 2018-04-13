@@ -1,5 +1,6 @@
 {
-	"type": "global",
+	"type": "range",
+	"radius": 45,
 	"affects": ["Cavalry"],
 	"modifications": [
 		{ "value": "Armour/Pierce", "add": 2 },

@@ -6,16 +6,16 @@
 		{ "value": "Armour/Pierce", "add": 1 },
 		{ "value": "Armour/Hack", "add": 1 },
 		{ "value": "Armour/Crush", "add": 1 },
-		{ "value": "Attack/Melee/Hack", "multiply": 1.1 },
-		{ "value": "Attack/Melee/Pierce", "multiply": 1.1 },
-		{ "value": "Attack/Melee/Crush", "multiply": 1.1 },
-		{ "value": "Attack/Ranged/Hack", "multiply": 1.1 },
-		{ "value": "Attack/Ranged/Pierce", "multiply": 1.1 },
-		{ "value": "Attack/Ranged/Crush", "multiply": 1.1 },
+		{ "value": "Attack/Melee/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Crush", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Crush", "multiply": 1.2 },
 		{ "value": "Attack/Ranged/MaxRange", "multiply": 1.1 },
 		{ "value": "Vision/Range", "multiply": 1.1 }
 	],
 	"auraName": "Besieger",
-	"auraDescription": "+10% attack, +10% range and +1 armor for siege engines.",
+	"auraDescription": "+20% attack, +10% range and +1 armor for siege engines.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }
