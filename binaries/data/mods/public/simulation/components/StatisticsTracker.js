@@ -545,13 +545,23 @@ StatisticsTracker.prototype.GetTeamPercentMapControlled = function()
 
 StatisticsTracker.prototype.OnTerritoriesChanged = function(msg)
 {
-	var newPercent = this.GetPercentMapControlled();
-	if (newPercent > this.peakPercentMapControlled)
-		this.peakPercentMapControlled = newPercent;
+	this.UpdatePeakPercentages();
+};
 
-	newPercent = this.GetTeamPercentMapControlled();
-	if (newPercent > this.teamPeakPercentMapControlled)
-		this.teamPeakPercentMapControlled = newPercent;
+StatisticsTracker.prototype.OnGlobalPlayerDefeated = function(msg)
+{
+	this.UpdatePeakPercentages();
+};
+
+StatisticsTracker.prototype.OnGlobalPlayerWon = function(msg)
+{
+	this.UpdatePeakPercentages();
+};
+
+StatisticsTracker.prototype.UpdatePeakPercentages = function()
+{
+	this.peakPercentMapControlled = Math.max(this.peakPercentMapControlled, this.GetPercentMapControlled());
+	this.teamPeakPercentMapControlled = Math.max(this.teamPeakPercentMapControlled, this.GetTeamPercentMapControlled());
 };
 
 /**
