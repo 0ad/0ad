@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Copyright (C) 2016 Wildfire Games.
+"""Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,7 +74,7 @@ class LeaderboardList():
       the Player model, or the one that already
       exists in the database.
     """
-    players = db.query(Player).filter_by(jid=str(JID))
+    players = db.query(Player).filter(Player.jid.ilike(str(JID)))
     if not players.first():
       player = Player(jid=str(JID), rating=-1)
       db.add(player)
@@ -88,7 +88,7 @@ class LeaderboardList():
       Returns the player that was removed, or None
       if that player didn't exist.
     """
-    players = db.query(Player).filter_by(jid=JID)
+    players = db.query(Player).filter(Player.jid.ilike(str(JID)))
     player = players.first()
     if not player:
       return None
@@ -253,6 +253,7 @@ class LeaderboardList():
     for rank, player in enumerate(players):
       board[player.jid] = {'name': '@'.join(player.jid.split('@')[:-1]), 'rating': str(player.rating)}
     return board
+
   def getRatingList(self, nicks):
     """
     Returns a rating list of players
@@ -368,6 +369,7 @@ class ReportManager():
         return len(rawGameReport[key].split(","))-1
     # Return -1 in case of failure.
     return -1
+
 ## Class for custom player stanza extension ##
 class PlayerXmppPlugin(ElementBase):
   name = 'query'
@@ -447,6 +449,10 @@ class EcheLOn(sleekxmpp.ClientXMPP):
     self.sjid = sjid
     self.room = room
     self.nick = nick
+    self.ratingListCache = {}
+    self.ratingCacheReload = True
+    self.boardListCache = {}
+    self.boardCacheReload = True
 
     # Init leaderboard object
     self.leaderboard = LeaderboardList(room)
@@ -528,12 +534,11 @@ class EcheLOn(sleekxmpp.ClientXMPP):
       """
       Request lists.
       """
-      if 'boardlist' in iq.plugins:
+      if 'boardlist' in iq.loaded_plugins:
         command = iq['boardlist']['command']
         recipient = iq['boardlist']['recipient']
         if command == 'getleaderboard':
           try:
-            self.leaderboard.getOrCreatePlayer(iq['from'])
             self.sendBoardList(iq['from'], recipient)
           except:
             traceback.print_exc()
@@ -545,7 +550,7 @@ class EcheLOn(sleekxmpp.ClientXMPP):
             traceback.print_exc()
         else:
           logging.error("Failed to process boardlist request from %s" % iq['from'].bare)
-      elif 'profile' in iq.plugins:
+      elif 'profile' in iq.loaded_plugins:
         command = iq['profile']['command']
         recipient = iq['profile']['recipient']
         try:
@@ -563,20 +568,23 @@ class EcheLOn(sleekxmpp.ClientXMPP):
       """
       pass
     elif iq['type'] == 'set':
-      if 'gamereport' in iq.plugins:
+      if 'gamereport' in iq.loaded_plugins:
         """
         Client is reporting end of game statistics
         """
         try:
+          self.leaderboard.getOrCreatePlayer(iq['gamereport']['sender'])
           self.reportManager.addReport(iq['gamereport']['sender'], iq['gamereport']['game'])
           if self.leaderboard.getLastRatedMessage() != "":
+            self.ratingCacheReload = True
+            self.boardCacheReload = True
             self.send_message(mto=self.room, mbody=self.leaderboard.getLastRatedMessage(), mtype="groupchat",
               mnick=self.nick)
             self.sendRatingList(iq['from'])
         except:
           traceback.print_exc()
           logging.error("Failed to update game statistics for %s" % iq['from'].bare)
-      elif 'player' in iq.plugins:
+      elif 'player' in iq.loaded_plugins:
         player = iq['player']['online']
         #try:
         self.leaderboard.getOrCreatePlayer(player)
@@ -591,13 +599,17 @@ class EcheLOn(sleekxmpp.ClientXMPP):
       If no target is passed the boardlist is broadcasted
         to all clients.
     """
-    ## Pull leaderboard data and add it to the stanza  
-    board = self.leaderboard.getBoard()
+    ## See if we can squeak by with the cached version.
+    # Leaderboard cache is reloaded upon a new rated game being rated.
+    if self.boardCacheReload:
+      self.boardListCache = self.leaderboard.getBoard()
+      self.boardCacheReload = False
+
     stz = BoardListXmppPlugin()
     iq = self.Iq()
     iq['type'] = 'result'
-    for i in board:
-      stz.addItem(board[i]['name'], board[i]['rating'])
+    for i in self.boardListCache:
+      stz.addItem(self.boardListCache[i]['name'], self.boardListCache[i]['rating'])
     stz.addCommand('boardlist')
     stz.addRecipient(recipient)
     iq.setPayload(stz)
@@ -617,13 +629,24 @@ class EcheLOn(sleekxmpp.ClientXMPP):
     """
       Send the rating list.
     """
-    ## Pull rating list data and add it to the stanza  
-    ratinglist = self.leaderboard.getRatingList(self.nicks)
+    ## Attempt to use the cache.
+    # Cache is invalidated when a new game is rated or a uncached player
+    # comes online.
+    if self.ratingCacheReload:
+      self.ratingListCache = self.leaderboard.getRatingList(self.nicks)
+      self.ratingCacheReload = False
+    else:
+      for JID in list(self.nicks):
+        if JID not in self.ratingListCache:
+          self.ratingListCache = self.leaderboard.getRatingList(self.nicks)
+          self.ratingCacheReload = False
+          break
+
     stz = BoardListXmppPlugin()
     iq = self.Iq()
     iq['type'] = 'result'
-    for i in ratinglist:
-      stz.addItem(ratinglist[i]['name'], ratinglist[i]['rating'])
+    for i in self.ratingListCache:
+      stz.addItem(self.ratingListCache[i]['name'], self.ratingListCache[i]['rating'])
     stz.addCommand('ratinglist')
     iq.setPayload(stz)
     ## Check recipient exists
@@ -740,6 +763,11 @@ if __name__ == '__main__':
                   action='store', dest='xroom',
                   default="arena")
 
+  # ejabberd server options
+  optp.add_option('-s', '--server', help='address of the ejabberd server',
+                  action='store', dest='xserver',
+                  default="localhost")
+
   opts, args = optp.parse_args()
 
   # Setup logging.
@@ -754,7 +782,7 @@ if __name__ == '__main__':
   xmpp.register_plugin('xep_0060') # PubSub
   xmpp.register_plugin('xep_0199') # XMPP Ping
 
-  if xmpp.connect():
+  if xmpp.connect((opts.xserver, 5222)):
     xmpp.process(threaded=False)
   else:
     logging.error("Unable to connect")
