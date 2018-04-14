@@ -79,10 +79,13 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 {
 	// Read lobby configuration from default.cfg
 	std::string sXpartamupp;
+	std::string sEchelon;
 	CFG_GET_VAL("lobby.server", m_server);
 	CFG_GET_VAL("lobby.xpartamupp", sXpartamupp);
+	CFG_GET_VAL("lobby.echelon", sEchelon);
 
 	m_xpartamuppId = sXpartamupp + "@" + m_server + "/CC";
+	m_echelonId = sEchelon + "@" + m_server + "/CC";
 	glooxwrapper::JID clientJid(sUsername + "@" + m_server + "/0ad");
 	glooxwrapper::JID roomJid(m_room + "@conference." + m_server + "/" + sNick);
 
@@ -279,12 +282,12 @@ void XmppClient::handleMUCError(glooxwrapper::MUCRoom*, gloox::StanzaError err)
  */
 void XmppClient::SendIqGetBoardList()
 {
-	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
+	glooxwrapper::JID echelonJid(m_echelonId);
 
 	// Send IQ
 	BoardListQuery* b = new BoardListQuery();
 	b->m_Command = "getleaderboard";
-	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid, m_client->getID());
+	glooxwrapper::IQ iq(gloox::IQ::Get, echelonJid, m_client->getID());
 	iq.addExtension(b);
 	DbgXMPP("SendIqGetBoardList [" << tag_xml(iq) << "]");
 	m_client->send(iq);
@@ -295,12 +298,12 @@ void XmppClient::SendIqGetBoardList()
  */
 void XmppClient::SendIqGetProfile(const std::string& player)
 {
-	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
+	glooxwrapper::JID echelonJid(m_echelonId);
 
 	// Send IQ
 	ProfileQuery* b = new ProfileQuery();
 	b->m_Command = player;
-	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid, m_client->getID());
+	glooxwrapper::IQ iq(gloox::IQ::Get, echelonJid, m_client->getID());
 	iq.addExtension(b);
 	DbgXMPP("SendIqGetProfile [" << tag_xml(iq) << "]");
 	m_client->send(iq);
@@ -313,7 +316,7 @@ void XmppClient::SendIqGetProfile(const std::string& player)
  */
 void XmppClient::SendIqGameReport(const ScriptInterface& scriptInterface, JS::HandleValue data)
 {
-	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
+	glooxwrapper::JID echelonJid(m_echelonId);
 
 	// Setup some base stanza attributes
 	GameReport* game = new GameReport();
@@ -333,7 +336,7 @@ void XmppClient::SendIqGameReport(const ScriptInterface& scriptInterface, JS::Ha
 	game->m_GameReport.emplace_back(report);
 
 	// Send IQ
-	glooxwrapper::IQ iq(gloox::IQ::Set, xpartamuppJid, m_client->getID());
+	glooxwrapper::IQ iq(gloox::IQ::Set, echelonJid, m_client->getID());
 	iq.addExtension(game);
 	DbgXMPP("SendGameReport [" << tag_xml(iq) << "]");
 	m_client->send(iq);

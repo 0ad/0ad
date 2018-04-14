@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Copyright (C) 2016 Wildfire Games.
+"""Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -178,6 +178,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
 
     # Store mapping of nicks and XmppIDs, attached via presence stanza
     self.nicks = {}
+    self.presences = {} # Obselete when XEP-0060 is implemented.
 
     self.lastLeft = ""
 
@@ -212,6 +213,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     self.add_event_handler("muc::%s::got_online" % self.room, self.muc_online)
     self.add_event_handler("muc::%s::got_offline" % self.room, self.muc_offline)
     self.add_event_handler("groupchat_message", self.muc_message)
+    self.add_event_handler("changed_status", self.presence_change)
 
   def start(self, event):
     """
@@ -233,6 +235,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       # If it doesn't already exist, store player JID mapped to their nick.
       if str(presence['muc']['jid']) not in self.nicks:
         self.nicks[str(presence['muc']['jid'])] = presence['muc']['nick']
+        self.presences[str(presence['muc']['jid'])] = "available"
       # Check the jid isn't already in the lobby.
       # Send Gamelist to new player.
       self.sendGameList(presence['muc']['jid'])
@@ -254,6 +257,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       self.lastLeft = str(presence['muc']['jid'])
       if str(presence['muc']['jid']) in self.nicks:
         del self.nicks[str(presence['muc']['jid'])]
+        del self.presences[str(presence['muc']['jid'])]
     if presence['muc']['nick'] == self.ratingsBot:
       self.ratingsBotWarned = False
 
@@ -265,6 +269,21 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       self.send_message(mto=msg['from'].bare,
                         mbody="I am the administrative bot in this lobby and cannot participate in any games.",
                         mtype='groupchat')
+
+  def presence_change(self, presence):
+    """
+    Processes presence change
+    """
+    prefix = "%s/" % self.room
+    nick = str(presence['from']).replace(prefix, "")
+    for JID in self.nicks:
+      if self.nicks[JID] == nick:
+        if self.presences[JID] == 'dnd' and (str(presence['type']) == "available" or str(presence['type']) == "away"):
+          self.sendGameList(JID)
+          self.relayBoardListRequest(JID)
+        self.presences[JID] = str(presence['type'])
+        break
+ 
 
   def iqhandler(self, iq):
     """
@@ -280,36 +299,36 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       """
       # Send lists/register on leaderboard; depreciated once muc_online
       #  can send lists/register automatically on joining the room.
-      if 'boardlist' in iq.plugins:
+      if 'boardlist' in iq.loaded_plugins:
         command = iq['boardlist']['command']
         try:
           self.relayBoardListRequest(iq['from'])
         except:
           traceback.print_exc()
           logging.error("Failed to process leaderboardlist request from %s" % iq['from'].bare)
-      elif 'profile' in iq.plugins:
+      elif 'profile' in iq.loaded_plugins:
         command = iq['profile']['command']
         try:
           self.relayProfileRequest(iq['from'], command)
         except:
-          pass # TODO needed?
+          pass
       else:
         logging.error("Unknown 'get' type stanza request from %s" % iq['from'].bare)
     elif iq['type'] == 'result':
       """
       Iq successfully received
       """
-      if 'boardlist' in iq.plugins:
+      if 'boardlist' in iq.loaded_plugins:
         recipient = iq['boardlist']['recipient']
         self.relayBoardList(iq['boardlist'], recipient)
-      elif 'profile' in iq.plugins:
+      elif 'profile' in iq.loaded_plugins:
         recipient = iq['profile']['recipient']
         player =  iq['profile']['command']
         self.relayProfile(iq['profile'], player, recipient)
       else:
-        pass # TODO error/warn?
+        pass
     elif iq['type'] == 'set':
-      if 'gamelist' in iq.plugins:
+      if 'gamelist' in iq.loaded_plugins:
         """
         Register-update / unregister a game
         """
@@ -317,8 +336,9 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         if command == 'register':
           # Add game
           try:
-            self.gameList.addGame(iq['from'], iq['gamelist']['game'])
-            self.sendGameList()
+            if iq['from'] in self.nicks:
+              self.gameList.addGame(iq['from'], iq['gamelist']['game'])
+              self.sendGameList()
           except:
             traceback.print_exc()
             logging.error("Failed to process game registration data")
@@ -338,10 +358,16 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
             self.sendGameList()
           except:
             traceback.print_exc()
-            logging.error("Failed to process changestate data")
+            logging.error("Failed to process changestate data. Trying to add game")
+            try:
+              if iq['from'] in self.nicks:
+                self.gameList.addGame(iq['from'], iq['gamelist']['game'])
+                self.sendGameList()
+            except:
+              pass
         else:
           logging.error("Failed to process command '%s' received from %s" % command, iq['from'].bare)
-      elif 'gamereport' in iq.plugins:
+      elif 'gamereport' in iq.loaded_plugins:
         """
         Client is reporting end of game statistics
         """
@@ -360,20 +386,23 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         to all clients.
     """
     games = self.gameList.getAllGames()
+    
+    stz = GameListXmppPlugin()
+
+    ## Pull games and add each to the stanza        
+    for JIDs in games:
+      g = games[JIDs]
+      stz.addGame(g)
+
+    ## Set additional IQ attributes
+    iq = self.Iq()
+    iq['type'] = 'result'
+    iq.setPayload(stz)
     if to == "":
-      for JID in list(self.nicks):
-        stz = GameListXmppPlugin()
-
-        ## Pull games and add each to the stanza        
-        for JIDs in games:
-          g = games[JIDs]
-          stz.addGame(g)
-
-        ## Set additional IQ attributes
-        iq = self.Iq()
-        iq['type'] = 'result'
+      for JID in list(self.presences):
+        if self.presences[JID] != "available" and self.presences[JID] != "away":
+          continue
         iq['to'] = JID
-        iq.setPayload(stz)
 
         ## Try sending the stanza
         try:
@@ -385,18 +414,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       if str(to) not in self.nicks:
         logging.error("No player with the XmPP ID '%s' known to send gamelist to." % str(to))
         return
-      stz = GameListXmppPlugin()
-
-      ## Pull games and add each to the stanza
-      for JIDs in games:
-        g = games[JIDs]
-        stz.addGame(g)
-
-      ## Set additional IQ attributes
-      iq = self.Iq()
-      iq['type'] = 'result'
       iq['to'] = to
-      iq.setPayload(stz)
 
       ## Try sending the stanza
       try:
@@ -520,14 +538,13 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     """
     iq = self.Iq()
     iq['type'] = 'result'
-    """for i in board:
-      stz.addItem(board[i]['name'], board[i]['rating'])
-    stz.addCommand('boardlist')"""
     iq.setPayload(boardList)
     ## Check recipient exists
     if to == "":  
       # Rating List
-      for JID in list(self.nicks):
+      for JID in list(self.presences):
+        if self.presences[JID] != "available" and self.presences[JID] != "away":
+          continue
         ## Set additional IQ attributes
         iq['to'] = JID
         ## Try sending the stanza
@@ -536,7 +553,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         except:
           logging.error("Failed to send rating list")
     else:
-      # Leaderboard
+      # Leaderboard or targeted rating list
       if str(to) not in self.nicks:
         logging.error("No player with the XmPP ID '%s' known to send boardlist to" % str(to))
         return
@@ -618,6 +635,11 @@ if __name__ == '__main__':
                   action='store', dest='xratingsbot',
                   default="disabled")
 
+  # ejabberd server options
+  optp.add_option('-s', '--server', help='address of the ejabberd server',
+                  action='store', dest='xserver',
+                  default="localhost")
+
   opts, args = optp.parse_args()
 
   # Setup logging.
@@ -632,7 +654,7 @@ if __name__ == '__main__':
   xmpp.register_plugin('xep_0060') # PubSub
   xmpp.register_plugin('xep_0199') # XMPP Ping
 
-  if xmpp.connect():
+  if xmpp.connect((opts.xserver, 5222)):
     xmpp.process(threaded=False)
   else:
     logging.error("Unable to connect")

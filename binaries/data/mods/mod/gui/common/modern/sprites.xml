@@ -599,4 +599,41 @@
 			size="0 50%-1 100% 50%+1"
 		/>
 	</sprite>
+
+	<sprite name="ArrowDownRed">
+		<effect add_color="123 53 53"/>
+		<image texture="global/modern/arrow_down_128x128.png"
+			size="0 4 100% 100%"
+		/>
+	</sprite>
+	<sprite name="ArrowDownRedBright">
+		<effect add_color="166 96 96"/>
+		<image texture="global/modern/arrow_down_128x128.png"
+			size="0 4 100% 100%"
+		/>
+	</sprite>
+	<sprite name="ArrowDownGrey">
+		<effect	add_color="35 35 35"/>
+		<image texture="global/modern/arrow_down_128x128.png"
+			size="0 4 100% 100%"
+		/>
+	</sprite>
+	<sprite name="ArrowUpRed">
+		<effect add_color="123 53 53"/>
+		<image texture="global/modern/arrow_up_128x128.png"
+			size="0 4 100% 100%"
+		/>
+	</sprite>
+	<sprite name="ArrowUpRedBright">
+		<effect add_color="166 96 96"/>
+		<image texture="global/modern/arrow_up_128x128.png"
+			size="0 4 100% 100%"
+		/>
+	</sprite>
+	<sprite name="ArrowUpGrey">
+		<effect	add_color="35 35 35"/>
+		<image texture="global/modern/arrow_up_128x128.png"
+			size="0 4 100% 100%"
+		/>
+	</sprite>
 </sprites>

@@ -183,13 +183,6 @@ function disableMod()
 	displayModLists();
 }
 
-function resetFilters()
-{
-	Engine.GetGUIObjectByName("modGenericFilter").caption = "";
-	Engine.GetGUIObjectByName("negateFilter").checked = false;
-	displayModLists();
-}
-
 function applyFilters()
 {
 	// Save selected rows
@@ -346,9 +339,23 @@ function sortEnabledMods()
 	displayModList("modsEnabledList", g_ModsEnabled);
 }
 
-function showModDescription(listObjectName)
+function selectedMod(listObjectName)
 {
 	let listObject = Engine.GetGUIObjectByName(listObjectName);
+	let otherListObject = Engine.GetGUIObjectByName(listObjectName == "modsDisabledList" ?
+		"modsEnabledList" : "modsDisabledList");
+
+	if (listObject.selected != -1)
+	{
+		otherListObject.selected = -1;
+		Engine.GetGUIObjectByName("visitWebButton").enabled = true;
+		let disEnableButton =  Engine.GetGUIObjectByName("disEnableButton")
+		disEnableButton.caption = listObjectName == "modsDisabledList" ? "Enable" : "Disable";
+		disEnableButton.enabled = true;
+		disEnableButton.onPress = listObjectName == "modsDisabledList" ? enableMod : disableMod;
+		Engine.GetGUIObjectByName("enabledModUp").enabled = listObjectName == "modsEnabledList";
+		Engine.GetGUIObjectByName("enabledModDown").enabled = listObjectName == "modsEnabledList";
+	}
 
 	Engine.GetGUIObjectByName("globalModDescription").caption =
 		listObject.list[listObject.selected] ?
@@ -356,9 +363,12 @@ function showModDescription(listObjectName)
 			'[color="' + g_ColorNoModSelected + '"]' + translate("No mod has been selected.") + '[/color]';
 }
 
-function visitModWebsite(listName)
+function visitModWebsite()
 {
-	let list = Engine.GetGUIObjectByName(listName);
+	let modsEnabledList = Engine.GetGUIObjectByName("modsEnabledList");
+	let modsDisabledList = Engine.GetGUIObjectByName("modsDisabledList");
+
+	let list = modsEnabledList.selected == -1 ? modsDisabledList : modsEnabledList;
 	let folder = list.list_folder[list.selected];
 	let url = folder && g_Mods[folder] && g_Mods[folder].url;
 
