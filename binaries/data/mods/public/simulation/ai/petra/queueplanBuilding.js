@@ -500,7 +500,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 		if (angle == false)
 			continue;
 		let ret = this.checkDockPlacement(gameState, x, z, halfDepth, halfWidth, angle);
-		if (!ret || !gameState.ai.HQ.landRegions[ret.land])
+		if (!ret || !gameState.ai.HQ.landRegions[ret.land] || wantedLand && !wantedLand[ret.land])
 			continue;
 		// Final selection now that the checkDockPlacement water is known
 		if (bestIdx !== undefined && score + 5 * (maxWater - ret.water) > bestVal)
@@ -616,7 +616,6 @@ m.ConstructionPlan.prototype.buildOverseaDock = function(gameState, template)
 	}
 	this.template = oldTemplate;
 	this.metadata = oldMetadata;
-	return;
 };
 
 /** Algorithm taken from the function GetDockAngle in simulation/helpers/Commands.js */
@@ -751,30 +750,38 @@ m.ConstructionPlan.prototype.isDockLocation = function(gameState, j, dimension, 
 {
 	let width = gameState.ai.HQ.territoryMap.width;
 	let cellSize = gameState.ai.HQ.territoryMap.cellSize;
-	let dist = dimension + 2*cellSize;
+	let dimLand = dimension + 1.5 * cellSize;
+	let dimSea = dimension + 2 * cellSize;
 
+	let accessibility = gameState.ai.accessibility;
 	let x = (j%width + 0.5) * cellSize;
 	let z = (Math.floor(j/width) + 0.5) * cellSize;
+	let pos = accessibility.gamePosToMapPos([x, z]);
+	let k = pos[0] + pos[1]*accessibility.width;
+	let landPass = accessibility.landPassMap[k];
+	if (landPass > 1 && wantedLand && !wantedLand[landPass] ||
+	    landPass < 2 && accessibility.navalPassMap[k] < 2)
+		return false;
+
 	for (let a of around)
 	{
-		let pos = gameState.ai.accessibility.gamePosToMapPos([x + dist*a[0], z + dist*a[1]]);
-		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width)
+		pos = accessibility.gamePosToMapPos([x + dimLand*a[0], z + dimLand*a[1]]);
+		if (pos[0] < 0 || pos[0] >= accessibility.width)
 			continue;
-		if (pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
+		if (pos[1] < 0 || pos[1] >= accessibility.height)
 			continue;
-		let k = pos[0] + pos[1]*gameState.ai.accessibility.width;
-		let landPass = gameState.ai.accessibility.landPassMap[k];
+		k = pos[0] + pos[1]*accessibility.width;
+		landPass = accessibility.landPassMap[k];
 		if (landPass < 2 || wantedLand && !wantedLand[landPass])
 			continue;
-		pos = gameState.ai.accessibility.gamePosToMapPos([x - dist*a[0], z - dist*a[1]]);
-		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width)
+		pos = accessibility.gamePosToMapPos([x - dimSea*a[0], z - dimSea*a[1]]);
+		if (pos[0] < 0 || pos[0] >= accessibility.width)
 			continue;
-		if (pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
+		if (pos[1] < 0 || pos[1] >= accessibility.height)
 			continue;
-		k = pos[0] + pos[1]*gameState.ai.accessibility.width;
-		if (wantedSea && gameState.ai.accessibility.navalPassMap[k] != wantedSea)
-			continue;
-		else if (!wantedSea && gameState.ai.accessibility.navalPassMap[k] < 2)
+		k = pos[0] + pos[1]*accessibility.width;
+		if (wantedSea && accessibility.navalPassMap[k] != wantedSea ||
+		   !wantedSea && accessibility.navalPassMap[k] < 2)
 			continue;
 		return true;
 	}
