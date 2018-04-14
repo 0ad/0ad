@@ -497,7 +497,7 @@ Player.prototype.SetState = function(newState, message)
 			});
 	}
 
-	Engine.BroadcastMessage(won ? MT_PlayerWon : MT_PlayerDefeated, { "playerId": this.playerID });
+	Engine.PostMessage(this.entity, won ? MT_PlayerWon : MT_PlayerDefeated, { "playerId": this.playerID });
 
 	if (message)
 	{

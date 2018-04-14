@@ -117,20 +117,19 @@ Auras.prototype.CalculateAffectedPlayers = function(name)
 	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 	if (!cmpPlayer)
 		cmpPlayer = QueryOwnerInterface(this.entity);
+
 	if (!cmpPlayer || cmpPlayer.GetState() == "defeated")
 		return;
 
-	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-	for (var i = 0; i < numPlayers; ++i)
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	for (let i of cmpPlayerManager.GetAllPlayers())
 	{
-		for (let p of affectedPlayers)
-		{
-			if (p == "Player" ? cmpPlayer.GetPlayerID() == i : cmpPlayer["Is" + p](i))
-			{
-				this.affectedPlayers[name].push(i);
-				break;
-			}
-		}
+		let cmpAffectedPlayer = QueryPlayerIDInterface(i);
+		if (!cmpAffectedPlayer || cmpAffectedPlayer.GetState() == "defeated")
+			continue;
+
+		if (affectedPlayers.some(p => p == "Player" ? cmpPlayer.GetPlayerID() == i : cmpPlayer["Is" + p](i)))
+			this.affectedPlayers[name].push(i);
 	}
 };
 
@@ -480,8 +479,14 @@ Auras.prototype.OnGlobalResearchFinished = function(msg)
 	}
 };
 
-Auras.prototype.OnPlayerDefeated = function(msg)
+/**
+ * Only update playerauras, since units and structures are updated OnOwnershipChanged.
+ */
+Auras.prototype.OnGlobalPlayerDefeated = function(msg)
 {
+	if (!Engine.QueryInterface(this.entity, IID_Player))
+		return;
+
 	this.Clean();
 };
 

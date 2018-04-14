@@ -23,13 +23,13 @@ global.AuraTemplates = {
 	}
 };
 
-let playerID = [0, 1, 2];
-let playerEnt = [10, 11, 12];
-let playerState = "active";
-let sourceEnt = 20;
-let targetEnt = 30;
-let auraRange = 40;
-let template = { "Identity" : { "Classes" : { "_string" : "CorrectClass OtherClass" } } };
+var playerID = [0, 1, 2];
+var playerEnt = [10, 11, 12];
+var playerState = "active";
+var sourceEnt = 20;
+var targetEnt = 30;
+var auraRange = 40;
+var template = { "Identity" : { "Classes" : { "_string" : "CorrectClass OtherClass" } } };
 
 function testAuras(name, test_function)
 {
@@ -37,7 +37,8 @@ function testAuras(name, test_function)
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 		"GetPlayerByID": idx => playerEnt[idx],
-		"GetNumPlayers": () => 3
+		"GetNumPlayers": () => 3,
+		"GetAllPlayers": () => playerID
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {

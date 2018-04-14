@@ -2,10 +2,10 @@
 	"type": "global",
 	"affects": ["Human", "Structure"],
 	"modifications": [
-		{ "value": "Armour/Pierce", "add": 2 },
-		{ "value": "Armour/Hack", "add": 2 },
-		{ "value": "Armour/Crush", "add": 2 }
+		{ "value": "Armour/Pierce", "add": 1 },
+		{ "value": "Armour/Hack", "add": 1 },
+		{ "value": "Armour/Crush", "add": 1 }
 	],
 	"auraName": "Shield of Rome",
-	"auraDescription": "+2 armor for all units and structures."
+	"auraDescription": "+1 armor for all units and structures."
 }

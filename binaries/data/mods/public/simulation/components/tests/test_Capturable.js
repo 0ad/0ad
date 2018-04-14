@@ -10,7 +10,7 @@ Engine.LoadComponentScript("interfaces/TerritoryDecay.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("Capturable.js");
 
-let testData = {
+var testData = {
 	"structure": 20,
 	"playerID": 1,
 	"regenRate": 2,
@@ -195,6 +195,6 @@ testReduce(testData, 3000, 3, 2000);
 // Test defeated player
 testCapturable(testData, cmpCapturable => {
 	cmpCapturable.SetCapturePoints([500, 1000, 0, 250]);
-	cmpCapturable.OnPlayerDefeated({ "playerId": 3 });
+	cmpCapturable.OnGlobalPlayerDefeated({ "playerId": 3 });
 	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [750, 1000, 0, 0]);
 });
