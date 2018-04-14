@@ -572,9 +572,13 @@ class EcheLOn(sleekxmpp.ClientXMPP):
         """
         Client is reporting end of game statistics
         """
+        if iq['gamereport']['sender']:
+          sender = iq['gamereport']['sender']
+        else:
+          sender = iq['from']
         try:
           self.leaderboard.getOrCreatePlayer(iq['gamereport']['sender'])
-          self.reportManager.addReport(iq['gamereport']['sender'], iq['gamereport']['game'])
+          self.reportManager.addReport(sender, iq['gamereport']['game'])
           if self.leaderboard.getLastRatedMessage() != "":
             self.ratingCacheReload = True
             self.boardCacheReload = True

@@ -51,6 +51,7 @@ private:
 	std::string m_room;
 	std::string m_nick;
 	std::string m_xpartamuppId;
+	std::string m_echelonId;
 
 	// State
 	bool m_initialLoadComplete;
