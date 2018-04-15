@@ -9,29 +9,30 @@ in particular, let us know and we can try to clarify it.
     GPL version 2 (or later) - see license_gpl-2.0.txt
 
   autolog
-	MIT
+    MIT
 
   cmpgraph
     MIT
 
   dist
     MIT
+    zlib/libpng (FileAssociation.nsh)
 
   entdocs
     MIT
 
   entgraph
     MIT
-	libjpeg (jpeg.dll)
-	libpng (png.dll)
-	zlib (z.dll)
+    libjpeg (jpeg.dll)
+    libpng (png.dll)
+    zlib (z.dll)
 
   entity
     MIT
 
   fontbuilder2
     MIT
-	unspecified (FontLoader.py)
+    unspecified (FontLoader.py)
     IBM CPL (Packer.py)
 
   i18n

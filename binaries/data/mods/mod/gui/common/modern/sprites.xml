@@ -410,6 +410,45 @@
 	</sprite>
 	<!--
 	==========================================
+	- Progress Bar -
+	==========================================
+	-->
+	<sprite name="ModernProgressBarBackground">
+		<image
+			texture="global/modern/progressbar/background_end.png"
+			real_texture_placement="3 0 8 32"
+			size="0 50%-16 5 50%+16"
+		/>
+		<image
+			texture="global/modern/progressbar/background_end.png"
+			real_texture_placement="6 0 7 32"
+			size="5 50%-16 100%-5 50%+16"
+		/>
+		<image
+			texture="global/modern/progressbar/background_end.png"
+			real_texture_placement="8 0 3 32"
+			size="100%-5 50%-16 100% 50%+16"
+		/>
+	</sprite>
+	<sprite name="ModernProgressBar">
+		<image
+			texture="global/modern/progressbar/bar_end.png"
+			real_texture_placement="3 0 4 32"
+			size="-1 50%-16 0 50%+16"
+		/>
+		<image
+			texture="global/modern/progressbar/bar_end.png"
+			real_texture_placement="6 0 7 32"
+			size="0 50%-16 100% 50%+16"
+		/>
+		<image
+			texture="global/modern/progressbar/bar_end.png"
+			real_texture_placement="4 0 3 32"
+			size="100% 50%-16 100%+1 50%+16"
+		/>
+	</sprite>
+	<!--
+	==========================================
 	- Horizontal Tabs -
 	==========================================
 	-->

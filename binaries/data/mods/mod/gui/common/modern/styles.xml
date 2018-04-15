@@ -170,6 +170,19 @@
 		text_valign="center"
 		sound_pressed="audio/interface/ui/ui_button_click.ogg"
 	/>
+	<style name="ModernProgressBarBackground"
+		sprite="ModernProgressBarBackground"
+	/>
+	<style name="ModernProgressBar"
+		sprite_bar="ModernProgressBar"
+		size="3 0 100%-3 100%"
+	/>
+	<style name="ModernProgressBarText"
+		font="sans-stroke-14"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+	/>
 	<style name="ModernTabButtonHorizontal"
 		sprite="ModernTabHorizontalBackground"
 		sound_pressed="audio/interface/ui/ui_button_click.ogg"

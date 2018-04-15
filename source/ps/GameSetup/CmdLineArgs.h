@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,20 +40,20 @@ public:
 	 * Test whether the given name was specified, as either <tt>-name</tt> or
 	 * <tt>-name=value</tt>
 	 */
-	bool Has(const char* name) const;
+	bool Has(const CStr& name) const;
 
 	/**
 	 * Get the value of the named parameter. If it was not specified, returns
 	 * the empty string. If it was specified multiple times, returns the value
 	 * from the first occurrence.
 	 */
-	CStr Get(const char* name) const;
+	CStr Get(const CStr& name) const;
 
 	/**
 	 * Get all the values given to the named parameter. Returns values in the
 	 * same order as they were given in argv.
 	 */
-	std::vector<CStr> GetMultiple(const char* name) const;
+	std::vector<CStr> GetMultiple(const CStr& name) const;
 
 	/**
 	 * Get the value of argv[0], which is typically meant to be the name/path of
@@ -61,10 +61,16 @@ public:
 	 */
 	OsPath GetArg0() const;
 
+	/**
+	 * Returns all arguments that don't have a name (string started with '-').
+	 */
+	std::vector<CStr> GetArgsWithoutName() const;
+
 private:
 	typedef std::vector<std::pair<CStr, CStr> > ArgsT;
 	ArgsT m_Args;
 	OsPath m_Arg0;
+	std::vector<CStr> m_ArgsWithoutName;
 };
 
 #endif // INCLUDED_CMDLINEARGS

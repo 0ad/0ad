@@ -6,8 +6,9 @@
 
   !include "MUI2.nsh"
   !include "LogicLib.nsh"
- 
-  ; Control whether to include source code (and component selection screen)
+  !include "FileAssociation.nsh"
+
+  ;Control whether to include source code (and component selection screen)
   !define INCLUDE_SOURCE 0
 
 ;--------------------------------
@@ -115,7 +116,7 @@ Section "!Game and data files" GameSection
   !if INCLUDE_SOURCE
     File /r /x "public" /x "mod" /x "dev.cfg" "${CHECKOUTPATH}\binaries"
   !else
-    ; Exclude debug DLLs and related files
+    ;Exclude debug DLLs and related files
     File /r /x "public" /x "mod" /x "dev.cfg" /x "*_d.dll" /x "enetd.dll" /x "FColladaD.dll" /x "gloox-1.0d.dll" /x "glooxwrapper_dbg.*" /x "libcurld.dll" /x "libpng16d.dll" /x "miniupnpcd.dll" /x "mozjs*-ps-debug.*" /x "msvc*d.dll" /x "zlib1d.dll" "${CHECKOUTPATH}\binaries"
   !endif
 
@@ -158,6 +159,9 @@ Section "!Game and data files" GameSection
   WriteINIStr "$SMPROGRAMS\$StartMenuFolder\Web site.url" "InternetShortcut" "URL" "http://play0ad.com/"
 
   !insertmacro MUI_STARTMENU_WRITE_END
+
+  ;Register .pyromod file association
+  ${registerExtension} "$INSTDIR\binaries\system\pyrogenesis.exe" ".pyromod" "Pyrogenesis mod"
 
 SectionEnd
 
@@ -244,6 +248,9 @@ Section "Uninstall"
 
   DeleteRegKey SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D."
   DeleteRegKey /ifempty SHCTX "Software\0 A.D."
+
+  ;Unregister .pyromod file association
+  ${unregisterExtension} ".pyromod" "Pyrogenesis mod"
 
 SectionEnd
 
