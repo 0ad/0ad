@@ -506,10 +506,13 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 		return;
 	}
 
-	let time = TriggerHelper.GetMinutes();
-	let groupSizeFactor = jebelBarkal_attackerGroup_sizeFactor(TriggerHelper.GetNumberOfPlayers(), this.numInitialSpawnPoints, this.GetDifficulty());
-	let patrolPoints = this.GetTriggerPoints(jebelBarkal_attackerGroup_triggerPointPatrol);
 	this.debugLog("Attacker wave");
+	let time = TriggerHelper.GetMinutes();
+	let patrolPoints = this.GetTriggerPoints(jebelBarkal_attackerGroup_triggerPointPatrol);
+	let groupSizeFactor = jebelBarkal_attackerGroup_sizeFactor(
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers().length,
+		this.numInitialSpawnPoints,
+		this.GetDifficulty());
 
 	let spawnedAnything = false;
 	for (let spawnPointBalancing of jebelBarkal_attackerGroup_balancing)

@@ -308,9 +308,9 @@ Trigger.prototype.UpdateCelticRitual = function()
 Trigger.prototype.SpawnShips = function()
 {
 	let time = TriggerHelper.GetMinutes();
-	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers().length;
 	let shipSpawnCount = shipCount(time, numPlayers) - this.ships.size;
+
 	this.debugLog("Spawning " + shipSpawnCount + " ships");
 
 	while (this.ships.size < shipSpawnCount)

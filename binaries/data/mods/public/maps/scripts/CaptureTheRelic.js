@@ -61,8 +61,7 @@ Trigger.prototype.CheckCaptureTheRelicCountdown = function()
 		return;
 	}
 
-	let activePlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNonGaiaPlayers().filter(
-		playerID => QueryPlayerIDInterface(playerID).GetState() == "active");
+	let activePlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers();
 	let relicOwners = activePlayers.filter(playerID => this.playerRelicsCount[playerID]);
 	if (!relicOwners.length)
 	{

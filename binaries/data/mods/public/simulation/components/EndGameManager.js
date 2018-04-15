@@ -97,8 +97,8 @@ EndGameManager.prototype.MarkPlayersAsWon = function(winningPlayers, victoryStri
 		cmpPlayer.SetState("won", undefined);
 	}
 
-	let defeatedPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNonGaiaPlayers().filter(
-		playerID => winningPlayers.indexOf(playerID) == -1 && QueryPlayerIDInterface(playerID).GetState() == "active");
+	let defeatedPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers().filter(
+		playerID => winningPlayers.indexOf(playerID) == -1);
 
 	for (let playerID of defeatedPlayers)
 		QueryPlayerIDInterface(playerID).SetState("defeated", undefined);
