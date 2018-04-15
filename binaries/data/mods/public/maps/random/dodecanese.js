@@ -329,7 +329,7 @@ createDecoration(
 	],
 	avoidClasses(clWater, 4, clPlayer, 5, clVolcano, 4, clForest, 1, clBaseResource, 4, clRock, 4, clMetal, 4, clHill, 1));
 
-g_Map.log("Placing bridges");
+g_Map.log("Creating bridges");
 var bridges = 0;
 for (let bridgeStart of shuffleArray(areaShoreline.getPoints()))
 {
@@ -341,32 +341,44 @@ for (let bridgeStart of shuffleArray(areaShoreline.getPoints()))
 		let bridgeAngle = direction * Math.PI / 2;
 		let bridgeDirection = new Vector2D(1, 0).rotate(bridgeAngle);
 
-		let bridgeCenter = Vector2D.add(bridgeStart, Vector2D.mult(bridgeDirection, bridgeLength / 2));
-		if (avoidClasses(clWater, 0).allows(bridgeCenter))
+		let areaOffset = new Vector2D(1, 1);
+
+		let bridgeOffset = new Vector2D(direction % 2 ? 2 : 0, direction % 2 ? 0 : 2);
+		let bridgeCenter1 = Vector2D.add(bridgeStart, Vector2D.mult(bridgeDirection, bridgeLength / 2));
+		let bridgeCenter2 = Vector2D.add(bridgeCenter1, bridgeOffset);
+		if (avoidClasses(clWater, 0).allows(bridgeCenter1) && avoidClasses(clWater, 0).allows(bridgeCenter2))
 			continue;
 
-		let bridgeEnd = Vector2D.add(bridgeStart, Vector2D.mult(bridgeDirection, bridgeLength));
-		if (avoidClasses(clShore, 0).allows(bridgeEnd))
+		let bridgeEnd1 = Vector2D.add(bridgeStart, Vector2D.mult(bridgeDirection, bridgeLength));
+		let bridgeEnd2 = Vector2D.add(bridgeEnd1, bridgeOffset);
+		if (avoidClasses(clShore, 0).allows(bridgeEnd1) && avoidClasses(clShore, 0).allows(bridgeEnd2))
 			continue;
 
 		let bridgePerpendicular = bridgeDirection.perpendicular();
-		if (avoidClasses(clWater, 0).allows(Vector2D.add(bridgeCenter, Vector2D.mult(bridgePerpendicular, bridgeLength / 2))) ||
-		    avoidClasses(clWater, 0).allows(Vector2D.sub(bridgeCenter, Vector2D.mult(bridgePerpendicular, bridgeLength / 2))))
+		let bridgeP = Vector2D.mult(bridgePerpendicular, bridgeLength / 2).round();
+		if (avoidClasses(clWater, 0).allows(Vector2D.add(bridgeCenter1, bridgeP)) ||
+		    avoidClasses(clWater, 0).allows(Vector2D.sub(bridgeCenter2, bridgeP)))
 			continue;
 
 		++bridges;
 
 		// This bridge model is not centered on the horizontal plane, so the angle is messy
-		g_Map.placeEntityAnywhere(aBridge, 0, bridgeCenter, direction % 2 ? 0 : Math.PI / 2);
+		// TILE_CENTERED_HEIGHT_MAP also influences the outcome of the placement.
+		let bridgeOrientation = direction % 2 ? 0 : Math.PI / 2;
+		bridgeCenter1[direction % 2 ? "y" : "x"] += 0.25;
+		bridgeCenter2[direction % 2 ? "y" : "x"] -= 0.25
+
+		g_Map.placeEntityAnywhere(aBridge, 0, bridgeCenter1, bridgeOrientation);
+		g_Map.placeEntityAnywhere(aBridge, 0, bridgeCenter2, bridgeOrientation + Math.PI);
 
 		createArea(
-			new RectPlacer(bridgeStart, Vector2D.add(bridgeEnd, new Vector2D(1, 1))),
+			new RectPlacer(Vector2D.sub(bridgeStart, areaOffset), Vector2D.add(bridgeEnd1, areaOffset)),
 			[
 				new ElevationPainter(heightBridge),
 				new TileClassPainter(clBridge)
 			]);
 
-		for (let center of [bridgeStart, bridgeEnd])
+		for (let center of [bridgeStart, bridgeEnd2])
 			createArea(
 				new DiskPlacer(2, center),
 				new SmoothingPainter(1, 1, 1));
@@ -378,7 +390,7 @@ for (let bridgeStart of shuffleArray(areaShoreline.getPoints()))
 		break
 }
 
-g_Map.log("Adding smoke");
+g_Map.log("Creating smoke");
 if (areasVolcano.length)
 {
 	createObjectGroupsByAreas(
@@ -414,11 +426,5 @@ setPPEffect("hdr");
 setPPContrast(0.62);
 setPPSaturation(0.51);
 setPPBloom(0.12);
-
-if (false)
-createArea(
-	new MapBoundsPlacer(),
-	new TerrainPainter("red"),
-	stayClasses(clWater, 0));
 
 g_Map.ExportMap();
