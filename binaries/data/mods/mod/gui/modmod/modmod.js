@@ -48,17 +48,33 @@ var g_Mods = {};
 var g_ModsEnabled = [];
 var g_ModsDisabled = [];
 
+/**
+ * Name of the mods installed by the ModInstaller.
+ */
+var g_InstalledMods;
+
 var g_ColorNoModSelected = "255 255 100";
 var g_ColorDependenciesMet = "100 255 100";
 var g_ColorDependenciesNotMet = "255 100 100";
 
-function init(data)
+function init(data, hotloadData)
+{
+	g_InstalledMods = data && data.installedMods || hotloadData && hotloadData.installedMods || [];
+	initMods();
+	initGUIButtons(data);
+}
+
+function initMods()
 {
 	loadMods();
 	loadEnabledMods();
 	validateMods();
 	initGUIFilters();
-	initGUIButtons(data);
+}
+
+function getHotloadData()
+{
+	return { "installedMods": g_InstalledMods };
 }
 
 function loadMods()
@@ -129,7 +145,7 @@ function displayModList(listObjectName, folders)
 
 	folders = folders.filter(filterMod);
 
-	listObject.list_name = folders.map(folder => g_Mods[folder].name);
+	listObject.list_name = folders.map(folder => g_Mods[folder].name).map(name => g_InstalledMods.indexOf(name) == -1 ? name : coloredText(name, "green"));
 	listObject.list_folder = folders;
 	listObject.list_label = folders.map(folder => g_Mods[folder].label);
 	listObject.list_url = folders.map(folder => g_Mods[folder].url || "");

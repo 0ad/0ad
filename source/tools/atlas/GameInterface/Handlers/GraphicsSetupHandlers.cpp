@@ -87,7 +87,7 @@ MESSAGEHANDLER(InitGraphics)
 
 	ogl_Init();
 
-	InitGraphics(g_AtlasGameLoop->args, g_InitFlags);
+	InitGraphics(g_AtlasGameLoop->args, g_InitFlags, {});
 
 #if OS_WIN
 	// HACK (to stop things looking very ugly when scrolling) - should

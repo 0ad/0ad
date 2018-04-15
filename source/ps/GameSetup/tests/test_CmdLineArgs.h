@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,8 +34,9 @@ public:
 
 	void test_get()
 	{
-		const char* argv[] = { "program", "-test1=", "-test2=x", "-test3=-y=y-", "-=z" };
+		const char* argv[] = { "program", "-test1=", "--test2=x", "-test3=-y=y-", "-=z" };
 		CmdLineArgs c(ARRAY_SIZE(argv), argv);
+		TS_ASSERT(!c.Has("program"));
 		TS_ASSERT_STR_EQUALS(c.Get("test0"), "");
 		TS_ASSERT_STR_EQUALS(c.Get("test1"), "");
 		TS_ASSERT_STR_EQUALS(c.Get("test2"), "x");
@@ -45,7 +46,7 @@ public:
 
 	void test_multiple()
 	{
-		const char* argv[] = { "program", "-test1=one", "-test1=two", "-test2=none", "-test1=three" };
+		const char* argv[] = { "program", "-test1=one", "--test1=two", "-test2=none", "-test1=three" };
 		CmdLineArgs c(ARRAY_SIZE(argv), argv);
 
 		TS_ASSERT_STR_EQUALS(c.Get("test1"), "one");
@@ -65,7 +66,9 @@ public:
 
 	void test_get_invalid()
 	{
-		const char* argv[] = { "-test1", "-test2", "test3", " -test4" };
+		const char* argv[] = {
+			"-test1", "--test2", "test3-", " -test4", "--", "-=="
+		};
 		CmdLineArgs c(ARRAY_SIZE(argv), argv);
 
 		TS_ASSERT(!c.Has("test1"));
@@ -90,5 +93,15 @@ public:
 #else
 		TS_ASSERT_WSTR_EQUALS(c3.GetArg0().string(), L"ab/cd/ef/gh/../ij");
 #endif
+	}
+
+	void test_get_without_names()
+	{
+		const char* argv[] = { "program", "test0", "-test1", "test2", "test3", "--test4=test5" };
+		CmdLineArgs c(ARRAY_SIZE(argv), argv);
+		TS_ASSERT(c.Has("test1"));
+		TS_ASSERT_STR_EQUALS(c.Get("test4"), "test5");
+		CStr expected_args[] = { "test0", "test2", "test3" };
+		TS_ASSERT_VECTOR_EQUALS_ARRAY(c.GetArgsWithoutName(), expected_args);
 	}
 };

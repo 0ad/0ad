@@ -973,7 +973,7 @@ bool Init(const CmdLineArgs& args, int flags)
 	return true;
 }
 
-void InitGraphics(const CmdLineArgs& args, int flags)
+void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& installedMods)
 {
 	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
 
@@ -1077,8 +1077,10 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 			{
 				scriptInterface->Eval("({})", &data);
 				scriptInterface->SetProperty(data, "isStartup", true);
+				if (!installedMods.empty())
+					scriptInterface->SetProperty(data, "installedMods", installedMods);
 			}
-			InitPs(setup_gui, L"page_pregame.xml", g_GUI->GetScriptInterface().get(), data);
+			InitPs(setup_gui, installedMods.empty() ? L"page_pregame.xml" : L"page_modmod.xml", g_GUI->GetScriptInterface().get(), data);
 		}
 	}
 	catch (PSERROR_Game_World_MapLoadFailed& e)
