@@ -255,7 +255,7 @@ for (let i = 0; i < numPlayers; ++i)
 			"innerTerrain": biomes.common.terrains.road
 		},
 		"Chicken": {
-			"template": localBiome.gaia.fauna.sheep,
+			"template": localBiome.gaia.fauna.startingAnimal,
 			"groupCount": 1,
 			"minGroupCount": 4,
 			"maxGroupCount": 4

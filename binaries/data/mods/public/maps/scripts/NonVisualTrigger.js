@@ -4,14 +4,7 @@
  */
 Trigger.prototype.EndGameAction = function()
 {
-	for (let playerId = 1; playerId < TriggerHelper.GetNumberOfPlayers(); ++playerId)
-	{
-		let cmpPlayer = QueryPlayerIDInterface(playerId);
-		if (cmpPlayer && cmpPlayer.GetState() === "active")
-			return;
-	}
-
-	if (!this.once)
+	if (!this.once || Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers().length)
 		return;
 
 	this.once = false;
