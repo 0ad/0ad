@@ -63,28 +63,29 @@ Barter.prototype.PlayerHasMarket = function(playerID)
 
 Barter.prototype.ExchangeResources = function(playerID, resourceToSell, resourceToBuy, amount)
 {
-	// Data verification
 	if (amount <= 0)
 	{
 		warn("ExchangeResources: incorrect amount: " + uneval(amount));
 		return;
 	}
+
 	let availResources = Resources.GetCodes();
 	if (availResources.indexOf(resourceToSell) == -1)
 	{
 		warn("ExchangeResources: incorrect resource to sell: " + uneval(resourceToSell));
 		return;
 	}
+
 	if (availResources.indexOf(resourceToBuy) == -1)
 	{
 		warn("ExchangeResources: incorrect resource to buy: " + uneval(resourceToBuy));
 		return;
 	}
+
+	// This can occur when the player issues the order just before the market is destroyed or captured
 	if (!this.PlayerHasMarket(playerID))
-	{
-		warn("ExchangeResources: player has no markets");
 		return;
-	}
+
 	if (amount != 100 && amount != 500)
 		return;
 
