@@ -64,7 +64,7 @@ const oPyramidLarge = "structures/kush_pyramid_large";
 const oPyramidSmall = "structures/kush_pyramid_small";
 const oWonderPtol = "structures/ptol_wonder";
 const oFortress = "structures/kush_fortress";
-const oTower = g_MapSettings.Size >= 256 ? "structures/kush_defense_tower" : "structures/kush_sentry_tower";
+const oTower = g_MapSettings.Size >= 256 && getDifficulty() >= 3 ? "structures/kush_defense_tower" : "structures/kush_sentry_tower";
 const oHouse = "structures/kush_house";
 const oMarket = "structures/kush_market";
 const oBlacksmith = "structures/kush_blacksmith";
@@ -250,38 +250,38 @@ const layoutKushCity = [
 		"painters": new TileClassPainter(clHouse)
 	},
 	{
-		"templateName": "uncapturable|" + oFortress,
+		"templateName": oFortress,
 		"difficulty": "Medium",
 		"constraints": [avoidClasses(clFortress, 25), new NearTileClassConstraint(clPath, 8)],
 		"painters": new TileClassPainter(clFortress)
 	},
 	{
-		"templateName": "uncapturable|" + oCivicCenter,
+		"templateName": oCivicCenter,
 		"difficulty": "Easy",
 		"constraints": [avoidClasses(clCivicCenter, 60), new NearTileClassConstraint(clPath, 8)],
 		"painters": new TileClassPainter(clCivicCenter)
 	},
 	{
-		"templateName": "uncapturable|" + oElephantStables,
+		"templateName": oElephantStables,
 		"difficulty": "Easy",
 		"constraints": avoidClasses(clElephantStables, 10),
 		"painters": new TileClassPainter(clElephantStables)
 	},
 	{
-		"templateName": "uncapturable|" + oStable,
+		"templateName": oStable,
 		"difficulty": "Easy",
 		"constraints": avoidClasses(clStable, 20),
 		"painters": new TileClassPainter(clStable)
 	},
 	{
-		"templateName": "uncapturable|" + oBarracks,
+		"templateName": oBarracks,
 		"difficulty": "Easy",
 		"constraints": avoidClasses(clBarracks, 12),
 		"painters": new TileClassPainter(clBarracks)
 	},
 	{
-		"templateName": "uncapturable|" + oTower,
-		"difficulty": "Medium",
+		"templateName": oTower,
+		"difficulty": "Easy",
 		"constraints": avoidClasses(clTower, 17),
 		"painters": new TileClassPainter(clTower)
 	},
@@ -298,13 +298,13 @@ const layoutKushCity = [
 		"painters": new TileClassPainter(clBlacksmith)
 	},
 	{
-		"templateName": "uncapturable|" + oNubaVillage,
+		"templateName": oNubaVillage,
 		"difficulty": "Easy",
 		"constraints": avoidClasses(clNubaVillage, 30),
 		"painters": new TileClassPainter(clNubaVillage)
 	},
 	{
-		"templateName": "uncapturable|" + oBlemmyeCamp,
+		"templateName": oBlemmyeCamp,
 		"difficulty": "Easy",
 		"constraints": avoidClasses(clBlemmyeCamp, 30),
 		"painters": new TileClassPainter(clBlemmyeCamp)
