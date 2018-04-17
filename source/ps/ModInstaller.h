@@ -18,6 +18,7 @@
 #ifndef INCLUDED_MODINSTALLER
 #define INCLUDED_MODINSTALLER
 
+#include "CStr.h"
 #include "lib/file/vfs/vfs.h"
 #include "scriptinterface/ScriptInterface.h"
 
