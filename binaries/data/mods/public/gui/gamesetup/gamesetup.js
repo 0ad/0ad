@@ -2179,7 +2179,8 @@ function launchGame()
 		if (chosenCiv == "random")
 		{
 			let culture = pickRandom(cultures);
-			chosenCiv = pickRandom(Object.keys(g_CivData).filter(civ => g_CivData[civ].Culture == culture));
+			chosenCiv = pickRandom(Object.keys(g_CivData).filter(civ =>
+				g_CivData[civ].Culture == culture && g_CivData[civ].SelectableInGameSetup));
 		}
 		g_GameAttributes.settings.PlayerData[i].Civ = chosenCiv;
 

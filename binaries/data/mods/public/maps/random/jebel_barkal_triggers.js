@@ -20,6 +20,11 @@ const showDebugLog = false;
 var jebelBarkal_rank = "Basic";
 
 /**
+ * Limit the total amount of gaia units spawned for performance reasons.
+ */
+var jebelBarkal_maxPopulation = 8 * 150;
+
+/**
  * These are the templates spawned at the gamestart and during the game.
  */
 var jebelBarkal_templateClasses = deepfreeze({
@@ -335,7 +340,7 @@ var jebelBarkal_attackerGroup_balancing = [
 	},
 	{
 		"buildingClasses": ["ElephantStables", "Wonder"],
-		"unitCount": time => scaleByTime(time, 0, 12),
+		"unitCount": time => scaleByTime(time, 1, 14),
 		"unitComposition": (time, heroes) => [
 			{
 				"templates": jebelBarkal_templates.elephants,
@@ -373,6 +378,9 @@ Trigger.prototype.JebelBarkal_TrackUnits = function()
 
 	// Each item is an array of entity IDs
 	this.jebelBarkal_patrolingUnits = [];
+
+	// Keep track of population limit for attackers
+	this.jebelBarkal_attackerUnits = [];
 
 	// Array of entityIDs where patrol groups can spawn
 	this.jebelBarkal_patrolGroupSpawnPoints = TriggerHelper.GetPlayerEntitiesByClass(
@@ -506,7 +514,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 		return;
 	}
 
-	this.debugLog("Attacker wave");
+	this.debugLog("Attacker wave (at most " + (jebelBarkal_maxPopulation - this.jebelBarkal_attackerUnits.length) + " attackers)");
 	let time = TriggerHelper.GetMinutes();
 	let patrolPoints = this.GetTriggerPoints(jebelBarkal_attackerGroup_triggerPointPatrol);
 	let groupSizeFactor = jebelBarkal_attackerGroup_sizeFactor(
@@ -518,7 +526,14 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 	for (let spawnPointBalancing of jebelBarkal_attackerGroup_balancing)
 		for (let spawnEnt of TriggerHelper.MatchEntitiesByClass(this.jebelBarkal_attackerGroupSpawnPoints, spawnPointBalancing.buildingClasses))
 		{
-			let unitCount = Math.round(groupSizeFactor * spawnPointBalancing.unitCount(time));
+
+			let unitCount = Math.min(
+				jebelBarkal_maxPopulation - this.jebelBarkal_attackerUnits.length,
+				groupSizeFactor * spawnPointBalancing.unitCount(time));
+
+			// Spawn between 0 and 1 elephants per stable in a 1v1 on a normal mapsize at the beginning
+			unitCount = Math.floor(unitCount) + (randBool(unitCount % 1) ? 1 : 0);
+
 			if (unitCount <= 0)
 				continue;
 
@@ -533,12 +548,13 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 			let spawnedEntities = this.JebelBarkal_SpawnTemplates(spawnEnt, templateCounts);
 			spawnedAnything = true;
 
+			this.jebelBarkal_attackerUnits = this.jebelBarkal_attackerUnits.concat(spawnedEntities);
+
 			let formation = pickRandom(spawnPointBalancing.formations);
 			if (formation)
 				TriggerHelper.SetUnitFormation(jebelBarkal_playerID, spawnedEntities, formation);
 
 			let entityGroups = formation ? [spawnedEntities] : spawnedEntities.reduce((entityGroup, ent) => entityGroup.concat([[ent]]), []);
-
 			for (let i = 0; i < jebelBarkal_patrolPointCount; ++i)
 				for (let entities of entityGroups)
 				{
@@ -593,6 +609,7 @@ Trigger.prototype.JebelBarkal_OwnershipChange = function(data)
 		this.jebelBarkal_ritualHealers,
 		this.jebelBarkal_patrolGroupSpawnPoints,
 		this.jebelBarkal_attackerGroupSpawnPoints,
+		this.jebelBarkal_attackerUnits,
 		...this.jebelBarkal_patrolingUnits,
 	];
 

@@ -89,6 +89,9 @@ PathPlacer.prototype.place = function(constraint)
 		{
 			if (!constraint.allows(point))
 			{
+				if (!this.failFraction)
+					return undefined;
+
 				++failed;
 				continue;
 			}
