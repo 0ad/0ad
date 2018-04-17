@@ -939,7 +939,7 @@ void LongPathfinder::ImprovePathWaypoints(WaypointPath& path, pass_class_t passC
 		{
 			// We are too far away from the previous waypoint, so create one in
 			// between and continue with the improvement of the path
-			prev = prev + (curr - prev) / 2;
+			prev = CFixedVector2D(waypoints[k - 1].x, waypoints[k - 1].z);
 			newWaypoints.emplace_back(Waypoint{ prev.X, prev.Y });
 		}
 
