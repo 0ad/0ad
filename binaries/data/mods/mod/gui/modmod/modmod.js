@@ -365,10 +365,10 @@ function selectedMod(listObjectName)
 	{
 		otherListObject.selected = -1;
 		Engine.GetGUIObjectByName("visitWebButton").enabled = true;
-		let disEnableButton =  Engine.GetGUIObjectByName("disEnableButton")
-		disEnableButton.caption = listObjectName == "modsDisabledList" ? "Enable" : "Disable";
-		disEnableButton.enabled = true;
-		disEnableButton.onPress = listObjectName == "modsDisabledList" ? enableMod : disableMod;
+		let toggleModButton = Engine.GetGUIObjectByName("toggleModButton");
+		toggleModButton.caption = listObjectName == "modsDisabledList" ? "Enable" : "Disable";
+		toggleModButton.enabled = true;
+		toggleModButton.onPress = listObjectName == "modsDisabledList" ? enableMod : disableMod;
 		Engine.GetGUIObjectByName("enabledModUp").enabled = listObjectName == "modsEnabledList";
 		Engine.GetGUIObjectByName("enabledModDown").enabled = listObjectName == "modsEnabledList";
 	}
