@@ -164,6 +164,7 @@ const clPathCrossing = g_Map.createTileClass();
 const clStatue = g_Map.createTileClass();
 const clWall = g_Map.createTileClass();
 const clGate = g_Map.createTileClass();
+const clRoad = g_Map.createTileClass();
 const clTriggerPointCityPath = g_Map.createTileClass();
 const clTriggerPointMap = g_Map.createTileClass();
 const clSoldier = g_Map.createTileClass();
@@ -343,6 +344,7 @@ const heightHill = heightDesert + heightScale(4);
 const heightHilltop = heightHill + heightScale(90);
 const heightHillArchers = (heightHilltop + heightHill) / 2;
 const heightOffsetPath = heightScale(-2.5);
+const heightOffsetRoad = heightScale(-1.5);
 const heightOffsetWalls = heightScale(2.5);
 const heightOffsetStatue = heightScale(2.5);
 
@@ -422,13 +424,18 @@ createArea(
 		new HeightConstraint(-Infinity, heightWaterLevel));
 
 g_Map.log("Marking desert");
+const avoidWater = new StaticConstraint(avoidClasses(clWater, 0));
 createArea(
 	new MapBoundsPlacer(),
 	new TileClassPainter(clDesert),
 	[
 		new HeightConstraint(-Infinity, heightHill),
-		avoidClasses(clWater, 0, clFertileLand, 0)
+		avoidWater,
+		avoidClasses(clFertileLand, 0)
 	]);
+
+const stayDesert = new StaticConstraint(stayClasses(clDesert, 0));
+const stayFertileLand = new StaticConstraint(stayClasses(clFertileLand, 0));
 
 g_Map.log("Finding possible irrigation canal locations");
 var irrigationCanalAreas = [];
@@ -667,13 +674,15 @@ for (let y in cityGridPosition)
 	}
 
 g_Map.log("Marking horizontal city paths");
+var areasCityPaths = [];
 for (let y = 0; y < gridPointsY; ++y)
 	for (let x = 1; x < gridPointsX; ++x)
 	{
 		let width = y == gridPointYCenter ? pathWidthSecondary : pathWidth;
-		createArea(
-			new PathPlacer(cityGridPosition[y][x - 1], cityGridPosition[y][x], width, 0, 8, 0, 0, Infinity),
-			new TileClassPainter(clPath));
+		areasCityPaths.push(
+			createArea(
+				new PathPlacer(cityGridPosition[y][x - 1], cityGridPosition[y][x], width, 0, 8, 0, 0, Infinity),
+				new TileClassPainter(clPath)));
 	}
 
 g_Map.log("Marking vertical city paths");
@@ -687,9 +696,10 @@ for (let y = 1; y < gridPointsY; ++y)
 				pathWidthSecondary :
 				pathWidth;
 
-		createArea(
-			new PathPlacer(cityGridPosition[y - 1][x], cityGridPosition[y][x], width, 0, 8, 0, 0, Infinity),
-			new TileClassPainter(clPath));
+		areasCityPaths.push(
+			createArea(
+				new PathPlacer(cityGridPosition[y - 1][x], cityGridPosition[y][x], width, 0, 8, 0, 0, Infinity),
+				new TileClassPainter(clPath)));
 	}
 Engine.SetProgress(70);
 
@@ -813,8 +823,8 @@ for (let i = 0; i < statuePosition.length; ++i)
 	g_Map.placeEntityPassable(pickRandom(aStatues), 0, statuePosition[i], statueAngle[i] + Math.PI);
 
 g_Map.log("Placing palms at the ritual place");
-var [palmPosition, palmAngle] = distributePointsOnCircularSegment(
-	scaleByMapSize(6, 16), Math.PI, ritualAngle, scaleByMapSize(4, 5), ritualPosition);
+var palmPosition = distributePointsOnCircularSegment(
+	scaleByMapSize(6, 16), Math.PI, ritualAngle, scaleByMapSize(4, 5), ritualPosition)[0];
 for (let i = 0; i < palmPosition.length; ++i)
 	if (avoidClasses(clTemple, 1).allows(palmPosition[i]))
 		g_Map.placeEntityPassable(oPalmPath, 0, palmPosition[i], randomAngle());
@@ -849,10 +859,11 @@ for (let y = 1; y < gridPointsY; ++y)
 		],
 		new StaticConstraint(avoidClasses(clPath, 0)));
 
+var entitiesGates;
 if (placeNapataWall)
 {
 	g_Map.log("Placing front walls");
-	let wallGridMaxAngleSummand = Math.PI / 32;
+	let wallGridMaxAngleSummand = scaleByMapSize(0.04, 0.03) * Math.PI;
 	let wallGridStartAngle = gridStartAngle - wallGridMaxAngleSummand / 2;
 	let wallGridRadiusFront = gridRadius(gridPointsY - 1) + pathWidth - 1;
 	let wallGridMaxAngleFront = gridMaxAngle + wallGridMaxAngleSummand;
@@ -891,7 +902,7 @@ if (placeNapataWall)
 		new TileClassPainter(clWall));
 
 	g_Map.log("Marking gates");
-	let entitiesGates = entitiesWalls.filter(entity => entity.templateName.endsWith(oWallGate));
+	entitiesGates = entitiesWalls.filter(entity => entity.templateName.endsWith(oWallGate));
 	createArea(
 		new EntitiesObstructionPlacer(entitiesGates, 0, Infinity),
 		new TileClassPainter(clGate));
@@ -923,6 +934,96 @@ if (placeNapataWall)
 }
 Engine.SetProgress(70);
 
+g_Map.log("Finding road starting points");
+var roadStartLocations = shuffleArray(
+	entitiesGates ?
+		entitiesGates.map(entity => entity.GetPosition2D()) :
+		[
+			...cityGridPosition.map(gridPos => gridPos[0]),
+			...cityGridPosition.map(gridPos => gridPos[gridPos.length - 1]),
+			...cityGridPosition[cityGridPosition.length - 1]
+		]);
+
+g_Map.log("Finding possible roads");
+var roadConstraint = new StaticConstraint(
+	[
+		stayDesert,
+		avoidClasses(clHill, 0, clCity, 0, clPyramid, 6, clPlayer, 16)
+	]);
+
+var areaCityPaths = new Area(areasCityPaths.reduce((points, area) => points.concat(area.getPoints()), []));
+var areaRoads = [];
+for (let roadStart of roadStartLocations)
+{
+	if (areaRoads.length >= scaleByMapSize(2, 4))
+		break;
+
+	let closestPoint = areaCityPaths.getClosestPointTo(roadStart);
+	roadConstraint = new StaticConstraint([roadConstraint, avoidClasses(clRoad, 20)]);
+	for (let tries = 0; tries < 30; ++tries)
+	{
+		let area = createArea(
+			new PathPlacer(
+				Vector2D.add(closestPoint, new Vector2D(0, 3/4 * mapSize).rotate(
+					closestPoint.angleTo(roadStart) + randFloat(-1, 1) / 8 * Math.PI)),
+				roadStart,
+				4,
+				0.1,
+				5,
+				0.5,
+				0,
+				0),
+			new TileClassPainter(clRoad),
+			roadConstraint);
+
+		if (area && area.getPoints().length)
+		{
+			areaRoads.push(area);
+			break;
+		}
+	}
+}
+
+g_Map.log("Painting roads");
+createArea(
+	new MapBoundsPlacer(),
+	[
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetRoad, 1),
+		new LayeredPainter([tPathWild, tPath], [1]),
+	],
+	[stayClasses(clRoad, 0), avoidClasses(clPath, 0)]);
+
+g_Map.log("Marking road palm area");
+var areaRoadPalms = createArea(
+	new MapBoundsPlacer(),
+	undefined,
+	[
+		new NearTileClassConstraint(clRoad, 1),
+		avoidClasses(clRoad, 0, clPath, 1, clWall, 4, clGate, 4)
+	]);
+
+if (areaRoadPalms && areaRoadPalms.getPoints().length)
+{
+	g_Map.log("Placing road palms");
+	createObjectGroupsByAreas(
+		new SimpleGroup([new SimpleObject(oPalmPath, 1, 1, 0, 0)], true, clForest),
+		0,
+		avoidClasses(clForest, 3, clGate, 7),
+		scaleByMapSize(40, 200),
+		20,
+		[areaRoadPalms]);
+
+	g_Map.log("Placing road bushes");
+	createObjectGroupsByAreas(
+		new SimpleGroup([new RandomObject(aBushesCity, 1, 1, 0, 0)], true, clForest),
+		0,
+		avoidClasses(clForest, 1),
+		scaleByMapSize(40, 200),
+		20,
+		[areaRoadPalms]);
+}
+Engine.SetProgress(75);
+
 g_Map.log("Marking city bush area");
 var areaCityBushes =
 	createArea(
@@ -932,6 +1033,7 @@ var areaCityBushes =
 			new NearTileClassConstraint(clPath, 1),
 			avoidClasses(
 				clPath, 0,
+				clRoad, 0,
 				clPyramid, 20,
 				clRitualPlace, 8,
 				clTemple, 3,
@@ -985,7 +1087,7 @@ if (placeNapataWall)
 		undefined,
 		new StaticConstraint([
 			new NearTileClassConstraint(clWall, 2),
-			avoidClasses(clPath, 1, clWall, 1, clGate, 3, clTemple, 2, clHill, 6)
+			avoidClasses(clPath, 1, clRoad, 1, clWall, 1, clGate, 3, clTemple, 2, clHill, 6)
 		]));
 
 	g_Map.log("Placing wall palms");
@@ -998,22 +1100,26 @@ if (placeNapataWall)
 		[areaWallPalms]);
 }
 
-createBumps(new StaticConstraint(avoidClasses(clPlayer, 6, clCity, 0, clWater, 2, clHill, 0, clPath, 0, clTemple, 4, clPyramid, 8)), scaleByMapSize(30, 300), 1, 8, 4, 0, 3);
-Engine.SetProgress(75);
+createBumps(
+	new StaticConstraint(avoidClasses(clPlayer, 6, clCity, 0, clWater, 2, clHill, 0, clPath, 0, clRoad, 0, clTemple, 4, clPyramid, 8)),
+	scaleByMapSize(30, 300),
+	1,
+	8,
+	4,
+	0,
+	3);
+Engine.SetProgress(80);
 
-g_Map.log("Setting up common constraints");
-const stayDesert = new StaticConstraint(stayClasses(clDesert, 0));
-const stayFertileLand = new StaticConstraint(stayClasses(clFertileLand, 0));
+g_Map.log("Setting up common constraints and areas");
 const nearWater = new NearTileClassConstraint(clWater, 3);
 var avoidCollisions = new AndConstraint(
 	[
 		new StaticConstraint(avoidClasses(
-			clCliff, 0, clHill, 0, clPlayer, 15, clWater, 1, clPath, 2, clRitualPlace, 10,
+			clCliff, 0, clHill, 0, clPlayer, 15, clWater, 1, clPath, 2, clRoad, 6, clRitualPlace, 10,
 			clTemple, 4, clPyramid, 7, clCity, 4, clWall, 4, clGate, 8)),
 		avoidClasses(clForest, 1, clRock, 4, clMetal, 4, clFood, 6, clSoldier, 1, clTreasure, 1)
 	]);
 
-g_Map.log("Setting up common areas");
 const areaDesert = createArea(new MapBoundsPlacer(), undefined, stayDesert);
 const areaFertileLand = createArea(new MapBoundsPlacer(), undefined, stayFertileLand);
 
@@ -1027,7 +1133,7 @@ const avoidCollisionsMines = new StaticConstraint([
 	isNomad() ? new NullConstraint() : avoidClasses(clFertileLand, 10),
 	avoidClasses(
 		clWater, 4, clCliff, 4, clCity, 4, clRitualPlace, 10,
-		clPlayer, 20, clForest, 4, clPyramid, 6, clTemple, 4, clPath, 4, clGate, 8)]);
+		clPlayer, 20, clForest, 4, clPyramid, 6, clTemple, 4, clPath, 4, clRoad, 4, clGate, 8)]);
 
 g_Map.log("Creating stone mines");
 createMines(
@@ -1255,7 +1361,7 @@ g_Map.log("Placing fence in fertile land");
 createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(aPlotFence, 1, 1, 1, 1)], true, clDecorative),
 	0,
-	new StaticConstraint(avoidCollisions, avoidClasses(clWater, 6, clDecorative, 10)),
+	new StaticConstraint([avoidCollisions, avoidClasses(clWater, 6, clDecorative, 10)]),
 	scaleByMapSize(1, 10),
 	250,
 	[areaFertileLand]);
@@ -1274,12 +1380,12 @@ avoidCollisions = new StaticConstraint(avoidCollisions);
 
 createDecoration(
 	aBushesDesert.map(bush => [new SimpleObject(bush, 0, 3, 2, 4)]),
-	aBushesDesert.map(bush => scaleByMapSize(20, 150) * randIntInclusive(1, 3)),
+	aBushesDesert.map(bush => scaleByMapSize(20, 120) * randIntInclusive(1, 3)),
 	[stayDesert, avoidCollisions]);
 
 createDecoration(
 	aBushesFertileLand.map(bush => [new SimpleObject(bush, 0, 4, 2, 4)]),
-	aBushesFertileLand.map(bush => scaleByMapSize(20, 150) * randIntInclusive(1, 3)),
+	aBushesFertileLand.map(bush => scaleByMapSize(20, 120) * randIntInclusive(1, 3)),
 	[stayFertileLand, avoidCollisions]);
 
 createDecoration(
