@@ -138,10 +138,10 @@
 				style="ModernButtonRed"
 				size="100%-32-2 23+4 100%-2 23+32+4"
 				enabled="false"
-				sprite="ArrowUpRed"
-				sprite_pressed="ArrowUpRed"
-				sprite_over="ArrowUpRedBright"
-				sprite_disabled="ArrowUpGrey"
+				sprite="ModernArrowUpRed"
+				sprite_pressed="ModernArrowUpRed"
+				sprite_over="ModernArrowUpRedBright"
+				sprite_disabled="ModernArrowUpGrey"
 			>
 				<translatableAttribute id="tooltip">Change the order in which mods are launched. This should match the mods dependencies.</translatableAttribute>
 				<action on="Press">moveCurrItem("modsEnabledList", true);</action>
@@ -152,10 +152,10 @@
 				style="ModernButtonRed"
 				size="100%-32-2 100%-32-4 100%-2 100%-4"
 				enabled="false"
-				sprite="ArrowDownRed"
-				sprite_pressed="ArrowDownRed"
-				sprite_over="ArrowDownRedBright"
-				sprite_disabled="ArrowDownGrey"
+				sprite="ModernArrowDownRed"
+				sprite_pressed="ModernArrowDownRed"
+				sprite_over="ModernArrowDownRedBright"
+				sprite_disabled="ModernArrowDownGrey"
 			>
 				<translatableAttribute id="tooltip">Change the order in which mods are launched. This should match the mods dependencies.</translatableAttribute>
 				<action on="Press">moveCurrItem("modsEnabledList", false);</action>
@@ -163,7 +163,7 @@
 		</object>
 
 		<!-- MOD-SPECIFIC BUTTONS -->
-		<object name="disEnableButton" type="button" style="ModernButtonRed" size="16 100%-80 200 100%-52" enabled="false">
+		<object name="toggleModButton" type="button" style="ModernButtonRed" size="16 100%-80 200 100%-52" enabled="false">
 			<translatableAttribute id="caption">Enable/Disable</translatableAttribute>
 		</object>
 		<object name="visitWebButton" type="button" style="ModernButtonRed" size="204 100%-80 388 100%-52" enabled="false">
