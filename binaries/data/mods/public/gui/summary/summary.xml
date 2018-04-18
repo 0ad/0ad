@@ -225,7 +225,7 @@
 
 		<object type="button" name="replayButton" style="ModernButtonRed" size="100%-310 100%-48 100%-170 100%-20">
 			<translatableAttribute id="caption">Replay</translatableAttribute>
-			<action on="Press">confirmStartReplay();</action>
+			<action on="Press">startReplay();</action>
 		</object>
 
 		<object type="button" name="continueButton" style="ModernButtonRed" size="100%-160 100%-48 100%-20 100%-20">
