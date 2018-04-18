@@ -13,6 +13,7 @@
 # curieux de l'être <skimandco@gmail.com>, 2017
 # Cyril Mercier <cyril.mercier21@gmail.com>, 2018
 # Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2016
+# David D, 2018
 # foufy much <foufy68@hotmail.com>, 2016
 # François Poirotte <clicky@erebot.net>, 2016
 # tavariz <guipoi@yahoo.fr>, 2016
@@ -45,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-04 16:10+0000\n"
-"Last-Translator: Brian BERNARD <brianbernard16@gmail.com>\n"
+"PO-Revision-Date: 2018-04-17 20:45+0000\n"
+"Last-Translator: David D\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -344,7 +345,7 @@ msgstr "Partie sans fin"
 
 #: gui/common/gamedescription.js:225
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Aucun vainqueur ne sera déterminé, même si tout le monde est battu."
 
 #: gui/common/gamedescription.js:236
 #, javascript-format
@@ -380,7 +381,7 @@ msgstr "Héros exposés"
 
 #: gui/common/gamedescription.js:277
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Les héros ne peuvent pas être mis en garnison et ils sont vulnérables aux raids."
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
@@ -445,11 +446,11 @@ msgstr[1] "Durant les %(min)s premières minutes, les autres joueurs restent neu
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Carte au hasard"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Sélectionne aléatoirement une carte dans la liste"
 
 #: gui/common/gamedescription.js:330
 msgid "Map Name"
@@ -474,11 +475,11 @@ msgstr "Taille de la carte"
 #: gui/common/gamedescription.js:366
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "Biome aléatoire"
 
 #: gui/common/gamedescription.js:367
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "Sélectionne aléatoirement un biome dans la liste."
 
 #: gui/common/gamedescription.js:381
 msgid "Nomad Mode"
@@ -1597,7 +1598,7 @@ msgstr "Multijoueur"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "N'importe quelle condition de victoire"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -3080,7 +3081,7 @@ msgstr "Santé des unités blessées"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "Nombre d’unités entraînées par groupe, par défaut."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
@@ -3089,11 +3090,11 @@ msgstr "Taille des groupes d'unités entraînées."
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "Le nombre de fois que vous devez faire défiler pour augmenter/diminuer par 1 la taille du lot."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
-msgstr ""
+msgstr "Ratio d'incrémentation de lot par défilement "
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -3214,7 +3215,7 @@ msgstr "Tri de l'affichage des ressources et de la population."
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr ""
+msgstr "La couleur de vos unités lorsque les couleurs de diplomatie sont permises."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Diplomacy Colors: Self"
@@ -3697,17 +3698,17 @@ msgstr ""
 msgid ""
 "- Gain an advantage on the battleground by tactically positioning your "
 "units!"
-msgstr ""
+msgstr "- Gagner un avantage sur le champ de bataille en positionnant tactiquement vos unités !"
 
 #: gui/text/tips/freehand_position.txt:4
 msgid ""
 "- Therefore select some units, press and hold the right mouse button, draw "
 "any line, then release the button."
-msgstr ""
+msgstr "- Donc sélectionnez quelques unités, pressez et tenez le bouton droit de la souris, tracez n'importe quelle ligne, puis libérez le bouton."
 
 #: gui/text/tips/freehand_position.txt:6
 msgid "- Your units will now spread out on this line."
-msgstr ""
+msgstr "- Vos unités vont maintenant se répartir sur cette ligne."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
