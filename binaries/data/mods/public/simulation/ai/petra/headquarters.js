@@ -912,12 +912,21 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 		needed.push({ "type": res, "wanted": wantedRates[res], "current": currentRates[res] });
 
 	needed.sort((a, b) => {
-		let va = Math.max(0, a.wanted - a.current) / (a.current + 1);
-		let vb = Math.max(0, b.wanted - b.current) / (b.current + 1);
-		// If they happen to be equal (generally this means "0" aka no need), make it fair.
-		if (va == vb)
-			return a.current - b.current;
-		return vb - va;
+		if (a.current < a.wanted && b.current < b.wanted)
+		{
+			if (a.current && b.current)
+				return b.wanted / b.current - a.wanted / a.current;
+			else if (a.current)
+				return 1;
+			else if (b.current)
+				return -1;
+			return b.wanted - a.wanted;
+		}
+		if (a.current < a.wanted || a.wanted && !b.wanted)
+			return -1;
+		else if (b.current < b.wanted || b.wanted && !a.wanted)
+			return 1;
+		return a.current - a.wanted - b.current + b.wanted;
 	});
 	return needed;
 };

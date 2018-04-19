@@ -587,7 +587,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				return;
 			}
 
-			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": false, "hunting": true, "allowCapture": false });
+			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": !!this.order.data.force, "hunting": true, "allowCapture": false });
 			return;
 		}
 
@@ -899,7 +899,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					return;
 				}
 
-				this.PushOrderFront("Attack", { "target": msg.data.target, "hunting": true, "allowCapture": false });
+				this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "allowCapture": false });
 				return;
 			}
 

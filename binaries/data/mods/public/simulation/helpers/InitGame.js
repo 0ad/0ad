@@ -45,7 +45,7 @@ function InitGame(settings)
 	// rate apply on resource stockpiling as gathering and trading
 	// time apply on building, upgrading, packing, training and technologies
 	let rate = [ 0.42, 0.56, 0.75, 1.00, 1.25, 1.56 ];
-	let time = [ 1.30, 1.15, 1.00, 1.00, 1.00, 1.00 ];
+	let time = [ 1.40, 1.25, 1.10, 1.00, 1.00, 1.00 ];
 	let cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
 	for (let i = 0; i < settings.PlayerData.length; ++i)
 	{
