@@ -19,6 +19,7 @@
 # Pedro M <pedrofernando94@gmail.com>, 2016
 # Pedro Santos <estevespubl@gmail.com>, 2017
 # Qodek <andre.lucas.silva2468@gmail.com>, 2014
+# Rui <xymarior@yandex.com>, 2018
 # Sander Deryckere, 2014
 # Sérgio Marques <smarquespt@gmail.com>, 2013
 # t g <khonostrov@runbox.no>, 2017
@@ -27,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-04 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-17 00:45+0000\n"
+"Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -185,7 +186,7 @@ msgstr "Todos os mapas do tipo escolhido."
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Mapa"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
@@ -195,7 +196,7 @@ msgstr "Jogador"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Tipo de Jogo"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
@@ -258,7 +259,7 @@ msgstr "Seleccione o limite populacional"
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Aviso: Podem surgir problemas de desempenho se todos os %(players)s jogadores chegarem a uma população total de %(popCap)s."
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
@@ -318,11 +319,11 @@ msgstr "Seleccionar a velocidade do jogo."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
-msgstr ""
+msgstr "Dificuldade"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Selecione a dificuldade deste cenário."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Chose the civilization for this player"
@@ -372,7 +373,7 @@ msgstr "Alternar mapa explorado (ver mapa inicial)."
 
 #: gui/gamesetup/gamesetup.js:899
 msgid "Disable Treasures"
-msgstr ""
+msgstr "Desativar Tesouros"
 
 #: gui/gamesetup/gamesetup.js:900
 msgid "Disable all treasures on the map."
@@ -380,15 +381,15 @@ msgstr "Desativar todos os tesouros no mapa."
 
 #: gui/gamesetup/gamesetup.js:911
 msgid "Disable Spies"
-msgstr ""
+msgstr "Desativar Espiões"
 
 #: gui/gamesetup/gamesetup.js:912
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Desativa os espiões durante o jogo."
 
 #: gui/gamesetup/gamesetup.js:923
 msgid "Teams Locked"
-msgstr ""
+msgstr "Equipas Bloqueadas"
 
 #: gui/gamesetup/gamesetup.js:924
 msgid "Toggle locked teams."
@@ -396,7 +397,7 @@ msgstr "Activar/desactivar equipas bloqueadas."
 
 #: gui/gamesetup/gamesetup.js:938
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Último Sobrevivente"
 
 #: gui/gamesetup/gamesetup.js:939
 msgid ""
@@ -435,7 +436,7 @@ msgstr "Regressar ao menu principal."
 
 #: gui/gamesetup/gamesetup.js:1013
 msgid "Start Game!"
-msgstr ""
+msgstr "Começar o Jogo!"
 
 #: gui/gamesetup/gamesetup.js:1019
 msgid "Start a new game with the current settings."
@@ -481,7 +482,7 @@ msgstr "Aleatório"
 
 #: gui/gamesetup/gamesetup.js:1710
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Escolher um mapa qualquer aleatoriamente."
 
 #: gui/gamesetup/gamesetup.js:1742
 msgctxt "biome"
@@ -490,13 +491,13 @@ msgstr "Aleatório"
 
 #: gui/gamesetup/gamesetup.js:1743
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Escolher um bioma aleatoriamente."
 
 #: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2073
 msgctxt "settings value"
@@ -514,7 +515,7 @@ msgstr "Não"
 #: gui/gamesetup/gamesetup.js:2110
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2196
 #, javascript-format
@@ -597,7 +598,7 @@ msgstr "A carregar"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "A carregar os dados do mapa. Por favor aguarde..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"

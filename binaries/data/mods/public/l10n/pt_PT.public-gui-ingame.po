@@ -18,14 +18,15 @@
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2013-2014
 # Pedro Santos <estevespubl@gmail.com>, 2017
 # Qodek <andre.lucas.silva2468@gmail.com>, 2014
+# Rui <xymarior@yandex.com>, 2018
 # Sander Deryckere, 2014
 # Sérgio Marques <smarquespt@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-17 03:13+0000\n"
+"Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +108,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Tempo restante de cessar-fogo: %(time)s."
 
 #: gui/session/menu.js:455
 msgctxt "team"
@@ -140,11 +141,11 @@ msgstr "Pedir aos seus aliados para atacar este exército"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Subornar uma unidade aleatória deste jogador e partilhar a sua visão durante um período limitado."
 
 #: gui/session/menu.js:600
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "Um suborno mal sucedido irá custar-lhe:"
 
 #: gui/session/menu.js:776
 #, javascript-format
@@ -278,7 +279,7 @@ msgstr "Pausado por %(players)s"
 #: gui/session/menu.js:1211 gui/session/messages.js:700
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/menu.js:1224 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -362,7 +363,7 @@ msgstr "Aguardando que os jogadores se conectem:"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr ""
+msgstr "A sincronizar o jogo com outros jogadores..."
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -486,24 +487,24 @@ msgstr "%(player)s é agora neutro com %(player2)s."
 
 #: gui/session/messages.js:589
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "Clique para sair deste tutorial."
 
 #: gui/session/messages.js:590
 msgid "Quit"
-msgstr ""
+msgstr "Sair"
 
 #: gui/session/messages.js:594
 msgid "Click when ready."
-msgstr ""
+msgstr "Clique quando estiver pronto."
 
 #: gui/session/messages.js:598
 msgid "Follow the instructions."
-msgstr ""
+msgstr "Siga as instruções."
 
 #: gui/session/messages.js:689
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:695
 #, javascript-format
@@ -514,7 +515,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "Jogadores: %(players)s"
 
 #: gui/session/messages.js:704
 msgctxt "Out-Of-Sync"
@@ -555,17 +556,17 @@ msgstr ""
 
 #: gui/session/messages.js:727 gui/session/messages.js:738
 msgid "Out of Sync"
-msgstr ""
+msgstr "Fora de Sincronismo"
 
 #: gui/session/messages.js:735
 msgid "Out-Of-Sync error!"
-msgstr ""
+msgstr "Erro de Fora de Sincronismo!"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/messages.js:737
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
-msgstr ""
+msgstr "O estado do jogo atual é diferente do estado do jogo original."
 
 #: gui/session/messages.js:801
 msgctxt "chat addressee"
@@ -609,7 +610,7 @@ msgstr "Jogador desconhecido"
 #. elements in an enumeration.
 #: gui/session/messages.js:999
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:1031
 #, javascript-format
@@ -721,7 +722,7 @@ msgstr "Ganho: %(gain)s"
 #: gui/session/selection_panels.js:607 gui/session/session.js:1347
 msgctxt "countdown format"
 msgid "m:ss"
-msgstr ""
+msgstr "m:ss"
 
 #: gui/session/selection_details.js:265
 msgid "Current/max gatherers"
@@ -743,17 +744,17 @@ msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:417
 msgid "Carrying:"
-msgstr ""
+msgstr "A carregar:"
 
 #: gui/session/selection_details.js:420 gui/session/selection_details.js:429
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:425
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:426
 msgid "Loot:"
@@ -841,12 +842,12 @@ msgstr[1] ""
 #: gui/session/selection_panels.js:767
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Restante: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:768
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:1079
 #, javascript-format
@@ -965,7 +966,7 @@ msgstr "Digita a mensagem que pretende enviar."
 #: gui/session/session.js:443
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Pressione a tecla %(hotkey)s para abrir a conversa pública."
 
 #: gui/session/session.js:446
 #, javascript-format
@@ -980,7 +981,7 @@ msgstr "Clique %(hotkey)s para abrir a conversa com os Aliados."
 #: gui/session/session.js:449
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Pressione a tecla %(hotkey)s para abrir a conversa privada anteriormente selecionada."
 
 #: gui/session/session.js:453
 msgid "Find idle worker"
@@ -989,7 +990,7 @@ msgstr "Localizar trabalhadores inactivos"
 #: gui/session/session.js:457 gui/session/session.js:461
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Alternar Cores de Diplomacia"
 
 #: gui/session/session.js:464
 #, javascript-format
@@ -1065,19 +1066,19 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s para alterar a ordenação."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
-msgstr ""
+msgstr "Não ordenado"
 
 #: gui/session/session.js:1260
 msgid "Descending"
-msgstr ""
+msgstr "Descendente"
 
 #: gui/session/session.js:1260
 msgid "Ascending"
-msgstr ""
+msgstr "Ascendente"
 
 #: gui/session/session.js:1286
 #, javascript-format

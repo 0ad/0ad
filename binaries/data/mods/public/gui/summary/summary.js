@@ -436,20 +436,6 @@ function updatePanelData(panelInfo)
 		updateCountersTeam(teamCounterFn, panelInfo.counters, panelInfo.headings, index);
 }
 
-function confirmStartReplay()
-{
-	if (Engine.HasXmppClient())
-		messageBox(
-			400, 200,
-			translate("Are you sure you want to quit the lobby?"),
-			translate("Confirmation"),
-			[translate("No"), translate("Yes")],
-			[null, startReplay]
-		);
-	else
-		startReplay();
-}
-
 function continueButton()
 {
 	let summarySelectedData = {
@@ -463,22 +449,19 @@ function continueButton()
 		});
 	else if (g_GameData.gui.dialog)
 		Engine.PopGuiPage();
+	else if (Engine.HasXmppClient())
+		Engine.SwitchGuiPage("page_lobby.xml", { "dialog": false });
 	else if (g_GameData.gui.isReplay)
 		Engine.SwitchGuiPage("page_replaymenu.xml", {
 			"replaySelectionData": g_GameData.gui.replaySelectionData,
 			"summarySelectedData": summarySelectedData
 		});
-	else if (Engine.HasXmppClient())
-		Engine.SwitchGuiPage("page_lobby.xml", { "dialog": false });
 	else
 		Engine.SwitchGuiPage("page_pregame.xml");
 }
 
 function startReplay()
 {
-	if (Engine.HasXmppClient())
-		Engine.StopXmppClient();
-
 	if (!Engine.StartVisualReplay(g_GameData.gui.replayDirectory))
 	{
 		warn("Replay file not found!");

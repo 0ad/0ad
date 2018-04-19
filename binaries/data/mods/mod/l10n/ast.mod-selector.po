@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-08 09:05+0100\n"
-"PO-Revision-Date: 2018-02-10 20:25+0000\n"
+"POT-Creation-Date: 2018-04-16 09:05+0200\n"
+"PO-Revision-Date: 2018-04-17 20:20+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Language: ast\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/modmod/modmod.js:70 gui/modmod/modmod.js:200
+#: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
 msgid "Filter"
 msgstr "Peñera"
 
-#: gui/modmod/modmod.js:253
+#: gui/modmod/modmod.js:285
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "Dependencia non satisfecha: %(dep)s"
 
-#: gui/modmod/modmod.js:259
+#: gui/modmod/modmod.js:291
 msgid "All dependencies met"
 msgstr "Toles dependencies satisfeches"
 
-#: gui/modmod/modmod.js:335
+#: gui/modmod/modmod.js:379
 msgid "No mod has been selected."
 msgstr "Nun escoyesti dengún mod."
 
@@ -39,82 +39,72 @@ msgstr "Nun escoyesti dengún mod."
 msgid "Modifications"
 msgstr "Modificaciones"
 
-#: gui/modmod/modmod.xml:(caption):20
-msgid "Reset Filters"
-msgstr "Reafitar peñeres"
-
-#: gui/modmod/modmod.xml:(caption):46
+#: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
 msgstr "Anular"
 
-#: gui/modmod/modmod.xml:(caption):54
-msgid "Available Mods"
-msgstr "Mods disponibles"
-
-#: gui/modmod/modmod.xml:(caption):91
+#: gui/modmod/modmod.xml:(caption):49
 msgid "Description"
 msgstr "Descripción"
 
-#: gui/modmod/modmod.xml:(caption):94 gui/modmod/modmod.xml:(caption):162
-msgid "Visit Website"
-msgstr "Visitar el sitiu Web"
+#: gui/modmod/modmod.xml:(caption):56
+msgid "Available Mods"
+msgstr "Mods disponibles"
 
-#: gui/modmod/modmod.xml:(caption):98
-msgid "Enable"
-msgstr "Activar"
-
-#: gui/modmod/modmod.xml:(caption):107
+#: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
 msgstr "Mods activaos"
 
-#: gui/modmod/modmod.xml:(caption):142
-msgid "Up"
-msgstr "Arriba"
+#: gui/modmod/modmod.xml:(caption):167
+msgid "Enable/Disable"
+msgstr "Activar/Desactivar"
 
-#: gui/modmod/modmod.xml:(caption):146
-msgid "X"
-msgstr "X"
+#: gui/modmod/modmod.xml:(caption):170
+msgid "Visit Website"
+msgstr "Visitar el sitiu Web"
 
-#: gui/modmod/modmod.xml:(caption):150
-msgid "Down"
-msgstr "Abaxo"
-
-#: gui/modmod/modmod.xml:(caption):157
+#: gui/modmod/modmod.xml:(caption):179
 msgid "Quit"
 msgstr "Colar"
 
-#: gui/modmod/modmod.xml:(caption):167
+#: gui/modmod/modmod.xml:(caption):184
 msgid "Cancel"
 msgstr "Encaboxar"
 
-#: gui/modmod/modmod.xml:(caption):172
+#: gui/modmod/modmod.xml:(caption):189
 msgid "Save Configuration"
 msgstr "Guardar configuración"
 
-#: gui/modmod/modmod.xml:(caption):177
+#: gui/modmod/modmod.xml:(caption):194
 msgid "Start Mods"
 msgstr "Entamar mods"
 
-#: gui/modmod/modmod.xml:(heading):72 gui/modmod/modmod.xml:(heading):122
+#: gui/modmod/modmod.xml:(heading):76 gui/modmod/modmod.xml:(heading):116
 msgid "Name"
 msgstr "Nome"
 
-#: gui/modmod/modmod.xml:(heading):75 gui/modmod/modmod.xml:(heading):125
+#: gui/modmod/modmod.xml:(heading):79 gui/modmod/modmod.xml:(heading):119
 msgid "Version"
 msgstr "Versión"
 
-#: gui/modmod/modmod.xml:(heading):78 gui/modmod/modmod.xml:(heading):128
+#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
 msgstr "(Carpeta)"
 
-#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):131
+#: gui/modmod/modmod.xml:(heading):85 gui/modmod/modmod.xml:(heading):125
 msgid "Mod Label"
 msgstr "Etiqueta de mod"
 
-#: gui/modmod/modmod.xml:(heading):84 gui/modmod/modmod.xml:(heading):134
+#: gui/modmod/modmod.xml:(heading):88 gui/modmod/modmod.xml:(heading):128
 msgid "Dependencies"
 msgstr "Dependencies"
 
-#: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):137
+#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
 msgid "Website"
 msgstr "Sitiu Web"
+
+#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
+msgid ""
+"Change the order in which mods are launched. This should match the mods "
+"dependencies."
+msgstr "Cambiar l'orde nel que se llancien los mods. Esto debe concasar coles dependencies de los mods."
