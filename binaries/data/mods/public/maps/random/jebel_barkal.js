@@ -34,10 +34,14 @@ const oPalms = [
 ];
 const oBerryBushGrapes = "gaia/flora_bush_grapes";
 const oBerryBushDesert = "gaia/flora_bush_berry_desert";
-const oStoneLarge = "gaia/geology_stonemine_desert_quarry";
-const oStoneSmall = "gaia/geology_stone_desert_small";
-const oMetalLarge = "gaia/geology_metal_desert_slabs";
-const oMetalSmall = "gaia/geology_metal_desert_small";
+const oStoneLargeDesert = "gaia/geology_stonemine_desert_quarry";
+const oStoneSmallDesert = "gaia/geology_stone_desert_small";
+const oMetalLargeDesert = "gaia/geology_metal_desert_slabs";
+const oMetalSmallDesert = "gaia/geology_metal_desert_small";
+const oStoneLargeFertileLand = "gaia/geology_stonemine_desert_quarry";
+const oStoneSmallFertileLand = "gaia/geology_stone_greek";
+const oMetalLargeFertileLand = "gaia/geology_metal_desert_slabs";
+const oMetalSmallFertileLand = "gaia/geology_metal_temperate";
 const oFoodTreasureBin = "gaia/treasure/food_bin";
 const oFoodTreasureCrate = "gaia/treasure/food_crate";
 const oFoodTreasureJars = "gaia/treasure/food_jars";
@@ -355,11 +359,12 @@ createArea(
 	new HeightConstraint(-Infinity, heightDesert));
 
 // Fertile land
+var widthFertileLand = fractionToTiles(0.33);
 paintRiver({
 	"parallel": true,
 	"start": new Vector2D(mapBounds.left, mapBounds.bottom).rotateAround(-riverAngle, mapCenter),
 	"end": new Vector2D(mapBounds.right, mapBounds.bottom).rotateAround(-riverAngle, mapCenter),
-	"width": fractionToTiles(0.65),
+	"width": 2 * widthFertileLand,
 	"fadeDist": 8,
 	"deviation": 0,
 	"heightLand": heightDesert,
@@ -476,6 +481,7 @@ for (let area of irrigationCanalAreas)
 	}
 
 g_Map.log("Creating passages");
+var previousPassageY = randIntInclusive(0, widthFertileLand);
 var areasPassages = [];
 irrigationCanalLocations.sort((a, b) => a - b);
 for (let i = 0; i < irrigationCanalLocations.length; ++i)
@@ -490,7 +496,8 @@ for (let i = 0; i < irrigationCanalLocations.length; ++i)
 	// The passages should be at different locations, so that enemies can't attack each other easily
 	for (let tries = 0; tries < 100; ++tries)
 	{
-		y = randIntInclusive(0, mapCenter.y);
+		y = (previousPassageY + randIntInclusive(0.2 * widthFertileLand, 0.8 * widthFertileLand)) % widthFertileLand;
+
 		let pos = new Vector2D((x1 + x2) / 2, y).rotateAround(-riverAngle, mapCenter).round();
 
 		if (g_Map.validTilePassable(new Vector2D(pos.x, pos.y)) &&
@@ -519,8 +526,11 @@ for (let i = 0; i < irrigationCanalLocations.length; ++i)
 				stayClasses(clFertileLand, 2)
 			]);
 
-	if (area && area.getPoints().length)
-		areasPassages.push(area);
+	if (!area || !area.getPoints().length)
+		continue;
+
+	previousPassageY = y;
+	areasPassages.push(area);
 }
 Engine.SetProgress(40);
 
@@ -586,8 +596,8 @@ for (let i = 0; i < numPlayers; ++i)
 		},
 		"Mines": {
 			"types": [
-				{ "template": oMetalLarge },
-				{ "template": oStoneLarge }
+				{ "template": isDesert ? oMetalLargeDesert : oMetalLargeFertileLand },
+				{ "template": isDesert ? oStoneLargeDesert : oStoneLargeFertileLand }
 			]
 		},
 		"Trees": {
@@ -649,7 +659,7 @@ var gridStartAngle = -Math.PI / 2 -gridMaxAngle / 2 + riverAngle;
 var gridRadius = y => hillRadius + 18 * y;
 
 var gridPointsX = layoutKushTemples.length;
-var gridPointsY = Math.floor(scaleByMapSize(2, 4));
+var gridPointsY = Math.floor(scaleByMapSize(2, 5));
 var gridPointXCenter = Math.floor(gridPointsX / 2);
 var gridPointYCenter = Math.floor(gridPointsY / 2);
 
@@ -964,8 +974,7 @@ for (let roadStart of roadStartLocations)
 	{
 		let area = createArea(
 			new PathPlacer(
-				Vector2D.add(closestPoint, new Vector2D(0, 3/4 * mapSize).rotate(
-					closestPoint.angleTo(roadStart) + randFloat(-1, 1) / 8 * Math.PI)),
+				Vector2D.add(closestPoint, new Vector2D(0, 3/4 * mapSize).rotate(closestPoint.angleTo(roadStart))),
 				roadStart,
 				4,
 				0.1,
@@ -1095,13 +1104,13 @@ if (placeNapataWall)
 		new SimpleGroup([new SimpleObject(oPalmPath, 1, 1, 0, 0)], true, clForest),
 		0,
 		avoidClasses(clForest, 2),
-		scaleByMapSize(40, 200),
+		scaleByMapSize(40, 250),
 		50,
 		[areaWallPalms]);
 }
 
 createBumps(
-	new StaticConstraint(avoidClasses(clPlayer, 6, clCity, 0, clWater, 2, clHill, 0, clPath, 0, clRoad, 0, clTemple, 4, clPyramid, 8)),
+	new StaticConstraint(avoidClasses(clPlayer, 6, clCity, 0, clWater, 2, clHill, 0, clPath, 0, clRoad, 0, clTemple, 4, clPyramid, 8, clWall, 0, clGate, 4)),
 	scaleByMapSize(30, 300),
 	1,
 	8,
@@ -1129,31 +1138,61 @@ createForests(
 	clForest,
 	scaleByMapSize(250, 2000));
 
-const avoidCollisionsMines = new StaticConstraint([
-	isNomad() ? new NullConstraint() : avoidClasses(clFertileLand, 10),
-	avoidClasses(
-		clWater, 4, clCliff, 4, clCity, 4, clRitualPlace, 10,
-		clPlayer, 20, clForest, 4, clPyramid, 6, clTemple, 4, clPath, 4, clRoad, 4, clGate, 8)]);
+g_Map.log("Creating mines");
+const avoidCollisionsMines = [
+	avoidClasses(clRock, 10, clMetal, 10),
+	new StaticConstraint(avoidClasses(
+		clWater, 4, clCliff, 4, clCity, 4, clRitualPlace, 10, clPlayer, 20, clForest, 4,
+		clPyramid, 6, clTemple, 4, clPath, 4, clRoad, 4, clGate, 8))
+];
 
-g_Map.log("Creating stone mines");
-createMines(
-	[
-		[new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
-		[new SimpleObject(oStoneSmall, 2, 5, 1, 3, 0, 2 * Math.PI, 1)]
+const mineObjects = (templateSmall, templateLarge) => ({
+	"large": [
+		new SimpleObject(templateSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1),
+		new SimpleObject(templateLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)
 	],
-	[avoidCollisionsMines, avoidClasses(clRock, 10)],
-	clRock,
-	scaleByMapSize(8, 26));
+	"small": [
+		new SimpleObject(templateSmall, 3, 4, 1, 3, 0, 2 * Math.PI, 1)
+	]
+});
 
-g_Map.log("Creating metal mines");
-createMines(
-	[
-		[new SimpleObject(oMetalSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oMetalLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
-		[new SimpleObject(oMetalSmall, 2, 5, 1, 3, 0, 2 * Math.PI, 1)]
-	],
-	[avoidCollisionsMines, avoidClasses(clMetal, 10, clRock, 5)],
-	clMetal,
-	scaleByMapSize(8, 26));
+const mineObjectsPerBiome = [
+	{
+		"desert": mineObjects(oMetalSmallDesert, oMetalLargeDesert),
+		"fertileLand": mineObjects(oMetalSmallFertileLand, oMetalLargeFertileLand),
+		"tileClass": clMetal
+	},
+	{
+		"desert": mineObjects(oStoneSmallDesert, oStoneLargeDesert),
+		"fertileLand": mineObjects(oStoneSmallFertileLand, oStoneLargeFertileLand),
+		"tileClass": clRock
+	}
+];
+
+for (let i = 0; i < scaleByMapSize(6, 22); ++i)
+{
+	let mineObjectsBiome = pickRandom(mineObjectsPerBiome);
+	for (let i in mineObjectsBiome.desert)
+		createObjectGroupsByAreas(
+			new SimpleGroup(mineObjectsBiome.desert[i], true, mineObjectsBiome.tileClass),
+			0,
+			avoidCollisionsMines.concat([avoidClasses(clFertileLand, 12, mineObjectsBiome.tileClass, 15)]),
+			1,
+			60,
+			[areaDesert]);
+}
+
+for (let i = 0; i < (isNomad() ? scaleByMapSize(6, 16) : scaleByMapSize(0, 8)); ++i)
+{
+	let mineObjectsBiome = pickRandom(mineObjectsPerBiome);
+	createObjectGroupsByAreas(
+		new SimpleGroup(mineObjectsBiome.fertileLand.small, true, mineObjectsBiome.tileClass),
+		0,
+		avoidCollisionsMines.concat([avoidClasses(clDesert, 5, clMetal, 15, clRock, 15, mineObjectsBiome.tileClass, 20)]),
+		1,
+		80,
+		[areaFertileLand]);
+}
 
 g_Map.log("Placing triggerpoints for attackers");
 createObjectGroups(
