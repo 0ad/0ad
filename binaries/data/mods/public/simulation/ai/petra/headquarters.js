@@ -707,7 +707,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	let supportNum = supportMax * (1 - Math.exp(-alpha*numberTotal/supportMax));
 
 	let template;
-	if (numberOfSupports + numberOfQueuedSupports > supportNum)
+	if (!templateDef || numberOfSupports + numberOfQueuedSupports > supportNum)
 	{
 		let requirements;
 		if (numberTotal < 45)
