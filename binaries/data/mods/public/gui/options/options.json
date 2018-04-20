@@ -410,6 +410,7 @@
 				"label": "Batch Training Size",
 				"tooltip": "Number of units trained per batch by default.",
 				"config": "gui.session.batchtrainingsize",
+				"callback": "updateDefaultBatchSize",
 				"min": 1,
 				"max": 20
 			},

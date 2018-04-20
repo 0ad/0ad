@@ -1360,8 +1360,12 @@ function getDefaultBatchTrainingSize()
 
 function getBatchTrainingSize()
 {
-	let ret = Math.round(g_BatchSize);
-	return ret > 0 ? ret : 1;
+	return Math.max(Math.round(g_BatchSize), 1);
+}
+
+function updateDefaultBatchSize()
+{
+	g_BatchSize = getDefaultBatchTrainingSize();
 }
 
 // Add the unit shown at position to the training queue for all entities in the selection
