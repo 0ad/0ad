@@ -916,15 +916,15 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 		{
 			if (a.current && b.current)
 				return b.wanted / b.current - a.wanted / a.current;
-			else if (a.current)
+			if (a.current)
 				return 1;
-			else if (b.current)
+			if (b.current)
 				return -1;
 			return b.wanted - a.wanted;
 		}
 		if (a.current < a.wanted || a.wanted && !b.wanted)
 			return -1;
-		else if (b.current < b.wanted || b.wanted && !a.wanted)
+		if (b.current < b.wanted || b.wanted && !a.wanted)
 			return 1;
 		return a.current - a.wanted - b.current + b.wanted;
 	});
@@ -2730,10 +2730,11 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	this.defenseManager.update(gameState, events);
 
 	if (gameState.ai.playedTurn % 3 == 0)
+	{
 		this.constructTrainingBuildings(gameState, queues);
-
-	if (this.Config.difficulty > 0)
-		this.buildDefenses(gameState, queues);
+		if (this.Config.difficulty > 0)
+			this.buildDefenses(gameState, queues);
+	}
 
 	this.assignGatherers();
 	let nbBases = this.baseManagers.length;
