@@ -1915,51 +1915,69 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.saveResources && !this.canBarter || queues.militaryBuilding.hasQueuedUnits())
 		return;
 
-	let numBarracks = this.canBuild(gameState, "structures/{civ}_barracks") ? gameState.getOwnEntitiesByClass("Barracks", true).length : -1;
-	let numStables = this.canBuild(gameState, "structures/{civ}_stables") ? gameState.getOwnEntitiesByClass("Stables", true).length : -1;
+	let numBarracks = gameState.getOwnEntitiesByClass("Barracks", true).length;
 	if (this.saveResources && numBarracks != 0)
 		return;
+
+	let barracksTemplate = this.canBuild(gameState, "structures/{civ}_barracks") ? "structures/{civ}_barracks" : undefined;
+
+	let rangeTemplate = this.canBuild(gameState, "structures/{civ}_range") ? "structures/{civ}_range" : undefined;
+	let numRanges = gameState.getOwnEntitiesByClass("Archery", true).length;
+	numBarracks -= numRanges;
+
+	let stableTemplate = this.canBuild(gameState, "structures/{civ}_stables") ? "structures/{civ}_stables" :
+	                     this.canBuild(gameState, "structures/{civ}_stable") ? "structures/{civ}_stable" : undefined; 
+	let numStables = gameState.getOwnEntitiesByClass("Stables", true).length;
 
 	if (this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks1 ||
 	    this.phasing == 2 && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)
 	{
-		// first barracks and stables.
-		if (numBarracks == 0)
+		// first barracks/range and stables.
+		if (numBarracks + numRanges == 0)
 		{
-			gameState.ai.queueManager.changePriority("militaryBuilding", 2*this.Config.priorities.militaryBuilding);
-			let plan = new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "militaryBase": true });
-			plan.queueToReset = "militaryBuilding";
-			queues.militaryBuilding.addPlan(plan);
-			return;
+			let template = barracksTemplate || rangeTemplate;
+			if (template)
+			{
+				gameState.ai.queueManager.changePriority("militaryBuilding", 2 * this.Config.priorities.militaryBuilding);
+				let plan = new m.ConstructionPlan(gameState, template, { "militaryBase": true });
+				plan.queueToReset = "militaryBuilding";
+				queues.militaryBuilding.addPlan(plan);
+				return;
+			}
 		}
-		if (numStables == 0)
+		if (numStables == 0 && stableTemplate)
 		{
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", { "militaryBase": true }));
-			return;
-		}
-
-		// Second barracks and stables
-		if (numBarracks == 1 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2)
-		{
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "militaryBase": true }));
-			return;
-		}
-		if (numStables == 1 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2)
-		{
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", { "militaryBase": true }));
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, stableTemplate, { "militaryBase": true }));
 			return;
 		}
 
-		// Then 3rd barracks/stables if needed
-		if (numBarracks == 2 && numStables == -1 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2 + 30)
+		// Second range/barracks and stables
+		if (numBarracks + numRanges == 1 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2)
 		{
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "militaryBase": true }));
+			let template = numBarracks == 0 ? (barracksTemplate || rangeTemplate) : (rangeTemplate || barracksTemplate);
+			if (template)
+			{
+				if (template != barracksTemplate) API3.warn(" civ " + gameState.getPlayerCiv() + " rototo B template " + template);
+				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, template, { "militaryBase": true }));
+				return;
+			}
+		}
+		if (numStables == 1 && stableTemplate && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2)
+		{
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, stableTemplate, { "militaryBase": true }));
 			return;
 		}
-		if (numBarracks == -1 && numStables == 2 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2 + 30)
+
+		// Then 3rd barracks/range/stables if needed
+		if (numBarracks + numRanges + numStables == 2 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2 + 30)
 		{
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", { "militaryBase": true }));
-			return;
+			let template = barracksTemplate || stableTemplate || rangeTemplate;
+			if (template)
+			{
+				if (template != barracksTemplate) API3.warn(" civ " + gameState.getPlayerCiv() + " rototo C template " + template);
+				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, template, { "militaryBase": true }));
+				return;
+			}
 		}
 	}
 
