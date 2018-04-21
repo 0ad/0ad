@@ -8,7 +8,7 @@
 # Alp Eren, 2014
 # Aathonaeax <ardawarcraft@gmail.com>, 2015
 # Berk Koçak <tolga.berk.kocak@hotmail.com>, 2017
-# Cem Aktas <cemwstone@gmail.com>, 2015,2017
+# Cem Aktas <cemwstone@gmail.com>, 2015,2017-2018
 # Ebubekir Tabak <tec.1905@windowslive.com>, 2013
 # Ege Arda Anılan <ege_9933@hotmail.com>, 2018
 # Emre AYTAÇ <eaytac@gmail.com>, 2013
@@ -46,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-04 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-19 11:24+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,7 +154,7 @@ msgstr "Varsayılan"
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr "Demo Haritalar ve Deniz Haritaları dışında bütün haritalar"
+msgstr "Tanıtım ve deniz haritaları hariç tüm haritalar"
 
 #: gui/gamesetup/gamesetup.js:180
 msgid "Naval Maps"
@@ -167,12 +167,12 @@ msgstr "Gemilerle düşmana ulaşmanı gerektirecek haritalar"
 
 #: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
-msgstr "Demo Haritalar"
+msgstr "Tanıtım Haritaları"
 
 #: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Bu haritalar oynanabilir değildir sadece gösterim amacıyladır."
+msgstr "Bu haritalar oynanabilir değildir, sadece tanıtım amaçlıdır."
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
@@ -181,7 +181,7 @@ msgstr "Yeni Haritalar"
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr "Oyunun bu sürümünde yeni olan haritalar."
+msgstr "Oyunun bu sürümünde yepyeni olan haritalar."
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
@@ -194,7 +194,7 @@ msgstr "Komutlu etkinliklerle gelen ve potansiyel olarak düşman birimlerini ol
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
-msgstr "Tüm Haritalar"
+msgstr "Tüm haritalar"
 
 #: gui/gamesetup/gamesetup.js:205
 msgctxt "map filter"
@@ -230,7 +230,7 @@ msgstr "Harita Filtresi"
 
 #: gui/gamesetup/gamesetup.js:500
 msgid "Select a map filter."
-msgstr "Bir harita süzgeci seçin."
+msgstr "Bir harita filtresi seçin."
 
 #: gui/gamesetup/gamesetup.js:515
 msgid "Select Map"
@@ -321,7 +321,7 @@ msgstr "Oyuncunun Kutsal Emanet Zaferine ulaşması için kalan zaman."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
-msgstr "Harika Zamanı"
+msgstr "Harika Süresi"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
@@ -481,17 +481,17 @@ msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Geçmişi Görüntüle / Yap�
 #: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "%(name)s ayarlar sekmesini değiştir."
 
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Ayarlar sekmesini aşağıya indirmek için %(hotkey)s kullan."
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Ayarlar sekmesini yukarı kaldırmak için %(hotkey)s kullan."
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -692,57 +692,57 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[…] yasasını belirledi: bilgelik acılar yoluyla gelir.\\[…]  Böylelikle insanoğlu iradesine hakim olmayı öğrenecektir.  \\[…] Böyle bir lütuf acımasız and şiddet doludur.\" - Eshilos (\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr "\"O \\[Helen] Lilyum'a çeyizini getirdi, yıkım.\" - Aeschylus (\"Oresteia\", I. 406)"
+msgstr "\"O \\[Helen] Lilyum'a çeyizini getirdi, yıkım.\" - Eshilos (\"Oresteia\", I. 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr "\"Her zalim hükümdarın kalbindeki zehir nihayetinde ortaya çıkar,dosta güven olmaz.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
+msgstr "\"Her zalim hükümdarın kalbindeki zehir nihayetinde ortaya çıkar, dosta güven olmaz.\" - Eshilos (\"Zincire Vurulmuş Prometheus\", 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr "\"Zaman uzun vadede her şeyi öğretir..\" - Aeschylus (\"Prometheus Bound\", 981)"
+msgstr "\"Zaman uzun vadede her şeyi öğretir..\" Eshilos (\"Zincire Vurulmuş Prometheus\", 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr "\"Onun çözümü mantıklı görünmüyordu, dakat olmalıydı, en iyisi olmalıydı.\" - Aeschylus (\"Seven Against Thebes\", 592)"
+msgstr "\"Onun çözümü mantıklı görünmüyordu, dakat olmalıydı, en iyisi olmalıydı.\" - Eshilos (\"Seven Against Thebes\", 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr "''Zengin bir aptal ağır bir yüktür.'' - Aeschylus (fragment 383)"
+msgstr "''Zengin bir aptal ağır bir yüktür.'' - Eshilos (fragment 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr "''Tanrılar kendilerine yardım edenlere yardım ederler.'' - Aesop (\"Hercules and the Wagoner\")"
+msgstr "''Tanrılar kendilerine yardım edenlere yardım ederler.'' - Ezop (\"Hercules and the Wagoner\")"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr "''Yarının isteklerine bugünden hazırlanmak zahmetlidir.'' - Aesop (\"The Ant and the Grasshopper\")"
+msgstr "''Yarının isteklerine bugünden hazırlanmak zahmetlidir.'' - Ezop (\"Karınca ve Çekirge\")"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr "\"Birlikten kuvvet doğar.\" - Aesop (\"The Bundle of Sticks\")"
+msgstr "\"Birlikten kuvvet doğar.\" - Ezop (\"The Bundle of Sticks\")"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr "''Kendi zorluğunun sancısını çeken adamın tavsiyesine asla güvenme.'' - Aesop (\"The Fox and the Goat\")"
+msgstr "''Kendi zorluğunun sancısını çeken adamın tavsiyesine asla güvenme.'' - Ezop (\"Tilki ve Keçi\")"
 
 #: gui/text/quotes.txt:11
 msgid ""
@@ -764,13 +764,13 @@ msgstr "\"Yavaş ve sakin olan yarışı kazanır.\" - Ezop (\"Tavşan ve Kaplum
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr ""
+msgstr "\"Başkalarının başına gelen yıkım bizim de gözlerimizi açar.\"\n- Ezop (\"Aslan, Eşek, Tilki\")"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr ""
+msgstr "Düşmanın verdiği sözler, bozulmak içindir.\n- Ezop (\"Kurtla Kocakarı\")"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
@@ -2076,7 +2076,7 @@ msgstr ""
 msgid ""
 "\"Battles are decided more by the morale of men than their physical "
 "strength.\" - Xenophon (\"The Education of Cyrus\", 3.3.20)"
-msgstr "''Savaşlar adamların fiziksel gücünden çok morallerine bağlıdır.''  -Ksenofon (\"The Education of Cyrus\", 3.3.20)"
+msgstr "''Savaşlar kaderi adamların fiziksel gücünden çok morallerine bağlıdır.''  -Ksenofon (\"The Education of Cyrus\", 3.3.20)"
 
 #: gui/text/quotes.txt:196
 msgid ""

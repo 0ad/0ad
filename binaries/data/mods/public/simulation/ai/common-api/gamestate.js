@@ -828,6 +828,10 @@ m.GameState.prototype.hasResearchers = function(templateName, noRequirementCheck
 	if (!this.canResearch(templateName, noRequirementCheck))
 		return false;
 
+	let template = this.getTemplate(templateName);
+	if (template.autoResearch)
+		return true;
+
 	let civ = this.playerData.civ;
 
 	for (let ent of this.getOwnResearchFacilities().values())

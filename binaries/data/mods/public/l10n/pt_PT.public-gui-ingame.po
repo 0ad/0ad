@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-04-17 03:13+0000\n"
+"PO-Revision-Date: 2018-04-20 01:26+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -509,7 +509,7 @@ msgstr ", "
 #: gui/session/messages.js:695
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr ""
+msgstr "Erro de fora de sincronização na vez %(turn)s."
 
 #: gui/session/messages.js:699
 #, javascript-format
@@ -520,39 +520,39 @@ msgstr "Jogadores: %(players)s"
 #: gui/session/messages.js:704
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr ""
+msgstr "O estado do seu jogo é idêntico ao estado do jogo do hospedeiro."
 
 #: gui/session/messages.js:705
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr ""
+msgstr "O estado do seu jogo é diferente do estado do jogo do hospedeiro."
 
 #: gui/session/messages.js:711
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr ""
+msgstr "Ainda não é suportado voltar a entrar em jogos multi-jogadores com IA."
 
 #: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr ""
+msgstr "Certifique-se que todos os jogadores usam os mesmos mods."
 
 #: gui/session/messages.js:715
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "Clique em \"Comunicar um Erro\" no menu principal para ajudar a corrigir isto."
 
 #: gui/session/messages.js:716
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr ""
+msgstr "Repetição gravada em %(filepath)s"
 
 #: gui/session/messages.js:719
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr ""
+msgstr "A fazer dumping do estado atual para %(filepath)s"
 
 #: gui/session/messages.js:727 gui/session/messages.js:738
 msgid "Out of Sync"
@@ -630,7 +630,7 @@ msgstr "%(player)s enviou %(amounts)s a %(player2)s."
 #: gui/session/messages.js:1058
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s trocou %(amountsBought)s por %(amountsSold)s."
 
 #: gui/session/messages.js:1071
 #, javascript-format
@@ -645,17 +645,17 @@ msgstr "Foi atacado por %(attacker)s!"
 #: gui/session/messages.js:1089
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s está a avançar para a fase %(phaseName)s."
 
 #: gui/session/messages.js:1091
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr ""
+msgstr "A %(phaseName)s de %(player)s foi abortada."
 
 #: gui/session/messages.js:1094
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s alcançou %(phaseName)s."
 
 #: gui/session/messages.js:1146
 #, javascript-format
@@ -836,8 +836,8 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s entidade da classe %(class)s"
+msgstr[1] "%(number)s entidades da classe %(class)s"
 
 #: gui/session/selection_panels.js:767
 #, javascript-format
@@ -852,20 +852,20 @@ msgstr ", "
 #: gui/session/selection_panels.js:1079
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Promover a %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1084
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "Promover para %(name)s."
 
 #: gui/session/selection_panels.js:1101
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Cancelar Promoção"
 
 #: gui/session/selection_panels.js:1106
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "Não é possível promover quando a entidade está a ser promovida."
 
 #: gui/session/selection_panels_helpers.js:56
 msgctxt "stance"
@@ -1170,7 +1170,7 @@ msgstr "Cancelar o pedido actual."
 
 #: gui/session/unit_actions.js:1106
 msgid "Order the selected units to garrison in a building or unit."
-msgstr ""
+msgstr "Ordenar as unidades selecionadas recolherem-se num edifício ou unidade."
 
 #: gui/session/unit_actions.js:1129
 msgid "Unload"
@@ -1182,7 +1182,7 @@ msgstr "Ordenar as unidades seleccionadas para reparar um edifício ou uma unida
 
 #: gui/session/unit_actions.js:1166
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "Foco no Ponto de Encontro."
 
 #: gui/session/unit_actions.js:1201
 msgid "Back to Work"
@@ -1199,7 +1199,7 @@ msgstr "Cancelar a guarda"
 #: gui/session/unit_actions.js:1255
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "Trocas e Comércio"
 
 #: gui/session/unit_actions.js:1273
 msgid "Patrol"
@@ -1207,7 +1207,7 @@ msgstr "Patrulha"
 
 #: gui/session/unit_actions.js:1274
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "Atacar todas as unidades inimigas e evitar edifícios."
 
 #: gui/session/unit_actions.js:1300
 msgid "Press to allow allies to use this dropsite"
@@ -1227,7 +1227,7 @@ msgstr "Usar este armazém é proibido"
 
 #: gui/session/unit_actions.js:1447
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "A entidade tem de ser morta antes de poder ser recolhida"
 
 #: gui/session/unit_actions.js:1450
 msgid ""
@@ -1381,7 +1381,7 @@ msgstr "Sumário"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr ""
+msgstr "Sala de espera"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1397,7 +1397,7 @@ msgstr "Sair"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Mostrar a sala de espera multi-jogador numa janela."
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
@@ -1428,11 +1428,11 @@ msgstr "Modo Observador"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "Trocas e Comércio de Bens"
 
 #: gui/session/trade_window.xml:(caption):16
 msgid "Barter"
-msgstr ""
+msgstr "Troca"
 
 #: gui/session/trade_window.xml:(caption):23
 msgid "Sell:"
@@ -1514,4 +1514,4 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIII : Ken Wood"
-msgstr ""
+msgstr "ALFA XXIII : Ken Wood"
