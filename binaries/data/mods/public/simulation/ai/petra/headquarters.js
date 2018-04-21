@@ -1957,7 +1957,6 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			let template = numBarracks == 0 ? (barracksTemplate || rangeTemplate) : (rangeTemplate || barracksTemplate);
 			if (template)
 			{
-				if (template != barracksTemplate) API3.warn(" civ " + gameState.getPlayerCiv() + " rototo B template " + template);
 				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, template, { "militaryBase": true }));
 				return;
 			}
@@ -1974,7 +1973,6 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			let template = barracksTemplate || stableTemplate || rangeTemplate;
 			if (template)
 			{
-				if (template != barracksTemplate) API3.warn(" civ " + gameState.getPlayerCiv() + " rototo C template " + template);
 				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, template, { "militaryBase": true }));
 				return;
 			}
