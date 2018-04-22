@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script directory="gui/common/"/>
+	<script directory="gui/modmod/help/"/>
+
+	<!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" z="0" sprite="ModernFade"/>
+
+	<object type="image" style="ModernDialog" size="50%-466 50%-316 50%+466 50%+316">
+		<object name="title" style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">Pyrogenesis Mod Selector</translatableAttribute>
+		</object>
+
+		<object type="image" sprite="ModernFade" size="20 20 100%-20 100%-58">
+			<object name="mainText" type="text" style="ModernTextPanel"/>
+		</object>
+
+		<object type="button" style="ModernButtonRed" tooltip_style="snToolTip" size="100%-602 100%-52 100%-412 100%-24" hotkey="cancel">
+			<translatableAttribute id="caption">Close</translatableAttribute>
+			<action on="Press">Engine.PopGuiPage();</action>
+		</object>
+		<object type="button" style="ModernButtonRed" size="100%-408 100%-52 100%-218 100%-24">
+			<translatableAttribute id="caption">Modding Guide</translatableAttribute>
+			<action on="Press">Engine.OpenURL("https://trac.wildfiregames.com/wiki/Modding_Guide");</action>
+		</object>
+		<object type="button" style="ModernButtonRed" size="100%-214 100%-52 100%-24 100%-24">
+			<translatableAttribute id="caption">Visit mod.io</translatableAttribute>
+			<action on="Press">Engine.OpenURL("https://mod.io");</action>
+		</object>
+	</object>
+
+</objects>

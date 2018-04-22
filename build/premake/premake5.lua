@@ -722,6 +722,7 @@ function setup_all_libs ()
 		"tinygettext",
 		"icu",
 		"iconv",
+		"libsodium",
 	}
 
 	if not _OPTIONS["without-audio"] then

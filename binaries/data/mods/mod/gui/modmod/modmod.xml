@@ -175,14 +175,24 @@
 		<object name="message" type="text" size="394 100%-78 100%-15 100%-52" text_align="left" textcolor="white"/>
 
 		<!-- BUTTONS -->
-		<object name="quitButton" type="button" style="ModernButtonRed" size="100%-576 100%-44 100%-392 100%-16">
+		<object name="quitButton" type="button" style="ModernButtonRed" size="100%-944 100%-44 100%-764 100%-16">
 			<translatableAttribute id="caption">Quit</translatableAttribute>
 			<action on="Press">Engine.Exit();</action>
 		</object>
 
-		<object name="cancelButton" type="button" style="ModernButtonRed" size="100%-576 100%-44 100%-392 100%-16" hotkey="cancel">
+		<object name="cancelButton" type="button" style="ModernButtonRed" size="100%-944 100%-44 100%-764 100%-16" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">closePage();</action>
+		</object>
+
+		<object type="button" style="ModernButtonRed" size="100%-760 100%-44 100%-580 100%-16">
+			<translatableAttribute id="caption">Help</translatableAttribute>
+			<action on="Press">Engine.PushGuiPage("page_modhelp.xml");</action>
+		</object>
+
+		<object type="button" style="ModernButtonRed" size="100%-576 100%-44 100%-392 100%-16">
+			<translatableAttribute id="caption">Download Mods</translatableAttribute>
+			<action on="Press">modIo();</action>
 		</object>
 
 		<object name="saveConfigurationButton" type="button" style="ModernButtonRed" size="100%-388 100%-44 100%-204 100%-16">

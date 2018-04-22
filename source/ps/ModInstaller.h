@@ -53,11 +53,12 @@ public:
 	/**
 	 * Process and unpack the mod.
 	 * @param mod path of .pyromod/.zip file
+	 * @param keepFile if true, copy the file, if false move it
 	 */
 	ModInstallationResult Install(
 		const OsPath& mod,
 		const std::shared_ptr<ScriptRuntime>& scriptRuntime,
-		bool deleteAfterInstall);
+		bool keepFile);
 
 	/**
 	 * @return a list of all mods installed so far by this CModInstaller.

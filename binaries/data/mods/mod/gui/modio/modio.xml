@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script directory="gui/common/"/>
+	<script directory="gui/modio/"/>
+
+	<object type="image" sprite="ModernFade" z="0"/>
+
+	<object name="modio" type="image" style="ModernDialog" size="10% 10% 90% 90%">
+
+		<action on="Tick">
+			onTick();
+		</action>
+
+		<!-- Page Title -->
+		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">mod.io Mods</translatableAttribute>
+		</object>
+
+		<!-- Available Mods Wrapper -->
+		<object name="modsAvailable" size="16 20 100%-16 100%-70" style="ModmodScrollbar">
+
+			<object style="ModernLabelText" type="text" size="0 5 100% 25">
+				<translatableAttribute id="caption">Available Mods</translatableAttribute>
+			</object>
+
+			<object name="modFilter"
+				type="input"
+				style="ModernInput"
+				size="16 0 200 24"
+			>
+				<action on="Press">displayMods();</action>
+				<action on="TextEdit">displayMods();</action>
+			</object>
+
+			<object name="modsAvailableList"
+				type="olist"
+				style="ModernSortedList"
+				size="0 30 100%-2 100%"
+				sortable="true"
+				selected_column="name"
+				selected_column_order="1"
+				font="sans-stroke-13"
+			>
+				<action on="SelectionChange">showModDescription();</action>
+				<action on="SelectionColumnChange">displayMods();</action>
+				<action on="MouseLeftDoubleClickItem">downloadMod();</action>
+
+				<!-- List headers -->
+				<!-- Keep in sync with mod property names -->
+				<column id="name_id" color="255 255 255" width="20%">
+					<translatableAttribute id="heading">Name</translatableAttribute>
+				</column>
+				<column id="version" color="255 255 255" width="15%">
+					<translatableAttribute id="heading">Version</translatableAttribute>
+				</column>
+				<column id="name" color="255 255 255" width="20%">
+					<translatableAttribute id="heading">Mod Label</translatableAttribute>
+				</column>
+				<column id="filesize" color="255 255 255" width="20%">
+					<translatableAttribute id="heading">File Size</translatableAttribute>
+				</column>
+				<column id="dependencies" color="255 255 255" width="25%">
+					<translatableAttribute id="heading">Dependencies</translatableAttribute>
+				</column>
+			</object>
+			<object name="modDescription" type="text" style="ModmodScrollbar" size="0 100% 100%-16 100%+28" />
+		</object>
+
+		<!-- Buttons -->
+		<object type="button" style="ModernButtonRed" size="100%-552 100%-44 100%-372 100%-16">
+			<translatableAttribute id="caption">Back</translatableAttribute>
+			<action on="Press">closePage();</action>
+		</object>
+
+		<object name="refreshButton" type="button" style="ModernButtonRed" size="100%-368 100%-44 100%-188 100%-16" enabled="false">
+			<translatableAttribute id="caption">Refresh List</translatableAttribute>
+			<action on="Press">updateModList();</action>
+		</object>
+
+		<object name="downloadButton" type="button" style="ModernButtonRed" size="100%-184 100%-44 100%-16 100%-16" enabled="false">
+			<translatableAttribute id="caption">Download</translatableAttribute>
+			<action on="Press">downloadMod();</action>
+		</object>
+
+	</object>
+
+	<!-- Download/Request-in-progress Dialog -->
+	<!-- Captions are supplied in modio.js -->
+	<!-- This must be after the buttons, and with "z" > 20, else it and/or other objects will not be drawn correctly -->
+	<object name="downloadDialog" type="image" sprite="ModernFade" z="30" size="0 0 100% 100%">
+		<object type="image" style="ModernDialog" size="50%-190 50%-96 50%+190 50%+96">
+
+			<object name="downloadDialog_title" type="text" style="ModernLabelText" size="50%-128 0%-16 50%+128 16"/>
+
+			<object name="downloadDialog_caption" type="text" style="ModernLabelText" size="0 0 100% 40%"/>
+
+			<object name="downloadDialog_progress" size="50%-160 35%-16 50%+160 35%+16" type="image" style="ModernProgressBarBackground">
+				<object name="downloadDialog_progressBar" type="progressbar" style="ModernProgressBar"/>
+				<object name="downloadDialog_progressText" type="text" style="ModernProgressBarText"/>
+			</object>
+
+			<object name="downloadDialog_status" type="text" style="ModernLabelText" size="0 35%+16 100% 35%+64"/>
+
+			<object name="downloadDialog_button" type="button" style="ModernButtonRed" size="50%-80 80%-14 50%+80 80%+14" hotkey="cancel"/>
+
+		</object>
+	</object>
+</objects>

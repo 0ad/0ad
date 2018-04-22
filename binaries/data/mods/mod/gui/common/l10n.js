@@ -1,4 +1,39 @@
 /**
+ * @param filesize - In bytes.
+ * @return Object with quantized filesize and suitable unit of size.
+ */
+function filesizeToObj(filesize)
+{
+	// We are unlikely to download files measured in units greater than GiB.
+	let units = [
+		translateWithContext("filesize unit", "B"),
+		translateWithContext("filesize unit", "KiB"),
+		translateWithContext("filesize unit", "MiB"),
+		translateWithContext("filesize unit", "GiB")
+	];
+
+	let i = 0;
+	while (i < units.length - 1)
+	{
+		if (filesize < 1024)
+			break;
+		filesize /= 1024;
+		++i;
+	}
+
+	return {
+		"filesize": filesize.toFixed(i == 0 ? 0 : 1),
+		"unit": units[i]
+	};
+}
+
+function filesizeToString(filesize)
+{
+	// Translation: For example: 123.4 KiB
+	return sprintf(translate("%(filesize)s %(unit)s"), filesizeToObj(filesize));
+}
+
+/**
  * Convert time in milliseconds to [HH:]mm:ss string representation.
  *
  * @param time Time period in milliseconds (integer)

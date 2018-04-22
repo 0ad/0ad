@@ -61,6 +61,7 @@
 #include "ps/Joystick.h"
 #include "ps/Loader.h"
 #include "ps/Mod.h"
+#include "ps/ModIo.h"
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Profiler2.h"
@@ -704,6 +705,8 @@ void Shutdown(int flags)
 
 	SAFE_DELETE(g_XmppClient);
 
+	SAFE_DELETE(g_ModIo);
+
 	ShutdownPs();
 
 	TIMER_BEGIN(L"shutdown TexMan");
@@ -734,6 +737,9 @@ void Shutdown(int flags)
 	TIMER_BEGIN(L"shutdown UserReporter");
 	g_UserReporter.Deinitialize();
 	TIMER_END(L"shutdown UserReporter");
+
+	// Cleanup curl now that g_ModIo and g_UserReporter have been shutdown.
+	curl_global_cleanup();
 
 	delete &g_L10n;
 
@@ -965,6 +971,10 @@ bool Init(const CmdLineArgs& args, int flags)
 	CFG_GET_VAL("profiler2.autoenable", profilerHTTPEnable);
 	if (profilerHTTPEnable)
 		g_Profiler2.EnableHTTP();
+
+	// Initialise everything except Win32 sockets (because our networking
+	// system already inits those)
+	curl_global_init(CURL_GLOBAL_ALL & ~CURL_GLOBAL_WIN32);
 
 	if (!g_Quickstart)
 		g_UserReporter.Initialize(); // after config

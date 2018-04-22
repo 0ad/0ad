@@ -39,6 +39,14 @@
                         "translate": {}
                     }
                 }
+            },
+            {
+                "extractor": "txt",
+                "filemasks": [
+                    "gui/**.txt"
+                ],
+                "options": {
+                }
             }
         ]
     }
