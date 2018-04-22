@@ -258,7 +258,7 @@ Engine.SetProgress(80);
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 12, clVolcano, 4, clMetal, 4, clRock, 4, clHill, 4));
 
-var [forestTrees, stragglerTrees] = getTreeCounts(800, 6000, 0.7);
+var [forestTrees, stragglerTrees] = getTreeCounts(800, 4000, 0.7);
 createForests(
 	[tForestFloor, tForestFloor, tForestFloor, pForest1, pForest2],
 	avoidClasses(clWater, 2, clPlayer, 4, clVolcano, 2, clForest, 1, clBaseResource, 4, clMetal, 4, clRock, 4),
