@@ -404,8 +404,7 @@ m.BaseManager.prototype.checkResourceLevels = function(gameState, queues)
 					queues.corral.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_corral", { "favoredBase": this.ID }));
 				continue;
 			}
-			if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_field")) &&
-			    !gameState.getOwnEntitiesByClass("Corral", true).hasEntities() &&
+			if (!gameState.getOwnEntitiesByClass("Corral", true).hasEntities() &&
 			    !queues.corral.hasQueuedUnits() && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral"))
 			{
 				let count = this.getResourceLevel(gameState, type, gameState.currentPhase() > 1);  // animals are not accounted

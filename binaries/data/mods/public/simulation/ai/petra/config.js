@@ -167,7 +167,7 @@ m.Config.prototype.setConfig = function(gameState)
 	// changing settings based on difficulty or personality
 	this.Military.towerLapseTime = Math.round(this.Military.towerLapseTime * (1.1 - 0.2 * this.personality.defensive));
 	this.Military.fortressLapseTime = Math.round(this.Military.fortressLapseTime * (1.1 - 0.2 * this.personality.defensive));
-	this.priorities.defenseBuilding = Math.round(this.priorities.defenseBuilding * ( 0.9 + 0.2 * this.personality.defensive));
+	this.priorities.defenseBuilding = Math.round(this.priorities.defenseBuilding * (0.9 + 0.2 * this.personality.defensive));
 
 	if (this.difficulty < 2)
 	{

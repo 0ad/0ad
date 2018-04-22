@@ -4,9 +4,10 @@
     <List datatype="tokens">Infantry -Cavalry</List>
   </GarrisonHolder>
   <Identity>
+    <Classes datatype="tokens">Archery</Classes>
     <GenericName>Archery Range</GenericName>
-    <Tooltip>Train citizen-soldier ranged infantry. Research training improvements.</Tooltip>
     <Icon>structures/range.png</Icon>
+    <Tooltip>Train citizen-soldier ranged infantry. Research training improvements.</Tooltip>
   </Identity>
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
