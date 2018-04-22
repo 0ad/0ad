@@ -337,7 +337,7 @@ m.Worker.prototype.update = function(gameState, ent)
 			ent.setMetadata(PlayerID, "target-foundation", undefined);
 			// If worker elephant, move away to avoid being trapped in between constructions
 			if (ent.hasClass("Elephant"))
-				this.moveAway(gameState);
+				this.moveToGatherer(gameState, ent, true);
 			else if (this.baseID != gameState.ai.HQ.baseManagers[0].ID)
 			{
 				// reassign it to something useful
@@ -1003,20 +1003,29 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 };
 
 /**
- * Workers elephant should move away from the buildings they've built to avoid being trapped in between constructions
- * For the time being, we move towards the nearest gatherer (providing him a dropsite)
+ * Workers elephant should move away from the buildings they've built to avoid being trapped in between constructions.
+ * For the time being, we move towards the nearest gatherer (providing him a dropsite).
+ * BaseManager does also use that function to deal with its mobile dropsites.
  */
-m.Worker.prototype.moveAway = function(gameState)
+m.Worker.prototype.moveToGatherer = function(gameState, ent, forced)
 {
+	let pos = ent.position();
+	if (!pos || ent.getMetadata(PlayerID, "target-foundation") !== undefined)
+		return;
+	if (!forced && gameState.ai.elapsedTime < (ent.getMetadata(PlayerID, "nextMoveToGatherer") || 5))
+		return;
 	let gatherers = this.base.workersBySubrole(gameState, "gatherer");
-	let pos = this.ent.position();
 	let dist = Math.min();
-	let destination = pos;
+	let destination;
+	let access = m.getLandAccess(gameState, ent);
+	let types = ent.resourceDropsiteTypes();
 	for (let gatherer of gatherers.values())
 	{
-		if (!gatherer.position() || gatherer.getMetadata(PlayerID, "transport") !== undefined)
+		let gathererType = gatherer.getMetadata(PlayerID, "gather-type");
+		if (!gathererType || types.indexOf(gathererType) == -1)
 			continue;
-		if (gatherer.isIdle())
+		if (!gatherer.position() || gatherer.getMetadata(PlayerID, "transport") !== undefined ||
+		    m.getLandAccess(gameState, gatherer) != access || gatherer.isIdle())
 			continue;
 		let distance = API3.SquareVectorDistance(pos, gatherer.position());
 		if (distance > dist)
@@ -1024,7 +1033,9 @@ m.Worker.prototype.moveAway = function(gameState)
 		dist = distance;
 		destination = gatherer.position();
 	}
-	this.ent.move(destination[0], destination[1]);
+	ent.setMetadata(PlayerID, "nextMoveToGatherer", gameState.ai.elapsedTime + (destination ? 12 : 5));
+	if (destination && dist > 10)
+		ent.move(destination[0], destination[1]);
 };
 
 /**

@@ -1926,7 +1926,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	numBarracks -= numRanges;
 
 	let stableTemplate = this.canBuild(gameState, "structures/{civ}_stables") ? "structures/{civ}_stables" :
-	                     this.canBuild(gameState, "structures/{civ}_stable") ? "structures/{civ}_stable" : undefined; 
+	                     this.canBuild(gameState, "structures/{civ}_stable") ? "structures/{civ}_stable" : undefined;
 	let numStables = gameState.getOwnEntitiesByClass("Stables", true).length;
 
 	if (this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks1 ||
