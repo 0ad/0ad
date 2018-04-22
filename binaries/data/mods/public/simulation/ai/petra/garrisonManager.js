@@ -23,12 +23,29 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 	{
 		for (let id of this.holders.keys())
 		{
-			if (id !== evt.entity)
+			if (id != evt.entity)
 				continue;
 			let data = this.holders.get(id);
-			this.holders.delete(id);
-			this.holders.set(evt.newentity, data);
+			let newHolder = gameState.getEntityById(evt.newentity);
+			if (newHolder && newHolder.isGarrisonHolder())
+			{
+				this.holders.delete(id);
+				this.holders.set(evt.newentity, data);
+			}
+			else
+			{
+				for (let entId of data.list)
+				{
+					let ent = gameState.getEntityById(entId);
+					if (!ent || ent.getMetadata(PlayerID, "garrisonHolder") != id)
+						continue;
+					this.leaveGarrison(ent);
+					ent.stopMoving();
+				}
+				this.holders.delete(id);
+			}
 		}
+
 		for (let id of this.decayingStructures.keys())
 		{
 			if (id !== evt.entity)
@@ -54,11 +71,10 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 			for (let entId of list)
 			{
 				let ent = gameState.getEntityById(entId);
-				if (ent && ent.getMetadata(PlayerID, "garrisonHolder") == id)
-				{
-					this.leaveGarrison(ent);
-					ent.stopMoving();
-				}
+				if (!ent || ent.getMetadata(PlayerID, "garrisonHolder") != id)
+					continue;
+				this.leaveGarrison(ent);
+				ent.stopMoving();
 			}
 			this.holders.delete(id);
 			continue;
