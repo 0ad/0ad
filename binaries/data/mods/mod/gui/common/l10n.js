@@ -1,4 +1,17 @@
 /**
+ * Convert time in milliseconds to [HH:]mm:ss string representation.
+ *
+ * @param time Time period in milliseconds (integer)
+ * @return String representing time period
+ */
+function timeToString(time)
+{
+	return Engine.FormatMillisecondsIntoDateStringGMT(time, time < 1000 * 60 * 60 ?
+		// Translation: Time-format string. See http://userguide.icu-project.org/formatparse/datetime for a guide to the meaning of the letters.
+		translate("mm:ss") : translate("HH:mm:ss"));
+}
+
+/**
  * These functions rely on the JS cache where possible and
  * should be prefered over the Engine.Translate ones to optimize the performance.
  */
@@ -44,7 +57,7 @@ function translatePlural(singularMessage, pluralMessage, number)
 function translateWithContext(context, message)
 {
 	if (!g_TranslationsWithContext[context])
-		g_TranslationsWithContext[context] = {}
+		g_TranslationsWithContext[context] = {};
 
 	if (!g_TranslationsWithContext[context][message])
 		g_TranslationsWithContext[context][message] = Engine.TranslateWithContext(context, message);

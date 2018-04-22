@@ -8,7 +8,7 @@
             {
                 "extractor": "javascript",
                 "filemasks": [
-                    "gui/modmod/**.js"
+                    "gui/**.js"
                 ],
                 "options": {
                    "format": "javascript-format",
@@ -28,7 +28,7 @@
             {
                 "extractor": "xml",
                 "filemasks": [
-                    "gui/modmod/**.xml"
+                    "gui/**.xml"
                 ],
                 "options": {
                     "format": "none",

@@ -105,17 +105,6 @@ function translateMapTitle(mapTitle)
 	return mapTitle == "random" ? translateWithContext("map selection", "Random") : translate(mapTitle);
 }
 
-/**
- * Convert time in milliseconds to [hh:]mm:ss string representation.
- * @param time Time period in milliseconds (integer)
- * @return String representing time period
- */
-function timeToString(time)
-{
-	return Engine.FormatMillisecondsIntoDateStringGMT(time, time < 1000 * 60 * 60 ?
-		translate("mm:ss") : translate("HH:mm:ss"));
-}
-
 function removeDupes(array)
 {
 	// loop backwards to make splice operations cheaper
