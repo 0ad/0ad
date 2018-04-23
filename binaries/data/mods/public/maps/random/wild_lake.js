@@ -607,7 +607,7 @@ g_Map.log("Placing at most " + mercenaryCamps + " mercenary camps");
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let radius;
-	let choice = i % 5;
+	let choice = i % (isNomad() ? 4 : 5);
 	if (choice == 0)
 		placeMine(resourceSpots[i], g_Gaia.stoneLarge);
 	if (choice == 1)

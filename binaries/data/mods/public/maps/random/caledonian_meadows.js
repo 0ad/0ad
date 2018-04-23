@@ -414,7 +414,7 @@ g_Map.log("Placing resources, farmsteads, groves and camps");
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let pos = new Vector2D(resourceSpots[i].x, resourceSpots[i].y);
-	let choice = i % 5;
+	let choice = i % (isNomad() ? 4 : 5);
 	if (choice == 0)
 		placeMine(pos, "gaia/geology_stonemine_temperate_formation");
 	if (choice == 1)
