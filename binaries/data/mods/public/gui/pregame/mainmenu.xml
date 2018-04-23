@@ -394,7 +394,7 @@
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Mod Selection</translatableAttribute>
-					<translatableAttribute id="tooltip">Select mods to use.</translatableAttribute>
+					<translatableAttribute id="tooltip">Select and download mods for the game.</translatableAttribute>
 					<action on="Press">
 						Engine.SwitchGuiPage("page_modmod.xml");
 					</action>

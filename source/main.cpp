@@ -608,7 +608,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 			// Install the mods without deleting the pyromod files
 			for (const OsPath& modPath : modsToInstall)
-				installer.Install(modPath, g_ScriptRuntime, false);
+				installer.Install(modPath, g_ScriptRuntime, true);
 
 			installedMods = installer.GetInstalledMods();
 		}

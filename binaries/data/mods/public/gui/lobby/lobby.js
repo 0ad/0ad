@@ -1178,10 +1178,18 @@ function joinButton()
 		messageBox(
 			400, 200,
 			translate("Your active mods do not match the mods of this game.") + "\n\n" +
-				comparedModsString(JSON.parse(game.mods), Engine.GetEngineInfo().mods),
+				comparedModsString(JSON.parse(game.mods), Engine.GetEngineInfo().mods) + "\n\n" +
+				translate("Do you want to switch to the mod selection page?"),
 			translate("Incompatible mods"),
-			[translate("Ok")],
-			[null]
+			[translate("No"), translate("Yes")],
+			[
+				null,
+				() => {
+					Engine.SwitchGuiPage("page_modmod.xml", {
+						"cancelbutton": true
+					});
+				}
+			]
 		);
 	else if (game.state == "init" || stringifiedTeamListToPlayerData(game.players).some(player => player.Name == username))
 		joinSelectedGame();

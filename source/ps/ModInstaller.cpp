@@ -41,12 +41,15 @@ CModInstaller::~CModInstaller()
 CModInstaller::ModInstallationResult CModInstaller::Install(
 	const OsPath& mod,
 	const std::shared_ptr<ScriptRuntime>& scriptRuntime,
-	bool deleteAfterInstall)
+	bool keepFile)
 {
 	const OsPath modTemp = m_TempDir / mod.Basename() / mod.Filename().ChangeExtension(L".zip");
 	CreateDirectories(modTemp.Parent(), 0700);
 
-	CopyFile(mod, modTemp, true);
+	if (keepFile)
+		CopyFile(mod, modTemp, true);
+	else
+		wrename(mod, modTemp);
 
 	// Load the mod to VFS
 	if (m_VFS->Mount(m_CacheDir, m_TempDir / "") != INFO::OK)
@@ -95,10 +98,6 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 		mod_json.close();
 	}
 #endif // OS_WIN
-
-	// Remove the original file if requested
-	if (deleteAfterInstall)
-		wunlink(mod);
 
 	m_InstalledMods.emplace_back(modName);
 

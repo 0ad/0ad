@@ -48,10 +48,12 @@ m.BaseManager.prototype.init = function(gameState, state)
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
 	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID, "role", "worker"));
 	this.buildings = gameState.getOwnStructures().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
+	this.mobileDropsites = this.units.filter(API3.Filters.isDropsite());
 
 	this.units.registerUpdates();
 	this.workers.registerUpdates();
 	this.buildings.registerUpdates();
+	this.mobileDropsites.registerUpdates();
 
 	// array of entity IDs, with each being
 	this.dropsites = {};
@@ -983,6 +985,8 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 			this.reassignIdleWorkers(gameState);
 			for (let ent of this.workers.values())
 				this.workerObject.update(gameState, ent);
+			for (let ent of this.mobileDropsites.values())
+				this.workerObject.moveToGatherer(gameState, ent, false);
 		}
 		return false;
 	}
@@ -1031,6 +1035,8 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 		this.reassignIdleWorkers(gameState);
 		for (let ent of this.workers.values())
 			this.workerObject.update(gameState, ent);
+		for (let ent of this.mobileDropsites.values())
+			this.workerObject.moveToGatherer(gameState, ent, false);
 		return true;
 	}
 
@@ -1070,6 +1076,8 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 	// check if workers can find something useful to do
 	for (let ent of this.workers.values())
 		this.workerObject.update(gameState, ent);
+	for (let ent of this.mobileDropsites.values())
+		this.workerObject.moveToGatherer(gameState, ent, false);
 
 	Engine.ProfileStop();
 	return true;

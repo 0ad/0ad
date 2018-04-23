@@ -1,4 +1,52 @@
 /**
+ * @param filesize - In bytes.
+ * @return Object with quantized filesize and suitable unit of size.
+ */
+function filesizeToObj(filesize)
+{
+	// We are unlikely to download files measured in units greater than GiB.
+	let units = [
+		translateWithContext("filesize unit", "B"),
+		translateWithContext("filesize unit", "KiB"),
+		translateWithContext("filesize unit", "MiB"),
+		translateWithContext("filesize unit", "GiB")
+	];
+
+	let i = 0;
+	while (i < units.length - 1)
+	{
+		if (filesize < 1024)
+			break;
+		filesize /= 1024;
+		++i;
+	}
+
+	return {
+		"filesize": filesize.toFixed(i == 0 ? 0 : 1),
+		"unit": units[i]
+	};
+}
+
+function filesizeToString(filesize)
+{
+	// Translation: For example: 123.4 KiB
+	return sprintf(translate("%(filesize)s %(unit)s"), filesizeToObj(filesize));
+}
+
+/**
+ * Convert time in milliseconds to [HH:]mm:ss string representation.
+ *
+ * @param time Time period in milliseconds (integer)
+ * @return String representing time period
+ */
+function timeToString(time)
+{
+	return Engine.FormatMillisecondsIntoDateStringGMT(time, time < 1000 * 60 * 60 ?
+		// Translation: Time-format string. See http://userguide.icu-project.org/formatparse/datetime for a guide to the meaning of the letters.
+		translate("mm:ss") : translate("HH:mm:ss"));
+}
+
+/**
  * These functions rely on the JS cache where possible and
  * should be prefered over the Engine.Translate ones to optimize the performance.
  */
@@ -44,7 +92,7 @@ function translatePlural(singularMessage, pluralMessage, number)
 function translateWithContext(context, message)
 {
 	if (!g_TranslationsWithContext[context])
-		g_TranslationsWithContext[context] = {}
+		g_TranslationsWithContext[context] = {};
 
 	if (!g_TranslationsWithContext[context][message])
 		g_TranslationsWithContext[context][message] = Engine.TranslateWithContext(context, message);

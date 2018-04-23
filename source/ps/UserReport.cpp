@@ -578,10 +578,6 @@ void CUserReporter::Initialize()
 	std::string url;
 	CFG_GET_VAL("userreport.url", url);
 
-	// Initialise everything except Win32 sockets (because our networking
-	// system already inits those)
-	curl_global_init(CURL_GLOBAL_ALL & ~CURL_GLOBAL_WIN32);
-
 	m_Worker = new CUserReporterWorker(userID, url);
 
 	m_Worker->SetEnabled(IsReportingEnabled());
@@ -595,9 +591,7 @@ void CUserReporter::Deinitialize()
 	if (m_Worker->Shutdown())
 	{
 		// Worker was shut down cleanly
-
 		SAFE_DELETE(m_Worker);
-		curl_global_cleanup();
 	}
 	else
 	{
