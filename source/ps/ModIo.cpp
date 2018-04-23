@@ -629,7 +629,7 @@ bool ModIo::ParseGameIdResponse(const ScriptInterface& scriptInterface, const st
  * The JSON data is expected to look like
  * { data: [modobj1, modobj2, ...], ... (including result_count) }
  * where modobjN has the following structure
- * { homepage: "url", name: "displayname", nameid: "short-non-whitespace-name",
+ * { homepage_url: "url", name: "displayname", nameid: "short-non-whitespace-name",
  *   summary: "short desc.", modfile: { version: "1.2.4", filename: "asdf.zip",
  *   filehash: { md5: "deadbeef" }, filesize: 1234, download: { binary_url: "someurl", ... } }, ... }.
  * Only the listed properties are of interest to consumers, and we flatten
@@ -685,7 +685,7 @@ bool ModIo::ParseModsResponse(const ScriptInterface& scriptInterface, const std:
 		modData.back().properties.emplace(prefix+prop, val); \
 	}
 
-		// TODO: Currently the homepage field does not contain a non-null value for any entry.
+		// TODO: Currently the homepage_url field does not contain a non-null value for any entry.
 		COPY_STRINGS("", el, "name", "name_id", "summary");
 
 		// Now copy over the modfile part, but without the pointless substructure
