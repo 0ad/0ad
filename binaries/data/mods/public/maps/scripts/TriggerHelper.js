@@ -12,6 +12,12 @@ TriggerHelper.GetPlayerIDFromEntity = function(ent)
 	return -1;
 };
 
+TriggerHelper.IsInWorld = function(ent)
+{
+	let cmpPosition = Engine.QueryInterface(ent, IID_Position);
+	return cmpPosition && cmpPosition.IsInWorld();
+};
+
 TriggerHelper.GetEntityPosition2D = function(ent)
 {
 	let cmpPosition = Engine.QueryInterface(ent, IID_Position);

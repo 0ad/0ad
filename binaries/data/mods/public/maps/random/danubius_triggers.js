@@ -226,6 +226,9 @@ Trigger.prototype.SpawnCCAttackers = function()
 
 	for (let gaiaCC of this.civicCenters)
 	{
+		if (!TriggerHelper.IsInWorld(gaiaCC))
+			continue;
+
 		let isLeft = this.IsLeftRiverside(gaiaCC);
 		if (isLeft && !spawnLeft || !isLeft && !spawnRight)
 			continue;
@@ -394,7 +397,7 @@ Trigger.prototype.AttackAndPatrol = function(entities, targetClass, triggerPoint
 	if (!entities.length)
 		return;
 
-	let healers = TriggerHelper.MatchEntitiesByClass(entities, "Healer");
+	let healers = TriggerHelper.MatchEntitiesByClass(entities, "Healer").filter(TriggerHelper.IsInWorld);
 	if (healers.length)
 	{
 		let healerTargets = TriggerHelper.MatchEntitiesByClass(entities, "Hero Champion");
@@ -409,9 +412,11 @@ Trigger.prototype.AttackAndPatrol = function(entities, targetClass, triggerPoint
 		});
 	}
 
-	let attackers = TriggerHelper.MatchEntitiesByClass(entities, "!Healer");
+	let attackers = TriggerHelper.MatchEntitiesByClass(entities, "!Healer").filter(TriggerHelper.IsInWorld);
+	if (!attackers.length)
+		return;
 
-	let targets = TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetAllPlayersEntities(), targetClass).sort(
+	let targets = TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetAllPlayersEntities(), targetClass).filter(TriggerHelper.IsInWorld).sort(
 		(ent1, ent2) => DistanceBetweenEntities(attackers[0], ent1) - DistanceBetweenEntities(attackers[0], ent2)).slice(0, targetCount);
 
 	this.debugLog(debugName + " " + uneval(attackers) + " attack " + uneval(targets));
