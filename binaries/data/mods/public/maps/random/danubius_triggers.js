@@ -115,11 +115,6 @@ var siegeCount = t => 1 + Math.min(2, Math.floor(t / 30));
 var championRatio = t => Math.min(1, Math.max(0, (t - 25) / 75));
 
 /**
- * Ships and land units will queue attack orders for this amount of closest units.
- */
-var targetCount = 3;
-
-/**
  * Number of trigger points to patrol when not having enemies to attack.
  */
 var patrolCount = 5;
@@ -390,7 +385,7 @@ Trigger.prototype.FillShips = function()
 };
 
 /**
- * Attack the closest enemy ships around, then patrol the sea.
+ * Attack the closest enemy target around, then patrol the map.
  */
 Trigger.prototype.AttackAndPatrol = function(entities, targetClass, triggerPointRef, debugName, attack)
 {
@@ -416,20 +411,34 @@ Trigger.prototype.AttackAndPatrol = function(entities, targetClass, triggerPoint
 	if (!attackers.length)
 		return;
 
-	let targets = TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetAllPlayersEntities(), targetClass).filter(TriggerHelper.IsInWorld).sort(
-		(ent1, ent2) => DistanceBetweenEntities(attackers[0], ent1) - DistanceBetweenEntities(attackers[0], ent2)).slice(0, targetCount);
+	let isLeft = this.IsLeftRiverside(attackers[0]);
+	let targets = TriggerHelper.MatchEntitiesByClass(TriggerHelper.GetAllPlayersEntities(), targetClass);
+	let closestTarget;
+	let minDistance = Infinity;
 
-	this.debugLog(debugName + " " + uneval(attackers) + " attack " + uneval(targets));
+	for (let target of targets)
+	{
+		if (!TriggerHelper.IsInWorld(target) || this.IsLeftRiverside(target) != isLeft)
+			continue;
 
-	if (attack)
-		for (let target of targets)
-			ProcessCommand(gaulPlayer, {
-				"type": "attack",
-				"entities": attackers,
-				"target": target,
-				"queued": true,
-				"allowCapture": false
-			});
+		let targetDistance = DistanceBetweenEntities(attackers[0], target);
+		if (targetDistance < minDistance)
+		{
+			closestTarget = target;
+			minDistance = targetDistance;
+		}
+	}
+
+	this.debugLog(debugName + " " + uneval(attackers) + " attack " + uneval(closestTarget));
+
+	if (attack && closestTarget)
+		ProcessCommand(gaulPlayer, {
+			"type": "attack",
+			"entities": attackers,
+			"target": closestTarget,
+			"queued": true,
+			"allowCapture": false
+		});
 
 	let patrolTargets = shuffleArray(this.GetTriggerPoints(triggerPointRef)).slice(0, patrolCount);
 	this.debugLog(debugName + " " + uneval(attackers) + " patrol to " + uneval(patrolTargets));
