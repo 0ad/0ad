@@ -1253,10 +1253,9 @@ function initGUIObjects()
 }
 
 /**
- * Slide settings panel.
  * @param {number} dt - Time in milliseconds since last call.
  */
-function updateSettingsPanelPosition(dt)
+function slideSettingsPanel(dt)
 {
 	let slideSpeed = Engine.ConfigDB_GetValue("user", "gui.gamesetup.settingsslide") == "true" ? g_SlideSpeed : Infinity;
 
@@ -1278,20 +1277,30 @@ function updateSettingsPanelPosition(dt)
 			offset = -Math.min(slideSpeed * dt, maxOffset);
 	}
 
-	let size = settingsPanel.size;
-	size.left += offset;
-	size.right += offset;
-	settingsPanel.size = size;
+	updateSettingsPanelPosition(offset);	
+}
+
+/**
+ * Directly change the position of the settingsPanel.
+ * @param {number} offset - Number of pixels the panel needs to move.
+ */
+function updateSettingsPanelPosition(offset)
+{
+	let settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
+	let settingsPanelSize = settingsPanel.size;
+	settingsPanelSize.left += offset;
+	settingsPanelSize.right += offset;
+	settingsPanel.size = settingsPanelSize;
 
 	let settingsBackground = Engine.GetGUIObjectByName("settingsBackground");
 	let backgroundSize = settingsBackground.size;
-	backgroundSize.left = size.left;
+	backgroundSize.left = settingsPanelSize.left;
 	settingsBackground.size = backgroundSize;
 
 	let chatPanel = Engine.GetGUIObjectByName("chatPanel");
 	let chatSize = chatPanel.size;
 
-	chatSize.right = size.left - g_ChatSettingsMargin;
+	chatSize.right = settingsPanelSize.left - g_ChatSettingsMargin;
 	chatPanel.size = chatSize;
 	chatPanel.hidden = g_MiscControls.chatPanel.hidden();
 
@@ -1951,7 +1960,7 @@ function onTick()
 	let tickLength = now - g_LastTickTime;
 	g_LastTickTime = now;
 
-	updateSettingsPanelPosition(tickLength);
+	slideSettingsPanel(tickLength);
 }
 
 /**
