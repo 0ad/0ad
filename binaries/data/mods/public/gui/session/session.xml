@@ -5,7 +5,7 @@
 <script directory="gui/common/"/>
 <script directory="gui/session/"/>
 
-<object name="sn">
+<object name="session">
 
 	<action on="Tick">
 		onTick();

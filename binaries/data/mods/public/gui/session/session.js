@@ -933,11 +933,17 @@ function confirmExit()
 	g_ConfirmExit = false;
 }
 
+function toggleGUI()
+{
+	g_ShowGUI = !g_ShowGUI;
+	updateCinemaPath();
+}
+
 function updateCinemaPath()
 {
 	let isPlayingCinemaPath = GetSimState().cinemaPlaying && !g_Disconnected;
 
-	Engine.GetGUIObjectByName("sn").hidden = !g_ShowGUI || isPlayingCinemaPath;
+	Engine.GetGUIObjectByName("session").hidden = !g_ShowGUI || isPlayingCinemaPath;
 	Engine.Renderer_SetSilhouettesEnabled(!isPlayingCinemaPath && Engine.ConfigDB_GetValue("user", "silhouettes") == "true");
 }
 
