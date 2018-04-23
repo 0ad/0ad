@@ -81,7 +81,7 @@ m.Config = function(difficulty, behavior)
 		"dropsites": 200,
 		"field": 400,
 		"dock": 90,
-		"corral": 60,
+		"corral": 100,
 		"economicBuilding": 90,
 		"militaryBuilding": 130,
 		"defenseBuilding": 70,
