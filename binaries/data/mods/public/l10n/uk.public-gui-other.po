@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-04 16:10+0000\n"
-"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
+"POT-Creation-Date: 2018-04-20 09:02+0200\n"
+"PO-Revision-Date: 2018-04-20 15:32+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr ""
+msgstr "Рубати"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
@@ -44,7 +44,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Перемикнутися на Дерево Технологій."
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
@@ -93,7 +93,7 @@ msgstr "Історія %(civilization)s"
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Непризначена гаряча клавіша: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -110,7 +110,7 @@ msgstr "Таб"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Відкриття %(url)s\nу стандартному веб браузері. Будь ласка, зачекайте..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -128,7 +128,7 @@ msgstr "Завантаження відмінено"
 
 #: gui/common/functions_utility.js:29
 msgid "Gaia"
-msgstr ""
+msgstr "Гея"
 
 #: gui/common/functions_utility.js:105
 msgctxt "map selection"
@@ -174,7 +174,6 @@ msgstr "Видалити"
 #: gui/options/options.js:301 gui/options/options.js:351
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
-#: gui/summary/summary.js:446
 msgid "No"
 msgstr "Ні"
 
@@ -182,7 +181,6 @@ msgstr "Ні"
 #: gui/options/options.js:301 gui/options/options.js:351
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
-#: gui/summary/summary.js:446
 msgid "Yes"
 msgstr "Так"
 
@@ -230,7 +228,7 @@ msgstr "%(playerName)s (%(AIdescription)s)"
 #: gui/common/gamedescription.js:116
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -320,7 +318,7 @@ msgstr "Безкінечна Гра"
 
 #: gui/common/gamedescription.js:225
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Жодного переможця не буде визначено, навіть якщо кожен зазнає поразки."
 
 #: gui/common/gamedescription.js:236
 #, javascript-format
@@ -424,11 +422,11 @@ msgstr[2] "Перші %(min)s хвилин, інші гравці залишаю
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Випадкова Карта"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Випадково вибрана карта зі списку."
 
 #: gui/common/gamedescription.js:330
 msgid "Map Name"
@@ -453,7 +451,7 @@ msgstr "Розмір мапи"
 #: gui/common/gamedescription.js:366
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "Випадковий біом"
 
 #: gui/common/gamedescription.js:367
 msgid "Randomly select a biome from the list."
@@ -546,7 +544,7 @@ msgstr "Переможений"
 #: gui/common/gamedescription.js:463
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -613,7 +611,7 @@ msgstr "Сервер переповнений"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
-msgstr ""
+msgstr "Захищена аутентифікація до лоббі не вдалася. Приєднайтеся за допомогою лоббі"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -656,7 +654,7 @@ msgstr "Користувачі (%(num)s): %(users)s"
 #: gui/common/tooltips.js:719 gui/common/tooltips.js:785
 #: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:272
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/common/settings.js:117
 msgctxt "aiDiff"
@@ -798,7 +796,7 @@ msgstr "Невідомий"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "Невідомі Умови Перемоги"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
@@ -1031,17 +1029,17 @@ msgstr "Кількість ремонтників:"
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Додайте ще працівника для пришвидшення ремонту на %(second)s секунду."
+msgstr[1] "Додайте ще працівника для пришвидшення ремонту на %(second)s секунди."
+msgstr[2] "Додайте ще працівника для пришвидшення ремонту на %(second)s секунд."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Додайте ще працівника для закінчення ремонту через %(second)s секунду."
+msgstr[1] "Додайте ще працівника для закінчення ремонту через %(second)s секунди."
+msgstr[2] "Додайте ще працівника для закінчення ремонту через %(second)s секунд."
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
@@ -1252,13 +1250,13 @@ msgstr ""
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Мін: %(min)s"
 
 #: gui/options/options.js:130
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Макс: %(max)s"
 
 #: gui/options/options.js:163
 #, javascript-format
@@ -1289,12 +1287,12 @@ msgstr "У вас є незбережені зміни, ви дійсно хоч
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Перегляд структурного дерева цивілізацій, представлених в 0 A.D."
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Дізнатися більше про цивілізації, представлені у 0 A.D."
 
 #: gui/pregame/mainmenu.js:48
 #, javascript-format
@@ -1378,7 +1376,6 @@ msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Ви дійсно бажаєте вийти з 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
-#: gui/summary/summary.js:445
 msgid "Confirmation"
 msgstr "Підтвердження"
 
@@ -1432,12 +1429,12 @@ msgstr ""
 #. supply of its resource.
 #: gui/reference/common/draw.js:71 gui/summary/summary.js:111
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/reference/common/load.js:193
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s до %(health_max)s"
 
 #: gui/reference/structree/structree.js:49
 #, javascript-format
@@ -1447,13 +1444,13 @@ msgstr "%(hotkey)s: Переключитися на Історію."
 #: gui/reference/structree/structree.js:50
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Закрити Дерево Структури."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
 #: gui/reference/viewer/viewer.js:139
 msgid "Built by:"
-msgstr ""
+msgstr "Побудовано:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
@@ -1890,52 +1887,48 @@ msgstr "Невдало"
 msgid "Time elapsed"
 msgstr "Час минув"
 
-#: gui/summary/summary.js:444
-msgid "Are you sure you want to quit the lobby?"
-msgstr "Ви впевнені, що хочете вийти з кімнати?"
-
-#: gui/summary/summary.js:508
+#: gui/summary/summary.js:491
 msgid "Current Scores"
 msgstr "Поточні Результати"
 
-#: gui/summary/summary.js:510
+#: gui/summary/summary.js:493
 msgid "Scores at the end of the game."
 msgstr "Результати в кінці гри."
 
-#: gui/summary/summary.js:512
+#: gui/summary/summary.js:495
 msgid "You have been disconnected."
 msgstr "Ви були роз'єднані."
 
-#: gui/summary/summary.js:514
+#: gui/summary/summary.js:497
 msgid "You have left the game."
 msgstr "Ви покинули гру."
 
-#: gui/summary/summary.js:516
+#: gui/summary/summary.js:499
 msgid "You have won the battle!"
 msgstr "Ви перемогли у битві!"
 
-#: gui/summary/summary.js:518
+#: gui/summary/summary.js:501
 msgid "You have been defeated…"
 msgstr ""
 
-#: gui/summary/summary.js:519
+#: gui/summary/summary.js:502
 msgid "You have abandoned the game."
 msgstr "Ви відмовилися від гри."
 
-#: gui/summary/summary.js:522
+#: gui/summary/summary.js:505
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Тривалість гри: %(time)s"
 
-#: gui/summary/summary.js:530
+#: gui/summary/summary.js:513
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:542
+#: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "%(hotkey)s: Перемикає лоббі багатокористувацького режиму в діалогове вікно."
 
 #: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
@@ -2135,7 +2128,7 @@ msgstr "undefined"
 
 #: gui/pregame/mainmenu.xml:(caption):622
 msgid "Donate"
-msgstr ""
+msgstr "Пожертвувати"
 
 #: gui/pregame/mainmenu.xml:(caption):634
 msgid "Credits"
@@ -2212,7 +2205,7 @@ msgstr "Бій проти одного і більше реальних грав
 
 #: gui/pregame/mainmenu.xml:(tooltip):512
 msgid "Game options and mod selection."
-msgstr ""
+msgstr "Ігрові опції та вибір модів."
 
 #: gui/pregame/mainmenu.xml:(tooltip):527
 msgid ""
@@ -2244,7 +2237,7 @@ msgstr "Клацніть щоб відкрити сайт 0 A.D. для пере
 
 #: gui/pregame/mainmenu.xml:(tooltip):623
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "Допомогти з витратами на проект пожертвуванням."
 
 #: gui/pregame/mainmenu.xml:(tooltip):635
 msgid "Click to see the 0 A.D. credits."

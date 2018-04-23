@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Wuzzy <almikes@aol.com>, 2015-2017
+# Wuzzy <almikes@aol.com>, 2015-2018
 # xtother90, 2018
 # Dominik <incredipede@outlook.com>, 2014
 # ... ... <jon12@gmx.de>, 2017-2018
@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-23 09:04+0100\n"
-"PO-Revision-Date: 2018-04-08 15:43+0000\n"
-"Last-Translator: ... ... <jon12@gmx.de>\n"
+"PO-Revision-Date: 2018-04-20 16:50+0000\n"
+"Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -129,7 +129,7 @@ msgstr "Anmerkung"
 
 #: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."
-msgstr "Deinen Status auf »Abwesend« setzen."
+msgstr "Deinen Status auf „Abwesend“ setzen."
 
 #: gui/lobby/lobby.js:327
 msgid "Set your state to 'Online'."
@@ -137,11 +137,11 @@ msgstr "Deinen Status auf »Online« setzen."
 
 #: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Einen bestimmten Benutzer aus der Lobby kicken. Syntax: »/kick Name Grund«"
+msgstr "Einen bestimmten Benutzer aus der Lobby kicken. Syntax: „/kick Name Grund“"
 
 #: gui/lobby/lobby.js:342
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "Einen bestimmten Benutzer aus der Lobby verbannen. Syntax: »/ban Name Grund«"
+msgstr "Einen bestimmten Benutzer aus der Lobby verbannen. Syntax: „/ban Name Grund“"
 
 #: gui/lobby/lobby.js:350
 msgid "Show this help."
@@ -165,7 +165,7 @@ msgstr "Eine Chatnachricht über dich selbst senden. Beispiel: »/me geht schwim
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr "Text als Chatnachricht senden (selbst, wenn er mit einem Schrägstrich beginnt). Beispiel »/say /help ist ein großartiger Befehl.«"
+msgstr "Text als Chatnachricht senden (selbst, wenn er mit einem Schrägstrich beginnt). Beispiel „/say /help ist ein großartiger Befehl.“"
 
 #: gui/lobby/lobby.js:378
 msgid "Clear all chat scrollback."
@@ -276,7 +276,7 @@ msgstr "N/A"
 #: gui/lobby/lobby.js:913
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr "Spieler \"%(nick)s\" nicht gefunden."
+msgstr "Spieler „%(nick)s“ nicht gefunden."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:1134

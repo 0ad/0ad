@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-20 02:10+0000\n"
+"POT-Creation-Date: 2018-04-20 09:02+0200\n"
+"PO-Revision-Date: 2018-04-21 13:41+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -172,7 +172,6 @@ msgstr "ELIMINAR"
 #: gui/options/options.js:301 gui/options/options.js:351
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
-#: gui/summary/summary.js:446
 msgid "No"
 msgstr "Não"
 
@@ -180,7 +179,6 @@ msgstr "Não"
 #: gui/options/options.js:301 gui/options/options.js:351
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
-#: gui/summary/summary.js:446
 msgid "Yes"
 msgstr "Sim"
 
@@ -345,15 +343,15 @@ msgstr "Herói Guarnecido"
 
 #: gui/common/gamedescription.js:272
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Heróis podem ser guarnecidos."
 
 #: gui/common/gamedescription.js:276
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "Heróis Expostos"
 
 #: gui/common/gamedescription.js:277
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Os heróis não se podem guarnecer num edifício e são vulneráveis a ataques."
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
@@ -399,7 +397,7 @@ msgstr "Vitória Aliada "
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Se um jogador ganhar, os seus aliados também ganham. Se restar um grupo de aliados, eles ganham."
 
 #: gui/common/gamedescription.js:311
 msgid "Ceasefire"
@@ -412,8 +410,8 @@ msgstr "inactivo"
 #: gui/common/gamedescription.js:315
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "No primeiro minuto, os outros jogadores manter-se-ão neutros."
+msgstr[1] "Nos primeiros %(min)s minutos, os outros jogadores manter-se-ão neutros."
 
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
@@ -465,7 +463,7 @@ msgstr "Centros Cívicos"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Os jogadores começam apenas com alguma unidades e têm de encontrar um local apropriado para construírem a sua cidade."
 
 #: gui/common/gamedescription.js:385
 msgid "Players start with a Civic Center."
@@ -508,7 +506,7 @@ msgstr "Mapa Explorado"
 
 #: gui/common/gamedescription.js:425
 msgid "Cheats"
-msgstr "Batota:"
+msgstr "Batotas"
 
 #: gui/common/gamedescription.js:429 gui/common/tooltips.js:164
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:260
@@ -732,7 +730,7 @@ msgstr "Escaramuça"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "Um mapa com uma paisagem e número de jogadores predefinidos. Escolha livremente as outras configurações do mapa."
 
 #: gui/common/settings.js:226
 msgctxt "map"
@@ -743,7 +741,7 @@ msgstr "Aleatório"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Crie um mapa único com uma distribuição de recursos diferentes de cada vez que se joga. Selecione livremente o número de jogadores e equipas."
 
 #: gui/common/settings.js:231
 msgctxt "map"
@@ -752,7 +750,7 @@ msgstr "Cenário"
 
 #: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "Um mapa com uma paisagem e definições de jogo predefinidas."
 
 #: gui/common/settings.js:306
 msgid "Unlimited"
@@ -980,7 +978,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:342
 msgid "Garrison Limit"
-msgstr ""
+msgstr "Limite de Guarnição"
 
 #: gui/common/tooltips.js:349
 #, javascript-format
@@ -993,7 +991,7 @@ msgstr "Curar:"
 
 #: gui/common/tooltips.js:352
 msgid "Health"
-msgstr ""
+msgstr "Vida"
 
 #: gui/common/tooltips.js:377
 msgid "Projectile Limit"
@@ -1359,7 +1357,6 @@ msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Tem a certeza de que quer sair do 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
-#: gui/summary/summary.js:445
 msgid "Confirmation"
 msgstr "Confirmação"
 
@@ -1381,7 +1378,7 @@ msgstr "Erro"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "Lançar a sala de espera de multi-jogador para juntar-se e hospedar jogos públicos e conversar com outros jogadores. \\[DESATIVADO NA COMPILAÇÃO]"
 
 #: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
@@ -1407,7 +1404,7 @@ msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/reference/common/draw.js:68
 msgid "Resource Supply:"
-msgstr ""
+msgstr "Fornecimento de Recursos:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its resource.
@@ -1446,31 +1443,31 @@ msgstr "Treinado por:"
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:165
 msgid "Researched at:"
-msgstr ""
+msgstr "Desenvolvido em:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
 #: gui/reference/viewer/viewer.js:177
 msgid "Builds:"
-msgstr ""
+msgstr "Construções:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
 #: gui/reference/viewer/viewer.js:198
 msgid "Researches:"
-msgstr ""
+msgstr "Desenvolvimentos:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
 #: gui/reference/viewer/viewer.js:210
 msgid "Trains:"
-msgstr ""
+msgstr "Treina:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:223
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Pode ser promovido a:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1558,7 +1555,7 @@ msgstr "%(min)s - %(max)s mín."
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single- and multiplayer"
-msgstr ""
+msgstr "Um ou vários jogadores"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):481
 msgid "Single Player"
@@ -1692,7 +1689,7 @@ msgstr "Elite"
 
 #: gui/summary/layout.js:68
 msgid "Siege"
-msgstr ""
+msgstr "Cergo"
 
 #: gui/summary/layout.js:69
 msgid "Navy"
@@ -1869,49 +1866,45 @@ msgstr "Falhado"
 msgid "Time elapsed"
 msgstr "Tempo decorrido"
 
-#: gui/summary/summary.js:444
-msgid "Are you sure you want to quit the lobby?"
-msgstr "Tem a certeza que quer sair da sala de espera?"
-
-#: gui/summary/summary.js:508
+#: gui/summary/summary.js:491
 msgid "Current Scores"
 msgstr "Pontuações Atuais"
 
-#: gui/summary/summary.js:510
+#: gui/summary/summary.js:493
 msgid "Scores at the end of the game."
 msgstr "Pontuações no final do jogo."
 
-#: gui/summary/summary.js:512
+#: gui/summary/summary.js:495
 msgid "You have been disconnected."
 msgstr "Foi desligado do servidor."
 
-#: gui/summary/summary.js:514
+#: gui/summary/summary.js:497
 msgid "You have left the game."
 msgstr "Saiu do jogo."
 
-#: gui/summary/summary.js:516
+#: gui/summary/summary.js:499
 msgid "You have won the battle!"
 msgstr "Ganhou a batalha!"
 
-#: gui/summary/summary.js:518
+#: gui/summary/summary.js:501
 msgid "You have been defeated…"
 msgstr "Foi derrotado..."
 
-#: gui/summary/summary.js:519
+#: gui/summary/summary.js:502
 msgid "You have abandoned the game."
 msgstr "Abandonou o jogo."
 
-#: gui/summary/summary.js:522
+#: gui/summary/summary.js:505
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tempo do jogo decorrido: %(time)s"
 
-#: gui/summary/summary.js:530
+#: gui/summary/summary.js:513
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:542
+#: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Alternar a sala de espera multi-jogador numa janela"
@@ -2408,7 +2401,7 @@ msgstr "Arte 3D"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr ""
+msgstr "Música adicional, percussão, djembê, amostragem"
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
@@ -2420,11 +2413,11 @@ msgstr "Flauta"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
 msgid "Djembe"
-msgstr ""
+msgstr "Djembê"
 
 #: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
-msgstr ""
+msgstr "Tambor de moldura, darbuka, riq, timbalão"
 
 #: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
@@ -2440,7 +2433,7 @@ msgstr "Arpa céltica"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Tin whistles"
-msgstr ""
+msgstr "Flauta de latão"
 
 #: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
 msgid "Viola, violin"
@@ -2577,7 +2570,7 @@ msgstr "Fundo em pausa"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Se o desativar, o ecrã de boas-vindas irá aparecer apenas uma vez, de cada vez que estiver disponível uma nova versão. Pode abri-lo no menu principal."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable Welcome Screen"
@@ -2695,7 +2688,7 @@ msgstr "Névoa"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Usar filtros de pós-processamento (HDR, Incandescência, PDC, etc.)"
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
@@ -2703,11 +2696,11 @@ msgstr "Pós-processamento"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Número de efeitos de Shader. NECESSÁRIO REINICIAR O JOGO."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Efeitos de Shader"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
@@ -2943,7 +2936,7 @@ msgstr ""
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr ""
+msgstr "Gravar e restaurar definições de partidas para reutilização rápida ao alojar outro jogo."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
@@ -3053,11 +3046,11 @@ msgstr "Saúde da Unidade Ferida"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "Número de unidades treinadas em lote por norma."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
-msgstr ""
+msgstr "Tamanho do Treino em Lote"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3498,7 +3491,7 @@ msgstr "- Construa Quartéis em bases avançadas para reabastecer os seus ataque
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr "FERRARIAS"
+msgstr "FERRARIA"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."

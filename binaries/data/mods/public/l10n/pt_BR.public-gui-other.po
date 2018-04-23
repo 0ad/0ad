@@ -28,6 +28,7 @@
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
 # Romoaldo Cordeiro <Romoaldo.Cordeiro@gmail.com>, 2017
+# Rui <xymarior@yandex.com>, 2018
 # Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2015
 # Tiago, 2018
 # Victor Gregório <vt_marv@hotmail.com>, 2017
@@ -35,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-07 03:10+0000\n"
-"Last-Translator: Tiago\n"
+"POT-Creation-Date: 2018-04-20 09:02+0200\n"
+"PO-Revision-Date: 2018-04-21 02:49+0000\n"
+"Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -190,7 +191,6 @@ msgstr "DELETAR"
 #: gui/options/options.js:301 gui/options/options.js:351
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
-#: gui/summary/summary.js:446
 msgid "No"
 msgstr "Não"
 
@@ -198,7 +198,6 @@ msgstr "Não"
 #: gui/options/options.js:301 gui/options/options.js:351
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
-#: gui/summary/summary.js:446
 msgid "Yes"
 msgstr "Sim"
 
@@ -1377,7 +1376,6 @@ msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Você tem certeza que quer sair de 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
-#: gui/summary/summary.js:445
 msgid "Confirmation"
 msgstr "Confirmação"
 
@@ -1887,49 +1885,45 @@ msgstr "Falhou"
 msgid "Time elapsed"
 msgstr "Tempo decorrido"
 
-#: gui/summary/summary.js:444
-msgid "Are you sure you want to quit the lobby?"
-msgstr "Tem certeza que deseja sair do lobby?"
-
-#: gui/summary/summary.js:508
+#: gui/summary/summary.js:491
 msgid "Current Scores"
 msgstr "Pontuação Atual"
 
-#: gui/summary/summary.js:510
+#: gui/summary/summary.js:493
 msgid "Scores at the end of the game."
 msgstr "Resultados no final do jogo."
 
-#: gui/summary/summary.js:512
+#: gui/summary/summary.js:495
 msgid "You have been disconnected."
 msgstr "Você foi desconectado."
 
-#: gui/summary/summary.js:514
+#: gui/summary/summary.js:497
 msgid "You have left the game."
 msgstr "Você saiu do jogo."
 
-#: gui/summary/summary.js:516
+#: gui/summary/summary.js:499
 msgid "You have won the battle!"
 msgstr "Você venceu a batalha!"
 
-#: gui/summary/summary.js:518
+#: gui/summary/summary.js:501
 msgid "You have been defeated…"
 msgstr "Você foi derrotado..."
 
-#: gui/summary/summary.js:519
+#: gui/summary/summary.js:502
 msgid "You have abandoned the game."
 msgstr "Você abandonou o jogo."
 
-#: gui/summary/summary.js:522
+#: gui/summary/summary.js:505
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tempo de jogo decorrido: %(time)s"
 
-#: gui/summary/summary.js:530
+#: gui/summary/summary.js:513
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s%(mapType)s"
 
-#: gui/summary/summary.js:542
+#: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Alternar o lobby multijogador em uma janela de diálogo."
@@ -2426,7 +2420,7 @@ msgstr "Arte 3D"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr "Música Adicional, percussão, djembe, amostragem"
+msgstr "Música Adicional, percussão, djembê, amostragem"
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
@@ -2438,11 +2432,11 @@ msgstr "Flauta"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
 msgid "Djembe"
-msgstr "Djembe"
+msgstr "Djembê"
 
 #: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
-msgstr "Tambor, Darbuka, Riq, Tons"
+msgstr "Tambor, Darbuka, Riq, Tom-Tom"
 
 #: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
@@ -4132,7 +4126,7 @@ msgstr "- Vulnerável à infantaria ligeira."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr "- Disponível para: Mauryans, Ptolomeus, selêucidas e cartagineses."
+msgstr "- Disponível para: Máurias , Ptolomeus, Selêucidas e Cartagineses."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

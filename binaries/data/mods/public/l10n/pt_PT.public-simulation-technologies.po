@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-20 02:06+0000\n"
+"PO-Revision-Date: 2018-04-21 02:17+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Unidades promovidas para a classe avançada ganham muita qualidade: +20% de vida extra, +1 nível de armadura extra de cada tipo, +20% de saque extra, +20% de ataque extra para unidades corpo-a-corpo, 4 metros de alcance extra e melhor precisão para unidades de combate à distância, velocidade de movimento mais rápida e velocidade de cura extra e alcance para curandeiros."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -702,7 +702,7 @@ msgstr "Técnicas secretas do trabalho do aço permitem ter lâminas das espadas
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "+20% Dano de Corte para todos os soldados com espadas ou maças."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -734,7 +734,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "As unidades promovidas para a classe de elite ganham: +20% de saúde, +1 de armadura de cada tipo, +20% de saque, +20 de ataque para unidades de combate corpo-a-corpo, +4m de alcance e precisão para unidades de combate à distância, mais velocidade de movimento e mais velocidade de cura e alcance para curandeiros."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1068,7 +1068,7 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr ""
+msgstr "O tear permitiu a criação de roupas mais finas para os colonos. As mulheres da família foram ensinadas desde uma idade jovem a tecer no tear e, posteriormente, passaram uma grande parte das suas vidas a trabalhar nele."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
@@ -1219,7 +1219,7 @@ msgstr "Fase de Cidade"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "Tecnologia fictícia para ser utilizada em requisitos de modelos, substituída por phase_city_generic ou phase_city_{civ}."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1270,7 +1270,7 @@ msgstr "Fase de Vila"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "Tecnologia fictícia para ser utilizada em requisitos de modelos, substituída phase_town_generic ou phase_town_{civ}."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1475,7 +1475,7 @@ msgstr "Desenvolve a pontaria dos projécteis"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
-msgstr ""
+msgstr "Aumenta a precisão do oxibeles (atirador de dardos)."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1556,7 +1556,7 @@ msgstr "Reforce as fundações em preparação para um ataque."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "Aumenta a armadura de torres defensivas em 2 níveis."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1584,7 +1584,7 @@ msgstr "As atalaias duram o dobro do tempo em território neutro."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "Os postos avançados têm -50% de taxa de perca do território."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1620,7 +1620,7 @@ msgstr "Aumenta a visão das atalaias."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Postos avançados +50% de alcance de visão."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1632,7 +1632,7 @@ msgstr "Um guarda nocturno aumenta a vigiância"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Adicione sentinelas para adicionar mais uma seta em torres defensivas."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -2385,7 +2385,7 @@ msgstr "Arquitetura Monumental"
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "Peça a seus sacerdotes que sejam instruídos pelo próprio Sumo Sacerdote - que Amon o abençoe."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
@@ -2428,7 +2428,7 @@ msgstr "Os Indianos tinham uma longa tradição de tiro com arco e uma tendênci
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "+10 metros de alcance para unidades de arco e flecha. Os arqueiros têm mais precisão e -20% de tempo de treino, mas também -20% de vida."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
@@ -2443,7 +2443,7 @@ msgstr "Os Maias construíram suas paredes da cidade de madeira, um recurso natu
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr ""
+msgstr "As muralhas de cidade têm -20% menos vida e -20% de tempo de construção."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2475,7 +2475,7 @@ msgstr "O recrutamento da infantaria campeã Anusiya é o dobro mais rápido mas
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Infantaria Campeão Anisiya -50% no tempo de treinamento, mas também -10% de vida."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2546,13 +2546,13 @@ msgstr "Conscrição de Infantaria"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "Toda a cavalaria tem -20% de tempo de treinamento, mas também -5% de vida. Desbloqueia a Conscrição de Cavalaria."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "Toda a infantaria com -20% no tempo de treinamento, mas também -5% de vida. Desbloqueia Conscrição de Infantaria."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

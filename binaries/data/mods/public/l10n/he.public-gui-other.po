@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-19 19:33+0000\n"
-"Last-Translator: aqua - <aqua194@gmail.com>\n"
+"POT-Creation-Date: 2018-04-20 09:02+0200\n"
+"PO-Revision-Date: 2018-04-20 21:16+0000\n"
+"Last-Translator: Amit Rubin <amit.filip@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,7 +163,6 @@ msgstr "מחק"
 #: gui/options/options.js:301 gui/options/options.js:351
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
-#: gui/summary/summary.js:446
 msgid "No"
 msgstr "לא"
 
@@ -171,7 +170,6 @@ msgstr "לא"
 #: gui/options/options.js:301 gui/options/options.js:351
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:261
 #: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
-#: gui/summary/summary.js:446
 msgid "Yes"
 msgstr "כן"
 
@@ -394,7 +392,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:311
 msgid "Ceasefire"
-msgstr ""
+msgstr "הפסקת אש"
 
 #: gui/common/gamedescription.js:314 gui/pregame/mainmenu.js:95
 msgid "disabled"
@@ -464,7 +462,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:389
 msgid "Starting Resources"
-msgstr ""
+msgstr "מתחיל את המשאבים."
 
 #: gui/common/gamedescription.js:390
 #, javascript-format
@@ -1350,7 +1348,6 @@ msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "אתה בטוח שאתה רוצה לצאת מ 0A.D.?"
 
 #: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
-#: gui/summary/summary.js:445
 msgid "Confirmation"
 msgstr "אישור "
 
@@ -1860,49 +1857,45 @@ msgstr ""
 msgid "Time elapsed"
 msgstr ""
 
-#: gui/summary/summary.js:444
-msgid "Are you sure you want to quit the lobby?"
-msgstr ""
-
-#: gui/summary/summary.js:508
+#: gui/summary/summary.js:491
 msgid "Current Scores"
 msgstr ""
 
-#: gui/summary/summary.js:510
+#: gui/summary/summary.js:493
 msgid "Scores at the end of the game."
 msgstr ""
 
-#: gui/summary/summary.js:512
+#: gui/summary/summary.js:495
 msgid "You have been disconnected."
 msgstr ""
 
-#: gui/summary/summary.js:514
+#: gui/summary/summary.js:497
 msgid "You have left the game."
 msgstr ""
 
-#: gui/summary/summary.js:516
+#: gui/summary/summary.js:499
 msgid "You have won the battle!"
 msgstr ""
 
-#: gui/summary/summary.js:518
+#: gui/summary/summary.js:501
 msgid "You have been defeated…"
 msgstr ""
 
-#: gui/summary/summary.js:519
+#: gui/summary/summary.js:502
 msgid "You have abandoned the game."
 msgstr ""
 
-#: gui/summary/summary.js:522
+#: gui/summary/summary.js:505
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr ""
 
-#: gui/summary/summary.js:530
+#: gui/summary/summary.js:513
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr ""
 
-#: gui/summary/summary.js:542
+#: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr ""
