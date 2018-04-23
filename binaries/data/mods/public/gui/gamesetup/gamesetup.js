@@ -1404,6 +1404,12 @@ function initSettingsTabButtons()
 	gameDescriptionSize.top = settingTabButtonsSize.bottom + 3;
 	gameDescription.size = gameDescriptionSize;
 
+	if (!g_IsController)
+	{
+		g_TabCategorySelected = undefined;
+		updateSettingsPanelPosition(Engine.GetGUIObjectByName("settingTabButtons").size.left - Engine.GetGUIObjectByName("settingsPanel").size.left);
+	}
+
 	placeTabButtons(
 		g_SettingsTabsGUI,
 		g_TabButtonHeight,
