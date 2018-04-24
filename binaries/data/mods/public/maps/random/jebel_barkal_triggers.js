@@ -142,12 +142,6 @@ var jebelBarkal_cityPatrolGroup_triggerPointPath = "A";
  */
 var jebelBarkal_attackerGroup_triggerPointPatrol = "B";
 
-
-/**
- * Attacker groups approach these player buildings and attack enemies of the given classes encountered.
- */
-var jebelBarkal_pathTargetClasses = "CivCentre Wonder";
-
 /**
  * Number of points the attackers patrol.
  */
@@ -515,26 +509,27 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 	if (!this.jebelBarkal_attackerGroupSpawnPoints)
 		return;
 
-	let targets = TriggerHelper.GetAllPlayersEntitiesByClass(jebelBarkal_pathTargetClasses);
-	if (!targets.length)
-	{
-		this.JebelBarkal_StartAttackTimer(jebelBarkal_attackInterval());
-		return;
-	}
-
 	this.debugLog("Attacker wave (at most " + (jebelBarkal_maxPopulation - this.jebelBarkal_attackerUnits.length) + " attackers)");
 	let time = TriggerHelper.GetMinutes();
+	let activePlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers();
+	let playerEntities = activePlayers.map(playerID => TriggerHelper.GetEntitiesByPlayer(playerID));
 	let patrolPoints = this.GetTriggerPoints(jebelBarkal_attackerGroup_triggerPointPatrol);
 	let groupSizeFactor = jebelBarkal_attackerGroup_sizeFactor(
-		Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers().length,
+		activePlayers.length,
 		this.numInitialSpawnPoints,
 		this.GetDifficulty());
 
 	let spawnedAnything = false;
 	for (let spawnPointBalancing of jebelBarkal_attackerGroup_balancing)
+	{
+		let targets = playerEntities.reduce((allTargets, playerEnts) =>
+			allTargets.concat(shuffleArray(TriggerHelper.MatchEntitiesByClass(playerEnts, spawnPointBalancing.targetClasses())).slice(0, 10)), []);
+
+		if (!targets.length)
+			continue;
+
 		for (let spawnEnt of TriggerHelper.MatchEntitiesByClass(this.jebelBarkal_attackerGroupSpawnPoints, spawnPointBalancing.buildingClasses))
 		{
-
 			let unitCount = Math.min(
 				jebelBarkal_maxPopulation - this.jebelBarkal_attackerUnits.length,
 				groupSizeFactor * spawnPointBalancing.unitCount(time));
@@ -580,6 +575,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 					});
 				}
 		}
+	}
 
 	if (spawnedAnything)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
