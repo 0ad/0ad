@@ -17,7 +17,7 @@
 	</object>
 
 	<object hotkey="session.gui.toggle">
-		<action on="Press">g_ShowGUI = !g_ShowGUI;</action>
+		<action on="Press">toggleGUI();</action>
 	</object>
 
 	<object hotkey="session.gui.menu.toggle">

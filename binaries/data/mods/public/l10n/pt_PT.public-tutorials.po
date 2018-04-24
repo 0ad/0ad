@@ -5,7 +5,7 @@
 # Translators:
 # Carlos Moreira, 2017
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2017
-# Mário Branco <branco.ana8@gmail.com>, 2017
+# Rui <xymarior@yandex.com>, 2017
 # Pedro Santos <estevespubl@gmail.com>, 2017
 msgid ""
 msgstr ""
@@ -22,7 +22,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr "Bem vindo ao 0 A.D tutorial."
+msgstr "Bem-vindo(a) ao tutorial do 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
@@ -30,6 +30,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Clica numa cidadã e de seguida clica com o botão direito do rato num arbusto"
+" frutífero para que a unidade recolha a comida. As cidadãs apanham alimentos"
+" mais depressa do que as outras unidades."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -37,6 +40,9 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
+"Seleciona o cidadão-soldado e clica com o botão direito do rato numa árvore "
+"próxima do Centro Cívico, para começar a recolher madeira. Os cidadãos-"
+"soldados recolhem madeira mais depressa do que as cidadãs."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -44,6 +50,9 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"Seleciona o edifício do Centro Cívico e mantém premida a tecla %(hotkey)s "
+"enquanto clicas no ícone do Hoplita para começar a treinar um lote de "
+"Hoplitas."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -53,16 +62,20 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
+"Não esquecer de premir a tecla de atalho para o treino em lote enquanto "
+"clicas para produzir várias unidades."
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
-msgstr ""
+msgstr "Clica no ícone do HOPLITA."
 
 #: maps/tutorials/Introductory_Tutorial.js:46
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
+"Seleciona as 2 cidadãs paradas e constrói uma casa clicando no ícone da "
+"casa. Posiciona a casa clicando com o botão esquerdo num sítio."
 
 #: maps/tutorials/Introductory_Tutorial.js:54
 msgid ""
@@ -70,6 +83,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"Quando eles estiverem prontos, seleciona os Hoplitas acabados de treinar e "
+"ordena-lhes que construam um armazém ao lado de umas árvores. Eles irão "
+"começar a recolher Madeira quando terminarem de construir o armazém."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -77,20 +93,24 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Treina um lote de Escaramuçadores mantendo premida a tecla %(hotkey)s e "
+"clicando no ícone de Escaramuçador no Centro Cívico."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "Clica no ícone do Escaramuçador."
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Constrói uma quinta num espaço aberto perto do Centro Cívico utilizando "
+"qualquer um dos construtores parados."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr ""
+msgstr "Vamos esperar que a quinta seja construída."
 
 #: maps/tutorials/Introductory_Tutorial.js:112
 msgid ""
@@ -98,6 +118,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
+"Após a construção da quinta estar terminada, os construtores começarão a "
+"recolher comida se existir alguma por perto. Seleciona os construtores e em "
+"vez disso ordena-lhes que construam um campo de seara ao lado da quinta."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -105,6 +128,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"Os construtores do campo irão agora começar a recolher alimentos do campo. "
+"Com os Escaramuçadores acabados de criar, ordena-lhes que construam uma nova"
+" casa por perto."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -112,16 +138,23 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"Treina um lote de Hoplitas no Centro Cívico. Seleiona o Centro Cívico e com "
+"este selecionado clica com o botão direito do rato numa árvore das "
+"redondezas. As unidades do Centro Cívico irão agora recolher Madeira "
+"automaticamente."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr ""
+msgstr "Clica no ícone do Hoplita."
 
 #: maps/tutorials/Introductory_Tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Seleciona o Centro Cívico, e então posiciona o cursor sobre a árvore e clica"
+" com o botão direito do rato quando vires o cursor a mudar para um ícone de "
+"Madeira."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -129,6 +162,9 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
+"Ordena os Escaramuçadores parados que construam um posto avançado no "
+"noroeste no limite do teu território. Isto será a estrutura da quinta Fase "
+"de Vila que construíste, permitindo-te avançar para a Fase de Cidade."
 
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
@@ -136,72 +172,97 @@ msgid ""
 "'II' icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Seleciona novamente o Centro Cívico e avança para a Fase de Aldeia clicando "
+"no ícone \"II\" (tens de esperar que o posto avançado seja construido "
+"primeiro). Isto irá permitir que sejam construídos edifícios da Fase de "
+"Aldeia."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reaffect your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"Enquanto esperas que o avanço de fase termine, podes ordenar aos teus "
+"trabalhadores parados que recolham recursos que tenhas mais falta."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Começa a treinar um lote de cidadãs no Centro Cívico e muda o ponto de "
+"destino para a quinta (clica com o botão direito do rato nela)."
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
-msgstr ""
+msgstr "Clica no ícone da cidadã."
 
 #: maps/tutorials/Introductory_Tutorial.js:258
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
 msgstr ""
+"Constrói um quartel por perto. Sempre que o limite de população for "
+"alcançado, constrói uma casa extra utilizando uma qualquer unidade "
+"construtora disponível."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
+"Prepara-te para um ataque de um jogador inimigo. Treina mais soldados "
+"utilizando o Quartel e ordena aos soldados parados a construção de uma Torre"
+" Defensiva perto to posto avançado."
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
 msgstr ""
+"Constrói uma Ferraria e desenvolve a tecnologia de Treino de Infantaria "
+"(ícone da espada) para melhorar o ataque de corte da infantaria."
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
-msgstr ""
+msgstr "O inimigo está a vir. Treina mais soldados para lutarem contra ele."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
-msgstr ""
+msgstr "Tentar repelir o ataque."
 
 #: maps/tutorials/Introductory_Tutorial.js:300
 msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"O ataque do inimigo foi repelido. Agora constrói um mercado e um templo "
+"enquanto atribuis a novas unidades a recolha de recursos necessários."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"Quando tiveres os requisitos da Fase de Cidade, seleciona o teu Centro "
+"Cívico e avança para a Fase de Cidade."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "barracks."
 msgstr ""
+"Enquanto esperas pela alteração da fase, podes treinar mais soldados no "
+"Quartel."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Agora que estás na Fase de Cidade, constrói uma fortaleza por perto (recolhe"
+" primeiro alguma pedra se for necessário) e então usa-a para construir 2 "
+"Aríetes."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -209,14 +270,20 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Pára todos os teus soldados que estejam a recolher recursos e em vez disso "
+"ordena a pequenos grupos a procura do Centro Cívico do inimigo no mapa. Após"
+" a base inimiga ser detetada, envia as tuas armas de cerco e todos os "
+"restantes soldados para a destruir.\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
-msgstr ""
+msgstr "As cidadãs devem continuar a recolher recursos."
 
 #: maps/tutorials/Introductory_Tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr ""
+"O inimigo foi derrotado. Estas tarefas deste tutorial estão agora "
+"terminadas."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -225,6 +292,11 @@ msgid ""
 " ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to 'Town Phase' and 'City Phase' afterward.\n"
 msgstr ""
+"Este tutorial irá ensinar-te o básico do desenvolvimento da tua economia. "
+"Tipicamente, irás começar com um Centro Cívico e um punhado de unidades na "
+"\"Fase de Vila\" e por último, o teu objetivo será desenvolver e expandir o "
+"teu império, muitas vezes passa pela \"Fase de Aldeia\" e \"Fase de Cidade\""
+" posteriormente.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -232,16 +304,20 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"\n"
+"Antes de começares, podes alternar entre o ecrã total e o modo janela utilizando as teclas %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Podes alterar o nível de aproximação (zoom) utilizando a roda do rato e a\n"
+" vista de câmara utilizando uma das teclas de direção do teclado.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
-msgstr ""
+msgstr "Ajusta a janela do jogo conforme a tua preferência.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 #, javascript-format
@@ -249,6 +325,8 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"Também podes alternar entre mostrar e esconder este painel do tutorial a "
+"qualquer momento utilizando as teclas %(hotkey)s.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -256,6 +334,8 @@ msgid ""
 "selection ring in the color of your civilization will be displayed after "
 "clicking."
 msgstr ""
+"Para começar, seleciona o teu edifício, o Centro Cívico, clicando nele. "
+"Aparecerá um anel de seleção na cor da tua civilização após clicares."
 
 #: maps/tutorials/starting_economy_walkthrough.js:24
 msgid ""
@@ -394,7 +474,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Mantenha premida a tecla Shift e clique no ícone do Hoplita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177

@@ -72,5 +72,6 @@ function selectPanel(category)
 		button.sprite = category == j ? "ModernTabVerticalForeground" : "ModernTabVerticalBackground";
 	});
 
-	g_OnSelectTab(category);
+	if (g_OnSelectTab)
+		g_OnSelectTab(category);
 }

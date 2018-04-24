@@ -17,6 +17,10 @@
 		</action>
 	</object>
 
+	<object hotkey="cancel">
+		<action on="Press">selectPanel(undefined);</action>
+	</object>
+
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" style="ModernWindow" size="0 0 100% 100%">
 

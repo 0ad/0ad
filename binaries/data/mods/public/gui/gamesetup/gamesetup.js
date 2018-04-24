@@ -1182,59 +1182,8 @@ function supplementDefaults()
  */
 function initGUIObjects()
 {
-	for (let tab in g_SettingsTabsGUI)
-		g_SettingsTabsGUI[tab].tooltip =
-			sprintf(translate("Toggle the %(name)s settings tab."), { "name": g_SettingsTabsGUI[tab].label }) +
-			colorizeHotkey("\n" + translate("Use %(hotkey)s to move a settings tab down."), "tab.next") +
-			colorizeHotkey("\n" + translate("Use %(hotkey)s to move a settings tab up."), "tab.prev");
-
-	// Copy all initOrder values into one object
-	let initOrder = {};
-	for (let dropdown in g_Dropdowns)
-		initOrder[dropdown] = g_Dropdowns[dropdown].initOrder;
-	for (let checkbox in g_Checkboxes)
-		initOrder[checkbox] = g_Checkboxes[checkbox].initOrder;
-
-	// Sort the object on initOrder so we can init the settings in an arbitrary order
-	for (let setting of Object.keys(initOrder).sort((a, b) => initOrder[a] - initOrder[b]))
-		if (g_Dropdowns[setting])
-			initDropdown(setting);
-		else if (g_Checkboxes[setting])
-			initCheckbox(setting);
-		else
-			warn('The setting "' + setting + '" is not defined.');
-
-	for (let dropdown in g_PlayerDropdowns)
-		initPlayerDropdowns(dropdown);
-
-	let settingTabButtons = Engine.GetGUIObjectByName("settingTabButtons");
-	let settingTabButtonsSize = settingTabButtons.size;
-	settingTabButtonsSize.bottom = settingTabButtonsSize.top + g_SettingsTabsGUI.length * (g_TabButtonHeight + g_TabButtonDist);
-	settingTabButtonsSize.right = g_MiscControls.lobbyButton.hidden() ?
-		settingTabButtonsSize.right :
-		Engine.GetGUIObjectByName("lobbyButton").size.left - g_LobbyButtonSpacing;
-	settingTabButtons.size = settingTabButtonsSize;
-
-	let settingTabButtonsBackground = Engine.GetGUIObjectByName("settingTabButtonsBackground");
-	settingTabButtonsBackground.size = settingTabButtonsSize;
-
-	let gameDescription = Engine.GetGUIObjectByName("mapInfoDescriptionFrame");
-	let gameDescriptionSize = gameDescription.size;
-	gameDescriptionSize.top = settingTabButtonsSize.bottom + 3;
-	gameDescription.size = gameDescriptionSize;
-
-	placeTabButtons(
-		g_SettingsTabsGUI,
-		g_TabButtonHeight,
-		g_TabButtonDist,
-		category => {
-			selectPanel(category == g_TabCategorySelected ? undefined : category);
-		},
-		() => {
-			updateGUIObjects();
-			Engine.GetGUIObjectByName("settingsPanel").hidden = false;
-		});
-
+	initSettingObjects();
+	initSettingsTabButtons();
 	initSPTips();
 
 	loadPersistMatchSettings();
@@ -1253,10 +1202,9 @@ function initGUIObjects()
 }
 
 /**
- * Slide settings panel.
  * @param {number} dt - Time in milliseconds since last call.
  */
-function updateSettingsPanelPosition(dt)
+function slideSettingsPanel(dt)
 {
 	let slideSpeed = Engine.ConfigDB_GetValue("user", "gui.gamesetup.settingsslide") == "true" ? g_SlideSpeed : Infinity;
 
@@ -1278,20 +1226,30 @@ function updateSettingsPanelPosition(dt)
 			offset = -Math.min(slideSpeed * dt, maxOffset);
 	}
 
-	let size = settingsPanel.size;
-	size.left += offset;
-	size.right += offset;
-	settingsPanel.size = size;
+	updateSettingsPanelPosition(offset);	
+}
+
+/**
+ * Directly change the position of the settingsPanel.
+ * @param {number} offset - Number of pixels the panel needs to move.
+ */
+function updateSettingsPanelPosition(offset)
+{
+	let settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
+	let settingsPanelSize = settingsPanel.size;
+	settingsPanelSize.left += offset;
+	settingsPanelSize.right += offset;
+	settingsPanel.size = settingsPanelSize;
 
 	let settingsBackground = Engine.GetGUIObjectByName("settingsBackground");
 	let backgroundSize = settingsBackground.size;
-	backgroundSize.left = size.left;
+	backgroundSize.left = settingsPanelSize.left;
 	settingsBackground.size = backgroundSize;
 
 	let chatPanel = Engine.GetGUIObjectByName("chatPanel");
 	let chatSize = chatPanel.size;
 
-	chatSize.right = size.left - g_ChatSettingsMargin;
+	chatSize.right = settingsPanelSize.left - g_ChatSettingsMargin;
 	chatPanel.size = chatSize;
 	chatPanel.hidden = g_MiscControls.chatPanel.hidden();
 
@@ -1333,6 +1291,31 @@ function getGUIObjectNameFromSetting(setting)
 
 	// Assume there is a GUI object with exactly that setting name
 	return [setting, "", ""];
+}
+
+/**
+ * Initialize all settings dropdowns and checkboxes.
+ */
+function initSettingObjects()
+{
+	// Copy all initOrder values into one object
+	let initOrder = {};
+	for (let dropdown in g_Dropdowns)
+		initOrder[dropdown] = g_Dropdowns[dropdown].initOrder;
+	for (let checkbox in g_Checkboxes)
+		initOrder[checkbox] = g_Checkboxes[checkbox].initOrder;
+
+	// Sort the object on initOrder so we can init the settings in an arbitrary order
+	for (let setting of Object.keys(initOrder).sort((a, b) => initOrder[a] - initOrder[b]))
+		if (g_Dropdowns[setting])
+			initDropdown(setting);
+		else if (g_Checkboxes[setting])
+			initCheckbox(setting);
+		else
+			warn('The setting "' + setting + '" is not defined.');
+
+	for (let dropdown in g_PlayerDropdowns)
+		initPlayerDropdowns(dropdown);
 }
 
 function initDropdown(name, playerIdx)
@@ -1395,6 +1378,49 @@ function initCheckbox(name)
 		supplementDefaults();
 		updateGameAttributes();
 	};
+}
+
+function initSettingsTabButtons()
+{
+	for (let tab in g_SettingsTabsGUI)
+		g_SettingsTabsGUI[tab].tooltip =
+			sprintf(translate("Toggle the %(name)s settings tab."), { "name": g_SettingsTabsGUI[tab].label }) +
+			colorizeHotkey("\n" + translate("Use %(hotkey)s to move a settings tab down."), "tab.next") +
+			colorizeHotkey("\n" + translate("Use %(hotkey)s to move a settings tab up."), "tab.prev");
+
+	let settingTabButtons = Engine.GetGUIObjectByName("settingTabButtons");
+	let settingTabButtonsSize = settingTabButtons.size;
+	settingTabButtonsSize.bottom = settingTabButtonsSize.top + g_SettingsTabsGUI.length * (g_TabButtonHeight + g_TabButtonDist);
+	settingTabButtonsSize.right = g_MiscControls.lobbyButton.hidden() ?
+		settingTabButtonsSize.right :
+		Engine.GetGUIObjectByName("lobbyButton").size.left - g_LobbyButtonSpacing;
+	settingTabButtons.size = settingTabButtonsSize;
+
+	let settingTabButtonsBackground = Engine.GetGUIObjectByName("settingTabButtonsBackground");
+	settingTabButtonsBackground.size = settingTabButtonsSize;
+
+	let gameDescription = Engine.GetGUIObjectByName("mapInfoDescriptionFrame");
+	let gameDescriptionSize = gameDescription.size;
+	gameDescriptionSize.top = settingTabButtonsSize.bottom + 3;
+	gameDescription.size = gameDescriptionSize;
+
+	if (!g_IsController)
+	{
+		g_TabCategorySelected = undefined;
+		updateSettingsPanelPosition(Engine.GetGUIObjectByName("settingTabButtons").size.left - Engine.GetGUIObjectByName("settingsPanel").size.left);
+	}
+
+	placeTabButtons(
+		g_SettingsTabsGUI,
+		g_TabButtonHeight,
+		g_TabButtonDist,
+		category => {
+			selectPanel(category == g_TabCategorySelected ? undefined : category);
+		},
+		() => {
+			updateGUIObjects();
+			Engine.GetGUIObjectByName("settingsPanel").hidden = false;
+		});
 }
 
 function initSPTips()
@@ -1951,7 +1977,7 @@ function onTick()
 	let tickLength = now - g_LastTickTime;
 	g_LastTickTime = now;
 
-	updateSettingsPanelPosition(tickLength);
+	slideSettingsPanel(tickLength);
 }
 
 /**

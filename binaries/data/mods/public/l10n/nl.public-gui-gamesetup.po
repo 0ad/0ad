@@ -5,6 +5,7 @@
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
 # Bart Groeneveld, 2016
+# bb jansen <b.jansen5@students.uu.nl>, 2018
 # BladeFalconheart, 2014
 # BoucheDag <bouche4dag@gmail.com>, 2014
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
@@ -38,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-04 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-22 20:56+0000\n"
+"Last-Translator: bb jansen <b.jansen5@students.uu.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -317,7 +318,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Aantal minuten totdat een speler een Wonderoverwinning heeft behaald."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
@@ -473,17 +474,17 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Open het %(name)s optiestabblad."
 
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Gebruik %(hotkey)s om een optiestabblad naar beneden te gaan."
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Gebruik %(hotkey)s om een optiestabblad omhoog te gaan."
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -492,7 +493,7 @@ msgstr "Willekeurig"
 
 #: gui/gamesetup/gamesetup.js:1710
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Kies willekeurig een van de gegeven kaarten."
 
 #: gui/gamesetup/gamesetup.js:1742
 msgctxt "biome"
@@ -501,7 +502,7 @@ msgstr "Willekeurig"
 
 #: gui/gamesetup/gamesetup.js:1743
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Kies willekeurig een bioom."
 
 #: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
@@ -588,7 +589,7 @@ msgstr "AI moeilijkheidsgraad"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "AI Gedrag:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -608,7 +609,7 @@ msgstr "Laden"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Kaartgegevens laden. Een moment..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
@@ -708,7 +709,7 @@ msgstr ""
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr ""
+msgstr "\"Zijn oplossing lijkt niet, maar blijkt de beste te zijn.\" - Aeschylus (\"Zeven tegen Thebe\", 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
@@ -718,7 +719,7 @@ msgstr "\"Een welvarend dwaas is een zware last.\" - Aeschylus (fragment 383)"
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "\"De goden helpen hen, die zichzelf helpen.\" - Aesop (Hercules en de Koetsier)"
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -762,11 +763,11 @@ msgstr ""
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr ""
+msgstr "\"Beloften van vijanden zijn gemaakt om te worden gebroken.\" - Aesop (\"De dokter en de wolf\")"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr ""
+msgstr "\"Elk excuus is goed voor een tiran.\" - Aesop (\"De wolf en het lam\")"
 
 #: gui/text/quotes.txt:17
 msgid ""
@@ -779,7 +780,7 @@ msgstr ""
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr ""
+msgstr "\"Spartanen vragen niet met hoeveel, alleen waar de vijanden zijn.\" - Agis II van Sparta (Plutarchus, \"Moralia\", XVI. \"Uitdrukkingen over Spartanen\", 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
@@ -830,13 +831,13 @@ msgstr ""
 msgid ""
 "\"To the strongest!\" - Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, \"The Anabasis of Alexander\", 7.26)"
-msgstr ""
+msgstr "\"De sterkste!\" - Alexander de Grote, op zijn sterfbed op de vraag wie hem op moet volgen als koning (Arrian, \"De Anabasis van Alexander\", 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr ""
+msgstr "\"Ik steel geen overwinning.\" - Alexander de Grote, op het voorstel om de Perzen te overvallen in de nacht (Plutarchus, \"Parallelle levens\", \"Alexander\", sec. 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
@@ -871,7 +872,7 @@ msgstr ""
 msgid ""
 "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus "
 "(fragment 201)"
-msgstr ""
+msgstr "\"De vos kent vele trucs; de stekelegel een goede.\" - Archilochus (fragment 201)"
 
 #: gui/text/quotes.txt:32
 msgid ""
@@ -903,7 +904,7 @@ msgstr ""
 msgid ""
 "\"Man is by nature a political animal.\" - Aristotle (\"Politics\", I. "
 "1253a.2)"
-msgstr ""
+msgstr "\"De mens is van nature een politiek dier.\" - Aristoteles (\"Politica\", I. 1253a.2) "
 
 #: gui/text/quotes.txt:37
 msgid ""
@@ -1037,7 +1038,7 @@ msgstr ""
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr ""
+msgstr "\"Wijzen leren meer van dwazen, dan dwazen leren van wijzen.\" - Cato de Oude (Plutarchus, \"Parallelle levens\", \"Cato de Oude\", sec. 9)"
 
 #: gui/text/quotes.txt:55
 msgid ""
@@ -1088,7 +1089,7 @@ msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "Ik ben Darius, de grote koning, koning van de koningen, de koning van Perzie, de koning van de landen \\[...] 23 landen in total.\" - Darius 1 (Behistijnse inscriptie, kolom I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1104,11 +1105,11 @@ msgstr ""
 msgid ""
 "\"By desiring little, a poor man makes himself rich.\" - Democritus "
 "(fragment)"
-msgstr ""
+msgstr "\"Met kleine verlangens maakt een arme man zichzelf rijk.\" - Democritus (fragment)"
 
 #: gui/text/quotes.txt:64
 msgid "\"It is hard to be governed by one's inferior.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"Het is moeilijk regeert te worden door je mindere.\" - Democritus (fragment)"
 
 #: gui/text/quotes.txt:65
 msgid ""

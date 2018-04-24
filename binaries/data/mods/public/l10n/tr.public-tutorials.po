@@ -5,9 +5,10 @@
 # Translators:
 # yakup <mutouk@yandex.ru>, 2017
 # Abdullah Ilgaz <abdullahilgaz@live.com>, 2017
-# İrfan Sunay <irfan_sunay@hotmail.com>, 2018
+# Cem Aktas <cemwstone@gmail.com>, 2018
 # Tugberk Korkut <t7krkt@gmail.com>, 2018
 # Ata Atatanır <sanal119_ata@hotmail.com>, 2018
+# İrfan Sunay <irfan_sunay@hotmail.com>, 2018
 # ali topçu <ali134636@gmail.com>, 2018
 msgid ""
 msgstr ""
@@ -33,8 +34,8 @@ msgid ""
 "than other units."
 msgstr ""
 "Bir kadın vatandaşın üzerine tıklayın ve sonra böğürtlen çalılarına sağ "
-"tıklayarak yiyecek toplamasını sağlayın. Kadın vatandaşlar sebzeleri diğer "
-"vatandaşlardan daha hızlı toplar."
+"tıklayarak yiyecek toplamasını sağlayın. Kadın vatandaşlar sebze ve "
+"meyveleri diğer vatandaşlardan daha hızlı toplar."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -43,8 +44,8 @@ msgid ""
 "citizens."
 msgstr ""
 "Vatandaş-askerleri seçin, odun toplamaya başlamak için şehir merkezine yakın"
-" bir ağaca sağ tıklayın. Vatandaş askerler odunu kadın vatandaşlardan daha "
-"hızlı toplar."
+" bir ağaca sağ tıklayın. Vatandaş-askerler odunu kadın vatandaşlardan daha "
+"hızlı toplarlar."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -128,8 +129,8 @@ msgid ""
 "will now automatically gather Wood."
 msgstr ""
 "Şehir Merkezi'nde bir grup Hopliti eğitin. Şehir Merkezi'ni seçin ve onunla "
-"birlikte yakındaki bir ağaç üzerinde sağ tıklayın seçin. Şehir Merkezi'nden "
-"birimler otomatik olarak Odun toplayacaklardır."
+"birlikte yakındaki bir ağaç üzerinde sağ tıklayın seçin. Şehir Merkezi'ndeki"
+" birimler otomatik olarak Odun toplayacaklardır."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
@@ -295,13 +296,13 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
-"Artık Halk Merkezleri seçildiğinde, ekranınızın sağ alt tarafında, binaların"
-" desteklediği eylemleri detaylandıran bir üretim paneli görünecektir. Üretim"
-" paneli için kullanılabilir eylemler herhangi bir renkte maskelenmezken, gri"
-" veya kırmızı renkte maskelenen bir simge, eylemin kilitlenmediğini veya bu "
-"eylemi gerçekleştirmek için yeterli kaynağın olmadığını gösterir. Ayrıca, "
-"daha fazla ayrıntı içeren bir araç ipucu göstermek için imleci herhangi bir "
-"simgenin üzerine getirebilirsiniz.\n"
+"Artık Şehir Merkez'i seçildiğine göre, ekranınızın sağ alt tarafında, "
+"binaların desteklediği eylemleri detaylandıran bir üretim paneli "
+"görünecektir. Üretim paneli için kullanılabilir eylemler herhangi bir renkte"
+" maskelenmezken, gri veya kırmızı renkte maskelenen bir simge, eylemin "
+"kilidinin açılmadığı veya bu eylemi gerçekleştirmek için yeterli kaynağın "
+"olmadığını gösterir. Ayrıca, daha fazla ayrıntı içeren ipucu penceresini "
+"görmek için imleci herhangi bir simgenin üzerine getirebilirsiniz.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -324,11 +325,11 @@ msgid ""
 msgstr ""
 "İki tür başlangıç üniteniz var: kadın vatandaşlar ve vatandaş askerler. "
 "Kadın vatandaşlar tamamen ekonomik ünitelerdir; düşük canları, hiçe yakın "
-"saldırıları vardır ve zırhları yoktur. Vatandaş askerler varsayılan olarak "
-"işçilerdir, fakat ihtiyaç anında savaşmak için bir silah olarak "
-"değerlendirilebilirler. İki kategori vatandaş askerler vardır: piyade ve "
-"süvari. Süvari vatandaş askerler sadece avlanarak et toplayabilirken piyade "
-"vatandaş askerler herhangi bir kara kaynağını toplayabilir.\n"
+"saldırı gücü vardır ve zırhları yoktur. Vatandaş askerler varsayılan olarak "
+"işçilerdir, fakat ihtiyaç anında savaşmak için silah kullanabilirler. İki "
+"sınıf vatandaş asker vardır: piyade ve süvari. Süvari vatandaş askerler "
+"sadece avlanarak et toplayabilirken Kadın vatandaşlar ve piyade vatandaş "
+"askerler herhangi bir kara kaynağını toplayabilirler.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -408,7 +409,7 @@ msgstr ""
 msgid ""
 "Rally-Points are indicated by a small flag at the end of the blue line."
 msgstr ""
-"Toplanma noktaları mavi çizgini sonunda küçük bir bayrakla belirtilmiştir."
+"Toplanma noktaları mavi çizginin sonunda küçük bir bayrakla belirtilmiştir."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
@@ -442,7 +443,7 @@ msgstr "Shift'e basılı tut ve mızraklı ağır piyade simgesine tıkla."
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Birimler eğitilene kadar bekleyelim."
 
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
@@ -605,12 +606,12 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
-"Üç boş kadın yurttaşını üzerlerine bir seçim dikdörtgeni tıklatıp "
-"sürükleyerek seçerseniz, yanlışlıkla ek birimler seçebilirsiniz. Bunu "
-"önlemek için, sadece boş üniteleri seçilecek şekilde seçerken I tuşunu "
-"basılı tutun. Bir süvari birimini yanlışlıkla seçerseniz, Ctrl tuşunu basılı"
-" tutun ve süvari birimini mevcut seçimden çıkarmak için ekranın altındaki "
-"seçim panelinin süvari birimi simgesini tıklayın."
+"Üç çalışmayan kadın vatandaşı bir seçim dikdörtgeni tıklatıp sürükleyerek "
+"seçerseniz, yanlışlıkla ek birimler seçebilirsiniz. Bundan kaçınmak için, "
+"seçme işlemini yaparken I tuşunu basılı tutarsanız sadece çalışmayan "
+"birimleri seçmiş olursunuz. Yanlışlıkla bir süvari birimini seçerseniz, Ctrl"
+" tuşunu basılı tutun ve süvari birimini mevcut seçimden çıkarmak için "
+"ekranın altındaki seçim panelinin süvari birimi simgesini tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
@@ -686,11 +687,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
-"Örneğin tarım oranı, çiftlik evindeki yeniden aranabilir bir teknoloji ile "
-"geliştirilebilir. Çiftlik evini seçin ve sağ alt taraftaki üretim paneline "
-"bakın. Çok sayıda aranabilir teknoloji göreceksiniz. Maliyetlerini ve "
-"etkilerini görmek için imleci üzerlerine getirin ve araştırmak istediğinizi "
-"tıklayın."
+"Tarım verimi örneğin, çiftlik evindeki araştırılabilir teknoloji ile "
+"iyileştirilebilir. Çiftlik evini seçin ve sağ alt taraftaki üretim paneline "
+"bakın. Çok sayıda araştırılabilir teknolojiler göreceksiniz. Maliyetlerini "
+"ve etkilerini görmek için imleci üzerlerine getirin ve araştırmak "
+"istediğinizi tıklayın."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""

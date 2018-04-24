@@ -38,7 +38,9 @@ const oFarmstead = "structures/kush_farmstead";
 const oField = "structures/kush_field";
 const oPyramid = "structures/kush_pyramid_small";
 const oPyramidLarge = "structures/kush_pyramid_large";
-const oKushSoldiers = "units/kush_infantry_javelinist_merc_e";
+const oKushUnits = isNomad() ?
+	"units/kush_support_female_citizen" :
+	"units/kush_infantry_javelinist_merc_e";
 
 const aRain = g_Decoratives.rain;
 const aBushA = g_Decoratives.bushA;
@@ -228,7 +230,7 @@ for (let coordinate of kushiteTownPositions)
 	for (let building in kushVillageBuildings)
 		g_Map.placeEntityPassable(kushVillageBuildings[building].template, 0, Vector2D.add(coordinate, kushVillageBuildings[building].offset), Math.PI);
 
-	createObjectGroup(new SimpleGroup([new SimpleObject(oKushSoldiers, 5, 7, 1, 2)], true, clKushiteVillages, coordinate), 0);
+	createObjectGroup(new SimpleGroup([new SimpleObject(oKushUnits, 5, 7, 1, 2)], true, clKushiteVillages, coordinate), 0);
 }
 
 g_Map.log("Creating kushite pyramids");
