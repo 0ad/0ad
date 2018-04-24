@@ -1017,8 +1017,8 @@ if (areaRoadPalms && areaRoadPalms.getPoints().length)
 	createObjectGroupsByAreas(
 		new SimpleGroup([new SimpleObject(oPalmPath, 1, 1, 0, 0)], true, clForest),
 		0,
-		avoidClasses(clForest, 3, clGate, 7),
-		scaleByMapSize(40, 200),
+		avoidClasses(clForest, 2, clGate, 7),
+		scaleByMapSize(40, 250),
 		20,
 		[areaRoadPalms]);
 
@@ -1121,12 +1121,18 @@ Engine.SetProgress(80);
 
 g_Map.log("Setting up common constraints and areas");
 const nearWater = new NearTileClassConstraint(clWater, 3);
-var avoidCollisions = new AndConstraint(
+var avoidCollisionsNomad = new AndConstraint(
 	[
 		new StaticConstraint(avoidClasses(
-			clCliff, 0, clHill, 0, clPlayer, 15, clWater, 1, clPath, 2, clRoad, 6, clRitualPlace, 10,
+			clCliff, 0, clHill, 0, clPlayer, 15, clWater, 1, clPath, 2, clRitualPlace, 10,
 			clTemple, 4, clPyramid, 7, clCity, 4, clWall, 4, clGate, 8)),
-		avoidClasses(clForest, 1, clRock, 4, clMetal, 4, clFood, 6, clSoldier, 1, clTreasure, 1)
+		avoidClasses(clForest, 1, clRock, 4, clMetal, 4, clFood, 2, clSoldier, 1, clTreasure, 1)
+	]);
+
+var avoidCollisions = new AndConstraint(
+	[
+		avoidCollisionsNomad,
+		new StaticConstraint(avoidClasses(clRoad, 6, clFood, 6))
 	]);
 
 const areaDesert = createArea(new MapBoundsPlacer(), undefined, stayDesert);
@@ -1460,7 +1466,7 @@ g_Map.log("Creating hawk");
 for (let i = 0; i < scaleByMapSize(0, 2); ++i)
 	g_Map.placeEntityAnywhere(oHawk, 0, mapCenter, randomAngle());
 
-placePlayersNomad(clPlayer, [avoidClasses(clHill, 15, clSoldier, 20, clCity, 15), avoidCollisions]);
+placePlayersNomad(clPlayer, [avoidClasses(clHill, 15, clSoldier, 20, clCity, 15, clWall, 20), avoidCollisionsNomad]);
 
 setWindAngle(-0.43);
 setWaterHeight(heightWaterLevel + SEA_LEVEL);

@@ -108,12 +108,18 @@ var jebelBarkal_cityPatrolGroup_balancing = {
 var jebelBarkal_attackInterval = () => randFloat(5, 7);
 
 /**
+ * Prevent city patrols chasing the starting units in nomad mode.
+ */
+var jebelBarkal_firstCityPatrolTime = (difficulty, isNomad) =>
+	(isNomad ? 7 - difficulty : 0);
+
+/**
  * Delay the first attack in nomad mode.
  */
-var jebelBarkal_firstAttackTime = difficulty =>
+var jebelBarkal_firstAttackTime = (difficulty, isNomad) =>
 	jebelBarkal_attackInterval() +
 	2 * Math.max(0, 3 - difficulty) +
-	(TriggerHelper.GetAllPlayersEntitiesByClass("CivCentre").length ? 0 : 9 - difficulty);
+	(isNomad ?  9 - difficulty : 0);
 
 /**
  * Account for varying mapsizes and number of players when spawning attackers.
@@ -360,14 +366,16 @@ Trigger.prototype.debugLog = function(txt)
 
 Trigger.prototype.JebelBarkal_Init = function()
 {
+	let isNomad = !TriggerHelper.GetAllPlayersEntitiesByClass("CivCentre").length;
+
 	this.JebelBarkal_TrackUnits();
 	this.RegisterTrigger("OnOwnershipChanged", "JebelBarkal_OwnershipChange", { "enabled": true });
 
 	this.JebelBarkal_SetDefenderStance();
 	this.JebelBarkal_StartRitualAnimations();
 	this.JebelBarkal_GarrisonBuildings();
-	this.JebelBarkal_SpawnCityPatrolGroups();
-	this.JebelBarkal_StartAttackTimer(jebelBarkal_firstAttackTime(this.GetDifficulty()));
+	this.DoAfterDelay(jebelBarkal_firstCityPatrolTime(this.GetDifficulty(), isNomad) * 60 * 1000, "JebelBarkal_SpawnCityPatrolGroups", {});
+	this.JebelBarkal_StartAttackTimer(jebelBarkal_firstAttackTime(this.GetDifficulty(), isNomad));
 };
 
 Trigger.prototype.JebelBarkal_TrackUnits = function()
