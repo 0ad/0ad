@@ -4,11 +4,13 @@
 # 
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
+# bb jansen <b.jansen5@students.uu.nl>, 2018
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
 # Ellen Roels, 2015
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
+# Marijn Billiet <marijnbilliet@gmail.com>, 2018
 # Mark Martines <mark-martines@hotmail.com>, 2017
 # Max Klaversma <maxklaversma@gmail.com>, 2014
 # niektb <niektb95@gmail.com>, 2014-2016
@@ -19,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-24 07:31+0000\n"
+"Last-Translator: Marijn Billiet <marijnbilliet@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,7 +100,7 @@ msgstr "Ik zie dat je het zwaar hebt,  %(_player_)s ik hoop dat dit helpt"
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr ""
+msgstr "%(_player_)s, ik kan je deze keer helpen, maar je moet je grondstoffen in de toekomst beter beheren."
 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
@@ -150,7 +152,7 @@ msgstr "%(_player_)s is nu een vijand van jou."
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr ""
+msgstr "I kan je bod om vrienden te worden niet accepteren, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:64
 #, javascript-format
@@ -164,7 +166,7 @@ msgstr ""
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr ""
+msgstr "%(_player_)s, ik wijs jouw verzoek tot een alliantie af, maar we kunnen een vredesbestand afsluiten."
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
@@ -186,18 +188,18 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:71
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
-msgstr ""
+msgstr "Geen bondgenootschappen meer tussen ons, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
-msgstr ""
+msgstr "Je verzoek om vrede betekend niets voor mij, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr ""
+msgstr "Mijn antwoord voor je herhaalde vredesverzoeken blijft oorlog, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
@@ -209,7 +211,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr ""
+msgstr "Een bondgenootschap tussen ons is een god idee, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
@@ -225,7 +227,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr ""
+msgstr "%(_player_)s, beschouw ons bondgenoten vanaf nu."
 
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
@@ -260,7 +262,7 @@ msgstr ""
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr ""
+msgstr "Ik wacht no op %(_amount_)s%(_resource_)s voor ik het bondgenootschap accepteer."
 
 #: simulation/ai/petra/chatHelper.js:90 simulation/ai/petra/chatHelper.js:111
 #, javascript-format
@@ -277,7 +279,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, ik moet je voorstel tot een vredespact afwijzen"
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
@@ -331,7 +333,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "%(_player_)s, my offer for an alliance has expired."
-msgstr ""
+msgstr "%(_player_)s, mijn verzoek tot bondgenootschap is verlopen."
 
 #: simulation/ai/petra/chatHelper.js:123
 #, javascript-format
@@ -560,7 +562,7 @@ msgstr "Kan geen vrije ruimte vinden om gerekruteerde eenheden te plaatsen."
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "%(player)s is verslagen (cheat)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -577,7 +579,7 @@ msgstr "(Valsspelen - Toon de volledige kaart)"
 #: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s heeft zich overgegeven."
 
 #: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
@@ -702,13 +704,13 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr ""
+msgstr "Verover de relikwieën "
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr ""
+msgstr "Versla vijanden door al hun eenheden te doden en gebouwen te verwoesten."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -716,7 +718,7 @@ msgstr "Verover"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr ""
+msgstr "Versla vijanden door al hun gebouwen te verwoesten."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -724,7 +726,7 @@ msgstr "Verover Gebouwen"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr ""
+msgstr "Versla vijanden door al hun eenheden te doden."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"

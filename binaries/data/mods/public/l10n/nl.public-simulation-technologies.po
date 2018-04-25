@@ -4,9 +4,11 @@
 # 
 # Translators:
 # Bart Groeneveld, 2017
+# bb jansen <b.jansen5@students.uu.nl>, 2018
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # Ellen Roels, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
+# Marijn Billiet <marijnbilliet@gmail.com>, 2018
 # Mark Martines <mark-martines@hotmail.com>, 2017
 # Michiel <mvdijk@mivadi.com>, 2014
 # niektb <niektb95@gmail.com>, 2014-2015
@@ -18,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:02+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-24 08:54+0000\n"
+"Last-Translator: Marijn Billiet <marijnbilliet@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +35,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Eenheden gepromoveerd naar de geavanceerde klasse krijgen extra kwaliteiten: +20% gezondheid, +1 niveau van alle pantsertypes, 20% extra oorlogsbuit, +20% aanval voor mêlee eenheden, +4m extra bereik en +5% precisie voor afstandseenheden, extra snelheid, genezingskracht en bereik voor helers. "
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -704,7 +706,7 @@ msgstr "Geheime staalbewerkingstechnieken geeft het blad van het zwaard aparte e
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "+20% slagschade voor alle zwaardvechters en knotsmannen."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -736,7 +738,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Eenheden gepromoveerd naar de elite klasse krijgen extra kwaliteiten: +20% gezondheid, +1 niveau van alle pantsertypes, 20% extra oorlogsbuit, +20% aanval voor mêlee eenheden, +4m extra bereik en betere precisie voor afstandseenheden, extra snelheid, genezingskracht en bereik voor helers. "
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1074,7 +1076,7 @@ msgstr "Het weefgetouw maakte het mogelijk om fijnere kleren te maken. Vrouwen v
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
-msgstr ""
+msgstr "+50% leven voor vrouwen"
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1170,7 +1172,7 @@ msgstr "Vrouwen vs. bevolking"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr ""
+msgstr "Vrouwelijke burgers versus totale bevolking"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1477,7 +1479,7 @@ msgstr "Verbeter accuraatheid."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
-msgstr ""
+msgstr "Verhoogde nauwkeurigheid voor Kruisboog."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1558,7 +1560,7 @@ msgstr "Versterk de fundamenten ter voorbereiding op een aanval."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "Verhoog het pantser van verdedigingstorens met 2 niveau's."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1586,7 +1588,7 @@ msgstr "Voorposten houden het twee keer zo lang vol in neutraal territorium."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "Buitenposten -50% "
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1598,7 +1600,7 @@ msgstr "Moordgaten laten toe vijanden aan te vallen aan de voet van de toren."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "Verwijder het minimum bereik van verdedigingstorens. "
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1610,7 +1612,7 @@ msgstr "Boogschutters doen de maximum afstand van de vuurpijlen toenemen."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "Verleng het bereik van verdedigingstorens met 8 meter. "
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1622,7 +1624,7 @@ msgstr "Voorposten verkrijgen een grotere zichtradius."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Buitenposten +50% zichtradius."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -2381,7 +2383,7 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Monumentale Architectuur"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
@@ -2391,11 +2393,11 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "Train elite genezers."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
-msgstr ""
+msgstr "Goddelijke Instructie"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
@@ -2430,7 +2432,7 @@ msgstr "De Indiërs hadden een traditie van boogschutters, en gebruikten ze mass
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "+10 meter bereik, -20% rekruteertijd en betere precisie voor boogschutters, maar ook -20% gezondheid."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName

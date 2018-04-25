@@ -9,9 +9,11 @@
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
 # Camilo Zuluaga <czuluagaz@gmail.com>, 2017
+# Efraín Manzano <xelectronhd@gmail.com>, 2018
 # Esteban A. Mina <ztephanuz@hotmail.com>, 2017
 # Javier Rojas <hekeine@gmail.com>, 2017
 # Jesus A <jasenjot@gmail.com>, 2017
+# Joaquin Marcher <joacorock@gmail.com>, 2018
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Raúl Fdez. <raulferval@hotmail.com>, 2017
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
@@ -20,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-16 18:38+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"PO-Revision-Date: 2018-04-23 12:07+0000\n"
+"Last-Translator: Efraín Manzano <xelectronhd@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +61,7 @@ msgstr "Patriotismo"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 msgid "Workers +15% gather rates near pyramids."
-msgstr "+15% de velocidad de recolección cerca de pirámides para los trabajadores."
+msgstr "Los trabajadores aumentan en un +15% la velocidad de recolección cerca de las pirámides."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -67,7 +69,7 @@ msgstr "Presencia exhortativa"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers near Large Pyramids +10% attack."
-msgstr "+10% ataque a Soldados cerca de Grandes Pirámides"
+msgstr "Mejora un +10% el ataque de los soldados que estén cerca de Grandes Pirámides"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -76,7 +78,7 @@ msgstr "Pirámides Meroiticas"
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid ""
 "Civic Centers +10% territory influence as long as a Pyramid stands built."
-msgstr "+10% influencia de territorio de Centros Cívicos mientras que haya una Pirámide construida."
+msgstr "+10% influencia de territorio de los Centros Cívicos mientras que haya una Pirámide construida."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -86,7 +88,7 @@ msgstr "Sacerdocio poderoso"
 msgid ""
 "Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
 "-5% health for heroes per temple built."
-msgstr "Refuerza el sacerdocio de Amun y debilita la influencia de tu monarca.\n-5% de salud a los héroes por cada templo construido."
+msgstr "Refuerza el Sacerdocio de Amun y debilita la influencia de tu monarca.\n-5% de salud a los héroes por cada templo construido."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -215,13 +217,13 @@ msgstr "Reduce el coste de los ciudadanos soldado un 20% para los aliados de los
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr "Proveedores de elefantes"
+msgstr "Proveedores de Elefantes"
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
 msgid ""
 "Reduces the cost and train time for elephants with 20% for allies of Kushite"
 " players."
-msgstr "Reduce un 20% el coste y tiempo de entrenamiento de elefantes para los aliados de los jugadores Kushite."
+msgstr "Reduce en un 20% el coste y tiempo de reclutamiento de elefantes para los aliados de los jugadores Kushitas."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -262,7 +264,7 @@ msgstr "Reclutamiento forzoso"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied citizen-soldier infantry."
-msgstr "Reducción del 20% en el tiempo de entrenamiento de los ciudadanos-soldado."
+msgstr "-20% en el tiempo de reclutamiento de elefantes para la infantería de soldados ciudadano aliados."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -281,7 +283,7 @@ msgstr "Liga del Peloponeso"
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr "Aumenta la salud de los soldados ciudadanos lanceros de infantería en un 10% para los aliados de los jugadores Espartanos."
+msgstr "Aumenta la salud de los ciudadanos-soldado lanceros de infantería en un 10% para los aliados de los jugadores Espartanos."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -350,7 +352,7 @@ msgstr "Matanza subrepticia"
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers require 25% less experience to promote and gain a 5% attack bonus."
-msgstr "Al combatir con los romanos Ambiórix se dio cuenta de la futilidad de la guerra directa y se pasó a las tácticas guerrilleras. Los galos aprendieron rápidamente dónde y cuándo emboscar, con terribles consecuencias.\nLas unidades se mejoran un 25% más rápido y obtienen una bonificación de ataque del 5%."
+msgstr "Combatiendo con los romanos, Ambiorix se dio cuenta de la inutilidad de la guerra abierta y en su lugar recurrió a tácticas de emboscada. Los galos rápidamente aprendieron dónde y cuándo ejecutar ataques sorpresa.\nLos soldados requieren un 25% menos de experiencia para ser promovidos y obtienen una bonificación de ataque del 5%."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -370,7 +372,7 @@ msgstr "Comandante mercenario"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "-25% metal cost for all allied citizen-soldier mercenaries."
-msgstr "Junto con su hermano Indíbil, Mandonio comandó a los reclutas y mercenarios Iberos que participaron en las Guerras Púnicas.\n-25% de coste del metal para todos los mercenarios ciudadano-soldado aliados ."
+msgstr "Junto con su hermano Indíbil, Mandonio comandó a los reclutas y mercenarios Iberos que participaron en las Guerras Púnicas.\n-25% de coste del metal para todos los mercenarios ciudadano-soldado aliados."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -390,7 +392,7 @@ msgstr "La primera Reina Nubiana"
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Awe: All enemy female citizens -15% gather rate."
-msgstr "Mandando con completo poder en el Imperio Meroë y también jugando un rol importante en la religión Meroitica, Shanakdakheto representó el poder de los Kush, algo que no se podía tomar a la ligera.\nTemor reverencial: -15% de velocidad de recolección a las ciudadanas enemigas."
+msgstr "Gobernando con completo poder en el Imperio Meroë y así mismo jugando un papel importante en la religión Meroitica, Shanakdakheto representó el poder de Kush, algo que no se podía tomar a la ligera.\nTemor reverencial: -15% de velocidad de recolección a todas las ciudadanas enemigas."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -400,7 +402,7 @@ msgstr "Templo en Naqa"
 msgid ""
 "As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
 "+1 garrisoned heal rate for nearby temples."
-msgstr "Cómo en todas las culturas, la religión jugó un papel crucial en el imperio Meroë. Shanakdakheto mandó construir el Templo sobre 160 a.C. cómo símbolo de progreso de Meroë.\n+1 velocidad curación de refugiados a templos cercanos."
+msgstr "Cómo en todas las culturas, la religión jugó un papel crucial en el Imperio Meroë. Shanakdakheto mandó construir el Templo sobre el 160 a.C. cómo símbolo de progreso de Meroë.\n+1 velocidad curación de refugiados a templos cercanos."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -750,7 +752,7 @@ msgstr "Salvador de Kush"
 msgid ""
 "Own units +10% attack.\n"
 "Nastasen acquired lots of bounty from the defeated invaders. Gain +50% loot from killing enemy units."
-msgstr "+10% de ataque a tus propias unidades.\nNastasen adquirió montones de botín de los invasores derrotados. Obtén +50% de botín de matar unidades enemigas."
+msgstr "+10% de ataque a tus propias unidades.\nNastasen adquirió muchas recompensas de los invasores derrotados. Obtén +50% de botín por matar unidades enemigas."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
@@ -760,7 +762,7 @@ msgstr "Regalo de los Buques de Guerra"
 msgid ""
 "Train Ptolemaic Mercenary Triremes at -25% resource cost.\n"
 "Crushing the Ptolemaic invasion of Kush, Nastasen seized numerous enemy warships."
-msgstr "Entrenar Tirreme Ptolomaico Mercenario a -25% del coste de recursos.\nAl acabar con la invasión ptolomaica de Kush, Nastasen se apoderó de varios buques de guerra enemigos."
+msgstr "Entrene Trirremes Mercenarios Ptolomeos a un costo de recursos de -25%.\nAplastando la invasión ptolemaica de Kush, Nastasen se apoderó de numerosos buques de guerra enemigos."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
@@ -792,7 +794,7 @@ msgstr "Maestro de asedios"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
 msgid "+20% attack, +10% range and +1 armor for siege engines."
-msgstr ""
+msgstr "+20% de ataque, +10% alcance y +1 de armadura para las maquinas de asedio."
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
@@ -933,7 +935,7 @@ msgstr "Ilarchès"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "Nearby cavalry gains +2 levels of all armor types."
-msgstr ""
+msgstr "Caballería cercana consigue +2 niveles en todos los tipos de armadura."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
 msgid "Renowned Conqueror"

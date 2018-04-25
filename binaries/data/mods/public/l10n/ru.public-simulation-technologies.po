@@ -7,7 +7,7 @@
 # Alexander Olkhovskiy, 2016
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Alex <yanebotan@ngs.ru>, 2015
-# Boris Karalnik <eyesucker@gmail.com>, 2015
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014
@@ -38,6 +38,7 @@
 # Woratiklis, 2015-2016
 # Xxcapog <xx.artem-kokorin@mail.ru>, 2015
 # Xxcapog <xx.artem-kokorin@mail.ru>, 2015
+# Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2018
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Дмитрий <polsha_d@mail.ru>, 2016
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
@@ -46,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:02+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-24 18:52+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1740,12 +1741,12 @@ msgstr "Продвинутое Ремесло"
 msgid ""
 "Significantly increase training speed of soldiers at the barracks by "
 "training them in large batches or battalions."
-msgstr "Существенно ускоряет обучение солдат в бараках, тренируя их большими отрядами или батальонами."
+msgstr "Существенно ускоряет обучение солдат в бараках, тренируя их большими партиями или батальонами."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
 msgid "Faster batch training speed for the Barracks."
-msgstr "Ускоряет обучение солдат в бараках, тренируя их отрядами."
+msgstr "Ускоряет обучение солдат в бараках, тренируя их партиями."
 
 #: simulation/data/technologies/training_conscription.jsongenericName
 msgid "Conscription"
@@ -2405,7 +2406,7 @@ msgstr "Афинские длинные стены"
 msgid ""
 "+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr "+25% прочности и -50% времени строительства для Городских Центров, Храмов, Пирамид и Чудес."
+msgstr "+25% прочности и -50% к времени строительства для городских центров, храмов, пирамид и чудес."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2423,7 +2424,7 @@ msgstr "Обучение элитных целителей."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
-msgstr ""
+msgstr "Божественное Учение"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
@@ -2558,11 +2559,11 @@ msgstr "Транспортировка лошадей"
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr "Существенно ускоряет тренировку кавалерии в конюшнях, тренируя их большими отрядами или батальонами"
+msgstr "Существенно ускоряет тренировку кавалерии в конюшнях, тренируя их большими партиями или батальонами"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr "Ускоряет обучение конницы в конюшнях, тренируя их отрядами."
+msgstr "Ускоряет обучение конницы в конюшнях, тренируя их партиями."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -2639,7 +2640,7 @@ msgstr "Эллинистическая метрополия"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr "Существенно ускоряет обучение чемпионов и постройку осадных орудий в крепости, тренируя и строя их большими отрядами или батальонами."
+msgstr "Существенно ускоряет обучение чемпионов и постройку осадных орудий в крепости, тренируя и строя их большими партиями или батальонами."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."

@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-20 09:02+0200\n"
-"PO-Revision-Date: 2018-04-20 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-04-23 09:03+0200\n"
+"PO-Revision-Date: 2018-04-25 07:05+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +92,7 @@ msgstr "Ιστορία των %(civilization)s"
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Ανεκχώρητο πλήκτρο συντόμευσης: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -104,24 +104,24 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
 
-#: gui/common/functions_global_object.js:57
+#: gui/common/functions_global_object.js:8
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Άνοιγμα %(url)s\nστον προκαθορισμένο φυλλομετρητή. Παρακαλώ περιμένετε..."
 
-#: gui/common/functions_global_object.js:60
+#: gui/common/functions_global_object.js:11
 msgid "Opening page"
 msgstr "Αρχική σελίδα"
 
 #. dennis-ignore: *
-#: gui/common/functions_global_object.js:70
+#: gui/common/functions_global_object.js:21
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/functions_global_object.js:139
+#: gui/common/functions_global_object.js:90
 msgid "Loading Aborted"
 msgstr "Φόρτωση Εγκαταλείφθηκε"
 
@@ -133,14 +133,6 @@ msgstr "Γαία"
 msgctxt "map selection"
 msgid "Random"
 msgstr "Τυχαίος"
-
-#: gui/common/functions_utility.js:116
-msgid "mm:ss"
-msgstr "mm:ss"
-
-#: gui/common/functions_utility.js:116
-msgid "HH:mm:ss"
-msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -352,7 +344,7 @@ msgstr "Εκτεθειμένοι Ήρωες"
 
 #: gui/common/gamedescription.js:277
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Οι ήρωες δεν μπορούν να οχυρωθούν και είναι ευάλωτοι σε επιδρομές."
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
@@ -417,11 +409,11 @@ msgstr[1] "Για τα πρώτα %(min)s λεπτά, οι άλλοι παίχτ
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Τυχαίος Χάρτης"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Επιλέγει ένα τυχαίο χάρτη από τη λίστα."
 
 #: gui/common/gamedescription.js:330
 msgid "Map Name"
@@ -446,29 +438,29 @@ msgstr "Μέγεθος Χάρτη"
 #: gui/common/gamedescription.js:366
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "Τυχαίο Οικοσύστημα"
 
 #: gui/common/gamedescription.js:367
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "Επιλέγει ένα τυχαίο οικοσύστημα από τη λίστα."
 
 #: gui/common/gamedescription.js:381
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Λειτουργία Νομάδες"
 
 #: gui/common/gamedescription.js:381
 msgid "Civic Centers"
-msgstr ""
+msgstr "Αστικά Κέντρα"
 
 #: gui/common/gamedescription.js:384
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Οι παίκτες ξεκινούν με λίγες μόνο μονάδες και πρέπει να βρουν ένα κατάλληλο μέρος για να χτίσουν την πόλη τους."
 
 #: gui/common/gamedescription.js:385
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "Οι παίχτες ξεκινούν με ένα Αστικό Κέντρο."
 
 #: gui/common/gamedescription.js:389
 msgid "Starting Resources"
@@ -539,7 +531,7 @@ msgstr "Ηττήθηκε"
 #: gui/common/gamedescription.js:463
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -606,7 +598,7 @@ msgstr "Ο διακομιστής είναι γεμάτος"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
-msgstr ""
+msgstr "Ο έλεγχος ασφαλείας του λόμπι απέτυχε. Συνδέσου μέσω του λόμπι"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -789,7 +781,7 @@ msgstr "Άγνωστο"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "Άγνωστη Προϋπόθεση Νίκης"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
@@ -1010,41 +1002,41 @@ msgstr "Ανά Μονάδα"
 
 #: gui/common/tooltips.js:396
 msgid "Number of repairers:"
-msgstr ""
+msgstr "Αριθμός επισκευαστών:"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Πρόσθεσε έναν άλλο εργαζόμενο για να επιταχύνεις τις επισκευές κατά %(second)s δευτερόλεπτο."
+msgstr[1] "Πρόσθεσε έναν άλλο εργαζόμενο για να επιταχύνεις τις επισκευές κατά%(second)sδευτερόλεπτα."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Πρόσθεσε έναν εργάτη για να επιταχύνεις τις επισκευές κατά%(second)sδευτερόλεπτο."
+msgstr[1] "Πρόσθεσε έναν εργάτη για να επιταχύνεις τις επισκευές κατά%(second)sδευτερόλεπτα."
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
-msgstr ""
+msgstr "Αριθμός χτιστών:"
 
 #: gui/common/tooltips.js:424
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Πρόσθεσε έναν άλλο εργάτη για να επιταχύνεις τις επισκευές κατά%(second)sδευτερόλεπτο."
+msgstr[1] "Πρόσθεσε έναν άλλο εργάτη για να επιταχύνεις τις επισκευές κατά%(second)sδευτερόλεπτα."
 
 #: gui/common/tooltips.js:431
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Πρόσθεσε έναν εργάτη για να ολοκληρώσεις τις επισκευές κατά %(second)s δευτερόλεπτο."
+msgstr[1] "Πρόσθεσε έναν εργάτη για να ολοκληρώσεις τις επισκευές κατά%(second)sδευτερόλεπτα."
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1091,11 +1083,11 @@ msgstr "Πύργοι: %(costs)s"
 #: gui/common/tooltips.js:614
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr ""
+msgstr "Κόστος:"
 
 #: gui/common/tooltips.js:628
 #, javascript-format
@@ -1199,28 +1191,23 @@ msgstr "Λάφυρα:"
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:829
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "Κάνε δεξί κλικ για να δεις περισσότερες πληροφορίες."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "Κάνε κλικ για να δεις περισσότερες πληροφορίες."
 
 #: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:165
-#: gui/splashscreen/splashscreen.xml:(caption):29
-msgid "OK"
-msgstr "ΟΚ"
-
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "Προεπιλογή: %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
@@ -1269,19 +1256,19 @@ msgstr "Δεν έχετε αποθηκεύσει όλες τις αλλαγές,
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Εμφανίζει την δενδροδομή τον πολιτισμών που εμπεριέχονται στο 0 A.D."
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Μάθε για τους διάφορους πολιτισμούς που εμφανίζονται στο 0 A.D."
 
 #: gui/pregame/mainmenu.js:48
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr ""
+msgstr "%(hotkey)s: Ξεκίνησε το λόμπι για πολλούς παίκτες για να συμμετάσχεις και να φιλοξενήσεις δημόσια ορατά παιχνίδια και να συνομιλήσεις με άλλους παίκτες."
 
 #: gui/pregame/mainmenu.js:98
 msgid "connecting to server"
@@ -1344,6 +1331,10 @@ msgstr "Πατήστε \"Περισσότερα\" για περισσότερε�
 msgid "WARNING!"
 msgstr "ΠΡΟΕΙΔΟΠΟΙΗΣΗ!"
 
+#: gui/pregame/mainmenu.js:165 gui/splashscreen/splashscreen.xml:(caption):29
+msgid "OK"
+msgstr "ΟΚ"
+
 #: gui/pregame/mainmenu.js:165
 msgid "Read More"
 msgstr "Διαβάστε περισσότερα"
@@ -1363,7 +1354,7 @@ msgstr "Επιβεβαίωση"
 
 #: gui/pregame/mainmenu.js:273
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D. και να ανοίξετε τον Επεξεργαστή Σεναρίων;"
 
 #: gui/pregame/mainmenu.js:281
 msgid ""
@@ -1379,7 +1370,7 @@ msgstr "Σφάλμα"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "Ξεκινήστε το λόμπι για πολλούς παίκτες για να συμμετάσχετε και να φιλοξενήσετε δημόσια ανοικτά παιχνίδια και να συνομιλήσετε με άλλους παίκτες. \\[ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟ ΑΠΟ ΚΑΤΑΣΚΕΥΗ]"
 
 #: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
@@ -1394,18 +1385,18 @@ msgstr "Εγχειρίδιο χρήσης"
 #: gui/reference/common/draw.js:48
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource supply.
 #: gui/reference/common/draw.js:67
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
-msgstr ""
+msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/reference/common/draw.js:68
 msgid "Resource Supply:"
-msgstr ""
+msgstr "Παροχή Πόρων:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its resource.
@@ -1421,58 +1412,58 @@ msgstr "%(health_min)s σε %(health_max)s"
 #: gui/reference/structree/structree.js:49
 #, javascript-format
 msgid "%(hotkey)s: Switch to History."
-msgstr ""
+msgstr "%(hotkey)s: Εναλλάσσει την Ιστορία."
 
 #: gui/reference/structree/structree.js:50
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Κλείσιμο του Δέντρου Κατασκευής."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
 #: gui/reference/viewer/viewer.js:139
 msgid "Built by:"
-msgstr ""
+msgstr "Κατασκευάστηκε από:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:152
 msgid "Trained by:"
-msgstr ""
+msgstr "Εκπαιδεύτηκε από:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:165
 msgid "Researched at:"
-msgstr ""
+msgstr "Ανακαλύφθηκε από:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
 #: gui/reference/viewer/viewer.js:177
 msgid "Builds:"
-msgstr ""
+msgstr "Κτίρια:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
 #: gui/reference/viewer/viewer.js:198
 msgid "Researches:"
-msgstr ""
+msgstr "Έρευνες:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
 #: gui/reference/viewer/viewer.js:210
 msgid "Trains:"
-msgstr ""
+msgstr "Εκπαιδεύει:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:223
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Αναβαθμίζετε σε:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr ""
+msgstr "Η επανάληψη παιχνιδιού χρειάζεται ένα διαφορετικό σύνολο από mods:"
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
@@ -1568,7 +1559,7 @@ msgstr "Παιχνίδι για πολλούς παίκτες"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "Κάθε Προϋπόθεση Νίκης"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -1711,7 +1702,7 @@ msgstr "Πόροι"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr ""
+msgstr "Φόροι"
 
 #: gui/summary/layout.js:112
 #, javascript-format
@@ -1786,7 +1777,7 @@ msgstr "Θηλυκοποίηση"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr ""
+msgstr "Δωροδοκίες"
 
 #: gui/summary/layout.js:194
 #, javascript-format
@@ -1865,7 +1856,7 @@ msgstr "Αποτυχημένες"
 
 #: gui/summary/summary.js:335
 msgid "Time elapsed"
-msgstr ""
+msgstr "Χρόνος που πέρασε"
 
 #: gui/summary/summary.js:491
 msgid "Current Scores"
@@ -1889,7 +1880,7 @@ msgstr "Κερδίσατε τη μάχη!"
 
 #: gui/summary/summary.js:501
 msgid "You have been defeated…"
-msgstr ""
+msgstr "Ηττήθηκες..."
 
 #: gui/summary/summary.js:502
 msgid "You have abandoned the game."
@@ -1908,7 +1899,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "%(hotkey)s: Εναλλαγή του λόμπι πολλαπλών παικτών σε ένα παράθυρο διαλόγου."
 
 #: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
@@ -2108,7 +2099,7 @@ msgstr "Μετάφραση Παιχνιδιού"
 
 #: gui/pregame/mainmenu.xml:(caption):622
 msgid "Donate"
-msgstr ""
+msgstr "Δωρεά"
 
 #: gui/pregame/mainmenu.xml:(caption):634
 msgid "Credits"
@@ -2162,8 +2153,8 @@ msgid "Choose the language of the game."
 msgstr "Επιλογή της γλώσσας του παιχνιδιού."
 
 #: gui/pregame/mainmenu.xml:(tooltip):397
-msgid "Select mods to use."
-msgstr "Επιλογή mods προς χρήση."
+msgid "Select and download mods for the game."
+msgstr "Επέλεξε και κατέβασε mods για το παιχνίδι."
 
 #: gui/pregame/mainmenu.xml:(tooltip):409
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -2185,7 +2176,7 @@ msgstr "Πολεμήστε εναντίον ενός ή περισσότερων
 
 #: gui/pregame/mainmenu.xml:(tooltip):512
 msgid "Game options and mod selection."
-msgstr ""
+msgstr "Ρυθμίσεις παιχνιδιού και επιλογή mod."
 
 #: gui/pregame/mainmenu.xml:(tooltip):527
 msgid ""
@@ -2217,7 +2208,7 @@ msgstr "Κλικάρετε για να ανοίξετε την σελίδα με
 
 #: gui/pregame/mainmenu.xml:(tooltip):623
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "Βοήθησε για τα έξοδα του έργου κάνοντας μία δωρεά."
 
 #: gui/pregame/mainmenu.xml:(tooltip):635
 msgid "Click to see the 0 A.D. credits."
@@ -2561,7 +2552,7 @@ msgstr "Όνομα παίχτη (Παιχνίδι για πολλούς παίχ
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
-msgstr ""
+msgstr "Παύση παιχνιδιού με έναν παίκτη όταν χάνετε η εστίαση στο παράθυρο."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
@@ -2636,7 +2627,7 @@ msgstr "Απενεργοποιήθηκε"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr ""
+msgstr "Επιτρέπει σε όλους ή μόνο στους φίλους να συνδεθούν στο παιχνίδι ως παρατηρητές μετά την έναρξη του παιχνιδιού."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
@@ -2644,7 +2635,7 @@ msgstr "Καθυστερημένη Σύνδεση Παρατηρητών"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr ""
+msgstr "Αποτρέπει την περαιτέρω σύνδεση παρατηρητών εφόσον επιτευχθεί το όριο."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer Limit"
@@ -2689,7 +2680,7 @@ msgstr "Ομίχλη"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Χρήση μετεπεξεργασμένων screen-space φίλτρων (HDR, Bloom, DOF, κλπ)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
@@ -2705,7 +2696,7 @@ msgstr "Εφέ Σκίασης"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "Ενεργοποίηση Σκιών."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
@@ -2744,7 +2735,7 @@ msgstr "Ποιότητα σκιών"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "Εξομάλυνση σκιών."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
@@ -2752,7 +2743,7 @@ msgstr "Φιλτράρισμα Σκιών"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind buildings."
-msgstr ""
+msgstr "Εμφάνιση του περιγράμματος των μονάδων πίσω από τα κτίρια."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
@@ -2760,7 +2751,7 @@ msgstr "Σιλουέτες Μονάδων"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "Ενεργοποίηση σωματιδίων."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
@@ -2788,7 +2779,7 @@ msgstr "HQ Εμφάνιση Νερού"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr ""
+msgstr "Χρησιμοποιήστε το πραγματικό βάθος νερού στους υπολογισμούς απεικόνισης."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
@@ -2804,7 +2795,7 @@ msgstr "Αντανακλάσεις Νερού"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr ""
+msgstr "Χρησιμοποιήστε έναν πραγματικής διάθλασης νερού χάρτη και όχι διαφάνεια."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
@@ -2812,7 +2803,7 @@ msgstr "Διάθλαση Nερού"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
-msgstr ""
+msgstr "Ρίξε σκιές στο νερό."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on Water"
@@ -3039,7 +3030,7 @@ msgstr "Προθάλαμος"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "Η συντόμευση πλήκτρου για τις τραυματισμένες μονάδες επιλέγει μόνο τις τραυματισμένες μονάδες εάν το ποσοστό υγείας τους πέσει κάτω από αυτόν τον αριθμό."
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
@@ -3105,7 +3096,7 @@ msgstr "Εμφάνιση όλων"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος ξεκίνησε, ακύρωσε ή ολοκλήρωσε μία νέα φάση και θέτει τις φάσεις για όλους τους παίχτες σε λειτουργία παρατήρησης."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
@@ -3115,7 +3106,7 @@ msgstr "Ειδοποίηση στη Συνομιλία για Φάση Πόλη�
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Εμφάνιση του εύρους επίθεσης των επιλεγμένων αμυντικών κατασκευών (μπορεί να αλλάξει και μέσα στο παιχνίδι με το πλήκτρο συντόμευσης)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
@@ -3147,7 +3138,7 @@ msgstr "Εμφάνιση εικονιδίων κατάταξης πάνω από
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "Εικονίδιο κατάταξης πάνω από την μπάρα κατάστασης."
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid ""
@@ -3177,7 +3168,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[12].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "Επεξήγηση ταξινόμησης πόρων και πληθυσμού"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
@@ -3185,7 +3176,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[13].label
 msgid "Diplomacy Colors: Self"
-msgstr ""
+msgstr "Χρώματα Διπλωματίας: Εγώ"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -3193,7 +3184,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Ally"
-msgstr ""
+msgstr "Χρώματα Διπλωματίας: Σύμμαχοι"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3201,7 +3192,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Neutral"
-msgstr ""
+msgstr "Χρώματα Διπλωματίας: Ουδέτεροι"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -3209,11 +3200,11 @@ msgstr ""
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Enemy"
-msgstr ""
+msgstr "Χρώματα Διπλωματίας: Εχθροί"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr ""
+msgstr "Αλλαγή επιλογών σχετικά με τις ρυθμίσεις εντός του παιχνιδιού."
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
@@ -3596,7 +3587,7 @@ msgstr "Μπορεί να χτιστεί σε φίλια και ουδέτερα
 msgid ""
 "- Train citizens: female citizens, infantry citizen soldiers and cavalry "
 "citizen soldiers."
-msgstr ""
+msgstr "- Εκπαιδεύει πολίτες: γυναίκες πολίτες, πεζικάριους πολίτες οπλίτες και ιππικό πολίτες οπλίτες."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3664,17 +3655,17 @@ msgstr "ΕΛΕΥΘΕΡΗ ΘΕΣΗ"
 msgid ""
 "- Gain an advantage on the battleground by tactically positioning your "
 "units!"
-msgstr ""
+msgstr "- Αποκτήστε ένα πλεονέκτημα στο πεδίο της μάχης, τοποθετώντας με τακτική τις μονάδες σας!"
 
 #: gui/text/tips/freehand_position.txt:4
 msgid ""
 "- Therefore select some units, press and hold the right mouse button, draw "
 "any line, then release the button."
-msgstr ""
+msgstr "- Επομένως, επιλέξτε μερικές μονάδες, πατήστε και κρατήστε πατημένο το δεξί πλήκτρο του ποντικιού, σύρετε οποιαδήποτε γραμμή και στη συνέχεια αφήστε το κουμπί."
 
 #: gui/text/tips/freehand_position.txt:6
 msgid "- Your units will now spread out on this line."
-msgstr ""
+msgstr "- Οι μονάδες σου τώρα θα απλωθούν σε αυτή τη γραμμή."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3686,7 +3677,7 @@ msgstr "- Χρησιμοποίησε πολίτες οπλίτες και γυν
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female citizens are faster gathering vegetable resources."
-msgstr ""
+msgstr "- Οι γυναίκες πολίτες μαζεύουν γρηγορότερα φυτικούς πόρους."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Infantry citizen soldiers are faster gathering minerals."
@@ -3954,7 +3945,7 @@ msgstr "ΣΧΗΜΑΤΙΣΜΟΣ ΣΥΝΤΑΓΜΑΤΟΣ"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr "- Σχηματισμός για πεζικό τύπου \"δορυφόρου\"."
+msgstr "- Σχηματισμός για πεζικό τύπου \"λογχοφόρων\"."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."

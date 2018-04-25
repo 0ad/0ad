@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-16 09:05+0200\n"
-"PO-Revision-Date: 2018-04-20 07:07+0000\n"
+"POT-Creation-Date: 2018-04-23 09:05+0200\n"
+"PO-Revision-Date: 2018-04-24 07:28+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,199 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
+
+#: gui/common/l10n.js:9
+msgctxt "filesize unit"
+msgid "B"
+msgstr "B"
+
+#: gui/common/l10n.js:10
+msgctxt "filesize unit"
+msgid "KiB"
+msgstr "KiB"
+
+#: gui/common/l10n.js:11
+msgctxt "filesize unit"
+msgid "MiB"
+msgstr "MiB"
+
+#: gui/common/l10n.js:12
+msgctxt "filesize unit"
+msgid "GiB"
+msgstr "GiB"
+
+#. Translation: For example: 123.4 KiB
+#: gui/common/l10n.js:33
+#, javascript-format
+msgid "%(filesize)s %(unit)s"
+msgstr "%(filesize)s %(unit)s"
+
+#. Translation: Time-format string. See http://userguide.icu-
+#. project.org/formatparse/datetime for a guide to the meaning of the letters.
+#: gui/common/l10n.js:46
+msgid "mm:ss"
+msgstr "mm:ss"
+
+#: gui/common/l10n.js:46
+msgid "HH:mm:ss"
+msgstr "HH:mm:ss"
+
+#: gui/common/l10n.js:143
+msgctxt "enumeration"
+msgid ", "
+msgstr ", "
+
+#: gui/common/mod.js:17
+#, javascript-format
+msgctxt "Mod comparison"
+msgid "%(mod)s (%(version)s)"
+msgstr "%(mod)s (%(version)s)"
+
+#: gui/common/mod.js:20
+msgid ", "
+msgstr ", "
+
+#: gui/common/mod.js:28
+#, javascript-format
+msgctxt "Mod comparison"
+msgid "Required: %(mods)s"
+msgstr "Feum air: %(mods)s"
+
+#: gui/common/mod.js:30
+#, javascript-format
+msgctxt "Mod comparison"
+msgid "Active: %(mods)s"
+msgstr "Gnìomhach: %(mods)s"
+
+#: gui/modio/modio.js:80
+#, javascript-format
+msgctxt "mod.io error message"
+msgid ""
+"Game ID could not be retrieved.\n"
+"\n"
+"%(technicalDetails)s"
+msgstr "Cha b’ urrainn dhuinn ID a’ gheama fhaighinn.\n\n%(technicalDetails)s"
+
+#: gui/modio/modio.js:83
+msgctxt "mod.io error message"
+msgid "Initialization Error"
+msgstr "Mearachd ’ga thòiseachadh"
+
+#: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
+#: gui/modio/modio.js:117
+msgid "Abort"
+msgstr "Sguir dheth"
+
+#: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
+msgid "Retry"
+msgstr "Feuch ris a-rithist"
+
+#: gui/modio/modio.js:91
+#, javascript-format
+msgctxt "mod.io error message"
+msgid ""
+"Mod List could not be retrieved.\n"
+"\n"
+"%(technicalDetails)s"
+msgstr "Cha b’ urrainn dhuinn liosta nan tuilleadan fhaighinn.\n\n%(technicalDetails)s"
+
+#: gui/modio/modio.js:94
+msgctxt "mod.io error message"
+msgid "Fetch Error"
+msgstr "Mearachd ’ga fhaighinn"
+
+#: gui/modio/modio.js:102
+#, javascript-format
+msgctxt "mod.io error message"
+msgid ""
+"File download failed.\n"
+"\n"
+"%(technicalDetails)s"
+msgstr "Dh’fhàillig le luchdadh a-nuas an fhaidhle.\n\n%(technicalDetails)s"
+
+#: gui/modio/modio.js:105
+msgctxt "mod.io error message"
+msgid "Download Error"
+msgstr "Mearachd leis an luchdadh a-nuas"
+
+#: gui/modio/modio.js:113
+#, javascript-format
+msgctxt "mod.io error message"
+msgid ""
+"File verification error.\n"
+"\n"
+"%(technicalDetails)s"
+msgstr "Mearachd le dearbhadh an fhaidhle.\n\n%(technicalDetails)s"
+
+#: gui/modio/modio.js:116
+msgctxt "mod.io error message"
+msgid "Verification Error"
+msgstr "Mearachd dearbhaidh"
+
+#: gui/modio/modio.js:133
+msgid "Initializing mod.io interface."
+msgstr "A’ cur eadar-aghaidh mod.io gu dol."
+
+#: gui/modio/modio.js:134
+msgid "Initializing"
+msgstr "’Ga thòiseachadh"
+
+#: gui/modio/modio.js:136 gui/modmod/modmod.js:313
+#: gui/modmod/modmod.xml:(caption):184
+msgid "Cancel"
+msgstr "Sguir dheth"
+
+#: gui/modio/modio.js:232
+msgid "Fetching and updating list of available mods."
+msgstr "A’ faighinn ’s ag ùrachadh liosta nan tuilleadan a tha ri am faighinn."
+
+#: gui/modio/modio.js:233
+msgid "Updating"
+msgstr "’Ga ùrachadh"
+
+#: gui/modio/modio.js:235
+msgid "Cancel Update"
+msgstr "Sguir dhen ùrachadh"
+
+#: gui/modio/modio.js:248
+#, javascript-format
+msgid "Downloading “%(modname)s”"
+msgstr "A’ luchdadh a-nuas “%(modname)s”"
+
+#: gui/modio/modio.js:251
+msgid "Downloading"
+msgstr "’Ga luchdadh a-nuas"
+
+#: gui/modio/modio.js:253
+msgid "Cancel Download"
+msgstr "Sguir dhen luchdadh a-nuas"
+
+#. Translation: Mod file download indicator. Current size over expected final
+#. size, with percentage complete.
+#: gui/modio/modio.js:320
+#, javascript-format
+msgid "%(current)s / %(total)s (%(percent)s%%)"
+msgstr "%(current)s / %(total)s (%(percent)s%%)"
+
+#. Translation: Mod file download status message.
+#: gui/modio/modio.js:330
+#, javascript-format
+msgid ""
+"Time Elapsed: %(elapsed)s\n"
+"Estimated Time Remaining: %(remaining)s\n"
+"Average Speed: %(avgSpeed)s"
+msgstr "An t-àm a dh’fhalbh: %(elapsed)s\nAn dùil air an ceann: %(remaining)s\nLuaths cuibhreasach: %(avgSpeed)s"
+
+#: gui/modio/modio.js:332
+msgid "∞"
+msgstr "∞"
+
+#. Translation: Average download speed, used to give the user a very rough and
+#. naive idea of the download time. For example: 123.4 KiB/s
+#: gui/modio/modio.js:334
+#, javascript-format
+msgid "%(number)s %(unit)s/s"
+msgstr "%(number)s %(unit)s/s"
 
 #: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
 msgid "Filter"
@@ -32,9 +225,75 @@ msgstr "Cha deach gach eisimeileachd a choileanadh: %(dep)s"
 msgid "All dependencies met"
 msgstr "Chaidh gach eisimeileachd a choileanadh"
 
-#: gui/modmod/modmod.js:379
+#: gui/modmod/modmod.js:311
+msgid ""
+"You are about to connect to the mod.io online service. This provides easy access to community-made mods, but is not under the control of Wildfire Games.\n"
+"\n"
+"While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
+"\n"
+"Do you really want to connect?"
+msgstr "Tha thu an impis ceangal a dhèanamh le seirbheis air loidhne mod.io, Bheir seo dhut inntrigeadh furasta do thuilleadan a rinn a’ choimhearsnachd ach chan eil e fo smachd Wildfire Games.\n\nOn a rinn sinn ar dìcheall gus a dhèanamh tèarainte, chan urrainn dhuinn barantas a thoirt le cinnt nach bi cunnart tèarainteachd na luib.\n\nA bheil thu airson ceangal a dhèanamh?"
+
+#: gui/modmod/modmod.js:312
+msgid "Connect to mod.io?"
+msgstr "Airson ceangal ri mod.io?"
+
+#: gui/modmod/modmod.js:313
+msgctxt "mod.io connection message box"
+msgid "Connect"
+msgstr "Ceangail"
+
+#: gui/modmod/modmod.js:396
 msgid "No mod has been selected."
 msgstr "Cha deach tuilleadan a thaghadh."
+
+#: gui/msgbox/msgbox.js:25
+msgid "OK"
+msgstr "Ceart ma-thà"
+
+#: gui/modio/modio.xml:(caption):18
+msgid "mod.io Mods"
+msgstr "Tuilleadain mod.io"
+
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
+msgid "Available Mods"
+msgstr "Tuilleadain ri am faighinn"
+
+#: gui/modio/modio.xml:(caption):73
+msgid "Back"
+msgstr "Air ais"
+
+#: gui/modio/modio.xml:(caption):78
+msgid "Refresh List"
+msgstr "Ath-nuadhaich an liosta"
+
+#: gui/modio/modio.xml:(caption):83
+msgid "Download"
+msgstr "Luchdaich a-nuas"
+
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
+#: gui/modmod/modmod.xml:(heading):116
+msgid "Name"
+msgstr "Ainm"
+
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
+#: gui/modmod/modmod.xml:(heading):119
+msgid "Version"
+msgstr "Tionndadh"
+
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
+#: gui/modmod/modmod.xml:(heading):125
+msgid "Mod Label"
+msgstr "Leubail an tuilleadain"
+
+#: gui/modio/modio.xml:(heading):62
+msgid "File Size"
+msgstr "Meud an fhaidhle"
+
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
+#: gui/modmod/modmod.xml:(heading):128
+msgid "Dependencies"
+msgstr "Eisimeileachdan"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -47,10 +306,6 @@ msgstr "Àicheadh"
 #: gui/modmod/modmod.xml:(caption):49
 msgid "Description"
 msgstr "Tuairisgeul"
-
-#: gui/modmod/modmod.xml:(caption):56
-msgid "Available Mods"
-msgstr "Tuilleadain ri am faighinn"
 
 #: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
@@ -68,37 +323,25 @@ msgstr "Tadhail air an làrach-lìn"
 msgid "Quit"
 msgstr "Fàg an-seo"
 
-#: gui/modmod/modmod.xml:(caption):184
-msgid "Cancel"
-msgstr "Sguir dheth"
-
 #: gui/modmod/modmod.xml:(caption):189
+msgid "Help"
+msgstr "Cobhair"
+
+#: gui/modmod/modmod.xml:(caption):194
+msgid "Download Mods"
+msgstr "Luchdaich a-nuas tuilleadain"
+
+#: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
 msgstr "Sàbhail an rèiteachadh"
 
-#: gui/modmod/modmod.xml:(caption):194
+#: gui/modmod/modmod.xml:(caption):204
 msgid "Start Mods"
 msgstr "Tòisich na tuilleadain"
-
-#: gui/modmod/modmod.xml:(heading):76 gui/modmod/modmod.xml:(heading):116
-msgid "Name"
-msgstr "Ainm"
-
-#: gui/modmod/modmod.xml:(heading):79 gui/modmod/modmod.xml:(heading):119
-msgid "Version"
-msgstr "Tionndadh"
 
 #: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
 msgstr "(Pasgan)"
-
-#: gui/modmod/modmod.xml:(heading):85 gui/modmod/modmod.xml:(heading):125
-msgid "Mod Label"
-msgstr "Leubail an tuilleadain"
-
-#: gui/modmod/modmod.xml:(heading):88 gui/modmod/modmod.xml:(heading):128
-msgid "Dependencies"
-msgstr "Eisimeileachdan"
 
 #: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
 msgid "Website"
@@ -109,3 +352,50 @@ msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
 msgstr "Atharraich an t-òrdugh san dèid na tuilleadain a thòiseachadh. Bu chòir dha a bhith a-rèir eisimeileachdan nan tuilleadan."
+
+#: gui/modmod/help/help.xml:(caption):13
+msgid "Pyrogenesis Mod Selector"
+msgstr "Roghnaichear thuilleadan Pyrogenesis"
+
+#: gui/modmod/help/help.xml:(caption):21
+msgid "Close"
+msgstr "Dùin"
+
+#: gui/modmod/help/help.xml:(caption):25
+msgid "Modding Guide"
+msgstr "Taic le cruthachadh tuilleadain"
+
+#: gui/modmod/help/help.xml:(caption):29
+msgid "Visit mod.io"
+msgstr "Tadhail air mod.io"
+
+#: gui/modmod/help/help.txt:1
+msgid ""
+"0 A.D. is designed to be easily modded. Mods are distributed in the form of "
+".pyromod files, which can be opened like .zip files."
+msgstr "Chaidh 0 A.D. a dhealbhachadh ach an gabh tuilleadain a chruthachadh gun duilgheadas. Thèid na tuilleadain a sgaoileadh ann am faidhlichean .pyromod a ghabhas fhosgladh mar fhaidhlichean .zip."
+
+#: gui/modmod/help/help.txt:3
+msgid ""
+"In order to install a mod, just open the file with 0 A.D. (either double-"
+"click on the file and choose to open it with the game, or run \"pyrogenesis "
+"file.pyromod\" in a terminal). The mod will then be available in the mod "
+"selector. You can enable it and disable it at will. You can delete the mod "
+"manually using your file browser if needed (see "
+"https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Airson tuilleadan a stàladh, fosgail am faidhle le 0 A.D. (dèan briogadh dùbailte air an fhaidhle agus tagh gum fosgail thu leis a’ gheama e no ruith “pyrogenesis file.pyromod” ann an tèirmineal). Bidh an tuilleadan ri làimh dhut ann an roghnaichear nan tuilleadan an uairsin. ’S urrainn dut a chur an comas is à comas mar a thogras tu an uairsin. ‘’S urrainn dhut an tuilleadan a sguabadh às à làimh ann an taisgealaiche nam faidhle ma bhios feum air sin (faic https://trac.wildfiregames.com/wiki/GameDataPaths)."
+
+#: gui/modmod/help/help.txt:5
+msgid ""
+"For more information about modding the game, see the Modding Guide online "
+"(click the Modding Guide button below)."
+msgstr "Airson barrachd fiosrachaidh air mar a chruthaicheas tu fhèin tuilleadan, thòir sùil air a’ Modding Guide air loidhne (bruig air a’ phutan “Taic le cruthachadh tuilleadain” gu h-ìosal)."
+
+#: gui/modmod/help/help.txt:7
+msgid ""
+"The mod.io service is developed by DBolical, the company behind IndieDB and "
+"ModDB. Those websites have spread the word about 0 A.D. and other indie "
+"projects for a long time! Today, mod.io allows us to list and download all "
+"the mods that were verified by the team. Click \"Download Mods\" to try it "
+"out and install some!"
+msgstr "Tha an t-seirbheis mod.io ’ga leasachadh le DBolical, seo a’ chompanaidh air cùlaibh IndieDB agus ModDB. Tha na làraichean-lìn sin a’ sgaoileadh naidheachd mu 0 A.D. agus pròiseactan neo-eisimeil eile o chionn fhada! Leigidh mod.io leinn liosta agus luchdaidhean a-nuas a chruthachadh dhe na tuilleadain uile a chaidh a dhearbhadh leis an sgioba a-nis. Briog air “Luchdaich a-nuas tuilleadain”, feuch e is stàlaich fear no dhà!"

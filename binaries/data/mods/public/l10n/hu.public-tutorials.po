@@ -93,6 +93,8 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Képezz ki egy csoport csatárt a %(hotkey)s gombot lenyomva tartva, és bal "
+"gombbal a csatár ikonra kattintva a városházán."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
@@ -149,6 +151,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Jelöld ki a városházát, majd húzd egy fa fölé az egeret, és kattints a jobb "
+"egérgombbal, amikor a kurzor fa ikonná változik."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -183,6 +187,8 @@ msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Kezdd el egy csoport női polgár kiképzését a városházában, és állítsd be a "
+"gyülekezőhelyüket a farmra (jobb kattintás a farmon)."
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
@@ -201,6 +207,9 @@ msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
+"Készülj fel egy támadásra valamelyik ellenséges játékostól. Képezz ki több "
+"katonát a laktanyákban, és a tétlen katonákkal építtess védőtornyot az "
+"előőrs közelében."
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
@@ -212,7 +221,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
-msgstr ""
+msgstr "Ellenség érkezik. Képezz ki több katonát, hogy leküzd az ellenséget."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
@@ -239,12 +248,16 @@ msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "barracks."
 msgstr ""
+"A fázisváltásra való várakozás közben katonákat képezhetsz ki a "
+"laktanyákban. "
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Mostantól nagyvárosi szakaszban vagy. Építs egy erődöt a közelben (ha "
+"szükséges, gyűjts előbb követ), és aztán hozz létre benne 2 faltörő kost."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -326,6 +339,13 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Most, hogy a Városháza ki van jelölve, feltűnhet, hogy a képernyő jobb alsó "
+"sarkában megjelenik egy termelési panel, ami az épület által támogatott "
+"tevékenységeket részletezi. A termelési panelen az elérhető tevékenységek "
+"nincsenek elszínezve, míg a szürke vagy piros ikonok jelzik a még nem "
+"elérhető tevékenységet, illetve amelyek elvégzéséhez nem áll rendelkezésre "
+"elegendő nyersanyag. Bármely ikonra húzva a kurzort felugró jegyzet jelenik "
+"meg a további részletekkel.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -667,12 +687,24 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Jelölj ki az előbb kiképzett női polgárok közül kettőt és utasítsd őket, "
+"hogy a városházától keletre egy üres helyen építsék fel ezeket a házakat. "
+"Ehhez a két női polgár kijelölése után kattints a ház ikonra a jobb oldali "
+"alsó panelen, majd a Shiftet lenyomva kattints arra a helyre a térképen, "
+"ahol az első házat szeretnéd felépíteni és újra a Shiftet lenyomva kattints "
+"a másik helyre, ahova a második házat szeretnéd (utasítások kiadásánál a "
+"Shiftel történő kattintások révén az utasítások sorba lesznek állítva és az "
+"egységek automatikusan hozzákezdenek a következő utasításnak, ha végeztek az"
+" előzővel). Az Escape lenyomásával lehet megszabadulni a ház kurzortól, hogy"
+" ne legyen a térkép teleszemetelve házakkal.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two female citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"Emlékeztető: két női polgár kijelöléséhez előbb kattints az elsőre, majd a "
+"Shiftet lenyomva kattints a másodikra."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -698,6 +730,9 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Jelöld ki a maradék három (tétlen) női polgárt és utasítsd őket, hogy "
+"építsenek egy tanyát a városházától nyugatra elterülő nagy nyitott térség "
+"közepére.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -719,6 +754,13 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Ha a három tétlen női polgárt kijelölési téglalappal próbálod kijelölni, "
+"nagy valószínűséggel néhány további egység is kijelölődik. Ennek "
+"megelőzésére tartsd lenyomva az „i” gombot a kijelölés közben: így csak a "
+"tétlen egységek lesznek kijelölve. Ha esetleg közben néhány lovas egység is "
+"belekerült a kijelölésbe, el lehet távolítani őket a Ctrl gomb nyomva "
+"tartása mellett a lovas egység ikonra való kattintással a képernyő alján "
+"lévő kijelölési panelen. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
@@ -742,6 +784,9 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Amikor mindkét ház kész, jelöld ki a két női polgárt és utasítsd őket, hogy "
+"építsenek két mezőt a lehető legközelebb a tanyához, ami minden élelmiszer "
+"lerakóhelye lesz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
@@ -785,14 +830,16 @@ msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Most kattints háromszor a női polgár ikonra a jobb alsó panelen, hogy "
+"kiképezz három további földművest."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "Egyetlen egység kiképzéséhez a Shift lenyomása nélkül kattints."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Kattints a női polgár ikonra."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -810,6 +857,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Például a termesztési sebesség a tanyán kutatható technológiákkal "
+"fejleszthető. Jelöld ki a tanyát és vess egy pillantást a termelési "
+"paneljére alul, jobbra. Néhány kutatható technológia lesz látható ott. A "
+"kurzort fölé húzva látható a költségük és hatásuk, valamint egyikükre "
+"kattintva elkezdhető a kutatásuk."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -817,6 +869,9 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the 'Town Phase' icon to see what is still needed.\n"
 msgstr ""
+"Fel kell készülnünk a városi szakaszra való felfejlődésre, amely sok "
+"egységet és épületet fog hozni. Jelöld ki a városházát és húzd a kurzort a "
+"Városi szakasz ikon fölé, hogy megláthasd mi hiányzik még.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -890,6 +945,11 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"Ehhez jelöljünk ki három polgári katonát és kattintsunk jobb gombbal a "
+"kőbányán, amely a városházától nyugatra található (katonákat kijelölve a "
+"kurzor megváltozik, ha kőbánya fölé húzzuk). Azonban ezek a katonák előzőleg"
+" fát gyűjtöttek, amit még valószínűleg épp hordoznak, és amelyet el fognak "
+"veszíteni, amikor átállnak egy másik nyersanyag gyűjtésére."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -899,6 +959,11 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"És így utasítanunk kellene őket arra, hogy útközben adják le a náluk levő "
+"fát  a városházán. Ezért a Shiftet lenyomva sorba állítjuk az utasításokat: "
+"jelöljük ki a katonákat, a Shitet lenyomva tartva kattintsunk jobb gombbal a"
+" városházára, hogy leadják a fát, végül ismét a Shitet lenyomva tartva "
+"kattintsunk jobb gombbal a kőbányára, hogy induljon a bányászat.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""

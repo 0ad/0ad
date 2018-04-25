@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-18 14:25+0000\n"
-"Last-Translator: scinart <akubeej@gmail.com>\n"
+"POT-Creation-Date: 2018-04-23 09:02+0200\n"
+"PO-Revision-Date: 2018-04-23 13:56+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,118 +28,170 @@ msgstr ""
 msgid "Long strings"
 msgstr "长字符串"
 
-#: lobby/XmppClient.cpp:739
+#: lobby/XmppClient.cpp:787
 msgid "unknown subtype (see logs)"
 msgstr "未知子类型（见日志）"
 
-#: lobby/XmppClient.cpp:1010 lobby/XmppClient.cpp:1054
-#: lobby/XmppClient.cpp:1093
+#: lobby/XmppClient.cpp:1058 lobby/XmppClient.cpp:1102
+#: lobby/XmppClient.cpp:1141
 msgid "Error"
 msgstr "错误"
 
-#: lobby/XmppClient.cpp:1013 lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1061 lobby/XmppClient.cpp:1105
 msgid "No error"
 msgstr "没有错误"
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1063
 msgid "Player already logged in"
 msgstr "用户已经登录"
 
-#: lobby/XmppClient.cpp:1017
+#: lobby/XmppClient.cpp:1065
 msgid "Forbidden"
 msgstr "禁止"
 
-#: lobby/XmppClient.cpp:1019
+#: lobby/XmppClient.cpp:1067
 msgid "Internal server error"
 msgstr "内部服务器错误"
 
-#: lobby/XmppClient.cpp:1023
+#: lobby/XmppClient.cpp:1071
 msgid "Not allowed"
 msgstr "不允许"
 
-#: lobby/XmppClient.cpp:1024
+#: lobby/XmppClient.cpp:1072
 msgid "Not authorized"
 msgstr "未授权"
 
-#: lobby/XmppClient.cpp:1027
+#: lobby/XmppClient.cpp:1075
 msgid "Recipient temporarily unavailable"
 msgstr "收件人暂时不可用"
 
-#: lobby/XmppClient.cpp:1029
+#: lobby/XmppClient.cpp:1077
 msgid "Registration required"
 msgstr "允许注册"
 
-#: lobby/XmppClient.cpp:1033
+#: lobby/XmppClient.cpp:1081
 msgid "Service unavailable"
 msgstr "服务器不可用"
 
-#: lobby/XmppClient.cpp:1038 lobby/XmppClient.cpp:1077
+#: lobby/XmppClient.cpp:1086 lobby/XmppClient.cpp:1125
 msgid "Unknown error"
 msgstr "未知错误"
 
-#: lobby/XmppClient.cpp:1058
+#: lobby/XmppClient.cpp:1106
 msgid "Stream error"
 msgstr "媒体流错误"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1107
 msgid "The incoming stream version is unsupported"
 msgstr "传入的媒体流版本不受支持"
 
-#: lobby/XmppClient.cpp:1060
+#: lobby/XmppClient.cpp:1108
 msgid "The stream has been closed by the server"
 msgstr "服务器已关闭媒体流"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1112
 msgid "An I/O error occurred"
 msgstr "发生了一个I/O错误"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1114
 msgid "The connection was refused by the server"
 msgstr "服务器拒绝连接"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1115
 msgid "Resolving the server's hostname failed"
 msgstr "服务器主机名解析失败"
 
-#: lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1116
 msgid "This system is out of memory"
 msgstr "系统内存耗尽"
 
-#: lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1118
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "不能验证服务器证书或TLS握手未能成功完成"
 
-#: lobby/XmppClient.cpp:1071
+#: lobby/XmppClient.cpp:1119
 msgid "The server did not offer required TLS encryption"
 msgstr "服务器没有提供必须的TLS加密"
 
-#: lobby/XmppClient.cpp:1073
+#: lobby/XmppClient.cpp:1121
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "验证失败. 密码不正确或账户不存在"
 
-#: lobby/XmppClient.cpp:1074
+#: lobby/XmppClient.cpp:1122
 msgid "The user or system requested a disconnect"
 msgstr "用户或系统请求断开连接"
 
-#: lobby/XmppClient.cpp:1075
+#: lobby/XmppClient.cpp:1123
 msgid "There is no active connection"
 msgstr "没有活动连接"
 
-#: lobby/XmppClient.cpp:1096
+#: lobby/XmppClient.cpp:1144
 msgid "Your account has been successfully registered"
 msgstr "您已成功注册账户"
 
-#: lobby/XmppClient.cpp:1097
+#: lobby/XmppClient.cpp:1145
 msgid "Not all necessary information provided"
 msgstr "没有提供所有必须的信息"
 
-#: lobby/XmppClient.cpp:1098
+#: lobby/XmppClient.cpp:1146
 msgid "Username already exists"
 msgstr "用户名已存在"
 
-#: ps/SavedGame.cpp:127
+#: ps/ModIo.cpp:244
+#, c-format
+msgid "Failure while starting querying for game id. Error: %s; %s."
+msgstr ""
+
+#: ps/ModIo.cpp:274
+#, c-format
+msgid "Failure while starting querying for mods. Error: %s; %s."
+msgstr ""
+
+#: ps/ModIo.cpp:300
+#, c-format
+msgid "Could not create mod directory: %s."
+msgstr ""
+
+#: ps/ModIo.cpp:325
+#, c-format
+msgid "Could not open temporary file for mod download: %s."
+msgstr ""
+
+#: ps/ModIo.cpp:335
+#, c-format
+msgid "Failed to start the download. Error: %s; %s."
+msgstr ""
+
+#: ps/ModIo.cpp:380
+#, c-format
+msgid "Asynchronous download failure: %s, %s."
+msgstr ""
+
+#: ps/ModIo.cpp:408
+#, c-format
+msgid "Download failure. Server response: %s; %s."
+msgstr ""
+
+#: ps/ModIo.cpp:511
+msgid "Mismatched filesize."
+msgstr ""
+
+#: ps/ModIo.cpp:531
+#, c-format
+msgid "Invalid file. Expected md5 %s, got %s."
+msgstr ""
+
+#: ps/ModIo.cpp:545
+msgid "Failed to compute final hash."
+msgstr ""
+
+#: ps/ModIo.cpp:551
+msgid "Failed to verify signature."
+msgstr ""
+
+#: ps/SavedGame.cpp:128
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "游戏保存为 '%s'"

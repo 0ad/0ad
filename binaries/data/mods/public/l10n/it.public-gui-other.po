@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-20 09:02+0200\n"
-"PO-Revision-Date: 2018-04-20 15:32+0000\n"
+"POT-Creation-Date: 2018-04-23 09:03+0200\n"
+"PO-Revision-Date: 2018-04-23 14:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -116,24 +116,24 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
 
-#: gui/common/functions_global_object.js:57
+#: gui/common/functions_global_object.js:8
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "Apertura di %(url)s\nnel browser di default. Attendere prego..."
 
-#: gui/common/functions_global_object.js:60
+#: gui/common/functions_global_object.js:11
 msgid "Opening page"
 msgstr "Apertura pagina"
 
 #. dennis-ignore: *
-#: gui/common/functions_global_object.js:70
+#: gui/common/functions_global_object.js:21
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/functions_global_object.js:139
+#: gui/common/functions_global_object.js:90
 msgid "Loading Aborted"
 msgstr "Caricamento Interrotto"
 
@@ -145,14 +145,6 @@ msgstr "Gaia"
 msgctxt "map selection"
 msgid "Random"
 msgstr "Casuale"
-
-#: gui/common/functions_utility.js:116
-msgid "mm:ss"
-msgstr "mm:ss"
-
-#: gui/common/functions_utility.js:116
-msgid "HH:mm:ss"
-msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -1224,11 +1216,6 @@ msgstr "Clicca per maggiori informazioni."
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:165
-#: gui/splashscreen/splashscreen.xml:(caption):29
-msgid "OK"
-msgstr "OK"
-
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
@@ -1355,6 +1342,10 @@ msgstr "Per favore premi \"Leggi di più\" per maggiori informazioni o \"OK\" pe
 #: gui/pregame/mainmenu.js:164
 msgid "WARNING!"
 msgstr "AVVISO!"
+
+#: gui/pregame/mainmenu.js:165 gui/splashscreen/splashscreen.xml:(caption):29
+msgid "OK"
+msgstr "OK"
 
 #: gui/pregame/mainmenu.js:165
 msgid "Read More"
@@ -2174,8 +2165,8 @@ msgid "Choose the language of the game."
 msgstr "Seleziona la lingua del gioco."
 
 #: gui/pregame/mainmenu.xml:(tooltip):397
-msgid "Select mods to use."
-msgstr "Seleziona Mod da usare."
+msgid "Select and download mods for the game."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):409
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."

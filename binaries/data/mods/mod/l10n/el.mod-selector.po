@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-16 09:05+0200\n"
-"PO-Revision-Date: 2018-04-18 19:59+0000\n"
+"POT-Creation-Date: 2018-04-23 09:05+0200\n"
+"PO-Revision-Date: 2018-04-24 16:45+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,199 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/common/l10n.js:9
+msgctxt "filesize unit"
+msgid "B"
+msgstr "B"
+
+#: gui/common/l10n.js:10
+msgctxt "filesize unit"
+msgid "KiB"
+msgstr "KiB"
+
+#: gui/common/l10n.js:11
+msgctxt "filesize unit"
+msgid "MiB"
+msgstr "MiB"
+
+#: gui/common/l10n.js:12
+msgctxt "filesize unit"
+msgid "GiB"
+msgstr "GiB"
+
+#. Translation: For example: 123.4 KiB
+#: gui/common/l10n.js:33
+#, javascript-format
+msgid "%(filesize)s %(unit)s"
+msgstr "%(filesize)s %(unit)s"
+
+#. Translation: Time-format string. See http://userguide.icu-
+#. project.org/formatparse/datetime for a guide to the meaning of the letters.
+#: gui/common/l10n.js:46
+msgid "mm:ss"
+msgstr "mm:ss"
+
+#: gui/common/l10n.js:46
+msgid "HH:mm:ss"
+msgstr "HH:mm:ss"
+
+#: gui/common/l10n.js:143
+msgctxt "enumeration"
+msgid ", "
+msgstr ", "
+
+#: gui/common/mod.js:17
+#, javascript-format
+msgctxt "Mod comparison"
+msgid "%(mod)s (%(version)s)"
+msgstr "%(mod)s (%(version)s)"
+
+#: gui/common/mod.js:20
+msgid ", "
+msgstr ", "
+
+#: gui/common/mod.js:28
+#, javascript-format
+msgctxt "Mod comparison"
+msgid "Required: %(mods)s"
+msgstr "Απαιτείται: %(mods)s"
+
+#: gui/common/mod.js:30
+#, javascript-format
+msgctxt "Mod comparison"
+msgid "Active: %(mods)s"
+msgstr "Ενεργοποίηση: %(mods)s"
+
+#: gui/modio/modio.js:80
+#, javascript-format
+msgctxt "mod.io error message"
+msgid ""
+"Game ID could not be retrieved.\n"
+"\n"
+"%(technicalDetails)s"
+msgstr "Δεν ήταν δυνατή η ανάκτηση του αναγνωριστικού παιχνιδιού.\n\n%(technicalDetails)s"
+
+#: gui/modio/modio.js:83
+msgctxt "mod.io error message"
+msgid "Initialization Error"
+msgstr "Σφάλμα Αρχικοποίησης"
+
+#: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
+#: gui/modio/modio.js:117
+msgid "Abort"
+msgstr "Ματαίωση"
+
+#: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
+msgid "Retry"
+msgstr "Νέα προσπάθεια"
+
+#: gui/modio/modio.js:91
+#, javascript-format
+msgctxt "mod.io error message"
+msgid ""
+"Mod List could not be retrieved.\n"
+"\n"
+"%(technicalDetails)s"
+msgstr "Δεν μπορεί να ανακτηθεί η Λίστα των Mod\n\n%(technicalDetails)s"
+
+#: gui/modio/modio.js:94
+msgctxt "mod.io error message"
+msgid "Fetch Error"
+msgstr "Σφάλμα Ανάκτησης"
+
+#: gui/modio/modio.js:102
+#, javascript-format
+msgctxt "mod.io error message"
+msgid ""
+"File download failed.\n"
+"\n"
+"%(technicalDetails)s"
+msgstr "Η λήψη του αρχείου απέτυχε.\n\n%(technicalDetails)s"
+
+#: gui/modio/modio.js:105
+msgctxt "mod.io error message"
+msgid "Download Error"
+msgstr "Σφάλμα Λήψης"
+
+#: gui/modio/modio.js:113
+#, javascript-format
+msgctxt "mod.io error message"
+msgid ""
+"File verification error.\n"
+"\n"
+"%(technicalDetails)s"
+msgstr "Σφάλμα επαλήθευσης αρχείου.\n\n%(technicalDetails)s"
+
+#: gui/modio/modio.js:116
+msgctxt "mod.io error message"
+msgid "Verification Error"
+msgstr "Σφάλμα Επαλήθευσης"
+
+#: gui/modio/modio.js:133
+msgid "Initializing mod.io interface."
+msgstr "Αρχικοποίηση της διεπαφής του mod.io"
+
+#: gui/modio/modio.js:134
+msgid "Initializing"
+msgstr "Αρχικοποίηση"
+
+#: gui/modio/modio.js:136 gui/modmod/modmod.js:313
+#: gui/modmod/modmod.xml:(caption):184
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: gui/modio/modio.js:232
+msgid "Fetching and updating list of available mods."
+msgstr "Λήψη και ενημέρωση της λίστας των διαθέσιμων mods."
+
+#: gui/modio/modio.js:233
+msgid "Updating"
+msgstr "Ενημέρωση"
+
+#: gui/modio/modio.js:235
+msgid "Cancel Update"
+msgstr "Ακύρωση Αναβάθμισης"
+
+#: gui/modio/modio.js:248
+#, javascript-format
+msgid "Downloading “%(modname)s”"
+msgstr "Λήψη “%(modname)s”"
+
+#: gui/modio/modio.js:251
+msgid "Downloading"
+msgstr "Λήψη"
+
+#: gui/modio/modio.js:253
+msgid "Cancel Download"
+msgstr "Ακύρωση Λήψης"
+
+#. Translation: Mod file download indicator. Current size over expected final
+#. size, with percentage complete.
+#: gui/modio/modio.js:320
+#, javascript-format
+msgid "%(current)s / %(total)s (%(percent)s%%)"
+msgstr "%(current)s / %(total)s (%(percent)s%%)"
+
+#. Translation: Mod file download status message.
+#: gui/modio/modio.js:330
+#, javascript-format
+msgid ""
+"Time Elapsed: %(elapsed)s\n"
+"Estimated Time Remaining: %(remaining)s\n"
+"Average Speed: %(avgSpeed)s"
+msgstr "Χρόνος που Πέρασε: %(elapsed)s\nΕκτιμώμενος Χρόνος που Απομένει: %(remaining)s\nΜέση Ταχύτητα: %(avgSpeed)s"
+
+#: gui/modio/modio.js:332
+msgid "∞"
+msgstr "∞"
+
+#. Translation: Average download speed, used to give the user a very rough and
+#. naive idea of the download time. For example: 123.4 KiB/s
+#: gui/modio/modio.js:334
+#, javascript-format
+msgid "%(number)s %(unit)s/s"
+msgstr "%(number)s %(unit)s/δτρλπ"
 
 #: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
 msgid "Filter"
@@ -33,9 +226,75 @@ msgstr "Η εξάρτηση δεν πληρείτε: %(dep)s"
 msgid "All dependencies met"
 msgstr "Όλες οι εξαρτήσεις ικανοποιούνται"
 
-#: gui/modmod/modmod.js:379
+#: gui/modmod/modmod.js:311
+msgid ""
+"You are about to connect to the mod.io online service. This provides easy access to community-made mods, but is not under the control of Wildfire Games.\n"
+"\n"
+"While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
+"\n"
+"Do you really want to connect?"
+msgstr "Πρόκειται να συνδεθείς με την ηλεκτρονική υπηρεσία mod.io. Αυτή παρέχει εύκολη πρόσβαση στη κοινοτικά των mods, αλλά δεν είναι υπό τον έλεγχο της Wildfire Games.\nΕνώ φροντίσαμε να το κάνουμε αυτό ασφαλές, δεν μπορούμε να εγγυηθούμε με απόλυτη βεβαιότητα ότι αυτό δεν αποτελεί κίνδυνο για την ασφάλεια.\nΘέλεις πραγματικά να συνδεθείς;"
+
+#: gui/modmod/modmod.js:312
+msgid "Connect to mod.io?"
+msgstr "Σύνδεση στο  mod.io;"
+
+#: gui/modmod/modmod.js:313
+msgctxt "mod.io connection message box"
+msgid "Connect"
+msgstr "Σύνδεση"
+
+#: gui/modmod/modmod.js:396
 msgid "No mod has been selected."
 msgstr "Δεν έχει επιλεχθεί κάποιο mod."
+
+#: gui/msgbox/msgbox.js:25
+msgid "OK"
+msgstr "Εντάξει"
+
+#: gui/modio/modio.xml:(caption):18
+msgid "mod.io Mods"
+msgstr "Mods του mod.io"
+
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
+msgid "Available Mods"
+msgstr "Διαθέσιμα Mods"
+
+#: gui/modio/modio.xml:(caption):73
+msgid "Back"
+msgstr "Πίσω"
+
+#: gui/modio/modio.xml:(caption):78
+msgid "Refresh List"
+msgstr "Λίστα Ανανέωσης"
+
+#: gui/modio/modio.xml:(caption):83
+msgid "Download"
+msgstr "Λήψη"
+
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
+#: gui/modmod/modmod.xml:(heading):116
+msgid "Name"
+msgstr "Όνομα"
+
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
+#: gui/modmod/modmod.xml:(heading):119
+msgid "Version"
+msgstr "Έκδοση"
+
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
+#: gui/modmod/modmod.xml:(heading):125
+msgid "Mod Label"
+msgstr "Ετικέτα Mod"
+
+#: gui/modio/modio.xml:(heading):62
+msgid "File Size"
+msgstr "Μέγεθος Αρχείου"
+
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
+#: gui/modmod/modmod.xml:(heading):128
+msgid "Dependencies"
+msgstr "Εξαρτήσεις"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -48,10 +307,6 @@ msgstr "Ακυρώση"
 #: gui/modmod/modmod.xml:(caption):49
 msgid "Description"
 msgstr "Περιγραφή"
-
-#: gui/modmod/modmod.xml:(caption):56
-msgid "Available Mods"
-msgstr "Διαθέσιμα Mods"
 
 #: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
@@ -69,37 +324,25 @@ msgstr "Επίσκεψη Ιστοσελίδας"
 msgid "Quit"
 msgstr "Έξοδος"
 
-#: gui/modmod/modmod.xml:(caption):184
-msgid "Cancel"
-msgstr "Ακύρωση"
-
 #: gui/modmod/modmod.xml:(caption):189
+msgid "Help"
+msgstr "Βοήθεια"
+
+#: gui/modmod/modmod.xml:(caption):194
+msgid "Download Mods"
+msgstr "Λήψη Mods"
+
+#: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
 msgstr "Αποθήκευση Ρυθμίσεων"
 
-#: gui/modmod/modmod.xml:(caption):194
+#: gui/modmod/modmod.xml:(caption):204
 msgid "Start Mods"
 msgstr "Έναρξη Mods"
-
-#: gui/modmod/modmod.xml:(heading):76 gui/modmod/modmod.xml:(heading):116
-msgid "Name"
-msgstr "Όνομα"
-
-#: gui/modmod/modmod.xml:(heading):79 gui/modmod/modmod.xml:(heading):119
-msgid "Version"
-msgstr "Έκδοση"
 
 #: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
 msgstr "(Φάκελος)"
-
-#: gui/modmod/modmod.xml:(heading):85 gui/modmod/modmod.xml:(heading):125
-msgid "Mod Label"
-msgstr "Ετικέτα Mod"
-
-#: gui/modmod/modmod.xml:(heading):88 gui/modmod/modmod.xml:(heading):128
-msgid "Dependencies"
-msgstr "Εξαρτήσεις"
 
 #: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
 msgid "Website"
@@ -109,4 +352,51 @@ msgstr "Ιστοσελίδα"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr ""
+msgstr "Αλλαγή της σειράς εκκίνησης των mods. Αυτό θα πρέπει να ταιριάζει με τις εξαρτήσεις των mods."
+
+#: gui/modmod/help/help.xml:(caption):13
+msgid "Pyrogenesis Mod Selector"
+msgstr "Επιλογέας Pyrogenesis Mod"
+
+#: gui/modmod/help/help.xml:(caption):21
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: gui/modmod/help/help.xml:(caption):25
+msgid "Modding Guide"
+msgstr "Οδηγός Μετατροπής"
+
+#: gui/modmod/help/help.xml:(caption):29
+msgid "Visit mod.io"
+msgstr "Επίσκεψη mod.io"
+
+#: gui/modmod/help/help.txt:1
+msgid ""
+"0 A.D. is designed to be easily modded. Mods are distributed in the form of "
+".pyromod files, which can be opened like .zip files."
+msgstr "Το 0 A.D. έχει σχεδιαστεί για να μπορεί εύκολα να τροποποιηθεί. Τα mods διανέμονται με τη μορφή αρχείων .pyromod, τα οποία μπορούν να ανοιχτούν όπως τα αρχεία .zip."
+
+#: gui/modmod/help/help.txt:3
+msgid ""
+"In order to install a mod, just open the file with 0 A.D. (either double-"
+"click on the file and choose to open it with the game, or run \"pyrogenesis "
+"file.pyromod\" in a terminal). The mod will then be available in the mod "
+"selector. You can enable it and disable it at will. You can delete the mod "
+"manually using your file browser if needed (see "
+"https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Για να εγκαταστήσετε ένα mod, απλά ανοίξτε το αρχείο με το 0 A.D. (είτε κάνοντας διπλό κλικ στο αρχείο και επιλέγοντας να ανοίξει με το παιχνίδι, είτε εκτελέστε \"pyrogenesis file.pyromod\" σε μία γραμμή εντολών). Στη συνέχεια, το mod θα είναι διαθέσιμο στον επιλογέα mod. Μπορείτε να το ενεργοποιήσετε και να το απενεργοποιήσετε κατά βούληση. Μπορείτε να διαγράψετε το Mod χειροκίνητα χρησιμοποιώντας το πρόγραμμα περιήγησης αρχείων σας, αν χρειαστεί (δείτε https://trac.wildfiregames.com/wiki/GameDataPaths)."
+
+#: gui/modmod/help/help.txt:5
+msgid ""
+"For more information about modding the game, see the Modding Guide online "
+"(click the Modding Guide button below)."
+msgstr "Για περισσότερες πληροφορίες σχετικά με τη μετατροπή του παιχνιδιού, ανατρέξτε στον ηλεκτρονικό Οδηγό Μετατροπής (κάντε κλικ στο κουμπί Οδηγός Μετατροπής παρακάτω)."
+
+#: gui/modmod/help/help.txt:7
+msgid ""
+"The mod.io service is developed by DBolical, the company behind IndieDB and "
+"ModDB. Those websites have spread the word about 0 A.D. and other indie "
+"projects for a long time! Today, mod.io allows us to list and download all "
+"the mods that were verified by the team. Click \"Download Mods\" to try it "
+"out and install some!"
+msgstr "Η υπηρεσία mod.io αναπτύχθηκε από την DBolical, την εταιρεία πίσω από το IndieDB και το ModDB. Αυτοί οι ιστότοποι έχουν διαδώσει για πολύ καιρό το 0 A.D. και άλλα έργα ανεξάρτητης παραγωγής! Σήμερα, το mod.io μας επιτρέπει να ταξινομήσουμε και να κατεβάσουμε όλα τα mods που επαληθεύτηκαν από την ομάδα. Κάνε κλικ στο \"Λήψη Mods\" για να το δοκιμάσεις και να εγκαταστήσεις μερικά!"
