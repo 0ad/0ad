@@ -15,22 +15,25 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_JSI_MOD
-#define INCLUDED_JSI_MOD
+#ifndef INCLUDED_JSI_MODIO
+#define INCLUDED_JSI_MODIO
 
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 
 class ScriptInterface;
 
-namespace JSI_Mod
+namespace JSI_ModIo
 {
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 
-	JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value GetAvailableMods(ScriptInterface::CxPrivate* pCxPrivate);
-	void RestartEngine(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetMods(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStr>& mods);
+	void StartGetGameId(ScriptInterface::CxPrivate* pCxPrivate);
+	void StartListMods(ScriptInterface::CxPrivate* pCxPrivate);
+	void StartDownloadMod(ScriptInterface::CxPrivate* pCxPrivate, uint32_t idx);
+	bool AdvanceRequest(ScriptInterface::CxPrivate* pCxPrivate);
+	void CancelRequest(ScriptInterface::CxPrivate* pCxPrivate);
+	JS::Value GetMods(ScriptInterface::CxPrivate* pCxPrivate);
+	JS::Value GetDownloadProgress(ScriptInterface::CxPrivate* pCxPrivate);
 }
 
-#endif // INCLUDED_JSI_MOD
+#endif // INCLUDED_JSI_MODIO

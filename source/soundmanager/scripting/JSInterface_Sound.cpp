@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,93 +30,93 @@
 
 namespace JSI_Sound
 {
-  #if CONFIG2_AUDIO
+#if CONFIG2_AUDIO
 
-  void StartMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->SetMusicEnabled(true);
-  }
+	void StartMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->SetMusicEnabled(true);
+	}
 
-  void StopMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->SetMusicEnabled(false);
-  }
+	void StopMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->SetMusicEnabled(false);
+	}
 
-  void ClearPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->ClearPlayListItems();
-  }
+	void ClearPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->ClearPlayListItems();
+	}
 
-  void AddPlaylistItem(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->AddPlayListItem(VfsPath(filename));
-  }
+	void AddPlaylistItem(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->AddPlayListItem(VfsPath(filename));
+	}
 
-  void StartPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool looping)
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->StartPlayList( looping );
-  }
+	void StartPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool looping)
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->StartPlayList(looping );
+	}
 
-  void PlayMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename, bool looping)
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->PlayAsMusic( filename, looping);
-  }
+	void PlayMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename, bool looping)
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->PlayAsMusic(filename, looping);
+	}
 
-  void PlayUISound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename, bool looping)
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->PlayAsUI( filename, looping);
-  }
+	void PlayUISound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename, bool looping)
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->PlayAsUI(filename, looping);
+	}
 
-  void PlayAmbientSound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename, bool looping)
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->PlayAsAmbient( filename, looping);
-  }
+	void PlayAmbientSound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename, bool looping)
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->PlayAsAmbient(filename, looping);
+	}
 
-  bool MusicPlaying(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-  {
-    return true;
-  }
+	bool MusicPlaying(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+	{
+		return true;
+	}
 
-  void SetMasterGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->SetMasterGain(gain);
-  }
+	void SetMasterGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->SetMasterGain(gain);
+	}
 
-  void SetMusicGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->SetMusicGain(gain);
-  }
+	void SetMusicGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->SetMusicGain(gain);
+	}
 
-  void SetAmbientGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->SetAmbientGain(gain);
-  }
+	void SetAmbientGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->SetAmbientGain(gain);
+	}
 
-  void SetActionGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->SetActionGain(gain);
-  }
+	void SetActionGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->SetActionGain(gain);
+	}
 
-  void SetUIGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
-  {
-    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->SetUIGain(gain);
-  }
+	void SetUIGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+	{
+		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
+			sndManager->SetUIGain(gain);
+	}
 
+#else
 
-  #else
 	bool MusicPlaying(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){ return false; }
 	void PlayAmbientSound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& UNUSED(filename), bool UNUSED(looping) ){}
 	void PlayUISound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& UNUSED(filename), bool UNUSED(looping) ) {}
@@ -132,26 +132,23 @@ namespace JSI_Sound
 	void SetActionGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
 	void SetUIGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
 
-  #endif
+#endif
 
-
-  void RegisterScriptFunctions(const ScriptInterface& scriptInterface)
-  {
-    scriptInterface.RegisterFunction<void, &StartMusic>("StartMusic");
-    scriptInterface.RegisterFunction<void, &StopMusic>("StopMusic");
-    scriptInterface.RegisterFunction<void, &ClearPlaylist>("ClearPlaylist");
-    scriptInterface.RegisterFunction<void, std::wstring, &AddPlaylistItem>("AddPlaylistItem");
-    scriptInterface.RegisterFunction<void, bool, &StartPlaylist>("StartPlaylist");
-    scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayMusic>("PlayMusic");
-    scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayUISound>("PlayUISound");
-    scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayAmbientSound>("PlayAmbientSound");
-    scriptInterface.RegisterFunction<bool, &MusicPlaying>("MusicPlaying");
-    scriptInterface.RegisterFunction<void, float, &SetMasterGain>("SetMasterGain");
-    scriptInterface.RegisterFunction<void, float, &SetMusicGain>("SetMusicGain");
-    scriptInterface.RegisterFunction<void, float, &SetAmbientGain>("SetAmbientGain");
-    scriptInterface.RegisterFunction<void, float, &SetActionGain>("SetActionGain");
-    scriptInterface.RegisterFunction<void, float, &SetUIGain>("SetUIGain");
-  }
+	void RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+	{
+		scriptInterface.RegisterFunction<void, &StartMusic>("StartMusic");
+		scriptInterface.RegisterFunction<void, &StopMusic>("StopMusic");
+		scriptInterface.RegisterFunction<void, &ClearPlaylist>("ClearPlaylist");
+		scriptInterface.RegisterFunction<void, std::wstring, &AddPlaylistItem>("AddPlaylistItem");
+		scriptInterface.RegisterFunction<void, bool, &StartPlaylist>("StartPlaylist");
+		scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayMusic>("PlayMusic");
+		scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayUISound>("PlayUISound");
+		scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayAmbientSound>("PlayAmbientSound");
+		scriptInterface.RegisterFunction<bool, &MusicPlaying>("MusicPlaying");
+		scriptInterface.RegisterFunction<void, float, &SetMasterGain>("SetMasterGain");
+		scriptInterface.RegisterFunction<void, float, &SetMusicGain>("SetMusicGain");
+		scriptInterface.RegisterFunction<void, float, &SetAmbientGain>("SetAmbientGain");
+		scriptInterface.RegisterFunction<void, float, &SetActionGain>("SetActionGain");
+		scriptInterface.RegisterFunction<void, float, &SetUIGain>("SetUIGain");
+	}
 }
-
-

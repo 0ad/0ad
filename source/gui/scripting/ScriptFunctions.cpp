@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
 #include "ps/scripting/JSInterface_Game.h"
 #include "ps/scripting/JSInterface_Main.h"
 #include "ps/scripting/JSInterface_Mod.h"
+#include "ps/scripting/JSInterface_ModIo.h"
 #include "ps/scripting/JSInterface_SavedGame.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "ps/scripting/JSInterface_VisualReplay.h"
@@ -60,6 +61,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Lobby::RegisterScriptFunctions(scriptInterface);
 	JSI_Main::RegisterScriptFunctions(scriptInterface);
 	JSI_Mod::RegisterScriptFunctions(scriptInterface);
+	JSI_ModIo::RegisterScriptFunctions(scriptInterface);
 	JSI_Network::RegisterScriptFunctions(scriptInterface);
 	JSI_Renderer::RegisterScriptFunctions(scriptInterface);
 	JSI_SavedGame::RegisterScriptFunctions(scriptInterface);

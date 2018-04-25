@@ -85,6 +85,9 @@ PlayerManager.prototype.GetPlayerByID = function(id)
 	return INVALID_ENTITY;
 };
 
+/**
+ * Returns the number of players including gaia.
+ */
 PlayerManager.prototype.GetNumPlayers = function()
 {
 	return this.playerEntities.length;

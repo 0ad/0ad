@@ -480,14 +480,14 @@ Auras.prototype.OnGlobalResearchFinished = function(msg)
 };
 
 /**
- * Only update playerauras, since units and structures are updated OnOwnershipChanged.
+ * Update auras of the player entity and entities affecting player entities that didn't change ownership.
  */
 Auras.prototype.OnGlobalPlayerDefeated = function(msg)
 {
-	if (!Engine.QueryInterface(this.entity, IID_Player))
-		return;
-
-	this.Clean();
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (cmpPlayer && cmpPlayer.GetPlayerID() == msg.playerId ||
+	    this.GetAuraNames().some(name => this.GetAffectedPlayers(name).indexOf(msg.playerId) != -1))
+		this.Clean();
 };
 
 Engine.RegisterComponentType(IID_Auras, "Auras", Auras);

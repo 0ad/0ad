@@ -267,7 +267,7 @@ TriggerHelper.DefeatPlayer = function(playerID, defeatReason)
 };
 
 /**
- * Returns the number of current players
+ * Returns the number of players including gaia and defeated ones.
  */
 TriggerHelper.GetNumberOfPlayers = function()
 {

@@ -108,12 +108,18 @@ var jebelBarkal_cityPatrolGroup_balancing = {
 var jebelBarkal_attackInterval = () => randFloat(5, 7);
 
 /**
+ * Prevent city patrols chasing the starting units in nomad mode.
+ */
+var jebelBarkal_firstCityPatrolTime = (difficulty, isNomad) =>
+	(isNomad ? 7 - difficulty : 0);
+
+/**
  * Delay the first attack in nomad mode.
  */
-var jebelBarkal_firstAttackTime = difficulty =>
+var jebelBarkal_firstAttackTime = (difficulty, isNomad) =>
 	jebelBarkal_attackInterval() +
 	2 * Math.max(0, 3 - difficulty) +
-	(TriggerHelper.GetAllPlayersEntitiesByClass("CivCentre").length ? 0 : 9 - difficulty);
+	(isNomad ?  9 - difficulty : 0);
 
 /**
  * Account for varying mapsizes and number of players when spawning attackers.
@@ -135,12 +141,6 @@ var jebelBarkal_cityPatrolGroup_triggerPointPath = "A";
  * Attackers will patrol these points after having finished the attack-walk order.
  */
 var jebelBarkal_attackerGroup_triggerPointPatrol = "B";
-
-
-/**
- * Attacker groups approach these player buildings and attack enemies of the given classes encountered.
- */
-var jebelBarkal_pathTargetClasses = "CivCentre Wonder";
 
 /**
  * Number of points the attackers patrol.
@@ -360,14 +360,16 @@ Trigger.prototype.debugLog = function(txt)
 
 Trigger.prototype.JebelBarkal_Init = function()
 {
+	let isNomad = !TriggerHelper.GetAllPlayersEntitiesByClass("CivCentre").length;
+
 	this.JebelBarkal_TrackUnits();
 	this.RegisterTrigger("OnOwnershipChanged", "JebelBarkal_OwnershipChange", { "enabled": true });
 
 	this.JebelBarkal_SetDefenderStance();
 	this.JebelBarkal_StartRitualAnimations();
 	this.JebelBarkal_GarrisonBuildings();
-	this.JebelBarkal_SpawnCityPatrolGroups();
-	this.JebelBarkal_StartAttackTimer(jebelBarkal_firstAttackTime(this.GetDifficulty()));
+	this.DoAfterDelay(jebelBarkal_firstCityPatrolTime(this.GetDifficulty(), isNomad) * 60 * 1000, "JebelBarkal_SpawnCityPatrolGroups", {});
+	this.JebelBarkal_StartAttackTimer(jebelBarkal_firstAttackTime(this.GetDifficulty(), isNomad));
 };
 
 Trigger.prototype.JebelBarkal_TrackUnits = function()
@@ -507,26 +509,27 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 	if (!this.jebelBarkal_attackerGroupSpawnPoints)
 		return;
 
-	let targets = TriggerHelper.GetAllPlayersEntitiesByClass(jebelBarkal_pathTargetClasses);
-	if (!targets.length)
-	{
-		this.JebelBarkal_StartAttackTimer(jebelBarkal_attackInterval());
-		return;
-	}
-
 	this.debugLog("Attacker wave (at most " + (jebelBarkal_maxPopulation - this.jebelBarkal_attackerUnits.length) + " attackers)");
 	let time = TriggerHelper.GetMinutes();
+	let activePlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers();
+	let playerEntities = activePlayers.map(playerID => TriggerHelper.GetEntitiesByPlayer(playerID));
 	let patrolPoints = this.GetTriggerPoints(jebelBarkal_attackerGroup_triggerPointPatrol);
 	let groupSizeFactor = jebelBarkal_attackerGroup_sizeFactor(
-		Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers().length,
+		activePlayers.length,
 		this.numInitialSpawnPoints,
 		this.GetDifficulty());
 
 	let spawnedAnything = false;
 	for (let spawnPointBalancing of jebelBarkal_attackerGroup_balancing)
+	{
+		let targets = playerEntities.reduce((allTargets, playerEnts) =>
+			allTargets.concat(shuffleArray(TriggerHelper.MatchEntitiesByClass(playerEnts, spawnPointBalancing.targetClasses())).slice(0, 10)), []);
+
+		if (!targets.length)
+			continue;
+
 		for (let spawnEnt of TriggerHelper.MatchEntitiesByClass(this.jebelBarkal_attackerGroupSpawnPoints, spawnPointBalancing.buildingClasses))
 		{
-
 			let unitCount = Math.min(
 				jebelBarkal_maxPopulation - this.jebelBarkal_attackerUnits.length,
 				groupSizeFactor * spawnPointBalancing.unitCount(time));
@@ -572,6 +575,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 					});
 				}
 		}
+	}
 
 	if (spawnedAnything)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
