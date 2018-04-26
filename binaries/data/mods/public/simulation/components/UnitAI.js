@@ -5452,7 +5452,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 					if (targetClasses.vetoEntities && targetClasses.vetoEntities[targ])
 						continue;
 				}
-				this.PushOrderFront("Attack", { "target": targ, "force": true, "allowCapture": this.order.data.allowCapture });
+				this.PushOrderFront("Attack", { "target": targ, "force": false, "allowCapture": this.order.data.allowCapture });
 				return true;
 			}
 		}
@@ -5478,7 +5478,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 			if (targetClasses.vetoEntities && targetClasses.vetoEntities[targ])
 				continue;
 		}
-		this.PushOrderFront("Attack", { "target": targ, "force": true, "allowCapture": this.order.data.allowCapture });
+		this.PushOrderFront("Attack", { "target": targ, "force": false, "allowCapture": this.order.data.allowCapture });
 		return true;
 	}
 
