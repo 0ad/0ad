@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-04-19 15:57+0000\n"
+"PO-Revision-Date: 2018-04-25 04:01+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Obrigado por ter instalado 0 A.D.! Esta página dar-lhe-á informações sobre as funcionalidades disponíveis nesta versão alfa do jogo, que ainda está incompleta e em desenvolvimento."
+msgstr "Obrigado por teres instalado 0 A.D.! Esta página dar-te-á informações sobre as funcionalidades disponíveis nesta versão alfa do jogo, que ainda está incompleta e em desenvolvimento."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
@@ -60,7 +60,7 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr "[font=\"sans-14\"]Você pode alternar entre o modo de tela cheia e o modo de janela pressionando Alt + Enter. No modo com janelas, você pode redimensionar a janela. Se o jogo for lento demais, você pode alterar algumas configurações na janela de opções: tente desabilitar as opções \"HQ Water Effects\" e \"Shadows\"."
+msgstr "[font=\"sans-14\"]Podes mudar entre o modo de ecrã inteiro e o modo de janela pressionando as teclas Alt + Enter. No modo janelas, podes redimensionar a janela. Se o jogo for lento demais, podes alterar algumas configurações na janela de opções: tenta desativar as opções \"Efeitos de Alta Qualidade na Água\" e \"Sombras\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -72,7 +72,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"sans-14\"] Os controlos e a jogabilidade serão familiares para quem já jogou jogos de estratégia em tempo real (RTS). Actualmente ainda falta implementar muitas funcionalidades e os atributos estão desequilibrados – terá de aguardar pelo lançamento da versão beta para que tudo funcione correctamente."
+msgstr "[font=\"sans-14\"] Os controlos e a jogabilidade serão familiares para quem já jogou jogos de estratégia em tempo real (RTS). Atualmente ainda faltam implementar muitas funcionalidades e os atributos estão desequilibrados – terás de aguardar pelo lançamento da versão beta para que tudo funcione corretamente."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -80,23 +80,23 @@ msgstr "Controlos básicos:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "• Clique com o botão esquerdo do rato para seleccionar unidades."
+msgstr "• Clica com o botão esquerdo do rato para selecionar unidades."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "• Clique com o botão esquerdo do rato e arraste para seleccionar um grupo de unidades."
+msgstr "• Clica com o botão esquerdo do rato e arrasta para selecionar um grupo de unidades."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "• Clique com o botão direito do rato para enviar as unidades para o ponto de destino."
+msgstr "• Clica com o botão direito do rato para enviar as unidades para o ponto de destino."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr "• Teclas de setas ou teclas W, A, S e D para mover a câmara."
+msgstr "• Usa as teclas de setas ou teclas W, A, S e D para mover a câmara."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "• Ctrl + teclas de setas ou shift + roda do rato para rodar a câmara."
+msgstr "• Ctrl + teclas de setas ou Shift + roda do rato: para rodar a câmara."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
@@ -117,13 +117,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]Um jogador[font=\"sans-14\"] — jogue uma partida sozinho ou contra um ou mais jogadores artificiais. A inteligência artificial ainda está em desenvolvimento e pode nem sempre estar actualizada, mas permite-lhe testar o jogo com um adversário caso não tenha possibilidade de jogar contra um jogador humano."
+msgstr "• [font=\"sans-bold-14\"]Um jogador[font=\"sans-14\"] — joga uma partida sozinho no modo simulação ou contra um ou mais jogadores artificiais. A inteligência artificial ainda está em desenvolvimento e pode nem sempre estar atualizada, mas permite testar o jogo com um adversário caso não tenhas possibilidade de jogar contra um jogador humano."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Multijogador[font=\"sans-14\"] — jogue contra adversários humanos pela internet."
+msgstr "• [font=\"sans-bold-14\"]Multijogador[font=\"sans-14\"] — jogua contra adversários humanos pela Internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -131,7 +131,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Para configurar um jogo multijogador, um dos jogadores deve seleccionar a opção \"Alojar jogo\". O jogo usa a porta UDP 20595 e, por isso, o anfitrião deve configurar a sua firewall/NAT/etc para que esta porta possa ser usada. Os outros jogadores devem seleccionar \"Entrar num jogo\" e introduzir o endereço IP do anfitrião."
+msgstr "Para configurar um jogo multi-jogador, um dos jogadores deve selecionar a opção \"Alojar jogo\". O jogo usa a porta UDP 20595 e, por isso, o anfitrião deve configurar a sua firewall/NAT/etc. para que esta porta possa ser usada. Os outros jogadores devem selecionar \"Entrar num jogo\" e introduzir o endereço IP do anfitrião."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -141,23 +141,23 @@ msgstr "[font=\"sans-bold-16\"]Configuração do jogo"
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr "[font=\"sans-14\"]Num jogo multijogador, só o anfitrião pode alterar as opções de configuração do jogo."
+msgstr "[font=\"sans-14\"]Num jogo multi-jogador, só o anfitrião pode alterar as opções de configuração do jogo."
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr "Primeiramente, selecciona o tipo de mapa que quer jogar:"
+msgstr "Primeiro, seleciona o tipo de mapa que queres jogar:"
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Mapa aleatório[font=\"sans-14\"] — Um mapa criado automaticamente dum script"
+msgstr "• [font=\"sans-bold-14\"]Mapa aleatório[font=\"sans-14\"] — Um mapa criado automaticamente a partir de um script"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr "• [font=\"sans-bold-14\"]Mapa cenário[font=\"sans-14\"] — Um mapa criado por desenhadores com civilizações determinadas"
+msgstr "• [font=\"sans-bold-14\"]Mapa cenário[font=\"sans-14\"] — Um mapa criado por desenhadores com civilizações fixas"
 
 #: gui/manual/intro.txt:34
 msgid ""
@@ -172,7 +172,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr "Em seguida, os mapas podem ser filtrados. Os mapas padrão são mapas geralmente jogáveis. Mapas navais são mapas onde nem todos os oponentes podem ser alcançados por terra e mapas demo são mapas usados para fins de teste (geralmente não é útil para jogar). O filtro \"Todos os Mapas\" mostra todos os mapas juntos em uma lista."
+msgstr "Em seguida, os mapas podem ser filtrados. Os mapas padrão são mapas geralmente jogáveis. Os mapas navais são mapas onde nem todos os oponentes podem ser alcançados por terra e os mapas de demonstração são mapas usados para testes (geralmente não são úteis para jogar). O filtro \"Todos os Mapas\" mostra todos os mapas juntos numa lista."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -181,11 +181,11 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr "Por fim, altere as definições do jogo. Em mapas aleatórios, estas incluem o número de jogadores, o tamanho do mapa, etc. Em cenários, só pode escolher quem controla cada jogador (decidindo a sua posição inicial no mapa, etc.), sendo as opções \"jogador humano\", \"jogador artificial\" ou \"nenhum jogador\" (em que o oponente será inactivo)."
+msgstr "Por fim, altera as definições do jogo. Em mapas aleatórios, estas incluem o número de jogadores, o tamanho do mapa, etc. Em cenários, só podes escolher quem controla cada jogador (decidindo a sua posição inicial no mapa, etc.), sendo as opções \"jogador humano\", \"jogador IA (artificial)\" ou \"nenhum jogador\" (em que o oponente estará inativo)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Quando estiver preparado para começar, clique no botão \"Iniciar jogo\"."
+msgstr "Quando estiveres preparado para começar, clica no botão \"Começar o Jogo!\"."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
@@ -201,7 +201,7 @@ msgstr "[font=\"sans-14\"]Alt + F4: Fecha o jogo sem confirmação"
 
 #: gui/manual/intro.txt:45
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Enter: Alternar entre ecrã inteiro e modo janela"
+msgstr "Alt + Enter: Muda entre ecrã inteiro e o modo janela"
 
 #: gui/manual/intro.txt:46
 msgid "~ or F9: Show/hide console"
@@ -215,25 +215,25 @@ msgstr "Alt + F: Mostrar/ocultar o contador de frames por segundo (FPS)"
 msgid ""
 "F11: Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr "F11: Activar/desactivar profiler em tempo real (alterna entre os visionamentos de informação)"
+msgstr "F11: Ativar/desativar analisador de perfil em tempo real (vai mudando o tipo de informação visualizada)"
 
 #: gui/manual/intro.txt:49
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Shift + F11: Guardar os dados de profiler actuais em \"logs/profile.txt\""
+msgstr "Shift + F11: guardar os dados atuais do analisador de perfil em \"logs/profile.txt\""
 
 #: gui/manual/intro.txt:50
 msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "F2: Tirar uma captura de ecrã em formato .png (a localização é mostrada no canto superior esquerdo depois de guardar o ficheiro; se não conseguir percebê-la nessa altura também pode vê-la na consola ou nos logs)"
+msgstr "F2: Tirar uma captura de ecrã no formato .png (a localização é mostrada no canto superior esquerdo depois de guardar o ficheiro; se não conseguires ver nessa altura também podes vê-la na consola ou nos registos)"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2: Tirar uma grande captura de ecrã, de 6400px*4800px em formato .bmp (a localização é mostrada no canto superior esquerdo depois de guardar o ficheiro; se não conseguir percebê-la nessa altura também pode vê-la na consola ou nos logs)"
+msgstr "Shift + F2: Tirar uma grande captura de ecrã, de 6400px*4800px no formato .bmp (a localização é mostrada no canto superior esquerdo depois de guardar o ficheiro; se não conseguires vê-la nessa altura também podes vê-la na consola ou nos registos)"
 
 #: gui/manual/intro.txt:52
 msgid "Alt + S: Switch to the next tab."
@@ -251,25 +251,25 @@ msgstr "[font=\"sans-bold-14\"]Durante uma Partida"
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"sans-14\"]Duplo Clique Esquerdo \\[na unidade]: Selecciona todas as unidades visíveis do mesmo tipo (mesmo se forem de diferentes hierarquias)"
+msgstr "[font=\"sans-14\"]Duplo Clique Esquerdo \\[na unidade]: seleciona todas as unidades visíveis do mesmo tipo (mesmo se forem de diferentes hierarquias)"
 
 #: gui/manual/intro.txt:57
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr "Tripo Clique Esquerdo \\[numa unidade]: Selecciona todas as unidades visíveis do mesmo tipo e da mesma hierarquia"
+msgstr "Clique Esquerdo Triplo \\[numa unidade]: seleciona todas as unidades visíveis do mesmo tipo e da mesma hierarquia"
 
 #: gui/manual/intro.txt:58
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr "Alt + Duplo Clique Esquerdo \\[numa unidade]: Selecciona todas as unidades do mesmo tipo no mapa inteiro (mesmo se forem de hierarquias diferentes)"
+msgstr "Alt + Duplo Clique Esquerdo \\[numa unidade]: seleciona todas as unidades do mesmo tipo no mapa inteiro (mesmo se forem de hierarquias diferentes)"
 
 #: gui/manual/intro.txt:59
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr "Alt + Tripo Clique Esquerdo \\[numa unidade]: Selecciona todas as unidades do mesmo tipo e da mesma hierarquia no mapa inteiro"
+msgstr "Alt + Clique Esquerdo Triplo \\[numa unidade]: seleciona todas as unidades do mesmo tipo e da mesma hierarquia no mapa inteiro"
 
 #: gui/manual/intro.txt:60
 msgid "Shift + F5: Quicksave"
@@ -289,11 +289,11 @@ msgstr "F12: Mostrar/ocultar o tempo decorrido"
 
 #: gui/manual/intro.txt:64
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr "ESC: Fechar todos os diálogos (sala de conversa, menu) ou desseleccionar as unidades"
+msgstr "ESC: fechar todos os diálogos (sala de conversa, menu) ou desselecionar as unidades"
 
 #: gui/manual/intro.txt:65
 msgid "Enter/return: Open/send chat"
-msgstr "Enter: Escrever/enviar uma mensagem"
+msgstr "Enter: Abrir/enviar uma mensagem"
 
 #: gui/manual/intro.txt:66
 msgid "T: Send team chat"
@@ -309,29 +309,29 @@ msgstr "Pausa: Por o jogo em pausa ou continuar o jogo"
 
 #: gui/manual/intro.txt:69
 msgid "Delete: Delete currently selected units/buildings"
-msgstr "Delete: Apagar unidades / prédios atualmente selecionados"
+msgstr "Delete: Eliminar as unidades / prédios atualmente selecionados"
 
 #: gui/manual/intro.txt:70
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr "Shift + Delete: Apagar unidades / edifícios selecionados atualmente sem confirmação"
+msgstr "Shift + Delete: Eliminar as unidades / edifícios selecionados atualmente sem confirmação"
 
 #: gui/manual/intro.txt:71
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ (Barra para a frente): Selecione lutador parados"
+msgstr "/ (Barra para a frente): Selecionar guerreiro parado"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr "Shift + /: Adicionar lutador parado à seleção"
+msgstr "Shift + /: Adicionar guerreiro parado à seleção"
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
-msgstr "Alt + /: Seleccione todos os lutadores parados"
+msgstr "Alt + /: selecionar todos os guerreiros parados"
 
 #: gui/manual/intro.txt:74
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ". (Ponto final): Seleciona operário parados (incluindo cidadãos soldados)"
+msgstr ". (Ponto final): Selecionar um trabalhador parado (incluindo cidadãos soldados)"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
@@ -339,7 +339,7 @@ msgstr "Shift + .: Adicionar trabalhador parado à seleção (incluindo cidadão
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr "Alt +.: Selecione todos os trabalhadores ociosos (incluindo soldados cidadãos)"
+msgstr "Alt +.: Selecionar todos os trabalhadores parados (incluindo soldados cidadãos)"
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
@@ -355,31 +355,31 @@ msgstr "Alt + \\: Selecionar todas as unidades paradas"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
-msgstr "H: Parar as unidades seleccionadas."
+msgstr "H: parar as unidades selecionadas."
 
 #: gui/manual/intro.txt:81
 msgid "Y: The unit will go back to work"
-msgstr "Y: A unidade voltará ao trabalho"
+msgstr "Y: a unidade voltará ao trabalho"
 
 #: gui/manual/intro.txt:82
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr "U: descarregar as unidades guarnecidas dos edifícios seleccionados"
+msgstr "U: retirar as unidades guarnecidas nos edifícios selecionados"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr "Ctrl + 1 (e em diante até Ctrl + 0): Criar o grupo de controlo 1 (até 0) a partir das unidades/edifícios seleccionados."
+msgstr "Ctrl + 1 (e em diante até Ctrl + 0): criar o grupo de controlo 1 (até 0) a partir das unidades/edifícios selecionados."
 
 #: gui/manual/intro.txt:84
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr "1 (e em diante até 0): Seleccionar as unidades/edifícios do grupo de controlo 1 (até 0)"
+msgstr "1 (e em diante até 0): selecionar as unidades/edifícios do grupo de controlo 1 (até 0)"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Shift + 1 (até 0): Adiciona o grupo de controlo 1 (até 0) às unidades/edifícios seleccionados"
+msgstr "Shift + 1 (até 0): adiciona o grupo de controlo 1 (até 0) às unidades/edifícios selecionados"
 
 #: gui/manual/intro.txt:86
 msgid ""
@@ -391,7 +391,7 @@ msgstr "Ctrl + F5 (e em diante até Ctrl + F8): Guardar a posição da câmara p
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr "F5, F6, F7 e F8: Mudar a câmara para a posição guardada. Se já estiver na posição guardada, a câmara muda para a posição anterior."
+msgstr "F5, F6, F7 e F8: mudar a câmara para a posição guardada. Se já estiver na posição guardada, a câmara muda para a posição anterior."
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -403,7 +403,7 @@ msgstr "Z, X, C, V, B, N, M: com os edifícios de treino selecionados. Adiciona 
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
-msgstr "ageUp com unidades selecionadas: destaca as unidades / edifícios protegidos pela seleção."
+msgstr "PageUp com unidades selecionadas: destaca as unidades / edifícios protegidos pela seleção."
 
 #: gui/manual/intro.txt:90
 msgid ""
@@ -413,7 +413,7 @@ msgstr "PageDown com unidades / edifícios selecionados: destaca as unidades que
 
 #: gui/manual/intro.txt:91
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr "Tab: Veja todas as barras de status (que também mostrarão o progresso do edifício)"
+msgstr "Tab: Ver todas as barras de estado (que também mostrarão o progresso do edifício)"
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
@@ -425,27 +425,27 @@ msgstr "Ctrl + B: Alterar página de troca/comércio no jogo."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr "Ctrl + P: Alternar painel do tutorial durante o jogo"
+msgstr "Ctrl + P: Alternar painel do tutorial durante o jogo."
 
 #: gui/manual/intro.txt:96
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr "[font=\"sans-bold-14\"]Modificações à acção do rato"
+msgstr "[font=\"sans-bold-14\"]Alterar ação do rato"
 
 #: gui/manual/intro.txt:97
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"sans-14\"]Ctrl + Clique Direito num edifício: Guarnecer"
+msgstr "[font=\"sans-14\"]Ctrl + Clique Direito num edifício: guarnecer"
 
 #: gui/manual/intro.txt:98
 msgid "J + Right Click on building: Repair"
-msgstr "J + Clique direito sobre o edifício: Reparar"
+msgstr "J + Clique direito sobre o edifício: reparar"
 
 #: gui/manual/intro.txt:99
 msgid "P + Right Click: Patrol"
-msgstr "P + Clique direito: Patrulha"
+msgstr "P + Clique direito: patrulhar"
 
 #: gui/manual/intro.txt:100
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Shift + Clique Direito: Coloca a ordem (mover/construir/recolher/etc.) em fila de espera"
+msgstr "Shift + Clique Direito: coloca a ordem (mover/construir/recolher/etc.) em fila de espera"
 
 #: gui/manual/intro.txt:101
 msgid ""
@@ -458,65 +458,65 @@ msgstr "Alt + clique com botão direito do rato: ordenar a uma unidade da seleç
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
-msgstr "Shift + Clique esquerdo quando unidades de treinamento: adicione unidades em lotes (o tamanho do lote é 5 por padrão e pode ser alterado nas opções)"
+msgstr "Shift + Clique esquerdo ao treinar unidades: adicionar unidades em lotes (o tamanho do lote é 5 por padrão e pode ser alterado nas opções)"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Shift + Clique Esquerdo ou arrastar com o botão esquerdo sobre unidades no mapa: Adicionar unidade(s) à selecção"
+msgstr "Shift + Clique Esquerdo ou arrastar com o botão esquerdo sobre unidades no mapa: adicionar unidades à seleção"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + Clique Esquerdo ou arrastar com o botão esquerdo sobre unidades no mapa: Remover unidade(s) da selecção"
+msgstr "Ctrl + Clique Esquerdo ou arrastar com o botão esquerdo sobre unidades no mapa: remover unidades da seleção"
 
 #: gui/manual/intro.txt:105
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr "Alt + Arrastar com o botão esquerdo sobre unidades no mapa: Selecciona unicamente unidades militares"
+msgstr "Alt + Arrastar com o botão esquerdo sobre unidades no mapa: seleciona apenas unidades militares"
 
 #: gui/manual/intro.txt:106
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr "Alt + Y + Arrastar com o botão esquerdo sobre unidades no mapa: Selecionar somente unidades não-militares"
+msgstr "Alt + Y + Arrastar com o botão esquerdo sobre unidades no mapa: Selecionar apenas unidades não-militares"
 
 #: gui/manual/intro.txt:107
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr "I + Arrastar com o botão esquerdo sobre unidades no mapa: Seleccionar unicamente unidades inativos"
+msgstr "I + Arrastar com o botão esquerdo sobre unidades no mapa: seleciona apenas as unidades paradas"
 
 #: gui/manual/intro.txt:108
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr "O + Arrastar com o botão esquerdo sobre unidades no mapa: Selecionar somente feridos"
+msgstr "O + Arrastar com o botão esquerdo sobre unidades no mapa: selecionar apenas os feridos"
 
 #: gui/manual/intro.txt:109
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr "Ctrl + Clique Esquerdo numa unidade/ícone de grupo, havendo várias unidades seleccionadas: Remover da selecção"
+msgstr "Ctrl + Clique Esquerdo numa unidade/ícone de grupo, havendo várias unidades selecionadas: remover da seleção"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr "Clique Direito, depois de seleccionados um ou mais edifícios: Definir ponto de encontro para as unidades recrutadas ou retiradas desse(s) edifício(s)."
+msgstr "Clique Direito, depois de selecionados um ou mais edifícios: definir ponto de encontro para as unidades treinadas ou retiradas desses edifícios."
 
 #: gui/manual/intro.txt:111
 msgid "Ctrl + Right Click with units selected:"
-msgstr "Ctrl + Clique Direito, com unidades seleccionadas:"
+msgstr "Ctrl + Clique Direito, com unidades selecionadas:"
 
 #: gui/manual/intro.txt:112
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- Se o cursor está sobre uma estrutura aliada: Guarnição"
+msgstr "- Se o cursor está sobre uma estrutura aliada: guarnecer"
 
 #: gui/manual/intro.txt:113
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr "- Se o cursor está sobre uma unidade ou estrutura não aliada: Atacar (em vez de capturar ou colher)"
+msgstr "- Se o cursor está sobre uma unidade ou estrutura não aliada: atacar (em vez de capturar ou recolher)"
 
 #: gui/manual/intro.txt:114
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr "- Caso contrário: Atacar movendo (por omissão todas as unidades e estruturas inimigas pelo caminho serão atacadas, use Ctrl + Q + clique direito para atacar somente unidades)."
+msgstr "- Caso contrário: atacar movendo-se (por omissão todas as unidades e estruturas inimigas pelo caminho serão atacadas, usa Ctrl + Q + clique direito para atacar apenas as unidades)."
 
 #: gui/manual/intro.txt:116
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -528,7 +528,7 @@ msgstr "[font=\"sans-14\"]Alt + G: Mostrar/ocultar a interface"
 
 #: gui/manual/intro.txt:118
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr "Alt + D: Mostrar/ocultar a camada de programação com opções de desenvolvimento"
+msgstr "Alt + D: Mostrar/ocultar a camada de programação (com opções de desenvolvimento)"
 
 #: gui/manual/intro.txt:119
 msgid ""
@@ -541,25 +541,25 @@ msgstr "Alt + Shift + W: alterna entre o modo \"wireframe\" (pressionar uma vez 
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr "Alt + Shift + S: Alternar silhuetas das unidades (pode melhorar um bocado o desempenho)"
+msgstr "Alt + Shift + S: Mostrar/ocultar silhuetas das unidades (pode melhorar um bocado o desempenho)"
 
 #: gui/manual/intro.txt:121
 msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: Activar/desactivar o céu"
+msgstr "Alt + Z: Ativar/desativar o céu"
 
 #: gui/manual/intro.txt:122
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr "Alt + C: Alternar visão de alcance de ataque das estruturas defensivas selecionadas"
+msgstr "Alt + C: Mostrar/ocultar visão de alcance de ataque das estruturas defensivas selecionadas"
 
 #: gui/manual/intro.txt:123
 msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr "Alt + V: Alternar as visualizações do intervalo de aura de unidades e estruturas selecionadas"
+msgstr "Alt + V: mostrar/ocultar as visualizações do intervalo de aura de unidades e estruturas selecionadas"
 
 #: gui/manual/intro.txt:124
 msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr "Alt + B: Alternar as visualizações do intervalo de cura das unidades selecionadas"
+msgstr "Alt + B: mostrar/ocultar as visualizações do intervalo de cura das unidades selecionadas"
 
 #: gui/manual/intro.txt:126
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
@@ -579,7 +579,7 @@ msgstr "A ou \\[esquerda]: Mudar o ponto de vista para esquerda"
 
 #: gui/manual/intro.txt:130
 msgid "D or \\[right]: Pan screen right"
-msgstr "D or \\[right]: Pan screen right"
+msgstr "D or \\[right]: Mudar o ponto de vista para a direita"
 
 #: gui/manual/intro.txt:131
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
@@ -618,7 +618,7 @@ msgstr "Shift + Roda do rato para baixo: Rodar a câmara no sentido inverso ao d
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
-msgstr "F: Siga a unidade selecionada (mova a câmera para parar de seguir a unidade)"
+msgstr "F: Seguir a unidade selecionada (move a câmara para parar de seguir a unidade)"
 
 #: gui/manual/intro.txt:140
 msgid "R: Reset camera zoom/orientation"
@@ -638,11 +638,11 @@ msgstr "Alt + W: Alternar entre os modos \"wireframe\""
 
 #: gui/manual/intro.txt:144
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr "Roda do rato: Mantenha pressionado e mova o rato para mudar o ponto de vista"
+msgstr "Roda do rato: manter pressionado e mover o rato para mudar o ponto de vista"
 
 #: gui/manual/intro.txt:146
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr "[font=\"sans-bold-14\"]Durante a Colocação de Edifícios"
+msgstr "[font=\"sans-bold-14\"]Durante o Posicionamento de Edifícios"
 
 #: gui/manual/intro.txt:147
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
@@ -650,7 +650,7 @@ msgstr "[font=\"sans-14\"]\\[: Rodar o edifício 15 graus no sentido inverso ao 
 
 #: gui/manual/intro.txt:148
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr "«: Rodar o edifício 15 graus no sentido dos ponteiros do relógio"
+msgstr "]: Rodar o edifício 15 graus no sentido dos ponteiros do relógio"
 
 #: gui/manual/intro.txt:149
 msgid ""
@@ -665,11 +665,11 @@ msgstr "[font=\"sans-bold-14\"]Quando se carrega um jogo guardado"
 #: gui/manual/intro.txt:152
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr "[font=\"sans-14\"]Apagar: apaga o jogo guardado que se encontra selecionado, pedindo confirmação"
+msgstr "[font=\"sans-14\"]Delete: elimina o jogo guardado que se encontra selecionado, pedindo a confirmação"
 
 #: gui/manual/intro.txt:153
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr "Shift: não pedir confirmação quando se apaga um jogo guardado"
+msgstr "Shift: não pedir confirmação quando se elimina um jogo guardado"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -678,7 +678,7 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr "Como este jogo é gratuito e de código aberto, não possuímos recursos para o testar em diversos sistemas, mas queremos disponibilizar a melhor experiência para o maior número de jogadores possível. Se activar o envio automático de relatórios de erro, vamos receber dados que nos ajudarão a perceber o tipo de hardware que devemos ter em conta, e a identificar problemas de desempenho que tenhamos de corrigir."
+msgstr "Como este jogo é gratuito e de código aberto, não temos recursos para o testar em diversos sistemas, mas queremos disponibilizar a melhor experiência para o maior número de jogadores possível. Se ativares o envio automático de relatórios de erro, vamos receber dados que nos ajudarão a perceber o tipo de hardware que devemos ter em conta, e a identificar problemas de desempenho que devemos corrigir."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
@@ -689,13 +689,13 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr "Um ID de usuário aleatório (foi armazenado em% APPDATA% \\ 0ad \\ config \\ user.cfg no Windows, ~ / .config / 0ad / config / user.cfg no Unix), para nos permitir detectar relatórios repetidos do mesmo usuário."
+msgstr "• Um ID (número identificador) de utilizador aleatório (foi armazenado em% APPDATA% \\ 0ad \\ config \\ user.cfg no Windows, ~ / .config / 0ad / config / user.cfg no Unix), para nos permitir detetar relatórios repetidos do mesmo utilizador."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "• A versão do jogo e as definições básicas da compilação (modo de optimização, arquitectura da CPU, data e hora, versão do compilador)."
+msgstr "• A versão do jogo e as definições básicas da compilação (modo de otimização, arquitetura do CPU, data e hora, versão do compilador)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
@@ -707,13 +707,13 @@ msgstr "• Detalhes do hardware: versão do sistema operativo, versão do contr
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ". Detalhes de desempenho: uma captura de dados temporais uns segundos depois do início de uma partida ou de uma mudança nas configurações gráficas."
+msgstr "• Detalhes de desempenho: uma captura de dados temporais uns segundos depois do início de uma partida ou de uma mudança nas configurações gráficas."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr "Serão enviados apenas uns poucos quilobytes de cada vez que iniciar o jogo, por isso o uso de largura de banda será mínimo."
+msgstr "Serão enviados apenas uns poucos quilobytes de cada vez que iniciares o jogo, por isso o uso de largura de banda será mínimo."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -722,4 +722,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr "Armazenamos os dados enviados no nosso servidor, e poderemos publicar estatísticas ou detalhes anónimos de forma a ajudar outros criadores de jogos com questões semelhantes. Guardamos também o endereço IP que enviou os dados para podermos detectar eventuais abusos do serviço, mas não o publicaremos. Os dados publicados podem ser consultados em http://feedback.wildfiregames.com/"
+msgstr "Armazenamos os dados enviados no nosso servidor, e poderemos publicar estatísticas ou detalhes anónimos de forma a ajudar outros criadores de jogos com questões semelhantes. Guardamos também o endereço IP que enviou os dados para podermos detetar eventuais abusos do serviço, mas não o publicaremos. Os dados publicados podem ser consultados em http://feedback.wildfiregames.com/"

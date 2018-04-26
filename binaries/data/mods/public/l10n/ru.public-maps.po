@@ -5,7 +5,7 @@
 # Translators:
 # Alexander Olkhovskiy, 2016
 # Alexander Serov <sekachinsky@gmail.com>, 2014
-# Boris Karalnik <eyesucker@gmail.com>, 2015
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014-2015
@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-11 09:04+0200\n"
-"PO-Revision-Date: 2018-04-16 20:51+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2018-04-23 09:05+0200\n"
+"PO-Revision-Date: 2018-04-24 20:57+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -326,16 +326,16 @@ msgstr "Потухший вулкан"
 
 #: maps/random/fields_of_meroe.jsonsettings.Description
 msgid ""
-"The \"Island of Meroë\", a vast peninsula flanked by the Nile and Atbarah "
+"The \"Island of Meroe\", a vast peninsula flanked by the Nile and Atbarah "
 "rivers, formed the heartland of ancient Kush. Where the harsh deserts start "
 "making way for the semi-arid savannahs and small acacia forests dot the "
 "landscape. The area is rich in resources and the ever-present Nile brings "
 "life, but grave threats loom on the opposite riverbank."
-msgstr ""
+msgstr "\"Остров Мероэ\", огромный полуостров, защищёный водами Нила и Атбары, сердце древнего Куша. Место, где жестокая пустыня начинает переходить в засушливую полусаванну и появляются маленькие акациевые рощи. Эта земля богата ресурсами и вечный Нил несёт ей жизнь, но смертельная угроза сгущается на другом берегу."
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
-msgid "Fields of Meroë"
-msgstr ""
+msgid "Fields of Meroe"
+msgstr "Поля Мероэ"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
@@ -460,7 +460,7 @@ msgstr "Команды начинают с почти смежных город�
 
 #: maps/random/island_stronghold.jsonsettings.Name
 msgid "Island Stronghold"
-msgstr "Остров Крепость"
+msgstr "Островная Крепость"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
@@ -480,7 +480,7 @@ msgid ""
 "This is where Kings were made... and unmade! Abutting a rich floodplain "
 "downstream from the 4th cataract, this area became the breadbasket of "
 "ancient Kush."
-msgstr ""
+msgstr "Начиная от плодородных берегов Нила, игроки штурмуют хооошо защищённую Напату, лежащую у подножия холма Джебель-Баркал, \"Священной скалы\". Это южный дом Амона и, в соответствии с верованиями как кушитов, так и египтян, место зарождения человека. Известная как \"Престол двух земель\", религиозная столица Напата лежит в его тени. Город в котором короновали... и низвергали! Эта земля, примыкающая к богатой пойме ниже четвёртого порога Нила, стала житницей древнего Куша."
 
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
@@ -840,19 +840,6 @@ msgstr "Команды начинают с почти смежных город�
 msgid "Stronghold"
 msgstr "Крепость"
 
-#: maps/random/sudd.jsonsettings.Description
-msgid ""
-"The Sudd is a vast swamp. The White Nile and its many branches meander "
-"through the area. Floating mats of vegetation cover the shallow water, with "
-"the occasional little islets and dry patches protruding from the waters. At "
-"some places small islets pop up, enough for a few huts and palm trees, or "
-"sometimes an entire village."
-msgstr ""
-
-#: maps/random/sudd.jsonsettings.Name
-msgid "Sudd"
-msgstr "Судд"
-
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
@@ -928,14 +915,14 @@ msgstr "Дикое озеро"
 msgid ""
 "The vitalizing waters of the Nile sustain life along its banks, while the "
 "long dry season scorches the land."
-msgstr ""
+msgstr "Живительные воды Нила поддерживают жизнь по его берегам пока сухой сезон выжигает землю."
 
 #: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
 "The vitalizing waters of the Nile sustain life along its banks, while the "
 "long dry season scorches the land."
-msgstr ""
+msgstr "Живительные воды Нила поддерживают жизнь по его берегам пока сухой сезон выжигает землю."
 
 #: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
 msgid "Dry Season"
@@ -950,14 +937,14 @@ msgstr "Сезон засухи"
 msgid ""
 "Revelling in the much awaited rain, the baked land transforms into a lush "
 "haven for both man and beast."
-msgstr ""
+msgstr "Наслаждаясь струями долгожданного дождя, выжженая земля превращается в буйный рай для человека и зверя."
 
 #: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
 "Revelling in the much awaited rain, the baked land transforms into a lush "
 "haven for both man and beast."
-msgstr ""
+msgstr "Наслаждаясь струями долгожданного дождя, выжженая земля превращается в буйный рай для человека и зверя."
 
 #: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
 msgid "Rainy Season"
@@ -1287,14 +1274,14 @@ msgstr "Нам нужно найти безопасное место, наши �
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "Озёра выходят из берегов, нам нужно найти убежище!"
 
-#: maps/random/jebel_barkal_triggers.js:559
+#: maps/random/jebel_barkal_triggers.js:578
 msgid "Napata is attacking!"
-msgstr ""
+msgstr "Напата атакует!"
 
-#: maps/random/jebel_barkal_triggers.js:571
+#: maps/random/jebel_barkal_triggers.js:590
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
-msgstr ""
+msgstr "Напата атакует через %(time)s!"
 
 #: maps/random/survivalofthefittest_triggers.js:163
 #, javascript-format
@@ -2704,7 +2691,7 @@ msgid ""
 "- Fayyum: crocodile shrine, nile dam\n"
 "- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr ""
+msgstr "Сражайтесь за остатки Древнего Египта!\n\nИгроки начинают с полностью развитыми городами и небольшими армиями, у каждого свои выраженные преимущества и недостатки. Будьте внимательны, на карте 7 сильных фортов и мородёрствующие бандиты!\n\nЭто последний век до нашей эры. Египет разрывают между собой эллинистические (Александрия, представлена селевкидами) и традиционные (Мемфис, представлен птолемеями) силы. Фивы в Верхнем Египте уже покорены Кушем. На северо-западе, в районе Эль-Джебель-Аль Ахдар, где расположена средиземноморская Кирена, римляне готовят своё вторжение. С востока, из пустыни ат-Тих и горы Синай напирают враги (представлены персами), претендующие на оазис Сива. Харга (представлена Карфагеном) пытается ухватить свой кусок пирога с юго-запада.\nЛокации:\n- Александрия: библиотека, гавань\n- Мемфис: некрополь, пирамиды, святилище Аписа\n- Фивы: храмовый квартал, Долина царей \n- Кирена: средиземноморский маквис, оливковая роща\n- Файюм: крокодилье святилище, плотина на Ниле\n- Восточная пустыня: гора Синай, глубокое вади, рифы Красного моря\n- Западная пустыня: оазисы Харга и Сива, впадина Каттара\n"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""

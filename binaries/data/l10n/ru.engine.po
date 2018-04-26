@@ -7,21 +7,22 @@
 # Alexander Olkhovskiy, 2013
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2017
 # Григорий Световидов <grin.sv@gmail.com>, 2015
-# Ilya Andreev <ilia@liuch.ru>, 2017
+# Ilya Andreev, 2017
 # Ivan, 2014
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2014
 # Malik Khodjaev <loc.root.123@gmail.com>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Vladislav <swsh0t@gmail.com>, 2013
+# Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2018
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
 # Чувак, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-29 15:03+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2018-04-23 09:02+0200\n"
+"PO-Revision-Date: 2018-04-24 11:20+0000\n"
+"Last-Translator: Валерий Дмиртиевич Степанов <valera1111@yandex.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,118 +34,170 @@ msgstr ""
 msgid "Long strings"
 msgstr "Длинные строки"
 
-#: lobby/XmppClient.cpp:739
+#: lobby/XmppClient.cpp:787
 msgid "unknown subtype (see logs)"
 msgstr "неизвестный подтип (см. логи)"
 
-#: lobby/XmppClient.cpp:1010 lobby/XmppClient.cpp:1054
-#: lobby/XmppClient.cpp:1093
+#: lobby/XmppClient.cpp:1058 lobby/XmppClient.cpp:1102
+#: lobby/XmppClient.cpp:1141
 msgid "Error"
 msgstr "Ошибка"
 
-#: lobby/XmppClient.cpp:1013 lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1061 lobby/XmppClient.cpp:1105
 msgid "No error"
 msgstr "Нет ошибок"
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1063
 msgid "Player already logged in"
 msgstr "Игрок уже вошел"
 
-#: lobby/XmppClient.cpp:1017
+#: lobby/XmppClient.cpp:1065
 msgid "Forbidden"
 msgstr "Запрещено"
 
-#: lobby/XmppClient.cpp:1019
+#: lobby/XmppClient.cpp:1067
 msgid "Internal server error"
 msgstr "Ошибка сервера"
 
-#: lobby/XmppClient.cpp:1023
+#: lobby/XmppClient.cpp:1071
 msgid "Not allowed"
 msgstr "Не разрешено"
 
-#: lobby/XmppClient.cpp:1024
+#: lobby/XmppClient.cpp:1072
 msgid "Not authorized"
 msgstr "Нет авторизации"
 
-#: lobby/XmppClient.cpp:1027
+#: lobby/XmppClient.cpp:1075
 msgid "Recipient temporarily unavailable"
 msgstr "Получатель временно недоступен"
 
-#: lobby/XmppClient.cpp:1029
+#: lobby/XmppClient.cpp:1077
 msgid "Registration required"
 msgstr "Необходима регистрация"
 
-#: lobby/XmppClient.cpp:1033
+#: lobby/XmppClient.cpp:1081
 msgid "Service unavailable"
 msgstr "Сервис недоступен"
 
-#: lobby/XmppClient.cpp:1038 lobby/XmppClient.cpp:1077
+#: lobby/XmppClient.cpp:1086 lobby/XmppClient.cpp:1125
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
-#: lobby/XmppClient.cpp:1058
+#: lobby/XmppClient.cpp:1106
 msgid "Stream error"
 msgstr "Ошибка соединения"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1107
 msgid "The incoming stream version is unsupported"
 msgstr "Версия входящего соединения не поддерживается"
 
-#: lobby/XmppClient.cpp:1060
+#: lobby/XmppClient.cpp:1108
 msgid "The stream has been closed by the server"
 msgstr "Соединение было закрыто сервером"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1112
 msgid "An I/O error occurred"
 msgstr "Произошла ошибка ввода/вывода"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1114
 msgid "The connection was refused by the server"
 msgstr "Соединение было разорвано сервером"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1115
 msgid "Resolving the server's hostname failed"
 msgstr "Не удалось получить имя сервера"
 
-#: lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1116
 msgid "This system is out of memory"
 msgstr "Этой системе не хватает памяти"
 
-#: lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1118
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Сертификат сервера не может быть проверен или начало соединения SSL не удалось завершить успешно"
 
-#: lobby/XmppClient.cpp:1071
+#: lobby/XmppClient.cpp:1119
 msgid "The server did not offer required TLS encryption"
 msgstr "Сервер не предложил запрашиваемого TLS шифрования"
 
-#: lobby/XmppClient.cpp:1073
+#: lobby/XmppClient.cpp:1121
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Ошибка аутентификации. Неверный пароль или аккаунт не существует"
 
-#: lobby/XmppClient.cpp:1074
+#: lobby/XmppClient.cpp:1122
 msgid "The user or system requested a disconnect"
 msgstr "Пользователь или система запросили отключение"
 
-#: lobby/XmppClient.cpp:1075
+#: lobby/XmppClient.cpp:1123
 msgid "There is no active connection"
 msgstr "Нет активных соединений"
 
-#: lobby/XmppClient.cpp:1096
+#: lobby/XmppClient.cpp:1144
 msgid "Your account has been successfully registered"
 msgstr "Ваша учетная запись успешно зарегистрирована"
 
-#: lobby/XmppClient.cpp:1097
+#: lobby/XmppClient.cpp:1145
 msgid "Not all necessary information provided"
 msgstr "Предоставлена не вся необходимая информация"
 
-#: lobby/XmppClient.cpp:1098
+#: lobby/XmppClient.cpp:1146
 msgid "Username already exists"
 msgstr "Это имя пользователя уже используется"
 
-#: ps/SavedGame.cpp:127
+#: ps/ModIo.cpp:244
+#, c-format
+msgid "Failure while starting querying for game id. Error: %s; %s."
+msgstr "Сбой при запросе id игры. Ошибка: %s; %s."
+
+#: ps/ModIo.cpp:274
+#, c-format
+msgid "Failure while starting querying for mods. Error: %s; %s."
+msgstr "Сбой при запросе модификаций. Ошибка: %s; %s."
+
+#: ps/ModIo.cpp:300
+#, c-format
+msgid "Could not create mod directory: %s."
+msgstr "Невозможно создать каталог модификаций: %s."
+
+#: ps/ModIo.cpp:325
+#, c-format
+msgid "Could not open temporary file for mod download: %s."
+msgstr "Невозможно открыть временный файл для загрузки модификаций: %s."
+
+#: ps/ModIo.cpp:335
+#, c-format
+msgid "Failed to start the download. Error: %s; %s."
+msgstr "Невозможно начать загрузку. Ошибка: %s; %s."
+
+#: ps/ModIo.cpp:380
+#, c-format
+msgid "Asynchronous download failure: %s, %s."
+msgstr "Сбой асинхронной загрузки: %s, %s."
+
+#: ps/ModIo.cpp:408
+#, c-format
+msgid "Download failure. Server response: %s; %s."
+msgstr "Сбой загрузки. Ответ сервера: %s; %s."
+
+#: ps/ModIo.cpp:511
+msgid "Mismatched filesize."
+msgstr "Неподходящий размер файла."
+
+#: ps/ModIo.cpp:531
+#, c-format
+msgid "Invalid file. Expected md5 %s, got %s."
+msgstr "Файл поврежден. Ожидаемая md5 %s, полученная %s."
+
+#: ps/ModIo.cpp:545
+msgid "Failed to compute final hash."
+msgstr "Сбой расчета финального хеша."
+
+#: ps/ModIo.cpp:551
+msgid "Failed to verify signature."
+msgstr "Сбой проверки подписи."
+
+#: ps/SavedGame.cpp:128
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Игра сохранена в '%s'"

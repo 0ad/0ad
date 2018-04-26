@@ -100,9 +100,9 @@ Auras.prototype.GetRangeOverlays = function()
 				// Specify default in order not to specify it in about 40 auras
 				{
 					"radius": this.GetRange(name),
-					"texture":  "outline_border.png",
-					"textureMask":  "outline_border_mask.png",
-					"thickness":  0.2
+					"texture": "outline_border.png",
+					"textureMask": "outline_border_mask.png",
+					"thickness": 0.2
 				});
 	}
 
@@ -187,7 +187,7 @@ Auras.prototype.IsRangeAura = function(name)
 
 Auras.prototype.IsGlobalAura = function(name)
 {
-	return this.GetType(name) == "global" || this.GetType(name) == "player";
+	return this.GetType(name) == "global";
 };
 
 Auras.prototype.IsPlayerAura = function(name)
@@ -242,18 +242,16 @@ Auras.prototype.Clean = function()
 
 		if (this.IsGlobalAura(name))
 		{
+			this.ApplyTemplateBonus(name, affectedPlayers);
 			for (let player of affectedPlayers)
-			{
-				this.ApplyTemplateBonus(name, affectedPlayers);
-				if (this.IsPlayerAura(name))
-				{
-					let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-					let playerEnts = affectedPlayers.map(player => cmpPlayerManager.GetPlayerByID(player));
-					this.ApplyBonus(name, playerEnts);
-				}
-				else
-					this.ApplyBonus(name, cmpRangeManager.GetEntitiesByPlayer(player));
-			}
+				this.ApplyBonus(name, cmpRangeManager.GetEntitiesByPlayer(player));
+			continue;
+		}
+
+		if (this.IsPlayerAura(name))
+		{
+			let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+			this.ApplyBonus(name, affectedPlayers.map(p => cmpPlayerManager.GetPlayerByID(p)));
 			continue;
 		}
 

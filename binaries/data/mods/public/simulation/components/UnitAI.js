@@ -464,20 +464,20 @@ UnitAI.prototype.UnitFsmSpec = {
 			return;
 		}
 
+		// If we can't reach the target, but are standing ground, then abandon this attack order.
+		// Unless we're hunting, that's a special case where we should continue attacking our target.
+		if (this.GetStance().respondStandGround && !this.order.data.force && !this.order.data.hunting || this.IsTurret())
+		{
+			this.FinishOrder();
+			return;
+		}
+
 		// For packable units out of attack range:
 		// 1. If packed, we need to move to attack range and then unpack.
 		// 2. If unpacked, we first need to pack, then follow case 1.
 		if (this.CanPack())
 		{
 			this.PushOrderFront("Pack", { "force": true });
-			return;
-		}
-
-		// If we can't reach the target, but are standing ground, then abandon this attack order.
-		// Unless we're hunting, that's a special case where we should continue attacking our target.
-		if (this.GetStance().respondStandGround && !this.order.data.force && !this.order.data.hunting || this.IsTurret())
-		{
-			this.FinishOrder();
 			return;
 		}
 
@@ -1847,6 +1847,11 @@ UnitAI.prototype.UnitFsmSpec = {
 						// Can't reach it - try to chase after it
 						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
 						{
+							if (this.CanPack())
+							{
+								this.PushOrderFront("Pack", { "force": true });
+								return;
+							}
 							if (this.MoveToTargetAttackRange(target, this.order.data.attackType))
 							{
 								this.SetNextState("COMBAT.CHASING");
@@ -1960,6 +1965,11 @@ UnitAI.prototype.UnitFsmSpec = {
 						// Can't reach it - try to chase after it
 						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
 						{
+							if (this.CanPack())
+							{
+								this.PushOrderFront("Pack", { "force": true });
+								return;
+							}
 							if (this.MoveToTargetRange(target, IID_Attack, this.order.data.attackType))
 							{
 								this.SetNextState("COMBAT.CHASING");
@@ -2535,6 +2545,11 @@ UnitAI.prototype.UnitFsmSpec = {
 						// Can't reach it - try to chase after it
 						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
 						{
+							if (this.CanPack())
+							{
+								this.PushOrderFront("Pack", { "force": true });
+								return;
+							}
 							if (this.MoveToTargetRange(target, IID_Heal))
 							{
 								this.SetNextState("HEAL.CHASING");

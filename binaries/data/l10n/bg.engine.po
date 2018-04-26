@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 07:17+0000\n"
+"POT-Creation-Date: 2018-04-23 09:02+0200\n"
+"PO-Revision-Date: 2018-04-24 06:31+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -27,118 +27,170 @@ msgstr ""
 msgid "Long strings"
 msgstr "Дълги низове"
 
-#: lobby/XmppClient.cpp:739
+#: lobby/XmppClient.cpp:787
 msgid "unknown subtype (see logs)"
 msgstr "неизвестен подтип (вижте журналите)"
 
-#: lobby/XmppClient.cpp:1010 lobby/XmppClient.cpp:1054
-#: lobby/XmppClient.cpp:1093
+#: lobby/XmppClient.cpp:1058 lobby/XmppClient.cpp:1102
+#: lobby/XmppClient.cpp:1141
 msgid "Error"
 msgstr "Грешка"
 
-#: lobby/XmppClient.cpp:1013 lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1061 lobby/XmppClient.cpp:1105
 msgid "No error"
 msgstr "Няма грешка"
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1063
 msgid "Player already logged in"
 msgstr "Играчът вече е влязъл"
 
-#: lobby/XmppClient.cpp:1017
+#: lobby/XmppClient.cpp:1065
 msgid "Forbidden"
 msgstr "Забранено"
 
-#: lobby/XmppClient.cpp:1019
+#: lobby/XmppClient.cpp:1067
 msgid "Internal server error"
 msgstr "Вътрешна сървърна грешка"
 
-#: lobby/XmppClient.cpp:1023
+#: lobby/XmppClient.cpp:1071
 msgid "Not allowed"
 msgstr "Непозволено"
 
-#: lobby/XmppClient.cpp:1024
+#: lobby/XmppClient.cpp:1072
 msgid "Not authorized"
 msgstr "Неупълномощено"
 
-#: lobby/XmppClient.cpp:1027
+#: lobby/XmppClient.cpp:1075
 msgid "Recipient temporarily unavailable"
 msgstr "Получателят е временно недостъпен"
 
-#: lobby/XmppClient.cpp:1029
+#: lobby/XmppClient.cpp:1077
 msgid "Registration required"
 msgstr "Нужна е регистрация"
 
-#: lobby/XmppClient.cpp:1033
+#: lobby/XmppClient.cpp:1081
 msgid "Service unavailable"
 msgstr "Услугата е недостъпна"
 
-#: lobby/XmppClient.cpp:1038 lobby/XmppClient.cpp:1077
+#: lobby/XmppClient.cpp:1086 lobby/XmppClient.cpp:1125
 msgid "Unknown error"
 msgstr "Неизвестна грешка"
 
-#: lobby/XmppClient.cpp:1058
+#: lobby/XmppClient.cpp:1106
 msgid "Stream error"
 msgstr "Грешка в потока"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1107
 msgid "The incoming stream version is unsupported"
 msgstr "Версията на входящия поток не се поддържа"
 
-#: lobby/XmppClient.cpp:1060
+#: lobby/XmppClient.cpp:1108
 msgid "The stream has been closed by the server"
 msgstr "Потокът беше затворен от сървъра"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1112
 msgid "An I/O error occurred"
 msgstr "Възникна входно/изходна грешка"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1114
 msgid "The connection was refused by the server"
 msgstr "Връзката беше отхвърлена от сървъра"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1115
 msgid "Resolving the server's hostname failed"
 msgstr "Неуспешно установяване на сървърното име"
 
-#: lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1116
 msgid "This system is out of memory"
 msgstr "Тази система няма достатъчно свободна памет"
 
-#: lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1118
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Сървърният сертификат не може да бъде потвърден или здрависването по протокола TLS не завърши успешно"
 
-#: lobby/XmppClient.cpp:1071
+#: lobby/XmppClient.cpp:1119
 msgid "The server did not offer required TLS encryption"
 msgstr "Сървърът не предложи задължителното шифриране чрез TLS"
 
-#: lobby/XmppClient.cpp:1073
+#: lobby/XmppClient.cpp:1121
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Неуспешно удостоверяване. Паролата е грешна или няма такъв акаунт"
 
-#: lobby/XmppClient.cpp:1074
+#: lobby/XmppClient.cpp:1122
 msgid "The user or system requested a disconnect"
 msgstr "Потребителят или системата заяви разкачане на връзката"
 
-#: lobby/XmppClient.cpp:1075
+#: lobby/XmppClient.cpp:1123
 msgid "There is no active connection"
 msgstr "Няма работеща връзка"
 
-#: lobby/XmppClient.cpp:1096
+#: lobby/XmppClient.cpp:1144
 msgid "Your account has been successfully registered"
 msgstr "Регистрацията Ви беше успешна"
 
-#: lobby/XmppClient.cpp:1097
+#: lobby/XmppClient.cpp:1145
 msgid "Not all necessary information provided"
 msgstr "Не е осигурена цялата нужна информация"
 
-#: lobby/XmppClient.cpp:1098
+#: lobby/XmppClient.cpp:1146
 msgid "Username already exists"
 msgstr "Потребителското име вече съществува"
 
-#: ps/SavedGame.cpp:127
+#: ps/ModIo.cpp:244
+#, c-format
+msgid "Failure while starting querying for game id. Error: %s; %s."
+msgstr "Грешка при стартиране на търсенето на ид. на игра. Грешка %s; %s."
+
+#: ps/ModIo.cpp:274
+#, c-format
+msgid "Failure while starting querying for mods. Error: %s; %s."
+msgstr "Грешка при стартиране на търсенето на модификации. Грешка: %s; %s."
+
+#: ps/ModIo.cpp:300
+#, c-format
+msgid "Could not create mod directory: %s."
+msgstr "Папката за модификацията не може да бъде създадена: %s."
+
+#: ps/ModIo.cpp:325
+#, c-format
+msgid "Could not open temporary file for mod download: %s."
+msgstr "Временният файл за свалянето на модификация не може да бъде отворен: %s."
+
+#: ps/ModIo.cpp:335
+#, c-format
+msgid "Failed to start the download. Error: %s; %s."
+msgstr "Свалянето не може да започне. Грешка: %s; %s."
+
+#: ps/ModIo.cpp:380
+#, c-format
+msgid "Asynchronous download failure: %s, %s."
+msgstr "Грешка при асинхронното сваляне: %s, %s."
+
+#: ps/ModIo.cpp:408
+#, c-format
+msgid "Download failure. Server response: %s; %s."
+msgstr "Грешка при свалянето. Отговор на сървъра: %s; %s."
+
+#: ps/ModIo.cpp:511
+msgid "Mismatched filesize."
+msgstr "Несъответстващ файлов размер."
+
+#: ps/ModIo.cpp:531
+#, c-format
+msgid "Invalid file. Expected md5 %s, got %s."
+msgstr "Неправилен файл. Очакваният резултат от md5 е %s, а се получи %s."
+
+#: ps/ModIo.cpp:545
+msgid "Failed to compute final hash."
+msgstr "Крайният хеш не може да бъде изчислен."
+
+#: ps/ModIo.cpp:551
+msgid "Failed to verify signature."
+msgstr "Подписът не може да бъде потвърден."
+
+#: ps/SavedGame.cpp:128
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Играта е запазена в „%s“"

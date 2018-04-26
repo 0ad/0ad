@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
+# Boris Karalnik <eyesucker@gmail.com>, 2018
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2016-2017
 # Dmitry Sokolov <dmitry@scrofa-tridens.ru>, 2018
 # Ilya Andreev, 2017-2018
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-16 20:50+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2018-04-24 18:50+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,11 +34,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
-msgstr "Ремонт на Верфи"
+msgstr "Ремонт на верфи"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr "Восстанавливает пришвартованное судно на 10 HP каждую секунду."
+msgstr "Ремонтирует пришвартованное судно на 10 единиц здоровья в секунду."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -45,7 +46,7 @@ msgstr "Благословение богов"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
-msgstr "Лечит юнитов на 3 HP в секунду."
+msgstr "Лечит юнитов на 3 единицы здоровья в секунду."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -69,7 +70,7 @@ msgstr "Поучительное присутствие"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers near Large Pyramids +10% attack."
-msgstr "Солдаты вблизи Больших Пирамид +10% к атаке."
+msgstr "Солдаты вблизи Больших пирамид +10% к атаке."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -78,7 +79,7 @@ msgstr "Мироитские пирамиды"
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid ""
 "Civic Centers +10% territory influence as long as a Pyramid stands built."
-msgstr "Городские центры + 10% территории влияния до тех пор пока построена пирамида."
+msgstr "+10% к территории влияния городских центров пока стоит пирамида."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -88,7 +89,7 @@ msgstr "Влиятельное жречество"
 msgid ""
 "Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
 "-5% health for heroes per temple built."
-msgstr "Усиливает позиции жрецов Амона и подрывает влияние Вашего правителя.\n-5% к здоровью героев за каждый построенный храм."
+msgstr "Усиливает позиции жрецов Амона и подрывает влияние вашего правителя.\n-5% к здоровью героев за каждый построенный храм."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -105,7 +106,7 @@ msgstr "Преданность"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr "+50% к скорости восстановления преданности введенными войсками для структур"
+msgstr "+50% к скорости восстановления преданности введенных войск для структур"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -137,7 +138,7 @@ msgstr "Эллинизация"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr "Влияние на территорию увеличивается на 20% за каждый Театрон."
+msgstr "Увеличение влияние на территорию на 20% за каждый Театрон."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -145,7 +146,7 @@ msgstr "Защитная стена"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr "Солдаты на стенах получают +3 к броне и увеличенный радиус обзора."
+msgstr "Солдаты на стенах получают +3 к броне и увеличенный обзор."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
@@ -153,7 +154,7 @@ msgstr "Символ величия"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
-msgstr "Увеличивается лимит населения на 10 за каждое чудо."
+msgstr "Увеличение лимита населения на 10 за каждое чудо."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
@@ -163,7 +164,7 @@ msgstr "Славное расширение"
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr "Дальнейшее увеличение лимита населения на 40 за каждое принадлежащее Вам чудо (необходима технология \"Славное расширение\")."
+msgstr "Дальнейшее увеличение лимита населения на 40 за каждое чудо (необходима технология \"Славное расширение\")."
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
@@ -171,7 +172,7 @@ msgstr "Ремонт в мастерской"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr "Восстанавливает размещенные осадные машины на 3 HP каждую секунду."
+msgstr "Ремонтирует размещенные осадные машины на 3 единицы здоровья в секунду."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -187,7 +188,7 @@ msgstr "Друиды"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allies get -20% resource cost to train healers."
-msgstr "У союзников снижается стоимость обучения целителей на -20%."
+msgstr "У союзников снижается на 20% стоимость обучения целителей."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -207,13 +208,13 @@ msgstr "-20% ко времени исследования технологий �
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
-msgstr "Сарипеко — Наёмник"
+msgstr "Сарипеко"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
-msgstr "Снижает затраты на граждан-солдат стрелков на 20% для союзных игроков Иберийцев"
+msgstr "Снижает затраты на граждан-солдат стрелков на 20% для союзников иберийцев."
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -223,7 +224,7 @@ msgstr "Поставщики слонов"
 msgid ""
 "Reduces the cost and train time for elephants with 20% for allies of Kushite"
 " players."
-msgstr "Снижает затраты и время на производство слонов на 20% для союзников Кушитов."
+msgstr "Снижает затраты и время на обучение слонов на 20% для союзников кушитов."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -240,7 +241,7 @@ msgstr "Религиозная поддержка Ашоки"
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
-msgstr "На храмы и храмовые технологии союзников затрачивается на -50% меньше времени и ресурсов."
+msgstr "На храмы и храмовые технологии союзников затрачивается на 50% меньше времени и ресурсов."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -256,7 +257,7 @@ msgstr "Хлебница Средиземноморья"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Все союзники автоматически получают небольшой прирост еды."
+msgstr "Все союзники автоматически получают небольшой прирост добычи еды."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
@@ -376,7 +377,7 @@ msgstr "Вместе со своим братом Андобалом, Мандо
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
-msgstr "Спаситель жизней"
+msgstr "Спаситель Жизней"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
@@ -392,7 +393,7 @@ msgstr "Ранняя Нубийская Королева"
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Awe: All enemy female citizens -15% gather rate."
-msgstr "Обладая всей полнотой власти в империи Мероэ, а также играя значительную роль в мероитской религии, Шанакдахето олицетворяло могущество государства Куш, с которым приходилось считаться.\nТрепет: Скорость сбора всех женщин-горожанок противников снижается на -15%."
+msgstr "Обладая всей полнотой власти в империи Мероэ, а также играя значительную роль в мероитской религии, Шанакдахето олицетворяло могущество государства Куш, с которым приходилось считаться.\nТрепет: скорость сбора всех женщин-горожанок противников снижается на -15%."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -406,17 +407,17 @@ msgstr "Как и во всех культурах, религия играла 
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
-msgstr "Разграбление городов"
+msgstr "Разграбитель Городов"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
 "+5 food and wood for every enemy unit killed or structure destroyed."
-msgstr "Во время Первой Македонской войны войска Филиппа V разграбили Фермон - центр религиозной и политической жизни Этолии.\n+5 еды и дерева за каждого убитого вражеского солдата или уничтоженную постройку."
+msgstr "Во время Первой Македонской войны войска Филиппа V разграбили Фермон – центр религиозной и политической жизни Этолии.\n+5 еды и дерева за каждого убитого вражеского солдата или уничтоженную постройку."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
-msgstr "Объединитель империи"
+msgstr "Объединитель Империи"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
@@ -446,7 +447,7 @@ msgstr "На протяжении своего правления, больша�
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
-msgstr "Великий библиотекарь"
+msgstr "Великий Библиотекарь"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
@@ -466,7 +467,7 @@ msgstr "После того, как Лукреция, износилованна
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
-msgstr "Основатель и защитник республики"
+msgstr "Основатель и Защитник Республики"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
@@ -476,7 +477,7 @@ msgstr "Луций Юний Брут был одной из ключевых ф�
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
-msgstr "Основатель храма Исиды"
+msgstr "Основатель Храма Исиды"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraDescription
 msgid ""
@@ -496,7 +497,7 @@ msgstr "Антиох поощрял греческую иммиграцию в �
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
 msgid "Basileus Megas"
-msgstr "Базилеус Мегас"
+msgstr "Базилевс Мегас"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
@@ -543,11 +544,11 @@ msgstr "Улучшения пельтастов"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "All javelin infantry +15% speed."
-msgstr "+15% к скорости конницы метателей копий."
+msgstr "+15% к скорости пехотинцев-копьеметателей."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
-msgstr "Строительная Программа Перикла"
+msgstr "Строительная программа Перикла"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "+15% build and repair rate for workers."
@@ -602,7 +603,7 @@ msgstr "Царь Британии"
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "+0.8 HP per second healing rate."
-msgstr "+0.8 HP в секунду к скорости восстановления здоровья."
+msgstr "+0.8 единиц здоровья в секунду к скорости восстановления."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
@@ -631,7 +632,7 @@ msgstr "+20% атаки и +1 к захвату для союзных солда
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
-msgstr "Кавалерийский Командир"
+msgstr "Кавалерийский командир"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "+30% attack for cavalry melee soldiers."
@@ -639,7 +640,7 @@ msgstr "+30% к атаке для конницы ближнего боя."
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
-msgstr "Римский Мародёр"
+msgstr "Разграбитель Рима"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+15 Metal loot for every enemy unit killed."
@@ -647,11 +648,11 @@ msgstr "+15 металла за каждого убитого врага."
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
-msgstr "Кельтский Военачальник"
+msgstr "Кельтский военачальник"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
-msgstr "+20% к атаке и +1 к захвату для солдатов и осадных орудий."
+msgstr "+20% к атаке и +1 к захвату для солдат и осадных орудий."
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
@@ -659,7 +660,7 @@ msgstr "Подготовка к войне"
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "Скорость сбора ресурсов увеличивается на +15%."
+msgstr "Скорость сбора ресурсов увеличивается на 15%."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -669,7 +670,7 @@ msgstr "Вдохновенная защита"
 msgid ""
 "When garrisoned in a structure or a siege engine, the hero gives it a bonus "
 "of +2 capture points recovery rate."
-msgstr "Когда расположен в строении или осадной машине, герой придает ему дополнительные +2 пункта к скорости восстановления."
+msgstr "Когда расположен в строении или осадной машине, герой придает ему дополнительные 2 пункта к скорости восстановления."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
@@ -695,7 +696,7 @@ msgstr "Мобилизация"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "-20% training time and -15% resources cost for soldiers."
-msgstr "Стоимость солдат снижается на -15%, а время их тренировки уменьшается на -20%."
+msgstr "Стоимость солдат снижается на 15%, а время их тренировки уменьшается на 20%."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "+20% movement speed for soldiers."
@@ -734,7 +735,7 @@ msgstr "Последователь Апедемака"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
 msgid "Apedemak temples and its Meroe Temple Guard -20% cost and build time."
-msgstr "-20% стоимости и времени строительства для храмов Апедемака и их Хранителя Храма Мерое."
+msgstr "-20% стоимости и времени строительства для храмов Апедемака и их Хранителя Храма Мероэ."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaugther of the Faithful"
@@ -756,13 +757,13 @@ msgstr "+10% к атаке собственным юнитам.\nНастасе�
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
-msgstr ""
+msgstr "Корабельный дар"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
 msgid ""
 "Train Ptolemaic Mercenary Triremes at -25% resource cost.\n"
 "Crushing the Ptolemaic invasion of Kush, Nastasen seized numerous enemy warships."
-msgstr ""
+msgstr "Обучение птолемейских наёмных трирем на 25% дешевле.\nПтолемейское вторжение в Куш отбито, Настасен захватил несколько вражеских кораблей."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
@@ -882,7 +883,7 @@ msgstr "Рафия"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen have 40% greater health during his lifetime."
-msgstr "Пикинёры имеют на 40% здоровья больше."
+msgstr "Пикинёры имеют на 40% больше здоровья."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
@@ -894,11 +895,11 @@ msgstr "+10% к скорости постройки и ремонта работ
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron"
-msgstr "Покровитель Наёмничества"
+msgstr "Покровитель наёмничества"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -35% resources during his lifetime."
-msgstr "Стоимость наёмников уменьшается на -35%, пока он жив."
+msgstr "Стоимость наёмников уменьшается на 35%, пока он жив."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -959,7 +960,7 @@ msgstr "Реформы Илотов"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
-msgstr "Метательное копьё+25% к атаке и +1 к броне копьеметателей-горожан."
+msgstr "+25% к атаке и +1 к броне пеших горожан-копьеметателей."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

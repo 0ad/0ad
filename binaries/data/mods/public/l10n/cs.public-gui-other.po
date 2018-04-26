@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-20 09:02+0200\n"
-"PO-Revision-Date: 2018-04-20 15:32+0000\n"
+"POT-Creation-Date: 2018-04-23 09:03+0200\n"
+"PO-Revision-Date: 2018-04-23 14:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -47,12 +47,12 @@ msgstr "Drcení"
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Přepnout na strom staveb."
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr ""
+msgstr "%(hotkey)s: Zavřít historii."
 
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
@@ -96,7 +96,7 @@ msgstr "Historie %(civilization)s"
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Nepřiřazená klávesová zkratka: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -108,24 +108,24 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
 
-#: gui/common/functions_global_object.js:57
+#: gui/common/functions_global_object.js:8
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Otevírá se %(url)s\n ve výchozím prohlížeči internetu. Počkejte, prosím..."
 
-#: gui/common/functions_global_object.js:60
+#: gui/common/functions_global_object.js:11
 msgid "Opening page"
 msgstr "Otevírá se stránka"
 
 #. dennis-ignore: *
-#: gui/common/functions_global_object.js:70
+#: gui/common/functions_global_object.js:21
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/functions_global_object.js:139
+#: gui/common/functions_global_object.js:90
 msgid "Loading Aborted"
 msgstr "Načítání přerušeno"
 
@@ -137,14 +137,6 @@ msgstr "Gaia"
 msgctxt "map selection"
 msgid "Random"
 msgstr "Náhodná"
-
-#: gui/common/functions_utility.js:116
-msgid "mm:ss"
-msgstr "mm:ss"
-
-#: gui/common/functions_utility.js:116
-msgid "HH:mm:ss"
-msgstr "hh:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -210,28 +202,28 @@ msgstr "Bohužel, popis není dostupný."
 #: gui/common/gamedescription.js:104
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:107
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:113
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:116
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -321,7 +313,7 @@ msgstr "Hra bez konce"
 
 #: gui/common/gamedescription.js:225
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Nebude určen žádný vítěz, i když jsou všichni poraženi."
 
 #: gui/common/gamedescription.js:236
 #, javascript-format
@@ -337,9 +329,9 @@ msgstr[2] "Div světa (%(min)s minut)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ukořistit památku (%(min)s minuta)"
+msgstr[1] "Ukořistit památku (%(min)s minuty)"
+msgstr[2] "Ukořistit památku (%(min)s minut)"
 
 #: gui/common/gamedescription.js:264
 msgid "Relic Count"
@@ -351,15 +343,15 @@ msgstr "Ubytování hrdiny"
 
 #: gui/common/gamedescription.js:272
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Hrdinové mohou být ubytováni."
 
 #: gui/common/gamedescription.js:276
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "Nechránění hrdinové"
 
 #: gui/common/gamedescription.js:277
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Hrdinové nemohou být ubytováni a jsou zranitelní při přepadení."
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
@@ -418,18 +410,18 @@ msgstr "vypnuto"
 #: gui/common/gamedescription.js:315
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Po první minutu zůstanou ostatní hráči neutrální."
+msgstr[1] "Po první %(min)s minuty zůstanou ostatní hráči neutrální."
+msgstr[2] "Po prvních %(min)s minut zůstanou ostatní hráči neutrální."
 
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Náhodná mapa"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Náhodně vybrat mapu ze seznamu."
 
 #: gui/common/gamedescription.js:330
 msgid "Map Name"
@@ -454,29 +446,29 @@ msgstr "Velikost mapy"
 #: gui/common/gamedescription.js:366
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "Náhodný bióm"
 
 #: gui/common/gamedescription.js:367
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "Náhodně vybrat bióm ze seznamu."
 
 #: gui/common/gamedescription.js:381
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Kočovnický režim"
 
 #: gui/common/gamedescription.js:381
 msgid "Civic Centers"
-msgstr ""
+msgstr "Správní střediska"
 
 #: gui/common/gamedescription.js:384
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Hráči začínají jen s několika jednotkami a mají najít vhodné místo k postavení jejich města."
 
 #: gui/common/gamedescription.js:385
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "Hráči začínají se správními středisky."
 
 #: gui/common/gamedescription.js:389
 msgid "Starting Resources"
@@ -498,12 +490,12 @@ msgstr "Poklad"
 #: gui/common/gamedescription.js:410
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Zakázáno"
 
 #: gui/common/gamedescription.js:411
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Jak je stanoveno mapou."
 
 #: gui/common/gamedescription.js:415
 msgid "Revealed Map"
@@ -1233,11 +1225,6 @@ msgstr "Klepněte pro zobrazení více informací."
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:165
-#: gui/splashscreen/splashscreen.xml:(caption):29
-msgid "OK"
-msgstr "OK"
-
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
@@ -1364,6 +1351,10 @@ msgstr "Stiskněte, prosím, Číst více pro další informace nebo OK pro pokr
 #: gui/pregame/mainmenu.js:164
 msgid "WARNING!"
 msgstr "VAROVÁNÍ!"
+
+#: gui/pregame/mainmenu.js:165 gui/splashscreen/splashscreen.xml:(caption):29
+msgid "OK"
+msgstr "OK"
 
 #: gui/pregame/mainmenu.js:165
 msgid "Read More"
@@ -2185,8 +2176,8 @@ msgid "Choose the language of the game."
 msgstr "Vyberte jazyk hry."
 
 #: gui/pregame/mainmenu.xml:(tooltip):397
-msgid "Select mods to use."
-msgstr "Vybrat pozměněné verze k užití."
+msgid "Select and download mods for the game."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):409
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -2653,7 +2644,7 @@ msgstr ""
 #: gui/options/options.json[0].options[9].list[2].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Zakázáno"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid ""

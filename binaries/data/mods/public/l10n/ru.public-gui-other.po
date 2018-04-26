@@ -5,7 +5,7 @@
 # Translators:
 # Alexander Olkhovskiy, 2016
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
-# Boris Karalnik <eyesucker@gmail.com>, 2015
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Максим Дронь <dronmax@gmail.com>, 2014
@@ -33,7 +33,7 @@
 # webslavic <webslavic@yahoo.com>, 2014-2015
 # Woratiklis, 2015
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
-# Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
+# Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017-2018
 # Виталий Орехов <7opex0@mail.ru>, 2016
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
 # Евгений Азаров <azarov.evg.ua@gmail.com>, 2017
@@ -42,9 +42,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-20 09:02+0200\n"
-"PO-Revision-Date: 2018-04-20 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-04-23 09:03+0200\n"
+"PO-Revision-Date: 2018-04-24 19:46+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,24 +134,24 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
 
-#: gui/common/functions_global_object.js:57
+#: gui/common/functions_global_object.js:8
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "Открывается %(url)s\n в браузере по умолчанию. Пожалуйста, подождите..."
 
-#: gui/common/functions_global_object.js:60
+#: gui/common/functions_global_object.js:11
 msgid "Opening page"
 msgstr "Открывающаяся страница"
 
 #. dennis-ignore: *
-#: gui/common/functions_global_object.js:70
+#: gui/common/functions_global_object.js:21
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/functions_global_object.js:139
+#: gui/common/functions_global_object.js:90
 msgid "Loading Aborted"
 msgstr "Загрузка прервана"
 
@@ -163,14 +163,6 @@ msgstr "Гея"
 msgctxt "map selection"
 msgid "Random"
 msgstr "Случайная"
-
-#: gui/common/functions_utility.js:116
-msgid "mm:ss"
-msgstr "mm:ss"
-
-#: gui/common/functions_utility.js:116
-msgid "HH:mm:ss"
-msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -348,7 +340,7 @@ msgstr "Бесконечная игра"
 
 #: gui/common/gamedescription.js:225
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Победитель не будет установлен, даже если все будут побеждены."
 
 #: gui/common/gamedescription.js:236
 #, javascript-format
@@ -388,7 +380,7 @@ msgstr "Открытые Герои"
 
 #: gui/common/gamedescription.js:277
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Героев нельзя размещать в зданиях и они остаются уязвимыми для набегов."
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
@@ -459,7 +451,7 @@ msgstr "Случайная карта"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Случайный выбор карты из списка."
 
 #: gui/common/gamedescription.js:330
 msgid "Map Name"
@@ -484,11 +476,11 @@ msgstr "Размер карты"
 #: gui/common/gamedescription.js:366
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "Случайный биом"
 
 #: gui/common/gamedescription.js:367
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "Выбрать биом из списка случайным образом."
 
 #: gui/common/gamedescription.js:381
 msgid "Nomad Mode"
@@ -644,7 +636,7 @@ msgstr "Сервер заполнен"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
-msgstr ""
+msgstr "Безопасная аутентификация невозможна. Присоединитесь через комнату"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -831,7 +823,7 @@ msgstr "Неизвестно"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "Неизвестное условие победы"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
@@ -1215,7 +1207,7 @@ msgid_plural "HP"
 msgstr[0] "ОЗ"
 msgstr[1] "ОЗ"
 msgstr[2] "ОЗ"
-msgstr[3] "ОЗ"
+msgstr[3] "ЕЗ"
 
 #: gui/common/tooltips.js:731
 #, javascript-format
@@ -1276,15 +1268,10 @@ msgstr "Нажмите, чтобы посмотреть дополнительн
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:165
-#: gui/splashscreen/splashscreen.xml:(caption):29
-msgid "OK"
-msgstr "OK"
-
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "По-умолчанию: %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
@@ -1345,7 +1332,7 @@ msgstr "%(hotkey)s: Познакомиться со множеством цив�
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr ""
+msgstr "%(hotkey)s: Запустите многопользовательскую комнату для начала или присоединения к публичным играм и общения с другими игроками."
 
 #: gui/pregame/mainmenu.js:98
 msgid "connecting to server"
@@ -1408,6 +1395,10 @@ msgstr "Пожалуйста, нажмите на кнопку \"Подробн�
 msgid "WARNING!"
 msgstr "ВНИМАНИЕ!"
 
+#: gui/pregame/mainmenu.js:165 gui/splashscreen/splashscreen.xml:(caption):29
+msgid "OK"
+msgstr "OK"
+
 #: gui/pregame/mainmenu.js:165
 msgid "Read More"
 msgstr "Подробнее"
@@ -1443,7 +1434,7 @@ msgstr "Ошибка"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "Запустите многопользовательскую комнату для начала или присоединения к публичным играм и общения с другими игроками. \\[ВЫКЛЮЧЕНО В СБОРКЕ]"
 
 #: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
@@ -1636,7 +1627,7 @@ msgstr "Многопользовательская игра"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "Любое условие победы"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -1976,7 +1967,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr "%(hotkey)s: Переключиться из комнаты мультиплеера в диалоговое окно."
+msgstr "%(hotkey)s: Переключить многопользовательскую комнату в диалоговом окне."
 
 #: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
@@ -2230,8 +2221,8 @@ msgid "Choose the language of the game."
 msgstr "Выбрать язык игры."
 
 #: gui/pregame/mainmenu.xml:(tooltip):397
-msgid "Select mods to use."
-msgstr "Выбрать используемые моды."
+msgid "Select and download mods for the game."
+msgstr "Выберите и загрузите модификации для этой игры."
 
 #: gui/pregame/mainmenu.xml:(tooltip):409
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -3079,7 +3070,7 @@ msgstr "Настройки игры"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "Количество сообщений, которые будут загружаться при подключении к комнате мультиплеера."
+msgstr "Количество сообщений, которые будут загружаться при подключении к многопользовательской комнате."
 
 #: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
@@ -3101,7 +3092,7 @@ msgstr "Эти настройки применимы только в режим�
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
-msgstr "Лобби "
+msgstr "Комната"
 
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""
@@ -3115,20 +3106,20 @@ msgstr "Здоровье раненых юнитов"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "Количество юнитов в партии для обучения по умолчанию."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
-msgstr "Размер группы для обучения"
+msgstr "Размер партии для обучения"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "Количество шагов колёсика мыши для изменения размера партии на 1."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
-msgstr ""
+msgstr "Темп увеличения партии прокруткой"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -3249,35 +3240,35 @@ msgstr "Сортировка ресурсов и населения в подс�
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr ""
+msgstr "Цвет ваших юнитов при включённых дипломатических цветах."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Diplomacy Colors: Self"
-msgstr ""
+msgstr "Дипломатический цвет: свой"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr ""
+msgstr "Цвет союзных юнитов при включённых дипломатических цветах."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Ally"
-msgstr ""
+msgstr "Дипломатический цвет: союзник"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr ""
+msgstr "Цвет нейтральных юнитов при включённых дипломатических цветах."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Neutral"
-msgstr ""
+msgstr "Дипломатический цвет: нейтральный"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
-msgstr ""
+msgstr "Цвет вражеских юнитов при включённых дипломатических цветах."
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Enemy"
-msgstr ""
+msgstr "Дипломатический цвет: враг"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3726,23 +3717,23 @@ msgstr "- Усильте гарнизон солдатами для увелич
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "ПРОИЗВОЛЬНАЯ ПОЗИЦИЯ"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "- Gain an advantage on the battleground by tactically positioning your "
 "units!"
-msgstr ""
+msgstr "- Укрепите своё преимущество на поле боя, выгодно размещая войска! "
 
 #: gui/text/tips/freehand_position.txt:4
 msgid ""
 "- Therefore select some units, press and hold the right mouse button, draw "
 "any line, then release the button."
-msgstr ""
+msgstr "- Поэтому выберите нескольких юнитов, нажмите и удерживайте правую кнопку мыши, начертите линию и отпустите кнопку."
 
 #: gui/text/tips/freehand_position.txt:6
 msgid "- Your units will now spread out on this line."
-msgstr ""
+msgstr "- Теперь выши юниты выстроятся по этой линии."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"

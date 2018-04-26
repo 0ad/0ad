@@ -21,7 +21,7 @@
 # ridergr <ridergr@gmail.com>, 2014
 # Savoritias <inactive+Savoritias@transifex.com>, 2014
 # Savvas Nesseris <nesseris@yahoo.com>, 2016
-# Tony Chief <chiefleestones@yahoo.gr>, 2016
+# Tony Chief, 2016
 # Vasilis Drosos <basilisd@gmail.com>, 2016-2018
 # XTos <christos.kyratzis@gmail.com>, 2014
 # Yiannis Fistikis <jfistikis@mailinator.com>, 2013
@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-18 20:39+0000\n"
+"PO-Revision-Date: 2018-04-24 17:20+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr "Παίκτης"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Τύπος Παιχνιδιού"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
@@ -327,7 +327,7 @@ msgstr "Δυσκολία"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Επέλεξε την δυσκολία για αυτό το σενάριο."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Chose the civilization for this player"
@@ -343,13 +343,13 @@ msgstr "Εναλλαγή εάν οι ήρωες μπορούν να οχυρωθ
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
-msgstr ""
+msgstr "Νομάδες"
 
 #: gui/gamesetup/gamesetup.js:853
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "Στη λειτουργία Νομάδες, οι παίκτες ξεκινούν με λίγες μόνο μονάδες και πρέπει να βρουν ένα κατάλληλο μέρος για να χτίσουν την πόλη τους. Προτείνετε εκεχειρία."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -455,29 +455,29 @@ msgstr "Έναρξη νέου παιχνιδιού με τις τρέχουσε�
 #: gui/gamesetup/gamesetup.js:1083
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Διαμόρφωση Τεχνητής Νοημοσύνης: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1132
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Προβολή Ιστορίας / Δέντρο Κατασκευών\nΤο τελευταίο που άνοιξε θα ανοίξει εκ νέου με κλικ."
 
 #: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Εναλλαγή της καρτέλας ρυθμίσεων %(name)s."
 
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Χρήση του %(hotkey)s για τη μεταφορά της καρτέλα ρυθμίσεων κάτω."
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Χρήση του %(hotkey)s για τη μεταφορά της καρτέλα ρυθμίσεων πάνω."
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -501,7 +501,7 @@ msgstr "Διαλέξτε τυχαία ένα οικοσύστημα."
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2073
 msgctxt "settings value"
@@ -519,7 +519,7 @@ msgstr "Όχι"
 #: gui/gamesetup/gamesetup.js:2110
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2196
 #, javascript-format
@@ -582,7 +582,7 @@ msgstr "Δυσκολία ΑΙ:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Συμπεριφορά Τεχνητής Νοημοσύνης:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -602,7 +602,7 @@ msgstr "Φόρτωση"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Φόρτωση δεδομένων χάρτη. Παρακαλώ περιμένετε..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
@@ -671,7 +671,7 @@ msgstr "Επιλογή ομάδας του παίκτη."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Εμφάνιση του λόμπι πολλαπλών παικτών σε ένα παράθυρο διαλόγου."
 
 #: gui/text/quotes.txt:1
 msgid ""
@@ -794,7 +794,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "\"Είναι πολύ βολικό να ζείτε στην πολυτέλεια, αλλά πολύ βασιλικό να κοπιάζετε. \\[...] Δεν γνωρίζετε ότι το τέλος και ο σκοπός της κατάκτησης είναι να αποφύγετε τα ελαττώματα και τις αδυναμίες του υποταγμένου;\" - Μέγας Αλέξανδρος (Πλούταρχος, \"Βίοι Παράλληλοι\", \"Αλέξανδρος\", εδάφιο 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -939,7 +939,7 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "\"Μπήγοντας το δόρυ του στο πρόσωπο του Μιθριδάτη, ο \\[Αλέξανδρος] τον έριξε στο έδαφος. Στη συνέχεια ο Ροϊσάκης \\[ένας Πέρσης] \\[...] τον χτύπησε στο κεφάλι με το ξίφος του. \\[...] Ο Αλέξανδρος τον έριξε στο έδαφος, διατρυπώντας με τη λόγχη του, μέσω του θώρακα, το στήθος του. Ο Σπιθηδράτης \\[ένας Πέρσης] είχε ήδη εγείρει το σπαθί του εναντίον του Αλεξάνδρου από πίσω, όταν ο Κλείτος \\[...] του έκοψε το χέρι του.\" - Ο Αρριανός για τη μάχη του Γρανικού ( «Αλεξάνδρου Ανάβασης», 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
@@ -1092,7 +1092,7 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Ο Φραόρτης συνελήφθη και τον έφεραν μπροστά μου, του έκοψα τη μύτη, τα αυτιά και τη γλώσσα του και του έβγαλα το ένα μάτι και τον έβαλα αλυσοδεμένο στην είσοδο του παλατιού μου και τον είδαν όλοι. Έπειτα τον σταύρωσα στα Εκβάτανα· και τους άντρες που ήταν πρωτίστως οπαδοί του \\[...] τους έγδαρα και κρέμασα τα δέρματα τους γεμιστά με άχυρο\". - Δαρείος Α. (Επιγραφή Μπεχιστούν, στήλη ΙΙ, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1465,7 +1465,7 @@ msgid ""
 "of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr ""
+msgstr "«Εκεί βρίσκονταν χιλιάδες των χιλιάδων Ρωμαίοι \\[...]. Εδώ κι εκεί μέσα στους δολοφονηθέντας σηκωνόταν μια αιματοβαμμένη φιγούρα του οποίου οι πληγές είχαν αρχίσει να σφύζουν από την ψύχρα της αυγής, και κόβονταν από τους εχθρούς του.» - Λίβιος, περιγράφοντας τα επακόλουθα της μάχης των Καννών, όπου ο Αννίβας προκάλεσε τη μεγαλύτερη ήττα στους Ρωμαίους σε όλη τους την ιστορία (\"Από Κτίσεως Πόλεως\", XXIII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1684,7 +1684,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
 "about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
-msgstr ""
+msgstr "\"Ένας \\[...] έριξε ένα βέλος σε αυτόν με τέτοια ακρίβεια και δύναμη που διαπέρασε το θώρακα του και κόλλησε στα πλευρά του. \\[...] Ο Αλέξανδρος παραπάτησε και λύγισε στα γόνατά του. \\[...] Τελικά ο Αλέξανδρος σκότωσε τον βάρβαρο. Αλλά είχε πολλές πληγές, στο τέλος χτυπήθηκε στο λαιμό με ένα ρόπαλο, και στηρίχθηκε στο τοίχος της πόλης, με τα μάτια του ακόμα καρφωμένα πάνω στους εχθρούς του.\" - Ο Πλούταρχος για την Μαλλιανή Εκστρατεία (\"Βίοι Παράλληλοι\", \"Αλέξανδρος\", εδάφιο 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1721,7 +1721,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"Ο Αθηναϊκός λαός είναι πάντα στη θέση ενός πλοίου χωρίς καπετάνιο. Ο φόβος του εχθρού ή μια καταιγίδα κάνει το πλήρωμα να είναι συγκεντρωμένο και να υπακούει στον πηδαλιούχο, όλα πάνε καλά· αλλά αν ανακάμψουν \\[...] γκρινιάζουν μεταξύ τους \\[...], και το αποτέλεσμα είναι ότι, αφού ξεφεύγουν από τους κινδύνους των ανοικτών θαλασσών και των πιο βίαιων καταιγίδων, καταστρέφουν το πλοίο τους στο λιμάνι και κοντά στην ακτή.\" - Πολύβιος για το Αθηναϊκό πολίτευμα (\"Ιστορίες\", VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -2018,7 +2018,7 @@ msgid ""
 " are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "\"Αυτά είναι τα σωστά ερωτήματα που πρέπει να ρωτήσετε, το χειμώνα γύρω από τη φωτιά \\[...]: Ποιος είσαι εσύ φίλε; Ποια είναι η γη σου; Και πόσο χρονών ήσουν όταν ήρθαν οι Μήδες \\[Πέρσες];\" - Ξενοφάνης, πιθανότατα αναφέρεται σε μια τιμωρητική εκστρατεία εναντίον των ελληνικών πόλεων της Ιωνίας (απόσπασμα 17)"
 
 #: gui/text/quotes.txt:190
 msgid ""

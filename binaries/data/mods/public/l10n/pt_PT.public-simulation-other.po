@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-21 08:14+0000\n"
+"PO-Revision-Date: 2018-04-25 04:36+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Estou a começar uma campanha militar massiva contra %(_player_)s, junta
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr "Juntei um exército enorme para esmagar %(_player_)s. Junte-se a mim e irá receber a sua parte da pilhagem."
+msgstr "Juntei um exército enorme para esmagar %(_player_)s. Junta-te a mim e irás receber a tua parte da pilhagem."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
@@ -57,7 +57,7 @@ msgstr "Acabei de enviar um exército contra %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr "Deixe-me reagrupar o meu exército e só depois me junto a si contra %(_player_)s."
+msgstr "Deixa-me reagrupar o meu exército e só depois me junto a ti contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
@@ -69,21 +69,21 @@ msgstr "Estou a terminar os preparativos para atacar %(_player_)s."
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "Desculpe, neste momento não tenho soldados suficientes; mas o meu próximo ataque irá ser a %(_player_)s."
+msgstr "Desculpa, neste momento não tenho soldados suficientes; mas o meu próximo ataque irá ser a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr "Desculpe, ainda tenho de fortalecer o meu exército. No entanto irei atacar %(_player_)s a seguir."
+msgstr "Desculpa, ainda tenho de fortalecer o meu exército. No entanto irei atacar %(_player_)s a seguir."
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr "Não posso ajudar-te contra o %(_player_)s nos próximos tempos, estou a planear atacar primeiro o %(_player_2)s."
+msgstr "Não posso ajudar-te contra %(_player_)s nos próximos tempos, estou a planear atacar %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
@@ -105,20 +105,20 @@ msgstr "Posso ajudar-te desta vez, %(_player_)s, mas deves gerir melhor os teus 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr "Eu estou a precisar de %(resource)s, pode ajudar? Eu irei agradecer-lhe."
+msgstr "Eu estou a precisar de %(resource)s, podes ajudar? Irei fazer as pazes contigo."
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr "Eu poderia participar de modo mais eficaz no nosso esforço de guerra comum, se pudesse disponibilizar-me alguns %(resource)s."
+msgstr "Eu poderia participar de modo mais eficaz no nosso esforço de guerra comum, se pudesses disponibilizar-me alguns %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr "Se você puder doar alguns %(resource)s, serei capaz de fortalecer meu exército."
+msgstr "Se puderes fornecer-me alguns %(resource)s, poderei fortalecer o meu exército."
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
@@ -137,17 +137,17 @@ msgstr "Foi criada uma nova rota de troca com %(_player_)s. Toma a tua parte dos
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr "%(_player_)s aliou-se a si."
+msgstr "%(_player_)s e eu somos agora aliados."
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr "Eu e %(_player_)s somos agora neutrais."
+msgstr "%(_player_)s e eu somos agora neutrais."
 
 #: simulation/ai/petra/chatHelper.js:54
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr "Eu e %(_player_)s somos agora inimigos."
+msgstr "%(_player_)s e eu somos agora inimigos."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
@@ -159,14 +159,14 @@ msgstr "Não posso aceitar a tua oferta para nos tornarmos aliados, %(_player_)s
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr "Eu não serei seu aliado,%(_player_)s. No entanto, vou considerar um pacto de neutralidade."
+msgstr "Eu não serei teu aliado, %(_player_)s. No entanto, vou considerar um pacto de neutralidade."
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr "Eu rejeito o teu pedido para uma alicança, %(_player_)s, mas podemos tornar-nos neutros."
+msgstr "Eu rejeito o teu pedido para uma aliança, %(_player_)s, mas podemos tornar-nos neutros."
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
@@ -178,12 +178,12 @@ msgstr "%(_player_)s, apenas é concebível para mim um acordo de neutralidade."
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
-msgstr "A nossa antiga aliança não funcionou, %(_player_)s. Tenho de rejeitar a sua proposta."
+msgstr "A nossa antiga aliança não funcionou, %(_player_)s. Tenho de rejeitar a tua proposta."
 
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
-msgstr "Já não me alio consigo, %(_player_)s!"
+msgstr "Não vou aliar-me a ti novamente, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:71
 #, javascript-format
@@ -206,18 +206,18 @@ msgstr "A minha resposta à tua proposta repetida de paz continuará a ser guerr
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr "Vou aceitar a tua proposta para sermos aliados, %(_player_)s. Iremos ambos beneficiar desta parceria."
+msgstr "Vou aceitar a tua proposta para sermos aliados, %(_player_)s. Vamos ambos beneficiar desta parceria."
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr "Uma aliança entre nós é uma boa idéia, %(_player_)s."
+msgstr "Uma aliança entre nós é uma boa ideia, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr "Deixemos que ambas as nossas pessoas prosperem com uma associação pacífica, %(_player_)s."
+msgstr "Deixemos que ambos os nossos povos prosperem com uma associação pacífica, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
@@ -248,7 +248,7 @@ msgstr "%(_player_)s, tens de me enviar um tributo de %(_amount_)s %(_resource_)
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr "A menos que você me envie %(_amount_)s %(_resource_)s, uma aliança não será formada,%(_player_)s."
+msgstr "A não ser que me envies %(_amount_)s %(_resource_)s, não será formada uma aliança, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -269,17 +269,17 @@ msgstr "Ainda estou à espera de %(_amount_)s %(_resource_)s antes de aceitar a 
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr "%(_player_)s, se você não me enviar parte do tributo %(_amount_)s %(_resource_)s em breve, eu vou interromper nossas negociações."
+msgstr "%(_player_)s, se não me enviares parte do tributo %(_amount_)s %(_resource_)s em breve, eu vou interromper as nossas negociações."
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr "Eu não vou me tornar neutro contigo, %(_player_)s."
+msgstr "Não me vou tornar neutro contigo, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
-msgstr "%(_player_)s, devo recusar o seu pedido para um pacto de neutralidade."
+msgstr "%(_player_)s, tenho de recusar o teu pedido para um pacto de neutralidade."
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
@@ -300,14 +300,14 @@ msgstr "Recebo com agrado o teu pedido de paz entre as nossas civilizações %(_
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
-msgstr "%(_player_)s, irei aceitar o teu pedido de neutralidade Que ambas as nossas civilizações beneficiem."
+msgstr "%(_player_)s, irei aceitar o teu pedido de neutralidade. Que ambas as nossas civilizações beneficiem."
 
 #: simulation/ai/petra/chatHelper.js:106
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr "Se você me enviar um tributo de %(_amount_)s %(_resource_)s, eu aceitarei seu pedido de neutralidade, %(_player_)s."
+msgstr "Se me enviares um tributo de %(_amount_)s %(_resource_)s, eu aceitarei o teu pedido de neutralidade, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
@@ -392,14 +392,14 @@ msgstr "Não é possível construir %(name)s num terreno inválido"
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "own"
-msgstr "seu"
+msgstr "meu"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr ""
+msgstr "desconectou-se"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -420,7 +420,7 @@ msgstr "aliado desconectado"
 #: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "neutral"
-msgstr "neutral"
+msgstr "neutro"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -449,8 +449,8 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] "%(name)s está muito perto de uma %(category)s, tem que ser afastado pelo menos %(distance)s metro"
-msgstr[1] "%(name)s está muito perto de uma %(category)s, tem que ser afastado pelo menos %(distance)s metros"
+msgstr[0] "%(name)s está muito perto de %(category)s, tem que ser afastado pelo menos %(distance)s metro"
+msgstr[1] "%(name)s está muito perto de %(category)s, tem que ser afastado pelo menos %(distance)s metros"
 
 #: simulation/components/BuildRestrictions.js:277
 #, javascript-format
@@ -458,15 +458,15 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] "%(name)s está muito afastado de uma %(category)s, tem que estar a pelo menos %(distance)s metro"
-msgstr[1] "%(name)s está muito afastado de uma %(category)s, tem que estar a pelo menos %(distance)s metros"
+msgstr[0] "%(name)s está muito afastado de %(category)s, tem que estar a pelo menos %(distance)s metro"
+msgstr[1] "%(name)s está muito afastado de %(category)s, tem que estar a pelo menos %(distance)s metros"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
-msgstr "seu"
+msgstr "meu"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -512,17 +512,17 @@ msgstr "O último jogador que restar ganha."
 #: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr "Atingiu o limite de construção de %(category)s (limite: %(limit)s)"
+msgstr "Foi atingido o limite de construção de %(category)s (limite: %(limit)s)"
 
 #: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr "Atingiu o limite de recrutamento de %(category)s (limite: %(limit)s)"
+msgstr "Foi atingido o limite de treino de %(category)s (limite: %(limit)s)"
 
 #: simulation/components/EntityLimits.js:171
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr "Atingiu o limite de %(category)s (limite: %(limit)s)"
+msgstr "Foi atingido o limite de %(category)s (limite: %(limit)s)"
 
 #: simulation/components/Player.js:352
 #, javascript-format
@@ -553,20 +553,20 @@ msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resour
 
 #: simulation/components/ProductionQueue.js:394
 msgid "The production queue is full."
-msgstr "A fila de produção está lotada."
+msgstr "A fila de produção está cheia."
 
 #: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
-msgstr "Não há espaço livre para as unidades recrutadas aparecerem"
+msgstr "Não há espaço livre onde possam aparecer as unidades treinadas"
 
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr "%(player)s foi derrotado (trapaça)."
+msgstr "%(player)s foi derrotado (batota)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
-msgstr "É necessário seleccionar uma estrutura que recrute unidades."
+msgstr "É necessário selecionar uma estrutura que treine unidades."
 
 #: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
@@ -579,7 +579,7 @@ msgstr "(Batota - revelar o mapa)"
 #: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr "%(player)s abandonou."
+msgstr "%(player)s abandonou o jogo."
 
 #: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
@@ -598,7 +598,7 @@ msgstr "Não é possível promover uma entidade guarnecida."
 #: simulation/helpers/Commands.js:775
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr "Ataque contra %(_player_)s solicitado."
+msgstr "Solicitado um ataque contra %(_player_)s."
 
 #: simulation/helpers/Commands.js:814
 msgid "There are no bribable units"
@@ -606,7 +606,7 @@ msgstr "Não existem unidades subornáveis"
 
 #: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
-msgstr "Não se consegue retirar unidade(s) guarnecida(s)"
+msgstr "Não se consegue retirar unidades guarnecidas"
 
 #: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
@@ -686,21 +686,21 @@ msgstr "Insana (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr "Avanço rápido (5x)"
+msgstr "Avanço Rápido (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr "Avanço rápido (10x)"
+msgstr "Avanço Rápido (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr "Avanço rápido (20x)"
+msgstr "Avanço Rápido (20x)"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr "Capture todas as relíquias espalhadas pelo mapa e mantenha-as por um certo período de tempo para ganhar o jogo."
+msgstr "Captura todas as relíquias espalhadas pelo mapa e mantêm-nas por um certo período de tempo para ganhares o jogo."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
@@ -710,7 +710,7 @@ msgstr "Capturar a Relíquia"
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr "Derrote os oponentes matando todas as unidades deles e destruindo todas as estruturas deles."
+msgstr "Derrota os oponentes matando todas as unidades deles e destruindo todas as estruturas deles."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -718,7 +718,7 @@ msgstr "Conquistar"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr "Derrote os oponentes destruindo todas as estruturas deles."
+msgstr "Derrota os oponentes destruindo todas as estruturas deles."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -726,15 +726,15 @@ msgstr "Conquistar Estruturas"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr "Derrote os seus oponentes matando todas as unidades deles."
+msgstr "Derrota os teus oponentes matando todas as unidades deles."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr "Unidades de conquista"
+msgstr "Unidades de Conquista"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr "Derrote os oponentes matando-lhes o herói."
+msgstr "Derrota os oponentes matando-lhes o herói."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
@@ -745,7 +745,7 @@ msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured or in allied victory when the owners alliances change."
-msgstr "Seja o primeiro a construir ou capturar uma Maravilha e mantê-la por um certo tempo para ganhar o jogo. O relógio voltará a zero se a Maravilha for destruída ou capturada ou na vitória de um aliado quando as alianças mudam."
+msgstr "Sê o primeiro a construir ou capturar uma Maravilha e mantê-la por um certo tempo para ganhares o jogo. O relógio voltará a zero se a Maravilha for destruída ou capturada ou na vitória de um aliado quando as alianças mudam."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -754,27 +754,27 @@ msgstr "Maravilha"
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr "Muito baixo"
+msgstr "Muito Poucos"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr "Baixo"
+msgstr "Poucos"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr "Média"
+msgstr "Médio"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr "Alto"
+msgstr "Muitos"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr "Muito Alto"
+msgstr "Imensos"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
@@ -783,15 +783,15 @@ msgstr "Jogo final"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "Escolha esta dificuldade se está a jogar pela primeira vez o 0 A.D."
+msgstr "Escolhe esta dificuldade se estás a jogar pela primeira vez o 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
-msgstr "Muito Fácil  "
+msgstr "Muito Fácil"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr "Escolha esta dificuldade se não gostar de ser derrotado."
+msgstr "Escolhe esta dificuldade se não gostares de ser derrotado."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -800,7 +800,7 @@ msgstr "Fácil"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr "Escolha esta dificuldade se já tiver uma boa experiência no 0 A.D."
+msgstr "Escolhe esta dificuldade se já tiveres uma boa experiência no 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
 #: simulation/data/settings/map_sizes.jsonData[2].Name
@@ -809,7 +809,7 @@ msgstr "Média"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr "Escolha esta dificuldade se quiser ser mesmo desafiado."
+msgstr "Escolhe esta dificuldade se quiseres ser mesmo desafiado."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -817,7 +817,7 @@ msgstr "Difícil"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr "Escolha esta dificuldade se não se importar de ser varrido do jogo."
+msgstr "Escolhe esta dificuldade se não te importares de ser varrido do jogo."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -825,7 +825,7 @@ msgstr "Muito Difícil"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
-msgstr "Mínimo"
+msgstr "Pequeníssimo"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
@@ -884,11 +884,11 @@ msgstr "Gigante"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr "Petra Bot"
+msgstr "Robô Petra"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra é o robô padrão com Inteligência Artificial do 0 A.D. Por favor reporte problemas à Wildfire Games (veja o link no menu principal).\n\nA IA tem um bónus/penalidade no estoque de recursos (quer na taxa de recolha quer nas trocas comerciais) variando de -60% para Simulação (caixa de areia) a +60% para Muito Difícil (Médio 0%) e os níveis mais fáceis têm uma taxa de produção e construção mais lenta. Além disso, no nível de Simulação a IA não expande o território nem ataca."
+msgstr "Petra é o robô padrão com Inteligência Artificial do 0 A.D. Por favor reporta problemas à Wildfire Games (vê o link no menu principal).\n\nA IA tem um bónus/penalidade no estoque de recursos (quer na velocidade de recolha quer nas trocas comerciais) variando de -60% em Simulação (caixa de areia) a +60% em Muito Difícil (Médio 0%) e os níveis mais fáceis têm uma velocidade de produção e construção mais lenta. Além disso, no nível de Simulação a IA não expande o território nem ataca."

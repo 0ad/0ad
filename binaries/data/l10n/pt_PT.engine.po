@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-04-16 23:26+0000\n"
+"POT-Creation-Date: 2018-04-23 09:02+0200\n"
+"PO-Revision-Date: 2018-04-25 01:42+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -31,118 +31,170 @@ msgstr ""
 msgid "Long strings"
 msgstr "Textos longos"
 
-#: lobby/XmppClient.cpp:739
+#: lobby/XmppClient.cpp:787
 msgid "unknown subtype (see logs)"
-msgstr "subtipo desconhecido (consulte os registos)"
+msgstr "subtipo desconhecido (consulta os registos)"
 
-#: lobby/XmppClient.cpp:1010 lobby/XmppClient.cpp:1054
-#: lobby/XmppClient.cpp:1093
+#: lobby/XmppClient.cpp:1058 lobby/XmppClient.cpp:1102
+#: lobby/XmppClient.cpp:1141
 msgid "Error"
 msgstr "Erro"
 
-#: lobby/XmppClient.cpp:1013 lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1061 lobby/XmppClient.cpp:1105
 msgid "No error"
 msgstr "Sem erros"
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1063
 msgid "Player already logged in"
-msgstr "O jogador já se encontra logado"
+msgstr "O jogador já se encontra autenticado"
 
-#: lobby/XmppClient.cpp:1017
+#: lobby/XmppClient.cpp:1065
 msgid "Forbidden"
 msgstr "Proibido"
 
-#: lobby/XmppClient.cpp:1019
+#: lobby/XmppClient.cpp:1067
 msgid "Internal server error"
 msgstr "Erro interno do servidor"
 
-#: lobby/XmppClient.cpp:1023
+#: lobby/XmppClient.cpp:1071
 msgid "Not allowed"
 msgstr "Não permitido"
 
-#: lobby/XmppClient.cpp:1024
+#: lobby/XmppClient.cpp:1072
 msgid "Not authorized"
 msgstr "Não autorizado"
 
-#: lobby/XmppClient.cpp:1027
+#: lobby/XmppClient.cpp:1075
 msgid "Recipient temporarily unavailable"
-msgstr "Destinatário temporariamente indisponível "
+msgstr "Destinatário temporariamente indisponível"
 
-#: lobby/XmppClient.cpp:1029
+#: lobby/XmppClient.cpp:1077
 msgid "Registration required"
 msgstr "Requer registo"
 
-#: lobby/XmppClient.cpp:1033
+#: lobby/XmppClient.cpp:1081
 msgid "Service unavailable"
 msgstr "Serviço indisponível"
 
-#: lobby/XmppClient.cpp:1038 lobby/XmppClient.cpp:1077
+#: lobby/XmppClient.cpp:1086 lobby/XmppClient.cpp:1125
 msgid "Unknown error"
-msgstr "Erro desconhecido "
+msgstr "Erro desconhecido"
 
-#: lobby/XmppClient.cpp:1058
+#: lobby/XmppClient.cpp:1106
 msgid "Stream error"
-msgstr "Erro de transmissão "
+msgstr "Erro de transmissão"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1107
 msgid "The incoming stream version is unsupported"
-msgstr "A versão actual de transmissão não e suportada "
+msgstr "A versão de transmissão recebida não é suportada"
 
-#: lobby/XmppClient.cpp:1060
+#: lobby/XmppClient.cpp:1108
 msgid "The stream has been closed by the server"
-msgstr "Transmissão encerrada pelo servidor"
+msgstr "A transmissão foi encerrada pelo servidor"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1112
 msgid "An I/O error occurred"
-msgstr " Ocorreu um erro no I/O"
+msgstr " Ocorreu um erro de I/O"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1114
 msgid "The connection was refused by the server"
-msgstr "Conexão recusada pelo servidor "
+msgstr "A conexão foi recusada pelo servidor"
 
-#: lobby/XmppClient.cpp:1067
+#: lobby/XmppClient.cpp:1115
 msgid "Resolving the server's hostname failed"
 msgstr "Falha ao processar o nome do servidor"
 
-#: lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1116
 msgid "This system is out of memory"
 msgstr "Este sistema não tem mais memória disponível"
 
-#: lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1118
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Ou o certificado do servidor não pode ser verificado ou o handshake TLS não foi completado"
+msgstr "O certificado do servidor não pode ser verificado ou o handshake TLS não foi completado"
 
-#: lobby/XmppClient.cpp:1071
+#: lobby/XmppClient.cpp:1119
 msgid "The server did not offer required TLS encryption"
-msgstr "O servidor não forneceu encriptação TLS necessária"
+msgstr "O servidor não forneceu a encriptação TLS necessária"
 
-#: lobby/XmppClient.cpp:1073
+#: lobby/XmppClient.cpp:1121
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Autenticação falhou. Password incorrecta ou conta inexistente"
+msgstr "A autenticação falhou. A palavra-passe está errada ou a conta não existe"
 
-#: lobby/XmppClient.cpp:1074
+#: lobby/XmppClient.cpp:1122
 msgid "The user or system requested a disconnect"
-msgstr "O utilizador ou o sistema requisitou disconexão"
+msgstr "O utilizador ou o sistema requisitou uma desconexão"
 
-#: lobby/XmppClient.cpp:1075
+#: lobby/XmppClient.cpp:1123
 msgid "There is no active connection"
-msgstr "Não existe uma conexão activa  "
+msgstr "Não existe uma conexão ativa"
 
-#: lobby/XmppClient.cpp:1096
+#: lobby/XmppClient.cpp:1144
 msgid "Your account has been successfully registered"
-msgstr "A sua conta foi registada com sucesso"
+msgstr "A tua conta foi registada com sucesso"
 
-#: lobby/XmppClient.cpp:1097
+#: lobby/XmppClient.cpp:1145
 msgid "Not all necessary information provided"
 msgstr "A Informação fornecida é insuficiente"
 
-#: lobby/XmppClient.cpp:1098
+#: lobby/XmppClient.cpp:1146
 msgid "Username already exists"
 msgstr "Nome de utilizador já existe"
 
-#: ps/SavedGame.cpp:127
+#: ps/ModIo.cpp:244
+#, c-format
+msgid "Failure while starting querying for game id. Error: %s; %s."
+msgstr "Ocorreu uma falha enquanto iniciava o pedido de ID do jogo. Erro: %s; %s."
+
+#: ps/ModIo.cpp:274
+#, c-format
+msgid "Failure while starting querying for mods. Error: %s; %s."
+msgstr "Ocorreu uma falha enquanto iniciava o pedido de mods. Erro: %s; %s."
+
+#: ps/ModIo.cpp:300
+#, c-format
+msgid "Could not create mod directory: %s."
+msgstr "Não foi possível criar o diretório de mods: %s."
+
+#: ps/ModIo.cpp:325
+#, c-format
+msgid "Could not open temporary file for mod download: %s."
+msgstr "Não foi possível abrir o ficheiro temporário para o descarregamento do mod: %s."
+
+#: ps/ModIo.cpp:335
+#, c-format
+msgid "Failed to start the download. Error: %s; %s."
+msgstr "Não foi possível iniciar o descarregamento. Erro: %s; %s."
+
+#: ps/ModIo.cpp:380
+#, c-format
+msgid "Asynchronous download failure: %s, %s."
+msgstr "Falha de descarregamento assíncrono: %s, %s."
+
+#: ps/ModIo.cpp:408
+#, c-format
+msgid "Download failure. Server response: %s; %s."
+msgstr "Falha no descarregamento. Resposta do servidor: %s; %s."
+
+#: ps/ModIo.cpp:511
+msgid "Mismatched filesize."
+msgstr "O tamanho do ficheiro difere."
+
+#: ps/ModIo.cpp:531
+#, c-format
+msgid "Invalid file. Expected md5 %s, got %s."
+msgstr "Ficheiro inválido. Era esperado md5 %s, mas foi obtido %s."
+
+#: ps/ModIo.cpp:545
+msgid "Failed to compute final hash."
+msgstr "O processamento da hash final falhou."
+
+#: ps/ModIo.cpp:551
+msgid "Failed to verify signature."
+msgstr "A verificação da assinatura falhou."
+
+#: ps/SavedGame.cpp:128
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Jogo guardado em '%s'"

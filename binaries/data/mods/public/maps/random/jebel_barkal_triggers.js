@@ -509,11 +509,17 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 	if (!this.jebelBarkal_attackerGroupSpawnPoints)
 		return;
 
+	this.JebelBarkal_StartAttackTimer(jebelBarkal_attackInterval());
+
 	this.debugLog("Attacker wave (at most " + (jebelBarkal_maxPopulation - this.jebelBarkal_attackerUnits.length) + " attackers)");
 	let time = TriggerHelper.GetMinutes();
+
 	let activePlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers();
-	let playerEntities = activePlayers.map(playerID => TriggerHelper.GetEntitiesByPlayer(playerID));
+	let playerEntities = activePlayers.map(playerID =>
+		TriggerHelper.GetEntitiesByPlayer(playerID).filter(TriggerHelper.IsInWorld));
+
 	let patrolPoints = this.GetTriggerPoints(jebelBarkal_attackerGroup_triggerPointPatrol);
+
 	let groupSizeFactor = jebelBarkal_attackerGroup_sizeFactor(
 		activePlayers.length,
 		this.numInitialSpawnPoints,
@@ -582,8 +588,6 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 			"message": markForTranslation("Napata is attacking!"),
 			"translateMessage": true
 		});
-
-	this.JebelBarkal_StartAttackTimer(jebelBarkal_attackInterval());
 };
 
 Trigger.prototype.JebelBarkal_StartAttackTimer = function(delay)

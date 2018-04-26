@@ -15,7 +15,7 @@
 # Armen Dzhagaryan <kdar1987@gmail.com>, 2014
 # bigaltum <bigaltum@gmail.com>, 2014
 # Bogdan Artemyev <bogarto@mail.ru>, 2014
-# Boris Karalnik <eyesucker@gmail.com>, 2015
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018
 # Chris Savi <cs@phoenix-visual.com>, 2017
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Cергей Исаченко <vortexius@gmail.com>, 2014
@@ -64,8 +64,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-03-31 10:16+0000\n"
-"Last-Translator: Ilya Andreev\n"
+"PO-Revision-Date: 2018-04-24 19:23+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1444,7 +1444,7 @@ msgstr "Итог"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr "Лобби "
+msgstr "Комната"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1460,7 +1460,7 @@ msgstr "Выход"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Показатель многопользовательское лобби в диалоговом окне."
+msgstr "Показать многопользовательскую комнату в диалоговом окне."
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15

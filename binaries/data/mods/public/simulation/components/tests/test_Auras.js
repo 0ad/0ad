@@ -7,6 +7,14 @@ Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("Auras.js");
 Engine.LoadComponentScript("AuraManager.js");
 
+var playerID = [0, 1, 2];
+var playerEnt = [10, 11, 12];
+var playerState = ["active", "active", "active"];
+var sourceEnt = 20;
+var targetEnt = 30;
+var auraRange = 40;
+var template = { "Identity": { "Classes": { "_string": "CorrectClass OtherClass" } } };
+
 global.AuraTemplates = {
 	"Get": name => {
 		let template = {
@@ -22,14 +30,6 @@ global.AuraTemplates = {
 		return template;
 	}
 };
-
-var playerID = [0, 1, 2];
-var playerEnt = [10, 11, 12];
-var playerState = "active";
-var sourceEnt = 20;
-var targetEnt = 30;
-var auraRange = 40;
-var template = { "Identity" : { "Classes" : { "_string" : "CorrectClass OtherClass" } } };
 
 function testAuras(name, test_function)
 {
@@ -53,16 +53,16 @@ function testAuras(name, test_function)
 
 	AddMock(playerEnt[1], IID_Player, {
 		"IsAlly": id => id == playerID[1] || id == playerID[2],
-		"IsEnemy": id => id !=  playerID[1] || id != playerID[2],
+		"IsEnemy": id => id != playerID[1] || id != playerID[2],
 		"GetPlayerID": () => playerID[1],
-		"GetState": () => playerState
+		"GetState": () => playerState[1]
 	});
 
 	AddMock(playerEnt[2], IID_Player, {
 		"IsAlly": id => id == playerID[1] || id == playerID[2],
 		"IsEnemy": id => id != playerID[1] || id != playerID[2],
 		"GetPlayerID": () => playerID[2],
-		"GetState": () => playerState
+		"GetState": () => playerState[2]
 	});
 
 	AddMock(targetEnt, IID_Identity, {
@@ -94,15 +94,9 @@ function testAuras(name, test_function)
 	test_function(name, cmpAuras);
 }
 
-testAuras("global", (name, cmpAuras) => {
-	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);
-	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[1], template), 15);
-});
-
 targetEnt = playerEnt[playerID[2]];
 testAuras("player", (name, cmpAuras) => {
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);
-	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[1], template), 15);
 });
 targetEnt = 30;
 
@@ -123,9 +117,9 @@ testAuras("range", (name, cmpAuras) => {
 });
 
 testAuras("garrisonedUnits", (name, cmpAuras) => {
-	cmpAuras.OnGarrisonedUnitsChanged({ "added" : [targetEnt], "removed": [] });
+	cmpAuras.OnGarrisonedUnitsChanged({ "added": [targetEnt], "removed": [] });
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);
-	cmpAuras.OnGarrisonedUnitsChanged({ "added" : [], "removed": [targetEnt] });
+	cmpAuras.OnGarrisonedUnitsChanged({ "added": [], "removed": [targetEnt] });
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 5);
 });
 
@@ -134,7 +128,7 @@ testAuras("garrison", (name, cmpAuras) => {
 	cmpAuras.ApplyGarrisonBonus(targetEnt);
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);
 	cmpAuras.RemoveGarrisonBonus(targetEnt);
-	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 1, targetEnt), 1);
+	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 5);
 });
 
 testAuras("formation", (name, cmpAuras) => {
@@ -145,7 +139,21 @@ testAuras("formation", (name, cmpAuras) => {
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 5);
 });
 
-playerState = "defeated";
 testAuras("global", (name, cmpAuras) => {
+	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);
+	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[1], template), 15);
+	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[2], template), 15);
+	AddMock(sourceEnt, IID_Ownership, {
+		"GetOwner": () => -1
+	});
+	cmpAuras.OnOwnershipChanged({ "from": sourceEnt, "to": -1 });
+	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 5);
 	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[1], template), 5);
+	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[2], template), 5);
+});
+
+playerState[1] = "defeated";
+testAuras("global", (name, cmpAuras) => {
+	cmpAuras.OnGlobalPlayerDefeated({ "playerId": playerID[1] });
+	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[2], template), 5);
 });
