@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-24 09:28+0000\n"
+"PO-Revision-Date: 2018-04-25 14:40+0000\n"
 "Last-Translator: Marijn Billiet <marijnbilliet@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -1572,7 +1572,7 @@ msgstr "Multiplayer"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "Elke Overwinningsvoorwaarde"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -1715,7 +1715,7 @@ msgstr "Grondstoffen"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr ""
+msgstr "Donaties"
 
 #: gui/summary/layout.js:112
 #, javascript-format
@@ -1770,7 +1770,7 @@ msgstr "Vermoord /Gestorven ratio"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr ""
+msgstr "Kaart controle (hoogtepunt)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
@@ -1778,11 +1778,11 @@ msgstr "Bezet gebied (einde)"
 
 #: gui/summary/layout.js:188
 msgid "Map exploration"
-msgstr ""
+msgstr "Kaart exploratie"
 
 #: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
-msgstr ""
+msgstr "Vegetariërs ratio"
 
 #: gui/summary/layout.js:190
 msgid "Feminization"
@@ -1790,14 +1790,14 @@ msgstr "Feminisatie"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr ""
+msgstr "Omkoping"
 
 #: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "Omkoping\n(%(succeeded)s/%(failed)s)"
 
 #: gui/summary/layout.js:357
 msgid "Team total"
@@ -2189,7 +2189,7 @@ msgstr "Daag één of meerdere mensen uit voor een netwerk spel."
 
 #: gui/pregame/mainmenu.xml:(tooltip):512
 msgid "Game options and mod selection."
-msgstr ""
+msgstr "Spelinstellingen en mod instellingen."
 
 #: gui/pregame/mainmenu.xml:(tooltip):527
 msgid ""
@@ -2565,7 +2565,7 @@ msgstr "Spelernaam (multiplayer)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
-msgstr ""
+msgstr "Pauzeer singleplayer spellen wanneer de focus naar een ander venster gaat."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
@@ -2693,7 +2693,7 @@ msgstr "Mist"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Gebruik postprocesfilters op het scherm (HDR, Mist, DOF, etc)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
@@ -2876,7 +2876,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr ""
+msgstr "Mastervolume."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
@@ -2884,7 +2884,7 @@ msgstr "Volume"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr ""
+msgstr "Volume van de muziek."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
@@ -2892,7 +2892,7 @@ msgstr "Volume muziek"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr ""
+msgstr "Volume van het achtergrondgeluid."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
@@ -2916,7 +2916,7 @@ msgstr "UI geluidsvolume"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "Ontvang een audiobericht wanneer iemand jouw alias intypt."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
@@ -3123,7 +3123,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "Zichtbaar aanvalsbereik"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3133,7 +3133,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura Range Visualization"
-msgstr ""
+msgstr "Aura bereik visualisatie"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3185,7 +3185,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr ""
+msgstr "Kleur van je eigen eenheden wanneer diplomatie kleuren zijn geactiveerd."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Diplomacy Colors: Self"
@@ -3193,7 +3193,7 @@ msgstr "Diplomaat kleuren: Eigen"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr ""
+msgstr "Kleur van de geallieerden wanneer diplomatie kleuren zijn geactiveerd."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Ally"
@@ -3201,7 +3201,7 @@ msgstr "Diplomaat kleuren: Geallieerden"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr ""
+msgstr "Kleur van neutrale spelers wanneer diplomatie kleuren zijn geactiveerd."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Neutral"

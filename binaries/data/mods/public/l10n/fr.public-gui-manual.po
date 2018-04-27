@@ -16,15 +16,15 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <deux718281@yahoo.fr>, 2016
 # oiseauroch <tobollive@aol.com>, 2018
-# Polakrity <sxk-fr@live.fr>, 2017
+# Polakrity <sxk-fr@live.fr>, 2017-2018
 # oiseauroch <tobollive@aol.com>, 2018
 # Toto AD <ad@imw.fr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-03-12 15:43+0000\n"
-"Last-Translator: oiseauroch <tobollive@aol.com>\n"
+"PO-Revision-Date: 2018-04-25 11:04+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -246,11 +246,11 @@ msgstr "Maj + F2 : Prendre une grande capture d'écran (6400px*4800px, au format
 
 #: gui/manual/intro.txt:52
 msgid "Alt + S: Switch to the next tab."
-msgstr "Alt + S: bascule sur l'onglet suivant"
+msgstr "Alt + S : Basculer sur l'onglet suivant."
 
 #: gui/manual/intro.txt:53
 msgid "Alt + W: Switch to the previous tab."
-msgstr "Alt + W: bascule sur l'onglet précedent"
+msgstr "Alt + W : Basculer sur l'onglet précédent."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -332,7 +332,7 @@ msgstr "/ (Slash) : Sélectionner un combattant inactif."
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr "Maj + / : ajouter les combattants inactifs à la sélection."
+msgstr "Maj + / : Ajouter les combattants inactifs à la sélection."
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
@@ -344,7 +344,7 @@ msgstr ". (Point) : Sélectionner un travailleur inactif (y compris les citoyens
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr "Alt + . : ajouter les travailleurs inactifs (y compris les citoyens-soldats)."
+msgstr "Alt + . : Ajouter les travailleurs inactifs (y compris les citoyens-soldats)."
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
@@ -352,11 +352,11 @@ msgstr "Alt + . : Sélectionner tous les travailleurs inactifs (y compris les ci
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr "/ (Slash) : Sélectionner une unité inactive."
+msgstr "\\ (BackSlash) : Sélectionner une unité inactive."
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr "Maj + / : ajouter les unités inactives à la sélection."
+msgstr "Maj + \\ : Ajouter l'unité inactive à la sélection."
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
@@ -368,7 +368,7 @@ msgstr "H : (Halte !) Arrêter les unités actuellement sélectionnées."
 
 #: gui/manual/intro.txt:81
 msgid "Y: The unit will go back to work"
-msgstr "Y : L'unité retournera à sa tâche."
+msgstr "Y : L'unité retourne à sa tâche."
 
 #: gui/manual/intro.txt:82
 msgid "U: Unload the garrisoned units of the selected buildings"
@@ -406,13 +406,13 @@ msgstr "F5 (jusqu'à F8) : Déplacer la caméra jusqu'à une position mémorisé
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
 "unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: pour les bâtiments de production sélectionnés. Ajouter la 1ère, 2nd, ... unité affichée à la file de production de tous les bâtiments sélectionnés."
+msgstr "Z, X, C, V, B, N, M : Pour les bâtiments de production sélectionnés. Ajouter la 1re, 2me, ... unité affichée à la file de production de tous les bâtiments sélectionnés."
 
 #: gui/manual/intro.txt:89
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
-msgstr "PageUp avec des unités sélectionnées : met en évidence les unités/bâtiments gardés par la sélection."
+msgstr "PageUp avec des unités sélectionnées : Met en évidence les unités/bâtiments gardés par la sélection."
 
 #: gui/manual/intro.txt:90
 msgid ""
@@ -426,15 +426,15 @@ msgstr "Tab : Voir toutes les barres d'état (indique également la progression 
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
-msgstr "Ctrl + Tab : basculer l'affichage de la fenêtre de résumé"
+msgstr "Ctrl + Tab : Ouvrir/fermer la fenêtre de résumé de la partie."
 
 #: gui/manual/intro.txt:93
 msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr "Ctrl + B: basculer l'affichage de la page trocs et échanges"
+msgstr "Ctrl + B : Ouvrir/fermer la page de Trocs et échanges."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr "Ctrl + B: basculer l'affichage du tutoriel"
+msgstr "Ctrl + P : Afficher/cacher le panneau du tutoriel."
 
 #: gui/manual/intro.txt:96
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -461,7 +461,7 @@ msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
-msgstr "Alt + Clic Droit: Ordonner à une unité de la sélection actuelle de se déplacer/construire/collecter/etc. et la désélectionne. Utilisé pour répartir rapidement les unités sur des tâches spécifiques."
+msgstr "Alt + Clic Droit : Ordonner à une unité de la sélection actuelle de se déplacer/construire/collecter/etc. et la désélectionne. Utilisé pour répartir rapidement les unités sur des tâches spécifiques."
 
 #: gui/manual/intro.txt:102
 msgid ""
@@ -485,7 +485,7 @@ msgstr "Alt + Glissement Gauche \\[sur unité(s)] : Ne sélectionner que les uni
 
 #: gui/manual/intro.txt:106
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr "Alt + Y + Glissement Gauche sur des unités: Ne sélectionner que les unités non-militaires"
+msgstr "Alt + Y + Glissement Gauche sur des unités : Ne sélectionner que les unités non-militaires."
 
 #: gui/manual/intro.txt:107
 msgid "I + Left Drag over units on map: Only select idle units"
@@ -493,7 +493,7 @@ msgstr "I + Glissement Gauche \\[sur unité(s)] : Ne sélectionner que les unit�
 
 #: gui/manual/intro.txt:108
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr "I + Glissement Gauche sur des unités : Ne sélectionner que les unités blessées"
+msgstr "I + Glissement Gauche sur des unités : Ne sélectionner que les unités blessées."
 
 #: gui/manual/intro.txt:109
 msgid ""
@@ -544,13 +544,13 @@ msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "Alt + Maj + W: Basculer entre les modes fil de fer (appuyez une fois pour obtenir des fils de fer superposés sur les modèles texturés, deux fois pour obtenir seulement les fils de fer colorés par les textures, trois fois pour revenir au mode texturé normal)"
+msgstr "Alt + Maj + W : Basculer entre les modes fil de fer (appuyez une fois pour obtenir des fils de fer superposés sur les modèles texturés, deux fois pour obtenir seulement les fils de fer colorés par les textures, trois fois pour revenir au mode texturé normal)."
 
 #: gui/manual/intro.txt:120
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr "Alt + Maj + S : Basculer l'affichage des silhouettes des unités (peut améliorer sensiblement les performances)"
+msgstr "Alt + Maj + S : Basculer l'affichage des silhouettes des unités (peut améliorer sensiblement les performances)."
 
 #: gui/manual/intro.txt:121
 msgid "Alt + Z: Toggle sky"
@@ -559,7 +559,7 @@ msgstr "Alt + Z : Basculer l'affichage du ciel"
 #: gui/manual/intro.txt:122
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr "Alt + V : Basculer l'affichage de la portée des batiments défensifs sélectionnés"
+msgstr "Alt + C : Basculer l'affichage de la portée des bâtiments défensifs sélectionnés."
 
 #: gui/manual/intro.txt:123
 msgid ""

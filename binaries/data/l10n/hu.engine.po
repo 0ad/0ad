@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 13:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-25 14:57+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,54 +147,54 @@ msgstr "A felhasználónév már létezik"
 #: ps/ModIo.cpp:244
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "A játékazonosító lekérdezésének megkezdése meghiúsult. Hiba: %s; %s."
 
 #: ps/ModIo.cpp:274
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "A módosítások lekérdezése meghiúsult. Hiba: %s; %s."
 
 #: ps/ModIo.cpp:300
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "Nem hozható létre módosítás könyvtár: %s."
 
 #: ps/ModIo.cpp:325
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "Nem nyitható meg ideiglenes fájl a módosítás letöltéséhez: %s."
 
 #: ps/ModIo.cpp:335
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "A letöltés megkezdése meghiúsult. Hiba: %s; %s."
 
 #: ps/ModIo.cpp:380
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Az aszinkron letöltés meghiúsult: %s, %s."
 
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Letöltési hiba. A kiszolgáló válasza: %s; %s."
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Nem egyező fájlméret."
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Érvénytelen fájl. Várt md5: %s, kapott: %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "A végső ellenőrzőösszeg kiszámítása meghiúsult."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Az aláírás ellenőrzése meghiúsult."
 
 #: ps/SavedGame.cpp:128
 #, c-format
