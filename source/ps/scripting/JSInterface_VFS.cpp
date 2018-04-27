@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,15 +17,16 @@
 
 #include "precompiled.h"
 
-#include <sstream>
+#include "JSInterface_VFS.h"
 
+#include "lib/file/vfs/vfs_util.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
 #include "scriptinterface/ScriptVal.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "ps/scripting/JSInterface_VFS.h"
-#include "lib/file/vfs/vfs_util.h"
+
+#include <sstream>
 
 // Only allow engine compartments to read files they may be concerned about.
 #define PathRestriction_GUI {L""}

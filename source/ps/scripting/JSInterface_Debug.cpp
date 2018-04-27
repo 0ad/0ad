@@ -26,6 +26,7 @@
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
 #include "ps/UserReport.h"
+#include "scriptinterface/ScriptInterface.h"
 
 /**
  * Microseconds since the epoch.

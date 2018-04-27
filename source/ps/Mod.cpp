@@ -27,6 +27,7 @@
 #include "ps/Filesystem.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Paths.h"
+#include "scriptinterface/ScriptInterface.h"
 
 std::vector<CStr> g_modsLoaded;
 

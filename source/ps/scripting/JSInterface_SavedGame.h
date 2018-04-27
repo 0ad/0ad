@@ -33,4 +33,4 @@ namespace JSI_SavedGame
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
 
-#endif
+#endif // INCLUDED_JSI_SAVEDGAME

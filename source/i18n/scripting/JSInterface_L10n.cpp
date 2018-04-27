@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "i18n/L10n.h"
 #include "lib/utf8.h"
 #include "ps/Profile.h"
+#include "scriptinterface/ScriptInterface.h"
 
 // Returns a translation of the specified English string into the current language.
 std::wstring JSI_L10n::Translate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& sourceString)

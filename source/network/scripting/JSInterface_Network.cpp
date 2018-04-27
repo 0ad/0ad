@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include "network/scripting/JSInterface_Network.h"
+#include "JSInterface_Network.h"
 
 #include "lib/external_libraries/enet.h"
 #include "lib/external_libraries/libsdl.h"
@@ -28,6 +28,7 @@
 #include "network/StunClient.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
+#include "scriptinterface/ScriptInterface.h"
 
 u16 JSI_Network::GetDefaultPort(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {

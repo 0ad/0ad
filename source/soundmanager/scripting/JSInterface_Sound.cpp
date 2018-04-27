@@ -15,7 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "precompiled.h"
-#include "scriptinterface/ScriptInterface.h"
 
 #include "JSInterface_Sound.h"
 
@@ -24,6 +23,7 @@
 #include "maths/Vector3D.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "soundmanager/SoundManager.h"
 
 #include <sstream>

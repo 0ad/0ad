@@ -20,6 +20,7 @@
 #include "JSInterface_Mod.h"
 
 #include "ps/Mod.h"
+#include "scriptinterface/ScriptInterface.h"
 
 extern void restart_engine();
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 #include "ps/Game.h"
 #include "ps/Replay.h"
 #include "ps/World.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/system/TurnManager.h"
 #include "simulation2/Simulation2.h"
 #include "soundmanager/SoundManager.h"

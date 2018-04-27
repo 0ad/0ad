@@ -37,4 +37,4 @@ namespace JSI_Main
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
 
-#endif
+#endif // INCLUDED_JSI_MAIN

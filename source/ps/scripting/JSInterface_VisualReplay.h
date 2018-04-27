@@ -33,4 +33,4 @@ namespace JSI_VisualReplay
 	CStrW GetReplayDirectoryName(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
 }
 
-#endif
+#endif // INCLUDED_JSI_VISUALREPLAY

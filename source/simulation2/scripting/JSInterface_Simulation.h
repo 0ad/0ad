@@ -38,4 +38,4 @@ namespace JSI_Simulation
 	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
 }
 
-#endif
+#endif // INCLUDED_JSI_SIMULATION

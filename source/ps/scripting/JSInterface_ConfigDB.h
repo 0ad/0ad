@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,8 +18,8 @@
 #ifndef INCLUDED_JSI_CONFIGDB
 #define INCLUDED_JSI_CONFIGDB
 
-#include "scriptinterface/ScriptInterface.h"
 #include "ps/ConfigDB.h"
+#include "scriptinterface/ScriptInterface.h"
 
 namespace JSI_ConfigDB
 {
@@ -36,4 +36,4 @@ namespace JSI_ConfigDB
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
 
-#endif
+#endif // INCLUDED_JSI_CONFIGDB

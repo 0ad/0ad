@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 #include "ps/GameSetup/Atlas.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
 extern void restart_mainloop_in_atlas();

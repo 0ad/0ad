@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,12 +15,11 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef INCLUDED_JSINTERFACE_GAMEVIEW
 #define INCLUDED_JSINTERFACE_GAMEVIEW
 
-#include "scriptinterface/ScriptInterface.h"
 #include "maths/FixedVector3D.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/helpers/Position.h"
 #include "simulation2/system/Entity.h"
 
@@ -50,4 +49,4 @@ namespace JSI_GameView
 
 #undef DECLARE_BOOLEAN_SCRIPT_SETTING
 
-#endif
+#endif // INCLUDED_JSINTERFACE_GAMEVIEW
