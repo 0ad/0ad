@@ -47,7 +47,6 @@ class CSimulation2;
 class CTextureManager;
 class CTimeManager;
 class RenderPathVertexShader;
-class ScriptInterface;
 class ShadowMap;
 class SkyManager;
 class TerrainRenderer;

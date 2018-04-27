@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,11 +17,12 @@
 
 #include "precompiled.h"
 
-#include "scriptinterface/ScriptInterface.h"
 #include "JSInterface_Console.h"
+
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
+#include "scriptinterface/ScriptInterface.h"
 
 bool JSI_Console::CheckGlobalInitialized()
 {

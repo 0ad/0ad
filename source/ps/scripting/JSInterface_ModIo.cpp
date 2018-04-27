@@ -20,7 +20,6 @@
 #include "JSInterface_ModIo.h"
 
 #include "ps/CLogger.h"
-#include "ps/Mod.h"
 #include "ps/ModIo.h"
 
 void JSI_ModIo::StartGetGameId(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))

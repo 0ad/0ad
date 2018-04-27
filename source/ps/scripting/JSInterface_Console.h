@@ -18,7 +18,7 @@
 #ifndef INCLUDED_JSI_CONSOLE
 #define INCLUDED_JSI_CONSOLE
 
-class ScriptInterface;
+#include "scriptinterface/ScriptInterface.h"
 
 namespace JSI_Console
 {
