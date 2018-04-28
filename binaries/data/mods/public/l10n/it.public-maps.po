@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 14:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-25 16:51+0000\n"
+"Last-Translator: Christian Bellagamba <christiandes00@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
-msgstr "I giocatori iniziano su due lati di un mare con isole sparse."
+msgstr "I giocatori iniziano su due sponde di un mare con isole sparse."
 
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
@@ -57,7 +57,7 @@ msgstr "Pianure Africane"
 msgid ""
 "High Alpine mountains surrounding deep valleys strung with mountain streams "
 "and finger-like lakes."
-msgstr "Alte montagne alpine che circondano valli profonde legate tra loro con ruscelli di montagna e laghi allungati."
+msgstr "Alte montagne alpine che circondano da profonde valli inframmezzate da ruscelli di montagna e lunghi laghi."
 
 #: maps/random/alpine_lakes.jsonsettings.Name
 msgid "Alpine Lakes"
@@ -65,7 +65,7 @@ msgstr "Laghi Alpini"
 
 #: maps/random/alpine_valley.jsonsettings.Description
 msgid "High Alpine mountains bordering deep valleys."
-msgstr "Valli profonde delimitate da alte montagne alpine."
+msgstr "Alte montagne alpine con profonde valli limitrofe."
 
 #: maps/random/alpine_valley.jsonsettings.Name
 msgid "Alpine Valley"
@@ -75,7 +75,7 @@ msgstr "Valle Alpina"
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
-msgstr "Alte scogliere si affacciano sul terreno sottostante. Risorse abbondanti ti attendono sulle scogliere, ma fa attenzione alle imboscate dei nemici."
+msgstr "Alte scogliere si affacciano sul terreno sottostante. Abbondanti risorse ti attendono sulle scogliere, ma fa attenzione alle imboscate dei nemici."
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
@@ -107,7 +107,7 @@ msgid ""
 "animals, profiting from its milder climate. Wolves, ever present, have shed "
 "their winter clothes; deer, hares and muskox populate the plains. The last "
 "traces of winter are rapidly disappearing, only to reappear very soon."
-msgstr "L'estate è arrivata alle regioni fredde del nord e con essa molti animali, approfittando del clima più mite. I lupi, sempre presenti, hanno mutato i loro manti invernali; cervi, lepri e buoi muschiati popolano le pianure. Le ultime tracce dell'inverno stanno rapidamente scomparendo, per poi tornare molto presto."
+msgstr "L'estate è arrivata nelle fredde regioni del nord e con essa molti animali, approfittando del clima più mite. I lupi, sempre presenti, hanno mutato i loro manti invernali; cervi, lepri e buoi muschiati popolano le pianure. Le ultime tracce dell'inverno stanno rapidamente scomparendo, per poi tornare molto presto."
 
 #: maps/random/arctic_summer.jsonsettings.Name
 msgid "Arctic Summer"
@@ -329,11 +329,11 @@ msgid ""
 "making way for the semi-arid savannahs and small acacia forests dot the "
 "landscape. The area is rich in resources and the ever-present Nile brings "
 "life, but grave threats loom on the opposite riverbank."
-msgstr ""
+msgstr "\"L'isola di Meroe\", una vasta penisola fiancheggiata dai fiumi Nilo e Atbarah, costituiva il cuore dell'antica Kush. Qui gli aspri deserti iniziano a lasciare spazio alle savane semi aride e piccole foreste di acacia punteggiano il paesaggio. L'area è ricca di risorse e l'onnipresente Nilo porta la vita, ma gravi minacce incombono sull'altra sponda del fiume."
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
 msgid "Fields of Meroe"
-msgstr ""
+msgstr "Campi di Meroe"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
@@ -942,7 +942,7 @@ msgctxt "biome definition"
 msgid ""
 "Revelling in the much awaited rain, the baked land transforms into a lush "
 "haven for both man and beast."
-msgstr "Godendosi la tanto attesa pioggia, la terra riarsa si trasforma in un paradiso lussureggiante sia per gli uomini che per gli animali."
+msgstr "In festa per la tanto attesa pioggia, la terra riarsa si trasforma in un paradiso lussureggiante sia per gli uomini che per gli animali."
 
 #: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
 msgid "Rainy Season"
@@ -1279,7 +1279,7 @@ msgstr "Napata sta attaccando!"
 #: maps/random/jebel_barkal_triggers.js:590
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
-msgstr "Napata attaccherà in %(time)s!"
+msgstr "Napata attaccherà tra %(time)s!"
 
 #: maps/random/survivalofthefittest_triggers.js:163
 #, javascript-format
@@ -2685,7 +2685,7 @@ msgid ""
 "- Fayyum: crocodile shrine, nile dam\n"
 "- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr "Combatti per i resti dell'antico Egitto\n\nI giocatori iniziano con città pienamente sviluppate e piccoli eserciti, ciascuno avente diversi vantaggi e svantaggi. Fate attenzione, ci sono 7 imponenti forti e banditi predatori!\n\nE' l'ultimo secolo antecedente lo 0 A.D. l'Egitto è diviso internamente tra influenze ellenistiche (Alessandria, rappresentate dai Seleucidi) e tradizionali (Menfi, rappresentate dai Tolomei). Tebe nella regione a sud del Nilo è già stata conquistata da Kush. A nord ovest Al-Dschabal al-Achdar, dove è situata la città mediterranea di Cirene, i Romani stanno preparando la loro invasione. Dal deserto ad est at-Tih e dal monte Sinai i nemici (rappresentati dai Persiani) stanno spingendo in avanti e l'oasi Siwa. Anche Charga (rappresentata da Cartagine) nel deserto a sud est sta cercando di ottenere una fetta della torta.\nLuoghi:\n- Alessandria: biblioteca, porto\n- Menfi: Necropoli, Piramidi, santuario di Api\n- Tebe: distretto del tempio, Valle dei Re\n- Cirene: Macchia mediterranea, Uliveti\n- Fayyum: santuario del coccodrillo, diga del Nilo \n- Deserto dell'Est: Monte Sinai, valle del Wadi, barriera corallina del Mar Rosso\n- Deserto dell'Ovest: Oasi Charga e Siwa, Depressione di Qattara\n"
+msgstr "Combatti per i resti dell'antico Egitto\n\nI giocatori iniziano con città pienamente sviluppate e piccoli eserciti, ciascuno con diversi vantaggi e svantaggi. Fate attenzione, ci sono 7 imponenti forti e banditi predatori!\n\nE' l'ultimo secolo antecedente lo 0 A.D. l'Egitto è diviso internamente tra influenze ellenistiche (Alessandria, rappresentate dai Seleucidi) e tradizionali (Menfi, rappresentate dai Tolomei). Tebe nella regione a sud del Nilo è già stata conquistata da Kush. A nord ovest Al-Dschabal al-Achdar, dove è situata la città mediterranea di Cirene, i Romani stanno preparando la loro invasione. Dal deserto ad est at-Tih e dal monte Sinai i nemici (rappresentati dai Persiani) stanno spingendo in avanti e l'oasi Siwa. Anche Charga (rappresentata da Cartagine) nel deserto a sud est sta cercando di ottenere una fetta della torta.\nLuoghi:\n- Alessandria: biblioteca, porto\n- Menfi: Necropoli, Piramidi, santuario di Api\n- Tebe: distretto del tempio, Valle dei Re\n- Cirene: Macchia mediterranea, Uliveti\n- Fayyum: santuario del coccodrillo, diga del Nilo \n- Deserto dell'Est: Monte Sinai, valle del Wadi, barriera corallina del Mar Rosso\n- Deserto dell'Ovest: Oasi Charga e Siwa, Depressione di Qattara\n"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""

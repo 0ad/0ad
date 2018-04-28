@@ -44,4 +44,4 @@ namespace JSI_Network
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
 
-#endif
+#endif // INCLUDED_JSI_NETWORK

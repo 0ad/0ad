@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,16 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// JSInterface_VFS.h
-//
-// The JavaScript wrapper around useful snippets of the VFS
-
 #ifndef INCLUDED_JSI_VFS
 #define INCLUDED_JSI_VFS
 
 #include "scriptinterface/ScriptInterface.h"
-
-// these are registered in ScriptFunctions.cpp, hence the need for a header.
 
 namespace JSI_VFS
 {
@@ -61,4 +55,4 @@ namespace JSI_VFS
 	void RegisterScriptFunctions_Maps(const ScriptInterface& scriptInterface);
 }
 
-#endif
+#endif // INCLUDED_JSI_VFS

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,8 +18,8 @@
 #ifndef INCLUDED_JSINTERFACE_L10N
 #define INCLUDED_JSINTERFACE_L10N
 
-#include "scriptinterface/ScriptInterface.h"
 #include "lib/external_libraries/icu.h"
+#include "scriptinterface/ScriptInterface.h"
 
 /**
  * Namespace for the functions of the JavaScript interface for
@@ -452,4 +452,4 @@ namespace JSI_L10n
 	void ReevaluateCurrentLocaleAndReload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
 }
 
-#endif
+#endif // INCLUDED_JSINTERFACE_L10N

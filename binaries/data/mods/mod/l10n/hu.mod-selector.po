@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 16:51+0000\n"
-"Last-Translator: Gyuris Gellért <bubu@ujevangelizacio.hu>\n"
+"PO-Revision-Date: 2018-04-25 15:00+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,7 +114,7 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "A modok listáját nem sikerült lekérni.\n\n%(technicalDetails)s"
+msgstr "A módosítások listáját nem sikerült lekérni.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
@@ -151,7 +151,7 @@ msgstr "Ellenőrzési hiba"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr "mod.io felület inicializálása."
+msgstr "A mod.io felület előkészítése."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
@@ -164,7 +164,7 @@ msgstr "Mégse"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr "Az elérhető modok listájának lekérésre és frissítése."
+msgstr "Az elérhető módosítások listájának lekérésre és frissítése."
 
 #: gui/modio/modio.js:233
 msgid "Updating"
@@ -177,7 +177,7 @@ msgstr "Frissítés megszakítása"
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr "“%(modname)s” letöltése"
+msgstr "„%(modname)s” letöltése"
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
@@ -234,7 +234,7 @@ msgid ""
 "While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
 "\n"
 "Do you really want to connect?"
-msgstr "A mod.io online szolgáltatáshoz való csatlakozás előtt állsz. Ez gyors hozzáférést tesz lehetővé a közösség által készített modokhoz, de nem áll a Wildfire Games irányítása alatt.\n\nMiközben nagy gondot fordítunk a biztonság megteremtésére, abszolút bizonyossággal nem garantálhatjuk, hogy ez nem jelent biztonsági kockázatot.\n\nValóban szeretnél kapcsolódni?"
+msgstr "A mod.io online szolgáltatáshoz való csatlakozás előtt állsz. Ez gyors hozzáférést tesz lehetővé a közösség által készített módosításokhoz, de nem áll a Wildfire Games irányítása alatt.\n\nMiközben nagy gondot fordítunk a biztonság megteremtésére, abszolút bizonyossággal nem garantálhatjuk, hogy ez nem jelent biztonsági kockázatot.\n\nValóban szeretnél kapcsolódni?"
 
 #: gui/modmod/modmod.js:312
 msgid "Connect to mod.io?"
@@ -255,7 +255,7 @@ msgstr "OK"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "mod.io modok"
+msgstr "mod.io módosítások"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -331,7 +331,7 @@ msgstr "Súgó"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr "Modok letöltése"
+msgstr "Módosítások"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -369,13 +369,13 @@ msgstr "Modolási útmutató"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr "mod.io meglátogatása"
+msgstr "mod.io felkeresése"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "A 0 A.D. úgy lett tervezve, hogy könnyed modolható legyen. A modok .pyromod fájlként kerülmnek terjesztésre, amelyeket .zip fájlként lehet megnyitni."
+msgstr "A 0 A.D. úgy lett tervezve, hogy könnyed módosítható legyen. A módosítások .pyromod fájlként kerülnek terjesztésre, melyeket .zip fájlként lehet megnyitni."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -385,13 +385,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "A mod telepítéséhez csak nyisd meg a fájlt a 0 A.D. programmal (vagy dupla kattintás a fájlon és választ a játékkal való megnyitást, vagy futtasd a \"pyrogenesis fájl.pyromod\" parancsot terminálban). A mod ezek után elérhető lesz a modválasztóban és tetszés szerint engedélyezhető lesz vagy letiltható. A mod kézzel letörölhető a fájlkezelőben (lásd: https://trac.wildfiregames.com/wiki/GameDataPaths)"
+msgstr "A módosítás telepítéséhez csak nyisd meg a fájlt a 0 A.D. programmal (vagy dupla kattintás a fájlon, és válaszd a játékkal való megnyitást, vagy futtasd a „pyrogenesis fájl.pyromod” parancsot a terminálban). A módosítás ezek után elérhető lesz a módosításválasztóban, és tetszés szerint engedélyezhető vagy letiltható. A módosítás kézzel letörölhető a fájlkezelőben (lásd: https://trac.wildfiregames.com/wiki/GameDataPaths)"
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "A játék további modolási információihoz lásd az online modolási útmutatót (Kattints alább a „Modolási útmutató” gombon)"
+msgstr "A játék további módosítási információihoz lásd az online módosítási útmutatót (Kattints alább a „Módosítási útmutató” gombon)"
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -400,4 +400,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "A mod.io szolgáltatást a DBolical, az IndieDB és a ModDB mögött álló vállalat fejlesztette ki. Ezek a weboldalak hosszú ideje terjesztik a 0 A.D. és más indie projekteket. Ma a mod.io lehetővé teszi, hogy listázzuk és letöltsük az összes modot, amelyet e csapat ellenőriz. Kattints a „Modok letöltése” gombra, hogy kipróbálhass és telepíts néhányat!"
+msgstr "A mod.io szolgáltatást a DBolical, az IndieDB és a ModDB mögött álló vállalat fejlesztette ki. Ezek a weboldalak hosszú ideje terjesztik a 0 A.D. és más indie projekteket. Ma a mod.io lehetővé teszi, hogy listázd és letöltsd az összes módosítást, amelyet e csapat ellenőriz. Kattints a „Modok letöltése” gombra, hogy kipróbálhass és telepíts néhányat!"

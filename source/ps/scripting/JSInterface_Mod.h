@@ -21,8 +21,6 @@
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 
-class ScriptInterface;
-
 namespace JSI_Mod
 {
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,10 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "scriptinterface/ScriptInterface.h"
-
 #ifndef INCLUDED_JSI_GUITYPES
 #define INCLUDED_JSI_GUITYPES
+
+#include "scriptinterface/ScriptInterface.h"
 
 #define GUISTDTYPE(x)							\
 	namespace JSI_GUI##x						\
@@ -41,4 +41,4 @@ namespace JSI_GUITypes
 	void init(ScriptInterface& scriptInterface);
 }
 
-#endif
+#endif // INCLUDED_JSI_GUITYPES

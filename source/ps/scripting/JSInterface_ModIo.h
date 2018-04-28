@@ -18,10 +18,7 @@
 #ifndef INCLUDED_JSI_MODIO
 #define INCLUDED_JSI_MODIO
 
-#include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
-
-class ScriptInterface;
 
 namespace JSI_ModIo
 {

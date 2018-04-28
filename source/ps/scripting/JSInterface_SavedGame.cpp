@@ -17,13 +17,14 @@
 
 #include "precompiled.h"
 
-#include "ps/scripting/JSInterface_SavedGame.h"
+#include "JSInterface_SavedGame.h"
 
 #include "network/NetClient.h"
 #include "network/NetServer.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/SavedGame.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
 

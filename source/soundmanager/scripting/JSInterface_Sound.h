@@ -26,4 +26,4 @@ namespace JSI_Sound
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
 
-#endif // #ifndef INCLUDED_SOUNDSCRIPTINTERFACE
+#endif // INCLUDED_SOUNDSCRIPTINTERFACE

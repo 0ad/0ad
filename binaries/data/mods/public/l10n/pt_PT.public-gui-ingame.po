@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-04-25 06:17+0000\n"
+"PO-Revision-Date: 2018-04-25 11:51+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -46,11 +46,11 @@ msgstr[1] "Distância básica: %(range)s metros"
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Bónus de alcance médio: %(range)s meter"
-msgstr[1] "Bónus de alcance médio: %(range)s meters"
+msgstr[1] "Bónus de alcance médio: %(range)s metros"
 
 #: gui/session/input.js:689
 msgid "Cannot build wall here!"
-msgstr "Não pode construir uma muralha aqui!"
+msgstr "Não se pode construir uma muralha aqui!"
 
 #: gui/session/menu.js:165
 msgid "Are you sure you want to resign?"
@@ -113,16 +113,16 @@ msgstr "Tempo restante de cessar-fogo: %(time)s."
 #: gui/session/menu.js:455
 msgctxt "team"
 msgid "None"
-msgstr "Nenhum(a)"
+msgstr "Nenhuma"
 
 #: gui/session/menu.js:460 gui/session/messages.js:178
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
-msgstr "Aliados"
+msgstr "Aliado"
 
 #: gui/session/menu.js:461 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
-msgstr "Neutrais"
+msgstr "Neutral"
 
 #: gui/session/menu.js:461 gui/session/messages.js:179
 #: gui/session/diplomacy_window.xml:(tooltip):36
@@ -171,7 +171,7 @@ msgstr "%(openingTradingString)s, %(garrisonedString)s e %(inactiveString)s."
 #: gui/session/menu.js:886 gui/session/menu.js:959
 #, javascript-format
 msgid "%(openingTradingString)s."
-msgstr "%(openingTradingString)s. "
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:887 gui/session/menu.js:958
 #, javascript-format
@@ -181,7 +181,7 @@ msgstr "%(openingTradingString)s e %(inactiveString)s."
 #: gui/session/menu.js:892
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
-msgstr "%(openingGarrisonedString)s. "
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:893
 #, javascript-format
@@ -304,7 +304,7 @@ msgstr "Tributar %(resourceAmount)s %(resourceType)s a %(playerName)s. Shift + c
 #: gui/session/messages.js:106
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s começou a reentrar no jogo."
+msgstr "%(player)s está a começar a entrar novamente no jogo."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/messages.js:108
@@ -321,7 +321,7 @@ msgstr "%(player)s saiu do jogo."
 #: gui/session/messages.js:119
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr "%(player)s reentrou no jogo."
+msgstr "%(player)s entrou novamente no jogo."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/messages.js:121
@@ -359,7 +359,7 @@ msgstr "Razão: %(reason)s."
 
 #: gui/session/messages.js:157
 msgid "Waiting for players to connect:"
-msgstr "Aguardando que os jogadores se conectem:"
+msgstr "A aguardar que os jogadores se conectem:"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
@@ -499,7 +499,7 @@ msgstr "Clica quando estiveres pronto."
 
 #: gui/session/messages.js:598
 msgid "Follow the instructions."
-msgstr "Siga as instruções."
+msgstr "Segue as instruções."
 
 #: gui/session/messages.js:689
 msgctxt "Separator for a list of client loading messages"
@@ -509,7 +509,7 @@ msgstr ", "
 #: gui/session/messages.js:695
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Erro de fora de sincronização na vez %(turn)s."
+msgstr "Erro de sincronização na vez %(turn)s."
 
 #: gui/session/messages.js:699
 #, javascript-format
@@ -530,12 +530,12 @@ msgstr "O estado do teu jogo é diferente do estado do jogo do hospedeiro."
 #: gui/session/messages.js:711
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Ainda não é suportado voltar a entrar em jogos multi-jogadores com IA."
+msgstr "Ainda não é possível voltar a entrar em jogos multi-jogadores com IA."
 
 #: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr "Certifique-se que todos os jogadores usam os mesmos mods."
+msgstr "Certifica-te que todos os jogadores usam os mesmos mods."
 
 #: gui/session/messages.js:715
 msgctxt "Out-Of-Sync"
@@ -604,7 +604,7 @@ msgstr "HH:mm"
 
 #: gui/session/messages.js:974
 msgid "Unknown Player"
-msgstr "Jogador desconhecido"
+msgstr "Jogador Desconhecido"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -620,7 +620,7 @@ msgstr "%(player)s enviou-te %(amounts)s."
 #: gui/session/messages.js:1033
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr "Enviaste %(player2)s %(amounts)s."
+msgstr "Enviaste a %(player2)s %(amounts)s."
 
 #: gui/session/messages.js:1038
 #, javascript-format
@@ -635,7 +635,7 @@ msgstr "%(player)s trocou %(amountsBought)s por %(amountsSold)s."
 #: gui/session/messages.js:1071
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "O seu gado foi atacado por %(attacker)s!"
+msgstr "O teu gado foi atacado por %(attacker)s!"
 
 #: gui/session/messages.js:1072
 #, javascript-format
@@ -645,7 +645,7 @@ msgstr "Foste atacado por %(attacker)s!"
 #: gui/session/messages.js:1089
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr "%(player)s está a avançar para a fase %(phaseName)s."
+msgstr "%(player)s está a avançar para a %(phaseName)s."
 
 #: gui/session/messages.js:1091
 #, javascript-format
@@ -655,7 +655,7 @@ msgstr "A %(phaseName)s de %(player)s foi abortada."
 #: gui/session/messages.js:1094
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr "%(player)s alcançou %(phaseName)s."
+msgstr "%(player)s alcançou a %(phaseName)s."
 
 #: gui/session/messages.js:1146
 #, javascript-format
@@ -670,7 +670,7 @@ msgstr "%(genericName)s — Montado"
 #: gui/session/selection_details.js:84
 #, javascript-format
 msgid "%(rank)s Rank"
-msgstr "Posto %(rank)s "
+msgstr "Graduação %(rank)s"
 
 #: gui/session/selection_details.js:114
 #, javascript-format
@@ -788,24 +788,24 @@ msgstr "Fim do alerta."
 #: gui/session/selection_panels.js:384
 #, javascript-format
 msgid "Unload %(name)s"
-msgstr "Descarregar %(name)s"
+msgstr "Desalojar %(name)s"
 
 #: gui/session/selection_panels.js:385
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Clique esquerdo para descarregar 1 unidade. Shift + clique para descarregar todas as unidades deste tipo."
+msgstr "Clique esquerdo para desalojar 1 unidade. Shift + clique para desalojar todas as unidades deste tipo."
 
 #: gui/session/selection_panels.js:388 gui/session/selection_panels.js:888
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr "Jogador:%(playername)s"
+msgstr "Jogador: %(playername)s"
 
 #: gui/session/selection_panels.js:425
 msgid "Lock Gate"
-msgstr "Fechar o portão"
+msgstr "Fechar o Portão"
 
 #: gui/session/selection_panels.js:431
 msgid "Unlock Gate"
-msgstr "Abrir o portão"
+msgstr "Abrir o Portão"
 
 #: gui/session/selection_panels.js:482
 msgid "Pack"
@@ -817,11 +817,11 @@ msgstr "Desmontar"
 
 #: gui/session/selection_panels.js:498
 msgid "Cancel Packing"
-msgstr "Cancelar a montage"
+msgstr "Cancelar a Montagem"
 
 #: gui/session/selection_panels.js:506
 msgid "Cancel Unpacking"
-msgstr "Cancelar a desmontagem"
+msgstr "Cancelar a Desmontagem"
 
 #: gui/session/selection_panels.js:594
 msgid "Insufficient population capacity:"
@@ -857,7 +857,7 @@ msgstr "Promover a %(name)s. %(tooltip)s"
 #: gui/session/selection_panels.js:1084
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr "Promover para %(name)s."
+msgstr "Promover a %(name)s."
 
 #: gui/session/selection_panels.js:1101
 msgid "Cancel Upgrading"
@@ -907,7 +907,7 @@ msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "Atacar oponentes ao redor, perseguir uma curta distáncia e voltar à origem"
+msgstr "Atacar oponentes ao redor, perseguir a uma curta distância e voltar à localização inicial"
 
 #: gui/session/selection_panels_helpers.js:82
 msgctxt "stance"
@@ -917,7 +917,7 @@ msgstr "Fugir se for atacado"
 #: gui/session/selection_panels_helpers.js:84
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr "Atacar oponentes no alcance, mas não se mover"
+msgstr "Atacar oponentes ao alcance, mas não se mover"
 
 #: gui/session/selection_panels_helpers.js:98
 #, javascript-format
@@ -961,12 +961,12 @@ msgstr "Shift + clique"
 #: gui/session/session.js:441
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "Digita a mensagem que pretende enviar."
+msgstr "Digita a mensagem a enviar."
 
 #: gui/session/session.js:443
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Pressione a tecla %(hotkey)s para abrir a conversa pública."
+msgstr "Pressiona %(hotkey)s para abrir a conversa pública."
 
 #: gui/session/session.js:446
 #, javascript-format
@@ -981,7 +981,7 @@ msgstr "Pressiona %(hotkey)s para abrir a conversa com os Aliados."
 #: gui/session/session.js:449
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Pressione a tecla %(hotkey)s para abrir a conversa privada anteriormente selecionada."
+msgstr "Pressione a %(hotkey)s para abrir a conversa privada anteriormente selecionada."
 
 #: gui/session/session.js:453
 msgid "Find idle worker"
@@ -1015,7 +1015,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ver História / Árvore de Estrutura\nA última aberta será aberta ao clicar."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ver História / Árvore de Estrutura\nA última aberta será reaberta ao clicar."
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1153,7 +1153,7 @@ msgstr "Ganho esperado: %(gain)s"
 
 #: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1348
 msgid "Unload All."
-msgstr "Descarregar todos."
+msgstr "Desalojar Todos."
 
 #: gui/session/unit_actions.js:1048
 msgid "Destroy the selected units or buildings."
@@ -1174,7 +1174,7 @@ msgstr "Ordenar às unidades selecionadas recolherem-se num edifício ou unidade
 
 #: gui/session/unit_actions.js:1129
 msgid "Unload"
-msgstr "Descarregar"
+msgstr "Desalojar"
 
 #: gui/session/unit_actions.js:1147
 msgid "Order the selected units to repair a building or mechanical unit."
@@ -1186,11 +1186,11 @@ msgstr "Foco no Ponto de Encontro."
 
 #: gui/session/unit_actions.js:1201
 msgid "Back to Work"
-msgstr "Voltar a trabalhar"
+msgstr "Voltar a Trabalhar"
 
 #: gui/session/unit_actions.js:1220
 msgid "Order the selected units to guard a building or unit."
-msgstr "Ordenar `às unidades selecionadas vigiarem um edifício ou unidade."
+msgstr "Ordenar às unidades selecionadas vigiarem um edifício ou unidade."
 
 #: gui/session/unit_actions.js:1238
 msgid "Remove guard"
@@ -1211,11 +1211,11 @@ msgstr "Atacar todas as unidades inimigas e evitar edifícios."
 
 #: gui/session/unit_actions.js:1300
 msgid "Press to allow allies to use this dropsite"
-msgstr "Prima para permitir que os aliados utilizem este armazém"
+msgstr "Premir para permitir que os aliados utilizem este armazém"
 
 #: gui/session/unit_actions.js:1304
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Prima para prevenir que os aliados utilizem este armazém"
+msgstr "Premir para prevenir que os aliados utilizem este armazém"
 
 #: gui/session/unit_actions.js:1369
 msgid "You are allowed to use this dropsite"
@@ -1223,7 +1223,7 @@ msgstr "Podes usar este armazém"
 
 #: gui/session/unit_actions.js:1374
 msgid "The use of this dropsite is prohibited"
-msgstr "Usar este armazém é proibido"
+msgstr "É proibido usar este armazém"
 
 #: gui/session/unit_actions.js:1447
 msgid "The entity has to be killed before it can be gathered from"
@@ -1232,11 +1232,11 @@ msgstr "A entidade tem de ser morta antes de poder ser recolhida"
 #: gui/session/unit_actions.js:1450
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Não podes destruir esta entidade porque controlas menos de uma metade dos pontos de captura"
+msgstr "Não podes destruir esta entidade porque controlas menos de metade dos pontos de captura"
 
 #: gui/session/unit_actions.js:1453
 msgid "This entity is undeletable"
-msgstr "Esta entidade não é possível apagar"
+msgstr "Não se pode eliminar esta entidade"
 
 #: gui/session/chat_window.xml:(caption):19
 msgctxt "chat input"
@@ -1269,7 +1269,7 @@ msgstr "Enviar"
 #: gui/session/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr "Filtrar o histórico da conversação"
+msgstr "Filtrar o histórico da conversação."
 
 #: gui/session/chat_window.xml:(tooltip):56
 msgctxt "chat input"
@@ -1290,27 +1290,27 @@ msgstr "Mostrar estado da seleção"
 
 #: gui/session/developer_overlay.xml:(caption):47
 msgid "Pathfinder overlay"
-msgstr "Mostrador de pathfinding"
+msgstr "Sobreposição de traçar rota"
 
 #: gui/session/developer_overlay.xml:(caption):57
 msgid "Obstruction overlay"
-msgstr "Mostrador de obstrução"
+msgstr "Sobreposição de obstrução"
 
 #: gui/session/developer_overlay.xml:(caption):67
 msgid "Unit motion overlay"
-msgstr "Mostrador de movimento de unidades"
+msgstr "Sobreposição de movimento de unidades"
 
 #: gui/session/developer_overlay.xml:(caption):77
 msgid "Range overlay"
-msgstr "Mostrador de alcance"
+msgstr "Sobreposição de alcance"
 
 #: gui/session/developer_overlay.xml:(caption):87
 msgid "Bounding box overlay"
-msgstr "Mostrador de volumes englobantes"
+msgstr "Sobreposição de caixa de limites"
 
 #: gui/session/developer_overlay.xml:(caption):97
 msgid "Restrict camera"
-msgstr "Restringir a vista"
+msgstr "Restringir a câmara"
 
 #: gui/session/developer_overlay.xml:(caption):107
 msgid "Reveal map"
@@ -1326,7 +1326,7 @@ msgstr "Promover unidades selecionadas"
 
 #: gui/session/developer_overlay.xml:(caption):148
 msgid "Hierarchical pathfinder overlay"
-msgstr "Mostrador hierárquico de pathfinding"
+msgstr "Sobreposição hierárquico de traçar rota"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -1369,7 +1369,7 @@ msgstr "Fechar"
 
 #: gui/session/menu.xml:(caption):28
 msgid "Chat"
-msgstr "Chat"
+msgstr "Conversa"
 
 #: gui/session/menu.xml:(caption):39
 msgid "Save"
@@ -1381,7 +1381,7 @@ msgstr "Sumário"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr "Sala de espera"
+msgstr "Sala de Espera"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1410,7 +1410,7 @@ msgstr "Jogo em Pausa"
 
 #: gui/session/session.xml:(caption):69
 msgid "Click to Resume Game"
-msgstr "Clica para Continuar o Jogo"
+msgstr "Clicar para Continuar o Jogo"
 
 #: gui/session/top_panel.xml:(tooltip):23
 #: gui/session/top_panel.xml:(caption):29
@@ -1444,7 +1444,7 @@ msgstr "Comprar:"
 
 #: gui/session/trade_window.xml:(caption):31
 msgid "No Markets Available"
-msgstr "Sem Mercados disponíveis "
+msgstr "Sem Mercados Disponíveis"
 
 #: gui/session/trade_window.xml:(caption):66
 msgid "Trade"
@@ -1488,7 +1488,7 @@ msgstr "Experiência"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):83
 msgid "Rank"
-msgstr "Posto"
+msgstr "Graduação"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
@@ -1502,7 +1502,7 @@ msgstr "Clica para selecionar as unidades agrupadas, clica duas vezes para junta
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr "Velocidade do jogo"
+msgstr "Velocidade do Jogo"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"

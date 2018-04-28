@@ -17,14 +17,13 @@
 
 #include "precompiled.h"
 
-#include <fstream>
-
 #include "JSInterface_Simulation.h"
 
 #include "graphics/GameView.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Pyrogenesis.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/Entity.h"
 #include "simulation2/components/ICmpAIManager.h"
@@ -32,6 +31,8 @@
 #include "simulation2/components/ICmpGuiInterface.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/helpers/Selection.h"
+
+#include <fstream>
 
 JS::Value JSI_Simulation::GetInitAttributes(ScriptInterface::CxPrivate* pCxPrivate)
 {

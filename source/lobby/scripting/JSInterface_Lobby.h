@@ -68,4 +68,4 @@ namespace JSI_Lobby
 #endif // CONFIG2_LOBBY
 }
 
-#endif
+#endif // INCLUDED_JSI_LOBBY

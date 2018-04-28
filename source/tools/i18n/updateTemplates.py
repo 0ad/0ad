@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
 #
-# Copyright (C) 2014 Wildfire Games.
+# Copyright (C) 2018 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-import codecs, json, string, os, textwrap
+import codecs, datetime, json, os, string, textwrap
 
 from pology.catalog import Catalog
 from pology.message import Message
@@ -77,7 +77,16 @@ def generateTemplatesForMessagesFile(messagesFilePath):
             inputRootPath = os.path.join(rootPath, templateSettings["inputRoot"])
 
         template = Catalog(os.path.join(rootPath, templateSettings["output"]), create=True, truncate=True)
-        h = template.update_header(templateSettings["project"], "Translation template for %project.", "Copyright © "+"2014"+" "+templateSettings["copyrightHolder"], "This file is distributed under the same license as the %project project.", plforms="nplurals=2; plural=(n != 1);")
+        h = template.update_header(
+            templateSettings["project"],
+            "Translation template for %project.",
+            "Copyright (C) {year} {holder}".format(
+                year=datetime.datetime.now().year,
+                holder=templateSettings["copyrightHolder"]
+            ),
+            "This file is distributed under the same license as the %project project.",
+            plforms="nplurals=2; plural=(n != 1);"
+        )
         h.remove_field("Report-Msgid-Bugs-To")
         h.remove_field("Last-Translator")
         h.remove_field("Language-Team")

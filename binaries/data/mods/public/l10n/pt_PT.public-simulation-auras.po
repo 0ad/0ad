@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-25 06:04+0000\n"
+"PO-Revision-Date: 2018-04-26 16:14+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Reparações da Doca"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr "Repara o navio guarnecido a 10 PV por segundo."
+msgstr "Repara o navio guarnecido a 10 pontos de vida por segundo."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -40,7 +40,7 @@ msgstr "Bênção dos Deuses"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
-msgstr "Repara unidades a 3 PV por segundo."
+msgstr "Repara unidades a 3 pontos de vida por segundo."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -132,7 +132,7 @@ msgstr "Helenização"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr "Aumenta a influência do território em 20% por cada teatro que possui."
+msgstr "Aumenta a influência do território em 20% por cada Teatro possuído."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -166,7 +166,7 @@ msgstr "Reparações da Oficina"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr "Repara unidades de cerco guarnecidas num edifício a 3 PV por segundo."
+msgstr "Repara unidades de cerco guarnecidas num edifício a 3 pontos de vida por segundo."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -327,7 +327,7 @@ msgstr "Perseguição dos Escaramuçadores"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "+20% attack range for skirmisher javelins."
-msgstr "Cassivelauno empregou escaramuçadores de movimentos rápidos na perseguição de tropas e forrageadores romanos.\n+20% no alcance de ataque para escaramuçadores de dardos."
+msgstr "Cassivelauno empregou escaramuçadores de movimentos rápidos na perseguição de tropas e forrageadores romanos.\n+20% no alcance de ataque para escaramuçadores lanceiros."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -538,7 +538,7 @@ msgstr "Reformas de Peltasta"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "All javelin infantry +15% speed."
-msgstr "Toda a infantaria de dardo ganha +15% de velocidade."
+msgstr "Toda a infantaria de lanceiros ganha +15% de velocidade."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -597,7 +597,7 @@ msgstr "Britannorum Rex"
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "+0.8 HP per second healing rate."
-msgstr "+0.8 PV na velocidade de cura por segundo."
+msgstr "+0.8 pontos de vida de velocidade de cura por segundo."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
@@ -954,7 +954,7 @@ msgstr "Reformas de Hilota"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
-msgstr "+25% de ataque e +1 de armadura para infantaria de soldados-cidadão de dardos."
+msgstr "+25% de ataque e +1 de armadura para infantaria de soldados-cidadão lanceiros."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"
