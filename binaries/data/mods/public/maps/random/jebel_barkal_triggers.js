@@ -76,7 +76,7 @@ var scaleByMapSize = (min, max) => min + (max - min) * (TriggerHelper.GetMapSize
 /**
  * Defensive Infantry units patrol along the paths of the city.
  */
-var jebelBarkal_cityPatrolGroup_count = time => scaleByTime(time, 3, scaleByMapSize(3, 10));
+var jebelBarkal_cityPatrolGroup_count = time => TriggerHelper.GetMapSizeTiles() > 192 ? scaleByTime(time, 3, scaleByMapSize(3, 10)) : 0;
 var jebelBarkal_cityPatrolGroup_interval = time => scaleByTime(time, 5, 3);
 var jebelBarkal_cityPatrolGroup_balancing = {
 	"buildingClasses": ["Wonder", "Temple", "CivCentre", "Fortress", "Barracks+!Stables", "Embassy"],

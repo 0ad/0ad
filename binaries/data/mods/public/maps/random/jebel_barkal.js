@@ -81,6 +81,9 @@ const oElephantStables = "structures/kush_elephant_stables";
 const oWallMedium = "structures/kush_wall_medium";
 const oWallGate = "structures/kush_wall_gate";
 const oWallTower = "structures/kush_wall_tower";
+const oPalisadeMedium = "other/palisades_rocks_medium";
+const oPalisadeGate = "other/palisades_rocks_gate";
+const oPalisadeTower = "other/palisades_rocks_tower";
 const oKushCitizenArcher = "units/kush_infantry_archer_b";
 const oKushHealer = "units/kush_support_healer_b";
 const oKushChampionArcher = "units/kush_champion_infantry";
@@ -197,7 +200,7 @@ const pathWidth = 4;
 const pathWidthCenter = 10;
 const pathWidthSecondary = 6;
 
-const placeNapataWall = getDifficulty() >= 3 && mapSize >= 192;
+const placeNapataWall = mapSize < 192 || getDifficulty() < 2 ? false : getDifficulty() < 3 ? "napata_palisade" : "napata_wall";
 
 const layoutFertileLandTextures = [
 	{
@@ -316,11 +319,19 @@ const layoutKushCity = [
 	}
 ].filter(building => getDifficulty() >= getDifficulties().find(difficulty => difficulty.Name == building.difficulty).Difficulty);
 
-g_WallStyles.napata = {
+g_WallStyles.napata_wall = {
 	"short": readyWallElement("uncapturable|" + oWallMedium),
 	"medium": readyWallElement("uncapturable|" + oWallMedium),
 	"tower": readyWallElement("uncapturable|" + oWallTower),
 	"gate": readyWallElement("uncapturable|" + oWallGate),
+	"overlap": 0.05
+};
+
+g_WallStyles.napata_palisade = {
+	"short": readyWallElement("uncapturable|" + oPalisadeMedium),
+	"medium": readyWallElement("uncapturable|" + oPalisadeMedium),
+	"tower": readyWallElement("uncapturable|" + oPalisadeTower),
+	"gate": readyWallElement("uncapturable|" + oPalisadeGate),
 	"overlap": 0.05
 };
 
@@ -881,7 +892,7 @@ if (placeNapataWall)
 		gridCenter,
 		wallGridRadiusFront,
 		["tower", "short", "tower", "gate", "tower", "medium", "tower", "short"],
-		"napata",
+		placeNapataWall,
 		0,
 		wallGridStartAngle,
 		wallGridMaxAngleFront,
@@ -901,7 +912,7 @@ if (placeNapataWall)
 				wallGridPosition[x - 1],
 				wallGridPosition[x],
 				["tower", "gate", "tower", "short", "tower", "short", "tower"],
-				"napata",
+				placeNapataWall,
 				0,
 				false,
 				avoidClasses(clHill, 0, clTemple, 0)));
