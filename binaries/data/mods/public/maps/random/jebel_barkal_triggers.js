@@ -104,8 +104,9 @@ var jebelBarkal_cityPatrolGroup_balancing = {
 
 /**
  * Frequently the buildings spawn different units that attack the players groupwise.
+ * Leave more time between the attacks in later stages of the game since the attackers become much stronger over time.
  */
-var jebelBarkal_attackInterval = () => randFloat(5, 7);
+var jebelBarkal_attackInterval = (time, difficulty) => randFloat(5, 7) + time / difficulty / 4;
 
 /**
  * Prevent city patrols chasing the starting units in nomad mode.
@@ -117,7 +118,7 @@ var jebelBarkal_firstCityPatrolTime = (difficulty, isNomad) =>
  * Delay the first attack in nomad mode.
  */
 var jebelBarkal_firstAttackTime = (difficulty, isNomad) =>
-	jebelBarkal_attackInterval() +
+	jebelBarkal_attackInterval(0, difficulty) +
 	2 * Math.max(0, 3 - difficulty) +
 	(isNomad ?  9 - difficulty : 0);
 
@@ -125,7 +126,7 @@ var jebelBarkal_firstAttackTime = (difficulty, isNomad) =>
  * Account for varying mapsizes and number of players when spawning attackers.
  */
 var jebelBarkal_attackerGroup_sizeFactor = (numPlayers, numInitialSpawnPoints, difficulty) =>
-	numPlayers / numInitialSpawnPoints * difficulty;
+	numPlayers / numInitialSpawnPoints * difficulty * 0.7;
 
 /**
  * Assume gaia to be the native kushite player.
@@ -509,10 +510,10 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 	if (!this.jebelBarkal_attackerGroupSpawnPoints)
 		return;
 
-	this.JebelBarkal_StartAttackTimer(jebelBarkal_attackInterval());
+	let time = TriggerHelper.GetMinutes();
+	this.JebelBarkal_StartAttackTimer(jebelBarkal_attackInterval(time, this.GetDifficulty()));
 
 	this.debugLog("Attacker wave (at most " + (jebelBarkal_maxPopulation - this.jebelBarkal_attackerUnits.length) + " attackers)");
-	let time = TriggerHelper.GetMinutes();
 
 	let activePlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers();
 	let playerEntities = activePlayers.map(playerID =>
