@@ -90,7 +90,7 @@
 	<!-- Captions are supplied in modio.js -->
 	<!-- This must be after the buttons, and with "z" > 20, else it and/or other objects will not be drawn correctly -->
 	<object name="downloadDialog" type="image" sprite="ModernFade" z="30" size="0 0 100% 100%">
-		<object type="image" style="ModernDialog" size="50%-190 50%-96 50%+190 50%+96">
+		<object type="image" style="ModernDialog" size="50%-210 50%-96 50%+210 50%+96">
 
 			<object name="downloadDialog_title" type="text" style="ModernLabelText" size="50%-128 0%-16 50%+128 16"/>
 
@@ -103,7 +103,7 @@
 
 			<object name="downloadDialog_status" type="text" style="ModernLabelText" size="0 35%+16 100% 35%+64"/>
 
-			<object name="downloadDialog_button" type="button" style="ModernButtonRed" size="50%-80 80%-14 50%+80 80%+14" hotkey="cancel"/>
+			<object name="downloadDialog_button" type="button" style="ModernButtonRed" size="50%-120 80%-14 50%+120 80%+14" hotkey="cancel"/>
 
 		</object>
 	</object>
