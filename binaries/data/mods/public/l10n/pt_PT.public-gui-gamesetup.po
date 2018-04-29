@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-27 02:42+0000\n"
+"PO-Revision-Date: 2018-04-29 03:28+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -468,12 +468,12 @@ msgstr "Mostrar/ocultar o separador %(name)s das configurações."
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr "Usar %(hotkey)s para mover a aba de definições para baixo."
+msgstr "Usar %(hotkey)s para passar para o separador de definições seguinte."
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr "Usar %(hotkey)s para mover a aba de definições para cima."
+msgstr "Usar %(hotkey)s para passar para o separador de definições anterior."
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -622,7 +622,7 @@ msgstr "Equipa"
 
 #: gui/gamesetup/gamesetup.xml:(caption):147
 msgid "Show this message in the future"
-msgstr "Mostrar esta mensagem no futuro"
+msgstr "Mostrar novamente esta mensagem no futuro"
 
 #: gui/gamesetup/gamesetup.xml:(caption):236
 msgid "Send"
@@ -639,11 +639,11 @@ msgstr "Voltar"
 #: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr "Repor todas as civilizações que foram selecionadas na sua predefinição (aleatório)"
+msgstr "Repor todas as civilizações que foram selecionadas nas predefinições de origem (aleatório)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):103
 msgid "Reset all teams to the default."
-msgstr "Repor todas as equipas para o estado predefinido."
+msgstr "Repor todas as equipas nas predefinições de origem."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):114
 msgid "Pick a color."

@@ -60,8 +60,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-04-25 11:27+0000\n"
-"Last-Translator: Rui <xymarior@yandex.com>\n"
+"PO-Revision-Date: 2018-04-28 18:27+0000\n"
+"Last-Translator: Tiago\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,7 +85,7 @@ msgstr[1] "Alcance bônus médio: %(range)s metros"
 
 #: gui/session/input.js:689
 msgid "Cannot build wall here!"
-msgstr "Não pode construir um muro aqui!"
+msgstr "Não pode construir uma muralha aqui!"
 
 #: gui/session/menu.js:165
 msgid "Are you sure you want to resign?"
@@ -460,7 +460,7 @@ msgstr "Chat dos inimigos"
 #: gui/session/messages.js:248
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Chat dos observadores"
+msgstr "Chat dos Observadores"
 
 #: gui/session/messages.js:255
 msgctxt "chat history filter"
@@ -555,12 +555,12 @@ msgstr "Jogadores: %(players)s"
 #: gui/session/messages.js:704
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr "Sua versão é a mesma do host."
+msgstr "Sua versão é a mesma do Anfitrião."
 
 #: gui/session/messages.js:705
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr "Sua versão é diferente do host."
+msgstr "Sua versão é diferente do Anfitrião."
 
 #: gui/session/messages.js:711
 msgctxt "Out-Of-Sync"
@@ -581,7 +581,7 @@ msgstr "Clique em \"Reportar um Bug\" no menu principal para ajudar a corrigir i
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr "Replay salvo em %(filepath)s"
+msgstr "Repetição salva em %(filepath)s"
 
 #: gui/session/messages.js:719
 #, javascript-format
@@ -1071,7 +1071,7 @@ msgstr "Ok"
 #: gui/session/session.js:998
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "O replay terminou. Você deseja sair?"
+msgstr "A repetição terminou. Você deseja sair?"
 
 #: gui/session/session.js:999
 msgctxt "replayFinished"
@@ -1424,7 +1424,7 @@ msgstr "Opções"
 
 #: gui/session/menu.xml:(caption):98
 msgid "Resign"
-msgstr "Resignar"
+msgstr "Desistir"
 
 #: gui/session/menu.xml:(caption):109 gui/session/session.xml:(caption):56
 msgid "Exit"

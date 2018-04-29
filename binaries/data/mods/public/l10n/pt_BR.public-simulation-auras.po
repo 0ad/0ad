@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-25 05:27+0000\n"
-"Last-Translator: Rui <xymarior@yandex.com>\n"
+"PO-Revision-Date: 2018-04-28 17:49+0000\n"
+"Last-Translator: Tiago\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgstr "Reparação do Estaleiro"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr "Repara navios guarnecidos a 10 HP por segundo."
+msgstr "Repara navios guarnecidos a 10 pontos de vida por segundo."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -46,7 +46,7 @@ msgstr "Bênção dos Deuses"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
-msgstr "Cura unidades a 3 HP por segundo."
+msgstr "Cura unidades a 3 pontos de vida por segundo."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -130,7 +130,7 @@ msgstr "Tratamento Médico"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Cura unidades próximas a 1 HP por segundo."
+msgstr "Cura unidades próximas a 1 ponto de vida por segundo."
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
@@ -172,7 +172,7 @@ msgstr "Reparação da Oficina"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr "Repara unidades de cerco guarnecidas a 3 HP por segundo."
+msgstr "Repara unidades de cerco guarnecidas a 3 pontos de vida por segundo."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -214,7 +214,7 @@ msgstr "Saripeko"
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
-msgstr "Reduz o custo dos escaramuçadores soldados-cidadãos em 20% para todo o aliado ibérico."
+msgstr "Reduz o custo dos escaramuçadores soldados cidadãos em 20% para todo o aliado ibérico."
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -284,7 +284,7 @@ msgstr "Liga do Peloponeso"
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr "Aumenta em 10% a saúde dos soldados de infantaria soldado-cidadão para aliados dos jogadores espartanos."
+msgstr "Aumenta em 10% a saúde dos soldados de infantaria soldado cidadão para aliados dos jogadores espartanos."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -373,7 +373,7 @@ msgstr "Comandante Mercenário"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "-25% metal cost for all allied citizen-soldier mercenaries."
-msgstr "Junto com seu irmão Indíbil, Mandônio comandou os recrutas e mercenários Ibéricos que participaram nas Guerras Púnicas.\n -25% no custo de metal para todos os mercenários e cidadão-soldado aliados."
+msgstr "Junto com seu irmão Indíbil, Mandônio comandou os recrutas e mercenários Ibéricos que participaram nas Guerras Púnicas.\n -25% no custo de metal para todos os mercenários e soldado cidadão aliados."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -463,7 +463,7 @@ msgstr "Vingador de Lucrécia"
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
 "Female citizens cost 20% less and work 10% faster."
-msgstr "Lucrécia suicidou-se após ser estrupada pelo rei Tarquínio, filho de Superbus. Brutus jurou vingá-la e derrubar o monarca.\nAs cidadãs femininas custam 20% menos e trabalham 10% mais rápido."
+msgstr "Lucrécia suicidou-se após ser estrupada pelo rei Tarquínio, filho de Superbus. Brutus jurou vingá-la e derrubar o monarca.\nAs cidadãs custam 20% menos e trabalham 10% mais rápido."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -603,7 +603,7 @@ msgstr "Britannorum Rex"
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "+0.8 HP per second healing rate."
-msgstr "+0.8 HP na taxa de cura por segundo."
+msgstr "+0.8 na taxa de cura por segundo."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
@@ -960,7 +960,7 @@ msgstr "Reformas dos Escravos"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
-msgstr "+25% de ataque e +1 de armadura para soldados-cidadão de infantaria de dardo."
+msgstr "+25% de ataque e +1 de armadura para soldados cidadãos de infantaria de dardo."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

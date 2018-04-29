@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-04-25 11:26+0000\n"
-"Last-Translator: Rui <xymarior@yandex.com>\n"
+"PO-Revision-Date: 2018-04-28 18:12+0000\n"
+"Last-Translator: Tiago\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -131,7 +131,7 @@ msgstr "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — jogar um 
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — jogar contra adversários humanos através da internet."
+msgstr "• [font=\"sans-bold-14\"]Multijogador[font=\"sans-14\"] — jogar contra adversários humanos através da internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -149,7 +149,7 @@ msgstr "[font=\"sans-bold-16\"]Configurações de jogo"
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr "[font=\"sans-14\"]Em um jogo multiplayer, apenas o host pode alterar as opções de configuração do jogo."
+msgstr "[font=\"sans-14\"]Em um jogo multijogador, apenas o anfitrião poderá alterar as opções de configuração do jogo."
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
@@ -265,13 +265,13 @@ msgstr "[font=\"sans-14\"]Clique Esquerdo Duplo \\[na unidade]: Selecione todas 
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr "Triplo Clique Esquerdo \\[na unidade]: Selecione todas as unidades da mesma natureza e no mesmo nível na tela"
+msgstr "Clique Triplo Esquerdo \\[na unidade]: Selecione todas as unidades da mesma natureza e no mesmo posto na tela"
 
 #: gui/manual/intro.txt:58
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr "Alt + Duplo Clique Esquerdo \\[na unidade]: Seleciona todas as suas unidades do mesmo tipo em todo o mapa (mesmo se eles têm níveis diferentes)"
+msgstr "Alt + Clique Duplo Esquerdo \\[na unidade]: Seleciona todas as suas unidades do mesmo tipo em todo o mapa (mesmo se eles têm postos diferentes)"
 
 #: gui/manual/intro.txt:59
 msgid ""
@@ -339,15 +339,15 @@ msgstr "Alt + /: Selecione todos os soldados que estão parados."
 
 #: gui/manual/intro.txt:74
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ". (Ponto): Seleciona trabalhador ocioso (incluindo cidadãos-soldados)"
+msgstr ". (Ponto): Seleciona trabalhador ocioso (incluindo soldados cidadãos)"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr "Shift + .: Adicionar trabalhador ocioso à seleção (incluindo cidadãos-soldados)"
+msgstr "Shift + .: Adicionar trabalhador ocioso à seleção (incluindo soldados cidadãos)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr "Alt + .: Selecione todos trabalhadores que estão parados (incluindo soldados-cidadão)"
+msgstr "Alt + .: Selecione todos trabalhadores que estão parados (incluindo soldados cidadãos)"
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"

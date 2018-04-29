@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-25 15:00+0000\n"
+"PO-Revision-Date: 2018-04-28 09:57+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -600,7 +600,7 @@ msgstr "Kiszolgáló tele"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
-msgstr ""
+msgstr "A biztonságos váró hitelesítése meghiúsult. Csatlakozz a várón keresztül."
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -1011,15 +1011,15 @@ msgstr "Javítók száma:"
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Adj hozzá még egy munkást, és gyorsítsd fel a javításokat  másodperccel."
+msgstr[1] "Adj hozzá még egy munkást, és gyorsítsd fel a javításokat %(second)s másodperccel."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Adj hozzá még egy munkást, hogy másodperc befejezd a javítást."
+msgstr[1] "Adj hozzá még egy munkást, hogy %(second)s másodperc befejezd a javítást."
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
@@ -1030,15 +1030,15 @@ msgstr "Építők száma:"
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Adj hozzá még egy munkást, és gyorsítsd fel az építkezést másodperccel."
+msgstr[1] "Adj hozzá még egy munkást, és gyorsítsd fel az építkezést %(second)s másodperccel."
 
 #: gui/common/tooltips.js:431
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Adj hozzá még egy munkást, hogy másodperc befejezd az építkezést."
+msgstr[1] "Adj hozzá még egy munkást, hogy %(second)s másodperc befejezd az építkezést."
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1258,19 +1258,19 @@ msgstr "Mentetlen módosításaid vannak, szeretnéd bezárni ezt az ablakot?"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: A játékban szereplő civilizációk épületfájának megtekintése"
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: A játékban szereplő számos nép megismerése"
 
 #: gui/pregame/mainmenu.js:48
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr ""
+msgstr "%(hotkey)s: A többjátékos váró elindítása, nyilvánosan elérhető játékok készítéséhez és a hozzájuk csatlakozáshoz, valamint a csevegéshez a többi játékossal."
 
 #: gui/pregame/mainmenu.js:98
 msgid "connecting to server"
@@ -1372,7 +1372,7 @@ msgstr "Hiba"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "A többjátékos váró elindítása, nyilvánosan elérhető játékok készítéséhez és a hozzájuk csatlakozáshoz, valamint a csevegéshez a többi játékossal. \\[ÖSSZEÁLLÍTÁSKOR LETILTVA]"
 
 #: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
@@ -1414,12 +1414,12 @@ msgstr "%(health_min)s – %(health_max)s"
 #: gui/reference/structree/structree.js:49
 #, javascript-format
 msgid "%(hotkey)s: Switch to History."
-msgstr ""
+msgstr "%(hotkey)s: Váltás a történelemre."
 
 #: gui/reference/structree/structree.js:50
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Épületfa bezárása."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
@@ -2156,7 +2156,7 @@ msgstr "Válaszd ki a játék nyelvét!"
 
 #: gui/pregame/mainmenu.xml:(tooltip):397
 msgid "Select and download mods for the game."
-msgstr ""
+msgstr "Módosítások kiválasztása és letöltése a játékhoz."
 
 #: gui/pregame/mainmenu.xml:(tooltip):409
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -2554,7 +2554,7 @@ msgstr "Játékosnév (Többjátékos)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
-msgstr ""
+msgstr "Egyjátékos játszmák szüneteltetése, ha az ablak elveszti a fókuszt."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
@@ -2629,7 +2629,7 @@ msgstr "Letiltva"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr ""
+msgstr "Bárki, vagy csak a barátok, csatlakozásának engedélyezése megfigyelőként a játék megkezdése után."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
@@ -2637,7 +2637,7 @@ msgstr "Késő megfigyelő csatlakozások"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr ""
+msgstr "További megfigyelők csatlakozásának megelőzése a korlát elérésekor."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer Limit"
@@ -3166,11 +3166,11 @@ msgstr "Csökkenő"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
+msgstr "A játékosok dinamikus rendezése a nyersanyagok és lakosságszám értéke szerint."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "Nyersanyag és lakosságszám eszköztipp rendezése"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
@@ -3657,17 +3657,17 @@ msgstr "SZABADKÉZI POZÍCIÓ"
 msgid ""
 "- Gain an advantage on the battleground by tactically positioning your "
 "units!"
-msgstr ""
+msgstr "- Szerezz előnyt a harcmezőn, az egységeid taktikus elhelyezésével."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid ""
 "- Therefore select some units, press and hold the right mouse button, draw "
 "any line, then release the button."
-msgstr ""
+msgstr "- Ezért válassz ki néhány egységet, nyomd le és tartsd a jobb egérgombot, húzz egy vonalat, és engedd el a gombot."
 
 #: gui/text/tips/freehand_position.txt:6
 msgid "- Your units will now spread out on this line."
-msgstr ""
+msgstr "- Az egységeid a vonalon fognak felállni."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"

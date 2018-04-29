@@ -44,8 +44,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2018-04-25 21:35+0000\n"
-"Last-Translator: Rui <xymarior@yandex.com>\n"
+"PO-Revision-Date: 2018-04-28 18:35+0000\n"
+"Last-Translator: Tiago\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -185,7 +185,7 @@ msgstr "Reformas Ifícrates"
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr "Paredes de pedra podem ser construídas em territórios neutros. Tempo para construção de paredes é reduzido em 50%."
+msgstr "Muralhas de pedra podem ser construídas em territórios neutros. Tempo para construção de muralhas é reduzido em 50%."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
@@ -197,7 +197,7 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "As Muralhas longas de Atenas foram construídas sob o auspício do astuto Temístocles e estenderam-se por 6 km desde a cidade até o porto de Pireu. Isso garantia a rota litorânea e prevenia a fome na cidade durante cercos."
+msgstr "As Longas Muralhas de Atenas foram construídas sob o auspício do astuto Temístocles e estenderam-se por 6 km desde a cidade até o porto de Pireu. Isso garantia a rota litorânea e prevenia a fome na cidade durante cercos."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
@@ -560,11 +560,11 @@ msgstr "Cartagineses"
 msgid ""
 "Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
 " also 2x build time."
-msgstr "Muralhas Cartaginenses, portões, e torres têm 3x vida a mais do que a muralha padrão, mas levam 2x no tempo de construção."
+msgstr "Muralhas Cartaginenses, portões, e torres têm 3x de vida a mais do que a muralha padrão, mas levam 2x mais no tempo de construção."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
-msgstr "Paredes Triplas"
+msgstr "Muralhas Triplas"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
@@ -967,7 +967,7 @@ msgstr "Ibéricos"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "Iberos começam com um poderoso circuito de muros de pedra pré-fabricados."
+msgstr "Iberos começam com um poderoso circuito de muralhas de pedras pré-fabricados."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Harritsu Leku"
@@ -1000,7 +1000,7 @@ msgstr "Não muito diferente da Península Ibérica, o norte da África era conh
 msgid ""
 "Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
 "allies."
-msgstr "Grupos pequenos de infantaria do cidadão-soldado e custo de escaramuçadores cavaleiros de -20% para os aliados."
+msgstr "Grupos pequenos de infantaria do soldado cidadão e custo de escaramuçadores cavaleiros de -20% para os aliados."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1808,7 +1808,7 @@ msgstr "Estábulos de Cavalaria"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr "Recrutar cidadãos-soldados para serem cavaleiros."
+msgstr "Recrutar soldados cidadãos para serem cavaleiros."
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -1894,7 +1894,7 @@ msgstr "Todos os aliados ganham um pequeno rendimento em comida."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
-msgstr "Cultivos mediterrânicos"
+msgstr "Celeiro do Mediterrâneo"
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].History
 msgid ""
@@ -2106,7 +2106,7 @@ msgstr "Os romanos comumente usavam a formação Tartaruga ou 'Testudo' para def
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
-msgstr "Qualquer cidadão-soldado romano lutando dentro do território romano ganha um bônus temporário de +10% à sua armadura."
+msgstr "Qualquer soldado cidadão romano lutando dentro do território romano ganha um bônus temporário de +10% à sua armadura."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
@@ -2258,7 +2258,7 @@ msgstr "Acampamento Entrincheirado"
 
 #: simulation/data/civs/rome.jsonStructures[0].Special
 msgid "Trains citizen-soldiers from neutral or enemy territory."
-msgstr "Treina cidadãos-soldados em território neutro ou inimigo. "
+msgstr "Treina soldados cidadãos em território neutro ou inimigo. "
 
 #: simulation/data/civs/rome.jsonStructures[0].History
 msgid ""
@@ -2284,7 +2284,7 @@ msgstr "Podem ser construídos em território neutro ou inimigo para cercar as p
 
 #: simulation/data/civs/rome.jsonStructures[1].History
 msgid "Turf walls built by legionaries during sieges."
-msgstr "Muros de terra construídos pelos legionários durante os cercos."
+msgstr "Muralhas de turfa construídos pelos legionários durante os cercos."
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -2608,7 +2608,7 @@ msgstr "Os Espartanos eram os mestres incontestáveis da arte militar da falange
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
 msgid ""
 "The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr "O rank dos espartanos progride a medida que os Quartéis custam nenhum recurso, exceto tempo."
+msgstr "O posto dos Espartanos progride a medida que os Quartéis custam nenhum recurso, exceto tempo."
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
@@ -2689,7 +2689,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr "Espartanos cidadãos femininos não podem ser capturados e obstinadamente irão lutar contra qualquer atacante. Eles também são capazes de construir torres de defesa e palisades."
+msgstr "Cidadãs espartanas não podem ser capturadas e obstinadamente irão lutar contra qualquer atacante. Elas também são capazes de construir torres de defesa e paliçadas."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"

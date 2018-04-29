@@ -19,12 +19,12 @@
 # Peter Tuharsky <peter.tuharsky@gmail.com>, 2015-2016
 # Roman Beňo <romanko.sk@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2017
+# Angen <slavomir.slovenkai@gmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-06 21:40+0000\n"
+"PO-Revision-Date: 2018-04-28 19:56+0000\n"
 "Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -192,7 +192,7 @@ msgstr "Hráč"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Typ hry"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
@@ -272,7 +272,7 @@ msgstr "Vyberte množstvo počiatočných surovín."
 
 #: gui/gamesetup/gamesetup.js:631
 msgid "Ceasefire"
-msgstr ""
+msgstr "Prímerie"
 
 #: gui/gamesetup/gamesetup.js:632
 msgid "Set time where no attacks are possible."
@@ -291,19 +291,19 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:660
 msgid "Relic Duration"
-msgstr ""
+msgstr "Čas držania relikvie"
 
 #: gui/gamesetup/gamesetup.js:661
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Minúty kým hráč dosiahne víťazstvo vlastnením relikvie."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Čas vlastnenia divu"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Minúty kým hráč dosiahne víťazstvo vlastnením divu"
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
@@ -319,7 +319,7 @@ msgstr "Obtiažnosť "
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Vyber náročnosť scenária."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Chose the civilization for this player"
@@ -335,7 +335,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
-msgstr ""
+msgstr "Nomád "
 
 #: gui/gamesetup/gamesetup.js:853
 msgid ""
@@ -487,13 +487,13 @@ msgstr "Náhodné"
 
 #: gui/gamesetup/gamesetup.js:1743
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Náhodne vybrať bióm."
 
 #: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s: "
 
 #: gui/gamesetup/gamesetup.js:2073
 msgctxt "settings value"
@@ -511,7 +511,7 @@ msgstr "Nie"
 #: gui/gamesetup/gamesetup.js:2110
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2196
 #, javascript-format
@@ -574,7 +574,7 @@ msgstr "Úroveň AI:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Správanie AI: "
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -714,25 +714,25 @@ msgstr ""
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr ""
+msgstr "\"Jednota dáva silu.\" - Ezop (\"Zväzok palíc\")"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr ""
+msgstr "\"Nikdy nedôveruj rade od muža v agónii jeho vlastných problémov.\" - Ezop (\"Liška a cap\")"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr ""
+msgstr "\"Znalosť plodí pohŕdanie; známosť zmierňuje predsudky.\" - Ezop (\"Líška a lev\")"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr ""
+msgstr "\"Vlastná domýšľavosť môže viesť k vlastnému zničeniu.\" - Ezop (\"Žaba a vôl\")"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
@@ -752,7 +752,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr ""
+msgstr "\"Akákoľvek výhovorka bude slúžiť tyranovi.\" - Ezop (\"Vlk a Baránok\")"
 
 #: gui/text/quotes.txt:17
 msgid ""

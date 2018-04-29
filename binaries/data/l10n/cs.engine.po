@@ -4,16 +4,17 @@
 # 
 # Translators:
 # Jakub Jelen <jakuje@gmail.com>, 2017
-# fri, 2013-2016
+# fri, 2013-2016,2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2016
 # Radek Mašek <warrriog@gmail.com>, 2018
 # Vít Pelčák, 2014
+# Vojtěch Valigura <Encounter@seznam.cz>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 13:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-28 20:22+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -139,54 +140,54 @@ msgstr "409: Uživatelské jméno je již používáno"
 #: ps/ModIo.cpp:244
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Selhání při spouštění dotazování se na ID hry. Chyba: %s; %s."
 
 #: ps/ModIo.cpp:274
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Selhání při spouštění dotazování se na mody. Chyba: %s; %s."
 
 #: ps/ModIo.cpp:300
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "Nelze vytvořit adresář s mody: %s."
 
 #: ps/ModIo.cpp:325
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "Nelze otevřít dočasný soubor pro stažení modu: %s."
 
 #: ps/ModIo.cpp:335
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "Nepodařilo se spustit stahování. Chyba: %s; %s."
 
 #: ps/ModIo.cpp:380
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Selhání asynchronního stahování: %s, %s."
 
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Stahování selhalo. Odpověď serveru: %s; %s."
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Nesouhlasí velikost souboru."
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Vadný soubor. Očekávaný kontrolní součet md5 %s, namísto %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "Nelze vypočítat konečný hash."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Nepodařilo se ověřit podpis."
 
 #: ps/SavedGame.cpp:128
 #, c-format

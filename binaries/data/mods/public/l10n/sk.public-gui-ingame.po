@@ -17,12 +17,12 @@
 # SuroX <peter.surovcik@gmail.com>, 2016
 # Peter Tuharsky <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2017
+# Angen <slavomir.slovenkai@gmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-04-06 21:42+0000\n"
+"PO-Revision-Date: 2018-04-28 18:33+0000\n"
 "Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Čas zostávajúci do ukončenia prímeria: %(time)s."
 
 #: gui/session/menu.js:455
 msgctxt "team"
@@ -140,7 +140,7 @@ msgstr "Požiadaj svojich spojencov o útok na tohto nepriateľa"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Podplať náhodného obyvateľa tohto hráča a na určitý čas zisti, čo vidí."
 
 #: gui/session/menu.js:600
 msgid "A failed bribe will cost you:"
@@ -367,11 +367,11 @@ msgstr "Dôvod: %(reason)s."
 
 #: gui/session/messages.js:157
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Čaká sa na pripojenie ostatných hráčov..."
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr ""
+msgstr "Synchronizuje sa hra s ostatnými hráčmi..."
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -503,7 +503,7 @@ msgstr "Ukončiť"
 
 #: gui/session/messages.js:594
 msgid "Click when ready."
-msgstr ""
+msgstr "Klikni keď si pripravený."
 
 #: gui/session/messages.js:598
 msgid "Follow the instructions."
@@ -517,7 +517,7 @@ msgstr ","
 #: gui/session/messages.js:695
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr ""
+msgstr "Chyba mimo synchronizácie (Out-Of-Sync error) na ťahu %(turn)s."
 
 #: gui/session/messages.js:699
 #, javascript-format
@@ -538,7 +538,7 @@ msgstr "Tvoj stav hry sa odlišuje od stavu hostiteľa. "
 #: gui/session/messages.js:711
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr ""
+msgstr "Znovu pripojenie do hry viacerých hráčov s AI nie je zatiaľ podporované."
 
 #: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
@@ -548,7 +548,7 @@ msgstr "Uisti sa že všetci hráči používajú rovnaké módy. "
 #: gui/session/messages.js:715
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "Klikni na \"Nahlásiť chybu\" v hlavnom menu aby si pomohol ju opraviť."
 
 #: gui/session/messages.js:716
 #, javascript-format
@@ -560,7 +560,7 @@ msgstr "Záznam uložený do %(filepath)s"
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr ""
+msgstr "Vypisovanie pamäti aktuálneho stavu do %(filepath)s"
 
 #: gui/session/messages.js:727 gui/session/messages.js:738
 msgid "Out of Sync"
@@ -568,7 +568,7 @@ msgstr "Mimo synchronizáciu "
 
 #: gui/session/messages.js:735
 msgid "Out-Of-Sync error!"
-msgstr ""
+msgstr "Chyba mimo synchronizácie!"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/messages.js:737
@@ -653,12 +653,12 @@ msgstr "Útočí na vás %(attacker)s!"
 #: gui/session/messages.js:1089
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s postupuje do %(phaseName)s."
 
 #: gui/session/messages.js:1091
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr ""
+msgstr "%(phaseName)s hráča %(player)s bola zrušená."
 
 #: gui/session/messages.js:1094
 #, javascript-format
@@ -730,7 +730,7 @@ msgstr "Zisk: %(gain)s"
 #: gui/session/selection_panels.js:607 gui/session/session.js:1347
 msgctxt "countdown format"
 msgid "m:ss"
-msgstr ""
+msgstr "m:ss"
 
 #: gui/session/selection_details.js:265
 msgid "Current/max gatherers"
@@ -743,7 +743,7 @@ msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:408
 msgid "Capture Points:"
-msgstr ""
+msgstr "Obsadzovacie body:"
 
 #: gui/session/selection_details.js:416
 #, javascript-format
@@ -844,9 +844,9 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(number)s entita triedy %(class)s"
+msgstr[1] "%(number)s entít triedy %(class)s"
+msgstr[2] "%(number)s entít triedy %(class)s"
 
 #: gui/session/selection_panels.js:767
 #, javascript-format
@@ -1007,7 +1007,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Kliknutím si vyber typ suroviny ktorú si praješ modifikovať, následne použi šípky ostatných typov na modifikovanie ich podielu. Môžeš aj podržať %(hotkey)s pri výbere jedného druhu tovaru, aby jeho podiel bol na 100 %%."
 
 #: gui/session/session.js:468
 #, javascript-format
@@ -1016,7 +1016,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Začni výberom suroviny ktorú si praješ predať z horného riadku. Za každým stlačením, %(quantity)s hornej suroviny bude predaná a zobrazí sa lacnejšie. Stlač a podrž %(hotkey)s na dočasné vynásobenie obchodnej sumy o %(multiplier)s."
 
 #: gui/session/session.js:659
 #, javascript-format
@@ -1075,7 +1075,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s pre zmenu poradia."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
@@ -1191,7 +1191,7 @@ msgstr "Prikázať jednotkám aby opravili budovu, stroj alebo dopravný prostri
 
 #: gui/session/unit_actions.js:1166
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "Sústrediť na zhromaždisko."
 
 #: gui/session/unit_actions.js:1201
 msgid "Back to Work"
@@ -1208,7 +1208,7 @@ msgstr "Prestať strážiť"
 #: gui/session/unit_actions.js:1255
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "Výmena & Obchod "
 
 #: gui/session/unit_actions.js:1273
 msgid "Patrol"
@@ -1437,7 +1437,7 @@ msgstr "Pozorovateľský mód"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "Výmenný & Obchodný Tovar "
 
 #: gui/session/trade_window.xml:(caption):16
 msgid "Barter"
@@ -1465,7 +1465,7 @@ msgstr "Zbožie:"
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
-msgstr ""
+msgstr "Pripravený"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1523,4 +1523,4 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIII : Ken Wood"
-msgstr ""
+msgstr "ALPHA XXIII : Ken Wood"

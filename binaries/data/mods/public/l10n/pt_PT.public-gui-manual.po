@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-04-25 11:49+0000\n"
+"PO-Revision-Date: 2018-04-29 03:38+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -131,7 +131,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Para configurar um jogo multi-jogador, um dos jogadores deve selecionar a opção \"Alojar jogo\". O jogo usa a porta UDP 20595 e, por isso, o anfitrião deve configurar a sua firewall/NAT/etc. para que esta porta possa ser usada. Os outros jogadores devem selecionar \"Entrar num jogo\" e introduzir o endereço IP do anfitrião."
+msgstr "Para configurar um jogo multi-jogador, um dos jogadores deve selecionar a opção \"Hospedar Jogo\". O jogo usa a porta UDP 20595 e, por isso, o hospedeiro deve configurar a sua firewall/NAT/etc. (port forward) para que esta porta possa ser usada. Os outros jogadores devem selecionar \"Entrar num Jogo\" e introduzir o endereço IP do anfitrião."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -141,7 +141,7 @@ msgstr "[font=\"sans-bold-16\"]Configuração do jogo"
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr "[font=\"sans-14\"]Num jogo multi-jogador, só o anfitrião pode alterar as opções de configuração do jogo."
+msgstr "[font=\"sans-14\"]Num jogo multi-jogador, só o hospedeiro pode alterar as opções de configuração do jogo."
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
@@ -301,7 +301,7 @@ msgstr "T: Enviar uma mensagem à equipa"
 
 #: gui/manual/intro.txt:67
 msgid "L: Chat with the previously selected private chat partner"
-msgstr "L: Conversar com o parceiro de chat privado selecionado anteriormente"
+msgstr "L: Conversar com o parceiro da conversa privada selecionada anteriormente"
 
 #: gui/manual/intro.txt:68
 msgid "Pause: Pause/resume the game"
@@ -417,7 +417,7 @@ msgstr "Tab: Ver todas as barras de estado (que também mostrarão o progresso d
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
-msgstr "Ctrl + Tab: Alternar janela do sumário."
+msgstr "Ctrl + Tab: mostrar/esconder janela de estatísticas."
 
 #: gui/manual/intro.txt:93
 msgid "Ctrl + B: Toggle in-game barter/trade page."

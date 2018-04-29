@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-25 04:36+0000\n"
+"PO-Revision-Date: 2018-04-28 07:18+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "Estou a ver que estás numa má situação, %(_player_)s. Espero que ist
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr "Posso ajudar-te desta vez, %(_player_)s, mas deves gerir melhor os teus recursos de futuro."
+msgstr "Posso ajudar-te desta vez %(_player_)s, mas deves gerir melhor os teus recursos de futuro."
 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
@@ -112,13 +112,13 @@ msgstr "Eu estou a precisar de %(resource)s, podes ajudar? Irei fazer as pazes c
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr "Eu poderia participar de modo mais eficaz no nosso esforço de guerra comum, se pudesses disponibilizar-me alguns %(resource)s."
+msgstr "Eu poderia participar de modo mais eficaz no nosso esforço de guerra comum, se pudesses disponibilizar-me um pouco de %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr "Se puderes fornecer-me alguns %(resource)s, poderei fortalecer o meu exército."
+msgstr "Se puderes fornecer-me um pouco de %(resource)s, poderei fortalecer o meu exército."
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
@@ -234,42 +234,42 @@ msgstr "%(_player_)s, considera-nos aliados de agora em diante."
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr "Vou-me aliar a ti, %(_player_)s, mas apenas se me enviares um tributo de %(_amount_)s %(_resource_)s."
+msgstr "Vou-me aliar a ti, %(_player_)s, mas apenas se me enviares um tributo de %(_amount_)s unidades de %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:84
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr "%(_player_)s, tens de me enviar um tributo de %(_amount_)s %(_resource_)s antes de eu aceitar uma aliança contigo."
+msgstr "%(_player_)s, tens de me enviar um tributo de %(_amount_)s unidades de %(_resource_)s antes de eu aceitar uma aliança contigo."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr "A não ser que me envies %(_amount_)s %(_resource_)s, não será formada uma aliança, %(_player_)s."
+msgstr "A não ser que me envies %(_amount_)s unidades de %(_resource_)s, não será formada uma aliança, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr "%(_player_)s, a minha oferta mantêm-se. Eu irei aliar-me a ti se me enviares um tributo de %(_amount_)s %(_resource_)s."
+msgstr "%(_player_)s, a minha oferta mantêm-se. Eu irei aliar-me a ti se me enviares um tributo de %(_amount_)s unidades de %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:89
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr "Ainda estou à espera de %(_amount_)s %(_resource_)s antes de aceitar a tua aliança, %(_player_)s."
+msgstr "Ainda estou à espera de %(_amount_)s unidades de %(_resource_)s antes de aceitar a tua aliança, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:90 simulation/ai/petra/chatHelper.js:111
 #, javascript-format
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr "%(_player_)s, se não me enviares parte do tributo %(_amount_)s %(_resource_)s em breve, eu vou interromper as nossas negociações."
+msgstr "%(_player_)s, se não me enviares parte do tributo %(_amount_)s unidades de %(_resource_)s em breve, eu vou interromper as nossas negociações."
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
@@ -307,21 +307,21 @@ msgstr "%(_player_)s, irei aceitar o teu pedido de neutralidade. Que ambas as no
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr "Se me enviares um tributo de %(_amount_)s %(_resource_)s, eu aceitarei o teu pedido de neutralidade, %(_player_)s."
+msgstr "Se me enviares um tributo de %(_amount_)s unidades de %(_resource_)s, eu aceitarei o teu pedido de neutralidade, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr "%(_player_)s, se me mandares %(_amount_)s %(_resource_)s, irei aceitar um pacto de neutralidade."
+msgstr "%(_player_)s, se me mandares %(_amount_)s unidades de %(_resource_)s, irei aceitar um pacto de neutralidade."
 
 #: simulation/ai/petra/chatHelper.js:110
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr "%(_player_)s, não irei aceitar o teu pedido de neutralidade a não ser que me tributes %(_amount_)s %(_resource_)s brevemente."
+msgstr "%(_player_)s, não irei aceitar o teu pedido de neutralidade a não ser que me tributes %(_amount_)s unidades de %(_resource_)s brevemente."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
@@ -380,7 +380,7 @@ msgstr "Não é possível construir %(name)s numa área por explorar"
 #: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "Não é possível construir %(name)s sobre outros edifícios ou sobre recursos"
+msgstr "Não é possível construir %(name)s por cima de outros edifícios ou recursos"
 
 #: simulation/components/BuildRestrictions.js:160
 #, javascript-format
@@ -598,7 +598,7 @@ msgstr "Não é possível promover uma entidade guarnecida."
 #: simulation/helpers/Commands.js:775
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr "Solicitado um ataque contra %(_player_)s."
+msgstr "Foi solicitado um ataque contra %(_player_)s."
 
 #: simulation/helpers/Commands.js:814
 msgid "There are no bribable units"

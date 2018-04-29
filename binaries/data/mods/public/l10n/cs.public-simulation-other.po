@@ -6,18 +6,19 @@
 # lynx121 <adam.ostruszka@seznam.cz>, 2016
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
 # J D <jonas.dyba@gmail.com>, 2016
-# fri, 2014-2017
+# fri, 2014-2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Radek Mašek <warrriog@gmail.com>, 2018
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
+# Tomáš Matýs <thommathys@gmail.com>, 2018
 # Vojtěch Valigura <Encounter@seznam.cz>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-28 20:31+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -217,7 +218,7 @@ msgstr "Nechť obě naše země vzkvétají z tohoto mírového svazku, %(_playe
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid "We have found common ground, %(_player_)s. I accept the alliance."
-msgstr ""
+msgstr "Máme společné zájmy,%(_player_)s. Toto spojenectví přijímám."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
@@ -323,25 +324,25 @@ msgstr "%(_player_)s, nepřijmu dohodu o neutralitě s tebou, pokud mi v brzké 
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, pomohlo by oběma našim civilizacím, kdyby vytvořily spojenectví.   Pokud se staneš mým spojencem, odvděčím se štědře."
 
 #: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "%(_player_)s, my offer for an alliance has expired."
-msgstr ""
+msgstr "%(_player_)s, moje nabídka spojenectví vypršela."
 
 #: simulation/ai/petra/chatHelper.js:123
 #, javascript-format
 msgid ""
 "%(_player_)s, I have rescinded my previous offer for an alliance between us."
-msgstr ""
+msgstr "%(_player_)s, odstoupil jsem od nabídky spojenectví mezi námi."
 
 #: simulation/ai/petra/chatHelper.js:128
 #, javascript-format
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, chtěl bych požádat o smlouvu o neutralitě mezi našimi civilizacemi. Pokud se staneš neutrálním ke mně, odvděčím se ti štědře."
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
@@ -560,7 +561,7 @@ msgstr "Nelze najít místo na vytváření cvičených jednotek"
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "%(player)s byl poražen (podváděl)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -577,7 +578,7 @@ msgstr "(Podvod - odhalit mapu)"
 #: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s se vzdal."
 
 #: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
@@ -708,7 +709,7 @@ msgstr "Ukořistit památku"
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr ""
+msgstr "Poražte nepřátele zabitím všech jejich jednotek a zničením všech jejich staveb."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -716,7 +717,7 @@ msgstr "Dobytí"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr ""
+msgstr "Poražte nepřátele zničením všech jejich staveb."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -724,7 +725,7 @@ msgstr "Dobýt budovy"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr ""
+msgstr "Poražte nepřátele zabitím všech jejich jednotek."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -781,7 +782,7 @@ msgstr "Zápas na život a na smrt"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "Zvolte tuto obtížnost, pokud objevujete 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
@@ -789,7 +790,7 @@ msgstr "Velmi lehká"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "Zvolte tuto obtížnost, pokud nemáte rád, když jste porážen."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -798,7 +799,7 @@ msgstr "Lehká"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "Zvolte tuto obtížnost, pokud jste již s 0 A.D dobře obeznámen."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
 #: simulation/data/settings/map_sizes.jsonData[2].Name
@@ -807,7 +808,7 @@ msgstr "Střední"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
+msgstr "Zvolte tuto obtížnost, pokud chcete být v nevýhodě (totiž podmínkami značně postižen, prostě milujete opravdové výzvy)."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -815,7 +816,7 @@ msgstr "Těžká"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
+msgstr "Zvolte tuto obtížnost, pokud vám nevadí, že se s vámi zametá."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -827,7 +828,7 @@ msgstr "Drobná"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr ""
+msgstr "Tato velikost mapy má jen taktak nějaký prostor pro dokonce byť nejzákladnější zdroje."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
