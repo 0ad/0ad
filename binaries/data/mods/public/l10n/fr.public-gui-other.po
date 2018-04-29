@@ -32,7 +32,7 @@
 # Moritz FS <momogingins@gmail.com>, 2015
 # Mortimer <doug.mortimer@netcourrier.com>, 2015-2016
 # Nexus nexus <neocrysis@gmail.com>, 2016
-# Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
+# Nicolas Auvray <na.itms76@gmail.com>, 2014-2018
 # nicolas t <deux718281@yahoo.fr>, 2016
 # polien delamarque <m.oleil@laposte.net>, 2017
 # robin moussu <robin.moussu+transifex@gmail.com>, 2015
@@ -46,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-25 11:12+0000\n"
-"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
+"PO-Revision-Date: 2018-04-29 12:58+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1344,7 +1344,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr "%(startWarning)sAttention :%(endWarning)s Il semblerait que vous utilisiez un GPU qui ne gère pas les shaders (mais utilise des fonctions prédéfinies). Cette option sera retirée dans une version future de 0 A.D., pour permettre des fonctionnalités graphiques plus avancées. Nous vous conseillons de changer votre carte graphique pour un modèle plus récent, gérant les shaders."
+msgstr "%(warning)s Il semblerait que vous utilisiez un GPU qui ne gère pas les shaders (mais utilise des fonctions prédéfinies). Cette option sera retirée dans une version future de 0 A.D., pour permettre des fonctionnalités graphiques plus avancées. Nous vous conseillons de changer votre carte graphique pour un modèle plus récent, gérant les shaders."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
