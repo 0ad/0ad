@@ -1847,16 +1847,20 @@ function loadPersistMatchSettings()
 	if (!Engine.FileExists(settingsFile))
 		return;
 
-	let attrs = Engine.ReadJSONFile(settingsFile);
-	if (!attrs || !attrs.settings)
+	let data = Engine.ReadJSONFile(settingsFile);
+	if (!data || !data.attributes || !data.attributes.settings)
+		return;
+
+	if (data.engine_info.engine_version != Engine.GetEngineInfo().engine_version ||
+	    !hasSameMods(data.engine_info.mods, Engine.GetEngineInfo().mods))
 		return;
 
 	g_IsInGuiUpdate = true;
 
-	let mapName = attrs.map || "";
-	let mapSettings = attrs.settings;
+	let mapName = data.attributes.map || "";
+	let mapSettings = data.attributes.settings;
 
-	g_GameAttributes = attrs;
+	g_GameAttributes = data.attributes;
 
 	if (!g_IsNetworked)
 		mapSettings.CheatsEnabled = true;
@@ -1898,8 +1902,17 @@ function savePersistMatchSettings()
 {
 	if (g_IsTutorial)
 		return;
-	let attributes = Engine.ConfigDB_GetValue("user", "persistmatchsettings") == "true" ? g_GameAttributes : {};
-	Engine.WriteJSONFile(g_IsNetworked ? g_MatchSettings_MP : g_MatchSettings_SP, attributes);
+
+	Engine.WriteJSONFile(
+		g_IsNetworked ? g_MatchSettings_MP : g_MatchSettings_SP,
+		{
+			"attributes":
+				// Delete settings if disabled, so that players are not confronted with old settings after enabling the setting again
+				Engine.ConfigDB_GetValue("user", "persistmatchsettings") == "true" ?
+					g_GameAttributes :
+					{},
+			"engine_info": Engine.GetEngineInfo()
+		});
 }
 
 function sanitizePlayerData(playerData)
