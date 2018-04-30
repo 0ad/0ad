@@ -7,6 +7,7 @@
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # crippledmoon <domas392@in.gr>, 2016
 # malvanos <malvanos@gmail.com>, 2014-2015
+# Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Stephanos C. Siopoulos, 2013
 # Steven Gikas <stevengk123@gmail.com>, 2016
 # Vasilis Drosos <basilisd@gmail.com>, 2017-2018
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-24 11:51+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"PO-Revision-Date: 2018-04-29 12:50+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -141,7 +142,7 @@ msgstr "Το όνομα χρήστη υπάρχει ήδη"
 #: ps/ModIo.cpp:244
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Αποτυχία κατά την έναρξη της εξέτασης του αναγνωριστικού του παιχνιδιού. Σφάλμα:"
+msgstr "Αποτυχία κατά την έναρξη της εξέτασης του αναγνωριστικού του παιχνιδιού. Σφάλμα: %s, %s."
 
 #: ps/ModIo.cpp:274
 #, c-format

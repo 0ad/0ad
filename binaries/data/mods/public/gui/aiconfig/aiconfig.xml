@@ -8,40 +8,40 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" sprite="ModernFade"/>
 
-	<object type="image" style="ModernDialog" size="50%-230 50%-170 50%+230 50%+170">
+	<object type="image" style="ModernDialog" size="50%-290 50%-200 50%+290 50%+200">
 
 		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">AI Configuration</translatableAttribute>
 		</object>
 
-		<object size="50%-128 30 50%+128 80">
-			<object type="text" style="ModernRightLabelText" size="-10 0 90 50%">
+		<object size="50%-200 30 50%+200 100">
+			<object type="text" style="ModernRightLabelText" size="50%-290 0 50%-6 50%">
 				<translatableAttribute id="caption">AI Player:</translatableAttribute>
 			</object>
 
-			<object name="aiSelection" type="dropdown" style="ModernDropDown" size="50%-24 0 50%+136 28">
+			<object name="aiSelection" type="dropdown" style="ModernDropDown" size="50%+6 0 50%+190 28">
 				<action on="SelectionChange">selectAI(this.selected);</action>
 			</object>
-			<object name="aiSelectionText" type="text" style="ModernLeftLabelText" size="50%-24 0 50%+136 28"/>
+			<object name="aiSelectionText" type="text" style="ModernLeftLabelText" size="50%+6 0 50%+190 28"/>
 
-			<object type="text" style="ModernRightLabelText" size="-10 35 90 50%+35">
+			<object type="text" style="ModernRightLabelText" size="50%-290 35 50%-6 50%+35">
 				<translatableAttribute id="caption">AI Difficulty:</translatableAttribute>
 			</object>
 
-			<object name="aiDifficulty" type="dropdown" style="ModernDropDown" size="50%-24 35 50%+136 63">
+			<object name="aiDifficulty" type="dropdown" style="ModernDropDown" size="50%+6 35 50%+190 63">
 				<action on="SelectionChange">checkBehavior();</action>
 			</object>
-			<object name="aiDifficultyText" type="text" style="ModernLeftLabelText" size="50%-24 35 50%+136 63"/>
+			<object name="aiDifficultyText" type="text" style="ModernLeftLabelText" size="50%+6 35 50%+190 63"/>
 
-			<object type="text" style="ModernRightLabelText" size="-10 70 90 50%+70">
+			<object type="text" style="ModernRightLabelText" size="50%-290 70 50%-6 50%+70">
 				<translatableAttribute id="caption">AI Behavior:</translatableAttribute>
 			</object>
 
-			<object name="aiBehavior" type="dropdown" style="ModernDropDown" size="50%-24 70 50%+136 98"/>
-			<object name="aiBehaviorText" type="text" style="ModernLeftLabelText" size="50%-24 70 50%+136 98"/>
+			<object name="aiBehavior" type="dropdown" style="ModernDropDown" size="50%+6 70 50%+190 98"/>
+			<object name="aiBehaviorText" type="text" style="ModernLeftLabelText" size="50%+6 70 50%+190 98"/>
 		</object>
 
-		<object name="aiDescription" type="text" style="ModernLabelText" size="8% 90 92% 100%-30"/>
+		<object name="aiDescription" type="text" style="ModernLabelText" size="8% 110 92% 100%-30"/>
 
 		<object type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>

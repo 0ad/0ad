@@ -6,6 +6,7 @@
 # LeviTaule <levi.taule@gmail.com>, 2018
 # LeviTaule <levi.taule@gmail.com>, 2014-2016
 # Martin Plávala <martinplavala@gmail.com>, 2014-2015
+# Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Roman Beňo <romanko.sk@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 13:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-29 09:41+0000\n"
+"Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -151,44 +152,44 @@ msgstr ""
 #: ps/ModIo.cpp:300
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "Nepodarilo sa vytvoriť adresár módu: %s . "
 
 #: ps/ModIo.cpp:325
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "Nepodarilo sa otvoriť dočasný súbor na prevzatie módu: %s."
 
 #: ps/ModIo.cpp:335
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "Preberanie sa nepodarilo spustiť. Chyba: %s; %s."
 
 #: ps/ModIo.cpp:380
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Asynchrónne zlyhanie sťahovania: %s, %s."
 
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Sťahovanie zlyhalo. Odozva server: %s; %s."
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Nesprávna veľkosť súboru. "
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Neplatný súbor. Očakávalo sa md5%s mám %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "Nepodarilo sa vypočítať konečný hash."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Nepodarilo sa overiť podpis. "
 
 #: ps/SavedGame.cpp:128
 #, c-format

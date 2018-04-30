@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-26 09:07+0000\n"
+"PO-Revision-Date: 2018-04-27 07:32+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "Рубати"
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr ""
+msgstr "Колющий"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
@@ -348,7 +348,7 @@ msgstr "Представлені герої"
 
 #: gui/common/gamedescription.js:277
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Героїв не можна розміщувати в будівлях і вони залишаються уразливими до набігів."
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
@@ -447,7 +447,7 @@ msgstr "Випадковий біом"
 
 #: gui/common/gamedescription.js:367
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "Вибрати біом зі списку випадковим чином."
 
 #: gui/common/gamedescription.js:381
 msgid "Nomad Mode"
@@ -1050,9 +1050,9 @@ msgstr[2] "Додайте іншого працівника, щоб приско
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Додайте працівника, щоб закінчити побудову за %(second)s секунду."
+msgstr[1] "Додайте працівника, щоб закінчити побудову за %(second)s секунди."
+msgstr[2] "Додайте працівника, щоб закінчити побудову за %(second)s секунд."
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1225,13 +1225,13 @@ msgstr "%(nick)s - %(name)s"
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "За замовчуванням: %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Мін: %(min)s, Макс: %(max)s"
 
 #: gui/options/options.js:128
 #, javascript-format
@@ -1459,7 +1459,7 @@ msgstr ""
 #. unit can construct or build.
 #: gui/reference/viewer/viewer.js:177
 msgid "Builds:"
-msgstr ""
+msgstr "Для побудови:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
@@ -1471,13 +1471,13 @@ msgstr ""
 #. structure can train.
 #: gui/reference/viewer/viewer.js:210
 msgid "Trains:"
-msgstr ""
+msgstr "Для тренування:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:223
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Для покращення:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1900,7 +1900,7 @@ msgstr "Ви перемогли у битві!"
 
 #: gui/summary/summary.js:501
 msgid "You have been defeated…"
-msgstr ""
+msgstr "Ви зазнали поразки..."
 
 #: gui/summary/summary.js:502
 msgid "You have abandoned the game."
@@ -2174,7 +2174,7 @@ msgstr "Вибрати мову гри"
 
 #: gui/pregame/mainmenu.xml:(tooltip):397
 msgid "Select and download mods for the game."
-msgstr ""
+msgstr "Виберіть та завантажте моди для гри."
 
 #: gui/pregame/mainmenu.xml:(tooltip):409
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -2712,7 +2712,7 @@ msgstr "Кількість шейдерних ефектів. ВИМАГАЄ П�
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Шейдерні Ефекти"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
@@ -2771,7 +2771,7 @@ msgstr "Силуети юнітів"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "Увімкнути ефект частинок."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
@@ -2799,7 +2799,7 @@ msgstr "Реалістична вода"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr ""
+msgstr "Використати справжню глибину води в обчисленнях рендерингу."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
@@ -2839,7 +2839,7 @@ msgstr "Розмита лінія межі видимості"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr ""
+msgstr "Рендерити небо."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
@@ -2923,7 +2923,7 @@ msgstr "Гучність інтерфейсу"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "Отримувати аудіо сповіщення, коли хтось друкує ваш нікнейм."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
@@ -3054,11 +3054,11 @@ msgstr ""
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
-msgstr ""
+msgstr "Здоров'я Пораненого Юніта"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "Кількість юнітів, що тренуються за групу по замовчуванню."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
@@ -3130,7 +3130,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "Відображення Відстані Атаки"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3228,7 +3228,7 @@ msgstr ""
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
-msgstr ""
+msgstr "Внутрішньоігровий"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
@@ -3593,7 +3593,7 @@ msgstr "МІСЬКІ ЦЕНТРИ"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The foundation of your new colony."
-msgstr ""
+msgstr "- Основа Вашої нової колонії."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -3693,11 +3693,11 @@ msgstr "ЗБІР РЕСУРСІВ"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "- Використайте солдат-городян і жінок-городянок для збирання ресурсів."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female citizens are faster gathering vegetable resources."
-msgstr ""
+msgstr "- Жінки-городянки швидші в збиранні овочевих ресурсів."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Infantry citizen soldiers are faster gathering minerals."
@@ -3705,7 +3705,7 @@ msgstr ""
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr ""
+msgstr "- Кавалерія швидша в зборі м'яса."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""

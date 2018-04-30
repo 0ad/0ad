@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-  <id type="desktop">0ad.desktop</id>
-  <licence>CC-BY-SA</licence>
+<!-- Copyright 2018 Wildfire Games <webmaster@wildfiregames.com> -->
+<component type="desktop-application">
+  <id>com.play0ad.zeroad</id>
+  <launchable type="desktop-id">0ad.desktop</launchable>
+  <project_license>GPL-2.0+ and CC-BY-SA</project_license>
+  <metadata_license>CC-BY-SA-3.0</metadata_license>
+  <name>0 A.D.</name>
+  <summary>Real-Time Strategy Game of Ancient Warfare</summary>
   <description>
     <p>
       0 A.D. is a real-time strategy (RTS) game of ancient warfare.
       It's a historically-based war/economy game that allows players to relive
-      or rewrite the history of twelve ancient civilizations, each depicted at
-      their peak of economic growth and military prowess.
+      or rewrite the history of thirteen ancient civilizations, each depicted
+      at their peak of economic growth and military prowess.
     </p>
     <p>
-      The twelve factions are: Three of the Hellenic States (Athens, Sparta and
+      The thirteen factions are: Three of the Hellenic States (Athens, Sparta and
       Macedonia), two of the kingdoms of Alexander the Great's successors
       (Seleucids and Ptolemaic Egyptians), two Celtic tribes (Britons and
-      Gauls), the Romans, the Persians, the Iberians, the Carthaginians, and the
-      Mauryans.
+      Gauls), the Romans, the Persians, the Iberians, the Carthaginians, the
+      Mauryas and the Kushites.
       Each civilization is complete with substantially unique artwork,
       technologies and civilization bonuses.
     </p>
   </description>
-  <url type="homepage">http://play0ad.com/</url>
-  <url type="translate">http://trac.wildfiregames.com/wiki/Localization</url>
+  <categories>
+    <category>Game</category>
+    <category>StrategyGame</category>
+  </categories>
+  <url type="homepage">https://play0ad.com/</url>
+  <url type="bugtracker">https://trac.wildfiregames.com/</url>
+  <url type="translate">https://trac.wildfiregames.com/wiki/Localization</url>
   <url type="donation">https://play0ad.com/community/donate/</url>
   <screenshots>
-    <screenshot type="default">http://play0ad.com/wp-content/gallery/screenshots/screenshot0072.jpg</screenshot>
-    <screenshot>http://play0ad.com/wp-content/gallery/screenshots/water-specular.jpg</screenshot>
-    <screenshot>http://play0ad.com/wp-content/gallery/screenshots/screenshot0050.jpg</screenshot>
-    <screenshot>http://play0ad.com/wp-content/gallery/screenshots/athenian_gymnasion.jpg</screenshot>
+    <screenshot type="default">https://play0ad.com/wp-content/gallery/screenshots/screenshot0072.jpg</screenshot>
+    <screenshot>https://play0ad.com/wp-content/gallery/screenshots/water-specular.jpg</screenshot>
+    <screenshot>https://play0ad.com/wp-content/gallery/screenshots/screenshot0050.jpg</screenshot>
+    <screenshot>https://play0ad.com/wp-content/gallery/screenshots/cycladic_arcgipelago_6.jpg</screenshot>
   </screenshots>
-  <updatecontact>webmaster@wildfiregames.com</updatecontact>
+  <update_contact>webmaster@wildfiregames.com</update_contact>
   <keywords>
     <keyword>RTS</keyword>
     <keyword>Realtime Strategy</keyword>
@@ -46,8 +56,9 @@
     <keyword>Carthaginians</keyword>
     <keyword>Gauls</keyword>
     <keyword>Iberians</keyword>
+    <keyword>Kushites</keyword>
     <keyword>Macedonians</keyword>
-    <keyword>Mauryans</keyword>
+    <keyword>Mauryas</keyword>
     <keyword>Persians</keyword>
     <keyword>Ptolemies</keyword>
     <keyword>Romans</keyword>
@@ -79,4 +90,4 @@
   <mimetypes>
     <mimetype>application/x-pyromod+zip</mimetype>
   </mimetypes>
-</application>
+</component>

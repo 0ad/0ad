@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-23 12:57+0000\n"
+"PO-Revision-Date: 2018-04-28 13:51+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -470,12 +470,12 @@ msgstr "A(z) %(name)s beállításlap be/ki."
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "%(hotkey)s használata a beállításlap lefelé mozgatásához."
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "%(hotkey)s használata a beállításlap felfelé mozgatásához."
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -1419,7 +1419,7 @@ msgstr "\"A te problémád is, ha a szomszédod fala lángokban áll\" - Horatiu
 msgid ""
 "\"It is sweet and honorable to die for one's country.\" - Horace (\"Odes\", "
 "III., ode II., 13)"
-msgstr ""
+msgstr "„Édes és dicső meghalni a hazáért.” - Horatius („Ódák”, III., II. óda, 13.)"
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
@@ -1436,14 +1436,14 @@ msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife who "
 "asked what to do if he died, before he left for Thermopylae (Plutarch, "
 "\"Moralia\", XVI. \"Sayings of Spartans\", 225a)"
-msgstr ""
+msgstr "„Menj hozzá egy jó emberhez, és szülj jó gyermekeket.” - Leónidasz kérése a feleségéhez a halála esetén, mielőtt elindult Thermopüla felé (Plutarkhosz, „Moralia”, XVI. „Spártaiak mondásai”, 225a)"
 
 #: gui/text/quotes.txt:113
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms (Plutarch, \"Moralia\", XVI. "
 "\"Sayings of Spartans\", 225c)"
-msgstr ""
+msgstr "„Gyere és vedd el!.” - Leónidasz a perzsa hírnöknek, amikor az őt és embereit fegyverletételre szólította (Plutarkhosz, „Moralia”, XVI. „Spártaiak mondásai”, 225c)"
 
 #: gui/text/quotes.txt:114
 msgid ""
@@ -1476,7 +1476,7 @@ msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide after losing a battle against Caesar's "
 "avengers (Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
-msgstr ""
+msgstr "„Valóban menekülni kell, de nem a lábunkkal, hanem a kezünkkel.” – Marcus Iunius Brutus, mielőtt öngyilkos lett a Caesar megbosszulóival vívott csata elvesztése után (Plutarkhosz, „Párhuzamos életrajzok”, „Brutus”, 52. szakasz)"
 
 #: gui/text/quotes.txt:118
 msgid ""
@@ -1488,37 +1488,37 @@ msgstr "„Ó idők, ó erkölcsök!.” – Marcus Tullius Cicero („Catilina 
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero (\"De Re Publica\", III., 23)"
-msgstr ""
+msgstr "„A háború sohasem elfogadott az ideális Állam által, kivéve a saját biztonsága vagy becsülete védelmében.” - Marcus Tullius Cicero („Az államról”, III., 23.)"
 
 #: gui/text/quotes.txt:120
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero (\"On Duties\", I., 13)"
-msgstr ""
+msgstr "„Az ember első kötelessége, hogy utánajárjon és kivizsgálja az igazságot.” – Marcus Tullius Cicero („A kötelességekről”, I. 13.)"
 
 #: gui/text/quotes.txt:121
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero (\"On Old Age\", sec. 24)"
-msgstr ""
+msgstr "„Senki nem olyan öreg, hogy úgy gondolja hogy nem tud még egy évet élni.” – Marcus Tullius Cicero („Az öregségről”, 24. szakasz)"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero (\"On the Laws\", III., sec. 3)"
-msgstr ""
+msgstr "„Hagyd, hogy a nép jóléte legyen az utolsó törvény.” - Marcus Tullius Cicero („A törvényekről”, III. 3. szakasz)"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero "
 "(\"Philippics\", Philippica V., sec. 5)"
-msgstr ""
+msgstr "„A háború mozgatórugója a végtelen pénz.” - Marcus Tullius Cicero („Philippikák”, V. philipposzi beszéd, 5. szakasz)"
 
 #: gui/text/quotes.txt:124
 msgid ""
 "\"Laws are silent in time of war.\" - Marcus Tullius Cicero (\"Pro Milone\","
 " IV., sec. 11)"
-msgstr ""
+msgstr "„Háború alatt hallgatnak a törvények.” - Marcus Tullius Cicero („Pro Milone”, IV., 11. szakasz)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1526,7 +1526,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero, condemning Mark Anthony who had not killed him (yet) "
 "(\"Philippics\", Philippica II, sec. 5)"
-msgstr ""
+msgstr "„Ez, szenátorok, amit a csőcselék szívessége ér. Tartózkodnak megölni valakit; aztán dicsekednek hogy megkímélték életét!” - Marcus Tullius Cicero, elítélve Marcus Antoniust, aki (még) nem ölette meg („Philippikák”, II. philipposzi beszéd, 5. szakasz)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1545,7 +1545,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:128
 msgid "\"The man who runs may fight again.\" - Menander (\"Monosticha\")"
-msgstr ""
+msgstr "„Az ember aki elfut, újra harcolhat.” - Menandrosz („Monosticha”)"
 
 #: gui/text/quotes.txt:129
 msgid ""
@@ -1555,7 +1555,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:130
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
-msgstr ""
+msgstr "„A fügét fügének, az ásót ásónak nevezem.” - Menandrosz (545. töredék)"
 
 #: gui/text/quotes.txt:131
 msgid ""
@@ -1639,13 +1639,13 @@ msgid ""
 "is certainly dangerous to let it go.\" - Pericles, addressing the Athenian "
 "assembly after a plague had weakened the city (Thucydides, \"History of the "
 "Peloponnesian War\", II. 63.3)"
-msgstr ""
+msgstr "„A birodalmad most már mint egy zsarnokság: lehet hogy rossz volt elvenni, de bizonyosan veszélyes lenne elengedni.” - Periklész, az athéni gyűlésnek címezve a város legyengítő pestisjárvány után (Thuküdidész, „A peloponnészoszi háború története”, II. 63.3)"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man fears its approach in his heart.\" - Pindar (fragment 110)"
-msgstr ""
+msgstr "„A háború édes azoknak akik sohasem tapasztalták, de a tapasztalt ember szíve hevesebben ver az érkezésekor.” - Pindarosz (110. töredék)"
 
 #: gui/text/quotes.txt:142
 msgid ""
@@ -1659,7 +1659,7 @@ msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus (\"The Swaggering Soldier\", Act III,"
 " scene 1, 146)"
-msgstr ""
+msgstr "„Ámde bármi kedvesen is fogadjon a jóbarát, a vendég három napon túl mégiscsak terhére van.” - Plautus („A hetvenkedő katona”, III. felvonás, 1. jelenet, 146.)"
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -1781,25 +1781,25 @@ msgstr ""
 msgid ""
 "\"None can be free who is a slave to, and ruled by, his passions.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 18)"
-msgstr ""
+msgstr "„Senki sem lehet szabad, aki a szenvedélyei rabszolgája.” – Püthagorasz (Stobaeus, „Florilegium”, 18.)"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"Do not say few things in many words, but many things in few words.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "„Ne keveset mondj sok szóval, hanem sokat kevés szóval.” – Püthagorasz (Stobaeus, „Florilegium”, 24.)"
 
 #: gui/text/quotes.txt:159
 msgid ""
 "\"Let your speech be better than silence, or be silent.\" - Pythagoras "
 "(Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "„A mondani valód legyen több mint a csend vagy maradj néma.” – Püthagorasz (Stobaeus, „Florilegium”, 24.)"
 
 #: gui/text/quotes.txt:160
 msgid ""
 "\"Unity strengthens even small states, while discord undermines the "
 "mightiest empires.\" - Sallust (\"The Jugurthine War\", 10.6)"
-msgstr ""
+msgstr "„Az egység teszi a kis államokat naggyá, míg a viszálykodás a leghatalmasabb birodalmakat is aláássa.” – Sallustius („A Jugurtha elleni háború”, 10.6)"
 
 #: gui/text/quotes.txt:161
 msgid ""
@@ -1814,7 +1814,7 @@ msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
 "Zama (Livius, \"Ab Urbe Condita\", XXX. 31)"
-msgstr ""
+msgstr "„Készülj a háborúra, ha a békét nem bírod elviselni.” – Scipio Africanus, válaszul Hannibál békefeltételeire a zámai csata előtt (Livius, „Ab Urbe Condita”, XXX. 31.)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -1873,13 +1873,13 @@ msgstr ""
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
-msgstr ""
+msgstr "„Mértéktartás mindenben.” – Terentius („Az androszi lány”, 61.)"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"Fortune favors the bold.\" - Terence in a play about a great Athenian "
 "admiral (\"Phormio\", 203)"
-msgstr ""
+msgstr "„Bátraké a szerencse.” – Terentius egy nagy athéni admirálisról szóló darabban („Phormio”, 203)"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -1887,7 +1887,7 @@ msgid ""
 "raise a city that was small and unimportant to glory and greatness.\" - "
 "Themistocles, defending his lack of cultural sophistication (Plutarch, "
 "\"Parallel Lives\", \"Themistocles\", sec. 2)"
-msgstr ""
+msgstr "„Nem tudok lantot pengetni vagy hárfázni, de ahhoz jól értek, hogyan tegyem naggyá és híressé a legkisebb és legismeretlenebb községet.” – Themisztoklész, megvédve kulturális kifinomultságának hiányát (Plutarkhosz, „Párhuzamos életrajzok”, „Themisztoklész”, 2. szakasz)"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -1895,14 +1895,14 @@ msgid ""
 "with the Spartan fleet commander who threatened to beat him with his staff, "
 "before the Battle of Salamis (Plutarch, \"Parallel Lives\", "
 "\"Themistocles\", sec. 11)"
-msgstr ""
+msgstr "„Üss csak meg, de hallgass rám.” – Themisztoklész, parázs vitában a szalamiszi csata előtt egy spártai flottaparancsnokkal, aki megfenyegette, hogy pálcával veri meg. (Plutarkhosz, „Párhuzamos életrajzok”, „Themisztoklész”, 11. szakasz)"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"The Athenians command the rest of Greece, I command the Athenians; your "
 "mother commands me, and you command your mother.\" - Themistocles, jokingly "
 "to his infant son (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 18)"
-msgstr ""
+msgstr "„Mert az athéniak vezetik Görögország többi részét, én parancsolom az athéniakat; az anyád parancsol engem, és te parancsolod anyádat.” - Themisztoklész, viccelődve az újszülött fiához (Plutarkhosz, „Párhuzamos életrajzok”, 18. szakasz)"
 
 #: gui/text/quotes.txt:175
 msgid ""
@@ -1994,7 +1994,7 @@ msgid ""
 "\"Homer and Hesiod ascribed to their Gods all things that are a disgrace "
 "among mortals: stealing, adultery, deceiving one another.\" - Xenophanes "
 "(fragment 11)"
-msgstr ""
+msgstr "„Homérosz és Hésziodosz az isteneket olyan tulajdonságokkal is felruházták, amelyek szégyenteljesek és gyalázatosak az emberek között; tolvajsággal, házasságtöréssel, csalárdsággal és mindenféle törvénytelen cselekedetekkel.” – Xenophanész (11. töredék)"
 
 #: gui/text/quotes.txt:187
 msgid ""
@@ -2002,13 +2002,13 @@ msgid ""
 " of art as men do, horses would paint the forms of the gods like horses, and"
 " oxen like oxen, and make their God's bodies each in their own image.\" - "
 "Xenophanes (fragment 15)"
-msgstr ""
+msgstr "„Bizony, ha az ökröknek és lovaknak volna kezük, s az emberekhez hasonlóan szobrokat készítenének, a lovak ló alakú isteneket mintáznának, az ökrök pedig ökör alakúakat.” – Xenophanész (15. töredék)"
 
 #: gui/text/quotes.txt:188
 msgid ""
 "\"The Ethiopians make their gods black and snub-nosed, the Thracians say "
 "theirs have blue eyes and red hair.\" - Xenophanes (fragment 16)"
-msgstr ""
+msgstr "„Bizony, az etiópiaiak istenei feketék és széles orrúak, s a thrákokéinak haja veres, és szemük kék.” – Xenophanész (16. töredék)"
 
 #: gui/text/quotes.txt:189
 msgid ""

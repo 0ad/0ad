@@ -11,6 +11,7 @@
 # Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
 # Iago Leandro de Abreu <iago.abr@outlook.com>, 2015
 # Jorno Jornade <jfcarrer@hotmail.com>, 2018
+# Junior Lage <junimslage@gmail.com>, 2018
 # Mateus Felipe Cordeiro Caetano Pinto <uuflor@gmail.com>, 2013
 # Micael Pereira Malaquias <micaelpmalaquias@hotmail.com>, 2014
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2017
@@ -21,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-25 19:23+0000\n"
+"PO-Revision-Date: 2018-04-28 18:17+0000\n"
 "Last-Translator: Tiago\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -89,11 +90,11 @@ msgstr "Erro de transferência"
 
 #: lobby/XmppClient.cpp:1107
 msgid "The incoming stream version is unsupported"
-msgstr "O motor de fluxo de entrada não é suportado"
+msgstr "O fluxo de entrada não é suportado"
 
 #: lobby/XmppClient.cpp:1108
 msgid "The stream has been closed by the server"
-msgstr "O motor foi fechado pelo servidor"
+msgstr "O fluxo foi fechado pelo servidor"
 
 #: lobby/XmppClient.cpp:1112
 msgid "An I/O error occurred"
@@ -105,7 +106,7 @@ msgstr "A conexão foi recusada pelo servidor"
 
 #: lobby/XmppClient.cpp:1115
 msgid "Resolving the server's hostname failed"
-msgstr "Erro ao resolver o nome do Host"
+msgstr "Erro ao resolver o nome do Anfitrião"
 
 #: lobby/XmppClient.cpp:1116
 msgid "This system is out of memory"
@@ -173,7 +174,7 @@ msgstr "Falha ao iniciar o download. Erro: %s; %s."
 #: ps/ModIo.cpp:380
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Falha na sincronia de download: %s, %s."
 
 #: ps/ModIo.cpp:408
 #, c-format

@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-24 01:21+0000\n"
-"Last-Translator: Rui <xymarior@yandex.com>\n"
+"PO-Revision-Date: 2018-04-28 18:36+0000\n"
+"Last-Translator: Tiago\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -809,7 +809,7 @@ msgstr "Carrinho de Mão"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
-msgstr "Nutrientes adicionais para fazendas."
+msgstr "Nutrientes adicionais para campos agrícolas."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
@@ -1109,7 +1109,7 @@ msgstr "Usando alvenaria geométrica aumenta a robustez das muralhas defensivas.
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Muros da cidade ganham +2 de armadura contra esmagamento, mas +10% no tempo de construção."
+msgstr "Muralhas da cidade ganham +2 de armadura contra esmagamento, mas +10% no tempo de construção."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
@@ -1181,7 +1181,7 @@ msgstr "Fêmeas vs. População"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr "Aldeãs vs População"
+msgstr "Cidadãs vs População"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1220,7 +1220,7 @@ msgstr "Vigia Noturna vs. Ameias"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
-msgstr "Tempo de construção de Muralhas va. Robustez"
+msgstr "Tempo de construção de Muralhas vs Robustez"
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1247,12 +1247,12 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avançe para a Fase de Cidade, que desbloqueia mais estruturas e unidades. O raio de território para Centros Cívicos aumenta mais +50%. O bónus da civilização Corujas de Prata concede um extra +10% de velocidade de recolha de metal para todos os trabalhadores. Máximo de saúde dos cidadãos soldados aumentada em +10%. Todas as estruturas +9 de velocidade de regeneração de unidades guarnecidas."
+msgstr "Avançe para a Fase de Cidade, que desbloqueia mais estruturas e unidades. O raio de território para Centros Cívicos aumenta mais +50%. O bónus da civilização Corujas de Prata concede um extra +10% de velocidade de recolha de metal para todos os trabalhadores. Máximo de saúde dos soldados cidadãos aumentada em +10%. Todas as estruturas +9 de velocidade de regeneração de unidades guarnecidas."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Requer 4 novas estruturas da Fase de Vila (exceto por Muros e Centros Civis)."
+msgstr "Requer 4 novas estruturas da Fase de Vila (exceto por Muralhas e Centros Civis)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1271,7 +1271,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avança para a Fase de Cidade, liberando mais estruturas e unidades. O Território dos Centros Cívicos aumenta em +50%. A saúde de cidadãos soldados aumenta em +10%. Todas as estruturas recebem +9 de taxa de regeneração de unidades guarnecidas."
+msgstr "Avança para a Fase de Cidade, liberando mais estruturas e unidades. O Território dos Centros Cívicos aumenta em +50%. A saúde dos soldados cidadãos aumenta em +10%. Todas as estruturas recebem +9 de taxa de regeneração de unidades guarnecidas."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1290,7 +1290,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "Avança de uma pequena aldeia para uma promissora cidade, pronta para expansão. Esta é a fase de cidade ateniense, onde as taxas de coleta de metal são impulsionadas  devido ao efeito do bônus 'Corujas de Prata'."
+msgstr "Avança de uma pequena aldeia para uma promissora cidade, pronta para expansão. Esta é a fase de vila ateniense, onde as taxas de coleta de metal são impulsionadas  devido ao efeito do bônus 'Corujas de Prata'."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1298,13 +1298,13 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avance para Fase de Vila, que permite mais estruturas e unidades. Raio territorial de Centros Cívicos +30%. O bônus cívico 'Corujas de Prata' garante +10% velocidade de mineração para todos os trabalhadores. Saúde máxima de Cidadãos-Soldado +20%. Todas as estruturas ganham +7 regeneração para abrigados."
+msgstr "Avance para Fase de Vila, que permite mais estruturas e unidades. Raio territorial de Centros Cívicos +30%. O bônus cívico 'Corujas de Prata' garante +10% velocidade de mineração para todos os trabalhadores. Saúde máxima dos soldados cidadãos aumenta +20%. Todas as estruturas ganham +7 de taxa de regeneração para abrigados."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Requer 5 estruturas da Fase de Aldeia (exceto Paliçadas e Fazendas)."
+msgstr "Requer 5 estruturas da Fase de Aldeia (exceto Paliçadas e Campos Agrícolas)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1322,7 +1322,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avance para Fase de Vila, que permite mais estruturas e unidades. Raio territorial de Centros Cívicos +30%. Saúde máxima de Cidadãos-Soldado +20%. Todas as estruturas ganham +7 regeneração para abrigados."
+msgstr "Avance para Fase de Vila, que permite mais estruturas e unidades. Raio territorial de Centros Cívicos +30%. Saúde máxima de soldados cidadãos aumenta +20%. Todas as estruturas ganham +7 de taxa de regeneração para abrigados."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1880,14 +1880,14 @@ msgstr "Espionagem"
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr "Promova todos os seus cavaleiros cidadão-soldado ao posto avançado."
+msgstr "Promova todos os seus cavaleiros soldado cidadão ao posto avançado."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "Promova todos seus cidadãos-soldados da cavalaria ao posto avançado. Isso aumenta sua proeza militar, mas diminui sua coleta de carne em -25%. Desbloqueia tecnologia de cavalaria de cidadãos de Elite."
+msgstr "Promova todos seus soldados cidadãos da cavalaria ao posto Avançado. Isso aumenta sua proeza militar, mas diminui sua coleta de carne em -25%. Desbloqueia tecnologia de cavalaria de cidadãos de Elite."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
@@ -1895,14 +1895,14 @@ msgstr "Cidadão-Cavaleiro Avançado"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr "Atualize todos os seus soldados de infantaria cidadão-soldado ao posto avançado."
+msgstr "Atualize todos os seus soldados cidadãos de infantaria ao posto Avançado."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr "Atualize todos os seus soldados de infantaria cidadão-soldado ao posto avançado. Isso aumenta suas proezas militares, mas diminui seu recurso de recolher taxas -25%. Desbloqueia tecnologia cidadão-infantaria de Elite."
+msgstr "Atualize todos os seus soldados cidadãos de infantaria ao posto avançado. Isso aumenta suas proezas militares, mas diminui seu recurso de recolher taxas em -25%. Desbloqueia tecnologia Infantaria Cidadão de Elite."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
@@ -1921,7 +1921,7 @@ msgstr "Contrate mercenários profissionais para lutar no seu exército."
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
 "Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr "Mercenários são promovidos para rank avançado, mas requer +20% de tempo de treinamento."
+msgstr "Mercenários são promovidos para posto Avançado, mas requer +20% de tempo de treinamento."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1932,7 +1932,7 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr "Promova todos seus cidadãos-soldados da cavalaria para o posto de Elite. Isto aumenta sua proeza militar mas diminui as taxas de coleta de carne em -25%"
+msgstr "Promova todos seus soldados cidadãos da cavalaria para o posto de Elite. Isto aumenta sua proeza militar mas diminui as taxas de coleta de carne em -25%"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
@@ -1940,14 +1940,14 @@ msgstr "Cidadão-Cavaleiro de Elite"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr "Aprimore todos seus cidadãos-solados da infantaria para o posto de Elite."
+msgstr "Aprimore todos seus soldados cidadãos da infantaria para o posto de Elite."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr "Aprimore todos seus cidadãos-soldados da infantaria para o posto de Elite. Isso aumenta a proeza militar deles mas diminui as taxas de coletas de recursos em -25%"
+msgstr "Aprimore todos seus soldados cidadãos da infantaria para o posto de Elite. Isso aumenta a proeza militar deles mas diminui as taxas de coletas de recursos em -25%"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
@@ -1974,7 +1974,7 @@ msgstr "Muralhas, portões e torres Cartagineses têm 3x mais pontos de vida que
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
-msgstr "Paredes Triplas"
+msgstr "Muralhas Triplas"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
@@ -2192,14 +2192,14 @@ msgstr "Hegemonia Italiota"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr "Atualize todos os seus mercenários celtas ao posto avançado."
+msgstr "Atualize todos os seus mercenários celtas para posto Avançado."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr "Aprimore todos seus mercenários celtas para o posto avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%. Desbloqueia tecnologia de Mercenários Celtas de Elite."
+msgstr "Aprimore todos seus mercenários celtas para posto Avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%. Desbloqueia tecnologia de Mercenários Celtas de Elite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
@@ -2207,14 +2207,14 @@ msgstr "Mercenários Celtas Avançados"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr "Aprimore todos seus mercenários ibéricos para o posto avançado."
+msgstr "Aprimore todos seus mercenários ibéricos para posto Avançado."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr "Aprimore todos seus mercenários ibéricos para o posto avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%. Desbloqueia tecnologia de Mercenários Ibéricos de Elite."
+msgstr "Aprimore todos seus mercenários ibéricos para posto Avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%. Desbloqueia tecnologia de Mercenários Ibéricos de Elite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -2222,14 +2222,14 @@ msgstr "Mercenários Ibéricos Avançados"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr "Aprimore todos seus mercenários italiotas para o posto avançado."
+msgstr "Aprimore todos seus mercenários italiotas para posto Avançado."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr "Aprimore todos seus mercenários italiotas para o posto avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%. Desbloqueia tecnologia de Mercenários Italiotas de Elite."
+msgstr "Aprimore todos seus mercenários italiotas para posto Avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%. Desbloqueia tecnologia de Mercenários Italiotas de Elite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
@@ -2243,7 +2243,7 @@ msgstr "Aprimore todos seus mercenários celtas para o posto de Elite."
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Aprimore todos seus mercenários celtas para o posto avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%."
+msgstr "Aprimore todos seus mercenários celtas para posto Avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
@@ -2257,7 +2257,7 @@ msgstr "Aprimore todos seus mercenários ibéricos para o posto de Elite."
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Aprimore todos seus mercenários ibéricos para o posto avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%."
+msgstr "Aprimore todos seus mercenários ibéricos para posto Avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2374,7 +2374,7 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "As Muralhas longas de Atenas foram construídas sob o auspício do astuto Temístocles e estenderam-se por 6 km desde a cidade até o porto de Pireu. Isso garantia a rota litorânea e prevenia a fome na cidade durante cercos."
+msgstr "As Longas Muralhas de Atenas foram construídas sob o auspício do astuto Temístocles e estenderam-se por 6 km desde a cidade até o porto de Pireu. Isso garantia a rota litorânea e prevenia a fome na cidade durante cercos."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build stone walls in neutral territory."
@@ -2388,7 +2388,7 @@ msgstr "Muralhas Longas Atenienses"
 msgid ""
 "+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr "+25% de HP e -50% de tempo de construção para Centros Cívicos, Templos, Pirâmides e Maravilhas."
+msgstr "+25% de pontos de vida e -50% de tempo de construção para Centros Cívicos, Templos, Pirâmides e Maravilhas."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2573,7 +2573,7 @@ msgstr "Os romanos eram mestres da logística de guerra."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr "Trincheiras e paredes de cerco caem 50% mais devagar."
+msgstr "Trincheiras e Muralhas de Cerco caem 50% mais devagar."
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"

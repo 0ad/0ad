@@ -163,44 +163,44 @@
 		</object>
 
 		<!-- MOD-SPECIFIC BUTTONS -->
-		<object name="toggleModButton" type="button" style="ModernButtonRed" size="16 100%-80 200 100%-52" enabled="false">
+		<object name="toggleModButton" type="button" style="ModernButtonRed" size="16 100%-80 236 100%-52" enabled="false">
 			<translatableAttribute id="caption">Enable/Disable</translatableAttribute>
 		</object>
-		<object name="visitWebButton" type="button" style="ModernButtonRed" size="204 100%-80 388 100%-52" enabled="false">
+		<object name="visitWebButton" type="button" style="ModernButtonRed" size="240 100%-80 460 100%-52" enabled="false">
 			<translatableAttribute id="caption">Visit Website</translatableAttribute>
 			<action on="Press">visitModWebsite();</action>
 		</object>
 
 		<!-- Message -->
-		<object name="message" type="text" size="394 100%-78 100%-15 100%-52" text_align="left" textcolor="white"/>
+		<object name="message" type="text" size="466 100%-78 100%-15 100%-52" text_align="left" textcolor="white"/>
 
 		<!-- BUTTONS -->
-		<object name="quitButton" type="button" style="ModernButtonRed" size="100%-944 100%-44 100%-764 100%-16">
+		<object name="quitButton" type="button" style="ModernButtonRed" size="100%-994 100%-44 100%-804 100%-16">
 			<translatableAttribute id="caption">Quit</translatableAttribute>
 			<action on="Press">Engine.Exit();</action>
 		</object>
 
-		<object name="cancelButton" type="button" style="ModernButtonRed" size="100%-944 100%-44 100%-764 100%-16" hotkey="cancel">
+		<object name="cancelButton" type="button" style="ModernButtonRed" size="100%-994 100%-44 100%-804 100%-16" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">closePage();</action>
 		</object>
 
-		<object type="button" style="ModernButtonRed" size="100%-760 100%-44 100%-580 100%-16">
+		<object type="button" style="ModernButtonRed" size="100%-800 100%-44 100%-610 100%-16">
 			<translatableAttribute id="caption">Help</translatableAttribute>
 			<action on="Press">Engine.PushGuiPage("page_modhelp.xml");</action>
 		</object>
 
-		<object type="button" style="ModernButtonRed" size="100%-576 100%-44 100%-392 100%-16">
+		<object type="button" style="ModernButtonRed" size="100%-606 100%-44 100%-412 100%-16">
 			<translatableAttribute id="caption">Download Mods</translatableAttribute>
 			<action on="Press">modIo();</action>
 		</object>
 
-		<object name="saveConfigurationButton" type="button" style="ModernButtonRed" size="100%-388 100%-44 100%-204 100%-16">
+		<object name="saveConfigurationButton" type="button" style="ModernButtonRed" size="100%-408 100%-44 100%-214 100%-16">
 			<translatableAttribute id="caption">Save Configuration</translatableAttribute>
 			<action on="Press">saveMods();</action>
 		</object>
 
-		<object name="startModsButton" type="button" style="ModernButtonRed" size="100%-200 100%-44 100%-16 100%-16">
+		<object name="startModsButton" type="button" style="ModernButtonRed" size="100%-210 100%-44 100%-16 100%-16">
 			<translatableAttribute id="caption">Start Mods</translatableAttribute>
 			<action on="Press">startMods();</action>
 		</object>

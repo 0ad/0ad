@@ -5,11 +5,12 @@
 # Translators:
 # Jakub Jelen <jakuje@gmail.com>, 2017
 # fri, 2014,2018
+# Tomáš Matýs <thommathys@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 15:42+0000\n"
+"PO-Revision-Date: 2018-04-28 20:38+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -21,28 +22,28 @@ msgstr ""
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "Bitů"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr ""
+msgstr "Kilobitů"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr ""
+msgstr "Megabitů"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr ""
+msgstr "Gigabitů"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s%(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime for a guide to the meaning of the letters.
@@ -63,7 +64,7 @@ msgstr ", "
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s%(version)s"
 
 #: gui/common/mod.js:20
 msgid ", "
@@ -88,12 +89,12 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "ID hry nemůže být získáno.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "Chyba při nabíhání"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
@@ -111,12 +112,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Seznam pozměněných verzí nemůže být získán.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr ""
+msgstr "Chyba při natahování"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -125,12 +126,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Stahování souboru selhalo.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "Chyba při stahování"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -139,20 +140,20 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Chyba při potvrzování souboru.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr ""
+msgstr "Chyba při potvrzení"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr ""
+msgstr "Nabíhá rozhraní mod.io."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "Nabíhá"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.js:313
 #: gui/modmod/modmod.xml:(caption):184
@@ -161,35 +162,35 @@ msgstr "Zrušit"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr ""
+msgstr "Získání a aktualizování přehledu přítomných pozměněných verzí."
 
 #: gui/modio/modio.js:233
 msgid "Updating"
-msgstr ""
+msgstr "Aktualizování"
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr ""
+msgstr "Zrušit aktualizaci"
 
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "Stahuje se “%(modname)s“"
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr ""
+msgstr "Stahuje se"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr ""
+msgstr "Zrušit stahování"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
 #: gui/modio/modio.js:320
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr "%(current)s/%(total)s(%(percent)s%%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:330
@@ -198,7 +199,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr ""
+msgstr "Uplynulý čas:%(elapsed)s\nPřibližná zbývající doba:%(remaining)s\nPrůměrná rychlost:%(avgSpeed)s"
 
 #: gui/modio/modio.js:332
 msgid "∞"
@@ -209,7 +210,7 @@ msgstr "∞"
 #: gui/modio/modio.js:334
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr "%(number)s%(unit)s/s"
 
 #: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
 msgid "Filter"
@@ -235,7 +236,7 @@ msgstr ""
 
 #: gui/modmod/modmod.js:312
 msgid "Connect to mod.io?"
-msgstr ""
+msgstr "Připojit se k mod.io?"
 
 #: gui/modmod/modmod.js:313
 msgctxt "mod.io connection message box"
@@ -252,7 +253,7 @@ msgstr "OK"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "Pozměněné verze mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -264,11 +265,11 @@ msgstr "Zpět"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
-msgstr ""
+msgstr "Obnovit přehled"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr ""
+msgstr "Stáhnout"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -287,7 +288,7 @@ msgstr "Štítek pozměněné verze"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
-msgstr ""
+msgstr "Velikost souboru"
 
 #: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
 #: gui/modmod/modmod.xml:(heading):128
@@ -312,7 +313,7 @@ msgstr "Povolené pozměněné verze"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
-msgstr ""
+msgstr "Zapnout/Vypnout"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
@@ -324,11 +325,11 @@ msgstr "Ukončit"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr ""
+msgstr "Pomoc"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr ""
+msgstr "Stáhnout pozměněné verze"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -350,11 +351,11 @@ msgstr "Stránka"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr ""
+msgstr "Změnit pořadí, ve kterém jsou spouštěny pozměněné verze. To musí souhlasit s prerekvizitami (závislostmi) pozměněných verzí."
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr ""
+msgstr "Pyrogenesiský vybírač pozměněných verzí"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -362,11 +363,11 @@ msgstr "Zavřít"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "Průvodce tvořením pozměněných verzí"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "Navštívit mod.io"
 
 #: gui/modmod/help/help.txt:1
 msgid ""

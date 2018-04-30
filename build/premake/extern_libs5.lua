@@ -80,8 +80,16 @@ local function add_default_links(def)
 		names = def.android_names
 	elseif os.istarget("linux") and def.linux_names then
 		names = def.linux_names
-	elseif os.istarget("macosx") and def.osx_names then
-		names = def.osx_names
+	elseif os.istarget("macosx") and (def.osx_names or def.osx_frameworks) then
+		if def.osx_names then
+			names = def.osx_names
+		end
+		-- OS X "Frameworks" are added to the links as "name.framework"
+		if def.osx_frameworks then
+			for i,name in pairs(def.osx_frameworks) do
+				links { name .. ".framework" }
+			end
+		end
 	elseif os.istarget("bsd") and def.bsd_names then
 		names = def.bsd_names
 	elseif def.unix_names then
@@ -100,22 +108,16 @@ local function add_default_links(def)
 		suffix = ""
 	end
 
-	-- OS X "Frameworks" are added to the links as "name.framework"
-	if os.istarget("macosx") and def.osx_frameworks then
-		for i,name in pairs(def.osx_frameworks) do
-			links { name .. ".framework" }
-		end
-	else
-		for i,name in pairs(names) do
-			filter "Debug"
-				links { name .. suffix }
-			filter "Release"
-				links { name }
-			filter { }
+	for i,name in pairs(names) do
+		filter "Debug"
+			links { name .. suffix }
+		filter "Release"
+			links { name }
+		filter { }
 
-			add_delayload(name, suffix, def)
-		end
+		add_delayload(name, suffix, def)
 	end
+
 end
 
 -- Library definitions
@@ -152,18 +154,21 @@ end
 --          * extern_lib: <libraryname> to be used in the libpath.
 --
 -- add_default_links
---		Description: Adds links to libraries and configures delayloading.
--- 		If the *_names parameter for a plattform is missing, no linking will be done
--- 		on that plattform.
---		The default assumptions are:
---		* debug import library and DLL are distinguished with a "d" suffix
--- 		* the library should be marked for delay-loading.
---		Parameters:
+--      Description: Adds links to libraries and configures delayloading.
+--      If the *_names parameter for a plattform is missing, no linking will be done
+--      on that plattform.
+--      The default assumptions are:
+--      * debug import library and DLL are distinguished with a "d" suffix
+--      * the library should be marked for delay-loading.
+--      Parameters:
 --      * win_names: table of import library / DLL names (no extension) when
---   	  running on Windows.
+--        running on Windows.
 --      * unix_names: as above; shared object names when running on non-Windows.
---      * osx_names: as above; for OS X specifically (overrides unix_names if both are
---        specified)
+--      * osx_names, osx_frameworks: for OS X specifically; if any of those is
+--        specified, unix_names is ignored. Using both is possible if needed.
+--          * osx_names: as above.
+--          * osx_frameworks: as above, for system libraries that need to be linked
+--            as "name.framework".
 --      * bsd_names: as above; for BSD specifically (overrides unix_names if both are
 --        specified)
 --      * linux_names: ditto for Linux (overrides unix_names if both given)
@@ -368,6 +373,8 @@ extern_lib_defs = {
 			add_default_links({
 				win_names  = { "libcurl" },
 				unix_names = { "curl" },
+				osx_names = { "curl", "z" },
+				osx_frameworks = { "Security" }
 			})
 		end,
 	},

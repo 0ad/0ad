@@ -14,7 +14,7 @@
 # LiberteCzech <liberte.czech@gmail.com>, 2018
 # LiberteCzech <liberte.czech@gmail.com>, 2015
 # OndraK <ondrej.kajinek@gmail.com>, 2014
-# fri, 2014-2017
+# fri, 2014-2018
 # Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
 # Rodeo65 <Rodeo65@centrum.cz>, 2014
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-04 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-04-29 11:14+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,7 +342,7 @@ msgstr "Nomád"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "V nomádském režimu hráči začínají jen s několika jednotkami a mají najít vhodné místo k postavení jejich města. Doporučuje se klid zbraní."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -433,7 +433,7 @@ msgstr "Vrátit se do hlavní nabídky."
 
 #: gui/gamesetup/gamesetup.js:1013
 msgid "Start Game!"
-msgstr "Spustit Hru!"
+msgstr "Spustit hru!"
 
 #: gui/gamesetup/gamesetup.js:1019
 msgid "Start a new game with the current settings."
@@ -448,29 +448,29 @@ msgstr "Začít novou hru s nynějším nastavením (zakázáno, až dokud nejso
 #: gui/gamesetup/gamesetup.js:1083
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Nastavit umělou inteligenci: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1132
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ukázat historii/strom staveb\nNaposledy otevřený bude znovuotevřen při klepnutí."
 
 #: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Přepnout kartu s nastavením %(name)s."
 
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Použijte %(hotkey)s pro posunutí karty s nastavením dolů."
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Použijte %(hotkey)s pro posunutí karty s nastavením nahoru."
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -479,7 +479,7 @@ msgstr "Náhodná"
 
 #: gui/gamesetup/gamesetup.js:1710
 msgid "Pick any of the given maps at random."
-msgstr "Vyber náhodně jakoukoliv z daných map."
+msgstr "Vyberte náhodně jakoukoli z daných map."
 
 #: gui/gamesetup/gamesetup.js:1742
 msgctxt "biome"
@@ -488,13 +488,13 @@ msgstr "Náhodná"
 
 #: gui/gamesetup/gamesetup.js:1743
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Vyberte náhodně bióm."
 
 #: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2073
 msgctxt "settings value"
@@ -512,7 +512,7 @@ msgstr "Ne"
 #: gui/gamesetup/gamesetup.js:2110
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2196
 #, javascript-format
@@ -575,7 +575,7 @@ msgstr "Obtížnost umělé inteligence:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Chování umělé inteligence:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -773,7 +773,7 @@ msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr ""
+msgstr "\"Neplač pro mne, nespravedlivě trpě tak jako já, jsem na tom lépe než moji vrazi.\" - Ágis IV. 24. spartský král z dynastie Eurypontidů jednomu z jeho katů, který plakal (Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
@@ -817,7 +817,7 @@ msgstr ""
 msgid ""
 "\"To the strongest!\" - Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, \"The Anabasis of Alexander\", 7.26)"
-msgstr ""
+msgstr "„Těm nejsilnějším.“ - Alexandr Veliký na smrtelné posteli, když se jej ptali, komu odkazuje říši (Arrian, \"The Anabasis of Alexander\", 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
@@ -830,7 +830,7 @@ msgid ""
 "\"Written laws are like spiders' webs; they will catch, it is true, the weak"
 " and poor, but will be torn in pieces by the rich and powerful.\" - "
 "Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
-msgstr ""
+msgstr "„Psaný zákon je jako pavoučí síť; chudí a slabí v něm budou zachyceni, to je pravda, ale bohatí a mocní jej roztrhají.“ – Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -865,13 +865,13 @@ msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever (Diodorus Siculus, \"The Library of History\", "
 "fragments of book XXVI, sec. 18)"
-msgstr ""
+msgstr "„Dejte mi místo k stání, a já pohnu světem.“ – Archimédés, o používání páky (Diodorus Siculus, \"The Library of History\", fragments of book XXVI, sec. 18)"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes (\"Birds\")"
-msgstr ""
+msgstr "„Od svých nepřátel, nikoli od svých přátel se města učí stavět vysoké zdi a válečné lodi.“  - Aristofanes (\"Ptáci\")"
 
 #: gui/text/quotes.txt:34
 msgid ""
@@ -896,21 +896,21 @@ msgstr "\"Člověk je od přírody politické zvíře.\" - Aristotelés ze Stage
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle (\"Politics, V. 1311a.11)"
-msgstr ""
+msgstr "„Oba, jak oligarch tak i tyran, nedůvěřují svému lidu a z toho důvodu jej odzbrojují.“ – Aristoteles (\"Politics, V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle (Diogenes Laertius, \"The"
 " Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
-msgstr ""
+msgstr "\"Toho jsem dosáhl s pomocí filozofie: Co jiní dělají jen na základě svého strachu ze zákona, dělám, aniž by mi to bylo třeba přikazovat.\" - Aristoteles (Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.\" - Aristotle (Stobaeus, "
 "\"Florilegium\", 223)"
-msgstr ""
+msgstr "\"Toho, kdo přemohl své neřesti, pokládám za statečnějšího než toho, kdo zvítězil nad svými nepřáteli.\" - Aristoteles (Stobaeus, \"Florilegium\", 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -939,7 +939,7 @@ msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or retreat out of cowardice.\""
 " - Aspasia (Plato, \"Menexenus\", 246b)"
-msgstr ""
+msgstr "\"Každý muž, ať svým potomkům připomíná, že i oni jsou vojáky, a nesmí opustit řady předků, nebo ze zbabělosti zaostat.“ – Aspasia (Platón, \"Menexenus\", 246b)"
 
 #: gui/text/quotes.txt:43
 msgid ""
@@ -970,14 +970,14 @@ msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene (Diogenes"
 " Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
-msgstr ""
+msgstr "\"Zvol směr, pro nějž se rozhodneš s rozvahou; ale když jsi jej přijal, udržuj jej se stálostí.\" - Bias z Priene (Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes (Cicero, \"Tusculan"
 " Disputations\", III. 26)"
-msgstr ""
+msgstr "\"Jak hloupý byl král, když v zármutku vyškubnul svůj vlas, jakoby byla holá lebka lékem proti smutku.\" - Bion z Borysthenes (Cicero, \"Tusculan Disputations\", III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
@@ -1005,26 +1005,26 @@ msgstr ""
 
 #: gui/text/quotes.txt:51
 msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
-msgstr ""
+msgstr "„Pošlete zloděje, abyste chytili zloděje.“ - Kálimachos (\"Epigramy\", 44)"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder (Plutarch, \"Moralia\", III. \"Sayings of Romans\", "
 "198e)"
-msgstr ""
+msgstr "\"Veškeré lidstvo ovládá své ženy a my panujeme celému lidstvu, ale naše ženy vládnou nám.\" - Cato starší (Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198e)"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder "
 "(Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198f)"
-msgstr ""
+msgstr "\"Nejhorším vládcem je ten, jenž se sám nedokáže ovládat.\" - Cato starší (Plútarchos, \"Moralia\", III. \"Sayings of Romans\", 198f)"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr ""
+msgstr "\"Moudří se toho naučí více od hloupých, než hloupí od chytrých.\" - Cato starší (Plútarchos, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
 
 #: gui/text/quotes.txt:55
 msgid ""
@@ -1037,7 +1037,7 @@ msgstr ""
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
-msgstr ""
+msgstr "\"Když je král činorodý, jeho poddaní jsou stejnou měrou činorodí.\" - Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", kapitola 19)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -1045,14 +1045,14 @@ msgid ""
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya (\"Arthashastra\", "
 "I. \"Concerning Discipline\", chapter 4)"
-msgstr ""
+msgstr "\"Ten, kdo ukládá tvrdé tresty, se stává bližním odporný, zatímco ten, jenž soudí mírně, je jimi opovrhován. Jen ten, kdo ukládá spravedlivé tresty, je svými bližními ctěn a vážený.\" - Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", kapitola 4)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, \"Moralia\", XI. \"On the Malice of Herodotus\", 870e)"
-msgstr ""
+msgstr "\"Neustoupili jsme zpět, nýbrž jsme dali svůj život, abychom zachránili Řecko, když jeho osud stál na ostří nože.“ – Corinthian epitaph to their fallen of the Persian Wars (Plutarch, \"Moralia\", XI. \"On the Malice of Herodotus\", 870e)"
 
 #: gui/text/quotes.txt:59
 msgid ""
