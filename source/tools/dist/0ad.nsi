@@ -119,7 +119,7 @@ Section "!Game and data files" GameSection
     File /r /x "public" /x "mod" /x "dev.cfg" "${CHECKOUTPATH}\binaries"
   !else
     ;Exclude debug DLLs and related files
-    File /r /x "public" /x "mod" /x "dev.cfg" /x "*_d.dll" /x "enetd.dll" /x "FColladaD.dll" /x "gloox-1.0d.dll" /x "glooxwrapper_dbg.*" /x "libcurld.dll" /x "libpng16d.dll" /x "miniupnpcd.dll" /x "mozjs*-ps-debug.*" /x "msvc*d.dll" /x "zlib1d.dll" "${CHECKOUTPATH}\binaries"
+    File /r /x "public" /x "mod" /x "dev.cfg" /x "*_d.dll" /x "enetd.dll" /x "FColladaD.dll" /x "gloox-1.0d.dll" /x "glooxwrapper_dbg.*" /x "libcurld.dll" /x "libpng16d.dll" /x "libsodiumd.dll" /x "miniupnpcd.dll" /x "mozjs*-ps-debug*" /x "mozjs*vc140.*" /x "msvc*d.dll" /x "zlib1d.dll" "${CHECKOUTPATH}\binaries"
   !endif
 
   SetOutPath "$INSTDIR\binaries\data\mods\public"
