@@ -500,9 +500,12 @@ SDL_Window* CVideoMode::GetWindow()
 
 void CVideoMode::SetWindowIcon()
 {
+	// The window icon should be kept outside of art/textures/, or else it will be converted
+	// to DDS by the archive builder and will become unusable here. Using DDS makes BGRA
+	// conversion needlessly complicated.
 	std::shared_ptr<u8> iconFile;
 	size_t iconFileSize;
-	if (g_VFS->LoadFile("art/textures/icons/window.png", iconFile, iconFileSize) != INFO::OK)
+	if (g_VFS->LoadFile("art/icons/window.png", iconFile, iconFileSize) != INFO::OK)
 	{
 		LOGWARNING("Window icon not found.");
 		return;
