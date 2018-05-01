@@ -169,7 +169,7 @@ MESSAGEHANDLER(LoadMap)
 MESSAGEHANDLER(ImportHeightmap)
 {
 	std::vector<u16> heightmap_source;
-	if (LoadHeightmapImage(*msg->filename, heightmap_source) != INFO::OK)
+	if (LoadHeightmapImageOs(*msg->filename, heightmap_source) != INFO::OK)
 	{
 		LOGERROR("Failed to decode heightmap.");
 		return;

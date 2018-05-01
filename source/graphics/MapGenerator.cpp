@@ -25,6 +25,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/status.h"
 #include "lib/timer.h"
+#include "lib/file/vfs/vfs_path.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/FileIo.h"
@@ -32,6 +33,10 @@
 #include "ps/scripting/JSInterface_VFS.h"
 #include "scriptinterface/ScriptRuntime.h"
 #include "scriptinterface/ScriptConversions.h"
+#include "scriptinterface/ScriptInterface.h"
+
+#include <string>
+#include <vector>
 
 // TODO: what's a good default? perhaps based on map size
 #define RMS_RUNTIME_SIZE 96 * 1024 * 1024
@@ -294,12 +299,8 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 
 JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& vfsPath)
 {
-	OsPath realPath;
-	if (g_VFS->GetRealPath(vfsPath, realPath) != INFO::OK)
-		return JS::UndefinedValue();
-
 	std::vector<u16> heightmap;
-	if (LoadHeightmapImage(realPath, heightmap) != INFO::OK)
+	if (LoadHeightmapImageVfs(vfsPath, heightmap) != INFO::OK)
 	{
 		LOGERROR("Could not load heightmap file '%s'", utf8_from_wstring(vfsPath).c_str());
 		return JS::UndefinedValue();
