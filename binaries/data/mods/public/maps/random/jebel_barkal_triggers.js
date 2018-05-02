@@ -106,7 +106,7 @@ var jebelBarkal_cityPatrolGroup_balancing = {
  * Frequently the buildings spawn different units that attack the players groupwise.
  * Leave more time between the attacks in later stages of the game since the attackers become much stronger over time.
  */
-var jebelBarkal_attackInterval = (time, difficulty) => randFloat(5, 7) + time / difficulty / 4;
+var jebelBarkal_attackInterval = (time, difficulty) => randFloat(5, 7) + time / difficulty / 10;
 
 /**
  * Prevent city patrols chasing the starting units in nomad mode.
@@ -126,7 +126,7 @@ var jebelBarkal_firstAttackTime = (difficulty, isNomad) =>
  * Account for varying mapsizes and number of players when spawning attackers.
  */
 var jebelBarkal_attackerGroup_sizeFactor = (numPlayers, numInitialSpawnPoints, difficulty) =>
-	numPlayers / numInitialSpawnPoints * difficulty * 0.7;
+	numPlayers / numInitialSpawnPoints * difficulty * 0.85;
 
 /**
  * Assume gaia to be the native kushite player.
@@ -526,7 +526,7 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 		this.numInitialSpawnPoints,
 		this.GetDifficulty());
 
-	let spawnedAnything = false;
+	let totalSpawnCount = 0;
 	for (let spawnPointBalancing of jebelBarkal_attackerGroup_balancing)
 	{
 		let targets = playerEntities.reduce((allTargets, playerEnts) =>
@@ -549,6 +549,8 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 
 			let templateCounts = TriggerHelper.BalancedTemplateComposition(spawnPointBalancing.unitComposition(time, this.jebelBarkal_heroes), unitCount);
 
+			totalSpawnCount += unitCount;
+
 			this.debugLog("Spawning " + unitCount + " attackers at " + uneval(spawnPointBalancing.buildingClasses) + " " +
 				spawnEnt + ":\n" + uneval(templateCounts));
 
@@ -556,7 +558,6 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 				continue;
 
 			let spawnedEntities = this.JebelBarkal_SpawnTemplates(spawnEnt, templateCounts);
-			spawnedAnything = true;
 
 			this.jebelBarkal_attackerUnits = this.jebelBarkal_attackerUnits.concat(spawnedEntities);
 
@@ -584,7 +585,9 @@ Trigger.prototype.JebelBarkal_SpawnAttackerGroups = function()
 		}
 	}
 
-	if (spawnedAnything)
+	this.debugLog("Total attackers: " + totalSpawnCount);
+
+	if (totalSpawnCount)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
 			"message": markForTranslation("Napata is attacking!"),
 			"translateMessage": true
