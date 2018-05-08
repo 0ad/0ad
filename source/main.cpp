@@ -123,6 +123,11 @@ static int g_ResizedH;
 
 static std::chrono::high_resolution_clock::time_point lastFrameTime;
 
+bool IsQuitRequested()
+{
+	return g_Shutdown == ShutdownType::Quit;
+}
+
 void QuitEngine()
 {
 	g_Shutdown = ShutdownType::Quit;

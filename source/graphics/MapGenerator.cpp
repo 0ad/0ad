@@ -41,10 +41,13 @@
 // TODO: what's a good default? perhaps based on map size
 #define RMS_RUNTIME_SIZE 96 * 1024 * 1024
 
+extern bool IsQuitRequested();
+
 static bool
 MapGeneratorInterruptCallback(JSContext* UNUSED(cx))
 {
-	if (SDL_QuitRequested())
+	// This may not use SDL_IsQuitRequested(), because it runs in a thread separate to SDL, see SDL_PumpEvents
+	if (IsQuitRequested())
 	{
 		LOGWARNING("Quit requested!");
 		return false;

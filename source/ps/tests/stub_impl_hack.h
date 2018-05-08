@@ -22,6 +22,11 @@
 
 bool g_GameRestarted;
 
+bool IsQuitRequested()
+{
+	return false;
+}
+
 void QuitEngine()
 {
 }
