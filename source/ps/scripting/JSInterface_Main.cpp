@@ -31,17 +31,17 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
-extern void restart_mainloop_in_atlas();
-extern void kill_mainloop();
+extern void QuitEngine();
+extern void StartAtlas();
 
-void JSI_Main::ExitProgram(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Main::QuitEngine(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	kill_mainloop();
+	::QuitEngine();
 }
 
-void JSI_Main::RestartInAtlas(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Main::StartAtlas(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	restart_mainloop_in_atlas();
+	::StartAtlas();
 }
 
 bool JSI_Main::AtlasIsAvailable(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
@@ -111,8 +111,8 @@ int JSI_Main::GetTextWidth(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const
 
 void JSI_Main::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
-	scriptInterface.RegisterFunction<void, &ExitProgram>("Exit");
-	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
+	scriptInterface.RegisterFunction<void, &QuitEngine>("Exit");
+	scriptInterface.RegisterFunction<void, &StartAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
 	scriptInterface.RegisterFunction<bool, &IsAtlasRunning>("IsAtlasRunning");
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");

@@ -22,7 +22,7 @@
 #include "ps/Mod.h"
 #include "scriptinterface/ScriptInterface.h"
 
-extern void restart_engine();
+extern void RestartEngine();
 
 JS::Value JSI_Mod::GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
 {
@@ -46,7 +46,7 @@ JS::Value JSI_Mod::GetAvailableMods(ScriptInterface::CxPrivate* pCxPrivate)
 
 void JSI_Mod::RestartEngine(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	restart_engine();
+	::RestartEngine();
 }
 
 void JSI_Mod::SetMods(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::vector<CStr>& mods)

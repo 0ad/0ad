@@ -22,15 +22,15 @@
 
 bool g_GameRestarted;
 
-void kill_mainloop()
+void QuitEngine()
 {
 }
 
-void restart_mainloop_in_atlas()
+void StartAtlas()
 {
 }
 
-void restart_engine()
+void RestartEngine()
 {
 }
 

@@ -94,7 +94,7 @@
 #define MUST_INIT_X11 0
 #endif
 
-extern void restart_engine();
+extern void RestartEngine();
 
 #include <iostream>
 
@@ -958,7 +958,7 @@ bool Init(const CmdLineArgs& args, int flags)
 			std::swap(g_modsLoaded, mods);
 
 			// Abort init and restart
-			restart_engine();
+			RestartEngine();
 			return false;
 		}
 	}
