@@ -333,7 +333,6 @@ PSRETURN CGame::ReallyStartGame()
 	if (CProfileManager::IsInitialised())
 		g_Profiler.StructuralReset();
 
-	// Mark terrain as modified so the minimap can repaint (is there a cleaner way of handling this?)
 	g_GameRestarted = true;
 
 	return 0;

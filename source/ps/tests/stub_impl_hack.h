@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,9 @@
 
 // usually defined by main.cpp, used by engine's scripting/ScriptFunctions.cpp,
 // must be included here to placate linker.
+
+bool g_GameRestarted;
+
 void kill_mainloop()
 {
 }

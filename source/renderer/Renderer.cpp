@@ -75,8 +75,6 @@
 #include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
 
-extern bool g_GameRestarted;
-
 struct SScreenRect
 {
 	GLint x1, y1, x2, y2;

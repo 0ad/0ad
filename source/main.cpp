@@ -89,10 +89,12 @@ that of Atlas depending on commandline parameters.
 #define getpid _getpid // Use the non-deprecated function name
 #endif
 
-extern bool g_GameRestarted;
 extern CStrW g_UniqueLogPostfix;
 
 void kill_mainloop();
+
+// Marks terrain as modified so the minimap can repaint (is there a cleaner way of handling this?)
+bool g_GameRestarted = false;
 
 // to avoid redundant and/or recursive resizing, we save the new
 // size after VIDEORESIZE messages and only update the video mode
