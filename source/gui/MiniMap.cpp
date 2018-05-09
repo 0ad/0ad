@@ -48,7 +48,7 @@
 #include "simulation2/components/ICmpMinimap.h"
 #include "simulation2/system/ParamNode.h"
 
-bool g_GameRestarted = false;
+extern bool g_GameRestarted;
 
 // Set max drawn entities to UINT16_MAX for now, which is more than enough
 // TODO: we should be cleverer about drawing them to reduce clutter

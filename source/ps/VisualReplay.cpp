@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -149,8 +149,10 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 
 	for (const OsPath& directory : directories)
 	{
+		// This cannot use IsQuitRequested(), because the current loop and that function both run in the main thread.
+		// So SDL events are not processed unless called explicitly here.
 		if (SDL_QuitRequested())
-			// We want to save our progress in searching through the replays
+			// Don't return, because we want to save our progress
 			break;
 
 		const OsPath replayFile = GetDirectoryName() / directory / L"commands.txt";

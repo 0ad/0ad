@@ -44,7 +44,7 @@
 #include "simulation2/serialization/StdSerializer.h"
 #include "simulation2/serialization/SerializeTemplates.h"
 
-extern void kill_mainloop();
+extern void QuitEngine();
 
 /**
  * @file
@@ -354,7 +354,7 @@ public:
 
 	static void ExitProgram(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	{
-		kill_mainloop();
+		QuitEngine();
 	}
 
 	/**
