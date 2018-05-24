@@ -35,6 +35,7 @@
 #include "ps/Util.h"
 #include "ps/VisualReplay.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRuntime.h"
 #include "scriptinterface/ScriptStats.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/helpers/SimulationCommand.h"
@@ -178,6 +179,8 @@ void CReplayPlayer::Replay(bool serializationtest, int rejointestturn, bool oosl
 	const int runtimeSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
 	g_ScriptRuntime = ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime>(), runtimeSize, heapGrowthBytesGCTrigger);
+
+	Mod::CacheEnabledModVersions(g_ScriptRuntime);
 
 	g_Game = new CGame(true, false);
 	if (serializationtest)
