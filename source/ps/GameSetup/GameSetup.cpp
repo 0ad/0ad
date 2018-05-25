@@ -80,6 +80,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
 #include "scriptinterface/ScriptConversions.h"
+#include "scriptinterface/ScriptRuntime.h"
 #include "simulation2/Simulation2.h"
 #include "lobby/IXmppClient.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
@@ -921,6 +922,8 @@ bool Init(const CmdLineArgs& args, int flags)
 	const int runtimeSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
 	g_ScriptRuntime = ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime>(), runtimeSize, heapGrowthBytesGCTrigger);
+
+	Mod::CacheEnabledModVersions(g_ScriptRuntime);
 
 	// Special command-line mode to dump the entity schemas instead of running the game.
 	// (This must be done after loading VFS etc, but should be done before wasting time

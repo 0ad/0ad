@@ -28,8 +28,11 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Paths.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRuntime.h"
 
 std::vector<CStr> g_modsLoaded;
+
+std::vector<std::vector<CStr>> g_LoadedModVersions;
 
 CmdLineArgs g_args;
 
@@ -101,29 +104,38 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 	return JS::ObjectValue(*obj);
 }
 
-JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
+void Mod::CacheEnabledModVersions(const shared_ptr<ScriptRuntime>& scriptRuntime)
 {
+	ScriptInterface scriptInterface("Engine", "CacheEnabledModVersions", scriptRuntime);
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue availableMods(cx, GetAvailableMods(scriptInterface));
 
-	JS::RootedValue ret(cx, JS::ObjectValue(*JS_NewArrayObject(cx, 0)));
+	g_LoadedModVersions.clear();
 
-	// Index of the created array
-	size_t j = 0;
-	for (size_t i = 0; i < g_modsLoaded.size(); ++i)
+	for (const CStr& mod : g_modsLoaded)
 	{
 		// Ignore user and mod mod as they are irrelevant for compatibility checks
-		if (g_modsLoaded[i] == "mod" || g_modsLoaded[i] == "user")
+		if (mod == "mod" || mod == "user")
 			continue;
+
 		CStr version;
 		JS::RootedValue modData(cx);
-		if (scriptInterface.GetProperty(availableMods, g_modsLoaded[i].c_str(), &modData))
+		if (scriptInterface.GetProperty(availableMods, mod.c_str(), &modData))
 			scriptInterface.GetProperty(modData, "version", version);
-		scriptInterface.SetPropertyInt(ret, j++, std::vector<CStr>{g_modsLoaded[i], version});
+
+		g_LoadedModVersions.push_back({mod, version});
 	}
-	return ret;
+}
+
+JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
+{
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue returnValue(cx);
+	scriptInterface.ToJSVal(cx, &returnValue, g_LoadedModVersions);
+	return returnValue;
 }
 
 JS::Value Mod::GetEngineInfo(const ScriptInterface& scriptInterface)
