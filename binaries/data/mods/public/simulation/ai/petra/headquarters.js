@@ -2436,7 +2436,7 @@ m.HQ.prototype.resetBaseCache = function()
 
 /**
  * Count gatherers returning resources in the number of gatherers of resourceSupplies
- * to prevent the AI always reassigning idle workers to these resourceSupplies (specially in naval maps).
+ * to prevent the AI always reaffecting idle workers to these resourceSupplies (specially in naval maps).
  */
 m.HQ.prototype.assignGatherers = function()
 {

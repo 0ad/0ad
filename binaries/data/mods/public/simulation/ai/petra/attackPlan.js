@@ -1468,7 +1468,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			let ent = gameState.getEntityById(this.unitCollUpdateArray[check]);
 			if (!ent || !ent.position())
 				continue;
-			// Do not reassign units which have reacted to an attack in that same turn
+			// Do not reaffect units which have reacted to an attack in that same turn
 			if (ent.getMetadata(PlayerID, "lastAttackPlanUpdateTime") == time)
 				continue;
 

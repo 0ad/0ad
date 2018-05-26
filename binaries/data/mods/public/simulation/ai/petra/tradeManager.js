@@ -63,7 +63,7 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 	let metadata = { "role": "trader" };
 	if (this.tradeRoute.sea)
 	{
-		// if we have some merchand ships assigned to transport, try first to reassign them
+		// if we have some merchand ships affected to transport, try first to reaffect them
 		// May-be, there were produced at an early stage when no other ship were available
 		// and the naval manager will train now more appropriate ships.
 		let already = false;

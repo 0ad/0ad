@@ -202,7 +202,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("While waiting for the phasing up, you may reassign your idle workers to gathering the resources you are short of."),
+		"instructions": markForTranslation("While waiting for the phasing up, you may reaffect your idle workers to gathering the resources you are short of."),
 		"IsDone": function()
 		{
 			let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
