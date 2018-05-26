@@ -106,7 +106,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 	return true;
 };
 
-/* we lost our anchor. Let's reaffect our units and buildings */
+/* we lost our anchor. Let's reassign our units and buildings */
 m.BaseManager.prototype.anchorLost = function(gameState, ent)
 {
 	this.anchor = undefined;
