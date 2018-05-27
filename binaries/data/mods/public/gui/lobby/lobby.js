@@ -1017,7 +1017,16 @@ function updateGameList()
 				Math.round(playerRatings.reduce((sum, current) => sum + current) / playerRatings.length) :
 				g_DefaultLobbyRating;
 
-		if (!hasSameMods(JSON.parse(game.mods), Engine.GetEngineInfo().mods))
+		try
+		{
+			game.mods = JSON.parse(game.mods);
+		}
+		catch (e)
+		{
+			game.mods = [];
+		}
+
+		if (!hasSameMods(game.mods, Engine.GetEngineInfo().mods))
 			game.state = "incompatible";
 
 		return game;
@@ -1178,7 +1187,7 @@ function joinButton()
 		messageBox(
 			400, 200,
 			translate("Your active mods do not match the mods of this game.") + "\n\n" +
-				comparedModsString(JSON.parse(game.mods), Engine.GetEngineInfo().mods) + "\n\n" +
+				comparedModsString(game.mods, Engine.GetEngineInfo().mods) + "\n\n" +
 				translate("Do you want to switch to the mod selection page?"),
 			translate("Incompatible mods"),
 			[translate("No"), translate("Yes")],

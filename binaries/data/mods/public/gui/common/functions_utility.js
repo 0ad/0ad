@@ -87,7 +87,13 @@ function playerDataToStringifiedTeamList(playerData)
 
 function stringifiedTeamListToPlayerData(stringifiedTeamList)
 {
-	let teamList = JSON.parse(unescapeText(stringifiedTeamList));
+	let teamList = {};
+	try
+	{
+		teamList = JSON.parse(unescapeText(stringifiedTeamList));
+	}
+	catch (e) {}
+
 	let playerData = [];
 
 	for (let team in teamList)
@@ -171,12 +177,13 @@ function clearChatMessages()
 	g_ChatMessages.length = 0;
 	Engine.GetGUIObjectByName("chatText").caption = "";
 
-	try {
+	try
+	{
 		for (let timer of g_ChatTimers)
 			clearTimeout(timer);
 		g_ChatTimers.length = 0;
-	} catch (e) {
 	}
+	catch (e) {}
 }
 
 /**
