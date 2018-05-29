@@ -78,6 +78,8 @@ Advanced / diagnostic:
                     less complete. It should be enough for debugging most rejoin OOSes.
 -unique-logs        adds unix timestamp and process id to the filename of mainlog.html, interestinglog.html
                     and oos_dump.txt to prevent these files from becoming overwritten by another pyrogenesis process.
+-hashtest-full=X    whether to enable computation of full hashes in replaymode (default true). Can be disabled to improve performance.
+-hashtest-quick=X   whether to enable computation of quick hashes in replaymode (default false). Can be enabled for debugging purposes.
 
 Windows-specific:
 -wQpcTscSafe        allow timing via QueryPerformanceCounter despite the fact
