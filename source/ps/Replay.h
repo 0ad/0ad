@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -98,12 +98,13 @@ public:
 	~CReplayPlayer();
 
 	void Load(const OsPath& path);
-	void Replay(bool serializationtest, int rejointestturn, bool ooslog);
+	void Replay(const bool serializationtest, const int rejointestturn, const bool ooslog, const bool testHashFull, const bool testHashQuick);
 
 private:
 	std::istream* m_Stream;
 	CStr ModListToString(const std::vector<std::vector<CStr>>& list) const;
 	void CheckReplayMods(const ScriptInterface& scriptInterface, JS::HandleValue attribs) const;
+	void TestHash(const std::string& hashType, const std::string& replayHash, const bool testHashFull, const bool testHashQuick);
 };
 
 #endif // INCLUDED_REPLAY

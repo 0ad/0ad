@@ -167,7 +167,8 @@ void CReplayPlayer::CheckReplayMods(const ScriptInterface& scriptInterface, JS::
 	if (!warn.empty())
 		LOGWARNING("%s\nThe mods of the replay are:\n%s\nThese mods are enabled:\n%s", warn, ModListToString(replayMods), ModListToString(enabledMods));
 }
-void CReplayPlayer::Replay(bool serializationtest, int rejointestturn, bool ooslog)
+
+void CReplayPlayer::Replay(const bool serializationtest, const int rejointestturn, const bool ooslog, const bool testHashFull, const bool testHashQuick)
 {
 	ENSURE(m_Stream);
 
@@ -247,20 +248,7 @@ void CReplayPlayer::Replay(bool serializationtest, int rejointestturn, bool oosl
 		{
 			std::string replayHash;
 			*m_Stream >> replayHash;
-
-			bool quick = (type == "hash-quick");
-
-			if (turn % 100 == 0)
-			{
-				std::string hash;
-				bool ok = g_Game->GetSimulation2()->ComputeStateHash(hash, quick);
-				ENSURE(ok);
-				std::string hexHash = Hexify(hash);
-				if (hexHash == replayHash)
-					debug_printf("hash ok (%s)\n", hexHash.c_str());
-				else
-					debug_printf("HASH MISMATCH (%s != %s)\n", hexHash.c_str(), replayHash.c_str());
-			}
+			TestHash(type, replayHash, testHashFull, testHashQuick);
 		}
 		else if (type == "end")
 		{
@@ -306,4 +294,21 @@ void CReplayPlayer::Replay(bool serializationtest, int rejointestturn, bool oosl
 	delete &g_Profiler;
 	delete &g_ProfileViewer;
 	SAFE_DELETE(g_ScriptStatsTable);
+}
+
+void CReplayPlayer::TestHash(const std::string& hashType, const std::string& replayHash, const bool testHashFull, const bool testHashQuick)
+{
+	bool quick = (hashType == "hash-quick");
+	if ((quick && !testHashQuick) || (!quick && !testHashFull))
+		return;
+
+	std::string hash;
+	ENSURE(g_Game->GetSimulation2()->ComputeStateHash(hash, quick));
+
+	std::string hexHash = Hexify(hash);
+
+	if (hexHash == replayHash)
+		debug_printf("%s ok (%s)\n", hashType.c_str(), hexHash.c_str());
+	else
+		debug_printf("%s MISMATCH (%s != %s)\n", hashType.c_str(), hexHash.c_str(), replayHash.c_str());
 }

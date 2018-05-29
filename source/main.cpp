@@ -554,7 +554,9 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 			replay.Replay(
 				args.Has("serializationtest"),
 				args.Has("rejointest") ? args.Get("rejointest").ToInt() : -1,
-				args.Has("ooslog"));
+				args.Has("ooslog"),
+				!args.Has("hashtest-full") || args.Get("hashtest-full") == "true",
+				args.Has("hashtest-quick") && args.Get("hashtest-quick") == "true");
 		}
 
 		g_VFS.reset();

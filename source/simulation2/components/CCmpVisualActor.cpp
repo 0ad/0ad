@@ -68,6 +68,8 @@ public:
 private:
 	std::wstring m_BaseActorName, m_ActorName;
 	bool m_IsFoundationActor;
+
+	// Not initialized in non-visual mode
 	CUnit* m_Unit;
 
 	fixed m_R, m_G, m_B; // shading color
@@ -450,12 +452,12 @@ public:
 
 		SetVariant("animation", m_AnimName);
 
-		if (!m_Unit || !m_Unit->GetAnimation() || !m_Unit->GetID())
-			return;
-
-		CmpPtr<ICmpSound> cmpSound(GetSimContext(), m_Unit->GetID());
+		CmpPtr<ICmpSound> cmpSound(GetEntityHandle());
 		if (cmpSound)
 			m_SoundGroup = cmpSound->GetSoundGroup(wstring_from_utf8(m_AnimName));
+
+		if (!m_Unit || !m_Unit->GetAnimation() || !m_Unit->GetID())
+			return;
 
 		m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());	
 	}
