@@ -775,9 +775,6 @@ bool CNetClient::OnClientTimeout(void *context, CFsmEvent* event)
 	JSContext* cx = client->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
 
-	if (client->GetCurrState() == NCS_LOADING)
-		return true;
-
 	CClientTimeoutMessage* message = (CClientTimeoutMessage*)event->GetParamRef();
 	JS::RootedValue msg(cx);
 
@@ -798,9 +795,6 @@ bool CNetClient::OnClientPerformance(void *context, CFsmEvent* event)
 	CNetClient* client = (CNetClient*)context;
 	JSContext* cx = client->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
-
-	if (client->GetCurrState() == NCS_LOADING)
-		return true;
 
 	CClientPerformanceMessage* message = (CClientPerformanceMessage*)event->GetParamRef();
 

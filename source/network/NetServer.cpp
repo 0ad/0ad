@@ -553,9 +553,6 @@ bool CNetServerWorker::RunStep()
 
 void CNetServerWorker::CheckClientConnections()
 {
-	if (m_State == SERVER_STATE_LOADING)
-		return;
-
 	// Send messages at most once per second
 	std::time_t now = std::time(nullptr);
 	if (now <= m_LastConnectionCheck)
@@ -590,12 +587,14 @@ void CNetServerWorker::CheckClientConnections()
 		}
 
 		// Send to all clients except the affected one
-		// (since that will show the locally triggered warning instead)
+		// (since that will show the locally triggered warning instead).
+		// Also send it to clients that finished the loading screen while
+		// the game is still waiting for other clients to finish the loading screen.
 		if (message)
 			for (size_t j = 0; j < m_Sessions.size(); ++j)
 			{
 				if (i != j && (
-				    m_Sessions[j]->GetCurrState() == NSS_PREGAME ||
+				    (m_Sessions[j]->GetCurrState() == NSS_PREGAME && m_State == SERVER_STATE_PREGAME) ||
 				    m_Sessions[j]->GetCurrState() == NSS_INGAME))
 				{
 					m_Sessions[j]->SendMessage(message);
