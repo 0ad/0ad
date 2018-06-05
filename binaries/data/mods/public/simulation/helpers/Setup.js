@@ -9,13 +9,11 @@ function LoadMapSettings(settings)
 		settings = {};
 
 	if (settings.DefaultStance)
-	{
 		for (let ent of Engine.GetEntitiesWithInterface(IID_UnitAI))
 		{
 			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			cmpUnitAI.SwitchToStance(settings.DefaultStance);
 		}
-	}
 
 	if (settings.RevealMap)
 	{
@@ -32,18 +30,15 @@ function LoadMapSettings(settings)
 				Engine.DestroyEntity(ent);
 		}
 
-	if (settings.CircularMap)
-	{
-		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		if (cmpRangeManager)
-			cmpRangeManager.SetLosCircular(true);
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	if (cmpRangeManager)
+		cmpRangeManager.SetLosCircular(!!settings.CircularMap);
 
-		let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-		if (cmpObstructionManager)
-			cmpObstructionManager.SetPassabilityCircular(true);
-	}
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	if (cmpObstructionManager)
+		cmpObstructionManager.SetPassabilityCircular(!!settings.CircularMap);
 
-	if (settings.TriggerDifficulty != undefined)
+	if (settings.TriggerDifficulty !== undefined)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger).SetDifficulty(settings.TriggerDifficulty);
 	else if (settings.SupportedTriggerDifficulties)	// used by Atlas and autostart games
 	{

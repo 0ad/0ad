@@ -1217,6 +1217,11 @@ bool CNetServerWorker::OnGameSetup(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
+	// Changing the settings after gamestart is not implemented and would cause an Out-of-sync error.
+	// This happened when doubleclicking on the startgame button.
+	if (server.m_State != SERVER_STATE_PREGAME)
+		return true;
+
 	if (session->GetGUID() == server.m_HostGUID)
 	{
 		CGameSetupMessage* message = (CGameSetupMessage*)event->GetParamRef();

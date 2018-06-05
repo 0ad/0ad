@@ -486,7 +486,7 @@ Trigger.prototype.GetActiveRiversides = function()
 
 Trigger.prototype.IsLeftRiverside = function(ent)
 {
-	return this.riverDirection.cross(Vector2D.sub(TriggerHelper.GetEntityPosition2D(ent), this.mapCenter)) > 0;
+	return Vector2D.sub(TriggerHelper.GetEntityPosition2D(ent), this.mapCenter).cross(this.riverDirection) < 0;
 };
 
 /**
@@ -615,11 +615,13 @@ Trigger.prototype.InitDanubius = function()
 	this.fillShipsTimer = undefined;
 
 	// Be able to distinguish between the left and right riverside
+	// TODO: The Vector2D types don't survive deserialization, so use an object with x and y properties only!
 	let mapSize = TriggerHelper.GetMapSizeTerrain();
-	this.mapCenter = new Vector2D(mapSize / 2, mapSize / 2);
-	this.riverDirection = Vector2D.sub(
+	this.mapCenter = clone(new Vector2D(mapSize / 2, mapSize / 2));
+
+	this.riverDirection = clone(Vector2D.sub(
 		TriggerHelper.GetEntityPosition2D(this.GetTriggerPoints(triggerPointRiverDirection)[0]),
-		this.mapCenter);
+		this.mapCenter));
 
 	this.StartCelticRitual();
 	this.GarrisonAllGallicBuildings();

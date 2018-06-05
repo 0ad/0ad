@@ -181,11 +181,11 @@ void CNetClient::SetAndOwnSession(CNetClientSession* session)
 
 void CNetClient::DestroyConnection()
 {
-	// Send network messages from the current frame before connection is destroyed.
+	// Attempt to send network messages from the current frame before connection is destroyed.
 	if (m_ClientTurnManager)
 	{
-		m_ClientTurnManager->OnDestroyConnection(); // End sending of commands for scheduled turn.
-		Flush(); // Make sure the messages are sent.
+		m_ClientTurnManager->OnDestroyConnection();
+		Flush();
 	}
 	SAFE_DELETE(m_Session);
 }
