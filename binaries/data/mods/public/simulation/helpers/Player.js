@@ -23,6 +23,10 @@ function LoadPlayerSettings(settings, newPlayers)
 
 	var playerData = settings.PlayerData;
 
+	// Disable the AIIinterface when no AI players are present
+	if (playerData && !playerData.some(v => v && !!v.AI))
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface).Disable();
+
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
@@ -155,10 +159,6 @@ function LoadPlayerSettings(settings, newPlayers)
 	if (settings.LockTeams)
 		for (let i = 0; i < numPlayers; ++i)
 			QueryPlayerIDInterface(i).SetLockTeams(true);
-
-	// Disable the AIIinterface when no AI players are present
-	if (playerData && !playerData.some(v => v && !!v.AI))
-		Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface).Disable();
 }
 
 // Get a setting if it exists or return default
