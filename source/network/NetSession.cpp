@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ const u32 MAXIMUM_HOST_TIMEOUT = std::numeric_limits<u32>::max();
 static const int CHANNEL_COUNT = 1;
 
 CNetClientSession::CNetClientSession(CNetClient& client) :
-	m_Client(client), m_FileTransferer(this), m_Host(NULL), m_Server(NULL), m_Stats(NULL)
+	m_Client(client), m_FileTransferer(this), m_Host(nullptr), m_Server(nullptr), m_Stats(nullptr), m_IsLocalClient(false)
 {
 }
 
@@ -80,6 +80,7 @@ bool CNetClientSession::Connect(const CStr& server, const u16 port, const bool i
 
 	m_Host = host;
 	m_Server = peer;
+	m_IsLocalClient = isLocalClient;
 
 	// Prevent the local client of the host from timing out too quickly.
 #if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
@@ -200,10 +201,8 @@ u32 CNetClientSession::GetMeanRTT() const
 	return m_Server->roundTripTime;
 }
 
-
-
 CNetServerSession::CNetServerSession(CNetServerWorker& server, ENetPeer* peer) :
-	m_Server(server), m_FileTransferer(this), m_Peer(peer)
+	m_Server(server), m_FileTransferer(this), m_Peer(peer), m_IsLocalClient(false), m_HostID(0), m_GUID(), m_UserName()
 {
 }
 
