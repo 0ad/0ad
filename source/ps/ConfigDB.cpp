@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -110,6 +110,7 @@ std::string EscapeString(const CStr& str)
 	}
 GETVAL(bool)
 GETVAL(int)
+GETVAL(u32)
 GETVAL(float)
 GETVAL(double)
 GETVAL(std::string)

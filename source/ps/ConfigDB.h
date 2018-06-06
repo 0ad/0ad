@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,6 +65,8 @@ public:
 	void GetValue(EConfigNamespace ns, const CStr& name, bool& value);
 	///@copydoc CConfigDB::GetValue
 	void GetValue(EConfigNamespace ns, const CStr& name, int& value);
+	///@copydoc CConfigDB::GetValue
+	void GetValue(EConfigNamespace ns, const CStr& name, u32& value);
 	///@copydoc CConfigDB::GetValue
 	void GetValue(EConfigNamespace ns, const CStr& name, float& value);
 	///@copydoc CConfigDB::GetValue
