@@ -105,6 +105,12 @@ public:
 	 */
 	u32 GetMeanRTT() const;
 
+	/**
+	 * Allows increasing the timeout to prevent drops during an expensive operation,
+	 * and decreasing it back to normal afterwards.
+	 */
+	void SetLongTimeout(bool longTimeout);
+
 	CNetFileTransferer& GetFileTransferer() { return m_FileTransferer; }
 
 private:
@@ -182,6 +188,12 @@ public:
 	 * Prevent timeouts for the client running in the same process as the server.
 	 */
 	void SetLocalClient(bool isLocalClient);
+
+	/**
+	 * Allows increasing the timeout to prevent drops during an expensive operation,
+	 * and decreasing it back to normal afterwards.
+	 */
+	void SetLongTimeout(bool longTimeout);
 
 	/**
 	 * Send a message to the client.

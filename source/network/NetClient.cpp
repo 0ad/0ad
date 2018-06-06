@@ -672,6 +672,8 @@ bool CNetClient::OnPlayerAssignment(void* context, CFsmEvent* event)
 	return true;
 }
 
+// This is called either when the host clicks the StartGame button or
+// if this client rejoins and finishes the download of the simstate.
 bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_GAME_START);
@@ -679,6 +681,8 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 	CNetClient* client = (CNetClient*)context;
 	JSContext* cx = client->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
+
+	client->m_Session->SetLongTimeout(true);
 
 	// Find the player assigned to our GUID
 	int player = -1;
@@ -820,14 +824,25 @@ bool CNetClient::OnClientsLoading(void *context, CFsmEvent *event)
 
 	CClientsLoadingMessage* message = (CClientsLoadingMessage*)event->GetParamRef();
 
-	std::vector<CStr> guids;
-	guids.reserve(message->m_Clients.size());
-	for (const CClientsLoadingMessage::S_m_Clients& client : message->m_Clients)
-		guids.push_back(client.m_GUID);
-
 	CNetClient* client = (CNetClient*)context;
 	JSContext* cx = client->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
+
+	bool finished = true;
+	std::vector<CStr> guids;
+	guids.reserve(message->m_Clients.size());
+	for (const CClientsLoadingMessage::S_m_Clients& mClient : message->m_Clients)
+	{
+		if (client->m_GUID == mClient.m_GUID)
+			finished = false;
+
+		guids.push_back(mClient.m_GUID);
+	}
+
+	// Disable the timeout here after processing the enet message, so as to ensure that the connection isn't currently
+	// timing out (as it is when just leaving the loading screen in LoadFinished).
+	if (finished)
+		client->m_Session->SetLongTimeout(false);
 
 	JS::RootedValue msg(cx);
 	client->GetScriptInterface().Eval("({ 'type':'clients-loading' })", &msg);
@@ -874,6 +889,9 @@ bool CNetClient::OnLoadedGame(void* context, CFsmEvent* event)
 	// If we have rejoined an in progress game, send the rejoined message to the server.
 	if (client->m_Rejoin)
 		client->SendRejoinedMessage();
+
+	// The last client to leave the loading screen didn't receive the CClientsLoadingMessage, so disable here.
+	client->m_Session->SetLongTimeout(false);
 
 	return true;
 }

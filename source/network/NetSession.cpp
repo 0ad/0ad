@@ -23,6 +23,7 @@
 #include "NetStats.h"
 #include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -31,6 +32,25 @@ const u32 NETWORK_WARNING_TIMEOUT = 2000;
 const u32 MAXIMUM_HOST_TIMEOUT = std::numeric_limits<u32>::max();
 
 static const int CHANNEL_COUNT = 1;
+
+// Only disable long timeouts after a packet from the remote enet peer has been processed.
+// Otherwise a long timeout can still be in progress when disabling it here.
+void SetEnetLongTimeout(ENetPeer* peer, bool isLocalClient, bool enabled)
+{
+#if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
+	if (!peer || isLocalClient)
+		return;
+
+	if (enabled)
+	{
+		u32 timeout;
+		CFG_GET_VAL("network.gamestarttimeout", timeout);
+		enet_peer_timeout(peer, 0, timeout, timeout);
+	}
+	else
+		enet_peer_timeout(peer, 0, 0, 0);
+#endif
+}
 
 CNetClientSession::CNetClientSession(CNetClient& client) :
 	m_Client(client), m_FileTransferer(this), m_Host(nullptr), m_Server(nullptr), m_Stats(nullptr), m_IsLocalClient(false)
@@ -201,6 +221,11 @@ u32 CNetClientSession::GetMeanRTT() const
 	return m_Server->roundTripTime;
 }
 
+void CNetClientSession::SetLongTimeout(bool enabled)
+{
+	SetEnetLongTimeout(m_Server, m_IsLocalClient, enabled);
+}
+
 CNetServerSession::CNetServerSession(CNetServerWorker& server, ENetPeer* peer) :
 	m_Server(server), m_FileTransferer(this), m_Peer(peer), m_IsLocalClient(false), m_HostID(0), m_GUID(), m_UserName()
 {
@@ -260,4 +285,9 @@ void CNetServerSession::SetLocalClient(bool isLocalClient)
 #if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
 	enet_peer_timeout(m_Peer, 0, MAXIMUM_HOST_TIMEOUT, MAXIMUM_HOST_TIMEOUT);
 #endif
+}
+
+void CNetServerSession::SetLongTimeout(bool enabled)
+{
+	SetEnetLongTimeout(m_Peer, m_IsLocalClient, enabled);
 }

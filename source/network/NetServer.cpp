@@ -1095,6 +1095,9 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		// Assume session 0 is most likely the local player, so they're
 		// the most efficient client to request a copy from
 		CNetServerSession* sourceSession = server.m_Sessions.at(0);
+
+		session->SetLongTimeout(true);
+
 		sourceSession->GetFileTransferer().StartTask(
 			shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ServerRejoin(server, newHostID))
 		);
@@ -1263,6 +1266,8 @@ bool CNetServerWorker::OnLoadedGame(void* context, CFsmEvent* event)
 	CNetServerSession* loadedSession = (CNetServerSession*)context;
 	CNetServerWorker& server = loadedSession->GetServer();
 
+	loadedSession->SetLongTimeout(false);
+
 	// We're in the loading state, so wait until every client has loaded
 	// before starting the game
 	ENSURE(server.m_State == SERVER_STATE_LOADING);
@@ -1360,6 +1365,8 @@ bool CNetServerWorker::OnRejoined(void* context, CFsmEvent* event)
 		session->SendMessage(&pausedMessage);
 	}
 
+	session->SetLongTimeout(false);
+
 	return true;
 }
 
@@ -1450,8 +1457,11 @@ void CNetServerWorker::StartGame()
 {
 	m_ServerTurnManager = new CNetServerTurnManager(*this);
 
-	for (const CNetServerSession* session : m_Sessions)
+	for (CNetServerSession* session : m_Sessions)
+	{
 		m_ServerTurnManager->InitialiseClient(session->GetHostID(), 0); // TODO: only for non-observers
+		session->SetLongTimeout(true);
+	}
 
 	m_State = SERVER_STATE_LOADING;
 
