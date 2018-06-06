@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -121,6 +121,7 @@ END_NMT_CLASS()
 
 START_NMT_CLASS_(Authenticate, NMT_AUTHENTICATE)
 	NMT_FIELD(CStrW, m_Name)
+	// TODO: The password should not be printed to logfiles
 	NMT_FIELD(CStrW, m_Password)
 	NMT_FIELD_INT(m_IsLocalClient, u8, 1)
 END_NMT_CLASS()

@@ -33,6 +33,12 @@ bool CConfigDB::m_HasChanges[CFG_LAST];
 
 static pthread_mutex_t cfgdb_mutex = PTHREAD_MUTEX_INITIALIZER;
 
+// These entries will not be printed to logfiles
+static const std::set<CStr> g_UnloggedEntries = {
+	"lobby.password",
+	"lobby.buddies"
+};
+
 CConfigDB::CConfigDB()
 {
 	// Recursive mutex needed for WriteFile
@@ -368,7 +374,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		{
 			CStr key(header + name);
 			newMap[key] = values;
-			if (key == "lobby.password")
+			if (g_UnloggedEntries.find(key) != g_UnloggedEntries.end())
 				LOGMESSAGE("Loaded config string \"%s\"", key);
 			else
 			{
