@@ -277,7 +277,7 @@ var g_ReadyInit = true;
 var g_ReadyChanged = 2;
 
 /**
- * Used to prevent calling resetReadyData when starting a game.
+ * Used to prevent calling resetReadyData when starting a game or doubleclicking on the "Start Game" button.
  */
 var g_GameStarted = false;
 
@@ -1018,10 +1018,11 @@ var g_MiscControls = {
 					g_PlayerAssignments[guid].status || g_PlayerAssignments[guid].player == -1) ?
 					translate("Start a new game with the current settings.") :
 					translate("Start a new game with the current settings (disabled until all players are ready)"),
-		"enabled": () => !g_IsController ||
-		                 Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].status ||
-		                                                                g_PlayerAssignments[guid].player == -1 ||
-		                                                                guid == Engine.GetPlayerGUID() && g_IsController),
+		"enabled": () => !g_GameStarted && (
+		                   !g_IsController ||
+		                   Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].status ||
+		                                                                  g_PlayerAssignments[guid].player == -1 ||
+		                                                                  guid == Engine.GetPlayerGUID() && g_IsController)),
 		"hidden": () =>
 			!g_PlayerAssignments[Engine.GetPlayerGUID()] ||
 			g_PlayerAssignments[Engine.GetPlayerGUID()].player == -1 && !g_IsController,
@@ -2179,8 +2180,12 @@ function launchGame()
 		return;
 	}
 
-	if (!g_GameAttributes.map)
+	if (!g_GameAttributes.map || g_GameStarted)
 		return;
+
+	// Prevent reseting the readystate or calling this function twice
+	g_GameStarted = true;
+	updateGUIMiscControl("startGame");
 
 	savePersistMatchSettings();
 
@@ -2200,9 +2205,6 @@ function launchGame()
 		[]);
 
 	g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttributes.settings.TriggerScripts || []);
-
-	// Prevent reseting the readystate
-	g_GameStarted = true;
 
 	g_GameAttributes.settings.mapType = g_GameAttributes.mapType;
 

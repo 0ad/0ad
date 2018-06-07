@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,12 @@ VfsPath CConfigDB::m_ConfigFile[CFG_LAST];
 bool CConfigDB::m_HasChanges[CFG_LAST];
 
 static pthread_mutex_t cfgdb_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+// These entries will not be printed to logfiles
+static const std::set<CStr> g_UnloggedEntries = {
+	"lobby.password",
+	"lobby.buddies"
+};
 
 CConfigDB::CConfigDB()
 {
@@ -110,6 +116,7 @@ std::string EscapeString(const CStr& str)
 	}
 GETVAL(bool)
 GETVAL(int)
+GETVAL(u32)
 GETVAL(float)
 GETVAL(double)
 GETVAL(std::string)
@@ -367,7 +374,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		{
 			CStr key(header + name);
 			newMap[key] = values;
-			if (key == "lobby.password")
+			if (g_UnloggedEntries.find(key) != g_UnloggedEntries.end())
 				LOGMESSAGE("Loaded config string \"%s\"", key);
 			else
 			{
