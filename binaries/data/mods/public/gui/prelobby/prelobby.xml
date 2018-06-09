@@ -17,9 +17,7 @@
 
 	<object name="dialog" type="image" style="ModernDialog" size="50%-230 50%-130 50%+230 50%+130">
 
-		<action on="Tick">
-			onTick();
-		</action>
+		<action on="Tick">onTick();</action>
 
 		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>
@@ -42,32 +40,22 @@
 			<object name="connectUsernameLabel" type="text" size="20 40 50% 70" style="ModernRightLabelText">
 				<translatableAttribute id="caption">Login:</translatableAttribute>
 			</object>
-			<object name="connectUsername" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
-				<action on="Load">
-					this.caption = Engine.ConfigDB_GetValue("user", "lobby.login");
-				</action>
-			</object>
+			<object name="connectUsername" type="input" size="50%+10 40 100%-20 64" style="ModernInput"/>
+
 			<object name="connectPasswordLabel" type="text" size="20 80 50% 110" style="ModernRightLabelText">
 				<translatableAttribute id="caption">Password:</translatableAttribute>
 			</object>
 			<object name="connectPassword" type="input" size="50%+10 80 100%-20 104" style="ModernInput" mask="true" mask_char="*">
-				<action on="Load">
-					// We only show 10 characters to make it look decent.
-					this.caption = Engine.ConfigDB_GetValue("user", "lobby.password").substring(0, 10);
-				</action>
-				<action on="Press">
-					lobbyStartConnect();
-				</action>
+				<action on="Press">lobbyStartConnect();</action>
 			</object>
 			<object name="rememberPassword" type="checkbox" size="50%-19 115 50% 135" style="ModernTickBox">
-				<action on="Press">
-					toggleRememberPassword();
-				</action>
+				<action on="Press">toggleRememberPassword();</action>
 			</object>
 			<object type="text" size="50%+10 115 100%-20 135" style="ModernLeftLabelText">
 				<translatableAttribute id="caption">Remember Password</translatableAttribute>
 			</object>
 		</object>
+
 		<object name="pageRegister" size="0 32 100% 100%" hidden="true">
 
 			<object type="text" size="0 0 100% 30" style="ModernLabelText">
@@ -91,22 +79,22 @@
 
 			<object type="button" size="20 160 100%-20 188" style="ModernButtonRed">
 				<translatableAttribute id="caption">Terms of Service</translatableAttribute>
-				<action on="Press">openTermsOfService();</action>
+				<action on="Press">openTerms("Service");</action>
 			</object>
 
 			<object type="button" size="20 200 100%-20 228" style="ModernButtonRed">
 				<translatableAttribute id="caption">Terms of Use</translatableAttribute>
-				<action on="Press">openTermsOfUse();</action>
+				<action on="Press">openTerms("Use");</action>
 			</object>
 
 			<object name="registerAgreeTermsLabel" type="text" size="20 240 100%-80 270" style="ModernLabelText">
 				<translatableAttribute id="caption">I have read and agree to the Terms of Service and Terms of Use:</translatableAttribute>
 			</object>
-			<object name="registerAgreeTerms" type="checkbox" size="100%-60 245 100%-20 270" style="ModernTickBox" enabled="false">
-				<action on="Tick"><![CDATA[this.enabled = g_TermsOfServiceRead && g_TermsOfUseRead;]]></action>
-			</object>
+
+			<object name="registerAgreeTerms" type="checkbox" size="100%-60 245 100%-20 270" style="ModernTickBox" enabled="false"/>
 
 		</object>
+
 		<object name="feedback" type="text" size="50 100%-110 100%-50 100%-50" style="ModernLabelText" textcolor="red"/>
 		<object name="cancel" type="button" size="18 100%-45 50%-5 100%-17" style="ModernButtonRed" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
@@ -114,12 +102,7 @@
 		</object>
 		<object name="continue" hotkey="confirm" type="button" size="50%+5 100%-45 100%-18 100%-17" style="ModernButtonRed" enabled="false" hidden="true">
 			<translatableAttribute id="caption">Connect</translatableAttribute>
-			<action on="Press">
-				if (!Engine.GetGUIObjectByName("pageConnect").hidden)
-					lobbyStartConnect();
-				else if (!Engine.GetGUIObjectByName("pageRegister").hidden)
-					lobbyStartRegister();
-			</action>
+			<action on="Press">prelobbyConnect();</action>
 		</object>
 
 	</object>

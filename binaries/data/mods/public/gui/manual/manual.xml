@@ -19,7 +19,7 @@
 
 		<object type="button" style="ModernButtonRed" tooltip_style="snToolTip" size="100%-408 100%-52 100%-218 100%-24" hotkey="cancel">
 			<translatableAttribute id="caption">Close</translatableAttribute>
-			<action on="Press"><![CDATA[closeManual();]]></action>
+			<action on="Press">closeManual();</action>
 		</object>
 		<object name="url" type="button" style="ModernButtonRed" size="100%-214 100%-52 100%-24 100%-24" hidden="true">
 			<translatableAttribute id="caption">View Online</translatableAttribute>

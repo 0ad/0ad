@@ -1,16 +1,36 @@
 var g_LobbyIsConnecting = false;
 var g_EncryptedPassword = "";
 var g_PasswordInputIsHidden = false;
-var g_TermsOfServiceRead = false;
-var g_TermsOfUseRead = false;
 var g_DisplayingSystemMessage = false;
+
+var g_Terms = {
+	"Service": {
+		"title": translate("Terms of Service"),
+		"instruction": translate("Please read the Terms of Service"),
+		"file": "prelobby/Terms_of_Service",
+		"read": false
+	},
+	"Use": {
+		"title": translate("Terms of Use"),
+		"instruction": translate("Please read the Terms of Use"),
+		"file": "prelobby/Terms_of_Use",
+		"read": false
+	}
+};
 
 function init()
 {
+	let username = Engine.ConfigDB_GetValue("user", "lobby.login");
+	g_EncryptedPassword = Engine.ConfigDB_GetValue("user", "lobby.password");
+
+	// We only show 10 characters to make it look decent.
+	Engine.GetGUIObjectByName("connectUsername").caption = username;
+	Engine.GetGUIObjectByName("connectPassword").caption = g_EncryptedPassword.substring(0, 10);
+
 	Engine.GetGUIObjectByName("rememberPassword").checked =
 		Engine.ConfigDB_GetValue("user", "lobby.rememberpassword") == "true";
-	g_EncryptedPassword = Engine.ConfigDB_GetValue("user", "lobby.password");
-	if (Engine.ConfigDB_GetValue("user", "lobby.login") && g_EncryptedPassword)
+
+	if (username && g_EncryptedPassword)
 		switchPage("connect");
 }
 
@@ -129,16 +149,16 @@ function onTick()
 		feedback.caption = translate("Passwords do not match");
 	}
 	// Check that they read the Terms of Service.
-	else if (!g_TermsOfServiceRead)
+	else if (!g_Terms.Service.read)
 	{
 		continueButton.enabled = false;
-		feedback.caption = translate("Please read the Terms of Service");
+		feedback.caption = g_Terms.Service.instruction;
 	}
 	// Check that they read the Terms of Use.
-	else if (!g_TermsOfUseRead)
+	else if (!g_Terms.Use.read)
 	{
 		continueButton.enabled = false;
-		feedback.caption = translate("Please read the Terms of Use");
+		feedback.caption = g_Terms.Use.instruction;
 	}
 	// Check that they agree to the terms of service and use.
 	else if (!agreeTerms.checked)
@@ -257,22 +277,25 @@ function switchPage(page)
 		break;
 	}
 }
-function openTermsOfService()
+
+function openTerms(terms)
 {
-	g_TermsOfServiceRead = true;
+	g_Terms[terms].read = true;
+
+	Engine.GetGUIObjectByName("registerAgreeTerms").enabled = g_Terms.Service.read && g_Terms.Use.read;
+
 	Engine.PushGuiPage("page_manual.xml", {
-		"page": "prelobby/Terms_of_Service",
-		"title": translate("Terms of Service"),
+		"page": g_Terms[terms].file,
+		"title": g_Terms[terms].title
 	});
 }
 
-function openTermsOfUse()
+function prelobbyConnect()
 {
-	g_TermsOfUseRead = true;
-	Engine.PushGuiPage("page_manual.xml", {
-		"page": "prelobby/Terms_of_Use",
-		"title": translate("Terms of Use"),
-	});
+	if (!Engine.GetGUIObjectByName("pageConnect").hidden)
+		lobbyStartConnect();
+	else if (!Engine.GetGUIObjectByName("pageRegister").hidden)
+		lobbyStartRegister();
 }
 
 function prelobbyCancel()
