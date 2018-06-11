@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+	<object type="button" size="20 0 100%-20 28" style="ModernButtonRed">
+		<translatableAttribute id="caption">Terms of Service</translatableAttribute>
+		<action on="Press">openTerms("Service");</action>
+	</object>
+
+	<object type="button" size="20 40 100%-20 68" style="ModernButtonRed">
+		<translatableAttribute id="caption">Terms of Use</translatableAttribute>
+		<action on="Press">openTerms("Use");</action>
+	</object>
+
+	<object type="text" size="20 80 100%-80 110" style="ModernLabelText">
+		<translatableAttribute id="caption">I have read and agree to the Terms of Service and Terms of Use:</translatableAttribute>
+	</object>
+
+	<object name="agreeTerms" type="checkbox" size="100%-60 85 100%-20 110" style="ModernTickBox" enabled="false">
+		<action on="Press">updateFeedback();</action>
+	</object>
+
+</object>

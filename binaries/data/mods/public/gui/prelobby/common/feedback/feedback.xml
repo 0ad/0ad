@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+	<action on="Tick">onTick();</action>
+
+	<object name="feedback" type="text" size="50 0 100%-50 60" style="ModernLabelText" textcolor="red"/>
+
+	<object name="cancel" type="button" size="18 65 50%-5 93" style="ModernButtonRed" hotkey="cancel">
+		<translatableAttribute id="caption">Cancel</translatableAttribute>
+		<action on="Press">cancelButton();</action>
+	</object>
+
+	<object name="continue" hotkey="confirm" type="button" size="50%+5 65 100%-18 93" style="ModernButtonRed" enabled="false">
+		<action on="Press">continueButton();</action>
+	</object>
+</object>

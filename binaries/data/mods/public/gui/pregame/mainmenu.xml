@@ -320,7 +320,7 @@
 						if (!Engine.StartXmppClient)
 							return;
 						closeMenu();
-						Engine.PushGuiPage("page_prelobby.xml");
+						Engine.PushGuiPage("page_prelobby_entrance.xml");
 					</action>
 					<action on="load">
 						if (!Engine.StartXmppClient)
