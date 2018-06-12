@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objects>
+
+	<script directory="gui/common/"/>
+	<script directory="gui/prelobby/common/credentials/"/>
+	<script directory="gui/prelobby/common/feedback/"/>
+	<script directory="gui/prelobby/common/terms/"/>
+	<script directory="gui/prelobby/register/"/>
+
+	<object type="image" style="ModernDialog" size="50%-230 50%-205 50%+230 50%+205">
+
+		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">Registration</translatableAttribute>
+		</object>
+
+		<object size="0 30 100% 100">
+			<include file="gui/prelobby/common/credentials/credentials.xml"/>
+		</object>
+
+		<object size="0 110 100% 140">
+			<include file="gui/prelobby/common/credentials/confirmpassword.xml"/>
+		</object>
+
+		<object size="0 145 100% 165">
+			<include file="gui/prelobby/common/credentials/rememberpassword.xml"/>
+		</object>
+
+		<object size="0 180 100% 290">
+			<include file="gui/prelobby/common/terms/terms.xml"/>
+		</object>
+
+		<object size="0 300 100% 400">
+			<include file="gui/prelobby/common/feedback/feedback.xml"/>
+		</object>
+
+	</object>
+
+</objects>
