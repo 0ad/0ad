@@ -23,6 +23,7 @@
 #include "graphics/MapReader.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/utf8.h"
+#include "maths/MD5.h"
 #include "ps/CStrIntern.h"
 #include "ps/GUID.h"
 #include "ps/GameSetup/Atlas.h"
@@ -109,6 +110,21 @@ int JSI_Main::GetTextWidth(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const
 	return width;
 }
 
+std::string JSI_Main::CalculateMD5(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& input)
+{
+	u8 digest[MD5::DIGESTSIZE];
+
+	MD5 m;
+	m.Update(static_cast<const u8*>(input.c_str()), input.length());
+	m.Final(digest);
+
+	char digeststr[MD5::DIGESTSIZE*2+1];
+	for (size_t i = 0; i < MD5::DIGESTSIZE; ++i)
+		sprintf_s(digeststr+2*i, 3, "%02x", (unsigned int)digest[i]);
+
+	return digeststr;
+}
+
 void JSI_Main::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<void, &QuitEngine>("Exit");
@@ -122,4 +138,5 @@ void JSI_Main::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
 	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
 	scriptInterface.RegisterFunction<int, std::string, std::wstring, &GetTextWidth>("GetTextWidth");
+	scriptInterface.RegisterFunction<std::string, std::string, &CalculateMD5>("CalculateMD5");
 }
