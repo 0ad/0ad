@@ -115,7 +115,7 @@ std::string JSI_Main::CalculateMD5(ScriptInterface::CxPrivate* UNUSED(pCxPrivate
 	u8 digest[MD5::DIGESTSIZE];
 
 	MD5 m;
-	m.Update(static_cast<const u8*>(input.c_str()), input.length());
+	m.Update((const u8*)input.c_str(), input.length());
 	m.Final(digest);
 
 	char digeststr[MD5::DIGESTSIZE*2+1];
