@@ -28,6 +28,7 @@ function continueButton()
 function onRegistered()
 {
 	saveCredentials();
+	saveTermsAcceptance();
 
 	setFeedback(translate("Registered"));
 

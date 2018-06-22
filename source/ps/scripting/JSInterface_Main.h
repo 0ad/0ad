@@ -33,6 +33,7 @@ namespace JSI_Main
 	bool HotkeyIsPressed_(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyName);
 	int GetFps(ScriptInterface::CxPrivate* pCxPrivate);
 	int GetTextWidth(ScriptInterface::CxPrivate* pCxPrivate, const std::string& fontName, const std::wstring& text);
+	std::string CalculateMD5(ScriptInterface::CxPrivate* pCxPrivate, const std::string& input);
 
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
