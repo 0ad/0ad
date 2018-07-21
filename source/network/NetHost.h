@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ struct PlayerAssignment
 	/// The player that the given host controls, or -1 if none (observer)
 	i32 m_PlayerID;
 
-	/// Status - Ready or not: 0 for not ready, 1 for ready
+	/// Status - Ready or not: 0 for not ready, 1 for ready, 2 to stay ready
 	u8 m_Status;
 };
 
