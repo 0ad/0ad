@@ -1194,6 +1194,7 @@ function joinButton()
 			[
 				null,
 				() => {
+					Engine.StopXmppClient();
 					Engine.SwitchGuiPage("page_modmod.xml", {
 						"cancelbutton": true
 					});
