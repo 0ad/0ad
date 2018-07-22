@@ -46,23 +46,14 @@ function sortNameIgnoreCase(x, y)
 
 /**
  * Escape tag start and escape characters, so users cannot use special formatting.
- * Also limit string length to 256 characters (not counting escape characters).
  */
-function escapeText(text, limitLength = true)
+function escapeText(text)
 {
-	if (!text)
-		return text;
-
-	if (limitLength)
-		text = text.substr(0, 255);
-
 	return text.replace(/\\/g, "\\\\").replace(/\[/g, "\\[");
 }
 
 function unescapeText(text)
 {
-	if (!text)
-		return text;
 	return text.replace(/\\\\/g, "\\").replace(/\\\[/g, "\[");
 }
 
@@ -82,7 +73,7 @@ function playerDataToStringifiedTeamList(playerData)
 		delete teamList[team].Team;
 	}
 
-	return escapeText(JSON.stringify(teamList), false);
+	return escapeText(JSON.stringify(teamList));
 }
 
 function stringifiedTeamListToPlayerData(stringifiedTeamList)

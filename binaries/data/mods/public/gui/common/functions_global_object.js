@@ -80,6 +80,9 @@ function cancelOnLoadGameError(msg)
 {
 	Engine.EndGame();
 
+	if (Engine.HasXmppClient())
+		Engine.StopXmppClient();
+
 	Engine.SwitchGuiPage("page_pregame.xml");
 
 	if (msg)

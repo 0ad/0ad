@@ -65,7 +65,6 @@
 			name="chatInput"
 			size="75 100%-76 100%-16 100%-52"
 			style="ModernInput"
-			max_length="80"
 		>
 			<action on="Press">submitChatInput();</action>
 			<action on="Tab">

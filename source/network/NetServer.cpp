@@ -1455,6 +1455,13 @@ bool CNetServerWorker::CheckGameLoadStatus(CNetServerSession* changedSession)
 
 void CNetServerWorker::StartGame()
 {
+	for (std::pair<const CStr, PlayerAssignment>& player : m_PlayerAssignments)
+		if (player.second.m_Enabled && player.second.m_PlayerID != -1 && player.second.m_Status == 0)
+		{
+			LOGERROR("Tried to start the game without player \"%s\" being ready!", utf8_from_wstring(player.second.m_Name).c_str());
+			return;
+		}
+
 	m_ServerTurnManager = new CNetServerTurnManager(*this);
 
 	for (CNetServerSession* session : m_Sessions)
