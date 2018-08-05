@@ -287,16 +287,6 @@ function init(initData, hotloadData)
 	sendLobbyPlayerlistUpdate();
 	onSimulationUpdate();
 	setTimeout(displayGamestateNotifications, 1000);
-
-	// Report the performance after 5 seconds (when we're still near
-	// the initial camera view) and a minute (when the profiler will
-	// have settled down if framerates as very low), to give some
-	// extremely rough indications of performance
-	//
-	// DISABLED: this information isn't currently useful for anything much,
-	// and it generates a massive amount of data to transmit and store
-	// setTimeout(function() { reportPerformance(5); }, 5000);
-	// setTimeout(function() { reportPerformance(60); }, 60000);
 }
 
 function initGUIObjects()
@@ -711,18 +701,6 @@ function updateTopPanel()
 	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked || g_IsController;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;
 	Engine.GetGUIObjectByName("lobbyButton").enabled = Engine.HasXmppClient();
-}
-
-function reportPerformance(time)
-{
-	let settings = g_GameAttributes.settings;
-	Engine.SubmitUserReport("profile", 3, JSON.stringify({
-		"time": time,
-		"map": settings.Name,
-		"seed": settings.Seed, // only defined for random maps
-		"size": settings.Size, // only defined for random maps
-		"profiler": Engine.GetProfilerState()
-	}));
 }
 
 /**

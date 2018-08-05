@@ -25,11 +25,9 @@ namespace JSI_Debug
 	int Crash(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
 	void DebugWarn(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
 	void DisplayErrorDialog(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& msg);
-	JS::Value GetProfilerState(ScriptInterface::CxPrivate* pCxPrivate);
 	bool IsUserReportEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
 	void SetUserReportEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled);
 	std::string GetUserReportStatus(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
-	void SubmitUserReport(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& type, int version, const std::wstring& data);
 	std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int mode);
 	double GetMicroseconds(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
 
