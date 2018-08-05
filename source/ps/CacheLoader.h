@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ public:
 	/**
 	 * Return the path of the archive cache for the given source file.
 	 */
-	VfsPath ArchiveCachePath(const VfsPath& sourcePath);
+	VfsPath ArchiveCachePath(const VfsPath& sourcePath) const;
 
 	/**
 	 * Return the path of the loose cache for the given source file.

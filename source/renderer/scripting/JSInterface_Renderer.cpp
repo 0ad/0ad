@@ -19,6 +19,7 @@
 
 #include "JSInterface_Renderer.h"
 
+#include "graphics/TextureManager.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 #include "renderer/ShadowMap.h"
@@ -69,6 +70,10 @@ void JSI_Renderer::RecreateShadowMap(ScriptInterface::CxPrivate* UNUSED(pCxPriva
 	g_Renderer.GetShadowMap().RecreateTexture();
 }
 
+bool JSI_Renderer::TextureExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
+{
+	return g_Renderer.GetTextureManager().TextureExists(filename);
+}
 
 #define REGISTER_BOOLEAN_SCRIPT_SETTING(NAME) \
 scriptInterface.RegisterFunction<bool, &JSI_Renderer::Get##NAME##Enabled>("Renderer_Get" #NAME "Enabled"); \
@@ -79,6 +84,7 @@ void JSI_Renderer::RegisterScriptFunctions(const ScriptInterface& scriptInterfac
 	scriptInterface.RegisterFunction<std::string, &JSI_Renderer::GetRenderPath>("Renderer_GetRenderPath");
 	scriptInterface.RegisterFunction<void, std::string, &JSI_Renderer::SetRenderPath>("Renderer_SetRenderPath");
 	scriptInterface.RegisterFunction<void, &JSI_Renderer::RecreateShadowMap>("Renderer_RecreateShadowMap");
+	scriptInterface.RegisterFunction<bool, std::wstring, &JSI_Renderer::TextureExists>("TextureExists");
 	REGISTER_BOOLEAN_SCRIPT_SETTING(Shadows);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(ShadowPCF);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(Particles);
