@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -598,21 +598,6 @@ void CProfileViewer::SaveToFile()
 
 	m->outputStream << "\n\n================================================================\n";
 	m->outputStream.flush();
-}
-
-JS::Value CProfileViewer::SaveToJS(const ScriptInterface& scriptInterface)
-{
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue root(cx);
-	scriptInterface.Eval("({})", &root);
-
-	std::vector<AbstractProfileTable*> tables = m->rootTables;
-	sort(tables.begin(), tables.end(), SortByName);
-	for_each(tables.begin(), tables.end(), DumpTable(scriptInterface, root));
-
-	return root;
 }
 
 void CProfileViewer::ShowTable(const CStr& table)

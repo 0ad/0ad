@@ -34,6 +34,21 @@ var g_Buddies = Engine.ConfigDB_GetValue("user", "lobby.buddies").split(g_BuddyL
  */
 var g_BuddySymbol = '•';
 
+var g_MapPreviewPath = "session/icons/mappreview/";
+
+/**
+ * Returns the biome specific mappreview image if it exists, or empty string otherwise.
+ */
+function getBiomePreview(mapName, biomeName)
+{
+	let biomePreview = basename(mapName) + "_" + basename(biomeName) + ".png";
+
+	if (Engine.TextureExists("art/textures/ui/" + g_MapPreviewPath + biomePreview))
+		return biomePreview;
+
+	return "";
+}
+
 /**
  * Returns map description and preview image or placeholder.
  */
@@ -47,11 +62,11 @@ function getMapDescriptionAndPreview(mapType, mapName, gameAttributes = undefine
 	else if (Engine.FileExists(mapName + ".xml"))
 		mapData = Engine.LoadMapSettings(mapName + ".xml");
 
-	let mapBiome = gameAttributes && g_Settings.Biomes.find(biome => biome.Id == gameAttributes.settings.Biome);
+	let biomePreview = getBiomePreview(mapName, gameAttributes.settings.Biome || "");
 
 	return deepfreeze({
 		"description": mapData && mapData.settings && mapData.settings.Description ? translate(mapData.settings.Description) : translate("Sorry, no description available."),
-		"preview": mapBiome && mapBiome.Preview ? mapBiome.Preview :
+		"preview": biomePreview ? biomePreview :
 			mapData && mapData.settings && mapData.settings.Preview ? mapData.settings.Preview : "nopreview.png"
 	});
 }
@@ -67,7 +82,7 @@ function setMapPreviewImage(guiObject, filename)
 {
 	Engine.GetGUIObjectByName(guiObject).sprite =
 		"cropped:" + 400 / 512 + "," + 300 / 512 + ":" +
-		"session/icons/mappreview/" + filename;
+		g_MapPreviewPath + filename;
 }
 
 /**

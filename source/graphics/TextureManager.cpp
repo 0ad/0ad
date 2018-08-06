@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -314,6 +314,12 @@ public:
 		CTextureConverter::Settings settings = GetConverterSettings(texture);
 
 		m_TextureConverter.ConvertTexture(texture, sourcePath, looseCachePath, settings);
+	}
+
+	bool TextureExists(const VfsPath& path) const
+	{
+		return m_VFS->GetFileInfo(m_CacheLoader.ArchiveCachePath(path), 0) == INFO::OK ||
+		       m_VFS->GetFileInfo(path, 0) == INFO::OK;
 	}
 
 	bool GenerateCachedTexture(const VfsPath& sourcePath, VfsPath& archiveCachePath)
@@ -651,6 +657,11 @@ CTextureManager::~CTextureManager()
 CTexturePtr CTextureManager::CreateTexture(const CTextureProperties& props)
 {
 	return m->CreateTexture(props);
+}
+
+bool CTextureManager::TextureExists(const VfsPath& path) const
+{
+	return m->TextureExists(path);
 }
 
 CTexturePtr CTextureManager::GetErrorTexture()

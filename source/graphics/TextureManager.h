@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -110,6 +110,12 @@ public:
 	 * @return true on success
 	 */
 	bool GenerateCachedTexture(const VfsPath& path, VfsPath& outputPath);
+
+	/**
+	 * Returns true if the given texture exists.
+	 * This tests both for the original and converted filename.
+	 */
+	bool TextureExists(const VfsPath& path) const;
 
 	/**
 	 * Returns total number of bytes uploaded for all current texture.

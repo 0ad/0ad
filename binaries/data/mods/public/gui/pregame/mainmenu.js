@@ -79,14 +79,6 @@ function scrollBackgrounds()
 	}
 }
 
-function submitUserReportMessage()
-{
-	let input = Engine.GetGUIObjectByName("userReportMessageInput");
-	if (input.caption.length)
-		Engine.SubmitUserReport("message", 1, input.caption);
-	input.caption = "";
-}
-
 function formatUserReportStatus(status)
 {
 	let d = status.split(/:/, 3);

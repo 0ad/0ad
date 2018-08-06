@@ -1659,12 +1659,9 @@ function getMapDisplayName(map)
 
 function getMapPreview(map)
 {
-	if (g_GameAttributes.settings.Biome)
-	{
-		let biomePreview = basename(map) + "_" + basename(g_GameAttributes.settings.Biome) + ".png";
-		if (Engine.FileExists("art/textures/ui/session/icons/mappreview/" + biomePreview))
-			return biomePreview;
-	}
+	let biomePreview = g_GameAttributes.settings.Biome && getBiomePreview(map, g_GameAttributes.settings.Biome);
+	if (biomePreview)
+		return biomePreview;
 
 	let mapData = loadMapData(map);
 	if (!mapData || !mapData.settings || !mapData.settings.Preview)

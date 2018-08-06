@@ -55,11 +55,6 @@ void JSI_Debug::DisplayErrorDialog(ScriptInterface::CxPrivate* UNUSED(pCxPrivate
 	debug_DisplayError(msg.c_str(), DE_NO_DEBUG_INFO, NULL, NULL, NULL, 0, NULL, NULL);
 }
 
-JS::Value JSI_Debug::GetProfilerState(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	return g_ProfileViewer.SaveToJS(*(pCxPrivate->pScriptInterface));
-}
-
 // Return the date/time at which the current executable was compiled.
 // params: mode OR an integer specifying
 //   what to display: -1 for "date time (svn revision)", 0 for date, 1 for time, 2 for svn revision
@@ -137,23 +132,16 @@ std::string JSI_Debug::GetUserReportStatus(ScriptInterface::CxPrivate* UNUSED(pC
 	return g_UserReporter.GetStatus();
 }
 
-void JSI_Debug::SubmitUserReport(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& type, int version, const std::wstring& data)
-{
-	g_UserReporter.SubmitReport(type.c_str(), version, utf8_from_wstring(data));
-}
-
 void JSI_Debug::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<double, &GetMicroseconds>("GetMicroseconds");
 	scriptInterface.RegisterFunction<int, &Crash>("Crash");
 	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
-	scriptInterface.RegisterFunction<JS::Value, &GetProfilerState>("GetProfilerState");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
 
 	// User report functions
 	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");
 	scriptInterface.RegisterFunction<void, bool, &SetUserReportEnabled>("SetUserReportEnabled");
 	scriptInterface.RegisterFunction<std::string, &GetUserReportStatus>("GetUserReportStatus");
-	scriptInterface.RegisterFunction<void, std::string, int, std::wstring, &SubmitUserReport>("SubmitUserReport");
 }
