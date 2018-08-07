@@ -780,7 +780,7 @@ var g_PlayerDropdowns = {
 			g_GameAttributes.settings.PlayerData[playerIdx].Civ = g_PlayerCivList.code[selectedIdx];
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
-		"autocomplete": 0,
+		"autocomplete": 90,
 	},
 	"playerColorPicker": {
 		"labels": (playerIdx) => g_PlayerColorPickerList.map(color => "■"),

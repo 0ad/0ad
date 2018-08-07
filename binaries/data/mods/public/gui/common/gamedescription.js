@@ -62,7 +62,7 @@ function getMapDescriptionAndPreview(mapType, mapName, gameAttributes = undefine
 	else if (Engine.FileExists(mapName + ".xml"))
 		mapData = Engine.LoadMapSettings(mapName + ".xml");
 
-	let biomePreview = getBiomePreview(mapName, gameAttributes.settings.Biome || "");
+	let biomePreview = getBiomePreview(mapName, gameAttributes && gameAttributes.settings.Biome || "");
 
 	return deepfreeze({
 		"description": mapData && mapData.settings && mapData.settings.Description ? translate(mapData.settings.Description) : translate("Sorry, no description available."),
