@@ -34,6 +34,7 @@
 #include "ps/GameSetup/Paths.h"
 #include "ps/Mod.h"
 #include "ps/ModInstaller.h"
+#include "ps/Util.h"
 #include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -520,17 +521,15 @@ bool ModIo::VerifyDownloadedFile(std::string& err)
 	{
 		u8 digest[MD5::DIGESTSIZE];
 		m_CallbackData->md5.Final(digest);
-		std::stringstream md5digest;
-		md5digest << std::hex << std::setfill('0');
-		for (size_t i = 0; i < MD5::DIGESTSIZE; ++i)
-			md5digest << std::setw(2) << (int)digest[i];
+		std::string md5digest = Hexify(digest, MD5::DIGESTSIZE);
 
-		if (m_ModData[m_DownloadModID].properties.at("filehash_md5") != md5digest.str())
+
+		if (m_ModData[m_DownloadModID].properties.at("filehash_md5") != md5digest)
 		{
 			err = fmt::sprintf(
 				g_L10n.Translate("Invalid file. Expected md5 %s, got %s."),
 				m_ModData[m_DownloadModID].properties.at("filehash_md5").c_str(),
-				md5digest.str());
+				md5digest);
 			return false;
 		}
 	}

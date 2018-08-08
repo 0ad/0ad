@@ -23,6 +23,7 @@
 #include "lib/utf8.h"
 #include "lobby/IXmppClient.h"
 #include "ps/Profile.h"
+#include "ps/Util.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include "third_party/encryption/pkcs5_pbkdf2.h"
@@ -358,14 +359,7 @@ std::string JSI_Lobby::EncryptPassword(const std::string& password, const std::s
 	unsigned char encrypted[DIGESTSIZE];
 	pbkdf2(encrypted, (unsigned char*)password.c_str(), password.length(), salt_buffer, DIGESTSIZE, ITERATIONS);
 
-	static const char base16[] = "0123456789ABCDEF";
-	char hex[2 * DIGESTSIZE];
-	for (int i = 0; i < DIGESTSIZE; ++i)
-	{
-		hex[i*2] = base16[encrypted[i] >> 4];		// 4 high bits
-		hex[i*2 + 1] = base16[encrypted[i] & 0x0F];	// 4 low bits
-	}
-	return std::string(hex, sizeof(hex));
+	return Hexify(encrypted, DIGESTSIZE);
 }
 
 std::wstring JSI_Lobby::EncryptPassword(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& pass, const std::wstring& user)

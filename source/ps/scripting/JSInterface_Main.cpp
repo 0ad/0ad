@@ -29,6 +29,7 @@
 #include "ps/GameSetup/Atlas.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
+#include "ps/Util.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
@@ -118,11 +119,7 @@ std::string JSI_Main::CalculateMD5(ScriptInterface::CxPrivate* UNUSED(pCxPrivate
 	m.Update((const u8*)input.c_str(), input.length());
 	m.Final(digest);
 
-	char digeststr[MD5::DIGESTSIZE*2+1];
-	for (size_t i = 0; i < MD5::DIGESTSIZE; ++i)
-		sprintf_s(digeststr+2*i, 3, "%02x", (unsigned int)digest[i]);
-
-	return digeststr;
+	return Hexify(digest, MD5::DIGESTSIZE);
 }
 
 void JSI_Main::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
