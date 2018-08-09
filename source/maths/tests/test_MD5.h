@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,16 +18,14 @@
 #include "lib/self_test.h"
 
 #include "maths/MD5.h"
+#include "ps/Util.h"
 
 class TestMD5 : public CxxTest::TestSuite
 {
 public:
 	std::string decode(u8* digest)
 	{
-		char digeststr[MD5::DIGESTSIZE*2+1];
-		for (size_t i = 0; i < MD5::DIGESTSIZE; ++i)
-			sprintf_s(digeststr+2*i, 3, "%02x", (unsigned int)digest[i]);
-		return digeststr;
+		return Hexify(digest, MD5::DIGESTSIZE);
 	}
 
 	void compare(const char* input, const char* expected)

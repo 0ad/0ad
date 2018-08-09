@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,5 +35,6 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles);
 Status tex_write(Tex* t, const VfsPath& filename);
 
 std::string Hexify(const std::string& s);
+std::string Hexify(const u8* s, size_t length);
 
 #endif // PS_UTIL_H

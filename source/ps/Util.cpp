@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -431,6 +431,15 @@ std::string Hexify(const std::string& s)
 	std::stringstream str;
 	str << std::hex;
 	for (const char& c : s)
-		str << std::setfill('0') << std::setw(2) << (int)(unsigned char)c;
+		str << std::setfill('0') << std::setw(2) << static_cast<int>(static_cast<unsigned char>(c));
+	return str.str();
+}
+
+std::string Hexify(const u8* s, size_t length)
+{
+	std::stringstream str;
+	str << std::hex;
+	for (size_t i = 0; i < length; ++i)
+		str << std::setfill('0') << std::setw(2) << static_cast<int>(s[i]);
 	return str.str();
 }
