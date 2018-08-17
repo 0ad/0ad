@@ -540,13 +540,14 @@ extern_lib_defs = {
 			if os.istarget("windows") then
 				includedirs { libraries_dir .. "sdl2/include/SDL" }
 			elseif not _OPTIONS["android"] then
-				-- Support SDL2_CONFIG for overriding the default PATH-based sdl2-config
+				-- Support SDL2_CONFIG for overriding the default (pkg-config sdl2)
+				-- i.e. on OSX where it gets set in update-workspaces.sh
 				sdl_config_path = os.getenv("SDL2_CONFIG")
-				if not sdl_config_path then
-					sdl_config_path = "sdl2-config"
+				if sdl_config_path then
+					pkgconfig.add_includes(nil, sdl_config_path.." --cflags")
+				else
+					pkgconfig.add_includes("sdl2")
 				end
-
-				pkgconfig.add_includes(nil, sdl_config_path.." --cflags")
 			end
 		end,
 		link_settings = function()
@@ -554,10 +555,11 @@ extern_lib_defs = {
 				add_default_lib_paths("sdl2")
 			elseif not _OPTIONS["android"] then
 				sdl_config_path = os.getenv("SDL2_CONFIG")
-				if not sdl_config_path then
-					sdl_config_path = "sdl2-config"
+				if sdl_config_path then
+					pkgconfig.add_links(nil, sdl_config_path.." --libs")
+				else
+					pkgconfig.add_links("sdl2")
 				end
-				pkgconfig.add_links(nil, sdl_config_path.." --libs")
 			end
 		end,
 	},
