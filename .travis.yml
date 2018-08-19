@@ -1,0 +1,85 @@
+# https://docs.travis-ci.com/user/customizing-the-build/
+language: cpp
+
+sudo: required
+
+matrix:
+  include:
+# linux
+    - os: linux
+      compiler: gcc
+# This var is only used for display
+      env: Compiler_Version="4.8"
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          packages:
+          - gcc-5
+          - g++-5
+# preceding the version with a hyphen, as it gets added to the gcc command
+# when CC and CXX are exported in the "script" section below
+      env: Tr_Compiler_Version="-5"
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          packages:
+          - gcc-6
+          - g++-6
+      env: Tr_Compiler_Version="-6"
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          packages:
+          - gcc-7
+          - g++-7
+      env: Tr_Compiler_Version="-7"
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          packages:
+          - gcc-8
+          - g++-8
+      env: Tr_Compiler_Version="-8"
+# clang
+    - os: linux
+      compiler: clang
+      env: Compiler_Version="5"
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main'
+          packages:
+          - clang-6.0
+      env: Tr_Compiler_Version="-6.0"
+# osx
+#    - os: osx
+#      osx_image: xcode9.2
+#      env: Tr_Xcode_Version="9.2"
+    - os: osx
+      osx_image: xcode9.3beta
+      env: Tr_Xcode_Version="9.3beta"
+
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then sh ./.travis_before_osx_install.sh; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sh ./.travis_before_linux_install.sh; fi
+
+script:
+  - export CXX=$CXX$Tr_Compiler_Version
+  - export CC=$CC$Tr_Compiler_Version
+  - build/workspaces/update-workspaces.sh --with-system-nvtt
+  - make -C build/workspaces/gcc
