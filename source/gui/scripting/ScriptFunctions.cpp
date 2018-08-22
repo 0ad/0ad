@@ -34,6 +34,7 @@
 #include "ps/scripting/JSInterface_Mod.h"
 #include "ps/scripting/JSInterface_ModIo.h"
 #include "ps/scripting/JSInterface_SavedGame.h"
+#include "ps/scripting/JSInterface_UserReport.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "ps/scripting/JSInterface_VisualReplay.h"
 #include "renderer/scripting/JSInterface_Renderer.h"
@@ -67,6 +68,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_SavedGame::RegisterScriptFunctions(scriptInterface);
 	JSI_Simulation::RegisterScriptFunctions(scriptInterface);
 	JSI_Sound::RegisterScriptFunctions(scriptInterface);
+	JSI_UserReport::RegisterScriptFunctions(scriptInterface);
 	JSI_VFS::RegisterScriptFunctions_GUI(scriptInterface);
 	JSI_VisualReplay::RegisterScriptFunctions(scriptInterface);
 }

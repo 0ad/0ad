@@ -15,22 +15,20 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_JSI_DEBUG
-#define INCLUDED_JSI_DEBUG
+#ifndef INCLUDED_JSI_USERREPORT
+#define INCLUDED_JSI_USERREPORT
 
 #include "scriptinterface/ScriptInterface.h"
 
 #include <string>
 
-namespace JSI_Debug
+namespace JSI_UserReport
 {
-	int Crash(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
-	void DebugWarn(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
-	void DisplayErrorDialog(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& msg);
-	std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int mode);
-	double GetMicroseconds(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
+	bool IsUserReportEnabled(ScriptInterface::CxPrivate* pCxPrivate);
+	void SetUserReportEnabled(ScriptInterface::CxPrivate* pCxPrivate, bool enabled);
+	std::string GetUserReportStatus(ScriptInterface::CxPrivate* pCxPrivate);
 
 	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
 }
 
-#endif // INCLUDED_JSI_DEBUG
+#endif // INCLUDED_JSI_USERREPORT
