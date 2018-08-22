@@ -21,8 +21,11 @@
 #include "ps/ConfigDB.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#include <string>
+
 namespace JSI_ConfigDB
 {
+	bool IsProtectedConfigName(const std::string& name);
 	bool GetConfigNamespace(const std::wstring& cfgNsString, EConfigNamespace& cfgNs);
 	bool HasChanges(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString);
 	bool SetChanges(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, bool value);

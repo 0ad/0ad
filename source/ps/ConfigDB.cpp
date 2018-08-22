@@ -22,9 +22,13 @@
 #include <boost/algorithm/string.hpp>
 
 #include "lib/allocators/shared_ptr.h"
+#include "lib/file/vfs/vfs_path.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "ps/Filesystem.h"
 #include "ps/ThreadUtil.h"
+
+#include <unordered_set>
 
 typedef std::map<CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
@@ -33,10 +37,11 @@ bool CConfigDB::m_HasChanges[CFG_LAST];
 
 static pthread_mutex_t cfgdb_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-// These entries will not be printed to logfiles
-static const std::set<CStr> g_UnloggedEntries = {
+// These entries will not be printed to logfiles, so that logfiles can be shared without leaking personal or sensitive data
+static const std::unordered_set<std::string> g_UnloggedEntries = {
 	"lobby.password",
-	"lobby.buddies"
+	"lobby.buddies",
+	"userreport.id" // authentication token for GDPR personal data requests
 };
 
 CConfigDB::CConfigDB()
