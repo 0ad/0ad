@@ -1537,7 +1537,7 @@ function ircFormat(msg)
 
 /**
  * Generate a (mostly) unique color for this player based on their name.
- * @see http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
+ * @see https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
  * @param {string} playername
  */
 function getPlayerColor(playername)

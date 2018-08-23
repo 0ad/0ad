@@ -28,7 +28,7 @@ const g_ModProperties = {
 		"required": true,
 		"type": "string"
 	},
-	// example: "http://wildfiregames.com/"
+	// example: "https://wildfiregames.com/"
 	"url": {
 		"required": false,
 		"type": "string"

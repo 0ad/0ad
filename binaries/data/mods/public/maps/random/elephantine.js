@@ -1,11 +1,11 @@
 /**
  * Heightmap image source:
  * OpenStreetMap, available under Open Database Licence, www.openstreetmap.org/copyright
- * http://download.geofabrik.de/africa.html
+ * https://download.geofabrik.de/africa.html
  *
  * To reproduce the river image:
- * You need a gdal version that supports osm, see http://www.gdal.org/drv_osm.html
- * wget http://download.geofabrik.de/africa/egypt-latest.osm.pbf
+ * You need a gdal version that supports osm, see https://www.gdal.org/drv_osm.html
+ * wget https://download.geofabrik.de/africa/egypt-latest.osm.pbf
  * lon=32.89; lat=24.09175; width=0.025;
  * lat1=$(bc <<< ";scale=5;$lat-$width/2"); lon1=$(bc <<< ";scale=5;$lon+$width/2"); lat2=$(bc <<< ";scale=5;$lat+$width/2"); lon2=$(bc <<< ";scale=5;$lon-$width/2")
  * rm elephantine.geojson; ogr2ogr -f GeoJSON elephantine.geojson -clipdst $lon1 $lat1 $lon2 $lat2 egypt-latest.osm.pbf -sql 'select * from multipolygons where natural="water"'

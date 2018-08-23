@@ -150,7 +150,7 @@
 						Engine.PushGuiPage("page_manual.xml", {
 							"page": "manual/intro",
 							"title": getManual(),
-							"url": "http://trac.wildfiregames.com/wiki/0adManual"
+							"url": "https://trac.wildfiregames.com/wiki/0adManual"
 						});
 					</action>
 				</object>
@@ -574,7 +574,7 @@
 					<translatableAttribute id="caption">Website</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to open play0ad.com in your web browser.</translatableAttribute>
 					<action on="Press">
-						openURL("http://play0ad.com/");
+						openURL("https://play0ad.com/");
 					</action>
 				</object>
 
@@ -586,7 +586,7 @@
 					<translatableAttribute id="caption">Chat</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to open the 0 A.D. IRC chat in your browser. (#0ad on webchat.quakenet.org)</translatableAttribute>
 					<action on="Press">
-						openURL("http://webchat.quakenet.org/?channels=0ad");
+						openURL("https://webchat.quakenet.org/?channels=0ad");
 					</action>
 				</object>
 
@@ -598,7 +598,7 @@
 					<translatableAttribute id="caption">Report a Bug</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to visit 0 A.D. Trac to report a bug, crash, or error.</translatableAttribute>
 					<action on="Press">
-						openURL("http://trac.wildfiregames.com/wiki/ReportingErrors/");
+						openURL("https://trac.wildfiregames.com/wiki/ReportingErrors/");
 					</action>
 				</object>
 
@@ -610,7 +610,7 @@
 					<translatableAttribute id="caption">Translate the Game</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to open the 0 A.D. translate page in your browser.</translatableAttribute>
 					<action on="Press">
-						openURL("http://trac.wildfiregames.com/wiki/Localization");
+						openURL("https://trac.wildfiregames.com/wiki/Localization");
 					</action>
 				</object>
 
