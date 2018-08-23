@@ -22,6 +22,7 @@
 #include "gui/GUIManager.h"
 #include "lib/utf8.h"
 #include "lobby/IXmppClient.h"
+#include "ps/CStr.h"
 #include "ps/Profile.h"
 #include "ps/Util.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -359,7 +360,7 @@ std::string JSI_Lobby::EncryptPassword(const std::string& password, const std::s
 	unsigned char encrypted[DIGESTSIZE];
 	pbkdf2(encrypted, (unsigned char*)password.c_str(), password.length(), salt_buffer, DIGESTSIZE, ITERATIONS);
 
-	return Hexify(encrypted, DIGESTSIZE);
+	return CStr(Hexify(encrypted, DIGESTSIZE)).UpperCase();
 }
 
 std::wstring JSI_Lobby::EncryptPassword(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& pass, const std::wstring& user)

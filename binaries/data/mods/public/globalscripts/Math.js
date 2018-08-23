@@ -6,7 +6,7 @@
  * https://bugzilla.mozilla.org/show_bug.cgi?id=531915
  *
  * They mostly meet the ECMAScript Edition 5 spec, see
- * http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf
+ * https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf
  *
  * See simulation/components/tests/test_Math.js for tests.
  */
@@ -228,7 +228,7 @@ Math.log = function(x)
 		return x;
 
 	// start with calculating the binary logarithm
-	// based on http://en.wikipedia.org/wiki/Binary_logarithm#Real_number
+	// based on https://en.wikipedia.org/wiki/Binary_logarithm#Real_number
 
 	// calculate to 50 fractional bits -> error ~=~ 10^-16
 	var precisionBits = 50;

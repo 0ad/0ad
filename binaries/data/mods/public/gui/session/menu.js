@@ -1230,7 +1230,7 @@ function openManual()
 	Engine.PushGuiPage("page_manual.xml", {
 		"page": "manual/intro",
 		"title": translate("Manual"),
-		"url": "http://trac.wildfiregames.com/wiki/0adManual",
+		"url": "https://trac.wildfiregames.com/wiki/0adManual",
 		"callback": "resumeGame"
 	});
 }

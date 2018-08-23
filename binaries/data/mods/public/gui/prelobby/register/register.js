@@ -14,6 +14,11 @@ function updateFeedback()
 	setFeedback(checkUsername(true) || checkPassword(true) || checkPasswordConfirmation() || checkTerms());
 }
 
+function onUsernameEdit()
+{
+	updateFeedback();
+}
+
 function continueButton()
 {
 	setFeedback(translate("Registering…"));

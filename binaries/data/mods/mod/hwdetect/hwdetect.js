@@ -101,7 +101,7 @@ var g_IntelWindowsChipsets = [
 	"*",
 ];
 // Determined manually from data reports.
-// See http://en.wikipedia.org/wiki/Intel_GMA for useful listing.
+// See https://en.wikipedia.org/wiki/Intel_GMA for useful listing.
 
 var g_IntelMacChipsets = [
 	"Intel GMA 950",
@@ -112,7 +112,7 @@ var g_IntelMacChipsets = [
 	"*",
 ];
 // Determined manually from data reports.
-// See http://support.apple.com/kb/HT3246 for useful listing.
+// See https://support.apple.com/kb/HT3246 for useful listing.
 
 function IsWorseThanIntelMesa(renderer, chipset)
 {
@@ -245,7 +245,7 @@ function RunDetection(settings)
 	}
 
 	// NVIDIA 260.19.* UNIX drivers cause random crashes soon after startup.
-	// http://www.wildfiregames.com/forum/index.php?showtopic=13668
+	// https://www.wildfiregames.com/forum/index.php?showtopic=13668
 	// Fixed in 260.19.21:
 	//   "Fixed a race condition in OpenGL that could cause crashes with multithreaded applications."
 	if (os_unix && GL_VERSION.match(/NVIDIA 260\.19\.(0[0-9]|1[0-9]|20)$/))
@@ -253,7 +253,7 @@ function RunDetection(settings)
 		dialog_warnings.push("You are using 260.19.* series NVIDIA drivers, which may crash the game. Please upgrade to 260.19.21 or later.");
 	}
 
-	// http://trac.wildfiregames.com/ticket/684
+	// https://trac.wildfiregames.com/ticket/684
 	// https://bugs.freedesktop.org/show_bug.cgi?id=24047
 	// R600 drivers will advertise support for S3TC but not actually support it,
 	// and will draw everything in grey instead, so forcibly disable S3TC.
@@ -261,7 +261,7 @@ function RunDetection(settings)
 	if (os_unix && GL_RENDERER.match(/^Mesa DRI R600 /))
 		disable_s3tc = true;
 
-	// http://trac.wildfiregames.com/ticket/623
+	// https://trac.wildfiregames.com/ticket/623
 	// Shadows are reportedly very slow on various drivers:
 	//   r300 classic
 	//   Intel 945
@@ -292,7 +292,7 @@ function RunDetection(settings)
 		disable_shadowpcf = true;
 	}
 
-	// http://trac.wildfiregames.com/ticket/780
+	// https://trac.wildfiregames.com/ticket/780
 	// r300 classic has problems with shader mode, so fall back to non-shader
 	if (os_unix && GL_RENDERER.match(/^Mesa DRI R[123]00 /))
 	{
@@ -300,7 +300,7 @@ function RunDetection(settings)
 		warnings.push("Some graphics features are disabled, due to bugs in old graphics drivers. Upgrading to a Gallium-based driver might help.");
 	}
 
-	// http://www.wildfiregames.com/forum/index.php?showtopic=15058
+	// https://www.wildfiregames.com/forum/index.php?showtopic=15058
 	// GF FX has poor shader performance, so fall back to non-shader
 	if (GL_RENDERER.match(/^GeForce FX /))
 	{
@@ -308,7 +308,7 @@ function RunDetection(settings)
 		disable_allwater = true;
 	}
 
-	// http://trac.wildfiregames.com/ticket/964
+	// https://trac.wildfiregames.com/ticket/964
 	// SiS Mirage 3 drivers apparently crash with shaders, so fall back to non-shader
 	// (The other known SiS cards don't advertise GL_ARB_fragment_program so we
 	// don't need to do anything special for them)

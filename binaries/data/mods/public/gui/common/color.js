@@ -77,7 +77,7 @@ function clampColorValue(value)
 /**
  * Convert color value from RGB to HSL space.
  *
- * @see {@link http://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion}
+ * @see {@link https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion}
  * @param {number} r - red
  * @param {number} g - green
  * @param {number} b - blue
@@ -118,7 +118,7 @@ function rgbToHsl(r, g, b)
 /**
  * Convert color value from HSL to RGB space.
  *
- * @see {@link http://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion}
+ * @see {@link https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion}
  * @param {number} h - hueness
  * @param {number} s - saturation
  * @param {number} l - lightness

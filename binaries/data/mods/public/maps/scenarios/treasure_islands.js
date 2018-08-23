@@ -4,7 +4,6 @@ Trigger.prototype.IntroductionMessage = function(data)
 		return;
 
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	// Refer to this wiki article for more information about translation support for messages: http://trac.wildfiregames.com/wiki/Internationalization
 	cmpGUIInterface.PushNotification({
 		"players": [1,2],
 		"message": markForTranslation("Collect the treasures before your enemy does! May the better win!"),

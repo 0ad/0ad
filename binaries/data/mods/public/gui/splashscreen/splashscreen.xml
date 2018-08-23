@@ -22,7 +22,7 @@
 		<object type="button" style="ModernButtonRed" size="50%+5 100%-45 100%-18 100%-17">
 			<translatableAttribute id="caption">Known Issues (web)</translatableAttribute>
 			<action on="Press"><![CDATA[
-				openURL("http://www.wildfiregames.com/forum/index.php?showtopic=15796");
+				openURL("https://www.wildfiregames.com/forum/index.php?showtopic=15796");
 			]]></action>
 		</object>
 		<object name="btnOK" type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17" hotkey="cancel">

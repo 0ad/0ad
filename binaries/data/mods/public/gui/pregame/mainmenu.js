@@ -155,7 +155,7 @@ function ShowRenderPathMessage()
 			translate("Please press \"Read More\" for more information or \"OK\" to continue."),
 			translate("WARNING!"),
 			[translate("OK"), translate("Read More")],
-			[ null, function() { Engine.OpenURL("http://www.wildfiregames.com/forum/index.php?showtopic=16734"); } ]
+			[ null, function() { Engine.OpenURL("https://www.wildfiregames.com/forum/index.php?showtopic=16734"); } ]
 		);
 }
 
