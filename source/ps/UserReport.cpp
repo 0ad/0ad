@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,11 +25,15 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/external_libraries/zlib.h"
 #include "lib/file/archive/stream.h"
+#include "lib/os_path.h"
 #include "lib/sysdep/sysdep.h"
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Profiler2.h"
 #include "ps/ThreadUtil.h"
+
+#include <fstream>
+#include <string>
 
 #define DEBUG_UPLOADS 0
 
@@ -569,7 +573,6 @@ std::string CUserReporter::GetStatus()
 	return m_Worker->GetStatus();
 }
 
-
 void CUserReporter::Initialize()
 {
 	ENSURE(!m_Worker); // must only be called once
@@ -607,12 +610,28 @@ void CUserReporter::Update()
 		m_Worker->Update();
 }
 
-void CUserReporter::SubmitReport(const char* type, int version, const std::string& data)
+void CUserReporter::SubmitReport(const std::string& type, int version, const std::string& data, const std::string& dataHumanReadable)
 {
+	// Write to logfile, enabling users to assess privacy concerns before the data is submitted
+	if (!dataHumanReadable.empty())
+	{
+		OsPath path = psLogDir() / OsPath("userreport_" + type + ".txt");
+		std::ofstream stream(OsString(path), std::ofstream::trunc);
+		if (stream)
+		{
+			debug_printf("UserReport written to %s\n", path.string8().c_str());
+			stream << dataHumanReadable << std::endl;
+			stream.close();
+		}
+		else
+			debug_printf("Failed to write UserReport to %s\n", path.string8().c_str());
+	}
+
 	// If not initialised, discard the report
 	if (!m_Worker)
 		return;
 
+	// Actual submit
 	shared_ptr<CUserReport> report(new CUserReport);
 	report->m_Time = time(NULL);
 	report->m_Type = type;

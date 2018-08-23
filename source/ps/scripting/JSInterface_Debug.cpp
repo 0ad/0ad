@@ -21,12 +21,10 @@
 
 #include "i18n/L10n.h"
 #include "lib/svn_revision.h"
-#include "ps/CConsole.h"
-#include "ps/CLogger.h"
-#include "ps/Profile.h"
-#include "ps/ProfileViewer.h"
-#include "ps/UserReport.h"
+#include "lib/debug.h"
 #include "scriptinterface/ScriptInterface.h"
+
+#include <string>
 
 /**
  * Microseconds since the epoch.
@@ -117,21 +115,6 @@ std::wstring JSI_Debug::GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCx
 	return wstring_from_utf8(buf);
 }
 
-bool JSI_Debug::IsUserReportEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	return g_UserReporter.IsReportingEnabled();
-}
-
-void JSI_Debug::SetUserReportEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
-{
-	g_UserReporter.SetReportingEnabled(enabled);
-}
-
-std::string JSI_Debug::GetUserReportStatus(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	return g_UserReporter.GetStatus();
-}
-
 void JSI_Debug::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<double, &GetMicroseconds>("GetMicroseconds");
@@ -139,9 +122,4 @@ void JSI_Debug::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
-
-	// User report functions
-	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");
-	scriptInterface.RegisterFunction<void, bool, &SetUserReportEnabled>("SetUserReportEnabled");
-	scriptInterface.RegisterFunction<std::string, &GetUserReportStatus>("GetUserReportStatus");
 }

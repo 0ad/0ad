@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,8 @@
 
 #ifndef INCLUDED_USERREPORT
 #define INCLUDED_USERREPORT
+
+#include <string>
 
 class CUserReporterWorker;
 
@@ -48,8 +50,9 @@ public:
 	 * @param version positive integer that should be incremented if the data is changed in
 	 * a non-compatible way and the server will have to distinguish old and new formats
 	 * @param data the actual data (typically UTF-8-encoded text, or JSON, but could be binary)
+	 * @param dataHumanReadable an optional, readable representation of the same data, allowing users to assess for privacy concerns
 	 */
-	void SubmitReport(const char* type, int version, const std::string& data);
+	void SubmitReport(const std::string& type, int version, const std::string& data, const std::string& dataHumanReadable);
 
 private:
 	std::string LoadUserID();
