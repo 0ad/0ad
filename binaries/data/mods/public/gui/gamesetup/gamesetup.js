@@ -1011,6 +1011,16 @@ var g_MiscControls = {
 	"startGame": {
 		"caption": () =>
 			g_IsController ? translate("Start Game!") : g_ReadyData[g_IsReady].caption,
+		"onPress": () => function() {
+			if (g_IsController)
+				launchGame();
+			else
+				toggleReady();
+		},
+		"onPressRight": () => function() {
+			if (!g_IsController && g_IsReady)
+				setReady(0, true);
+		},
 		"tooltip": (hoverIdx) =>
 			!g_IsController ?
 				g_ReadyData[g_IsReady].tooltip :

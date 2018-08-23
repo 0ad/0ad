@@ -266,14 +266,7 @@
 				size="100%-164 100%-52 100%-24 100%-24"
 				tooltip_style="onscreenToolTip"
 				z="21"
-			>
-				<action on="Press">
-					if (g_IsController)
-						launchGame();
-					else
-						toggleReady();
-				</action>
-			</object>
+			/>
 
 			<!-- Cancel Button -->
 			<object
