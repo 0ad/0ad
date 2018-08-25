@@ -20,11 +20,13 @@
 
 #include "NetFileTransfer.h"
 #include "NetHost.h"
-
 #include "lib/config2.h"
+#include "lib/types.h"
 #include "ps/ThreadUtil.h"
 #include "scriptinterface/ScriptTypes.h"
 
+#include <string>
+#include <utility>
 #include <vector>
 
 class CNetServerSession;
@@ -137,12 +139,15 @@ public:
 	 */
 	void SetTurnLength(u32 msecs);
 
+	bool UseLobbyAuth() const;
+
 	void OnLobbyAuth(const CStr& name, const CStr& token);
 
 	void SendHolePunchingMessage(const CStr& ip, u16 port);
 
 private:
 	CNetServerWorker* m_Worker;
+	const bool m_LobbyAuth;
 };
 
 /**
@@ -298,7 +303,11 @@ private:
 	JS::PersistentRootedValue m_GameAttributes;
 
 	int m_AutostartPlayers;
-	bool m_LobbyAuth;
+
+	/**
+	 * Whether this match requires lobby authentication.
+	 */
+	const bool m_LobbyAuth;
 
 	ENetHost* m_Host;
 	std::vector<CNetServerSession*> m_Sessions;

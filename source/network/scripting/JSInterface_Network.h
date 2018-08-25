@@ -18,6 +18,7 @@
 #ifndef INCLUDED_JSI_NETWORK
 #define INCLUDED_JSI_NETWORK
 
+#include "lib/types.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -28,7 +29,7 @@ namespace JSI_Network
 	bool HasNetClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void StartNetworkGame(ScriptInterface::CxPrivate* pCxPrivate);
 	void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs1);
-	void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName, bool useLobbyAuth);
+	void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName);
 	void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID);
 	JS::Value FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, int port);
 	void DisconnectNetworkGame(ScriptInterface::CxPrivate* pCxPrivate);

@@ -48,7 +48,6 @@ function init(attribs)
 	case "host":
 	{
 		Engine.GetGUIObjectByName("hostSTUNWrapper").hidden = !Engine.HasXmppClient();
-		Engine.GetGUIObjectByName("hostLobbyAuthWrapper").hidden = !Engine.HasXmppClient();
 		if (Engine.HasXmppClient())
 		{
 			Engine.GetGUIObjectByName("hostPlayerName").caption = attribs.name;
@@ -56,7 +55,6 @@ function init(attribs)
 				sprintf(translate("%(name)s's game"), { "name": attribs.name });
 
 			Engine.GetGUIObjectByName("useSTUN").checked = Engine.ConfigDB_GetValue("user", "lobby.stun.enabled") == "true";
-			Engine.GetGUIObjectByName("useLobbyAuth").checked = Engine.ConfigDB_GetValue("user", "lobby.secureauth") == "true";
 		}
 
 		switchSetupPage("pageHost");
@@ -269,7 +267,7 @@ function switchSetupPage(newPage)
 	if (newPage == "pageJoin" || newPage == "pageHost")
 	{
 		let pageSize = multiplayerPages.size;
-		let halfHeight = newPage == "pageJoin" ? 130 : Engine.HasXmppClient() ? 145 : 110;
+		let halfHeight = newPage == "pageJoin" ? 130 : Engine.HasXmppClient() ? 125 : 110;
 		pageSize.top = -halfHeight;
 		pageSize.bottom = halfHeight;
 		multiplayerPages.size = pageSize;
@@ -313,10 +311,9 @@ function startHost(playername, servername, port)
 		}
 	}
 
-	let useLobbyAuth = Engine.HasXmppClient() && Engine.GetGUIObjectByName("useLobbyAuth").checked;
 	try
 	{
-		Engine.StartNetworkHost(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), port, playername, useLobbyAuth);
+		Engine.StartNetworkHost(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), port, playername);
 	}
 	catch (e)
 	{

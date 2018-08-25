@@ -20,7 +20,8 @@
 
 #include "lib/config2.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptVal.h"
+
+#include <string>
 
 namespace JSI_Lobby
 {

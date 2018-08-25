@@ -114,16 +114,6 @@
 					<translatableAttribute id="caption">Use STUN to work around firewalls</translatableAttribute>
 				</object>
 			</object>
-
-			<object name="hostLobbyAuthWrapper" size="120 141 100% 181">
-				<object name="useLobbyAuth" size="0 10 32 100%" type="checkbox" style="ModernTickBox">
-					<action on="Press">saveSettingAndWriteToUserConfig("lobby.secureauth", String(this.checked));</action>
-				</object>
-				<object type="text" size="26 0 100% 100%" style="ModernLeftLabelText">
-					<translatableAttribute id="caption">Require Lobby Authentication</translatableAttribute>
-					<translatableAttribute id="tooltip">This prevents the impersonation of other players. The lobby server confirms the identity of the player before they join.</translatableAttribute>
-				</object>
-			</object>
 		</object>
 
 		<object name="hostFeedback" type="text" style="ModernLabelText" size="50 100%-80 100%-50 100%-45" textcolor="red"/>

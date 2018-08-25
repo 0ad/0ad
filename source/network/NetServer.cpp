@@ -26,11 +26,13 @@
 #include "NetStats.h"
 
 #include "lib/external_libraries/enet.h"
+#include "lib/types.h"
 #include "network/StunClient.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/GUID.h"
 #include "ps/Profile.h"
+#include "ps/ThreadUtil.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptRuntime.h"
 #include "simulation2/Simulation2.h"
@@ -42,6 +44,8 @@
 #include <miniupnpc/upnpcommands.h>
 #include <miniupnpc/upnperrors.h>
 #endif
+
+#include <string>
 
 /**
  * Number of peers to allocate for the enet host.
@@ -1556,13 +1560,19 @@ void CNetServerWorker::SendHolePunchingMessage(const CStr& ipStr, u16 port)
 
 
 CNetServer::CNetServer(bool useLobbyAuth, int autostartPlayers) :
-	m_Worker(new CNetServerWorker(useLobbyAuth, autostartPlayers))
+	m_Worker(new CNetServerWorker(useLobbyAuth, autostartPlayers)),
+	m_LobbyAuth(useLobbyAuth)
 {
 }
 
 CNetServer::~CNetServer()
 {
 	delete m_Worker;
+}
+
+bool CNetServer::UseLobbyAuth() const
+{
+	return m_LobbyAuth;
 }
 
 bool CNetServer::SetupConnection(const u16 port)

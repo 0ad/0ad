@@ -21,6 +21,7 @@
 
 #include "lib/external_libraries/enet.h"
 #include "lib/external_libraries/libsdl.h"
+#include "lib/types.h"
 #include "lobby/IXmppClient.h"
 #include "network/NetClient.h"
 #include "network/NetMessage.h"
@@ -50,13 +51,14 @@ JS::Value JSI_Network::FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, 
 	return StunClient::FindStunEndpointHost(*(pCxPrivate->pScriptInterface), port);
 }
 
-void JSI_Network::StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName, bool useLobbyAuth)
+void JSI_Network::StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
 	ENSURE(!g_Game);
 
-	g_NetServer = new CNetServer(useLobbyAuth);
+	// Always use lobby authentication for lobby matches to prevent impersonation and smurfing, in particular through mods that implemented an UI for arbitrary or other players nicknames.
+	g_NetServer = new CNetServer(static_cast<bool>(g_XmppClient));
 	if (!g_NetServer->SetupConnection(serverPort))
 	{
 		pCxPrivate->pScriptInterface->ReportError("Failed to start server");
@@ -228,7 +230,7 @@ void JSI_Network::RegisterScriptFunctions(const ScriptInterface& scriptInterface
 	scriptInterface.RegisterFunction<bool, &HasNetServer>("HasNetServer");
 	scriptInterface.RegisterFunction<bool, &HasNetClient>("HasNetClient");
 	scriptInterface.RegisterFunction<JS::Value, int, &FindStunEndpoint>("FindStunEndpoint");
-	scriptInterface.RegisterFunction<void, CStrW, u16, CStr, bool, &StartNetworkHost>("StartNetworkHost");
+	scriptInterface.RegisterFunction<void, CStrW, u16, CStr, &StartNetworkHost>("StartNetworkHost");
 	scriptInterface.RegisterFunction<void, CStrW, CStr, u16, bool, CStr, &StartNetworkJoin>("StartNetworkJoin");
 	scriptInterface.RegisterFunction<void, &DisconnectNetworkGame>("DisconnectNetworkGame");
 	scriptInterface.RegisterFunction<CStr, &GetPlayerGUID>("GetPlayerGUID");

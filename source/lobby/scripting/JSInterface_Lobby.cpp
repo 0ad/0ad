@@ -22,12 +22,16 @@
 #include "gui/GUIManager.h"
 #include "lib/utf8.h"
 #include "lobby/IXmppClient.h"
+#include "network/NetServer.h"
+#include "ps/CLogger.h"
 #include "ps/CStr.h"
-#include "ps/Profile.h"
 #include "ps/Util.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptVal.h"
 
 #include "third_party/encryption/pkcs5_pbkdf2.h"
+
+#include <string>
 
 void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
@@ -153,6 +157,13 @@ void JSI_Lobby::SendRegisterGame(ScriptInterface::CxPrivate* pCxPrivate, JS::Han
 {
 	if (!g_XmppClient)
 		return;
+
+	// Prevent JS mods to register matches in the lobby that were started with lobby authentication disabled
+	if (!g_NetServer || !g_NetServer->UseLobbyAuth())
+	{
+		LOGERROR("Registering games in the lobby requires lobby authentication to be enabled!");
+		return;
+	}
 
 	g_XmppClient->SendIqRegisterGame(*(pCxPrivate->pScriptInterface), data);
 }
