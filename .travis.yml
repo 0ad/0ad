@@ -66,17 +66,20 @@ matrix:
           packages:
           - clang-6.0
       env: Tr_Compiler_Version="-6.0"
+# When using the build-osx-libs.sh script, the job exceeds 50 minutes,
+# which is the limit for running a test on Travis. Build terminates.
+#
 # osx
 #
-    - os: osx
-      osx_image: xcode9.2
-      env: Tr_Xcode_Version="9.2"
-    - os: osx
-      osx_image: xcode9.3beta
-      env: Tr_Xcode_Version="9.3beta"
+#    - os: osx
+#      osx_image: xcode9.2
+#      env: Tr_Xcode_Version="9.2"
+#    - os: osx
+#      osx_image: xcode9.3beta
+#      env: Tr_Xcode_Version="9.3beta"
 
 before_install:
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then ./.travis_before_osx_install.sh; fi
+#  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then ./.travis_before_osx_install.sh; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then ./.travis_before_linux_install.sh; fi
 
 script:
