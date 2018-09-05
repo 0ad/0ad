@@ -165,7 +165,7 @@
 					<translatableAttribute id="caption">Tutorial</translatableAttribute>
 					<translatableAttribute id="tooltip">Start the economic tutorial.</translatableAttribute>
 					<action on="Press">
-						Engine.SwitchGuiPage("page_gamesetup.xml", { "type": "offline", "tutorial": true });
+						Engine.SwitchGuiPage("page_gamesetup.xml", { "tutorial": true });
 					</action>
 				</object>
 
@@ -219,7 +219,7 @@
 					<translatableAttribute id="caption">Matches</translatableAttribute>
 					<translatableAttribute id="tooltip">Click here to start a new single player game.</translatableAttribute>
 					<action on="Press">
-						Engine.SwitchGuiPage("page_gamesetup.xml", { "type": "offline" });
+						Engine.SwitchGuiPage("page_gamesetup.xml", {});
 					</action>
 				</object>
 

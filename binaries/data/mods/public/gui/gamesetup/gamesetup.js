@@ -1110,13 +1110,6 @@ function init(attribs)
 		return;
 	}
 
-	if (["offline", "server", "client"].indexOf(attribs.type) == -1)
-	{
-		error("Unexpected 'type' in gamesetup init: " + attribs.type);
-		cancelSetup();
-		return;
-	}
-
 	g_IsTutorial = !!attribs.tutorial;
 	g_ServerName = attribs.serverName;
 	g_ServerPort = attribs.serverPort;

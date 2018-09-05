@@ -229,7 +229,6 @@ function pollAndHandleNetworkClient()
 						return; // we'll process the game setup messages in the next tick
 					}
 					Engine.SwitchGuiPage("page_gamesetup.xml", {
-						"type": g_GameType,
 						"serverName": g_ServerName,
 						"serverPort": g_ServerPort,
 						"stunEndpoint": g_StunEndpoint
