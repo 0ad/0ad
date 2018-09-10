@@ -1037,6 +1037,19 @@ var g_MiscControls = {
 			!g_PlayerAssignments[Engine.GetPlayerGUID()] ||
 			g_PlayerAssignments[Engine.GetPlayerGUID()].player == -1 && !g_IsController,
 	},
+	"civInfoButton": {
+		"tooltip": () => sprintf(
+			translate("%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\nLast opened will be reopened on click."), {
+				"hotkey_civinfo": colorizeHotkey("%(hotkey)s", "civinfo"),
+				"hotkey_structree": colorizeHotkey("%(hotkey)s", "structree")
+			}),
+		"onPress": () => function() {
+			Engine.PushGuiPage(g_CivInfo.page, {
+				"civ": g_CivInfo.code,
+				"callback": "storeCivInfoPage"
+			});
+		}
+	},
 	"civResetButton": {
 		"hidden": () => g_GameAttributes.mapType == "scenario" || !g_IsController,
 	},
@@ -1131,12 +1144,6 @@ function init(attribs)
 	supplementDefaults();
 
 	setTimeout(displayGamestateNotifications, 1000);
-
-	Engine.GetGUIObjectByName("civInfoButton").tooltip = sprintf(
-		translate("%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\nLast opened will be reopened on click."), {
-			"hotkey_civinfo": colorizeHotkey("%(hotkey)s", "civinfo"),
-			"hotkey_structree": colorizeHotkey("%(hotkey)s", "structree")
-	});
 }
 
 function initDefaults()

@@ -70,17 +70,7 @@
 						<translatableAttribute id="caption">Civilization</translatableAttribute>
 					</object>
 
-					<object name="civInfoButton"
-						type="button"
-						style="IconButton"
-						sprite="iconInfoGold"
-						sprite_over="iconInfoWhite"
-						size="85%-37 0 85%-21 16"
-					>
-						<action on="Press">
-							Engine.PushGuiPage(g_CivInfo.page, { "civ": g_CivInfo.code, "callback": "storeCivInfoPage" });
-						</action>
-					</object>
+					<object name="civInfoButton" type="button" style="IconButton" sprite="iconInfoGold" sprite_over="iconInfoWhite" size="85%-37 0 85%-21 16"/>
 
 					<object name="civResetButton"
 						type="button"
