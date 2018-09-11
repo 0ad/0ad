@@ -7,7 +7,11 @@
       <props>
         <prop actor="fauna/elephant_asian.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -20,5 +24,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

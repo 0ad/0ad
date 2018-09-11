@@ -5,7 +5,9 @@
     <variant frequency="100" name="Ishtar Gate">
       <color>58 98 203</color>
       <mesh>structural/pers_ishtar.dae</mesh>
-      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>objectcolor.xml</material>
