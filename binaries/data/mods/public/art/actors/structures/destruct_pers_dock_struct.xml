@@ -5,10 +5,12 @@
     <variant name="pers dock rubble struct">
       <mesh>props/pers_dock_rubble_struct.dae</mesh>
       <textures>
-        <texture file="structural/pers_struct.dds" name="baseTex"/>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>
         <texture file="props/ao/pers_dock_rubble_ao.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

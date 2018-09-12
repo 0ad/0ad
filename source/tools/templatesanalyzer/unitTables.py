@@ -33,7 +33,7 @@ LoadTemplatesIfParent = ["template_unit_infantry.xml", "template_unit_cavalry.xm
 
 # Those describe Civs to analyze.
 # The script will load all entities that derive (to the nth degree) from one of the above templates.
-Civs = ["athen", "brit", "cart", "gaul", "iber", "mace", "maur", "pers", "ptol", "rome", "sele", "spart"]
+Civs = ["athen", "brit", "cart", "gaul", "iber", "kush", "mace", "maur", "pers", "ptol", "rome", "sele", "spart"]
 
 # Remote Civ templates with those strings in their name.
 FilterOut = ["marian", "thureophoros", "thorakites", "kardakes"]

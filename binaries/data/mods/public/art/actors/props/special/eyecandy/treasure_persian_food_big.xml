@@ -4,7 +4,12 @@
   <group>
     <variant frequency="1" name="pers treasure 4 (food big)">
       <mesh>props/treasure_pers_4.dae</mesh>
-      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

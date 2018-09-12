@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
         <prop actor="props/structures/persians/barracks.xml" attachpoint="root"/>
-        <prop actor="props/structures/persians/barracks_shields.xml" attachpoint="root"/>        
+        <prop actor="props/structures/persians/barracks_shields.xml" attachpoint="root"/>
         <prop actor="props/units/shields/pers_taka_a.xml" attachpoint="shieldright"/>
         <prop actor="props/units/shields/pers_pelta_a.xml" attachpoint="shieldleft"/>
         <prop actor="props/units/shields/pers_tower.xml" attachpoint="entranceshield"/>
@@ -16,9 +16,9 @@
         <prop actor="props/units/shields/pers_round_kardakes.xml" attachpoint="shieldoutside"/>
       </props>
       <textures>
-         <texture file="structural/pers_struct.png" name="baseTex"/>
-         <texture file="structural/pers_struct_norm.png" name="normTex"/>
-         <texture file="structural/pers_struct_spec.png" name="specTex"/>        
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/pers_barracks.png" name="aoTex"/>
       </textures>
     </variant>
