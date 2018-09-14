@@ -192,7 +192,7 @@
 
 		<object type="button" style="ModernButtonRed" size="100%-606 100%-44 100%-412 100%-16">
 			<translatableAttribute id="caption">Download Mods</translatableAttribute>
-			<action on="Press">modIo();</action>
+			<action on="Press">downloadModsButton();</action>
 		</object>
 
 		<object name="saveConfigurationButton" type="button" style="ModernButtonRed" size="100%-408 100%-44 100%-214 100%-16">

@@ -1,3 +1,16 @@
+var g_TermsUserReport = {
+	"TermsAndConditions": {
+		"title": translate("Technical Details"),
+		"instruction": "",
+		"file": "gui/manual/userreport.txt",
+		"config": "userreport.terms",
+		"callback": data => {
+			setUserReportEnabled(data.accepted);
+		},
+		"accepted": false
+	}
+};
+
 var g_UserReportStatusFormat = {
 	"disabled": data => translate("disabled"),
 	"proxy": data => translate("connecting to server"),
@@ -17,7 +30,10 @@ var g_UserReportStatusFormat = {
 
 function initUserReport()
 {
-	setUserReportEnabled(Engine.IsUserReportEnabled());
+	initTerms(g_TermsUserReport);
+	loadTermsAcceptance();
+
+	setUserReportEnabled(!checkTerms() && Engine.IsUserReportEnabled());
 }
 
 function setUserReportEnabled(enabled)
@@ -28,18 +44,19 @@ function setUserReportEnabled(enabled)
 
 function updateUserReportButtons()
 {
+	let termsFeedback = checkTerms();
+
 	let userReportEnableButton = Engine.GetGUIObjectByName("userReportEnableButton");
 	userReportEnableButton.caption = Engine.IsUserReportEnabled() ? translate("Disable Feedback") : translate("Enable Feedback");
+	userReportEnableButton.enabled = !termsFeedback;
+	userReportEnableButton.tooltip = termsFeedback;
 	userReportEnableButton.onPress = () => {
 		setUserReportEnabled(!Engine.IsUserReportEnabled());
 	};
 
 	let userReportTermsButton = Engine.GetGUIObjectByName("userReportTermsButton");
 	userReportTermsButton.onPress = () => {
-		Engine.PushGuiPage("page_manual.xml", {
-			"page": "manual/userreport",
-			"title": translate("Technical Details")
-		});
+		openTerms("TermsAndConditions");
 	};
 }
 
