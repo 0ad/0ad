@@ -5,6 +5,7 @@
 	<script directory="gui/common/"/>
 	<script directory="gui/pregame/"/>
 	<script directory="gui/pregame/backgrounds/"/>
+	<script directory="gui/pregame/userreport/"/>
 
 	<!--
 	==========================================
@@ -43,65 +44,7 @@
 		- MAIN MENU - USER REPORT
 		==========================================
 		-->
-		<object
-			name="userReportDisabled"
-			size="100%-304 100%-154 100%-4 100%-4"
-			type="image"
-			style="userReportPanel"
-		>
-			<object
-				type="text"
-				style="userReportText"
-			>
-				<attribute id="caption">
-					<keep>[font="sans-bold-16"]</keep>
-					<translate>Help improve 0 A.D.!</translate>
-					<keep>[/font]\n</keep>
-					<translate>You can automatically send us anonymous feedback that will help us fix bugs, and improve performance and compatibility.</translate>
-				</attribute>
-			</object>
-			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
-				<translatableAttribute id="caption">Enable Feedback</translatableAttribute>
-				<action on="Press">EnableUserReport(true);</action>
-			</object>
-			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
-				<translatableAttribute id="caption">Technical Details</translatableAttribute>
-				<action on="Press">
-					Engine.PushGuiPage("page_manual.xml", {
-						"page": "manual/userreport",
-						"title": getTechnicalDetails()
-					});
-				</action>
-			</object>
-		</object>
-
-		<object
-			name="userReportEnabled"
-			size="100%-304 100%-154 100%-4 100%-4"
-			type="image"
-			style="userReportPanel"
-		>
-			<object
-				name="userReportEnabledText"
-				type="text"
-				style="userReportText"
-			/>
-
-			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
-				<translatableAttribute id="caption">Disable Feedback</translatableAttribute>
-				<action on="Press">EnableUserReport(false);</action>
-			</object>
-			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
-				<translatableAttribute id="caption">Technical Details</translatableAttribute>
-				<action on="Press">
-					Engine.PushGuiPage("page_manual.xml", {
-						"page": "manual/userreport",
-						"title": getTechnicalDetails()
-					});
-				</action>
-			</object>
-		</object>
-
+		<include file="gui/pregame/userreport/userreport.xml"/>
 
 		<!--
 		==========================================

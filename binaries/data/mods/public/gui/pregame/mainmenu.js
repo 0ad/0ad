@@ -24,8 +24,6 @@ function init(initData, hotloadData)
 	// Initialize currentSubmenuType with placeholder to avoid null when switching
 	currentSubmenuType = "submenuSinglePlayer";
 
-	EnableUserReport(Engine.IsUserReportEnabled());
-
 	// Only show splash screen(s) once at startup, but not again after hotloading
 	g_ShowSplashScreens = hotloadData ? hotloadData.showSplashScreens : initData && initData.isStartup;
 
@@ -38,12 +36,15 @@ function init(initData, hotloadData)
 		guiObj.sprite = g_BackgroundLayerset[i].sprite;
 		guiObj.z = i;
 	}
+
 	Engine.GetGUIObjectByName("structreeButton").tooltip = colorizeHotkey(
 		translate("%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."),
 		"structree");
+
 	Engine.GetGUIObjectByName("civInfoButton").tooltip = colorizeHotkey(
 		translate("%(hotkey)s: Learn about the many civilizations featured in 0 A.D."),
 		"civinfo");
+
 	Engine.GetGUIObjectByName("lobbyButton").tooltip = colorizeHotkey(
 		translate("%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible games and chat with other players."),
 		"lobby");
@@ -79,33 +80,6 @@ function scrollBackgrounds()
 	}
 }
 
-function formatUserReportStatus(status)
-{
-	let d = status.split(/:/, 3);
-
-	if (d[0] == "disabled")
-		return translate("disabled");
-
-	if (d[0] == "connecting")
-		return translate("connecting to server");
-
-	if (d[0] == "sending")
-		return sprintf(translate("uploading (%f%%)"), Math.floor(100 * d[1]));
-
-	if (d[0] == "completed")
-	{
-		let httpCode = d[1];
-		if (httpCode == 200)
-			return translate("upload succeeded");
-		return sprintf(translate("upload failed (%(errorCode)s)"), { "errorCode": httpCode });
-	}
-
-	if (d[0] == "failed")
-		return sprintf(translate("upload failed (%(errorMessage)s)"), { "errorMessage": d[2] });
-
-	return translate("unknown");
-}
-
 function onTick()
 {
 	let now = Date.now();
@@ -115,14 +89,6 @@ function onTick()
 	scrollBackgrounds();
 
 	updateMenuPosition(tickLength);
-
-	if (Engine.IsUserReportEnabled())
-		Engine.GetGUIObjectByName("userReportEnabledText").caption =
-			'[font="sans-bold-16"]' + translate("Thank you for helping improve 0 A.D.!") + "[/font]\n\n" +
-			translate("Anonymous feedback is currently enabled.") + "\n" +
-			sprintf(translate("Status: %(status)s."), {
-				"status": formatUserReportStatus(Engine.GetUserReportStatus())
-			});
 
 	// Show splash screens here, so we don't interfere with main menu hotloading
 	if (g_ShowSplashScreens)
@@ -162,13 +128,6 @@ function ShowRenderPathMessage()
 function SplashScreenClosedCallback()
 {
 	ShowRenderPathMessage();
-}
-
-function EnableUserReport(Enabled)
-{
-	Engine.GetGUIObjectByName("userReportDisabled").hidden = Enabled;
-	Engine.GetGUIObjectByName("userReportEnabled").hidden = !Enabled;
-	Engine.SetUserReportEnabled(Enabled);
 }
 
 /**
@@ -278,11 +237,6 @@ function pressedScenarioEditorButton()
 function getLobbyDisabledByBuild()
 {
 	return translate("Launch the multiplayer lobby to join and host publicly visible games and chat with other players. \\[DISABLED BY BUILD]");
-}
-
-function getTechnicalDetails()
-{
-	return translate("Technical Details");
 }
 
 function getManual()
