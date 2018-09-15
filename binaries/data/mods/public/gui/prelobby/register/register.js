@@ -4,6 +4,8 @@ function init()
 
 	Engine.GetGUIObjectByName("continue").caption = translate("Register");
 
+	initLobbyTerms();
+
 	initRememberPassword();
 
 	updateFeedback();
@@ -33,7 +35,6 @@ function continueButton()
 function onRegistered()
 {
 	saveCredentials();
-	saveTermsAcceptance();
 
 	setFeedback(translate("Registered"));
 

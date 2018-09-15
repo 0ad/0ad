@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objects>
+
+	<script directory="gui/common/"/>
+	<script directory="gui/termsdialog/"/>
+
+	<object type="image" z="0" sprite="ModernFade"/>
+
+	<object type="image" style="ModernDialog" size="50%-360 50%-290 50%+360 50%+290">
+
+		<object name="title" style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14"/>
+
+		<object size="20 20 100%-20 100%-50">
+			<object name="mainTextPanel" type="image" sprite="ModernFade" size="0 0 100% 100%">
+				<object name="mainText" type="text" style="ModernTextPanel"/>
+			</object>
+		</object>
+
+		<object size="100%-355 100%-44 100% 100%-16">
+			<object type="button" style="ModernButtonRed" size="0 0 160 100%" hotkey="cancel">
+				<translatableAttribute id="caption">Cancel</translatableAttribute>
+				<action on="Press">closeTerms(false);</action>
+			</object>
+
+			<object type="button" style="ModernButtonRed" size="170 0 330 100%">
+				<translatableAttribute id="caption" context="mod.io connection message box">Connect</translatableAttribute>
+				<action on="Press">closeTerms(true);</action>
+			</object>
+		</object>
+
+	</object>
+
+</objects>

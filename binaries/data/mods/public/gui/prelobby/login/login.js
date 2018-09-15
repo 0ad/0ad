@@ -8,7 +8,8 @@ function init()
 	Engine.GetGUIObjectByName("username").caption = Engine.ConfigDB_GetValue("user", "lobby.login");
 	Engine.GetGUIObjectByName("password").caption = Engine.ConfigDB_GetValue("user", "lobby.password").substr(0, 10);
 
-	loadTermsAcceptance();
+	initLobbyTerms();
+
 	initRememberPassword();
 
 	updateFeedback();
@@ -43,7 +44,6 @@ function continueButton()
 function onLogin(message)
 {
 	saveCredentials();
-	saveTermsAcceptance();
 
 	Engine.SwitchGuiPage("page_lobby.xml", {
 		"dialog": false
