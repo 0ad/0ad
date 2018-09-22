@@ -7,7 +7,13 @@ var g_TermsUserReport = {
 		"callback": data => {
 			setUserReportEnabled(data.accepted);
 		},
-		"accepted": false
+		"accepted": false,
+		"urlButtons": [
+			{
+				"caption": translate("Publications"),
+				"url": Engine.ConfigDB_GetValue("user", "userreport.url_publication")
+			}
+		]
 	}
 };
 

@@ -579,7 +579,7 @@ void CUserReporter::Initialize()
 
 	std::string userID = LoadUserID();
 	std::string url;
-	CFG_GET_VAL("userreport.url", url);
+	CFG_GET_VAL("userreport.url_upload", url);
 
 	m_Worker = new CUserReporterWorker(userID, url);
 

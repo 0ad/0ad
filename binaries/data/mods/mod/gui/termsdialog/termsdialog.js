@@ -1,4 +1,4 @@
-var g_TermsPage = "";
+var g_TermsPage;
 
 function init(data)
 {
@@ -10,6 +10,24 @@ function init(data)
 		Engine.FileExists(data.file) ?
 		Engine.TranslateLines(Engine.ReadFile(data.file)) :
 		data.file;
+
+	initURLButtons(data.urlButtons);
+}
+
+function initURLButtons(urlButtons)
+{
+	urlButtons.forEach((urlButton, i) => {
+
+		let button = Engine.GetGUIObjectByName("button[" + i + "]");
+		button.caption = urlButton.caption;
+		button.hidden = false;
+		button.tooltip = sprintf(translate("Open %(url)s in the browser."), {
+			"url": urlButton.url
+		});
+		button.onPress = () => {
+			openURL(urlButton.url);
+		};
+	});
 }
 
 function closeTerms(accepted)
