@@ -11,20 +11,26 @@
 		<object name="title" style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14"/>
 
 		<object size="20 20 100%-20 100%-50">
-			<object name="mainTextPanel" type="image" sprite="ModernFade" size="0 0 100% 100%">
+			<object name="mainTextPanel" type="image" sprite="ModernFade">
 				<object name="mainText" type="text" style="ModernTextPanel"/>
 			</object>
 		</object>
 
-		<object size="100%-355 100%-44 100% 100%-16">
-			<object type="button" style="ModernButtonRed" size="0 0 160 100%" hotkey="cancel">
-				<translatableAttribute id="caption">Cancel</translatableAttribute>
-				<action on="Press">closeTerms(false);</action>
-			</object>
+		<object size="25 100%-45 100% 100%-16">
 
-			<object type="button" style="ModernButtonRed" size="170 0 330 100%">
-				<translatableAttribute id="caption" context="mod.io connection message box">Connect</translatableAttribute>
-				<action on="Press">closeTerms(true);</action>
+			<object size="0 0 160 100%" type="button" name="button[0]" style="ModernButtonRed" hidden="true"/>
+			<object size="170 0 330 100%" type="button" name="button[1]" style="ModernButtonRed" hidden="true"/>
+
+			<object size="100%-355 0 100% 100%">
+				<object type="button" style="ModernButtonRed" size="0 0 160 100%" hotkey="cancel">
+					<translatableAttribute id="caption">Cancel</translatableAttribute>
+					<action on="Press">closeTerms(false);</action>
+				</object>
+
+				<object name="connectButton" type="button" style="ModernButtonRed" size="170 0 330 100%">
+					<translatableAttribute id="caption" context="mod.io connection message box">Connect</translatableAttribute>
+					<action on="Press">closeTerms(true);</action>
+				</object>
 			</object>
 		</object>
 

@@ -395,5 +395,5 @@ function visitModWebsite()
 	if (!url.startsWith("http://") && !url.startsWith("https://"))
 		url = "http://" + url;
 
-	Engine.OpenURL(url);
+	openURL(url);
 }

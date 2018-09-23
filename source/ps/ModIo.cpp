@@ -398,7 +398,8 @@ bool ModIo::AdvanceRequest(const ScriptInterface& scriptInterface)
 	{
 		int in_queue;
 		message = curl_multi_info_read(m_CurlMulti, &in_queue);
-		if (!message || message->msg == CURLMSG_DONE || message->easy_handle == m_Curl)
+
+		if (!message)
 			continue;
 
 		CURLcode err = message->data.result;
