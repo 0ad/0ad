@@ -347,6 +347,7 @@ private:
 		ConstructRequestData(*report);
 		m_RequestDataOffset = 0;
 		m_ResponseData.clear();
+		m_ErrorBuffer[0] = '\0';
 
 		curl_easy_setopt(m_Curl, CURLOPT_POSTFIELDSIZE_LARGE, (curl_off_t)m_RequestData.size());
 
@@ -384,7 +385,12 @@ private:
 		}
 		else
 		{
-			SetStatus("failed:" + CStr::FromInt(err) + ":" + m_ErrorBuffer);
+			std::string errorString(m_ErrorBuffer);
+
+			if (errorString.empty())
+				errorString = curl_easy_strerror(err);
+
+			SetStatus("failed:" + CStr::FromInt(err) + ":" + errorString);
 		}
 
 		// We got an unhandled return code or a connection failure;
