@@ -30,12 +30,12 @@
 
 			<object size="100%-355 0 100% 100%">
 				<object type="button" style="ModernButtonRed" size="0 0 160 100%" hotkey="cancel">
-					<translatableAttribute id="caption">Cancel</translatableAttribute>
+					<translatableAttribute id="caption">Decline</translatableAttribute>
 					<action on="Press">closeTerms(false);</action>
 				</object>
 
 				<object name="connectButton" type="button" style="ModernButtonRed" size="170 0 330 100%">
-					<translatableAttribute id="caption" context="mod.io connection message box">Connect</translatableAttribute>
+					<translatableAttribute id="caption">Accept</translatableAttribute>
 					<action on="Press">closeTerms(true);</action>
 				</object>
 			</object>
