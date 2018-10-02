@@ -2,8 +2,8 @@ function downloadModsButton()
 {
 	initTerms({
 		"Disclaimer": {
-			"title": translate("Download Mods"),
-			"file": translate("You are about to connect to the mod.io online service. This provides easy access to community-made mods, but is not under the control of Wildfire Games.\n\nWhile we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n\nDo you really want to connect?"),
+			"title": translate("Disclaimer"),
+			"file": "gui/modio/Disclaimer.txt",
 			"config": "modio.disclaimer",
 			"accepted": false,
 			"callback": openModIo,
