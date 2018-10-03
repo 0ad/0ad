@@ -53,9 +53,9 @@ function initLanguageSelection()
 
 	languageDropdown.onSelectionChange = () => {
 		Engine.GetGUIObjectByName("mainText").caption =
-			Engine.FileExists(g_TermsFile) ?
-			(languageDropdown.selected == 1 ? Engine.TranslateLines(Engine.ReadFile(g_TermsFile)) : Engine.ReadFile(g_TermsFile)) :
-			g_TermsFile;
+			languageDropdown.selected == 1 ?
+				Engine.TranslateLines(Engine.ReadFile(g_TermsFile)) :
+				Engine.ReadFile(g_TermsFile);
 	};
 
 	languageDropdown.selected = languageDropdown.list.length - 1;

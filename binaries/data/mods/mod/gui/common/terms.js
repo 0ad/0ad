@@ -41,7 +41,7 @@ function getTermsHash(page)
 {
 	return Engine.CalculateMD5(
 		(g_Terms[page].salt ? g_Terms[page].salt() : "") +
-		(Engine.FileExists(g_Terms[page].file) ? Engine.ReadFile(g_Terms[page].file) : g_Terms[page].file));
+		Engine.ReadFile(g_Terms[page].file));
 }
 
 function loadTermsAcceptance()
