@@ -30,7 +30,7 @@ var g_UserReportStatusFormat = {
 				"errorCode": data[1]
 			}),
 	"failed": data => sprintf(translate("upload failed (%(errorMessage)s)"), {
-		"errorMessage": uneval(data[2])
+		"errorMessage": data.slice(2).join(":")
 	})
 };
 
@@ -69,7 +69,7 @@ function updateUserReportButtons()
 
 function updateUserReportStatus()
 {
-	let statusData = Engine.GetUserReportStatus().split(/:/, 3);
+	let statusData = Engine.GetUserReportStatus().split(":");
 
 	Engine.GetGUIObjectByName("userReportText").caption =
 		Engine.IsUserReportEnabled() ?
