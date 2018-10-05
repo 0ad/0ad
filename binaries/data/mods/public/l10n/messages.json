@@ -218,8 +218,23 @@
             {
                 "extractor": "txt",
                 "filemasks": [
-                    "gui/manual/intro.txt",
-                    "gui/manual/userreport.txt"
+                    "gui/manual/intro.txt"
+                ],
+                "options": {
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-gui-userreport.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "txt",
+                "filemasks": [
+                    "gui/userreport/**.txt",
                 ],
                 "options": {
                 }

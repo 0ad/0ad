@@ -10,6 +10,7 @@ function openTerms(page)
 	Engine.PushGuiPage("page_termsdialog.xml", {
 		"file": g_Terms[page].file,
 		"title": g_Terms[page].title,
+		"sprintf": g_Terms[page].sprintf,
 		"urlButtons": g_Terms[page].urlButtons || [],
 		"page": page,
 		"callback": "acceptTerms"

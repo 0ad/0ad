@@ -19,6 +19,8 @@
 
 #include "JSInterface_UserReport.h"
 
+#include "ps/Filesystem.h"
+#include "ps/Pyrogenesis.h"
 #include "ps/UserReport.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -39,9 +41,23 @@ std::string JSI_UserReport::GetUserReportStatus(ScriptInterface::CxPrivate* UNUS
 	return g_UserReporter.GetStatus();
 }
 
+std::string JSI_UserReport::GetUserReportLogPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return psLogDir().string8();
+}
+
+std::string JSI_UserReport::GetUserReportConfigPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	OsPath configPath;
+	WARN_IF_ERR(g_VFS->GetDirectoryRealPath("config/", configPath));
+	return configPath.string8();
+}
+
 void JSI_UserReport::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");
 	scriptInterface.RegisterFunction<void, bool, &SetUserReportEnabled>("SetUserReportEnabled");
 	scriptInterface.RegisterFunction<std::string, &GetUserReportStatus>("GetUserReportStatus");
+	scriptInterface.RegisterFunction<std::string, &GetUserReportLogPath>("GetUserReportLogPath");
+	scriptInterface.RegisterFunction<std::string, &GetUserReportConfigPath>("GetUserReportConfigPath");
 }
