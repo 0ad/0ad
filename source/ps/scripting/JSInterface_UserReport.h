@@ -27,6 +27,8 @@ namespace JSI_UserReport
 	bool IsUserReportEnabled(ScriptInterface::CxPrivate* pCxPrivate);
 	void SetUserReportEnabled(ScriptInterface::CxPrivate* pCxPrivate, bool enabled);
 	std::string GetUserReportStatus(ScriptInterface::CxPrivate* pCxPrivate);
+	std::string GetUserReportLogPath(ScriptInterface::CxPrivate* pCxPrivate);
+	std::string GetUserReportConfigPath(ScriptInterface::CxPrivate* pCxPrivate);
 
 	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
 }

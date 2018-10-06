@@ -1,10 +1,12 @@
 var g_TermsPage;
 var g_TermsFile;
+var g_TermsSprintf;
 
 function init(data)
 {
 	g_TermsPage = data.page;
 	g_TermsFile = data.file;
+	g_TermsSprintf = data.sprintf;
 
 	Engine.GetGUIObjectByName("title").caption = data.title;
 	initURLButtons(data.urlButtons);
@@ -53,9 +55,11 @@ function initLanguageSelection()
 
 	languageDropdown.onSelectionChange = () => {
 		Engine.GetGUIObjectByName("mainText").caption =
-			languageDropdown.selected == 1 ?
-				Engine.TranslateLines(Engine.ReadFile(g_TermsFile)) :
-				Engine.ReadFile(g_TermsFile);
+			sprintf(
+				languageDropdown.selected == 1 ?
+					Engine.TranslateLines(Engine.ReadFile(g_TermsFile)) :
+					Engine.ReadFile(g_TermsFile),
+				g_TermsSprintf);
 	};
 
 	languageDropdown.selected = languageDropdown.list.length - 1;

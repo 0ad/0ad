@@ -2,7 +2,11 @@ var g_TermsUserReport = {
 	"TermsAndConditions": {
 		"title": translateWithContext("UserReporter Terms and Conditions", "Terms"),
 		"instruction": translate("Please read and accept the UserReporter Terms and Conditions."),
-		"file": "gui/manual/userreport.txt",
+		"file": "gui/userreport/Terms_and_Conditions.txt",
+		"sprintf": {
+			"logPath": setStringTags(Engine.GetUserReportLogPath(), { "font": "sans-bold-12" }),
+			"configPath": setStringTags(Engine.GetUserReportConfigPath(), { "font": "sans-bold-12" })
+		},
 		"config": "userreport.terms",
 		"callback": data => {
 			setUserReportEnabled(data.accepted);
