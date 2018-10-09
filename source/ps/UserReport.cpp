@@ -109,6 +109,9 @@ public:
 		// To minimise security risks, don't support redirects
 		curl_easy_setopt(m_Curl, CURLOPT_FOLLOWLOCATION, 0L);
 
+		// Prevent this thread from blocking the engine shutdown for 5 minutes in case the server is unavailable
+		curl_easy_setopt(m_Curl, CURLOPT_CONNECTTIMEOUT, 10L);
+
 		// Set IO callbacks
 		curl_easy_setopt(m_Curl, CURLOPT_WRITEFUNCTION, ReceiveCallback);
 		curl_easy_setopt(m_Curl, CURLOPT_WRITEDATA, this);
