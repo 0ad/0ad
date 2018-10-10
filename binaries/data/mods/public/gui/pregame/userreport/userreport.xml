@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<object name="userReport" type="image" style="userReportPanel" size="100%-304 100%-154 100%-4 100%-4">
+<object name="userReport" type="image" style="userReportPanel" size="100%-314 100%-154 100%-4 100%-4">
 
 	<action on="Load">initUserReport();</action>
 	<action on="Tick">updateUserReportStatus();</action>
 
-	<object type="text" name="userReportText" style="userReportText"/>
+	<object type="text" name="userReportText" style="userReportText" size="2 2 100%-2 100%-40"/>
 
-	<object type="button" name="userReportEnableButton" style="StoneButton" size="8 100%-36 146 100%-8"/>
-	<object type="button" name="userReportTermsButton" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8"/>
+	<object type="button" name="userReportEnableButton" style="StoneButton" size="8 100%-36 151 100%-8"/>
+	<object type="button" name="userReportTermsButton" style="StoneButton" size="100%-151 100%-36 100%-8 100%-8"/>
 
 </object>

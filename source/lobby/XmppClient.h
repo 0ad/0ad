@@ -54,6 +54,7 @@ private:
 	std::string m_echelonId;
 
 	// State
+	gloox::CertStatus m_certStatus;
 	bool m_initialLoadComplete;
 	bool m_isConnected;
 
@@ -132,6 +133,7 @@ protected:
 	// Helpers
 	void GetPresenceString(const gloox::Presence::PresenceType p, std::string& presence) const;
 	void GetRoleString(const gloox::MUCRoomRole r, std::string& role) const;
+	std::string TLSErrorToString(gloox::CertStatus status) const;
 	std::string StanzaErrorToString(gloox::StanzaError err) const;
 	std::string ConnectionErrorToString(gloox::ConnectionError err) const;
 	std::string RegistrationResultToString(gloox::RegistrationResult res) const;
