@@ -8,6 +8,7 @@
 # Ivailo Monev <xakepa10@gmail.com>, 2014
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
 # Любомир Василев, 2016
+# Nerwitz Panzerfizt, 2018
 # radochrist <ruzor@mail.bg>, 2014
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
 # Любомир Василев, 2016-2018
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-05 10:43+0000\n"
-"Last-Translator: Любомир Василев\n"
+"PO-Revision-Date: 2018-10-11 11:21+0000\n"
+"Last-Translator: Nerwitz Panzerfizt\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -438,7 +439,7 @@ msgstr "Огнен кораб"
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr "Бързо стопява здравето на вражеските кораби. Постепенно губи здраве, тъй като гори, така че ползвайте Огнения кораб бързо."
+msgstr "Бързо занижава здравето на вражеските кораби. Постепенно губи здраве защото гори, така че ползвайте Огнения кораб веднага."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:35
 #: simulation/templates/units/kush_ship_fishing.xml:5
@@ -447,7 +448,7 @@ msgstr "Рибарска лодка"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:36
 msgid "Fish the waters for food."
-msgstr "Ловете риба във водата за храна."
+msgstr "Ловете риба за храна."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 msgid "Merchantman"
@@ -476,7 +477,7 @@ msgstr "Тежък боен кораб"
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
 msgid "Medium Warship"
-msgstr "Среден военен кораб"
+msgstr "Среден боен кораб"
 
 #: simulation/templates/template_unit_mechanical_siege.xml:17
 #: simulation/templates/template_unit_mechanical_siege.xml:18
@@ -534,7 +535,7 @@ msgstr "Събирач с ограничено време на живот. По-
 
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid "Trade resources between your own markets and those of your allies."
-msgstr "Търгувайте ресурси между своите пазари и тези на съюзниците Ви."
+msgstr "Търгувайте ресурси между своите пазари и тези на вашите съюзниците."
 
 #: simulation/templates/units/athen_catafalque.xml:9
 msgid "Solon"
@@ -2204,7 +2205,7 @@ msgstr "Тамкарум арами"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Търгувайте ресурси между своите пазари и тези на съюзниците Ви. Персийците имат +25% по-добра търговия по суша."
+msgstr "Търгувайте ресурси между своите пазари и тези на вашите съюзниците. Персийците имат +25% по-добра търговия по суша."
 
 #: simulation/templates/units/plane.xml:43
 msgid "P-51 Mustang"

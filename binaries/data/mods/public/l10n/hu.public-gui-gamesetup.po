@@ -6,11 +6,11 @@
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
 # Attila Kocsner, 2014
 # Balázs Meskó <meskobalazs@gmail.com>, 2015-2018
-# Balázs Úr <urbalazs@gmail.com>, 2015-2016
+# Balázs Úr <ur.balazs@fsf.hu>, 2015-2016
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2015
 # Boross Péter <borosspet@web.de>, 2015
 # Levente Krisztián Büte <chris020891@gmail.com>, 2013-2014
-# davesajt <davesajthun@gmail.com>, 2014
+# davesajt, 2014
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2014
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2017
 # kelemeng <kelemeng@ubuntu.com>, 2015
@@ -25,13 +25,13 @@
 # ricsipontaz <ricsipontaz@googlemail.com>, 2014
 # Sándor Uszkai <uszkaisanyi@gmail.com>, 2017
 # Stew Den <stewden55@hotmail.com>, 2014
-# Tibor Buzási, 2015,2017
+# Tibor Buzási, 2015,2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-28 13:51+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"PO-Revision-Date: 2018-05-08 23:28+0000\n"
+"Last-Translator: Tibor Buzási\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,7 +169,7 @@ msgstr "Térképek, melyek teljesen újak ebben a kiadásban."
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
-msgstr "Aktiváló térképek"
+msgstr "Szkriptelt térképek"
 
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
@@ -1909,27 +1909,27 @@ msgid ""
 "\"So little pains does the mob take in finding out the truth, accepting "
 "readily the first story at hand.\" - Thucydides (\"History of the "
 "Peloponnesian War\", I. 21.3)"
-msgstr ""
+msgstr "„Nem szeretnek fáradozni a leg­többen az igazság kinyomozásában, s készebbek inkább ahhoz fordulni, ami minden fáradság nélkül magától kínálkozik.” - Thuküdidész („A peloponnesusi háború története” 1. könyv 21/3.)"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "\"The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.\" - Thucydides (\"History of the Peloponnesian "
 "War\", I. 23.6)"
-msgstr ""
+msgstr "„Az athéniek növekedő hatalma a lacedaemoniakba félelmet öntött, s ennélfogva ezek azon kényszerhelyzetbe kerültek, hogy háborút kezdjenek.” - Thuküdidész („A peloponnesusi háború története” 1. könyv 23/6.)"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "\"War is a matter not so much of arms as of money.\" - Thucydides (\"History"
 " of the Peloponnesian War\", I. 83.2)"
-msgstr ""
+msgstr "„Pedig a háború nem annyira fegy­veres erőn, mint inkább pénzbeli segédforrásokon sarkallik (...)” - Thuküdidész („A peloponnesusi háború története” 1. könyv 83/2.)"
 
 #: gui/text/quotes.txt:178
 msgid ""
 "\"It is a general rule of human nature that people despise those who treat "
 "them well, and look up to those who make no concessions.\" - Thucydides "
 "(\"History of the Peloponnesian War\", III. 39.5)"
-msgstr ""
+msgstr "„Különben is az embernek az a természete, hogy azt, aki iránta szolgálatra kész, megveti, azt ellenben, aki rátartja magát, nagyban tiszteli.” - Thuküdidész („A peloponnesusi háború története” 3. könyv 39/5.)"
 
 #: gui/text/quotes.txt:179
 msgid ""
@@ -1940,7 +1940,7 @@ msgid ""
 " they ever had perished, nothing was saved and few of so many ever returned "
 "home. Thus ended the Sicilian expedition.\" - Thucydides (\"History of the "
 "Peloponnesian War\", VII. 87.6-7)"
-msgstr ""
+msgstr "Mondhatni, hogy ez a legjelentékenyebb esemény volt e háború folyama alatt, sőt a hellen nép egész eddigi történetében; fényesebb győzelem azokra nézve, akik aratták, megsemmisítőbb azokra nézve, akik leverettek, nem volt. Utóbbiak veresége ugyanis minden tekintetben teljes volt, vesztesége minden mérté­ket meghaladt. Szárazföldi erők, tengeri hadi erők mind egy szálig oda lettek, s az általános pusztulásból mi sem menekedett meg, mert csak elenyészőleg csekély számban térhetettek vissza hazájukba. A siciliai események ekképen folytak le. - Thuküdidész („A peloponnesusi háború története” 7. könyv 87/5-6.)\n"
 
 #: gui/text/quotes.txt:180
 msgid ""
@@ -1948,7 +1948,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.\" - Thucydides, "
 "describing Athenians addressing the defeated Melians who are unwilling to "
 "surrender (\"History of the Peloponnesian War\", V. 89.1)"
-msgstr ""
+msgstr "„Az emberi életviszonyok közt a jog és igazság csak azok közt érvényesül teljesen, akiknek egyenlő a hatalmuk (...) ha ez nincs így, akkor a hatalmasabb azt teszi, amit megtehet, a gyengébb pedig meghajlik előtte.” - Thuküdidész leírása az athéniakról, akik a magukat megadásra nem  hajlandó melosiakhoz szólnak („A peloponnesusi háború története” 5. könyv 89/1.)"
 
 #: gui/text/quotes.txt:181
 msgid ""
@@ -1957,7 +1957,7 @@ msgid ""
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr ""
+msgstr "„A lakedaimoniakat, akik ily küzdelemhez szokva nem voltak , mély csüggetegség szállta meg e lármás támadásra (...) attól a nyíl- és kőzáportól, amelyet a porfellegben oly sok ember ontott reájok (...)” - Thuküdidész leírása a spártai csapásról a sphacteriai csatában („A peloponnesusi háború története” 4. könyv 34/2.)\n"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -1967,7 +1967,7 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up why they were on campaign (Plutarch, \"Parallel Lives\", "
 "\"Tiberius Gracchus\", sec. 9)"
-msgstr ""
+msgstr "„A katonák vadidegenek fényűzéséért és vagyonáért harcolnak és halnak meg; a világ urainak hívják őket, de nincs egy talpalatnyi saját földjük sem.” - Tiberius Gracchus, a földreform szószólója a hajléktalan és munkanélküli veteránok érdekében, kiknek földjeit gyakran vásárolták fel, amíg hadjáraton voltak (Plutarkhosz, „Párhuzamos életrajzok”, „Tiberius Gracchus”, 9. szakasz)"
 
 #: gui/text/quotes.txt:183
 msgid ""
@@ -1977,7 +1977,7 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up why they were on "
 "campaign (Plutarch, \"Parallel Lives\", \"Tiberius Gracchus\", sec. 9)"
-msgstr ""
+msgstr "„Az Itáliában élő vadállatoknak van barlangja vagy búvóhelye, ahol meghúzzák magukat, de azoknak, akik harcolnak és meghalnak Itáliáért, egyebük sincs a levegőnél és a világosságnál. Földönfutókként kóborolnak gyermekeikkel és feleségükkel.” - Tiberius Gracchus, a földreform szószólója a hajléktalan és munkanélküli veteránok érdekében, kiknek földjeit gyakran vásárolták fel, amíg hadjáraton voltak (Plutarkhosz, „Párhuzamos életrajzok”, „Tiberius Gracchus”, 9. szakasz)"
 
 #: gui/text/quotes.txt:184
 msgid ""
@@ -2045,7 +2045,7 @@ msgid ""
 "\"People are glad to obey the man whom they believe to be wiser than "
 "themselves in pursuing their interests.\" - Xenophon (\"The Education of "
 "Cyrus\", 1.6.22)"
-msgstr ""
+msgstr "„Az emberek szíves örömest hallgatnak mindenkire, akiről azt gondolják, hogy jobban tudja, mi válik javukra, mint ők maguk.” - Xenophón („Kürosz nevelkedése”, 1. könyv 6/22.)"
 
 #: gui/text/quotes.txt:194
 msgid ""
@@ -2054,13 +2054,13 @@ msgid ""
 "better; and throughout all difficulties that he can endure hardships better."
 " This will help to make him loved by his men.\" - Xenophon (\"The Education "
 "of Cyrus\", 1.6.25)"
-msgstr ""
+msgstr "„Amikor pedig harcra kerül sor, akár nyáron, akár télen, akármilyen megpróbáltatások között, a hadvezér legyen az, aki legjobban tűri a hőséget, a fagyot és a szenvedéseket. Ezzel biztosan elnyeri katonái szeretetét.” - Xenophón („Kürosz nevelkedése”, 1. könyv 6/25.)"
 
 #: gui/text/quotes.txt:195
 msgid ""
 "\"Battles are decided more by the morale of men than their physical "
 "strength.\" - Xenophon (\"The Education of Cyrus\", 3.3.20)"
-msgstr ""
+msgstr "„A csatát inkább a lelki erő dönti el, mint a testi.” - Xenophón („Kürosz nevelkedése”, 3. könyv 3/20.)"
 
 #: gui/text/quotes.txt:196
 msgid ""
@@ -2076,7 +2076,7 @@ msgid ""
 "plunder, fame, freedom, power - all these are prizes for the winners; the "
 "cowardly, of course, suffer the reverse.\" - Xenophon (\"The Education of "
 "Cyrus\", 7.1.13)"
-msgstr ""
+msgstr "„Gondolom, jól tudjátok, férfiak, milyen jutalom vár most a győztesekre: hogy űzzék, vágják, pusztítsák az ellenséget, hogy kincseket szerezzenek, ragyogó hírük legyen, szabadok maradjanak, uralkodjanak, és világos, hogy a gyávákra mindennek ez ellentéte vár.” - Xenophón („Kürosz nevelkedése”, 7. könyv 1/13.)"
 
 #: gui/text/quotes.txt:198
 msgid ""
@@ -2084,7 +2084,7 @@ msgid ""
 " thief and a robber, overreaching the enemy at every point.\" - Xenophon on "
 "how best to gain advantage over the enemy (\"The Education of Cyrus\", "
 "1.6.26)"
-msgstr ""
+msgstr "„Álnoknak, alattomosnak, csalónak, hazugnak, tolvajnak, rablónak kell lenned, minden módon felül kell kerekedned az ellenségen, csak így kerülhetsz kedvező helyzetbe.” - Xenophón arról, hogyan kerülj előnybe ellenségeddel szemben („Kürosz nevelkedése”, 1. könyv 6/26.)"
 
 #: gui/text/quotes.txt:199
 msgid ""
@@ -2092,7 +2092,7 @@ msgid ""
 " Artemisia ram a ship while most of his fleet suffered the reverse, not "
 "knowing that the sunk vessel was his own (Herodotus, \"The Histories\", "
 "VIII. 88)"
-msgstr ""
+msgstr "„Embereim asszonyokká lettek, az asszonyok meg férfiakká!” - Khsajársá, látván ahogy Artemiszia nekiront egy hajónak, míg a flotta többsége az ellenkezőjétől szenvedett, nem tudván, hogy az elsüllyesztett hajó a sajátja volt (Hérodotosz, „Történelem”, 8. könyv 88. o.)"
 
 #: gui/text/quotes.txt:200
 msgid ""

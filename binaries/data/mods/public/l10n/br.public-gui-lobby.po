@@ -9,19 +9,19 @@
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
-# Younn Keravel <goulvenbreizh@hotmail.fr>, 2017-2018
+# Goulven <goulvenbreizh@hotmail.fr>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-25 09:58+0000\n"
-"Last-Translator: Younn Keravel <goulvenbreizh@hotmail.fr>\n"
+"PO-Revision-Date: 2018-09-19 14:58+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: br\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
 #: gui/lobby/lobby.js:50
 msgid "Online"
@@ -130,7 +130,7 @@ msgstr "Lakait ho statud da 'Enlinenn'."
 
 #: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Botaouiñ maez un implijer bennak diouzh an hall. Implij: /kick nick reason"
+msgstr "Botaouiñ maez un implijer bennak diouzh an hall. Implij: /kick nick reason "
 
 #: gui/lobby/lobby.js:342
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
@@ -170,7 +170,7 @@ msgstr "Distreiñ d'al lañser pennañ."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Digvreet oc'h bet eus an hall. C'hoant ho peus da adkevreañ?"
+msgstr "Digvreet oc'h bet diouzh an hall. Ha c'hoant ho peus adkevreañ?"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1200 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
@@ -294,7 +294,7 @@ msgstr "Ho modoù oberiant na glotont ket gant modoù ar c'hoari-mañ."
 
 #: gui/lobby/lobby.js:1182
 msgid "Do you want to switch to the mod selection page?"
-msgstr "Fellout a ra deoc'h mont da bajenn diuziñ modoù?"
+msgstr "Fellout a ra deoc'h mont da bajenn an diuzañ modoù?"
 
 #: gui/lobby/lobby.js:1183
 msgid "Incompatible mods"
@@ -508,7 +508,7 @@ msgstr "Renk"
 #: gui/lobby/lobby_panels.xml:(caption):52
 #: gui/lobby/lobby_panels.xml:(caption):331
 msgid "Current Rank:"
-msgstr "Renk War-Red:"
+msgstr "Renk ar mare-mañ:"
 
 #: gui/lobby/lobby_panels.xml:(caption):56
 #: gui/lobby/lobby_panels.xml:(caption):335
@@ -635,7 +635,7 @@ msgstr "Nullañ"
 
 #: gui/prelobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr "0 A.D. Impalaerezhioù O C'henel Hall Liesc'hoarier Termenoù ar Servij"
+msgstr "Termenoù servij hall al lies-c'hoarierien 0 A.D. Impalaerelezhioù o c'henel"
 
 #: gui/prelobby/Terms_of_Service.txt:2 gui/prelobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -645,7 +645,7 @@ msgstr "Termenadurioù:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr " * Ar \"servij\" a zo 0 A.D.  Impalaerezhioù O C'henel Liesc'hoarier Hall roet gant Wildfire Games (WFG)."
+msgstr "* Ar \"servij\" hall al lies-c'hoarierien 0 A.D. Impalaerelezhioù o c'henel a zo pourvezet gant Wildfire Games (WFG)."
 
 #: gui/prelobby/Terms_of_Service.txt:4 gui/prelobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -733,7 +733,7 @@ msgstr "7. Kemm an teul-mañ e forzh peseurt mod a vefe; forzh peseurt mare; gan
 
 #: gui/prelobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr "0 A.D. Impalaerezhioù O C'henel Liesc'hoarier Hall Termenoù an Implij"
+msgstr "Termenoù implij hall al lies-c'hoarierien 0 A.D. Impalaerelezhioù o c'henel"
 
 #: gui/prelobby/Terms_of_Use.txt:5
 msgid ""

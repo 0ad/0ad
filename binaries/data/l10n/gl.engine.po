@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# Adrian Chaves <adrian@chaves.io>, 2018
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2013-2016
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 13:56+0000\n"
+"PO-Revision-Date: 2018-05-27 08:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +86,7 @@ msgstr "O servidor interrompeu o fluxo."
 
 #: lobby/XmppClient.cpp:1112
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "Produciuse un erro de entrada e saída"
 
 #: lobby/XmppClient.cpp:1114
 msgid "The connection was refused by the server"
@@ -123,7 +124,7 @@ msgstr "Non hai ningunha conexión activa."
 
 #: lobby/XmppClient.cpp:1144
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "Rexistrouse a súa conta"
 
 #: lobby/XmppClient.cpp:1145
 msgid "Not all necessary information provided"
@@ -136,54 +137,54 @@ msgstr "O nome de usuario xa existe."
 #: ps/ModIo.cpp:244
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Erro ao iniciar a consulta do identificador da partida. Erro: %s; %s."
 
 #: ps/ModIo.cpp:274
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Erro ao iniciar a consulta das modificacións. Erro: %s; %s."
 
 #: ps/ModIo.cpp:300
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "Non se puido crear o directorio das modificacións: %s"
 
 #: ps/ModIo.cpp:325
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "Non se puido abrir o ficheiro temporal para descargar a modificación: %s."
 
 #: ps/ModIo.cpp:335
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "Non se puido iniciar a descarga. Erro: %s; %s."
 
 #: ps/ModIo.cpp:380
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Erro da descarga asíncrona: %s, %s."
 
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Fallo da descarga. Resposta do servidor: %s, %s."
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Tamaño de ficheiro inesperado."
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Ficheiro incorrecto. Esperábase o MD5 %s, obtívose %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "Non se puido calcular a suma de comprobación final."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Non se puido verificar a sinatura."
 
 #: ps/SavedGame.cpp:128
 #, c-format

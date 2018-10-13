@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2018-04-29 03:47+0000\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-07-25 08:42+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -434,8 +434,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "A forma romana Caractacus (em português, Carataco) é uma simples alteração de Karatakos, o seu verdadeiro nome, que encontramos gravado numa grande quantidade de moedas. É por este nome que é recordado como aguerrido defensor da Britânia contra os Romanos, após a invasão destes em 43 d.C. Filho do rei Cunobelino da confederação das tribos dos Catuvelaunos, Carataco combateu durante nove anos contra os Romanos sem muito êxito, tendo acabado por fugir para as tribos do País de Gales, onde sofreu uma derrota decisiva. Por fim recuou até ao norte da Britânia, onde foi entregue aos Romanos. Depois de ter sido levado para Roma, Carataco viu-lhe ser poupada a vida pelo imperador Cláudio, tendo morrido em Itália. Diz a tradição que ele se converteu ao Cristianismo ao mesmo tempo que a sua mulher, mas nada o permite afirmar com certeza. É talvez mais notável o facto de lhe ter sido permitido viver depois de capturado - o procedimento normal de Roma era a execução deste tipo de pessoa em manifestações públicas de celebração. A seu pedido, Carataco foi levado à presença do imperador e do Senado para se explicar. Não se sabe ao certo o que disse, mas Tácito atribui-lhe um discurso famoso..."
+"but Tacitus applies to him a famous speech…"
+msgstr "Caractacus, a forma romana, é uma simples mudança de Karatakos, o seu nome original, que foi impresso nas suas muitas e muitas moedas. Sob este nome ele é lembrado como um feroz defensor da Bretanha contra os romanos após a sua invasão em 43 A.C. Filho do rei Cunobelino da confederação tribal Catuvelaunos, Karatakos lutou durante nove anos contra os romanos com pouco sucesso, eventualmente fugindo para as tribos no País de Gales, onde foi derrotado decisivamente. Finalmente, ele entrou no norte da Bretanha, onde foi entregue aos romanos. Levado para Roma, Karatakos foi autorizado a viver pelo imperador Cláudio e acabou por morreu em Itália. A tradição afirma que ele se converteu ao cristianismo quando a sua esposa o fez, mas nada é comprovável. Provavelmente mais notável é o facto de ele ter sido autorizado a viver uma vez capturado. A política romana típica ditava que deviam ser celebrados e mortos em exibições públicas. Karatakos foi levado perante o Imperador e o Senado a seu pedido para se explicar. O que ele disse não é conhecido com certeza, mas Tácito aplica-lhe um famoso discurso..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1141,6 +1141,211 @@ msgid ""
 "fought back."
 msgstr "Os povos ibéricos, cuja origem e idioma estão ainda envoltos em algum mistério, tinham uma forte tradição de equitação e metalurgia. Eram uma cultura relativamente pacífica; normalmente combatiam apenas como mercenários em batalhas alheias. No entanto, revelaram-se guerreiros tenazes quando Roma procurou tirar-lhes as suas terras e a sua liberdade, tendo empregue táticas de guerrilha pioneiras e usado azagaias (lanças) em chamas nas suas retaliações."
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "Cuxitas"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "As pirâmides de Meroé"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr "Construir uma pirâmide de Cuxita aumenta a influência do território do Centro Cívico em + 10% em cada uma que seja construída."
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr "Depósito de Minerais"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr "Os jogadores cuxitas recebem uma Mina de Metal extra num lugar do seu território."
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Cercado de Elefantes"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr "Pode capturar elefantes de Gaia e guarnecer num curral para reduzir os custos de treino de Elefantes de Guerra."
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Fornecedores de Elefantes"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Reduz os custos e o tempo de treino dos elefantes em 20% para os aliados de jogadores Cuxitas."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "Kashta"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "Alara"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "Pebatjma"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "Shabaka"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "Shabataka"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "Qalhata"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "Takahatenamun"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "Tantamani"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "Atlanersa"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "Nasalsa"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "Malewiebamani"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "Harsiotef"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "Shanakdakhete"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "Amanishakheto"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "Arquitetura Monumental"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr "+50% de pontos de vida e -50% de tempo de construção para Centros Cívicos, Templos, Pirâmides e Maravilhas."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr "Permite treinar curandeiros da graduação de elite"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "Grande Sacerdote de Ámon"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "Pede as teus sacerdotes que sejam instruídos pelo próprio Sumo Sacerdote - que Ámon o abençoe."
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Nastasen"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Arakamani"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Amanirenas"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "Cuxitas Africanos"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "O grande reino africano que se estendia pelo rio Nilo na Núbia, a sul do Egito."
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "Templo de Ámon"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr "Os Cuxitas pode promover Templos individuais em Templos de Amón, onde se pode treinar campeões de Guarda do Templo Napata e curar as unidades em menos tempo."
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "História."
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "Tempo de Apedemak"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr "Os Cuxitass podem atualizar os Templos individuais em Templos de Apedemak, que podem treinar os campeões da Guarda do Templo de Meroé e curar as unidades mais rapidamente."
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "Pirâmides Cuxitas"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "Construir uma pequena pirâmide Cuxita desbloqueia a fase de vila. Construir uma grande pirâmide Cuxita desbloqueia a fase de cidade. Cada pirâmide construída acrescenta + 10% de efeito de território aos Centros Cívicos."
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "Os Cuxitas construíram mais de 200 pirâmides na Núbia."
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "O reino de Cuxe era um antigo reino africano situado nas confluências do Nilo Azul, do Nilo Branco e do rio Atbara, no que hoje é a República do Sudão. A era Cuxita de domínio na região foi estabelecida após o colapso da Idade do Bronze no Novo Reino do Egito e foi centralizada em\nNapata na sua fase inicial. Eles invadiram o Egito no século 8 A.C, e os imperadores Cuxitas governaram como faraós da vigésima quinta dinastia do Egito durante um século, até serem expulsos pelos assírios. A cultura Cuxita foi fortemente influenciada pelos egípcios, com a construção da pirâmide de Cuxita e a arquitetura monumental do templo ainda em extensão. Os Cuxitas até adoravam muitos deuses egípcios, inclusive Amon. Durante a antiguidade clássica, a capital imperial Cuxita foi em Meroé. Na antiga geografia grega, o reino meroítico era conhecido como Etiópia. O reino Cuxita persistiu até o século 4 A.C, quando enfraqueceu e se desintegrou devido à rebelião interna, eventualmente sucumbindo ao poder crescente de Axum."
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1459,7 +1664,7 @@ msgstr "Apoio Religioso de Asoca"
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
 "Ashoka the Great sent embassies West to spread knowledge of the Buddha."
-msgstr "Asoka enviou embaixadores para o ocidente para difundir o conhecimento do Budismo."
+msgstr "Asoca o Grande enviou embaixadores para o ocidente para difundir o conhecimento do Budismo."
 
 #: simulation/data/civs/maur.jsonAINames[0]
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].Name
@@ -1469,7 +1674,7 @@ msgstr "Chandragupta Mauria"
 #: simulation/data/civs/maur.jsonAINames[1]
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[1].Name
 msgid "Ashoka the Great"
-msgstr "Asoka o Grande"
+msgstr "Asoca o Grande"
 
 #: simulation/data/civs/maur.jsonAINames[2]
 msgid "Ashokavardhan Maurya"
@@ -1512,10 +1717,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Captura até 5 elefantes e coloca-os nos Currais de Elefantes para ganhar um bónus de até 25% no custo e no tempo de treino de unidades com elefantes."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Cercado de Elefantes"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
@@ -1582,7 +1783,7 @@ msgid ""
 "Acharya Chanakya, contributed to such varied fields such as economics, "
 "religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "Fundado em 322 a.C. por Chandragupta Mauria, o Império Máuria foi o primeiro a dominar a maior parte do subcontinente indiano, e um dos mais extensos e povoados impérios da antiguidade. O seu exército era constituído por arqueiros com arcos de bambu que tinham grande alcance, ferozes mulheres guerreiras, bigas (carros de guerra) e milhares de elefantes de guerra. A filosofia máuria, que teve em Chanakya um dos seus maiores representantes, contribuiu para aumentar o saber em áreas tão distintas como a economia, a religião, a diplomacia, a guerra e a governação. Durante o governo de Asoka, o império viveu 40 anos de paz, harmonia e prosperidade."
+msgstr "Fundado em 322 a.C. por Chandragupta Mauria, o Império Máuria foi o primeiro a dominar a maior parte do subcontinente indiano, e um dos mais extensos e povoados impérios da antiguidade. O seu exército era constituído por arqueiros com arcos de bambu que tinham grande alcance, ferozes mulheres guerreiras, bigas (carros de guerra) e milhares de elefantes de guerra. A filosofia máuria, que teve em Chanakya um dos seus maiores representantes, contribuiu para aumentar o saber em áreas tão distintas como a economia, a religião, a diplomacia, a guerra e a governação. Durante o governo de Asoca, o império viveu 40 anos de paz, harmonia e prosperidade."
 
 #: simulation/data/civs/pers.jsonName
 msgid "Persians"

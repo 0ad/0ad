@@ -3,23 +3,23 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# omidh <omid_h28@hotmail.com>, 2017
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2018-01-29 09:05+0100\n"
 "PO-Revision-Date: 2018-01-29 09:05+0100\n"
-"Last-Translator: omidh <omid_h28@hotmail.com>, 2017\n"
+"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2017\n"
 "Language-Team: Persian (https://www.transifex.com/wildfire-games/teams/17418/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr ""
+msgstr "به آموزش بازی 0 A.D خوش آمدید"
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
@@ -27,6 +27,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"بر روی شهروند زن کلیک چپ کنید و سپس بر روی بوته توت فرنگی کلیک راست کنید تا "
+"به شهروند زن فرمان دهید تا برای شما از بوته توت غذا جمع کند. شهروندان زن "
+"سبزیجات و میوه ها را سریع تر از سایر نیروها جمع می کنند."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -34,6 +37,9 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
+"به سرباز شهروند با کلیک راست کردن بر روی یکی از درختان نزدیک به مرکز تمدن، "
+"فرمان دهید تا برای شما چوب جمع کند. سرباز شهروند سریعتر از زن شهروند چوب جمع"
+" می کند. "
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -41,6 +47,8 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"ساختمان مرکز تمدن را انتخاب کنید و کلید %(hotkey)s را نگهدارید و بر بروی عکس"
+" هاپلیت کلیک کنید تا شروع به پرورش یک دسته از هاپلیت ها کند."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -50,16 +58,20 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
+"زمانی که میخواهید چندین نفر از یک نیرو را پرورش دهید فراموش نکنید که کلید "
+"میانبر مربوطه را نگهدارید"
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
-msgstr ""
+msgstr "بر روی عکس هاپلیت کلیک کنید."
 
 #: maps/tutorials/Introductory_Tutorial.js:46
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
+"انتخاب دو زن شهروند بیکار و ساخت یک خانه با انتخاب عکس خانه. با کلیک چپ "
+"فرمان ساخت خانه را در جای مورد نظر خود بدهید."
 
 #: maps/tutorials/Introductory_Tutorial.js:54
 msgid ""
@@ -67,6 +79,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"زمانی که آنها آماده شدند، هاپلیت هایی که پرورش داده اید را انتخاب کنید و به "
+"آنها فرمان دهید تا یک انبار در نزدیکی جایی که درختان بیشتری دارد بسازند. "
+"زمانی که انبار آماده شد آنها شروع به جمع کردن چوب خواهند کرد."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -74,20 +89,24 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"پرورش یک دسته از نیزه اندازها با نگهداشتن %(hotkey)s و کلیک کردن روی عکس "
+"جنگجو در مرکز تمدن"
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "بر روی نیزه انداز کلیک کنید"
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"یک انبارغذا در فضای باز نزدیک مرکز تمدن با استفاده از هر نوع از کارگران "
+"بیکار خود بسازید."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr ""
+msgstr "صبر کنید تا انبارغذا ساخته شود."
 
 #: maps/tutorials/Introductory_Tutorial.js:112
 msgid ""
@@ -95,6 +114,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
+"زمانی که انبارغذا ساخته شد، سازنده انبارغذا بصورت خودکار شروع به جمع آوری "
+"غذا از منابع در دسترس و نزدیک آن می کند. آنها را انتخاب کنید و بجای این کار "
+"به آنها دستور دهید تا یک زمین کشاورزی درکنار انبارغذا بسازند"
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -102,6 +124,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"کسانی که زمین کشاوزی را ساختند بصورت خودکار شروع به جمع آوری غذا از آن "
+"خواهند کرد. از نیزه انداز هایی که تازه ساخته شده اند استفاده کنید و یک خانه "
+"جدید با آنها بسازید."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -109,16 +134,21 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"یک دسته از هاپلیت ها را در مرکز تمدن پرورش دهید. مرکز تمدن را انتخاب کنید و "
+"با آن بر روی یکی از درختان نزدیک کلیک راست کنید. حالا نیروهای جدید بعد از "
+"اینکه آماده شدند بصورت خودکار شروع به جمع کردن آن چوب خواهند کرد."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr ""
+msgstr "بر روی عکس هاپلیت کلیک کنید."
 
 #: maps/tutorials/Introductory_Tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"مرکز تمدن را انتخاب و سپس نشانگر ماوس خود را بر روی یک درخت نزدیک ببرید و "
+"زمانی که بر روی نشانگر ماوس عکس چوب نمایش داده شد کلیک راست را بزنید."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -126,6 +156,10 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
+"به نیزه انداز های بیکار خود فرمان دهید تا یک برج دیدبانی در شمال شرق در لبه "
+"قلمرو شمالی بسازند. این پنجمین ساختمانی خواهد بود که شما تا این لحظه ساخته "
+"اید و به شما این اجازه را می دهد که که مرکز تمدن خود را به مرحله بعدی ارتقا "
+"دهید کنید."
 
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
@@ -133,72 +167,96 @@ msgid ""
 "'II' icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"مرکز تمدن را انتخاب کنید و سپس با کلیک بر روی عکسی که نشانه \"||\" دو یونانی"
+" بر روی آن است کلیک کنید تا مرکز تمدن شما از مرحله روستایی به مرحله شهرک "
+"ارتقا پیدا کند(دقت کنید که شما باید نخست منتظر تکمیل برج دیدبانی شوید تا "
+"ساخته شود)."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reaffect your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"زمانی که منتظر ارتقا فاز خود هستید، بهتر است اگر کارگر بیکار دارید به آنها "
+"فرمان دهید تا به جمع آوری منابع بپردازند که با کمبود منابع روبرو نشوید."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"شروع به ساخت دسته ای زن شهروند کنید و تقطه تجمع مرکز تمدن را بر روی مزرعه "
+"قراردهید ( کلیک راست بر روی آن)"
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
-msgstr ""
+msgstr "بر روی عکس زن شهروند کلیک کنید."
 
 #: maps/tutorials/Introductory_Tutorial.js:258
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
 msgstr ""
+"یک پادگان در نزدیکی خود بسازید. هر زمان که جمعیت شما به سقف خود رسید، به کمک"
+" کارگران بیکار خود یک خانه بیشتر بسازید."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
+"آماده یک حمله به یک نیروی دشمن شوید. پرورش سربازان بیشتر با بکارگیری پادگان "
+"ها و بکارگیری سرباز های بیکار برای ساخت برج های دفاعی  در نزدیکی برج "
+"دیدبانی."
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
 msgstr ""
+"ساخت یک آهنگری و تحقیق در خصوص فناوری پرورش پیاده نظام (عکس شمشیر) برای "
+"بهبود بخشیدن به قدرت حمله پیاده نظام."
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
 msgstr ""
+"دشمن به سمت شما در حرکت است. سربازان بیشتری برای مقابله با دشمن پرورش دهید."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
-msgstr ""
+msgstr "سعی کنید حمله دشمن را دفع کنید."
 
 #: maps/tutorials/Introductory_Tutorial.js:300
 msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"حمله دشمن دفع شد. حال یک بازار و یک معبد بسازید و نیروهای خود را به جمع آوری"
+" منابع  مورد نیاز بگمارید."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"زمانی که نیازمندی های ارتقای مرحله شهری خود را فراهم کردید، می توانید مرکز "
+"تمدن خود را به مرحله بالاتر یعنی مرحله شهری ارتقا دهید."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "barracks."
 msgstr ""
+"زمانی که منتظر تغییر مرحله هستید، شما می توانید در پادگان خود سربازان بیشتری"
+" بسازید."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"حال شما وارد مرحله شهری شدید، یک دژ در نزدیکی (اگر نیاز است نخست کمی سنگ جمع"
+" کنید) خود بسازید و سپس از طریق آن 2 دژکوب بسازید."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -206,14 +264,17 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"متوقف کردن تعدادی از سربازها از جمع کردن منابع و بجای اینکار فرستادن آنها "
+"برای پیدا کردن مرکز تمدن دشمن. زمانی که پایگاه دشمن شناسایی شد دژکوب ها و "
+"تمام سربازان خود را برای نابودی آن ارسال کنید.\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
-msgstr ""
+msgstr "زن شهروند باید به جمع کردن منابع ادامه دهد"
 
 #: maps/tutorials/Introductory_Tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
-msgstr ""
+msgstr "دشمن شکست خورد. این ماموریت آموزشی تکمیل شد."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -222,6 +283,10 @@ msgid ""
 " ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to 'Town Phase' and 'City Phase' afterward.\n"
 msgstr ""
+"این آموزش به شما مباحث پایه برای توسعه اقتصادتان در بازی را آموزش می دهد. "
+"معمولا، شما بازی را همراه با یک مرکز تمدن و تعدادی نیرو در \"مرحله روستایی\""
+" آغاز می کنید. و در نهایت هدف شما این است که با توسعه و گسترش امپراتوری خود،"
+" اغلب با رسیدن به \"مرحله شهرک\" و \"مرحله شهری \" اتفاق می افتد.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -229,16 +294,20 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"\n"
+"قبل از شروع، شما می توانید بین حالت Fullscreen یا حالت Windowed با استفاده از %(hotkey)s تغییر وضعیت دهید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"شما می توانید سطح بزرگنمایی را با استفاده از چرخ ماوس تغییر دهید، همچنین می "
+"توانید نمای دوربین در بازی را توسط کلید های جهت در کیبورد خود تغییر دهید.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
-msgstr ""
+msgstr "تنظیم کردن پنجره بازی بر اساس سلیقه خود.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 #, javascript-format
@@ -246,6 +315,8 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"\n"
+"شما شاید تمایل داشته باشید وضعیت نمایش و یا عدم نمایش پنل آموزش را در هر زمان بوسیله %(hotkey)s تغییر دهید.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -253,6 +324,8 @@ msgid ""
 "selection ring in the color of your civilization will be displayed after "
 "clicking."
 msgstr ""
+"شما می توانید برای شروع کردن بر روی مرکز تمدن خود کلیک کنید، بعد از کلیک "
+"کردن حلقه انتخاب بدور آن بر اساس رنگ تمدن شما نمایش داده می شود"
 
 #: maps/tutorials/starting_economy_walkthrough.js:24
 msgid ""
@@ -264,6 +337,13 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"حالا که مرکز تمدن شما انتخاب شده است، شما متوجه خواهید شد که پنل تولید در "
+"سمت راست پایین صفحه ظاهر شده است، کارهایی که می توانید انجام دهید هیچ رنگی "
+"به خود نگرفته اند در حالی که عکس سایر کارها در این بخش یا خاکستری هستند یا "
+"قرمز که نشان دهنده این موضوع هستند که یا هنوز قفل آنها باز نشده است یا شما "
+"منابع کافی برای آن ندارید. به همین ترتیب به علاوه، شما می توانید نشانگر ماوس"
+" خود را بر روی هر یک از این عکس ها قرار دهید تا راهنمای مربوطه با جزیات "
+"بیشتر نمایش داده شود.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -273,6 +353,11 @@ msgid ""
 "that advancing to 'Town Phase' requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"سطر بالای قسمت پایین شامل عکس نیروهایی است که می توان پرورش داد در حالی که "
+"سطر پایین یا دو سطر پایین مربوط به تحقیق فناوری ها است. نشانگر ماوس خود را "
+"بر روی عکس \"||\" قرار دهید. راهنما به شما می گوید که برای رسیدن به مرحله "
+"شهرک نیاز دارید که هم ساختمان های بیشتری بسازید و هم غدا و چوب بیشتری جمع "
+"کنید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -284,6 +369,13 @@ msgid ""
 "citizen soldiers can gather any land resources while cavalry citizen "
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"شما دو نوع اصلی از نیروهای شروع بازی دارید: شهروند زن و سرباز شهروند. زن "
+"شهروند بطور کامل یک نیروی اقتصادی است که سلامت بسیار پایینی دارند ، زره "
+"ندارند و قدرت حمله بسیار پایینی دارند. سربازهای شهروند بصورت پیشفرض کارگر "
+"هستند اما در زمان نیاز توان جنگیدن را دارند. شما دو دسته سرباز شهروند دارید:"
+" پیاده و سواره. زن شهروند و سرباز شهروند می توانند هر منبعی را از روی زمین "
+"جمع آوری کنند در حالی که سرباز های شهروند سواره تنها می توانند گوشت شکار را "
+"جمع کنند.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -291,6 +383,8 @@ msgid ""
 "clicking with an entity selected represents an order (gather, build, fight, "
 "etc.).\n"
 msgstr ""
+"به عنوان یک قانون عمومی، کلیک چپ برای انتخاب و کلیک راست برای فرمان (جمع "
+"کردن ، ساختن ، جنگیدن ...) استفاده می شود.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
@@ -298,16 +392,21 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"در این مرحله غذا و چوب مهمترین منابع برای توسعه اقتصاد شما در بازی هستند، "
+"بنابرین اجازه دهید شروع به جمع کردن غذا کنیم، زن های شهروند قادر هستند "
+"سبزیجات و محصولات کشاورزی را سریعتر از سایر انواع کارگر جمع کنند.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
-msgstr ""
+msgstr "اینها سه روش اصلی برای انتخاب نیروها است:\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:42
 msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
 msgstr ""
+"1) نگهداشتن کلید چپ ماوس و کشیدن یک مستطیل که نیروهای مورد نظر شما را دربر "
+"بگیرد\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:43
 msgid ""
@@ -315,6 +414,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) کلیک کردن بر روی یک نیرو و سپس نگه داشتن کلید شیفت و کلید کردن بر روی "
+"نیروهای دیگر جهت اضافه  شدن آنها به نیروهای انتخاب شده ( یا حتی مجدد از طریق"
+" روش اول و کشیدن مستطیل)\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -322,6 +424,9 @@ msgid ""
 "the specified unit in your visible window. Triple-click will select all "
 "units of the same type on the entire map.\n"
 msgstr ""
+"3) دوبار کلیک کردن بر روی یک نیرو . این کار باعث می شود سایر نیروها از همان "
+"نوع که در نمای شما قرار دارند انتخاب شوند. سه بار کلیک کردن باعث میشود تمام "
+"نیروهای آن نوع در تمام نقشه انخاب شوند.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
@@ -330,6 +435,9 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"شما می توانید با کلیک کردن در یک فضای خالی از نقشه انتخاب خود را ریست کنید. "
+"تمام این روش ها را جهت فرمان دادن به زنهای شهروند برای جمع آوری غذا از بخش "
+"جنوب شرقی مرکز تمدن خود امتحان کنید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -337,17 +445,25 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
 "on the nearest tree."
 msgstr ""
+"حال بیایید کمی چوب به کمک سرباز های شهروند پیاده خود جمع کنید. سربازهای "
+"شهروند پیاده خود را انتخاب کنید و به آنها از طریق کلید راست فرمان دهید که "
+"چوب های اطراف را جمع آوری کنند."
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"سرباز های شهروند سواره برای شکار بسیار مناسب هستند. اسب سواره نظام خود را "
+"انتخاب کنید و به او فرمان دهید تا مرغ های اطراف مرکز تمدن شمارا شکار کند و "
+"غذا جمع آوری کند"
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
+"تمام نیروهای شما حالا در حال جمع آوری منابع هستند. ما میبایست نیروهای بیشتری"
+" پرورش دهیم!\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
@@ -358,23 +474,35 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"نخست، بیایید نقطه تجمع را تنظیم کنیم. مشخص کردن نقطه تجمع  یک ساختمان که می "
+"تواند نیرو پرورش دهد باعث می شود مقصد حرکت نیروها بلافاصله بعد از پرورش "
+"یافتن از ساختمان به آن نقطه تغییر پیدا میکند. ما میخواهیم نیروهای که جدیدا "
+"پرورش می دهیم برای جمع کردن چوب به قسمت جنوبی مرکز تمدن بروند. برای انجام "
+"این کار، مرکز تمدن خود را انتخاب کنید و سپس نشانه گر ماوس خود را بر روی "
+"درختان مورد نظر قرار دهید و کلید راست را بزنید.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally-Points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"نقطه تجمع با یک پرچم کوجک در مقصد و در انتهای خط آبی نمایش داده می شود."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"انتخاب یک مرکز تمدن، سپس نشانگر ماوس خود را بر روی یک درخت منتقل کردن و کلیک"
+" راست را زمانی که عکس چوب در کنار نشانگر ماوس نمایش داده شد بزنید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
 "Now that the rally-point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"حال که نقطه تجمع را مشخص کردید، ما می توانیم نیروهای بیشتری پرورش دهیم و "
+"آنها کاری که آنها تخصیص داده اید را بصورت خودکار بعد از آماده شدن انجام "
+"خواهند داد.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -384,19 +512,24 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"سربازهای شهروند چوب را سریعتر از زن های شهروند جمع آوری می کنند. مرکز تمدن "
+"را انتخاب کنید، در حالی که شیفت را نگه داشته اید، بر روی عکس نیروی دوم، "
+"هاپلیت ها کلیک کنید (شیفت را نگهدارید تا یک دسته 5 تایی از آنها پرورش دهید)"
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
+"فراموش نکنید که کلید شیفت Shift کیبورد خود را نگهدارید قبل از اینکه فرمان "
+"پرورش نیروها را بدهید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "شیفت را نگه داشته و بر روی عکس هاپلیت کلیک کنید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "کمی صبر کنید تا نیروها آماده شوند.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
@@ -406,6 +539,10 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"در حالی که منتظر هستید، به پنل بالای صفحه نگاه کنید.  در قسمت بالا چپ، شما "
+"وضعیت فعلی تامین منابع ( غذا، چوب، سنگ و آهن) را مشاهده می کنید. زمانیکه یک "
+"کارگر منابع را به مرکز تمدن (یا هر محل ذخیره منبع) منتقل می کند، شما مشاهده "
+"می کنید که میزان آن منبع افزایش می یابد.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -414,12 +551,18 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"این یک موضوع بسیار مهم است که باید همیشه در ذهن خود داشته باشید: منابعی که "
+"جمع می شوند باید به محل های تحویل منابع آورده شوند، شما همیشه باید فاصله بین"
+" منابع و نزدیک ترین محل تحویل منابع را  کمترین فاصله تنظیم کنید تا بهره وری "
+"جمع آوری منابع شما بهبود پیدا کند."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
 msgstr ""
+"نیروهایی که جدید پرورش پیدا می کنند بصورت خودکار به سمت درختان خواهند رفت تا"
+" چوب جمع آوری کنند.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -431,24 +574,37 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"اما بخاطر اینکه آنها باید منابع جمع شده را به مرکز تمدن آورده و تحویل دهند، "
+"بهره وری جمع آوری منابع آنها بدلیل فاصله منبع و مرکز تمدن دچار کاهش می شود. "
+"برای حل این مشکل ما می توانیم یک انبار یا محل تحویل برای چوب ، سنگ و آهن در "
+"نزدیکی درختان بسازیم. برای این کار، 5 سرباز شهروند که آماده شده اند را "
+"انتخاب و سپس در قسمت پنل ساخت در سمت پایین راست بر روی عکس انبار کلیک کنید و"
+" نشانگر ماوس خود را به نزدیکترین مکان ممکن به درختان که می خواهید چوب جمع "
+"آوری شود برده و فرمان ساخت بدهید.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
 msgstr ""
+"محل های(مسدود) نا معبتر، پیش نمایش ساختمانی که می خواهید بسازید را با رنگ "
+"قرمز پوشش می دهد."
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"شهروندان انتخاب شده بصورت خودکار شروع به ساخت ساختمانی که پایه آن گذاشته شده"
+" است می کنند."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
 "When construction finishes, the builders default to gathering Wood "
 "automatically.\n"
 msgstr ""
+"زمانی که ساختمان تکمیل شد بصورت پیش فرض کسانی که آنرا می ساختند شروع به جمع "
+"آوری چوب خواهند کرد.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
@@ -456,14 +612,18 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
+"بیایید چند شهروند زن پرورش دهیم تا برای ما غذای بیشتری جمع آوری کنند. مرکز "
+"تمدن را انتخاب، کلید شیفت را نگه داشته و بر روی عکس زن شهروند کلیک کنید تا 5"
+" زن شهروند ساخته شود"
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
+"فراموش نکنید که کلید شیفت را نگه دارید و با کلیک کردن چندین نیرو بسازید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "شیفت را نگه داشته و بر روی عکس زن شهروند کلیک کنید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -472,10 +632,15 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally-point is crossed out)."
 msgstr ""
+"در این میان، به نظر می رسد ما به تعداد کافی کارگر برای جمع آوری چوب پرورش "
+"داده ایم. ما باید نقطه تجمع مرکز تمدن را از روی جمع کردن چوب برداریم. برای "
+"این منظور،  زمانی که مرکز تمدن انتخاب شده است در یک فضای خالی نزدیک مرکز "
+"تمدن کلیک می کنیم تا نقطه تجمع از روی درختان برداشته در مقصد جدید قرار گیرد."
+" (پرجم نشانه گر محل تجمع نیز جابجا می شود)"
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "نیروها بزودی آماده می شوند.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
@@ -485,6 +650,10 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"در این میان، به تعداد جمعیت خود درپنل بالای صفحه دقت کنید که پنجمین مورد از "
+"سمت چپ است. باید همیشه مراقب بود و به آن چشم داشت، این قسمت میزان جمعیت فعلی"
+" (شامل آنها که در حال پرورش هستند) و سقف مجاز جمعیت شما را مشخص می کند. سقف "
+"جمعیت وابسته به ساختمان های شما است که ساخته اید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
@@ -492,12 +661,16 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the house.\n"
 msgstr ""
+"زمانی که جمعیت فعلی شما به سقف جمعیت نزدیک می شود، شما باید این سقف را از "
+"طریق ساخت ساختمان های جدید افزایش دهید تا بتوانید نیروهای بیشتری پرورش دهید."
+" مقرون به صرفه ترین ساختمان برای اینکار خانه ها هستند که سقف جمعیت شما را "
+"افزایش می دهند.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
-msgstr ""
+msgstr "حال که نیروها آماده هستند، بیایید چند خانه پشت سر هم بسازیم."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
@@ -512,12 +685,23 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"دو  زن شهروند که تازه پرورش داده اید را انتخاب کنید و از آنها بخواهید که این"
+" خانه ها را در فضایی باز سمت شرق مرکز تمدن بسازند. برای اینکار بعد از انتخاب"
+" شهروندان زن بر روی عکس خانه در پنل پایین راست صفحه کلیک کنید و در حالی که "
+"کلید شیفت را نگه داشته اید با ماوس خود اولین مکان ساخت خانه اول را انتخاب "
+"کنید سپس با ماوس خود بر روی مکان دومی که میخواهید خانه دوم ساخته شود کلید "
+"کنید  (در حالی که کماکان کلید شیفت را نگه داشته اید) شما می توانید از این "
+"طریق فرمان ساخت چندین خانه را بدهید اگر منابع مورد نیاز آنها را داشته باشید "
+"تا به ترتیب ساخته شوند حال که فرمان ساخت تعداد خانه مورد نظر خود را داده اید"
+" کلید Escape را بزنید تا از این فرمان خارج شوید.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two female citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"یادآوری: برای انتخاب فقط دو شهروند زن، بر روی اولی کلیک کنید تا انتخاب شود "
+"سپس کلید شیفت را نگه داشته و دومی را انتخاب کنید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -525,12 +709,18 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
+"همانطور که متوجه شده اید توت ها منابع تمام شدنی غذا هستند. ما نیاز داریم که "
+"منابع غذایی پایداری برای خود ایجاد کنیم. زمین های کشاورزی میزان بی پایانی "
+"غذا می توانند تولید کنند، اما سرعت جمع کردن آنها از میوه ها خوراکی کمتر "
+"است.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a farmstead."
 msgstr ""
+"اما برای کمتر کردن فاصله میان یک مزرعه و محل تحویل مربوطه آن، ما نخست نیاز "
+"داریم که یک انبارغذا احداث کنیم."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
@@ -538,6 +728,8 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"انتخاب سه شهروند زن بیکار (Idle) و فرمان دادن به آنها برای ساخت یک انبارغذا "
+"در مرکز یک فضای باز وسیع در محدوده مرکز تمدن شما.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -545,6 +737,9 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"ما به فضای زیادی بدور انبار غذا نیاز داریم تا بتوانیم بدور آن مزرعه بسازیم. "
+"به علاوه، ما مشاهده می کنیم که در سمت غرب مرکز تمدن تعدادی بز  حضور دارند که"
+" شکار آنها می تواند به ما در بهبود بهره وری جمع آوری غذا کمک کند.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -555,18 +750,30 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"اگر شما سعی کنید این سه شهروند زن بیکار را با کلیک کردن و کشیدن نشانگر ماوس "
+"انتخاب کنید شما ممکن است بصورت اتفاقی نیروهای بیشتری را انتخاب کنید. برای "
+"پیشگیری از این مشکل زمانی که میخواهید این کار را انجام دهید کلید i کیبورد را"
+" نگهدارید تا فقط نیروهای بیکار انتخاب شوند. و اگر برای مثال بصورت تصادفی یک "
+"سواره نظام را انتخاب کردید کلید Ctrl را نگه دارید و بر روی عکس سواره نظام در"
+" پنل نیروهای انتخاب شده کلیک کنید تا از انتخاب خارج شوند."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"زمانی که ساخت انبار غذا به پایان می رسد، نیروهایی که در حال ساخت آن بودند "
+"بصورت خودکار بدنبال غذا در اطراف خود می گردند و چون شما انبار غذا را در سمت "
+"بز ها ساختید آنها بصورت خودکار شروع به شکار و جمع کردن گوشت آنها می کنند.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"اما نیروهایی که خانه ها را می سازند بعد از ساخت خانه بصورت خودکار بدنبال یک "
+"ساختمان دیگر برای ساخت در اطراف خود که درحال ساخت است یا پایه آن گذشته شده "
+"است می گردند و اگر چنین مواردی را پیدا نکنند در حالت بیکار قرار خواهند گرفت."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -574,12 +781,17 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"زمانی که هردو خانه ساخته شد، دو شهروند زن خود را انتخاب کنید و به آنها دستور"
+" دهید تا یک مزرعه در نزدیکی انبار غذا بسازند که یک محل برای تحویل تمام انواع"
+" غذا است."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the field is constructed, the builders will automatically start "
 "gathering it.\n"
 msgstr ""
+"زمانی که مزرعه ساخته شد، کسانی که مشغول ساخت آن بودند بصورت خودکار بلافاصله "
+"شروع به کار و جمع آوری غذا از آن خواهند کرد.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -588,6 +800,13 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"نیروی سواره نظام شما باید تمام مرغ ها را تا این لحظه از بازی کشته باشد و "
+"گوشت آنها را به عنوان غذا تحویل داده باشد. انتخابش کنید و او را به منطقه "
+"جنوب شرقی بفرستید تا آنجا را اکتشاف کند: در آنها یک دریاچه قرار دارد و چند "
+"شتر در آنجا زندگی می کنند. سواره نظام خود را با کلیک راست به محل مورد نظر "
+"ببرید و زمانی که شترها را مشاهده کردید با کلید راست بر روی یکی از آنها به "
+"سواره نظام فرمان دهید تا آنها را شکار کند و گوشت آنها را به عنوان غذا جمع "
+"کند."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -597,30 +816,39 @@ msgid ""
 "sent by a rally-point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"بر روی یک زمین کشاورزی می توان تا 5 کشاورز داشت. برای اضافه کردن کشاورز به "
+"زمین کشاورزی می توانید مرکز تمدن خود را انتخاب کرده مکان تجمع را بر روی "
+"مزرعه مورد نظر قرار دهید و سپس شروع به پرورش کارگر کنید اگر ساخت مزرعه ای به"
+" پایان نرسیده بود آنها به ساخت آن کمک می کنند و سپس در آن شروع به کار میکنند"
+" و اگر ساخته شده بود در آن تا سقف 5 نفر شروع به کار میکنند."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
-msgstr ""
+msgstr "انتخاب مرکز تمدن و کلیک راست بر روی زمین کشاورزی"
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"حال سه بار بر روی شهروند زن در پنل سمت راست پایین کلیک کنید تا پرورش سه "
+"کارگر شروع شود."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "کلیک کردن بدون نگهداشتن شیفت برای پرورش یک واحد نیرو"
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "کلیک کردن بر روی شکل شهروند زن"
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
 msgstr ""
+"شما می توانید نرخ جمع کردن کارگران خود را از طریق تحقیق فناوری هایی که در "
+"بعضی از ساختمان ها وجود دارد افزایش دهید.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -630,6 +858,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"نرخ کشاورزی برای مثال، می توان آنرا از طریق یک تحقیق که در ساختمان انبار غذا"
+" وجود دارد بهبود داد. یک انبار غذا را انتخاب و به پنل تولید در سمت راست "
+"پایین نگاه کنید. شما چندین فناوری قابل تحقیق در آنها مشاهده می کنید. نشانگر "
+"ماوس خود را بر روی آنها ببرید تا هزینه هر یک و تاثیر آنها را مشاهده کنید و "
+"در صورت تمایل با کلیک کردن بر روی آنها دستور تحقیق در آن مورد را بدهید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -637,6 +870,10 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the 'Town Phase' icon to see what is still needed.\n"
 msgstr ""
+"ما می بایست شروع به آماده سازی برای بالا بردن مرحله مرکز تمدن خود به \"مرحله"
+" شهرک\" کنیم. این مرحله باعث می شود قفل نیروها و ساختمان های بیشتری باز شود."
+" مرکز تمدن را انتخاب کرده و نشانگر ماوس خود را بر روی عکس \"مرحله شهرک\" "
+"ببرید تا تمام نیازمندی های آنرا مشاهده کنید.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -644,6 +881,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build barracks.\n"
 msgstr ""
+"ما حال میدانیم که چه میزان منابع نیاز داریم، اما یک ساختمان هم کم است. اگرچه"
+" این آموزش اقتصاد بازی است، با این وجود بد نیست که برای دفاع از خود در برابر"
+" حمله های احتمالی نیز آماده شوید. بنابرین بیایید یک پادگان بسازیم.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -652,6 +892,9 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"چهار سرباز شهروند را انتخاب کرده و به آنها فرمان دهید تا یک پادگان بسازند: "
+"همانند قبل، انتخاب سربازها، کلیلک بر روی عکس پادگان در پنل تولید و سپس قرار "
+"دادن پایه ساختمان در نزدیکی مرکز تمدن جایی که شما می خواهید ساخته شود."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -661,18 +904,27 @@ msgid ""
 " on it (you should see a hammer icon), and then produce two more builders by"
 " clicking on the hoplite icon twice."
 msgstr ""
+"کمی صبر کنید تا پادگان ساخته شود. بخاطر اینکه ساخت این ساختمان بسیار زمانبر "
+"است، شما می توانید دو سه سرباز بیشتر برای ساخت آن بفرستید تا سریعتر آماده "
+"شود. برای اینکار مرکز تمدن را انتخاب کرده و محل تجمع را بر روی پایه ساختمان "
+"پادگان از طریق کلیک راست قرار دهید (شما می توانید عکس چکش را ببینید)، و سپس "
+"دستور دهید تا دو هاپلیت جدید پرورش یابد، با کلیک کردن بر روی عکسش."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
 "You should now be able to research 'Town Phase'. Select the Civic Center and"
 " click on the technology icon.\n"
 msgstr ""
+"حال شما باید قادر شده باشید که تحقیق \"مرحله شهرک\" را انجام دهید. مرکز تمدن"
+" را انتخاب کرده و بر روی فناوری مربوطه کلیک کنید.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"اگر کماکان مقداری از منابع را کم دارید (عکس منبع با پوشش قرمز)، صبر کنید تا "
+"مقدار لازم توسط کارگرهای شما جمع آوری شود."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -681,6 +933,11 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather Stone and the other half to gather Metal.\n"
 msgstr ""
+"در مراحل بعدی، شما عموما نیاز به سنگ و آهن پیدا خواهید کرد تا بتوانید سازه "
+"های بزرگتر بسازید و نیروهای قویتر پرورش دهید. بنابرین در حالی که منتظر برای "
+"این تحقیق هستید تا به پایان برسد، شما نیاز دارید تا نیمی از سربازان شهروند "
+"بیکار (که در پادگان پرورش داده اید) را فرمان دهید برای جمع کردن سنگ و نیم "
+"دیگر را برای جمع کردن آهن.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -690,6 +947,12 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"برای انجام اینکار، ما می بایست سه سرباز شهروند را انتخاب و با کلیک راست بر "
+"روی معدن سنگ در سمت غرب مرکز تمدن (نشانگر ماوس زمانی که بر روی معند سنگ قرار"
+" میگیرد و سربازها انتخاب شده اند، تغییر می کند) به آنها فرمان جمع کردن سنگ "
+"بدهیم. اگر یک سرباز در حال چوب جمع کردن باشد و مقداری چوب به همراه داشته "
+"باشد و ما به او فرمان دهیم که سنگ جمع کند زمانی که شروع به سنگ جمع کردن می "
+"کند چوب هایی که همراه وی جمع شده بودند از بین میرود. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -699,35 +962,46 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"از این رو ، ما می بایست نخست به آنها فرمان دهیم که چوب های خود را در محل های"
+" تحویل منابع تحویل دهند و سپس به آنها فرمان دهیم که سنگ جمع کنند. برای "
+"اینکار ما از کلید شیفت برای ایجاد یک سلسله دستور برای نیروها استفاده می "
+"کنیم: سرباز ها را انتخاب می کنیم ، کلید شیفت را نگه میداریم سپس بر روی مرکز "
+"تمدن کلیک راست می کنیم و سپس در حالی که شیفت را نگه داشته ایم بر روی معدن "
+"سنگ کلیک راست می کنیم تا این سربازها نخست به مرکز تمدن بروند و چوب ها را "
+"تحویل دهند و سپس بصورت خودکار به معدن سنگ بروند برای جمع آوری سنگ.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
 msgstr ""
+"همین کار را به همین تربیت با سرباز های باقی مانده انجام دهید و به شروع به "
+"جمع کردن آهن کنید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
 msgstr ""
+"این پایان این آموزش بود. این آموزش باید به شما دیدکافی از مباحث پایه و اصلی "
+"بازی داده باشد و شما باید قادر باشید اقتصاد خود را در بازی برپا کنید."
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "این یک آموزش ابتدایی که به شما در شروع بازی 0 A.D کمک کند."
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 msgid "Player 1"
-msgstr "بازیکن ۱"
+msgstr "بازیکن 1"
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
-msgstr ""
+msgstr "بازیکن 2"
 
 #: maps/tutorials/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "آموزش مقدماتی"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
@@ -735,7 +1009,10 @@ msgid ""
 "in the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"این نقشه آموزشی به شما کمک می کند که بتوانید بازی را شروع کنید. در آغاز بازی"
+" مهمترین کار جمع کردن منابع در سریع ترین حالت ممکن است تا بتوانید نیروی کافی"
+" در مرحله بعد بسازید."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
-msgstr ""
+msgstr "شروع آموزش اقتصاد بازی"

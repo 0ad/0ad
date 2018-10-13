@@ -4,22 +4,22 @@
 # 
 # Translators:
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2017
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2016-2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
-# Younn Keravel <goulvenbreizh@hotmail.fr>, 2018
+# Goulven <goulvenbreizh@hotmail.fr>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-25 10:57+0000\n"
-"Last-Translator: Younn Keravel <goulvenbreizh@hotmail.fr>\n"
+"PO-Revision-Date: 2018-09-19 13:48+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: br\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
 #: i18n/L10n.cpp:251
 msgid "Long strings"
@@ -139,12 +139,12 @@ msgstr "An anv-implijer a zo anezhañ dija"
 #: ps/ModIo.cpp:244
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Graet en deus kazeg loc'hadur goulenn anaouder ar c'hoari. Fazi: %s; %s."
 
 #: ps/ModIo.cpp:274
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Graet en deus kazeg loc'hadur an enklask modoù. Fazi: %s; %s."
 
 #: ps/ModIo.cpp:300
 #, c-format
@@ -159,34 +159,34 @@ msgstr "Ne c'heller ket digeriñ ar restr badennek evit pellgargañ ar mod: %s."
 #: ps/ModIo.cpp:335
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Ne c'haller ket kregiñ ar bellgargañ. Fazi: %s; %s."
+msgstr "N'haller ket stagañ da bellgargañ. Fazi: %s; %s."
 
 #: ps/ModIo.cpp:380
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Graet en deus kazeg ar pellgargañ asinkronel: %s, %s."
 
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Graet en deus kazeg ar pellgargañ. Respont ar servijer: %s; %s."
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Digenglotus eo ment ar restr."
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Restr direizh. md5 gortozet : %s, md5 resevet : %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "Graet en deus kazeg jedadenn an hash diwezhañ."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Graet en deus kazeg gwiriekadur ar sinadur."
 
 #: ps/SavedGame.cpp:128
 #, c-format

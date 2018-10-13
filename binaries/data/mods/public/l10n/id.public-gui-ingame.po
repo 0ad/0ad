@@ -8,6 +8,7 @@
 # azayrahmad <azayrahmad@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
 # Cahya Legawa <haridiva@gmail.com>, 2014
+# Dito Kurnia Pratama <ditokpl@gmail.com>, 2018
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
 # Fqn Kdgzd <inactive+D1sgaea@transifex.com>, 2014
 # IndoGuy <Fresh.Farz@gmail.com>, 2013-2014
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-08 15:05+0000\n"
+"Last-Translator: Dito Kurnia Pratama <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,7 +104,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Sisa waktu gencatan senjata: %(time)s"
 
 #: gui/session/menu.js:455
 msgctxt "team"
@@ -140,7 +141,7 @@ msgstr "Menyogok sebuah unit dari pemain ini untuk melihat apa yang dilihatnya d
 
 #: gui/session/menu.js:600
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "Suap yang gagal akan dikenakan biaya:"
 
 #: gui/session/menu.js:776
 #, javascript-format
@@ -349,7 +350,7 @@ msgstr "Menunggu pemain untuk tersambung:"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
-msgstr ""
+msgstr "Menyinkronkan gameplay dengan pemain lainnya..."
 
 #: gui/session/messages.js:167
 #, javascript-format
@@ -538,7 +539,7 @@ msgstr "Tayangan ulang tersimpan ke %(filepath)s"
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr ""
+msgstr "Membuang status saat ini ke %(filepath)s"
 
 #: gui/session/messages.js:727 gui/session/messages.js:738
 msgid "Out of Sync"
@@ -721,7 +722,7 @@ msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:408
 msgid "Capture Points:"
-msgstr ""
+msgstr "Poin Penguasaan:"
 
 #: gui/session/selection_details.js:416
 #, javascript-format
@@ -822,7 +823,7 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
+msgstr[0] "%(number)s entitas kelas %(class)s"
 
 #: gui/session/selection_panels.js:767
 #, javascript-format
@@ -850,7 +851,7 @@ msgstr "Gagalkan Peningkatan"
 
 #: gui/session/selection_panels.js:1106
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "Tidak dapat meningkatkan ketika entitas sudah mulai ditingkatkan."
 
 #: gui/session/selection_panels_helpers.js:56
 msgctxt "stance"
@@ -975,7 +976,7 @@ msgstr "Temukan pekerja menganggur"
 #: gui/session/session.js:457 gui/session/session.js:461
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Alihkan Warna Diplomasi"
 
 #: gui/session/session.js:464
 #, javascript-format

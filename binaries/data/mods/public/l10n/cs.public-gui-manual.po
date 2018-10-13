@@ -4,22 +4,22 @@
 # 
 # Translators:
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
-# fri, 2014-2017
+# fri, 2014-2018
 # Petr Hála <halapetr@selfnet.cz>, 2016
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016
 # Vojtěch Valigura <Encounter@seznam.cz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-04-11 09:02+0200\n"
+"PO-Revision-Date: 2018-06-21 13:59+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Information"
@@ -58,7 +58,7 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Mezi režimem na celou obrazovku a okenním režimem se přepnete stisknutím Alt + Enter. V okenním režimu můžete měnit velikost okna. Pokud běží hra příliš pomalu, můžete změnit některá nastavení v souboru s nastavením. Vyzkoušejte zákaz voleb týkajících se efektů zobrazení vody ve vysokém rozlišení a stínů."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -191,7 +191,7 @@ msgstr "[font=\"sans-bold-16\"]Klávesové zkratky:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Program-wide"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]V celém programu"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -234,12 +234,12 @@ msgid ""
 msgstr "Shift + F2: Udělat obrovský snímek obrazovky (6400px*4800px, ve formátu .bmp, umístění je zobrazeno v levé horní části uživatelského rozhraní, jakmile byl soubor uložen, a lze je také vidět v konzoli/zápisech, pokud je tu propásnete)"
 
 #: gui/manual/intro.txt:52
-msgid "Alt + S: Switch to the next tab."
-msgstr ""
+msgid "Tab, Alt + S: Switch to the next tab."
+msgstr "Tab, Alt + S: Přepnout na další kartu."
 
 #: gui/manual/intro.txt:53
-msgid "Alt + W: Switch to the previous tab."
-msgstr ""
+msgid "Shift + Tab, Alt + W: Switch to the previous tab."
+msgstr "Shift + Tab, Alt + W: Přepnout na další kartu."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -321,11 +321,11 @@ msgstr "/ (Lomítko): Vybrat nečinného bojovníka"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /: Přidat nečinného bojovníka k výběru"
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
-msgstr ""
+msgstr "Alt + /: Vybrat všechny nečinné bojovníky"
 
 #: gui/manual/intro.txt:74
 msgid ". (Period): Select idle worker (including citizen soldiers)"
@@ -333,23 +333,23 @@ msgstr ". (Tečka): Vybrat nečinného pracovníka (včetně občanských voják
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: Vybrat nečinného pracovníka k výběru (včetně občanských vojáků)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr ""
+msgstr "Alt + .: Vybrat všechny nečinné pracovníky (včetně občanských vojáků)"
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr ""
+msgstr "\\ (zpětné lomítko): Vybrat nečinnou jednotku"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr ""
+msgstr "Shift + \\: Přidat nečinnou jednotku k výběru"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
-msgstr ""
+msgstr "Alt + \\: Vybrat všechny nečinné jednotky"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
@@ -395,7 +395,7 @@ msgstr "F5, F6, F7 a F8: Přesunout kameru na označenou polohu. Skočit zpět n
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: Pokud jsou vybrány výcvikové stavby, přidat první, druhou (...) jednotku do výcvikové řady pro všechny vybrané budovy."
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -415,257 +415,273 @@ msgstr "Tabulátor: Vidět všechny stavové proužky (čímž je současně uk�
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
-msgstr ""
+msgstr "Ctrl + tabulátor: Přepnout okno s přehledem."
 
 #: gui/manual/intro.txt:93
-msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr ""
+msgid "Alt + L: Show the multiplayer lobby in a dialog window."
+msgstr "Alt + L: Ukázat skupinu hry pro více hráčů v dialogovém okně."
 
 #: gui/manual/intro.txt:94
+msgid "Ctrl + B: Toggle in-game barter/trade page."
+msgstr "Ctrl + B: Přepnout stránku s výměnným obchodem/obchodní směnou ve hře."
+
+#: gui/manual/intro.txt:95
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Ctrl + P: Přepnout panel s návodem ve hře."
 
 #: gui/manual/intro.txt:96
+msgid "Alt + Shift + T: Toggle structure tree."
+msgstr "Alt + Shift + T: Přepnout strom staveb."
+
+#: gui/manual/intro.txt:97
+msgid "Alt + Shift + H: Toggle civilization info."
+msgstr "Alt + Shift + H: Přepnout zprávu o civilizaci."
+
+#: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
 msgstr "[font=\"sans-bold-14\"]Změnit činnost myši"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:100
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
 msgstr "[font=\"sans-14\"]Ctrl + klepnutí pravým tlačítkem myši na budovu: Obsadit"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:101
 msgid "J + Right Click on building: Repair"
 msgstr "J + Klepnutí pravým tlačítkem myši na budovu: Opravit "
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:102
 msgid "P + Right Click: Patrol"
 msgstr "P + klepnutí pravým tlačítkem myši: Hlídkovat"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:103
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
 msgstr "Shift + klepnutí pravým tlačítkem myši: Zařadit příkaz pro přesun/stavbu/sběr/atd. do řady"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:104
 msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
 msgstr ""
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:105
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "Shift + klepnutí levým tlačítkem myši při výcviku jednotek: Přidat jednotky ve skupinách (výchozí velikost je 5 a lze ji změnit ve volbách)"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:106
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
 msgstr "Shift + klepnutí levým tlačítkem myši nebo tažení levým tlačítkem myši nad jednotkou na mapě: Přidat jednotku do výběru"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:107
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
 msgstr "Ctrl + klepnutí levým tlačítkem myši nebo tažení levým tlačítkem myši nad jednotkou na mapě: Odstranit jednotku z výběru"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:108
 msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr "Alt + tažení levým tlačítkem myši nad jednotkami na mapě: Vybrat pouze vojenské jednotky"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:109
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr ""
+msgstr "Alt + Y + tažení levým tlačítkem myši nad jednotkami na mapě: Vybrat pouze nevojenské jednotky"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:110
 msgid "I + Left Drag over units on map: Only select idle units"
 msgstr "I + tažení levým tlačítkem myši nad jednotkami na mapě: Vybrat pouze nečinné jednotky"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:111
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr ""
+msgstr "O + tažení levým tlačítkem myši nad jednotkami na mapě: Vybrat pouze poraněné jednotky"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:112
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr "Ctrl + klepnutí levým tlačítkem myši na ikonu pro jednotku/skupinu, když je vybráno více jednotek: Zrušit výběr"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:113
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
 msgstr "Klepnutí pravým tlačítkem myši, když je vybrána stavba/stavby: Nastaví shromažďovací bod pro jednotky vytvořené/odvelené z té budovy."
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:114
 msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + klepnutí pravým tlačítkem myši, když jsou vybrány jednotky:"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:115
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "    - Když je ukazovátko myši nad budovou: Obsadit, ubytovat"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:116
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
 msgstr "    - Když je ukazovátko myši nad jednotkou, která není spojenecká, nebo budovou: Zaútočit (místo zajmutí nebo sebrání)"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:117
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "    - Jinak: Zaútočit (Ve výchozím nastavení jsou zaměřeny všechny nepřátelské jednotky a veškeré budovy nacházející se podél cesty. Použijte Ctrl + Q + klepnutí pravým tlačítkem myši, aby byly zaměřeny pouze jednotky). "
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Vrstvy"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G: Ukázat/Skrýt rozhraní"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:121
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D: Ukázat/Skrýt vývojářskou vrstvu (s vývojářskými možnostmi)"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:122
 msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr ""
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:123
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr "Alt + Shift + S: Přepnout obrysy jednotek (může mírně zlepšit výkon)"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:124
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z: Přepnout oblohu"
 
-#: gui/manual/intro.txt:122
-msgid ""
-"Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
-
-#: gui/manual/intro.txt:123
-msgid ""
-"Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr ""
-
-#: gui/manual/intro.txt:124
-msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr ""
+#: gui/manual/intro.txt:125
+msgid "Alt + X: Toggle diplomacy colors"
+msgstr "Alt + X: Přepnout barvy diplomacie"
 
 #: gui/manual/intro.txt:126
+msgid ""
+"Alt + C: Toggle attack range visualizations of selected defensive structures"
+msgstr "Alt + C: Přepnout znázornění dosahu útoku vybraných obranných staveb"
+
+#: gui/manual/intro.txt:127
+msgid ""
+"Alt + V: Toggle aura range visualizations of selected units and structures"
+msgstr "Alt + V: Přepnout znázornění dosahu aury vybraných jednotek a staveb"
+
+#: gui/manual/intro.txt:128
+msgid "Alt + B: Toggle heal range visualizations of selected units"
+msgstr "Alt + B: Přepnout znázornění léčivého dosahu vybraných jednotek"
+
+#: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Přizpůsobení kamery"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:131
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W nebo \\[šipka nahoru]: Pohybovat kamerou nahoru"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:132
 msgid "S or \\[down]: Pan screen down"
 msgstr "S nebo \\[šipka dolů]: Zabírat obrazovku v pohybu dolů"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:133
 msgid "A or \\[left]: Pan screen left"
 msgstr "A nebo \\[šipka vlevo]: Zabírat obrazovku v pohybu doleva"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:134
 msgid "D or \\[right]: Pan screen right"
 msgstr "D nebo \\[šipka vpravo]: Zabírat obrazovku v pohybu doprava"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:135
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W nebo \\[šipka nahoru]: Otáčet kamerou, aby pohled směřoval nahoru"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:136
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S nebo \\[šipka dolů]: Otáčet kamerou, aby pohled směřoval dolů"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:137
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A nebo \\[šipka vlevo]: Otáčet kamerou po směru hodinových ručiček okolo terénu krajiny"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:138
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D nebo \\[šipka vpravo]: Otáčet kamerou proti směru hodinových ručiček okolo terénu krajiny"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Otáčet kamerou po směru hodinových ručiček okolo terénu krajiny"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:140
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E: Otáčet kamerou proti směru hodinových ručiček okolo terénu krajiny"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + otáčení kolečkem myši nahoru: Otáčet kamerou po směru hodinových ručiček okolo terénu krajiny"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:142
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + otáčení kolečkem myši dolů: Otáčet kamerou proti směru hodinových ručiček okolo terénu krajiny"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:143
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
-msgstr ""
+msgstr "F: Sledovat vybranou jednotku (pohnout kamerou pro zastavení sledování jednotky)"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:144
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: Nastavit znovu přiblížení/natočení kamery"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:145
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: Přiblížit (podržet stisknuto pro nepřetržité přibližování)"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-: Oddálit (podržet stisknuto pro nepřetržité přibližování)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:147
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: Přepínat režimy drátěných modelů"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:148
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "Prostřední tlačítko myši: Podržet stisknuté a pohybovat myší pro pojíždění"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Během umísťování budovy"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[: Otáčet stavbou o patnáct stupňů proti směru hodinových ručiček"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:152
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: Otáčet stavbou o patnáct stupňů po směru hodinových ručiček"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:153
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Tažení levým tlačítkem myši: Otáčet stavbou pomocí myši (základ bude umístěn při uvolnění tlačítka myši)"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]Při načítání uložené hry"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:156
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Delete: Smazat vybranou uloženou hru a zeptat se na potvrzení"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: Neptat se na potvrzení při mazání uložené hry"
 
@@ -684,10 +700,10 @@ msgstr "Následující data budou poslána našemu serveru:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
-"• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
-"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
-"from the same user."
-msgstr "• ID náhodného uživatele (uloženo v %APPDATA%\\0ad\\config\\user.cfg na Windows, ~/.config/0ad/config/user.cfg na Unixu), kvůli rozpoznání opakovaných zpráv od téhož uživatele."
+"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
+"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
+"reports from the same user."
+msgstr ""
 
 #: gui/manual/userreport.txt:6
 msgid ""

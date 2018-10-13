@@ -11,19 +11,20 @@
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Vladislav Trotsky <flyboooy17@gmail.com>, 2014-2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
+# Микола Франчук <thekolian1996@gmail.com>, 2018
 # Сергій Дубик <dubyk@ukr.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-07-01 18:04+0000\n"
-"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-09-29 17:41+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: simulation/data/civs/athen.jsonName
 #: simulation/data/civs/athen.jsonFactions[0].Name
@@ -423,8 +424,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "Карактак (римська форма імені) - змінене Каратак - його справжнє ім'я викарбоване на великій кількості монет. Під цим ім'ям пам'ятають запеклого захисника Британії від римлян під час їхнього вторгнення у 43 році. Каратак, син короля Кунобеліна з племінного об'єднання катувеллаунів, протягом дев'яти років боровся з римлянами, проте не дуже успішно. Зрештою він втік до племен в Уельсі, але там він зазнав остаточної поразки. Врешті-решт Каратак потрапив до Північної Британії, звідки його видали римлянам. У Римі британському вождю дозволили жити при імператорі Клавдії. Каратак помер в Італії. Народна традиція стверджує, що він прийняв християнство після своєї дружини, але точних відомостей про це немає. Цікаво, те, що лідеру варварів залишили життя після захоплення у полон. Згідно з політикою Риму таких людей убивали привселюдно на публічних святкуваннях. Каратака привели до імператора та сенату за його власним проханням пояснити свою позицію. Точно невідомо, що він сказав, проте Тацит адресує йому відому промову..."
+"but Tacitus applies to him a famous speech…"
+msgstr "Карактак, римська форма імені, є похідною від Каратак, його справжнього імені, яке було нанесено на безліч монет. Під цим ім'ям він увійшов в історію як затятий захисник Британії від римлян після їх вторгнення в 43 р н.е. Син короля Кунобеліна Катувелаунського союзу племен, Каратак бився з римлянами протягом дев'яти років зі змінним успіхом, згодом втік до племен в Уельсі, де був остаточно розгромлений. В результаті він виявився в Північній Британії, де був виданий римлянам. Після того, як його привезли в Рим, Каратак отримав милість імператора Клавдія, і згодом помер в Італії. Переказ свідчить, що він прийняв Християнство слідом за своєю дружиною, однак цей факт так і залишився непідтвердженим. Ймовірно, найбільш примітним є те, що після перебування в полоні йому було дозволено жити, адже зазвичай у таких випадках римляни влаштовували публічні страти на радість натовпу. На прохання Каратака, йому дозволили виступити і дати пояснення перед імператором і Сенатом. Достеменно невідомо, що було сказано, однак Тацит вимовляє про нього відому промову..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1130,6 +1131,211 @@ msgid ""
 "fought back."
 msgstr "Іберійці були народом із загадковим походженням і мовою, міцними традиціями конярства і ковальської справи. Будучи носіями відносно миролюбної культури, вони зазвичай брали участь у битвах в якості найманців у інших народів. Однак, коли Рим намагався забрати у них землі і свободу, вони показали свою завзятість, задіявши новаторську тактику партизанської війни і використання вогняних дротиків під час відповідних нападів."
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "Кушити"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "Піраміди Мерое"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr "Кожна зведена кушитська піраміда на +10% збільшує вплив міського центру на територію."
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr "Поклади Мінералів"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr "Гравці Кушитів отримують безкоштовну додаткову Копальню по видобутку металів десь на своїй території."
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Загін для слонів"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr "Може ловити диких слонів і відводити їх у загін, щоб знизити витрати на навчання Бойових Слонів."
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Постачальники слонів"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Зменшує вартість та час тренування слонів на 20% для союзників-кушитів."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "Кашта"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "Алара"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "Пебатма"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "Шабака"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "Шебітку"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "Калхата"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "Такахатенамун"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "Тантамані"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "Атланерса"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "Насалса"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "Малевіебамані"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "Горсіотеф"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "Шанакдахете"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "Аманішахето"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "Монументальна архітектура"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr "+50% одиниць здоров'я і -50% часу на будівництво для міських центрів, храмів, пірамід і Чудес."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr "Дозволяє тренувати елітних цілителів"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "Верховний жрець Амона"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "Нехай ваші священики проінструктовані самим Верховним жерцем - може Амон благословить його."
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Настасен"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Аракамані"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Аманіренас"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "Кушити Африканці"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "Велике африканське королівство, покривало річку Ніл в Нубії, на півдні Єгипту."
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "Храм Амуна"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr "Кушити можуть модернізувати свої храми в Храми Амуна, які дозволяють тренувати Напатанську Храмову Варту і швидше зцілювати юнітів."
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "Історія."
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "Храм Апедамака"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr "Кушити можуть модернізувати свої храми в Храми Апедемака, які дозволяють тренувати Мероїтську Храмову Варту і зцілювати юнітів швидше."
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "Кушитські Піраміди"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "Будівництво малої піраміди Кушитів відкриває Стадію Містечка. Будівництво великої піраміди Кушитів відкриває Стадію Міста. Кожна побудована піраміда додає +10% до розміру території міських центрів."
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "Кушити збудували більш ніж 200 пірамід в Нубії."
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "Царство Куш було древнім африканським царством, розташованим на місці злиття Блакитного Нілу, Білого Нілу і річки Атбара — там, де зараз знаходиться Республіка Судан. Епоха правління кушитів в регіоні почалася після катастрофи бронзового віку і занепаду Нового Царства Єгипту, і на ранньому етапі була зосереджена в Напаті. У 8 столітті до н.е. вони вторглися в Єгипет, а кушитські імператори правили як фараони XXV династії Єгипту протягом століття, поки їх не вигнали асирійці. Культура кушитів піддалася сильному впливу єгипетської: подібно єгиптянам кушити будували піраміди і зводили величні храми. Кушити навіть поклонялися багатьом єгипетським богам, в тому числі Амону. Під час класичного періоду столицею імперії кушитів був Мерое. У ранніх грецьких географічних джерелах Мероїтське царство було відоме як Ефіопія. Кушитське царство проіснувало до 4 століття н.е., поки воно, ослаблене і роздіране повстаннями, в кінці кінців не поступилося Аксумському царстві, що набирало сили."
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1501,10 +1707,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Зловіть до 5 диких слонів, відправте їх в слонячий загін і отримаєте зменшення часу їхнього навчання і вартості максимум на 25%."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Загін для слонів"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."

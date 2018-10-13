@@ -16,7 +16,7 @@
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Patrik Loch <fantofas@gmail.com>, 2014
 # SuroX <peter.surovcik@gmail.com>, 2016
-# Peter Tuharsky <peter.tuharsky@gmail.com>, 2015-2016
+# Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman Beňo <romanko.sk@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Angen <slavomir.slovenkai@gmail.com>, 2017-2018
@@ -24,14 +24,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-28 19:56+0000\n"
+"PO-Revision-Date: 2018-05-02 13:39+0000\n"
 "Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: gui/aiconfig/aiconfig.js:11
 msgctxt "ai"
@@ -163,7 +163,7 @@ msgstr "Mapy pridané v tejto verzii hry."
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
-msgstr ""
+msgstr "Spúšťače"
 
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
@@ -287,7 +287,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "Totálny počet relikvií vytvorených na mape. Víťazstvo relikvií je najrealistickejšie s jednou alebo dvoma relikviami. S väčším počtom, sú relikvie dôležitejšie obsadiť na získanie aurových bonusov. "
 
 #: gui/gamesetup/gamesetup.js:660
 msgid "Relic Duration"
@@ -327,7 +327,7 @@ msgstr "Vyber civilizáciu pre tohto hráča"
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Ubytovanie hrdinu "
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Toggle whether heroes can be garrisoned."
@@ -341,7 +341,7 @@ msgstr "Nomád "
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "V móde Nomádov, hráči začínajú len s niekoľkými jednotkami za cieľom nájsť vhodné miesto pre stavbu mesta.  Prímerie sa odporúča. "
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -447,14 +447,14 @@ msgstr "Začať novú hru s aktuálnymi nastaveniami (nemožné kým všetci hr�
 #: gui/gamesetup/gamesetup.js:1083
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Konfigurovať AI: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1132
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Pozrieť Históriu / Strom Stavieb\nPosledné otvorenie sa otvorí po kliknutí."
 
 #: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
@@ -464,12 +464,12 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Použi %(hotkey)s na presun karty s nastaveniami dole. "
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Použi %(hotkey)s na presun karty s nastaveniami hore. "
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -670,25 +670,25 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[…]  založil svoj zákon: múdrosť prichádza cez utrpenie. \\[...] Takže ľudia proti svojej vôli sa naučia praktizovať umiernenosť.  \\[...] Takáto milosť je krutá a násilná.\" - Aeschylus (\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr ""
+msgstr "\"Ona \\[Helen] priniesla Iliovi svoje nadanie, záhubu.\" - Aeschylus (\"Oresteia\", I. 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr ""
+msgstr "\"V každom tiranskom srdci nakoniec pramení tento jed, že nemôže dôverovať priateľovi.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr ""
+msgstr "\"Čas z dlhodobého hľadiska učí všetky veci.\" - Aeschylus (\"Prometheus Bound\", 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
@@ -698,19 +698,19 @@ msgstr ""
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr ""
+msgstr "\"Prosperujúci blázon je škodlivá záťaž.\" - Aeschylus (úlomok 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "\"Bohovia pomáhajú tým, ktorí si pomáhajú.\" -Ezop (\"Hercules and the Waggoner\")"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr ""
+msgstr "\"Je šetrné pripraviť sa dnes na potreby zajtrajška.\" Ezop (\"Mravec a Kobylka\")"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
@@ -736,7 +736,7 @@ msgstr "\"Vlastná domýšľavosť môže viesť k vlastnému zničeniu.\" - Ezo
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr ""
+msgstr "\"Pomalý a stabilný zvíťazí v pretekoch.\" - Ezop (\"Zajac a Korytnačka\")"
 
 #: gui/text/quotes.txt:14
 msgid ""

@@ -43,6 +43,7 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Nikita Pavlyuk <nekit96-08@mail.ru>, 2014
 # Oleg Ekhlakov <subspam@mail.ru>, 2014
+# Olli Tviks <olli.tviks@mail.ru>, 2018
 # Pavel Kyzmin <Virus191288@gmail.com>, 2013
 # Павел Монахов <mpolr21@gmail.com>, 2014
 # Prince Moth <princemoth@rambler.ru>, 2016
@@ -81,8 +82,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-29 13:00+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"PO-Revision-Date: 2018-06-30 20:07+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,7 +125,7 @@ msgstr "Я готов"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr "Выберите если готовы играть."
+msgstr "Выберите, если готовы играть."
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
@@ -133,11 +134,11 @@ msgstr "* %(username)s готов!"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
-msgstr "Будьте готовы"
+msgstr "Оставаться готовым"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr "Будьте готовы, даже если игровые настройки изменятся."
+msgstr "Готов, даже если игровые настройки изменятся."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
@@ -164,7 +165,7 @@ msgstr "%(username)s вышел"
 #: gui/gamesetup/gamesetup.js:160
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s отключён"
+msgstr "%(username)s исключён"
 
 #: gui/gamesetup/gamesetup.js:161
 #, javascript-format
@@ -225,7 +226,7 @@ msgstr "Триггер карты"
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Карты, содержащие сценарии, потенциально создающие  вражеские юниты."
+msgstr "Карты, содержащие сценарии и потенциально создающие  вражеские юниты."
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
@@ -301,7 +302,7 @@ msgstr "Выберите количество игроков."
 
 #: gui/gamesetup/gamesetup.js:582
 msgid "Population Cap"
-msgstr "Лимит населения"
+msgstr "Предел населения"
 
 #: gui/gamesetup/gamesetup.js:589
 msgid "Select population limit."
@@ -352,7 +353,7 @@ msgstr "Длительность реликвии"
 
 #: gui/gamesetup/gamesetup.js:661
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Количество минут до того как игрок не достиг Победы Реликвии."
+msgstr "Количество минут до того, как игрок не достиг Победы Реликвии."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
@@ -360,7 +361,7 @@ msgstr "Продолжительность Чуда"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr "Количество минут до того как игрок не достиг Победы Чуда."
+msgstr "Количество минут до того, как игрок не достиг Победы Чуда."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
@@ -384,7 +385,7 @@ msgstr "Выберите цивилизацию для этого игрока"
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
-msgstr "Герой Гарнизона"
+msgstr "Гарнизон Героев"
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Toggle whether heroes can be garrisoned."
@@ -1002,7 +1003,7 @@ msgid ""
 "\"Quintilius Varus, give me back my legions!\" - Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "\"Divus Augustus\", sec. 23)"
-msgstr "\"Квинтилий Вар, верни мне мои легионы!\" - Октавиан Аугуст после того, как три легиона были полностью уничтожены в битве в Тевтоборгском лесу (Светойний, \"Божественный Август\", часть 23)"
+msgstr "\"Квинтилий Вар, верни мне мои легионы!\" - Октавиан Аугуст после того, как три легиона были полностью уничтожены в битве в Тевтобургском лесу (Светойний, \"Божественный Август\", часть 23)"
 
 #: gui/text/quotes.txt:44
 msgid ""

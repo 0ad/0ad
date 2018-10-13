@@ -3,7 +3,8 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
-# linux_eki <ekiuusi@gmail.com>, 2013-2014,2016
+# linux_eki <ekiuusi@gmail.com>, 2013-2014,2016,2018
+# Järvi Eduardo <hammondemain@gmail.com>, 2018
 # Max Ihalempia, 2016
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2016
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 13:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-01 14:44+0000\n"
+"Last-Translator: Järvi Eduardo <hammondemain@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +91,7 @@ msgstr "Striimi on lopetettu serverin toimesta"
 
 #: lobby/XmppClient.cpp:1112
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "Tapahtui I/O -virhe"
 
 #: lobby/XmppClient.cpp:1114
 msgid "The connection was refused by the server"
@@ -151,7 +152,7 @@ msgstr ""
 #: ps/ModIo.cpp:300
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "Modihakemistoa ei voitu luoda: %s."
 
 #: ps/ModIo.cpp:325
 #, c-format
@@ -161,7 +162,7 @@ msgstr ""
 #: ps/ModIo.cpp:335
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "Latauksen aloitus epäonnistui. Virhe:%s;%s."
 
 #: ps/ModIo.cpp:380
 #, c-format
@@ -171,11 +172,11 @@ msgstr ""
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Lataus epäonnistui. Palvelimen vastaus: %s; %s."
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Eriävät tiedostokoot."
 
 #: ps/ModIo.cpp:531
 #, c-format
@@ -188,7 +189,7 @@ msgstr ""
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Allekirjoitusta ei voitu varmistaa."
 
 #: ps/SavedGame.cpp:128
 #, c-format

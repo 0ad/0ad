@@ -10,21 +10,21 @@
 # Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # SuroX <peter.surovcik@gmail.com>, 2014,2016
-# Peter Tuharsky <peter.tuharsky@gmail.com>, 2016
+# Peto (wt-ts) <peter.tuharsky@gmail.com>, 2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Angen <slavomir.slovenkai@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-05 13:04+0000\n"
+"PO-Revision-Date: 2018-07-24 22:57+0000\n"
 "Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: simulation/data/technologies/advanced_unit_bonus.jsontooltip
 msgid ""
@@ -1597,7 +1597,7 @@ msgstr "Vražedné diery umožňujú zasiahnuť nepriateľov pri spodnej časti 
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "Odstráni minimálny dosah obrannej veže."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1609,7 +1609,7 @@ msgstr "Lukostrelci zvyšujú maximálny dolet ohnivých šípov."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "Zvyšuje maximálny dosah obrannej veže o 8 metrov."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1909,7 +1909,7 @@ msgstr ""
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
 "Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr ""
+msgstr "Žoldnieri sú povýšení do pokročilej hodnosti ale vyžadujú o 20% dlhší tréning."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1958,7 +1958,7 @@ msgstr ""
 msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "Kartáginské hradby, brány a veže majú 3x toľko zdravia čo klasické hradby, avšak stavba je 2x dlhšia a drahšia. "
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2274,7 +2274,7 @@ msgstr ""
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
-msgstr ""
+msgstr "Keltské budovy majú o 20% menej života, ale sú o 20% lacnejšie a rýchlejšie na postavenie. "
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2322,7 +2322,7 @@ msgstr "Sparťania síce nemali najväčšiu armádu na svete, ale napriek tomu 
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population."
-msgstr ""
+msgstr "Sparťania majú o 10% menší populačný limit."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2408,7 +2408,7 @@ msgstr "Maurská ríša sa skladala z mnohých predtým nezávislých kráľovst
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
 msgid "Mauryans have a 10% higher maximum population limit."
-msgstr ""
+msgstr "Maurovia majú o 10% vyšší populačný limit."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2440,7 +2440,7 @@ msgstr "Lukostrelecká tradícia"
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India."
-msgstr ""
+msgstr "Maurovia budovali svoje mestské hradby z dreva, v Indii sa hojne vyskytujúcej prírodnej suroviny. "
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
@@ -2553,7 +2553,7 @@ msgstr "Všetka jazda -20% doba tréningu ale aj -5% zdravia. Odomkne brannú po
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "Všetka pechota -20% doba tréningu, ale zato aj -5 zdravia. Sprístupní brannú povinnosť pechoty."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

@@ -4,24 +4,25 @@
 # 
 # Translators:
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
+# Goulven <goulvenbreizh@hotmail.fr>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2017
-# Younn Keravel <goulvenbreizh@hotmail.fr>, 2018
+# ernest olory <ernestolory@hotmail.fr>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2018-01-29 09:05+0100\n"
 "PO-Revision-Date: 2018-01-29 09:05+0100\n"
-"Last-Translator: Younn Keravel <goulvenbreizh@hotmail.fr>, 2018\n"
+"Last-Translator: ernest olory <ernestolory@hotmail.fr>, 2018\n"
 "Language-Team: Breton (https://www.transifex.com/wildfire-games/teams/17418/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: br\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr "Degemer mat war tutoriel O.A.D."
+msgstr "Degemer mat war tutoriel 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
@@ -29,6 +30,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Klikit-kleiz war ur geodedourez ha klikit-dehou war ur vodenn-irin evit "
+"lakaat ar geodedourez da zastum boued. Ar c'heodedourezed a zastum ar boued "
+"plantel buanoc'h evit an unanennoù all."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -36,9 +40,9 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
-"Diuzit ar geodedourien-soudard, klikit-dehou war ur wezenn e-kichen ar "
-"Greizenn Geodedel evit kregiñ da zastum koad. Ar geodedourien-soudard a "
-"zastum koad buanoc'h eget ar c'heodedourezed."
+"Diuzit ar soudarded-keodedour, klikit-dehou war ur wezenn e-kichen ar "
+"Greizenn Geodedel evit boulc'hañ da zastum koad. Ar soudarded-keodedour a "
+"zastum koad buanoc'h evit ar c'heodedourezed."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -47,7 +51,7 @@ msgid ""
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
 "Diuzit ar Greizenn Geodedel ha dalc'hit %(hotkey)s en ur glikañ war arlun an"
-" Hoplit da gregiñ stummadur ur strollad Hoplited."
+" Hoplit evit stagañ gant stummadur ur strollad Hoplited."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -57,6 +61,8 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
+"Na zisoñjit ket pouezañ war ar bouton \"stummañ dre strollad\" en ur glikañ "
+"evit produiñ meur a unanenn."
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
@@ -67,7 +73,7 @@ msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
-"Diuzit an div geodedourez dizever ha savit un ti en-o-c'hichen en ur ziuziñ "
+"Diuzit an div geodedourez dizever ha savit un ti en-o-c'hichen en ur ziuzañ "
 "arouez an ti. Lec'hiit an ti en ur glikañ-kleiz war un tamm douar."
 
 #: maps/tutorials/Introductory_Tutorial.js:54
@@ -76,6 +82,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"Pa vint prest, diuzit an Hoplited nevez stummet ha lakait anezho da sevel un"
+" etrepaouez e-kichen ar gwez tost. Boulc'hañ a raint da zastum Koad ur wech "
+"savet an etrepaouez."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -83,6 +92,8 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Stummit ur strollad tennataer en un dalc'h %(hotkey)s ha klikit war arlun un"
+" Tennataer er Greizenn Geodedel."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
@@ -93,10 +104,12 @@ msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Savit un ti-feurm en ul lec'h goullo e-kichen ar Greizenn Geodedel en ur "
+"implijout an holl saverien dioberiant."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr "Gortozomp e vefe savet an ti-feurm."
+msgstr "Gortozomp a-raok ma vefe savet an ti-feurm, eta."
 
 #: maps/tutorials/Introductory_Tutorial.js:112
 msgid ""
@@ -104,6 +117,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
+"Ur wech savet an ti-feurm, e saverien a stago da zastum boued en un doare "
+"emgefreek ma 'z eus boued kavus nepell. Diuzit ar saverien hag o lakait da "
+"sevel ur park e-kichen an ti-feurm."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -111,6 +127,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"Saverien ar park a em-stago ganti en un doare da zastum boued diwar ar park "
+"bet savet ganto. Implijit ar strollad tennataerien nevez-stummet da sevel un"
+" ti nepell."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -118,6 +137,8 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"Stummit ur strollad Hoplited er Greizenn Geodedel ha pa vez diuzet klikit "
+"dehou war ur wezenn-nes. Unanennoù ar Greizenn Geodedel az aio da em-goata."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
@@ -128,6 +149,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Diuzit ar Greizenn Geodedel ha lakait ar reti war ar wezenn. Klikit-dehou "
+"warni pa ez eo cheñchet ar reti d'un arlun Koad."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -135,6 +158,10 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
+"Roit an urzh d'an tennataerien dioberiant da sevel ur c'hamp-araokaet ouzh "
+"ar biz war harzoù ho tiriad. Hemañ a vo ar pempvet savadur ho po bet savet e"
+" Pazenn ar C'hêriadennoù, ha mod-se e c'hellfec'h mont war-raok betek Pazenn"
+" ar C'hêrioù."
 
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
@@ -142,18 +169,25 @@ msgid ""
 "'II' icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Diuzit ar Greizenn Geodedel adarre ha kit war-raok da Bazenn ar C'hêrioù en "
+"ur glikañ war an arlun \"II\" (ret eo deoc'h gortoz e vefe savet ar c'hamp-"
+"araokaet da gentañ). Aotreet e voc'h da sevel savadurioù Pazenn ar C'hêrioù."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reaffect your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"En ur c'hortoz ar bazenn o tont e c'hallit lakaat ho labourerien dioberiant "
+"da zastum ar mammennoù n'ho peus ket kalz anezho."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Krogit e-barzh stummadur ur strollad keodedourezed er Greizenn Geodedel ha "
+"lakait he Foent-Bodañ war an atant (klikit-dehoù warnañ)."
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
@@ -164,50 +198,69 @@ msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
 msgstr ""
+"Savit ur c'hazarn nepell. Bewech ma tizhit Bevenn ar Boblañs, savit un ti "
+"ouzhpenn en ur implijout an holl saverien dioberiant."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
+"Bezit prest da vezañ taget gant un enebour. Stummit muioc'h a soudarded er "
+"c'hazarnioù, ha lakait soudarded dioberiant da sevel un dourenn Difenn "
+"e-kichen ho kamp-araokaet."
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
 msgstr ""
+"Savit ur c'hovel ha kasit da-benn enklask an deknologiezh Stummadur ar "
+"Soudarded war-droad (arouez ar c'hleze) da wellaat nerzh-tagañ troc'husted "
+"ho soudarded war-droad."
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
 msgstr ""
+"Emañ an enebour o tont. Stummit muioc'h a soudarded d'en em gannañ gant "
+"hoc'h enebourien."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
-msgstr ""
+msgstr "Klaskit bountañ kuit an dagerien."
 
 #: maps/tutorials/Introductory_Tutorial.js:300
 msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"Skoilhet eo bet tagadenn an enebour. Savit ur marc'had hag un templ bremañ "
+"ha lakait unanennoù nevez da zastum ar mammennoù rekiset."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"Ur wech m'ho peus rediennoù Pazenn ar C'hêrioù Bras diuzit ho kreizenn "
+"Geodedel ha kit war-raok da Bazenn ar C'hêrioù Bras."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "barracks."
 msgstr ""
+"En ur c'hortoz ar cheñchamant pazenn e vefe gwelloc'h deoc'h stummañ muioc'h"
+" a soudarded er c'hazarnioù."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Bremañ m'emaoc'h e Pazenn ar C'hêrioù Bras, savit ur c'hreñvlec'h nepell "
+"(dastum un tamm mein da gentañ ma'z eus ezhomm) ha grit gantañ da sevel 2 "
+"Dourz."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -215,14 +268,18 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Harzit pep hini eus ho soudarded a zo o tastum mammennoù ha roit an urzh da "
+"strolladigoù anezho da gavout Kreizenn Sivil an enebour war ar gartenn. Ur "
+"wech kavet diaz an enebour, kasit hoc'h armoù-seziz hag an holl soudarded a "
+"chom da zistrujañ anezhañ.\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
-msgstr "Ar c'heodedourezed a rank kendalc'h da zastum danvezioù."
+msgstr "Ar c'heodedourezed a rank kendalc'h da zastum mammennoù."
 
 #: maps/tutorials/Introductory_Tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
-msgstr ""
+msgstr "Trec'het eo bet an enebour. An tutorial-mañ a zo echu bremañ."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -231,6 +288,11 @@ msgid ""
 " ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to 'Town Phase' and 'City Phase' afterward.\n"
 msgstr ""
+"An tutorial-mañ a gelenno deoc'h diazezoù an diorren evit hoc'h ekonomiezh. "
+"Dre vras, stagañ a rit e-barzh gant ur Greizenn Geodedel hag un nebeud "
+"unanennoù e \"Pazenn ar C'hêriadennoù\". A-barzh fin ar gont, ho pal a vo en"
+" em ziorren ha ledañ hoc'h impalaeriezh en ur dremen dre \"Pazenn ar "
+"C'hêrioù\" ha \"Pazenn ar C'hêrioù Bras\" da-c'houde."
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -238,16 +300,20 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"\n"
+"A-raok kregiñ ganti e c'hellit gwintañ etre ar modoù skramm leun ha prenestr en ur implijout %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Gallout a rit cheñch al live zoum en ur implijout rodellig al logodenn ha "
+"sav-boent ar c'hamera gant pep bir ho klavier.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
-msgstr ""
+msgstr "Azasait prenestr ar c'hoari hervez ho tibaboù.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 #, javascript-format
@@ -255,6 +321,8 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"\n"
+"Gallout a rit gwintañ war diskouez pe kuzhat diskwel an tutorial-mañ forzh pegoulz e vefe en ur implijout %(hotkey)s.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -262,6 +330,8 @@ msgid ""
 "selection ring in the color of your civilization will be displayed after "
 "clicking."
 msgstr ""
+"Da gregiñ ganti, diuzit ho savadur Kreizenn geodedel en ur glikañ warni. Ur "
+"c'helc'h gant liv ho sevenadurezh a vo diskouezet goude bezañ bet kliket."
 
 #: maps/tutorials/starting_economy_walkthrough.js:24
 msgid ""
@@ -273,6 +343,13 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Bremañ mard eo bet diuzet ar Greizenn Geodedel e c'helloc'h merzhout un "
+"daolenn broduiñ o tont war wel en traoñ ho skramm war an tu dehou. Spisaat a"
+" ra an oberoù douget gant ar savadur. En daolenn broduiñ-se n'int ket kuzhet"
+" an oberoù implijadus gant ul liv tra m'emañ livet e c'hris ar re vorailhet "
+"pe e ruz ar re a c'houlenn re a vammennoù diganeoc'h evit bezañ graet. "
+"Ouzhpenn-se e c'hellit lakaat ho reti war forzh peseurt arlun evit diskouez "
+"ul lagadenn ditouriñ gant muioc'h a ditouroù.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -282,6 +359,12 @@ msgid ""
 "that advancing to 'Town Phase' requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"Ar renkennad botonioù a-us a endalc'h skeudennoù an unanennoù hag a c'hall "
+"bezañ stummet er savadur-mañ, e-pad ma vezo en div renkennad dindan "
+"teknologiezhioù a c'houlenno ma vefe kaset enklaskoù da benn. Tremenit ar "
+"reti war an arlun «II». Al lagadenn-ditouriñ a zisplego deomp e vo ret kaout"
+" muioc'h a savadurioù savet, boued ha koad evit mont betek \"Pazenn ar "
+"C'hêrioù\"."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -293,6 +376,15 @@ msgid ""
 "citizen soldiers can gather any land resources while cavalry citizen "
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Er penn-kentañ, daou zoare unanenn ho peus: ar c’heodedourezed hag ar "
+"soudarded-keodedour. Ar c’heodedourezed a zo unanennoù ekonomikel nemetken "
+"gant nebeud a bPB, tamm houarnwisk ebet ha kazi tamm tagusted ebet. Ar "
+"soudarded-keodedour a zo al labourerien dre-ziouer met pa vez ezhomm e "
+"c'hallont implij un arm evit en em gannañ. Daou rummad soudarded-keodedour "
+"ho peus: ar soudarded war droad hag ar re war varc'h. Ar c’heodedourezed hag"
+" ar soudarded-keodedour war droad a c'hall dastum n'eus forzh peseurt "
+"mammenn a vefe war an douar hag ar soudarded-keodedour war varc'h a c'hall "
+"dastum kig - hepken - diwar al loened a c'haller chaseal.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -300,6 +392,8 @@ msgid ""
 "clicking with an entity selected represents an order (gather, build, fight, "
 "etc.).\n"
 msgstr ""
+"Peurvuiañ klikañ-kleiz a dalvez an diuzadenn ha klikañ-dehou pa vez diuzet "
+"un unanenn a dalvez un urzh (dastum, sevel, en em gannañ, hag all...).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
@@ -307,16 +401,21 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"D'ar poent-se eo ar boued hag ar c'hoad ar mammennoù pouezusañ evit diorren "
+"hoc'h ekonomiezh neuze krogomp gant an dastum boued. Ar c'heodedourezed a "
+"zastum boued plantel buanoc'h eget an unanennoù all.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
-msgstr ""
+msgstr "Dre vras ez eus tri doare da ziuzañ an unanennoù:\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:42
 msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
 msgstr ""
+"1) Dalc'hit bouton-kleiz al logodenn gwasket ha riklit anezhi evit tresañ ur"
+" skouergorneg a c'hourizo an unanennoù ho peus c'hoant da ziuzañ.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:43
 msgid ""
@@ -324,6 +423,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Klikit war unan anezho hag ebarzhit unanennoù ouzhpenn d'ho tiuzadenn en "
+"ur zerc'hel Lkd ha klikañ war pep unanenn da ouzhpennañ (pe dre ar "
+"skouergorneg-ziuzañ).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -331,6 +433,9 @@ msgid ""
 "the specified unit in your visible window. Triple-click will select all "
 "units of the same type on the entire map.\n"
 msgstr ""
+"3) Daou-glikit war un unanenn. An dra-se a ziuzo kement unanenn heñvel ouzh "
+"an hini diuzet en ho prenestr gwelus. Tri-c'hlikit evit diuzañ war ar "
+"gartenn a-bezh an holl unanennoù heñvel.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
@@ -339,6 +444,10 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"Gallout a rit klikañ war ul lec'h goullo eus ar gartenn evit nullañ an "
+"diuzadenn. Klaskit an holl hentennoù-mañ a-raok goulenn digant holl ho "
+"keodedourezed mont da zastum rezin e gevred ho kreizenn geodedel en ur "
+"glikañ-dehou war ar rezin pa vo diuzet hoc'h holl geodedourezed ganeoc'h."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -346,17 +455,25 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
 "on the nearest tree."
 msgstr ""
+"Bremañ, deomp da zastum un nebeud Koad gant ho soudarded-keodedour war "
+"droad. Diuzit ho soudarded-keodedour war droad ha lakait anezho da vont da "
+"zastum Koad en ur glikañ-dehou war ar wezenn nesañ."
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"Ar soudarded-keodedour war varc'h a zo chaseourien ampart. Diuzit ho "
+"marc'heger ha lakait anezhañ da vont da chaseal ar yer tro-dro d'ho kreizenn"
+" geodedel er memes doare."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
+"Emañ o tastum mammennoù hoc'h unanennoù en-ho-fezh. Ret e vefe deomp stummañ"
+" muioc'h a dud!\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
@@ -367,23 +484,34 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"Da gentañ, diazezomp ur poent-bodañ. Lakaat ur poent-bodañ war ur savadur a "
+"c'hall stummañ unanennoù a em-roio dezho ul labour d'ober kerkent hag echu o"
+" stummadur. Fellout a ra deomp kas an unanennoù nevez stummet da zastum Koad"
+" war ar gwez e su ho kreizenn geodedel. Evit en ober, ret eo diuzañ ar "
+"Greizenn Geodedel en ur glikañ warnañ ha da c'houde klikañ-dehou war unan "
+"eus ar gwez.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally-Points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"Ar Poentoù-Bodañ a zo diskouezet gant ur banniel bihan e fin al linenn glas."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Diuzit ar Greizenn Geodedel, lakait goude-se ar reti war ur wezenn ha "
+"klikit-dehou warnañ ur wech ma vo cheñchet ar reti en un arlun Koad."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
 "Now that the rally-point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"Bremañ mard eo bet lakaet ar poent-bodañ e c'hallomp stummañ unanennoù "
+"ouzhpenn hag ez eont d'ober o labour d'un doare emgefreek.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -393,19 +521,27 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Ar soudarded-keodedour a zo efedusoc'h evit dastum koad evit ar "
+"c'heodedourezed. Diuzit ar Greizenn Geodedel ha klikit war arlun an eil "
+"unanenn, an hoplited, en ur zerc'hel pouezet ar bouton Lkd (derc'hel ar "
+"bouton Lkd a stumm ur strollad 5 unanenn). Gallout a rit stummañ ivez un "
+"unanenn hepken, en ur glikañ simpl, met stummañ 5 unanenn a-stroll a gemer "
+"nebeutoc'h a amzer evit 5 unanenn en un doare hiniennel."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
+"Arabat deoc'h ankouaat derc'hel ar bouton Lkd gwasket evit stummañ meur a "
+"unanenn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Dalc'hit ar bouton Lkd gwasket ha klikit war arlun an Hoplit."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Gortozomp e vefe stummet an unanennoù.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
@@ -415,6 +551,11 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"En ur c'hortoz, grit ur sell ouzh an daolenn e-krec'h ho skramm. E krec'h "
+"kleiz, e vo gwelet ganeoc'h ho perniadoù mammennoù (Boued, Koad, Mein, "
+"Metal). Evel ma tegas pep labourer ar mammennoù d'ar Greizenn Geodedel (pe "
+"ul lec'h-daspugn all), neuze e c'hellit gwelout kementad ar mammennoù-se o "
+"kreskiñ.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -423,12 +564,18 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Dalc'hit soñj eus ar meizad-mañ, pouezus-kenañ eo : ar mammennoù dastumet a "
+"rank bezañ lakaet en ul lec'h-daspugn evit bezañ kontet. Klaskit berrat an "
+"hent etre ar vammenn hag al lec'h-daspugn nesañ evit gwellaat efedusted ho "
+"tastum."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
 msgstr ""
+"An unanennoù nevez stummet ez aio d'ar gwezennoù da zastum Koad d'un doare "
+"emgefreek.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -440,24 +587,36 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Met ret eo dezho distreiñ d'ar Greizenn Geodedel evit diskargañ, efedusted o"
+" dastum a c'houzañv diwar hirded an hent. Evit talañ ouzh ar gudenn-se e "
+"c'hallomp sevel ul lec'h-daspugn evit ar C'hoad, ar Mein hag ar Metal "
+"e-kichen ar gwez. Evit en ober, diuzit ho 5 soudard-keodedour nevez stummet "
+"ha kit da welout panell ar savadurioù e traoñ dehou ho skramm, klikit war "
+"arlun al lec'h-daspugn, ha fiñvit al logodenn ken tost hag e c'hellit eus ar"
+" gwez a fell deoc'h dastum ha klikit war ul lec'h goullo evit sevel al "
+"lec'h-daspugn.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
-msgstr ""
+msgstr "Al lec'hioù direizh (stanket) a ziskouezo alberzh ar savadur e ruz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"Ar geodedourien a grogo da sevel ar savadur d'un doare emgefreek ur wech ma "
+"vo lakaet e ziazez."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
 "When construction finishes, the builders default to gathering Wood "
 "automatically.\n"
 msgstr ""
+"Ur wech ma vo echuet ar savadur ez aio ar saverien da zastum Koad dre-"
+"zegouezh.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
@@ -465,14 +624,19 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
+"Stummomp un tamm muioc'h a geodedourezed evit dastum boued. Diuzit ar "
+"Greizenn Geodedel, dalc'hit Lkd gwasket ha klikit war arlun ar geodedourez "
+"evit stummañ ur strollad 5 keodedourez."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
+"Arabat deoc'h ankouaat derc'hel Lkd gwasket ha klikit evit stummañ meur a "
+"unanenn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "Dalc'hit Lkd gwasket ha klikit war arlun ar Geodedourez."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -481,10 +645,14 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally-point is crossed out)."
 msgstr ""
+"E-pad ar mare-se, labourerien a-walc'h a seblant dastum koad. Ret e vefe "
+"deomp cheñch poent-bodañ ar Greizenn Geodedel evit en lakaat war an dastum "
+"Boued. Evit en ober, klikit-dehou war ul lec'h gant boued, ur wech m'ho peus"
+" diuzet ar Greizenn Geodedel (ha sparlet e vo arlun banniel ar poent-bodañ)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "An unanennoù a zo prest a-benn nebeud.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
@@ -494,6 +662,10 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"War ar memes tro, sellit ouzh bevenn ar boblañs e-krec'h ho skramm. Ar "
+"bempvet elfenn an hini eo goude ar mammennoù. Mat e vefe deoc'h teurel evezh"
+" outi. Diskouez a ra ho poblañs a-vremañ (gant ar re o vezañ stummet) ha "
+"bevenn ar boblañs a zo evit ar mare, termenet eo gant ho savadurioù savet."
 
 #: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
@@ -501,12 +673,17 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the house.\n"
 msgstr ""
+"Dre m'ho peus kazi tizhet ar vevenn boblañs eo ret deoc'h kreskaat anezhi en"
+" ur sevel savadurioù nevez ma fell deoc'h stummañ muioc'h unanennoù. Ar "
+"savadur efedusañ evit kreskaat ar vevenn boblañs a zo an ti.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
 msgstr ""
+"Bremañ mard eo prest an unanennoù, deomp da welout penaos sevel meur a di "
+"da-heul."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
@@ -521,12 +698,24 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Diuzit div geodedourez nevez stummet ha goulennit ganto mont da sevel an "
+"tiez-se e reter ho Kreizenn Geodedel. Evit en ober, ret eo deoc'h diuzañ ar "
+"c'heodedourezed, klikit war arlun an ti e traoñ dehou ar banell, hag en ur "
+"zerc'hel ar bouton Lkd pouezet, klikit war ul lec'h goullo eus ar gartenn, "
+"el lec'h m'ho peus c'hoant da sevel an ti kentañ, ha klikit war al "
+"lec'hiadur el lec'h ma fell deoc'h sevel an eil ti (pa roit un urzh en ur "
+"bouezañ war Lkd, lakaat a rit an urzh en ur steudad-c'hortoz; an unanennoù a"
+" em-winto d'an urzh da-heul pa vo echuet ganto o urzh kentañ). Pouezit war "
+"ar bouton Achap evit dilemel an arlun ti ha chom hep lakaat tiezh e kement "
+"lec'h dre ar gartenn holl."
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two female citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"Dalc'hit soñj: evit diuzañ 2 geodedourez nemetken, ret eo klikañ war an hini"
+" gentañ ha klikañ war an eil en ur zerc'hel Lkd gwasket."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -534,12 +723,17 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
+"Marteze ho peus merzhet e oa an irinoù ur vammenn boued bevennet. Ezhomm hor"
+" bo da gaout mammennoù boued padusoc'h. Ar parkoù a ginnig ur vammenn voued "
+"didermen koulskoude int goustatoc'h da vezañ dastumet eget ar frouezhioù.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a farmstead."
 msgstr ""
+"Met ivez disteraat an hirded etre ur park hag e lec'h-daspugn e savimp da "
+"gentañ un ti-feurm."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
@@ -547,6 +741,9 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Diuzit an 3 c'heodedourez hag a chom (dioberiant) ha goulennit ganto mont da"
+" sevel un ti-feurm e-kreiz an dachenn vras o skeiñ war-du kornôg ho Kreizenn"
+" Geodedel.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -554,6 +751,9 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Ezhomm hor bo da gaout un dachenn vras-vras e-kichen an ti-feurm evit sevel "
+"ar parkeier. Ouzhpenn-se e c'hallomp gwelout givri war-zu ar c'hornôg evit "
+"gwellaat efedusted hon dastum kenkaz e tibabfemp mont da chaseal anezho.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -564,18 +764,30 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Ma klaskit diuzañ an teir c’heodedourez dioberiant en ur glikañ ha stlejañ "
+"ur skouergornek-diuzañ warno, posupl eo e vefe diuzet ganeoc'h unanennoù "
+"ouzhpenn dre zichañs. Evit ma ne c'hoarvezfe ket, dalc'hit ar bouton I "
+"e-keit ha ma vez diuzet kement unanenn dioberiant hepken. Ha ma tiuzfec'h ur"
+" marc'heg dre zichañs, dalc'hit Ktrl pouezet ha klikit war arlun an unanenn "
+"marc'hegerezh diwar ar banell-ziuzañ e traoñ ar skramm evit skarzhañ ar "
+"marc'heg diwar an diuzadenn a zo er mare-mañ."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Pa vo echu saverezh an ti-feurm, e klasko e saverien boued ent emgefreek, "
+"hag en dro-mañ, ez aint da chaseal ar givri.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"Met ho ti-saverien a glasko war-lerc'h un dra bennaket all da sevel, ha ma "
+"ne gavont netra, e teuint da vezañ dizever. Gortozomp, eta, m'o defe echu "
+"sevel an tiez."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -583,12 +795,17 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Pa vo savet an daou di, diuzañ ho tiv maouez keodedour ha reiñ urzh dezho "
+"sevel ur park an tostañ ar gwellañ ouzh an ti-feurm, a zo ul lec'h-daspun "
+"evit holl seurt boued."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the field is constructed, the builders will automatically start "
 "gathering it.\n"
 msgstr ""
+"Pa vo savet ar park, e krogo ar saverien ent emgefreek dastum se.\n"
+"\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -597,6 +814,12 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"Ar marc'heg a zlefe bezañ lazhet an holl yer bremañ. Diuzit anezhañ ha "
+"ergerzhit ar goread tachenn war-du ar mervent: ul lenn a zo eno, gant un "
+"nebeud kañvaled tro-dro dezhi. Fiñvit ho marc'heg en ur glikañ-dehoù war ar "
+"poent a fell deoc'h mont dezhañ, ha pa vo gwelet un tropellad a gañvaled "
+"ganeoc'h, klikit-dehoù war unan anezho evit stagañ da chaseal evit dastum "
+"boued."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -606,30 +829,39 @@ msgid ""
 "sent by a rally-point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"Ur park a c'hell kaout pemp labourer-douar o labourat ennañ. Evit ouzhpennañ"
+" dastumerien all, diuzit ar Greizenn Geodedel ha diazezit ur poent-bodañ war"
+" ar park en ur glikañ-dehou warnañ. E-keit ha ma ne vo ket savet ar park "
+"c'hoazh, al labourerien nevez kaset gant ur poent-bodañ a sikouro da sevel "
+"anezhañ, ur wech savet e krogint kerkent da labourat e-barzh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
-msgstr ""
+msgstr "Diuzit ar Greizenn Geodedel ha klikit-dehou war ar park."
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Bremañ, klikit teir gwech war arlun ar geodedourez e traoñ dehou evit "
+"stummañ tri labourer-douar ouzhpenn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "Klikit hep pouezañ war Lkd evit stummañ un unanenn nemetken."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Klikit war arlun ar geodedourez."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
 msgstr ""
+"Gallout a rit lakaat kreskiñ feur dastum ho labourerien en ur gas da benn "
+"enklaskoù diwar-benn teknologiezhioù nevez hegerz e savadurioù 'zo.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -639,6 +871,12 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Ar feur labour-douar, da skouer, a c'hall bezañ gwellaet, en ur gas da benn "
+"enklaskoù diwar-benn un deknologiezh hag a c'haller kavout anezhi en un ti-"
+"feurm. Diuzit an ti-feurm ha sellit ouzh e banell broduiñ e traoñ dehou. "
+"Gwelet e vo ganeoc'h un tamm mat a enklaskoù teknologel hegerz. Lakait ar "
+"reti warno evit gwelout o c'houst hag an efedoù ha klikit war an hini a fell"
+" deoc'h kas da benn enklaskoù diwar he fenn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -646,6 +884,10 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the 'Town Phase' icon to see what is still needed.\n"
 msgstr ""
+"Mat e vefe deomp en em brientiñ da dremen da 'Bazenn ar C'hêrioù' a roio an "
+"tu da gaout muioc'h a unanennoù hag a savadurioù. Diuzit ar Greizenn "
+"Geodedel ha lakait ar reti war arlun 'Pazenn ar C'hêrioù' evit gwelout petra"
+" zo rediet da gaout.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -653,6 +895,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build barracks.\n"
 msgstr ""
+"Bremañ hon eus danvezioù a-walc'h, met mankout a ra ur frammadur. Daoust da "
+"vezañ un tutorial armerzhel eo talvoudus koulskoude da vezañ aozet evit "
+"difenn pa zeu un argad bennak, sevel kazarnioù neuze."
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -661,6 +906,10 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Diuzañ pevar soudard ha goulennit diganto sevel kazarnioù: evel a-raok, "
+"stagit en ur ziuzañ ar soudarded, klikit war arlun ar c'hazarnioù er banell "
+"broduiñ ha diazezañ neuze ur fondezon e-lec'h ma fell deoc'h, ha na vo ket "
+"pell ac'hann diouzh ho kreizenn keodedel."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -670,18 +919,28 @@ msgid ""
 " on it (you should see a hammer icon), and then produce two more builders by"
 " clicking on the hoplite icon twice."
 msgstr ""
+"Gortozit eta, betek ma vo savet ar c'hazarnioù. Dre ma 'z eo hirik ar "
+"saverezh-mañ, posupl e vo deoc'h ouzhpennañ daou soudard evit sevel anezho "
+"buanoc'h. Evit en ober neuze, diuzit ho Kreizenn Geodedel ha diazezit ur "
+"poent-bodañ war fondezon ar c'hazarnioù en ur glikañ-dehoù warnañ (dleout a "
+"rafec'h gwelout un arlun morzhol), stummit a-benn neuze daou savour-tiez "
+"muioc'h en ur glikañ war an arlun hoplit div wech."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
 "You should now be able to research 'Town Phase'. Select the Civic Center and"
 " click on the technology icon.\n"
 msgstr ""
+"Dleout a rafec'h bezañ gouest, bremañ, kas da benn an enklask \"Pazenn ar "
+"C'hêrioù\". Diuzañ ar Greizenn Geodedel ha klikañ war an arlun teknologiezh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"Ma vo c'hwitet un nebeud danvezioù c'hoazh ganeoc'h (arlun gant golo ruz), "
+"gortoz betek ma vo dastumet anezho gant ho labourerien."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -690,6 +949,11 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather Stone and the other half to gather Metal.\n"
 msgstr ""
+"Diwezhatoc'h, ezhomm ho po da gaout Maen ha Metal alies evit sevel "
+"savadurioù brasoc'h ha diwar-se stummañ soudarded gwelloc'h. E-se, e-pad ma "
+"voc'h o c'hortoz ma vefe kaset an enklask da benn, kaset e vo ganeoc'h "
+"hanter ho soudarded-keodedour dizever (ar re o deus echuet sevel ar "
+"c'hazarnioù) da zastum Maen hag an hanter all da zastum Metal.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -699,6 +963,12 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"Evit en ober eta, e c'hellemp diuzañ tri soudard-keodedour ha klikit-dehou "
+"war ar mengleuz Maen e kornôg d'ar Greizenn Geodedel (ar reti a-vremañ a "
+"cheñch pa vez dalc'het dirak ar vengleuz Maen e-keit ha ma vo diuzet ho "
+"soudarded). Evelato, ar soudarded-mañ a oa o tastum Koad, gellout a reont "
+"marteze dougen un nebeud koad c'hoazh hag a vo kollet ur wech staget da "
+"zastum un danvez all."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -708,22 +978,32 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"E-se, rankout a rafemp reiñ an urzh dezho da gas o c'hoad er Greizenn "
+"Geodedel war an hent. Evit en ober enta, derc'hel a raimp ar bouton Lkd "
+"pouezet e-pad ma vo kliket an urzhioù e steudad-c'hortoz: diuzañ ho "
+"soudarded, derc'hel ar bouton Lkd ha klikit-dehoù war ar Greizenn Geodedel "
+"evit kas o c'hoad ennañ, hag a-benn neuze derc'hel war ar bouton Lkd ha "
+"klik-dehou war ar vengleuz Maen evit dastum an danvez-mañ.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
 msgstr ""
+"Kas da benn un heuliad urzh heñvel gant peurest ar soudarded hag ar Mengleuz"
+" Metal er c'hornôg."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
 msgstr ""
+"Ez eo dibenn an diskouezadeg. An dra-mañ a zlefe reiñ deoc'h ur soñj mat eus"
+" diazezoù staliadur hoc'h armerzh."
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Un tutorial diazez eo evit ma komañsfec'h da c'hoari da 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
@@ -732,11 +1012,11 @@ msgstr "C'hoarier 1"
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
-msgstr ""
+msgstr "C'hoarier 2"
 
 #: maps/tutorials/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "Tutorial digor"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
@@ -744,7 +1024,10 @@ msgid ""
 "in the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"Ar gartenn-mañ a roio un heñcher diaes evit kregiñ ar c'hoari evit gwir. "
+"Abred er c'hoari eo an dra pouezusañ dastum danvezioù ar buanañ ar gwellañ "
+"evit ma viot gouest da sevel bagadoù a-walc'h diwezhatoc'h."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
-msgstr ""
+msgstr "O kregiñ Diskouezadeg Armerzh"

@@ -5,14 +5,15 @@
 # Translators:
 # Asakura, 2015,2017
 # Kanetaka Suto, 2014-2016
+# karu babu <karubabu@protonmail.com>, 2018
 # llen_llen, 2016
 # red hare <www3@hotmail.co.jp>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:02+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-07-31 06:23+0000\n"
+"Last-Translator: karu babu <karubabu@protonmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "上級クラスに昇進したユニットは+20%の追加の耐久力、移動速度上昇、あらゆるタイプの +1 の追加装甲レベル、+20%の追加の略奪、近接ユニットの+20%の追加攻撃、遠隔ユニットの+4mの射程範囲増加そして治療者の回復範囲と回復速度の上昇効果を得ます。"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -697,7 +698,7 @@ msgstr "秘密の鋼の加工技術によって、剣の刃に特有の美しい
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "全ての剣士と鎚鉾兵の打撃攻撃力が+20%上昇します。"
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -729,7 +730,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "精鋭クラスに昇進したユニットは+20%の追加の耐久力、移動速度上昇、あらゆるタイプの +1 の追加装甲レベル、+20%の追加の略奪、近接ユニットの+20%の追加攻撃、遠隔ユニットの+4mの射程範囲増加そして治療者の回復範囲と回復速度の上昇効果を得ます。 "
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1067,7 +1068,7 @@ msgstr "織機によって、植民地の住民が着るより上質な衣類を
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
-msgstr ""
+msgstr "女性市民の体力が+50%増加します。"
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1163,7 +1164,7 @@ msgstr "女性 対 人口"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr ""
+msgstr "女性市民 対 人口"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1470,7 +1471,7 @@ msgstr "射撃精度の向上"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
-msgstr ""
+msgstr "弩砲の命中精度が向上します。"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1551,7 +1552,7 @@ msgstr "基礎を補強して攻撃に備えます。"
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "防御塔の装甲レベルが2上昇します。"
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1579,7 +1580,7 @@ msgstr "中立地帯の前哨地の寿命が2倍になります。"
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "前哨地の所有減衰が-50%されます。"
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1591,7 +1592,7 @@ msgstr "石落としによって塔の足元の敵への攻撃が可能になり
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "防御塔の最小射程を撤廃します。"
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1603,7 +1604,7 @@ msgstr "矢狭間は火矢の最大射程を伸ばします。"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "防御塔の最大射程を8メートル伸ばします。 "
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1615,7 +1616,7 @@ msgstr "前哨地から見張ることができる見通しが伸びます。"
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "前哨地の視界が+50%増加します。"
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1627,7 +1628,7 @@ msgstr "夜警で警戒を強めます。"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "防御塔へ駐屯することによって放つ矢が1本増えます。"
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -2370,7 +2371,7 @@ msgstr "アテナイの長城"
 msgid ""
 "+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "市民センター、神殿そして奇観の耐久力が+25%増加し必要建築時間が-50%減少します。"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2384,7 +2385,7 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "精鋭ランクの治療者を訓練します。"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
@@ -2423,7 +2424,7 @@ msgstr "インドは戦場において、伝統的な弓術のうまさと、弓
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "弓を持つユニットの射程が+10m延びます。弓兵ユニットの射撃精度が上昇し訓練時間が-20%短縮されますが、耐久力は-20%減少します。"
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName

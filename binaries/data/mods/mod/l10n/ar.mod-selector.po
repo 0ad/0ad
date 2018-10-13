@@ -5,14 +5,15 @@
 # Translators:
 # abdul-rahman sawalmah <abdulrahman1123@gmail.com>, 2015
 # Eslam obeidat <islamobidat92@gmail.com>, 2018
+# ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2018
 # nitro361 <nitro361@gmail.com>, 2015
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014-2016,2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 15:42+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
+"PO-Revision-Date: 2018-05-01 08:57+0000\n"
+"Last-Translator: ibrahim mahfod ghamdi <barho0om_55@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,12 +128,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "فشل تحميل الملف"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "خطأ فالتحميل"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -171,7 +172,7 @@ msgstr ""
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr ""
+msgstr "الغ التحديث"
 
 #: gui/modio/modio.js:248
 #, javascript-format
@@ -180,11 +181,11 @@ msgstr ""
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr ""
+msgstr "جاري التحميل"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr ""
+msgstr "الغ التحميل"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
@@ -233,11 +234,11 @@ msgid ""
 "While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
 "\n"
 "Do you really want to connect?"
-msgstr ""
+msgstr "انت على وشك الاتصال بـmod.io. يوفر لك الموقع الوصول الى اطوار تمت صناعتها من مجتمع اللعبة, ولكن الموقع ليس تحت سيطرة wildfire games . بينما اخذنا الخطوات الازمة لجعل الموقع امن, لا يمكننا ان نضمن ضمان تام انها ليست خطورة امنية.\n\nهل فعلا تريد الاتصال؟ "
 
 #: gui/modmod/modmod.js:312
 msgid "Connect to mod.io?"
-msgstr ""
+msgstr "الاتصال ب Mod.io؟"
 
 #: gui/modmod/modmod.js:313
 msgctxt "mod.io connection message box"
@@ -266,11 +267,11 @@ msgstr "عُد"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
-msgstr ""
+msgstr "حدث القائمة"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr ""
+msgstr "حمل"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -289,7 +290,7 @@ msgstr "لصيقة التّعديل"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
-msgstr ""
+msgstr "حجم الملف"
 
 #: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
 #: gui/modmod/modmod.xml:(heading):128
@@ -314,7 +315,7 @@ msgstr "التّعديلات المفعّلة"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
-msgstr ""
+msgstr "تمكين\\عدم التمكين"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
@@ -326,7 +327,7 @@ msgstr "أنهِ"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr ""
+msgstr "مساعدة"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"

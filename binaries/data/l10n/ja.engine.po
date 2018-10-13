@@ -5,13 +5,14 @@
 # Translators:
 # Asakura, 2018
 # Kanetaka Suto, 2013-2016
+# karu babu <karubabu@protonmail.com>, 2018
 # llen_llen, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 13:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-07-30 05:30+0000\n"
+"Last-Translator: karu babu <karubabu@protonmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,54 +138,54 @@ msgstr "ユーザー名は既に存在します"
 #: ps/ModIo.cpp:244
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "ゲームIDの照会開始中にエラーが発生しました。エラー: %s; %s"
 
 #: ps/ModIo.cpp:274
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "MODの照会開始中にエラーが発生しました。エラー: %s; %s"
 
 #: ps/ModIo.cpp:300
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "MODディレクトリー%sを作成できませんでした。"
 
 #: ps/ModIo.cpp:325
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "MODダウンロードのための一時ファイルを開くことが出来ませんでした。: %s"
 
 #: ps/ModIo.cpp:335
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "ダウンロードの開始に失敗しました。エラー: %s; %s"
 
 #: ps/ModIo.cpp:380
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "非同期ダウンロードに失敗しました。:%s, %s"
 
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "ダウンロードに失敗しました。サーバーレスポンス: %s; %s"
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "ファイルサイズが一致しませんでした。"
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "無効なファイルです。md5ハッシュ値 %sを期待していましたが、実際には%sでした。"
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "最終ハッシュの計算に失敗しました。"
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "署名の検証に失敗しました。"
 
 #: ps/SavedGame.cpp:128
 #, c-format

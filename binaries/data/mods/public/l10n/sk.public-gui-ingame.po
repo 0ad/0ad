@@ -15,7 +15,7 @@
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Patrik Loch <fantofas@gmail.com>, 2014
 # SuroX <peter.surovcik@gmail.com>, 2016
-# Peter Tuharsky <peter.tuharsky@gmail.com>, 2015-2016
+# Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Angen <slavomir.slovenkai@gmail.com>, 2017-2018
 msgid ""
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -38,6 +38,7 @@ msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "Základný dosah: %(range)s meter"
 msgstr[1] "Základný dosah: %(range)s metre"
 msgstr[2] "Základný dosah: %(range)s metrov"
+msgstr[3] "Základný dosah: %(range)s metrov"
 
 #: gui/session/input.js:178
 #, javascript-format
@@ -46,6 +47,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Priemerný bonus dosahu: %(range)s meter"
 msgstr[1] "Priemerný bonus dosahu: %(range)s metre"
 msgstr[2] "Priemerný bonus dosahu: %(range)s metrov"
+msgstr[3] "Priemerný bonus dosahu: %(range)s metrov"
 
 #: gui/session/input.js:689
 msgid "Cannot build wall here!"
@@ -194,6 +196,7 @@ msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Je tu %(inactiveString)s."
 msgstr[1] "Sú tu %(inactiveString)s."
 msgstr[2] "Sú tu %(inactiveString)s."
+msgstr[3] "Sú tu %(inactiveString)s."
 
 #: gui/session/menu.js:897
 msgid "There are no land traders."
@@ -206,6 +209,7 @@ msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s obchodník obchoduje"
 msgstr[1] "%(numberTrading)s obchodníci obchodujú"
 msgstr[2] "%(numberTrading)s obchodníci obchodujú"
+msgstr[3] "%(numberTrading)s obchodníci obchodujú"
 
 #: gui/session/menu.js:915
 #, javascript-format
@@ -214,6 +218,7 @@ msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s je neaktívny"
 msgstr[1] "%(numberOfLandTraders)s sú neaktívni"
 msgstr[2] "%(numberOfLandTraders)s sú neaktívni"
+msgstr[3] "%(numberOfLandTraders)s sú neaktívni"
 
 #: gui/session/menu.js:920
 #, javascript-format
@@ -222,6 +227,7 @@ msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s obchodník je neaktívny"
 msgstr[1] "%(numberOfLandTraders)s obchodníci sú neaktívni"
 msgstr[2] "%(numberOfLandTraders)s obchodníci sú neaktívni"
+msgstr[3] "%(numberOfLandTraders)s obchodníci sú neaktívni"
 
 #: gui/session/menu.js:930
 #, javascript-format
@@ -230,6 +236,7 @@ msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s je nalodený na obchodnej lodi"
 msgstr[1] "%(numberGarrisoned)s sú nalodení na obchodnej lodi"
 msgstr[2] "%(numberGarrisoned)s sú nalodení na obchodnej lodi"
+msgstr[3] "%(numberGarrisoned)s sú nalodení na obchodnej lodi"
 
 #: gui/session/menu.js:935
 #, javascript-format
@@ -242,6 +249,7 @@ msgid_plural ""
 msgstr[0] "%(numberGarrisoned)s obchodník je nalodený na obchodnej lodi"
 msgstr[1] "%(numberGarrisoned)s obchodníci sú nalodení na obchodníckej lodi"
 msgstr[2] "%(numberGarrisoned)s obchodníci sú nalodení na obchodnej lodi"
+msgstr[3] "%(numberGarrisoned)s obchodníci sú nalodení na obchodnej lodi"
 
 #: gui/session/menu.js:963
 msgid "There are no merchant ships."
@@ -254,6 +262,7 @@ msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "%(numberTrading)s obchodná loď obchoduje"
 msgstr[1] "%(numberTrading)s obchodné lode obchodujú"
 msgstr[2] "%(numberTrading)s obchodných lodí obchoduje"
+msgstr[3] "%(numberTrading)s obchodných lodí obchoduje"
 
 #: gui/session/menu.js:980
 #, javascript-format
@@ -262,6 +271,7 @@ msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s obchodná loď je nektívna"
 msgstr[1] "%(numberOfShipTraders)s obchodné lode sú neaktívne"
 msgstr[2] "%(numberOfShipTraders)s obchodných lodí je neaktívnych"
+msgstr[3] "%(numberOfShipTraders)s obchodných lodí je neaktívnych"
 
 #: gui/session/menu.js:985
 #, javascript-format
@@ -270,6 +280,7 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s obchodná loď je nektívna"
 msgstr[1] "%(numberOfShipTraders)s obchodné lode sú neaktívne"
 msgstr[2] "%(numberOfShipTraders)s obchodných lodí je neaktívnych"
+msgstr[3] "%(numberOfShipTraders)s obchodných lodí je neaktívnych"
 
 #: gui/session/menu.js:1206
 msgid "Resume"
@@ -847,6 +858,7 @@ msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s entita triedy %(class)s"
 msgstr[1] "%(number)s entít triedy %(class)s"
 msgstr[2] "%(number)s entít triedy %(class)s"
+msgstr[3] "%(number)s entít triedy %(class)s"
 
 #: gui/session/selection_panels.js:767
 #, javascript-format

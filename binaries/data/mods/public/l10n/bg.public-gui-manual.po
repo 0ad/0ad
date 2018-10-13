@@ -6,13 +6,14 @@
 # Ivailo Monev <xakepa10@gmail.com>, 2014
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
 # Любомир Василев, 2016
+# Nerwitz Panzerfizt, 2018
 # Любомир Василев, 2016-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 07:21+0000\n"
-"Last-Translator: Любомир Василев\n"
+"POT-Creation-Date: 2018-04-11 09:02+0200\n"
+"PO-Revision-Date: 2018-10-13 10:33+0000\n"
+"Last-Translator: Nerwitz Panzerfizt\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,13 +155,13 @@ msgstr "• [font=\"sans-bold-14\"]Случайна карта[font=\"sans-14\"]
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr "• [font=\"sans-bold-14\"]Сценарии[font=\"sans-14\"] — Карта, създадена от дизайнер(и) на карти, с предварително зададени цивилизации"
+msgstr "• [font=\"sans-bold-14\"]Сценарии[font=\"sans-14\"] — Най-обикновена карта, създадена от дизайнер(и) на карти, с предварително зададени цивилизации"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Схватка[font=\"sans-14\"] — Карта, създадена от дизайнер(и) на карти, но при която можете да изберете цивилизациите"
+msgstr "• [font=\"sans-bold-14\"]Схватка[font=\"sans-14\"] — Най-обикновена карта, създадена от дизайнер(и) на карти, при която можете да изберете ръчно цивилизациите"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -233,12 +234,12 @@ msgid ""
 msgstr "Shift + F2: огромна снимка на екрана (6400 х 4800 пиксела във формат .bmp. Местоположението ѝ се показва в горния ляв ъгъл на екрана, след като файлът бъде запазен, както и в конзолата/журналите, ако го изпуснете);"
 
 #: gui/manual/intro.txt:52
-msgid "Alt + S: Switch to the next tab."
-msgstr "Shift + F2: превключване към следващия раздел;"
+msgid "Tab, Alt + S: Switch to the next tab."
+msgstr "Tab, Alt + S: превключва към следващия раздел."
 
 #: gui/manual/intro.txt:53
-msgid "Alt + W: Switch to the previous tab."
-msgstr "Alt + W: превключване към предишния раздел."
+msgid "Shift + Tab, Alt + W: Switch to the previous tab."
+msgstr "Shift + Tab, Alt + W: Превключва към предишния раздел."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -306,13 +307,13 @@ msgstr "Pause: спиране на пауза/продължаване на иг
 
 #: gui/manual/intro.txt:69
 msgid "Delete: Delete currently selected units/buildings"
-msgstr "Delete: изтриване на текущо избраните единици/сгради;"
+msgstr "Delete: премахване/унищожаване на текущо избраните единици/сгради;"
 
 #: gui/manual/intro.txt:70
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr "Shift + Delete: изтриване на текущо избраните единици/сгради без потвърждение;"
+msgstr "Shift + Delete: премахване/унищожаване на текущо избраните единици/сгради без потвърждение;"
 
 #: gui/manual/intro.txt:71
 msgid "/ (ForwardSlash): Select idle fighter"
@@ -417,254 +418,270 @@ msgid "Ctrl + Tab: Toggle summary window."
 msgstr "Ctrl + Tab: превключване на прозореца с обобщението."
 
 #: gui/manual/intro.txt:93
+msgid "Alt + L: Show the multiplayer lobby in a dialog window."
+msgstr "Alt + L: отваря интернет лобито в отделен прозорец."
+
+#: gui/manual/intro.txt:94
 msgid "Ctrl + B: Toggle in-game barter/trade page."
 msgstr "Ctrl + B: превключване на страницата за размени/търговия в играта."
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "Ctrl + P: Toggle in-game tutorial panel."
 msgstr "Ctrl + P: превключване на панела с обучението в играта."
 
 #: gui/manual/intro.txt:96
+msgid "Alt + Shift + T: Toggle structure tree."
+msgstr "Alt + Shift + T: показва/скрива дървото за строеж на сгради."
+
+#: gui/manual/intro.txt:97
+msgid "Alt + Shift + H: Toggle civilization info."
+msgstr "Alt + Shift + H: показва/скрива информация за цивилизацията."
+
+#: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
 msgstr "[font=\"sans-bold-14\"]Специфични действия с мишката"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:100
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
 msgstr "[font=\"sans-14\"]Ctrl + десен бутон на мишката върху сграда: поставяне на гарнизон в сградата;"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:101
 msgid "J + Right Click on building: Repair"
 msgstr "J + десен бутон на мишката върху сграда: поправяне;"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:102
 msgid "P + Right Click: Patrol"
 msgstr "P + десен бутон на мишката: патрулиране"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:103
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
 msgstr "Shift + десен бутон на мишката: добавяне на заповедта за движение/строеж/събиране/т.н. в опашката за извършване след приключване на текущото действие;"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:104
 msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
 msgstr "Alt + десен бутон на мишката: заповядване на една единица от текущо избраните да се придвижи/строи/събира/т.н. Единицата бива премахната от избора. Това може да се използва за бързо разпределяне на различни задачи на избраните единици."
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:105
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
 msgstr "Shift + ляв бутон на мишката при обучаване на единици: добавяне на единиците в партиди (по подразбиране партидите са от по 5, но това може да бъде променено в настройките);"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:106
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
 msgstr "Shift + ляв бутон на мишката или Shift + влачене с ляв бутон над единица на картата: добавяне на единицата към избора;"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:107
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
 msgstr "Ctrl + ляв бутон на мишката или Ctrl + влачене с ляв бутон над единица на картата: премахване на единицата от избора;"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:108
 msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr "Alt + влачене с ляв бутон над единици на картата: избиране само на военните единици;"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:109
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
 msgstr "Alt + Y + влачене с ляв бутон над единици на картата: избиране само на невоенните единици;"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:110
 msgid "I + Left Drag over units on map: Only select idle units"
 msgstr "I + влачене с ляв бутон над единици на картата: избиране само на бездействащите единици;"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:111
 msgid "O + Left Drag over units on map: Only select wounded units"
 msgstr "O + влачене с ляв бутон над единици на картата: избиране само на ранените единици;"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:112
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr "Ctrl + ляв бутон на мишката върху иконка на единица или група от много избрани единици: премахване от избора;"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:113
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
 msgstr "Десен бутон на мишката при вече избрана сграда/сгради: поставяне на сборна точка за пуснатите от гарнизон/създадените единици от тази сграда;"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:114
 msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + десен бутон на мишката при вече избрани единици:"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:115
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "    — Ако показалецът е над собствена или съюзническа сграда: поставяне в гарнизон;"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:116
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
 msgstr "    — Ако показалецът е върху не-съюзническа единица или сграда: нападение (вместо пленяване или събиране);"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:117
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "    — Иначе: придвижване с цел нападение (по подразбиране всички вражески единици и сгради по пътя ще бъдат нападнати; използвайте Ctrl + Q + десен бутон на мишката, ако искате само единиците да бъдат нападани)."
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Слоеве"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G: скриване/показване на потребителския интерфейс;"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:121
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D: включване/изключване на слоя за разработчици (с настройките за разработчици);"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:122
 msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "Alt + Shift + W: превключва в режим „решетка“ (натиснете веднъж за наслагване на решетките върху моделите с текстура; два пъти, за да се виждат само решетките, оцветени от текстурите; и три пъти за връщане към нормалния режим);"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:123
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
 msgstr "Alt + Shift + S: включване/изключване на силуетите (може да подобри малко производителността);"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:124
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z: включване/изключване на небето;"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:125
+msgid "Alt + X: Toggle diplomacy colors"
+msgstr "Alt + X: показва/скрива цветовете на дипломация"
+
+#: gui/manual/intro.txt:126
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
 msgstr "Alt + C: превключване на показването на обхвата на атака на избраните защитни сгради;"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:127
 msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
 msgstr "Alt + V: превключване на показването на обхвата на аурите на избраните единици и сгради;"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:128
 msgid "Alt + B: Toggle heal range visualizations of selected units"
 msgstr "Alt + B: превключване на показването на обхвата на лечение на избраните единици."
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Управление на камерата"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:131
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W или стрелка нагоре: придвижване на екрана нагоре;"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:132
 msgid "S or \\[down]: Pan screen down"
 msgstr "S или стрелка надолу: придвижване на екрана надолу;"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:133
 msgid "A or \\[left]: Pan screen left"
 msgstr "A или стрелка наляво: придвижване на екрана наляво;"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:134
 msgid "D or \\[right]: Pan screen right"
 msgstr "D или стрелка надясно: придвижване на екрана надясно;"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:135
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + (W или стрелка нагоре): завъртане на погледа нагоре;"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:136
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + (S или стрелка надолу): завъртане на погледа надолу;"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:137
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + (A или стрелка наляво): завъртане на погледа по часовниковата стрелка;"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:138
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + (D или стрелка надясно): Завъртане на погледа обратно на часовниковата стрелка;"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: завъртане на погледа по часовниковата стрелка около терена;"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:140
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E: завъртане на погледа обратно на часовниковата стрелка около терена;"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + колелото на мишката нагоре: завъртане на погледа по часовниковата стрелка;"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:142
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + колелото на мишката надолу: завъртане на погледа обратно на часовниковата стрелка;"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:143
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
 msgstr "F: проследяване на избраната единица (проследяването спира при преместване на камерата);"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:144
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: връщане на погледа към първоначалното му състояние на приближение и завъртане;"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:145
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: приближаване на погледа към терена (задръжте за продължително приближаване);"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-: отдалечаване на погледа от терена (задръжте за продължително отдалечаване);"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:147
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: превключване на решетъчните режими;"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:148
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "Среден бутон на мишката: при задържане, движението на мишката придвижва екрана."
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]При поставяне на сграда"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[: завъртане на сградата 15° обратно на часовниковата стрелка;"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:152
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: завъртане на сградата 15° по часовниковата стрелка;"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:153
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Влачене с ляв бутон: завъртане на сградата с мишката (основата ще бъде поставена при пускане на бутона на мишката)."
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]При зареждане на запазена игра"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:156
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Delete: изтриване на избраната игра, като преди това ще бъдете попитан(а) за потвърждение;"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: без потвърждение при изтриване на игра."
 
@@ -683,10 +700,10 @@ msgstr "Следната информация ще бъде изпращана �
 
 #: gui/manual/userreport.txt:5
 msgid ""
-"• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
-"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
-"from the same user."
-msgstr "• Случаен потребителски идентификатор (съхраняван в „%APPDATA%\\0ad\\config\\user.cfg“ при Уиндоус и „~/.config/0ad/config/user.cfg“ при Юникс), така че да разпознаваме еднаквите доклади от един и същ потребител;"
+"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
+"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
+"reports from the same user."
+msgstr "• Произволен потребителски идентификатор (запазва се в %APPDATA%\\\\0ad\\\\config\\\\user.cfg за оп. система  Windows, ~/.config/0ad/config/user.cfg за Unix базирани компютри), който ни позволява да засичаме многократни оплаквания от дадения потребител."
 
 #: gui/manual/userreport.txt:6
 msgid ""

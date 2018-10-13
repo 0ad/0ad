@@ -8,13 +8,14 @@
 # Janko Bosnjakovic <jankoeve@gmail.com>, 2016
 # Nemanja Mihailovic <nmihailovic96@gmail.com>, 2016
 # MIlosSD <pirisd@gmail.com>, 2014-2015
+# Smarty <kidsmart33@gmail.com>, 2018
 # Tom Azurian <tomtanz@outlook.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 13:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-05-23 11:14+0000\n"
+"Last-Translator: Smarty <kidsmart33@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgstr "Играч већ у игри"
 
 #: lobby/XmppClient.cpp:1065
 msgid "Forbidden"
-msgstr "забрањено"
+msgstr "Забрањено"
 
 #: lobby/XmppClient.cpp:1067
 msgid "Internal server error"
@@ -127,7 +128,7 @@ msgstr "Нема активне конекције"
 
 #: lobby/XmppClient.cpp:1144
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "Ваш налог је успешно регистрован."
 
 #: lobby/XmppClient.cpp:1145
 msgid "Not all necessary information provided"
@@ -170,7 +171,7 @@ msgstr ""
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Преузимање неуспешно. Одговор сервера: %s; %s."
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."

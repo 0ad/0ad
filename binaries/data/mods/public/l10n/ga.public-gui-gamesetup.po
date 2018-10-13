@@ -3,14 +3,17 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Kenny Oxley <coinneachoxley@gmail.com>, 2016
+# Brian Mac Giolla Mhuire <brian@oireas.com>, 2018
+# Cormac O'Brien <cormacm.obrien@gmail.com>, 2018
+# Coinneach Donáll Mac Ocslaigh <coinneachoxley@gmail.com>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
+# Páraic Ó Cualáin, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-04 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-08-22 18:01+0000\n"
+"Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,30 +24,30 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:11
 msgctxt "ai"
 msgid "None"
-msgstr "Ar bith"
+msgstr "Folamh"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "Beidh IS míchumasaithe don imreoir seo."
 
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
 msgid "None"
-msgstr "Ar bith"
+msgstr "Folamh"
 
 #: gui/gamesetup/gamesetup.js:81
 msgctxt "civilization"
 msgid "Random"
-msgstr "Fánach"
+msgstr "Faicsean Fánach"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Roghnaigh aon shibhialtacht go fánach nuair a thosaíonn an cluiche."
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "Níl %(username)s réidh."
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
@@ -52,72 +55,72 @@ msgstr "Táim réidh"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Abair go bhfuil tú réidh."
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "Tá %(username)s réidh!"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
-msgstr ""
+msgstr "Fan i do réidh"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Fan i do réidh fiú nuair atá socruithe an chluiche ag athrú."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
-msgstr "Níl mé réidh!"
+msgstr "Nílim réidh!"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Abair nach bhfuil tú réidh."
 
 #: gui/gamesetup/gamesetup.js:157
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Bhí socruithe an chluiche ag athrú."
 
 #: gui/gamesetup/gamesetup.js:158
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr "Tá %(username)s chuaigh"
+msgstr "Chuaigh %(username)s isteach."
 
 #: gui/gamesetup/gamesetup.js:159
 #, javascript-format
 msgid "%(username)s has left"
-msgstr "Tá %(username)s sendmail"
+msgstr "D'fhág %(username)s."
 
 #: gui/gamesetup/gamesetup.js:160
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "Tá %(username)s ciceáilte"
 
 #: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "Tá %(username)s cuireadh toirmeasc"
+msgstr "Tá cosc curtha ar %(username)s."
 
 #: gui/gamesetup/gamesetup.js:162
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:163
 #, javascript-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:173
 msgctxt "map filter"
 msgid "Default"
-msgstr ""
+msgstr "Réamhshocrú"
 
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Na léarscáileanna ar fad ach amháin léarscáileanna cabhlaigh agus taispeántacha."
 
 #: gui/gamesetup/gamesetup.js:180
 msgid "Naval Maps"
@@ -126,34 +129,34 @@ msgstr "Léarscáileanna Cabhlaigh"
 #: gui/gamesetup/gamesetup.js:181
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Téastaíonn longa uait do naimhde a fháil sa léarscáileanna seo."
 
 #: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
-msgstr "Léarscáileanna Taispeántas"
+msgstr "Léarscáileanna Taispeántacha"
 
 #: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Ní féidir leis na léarscáileanna seo a imirt, agus tá siad ina dtaispeántas amháin."
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
-msgstr ""
+msgstr "Léarscáileanna Nua"
 
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Tá na léarscáileanna seo ina n-úrnua."
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
-msgstr "Léarscáileanna Truicir"
+msgstr "Léarscáileanna Cúiseanna"
 
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Tá eachtraí scripteacha ag na léarscáileanna seo agus féadfaidh siad slua namhad."
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
@@ -162,12 +165,12 @@ msgstr "Léarscáileanna Uile"
 #: gui/gamesetup/gamesetup.js:205
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Gach aon léarscáil don chineál atá roghnaithe."
 
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Léarscáil"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
@@ -177,308 +180,308 @@ msgstr "Imreoir"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Cineál Cluiche"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
-msgstr ""
+msgstr "Cineál Léarscáile"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
-msgstr ""
+msgstr "Roghnaigh cineál léarscáile"
 
 #: gui/gamesetup/gamesetup.js:499
 msgid "Map Filter"
-msgstr ""
+msgstr "Scagaire Léarscáile"
 
 #: gui/gamesetup/gamesetup.js:500
 msgid "Select a map filter."
-msgstr ""
+msgstr "Roghnaigh scagaire léarscáile."
 
 #: gui/gamesetup/gamesetup.js:515
 msgid "Select Map"
-msgstr ""
+msgstr "Roghnaigh Léarscáil"
 
 #: gui/gamesetup/gamesetup.js:516
 msgid "Select a map to play on."
-msgstr ""
+msgstr "Roghnaigh léarscáil do do chluiche."
 
 #: gui/gamesetup/gamesetup.js:530
 msgid "Map Size"
-msgstr ""
+msgstr "Méid Léarscáile"
 
 #: gui/gamesetup/gamesetup.js:531
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Roghnaigh méid léarscáile. (Is féidir le méideanna móra feidhmíocht a laghdú)"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Biome"
-msgstr ""
+msgstr "Bithóm"
 
 #: gui/gamesetup/gamesetup.js:546
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Roghnagh flóra is fána."
 
 #: gui/gamesetup/gamesetup.js:561
 msgid "Number of Players"
-msgstr ""
+msgstr "Uimhir na nImreoirí"
 
 #: gui/gamesetup/gamesetup.js:562
 msgid "Select number of players."
-msgstr ""
+msgstr "Roghnaigh uimhir na n-imreoirí."
 
 #: gui/gamesetup/gamesetup.js:582
 msgid "Population Cap"
-msgstr ""
+msgstr "Uasdhaonra"
 
 #: gui/gamesetup/gamesetup.js:589
 msgid "Select population limit."
-msgstr ""
+msgstr "Roghnaigh an t-uasdhaonra."
 
 #: gui/gamesetup/gamesetup.js:592
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Fógra: is féidir le deacrachtaí feidhmíochta a fháil má tá gach %(players)s imreoir ina n-uasdhaonra %(popCap)s."
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
-msgstr ""
+msgstr "Acmhainní ar dTús"
 
 #: gui/gamesetup/gamesetup.js:613
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Tús-mhéid do gach acmhainn: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:616
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "Roghnaigh acmhainní do thús an chluiche."
 
 #: gui/gamesetup/gamesetup.js:631
 msgid "Ceasefire"
-msgstr ""
+msgstr "Sos Cogaidh"
 
 #: gui/gamesetup/gamesetup.js:632
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Roghnaigh amanna nuair ní fhéidir leis na n-imreoirí aon ionsaí a dhéanamh."
 
 #: gui/gamesetup/gamesetup.js:645
 msgid "Relic Count"
-msgstr ""
+msgstr "Méid Iarsmaí"
 
 #: gui/gamesetup/gamesetup.js:646
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "An mhéid iomlán iarsmaí atá crúthaithe ar an léarscáil. Tá Bua Iarsma is réalaíche nuair atá ach aon nó dó iarsma. Nuair atá níos mó ná uimhir sin, tá móthuithe na n-iarsmaí níos tábhachtaí ag na himreoirí."
 
 #: gui/gamesetup/gamesetup.js:660
 msgid "Relic Duration"
-msgstr ""
+msgstr "Achar Iarmsaí"
 
 #: gui/gamesetup/gamesetup.js:661
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Nóiméid atá fágtha go dtí buaillfidh an t-imreoir seo leis an mBua Iarsma."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Achar Iontas"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Nóiméid atá fágtha go dtí buaillfidh an t-imreoir seo leis an mBua Iontais."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
-msgstr ""
+msgstr "Luas Cluiche"
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Select game speed."
-msgstr ""
+msgstr "Roghnaigh luas an chluiche."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
-msgstr ""
+msgstr "Deacracht"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Roghnaigh deacracht an cháis seo."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "Roghnaigh an sibhialtacht don imreoir seo."
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Laochra sa gharastúin?"
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "Scoránaigh nuair an fhéidir le laochra a chur i ngarastún."
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
-msgstr ""
+msgstr "Fánaí"
 
 #: gui/gamesetup/gamesetup.js:853
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "Sa mhodh an Fhánaí, thosaigh na himreoirí le cúpla aonaid amháin agus teastaíonn a gcathracha féin orthu a lonnú in aon áit. Moltar sos an chogaidh."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:866
 msgid "Revealed Map"
-msgstr ""
+msgstr "Léarscáil Léirithe"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:869
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Scoránaigh an léarscáil léirithe (gach rud sofheicthe)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:885
 msgid "Explored Map"
-msgstr ""
+msgstr "Léarscáil Taiscéalta"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:888
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Scoránagh an léascáil taiscéalta (tus-léarscáil sofheicthe)."
 
 #: gui/gamesetup/gamesetup.js:899
 msgid "Disable Treasures"
-msgstr ""
+msgstr "Díchumasaigh Taiscí"
 
 #: gui/gamesetup/gamesetup.js:900
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Díchumasaigh gach taisce ar an léarscáil."
 
 #: gui/gamesetup/gamesetup.js:911
 msgid "Disable Spies"
-msgstr ""
+msgstr "Díchumasaigh Brathadóir"
 
 #: gui/gamesetup/gamesetup.js:912
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Díchumasaigh brathadóirí ar long an chluiche."
 
 #: gui/gamesetup/gamesetup.js:923
 msgid "Teams Locked"
-msgstr ""
+msgstr "Foirne Glasáilte"
 
 #: gui/gamesetup/gamesetup.js:924
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "Scóranaigh na foirne faoi ghlas."
 
 #: gui/gamesetup/gamesetup.js:938
 msgid "Last Man Standing"
-msgstr ""
+msgstr "An tAon Fhear Fánacht"
 
 #: gui/gamesetup/gamesetup.js:939
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Scoránaigh cé acu a bhuann an t-imreoir deireanach nó an comhaontas deireanach."
 
 #: gui/gamesetup/gamesetup.js:952
 msgid "Cheats"
-msgstr ""
+msgstr "Aicearraí"
 
 #: gui/gamesetup/gamesetup.js:953
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "Socránaigh so-úsáid na n-aicearraí."
 
 #: gui/gamesetup/gamesetup.js:966
 msgid "Rated Game"
-msgstr ""
+msgstr "Cluiche Rátála"
 
 #: gui/gamesetup/gamesetup.js:967
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Scoránaigh má tá an cluiche seo rátála ar an gclár ceann riain."
 
 #: gui/gamesetup/gamesetup.js:1000
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr ""
+msgstr "Brúigh %(hotkey)s agus ainm imreoirí nó socruithe a fhéinlíonadh."
 
 #: gui/gamesetup/gamesetup.js:1008
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Fill go dtí an forhalla."
 
 #: gui/gamesetup/gamesetup.js:1009
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Fill go dtí an príomhroghchlár."
 
 #: gui/gamesetup/gamesetup.js:1013
 msgid "Start Game!"
-msgstr ""
+msgstr "Tosaigh Cluiche!"
 
 #: gui/gamesetup/gamesetup.js:1019
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "Tosaigh cluiche nua leis na socruithe reatha seo."
 
 #: gui/gamesetup/gamesetup.js:1020
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "Tosaigh cluiche nua leis na socruithe reatha seo (díchumasaigh go dtí fánann na himreoirí iomlán ina réidh)"
 
 #: gui/gamesetup/gamesetup.js:1083
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Cumraigh IS: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1132
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Féach ar stair / Crann Tógála\nBeidh rud réamhoscailte ina oscailt arís ar clic."
 
 #: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Scoránaigh táb na socruithe %(name)s."
 
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Úsáid %(hotkey)s do tháb socruithe a bhog síos."
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Úsáid %(hotkey)s do tháb socruithe a bhog suas."
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
 msgid "Random"
-msgstr "Fánach"
+msgstr "Léarscáil Fánach"
 
 #: gui/gamesetup/gamesetup.js:1710
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Roghnaigh aon léarscáil sa chlár seo."
 
 #: gui/gamesetup/gamesetup.js:1742
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Bithóm Fánach"
 
 #: gui/gamesetup/gamesetup.js:1743
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Roghnaigh aon bhithóm go fánach."
 
 #: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2073
 msgctxt "settings value"
@@ -496,17 +499,17 @@ msgstr "Ní hea"
 #: gui/gamesetup/gamesetup.js:2110
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2196
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:2401
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "HS: %(ai)s"
+msgstr "IS: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:2409
 msgid "Unassigned"
@@ -533,33 +536,33 @@ msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:2533
 msgid "HH:mm"
-msgstr ""
+msgstr "UU:nn"
 
 #: gui/loading/loading.js:48
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr "“%(map)s” Lódáil"
+msgstr "Tá “%(map)s” ag lódáil"
 
 #: gui/loading/loading.js:52
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr "“%(map)s” Ghiniúint"
+msgstr "Tá “%(map)s” ag giniúint"
 
 #: gui/aiconfig/aiconfig.xml:(caption):14
 msgid "AI Configuration"
-msgstr "HS Chumraíocht"
+msgstr "Cumraíocht IS"
 
 #: gui/aiconfig/aiconfig.xml:(caption):19
 msgid "AI Player:"
-msgstr "Imreoir HS:"
+msgstr "Imreoir IS:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):28
 msgid "AI Difficulty:"
-msgstr "Deacracht HS:"
+msgstr "Deacracht IS:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Iompar IS:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -567,11 +570,11 @@ msgstr "Cealaigh"
 
 #: gui/aiconfig/aiconfig.xml:(caption):52
 msgid "OK"
-msgstr "Ceart go leor"
+msgstr "Ceart"
 
 #: gui/gamesetup/gamesetup.xml:(caption):24
 msgid "Match Setup"
-msgstr "Thus Cluiche"
+msgstr "Cumraíocht Cluiche"
 
 #: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading"
@@ -579,11 +582,11 @@ msgstr "Lódáil"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Tá sonraí na léarscáile ag lódáil. Fán le do thoil..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
-msgstr "Imreoir Ainm"
+msgstr "Ainm Imreoir"
 
 #: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Color"
@@ -591,7 +594,7 @@ msgstr "Dath"
 
 #: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Player Placement"
-msgstr "Socrúchán Imreoir"
+msgstr "Socrúchán Imreora"
 
 #: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Civilization"
@@ -603,7 +606,7 @@ msgstr "Foireann"
 
 #: gui/gamesetup/gamesetup.xml:(caption):147
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Taispeáin an fógra seo sa todhchaí."
 
 #: gui/gamesetup/gamesetup.xml:(caption):236
 msgid "Send"
@@ -611,159 +614,159 @@ msgstr "Seol"
 
 #: gui/gamesetup/gamesetup.xml:(caption):253
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Aicearraí cumasaithe."
 
 #: gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Back"
-msgstr "Ais"
+msgstr "Ar Ais"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "Athshocraigh aon shibhialtacht atá roghnaithe go dtí an réamhshocrú (fánach)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):103
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Athshocraigh gach uile foireann go dtí an réamhshocrú."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):114
 msgid "Pick a color."
-msgstr ""
+msgstr "Roghnaigh dath."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):117
 msgid "Select player."
-msgstr ""
+msgstr "Roghnaigh imreoir."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Configure AI settings."
-msgstr ""
+msgstr "Cumraigh socruithe IS."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):130
 msgid "Select player's civilization."
-msgstr ""
+msgstr "Roghnaigh sibhialtacht an imreora."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):134
 msgid "Select player's team."
-msgstr ""
+msgstr "Roghnaigh foireann an imreora."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Taispeáin an ilforhalla i bhfuinneog dialóige."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Bhunaigh Séus \\[…] a dhlí: téann an eagna as an bhfulaingt. \\[…] Mar seo, foghlaimíonn daoine measarthacht a chleachtadh,   i gcoinne a n-uacht. \\[…] Tá an grásta sin chomh dian agus chomh foiréigneach.\" - Aescealas (\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr ""
+msgstr "\"Thug sí \\[Héilin] léi a spré go hIlium: urbhaidh.\" - Aescealas (\"Oresteia\", I. 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr ""
+msgstr "\"Tá an nimh seo ina cónaí i ngach croí tíoránaigh, agus as seo eascróidh a ndrochrath; ní féidir leis muinín a thabhairt ar a chara.\" - Aescealas (\"Proiméitéas Ceangailte\", 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr ""
+msgstr "\"Múineann an t-am gach rud i ndeireadh na dála.\" - Aescealas (\"Proiméitéas Ceangailte\", 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr ""
+msgstr "\"Tá a rúndaigne uaidh a bheith an duine is fearr, agus ná bí ag ligean ardchéimíocht air féin.\" - Aescealas (\"Seachtar in Aghaidh na Téibhe\", 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr ""
+msgstr "\"Is droch-ualach é amadán saibhir.\" - Aescealas (píosa 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "\"Cabhraíonn na déithe iad a chabraíonn saidsan féin\" - Aosop (\"Earcail agus an Féanóir\")"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr ""
+msgstr "\"Is tíosach é a ullmhú inniu le haghaidh na mianta amárach.\" - Aosop (\"An Seangán agus an Dorsán\")"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr ""
+msgstr "\"Tagann láidreacht as chomaontas\" - Aosop (\"Beart na gCipíní\")"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr ""
+msgstr "\"Ní chuir muinín riamh i bhfear a bí i measc a dheacrachtaí féin.\" - Aosop (\"An Sionnach agus an Gabhar\")"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr ""
+msgstr "\"is searbh gach gnáth, méadaíonn an taithí an tarcaisne.\" - Aosop (\"An Sionnach agus an Leon\")"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr ""
+msgstr "\"D'fhéadfhadh féin-sotal a bheith mar thoradh ar féin-mhalairt.\" - Aosop (\"An Frog agus an Damh\")"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr ""
+msgstr "\"Bíonn an bua ag an té atá mall agus réidh\" - Aesop (\"An Giorra agus an Tortóige\") "
 
 #: gui/text/quotes.txt:14
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr ""
+msgstr "\"Is fearr a bheith críonna trí na tubaistí daoine eile ná trí do thubaistí féin.\" - Aesop (\"An Leon, an Asal, agus an Sionnach ag Seilg\")"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr ""
+msgstr "\"Níl i ngealltanais naimhde ach gealltanais bhriste.\" - Aosop (\"An tAltra agus an Faol\")"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr ""
+msgstr "\"Is leor aon leithscéal don tíoránach\" - Aosop (\"An Mac Tíre agus an tUan\")"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaos"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "\"Má rinne mé ach aon rud uasal amháin, bí mo dhóthain leachta cuimhneacháin agam; mura dhéanaim aon rud ar bith, ní féidr leis na dealbha uilig sa domhan mo chuimhne a chaomhnú.\" - Aegeasalas II na Sparta (Plútarc, \"Moralia: Ceachtanna\", XVI. \"Nathanna na Spartach\", 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr ""
+msgstr "\"Ní fhiafraíonn na Spartaigh cén uimhir, fiafraíonn siad amháin cá bhfuil na naimhde.\" Aegeas II na Spartach (Plútarc, \"Moralia: Ceachtanna\", XVI. \"Nathanna na Spartach\", 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr ""
+msgstr "\"Ná caoin dom, fiú mar a fhulaingím go héagórach, mar táim níos sásta ná mo dhúnmharfóirí.\" - Aegeas IV na Sparta agus iad a fheic ar deora a bhásadóra (Plútarc, \"Saolta Comhthreomhara\", \"Aegeas\", cu. 20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr ""
+msgstr "\"Codlaím agus gnéasaithním agus mar sin tá fhios agam go bhfuilim so-mharaithe.\" - Alastar Mór (Plútarc, \"Saolta Comhthreormhara\", \"Alastar\", cu. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -771,7 +774,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "\"Tá sé an-ghéiliúil a bheith i do shaibhreas, ach an-ríogach d'oibre a dhéanamh. \\[…] Nach bhfuil d'fhios agat go n-aimseoimid an concas do na duáilcí is éagruais na cloítheoirí a sheachaint?\" - Alastar Mór (Plútarc, \"Saolta Comhthreormhara\", \"Alastar\", cu. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -779,7 +782,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.\" - Alexander the Great, addressing his troops "
 "(Arrian, \"The Anabasis of Alexander\", 5.26)"
-msgstr ""
+msgstr "\"Is oirirc iad gníomhartha na ndaoine cé go bhfuil oibreachas orthu agus cé hiad a ritheann ar imeall an bhaoil; agus is galánta é saol lán le laochas a mhaireachtáil, agus d'fhág iomrá neamhbhásmhar i do dhiaidh.\" - Alastar Mór, ag labhairt lena shaighdiúirí (Airrián, \"An tAnabáisis Alastair\", 5.26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -787,7 +790,7 @@ msgid ""
 "labours themselves, provided they lead to glorious achievements.\" - "
 "Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
 "Alexander\", 5.26)"
-msgstr ""
+msgstr "\"Mé ar cheann, le fir cróga ceapaim go bhfuil torthaí ar bith d'oibreacha ach na hoibreacha iad féin, ar a choinníoll go díríonn siad go héachtaí iomráiteacha.\" - Alastar Mór, ag labhairt lena shaighdiúirí (Airrián, \"An tAnabáisis Alastair\", 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -795,26 +798,26 @@ msgid ""
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the "
 "Great\", 332a-b)"
-msgstr ""
+msgstr "\"Mura nach bhfuilim Alastar, más mhaith liom a bheith Dióigeineas \\[na Síonóipe].\" - Alastar Mór, atá tógtha le simplíocht an fhealsaimh a bhuail sé leis (Plútarc, \"Moralia: Ceachtanna\", XXII. \"Ar na Fortúin Alastair Mhóir\", 332a-b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
 "\"To the strongest!\" - Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, \"The Anabasis of Alexander\", 7.26)"
-msgstr ""
+msgstr "\"Don dhuine is láidre!\" - Alastar Mór, ina otharluí éaga, nuair a fhiafraigh air cé a bheith mar chomharba ar rí aige (Airrián, \"An tAnabáisis Alastair\", 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr ""
+msgstr "\"Ní ghoidim aon bhua.\" - Alastar Mór, nuair a mholadh air do ruathar na hoíche a dhéanamh ar na Peirsigh (Plútarc, \"Saolta Comhthreomhara\", \"Alastar\", cu. 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"Written laws are like spiders' webs; they will catch, it is true, the weak"
 " and poor, but will be torn in pieces by the rich and powerful.\" - "
 "Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
-msgstr ""
+msgstr "\"Tá dlíthe scríofa cosúil le gréasáin dhamhán alla; béarfaidh siad ar na daoine laga is bochta, ach beidh sé scriosta in aghaidh na ndaoine saibhre is cumhachtacha.\" - Anachairseas (Plútarc, \"Saolta Comhthreormhara\", \"Solon\", cu. 5)"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -822,79 +825,79 @@ msgid ""
 " covetously.\" - Anacharsis, a Scythian philosopher who travelled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr ""
+msgstr "\"Is áit bunaithe é an t-agora, ina bhfuil daoine ag déanamh séitéireacht trína chéile, agus ina bhfuil siad ag iompar go hamplach.\" - Anacharsas, fealsamh Scaíteach a thaistil as a thír dhúchais go dtí an nGréig (Dióigeineas Laertiús, \"Saolta is Tuairimí na bhFealsúna Oirirc\", Anacharsas, cu. 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""
 "\"It was not by taking care of the fields, but of ourselves, that we "
 "acquired those fields.\" - Anaxandridas II of Sparta (Plutarch, \"Moralia\","
 " XVI. \"Sayings of Spartans\", 217a)"
-msgstr ""
+msgstr "\"Ní fuairimid na góirt seo trí thabhair aire orthu ach trí thabhair aire orainn féin.\" - Anaxandraodas II na Sparta (Plútarc, \"Moralia: Ceachtanna\", XVI. \"Nathanna na Spartach\", 217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes (Diogenes Laertius, \"The Lives and Opinions of Eminent "
 "Philosophers\", Antisthenes, sec. 5)"
-msgstr ""
+msgstr "\"Is scriosadh iad stáit nuair nach bhfuil siad ábalta idir fir maithe agus droch-fhir a aithint.\" - Aintístéineas (Dióigeineas Laertiús, \"Saolta is Tuairimí na bhFealsúna Oirirc\", Aintístéineas, cu. 5)"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus "
 "(fragment 201)"
-msgstr ""
+msgstr "\"Tá fhios ag an sionnach ar a lán cleas; teastaíonn an gráinneog ach aon chleas amháin.\" - Aircíleocas (píosa 201)"
 
 #: gui/text/quotes.txt:32
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever (Diodorus Siculus, \"The Library of History\", "
 "fragments of book XXVI, sec. 18)"
-msgstr ""
+msgstr "\"Tabhair dom áit a sheasamh, agus bogfaidh mé an domhan.\" - Airciméideas, faoina úsáid don luamhán (Díódorus Saeciúlas, \"Leabharlann na Staire\", píosaí den leabhar XXVI, cu. 18)"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes (\"Birds\")"
-msgstr ""
+msgstr "\"Foghlaimíonn cathracha ceachtanna as a naimhde, níl as a gcairde, do bhallaí arda agus longa cogaidh a dhéanamh.\" - Áiristióphanaes (\"Éin\")"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.\" - Aristotle (\"Nicomachean "
 "Ethics\", I. 1096a.11)"
-msgstr ""
+msgstr "\"Is éigeantach é, go háirithe le fealsamh, dár naisc is gaire fiú a íobairt don fhírinne a chosaint.\" - Arastotail (\"Eitic Níceomacasach\", I. 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Happiness depends on leisure; for we are busy to have leisure, and make "
 "war to live in peace.\" - Aristotle (\"Nicomachean Ethics\", X. 1177b.4)"
-msgstr ""
+msgstr "\"Téastaíonn am saor ar an stonas; cé go gcruthaímid d'am saor a dhéanamh, agus déanaimid cogadh a bheidh sa tsíocháin.\" - Arastotail (\"Eitic Níceomacasach\", X. 1177b.4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
 "\"Man is by nature a political animal.\" - Aristotle (\"Politics\", I. "
 "1253a.2)"
-msgstr ""
+msgstr "\"Is ainmhí polaitiúil é duine go nádúrtha.\" - Arastotail (\"Polaitíocht\", I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle (\"Politics, V. 1311a.11)"
-msgstr ""
+msgstr "\"Tá mímhuinín ag olagarc agus tíoránach araon as an bpobal, agus mar sin ceilíonn siad a n-airm díobh.\" - Arastotail (\"Polaitíocht, V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle (Diogenes Laertius, \"The"
 " Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
-msgstr ""
+msgstr "\"Fuair mé é seo trí fhealsúnacht: sin a dhéanfaidh mé gan a bheith faoi cheannas cad a dhéanfaidh daoine eile ach amháin as eagla an dlí.\" - Arastotail (Dióigeineas Laertiús, \"Saolta is Tuairimí na bhFealsúna Oirirc\", Arastotail, cu. 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.\" - Aristotle (Stobaeus, "
 "\"Florilegium\", 223)"
-msgstr ""
+msgstr "\"Áirím é níos cróga cé go bhfuil a chuid fonn sáraithe aige ná a naimhde cloíte aige, mar tá sé níos deacra túsa féin a shárú.\" - Arastotail (Stóbaíus, \"Florilegium: Bailiú Blátha\", 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -905,7 +908,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "\"Alastar é féin, fiú mar a bhí tart mór aige, trí phian mór agus deacracht, threoraigh sé an t-arm ar chos mar sin féin \\[…]. Ag an am seo, chuardaigh dream saighdiúra \\[…] ar roinnt uisce \\[…], dhoirt siad an t-uisce isteach i gclogad agus rug siad é chuige. Thóg Alastar é, agus mhol sé ar na saighdiúirí a thug é, agus dhoirt sé é amach ar an talamh do gach saighdiúir a fheiceáil.\" - Airrián faoin mháirseáil Alastair tríd an fhásach Géadrósaigh (\"An tAnabáisis Alastair\", 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -916,21 +919,21 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "\"A ghá a shá aige san aghaidh Mítriodatais, chaith sé \\[Alastar] é ar an dtalamh. Ansin, bhuail Róiseac \\[saighdiúir Peirseach] \\[…] é ar a cheann lena chlaíomh. \\[…] Theilg Alastar é ar an dtalamh freisin, agus chuir sé poll trína lúireach isteach ina chliabhrach. Chuir Spaítriodatas \\[saighdiúir Peirseach eile] a chlaíomh féin in airde chéana féin i gcoinne Alastair nuair a ghearr Cléatus \\[…] a lámh as dá chúl.\" - Airrián faoi Chath na Gráinice (\"An tAnabáisis Alastair\", 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or retreat out of cowardice.\""
 " - Aspasia (Plato, \"Menexenus\", 246b)"
-msgstr ""
+msgstr "\"Lig do gach duine a sliochtaigh a chur i gcuimhne go bhfuil saighdiúirí iontu chomh maith, agus nach mór dóibh a gcuid ranganna a fhás, nó nach mór dóibh cúlú a dhéanamh trí chlaidhreacht.\" - Aspáise (Platón, \"Menexéineas\", 246b)"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"Quintilius Varus, give me back my legions!\" - Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "\"Divus Augustus\", sec. 23)"
-msgstr ""
+msgstr "\"Tabhair dom mo léigiúin ar ais, a Chuintilius Fárus!\" - Ágastas, tar éis na cailliúna do thrí léigiún i gChath na Foraise Teotobuirge (Suatóinius, \"Divus Augustus: Ágastas Diaga\", cu. 23)"
 
 #: gui/text/quotes.txt:44
 msgid ""
@@ -938,7 +941,7 @@ msgid ""
 "raised an army with which I liberated the state, which was oppressed by the "
 "tyranny of a faction.\" - Augustus, in his autobiography (\"Res Gestae Divi "
 "Augusti\", sec. 1)"
-msgstr ""
+msgstr "\"Nuair a bhí mé i mo naoú haois déag, ar mo thionscaíocht féin agus as mo phóca féin, bhailigh mé arm lena shaor mé an stát as tíoránach faicsin.\" - Ágastas, ina dhírbheathaisnéis féin (\"Res Gestae Divi Augusti: Beathghníomhartha Ágastais Dhiaga \", cu. 1)"
 
 #: gui/text/quotes.txt:45
 msgid ""
@@ -947,28 +950,28 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.\" - Augustus, in his autobiography (\"Res Gestae "
 "Divi Augusti\", sec. 3)"
-msgstr ""
+msgstr "\"Throid mé cogaí, cathartha agus iasachta araon, ar fúd an domhain, ar a talún agus ina mara, agus nuair a bhí mé buacach, spáráil mé gach saoránach a mhian leis mo shíocháin. De na tíortha coimhthíocha, iad siúd a d'fhéadfadh a thugadh pardún dóibh go sábháilte, is fearr liom iad a shábháil in áit iad a scriosadh.\" - Ágastas, ina dhíbheathaisnéis féin (\"Res Gestae Divi Augusti: Beathghníomhartha Ágastais Dhiaga\", cu. 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene (Diogenes"
 " Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
-msgstr ""
+msgstr "\"Roghnaigh do bhealach le breithniú cúramach; ach nuair atá sé roghnaithe, lean ar aghaidh leis gan míchinnte.\" - Baías na Priéne (Dióigeineas Laertiús, \"Saolta is Tuairimí na bhFealsúna Oirirc\", Baías, cu. 5)"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes (Cicero, \"Tusculan"
 " Disputations\", III. 26)"
-msgstr ""
+msgstr "\"Chomh amádach a bhí sé nuair a stróic an rí a ghruaig amach as brón, más leigheas é maoile do bhrón.\" - Bíón Bóiristéineach (Cicearó, \"Díospóireachtaí Tuscúlacha\", III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, \"The Lives "
 "and Opinions of Eminent Philosophers\", Bion, sec. 50)"
-msgstr ""
+msgstr "\"Ní fuair sé saibhreas aige; d'fhuair an saibhreas air.\" - Bíón Bóiristéineach, nuair a threoraíonn sé ar sprionlóir saibhre (Dióigeineas Laertiús, \"Saolta is Tuairimí na bhFealsúna Oirirc\", Bíón, cu. 50)"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -978,50 +981,50 @@ msgid ""
 " gold, but not without using false weights and adding the weight of his "
 "sword on the scale when the Romans complained (Polybius, \"Histories\", II. "
 "18)"
-msgstr ""
+msgstr "\"Léan ar na cloíte!\" - Brannas, tiarna Gallach a ghabháil ar Róimh (ach garastún amháin ar Cnoc Caipeatólach). Nuair a tháinig Camaollus as Vaías agus chuir sé na Gallaigh faoi léagar, shocraigh Brannas a aistarraingt féin do 1000 punt óir, ach d'úsáid sé bréagthromáin ar a scála, agus chuir sé lena chlaíomh nuair a rinne na Rómhánaigh gearán air (Polaíbius, \"Startha\", II. 18)"
 
 #: gui/text/quotes.txt:50
 msgid ""
 "\"Robbery, slaughter, plunder, they \\[the Romans] deceivingly name empire; "
 "they make a wasteland and call it peace.\" - Calgacus, Caledonian chieftain "
 "in a speech before the Battle of Mons Graupius (Tacitus, \"Agricola\", 30)"
-msgstr ""
+msgstr "\"Tugann siad \\[na Rómhánaigh] impireacht go cluanach ar a ngadaíochtaí, a n-oidheanna, agus a gcreacha; déanann siad fásach agus tugann siad síocháin air.\" - Calgachas, taoiseach Caladónach ag labhair lena shaighdiúirí roimh Catha na Sléibhte Móna (Tacaíotas, \"Agraíocola\", 30)"
 
 #: gui/text/quotes.txt:51
 msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
-msgstr ""
+msgstr "\"Cuir le gadaí do ghadaí a ghabháil.\" - Callaíomachas (\"Eipeagraim\", 44)"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder (Plutarch, \"Moralia\", III. \"Sayings of Romans\", "
 "198e)"
-msgstr ""
+msgstr "\"Rialaíonn an cine daonna uile ar a mná, agus rialaímid ar an gcine daonna uile, ach rialaíonn ár mná orainn.\" - Cató Aosta (Plútarc, \"Moralia: Ceachtanna\", III. \"Nathanna na Rómhánach\", 198e)"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder "
 "(Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198f)"
-msgstr ""
+msgstr "\"Is an rialtóir is measa é nach féidir leis é féin a rialú.\" - Cató Aosta (Plútarc, \"Moralia: Ceachtanna\", III. \"Nathanna na Rómhánach\", 198f)"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr ""
+msgstr "\"Foghlaimíonn na saineolaithe níos mó ó amadáin ná hamadáin ó na saineolaithe.\" - Cató Aosta (Plútarc, \"Saolta Comhthreormhara\", \"Cató Aosta\", cu. 9)"
 
 #: gui/text/quotes.txt:55
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 27)"
-msgstr ""
+msgstr "\"Chomh maith leis sin, créidim gurb chóir an Chartaig a scriosadh.\" - Cató Aosta, cé a chríoch a óráid uile leis an bhfrása seo go déanach ina shaol (Plútarc, \"Saolta Comhthreormhara\", \"Cató Aosta\", cu. 27)"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
-msgstr ""
+msgstr "\"Más bhríomhar é aon rí, beidh a ghéillsinigh bríomhara iad féin.\" - Tiánacaía (\"Arthaśāstra: Staidéir na Polaitíochta\", I. \"Faoin Disciplín\", caibidil 19)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -1029,14 +1032,14 @@ msgid ""
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya (\"Arthashastra\", "
 "I. \"Concerning Discipline\", chapter 4)"
-msgstr ""
+msgstr "\"Cibé duine a fhorchuireann réabadh dian ar na daoine, éiríonn sé déistineach do na daoine seo; cibé duine a bhronnann réabadh lag orthu, éiríonn sé suarach. Ach cibé duine a fhorchuireann réabadh mar thuillte, éiríonn sé oiriúnach.\" - Tiánacaía (\"Arthaśāstra: Staidéir na Polaitíochta\", I. \"Faoin Disciplín\", caibidil 4)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, \"Moralia\", XI. \"On the Malice of Herodotus\", 870e)"
-msgstr ""
+msgstr "\"Níor loiceamar agus thugamar ár mbéithe ar son Gréige nuair a bhí a cinniúint crochta ar imeall rásúir.\" - Feartlaoi Corantache ar son na ndaoine a thit sna Cogaidh Pheirseacha (Plútarc, \"Moralia: Ceachtanna\", XI. \"Faoin Drochrún Héaradatais\", 870e)"
 
 #: gui/text/quotes.txt:59
 msgid ""
@@ -1045,21 +1048,21 @@ msgid ""
 "It was impossible for the weak or cowardly to retreat; man to man they "
 "fought like in single combat.\" - Curtius Rufus about the Battle of Issos "
 "(\"Histories of Alexander the Great\", III. 11.5)"
-msgstr ""
+msgstr "\"Ansin, chuir fuil i ndáiríre nuair a bhí an dá rang in aice láimhe le chéile, sciath le sciath, agus chuir siad a gclaíomh i ngach aghaidh eile. Bhí sé dodhéanta don lag nó na cladhairí a chúlú; throid siad i gceann le chéile.\" - Cúirtius Rúfus faoi Chath Iosais (\"Startha Alastair Mhóir\", III. 11.5)"
 
 #: gui/text/quotes.txt:60
 msgid ""
 "\"I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.\" - Cyrus the Great's "
 "epitaph (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 69)"
-msgstr ""
+msgstr "\"Táim Cúrúis, bhuaigh mé do na Peirsigh a n-impireacht. Mar sin, ná maígh orm an píosa talún seo do mo chnámha a chlúdú.\" - feartlaoi Cúrús Mhóir (Plútarc, \"Saolta Comhthreormhara\", \"Alastar\", cu. 69)"
 
 #: gui/text/quotes.txt:61
 msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "\"Táim Dairiús, an rí ollmhór, ard-rí na ríthe, rí na Peirse, rí na tíortha eile, \\[…] 23 tíortha san iomlán.\" - Dairiús I. (inscribhinn Béiheastáine, colún I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1069,36 +1072,36 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Gabhadh Fráórtas agus tugadh é romham. Scoith mé a shrón, a chluasa, agus a theanga, agus bhain mé aon tsúil as. Coinníodh sé i slabhraí sa tslí isteach mo pháláis, agus chonaic na daoine uile air. Chéas mé é in Eacbatana: agus do na fir a bhí mar na comhghuaillithe is mó lé rá leis \\[…] d'fheann mé iad agus chroch mé a gcraicne amach, agus chuir mé tuí iontu.\" - Dairiús I. (inscribhinn Béiheastáine, colún II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
 "\"By desiring little, a poor man makes himself rich.\" - Democritus "
 "(fragment)"
-msgstr ""
+msgstr "\"Déanann fear bocht a shaibhreas féin trí bheagchán a shantú.\" - Déamoicreatas (píosa)"
 
 #: gui/text/quotes.txt:64
 msgid "\"It is hard to be governed by one's inferior.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"Is deacair é a bheith faoi rialú duine shuaraigh.\" - Déamoicreatas (píosa)"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"Physical strength is only noble in cattle, it is strength of character "
 "that is noble in men.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"Is uasal é láidreacht fhisiciúil ach in eallach amháin, is uasal é an láidreacht carachtair i ndaoine.\" - Déamoicreatas (píosa)"
 
 #: gui/text/quotes.txt:66
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes, in one of his many speeches against the rising "
 "Phillip II of Macedon (\"Olynthiac II\", 10)"
-msgstr ""
+msgstr "\"Ní féidir le cumacht mharthanach a bhunú ar éagóir, mionnú éithigh, agus feall.\" - Déamoistéanas, i gceann dá chuid óráide i gcoinne Pilib II na Macadóine (\"Olynthiac II: Faoi Óilíontas II\", 10)"
 
 #: gui/text/quotes.txt:67
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, \"De Oratore\", 3.213)"
-msgstr ""
+msgstr "\"Seachadadh, seachadadh, seachadadh.\" - Déamoistéanas, nuair a fhiafraigh air cad a bheith an trí ghné is tabháchtaí sa roscaireacht (Cicearó, \"De Oratore: Den Óráidí\", 3.213)"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -1107,7 +1110,7 @@ msgid ""
 "the sound, and that second roar was louder than the Macedonian war cry as "
 "five hundred thousand men shouted with one voice.\" - Diodorus Siculus about"
 " the Battle of Issos (\"The Library of History\", XVII., sec. 33)"
-msgstr ""
+msgstr "\"Ar dtús, d'ardaigh na Macadónaigh a nglór i mbéic ollmhór agus d'fhreagair na Peirsigh iad féin, ionas gur raibh a nglórtha ar fúd láithreach catha, agus mhacallaigh an fhuaim ar na cnoic in aice láimhe, agus bhí an dara bhéic níos airde ná rosc catha de chuid na Macadóine mar bhéic cúig chéad míle shaighdiúirí i nglór amháin.\" - Díódoras Saeciúlas faoi Chath Iosais (\"Leabharlann na Staire\", XVII., cu. 33)"
 
 #: gui/text/quotes.txt:69
 msgid ""
@@ -1117,7 +1120,7 @@ msgid ""
 "him, he suffered many wounds on the front of his body.\" - Diodorus Siculus,"
 " on a brave Spartan at the Battle of Pylos (\"The Library of History\", "
 "XXII., sec. 62)"
-msgstr ""
+msgstr "\"Throid Brasadas, a bhí ina sheasamh ar an stangairt, le cuid ollmhór na nAithneach a bhí ina aghaidh. Agus, ar dtús, mharaigh sé gach aon a bhualadh leis, ach i rith ama, d'fhulaing sé faoi baráiste saighead ina aghaidh.\" - Díódoras Saeciúlas, ar Spartach cróga sa Chath Phaíolais (\"Leabharlann na Staire\", XXII., cu. 62)"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -1126,88 +1129,88 @@ msgid ""
 "lecture-room with the words: Here is Plato's man. In consequence of which "
 "there was added to the definition: having broad nails.\" - Diogenes Laertius"
 " (\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 40)"
-msgstr ""
+msgstr "\"Bhí fear sainmhínithe ag Platón mar ainmhí, déchosach agus beag-chleite, agus bhí gártha molta ar a shainmhiniú seo. Phioc Dióigeineas \\[na Sainióipe] éan agus thug sé an t-éan seo sa léachtlann agus dúirt sé na focail seo: Feic anseo ar fear Platóin. Mar thoradh ar seo chuir le focail eile ar an sainmhíniú: le tairní leathana orthu.\" - Dióigeineas Laertiús (\"Saolta is Tuairimí na bhFealsúna Oirirc\", \"Dióigeineas\", cu. 40)"
 
 #: gui/text/quotes.txt:71
 msgid ""
 "\"I am a citizen of the world.\" - Diogenes of Sinope (Diogenes Laertius, "
 "\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 63)"
-msgstr ""
+msgstr "\"Is saoránach an domhain mé.\" - Dióigeineas na Sainióipe (Dióigeineas Laertiús, \"Saolta is Tuairimí na bhFealsúna Oirirc\", \"Dióigeineas\", cu. 63)"
 
 #: gui/text/quotes.txt:72
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope (Stobaeus, \"Florilegium\", 51)"
-msgstr ""
+msgstr "\"Nach bhfuil mé as mo mheabhair mar sin, is é sin ach amháin go mbeith mo cheann difriúil do do cheannsa.\" - Dióigeineas na Sainióipe (Stobaíus, \"Florilegium: Bailliú Blátha\", 51)"
 
 #: gui/text/quotes.txt:73
 msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "\"Parallel Lives\", \"Alexander\", sec. 14)"
-msgstr ""
+msgstr "\"S' ea, seas go beagán as mo sholas.\" - Dióigeineas na Sainióipe le hAlastar Mór, cé a fhiafraigh air ar fhéidir leis aon rud a dhéanamh dó (Plútarc, \"Saolta Comhthreormhara\", \"Alastar\", cu. 14)"
 
 #: gui/text/quotes.txt:74
 msgid ""
 "\"The victor is not victorious if the vanquished does not consider himself "
 "so.\" - Ennius (\"Annales\", fragment 31.493)"
-msgstr ""
+msgstr "\"Níl an buaiteoir ina bhua mura smaoinaíonn an lucht maidhme iad féin mar sin.\" - Éinnias (\"Annales: Annálaí\", píosa 31.493)"
 
 #: gui/text/quotes.txt:75
 msgid ""
 "\"Stranger, go tell the Spartans that we lie here, obedient to their laws.\""
 " - Epitaph at Thermopylae for Leonidas and his men (Herodotus, \"The "
 "Histories\", VII. 228)"
-msgstr ""
+msgstr "\"A strainséir, téigh in iúl do na Spartaigh go luímid anseo, umhal faoina ndlíthe.\" - Feartlaoi i dTearmápalae ar son Leoiníadais agus a fhir (Héaradatas, \"Na Startha\", VII. 228)"
 
 #: gui/text/quotes.txt:76
 msgid ""
 "\"A coward turns away, but a brave man's choice is danger.\" - Euripides "
 "(\"Iphigenia in Tauris\")"
-msgstr ""
+msgstr "\"Casann cladhaire uaidh, ach roghnaíonn fear cróga baol.\" - Eoroipéideas (\"Ifigéinia i measc na Tauraigh\")"
 
 #: gui/text/quotes.txt:77
 msgid ""
 "\"Brave men are made bolder by ordeals, but cowards achieve nothing.\" - "
 "Euripides (\"Iphigenia in Tauris\")"
-msgstr ""
+msgstr "\"Déantar fir chróga níos dána trí huafáis, ach ní féidir le cladhairí aon rud a dhéanamh.\" - Eoiripéideas (\"Ifigéinia i measc na Tauraigh\")"
 
 #: gui/text/quotes.txt:78
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides (\"Meleager\")"
-msgstr ""
+msgstr "\"Níl aon smacht ag cladhairí i gcath; tá siad ansin, ach níl siad sa chath ar bith.\" - Eoroipéideas (\"Maeléigir\")"
 
 #: gui/text/quotes.txt:79
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
-msgstr ""
+msgstr "\"Troideann an tÁdh i gcónaí ar taobh na críonna de.\" - Eoiripéideas (\"Peireatas\")"
 
 #: gui/text/quotes.txt:80
 msgid ""
 "\"Return with your shield, or on it.\" - Farewell of Spartan women to their "
 "warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, \"Moralia\", XVIII. \"Sayings of Spartan Women\", 241f)"
-msgstr ""
+msgstr "\"Fill le do sciath, nó air.\" - Slán na mban Spartach lena ngascígh, ag chiallú gur chaith cladhairí a sciatha amach nuair a éalaíonn siad as an gcath (Plútarc, \"Moralia: Ceachtanna\", XVIII. \"Nathanna na mBan Spartach\", 241f)"
 
 #: gui/text/quotes.txt:81
 msgid ""
 "\"I came, I saw, I conquered.\" - Gaius Julius Caesar, after routing "
 "Pharnaces II of Pontus in the first assault (Plutarch, \"Parallel Lives\", "
 "\"Caesar\", sec. 50)"
-msgstr ""
+msgstr "\"Tháinig mé, chonaic mé, chloígh mé.\" - Caius Iúilius Caesar, tar éis sléachta Farnacas II na Pontaise ina phríomh-ionsaí (Plútarc, \"Saolta Comhthreormhara\", \"Caesar\", cu. 50)"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Men willingly believe what they wish.\" - Gaius Julius Caesar (\"De Bello "
 "Gallico\", III. 18)"
-msgstr ""
+msgstr "\"Creideann daoine go fonnmhar cad is mian leo .\" - Caius Iúilius Caesar (\"De Bello Gallico: Cuntas ar Chogadh na nGallach\", III. 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar (Plutarch, \"Parallel Lives\", \"Antony\","
 " sec. 11)"
-msgstr ""
+msgstr "\"Níl eagla orm as na fir dea-choithithe seo, ach as iad a bhfuil ocras orthu agus a bhfuil bán ina n-aghaidh.\" - Caius Iúilius Caesar (Plútarc, \"Saolta Comhthreormhara\", \"Antaine\", cu. 11)"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1216,7 +1219,7 @@ msgid ""
 "back; and, when they were put to flight, the archers were surrounded and cut"
 " to pieces.\" - Gaius Julius Caesar about the Battle of Alesia (\"De Bello "
 "Gallico\", VII. 80)"
-msgstr ""
+msgstr "\"Tar éis a bhí ag troid do mheán lae go luí na gréine, agus gan aon bhua ag teacht, ruathar na Gearmáinigh in éagar dlúth ar aon taobh a naimhde, agus iad a chur ar gcúl; agus, nuair a chúlaigh siad, théigh na Gearmáinigh i mórthimpeall na saighdeoirí agus mharaigh siad orthu.\" - Caius Iúilius Caesar, faoin Chath Alaoise (\"De Bello Gallico: Cuntas ar Chogadh na nGallach\", VII. 80)"
 
 #: gui/text/quotes.txt:85
 msgid ""
@@ -1227,7 +1230,7 @@ msgid ""
 "exhausted by many and severe wounds, that he was already unable to support "
 "himself.\" - Gaius Julius Caesar about the Battle of the Sabis (\"De Bello "
 "Gallico\", II. 25)"
-msgstr ""
+msgstr "\"Maraíodh na ceantúirí uile den cheathrú cohórt, agus maraíodh an meirgire, agus an meirge é fein caillte, beagnach gach ceantúir na gcohóirt eile maraithe nó gonta agus Púiblias Saectias Bacalas ina measc, fear an-chróga air, a bhí ina phríomh-cheantúir sa léigiún, agus bhí sé an-traochta le cneácha diana go leor air, agus bhí sé gan a thuilleadh in ann éisean féin a thacú.\" - Caius Iúilius Caesar faoin Chath ar an tSabas (\"De Bello Gallico: Cuntas ar Chogadh na nGallach\", II. 25)"
 
 #: gui/text/quotes.txt:86
 msgid ""
@@ -1237,39 +1240,39 @@ msgid ""
 "while the survivors used the heap as a vantage point for throwing missiles "
 "at our men, or catching our spears and throwing them back.\" - Gaius Julius "
 "Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
-msgstr ""
+msgstr "\"Ach léirigh an namhad \\[…] misneach chomh mór, agus nuair a thit an príomhrang, sheas na fir ar gcúl dóibh suas orthu agus lean siad ar aghaidh troid a dhéanamh os cionn na gcorp; nuair a fhuair na fir seo bás iadsan féin agus d'ardaigh carn na gcorp, d'úsáid na marthanóirí an carn seo dá bhfoghanna a chaitheamh, nó bhreith siad ar ár sleánna agus iad a chaitheamh ar ais.\" - Caius Iúilius Caesar faoin Chath ar an tSabas (\"De Bello Gallico: Cuntas ar Chogadh na nGallach\", II. 27)"
 
 #: gui/text/quotes.txt:87
 msgid ""
 "\"The die is cast.\" - Gaius Julius Caesar, when crossing the Rubicon river "
 "with his legion into Italy, a capital offense that led to his civil war "
 "against Pompey (Suetonius, \"The Lives of the Twelve Caesars\", 32)"
-msgstr ""
+msgstr "\"Chaith mé na díslí.\" - Caius Iúilius Caesar, nuair a chuaigh sé agus a léigiún isteach san Iodál agus trasna an Rúibicióin, bhí cogadh cathartha faoi Phoimpéas mar thoradh ar é seo. (Suatóinius, \"Saolta an Dá Chaesair Dhéag\", 32)"
 
 #: gui/text/quotes.txt:88
 msgid ""
 "\"I'd rather be the first man here than the second man in Rome.\" - Gaius "
 "Julius Caesar, when passing through a barbarian village in the Alps "
 "(Plutarch, \"Parallel Lives\", \"Caesar\", sec. 11)"
-msgstr ""
+msgstr "\"B'fhearr liom a bheith i mo phríomh-fhear anseo in áit a bheith an dara-fhear sa Róimh.\" - Caius Iúilius Caesar, nuair a thug sé trí sráidbhaile barbarach sna hAlpa (Plútarc, \"Saolta Comhthreormhara\", \"Caesar\", cu. 11)"
 
 #: gui/text/quotes.txt:89
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Plutarch,"
 " \"Parallel Lives\", \"Pompey\", sec. 10)"
-msgstr ""
+msgstr "\"Stop le dlíthe a lua, tá airm ina láimh acu!\" - Gnaíús Poimpéas Magnus (Plútarc, \"Saolta Comhthreormhara\", \"Poimpéas\", cu. 10)"
 
 #: gui/text/quotes.txt:90
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi (Hammurabi's Code, sec. 196)"
-msgstr ""
+msgstr "\"Má dhéan duine an tsúil a bhaint as duine eile, beidh a súil féin a bhaint amach freisin.\" - Hammuraibi (Cód Hammuraibi, sec. 196)"
 
 #: gui/text/quotes.txt:91
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca (Polybius, \"Histories\", III. 85)"
-msgstr ""
+msgstr "\"Níor tháinig mé do chogadh a chur ar na hIodálaigh, ach do na hIodálaigh a chuidiú i gcoinne Róimh.\" - Háinibeál Barca (Polaíbius, \"Startha\", III. 85)"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1277,7 +1280,7 @@ msgid ""
 "an old man.\" - Hannibal Barca's last words before his suicide, in exile "
 "with Flaminius pressuring the local ruler to hand him over (Livius, \"Ab "
 "Urbe Condita\", XXXIX. 51)"
-msgstr ""
+msgstr "\"Ligimid anois stop a chur le himní na Rómhánach, iad siúd nach féidir leo ag fanacht ar bás seanduine.\" - caint chinniúnach Háinibeáil Barca roimh a fhéinmharú ina dheoraí, agus le Fláiminius ag brú ar an dtaoiseach áitiúil do é a bhronnadh air (Libhius, \"Ab Urbe Condita: Ó Bhunaidh na Cathrach\", XXXIX. 51)"
 
 #: gui/text/quotes.txt:93
 msgid ""
@@ -1286,58 +1289,58 @@ msgid ""
 "war, with whom at peace, they think it right that they should determine.\" -"
 " Hannibal Barca, addressing his troops (Livius, \"Ab Urbe Condita\", XXI. "
 "44)"
-msgstr ""
+msgstr "\"An tír is mídhaonna agus is díomasaí na tíortha uile, measann siad \\[na Rómhánaigh] go bhfuil an domhan faoina n-úinéireacht agus faoina bhfoinn. Cé leis a bhfuil muid le bheadh i gcogadh, cé leis i rith na síocháine is dóigh leo gur cheart iad a chinneadh.\" - Háinibeál Barca, ag labhair lena shaighdiúirí (Libhius, \"Ab Urbe Condita: Ó Bhunaidh na Cathrach\", XXI. 44)"
 
 #: gui/text/quotes.txt:94
 msgid ""
 "\"You must be brave and discard all hopes of anything but victory or "
 "death.\" - Hannibal Barca, addressing his troops (Livius, \"Ab Urbe "
 "Condita\", XXI. 44)"
-msgstr ""
+msgstr "\"Is gá libh a bheith cróga agus do dhóchais a chaith uaibh ach amháin dóchas an bhua nó an bháis.\" - Háinibeál Barca, ag labhair lena shaighdiúirí (Libhius, \"Ab Urbe Condita: Ó Bhunaidh na Cathrach\", XXI. 44)"
 
 #: gui/text/quotes.txt:95
 msgid ""
 "\"War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.\" - Herakleitos (Hippolytus, \"The "
 "Refutation of all Heresies\", IX. 4)"
-msgstr ""
+msgstr "\"Is oll-rí agus ollathair é an cogadh: rinne sé déithe as a chuid daoine, fear as an roinnt eile; rinne sé a chuid mogh agus a chuid saor.\" - Héireaclatas (Hipeailíteas, \"Séanadh na nEiriceachtaí Uile\", IX. 4)"
 
 #: gui/text/quotes.txt:96
 msgid ""
 "\"You could not step twice into the same river.\" - Herakleitos (Plato, "
 "\"Cratylos\", 402a)"
-msgstr ""
+msgstr "\"Ní féidir leat san abhainn céanna a bualadh faoi dhó.\" - Héireaclatas (Platón, \"Crátaolas\", 402a)"
 
 #: gui/text/quotes.txt:97
 msgid ""
 "\"It is better to be envied than to be pitied.\" - Herodotus (\"The "
 "Histories\", III. 52)"
-msgstr ""
+msgstr "\"Tá sé i bhfad níos fearr le daoine a bheith in éad leat ná trua a bheith ort.\" - Héaradatas (\"Na Startha\", III. 52)"
 
 #: gui/text/quotes.txt:98
 msgid ""
 "\"In soft regions are born soft men.\" - Herodotus (\"The Histories\", IX. "
 "122)"
-msgstr ""
+msgstr "\"Rugadh fir laga i réigiúin laga féin.\" - Héaradatas (\"Na Startha\", IX. 122)"
 
 #: gui/text/quotes.txt:99
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus (\"The Histories\", IX. 16)"
-msgstr ""
+msgstr "\"D'eolas mór a bheith aige ach gan cumacht; is é seo an pian is seirbhe i measc daoine.\" - Héaradatas (\"Na Startha\", IX. 16)"
 
 #: gui/text/quotes.txt:100
 msgid ""
 "\"Although he \\[Xerces] had plenty of troops he had few men.\" - Herodotus "
 "(\"The Histories\", VII. 210)"
-msgstr ""
+msgstr "\"Cé go bhfuil saighdiúirí go leor aige \\[Xerxes], níor a dhóthain fear aige.\" - Héaradatas (\"Na Startha\", VII. 210)"
 
 #: gui/text/quotes.txt:101
 msgid ""
 "\"The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.\" - Herodotus (\"The Histories\", VII. 211)"
-msgstr ""
+msgstr "\"Throid na Lacaedeámónaigh \\[Spartaigh] go galánta sa chath mór seo; rinne siad soiléir go bhfuil siadsan na saineolaithe agus go dtroideann siad faoi thualaigh.\" - Héaradatas (\"Na Startha\", VII. 211)"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -1348,7 +1351,7 @@ msgid ""
 "would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
 " reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr ""
+msgstr "\"Á chur ar an eolas \\[…] go nuair a chaith na barbaraigh a saigheada, chlúdaigh siad ar solas na gréine ina n-uimhir, dúirt sé \\[Daínéceas] \\[…] gur thug a n-aoi \\[…] nuacht an-mhaith chucu, más fhéidir leis na Méidigh an ghrian a chlúdú, bheadh an cogadh ina gcoinne troidte sna scáthanna, agus níl faoin ghrian.\" - Héaradatas, ag cur síos ar Daínéceas, dúradh gurb é an saighdiúir Spartach is cróga ag Tearmápalae (Polaíbius, \"Startha\", VII. 226)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1356,7 +1359,7 @@ msgid ""
 "Thebes] was the same: If he sent an army against the Persians, he would "
 "destroy a great empire.\" - Herodotus, later mentioning that the empire "
 "Kroisos destroyed was his own (\"The Histories\", I. 53)"
-msgstr ""
+msgstr "\"Bhí an dá bhreithiúnas a thabhair do Chroiosas as gach aon an dá oracal \\[Deilfe agus an Téibh] ina chéanna: má sheol sé arm i gcoinne na Peirseach, scriosfadh sé impireacht mhór.\" - Héaradatas, ag trácht níos déanaí go mbeadh an impireacht scriosta an impireacht Chroiosais féin (\"Na Startha\", I. 53)"
 
 #: gui/text/quotes.txt:104
 msgid ""
@@ -1366,7 +1369,7 @@ msgid ""
 "the Athenians!\" - Herodotus, narrating how the Athenian support for the "
 "Ionian revolt caught the wrath of Darius I., the Persian king (\"The "
 "Histories\", V. 105)"
-msgstr ""
+msgstr "\"D'fhiafraigh sé \\[Rí Dairiús] cé a bhí na hAithnigh, agus, nuair a chuir an t-eolas air, scairt sé ar a bhogha, agus chuir sé saighead ar an dtéad, chaith sé amach san spéir é agus dúirt sé leis: Deantas dom, a Shéuis, do mo dhíoltas féin a dhéanamh ar na hAithnigh!\" - Héaradatas, ag insint conas a chur tacaíocht na nAithneach fearg ar Dairiús I, Rí na Peirse, nuair a chabhraigh na hAithnigh le héirí amach na nIónach (\"Na Startha\", V. 105)"
 
 #: gui/text/quotes.txt:105
 msgid ""
@@ -1374,55 +1377,55 @@ msgid ""
 "was spread, three times to repeat to him: Master, remember the Athenians!\" "
 "- Herodotus, narrating how the Athenian support for the Ionian revolt lead "
 "to the Persian Wars (\"The Histories\", V. 105)"
-msgstr ""
+msgstr "\"D'fhiagraigh sé \\[Rí Dairiús] gach lá ar ceann dá chuid searbhóntaí, nuair atá a dhinnéar socraithe, a athlabhair faoi thrí dó: A mháistir, cuimhnigh ar na hAithnigh!\" - Héaradatas, ag insint conas a thósaíonn na hAithnigh ar na Cogaidh Pheirseacha mar thoradh ar a dtacaíocht san éirí amach na nIónach (\"Na Startha\", V. 105)"
 
 #: gui/text/quotes.txt:106
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace (\"Epistles\", epistle I., 156-157)"
-msgstr ""
+msgstr "\"Rinne an Ghréige Chloíte príosúnach dá concaire fiáin agus thug sí a héalaíona léi go dtí an Laidiam tuathúil.\" - Hóraitius (\"Eipistilí\", eipistil I., 156-157)"
 
 #: gui/text/quotes.txt:107
 msgid ""
 "\"Anger is a momentary madness, so control your passion or it will control "
 "you.\" - Horace (\"Epistles\", epistle II., 62)"
-msgstr ""
+msgstr "\"Níl i bhfearg ach seafóid ar feadh nóiméid, mar sin rialaigh ar do dhíograis nó rialfaidh do dhíograis ort.\" - Hóraitius (\"Eipistilí\", eipistil II., 62)"
 
 #: gui/text/quotes.txt:108
 msgid ""
 "\"It is your concern when your neighbour's wall is on fire.\" - Horace "
 "(\"Epistles\", epistle XVIII., 84)"
-msgstr ""
+msgstr "\"Is d'imní freisin nuair atá tine ar ballaí do chomarsan.\" - Hóraitius (\"Eipistilí\", eipistil XVIII., 84)"
 
 #: gui/text/quotes.txt:109
 msgid ""
 "\"It is sweet and honorable to die for one's country.\" - Horace (\"Odes\", "
 "III., ode II., 13)"
-msgstr ""
+msgstr "\"Is deas agus ionraic é ar son do thíre a bhású.\" - Hóraitius (\"Óideanna\", III., óid II., 13)"
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "\"Táim Cúrúis, rí an domhain…\" - Inscríbhinn (Sorcóir Cúrús)"
 
 #: gui/text/quotes.txt:111
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Kroisos, king of Lydia (Herodotus, \"The Histories\", I. 87)"
-msgstr ""
+msgstr "\"Sa tsíocháin cuireann na mic a n-aithreacha sa talamh, ach sa chogadh cuireann na haithreacha a mic sa talamh.\" - Croíosas, Rí na Laíde (Héaradatas, \"Na Startha\", I. 87)"
 
 #: gui/text/quotes.txt:112
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife who "
 "asked what to do if he died, before he left for Thermopylae (Plutarch, "
 "\"Moralia\", XVI. \"Sayings of Spartans\", 225a)"
-msgstr ""
+msgstr "\"Pós fear maith agus beir páistí maithe.\" - Leoiníadas, dá bhean chéile nuair a fhiafríonn sí cad a dhéanann sí má fhuair sé bás, sula bhfág sé go Tearmápalae (Plútarc, \"Moralia: Ceachtanna\", XVI. \"Nathanna na Spartach\", 225a)"
 
 #: gui/text/quotes.txt:113
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms (Plutarch, \"Moralia\", XVI. "
 "\"Sayings of Spartans\", 225c)"
-msgstr ""
+msgstr "\"Teacht agus iad a fháil!\" - Leoiníadas, don theachtaire Peirseach nuair a éiligh sé orthu a n-airm a leagan síos (Plútarc, \"Moralia: Ceachtanna\", XVI. \"Nathanna na Spartach\", 225c)"
 
 #: gui/text/quotes.txt:114
 msgid ""
@@ -1433,7 +1436,7 @@ msgid ""
 "Livius, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (\"Ab Urbe "
 "Condita\", XXII. 51)"
-msgstr ""
+msgstr "\"Aimsíodh roinnt daoine ina luí ag beo fós, a leis agus a dteannáin bhearnaithe, a muineál agus a bpíobán á dtairiscint ag na concairí dá mbeatha a chur deireadh leis. Bhí roinnt eile aimsithe lena n-aghaidh curtha i bpoill sa talamh. Bhí na poill seo cruthaithe acu féin.\" - Libhius, ag insint ar an iarmharta na catha i gCannae, an áit ina fháil Háinibeál an bua is mó ar na Rómhánaigh ar fud a staire (\"Ab Urbe Condita: Ó Bhunaidh na Cathrach\", XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
@@ -1442,62 +1445,62 @@ msgid ""
 "of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr ""
+msgstr "\"Ligeann na mílte ar na mílte Rómhánach ansin \\[…]. Anseo nó ansin, i measc na hoidhe, d'éirigh daoine fuilteacha agus le creachtaí rua orthu ag cur fola faoi sholas na gréine, gearradh síos ag a naimhde.\" - Libhius, ag insint ar iarmharta na catha i gCannae, an áit ina fháil Háinibeál an bua is mó ar na Rómhánaigh ar fúd a staire (\"Ab Urbe Condita: Ó Bhunaidh na Cathrach\", XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
 "\"A city is well-fortified which has a wall of men instead of brick.\" - "
 "Lycurgus of Sparta (Plutarch, \"Parallel Lives\", \"Lycurgus\", sec. 19)"
-msgstr ""
+msgstr "\"Is cathair an-chosanta é a bhfuil balla fear in ionad bríce.\" - Laíocurgas na Sparta (Plútarc, \"Saolta Comhthreormhara\", \"Laíocurgas\", cu. 19)"
 
 #: gui/text/quotes.txt:117
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide after losing a battle against Caesar's "
 "avengers (Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
-msgstr ""
+msgstr "\"Éalú, 's ea, ach an uair seo trí mo láimh ná trí mo chosa.\" - Marcas Iúinus Brútus, roimh a fhéinmharú a dhéanamh tar éis catha caillte i gcoinne díoltasaithe Chaesair (Plútarc, \"Saolta Comhthreormhara\", \"Brútus\", cu. 52)"
 
 #: gui/text/quotes.txt:118
 msgid ""
 "\"O, the times, O, the customs!\" - Marcus Tullius Cicero (\"Against "
 "Catiline\", speech I)"
-msgstr ""
+msgstr "\"Ó, na hamanna, ó, na nósanna!\" - Cicearó (\"In Aghaidh Catailine\", óráid I)"
 
 #: gui/text/quotes.txt:119
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero (\"De Re Publica\", III., 23)"
-msgstr ""
+msgstr "\"Ní déanann an Sárstát cogadh riamh, ach amháin nuair a theastaíonn air a onóir nó a tsábháilteacht a chosaint.\" - Cicearó (\"De Re Publica: Ar an gComhlathas\", III., 23)"
 
 #: gui/text/quotes.txt:120
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero (\"On Duties\", I., 13)"
-msgstr ""
+msgstr "\"Tá príomhaidhm amháin ag gach duine, don fhírinne a lorg agus a fhiosrú.\" - Cicearó (\"Ar Dualgais\", I., 13)"
 
 #: gui/text/quotes.txt:121
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero (\"On Old Age\", sec. 24)"
-msgstr ""
+msgstr "\"Níl aon duine chomh sean go gceapann sé nár féidir blian eile a mhaireachtáil.\" - Cicearó (\"Ar an tSeanaois\", cu. 24)"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero (\"On the Laws\", III., sec. 3)"
-msgstr ""
+msgstr "\"Lig leas an phobail a bheidh an dlí is fearr.\" - Cicearó (\"Faoi na Dlíthe\", III., cu. 3)"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero "
 "(\"Philippics\", Philippica V., sec. 5)"
-msgstr ""
+msgstr "\"Is é airgead gan deireadh mar fhéitheoga an chogaidh.\" - Cicearó (\"Na Filipicí\", Filipic V., cu. 5)"
 
 #: gui/text/quotes.txt:124
 msgid ""
 "\"Laws are silent in time of war.\" - Marcus Tullius Cicero (\"Pro Milone\","
 " IV., sec. 11)"
-msgstr ""
+msgstr "\"Tá dlíthe ciúine i rith na cogaidh.\" - Cicearó (\"Pro Milone: Ar Son Maoló\", IV., cu. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1505,7 +1508,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero, condemning Mark Anthony who had not killed him (yet) "
 "(\"Philippics\", Philippica II, sec. 5)"
-msgstr ""
+msgstr "\"Agus sin, a sheanadóirí, is é seo an rud is cosúil le fabhair dronganna. Staonann siad ón dúnmharú de dhuine; agus ansin maíonn siad go spárálaíonn siad an duine seo!\" - Cicearó, ag déanamh cáin ar Marcas Antaine nach raibh maraíodh dó (fós) (\"Na Filipicí\", Filipic II, cu. 5)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1514,27 +1517,27 @@ msgid ""
 "never rising to show that he was alive until Marcus Agrippa had routed the "
 "enemy.\" - Mark Antony, taunting Augustus who delegated his duties as naval "
 "commander (Suetonius, \"Divus Augustus\", sec. 16)"
-msgstr ""
+msgstr "\"Níor sheas sé fiú dá chabhlach a athbhreithniú nuair a bhí a longa ina n-ionaid chatha chéana féin, ach leag sé siar ar a chúl agus d'fhéach sé suas ar an neamh, agus níor ardaigh sé ach amháin nuair a chloígh Marcas Aigriappa ar an namhad.\" - Marcas Antaine, ag tarcaisniú faoi hÁgastas a tharmligean a chuid dualgais mar cheannasaí cabhlaigh (Suatóinius, \"Divus Augustus: Ágastas Diaga\", cu. 16)"
 
 #: gui/text/quotes.txt:127
 msgid ""
 "\"We live, not as we wish to, but as we can.\" - Menander (\"Lady of "
 "Andros\", fragment 50)"
-msgstr ""
+msgstr "\"Mairimid, nach mar a mhaith linn, ach mar is féidir linn.\" - Meanandar (\"Bantiarna na hAndrais\", píosa 50)"
 
 #: gui/text/quotes.txt:128
 msgid "\"The man who runs may fight again.\" - Menander (\"Monosticha\")"
-msgstr ""
+msgstr "\"Éalaigh inniu agus troid arís amárach.\" - Meanandar (\"Monosticha: Rann Aonair\")"
 
 #: gui/text/quotes.txt:129
 msgid ""
 "\"Whom the Gods love dies young.\" - Menander (\"The Double Deceiver\", "
 "fragment 4)"
-msgstr ""
+msgstr "\"Básaíonn sé ina óige é atá grá na ndéithe aige.\" - Meanandar (\"An Feallaire Faoi Dó\", píosa 4)"
 
 #: gui/text/quotes.txt:130
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
-msgstr ""
+msgstr "\"Tugaim fige ar fige, agus spád ar spád.\" - Meanandar (píosa 545 K)"
 
 #: gui/text/quotes.txt:131
 msgid ""
@@ -1544,7 +1547,7 @@ msgid ""
 "fortune and material advantages, they drove out the invaders and made our "
 "city what it is now.\" - Pericles (Thucydides, \"History of the "
 "Peloponnesian War\", I. 144.3-4)"
-msgstr ""
+msgstr "\"Buaitear an glóir is fearr as na dainséir is mó. Nuair a throid ár n-aithreacha i gcoinne na mPeirseach, ní féidir lena n-acmhainní a chur i gcomparáid linne. I ndáiríre, thug siad gach rud atá acu suas. Ansin, trí chomairle chríonna agus gníomhartha cróga, ná trí dhán agus buntáistí acmhainne, chuir siad ruaig ar na hionróirí agus rinne siad a bhfuil mar chathair againn sa lá atá inniu.\" - Peiricléas (Túicididéas, \"Stair an Chogaidh Phéalopoinéisigh\", I. 144.3-4)"
 
 #: gui/text/quotes.txt:132
 msgid ""
@@ -1553,7 +1556,7 @@ msgid ""
 "all.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 40.2)"
-msgstr ""
+msgstr "\"In ionad ná hamharc a chur ar díospóireacht mar bhac ar an mbealach gníomhaíochta, ceapaimid air mar réamhobair riachtanach roimh aon gníomh ciallmhar ar chor ar bith.\" - Peiricléas ina Óráid Adhlactha do na hAithnigh a fuair bás sa chéad bhlian an chogaidh (Túicididéas, \"Stair an Chogaidh Phéalopoinéisigh\", II. 40.2)"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -1561,14 +1564,14 @@ msgid ""
 "nothing, we think he is good for nothing.\" - Pericles in his Funeral "
 "Oration for Athenians that died in the first year of the war (Thucydides, "
 "\"History of the Peloponnesian War\", II. 40.2)"
-msgstr ""
+msgstr "\"Ní smaoinímid uainn féin go níl a ladar a chur isteach as fear aineolach ar polaitíocht, smaoinímid go níl sé maith le haighaidh rud ar bith.\" - Peiricléas ina Óráid Adhlactha do na hAithnigh a fuair bás sa chéad bhlian an chogaidh (Túicididéas, \"Stair an Chogaidh Phéalopoinéisigh\", II. 40.2)"
 
 #: gui/text/quotes.txt:134
 msgid ""
 "\"Future ages will wonder at us, as the present age wonders at us now.\" - "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
 " the war (Thucydides, \"History of the Peloponnesian War\", II. 41.5)"
-msgstr ""
+msgstr "\"Déanfaidh na glúnta atá le teacht iontas dúinn, mar a dhéanann glúnta an lae atá inniu dúinn anois\" - Peiricléas ina Óráid Adhlactha do na hAithnigh a fuair bás sa chéad bhlian an chogaidh (Túicididéas, \"Stair an Chogaidh Phéalopoinéisigh\", II. 41.5)"
 
 #: gui/text/quotes.txt:135
 msgid ""
@@ -1578,7 +1581,7 @@ msgid ""
 "virtue.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.2)"
-msgstr ""
+msgstr "\"Nuair a thuigeann sibh ar cumhacht na hAithne, créideann go raibh sé ceannaithe le fir cróga a raibh a fhios acu ar a ndualgas, bhí smaoineamh acu ar easonóir sa troid agus, má thit a ngnóthas, b'fhearr leo a saol a íobairt seachas easpa de shuáilce cathartha.\" - Peiricléas ina Óráid Adhlactha do na hAithnigh a fuair bás sa chéad bhlian an chogaidh (Túicididéas, \"Stair an Chogaidh Phéalopoinéisigh\", II. 43.2)"
 
 #: gui/text/quotes.txt:136
 msgid ""
@@ -1587,7 +1590,7 @@ msgid ""
 " that will outlast any monument.\" - Pericles in his Funeral Oration for "
 "Athenians that died in the first year of the war (Thucydides, \"History of "
 "the Peloponnesian War\", II. 43.3)"
-msgstr ""
+msgstr "\"Tá an domhan ar fad mar thuama do laochra, agus cuirtear cuimhne ar a dtairbhí i bhfád óna mbaile nuair a fhógraítear iad ar feartlaoi, i dtaifead neamhscríofa sa mheabhair duine eile, agus bíodh siad ann go deo.\" - Peiricléas ina Óráid Adhlactha do na hAithnigh a fuair bás sa chéad bhlian an chogaidh (Túicididéas, \"Stair an Chogaidh Phéalopoinéisigh\", II. 43.3)"
 
 #: gui/text/quotes.txt:137
 msgid ""
@@ -1595,7 +1598,7 @@ msgid ""
 "courage.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.4)"
-msgstr ""
+msgstr "\"Tuig go mbraith sonas ar saoirse, agus braith saoirse ar misneach.\" - Peiricléas ina Óráid Adhlactha do na hAithnigh a fuair bás sa chéad bhlian an chogaidh (Túicididéas, \"Stair an Chogaidh Phéalopoinéisigh\", II. 43.4)"
 
 #: gui/text/quotes.txt:138
 msgid ""
@@ -1603,14 +1606,14 @@ msgid ""
 "for good or ill.\" - Pericles in his Funeral Oration for Athenians that died"
 " in the first year of the war (Thucydides, \"History of the Peloponnesian "
 "War\", II. 45.2)"
-msgstr ""
+msgstr "\"Tá an t-iomrá is mó de chuid na mban ná a bheadh á labhairt faoi, cé acu go miath nó go holc.\" - Peiricléas ina Óráid Adhlactha do na hAithnigh a fuair bás sa chéad bhlian an chogaidh (Túicididéas, \"Stair an Chogaidh Phéalopoinéisigh\", II. 45.2)"
 
 #: gui/text/quotes.txt:139
 msgid ""
 "\"Wait for the wisest of all counsellors, time.\" - Pericles, a cautious "
 "politician who avoided war (Plutarch, \"Parallel Lives\", \"Pericles\", sec."
 " 18)"
-msgstr ""
+msgstr "\"Fan ar an comhairleor is eagnaí, an t-am.\" - Peiricléas, polaiteoir críonna a fhan amach ó chogadh (Plútarc, \"Saolta Comhthreormhara\", \"Peiricléas\", cu. 18)"
 
 #: gui/text/quotes.txt:140
 msgid ""
@@ -1618,40 +1621,40 @@ msgid ""
 "is certainly dangerous to let it go.\" - Pericles, addressing the Athenian "
 "assembly after a plague had weakened the city (Thucydides, \"History of the "
 "Peloponnesian War\", II. 63.3)"
-msgstr ""
+msgstr "\"Beidh d'impireacht anois mar thíorántacht: b'fhéidir gurb é mícheart é a ghabháil; ach ba é níos contúirtí é a shaoradh.\" - Peiricléas, ag lábhairt do thionól na hAithne tar éis plá a bhí a lagú ar an gcathair (Túicididéas, \"Stair an Chogaidh Phéalopoinéisigh\", II. 63.3)"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man fears its approach in his heart.\" - Pindar (fragment 110)"
-msgstr ""
+msgstr "\"Is aoibhinn é an cogadh dóibh nach bhfuil aon taithí de, ach tá eagla ar an bhfear a bhfuil taithí aige air.\" - Peandar (píosa 110)"
 
 #: gui/text/quotes.txt:142
 msgid ""
 "\"Themistocles robbed his fellow citizens of spear and shield, and degraded "
 "the people of Athens to the rowing-pad and the oar.\" - Plato, no friend of "
 "the Athenian navy (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 3)"
-msgstr ""
+msgstr "\"Ghoid Teimisticléas a shaoránaigh féin agus thóg sé sleá is sciath as a láimhe, agus d'ísligh sé pobal na hAithne agus chuir sé iad sa rámhlong agus chuir sé rámhaí ina láimhe.\" - Platón, cara ar bith de chuid cabhlaigh na hAithne (Plútarc, \"Saolta Comhthreormhara\", \"Teimisticléas\", cu. 3)"
 
 #: gui/text/quotes.txt:143
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus (\"The Swaggering Soldier\", Act III,"
 " scene 1, 146)"
-msgstr ""
+msgstr "\"Níl aon aoi ar bith a bhfuil fáilte roimhe tar éis trí lá.\" - Plautas (\"An Saighdiúir Teanntásach\", Gníomh III, radharc 1, 146)"
 
 #: gui/text/quotes.txt:144
 msgid ""
 "\"You cannot eat your cake and have it too, unless you think your money is "
 "immortal.\" - Plautus (\"Trinummus\", Act II, scene 4, 12)"
-msgstr ""
+msgstr "\"Ní féidir leis do cháca a ith agus é a gabháil freisin, mura ceapann tú go bhfuil airgead gan teorainn agat.\" - Plautas (\"Trinummus: Lá Trí Phunt\", Gníomh II, radharc 4, 12)"
 
 #: gui/text/quotes.txt:145
 msgid ""
 "\"He \\[Alexander] thought nothing invincible for the courageous, and "
 "nothing secure for the cowardly.\" - Plutarch (\"Parallel Lives\", "
 "\"Alexander\", sec. 58)"
-msgstr ""
+msgstr "\"Cheap sé \\[Alastar] go nach bhfuil aon rud dofhaighte ag na misnigh, agus nl aon rud faighte ag na cladhairí.\" - Plútarc (\"Saolta Comhthreormhara\", \"Alastar\", cu. 58)"
 
 #: gui/text/quotes.txt:146
 msgid ""
@@ -1661,7 +1664,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
 "about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
-msgstr ""
+msgstr "\"Chaith aonar \\[…] saighead air le cruinneas agus fórsa den shórt a pholl sé a lúireach agus fuair sé greamaithe ina easnacha. \\[…] Tharraing Alastar agus thit sé ar a ghlúine. \\[…] Faoi dheireadh, mharaigh Alastar ar an mbarbarach. Ach fuair sé créachtaí go leor, agus faoi dheireadh bhain sé taca as balla na cathrach, ach bhí a shúil fós ar a naimhde.\" - Plútarc faoi Fheachtas na Mallach (\"Saolta Comhthreormhara\", \"Alastar\", cu. 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1670,7 +1673,7 @@ msgid ""
 "captured, and he volunteered to pay fifty.\" - Plutarch, who mentions later "
 "that Caesar got his money back and had his captors crucified (\"Parallel "
 "Lives\", \"Caesar\", sec. 2)"
-msgstr ""
+msgstr "\"Nuair a chuir na foghlaithe mara éileamh d'fhiche tallann ina n-airgead fuascailte dó, pléasc Caesar amach ag gáire. Dúirt sé go níl a fhios acu cé a ghabh siad, agus thoiligh sé do chaoga tallann a íoc.\" - Plútarc, cé a luann ina dhiaidh sin go bhfuair Caesar a chuid airgid ar ais agus chéas sé a thógálaithe (\"Saolta Comhthreormhara\", \"Caesar\", cu. 2)"
 
 #: gui/text/quotes.txt:148
 msgid ""
@@ -1679,7 +1682,7 @@ msgid ""
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
 "ready to die at their posts.\" - Polybius (\"Histories\", VI. 24)"
-msgstr ""
+msgstr "\"Téastaíonn uathu \\[na Rómhánaigh] dá gceantúirí go nach bhfuil siad a n-oiread a bheith dána agus misniúil, ach a bheith ceannairí nádúrtha, le spiorad socair agus seasta orthu. Ní theastaíonn uathu a bhfir a bheith réidh le dul i ngleic, ach fear a bhfuil ábalta a rang a chosaint, agus a bheith réidh le maraithe ag a bpostaí\" - Polaíbius (\"Startha\", VI. 24)"
 
 #: gui/text/quotes.txt:149
 msgid ""
@@ -1687,7 +1690,7 @@ msgid ""
 " both individually and collectively; so that a formation can fight in any "
 "direction, with the maniples nearest to the point of danger wheeling around "
 "to face it.\" - Polybius (\"Histories\", XV. 15)"
-msgstr ""
+msgstr "\"Tá sé deacair don líne catha de chuid na Rómhánach a bhriseadh, mar a ligeann sé do gach uile saighdiúir a throid as féin agus le chéile araon; ionas gur féidir leo a throid in aon treo, agus is féidir leis a mainipilí a bhogadh chun dul i ngleic leis an namhaid.\" - Polaíbius (\"Startha\", XV. 15)"
 
 #: gui/text/quotes.txt:150
 msgid ""
@@ -1698,7 +1701,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"Tá na hAithnigh i gcónaí i riocht longa gan ceannasaí. Déan eagla don namhaid nó do stoirm as an bhfoireann ach aon intinn amháin faoina bhfear stiúrach, agus téann gach rud go maith; ach má théarnaíonn siad \\[…] beith siad ag troid lena chéile \\[…], agus táimid mar thoradh ar seo go, tar éis éalaithe a dhéanamh as na mara ollmhóire agus na stoirmeacha foréigneacha, loiteann siad a long féin sa chuan ina ngar do chladach.\" - Polaíbius ar bunreacht na nAithneach (\"Startha\", VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1707,7 +1710,7 @@ msgid ""
 "and there were only a very few who attempted to save themselves by flight.\""
 " - Polybius on the Battle of Bagradas where a Roman army was annihilated "
 "during the First Punic War (\"Histories\", I. 34)"
-msgstr ""
+msgstr "\"Satlaíodh formhór na Rómhánach faoi mhéid ollmhór na n-eilifintí; bhí lámhaigh ar an gcuid eile de na marcraí líonmhara: agus bhí ach beagán a rinne iarracht d'éalú a dhéanamh agus iadsan féin a shábháil.\" - Polaíbius ar Cath Bhagradais nuair a bhí arm caillte ag na Rómhánaigh sa Chéad Chogadh na mPúnach (\"Startha\", I. 34)"
 
 #: gui/text/quotes.txt:152
 msgid ""
@@ -1715,7 +1718,7 @@ msgid ""
 "the troops lying in ambush on the hills to do the same, and thus delivered "
 "an assault upon the enemy at every point at once.\" - Polybius on the "
 "beginning of a Roman disaster at the Trasymene Lake (\"Histories\", III. 84)"
-msgstr ""
+msgstr "\"Thug Háinibeál comhartha an ionsaithe; agus ag an am céanna sheol sé oird go a saighdiúirí atá suite i luíochán sna cnoic an rud chéana a dhéanamh, agus mar sin sheachaid sé ionsaí ar an namhaid i ngach áit.\" - Polaíbius ar dtús na tubaiste Rómhánaigh ag Loch Trasumána (\"Startha\", III. 84)"
 
 #: gui/text/quotes.txt:153
 msgid ""
@@ -1725,7 +1728,7 @@ msgid ""
 "shields and flee.\" - Polybius, describing the defeat of Philip V. of "
 "Macedon by Flaminius in the Battle of Cynoscephalae (\"Histories\", XVIII. "
 "26)"
-msgstr ""
+msgstr "\"Nuair atá siad i bhfalang, ní féidir leis aon shaighdiúir á chasadh timpeall agus éisean féin a chosaint: dá bhrí sin, thug an treabhann seo ruathar orthu \\[óna gcúl] agus mharaigh sé gach aon a bhuail sé leis; go dtí ní raibh siad ábalta aon fhrithbheart a dhéanamh agus bhí orthu dá sciatha a chaitheamh amach agus éalú a dhéanamh.\" - Polaíbius, ag cur síos ar cliseadh Pilibe V na Macadóine de chuid Fláiminiais sa Chath Chaonóscaiféile (\"Startha\", XVIII. 26)"
 
 #: gui/text/quotes.txt:154
 msgid ""
@@ -1736,7 +1739,7 @@ msgid ""
 "detachment, or in a single maniple, or even by himself.\" - Polybius, "
 "explaining how the Romans can defeat the Macedonian phalanx (\"Histories\", "
 "XVIII. 32)"
-msgstr ""
+msgstr "\"Sa lámh eile, is solúbtha é an t-ord Rómhánach: toisc go bhfuil gach Rómhánach, nuair atá sé armáilte agus ar talamh catha, tá sé feistithe do gach áit, am, nó nochtadh an namhad. Chomh maith leis sin, tá sé ina réidh agus ní theastaíonn air aon athrú a dhéanamh, má atá air troid a dhéanamh sa phríomh-shlua, nó i ndíorma, nó i mainipil amháin, nó fiú ina aonar.\" - Polaíbius, ag míniú conas is féidir leis na Rómhánaigh an falang Macadónach a chloí (\"Startha\", XVIII. 32)"
 
 #: gui/text/quotes.txt:155
 msgid ""
@@ -1746,7 +1749,7 @@ msgid ""
 "all cities, nations, and authorities must, like men, meet their doom.\" - "
 "Polybius, eyewitness to the destruction of Carthage (\"Histories\", XXXVIII."
 " 22)"
-msgstr ""
+msgstr "\"Nuair a chonaic sé, Scipio \\[Éiminialas], ar cathair \\[na Cartaige] agus í ina céadéaga agus lena luanscrios uirthi, deirtear gur shil sé deora dá shúile agus chaoin sé dá naimhde. Agus thuig sé ag an am seo go bhfuil deireadh ag na caithreacha, na tíortha, agus na húdaráis uile agus, mar atá sé le daoine, ní féidir leo a mbás féin a sheachaint.\" - Polaíbius, finné súl le luanscrios na Cartaige (\"Startha\", XXXVIII. 22)"
 
 #: gui/text/quotes.txt:156
 msgid ""
@@ -1754,31 +1757,31 @@ msgid ""
 "the Battle of Asculum, in which the Romans lost twice as many men but he "
 "lost a greater share of his armed forces (Plutarch, \"Parallel Lives\", "
 "\"Pyrrhus\", sec. 21)"
-msgstr ""
+msgstr "\"Aon bhua níos mó mar sin agus tá ár gcúis caillte againn!\" - Piorras na hEipirise tar éis Catha na hAscalaime, ina bhfuil dhá oiread saighdiúra caillte ag na Rómhánaigh, ach chaill sé cuid níos mó dá arm (Plútarc, \"Saolta Comhthreormhara\", \"Piorras\", cu. 21)"
 
 #: gui/text/quotes.txt:157
 msgid ""
 "\"None can be free who is a slave to, and ruled by, his passions.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 18)"
-msgstr ""
+msgstr "\"Ní féidir le haon duine a bheith saor cé atá faoi smacht, agus atá rialaithe ag a chuid díograise.\" - Píotágarás (Stóbaíus, \"Florilegium: Bailiú Blátha\", 18)"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"Do not say few things in many words, but many things in few words.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Ná habair rudaí beaga i bhfocal go leor, ach rudaí go leor i gcúpla focal.\" - Píotágarás (Stobaíus, \"Florilegium: Bailiú Blátha\", 24)"
 
 #: gui/text/quotes.txt:159
 msgid ""
 "\"Let your speech be better than silence, or be silent.\" - Pythagoras "
 "(Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Lig d'óráid a bheith níos fearr ná tost, nó fan i do thost.\" - Píotágarás (Stobaíus, \"Florilegium: Bailiú Blátha\", 24)"
 
 #: gui/text/quotes.txt:160
 msgid ""
 "\"Unity strengthens even small states, while discord undermines the "
 "mightiest empires.\" - Sallust (\"The Jugurthine War\", 10.6)"
-msgstr ""
+msgstr "\"Neartaíonn aontacht fiú stáit bheaga, fad a lagaíonn easaontas na himpireacthaí is láidre.\" - Sallúistias (\"Cogadh Iugurtha\", 10.6)"
 
 #: gui/text/quotes.txt:161
 msgid ""
@@ -1786,14 +1789,14 @@ msgid ""
 "Africanus in his epitaph, after he who defeated Hannibal was repeatedly "
 "accused of crimes by the Roman Senate (Valerius Maximus, \"Nine books on "
 "memorable deeds and sayings\", 5.3.2)"
-msgstr ""
+msgstr "\"A hAthartha diomaígh, ní fuair tú fiú mo chnámha riamh!\" - Scipio Aifriceanas ina fheartlaoi, nuair a chur an Seanad Rómhánach i leith coireachtaí go leor air, fiú mar atá bua aige i gcoinne Háinibeáil (Failéireas Mór, \"Naoi leabhair faoi ghníomhartha móra agus nathanna\", 5.3.2)"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
 "Zama (Livius, \"Ab Urbe Condita\", XXX. 31)"
-msgstr ""
+msgstr "\"Ullmhaigh do chogadh a dhéanamh, ós rud é nach raibh tú in ann síocháin a dhéanamh.\" - Scipio Aifriceanas, ag freagairt do thairiscint síochána de chuid Háinibeáil roimh Cath Sama Mhóir (Libhius, \"Ab Urbe Condita: Ó Bhunaidh na Cathrach\", XXX. 31)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -1802,7 +1805,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.1.6)"
-msgstr ""
+msgstr "\"Ach tá beartaíocht aon chuid amháin ginearáltachta. Ní mór dó a bheith in ann a shaighdiúirí a fheistiú agus iad a sholáthar. Ní mór dó a bheith cruthaitheach, díograiseach, agus aireach, ceanndána agus iontach, cairdiúil agus fiáin, furasta agus caolchúiseach.\" - Sócraitéas (Xéiniofón, \"Memorabilia: Cuimhneacháin\", 3.1.6)"
 
 #: gui/text/quotes.txt:164
 msgid ""
@@ -1810,14 +1813,14 @@ msgid ""
 "that, if the city is stronger, one may recommend her to go to war, but if "
 "weaker than the enemy, may persuade her to beware.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.6.9)"
-msgstr ""
+msgstr "\"Tá sé riachtanach d'fhios a bheith aige don chathair agus don namhaid, mar sin, má tá an chathair níos láidre, ba mhaith le duine í a chomairliú go cogadh, ach má tá sí níos laige ná an namhaid, ba mhaith le haon duine í a chomairliú as.\" - Sócraitéas (Xéiniofón, \"Memorabilia: Cuimhneacháin\", 3.6.9)"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "\"The unexamined life is not worth living.\" - Socrates, in his defense when"
 " trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 38a)"
-msgstr ""
+msgstr "\"Níl sa tsaol anscrúdaithe nach a bheith ina gcónaí.\" - Sócraitéas, ina fhéinchosaint nuair a bhí triail air do na hóigí a thruailliú agus gan a bhí ina adhradh leis na déithe cearta (d'ól sé himlic ina dhiaidh sin nuair a churadh breith báis air) - Platón (\"Leithscéal\", 38a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
@@ -1825,13 +1828,13 @@ msgid ""
 "to live. Which is better God only knows.\" - Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 42a)"
-msgstr ""
+msgstr "\"Thángthas am imeachta, agus leanfaimid ar ár mbealaí - buailfidh mé le mo bhás, agus beidh sibh ag dul i bhúr gcónaí. Cé acu atá níos fearr, níl a fhios ach ag na déithe.\" - Sócraitéas, ina fhéinchosaint nuair a bhí triail air do na hóigí a thruailliú agus gan a bhí ina adhradh leis na déithe cearta (d'ól sé himlic ina dhiaidh sin nuair a churadh breith báis air) - Platón (\"Leithscéal\", 42a)"
 
 #: gui/text/quotes.txt:167
 msgid ""
 "\"Walls and ships are nothing without men living together inside them.\" - "
 "Sophocles (\"Oedipus Rex\")"
-msgstr ""
+msgstr "\"Níl i mballaí agus longa gan daoine a bheith ina gcónaí iontu.\" - Sophoclés (\"Éideapús an Rí\")"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -1841,24 +1844,24 @@ msgid ""
 "that the weak should be subject to the strong.\" - Speech of an Athenian "
 "embassy in Sparta (Thucydides, \"History of the Peloponnesian War\", I. "
 "76.2)"
-msgstr ""
+msgstr "\"Ghlacamar le impireacht a thairgeadh dúinn agus dhiúltaíomar dó a éirí as fiú faoin bhrú an trí rún is láidre: an eagla, an onóir agus an tsuim. Ní raibh muidse an búnshampla á leagan síos, toisc gurb é an dlí é go bhfuil an lag ina gcónaí faoin láidir.\" - Óráid ambasáide Aithnigh i Sparta (Túicididéas, \"Stair an Chogaidh Phéalopoinéisigh\", I. 76.2)"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "\"He could boast that he found a city of brick and left it a city of "
 "marble.\" - Suetonius, commenting on the many building projects of Augustus "
 "in Rome (\"Divus Augustus\", sec 38)"
-msgstr ""
+msgstr "\"Is féidir leis a ghaisce féin a dhéanamh gur aimsigh sé cathair as bríce agus d'fhág sé é i marmar.\" - Suatóinius, ag cur ráiteis ar na tionscadail tógála á gcur tús le hÁgastas (\"Divus Augustus: Ágastas Diaga\", cu. 38)"
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
-msgstr ""
+msgstr "\"Measarthacht ar fad.\" - Tairéintius (\"Cailín as Andros\", 61)"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"Fortune favors the bold.\" - Terence in a play about a great Athenian "
 "admiral (\"Phormio\", 203)"
-msgstr ""
+msgstr "\"Tugann an tÁdh buntáiste ar an nduine cróga.\" - Téireans, ina dhráma faoi aimiréal mór Aithneach (\"Foirmión\", 203)"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -1866,7 +1869,7 @@ msgid ""
 "raise a city that was small and unimportant to glory and greatness.\" - "
 "Themistocles, defending his lack of cultural sophistication (Plutarch, "
 "\"Parallel Lives\", \"Themistocles\", sec. 2)"
-msgstr ""
+msgstr "\"Níl a fhios agam faoi thiúnadh na lire nó seinm na cláirsigh, ach tá a fhios agam conas cathair a bhí beag agus gan tábhacht agus é a mhéadú go glóir agus gaiscíocht.\" - Teimisticléas, ag cosaint a easpa galántachta (Plútarc, \"Saolta Comhthreormhara\", \"Teimisticléas\", cu. 2)"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -1874,41 +1877,41 @@ msgid ""
 "with the Spartan fleet commander who threatened to beat him with his staff, "
 "before the Battle of Salamis (Plutarch, \"Parallel Lives\", "
 "\"Themistocles\", sec. 11)"
-msgstr ""
+msgstr "\"Buail orm, má tá é do thoil, ach éist liom.\" - Teimisticléas, i ndíospóireacht theasaí leis an gceannasaí cabhlaigh Spartach cé a bhagairt air é a bhualadh lena bhachall, roimh Chath Shalamais (Plútarc, \"Saolta Comhthreormhara\", \"Teimisticléas\", cu. 11)"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"The Athenians command the rest of Greece, I command the Athenians; your "
 "mother commands me, and you command your mother.\" - Themistocles, jokingly "
 "to his infant son (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 18)"
-msgstr ""
+msgstr "\"Tá na hAithnigh ina gceannas ar an nGréig uile, táim i mo cheannas ar na hAithnigh; tá do mháthair ina ceannas orm, agus tá tú i do cheannas ar do mháthair.\" - Teimisticléas, a bhí ag magadh lena leanbh (Plútarc, \"Saolta Comhthreormhara\", \"Teimisticléas\", cu. 18)"
 
 #: gui/text/quotes.txt:175
 msgid ""
 "\"So little pains does the mob take in finding out the truth, accepting "
 "readily the first story at hand.\" - Thucydides (\"History of the "
 "Peloponnesian War\", I. 21.3)"
-msgstr ""
+msgstr "\"Níl ach suim bheag amháin ar an ngramaisc nuair a chuardaíonn siad ar an bhfírinne, glacann siad leis an bpríomh-scéal a bhuail siad leis.\" - Túicididéas (\"Stair an Chogaidh Phéalopoinéisigh\", I. 21.3)"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "\"The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.\" - Thucydides (\"History of the Peloponnesian "
 "War\", I. 23.6)"
-msgstr ""
+msgstr "\"Fás cumhachta na hAithne, agus an imní a chuireann an fás seo ar na Spartaigh, rinneadh cogadh dosheachanta.\" - Túicididéas (\"Stair an Chogaidh Phéalopoinéisigh\", I. 23.6)"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "\"War is a matter not so much of arms as of money.\" - Thucydides (\"History"
 " of the Peloponnesian War\", I. 83.2)"
-msgstr ""
+msgstr "\"Níl ceist arm i gcogadh, ach ceist airgid.\" - Túicididéas (\"Stair an Chogaidh Phéalopoinéisigh\", I. 83.2)"
 
 #: gui/text/quotes.txt:178
 msgid ""
 "\"It is a general rule of human nature that people despise those who treat "
 "them well, and look up to those who make no concessions.\" - Thucydides "
 "(\"History of the Peloponnesian War\", III. 39.5)"
-msgstr ""
+msgstr "\"Is riail ginearálta é sa nádúr daonna go is fuath le daoine iad siúd a chóireáil go maith leo, agus tá meas acu ar iad siúd nach n-aontaíonn siad riamh.\" - Túicididéas (\"Stair an Chogaidh Phéalopoinéisigh\", III. 39.5)"
 
 #: gui/text/quotes.txt:179
 msgid ""
@@ -1919,7 +1922,7 @@ msgid ""
 " they ever had perished, nothing was saved and few of so many ever returned "
 "home. Thus ended the Sicilian expedition.\" - Thucydides (\"History of the "
 "Peloponnesian War\", VII. 87.6-7)"
-msgstr ""
+msgstr "\"Agus bhí sé seo an aicsean is mó a tharla ar feadh an chogaidh seo, agus gach aicsean eile gur chuala muid i measc na nGréigigh, mar a bhí sé an chuid is mó glórmhar do na buaiteoirí agus bhí sé an chuid is mó tubaisteach do na cloíte. Toisc go raibh siad cloíte i ngach áit, agus bhí daoine gonta go leor acu. Fuair a n-arm agus a gcabhlach bás, agus fuair gach rud eile a bhí acu bás, ní raibh rud ar bith sábháilte acu agus d'fhill beagán abhaile. Chríochnaigh an Turas Sicileach mar sin.\" - Túicididéas (\"Stair an Chogaidh Phéalopoinéisigh\", VII. 87.6-7)"
 
 #: gui/text/quotes.txt:180
 msgid ""
@@ -1927,7 +1930,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.\" - Thucydides, "
 "describing Athenians addressing the defeated Melians who are unwilling to "
 "surrender (\"History of the Peloponnesian War\", V. 89.1)"
-msgstr ""
+msgstr "\"Mar a théann an domhan, níl sa chóir ach ceist idir comhpháirtí; cé go déanann an láidre cad is maith leo, fulaingíonn an lag cad a chuireadh orthu.\" - Túicididéas, ag cur síos ar na hAithnigh nuair a bhí siad ina n-óráid ar na Méiliaigh agus nach raibh siad sásta le géilleadh a dhéanamh (\"Stair an Chogaidh Phéalopoinéisigh\", V. 89.1)"
 
 #: gui/text/quotes.txt:181
 msgid ""
@@ -1936,7 +1939,7 @@ msgid ""
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr ""
+msgstr "\"Nuair a bhí na Lacaedeámónaigh gan a thuilleadh in ann a rith \\[…] chuaigh siad uile go léir orthu, ag caitheamh cloiche, saighead, agus foghanna ar na fir is aice dá láimhe.\" - Túicididéas, ag cur síos ar an dtubaiste Spartaigh sa Chath Sfactáire (\"Stair an Chogaidh Phéalopoinéisigh\", IV. 34.2)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -1946,7 +1949,7 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up why they were on campaign (Plutarch, \"Parallel Lives\", "
 "\"Tiberius Gracchus\", sec. 9)"
-msgstr ""
+msgstr "\"Troideann agus básaíonn na saighdiúirí do dhuine eile a thacaíocht ina saibhreas agus a sónna agus tugtar orthu mar mháistrí an domhain gan a bheith le haon talamh feirme faoi úinéireacht acu.\" - Tibir Gracas, ag óráid ar son leasaithe talún chun tairbhe a bhain ar iarshaighdiúirí gan teach agus gan post, a raibh a gcuid tailte ceannaithe nuair a bhí sé ar feachtas míleata (Plútarc, \"Saolta Comhthreormhara\", \"Tibir Gracas\", cu. 9)"
 
 #: gui/text/quotes.txt:183
 msgid ""
@@ -1956,24 +1959,24 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up why they were on "
 "campaign (Plutarch, \"Parallel Lives\", \"Tiberius Gracchus\", sec. 9)"
-msgstr ""
+msgstr "\"Tá uaimheanna mar chónaí ag na hainmhithe fiáine ar fúd na hIodáile, ach níl cónaí ar bith ag na hiarshaighdiúirí cróga ach amháin solas na gréine agus aer. Bí siad ag fámaireacht lena mbean chéile agus a bpáistí ar fúd ár dtíre, gan teach ar bith.\" - Tibir Gracas, ag óráid ar son leasaithe talún chun tairbhe a bhain ar iarshaighdiúirí gan teach agus gan post, a raibh a gcuid tailte ceannaithe nuair a bhí sé ar feachtas míleata (Plútarc, \"Saolta Comhthreormhara\", \"Tibir Gracas\", cu. 9)"
 
 #: gui/text/quotes.txt:184
 msgid ""
 "\"Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.\" - Virgil (\"Aeneid\", II. 48-49)"
-msgstr ""
+msgstr "\"Nil muinín agaibh as an éach seo, a Traíoí! Tá eagla orm roimh na Gréigigh fiú nuair a thugann siad bronntanais.\" - Veirgil (\"An Aeinéid\", II. 48-49)"
 
 #: gui/text/quotes.txt:185
 msgid "\"Prepared for either alternative.\" - Virgil (\"Aeneid\", II. 61)"
-msgstr ""
+msgstr "\"Ullmhaithe le gach cás.\" - Veirgil (\"An Aeinéid\", II. 61)"
 
 #: gui/text/quotes.txt:186
 msgid ""
 "\"Homer and Hesiod ascribed to their Gods all things that are a disgrace "
 "among mortals: stealing, adultery, deceiving one another.\" - Xenophanes "
 "(fragment 11)"
-msgstr ""
+msgstr "\"Chuir Hóiméar agus Héasaíód i leith ar a ndéithe gach rud atá mar náire i ndaoine: gadaíocht, adhaltranas, cealgaireacht idir le chéile.\" - Xéiniófanas (píosa 11)"
 
 #: gui/text/quotes.txt:187
 msgid ""
@@ -1981,13 +1984,13 @@ msgid ""
 " of art as men do, horses would paint the forms of the gods like horses, and"
 " oxen like oxen, and make their God's bodies each in their own image.\" - "
 "Xenophanes (fragment 15)"
-msgstr ""
+msgstr "\"Má tá láimh ag na daimh, nó na capaill, nó na leoin, agus b'fhéidir leo péint a dhéanamh mar a dhéanann daoine, péinteálfaidh capaill cruthanna a ndéithe mar chapaill, agus péinteálfaidh daimh a ndéithe mar dhaimh, agus déan gach uile cruthanna a ndéithe ina n-íomha féin.\" - Xéiniófanas (píosa 15)"
 
 #: gui/text/quotes.txt:188
 msgid ""
 "\"The Ethiopians make their gods black and snub-nosed, the Thracians say "
 "theirs have blue eyes and red hair.\" - Xenophanes (fragment 16)"
-msgstr ""
+msgstr "\"Léiríonn na hAetópaigh a ndéithe le cneas dubh is sróin míne, deir na Tráiciaigh go bhfuil súile gorma ag a ndéithe agus gruaige rua orthu.\" - Xéiniófanas (píosa 16)"
 
 #: gui/text/quotes.txt:189
 msgid ""
@@ -1995,21 +1998,21 @@ msgid ""
 " are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "\"Tá iad siúd na ceisteanna cearta a chur amach sa gheimhreadh, i dtimpeall na tine \\[…]: Cé thúsa, a chara? Cad é do thír? Agus cén aois a bhfuil tú nuair a tháinig na Méidigh \\[Peirsigh]?\" - Xéiniófanas, is dócha go threoraigh sé ar turas piónosach faoi na cathracha Gréigeacha in Íoniá (píosa 17)"
 
 #: gui/text/quotes.txt:190
 msgid ""
 "\"A prudent commander will never take risks unnecessarily, except when it is"
 " clear beforehand that he will have the advantage.\" - Xenophon (\"The "
 "Cavalry General\", 4.13)"
-msgstr ""
+msgstr "\"Tugann ceannasaí cúramach rioscaí neamhriachtanacha, ach amháin nuair atá buntáiste soiléir ina ndiaidh.\" - Xéiniofón (\"Ginearál an Mharcshlua\", 4.13)"
 
 #: gui/text/quotes.txt:191
 msgid ""
 "\"Attack the enemy where he is weakest, even if that is a long way off, "
 "since hard work is less dangerous than a struggle against superior forces.\""
 " - Xenophon (\"The Cavalry General\", sec. 4.14)"
-msgstr ""
+msgstr "\"Ionsaígí an namhad ina áit a bhfuil sé is laige, fiú mar atá an áit seo i bhfad i gcéin, os rud é go bhfuil oibair crua níos lú contúireacha ná troid a dhéanamh le fórsaí níos fearr.\" - Xéiniofón (\"Ginearál an Mharcshlua\", cu. 4.14)"
 
 #: gui/text/quotes.txt:192
 msgid ""
@@ -2017,14 +2020,14 @@ msgid ""
 "small force appear large and a large one small, to appear absent when close "
 "at hand, and within striking distance when a long way off.\" - Xenophon "
 "(\"The Cavalry General\", sec. 5)"
-msgstr ""
+msgstr "\"Ba mhaith leat a bheith cruthaitheach, a bheith ina réidh do leas a bhaint as cásanna nua, d'arm mór le feiceáil mar bheag agus arm beag le feiceáil mar mhór, a fheiceáil mar atá sé in easnamh nuair atá sé in aice láimhe, agus i laistigh d'fhad buailte nuair atá sé i bhfad i gcéin.\" - Xéiniofón (\"Ginearál an Mharcshlua\", cu. 5)"
 
 #: gui/text/quotes.txt:193
 msgid ""
 "\"People are glad to obey the man whom they believe to be wiser than "
 "themselves in pursuing their interests.\" - Xenophon (\"The Education of "
 "Cyrus\", 1.6.22)"
-msgstr ""
+msgstr "\"Tá na daoine uile sásta a ghéilleadh don fhear a chreideann siad a bheith níos eagnaí ná siadsan nuair a théann siad lena suimeanna.\" - Xéiniofón (\"An tOideachas Chúrús\", 1.6.22)"
 
 #: gui/text/quotes.txt:194
 msgid ""
@@ -2033,13 +2036,13 @@ msgid ""
 "better; and throughout all difficulties that he can endure hardships better."
 " This will help to make him loved by his men.\" - Xenophon (\"The Education "
 "of Cyrus\", 1.6.25)"
-msgstr ""
+msgstr "\"Ina fheachtais ar feadh an shamhraidh caithfidh an ginearál níos mó láidreacht a thaispeáint ná a shaighdiúirí faoin ghrian, sa gheimhreadh caithfidh sé níos mó láidreacht a thaispeáint san fhuar; agus i rith na ndeacracthaí uile caithfidh sé a thaispeáint go bhfuil sé abálta anró a fhulaingt. Cabhróidh sé seo do ghrá a dhéanamh dó lena shaighdiúirí.\" - Xéiniofón (\"An tOideachas Chúrús\", 1.6.25)"
 
 #: gui/text/quotes.txt:195
 msgid ""
 "\"Battles are decided more by the morale of men than their physical "
 "strength.\" - Xenophon (\"The Education of Cyrus\", 3.3.20)"
-msgstr ""
+msgstr "\"Cinntear cathanna níos mó trí sprid na saighdiúirí ná a láidreacht.\" - Xéiniofón (\"An tOideachas Chúrús\", 3.3.20)"
 
 #: gui/text/quotes.txt:196
 msgid ""
@@ -2047,7 +2050,7 @@ msgid ""
 " that we are human beings! We've got to appear to them like an "
 "uncontrollable nightmare of shields, swords, battle-axes and spears!\" - "
 "Xenophon (\"The Education of Cyrus\", 4.2.22)"
-msgstr ""
+msgstr "\"Ná tabhair dúinn am go leor dóibh do aon chosaint a dhéanamh, ná muid a aithin mar dhuine daonna! Caithfimid a bheadh i láthair mar thromluí doshrianta na sciath, na gclaimhte, na dtuanna agus na sleánna!\" - Xéiniofón (\"An tOideachas Chúrús\", 4.2.22)"
 
 #: gui/text/quotes.txt:197
 msgid ""
@@ -2055,7 +2058,7 @@ msgid ""
 "plunder, fame, freedom, power - all these are prizes for the winners; the "
 "cowardly, of course, suffer the reverse.\" - Xenophon (\"The Education of "
 "Cyrus\", 7.1.13)"
-msgstr ""
+msgstr "\"Is dócha go dtuigeann tú, a fheara, go bhfuil an tóir, buillí agus bás a chaitheamh, creach, cáil, saoirse, cumhacht - tá iad seo uil duaisenna do na buaiteoirí; fuair na cladhairí, ar ndóigh, an droim ar ais.\" - Xéiniofón (\"An tOideachas Chúrús\", 7.1.13)"
 
 #: gui/text/quotes.txt:198
 msgid ""
@@ -2063,7 +2066,7 @@ msgid ""
 " thief and a robber, overreaching the enemy at every point.\" - Xenophon on "
 "how best to gain advantage over the enemy (\"The Education of Cyrus\", "
 "1.6.26)"
-msgstr ""
+msgstr "\"Teastaíonn ón bhfear ar mhian leis sin a bheith beartach agus glic, cleasach agus fealltach, ina ghadaí agus ina róbálaí, os cionn na naimhde i ngach áit.\" - Xéiniofón ar an gcaoi is fearr do bhuntáiste a fháil ar na naimhde (\"An tOideachas Chúrús\", 1.6.26)"
 
 #: gui/text/quotes.txt:199
 msgid ""
@@ -2071,10 +2074,10 @@ msgid ""
 " Artemisia ram a ship while most of his fleet suffered the reverse, not "
 "knowing that the sunk vessel was his own (Herodotus, \"The Histories\", "
 "VIII. 88)"
-msgstr ""
+msgstr "\"Rinneadh mná as m'fhir, agus fir as mo mhná!\" - Xerxes, ag feiceáil Artaimísie agus a long a bhuail le long eile, nuair a bhí formhór a chabhlaigh buailte, agus níl a fhios aige go bhfuil a long féin a théigh faoin uisce (Héaradatas, \"Na Startha\", VIII. 88)"
 
 #: gui/text/quotes.txt:200
 msgid ""
 "\"For a thinking man is where Wisdom is at home.\" - Zoroaster, founder of "
 "the Zoroastrian religion (\"Ahunuvaiti Gatha\", yasna 30.9)"
-msgstr ""
+msgstr "\"Mar atá an Eagna ina cónaí le duine meabhrach.\" - Sorastar, bunaitheoir an tSorastrachais (\"Ahunuvaiti Gatha: Iomainn Ahúna Váiría\", íasná 30.9)"

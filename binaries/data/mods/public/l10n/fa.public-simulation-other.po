@@ -5,73 +5,74 @@
 # Translators:
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-22 18:42+0000\n"
+"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: simulation/ai/petra/chatHelper.js:6
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "من یک عملیات وسیع نظامی بر علیه %(_player_)s آغاز کردم، بیاید و به من بپیوندید"
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr ""
+msgstr "من یک لشگر بزرگ تجهیز کردم تا %(_player_)s را خرد کنم. به من بپیوندید و در غنایم جنگ شریک شوید."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "من یک حمله به %(_player_)s را آغاز کردم"
 
 #: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "من یک لشگر برای مقابله با %(_player_)s ارسال کردم"
 
 #: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr ""
+msgstr "اجازه دهید نیروهای خود را جمع کنم و سپس به شما برای مقابله با %(_player_)s خواهم پیوست"
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr ""
+msgstr "من در حال اتمام آماده سازی برای حمله به %(_player_)s هستم"
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "متاسفم، من سرباز کافی در حال حاضر ندارم: اما در حمله بعدی به %(_player_)s حمله خواهم کرد"
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr ""
+msgstr "متاسفم، من کماکان نیاز به تقویت نیروهای خود دارم. با این حال بعد از تقویت نیروها به %(_player_)s حمله خواهم کرد"
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr ""
+msgstr "من نمی توانم در حال حاضر به شما در مقابل %(_player_)s کمک کنم، من برنامه دارم تا نخست به %(_player_2)s حمله کنم"
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
@@ -81,61 +82,61 @@ msgstr "این یه هدیه برای شما , %(_player_)s هستش. ازش خ�
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr ""
+msgstr "من متوجه شدم شما در شرایط بدی قرار گرفته اید، %(_player_)s . امیدوارم این به شما کمک کند"
 
 #: simulation/ai/petra/chatHelper.js:32
 #, javascript-format
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr ""
+msgstr "من میتوانم در زمان حاضر به شما کمک کنم، %(_player_)s، اما شما باید در مدیریت منابع خود بعد از این بیشتر دقت کنید."
 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr ""
+msgstr "من به %(resource)s نیاز دارم، شما می توانید به من کمک کنید؟ برای شما جبران خواهم کرد"
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "من بشکل موثر تری در جنگی که در آن هستیم قادر به مشارکت خواهم بود اگر شما بتوانید برای من %(resource)s فراهم کنید"
 
 #: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr ""
+msgstr "اگر شما بتوانید به من کمی %(resource)s بدهید، من قادر خواهم بود قدرت نیروهایم را افزایش دهم"
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "من یک مسیر مبادلاتی جدید با %(_player_)s احداث خواهم کرد دادوستد سود آوری برای همه ما خواهد بود."
 
 #: simulation/ai/petra/chatHelper.js:43
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
-msgstr ""
+msgstr "یک مسیر مبادلاتی جدید با %(_player_)s احداث شد. سهم سود خود را بگیرید"
 
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr ""
+msgstr "%(_player_)s و من حالا هم پیمان هستیم"
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr ""
+msgstr "%(_player_)s و من حالا بی طرف هستیم"
 
 #: simulation/ai/petra/chatHelper.js:54
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr ""
+msgstr "%(_player_)s و من حالا دشمن هستیم"
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
@@ -147,287 +148,287 @@ msgstr "من پیشنهاد شما برای پیوستن به متحدان %(_pl
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr ""
+msgstr "من هم پیمان شما نخواهم بود %(_player_)s، با این حال روابط بین خود را بی طرف در نظر خواهم گرفت"
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr ""
+msgstr "من درخواست شما برای هم پیمان شدن را رد میکنم %(_player_)s ، اما ما می توانیم بی طرف باقی بمانیم"
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr ""
+msgstr "%(_player_)s، تنها یک توافق بی طرفی برای من امکان پذیر است."
 
 #: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
-msgstr ""
+msgstr "اتحاد قبلی ما موفقیت آمیز نبود، %(_player_)s. من باید پیشنهاد شما را رد کنم."
 
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
-msgstr ""
+msgstr "من دیگر هم پیمان شما نخواهم شد، %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:71
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
-msgstr ""
+msgstr "از این پس هیچ اتحادی میان ما برقرار نیست،%(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
-msgstr ""
+msgstr "درخواست شما برای صلح هیچ معنی برای من از این به بعد ندارد، %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr ""
+msgstr "پاسخ من به درخواست مکرر شما برای پیشنهاد صلح جنگ باقی خواهد ماند، %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr ""
+msgstr "من پیشنهاد شما برای ایجاد اتحاد را می پذیرم، %(_player_)s! ما هردو از این مشارکت سود خواهیم برد."
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr ""
+msgstr "ایجاد یک اتحاد میان ما ایده خوبی است، %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr ""
+msgstr "اجازه دهید مردمان هردو ما از این اتحاد صلح آمیز بهره ببرند،%(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid "We have found common ground, %(_player_)s. I accept the alliance."
-msgstr ""
+msgstr "ما نقاط مشترک پیدا کردیم، %(_player_)s. پیشنهاد اتحاد شما را می پذیرم."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr ""
+msgstr "%(_player_)s، مارا هم پیمان خود از این پس بدانید."
 
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "من با شما متحد خواهم شد، %(_player_)s، اما فقط به شرطی که شما برای ما %(_amount_)s %(_resource_)s به عنوان هدیه ارسال کنید"
 
 #: simulation/ai/petra/chatHelper.js:84
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr ""
+msgstr "%(_player_)s، شما می بایست برای ما %(_amount_)s %(_resource_)s ارسال کنید، قبل از اینکه من اتحاد با شما را بپذیرم."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr ""
+msgstr "مگر اینکه شما برای ما %(_amount_)s %(_resource_)s ارسال کنید، در غیر این صورت این اتحاد شکل نخواهد گرفت، %(_player_)s"
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "%(_player_)s، پیشنهاد من کماکان پای برجاست، من با شما متحد خواهم شد اگر شما برای ما %(_amount_)s %(_resource_)s به عنوان هدیه ارسال کنید"
 
 #: simulation/ai/petra/chatHelper.js:89
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr ""
+msgstr "من کماکان منتظر دریافت %(_amount_)s %(_resource_)s قبل از پذیرش درخواست اتحاد شما هستم، %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:90 simulation/ai/petra/chatHelper.js:111
 #, javascript-format
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr ""
+msgstr "%(_player_)s، اگر شما بخشی از %(_amount_)s %(_resource_)s را برای ما به عنوان هدیه خیلی زود ارسال نکنید، من مذاکراتمان را پایان خواهم داد."
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr ""
+msgstr "من با شما بی طرف نخواهم شد، %(_player_)s"
 
 #: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s، من باید درخواست  پیمان بی طرفی شما را رد کنم."
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
-msgstr ""
+msgstr "توافق بی طرفی قبلی ما با شکست مواجه شد، %(_player_)s: من درخواست دیگری را نخواهم پذیرفت"
 
 #: simulation/ai/petra/chatHelper.js:102
 #, javascript-format
 msgid ""
 "I welcome your request for peace between our civilizations, %(_player_)s. I "
 "will accept."
-msgstr ""
+msgstr "من درخواست صلح شما با تمدن خودمان را با گرمی می پذیرم، %(_player_)s. من این درخواست را قبول میکنم"
 
 #: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
-msgstr ""
+msgstr "%(_player_)s، من درخواست بی طرفی ما را می پذیرم، شاید هردو تمدن ما از آن بهره مند شوند."
 
 #: simulation/ai/petra/chatHelper.js:106
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr ""
+msgstr "اگر شما برای ما %(_amount_)s  %(_resource_)s به عنوان هدیه ارسال کنید، من درخواست بی طرفی شما را خواهم پذیرفت، %(_player_)s"
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr ""
+msgstr "%(_player_)s، اگر شما برای ما %(_amount_)s %(_resource_)s، ارسال کنید من درخواست بی طرفی شما را خواهم پذیرفت"
 
 #: simulation/ai/petra/chatHelper.js:110
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr ""
+msgstr "%(_player_)s، من درخواست بی طرفی شما را نخواهم پذیرفت مگر اینکه برای ما %(_amount_)s %(_resource_)s به عنوان هدیه خیلی زود ارسال کنید"
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s ، هم پیمان شدن به هر دو تمدن ما کمک خواهد کرد. اگر شما با من هم پیمان شوید من به گرمی پاسخ این کار شما را خواهم داد."
 
 #: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "%(_player_)s, my offer for an alliance has expired."
-msgstr ""
+msgstr "%(_player_)s، پیشنهاد من برای یک اتحاد منقضی شد."
 
 #: simulation/ai/petra/chatHelper.js:123
 #, javascript-format
 msgid ""
 "%(_player_)s, I have rescinded my previous offer for an alliance between us."
-msgstr ""
+msgstr "%(_player_)s، من پیشنهاد اتحاد قبلی که برای شما فرستاده بودم لغو می کند"
 
 #: simulation/ai/petra/chatHelper.js:128
 #, javascript-format
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s ، من تمایل دارم تا میان تمدن خود و تمدن شما پیمان بی طرفی منعقد کنم. اگر شما این پیمان بی طرفی را بپذیرید من به گرمی پاسخ این کار شما را خواهم داد"
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr ""
+msgstr "%(_player_)s، این به نفع هردو ما است که پیمان بی طرفی میان ما برقرار شود. من با شما بی طرف خواهم شد اگرشما نیز همین تصمیم را بگیرید."
 
 #: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s، من تصمیم گرفتم که پیشنهاد پیمان بی طرفی که ارسال کرده بودم را لغو کنم"
 
 #: simulation/ai/petra/chatHelper.js:133
 #, javascript-format
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr ""
+msgstr "%(_player_)s، بدلیل این موضوع که شما پاسخ درخواست پیمان صلح من را ندادید من پیشنهادی که ارسال کرده بودم را لغو میکنم"
 
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr ""
+msgstr "%(name)s بدلیل بروز خطای نا مشخص امکان ساخت وجود ندارد"
 
 #: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr ""
+msgstr "%(name)s در منطقه ای که هنوز کشف نشده است امکان ساخت وجود ندارد"
 
 #: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr ""
+msgstr "%(name)s ، بر روی یک ساختمان دیگر یا یک منبع امکان ساخت وجود ندارد"
 
 #: simulation/components/BuildRestrictions.js:160
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr ""
+msgstr "%(name)s در زمین نامعبر امکان ساخت وجود ندارد"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "خودت"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr ""
+msgstr "خود وصل نشده"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "allied"
-msgstr ""
+msgstr "هم پیمان"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:196
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr ""
+msgstr "هم پیمان وصل نشده"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "بی طرف"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:209
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "دشمن"
 
 #: simulation/components/BuildRestrictions.js:214
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr ""
+msgstr "%(name)s نمیتواند در %(territoryType)s قلمرو  بسازد. قلمروهای معتبر %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:228
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr ""
+msgstr "%(name)s حتما باید در خط ساحلی معتبر ساخته شود"
 
 #: simulation/components/BuildRestrictions.js:256
 #, javascript-format
@@ -437,7 +438,8 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
+msgstr[0] "%(name)s خیلی نزدیک است به یک %(category)s، می بایست حتما %(distance)s متر دور باشد"
+msgstr[1] "%(name)s خیلی نزدیک است به یک %(category)s، حتما می بایست حداقل %(distance)s متر فاصله داشته باشد"
 
 #: simulation/components/BuildRestrictions.js:277
 #, javascript-format
@@ -445,88 +447,90 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
+msgstr[0] "%(name)s خیلی دور از یک %(category)s، باید محدوده %(distance)s متر قرار داشته باشد"
+msgstr[1] "%(name)s خیلی دور از یک %(category)s، باید در محدوده %(distance)s متر قرار داشته باشد"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "خودت"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "متحد"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "بی طرف"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "دشمن"
 
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "شما می توانید در %(time)s دیگر حمله کنید"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr ""
+msgstr "شما می توانید الان حمله کنید!"
 
 #: simulation/components/EndGameManager.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
+msgstr[0] "%(lastPlayer)s پیروز شد (آخرین بازیکن زنده بازی)"
+msgstr[1] "%(players)s و %(lastPlayer)s پیروز شدند (آخرین بازیکن های زنده در بازی)"
 
 #: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."
-msgstr ""
+msgstr "آخرین بازیکن باقی مانده در بازی برنده می شود"
 
 #: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr ""
+msgstr "%(category)s به حد ساخت از %(limit)s رسید."
 
 #: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr ""
+msgstr "%(category)s به حد پرورش نیرو %(limit)s رسید"
 
 #: simulation/components/EntityLimits.js:171
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr ""
+msgstr "%(category)s به حد %(limit)s رسید"
 
 #: simulation/components/Player.js:352
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
+msgstr "کمبود منابع - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr ""
+msgstr "کمبود منابع - %(resourceAmount1)s %(resourceType1)s، %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:356
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr ""
+msgstr "کمبود منابع - %(resourceAmount1)s %(resourceType1)s، %(resourceAmount2)s %(resourceType2)s، %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:358
 #, javascript-format
@@ -534,124 +538,124 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "کمبود منابع - %(resourceAmount1)s %(resourceType1)s، %(resourceAmount2)s %(resourceType2)s، %(resourceAmount3)s %(resourceType3)s، %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:394
 msgid "The production queue is full."
-msgstr ""
+msgstr "صف تولید تکمیل شده است"
 
 #: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "نمی توان فضای خالی پیدا کرد تا نیروهای پرورش یافته را خارج کرد"
 
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "%(player)s شکست خورد (تقلب)"
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "شما نیاز دارید ساختمانی که نیرو پرورش می دهد را انتخاب کنید"
 
 #: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(تقلب - کنترل تمام نیروها)"
 
 #: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
-msgstr ""
+msgstr "(تقلب - آشکار ساختن نقشه)"
 
 #: simulation/helpers/Commands.js:466
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s تسلیم شد."
 
 #: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "( تقلب - نیروهای ارتقا یافته)"
 
 #: simulation/helpers/Commands.js:722
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr ""
+msgstr "امکان بروزرسانی وجود ندارد چرا که الزامات فاصله رعایت نشده است یا پرورش نیروها مسدود شده است"
 
 #: simulation/helpers/Commands.js:732
 msgid "Cannot upgrade a garrisoned entity."
-msgstr ""
+msgstr "نمی توان یک واحدی که مستقر شده است را بروزرسانی کرد"
 
 #: simulation/helpers/Commands.js:775
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "حمله به %(_player_)s درخواست شده است"
 
 #: simulation/helpers/Commands.js:814
 msgid "There are no bribable units"
-msgstr ""
+msgstr "نیرویی که بتوان به آن رشوه داد حضور ندارد"
 
 #: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
-msgstr ""
+msgstr "قادر به خارج کردن نیرو(ها) نیست"
 
 #: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
-msgstr ""
+msgstr "بعضی از نیرو(ها) نمی توانند به کار خود برگردند"
 
 #: simulation/helpers/Commands.js:1114
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "الزامات فناوری ساختمان برآورده نشده است"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "مادر طبیعت"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "بازیکن 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "بازیکن 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "بازیکن 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "بازیکن 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "بازیکن 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "بازیکن 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "بازیکن 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "بازیکن 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "لاکپشتی (0.1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "کند (0.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "تفریحی (0.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "ریلکس (0.75x)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1x)"
@@ -671,80 +675,80 @@ msgstr "برق آسا (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "سریع به جلو (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "سریع به جلو (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "سریع به جلو (20x)"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr ""
+msgstr "تسخیر کردن تمام آثار مقدس در سرتاسر نقشه بازی و نگهداشتن آنها در یک مدت زمان خاص برای پیروز شدن"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr ""
+msgstr "تسخیر اثر مقدس"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr ""
+msgstr "شکست حریف ها با کشتن تمام نیروهای آنها و از بین بردن تمام ساختمان های آنها"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "فتح"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr ""
+msgstr "شکست حریف ها با از بین بردن تمام ساختمان های آنها"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "فتح ساختمان ها"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr ""
+msgstr "شکست حریف ها با کشتن تمام نیروهای آنها"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "نیرو های فتح"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr ""
+msgstr "شکست حریف ها با کشتن تمام قهرمان های آنها"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr ""
+msgstr "قتل شاه"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured or in allied victory when the owners alliances change."
-msgstr ""
+msgstr "اولین نفری باشید که یک سازه عجایب را میسازید یا تسخیر می کنید و آنرا برای مدتی معین نگهدارید تا برنده بازی شوید. تایمر ریست خواهد شد زمانی که سازه عجایب خراب یا تسخیر شود و یا در یک اتحاد زمانیکه مالک پیمان اتحاد تغییر می کند."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "سازه عجایب"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "خیلی کم"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "کم"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
@@ -754,21 +758,21 @@ msgstr "متوسط"
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "زیاد"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "خیلی زیاد"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "بازی مرگ"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "این حالت سختی را انتخاب کنید اگر شما در حال کشف بازی 0 A.D هستید"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
@@ -776,7 +780,7 @@ msgstr "خیلی راحت"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "این حالت سختی را انتخاب کنید اگر شما دوست ندارید له شوید"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -785,7 +789,7 @@ msgstr "راحت"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "این حالت سختی را انتخاب کنید اگر شما بازیکن باتجربه ای در بازی 0 A.D هستید"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
 #: simulation/data/settings/map_sizes.jsonData[2].Name
@@ -794,7 +798,7 @@ msgstr "متوسط"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
+msgstr "این حالت از سختی را انتخاب کنید اگر بدنبال یک رقابت سخت هستید"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -802,7 +806,7 @@ msgstr "سخت"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
+msgstr "این حالت از سختی را انتخاب کنید اگر برای شما مهم نیست نابود شوید"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -814,7 +818,7 @@ msgstr "ریز"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr ""
+msgstr "اندازه این نقشه به سختی یک فضا برای حتی منابع اولیه دارد"
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -824,13 +828,13 @@ msgstr "کوچک"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr ""
+msgstr "نقشه های کوچک برای بازی های 1v1 مناسب است، چون بازیکن ها خیلی سریع می توانند به دشمنان خود دسترسی پیدا کنند در حالی که همچنان فضا برای گسترش قلمرو وجود دارد"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "نقشه های سایز متوسط فضای زیادی را برای دو بازیکن فراهم می کنند اما حتی هشت بازیکن نیز جا خواهند شد"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
@@ -840,7 +844,7 @@ msgstr "متوسط"
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "این یک اندازه ایده آل برای 4 تا 8 بازیکن است، چرا که فضای کافی برای گسترش آنها وجود دارد و دشمنان همسایه خیلی سریع قابل دستیابی هستند"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -850,7 +854,7 @@ msgstr "بزرگ"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr "نقشه های سایز بزرگ زمانی پیشنهاد می شوند که بخش زیادی از نقشه توسط آب یا کوهای غیر قابل دسترسی پر شده اند."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -861,7 +865,7 @@ msgstr "خیلی بزرگ"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "نقشه های خیلی بزرگ پیشنهاد نمی شوند بخاطر اینکه زمان زیادی طول میکشد تا به دشمن دسترسی پیدا کنید و Performance بازی کاهش پیدا می کند"
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -869,11 +873,11 @@ msgstr "غول‌آسا"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr ""
+msgstr "بات پترا"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "پترا بات هوش مصنوعی پیش فرض بازی 0 A.D است. لطفا مشکلات آن را به Wildfire game گزارش کنید (لینک مربوطه را در منوی اصلی ببینید)\n\nاین AI برای جمع آوری منابع (هم جمع آوری و هم آورده تجارت) بر اساس نوع سختی انتخاب شده تغییر بازدهی دارد -60% برای جعبه شنی تا +60% برای خیلی سخت( حالت متوسط 0% تغییر دارد). ساده ترین AI تولید کندتری در نرخ ساخت دارد به علاوه سطح سختی جعبه شنی هیچ وقت قلمرو خود را گسترش نمیدهد"

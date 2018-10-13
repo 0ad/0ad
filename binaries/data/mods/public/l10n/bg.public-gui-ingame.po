@@ -8,16 +8,17 @@
 # Ivailo Monev <xakepa10@gmail.com>, 2014
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
 # Любомир Василев, 2016
+# Nerwitz Panzerfizt, 2018
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2014-2015
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2014
 # Любомир Василев, 2016-2018
-# Симонъ Болокановъ <sbolokanov@abv.bg>, 2014
+# Симонъ–Севаръ С. Болокановъ <sbolokanov@abv.bg>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 20:06+0000\n"
-"Last-Translator: Любомир Василев\n"
+"PO-Revision-Date: 2018-10-11 12:33+0000\n"
+"Last-Translator: Nerwitz Panzerfizt\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -301,7 +302,7 @@ msgstr "%(player)s започва повторно присъединяване 
 #: gui/session/messages.js:108
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr "%(player)s започва да се присъединява към играта."
+msgstr "%(player)s започва присъединяване към играта."
 
 #: gui/session/messages.js:112
 #, javascript-format
@@ -478,7 +479,7 @@ msgstr "%(player)s вече е в неутрални отношения с %(pla
 
 #: gui/session/messages.js:589
 msgid "Click to quit this tutorial."
-msgstr "Щракнете, за да излезете от това обучение"
+msgstr "Щракнете, за да прекъснете обучението"
 
 #: gui/session/messages.js:590
 msgid "Quit"
@@ -856,7 +857,7 @@ msgstr "Спиране на надграждането"
 
 #: gui/session/selection_panels.js:1106
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr "Не можете да надградите нещо, което вече се надгражда."
+msgstr "Не можете да надградите нещо, което вече е в процес на надграждане."
 
 #: gui/session/selection_panels_helpers.js:56
 msgctxt "stance"
@@ -952,7 +953,7 @@ msgstr "Шифт + ляв бутон"
 #: gui/session/session.js:441
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "Въведете съобщението."
+msgstr "Въведете вашето съобщение."
 
 #: gui/session/session.js:443
 #, javascript-format
@@ -1265,7 +1266,7 @@ msgstr "Филтриране на историята на чата"
 #: gui/session/chat_window.xml:(tooltip):56
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr "Изберете получател."
+msgstr "Избор на получател на съобщението."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1372,7 +1373,7 @@ msgstr "Обобщение"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr "Чакалня"
+msgstr "Лоби"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1388,7 +1389,7 @@ msgstr "Изход"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Показване на чакалнята в прозорец."
+msgstr "Показване на лобито в прозорец."
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15

@@ -7,21 +7,22 @@
 # Ali Alherz <aliherz86@gmail.com>, 2017
 # Eslam obeidat <islamobidat92@gmail.com>, 2018
 # Eslam obeidat <islamobidat92@gmail.com>, 2018
+# ⴰⵎⴰⵣⵉⵖ ⵣⵉⵔⵉ <ziri3fm@googlemail.com>, 2018
 # Ibrahim Al-Darra <achtenacht88@gmail.com>, 2017
-# ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2017
+# ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2017-2018
 # Mohamed Moanis <mohamed_moanis@outlook.com>, 2017
 # Nopar Despar <nopardespar@gmail.com>, 2017
 # Omar Anwar <omaraglan91@yahoo.com>, 2016-2018
 # Omar Rashad <o.rashad2020@gmail.com>, 2017
 # Saber Bousba <saber.bousba@gmail.com>, 2017
-# Yehia Yehia <yehia.s.elzoridy@gmail.com>, 2018
+# 6a39c688df6306dcd1a5e2f20d845515, 2018
 # صفا الفليج <safaalfulaij@hotmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-16 18:38+0000\n"
-"Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
+"PO-Revision-Date: 2018-07-08 15:08+0000\n"
+"Last-Translator: ⴰⵎⴰⵣⵉⵖ ⵣⵉⵔⵉ <ziri3fm@googlemail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr "إصلاحات حوض بناء السفن"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr "تُصلح السفينة المحتمية بمعدّل 10 نقاط إصابة لكلّ ثانية."
+msgstr "اصلاح سفينة النقل بمعدّل 10 ن،ص/ثانية."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -43,7 +44,7 @@ msgstr "مباركة الآلهة"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
-msgstr "تُعالج الوحدات بمعدّل 3 نقاط إصابة لكلّ ثانية."
+msgstr "معالجة الوحدات بمعدّل 3 ن،ص/ثانية."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -103,7 +104,7 @@ msgstr "الولاء"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr "50% تجدد الولاء للمباني المثكونة"
+msgstr "+50% تجدد الولاء للمباني المثكونة"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -127,7 +128,7 @@ msgstr "العلاج الطبي"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
-msgstr "يُعالج الوحدات القريبة بمقدار نقطة إصابة واحدة لكل ثانية."
+msgstr "تعالج الوحدات القريبة بنسبة: 1 ن،ص/ثانية."
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
@@ -135,7 +136,7 @@ msgstr "الهَلْيَنة"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr "يزيد أثر الإقليم بنسبة 20% لكلّ ثيارتون تملكه."
+msgstr " توسيع تاثير الإقليم ب 20% لكلّ مسرح تملكه."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -792,7 +793,7 @@ msgstr "المُحاصر"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
 msgid "+20% attack, +10% range and +1 armor for siege engines."
-msgstr ""
+msgstr "+20٪ هجوم، +10٪ مدى و +١ درع لأسلحة الحصار."
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
@@ -933,7 +934,7 @@ msgstr "إللأرسيش"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "Nearby cavalry gains +2 levels of all armor types."
-msgstr ""
+msgstr " الخياله القريبون يحصلون على +2 مستوى لكل انواع الدروع."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
 msgid "Renowned Conqueror"
@@ -965,4 +966,4 @@ msgstr "الباقي الأخير"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "+25% attack and +1 capture for spear soldiers."
-msgstr "+25٪ هجوم و +1 إحتلال للرّماحين."
+msgstr "+25% هجوم و +1 لأسر الرماة. "

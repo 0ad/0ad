@@ -5,50 +5,51 @@
 # Translators:
 # علیرضا محمدنژاد <aarmn80@gmail.com>, 2018
 # Amin Behshad, 2015
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 15:42+0000\n"
-"Last-Translator: omidh <omid_h28@hotmail.com>\n"
+"PO-Revision-Date: 2018-09-21 17:22+0000\n"
+"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s %(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime for a guide to the meaning of the letters.
 #: gui/common/l10n.js:46
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/l10n.js:46
 msgid "HH:mm:ss"
@@ -63,7 +64,7 @@ msgstr "،"
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s (%(version)s)"
 
 #: gui/common/mod.js:20
 msgid ", "
@@ -73,13 +74,13 @@ msgstr "،"
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "مورد نیاز است: %(mods)s"
 
 #: gui/common/mod.js:30
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "فعال: %(mods)s"
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -88,12 +89,12 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "شناسه بازی بازیابی نشد\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "خطای شروع"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
@@ -111,12 +112,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "لیست مد ها قادر به بازیابی نیست\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr ""
+msgstr "گرفتن خطا"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -125,12 +126,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "دانلود فایل با خطا مواجه شد\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "خظا دانلود"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -139,20 +140,20 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "خطای تایید فایل\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr ""
+msgstr "خطای تایید"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr ""
+msgstr "شروع رابط کابری mode.io "
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "شروع کردن"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.js:313
 #: gui/modmod/modmod.xml:(caption):184
@@ -161,35 +162,35 @@ msgstr "لغو"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr ""
+msgstr "گرفتن و بروزرسانی لیست مدهای در دسترس"
 
 #: gui/modio/modio.js:233
 msgid "Updating"
-msgstr ""
+msgstr "بروزرسانی"
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr ""
+msgstr "لغو بروزرسانی"
 
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "دانلود کردن \"%(modname)s\""
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr ""
+msgstr "دانلود کردن"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr ""
+msgstr "لغو دانلود"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
 #: gui/modio/modio.js:320
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr "%(current)s \\ %(total)s (%(percent)s %%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:330
@@ -198,7 +199,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr ""
+msgstr "زمان گذشته: %(elapsed)s\nتخمین زمان باقی مانده: %(remaining)s\nسرعت متوسط: %(avgSpeed)s"
 
 #: gui/modio/modio.js:332
 msgid "∞"
@@ -209,7 +210,7 @@ msgstr "∞"
 #: gui/modio/modio.js:334
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr "%(number)s %(unit)s در ثانیه"
 
 #: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
 msgid "Filter"
@@ -218,7 +219,7 @@ msgstr "فیلتر"
 #: gui/modmod/modmod.js:285
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
-msgstr "وابستگی آماده نشده : %(dep)s"
+msgstr "پیشنیاز ها برآورده نشده : %(dep)s"
 
 #: gui/modmod/modmod.js:291
 msgid "All dependencies met"
@@ -231,11 +232,11 @@ msgid ""
 "While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
 "\n"
 "Do you really want to connect?"
-msgstr ""
+msgstr "شما در حال برقراری ارتباط با خدمات آنلاین mode.io هستید. این باعث دسترسی آسان به مدهایی که جامعه بازی تولید کرده اند می شود اما این مدها تحت کنترل Wildfire Games نیستند.\n\nدر حالی که ما تلاش میکنیم ایمنی این کار را فراهم کنیم اما ما نمی توانیم گارانتی کنیم که هیچ گونه ریسک امنیتی وجود نخواهد داشت.\n\nآیا واقعا میخواهید متصل شوید؟"
 
 #: gui/modmod/modmod.js:312
 msgid "Connect to mod.io?"
-msgstr ""
+msgstr "متصل شدن به mode.io ؟"
 
 #: gui/modmod/modmod.js:313
 msgctxt "mod.io connection message box"
@@ -252,7 +253,7 @@ msgstr "باشه"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "مدهای mode.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -264,11 +265,11 @@ msgstr "بازگشت"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
-msgstr ""
+msgstr "تازه کردن لیست"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr ""
+msgstr "دانلود"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -287,7 +288,7 @@ msgstr "برچسب مد"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
-msgstr ""
+msgstr "اندازه فایل"
 
 #: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
 #: gui/modmod/modmod.xml:(heading):128
@@ -304,19 +305,19 @@ msgstr "خنثی کردن"
 
 #: gui/modmod/modmod.xml:(caption):49
 msgid "Description"
-msgstr "توضیحات:"
+msgstr "توضیحات"
 
 #: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
-msgstr "روشن‌کردن مدها"
+msgstr "فعال کردن مدها"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
-msgstr ""
+msgstr "فعال / غیر فعال"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
-msgstr "بازدید از تارنما"
+msgstr "بازدید از وبسایت"
 
 #: gui/modmod/modmod.xml:(caption):179
 msgid "Quit"
@@ -324,11 +325,11 @@ msgstr "خروج"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr ""
+msgstr "کمک"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr ""
+msgstr "دانلود مدها"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -336,7 +337,7 @@ msgstr "ذخیره پیکربندی‌ها"
 
 #: gui/modmod/modmod.xml:(caption):204
 msgid "Start Mods"
-msgstr "مدهای شروع"
+msgstr "شروع مدها"
 
 #: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
@@ -350,11 +351,11 @@ msgstr "وبسایت"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr ""
+msgstr "تغییر در ترتیب مدها که قرار است اجرا شوند. این می بایست با نیازمندی های مدها مطابقت داشته باشد."
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr ""
+msgstr "انتخاب مد پیروژنسیس"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -362,17 +363,17 @@ msgstr "بستن"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "راهنای استفاده از مدها"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "سرزدن به mod.io"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr ""
+msgstr "بازی 0 A.D طوری طراحی شده است که به براحتی بتوان از مدها استفاده کرد. مدها در قالب فایل های pyromod توزیع می شوند که مانند فایل های zip قابل باز شدن هستند"
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -382,13 +383,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
+msgstr "برای نصب یک مد تنها کافی است فایل آنرا با بازی 0 A.D باز کنید ( یا دوبار کلیک بر روی فایل و انتخاب بازی به عنوان برنامه اجرای فایل یا اجرا کردن فایلها در ترمینال). سپس مد باز شده و در صفحه انتخاب مد در دسترس خواهد بود. شما می توانید فعال یا غیر فعالش کنید یا حتی مد را مستقیم از روی کامپیوتر پاک کنید. (https://trac.wildfiregames.com/wiki/GameDataPaths)"
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr ""
+msgstr "برای اطلاعات بیشتر در مورد مد کردن بازی، به راهنمای آنلاین مد کردن مراجعه کنید ( بر روی راهنمای مد کردن در زیر کلیک کنید)"
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -397,4 +398,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr ""
+msgstr "خدمات mod.io توسط DBolical توسعه داده شده است، که شرکت IndieDB و ModDB پشت سر توسعه آن قرار دارند. این وب سایت ها سالهای زیادی است که بازی 0 A.D را در سایت هایشان پشتبیانی می کنند. mode.io به ما اجازه می دهد که تمام مدهای تایید شده توسط تیم را لیست و دانلود کنیم. بر روی \"دانلود مدها\" کلیک کنید تا بتوانید این قابلیت را امتحان کنید و چند مد نصب کنید!"

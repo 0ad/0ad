@@ -3,7 +3,8 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# linux_eki <ekiuusi@gmail.com>, 2015-2016
+# linux_eki <ekiuusi@gmail.com>, 2015-2016,2018
+# Järvi Eduardo <hammondemain@gmail.com>, 2018
 # Kalle Mantyla <kalle.mantyla@gmail.com>, 2016
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-23 14:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-02 11:55+0000\n"
+"Last-Translator: Järvi Eduardo <hammondemain@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -194,70 +195,70 @@ msgstr "Pahoittelut, kuvausta ei saatavilla."
 #: gui/common/gamedescription.js:104
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:107
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:113
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:116
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:126
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (OFFLINE)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:129
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (OFFLINE, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:136
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:139
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:143
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:146
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:166
 msgid "Unknown Civilization"
@@ -289,7 +290,7 @@ msgstr "Joukkoe %(team)s"
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:207
 msgid "Observer"
@@ -354,7 +355,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:290
 msgid "Locked Teams"
-msgstr ""
+msgstr "Lukitut Joukkueet"
 
 #: gui/common/gamedescription.js:291
 msgid "Players can't change the initial teams."
@@ -405,11 +406,11 @@ msgstr[1] ""
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Satunnainen kartta"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Valitse listasta satunnainen kartta."
 
 #: gui/common/gamedescription.js:330
 msgid "Map Name"
@@ -425,7 +426,7 @@ msgstr "Kartan tyyppi"
 
 #: gui/common/gamedescription.js:348
 msgid "Map Filter"
-msgstr ""
+msgstr "Karttasuodatin"
 
 #: gui/common/gamedescription.js:357
 msgid "Map Size"
@@ -456,7 +457,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:385
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "Pelaajat aloittavat kansalaiskeskuksella."
 
 #: gui/common/gamedescription.js:389
 msgid "Starting Resources"
@@ -465,7 +466,7 @@ msgstr "Aloitusresurssit"
 #: gui/common/gamedescription.js:390
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:400
 msgid "Population Limit"
@@ -473,7 +474,7 @@ msgstr "Väkilukuraja"
 
 #: gui/common/gamedescription.js:408
 msgid "Treasures"
-msgstr ""
+msgstr "Aarteet"
 
 #: gui/common/gamedescription.js:410
 msgctxt "treasures"
@@ -527,7 +528,7 @@ msgstr ""
 #: gui/common/gamedescription.js:463
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -628,7 +629,7 @@ msgstr ""
 #: gui/common/network.js:161
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Käyttäjät (%(num)s): %(users)s"
 
 #: gui/common/network.js:162 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
@@ -677,7 +678,7 @@ msgstr "Satunnainen"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Tasapainoitettu"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -694,8 +695,8 @@ msgstr "Aggressiivinen"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minuutti"
+msgstr[1] "%(min)s minuuttia"
 
 #: gui/common/settings.js:205
 msgctxt "ceasefire"
@@ -815,7 +816,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
 "(%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
@@ -833,7 +834,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #: gui/common/tooltips.js:72
 #, javascript-format
@@ -866,7 +867,7 @@ msgstr "Terveys:"
 #: gui/common/tooltips.js:175
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:193
 #, javascript-format
@@ -889,7 +890,7 @@ msgstr "%(arrowString)s / %(timeString)s"
 #: gui/common/tooltips.js:209
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:220
 msgid "Armor:"
@@ -934,13 +935,13 @@ msgstr "Ulottuvuus:"
 #: gui/common/tooltips.js:294
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:298
 msgid "meters"
-msgstr ""
+msgstr "metriä"
 
 #: gui/common/tooltips.js:299 gui/common/tooltips.js:712
 #: gui/common/tooltips.js:742
@@ -953,7 +954,7 @@ msgstr[1] "metriä"
 #: gui/common/tooltips.js:381 gui/common/tooltips.js:386
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:324
 #, javascript-format
@@ -963,7 +964,7 @@ msgstr ""
 #: gui/common/tooltips.js:341
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:342
 msgid "Garrison Limit"
@@ -972,7 +973,7 @@ msgstr "Miehitysraja"
 #: gui/common/tooltips.js:349
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:350 gui/common/tooltips.js:704
 msgid "Heal:"
@@ -1017,7 +1018,7 @@ msgstr[1] ""
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
-msgstr ""
+msgstr "Rakentajien määrä:"
 
 #: gui/common/tooltips.js:424
 #, javascript-format
@@ -1055,7 +1056,7 @@ msgstr ""
 #: gui/common/tooltips.js:524
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1079,7 +1080,7 @@ msgstr "Tornit: %(costs)s"
 #: gui/common/tooltips.js:614
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
@@ -1088,7 +1089,7 @@ msgstr ""
 #: gui/common/tooltips.js:628
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "Vaatii %(technology)s"
 
 #: gui/common/tooltips.js:640
 #, javascript-format
@@ -1154,7 +1155,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:740
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "Kantama:"
 
 #: gui/common/tooltips.js:757
 #, javascript-format
@@ -1166,7 +1167,7 @@ msgstr "%(specificName)s (%(genericName)s)"
 #: gui/common/tooltips.js:769
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
-msgstr ""
+msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:784
 msgid "Classes:"
@@ -1177,7 +1178,7 @@ msgstr "Luokat:"
 #: gui/common/tooltips.js:811
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:821
 msgid "Loot:"
@@ -1187,13 +1188,13 @@ msgstr "Ryöstösaalis:"
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:829
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "Napsauta hiiren kakkospainikkeella nähdäksesi lisätietoja."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "Napsauta nähdäksesi lisätietoja."
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1209,25 +1210,25 @@ msgstr ""
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Min: %(min)s, Max: %(max)s"
 
 #: gui/options/options.js:128
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Min: %(min)s"
 
 #: gui/options/options.js:130
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Max: %(max)s"
 
 #: gui/options/options.js:163
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "Arvo: %(val)s (min: %(min)s, max: %(max)s)"
 
 #: gui/options/options.js:299
 msgid ""
@@ -1381,14 +1382,14 @@ msgstr "Ohjekirja"
 #: gui/reference/common/draw.js:48
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource supply.
 #: gui/reference/common/draw.js:67
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
-msgstr ""
+msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/reference/common/draw.js:68
 msgid "Resource Supply:"
@@ -1398,7 +1399,7 @@ msgstr ""
 #. supply of its resource.
 #: gui/reference/common/draw.js:71 gui/summary/summary.js:111
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/reference/common/load.js:193
 #, javascript-format
@@ -1419,13 +1420,13 @@ msgstr ""
 #. structure selected.
 #: gui/reference/viewer/viewer.js:139
 msgid "Built by:"
-msgstr ""
+msgstr "Rakennuttaja:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:152
 msgid "Trained by:"
-msgstr ""
+msgstr "Kouluttaja:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
@@ -1468,12 +1469,12 @@ msgstr "Tämä uusinta ei ole yhteensopiva pelisi version kanssa!"
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "Versiosi: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "Vaadittava versio: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:100
 msgid "Incompatible replay"
@@ -1576,7 +1577,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "Pelaajat: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:300
 msgid "yyyy-MM-dd HH:mm"
@@ -1653,7 +1654,7 @@ msgstr "Ihmeet"
 msgid ""
 "Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Rakennuksien tilastot(%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
@@ -1690,7 +1691,7 @@ msgstr "Kauppiaat"
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Yksikkötilastot (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
@@ -1722,7 +1723,7 @@ msgstr ""
 #: gui/summary/layout.js:126
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
-msgstr ""
+msgstr "Resurssitilastot (%(gathered)s / %(used)s)"
 
 #: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):102
 msgid "Market"
@@ -1765,7 +1766,7 @@ msgstr ""
 
 #: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
-msgstr ""
+msgstr "Vegetaristi suhde"
 
 #: gui/summary/layout.js:190
 msgid "Feminization"
@@ -1994,7 +1995,7 @@ msgstr "Voit automaattisesti lähettää meille anonyymia palautetta, joka autta
 
 #: gui/pregame/mainmenu.xml:562
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "Alpha XXIII: Ken Wood"
 
 #: gui/pregame/mainmenu.xml:564
 msgid ""
@@ -2012,7 +2013,7 @@ msgstr "Poista käytöstä palaute"
 
 #: gui/pregame/mainmenu.xml:(caption):165
 msgid "Tutorial"
-msgstr ""
+msgstr "Tutoriaali"
 
 #: gui/pregame/mainmenu.xml:(caption):197
 #: gui/reference/structree/structree.xml:(caption):126
@@ -2063,7 +2064,7 @@ msgstr "Tervetuloa-näyttö"
 
 #: gui/pregame/mainmenu.xml:(caption):466
 msgid "Learn to Play"
-msgstr ""
+msgstr "Opettele pelaamaan"
 
 #: gui/pregame/mainmenu.xml:(caption):511
 msgid "Settings"
@@ -2091,11 +2092,11 @@ msgstr "Raportoi virheestä"
 
 #: gui/pregame/mainmenu.xml:(caption):610
 msgid "Translate the Game"
-msgstr ""
+msgstr "Käännä peliä"
 
 #: gui/pregame/mainmenu.xml:(caption):622
 msgid "Donate"
-msgstr ""
+msgstr "Lahjoita"
 
 #: gui/pregame/mainmenu.xml:(caption):634
 msgid "Credits"
@@ -2325,12 +2326,12 @@ msgstr ""
 #: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "Arvo:"
 
 #: gui/summary/summary.xml:(caption):193
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "Tyyppi:"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Replay"
@@ -2343,17 +2344,17 @@ msgstr "Jatka"
 #: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "Kategoria"
 
 #: gui/summary/summary.xml:(tooltip):189
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "Arvo"
 
 #: gui/summary/summary.xml:(tooltip):200
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "Tyyppi"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
@@ -2536,7 +2537,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
-msgstr ""
+msgstr "Pelaajanimi (Yksinpeli)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
@@ -2544,7 +2545,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
-msgstr ""
+msgstr "Pelaajanimi (Moninpeli)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
@@ -2660,7 +2661,7 @@ msgstr "Ikkunoitu"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr ""
+msgstr "Käytä OpenGL 2.0 varjostinta (suositeltu)."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -2668,11 +2669,11 @@ msgstr "Suosi GLSL"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
-msgstr ""
+msgstr "Salli Sumu."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
-msgstr ""
+msgstr "Sumu"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
@@ -2688,11 +2689,11 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Varjostusefektit"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "Salli varjot."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
@@ -2700,24 +2701,24 @@ msgstr "Varjostin"
 
 #: gui/options/options.json[1].options[6].list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Hyvin matala"
 
 #: gui/options/options.json[1].options[6].list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Matala"
 
 #: gui/options/options.json[1].options[6].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
-msgstr ""
+msgstr "Keskinkertainen"
 
 #: gui/options/options.json[1].options[6].list[3].label
 msgid "High"
-msgstr ""
+msgstr "Korkea"
 
 #: gui/options/options.json[1].options[6].list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Hyvin korkea"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid ""
@@ -2727,11 +2728,11 @@ msgstr ""
 
 #: gui/options/options.json[1].options[6].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "Varjojen laatu"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "Pehmeät varjostukset"
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
@@ -2739,7 +2740,7 @@ msgstr "Varjofiltteröinti"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind buildings."
-msgstr ""
+msgstr "Näytä yksiköiden ääriviivat rakennusten takana."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
@@ -2747,7 +2748,7 @@ msgstr "Yksikön varjokuvat"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "Salli partikkelit."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
@@ -2761,7 +2762,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[10].label
 msgid "Water Effects"
-msgstr ""
+msgstr "Vesiefektit"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid ""
@@ -2815,7 +2816,7 @@ msgstr "Pehmeä LOS"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr ""
+msgstr "Renderoi taivas."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
@@ -2855,11 +2856,11 @@ msgstr ""
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
-msgstr ""
+msgstr "Grafiikat"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr ""
+msgstr "Äänenvoimakkuuden taso."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
@@ -2895,7 +2896,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
-msgstr ""
+msgstr "UI äänenvoimakkuus"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -2964,7 +2965,7 @@ msgstr "Satunnainen"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Tasapainoitettu"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -3020,7 +3021,7 @@ msgstr ""
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
-msgstr ""
+msgstr "Aula"
 
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""
@@ -3147,15 +3148,15 @@ msgstr "Yksityiskohtaiset työkaluvihjeet"
 
 #: gui/options/options.json[5].options[12].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "Järjestelemätön"
 
 #: gui/options/options.json[5].options[12].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "Nouseva"
 
 #: gui/options/options.json[5].options[12].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "Laskeva"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""

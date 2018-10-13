@@ -5,6 +5,7 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014-2016
 # Ildradil <piggmatias@gmail.com>, 2013
+# Järvi Eduardo <hammondemain@gmail.com>, 2018
 # Max Ihalempia, 2016
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
@@ -12,6 +13,7 @@
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015-2016
 # Petri, 2014
+# Rami Niemenmaa <ramukkamail@gmail.com>, 2018
 # Riku Viitanen <riisseli4@gmail.com>, 2016
 # Saku Tiihonen <zackyistic@gmail.com>, 2016
 # Saku Tiihonen <zackyistic@gmail.com>, 2016
@@ -20,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-01 14:52+0000\n"
+"Last-Translator: Järvi Eduardo <hammondemain@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -354,7 +356,7 @@ msgstr "Syy: %(reason)s."
 
 #: gui/session/messages.js:157
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Odotetaan pelaajia liittymään:"
 
 #: gui/session/messages.js:158
 msgid "Synchronising gameplay with other players…"
@@ -486,15 +488,15 @@ msgstr ""
 
 #: gui/session/messages.js:590
 msgid "Quit"
-msgstr ""
+msgstr "Poistu"
 
 #: gui/session/messages.js:594
 msgid "Click when ready."
-msgstr ""
+msgstr "Klikkaa, kun olet valmis."
 
 #: gui/session/messages.js:598
 msgid "Follow the instructions."
-msgstr ""
+msgstr "Seuraa ohjeita."
 
 #: gui/session/messages.js:689
 msgctxt "Separator for a list of client loading messages"
@@ -530,7 +532,7 @@ msgstr ""
 #: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr ""
+msgstr "Varmistakaa, että kaikilla pelaajilla on samat modit käytössä."
 
 #: gui/session/messages.js:715
 msgctxt "Out-Of-Sync"
@@ -541,7 +543,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr ""
+msgstr "uusinta tallennettu polkuun: %(filepath)s"
 
 #: gui/session/messages.js:719
 #, javascript-format
@@ -615,7 +617,7 @@ msgstr "%(player)s lähetti sinulle %(amounts)s."
 #: gui/session/messages.js:1033
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "lähetit pelaajalle %(player2)s%(amounts)s"
 
 #: gui/session/messages.js:1038
 #, javascript-format
@@ -961,12 +963,12 @@ msgstr "Kirjoita viesti lähettääksesi."
 #: gui/session/session.js:443
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Paina %(hotkey)s avataksesi julkisen chatin."
 
 #: gui/session/session.js:446
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Paina %(hotkey)s avataksesi tarkastelijachatin"
 
 #: gui/session/session.js:447
 #, javascript-format
@@ -1026,7 +1028,7 @@ msgstr "TUHOUDUIT!"
 
 #: gui/session/session.js:930
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: gui/session/session.js:998
 msgctxt "replayFinished"
@@ -1065,15 +1067,15 @@ msgstr ""
 
 #: gui/session/session.js:1260
 msgid "Unordered"
-msgstr ""
+msgstr "Järjestelemätön"
 
 #: gui/session/session.js:1260
 msgid "Descending"
-msgstr ""
+msgstr "Laskeva"
 
 #: gui/session/session.js:1260
 msgid "Ascending"
-msgstr ""
+msgstr "Nouseva"
 
 #: gui/session/session.js:1286
 #, javascript-format
@@ -1194,7 +1196,7 @@ msgstr "Poista vartio"
 #: gui/session/unit_actions.js:1255
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "käy kauppaa"
 
 #: gui/session/unit_actions.js:1273
 msgid "Patrol"
@@ -1255,7 +1257,7 @@ msgstr "Peruuta"
 #: gui/session/chat_window.xml:(caption):98
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "Historia"
 
 #: gui/session/chat_window.xml:(caption):103
 msgid "Send"
@@ -1264,7 +1266,7 @@ msgstr "Lähetä"
 #: gui/session/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Suodata keskusteluhistoria."
 
 #: gui/session/chat_window.xml:(tooltip):56
 msgctxt "chat input"
@@ -1376,7 +1378,7 @@ msgstr "Katsaus"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr ""
+msgstr "Aula"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1431,11 +1433,11 @@ msgstr ""
 
 #: gui/session/trade_window.xml:(caption):23
 msgid "Sell:"
-msgstr ""
+msgstr "Myy:"
 
 #: gui/session/trade_window.xml:(caption):27
 msgid "Buy:"
-msgstr ""
+msgstr "Osta:"
 
 #: gui/session/trade_window.xml:(caption):31
 msgid "No Markets Available"
@@ -1451,7 +1453,7 @@ msgstr ""
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
-msgstr ""
+msgstr "Valmis"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1497,7 +1499,7 @@ msgstr "Paina valitaksesi ryhmitetyt yksiköt, tuplaklikkaamalla saat keskitetty
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr ""
+msgstr "pelin nopeus"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"

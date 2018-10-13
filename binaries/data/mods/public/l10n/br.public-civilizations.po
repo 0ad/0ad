@@ -4,25 +4,26 @@
 # 
 # Translators:
 # Anton Bretéché <antonabbreizh@gmail.com>, 2016
-# ernest olory <ernestolory@hotmail.fr>, 2016-2017
+# ernest olory <ernestolory@hotmail.fr>, 2016-2018
 # Feñch Gallig <ducraig@hotmail.fr>, 2017
+# Goulven <goulvenbreizh@hotmail.fr>, 2018
 # Gwenn M <tornoz@laposte.net>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2016-2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
-# Younn Keravel <goulvenbreizh@hotmail.fr>, 2017
+# Goulven <goulvenbreizh@hotmail.fr>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2018-03-29 16:52+0000\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-09-19 16:01+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: br\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
 #: simulation/data/civs/athen.jsonName
 #: simulation/data/civs/athen.jsonFactions[0].Name
@@ -250,7 +251,7 @@ msgstr "Gymnasion"
 #: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr "Stummit unanennoù kampion hag enklaskit teknologiezhioù evit an unanennoù kampion."
+msgstr "Stummit unanennoù kampion ha kasit da benn enklaskoù diwar-benn teknologiezhioù an unanennoù kampion."
 
 #: simulation/data/civs/athen.jsonStructures[1].History
 msgid ""
@@ -264,7 +265,7 @@ msgstr "Prytaneion"
 
 #: simulation/data/civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr "Stummit harozed ha grit an enklaskoù teknologiezh evit an harozed."
+msgstr "Stummit harozed ha kasit da benn an enklaskoù teknologiezh diwar-benn an harozed."
 
 #: simulation/data/civs/athen.jsonStructures[2].History
 msgid ""
@@ -378,7 +379,7 @@ msgstr "Vosenius"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr "Lakaat a ra da greskiñ tizh an dagusted ha fiñvusted ar soudarded-stourmadek."
+msgstr "Kreskiñ a ra tizh an dagusted ha fiñvusted ar soudarded meskadeg."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
@@ -422,8 +423,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "Caractacus, ar stumm roman, a zo ur c'hemm simpl eus Karaktos, e anv a-vremañ, oa bet moullet war ur maread a bezhioù moneiz. Dindan an anv-mañ eo anavezet evit bezañ un difennour tenn eus Breizh-Veur a-enep ar Romaned goude o aloubadeg e 43 war-lerc'h J.K. Mab ar Roue Cunobelin eus ar genvreudeuriezh meuriadoù Catuvellauni, en em gannet eo Karaktakos e-pad nav bloaz a-enep d'ar Romaned gant trec'hoù bihan, ha tec'hout e Bro-Gembre, lec'h ma oa bet graet lamm dezhañ. Benn ar fin ez eas e Breizh-Veur an Hanternoz, lec'h m'en em roas d'ar Romaned. Kaset da Roma, Karaktos a oa bet roet an aotre bevañ gant an Impalaer Claudius dezhañ hag e varvas en Italia. Hervez an Hengoun, troet e oa d'ar Gristenelezh pa reas e wreg, met n'eus netra anavezet diwar-benn an dra-mañ. Marteze eo heverkoc'h ar fed ma vefe bet aotreet da vevañ ur wech paket. Ar politikerezh Roman a oa kentoc'h diskouez lazhañ seurt tud da lidañ. Kaset e oa bet neuze Karatakos dirak an Impalaer hag ar Sened diwar e c'houlenn evit en em zisplegañ. N'hoc'h ket sur eus ar pezh a zo bet lavaret gantañ, padal Tacitus a ro ur brezegenn vrudet dezhañ..."
+"but Tacitus applies to him a famous speech…"
+msgstr "Caractacus, ar stumm roman, a zo ur cheñchamant simpl eus Karaktos, e anv a-vremañ, oa bet moullet war ur maread a bezhioù moneiz. Dindan an anv-mañ eo anavezet evel bezañ un difennour tenn eus Breizh-Veur a-enep ar Romaned goude o aloubadeg e 43 war-lerc'h J.K. Mab ar Roue Cunobelin eus ar genvreudeuriezh meuriadoù Catuvellauni, en em gannet eo Karaktakos e-pad nav bloaz a-enep d'ar Romaned gant trec'hioù bihan, ha tec'hout e Bro-Gembre, lec'h ma oa bet graet lamm dezhañ. Benn ar fin ez eas e Breizh-Veur an Hanternoz, lec'h m'en em roas d'ar Romaned. Kaset da Roma, Karaktos a oa bet roet an aotre bevañ gant an Impalaer Claudius dezhañ hag e varvas en Italia. Hervez an Hengoun, troet e oa d'ar Gristenelezh pa zeas e wreg da gristen ivez, met n'eus netra sur diwar-benn an dra-mañ. Marteze a-walc'h ez eo heverkoc'h ar fed ma vefe bet lezet e vuhez dezhañ ur wech paket gant ar Romaned. Ar politikerezh Roman a oa kentoc'h diskouez lazhañ seurt tud e-pad lidoù bras. Kaset e oa bet neuze Karatakos dirak an Impalaer hag ar Sened diwar e c'houlenn evit en em zisplegañ. N'hoc'h ket sur eus ar pezh a zo bet lavaret gantañ, padal Tacitus a ro ur brezegenn vrudet dezhañ..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -501,7 +502,7 @@ msgid ""
 "slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
 "and then slew her daughters, and then herself, to avoid further shame at "
 "Roman hands."
-msgstr "Ammianus Marcellinus en deus diskrivet penaos e oa diaes ha kallet d'ur strollad estrenien da enebiñ ouzh ur C'helt ma c’houlenne sikour digant e wreg. Kalz kreñvoc'h e oa evit na oa he gwaz hag e oa gouest da skeiñ evel ar glav gant kreñvder ur winterezh. Boudika, rouanez an Isened, a oa diskrivet evel-hen « bras-kenañ ha spontus he neuz, raouiet e oa he mouezh hag un dolzennad-vras a vlev rous a ziskenne war he divskoaz. Gwisket e oa gant un doneg lies-liv a oa ur pezh mantell-dev staget gant ur spilhenn warni. Boudika hag he gwaz Prasutagos, roue an Isened, a oa bet, da gentañ, tud kevredet ouzh ar romaned. Prasutagos a oa bet ur c'hevread tost goude un emsavadeg-verr, doujet e veze outañ evit e furnez, ha gant e enebourien gozh dezhañ zoken, a oa deuet da vezañ kevredet dezhañ, ar Romaned. Frank e oa da ren e rouantelezh diouzh hengounioù e bobl dezhañ, war-bouez un netraig. Prasutagos, o verzhout e oa o vont da vervel, gant asant e wreg hag ec'h isurzhied, a felle dezho ez afe hêrezh e c'halloud gant e verc'hed, ha dindan ren Boudika, betek ma teufent d'an oad. Impalaerour Roma a vefe bet an aotroniezh gantañ, en ur zastum an tailhoù ha da vezañ aotreet da c'houlenn da gaout ur skoazell vilourel. Pezh a gloke tamm pe damm d'an emglev en doa bet. Nemet ne veze ket anavezet gant ar Romaned ar maouezed evit bezañ pennher, dre-se o deus kadarnaet, goude marv Prasutagos, ne oa nemet c'hoantoù an impalaer war ar rouantelezh Isenian hag a oa gwir. Ouzhpennet o doa evit neuze an hengoun Roman a lavare e chome ar rouantelezhioù isurzhiet dizalc'h e-pad buhez ar roue orin hepken, evel ma oa c'hoarvezet en Galatie. An impalaeriezh a stagas da vat ar rouantelezh, hag e krogas kerkent da sevel tailhoù-kriz kalet, oc'h arguzenniñ e oa Prasutagos dleour d'ar Romaned, rak n'en devoa ket daskoret meur a amprest en devoa graet a-hed e vuhez. Klemm a reas Boudika a-enep d'an doare-se da ober hag ivez an dispriz a oa graet ouzh c'hoantoù he gwaz, aet da gornog, hag eo bet degemeret en un doare kriz: soudarded  roman a skourjezas anezhi hag he merc'hed, he bugale nemetañ, pallforzhet. En em sevel a reas Boudika hag he sujidi diwar ar vezhekaat-mañ graet d'ar rouanez ha d'he merc'hed. Gouarnour Breizh a oa oc'h en em gannañ ouzh Drouizhed e Kambri, Bro-Gembre a-hiziv, pezh a roas evit neuze an tu da zegas da vBoudika un niver bras a soudarded er maez eus an Isenianed, ha ne oa ket ar meuriad nemetañ e breizh a oa bet disouezhet gant an aloubadeg hag ar bezañs Roman. Boudika hag hec'h arme a raskas teir gêr, a roas lamm d'ul lejion roman, hag e c'houlennet sikour gant eñvor Arminius, ur German anezhañ a oa bet skarzhet gantañ ar Romaned deus e zouaroù, hag o hendadoù dezho o devoa enebet ouzh Sezar war-dro ur c'hantved en o-raok. Boudika a zo bet roet lamm dezhi abalamour d'ur fazi taktik bras e-kerzh emgann Watling Street, pezh a zegasas da beurzistrujidigezh ul lodenn vat eus he nerzhioù na oa ket gouest da vont war-gil. Tec'hout a reas Boudika neuze, hag e lazhas e seizh flac'h, hag ec'h en em lazhas, evit chom hep kaout ur vezhekaadenn all eus perzh ar Romaned."
+msgstr "Ammianus Marcellinus en deus diskrivet penaos e oa diaes ha kallet d'ur strollad estrenien da enebiñ ouzh ur C'helt ma c’houlenne sikour digant e wreg. Kalz kreñvoc'h e oa evit na oa he gwaz hag e oa gouest da skeiñ evel ar glav gant kreñvder ur winterezh. Boudika, rouanez an Isened, a oa diskrivet evel-hen \"bras-kenañ ha spontus he neuz, raouiet e oa he mouezh hag un dolzennad-vras a vlev rous a ziskenne war he divskoaz\". Gwisket e oa gant un doneg lies-liv a oa ur pezh mantell-dev staget gant ur spilhenn warni. Boudika hag he gwaz Prasutagos, roue an Isened, a oa bet, da gentañ, tud kevredet gant ar romaned.  Prasutagos a oa bet ur c'hevread tost goude un emsavadeg-verr, doujet e veze outañ evit e furnez, ha gant e enebourien gozh dezhañ zoken, a oa deuet da vezañ kevredet dezhañ, ar Romaned. Prasutagos, o verzhout e oa o vont da vervel, gant asant e wreg hag ec'h isurzhied, a felle dezho ez afe hêrezh e c'halloud gant e verc'hed, ha dindan ren Boudika, betek ma teufent d'an oad. Impalaer Roma a vefe bet an aotrouniezh gantañ, en ur zastum an tailhoù ha da vezañ aotreet da c'houlenn kaout ur skoazell vilourel. Pezh a gloke tamm pe damm d'an emglev en doa bet. Nemet ne veze ket anavezet gant ar Romaned ar maouezed evit bezañ pennhêrien, dre-se o deus kadarnaet, goude marv Prasutagos, ne oa nemet c'hoantoù an impalaer war ar rouantelezh Isenian hag a oa gwir. Ouzhpennet o doa evit neuze an hengoun Roman a lavare e chome ar rouantelezhioù isurzhiet dizalc'h e-pad buhez ar roue orin hepken, evel ma oa c'hoarvezet en Galatie. An impalaeriezh a stagas da vat ar rouantelezh, hag e komañsas kerkent da sevel tailhoù-kriz kalet, oc'h arguzenniñ e oa Prasutagos dleour d'ar Romaned, rak n'en devoa ket rentet meur a amprest en devoa graet a-hed e vuhez. Klemm a reas Boudika a-enep an doare-se d'ober hag ivez an dispriz a veze graet e-keñver c'hoantoù he gwaz, aet da gornôg, hag eo bet degemeret en un doare kriz: soudarded roman a skourjezas anezhi hag he merc'hed, he bugale nemetañ, palforset. En em sevel a reas Boudika hag he sujidi diwar ar vezh vras-mañ graet d'ar rouanez ha d'he merc'hed. Gouarnour Breizh a oa oc'h en em gannañ ouzh Drouized e Kambri, Bro-Gembre a-hiziv, pezh a roas evit neuze an tu da zegas da vBoudika un niver bras a soudarded er maez eus an Isenianed, ha ne oa ket ar meuriad nemetañ e Breizh a oa bet disouezhet gant an aloubadeg hag ar bezañs Roman. Boudika hag hec'h arme a raskas teir c’hêr, a roas lamm d'ul lejion roman, hag e c'houlennent sikour gant Arminius, ur German anezhañ a oa bet skarzhet gantañ ar Romaned deus e zouaroù, hag o hendadoù dezho o devoa enebet ouzh Kezar war-dro ur c'hantved en o-raok. Boudika a zo bet roet lamm dezhi abalamour d'ur fazi taktik bras e-kerzh emgann Watling Street, pezh a zegasas da beurzistrujidigezh ul lodenn vat eus he nerzhioù na oa ket gouest da vont war-gil betek ar goudor. Tec'hout a reas Boudika neuze, hag e lazhas he seizh plac'h, hag ec'h en em lazhas war-lerc'h, evit chom hep kaout ur vezh vras all a-berzh ar Romaned."
 
 #: simulation/data/civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
@@ -521,7 +522,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearsome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Bez e oa ar Vritoned meuriad keltek Inizi Breizh-Veur. Implijout a raent karrigennoù, klezeier-hir ha brezelourien kreñv er stourmadegoù, ha nerzhus e oa oc'h emsavadegoù a-enep Roma da zifenn o c'hustumoù hag o madoù. Sevel a rejont miliadoù a savadurioù dibar ivez, evel dinioù, krannogoù ha tourioù."
+msgstr "Ar Vritoned a oa meuriadoù keltiek Inizi Breizh-Veur. Implijout a raent karrigennoù, klezeier-hir ha brezelourien kreñv er veskadegoù, ha nerzhus e oa oc'h emsavadegoù a-enep Roma da zifenn o c'hustumoù hag o madoù. Sevel a rejont miliadoù a savadurioù dibar ivez, evel tuchennoù kreñvaet, krannogoù ha brochoù."
 
 #: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
@@ -844,7 +845,7 @@ msgstr "Mallozh d'ar re drec'het! Ar penn-bras Gallian Brennus en doa lakaet sez
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr "An drouized Galian a c'hounez un dagusted-vihan er stourmadeg."
+msgstr "An drouized Galian a c'hounez un dagusted-vihan er veskadeg."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Carnutes"
@@ -971,7 +972,7 @@ msgstr "En un doare disheñvel diouzh Numidia en Afrika an Hanternoz, al Ledenez
 msgid ""
 "Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
 "allies."
-msgstr "-20% a goust evit ar re a zo kevredet ganeoc'h evit an tennataerien-keodedel war o zreid hag an dennataerien war-varc'h."
+msgstr "-20% a goust evit ar soudarded-keodedour tennataer war droad hag an dennataerien war-varc'h gant ar re a zo kevredet ganeoc'h."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1079,7 +1080,7 @@ msgid ""
 " a battle on the 23rd of August. Karos was wounded in an after battle small "
 "cavalry action the same evening and soon died thereafter, but he had carried"
 " off one of the most humiliating defeats that Rome ever suffered."
-msgstr "Karos a oa penn ar meuriad Belli lec'hiet just e reter ar C'heltibered (E kreiz e oa an Numantined). E-penn meuriadoù  ar plateiz kreizel kenvrevret e oa (pladenn-greizel uhel) e skoasennas 20,000 soudard war droad ha 5,000 marc'heger a-hed ur wenodenn koadek stank. Q. Fulvius Nobilior a chomas hep ober un anavezadenn vat hag e kasas e armead en ur steudad hir er stign. Un 10,000 lejionour Roman bennak eus ar 15,000 a gouezhas en toull-trap bras-divent-mañ az sailhas warno. An deiziad a oa d'an 23 a viz Eost e 153 kent J.-K., an deiz a lide Roma Gouel Vulkano. War-lerc'h un dekred senedourel anavezet dindan an anv dies ater, un 'deiz an drouziwezh' ha ne vrezelas ket morse ken Roma en un emgann d'an 23 a viz Eost. Karos a oa bet gloazet en noz-mañ e-pad ur c'hrogad marc'hegerezh-skañv hag e varvas just goude, met roet en doa da Roma unan eus e zrouglammoù mezhekaus gwashañ he deus bet morse."
+msgstr "Karos a oa penn ar meuriad Belli lec'hiet just e reter ar C'heltibered (E kreiz e oa an Numantined). E-penn meuriadoù  ar plateiz kreizel kenvrevret e oa (pladenn-greizel uhel) e skoasennas 20,000 soudard war droad ha 5,000 marc'heger a-hed ur wenodenn koadek stank. Q. Fulvius Nobilior a chomas hep ober un anavezadenn vat hag e kasas e armead en ur steudad hir er stign. Un 10,000 lejionour Roman bennak eus ar 15,000 a gouezhas en dagadenn-stign bras-divent-mañ a sailhas warno. An deiziad a oa d'an 23 a viz Eost e 153 kent J.-K., an deiz a lide Roma Gouel Vulkano. War-lerc'h un dekred senedourel anavezet dindan an anv dies ater, un 'deiz an drouziwezh' ha ne vrezelas ket morse ken Roma en un emgann d'an 23 a viz Eost. Karos a oa bet gloazet en noz-mañ e-pad ur c'hrogad marc'hegerezh-skañv hag e varvas just goude, met roet en doa da Roma unan eus e zrouglammoù mezhekaus gwashañ he deus bet morse."
 
 #: simulation/data/civs/iber.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1128,6 +1129,211 @@ msgid ""
 "and employed pioneering guerrilla tactics and flaming javelins as they "
 "fought back."
 msgstr "An Ibered a oa ur bobl a oa kevrinus hec'h orin hag he yezh ivez, gant ur c'hiz kreñv a varc'hegerezh hag a labour-metal. Ur sevenadur peoc'hiek a-walc'h o doa, en em gannañ a rae,t e meur a emgann all evel goprsoudarded hepken. Nemet, o doa prouet e oant lerek pa lakaas en he fenn Roma pakañ o douar hag o frankiz diganto, en ur implijout taktikoù gerilha nevezus ha spegoù entanet p'o deus rebourset."
+
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "Kouchited"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "Piramidennoù Meroe"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr "Savadur ur biramidenn Kushite a gresk levezon tiriadel ar Greizenn Geodedel dre +10% evit pep hini savet."
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr "Kailhegoù"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr "Ar c'hoarierien Kushites a resev digoust ur vengleuz metal tu pe tu en o zachenn a-orin."
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Bodadeg Olifanted"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr "A c'hall pakout olifanted Gaïa ha lakaat anezho en gwarnizon en ur vuorzh evit digreskiñ koust stummañ an Olifanted Brezel."
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Pourvezer olifanted"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Digreskiñ a ra koust hag amzer-stummañ an olifanted eus 20% evit pep c'hoarier Kushite kevredet."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "Kashta"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "Alara"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "Pebatjma"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "Shabaka"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "Shebitku"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "Kalhata"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "Takahatenamun"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "Tantamani"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "Atlanersa"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "Nasalsa"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "Malewiebamani"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "Harsiotef"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "Shanakdakhete"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "Amanishakheto"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "Savouriezh Mentek"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr "+50% PB ha -50% a amzer sevel evit ar C'hreizennoù Keodedel, Temploù, Piramidennoù ha Marzennoù."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr "Aotreañ stummañ renk begenn ar bareourien"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "Beleg Bras eus Amun"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "Ho peleien a vo stummet gant ar Beleg Meur e-unan - ra vo benniget gant Amon."
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Nastasen"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Arakamani"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Amanirenas"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "Koushited Afrikan"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "Ar vras a Rouantelezh Afrikan hag en em astenne war ar Ster Nil en Nubia, e Su Ejipt."
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "Templ Amun"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr "Ar C'hushited a c'hall gwellaat an Azeuldioù hiniennel da Azeuldioù Amun, ganto e c'haller stummañ ar gampioned eus Gward Azeuldi Napatan ha pareañ unanennoù buanoc'h."
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "Istor."
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "Templ Apedemak"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr "Ar C'hushited a c'hall gwellaat an Azeuldioù hiniennel da Azeuldioù Apedemak, ganto e c'haller stummañ ar gampioned eus Gward Azeuldi Meroe ha pareañ unanennoù buanoc'h."
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "Piramidennoù Kushite"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "Sevel ur biramidenn gKushite Vihan a zivorailh Pazenn ar C'hêrioù. Sevel ur biramidenn gKushite Vras a zivorailh Pazenn ar C'hêrioù Bras. Evit pep piramidenn savet e vez roet +10% a efed tiriadel d'ar C'hreizennoù Keodedel."
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "Al C'hushitiz o deus savet muioc'h eget 200 piramidenn en Nubia."
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "Rouantelezh Kouch a oa ur rouantelezh kozh lec'hiet war kemberioù an Nil glas, an Nil gwenn hag ar ster Atbara e-barzh ar pezh a zo en devezh a hiziv Republik ar Soudan. Oadvezh an dominasion Kouchit war ar rannvro a zo bet diazezet goude ma vefe kouezhet en e boull rouantelezh Bro-Ejipt da vare oadvezh an arem, ha kreizennet e oa e Napata en he fazenn gentañ. Aloubet o deus Bro-Ejipt en  8ved kantved kent J.K., hag an impalaerien Kouchit o deus renet evel faraoned adalek ar pempvet tierniezh warn-ugent a vro-Ejipt e-pad ur c'hantved, betek ma vefent bet kaset da skrapat gant an Asirianed. Ar sevenadur Kouchit a zo bet levezonet kalzig gant Egiptiz, evel da skouer savadur ar biramidenn Kouchit hag astenn sevel-tiez bras-divent an temploù. Kouchited a azeule kalzig a zoueed Ejispian, Amon en o mesk. E-pad an Henamzer glasel, ar gêrbenn Kouchit a oa e Meroe. Er c’heografiezh c'hresian kozh, ar rouantelezh meroitek a oa anavezet dindan an anv Etiopia. Dalc'het en deus ar rouantelezh Kouchit betek ar 4re kantved goude J.k, pa 'z eo deuet da vezañ bresk ha diempret abalamour d'un emsavadeg diabarzh, ober a reas e zalaroù a-benn ar fin ar gont dindan galloud Axum o tont war-wel."
 
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
@@ -1364,7 +1570,7 @@ msgstr "Levraoueg"
 msgid ""
 "All Special Technologies are researched here. Building one reduces the cost "
 "of all other remaining technologies by 10%. Build limit: 1."
-msgstr "Amañ eo e vez enklasket an holl deknologiezhioù arbennik. Klask war-lerc'h unan a lakao da zigreskiñ koust an holl deknologiezhoù all a chom eus 10%. Bevenn ar savidigezh: 1."
+msgstr "Amañ eo e vez kaset da benn enklaskoù diwar-benn deknologiezhioù arbennik. Sevel unan anezho a lako digreskiñ koust an holl deknologiezhioù all a chom eus 10%. Bevenn savidigezh: 1."
 
 #: simulation/data/civs/mace.jsonStructures[1].History
 #: simulation/data/civs/ptol.jsonStructures[0].History
@@ -1500,10 +1706,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Pakit 5 olifant digant Gaia ha lakit anezho e gwarnizon er C'hrevier Olifant da c'hounit ur bonuz a 25% e koust hag amzer stummañ evit unanennoù olifant."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Bodadeg Olifanted"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
@@ -1779,7 +1981,7 @@ msgstr "Marchosi ar Marc'hegerezh"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr "Stummit soudarded-keodedel war-Varc'h."
+msgstr "Stummit soudarded-keodedour war-varc'h."
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -2077,7 +2279,7 @@ msgstr "Peurliesañ e veze implijet an Testudo pe stumm 'baot' gant ar Romaned e
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
-msgstr "An holl soudarded-keodedel Roman oc'h en em gannañ e-diabarzh un tiriad Roman a c'hounez ur bonuz nann-beurbadel +10% a houarnwisk."
+msgstr "An holl soudarded-keodedour Roman oc'h en em gannañ e-diabarzh un tiriad Roman a c'hounez ur bonus nann-peurbadel +10% a houarnwisk."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
@@ -2205,7 +2407,7 @@ msgid ""
 "Greek culture and arts, which he enthusiastically promoted in Rome. He met "
 "his demise when his men were ambushed near Venusia. In honor of the respect "
 "the people held for him, Marcellus was granted the title of 'Sword of Rome.'"
-msgstr "Ur soudard eus ar brezel kentañ a-enep Kartago, haroz en eil brezel Punek, ha trec'her ar C'halianed e Clastidium. Hen deskrivañ a ra Plutarch evel ur gour gouestlet d'ar brezel, kreñv e gorf, ha mennet-krenn d'en em gannañ dibaouez. Barrek meurbet e oa evel jeneral, o vezañ e-touez jeneraled efedusañ ar Romaned e-pad an eil brezel Punek, e-serr Scipio Africanus ha Claudius Nero. Ouzhpenn e verzhioù milourel e oa Marcellus bamet gant sevenadur hag arzoù Bro-Hellaz, hag o lakaas war-wel e Roma. Mervel a reas pa oa tapet en ur spi-brezel gant e soudarded nebell diouzh Venusia. En enor d'an doujañs a vaged evitañ, roet e oa da Varcellus an titl \"Kleze Roma\"."
+msgstr "Ur soudard eus ar brezel kentañ a-enep Kartago, haroz en eil brezel Punek, ha trec'her ar Galianed e Clastidium. Hen deskrivañ a ra Plutarch evel ur gour gouestlet d'ar brezel, kreñv e gorf, ha mennet-krenn d'en em gannañ dibaouez. Barrek-meurbet e oa evel jeneral, o vezañ e-touez jeneraled efedusañ ar Romaned e-pad an eil brezel Punek, e-serr Scipio Africanus ha Claudius Nero. Ouzhpenn e berzhioù milourel e oa Marcellus bamet gant sevenadur hag arzoù Bro-Hellaz, hag o lakaas war-wel e Roma. Mervel a reas pa oa tapet en un dagadenn-stign gant e soudarded nepell diouzh Venusia. En enor d'an doujañs a vaged evitañ, roet e oa da Varcellus an titl \"Kleze Roma\"."
 
 #: simulation/data/civs/rome.jsonFactions[0].Heroes[1].Name
 msgid "Marcus Claudius Marcellus"
@@ -2229,7 +2431,7 @@ msgstr "Kamp-Difenn"
 
 #: simulation/data/civs/rome.jsonStructures[0].Special
 msgid "Trains citizen-soldiers from neutral or enemy territory."
-msgstr "Stummañ soudarded-keodedel en tiriad neptu pe enebour."
+msgstr "Stummit soudarded-keodedour en tiriad neptu pe enebour."
 
 #: simulation/data/civs/rome.jsonStructures[0].History
 msgid ""
@@ -2596,7 +2798,7 @@ msgstr "Dindan ar Vonreizh a skrivas al lezennour mojennel Lycurgus, diazezet e 
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr "Lakaat da greskiñ yec'hed ar geodedourien-soudarded goafer war droad eus 10% evit ar re a zo kevredet gant ar c'hoarierien Spartad."
+msgstr "Lakaat da greskiñ yec'hed ar soudarded-keodedour goafer war droad eus 10% evit ar re a zo kevredet gant ar c'hoarierien Spart."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2660,7 +2862,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr "Ne c'hall ket keodedourezed Sparta bezañ prizoniet hag en em zifenn e raint hardizh a-enep d'an argaderien. Gouest int da sevel tourioù difenn ha peulgaeoù ivez."
+msgstr "Ne c'hall ket keodedourezed Sparta bezañ prizoniet hag en em zifenn e raint hardizh a-enep an argaderien. Gouest int da sevel tourioù difenn ha peulgaeoù ivez."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2750,7 +2952,7 @@ msgstr "Syssition"
 
 #: simulation/data/civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
-msgstr "Stummit harozed ha Spartaned hag enklaskit an teknologiezhoù liammet ganto."
+msgstr "Stummit harozed ha Sparsiated ha kasit da benn enklaskoù diwar-benn an teknologiezhoù liammet ganto."
 
 #: simulation/data/civs/spart.jsonStructures[1].History
 msgid ""

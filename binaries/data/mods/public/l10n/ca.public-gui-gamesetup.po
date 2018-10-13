@@ -18,7 +18,9 @@
 # Isaac Lleida <isakyllr@opmbx.org>, 2014
 # Josep A.P <josep.a.95@gmail.com>, 2015
 # Josep A.P <josep.a.95@gmail.com>, 2015
+# juan Aragó <juan_arago@yahoo.es>, 2018
 # marc kjahgrt ksrgha <marcmc421@gmail.com>, 2017
+# Maria Acero-Allo <maria.acero@e-campus.uab.cat>, 2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Peredelgrau, 2013
 # Peredelgrau, 2013
@@ -29,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-29 12:56+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"PO-Revision-Date: 2018-06-21 19:17+0000\n"
+"Last-Translator: Maria Acero-Allo <maria.acero@e-campus.uab.cat>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -187,7 +189,7 @@ msgstr "Cada mapa del tipus escollit"
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Mapa"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
@@ -197,7 +199,7 @@ msgstr "Jugador"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Tipus de Joc"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
@@ -320,11 +322,11 @@ msgstr "Trieu la velocitat del joc:"
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
-msgstr ""
+msgstr "Dificultat"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Selecciona la dificultat d'aquest escenari."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Chose the civilization for this player"
@@ -340,13 +342,13 @@ msgstr "Decidiu si els herois poden refugiar-se"
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
-msgstr ""
+msgstr "Nòmada"
 
 #: gui/gamesetup/gamesetup.js:853
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "En mode Nòmada els jugadors comencen amb tan sols unes poques unitats i han de trobar un lloc adient per a construir la seua ciutat. Es recomana activar l'alto el foc."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -452,29 +454,29 @@ msgstr "Comenceu un joc nou amb la configuració actual (estarà desactivat fins
 #: gui/gamesetup/gamesetup.js:1083
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Configura l'IA: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1132
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Veure Històric / Arbre d'Estructura.\nL'últim obert es reobrirà al clicar."
 
 #: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Canvia el %(name)s pestanya de configuració."
 
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Usa %(hotkey)s per a moure una pestanya de configuració avall."
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Usa %(hotkey)s per a moure una pestanya de configuració amunt."
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -498,7 +500,7 @@ msgstr "Trieu un bioma aleatòriament"
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2073
 msgctxt "settings value"
@@ -516,7 +518,7 @@ msgstr "No"
 #: gui/gamesetup/gamesetup.js:2110
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2196
 #, javascript-format
@@ -579,7 +581,7 @@ msgstr "Dificultat de la IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Comportament de la IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -599,7 +601,7 @@ msgstr "S'està carregant"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Carregant les dades del mapa. Si us plau espereu..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
@@ -668,14 +670,14 @@ msgstr "Trieu l'equip del jugador"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Mostra la sala multijugador a una finestra de diàleg."
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[...] va imposar la seva llei: patir per a comprendre. \\[...] Així els homes aprenen la prudència a pesar de la seva voluntat. \\[...] Aquesta gràcia és dura i violenta.\" - Èsquil (\"L'Orestíada\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -791,7 +793,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "\"És molt servil viure luxosament, però molt reial treballar. \\[...] No sabeu que la finalitat i l'objecte de la conquesta és evitar els vicis i la debilitat dels submisos?\" - Alexandre el Gran (Plutarc, \"Vides paral·leles\", \"Alexandre\", sec. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -925,7 +927,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "\"El mateix Alexandre, tot i estar assedegat i amb grans dolors i dificultats, va conduir l'exèrcit a peu \\[...]. Aleshores alguns soldats lleugers d'armes \\[...] van trobar aigua \\[...], i la van recollir amb els cascs per portar-li-la. Ell la va prendre i va lloar als homes que l'havien duta, i, immediatament, la vessà al terra davant de tots.\" - Arrià sobre la marxa d'Alexandre pel desert de Gredòsia (\"L'Anàbasi d'Alexandre\", 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -936,7 +938,7 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "\"Clavant la llança al rostre de Mitridates, \\[Alexandre] el va llançar a terra. Llavors Resaces \\[un persa] \\[...] el va colpejar amb l'espasa al cap. \\[...] Alexandre també el va fer caure a terra clavant-li la llança al pit a través de la pròpia cuirassa. Esfitridates \\[un persa] ja havia alçat l'espasa contra Alexandre per darrere quan Clit \\[...] li va tallar el braç.\" - Arrià sobre la batalla del Grànic (\"L'Anàbasi d'Alexandre\", 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
@@ -1079,7 +1081,7 @@ msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "\"Jo sóc Darios, el gran rei, rei de reis, el rei de Pèrsia, el rei de països \\[...] 23 territoris en total.\" - Darios I. (Inscripció de Behistun, columna I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1089,7 +1091,7 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"Fraortes va ser capturat i portat davant meu. Li vaig tallar el nas, les orelles i la llengua,però li vaig deixar un ull, i es va quedar encadenat a l'entrada del meu palau, i tot el poble el va veure. Llavors el vaig crucificar a Ecbatana; i als homes que eren els seus seguidors més importants \\[...] els vaig escorxar i vaig penjar les seves pells farcides de palla.\" - Darios I. (Inscripció de Behistun, columna II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1257,7 +1259,7 @@ msgid ""
 "while the survivors used the heap as a vantage point for throwing missiles "
 "at our men, or catching our spears and throwing them back.\" - Gaius Julius "
 "Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
-msgstr ""
+msgstr "\"Però l'enemic \\[...] va mostrar tal coratge que, quan la primera línia havia caigut, els homes que hi havien darrere s'hi enfilaven i continuaven lluitant sobre els cadàvers; quan tots ells van ser morts, la pila de cossos va créixer més encara, mentre que els supervivents usaven la muntanya de cadàvers com a punt de mira per llençar sagetes als nostres homes, o agafar les llances i fer-los recular.\" - Juli Cèsar sobre la batalla de Sabis (\"La guerra de les gàl·lies\", II. 27)"
 
 #: gui/text/quotes.txt:87
 msgid ""
@@ -1368,7 +1370,7 @@ msgid ""
 "would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
 " reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr ""
+msgstr "\"Havent sigut informat \\[...] que quan els bàrbars descarregaven els seus arcs enfosquien la llum del sol per la quantitat de sagetes que tiraven, ell \\[Dienekes] \\[...] va dir que els seus convidats \\[...] els havien dut molt bones notícies, perquè si els Medes enfosquien la llum del sol, la batalla contra ells seria a l'ombra i no en ple sol \" - Heròdot descrivint Dienekes, el soldat espartà més valent de la batalla de les Termòpiles (Polibi, \"Històries\", VII. 226)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1422,7 +1424,7 @@ msgstr "\"És dolç i honorable morir per la pàtria.\" - Horaci (\"Odes\", III.
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "\"Jo sóc Cir, el rei del món....\" - Inscripció (Cilindre de Cir)"
 
 #: gui/text/quotes.txt:111
 msgid ""
@@ -1462,7 +1464,7 @@ msgid ""
 "of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr ""
+msgstr "\"Allà jauen milers i milers de Romans \\[…].Ací i allà entre els morts s'alçà una sanguinària figura les ferides de la qual havien començat a bategar amb el glaç de l'alba, i va ser enderrocada pels seus enemics\". - Livi, descrivint  les conseqüències de la Batalla de Cannes, a on Aníbal va provocar la major derrota dels Romans en tota la seua història. (\"Ab Urbe Condita\", XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1681,7 +1683,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
 "about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
-msgstr ""
+msgstr "\"Algú \\[...] va llançar-li un fletxa amb tanta precisió i força que li va foradar la cuirassa i se li va clavar a les costelles. \\[...] Alexandre va retrocedir i va caure de genolls. \\[...] Al final Alexandre va matar el bàrbar. Però va rebre moltes ferides: va ser colpejat al coll amb una maça i va recolzar-se contra els murs de la ciutat, amb els ulls fixats encara sobre els enemics.\" - Plutarc sobre la campanya de Mally (\"Vides paral·leles\", \"Alexandre\", sec. 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1718,7 +1720,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"Els atenencs sempre formen en posició de vaixells sense comandant. La por de l'enemic o d'una tempesta fa que la tripulació tingui una ment conjunta i obeeixi el timoner, tot va bé; però si es recuperen \\[...] es barallen entre ells \\[...], i els resultats han estat sovint que després d'escapar-se dels perills del mar obert i les tempestes més violentes, trenquen el vaixell al port o prop de la costa.\" - Polibi sobre la constitució dels atenencs (\"Històries\", VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1956,7 +1958,7 @@ msgid ""
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr ""
+msgstr "\"Quan els lacedemonis ja no eren capaços de perseguir-los, l'escaramussa \\[...] va carregar contra ells alhora, llançant pedres, fletxes i dards a l'home que tenia més aprop.\" - Tucídides, descrivint el desastre dels espartans a la batalla d'Esfctèria (\"Història de la guerra de Peloponès\", IV. 34.2)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -2015,7 +2017,7 @@ msgid ""
 " are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "\"Aquestes són les millors preguntes a fer a l'hivern, al voltant del foc \\[...]: Qui sou, amic? D'on veniu? I quants anys teníeu quan van venir els medes \\[perses]?\" - Xenòfanes, segurament referint-se a una expedició punitiva contra els grecs a la ciutat de Jònia (fragment 17)"
 
 #: gui/text/quotes.txt:190
 msgid ""

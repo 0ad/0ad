@@ -4,16 +4,19 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
+# Hsu Karinsu <m80126colin@gmail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2014-2017
+# Jerry Shen <jerry82422@gmail.com>, 2018
 # Mysterelee <8161525@qq.com>, 2014
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:02+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-15 07:11+0000\n"
+"Last-Translator: Hsu Karinsu <m80126colin@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,14 +35,14 @@ msgstr ""
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "馬頭部用的金屬盔甲。"
+msgstr "用於馬匹臉部的金屬盔甲。"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "將您騎兵的座騎裝備上盔甲。所有騎兵 +1 劈砍及穿刺盔甲等級。"
+msgstr "將您騎兵的座騎裝上盔甲。所有騎兵 +1 劈砍及穿刺盔甲等級。"
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -117,7 +120,7 @@ msgstr "Prometōpídion"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
-msgstr "馬身體用的金屬盔甲。"
+msgstr "用於馬匹軀體的金屬盔甲。"
 
 #: simulation/data/technologies/armor_cav_02.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
@@ -270,12 +273,12 @@ msgstr "軍團段甲"
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr "步兵的薄亞麻護甲。"
+msgstr "薄亞麻步兵胸甲。"
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr "步兵薄亞麻護甲"
+msgstr "薄亞麻胸甲"
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
@@ -308,7 +311,7 @@ msgstr "使用青銅薄片強化的盔甲。"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "魚鱗鎧甲"
+msgstr "魚鱗胸甲"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -1068,7 +1071,7 @@ msgstr "織布機讓在殖民地的村民有更好的衣服。婦女從小就被
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+50% health for female citizens."
-msgstr ""
+msgstr "女性公民生命值 +50%"
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1164,7 +1167,7 @@ msgstr "女性 vs. 人口"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr ""
+msgstr "女性公民人數 VS 總人口"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1230,7 +1233,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "進階到城市階段，解鎖了更多建築物及單位。城鎮中心的領土範圍也再度增加了 +50%。銀鴞的文明獎勵讓所有的工人都有額外 +10% 的金屬採集速率。民兵的血量上限 +10%。所有建築物 +9 駐守回復率。"
+msgstr "進階到城市階段，解鎖了更多建築物及單位。城鎮中心的領土範圍也再度增加了 +50%。銀鴞的文明獎勵讓所有的工人都有額外 +10% 的金屬採集速率。公民兵的血量上限 +10%。所有建築物 +9 駐守回復率。"
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1254,7 +1257,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "進階到城市階段，解鎖更多建築物及單位。城鎮中心的領土範圍再度增加 +50%。民兵的血量上限 +10%。所有建築物 +9 駐守回復率。"
+msgstr "進階到城市階段，解鎖更多建築物及單位。城鎮中心的領土範圍再度增加 +50%。公民兵的血量上限 +10%。所有建築物 +9 駐守回復率。"
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1281,7 +1284,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "進階到鄉鎮階段，解鎖更多建築物及單位。城鎮中心的領土範圍增加 +30%。「銀鴞」的文明獎勵讓所有的工人都有額外 +10% 的金屬採集速率。民兵的血量上限 +20%。所有建築物 +7 駐守回復率。"
+msgstr "進階到鄉鎮階段，解鎖更多建築物及單位。城鎮中心的領土範圍增加 +30%。「銀鴞」的文明獎勵讓所有的工人都有額外 +10% 的金屬採集速率。公民兵的血量上限 +20%。所有建築物 +7 駐守回復率。"
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1305,7 +1308,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "進展到鄉鎮階段，解鎖更多建築物及單位。城鎮中心的領土範圍增加 +30%。民兵的血量上限 +20%。所有建築物 +7 駐守回復率。"
+msgstr "進展到鄉鎮階段，解鎖更多建築物及單位。城鎮中心的領土範圍增加 +30%。公民兵的血量上限 +20%。所有建築物 +7 駐守回復率。"
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1338,7 +1341,7 @@ msgid ""
 "open-aired assembly place in the great Forum Romanum called the Comitium. "
 "Here citizens could air grievances and present petitions to the patrician "
 "politicians who ruled their city in the Senate."
-msgstr "公眾集會的地方往往是古代社會的生活中心。雅典人有雅典公民大會，在可以看到雅典衛城的普尼克斯山附近集會。羅馬人有一個稱為 Comitium 的古羅馬廣場集會處。在這裡，市民們可以抱怨並向在元老院等地的貴族政治家請願。"
+msgstr "公眾集會的地方往往是古代社會的生活中心。雅典人有雅典公民大會，在可以看到雅典衛城的普尼克斯山附近集會。羅馬人有一個稱為 Comitium 的古羅馬廣場集會處。在這裡，公民們可以抱怨並向在元老院等地的貴族政治家請願。"
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
@@ -1552,7 +1555,7 @@ msgstr "強化基礎以準備攻擊。"
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "防禦塔的裝甲增加 2級"
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1576,11 +1579,11 @@ msgstr "垛口"
 
 #: simulation/data/technologies/tower_decay.jsondescription
 msgid "Outposts survive twice as long in neutral territory."
-msgstr "在中立領土上可以存活比正常的前哨站多一倍的時間。"
+msgstr "在中立地帶上可以存活比正常的前哨站多一倍的時間。"
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "前哨站領土荒廢率 -50%"
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1612,11 +1615,11 @@ msgstr "急速射手"
 
 #: simulation/data/technologies/tower_vision.jsondescription
 msgid "Outposts gain longer vision for scouting."
-msgstr "前哨獲得更遠的視野以供偵查。"
+msgstr "前哨站獲得更遠的視野以供偵查。"
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "前哨站視野範圍 +50%"
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1818,7 +1821,7 @@ msgstr "貿易的拓展讓商人與他在國外的家庭可以永久定居，讓
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr "允許使用盟友的資源放置點。"
+msgstr "允許使用盟友的資源存放點。"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -1863,33 +1866,33 @@ msgstr "間諜"
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr "將您所有的騎兵民兵晉升為進階等級。"
+msgstr "將您所有的公民騎兵晉升為進階等級。"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "將您所有的騎兵民兵晉升為進階等級。這可以增強他們的力量，但會降低他們的資源採集速率 -25%。解鎖精銳騎兵民兵科技。"
+msgstr "將您所有的公民騎兵晉升為進階等級。這可以增強他們的力量，但會降低他們的資源採集速率 -25%。解鎖精銳騎兵民兵科技。"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
-msgstr "進階騎兵民兵"
+msgstr "進階公民騎兵"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr "將您所有的步兵民兵升級為進階等級。"
+msgstr "將您所有的公民步兵升級為進階等級。"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr "將您所有的步兵民兵升級為進階等級。這可以增強他們的力量，但會降低他們的資源採集速率 -25%。解鎖精銳步兵民兵科技。"
+msgstr "將您所有的公民步兵升級為進階等級。這可以增強他們的力量，但會降低他們的資源採集速率 -25%。解鎖精銳公民步兵科技。"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
-msgstr "進階步兵民兵"
+msgstr "進階公民步兵"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
@@ -1915,26 +1918,26 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr "將您所有的騎兵民兵晉升到精銳等級。這可以增強他們的力量，但會再降低他們的食物採集速率 -25%。"
+msgstr "將您所有的公民騎兵晉升到精銳等級。這可以增強他們的力量，但會再降低他們的食物採集速率 -25%。"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
-msgstr "精銳騎兵民兵"
+msgstr "精銳公民騎兵"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr "將您所有的步兵民兵升級到精銳等級。"
+msgstr "將您所有的公民步兵升級到精銳等級。"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr "將您所有的步兵民兵晉升到精銳等級。這可以增強他們的力量，但會再降低他們的資源採集速率 -25%。"
+msgstr "將您所有的公民步兵晉升到精銳等級。這可以增強他們的力量，但會再降低他們的資源採集速率 -25%。"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
-msgstr "精銳步兵民兵"
+msgstr "精銳公民步兵"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
@@ -2361,7 +2364,7 @@ msgstr "雅典長城是在老謀深算的地米斯托克利的主導下修建的
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build stone walls in neutral territory."
-msgstr "在中立領土上建造石牆。"
+msgstr "在中立地帶上建造石牆。"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
@@ -2375,7 +2378,7 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "紀念性建築"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
@@ -2385,11 +2388,11 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "訓練精英級治療者"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
-msgstr ""
+msgstr "神聖指示"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
@@ -2417,7 +2420,7 @@ msgstr "Chakravarti Samrāt"
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
-msgstr "印度人有良好的箭術傳統並愛好戰爭中使用大量的弓箭手。"
+msgstr "印度人有良好的箭術傳統並愛好在戰爭中運用大量弓箭手。"
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
@@ -2499,7 +2502,7 @@ msgstr "波斯建築"
 msgid ""
 "The Persians had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr "波斯人有良好的箭術傳統並愛好戰爭中使用大量的弓箭手。"
+msgstr "波斯人有良好的箭術傳統並愛好在戰爭中使用大量弓箭手。"
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
@@ -2556,7 +2559,7 @@ msgstr "羅馬人是戰爭中的後勤大師。"
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr "深挖壕溝的營地及圍牆衰退速度慢 50%。"
+msgstr "深挖壕溝的營地及圍牆荒廢速度慢 50%。"
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"

@@ -10,12 +10,13 @@
 # Nicolas Frasson <nicfrasson@gmail.com>, 2014
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2017
 # Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2014
+# Vinícius Pereira <lameiravinicius24@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-24 13:24+0000\n"
-"Last-Translator: Altieres Lima da Silva <altieres.lima@gmail.com>\n"
+"PO-Revision-Date: 2018-07-23 05:57+0000\n"
+"Last-Translator: Vinícius Pereira <lameiravinicius24@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +108,7 @@ msgstr "Desistir"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
-msgstr "Novamente"
+msgstr "Tentar de novo"
 
 #: gui/modio/modio.js:91
 #, javascript-format
@@ -116,7 +117,7 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Lista de Mod não pôde ser recuperada.\n\n%(technicalDetails)s"
+msgstr "Lista de Modificação não pôde ser recuperada.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
@@ -203,7 +204,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr "Tempo decorrido: %(elapsed)s\nTempo estimado restante: %(remaining)s\nVelocidade média: %(avgSpeed)s"
+msgstr "Tempo Decorrido: %(elapsed)s\nTempo Estimado restante: %(remaining)s\nVelocidade Média: %(avgSpeed)s"
 
 #: gui/modio/modio.js:332
 msgid "∞"
@@ -227,7 +228,7 @@ msgstr "Dependência não encontrada: %(dep)s"
 
 #: gui/modmod/modmod.js:291
 msgid "All dependencies met"
-msgstr "Todas dependências atendidas"
+msgstr "Todas as dependências foram atendidas"
 
 #: gui/modmod/modmod.js:311
 msgid ""
@@ -249,11 +250,11 @@ msgstr "Conectar"
 
 #: gui/modmod/modmod.js:396
 msgid "No mod has been selected."
-msgstr "Nenhum Mod foi selecionado."
+msgstr "Nenhum mod foi selecionado."
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
-msgstr "Ok"
+msgstr "OK"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"

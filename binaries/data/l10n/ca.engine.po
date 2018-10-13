@@ -6,6 +6,7 @@
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2018
 # Catalanoic <catalanoic@gmail.com>, 2013
 # Catalanoic <catalanoic@gmail.com>, 2013
+# juan Aragó <juan_arago@yahoo.es>, 2018
 # Juanjo, 2016
 # Juanjo, 2016
 # Marco tom Suden, 2014
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 13:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-06-09 02:21+0000\n"
+"Last-Translator: juan Aragó <juan_arago@yahoo.es>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -142,54 +143,54 @@ msgstr "El nom d'usuari ja existeix"
 #: ps/ModIo.cpp:244
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Errada mentre es començava a preguntar per la id del joc. Errada: %s;%s."
 
 #: ps/ModIo.cpp:274
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Errada mentre es començava a preguntar pels mods. Errada: %s;%s."
 
 #: ps/ModIo.cpp:300
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "No ha estat possible crear el directori del mod: %s."
 
 #: ps/ModIo.cpp:325
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "No ha estat possible obrir un arxiu temporal per a la descàrrega del mod: %s."
 
 #: ps/ModIo.cpp:335
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "Errada al començar la descàrrega. Errada: %s;%s."
 
 #: ps/ModIo.cpp:380
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Errada de descàrrega asincrònica: %s,%s."
 
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Errada de descàrrega. Resposta del servidor: %s;%s."
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Tamany del fitxer no coincident."
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Arxiu no vàlid. Esperat md5 %s, s'ha obtingut%s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "Errada al computar el hash final."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Errada al verificar signatura."
 
 #: ps/SavedGame.cpp:128
 #, c-format

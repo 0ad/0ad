@@ -3,7 +3,10 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
+# lxx4380 <lxx4380@gmail.com>, 2018
 # Mysterelee <8161525@qq.com>, 2014
+# Sugar Tang <sam990620@gmail.com>, 2018
+# liulitchi <xingzuo88@qq.com>, 2018
 # 润泽 汪 <2185025980@qq.com>, 2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
@@ -11,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 15:42+0000\n"
-"Last-Translator: Christian Xia <wood_elf@126.com>\n"
+"PO-Revision-Date: 2018-10-10 09:36+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,28 +26,28 @@ msgstr ""
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s%(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime for a guide to the meaning of the letters.
@@ -65,7 +68,7 @@ msgstr "，"
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s(%(version)s)"
 
 #: gui/common/mod.js:20
 msgid ", "
@@ -90,12 +93,12 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "无法检索游戏ID\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "初始化错误"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
@@ -113,12 +116,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "无法检索模组列表。\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr ""
+msgstr "获取错误"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -127,12 +130,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "文件下载失败\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "下载错误"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -141,20 +144,20 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "文件验证错误。\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr ""
+msgstr "验证错误"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr ""
+msgstr "正在初始化mod.io接口"
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "正在初始化"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.js:313
 #: gui/modmod/modmod.xml:(caption):184
@@ -163,35 +166,35 @@ msgstr "取消"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr ""
+msgstr "获取并更新可用模组列表。"
 
 #: gui/modio/modio.js:233
 msgid "Updating"
-msgstr ""
+msgstr "正在更新"
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr ""
+msgstr "取消更新"
 
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "正在下载 “%(modname)s”"
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr ""
+msgstr "正在下载"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr ""
+msgstr "取消下载"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
 #: gui/modio/modio.js:320
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr "%(current)s / %(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:330
@@ -200,7 +203,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr ""
+msgstr "已用时间： %(elapsed)s\n估计剩余时间：%(remaining)s\n平均速度： %(avgSpeed)s"
 
 #: gui/modio/modio.js:332
 msgid "∞"
@@ -211,7 +214,7 @@ msgstr "∞"
 #: gui/modio/modio.js:334
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr "%(number)s %(unit)s/s"
 
 #: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
 msgid "Filter"
@@ -233,11 +236,11 @@ msgid ""
 "While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
 "\n"
 "Do you really want to connect?"
-msgstr ""
+msgstr "您即将连接到mod.io在线服务。本服务可使您轻松访问社区所制作的模组，但这不受Wildfire Game的控制。\n虽然我们已尽可能注意其安全性，但我们仍无法保证它是完全安全的。\n您真的想要继续连接吗？"
 
 #: gui/modmod/modmod.js:312
 msgid "Connect to mod.io?"
-msgstr ""
+msgstr "是否连接至mod.io？"
 
 #: gui/modmod/modmod.js:313
 msgctxt "mod.io connection message box"
@@ -254,7 +257,7 @@ msgstr "好的"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "mod.io模组"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -266,11 +269,11 @@ msgstr "后退"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
-msgstr ""
+msgstr "刷新列表"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr ""
+msgstr "下载"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -289,7 +292,7 @@ msgstr "Mod 标签"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
-msgstr ""
+msgstr "文件大小"
 
 #: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
 #: gui/modmod/modmod.xml:(heading):128
@@ -314,11 +317,11 @@ msgstr "已启用的 Mods"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
-msgstr ""
+msgstr "启用/禁用"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
-msgstr "官网"
+msgstr "访问官网"
 
 #: gui/modmod/modmod.xml:(caption):179
 msgid "Quit"
@@ -326,11 +329,11 @@ msgstr "离开"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr ""
+msgstr "下载模组"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -352,11 +355,11 @@ msgstr "官网"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr ""
+msgstr "更改模组的启动顺序。请注意模组之间的依赖关系是否匹配。"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr ""
+msgstr "Mod选项"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -364,17 +367,17 @@ msgstr "关闭"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "模组指南"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "访问mod.io"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr ""
+msgstr "0 A.D以轻松修改为其设计目标，其模组以.pyromod文件的形式进行分发，这种文件可以像.zip文件一样通过压缩包管理器打开。"
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -384,13 +387,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
+msgstr "要安装模组，只需用0 A.D.打开模组文件（双击模组文件并选择用游戏打开，或者在终端中运行\"pyrogenesis file.pyromod\"）。随后模组将出现在游戏的模组选择其中，您可以随意启用或禁用任意的模组。如果需要的话您可以使用文件浏览器手动删除模组（详见https://trac.wildfiregames.com/wiki/GameDataPaths）。"
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr ""
+msgstr "想要获取更多制作模组相关的信息，请参阅在线的模组指南（点击下方的模组指南按钮）。"
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -399,4 +402,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr ""
+msgstr "mod.io服务由IndolDB与ModDB的母公司DBolical开发。这些网站已经传播与0 A.D.和其他独立项目相关的信息很久了。现在，mod.io允许我们使用他们的服务列出并为经过团队验证的模组提供下载。点击“下载模组”来试试看！"

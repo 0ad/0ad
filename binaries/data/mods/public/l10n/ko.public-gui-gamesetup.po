@@ -6,6 +6,7 @@
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
+# Hyeon june choi <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Suhyeon Park <qkr5145@gmail.com>, 2018
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-04 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-06-21 12:37+0000\n"
+"Last-Translator: Hyeon june choi <copyhyeon@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +149,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
-msgstr ""
+msgstr "새로운 지도"
 
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
@@ -176,7 +177,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "지도"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
@@ -186,39 +187,39 @@ msgstr "선수"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "게임 타입"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
-msgstr ""
+msgstr "지도 타입"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
-msgstr "맵 타임 정하기"
+msgstr "지도 타입 정하기"
 
 #: gui/gamesetup/gamesetup.js:499
 msgid "Map Filter"
-msgstr ""
+msgstr "지도 필터"
 
 #: gui/gamesetup/gamesetup.js:500
 msgid "Select a map filter."
-msgstr "맵 필터 정하기"
+msgstr "지도 필터 정하기"
 
 #: gui/gamesetup/gamesetup.js:515
 msgid "Select Map"
-msgstr ""
+msgstr "지도 선택"
 
 #: gui/gamesetup/gamesetup.js:516
 msgid "Select a map to play on."
-msgstr "플레이할 맵 정하기"
+msgstr "플레이할 지도 정하기"
 
 #: gui/gamesetup/gamesetup.js:530
 msgid "Map Size"
-msgstr ""
+msgstr "지도 크기"
 
 #: gui/gamesetup/gamesetup.js:531
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "맵 사이즈 결정(큰 사이즈의 맵은 성능을 저하시킬수 있습니다)"
+msgstr "지도 사이즈 결정(큰 사이즈의 지도는 성능을 저하시킬수 있습니다)"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Biome"
@@ -230,7 +231,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:561
 msgid "Number of Players"
-msgstr ""
+msgstr "플레이어 수"
 
 #: gui/gamesetup/gamesetup.js:562
 msgid "Select number of players."
@@ -242,7 +243,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:589
 msgid "Select population limit."
-msgstr ""
+msgstr "인구 제한을 선택하세요."
 
 #: gui/gamesetup/gamesetup.js:592
 #, javascript-format
@@ -253,7 +254,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
-msgstr ""
+msgstr "기본 자원"
 
 #: gui/gamesetup/gamesetup.js:613
 #, javascript-format
@@ -301,7 +302,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
-msgstr ""
+msgstr "게임 속도"
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Select game speed."
@@ -568,7 +569,7 @@ msgstr "AI 난이도:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "AI 행동:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"

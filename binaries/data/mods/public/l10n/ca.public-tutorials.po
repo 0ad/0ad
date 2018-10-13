@@ -7,6 +7,7 @@
 # Haommin <tfs.msimangu@gmail.com>, 2017
 # Maria Acero-Allo <maria.acero@e-campus.uab.cat>, 2017
 # Albert F., 2017
+# juan Aragó <juan_arago@yahoo.es>, 2017
 # Arnau Barrabeig <arnaubrossa@hotmail.com>, 2017
 # Marc Miró <mmirosanchez@gmail.com>, 2017
 msgid ""
@@ -154,6 +155,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Selecciona el Centre Cívic i a continuació passa el cursor sobre l'arbre i "
+"prem click dret quan veges el teu cursor canviar a la icona de fusta"
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -171,6 +174,9 @@ msgid ""
 "'II' icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Selecciona el centre cívic altra volta i avança a la Fase Ciutat prement la "
+"icona \"ll\" (has d'esperar que el post avançat siga construït primer). Açò "
+"et permetrà construïr edificis de la Fase Ciutat"
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
@@ -185,10 +191,12 @@ msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Comença entrenant un lot de ciutadanes i col·loca el punt de trobada a la "
+"granja (click dret sobre ella)."
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
-msgstr ""
+msgstr "Fes click a la icona de la ciutadana."
 
 #: maps/tutorials/Introductory_Tutorial.js:258
 msgid ""
@@ -196,13 +204,16 @@ msgid ""
 " extra house using any available builder units."
 msgstr ""
 "Construïu un quarter a prop. Quan la població hagi arribat al seu límit, "
-"construïu una casa extra amb qualssevol unitats constructores."
+"construïu una casa extra emprant qualsevol unitat constructora disponible."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
+"Prepara't per a un atac per part del jugador enemic. Entrena més soldats "
+"usant la Caserna, i empra als soldats ociosos per a construir una Torre "
+"Defensiva a prop del teu post d'avançada"
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
@@ -225,24 +236,32 @@ msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"L'atac enemic ha estat desbaratat. Ara construïu un mercat i un temple "
+"mentre assignes noves unitats per a arreplegar els recursos necessaris."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"Una volta complisques els requisits per a la Fase Ciutat, selecciona el teu "
+"Centre Cívic i avança a la Fase Ciutat."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "barracks."
 msgstr ""
+"Mentre esperes al canvi de fase, pots entrenar més soldats a la caserna"
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Ara que estàs a la Fase Ciutat, construïx una fortalesa a prop (arreplega un"
+" poc de pedra primer si en necessites) i aleshores empra-la per a construir "
+"2 ariets"
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -250,6 +269,10 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Detingues a tots els teus soldats que estiguen arreplegant recursos i per "
+"contra comanda a petits grups que troben el Centre Cívic enemic al mapa. Una"
+" volta la base de l'enemic haja estat descoberta, envia les teues armes de "
+"setge i tots els soldats restants per a destruir-la"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
@@ -277,12 +300,16 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"\n"
+"Abans de començar, pots alternar entre pantalla completa i mode finestra emprant %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Pots canviar el nivell de zoom emprant la roda del ratolí i la vista de "
+"càmera emprant qualsevol de les tecles de fletxa del teu teclat.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
@@ -294,6 +321,8 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"\n"
+"També pots mostrar i amagar aquest panel del tutorial en qualsevol moment emprant %(hotkey)s.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -315,6 +344,14 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Ara que has seleccionat el teu Centre Cívic, t'hauràs adonat que el tauler "
+"de producció apareixerà a la part d'avall a la dreta de la teua pantalla "
+"detallant les accions que l'edifici realitza. Per al tauler de producció, "
+"les accions disponibles no estan marcades en cap color, mentre que les "
+"icones marcades en gris o roig indiquen que les accions no han estat encara "
+"desbloquejades o que no tens suficients recursos per a realitzar eixa acció,"
+" respectivament. Addicionalment, pots desplaçar el cursor sobre qualsevol "
+"icona per a mostrar una pista en més detalls."
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -324,6 +361,12 @@ msgid ""
 "that advancing to 'Town Phase' requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"La fila superior de botons conté retrats de les unitats que es poden formar "
+"als edificis mentre que les inferiors tindran les tecnologies "
+"desenvolupables. Passeu el ratolí per sobre de la icona 'II'. La informació "
+"de les eines us advertirà que per a progressar cap a la \"Fase Ciutat\" "
+"necessitareu per una banda més estructures construïdes i per l'altra, menjar"
+" i fusta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -335,6 +378,14 @@ msgid ""
 "citizen soldiers can gather any land resources while cavalry citizen "
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Disposeu de dos tipus d'unitats d'inici: ciutadanes i soldats ciutadans. Les"
+" ciutadanes són unitats purament econòmiques; tenen un HP baix, cap armadura"
+" i cap o molt poc nivell d'atac. Els soldats ciutadans són treballadors per "
+"defecte però en temps de necessitat poden fer servir una arma per a lluitar."
+" Disposeu de dues categories de soldats ciutadans: infanteria i cavalleria. "
+"Les ciutadanes i la infanteria dels soldats ciutadans poden recollir "
+"qualsevol recurs terrestre mentre que la cavalleria només pot obtenir carn "
+"de les caceres.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -352,6 +403,9 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"En aquest punt, menjar i fusta són els recursos més importants per a "
+"desenvolupar la teua economia, així que comencem arreplegant menjar. Les "
+"ciutadanes arrepleguen vegetals més ràpid que les altres unitats.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -371,6 +425,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Prem sobre una d'elles i aleshores afig unitats addicionals a la teua "
+"selecció prement Shift i després sobre qualsevol unitat addicional (o també "
+"per mig de la selecció en rectangle).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -389,6 +446,10 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"Si feu clic en un espai buit en el mapa restablireu la selecció. Proveu "
+"cadascun d'aquests mètodes abans de disposar a totes les ciutadanes a "
+"recol·lectar al sud-est del Centre Cívic fent clic amb el botó dret sobre el"
+" raïm quan les tingueu a totes seleccionades."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -443,6 +504,8 @@ msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Selecciona el Centre Cívic i a continuació passa el cursor sobre l'arbre i "
+"prem clic dret quan veges el teu cursor canviar a la icona de fusta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
@@ -460,14 +523,22 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Els ciutadans arrepleguen fusta més ràpid que les ciutadanes. Selecciona el "
+"Centre Cívic i, mentre mantens Shift, clica sobre la icona de la segona "
+"unitat, els hoplites (mantenint Shift entrenes un grup de cinc unitats). "
+"Tanmateix pots entrenar unitats individuals simplement clicant sobre elles, "
+"però entrenar 5 unitats d'un cop pren menys temps que entrenar 5 unitats "
+"individualment."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
+"No t'oblides de mantindre presa la tecla Shift mentre cliques per a entrenar"
+" vàries unitats."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Prem Shift i clica sobre la icona de l'Hoplita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
@@ -518,6 +589,13 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Però a mesura que van portant els recursos al dipòsit la seva eficiència es "
+"veu afectada per la distància. Per posar-hi remei, podeu construir un "
+"magatzem o un dipòsit de fusta, pedra i metall prop dels arbres. Per fer-ho,"
+" seleccioneu els cinc soldats ciutadans acabats de formar i busqueu el "
+"panell de construcció a la part inferior dreta; feu clic a la icona del "
+"magatzem, moveu el ratolí tan a prop com pugueu dels arbres que voleu i feu "
+"clic a un lloc vàlid per a construir un dipòsit.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -532,6 +610,8 @@ msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"Els ciutadans seleccionats començaran a construir automàticament l'edifici "
+"un cop hages col·locat els fonaments."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
@@ -547,14 +627,19 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
+"Anem a entrenar algunes ciutadanes per a arreplegar més menjar. Selecciona "
+"el Centre Cívic, mantingues premuda la tecla Shift i clica a la icona de la "
+"ciutadana per a entrenar a 5 ciutadanes."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
+"No t'oblides de mantindre presa la tecla Shift mentre cliques per a entrenar"
+" vàries unitats."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "Mantingues Shift i clica sobre la icona de la Ciutadana"
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""

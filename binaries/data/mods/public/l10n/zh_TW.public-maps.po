@@ -4,16 +4,20 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2015
+# ethan lin <ethan@tscc.tp.edu.tw>, 2018
+# Hsu Karinsu <m80126colin@gmail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2014-2017
+# Jerry Shen <jerry82422@gmail.com>, 2018
 # Mysterelee <8161525@qq.com>, 2014
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 14:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-19 00:11+0000\n"
+"Last-Translator: ethan lin <ethan@tscc.tp.edu.tw>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +27,7 @@ msgstr ""
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
-msgstr "玩家在有著零碎島嶼的海洋的兩邊開始遊戲。"
+msgstr "玩家於有著破碎島嶼的海洋兩端開始遊戲。"
 
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
@@ -81,7 +85,7 @@ msgstr "安納托利亞高原"
 msgid ""
 "A maze of islands of different sizes and shapes. Players start with more "
 "wood than normal."
-msgstr "有著不同大小及形狀島嶼的迷宮。玩家會以比平常更多的木頭開始遊戲。"
+msgstr "有著不同大小及形狀的島嶼迷宮。玩家會以比平常更多的木頭開始遊戲。"
 
 #: maps/random/archipelago.jsonsettings.Name
 msgid "Archipelago"
@@ -261,7 +265,7 @@ msgstr ""
 
 #: maps/random/dodecanese.jsonsettings.Name
 msgid "Dodecanese"
-msgstr ""
+msgstr "十二群島"
 
 #: maps/random/elephantine.jsonsettings.Description
 msgid ""
@@ -532,7 +536,7 @@ msgstr ""
 
 #: maps/random/lower_nubia.jsonsettings.Name
 msgid "Lower Nubia"
-msgstr ""
+msgstr "低努比亞"
 
 #: maps/random/mainland.jsonsettings.Description
 msgid "A typical map without any water."
@@ -863,7 +867,7 @@ msgstr "未知"
 
 #: maps/random/unknown_land.jsonsettings.Description
 msgid "The unknown."
-msgstr ""
+msgstr "未知物"
 
 #: maps/random/unknown_land.jsonsettings.Name
 msgid "Unknown Land"
@@ -910,12 +914,12 @@ msgstr ""
 
 #: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
 msgid "Dry Season"
-msgstr ""
+msgstr "乾季"
 
 #: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Dry Season"
-msgstr ""
+msgstr "乾季"
 
 #: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
 msgid ""
@@ -932,12 +936,12 @@ msgstr ""
 
 #: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
 msgid "Rainy Season"
-msgstr ""
+msgstr "雨季"
 
 #: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Rainy Season"
-msgstr ""
+msgstr "雨季"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 msgid ""
@@ -956,7 +960,7 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgid "Alpine"
-msgstr ""
+msgstr "阿爾卑斯山"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgctxt "biome definition"
@@ -982,7 +986,7 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgid "Autumn"
-msgstr ""
+msgstr "秋"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
@@ -1006,7 +1010,7 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/desert.jsonDescription.Title
 msgid "Desert"
-msgstr ""
+msgstr "沙漠"
 
 #: maps/random/rmbiome/generic/desert.jsonDescription.Title
 msgctxt "biome definition"
@@ -1069,7 +1073,7 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgid "Snowy"
-msgstr ""
+msgstr "雪地"
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgctxt "biome definition"
@@ -1095,7 +1099,7 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgid "Temperate"
-msgstr ""
+msgstr "氣溫"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgctxt "biome definition"
@@ -1121,7 +1125,7 @@ msgstr ""
 
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgid "Tropic"
-msgstr ""
+msgstr "熱帶"
 
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgctxt "biome definition"
@@ -1143,12 +1147,12 @@ msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgid "Frozen Lake"
-msgstr ""
+msgstr "凍湖"
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Frozen Lake"
-msgstr ""
+msgstr "凍湖"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
 msgid ""
@@ -1167,12 +1171,12 @@ msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgid "Late Spring"
-msgstr ""
+msgstr "季春"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Late Spring"
-msgstr ""
+msgstr "季春"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
 msgid ""
@@ -1189,12 +1193,12 @@ msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgid "Winter"
-msgstr ""
+msgstr "冬"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Winter"
-msgstr ""
+msgstr "冬"
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
 msgid ""
@@ -1213,12 +1217,12 @@ msgstr ""
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
 msgid "Spring"
-msgstr ""
+msgstr "春"
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Spring"
-msgstr ""
+msgstr "春"
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
 msgid ""
@@ -1235,12 +1239,12 @@ msgstr ""
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
 msgid "Summer"
-msgstr ""
+msgstr "夏"
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Summer"
-msgstr ""
+msgstr "夏"
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -1260,12 +1264,12 @@ msgstr "湖泊開始吞沒土地，我們必須找到避難所！"
 
 #: maps/random/jebel_barkal_triggers.js:578
 msgid "Napata is attacking!"
-msgstr ""
+msgstr "那帕塔正發起攻擊！"
 
 #: maps/random/jebel_barkal_triggers.js:590
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
-msgstr ""
+msgstr "那帕塔將於 %(time)s 內發起攻擊！"
 
 #: maps/random/survivalofthefittest_triggers.js:163
 #, javascript-format
@@ -1911,7 +1915,7 @@ msgstr "包含了大量資源及一些水的小型地圖，可在非競技性的
 
 #: maps/scenarios/Napata Reconstruction.xml:Name:40
 msgid "Napata Reconstruction"
-msgstr ""
+msgstr "重建那帕塔"
 
 #: maps/scenarios/Napata Reconstruction.xml:Description:40
 msgid ""
@@ -2107,15 +2111,15 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Kushites.xml:PlayerData[1].Name:40
 msgid "Kushites"
-msgstr ""
+msgstr "庫施人"
 
 #: maps/scenarios/Sandbox - Kushites.xml:PlayerData[2].Name:40
 msgid "Egyptians"
-msgstr ""
+msgstr "埃及人"
 
 #: maps/scenarios/Sandbox - Kushites.xml:Name:40
 msgid "Sandbox - The Kushites"
-msgstr ""
+msgstr "測試區 - 庫施人"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:Description:39
 msgid ""
@@ -2628,11 +2632,11 @@ msgstr "峭壁決鬥 (3v3)"
 
 #: maps/skirmishes/Egypt (3v3).xml:Name:40
 msgid "Egypt (3v3)"
-msgstr ""
+msgstr "埃及 (3對3)"
 
 #: maps/skirmishes/Egypt (3v3).xml:PlayerData[1].Name:40
 msgid "Alexandria"
-msgstr ""
+msgstr "亞歷山大港"
 
 #: maps/skirmishes/Egypt (3v3).xml:PlayerData[2].Name:40
 msgid "Theben"
@@ -2640,19 +2644,19 @@ msgstr ""
 
 #: maps/skirmishes/Egypt (3v3).xml:PlayerData[3].Name:40
 msgid "Siwa"
-msgstr ""
+msgstr "錫瓦"
 
 #: maps/skirmishes/Egypt (3v3).xml:PlayerData[4].Name:40
 msgid "Sinai"
-msgstr ""
+msgstr "西奈"
 
 #: maps/skirmishes/Egypt (3v3).xml:PlayerData[5].Name:40
 msgid "Memphis"
-msgstr ""
+msgstr "孟斐斯"
 
 #: maps/skirmishes/Egypt (3v3).xml:PlayerData[6].Name:40
 msgid "Cyrene"
-msgstr ""
+msgstr "昔蘭尼"
 
 #: maps/skirmishes/Egypt (3v3).xml:Description:40
 msgid ""
@@ -3004,11 +3008,11 @@ msgstr "兩海 (6)"
 #: maps/skirmishes/Via Augusta (4).xml:Description:40
 msgid ""
 "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
-msgstr ""
+msgstr "條條大路通羅馬，羅馬的莉薇亞奧古斯塔大道建成於西元前 13 年。"
 
 #: maps/skirmishes/Via Augusta (4).xml:Name:40
 msgid "Via Augusta"
-msgstr ""
+msgstr "奧古斯塔大道"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:39
 msgid ""

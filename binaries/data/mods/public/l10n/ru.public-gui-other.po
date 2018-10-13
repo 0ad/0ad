@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Alexander Olkhovskiy, 2016
+# Alexander Olkhovskiy, 2016,2018
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Boris Karalnik <eyesucker@gmail.com>, 2015,2018
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
@@ -36,15 +36,16 @@
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017-2018
 # Виталий Орехов <7opex0@mail.ru>, 2016
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
-# Евгений Азаров <azarov.evg.ua@gmail.com>, 2017
+# Evgeniy <azarov.evg.ua@gmail.com>, 2017
+# Михаил Пелёвин <pelewin@list.ru>, 2018
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 # Олег Шевченко <olegrock@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-27 15:49+0000\n"
-"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
+"PO-Revision-Date: 2018-09-08 16:11+0000\n"
+"Last-Translator: Михаил Пелёвин <pelewin@list.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,12 +56,12 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr "Рубить"
+msgstr "Разрубание"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr "Колющий"
+msgstr "Пронзание"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
@@ -380,7 +381,7 @@ msgstr "Открытые Герои"
 
 #: gui/common/gamedescription.js:277
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Героев нельзя размещать в зданиях и они остаются уязвимыми для набегов."
+msgstr "Героев нельзя размещать в зданиях и они остаются уязвимыми при набегах."
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
@@ -2232,7 +2233,7 @@ msgstr "Показать Экран приветствия. Полезно, ес
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr "Узнать, как играть, начать обучающую кампанию, изучить деревья технологий и историю цивилизаций"
+msgstr "Узнать, как играть, начать обучающую кампанию, изучить древа технологий и историю цивилизаций"
 
 #: gui/pregame/mainmenu.xml:(tooltip):482
 msgid "Challenge the computer player to a single player match."
@@ -3769,7 +3770,7 @@ msgstr "ИФИКРАТ"
 msgid ""
 "- The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr "- Афинский полководец, реформировавший армию и сделавший её быстрее и манёвренные."
+msgstr "- Афинский полководец, реформировавший армию и сделавший её быстрее и манёвреннее."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "- Units in his formation are faster and stronger."
@@ -3840,7 +3841,7 @@ msgstr "ПЕРСИДСКАЯ АРХИТЕКТУРА"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr "- Особая технология для персидской цивилизации."
+msgstr "- Особая технология персидской цивилизации."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
@@ -3848,7 +3849,7 @@ msgstr "- Все персидские строения на +25% крепче."
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr "- В следствии этого, скорость строительства увеличивается на +20%."
+msgstr "- Вследствие этого время строительства увеличивается на +20%."
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
@@ -3862,7 +3863,7 @@ msgstr "ПИКИНЁРЫ"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
-msgstr "- Тяжеловооруженные и медлительные, как в скорости передвижения, так и в скорости атаки."
+msgstr "- Тяжеловооруженные и медленные юниты с низким параметром атаки."
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
@@ -3885,11 +3886,11 @@ msgstr "- Самый тяжёлый военный корабль. Доступ�
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Transports up to 50 units."
-msgstr "- Транспортирует до 50 единиц."
+msgstr "- Может перевозить до 50 юнитов."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
-msgstr "Повышение огневой мощи с гарнизонных катапульт."
+msgstr "- Увеличивается огневая мощь при размещении внутри катапульт."
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
@@ -3949,7 +3950,7 @@ msgstr "- Чемпионы пехотинцы доступны спартанс�
 msgid ""
 "- Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr "- Используйте их, чтобы убивать вражескую конницу или как ударную силу для поддержки вашей ​​регулярной пехоты. "
+msgstr "- Используйте их для уничтожения вражеской конницы или в качестве ударной силы для поддержки ​​регулярной пехоты. "
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
@@ -3965,7 +3966,7 @@ msgstr "- Основной тип пехоты ближнего боя у все
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for an attack bonus."
-msgstr "- Используется для бонуса к атаке против кавалерии."
+msgstr "- Имеет бонус к атаке против кавалерии."
 
 #: gui/text/tips/spearmen.txt:6
 msgid "- Decent hack attack make them good front line troops."
@@ -3983,15 +3984,15 @@ msgstr "СТОА"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special structure for Greek factions."
-msgstr "- Специальная постройка для Греческой цивилизации."
+msgstr "- Специальная постройка Греческой цивилизации."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "- Позволяет тренировать Тяжёлых стрелков и Чемпионов-пехотинцев с мечами."
+msgstr "- Позволяет тренировать Тяжёлых застрельщиков и Чемпионов-пехотинцев с мечами."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Grants +10 Population."
-msgstr "- Повышает предел населения на +10 ."
+msgstr "- Увеличивает предел населения на +10 ."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
