@@ -8,7 +8,7 @@
 # Barth Frey <frey.barthelemy@gmail.com>, 2017
 # Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2014
 # curieux de l'être <skimandco@gmail.com>, 2017
-# Cyril Mercier <cyril.mercier21@gmail.com>, 2018
+# Cyril Mercier, 2018
 # Cyril <pticurly@gmail.com>, 2014
 # François Poirotte <clicky@erebot.net>, 2016
 # gorius <gorius05@gmail.com>, 2014
@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-23 11:06+0000\n"
-"Last-Translator: Jo Du <jojo337@live.fr>\n"
+"PO-Revision-Date: 2018-09-01 14:41+0000\n"
+"Last-Translator: Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -467,7 +467,7 @@ msgstr "Bateau de pêche"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:36
 msgid "Fish the waters for food."
-msgstr "péché dans l'eau pour manger"
+msgstr "Pêcher pour obtenir de la nourriture"
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 msgid "Merchantman"
@@ -477,7 +477,7 @@ msgstr "Marchand"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Commerce entre les quais. La garnison d'un commerçant apporte un bénéfice supplémentaire (+20% pour chaque garnison). Collecte rentable des trésors aquatiques."
+msgstr "Commerce entre les ports. La garnison d'un commerçant apporte un bénéfice supplémentaire (+20% pour chaque garnison). Collecte rentable des trésors aquatiques."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:32
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -550,11 +550,11 @@ msgstr "Esclave"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Ramasseur avec une durée de vie limitée. Bonus pour l'exploitation minière et forestière."
+msgstr "Collecteur avec une durée de vie limitée. Bonus pour l'exploitation minière et forestière."
 
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid "Trade resources between your own markets and those of your allies."
-msgstr "Échange des ressources entre vos marchés et ceux de vos alliés."
+msgstr "Échanger des ressources entre vos marchés et ceux de vos alliés."
 
 #: simulation/templates/units/athen_catafalque.xml:9
 msgid "Solon"
@@ -808,7 +808,7 @@ msgstr "Toxótēs Skythikós"
 
 #: simulation/templates/units/athen_champion_ranged_gastraphetes.xml:20
 msgid "Greek Gastraphetes"
-msgstr "Gastrophète Grec"
+msgstr "Gastrophète grec"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:10
 #: simulation/templates/units/athen_hero_xenophon.xml:6
@@ -980,7 +980,7 @@ msgstr "Émporos"
 
 #: simulation/templates/units/brit_catafalque.xml:9
 msgid "Cassivellaunus"
-msgstr "Cassivellaunus"
+msgstr "Cassivellaunos"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
@@ -1098,7 +1098,7 @@ msgstr "Ponti vénètes"
 #: simulation/templates/units/gaul_ship_trireme.xml:19
 #: simulation/templates/units/iber_ship_trireme.xml:19
 msgid "Transport many soldiers across the sea."
-msgstr "Transporte de nombreux soldats de l'autre côté de l'eau."
+msgstr "Transporte de nombreux soldats de l'autre côté de la mer."
 
 #: simulation/templates/units/brit_support_female_citizen.xml:11
 #: simulation/templates/units/gaul_support_female_citizen.xml:10
@@ -1126,7 +1126,7 @@ msgstr "Coun"
 
 #: simulation/templates/units/cart_catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
-msgstr "Hasdrubal (Intendant des quartiers militaires)"
+msgstr "Hasdrubal (Quartier-maître)"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
@@ -1223,7 +1223,7 @@ msgstr "Qešet"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:20
 msgid "Iberian Mercenary Skirmisher"
-msgstr "Tirailleur mercenaire ibère"
+msgstr "Tirailleur mercenaire ibérique"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:24
 msgid "Sǝḫīr Kidōn"
@@ -1292,7 +1292,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Commerce entre ports. La garnison d'un commerçant apporte un bénéfice supplémentaire (+20% pour chaque garnison). Collecte rentable des trésors aquatiques. Les Carthaginois ont +25% de bonus en commerce maritime."
+msgstr "Commerce entre ports. La garnison d'un commerçant apporte un bénéfice supplémentaire (+20% pour chaque garnison). Collecte rentable des trésors aquatiques. Les Carthaginois ont un bonus de +25% en commerce maritime."
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:5
 msgid "Quinquereme"
@@ -1371,7 +1371,7 @@ msgstr "Britomartus"
 
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Lembus"
-msgstr "Galère d'Illyrie"
+msgstr "Lembus"
 
 #: simulation/templates/units/iber_catafalque.xml:9
 msgid "Mandonius"
@@ -1480,7 +1480,7 @@ msgstr "Cavalerie légère napatéenne"
 
 #: simulation/templates/units/kush_cavalry_javelinist_merc_b.xml:12
 msgid "Blemmye Desert Raider"
-msgstr "Cavalier du désert Blemmye"
+msgstr "Raideur blemmyes du désert"
 
 #: simulation/templates/units/kush_cavalry_javelinist_merc_b.xml:13
 msgid "nhw Bulahau gml"
@@ -1493,7 +1493,7 @@ msgstr "Dromadaire"
 
 #: simulation/templates/units/kush_cavalry_spearman_b.xml:6
 msgid "Meroitic Heavy Cavalry"
-msgstr "Cavalerie lourde Méroïtique"
+msgstr "Cavalerie lourde méroïtique"
 
 #: simulation/templates/units/kush_cavalry_spearman_b.xml:7
 msgid "Htr"
@@ -1525,7 +1525,7 @@ msgstr "Hry pdty"
 
 #: simulation/templates/units/kush_champion_infantry_amun.xml:5
 msgid "Napatan Temple Guard"
-msgstr "Gardien du temple Napatéen"
+msgstr "Gardien du temple de Napata"
 
 #: simulation/templates/units/kush_champion_infantry_amun.xml:6
 msgid "rs ‘Imn"
@@ -1533,7 +1533,7 @@ msgstr "rs ‘Imn"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:23
 msgid "Meroitic Temple Guard"
-msgstr "Gardien du temple Meroïtique"
+msgstr "Gardien du temple de Méroé"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:24
 msgid "rs ‘Iprmk"
@@ -1541,7 +1541,7 @@ msgstr "rs ‘Iprmk"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:25
 msgid "Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes."
-msgstr "Hache perce-armure : Contre 1.3x contre les Champions et les Héros."
+msgstr "Hache perce-armure : Contre 1.3x contre les champions et les héros."
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:26
 msgid "Axe"
@@ -1575,7 +1575,7 @@ msgstr "Nastasen Ankhkhare"
 
 #: simulation/templates/units/kush_infantry_archer_b.xml:15
 msgid "Nubian Archer"
-msgstr "Archer Nubien"
+msgstr "Archer nubien"
 
 #: simulation/templates/units/kush_infantry_archer_b.xml:16
 msgid "Pdty Nhsyw"
@@ -1591,7 +1591,7 @@ msgstr "nhw Noba"
 
 #: simulation/templates/units/kush_infantry_javelinist_merc_b.xml:21
 msgid "Nuba Skirmisher"
-msgstr "Tirailleur Nubien"
+msgstr "Tirailleur nubien"
 
 #: simulation/templates/units/kush_infantry_javelinist_merc_b.xml:22
 msgid "nhw ‘h3w Noba"
@@ -1599,7 +1599,7 @@ msgstr "nhw ‘h3w Noba"
 
 #: simulation/templates/units/kush_infantry_pikeman_b.xml:15
 msgid "Meroitic Pikeman"
-msgstr "Piquier Meroïtique"
+msgstr "Piquier meroïtique"
 
 #: simulation/templates/units/kush_infantry_pikeman_b.xml:16
 msgid "si3wrd"
@@ -1607,7 +1607,7 @@ msgstr "si3wrd"
 
 #: simulation/templates/units/kush_infantry_spearman_b.xml:15
 msgid "Nubian Spearman"
-msgstr "Lancier Nubien"
+msgstr "Lancier nubien"
 
 #: simulation/templates/units/kush_infantry_spearman_b.xml:16
 msgid "iry-rdwy Nhsyw"
@@ -1623,7 +1623,7 @@ msgstr "knw hps"
 
 #: simulation/templates/units/kush_mechanical_siege_tower.xml:5
 msgid "Kushite Siege Tower"
-msgstr "Tour de siège Kushite"
+msgstr "Tour de siège koushite"
 
 #: simulation/templates/units/kush_mechanical_siege_tower.xml:6
 msgid "iwn n ms"
@@ -1643,7 +1643,7 @@ msgstr "D3y sbt"
 
 #: simulation/templates/units/kush_ship_trireme.xml:11
 msgid "Ptolemaic Mercenary Trireme"
-msgstr "trirème mercenaire ptolémaïque"
+msgstr "Trirème mercenaire ptolémaïque"
 
 #: simulation/templates/units/kush_ship_trireme.xml:12
 msgid "shry ‘3"
@@ -1655,7 +1655,7 @@ msgstr "Shmt"
 
 #: simulation/templates/units/kush_support_female_citizen.xml:6
 msgid "Kushite Woman"
-msgstr "Femme Kushite"
+msgstr "Femme koushite"
 
 #: simulation/templates/units/kush_support_healer_b.xml:6
 msgid "Priest"
@@ -1667,7 +1667,7 @@ msgstr "w’b nsw"
 
 #: simulation/templates/units/kush_support_trader.xml:5
 msgid "Nilotic Merchant"
-msgstr "Marchand Nilotique"
+msgstr "Marchand nilotique"
 
 #: simulation/templates/units/kush_support_trader.xml:6
 msgid "rmt sbt"
@@ -1682,7 +1682,7 @@ msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
-msgstr "Réorganisation financière : allié à Rome, Philippe a réorganisé les affaires intérieures et les finances du pays, laissant comme héritage des mines rouvertes et une nouvelle monnaie. Bénéficiez d'un flux lent de métal."
+msgstr "Réorganisation financière : allié de Rome, Philippe a réorganisé les affaires intérieures et les finances du pays, laissant comme héritage des mines rouvertes et une nouvelle monnaie. Bénéficiez d'un flux lent de métal."
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
@@ -1703,7 +1703,7 @@ msgstr "Xystophóros Thessalikós"
 #: simulation/templates/units/mace_champion_cavalry.xml:6
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:13
 msgid "Companion Cavalry"
-msgstr "Cavalier des compagnons"
+msgstr "Cavalier compagnon"
 
 #: simulation/templates/units/mace_champion_cavalry.xml:7
 msgid "Hetaîros"
@@ -1731,11 +1731,11 @@ msgstr "Mégās Aléxandros"
 
 #: simulation/templates/units/mace_hero_alexander.xml:22
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr "Bonus \"Hérocide\" : +20% d'attaque bonus contre les héros ennemis."
+msgstr "Bonus \"Hérocide\" : +20% d'attaque contre les héros ennemis."
 
 #: simulation/templates/units/mace_hero_craterus.xml:9
 msgid "Crateros"
-msgstr "Crateros"
+msgstr "Cratère"
 
 #: simulation/templates/units/mace_hero_craterus.xml:10
 msgid "Kraterós"
@@ -1826,7 +1826,7 @@ msgstr "Hiereús"
 
 #: simulation/templates/units/maur_catafalque.xml:9
 msgid "Bindusara"
-msgstr "Bindusara"
+msgstr "Bindusâra"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
@@ -1871,7 +1871,7 @@ msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_maiden.xml:6
 msgid "Maiden Guard"
-msgstr "Jeune fille garde"
+msgstr "Garde vierge"
 
 #: simulation/templates/units/maur_champion_maiden.xml:7
 #: simulation/templates/units/maur_champion_maiden_archer.xml:7
@@ -1880,7 +1880,7 @@ msgstr "Visha Kanya"
 
 #: simulation/templates/units/maur_champion_maiden_archer.xml:6
 msgid "Maiden Guard Archer"
-msgstr "Jeune archère garde"
+msgstr "Archère vierge garde"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:32
 msgid "Elephant Archer"
@@ -1909,7 +1909,7 @@ msgstr "Spécialité du héros : \"Édits d'Ashoka\" - Les Piliers à édits d'A
 
 #: simulation/templates/units/maur_hero_chanakya.xml:9
 msgid "Acharya Chanakya"
-msgstr "Acharya Chanakya"
+msgstr "Acharya Chanâkya"
 
 #: simulation/templates/units/maur_hero_chanakya.xml:10
 msgid "Acharya Chāṇakya"
@@ -1922,7 +1922,7 @@ msgstr "Chandragupta Maurya"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:12
 msgid "Longbowman"
-msgstr "Archer long"
+msgstr "Archer avec arc long"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Dhanurdhar"
@@ -1930,7 +1930,7 @@ msgstr "Dhanurdhar"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:12
 msgid "Bamboo Spearman"
-msgstr "Lancier de bambou"
+msgstr "Lancier avec une lance en bambou"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:13
 msgid "Kauntika"
@@ -2007,7 +2007,7 @@ msgstr "Rhomphaiaphoros"
 
 #: simulation/templates/units/merc_thorakites.xml:21
 msgid "Armored Swordsman"
-msgstr "Épéiste blindé"
+msgstr "Épéiste en armure"
 
 #: simulation/templates/units/merc_thorakites.xml:22
 msgid "Thōrakitēs"
@@ -2206,7 +2206,7 @@ msgstr "Femme mésopotamienne"
 
 #: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
-msgstr "Mage mède"
+msgstr "Prêtre mède"
 
 #: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Mada"
@@ -2224,7 +2224,7 @@ msgstr "Tamkarum Arami"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Échanger des ressources entre vos marchés et ceux de vos alliés. Les Perses ont un bonus de +25% de négociation des terres."
+msgstr "Échanger des ressources entre vos marchés et ceux de vos alliés. Les Perses ont un bonus de +25% pour le commerce terrestre."
 
 #: simulation/templates/units/plane.xml:43
 msgid "P-51 Mustang"
@@ -2240,7 +2240,7 @@ msgstr "Ptolémée III Évergète (Bienfaiteur)"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
-msgstr "Archer nabatéen à dos de chameau"
+msgstr "Archer nabatéen à dos de dromadaire"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:8
 msgid "Mutsābiq Gamal Nabatu"
@@ -2280,7 +2280,7 @@ msgstr "Polémou Eléphantos"
 
 #: simulation/templates/units/ptol_champion_infantry_pikeman.xml:6
 msgid "Royal Guard Infantry"
-msgstr "Garde royale à pied"
+msgstr "Garde royal à pied"
 
 #: simulation/templates/units/ptol_champion_infantry_pikeman.xml:7
 msgid "Phalangitès Agema"
@@ -2491,7 +2491,7 @@ msgstr "Légionnaire marianique"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:7
 msgid "Marian Legionarius"
-msgstr "Marian Legionarius"
+msgstr "Légionnaire marianique"
 
 #: simulation/templates/units/rome_mechanical_siege_onager.xml:33
 msgid "Onager"
@@ -2569,11 +2569,11 @@ msgstr "Lancier samnite"
 
 #: simulation/templates/units/sele_catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
-msgstr "Antiochus I Soter (Sauveur)"
+msgstr "Antiochus I Sôter (Sauveur)"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
-msgstr "Archer monté de Dahae"
+msgstr "Archer monté Dahae"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Hippotoxotès Dahae"
@@ -2581,7 +2581,7 @@ msgstr "Hippotoxotès Dahae"
 
 #: simulation/templates/units/sele_cavalry_javelinist_b.xml:7
 msgid "Militia Cavalry"
-msgstr "Cavalier de milice"
+msgstr "Cavalier milicien"
 
 #: simulation/templates/units/sele_cavalry_javelinist_b.xml:8
 msgid "Hippakontistès Politès"
@@ -2609,7 +2609,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Armored War Elephant"
-msgstr "Éléphant de guerre blindé"
+msgstr "Éléphant de guerre en armure"
 
 #: simulation/templates/units/sele_champion_elephant.xml:7
 msgid "Thorakisménos Eléphantos"
@@ -2689,7 +2689,7 @@ msgstr "Thureophóros Politès"
 
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:19
 msgid "Thracian Mercenary Swordsman"
-msgstr "Épéiste mercenaire Thrace"
+msgstr "Épéiste mercenaire thrace"
 
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:20
 msgid "Rhomphaiaphoros Thrakikós"
@@ -2717,7 +2717,7 @@ msgstr "Femme syrienne"
 
 #: simulation/templates/units/spart_catafalque.xml:10
 msgid "Lycurgus"
-msgstr "Lycurgus"
+msgstr "Lycurgue"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Perioikoi Cavalryman"

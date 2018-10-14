@@ -6,6 +6,7 @@
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
+# Hyeon june choi <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Valtiel <shinhs6291@naver.com>, 2014
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-10-31 13:47+0000\n"
-"Last-Translator: Suhyeon Park <qkr5145@gmail.com>\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-08-11 15:44+0000\n"
+"Last-Translator: sang gyu nam <destro0419@naver.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -424,8 +425,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "로마식 표기 Caractacus (카라타쿠스)는 그의 실제 이름 Karatakos이 단순히 변화 한 것으로 수많은 그의 동전에 새겨 져있었습니다. 이 이름에서 그는 43 년 이후 로마의 침략에 대한 사나운 영국의 방위로서 기억되고 있습니다. 카투에라니 부족 연합의 왕 쿠노베리누스 아들 카라타쿠스는 9 년 동안 로마와 싸울 것의 성과에 부족하고, 결국은 웨일즈의 부족으로 피신 거기서 결정적인 패배했습니다. 마지막은 북부 영국에 들어가고 그래서 로마에 신병을 전달했습니다. 로마에 연행되어 카라타쿠스는 클라우디우스 황제 생존을 허용, 이탈리아에서 돌아가 셨습니다. 전승에 따르면, 그는 아내의 개종시에 기독교로 개종했다고되어 있지만, 확실한 것은 알려져 있지 않습니다. 아마도 더 주목할만한 것은 일단 포로가되면서 사는 것을 허용 한 사실입니다. 로마의 관례는 이런 인물은 공개 처형하고 축승를 받게되었습니다. 카라타쿠스 요구를 인정 받아 황제와 원로원 앞에 이끌려 자신의 변명의 기회를 얻었습니다. 그가 무슨 말을했는지 확실한 것은 모릅니다 만, 타키 투스는 그에게 명 연설을 할당합니다. "
+"but Tacitus applies to him a famous speech…"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1131,6 +1132,211 @@ msgid ""
 "fought back."
 msgstr ""
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "아마니레나스"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr ""
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1379,7 +1585,7 @@ msgstr ""
 
 #: simulation/data/civs/mace.jsonStructures[2].Name
 msgid "Siege Workshop"
-msgstr ""
+msgstr "공성무기 제작소"
 
 #: simulation/data/civs/mace.jsonStructures[2].Special
 msgid "Constructs and upgrades all Macedonian siege engines."
@@ -1503,10 +1709,6 @@ msgid ""
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr ""
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr ""
-
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
 msgstr ""
@@ -1543,7 +1745,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stables"
-msgstr ""
+msgstr "코끼리 사육장"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid ""
@@ -2614,11 +2816,11 @@ msgstr ""
 
 #: simulation/data/civs/spart.jsonAINames[0]
 msgid "Leonidas"
-msgstr ""
+msgstr "레오디나스"
 
 #: simulation/data/civs/spart.jsonAINames[1]
 msgid "Dienekes"
-msgstr ""
+msgstr "디에네케스"
 
 #: simulation/data/civs/spart.jsonAINames[2]
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[1].Name
@@ -2631,19 +2833,19 @@ msgstr "아기스"
 
 #: simulation/data/civs/spart.jsonAINames[4]
 msgid "Archidamus"
-msgstr ""
+msgstr "아르키다모스"
 
 #: simulation/data/civs/spart.jsonAINames[6]
 msgid "Pausanias"
-msgstr ""
+msgstr "파우사니아스"
 
 #: simulation/data/civs/spart.jsonAINames[7]
 msgid "Agesilaus"
-msgstr ""
+msgstr "아게실라우스"
 
 #: simulation/data/civs/spart.jsonAINames[8]
 msgid "Echestratus"
-msgstr ""
+msgstr "에케스트라토스"
 
 #: simulation/data/civs/spart.jsonAINames[9]
 msgid "Eurycrates"

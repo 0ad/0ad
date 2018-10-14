@@ -19,15 +19,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2018-04-28 19:29+0000\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-05-18 15:43+0000\n"
 "Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: simulation/data/civs/athen.jsonName
 #: simulation/data/civs/athen.jsonFactions[0].Name
@@ -203,7 +203,7 @@ msgid ""
 "Aegean, thereby laying the foundations of future Athenian power. However, he"
 " was eventually ostracised by the Athenians and forced to flee to the "
 "protection of the Persians."
-msgstr ""
+msgstr "Generál, ktorý presvedčil Aténčanov investovať ich príjem zo strieborných baní do vojnovej flotily pozostávajúcej z 200 Trirém. Kľúčová postava Perzských vojen, velil víťaznej aténskej armáde v rozhodujúcej bitke pri Salamíne v roku 479 pred Kristom. Neskôr, aktívne politicky vystupoval proti Peržanom v Aegeane, čím položil základy budúcej aténskej moci. Nakoniec bol však z Atén paradoxne vykázaný a prinútený sa uchýliť pod ochranné krídla Peržanov. "
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -427,8 +427,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "Rímske meno Caractacus je jednoducho iba obmena z jeho skutočného Karatakos, pričom však bola vyrazená na jeho mnohých, mnohých minciach. Pod týmto menom vošiel do histórie ako divoký obranca Británie proti Rimanom po ich invázii v roku 43 po Kristovi. Ako syn kráľa Kunobelinosa z Catuvellauniskej kmeňovej konfederácie bojoval proti Rimanom deväť rokov iba s malým úspechom, potom sa rozhodol uchýliť ku kmeňom vo Walese, kde však bol už definitívne porazený. Nakoniec vstúpil do Severnej Británie, kde bol odovzdaný do rúk Rimanom. Zobrali ho do Ríma, cisár Claudius mu udelil milosť a tak nakoniec zomrel v Taliansku. Tradícia hovorí o tom, že rovnako ako jeho žena konvertoval na kresťanskú vieru, ale tento fakt doposiaľ nebol ničím potvrdený. Pravdepodobne zaujímavejšie je to, že mu po jeho zajatí nevzali život. Bežným postupom Rimanov v takýchto záležitostiach totiž bola exemplárna verejná poprava. Vtedy bol na vlastnú žiadosť predvedený pred cisára a senát za účelom svojej obhajoby. Čo im povedal sa presne nevie, ale podľa Tacitusa to bol slávny prejav..."
+"but Tacitus applies to him a famous speech…"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -506,7 +506,7 @@ msgid ""
 "slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
 "and then slew her daughters, and then herself, to avoid further shame at "
 "Roman hands."
-msgstr ""
+msgstr "Ammianus Marcellinus opísal, aké náročné by pre skupinu cudzincov bolo vysporiadať sa s Keltom v prípade, že by si zavolal na pomoc svoju manželku. Tá totižto bola silnejšia ako on a mohla ich zasypať údermi a kopancami silovo sa rovnajúcimi strelám z katapultu. Boudica, kráľovná Icenov, vraj bola \"veľmi vysoká a na pohľad desivá; jej hlas bol veľmi drsný a cez plecia jej padala veľká hromada červených vlasov\". Mala na sebe tuniku mnohých farieb, o ktorú bol brošňou pripevnený hrubý plášť. Boudica v skutočnosti najprv bola spolu so svojim manželom, Prasutagusom, kráľom Icenov, spojenkyňou Ríma. Prasutagus bol po krátkom povstaní blízkym rímskym spojencom, uznávali ho ako veľmi predvídavého človeka a umožnili mu slobodne vládnuť jeho kráľovstvu podľa tamojších tradícii, s jedinou výnimkou. Pred svojou smrťou sa dohodol so svojou manželkou a podriadenými, že jeho dcéry budú mať na starosti pod Boudiciným dohľadom až do svojej dospelosti fyzický chod územia, zatiaľ čo rímsky cisár bude jeho skutočným vládcom, bude vyberať dane a bude mať možnosť požiadať o vojenskú pomoc. Z veľkej časti teda to, čo mohol robiť aj dovtedy. Problém spočíval v tom, že Rimania neuznávali ženských dedičov a teda prehlásili cisárov nárok na Icenské kráľovstvo za jediný oficiálne platný. Ďalej uviedli, vraj bolo  normálnou rímskou tradíciou zachovať nezávislosť klientského kráľovstva iba po dobu života jeho počiatočného kráľa, ako sa to napríklad stalo v Gálii. Ríša teda formálne kráľovstvo zabrala a začala hneď vyberať kruté dane odvolávajúc sa na to, že Prasutagus mal voči nej dlh, pretože si počas života zobral niekoľko úverov, ktoré potom odmietal splatiť. Na Boudicinu sťažnosť súvisiacu s takýmto zaobchádzaním a odporom voči poslednej vôli jej manžela sa odpovedalo brutalitou; rímski vojaci ju zbičovali a jej dcéry, vtedy ešte iba deti, boli znásilnené. Boudica a jej poddaní boli z takéhoto zahanbenia kráľovnej a detí rozzúrení.  Kedže rímsky guvernér Británie bol práve zaujatí druidmi v Kambrii, dnešnom Walese, Boudica bola schopná prilákať na svoju stranu viac následovníkov aj mimo radov Icenov spolu s rastúcim rozčarovaním z Rimanov u ostatných kmeňov. Ona a jej armáda vyplienili tri mestá a porazili rímsku légiu, čím pripomenuli skutky Arminia, Germána, ktorý vyčistil svoje územia od Rimanov a aj tie svojich vlastných predkov, ktorí o storočie skôr odohnali Cézara. Porazená vďaka veľkému taktickému omylu v bitke pri Watling Street, vďaka ktorému bolo mnoho z jej síl zavraždených, pretože nemohli ustúpiť do bezpečia. Samotná Boudica utiekla, potom zabila svoje dcéry a nakoniec seba samu, aby zabránila ďalšej potupe v rukách Rimanov."
 
 #: simulation/data/civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
@@ -789,12 +789,12 @@ msgstr "Keltský druidovia udržiavali organizované náboženstvo ktoré rozvil
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
 msgid "Viridomarus"
-msgstr ""
+msgstr "Viridomarus"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
 msgid "Brennus"
-msgstr ""
+msgstr "Brennus"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
@@ -807,7 +807,7 @@ msgstr "Cingetorix"
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Vercingetorix"
-msgstr ""
+msgstr "Vercingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -823,7 +823,7 @@ msgstr "Liscus"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
 msgid "Valetiacus"
-msgstr ""
+msgstr "Valetiacus"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
@@ -836,7 +836,7 @@ msgstr "Isté množstvo kovu a jedla získané z každej zničenej alebo obsaden
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Vae Victis"
-msgstr ""
+msgstr "Vae Victis"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -845,7 +845,7 @@ msgid ""
 " a relief force from Veii, he negotiated his surrender for 1000 pounds of "
 "gold, and adding the weight of his sword on the scale when the Romans "
 "complained that he used false weights he uttered those famous words."
-msgstr ""
+msgstr "Beda porazeným! Galský náčelník Brennus obsadil Rím (s výnimkou posádky na kopci Capitoline). Keď ho Camillus obliekol s reliéfnou silou od Veii, rokoval o svojej kapitulácii za 1000 libier zlata ,pridal váhu svojho meča na váhu, zatiaľ čo sa  Rimania sťažovali, že použil falošné váhy, ktoré vyslovili tie slávne slová."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
@@ -878,7 +878,7 @@ msgid ""
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
 "task to kill Viridomarus and strip him of his armor."
-msgstr ""
+msgstr "Keď keltské armády stretli nepriateľa, ešte pred začiatkom bitky zvykol ich vodca ísť do prvej línie a vyzvať najstatočnejších nepriateľských bojovníkov do duelu. Typickým príkladom takéhoto stretnutia bol príbeh ako Marcus Claudius Marcellus zabil galského veliteľa pri Clastidiu (222 pred Kristom). Idúc s neveľkou armádou narazil Marcellus na spojené sily Insubrianov a Gaesatae neďaleko Clastidia. Galská armáda mala ako vždy veľmi naponáhlo, jej členovia vydávali desivé zvuky a ich kráľ, Britomartos si spomedzi svojich nepriateľov vybral práve Marcella kvôli jeho odznakom hodností, krikom ho vyzývajúc a mávajúc kopijou. Britomartos bol na bojisku výnimočnou osobnosťou, nielen kvôli svojej veľkosti ale taktiež aj kvôli  vzhľadu; oblečený vo svetlých farbách pôsobil veľkolepo a jeho zbroj sa leskla zlatom a striebrom. Táto zbroj by bola dobrou obeťou bohom, pomyslel si Marcellus. Vrhol sa na Gala, prebodol jeho lesklý pancier a zrazil ho k zemi. Bolo ľahké Britomartosa zabiť a vyzliecť ho z brnenia."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -901,7 +901,7 @@ msgid ""
 "brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
 "for power in northern Britain in around 390 B.C., and were regarded as gods "
 "in old Celtic tradition."
-msgstr ""
+msgstr "Brennus je meno, ktoré dali rímski historici slávnemu galskému vodcovi, ktorému sa v časoch Camilla podarilo obsadiť Rím. Podľa Geoffreyho z Monmouthu, klerika, ktorý napísal dielo \"História kráľov Británie\", Brennus a jeho brat Belinus napadli Galov a v roku 390 pred Kristom vyplienili Rím, dokazujúc tak, že Briti ovládli Rimanov, najväčšiu civilizáciu na svete, omnoho skôr, než sa Rimanom podarilo ovládnuť Britov. Z mnohých starovekých prameňov starších než Geoffrey vieme, že Rím síce bol vyplienený, ale v roku 387 a nie 390, a  že onen nájazd bol vedený mužom s menom Brennos (to bolo polatinčené na Brennus), ale on a jeho muži boli galskí Senóni, nie Briti. Na tomto je možné vidieť niekoľko prvkov Geoffreyho odlišnej interpretácie: prispôsobil si historického Brennusa/Brennosa, vymyslel brata Belina, požičal galskú inváziu, ale zato vynechal časti, kde Kelti pôsobili slabo alebo hlúpo. Takže niečo pridal a niečo odobral. Rovnako ako príbeh o Tróji, ani tento o vyplienení Ríma nie je čistým výmyslom, ale iba tvorivým preusporiadaním dostupných faktov s pridaním určitých detailov. Na základe ich historickej asociácie sú Beli a Bran často zamieňaní za ich predchodcov, bratov Belina a Brenna (synov Dunvalla Molmutia), ktorí okolo roku 390 pred Kristom zápasili v severnej Británii o moc a v starej keltskej tradícii boli považovaní za bohov."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1104,7 +1104,7 @@ msgid ""
 "were again defeated, Indibil losing his life in the final battle and "
 "Mandonio being captured then later put to death. From that date onward the "
 "Ilergetes remained a pacified tribe under Roman rule."
-msgstr ""
+msgstr "Indibil bol kráľom Ilergétov, veľkej federácie pozdĺž rieky Ebro na severozápade Pyrenejského polostrova. Počas Barcidskej expanzie od roku 212 pred Kristom sa pôvodne plánoval spojiť s Kartágincami kontrolujúcimi veľa území na juhu a západe, avšak po stratách a jeho vlastnom zajatí vo veľkej bitke ho Scipio Africanus presvedčil, niektorí hovoria vraj klamstvami, prejsť na stranu Rimanov. Avšak toto spojenectvo netrvalo dlho, pretože ich sľuby sa ukázali ako plané a správali sa viac ako dobyvatelia, než ako spojenci. Takže kým Rimania  v roku 206 pred Kristom ukončili prítomnosť Kartágincov v Hispánii, Indibil a ďalší kmeňový princ Mandonio, ktorý mohol byť jeho bratom, povstali vo vzbure proti Rímu. V bitke síce boli porazení, ale v roku 205 pred Kristom sa im podarilo dať dokopy ešte väčší prápor zjednocujúci všetkých Ilergétov. Nakoniec kvôli presile v počte aj výzbroji boli opäť porazení, Indibil v záverečnej bitke prišiel o život a Mandonia zajali a neskôr takisto odsúdili. Odvtedy už Ilergéti boli poslušným kmeňom pod nadvládou Ríma."
 
 #: simulation/data/civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"
@@ -1133,6 +1133,211 @@ msgid ""
 "and employed pioneering guerrilla tactics and flaming javelins as they "
 "fought back."
 msgstr "Iberi boli ľudia zahadného pôvodu a jazyka so silnou tradíciou v jazdectve a kovoobrábaní. Relatívne mierumilovná kultúra, zvyčajne bojovali v bitkách ostatných iba ako žoldnieri. Prejavili sa však nakoniec ako húževnatý ľud, keď sa im Rím snažil vziať ich pôdu a slobodu, využívajúc pri obrane partizánsky spôsob boja a horiace oštepy."
+
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Zhromažďovanie slonov"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Amanirenas"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
@@ -1447,7 +1652,7 @@ msgstr "Spojenecké chrámy a chrámové technológie -50% ceny a doby výskumu.
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Ashokaova Náboženská Podpora "
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1505,10 +1710,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Zajmite 5 voľne žijúcich slonov a umiestnite ich do slonej stajne pre získanie bonusu až 25% v cene a dobe tréningu sloních jednotiek."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Zhromažďovanie slonov"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
@@ -1720,7 +1921,7 @@ msgid ""
 "Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
 "Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
 "'rebuilt' the old Elamite capital of Susa."
-msgstr ""
+msgstr "Peržania postavili obdivuhodnú 2700 kilometrov dlhú Kráľovskú cestu zo Sárd do Sús; Darius Veľký a Xerxes okrem toho aj veľkolepý Persepolis; Kýros Veľký výrazne vylepšil Ekbatanu a prakticky \"prestaval\" staré elamitské hlavné mesto Súsy."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -1844,7 +2045,7 @@ msgid ""
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr ""
+msgstr "Grécko-macedónska dynastia Ptolemaiov sa spoliehala na veľké množstvo gréckych a zahraničných žoldnierov tvoriacich prevažnú časť jej vojenskej sily, a to preto, lebo lojalita domácich egyptských jednotiek často nebola vôbec zaručená. Počas jedného povstania dokonca Ptolemaiovci na niekoľko desaťročí prišli o Horný Egypt. Žoldnieri boli na druhej strane bitkami zocelený a ich lojalita sa dala kúpiť, niekedy lacno, niekedy nie lacno. Na tom až tak nezáležalo, pretože Egypt bol pod vládou Ptolemaiovcov tak prosperujúci, že sa zrejme jednalo o najbohatší z Alexandrových nástupníckych štátov."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
@@ -2114,7 +2315,7 @@ msgid ""
 "for a political career. Members of the Senate were called Conscript Fathers "
 "because of this, reflected in how the ordo equester was said to have been "
 "\"conscripted\" into the Senate."
-msgstr ""
+msgstr "Mnohí rímsky vojaci boli zadržaní do služby. Zatiaľ čo dobrovoľníci boli uprednostňovaní, Rímsky štát udržiaval ročný vojenský návrh. Počas mimoriadnej udalosti bol návrh a podmienky služby rozšírené. Význam vojenskej služby v republikovom Ríme bol taký veľký, že bol predpokladom politickej kariéry. Členovia Senátu boli preto z tohto dôvodu nazývaní Otcami Prokuristov, čo sa odzrkadľovalo v tom, ako sa hovorilo, že Ordo equester bol \"zasadený\" do Senátu."
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2502,7 +2703,7 @@ msgid ""
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
 "to defeat him at the Battle of Magnesia, forever burying the dream of "
 "reuniting Alexander's empire."
-msgstr ""
+msgstr "Antiochos na začiatku svojej vlády zdedil kráľovstvo s mnohými problémami. Od pokraja zrútenia sa mu podarilo dať naspäť dokopy to, čo Seleukos I. tak vydreto založil. Povstalecké východné satrapy Baktria a Partia boli zrazené na kolená, takže dočasne zabezpečovali jeho východné hranice. Potom obrátil svoju pozornosť na materské Grécko, pokúšajúc sa tak naplniť sny svojich otcov o napadnutí Grécka pod zámienkou oslobodenia. Achájsky spolok a Pergamské kráľovstvo sa však spojili s Rimanmi a v bitke pri Magnesii ho porazili, navždy tak pochovajúc sen o znovuzjednotení Alexandrovej ríše."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"

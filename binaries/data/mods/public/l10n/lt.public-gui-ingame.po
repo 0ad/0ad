@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lt\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -25,6 +25,7 @@ msgid_plural "Basic range: %(range)s meters"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/input.js:178
 #, javascript-format
@@ -33,6 +34,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/input.js:689
 msgid "Cannot build wall here!"
@@ -181,6 +183,7 @@ msgid_plural "There are %(inactiveString)s."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/menu.js:897
 msgid "There are no land traders."
@@ -193,6 +196,7 @@ msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/menu.js:915
 #, javascript-format
@@ -201,6 +205,7 @@ msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/menu.js:920
 #, javascript-format
@@ -209,6 +214,7 @@ msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/menu.js:930
 #, javascript-format
@@ -217,6 +223,7 @@ msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/menu.js:935
 #, javascript-format
@@ -229,6 +236,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/menu.js:963
 msgid "There are no merchant ships."
@@ -241,6 +249,7 @@ msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/menu.js:980
 #, javascript-format
@@ -249,6 +258,7 @@ msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/menu.js:985
 #, javascript-format
@@ -257,6 +267,7 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/menu.js:1206
 msgid "Resume"
@@ -834,6 +845,7 @@ msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/selection_panels.js:767
 #, javascript-format

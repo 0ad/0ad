@@ -4,16 +4,17 @@
 # 
 # Translators:
 # Balázs Meskó <meskobalazs@gmail.com>, 2017-2018
-# Balázs Úr <urbalazs@gmail.com>, 2015-2016
+# Balázs Úr <ur.balazs@fsf.hu>, 2015-2016,2018
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2014
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2018
+# Nagy András <asd0707@freemail.hu>, 2018
 # Stew Den <stewden55@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-25 15:00+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"PO-Revision-Date: 2018-06-29 00:03+0000\n"
+"Last-Translator: Nagy András <asd0707@freemail.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,12 +97,12 @@ msgstr "A játék azonosítóját nem sikerült lekérni.\n\n%(technicalDetails)
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr "Inicializálási hiba"
+msgstr "Előkészítési hiba"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
 msgid "Abort"
-msgstr "Megszakít"
+msgstr "Megszakítás"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
@@ -114,7 +115,7 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "A módosítások listáját nem sikerült lekérni.\n\n%(technicalDetails)s"
+msgstr "A modok listáját nem sikerült lekérni.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
@@ -155,7 +156,7 @@ msgstr "A mod.io felület előkészítése."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr "Inicializálás"
+msgstr "Előkészítés"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.js:313
 #: gui/modmod/modmod.xml:(caption):184
@@ -164,7 +165,7 @@ msgstr "Mégse"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr "Az elérhető módosítások listájának lekérésre és frissítése."
+msgstr "Az elérhető modok listájának lekérésre és frissítése."
 
 #: gui/modio/modio.js:233
 msgid "Updating"
@@ -234,7 +235,7 @@ msgid ""
 "While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
 "\n"
 "Do you really want to connect?"
-msgstr "A mod.io online szolgáltatáshoz való csatlakozás előtt állsz. Ez gyors hozzáférést tesz lehetővé a közösség által készített módosításokhoz, de nem áll a Wildfire Games irányítása alatt.\n\nMiközben nagy gondot fordítunk a biztonság megteremtésére, abszolút bizonyossággal nem garantálhatjuk, hogy ez nem jelent biztonsági kockázatot.\n\nValóban szeretnél kapcsolódni?"
+msgstr "A mod.io online szolgáltatáshoz való csatlakozás előtt állsz. Ez gyors hozzáférést tesz lehetővé a közösség által készített modok, de nem áll a Wildfire Games irányítása alatt.\n\nMiközben nagy gondot fordítunk a biztonság megteremtésére, abszolút bizonyossággal nem garantálhatjuk, hogy ez nem jelent biztonsági kockázatot.\n\nValóban szeretnél kapcsolódni?"
 
 #: gui/modmod/modmod.js:312
 msgid "Connect to mod.io?"
@@ -311,7 +312,7 @@ msgstr "Leírás"
 
 #: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
-msgstr "Engedélyezett módosítások"
+msgstr "Engedélyezett modok"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
@@ -331,7 +332,7 @@ msgstr "Súgó"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr "Módosítások"
+msgstr "Modok letöltése"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -339,7 +340,7 @@ msgstr "Beállítások mentése"
 
 #: gui/modmod/modmod.xml:(caption):204
 msgid "Start Mods"
-msgstr "Módosítások indítása"
+msgstr "Modok indítása"
 
 #: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
@@ -375,7 +376,7 @@ msgstr "mod.io felkeresése"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "A 0 A.D. úgy lett tervezve, hogy könnyed módosítható legyen. A módosítások .pyromod fájlként kerülnek terjesztésre, melyeket .zip fájlként lehet megnyitni."
+msgstr "A 0 A.D. úgy lett tervezve, hogy könnyen módosítható legyen. A modok .pyromod fájlként kerülnek terjesztésre, melyeket .zip fájlként lehet megnyitni."
 
 #: gui/modmod/help/help.txt:3
 msgid ""

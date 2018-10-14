@@ -12,7 +12,7 @@
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
 # OndraK <ondrej.kajinek@gmail.com>, 2014
-# fri, 2014-2017
+# fri, 2014-2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2014
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
@@ -24,15 +24,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-08-12 17:09+0000\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-05-27 20:32+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: simulation/data/civs/athen.jsonName
 #: simulation/data/civs/athen.jsonFactions[0].Name
@@ -432,8 +432,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "Římské jméno Caractacus je jednoduše pouze obměnou ze skutečného Karatakos, přičemž však byla vyražena na jeho mnohých, mnohých mincích. Pod tímto jménem vešel do dějin jako divoký obránce Británie proti Římanům po jejich vpádu v roce 43 po Kristu. jako syn krále Kunobelinose z Catuvellauniské kmenové konfederace bojoval proti Římanům devět roků jen s malým úspěchem, potom se rozhodl uchýlit ke kmenům vo Walesu, kde však byl už definitivně poražen. Nakonec vstoupil do Severní Británie, kde byl odevzdán do rukou Římanům. Vzali jej do Říma, císař Claudius mu udělil milost, a tak nakonec zemřel v Itálii. Ústní podání hovoří o tom, že stejně jako jeho žena přestoupil na křesťanskou víru, ale tato skutečnost nebyla dosud ničím potvrzena. Pravděpodobně je zajímavější to, že mu po jeho zajetí nevzali život. Bežným postupem Římanů v takových záležitostech totiž byla poprava pro výstrahu. Tehdy byl na vlastní žádost předveden před císaře a senát za účelem svojí obhajoby. Co jim pověděl se přesně neví, ale pode Tacita to byl slavný projev..."
+"but Tacitus applies to him a famous speech…"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -535,7 +535,7 @@ msgstr "Britoni byli keltské kmeny na Britských ostrovech. Používali dvoukol
 
 #: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
-msgstr "Kartágiňané"
+msgstr "Kartáginci"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid ""
@@ -549,7 +549,7 @@ msgstr "Trojité hradby"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
-msgstr "Kartaginci stavěli trojité městské hradby."
+msgstr "Kartáginci stavěli trojité městské hradby."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid ""
@@ -582,7 +582,7 @@ msgstr "Mistři obchodu"
 msgid ""
 "The Phoenicians and Carthaginians were broadly known as the greatest trading"
 " civilization of the ancient and classical world."
-msgstr "Féničané a Kartaginci byli velmi známí jako největší obchodní civilizace starého a klasického světa."
+msgstr "Féničané a Kartáginci byli velmi známí jako největší obchodní civilizace starého a klasického světa."
 
 #: simulation/data/civs/cart.jsonAINames[0]
 #: simulation/data/civs/cart.jsonFactions[0].Heroes[0].Name
@@ -664,7 +664,7 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr "Nikdo nevěděl lépe než Kartaginci, kam ve starověkém světě šli a kam se chystali jít; jejich obchodní kupci cestovali všude."
+msgstr "Nikdo nevěděl lépe než Kartáginci, kam ve starověkém světě šli a kam se chystali jít; jejich obchodní kupci cestovali všude."
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
@@ -720,7 +720,7 @@ msgstr "Stavte mocné válečné lodě kartaginského námořnictva."
 msgid ""
 "The structure is based upon the center island of the inner harbour "
 "constructed to house the war fleet of the Carthaginian navy at Carthage."
-msgstr "Struktura je založena na středním ostrově vnitřního přístavu postaveného tak, aby pojmul válečnou flotilu Kartaginského námořnictva v Kartágu."
+msgstr "Struktura je založena na středním ostrově vnitřního přístavu postaveného tak, aby pojmul válečnou flotilu kartaginského námořnictva v Kartágu."
 
 #: simulation/data/civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
@@ -732,7 +732,7 @@ msgstr "Najměte keltské žoldnéře."
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr "Keltové poskytovali kartágské armádě divoké žoldnéřské vojáky."
+msgstr "Keltové poskytovali kartaginské armádě divoké žoldnéřské vojáky."
 
 #: simulation/data/civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
@@ -747,7 +747,7 @@ msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the Italian peoples subject to Rome, including the Italian Greeks "
 "and powerful Samnites, revolted and joined the Carthaginian cause."
-msgstr "Když Hannibal pronikl do Itálie a porazil Římany v řadě bitev, mnoho obyvatel Itálie poddaných Římu, včetně italských Řeků a vlivných Samnitů, se vzbouřilo a připojilo se na kartáginskou stranu."
+msgstr "Když Hannibal pronikl do Itálie a porazil Římany v řadě bitev, mnoho obyvatel Itálie poddaných Římu, včetně italských Řeků a vlivných Samnitů, se vzbouřilo a připojilo se na kartaginskou stranu."
 
 #: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Iberian Embassy"
@@ -770,7 +770,7 @@ msgid ""
 "among the fiercest contenders on the high seas, and masters of naval trade. "
 "They deployed towered War Elephants on the battlefield to fearsome effect, "
 "and had defensive walls so strong, they were never breached."
-msgstr "Kartágo, městský stát v dnešním Tunisku, bylo působivou mocností v západním Středomoří, která ve třetím století před Kristem časem ovládla většinu severní Afriky a dnešního Španělska. Kartáginští námořníci byli jedněmi z nejdivočejších protivníků na otevřeném moři a zároveň i mistry námořního obchodu. Zvykli si na bojišti rozmísťovat bojové slony s věžemi za účelem vyvolání hrůzy u protivníka a měli obranné zdi tak silné, že se je nikdy nepodařilo překonat."
+msgstr "Kartágo, městský stát v dnešním Tunisku, bylo působivou mocností v západním Středomoří, která ve třetím století před Kristem časem ovládla většinu severní Afriky a dnešního Španělska. Kartaginští námořníci byli jedněmi z nejdivočejších protivníků na otevřeném moři a zároveň i mistry námořního obchodu. Zvykli si na bojišti rozmísťovat bojové slony s věžemi za účelem vyvolání hrůzy u protivníka a měli obranné zdi tak silné, že se je nikdy nepodařilo překonat."
 
 #: simulation/data/civs/gaul.jsonName
 #: simulation/data/civs/gaul.jsonFactions[0].Name
@@ -1109,7 +1109,7 @@ msgid ""
 "were again defeated, Indibil losing his life in the final battle and "
 "Mandonio being captured then later put to death. From that date onward the "
 "Ilergetes remained a pacified tribe under Roman rule."
-msgstr "Indibil byl králem Ilergetů, velké federace podél řeky Ebro na severozápadě Pyrenejského poloostrova. Během Barcidského rozpínání od roku 212 před Kristem se původně plánoval spojit s Kartáginci ovládajícími hodně území na jihu a západě, avšak po ztrátách a jeho vlastním zajetí ve velké bitvě ho Scipio Africanus přesvědčil, někteří říkají, že jej obelstil, přejít na stranu Římanů. Avšak toto spojenectví netrvalo dlouho, protože jejich sliby se ukázaly jako plané a chovali se víc jako dobyvatelé, než jako spojenci. Takže zatímco Římané v roce 206 před Kristem ukončili přítomnost Kartaginců v Hispánii, Indibil a další kmenový princ Mandonio, který mohl být jeho bratrem, povstali ve vzpouře proti Římu. V bitvě sice byli poraženi ale v roce 205 před Kristem se jim podařilo dát dohromady druhé ještě větší povstání sjednocující všechny Ilergety. Nakonec byli kvůli přesile v počtech a ve výzbroji opět poraženi, Indibil v závěrečné bitvě přišel o život a Mandonia zajali a později i odsoudili na smrt. Od té doby už Ilergeti byli poslušným kmenem pod nadvládou Říma."
+msgstr "Indibil byl králem Ilergetů, velké federace podél řeky Ebro na severozápadě Pyrenejského poloostrova. Během Barcidského rozpínání od roku 212 před Kristem se původně plánoval spojit s Kartáginci ovládajícími hodně území na jihu a západě, avšak po ztrátách a jeho vlastním zajetí ve velké bitvě ho Scipio Africanus přesvědčil, někteří říkají, že jej obelstil, přejít na stranu Římanů. Avšak toto spojenectví netrvalo dlouho, protože jejich sliby se ukázaly jako plané a chovali se víc jako dobyvatelé, než jako spojenci. Takže zatímco Římané v roce 206 před Kristem ukončili přítomnost Kartáginců v Hispánii, Indibil a další kmenový princ Mandonio, který mohl být jeho bratrem, povstali ve vzpouře proti Římu. V bitvě sice byli poraženi ale v roce 205 před Kristem se jim podařilo dát dohromady druhé ještě větší povstání sjednocující všechny Ilergety. Nakonec byli kvůli přesile v počtech a ve výzbroji opět poraženi, Indibil v závěrečné bitvě přišel o život a Mandonia zajali a později i odsoudili na smrt. Od té doby už Ilergeti byli poslušným kmenem pod nadvládou Říma."
 
 #: simulation/data/civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"
@@ -1138,6 +1138,211 @@ msgid ""
 "and employed pioneering guerrilla tactics and flaming javelins as they "
 "fought back."
 msgstr "Iberové byli lidé zahadného původu a jazyka se silnou tradicí v jezdectví a obrábění kovů. Poměrně mírumilovná kultura. Obyčejně bojovali v bitvách ostatních jen jako žoldnéři. Projevili se však nakonec jako houževnatý lid, když se jim Řím snažil vzít jejich půdu a svobodu, využívajíc při obraně partizánský způsob boje a hořící oštěpy."
+
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Sehnání slonů"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Dodavatelé slonů"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Snižuje cenu a čas výcviku slonů o 20% pro spojence hráčů obyvatel Kuše."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Nastasen"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Arakamani"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Amanirenas"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
@@ -1510,10 +1715,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Zajměte 5 volně žijících slonů a umístěte je do sloní stáje pro získání výhody až 25 % v ceně a době cvičení sloních jednotek."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Sehnání slonů"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."

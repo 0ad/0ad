@@ -4,14 +4,17 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
+# Hiunn-hué <hiunnhue108@ymail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2014-2017
+# Jerry Shen <jerry82422@gmail.com>, 2018
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-23 14:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-14 12:07+0000\n"
+"Last-Translator: Jerry Shen <jerry82422@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +62,7 @@ msgstr "已中斷連線。"
 #: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr "%(nick)s 變更了大廳的主題為 %(subject)s"
+msgstr "%(nick)s 將大廳的主題變更為 %(subject)s"
 
 #: gui/lobby/lobby.js:189
 #, javascript-format
@@ -126,11 +129,11 @@ msgstr "設定您的狀態為「上線」。"
 
 #: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "將一名特定的使用者從大廳踢出。用法：/kick 暱稱 理由"
+msgstr "將特定的使用者從大廳踢出。用法：/kick 暱稱 理由"
 
 #: gui/lobby/lobby.js:342
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "將一名特定的使用者從大廳封鎖。用法：/ban 暱稱 理由"
+msgstr "將特定的使用者從大廳封鎖。用法：/ban 暱稱 理由"
 
 #: gui/lobby/lobby.js:350
 msgid "Show this help."
@@ -166,7 +169,7 @@ msgstr "回到主選單。"
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "您與大廳的連線已中斷，你想要重新連線嗎？"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1200 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
@@ -286,15 +289,15 @@ msgstr "玩家：%(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1180
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "你已開啟的Mod不符合這場遊戲的Mod。"
 
 #: gui/lobby/lobby.js:1182
 msgid "Do you want to switch to the mod selection page?"
-msgstr ""
+msgstr "你想要切換回模組選擇頁嗎？"
 
 #: gui/lobby/lobby.js:1183
 msgid "Incompatible mods"
-msgstr ""
+msgstr "不相容的模組"
 
 #: gui/lobby/lobby.js:1199
 msgid "The game has already started. Do you want to join as observer?"
@@ -385,11 +388,11 @@ msgstr "%(percentage)s%%"
 
 #: gui/prelobby/prelobby.js:43
 msgid "Connecting…"
-msgstr ""
+msgstr "連線中..."
 
 #: gui/prelobby/prelobby.js:66
 msgid "Registering…"
-msgstr ""
+msgstr "註冊中---"
 
 #: gui/prelobby/prelobby.js:96
 msgid "Please enter your username"
@@ -457,7 +460,7 @@ msgstr "使用條款"
 
 #: gui/prelobby/prelobby.js:298
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr ""
+msgstr "你確定想在連上線以後刪除這個密碼？"
 
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
@@ -611,7 +614,7 @@ msgstr "密碼："
 
 #: gui/prelobby/prelobby.xml:(caption):68
 msgid "Remember Password"
-msgstr ""
+msgstr "記住密碼"
 
 #: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"

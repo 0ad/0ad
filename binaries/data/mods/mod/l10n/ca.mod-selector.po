@@ -5,14 +5,15 @@
 # Translators:
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2018
 # Haommin <tfs.msimangu@gmail.com>, 2014
+# juan Aragó <juan_arago@yahoo.es>, 2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Haommin <tfs.msimangu@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-29 10:30+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"PO-Revision-Date: 2018-06-05 00:12+0000\n"
+"Last-Translator: juan Aragó <juan_arago@yahoo.es>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,28 +24,28 @@ msgstr ""
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s%(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime for a guide to the meaning of the letters.
@@ -65,7 +66,7 @@ msgstr ","
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s(%(version)s)"
 
 #: gui/common/mod.js:20
 msgid ", "
@@ -90,12 +91,12 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "La ID del joc no ha pogut ser reparada.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "Problema d'Inici"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
@@ -113,12 +114,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "La Llista de Mods no ha pogut ser reparada.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr ""
+msgstr "Cercar l'Errada"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -127,12 +128,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "La descàrrega ha fallat.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "Error de descàrrega"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -141,20 +142,20 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Error de verificació del fitxer.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr ""
+msgstr "Error de verificació"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr ""
+msgstr "Inicialitzant la interfaç del mod.io."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "Inicialitzant"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.js:313
 #: gui/modmod/modmod.xml:(caption):184
@@ -163,35 +164,35 @@ msgstr "Cancel·la"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr ""
+msgstr "Cercant i actualitzant la llista dels mods disponibles."
 
 #: gui/modio/modio.js:233
 msgid "Updating"
-msgstr ""
+msgstr "Actualitzant"
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr ""
+msgstr "Cancelar l'Actualització"
 
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "Descarregant “%(modname)s”"
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr ""
+msgstr "Descarregant"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr ""
+msgstr "Cancel·la la Descàrrega"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
 #: gui/modio/modio.js:320
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr " %(current)s/%(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:330
@@ -200,7 +201,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr ""
+msgstr "Temps transcorregut: %(elapsed)s\nTemps d'espera estimat: %(remaining)s\nVelocitat promedi: %(avgSpeed)s"
 
 #: gui/modio/modio.js:332
 msgid "∞"
@@ -211,7 +212,7 @@ msgstr "∞"
 #: gui/modio/modio.js:334
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr " %(number)s%(unit)s/s"
 
 #: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
 msgid "Filter"
@@ -233,11 +234,11 @@ msgid ""
 "While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
 "\n"
 "Do you really want to connect?"
-msgstr ""
+msgstr "Estàs a punt de connectar-te amb el servei online de mod.io. Açò proveu fàcil accés als mods de la comunitat, però no està sota el control de Wildfire Games.\n\nTot i que hem pres cura de fer-lo segur, no podem garantir amb total certesa que no es tracta d'un risc de seguretat.\n\nVoleu connectar-vos de tota manera?"
 
 #: gui/modmod/modmod.js:312
 msgid "Connect to mod.io?"
-msgstr ""
+msgstr "Connectar a mod.io?"
 
 #: gui/modmod/modmod.js:313
 msgctxt "mod.io connection message box"
@@ -254,7 +255,7 @@ msgstr "D'acord"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "Mods mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -266,11 +267,11 @@ msgstr "Enrere"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
-msgstr ""
+msgstr "Refresca la Llista"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr ""
+msgstr "Descarregar"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -289,7 +290,7 @@ msgstr "Etiqueta del mod"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
-msgstr ""
+msgstr "Tamany del fitxer"
 
 #: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
 #: gui/modmod/modmod.xml:(heading):128
@@ -314,7 +315,7 @@ msgstr "Mods activats"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
-msgstr ""
+msgstr "Habilitar/Deshabilitar"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
@@ -326,11 +327,11 @@ msgstr "Surt"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr ""
+msgstr "Descarregar Mods"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -352,11 +353,11 @@ msgstr "Lloc web"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr ""
+msgstr "Canviar l'ordre en què els mods són executats. Açò hauria d'agrupar les dependències dels mods."
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr ""
+msgstr "Selector del Mod Pyrogenesis"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -364,17 +365,17 @@ msgstr "Tanca"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "Guia de Modificació"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "Visita mod.io"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr ""
+msgstr "0 A.D. ha estat dissenyat per a ser fàcilment modificable. Els Mods són distribuïts sota la forma de fitxers .pyromod, que poden ser oberts com fitxers .zip."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -384,13 +385,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
+msgstr "Per a instal·lar un mod, simplement obre la carpeta amb 0 A.D. (doble clic sobre el fitxer i tria obrir amb el joc, o bé executa \"pyrogenesis file.pyromod\" a la terminal). El mod estarà disponible al selector de mod. Pots habilitar-lo i deshabilitar-lo quan vullgues. Pots esborrar el mod manualment emprant el teu navegador si ho necessites (mira https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr ""
+msgstr "Per a més informació sobre modificar el joc, veges la Guia de Modificació online (clica la Guia de Modificació, el botó d'avall)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -399,4 +400,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr ""
+msgstr "El servei de mod.io està desenvolupat per DBolical, la companyia darrere d'Indie DB i ModDB. Aquestes pàgines han fet córrer la notícia sobre 0 A.D. i altres projectes indies durant molt de temps! Avui, mod.io ens permet fer llistes i descarregar tots els mods que siguen verificats per l'equip. Clica \"Descarregar Mods\" per a provar-los i instal·lar-ne alguns!"

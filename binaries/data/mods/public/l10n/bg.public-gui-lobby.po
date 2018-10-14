@@ -7,6 +7,7 @@
 # Ivailo Monev <xakepa10@gmail.com>, 2014
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
 # Любомир Василев, 2016
+# Nerwitz Panzerfizt, 2018
 # AccountKiller, 2015
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2015
 # Любомир Василев, 2016-2018
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-24 06:32+0000\n"
-"Last-Translator: Любомир Василев\n"
+"PO-Revision-Date: 2018-10-11 12:46+0000\n"
+"Last-Translator: Nerwitz Panzerfizt\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,11 +139,11 @@ msgstr "Блокиране на достъпа на определен потр�
 
 #: gui/lobby/lobby.js:350
 msgid "Show this help."
-msgstr "Показване на това съобщение."
+msgstr "Показвай това съобщение винаги."
 
 #: gui/lobby/lobby.js:353
 msgid "Chat commands:"
-msgstr "Команди в чата:"
+msgstr "Позволени команди в чата:"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:357
@@ -152,7 +153,7 @@ msgstr "%(command)s — %(description)s"
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "Изпращане на съобщение за Вас. Пример: /me отива да плува."
+msgstr "Изпращане на обратно съобщение до Вас. Пример: /me отивам да плувам."
 
 #: gui/lobby/lobby.js:374
 msgid ""
@@ -162,7 +163,7 @@ msgstr "Изпращане на всякакъв текст като съобщ�
 
 #: gui/lobby/lobby.js:378
 msgid "Clear all chat scrollback."
-msgstr "Изчистване на историята в чата."
+msgstr "Изчистване на хронологията на чата."
 
 #: gui/lobby/lobby.js:385
 msgid "Return to the main menu."
@@ -170,7 +171,7 @@ msgstr "Връщане към главното меню."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Връзката Ви с чакалнята се разпадна. Искате ли да се свържете отново?"
+msgstr "Връзката с лобито се разпадна. Искате ли да опитате да се свържете отново?"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1200 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
@@ -229,7 +230,7 @@ msgstr "Вие получихте забрана за достъп до лоби
 
 #: gui/lobby/lobby.js:622
 msgid "You have been kicked from the lobby!"
-msgstr "Вие бяхте изритан(а) от лобито."
+msgstr "Вие бяхте изгонен(а) от лобито."
 
 #: gui/lobby/lobby.js:624
 #, javascript-format
@@ -239,7 +240,7 @@ msgstr "%(nick)s получи забрана за достъп до лобито
 #: gui/lobby/lobby.js:625
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s беше изритан(а) от лобито."
+msgstr "%(nick)s беше изгонен(а) от лобито."
 
 #: gui/lobby/lobby.js:628
 #, javascript-format
@@ -253,7 +254,7 @@ msgstr "БЛОКИРАН"
 
 #: gui/lobby/lobby.js:656
 msgid "KICKED"
-msgstr "ИЗРИТАН"
+msgstr "ИЗГОНЕН"
 
 #: gui/lobby/lobby.js:687
 msgid "Unmark as Buddy"
@@ -317,7 +318,7 @@ msgstr "Командата „%(cmd)s“ не се поддържа."
 #: gui/lobby/lobby.js:1361
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr "Командата „%(cmd)s“ е само за модератори."
+msgstr "Командата „%(cmd)s“ е достъпна само за модератори."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:1434
@@ -564,7 +565,7 @@ msgstr "Създаване на игра"
 
 #: gui/lobby/lobby_panels.xml:(caption):244
 msgid "Show only open games"
-msgstr "Показване само на отворените игир"
+msgstr "Показвай само отворените игри"
 
 #: gui/lobby/lobby_panels.xml:(caption):267
 msgid "Send"
@@ -585,7 +586,7 @@ msgstr "Потребителско име:"
 
 #: gui/lobby/lobby_panels.xml:(caption):323
 msgid "View Profile"
-msgstr "Преглед"
+msgstr "Преглед профил"
 
 #: gui/lobby/lobby_panels.xml:(caption):356
 msgid "Please enter a player name."
@@ -615,7 +616,7 @@ msgstr "Парола:"
 
 #: gui/prelobby/prelobby.xml:(caption):68
 msgid "Remember Password"
-msgstr "Запомняне на паролата"
+msgstr "Запомни паролата"
 
 #: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"

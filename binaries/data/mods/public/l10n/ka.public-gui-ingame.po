@@ -15,19 +15,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ka\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: gui/session/input.js:177
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/session/input.js:178
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/session/input.js:689
 msgid "Cannot build wall here!"
@@ -174,6 +176,7 @@ msgstr "%(openingGarrisonedString)s და %(inactiveString)s."
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "არის %(inactiveString)s."
+msgstr[1] "არის %(inactiveString)s."
 
 #: gui/session/menu.js:897
 msgid "There are no land traders."
@@ -184,24 +187,28 @@ msgstr "მიწასე მოვაჭრეები არ არიან
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s მიწაზე მოვაჭრე ვაჭრობს."
+msgstr[1] "%(numberTrading)s მიწაზე მოვაჭრე ვაჭრობს."
 
 #: gui/session/menu.js:915
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s არააქტიურია"
+msgstr[1] "%(numberOfLandTraders)s არააქტიურია"
 
 #: gui/session/menu.js:920
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s არააქტიური ვაჭარი"
+msgstr[1] "%(numberOfLandTraders)s არააქტიური ვაჭარი"
 
 #: gui/session/menu.js:930
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s ერთეული დგას მოვაჭრე გემის გარნიზონში"
+msgstr[1] "%(numberGarrisoned)s ერთეული დგას მოვაჭრე გემის გარნიზონში"
 
 #: gui/session/menu.js:935
 #, javascript-format
@@ -212,6 +219,7 @@ msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
 msgstr[0] "%(numberGarrisoned)s ერთეული ვაჭარი დგას მოვაჭრე გემის გარნიზონში"
+msgstr[1] "%(numberGarrisoned)s ერთეული ვაჭარი დგას მოვაჭრე გემის გარნიზონში"
 
 #: gui/session/menu.js:963
 msgid "There are no merchant ships."
@@ -222,18 +230,21 @@ msgstr "არცერთი მოვაჭრე გემი არ არ�
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "%(numberTrading)s მოვაჭრე გემი ვაჭრობს"
+msgstr[1] "%(numberTrading)s მოვაჭრე გემი ვაჭრობს"
 
 #: gui/session/menu.js:980
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s არააქტიურია"
+msgstr[1] "%(numberOfShipTraders)s არააქტიურია"
 
 #: gui/session/menu.js:985
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s მოვაჭრე გემი არააქტიურია"
+msgstr[1] "%(numberOfShipTraders)s მოვაჭრე გემი არააქტიურია"
 
 #: gui/session/menu.js:1206
 msgid "Resume"
@@ -809,6 +820,7 @@ msgstr "%(population)s %(neededSlots)s"
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/session/selection_panels.js:767
 #, javascript-format

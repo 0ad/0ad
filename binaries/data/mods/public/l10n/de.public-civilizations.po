@@ -22,6 +22,7 @@
 # Hedaja <christian.pietzsch@gmail.com>, 2014
 # hunzel <nurmaguggen@hotmail.com>, 2014
 # Jakob Gahde <j5lx@fmail.co.uk>, 2014
+# J H <jh.aom@hotmail.com>, 2018
 # ... ... <jon12@gmx.de>, 2017
 # jonnius <jonatan_zeidler@gmx.de>, 2014
 # santa41116, 2014
@@ -59,9 +60,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2018-04-20 17:08+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-06-08 13:58+0000\n"
+"Last-Translator: J H <jh.aom@hotmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -467,8 +468,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "Caratacus ist die römische Form von Karatakos, seinem richtigen Namen, welcher auf seine vielen Münzen geprägt war. Unter diesem Namen ist er als großer Verteidiger gegen die römische Invasion 43 n.Chr. noch heute bekannt. Als Sohn von König Cunobelinus aus dem Stamm der Catuvellanuen kämpfte er neun Jahre mit wenig Erfolg gegen die Römer, floh aber letzten Endes zu den Stämmen in Wales, wo er entscheidend geschlagen wurde. Zum Schluss wandte er sich nach Nordbritanien, wo er an die Römer ausgeliefert wurde. Nach Rom gebracht, lebte Karatakos bei Kaiser Claudius und starb in Italien. Aus Überlieferungen geht hervor, dass er zum christlichen Glauben übergetreten sei, nachdem seine Frau dies auch Tat, aber diese Behauptungen sind nicht gesichert. Bemerkenswerter ist die Tatsache, dass er leben durfte nachdem er von Rom gefangen wurde. Grundsätzlich wurden solche Leute in öffentlichen Inszenierungen hingerichtet. Karatakos wurde auf eigenen Wunsch vor den Kaiser und den Senat gebracht, um sich zu erklären. Was gesagt wurde ist nicht genau bekannt, jedoch sagt Tacitus, dass es eine geniale Rede gewesen sei...."
+"but Tacitus applies to him a famous speech…"
+msgstr "Caratacus ist die römische Form von Karatakos, seinem richtigen Namen, welcher auf seine vielen Münzen geprägt war. Unter diesem Namen ist er als großer Verteidiger gegen die römische Invasion 43 n.Chr. noch heute bekannt. Als Sohn von König Cunobelinus aus dem Stamm der Catuvellanuen kämpfte er neun Jahre mit wenig Erfolg gegen die Römer, floh aber letzten Endes zu den Stämmen in Wales, wo er entscheidend geschlagen wurde. Zum Schluss wandte er sich nach Nordbritanien, wo er an die Römer ausgeliefert wurde. Nach Rom gebracht, lebte Karatakos bei Kaiser Claudius und starb in Italien. Aus Überlieferungen geht hervor, dass er zum christlichen Glauben übergetreten sei, nachdem seine Frau dies auch tat, aber diese Behauptungen sind nicht gesichert. Bemerkenswerter ist die Tatsache, dass er leben durfte, nachdem er von Rom gefangen wurde. Grundsätzlich wurden solche Leute in öffentlichen Inszenierungen hingerichtet. Karatakos wurde auf eigenen Wunsch vor dem Kaiser und den Senat gebracht, um sich zu erklären. Was gesagt wurde, ist nicht genau bekannt, jedoch sagt Tacitus, dass es eine geniale Rede gewesen sei ..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1174,6 +1175,211 @@ msgid ""
 "fought back."
 msgstr "Die Iberer waren ein Volk unbekannter Herkunft und Sprache mit einer langen Reit- und Metallverarbeitungstradition. Da sie eine relativ friedliche Kultur hatten, kämpften sie meist nur als Söldner in den Kriegen anderer Völker. Allerdings erwiesen sie sich als zähe Gegner, als Rom ihnen Land und Freiheit nehmen wollte, wobei sie wegweisende Guerillataktiken und brennende Wurfspeere bei der Verteidigung verwendeten."
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "Kuschiten"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "Die Pyramiden von Meroe"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr "Der Bau einer Kuschitenpyramide erhöht den Territorialeinfluss von Verwaltungssitzen um +10% für jedes gebaute Exemplar."
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr "Minerallagerstätte"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr "Kuschitische Spieler erhalten kostenlos eine zusätzliche Metallmine irgendwo in ihrem Heimatgebiet."
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Zusammentreiben von Elefanten"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr "Erlaubt das Einfangen von Elefanten, um sie in einem Pferch einquartieren und die Ausbildungskosten für Kriegselefanten zu senken."
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Elefantenlieferanten"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Verbündete der Kuschiten benötigen 20% weniger Resourcen und Zeit um Elefanten auszubilden."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "Kaschta"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "Alara"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "Pebatjma"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "Schabaka"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "Schebitko"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "Qalhata"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "Takahatenamun"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "Tanotamun"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "Atlanersa"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "Nasalsa"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "Malowijebamani"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "Harsijotef"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "Shanakdakheto"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "Amanischacheto"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "Monumentale Architektur"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr "+50% TP und -50% Bauzeit für Verwaltungssitze, Tempel, Pyramiden und Wunder."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr "Ermöglicht die Ausbildung von Elite-Heilern"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "Hohepriester des Amun"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "Lass deine Priester vom Hohepriester selbst unterweisen - möge Amun ihn segnen"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Nastasen"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Arakamani"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Amanirenas"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "Kuschitische Afrikaner"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "Das große afrikanische Königreich, welches sich über das Nilgebiet in Nubien im Süden Ägyptens erstreckte."
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "Tempel von Amun"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr "Die Kuschiten können einzelne Tempel zu Tempeln von Amun aufwerten, welche napatanische Tempelwachen-Gardisten ausbilden und Einheiten schneller heilen können."
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "Geschichte."
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "Tempel von Apedemak"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr "Die Kuschiten können einzelne Tempel zu Tempeln von Apedemak aufwerten, welche Meroe-Tempelwachen-Gardisten ausbilden und Einheiten schneller heilen können."
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "Kuschitenpyramiden"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "Der Bau einer kleinen Kuschitenpyramide schaltet die Stadtphase frei. Der Bau einer großen Kuschitenpyramide schaltet die Großstadtphase frei. Und jede gebaute Pyramide fügt +10% Territorialeinfluss für Verwaltungssitze hinzu."
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "Die Kuschiten bauten über 200 Pyramiden in Nubien."
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "Das Reich von Kusch war ein altes afrikanisches Königreich, welches am Zusammenfluss des blauen Nils, des weißen Nils und des schwarzen Nils, dem Gebiet des heutigen Sudan, gelegen war. Die kuschitische Era in dieser Region begann nach der Bronzezeit mit dem Zusammenbruch des neuen Königreiches von Ägypten und hatte in früher Phase sein Zentrum in der Stadt Napata. Im 8 Jahrhundert v. Chr. fielen Sie in Ägypten ein. Dort regierten die kuschitischen Kaiser ein Jahrhundert lang als Pharaonen der fünfundzwanzigsten Dynastie, bis sie von den Assyrern wieder vertrieben wurden. Die Kultur der Kusch wurde stark von den Ägyptern beeinflusst aber durch eigene monumentale Bauwerke, wie Pyramiden oder Tempel, noch erweitert. Die Bewohner des Reiches Kusch verehrten sogar viele ägyptische Götter, einschließlich Amun. Während der klassischen Antike war ihre Reichshauptstadt Meroe, wobei in frühgriechischer Geschichte das merotische Königreich auch als Aethiopien bekannt war. Das kuschitische Reich bestand bis ins 4Jh. hinein, bis es, durch interne Rebellionen geschwächt, schließlich der wachsenden Macht von Axum erlag."
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1546,10 +1752,6 @@ msgid ""
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Fange bis zu 5 Gaia-Elefanten und quartiere sie in den Elefantenställen ein, um bis zu 25% Bonus auf Kosten und Ausbildungszeit für Elefanten-Einheiten zu erlangen."
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Zusammentreiben von Elefanten"
-
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
 msgstr "Größere Reichweite und schnellere Ausbildung für Maurya-Infanterie Bogenschützen."
@@ -1794,7 +1996,7 @@ msgid ""
 "Empire. He was also renown as a benevolent conqueror. (OP - Kurush). "
 "Technically the second ruler of the Persians by that name, and so appears as"
 " Kurush II on his documents and coins. Kurush I was his grandfather."
-msgstr "Kyros der Große (regierte 559-530 v. Chr.), der Sohn einer medischen Prinzessin und dem Regenten von Anschan, mit Recht \"Vater des Reiches\" genannt, eroberte Medien, Lydien, Babylonien und Baktrien, womit er das persische Reich begründete. Er war bekannt als wohlwollender Eroberer. (Altpersisch - Kurush). Er war technisch gesehen der zweite Regent der Perser mit diesem Namen, und so erscheint er als Kurush II. auf seinen Dokumenten und Münzen. Kurush I. war sein Großvater."
+msgstr "Kyros der Große (regierte 559-530 v. Chr.), der Sohn einer medischen Prinzessin und dem Regenten von Anschan, mit Recht „Vater des Reiches“ genannt, eroberte Medien, Lydien, Babylonien und Baktrien, womit er das persische Reich begründete. Er war bekannt als wohlwollender Eroberer. (Altpersisch – Kurush). Er war technisch gesehen der zweite Regent der Perser mit diesem Namen, und so erscheint er als Kurush II. auf seinen Dokumenten und Münzen. Kurush I. war sein Großvater."
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
@@ -1806,7 +2008,7 @@ msgid ""
 "Parthia and Hyrcania; a great administrator as well as a decent general, "
 "Darius introduced the division of the empire into satrapies and conquered NW"
 " India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
-msgstr "Dareios (regierte 522-486 v. Chr.), der Sohn des Vishtaspa (Hystaspes), der Satrap von Parthien und Hyrkanien; Als großer Verwalter und annehmbarer General führte er die Teilung des Reiches in Satrapien ein und eroberte Nordwest-Indien, Thrakien und Makedonien. Er wurde der \"Händler des Reiches\" genannt."
+msgstr "Dareios (regierte 522-486 v. Chr.), der Sohn des Vishtaspa (Hystaspes), der Satrap von Parthien und Hyrkanien; Als großer Verwalter und annehmbarer General führte er die Teilung des Reiches in Satrapien ein und eroberte Nordwest-Indien, Thrakien und Makedonien. Er wurde der „Händler des Reiches“ genannt."
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[2].History
 msgid ""

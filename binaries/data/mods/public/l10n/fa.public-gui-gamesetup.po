@@ -3,24 +3,26 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Amir Alb <amirmohammad.alb1981@gmail.com>, 2018
 # eulerleibniz <dariush.karamati@gmail.com>, 2014
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
 # Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
 # omidh <omid_h28@hotmail.com>, 2013
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-04 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-23 08:00+0000\n"
+"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: gui/aiconfig/aiconfig.js:11
 msgctxt "ai"
@@ -43,7 +45,7 @@ msgstr "تصادفی"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "انتخاب یک تمدن بصورت تصادفی زمانی که بازی شروع می شود."
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
@@ -52,11 +54,11 @@ msgstr "* %(username)s آماده نیستند."
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
-msgstr "من حاضرم"
+msgstr "من آماده هستم"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "مشخص کنید که شما آماده شروع بازی هستید"
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
@@ -65,11 +67,11 @@ msgstr "* %(username)s آماده است!"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
-msgstr ""
+msgstr "آماده باش"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "آماده باش حتی وقتی تنظیمات بازی تغییر می کنه! "
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
@@ -101,7 +103,7 @@ msgstr "%(username)s اخراج شده است."
 #: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s تحریم شده است."
+msgstr "%(username)s ممنوع الورود شده است."
 
 #: gui/gamesetup/gamesetup.js:162
 #, javascript-format
@@ -121,7 +123,7 @@ msgstr "پیش فرض"
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "تمام نقشه ها به غیر از دریایی و نقشه های دمو"
 
 #: gui/gamesetup/gamesetup.js:180
 msgid "Naval Maps"
@@ -130,7 +132,7 @@ msgstr "نقشه های دریایی"
 #: gui/gamesetup/gamesetup.js:181
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "نقشه‌هایی که برای رسیدن به دشمن نیاز به کشتی هست."
 
 #: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
@@ -139,7 +141,7 @@ msgstr "نقشه های نمایشی"
 #: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "این نقشه ها قابل بازی کردن نیستند اما برای دمو کردن می توان استفاده کرد"
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
@@ -148,16 +150,16 @@ msgstr "نقشه های جدید"
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "نقشه‌هایی جدید که در نسخه جدید بازی ارائه شده اند"
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
-msgstr "رها کردن نقشه ها"
+msgstr "نقشه های ماشه ای"
 
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "نقشه های که در آنها وقایع اسکریپت شده وجود دارند و در آنها ممکن است نیروهای دشمن ظاهر شود"
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
@@ -166,12 +168,12 @@ msgstr "همه نقشه‌ها"
 #: gui/gamesetup/gamesetup.js:205
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "هر نقشه از نوع نقشه انتخاب شده"
 
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "نقشه"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
@@ -181,35 +183,35 @@ msgstr "بازیکن"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "نوع بازی"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
-msgstr ""
+msgstr "نوع نقشه"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
-msgstr "انتخاب نوع نقشه"
+msgstr "انتخاب یک نوع نقشه"
 
 #: gui/gamesetup/gamesetup.js:499
 msgid "Map Filter"
-msgstr ""
+msgstr "فیلتر نقشه"
 
 #: gui/gamesetup/gamesetup.js:500
 msgid "Select a map filter."
-msgstr "انتخاب فیلتر نقشه"
+msgstr "انتخاب یک فیلتر نقشه"
 
 #: gui/gamesetup/gamesetup.js:515
 msgid "Select Map"
-msgstr ""
+msgstr "انتخاب نقشه"
 
 #: gui/gamesetup/gamesetup.js:516
 msgid "Select a map to play on."
-msgstr "انتخاب یک نقشه برای بازی"
+msgstr "انتخاب یک نقشه برای بازی کردن در آن"
 
 #: gui/gamesetup/gamesetup.js:530
 msgid "Map Size"
-msgstr ""
+msgstr "اندازه نقشه"
 
 #: gui/gamesetup/gamesetup.js:531
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -217,15 +219,15 @@ msgstr "انتخاب اندازه ی نقشه (اندازه های بزرگ می
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Biome"
-msgstr ""
+msgstr "زیست بوم"
 
 #: gui/gamesetup/gamesetup.js:546
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "انتخاب گیاه و جانوران"
 
 #: gui/gamesetup/gamesetup.js:561
 msgid "Number of Players"
-msgstr ""
+msgstr "تعداد بازیکن ها"
 
 #: gui/gamesetup/gamesetup.js:562
 msgid "Select number of players."
@@ -233,27 +235,27 @@ msgstr "مشخص کردن تعداد بازیکنان."
 
 #: gui/gamesetup/gamesetup.js:582
 msgid "Population Cap"
-msgstr ""
+msgstr "سقف جمعیت"
 
 #: gui/gamesetup/gamesetup.js:589
 msgid "Select population limit."
-msgstr ""
+msgstr "محدودیت جمعیت را انتخاب کن"
 
 #: gui/gamesetup/gamesetup.js:592
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "هشدار: در صورتی که همه%(players)s بازیکن ها به %(popCap)s مقدار جمعیت برسند، ممکن است مشکلاتی در عملکرد بازی رخ بدهد."
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
-msgstr ""
+msgstr "منابع در آغاز"
 
 #: gui/gamesetup/gamesetup.js:613
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "مقدار اولیه از هر منبع: %(resources)s"
 
 #: gui/gamesetup/gamesetup.js:616
 msgid "Select the game's starting resources."
@@ -261,42 +263,42 @@ msgstr "انتخاب منابع اولیه ی بازی."
 
 #: gui/gamesetup/gamesetup.js:631
 msgid "Ceasefire"
-msgstr ""
+msgstr "آتش بس"
 
 #: gui/gamesetup/gamesetup.js:632
 msgid "Set time where no attacks are possible."
-msgstr "تنظیم زمانی که هیچ حمله ای امکان پذیر است."
+msgstr "تنظیم زمانی که هیچ حمله ای امکان پذیر نیست."
 
 #: gui/gamesetup/gamesetup.js:645
 msgid "Relic Count"
-msgstr ""
+msgstr "تعداد آثار مقدس"
 
 #: gui/gamesetup/gamesetup.js:646
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "تعداد کل آثار مقدس ظاهر شده در نقشه. پیروزی آثار مقدس با یک یا دو اثر مقدس منطقی تر خواهد بود. با تعداد بیشتر این آثار مقدس از جهت آئورایی که به می دهند اهمیت پیدا خواهند کرد."
 
 #: gui/gamesetup/gamesetup.js:660
 msgid "Relic Duration"
-msgstr ""
+msgstr "مدت زمان اثر مقدس"
 
 #: gui/gamesetup/gamesetup.js:661
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "دقیقه تا زمانی که بازیکن موفق به پیروزی از طریق اثر مقدس شود."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
-msgstr ""
+msgstr "مدت زمان سازه عجایب"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "دقیقه تا زمانی که بازیکن موفق به پیروزی از طریق سازه عجایب می شود"
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
-msgstr ""
+msgstr "سرعت بازی"
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Select game speed."
@@ -304,77 +306,77 @@ msgstr "انتخاب سرعت بازی."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
-msgstr ""
+msgstr "سختی"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "انتخاب سختی این سناریو"
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "انتخاب تمدن برای این بازیکن"
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
-msgstr ""
+msgstr "پادگان قهرمان"
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "تغییر وضعیت که آیا قهرمان می تواند مستقر شود"
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
-msgstr ""
+msgstr "عشایر"
 
 #: gui/gamesetup/gamesetup.js:853
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "در مد عشایر، بازیکن ها تنها با تعدادی نیرو بازی را آغاز می کنند و خود بازیکن ها باید جایی برای ساخت مرکز تمدن پیدا کنند. قرار دادن آتش بس توصیه می شود."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:866
 msgid "Revealed Map"
-msgstr ""
+msgstr "نقشه آشکار"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:869
 msgid "Toggle revealed map (see everything)."
-msgstr "تعویض نحوه نمایش نقشه( همه چیز را ببینید )."
+msgstr "تغییر وضعیت نحوه نمایش نقشه ( همه چیز را ببینید )."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:885
 msgid "Explored Map"
-msgstr ""
+msgstr "نقشه کشف شده"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:888
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "تغییر وضعیت نقشه کشف شده (دیدن نقشه اولیه)"
 
 #: gui/gamesetup/gamesetup.js:899
 msgid "Disable Treasures"
-msgstr ""
+msgstr "غیر فعال کردن گنجینه ها"
 
 #: gui/gamesetup/gamesetup.js:900
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "غیر فعال کردن تمام گنجینه ها در نقشه"
 
 #: gui/gamesetup/gamesetup.js:911
 msgid "Disable Spies"
-msgstr ""
+msgstr "غیر فعال کردن جاسوس"
 
 #: gui/gamesetup/gamesetup.js:912
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "غیر فعال کردن جاسوس در هنگام بازی"
 
 #: gui/gamesetup/gamesetup.js:923
 msgid "Teams Locked"
-msgstr ""
+msgstr "قفل شدن تیم ها"
 
 #: gui/gamesetup/gamesetup.js:924
 msgid "Toggle locked teams."
@@ -382,34 +384,34 @@ msgstr "اجازه تغییر تیم ها در بازی."
 
 #: gui/gamesetup/gamesetup.js:938
 msgid "Last Man Standing"
-msgstr ""
+msgstr "آخرین باقی مانده برنده "
 
 #: gui/gamesetup/gamesetup.js:939
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "تغییر وضعیت که یا آخرین بازیکن بازمانده برنده شود و یا اخرین گروه متحدان"
 
 #: gui/gamesetup/gamesetup.js:952
 msgid "Cheats"
-msgstr ""
+msgstr "کدهای تقلب"
 
 #: gui/gamesetup/gamesetup.js:953
 msgid "Toggle the usability of cheats."
-msgstr "اجازه استفاده از کد های تقلب."
+msgstr "تغییر وضعیت اجازه استفاده از کد های تقلب."
 
 #: gui/gamesetup/gamesetup.js:966
 msgid "Rated Game"
-msgstr ""
+msgstr "بازی رتبه بندی"
 
 #: gui/gamesetup/gamesetup.js:967
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "تغییر وضعیت که نتیجه این بازی رتبه بندی بازیکن ها لحاظ شود."
 
 #: gui/gamesetup/gamesetup.js:1000
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr ""
+msgstr "فشار دادن %(hotkey)s برای تکمیل خودکار اسم بازیکن ها یا تنظیمات"
 
 #: gui/gamesetup/gamesetup.js:1008
 msgid "Return to the lobby."
@@ -421,7 +423,7 @@ msgstr "بازگشت به منو اصلی."
 
 #: gui/gamesetup/gamesetup.js:1013
 msgid "Start Game!"
-msgstr ""
+msgstr "شروع بازی!"
 
 #: gui/gamesetup/gamesetup.js:1019
 msgid "Start a new game with the current settings."
@@ -431,34 +433,34 @@ msgstr "شروع یک بازی جدید با تنظیمات کنونی."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "شروع یک بازی جدید با تنظیمات فعلی (غیر فعال تا زمانی که تمام بازیکن ها اعلام آمادگی کنند)"
 
 #: gui/gamesetup/gamesetup.js:1083
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "تنظیمات AI: %(description)s"
 
 #: gui/gamesetup/gamesetup.js:1132
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: دیدن تاریخچه / ساختار درختی\nآخرین صفحه بازشده با کلیک کردن مجدد باز می شود"
 
 #: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "تغییر وضعیت %(name)s صفحه تنظیمات"
 
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "استفاده از %(hotkey)s برای پایین آوردن صفحه تنظیمات"
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "استفاده از %(hotkey)s برای بالا بردن صفحه تنظیمات"
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -467,22 +469,22 @@ msgstr "تصادفی"
 
 #: gui/gamesetup/gamesetup.js:1710
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "انتخاب یکی از نقشه های داده شده بصورت تصادفی."
 
 #: gui/gamesetup/gamesetup.js:1742
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "تصادفی"
 
 #: gui/gamesetup/gamesetup.js:1743
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "انتخاب یک زیست بوم بصورت تصادفی."
 
 #: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2073
 msgctxt "settings value"
@@ -500,7 +502,7 @@ msgstr "خیر"
 #: gui/gamesetup/gamesetup.js:2110
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2196
 #, javascript-format
@@ -510,11 +512,11 @@ msgstr "%(playerName)s %(romanNumber)s"
 #: gui/gamesetup/gamesetup.js:2401
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "هوش: %(ai)s"
+msgstr "هوش مصنوعی: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:2409
 msgid "Unassigned"
-msgstr "نا مشخص"
+msgstr "تخصیص داده نشده"
 
 #: gui/gamesetup/gamesetup.js:2485
 #, javascript-format
@@ -523,7 +525,7 @@ msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:2492
 msgid "Unknown Player"
-msgstr "بازیکنی شناسایی نشد."
+msgstr "بازیکن ناشناس"
 
 #: gui/gamesetup/gamesetup.js:2531
 #, javascript-format
@@ -537,7 +539,7 @@ msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:2533
 msgid "HH:mm"
-msgstr ""
+msgstr "دقیقه:ساعت"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -551,19 +553,19 @@ msgstr "در حال ایجاد “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:(caption):14
 msgid "AI Configuration"
-msgstr "تنظیمات هوش"
+msgstr "تنظیمات هوش مصنوعی"
 
 #: gui/aiconfig/aiconfig.xml:(caption):19
 msgid "AI Player:"
-msgstr ""
+msgstr "بازیکن هوش مصنوعی:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):28
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "سختی هوش مصنوعی:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "رفتار هوش مصنوعی:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -579,11 +581,11 @@ msgstr "راه اندازی بازی"
 
 #: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading"
-msgstr "در‌حال بارگزاری"
+msgstr "در‌حال بارگذاری"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "بارگذاری اطلاعات نقشه. لطفا صبر کنید...."
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
@@ -624,7 +626,7 @@ msgstr "بازگشت"
 #: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "ریست کردن هر تمدنی که انتخاب شده بود به مقدار پیش فرض (تصادفی)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):103
 msgid "Reset all teams to the default."
@@ -632,7 +634,7 @@ msgstr "بازگردانی همه تیم ها به حالت اولیه."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):114
 msgid "Pick a color."
-msgstr "یک رنگ رو انتخاب کن."
+msgstr "انتخاب یک رنگ"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):117
 msgid "Select player."
@@ -652,122 +654,122 @@ msgstr "انتخاب تیم بازیکن"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "نشان دادن لابی چند نفره در یک Dialog window"
 
 #: gui/text/quotes.txt:1
 msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"زئوس [...] قانونش را برپا کرد [...] و مردان بسیاری میانه روی و تعادل را آموختند [...] چنین لطفی همراه با با سختی خشونت بود\" - آشیلوس (\"اورستیا\"،  176-183 )"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr ""
+msgstr "\" او [هلن] هدیه خود را برای الیوم به ارمغان آورد، تباهی\" - آشیلوس (\"اورستیا\"، 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr ""
+msgstr "\"در قلب هر ستمگر در نهایت این سم رشد خواهد کرد، که او نمی تواند به یک دوست اعتماد کند\" - آشیلوس (\"زنجیر پرومتئوس\"، 224 -225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr ""
+msgstr "\"زمان در یک مسیر طولانی همه چیز را می آموزد\" - آشیلوس (\"زنجیر پرومتئوس\"، 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr ""
+msgstr "\" تصمیم او دیده نمی شود، اما برای بودن، بهترین است\" - آشیلوس (\"مخالفان هفتگانه تب\"، 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr ""
+msgstr "\"یک احمق موفق یک مسئولیت سنگین است\" - آشیلوس (قطعه 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "\"خدایان به کسانی که به خودشان کمک می کنند کمک خواهند کرد\" - آزوپ (افسانه \"هرکول و گاریچی\")"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr ""
+msgstr "\"این یک صرفه جویی است که امروز را آماده فردایی که می خواهیم کنیم\" - آزوپ (داستان \"مورچه و ملخ\")"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr ""
+msgstr "\"اتحاد قدرت می سازد\" - آزوپ (داستان \"دسته چوب\")"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr ""
+msgstr "\"هیچگاه به نصیحت فردی که درگیر مشکلات خودش است گوش ندهید\" -  آزوپ (داستان \"روباه و بز\")"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr ""
+msgstr "\"تحقیر گونه های مشابه: آگاهی فرونشاندن تعصبات\" - آزوپ (داستان \"روباه و شیر\")"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr ""
+msgstr "\"خودخواهی ممکن است به تباهی خود بیانجامد\" آزوپ (داستان \"قورباقه و گاو\")"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr ""
+msgstr "\"آهسته و پیوسته پیروز خواهد شد\" - آزوپ (داستان \"خرگوش و لاکپشت\")"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr ""
+msgstr "\"بهتر است از بدبختی های دیگران درس بگیرید تا خود آنرا تجربه کنید و بیاموزید\"- آزوپ (داستان \"شیر، الاغ و شکار روباه\")"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr ""
+msgstr "\"قول های دشمنان شما بسته شده اند که شکسته شوند\" - آزوپ (داستان \"پرستار و گرگ\")"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr ""
+msgstr "\"هر بهانه ای در خدمت ستمگر است\" - آزوپ (داستان \"گرگ و بره\")"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaos"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "\"اگر من یک کار شرافت مندانه انجام دهم، یک یادگار پسندیده از من خواهد بود و اگر نتوانم، حتی تمام مجسمه  دنیا نمی توانند مرا در یادها نگه دارند\" - آگسیلاوس دوم از اسپارت (پلوتارک، کتاب \"اخلاق\"، XVI، \"گفته های اسپارتها\"، 215)"
 
 #: gui/text/quotes.txt:18
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr ""
+msgstr "\"اسپارتها تعداد نفرات و قدرت دشمن را نمی پرسند، تنها می پرسند که دشمن کجاست\" - آگیس دوم از اسپارت  (پلوتارک، کتاب \"اخلاق\"، XVI، \"گفته های اسپارتها\"، 215)"
 
 #: gui/text/quotes.txt:19
 msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr ""
+msgstr "\"برای بی عدالتی علیه من اشک نریزید چرا که من در جایگاه بهتری نسبت به قاتلانم هستم\" - آگیس چهارم اسپارت (پلوتارک، کتاب \"اخلاق\"، XVI، \"گفته های اسپارتها\"، بخش 20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr ""
+msgstr "\"رابطه جنسی و خواب به تنهایی به من یاداوری می کند که من فانی هستم\"- اسکندر بزرگ (پلوتارک، \"زندگی همزمان\"، \"اسکندر\" ، بخش 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -775,7 +777,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "\"این خیلی پست است که در عیش زندگی کنید و تنها به سلطنت بپردازید،[...] نمی دانید که در پایان، هدف از پیروزی این است که از بدی ها اجتناب کنید و ضعف ها را تسلیم کنید؟\"- اسکندر بزرگ (پلوتارک، \"زندگی همزمان\"، \"اسکندر\" ، بخش 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -783,7 +785,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.\" - Alexander the Great, addressing his troops "
 "(Arrian, \"The Anabasis of Alexander\", 5.26)"
-msgstr ""
+msgstr "\"شکوه نتیجه کار کسانی است که تلاش می کنند و از خطرات عبور می کنند و این لذت بخش است که با افتخار زندگی کنید و بعد از مرگ از خود شکوهی جاویدان برجای بگذارید\" - اسکندر بزرگ، در صحبت با سربازانش (آریان، \"آناباسیس اسکندر\"، 5.26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -791,7 +793,7 @@ msgid ""
 "labours themselves, provided they lead to glorious achievements.\" - "
 "Alexander the Great, addressing his troops (Arrian, \"The Anabasis of "
 "Alexander\", 5.26)"
-msgstr ""
+msgstr "\"من با یک تفکر که برای یک مرد شجاع پایانی برای کار و تلاش نیست مگر برای خودش، آنها را به سوی بدست آوردن شکوه رهبری کردم\" - اسکندر بزرگ، در صحبت با سربازانش (آریان، \"آناباسیس اسکندر\"، 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -799,26 +801,26 @@ msgid ""
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, \"Moralia\", XXII. \"On the Fortunes of Alexander the "
 "Great\", 332a-b)"
-msgstr ""
+msgstr "\"اگر من اسکندر نبودم آرزو داشتم دیوژن کلبی بودم\"- اسکندر بزرگ، تحت تاثیر سادگی فیلسوف بزرگ دیوژن [از سینوپ] بعد از ملاقات با وی قرار گرفت (پلوتارک، \"در ثروت اسکندر بزرگ\"، 332 a-b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
 "\"To the strongest!\" - Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, \"The Anabasis of Alexander\", 7.26)"
-msgstr ""
+msgstr "\"قویترین!\" - اسکندر بزرگ، زمانی که در بستر مرگ بود و از وی سوال شد که چه کسی باید جانشین تو شود؟ (آریان،\"آناباسیس اسکندر\"، 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr ""
+msgstr "\"من پیروزی را نخواهم دزدید\"- اسکندر بزرگ، زمانی که به او پیشنهاد شد تا به ایرانی ها در شب حمله کند (پلوتارک، \"زندگی همزمان\"، \"اسکندر\" ، بخش 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"Written laws are like spiders' webs; they will catch, it is true, the weak"
 " and poor, but will be torn in pieces by the rich and powerful.\" - "
 "Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
-msgstr ""
+msgstr "\"قوانین نوشته شده همانند تارهای عنکبوت هستند، کاملا صحیح است که ضعیفان و فقیران را می گیرد ولی قدرتمندان با ثروت و قدرت خود آنرا پاره می کنند و از آن عبور میکنند\"- آناکارسییس (پلوتارک، \"زندگی همزمان\"، \"اسکندر\"، \"سولون\"، بخش 5)"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -826,79 +828,79 @@ msgid ""
 " covetously.\" - Anacharsis, a Scythian philosopher who travelled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr ""
+msgstr "\"آگورا مکانی است که در آن مردان به یکدیگر خیانت می کنند و محتاط رفتار می کنند\"- آناکارسیس، فیلسوف سکایی کسی که به یونان سفر کرده بود (دیوژن لارتیوس، \"زندگی و عقاید فیلسوفان بزرگ\"، آناکارسیس، بخش 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""
 "\"It was not by taking care of the fields, but of ourselves, that we "
 "acquired those fields.\" - Anaxandridas II of Sparta (Plutarch, \"Moralia\","
 " XVI. \"Sayings of Spartans\", 217a)"
-msgstr ""
+msgstr "\"این نبود که ما از زمین ها مراقبت کردیم بلکه از خودمان که آن زمین ها را بدست آورده بودیم محافظت کردیم\"- آناکساندریداس دوم از اسپارت (پلوتارک، کتاب \"اخلاق\"، \"گفته های اسپارتها\"، 217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes (Diogenes Laertius, \"The Lives and Opinions of Eminent "
 "Philosophers\", Antisthenes, sec. 5)"
-msgstr ""
+msgstr "\"کشورها محکوم به عذاب هستند زمانی که قادر نیستند مرد خوب را از بد تشخیص دهند\"- آنتیستنس (دیوژن لارتیوس، \"زندگی و عقاید فیلسوفان بزرگ\"، آنتیستنس، بخش 5)"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus "
 "(fragment 201)"
-msgstr ""
+msgstr "\"روباه حیله های بسیاری را بلد است، آن فریبی که برای جوجه تیغی استفاده می کند بهترین است\"- آرخیولوخوس (بخش 201)"
 
 #: gui/text/quotes.txt:32
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever (Diodorus Siculus, \"The Library of History\", "
 "fragments of book XXVI, sec. 18)"
-msgstr ""
+msgstr "\"به من جایی بدهید تا بایستم و من دنیارا تکان خواهم داد\"- ارشمیدس، در حال استفاده از اهرمش (دیودوروس سیکولوس، \"کتابخانه تاریخ\"، بخش های از کتاب XXVI، بخش 18)"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes (\"Birds\")"
-msgstr ""
+msgstr "\"این از دشمان است و نه از دوستان او، آن شهر درس ساخت دیوارهای بلند و کشتی های جنگی را آموخت\"- آریستوفان (کتاب \"پرندگان\")"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.\" - Aristotle (\"Nicomachean "
 "Ethics\", I. 1096a.11)"
-msgstr ""
+msgstr "\"این واجب است، مخصوصا برای یک فیلسوف که هرآنچه دارد حتی نزدیک ترین ها را در دفاع از حقیقت قربانی کند\"- ارسطو (کتاب \"اخلاق نیکوماخوسی\"، 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Happiness depends on leisure; for we are busy to have leisure, and make "
 "war to live in peace.\" - Aristotle (\"Nicomachean Ethics\", X. 1177b.4)"
-msgstr ""
+msgstr "\"خوشحالی به اوقات فراغت بستگی دارد... برای ما که سرمان شلوغ است تا اوقات فراغت داشته باشیم و جنگ درست می کنیم که در صلح زندگی کنیم .\" - ارسطو (کتاب \"اخلاق نیکوماخوسی\" X ,1177b.4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
 "\"Man is by nature a political animal.\" - Aristotle (\"Politics\", I. "
 "1253a.2)"
-msgstr ""
+msgstr "\"مرد بصورت طبیعی یک حیوان سیاستمدار است\"- ارسطو (\"سیاست ها\" I, 1253a.2 )"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle (\"Politics, V. 1311a.11)"
-msgstr ""
+msgstr "\"هردو ثروتمندان و ستمگران بر مردم بی اعتماد هستند و برای همین همه چیز را از دستان آنها را محروم میکنند\"- ارسطو (کتاب \"سیاست ها\" V. 1311a.11 )"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle (Diogenes Laertius, \"The"
 " Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
-msgstr ""
+msgstr "\"من این را از فلسفه بدست آوردم: که انجام دهم بدون آنکه برای آن فرمان داده شوم برای چیزی که دیگران تنها بخاطر ترس از قانون انجام می دهند\"- ارسطو (دیوژن لارتیوس، \"زندگی و عقاید فیلسوفان بزرگ\"، ارسطو، بخش 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.\" - Aristotle (Stobaeus, "
 "\"Florilegium\", 223)"
-msgstr ""
+msgstr "\"من کسی را شجاعتر می دانم که توانسته بر خواسته های نفسش پیروز شود تا آن کس که بر دشمنانش پیروز شده است چراکه سخترین پیروزی، پیروزی بر نفس خود است\"- ارسطو (استوباوس، \"فلوریلگیوم\"، 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -909,7 +911,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "\"اسکندر خود گرفتار تشنگی بود علیرغم درد و سختی فراوآن نیروهایش را برو روی پاهایش رهبری می کرد. در این زمان [...] گروهی از سربازان وی مقداری آب پیدا کردند [...] و آنرا در کلاهخود ریختند نزد وی آوردند. [...] او آن را گرفت و به مردی که آنرا آورده بود فرمان داد که خیلی سریع آنرا در مقابل چشم همگان به زمین ریزد\"- آریان در مورد عملیات نظامی اسکندر از طریق صحرای گدروزی (کتاب \"آنباسیس اسکندر\"، 6.26 )"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -920,21 +922,21 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "\"با نیزه به صورت مهرداد ششم حمله کرد ، او [اسکندر] را بر زمین پرتاب کرد  و سپس روساکس [فرمانده ایرانی] با شمشیر جلوی اسکندر ایستاد و اسکندر او را نیز بر زمین زد [...] و سپس نیزه خود را در سینه مرداد ششم فرو کرد [...] و در همین زمان [...]در حالی که اسپیتریتات از پشت با شمشیر به اسکندر حمله کرده بود [...] کلیتوس با شمشیر دست وی را قطع کرد\"- آریان در باریه نبرد گرانیک (\"آناباسیس اسکندر\"، 1.15 )"
 
 #: gui/text/quotes.txt:42
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or retreat out of cowardice.\""
 " - Aspasia (Plato, \"Menexenus\", 246b)"
-msgstr ""
+msgstr "\"اجازه دهید هر مرد به فرزندانش یادآوری کند که آنها نیز سربازانی هستند که نباید جایگاه نیاکان خود را خالی کنند و با بزدلی جا بزنند\" - آسپاسیا (افلاطون، \"منکسنوس\"، 246b )"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"Quintilius Varus, give me back my legions!\" - Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "\"Divus Augustus\", sec. 23)"
-msgstr ""
+msgstr "\"کوینتیلیوس واروس، لژیون های من را پس بده!\" - آگونتوس، بعد از اینکه سه لژیون بطور کامل در نبرد جنگل توتوبورگ منهدم شد (سوئتونیوس، \"دیوس آگوستوس\" ، بخش 23)"
 
 #: gui/text/quotes.txt:44
 msgid ""
@@ -942,7 +944,7 @@ msgid ""
 "raised an army with which I liberated the state, which was oppressed by the "
 "tyranny of a faction.\" - Augustus, in his autobiography (\"Res Gestae Divi "
 "Augusti\", sec. 1)"
-msgstr ""
+msgstr "\"در نوزده سالگی با اراده خودم و با هزینه خودم یک سپاه آماده کردم و توانستم شهر خود را که توسط عده ای ستمکار مورد ظلم واقع شده بود آزاد کنم\"- آگوستوس، در زندگی نامه وی ( کتاب \"Res Gestae Divi Augusti\"، بخش 1)"
 
 #: gui/text/quotes.txt:45
 msgid ""
@@ -951,28 +953,28 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.\" - Augustus, in his autobiography (\"Res Gestae "
 "Divi Augusti\", sec. 3)"
-msgstr ""
+msgstr "\"جنگ ها، چه داخلی و چه خارجی، من در جهان چه دریا و چه خشکی سفر می کنم و زمانی که پیروز می شوم و من تمام کسانی که درخواست بخشش می کنند را می بخشم. تمدن های دیگر در آسایش می توانند درخواست بخشش کنند چرا که من ترجیه می دهم نجات دهم تا نابود کنم\"- آگوستوس در زندگی نامه وی  ( کتاب \"Res Gestae Divi Augusti\"، بخش3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene (Diogenes"
 " Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
-msgstr ""
+msgstr "\"مسیرهایتان را با تامل و مشورت انتخاب کنید، اما زمانی که انتخاب کردید بر آن محکم و پایدار باشید\"- بیاس پرینی (دیوژن لارتیوس، \"زندگی و عقاید فیلسوفان بزرگ\"، بیاس، بخش 5 )"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes (Cicero, \"Tusculan"
 " Disputations\", III. 26)"
-msgstr ""
+msgstr "\"چه احمقانه بود برای شاه که با گریه و اندوه موهایش را بکند، انگار بی مو شدن وی التیامی بود بر غم و اندوه\"- بیون بوریستنسی (سیسرون، \"Tusculan Disputations\" ، بخش سه 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, \"The Lives "
 "and Opinions of Eminent Philosophers\", Bion, sec. 50)"
-msgstr ""
+msgstr "\"ثروتی را بدست نیاورد، آن ثروت بود که وی را بدست آورد\"- بیون بوریستنسی، اشاره به یک خسیس ثروت مند (دیوژن لارتیوس، \"زندگی و عقاید فیلسوفان بزرگ\"، بیون، بخش 50)"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -982,50 +984,50 @@ msgid ""
 " gold, but not without using false weights and adding the weight of his "
 "sword on the scale when the Romans complained (Polybius, \"Histories\", II. "
 "18)"
-msgstr ""
+msgstr "وای بر شکست خورده! رهبر گالها برنوس روم را غارت کرد ( به استثنای تپه کاپیتولین ). زمانی که کامیلوس اورا با نیروهای وی محاصره کرد، او به مذاکره با رومی ها پرداخت و در مقابل آزادی خود حاضر شد 1000 پوند طلا و برابر وزن شمشیرش طلا به رومی ها بدهد کمی بعد رومی ها معترض شدند که او در محاسبه وزن شمیرش از اطلاعات غلط استفاده کرده است او آن جملات معروف را بر زبان آورد. (پولیبیوس، \"تاریخها\" بخش 2.18)"
 
 #: gui/text/quotes.txt:50
 msgid ""
 "\"Robbery, slaughter, plunder, they \\[the Romans] deceivingly name empire; "
 "they make a wasteland and call it peace.\" - Calgacus, Caledonian chieftain "
 "in a speech before the Battle of Mons Graupius (Tacitus, \"Agricola\", 30)"
-msgstr ""
+msgstr "\"دزدی، قتل عامل ، غارت آنها [رومیان] نام فریبنده امپراطوری داشتند، زمین را نابود کردند و آنرا صلح نامیدند\"- کالگاسوس، رهبر کالدونیان در یک سخنرانی قبل از نبرد مونس گراپیوس (تاسیتوس، \"Agricola\"، صفحه 30)"
 
 #: gui/text/quotes.txt:51
 msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
-msgstr ""
+msgstr "\"دزد را مامور دستگیری دزد کن\"- کالیماخوس (\"لطیفه\"، 44)"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder (Plutarch, \"Moralia\", III. \"Sayings of Romans\", "
 "198e)"
-msgstr ""
+msgstr "\"تمام مردها بر زنها حکم رانی میکنند، و ما بر مردان حکمرانی می کنیم اما زن های ما بر ما فرمان می دهند\"- کاتوی بزرگ (پلوتارک، کتاب \"اخلاق\" ، گفته های رومی ها، 198e)"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder "
 "(Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198f)"
-msgstr ""
+msgstr "\"بدترین فرمانروا کسی است که نتواند بر خود فرمان دهد\"- کاتوی بزرگ (پلوتارک، کتاب \"اخلاق\"، گفته های رومی ها، 198f)"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr ""
+msgstr "\"مرد خردمند بیشتر از احمقها یاد می گیرد تا احمق ها از مرد خردمند\"- کاتوی بزرگ (پلوتارک، \"زندگی های موازی\"، بخش 9)"
 
 #: gui/text/quotes.txt:55
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 27)"
-msgstr ""
+msgstr "\"علاوه بر این ، من این را در نظر دارم که کارتاژ باید نابود شود\"- کاتوی بزرگ، کسی که تمام سخنرانی های خود را با این مطلب به پایان می رساند (پلوتارک، \"زندگی های موازی\"، \"کاتوی بزرگ\"، بخش 27)"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
-msgstr ""
+msgstr "\"اگر یک شاه پر انرژی باشد، هدف وی نیز پر انرژی خواهد بود\"- چاناکیا (کتاب \"آرته شاستره\"، کتاب \"توجه به انضباط\"، فصل 19)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -1033,14 +1035,14 @@ msgid ""
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya (\"Arthashastra\", "
 "I. \"Concerning Discipline\", chapter 4)"
-msgstr ""
+msgstr "\"هر کسی که مجازات سنگین بر مردم اجرا کند از سوی مردم مورد نفرت قرار خواهد گرفت، در حالی که اگر او مجازات سبکی انتخاب کند تحقیر خواهد شد. اما کسی که مجازات را متناسب انتخاب کند مورد احترام قرار خواهد گرفت\"-  چاناکیا (کتاب \"آرته شاستره\"، کتاب \"توجه به انضباط\"، فصل 4)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, \"Moralia\", XI. \"On the Malice of Herodotus\", 870e)"
-msgstr ""
+msgstr "\"ما شانه خالی نکردیم بلکه جان های خود را برای نجات یونان دادیم زمانی که سرنوشت وی بر روی لبه تیغ قرار داشت\"- نوشته های سنگ قبر کورینتیان در مورد شکست در جنگهای ایران (پلوتارک، کتاب \"اخلاق\"، XI، \"در غلبه بر هرودوت\"، 870 )"
 
 #: gui/text/quotes.txt:59
 msgid ""
@@ -1049,21 +1051,21 @@ msgid ""
 "It was impossible for the weak or cowardly to retreat; man to man they "
 "fought like in single combat.\" - Curtius Rufus about the Battle of Issos "
 "(\"Histories of Alexander the Great\", III. 11.5)"
-msgstr ""
+msgstr "\"سپس خون ها جاری شد، بر روی دو صف از سپرها که به هم نزدیک شده بود و آنها شمشیرهای خود را به سمت صورت های یک دیگر می بردند. غیر ممکن بود برای ضعیف ها و ترسوها تا عقب نشینی کنند، مرد ها در برابر مرد ها با هم در یک نبرد می جنگیدند.\" کورتیوس روفوس در مورد نبرد ایسوس (\"تاریخ اسکندر بزرگ\"، بخش 3، 11.5)"
 
 #: gui/text/quotes.txt:60
 msgid ""
 "\"I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.\" - Cyrus the Great's "
 "epitaph (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 69)"
-msgstr ""
+msgstr "\"من کوروش هستم، کسی که برای اپراتوری ایران پیروزی ها کسب کرد، بر من کینه نورز که هرچه دارم همین خاک کوچک از این دنیا است که استخوان های مرا پوشیده است\"- نوشه روی قبر کوروش بزرگ (پلوتارک، \"زندگی های موازی\"، \"اسکندر\"، بخش 69 )"
 
 #: gui/text/quotes.txt:61
 msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[…] 23 lands in total.\" - Darius I. (Behistun inscription, "
 "column I, 1-6)"
-msgstr ""
+msgstr "\"من داریوش هستم، شاه بزرگ ، شاه شاهان ، شاه ایران ، شاه کشورها [..] 23 سرزمین در کل\" - داریوش اول (نوشته های بیستون، ستون یک ، 1-6 )"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1073,36 +1075,36 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.\" - Darius I. (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "\"فرورتیش دستگیر شد و به پیش من آورده شد، من دماغش را قطع کردم، گوشش را بریدم، زبانش را بریدم و یکی از چشمانش را کور کردم و در ورودی قصرم او را به زنجیر کشیدم تا همگان او را مشاهده کنند و سپس او را در اکباتان به  همراه پیروانش به صلیب کشیدم […] و سپس من پوست آنها کندم و در آن ها را پر از کاه کردم\"- داریوش اول (نوشته های بیستون، ستون دوم، 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
 "\"By desiring little, a poor man makes himself rich.\" - Democritus "
 "(fragment)"
-msgstr ""
+msgstr "\"با خواسته های کم ، یک مرد فقیر خود را ثروت مند می کند\"- دموکریت (قطعه)"
 
 #: gui/text/quotes.txt:64
 msgid "\"It is hard to be governed by one's inferior.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"خیلی سخت است که کسی که از شما پایینتر است بر شما حکم براند\"- دموکریت (قطعه)"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"Physical strength is only noble in cattle, it is strength of character "
 "that is noble in men.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"قدرت فیزیکی نجیب است در گاو، اما این قدرت شخصیت است که در انسان نجیب است\"- دموکریت (قطعه)"
 
 #: gui/text/quotes.txt:66
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes, in one of his many speeches against the rising "
 "Phillip II of Macedon (\"Olynthiac II\", 10)"
-msgstr ""
+msgstr "\"امکان ندارد قدرتی پایدار بماند بواسطه بی عدالتی، مجازات و خیانت\"- دموستنس، در یکی از سخنرانی هایش در مقابل ظهور فیلیپ دوم مقدونی (\"اولینتیان\"، 10)"
 
 #: gui/text/quotes.txt:67
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, \"De Oratore\", 3.213)"
-msgstr ""
+msgstr "\"انقال، انتقال، انتقال\"- دموستنس، زمانی که از وی پرسیده شد مهمترین عناصر سخنوری چیست (سیسرو، \"De Oratore\"، 3.213 )"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -1111,7 +1113,7 @@ msgid ""
 "the sound, and that second roar was louder than the Macedonian war cry as "
 "five hundred thousand men shouted with one voice.\" - Diodorus Siculus about"
 " the Battle of Issos (\"The Library of History\", XVII., sec. 33)"
-msgstr ""
+msgstr "\"مقدونیه ای ها نخست فریاد جنگ سر دادند و بدنبال آن ایرانی ها پاسخ آنها را دادند و تمام مرزهای تپه ساحلی نبرد طنین انداز صدای آنها شد، فریاد دوم بعد از مقدونیه ای ها شدید تر بود چرا که 500 هزار مرد جنگی یک صدا پاسخ فریاد جنگ آنها را داده بودند\"- دیودور سیسیلی، درباره نبرد ایسوس (\"کتابخانه تاریخ\"، XVII، بخش 33 )"
 
 #: gui/text/quotes.txt:69
 msgid ""
@@ -1121,7 +1123,7 @@ msgid ""
 "him, he suffered many wounds on the front of his body.\" - Diodorus Siculus,"
 " on a brave Spartan at the Battle of Pylos (\"The Library of History\", "
 "XXII., sec. 62)"
-msgstr ""
+msgstr "\"براسیداس، در مقابل تظاهرات توده های آتن ایستاد و با آن ها مقابله کرد، کسی که مسیرش را از آنها جدا کرده بود و هرکه در مقابلش قرار می گرفت می کشت اما بعد از مدتی در سیل جمعیت گرفتار شد و بشدت مجروح شد\"- دیودور سیسیلی، در شجاعت اسپارتها در نبرد پیلوس (\"کتابخانه تاریخ\" ، XXII، بخش 62 )"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -1130,88 +1132,88 @@ msgid ""
 "lecture-room with the words: Here is Plato's man. In consequence of which "
 "there was added to the definition: having broad nails.\" - Diogenes Laertius"
 " (\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 40)"
-msgstr ""
+msgstr "\"افلاطون انسان را یک حیوان دوپا و بدون دم که تحسین شده است بر شمرده است، دیوژن [سینوپی] یک مرغ را برداشت و به اتاق یکی از سخنرانی هایش برد و این کلمات را بر زبان راند، اینجا یکی از انسانهای افلاطون است، بر چه اساسی ناخن های پهن داده شده است؟\"- دیوژن لارتیوس (\"زندگی و عقاید فیلسوفان بزرگ\"، \"دیوژن\"، بخش 40 )"
 
 #: gui/text/quotes.txt:71
 msgid ""
 "\"I am a citizen of the world.\" - Diogenes of Sinope (Diogenes Laertius, "
 "\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 63)"
-msgstr ""
+msgstr "\"من یک شهروند دنیا هستم\"- دیوژن سینوپی (دیوژن لارتیوس، \"زندگی و عقاید فیلسوفان بزرگ\" ، \"دیوژن\" ، بخش 63 )"
 
 #: gui/text/quotes.txt:72
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope (Stobaeus, \"Florilegium\", 51)"
-msgstr ""
+msgstr "\"این نیست که من دیوانه هستم، فقط موضوع این است که فکر و نگاه من با تو فرق دارد\"- دیوژن سینوپی (استوباوس، \"فلوریگیوم\"، 51 )"
 
 #: gui/text/quotes.txt:73
 msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "\"Parallel Lives\", \"Alexander\", sec. 14)"
-msgstr ""
+msgstr "\"بلی، کمی از نور آفتاب من بیرون ب ایست\"- دیوژن سینوپی به اسکندر بزرگ، کسی که از او پرسید آیا کمکی می تواند به وی بکند به هر طریقی یا خیر (پلوتارک، \"زندگی های موازی\" ، \"اسکندر\" ، بخش 14)"
 
 #: gui/text/quotes.txt:74
 msgid ""
 "\"The victor is not victorious if the vanquished does not consider himself "
 "so.\" - Ennius (\"Annales\", fragment 31.493)"
-msgstr ""
+msgstr "\"فاتح هیچ گاه پیروز نخواهد بود اگر مغلوب وی او را پیروز نداند\"- کوئینتوس انیوس (\"آنالس\"، بخش 31.493 )"
 
 #: gui/text/quotes.txt:75
 msgid ""
 "\"Stranger, go tell the Spartans that we lie here, obedient to their laws.\""
 " - Epitaph at Thermopylae for Leonidas and his men (Herodotus, \"The "
 "Histories\", VII. 228)"
-msgstr ""
+msgstr "\"غریبه ای ، برو و به اسپارت ها بگو که این دروغ است که مطیع قوانین آنها هستیم\"- متن سنگ قبر در ترموپیل برای لئونیداس و یارانش (هرودوت، \"تاریخها\" ، VII ، 228)"
 
 #: gui/text/quotes.txt:76
 msgid ""
 "\"A coward turns away, but a brave man's choice is danger.\" - Euripides "
 "(\"Iphigenia in Tauris\")"
-msgstr ""
+msgstr "\"یک بزدل فرار می کند اما یک مرد شجاع انتخابش خطر است\"- اوریپید (\"Iphigenia in Tauris\")"
 
 #: gui/text/quotes.txt:77
 msgid ""
 "\"Brave men are made bolder by ordeals, but cowards achieve nothing.\" - "
 "Euripides (\"Iphigenia in Tauris\")"
-msgstr ""
+msgstr "\"یک مرد شجاع معتاد دلیر و شجاع بودن است اما یک بزدل هیچ چیزی بدست نمی آورد\"- اوریپید (\"Iphigenia in Tauris\")"
 
 #: gui/text/quotes.txt:78
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides (\"Meleager\")"
-msgstr ""
+msgstr "\"ترسوها در نبرد شمرده نمی شوند، آنها آنجا حضور دارند اما در آن نیستند\"- اوریپید (\"Meleager\")"
 
 #: gui/text/quotes.txt:79
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
-msgstr ""
+msgstr "\"شانس در جنگ برای افرادی است که معقول و محتاط مبارزه می کنند\"- اوریپید (\"پیریتوس\")"
 
 #: gui/text/quotes.txt:80
 msgid ""
 "\"Return with your shield, or on it.\" - Farewell of Spartan women to their "
 "warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, \"Moralia\", XVIII. \"Sayings of Spartan Women\", 241f)"
-msgstr ""
+msgstr "\"با سپر خود بازگردید یا بر روی آن\"- پیام خداحافظی زنان اسپارت به جنگجوهای خود، اشاره به اینکه ترسوها در نبرد سپر های خود را می اندازند و فرار می کنند (پلوتارک، \"اخلاق\" ،XVIII، \"گفته های زن های اسپارت\"، 241f)"
 
 #: gui/text/quotes.txt:81
 msgid ""
 "\"I came, I saw, I conquered.\" - Gaius Julius Caesar, after routing "
 "Pharnaces II of Pontus in the first assault (Plutarch, \"Parallel Lives\", "
 "\"Caesar\", sec. 50)"
-msgstr ""
+msgstr "\"من آمدم، من دیدم ، من فتح کردم\"- ژولیوس سزار، بعد از لشگر کشی به فارناک دوم از پونتوس بعد از اولین حمله (پلونتارک، \"زندگی های موازی\" ، \"سزار\"، بخش 50 )"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Men willingly believe what they wish.\" - Gaius Julius Caesar (\"De Bello "
 "Gallico\", III. 18)"
-msgstr ""
+msgstr "\"مردم آزادانه باور دارند آنچه آروزه دارند را\"- ژولیوس سزار  (\"De Bello Gallico\", III. 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar (Plutarch, \"Parallel Lives\", \"Antony\","
 " sec. 11)"
-msgstr ""
+msgstr "\"من از مرد مو بلند قوی و سیر نمی ترسم آنکه می ترسم مرد گرسنه و رنگ پریده است\"- ژولیسو سزار (پلونتارک، \"زندگی های موازی\"، \"آننونی\"، بخش 11)"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1220,7 +1222,7 @@ msgid ""
 "back; and, when they were put to flight, the archers were surrounded and cut"
 " to pieces.\" - Gaius Julius Caesar about the Battle of Alesia (\"De Bello "
 "Gallico\", VII. 80)"
-msgstr ""
+msgstr "\"بعد از نبرد از ظهر تا غروب خورشید با یک پیروزی شکننده، ژرمن ها ذر یک سو با بدنهای فشرده به سوی دشمن یورش بردند و آنها را به عقب راندند و زمانی که آنها مشغول نبرد بودند، کماندارها محاصره شدند و تکه تکه شدند\"- ژولیوس سزار در باره نبرد آلسیا (\"De Bello Gallico\", VII. 80)"
 
 #: gui/text/quotes.txt:85
 msgid ""
@@ -1231,7 +1233,7 @@ msgid ""
 "exhausted by many and severe wounds, that he was already unable to support "
 "himself.\" - Gaius Julius Caesar about the Battle of the Sabis (\"De Bello "
 "Gallico\", II. 25)"
-msgstr ""
+msgstr "\"تمام فرماندهان دسته گروه چهارم  و پرچمداران گروه کشته شدند ، تقریبا تمام فرمانده های سایر دسته ها نیز یا کشته شده بودند یا زخمی و در میان آنها ریس دسته ها ، پوبلیوس سکستیوس باکولوس یک مرد شچاع به شدت خسته و زخمی شده بود به شکلی که حتی قادر نبود از خودش دفاع کند\"- ژولیوس سزار در مورد نبرد سابیس (\"De Bello Gallico\", II. 25)"
 
 #: gui/text/quotes.txt:86
 msgid ""
@@ -1241,39 +1243,39 @@ msgid ""
 "while the survivors used the heap as a vantage point for throwing missiles "
 "at our men, or catching our spears and throwing them back.\" - Gaius Julius "
 "Caesar about the Battle of the Sabis (\"De Bello Gallico\", II. 27)"
-msgstr ""
+msgstr "\"اما دشمن [...] شجاعت بسیاری از خود نشان داد ، زمانی که خطوط جلو سقوط کرد مردان پشت سر آنها جای آنها را نگه داشتند و به مبارزه بر روی جنازه ها ادامه دادند، همانطور که جنگ ادامه پیدا می کرد توده جنازه ها بلندتر می شد، در حالی که بازمانده ها از توده جنازه ها استفاده می کردند تا به مردان ما شلیک کنند، یا نیزه های مارا بگیرند و به سمت ما پرتاب کنند\"- ژولیوس سزار در مورد نبرد سابیس (\"De Bello Gallico\", II. 27)"
 
 #: gui/text/quotes.txt:87
 msgid ""
 "\"The die is cast.\" - Gaius Julius Caesar, when crossing the Rubicon river "
 "with his legion into Italy, a capital offense that led to his civil war "
 "against Pompey (Suetonius, \"The Lives of the Twelve Caesars\", 32)"
-msgstr ""
+msgstr "\"مرگ بازی می شود\"- ژولیوس سزار، زمانی که از رودخانه روبیکون با سپاهیانش عبور می کرد به سمت ایتالیا برای جنگ داخلی با پومپی (سئوتونیوس، \"زندگی دوازده سزار\" ، 32)"
 
 #: gui/text/quotes.txt:88
 msgid ""
 "\"I'd rather be the first man here than the second man in Rome.\" - Gaius "
 "Julius Caesar, when passing through a barbarian village in the Alps "
 "(Plutarch, \"Parallel Lives\", \"Caesar\", sec. 11)"
-msgstr ""
+msgstr "\"من ترجیه می دهم که مرد اول در اینجا باشم تا مرد دوم در روم\"- ژولیوس سزار، زمانی که از روستای بربرها از آلپ عبور می کرد (پلوتارک، \"زندگی های موازی\"، \"سزار\" بخش 11)"
 
 #: gui/text/quotes.txt:89
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Plutarch,"
 " \"Parallel Lives\", \"Pompey\", sec. 10)"
-msgstr ""
+msgstr "\"اشاره به قانون را متوقف کنید، ما سلاح در دست داریم!\"- گنیوس پومپیوس ماگنوس (پلوتارک، \"زندگی های موازی\"، \"پومپی\" بخش 10)"
 
 #: gui/text/quotes.txt:90
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi (Hammurabi's Code, sec. 196)"
-msgstr ""
+msgstr "\"اگر یک مرد چشم مرد دیگری را در آورد ، چشم او نیز باید بیرون آورده شود\"- حمورابی (قوانین حمورابی، بخش 196)"
 
 #: gui/text/quotes.txt:91
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca (Polybius, \"Histories\", III. 85)"
-msgstr ""
+msgstr "\"من تصمیم گرفتم تا با ایتالیایی ها وارد جنگ نشوم بلکه به آنها در نبرد با رومیان کمک کنم\"- هانیبال بارکا (پولیبیوس، \"تاریخ ها\"، III. 85)"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1281,7 +1283,7 @@ msgid ""
 "an old man.\" - Hannibal Barca's last words before his suicide, in exile "
 "with Flaminius pressuring the local ruler to hand him over (Livius, \"Ab "
 "Urbe Condita\", XXXIX. 51)"
-msgstr ""
+msgstr "\"بزارید حال ما نگرانی رومی ها را پایان دهد، کسانی که نمی توانند صبر کنند برای مرگ یک مرد پیر\"- آخرین کلمات هانیبال بارکا قبل از خودکشی در تبعید در پیش فلامینیوس، فرماندار محلی که او را تحویل دهد. (Livius, \"Ab Urbe Condita\", XXXIX. 51)"
 
 #: gui/text/quotes.txt:93
 msgid ""
@@ -1290,58 +1292,58 @@ msgid ""
 "war, with whom at peace, they think it right that they should determine.\" -"
 " Hannibal Barca, addressing his troops (Livius, \"Ab Urbe Condita\", XXI. "
 "44)"
-msgstr ""
+msgstr "\"مغرور ترین و غیر انسانی ترین تمدن ها ، آنها [رومی ها] فرض کردند که هدف دنیا لذت رساندن به آنها است، آنها فکر می کنند که این حق آنها است که مشخص کنند با چه کسی باید جنگید و با چه کسی در صلح باید بود\"- هانیبال بارکا، در صحبت با سربازانش (Livius, \"Ab Urbe Condita\", XXI. 44)"
 
 #: gui/text/quotes.txt:94
 msgid ""
 "\"You must be brave and discard all hopes of anything but victory or "
 "death.\" - Hannibal Barca, addressing his troops (Livius, \"Ab Urbe "
 "Condita\", XXI. 44)"
-msgstr ""
+msgstr "\"شما باید شجاع باشید و تمام امیدها و خواسته ها را به جز پیروزی یا مرگ را بیرون اندازید\" هانیبال بارکا، در صحبت با سربازانش (Livius, \"Ab Urbe Condita\", XXI. 44)"
 
 #: gui/text/quotes.txt:95
 msgid ""
 "\"War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.\" - Herakleitos (Hippolytus, \"The "
 "Refutation of all Heresies\", IX. 4)"
-msgstr ""
+msgstr "\"جنگ پدر است و پادشاه همه چیز، بعضی ها را خدا می کند و بعضی ها را مردم عادی و بعضی دیگر را برده و بعضی را آزاد\" - هراکلیتوس (Hippolytus, \"The Refutation of all Heresies\", IX. 4)"
 
 #: gui/text/quotes.txt:96
 msgid ""
 "\"You could not step twice into the same river.\" - Herakleitos (Plato, "
 "\"Cratylos\", 402a)"
-msgstr ""
+msgstr "\"شما نمی توانید دو بار در یک رودخانه پای گذارید\"- هراکلیتوس (Plato, \"Cratylos\", 402a)"
 
 #: gui/text/quotes.txt:97
 msgid ""
 "\"It is better to be envied than to be pitied.\" - Herodotus (\"The "
 "Histories\", III. 52)"
-msgstr ""
+msgstr "\"بهتر است بر شما غبطه خورند تا بر شما ترحم کنند\"- هرودوت (\"The Histories\", III. 52)"
 
 #: gui/text/quotes.txt:98
 msgid ""
 "\"In soft regions are born soft men.\" - Herodotus (\"The Histories\", IX. "
 "122)"
-msgstr ""
+msgstr "\"در مناطق آرام، مردمان نرم و مهربان بدنیا می آیند\"- هرودوت (\"The Histories\", IX. 122)"
 
 #: gui/text/quotes.txt:99
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus (\"The Histories\", IX. 16)"
-msgstr ""
+msgstr "\"این تلخترین درد برای انسان است که آگاهی و دانش داشته باشد اما قدرت نداشته باشد\"- هرودوت (\"The Histories\", IX. 16)"
 
 #: gui/text/quotes.txt:100
 msgid ""
 "\"Although he \\[Xerces] had plenty of troops he had few men.\" - Herodotus "
 "(\"The Histories\", VII. 210)"
-msgstr ""
+msgstr "\"اگرچه او [خشایارشا] نیروهای زیادی داشت اما مردان کمی داشت\"- هرودوت  (\"The Histories\", VII. 210)"
 
 #: gui/text/quotes.txt:101
 msgid ""
 "\"The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.\" - Herodotus (\"The Histories\", VII. 211)"
-msgstr ""
+msgstr "\"لاسدمونیا [اسپارت ها] یک نبرد فراموش نشدنی را جنگیدند، آنها کاملا مشخص کردند که متخصص در نبرد هستند و در مقابل تازه کار ها در حال جنگ هستند\"- هرودوت  (\"The Histories\", VII. 211)"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -1352,7 +1354,7 @@ msgid ""
 "would be in the shade and not in the sun.\" - Herodotus describing Dienekes,"
 " reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "\"Histories\", VII. 226)"
-msgstr ""
+msgstr "\"اطلاع داده شد [...] که زمانی که بربرها تیرهای خود را رها  میکنند بخاطر تعداد زیاد تیرها جلوی نور خورشید گرفته می شود، او [دینکس]  [...]گفت که آنها مهمان هستند [...] برای آنها خبر خیلی خوبی است، چرا که وقتی آنها جلوی نور را می گیرند آنگاه نبرد در سایه انجام می شود و نه در زیر نور خورشید\"- هرودوت، تشریح شجاعت دینکس شجاع ترین سرباز اسپارت در ترموپیل (Polybius, \"Histories\", VII. 226)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1360,7 +1362,7 @@ msgid ""
 "Thebes] was the same: If he sent an army against the Persians, he would "
 "destroy a great empire.\" - Herodotus, later mentioning that the empire "
 "Kroisos destroyed was his own (\"The Histories\", I. 53)"
-msgstr ""
+msgstr "\"به کرویسوس از طریق الهه ها [دلفی و تبس] وحی داده شد که اگر به ایران حمله کند می تواند امپراتوری بزرگ آن ها را نابود کند\" - هرودوت، بعدها اشاره کرد که امپراتوری کرویسوس توسط خودش از بین رفت (\"The Histories\", I. 53)"
 
 #: gui/text/quotes.txt:104
 msgid ""
@@ -1370,7 +1372,7 @@ msgid ""
 "the Athenians!\" - Herodotus, narrating how the Athenian support for the "
 "Ionian revolt caught the wrath of Darius I., the Persian king (\"The "
 "Histories\", V. 105)"
-msgstr ""
+msgstr "\"او [شاه داریوش] پرسید آتنی ها چه کسانی هستند و زمانی که آکاهی یافت فرمان داد تا کمانش را بیاورند سپس تیری را کشید و به آسمان شلیک کرد و گفت زئوس را به من بدهید تا انتخام خودم را از آتنی ها بگیرم\"- هرودوت، تشریح آنکه آتنی ها چگونه شورش های داخل حکومت ایران را حمایت می کردند که باعث خشم داریوش اول پادشاه ایران شد (\"The Histories\", V. 105)."
 
 #: gui/text/quotes.txt:105
 msgid ""
@@ -1378,55 +1380,55 @@ msgid ""
 "was spread, three times to repeat to him: Master, remember the Athenians!\" "
 "- Herodotus, narrating how the Athenian support for the Ionian revolt lead "
 "to the Persian Wars (\"The Histories\", V. 105)"
-msgstr ""
+msgstr "\"او [شاه داریوش] از یکی از خدمتکارانش خواست تا هر روز زمانی که شام آورده می شود سه بار به وی یادآوری کند ، قربان آتنی ها\"- هرودوت ، تشریح آنکه آتنی ها چگونه شورش های داخل حکومت ایران را حمایت می کردند (\"The Histories\", V. 105)"
 
 #: gui/text/quotes.txt:106
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace (\"Epistles\", epistle I., 156-157)"
-msgstr ""
+msgstr "\"فتح یونان باعث شد تا وحشی گری وی گرفته شود و به هنر در روستا ها علاقه مند شود\"- هوراس (\"Epistles\", epistle I., 156-157)"
 
 #: gui/text/quotes.txt:107
 msgid ""
 "\"Anger is a momentary madness, so control your passion or it will control "
 "you.\" - Horace (\"Epistles\", epistle II., 62)"
-msgstr ""
+msgstr "\"خشم دیوانگی آنی است بنابرین شور خود را کنترل کن یا آن تو را کنترل خواهد کرد\"- هوراس  (\"Epistles\", epistle II., 62)"
 
 #: gui/text/quotes.txt:108
 msgid ""
 "\"It is your concern when your neighbour's wall is on fire.\" - Horace "
 "(\"Epistles\", epistle XVIII., 84)"
-msgstr ""
+msgstr "\"این به شما مربوط خواهد شد زمانی که دیوارهای همسایه شما در حال سوختن هستند\"- هوراس  (\"Epistles\", epistle XVIII., 84)"
 
 #: gui/text/quotes.txt:109
 msgid ""
 "\"It is sweet and honorable to die for one's country.\" - Horace (\"Odes\", "
 "III., ode II., 13)"
-msgstr ""
+msgstr "\"بسیار شیرین و شرافت مندانه است که برای کشور کشته شد\"- هوراس (\"Odes\", III., ode II., 13)"
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "\"من کوروش هستم، پادشاه جهان\"- سنگ نوشته (استوانه کوروش) "
 
 #: gui/text/quotes.txt:111
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Kroisos, king of Lydia (Herodotus, \"The Histories\", I. 87)"
-msgstr ""
+msgstr "\"در صلح، فرزندان پدران خود را تشیع می کنند و در جنگ این پدران هستند که فرزندان خود را تشیع می کنند\"- کرویسوس ، پادشاه لیدیا (Herodotus, \"The Histories\", I. 87)"
 
 #: gui/text/quotes.txt:112
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife who "
 "asked what to do if he died, before he left for Thermopylae (Plutarch, "
 "\"Moralia\", XVI. \"Sayings of Spartans\", 225a)"
-msgstr ""
+msgstr "\"با یک مرد خوب ازدواج کن و فرزندان خوب بدنیا بیاور\"- لئونیداس، به همسرش زمانی که از وی پرسید اگر کشته شد چه کار کند، قبل از رفتن به ترموپیل (پلوتارک، \"اخلاق\"، XVI، گفته های اسپارتها، 225a)"
 
 #: gui/text/quotes.txt:113
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms (Plutarch, \"Moralia\", XVI. "
 "\"Sayings of Spartans\", 225c)"
-msgstr ""
+msgstr "\"بیا و آنها را بگیر!\"- لئونیداس، به پیامرسان ایرانی که از آنها خواسته بود سلاح خود را بر زمین بگذارند (پلوتارک، \"اخلاق\"، XVI، گفته های اسپارت ها ، 225c)"
 
 #: gui/text/quotes.txt:114
 msgid ""
@@ -1437,7 +1439,7 @@ msgid ""
 "Livius, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (\"Ab Urbe "
 "Condita\", XXII. 51)"
-msgstr ""
+msgstr "\"تعدادی از آنها را زنده پیدا کردند که پاهایشان پاره پاره شده بود از گردن و گلویشان خون بیرون می ریخت و به فاتحان پیش نهاد می دادند که خون بیشتری از آنها بریزند. تعدادی دیگر در حالی پیدا شدند که سرهایشان را در خاک دفن کرده بودند. آنها ظاهرا  این چاله ها را برای خودشان ساخته بودند\"- لیویوس، تشریح شرایط بعد از نبرد کانای جایی که هانیبال سنگین ترین شکست در تاریخ روم به آنها تحمیل کرد. (\"Ab Urbe Condita\", XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
@@ -1446,62 +1448,62 @@ msgid ""
 "of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr ""
+msgstr "\"هزاران نفر از رومی ها در آنجا حضور داشتند [...]. اینجا و آنجا در میان کشته ها فضای خاصی بوجود آمده بود آنهایی که زخمی شده بودند شروع به خندیدن می کردند در حالی که توسط دشمن کشته می شدند\"- لیویوس، تشریح شرایط بعد از نبرد کانای، جایی که هانیبال بزرگترین شکست تاریخ روم را بر آنها تحمیل کرد (\"Ab Urbe Condita\", XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
 "\"A city is well-fortified which has a wall of men instead of brick.\" - "
 "Lycurgus of Sparta (Plutarch, \"Parallel Lives\", \"Lycurgus\", sec. 19)"
-msgstr ""
+msgstr "\"یک شهر که به خوبی بوسیله دیوارهایی نه از جنس آجر بلکه مردان، مستحکم شده بود\"- لیکورگاس اسپارتی  (Plutarch, \"Parallel Lives\", \"Lycurgus\", sec. 19)"
 
 #: gui/text/quotes.txt:117
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide after losing a battle against Caesar's "
 "avengers (Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
-msgstr ""
+msgstr "\"فرار، بلی اما این بار با دستانم و نه پاهایم\"- مارکوس جونیوس بروتوس، قبل از خودکشی بعد از شکست در مقابل انتقام گیران سزار (Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
 
 #: gui/text/quotes.txt:118
 msgid ""
 "\"O, the times, O, the customs!\" - Marcus Tullius Cicero (\"Against "
 "Catiline\", speech I)"
-msgstr ""
+msgstr "\"زمانها ، سنت ها\"- مارکوس تولیوس سیسرو (\"Against Catiline\", speech I)"
 
 #: gui/text/quotes.txt:119
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero (\"De Re Publica\", III., 23)"
-msgstr ""
+msgstr "\"یک جنگ هیچ وقت توسط یک کشور ایده آل پذیرفته نمی شود مگر اینکه برای شرافت و دفاع از خود باشد\"- مارکوس تولیوس سیسرو (\"De Re Publica\", III., 23)"
 
 #: gui/text/quotes.txt:120
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero (\"On Duties\", I., 13)"
-msgstr ""
+msgstr "\"اولین وظیفه یک مرد این است که بدنبال حقیقت باشد\"- مارکوس تولیوس سیسرو (\"On Duties\", I., 13)"
 
 #: gui/text/quotes.txt:121
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero (\"On Old Age\", sec. 24)"
-msgstr ""
+msgstr "\"هیچ کس آنقدر پیر نیست که فکر کند نمی تواند یک سال بیشتر زندگی کند\"- مارکوس تولیوس سیسرو  (\"On Old Age\", sec. 24)"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero (\"On the Laws\", III., sec. 3)"
-msgstr ""
+msgstr "\"اجازه دهید تا رفاه مردم بالاترین قانون باشد\"- مارکوس تولیوس سیسرو (\"On the Laws\", III., sec. 3)"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero "
 "(\"Philippics\", Philippica V., sec. 5)"
-msgstr ""
+msgstr "\"پول بی پایان تار و پود جنگ را شکل می دهد\"- مارکوس تولیوس سیسرو (\"Philippics\", Philippica V., sec. 5)"
 
 #: gui/text/quotes.txt:124
 msgid ""
 "\"Laws are silent in time of war.\" - Marcus Tullius Cicero (\"Pro Milone\","
 " IV., sec. 11)"
-msgstr ""
+msgstr "\"قوانین در زمان جنگ ساکت هستند\"- مارکوس تولیوس سیسرو (\"Pro Milone\", IV., sec. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1509,7 +1511,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero, condemning Mark Anthony who had not killed him (yet) "
 "(\"Philippics\", Philippica II, sec. 5)"
-msgstr ""
+msgstr "\"آن سناتورها، چیزی هستند که به نفع گروها است. آنها از کشتن یک نفر خودداری می کنند و سپس رجز خوانی می کنند و او را می ترسانند\"- مارکوس تولیوس سیسرو، محکوم کردن مارک آنتونی کسی که هنوز اورا نکشته بود (تا آن لحظه)  (\"Philippics\", Philippica II, sec. 5)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1518,27 +1520,27 @@ msgid ""
 "never rising to show that he was alive until Marcus Agrippa had routed the "
 "enemy.\" - Mark Antony, taunting Augustus who delegated his duties as naval "
 "commander (Suetonius, \"Divus Augustus\", sec. 16)"
-msgstr ""
+msgstr "\"او حتی بلند نشد تا کشتی های جنگی خود را نظاره کند در حالی که کشتی ها در موقعیت شروع نبرد قرار داشتند، و تنها دراز کشیده بود و به آسمان نگاه میکرد و حتی نشان نمی داد که زنده است تا اینکه مارکوس آگریپا مسیر دشمن را مشخص کرد\"- مارک آنتونی، شماتت کردن آگوستوس کسی که مسئولیت امور نیروهای دریایی را بر عهده داشت (Suetonius, \"Divus Augustus\", sec. 16)"
 
 #: gui/text/quotes.txt:127
 msgid ""
 "\"We live, not as we wish to, but as we can.\" - Menander (\"Lady of "
 "Andros\", fragment 50)"
-msgstr ""
+msgstr "\"ما زندگی می کنیم نه آن طور که آرزو داریم بلکه آنطور که می توانیم\"- مناندر  (\"Lady of Andros\", fragment 50)"
 
 #: gui/text/quotes.txt:128
 msgid "\"The man who runs may fight again.\" - Menander (\"Monosticha\")"
-msgstr ""
+msgstr "\"انسانی که می دود شاید دوباره پرواز کند\"- مناندر (\"Monosticha\")"
 
 #: gui/text/quotes.txt:129
 msgid ""
 "\"Whom the Gods love dies young.\" - Menander (\"The Double Deceiver\", "
 "fragment 4)"
-msgstr ""
+msgstr "\"کسانی که خدایان دوستشان دارند جوان می میرند\"- مناندر (\"The Double Deceiver\", fragment 4)"
 
 #: gui/text/quotes.txt:130
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
-msgstr ""
+msgstr "\"من یک انجیل را انجیل و یک بیل را بیل صدا می زنم\"- مناندر (fragment 545 K)"
 
 #: gui/text/quotes.txt:131
 msgid ""
@@ -1548,7 +1550,7 @@ msgid ""
 "fortune and material advantages, they drove out the invaders and made our "
 "city what it is now.\" - Pericles (Thucydides, \"History of the "
 "Peloponnesian War\", I. 144.3-4)"
-msgstr ""
+msgstr "\"بزرگترین شکوه از پیروزی در بزرگترین خطرات حاصل می شود. زمانیکه پدران ما با ایرانی ها مواجه شدند امکانات آنها با ما قابل مقایسه نبود در واقع آنها هر چه داشتند را دادند و با ذکاوت و اعمال جسورانه توانستند دشمن تا دندان مسلح و قدرت مند را از شهر خود بیرون برانند و شهر ما را آنطور که الان هست بسازند\"- پریکلس (Thucydides, \"History of the Peloponnesian War\", I. 144.3-4)"
 
 #: gui/text/quotes.txt:132
 msgid ""
@@ -1557,7 +1559,7 @@ msgid ""
 "all.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 40.2)"
-msgstr ""
+msgstr "\"بجای اینکه ما به بحث ها به عنوان یک مانع در اجرای کارها نگاه کنیم فکر میکنیم این بحث ها یک چیز ضروری و ابتدایی است برای هر کار خردمندانه\" پریکلس در سخنرانی مراسم تشیع کشته شده های سال اول جنگ (Thucydides, \"History of the Peloponnesian War\", II. 40.2)"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -1565,14 +1567,14 @@ msgid ""
 "nothing, we think he is good for nothing.\" - Pericles in his Funeral "
 "Oration for Athenians that died in the first year of the war (Thucydides, "
 "\"History of the Peloponnesian War\", II. 40.2)"
-msgstr ""
+msgstr "\"ما فکر نمی کنیم که فردی که سیاست را نادیده می گیرد با هیچ چیزی مواجه نخواهد شد ما فکر میکنیم او بدرد هیچ جیز نمی خورد\"- پریکلس در سخنرانی مراسم تشیع کشته شده های سال اول جنگ (Thucydides, \"History of the Peloponnesian War\", II. 40.2)"
 
 #: gui/text/quotes.txt:134
 msgid ""
 "\"Future ages will wonder at us, as the present age wonders at us now.\" - "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
 " the war (Thucydides, \"History of the Peloponnesian War\", II. 41.5)"
-msgstr ""
+msgstr "\"عصر های آینده شگفت زده خواهند شد بر ما  همانطور که در عصر حاضر همه بر ما شگفت زده هستند\"-پریکلس در سخنرانی مراسم تشیع کشته شده های سال اول جنگ (Thucydides, \"History of the Peloponnesian War\", II. 41.5)"
 
 #: gui/text/quotes.txt:135
 msgid ""
@@ -1582,7 +1584,7 @@ msgid ""
 "virtue.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.2)"
-msgstr ""
+msgstr "\"زمانی به قدرت آتن آگاه می شوید که در نظر میگیرید که این پیروزی با شجاعت مردانی بدست آمد که وظایف خود را می دانستند و حس نا امیدی در جنگ داشتند و سرمایه های خود را از دست رفته می دیدند آنها ترجیح دادند زندگی خود را بدهند تا اینکه فضیلت مدنی و آزادی نداشته باشند\"- پریکلس در سخنرانی مراسم تشیع کشته شده های سال اول جنگ (Thucydides, \"History of the Peloponnesian War\", II. 43.2)"
 
 #: gui/text/quotes.txt:136
 msgid ""
@@ -1591,7 +1593,7 @@ msgid ""
 " that will outlast any monument.\" - Pericles in his Funeral Oration for "
 "Athenians that died in the first year of the war (Thucydides, \"History of "
 "the Peloponnesian War\", II. 43.3)"
-msgstr ""
+msgstr "\"برای قهرمان ها تمام زمین مقبره آنها است و شرافت آنها  بسیار دورتر از خانه هایشان به یاد باقی خواهد ماند جایی که نوشته سنگ قبر آنها بصورت نا نوشته ای مشخص می کند و در ذهنها نقش می بندد و حتی از بناهای تاریخی نیز پایدارتر خواهد بود\"- پریکلس در سخنرانی مراسم تشیع کشته شده های سال اول جنگ (Thucydides, \"History of the Peloponnesian War\", II. 43.3)"
 
 #: gui/text/quotes.txt:137
 msgid ""
@@ -1599,7 +1601,7 @@ msgid ""
 "courage.\" - Pericles in his Funeral Oration for Athenians that died in the "
 "first year of the war (Thucydides, \"History of the Peloponnesian War\", II."
 " 43.4)"
-msgstr ""
+msgstr "\"بدانید که خوشحالی به آزادی بستگی دارد و آزادی به شجاعت\" - پریکلس در سخنرانی مراسم تشیع کشته شده های سال اول جنگ (Thucydides, \"History of the Peloponnesian War\", II. 43.4)"
 
 #: gui/text/quotes.txt:138
 msgid ""
@@ -1607,14 +1609,14 @@ msgid ""
 "for good or ill.\" - Pericles in his Funeral Oration for Athenians that died"
 " in the first year of the war (Thucydides, \"History of the Peloponnesian "
 "War\", II. 45.2)"
-msgstr ""
+msgstr "\"بزرگترن شکوه برای یک زن این است کمتر در موردش توسط مردان صحبت شود چه برای غذا و چه بیماری\" - پریکلس در سخنرانی مراسم تشیع کشته شده های سال اول جنگ (Thucydides, \"History of the Peloponnesian War\", II. 45.2)"
 
 #: gui/text/quotes.txt:139
 msgid ""
 "\"Wait for the wisest of all counsellors, time.\" - Pericles, a cautious "
 "politician who avoided war (Plutarch, \"Parallel Lives\", \"Pericles\", sec."
 " 18)"
-msgstr ""
+msgstr "\"منتظر خردمنترین مشاور باشید، زمان\"- پریکلس،یک سیاست مدار محتاط که از جنگ پرهیز می کرد (پلوتارک، \"زندگی های موازی\"،  \"Pericles\", sec. 18)"
 
 #: gui/text/quotes.txt:140
 msgid ""
@@ -1622,40 +1624,40 @@ msgid ""
 "is certainly dangerous to let it go.\" - Pericles, addressing the Athenian "
 "assembly after a plague had weakened the city (Thucydides, \"History of the "
 "Peloponnesian War\", II. 63.3)"
-msgstr ""
+msgstr "\"امپراتوری شما در حال حاضر همانند یک ستمگر است، بطور قطع بسیار خطرناک است که به شما اجازه عبور داده شود\"- پریکلس، اشاره به گروه آتنی ها  بعد از اینکه طاعون شهر آنها را ضعیف کرده بود  (Thucydides, \"History of the Peloponnesian War\", II. 63.3)"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man fears its approach in his heart.\" - Pindar (fragment 110)"
-msgstr ""
+msgstr "\"جنگ برای کسانی که هیچ تجربه ای از آن را ندارند شیرین است اما برای آنها که جنگ را تجربه کرده اند به قدری ترسناک است که وارد قلبهایشان می شود\"- پیندار (قطعه 110)"
 
 #: gui/text/quotes.txt:142
 msgid ""
 "\"Themistocles robbed his fellow citizens of spear and shield, and degraded "
 "the people of Athens to the rowing-pad and the oar.\" - Plato, no friend of "
 "the Athenian navy (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 3)"
-msgstr ""
+msgstr "\"تمیستوکلس شهروندان خودش را با شمشیر و نیزه غارت کرد و آنها را با بکار گرفتن برای قایقرانی و پارو زدن خوار و خفیف کرد\"- افلاطون، مخالف نیروی دریایی آتن (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 3)"
 
 #: gui/text/quotes.txt:143
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus (\"The Swaggering Soldier\", Act III,"
 " scene 1, 146)"
-msgstr ""
+msgstr "\"هیج مهمانی بیشتر از سه روز در خانه دوست عزیز نخواهد بود\"- پلوتوس (\"The Swaggering Soldier\", Act III, scene 1, 146)"
 
 #: gui/text/quotes.txt:144
 msgid ""
 "\"You cannot eat your cake and have it too, unless you think your money is "
 "immortal.\" - Plautus (\"Trinummus\", Act II, scene 4, 12)"
-msgstr ""
+msgstr "\"شما نمی توانید هم کیک خود را بخورید و هم آن را حفظ کنید مگر فکر کنید که پول شما نامتناهی است\"- پلوتوس (\"Trinummus\", Act II, scene 4, 12) "
 
 #: gui/text/quotes.txt:145
 msgid ""
 "\"He \\[Alexander] thought nothing invincible for the courageous, and "
 "nothing secure for the cowardly.\" - Plutarch (\"Parallel Lives\", "
 "\"Alexander\", sec. 58)"
-msgstr ""
+msgstr "\"او [اسکندر] فکر می کرد هیچ چیز شکست ناپذیر در مقابل شجاعت نیست و هیچ چیز در برابر بزدلی ایمن نیست\"- پلوتارک (\"Parallel Lives\", \"Alexander\", sec. 58)"
 
 #: gui/text/quotes.txt:146
 msgid ""
@@ -1665,7 +1667,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.\" - Plutarch "
 "about the Mallian Campaign (\"Parallel Lives\", \"Alexander\", sec. 63)"
-msgstr ""
+msgstr "\"یک [...] تیر از کمان را آن چنان با دقت پرتاب کرد که سینه بند دشمن را رد کرد و در دنده هایش فرو رفت [...] اسکندر عقب نشست و بر زانوهایش نشست. […]  سر انجام اسکندر بربر را کشت اما زخم های بسیاری را پذیرا شد و همانند یک صلیب در حالی که دستش بر گردنش بود تکیه بر دیوار شهر نشست و چشمانش ثابت بسوی دشمنان بود\"- پلوتارک در مورد عملیات نظامی مالیان (\"Parallel Lives\", \"Alexander\", sec. 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1674,7 +1676,7 @@ msgid ""
 "captured, and he volunteered to pay fifty.\" - Plutarch, who mentions later "
 "that Caesar got his money back and had his captors crucified (\"Parallel "
 "Lives\", \"Caesar\", sec. 2)"
-msgstr ""
+msgstr "\"زمانی که دزدان درخواست خون بهای بیست نفر از آنها را کردند، سزار شروع به خندیدن کرد. آنها نمی دانستند، او گفت، آنها نمی دانند چه کسی را دستگیر کرده اند و او داوطلبانه خون بهای 50 نفر  را داد\"- پلوتارک، اشاره کرده است که بعد از این ماجرا سزار تمام کسانی که او را گرفته بودند دستگیر کرد و تمام پول را باز پس گرفت و آنها را به صلیب کشید (\"Parallel Lives\", \"Caesar\", sec. 2)"
 
 #: gui/text/quotes.txt:148
 msgid ""
@@ -1683,7 +1685,7 @@ msgid ""
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
 "ready to die at their posts.\" - Polybius (\"Histories\", VI. 24)"
-msgstr ""
+msgstr "\"آنها [رومی ها] می خواهند رئسای دسته ها زیاد ماجراجوییی و کارهای خطرناک نکنند بیشتر یک رهبر با ثبات و قابل اعتماد باشند. آنها برای اینکار مردانی که علاقه به جنگ داشتند را نمیخواستند بلکه بدنبال کسانی بودند که جای خود را نگهدارند و آماده باشند تا برای برنامه های آنها جان خود را فدا کنند\"- پولیبیوس  (\"Histories\", VI. 24)"
 
 #: gui/text/quotes.txt:149
 msgid ""
@@ -1691,7 +1693,7 @@ msgid ""
 " both individually and collectively; so that a formation can fight in any "
 "direction, with the maniples nearest to the point of danger wheeling around "
 "to face it.\" - Polybius (\"Histories\", XV. 15)"
-msgstr ""
+msgstr "\"خطوط جنگی رومی ها برای شکستن بسیار سخت است ، آرایش نظامی آنها این قابلیت را ایجاد میکند که بتوانند در هر جهت با دشمن مبارزه کنند\"- پولیبیوس  (\"Histories\", XV. 15)"
 
 #: gui/text/quotes.txt:150
 msgid ""
@@ -1702,7 +1704,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbour and close to shore.\" - Polybius on the Athenian"
 " constitution (\"Histories\", VI. 44)"
-msgstr ""
+msgstr "\"مردم آتن همیشه مانند یک کشتی بدون فرمانده بودند. اگر در شرایط خطر قرار می گرفتند و متحد از کشتیران پیروی می کردند در این شرایط همه چیز خوب جلو می رفت و از خطر آسیب نمی دیدند اما اگر آنها  […] با هم دچار اختلاف می شدند […] نتیجه کار در دریای خروشان غرق شدن و شکست بود\"- پولیبیوس، در نظام آتنی ها (\"Histories\", VI. 44)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -1711,7 +1713,7 @@ msgid ""
 "and there were only a very few who attempted to save themselves by flight.\""
 " - Polybius on the Battle of Bagradas where a Roman army was annihilated "
 "during the First Punic War (\"Histories\", I. 34)"
-msgstr ""
+msgstr "\"بیشتری رومیان با مرگ مواجه شده بودند بخاطر وزن فیل های جنگی ، سایر آنها با تیرهای سواره نظام ها زمین گیر شده بودند و تعداد کمی از آنها قادر بودند جان خود را نجات دهند\"- پولیبیوس درباره نبرد بارگراد جایی که  رومی ها در خلال جنگ اول پونی نابود شدند  (\"Histories\", I. 34)"
 
 #: gui/text/quotes.txt:152
 msgid ""
@@ -1719,7 +1721,7 @@ msgid ""
 "the troops lying in ambush on the hills to do the same, and thus delivered "
 "an assault upon the enemy at every point at once.\" - Polybius on the "
 "beginning of a Roman disaster at the Trasymene Lake (\"Histories\", III. 84)"
-msgstr ""
+msgstr "\"هانیبال فرمان حمله را صادر کرد، و بصورت هم زمان به سربازانی که کمین کرده بودند فرمان داد که حمله کنند و سربازان هانیبال از همه جهات و در یک لحظه به سپاه روم حمله کردند\"- پولیبوس، در تشریح شروع فاجعه رومی ها در دریاچه تراسیمن (\"Histories\", III. 84)"
 
 #: gui/text/quotes.txt:153
 msgid ""
@@ -1729,7 +1731,7 @@ msgid ""
 "shields and flee.\" - Polybius, describing the defeat of Philip V. of "
 "Macedon by Flaminius in the Battle of Cynoscephalae (\"Histories\", XVIII. "
 "26)"
-msgstr ""
+msgstr "\"در آرایش نظامی فالانژ نیروها قادر نیستند که به راحتی برگشته و از خود دفاع کنند لذا زمانی که دشمن به پست سر آنها رسید [از پشت حمله کرد] آنها مجبور شدند سلاح ها و سپر خود را انداخته و فرار کنند\"- پولیبوس، تشریح شکست فیلیپ پنجم مقدونی در نبرد سینوسکفالا (\"Histories\", XVIII. 26)"
 
 #: gui/text/quotes.txt:154
 msgid ""
@@ -1740,7 +1742,7 @@ msgid ""
 "detachment, or in a single maniple, or even by himself.\" - Polybius, "
 "explaining how the Romans can defeat the Macedonian phalanx (\"Histories\", "
 "XVIII. 32)"
-msgstr ""
+msgstr "\"رویکرد سپاه روم در سوی دیگر انعطاف پذیری است، هر سرباز رومی  چه در زمین نبرد  و چه در خارج از آن به یک شکل زره پوشیده و به یک شکل تجهیز شده است و در این شرایط سرباز رومی هر زمان آماده نبرد است\"- پولیبیوس، در تشریح اینکه رومیان چگونه فالانژ های مقدونیه ای را شکست دادند (\"Histories\", XVIII. 32)"
 
 #: gui/text/quotes.txt:155
 msgid ""
@@ -1750,7 +1752,7 @@ msgid ""
 "all cities, nations, and authorities must, like men, meet their doom.\" - "
 "Polybius, eyewitness to the destruction of Carthage (\"Histories\", XXXVIII."
 " 22)"
-msgstr ""
+msgstr "\"اسکیپیوی [آفریقایی]، زمانی به شهر نگاه می کرد [کارتاژ] که کاملا در حال نابودی بود نقل شده است که برای دشمنش اشک می ریخته است، تمام شهر ها، تمدن ها همانند یک مرد باید با سرنوشت خود روبرو شوند\"- پولیبیوس، شاهد نابودی کارتاژ  (\"Histories\", XXXVIII. 22)"
 
 #: gui/text/quotes.txt:156
 msgid ""
@@ -1758,31 +1760,31 @@ msgid ""
 "the Battle of Asculum, in which the Romans lost twice as many men but he "
 "lost a greater share of his armed forces (Plutarch, \"Parallel Lives\", "
 "\"Pyrrhus\", sec. 21)"
-msgstr ""
+msgstr "\"یک پیروزی دیگر به این شکل باعث شکست خواهد بود\"- پورهوس اپیروسی، بعد از نبرد آسکولوم، در رابطه با این موضوع که رومی ها دو برابر شکست خوردند بخاطر اینکه نیروی که از دست داد خیلی بیشتر از دشمن بود با اینکه آنها پیروز شدند (Plutarch, \"Parallel Lives\", \"Pyrrhus\", sec. 21)"
 
 #: gui/text/quotes.txt:157
 msgid ""
 "\"None can be free who is a slave to, and ruled by, his passions.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 18)"
-msgstr ""
+msgstr "\"کسی نمیتواند آزاد شود اگر برده و فرمانبردار احساساتش است\"- فیثاغورس (Stobaeus, \"Florilegium\", 18)"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"Do not say few things in many words, but many things in few words.\" - "
 "Pythagoras (Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"چیز های کمی را در کلمات بسیار نگویید، چیزهای زیادی را در کلمات کم بگویید\"- فیثاغورس (Stobaeus, \"Florilegium\", 24)"
 
 #: gui/text/quotes.txt:159
 msgid ""
 "\"Let your speech be better than silence, or be silent.\" - Pythagoras "
 "(Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"یا سخنرانیت از سکوت بهتر باشد یا سکوت اختیار کن\"- فیثاغورس  (Stobaeus, \"Florilegium\", 24)"
 
 #: gui/text/quotes.txt:160
 msgid ""
 "\"Unity strengthens even small states, while discord undermines the "
 "mightiest empires.\" - Sallust (\"The Jugurthine War\", 10.6)"
-msgstr ""
+msgstr "\"اتحاد حتی کوچکترین شهر را قوی میکند و اختلاف نظر حتی بزرگترین امپراتوری ها را تضعیف می کند\"-  سالوست (\"The Jugurthine War\", 10.6)"
 
 #: gui/text/quotes.txt:161
 msgid ""
@@ -1790,14 +1792,14 @@ msgid ""
 "Africanus in his epitaph, after he who defeated Hannibal was repeatedly "
 "accused of crimes by the Roman Senate (Valerius Maximus, \"Nine books on "
 "memorable deeds and sayings\", 5.3.2)"
-msgstr ""
+msgstr "\"سرزمین ناسپاس، شما حتی استخوان های من را نخواهید داشت\"- اسکیپیوی آفرقایی بر روی سنگ قبرش، بعد از اینکه او هانیبال را شکست داد بصورت مداوم توسط سنای روم متهم به جرم می شد. (Valerius Maximus, \"Nine books on memorable deeds and sayings\", 5.3.2)"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
 "Zama (Livius, \"Ab Urbe Condita\", XXX. 31)"
-msgstr ""
+msgstr "\"برای جنگ آماده شوید، زمانی که شما قادر نیستید یک صلح را تحمل کنید\" اسکیپیوی آفریقایی، در پاسخ به پیش نهاد صلح هانیبال قبل از نبرد زاما (Livius, \"Ab Urbe Condita\", XXX. 31)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -1806,7 +1808,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.1.6)"
-msgstr ""
+msgstr "\"علوم تاکتیکی تنها یک بخش از فرماندهی است، یک فرمانده باید قادر باشد نیروهای خود را تجهیز کند و نیازمندی های آنها را تامین کند. او همچنین باید خلاق ، پرتلاش ، بینا، بدون ترس و روراست باشد\"- سقراط (Xenophon, \"Memorabilia\", 3.1.6)"
 
 #: gui/text/quotes.txt:164
 msgid ""
@@ -1814,14 +1816,14 @@ msgid ""
 "that, if the city is stronger, one may recommend her to go to war, but if "
 "weaker than the enemy, may persuade her to beware.\" - Socrates (Xenophon, "
 "\"Memorabilia\", 3.6.9)"
-msgstr ""
+msgstr "\"این لازم است که قدرت شهر خود و دشمن را بدانید، اگر شهر شما قدرتمند تر است پیشنهاد می شود که به جنگ بروید و اگر دشمن قدرت مند تر است از آن حذر کنید\"- سقراط (Xenophon, \"Memorabilia\", 3.6.9)"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "\"The unexamined life is not worth living.\" - Socrates, in his defense when"
 " trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 38a)"
-msgstr ""
+msgstr "\"زندگی بدون آزمودن ارزش زندگی کردن ندارد\"- سقراط، در دفاع خود زمانی که بخاطر منحرف کردن جوانان و اعتقاد نداشتن به خدایان محاکمه می شد (کمی بعد او جام ذهر را نوشید زمانی که محکوم به اعدام شد)- افلاطون (\"Apology\", 38a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
@@ -1829,13 +1831,13 @@ msgid ""
 "to live. Which is better God only knows.\" - Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) - Plato (\"Apology\", 42a)"
-msgstr ""
+msgstr "\"زمان رفتن فرا رسیده است و ما به مسیر خود خواهیم رفت- برای من مرگ و برای تو زندگی،که تنها خدا بهتر میداند\"- سقراط، در دفاع خود زمانی که بخاطر منحرف کردن جوانان و اعتقاد نداشتن به خدایان محاکمه می شد (کمی بعد او جام ذهر را نوشید زمانی که محکوم به اعدام شد)- افلاطون (\"Apology\", 42a)"
 
 #: gui/text/quotes.txt:167
 msgid ""
 "\"Walls and ships are nothing without men living together inside them.\" - "
 "Sophocles (\"Oedipus Rex\")"
-msgstr ""
+msgstr "\"دیوارها و کشتی ها به تنهایی هیچ چیز نیستند بدون انسانهایی که در آنها زندگی میکنند\"- سقراط (\"Oedipus Rex\")"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -1845,24 +1847,24 @@ msgid ""
 "that the weak should be subject to the strong.\" - Speech of an Athenian "
 "embassy in Sparta (Thucydides, \"History of the Peloponnesian War\", I. "
 "76.2)"
-msgstr ""
+msgstr "\"ما امپراتوری که به ما پیشنهاد شد پذیرفتیم و  رد کردیم تا آنرا زیر فشار سه نیروی قدرتمند ترس، افتخار و علاقه پس دهیم. و این یک قانون است که ضعف باید هدفش قدرت باشد\"- صحبت سفیر آتن در اسپارت (Thucydides, \"History of the Peloponnesian War\", I. 76.2)"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "\"He could boast that he found a city of brick and left it a city of "
 "marble.\" - Suetonius, commenting on the many building projects of Augustus "
 "in Rome (\"Divus Augustus\", sec 38)"
-msgstr ""
+msgstr "\"او می تواند به رخ ما بکشد که شهری از آجر تحویل گرفت و زمانی که ترکش کرد شهری از مرمر برجای گذاشت\"- سوئتونیوس، توضیحی بر پروژه های ساختمانی بسیار آگوستوس در روم (\"Divus Augustus\", sec 38)"
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
-msgstr ""
+msgstr "\"تعادل در همه چیز\"- ترنس (\"The Girl from Andros\", 61)"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"Fortune favors the bold.\" - Terence in a play about a great Athenian "
 "admiral (\"Phormio\", 203)"
-msgstr ""
+msgstr "\"ثروت ترجیهش جسوران است\"- ترنس در یک بازی در مورد آدمیرال بزرگ آتن (\"Phormio\", 203)"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -1870,7 +1872,7 @@ msgid ""
 "raise a city that was small and unimportant to glory and greatness.\" - "
 "Themistocles, defending his lack of cultural sophistication (Plutarch, "
 "\"Parallel Lives\", \"Themistocles\", sec. 2)"
-msgstr ""
+msgstr "\"من نمیدانم چطور چنگ را کوک کنم یا بنوازم، اما می دانم چگونه یک شهر کوچک و بی اهمیت را به شکوه و بزرگی برسانم\"- تمیستوکلس، در دفاع از کمبود امکانات فرهنگی (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 2)"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -1878,41 +1880,41 @@ msgid ""
 "with the Spartan fleet commander who threatened to beat him with his staff, "
 "before the Battle of Salamis (Plutarch, \"Parallel Lives\", "
 "\"Themistocles\", sec. 11)"
-msgstr ""
+msgstr "\"حمله کن اگر میخواهی ، اما گوش بده\"- تمیستوکلس، در جروبحث با فرمانده نیروی دریایی اسپارت کسی که او را تهدید به حمله کرده بود قبل از نبرد سالامیس (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 11)"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"The Athenians command the rest of Greece, I command the Athenians; your "
 "mother commands me, and you command your mother.\" - Themistocles, jokingly "
 "to his infant son (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 18)"
-msgstr ""
+msgstr "\"آتنی ها بقیه یونان را فرمان می دهند و من آتنی ها را فرمان می دهم و مادر تو مرا فرمان می دهد و تو مادرت را فرمان می دهی\"- تمیستوکلس، لطیفه گفتن با پسر نوزادش (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 18)"
 
 #: gui/text/quotes.txt:175
 msgid ""
 "\"So little pains does the mob take in finding out the truth, accepting "
 "readily the first story at hand.\" - Thucydides (\"History of the "
 "Peloponnesian War\", I. 21.3)"
-msgstr ""
+msgstr "\"درد کمی را کسی که میخواهد حقیقت را پیدا کند متحمل خواهد شد، پذیرش آمادگی برای اینکار داستان اول است و سخت\"- توسیدید (\"History of the Peloponnesian War\", I. 21.3)"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "\"The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.\" - Thucydides (\"History of the Peloponnesian "
 "War\", I. 23.6)"
-msgstr ""
+msgstr "\"رشد نیروی آتن و هشدار برای اسپارت ها باعث شد تا جنگ غیر قابل اجتناب شود\"- توسیدید (\"History of the Peloponnesian War\", I. 23.6)"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "\"War is a matter not so much of arms as of money.\" - Thucydides (\"History"
 " of the Peloponnesian War\", I. 83.2)"
-msgstr ""
+msgstr "\"جنگ موضوع نیرو و پول نیست\"- توسیدید (\"History of the Peloponnesian War\", I. 83.2)"
 
 #: gui/text/quotes.txt:178
 msgid ""
 "\"It is a general rule of human nature that people despise those who treat "
 "them well, and look up to those who make no concessions.\" - Thucydides "
 "(\"History of the Peloponnesian War\", III. 39.5)"
-msgstr ""
+msgstr "\"این یک قانون عمومی است که طبیعت انسان بدین گونه است که انسانها کسانی که آنها خوب رفتار کرده اند را تحقیر می کنند و بدنبال کسانی هستند که هیچ حقی برای آنها قائل نیستند\"- توسیدید (\"History of the Peloponnesian War\", III. 39.5)"
 
 #: gui/text/quotes.txt:179
 msgid ""
@@ -1923,7 +1925,7 @@ msgid ""
 " they ever had perished, nothing was saved and few of so many ever returned "
 "home. Thus ended the Sicilian expedition.\" - Thucydides (\"History of the "
 "Peloponnesian War\", VII. 87.6-7)"
-msgstr ""
+msgstr "\"این بزرگترین کاری بود که در تمام این جنگ اتفاق افتاد، از تمام کسانی که ما شنیده بودیم همچون یونانی ها، که آنها در مقابل یک فاتح شکوهمند و ترسناک در هم شکستند، آنها کاملا شکست خورده بودند و نیروهای زیادی را از دست داده بودند. سپاهیان و کشتی های همگی نابود شده بودند و هیچ چیز باقی نمانده بود و تنها عده ای به خانه های خود برگشته بودند و بدین ترتیب ماجراجویی سیسیل به پایان رسید\"- توسیدید (\"History of the Peloponnesian War\", VII. 87.6-7)"
 
 #: gui/text/quotes.txt:180
 msgid ""
@@ -1931,7 +1933,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.\" - Thucydides, "
 "describing Athenians addressing the defeated Melians who are unwilling to "
 "surrender (\"History of the Peloponnesian War\", V. 89.1)"
-msgstr ""
+msgstr "\"همانطور که دنیا پیش می رود، عدالت تنها در زمان برابری معنی پیدا میکند در حالی که قویتر ها هرکاری که میخواهند انجام می دهند و ضعیفان متحمل درد می شوند آنها چه کار باید انجام دهند\"- توسیدید، تشریح آتنی ها که ملیان ها را که نمی خواستند تسلیم شوند شکست دادند (\"History of the Peloponnesian War\", V. 89.1)"
 
 #: gui/text/quotes.txt:181
 msgid ""
@@ -1940,7 +1942,7 @@ msgid ""
 "darts to the closest man at hand.\" - Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (\"History of the Peloponnesian War\", "
 "IV. 34.2)"
-msgstr ""
+msgstr "\"زمانی که لاسمامونیان دیگر قادر به رفتن به دنبال آنها نبودند، نیزه انداز ها […] همگی باهم یورش بردند و در یک لحظه به هرکس که رسیدند حمله کردند\"- توسیدید، تشریح فاجعه اسپارت ها در نبرد سفاکتریا (\"History of the Peloponnesian War\", IV. 34.2)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -1950,7 +1952,7 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up why they were on campaign (Plutarch, \"Parallel Lives\", "
 "\"Tiberius Gracchus\", sec. 9)"
-msgstr ""
+msgstr "\"سربازها می جنگند و میمیرند برای حمایت از کسانی که در ثروت و تجمل غرق هستند و آنها صاحبان دنیا خود را می داند بدون آنکه حتی یک زمین کشاوری برای خود داشته باشند\"- تیبریوس گراچوس،وکالت برای اصلاحات ارزی در جهت منافع افراد بدون خانه و بیکار و سربازانی که خانه هایشان خریداری شده بود چرا که در جنگ بودند (Plutarch, \"Parallel Lives\", \"Tiberius Gracchus\", sec. 9)"
 
 #: gui/text/quotes.txt:183
 msgid ""
@@ -1960,24 +1962,24 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up why they were on "
 "campaign (Plutarch, \"Parallel Lives\", \"Tiberius Gracchus\", sec. 9)"
-msgstr ""
+msgstr "\"هیولای وحشی ایتالیا غارهایش را برای بازنشستگی آماده کرده بود اما سربازان شجاعی که خون هایشان را برای او ریخته بودند دیگر چیزی نداشتند جز هوا و نور، آنها پیش زنها و بچه هایشان برگشته بودند و بی خانمان شده بودند\"- تیبریوس گراچوس،وکالت برای اصلاحات ارزی در جهت منافع افراد بدون خانه و بیکار و سربازانی که خانه هایشان خریداری شده بود چرا که در جنگ بودند (Plutarch, \"Parallel Lives\", \"Tiberius Gracchus\", sec. 9)"
 
 #: gui/text/quotes.txt:184
 msgid ""
 "\"Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.\" - Virgil (\"Aeneid\", II. 48-49)"
-msgstr ""
+msgstr "\"به یک اسب اعتماد نکن، تروژان ها! من از یونانی ها می ترسم حتی زمانی که هدیه می آورند\"- ویرجیل (\"Aeneid\", II. 48-49)"
 
 #: gui/text/quotes.txt:185
 msgid "\"Prepared for either alternative.\" - Virgil (\"Aeneid\", II. 61)"
-msgstr ""
+msgstr "\"برای تمام شرایط آماده باش\"- ویرجیل (\"Aeneid\", II. 61)"
 
 #: gui/text/quotes.txt:186
 msgid ""
 "\"Homer and Hesiod ascribed to their Gods all things that are a disgrace "
 "among mortals: stealing, adultery, deceiving one another.\" - Xenophanes "
 "(fragment 11)"
-msgstr ""
+msgstr "\"هومر و هزیود تمام چیزهایی که نا مناسب بود را  چون دزدی ، زنا و فریب دادن را از خدایانشان می دانستند\"- کسنوفانس (بخش 11)"
 
 #: gui/text/quotes.txt:187
 msgid ""
@@ -1985,13 +1987,13 @@ msgid ""
 " of art as men do, horses would paint the forms of the gods like horses, and"
 " oxen like oxen, and make their God's bodies each in their own image.\" - "
 "Xenophanes (fragment 15)"
-msgstr ""
+msgstr "\"اگر گاوها و اسب ها و شیرها دست داشتند و می توانستند نقاشی کنند آثار هنری همچون انسان خلق کنند اسب ها نقاشی می کردند شکل خدایان را مثال اسب ها و گاوها همچون گاوها و هر کس خدایش را همانند خود رسم می کرد\"- کسنوفانس (بخش 15)"
 
 #: gui/text/quotes.txt:188
 msgid ""
 "\"The Ethiopians make their gods black and snub-nosed, the Thracians say "
 "theirs have blue eyes and red hair.\" - Xenophanes (fragment 16)"
-msgstr ""
+msgstr "\"اتیوپی ها خدایانشان را سیاه می کشیدند و تراکیان می گفتند که خدایان چشمان آبی و موی قرمز دارند\"- کسنوفانس (بخش 16)"
 
 #: gui/text/quotes.txt:189
 msgid ""
@@ -1999,21 +2001,21 @@ msgid ""
 " are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?\" - Xenophanes, likely referring to a punitive expedition"
 " against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "\"این ها سوال های درستی برای پرسیدن است، در زمستان بدور آتش […]: چه کسی هستید، دوست؟ سرزمین شما کجاست؟ چند سال داشتید زمانی که مادها [ایرانی ها] آمدند؟\"- کسنوفانس (بخش 17) "
 
 #: gui/text/quotes.txt:190
 msgid ""
 "\"A prudent commander will never take risks unnecessarily, except when it is"
 " clear beforehand that he will have the advantage.\" - Xenophon (\"The "
 "Cavalry General\", 4.13)"
-msgstr ""
+msgstr "\"یک فرمانده محتاط هیچ وقت برای چیزی غیر ضروری ریسک نمیکند، مگر زمانی که کاملا مشخص باشد که او برتری دارد\"- کسنوفانس (\"The Cavalry General\", 4.13)"
 
 #: gui/text/quotes.txt:191
 msgid ""
 "\"Attack the enemy where he is weakest, even if that is a long way off, "
 "since hard work is less dangerous than a struggle against superior forces.\""
 " - Xenophon (\"The Cavalry General\", sec. 4.14)"
-msgstr ""
+msgstr "\"حمله به دشمن در جایی که ضعیفترین است حتی اگر راه طولانی باشد، کار سختی که خطر کمتری دارد بهتر است از درگیری با یک نیروی قوی\"- کسنوفانس  (\"The Cavalry General\", sec. 4.14)"
 
 #: gui/text/quotes.txt:192
 msgid ""
@@ -2021,14 +2023,14 @@ msgid ""
 "small force appear large and a large one small, to appear absent when close "
 "at hand, and within striking distance when a long way off.\" - Xenophon "
 "(\"The Cavalry General\", sec. 5)"
-msgstr ""
+msgstr "\"او باید مخترع باشد ، آماده انفجار تمام شرایط، ناپدید شود زمانی که به دست نزدیک است، از دوردست حمله کند زمانی که دوردست ها دست نیافتنی است\"- کسنوفانس (\"The Cavalry General\", sec. 5)"
 
 #: gui/text/quotes.txt:193
 msgid ""
 "\"People are glad to obey the man whom they believe to be wiser than "
 "themselves in pursuing their interests.\" - Xenophon (\"The Education of "
 "Cyrus\", 1.6.22)"
-msgstr ""
+msgstr "\"مردم خوشحال خواهند بود تا پیروی کنند از کسی که ایمان دارند که از آنها خردمندتر است و دنبال خواسته های او بروند\"- کسنوفانس (\"The Education of Cyrus\", 1.6.22)"
 
 #: gui/text/quotes.txt:194
 msgid ""
@@ -2037,13 +2039,13 @@ msgid ""
 "better; and throughout all difficulties that he can endure hardships better."
 " This will help to make him loved by his men.\" - Xenophon (\"The Education "
 "of Cyrus\", 1.6.25)"
-msgstr ""
+msgstr "\"در حین عملیات های نظامیش در تابستان فرمانده باید نشان دهد که می تواند بهتر از سربازان آفتاب را تحمل کند و در زمستان می بایست نشان دهد که بهتر از سربازان می تواند سرما را تحمل کند و در مسیر تمام سختی ها او می تواند تمام سختی ها را بهتر از سربازان تحمل کند. این کمک می کند او توسط مردانش دوست داشته شود\"- کسنوفانس (\"The Education of Cyrus\", 1.6.25)"
 
 #: gui/text/quotes.txt:195
 msgid ""
 "\"Battles are decided more by the morale of men than their physical "
 "strength.\" - Xenophon (\"The Education of Cyrus\", 3.3.20)"
-msgstr ""
+msgstr "\"نتیجه نبردها بیشتر با روحیه مردان مشخص می شوند تا با قدرت فیزیک آنها\"- کسنوفانس  (\"The Education of Cyrus\", 3.3.20)"
 
 #: gui/text/quotes.txt:196
 msgid ""
@@ -2051,7 +2053,7 @@ msgid ""
 " that we are human beings! We've got to appear to them like an "
 "uncontrollable nightmare of shields, swords, battle-axes and spears!\" - "
 "Xenophon (\"The Education of Cyrus\", 4.2.22)"
-msgstr ""
+msgstr "\"بزارید به آنها فرصت کافی برای آماده شدن دفاعشان را ندهیم  و برای مشخص شدن آن ما انسان هستیم! ما بر آنها همچون یک کابوس غیر قابل کنترل با شمشیر و تبرهای جنگی و نیزه ظاهر می شویم\"- کسنوفانس (\"The Education of Cyrus\", 4.2.22)"
 
 #: gui/text/quotes.txt:197
 msgid ""
@@ -2059,7 +2061,7 @@ msgid ""
 "plunder, fame, freedom, power - all these are prizes for the winners; the "
 "cowardly, of course, suffer the reverse.\" - Xenophon (\"The Education of "
 "Cyrus\", 7.1.13)"
-msgstr ""
+msgstr "\"من فرض خواهم کرد که تو متوجه شده ای که مردی که بدنبال ضربه زدن و مرگ، غارت، شهرت، آزادی، قدرت می رود همه این ها پاداش فاتح هستند و البته بزدل ها معکوس اینها را رنج خواهند برد\"- کسنوفانس (\"The Education of Cyrus\", 7.1.13)"
 
 #: gui/text/quotes.txt:198
 msgid ""
@@ -2067,7 +2069,7 @@ msgid ""
 " thief and a robber, overreaching the enemy at every point.\" - Xenophon on "
 "how best to gain advantage over the enemy (\"The Education of Cyrus\", "
 "1.6.26)"
-msgstr ""
+msgstr "\"مردی که آنرا می خواهد باید طرح ریزی و حیله گری کند، باهوش و فریبکار همانند یک دزد به دشمنش در هر نقطه ای دست پیدا می کند\"- کسنوفانس (\"The Education of Cyrus\", 1.6.26)"
 
 #: gui/text/quotes.txt:199
 msgid ""
@@ -2075,10 +2077,10 @@ msgid ""
 " Artemisia ram a ship while most of his fleet suffered the reverse, not "
 "knowing that the sunk vessel was his own (Herodotus, \"The Histories\", "
 "VIII. 88)"
-msgstr ""
+msgstr "\"مردان من تبدیل به زن ها شدند و زنهای من تبدیل به مرد!\"- خشایارشا، در مشاهده دژکوب های آرتمیس به یک کشتی حمله کرده بودنددر حالی که نیروهای دریایی در حال عقب رفتن بودند و نمی دانستند کشتی غرق شده برای آنها است (Herodotus, \"The Histories\", VIII. 88)"
 
 #: gui/text/quotes.txt:200
 msgid ""
 "\"For a thinking man is where Wisdom is at home.\" - Zoroaster, founder of "
 "the Zoroastrian religion (\"Ahunuvaiti Gatha\", yasna 30.9)"
-msgstr ""
+msgstr "\"برای یک مرد متفکر خرد خانه اوست\"- زرتشت بنیانگذار آین زرتشت (\"Ahunuvaiti Gatha\", yasna 30.9)"

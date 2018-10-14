@@ -5,18 +5,21 @@
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
 # Cirro Yuan, 2013
+# Hiunn-hué <hiunnhue108@ymail.com>, 2018
 # Jeff Huang <s8321414@gmail.com>, 2013-2017
 # Jonathan Chin <888jonathan@gmail.com>, 2017
 # kevinchentw <kevinchen.gm@gmail.com>, 2014
 # kevinhykuo <kevinhykuo1994@gmail.com>, 2014
+# Money <abc12207@gmail.com>, 2018
 # samrmrf, 2013
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # Zou Yi <zouyi100@outlook.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-04 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-10 17:04+0000\n"
+"Last-Translator: Money <abc12207@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +48,7 @@ msgstr "隨機"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr "當遊戲開始時隨機挑選一個文明。"
+msgstr "遊戲開始時隨機挑選一個文明。"
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
@@ -150,7 +153,7 @@ msgstr "新地圖"
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr "這個版本的遊戲中新增的地圖。"
+msgstr "這版本的遊戲所新增的地圖。"
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
@@ -173,7 +176,7 @@ msgstr "選定地圖類型的每張地圖。"
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "地圖"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
@@ -183,7 +186,7 @@ msgstr "玩家"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "遊戲類型"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
@@ -306,11 +309,11 @@ msgstr "選取遊戲速度。"
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
-msgstr ""
+msgstr "難度"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "選擇這個情境的難度"
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Chose the civilization for this player"
@@ -326,13 +329,13 @@ msgstr "切換英雄是否可以駐守。"
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
-msgstr ""
+msgstr "遊牧"
 
 #: gui/gamesetup/gamesetup.js:853
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "在遊牧模式，玩家一開始只有少數的單位，必須尋找到適合的地方建立自己的城市，建議先停火。"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -438,29 +441,29 @@ msgstr "以目前的設定值展開新遊戲（到所有玩家都準備好前停
 #: gui/gamesetup/gamesetup.js:1083
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "調整AI： %(description)s。"
 
 #: gui/gamesetup/gamesetup.js:1132
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "結構樹\n點擊後會重新開啟最後開啟過之檔案。"
 
 #: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "切換 %(name)s 設定分頁。"
 
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "使用%(hotkey)s 把設定分頁下移。"
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "使用 %(hotkey)s 將設定頁籤向上移動"
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -484,7 +487,7 @@ msgstr "隨機挑選生物群"
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2073
 msgctxt "settings value"
@@ -502,7 +505,7 @@ msgstr "否"
 #: gui/gamesetup/gamesetup.js:2110
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2196
 #, javascript-format
@@ -565,7 +568,7 @@ msgstr "AI 難度："
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "AI行為："
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -585,7 +588,7 @@ msgstr "正在載入"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "讀取地圖中，請稍後..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
@@ -617,7 +620,7 @@ msgstr "傳送"
 
 #: gui/gamesetup/gamesetup.xml:(caption):253
 msgid "Cheats enabled."
-msgstr "作弊已啟用。"
+msgstr "已啟用作弊。"
 
 #: gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Back"
@@ -642,7 +645,7 @@ msgstr "選取玩家。"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Configure AI settings."
-msgstr "配置 AI 設定。"
+msgstr "調整 AI 設定。"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):130
 msgid "Select player's civilization."
@@ -650,11 +653,11 @@ msgstr "選取玩家的文明。"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):134
 msgid "Select player's team."
-msgstr "選取玩家的團隊。"
+msgstr "選取玩家的隊伍。"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "在對話視窗裡顯示多人玩家大廳"
 
 #: gui/text/quotes.txt:1
 msgid ""

@@ -5,21 +5,22 @@
 # Translators:
 # adin1999 <adin1999@walla.com>, 2014
 # adin hykin <adin1664@gmail.com>, 2017
+# felix lufkin <bufonia1@aol.com>, 2018
 # itayitayitay4 <itayitayitay4@gmail.com>, 2014
 # Veloxity <veloxity.ultra@gmail.com>, 2017
 # Yam Huss <yam52@walla.co.il>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-08-30 08:56+0000\n"
-"Last-Translator: Veloxity <veloxity.ultra@gmail.com>\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-07-11 15:35+0000\n"
+"Last-Translator: felix lufkin <bufonia1@aol.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
 #: simulation/data/civs/athen.jsonName
 #: simulation/data/civs/athen.jsonFactions[0].Name
@@ -419,8 +420,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "טרטקש , הצורה הרומית, היאשינוי  קרנאטקה, הוא השם האמיתי שלו , שנדפסו מטבעות רבות שלו. תחת שם זה הוא ייזכר כמגן עז של בריטניה נגד הרומאים לאחר הפלישה שלהם ב43 לספירה קרנאטקה נלחם במשך תשע שנים נגד הרומאים בהצלחה מועטת , סופו של דבר נמלט לשבטים בוויילס , שבו הוא ניצח בהחלטיות. לבסוף הוא נכנס לצפון בריטניה, שם הועברה לידי הרומאים. נלקח לרומא , קרנאטקה הורשה לחיות על הקיסר קלאודיוס ומת באיטליה. מסורת קובעת שהוא התנצר כאשר אשתו עשתה, אבל אין שום דבר שלא ידע על כך , ברור ומוגדר . כנראה יותר ראוי לציון הוא העניין שהותר לו לחיות נתפסו פעם אחת. מדיניות רומית הייתה בדרך כלללגברים יש כאלה שנהרגו במציגים הציבור לחגוג. Karatakos הובא בפניהקיס רוהסנאט בבקשתו להסביר את עצמו . מה שהוא אמר אינו ידוע בודאות , אבל טקיטוס חל עליונאום מפורסם ...\n "
+"but Tacitus applies to him a famous speech…"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -766,11 +767,11 @@ msgstr "הגאלים "
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "-10% research time for technologies of allies."
-msgstr ""
+msgstr "10% זמן המחקר עבור טכנולוגיות של בעלות הברית שלך."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
-msgstr ""
+msgstr "חוכמה דרוידית"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
@@ -781,12 +782,12 @@ msgstr ""
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
 msgid "Viridomarus"
-msgstr ""
+msgstr "וירידומרוס"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
 msgid "Brennus"
-msgstr ""
+msgstr "ברנוס"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
@@ -799,7 +800,7 @@ msgstr "ורקינגטוריקס"
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Vercingetorix"
-msgstr ""
+msgstr "ברסינגטוריקס"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -815,11 +816,11 @@ msgstr "ליציוס"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
 msgid "Valetiacus"
-msgstr ""
+msgstr "ולטיאקוס"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
-msgstr "Viridovix"
+msgstr "וירידובקס"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -828,7 +829,7 @@ msgstr "סכום קבוע של מתכת ומזון מכל מבנה שנהרס א
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Vae Victis"
-msgstr ""
+msgstr "ואי ויקתוס\n"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1126,6 +1127,211 @@ msgid ""
 "fought back."
 msgstr "האיברים היו אנשים ממוצא והשפה מסתוריים, עם מסורת חזקה של רכיבה ועיבוד באבן.היא תרבות שקטה יחסית, הם בדרך כלל נלחמים בקרבותיו של השני רק כשכירי חרב. עם זאת, הם הוכיחו את עקשנותם כאשר רומא ביקשה לקחת את האדמה ואת החופש שלהם מהם, והעסיקה חלוצי טקטיקות והתקפות גרילה שהשתמשו בנשק של כידונים בוערים ."
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "ממלכת כוש"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "פירמידות נוביות של מיירו"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "ללכוד פיל"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "הספקים פיל"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "מפחית את העלות ואת זמן הרכבת עבור פילים עם 20% עבור בעלי ברית של שחקנים Kushite."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "קשתאה"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "אלארה"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "פבאתג׳מה"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "שאבקה"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "שביתקו"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "קאלהתה"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "טכהטנאמון"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "טנטאמאני"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "אטלנירסא"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "נאסלה"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "מאלוויבאמאני"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "הרסיותף"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "שנאדכהטי"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "אמנשקהיטו"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr "נעילת אימון של מרפאות דרגה עילית"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "הכוהן הגבואה שׁל עמון"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "כוהנים שלך ללמוד עמ הכוהן הגבואה – שעמון יברך אותו."
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "נאסטאסן"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "ארקמאני"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "אמאנירנאס"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "האפריקנים של המלכות כוש"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "המלכות הגדול שיושוב בצדים הנהר הנילֹ בנוביאה, במצריים דרומית"
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "בית המקדש של עמון"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "היסטוריאה"
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "מקדש אפדמק"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "פרמידות של מלכות כוש"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "בניית פירמידה קטנה של קושיט פותחת את שלב העיירה. בניית פירמידה כושית גדולה פותחת את שלב העיר. וכל פירמידה בנוי מוסיף + 10% שטח השפעה על מרכזי סיוויק."
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "בנה הכושים יותר מן מיאתיים פראמידות בנוביה."
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "המלכות כוש היה מלכות אפריקית בקדם, יושב במקום איפה הנהר הנילֹ להיתכשר מן שלוש חלכים: הניל הכחול, הניל הלבן, והנהר אומר אטברה, במה שעכשיו המדינת סודן. הימיםשל המלכות הכושית יהי אחר׳ התקופת הברונזה ניגמר בהמלכות החדש של מצריים, והיה לו מרכזו בנאפטה מוקדם. הם פלשו למצרים במאה השמינית לפני הספירה, והקיסרים הקושטים שלטו כפרעונים של השושלת העשרים וחמש של מצרים במשך מאה שנים, עד שהם גורשו על ידי האשורים. התרבות הכושית הושפעה במידה רבה על ידי המצרים, עם מבנה הפירמידה כושית אדריכלות המקדש המונומנטלי עדיין במידה. הכוששים אפילו סגדו לאלים מצריים רבים, כולל עמון. בתקופת הקלאסית העתיקה, בירת הקושי האימפריאלית היתה במרו. בגיאוגרפיה היוונית הקדומה, הממלכה המרואטית הייתה ידועה בשם אתיופיה. הממלכה הכושית נמשכה עד המאה ה -4 לספירה, כאשר היא נחלשה והתפוררה בשל מרד פנימי, ובסופו של דבר נכנעה לכוחו העולה של אקסום."
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1174,7 +1380,7 @@ msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "+20% sell prices at market."
-msgstr ""
+msgstr "+ 20% מחירי המכירה בשוק."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1220,11 +1426,11 @@ msgstr "פירוס של אפירוס "
 
 #: simulation/data/civs/mace.jsonAINames[7]
 msgid "Antigonus II Gonatas"
-msgstr ""
+msgstr "אנטיגונוס 2 – גונאטאס"
 
 #: simulation/data/civs/mace.jsonAINames[8]
 msgid "Demetrius II Aetolicus"
-msgstr ""
+msgstr "דמעטריוס 2 – איטוליקוס"
 
 #: simulation/data/civs/mace.jsonAINames[9]
 msgid "Philip V"
@@ -1236,11 +1442,11 @@ msgstr "פרסאוס"
 
 #: simulation/data/civs/mace.jsonAINames[11]
 msgid "Craterus"
-msgstr ""
+msgstr "קראטירוס"
 
 #: simulation/data/civs/mace.jsonAINames[12]
 msgid "Meleager"
-msgstr ""
+msgstr "מאליאגר"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -1271,7 +1477,7 @@ msgstr ""
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Royal Gift"
-msgstr ""
+msgstr "מתנה מלכותית"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -1374,7 +1580,7 @@ msgstr "אלכסנדר הקים ספריות הגדולות  בכל רחבי ה�
 
 #: simulation/data/civs/mace.jsonStructures[2].Name
 msgid "Siege Workshop"
-msgstr ""
+msgstr "סדנת המצור"
 
 #: simulation/data/civs/mace.jsonStructures[2].Special
 msgid "Constructs and upgrades all Macedonian siege engines."
@@ -1439,7 +1645,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "תמיכה דתית של אשוקה"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1496,10 +1702,6 @@ msgstr ""
 msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
-msgstr ""
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
 msgstr ""
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
@@ -1613,7 +1815,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "הכנסה גבוהה יותר (+ 15%) מסלולי סחר קרקע עבור סוחרים של ברית."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1629,7 +1831,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
-msgstr ""
+msgstr "קורושׁ הגדול"
 
 #: simulation/data/civs/pers.jsonAINames[1]
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[1].Name
@@ -1638,11 +1840,11 @@ msgstr "דריבש הראשון"
 
 #: simulation/data/civs/pers.jsonAINames[2]
 msgid "Cambyses II"
-msgstr ""
+msgstr "קאמביסיס השני"
 
 #: simulation/data/civs/pers.jsonAINames[3]
 msgid "Bardiya"
-msgstr ""
+msgstr "בארדיה"
 
 #: simulation/data/civs/pers.jsonAINames[4]
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[2].Name
@@ -1671,7 +1873,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonAINames[10]
 msgid "Haxamanish"
-msgstr ""
+msgstr "האקסאמניש"
 
 #: simulation/data/civs/pers.jsonAINames[11]
 msgid "Xsayarsa II"
@@ -1730,7 +1932,7 @@ msgstr ""
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Name
 msgid "Nisean War Horses"
-msgstr ""
+msgstr "סוסי מלחמות של מגארה"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
 msgid ""
@@ -1772,7 +1974,7 @@ msgstr ""
 #: simulation/data/civs/pers.jsonStructures[0].Name
 #: simulation/data/civs/sele.jsonStructures[1].Name
 msgid "Cavalry Stables"
-msgstr ""
+msgstr "אורוות פרשים"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
@@ -1784,7 +1986,7 @@ msgstr "החיילים הטובים ביותר של האימפריה הפרסי�
 
 #: simulation/data/civs/pers.jsonStructures[1].Name
 msgid "Apadana"
-msgstr ""
+msgstr "Apadana"
 
 #: simulation/data/civs/pers.jsonStructures[1].Special
 msgid ""
@@ -1858,7 +2060,7 @@ msgstr ""
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr ""
+msgstr "כל בעלי הברית מקבלים באופן אוטומטי זרזיף איטי של מזון."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2095,7 +2297,7 @@ msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
-msgstr ""
+msgstr "גִיוּס חוֹבָה"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
@@ -2305,7 +2507,7 @@ msgstr ""
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
-msgstr ""
+msgstr "טטריפוליס הסורית"
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].History
 msgid ""
@@ -2443,7 +2645,7 @@ msgstr ""
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr ""
+msgstr "לקנות (אחד זמן) 20 פילי מילחמה מן האימפריה המאורית"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Marriage Alliance"
@@ -2481,7 +2683,7 @@ msgstr ""
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[0].Name
 msgid "Seleukos A' Nikator"
-msgstr ""
+msgstr "סליוקוש א׳ניקטור"
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -2513,7 +2715,7 @@ msgstr ""
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[2].Name
 msgid "Antiokhos D' Epiphanes"
-msgstr ""
+msgstr "אנטיוכוס הרביעי (אפִּיפָאנֶס)"
 
 #: simulation/data/civs/sele.jsonFactions[0].Description
 msgid ""
@@ -2593,7 +2795,7 @@ msgstr "על פי החוקה שנכתבה על ידי המחוקק ליקורג�
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr ""
+msgstr "מגביר את בריאותם של חייל חי\"ר spearmen על ידי 10% עבור בעלי ברית של שחקנים ספרטנים."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2743,7 +2945,7 @@ msgstr "אגיס השלישי"
 
 #: simulation/data/civs/spart.jsonStructures[1].Name
 msgid "Syssition"
-msgstr ""
+msgstr "סיסיטיון"
 
 #: simulation/data/civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
@@ -2753,7 +2955,7 @@ msgstr "לאמן גיבורים וספרטנים ולחקור טכנולוגיו
 msgid ""
 "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
 "peer, even kings, belonged to one."
-msgstr ""
+msgstr "היה לספרטה קָפֵטֶרִיָה אומרות סיסטיון. כל אחד שלהם, מן עבדים למלכים, אוכלו בפנים אותם."
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

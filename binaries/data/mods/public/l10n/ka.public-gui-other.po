@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ka\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
@@ -51,11 +51,13 @@ msgstr "ცივილიზაციის %(civilization)s თამაში
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "ცივილიზაციის ჯილდოები"
+msgstr[1] "ცივილიზაციის ჯილდოები"
 
 #: gui/civinfo/civinfo.js:132
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "გუნდის ჯილდოები"
+msgstr[1] "გუნდის ჯილდოები"
 
 #: gui/civinfo/civinfo.js:139
 msgid "Special Technologies"
@@ -65,6 +67,7 @@ msgstr "განსაკუთრებული ტექნოლოგი�
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "განსაკუთრებული შენობები"
+msgstr[1] "განსაკუთრებული შენობები"
 
 #: gui/civinfo/civinfo.js:152 gui/summary/layout.js:67
 msgid "Heroes"
@@ -285,6 +288,7 @@ msgstr ""
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/gamedescription.js:224
 msgctxt "victory condition"
@@ -301,6 +305,7 @@ msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/gamedescription.js:248
 #, javascript-format
@@ -308,6 +313,7 @@ msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/gamedescription.js:264
 msgid "Relic Count"
@@ -387,6 +393,7 @@ msgstr "გამორთული"
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
@@ -681,6 +688,7 @@ msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/settings.js:205
 msgctxt "ceasefire"
@@ -693,6 +701,7 @@ msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/settings.js:220
 msgctxt "map"
@@ -834,12 +843,14 @@ msgstr ""
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:112 gui/common/tooltips.js:353
 #: gui/common/tooltips.js:717
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:165 gui/common/tooltips.js:176
 msgid "Health:"
@@ -855,11 +866,13 @@ msgstr ""
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:195
 msgid "arrow"
 msgid_plural "arrows"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:198
 #, javascript-format
@@ -927,6 +940,7 @@ msgstr ""
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:318 gui/common/tooltips.js:376
 #: gui/common/tooltips.js:381 gui/common/tooltips.js:386
@@ -985,12 +999,14 @@ msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
@@ -1002,12 +1018,14 @@ msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:431
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1106,6 +1124,7 @@ msgstr "სირბილი"
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] ""
+msgstr[1] ""
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
@@ -1113,6 +1132,7 @@ msgstr[0] ""
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:731
 #, javascript-format
@@ -1496,6 +1516,7 @@ msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
 msgstr[0] ""
+msgstr[1] ""
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:125
@@ -1504,6 +1525,7 @@ msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
 msgstr[0] ""
+msgstr[1] ""
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:128

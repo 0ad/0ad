@@ -5,18 +5,19 @@
 # Translators:
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-04-11 09:02+0200\n"
+"PO-Revision-Date: 2018-09-22 11:16+0000\n"
+"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Information"
@@ -32,22 +33,22 @@ msgstr "مشاهده آنلاین"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"] راهنمای داخل بازی 0 A.D"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "از نصب 0 A.D. متشکریم. این صفحه یک توضیح کلی از قابلیت های کنونی این نسخه ی ناکامل، که هنوز تحت توسعه است را به شما می دهد."
+msgstr "از نصب 0 A.D. متشکریم. این صفحه یک توضیح کلی از قابلیت های کنونی این نسخه ی نهایی نشده، که هنوز تحت توسعه است را به شما می دهد."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"] تنظیمات گرافیکی"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -55,11 +56,11 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"] شما می توانید با فشار دادن Alt + Enter بین وضعیت Fullscreen یا Windowed تغییر وضعیت دهید. در حالت Windowed، شما می توانید سایز پنجره بازی را تغییر دهید. اگر بازی خیلی کند اجرا می شود شما می توانید در صفحه تنظیمات گرافیکی بعضی از موارد را مثل افکت آب یا سایه ها را غیر فعال کنید."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"] بازی کردن بازی"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -67,7 +68,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"] کنترل و گیمپلی بازی باید برای کسانی که سبک بازی های سنتی RTS را انجام داده اند، آشنا باشد. در حال حاضر قابلیت های بسیاری در بازی هنوز پیاده سازی نشده است.– شما احتمالا باید منتظر نسخه بتا باشید تا بازی بخوبی کار کند."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -75,15 +76,15 @@ msgstr "کنترل‌های اصلی:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "برای انتخاب واحد ها از کلیک چپ موس استفاده کنید."
+msgstr "• برای انتخاب واحد ها از کلیک چپ موس استفاده کنید."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "کلیک چپ موس را نگه داشته و آن را حرکت دهید تا گروهی از واحد ها را انتخاب کنید."
+msgstr "• کلیک چپ موس را نگه داشته و آن را حرکت دهید تا گروهی از واحد ها را انتخاب کنید."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "برای فرمان دادن با واحد ها روی هدف کلیک راست کنید."
+msgstr "• برای فرمان دادن با واحد ها روی هدف کلیک راست کنید."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
@@ -91,19 +92,19 @@ msgstr "•  از کلید‌های جهت یا WASD برای حرکت دادن 
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "نگه داشتن کنترل همزمان با استفاده از کلید های جهتی، یا نگه داشتن شیفت همراه با تغییر اسکرول موس باعث چرخش دوربین می شود."
+msgstr "• نگه داشتن Ctrl همزمان با استفاده از کلید های جهتی Arrow keys، یا نگه داشتن شیفت همراه با تغییر اسکرول موس باعث چرخش دوربین می شود."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "برای بزرگنمایی از کلید های \"+\" یا \"-\"، یا از اسکرول موس استفاده کنید."
+msgstr "• برای بزرگنمایی از کلید های \"+\" یا \"-\"، یا از اسکرول موس استفاده کنید."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]مدها"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]منوی اصلی به شما امکان دسترسی به دو مد بازی را می دهد:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -112,13 +113,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]تکنفره [font=\"sans-14\"] — بازی با جعبه شنی یا در مقابل یک هوش مصنوعی. این AI ها در حال حاضر در حال توسعه می باشند و ممکن است بر روی قابلیت های جدید به سرعت بروزرسانی نشوند. اما شما می توانید آنها را در بازی تست کنید اگر نمیخواهید با یک حریف واقعی بازی کنید."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]چند نفره[font=\"sans-14\"] — بازی در مقابل حریف های انسان از طریق اینترنت"
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -130,13 +131,13 @@ msgstr "برای راه اندازی یک بازی چند نفره، یکی از
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]تنظیم بازی"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]در بازی چندنفره تنها میزبان بازی قادر است تنظیمات بازی را تغییر دهد"
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
@@ -146,19 +147,19 @@ msgstr "اول، نقشه ای که می خواهید بازی کنید را ا�
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]نقشه تصادفی [font=\"sans-14\"] — یک نقشه بصورت تصادفی و خودکار انتخاب می شود."
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]نقشه سناریو [font=\"sans-14\"] —  یک نقشه ساخته شده توسط طراحان نقشه با تمدن های ثابت"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]نقشه تهاجم [font=\"sans-14\"] — یک نقشه ساخته شده توسط طراحان نقشه اما تمدن ها را می توان انتخاب کرد."
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -167,7 +168,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "سپس نقشه ها را می توان فیلتر کرد. نقشه پیش فرض معمولا از نقشه های قابل بازی است. نقشه های دریایی نقشه هایی هستند که افراد می توانند به دریا دسترسی داشته باشند و نقشه های دمو نقشه هایی هستند که برای تست استفاده می شوند (عموما مناسب بازی نیستند). فیلتر \"تمام نقشه ها\" تمام نقشه ها را در لیست نشان خواهد داد."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -176,7 +177,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "در نهایت تغییر تنظیمات. برای یک نقشه تصادفی این شامل تعداد بازیکن ها و اندازه نقشه است و .. . برای سناریوها شما تنها می توانیدانتخاب کنید چه کسی چه بازیکنی را کنترل کند (تصمیم گیری زمانی که نقشه آغاز می شود). تنظیمات یا یک بازیکن انسان ، هوش مصنوعی AI یا هیچ بازیکن (حریف کاری انجام نخواهد داد) است."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -184,19 +185,19 @@ msgstr "زمانی که آماده بودید، بر روی دکمه \"شروع 
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]کلید های میانبر:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Program-wide"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]در خصوص نرم افزار بازی"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]ی Alt+F4: بستن بازی بدون گرفتن تایید"
 
 #: gui/manual/intro.txt:45
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Enter: رفت و آمد بین حالت تمام صفحه و پنجره ای."
+msgstr "Alt + Enter: تغییر وضعیت بین حالت تمام صفحه و پنجره ای."
 
 #: gui/manual/intro.txt:46
 msgid "~ or F9: Show/hide console"
@@ -221,50 +222,50 @@ msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "F2: گرفتن اسکرین شات (در قالب PNG، محل ذخیره در قسمت بالا چپ صفحه نشان داده می شود، شما همچنین در کنسول نیز می توانید این اطلاعات را مشاهده کنید)"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "Shift + F2: گرفتن اسکرین شات بزرگ (6400px*4800px، درقالب bpm ، محل ذخیره در قسمت بالا سمت چپ صفحه نمایش داده می شود، شما همچنین در کنسول نیز می توانید این اطلاعات را مشاهده کنید)"
 
 #: gui/manual/intro.txt:52
-msgid "Alt + S: Switch to the next tab."
-msgstr ""
+msgid "Tab, Alt + S: Switch to the next tab."
+msgstr "Tab, Alt +S: رفتن به صفحه بعدی"
 
 #: gui/manual/intro.txt:53
-msgid "Alt + W: Switch to the previous tab."
-msgstr ""
+msgid "Shift + Tab, Alt + W: Switch to the previous tab."
+msgstr "Shift +Tab, Alt +W: برگشتن به صفحه قبل"
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]داخل بازی"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"] دوبار کلیک چپ زدن [بر روی نیرو]: انتخاب تمام نیروهای از این نوع که در صفحه نمایش دیده می شوند (حتی اگر در درجه های مختلفی باشند)"
 
 #: gui/manual/intro.txt:57
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr ""
+msgstr "سه بارکلیک چپ زدن [بر روی نیرو]: انتخاب تمام نیروهای از این نوع که در تمام نقشه وجود دارند حتی اگر در رتبه های مختلفی باشند"
 
 #: gui/manual/intro.txt:58
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + Double click [بر روی نیرو]: انتخاب تمام نیروهای هم نوع در تمام نقشه (حتی اگر در درجه های مختلفی باشند)"
 
 #: gui/manual/intro.txt:59
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + سه بار کلیک چپ [روی نیرو]: انتخاب نیروهای همان نوع و رنک در تمام نقشه"
 
 #: gui/manual/intro.txt:60
 msgid "Shift + F5: Quicksave"
@@ -272,7 +273,7 @@ msgstr "Shift + F5: ذخیره سریع "
 
 #: gui/manual/intro.txt:61
 msgid "Shift + F8: Quickload"
-msgstr "Shift + F8: بارگزاری سریع"
+msgstr "Shift + F8: بارگذاری سریع"
 
 #: gui/manual/intro.txt:62
 msgid "F10: Open/close menu"
@@ -280,391 +281,407 @@ msgstr "F10: باز/بسته کردن منو"
 
 #: gui/manual/intro.txt:63
 msgid "F12: Show/hide time elapsed counter"
-msgstr ""
+msgstr "F12: ظاهر کردن / مخفی کردن زمان سپری شده"
 
 #: gui/manual/intro.txt:64
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: بستن تمام پنجره های باز (چت ، منو) یا پاک کردن مواردی که انتخاب شده اند."
 
 #: gui/manual/intro.txt:65
 msgid "Enter/return: Open/send chat"
-msgstr ""
+msgstr "Enter/Return: بازکردن/ارسال پیام"
 
 #: gui/manual/intro.txt:66
 msgid "T: Send team chat"
-msgstr ""
+msgstr "T: ارسال پیام تیمی"
 
 #: gui/manual/intro.txt:67
 msgid "L: Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "L: چت کردن با فرد قبلی که با او چت خصوصی انجام دادید"
 
 #: gui/manual/intro.txt:68
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pause: توقف / ادامه بازی"
 
 #: gui/manual/intro.txt:69
 msgid "Delete: Delete currently selected units/buildings"
-msgstr "حذف: حذف  واحد / ساختمان انتخاب شده"
+msgstr "Delete: حذف  واحد / ساختمان انتخاب شده"
 
 #: gui/manual/intro.txt:70
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr ""
+msgstr "Shift +Delete: از بین بردن نیروها / ساختمان های که در حال حاضر انتخاب شده اند بدون تایید"
 
 #: gui/manual/intro.txt:71
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr ""
+msgstr "/ (اسلش رو به جلو): انتخاب جنگجوهای بیکار"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /:  اضافه کردن جنگجوی بیکار به گروه انتخاب شده"
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
-msgstr ""
+msgstr "Alt + /: انتخاب تمام جنگجو های بیکار"
 
 #: gui/manual/intro.txt:74
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ""
+msgstr ". (نقطه) : انتخاب کارگر بیکار (شامل سرباز های شهروند)"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr " shift + . : اضافه کردن تمام کارگرهای بیکار به گروه انتخاب شده (شامل سربازهای شهروند)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr ""
+msgstr "Alt + . : انتخاب تمام کارگرهای بیکار (شامل سربازهای شهروند)"
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr ""
+msgstr "\\ (اسلش رو به عقب): انتخاب نیروی بیکار"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr ""
+msgstr "Shift + \\ : اضافه کردن نیروی بیکار به گروه انتخاب شده"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
-msgstr ""
+msgstr "Alt + \\ : انتخاب تمام نیروهای بیکار"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
-msgstr ""
+msgstr "H: متوقف کردن (توقف) تمام نیروهای انتخاب شده فعلی"
 
 #: gui/manual/intro.txt:81
 msgid "Y: The unit will go back to work"
-msgstr ""
+msgstr "Y: نیرو به کارش بر می گردد"
 
 #: gui/manual/intro.txt:82
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U: خارج کردن نیروهایی که در ساختمان یا در یک نیرو مستقر شده اند"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr ""
+msgstr "Ctrl + 1 ( و ادامه تا 0) : یک کنترل ایجاد می کند که می توان به نیرو ها و ساختمان ها (از 1 تا 0) داد"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr ""
+msgstr "1 (تا شماره 0): انتخاب گروه هایی که تعریف کردیم شامل نیروها و ساختمان ها (1 تا 0)"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Shift + 1 (تا شماره 0): وقتی یک نیرو را انتخاب کرده اید و با شیفت یک گروه از قبل کنترل داده شده را صدا میزنید همه آنها باهم انتخاب می شوند (1 تا 0)"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr ""
+msgstr "Ctrl + F5 (تا F8): علامت گذاشتن موقعیت فعلی دوربین، برای اینکه بعدا با انتخاب F5 تا F8 دوربین به آن منطقه بپرد"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr ""
+msgstr "F5, F6, F7 و F8: برای حرکت دوربین به جاهای علامت گذاری شده. اگر دوربین در جای علامت گذاشته شده باشد دوربین به اخرین جایی که قرار داشته بر می گردد."
 
 #: gui/manual/intro.txt:88
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C ,V ,B, N, M: در ساختمان هایی که با آنها نیرو پرورش میدهید به ترتیب از سمت چپ اولین ، دومین .... نیروه برای پرروش"
 
 #: gui/manual/intro.txt:89
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
-msgstr ""
+msgstr "PageUp با نیروی انتخاب شده: مشخص کردن نیرو/ساختمان که گروه انتخاب شده محافظت می شود"
 
 #: gui/manual/intro.txt:90
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
-msgstr ""
+msgstr "PagedDown با نیرو/ساختمان انتخاب شده: مشخص کردن نیرویی که محافظت انجام می دهد"
 
 #: gui/manual/intro.txt:91
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Tab: دیدن تمام نوارهای وضعیت (میزان پیشرفت ساختمان را نیز نشان می دهد)"
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
-msgstr ""
+msgstr "Ctrl + Tab: تغییر وضعیت پنجره خلاصه اطلاعات"
 
 #: gui/manual/intro.txt:93
-msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr ""
+msgid "Alt + L: Show the multiplayer lobby in a dialog window."
+msgstr "Alt + L: نشان دادن لابی بازی چند نفره در یک پنجره"
 
 #: gui/manual/intro.txt:94
+msgid "Ctrl + B: Toggle in-game barter/trade page."
+msgstr "Ctrl + B: تغییر وضعیت صفحه تهاتر / تجارت"
+
+#: gui/manual/intro.txt:95
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Ctrl + P: پنل آموزش داخل بازی."
 
 #: gui/manual/intro.txt:96
-msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgid "Alt + Shift + T: Toggle structure tree."
+msgstr "Ctrl + Shift + T: تغییر وضعیت ساختار درختی"
 
 #: gui/manual/intro.txt:97
-msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
-
-#: gui/manual/intro.txt:98
-msgid "J + Right Click on building: Repair"
-msgstr ""
+msgid "Alt + Shift + H: Toggle civilization info."
+msgstr "Alt + Shift + H: تغییر وضعیت اطلاعات تمدن."
 
 #: gui/manual/intro.txt:99
-msgid "P + Right Click: Patrol"
-msgstr ""
+msgid "[font=\"sans-bold-14\"]Modify mouse action"
+msgstr "[font=\"sans-bold-14\"]تغییر کار ماوس"
 
 #: gui/manual/intro.txt:100
-msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr ""
+msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
+msgstr "[font=\"sans-14\"]ی Ctrl + کلیک راست: مستقر شدن نیرو در ساختمان"
 
 #: gui/manual/intro.txt:101
+msgid "J + Right Click on building: Repair"
+msgstr "J + کلیک راست: تعمیر"
+
+#: gui/manual/intro.txt:102
+msgid "P + Right Click: Patrol"
+msgstr "P + کلیک راست: گشت زنی"
+
+#: gui/manual/intro.txt:103
+msgid "Shift + Right Click: Queue the move/build/gather/etc order"
+msgstr "Shift + کلیک راست: در صف قرار دادن فرمان حرکت / جمع کردن / ساخت / حمله و ..."
+
+#: gui/manual/intro.txt:104
 msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
-msgstr ""
+msgstr "Alt + کلیک راست: فرمان دادن به یک نیرو از نیروهای انتخاب شده برای حرکت/ساخت/جمع کردن و خارج از انتخاب کردن آن."
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:105
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
-msgstr ""
-
-#: gui/manual/intro.txt:103
-msgid ""
-"Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
-
-#: gui/manual/intro.txt:104
-msgid ""
-"Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
-
-#: gui/manual/intro.txt:105
-msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr ""
+msgstr "Shift + کلیک چپ: زمانی که نیرو پرورش می دهید: اضافه کردن نیروها در یک دسته  (دسته بصورت پیش فرض 5 نیرو داد و در تنظیمات قابل تغییر است)"
 
 #: gui/manual/intro.txt:106
-msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr ""
+msgid ""
+"Shift + Left Click or Left Drag over unit on map: Add unit to selection"
+msgstr "Shift + کلیک چپ یا کشیدن نمایشگر ماوس با کلیک چپ روی نقشه: اضافه کردن نیرو به گروه انتخاب شده"
 
 #: gui/manual/intro.txt:107
-msgid "I + Left Drag over units on map: Only select idle units"
-msgstr ""
+msgid ""
+"Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
+msgstr "Ctrl + کلیک چپ یا نگه داشتن کلیک چپ و کشیدن آن بروی نقشه: برداشتن نیرو از گروه انتخاب شده"
 
 #: gui/manual/intro.txt:108
-msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr ""
+msgid "Alt + Left Drag over units on map: Only select military units"
+msgstr "Alt + نگه داشتن کلیک چپ بر روی نیروها روی نقشه: تنها انتخاب نیروهای نظامی"
 
 #: gui/manual/intro.txt:109
-msgid ""
-"Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr ""
+msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
+msgstr "Alt + Y + نگهداشتن کلیک چپ و کشیدن برروی نیروها روی نقشه: تنها انتخاب نیروهای غیر نظامی"
 
 #: gui/manual/intro.txt:110
-msgid ""
-"Right Click with a building/buildings selected: sets a rally point for units"
-" created/ungarrisoned from that building."
-msgstr ""
+msgid "I + Left Drag over units on map: Only select idle units"
+msgstr "I + نگهداشتن کلیک چپ و کشیدن بر روی نیروها روی نقشه: تنها انتخاب نیروهای بی کار"
 
 #: gui/manual/intro.txt:111
-msgid "Ctrl + Right Click with units selected:"
-msgstr ""
+msgid "O + Left Drag over units on map: Only select wounded units"
+msgstr "O + نگهداشتن کلیک چپ و کشیدن بر روی نیروها روی نقشه: فقط انتخاب نیروهای زخمی"
 
 #: gui/manual/intro.txt:112
-msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgid ""
+"Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
+msgstr "Ctrl + کلیک چپ و کشیدن بر روی عکس نیروها و گروهایی که چندین نیرو دارند: از انتخاب خارج کردن"
 
 #: gui/manual/intro.txt:113
 msgid ""
-"    - If the cursor is over a non-allied unit or building: Attack (instead "
-"of capture or gather)"
-msgstr ""
+"Right Click with a building/buildings selected: sets a rally point for units"
+" created/ungarrisoned from that building."
+msgstr "کلیک راست زمانی که ساختمان/ساختمان هایی انتخاب شده هستند: قرار دادن نقطه تجمع برای نیروهایی که ساخته می شوند یا از حالت استقرار خارج می شوند."
 
 #: gui/manual/intro.txt:114
+msgid "Ctrl + Right Click with units selected:"
+msgstr "Ctrl + کلیک راست به همراه نیروهای انتخاب شده:"
+
+#: gui/manual/intro.txt:115
+msgid "    - If the cursor is over an allied structure: Garrison"
+msgstr "- اگر نشانگر ماوس بر روی ساختمان های خودی باشد: مستقر شدن"
+
+#: gui/manual/intro.txt:116
+msgid ""
+"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"of capture or gather)"
+msgstr "- اگر نشانگر ماوس بر روی نیروها و یا ساختمان های غیر متحد باشد: حمله ( می تواند تسخیر یا جمع کردن نیز باشد)"
+
+#: gui/manual/intro.txt:117
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
-
-#: gui/manual/intro.txt:116
-msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
-
-#: gui/manual/intro.txt:117
-msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
-
-#: gui/manual/intro.txt:118
-msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr "- به غیر از این موارد: حرکت حمله ( به صورت پیش فرض تمام نیروهای دشمن و ساختمان که در مسیر قرار دارند مورد حمله قرار خواهند گرفت، از Ctrl + Q + کلیک راست استفاده کنید تا تنها نیروها را هدف قرار دهند)"
 
 #: gui/manual/intro.txt:119
+msgid "[font=\"sans-bold-14\"]Overlays"
+msgstr "[font=\"sans-bold-14\"]نمایش"
+
+#: gui/manual/intro.txt:120
+msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
+msgstr " [font=\"sans-14\"]ی Alt + G: نمایش/عدم نمایش GUI"
+
+#: gui/manual/intro.txt:121
+msgid "Alt + D: Show/hide developer overlay (with developer options)"
+msgstr "Alt + D: نمایش/ عدم نمایش توسعه دهنده ( همراه با تنظیمات توسعه دهنده)"
+
+#: gui/manual/intro.txt:122
 msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
-
-#: gui/manual/intro.txt:120
-msgid ""
-"Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
-"boost)"
-msgstr ""
-
-#: gui/manual/intro.txt:121
-msgid "Alt + Z: Toggle sky"
-msgstr ""
-
-#: gui/manual/intro.txt:122
-msgid ""
-"Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
+msgstr "Alt + Shift + W: تغییر وضعیت Wireframe mode (یک بار فشار دهید تا Wireframes overlaid بر روی Textured models فعال شود، دوبار فشار دهید تا تنها Wireframes های رنگی را بر Textures فعال کنید، سه بار فشار دهید تا به حالت نرمال Textured mode باز گردید)"
 
 #: gui/manual/intro.txt:123
 msgid ""
-"Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr ""
+"Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
+"boost)"
+msgstr "Alt + Shift + S: تغییر وضعیت سایه نمای نیروها ( ممکن است کمی بر روی عملکرد بازی تاثیر داشته باشد)"
 
 #: gui/manual/intro.txt:124
-msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr ""
+msgid "Alt + Z: Toggle sky"
+msgstr "Alt + Z: تغییر وضعیت آسمان"
+
+#: gui/manual/intro.txt:125
+msgid "Alt + X: Toggle diplomacy colors"
+msgstr "Alt + X: تغییر وضعیت رنگ های دیپلوماسی"
 
 #: gui/manual/intro.txt:126
-msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgid ""
+"Alt + C: Toggle attack range visualizations of selected defensive structures"
+msgstr "Alt + C: تغییر وضعیت حالت نمایش شعاع حمله سازه های انتخاب شده"
 
 #: gui/manual/intro.txt:127
-msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr ""
+msgid ""
+"Alt + V: Toggle aura range visualizations of selected units and structures"
+msgstr "Alt + V: حالت نمایش شعاع آئورا برای نیروها و ساختمان های انتخاب شده"
 
 #: gui/manual/intro.txt:128
-msgid "S or \\[down]: Pan screen down"
-msgstr ""
-
-#: gui/manual/intro.txt:129
-msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgid "Alt + B: Toggle heal range visualizations of selected units"
+msgstr "Alt + B: تغییر وضعیت حالت نمایش شعاع درمان نیروهای انتخاب شده"
 
 #: gui/manual/intro.txt:130
-msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgid "[font=\"sans-bold-14\"]Camera manipulation"
+msgstr "[font=\"sans-bold-14\"]دستکاری دوربین"
 
 #: gui/manual/intro.txt:131
-msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr ""
+msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
+msgstr "[font=\"sans-14\"]بالا یا W [کلید جهت بالا روی کیبورد]: حرکت دوربین به سمت بالا"
 
 #: gui/manual/intro.txt:132
-msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr ""
+msgid "S or \\[down]: Pan screen down"
+msgstr "S یا پایین [کلید جهت پایین روی کیبورد]: حرکت دوربین به سمت پایین"
 
 #: gui/manual/intro.txt:133
-msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgid "A or \\[left]: Pan screen left"
+msgstr "A یا چپ [کلید جهت چپ روی کیبورد]: حرکت دوربین به سمت چپ"
 
 #: gui/manual/intro.txt:134
-msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgid "D or \\[right]: Pan screen right"
+msgstr "D یا راست [کلید جهت راست روی کیبورد]: حرکت دوربین به سمت راست"
 
 #: gui/manual/intro.txt:135
-msgid "Q: Rotate camera clockwise around terrain"
-msgstr ""
+msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
+msgstr "Ctrl + W یا [کلید جهت بالا روی کیبورد]: تغییر زاویه دید دوربین برای نگاه از بالا"
 
 #: gui/manual/intro.txt:136
-msgid "E: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
+msgstr "Ctrl + S یا [کلید جهت پایین روی کیبورد]: تغییر زاویه دید دوربین برای نگاه از پایین"
 
 #: gui/manual/intro.txt:137
-msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
+msgstr "Ctrl + A یا [جهت چپ]: جرخش دوربین بصورت ساعت گرد"
 
 #: gui/manual/intro.txt:138
-msgid ""
-"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
+msgstr "Ctrl + D یا [جهت راست]: جرخش دوربین بصورت پاد ساعت گرد"
 
 #: gui/manual/intro.txt:139
+msgid "Q: Rotate camera clockwise around terrain"
+msgstr "Q: چرخش دوربین بصورت ساعت گرد"
+
+#: gui/manual/intro.txt:140
+msgid "E: Rotate camera anticlockwise around terrain"
+msgstr "E: چرخش دوبین بصورت پاد ساعت گرد"
+
+#: gui/manual/intro.txt:141
+msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
+msgstr "Shift + چرخ ماوس به سمت بالا: چرخش دوربین بصورت ساعت گرد"
+
+#: gui/manual/intro.txt:142
+msgid ""
+"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
+msgstr "Shift + چرخ ماوس به سمت پایین: چرخش دوربین بصورت پاد ساعت گرد"
+
+#: gui/manual/intro.txt:143
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
-msgstr ""
-
-#: gui/manual/intro.txt:140
-msgid "R: Reset camera zoom/orientation"
-msgstr ""
-
-#: gui/manual/intro.txt:141
-msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
-
-#: gui/manual/intro.txt:142
-msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr ""
-
-#: gui/manual/intro.txt:143
-msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "F: دنبال کردن نیروی انخاب شده (دوربین را حرکت دهید تا از دنبال کردن نیرو را متوقف کند)"
 
 #: gui/manual/intro.txt:144
+msgid "R: Reset camera zoom/orientation"
+msgstr "R: ریست کردن نمای دوربین به حالت اولیه"
+
+#: gui/manual/intro.txt:145
+msgid "+: Zoom in (keep pressed for continuous zoom)"
+msgstr "+ : زوم کردن به داخل ( نگهدارید تا بصورت ادامه دار تا مقدار مجاز زوم انجام شود)"
+
+#: gui/manual/intro.txt:146
+msgid "-: Zoom out (keep pressed for continuous zoom)"
+msgstr "- : زوم کردن به خارج ( نگهدارید تا بصورت ادامه دار تا مقدار مجاز زوم انجام شود)"
+
+#: gui/manual/intro.txt:147
+msgid "Alt + W: Toggle through wireframe modes"
+msgstr "Alt + W: تغییر وضعیت Wireframe modes"
+
+#: gui/manual/intro.txt:148
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "دکمه وسط موس: برای حرکت دکمه را نگه دارید و به محل مورد نظر بکشید"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]در زمان قرار دادن پایه ساختمان"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"][ : چرخش ساختمان به میزان 15 درجه ساعت گرد"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:152
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr ""
+msgstr "] : چرخش ساختمان به میزان 15 درجه پاد ساعت گرد"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:153
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr ""
+msgstr "کشیدن کلیک چپ: چرخش ساختمان با مواس (پایه ساختمان با برداشتن کلیک ماوس گذاشته خواهد شد)"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]زمانی که بازی ذخیره شده بازیابی می شود"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:156
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]پاک کردن: پاک کردن بازی ذخیره شده با گرفتن تایید"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr ""
+msgstr "Shift: نپرسیدن برای تایید زمانی که میخواهید بازی ذخیره شده را پاک کنید و پاک کردن مستقیم آن"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -673,42 +690,42 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr ""
+msgstr "به عنوان یک بازی آزاد و مجانی، ما توان تست کردن بازی بر روی طیف گسترده انواع سیستم ها را نداریم، اما ما می خواهیم که بهترین کیفیت و یک تجربه خوب را برای بازیکن های بیشتری فراهم کنیم. زمانی که شما بازخورد خودکار را فعال می کنید، ما اطلاعاتی از شما دریافت می کنیم که با کمک می کند تا متوجه شویم بر روی چه سخت افزار هایی می بایست تمرکز کنیم و بتوانیم مشکلات عملکردی را شناسایی و رفع کنیم."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr ""
+msgstr "اطلاعات زیر به سرور ما ارسال خواهد شد"
 
 #: gui/manual/userreport.txt:5
 msgid ""
-"• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
-"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
-"from the same user."
-msgstr ""
+"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
+"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
+"reports from the same user."
+msgstr "- یک کاربر با شناسه کاربری تصادفی ( ذخیره شده در %A PPDATA%\\\\0ad\\\\config\\\\user.cfg بر روی سیستم عامل ویندوز،~/.config/0ad/config/user.cfg بر روی سیستم عامل لینوکس)، برای اینکه بتوانیم گزارش های خرابی که توسط یک کاربر ارسال میشوند را تشخیص دهیم."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr "- شماره نسخه بازی و اطلاعات اصلی تنظیمات ( حالت بهینه سازی ، معماری پردازنده، timestamp و نسخه کامپایلر)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr ""
+msgstr "- جزیات سخت افزار: نسخه سیستم عامل، درایور کارت گرافیکی، ظرفیت OpenGl ، اندازه صفحه نمایش ، جزیات پردازنده و اندازه رم دستگاه."
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr "- اطلاعات عملکرد: یک تصویر از زمانبندی داده ها چند ثانیه بعد از شروع یک بازی یا تغییر."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr ""
+msgstr "داده هایی که جمع آوری می شوند در هربار که بازی را اجرا می کنید تنها چند کیلوبایت هستند بنابرین حداقل تاثیر بر روی پهنای باند شما را خواهد داشت."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -717,4 +734,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr ""
+msgstr "ما اطلاعات ارسال شده بار بر روی سرور خود نگهداری می کنیم و ممکن است اطلاعات آماری بدون جزیات مربوط به مشخصات کاربر را برای کمک به برنامه نویس ها منتشر کنیم. ما IP سیستم ارسال کننده را ذخیره می کنیم تا بتوانیم سو استفاده از خدمات بازی را شناسایی کنیم ولی هیچ گاه اطلاعات آن را منتشر نخواهیم کرد. اطلاعات منتشر شده قابل مشاهده در سایت زیر است: http://feedback.wildfiregames.com/"

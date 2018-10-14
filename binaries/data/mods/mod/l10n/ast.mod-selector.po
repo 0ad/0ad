@@ -4,13 +4,13 @@
 # 
 # Translators:
 # David Sowa <isithere2@yahoo.com>, 2017-2018
-# enolp <enolp@softastur.org>, 2017
+# enolp <enolp@softastur.org>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-24 23:52+0000\n"
-"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
+"PO-Revision-Date: 2018-05-02 22:22+0000\n"
+"Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,28 +21,28 @@ msgstr ""
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s %(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime for a guide to the meaning of the letters.
@@ -79,7 +79,7 @@ msgstr "Ríquese: %(mods)s"
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Activóse: %(mods)s"
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -88,12 +88,12 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Nun pudo recuperase la ID del xuegu.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "Fallu d'aniciación"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
@@ -111,12 +111,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Nun pudo recuperase'l llistáu de mods.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr ""
+msgstr "Fallu na recuperación"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -139,7 +139,7 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Fallu na verificación de ficheros.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
@@ -148,11 +148,11 @@ msgstr "Fallu de verificación"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr ""
+msgstr "Aniciando interfaz mod.io."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "Aniciando"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.js:313
 #: gui/modmod/modmod.xml:(caption):184
@@ -161,7 +161,7 @@ msgstr "Encaboxar"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr ""
+msgstr "Diendo en cata y anovando'l llistáu de mods disponibles."
 
 #: gui/modio/modio.js:233
 msgid "Updating"
@@ -198,7 +198,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr ""
+msgstr "Tiempu trescurríu: %(elapsed)s\nTiempu estimáu restante: %(remaining)s\nVelocidá media: %(avgSpeed)s"
 
 #: gui/modio/modio.js:332
 msgid "∞"
@@ -209,7 +209,7 @@ msgstr "∞"
 #: gui/modio/modio.js:334
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr "%(number)s %(unit)s/s"
 
 #: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
 msgid "Filter"
@@ -231,7 +231,7 @@ msgid ""
 "While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
 "\n"
 "Do you really want to connect?"
-msgstr ""
+msgstr "Tas a piques de coneutate al serviciu en llinia de mod.io. Esto forne accesu a mods fechos pola comunidá, pero nun ta sol control de Wildfire Games.\n\nSi bien nos aseguremos de qu'esto seya seguro, nun podemos garantizar con denguna certeza que nun seya un riesgu de seguranza.\n\n¿De xuru que quies coneutate?"
 
 #: gui/modmod/modmod.js:312
 msgid "Connect to mod.io?"
@@ -252,7 +252,7 @@ msgstr "Aceutar"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "Mods de mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -264,7 +264,7 @@ msgstr "Atrás"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
-msgstr ""
+msgstr "Refrescar llistáu"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
@@ -362,7 +362,7 @@ msgstr "Zarrar"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "Guía de modificación"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
@@ -372,7 +372,7 @@ msgstr "Visitar mod.io"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr ""
+msgstr "0 A.D. ta diseñáu pa ser modificable de mou fácil. Los mods distribúinse en forma de ficheros .pyromod que pue abrise como ficheros ZIP."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -382,13 +382,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
+msgstr "Pa instalar un mod, namái abri'l ficheru con 0 A.D. (quier faciendo clic doblu en ficheru y escoyendo abrir col xuegu, quier executando «pyrogenesis ficheru.pyromod» nuna terminal). El mod va tar disponible nel seleutor de mods. Pues activalu y desactivalu cuando quieras, o desanicialu a mano usando'l restolador de ficheros si lo precises (mira https://trac.wildfiregames.com/wiki/GameDataPaths)"
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr ""
+msgstr "Pa más información tocante a la modificación del xuegu, mira la Guía de modificación (primi nel botón d'embaxo)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -397,4 +397,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr ""
+msgstr "El serviciu mod.io desendólcalu DBolical, la compaña darrera d'IndieDB y ModDB. ¡Esto sitios web falaron de 0 A.D. y otros proyeutos indie demientres munchu tiempu! Güei mod.io permítenos llistar y baxar tolos mods que verificó l'equipu. ¡Primi «Baxar mods» pa probar ya instalar dalgún!"

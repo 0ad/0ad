@@ -9,6 +9,8 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # cgand <gand61@gmail.com>, 2017
 # George Lungu <lungugeorge88@gmail.com>, 2018
+# Lorenzo Frascari <frascarilorenzo@gmail.com>, 2018
+# mattia_b89 <mattia.b89@gmail.com>, 2018
 # Me Lazzi, 2014-2017
 # Michele Marongiu <michelemarongiu@gmail.com>, 2017
 # Nicola Jelmorini, 2014-2015
@@ -16,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-19 16:18+0000\n"
-"Last-Translator: George Lungu <lungugeorge88@gmail.com>\n"
+"POT-Creation-Date: 2018-04-11 09:02+0200\n"
+"PO-Revision-Date: 2018-05-31 21:01+0000\n"
+"Last-Translator: mattia_b89 <mattia.b89@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -239,12 +241,12 @@ msgid ""
 msgstr "Maiusc + F2: scatta una schermata enorme (6400px*4800px, in formato .png, la posizione è indicata nell'interfaccia grafica in alto a sinistra, una volta che il file è stato salvato, oppure recuperala dalla console o dai file di log)."
 
 #: gui/manual/intro.txt:52
-msgid "Alt + S: Switch to the next tab."
-msgstr "Alt + S: Passa alla scheda successiva."
+msgid "Tab, Alt + S: Switch to the next tab."
+msgstr "Tab, Alt + S: Passa alla scheda successiva"
 
 #: gui/manual/intro.txt:53
-msgid "Alt + W: Switch to the previous tab."
-msgstr "Alt + W: Passa alla scheda precedente."
+msgid "Shift + Tab, Alt + W: Switch to the previous tab."
+msgstr "Shift + Tab, Alt + W: Passa alla scheda precedente"
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -423,254 +425,270 @@ msgid "Ctrl + Tab: Toggle summary window."
 msgstr "Ctrl + Tab: Attiva la finestra di riepilogo."
 
 #: gui/manual/intro.txt:93
+msgid "Alt + L: Show the multiplayer lobby in a dialog window."
+msgstr "Alt + L: Mostra la stanza multi-giocatore in una finestra di dialogo"
+
+#: gui/manual/intro.txt:94
 msgid "Ctrl + B: Toggle in-game barter/trade page."
 msgstr "Ctrl + B: per andare nella schermata del baratto/commercio."
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "Ctrl + P: Toggle in-game tutorial panel."
 msgstr "Ctrl + P: per andare nella sezione tutorial"
 
 #: gui/manual/intro.txt:96
+msgid "Alt + Shift + T: Toggle structure tree."
+msgstr "Alt + Shift + T: Mostra/nascondi albero struttura"
+
+#: gui/manual/intro.txt:97
+msgid "Alt + Shift + H: Toggle civilization info."
+msgstr "Alt + Shift + H: Mostra/nascondi le informazioni sulla civiltà"
+
+#: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
 msgstr "[font=\"sans-bold-14\"]Modifica l'azione del mouse"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:100
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
 msgstr "[font=\"sans-14\"]Ctrl + Clic Destro sugli edifici: Presidia"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:101
 msgid "J + Right Click on building: Repair"
 msgstr "J + Click Destro sugli edifici: Ripara"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:102
 msgid "P + Right Click: Patrol"
 msgstr "P + Click Destro: Ronda armata"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:103
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
 msgstr "Maiusc + Clic tasto Destro: Accoda gli ordini muovi/costruisci/raccogli/ecc"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:104
 msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
 msgstr "Alt + Tasto Destro: Deseleziona e ordina a un'unità dell'attuale selezione di spostarsi/costruire/raccogliere/ecc. Viene utilizzato per inviare unità con compiti specifici."
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:105
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
 msgstr "Shift + Tasto Sinistro del Mouse quando stai addestrando unità: Aggiunge unità a gruppi (la dimensione di base, 5, può essere cambiata nelle opzioni)"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:106
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
 msgstr "Maiusc + Clic tasto Sinistro o Selezione multipla delle unità: Aggiunge unità alla selezione"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:107
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
 msgstr "Ctrl + Clic o Selezione multipla delle unità: Rimuove l'unità dalla selezione"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:108
 msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr "Alt + Selezione multipla sulle unità nella mappa: Seleziona solo le unità militari"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:109
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
 msgstr "Alt + Y + trascinamento a sinistra delle unità: si selezionano solo unità non militari"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:110
 msgid "I + Left Drag over units on map: Only select idle units"
 msgstr "I + Selezione multipla sulle unità nella mappa: Seleziona solo le unità inattive"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:111
 msgid "O + Left Drag over units on map: Only select wounded units"
 msgstr "O + Selezione multipla sulle unità nella mappa: Seleziona solo le unità ferite"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:112
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr "Ctrl + Clic Sinistro sull'icona unità o gruppo con più unità selezionate: Deseleziona"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:113
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
 msgstr "Clic Destro con uno o più edifici selezionati: imposta un punto di raccolta per le unità create/mobilitate da quella costruzione."
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:114
 msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Clic Destro con le unità selezionate:"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:115
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "- Se il cursore è su una struttura alleata: Presidia"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:116
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
 msgstr "- Se il cursore è su una struttura o unità non alleata: Attacca (invece di cattura o raccogli)"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:117
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr ". Altrimenti: Spostamento offensivo (di default, tutte le strutture ed unità nemiche sul percorso vengono attaccate, usa Ctrl + Q + Click Destro per attaccare solo le unità).  "
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Sovrapposizioni"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G: Nascondi/mostra l'interfaccia"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:121
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D: Mostra/nascondi la finestra sviluppatore (con opzioni di sviluppo)"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:122
 msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "Alt + Shift + W: Attiva modalità wireframe (premi una volta per ottenere i wireframe sovrapposti ai modelli texture, due volte per ottenere solo i wireframe colorati dalle trame, tre volte per tornare alla modalità normale con le texture)"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:123
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
 msgstr "Alt + Shift + S: Attiva/disattiva profilo delle unità (potrebbe dare un piccolo incremento alle prestazioni)"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:124
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z: Rimuove il cielo"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:125
+msgid "Alt + X: Toggle diplomacy colors"
+msgstr "Alt + X: Mostra/nascondi i colori diplomatici"
+
+#: gui/manual/intro.txt:126
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
 msgstr "Alt + C: Rileva l'area d'attacco delle strutture difensive selezionate."
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:127
 msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
 msgstr "Alt + V: rivela l'area dell'aura delle unità e delle strutture selezionate"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:128
 msgid "Alt + B: Toggle heal range visualizations of selected units"
 msgstr "Alt + B: evidenzia l'area di cura delle unità selezionate"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Modifica visuale"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:131
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W o \\[up]: Panoramica Schermo"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:132
 msgid "S or \\[down]: Pan screen down"
 msgstr "S o \\[down]: Muove lo schermo in basso"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:133
 msgid "A or \\[left]: Pan screen left"
 msgstr "A o \\[left]: Muove lo schermo a sinistra"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:134
 msgid "D or \\[right]: Pan screen right"
 msgstr "D o \\[right]: Muove lo schermo a destra"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:135
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W o \\[up]: Ruota la visuale per guardare in alto"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:136
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S o \\[down]: Ruota telecamera per guardare verso il basso"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:137
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A o \\[left]: Ruota la visuale in senso orario intorno al terreno"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:138
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D o \\[right]: Ruota la visuale in senso antiorario intorno al terreno"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Ruota la visuale in senso orario intorno al terreno"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:140
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E: Ruota la visuale in senso antiorario intorno al terreno"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + rotella del mouse ruotata verso l'alto: ruota la visuale in senso orario intorno al terreno"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:142
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + rotella del mouse ruotata verso il basso: ruota la visuale in senso antiorario intorno al terreno"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:143
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
 msgstr "F: Segue l'unità selezionata (sposta la visuale per interrompere l'inseguimento)"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:144
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: Ripristina lo zoom e/o l'orientamento della telecamera"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:145
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: Restringi la visuale (mantieni premuto per uno zoom continuo)"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-: Zoom indietro (mantieni premuto per uno zoom continuo)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:147
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: passa alla modalità wireframe"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:148
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "Tasto centrale del mouse: Mantenere premuto e muovere il mouse per spostare la panoramica"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Durante il posizionamento dell'edificio"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[: Ruota la costruzione di 15 gradi in senso antiorario"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:152
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: Ruota la costruzione di 15 gradi in senso orario"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:153
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Trascinare verso sinistra: Ruota l'edificio utilizzando il mouse (la costruzione verrà piazzata al rilascio del pulsante)"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]Caricando un gioco salvato"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:156
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Cancellare: cancellare il gioco salvato selezionato chiedendo conferma"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: non chiedere conferma quando si cancella un gioco salvato"
 
@@ -689,10 +707,10 @@ msgstr "I dati seguenti saranno inviati al nostro server:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
-"• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
-"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
-"from the same user."
-msgstr "• ID utente casuale (salvato in %APPDATA%\\0ad\\config\\user.cfg su Windows, ~/.config/0ad/config/user.cfg su Unix), ci consente di individuare l'invio di rapporti multipli dallo stesso utente"
+"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
+"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
+"reports from the same user."
+msgstr "• Uno ID utente casuale (salvato in %APPDATA%\\\\0ad\\\\config\\\\user.cfg su Windows, ~/.config/0ad/config/user.cfg su Unix), per permetterci di rilevare resoconti ripetuti dallo stesso utente."
 
 #: gui/manual/userreport.txt:6
 msgid ""

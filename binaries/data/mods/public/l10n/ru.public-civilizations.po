@@ -14,6 +14,7 @@
 # bigaltum <bigaltum@gmail.com>, 2014
 # Bogdan Artemyev <bogarto@mail.ru>, 2014
 # Boris Karalnik <eyesucker@gmail.com>, 2018
+# Check Tester <registruser@yandex.com>, 2018
 # Cергей Исаченко <vortexius@gmail.com>, 2014
 # Владимир Смирнов <delpfine2012@gmail.com>, 2014
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
@@ -28,6 +29,7 @@
 # Jacob Lutin <jacoblutin@gmail.com>, 2017
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2014-2015
 # Malik Khodjaev <loc.root.123@gmail.com>, 2013
+# GreWeMa <gwm@tutanota.com>, 2018
 # Oleg Ekhlakov <subspam@mail.ru>, 2014
 # Pavel Kyzmin <Virus191288@gmail.com>, 2013
 # Павел Монахов <mpolr21@gmail.com>, 2014
@@ -51,9 +53,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2018-04-25 16:05+0000\n"
-"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-07-15 21:36+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -459,7 +461,7 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
+"but Tacitus applies to him a famous speech…"
 msgstr "Карактак, римская форма имени, является производным от Каратак, его настоящего имени, которое было нанесено на великое множество монет. Под этим именем он вошёл в историю как ярый защитник Британии от римлян после их вторжения в 43 г. н.э. Сын короля Кунобелина Катувеллаунского союза племён, Каратак сражался с римлянами на протяжении девяти лет с переменным успехом, впоследствии бежал к племенам в Уэльсе, где был окончательно разгромлен. В результате он оказался в Северной Британии, где был выдан римлянам. После того, как его привезли в Рим, Каратак получил милость императора Клавдия, и впоследствии умер в Италии. Предание гласит, что он принял Христианство вслед за своей женой, однако этот факт так и остался неподтвержденным. Вероятно, наиболее примечательно то, что после пленения ему было позволено жить, ведь обычно в таких случаях римляне устраивали публичные казни на радость толпе. По просьбе Каратака, ему позволили выступить и объясниться перед императором и Сенатом. Доподлинно неизвестно, что было сказано, однако Тацит произносит про него известную речь..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
@@ -1166,6 +1168,211 @@ msgid ""
 "fought back."
 msgstr "Иберийцы были народом с загадочным происхождением и языком, крепкими традициями коневодства и кузнечного дела. Будучи носителями относительно миролюбивой культуры, они обычно участвовали в сражениях в качестве наёмников у других народов. Однако, когда Рим пытался забрать у них земли и свободу, они показали своё упорство, задействовав новаторскую тактику партизанской войны и использование огненных дротиков во время ответных нападений."
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "Кушиты"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "Пирамиды Мероэ"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr "Каждая возведенная кушитская пирамида на +10% увеличивает влияние городского центра на территорию."
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr "Рудники"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr "Игроки Кушитов получают бесплатную дополнительную металлическую шахту где-то на своей территории."
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Загон для слонов"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr "Может ловить диких слонов и отводить их в загон, чтобы снизить затраты на обучение боевых слонов."
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Поставщики слонов"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Снижает затраты и время на обучение слонов на 20% для союзников кушитов."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "Кашта"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "Алара"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "Пебатма"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "Шабака"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "Шебитку"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "Калхата"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "Такахатенамун"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "Танутамон"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "Атланерса"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "Насалса"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "Малиевиебамани"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "Горсиотеф"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "Шанакдахете"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "Аманишахето"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "Монументальная архитектура"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr "+50% единиц зоровья -50% времени на постройку для городских центров, храмов, пирамид и Чудес."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr "Позволяет обучать элитных целителей"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "Первосвященник Амона"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "Ваших священников обучит сам Великий Жрец - да благославит его Амон."
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Настасен"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Аркамани"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Аманиренас"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "Кушиты Африканцы"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "Великое африканское королевство, покрывало реку Нил в Нубии, на юге Египта."
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "Храм Амона"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr "Кушиты могут модернизировать свои храмы в Храмы Амона, которые позволяют обучать Напатанскую храмовую стражу и быстрее исцелять юнитов."
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "История."
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "Храм Апедемака"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr "Кушиты могут модернизировать свои храмы в Храмы Апедемака, которые позволяют тренировать Мероитскую храмовую стражу и исцелять юнитов быстрее."
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "Кушитские Пирамиды"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "Строительство маленькой пирамиды кушитов открывает фазу города. Строительство большой пирамиды кушитов открывает фазу города. Каждая построенная пирамида добавляет + 10% территории городским центрам."
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "Кушиты построили более 200 пирамид в Нубии."
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "Царство Куш было древним африканским царством, расположенным на месте слияния Голубого Нила, Белого Нила и реки Атбара - там, где сейчас находится Республика Судан. Эпоха правления кушитов в регионе началась после катастрофы бронзовой века и упадка Нового Царства Египта,и на раннем этапе была сосредоточена в Напате. В 8 веке до н.э. они вторглись в Египет, а кушитские императоры правили как фараоны XXV династии Египта на протяжении столетия, пока их не изгнали ассирийцы. Культура кушитов подверглась сильному влиянию египетской: подобно египтянам кушиты строили пирамиды и возводили величественные храмы. Кушиты даже поклонялись многим египетским богам, в том числе Амону. Во время классического периода столицей империи кушитов был Мероэ. В ранних греческих географических источниках Мероитское царство было известно как Эфиопия. Кушитское царство просуществовало до 4 века н.э., пока оно, ослабшее и раздираемое восстаниями, в конце концов не уступило набиравшему силу Аксумскому царству."
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1537,10 +1744,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Поймайте до 5 диких слонов, отправьте их в слоновий загон и получите уменьшение времени их обучения и стоимости максимум на 25%."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Загон для слонов"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."

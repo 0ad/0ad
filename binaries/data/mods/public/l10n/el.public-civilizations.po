@@ -18,6 +18,7 @@
 # LOUKAS SKOUROLIAKOS, 2015
 # malvanos <malvanos@gmail.com>, 2014
 # Menelaos Vergis <menelaosvergis@gmail.com>, 2014
+# Michael Chatz <chatziasemidismichael@gmail.com>, 2018
 # ridergr <ridergr@gmail.com>, 2014
 # Savoritias <inactive+Savoritias@transifex.com>, 2014
 # Sotiris K <sotok42@gmail.com>, 2015
@@ -31,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-10-15 14:27+0000\n"
-"Last-Translator: Steven Gikas <stevengk123@gmail.com>\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-06-17 14:27+0000\n"
+"Last-Translator: Michael Chatz <chatziasemidismichael@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -439,8 +440,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "Caractacus, η ρωμαϊκή μορφή, είναι μια απλή αλλαγή από Καράτακος, το πραγματικό του όνομα, το οποίο τυπώθηκε σε πολλά, πολλά νομίσματα του. Σύμφωνα με αυτό το όνομα έχει μείνει στην ιστορία ως ένας άγριος ​​υπερασπιστής της Βρετανίας εναντίον των Ρωμαίων μετά την εισβολή τους το 43 μ.Χ. Γιος του βασιλιά Κυνοβελλίνου της συνομοσπονδιακής φυλής Catuvellauni, o Καράτακος αγωνίστηκε για εννέα χρόνια εναντίον των Ρωμαίων με μικρή επιτυχία, τελικά διέφυγε προς τις  φυλές στην Ουαλία, όπου νικήθηκε αποφασιστικά. Τέλος εισήλθε στην Βόρεια Βρετανία, όπου παραδόθηκε στους Ρωμαίους. Μεταφέρθηκε στη Ρώμη, ο Καράτακος του επιτράπηκε να ζήσει από τον αυτοκράτορα Κλαύδιο και πέθανε στην Ιταλία. Η παράδοση αναφέρει ότι ασπάστηκε τον Χριστιανισμό όταν το έκανε η σύζυγός του, αλλά δεν υπάρχει κάτι γνωστό πάνω σε αυτό που να το οριστικοποιει.. Πιθανώς πιο αξιοσημείωτο είναι το θέμα όπου του επιτράπηκε να ζήσει μόλις αιχμαλωτίστηκε. Η Ρωμαϊκή πολιτική ήταν χαρακτηριστικό να σκοτώνει τέτοια άτομα σε δημόσια θέα για να γιορτάσει. Ο Καράτακος προσήχθη ενώπιον του αυτοκράτορα και της Γερουσίας μετά από αίτηση του,  για να δώσει εξηγήσεις. Το τι είπε δεν είναι γνωστό με  βεβαιότητα, αλλά ο Τάκιτος έχει εφαρμόσει για αυτόν μια διάσημη ομιλία..."
+"but Tacitus applies to him a famous speech…"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1146,6 +1147,211 @@ msgid ""
 "fought back."
 msgstr "Οι Ίβηρες ήταν ένας λαός με μυστήρια καταγωγή και γλώσσα, με ισχυρή παράδοση στην ιππασία και τη μεταλλουργία. Με σχετικά ειρηνική κουλτούρα, που συνήθως πολέμησαν στις μάχες των άλλων μόνο ως μισθοφόροι. Ωστόσο, αποδείχθηκαν σκληροτράχηλοι όταν η Ρώμη προσπάθησε να πάρει τη γη και την ελευθερία από αυτούς, και χρησιμοποίησαν πρωτοποριακές τακτικές ανταρτοπόλεμου και φλεγόμενα ακόντια, καθώς αμυνόντουσαν."
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "Κουσίτες"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "Οι Πυραμίδες του Μερόε"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Μάνδρισμα Ελέφαντα"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Προμηθευτές Ελεφάντων"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Μειώνει το κόστος και το χρόνο εκπαίδευσης κατά 20% για τους ελέφαντες των συμμάχους των Κουσίτων παικτών."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "Κάστα"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "Αλάρα"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "Πεμπατιμά"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "Σαμπακά"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "Σεμπιτκού"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "Καλχάτα"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "Τακαχατεναμούν"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "Τανταμανί"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "Ατλανέρσα"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "Νασάλσα"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "Μαλεβιεμπαμανί"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "Χαρσιοτέφ"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "Σανακνταχετέ"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "Αμανισαχέτο"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "Μνημειώδη Αρχιτεκτονική"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "Αρχιερέας του Άμμωνος"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "Έχεις τους ιερείς σου υπό την καθοδήγηση του ίδιου του Αρχιερέα - είθε ο Άμμων να τον ευλογεί."
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Νασσάσεν"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Αρακαμάνι"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Αμανιρένας"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "Αφρικανοί Κουσίτε"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "Το μέγα Αφρικανικό βασίλειο που εξαπλώθηκε στον ποταμό Νείλο στη Νουβία, στα νότια της Αιγύπτου."
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "Ναός του Άμμωνος"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "Ιστορία."
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "Ναός του Απεδεμάκ"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "Κουσίτε Πυραμίδες"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr ""
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1517,10 +1723,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Πιάσε μέχρι 5 ελέφαντες Γαίας και οχύρωσε τους στους Στάβλους Ελεφάντων για να κερδίσεις  επιπλέον μέχρι 25% στο κόστος και χρόνο εκπαίδευσης τους."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Μάνδρισμα Ελέφαντα"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."

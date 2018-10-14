@@ -5,12 +5,13 @@
 # Translators:
 # Adrian-Ciprian Tînjală <adrian.tinjala@gmail.com>, 2015
 # Andres Petrescu <skillparkninja@yahoo.com>, 2018
+# Robert <roberto_asasinul_2006@yahoo.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 15:42+0000\n"
-"Last-Translator: w3as3l54\n"
+"PO-Revision-Date: 2018-06-30 23:01+0000\n"
+"Last-Translator: Robert <roberto_asasinul_2006@yahoo.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +43,7 @@ msgstr ""
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s%(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime for a guide to the meaning of the letters.
@@ -63,7 +64,7 @@ msgstr ", "
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s(%(version)s)"
 
 #: gui/common/mod.js:20
 msgid ", "
@@ -73,13 +74,13 @@ msgstr ", "
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "Necesită: %(mods)s"
 
 #: gui/common/mod.js:30
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Activ: %(mods)s"
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -130,7 +131,7 @@ msgstr ""
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "Eroare de descărcare"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -165,11 +166,11 @@ msgstr ""
 
 #: gui/modio/modio.js:233
 msgid "Updating"
-msgstr ""
+msgstr "Se actualizează"
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr ""
+msgstr "Anulare actualizare"
 
 #: gui/modio/modio.js:248
 #, javascript-format
@@ -178,11 +179,11 @@ msgstr ""
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr ""
+msgstr "Se descarcă"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr ""
+msgstr "Anulare descărcare"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
@@ -235,7 +236,7 @@ msgstr ""
 
 #: gui/modmod/modmod.js:312
 msgid "Connect to mod.io?"
-msgstr ""
+msgstr "Conectare către mod.io?"
 
 #: gui/modmod/modmod.js:313
 msgctxt "mod.io connection message box"
@@ -252,7 +253,7 @@ msgstr "OK"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "Moduri mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -268,7 +269,7 @@ msgstr ""
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr ""
+msgstr "Descarcă"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -324,11 +325,11 @@ msgstr "Părăsește"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr ""
+msgstr "Ajutor"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr ""
+msgstr "Descărcare moduri"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -366,7 +367,7 @@ msgstr ""
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "Vizitează mod.io"
 
 #: gui/modmod/help/help.txt:1
 msgid ""

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Martin Paldermaa <mart.palder@gmail.com>, 2018
 # unserializable <unserializable@freenet.de>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-07 09:03+0100\n"
-"PO-Revision-Date: 2018-02-07 15:04+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-08-24 01:11+0000\n"
+"Last-Translator: Martin Paldermaa <mart.palder@gmail.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/wildfire-games/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,11 +48,11 @@ msgstr "Metallikaevandus"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr ""
+msgstr "Mineraalide kaevandamine, mis võimaldab juurdepääsu haruldaste Väärismetallide vormidele."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
-msgstr ""
+msgstr "Kivi"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Stone Mine"
@@ -59,7 +60,7 @@ msgstr "Kivikaevandus"
 
 #: simulation/templates/template_gaia_geo_rock.xml:6
 msgid "Mine these to provide Stone building material."
-msgstr ""
+msgstr "Kaevanda neid, et saada Kiviehitusmaterjali."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
@@ -103,7 +104,7 @@ msgstr ""
 
 #: simulation/templates/template_structure.xml:59
 msgid "Structure"
-msgstr ""
+msgstr "Struktuur"
 
 #: simulation/templates/template_unit.xml:40
 msgid "Unit"
@@ -121,7 +122,7 @@ msgstr "Aleksander Suure armee"
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
 msgid "This is what an army would look like on the Strat Map."
-msgstr ""
+msgstr "Selline näeb armee välja Strateegia Kaardil."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
@@ -142,7 +143,7 @@ msgstr "Leonidas I armee"
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:25
 #: simulation/templates/campaigns/campaign_city_test.xml:25
 msgid "Market"
-msgstr ""
+msgstr "Turg"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
@@ -151,19 +152,19 @@ msgstr "Asundus"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
-msgstr ""
+msgstr "Väike Kreeka Polis"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city."
-msgstr ""
+msgstr "See on väike Kreeka linn."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr ""
+msgstr "Kreeka Polis"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "See on suur Kreeka linn."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -183,7 +184,7 @@ msgstr "Karu"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
 msgid "Wild Boar"
-msgstr ""
+msgstr "Metssiga"
 
 #: simulation/templates/gaia/fauna_boar.xml:19
 msgid "Sus scrofa"
@@ -313,7 +314,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
-msgstr ""
+msgstr "Poni"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
@@ -321,7 +322,7 @@ msgstr "Jänes"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Rhinoceros"
-msgstr ""
+msgstr "Ninasarvik"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
@@ -345,7 +346,7 @@ msgstr "Morsk"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
-msgstr ""
+msgstr "Heeringavaal"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
@@ -361,7 +362,7 @@ msgstr "Hunt"
 
 #: simulation/templates/gaia/fauna_wolfhound.xml:4
 msgid "Wolfhound"
-msgstr ""
+msgstr "Hundikoer"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
@@ -369,7 +370,7 @@ msgstr "Sebra"
 
 #: simulation/templates/gaia/fauna_zebu.xml:9
 msgid "Zebu"
-msgstr ""
+msgstr "Seebu"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
@@ -389,7 +390,7 @@ msgstr "Viinamarjad"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
-msgstr ""
+msgstr "Kogu viinamarju nendelt viinapuudelt Toidu jaoks."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
@@ -472,7 +473,7 @@ msgstr "Palm"
 
 #: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr ""
+msgstr "Troopiline Palm"
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
@@ -538,7 +539,7 @@ msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:10
 msgid "Roman Statues"
-msgstr ""
+msgstr "Rooma Kujud"
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
@@ -644,7 +645,7 @@ msgstr ""
 #: simulation/templates/other/bridge_hele.xml:16
 #: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
-msgstr ""
+msgstr "Sild"
 
 #: simulation/templates/other/bridge_wooden.xml:16
 #: simulation/templates/other/bridge_wooden.xml:17
@@ -770,7 +771,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_fort.xml:7
 msgid "Wooden Tower"
-msgstr ""
+msgstr "Puidust Torn"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
@@ -778,7 +779,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_gate.xml:19
 msgid "Wooden Gate"
-msgstr ""
+msgstr "Puidust värav"
 
 #: simulation/templates/other/palisades_rocks_long.xml:27
 #: simulation/templates/other/palisades_rocks_medium.xml:27

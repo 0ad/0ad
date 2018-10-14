@@ -6,43 +6,44 @@
 # amirrezaw hosseini <amirrezaw15@yahoo.com>, 2016
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-23 14:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-23 08:51+0000\n"
+"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr ""
+msgstr "برشی"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr ""
+msgstr "سوراخ کردن"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr ""
+msgstr "لهیدن"
 
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: تغییر به ساختار درختی"
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr ""
+msgstr "%(hotkey)s: بستن تاریخچه"
 
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
@@ -52,21 +53,24 @@ msgstr "%(civilization)s گیم پلی"
 #: gui/civinfo/civinfo.js:127
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] "جوایز تمدن"
+msgstr[0] "امتیازات تمدن"
+msgstr[1] "امتیازات تمدن"
 
 #: gui/civinfo/civinfo.js:132
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "جوایز تیم"
+msgstr[0] "امتیازات تیم"
+msgstr[1] "امتیازات تیم"
 
 #: gui/civinfo/civinfo.js:139
 msgid "Special Technologies"
-msgstr "تکنولوژی‌های ویژه"
+msgstr "فناوری های ویژه"
 
 #: gui/civinfo/civinfo.js:145
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] "ساختمانهای خاص"
+msgstr[0] "ساختمانهای ویژه"
+msgstr[1] "ساختمانهای ویژه"
 
 #: gui/civinfo/civinfo.js:152 gui/summary/layout.js:67
 msgid "Heroes"
@@ -75,17 +79,17 @@ msgstr "قهرمانان"
 #: gui/civinfo/civinfo.js:162
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "تاریخ %(civilization)s"
 
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "کلید میانبر تخصیص نیافته: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr "کلید %(hotkey)s را برای خودکار کردن اسم بازیکن ها فشار دهید."
+msgstr "کلید %(hotkey)s را برای تکمیل خودکار نام بازیکن ها فشار دهید"
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -97,7 +101,7 @@ msgstr "برگه"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "بازکردن %(url)s\nدر مرورگر پیش فرض. لطفا صبر کنید ..."
 
 #: gui/common/functions_global_object.js:11
 msgid "Opening page"
@@ -111,11 +115,11 @@ msgstr "FPS: %(fps)4s"
 
 #: gui/common/functions_global_object.js:90
 msgid "Loading Aborted"
-msgstr "بارگزاری لغو شد"
+msgstr "بارگذاری لغو شد"
 
 #: gui/common/functions_utility.js:29
 msgid "Gaia"
-msgstr ""
+msgstr "مادر طبیعت"
 
 #: gui/common/functions_utility.js:105
 msgctxt "map selection"
@@ -129,12 +133,12 @@ msgstr "yyyy-MM-dd HH:mm:ss"
 #: gui/common/functions_utility_loadsave.js:22
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s%(map)s-%(description)s"
 
 #: gui/common/functions_utility_loadsave.js:23
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s%(map)s"
 
 #: gui/common/functions_utility_loadsave.js:53
 #, javascript-format
@@ -143,7 +147,7 @@ msgstr "\"%(label)s\""
 
 #: gui/common/functions_utility_loadsave.js:55
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "سیو برای همیشه از بین می رود. مطمئنید؟"
+msgstr "بازی ذخیره شده برای همیشه پاک خواهد شد، آیا مطمئن هستید؟"
 
 #: gui/common/functions_utility_loadsave.js:56
 msgid "DELETE"
@@ -166,94 +170,94 @@ msgstr "بله"
 #: gui/common/functions_utility_loadsave.js:74
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "پاک کردن ورودی های انتخاب شده با استفاده از %(hotkey)s"
 
 #: gui/common/functions_utility_loadsave.js:79
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "نگهداشتن %(hotkey)s برای پاک کردن بدون تایید"
 
 #: gui/common/gamedescription.js:44
 msgid "A randomly selected map."
-msgstr "نقشه تصادفی انتخاب شده"
+msgstr "یک نقشه تصادفی انتخاب شده"
 
 #: gui/common/gamedescription.js:53 gui/common/gamedescription.js:337
 msgid "Sorry, no description available."
-msgstr "متاسفم . هیچ توضیحی وجود ندارد ."
+msgstr "متاسفم . هیچ توضیحی وجود ندارد."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:104
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s(%(civ)s،%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:107
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s(%(civ)s، %(AIdescription)s، %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:113
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:116
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s(%(AIdescription)s، %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:126
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (آفلاین)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:129
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s(آفلاین ،%(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:136
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s(%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:139
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s(%(civ)s،%(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:143
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:146
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s(%(state)s)"
 
 #: gui/common/gamedescription.js:166
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "تمدن ناشناخته"
 
 #: gui/common/gamedescription.js:173
 msgctxt "playerstate"
@@ -281,105 +285,108 @@ msgstr "تیم %(team)s"
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:207
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
+msgstr[0] "ناظران"
+msgstr[1] "ناظران"
 
 #: gui/common/gamedescription.js:224
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr ""
+msgstr "بازی بی پایان"
 
 #: gui/common/gamedescription.js:225
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "هیچ برنده ای مشخص نخواهد شد حتی اگر همه شکست بخورند"
 
 #: gui/common/gamedescription.js:236
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "سازه عجایب (%(min)s دقیقه)"
+msgstr[1] "سازه عجایب (%(min)s دقیقه)"
 
 #: gui/common/gamedescription.js:248
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "تسخیر آثار مقدس (%(min)s دقیقه)"
+msgstr[1] "تسخیر آثار مقدس (%(min)s دقیقه)"
 
 #: gui/common/gamedescription.js:264
 msgid "Relic Count"
-msgstr ""
+msgstr "تعداد آثار مقدس"
 
 #: gui/common/gamedescription.js:271
 msgid "Hero Garrison"
-msgstr ""
+msgstr "قهرمان مستقر"
 
 #: gui/common/gamedescription.js:272
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "قهرمان ها قادر به مستقر شدن هستند"
 
 #: gui/common/gamedescription.js:276
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "قهرمان های در معرض خطر"
 
 #: gui/common/gamedescription.js:277
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "قهرمان ها قادر به مستقر شدن نیستند و آنها در برابر تهاجم ها آسیب پذیر هستند"
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
-msgstr ""
+msgstr "بازی رتبه بندی"
 
 #: gui/common/gamedescription.js:285
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "زمانی که برنده بازی مشخص شد، امتیاز لابی درست خواهد شد"
 
 #: gui/common/gamedescription.js:290
 msgid "Locked Teams"
-msgstr ""
+msgstr "تیم های قفل شده"
 
 #: gui/common/gamedescription.js:291
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "بازیکن ها نمی توانند تیم های اولیه خود را تغییر دهند"
 
 #: gui/common/gamedescription.js:295
 msgid "Diplomacy"
-msgstr ""
+msgstr "دیپلوماسی"
 
 #: gui/common/gamedescription.js:296
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "بازیکن ها می توانند هم پیمان های جدید ایجاد کنند و به هم پیمان های خود اعلام جنگ کنند"
 
 #: gui/common/gamedescription.js:301
 msgid "Last Man Standing"
-msgstr ""
+msgstr "تنها بازمانده "
 
 #: gui/common/gamedescription.js:302
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "تنها یک بازیکن می تواند برنده بازی باشد. اگر بازیکن های باقی مانده با هم متحد هستند، بازی ادامه پیدا می کند تا زمانی که فقط یک بازیکن باقی بماند"
 
 #: gui/common/gamedescription.js:306
 msgid "Allied Victory"
-msgstr ""
+msgstr "پیروزی متحدان"
 
 #: gui/common/gamedescription.js:307
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "اگر یک بازیکن برنده شود، همپیمان های او نیز برنده می شوند. اگر یک بازیکن از گروهی متحد باقی ماند آنها برنده می شوند"
 
 #: gui/common/gamedescription.js:311
 msgid "Ceasefire"
-msgstr ""
+msgstr "آتش بس"
 
 #: gui/common/gamedescription.js:314 gui/pregame/mainmenu.js:95
 msgid "disabled"
@@ -388,102 +395,103 @@ msgstr "غیرفعال"
 #: gui/common/gamedescription.js:315
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
+msgstr[0] "برای دقیقه نخست، سایر بازیکن ها بی طرف خواهند ماند"
+msgstr[1] " برای %(min)s دقیقه نخست، سایر بازیکن ها بی طرف باقی خواهند ماند"
 
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "نقشه تصادفی"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "انتخاب نقشه بصورت تصادفی از لیست"
 
 #: gui/common/gamedescription.js:330
 msgid "Map Name"
-msgstr ""
+msgstr "نام نقشه"
 
 #: gui/common/gamedescription.js:334
 msgid "Map Description"
-msgstr ""
+msgstr "توضیحات نقشه"
 
 #: gui/common/gamedescription.js:342
 msgid "Map Type"
-msgstr ""
+msgstr "نوع نقشه"
 
 #: gui/common/gamedescription.js:348
 msgid "Map Filter"
-msgstr ""
+msgstr "فیلتر نقشه"
 
 #: gui/common/gamedescription.js:357
 msgid "Map Size"
-msgstr ""
+msgstr "اندازه نقشه"
 
 #: gui/common/gamedescription.js:366
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "زیست بوم تصادفی"
 
 #: gui/common/gamedescription.js:367
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr " انتخاب یک زیست بوم بصورت تصادفی از لیست"
 
 #: gui/common/gamedescription.js:381
 msgid "Nomad Mode"
-msgstr ""
+msgstr "مد عشایر"
 
 #: gui/common/gamedescription.js:381
 msgid "Civic Centers"
-msgstr ""
+msgstr "مراکز تمدن"
 
 #: gui/common/gamedescription.js:384
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "بازیکن ها بازی را با چند کارگر آغاز می کنند و باید مکان مناسبی برای ساخت شهر خود پیدا کنند و آنرا بسازند"
 
 #: gui/common/gamedescription.js:385
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "بازیکن ها بازی را با یک مرکز تمدن آغاز می کنند"
 
 #: gui/common/gamedescription.js:389
 msgid "Starting Resources"
-msgstr ""
+msgstr "منابع در آغاز"
 
 #: gui/common/gamedescription.js:390
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s(%(amount)s)"
 
 #: gui/common/gamedescription.js:400
 msgid "Population Limit"
-msgstr ""
+msgstr "سقف جمعیت"
 
 #: gui/common/gamedescription.js:408
 msgid "Treasures"
-msgstr ""
+msgstr "گنجینه ها"
 
 #: gui/common/gamedescription.js:410
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "غیرفعال"
 
 #: gui/common/gamedescription.js:411
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "همانظور که در نقشه تعریف شده است"
 
 #: gui/common/gamedescription.js:415
 msgid "Revealed Map"
-msgstr ""
+msgstr "نقشه آشکار شده"
 
 #: gui/common/gamedescription.js:420
 msgid "Explored Map"
-msgstr ""
+msgstr "نقشه کشف شده"
 
 #: gui/common/gamedescription.js:425
 msgid "Cheats"
-msgstr ""
+msgstr "تقلب ها"
 
 #: gui/common/gamedescription.js:429 gui/common/tooltips.js:164
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:260
@@ -497,97 +505,97 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:432
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "فعال شده"
 
 #: gui/common/gamedescription.js:433
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "غیر فعال"
 
 #: gui/common/gamedescription.js:449
 msgid "Victorious"
-msgstr ""
+msgstr "پیروزی"
 
 #: gui/common/gamedescription.js:454
 msgid "Defeated"
-msgstr ""
+msgstr "شکست"
 
 #: gui/common/gamedescription.js:463
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s%(AIbehavior)s%(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "قطع شدن ارتباط با سرور (%(seconds)s ثانیه)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)sقطع ارتباط (%(seconds)s ثانیه)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "ارتباط ضعیف با سرور (%(milliseconds)s میلی ثانیه)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "ارتباط ضعیف با %(player)s (%(milliseconds)s میلی ثانیه)"
 
 #: gui/common/network.js:66
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr ""
+msgstr "دلیل نامشخص"
 
 #: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr ""
+msgstr "این مشکل به این دلیل بوجود آمده است که بواسطه فایروال یا آنتی ویروس اطلاعات از طریق پورت UDP به شماره 20595 به سمت میزبان فرستاده نمی شود،"
 
 #: gui/common/network.js:68
 msgid "The host has ended the game"
-msgstr ""
+msgstr "میزبان بازی را پایان داد"
 
 #: gui/common/network.js:69
 msgid "Incorrect network protocol version"
-msgstr "نسخه ی پرتکل شبکه اشتباه است"
+msgstr "نسخه ی پروتوکل شبکه اشتباه است"
 
 #: gui/common/network.js:70
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "بازی در حال بارگذاری است، لطفا بعدا  امتحان کنید"
 
 #: gui/common/network.js:71
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "بازی شروع شده است، اجازه ورود نظاره گر داده نشده است"
 
 #: gui/common/network.js:72
 msgid "You have been kicked"
-msgstr ""
+msgstr "شما بیرون انداخته شدید"
 
 #: gui/common/network.js:73
 msgid "You have been banned"
-msgstr ""
+msgstr "شما ممنوع الورود شدید"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "اسم بازیکن در حال استفاده است. اگر ارتباط شما قطع شده بود، بعد از چند ثانیه مجددا امتحان کنید"
 
 #: gui/common/network.js:75
 msgid "Server full"
-msgstr ""
+msgstr "سرور تکمیل است"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
-msgstr ""
+msgstr "بروز مشکل در احراز هوویت ایمن در لابی. ورود به لابی"
 
 #: gui/common/network.js:79
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "[مقدار بی اعتبار %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:91
@@ -601,7 +609,7 @@ msgstr "ارتباط با سرور قطع شده."
 
 #: gui/common/network.js:97
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "خطا در ارتباط با سرور"
 
 #: gui/common/network.js:99
 msgid "Disconnected"
@@ -609,14 +617,14 @@ msgstr "قطع ارتباط"
 
 #: gui/common/network.js:107
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "تنها میزبان قادر به بیرون انداختن کاربران است!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
 #: gui/common/network.js:161
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "کاربران (%(num)s):%(users)s"
 
 #: gui/common/network.js:162 gui/common/tooltips.js:83
 #: gui/common/tooltips.js:232 gui/common/tooltips.js:246
@@ -630,17 +638,17 @@ msgstr ","
 #: gui/common/settings.js:117
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "جعبه شنی"
 
 #: gui/common/settings.js:121
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "خیلی ساده"
 
 #: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "ساده"
 
 #: gui/common/settings.js:129
 msgctxt "aiDiff"
@@ -650,12 +658,12 @@ msgstr "متوسط"
 #: gui/common/settings.js:134
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "سخت"
 
 #: gui/common/settings.js:138
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "خیلی سخت"
 
 #: gui/common/settings.js:148
 msgctxt "aiBehavior"
@@ -665,7 +673,7 @@ msgstr "تصادفی"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "متعادل"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -682,30 +690,32 @@ msgstr "هجومی"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
+msgstr[0] "%(min)s دقیقه"
+msgstr[1] "%(min)s دقیقه"
 
 #: gui/common/settings.js:205
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "بدون آتش بس"
 
 #: gui/common/settings.js:206
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)s دقیقه"
+msgstr[1] "%(minutes)s دقیقه"
 
 #: gui/common/settings.js:220
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "کشمکش"
 
 #: gui/common/settings.js:221
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "یک نقشه با زمین های از پیش تعریف شده و تعدادی بازیکن. بصورت آزاد سایر تنظیمات بازی را انتخاب کنید"
 
 #: gui/common/settings.js:226
 msgctxt "map"
@@ -716,30 +726,30 @@ msgstr "تصادفی"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "ساخت یک نقشه خاص با توزیع متفاوت منابع در هر بار استفاده از نقشه. بصورت آزاد تعداد بازیکن و تیم ها انتخاب کنید."
 
 #: gui/common/settings.js:231
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "سناریو"
 
 #: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "یک نقشه با زمین ها و تنظیمات بازی از پیش تعریف شده"
 
 #: gui/common/settings.js:306
 msgid "Unlimited"
-msgstr ""
+msgstr "نامحدود"
 
 #: gui/common/settings.js:359
 msgctxt "AI name"
 msgid "Unknown"
-msgstr "نا شناخته"
+msgstr "ناشناخته"
 
 #: gui/common/settings.js:370
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr "نا شناخته"
+msgstr "ناشناخته"
 
 #: gui/common/settings.js:381
 msgctxt "AI behavior"
@@ -749,7 +759,7 @@ msgstr "پیش فرض"
 #: gui/common/settings.js:393
 msgctxt "map type"
 msgid "Unknown"
-msgstr "نا شناخته"
+msgstr "ناشناخته"
 
 #: gui/common/settings.js:405
 msgctxt "map size"
@@ -759,31 +769,31 @@ msgstr "پیش فرض"
 #: gui/common/settings.js:417
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr "نا شناخته"
+msgstr "ناشناخته"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "شرایط پیروزی ناشناخته"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
-msgstr "ضربه ی نزدیک:"
+msgstr "قدرت حمله نزدیکزن:"
 
 #: gui/common/tooltips.js:13
 msgid "Ranged Attack:"
-msgstr "ضربه ی دوربرد:"
+msgstr "قدرت حمله دورزن:"
 
 #: gui/common/tooltips.js:14
 msgid "Capture Attack:"
-msgstr ""
+msgstr "قدرت تسخیر:"
 
 #: gui/common/tooltips.js:20
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "صدمه پخش دایره ای"
 
 #: gui/common/tooltips.js:21
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "صدمه پخش خطی"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -792,7 +802,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s%(damageTypes)s،%(rangeLabel)s%(minRange)s تا %(maxRange)s(%(relativeRange)s) %(rangeUnit)s،%(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -801,7 +811,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
 "(%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s%(damageTypes)s،%(rangeLabel)s%(maxRange)s (%(relativeRange)s) %(rangeUnit)s، %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
@@ -810,7 +820,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s%(damageTypes)s، %(rangeLabel)s%(minRange)s تا %(maxRange)s%(rangeUnit)s،%(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -819,59 +829,63 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s%(damageTypes)s،%(rangeLabel)s%(maxRange)s%(rangeUnit)s،%(rate)s"
 
 #: gui/common/tooltips.js:72
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s%(resourceType)s"
 
 #: gui/common/tooltips.js:81
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s و %(lastAmount)s"
 
 #: gui/common/tooltips.js:110
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:112 gui/common/tooltips.js:353
 #: gui/common/tooltips.js:717
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
+msgstr[0] "ثانیه"
+msgstr[1] "ثانیه ها"
 
 #: gui/common/tooltips.js:165 gui/common/tooltips.js:176
 msgid "Health:"
-msgstr "سلامتی:"
+msgstr "سلامت:"
 
 #: gui/common/tooltips.js:175
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:193
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
+msgstr[0] "%(arrowcount)s %(arrows)s"
+msgstr[1] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:195
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
+msgstr[0] "تیر"
+msgstr[1] "تیرها"
 
 #: gui/common/tooltips.js:198
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
-msgstr ""
+msgstr "%(arrowString)s / %(timeString)s"
 
 #: gui/common/tooltips.js:209
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s %%"
 
 #: gui/common/tooltips.js:220
 msgid "Armor:"
@@ -880,12 +894,12 @@ msgstr "زره:"
 #: gui/common/tooltips.js:223
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
 #: gui/common/tooltips.js:228
 #, javascript-format
 msgid "(%(armorPercentage)s)"
-msgstr ""
+msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:239
 msgid "(None)"
@@ -894,11 +908,11 @@ msgstr "(هیچ)"
 #: gui/common/tooltips.js:243
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/common/tooltips.js:264
 msgid "Interval:"
-msgstr ""
+msgstr "فاصله:"
 
 #: gui/common/tooltips.js:265 gui/common/tooltips.js:715
 msgid "Rate:"
@@ -907,65 +921,66 @@ msgstr "سرعت:"
 #: gui/common/tooltips.js:272
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s، %(rate)s"
 
 #: gui/common/tooltips.js:291 gui/common/tooltips.js:710
 msgid "Range:"
-msgstr "برد:"
+msgstr "شعاع:"
 
 #: gui/common/tooltips.js:294
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:298
 msgid "meters"
-msgstr ""
+msgstr "متر"
 
 #: gui/common/tooltips.js:299 gui/common/tooltips.js:712
 #: gui/common/tooltips.js:742
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
+msgstr[0] "متر"
+msgstr[1] "متر"
 
 #: gui/common/tooltips.js:318 gui/common/tooltips.js:376
 #: gui/common/tooltips.js:381 gui/common/tooltips.js:386
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:324
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "آتش به نیروهای خودی: %(enabled)s"
 
 #: gui/common/tooltips.js:341
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:342
 msgid "Garrison Limit"
-msgstr ""
+msgstr "سقف مستقر شدن"
 
 #: gui/common/tooltips.js:349
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:350 gui/common/tooltips.js:704
 msgid "Heal:"
-msgstr ""
+msgstr "درمان:"
 
 #: gui/common/tooltips.js:352
 msgid "Health"
-msgstr ""
+msgstr "سلامت"
 
 #: gui/common/tooltips.js:377
 msgid "Projectile Limit"
-msgstr ""
+msgstr "محدودیت پرتابه"
 
 #: gui/common/tooltips.js:382
 msgctxt "projectiles"
@@ -975,71 +990,75 @@ msgstr "پیش فرض"
 #: gui/common/tooltips.js:387
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "هر نیرو"
 
 #: gui/common/tooltips.js:396
 msgid "Number of repairers:"
-msgstr ""
+msgstr "تعداد تعمیر کارها:"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "اضافه شدن یک کارگر جدید برای افزایش سرعت تعمیر به میزان %(second)s ثانیه"
+msgstr[1] "اضافه شدن یک کارگر دیگر برای افزایش سرعت تعمیر به میزان %(second)s ثانیه"
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "اضافه کردن یک کارگر جدید برای تمام کردن کار تعمیرات در %(second)s ثانیه."
+msgstr[1] "اضافه کردن یک کارگر برای تمام کردن کار تعمیرات در %(second)s ثانیه"
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
-msgstr ""
+msgstr "تعداد سازنده ها:"
 
 #: gui/common/tooltips.js:424
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "اضافه کردن کارگر برای سرعت دادن به ساخت به میزان %(second)s ثانیه"
+msgstr[1] "اضافه کردن کارگر برای سرعت دادن به ساخت به میزان %(second)s ثانیه"
 
 #: gui/common/tooltips.js:431
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "اضافه کردن یک کارگر برای تمام کردن ساخت در %(second)s ثانیه"
+msgstr[1] "اضافه کردن یک کارگر برای تمام کردن کار ساخت در %(second)s ثانیه"
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
 msgid "%(component)s %(cost)s"
-msgstr ""
+msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:502
 msgid "Gather Rates:"
-msgstr ""
+msgstr "سرعت جمع آوری:"
 
 #: gui/common/tooltips.js:505 gui/common/tooltips.js:527
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/common/tooltips.js:523
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "کمبود منابع:"
 
 #: gui/common/tooltips.js:524
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
 #: gui/common/tooltips.js:576
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s تا %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:605
 #, javascript-format
@@ -1049,32 +1068,32 @@ msgstr "دیوار‌ها: %(costs)s"
 #: gui/common/tooltips.js:606
 #, javascript-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "برج ها: %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
 #: gui/common/tooltips.js:614
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr ""
+msgstr "هزینه:"
 
 #: gui/common/tooltips.js:628
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "مورد نیاز: %(technology)s"
 
 #: gui/common/tooltips.js:640
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
-msgstr ""
+msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:641
 msgid "Population Bonus:"
-msgstr "جمعیت بیشتر:"
+msgstr "امتیاز جمعیت:"
 
 #: gui/common/tooltips.js:662
 msgid "Insufficient resources:"
@@ -1083,7 +1102,7 @@ msgstr "منابع کافی نیست:"
 #: gui/common/tooltips.js:678
 #, javascript-format
 msgid "%(label)s %(speeds)s"
-msgstr ""
+msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:679
 msgid "Speed:"
@@ -1092,7 +1111,7 @@ msgstr "سرعت:"
 #: gui/common/tooltips.js:681 gui/common/tooltips.js:686
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
-msgstr ""
+msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:683
 msgid "Walk"
@@ -1107,139 +1126,141 @@ msgstr "دویدن"
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
-msgstr[0] ""
+msgstr[0] "%(label)s %(val)s %(unit)s"
+msgstr[1] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
 #: gui/common/tooltips.js:707
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] ""
+msgstr[0] "HP"
+msgstr[1] "HP"
 
 #: gui/common/tooltips.js:731
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/common/tooltips.js:732
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s"
 
 #: gui/common/tooltips.js:740
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "شعاع:"
 
 #: gui/common/tooltips.js:757
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
-msgstr ""
+msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
 #: gui/common/tooltips.js:769
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
-msgstr ""
+msgstr "%(specificName)s %(fontStart)s (%(genericName)s) %(fontEnd)s"
 
 #: gui/common/tooltips.js:784
 msgid "Classes:"
-msgstr ""
+msgstr "کلاس ها:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
 #: gui/common/tooltips.js:811
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:821
 msgid "Loot:"
-msgstr ""
+msgstr "غارت:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:829
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "کلیک-راست برای دیدن اطلاعات بیشتر"
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "کلیک برای دیدن اطلاعات بیشتر"
 
 #: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "پیش فرض: %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "حداقل: %(min)s، حداکثر: %(max)s"
 
 #: gui/options/options.js:128
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "حداقل: %(min)s"
 
 #: gui/options/options.js:130
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "حداکثر: %(max)s"
 
 #: gui/options/options.js:163
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "ارزش: %(val)s (حداقل: %(min)s، حداکثر:%(max)s)"
 
 #: gui/options/options.js:299
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "ریست کردن تنظیمات باعث پاک شدن تنظیمات ذخیره شده می شود. آیا مایل به ادامه هستید؟"
 
 #: gui/options/options.js:300 gui/options/options.js:350
 #: gui/options/options.js:376
 msgid "Warning"
-msgstr ""
+msgstr "هشدار"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr ""
+msgstr "بعضی از مقادیر تنظیمات نامعتبر است! آیا مطئن هستید که آنها ذخیره شوند؟"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "شما تغییرات ذخیره نشده دارید، آیا میخواهید این پنجره بسته شود"
 
 #: gui/pregame/mainmenu.js:42
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: دیدن ساختار درختی امکانات و قابلیت های تمدن در بازی 0 A.D"
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: یادگرفتن در مورد قابلیت های تمدن ها در 0 A.D"
 
 #: gui/pregame/mainmenu.js:48
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr ""
+msgstr "%(hotkey)s: راه اندازی لابی چندنفره برای ورود ، چت کردن و بازی کردن با سایر بازیکن ها"
 
 #: gui/pregame/mainmenu.js:98
 msgid "connecting to server"
@@ -1248,21 +1269,21 @@ msgstr "اتصال به سرور"
 #: gui/pregame/mainmenu.js:101
 #, javascript-format
 msgid "uploading (%f%%)"
-msgstr "در حال آپلود (%f%%)"
+msgstr "در حال بارگذاری (%f%%)"
 
 #: gui/pregame/mainmenu.js:107
 msgid "upload succeeded"
-msgstr "آپلود موفقیت آمیز بود"
+msgstr "بارگذاری موفقیت آمیز بود"
 
 #: gui/pregame/mainmenu.js:108
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "بارگذاری با خطا روبرو شد (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:112
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "بارگذاری با خطا روبرو شد (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:114
 msgid "unknown"
@@ -1279,7 +1300,7 @@ msgstr "بازخورد فعال است."
 #: gui/pregame/mainmenu.js:131
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "وضعیت: %(status)s"
 
 #: gui/pregame/mainmenu.js:155
 #, javascript-format
@@ -1288,7 +1309,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr ""
+msgstr "%(warning)s شما ظاهرا گرافیک های که Non-shader هستند (Fixed function) استفاده کرده اید. این تنظیم در نسخه های بعدی بازی 0 A.D حذف خواهد شد، تا بتوان قابلیت های گرافیکی پیشرفته تری را ارائه کرد. ما به شما توصیه می کنیم که کارت گرافیکی خود را ارتقا داده تا از مدل های سایه دار سازگار جدید بتوانید بهره مند شوید."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1300,7 +1321,7 @@ msgstr "برای اطلاعات بیشتر بر روی \"بیشتر\" کلیک �
 
 #: gui/pregame/mainmenu.js:164
 msgid "WARNING!"
-msgstr "اخطار!"
+msgstr "هشدار!"
 
 #: gui/pregame/mainmenu.js:165 gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
@@ -1321,17 +1342,17 @@ msgstr "آیا مطمئن هستید که می‌خواهید از 0 A.D. خار
 
 #: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
 msgid "Confirmation"
-msgstr "تصدیق"
+msgstr "تایید"
 
 #: gui/pregame/mainmenu.js:273
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "آیا مطمئن هستیت که میخواهید از بازی 0 A.D خارج شوید. و نرم افزار سناریو ادیتور را راه اندازی کنید؟"
 
 #: gui/pregame/mainmenu.js:281
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "سناریو ادیتور در دسترس نیست و یا در بارگذاری با خطا روبرو شده است. برای اطلاعات بیشتر لاگ بازی را ملاحظه کنید"
 
 #: gui/pregame/mainmenu.js:282 gui/replaymenu/replay_actions.js:117
 msgid "Error"
@@ -1341,155 +1362,155 @@ msgstr "خطا"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "راه اندازی لابی بازی چندنفره برای ساخت بازی و چت با سایر بازیکن ها. [DISABLED BY BUILD]"
 
 #: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
 msgid "Technical Details"
-msgstr ""
+msgstr "جزیات فنی"
 
 #: gui/pregame/mainmenu.js:298 gui/pregame/mainmenu.xml:(caption):146
 msgid "Manual"
-msgstr "راهنما"
+msgstr "کتاب راهنما"
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource supply.
 #: gui/reference/common/draw.js:67
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
-msgstr ""
+msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/reference/common/draw.js:68
 msgid "Resource Supply:"
-msgstr ""
+msgstr "تامین منابع: "
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its resource.
 #: gui/reference/common/draw.js:71 gui/summary/summary.js:111
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/reference/common/load.js:193
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s تا %(health_max)s"
 
 #: gui/reference/structree/structree.js:49
 #, javascript-format
 msgid "%(hotkey)s: Switch to History."
-msgstr ""
+msgstr "%(hotkey)s: تغییر به صفحه تاریخچه"
 
 #: gui/reference/structree/structree.js:50
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: بستن صفحه ساختار درختی"
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
 #: gui/reference/viewer/viewer.js:139
 msgid "Built by:"
-msgstr ""
+msgstr "ساخته شده با:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:152
 msgid "Trained by:"
-msgstr ""
+msgstr "پرورش یافته با:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:165
 msgid "Researched at:"
-msgstr ""
+msgstr "تحقیق شده در:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
 #: gui/reference/viewer/viewer.js:177
 msgid "Builds:"
-msgstr ""
+msgstr "ساختن:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
 #: gui/reference/viewer/viewer.js:198
 msgid "Researches:"
-msgstr ""
+msgstr "تحقیق کردن:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
 #: gui/reference/viewer/viewer.js:210
 msgid "Trains:"
-msgstr ""
+msgstr "پرورش دادن:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:223
 msgid "Upgradable to:"
-msgstr ""
+msgstr "ارتقا دادن به:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr ""
+msgstr "این ریپلی نیاز به ترتیب مد های مختلفی دارد"
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "این ریپلی با نسخه فعلی بازی شما سازگاری ندارد!"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "نسخه شما: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "نسخه مورد نیاز: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:100
 msgid "Incompatible replay"
-msgstr ""
+msgstr "ریپلی ناسازگار"
 
 #: gui/replaymenu/replay_actions.js:117
 msgid "No summary data available."
-msgstr ""
+msgstr "هیچ خلاصه اطلاعاتی در دسترس نیست"
 
 #: gui/replaymenu/replay_actions.js:166
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید این ریپلی را برای همیشه پاک کنید؟"
 
 #: gui/replaymenu/replay_actions.js:168
 msgid "Delete replay"
-msgstr ""
+msgstr "پاک کردن ریپلی"
 
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "هر"
 
 #: gui/replaymenu/replay_filters.js:66
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "هر"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "هر"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "هر"
 
 #: gui/replaymenu/replay_filters.js:117
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "هر"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:121
@@ -1497,7 +1518,8 @@ msgstr ""
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] ""
+msgstr[0] "< %(max)s حداقل"
+msgstr[1] "< %(max)s حداقل"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:125
@@ -1505,18 +1527,19 @@ msgstr[0] ""
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] ""
+msgstr[0] "> %(min)s حداقل"
+msgstr[1] ">%(min)s حداقل"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:128
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr ""
+msgstr "%(min)s - %(max)s حداقل"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single- and multiplayer"
-msgstr ""
+msgstr "تکنفره و چند نفره"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):481
 msgid "Single Player"
@@ -1528,36 +1551,36 @@ msgstr "چند نفره"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "هر شرط پیروزی"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
-msgstr ""
+msgstr "بازی های رتبه بندی و بدون رتبه بندی"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated games"
-msgstr ""
+msgstr "بازی های رتبه بندی"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Unrated games"
-msgstr ""
+msgstr "بازی های بدون رتبه بندی"
 
 #: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr ""
+msgstr "فیلتر کردن ریپلی با نوشتن یک یا بیشتر ، بخشی یا تمام اسم بازیکن"
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "بازیکن: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:300
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/replaymenu/replay_menu.js:330
 msgid "yyyy-MM"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
 msgid "Score"
@@ -1587,15 +1610,15 @@ msgstr "امتیاز اکتشاف"
 
 #: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
 msgid "Buildings"
-msgstr ""
+msgstr "ساختمان ها"
 
 #: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
 msgid "Total"
-msgstr ""
+msgstr "کل"
 
 #: gui/summary/layout.js:25
 msgid "Houses"
-msgstr ""
+msgstr "خانه ها"
 
 #: gui/summary/layout.js:26
 msgid "Economic"
@@ -1603,7 +1626,7 @@ msgstr "اقتصادی"
 
 #: gui/summary/layout.js:27
 msgid "Outposts"
-msgstr ""
+msgstr "برج های دیده بانی"
 
 #: gui/summary/layout.js:28
 msgid "Military"
@@ -1611,26 +1634,26 @@ msgstr "ارتش"
 
 #: gui/summary/layout.js:29
 msgid "Fortresses"
-msgstr ""
+msgstr "دژ ها"
 
 #: gui/summary/layout.js:30
 msgid "Civ centers"
-msgstr ""
+msgstr "مراکز شهر"
 
 #: gui/summary/layout.js:31
 msgid "Wonders"
-msgstr ""
+msgstr "سازه عجایب"
 
 #: gui/summary/layout.js:35
 #, javascript-format
 msgid ""
 "Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "آمار ساختمان ها (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
-msgstr ""
+msgstr "نیروها"
 
 #: gui/summary/layout.js:63
 msgid "Infantry"
@@ -1646,24 +1669,24 @@ msgstr "سواره نظام"
 
 #: gui/summary/layout.js:66
 msgid "Champion"
-msgstr "پهلوان"
+msgstr "سلحشور"
 
 #: gui/summary/layout.js:68
 msgid "Siege"
-msgstr ""
+msgstr "دژکوب"
 
 #: gui/summary/layout.js:69
 msgid "Navy"
-msgstr ""
+msgstr "نیروی دریایی"
 
 #: gui/summary/layout.js:70
 msgid "Traders"
-msgstr ""
+msgstr "تجار"
 
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "آمار نیروها (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
@@ -1671,14 +1694,14 @@ msgstr "منابع"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr ""
+msgstr "باج ها"
 
 #: gui/summary/layout.js:112
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
-msgstr ""
+msgstr "باج ها\n(%(sent)s /  %(received)s)"
 
 #: gui/summary/layout.js:120
 msgid "Treasures collected"
@@ -1686,16 +1709,16 @@ msgstr "گنج های یافت شده"
 
 #: gui/summary/layout.js:121
 msgid "Loot"
-msgstr ""
+msgstr "غارت"
 
 #: gui/summary/layout.js:122
 msgid "Livestock bred"
-msgstr ""
+msgstr "پرورش دام"
 
 #: gui/summary/layout.js:126
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
-msgstr ""
+msgstr "آمار منابع (%(gathered)s / %(used)s)"
 
 #: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):102
 msgid "Market"
@@ -1703,7 +1726,7 @@ msgstr "بازار"
 
 #: gui/summary/layout.js:153
 msgid "Trade income"
-msgstr "سود تجارت"
+msgstr "درآمد تجارت"
 
 #: gui/summary/layout.js:154
 msgid "Barter efficiency"
@@ -1713,152 +1736,152 @@ msgstr "کارایی مبادله ها"
 #: gui/summary/layout.js:160
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr ""
+msgstr "%(resourceFirstWord)s مبادله شد"
 
 #: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
-msgstr ""
+msgstr "سرگرمی ها"
 
 #: gui/summary/layout.js:185
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "نسبت کشتن / مردن"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr ""
+msgstr "کنترل نقشه (بیشترین)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
-msgstr ""
+msgstr "کنترل نقشه (پایان)"
 
 #: gui/summary/layout.js:188
 msgid "Map exploration"
-msgstr ""
+msgstr "اکتشاف نقشه"
 
 #: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
-msgstr ""
+msgstr "نسبت گیاه خواری"
 
 #: gui/summary/layout.js:190
 msgid "Feminization"
-msgstr ""
+msgstr "زنانگی"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr ""
+msgstr "رشوه"
 
 #: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "رشوه\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:357
 msgid "Team total"
-msgstr ""
+msgstr "کل تیم"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr ""
+msgstr "پرورش یافته"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
-msgstr ""
+msgstr "ساخته شده"
 
 #: gui/summary/summary.js:40
 msgid "Gathered"
-msgstr ""
+msgstr "جمع آوری شده"
 
 #: gui/summary/summary.js:45
 msgid "Sent"
-msgstr ""
+msgstr "ارسال شد"
 
 #: gui/summary/summary.js:50
 msgid "Bought"
-msgstr ""
+msgstr "خریده شد"
 
 #: gui/summary/summary.js:55
 msgid "Income"
-msgstr ""
+msgstr "درآمد"
 
 #: gui/summary/summary.js:60
 msgid "Captured"
-msgstr ""
+msgstr "تسخیر شد"
 
 #: gui/summary/summary.js:65
 msgid "Succeeded"
-msgstr ""
+msgstr "موفق شد"
 
 #: gui/summary/summary.js:70
 msgid "Destroyed"
-msgstr ""
+msgstr "تخریب شد"
 
 #: gui/summary/summary.js:75
 msgid "Killed"
-msgstr ""
+msgstr "کشته شد"
 
 #: gui/summary/summary.js:80
 msgid "Lost"
-msgstr ""
+msgstr "از دست دادن"
 
 #: gui/summary/summary.js:85
 msgid "Used"
-msgstr ""
+msgstr "استفاده شد"
 
 #: gui/summary/summary.js:90
 msgid "Received"
-msgstr ""
+msgstr "دریافت شد"
 
 #: gui/summary/summary.js:95
 msgid "Sold"
-msgstr ""
+msgstr "فروخته شد"
 
 #: gui/summary/summary.js:100
 msgid "Outcome"
-msgstr ""
+msgstr "خروجی"
 
 #: gui/summary/summary.js:105
 msgid "Failed"
-msgstr ""
+msgstr "ناموفق"
 
 #: gui/summary/summary.js:335
 msgid "Time elapsed"
-msgstr ""
+msgstr "زمان سپری شده"
 
 #: gui/summary/summary.js:491
 msgid "Current Scores"
-msgstr ""
+msgstr "امتیاز های فعلی"
 
 #: gui/summary/summary.js:493
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "امتیازها در پایان بازی"
 
 #: gui/summary/summary.js:495
 msgid "You have been disconnected."
-msgstr ""
+msgstr "ارتباط شما قطع شد"
 
 #: gui/summary/summary.js:497
 msgid "You have left the game."
-msgstr ""
+msgstr "شما بازی را ترک کردید"
 
 #: gui/summary/summary.js:499
 msgid "You have won the battle!"
-msgstr ""
+msgstr "شما در نبرد پیروز شدید!"
 
 #: gui/summary/summary.js:501
 msgid "You have been defeated…"
-msgstr ""
+msgstr "شما شکست خوردید"
 
 #: gui/summary/summary.js:502
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "شما بازی را رها کردید"
 
 #: gui/summary/summary.js:505
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr ""
+msgstr "زمان سپری شده بازی: %(time)s"
 
 #: gui/summary/summary.js:513
 #, javascript-format
@@ -1868,7 +1891,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "%(hotkey)s: تغییر وضعیت لابی بازی چندنفره در یک پنجره محاوره."
 
 #: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
@@ -1882,7 +1905,7 @@ msgstr "انتخاب تمدن"
 #: gui/pregame/mainmenu.xml:(caption):181
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
-msgstr ""
+msgstr "ساختار درختی"
 
 #: gui/civinfo/civinfo.xml:(caption):137 gui/credits/credits.xml:(caption):32
 #: gui/options/options.xml:(caption):60
@@ -1893,7 +1916,7 @@ msgstr "بستن"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "عوامل تولید 0 A.D"
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):382
 msgid "Language"
@@ -1909,7 +1932,7 @@ msgstr "زبان:"
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "محلی:"
 
 #: gui/locale/locale.xml:(caption):36
 msgid "Cancel"
@@ -1929,11 +1952,11 @@ msgstr "تنظیمان بازی"
 
 #: gui/options/options.xml:(caption):42
 msgid "Reset"
-msgstr ""
+msgstr "ریست"
 
 #: gui/options/options.xml:(caption):48
 msgid "Revert"
-msgstr ""
+msgstr "بازگرداندن"
 
 #: gui/options/options.xml:(caption):54
 msgid "Save"
@@ -1941,19 +1964,19 @@ msgstr "ذخیره"
 
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "ریست کردن تنظیمات بازی به تنظیمات پیش فرض"
 
 #: gui/options/options.xml:(tooltip):49
 msgid "Reverts to previous saved settings"
-msgstr ""
+msgstr "بازگرداندن به تنظیمات ذخیره شده قبلی"
 
 #: gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
-msgstr ""
+msgstr "ذخیره کردن تغییرات"
 
 #: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
-msgstr ""
+msgstr "تغییرات ذخیره نشده تنها در این Session اعمال می شود"
 
 #: gui/pregame/mainmenu.xml:58
 msgid "Help improve 0 A.D.!"
@@ -1967,7 +1990,7 @@ msgstr "شما می توانید به طور کاملا ناشناس و به ط�
 
 #: gui/pregame/mainmenu.xml:562
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "الفا XXIII: کن وود"
 
 #: gui/pregame/mainmenu.xml:564
 msgid ""
@@ -1977,15 +2000,15 @@ msgstr "توجه: این برنامه یک نسخه ی اولیه است و بس
 
 #: gui/pregame/mainmenu.xml:(caption):64
 msgid "Enable Feedback"
-msgstr ""
+msgstr "فعال کردن بازخورد"
 
 #: gui/pregame/mainmenu.xml:(caption):91
 msgid "Disable Feedback"
-msgstr ""
+msgstr "غیر فعال کردن بازخورد"
 
 #: gui/pregame/mainmenu.xml:(caption):165
 msgid "Tutorial"
-msgstr ""
+msgstr "آموزش"
 
 #: gui/pregame/mainmenu.xml:(caption):197
 #: gui/reference/structree/structree.xml:(caption):126
@@ -2002,17 +2025,17 @@ msgstr "مراحل"
 
 #: gui/pregame/mainmenu.xml:(caption):246
 msgid "Load Game"
-msgstr "بارگزاری بازی"
+msgstr "بارگذاری بازی"
 
 #: gui/pregame/mainmenu.xml:(caption):260
 #: gui/pregame/mainmenu.xml:(caption):340
 msgid "Replays"
-msgstr ""
+msgstr "ریپلی ها"
 
 #. Join a game by specifying the host's IP address.
 #: gui/pregame/mainmenu.xml:(caption):288
 msgid "Join Game"
-msgstr "پیوستن به بازی"
+msgstr "ورود به بازی"
 
 #: gui/pregame/mainmenu.xml:(caption):302
 msgid "Host Game"
@@ -2028,15 +2051,15 @@ msgstr "تنظیمات"
 
 #: gui/pregame/mainmenu.xml:(caption):396
 msgid "Mod Selection"
-msgstr ""
+msgstr "انتخاد مد"
 
 #: gui/pregame/mainmenu.xml:(caption):408
 msgid "Welcome Screen"
-msgstr ""
+msgstr "صفحه خوش آمدید"
 
 #: gui/pregame/mainmenu.xml:(caption):466
 msgid "Learn to Play"
-msgstr ""
+msgstr "یاد گیری بازی"
 
 #: gui/pregame/mainmenu.xml:(caption):511
 msgid "Settings"
@@ -2064,15 +2087,15 @@ msgstr "گزارش یک اشکال"
 
 #: gui/pregame/mainmenu.xml:(caption):610
 msgid "Translate the Game"
-msgstr ""
+msgstr "ترجمه بازی"
 
 #: gui/pregame/mainmenu.xml:(caption):622
 msgid "Donate"
-msgstr ""
+msgstr "کمک مالی"
 
 #: gui/pregame/mainmenu.xml:(caption):634
 msgid "Credits"
-msgstr ""
+msgstr "عوامل تولید"
 
 #: gui/pregame/mainmenu.xml:(caption):663
 msgid "WILDFIRE GAMES"
@@ -2080,11 +2103,11 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/mainmenu.xml:(tooltip):147
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "باز کردن کتاب راهنمای 0 A.D"
 
 #: gui/pregame/mainmenu.xml:(tooltip):166
 msgid "Start the economic tutorial."
-msgstr ""
+msgstr "آغاز آموزش اقتصادی"
 
 #: gui/pregame/mainmenu.xml:(tooltip):220
 msgid "Click here to start a new single player game."
@@ -2094,7 +2117,7 @@ msgstr "برای شروع یک بازی تکنفره کلیک کنید."
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr ""
+msgstr "زنده نگهداشتن تاریخ از طریق عملیات های جنگی تاریخی. [NOT YET IMPLEMENTED]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):247
 msgid "Click here to load a saved game."
@@ -2103,7 +2126,7 @@ msgstr "برای بازیابی یک بازی تک نفره کلیک کنید"
 #: gui/pregame/mainmenu.xml:(tooltip):261
 #: gui/pregame/mainmenu.xml:(tooltip):341
 msgid "Playback previous games."
-msgstr ""
+msgstr "پخش بازی قبل"
 
 #: gui/pregame/mainmenu.xml:(tooltip):289
 msgid "Joining an existing multiplayer game."
@@ -2123,17 +2146,17 @@ msgstr "زبان بازی را انتخاب کنید."
 
 #: gui/pregame/mainmenu.xml:(tooltip):397
 msgid "Select and download mods for the game."
-msgstr ""
+msgstr "انتخاب و دانلود مد ها برای بازی"
 
 #: gui/pregame/mainmenu.xml:(tooltip):409
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "نشان دادن صفحه خوش آمدید. مفید است اگر شما به اشتباه آنرا مخفی کنید"
 
 #: gui/pregame/mainmenu.xml:(tooltip):467
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "یادگیری نحوه بازی کردن، آموزش را آغاز کنید، درخت فناوری ها را مشاهده کنید و تاریخچه پشت سر هر تمدن را مطالعه کنید"
 
 #: gui/pregame/mainmenu.xml:(tooltip):482
 msgid "Challenge the computer player to a single player match."
@@ -2145,7 +2168,7 @@ msgstr "با یک یا چند بازیکن در بازی چند نفره مبا�
 
 #: gui/pregame/mainmenu.xml:(tooltip):512
 msgid "Game options and mod selection."
-msgstr ""
+msgstr "تنظیمات بازی و انتخاب mode"
 
 #: gui/pregame/mainmenu.xml:(tooltip):527
 msgid ""
@@ -2155,7 +2178,7 @@ msgstr "باز کردن ویرایشگر سناریو در پنجره ای جد�
 
 #: gui/pregame/mainmenu.xml:(tooltip):541
 msgid "Exits the game."
-msgstr ""
+msgstr "خارج شدن از بازی"
 
 #: gui/pregame/mainmenu.xml:(tooltip):575
 msgid "Click to open play0ad.com in your web browser."
@@ -2169,27 +2192,27 @@ msgstr "برای بازکردن صفحه گفتگو IRC بازی 0 A.D. کلیک
 
 #: gui/pregame/mainmenu.xml:(tooltip):599
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "کلیک کردن برای سر زدن به تراک 0 A.D جهت گزارش باگ، خرابی و یا خطا"
 
 #: gui/pregame/mainmenu.xml:(tooltip):611
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "کلیک برای باز کردن صفحه ترجمه بازی 0 A.D در مرورگر شما"
 
 #: gui/pregame/mainmenu.xml:(tooltip):623
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "کمک به هزینه های پروژه از طریق هدیه دادن"
 
 #: gui/pregame/mainmenu.xml:(tooltip):635
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "کلیک برای دیدن عوامل تولید بازی 0 A.D"
 
 #: gui/reference/structree/structree.xml:(caption):31
 msgid "Civilization:"
-msgstr ""
+msgstr "تمدن:"
 
 #: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
-msgstr ""
+msgstr "نیروهای پرورش دهنده"
 
 #: gui/reference/viewer/viewer.xml:(caption):13
 msgid "Information"
@@ -2197,31 +2220,31 @@ msgstr "اطلاعات"
 
 #: gui/replaymenu/replay_menu.xml:(caption):13
 msgid "Replay Games"
-msgstr ""
+msgstr "ریپلی بازی ها"
 
 #: gui/replaymenu/replay_menu.xml:(caption):109
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "فیلتر ریپلی های سازگار"
 
 #: gui/replaymenu/replay_menu.xml:(caption):150
 msgid "Map Type:"
-msgstr ""
+msgstr "نوع نقشه:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):165
 msgid "Map Size:"
-msgstr ""
+msgstr "اندازه نقشه:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):180
 msgid "Victory:"
-msgstr ""
+msgstr "پیروزی:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
-msgstr ""
+msgstr "اسپویلر"
 
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
-msgstr ""
+msgstr "منوی اصلی"
 
 #: gui/replaymenu/replay_menu.xml:(caption):231
 msgid "Delete"
@@ -2229,7 +2252,7 @@ msgstr "حذف"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Reload Cache"
-msgstr ""
+msgstr "بارگذاری مجدد Cache"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34
@@ -2238,45 +2261,45 @@ msgstr "خلاصه"
 
 #: gui/replaymenu/replay_menu.xml:(caption):250
 msgid "Start Replay"
-msgstr ""
+msgstr "شروع ریپلی"
 
 #: gui/replaymenu/replay_menu.xml:(heading):69
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "تاریخ / زمان"
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "بازیکن ها"
 
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "نام نقشه"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "اندازه"
 
 #: gui/replaymenu/replay_menu.xml:(heading):85
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "جمعیت"
 
 #: gui/replaymenu/replay_menu.xml:(heading):89
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "مدت زمان"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "بازسازی cache مربوط به ریپلی از ابتدا. احتمال دارد کند انجام شود!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
-msgstr ""
+msgstr "خوش آمدید!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):18
 msgid "Show this message in the future"
@@ -2284,30 +2307,30 @@ msgstr "نمایش این پیغام در آینده"
 
 #: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "مشکلات شناخته شده (web)"
 
 #: gui/summary/summary.xml:(caption):116
 msgid "Charts"
-msgstr ""
+msgstr "نمودارها"
 
 #: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "دسته بندی:"
 
 #: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "ارزش:"
 
 #: gui/summary/summary.xml:(caption):193
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "نوع:"
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Replay"
-msgstr ""
+msgstr "ریپلی"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2316,592 +2339,592 @@ msgstr "ادامه"
 #: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "دسته بندی"
 
 #: gui/summary/summary.xml:(tooltip):189
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "ارزش"
 
 #: gui/summary/summary.xml:(tooltip):200
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "نوع"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "رهبر هنری"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "مدیر صدا"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "آهنگ ساز"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "مدیر هنری"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "طراح نقشه"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "اسکریپت های تصادفی نقشه"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "هنر دو بعدی"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "هنر سه بعدی"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr ""
+msgstr "موسیقی افزوده ، کوبه ای، Djembe، نمونه گیری"
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
-msgstr ""
+msgstr "موسقیی افزوده"
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
-msgstr ""
+msgstr "فلوت"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
 msgid "Djembe"
-msgstr ""
+msgstr "Djembe"
 
 #: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
-msgstr ""
+msgstr "درام قابی، darbuka، riq، toms"
 
 #: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
-msgstr ""
+msgstr "Didgeridoo"
 
 #: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Trumpet"
-msgstr ""
+msgstr "ترومپت"
 
 #: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
 msgid "Celtic harp"
-msgstr ""
+msgstr "سازوچنگ سلتی"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Tin whistles"
-msgstr ""
+msgstr "Tin whistles"
 
 #: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
 msgid "Viola, violin"
-msgstr ""
+msgstr "ویالون"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
-msgstr ""
+msgstr "موسیقی"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 #: gui/options/options.json[2].label
 msgid "Sound"
-msgstr ""
+msgstr "صدا"
 
 #: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
 msgid "Greek"
-msgstr ""
+msgstr "یونان"
 
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
-msgstr ""
+msgstr "لاتین"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
-msgstr ""
+msgstr "صداها"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
-msgstr ""
+msgstr "هنر"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr ""
+msgstr "Pledgie Drive 1"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr ""
+msgstr "Pledgie Drive 2"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "کمپین سال 2013 ایندیگوگو\nبیش از 1000 نفر دونیت کننده(!) شامل:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
-msgstr ""
+msgstr "اهدا کننده ها"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "سر"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr ""
+msgstr "منابع تاریخی"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr ""
+msgstr "مدیریت و جامعه"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "مدیران برنامه نویسی"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "تشکر ویژه از"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
-msgstr ""
+msgstr "برنامه نویسی"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "بیادبود"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "بنیانگذار 0 A.D"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "رهبران پروژه"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "از رهبران طراحی"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "تشکر ویژه از:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "و تشکر ویژه از تمام جامعه 0 A.D که این پروژه را امکان بخشیدن"
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "هیچ تاریخ شناسی در طول توسعه این پروژه لطمه ندیده است"
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
-msgstr ""
+msgstr "عوامل تولید خاص"
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
-msgstr ""
+msgstr "مترجمان"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
-msgstr ""
+msgstr "در بازی تکنفره به چه اسمی میخواهید شناخته شوید"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
-msgstr ""
+msgstr "نام بازی کن (تکنفره)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr ""
+msgstr "در بازی چند نفره به چه اسمی می خواهید شناخته شوید (به غیر از لابی)"
 
 #: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
-msgstr ""
+msgstr "نام بازیکن (چندنفره)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
-msgstr ""
+msgstr "توقف بازی تکنفره زمانی که پنجره بازی پایین آورده می شود"
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
-msgstr ""
+msgstr "توقف پس زمینه"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "اگر شما غیر فعالش کنید، صفحه خوش آمدید هر زمان که نسخه جدیدی در دسترس قرار گیرد نمایش داده خواهد شد. شما همیشه می توانید صفحه خوش آمدید را از منوی اصلی اجرا کنید"
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable Welcome Screen"
-msgstr ""
+msgstr "فعال کردن صفحه خوش آمدید"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "نشان دادن اینکه کدام بازیکن ارتباط ضعیفی connection در بازی چندنفره دارد"
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "هشدارهای شبکه"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
-msgstr ""
+msgstr "نشان دادن تعداد فریم در ثانیه در بالا سمت راست صفحه"
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS Overlay"
-msgstr ""
+msgstr "نمایش FPS"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
-msgstr ""
+msgstr "نشان دادن زمان سیستم در بالا سمت راست صفحه"
 
 #: gui/options/options.json[0].options[6].label
 msgid "Realtime Overlay"
-msgstr ""
+msgstr "نمایش زمان واقعی"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
-msgstr ""
+msgstr "نشان دادن زمان شبیه سازی فعلی در بالا سمت راست صفحه"
 
 #: gui/options/options.json[0].options[7].label
 msgid "Gametime Overlay"
-msgstr ""
+msgstr "نمایش زمان بازی"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
-msgstr ""
+msgstr "همیشه زمان باقی مانده از زمان آتش بس را نشان بده"
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire Time Overlay"
-msgstr ""
+msgstr "نمایش زمان آتش بس"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
 msgid "Everyone"
-msgstr ""
+msgstr "همه"
 
 #: gui/options/options.json[0].options[9].list[1].label
 #: gui/options/options.json[3].options[5].list[1].label
 msgid "Buddies"
-msgstr ""
+msgstr "دوستان"
 
 #: gui/options/options.json[0].options[9].list[2].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "غیرفعال"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr ""
+msgstr "اجازه دادن به همه یا فقط به دوستان تا بتوانند بعد از شروع بازی در بازی شما به عنوان نظاره گر وارد شوند"
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
-msgstr ""
+msgstr "اضافه شدن نظاره گر با تاخیر"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr ""
+msgstr "از ورود نظاره گر ها به بازی جلوگیری کنید اگر حد مجاز تعداد نظاره گر تکمیل شده است"
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer Limit"
-msgstr ""
+msgstr "سقف تعداد نظاره گر"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr ""
+msgstr "نشان دادن زمان ارسال پیام ها در لابی ، پیام های بازی و چت داخل بازی"
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat Timestamp"
-msgstr ""
+msgstr "تاریخ و زمان چت"
 
 #: gui/options/options.json[0].label
 msgid "General"
-msgstr ""
+msgstr "عمومی"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "شروع بازی 0 A.D در پنجره"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed Mode"
-msgstr ""
+msgstr "مد پنجره ای "
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr ""
+msgstr "استفاده از OpenGL2.0 Shader (پیشنهاد می شود)"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
-msgstr ""
+msgstr "ترجیح بر GLSL است"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
-msgstr ""
+msgstr "فعال کردن مه"
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
-msgstr ""
+msgstr "مه"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "بکار گیری فیلتر های screen-space postprocessing. همانند (HDR, Bloom, DOF)"
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
-msgstr ""
+msgstr "پس پردازش- Post Processing"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "تعداد عوامل سایه زن. نیاز به ریستارت بازی است"
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "عوامل سایه زن"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "فعال کردن سایه ها"
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
-msgstr ""
+msgstr "سایه ها"
 
 #: gui/options/options.json[1].options[6].list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "خیلی کم"
 
 #: gui/options/options.json[1].options[6].list[1].label
 msgid "Low"
-msgstr ""
+msgstr "کم"
 
 #: gui/options/options.json[1].options[6].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
-msgstr ""
+msgstr "متوسط"
 
 #: gui/options/options.json[1].options[6].list[3].label
 msgid "High"
-msgstr ""
+msgstr "زیاد"
 
 #: gui/options/options.json[1].options[6].list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "خیلی زیاد"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "رزولوشن نقشه سایه. مقادیر زیاد می تواند باعث Crash بازی شود اگر از کارت گرافیک هایی با حافظه کم استفاده می کنید!"
 
 #: gui/options/options.json[1].options[6].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "کیفیت سایه"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "سایه های یکدست"
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
-msgstr ""
+msgstr "فیلتر کردن سایه"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind buildings."
-msgstr ""
+msgstr "نشان دادن نمای کلی نیروها زمانی که پشت ساختمان ها هستند"
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "سایه نمای نیروها"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "فعال کردن Particles"
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
-msgstr ""
+msgstr "Particles"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "زمانی که خاموش است، از کمترین تنظیمات گرافیکی ممکن برای رندر کردن آب استفاده می کند. این موضوع باعث می شود سایر تنظیمات غیر ضروری شوند"
 
 #: gui/options/options.json[1].options[10].label
 msgid "Water Effects"
-msgstr ""
+msgstr "افکت آب"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "استفاده از افکت های با کیفیت بالا برای آب، رندر کردن موج های ساحل، کف های ساحل و دنباله کشتی ها بر روی آب"
 
 #: gui/options/options.json[1].options[11].label
 msgid "HQ Water Effects"
-msgstr ""
+msgstr "افکت آب HQ"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr ""
+msgstr "استفاده از عمق واقعی آب برای محاسبات رندرینگ"
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
-msgstr ""
+msgstr "عمق واقعی آب"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr ""
+msgstr "ایجاد قابلیت تصویر آینه ای در آب"
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water Reflections"
-msgstr ""
+msgstr "بازتاب های آب"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr ""
+msgstr "استفاده از یک نقشه بازتاب آب واقعی و نه یک حالت شفاف"
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
-msgstr ""
+msgstr "بازتاب آب"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
-msgstr ""
+msgstr "انداختن سایه ها بر روی آب"
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on Water"
-msgstr ""
+msgstr "سایه ها بر روی آب"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
-msgstr ""
+msgstr "به آرامی برداشتن تاریکی و Fog-of-war"
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth LOS"
-msgstr ""
+msgstr "LOS یکدست"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr ""
+msgstr "رندر آسمان"
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
-msgstr ""
+msgstr "نشان دادن آسمان"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "اجرای Vertical Sync برای حل مشکل پرش های گرافیکی. نیازمند ریستارت کردن بازی"
 
 #: gui/options/options.json[1].options[18].label
 msgid "VSync"
-msgstr ""
+msgstr "VSync"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr ""
+msgstr "برای کاهش بار بر CPU، کاهش تناوب رندر کردن در تمام منوها. قابل تنظیم از بیشترین تا کمترین میزان برای این کاهش."
 
 #: gui/options/options.json[1].options[19].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "کم کردن FPS در منوها"
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr ""
+msgstr "برای کاهش بار بر CPU، کاهش تناوب رندر کردن در بازیهای در حال اجرا. قابل تنظیم از بیشترین تا کمترین برای این کاهش"
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "کاهش FPS در بازی ها"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr ""
+msgstr "لحاظ کردن تعادل میان عملکرد سیستم و گرافیک بازی"
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
-msgstr ""
+msgstr "گرافیک ها"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr ""
+msgstr "گرفتن صدای اصلی"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
-msgstr ""
+msgstr "تنظیم صدای اصلی"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr ""
+msgstr "استفاده از موسیقی در حین بازی"
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
-msgstr ""
+msgstr "درجه صدای موسیقی"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr ""
+msgstr "استفاده از صدای محیط در داخل بازی"
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
-msgstr ""
+msgstr "درجه صدای محیط"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr ""
+msgstr "استفاده از صدای فعالیت های نیروها در داخل بازی"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
-msgstr ""
+msgstr "درجه صدای فعالیت ها"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr ""
+msgstr "استفاده از صدای UI"
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
-msgstr ""
+msgstr "درجه صدای UI"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "دریافت صدای اطلاع رسان، زمانی که فردی اسم شما را تایپ میکند"
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
-msgstr ""
+msgstr "اطلاع رسان"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
-msgstr ""
+msgstr "نمایش راهنمای ها زمانی که بازی را تنظیم می کنید"
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable Game Setting Tips"
-msgstr ""
+msgstr "فعال کردن راهنمای تنظیمات بازی"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr ""
+msgstr "کنار کشیدن پنل تنظیمات زمانی که باز ، بسته و یا تغییر اندازه داده می شود"
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable Settings Panel Slide"
-msgstr ""
+msgstr "فعال کردن قابلیت کنار کشیدن پنل تنظیمات"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr ""
+msgstr "ذخیره و بازیابی تنظیمات بازی برای استفاده سریع زمانیکه میزبان یک بازی جدید هستید"
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
-msgstr ""
+msgstr "تنظیمات بازی Persist"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
@@ -2925,11 +2948,11 @@ msgstr "خیلی سخت"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "سختی AI پیش فرض"
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "سختی AI بصورت پیش فرض"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -2937,7 +2960,7 @@ msgstr "تصادفی"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "متعادل"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -2949,251 +2972,251 @@ msgstr "دفاعی"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "رفتار پیش فرض AI"
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI Behavior"
-msgstr ""
+msgstr "رفتار پیش فرض AI"
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "بصورت خودکار بازیکن هایی که وارد صفحه شروع بازی می شوند به عنوان بازیکن آزاد در زمان تنظیمات بازی، تخصیص داده می شوند."
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign Players"
-msgstr ""
+msgstr "تخصیص بازیکن ها"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr ""
+msgstr "تنظیمات بازی"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr ""
+msgstr "تعداد پیام های عقب افتاده برای بارگذاری زمانی که وارد لابی می شوید"
 
 #: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
-msgstr ""
+msgstr "چت های بکلاگ"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "نشان داده متوسط نرخ مشارکت بازیکن ها در یک ستون از لیست بازی ها"
 
 #: gui/options/options.json[4].options[1].label
 msgid "Game Rating Column"
-msgstr ""
+msgstr "ستون رتبه بندی بازی"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "این تنظیمات تنها برای بازی های چندنفره است"
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
-msgstr ""
+msgstr "لابی"
 
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "کلید میانبر نیروهای زخمی ، نیروهایی را انتخاب می کنند که درصد سلامت آنها از این عدد کمتر شده است"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
-msgstr ""
+msgstr "سلامت نیروهای زخمی"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "تعداد نیروهای پرورش یافته در هر دسته بصورت پیش فرض"
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
-msgstr ""
+msgstr "اندازه دسته پرورش نیرو"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "تعداد دفعاتی که شما از scroll استفاده می کنید تا اندازه دسته ها را کم یا زیاد کنید به میزان 1"
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
-msgstr ""
+msgstr "نرخ رشد دسته ها با Scroll"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr ""
+msgstr "نمایش یک اطلاع رسان در چت، اگر شما توسط بازیکن دیگری مورد حمله قرار گرفتید"
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat Notification Attack"
-msgstr ""
+msgstr "اطلاع رسان از حمله در چت"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "نشان دادن یک اطلاع رسان در چت اگر یکی از هم پیمان های شما منابعی را به دیگی افراد هم پیمان هدیه دهد."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr ""
+msgstr "اطلاع رسانی هدیه در چت"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "نشان دادن یک اطلاع رسان در چت برای ناظرها زمانی که یک بازیکن منابعی را تبادل میکند"
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr ""
+msgstr "اطلاع رسان تهاتر در چت"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
-msgstr ""
+msgstr "غیر فعال"
 
 #: gui/options/options.json[5].options[6].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "تکمیل شده"
 
 #: gui/options/options.json[5].options[6].list[2].label
 msgid "All displayed"
-msgstr ""
+msgstr "همه نمایش داده شده"
 
 #: gui/options/options.json[5].options[6].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "نشان دادن یک اطلاع رسان در چت، اگرشما و یا یکی از هم پیمانان تمدن خود را به یک سطح بالاتر ارتقا دهد یا شروع ارتقا کند و یا از آن خارج شود. در حالت نظاره گر این اطلاع رسان از تمام بازیکن ها برای ناظرها نمایش داده می شوند"
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr ""
+msgstr "اطلاع رسان ارتقا تمدن در چت"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "نمایش شعاع حمله ساختمان های انتخاب شده (می توان از طریق کلید های میانبر این قابلیت را در داخل بازی خاموش و روشن کرد)"
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "تجسم شعاع حمله"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "نمایش شعاع آئوراها برای نیروها و ساختمان های انتخاب شده ( می توان از طریق کلید های میانبر این قابلیت را در داخل بازی خامش و روشن کرد)"
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura Range Visualization"
-msgstr ""
+msgstr "تجسم شعاع آئورا"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "نمایش شعاع درمان برای نیروها (می توان از طریق کلید های میانبر این قابلیت را در داخل بازی خاموش یا روشن کرد)"
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal Range Visualization"
-msgstr ""
+msgstr "تجسم شعاع درمان"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr ""
+msgstr "نشان دادن Rank icons بالای Status bars"
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "Rank icons بالای Status bar"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr ""
+msgstr "نمایش راهنمای دقیق برای نیروهای قابل پرورش در ساختمان های که نیرو تولید میکنند"
 
 #: gui/options/options.json[5].options[11].label
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "راهنمای دقیق"
 
 #: gui/options/options.json[5].options[12].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "بی نظم"
 
 #: gui/options/options.json[5].options[12].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "صعودی"
 
 #: gui/options/options.json[5].options[12].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "نزولی"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
+msgstr "به ترتیب کردن بازیکن ها در راهنما در خصوص منابع و جمعیت همراه مقدار آن بصورت پویا"
 
 #: gui/options/options.json[5].options[12].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "به ترتیب کردن راهنمای منابع و جمعیت"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr ""
+msgstr "رنگ نیروهای شما زمانی که رنگ های دیپلماسی فعال شده اند"
 
 #: gui/options/options.json[5].options[13].label
 msgid "Diplomacy Colors: Self"
-msgstr ""
+msgstr "رنگهای دیپلماسی: خود"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr ""
+msgstr "رنگ هم پیمان ها زمانیکه رنگ های دیپلماسی فعال شده اند"
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Ally"
-msgstr ""
+msgstr "رنگ های دیپلوماسی: هم پیمان ها"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr ""
+msgstr "رنگ بازیکن های بی طرف زمانی که رنگ های دیپلماسی فعال شده است"
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Neutral"
-msgstr ""
+msgstr "رنگ های دیپلماسی:بی طرف"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
-msgstr ""
+msgstr "رنگ دشمنان زمانی که رنگ ها یدیپلماسی فعال شده است"
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Enemy"
-msgstr ""
+msgstr "رنگ های دیپلماسی: دشمن"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr ""
+msgstr "تغییر تنظیمات در خصوص تنظیمات داخل بازی"
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
-msgstr ""
+msgstr "داخل بازی"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr ""
+msgstr "بهره برداری از حیوانات، بوته های توت، ماهی و زمین ها"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "بهره برداری آهن از معادن آهن یا سنگ های آهن"
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr ""
+msgstr "بهره برداری از سنگها و یا معادن سنگ"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "قطع کردن از درختان یا بریدن بیشه ها"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3372,83 +3395,83 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "اگرچه برای یک بازیکن با تجربه می تواند بسیار ساده باشد، سطح AI پیش فرض میتواند برای بازیکن هایی که تازه وارد این بازی شده اند می تواند بسیار سخت باشد تا اینکه بتواند مکانیک و اصول پایه ای بازی را یاد بگیرند. کسانی که تازه بازی را شروع کرده اند توصیه می شود در مقابل AI های سطح پایینتر بازی کنند ( جعبه شنی یا خیلی ساده). تغییر سطح AI با انتخاب کلید جعبه دنده که در کنار اسم AI قرار گرفته است امکان پذیر است و شما  می توانید تنظیمات دلخواه خود را اعمال نمایید."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]از شما بخاطر نصب بازی 0 A.D متشکریم!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]  این بازی کماکان در حال توسعه است. بعضی امکانات هنوز توسعه پیدا نکرده اند و امکان بروز باگ وجود دارد"
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]  بازی ممکن است مشکل Performance داشته باشد مخصوصا در نقشه های بزرگ تعداد بسیار زیاد نیرو"
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr ""
+msgstr "[imgleft=\"iconFormation\"] آرایش های نظامی همچنان در درست توسعه هستند، اما شما می توانید در حال حاضر از آنها استفاده کنید یا آنرا غیر فعال کنید"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr ""
+msgstr "اردوگاه نظامی رومی"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
 "- Build anywhere on the map, even in enemy territory. Good for building a "
 "secret base behind enemy lines or to consolidate gains within enemy "
 "territory."
-msgstr ""
+msgstr "- ساخت در هر جایی از نقشه، حتی در قلمرو دشمن. این قابلیت این امکان را می دهد که بتوانی پشت خطوط دشمت بصورت مخفیانه ساختمان بسازید یه به جمع آوری منابع بپردازید"
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr ""
+msgstr "- متروکه شدن ساختمان به نفع کسی که ساختمان در قلمرو وی ساخته شده است در صورتی که او جزو هم پیمان ها نباشد"
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "- ساخت سلاح های دژکوب و پرورش سربازان شهروند"
 
 #: gui/text/tips/army_camp.txt:8
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "مستقر شدن حداکثر 40 نیرو برای درمان نیروها و محافظت از اردوگاه نظامی و جلوگیری از متروکه شدن"
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr "سربازخانه"
+msgstr "پادگان"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "- پرورش تمام سربازان شهروند. بعضی از تمدن ها می توانند قفل ساخت سلحشوهای خود را نیز باز کنند."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr ""
+msgstr "- تحقیق فناوری های نظامی منحصر به فرد برای هر تمدن"
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "- ساخت سریع یکی برای پرورش سربازان شهروند در حالی که شما تمدن خود را دارید ارتقا می دهید"
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "- ساخت در پایگاه های نزدیک دشمن برای اینکه بتوانید سریعتر نیروهای تازه را در نبرد وارد کنید"
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -3466,27 +3489,27 @@ msgstr "- دانش های مربوط به تسلیحات و زره ها را ب�
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "مستقر کردن سرباز های شهروند برای افزایش سرعت تحقیقات (NOT IMPLEMENTED YET)"
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr ""
+msgstr "گروه مقدس کارتاژ"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "سلحشور نیزه دار و سلحشور سواره نظام نیزه دار برای کارتاژ"
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr ""
+msgstr "- هردو قابل پرورش یافتن از طریق معبد بجای دژها هستند همانند بیشتر سلحشورها"
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "- استفاده از نیزه دارها به عنوان پیاده نظام سنگین در مقابل سواره نظام. استفاده از سواره نظام برای ضربه وارد کردن به ماشین های دژکوب و پیاده نظام نیزه انداز"
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3494,7 +3517,7 @@ msgstr "منجنیق‌ها"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
-msgstr "- ادوات محاصره دوربرد که علیه ساختمان ها کاربرد دارند."
+msgstr "- ادوات دژکوب دورزن در برابر ساختمانها بسیار خوب هستند"
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
@@ -3514,7 +3537,7 @@ msgstr "- برای تحرک به ارابه هایی تبدیل می شوند، 
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr "کرجی های جنگی کلتی"
+msgstr "کرجی های جنگی سلتی"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
@@ -3522,7 +3545,7 @@ msgstr "- یک کشتی جنگی متوسط شبیه تریرم."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "- Available to the Celtic Factions (Britons, Gauls)."
-msgstr ""
+msgstr "- در دسترس برای تمدن های سلتی (بریتون ها ، گال ها)"
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
@@ -3530,23 +3553,23 @@ msgstr "- می تواند تا 40 سرباز را در خود جای دهد."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "- افزایش قدرت آتش با مستقر کردن سربازها"
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr ""
+msgstr "- قدرت سدشکنی همانند سایر کشتی های جنگی را ندارد اما سلامت و زره قویتری دارد."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr "مراکز شهر"
+msgstr "مراکز تمدن"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The foundation of your new colony."
-msgstr ""
+msgstr "- زیرساخت مستعمره جدید شما"
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
-msgstr "- مرز بزرگی را تصاحب می کند."
+msgstr "- شعاع قلمرو بزرگی را تصاحب می کند."
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
@@ -3556,7 +3579,7 @@ msgstr "- می تواند در مرز های دوستان و بی طرف ساخ�
 msgid ""
 "- Train citizens: female citizens, infantry citizen soldiers and cavalry "
 "citizen soldiers."
-msgstr ""
+msgstr "- پرورش شهروندان: شهروندان زن، سرباز های پیاده نظام شهروند  و سرباز های سواره نظام شهروند"
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3568,7 +3591,7 @@ msgstr "- \"سرباز خانه های\" مخصوص گروه کارتاژ."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr "- از هر کدام از سفارت ها، مزدوران مخصوص قوم های مختلف را به دست آورید."
+msgstr "پرورش مزدوران از تمدن های مختلف از طریق سفارتخانه های آنها"
 
 #: gui/text/tips/embassies.txt:6
 msgid ""
@@ -3582,31 +3605,31 @@ msgstr "ماهی‌گیری"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "- ماهی گیری در دریاها برای یک برداشت پر نعمت"
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "- کشتی های ماهی گیری قادر هستند مقادیر زیادی غذا را در هر سفر حمل کنند"
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "- سرعت جمع کردن غذا از طریق ماهیگیری از جمع کردن غدا در زمین بیشتر است"
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "- باید مراقب بود چرا که ماهی یک منبع بی نهایت نیست!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr "قلعه نظامی"
+msgstr "دژ نظامی"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
-msgstr "- قلعه عموما قوی ترین ساختمان هر گروه است."
+msgstr "- دژ نظامی عموما قوی ترین ساختمان هر تمدن است."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- پروش نیروهای قدرتمند همانند سلحشورها ، قهرمان ها و سلاح های دژکوب"
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -3614,27 +3637,27 @@ msgstr "- فضا برای جمعیت می دهد."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "- مستقر کردن سربازها در داخل برای اضافه کردن قدرت آتش و دفاع"
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "FREEHAND POSITION"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "- Gain an advantage on the battleground by tactically positioning your "
 "units!"
-msgstr ""
+msgstr "- بدست آوردن مزیت در نبردهای زمینی از طریق موضع گیری صحیح نیروها!"
 
 #: gui/text/tips/freehand_position.txt:4
 msgid ""
 "- Therefore select some units, press and hold the right mouse button, draw "
 "any line, then release the button."
-msgstr ""
+msgstr "- برای انتخاب چند نیرو، فشار دادن و نگهداشتن کلید راست موس، کشیدن در هر جهت و سپس رها کردن کلید."
 
 #: gui/text/tips/freehand_position.txt:6
 msgid "- Your units will now spread out on this line."
-msgstr ""
+msgstr "- نیروهای شما در این خط گسترش پیدا خواهند کرد"
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3642,25 +3665,25 @@ msgstr "جمع‌آوری منبع"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "- استفاده از سربازان شهروند و شهروندان زن برای جمع آوری منابع"
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female citizens are faster gathering vegetable resources."
-msgstr ""
+msgstr "- شهروندان زن سبزیجات و منابع گیاهی را سریعتر جمع می کنند"
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr ""
+msgstr "- سربازان شهروند پیاده نظام مواد معدنی را سریعتر جمع آوری می کنند"
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr ""
+msgstr "- سربازان شهروند سواره نظام گوشت را سریعتر جمع آوری میکنند"
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
 "- The higher the level of a citizen soldier (advanced, elite), the better he"
 " fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "- سربازان شهروند که به درجه بالاتر می رسند (پیشرفته ، زبده) قدرت جنگی بهتری پیدا می کنند اما بهره وری جمع کردن منابع آنها کاهش پیدا میکند."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3670,36 +3693,36 @@ msgstr "ایفیکراتس"
 msgid ""
 "- The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "- فرمانده آتن کسی که نیروی جنگی آتنی ها را بازسازی کرد تا بتوانند سریعتر حرکت کنند و قدرت مانور بیشتری داشته باشند."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "- Units in his formation are faster and stronger."
-msgstr ""
+msgstr "- نیروها در آرایش نظامی وی سریعتر و قویتر عمل می کنند"
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr ""
+msgstr "- نیزه اندازها در زمانیکه او زنده است سریعتر حرکت می کنند"
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr ""
+msgstr "برج دیده بانی"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "- ساختن در منطقه بی طرف برای بدست آوردن شعاع وسیع برای دیده بانی"
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr ""
+msgstr "- ارزان، در 80 چوب"
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr ""
+msgstr "- آنها سریع ساخته می شوند اما بسیار نیز ضعیف هستند"
 
 #: gui/text/tips/outposts.txt:8
 msgid ""
 "- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "- مستقر کردن یک نیرو درساختمان برای جلوگیری از متروکه شدن آن در مناطق بی طرف"
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -3711,13 +3734,13 @@ msgstr "- دیوار های ارزان که سریع ساخته می شوند و
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr "- بیشتر گروه ها در فاز روستا به آن ها دسترسی دارند."
+msgstr "- بیشتر تمدن ها در مرحله روستای به آن ها دسترسی دارند."
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
 "- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
 " by siege weapons."
-msgstr "- بر خلاف دیوار های شهر که فقط با ادوات محاصره قابل تخریبند، سربازان دشمن می توانند به آنها حمله کنند."
+msgstr "- بر خلاف دیوار های شهر که فقط با ادوات دژکوب قابل تخریبند، سربازان دشمن می توانند به آنها حمله کنند."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -3725,118 +3748,118 @@ msgstr "پریکلس"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr ""
+msgstr "- بزرگترین سیاستمدار آتن در قرن 5 قبل از میلاد"
 
 #: gui/text/tips/pericles.txt:4
 msgid "- Buildings construct faster within his range."
-msgstr ""
+msgstr "- ساخت سازه ها سریعتر انجام می شود در شعاع آن"
 
 #: gui/text/tips/pericles.txt:6
 msgid "- Temples are cheaper while he lives."
-msgstr ""
+msgstr "- معابد در زمان حیات وی ارزانتر خواهند بود"
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr "معماری پارسی"
+msgstr "معماری ایرانی"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr "- دانش ویژه برای پارسیان."
+msgstr "- دانش ویژه برای ایرانی ها"
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
-msgstr "- تمام ساختمان های پارسی +25% s قویترند."
+msgstr "- تمام ساختمان های ایرانی +25% قویترند."
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "- به سبب آن زمان ساخت به میزان +20% افزایش می یابد"
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
 "- Persians also have access to a great number of structural & defensive "
 "technologies."
-msgstr "- پارسیان همچنین به دانش های فراوان دفاعی و ساختمانی دسترسی دارند."
+msgstr "- ایرانی ها همچنین به دانش های فراوان دفاعی و ساختمانی دسترسی دارند."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr ""
+msgstr "نیزه بلند دار"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "- زره سنگین و کند. قدرت اتک پایین"
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "- در مقابل سواره نظام یا در مقابل پیاده نظام نزدیک زن استفاده می شود تا آنها را در جای خود میخکوب کند"
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr ""
+msgstr "- در دسترس برای: مقدونیه ، سلوکیه و بطلیموسی ها"
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "کشتی های جنگی سنگین"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr ""
+msgstr "- سنگین ترین کشتی های جنگی استاندارد. در دسترس برای: روم ، کارتاژ ، بطلیموسی و سلوکیه"
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Transports up to 50 units."
-msgstr ""
+msgstr "- ترابری تا 50 نیرو"
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "- افزایش قدرت آتش با مستقر کردن نیرو برای منجنیق ها"
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- داشتن یک حمله باقی مانده که کشتی دشمن را غرق کند (NOT IMPLEMENTED YET)"
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr ""
+msgstr "زیست بوم ساوانا"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "- عموما مسطح همراه با چند چاله آب و برامدگی های سنگی"
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "- پر از گله های حیوانات مناسب برای شکارهای پر منفعت"
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
-msgstr ""
+msgstr "- غنی در تمام انواع معدن"
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "- چوب بصورت پراکنده ای وجود دارد، اما درختان بزرگ و پربازده بائوباب را می توان در این منطقه یافت"
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr ""
+msgstr "برج های دفاعی"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "- برج های آزاد ایستاده برای دفاع از مناطق وسیع حومه شهر بسیار مناسب هستند"
 
 #: gui/text/tips/scout_towers.txt:4
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr ""
+msgstr "- آنها معمولا به میزان 100 چوب و 100 سنگ هزینه دارند. برج های دفاعی ایبری ها 300 سنگ هزینه دارند (چراکه برج های قویتری هستند)"
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "- دارای قدرت حمله دورزن هستند که به ازای هر نیرویی که درآنها مستقر می شوند افزایش می یابد"
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr ""
+msgstr "اسپارت ها"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
@@ -3844,55 +3867,55 @@ msgstr "- قوی‌ترین واحد پیاده‌ نظام در بازی"
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr ""
+msgstr "- سلحشور پیاده نظام برای تمدن اسپارت در دسترس است"
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
 "- Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "- استفاده از آنها برای قتل عام سواره نظام دشمن یا به عنوان نیروی تکان دهنده برای حمایت از پیاده نظام های معمول"
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr ""
+msgstr "- استفاده از آرایش نظامی فالانژ برای بالابردن امتیاز زره نیروها"
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr ""
+msgstr "نیزه دار"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "- نیروی پیاده نظام نزدیکزن ساده، برای تمام تمدن ها"
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "- بکارگیری در برابر حمله سواره نظام برای افزایش قدرت حمله"
 
 #: gui/text/tips/spearmen.txt:6
 msgid "- Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "- حمله های معقول باعث می شود آنها نیروهای بسیار مناسبی برای خط مقدم باشند"
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
 "- They are countered by ranged units and swordsmen, so support your spearmen"
 " with slingers or cavalry."
-msgstr ""
+msgstr "- نقطه ضعف آنها نیروهای دورزن و نیروهای نیزه دار است، بنابرین برای پستیبانی از آنها نیزه داران همراه سنگ انداز ها و یا سواره نظام باید حضور داشته باشند."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
-msgstr ""
+msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special structure for Greek factions."
-msgstr ""
+msgstr "- یک سازه منحصر به فرد برای تمدن یونان"
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "- پرورش نیزه اندازهای سنگین اسلحه و سلحشورهای پیاده نظام شمشیرزن"
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Grants +10 Population."
-msgstr ""
+msgstr "- بدست آوردن +10 سقف جمعیت"
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -3900,33 +3923,33 @@ msgstr "انبار"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr ""
+msgstr "- یک محل نگهداری منابع غیر غذایی (چوب ، سنگ ، آهن) ارزان قیمت"
 
 #: gui/text/tips/storehouses.txt:4
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "- تحقیق فناوری ها برای بهبود ظرفیت جمع آوری منابع توسط شهروندان"
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
-msgstr ""
+msgstr "آرایش نظامی سینتاگما"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr ""
+msgstr "- یک آرایش نظامی برای پیاده نظام های نیزه بلند دار"
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
-msgstr ""
+msgstr "- این آرایش نظامی بسیار کند و دست و پا گیر است"
 
 #: gui/text/tips/syntagma.txt:6
 msgid "- Nearly invulnerable from the front."
-msgstr ""
+msgstr "- تقریبا غیر قابل نفوذ از سمت جلو"
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
-msgstr ""
+msgstr "- آسیب پذیر در مقابل حمله هایی که از پشت صورت می گیرد"
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -3934,44 +3957,44 @@ msgstr "معابد"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "- ساختار مرحله شهری"
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "- شفابخشانی برای شفای سربازان شما در میدان جنگ، تربیت می کند."
+msgstr "- استخدام درمانگرها برای درمان سربازان در میدان نبرد"
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr "- دانش های شفابخشی، فرهنگی و سرسپردگی دینی را پژوهش می کند."
+msgstr "- تحقیق درمانگری، پیروی مذهبی و فناوریهای فرهنگی"
 
 #: gui/text/tips/temples.txt:8
 msgid "- Its \"aura\" heals nearby units."
-msgstr "- \"موج\" آن، سربازان اطراف را شفا می بخشد."
+msgstr "- \"آئورا\" آن نیروهای در شعاع وی را درمان می کند"
 
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
-msgstr "- سربازان زخمی را در آن مستقر کنید تا سریع تر شفا پیدا کنند."
+msgstr "- سربازان زخمی را در آن مستقر کنید تا سریع تر درمان شوند."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr ""
+msgstr "متروکه شدن قلمرو"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "- متروکه شدن زمانی اتفاق می افتد که ساختمان ها به مراکز شهری هم پیمان ها متصل نیستند"
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""
 "- The decay process can be slowed down or reversed by garrisoning some units"
 " in the structure."
-msgstr ""
+msgstr "- فرآیند متروکه شدن می تواند کند یا معکوس شود اگر تعدادی نیرو در ساختمان مورد نظر مستقر شوند "
 
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
 "- When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "- زمانی که متروکه شدن یک ساختمان تمام می شود، ساختمان در اختیارقویترین تاثیر گذار ترین همسایه قرار می گیرد."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -3981,48 +4004,48 @@ msgstr "تمیستوکلس"
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "- قهرمان آتن کسی که یونانی ها را در نبرد بزرگ دریایی آرتمیس و سالامیس فرماندهی کرد."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
-msgstr ""
+msgstr "- تمام کشتی ها زمانی که او زنده است سریعتر ساخته می شوند"
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "- کشتی که او در آن مستقر شده است خیلی سریعتر حرکت خواهد کرد"
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "تریرم"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
-msgstr ""
+msgstr "- کشتی جنگی متوسط"
 
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr ""
+msgstr "- در دسترس تمدن رومی ها ، کارتاژها ، یونانی ها و ایرانی ها"
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr ""
+msgstr "- مناسب ترابری و جنگ"
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "- سوار کردن نیروها در کشتی برای افزایش قدرت آتش آنها"
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- سوار کردن منجنیق در کشتی برای قدرت دژشکنی حمله دوربرد (NOT IMPLEMENTED YET)"
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- قابلیت منهدم کردن کشتی های دشمن از طریق نبرد مستقیم و توانایی سدشکنی. قابلیت سدشکنی بعد از استفاده می بایست شارژ شود تا بتوان از آن مجدد استفاده کرد (NOT IMPLEMENTED YET)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4030,23 +4053,23 @@ msgstr "ویریاتو"
 
 #: gui/text/tips/viriato.txt:2
 msgid "- Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "- قهرمان ایبری از قبیله لوسیتانی"
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr ""
+msgstr "- حداقل 7 عملیات نظامی علیه رومی ها در زمان جنگهای لوسیتانی از سال 147 ق.م تا 139 ق.م صورت داده است."
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr ""
+msgstr "- حرکت سریع و امکان تعویض سلاح بین شمشیر و نیزه آتشین"
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr ""
+msgstr "آئورای وی تاکتیک جنگ های چریکی است که به نیروهای ایبری کنار وی این قدرت را می دهد که بتوانند در مقابل دشمن خود کمین کنند"
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4054,7 +4077,7 @@ msgstr "فیل های جنگی"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr "- موجوداتی عظیم از آفریقا و هند، تزبیت شده برای جنگ."
+msgstr "- موجوداتی عظیم از آفریقا و هند، تربیت شده برای جنگ."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
@@ -4064,7 +4087,7 @@ msgstr "- هزینه ی غذا و فلز زیاد دارند، اما بسیار
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr "- آسیب پذیر در مقابل زوبین داران."
+msgstr "- آسیب پذیر در مقابل پیاده نظام نیزه انداز."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
@@ -4072,20 +4095,20 @@ msgstr "- در دسترس: ماوریایی ها، بطلمیوسیان، سلو
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr ""
+msgstr "نهنگ ها"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr ""
+msgstr "- یک منبع اقیانوسی"
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr ""
+msgstr "- 2000 غذا"
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "- قابل جمع آوری از طریق کشتی های ماهی گیری بعد از اینکه نهنگ کشته شد"
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "- گشت زدن در اطراف اقیانوس و فرار کردن زمانی که به آنها حمله می شود"

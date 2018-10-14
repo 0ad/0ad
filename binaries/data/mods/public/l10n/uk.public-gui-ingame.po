@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: gui/session/input.js:177
 #, javascript-format
@@ -39,6 +39,7 @@ msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "Базовий радіус: %(range)s метрів"
 msgstr[1] "Базовий радіус: %(range)s метрів"
 msgstr[2] "Базовий радіус: %(range)s метрів"
+msgstr[3] "Базовий радіус: %(range)s метрів"
 
 #: gui/session/input.js:178
 #, javascript-format
@@ -47,6 +48,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Середній радіус бонуса: %(range)s метрів"
 msgstr[1] "Середній радіус бонуса: %(range)s метрів."
 msgstr[2] "Середній радіус бонуса: %(range)s метрів"
+msgstr[3] "Середній радіус бонуса: %(range)s метрів"
 
 #: gui/session/input.js:689
 msgid "Cannot build wall here!"
@@ -195,6 +197,7 @@ msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Всього %(inactiveString)s."
 msgstr[1] "Всього %(inactiveString)s."
 msgstr[2] "Всього %(inactiveString)s."
+msgstr[3] "Всього %(inactiveString)s."
 
 #: gui/session/menu.js:897
 msgid "There are no land traders."
@@ -207,6 +210,7 @@ msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s торговець діє"
 msgstr[1] "%(numberTrading)s торговців діють"
 msgstr[2] "%(numberTrading)s торговців діють"
+msgstr[3] "%(numberTrading)s торговців діють"
 
 #: gui/session/menu.js:915
 #, javascript-format
@@ -215,6 +219,7 @@ msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s не діє"
 msgstr[1] "%(numberOfLandTraders)s не діють"
 msgstr[2] "%(numberOfLandTraders)s не діють"
+msgstr[3] "%(numberOfLandTraders)s не діють"
 
 #: gui/session/menu.js:920
 #, javascript-format
@@ -223,6 +228,7 @@ msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s торговець не діє"
 msgstr[1] "%(numberOfLandTraders)s торговців не діють"
 msgstr[2] "%(numberOfLandTraders)s торговців не діють"
+msgstr[3] "%(numberOfLandTraders)s торговців не діють"
 
 #: gui/session/menu.js:930
 #, javascript-format
@@ -231,6 +237,7 @@ msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s в гарнізоні торгового судна"
 msgstr[1] "%(numberGarrisoned)s в гарнізоні торгового судна"
 msgstr[2] "%(numberGarrisoned)s в гарнізоні торгового судна"
+msgstr[3] "%(numberGarrisoned)s в гарнізоні торгового судна"
 
 #: gui/session/menu.js:935
 #, javascript-format
@@ -243,6 +250,7 @@ msgid_plural ""
 msgstr[0] "%(numberGarrisoned)s торговець на торговому судні"
 msgstr[1] "%(numberGarrisoned)s торговців на торговому судні"
 msgstr[2] "%(numberGarrisoned)s торговців на торговому судні"
+msgstr[3] "%(numberGarrisoned)s торговців на торговому судні"
 
 #: gui/session/menu.js:963
 msgid "There are no merchant ships."
@@ -255,6 +263,7 @@ msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "Є %(numberTrading)s торгове судно діє"
 msgstr[1] "Є %(numberTrading)s торгових суден діє"
 msgstr[2] "Є %(numberTrading)s торгових суден діє"
+msgstr[3] "Є %(numberTrading)s торгових суден діє"
 
 #: gui/session/menu.js:980
 #, javascript-format
@@ -263,6 +272,7 @@ msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s не діє"
 msgstr[1] "%(numberOfShipTraders)s не діють"
 msgstr[2] "%(numberOfShipTraders)s не діють"
+msgstr[3] "%(numberOfShipTraders)s не діють"
 
 #: gui/session/menu.js:985
 #, javascript-format
@@ -271,6 +281,7 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s торгове судно не діє"
 msgstr[1] "%(numberOfShipTraders)s торгових суден не діє"
 msgstr[2] "%(numberOfShipTraders)s торгових суден не діє"
+msgstr[3] "%(numberOfShipTraders)s торгових суден не діє"
 
 #: gui/session/menu.js:1206
 msgid "Resume"
@@ -848,6 +859,7 @@ msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s суб'єкт класу %(class)s"
 msgstr[1] "%(number)s суб'єкти класу %(class)s"
 msgstr[2] "%(number)s суб'єкти класу %(class)s"
+msgstr[3] "%(number)s суб'єкти класу %(class)s"
 
 #: gui/session/selection_panels.js:767
 #, javascript-format

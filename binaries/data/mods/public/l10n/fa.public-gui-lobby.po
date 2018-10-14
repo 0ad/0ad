@@ -5,22 +5,23 @@
 # Translators:
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-23 14:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-23 08:16+0000\n"
+"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: gui/lobby/lobby.js:50
 msgid "Online"
-msgstr "روی خط"
+msgstr "آنلاین"
 
 #: gui/lobby/lobby.js:51
 msgid "Away"
@@ -32,7 +33,7 @@ msgstr "مشغول"
 
 #: gui/lobby/lobby.js:53
 msgid "Offline"
-msgstr "برون خط"
+msgstr "آفلاین"
 
 #: gui/lobby/lobby.js:54
 msgctxt "lobby presence"
@@ -41,7 +42,7 @@ msgstr "ناشناخته"
 
 #: gui/lobby/lobby.js:58
 msgid "Moderator"
-msgstr "میانجی"
+msgstr "مدیر"
 
 #: gui/lobby/lobby.js:59
 msgid "Player"
@@ -49,7 +50,7 @@ msgstr "بازیکن"
 
 #: gui/lobby/lobby.js:60
 msgid "Muted Player"
-msgstr ""
+msgstr "بازیکنی که وضعیتش خاموش شده است"
 
 #: gui/lobby/lobby.js:156
 msgid "Disconnected."
@@ -58,53 +59,53 @@ msgstr "ارتباط قطع شد"
 #: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "%(nick)s موضوع لابی تغییر یافت به %(subject)s"
 
 #: gui/lobby/lobby.js:189
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr "%(nick)s وارد شده."
+msgstr "%(nick)s وارد شد."
 
 #: gui/lobby/lobby.js:199
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr "%(nick)s بیرو رفته."
+msgstr "%(nick)s خارج شد."
 
 #: gui/lobby/lobby.js:220
 msgid "You have been muted."
-msgstr ""
+msgstr "وضعیت شما به خاموش تغییر یافت"
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "%(nick)s وضعیتش به خاموش تغییر یافت"
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
-msgstr ""
+msgstr "حال، شما مدیر هستید"
 
 #: gui/lobby/lobby.js:225
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "%(nick)s حالا مدیر است"
 
 #: gui/lobby/lobby.js:228
 msgid "You have been unmuted."
-msgstr ""
+msgstr "شما از حالت خامشی خارج شدید"
 
 #: gui/lobby/lobby.js:229
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "%(nick)s وضعیتش از حالت خاموش خارج شد"
 
 #: gui/lobby/lobby.js:231
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "شما دیگر مدیر نیستید"
 
 #: gui/lobby/lobby.js:232
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)s دیگر مدیر نیست"
 
 #: gui/lobby/lobby.js:247
 #, javascript-format
@@ -113,73 +114,73 @@ msgstr "%(oldnick)s اکنون به نام %(newnick)s شناخته می شود.
 
 #: gui/lobby/lobby.js:279
 msgid "Notice"
-msgstr ""
+msgstr "اعلان"
 
 #: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "وضعیت خود را 'بیرون' قرار دهید"
 
 #: gui/lobby/lobby.js:327
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "وضعیت خود را 'آنلاین' قرار دهید"
 
 #: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "بیرون انداختن یک کاربر مشخص از لابی."
 
 #: gui/lobby/lobby.js:342
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "ممنوع کردن ورود یک کاربر مشخص از لابی"
 
 #: gui/lobby/lobby.js:350
 msgid "Show this help."
-msgstr ""
+msgstr "نشان دادن این کمک"
 
 #: gui/lobby/lobby.js:353
 msgid "Chat commands:"
-msgstr ""
+msgstr "فرمان های چت:"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:357
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "ارسال یک پیام چت در مورد خودت،\nExample: /me goes swimming."
 
 #: gui/lobby/lobby.js:374
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "ارسال متن به عنوان یک پیام چت (حتی اگر با / شروع شده باشد) برای مثلا:\nExample: /say /help is a great command."
 
 #: gui/lobby/lobby.js:378
 msgid "Clear all chat scrollback."
-msgstr ""
+msgstr "پاک کردن تمام چت های قبلی"
 
 #: gui/lobby/lobby.js:385
 msgid "Return to the main menu."
-msgstr ""
+msgstr "بازگشت به منوی اصلی"
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "ارتباط شما با لابی قطع شده است. آیا میخواهید مجددا متصل شوید؟"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1200 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
-msgstr "تائیدیه"
+msgstr "تائید"
 
 #: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1184 gui/lobby/lobby.js:1201
 #: gui/prelobby/prelobby.js:300
 msgid "No"
-msgstr "نه خیر"
+msgstr "خیر"
 
 #: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1184 gui/lobby/lobby.js:1201
 #: gui/prelobby/prelobby.js:300
 msgid "Yes"
-msgstr "آری"
+msgstr "بله"
 
 #: gui/lobby/lobby.js:460
 msgctxt "previous page"
@@ -210,69 +211,69 @@ msgstr "هرچیزی"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr ">%(rating)s"
 
 #: gui/lobby/lobby.js:548
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr ""
+msgstr "<%(rating)s"
 
 #: gui/lobby/lobby.js:621
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "شما ممنوع الورود به لابی شده اید!"
 
 #: gui/lobby/lobby.js:622
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "شما از لابی بیرون انداخته شده اید!"
 
 #: gui/lobby/lobby.js:624
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s ممنوع الورود به لابی شد"
 
 #: gui/lobby/lobby.js:625
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s از لابی بیرون انداخته شد"
 
 #: gui/lobby/lobby.js:628
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "علت: %(reason)s"
 
 #: gui/lobby/lobby.js:656
 msgid "BANNED"
-msgstr ""
+msgstr "ممنوع الورود"
 
 #: gui/lobby/lobby.js:656
 msgid "KICKED"
-msgstr ""
+msgstr "بیرون شده"
 
 #: gui/lobby/lobby.js:687
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "برداشتن علامت دوست"
 
 #: gui/lobby/lobby.js:687
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "قرار دادن علامت دوست"
 
 #: gui/lobby/lobby.js:880 gui/lobby/lobby.js:881 gui/lobby/lobby.js:882
 #: gui/lobby/lobby.js:883 gui/lobby/lobby.js:884 gui/lobby/lobby.js:885
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: gui/lobby/lobby.js:913
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "بازیکن \"%(nick)s\" پیدا نشد"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:1134
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr "بازی در %(time)s شروع میشود."
+msgstr "بازی در %(time)s شروع می شود."
 
 #: gui/lobby/lobby.js:1135 gui/lobby/lobby.js:1514
 msgid "HH:mm"
@@ -281,62 +282,62 @@ msgstr "HH:mm"
 #: gui/lobby/lobby.js:1139
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "بازیکن ها: %(current)s / %(total)s"
 
 #: gui/lobby/lobby.js:1180
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "شما یک مد فعال دارید که با مد این بازی مطابقت ندارد."
 
 #: gui/lobby/lobby.js:1182
 msgid "Do you want to switch to the mod selection page?"
-msgstr ""
+msgstr "آیا تمایل دارید که به صفحه انتخاب مد بروید؟"
 
 #: gui/lobby/lobby.js:1183
 msgid "Incompatible mods"
-msgstr ""
+msgstr "مدهای ناسازگار"
 
 #: gui/lobby/lobby.js:1199
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "بازی آغاز شده است. آیا تمایل دارید به عنوان نظاره گر وارد شوید؟"
 
 #: gui/lobby/lobby.js:1233
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "آدرس بازی '%(ip)s' به نظر معتبر نیست"
 
 #: gui/lobby/lobby.js:1349
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr ""
+msgstr "فرمان '%(cmd)s' پشتیبانی نمی شود"
 
 #: gui/lobby/lobby.js:1361
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr ""
+msgstr "فرمان '%(cmd)s' توسط مدیر محدود شده است"
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:1434
 #, javascript-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:1439
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:1448 gui/lobby/lobby.js:1469 gui/lobby/lobby.js:1496
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:1453 gui/lobby/lobby.js:1474 gui/lobby/lobby.js:1501
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:1463
@@ -348,7 +349,7 @@ msgstr "== %(message)s"
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "(%(private)s) < %(sender)s>"
 
 #: gui/lobby/lobby.js:1492
 msgid "Private"
@@ -370,47 +371,47 @@ msgstr "%(time)s %(message)s"
 #: gui/lobby/lobby.js:1561
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:1577
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:1579
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s %%"
 
 #: gui/prelobby/prelobby.js:43
 msgid "Connecting…"
-msgstr ""
+msgstr "در حال اتصال..."
 
 #: gui/prelobby/prelobby.js:66
 msgid "Registering…"
-msgstr ""
+msgstr "در حال ثبت نام..."
 
 #: gui/prelobby/prelobby.js:96
 msgid "Please enter your username"
-msgstr "لطفا نام خود را وارد کنید"
+msgstr "لطفا نام کاربری خود را وارد کنید"
 
 #: gui/prelobby/prelobby.js:102
 msgid "Invalid username"
-msgstr ""
+msgstr "نام کاربری نامعتبر"
 
 #: gui/prelobby/prelobby.js:109
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "لطفا گذرواژه خود را وارد کنید"
 
 #: gui/prelobby/prelobby.js:110
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "لطفا گذرواژه خود را وارد کنید"
 
 #: gui/prelobby/prelobby.js:123
 msgid "Please enter your password again"
-msgstr "لطفا پسورد خود را دوباره وارد کنید"
+msgstr "لطفا گذرواژه خود را دوباره وارد کنید"
 
 #: gui/prelobby/prelobby.js:129
 msgid "Passwords do not match"
@@ -418,25 +419,25 @@ msgstr "گذرواژه ها مطابقت ندارد"
 
 #: gui/prelobby/prelobby.js:135
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "لطفا شرایط سرویس را مطالعه کنید"
 
 #: gui/prelobby/prelobby.js:141
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "لطفا شرایط استفاده را مطالعه کنید"
 
 #: gui/prelobby/prelobby.js:147
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "لطفا شرایط استفاده و سرویس را قبول کنید"
 
 #: gui/prelobby/prelobby.js:179
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "خطای نامشخص. این خطا معمولا به این دلیل بوجود می آید که یک IP آدرس اجازه ندارد بیش از یک حساب کاربری در یک ساعت ثبت نام کند"
 
 #: gui/prelobby/prelobby.js:185
 msgid "Registered"
-msgstr ""
+msgstr "ثبت نام شد"
 
 #: gui/prelobby/prelobby.js:249
 msgid "Register"
@@ -448,15 +449,15 @@ msgstr "ارتباط"
 
 #: gui/prelobby/prelobby.js:265 gui/prelobby/prelobby.xml:(caption):93
 msgid "Terms of Service"
-msgstr ""
+msgstr "شرایط خدمات"
 
 #: gui/prelobby/prelobby.js:274 gui/prelobby/prelobby.xml:(caption):98
 msgid "Terms of Use"
-msgstr ""
+msgstr "شرایط استفاده"
 
 #: gui/prelobby/prelobby.js:298
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید گذرواژه پاک شود بعد از اینکه متصل شدید؟"
 
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
@@ -464,7 +465,7 @@ msgstr "لابی چند نفره"
 
 #: gui/lobby/lobby_panels.xml:(heading):24
 msgid "Status"
-msgstr ""
+msgstr "وضعیت"
 
 #: gui/lobby/lobby_panels.xml:(heading):27
 #: gui/lobby/lobby_panels.xml:(heading):190
@@ -476,69 +477,69 @@ msgstr "نام"
 #: gui/lobby/lobby_panels.xml:(heading):205
 #: gui/lobby/lobby_panels.xml:(heading):292
 msgid "Rating"
-msgstr ""
+msgstr "رتبه بندی"
 
 #: gui/lobby/lobby_panels.xml:(heading):193
 msgid "Map Name"
-msgstr ""
+msgstr "نام نقشه"
 
 #: gui/lobby/lobby_panels.xml:(heading):196
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "اندازه"
 
 #: gui/lobby/lobby_panels.xml:(heading):199
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "نوع"
 
 #: gui/lobby/lobby_panels.xml:(heading):202
 msgid "Players"
-msgstr ""
+msgstr "بازیکن ها"
 
 #: gui/lobby/lobby_panels.xml:(heading):286
 msgid "Rank"
-msgstr "مقام"
+msgstr "رتبه"
 
 #: gui/lobby/lobby_panels.xml:(caption):52
 #: gui/lobby/lobby_panels.xml:(caption):331
 msgid "Current Rank:"
-msgstr ""
+msgstr "رتبه فعلی شما:"
 
 #: gui/lobby/lobby_panels.xml:(caption):56
 #: gui/lobby/lobby_panels.xml:(caption):335
 msgid "Highest Rating:"
-msgstr ""
+msgstr "بیشترین رتبه:"
 
 #: gui/lobby/lobby_panels.xml:(caption):60
 #: gui/lobby/lobby_panels.xml:(caption):339
 msgid "Total Games:"
-msgstr ""
+msgstr "کل بازی ها:"
 
 #: gui/lobby/lobby_panels.xml:(caption):64
 #: gui/lobby/lobby_panels.xml:(caption):343
 msgid "Wins:"
-msgstr ""
+msgstr "برد:"
 
 #: gui/lobby/lobby_panels.xml:(caption):68
 #: gui/lobby/lobby_panels.xml:(caption):347
 msgid "Losses:"
-msgstr ""
+msgstr "باخت:"
 
 #: gui/lobby/lobby_panels.xml:(caption):72
 #: gui/lobby/lobby_panels.xml:(caption):351
 msgid "Win Rate:"
-msgstr ""
+msgstr "نرخ برد:"
 
 #: gui/lobby/lobby_panels.xml:(caption):86
 #: gui/lobby/lobby_panels.xml:(caption):279
 msgid "Leaderboard"
-msgstr "تالار افتخار"
+msgstr "جدول رتبه بندی"
 
 #: gui/lobby/lobby_panels.xml:(caption):92
 #: gui/lobby/lobby_panels.xml:(caption):314
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "دیدن مشخصات کاربر"
 
 #: gui/lobby/lobby_panels.xml:(caption):120
 msgid "Map Type:"
@@ -559,7 +560,7 @@ msgstr "میزبانی بازی"
 
 #: gui/lobby/lobby_panels.xml:(caption):244
 msgid "Show only open games"
-msgstr ""
+msgstr "نشان دادن بازی های باز"
 
 #: gui/lobby/lobby_panels.xml:(caption):267
 msgid "Send"
@@ -576,23 +577,23 @@ msgstr "به روزرسانی"
 
 #: gui/lobby/lobby_panels.xml:(caption):317
 msgid "Enter username:"
-msgstr ""
+msgstr "ورود نام کاربری:"
 
 #: gui/lobby/lobby_panels.xml:(caption):323
 msgid "View Profile"
-msgstr ""
+msgstr "دیدن مشخصات کاربر"
 
 #: gui/lobby/lobby_panels.xml:(caption):356
 msgid "Please enter a player name."
-msgstr ""
+msgstr "لطفا نام یک بازیکن را وارد کنید"
 
 #: gui/prelobby/prelobby.xml:(caption):30
 msgid "Create a new account"
-msgstr ""
+msgstr "ساخت حساب کاربری جدید"
 
 #: gui/prelobby/prelobby.xml:(caption):34
 msgid "Login to an existing account"
-msgstr ""
+msgstr "ورود به حساب کاربری موجود"
 
 #: gui/prelobby/prelobby.xml:(caption):40
 msgid "Connect to the game lobby"
@@ -610,7 +611,7 @@ msgstr "گذرواژه:"
 
 #: gui/prelobby/prelobby.xml:(caption):68
 msgid "Remember Password"
-msgstr ""
+msgstr "نگهداشتن گذرواژه"
 
 #: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"
@@ -618,11 +619,11 @@ msgstr "عضویت"
 
 #: gui/prelobby/prelobby.xml:(caption):88
 msgid "Password again:"
-msgstr "گدرواژه مجدد:"
+msgstr "تکرار گذرواژه:"
 
 #: gui/prelobby/prelobby.xml:(caption):103
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "من شرایط خدمات و استفاده را مطالعه کردم و آنها را می پذیرم"
 
 #: gui/prelobby/prelobby.xml:(caption):112
 msgid "Cancel"
@@ -630,93 +631,93 @@ msgstr "لغو"
 
 #: gui/prelobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "شرایط خدمات لابی چند نفره بازی 0 A.D"
 
 #: gui/prelobby/Terms_of_Service.txt:2 gui/prelobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "تعاریف:"
 
 #: gui/prelobby/Terms_of_Service.txt:3 gui/prelobby/Terms_of_Use.txt:3
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* \"خدمات\" عبارت است از لابی بازی های جندنفره بازی 0 A.D  که توسط (Wildfire Games (WFG توسعه داده شده است."
 
 #: gui/prelobby/Terms_of_Service.txt:4 gui/prelobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr "* \"شما\" کسی هستید که از خدمات استفاده می کنید"
 
 #: gui/prelobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* \"ما\" اعضای تیم  (Wildfire Games (WFG هستیم"
 
 #: gui/prelobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* \"ربته بندی\" اشاره به فرآیند تجزیه تحلیل آمار بازیکن دارد و هدف آن ایجاد یک امتیاز قابل درک است"
 
 #: gui/prelobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* \"مدیریت\" اشاره دارد به یک فرایند برای مجبور کردن به رعایت سیاست ها و قوانین"
 
 #: gui/prelobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "با استفاده از این خدمات شما توافق می کنید که:"
 
 #: gui/prelobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. تمام سیاست ها و قوانین استفاده را پیروری کنید"
 
 #: gui/prelobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. اجازه دادن به شناسایی آمار کاربر با هدف رتبه بندی وی"
 
 #: gui/prelobby/Terms_of_Service.txt:11 gui/prelobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "ما این حق را محفوظ می داریم که:"
 
 #: gui/prelobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. مدیریت خدمات"
 
 #: gui/prelobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. تخصیص دیگران برای مدیریت خدمات"
 
 #: gui/prelobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. قطع کردن یا مختل کردن خدمات در هر زمان با اعلام قبلی و یا بدون اعلام قبلی"
 
 #: gui/prelobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. تغییر خدمات در هر زمان با اعلام و یا بدون اعلام"
 
 #: gui/prelobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. پاک کردن اطلاعات خدمات در هر زمان با اطلاع و یا بدون اطلاع"
 
 #: gui/prelobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. جمع آوری تمام آمار بازی کاربر در هر زمان حتی بدون رضایت وی برای:"
 
 #: gui/prelobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "الف. تحزیه و تحلیل خصوصی توسط اعضای تیم (Wildfire Games (WFG و همکاران آنها"
 
 #: gui/prelobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "ب. آزاد کردن اطلاعات بصورت عمومی و ناشناس توسط اعضای تیم (Wildfire Games (WFG"
 
 #: gui/prelobby/Terms_of_Service.txt:20
 msgid ""
@@ -724,66 +725,66 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. تغییر در این مستند به هر نحوی، در هر زمانی و در شرایطی که به کابر اطلاع رسانی مناسب از تغییر اتفاق افتاده شده باشد (تعریف اطلاع رسانی مناسب توسط اعضای تیم (Wildfire Games (WFG در زمان تغییر مشخص خواهد شد)"
 
 #: gui/prelobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "شراط خدمات لابی چندنفره بازی 0 A.D"
 
 #: gui/prelobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "* \"جعل هویت\" اشاره به کارهایی دارد که بر اساس آن شما تلاش کنید از هویت دیگری برای خود استفاده کنید"
 
 #: gui/prelobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "* \"هرزپیام\" اشاره به پیام های غیر مرتبط و نامناسب دارد که برای تعداد زیادی کابر ارسال می شود"
 
 #: gui/prelobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "* \"رتبه بندی\" اشاره به امتیاز هر کابر دارد"
 
 #: gui/prelobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "* \"بازی های رتبه بندی شده\" اشاره به بازی هایی دارد که باعث تغییر در رتبه بندی و امتیاز بازیکن می شود"
 
 #: gui/prelobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "شما موافق هستید با:"
 
 #: gui/prelobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. تنها ساخت یک حساب کاربری برای هر کابر برای دریافت خدمات مگر اینکه توسط اعضای تیم (Wildfire Games (WFG اجازه داده شده باشد"
 
 #: gui/prelobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. بی حرمتی نکردن. شوخی های نامناسب، محتوای پورنوگرافی یا نژادپرستانه در حین استفاده از خدمات"
 
 #: gui/prelobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. بصورت غیر عمد صدمه زدن به ارزش های دیگران در استفاده از خدمات"
 
 #: gui/prelobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. استفاده کردن از خدمات برای تبلیغ یک خدمت یا محصول دیگر"
 
 #: gui/prelobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. جعل هویت سایر بازیکن ها در استفاده از خدمات"
 
 #: gui/prelobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. ایجاد نکردن هرزپیام ها در استفاده از خدمات"
 
 #: gui/prelobby/Terms_of_Use.txt:16
 msgid ""
@@ -791,13 +792,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. اقدام نکردن برای دست کاری در رتبه بندی بازیکن ها به هر طریقی. (برای مثل تقلب در بازی های رتبه بندی)"
 
 #: gui/prelobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. اجازه دادن به مدیر برای خارج کردن شما هر زمان  که تشخیص دهد شما رفتاری مغایر با قوانین و مقررات انجام داده اید"
 
 #: gui/prelobby/Terms_of_Use.txt:19
 msgid ""
@@ -805,4 +806,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. تغییر در این مستند به هر نحوی، در هر زمانی و در شرایطی که به کابر اطلاع رسانی مناسب از تغییر اتفاق افتاده شده باشد (تعریف اطلاع رسانی مناسب توسط اعضای تیم (Wildfire Games (WFG در زمان تغییر مشخص خواهد شد)"

@@ -12,19 +12,19 @@
 # tjyu gh <anna.point22@orange.fr>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Youenn Jacquet <youennjacquet@gmail.com>, 2017
-# Younn Keravel <goulvenbreizh@hotmail.fr>, 2017-2018
+# Goulven <goulvenbreizh@hotmail.fr>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-25 10:45+0000\n"
-"Last-Translator: Younn Keravel <goulvenbreizh@hotmail.fr>\n"
+"PO-Revision-Date: 2018-09-19 12:53+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: br\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -60,7 +60,7 @@ msgstr "+15% a feur dastum evit al labourerien kichenik ar piramidoù."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr "Présence Exhortative"
+msgstr "Bezañs skoazellus"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers near Large Pyramids +10% attack."
@@ -92,7 +92,7 @@ msgstr "Galloud ar Ouiziegezh"
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr "Digreskiñ ar c'houst hag amzer enklask an teknologiezhioù eus 10% dre levraoueg perc'hennet."
+msgstr "Digreskiñ ar c'houst hag amzer pep enklask war an teknologiezhioù eus 10% dre levraoueg perc'hennet."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -198,7 +198,7 @@ msgstr "Furnez an drouized"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "-20% research time for technologies of allies."
-msgstr "-20% a amzer enklask evit teknologiezhioù ar re gevreded."
+msgstr "-20% a amzer evit kas da benn enklaskoù war teknologiezhioù ar re gevreded."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -208,7 +208,7 @@ msgstr "Saripeko"
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
-msgstr "Digreskiñ ar c'houst evit ar geodedourien-soudarded-dennerien eus 20% evit ar re zo kevredet gant ar c'hoarierien Iberek"
+msgstr "Digreskiñ ar ra koust ar soudarded-keodedour tennataer eus 20% evit ar re zo kevredet gant ar c'hoarierien Iberek"
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -259,7 +259,7 @@ msgstr "Enrollañ en arme"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied citizen-soldier infantry."
-msgstr "-20% a amzer stummañ evit ar soudarded-keodourien gevredet."
+msgstr "-20% a amzer stummañ evit soudarded-keodedour war-droad ar re gevredet."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -278,7 +278,7 @@ msgstr "Kevre ar Peloponnesos"
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr "Lakaat da greskiñ yec'hed ar geodedourien-soudarded goafer war droad eus 10% evit ar re a zo kevredet gant ar c'hoarierien Spartad."
+msgstr "Lakaat da greskiñ yec'hed ar soudard-keodedour goafer war droad eus 10% evit ar re a zo kevredet gant c'hoarierien Spart."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -286,7 +286,7 @@ msgstr "Awen"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "+10% build rate and gather rate for citizen soldiers."
-msgstr "+10% a feur saverezh ha feur dastum evit ar soudarded keodedel."
+msgstr "+10% a feur saverezh ha feur dastum evit ar soudarded-keodedour."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -337,17 +337,17 @@ msgstr "Komandant ar Varc'hegerezh-Pounner"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "+1 armor, +10% health for melee cavalry."
-msgstr "Penn-bras ar marc'hegerezh pounner Kartajinian e Trebia ha Kanna, el lec'h ma 'z eus bet efedoù gwast gant e dri argad war an enebour.\n+1 a houarnwisk, +10% a yec'hed er stourmadegoù marc'hegerezh."
+msgstr "Penn-bras ar marc'hegerezh pounner Kartajinian e Trebia ha Kanna, el lec'h ma 'z eus bet efedoù gwast gant e dri argad war an enebour.\n+1 a houarnwisk, +10% a yec'hed er varc'hegerezh meskadeg."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
-msgstr "Lazhadeg dre spi-brezel"
+msgstr "Lazhadeg dre dagadenn-stign"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers require 25% less experience to promote and gain a 5% attack bonus."
-msgstr "O vrezeliñ a-enep d'ar Romaned, Ambioriks en doa merzhet e oa dister un emgann digor ha divizet en doa kentoc'h ober gant an taktik spi-brezel. Ar C'halianed o doa desket buan pelec'h ha pegoulz kas da-benn tagadennoù souezh.\nGoulenn a ra 25% nebeutoc'h a skiant-prenet digant ar soudarded evit kas war-raok ha gounit 5% a vonuz tagañ."
+msgstr "O vrezeliñ a-enep d'ar Romaned, Ambioriks en doa merzhet e oa dister un emgann digor ha divizet en doa kentoc'h ober gant an taktik a dagadenn-stign. Ar C'halianed o doa desket buan pelec'h ha pegoulz kas da-benn tagadennoù souezh.\nGoulenn a ra 25% nebeutoc'h a skiant-prenet digant ar soudarded evit kas war-raok ha gounit 5% a vonuz tagañ."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -367,7 +367,7 @@ msgstr "Komander Goprsoudard"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "-25% metal cost for all allied citizen-soldier mercenaries."
-msgstr "Gant e vreur Indibil, Mandoniuz en doa urzhiet an nevezianted hag ar c'hopr-soudarded Iberian o doa kemeret perzh er Brezelioù Punek.\n-25% a goust metal evit holl c'hoprsoudarded keodedel ar re gevreded."
+msgstr "Gant e vreur Indibil, Mandoniuz en doa urzhiet an nevezianted hag ar c'hoprsoudarded Iberian o doa kemeret perzh er Brezelioù Punek.\n-25% a goust metal evit holl c'hoprsoudarded keodedel ar re gevreded."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -387,7 +387,7 @@ msgstr "Rouanez nubian kentañ"
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Awe: All enemy female citizens -15% gather rate."
-msgstr "O ren gant an holl galloudoù e impalaeriezh Meroë hag o c'hoari ivez ur roll a-bouez er relijion Meroitek, Shanakdakheto a ziskoueze galloudegezh Kush, un dra bennak da gemer a-barfeted.\nDoujañs: An holl keodedourezed enebour -15% feur kutuilh."
+msgstr "En ur ren gant an holl c'halloudoù en impalaeriezh Meroë hag o c'hoari ivez ur roll a-bouez er relijion Meroitek, Shanakdakheto a ziskoueze galloudegezh Kush, un dra bennak da gemer a-barfeted.\nDoujañs: An holl geodedourezed enebour -15% feur dastum."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -457,7 +457,7 @@ msgstr "Veñjer Lukresia"
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
 "Female citizens cost 20% less and work 10% faster."
-msgstr "Goude palfors Lukresia gant mab Roue Tarkinius Superbus ha da heul hec'h emzistruj, Brutus a douas veñjiñ anezhi ha diskar ar vonarkiezh.\nAr c'heodedourezed a  goust 20% nebeutoc'h ha labourat a reont 10% buanoc'h."
+msgstr "Goude palforsadenn Lukresia gant mab Roue Tarkinius Superbus ha da heul hec'h emzistruj, Brutus a douas veñjiñ anezhi ha diskar ar vonarkiezh.\nAr c'heodedourezed a goust 20% nebeutoc'h ha labourat a reont 10% buanoc'h."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -630,7 +630,7 @@ msgstr "Komander Marc'heger"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "+30% attack for cavalry melee soldiers."
-msgstr "+30% a dagusted evit marc'hegerien ar stourmadeg."
+msgstr "+30% a dagusted evit ar soudarded war-varc'h meskadeg."
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
@@ -757,7 +757,7 @@ msgstr "Donezon a Listri-Brezel"
 msgid ""
 "Train Ptolemaic Mercenary Triremes at -25% resource cost.\n"
 "Crushing the Ptolemaic invasion of Kush, Nastasen seized numerous enemy warships."
-msgstr ""
+msgstr "Stummañ Listri Teirroeñvek Ptolemaek diwar-c'hopr evit -25% a goust mammennoù.\nO flastrañ an aloubadeg Ptolemaek e Kush en deus tapet Nastasen kalz listri-brezel enebour."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
@@ -820,7 +820,7 @@ msgstr "Kelenner"
 msgid ""
 "Empower a building with -20% cost and -50% research time while he is "
 "garrisoned in it."
-msgstr "Aotrean ur savadur gant -20% a goust ha -50% a amzer enklask tra m'eman gwarnizonet e-barzh."
+msgstr "Emgefrekait ur savadur gant ur c'houst a -20% evit un amzer-enklask a -50% pa vez lakaet e gwarnizon e-barzh."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
@@ -954,7 +954,7 @@ msgstr "Adaozadurioù Hiloted"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."
-msgstr "+25% a dagusted ha +1 a houarnwisk evit ar geodedourien speger war droad."
+msgstr "+25% a dagusted ha +1 a houarnwisk evit ar soudarded-keodedour speger war-droad."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

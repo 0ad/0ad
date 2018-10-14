@@ -13,6 +13,7 @@
 # Isaac Lleida <isakyllr@opmbx.org>, 2014
 # José Verdú Díaz <pepv@hotmail.es>, 2016
 # Juanjo, 2016
+# Maria Acero-Allo <maria.acero@e-campus.uab.cat>, 2018
 # Miguel Molina <miguigana12@hotmail.com>, 2015
 # Peredelgrau, 2013,2015
 # ribasvilanova <ribasvilanova@gmail.com>, 2014
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-06-21 19:21+0000\n"
+"Last-Translator: Maria Acero-Allo <maria.acero@e-campus.uab.cat>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -986,7 +987,7 @@ msgstr "Busca un treballador inactiu"
 #: gui/session/session.js:457 gui/session/session.js:461
 #: gui/session/diplomacy_window.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Colors de la diplomàcia"
 
 #: gui/session/session.js:464
 #, javascript-format
@@ -1011,7 +1012,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Veure Històric / Arbre d'Estructura.\nL'últim obert es reobrirà en clicar."
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1062,19 +1063,19 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s per a canviar l'ordre."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
-msgstr ""
+msgstr "Sense ordres"
 
 #: gui/session/session.js:1260
 msgid "Descending"
-msgstr ""
+msgstr "Descendent"
 
 #: gui/session/session.js:1260
 msgid "Ascending"
-msgstr ""
+msgstr "Ascendent"
 
 #: gui/session/session.js:1286
 #, javascript-format
@@ -1393,7 +1394,7 @@ msgstr "Surt"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Mostra la sala multijugador a una finestra de diàleg."
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15

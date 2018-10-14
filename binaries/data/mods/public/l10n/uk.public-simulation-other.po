@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: simulation/ai/petra/chatHelper.js:6
 #, javascript-format
@@ -445,6 +445,7 @@ msgid_plural ""
 msgstr[0] "%(name)s занадто близько до %(category)s, має бути на відстані %(distance)s метр"
 msgstr[1] "%(name)s занадто близько до %(category)s, має бути на відстані %(distance)s метрів"
 msgstr[2] "%(name)s занадто близько до %(category)s, має бути на відстані %(distance)s метрів"
+msgstr[3] "%(name)s занадто близько до %(category)s, має бути на відстані %(distance)s метрів"
 
 #: simulation/components/BuildRestrictions.js:277
 #, javascript-format
@@ -455,6 +456,7 @@ msgid_plural ""
 msgstr[0] "%(name)s задалеко від %(category)s, має бути ближче %(distance)s метра"
 msgstr[1] "%(name)s задалеко від %(category)s, має бути ближче %(distance)s метрів"
 msgstr[2] "%(name)s задалеко від %(category)s, має бути ближче %(distance)s метрів"
+msgstr[3] "%(name)s задалеко від %(category)s, має бути ближче %(distance)s метрів"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -500,6 +502,7 @@ msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] "%(lastPlayer)s переміг (останній гравець, що залишився в живих)."
 msgstr[1] " %(players)s та %(lastPlayer)s перемогли (останні гравці, що залишилися в живих)."
 msgstr[2] "%(players)s та %(lastPlayer)s перемогли (останні гравці, що залишилися в живих)."
+msgstr[3] "%(players)s та %(lastPlayer)s перемогли (останні гравці, що залишилися в живих)."
 
 #: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."

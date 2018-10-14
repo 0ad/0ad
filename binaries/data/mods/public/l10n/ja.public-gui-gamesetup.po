@@ -9,6 +9,7 @@
 # jiroramo <billiken316@yahoo.co.jp>, 2013
 # Kanetaka Suto, 2013
 # Kanetaka Suto, 2014-2016
+# karu babu <karubabu@protonmail.com>, 2018
 # llen_llen, 2013
 # llen_llen, 2014,2016
 # Mephisto Books <martin.route66.blues+transifex@gmail.com>, 2014
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-04 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-25 02:08+0000\n"
+"Last-Translator: karu babu <karubabu@protonmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +50,7 @@ msgstr "ランダム"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "ランダムな市民を選択した状態でゲームをスタートします。"
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
@@ -58,7 +59,7 @@ msgstr "* %(username)sの準備がまだです。"
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
-msgstr ""
+msgstr "準備完了"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
@@ -127,7 +128,7 @@ msgstr "デフォルト"
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "海軍マップとデモマップを除いた全てのマップ"
 
 #: gui/gamesetup/gamesetup.js:180
 msgid "Naval Maps"
@@ -145,7 +146,7 @@ msgstr "デモマップ"
 #: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "これらはデモ用のマップでプレイに適していません。"
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
@@ -177,7 +178,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "マップ"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
@@ -187,7 +188,7 @@ msgstr "プレイヤー"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "ゲームの種類"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
@@ -223,7 +224,7 @@ msgstr "マップの大きさを選択します。（大きくなるほど性能
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Biome"
-msgstr ""
+msgstr "バイオーム"
 
 #: gui/gamesetup/gamesetup.js:546
 msgid "Select the flora and fauna."
@@ -250,7 +251,7 @@ msgstr "人口上限を選択します。"
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "警告: %(players)s人の全てのプレイヤーの人口が%(popCap)sに達した場合パフォーマンスに問題が発生する可能性があります。"
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
@@ -259,7 +260,7 @@ msgstr "初期資源"
 #: gui/gamesetup/gamesetup.js:613
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "初期資源量: %(resources)s"
 
 #: gui/gamesetup/gamesetup.js:616
 msgid "Select the game's starting resources."
@@ -310,19 +311,19 @@ msgstr "ゲーム速度を選択します。"
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
-msgstr ""
+msgstr "難易度"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "このシナリオの難易度を選択してください。"
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "このプレイヤーの文明を選択してください。"
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
-msgstr ""
+msgstr "英雄の駐屯"
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Toggle whether heroes can be garrisoned."
@@ -342,7 +343,7 @@ msgstr ""
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:866
 msgid "Revealed Map"
-msgstr ""
+msgstr "マップ可視化"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -354,7 +355,7 @@ msgstr "マップ全域を可視にするか切り替えます（すべて見え
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:885
 msgid "Explored Map"
-msgstr ""
+msgstr "探索済みマップ"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -364,7 +365,7 @@ msgstr "全体マップの切り替え(初期マップが見える)。"
 
 #: gui/gamesetup/gamesetup.js:899
 msgid "Disable Treasures"
-msgstr ""
+msgstr "財宝の無効化"
 
 #: gui/gamesetup/gamesetup.js:900
 msgid "Disable all treasures on the map."
@@ -380,7 +381,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:923
 msgid "Teams Locked"
-msgstr ""
+msgstr "チームの固定化"
 
 #: gui/gamesetup/gamesetup.js:924
 msgid "Toggle locked teams."
@@ -406,7 +407,7 @@ msgstr "チートを利用可能にするか切り替えます。"
 
 #: gui/gamesetup/gamesetup.js:966
 msgid "Rated Game"
-msgstr ""
+msgstr "レーティングゲーム"
 
 #: gui/gamesetup/gamesetup.js:967
 msgid "Toggle if this game will be rated for the leaderboard."
@@ -427,7 +428,7 @@ msgstr "メインメニューに戻ります。"
 
 #: gui/gamesetup/gamesetup.js:1013
 msgid "Start Game!"
-msgstr ""
+msgstr "ゲーム開始！"
 
 #: gui/gamesetup/gamesetup.js:1019
 msgid "Start a new game with the current settings."
@@ -442,7 +443,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1083
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "AI設定: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1132
 #, javascript-format
@@ -478,7 +479,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1742
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "ランダム"
 
 #: gui/gamesetup/gamesetup.js:1743
 msgid "Pick a biome at random."
@@ -569,7 +570,7 @@ msgstr "AI難易度："
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "AI傾向:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -589,7 +590,7 @@ msgstr "読込み中"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "マップデータ読込み中。しばらくお待ちください…"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
@@ -634,7 +635,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):103
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "全てのチームをデフォルトに戻します。"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):114
 msgid "Pick a color."
@@ -658,7 +659,7 @@ msgstr "プレイヤーのチームを選択します。"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "マルチプレイヤーロビーをダイアログウインドウで表示します。"
 
 #: gui/text/quotes.txt:1
 msgid ""

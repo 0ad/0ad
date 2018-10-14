@@ -9,6 +9,7 @@
 # ignius <ividiella@hotmail.es>, 2014
 # Isaac Lleida <isakyllr@opmbx.org>, 2014
 # José Verdú Díaz <pepv@hotmail.es>, 2017
+# juan Aragó <juan_arago@yahoo.es>, 2018
 # Klan Ruiz Martin <rodamit@gmail.com>, 2017
 # Peredelgrau, 2013
 # ribasvilanova <ribasvilanova@gmail.com>, 2014
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-08-31 15:58+0000\n"
-"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-06-08 01:41+0000\n"
+"Last-Translator: juan Aragó <juan_arago@yahoo.es>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -424,8 +425,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "Caractacus, la forma romana, és una variació senzilla de Karatakos, el seu nom real, que estava gravat a les seves monedes, que eren moltes. És recordat per aquest nom com un defensor aferrissat de Britània contra els romans després de la invasió l'any 43 dC. Fill del rei Cinobel·lí de la confederació tribal dels catuvel·lans, Karatakos va lluitar nou anys contra els romans amb poc èxit, fins que va fugir cap a les tribus de Gal·les, on va ser derrotat definitivament. Finalment va entrar a la Britània del nord, on va ser entregat als romans. Un cop va arribar a Roma, l'emperador Claudi va permetre viure a Karatakos, que va morir a Itàlia. La tradició diu que es va convertir al cristianisme quan ho va fer la seva dona, però no se sap amb seguretat. Probablement és més notable que se'l permetés viure un cop capturat. La política romana en aquest aspecte típicament era executar públicament homes com ell per celebrar la victòria. Karatakos va ser portat davant de l'emperador i el Senat a petició seva per explicar-se. El que va dir no es coneix, però Tàcit li atribueix un famós discurs..."
+"but Tacitus applies to him a famous speech…"
+msgstr "Caractacus, la forma llatina del nom, o Caractac en Català, és una simple traducció de la forma bretona Karaktakos, el seu nom original, que ha estat imprés en moltes, moltes monedes. Sota aquest nom ha estat recordat com un fer defensor de Bretanya contra els Romans després de la invasió a l'any 43 D.C. Fill del Rei Cunobel·lí de la confederació tribal de Catuvel·launus, es va permetre a Caractac viure amb l'Emperador Claudi i va morir a Roma. La tradició conta que es convertí al Cristianisme quan la seua esposa ho va fer, però és un fet que no ha estat prou contrastat. Probablement siga més notable el fet que se'l permetés viure després de capturat. La tradició Romana establia que eixa mena d'homes havien de ser executats durant una celebració pública. Caractac fou presentat a l'Emperador i el Senat pel seu requeriment d'explicar-se. El que va dir no es sap a ciència certa, però l'historiador romà Tàcit li atribuïx un famós discurs..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1131,6 +1132,211 @@ msgid ""
 "fought back."
 msgstr "Els ibers eren un poble amb uns orígens i una llengua misteriosos, amb una important tradició de cria de cavalls i metal·lúrgia. Una cultura relativament pacífica, normalment només lluitaven com a mercenaris en les batalles dels altres pobles. Tot i això, van mostrar-se tenaços quan Roma va intentar prendre'ls la terra i la llibertat, i van fer servir tàctiques pioneres de guerrilla i javelines incendiàries per defensar-se."
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "Cuixites"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "Les Piràmids de Meroe"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr "Construir una piràmide Cuixita incrementa la influència territorial del Centre Cívic un +10% per cada una construïda."
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr "Jaciments de Mineral"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr "Els jugadors Cuixites reben una Mina de Metal extra al seu territori base."
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Captura d'elefants per encerclament"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr "Permet capturar Elefants salvatges i refugiar-los a un corral per tal de reduir el cost d'entrenament d'Elefants de Guerra."
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Proveïdors d'Elefants"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Reduïx el temps d'entrenament i el cost dels elefants un 20% pels aliats dels jugadors Cuixites."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "Caixta"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "Alara"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "Pebatma"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "Shabaka"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "Shebiktu"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "Qalhata"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "Takahatenamon"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "Tanutamon"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "Atlanersa"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "Nasalsa"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "Malewiebamani"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "Harsiotef"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "Shanakdakhete"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "Amanishakheto"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "Arquitectura Monumental"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr "+50% HP i -50% temps de construcció per a Centres Cívics, Temples, Piràmids i Meravelles"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr "Permet entrenar sanadors d'èlit"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "Gran Sacerdot d'Amon"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "El teu Sacerdot és instruït pel Gran Sacerdot - que Amon el beneïsca."
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Nastasen"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Arakamani"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Amanirenes"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "Africans Cuixites"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "El gran Regne Africà assentat al Riu Nil a la regió de Nubia, al Sud d'Egipte."
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "Temple d'Amon"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr "Els Cuixites poden actualitzar Temples individuals a Temples d'Amon; aquests poden entrenar campions Guardians del Temple Napata i curar unitats més ràpid"
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "Història."
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "Temple d'Apedemak"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr "Els Cuixites poden actualitzar temples individuals a Temples d'Apedemak; aquests poden entrenar campions Guardians del Temple Meroe i curar unitats més ràpid."
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "Piràmids Cuixites"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "Construir una Piràmide Cuixita xicoteta desbloqueja la Fase Vila. Construir una Piràmide Cuixita gran desbloqueja la Fase Ciutat. I cada piràmide construïda afig +10% efecte territorial als Centres Cívics."
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "Els Cuixites construiren més de 200 piràmids a Núbia"
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "El Regne de Cuix fou un antic Regne Africà situat a les confluències del Nil Blau, Nil Blanc i riu Atbara a on hui en dia hi és la República del Sudan. L'era Cuixita de dominància de la regió va estar establida després del col·lapse de l'edat de Bronze del Nou Regne d'Egipte, i es centrà a la ciutat de Napata a la seua època primerenca. Envaïren Egipte al segle 8é A.C. i els emperadors Cuixites regnaren com a Faraons de la vint-i-cinquena dinastia de l'Egipte durant tota una centúria, fins que n'hi fóren expel·lits pels Assiris. La cultura Cuixita fou influenciada fortament pels Egipcis, amb construccions d'edificis piramidals i arquitectura monumental dels temples extensos. Els cuixites àdhuc adoraren molts Déus Egipcis, incloent Amon. Durant l'antiguitat Clàssica, la capital imperial Cuixita fou Meroe. A la geografia primerenca Grega, el regne Meroític fou conegut com Aethiopia. El regne Cuixita persistí fins al 4art segle D.C. quan fou debilitat i desintegrat degut a rebel·lions internes, i sucumbí finalment sota el poder en auge del regne d'Aksum."
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1502,10 +1708,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Permet capturar fins a 5 elefants salvatges i refugiar-los als estables d'elefants per guanyar fins a un 25% de reducció del cost i el temps de reclutament de les unitats amb elefants."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Captura d'elefants per encerclament"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."

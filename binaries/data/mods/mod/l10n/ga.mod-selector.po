@@ -3,13 +3,16 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
-# Kenny Oxley <coinneachoxley@gmail.com>, 2016
+# Adam Humphreys <a.humph@hotmail.com>, 2018
+# Brian Mac Giolla Mhuire <brian@oireas.com>, 2018
+# Cormac O'Brien <cormacm.obrien@gmail.com>, 2018
+# Coinneach Donáll Mac Ocslaigh <coinneachoxley@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 15:42+0000\n"
-"Last-Translator: Kenny Oxley <coinneachoxley@gmail.com>\n"
+"PO-Revision-Date: 2018-06-09 05:07+0000\n"
+"Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,28 +23,28 @@ msgstr ""
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s %(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime for a guide to the meaning of the letters.
@@ -56,29 +59,29 @@ msgstr "UU:nn:ss"
 #: gui/common/l10n.js:143
 msgctxt "enumeration"
 msgid ", "
-msgstr "'"
+msgstr ", "
 
 #: gui/common/mod.js:17
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s(%(version)s)"
 
 #: gui/common/mod.js:20
 msgid ", "
-msgstr "'"
+msgstr ", "
 
 #: gui/common/mod.js:28
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "Riachtanach: %(mods)s"
 
 #: gui/common/mod.js:30
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Gníomhach: %(mods)s"
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -87,21 +90,21 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Ní féidir le DA an chluiche a aisghabháil.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "Earráid Túsúcháin"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
 msgid "Abort"
-msgstr ""
+msgstr "Tobscoir"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
-msgstr ""
+msgstr "Atriail"
 
 #: gui/modio/modio.js:91
 #, javascript-format
@@ -110,12 +113,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Ní féidir le Líosta Modhanna a aisghabháil.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr ""
+msgstr "Earráid Ghabhála"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -124,12 +127,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Theip íoslódáil comhaid.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "Earráid Íoslódála"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -138,20 +141,20 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Earráid déimhnithe an chomhaid.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr ""
+msgstr "Earráid Déimhnithe"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr ""
+msgstr "Túsaigh comhéadan mod.io."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "Ag túsú"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.js:313
 #: gui/modmod/modmod.xml:(caption):184
@@ -160,35 +163,35 @@ msgstr "Cealaigh"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr ""
+msgstr "Gabháil agus uasghradaigh líosta na modhanna ar fáil."
 
 #: gui/modio/modio.js:233
 msgid "Updating"
-msgstr ""
+msgstr "Ag nuashonrú"
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr ""
+msgstr "Cealaigh Nuashonrúchán"
 
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "Íoslódáil “%(modname)s”"
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr ""
+msgstr "Ag íoslódáil"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr ""
+msgstr "Cealaigh Íoslódáil"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
 #: gui/modio/modio.js:320
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr "%(current)s / %(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:330
@@ -197,18 +200,18 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr ""
+msgstr "Am Caite: %(elapsed)s\nAm Measta ag Fágtha: %(remaining)s\nMeánluas: %(avgSpeed)s"
 
 #: gui/modio/modio.js:332
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #. Translation: Average download speed, used to give the user a very rough and
 #. naive idea of the download time. For example: 123.4 KiB/s
 #: gui/modio/modio.js:334
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr "%(number)s %(unit)s/s"
 
 #: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
 msgid "Filter"
@@ -217,11 +220,11 @@ msgstr "Scagaire"
 #: gui/modmod/modmod.js:285
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
-msgstr ""
+msgstr "Níor casadh leis an spleáchas: %(dep)s"
 
 #: gui/modmod/modmod.js:291
 msgid "All dependencies met"
-msgstr ""
+msgstr "Bhuail gach spleáchríocha"
 
 #: gui/modmod/modmod.js:311
 msgid ""
@@ -230,11 +233,11 @@ msgid ""
 "While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
 "\n"
 "Do you really want to connect?"
-msgstr ""
+msgstr "Tá tú ar tí ceangal a dhéanamh anois leis an tséirbhis ar líne do mod.io. Soláthraíonn sé seo rochtain éasca ar modhnuithe pobal-dhéanta, ach níl sé faoi smácht de chuid Wildfire Games.\n\nCé go bhfuil muid a thabraímid aire don cheangal seo a dhaingniú, ní féidir linn a ráthaíocht go bhfuil an ceangal seo sábháilte.\n\nAn bhfuil tú an-chinnte go mian leat ceangal a dhéanamh?"
 
 #: gui/modmod/modmod.js:312
 msgid "Connect to mod.io?"
-msgstr ""
+msgstr "Déan ceangal le mod.io?"
 
 #: gui/modmod/modmod.js:313
 msgctxt "mod.io connection message box"
@@ -243,7 +246,7 @@ msgstr "Ceangal"
 
 #: gui/modmod/modmod.js:396
 msgid "No mod has been selected."
-msgstr ""
+msgstr "Níl aon mhodhnú roghnaithe."
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
@@ -251,7 +254,7 @@ msgstr "Ceart go leor"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "Modhnuithe do mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -259,15 +262,15 @@ msgstr "Modhnuithe Fáil"
 
 #: gui/modio/modio.xml:(caption):73
 msgid "Back"
-msgstr "Ais"
+msgstr "Tar Ais"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
-msgstr ""
+msgstr "Athbheoigh Líosta"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr ""
+msgstr "Íoslódail"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -286,7 +289,7 @@ msgstr "Lipéad Modhnú"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
-msgstr ""
+msgstr "Méid Comhaid"
 
 #: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
 #: gui/modmod/modmod.xml:(heading):128
@@ -311,23 +314,23 @@ msgstr "Modhnuithe Cumasaithe"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
-msgstr ""
+msgstr "Cumasaigh/Díchumasaigh"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
-msgstr ""
+msgstr "Cuairt ar an suíomh gréasáin"
 
 #: gui/modmod/modmod.xml:(caption):179
 msgid "Quit"
-msgstr "Scor"
+msgstr "Éirí as"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr ""
+msgstr "Cabhrú"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr ""
+msgstr "Íoslódáil Modhnuithe"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -335,7 +338,7 @@ msgstr "Sábháil Cumraíocht"
 
 #: gui/modmod/modmod.xml:(caption):204
 msgid "Start Mods"
-msgstr "Tús Modhnuithe"
+msgstr "Tosaigh Modhnuithe"
 
 #: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
@@ -349,11 +352,11 @@ msgstr "Suíomh Gréasáin"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr ""
+msgstr "Athraigh an ordú ina lainseáiltear modhnuithe. Ba cheart go haontaíonn sé seo leis na spleáchais."
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr ""
+msgstr "Pyrogenesis: Roghnóir Modhnuithe"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -361,17 +364,17 @@ msgstr "Dún"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "Treoir Modhnuithe"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "Cuairt go dtí mod.io"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr ""
+msgstr "Is deartha é 0 A.D. a bheidh ina so-modhnaítear. Dáiltear modhnuithe san fhoirm comhad .pyromod, agus is féidir leis na comhad seo a oscailt mar chomaid .zip."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -381,13 +384,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
+msgstr "D'fhonn an modhnú seo a shuiteáil, oscail an comhad seo le 0 A.D. (dháchliceáil ar an gcomhad agus roghnaigh é a oscail leis an gcluiche, nó rith \"pyrogenesis file.pyromod\" i dteirminéal). Beidh an modhnú ar fáil sa roghnóir modhnuithe. Is féidir leat é a chumasú nó díchumasú ar do thoil. Is féidir leat an modhnú a scriosadh de láimh in úsáid an brabhsálaí comhaid, má a theastíonn uait (féic ar https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr ""
+msgstr "D'eolas modhnaithe níos mó a fháil, féic ar an dTreoir Modhnuithe ar líne (cliceáil ar cnaipe an Treora Mhodhnuithe síos)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -396,4 +399,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr ""
+msgstr "Forbraíonn DBolical an tséirbhis mod.io, le IndieDB is ModDB ag an gcomhlacht freisin. Scaipeann na suíomhanna gréasáin seo eolas ar 0 A.D. agus ar tograí neamhspleácha eile ar feadh i bhfad! An lá atá innie, ligeann mod.io orainn modhnuithe a liostú is a íoslódáil, má tá siad ina bhailí de chuid na foirne 0 A.D. Cliceáil ar \"Íoslódáil Modhnuithe\" agus triail a bhaint as, agus roinnt modhnuithe a shuiteáil!"

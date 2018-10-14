@@ -5,15 +5,17 @@
 # Translators:
 # Asakura, 2015,2017
 # Kanetaka Suto, 2014-2016
+# karu babu <karubabu@protonmail.com>, 2018
 # llen_llen, 2014,2016
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
+# Takaki IEKURA <tacostea@gmail.com>, 2018
 # Cheung Hung, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-23 14:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-25 02:05+0000\n"
+"Last-Translator: karu babu <karubabu@protonmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,27 +26,27 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr ""
+msgstr "打撃"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr ""
+msgstr "貫通"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr ""
+msgstr "衝突"
 
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: 建築早見表へ切り替える"
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr ""
+msgstr "%(hotkey)s: 履歴を閉じる"
 
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
@@ -82,7 +84,7 @@ msgstr "%(civilization)sの歴史"
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "未割り当てのホットキー: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -92,14 +94,14 @@ msgstr "%(hotkey)sを押してプレイヤー名を自動決定します。"
 #: gui/common/color.js:181
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 #: gui/common/functions_global_object.js:8
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "%(url)s を\n既定のウェブブラウザーで開いています。お待ちください.... "
 
 #: gui/common/functions_global_object.js:11
 msgid "Opening page"
@@ -117,7 +119,7 @@ msgstr "読込みを中止しました"
 
 #: gui/common/functions_utility.js:29
 msgid "Gaia"
-msgstr ""
+msgstr "無所属"
 
 #: gui/common/functions_utility.js:105
 msgctxt "map selection"
@@ -168,7 +170,7 @@ msgstr "はい"
 #: gui/common/functions_utility_loadsave.js:74
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "%(hotkey)sで選択した項目を削除します。"
 
 #: gui/common/functions_utility_loadsave.js:79
 #, javascript-format
@@ -188,28 +190,28 @@ msgstr "すみませんが、説明はありません。"
 #: gui/common/gamedescription.js:104
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:107
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:113
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:116
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -297,7 +299,7 @@ msgstr "終了なしゲーム"
 
 #: gui/common/gamedescription.js:225
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "全員が敗北しても勝者は確定しません。"
 
 #: gui/common/gamedescription.js:236
 #, javascript-format
@@ -311,7 +313,7 @@ msgstr[0] "象徴 (%(min)s minutes)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "遺跡争奪 (%(min)s 分)"
 
 #: gui/common/gamedescription.js:264
 msgid "Relic Count"
@@ -319,7 +321,7 @@ msgstr "遺跡の数"
 
 #: gui/common/gamedescription.js:271
 msgid "Hero Garrison"
-msgstr ""
+msgstr "英雄の駐屯"
 
 #: gui/common/gamedescription.js:272
 msgid "Heroes can be garrisoned."
@@ -335,7 +337,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
-msgstr ""
+msgstr "レーティングゲーム"
 
 #: gui/common/gamedescription.js:285
 msgid ""
@@ -390,16 +392,16 @@ msgstr "無効"
 #: gui/common/gamedescription.js:315
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
+msgstr[0] "開始%(min)s分間は他のプレイヤーと中立を維持します。"
 
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "ランダムマップ"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "リストの中からマップをランダムに選択します。"
 
 #: gui/common/gamedescription.js:330
 msgid "Map Name"
@@ -424,29 +426,29 @@ msgstr "マップサイズ"
 #: gui/common/gamedescription.js:366
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "ランダムバイオーム"
 
 #: gui/common/gamedescription.js:367
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "リストの中からバイオームをランダムに選択します。 "
 
 #: gui/common/gamedescription.js:381
 msgid "Nomad Mode"
-msgstr ""
+msgstr "遊牧民モード"
 
 #: gui/common/gamedescription.js:381
 msgid "Civic Centers"
-msgstr ""
+msgstr "市民会館"
 
 #: gui/common/gamedescription.js:384
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "プレイヤーはわずかなユニットだけでスタートし、都市を建設するのに適する土地を探す必要があります。"
 
 #: gui/common/gamedescription.js:385
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "プレイヤーは市民センターを所持した状態で開始します。"
 
 #: gui/common/gamedescription.js:389
 msgid "Starting Resources"
@@ -477,11 +479,11 @@ msgstr "マップで定義されています。"
 
 #: gui/common/gamedescription.js:415
 msgid "Revealed Map"
-msgstr ""
+msgstr "マップ可視化"
 
 #: gui/common/gamedescription.js:420
 msgid "Explored Map"
-msgstr ""
+msgstr "探索済みマップ"
 
 #: gui/common/gamedescription.js:425
 msgid "Cheats"
@@ -508,21 +510,21 @@ msgstr "無効"
 
 #: gui/common/gamedescription.js:449
 msgid "Victorious"
-msgstr ""
+msgstr "勝者"
 
 #: gui/common/gamedescription.js:454
 msgid "Defeated"
-msgstr ""
+msgstr "敗者"
 
 #: gui/common/gamedescription.js:463
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "サーバーとの接続が切断状態です(%(seconds)s 秒)"
 
 #: gui/common/network.js:22
 #, javascript-format
@@ -542,17 +544,17 @@ msgstr ""
 #: gui/common/network.js:66
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr ""
+msgstr "Unknown reason"
 
 #: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr ""
+msgstr "これはファイアーウォールやアンチウイルスソフトウェアによってホスト側のUDPポート20595が転送されないことが原因です"
 
 #: gui/common/network.js:68
 msgid "The host has ended the game"
-msgstr ""
+msgstr "ホストがゲームを終了しました"
 
 #: gui/common/network.js:69
 msgid "Incorrect network protocol version"
@@ -560,7 +562,7 @@ msgstr "ネットワークプロトコルのバージョン不適合"
 
 #: gui/common/network.js:70
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "ゲーム読込み中です。後ほどやり直してください"
 
 #: gui/common/network.js:71
 msgid "Game has already started, no observers allowed"
@@ -576,11 +578,11 @@ msgstr "あなたは締め出されました (ban)"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "そのプレイヤー名は既に使用されています。切断された場合、数秒後に再試行してください"
 
 #: gui/common/network.js:75
 msgid "Server full"
-msgstr ""
+msgstr "サーバーが満員です"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
@@ -667,7 +669,7 @@ msgstr "ランダム"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "バランス型"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -950,7 +952,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:342
 msgid "Garrison Limit"
-msgstr ""
+msgstr "駐屯上限"
 
 #: gui/common/tooltips.js:349
 #, javascript-format
@@ -1131,7 +1133,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:740
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "射程:"
 
 #: gui/common/tooltips.js:757
 #, javascript-format
@@ -1164,13 +1166,13 @@ msgstr "略奪"
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:829
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "右クリックで詳細情報を表示"
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "左クリックで詳細情報を表示"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1219,17 +1221,17 @@ msgstr "警告"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr ""
+msgstr "いくつかの設定は無効な値になっています！本当に保存しますか？"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "保存していない変更があります。本当にウインドウを閉じますか？"
 
 #: gui/pregame/mainmenu.js:42
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: 0 A.D.に登場する文明の建設早見表を表示します。"
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
@@ -2211,7 +2213,7 @@ msgstr "マップの種類："
 
 #: gui/replaymenu/replay_menu.xml:(caption):165
 msgid "Map Size:"
-msgstr "マップの大きさ："
+msgstr "マップサイズ："
 
 #: gui/replaymenu/replay_menu.xml:(caption):180
 msgid "Victory:"
@@ -2939,7 +2941,7 @@ msgstr "ランダム"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "バランス型"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -2995,7 +2997,7 @@ msgstr ""
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
-msgstr ""
+msgstr "ロビー"
 
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""
@@ -3374,7 +3376,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "経験者にとっては確かに簡単かもしれませんが、まだ基本的な仕組みをマスターしていない初心者にはデフォルトのAIレベルはかなり挑戦的です。初心者は低レベルのAI (「練習」または「とても簡単」) を敵とするところから始めるとよいでしょう。AIレベルは上部の選択パネル内の、対象プレイヤー名の横にある歯車アイコンをクリックして変更できます。"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

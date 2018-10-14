@@ -5,13 +5,14 @@
 # Translators:
 # Asakura, 2017
 # Kanetaka Suto, 2014-2016
+# karu babu <karubabu@protonmail.com>, 2018
 # llen_llen, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-23 14:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-07-31 03:48+0000\n"
+"Last-Translator: karu babu <karubabu@protonmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +60,7 @@ msgstr "通信が切れました。"
 #: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "%(nick)sがロビータイトルを%(subject)sへ変更しました"
 
 #: gui/lobby/lobby.js:189
 #, javascript-format
@@ -114,7 +115,7 @@ msgstr "%(oldnick)sは名前を%(newnick)sに変更しました。"
 
 #: gui/lobby/lobby.js:279
 msgid "Notice"
-msgstr ""
+msgstr "通知"
 
 #: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."
@@ -126,11 +127,11 @@ msgstr "ステータスを「オンライン」に設定します。"
 
 #: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "指定したユーザーをキックします。使い方: /kick ユーザー名 理由"
 
 #: gui/lobby/lobby.js:342
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "指定したユーザーをBANします。使い方: /ban ユーザー名 理由"
 
 #: gui/lobby/lobby.js:350
 msgid "Show this help."
@@ -148,13 +149,13 @@ msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "自分に関するメッセージを送信します。例:/me 泳ぎに行った。"
 
 #: gui/lobby/lobby.js:374
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "チャットメッセージとしてテキストを送信します(スラッシュから開始される文だったとしても)。例: /say /helpは素晴らしいコマンドです。"
 
 #: gui/lobby/lobby.js:378
 msgid "Clear all chat scrollback."
@@ -166,7 +167,7 @@ msgstr "メインメニューに戻ります。"
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "あなたはロビーから切断されました。再接続しますか？"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1200 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
@@ -245,11 +246,11 @@ msgstr "理由: %(reason)s"
 
 #: gui/lobby/lobby.js:656
 msgid "BANNED"
-msgstr ""
+msgstr "BAN済"
 
 #: gui/lobby/lobby.js:656
 msgid "KICKED"
-msgstr ""
+msgstr "KICK済"
 
 #: gui/lobby/lobby.js:687
 msgid "Unmark as Buddy"
@@ -286,15 +287,15 @@ msgstr "プレイヤー：%(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1180
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "現在有効にしているMODはこのゲームのMODと適合しません。"
 
 #: gui/lobby/lobby.js:1182
 msgid "Do you want to switch to the mod selection page?"
-msgstr ""
+msgstr "MOD選択画面に移動しますか？"
 
 #: gui/lobby/lobby.js:1183
 msgid "Incompatible mods"
-msgstr ""
+msgstr "互換性の無いMOD"
 
 #: gui/lobby/lobby.js:1199
 msgid "The game has already started. Do you want to join as observer?"
@@ -385,11 +386,11 @@ msgstr "%(percentage)s%%"
 
 #: gui/prelobby/prelobby.js:43
 msgid "Connecting…"
-msgstr ""
+msgstr "接続中…"
 
 #: gui/prelobby/prelobby.js:66
 msgid "Registering…"
-msgstr ""
+msgstr "登録中…"
 
 #: gui/prelobby/prelobby.js:96
 msgid "Please enter your username"
@@ -397,17 +398,17 @@ msgstr "ユーザー名を入力してください"
 
 #: gui/prelobby/prelobby.js:102
 msgid "Invalid username"
-msgstr ""
+msgstr "無効なユーザー名"
 
 #: gui/prelobby/prelobby.js:109
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "パスワードを入力してください"
 
 #: gui/prelobby/prelobby.js:110
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "パスワードを入力してください"
 
 #: gui/prelobby/prelobby.js:123
 msgid "Please enter your password again"
@@ -457,7 +458,7 @@ msgstr "利用規約"
 
 #: gui/prelobby/prelobby.js:298
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr ""
+msgstr "接続後パスワードを入力欄から削除しますがよろしいですか？"
 
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
@@ -611,7 +612,7 @@ msgstr "パスワード："
 
 #: gui/prelobby/prelobby.xml:(caption):68
 msgid "Remember Password"
-msgstr ""
+msgstr "パスワードを記憶しておく"
 
 #: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"

@@ -6,19 +6,22 @@
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014-2015
 # Cirro Yuan, 2013
 # helenkwok2011, 2017
+# Hsu Karinsu <m80126colin@gmail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2013-2014,2016-2017
+# Jerry Shen <jerry82422@gmail.com>, 2018
 # kevinhykuo <kevinhykuo1994@gmail.com>, 2014
 # Mysterelee <8161525@qq.com>, 2014
 # ryat <mj0011@yopmail.com>, 2015
 # samrmrf, 2013
 # shiung hanching <shiunghanching@gmail.com>, 2017
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-11 08:09+0000\n"
-"Last-Translator: helenkwok2011\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-09-15 05:17+0000\n"
+"Last-Translator: Hsu Karinsu <m80126colin@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +54,7 @@ msgstr "阿提卡的勞里厄姆的銀礦為最有名且昂貴的硬幣「雅典
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr "建造劇院以增加 +20% 所有建築的領土範圍。"
+msgstr "建造露天劇場以增加 +20% 所有建築的領土範圍。"
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Name
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
@@ -158,7 +161,7 @@ msgstr "伊菲克拉特斯的軍事改革"
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr "石牆可以建造在中立領土上。石牆建設時間 -50%。"
+msgstr "石牆可以建造在中立地帶上。石牆建設時間 -50%。"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
@@ -176,7 +179,7 @@ msgstr "雅典長城是在老謀深算的地米斯托克利的主導下修建的
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr "玩家獲得命令裝備矛的單位進入方陣以提供更強的攻擊及防禦的能力。"
+msgstr "玩家得到能力讓矛兵單位入希臘方陣以提供更強的攻擊與防禦力。"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
@@ -189,7 +192,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr "經典的方陣陣型是大約在西元前八世紀被發展出來的。由縱向八人、橫向八百人所組成。以許多的盾牌構成了盾牆，並有著滿滿的 8 呎長矛。"
+msgstr "經典的希臘方陣是大約在西元前八世紀被發展出來的。由縱向八人、橫向八百人所組成。以許多的盾牌構成盾牆，並有著滿滿的 8 呎長矛。"
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -227,14 +230,14 @@ msgstr "希臘愛奧尼亞部落的族民。"
 #: simulation/data/civs/mace.jsonStructures[0].Name
 #: simulation/data/civs/spart.jsonStructures[0].Name
 msgid "Theatron"
-msgstr "劇院"
+msgstr "露天劇場"
 
 #: simulation/data/civs/athen.jsonStructures[0].Special
 #: simulation/data/civs/spart.jsonStructures[0].Special
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr "希臘化的文明獎勵。建造劇院以使所有建築物的領土影響範圍增加 25%。"
+msgstr "希臘化的文明獎勵。建造露天劇場以使所有建築物的領土影響範圍增加 25%。"
 
 #: simulation/data/civs/athen.jsonStructures[0].History
 #: simulation/data/civs/mace.jsonStructures[0].History
@@ -243,11 +246,11 @@ msgid ""
 "Greek theatres were places where the immortal tragedies of Aeschylus, "
 "Sophocles and many other talented dramatists were staged to the delight of "
 "the populace. They were instrumental in enriching Hellenic culture."
-msgstr "古希臘劇院是眾多戲劇家為大眾上演精彩戲劇的地方。像是埃斯庫羅斯和索福克勒斯等悲劇作家，以及其他有才華的劇作家上演各種喜劇。這些都有助於豐富希臘的文化。"
+msgstr "古希臘露天劇場是眾多戲劇家為大眾上演精彩戲劇的地方。像是埃斯庫羅斯和索福克勒斯等悲劇作家，以及其他有才華的劇作家上演各種喜劇，這些都有助於豐富希臘的文化。"
 
 #: simulation/data/civs/athen.jsonStructures[1].Name
 msgid "Gymnasion"
-msgstr "體育館"
+msgstr "體育館（ Gymnasion ）"
 
 #: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
@@ -262,7 +265,7 @@ msgstr "在古希臘的城邦中，體育館是一個重要的設施，在那裡
 
 #: simulation/data/civs/athen.jsonStructures[2].Name
 msgid "Prytaneion"
-msgstr "市政廳"
+msgstr "市政廳（ Prytaneion ）"
 
 #: simulation/data/civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
@@ -424,8 +427,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "卡拉塔可斯，羅馬寫法為 Caractacus，是由本名 Karatakos 轉變而來，在他的統治領域中許多種錢幣上都印有他的大名。西元 43 年羅馬人入侵後，卡拉塔可斯便帶領不列顛人奮勇抵抗羅馬人，因而留名青史。卡拉塔可斯，是卡圖維勞尼部落邦聯 (Catuvellauni tribal confederation) 國王邱諾貝林 (Cunobelin) 之子。他與羅馬人征戰九年，但幾無成效，後來敗逃到威爾斯的部落中，而該地也被羅馬人徹底擊敗。最後他逃到北不列顛，卻被該地交給羅馬人。羅馬人將卡拉塔可斯帶回羅馬，羅馬皇帝克勞狄一世免除了他的死罪，最終卒於義大利。傳說他隨夫人轉信基督教，但切確情形已不可考。生平較著名的事蹟即雖被羅馬人擒獲仍逃過一死，係因羅馬人傳統政策皆以公開處決這類人物作為慶祝，然而在卡拉塔可斯的請求之下，他被帶到皇帝與元老院的面前為自己陳情，當時他說了什麼已無可考，但據曾任元老院的塔西陀之著作中描述，當時演講相當出色…"
+"but Tacitus applies to him a famous speech…"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -973,7 +976,7 @@ msgstr "與北非的努米底亞不同，伊比利半島被稱為「馬國」，
 msgid ""
 "Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
 "allies."
-msgstr "盟友的步兵斥候及騎兵斥候 -20% 花費。"
+msgstr "盟友的公民輕步兵 / 輕騎兵 -20% 花費。"
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1131,6 +1134,211 @@ msgid ""
 "fought back."
 msgstr "伊比利人有著神祕的起源及語言，他們也有很強的馬術及鐵匠傳統。作為一個相對來說愛好和平的民族，他們通常只以傭兵的身份參加戰爭。但是，在羅馬人侵略他們的土地時，並在反擊時使用了突熄戰術和火箭。"
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "庫施人"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "美羅埃的金字塔群"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr "每建造一座庫施金字塔，將使每座蓋好的城鎮中心領土影響範圍+ 10％。"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr "礦物儲存"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr "庫施的玩家們可以在他們的老家土地上某處獲得免費的額外金屬礦。"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "大象召集"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "大象供應商"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "庫施的盟友大象的花費與訓練時間 - 20%"
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "紀念性建築"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "阿蒙神的高等祭司"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "阿美尼蕾納絲女王"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "庫施非洲人"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "阿蒙神廟"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr "庫施人可以將個別神廟升級為阿蒙神廟，因而能更快地訓練納帕塔神殿衛隊的精英和更快速地治療部隊。"
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "歷史。"
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "戰神阿培德馬克神廟（ Apedemak 獅頭人身 ）"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr "庫施人可以將個別神廟升級為戰神阿培德馬克神殿，因而能更快地訓練美羅埃神殿衛隊的精英且更快速地治療部隊。\n"
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "庫施金字塔"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "建築一座小型庫施金字塔解鎖鄉鎮階段；建設一座大型庫施金字塔解鎖城市階段。 而且每座建好的金字塔對城鎮中心增加+ 10％的領土影響範圍。"
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "庫施人在努比亞建造了超過200座金字塔。"
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "庫施（Kush）王國是一個古老的非洲王國，位於青尼羅河、白尼羅河及阿特巴拉河匯合處，現今為蘇丹共和國。該地區的庫施民族統治時代是在埃及新王國青銅時代崩潰之後開始發展，早期的發展以那帕塔（Napata）為中心。他們於西元前 8 世紀侵入埃及成功，庫施族的統治者因而成為埃及第二十五王朝的法老，統治全埃及一整個世紀，直到他們被亞述人驅逐出境。庫施民族的文化受到埃及人很大的影響，例如在建築上，庫施金字塔和巨大神廟等建築就可以看得出來；庫施人甚至崇拜了許多埃及神，包括阿蒙神。到希臘古典時期時，庫施帝國改定都美羅埃（Meroe）。在早期的希臘人地理概念上，這一個在美羅埃的王國被稱為 Aethiopia 。庫施王國一直持續到西元四世紀，由於內部的叛亂被削弱而瓦解，最終被日漸東昇的阿克蘇姆帝國所滅。"
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1158,7 +1366,7 @@ msgstr "在希臘統一後，腓力二世成立了以馬其頓為首，集合希
 
 #: simulation/data/civs/mace.jsonCivBonuses[1].Description
 msgid "Infantry pike units can use the slow and powerful Syntagma formation."
-msgstr "長槍兵可以使用稱為馬其頓方陣的緩慢但強而有力的陣型。"
+msgstr "長矛兵可以使用緩慢但強而有力的馬其頓方陣。"
 
 #: simulation/data/civs/mace.jsonCivBonuses[1].Name
 msgid "Syntagma"
@@ -1168,7 +1376,7 @@ msgstr "馬其頓方陣"
 msgid ""
 "Based upon the Theban Oblique Order phalanx, the Syntagma was the formation "
 "that proved invincible against the armies of Hellas and the East."
-msgstr "在底比斯斜線方陣的基礎上進行改進的馬其頓方陣，在對抗希臘軍隊和東方的軍隊上所向披靡。"
+msgstr "以底比斯斜線方陣為基礎改良而成的馬其頓方陣，在對抗希臘城邦的軍隊和東方的軍隊上所向披靡。"
 
 #: simulation/data/civs/mace.jsonCivBonuses[2].History
 msgid ""
@@ -1354,7 +1562,7 @@ msgstr "一個與希臘城邦接壤的希臘化王國。"
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%. Build limit: 1."
-msgstr "希臘化的文明獎勵。建造劇院以使所有建築物的領土影響範圍增加 25%。建造限制：1。"
+msgstr "希臘化的文明獎勵。建造露天劇場以使所有建築物的領土影響範圍增加 25%。建造限制：1。"
 
 #: simulation/data/civs/mace.jsonStructures[1].Name
 #: simulation/data/civs/ptol.jsonStructures[0].Name
@@ -1503,10 +1711,6 @@ msgid ""
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "捕獲最多 5 頭大地之母的大象，並讓他們駐守在象棚內以獲得減少大象單位 25% 花費及訓練時間的獎勵。"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "大象召集"
-
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
 msgstr "孔雀王朝的徒步弓箭手有更大的攻擊範圍與更快的訓練時間。"
@@ -1560,7 +1764,7 @@ msgid ""
 "Contentment: +10% Health and +10% resource gathering rates for all citizens "
 "and allied citizens within its range. Can be built anywhere except in enemy "
 "territory. Max Built: 10."
-msgstr "知足常樂：所有在它特定範圍內的市民及盟軍市民 +10% 生命值及 +10% 資源採集速率。可以建造在除了敵人領土以外的任何地方。最大建造數：10。"
+msgstr "知足常樂：所有在它特定範圍內的公民及盟友公民 +10% 生命值及 +10% 資源採集速率。可以建造在除了敵人領土以外的任何地方。最大建造數：10。"
 
 #: simulation/data/civs/maur.jsonHistory
 msgid ""
@@ -1781,7 +1985,7 @@ msgstr "騎兵馬廄"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr "訓練騎兵。"
+msgstr "訓練公民騎兵。"
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -1825,7 +2029,7 @@ msgstr "托勒密"
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
-msgstr "托勒密有傭兵營，一個可以在中立領土上建造並訓練傭兵的軍營。"
+msgstr "托勒密有傭兵營，一個可以在中立地帶上建造並訓練傭兵的軍營。"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
@@ -2016,7 +2220,7 @@ msgstr "Stratópedo Misthophóron"
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
-msgstr "必須建造在中立領土。沒有領土範圍效果。訓練所有「傭兵」單位。"
+msgstr "必須建造在中立地帶上。沒有領土範圍效果。訓練所有「傭兵」單位。"
 
 #: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
@@ -2062,18 +2266,18 @@ msgstr "羅馬人"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Description
 msgid "Roman Legionaries can form a Testudo."
-msgstr "羅馬重裝步兵兵團可以組成一個龜甲形的陣型。"
+msgstr "羅馬重裝步兵團可以組成龜甲陣。"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Name
 msgid "Testudo Formation"
-msgstr "龜甲陣型"
+msgstr "龜甲陣"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].History
 msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
-msgstr "羅馬人通常使用龜甲或「烏龜」陣型進行防禦：軍團會組成一個每邊十二人的中空正方形，彼此緊密相連，像是魚鱗。"
+msgstr "羅馬人通常使用龜甲陣或稱烏龜陣進行防禦：軍團會組成一個每邊十二人的中空正方形，彼此緊密相連，像是魚鱗。"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid ""
@@ -2083,7 +2287,7 @@ msgstr "任何在羅馬境內作戰的羅馬公民兵可以獲得暫時性的 +1
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
-msgstr "公民"
+msgstr "公民身份"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].History
 msgid ""
@@ -2092,7 +2296,7 @@ msgid ""
 "peoples. It is said that harming a Roman citizen was akin to harming Rome "
 "herself, and would cause the entire might of Rome to fall upon the "
 "perpetrator."
-msgstr "古時候的世界，羅馬國籍相當受敬重。羅馬公民被賦與了其他被征服的民族所沒有的權利與特權。據說，傷害一個羅馬公民就是與整個羅馬為敵，整個羅馬都會團結起來制服施暴者。"
+msgstr "在遠古時的世界，羅馬的公民身份相當受到敬重。羅馬公民被賦與了其他被征服民族所沒有的權利與特權。據說，傷害一個羅馬公民就是與整個羅馬為敵，整個羅馬都會團結起來制服施暴者。"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "-20% training time for allied infantry."
@@ -2231,7 +2435,7 @@ msgstr "深挖壕溝的營地"
 
 #: simulation/data/civs/rome.jsonStructures[0].Special
 msgid "Trains citizen-soldiers from neutral or enemy territory."
-msgstr "可以在中立或敵方領土上訓練民兵。"
+msgstr "可以在中立地帶或敵方領土上訓練公民兵。"
 
 #: simulation/data/civs/rome.jsonStructures[0].History
 msgid ""
@@ -2253,7 +2457,7 @@ msgstr "磚牆"
 
 #: simulation/data/civs/rome.jsonStructures[1].Special
 msgid "Can be built in neutral and enemy territory to strangle enemy towns."
-msgstr "可以建築在中立勢力或敵人的城鎮附近，阻斷對方的交通。"
+msgstr "可以建築在中立地帶或敵人的城鎮附近，阻斷對方的交通。"
 
 #: simulation/data/civs/rome.jsonStructures[1].History
 msgid "Turf walls built by legionaries during sieges."
@@ -2528,7 +2732,7 @@ msgstr "馬其頓-希臘王朝統治著先前亞歷山大的帝國的東部。"
 
 #: simulation/data/civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry units except Citizen-Militia Cavalry."
-msgstr "訓練所有除了騎兵民兵以外的單位。"
+msgstr "訓練除了騎兵民兵以外的所有騎兵單位。"
 
 #: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
@@ -2567,7 +2771,7 @@ msgstr "斯巴達人"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Spartans can use the powerful Phalanx formation."
-msgstr "斯巴達人可以使用強大的方陣陣型。"
+msgstr "斯巴達人可以使用強大的希臘方陣陣型。"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].History
 msgid ""
@@ -2576,7 +2780,7 @@ msgid ""
 "and run away before a single shield clashed. 'Othismos' refers to the point "
 "in a phalanx battle where both sides try to shove each other out of "
 "formation, attempting to breaking up the enemy lines and routing them."
-msgstr "斯巴達人無疑是方陣作戰的大師。因為斯巴達人相當重視他們的紀律，導致了有時候敵人尚未與斯巴達人正面衝突就先落荒而逃。「Othismos」是「肉搏」，是指方陣戰鬥中雙方衝撞對方的方陣的時間點，此時雙方都在嘗試突破對方的防線，以為繼續前進鋪路。"
+msgstr "斯巴達人無疑是希臘方陣作戰的大師。因為斯巴達人相當重視他們的紀律，導致了有時候敵人尚未與斯巴達人正面衝突就先落荒而逃。「Othismos」是「肉搏」，是指方陣戰鬥中雙方衝撞對方方陣的時間點，此時雙方都在嘗試突破對方的防線，以為繼續前進鋪路。"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
 msgid ""
@@ -2598,7 +2802,7 @@ msgstr "根據被賦予神權的來古格士所制定的法律，因而確立了
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr "斯巴達玩家的盟友長矛民兵的生命值多 10%。"
+msgstr "斯巴達玩家的盟友長矛公民兵的生命值多 10%。"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2662,7 +2866,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr "斯巴達的女性市民無法被俘虜，並會頑強的反抗任何攻擊者。她們也可以建造防禦塔及柵欄。"
+msgstr "斯巴達的女性公民無法被俘虜，並會頑強的反抗任何攻擊者。她們也可以建造防禦塔及柵欄。"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2681,7 +2885,7 @@ msgstr "斯巴達的女性是古代世界中最自由的。她們可以擁有土
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
-msgstr "在方陣中的單位移動更快。"
+msgstr "在希臘方陣中的單位移動更快。"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"
@@ -2727,7 +2931,7 @@ msgid ""
 "Because Brasidas has sponsored their citizenship in return for service, "
 "Helot Skirmishers fight longer and harder for Sparta while within range of "
 "him."
-msgstr "因為伯拉西達承諾會給予他們公民身份來換取服務，當奴隸斥候在他的視野範圍內時會更加勇猛、更難被打敗。"
+msgstr "因為伯拉西達承諾會給予他們公民身份來換取服務，當希洛輕裝奴隸兵在他的視野範圍內時會更加勇猛、更難被打敗。"
 
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[2].History
 msgid ""

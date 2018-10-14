@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-24 07:30+0000\n"
+"PO-Revision-Date: 2018-09-04 08:57+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "%(hotkey)s: Dùin an eachdraidh."
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "Cluiche %(civilization)s"
+msgstr "Cluich: %(civilization)s"
 
 #: gui/civinfo/civinfo.js:127
 msgid "Civilization Bonus"
@@ -84,7 +84,7 @@ msgstr "Curaidhean"
 #: gui/civinfo/civinfo.js:162
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr "An eachdraidh aig %(civilization)s"
+msgstr "Eachdraidh: %(civilization)s"
 
 #: gui/common/color.js:164
 #, javascript-format
@@ -1529,27 +1529,27 @@ msgstr "Sguab às an t-ath-chluiche"
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
 msgid "Any"
-msgstr "Na h-uile"
+msgstr "Air fad"
 
 #: gui/replaymenu/replay_filters.js:66
 msgctxt "map size"
 msgid "Any"
-msgstr "Na h-uile"
+msgstr "Air fad"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "map name"
 msgid "Any"
-msgstr "Na h-uile"
+msgstr "Air fad"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "population capacity"
 msgid "Any"
-msgstr "Na h-uile"
+msgstr "Air fad"
 
 #: gui/replaymenu/replay_filters.js:117
 msgctxt "duration"
 msgid "Any"
-msgstr "Na h-uile"
+msgstr "Air fad"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:121
@@ -1779,7 +1779,7 @@ msgstr "Èifeachdachd"
 #: gui/summary/layout.js:160
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr "Chaidh %(resourceFirstWord)s a mhalart"
+msgstr "%(resourceFirstWord)s a chaidh a mhalart"
 
 #: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
 #: gui/credits/texts/misc.jsonTitle
@@ -2314,7 +2314,7 @@ msgstr "Ceann-là ’s àm"
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
-msgstr "Cluicheadairean"
+msgstr "Cluicheadair"
 
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
@@ -3194,7 +3194,7 @@ msgstr "A’ dìreadh"
 
 #: gui/options/options.json[5].options[12].list[2].label
 msgid "Descending"
-msgstr "A’ teàrnadh."
+msgstr "A’ teàrnadh"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""

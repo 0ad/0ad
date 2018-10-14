@@ -7,6 +7,7 @@
 # bb jansen <b.jansen5@students.uu.nl>, 2018
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
+# Dig Dug <digdug3@zonnet.nl>, 2018
 # Ellen Roels, 2015
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-27 19:17+0000\n"
-"Last-Translator: bb jansen <b.jansen5@students.uu.nl>\n"
+"PO-Revision-Date: 2018-05-10 13:19+0000\n"
+"Last-Translator: Dig Dug <digdug3@zonnet.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -321,14 +322,14 @@ msgstr "%(_player_)s, als je me %(_amount_)s %(_resource_)s stuurt, zal ik een n
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr ""
+msgstr "%(_player_)s, ik accepteer jouw neutraalheidsverzoek niet, tenzij je mij het geschenk van %(_amount_)s %(_resource_)s snel geeft."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, het zou onze beide beschavingen helpen als wij een bondgenootschap zouden vormen. Als jij mijn bondgenoot wilt worden, dan zal ik vriendelijk antwoorden."
 
 #: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
@@ -339,21 +340,21 @@ msgstr "%(_player_)s, mijn verzoek tot bondgenootschap is verlopen."
 #, javascript-format
 msgid ""
 "%(_player_)s, I have rescinded my previous offer for an alliance between us."
-msgstr ""
+msgstr "%(_player_)s, ik zie af van mijn vorige aanbod tot bondgenootschap tussen ons."
 
 #: simulation/ai/petra/chatHelper.js:128
 #, javascript-format
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, hierbij vraag ik een neutraalheidsverzoek aan tussen onze beschavingen. Als jij neutraal tegen mij staat, zal ik vriendelijk antwoorden."
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr ""
+msgstr "%(_player_)s, wij profiteren beide als wij een neutraaliteitspact zouden sluiten. Ik wordt neutraal als jij dat ook doet."
 
 #: simulation/ai/petra/chatHelper.js:132
 #, javascript-format

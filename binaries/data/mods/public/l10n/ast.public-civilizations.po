@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2018-04-13 20:46+0000\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-08-24 02:08+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -416,8 +416,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "Caratacu remanez de Caratacos, el nome qu'apaez nes permunches monedes de so. Por esti nome recuérdase-y como un firme proteutor de Britania contra los romanos, qu'invadieron nel añu 43 a.C. Fíu del Rei Cunobelín de la confederación tribal de los catuvellaunos, Caratacu lluchó nueve años escontra los romanos con pocu ésitu, fuxendo finalmente a Gales, u perdió dafechu. Escapó darréu al norte de Britania, onde los habitantes lu entregaron a los romanos. Lleváu a Roma y permitíu vivir pol emperador, Cloyu, Caratacu finó n'Italia. Según la lleenda, él y la so muyer convirtiéronse al cristianismu. Ye tamién de notar que los romanos lu dexaron vivir una vegada cativu. La política romana solía consistir na execución pública de talos homes pa celebrar. A pidimientu propiu, Caratacu compaeció énte l'emperador y el senáu pa esplicase. Nun se sabe de segures lo que dixo, pero Tácitu atribúi-y un famosu discursu..."
+"but Tacitus applies to him a famous speech…"
+msgstr "Caratacu remanez de Caratacos, el nome qu'apaez nes permunches monedes de so. Por esti nome recuérdase-y como un firme proteutor de Britania contra los romanos, qu'invadieron nel añu 43 a.C. Fíu del Rei Cunobelín de la confederación tribal de los catuvellaunos, Caratacu lluchó nueve años escontra los romanos con pocu ésitu, fuxendo finalmente a Gales, u perdió dafechu. Escapó darréu al norte de Britania, onde los habitantes lu entregaron a los romanos. Lleváu a Roma y permitíu vivir pol emperador, Claudiu, Caratacu finó n'Italia. Según la lleenda, él y la so muyer convirtiéronse al cristianismu. Ye tamién de notar que los romanos lu dexaron vivir una vegada cativu. La política romana solía consistir na execución pública de talos homes pa celebrar. A pidimientu propiu, Caratacu compaeció énte l'emperador y el senáu pa esplicase. Nun se sabe de segures lo que dixo, pero Tácitu atribúi-y un famosu discursu..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -671,7 +671,7 @@ msgid ""
 "B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
 "Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
 "his position as among the best tacticians and strategists in history."
-msgstr "El fíu más famosu de Cartago. Aníbal Barca yera'l fíu mayor d'Amílcar Barca y resultó ser meyor comandante que so pá. Vivió de 247-182 a.C. Si bien últimamente perdió la segunda guerra púnica, les sos victories en Trebia, Llagu Trasimenu y Canes, y la fazaña de cruciar los Alpes aseguráron-y la una posición ente los meyores táuticos y estrategues de la hestoria."
+msgstr "El fíu más famosu de Cartagu. Aníbal Barca yera'l fíu mayor d'Amílcar Barca y resultó ser meyor comandante que so pá. Vivió de 247-182 a.C. Si bien últimamente perdió la segunda guerra púnica, les sos victories en Trebia, Llagu Trasimenu y Canes, y la fazaña de cruciar los Alpes aseguráron-y la una posición ente los meyores táuticos y estrategues de la hestoria."
 
 #: simulation/data/civs/cart.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -704,7 +704,7 @@ msgstr "Construyir los poderosos barcos de guerra de l'armada cartaxinesa."
 msgid ""
 "The structure is based upon the center island of the inner harbour "
 "constructed to house the war fleet of the Carthaginian navy at Carthage."
-msgstr "La construcción sofítase na islla central del cai interior, que se construyó en Cartago p'abellugar la flota de l'armada cartaxinesa."
+msgstr "La construcción sofítase na islla central del cai interior, que se construyó en Cartagu p'abellugar la flota de l'armada cartaxinesa."
 
 #: simulation/data/civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
@@ -1123,6 +1123,211 @@ msgid ""
 "fought back."
 msgstr "Los íberos foron un pueblu d'oríxenes y llingua escuros, con una fonda tradición d'equitación y metalurxa. De cultura relativamente pacífica, solieron lluchar en batalles estranxeres como mercenarios. Sicasí, amosáronse aporfiaos cuando Roma procuró apoderase de les sos tierres y llibertá, y emplegaron táctiques guerrilleres anovadores y xavalines flamíxeres al resistila. "
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "Los cuxites"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "Les pirámides de Meroe"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr "Construyir una pirámide cuxita aumenta la influyencia del centru civil nel territoriu un +10% por caúna llevantada."
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr "Depósitos minerales"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr "Los xugadores cuxites reciben de baldre una mina de metal más per dayuri del so territoriu inicial."
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Prinde d'elefantes"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr "Pue prindar elefantes bravos y metelos nun corral p'amenorgar el costu d'entrenamientu de los elefantes de guerra."
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Suministradores d'elefantes"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Amenorga nun 20% el costu y el tiempu de llevantamientu d'elefantes a los aliaos de xugadores cuxites."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "Kaxta"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "Alara"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "Pebatjma"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "Xabaka"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "Xebitku"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "Qalhata"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "Takahatenamun"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "Tantamani"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "Atlanersa"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "Nasalsa"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "Malewiebamani"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "Harsiotef"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "Xanakdakhete"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "Amanixakheto"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "Arquiteutura monumental"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr "El +50% de los PV y -50% del tiempu de construcción pa los centros civiles, templos, pirámides y maraviyes."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr "Dexar allistar curadores d'élite."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "Sumu sacerdote d'Amón"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "Fai que'l sumu sacerdote instruya personalmente a los sacerdotes - qu'Amón-y bendiga."
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Nastasen"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Arakamani"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Amanirenes"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "Africanos cuxites"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "El gran reinu africanu travesáu pol Nilu en Nubia, al sur d'Exiptu."
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "Templu d'Amún"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr "Los cuxites puen tresformar templos individuales en templos d'Amón, que puen allistar campeones (guardies del templu napatanos) y curar unidaes más rápido."
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "Hestoria."
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "Tempu d'Apedemak"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr "Los cuxites puen tresformar templos individuales en templos d'Apedemak, que puen allistar campeones (guardies del templu meroíticos) y curar unidaes más rápido."
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "Pirámides cuxites"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "Construyir una pirámide cuxita pequeña desbloquia la fas de la villa.  Construyir una pirámide cuxita grande desbloquia la fas de la ciudá. Por cada pirámide construyida amiéstase un +10% al efeutu nel territoriu de los centros civiles."
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "Los cuxites construyeron más de 200 pirámides en Nubia."
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "El reinu de Cux foi un antiguu reinu africanu asitiáu nes miestes del Nilu Azul, Nilu Blancu y Ríu Atbara en lo qu'anguaño ye la República del Sudán. Los cuxites afitaron dominiu na rexón tres el colapsu del nuevu reinu d'Exiptu na Edá del Bronce, centrándolu en Napata demientres la fas temprana. Nel sielgu VIII a.C. invadieron Exiptu, onde los emperadores cuxites gobernaron como faraones de la dinastía XXV d'Exiptu un sieglu, fasta que los asirios los espuxaron. La fuerte influyencia exipcia na cultura cuxita pervése na contrucción de pirámides y arquiteutura de templos monumentales cuxites entá esistentes. De fechu, los cuxites adoraben a munchos dioses exipcios, incluyendo Amón. Na antigüedá clásica, la capital imperial de los cuxites tevo en Meroe. Na xeografía temprana griega, el reinu meroíticu conocióse como Etiopía. El reinu cuxita duró fasta'l sieglu IV d.C., cuando aflacó y desintegróse por culpa de rebelión interno, cediéndose finalmente énte'l poder xorreciente d'Aksum."
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1494,10 +1699,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Prinda fasta 5 elefantes bravos y métilos na corte los elefantes p'algamar una bonificación de fasta'l 25% del costu y tiempu de llevantamientu de les unidaes elefanteres."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Prinde d'elefantes"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."

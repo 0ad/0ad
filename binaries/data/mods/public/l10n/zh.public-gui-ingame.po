@@ -7,6 +7,7 @@
 # scinart <akubeej@gmail.com>, 2018
 # Brett Dong <brett.browning.dong@gmail.com>, 2016
 # Christian Xia <wood_elf@126.com>, 2016
+# Feng Chang <chang_196700@hotmail.com>, 2018
 # helinb <1696060289@qq.com>, 2015
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # hyln9 <hyln9@live.cn>, 2014
@@ -22,25 +23,26 @@
 # samrmrf, 2013
 # simsilver <yihuanlingjian@gmail.com>, 2014
 # Vince Luo <vinceluo11@gmail.com>, 2017
+# volcano song <1677559@qq.com>, 2018
 # wuxb <wuxb45@gmail.com>, 2014
 # wuxb <wuxb45@gmail.com>, 2014
 # xingtong, 2013
-# liulitchi <xingzuo88@qq.com>, 2014,2017
+# liulitchi <xingzuo88@qq.com>, 2014,2017-2018
 # yhcvb <yhcvb@126.com>, 2014
 # yhcvb <yhcvb@126.com>, 2014
 # yukisola <yolandaapply@gmail.com>, 2014
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
-# 星臣 星域神族 <yuronglong1996@gmail.com>, 2017
-# 李武军 <lwj7863439@gmail.com>, 2016-2017
+# 星臣 <yuronglong1996@gmail.com>, 2017
+# 武军 李 <lwj7863439@gmail.com>, 2016-2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-02-26 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-13 09:24+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -512,7 +514,7 @@ msgstr "，"
 #: gui/session/messages.js:695
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr ""
+msgstr "未同步"
 
 #: gui/session/messages.js:699
 #, javascript-format
@@ -555,7 +557,7 @@ msgstr "回放保存到了%(filepath)s"
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr ""
+msgstr "正在将当前状态保存到%(filepath)s"
 
 #: gui/session/messages.js:727 gui/session/messages.js:738
 msgid "Out of Sync"
@@ -648,17 +650,17 @@ msgstr "您正被 %(attacker)s 攻击!"
 #: gui/session/messages.js:1089
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s 已升级至 %(phaseName)s."
 
 #: gui/session/messages.js:1091
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr ""
+msgstr "%(player)s 已中止 %(phaseName)s "
 
 #: gui/session/messages.js:1094
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s 已完成 %(phaseName)s。"
 
 #: gui/session/messages.js:1146
 #, javascript-format
@@ -725,7 +727,7 @@ msgstr "获得：%(gain)s"
 #: gui/session/selection_panels.js:607 gui/session/session.js:1347
 msgctxt "countdown format"
 msgid "m:ss"
-msgstr ""
+msgstr "m:ss"
 
 #: gui/session/selection_details.js:265
 msgid "Current/max gatherers"
@@ -1000,7 +1002,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "单击选择修改项，然后使用其他类型的箭头共享修改。 您也可以某项份额达到100%%时，点击%(hotkey)s 。"
 
 #: gui/session/session.js:468
 #, javascript-format
@@ -1009,7 +1011,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "从上排选择您要出售的资源。 每次按下下方按钮时，上方资源数%(quantity)s将按下限的显示数量出售。 按住%(hotkey)s，可临时将交易金额乘以%(multiplier)s。"
 
 #: gui/session/session.js:659
 #, javascript-format
@@ -1017,7 +1019,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "\n%(civ)s%(hotkey_civinfo)s / %(hotkey_structree)s: 查看历史/ 结构树\n将重新打开上次记录。"
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1068,11 +1070,11 @@ msgstr "%(playername)s：%(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s：按%(hotkey)s改变排序。"
 
 #: gui/session/session.js:1260
 msgid "Unordered"
-msgstr ""
+msgstr "未排序"
 
 #: gui/session/session.js:1260
 msgid "Descending"
@@ -1399,7 +1401,7 @@ msgstr "退出"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "在对话框窗口中显示多人游戏大厅。"
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15

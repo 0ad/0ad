@@ -9,21 +9,23 @@
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
 # Camilo Zuluaga <czuluagaz@gmail.com>, 2017
-# Efraín Manzano <xelectronhd@gmail.com>, 2018
+# Dionisio Adrian Farias Coss <e_factor_06@hotmail.com>, 2018
+# The_Gipsy <xelectronhd@gmail.com>, 2018
 # Esteban A. Mina <ztephanuz@hotmail.com>, 2017
 # Javier Rojas <hekeine@gmail.com>, 2017
 # Jesus A <jasenjot@gmail.com>, 2017
 # Joaquin Marcher <joacorock@gmail.com>, 2018
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Raúl Fdez. <raulferval@hotmail.com>, 2017
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
 # Swyter <Swyterzone@gmail.com>, 2016-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-23 12:07+0000\n"
-"Last-Translator: Efraín Manzano <xelectronhd@gmail.com>\n"
+"PO-Revision-Date: 2018-06-11 23:17+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,7 +63,7 @@ msgstr "Patriotismo"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 msgid "Workers +15% gather rates near pyramids."
-msgstr "Los trabajadores aumentan en un +15% la velocidad de recolección cerca de las pirámides."
+msgstr "Los trabajadores aumentan un +15% la velocidad de recolección cerca de las pirámides."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -69,7 +71,7 @@ msgstr "Presencia exhortativa"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers near Large Pyramids +10% attack."
-msgstr "Mejora un +10% el ataque de los soldados que estén cerca de Grandes Pirámides"
+msgstr "Aumenta un +10% el ataque de los soldados que estén cerca de Grandes Pirámides."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -264,7 +266,7 @@ msgstr "Reclutamiento forzoso"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied citizen-soldier infantry."
-msgstr "-20% en el tiempo de reclutamiento de elefantes para la infantería de soldados ciudadano aliados."
+msgstr "Aliados reciben -20% en el tiempo de reclutamiento de unidades de infantería ciudadano-soldado"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -283,7 +285,7 @@ msgstr "Liga del Peloponeso"
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr "Aumenta la salud de los ciudadanos-soldado lanceros de infantería en un 10% para los aliados de los jugadores Espartanos."
+msgstr "Aumenta la salud de unidades de infantería ciudadano-soldado (lanceros) en un 10% para los aliados de los jugadores Espartanos."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -386,7 +388,7 @@ msgstr "Tras la caída de Indíbil en batalla, Mandonio llevó a los supervivien
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
-msgstr "La primera Reina Nubiana"
+msgstr "Primera Reina Nubia"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraDescription
 msgid ""
@@ -402,7 +404,7 @@ msgstr "Templo en Naqa"
 msgid ""
 "As in all cultures, relgion played a significant part in the Meroë Empire. Shanakdakheto had the Temple buit around 160 B.C. as a symbol of the advancedness of Meroë.\n"
 "+1 garrisoned heal rate for nearby temples."
-msgstr "Cómo en todas las culturas, la religión jugó un papel crucial en el Imperio Meroë. Shanakdakheto mandó construir el Templo sobre el 160 a.C. cómo símbolo de progreso de Meroë.\n+1 velocidad curación de refugiados a templos cercanos."
+msgstr "Como en todas las culturas, la religión jugó un papel crucial en el Imperio Meroë. Shanakdakheto mandó construir el Templo sobre el 160 a.C. como símbolo de progreso de Meroë.\n+1 en la velocidad de curación de los refugiados cerca de los templos."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -762,7 +764,7 @@ msgstr "Regalo de los Buques de Guerra"
 msgid ""
 "Train Ptolemaic Mercenary Triremes at -25% resource cost.\n"
 "Crushing the Ptolemaic invasion of Kush, Nastasen seized numerous enemy warships."
-msgstr "Entrene Trirremes Mercenarios Ptolomeos a un costo de recursos de -25%.\nAplastando la invasión ptolemaica de Kush, Nastasen se apoderó de numerosos buques de guerra enemigos."
+msgstr "Entrenar Trirremes Mercenarios Ptolemaicos con una reducción de coste del -25%.\nAplastando la invasión ptolemaica de Kush, Nastasen capturó numerosos buques de guerra enemigos."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
@@ -898,7 +900,7 @@ msgstr "Patrono mercenario"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -35% resources during his lifetime."
-msgstr "Los mercenarios cuestan un 35% menos de recursos mientras vivan."
+msgstr "Los mercenarios cuestan 35% menos de recursos mientras vivan."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName

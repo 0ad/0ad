@@ -8,14 +8,17 @@
 # helinb <1696060289@qq.com>, 2015
 # Jason Chen <wonton.cc@gmail.com>, 2017
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
+# Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 # liulitchi <xingzuo88@qq.com>, 2017
 # loms126 <loms126@126.com>, 2014
 # loms126 <loms126@126.com>, 2014
+# lxx4380 <lxx4380@gmail.com>, 2018
+# lxx4380 <lxx4380@gmail.com>, 2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Shinyu Wu <shinyu@gnu.hk>, 2016
 # Tianran Yao <yaotianran@gmail.com>, 2016
 # Vince Luo <vinceluo11@gmail.com>, 2017
-# liulitchi <xingzuo88@qq.com>, 2017
+# liulitchi <xingzuo88@qq.com>, 2017-2018
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
@@ -23,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-23 14:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-13 09:27+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +38,7 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr ""
+msgstr "砍"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
@@ -55,7 +58,7 @@ msgstr "%(hotkey)s：切换到建筑树。"
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr ""
+msgstr "%(hotkey)s：关闭历史记录"
 
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
@@ -93,7 +96,7 @@ msgstr "%(civilization)s 的历史"
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "未分配热键: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -308,7 +311,7 @@ msgstr "无尽的游戏"
 
 #: gui/common/gamedescription.js:225
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "没有胜利者"
 
 #: gui/common/gamedescription.js:236
 #, javascript-format
@@ -322,11 +325,11 @@ msgstr[0] "奇观分钟数 %(min)s"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "获取遗迹 (%(min)s 分钟)"
 
 #: gui/common/gamedescription.js:264
 msgid "Relic Count"
-msgstr "遗迹数"
+msgstr "遗迹数量"
 
 #: gui/common/gamedescription.js:271
 msgid "Hero Garrison"
@@ -338,11 +341,11 @@ msgstr "英雄可以驻守。"
 
 #: gui/common/gamedescription.js:276
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "显示英雄位置"
 
 #: gui/common/gamedescription.js:277
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "英雄不能驻守，很容易对手攻击。"
 
 #: gui/common/gamedescription.js:284
 msgid "Rated game"
@@ -372,7 +375,7 @@ msgstr "玩家可结盟，也可对盟友宣战。"
 
 #: gui/common/gamedescription.js:301
 msgid "Last Man Standing"
-msgstr "笑到最后的人"
+msgstr "笑到最后"
 
 #: gui/common/gamedescription.js:302
 msgid ""
@@ -388,7 +391,7 @@ msgstr "同盟胜利"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "有玩家获胜时，盟友一起获胜。"
+msgstr "某人获胜时，盟友一起获胜。"
 
 #: gui/common/gamedescription.js:311
 msgid "Ceasefire"
@@ -401,16 +404,16 @@ msgstr "关闭"
 #: gui/common/gamedescription.js:315
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
+msgstr[0] "在前 %(min)s 分钟, 其他玩家保持中立。"
 
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "随机地图"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "从列表里随机选取地图"
 
 #: gui/common/gamedescription.js:330
 msgid "Map Name"
@@ -435,11 +438,11 @@ msgstr "地图大小"
 #: gui/common/gamedescription.js:366
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "随机生物群"
 
 #: gui/common/gamedescription.js:367
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "从列表里随机挑选生物群"
 
 #: gui/common/gamedescription.js:381
 msgid "Nomad Mode"
@@ -466,11 +469,11 @@ msgstr "初始资源"
 #: gui/common/gamedescription.js:390
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:400
 msgid "Population Limit"
-msgstr "人偶限制"
+msgstr "人口限制"
 
 #: gui/common/gamedescription.js:408
 msgid "Treasures"
@@ -484,7 +487,7 @@ msgstr "禁用"
 #: gui/common/gamedescription.js:411
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "由地图定义。"
 
 #: gui/common/gamedescription.js:415
 msgid "Revealed Map"
@@ -528,7 +531,7 @@ msgstr "失败"
 #: gui/common/gamedescription.js:463
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -579,11 +582,11 @@ msgstr "游戏已经开始，不允许观察者"
 
 #: gui/common/network.js:72
 msgid "You have been kicked"
-msgstr "您已被踢出"
+msgstr "你已被踢出"
 
 #: gui/common/network.js:73
 msgid "You have been banned"
-msgstr "您已经被禁止"
+msgstr "你已经被禁止"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
@@ -595,7 +598,7 @@ msgstr "服务器已满"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
-msgstr ""
+msgstr "安全大厅验证失败，请通过大厅加入"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -643,12 +646,12 @@ msgstr "，"
 #: gui/common/settings.js:117
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr "测试区"
+msgstr "测试"
 
 #: gui/common/settings.js:121
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr "非常简单"
+msgstr "极易"
 
 #: gui/common/settings.js:125
 msgctxt "aiDiff"
@@ -668,7 +671,7 @@ msgstr "困难"
 #: gui/common/settings.js:138
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr "非常困难"
+msgstr "极难"
 
 #: gui/common/settings.js:148
 msgctxt "aiBehavior"
@@ -678,17 +681,17 @@ msgstr "随机"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr "平衡的"
+msgstr "均衡"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
 msgid "Defensive"
-msgstr "防守的"
+msgstr "防守"
 
 #: gui/common/settings.js:161
 msgctxt "aiBehavior"
 msgid "Aggressive"
-msgstr "积极的"
+msgstr "攻击"
 
 #: gui/common/settings.js:183
 #, javascript-format
@@ -776,7 +779,7 @@ msgstr "未知"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "未知胜利条件"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
@@ -792,11 +795,11 @@ msgstr "冲锋攻击："
 
 #: gui/common/tooltips.js:20
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "环状飞溅伤害"
 
 #: gui/common/tooltips.js:21
 msgid "Linear Splash Damage"
-msgstr "线性溅射伤害"
+msgstr "线性飞溅伤害"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -999,13 +1002,13 @@ msgstr "修理工数量："
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "%(hotkey)s: 切换至历史"
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "增加一个工人，在 %(second)s 秒后修复。"
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
@@ -1016,13 +1019,13 @@ msgstr "建筑工数量："
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "增加工人，加快%(second)s秒"
 
 #: gui/common/tooltips.js:431
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "增加一个工人，%(second)s秒后完成。"
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1031,7 +1034,7 @@ msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:502
 msgid "Gather Rates:"
-msgstr "采集速率："
+msgstr "采集效率："
 
 #: gui/common/tooltips.js:505 gui/common/tooltips.js:527
 #, javascript-format
@@ -1040,7 +1043,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/common/tooltips.js:523
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "资源流："
 
 #: gui/common/tooltips.js:524
 #, javascript-format
@@ -1069,11 +1072,11 @@ msgstr "塔楼:  %(costs)s"
 #: gui/common/tooltips.js:614
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr ""
+msgstr "花费："
 
 #: gui/common/tooltips.js:628
 #, javascript-format
@@ -1087,7 +1090,7 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:641
 msgid "Population Bonus:"
-msgstr "人口奖励"
+msgstr "人口奖励："
 
 #: gui/common/tooltips.js:662
 msgid "Insufficient resources:"
@@ -1175,13 +1178,13 @@ msgstr "战利品："
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:829
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "右击获取更多消息"
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "点击获取更多消息"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1191,7 +1194,7 @@ msgstr "%(nick)s - %(name)s"
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "默认: %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
@@ -1240,19 +1243,19 @@ msgstr "您有未保存的更改，是否要关闭窗口?"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s:观察文明结构树"
 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s:了解各个文明特性"
 
 #: gui/pregame/mainmenu.js:48
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr ""
+msgstr "%(hotkey)s:启动多人游戏大厅，加入或开启公开的游戏,并与其他玩家聊天。"
 
 #: gui/pregame/mainmenu.js:98
 msgid "connecting to server"
@@ -1354,7 +1357,7 @@ msgstr "错误"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "启动多人游戏大厅，加入或开启公开的游戏,并与其他玩家聊天。\\[DISABLED BY BUILD]"
 
 #: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
@@ -1369,18 +1372,18 @@ msgstr "手册"
 #: gui/reference/common/draw.js:48
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource supply.
 #: gui/reference/common/draw.js:67
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
-msgstr ""
+msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/reference/common/draw.js:68
 msgid "Resource Supply:"
-msgstr ""
+msgstr "升级至："
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its resource.
@@ -1396,62 +1399,62 @@ msgstr "%(health_min)s到%(health_max)s"
 #: gui/reference/structree/structree.js:49
 #, javascript-format
 msgid "%(hotkey)s: Switch to History."
-msgstr ""
+msgstr "%(hotkey)s: 切换至历史"
 
 #: gui/reference/structree/structree.js:50
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s:关闭结构树"
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
 #: gui/reference/viewer/viewer.js:139
 msgid "Built by:"
-msgstr ""
+msgstr "建造："
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:152
 msgid "Trained by:"
-msgstr ""
+msgstr "训练："
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:165
 msgid "Researched at:"
-msgstr ""
+msgstr "研究:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
 #: gui/reference/viewer/viewer.js:177
 msgid "Builds:"
-msgstr ""
+msgstr "可建造："
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
 #: gui/reference/viewer/viewer.js:198
 msgid "Researches:"
-msgstr ""
+msgstr "资源："
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
 #: gui/reference/viewer/viewer.js:210
 msgid "Trains:"
-msgstr ""
+msgstr "可训练："
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:223
 msgid "Upgradable to:"
-msgstr ""
+msgstr "升级至："
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr ""
+msgstr "此回放需要一个不同的mods序列："
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
-msgstr "此重播与您的游戏版本不兼容!"
+msgstr "此回放与您的游戏版本不兼容!"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
@@ -1465,7 +1468,7 @@ msgstr "需要版本：%(version)s"
 
 #: gui/replaymenu/replay_actions.js:100
 msgid "Incompatible replay"
-msgstr "重播不兼容"
+msgstr "回放不兼容"
 
 #: gui/replaymenu/replay_actions.js:117
 msgid "No summary data available."
@@ -1473,7 +1476,7 @@ msgstr "无可用摘要数据。"
 
 #: gui/replaymenu/replay_actions.js:166
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr "确定要永久删除此重播?"
+msgstr "确定要永久删除?"
 
 #: gui/replaymenu/replay_actions.js:168
 msgid "Delete replay"
@@ -1541,7 +1544,7 @@ msgstr "多人对战"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "任何胜利条件"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -1671,7 +1674,7 @@ msgstr "海军"
 
 #: gui/summary/layout.js:70
 msgid "Traders"
-msgstr "贸易商人"
+msgstr "商人"
 
 #: gui/summary/layout.js:74
 #, javascript-format
@@ -1684,7 +1687,7 @@ msgstr "资源"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr ""
+msgstr "贡品"
 
 #: gui/summary/layout.js:112
 #, javascript-format
@@ -1703,7 +1706,7 @@ msgstr "战利品"
 
 #: gui/summary/layout.js:122
 msgid "Livestock bred"
-msgstr ""
+msgstr "繁殖牲畜"
 
 #: gui/summary/layout.js:126
 #, javascript-format
@@ -1759,14 +1762,14 @@ msgstr "女性化"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr ""
+msgstr "贿赂"
 
 #: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "贿赂\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:357
 msgid "Team total"
@@ -1774,7 +1777,7 @@ msgstr "队伍总计"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr "已训练的"
+msgstr "已训练"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
@@ -1782,15 +1785,15 @@ msgstr "建筑"
 
 #: gui/summary/summary.js:40
 msgid "Gathered"
-msgstr "被采集的"
+msgstr "已采集"
 
 #: gui/summary/summary.js:45
 msgid "Sent"
-msgstr "送出的"
+msgstr "送出"
 
 #: gui/summary/summary.js:50
 msgid "Bought"
-msgstr "已买入"
+msgstr "购入"
 
 #: gui/summary/summary.js:55
 msgid "Income"
@@ -1798,7 +1801,7 @@ msgstr "收入"
 
 #: gui/summary/summary.js:60
 msgid "Captured"
-msgstr "捕获"
+msgstr "占领"
 
 #: gui/summary/summary.js:65
 msgid "Succeeded"
@@ -1810,7 +1813,7 @@ msgstr "摧毁"
 
 #: gui/summary/summary.js:75
 msgid "Killed"
-msgstr "已击杀的"
+msgstr "杀死"
 
 #: gui/summary/summary.js:80
 msgid "Lost"
@@ -1818,15 +1821,15 @@ msgstr "失去"
 
 #: gui/summary/summary.js:85
 msgid "Used"
-msgstr "已使用的"
+msgstr "使用"
 
 #: gui/summary/summary.js:90
 msgid "Received"
-msgstr "已收到"
+msgstr "收到"
 
 #: gui/summary/summary.js:95
 msgid "Sold"
-msgstr "已卖出"
+msgstr "卖出"
 
 #: gui/summary/summary.js:100
 msgid "Outcome"
@@ -1838,11 +1841,11 @@ msgstr "失败"
 
 #: gui/summary/summary.js:335
 msgid "Time elapsed"
-msgstr ""
+msgstr "时间线"
 
 #: gui/summary/summary.js:491
 msgid "Current Scores"
-msgstr "目前分数"
+msgstr "当前分数"
 
 #: gui/summary/summary.js:493
 msgid "Scores at the end of the game."
@@ -1854,11 +1857,11 @@ msgstr "连接已断开。"
 
 #: gui/summary/summary.js:497
 msgid "You have left the game."
-msgstr "您已经离开了游戏。"
+msgstr "你已离开游戏。"
 
 #: gui/summary/summary.js:499
 msgid "You have won the battle!"
-msgstr "您已胜出！"
+msgstr "获得胜利！"
 
 #: gui/summary/summary.js:501
 msgid "You have been defeated…"
@@ -1866,12 +1869,12 @@ msgstr "您已战败。"
 
 #: gui/summary/summary.js:502
 msgid "You have abandoned the game."
-msgstr "您放弃了游戏。"
+msgstr "你放弃了游戏。"
 
 #: gui/summary/summary.js:505
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr "游戏时间已过: %(time)s"
+msgstr "游戏时间: %(time)s"
 
 #: gui/summary/summary.js:513
 #, javascript-format
@@ -1881,7 +1884,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "%(hotkey)s:在对话窗口中切换多人游戏大厅。"
 
 #: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
@@ -1922,7 +1925,7 @@ msgstr "语言:"
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr "所在区域:"
+msgstr "地区:"
 
 #: gui/locale/locale.xml:(caption):36
 msgid "Cancel"
@@ -1970,7 +1973,7 @@ msgstr "未保存的更改将只影响此会话"
 
 #: gui/pregame/mainmenu.xml:58
 msgid "Help improve 0 A.D.!"
-msgstr "帮助改善 0 A.D.!"
+msgstr "帮助改进 0 A.D.!"
 
 #: gui/pregame/mainmenu.xml:60
 msgid ""
@@ -2081,7 +2084,7 @@ msgstr "翻译游戏"
 
 #: gui/pregame/mainmenu.xml:(caption):622
 msgid "Donate"
-msgstr ""
+msgstr "捐赠"
 
 #: gui/pregame/mainmenu.xml:(caption):634
 msgid "Credits"
@@ -2089,7 +2092,7 @@ msgstr "职员名单"
 
 #: gui/pregame/mainmenu.xml:(caption):663
 msgid "WILDFIRE GAMES"
-msgstr "野火游戏"
+msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/mainmenu.xml:(tooltip):147
 msgid "Open the 0 A.D. Game Manual."
@@ -2136,7 +2139,7 @@ msgstr "选择游戏语言。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):397
 msgid "Select and download mods for the game."
-msgstr ""
+msgstr "选择并下载mods"
 
 #: gui/pregame/mainmenu.xml:(tooltip):409
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -2190,7 +2193,7 @@ msgstr "单击在浏览器里打开0 A.D. 翻译页面。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):623
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "给个一丝半毫吧～"
 
 #: gui/pregame/mainmenu.xml:(tooltip):635
 msgid "Click to see the 0 A.D. credits."
@@ -2202,7 +2205,7 @@ msgstr "文明："
 
 #: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
-msgstr "教练单位"
+msgstr "训练单位"
 
 #: gui/reference/viewer/viewer.xml:(caption):13
 msgid "Information"
@@ -2214,7 +2217,7 @@ msgstr "重玩游戏"
 
 #: gui/replaymenu/replay_menu.xml:(caption):109
 msgid "Filter compatible replays"
-msgstr "筛选兼容的重播"
+msgstr "筛选兼容的回放"
 
 #: gui/replaymenu/replay_menu.xml:(caption):150
 msgid "Map Type:"
@@ -2230,7 +2233,7 @@ msgstr "胜利:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):213
 msgid "Spoiler"
-msgstr "剧透"
+msgstr "捣乱者"
 
 #: gui/replaymenu/replay_menu.xml:(caption):225
 msgid "Main Menu"
@@ -2251,7 +2254,7 @@ msgstr "摘要"
 
 #: gui/replaymenu/replay_menu.xml:(caption):250
 msgid "Start Replay"
-msgstr "开始重播"
+msgstr "开始回放"
 
 #: gui/replaymenu/replay_menu.xml:(heading):69
 msgctxt "replay"
@@ -2320,7 +2323,7 @@ msgstr "类型: "
 
 #: gui/summary/summary.xml:(caption):227
 msgid "Replay"
-msgstr "重玩游戏"
+msgstr "重玩"
 
 #: gui/summary/summary.xml:(caption):232
 msgid "Continue"
@@ -2458,7 +2461,7 @@ msgstr "捐赠者"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr "头"
+msgstr "领头"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
@@ -2534,7 +2537,7 @@ msgstr "玩家名称 ( 多人玩家 )"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
-msgstr ""
+msgstr "当窗口失去焦点时暂停单人游戏。"
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
@@ -2609,7 +2612,7 @@ msgstr "禁用"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr ""
+msgstr "允许他人在游戏开始后，作为观察者加入游戏。"
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
@@ -2617,7 +2620,7 @@ msgstr "最近加入的观察者"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr ""
+msgstr "如果达到限制，禁止观察者再加入。"
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer Limit"
@@ -2638,7 +2641,7 @@ msgstr "通用的"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "开启窗口游戏"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed Mode"
@@ -2646,7 +2649,7 @@ msgstr "窗口模式"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr ""
+msgstr "使用OpenGL 2.0 着色器（推荐）"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -2654,7 +2657,7 @@ msgstr "偏好高级渲染"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
-msgstr ""
+msgstr "开启战争迷雾"
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
@@ -2662,7 +2665,7 @@ msgstr "战雾"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "使用屏幕空间后处理过滤器（HDR，Bloom，DOF等）。"
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
@@ -2670,7 +2673,7 @@ msgstr "后处理"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "着色器效果的数量。 需要重启游戏。"
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shader Effects"
@@ -2678,7 +2681,7 @@ msgstr "着色特效"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "开启阴影"
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
@@ -2709,7 +2712,7 @@ msgstr "非常高"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "阴影贴图分辨率。 显存不足时，高数值会导致游戏崩溃！"
 
 #: gui/options/options.json[1].options[6].label
 msgid "Shadow Quality"
@@ -2717,7 +2720,7 @@ msgstr "阴影质量"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "阴影平滑"
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
@@ -2725,7 +2728,7 @@ msgstr "阴影过滤"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind buildings."
-msgstr ""
+msgstr "显示建筑物隐藏的单位。"
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
@@ -2733,7 +2736,7 @@ msgstr "单位剪影"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "开启粒子效果"
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
@@ -2761,7 +2764,7 @@ msgstr "高质量水面效果"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr ""
+msgstr "在渲染计算中使用实际水深。"
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
@@ -2769,7 +2772,7 @@ msgstr "真实水深"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr ""
+msgstr "允许水面反射镜像。"
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water Reflections"
@@ -2777,7 +2780,7 @@ msgstr "水面反射效果"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr ""
+msgstr "使用真实的水域折射图而非透明度。"
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
@@ -2785,7 +2788,7 @@ msgstr "水面折射效果"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
-msgstr ""
+msgstr "在水面上投下阴影。"
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on Water"
@@ -2793,7 +2796,7 @@ msgstr "水中倒影"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
-msgstr ""
+msgstr "平稳地提升黑暗和战争迷雾。"
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth LOS"
@@ -2801,7 +2804,7 @@ msgstr "LOS平滑 "
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr ""
+msgstr "渲染天空"
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
@@ -2837,7 +2840,7 @@ msgstr "游戏内FPS上限"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr ""
+msgstr "在性能和视觉外观之间设置平衡。"
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -2845,7 +2848,7 @@ msgstr "图像"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr ""
+msgstr "音频增益。"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
@@ -2853,7 +2856,7 @@ msgstr "主音量"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr ""
+msgstr "获取内置音效"
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
@@ -2861,7 +2864,7 @@ msgstr "音乐音量"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr ""
+msgstr "游戏环境下声音增益。"
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
@@ -2869,7 +2872,7 @@ msgstr "环境音量"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr ""
+msgstr "游戏单元动作声音增益。"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
@@ -2877,7 +2880,7 @@ msgstr "行动音量"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr ""
+msgstr "UI声音增益"
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
@@ -2885,7 +2888,7 @@ msgstr "界面音量"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "当有人输入你的昵称时,语音提示。"
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
@@ -2901,16 +2904,16 @@ msgstr "执行设置提示"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr ""
+msgstr "打开，关闭或调整大小时滑动设置面板。"
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable Settings Panel Slide"
-msgstr ""
+msgstr "启用设置面板幻灯片"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr ""
+msgstr "保存和恢复匹配设置，以便在托管其他游戏时快速重用。"
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
@@ -2918,11 +2921,11 @@ msgstr "保持遭遇战设定"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
-msgstr "测试区"
+msgstr "测试"
 
 #: gui/options/options.json[3].options[3].list[1].label
 msgid "Very Easy"
-msgstr "非常简单"
+msgstr "极易"
 
 #: gui/options/options.json[3].options[3].list[2].label
 msgid "Easy"
@@ -2934,11 +2937,11 @@ msgstr "困难"
 
 #: gui/options/options.json[3].options[3].list[5].label
 msgid "Very Hard"
-msgstr "非常困难"
+msgstr "极难"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr "默认的AI难度。"
+msgstr "默认AI难度。"
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
@@ -2950,15 +2953,15 @@ msgstr "随机"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr "平衡的"
+msgstr "均衡"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
-msgstr "积极的"
+msgstr "攻击"
 
 #: gui/options/options.json[3].options[4].list[3].label
 msgid "Defensive"
-msgstr "防守的"
+msgstr "防守"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
@@ -2972,11 +2975,11 @@ msgstr "AI默认行为"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "在匹配设置期间，加入的用户自动分配。"
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign Players"
-msgstr "制定玩家"
+msgstr "分配玩家"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
@@ -2984,7 +2987,7 @@ msgstr "游戏设置"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr ""
+msgstr "加入大厅时，加载未读消息。"
 
 #: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
@@ -2994,11 +2997,11 @@ msgstr "聊天记录"
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "在游戏列表中显示玩家的平均得分。"
 
 #: gui/options/options.json[4].options[1].label
 msgid "Game Rating Column"
-msgstr ""
+msgstr "评分栏"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3012,7 +3015,7 @@ msgstr "游戏大厅"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "受伤单位热键，如果所选单位健康百分比低于这个数值，判定其受伤。"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
@@ -3020,7 +3023,7 @@ msgstr "伤员健康状况"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "默认批次训练的单位数量。"
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
@@ -3029,38 +3032,38 @@ msgstr "每批训练规模"
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "滚动鼠标滚轮，改变增减的次数。"
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
-msgstr ""
+msgstr "滚动批量增量比率"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr ""
+msgstr "受到攻击时，弹出提示。"
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat Notification Attack"
-msgstr ""
+msgstr "攻击通知"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "如果一个盟友在团队被锁定的情况下，向另一个团队成员提供资源，则所有玩家会收到通知。"
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr ""
+msgstr "聊天通知"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "玩家交换资源时，向观察者显示通知。"
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr ""
+msgstr "市场买卖提示"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3078,17 +3081,17 @@ msgstr "所有展示"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "如果您或某个盟友已开始，中止或完成新阶段，并且所有玩家都处于观察员模式阶段，则显示聊天通知。"
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr ""
+msgstr "聊天通知状态"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "显示所选防御建筑的攻击范围（可使用热键切换）。"
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
@@ -3098,11 +3101,11 @@ msgstr "攻击范围可视化"
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "显示所选单位和建筑的光环范围（可使用热键切换）。"
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura Range Visualization"
-msgstr ""
+msgstr "光环范围可视化"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3116,11 +3119,11 @@ msgstr "治疗范围可视化"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr ""
+msgstr "在状态栏上方显示排名"
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "状态栏上方的排名图标"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid ""
@@ -3133,7 +3136,7 @@ msgstr "详细工具提示"
 
 #: gui/options/options.json[5].options[12].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "未排序"
 
 #: gui/options/options.json[5].options[12].list[1].label
 msgid "Ascending"
@@ -3146,67 +3149,67 @@ msgstr "降序"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
+msgstr "资源和人口按数值大小动态排序。"
 
 #: gui/options/options.json[5].options[12].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "资源和人口提示"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr ""
+msgstr "当启动政策色后，显示你的颜色。"
 
 #: gui/options/options.json[5].options[13].label
 msgid "Diplomacy Colors: Self"
-msgstr ""
+msgstr "政策色：自身"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr ""
+msgstr "启动政策色时，显示联盟颜色。"
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Ally"
-msgstr ""
+msgstr "政策色：同盟"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr ""
+msgstr "政策色启用时为中立玩家颜色"
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Neutral"
-msgstr ""
+msgstr "政策色：中立"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
-msgstr ""
+msgstr "政策色启用时，为敌方颜色"
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Enemy"
-msgstr ""
+msgstr "政策色：敌人"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr ""
+msgstr "更改游戏内置选项。"
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
-msgstr ""
+msgstr "内置"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr ""
+msgstr "从动物、浆果灌木、鱼或田地中获取。"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "从矿山或采石场开采。"
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr ""
+msgstr "从岩石、石头或遗迹处获取石头。"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "从树林中获取"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3241,14 +3244,14 @@ msgstr "鱼场"
 #: simulation/data/resources/food.jsonsubtypes.fruit
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr "水果"
+msgstr "浆果"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/food.jsonsubtypes.fruit
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr "水果"
+msgstr "浆果"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3283,14 +3286,14 @@ msgstr "肉"
 #: simulation/data/resources/metal.jsonname
 msgctxt "firstWord"
 msgid "Metal"
-msgstr "金矿"
+msgstr "金属"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/metal.jsonname
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr "金矿"
+msgstr "金属"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3341,14 +3344,14 @@ msgstr "废墟"
 #: simulation/data/resources/stone.jsonsubtypes.rock
 msgctxt "firstWord"
 msgid "Rock"
-msgstr "石头"
+msgstr "岩石"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/stone.jsonsubtypes.rock
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr "石头"
+msgstr "岩石"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3385,7 +3388,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "默认AI级别虽然对于老玩家来说相对容易，但是对还没掌握游戏基本机制的新手玩家来说仍然十分具有挑战性。对于新手玩家，建议从较低的AI级别(“沙盒”或“非常容易”)开始。你可以用过在上面的面板上点击AI玩家旁边的齿轮图标来修改他们的AI级别。"
+msgstr "默认AI级别虽然对于老玩家来说相对容易，但是对还没掌握游戏基本机制的新手玩家来说仍然十分具有挑战性。对于新手玩家，建议从较低的AI级别(“沙盒”或“极易”)开始。你可以用过在上面的面板上点击AI玩家旁边的齿轮图标来修改他们的AI级别。"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3547,7 +3550,7 @@ msgstr "- 增加驻防步兵的火力。"
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr ""
+msgstr " - 不能像其他人一样撞击，但有更高的血量和护甲。"
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3569,11 +3572,11 @@ msgstr "-可以建造在同盟和中立的领土。"
 msgid ""
 "- Train citizens: female citizens, infantry citizen soldiers and cavalry "
 "citizen soldiers."
-msgstr ""
+msgstr "-训练公民：女性市民，步兵民兵和骑兵民兵。"
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
-msgstr "大使馆"
+msgstr "使馆"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
@@ -3581,7 +3584,7 @@ msgstr "- 迦太基特别的兵营."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr "- 从各民族大使馆征召雇佣兵."
+msgstr "- 从各处使馆征召雇佣兵."
 
 #: gui/text/tips/embassies.txt:6
 msgid ""
@@ -3611,7 +3614,7 @@ msgstr "- 注意！鱼不是捕捞不尽的"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr "堡垒"
+msgstr "城堡"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
@@ -3631,23 +3634,23 @@ msgstr "- 驻守士兵可增加对城防造成的火力伤害。"
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "随意位置"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "- Gain an advantage on the battleground by tactically positioning your "
 "units!"
-msgstr ""
+msgstr "- 通过战术定位，在战场上获得优势！"
 
 #: gui/text/tips/freehand_position.txt:4
 msgid ""
 "- Therefore select some units, press and hold the right mouse button, draw "
 "any line, then release the button."
-msgstr ""
+msgstr "- 因此选择一些单位，按住鼠标右键，直线拖动，然后松开按钮。"
 
 #: gui/text/tips/freehand_position.txt:6
 msgid "- Your units will now spread out on this line."
-msgstr ""
+msgstr "-单位无法散开"
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3655,11 +3658,11 @@ msgstr "资源收集"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "-让民兵和女市民采集资源"
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female citizens are faster gathering vegetable resources."
-msgstr ""
+msgstr "-女市民采集浆果更高效"
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Infantry citizen soldiers are faster gathering minerals."
@@ -3673,7 +3676,7 @@ msgstr "- 城邦骑兵有更快的肉类收集速度。"
 msgid ""
 "- The higher the level of a citizen soldier (advanced, elite), the better he"
 " fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "-公民士兵的级别越高，战斗力越强，收集资源效率越低。"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3746,7 +3749,7 @@ msgstr "- 在他的范围内建筑物的建造速度加快。"
 
 #: gui/text/tips/pericles.txt:6
 msgid "- Temples are cheaper while he lives."
-msgstr "- 在他活着的时候，圣殿的造价更加便宜。"
+msgstr "- 在他活着的时候，寺庙的造价更加便宜。"
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -3772,7 +3775,7 @@ msgstr "- 波斯拥有大量建筑防御技术"
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr "矛兵"
+msgstr "长枪兵"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
@@ -3883,7 +3886,7 @@ msgstr "-反骑兵有攻击加成。"
 
 #: gui/text/tips/spearmen.txt:6
 msgid "- Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "-掌控微操节奏"
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
@@ -3905,7 +3908,7 @@ msgstr "- 训练重装散兵和刀剑精英步兵。"
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Grants +10 Population."
-msgstr "- 增加+10人口"
+msgstr "- 人口+10"
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -3943,7 +3946,7 @@ msgstr "- 阵型后方易受攻击"
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
-msgstr "庙宇"
+msgstr "寺庙"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
@@ -3994,7 +3997,7 @@ msgstr "地米斯托克利"
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr "- 雅典的英雄在阿尔弥忒斯大海战和萨拉米斯大海战期间御统希腊人参展。"
+msgstr "- 雅典的英雄，在阿尔弥忒斯大海战和萨拉米斯大海战期间御统希腊人对抗波斯。"
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
@@ -4002,7 +4005,7 @@ msgstr "- 当他活着的时候，所有船舰建造加快。"
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "-有驻防的船只航行更快。"
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -4029,13 +4032,13 @@ msgstr "- 在战舰上驻扎士兵以增强火力。"
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr "- 在战舰上驻扎投手，用以远程攻城攻击 ( 尚未实施 ) 。"
+msgstr "- 在战舰上驻扎投手，用以远程攻城攻击 ( 尚未实现) 。"
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr "- 可实施的毁灭性舰队对撞攻击必须在每次使用间隔中获得补给 ( 尚未实施 ) 。"
+msgstr "- 可实施的毁灭性舰队对撞攻击必须在每次使用间隔中获得补给 ( 尚未实现) 。"
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4073,7 +4076,7 @@ msgstr "- 来自非洲和印度的巨大野兽，受过训练战争。"
 msgid ""
 "- High Food and Metal cost, but very powerful. Strongest against Structures "
 "and Cavalry."
-msgstr "- 高食物、高材料的花费，但非常强大。是对付建筑和骑兵最强大的武器。"
+msgstr "- 花费较高食物和金属，但非常强大。是对付建筑和骑兵的强大武器。"
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
@@ -4081,7 +4084,7 @@ msgstr "- 对散兵来说较为脆弱。"
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr "- 可建造的：孔雀王朝，托勒密王朝，塞琉古王朝，以及迦太基帝国。"
+msgstr "- 可建造的：孔雀王朝，托勒密，塞琉古，以及迦太基。"
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

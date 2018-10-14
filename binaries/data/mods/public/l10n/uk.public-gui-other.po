@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Alexander Olkhovskiy, 2018
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Oleg Adept <adeptoleg@gmail.com>, 2016
@@ -17,14 +18,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-27 07:32+0000\n"
+"PO-Revision-Date: 2018-09-29 17:45+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
@@ -62,6 +63,7 @@ msgid_plural "Civilization Bonuses"
 msgstr[0] "Бонус Цивілізації"
 msgstr[1] "Бонуси Цивілізації"
 msgstr[2] "Бонусів Цивілізації"
+msgstr[3] "Бонусів Цивілізації"
 
 #: gui/civinfo/civinfo.js:132
 msgid "Team Bonus"
@@ -69,6 +71,7 @@ msgid_plural "Team Bonuses"
 msgstr[0] "Бонус команди"
 msgstr[1] "Бонусм команди"
 msgstr[2] "Бонусів команди"
+msgstr[3] "Бонусів команди"
 
 #: gui/civinfo/civinfo.js:139
 msgid "Special Technologies"
@@ -80,6 +83,7 @@ msgid_plural "Special Buildings"
 msgstr[0] "Особлива будівля"
 msgstr[1] "Особливі будівлі"
 msgstr[2] "Особливих будівель"
+msgstr[3] "Особливих будівель"
 
 #: gui/civinfo/civinfo.js:152 gui/summary/layout.js:67
 msgid "Heroes"
@@ -302,6 +306,7 @@ msgid_plural "Observers"
 msgstr[0] "Спостерігач"
 msgstr[1] "Спостерігачі"
 msgstr[2] "Спостерігачів"
+msgstr[3] "Спостерігачів"
 
 #: gui/common/gamedescription.js:224
 msgctxt "victory condition"
@@ -320,6 +325,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Чудо (%(min)s хвилина)"
 msgstr[1] "Чудо (%(min)s хвилини)"
 msgstr[2] "Чудо (%(min)s хвилин)"
+msgstr[3] "Чудо (%(min)s хвилин)"
 
 #: gui/common/gamedescription.js:248
 #, javascript-format
@@ -329,6 +335,7 @@ msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Захопіть реліквію (за %(min)s хвилину)"
 msgstr[1] "Захопіть реліквію (за %(min)s хвилини)"
 msgstr[2] "Захопіть реліквію (за %(min)s хвилин)"
+msgstr[3] "Захопіть реліквію (за %(min)s хвилин)"
 
 #: gui/common/gamedescription.js:264
 msgid "Relic Count"
@@ -410,6 +417,7 @@ msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Першу хвилину, інші гравці залишаються нейтральними."
 msgstr[1] "У перші  %(min)s хвилину, інші гравці залишаються нейтральними."
 msgstr[2] "Перші %(min)s хвилин, інші гравці залишаються нейтральними."
+msgstr[3] "Перші %(min)s хвилин, інші гравці залишаються нейтральними."
 
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
@@ -706,6 +714,7 @@ msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s хвилина"
 msgstr[1] "%(min)s хвилини"
 msgstr[2] "%(min)s хвилин"
+msgstr[3] "%(min)s хвилин"
 
 #: gui/common/settings.js:205
 msgctxt "ceasefire"
@@ -720,6 +729,7 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s хвилина"
 msgstr[1] "%(minutes)s хвилини"
 msgstr[2] "%(minutes)s хвилин"
+msgstr[3] "%(minutes)s хвилин"
 
 #: gui/common/settings.js:220
 msgctxt "map"
@@ -863,6 +873,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 msgstr[2] "%(time)s %(second)s"
+msgstr[3] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:112 gui/common/tooltips.js:353
 #: gui/common/tooltips.js:717
@@ -871,6 +882,7 @@ msgid_plural "seconds"
 msgstr[0] "секунда"
 msgstr[1] "секунди"
 msgstr[2] "секунд"
+msgstr[3] "секунд"
 
 #: gui/common/tooltips.js:165 gui/common/tooltips.js:176
 msgid "Health:"
@@ -888,6 +900,7 @@ msgid_plural "%(arrowcount)s %(arrows)s"
 msgstr[0] "%(arrowcount)s %(arrows)s"
 msgstr[1] "%(arrowcount)s %(arrows)s"
 msgstr[2] "%(arrowcount)s %(arrows)s"
+msgstr[3] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:195
 msgid "arrow"
@@ -895,6 +908,7 @@ msgid_plural "arrows"
 msgstr[0] "стріла"
 msgstr[1] "стріли"
 msgstr[2] "стріл"
+msgstr[3] "стріл"
 
 #: gui/common/tooltips.js:198
 #, javascript-format
@@ -964,6 +978,7 @@ msgid_plural "meters"
 msgstr[0] "метр"
 msgstr[1] "метри"
 msgstr[2] "метрів"
+msgstr[3] "метрів"
 
 #: gui/common/tooltips.js:318 gui/common/tooltips.js:376
 #: gui/common/tooltips.js:381 gui/common/tooltips.js:386
@@ -1024,6 +1039,7 @@ msgid_plural ""
 msgstr[0] "Додайте ще працівника для пришвидшення ремонту на %(second)s секунду."
 msgstr[1] "Додайте ще працівника для пришвидшення ремонту на %(second)s секунди."
 msgstr[2] "Додайте ще працівника для пришвидшення ремонту на %(second)s секунд."
+msgstr[3] "Додайте ще працівника для пришвидшення ремонту на %(second)s секунд."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
@@ -1032,6 +1048,7 @@ msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
 msgstr[0] "Додайте ще працівника для закінчення ремонту через %(second)s секунду."
 msgstr[1] "Додайте ще працівника для закінчення ремонту через %(second)s секунди."
 msgstr[2] "Додайте ще працівника для закінчення ремонту через %(second)s секунд."
+msgstr[3] "Додайте ще працівника для закінчення ремонту через %(second)s секунд."
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
@@ -1045,6 +1062,7 @@ msgid_plural ""
 msgstr[0] "Додайте іншого працівника, щоб прискорити будівництво на секунду."
 msgstr[1] "Додайте іншого працівника, щоб прискорити будівництво на секунди."
 msgstr[2] "Додайте іншого працівника, щоб прискорити будівництво на %(second)s секунд."
+msgstr[3] "Додайте іншого працівника, щоб прискорити будівництво на %(second)s секунд."
 
 #: gui/common/tooltips.js:431
 #, javascript-format
@@ -1053,6 +1071,7 @@ msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "Додайте працівника, щоб закінчити побудову за %(second)s секунду."
 msgstr[1] "Додайте працівника, щоб закінчити побудову за %(second)s секунди."
 msgstr[2] "Додайте працівника, щоб закінчити побудову за %(second)s секунд."
+msgstr[3] "Додайте працівника, щоб закінчити побудову за %(second)s секунд."
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1153,6 +1172,7 @@ msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 msgstr[2] "%(label)s %(val)s %(unit)s"
+msgstr[3] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
@@ -1162,6 +1182,7 @@ msgid_plural "HP"
 msgstr[0] "HP"
 msgstr[1] "HP"
 msgstr[2] "HP"
+msgstr[3] "HP"
 
 #: gui/common/tooltips.js:731
 #, javascript-format
@@ -1403,14 +1424,14 @@ msgstr "Посібник"
 #: gui/reference/common/draw.js:48
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource supply.
 #: gui/reference/common/draw.js:67
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
-msgstr ""
+msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/reference/common/draw.js:68
 msgid "Resource Supply:"
@@ -1547,6 +1568,7 @@ msgid_plural "< %(max)s min"
 msgstr[0] "< %(max)s хв"
 msgstr[1] "< %(max)s хв"
 msgstr[2] "< %(max)s хв"
+msgstr[3] "< %(max)s хв"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:125
@@ -1557,6 +1579,7 @@ msgid_plural "> %(min)s min"
 msgstr[0] "> %(min)s хв"
 msgstr[1] "> %(min)s хв"
 msgstr[2] "> %(min)s хв"
+msgstr[3] "> %(min)s хв"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:128
@@ -1968,7 +1991,7 @@ msgstr "Скасувати"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "Покращений"
+msgstr "Розширені"
 
 #: gui/locale/locale.xml:(caption):46
 msgid "Accept"
@@ -2036,7 +2059,7 @@ msgstr "Відключити відгуки"
 
 #: gui/pregame/mainmenu.xml:(caption):165
 msgid "Tutorial"
-msgstr "Посібник"
+msgstr "Навчальна Кампанія"
 
 #: gui/pregame/mainmenu.xml:(caption):197
 #: gui/reference/structree/structree.xml:(caption):126
@@ -2049,7 +2072,7 @@ msgstr "Бій"
 
 #: gui/pregame/mainmenu.xml:(caption):233
 msgid "Campaigns"
-msgstr "Компанія"
+msgstr "Кампанії"
 
 #: gui/pregame/mainmenu.xml:(caption):246
 msgid "Load Game"
@@ -2115,7 +2138,7 @@ msgstr "Повідомити про помилку"
 
 #: gui/pregame/mainmenu.xml:(caption):610
 msgid "Translate the Game"
-msgstr "undefined"
+msgstr "Перекласти Гру"
 
 #: gui/pregame/mainmenu.xml:(caption):622
 msgid "Donate"
@@ -2135,7 +2158,7 @@ msgstr "Відкрити ігровий посібник 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):166
 msgid "Start the economic tutorial."
-msgstr "Для початку перегляньте економічний посібник."
+msgstr "Розпочніть економічну навчальну кампанію."
 
 #: gui/pregame/mainmenu.xml:(tooltip):220
 msgid "Click here to start a new single player game."
@@ -2145,7 +2168,7 @@ msgstr "Натисніть тут для початку нової гри"
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr "Пройдіть історичні військові компанії. [ЩЕ НЕ РЕАЛІЗОВАНО]"
+msgstr "Відродіть історію за допомогою історичних військових кампаній. \\[ЩЕ НЕ РЕАЛІЗОВАНО]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):247
 msgid "Click here to load a saved game."
@@ -2861,7 +2884,7 @@ msgstr "Щоб зберегти навантаження на процесор, 
 
 #: gui/options/options.json[1].options[19].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "Приглушування FPS у меню"
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid ""
@@ -2871,11 +2894,11 @@ msgstr "Щоб зберегти навантаження на процесор, 
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "Приглушування FPS в іграх"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr ""
+msgstr "Встановити баланс між продуктивністю і візуальними ефектами."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"

@@ -3,15 +3,17 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
+# Adrian Chaves <adrian@chaves.io>, 2018
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2016
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
 # Chema Fernández <chemafdzgar@gmail.com>, 2016
+# mandruis <manuiglesias96@yahoo.es>, 2016
 # mandruis <manuiglesias96@yahoo.es>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-23 14:50+0000\n"
+"PO-Revision-Date: 2018-05-27 09:37+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +53,7 @@ msgstr "Xogador"
 
 #: gui/lobby/lobby.js:60
 msgid "Muted Player"
-msgstr ""
+msgstr "Xogador silenciado"
 
 #: gui/lobby/lobby.js:156
 msgid "Disconnected."
@@ -60,7 +62,7 @@ msgstr "Desconectado."
 #: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "%(nick)s cambiou o tema da sala de espera a %(subject)s"
 
 #: gui/lobby/lobby.js:189
 #, javascript-format
@@ -74,39 +76,39 @@ msgstr "%(nick)s marchou."
 
 #: gui/lobby/lobby.js:220
 msgid "You have been muted."
-msgstr ""
+msgstr "Silenciárono."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "Silenciaron a %(nick)s."
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Fixérono moderador."
 
 #: gui/lobby/lobby.js:225
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "Fixeron moderador a %(nick)s."
 
 #: gui/lobby/lobby.js:228
 msgid "You have been unmuted."
-msgstr ""
+msgstr "Deixárono de silenciar."
 
 #: gui/lobby/lobby.js:229
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "Deixaron de silenciar a %(nick)s."
 
 #: gui/lobby/lobby.js:231
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "Deixaches de ser moderador."
 
 #: gui/lobby/lobby.js:232
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)s deixou de ser moderador."
 
 #: gui/lobby/lobby.js:247
 #, javascript-format
@@ -115,59 +117,59 @@ msgstr "«%(oldnick)s» pasou a chamarse «%(newnick)s»."
 
 #: gui/lobby/lobby.js:279
 msgid "Notice"
-msgstr ""
+msgstr "Aviso"
 
 #: gui/lobby/lobby.js:320
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "Estabelecer o teu estado como «Ausente»."
 
 #: gui/lobby/lobby.js:327
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "Estabelecer o seu estado como «Conectado»."
 
 #: gui/lobby/lobby.js:334
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "Expulsar ao usuario indicado da sala de espera. Uso: /kick alcume motivo"
 
 #: gui/lobby/lobby.js:342
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "Vedar ao usuario indicado da sala de espera. Uso: /ban alcume motivo"
 
 #: gui/lobby/lobby.js:350
 msgid "Show this help."
-msgstr ""
+msgstr "Mostrar esta axuda."
 
 #: gui/lobby/lobby.js:353
 msgid "Chat commands:"
-msgstr ""
+msgstr "Ordes de conversa:"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:357
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s: %(description)s"
 
 #: gui/lobby/lobby.js:370
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "Enviar unha mensaxe de conversa sobre vostede. Por exemplo: /me vai á praia."
 
 #: gui/lobby/lobby.js:374
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "Enviar o texto como unha mensaxe de conversa (aínda que comece cunha barra inclinada). Por exemplo: /say /help é unha orde xenial."
 
 #: gui/lobby/lobby.js:378
 msgid "Clear all chat scrollback."
-msgstr ""
+msgstr "Limpar todo o historial de conversa."
 
 #: gui/lobby/lobby.js:385
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Volver ao menú principal."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "Desconectouse da sala de espera. Quere conectar de novo?"
 
 #: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1200 gui/prelobby/prelobby.js:299
 msgid "Confirmation"
@@ -212,53 +214,53 @@ msgstr "Calquera"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr "> %(rating)s"
 
 #: gui/lobby/lobby.js:548
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr ""
+msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:621
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Vedárono da sala de espera!"
 
 #: gui/lobby/lobby.js:622
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Expulsárono da sala de espera!"
 
 #: gui/lobby/lobby.js:624
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "Vedaron a %(nick)s da sala de espera."
 
 #: gui/lobby/lobby.js:625
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "Expulsaron a %(nick)s da sala de espera."
 
 #: gui/lobby/lobby.js:628
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Motivo: %(reason)s"
 
 #: gui/lobby/lobby.js:656
 msgid "BANNED"
-msgstr ""
+msgstr "VEDADO"
 
 #: gui/lobby/lobby.js:656
 msgid "KICKED"
-msgstr ""
+msgstr "EXPULSADO"
 
 #: gui/lobby/lobby.js:687
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Desmarcar como compañeiro"
 
 #: gui/lobby/lobby.js:687
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Marcar como compañeiro"
 
 #: gui/lobby/lobby.js:880 gui/lobby/lobby.js:881 gui/lobby/lobby.js:882
 #: gui/lobby/lobby.js:883 gui/lobby/lobby.js:884 gui/lobby/lobby.js:885
@@ -268,13 +270,13 @@ msgstr "N/D"
 #: gui/lobby/lobby.js:913
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "Non se atopou o xogador «%(nick)s»."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:1134
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "A partida comezou ás %(time)s"
 
 #: gui/lobby/lobby.js:1135 gui/lobby/lobby.js:1514
 msgid "HH:mm"
@@ -287,19 +289,19 @@ msgstr "Xogadores: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1180
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "As túas modificacións activas non coinciden coas desta partida."
 
 #: gui/lobby/lobby.js:1182
 msgid "Do you want to switch to the mod selection page?"
-msgstr ""
+msgstr "Queres ir á páxina de selección de modificacións?"
 
 #: gui/lobby/lobby.js:1183
 msgid "Incompatible mods"
-msgstr ""
+msgstr "Modificacións incompatíbeis"
 
 #: gui/lobby/lobby.js:1199
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "A partida xa comezou. Queres unirte como espectador?"
 
 #: gui/lobby/lobby.js:1233
 #, javascript-format
@@ -309,12 +311,12 @@ msgstr "O enderezo IP da partida, «%(ip)s», parece incorrecto."
 #: gui/lobby/lobby.js:1349
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr ""
+msgstr "A orde «%(cmd)s» non existe."
 
 #: gui/lobby/lobby.js:1361
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr ""
+msgstr "A orde «%(cmd)s» está restrinxida a moderadores."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:1434
@@ -386,11 +388,11 @@ msgstr "%(percentage)s%%"
 
 #: gui/prelobby/prelobby.js:43
 msgid "Connecting…"
-msgstr ""
+msgstr "Conectando…"
 
 #: gui/prelobby/prelobby.js:66
 msgid "Registering…"
-msgstr ""
+msgstr "Rexistrando…"
 
 #: gui/prelobby/prelobby.js:96
 msgid "Please enter your username"
@@ -398,17 +400,17 @@ msgstr "Escriba o seu nome de usuario."
 
 #: gui/prelobby/prelobby.js:102
 msgid "Invalid username"
-msgstr ""
+msgstr "O nome de usuario non é válido"
 
 #: gui/prelobby/prelobby.js:109
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Escriba o seu contrasinal"
 
 #: gui/prelobby/prelobby.js:110
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Escriba o seu contrasinal"
 
 #: gui/prelobby/prelobby.js:123
 msgid "Please enter your password again"
@@ -434,7 +436,7 @@ msgstr "Lea atentamente e acepte as condicións de servizo e de uso."
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "Erro descoñecido. Isto adoita ocorrer porque non se permite que o mesmo enderezo IP rexistre máis dunha conta nunha hora."
 
 #: gui/prelobby/prelobby.js:185
 msgid "Registered"
@@ -458,7 +460,7 @@ msgstr "Condicións de uso"
 
 #: gui/prelobby/prelobby.js:298
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr ""
+msgstr "Está seguro de que quere eliminar o contrasinal despois de conectar?"
 
 #: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
 msgid "Multiplayer Lobby"
@@ -561,7 +563,7 @@ msgstr "Aloxar unha partida"
 
 #: gui/lobby/lobby_panels.xml:(caption):244
 msgid "Show only open games"
-msgstr ""
+msgstr "Mostrar só as partidas abertas."
 
 #: gui/lobby/lobby_panels.xml:(caption):267
 msgid "Send"
@@ -586,7 +588,7 @@ msgstr "Ver o perfil"
 
 #: gui/lobby/lobby_panels.xml:(caption):356
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Escriba un nome de xogador."
 
 #: gui/prelobby/prelobby.xml:(caption):30
 msgid "Create a new account"
@@ -612,7 +614,7 @@ msgstr "Contrasinal:"
 
 #: gui/prelobby/prelobby.xml:(caption):68
 msgid "Remember Password"
-msgstr ""
+msgstr "Lembrar o contrasinal"
 
 #: gui/prelobby/prelobby.xml:(caption):74
 msgid "Registration"

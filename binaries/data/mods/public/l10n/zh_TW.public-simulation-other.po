@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# ethan lin <ethan@tscc.tp.edu.tw>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2014-2017
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-09-19 00:09+0000\n"
+"Last-Translator: ethan lin <ethan@tscc.tp.edu.tw>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +52,7 @@ msgstr "讓我重新組織我的軍隊，然後，我將會加入你來對抗 %(
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr "我攻擊 %(_player_)s 的準備就快完成了。"
+msgstr "我對 %(_player_)s 的攻擊準備就快完成了。"
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
@@ -711,7 +713,7 @@ msgstr "征服建築物"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr ""
+msgstr "消面所有對手的單位來擊敗他們"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"

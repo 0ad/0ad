@@ -4,23 +4,24 @@
 # 
 # Translators:
 # Envel PICHON <envel_ras@hotmail.fr>, 2017
+# ernest olory <ernestolory@hotmail.fr>, 2018
 # Gwenn M <tornoz@laposte.net>, 2017
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2017
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
-# Younn Keravel <goulvenbreizh@hotmail.fr>, 2017-2018
+# Goulven <goulvenbreizh@hotmail.fr>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-04-25 11:01+0000\n"
-"Last-Translator: Younn Keravel <goulvenbreizh@hotmail.fr>\n"
+"POT-Creation-Date: 2018-04-11 09:02+0200\n"
+"PO-Revision-Date: 2018-09-19 15:37+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: br\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Information"
@@ -47,7 +48,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Trugarez vras da vezañ bet staliet 0 A.D.! Reiñ a raio ar bajenn-mañ ur bras-sell eus arc'hweladurioù hegerz e-barzh ar stumm alfa-mañ diglok eus ar c'hoari a zo war ziorren."
+msgstr "Trugarez vras da vezañ staliet 0 A.D.! Reiñ a raio ar bajenn-mañ ur bras-sell war an arc'hweladurioù hegerz, e-barzh stumm-mañ alfa ar c'hoari, diglok hag a zo c'hoazh war ziorren."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
@@ -59,7 +60,7 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Gallout a rit gwintañ etre skramm leun ha mod prenestr en ur bouezañ war Alt + Kas. E mod prenestr, posupl eo deoc'h adventañ ar prenestr. Ma vez re c'horrek ar c'hoari, gellout a rit cheñch arventennoù 'zo en dibarzhioù prenestr: klaskit lazhañ an dibarzhioù \"Efedoù Dour HQ\" ha \"Skeudoù\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -71,7 +72,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"sans-14\"]Ar c'hoarierien a gustum c'hoari d'an RTSoù hengougel a vo en o bleud gant ar c'hoñtroloù hag ar gameplay. Evit ar poent bez 'zo kalz a arc'hweladurioù hag a vank ha stadegoù kempouezet fall - rankout a rafec'h gortoz war-lerc'h ur stumm beta evit ma 'z afe mat en-dro."
+msgstr "[font=\"sans-14\"]Ar c'hoarierien a gustum c'hoari d'an RTSoù hengougel a vo en o bleud gant ar c'hoñtrolloù hag ar modc'hoari. Evit ar poent bez 'zo kalz a arc'hweladurioù hag a vank ha stadegoù kempouezet fall - rankout a rafec'h gortoz war-lerc'h ur stumm beta evit ma 'z afe mat en-dro."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -79,27 +80,27 @@ msgstr "Kontroloù diazez:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "• Klik-kleiz da ziuziñ an unanennoù."
+msgstr "• Klikit-kleiz da ziuzañ an unanennoù."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "• Klik-kleiz-ha-riklañ da ziuziñ strolladoù unanennoù."
+msgstr "• Klikit-kleiz-ha-riklañ da ziuzañ strolladoù unanennoù."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr ""
+msgstr "• Klikit-dehou evit urzhiañ an unanennoù da vont betek ar vukenn."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr ""
+msgstr "• Boutonoù biraet pe boutonoù WASD evit fiñval ar c'hamera."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr ""
+msgstr "• Ktrl + bouton biraet, pe lkd + rodellig al logodenn, evit treiñ ar c'hamera."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Rodig al logodenn, pe \"+\" ha \"-\" evit zoumañ."
+msgstr "• Rodellig al logodenn, pe \"+\" ha \"-\" evit zoumañ."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -116,13 +117,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]c'hoarier en e-unan[font=\"sans-14\"] — loc'hañ ur c'hoari kestenn-draezh pe a-enep un enebour NA pe muioc'h. An NA/NAoù a vez war ziorren ha na vezont ket marteze a-walc'h hizivaet war an arc'hweladurioù nevesañ, gallout a rit klask koulskoude loc'hañ ar c'hoari a-enep un enebour eus ar mare-mañ ma ne vezec'h ket gouest c'hoari gant un den."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Liesc'hoarier[font=\"sans-14\"] — c'hoari en enep da enebourien denel gant ar genrouedad."
+msgstr "• [font=\"sans-bold-14\"]Lies-c'hoarier[font=\"sans-14\"] — c'hoari a-enep enebourien denel a-dreuz ar genrouedad."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -130,7 +131,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Evit staliañ ur c'hoari lies-c'hoarier, ur c'hoarier a rank diuzañ an dibab \"c'hoari Ostiz\". Implijout a ra ar c'hoari porzh 20595 UDP, ret e vo d'an ostiz neuze kefluniañ o NAT/firewall/etc evit aotreañ an dra-mañ. C'hoarierien all a c'hell neuze dibab \"Emezelañ er c'hoari\" ha lakaat e-barzh chomlec'h IP an ostiz."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -162,7 +163,7 @@ msgstr "• [font=\"sans-bold-14\"]Kartenn senario[font=\"sans-14\"] — Ur gart
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr ". [font=\"sans-bold-14\"]kartenn gKrogad[font=\"sans-14\"] — Ur gartenn grouet gant krouerien gartenn hogen e-lec'h ma c'hell bezañ dibabet ar sevenadurioù"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -171,7 +172,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Ar c'hartennoù a c'hell bezañ silet pelloc'h neuze. Dre vras e vez diouerioù ar c'hartennoù kartennoù gouest da vezañ c'hoariet. Kartennoù war vor a vez kartennoù e-lec'h ma ne c'heller ket tizhout an holl enebourien war zouar ha kartennoù skouer a vez kartennoù implijet evit palioù prouad (dre vras e vez didalvoud c'hoari warno). Ar sil \"Kartennoù All\" a ziskouez an holl gartennoù asambles en ul listennad."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -180,15 +181,15 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "A-barzh ar fin kemmit an arventennoù. Evit ar pezh a sell ouzh ar c'hartennoù dre-zegouezh, an dra-se a endalc'h an niver a c'hoarierien, ment ar gartenn, hag all hag all. Evit ar pezh a sell ouzh ar senariooù, posupl eo deoc'h diuzañ, hepken, piv a gontrollo pep c'hoarier (divizet e vo gantañ pelec'h e vo loc'het ganeoc'h war ar gartenn...hag all...hag all). An dibaboù a vo pe ur Yann c'hoarier, un AI pe c'hoarier ebet (dre-se e vo dioberiant an enebour)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Pa voc'h prest da gregiñ ganti, klikit war \"Kregiñ ar c'hoariadenn\"."
+msgstr "Ur wech ma voc'h prest stagañ ganti, klikit war \"Stagañ ar c'hoariadenn\"."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr "[font=\"sans-bold-16\"]Berradennoù:"
+msgstr "[font=\"sans-bold-16\"]Berradennoù-klavier:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Program-wide"
@@ -208,39 +209,39 @@ msgstr "~ pe F9: Diskouez/kuzhat al letrin"
 
 #: gui/manual/intro.txt:47
 msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr ""
+msgstr "Alt + F: Diskouez/kuzhat framm ar c'honter (FPS)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "F11: Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr ""
+msgstr "F11: Enaouiñ/Lazhañ ar profil en amzer wirion (gwintañ a raio etre an diskwelloù titouriñ)"
 
 #: gui/manual/intro.txt:49
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr ""
+msgstr "Lkd + F11: Derc'hel roadenn an eilskriver er mare-mañ e \"logs/profile.txt\""
 
 #: gui/manual/intro.txt:50
 msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "F2: Kemer tapadenn-skramm (e stumm .png, skrammet eo al lec'hiadur en nec'h tu-kleiz ar GUI goude ma vo bet dalc'het ar restr, ha gallout a ra bezañ gwelet ivez el letrin/marilhoù mard eo bet c'hwitet ganeoc'h aze)"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "Lkd + F2: Kemerit un dapadenn-skramm vras divent (6400px*4800px, e stumm .bmp, skrammet eo al lec'hiadur er c'hrec'h kleiz ar GUI goude ma vo bet dalc'het ar restr, ha gallout a ra bezañ gwelet ivez el letrin/marilhoù mard eo bet c'hwitet ganeoc'h aze)"
 
 #: gui/manual/intro.txt:52
-msgid "Alt + S: Switch to the next tab."
-msgstr ""
+msgid "Tab, Alt + S: Switch to the next tab."
+msgstr "Tab, Alt + S: Tremen er stokell taolennata da heul."
 
 #: gui/manual/intro.txt:53
-msgid "Alt + W: Switch to the previous tab."
-msgstr ""
+msgid "Shift + Tab, Alt + W: Switch to the previous tab."
+msgstr "Lkd + Tab, Alt + W: Gwintañ d'an daolennata kentañ."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -250,33 +251,33 @@ msgstr "[font=\"sans-bold-14\"]En ur c'hoariadenn"
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Daou-glikañ-kleiz \\[on unit]: Diuzañ hollad hoc'h unanennoù eus ar memes doare war ar skramm (ha pa vefent e renkadurioù disheñvel)"
 
 #: gui/manual/intro.txt:57
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr ""
+msgstr "Tri-c'hlik-kleiz \\[on unit]: Diuzañ hollad hoc'h unanennoù eus ar memes doare ha gant ar memes rank war ar skramm"
 
 #: gui/manual/intro.txt:58
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + Daou-glik-kleiz \\[on unit]: Diuzañ hollad hoc'h unanennoù eus ar memes doare war ar gartenn a-bezh (ha pa vefent e renkadurioù disheñvel)"
 
 #: gui/manual/intro.txt:59
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Tri-c'hlik-kleiz \\[on unit]: Diuzañ hollad hoc'h unanennoù eus ar memes doare war ar gartenn a-bezh"
 
 #: gui/manual/intro.txt:60
 msgid "Shift + F5: Quicksave"
-msgstr "Pennlizh+ F5: Primenrolladenn"
+msgstr "Lkd + F5: Primenrolladenn"
 
 #: gui/manual/intro.txt:61
 msgid "Shift + F8: Quickload"
-msgstr "Pennlizh+ F8: Primkargadenn"
+msgstr "Lkd + F8: Primkargadenn"
 
 #: gui/manual/intro.txt:62
 msgid "F10: Open/close menu"
@@ -288,11 +289,11 @@ msgstr "F12: Diskouez/kuzhat konter an amzer dremenet"
 
 #: gui/manual/intro.txt:64
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: Serriñ an holl gendivizoù (flapva, roll) pe unanennoù dibabet sklaer"
 
 #: gui/manual/intro.txt:65
 msgid "Enter/return: Open/send chat"
-msgstr ""
+msgstr "Ebarzhañ/distro: Digeriñ/Kas flapva"
 
 #: gui/manual/intro.txt:66
 msgid "T: Send team chat"
@@ -300,7 +301,7 @@ msgstr "T: Kas ur gemenadenn skipailh"
 
 #: gui/manual/intro.txt:67
 msgid "L: Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "L: Flapva gant ar c'heveler flapva prevez diuzet a-raok"
 
 #: gui/manual/intro.txt:68
 msgid "Pause: Pause/resume the game"
@@ -308,53 +309,53 @@ msgstr "Ehan: Ehan/distreiñ d'ar c'hoariadenn"
 
 #: gui/manual/intro.txt:69
 msgid "Delete: Delete currently selected units/buildings"
-msgstr ""
+msgstr "Lemel: Dilemel an unanennoù/ar savadurioù diuzet er mare-mañ"
 
 #: gui/manual/intro.txt:70
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr "Pennlizh + Dilemel : Dilemel unanennoù/savadurioù diuzet bremañ hep kadarnaat"
+msgstr "Lkd + Dilemel: Dilemel an unanennoù/ar savadurioù diuzet er mare-mañ hep kadarnaat"
 
 #: gui/manual/intro.txt:71
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr ""
+msgstr "/ (ForwardSlash): Diuzit ar vrezelourien dizever"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr ""
+msgstr "Lkd + /: Ouzhpennañ ur brezelour dizever d'an diuzadenn"
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
-msgstr ""
+msgstr "Alt + /: Diuzañ an holl vrezelourien dizever"
 
 #: gui/manual/intro.txt:74
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ""
+msgstr ". (Prantad): Diuzit al labourerien dizever (en ur gemer e-kont ar soudarded-keodedour)"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Lkd + .: Ouzhpennit al labourerien dioberiant d'an diuzadenn (en ur gemer e kont ar soudarded-keodedour)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr ""
+msgstr "Alt + .: Diuzañ an holl labourerien dioberiant (en ur gemer e kont ar soudarded-keodedour)"
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr ""
+msgstr "\\ (BackSlash): Diuzit un unanenn dizever"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr ""
+msgstr "Lkd + \\: Ouzhpennit un unanenn dioberiant d'an diuzadenn"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
-msgstr ""
+msgstr "Alt + \\: Diuzit an holl unanennoù dizever"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
-msgstr ""
+msgstr "H: Herzel (harz) an unanennoù diuzet a zo er mare-mañ."
 
 #: gui/manual/intro.txt:81
 msgid "Y: The unit will go back to work"
@@ -362,313 +363,329 @@ msgstr "Y: An unanenn az aio en dro da labourat"
 
 #: gui/manual/intro.txt:82
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U: Diskargañ unanennoù gwarnizonet ar savadurioù diuzet"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr ""
+msgstr "Ctrl + 1 (hag evel-se betek Ctrl + 0): Krouiñ strollad 1 kontroll (evit 0) eus an unanennoù/savadurioù diuzet"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr ""
+msgstr "1 (hag evel-se betek 0): Diuzañ an unanennoù/savadurioù er strollad kontroll 1 (evit 0)"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Lkd + 1 (evit 0): Ouzhpennañ strollad kontroll 1 (evit 0) en unanennoù/savadurioù diuzet"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr ""
+msgstr "Ktrl + F5 (hag evel-se betek F8): Merkañ lec'hiadur ar c'hamera a zo er mare-mañ, evit distreiñ betek amañ diwezhatoc'h."
 
 #: gui/manual/intro.txt:87
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr ""
+msgstr "F5, F6, F7, ha F8: Dilec'hiañ ar c'hamera d'ul lec'hiadur merket. Lammat war-gil d'al lec'hiadur diwezhañ ma ne vo ket ar c'hamera c'hoazh war al lec'hiadur merket."
 
 #: gui/manual/intro.txt:88
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, K, V, B, N, M: Gant stummañ savadurioù diuzet. Ouzhpennañ ar 1añ, an 2eil... unanenn diskouezet el lostad stummet evit an holl savadurioù diuzet."
 
 #: gui/manual/intro.txt:89
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
-msgstr ""
+msgstr "Lakaat da zibunañ war-du an nec'h gant unanennoù diuzet: Islinañ a ra an unanennoù/savadurioù dalc'het gant an diuz."
 
 #: gui/manual/intro.txt:90
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
-msgstr ""
+msgstr "Lakaat da zibunañ d'an diaz gant unanennoù/savadurioù diuzet: Islinañ a ra an unanennoù en ur zerc'hel an diuz."
 
 #: gui/manual/intro.txt:91
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Taolennata: Gwelet  holl stadoù barrennoù (a c'hellfe diskouez ivez diorroadur ar saverezh)"
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
-msgstr ""
+msgstr "Ktrl + Taolennata: Gwintañ war ar prenestr diverrañ."
 
 #: gui/manual/intro.txt:93
-msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr ""
+msgid "Alt + L: Show the multiplayer lobby in a dialog window."
+msgstr "Alt + L: Diskouez an hall lies-c'hoarier er prenestr kendiviz."
 
 #: gui/manual/intro.txt:94
+msgid "Ctrl + B: Toggle in-game barter/trade page."
+msgstr "Ktrl + B: Gwintañ war ar bajenn trokañ/koñvers e-barzh ar c'hoari."
+
+#: gui/manual/intro.txt:95
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Ktrl + P: Gwintañ war ar bannell tutorial e-barzh ar c'hoari."
 
 #: gui/manual/intro.txt:96
-msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgid "Alt + Shift + T: Toggle structure tree."
+msgstr "Alt + Lkd + T: Gwintañ war framm gwez."
 
 #: gui/manual/intro.txt:97
-msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
-
-#: gui/manual/intro.txt:98
-msgid "J + Right Click on building: Repair"
-msgstr "J + Klik Dehou war ur savadur: Kempenn"
+msgid "Alt + Shift + H: Toggle civilization info."
+msgstr "Alt + Lkd + H: Gwintañ war ar c'helaouiñ sevenadur."
 
 #: gui/manual/intro.txt:99
-msgid "P + Right Click: Patrol"
-msgstr "P + Klik Dehou : Patrouilhañ"
+msgid "[font=\"sans-bold-14\"]Modify mouse action"
+msgstr "[font=\"sans-bold-14\"]Aozañ obererezh al logodenn"
 
 #: gui/manual/intro.txt:100
-msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr ""
+msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
+msgstr "[font=\"sans-14\"]Ktrl + Klik-dehou war ar savadur: Gwarnizon"
 
 #: gui/manual/intro.txt:101
+msgid "J + Right Click on building: Repair"
+msgstr "J + Klik-dehou war ur savadur: Kempenn"
+
+#: gui/manual/intro.txt:102
+msgid "P + Right Click: Patrol"
+msgstr "P + Klik-dehou : Patrouilhañ"
+
+#: gui/manual/intro.txt:103
+msgid "Shift + Right Click: Queue the move/build/gather/etc order"
+msgstr "Lkd + Klik-dehou: Lakaat e steudad-c'hortoz ar fiñv/sevel/dastum/hag all hag all"
+
+#: gui/manual/intro.txt:104
 msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
-msgstr ""
+msgstr "Alt + Klik-dehou: Urzhiañ unan eus unanennoù an diuzadenn a zo er mare-mañ evit fiñval/sevel/dastum/hag all hag all ha diziuzañ anezhañ. Implijet evit dispakañ buan an unanennoù betek krogadoù labour ispisial."
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:105
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
-msgstr ""
-
-#: gui/manual/intro.txt:103
-msgid ""
-"Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
-
-#: gui/manual/intro.txt:104
-msgid ""
-"Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
-
-#: gui/manual/intro.txt:105
-msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr ""
+msgstr "Lkd + Klik-kleiz pa vez stummet unanennoù: Ouzhpennañ unanennoù e strolladoù (5 eo ment ar strollad dre-ziouer ha gallout a ra bezañ cheñchet en dibarzhioù)"
 
 #: gui/manual/intro.txt:106
-msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr ""
+msgid ""
+"Shift + Left Click or Left Drag over unit on map: Add unit to selection"
+msgstr "Lkd + Klik-kleiz pe Stlej-kleiz a-us d'un unanenn war ar gartenn: Ouzhpennañ un unanenn en diuzadenn"
 
 #: gui/manual/intro.txt:107
-msgid "I + Left Drag over units on map: Only select idle units"
-msgstr ""
+msgid ""
+"Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
+msgstr "Ktrl + Klik-kleiz pe Stlej-kleiz a-us d'un unanenn war ar gartenn: Skarzhañ un unanenn diwar an diuzadenn"
 
 #: gui/manual/intro.txt:108
-msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr ""
+msgid "Alt + Left Drag over units on map: Only select military units"
+msgstr "Alt + Stlejañ tu-kleiz dreist unanennoù war gartenn: Diuzañ unanennoù milourel hepken"
 
 #: gui/manual/intro.txt:109
-msgid ""
-"Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr ""
+msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
+msgstr "Alt + Y + Stlejañ tu-kleiz dreist unanennoù war gartenn: Diuzañ unanennoù nann-milourel hepken"
 
 #: gui/manual/intro.txt:110
-msgid ""
-"Right Click with a building/buildings selected: sets a rally point for units"
-" created/ungarrisoned from that building."
-msgstr ""
+msgid "I + Left Drag over units on map: Only select idle units"
+msgstr "I + Stlejañ-kleiz a-us an unanennoù war gartenn: Diuzit an unanennoù dioberiant hepken"
 
 #: gui/manual/intro.txt:111
-msgid "Ctrl + Right Click with units selected:"
-msgstr ""
+msgid "O + Left Drag over units on map: Only select wounded units"
+msgstr "O + Stlejañ tu-kleiz dreist unanennoù war gartenn: Diuzañ unanennoù gloazet hepken"
 
 #: gui/manual/intro.txt:112
-msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- Ma vez ar reti war savadur ur c'hevread : Gwarnizon"
+msgid ""
+"Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
+msgstr "Ktrl + Klik-kleiz war arlun unanenn/strollad gant lies-unanennoù diuzet: Diziuzañ"
 
 #: gui/manual/intro.txt:113
 msgid ""
-"    - If the cursor is over a non-allied unit or building: Attack (instead "
-"of capture or gather)"
-msgstr ""
+"Right Click with a building/buildings selected: sets a rally point for units"
+" created/ungarrisoned from that building."
+msgstr "Klikit-dehoù war ur savadur/savadurioù diuzet: diazezañ a ra ur poent-bodañ evit an unanennoù krouet/diwarrizonet evit ar savadur-se."
 
 #: gui/manual/intro.txt:114
+msgid "Ctrl + Right Click with units selected:"
+msgstr "Ktrl + Klik-dehou war unanennoù diuzet:"
+
+#: gui/manual/intro.txt:115
+msgid "    - If the cursor is over an allied structure: Garrison"
+msgstr "- Ma vez ar reti war savadur ur c'hevread : Gwarnizon"
+
+#: gui/manual/intro.txt:116
+msgid ""
+"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"of capture or gather)"
+msgstr "- Ma vez ar reti dreist un unanenn nann-gevret: Argadañ (e-lec'h pakadur pe zastum)"
+
+#: gui/manual/intro.txt:117
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
-
-#: gui/manual/intro.txt:116
-msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
-
-#: gui/manual/intro.txt:117
-msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
-
-#: gui/manual/intro.txt:118
-msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr "    - Mod-all: Fiñvadenn tagañ (dre ziouer an holl unanennoù enebour hag ar frammoù a-hed an hent a vez buket, implijit Ktrl + Q + Klik-dehou evit bukañ unanennoù hepken)."
 
 #: gui/manual/intro.txt:119
+msgid "[font=\"sans-bold-14\"]Overlays"
+msgstr "[font=\"sans-bold-14\"]Goloiñ a ra"
+
+#: gui/manual/intro.txt:120
+msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
+msgstr "[font=\"sans-14\"]Alt + G: Kuzhat/Diskouez ar GUI"
+
+#: gui/manual/intro.txt:121
+msgid "Alt + D: Show/hide developer overlay (with developer options)"
+msgstr "Alt + D: Diskouez/Kuzhat diorroer golo (gant diorroer dibaboù)"
+
+#: gui/manual/intro.txt:122
 msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
-
-#: gui/manual/intro.txt:120
-msgid ""
-"Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
-"boost)"
-msgstr ""
-
-#: gui/manual/intro.txt:121
-msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: Gwintañ an oabl"
-
-#: gui/manual/intro.txt:122
-msgid ""
-"Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
+msgstr "Alt + Lkd + W: Gwintañ ar mod maketenn aes d'ober ganti (bountañ ur wech evit kaout maketennoù aes d'ober ganto goloet dreist patromoù frammet, div wech evit kaout just ar maketennoù livet aes d'ober ganto gant ar frammoù, teir gwech evit distreiñ d'ar mod frammet dereat)"
 
 #: gui/manual/intro.txt:123
 msgid ""
-"Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr ""
+"Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
+"boost)"
+msgstr "Alt + Lkd + S: Gwintañ trolinennoù unanenn (gallout a raje reiñ un taol-kaer broudet bihan) "
 
 #: gui/manual/intro.txt:124
-msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr ""
+msgid "Alt + Z: Toggle sky"
+msgstr "Alt + Z: Gwintañ an oabl"
+
+#: gui/manual/intro.txt:125
+msgid "Alt + X: Toggle diplomacy colors"
+msgstr "Alt + X: Gwintañ livioù diplomaterezh"
 
 #: gui/manual/intro.txt:126
-msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgid ""
+"Alt + C: Toggle attack range visualizations of selected defensive structures"
+msgstr "Alt + K: Gwintañ heweladurioù skeuliad argad ar frammoù difenn diuzet"
 
 #: gui/manual/intro.txt:127
-msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr ""
+msgid ""
+"Alt + V: Toggle aura range visualizations of selected units and structures"
+msgstr "Alt + V: Gwintañ heweladurioù skeuliad aora an unanennoù hag ar frammoù diuzet"
 
 #: gui/manual/intro.txt:128
-msgid "S or \\[down]: Pan screen down"
-msgstr ""
-
-#: gui/manual/intro.txt:129
-msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgid "Alt + B: Toggle heal range visualizations of selected units"
+msgstr "Alt + B: Gwintañ heweladurioù skeuliad pareañ an unanennoù diuzet"
 
 #: gui/manual/intro.txt:130
-msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgid "[font=\"sans-bold-14\"]Camera manipulation"
+msgstr "[font=\"sans-bold-14\"]Dornata ar c'hamera"
 
 #: gui/manual/intro.txt:131
-msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr ""
+msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
+msgstr "[font=\"sans-14\"]W pe \\[en nec'h]: Gwel meur skramm en nec'h"
 
 #: gui/manual/intro.txt:132
-msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr ""
+msgid "S or \\[down]: Pan screen down"
+msgstr "S pe \\[en diaz]: Gwel meur skramm en diaz"
 
 #: gui/manual/intro.txt:133
-msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgid "A or \\[left]: Pan screen left"
+msgstr "A pe \\[a-gleiz]: Gwel meur skramm a-gleiz"
 
 #: gui/manual/intro.txt:134
-msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgid "D or \\[right]: Pan screen right"
+msgstr "D pe \\[a-zehoù]: Gwel meur skramm a-zehoù"
 
 #: gui/manual/intro.txt:135
-msgid "Q: Rotate camera clockwise around terrain"
-msgstr ""
+msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
+msgstr "Ktrll + W pe \\[en nec'h]: Treiñ ar c'hamera evit gwelout en nec'h"
 
 #: gui/manual/intro.txt:136
-msgid "E: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
+msgstr "Ktrll + S pe \\[en diaz]: Treiñ ar c'hamera evit gwelout en diaz"
 
 #: gui/manual/intro.txt:137
-msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
+msgstr "Ktrll + A pe \\[a-gleiz]: Treiñ ar c'hamera e tu biz an eurioù war-dro an dachenn"
 
 #: gui/manual/intro.txt:138
-msgid ""
-"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
+msgstr "Ktrll + D pe \\[a-zehoù]: Treiñ ar c'hamera e tu e-enep da viz an eurioù war-dro an dachenn"
 
 #: gui/manual/intro.txt:139
+msgid "Q: Rotate camera clockwise around terrain"
+msgstr "K: Treiñ ar c'hamera e tu biz an eurioù war-dro an dachenn"
+
+#: gui/manual/intro.txt:140
+msgid "E: Rotate camera anticlockwise around terrain"
+msgstr "E: Treiñ ar c'hamera e tu-enep da viz an eurioù war-dro an dachenn"
+
+#: gui/manual/intro.txt:141
+msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
+msgstr "Lkd + Treiñ rod al logodenn en nec'h: Treiñ ar c'hamera e tu biz an eurioù war-dro an dachenn"
+
+#: gui/manual/intro.txt:142
+msgid ""
+"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
+msgstr "Lkd + Treiñ rod al logodenn en diaz: Treiñ ar c'hamera e tu e-enep da viz an eurioù war-dro an dachenn"
+
+#: gui/manual/intro.txt:143
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
-msgstr ""
-
-#: gui/manual/intro.txt:140
-msgid "R: Reset camera zoom/orientation"
-msgstr ""
-
-#: gui/manual/intro.txt:141
-msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
-
-#: gui/manual/intro.txt:142
-msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr ""
-
-#: gui/manual/intro.txt:143
-msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "F: Heuliañ an unanenn diuzet (dilec'hiañ ar c'hamera evit herzel anezhañ a-raok ma vo heuliet an unanenn gantañ)"
 
 #: gui/manual/intro.txt:144
-msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr ""
+msgid "R: Reset camera zoom/orientation"
+msgstr "R: Adderaouekaat zoum/tuadur ar c'hamera"
+
+#: gui/manual/intro.txt:145
+msgid "+: Zoom in (keep pressed for continuous zoom)"
+msgstr "+: Zoum e-barzh (derc'hel bountet evit zoum padus)"
 
 #: gui/manual/intro.txt:146
-msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgid "-: Zoom out (keep pressed for continuous zoom)"
+msgstr "-: Zoum diavaez (derc'hel pouezet evit zoum padus)"
 
 #: gui/manual/intro.txt:147
-msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgid "Alt + W: Toggle through wireframe modes"
+msgstr "Alt + W: Gwintañ dre modoù ar vaketenn aes d'ober ganti"
 
 #: gui/manual/intro.txt:148
-msgid "]: Rotate building 15 degrees clockwise"
-msgstr ""
+msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
+msgstr "Kreiz Bouton al logodenn: Derc'hel pouezet ha dilec'hiañ al logodenn betek d'ar gwel meur"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:150
+msgid "[font=\"sans-bold-14\"]During Building Placement"
+msgstr "[font=\"sans-bold-14\"]A-hed staliadur ar Saverezh"
+
+#: gui/manual/intro.txt:151
+msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
+msgstr "[font=\"sans-14\"]\\[: Treiñ ar savadur 15 derez ar c'honter tu biz an eurioù"
+
+#: gui/manual/intro.txt:152
+msgid "]: Rotate building 15 degrees clockwise"
+msgstr "]: Treiñ ar savadur 15 derez e tu biz an eurioù"
+
+#: gui/manual/intro.txt:153
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr ""
+msgstr "Stlejañ a-gleiz: Treiñ ar savadur en ur implijout al logodenn ( an diazez a vo staliet war laosk al logodenn)"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]P'emañ o vezañ karget ur c'hoariadenn enrollet"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:156
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Dilemel: dilemel ar c'hoariadenn diuzet en ur c'houlenn ur c'hadarnadur"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr ""
+msgstr "Lkd: Chom hep goulenn kadarnadur pa vo skarzhet ur c'hoari enrollet"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -677,42 +694,42 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr ""
+msgstr "Evel ur c'hoari frank, hag en open source, n'hon eus ket ar mammennoù evit testiñ kalzig a sistemoù, fellout a ra deomp pourvezañ, memestra, ar skiant-prenet gwellañ d'ar muiañ a c'hoarierien a c'haller tizhout. Pa vo enaouet an em-evezhiadennoù ganeoc'h, resevet e vo ganeomp roadennoù evit sikour ac'hanomp da gompren gwelloc'h ar periant a rankfemp labourat warnañ, hag evit anavezout ar c'hudennoù perzh a rankfe bezañ reizhet ganeomp."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr ""
+msgstr "Kaset e vo ar roadenn da heul d'hor servijer:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
-"• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
-"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
-"from the same user."
-msgstr ""
+"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
+"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
+"reports from the same user."
+msgstr ". Un implijer dre-zegouezh ID (dalc'het e %APPDATA%\\\\0ad\\\\config\\\\user.cfg war Windows, ~/.config/0ad/config/user.cfg war Unix), evit lakaat ac'hanomp da ziskoachañ danevellskridoù adsavet eus an hevelep implijer."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr ". Niverenn stumm c'hoari hag arventennoù sevel diaz ( gwellekaat mod, frammadur CPU, merker amzer, stumm kempuner)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr ""
+msgstr "Munudoù periant: stumm OS, stumm sturier grafikoù, barregezhioù OpenGL, ment ar skramm, munudoù CPU, ment an tourz."
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr ". Munudoù a berzh: harz war skeudenn ur roadenn euriet a bad un nebeud a eilennoù goude ma vo loc'het ur gejadenn pe ur c'hemm a arventennoù grafikoù."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr ""
+msgstr "Ar roadenn a vo un nebeud a gilobitoù bewech ma vo lakaet ar c'hoari da vont en-dro ganeoc'h, implij ar c'has eo ar bihanañ neuze. "
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -721,4 +738,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr ""
+msgstr "Derc'hel a raimp ar roadenn ginniget war hor servijer, ha gallout a rafemp embann stadegoù pe munudoù nann-implijer-anavezabl evit sikour diorroerien c'hoari all gant hevelep goulennoù. Derc'hel a raimp ar chomlec'h IP en doa kinniget ar roadenn, evit sikour d'anavezout ur bleustradenn fall eus ar servij, met ne vo ket embannet. Ar roadenn embannet a c'hell bezañ gwelet e http://feedback.wildfiregames.com/"

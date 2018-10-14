@@ -5,19 +5,20 @@
 # Translators:
 # adin hykin <adin1664@gmail.com>, 2017
 # aqua - <aqua194@gmail.com>, 2018
+# felix lufkin <bufonia1@aol.com>, 2018
 # Yam Huss <yam52@walla.co.il>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-04-19 18:37+0000\n"
-"Last-Translator: aqua - <aqua194@gmail.com>\n"
+"PO-Revision-Date: 2018-07-11 15:38+0000\n"
+"Last-Translator: felix lufkin <bufonia1@aol.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
 #: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
@@ -533,7 +534,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_catafalque.xml:9
 msgid "Solon"
-msgstr ""
+msgstr "סולון"
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -1333,12 +1334,12 @@ msgstr ""
 
 #: simulation/templates/units/gaul_hero_brennus.xml:8
 msgid "Brennus"
-msgstr ""
+msgstr "ברנוס"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:8
 #: simulation/templates/units/gaul_hero_vercingetorix_infantry.xml:8
 msgid "Vercingetorix"
-msgstr ""
+msgstr "וערסינגאטוריקס"
 
 #: simulation/templates/units/gaul_hero_viridomarus.xml:8
 msgid "Britomartus"
@@ -1524,7 +1525,7 @@ msgstr ""
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:8
 msgid "Amanirenas"
-msgstr ""
+msgstr "אמאנירנאס"
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:9
 msgid "Amnirense qore li kdwe li"
@@ -1532,7 +1533,7 @@ msgstr ""
 
 #: simulation/templates/units/kush_hero_arakamani.xml:10
 msgid "Arakamani"
-msgstr ""
+msgstr "ארקמאני"
 
 #: simulation/templates/units/kush_hero_arakamani.xml:11
 msgid "‘Irk.‘Imn"
@@ -1541,7 +1542,7 @@ msgstr ""
 #: simulation/templates/units/kush_hero_harsiotef.xml:9
 #: simulation/templates/units/kush_hero_nastasen.xml:9
 msgid "Nastasen"
-msgstr ""
+msgstr "נאסטאסן"
 
 #: simulation/templates/units/kush_hero_harsiotef.xml:10
 #: simulation/templates/units/kush_hero_nastasen.xml:10
@@ -2478,7 +2479,7 @@ msgstr "מזל טלה"
 
 #: simulation/templates/units/rome_mechanical_siege_scorpio_packed.xml:16
 msgid "Scorpio"
-msgstr ""
+msgstr "סקורפיו"
 
 #: simulation/templates/units/rome_ship_bireme.xml:5
 msgid "Liburnus"
@@ -2510,7 +2511,7 @@ msgstr "אניית מלחמה רומאית"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:6
 msgid "Romana"
-msgstr ""
+msgstr "רומנה"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:7
 msgid "Roman Woman"
@@ -2620,7 +2621,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:10
 msgid "Antiokhos D' Epiphanes"
-msgstr ""
+msgstr "אנטיוכוס הרביעי (אפִּיפָאנֶס)"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:9
 msgid "Seleucus I \"The Victor\""
@@ -2628,7 +2629,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:10
 msgid "Seleukos A' Nikator"
-msgstr ""
+msgstr "סליוקוש א׳ניקטור"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:19
 msgid "Syrian Archer"

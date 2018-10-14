@@ -3,16 +3,18 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
+# Adrian Chaves <adrian@chaves.io>, 2018
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2016
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
 # Gonzalo Corral <gcorralhdez@gmail.com>, 2018
+# mandruis <manuiglesias96@yahoo.es>, 2016
 # mandruis <manuiglesias96@yahoo.es>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-28 14:43+0000\n"
-"Last-Translator: Gonzalo Corral <gcorralhdez@gmail.com>\n"
+"PO-Revision-Date: 2018-06-09 10:38+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,15 +65,15 @@ msgstr "• %(username)s está listo."
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
-msgstr "Preparado"
+msgstr "Permanecer listo"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Permanecer listo mesmo cando cambie a configuración da partida."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
-msgstr "Non estou listo"
+msgstr "Non estou listo!"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
@@ -150,7 +152,7 @@ msgstr "Mapas engadidos na última versión do xogo."
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
-msgstr ""
+msgstr "Mapas de disparadores"
 
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
@@ -322,7 +324,7 @@ msgstr "Escoller se os heroes pódense gorecer."
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
-msgstr "Nómada"
+msgstr "Nómade"
 
 #: gui/gamesetup/gamesetup.js:853
 msgid ""
@@ -429,34 +431,34 @@ msgstr "Comezar unha partida nova coa configuración actual."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "Comezar unha partida nova coa configuración actual (desactivado ata que todos os xogadores estean listos)"
 
 #: gui/gamesetup/gamesetup.js:1083
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Configurar a intelixencia artificial: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1132
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ver o historial ou a árbore de estruturas\nA última que se abrise abrirase de novo ao premer."
 
 #: gui/gamesetup/gamesetup.js:1187
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Conmutar a lapela de configuración de %(name)s."
 
 #: gui/gamesetup/gamesetup.js:1188
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Usar %(hotkey)s para baixar a lapela de configuración."
 
 #: gui/gamesetup/gamesetup.js:1189
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Usar %(hotkey)s para subir a lapela de configuración."
 
 #: gui/gamesetup/gamesetup.js:1708
 msgctxt "map selection"
@@ -465,22 +467,22 @@ msgstr "Aleatorio"
 
 #: gui/gamesetup/gamesetup.js:1710
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Escoller calquera dos mapas indicados de maneira aleatoria."
 
 #: gui/gamesetup/gamesetup.js:1742
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Aleatorio"
 
 #: gui/gamesetup/gamesetup.js:1743
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Escoller un bioma aleatorio."
 
 #: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2073
 msgctxt "settings value"
@@ -498,7 +500,7 @@ msgstr "Non"
 #: gui/gamesetup/gamesetup.js:2110
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2196
 #, javascript-format
@@ -526,16 +528,16 @@ msgstr "Xogador descoñecido"
 #: gui/gamesetup/gamesetup.js:2531
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:2532
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:2533
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -561,7 +563,7 @@ msgstr "Dificultade da IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "Comportamento da intelixencia artificial:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -581,7 +583,7 @@ msgstr "Cargando"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Cargando os datos do mapa…"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Name"
@@ -605,7 +607,7 @@ msgstr "Equipo"
 
 #: gui/gamesetup/gamesetup.xml:(caption):147
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Mostrar esta mensaxe no futuro"
 
 #: gui/gamesetup/gamesetup.xml:(caption):236
 msgid "Send"
@@ -622,11 +624,11 @@ msgstr "Volver"
 #: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "Restabelecer todas as civilizacións seleccionadas ás predeterminadas (aleatorias)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):103
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Restabelecer todos os equipos aos predeterminados."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):114
 msgid "Pick a color."
@@ -650,7 +652,7 @@ msgstr "Escoller o equipo do xogador."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):218
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Mostrar a sala de espera para partidas de varios xogadores nunha xanela de diálogo."
 
 #: gui/text/quotes.txt:1
 msgid ""
@@ -663,83 +665,83 @@ msgstr ""
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr ""
+msgstr "«Ela \\[Helena] trouxo a Ilión a súa dote, a destrución.» — Esquilo («Oresteia», I. 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr ""
+msgstr "«No corazón de todo tirano acaba xurdindo un veleno que lle impide confiar nos seus amigos.» — Esquilo («Prometeo encadeado», 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr ""
+msgstr "«O tempo acaba ensinándoo todo.» — Esquilo («Prometeo encadeado», 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr ""
+msgstr "«O seu obxectivo non é parecer o mellor, senón selo.» — Esquilo («Os sete contra Tebas», 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr ""
+msgstr "«Un idiota próspero é unha carga pesada.» — Esquilo (fragmento 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "«Os deuses axudan aos que se axudan a si mesmos.» — Esopo («Hércules e o carreteiro»)"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr ""
+msgstr "«É proveitoso prepararse hoxe para as necesidades de mañá.» — Esopo («A cigarra e a formiga»)"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr ""
+msgstr "«A unión fai a forza.» — Esopo («O fato de paus»)"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr ""
+msgstr "«Nunca confíes no consello de quen agoniza polas súas propias dificultades.» — Esopo («O raposo e a cabra»)"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr ""
+msgstr "«A familiaridade da paso ao desprezo; o coñecemento pon trabas aos prexuízos.» — Esopo («O león e o raposo»)"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr ""
+msgstr "«A arrogancia leva á propia destrución.» — Esopo («A ra e o boi»)"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr ""
+msgstr "«O lento pero constante gaña a carreira.» — Esopo («A lebre e a tartaruga»)"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr ""
+msgstr "«Mellor aprender das desgrazas alleas que das propias.» — Esopo («A caza do león, o asno e o raposo»)"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr ""
+msgstr "«As promesas dos inimigos fanse para incumprirse.» — Esopo («A enfermeira e o lobo»)"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr ""
+msgstr "«Ao tirano calquera escusa lle vale.» — Esopo («O lobo e o cordeiro»)"
 
 #: gui/text/quotes.txt:17
 msgid ""
@@ -752,7 +754,7 @@ msgstr ""
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr ""
+msgstr "«Os espartanos non preguntan cantos son, senón onde están.» — Axis II de Esparta (Plutarco de Queronea, «Moralia», XVI. «Ditos dos espartanos», 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
@@ -991,7 +993,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:51
 msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
-msgstr ""
+msgstr "«Usa un ladrón para atrapar a outro.» — Calímaco («Epigramas», 44)"
 
 #: gui/text/quotes.txt:52
 msgid ""
@@ -1081,7 +1083,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:64
 msgid "\"It is hard to be governed by one's inferior.\" - Democritus (fragment)"
-msgstr ""
+msgstr "«É duro que te goberne un inferior.» — Demócrito de Abdera (fragmento)"
 
 #: gui/text/quotes.txt:65
 msgid ""
@@ -1182,7 +1184,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:79
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
-msgstr ""
+msgstr "«A sorte sempre loita do lado do precavido.» — Eurípides («Pirítoo»)"
 
 #: gui/text/quotes.txt:80
 msgid ""
@@ -1404,7 +1406,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world…\" - Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "«Son Ciro, rei do mundo…» — Inscrición (Cilindro de Ciro)"
 
 #: gui/text/quotes.txt:111
 msgid ""
@@ -1526,7 +1528,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:128
 msgid "\"The man who runs may fight again.\" - Menander (\"Monosticha\")"
-msgstr ""
+msgstr "«Quen fuxe vive para loitar outro día.» — Menandro («Monosticha»)"
 
 #: gui/text/quotes.txt:129
 msgid ""
@@ -1536,7 +1538,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:130
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
-msgstr ""
+msgstr "«Eu chamo figo ao figo e pa á pa.» — Menandro (fragmento 545 K)"
 
 #: gui/text/quotes.txt:131
 msgid ""
@@ -1854,7 +1856,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
-msgstr ""
+msgstr "«Todo con moderación.» — Terencio («Andria», 61)"
 
 #: gui/text/quotes.txt:171
 msgid ""
@@ -1968,7 +1970,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:185
 msgid "\"Prepared for either alternative.\" - Virgil (\"Aeneid\", II. 61)"
-msgstr ""
+msgstr "«Listo para calquera alternativa.» — Virxilio («Eneida», II. 61)"
 
 #: gui/text/quotes.txt:186
 msgid ""

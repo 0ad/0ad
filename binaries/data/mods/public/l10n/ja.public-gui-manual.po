@@ -5,14 +5,16 @@
 # Translators:
 # Asakura, 2015,2017
 # Kanetaka Suto, 2014-2015
+# karu babu <karubabu@protonmail.com>, 2018
 # llen_llen, 2014
 # red hare <www3@hotmail.co.jp>, 2017
+# Takaki IEKURA <tacostea@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-01-07 00:33+0100\n"
-"PO-Revision-Date: 2018-01-07 02:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-04-11 09:02+0200\n"
+"PO-Revision-Date: 2018-06-28 21:06+0000\n"
+"Last-Translator: karu babu <karubabu@protonmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,7 +71,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"sans-14\"]操作とゲームプレイは従来のRTSゲームのプレイヤーにはなじみ深いものでしょう。今のところ多くの機能を欠き、また能力値のパランスがとれていません。しっかりとしたものはおそらくベータリリースまで待たねばならないでしょう。"
+msgstr "[font=\"sans-14\"]操作とゲームプレイは従来のRTSゲームのプレイヤーにはなじみ深いものでしょう。今のところ多くの機能を欠き、また能力値のバランスがとれていません。しっかりとしたものはおそらくベータリリースまで待たねばならないでしょう。"
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -178,7 +180,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr "最後に設定を変更します。 ランダムマップでは、プレイヤーの人数やマップの大きさなどが含まれます。シナリオでは、誰がどのプレイヤーで参加するか (マップ内のどこが開始位置となるかなどが決まります) だけが選択できます。 オプションは、人間のプレイヤーかAI、プレイヤーなしいずれかです )(敵ただ遊んでるだけです) 。"
+msgstr "最後に設定を変更します。 ランダムマップでは、プレイヤーの人数やマップの大きさなどが含まれます。シナリオでは、誰がどのプレイヤーを操作するか (マップ内のどこが開始位置となるかなどが定まります) だけを選択できます。 オプションは、人間のプレイヤーかAI、プレイヤーなしいずれかです (敵はただ遊んでいるだけになります) 。"
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -190,7 +192,7 @@ msgstr "[font=\"sans-bold-16\"]ホットキー："
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Program-wide"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]プログラム全体"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -233,12 +235,12 @@ msgid ""
 msgstr "Shift+F2： 大きなスクリーンショットを撮ります（6400×4800ピクセルのbmpフォーマットで保存されます。場所はファイルが保存された後の画面の左上に表示され、また見逃した場合はコンソールやログでも見られます）"
 
 #: gui/manual/intro.txt:52
-msgid "Alt + S: Switch to the next tab."
-msgstr ""
+msgid "Tab, Alt + S: Switch to the next tab."
+msgstr "Tab, Alt + S: 次のタブに切り替え"
 
 #: gui/manual/intro.txt:53
-msgid "Alt + W: Switch to the previous tab."
-msgstr ""
+msgid "Shift + Tab, Alt + W: Switch to the previous tab."
+msgstr "Shift + Tab, Alt + W: 元のタブに切り替え"
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -320,7 +322,7 @@ msgstr "/ (ForwardSlash): 手の空いた兵士を選択"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /: 手の空いた兵士を選択に加える"
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
@@ -332,7 +334,7 @@ msgstr ". (Period): 手の空いた労働者を選択する (市民兵士を含�
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: 手の空いた労働者を選択に加える (市民兵士を含みます)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
@@ -340,15 +342,15 @@ msgstr "Alt + .: 手の空いた労働者をすべて選択する (市民兵士�
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr ""
+msgstr "\\ (バックスラッシュ): 手の空いたユニットを選択"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr ""
+msgstr "Shift + \\: 手の空いたユニットを選択に加える"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
-msgstr ""
+msgstr "Alt + \\: 手の空いたユニットをすべて選択する"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
@@ -417,254 +419,270 @@ msgid "Ctrl + Tab: Toggle summary window."
 msgstr ""
 
 #: gui/manual/intro.txt:93
-msgid "Ctrl + B: Toggle in-game barter/trade page."
+msgid "Alt + L: Show the multiplayer lobby in a dialog window."
 msgstr ""
 
 #: gui/manual/intro.txt:94
+msgid "Ctrl + B: Toggle in-game barter/trade page."
+msgstr ""
+
+#: gui/manual/intro.txt:95
 msgid "Ctrl + P: Toggle in-game tutorial panel."
 msgstr ""
 
 #: gui/manual/intro.txt:96
+msgid "Alt + Shift + T: Toggle structure tree."
+msgstr ""
+
+#: gui/manual/intro.txt:97
+msgid "Alt + Shift + H: Toggle civilization info."
+msgstr ""
+
+#: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
 msgstr "[font=\"sans-bold-14\"]修飾されたマウス操作"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:100
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
 msgstr "[font=\"sans-14\"]建物をCtrl+右クリック： 駐屯"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:101
 msgid "J + Right Click on building: Repair"
 msgstr "Jを押しながら建物上で右クリック：修繕"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:102
 msgid "P + Right Click: Patrol"
 msgstr "P + 右クリックでパトロール"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:103
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
 msgstr "Shift+右クリック： 移動や建設、採集などの指令予約"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:104
 msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
 msgstr ""
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:105
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
 msgstr "Shift +左クリック ユニット生産：バッチに生産ユニットを追加する（デフォルトではバッチサイズは5で、オプションで変更できます）"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:106
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
 msgstr "Shift+左クリックか、左ドラッグでマップ上のユニットに範囲をかぶせる： 選択対象にユニットを追加"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:107
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
 msgstr "Ctrl+左クリックか、左ドラッグでマップ上のユニットに範囲をかぶせる： 選択対象からユニットを削除"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:108
 msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr "Alt+左ドラッグでマップ上のユニット群に範囲をかぶせる： 軍事ユニットのみ選択"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:109
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
 msgstr ""
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:110
 msgid "I + Left Drag over units on map: Only select idle units"
 msgstr "I+左ドラッグでマップ上のユニット群に範囲をかぶせる： 手の空いたユニットのみ選択"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:111
 msgid "O + Left Drag over units on map: Only select wounded units"
 msgstr ""
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:112
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr "Ctrl+左クリック（ユニットあるいは複数ユニットを有するグループアイコン）： 選択解除"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:113
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
 msgstr "右クリック（建物を選択中）：  建物から生成あるいは駐屯解除されるユニットの集合地点を設定"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:114
 msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl+右クリック（ユニット選択中）："
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:115
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "- カーソルが味方の建物上の場合： 駐屯"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:116
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
 msgstr "- カーソルが敵のユニットあるいは建物上の場合： 攻撃（占領や採集の代わりに）"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:117
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "- それ以外：　攻撃移動（既定では移動中の敵のユニットと建物のすべてが攻撃対象とされます。Ctrl + Q + 右クリックを用いればユニットのみを攻撃対象とします）。"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]オーバーレイ"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt+G： GUIを隠すか見せる"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:121
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt+D： （開発者用オプションを備えた）開発者用オーバーレイを見せるか隠す"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:122
 msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr ""
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:123
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
 msgstr ""
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:124
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt+Z： 空の表示の切替え"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:125
+msgid "Alt + X: Toggle diplomacy colors"
+msgstr ""
+
+#: gui/manual/intro.txt:126
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
 msgstr ""
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:127
 msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
 msgstr "Alt + V: 選択したユニットと建造物のオーラ範囲の表示を切り替えます"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:128
 msgid "Alt + B: Toggle heal range visualizations of selected units"
 msgstr "Alt + B: 選択したユニットの治療範囲の表示を切り替えます"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]カメラ操作"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:131
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]Wまたは\\[up]： 画面を上に移動"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:132
 msgid "S or \\[down]: Pan screen down"
 msgstr "S または \\[down]：画面を下に移動"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:133
 msgid "A or \\[left]: Pan screen left"
 msgstr "A または \\[left]:画面を左に移動"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:134
 msgid "D or \\[right]: Pan screen right"
 msgstr "D または \\[right]：画面を右に移動"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:135
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W または \\[up]：カメラを上に回転"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:136
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S または \\[down]：カメラを下に回転"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:137
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A または \\[left]：土地の周囲を時計回りにカメラを回転"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:138
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D または \\[right]：土地の周囲を反時計回りにカメラを回転"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:139
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q： 土地の周囲を時計回りにカメラを回転"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:140
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E： 土地の周囲を反時計回りにカメラを回転"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift+マウスホイール上回転： 土地の周囲を時計回りにカメラを回転"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:142
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift+マウスホイール下回転： 土地の周囲を反時計回りにカメラを回転"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:143
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
 msgstr "F: 選択されたユニットに付いていきます (カメラを動かすと止まります)"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:144
 msgid "R: Reset camera zoom/orientation"
 msgstr "R： カメラのズームと方向を戻す"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:145
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+： ズームイン（押し続けると連続ズーム）"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:146
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-： ズームアウト（押し続けると連続ズーム）"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:147
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt+W： ワイヤーフレームモードの切替え"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:148
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "マウスの中ボタン： 押したままでマウスを動かすことでパンします"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]建物配置時"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[：建物を反時計回りに15度回転"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:152
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]： 建物を時計回りに15度回転"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:153
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "左ドラッグ： マウスで建物を回転（マウスから放したときに基礎が建てられる）"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]保存したゲームの読込み時"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:156
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Delete： 選択した保存したゲームを確認のうえ削除"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift： 保存したゲームを削除する際に確認を省略"
 
@@ -683,10 +701,10 @@ msgstr "以下のデータが私たちのサーバーに送られます："
 
 #: gui/manual/userreport.txt:5
 msgid ""
-"• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
-"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
-"from the same user."
-msgstr "• ランダムなユーザーID（Windowsでは%APPDATA%\\0ad\\config\\user.cfg、Unix系では~/.config/0ad/config/user.cfgに記録）を、同じユーザーからの繰り返しのレポートをわれわれ（WildFire Games）が感知するため使います。"
+"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
+"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
+"reports from the same user."
+msgstr ""
 
 #: gui/manual/userreport.txt:6
 msgid ""

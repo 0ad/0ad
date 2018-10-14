@@ -20,14 +20,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-04-28 20:48+0000\n"
+"PO-Revision-Date: 2018-05-02 09:48+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
@@ -65,6 +65,7 @@ msgid_plural "Civilization Bonuses"
 msgstr[0] "Civilizační přídavek"
 msgstr[1] "Civilizační přídavky"
 msgstr[2] "Civilizačních přídavků"
+msgstr[3] "Civilizačních přídavků"
 
 #: gui/civinfo/civinfo.js:132
 msgid "Team Bonus"
@@ -72,6 +73,7 @@ msgid_plural "Team Bonuses"
 msgstr[0] "Týmový přídavek"
 msgstr[1] "Týmové přídavky"
 msgstr[2] "Týmových přídavků"
+msgstr[3] "Týmových přídavků"
 
 #: gui/civinfo/civinfo.js:139
 msgid "Special Technologies"
@@ -83,6 +85,7 @@ msgid_plural "Special Buildings"
 msgstr[0] "Zvláštní budova"
 msgstr[1] "Zvláštní budovy"
 msgstr[2] "Zvláštních budov"
+msgstr[3] "Zvláštních budov"
 
 #: gui/civinfo/civinfo.js:152 gui/summary/layout.js:67
 msgid "Heroes"
@@ -305,6 +308,7 @@ msgid_plural "Observers"
 msgstr[0] "Pozorovatel"
 msgstr[1] "Pozorovatelé"
 msgstr[2] "Pozorovatelů"
+msgstr[3] "Pozorovatelů"
 
 #: gui/common/gamedescription.js:224
 msgctxt "victory condition"
@@ -323,6 +327,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Div světa (%(min)s minuta)"
 msgstr[1] "Div světa (%(min)s minuty)"
 msgstr[2] "Div světa (%(min)s minut)"
+msgstr[3] "Div světa (%(min)s minut)"
 
 #: gui/common/gamedescription.js:248
 #, javascript-format
@@ -332,6 +337,7 @@ msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Ukořistit památku (%(min)s minuta)"
 msgstr[1] "Ukořistit památku (%(min)s minuty)"
 msgstr[2] "Ukořistit památku (%(min)s minut)"
+msgstr[3] "Ukořistit památku (%(min)s minut)"
 
 #: gui/common/gamedescription.js:264
 msgid "Relic Count"
@@ -413,6 +419,7 @@ msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Po první minutu zůstanou ostatní hráči neutrální."
 msgstr[1] "Po první %(min)s minuty zůstanou ostatní hráči neutrální."
 msgstr[2] "Po prvních %(min)s minut zůstanou ostatní hráči neutrální."
+msgstr[3] "Po prvních %(min)s minut zůstanou ostatní hráči neutrální."
 
 #: gui/common/gamedescription.js:324
 msgctxt "Map Selection"
@@ -709,6 +716,7 @@ msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s minuta"
 msgstr[1] "%(min)s minuty"
 msgstr[2] "%(min)s minut"
+msgstr[3] "%(min)s minut"
 
 #: gui/common/settings.js:205
 msgctxt "ceasefire"
@@ -723,6 +731,7 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s minuta"
 msgstr[1] "%(minutes)s minuty"
 msgstr[2] "%(minutes)s minut"
+msgstr[3] "%(minutes)s minut"
 
 #: gui/common/settings.js:220
 msgctxt "map"
@@ -866,6 +875,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 msgstr[2] "%(time)s %(second)s"
+msgstr[3] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:112 gui/common/tooltips.js:353
 #: gui/common/tooltips.js:717
@@ -874,6 +884,7 @@ msgid_plural "seconds"
 msgstr[0] "sekunda"
 msgstr[1] "sekundy"
 msgstr[2] "sekund"
+msgstr[3] "sekund"
 
 #: gui/common/tooltips.js:165 gui/common/tooltips.js:176
 msgid "Health:"
@@ -891,6 +902,7 @@ msgid_plural "%(arrowcount)s %(arrows)s"
 msgstr[0] "%(arrowcount)s %(arrows)s"
 msgstr[1] "%(arrowcount)s %(arrows)s"
 msgstr[2] "%(arrowcount)s %(arrows)s"
+msgstr[3] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:195
 msgid "arrow"
@@ -898,6 +910,7 @@ msgid_plural "arrows"
 msgstr[0] "šíp"
 msgstr[1] "šípy"
 msgstr[2] "šípů"
+msgstr[3] "šípů"
 
 #: gui/common/tooltips.js:198
 #, javascript-format
@@ -967,6 +980,7 @@ msgid_plural "meters"
 msgstr[0] "metr"
 msgstr[1] "metry"
 msgstr[2] "metry"
+msgstr[3] "metry"
 
 #: gui/common/tooltips.js:318 gui/common/tooltips.js:376
 #: gui/common/tooltips.js:381 gui/common/tooltips.js:386
@@ -1027,6 +1041,7 @@ msgid_plural ""
 msgstr[0] "Přidat dalšího dělníka pro urychlení oprav o %(second)s sekundu."
 msgstr[1] "Přidat dalšího dělníka pro urychlení oprav o %(second)s sekundy."
 msgstr[2] "Přidat dalšího dělníka pro urychlení oprav o %(second)s sekund."
+msgstr[3] "Přidat dalšího dělníka pro urychlení oprav o %(second)s sekund."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
@@ -1035,6 +1050,7 @@ msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
 msgstr[0] "Přidat dělníka pro dokončení oprav za %(second)s sekundu."
 msgstr[1] "Přidat dělníka pro dokončení oprav za %(second)s sekundy."
 msgstr[2] "Přidat dělníka pro dokončení oprav za %(second)s sekund."
+msgstr[3] "Přidat dělníka pro dokončení oprav za %(second)s sekund."
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
@@ -1048,6 +1064,7 @@ msgid_plural ""
 msgstr[0] "Přidat dalšího dělníka pro urychlení výstavby o %(second)s sekundu."
 msgstr[1] "Přidat dalšího dělníka pro urychlení výstavby o %(second)s sekundy."
 msgstr[2] "Přidat dalšího dělníka pro urychlení výstavby o %(second)s sekund."
+msgstr[3] "Přidat dalšího dělníka pro urychlení výstavby o %(second)s sekund."
 
 #: gui/common/tooltips.js:431
 #, javascript-format
@@ -1056,6 +1073,7 @@ msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "Přidat dělníka pro dokončení výstavby za %(second)s sekundu."
 msgstr[1] "Přidat dělníka pro dokončení výstavby za %(second)s sekundy."
 msgstr[2] "Přidat dělníka pro dokončení výstavby za %(second)s sekund."
+msgstr[3] "Přidat dělníka pro dokončení výstavby za %(second)s sekund."
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1156,6 +1174,7 @@ msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 msgstr[2] "%(label)s %(val)s %(unit)s"
+msgstr[3] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
@@ -1165,6 +1184,7 @@ msgid_plural "HP"
 msgstr[0] "HP"
 msgstr[1] "HP"
 msgstr[2] "HP"
+msgstr[3] "HP"
 
 #: gui/common/tooltips.js:731
 #, javascript-format
@@ -1550,6 +1570,7 @@ msgid_plural "< %(max)s min"
 msgstr[0] "< %(max)s min"
 msgstr[1] "< %(max)s min"
 msgstr[2] "< %(max)s min"
+msgstr[3] "< %(max)s min"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:125
@@ -1560,6 +1581,7 @@ msgid_plural "> %(min)s min"
 msgstr[0] "> %(min)s min"
 msgstr[1] "> %(min)s min"
 msgstr[2] "> %(min)s min"
+msgstr[3] "> %(min)s min"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:128
@@ -3039,11 +3061,11 @@ msgstr ""
 
 #: gui/options/options.json[4].options[1].label
 msgid "Game Rating Column"
-msgstr ""
+msgstr "Sloupec s hodnocením hry"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "Tato nastavení ovlivní pouze hru pro více hráčů."
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
@@ -3057,11 +3079,11 @@ msgstr ""
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
-msgstr ""
+msgstr "Zdraví zraněné jednotky"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "Počet jednotek cvičených standardně v jedné skupině."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch Training Size"
@@ -3070,38 +3092,38 @@ msgstr "Velikost cvičené skupiny"
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "Kolikrát musíte otočit kolečkem pro zvýšení/snížení počtu jednotek ve skupině o 1."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
-msgstr ""
+msgstr "Přírůstkové číslo (koeficient) pro měnění stavu skupiny"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr ""
+msgstr "Ukázat upozornění zprávou, pokud na vás zaútočil jiný hráč."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat Notification Attack"
-msgstr ""
+msgstr "Upozornění na útok zprávou"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "Ukázat upozornění zprávou, když spojenec věnuje zdroje jinému členu týmu, pokud jsou týmy zamknuty a všechny poplatky v režimu pozorovatele."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr ""
+msgstr "Upozornění na dar zprávou"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "Ukázat upozornění zprávou pro pozorovatele, když hráč směnil zdroje."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr ""
+msgstr "Upozornění na směnu zprávou"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3119,11 +3141,11 @@ msgstr "Vypnout vše"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "Ukázat upozornění zprávou, když jste vy nebo spojenec začal, přerušil nebo dokončil novou fázi, a všechny fáze všech hráčů jsou v režimu pozorovatele."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr ""
+msgstr "Upozornění na fázi zprávou"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3143,25 +3165,25 @@ msgstr ""
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura Range Visualization"
-msgstr ""
+msgstr "Znázornění dosahu aury"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "Zobrazit dosah léčení vybraných jednotek (lze rovněž pomocí klávesové zkratky přepnout ve hře)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal Range Visualization"
-msgstr ""
+msgstr "Znázornění dosahu léčení"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr ""
+msgstr "Ukázat ikony nad stavovými řádkky."
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "Seřadit ikony nad stavovým řádkem"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid ""
@@ -3178,7 +3200,7 @@ msgstr "Nezařazené"
 
 #: gui/options/options.json[5].options[12].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "Vzestupný"
 
 #: gui/options/options.json[5].options[12].list[2].label
 msgid "Descending"
@@ -3187,11 +3209,11 @@ msgstr "Sestupný"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
+msgstr "Dynamicky řadit hráče v nástrojové radě ke zdrojům a k obyvatelstvu podle hodnot."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "Řadit v nástrojové radě ke zdrojům a  k obyvatelstvu"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
@@ -3231,23 +3253,23 @@ msgstr "Změnit volby týkající se nastavení hry."
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
-msgstr ""
+msgstr "Ve hře"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr ""
+msgstr "Lovit zvířata, sbírat bobule z keřů, rybařit nebo sklízet pole."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Těžit z rudných dolů nebo z lomů."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr ""
+msgstr "Těžit ze skal, z lomů na kámen nebo z rozvalin (trosek, zbořenišť, zřícenin)."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Kácet stromy nebo lesíky."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3426,7 +3448,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Ačkoli je pro zkušeného hráče nastavena přiměřeně snadná, klade výchozí úroveň umělé inteligence na nové hráče docela značné nároky, předtím než si osvojí základní ústrojí hry. Pro začátečníky máme dobrou radu. Když s hraním teprve začínáte, začněte hrát proti nižším úrovním (pískoviště nebo velmi lehká hra). Úroveň umělé inteligence se mění klepnutím na obrázek ozubeného kola vedle každého hráče s umělým mozkem (a chápáním) v panelu pro výběr hráče nacházejícím se výše."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3596,7 +3618,7 @@ msgstr "SPRÁVNÍ STŘEDISKA"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The foundation of your new colony."
-msgstr ""
+msgstr "- Založení nové kolonie."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -3610,7 +3632,7 @@ msgstr "- Může být postaveno na vlastním či neutrálním území."
 msgid ""
 "- Train citizens: female citizens, infantry citizen soldiers and cavalry "
 "citizen soldiers."
-msgstr ""
+msgstr "- Cvičte občany: občanky (ženské pohlaví), občanské vojáky pěchoty a občanské vojáky jízdy."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3672,7 +3694,7 @@ msgstr "- Obsaďte posádkou vojáků pro zvýšení palebné síly pro posílen
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "PŘIBLIŽNÁ POLOHA"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""

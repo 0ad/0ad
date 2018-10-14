@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ka\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: simulation/ai/petra/chatHelper.js:6
 #, javascript-format
@@ -437,6 +437,7 @@ msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
 msgstr[0] ""
+msgstr[1] ""
 
 #: simulation/components/BuildRestrictions.js:277
 #, javascript-format
@@ -445,6 +446,7 @@ msgid ""
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
 msgstr[0] ""
+msgstr[1] ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -488,6 +490,7 @@ msgstr ""
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] ""
+msgstr[1] ""
 
 #: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."

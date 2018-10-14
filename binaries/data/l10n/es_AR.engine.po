@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 13:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-08-25 18:22+0000\n"
+"Last-Translator: Facundo Abiega <abiegafacundo@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -139,54 +139,54 @@ msgstr "El nombre de usuario ya existe"
 #: ps/ModIo.cpp:244
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Se produjo un fallo mientras se comenzaba a buscar la id del juego. Error: %s;%s."
 
 #: ps/ModIo.cpp:274
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Se produjo un fallo mientras se comenzaban a buscar los mods.  Error %s;%s."
 
 #: ps/ModIo.cpp:300
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "No se pudo crear el directorio del mod: %s."
 
 #: ps/ModIo.cpp:325
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "No se pudo abrir el archivo temporal para la descarga del mod: %s."
 
 #: ps/ModIo.cpp:335
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "No se pudo iniciar la descarga. Error: %s;%s."
 
 #: ps/ModIo.cpp:380
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Se produjo un fallo en la descarga asíncrona: %s,%s."
 
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Se produjo un fallo en la descarga. Respuesta del servidor: %s;%s."
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Tamaño del archivo incompatible."
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "El archivo no es válido. Md5 esperado %s, obtenido %s."
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "No se pudo calcular la función final hash."
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "No se pudo verificar la firma."
 
 #: ps/SavedGame.cpp:128
 #, c-format

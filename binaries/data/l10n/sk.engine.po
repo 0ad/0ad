@@ -15,14 +15,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-29 09:41+0000\n"
+"PO-Revision-Date: 2018-04-29 17:31+0000\n"
 "Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: i18n/L10n.cpp:251
 msgid "Long strings"
@@ -142,12 +142,12 @@ msgstr "Užívateľské meno už existuje"
 #: ps/ModIo.cpp:244
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Zlyhanie počas frontovania pre ID hry. Chyba: %s; %s."
 
 #: ps/ModIo.cpp:274
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Zlyhanie počas frontovania módov. Chyba: %s; %s."
 
 #: ps/ModIo.cpp:300
 #, c-format

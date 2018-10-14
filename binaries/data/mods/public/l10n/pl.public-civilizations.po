@@ -9,6 +9,7 @@
 # Andrzej Udodik <udo1992@gmail.com>, 2013
 # Annunnaky <doublemiu@gmail.com>, 2015
 # Bartłomiej Ozimek <boozimek2@gmail.com>, 2015
+# Bartosz Bobin <bartosz@bobin.eu>, 2018
 # Daniel Koć <daniel@xn--ko-wla.pl>, 2014
 # Daniel Whatever <Deynyel@protonmail.com>, 2017
 # Dominik Pieczyński <inactive+RiviPN@transifex.com>, 2014
@@ -39,6 +40,7 @@
 # Paweł Goca <siwers17@gmail.com>, 2015
 # Pawel Jarczak <keven204@o2.pl>, 2016
 # Piotr <joda17@wp.pl>, 2015
+# Przemysław Murach <moonshine133@vp.pl>, 2018
 # q <q@qq.qq>, 2015
 # rabusek <rabusek@gmail.com>, 2014
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
@@ -51,9 +53,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-08-03 09:26+0000\n"
-"Last-Translator: Marek Balicki <m.s.balicki@gmail.com>\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-07-17 03:38+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -459,8 +461,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "Caractacus to rzymska odmiana właściwego imienia Karatakos, które wybijano na olbrzymiej ilości monet. Pod tym imieniem znany jest jako niepohamowany obrońca Brytanii w czasie inwazji Rzymian w 43r. Syn króla Katuwelaunów Cunobelinusa walczył z Rzymianami przez 9 lat odnosząc niewielkie sukcesy, aby w końcu dokonać odwrotu ku walijskim plemionom, gdzie ostatecznie został pokonany. Gdy dotarł na północ Brytanii został oddany w ręce Rzymian. Zaraz po tym przetransportowano go do Rzymu, gdzie cesarz Klaudiusz zadecydował, że pozwoli mu żyć. Umarł we Włoszech. Tradycja mówi, że zaraz po żonie przyjął wiarę chrześcijańską, aczkolwiek informacja ta nie została nigdy potwierdzona. Prawdopodobnie najważniejszą rzeczą do odnotowania jest to, że po ujęciu pozwolono mu żyć. W tamtych czasach w Rzymie skazywano takich ludzi na publiczną śmierć. Karatakos wedle życzenia, został przyprowadzony przed oblicze Cesarza i Senatu, aby mógł się wytłumaczyć. Nie jest do końca pewne co powiedział, jednak Tacyt przypisuje mu słynną przemowę."
+"but Tacitus applies to him a famous speech…"
+msgstr "Caractacus to rzymska odmiana właściwego imienia Karatakos, które wybijano na olbrzymiej ilości monet. Pod tym imieniem znany jest jako niepohamowany obrońca Brytanii w czasie inwazji Rzymian w 43r. Syn króla Katuwelaunów Cunobelinusa walczył z Rzymianami przez 9 lat odnosząc niewielkie sukcesy, aby w końcu dokonać odwrotu ku walijskim plemionom, gdzie ostatecznie został pokonany. Gdy dotarł na północ Brytanii został oddany w ręce Rzymian. Zaraz po tym przetransportowano go do Rzymu, gdzie cesarz Klaudiusz zadecydował, że pozwoli mu żyć. Umarł we Włoszech. Tradycja mówi, że zaraz po żonie przyjął wiarę chrześcijańską, aczkolwiek informacja ta nie została nigdy potwierdzona. Prawdopodobnie najważniejszą rzeczą do odnotowania jest to, że po ujęciu pozwolono mu żyć. W tamtych czasach w Rzymie skazywano takich ludzi na publiczną śmierć. Karatakos wedle życzenia, został przyprowadzony przed oblicze Cesarza i Senatu, aby mógł się wytłumaczyć. Nie jest do końca pewne co powiedział, jednak Tacyt przypisuje mu słynną przemowę..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1166,6 +1168,211 @@ msgid ""
 "fought back."
 msgstr "Iberyjczycy byli ludem o tajemniczym pochodzeniu i języku, o silnej tradycji jeździectwa i obróbki metalu. Stosunkowo spokojna kultura, zwykle walczyli w bitwach nawzajem tylko jako najemnicy. Jednak okazali się oni wytrwali, gdy Rzym starał się podjąć ich ziemię i zabrać wolność od nich, a zatrudnieni jako pionierzy robili plany taktyk partyzanckich oraz płonące oszczepy i walczyli nimi."
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "Kuszyci"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "Piramidy Meroe"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr "Każda piramida kuszycka wzmacnia wpływ terytorialny centrum osady o +10%."
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr "Depozyt Minerałów"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr "Gracz kuszycki otrzymuje dodatkową kopalnię metalu gdzieś na jego terytorium."
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Przegląd słoni"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr "Może przejąć słonie Gai i obsadzić je w zagrodzie, by zmniejszyć koszta słoni bojowych."
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Dostawcy słoni"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Redukuje koszty i czas wyszkolenia dla słoni o 20% dla kuszyckich sojuszników."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "Kashta"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "Alara"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "Pebatjma"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "Shabaka"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "Shebitku"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "Qalhata"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "Takahatenamun"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "Tantamani"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "Atlanersa"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "Nasalsa"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "Malewiebamani"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "Harsiotef"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "Shanakdakhete"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "Amanishakheto"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "Architektura monumentalna "
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr "+50% PZ i  -50% czasu budowy dla Centrów Miejskich, Świątyń, Piramid i Cudów."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr "Pozwala na szkolenie elitarnych uzdrawiaczy."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "Starszy kapłan z Amun"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "Niech twoi kapłani będą nauczani przez samego Najwyższego Kapłana - niech Amun go błogosławi."
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Nastasen"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Arakamani"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Królowa Amanirenas"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "Afrykańscy Kuszyci"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "Wielkie królestwo afrykańskie, które zajęło obie strony Nilu w Nubii, na południe od Egiptu."
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "Świątynia Amona"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr "Kuszyci mogą ulepszyć świątynie w Świątynie Luksorskie, które pozwalają na szkolenie Napatańskiej Strażniczki Świątyni i szybciej leczą jednostki."
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "Historia."
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "Świątynia Apedemaka"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr "Kuszyci mogą ulepszyć świątynie w Świątynie Apedemaka, które pozwalają na szkolenie Meroickiego Strażnika Świątyni i szybciej leczą jednostki."
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "Kuszyckie Piramidy"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "Wybudowanie małej piramidy kuszyckiej odblokowuje Fazę Wioski. Wybudowanie wielkiej piramidy kuszyckiej odblokowuje Fazę Miasta. Każda piramida dodaje +10% do wpływu terytorium centrum osady."
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "Kuszyci wybudowali ponad 200 piramid w Nubii."
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "Kusz było starożytnym afrykańskim królestwem położonym u zbiegu Nilu Błękitnego i Białego oraz rzeki Atbara w obecnej Republice Sudanu. Era kuszycka rozpoczęła się po upadku epoki brązu w Nowym Państwie Egipt, a w początkowej fazie miała swoją siedzibę w Napacie. Kuszyci najechali na Egipt w VIII w. p.n.e., a władcy przez sto lat rządzili jako faraonowie 25. dynastii Egiptu, dopóki nie zostali wypędzeni przez Asyryjczyków. Kultura kuszycka była silnie inspirowana egipską, na co wskazują budowane przez Kuszytów piramidy i monumentalne świątynie. Lud ten czcił nawet licznych bogów egipskich, takich jak Amon. W okresie klasycyzmu stolicą imperium kuszyckiego było Meroe, a mieszkańcy Królestwa Meroe przez Greków nazywani byli Etiopami. Kusz przetrwało do IV w. n.e., kiedy to osłabło i rozpadło się przez wewnętrzne rebelie, ostatecznie ulegając rosnącej potędze Aksum."
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1537,10 +1744,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Schwytaj do 5 dzikich słoni i umieść je w stajni dla słoni aby zyskać do 25% premii w kosztach i czasie trenowania jednostek słoni."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Przegląd słoni"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."

@@ -5,9 +5,11 @@
 # Translators:
 # Swyter <Swyterzone@gmail.com>, 2017
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2017
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2017
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017
 # dreogan dreogan <garikoitz.bv@gmail.com>, 2017
+# Carlos Ponce <cponce@alumnos.inf.utfsm.cl>, 2017
 # Joaquin Marcher <joaquin.marcher@gmail.com>, 2017
 # Borja Ruiz <metiropeos@gmail.com>, 2017
 # Miguel Rodriguez <mra757@disroot.org>, 2017
@@ -125,9 +127,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
-"Una vez que se haya construido la alquería, los constructores comenzarán a "
-"recoger comida en las cercanías. En vez de eso, vuelve a seleccionar a los "
-"constructores y hazles construir un huerto al lado de la alquería."
+"Cuando la alquería se haya construido, los constructores comenzarán a "
+"recoger comida automáticamente en los alrededores. Selecciona a los "
+"constructores en su lugar y hazles construir un huerto junto a la alquería."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -557,10 +559,10 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
-"Mientras esperas, dirige tu atención al panel de la superior de la pantalla."
-" En la esquina superior izquierda podrás ver las reservas de recursos "
-"(Comida, Madera, Piedra y Metal). Cada vez que un trabajador lleve recursos "
-"al Centro Cívico (u otro punto de recolección) la cantidad del recurso "
+"Mientras tanto, dirige tu atención al panel superior de la pantalla. En la "
+"esquina superior izquierda podrás ver las reservas de recursos (Comida, "
+"Madera, Piedra y Metal). Cada vez que un trabajador lleve recursos al Centro"
+" Cívico (u otro punto de recolección) la cantidad del recurso "
 "correspondiente aumentará.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
@@ -607,8 +609,8 @@ msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
 msgstr ""
-"Si la posición no es válida (obstruida), la vista preliminar del edificio se"
-" mostrará de color rojo.\n"
+"Si la posición es incorrecta (obstruida), la vista preliminar del edificio "
+"se mostrará de color rojo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
@@ -639,12 +641,11 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
-"No olvides mantener Shift mientras hace clic para entrenar múltiples "
-"unidades."
+"No olvides mantener pulsado Mayús + clic para entrenar múltiples unidades."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr "Mantén Shift y haz clic sobre el icono de la ciudadana."
+msgstr "Mantén pulsado Mayús + clic sobre el icono de la ciudadana."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -709,15 +710,16 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
-"Selecciona dos de tus ciudadanas entrenadas recientemente y diles que "
-"construyan estas casas en el espacio vacío al este del Centro Cívico. Para "
-"hacerlo, después de seleccionarlas, selecciona el botón de casa en el panel "
-"inferior derecho y, mientras mantienes Shift, escoge la primera posición del"
-" mapa dónde quieras construir la primera casa y luego la segunda para "
-"construir la segunda casa (cuando das una orden mientras mantienes Shift "
-"pulsado, dejas la orden en una cola; las unidades pasarán automáticamente a "
-"la siguiente orden en cola cuando terminen la actual). Presiona Esc para "
-"soltar el puntero de la casa y evitar construir casas por todo el mapa.\n"
+"Selecciona dos de tus ciudadanas recién reclutadas y ordénales que "
+"construyan varias casas en el espacio que se abre al este del Centro Cívico."
+" Para ello, tras seleccionarlas, haz clic sobre el icono de la casa en el "
+"panel inferior derecho. Mientras mantienes pulsada la tecla Mayús, haz clic "
+"en la primera posición del mapa donde quieras construir la primera casa y de"
+" nuevo otro clic en la posición donde quieras construir la segunda casa "
+"(cuando al dar una orden mantienes pulsada Mayús, la orden se añade a la "
+"cola; las unidades pasarán automáticamente a la siguiente actividad en la "
+"cola cuando terminen con la actual). Pulsa Escape para deshacerte del "
+"puntero de la casa y evitar llenar de casas todo el escenario.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
@@ -906,9 +908,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build barracks.\n"
 msgstr ""
-"Ahora tenemos suficientes recursos, pero falta una estructura. Aunque este "
-"es un tutorial económico, es útil estar preparado para defenderse en caso de"
-" ataque, así que construyamos barracones.\n"
+"Ahora tenemos recursos suficientes, pero falta una estructura. Aunque el "
+"tutorial se centra en la economía, no está de más estar preparado para "
+"defenderse en caso de ataque, así que construyamos barracones.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -930,12 +932,12 @@ msgid ""
 " on it (you should see a hammer icon), and then produce two more builders by"
 " clicking on the hoplite icon twice."
 msgstr ""
-"Esperemos a que se construyan los barracones. Como esta construcción tomará "
-"su tiempo, puede agregar dos soldados para construirla más rápido. Para "
-"ello, selecciona el Centro Cívico y establece el punto de encuentro en los "
-"cimientos del barracón haciendo clic con el botón derecho en él (debería ver"
-" un icono con forma de martillo) y luego entrena a dos constructores más "
-"haciendo clic dos veces en el icono del Hoplita."
+"Vamos a esperar a que se construyan los barracones. Como la construcción "
+"tardará, puedes agregar dos soldados para acelerarla. Para ello, selecciona "
+"el Centro Cívico y establece un punto de encuentro sobre el barracón en "
+"construcción haciendo clic con el botón derecho sobre él (deberías ver un "
+"icono con forma de martillo), acto seguido entrena dos constructores más "
+"haciendo clic dos veces sobre el icono del hoplita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
@@ -1010,7 +1012,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "Este es un tutorial básico para empezar a jugar a 0 A.D."
+msgstr "Esto es un tutorial básico para empezar a jugar a 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39

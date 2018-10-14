@@ -6,17 +6,18 @@
 # Daniel Ignatov <sa3ana3a@abv.bg>, 2014
 # George Gbr <gbrgames2@gmail.com>, 2015
 # iron4o <ironsmile@gmail.com>, 2014
-# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2016
+# Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
 # Любомир Василев, 2016
+# Nerwitz Panzerfizt, 2018
 # radochrist <ruzor@mail.bg>, 2014
-# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2014
+# Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2014
 # Любомир Василев, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-06 07:57+0000\n"
-"Last-Translator: Любомир Василев\n"
+"POT-Creation-Date: 2018-02-07 09:02+0100\n"
+"PO-Revision-Date: 2018-10-10 20:10+0000\n"
+"Last-Translator: Nerwitz Panzerfizt\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,7 +199,7 @@ msgid ""
 "Aegean, thereby laying the foundations of future Athenian power. However, he"
 " was eventually ostracised by the Athenians and forced to flee to the "
 "protection of the Persians."
-msgstr "Генералът, който убедил Атиняните да инвестират приходите от техните сребърни мини във военна флота от 200 Тиреми. Ключова фигура по време на Персийските Войни, той командвал печелещата Атинянска флота по време на решаващата битка в Саламис през 479г пр.н.е. По-късно, той следвал активна политика срещу Персийците в Егейско море и от там поставяйки основата на нататъшната Атинянска сила. Въпреки това, той бил отхвърлен от Атиняните и принуден да избяга в защитата на Персийците."
+msgstr "Генералът, който убедил Атиняните да инвестират приходите от техните сребърни мини във военна флота от 200 кораба Триреми. Определяща фигура по време на Персийските войни, той командвал печелещата Атинянска флота по време на решаващата битка в Саламис през 479 г. пр.н.е. Известно време след това, той следвал активна политика срещу Персийците в Егейско море и от там поставяйки основата на бъдещето на Атинянска сила. Но, въпреки това, той бил отхвърлен от Атиняните и принуден да избяга в защита на Персийците."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -422,8 +423,8 @@ msgid ""
 "once captured. Roman policy was typically to have such men killed in public "
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech..."
-msgstr "Карактак, по римски вариант, е леко променена форма на Каратак, истинското му име, което присъствало на многото му монети. Под това си име е запомнен като яростен защитник на бритите срещу римляните при нахлуването им от 43г. пр.н.е. Син на крал Кунобелин от племенния съюз Катувелауни, Каратак се бил девет години срещу римляните с незначителен успех, след което отстъпил към племената в Уелс, където бил окончателно разбит. Накрая той навлязъл в северна Британия, където бил предаден на римляните. Отведен в Рим, Каратак получил позволение да живее при император Клавдий и накрая умрял в Италия. Според преданията, той е приел християнството заедно с жена си, но няма сигурни доказателства за това. Много по-интересно е това, че е бил оставен жив след залавянето си. Според римските закони той би трябвало да бъде екзекутиран публично, за да се отбележи победата. Каратак бил заведен пред императора и сената по собствена молба, за да обясни мотивите си. Не се знае какво точно им е казал, но Тацит приписва на него една известна реч…"
+"but Tacitus applies to him a famous speech…"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1129,6 +1130,211 @@ msgid ""
 "fought back."
 msgstr "Иберите били хора с неясен произход и език, с традиции в отглеждането на коне и обработката на метали. Сравнително миролюбиви, те обикновено се биели в чуждите армии като наемници. Въпреки това, те се оказали упорити, когато Рим посегнал към земята и свободата им, и използвали новаторски партизански тактики и огнени летящи копия, за да отвърнат на удара."
 
+#: simulation/data/civs/kush.jsonName
+msgid "Kushites"
+msgstr "Кушити"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+msgid "The Pyramids of Meroe"
+msgstr "Пирамидите на Мерое"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+msgid ""
+"Building a Kushite pyramid increases Civic Center territory influence by "
+"+10% for each one built."
+msgstr "Построяването на Кушитска пирамида увеличава териториалното влияние на Градските центрове с +10% за всяка издигната пирамида."
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Name
+msgid "Mineral Deposits"
+msgstr "Рудници"
+
+#: simulation/data/civs/kush.jsonCivBonuses[1].Description
+msgid ""
+"Kushite players receive a free extra Metal Mine somewhere in their home "
+"territory."
+msgstr "Играчите на Кушитите получават възможността да имат допълнителна Металодобивна мина в рамките на основната територия"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Слонска сбирка"
+
+#: simulation/data/civs/kush.jsonCivBonuses[2].Description
+msgid ""
+"Can capture Gaia elephants and garrison them into a corral to reduce "
+"training costs for War Elephants."
+msgstr "Може да пленява слоновете на Гея и ги изпраща в Корал за намаляване разхода на обучение на Бойни слонове."
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
+msgid "Elephant Suppliers"
+msgstr "Доставчици на слонове"
+
+#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
+msgid ""
+"Reduces the cost and train time for elephants with 20% for allies of Kushite"
+" players."
+msgstr "Времето за обучение и цената на слоновете се намаляват за съюзниците на играчите, играещи с кушитите."
+
+#: simulation/data/civs/kush.jsonAINames[0]
+msgid "Kashta"
+msgstr "Кашта"
+
+#: simulation/data/civs/kush.jsonAINames[1]
+msgid "Alara"
+msgstr "Алара"
+
+#: simulation/data/civs/kush.jsonAINames[2]
+msgid "Pebatjma"
+msgstr "Пебатма"
+
+#: simulation/data/civs/kush.jsonAINames[3]
+msgid "Shabaka"
+msgstr "Шабака"
+
+#: simulation/data/civs/kush.jsonAINames[4]
+msgid "Shebitku"
+msgstr "Шабатака"
+
+#: simulation/data/civs/kush.jsonAINames[5]
+msgid "Qalhata"
+msgstr "Калхата"
+
+#: simulation/data/civs/kush.jsonAINames[6]
+msgid "Takahatenamun"
+msgstr "Такахатамун"
+
+#: simulation/data/civs/kush.jsonAINames[7]
+msgid "Tantamani"
+msgstr "Танутамун"
+
+#: simulation/data/civs/kush.jsonAINames[8]
+msgid "Atlanersa"
+msgstr "Атланерса"
+
+#: simulation/data/civs/kush.jsonAINames[9]
+msgid "Nasalsa"
+msgstr "Насалса"
+
+#: simulation/data/civs/kush.jsonAINames[10]
+msgid "Malewiebamani"
+msgstr "Малевибамани"
+
+#: simulation/data/civs/kush.jsonAINames[11]
+msgid "Harsiotef"
+msgstr "Горсиотеф"
+
+#: simulation/data/civs/kush.jsonAINames[12]
+msgid "Shanakdakhete"
+msgstr "Шанакдахете"
+
+#: simulation/data/civs/kush.jsonAINames[13]
+msgid "Amanishakheto"
+msgstr "Аманишакхето"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+msgid "Monumental Architecture"
+msgstr "Величествена архитектура"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+msgid ""
+"+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
+"Wonders."
+msgstr "+50% жиз. точки и -50% време за строеж на Градски центрове, Храмове, Пирамиди и Чудеса."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
+msgid "Allow to train elite rank healers"
+msgstr "Позволява обучение на елитни лечители"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+msgid "High Priest of Amun"
+msgstr "Висш жрец на Амон"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "Обучение на свещениците от самия Висш жрец – нека Амон го благослови."
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
+msgid "Nastasen"
+msgstr "Настасен"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
+msgid "Arakamani"
+msgstr "Аркамани"
+
+#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
+msgid "Amanirenas"
+msgstr "Аманирений"
+
+#: simulation/data/civs/kush.jsonFactions[0].Name
+msgid "Kushite Africans"
+msgstr "Кушити африканци"
+
+#: simulation/data/civs/kush.jsonFactions[0].Description
+msgid ""
+"The great African kingdom that straddled the Nile River in Nubia, in the "
+"South of Egypt."
+msgstr "Великото Африканско царство, обхванало река Нил в Нубия, юбно от Египет."
+
+#: simulation/data/civs/kush.jsonStructures[0].Name
+msgid "Temple of Amun"
+msgstr "Храмът на Амон"
+
+#: simulation/data/civs/kush.jsonStructures[0].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Amun, which can "
+"train Napatan Temple Guard champions and heal units faster."
+msgstr "Кушитите могат да усъвършенстват отделни Храмове до Храмове на Амон, които пък могат да обучават Елитен напатански храм пазител и лекуват ранените в пъти по-бързо."
+
+#: simulation/data/civs/kush.jsonStructures[0].History
+#: simulation/data/civs/kush.jsonStructures[1].History
+msgid "History."
+msgstr "История."
+
+#: simulation/data/civs/kush.jsonStructures[1].Name
+msgid "Temple of Apedemak"
+msgstr "Храм на Ападемак"
+
+#: simulation/data/civs/kush.jsonStructures[1].Special
+msgid ""
+"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
+"can train Meroe Temple Guard champions and heal units faster."
+msgstr "Кушитите могат да усъвършенстват отделни Храмове до Храмове на Апедемак, които пък могат да обучават Елитен мероески храм пазител и лекуват ранените в пъти по-бързо."
+
+#: simulation/data/civs/kush.jsonStructures[2].Name
+msgid "Kushite Pyramids"
+msgstr "Кушитски пирамиди"
+
+#: simulation/data/civs/kush.jsonStructures[2].Special
+msgid ""
+"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
+"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
+"territory effect to Civic Centers."
+msgstr "Построяването на Малка кушитска пирамида отключва фаза Малко градче. Построяването на Голяма кушитска пирамида отключва фаза Голям град. За всяка построена пирамида се добавя  +10% територия към Градски центрове."
+
+#: simulation/data/civs/kush.jsonStructures[2].History
+msgid "The Kushites built over 200 pyramids in Nubia."
+msgstr "Народът на Кушитите построява над 200 пирамиди в Нубия."
+
+#: simulation/data/civs/kush.jsonHistory
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "Царството Куш бива древно Африканско царство, намиращо се при сливането на Синия Нил, Белия Нил и река Атбара, днес територия на Република Судан. Правилата и епохата на Кушитите в региона произлизат след разпада на Бронзовата епоха и Новото кралство на Египет и в ранни времена е започната край Напата. През 8 век преди христа нападат Египет, докато кушитските императори се провъзгласяват и управляват като Фараони на XXV династия на Египет в продължение на столетие до тяхното отстраняване от Асирийците. Тяхната култура е вдъхновена основно от Египтяните; Кушитите, подобно на Египтяните, строили пирамиди и величествени храмове. Освен това, те богопочитали много Египетски богове, дори самият Амон. Във времето на Класическия период, столицата на империята се намирала при Мерое. Още от ранни гръцки географски данни, Мероитското царство е познато като Етиопия. Царството на Кушитите продължава да съществува до IV век след христа, когато отслабва и се разкъсва поради вътрешни размирици, но всъщност не поддава под набиращата сила на Аксом."
+
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1500,10 +1706,6 @@ msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
 msgstr "Хванете до 5 слона на свобода и ги поставете на гарнизон в слонския обор, за да получите до 25% намаляване на цената и времето за обучаване на слонове."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Elephant Roundup"
-msgstr "Слонска сбирка"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
