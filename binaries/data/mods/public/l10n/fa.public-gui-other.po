@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-09-23 08:51+0000\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-14 05:25+0000\n"
 "Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -96,24 +96,13 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "برگه"
 
-#: gui/common/functions_global_object.js:8
-#, javascript-format
-msgid ""
-"Opening %(url)s\n"
-" in default web browser. Please wait…"
-msgstr "بازکردن %(url)s\nدر مرورگر پیش فرض. لطفا صبر کنید ..."
-
-#: gui/common/functions_global_object.js:11
-msgid "Opening page"
-msgstr "صفحه را باز کنید ."
-
 #. dennis-ignore: *
-#: gui/common/functions_global_object.js:21
+#: gui/common/functions_global_object.js:7
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/functions_global_object.js:90
+#: gui/common/functions_global_object.js:79
 msgid "Loading Aborted"
 msgstr "بارگذاری لغو شد"
 
@@ -121,7 +110,7 @@ msgstr "بارگذاری لغو شد"
 msgid "Gaia"
 msgstr "مادر طبیعت"
 
-#: gui/common/functions_utility.js:105
+#: gui/common/functions_utility.js:102
 msgctxt "map selection"
 msgid "Random"
 msgstr "تصادفی"
@@ -155,15 +144,15 @@ msgstr "حذف"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:261
-#: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
+#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "خیر"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:261
-#: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
+#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "بله"
 
@@ -177,132 +166,132 @@ msgstr "پاک کردن ورودی های انتخاب شده با استفاد�
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "نگهداشتن %(hotkey)s برای پاک کردن بدون تایید"
 
-#: gui/common/gamedescription.js:44
+#: gui/common/gamedescription.js:59
 msgid "A randomly selected map."
 msgstr "یک نقشه تصادفی انتخاب شده"
 
-#: gui/common/gamedescription.js:53 gui/common/gamedescription.js:337
+#: gui/common/gamedescription.js:68 gui/common/gamedescription.js:352
 msgid "Sorry, no description available."
 msgstr "متاسفم . هیچ توضیحی وجود ندارد."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:104
+#: gui/common/gamedescription.js:119
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
 msgstr "%(playerName)s(%(civ)s،%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:107
+#: gui/common/gamedescription.js:122
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 msgstr "%(playerName)s(%(civ)s، %(AIdescription)s، %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:113
+#: gui/common/gamedescription.js:128
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
 msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:116
+#: gui/common/gamedescription.js:131
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
 msgstr "%(playerName)s(%(AIdescription)s، %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:126
+#: gui/common/gamedescription.js:141
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr "%(playerName)s (آفلاین)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:129
+#: gui/common/gamedescription.js:144
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr "%(playerName)s(آفلاین ،%(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:136
+#: gui/common/gamedescription.js:151
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s(%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:139
+#: gui/common/gamedescription.js:154
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr "%(playerName)s(%(civ)s،%(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:143
+#: gui/common/gamedescription.js:158
 #, javascript-format
 msgid "%(playerName)s"
 msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:146
+#: gui/common/gamedescription.js:161
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s(%(state)s)"
 
-#: gui/common/gamedescription.js:166
+#: gui/common/gamedescription.js:181
 msgid "Unknown Civilization"
 msgstr "تمدن ناشناخته"
 
-#: gui/common/gamedescription.js:173
+#: gui/common/gamedescription.js:188
 msgctxt "playerstate"
 msgid "defeated"
 msgstr "شکست داد"
 
-#: gui/common/gamedescription.js:174
+#: gui/common/gamedescription.js:189
 msgctxt "playerstate"
 msgid "won"
 msgstr "برنده شد"
 
-#: gui/common/gamedescription.js:195
+#: gui/common/gamedescription.js:210
 msgid "No Team"
 msgstr "تیمی وجود ندارد"
 
-#: gui/common/gamedescription.js:196
+#: gui/common/gamedescription.js:211
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "تیم %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:199 gui/common/gamedescription.js:206
+#: gui/common/gamedescription.js:214 gui/common/gamedescription.js:221
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:207
+#: gui/common/gamedescription.js:222
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "ناظران"
 msgstr[1] "ناظران"
 
-#: gui/common/gamedescription.js:224
+#: gui/common/gamedescription.js:239
 msgctxt "victory condition"
 msgid "Endless Game"
 msgstr "بازی بی پایان"
 
-#: gui/common/gamedescription.js:225
+#: gui/common/gamedescription.js:240
 msgid "No winner will be determined, even if everyone is defeated."
 msgstr "هیچ برنده ای مشخص نخواهد شد حتی اگر همه شکست بخورند"
 
-#: gui/common/gamedescription.js:236
+#: gui/common/gamedescription.js:251
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -310,7 +299,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "سازه عجایب (%(min)s دقیقه)"
 msgstr[1] "سازه عجایب (%(min)s دقیقه)"
 
-#: gui/common/gamedescription.js:248
+#: gui/common/gamedescription.js:263
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -318,182 +307,182 @@ msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "تسخیر آثار مقدس (%(min)s دقیقه)"
 msgstr[1] "تسخیر آثار مقدس (%(min)s دقیقه)"
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:279
 msgid "Relic Count"
 msgstr "تعداد آثار مقدس"
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:286
 msgid "Hero Garrison"
 msgstr "قهرمان مستقر"
 
-#: gui/common/gamedescription.js:272
+#: gui/common/gamedescription.js:287
 msgid "Heroes can be garrisoned."
 msgstr "قهرمان ها قادر به مستقر شدن هستند"
 
-#: gui/common/gamedescription.js:276
+#: gui/common/gamedescription.js:291
 msgid "Exposed Heroes"
 msgstr "قهرمان های در معرض خطر"
 
-#: gui/common/gamedescription.js:277
+#: gui/common/gamedescription.js:292
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "قهرمان ها قادر به مستقر شدن نیستند و آنها در برابر تهاجم ها آسیب پذیر هستند"
 
-#: gui/common/gamedescription.js:284
+#: gui/common/gamedescription.js:299
 msgid "Rated game"
 msgstr "بازی رتبه بندی"
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:300
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "زمانی که برنده بازی مشخص شد، امتیاز لابی درست خواهد شد"
 
-#: gui/common/gamedescription.js:290
+#: gui/common/gamedescription.js:305
 msgid "Locked Teams"
 msgstr "تیم های قفل شده"
 
-#: gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:306
 msgid "Players can't change the initial teams."
 msgstr "بازیکن ها نمی توانند تیم های اولیه خود را تغییر دهند"
 
-#: gui/common/gamedescription.js:295
+#: gui/common/gamedescription.js:310
 msgid "Diplomacy"
 msgstr "دیپلوماسی"
 
-#: gui/common/gamedescription.js:296
+#: gui/common/gamedescription.js:311
 msgid "Players can make alliances and declare war on allies."
 msgstr "بازیکن ها می توانند هم پیمان های جدید ایجاد کنند و به هم پیمان های خود اعلام جنگ کنند"
 
-#: gui/common/gamedescription.js:301
+#: gui/common/gamedescription.js:316
 msgid "Last Man Standing"
 msgstr "تنها بازمانده "
 
-#: gui/common/gamedescription.js:302
+#: gui/common/gamedescription.js:317
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "تنها یک بازیکن می تواند برنده بازی باشد. اگر بازیکن های باقی مانده با هم متحد هستند، بازی ادامه پیدا می کند تا زمانی که فقط یک بازیکن باقی بماند"
 
-#: gui/common/gamedescription.js:306
+#: gui/common/gamedescription.js:321
 msgid "Allied Victory"
 msgstr "پیروزی متحدان"
 
-#: gui/common/gamedescription.js:307
+#: gui/common/gamedescription.js:322
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "اگر یک بازیکن برنده شود، همپیمان های او نیز برنده می شوند. اگر یک بازیکن از گروهی متحد باقی ماند آنها برنده می شوند"
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:326
 msgid "Ceasefire"
 msgstr "آتش بس"
 
-#: gui/common/gamedescription.js:314 gui/pregame/mainmenu.js:95
+#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
 msgid "disabled"
 msgstr "غیرفعال"
 
-#: gui/common/gamedescription.js:315
+#: gui/common/gamedescription.js:330
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "برای دقیقه نخست، سایر بازیکن ها بی طرف خواهند ماند"
 msgstr[1] " برای %(min)s دقیقه نخست، سایر بازیکن ها بی طرف باقی خواهند ماند"
 
-#: gui/common/gamedescription.js:324
+#: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "نقشه تصادفی"
 
-#: gui/common/gamedescription.js:325
+#: gui/common/gamedescription.js:340
 msgid "Randomly select a map from the list."
 msgstr "انتخاب نقشه بصورت تصادفی از لیست"
 
-#: gui/common/gamedescription.js:330
+#: gui/common/gamedescription.js:345
 msgid "Map Name"
 msgstr "نام نقشه"
 
-#: gui/common/gamedescription.js:334
+#: gui/common/gamedescription.js:349
 msgid "Map Description"
 msgstr "توضیحات نقشه"
 
-#: gui/common/gamedescription.js:342
+#: gui/common/gamedescription.js:357
 msgid "Map Type"
 msgstr "نوع نقشه"
 
-#: gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:363
 msgid "Map Filter"
 msgstr "فیلتر نقشه"
 
-#: gui/common/gamedescription.js:357
+#: gui/common/gamedescription.js:372
 msgid "Map Size"
 msgstr "اندازه نقشه"
 
-#: gui/common/gamedescription.js:366
+#: gui/common/gamedescription.js:381
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "زیست بوم تصادفی"
 
-#: gui/common/gamedescription.js:367
+#: gui/common/gamedescription.js:382
 msgid "Randomly select a biome from the list."
 msgstr " انتخاب یک زیست بوم بصورت تصادفی از لیست"
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
 msgstr "مد عشایر"
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:396
 msgid "Civic Centers"
 msgstr "مراکز تمدن"
 
-#: gui/common/gamedescription.js:384
+#: gui/common/gamedescription.js:399
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "بازیکن ها بازی را با چند کارگر آغاز می کنند و باید مکان مناسبی برای ساخت شهر خود پیدا کنند و آنرا بسازند"
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
 msgstr "بازیکن ها بازی را با یک مرکز تمدن آغاز می کنند"
 
-#: gui/common/gamedescription.js:389
+#: gui/common/gamedescription.js:404
 msgid "Starting Resources"
 msgstr "منابع در آغاز"
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:405
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s(%(amount)s)"
 
-#: gui/common/gamedescription.js:400
+#: gui/common/gamedescription.js:415
 msgid "Population Limit"
 msgstr "سقف جمعیت"
 
-#: gui/common/gamedescription.js:408
+#: gui/common/gamedescription.js:423
 msgid "Treasures"
 msgstr "گنجینه ها"
 
-#: gui/common/gamedescription.js:410
+#: gui/common/gamedescription.js:425
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "غیرفعال"
 
-#: gui/common/gamedescription.js:411
+#: gui/common/gamedescription.js:426
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "همانظور که در نقشه تعریف شده است"
 
-#: gui/common/gamedescription.js:415
+#: gui/common/gamedescription.js:430
 msgid "Revealed Map"
 msgstr "نقشه آشکار شده"
 
-#: gui/common/gamedescription.js:420
+#: gui/common/gamedescription.js:435
 msgid "Explored Map"
 msgstr "نقشه کشف شده"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:440
 msgid "Cheats"
 msgstr "تقلب ها"
 
-#: gui/common/gamedescription.js:429 gui/common/tooltips.js:164
+#: gui/common/gamedescription.js:444 gui/common/tooltips.js:164
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:260
 #: gui/common/tooltips.js:395 gui/common/tooltips.js:417
 #: gui/common/tooltips.js:501 gui/common/tooltips.js:522
@@ -502,25 +491,25 @@ msgstr "تقلب ها"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:447
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "فعال شده"
 
-#: gui/common/gamedescription.js:433
+#: gui/common/gamedescription.js:448
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "غیر فعال"
 
-#: gui/common/gamedescription.js:449
+#: gui/common/gamedescription.js:464
 msgid "Victorious"
 msgstr "پیروزی"
 
-#: gui/common/gamedescription.js:454
+#: gui/common/gamedescription.js:469
 msgid "Defeated"
 msgstr "شکست"
 
-#: gui/common/gamedescription.js:463
+#: gui/common/gamedescription.js:478
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s%(AIbehavior)s%(AIname)s"
@@ -1244,7 +1233,7 @@ msgstr "بعضی از مقادیر تنظیمات نامعتبر است! آیا 
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "شما تغییرات ذخیره نشده دارید، آیا میخواهید این پنجره بسته شود"
 
-#: gui/pregame/mainmenu.js:42
+#: gui/pregame/mainmenu.js:41
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
@@ -1255,54 +1244,14 @@ msgstr "%(hotkey)s: دیدن ساختار درختی امکانات و قابل�
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: یادگرفتن در مورد قابلیت های تمدن ها در 0 A.D"
 
-#: gui/pregame/mainmenu.js:48
+#: gui/pregame/mainmenu.js:49
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s: راه اندازی لابی چندنفره برای ورود ، چت کردن و بازی کردن با سایر بازیکن ها"
 
-#: gui/pregame/mainmenu.js:98
-msgid "connecting to server"
-msgstr "اتصال به سرور"
-
-#: gui/pregame/mainmenu.js:101
-#, javascript-format
-msgid "uploading (%f%%)"
-msgstr "در حال بارگذاری (%f%%)"
-
-#: gui/pregame/mainmenu.js:107
-msgid "upload succeeded"
-msgstr "بارگذاری موفقیت آمیز بود"
-
-#: gui/pregame/mainmenu.js:108
-#, javascript-format
-msgid "upload failed (%(errorCode)s)"
-msgstr "بارگذاری با خطا روبرو شد (%(errorCode)s)"
-
-#: gui/pregame/mainmenu.js:112
-#, javascript-format
-msgid "upload failed (%(errorMessage)s)"
-msgstr "بارگذاری با خطا روبرو شد (%(errorMessage)s)"
-
-#: gui/pregame/mainmenu.js:114
-msgid "unknown"
-msgstr "ناشناخته"
-
-#: gui/pregame/mainmenu.js:129
-msgid "Thank you for helping improve 0 A.D.!"
-msgstr "از شما متشکریم که به بهتر شدن 0 A.D. کمک می کنید!"
-
-#: gui/pregame/mainmenu.js:130
-msgid "Anonymous feedback is currently enabled."
-msgstr "بازخورد فعال است."
-
-#: gui/pregame/mainmenu.js:131
-#, javascript-format
-msgid "Status: %(status)s."
-msgstr "وضعیت: %(status)s"
-
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:113
 #, javascript-format
 msgid ""
 "%(warning)s You appear to be using non-shader (fixed function) graphics. "
@@ -1315,63 +1264,131 @@ msgstr "%(warning)s شما ظاهرا گرافیک های که Non-shader هست
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:121
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "برای اطلاعات بیشتر بر روی \"بیشتر\" کلیک کرده و برای ادامه بر روی \"باشه\" کلیک کنید."
 
-#: gui/pregame/mainmenu.js:164
+#: gui/pregame/mainmenu.js:122
 msgid "WARNING!"
 msgstr "هشدار!"
 
-#: gui/pregame/mainmenu.js:165 gui/splashscreen/splashscreen.xml:(caption):29
+#: gui/pregame/mainmenu.js:123 gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
 msgstr "باشه"
 
-#: gui/pregame/mainmenu.js:165
+#: gui/pregame/mainmenu.js:123
 msgid "Read More"
 msgstr "بیشتر"
 
-#: gui/pregame/mainmenu.js:247
+#: gui/pregame/mainmenu.js:198
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "نسخه ساخت: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:259
+#: gui/pregame/mainmenu.js:210
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "آیا مطمئن هستید که می‌خواهید از 0 A.D. خارج شوید؟"
 
-#: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
+#: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
 msgid "Confirmation"
 msgstr "تایید"
 
-#: gui/pregame/mainmenu.js:273
+#: gui/pregame/mainmenu.js:224
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "آیا مطمئن هستیت که میخواهید از بازی 0 A.D خارج شوید. و نرم افزار سناریو ادیتور را راه اندازی کنید؟"
 
-#: gui/pregame/mainmenu.js:281
+#: gui/pregame/mainmenu.js:232
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "سناریو ادیتور در دسترس نیست و یا در بارگذاری با خطا روبرو شده است. برای اطلاعات بیشتر لاگ بازی را ملاحظه کنید"
 
-#: gui/pregame/mainmenu.js:282 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/mainmenu.js:233 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "خطا"
 
-#: gui/pregame/mainmenu.js:288
+#: gui/pregame/mainmenu.js:239
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr "راه اندازی لابی بازی چندنفره برای ساخت بازی و چت با سایر بازیکن ها. [DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
-#: gui/pregame/mainmenu.xml:(caption):95
-msgid "Technical Details"
-msgstr "جزیات فنی"
-
-#: gui/pregame/mainmenu.js:298 gui/pregame/mainmenu.xml:(caption):146
+#: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
 msgstr "کتاب راهنما"
+
+#: gui/pregame/userreport/userreport.js:3
+msgctxt "UserReporter Terms and Conditions"
+msgid "Terms"
+msgstr "مقررات"
+
+#: gui/pregame/userreport/userreport.js:4
+msgid "Please read and accept the UserReporter Terms and Conditions."
+msgstr ""
+
+#: gui/pregame/userreport/userreport.js:17
+msgid "Publications"
+msgstr ""
+
+#: gui/pregame/userreport/userreport.js:26
+#: gui/pregame/userreport/userreport.js:27
+#: gui/pregame/userreport/userreport.js:28
+msgid "connecting to server"
+msgstr "اتصال به سرور"
+
+#: gui/pregame/userreport/userreport.js:29
+#, javascript-format
+msgid "uploading (%f%%)"
+msgstr "در حال بارگذاری (%f%%)"
+
+#: gui/pregame/userreport/userreport.js:32
+msgid "upload succeeded"
+msgstr "بارگذاری موفقیت آمیز بود"
+
+#: gui/pregame/userreport/userreport.js:33
+#, javascript-format
+msgid "upload failed (%(errorCode)s)"
+msgstr "بارگذاری با خطا روبرو شد (%(errorCode)s)"
+
+#: gui/pregame/userreport/userreport.js:36
+#, javascript-format
+msgid "upload failed (%(errorMessage)s)"
+msgstr "بارگذاری با خطا روبرو شد (%(errorMessage)s)"
+
+#: gui/pregame/userreport/userreport.js:60
+msgid "Disable Feedback"
+msgstr "غیر فعال کردن بازخورد"
+
+#: gui/pregame/userreport/userreport.js:60
+msgid "Enable Feedback"
+msgstr "فعال کردن بازخورد"
+
+#: gui/pregame/userreport/userreport.js:80
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr "از شما متشکریم که به بهتر شدن 0 A.D. کمک می کنید!"
+
+#: gui/pregame/userreport/userreport.js:81
+msgid "Feedback is currently enabled."
+msgstr ""
+
+#: gui/pregame/userreport/userreport.js:82
+#, javascript-format
+msgid "Status: %(status)s."
+msgstr "وضعیت: %(status)s"
+
+#: gui/pregame/userreport/userreport.js:83
+msgid "unknown"
+msgstr "ناشناخته"
+
+#: gui/pregame/userreport/userreport.js:85
+msgid "Help improve 0 A.D.!"
+msgstr "به بهبود 0 A.D. کمک کنید! "
+
+#: gui/pregame/userreport/userreport.js:86
+msgid ""
+"You can automatically send us feedback that can help us fix bugs, and "
+"improve performance and compatibility."
+msgstr ""
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1541,11 +1558,11 @@ msgstr "%(min)s - %(max)s حداقل"
 msgid "Single- and multiplayer"
 msgstr "تکنفره و چند نفره"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):481
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):424
 msgid "Single Player"
 msgstr "تکنفره"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):496
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):439
 msgid "Multiplayer"
 msgstr "چند نفره"
 
@@ -1902,7 +1919,7 @@ msgid "Civilization Selection"
 msgstr "انتخاب تمدن"
 
 #: gui/civinfo/civinfo.xml:(caption):125
-#: gui/pregame/mainmenu.xml:(caption):181
+#: gui/pregame/mainmenu.xml:(caption):124
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
 msgstr "ساختار درختی"
@@ -1918,7 +1935,7 @@ msgstr "بستن"
 msgid "0 A.D. Credits"
 msgstr "عوامل تولید 0 A.D"
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):382
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
 msgstr "زبان"
 
@@ -1978,233 +1995,215 @@ msgstr "ذخیره کردن تغییرات"
 msgid "Unsaved changes affect this session only"
 msgstr "تغییرات ذخیره نشده تنها در این Session اعمال می شود"
 
-#: gui/pregame/mainmenu.xml:58
-msgid "Help improve 0 A.D.!"
-msgstr "به بهبود 0 A.D. کمک کنید! "
-
-#: gui/pregame/mainmenu.xml:60
-msgid ""
-"You can automatically send us anonymous feedback that will help us fix bugs,"
-" and improve performance and compatibility."
-msgstr "شما می توانید به طور کاملا ناشناس و به طور خودکار ایرادات بازی را برای ما بفرستید تا توسعه دهندگان بتوانند مشکلات را رفع کنند."
-
-#: gui/pregame/mainmenu.xml:562
+#: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIII: Ken Wood"
 msgstr "الفا XXIII: کن وود"
 
-#: gui/pregame/mainmenu.xml:564
+#: gui/pregame/mainmenu.xml:507
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "توجه: این برنامه یک نسخه ی اولیه است و بسیاری از قابلیت ها هنوز در بازی وجود ندارند."
 
-#: gui/pregame/mainmenu.xml:(caption):64
-msgid "Enable Feedback"
-msgstr "فعال کردن بازخورد"
-
-#: gui/pregame/mainmenu.xml:(caption):91
-msgid "Disable Feedback"
-msgstr "غیر فعال کردن بازخورد"
-
-#: gui/pregame/mainmenu.xml:(caption):165
-msgid "Tutorial"
-msgstr "آموزش"
-
-#: gui/pregame/mainmenu.xml:(caption):197
-#: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
-msgstr "تاریخ"
-
-#: gui/pregame/mainmenu.xml:(caption):219
-msgid "Matches"
-msgstr "مسابقات"
-
-#: gui/pregame/mainmenu.xml:(caption):233
-msgid "Campaigns"
-msgstr "مراحل"
-
-#: gui/pregame/mainmenu.xml:(caption):246
-msgid "Load Game"
-msgstr "بارگذاری بازی"
-
-#: gui/pregame/mainmenu.xml:(caption):260
-#: gui/pregame/mainmenu.xml:(caption):340
-msgid "Replays"
-msgstr "ریپلی ها"
-
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):288
-msgid "Join Game"
-msgstr "ورود به بازی"
-
-#: gui/pregame/mainmenu.xml:(caption):302
-msgid "Host Game"
-msgstr "میزبانی بازی"
-
-#: gui/pregame/mainmenu.xml:(caption):318
-msgid "Game Lobby"
-msgstr "لابی بازی"
-
-#: gui/pregame/mainmenu.xml:(caption):368
-msgid "Options"
-msgstr "تنظیمات"
-
-#: gui/pregame/mainmenu.xml:(caption):396
-msgid "Mod Selection"
-msgstr "انتخاد مد"
-
-#: gui/pregame/mainmenu.xml:(caption):408
-msgid "Welcome Screen"
-msgstr "صفحه خوش آمدید"
-
-#: gui/pregame/mainmenu.xml:(caption):466
-msgid "Learn to Play"
-msgstr "یاد گیری بازی"
-
-#: gui/pregame/mainmenu.xml:(caption):511
-msgid "Settings"
-msgstr "تنظیمات"
-
-#: gui/pregame/mainmenu.xml:(caption):526
-msgid "Scenario Editor"
-msgstr "ویرایشگر سناریو"
-
-#: gui/pregame/mainmenu.xml:(caption):540
-msgid "Exit"
-msgstr "خروج"
-
-#: gui/pregame/mainmenu.xml:(caption):574
-msgid "Website"
-msgstr "وبسایت"
-
-#: gui/pregame/mainmenu.xml:(caption):586
-msgid "Chat"
-msgstr "گفتگو"
-
-#: gui/pregame/mainmenu.xml:(caption):598
-msgid "Report a Bug"
-msgstr "گزارش یک اشکال"
-
-#: gui/pregame/mainmenu.xml:(caption):610
-msgid "Translate the Game"
-msgstr "ترجمه بازی"
-
-#: gui/pregame/mainmenu.xml:(caption):622
-msgid "Donate"
-msgstr "کمک مالی"
-
-#: gui/pregame/mainmenu.xml:(caption):634
-msgid "Credits"
-msgstr "عوامل تولید"
-
-#: gui/pregame/mainmenu.xml:(caption):663
-msgid "WILDFIRE GAMES"
-msgstr "WILDFIRE GAMES"
-
-#: gui/pregame/mainmenu.xml:(tooltip):147
+#: gui/pregame/mainmenu.xml:(tooltip):90
 msgid "Open the 0 A.D. Game Manual."
 msgstr "باز کردن کتاب راهنمای 0 A.D"
 
-#: gui/pregame/mainmenu.xml:(tooltip):166
+#: gui/pregame/mainmenu.xml:(tooltip):109
 msgid "Start the economic tutorial."
 msgstr "آغاز آموزش اقتصادی"
 
-#: gui/pregame/mainmenu.xml:(tooltip):220
+#: gui/pregame/mainmenu.xml:(tooltip):163
 msgid "Click here to start a new single player game."
 msgstr "برای شروع یک بازی تکنفره کلیک کنید."
 
-#: gui/pregame/mainmenu.xml:(tooltip):234
+#: gui/pregame/mainmenu.xml:(tooltip):177
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "زنده نگهداشتن تاریخ از طریق عملیات های جنگی تاریخی. [NOT YET IMPLEMENTED]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):247
+#: gui/pregame/mainmenu.xml:(tooltip):190
 msgid "Click here to load a saved game."
 msgstr "برای بازیابی یک بازی تک نفره کلیک کنید"
 
-#: gui/pregame/mainmenu.xml:(tooltip):261
-#: gui/pregame/mainmenu.xml:(tooltip):341
+#: gui/pregame/mainmenu.xml:(tooltip):204
+#: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Playback previous games."
 msgstr "پخش بازی قبل"
 
-#: gui/pregame/mainmenu.xml:(tooltip):289
+#: gui/pregame/mainmenu.xml:(tooltip):232
 msgid "Joining an existing multiplayer game."
 msgstr "پیوستن به یک بازی چند نفره"
 
-#: gui/pregame/mainmenu.xml:(tooltip):303
+#: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "میزبان یک بازی چند نفره شوید. \\n\\n پورت های UPD 20595 باید باز باشند."
 
-#: gui/pregame/mainmenu.xml:(tooltip):369
+#: gui/pregame/mainmenu.xml:(tooltip):312
 msgid "Adjust game settings."
 msgstr "تغییر تنظیمات بازی"
 
-#: gui/pregame/mainmenu.xml:(tooltip):383
+#: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Choose the language of the game."
 msgstr "زبان بازی را انتخاب کنید."
 
-#: gui/pregame/mainmenu.xml:(tooltip):397
+#: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Select and download mods for the game."
 msgstr "انتخاب و دانلود مد ها برای بازی"
 
-#: gui/pregame/mainmenu.xml:(tooltip):409
+#: gui/pregame/mainmenu.xml:(tooltip):352
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "نشان دادن صفحه خوش آمدید. مفید است اگر شما به اشتباه آنرا مخفی کنید"
 
-#: gui/pregame/mainmenu.xml:(tooltip):467
+#: gui/pregame/mainmenu.xml:(tooltip):410
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "یادگیری نحوه بازی کردن، آموزش را آغاز کنید، درخت فناوری ها را مشاهده کنید و تاریخچه پشت سر هر تمدن را مطالعه کنید"
 
-#: gui/pregame/mainmenu.xml:(tooltip):482
+#: gui/pregame/mainmenu.xml:(tooltip):425
 msgid "Challenge the computer player to a single player match."
 msgstr "بازی تک نفره علیه کامپیوتر"
 
-#: gui/pregame/mainmenu.xml:(tooltip):497
+#: gui/pregame/mainmenu.xml:(tooltip):440
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "با یک یا چند بازیکن در بازی چند نفره مبارزه کنید."
 
-#: gui/pregame/mainmenu.xml:(tooltip):512
+#: gui/pregame/mainmenu.xml:(tooltip):455
 msgid "Game options and mod selection."
 msgstr "تنظیمات بازی و انتخاب mode"
 
-#: gui/pregame/mainmenu.xml:(tooltip):527
+#: gui/pregame/mainmenu.xml:(tooltip):470
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "باز کردن ویرایشگر سناریو در پنجره ای جدید. با اجرای بازی همراه با آرگومان \"-editor\" در کامند لاین، از این قابلیت به روشی قابل اطمینان تر استفاده کنید."
 
-#: gui/pregame/mainmenu.xml:(tooltip):541
+#: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Exits the game."
 msgstr "خارج شدن از بازی"
 
-#: gui/pregame/mainmenu.xml:(tooltip):575
+#: gui/pregame/mainmenu.xml:(tooltip):518
 msgid "Click to open play0ad.com in your web browser."
 msgstr "برای بازکردن play0ad.com در مرورگر خود، کلیک کنید."
 
-#: gui/pregame/mainmenu.xml:(tooltip):587
+#: gui/pregame/mainmenu.xml:(tooltip):530
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "برای بازکردن صفحه گفتگو IRC بازی 0 A.D. کلیک کنید.(#0ad on webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):599
+#: gui/pregame/mainmenu.xml:(tooltip):542
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "کلیک کردن برای سر زدن به تراک 0 A.D جهت گزارش باگ، خرابی و یا خطا"
 
-#: gui/pregame/mainmenu.xml:(tooltip):611
+#: gui/pregame/mainmenu.xml:(tooltip):554
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "کلیک برای باز کردن صفحه ترجمه بازی 0 A.D در مرورگر شما"
 
-#: gui/pregame/mainmenu.xml:(tooltip):623
+#: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
 msgstr "کمک به هزینه های پروژه از طریق هدیه دادن"
 
-#: gui/pregame/mainmenu.xml:(tooltip):635
+#: gui/pregame/mainmenu.xml:(tooltip):578
 msgid "Click to see the 0 A.D. credits."
 msgstr "کلیک برای دیدن عوامل تولید بازی 0 A.D"
+
+#: gui/pregame/mainmenu.xml:(caption):108
+msgid "Tutorial"
+msgstr "آموزش"
+
+#: gui/pregame/mainmenu.xml:(caption):140
+#: gui/reference/structree/structree.xml:(caption):126
+msgid "History"
+msgstr "تاریخ"
+
+#: gui/pregame/mainmenu.xml:(caption):162
+msgid "Matches"
+msgstr "مسابقات"
+
+#: gui/pregame/mainmenu.xml:(caption):176
+msgid "Campaigns"
+msgstr "مراحل"
+
+#: gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "بارگذاری بازی"
+
+#: gui/pregame/mainmenu.xml:(caption):203
+#: gui/pregame/mainmenu.xml:(caption):283
+msgid "Replays"
+msgstr "ریپلی ها"
+
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):231
+msgid "Join Game"
+msgstr "ورود به بازی"
+
+#: gui/pregame/mainmenu.xml:(caption):245
+msgid "Host Game"
+msgstr "میزبانی بازی"
+
+#: gui/pregame/mainmenu.xml:(caption):261
+msgid "Game Lobby"
+msgstr "لابی بازی"
+
+#: gui/pregame/mainmenu.xml:(caption):311
+msgid "Options"
+msgstr "تنظیمات"
+
+#: gui/pregame/mainmenu.xml:(caption):339
+msgid "Mod Selection"
+msgstr "انتخاد مد"
+
+#: gui/pregame/mainmenu.xml:(caption):351
+msgid "Welcome Screen"
+msgstr "صفحه خوش آمدید"
+
+#: gui/pregame/mainmenu.xml:(caption):409
+msgid "Learn to Play"
+msgstr "یاد گیری بازی"
+
+#: gui/pregame/mainmenu.xml:(caption):454
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: gui/pregame/mainmenu.xml:(caption):469
+msgid "Scenario Editor"
+msgstr "ویرایشگر سناریو"
+
+#: gui/pregame/mainmenu.xml:(caption):483
+msgid "Exit"
+msgstr "خروج"
+
+#: gui/pregame/mainmenu.xml:(caption):517
+msgid "Website"
+msgstr "وبسایت"
+
+#: gui/pregame/mainmenu.xml:(caption):529
+msgid "Chat"
+msgstr "گفتگو"
+
+#: gui/pregame/mainmenu.xml:(caption):541
+msgid "Report a Bug"
+msgstr "گزارش یک اشکال"
+
+#: gui/pregame/mainmenu.xml:(caption):553
+msgid "Translate the Game"
+msgstr "ترجمه بازی"
+
+#: gui/pregame/mainmenu.xml:(caption):565
+msgid "Donate"
+msgstr "کمک مالی"
+
+#: gui/pregame/mainmenu.xml:(caption):577
+msgid "Credits"
+msgstr "عوامل تولید"
+
+#: gui/pregame/mainmenu.xml:(caption):606
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
 
 #: gui/reference/structree/structree.xml:(caption):31
 msgid "Civilization:"

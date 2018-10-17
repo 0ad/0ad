@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
@@ -12,15 +12,26 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-06-29 00:03+0000\n"
-"Last-Translator: Nagy András <asd0707@freemail.hu>\n"
+"POT-Creation-Date: 2018-10-13 18:19+0200\n"
+"PO-Revision-Date: 2018-10-14 02:40+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/common/functions_msgbox.js:57
+#, javascript-format
+msgid ""
+"Opening %(url)s\n"
+" in default web browser. Please wait…"
+msgstr "%(url)s megnyitása\naz alapértelmezett böngészőben, várj…"
+
+#: gui/common/functions_msgbox.js:60
+msgid "Opening page"
+msgstr "Nyitólap"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
@@ -158,8 +169,7 @@ msgstr "A mod.io felület előkészítése."
 msgid "Initializing"
 msgstr "Előkészítés"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.js:313
-#: gui/modmod/modmod.xml:(caption):184
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -215,44 +225,43 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/s"
 
-#: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
+#: gui/modmod/modmod.js:102 gui/modmod/modmod.js:233
 msgid "Filter"
 msgstr "Szűrő"
 
-#: gui/modmod/modmod.js:285
+#: gui/modmod/modmod.js:286
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "Nem teljesülő függőség: %(dep)s"
 
-#: gui/modmod/modmod.js:291
+#: gui/modmod/modmod.js:292
 msgid "All dependencies met"
 msgstr "Minden függőség kielégítve"
 
-#: gui/modmod/modmod.js:311
-msgid ""
-"You are about to connect to the mod.io online service. This provides easy access to community-made mods, but is not under the control of Wildfire Games.\n"
-"\n"
-"While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
-"\n"
-"Do you really want to connect?"
-msgstr "A mod.io online szolgáltatáshoz való csatlakozás előtt állsz. Ez gyors hozzáférést tesz lehetővé a közösség által készített modok, de nem áll a Wildfire Games irányítása alatt.\n\nMiközben nagy gondot fordítunk a biztonság megteremtésére, abszolút bizonyossággal nem garantálhatjuk, hogy ez nem jelent biztonsági kockázatot.\n\nValóban szeretnél kapcsolódni?"
-
-#: gui/modmod/modmod.js:312
-msgid "Connect to mod.io?"
-msgstr "Kapcsolódás a mod.io-hoz?"
-
-#: gui/modmod/modmod.js:313
-msgctxt "mod.io connection message box"
-msgid "Connect"
-msgstr "Kapcsolódás"
-
-#: gui/modmod/modmod.js:396
+#: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "Nincs kijelölt módosítás."
+
+#: gui/modmod/modmodio.js:5
+msgid "Disclaimer"
+msgstr ""
+
+#: gui/modmod/modmodio.js:12
+msgid "mod.io Terms"
+msgstr ""
+
+#: gui/modmod/modmodio.js:16
+msgid "mod.io Privacy Policy"
+msgstr ""
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
 msgstr "OK"
+
+#: gui/termsdialog/termsdialog.js:23
+#, javascript-format
+msgid "Open %(url)s in the browser."
+msgstr ""
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -371,6 +380,55 @@ msgstr "Modolási útmutató"
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
 msgstr "mod.io felkeresése"
+
+#: gui/termsdialog/termsdialog.xml:(caption):15
+msgid "Language"
+msgstr "Nyelv"
+
+#: gui/termsdialog/termsdialog.xml:(caption):33
+msgid "Decline"
+msgstr ""
+
+#: gui/termsdialog/termsdialog.xml:(caption):38
+msgid "Accept"
+msgstr "Elfogadás"
+
+#: gui/modio/Disclaimer.txt:1
+msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:3
+msgid "Document Date: 2018-10-12"
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:5
+msgid "You are about to connect to the mod.io online service."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:6
+msgid ""
+"This service provides an easy way to download and install community-made "
+"mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
+"ModDB."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:7
+msgid "The service is for users age 13 and over."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:9
+msgid ""
+"Wildfire Games has taken care to make this connection secure and reviewed "
+"the mods for security flaws, but cannot guarantee that this does not pose "
+"any risks."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:11
+msgid ""
+"By using the service, you understand that mod.io's Terms of Use and Privacy "
+"Policy apply and that Wildfire Games is not liable for any damages resulting"
+" from this service."
+msgstr ""
 
 #: gui/modmod/help/help.txt:1
 msgid ""

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-11 09:02+0200\n"
-"PO-Revision-Date: 2018-05-18 15:24+0000\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-14 03:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -683,56 +683,3 @@ msgstr "[font=\"sans-14\"]Delete: zbriši označeno shranjeno igro, zahteva potr
 #: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: ne zahtevaj potrditve pred brisanjem shranjene igre"
-
-#: gui/manual/userreport.txt:1
-msgid ""
-"As a free, open source game, we don't have the resources to test on a wide "
-"range of systems, but we want to provide the best quality experience to as "
-"many players as possible. When you enable automatic feedback, we'll receive "
-"data to help us understand the hardware we should focus on supporting, and "
-"to identify performance problems we should fix."
-msgstr "Ker gre za brezplačno odprtokodno igro, igre nimamo možnosti testirani na velikem številu različnih sistemov, se pa trudimo zagotavljati najboljšo uporabniško izkušnjo za največje možno število igralcev. Če omogočiš samodejno pošiljanje povratnih informacij, nam lahko pomagaš razumeti strojno opremo, na podporo katere se moramo osredotočiti, ter odkrivati težave z zmogljivostjo igre, ki jih moramo odpraviti."
-
-#: gui/manual/userreport.txt:3
-msgid "The following data will be sent to our server:"
-msgstr "Na naš strežnik bodo posredovani sledeči podatki:"
-
-#: gui/manual/userreport.txt:5
-msgid ""
-"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
-"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
-"reports from the same user."
-msgstr ""
-
-#: gui/manual/userreport.txt:6
-msgid ""
-"• Game version number and basic build settings (optimisation mode, CPU "
-"architecture, timestamp, compiler version)."
-msgstr "Različica igre in osnovne nastavitve izgradnje programa (način optimizacije, arhitektura procesorja, časovni žig, različica prevajalnika)."
-
-#: gui/manual/userreport.txt:7
-msgid ""
-"• Hardware details: OS version, graphics driver version, OpenGL "
-"capabilities, screen size, CPU details, RAM size."
-msgstr "Podrobnosti o strojni opremi: različica operacijskega sistema, različica grafičnega gonilnika, podatki o vmesniku OpenGL, velikost zaslona, podrobnosti procesorja, velikost pomnilnika. "
-
-#: gui/manual/userreport.txt:8
-msgid ""
-"• Performance details: a snapshot of timing data a few seconds after you "
-"start a match or change graphics settings."
-msgstr "Podrobnosti o zmogljivosti: posnetek časovnih podatkov nekaj sekund po začetku igre ali spremembi grafičnih nastavitev."
-
-#: gui/manual/userreport.txt:10
-msgid ""
-"The data will only be a few kilobytes each time you run the game, so "
-"bandwidth usage is minimal."
-msgstr "Količina podatkov bo samo nekaj kilobajtov ob vsakem začetku igre, zato bo poraba pasovne širine minimalna."
-
-#: gui/manual/userreport.txt:12
-msgid ""
-"We will store the submitted data on our server, and may publish statistics "
-"or non-user-identifiable details to help other game developers with similar "
-"questions. We will store the IP address that submitted the data, to help "
-"detect abuse of the service, but will not publish it. The published data can"
-" be seen at http://feedback.wildfiregames.com/"
-msgstr "Posredovane podatke bomo hranili na našem strežniku. Podrobnosti, na podlagi katerih ni mogoče prepoznati konkretnega uporabnika, bomo morda tudi objavili, da lahko te pomagajo razvijalcem s podobnimi vprašanji. Shranili bomo tudi IP-naslov pošiljatelja podatkov, kar nam bo pomagalo odkriti zlorabo storitev, a tega naslova ne bomo objavili. Objavljeni podatki so na voljo na naslovu http://feedback.wildfiregames.com/."

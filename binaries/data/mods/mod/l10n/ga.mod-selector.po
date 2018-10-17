@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-06-09 05:07+0000\n"
+"POT-Creation-Date: 2018-10-13 18:19+0200\n"
+"PO-Revision-Date: 2018-10-17 19:32+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ga\n"
 "Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+
+#: gui/common/functions_msgbox.js:57
+#, javascript-format
+msgid ""
+"Opening %(url)s\n"
+" in default web browser. Please wait…"
+msgstr "%(url)s ag oscailt\n i mbrabhsálaí gréasáin réamhshocraithe. Fán le do thoil..."
+
+#: gui/common/functions_msgbox.js:60
+msgid "Opening page"
+msgstr "Leathanach Oscailte"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
@@ -156,8 +167,7 @@ msgstr "Túsaigh comhéadan mod.io."
 msgid "Initializing"
 msgstr "Ag túsú"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.js:313
-#: gui/modmod/modmod.xml:(caption):184
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
 msgid "Cancel"
 msgstr "Cealaigh"
 
@@ -213,48 +223,47 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/s"
 
-#: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
+#: gui/modmod/modmod.js:102 gui/modmod/modmod.js:233
 msgid "Filter"
 msgstr "Scagaire"
 
-#: gui/modmod/modmod.js:285
+#: gui/modmod/modmod.js:286
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "Níor casadh leis an spleáchas: %(dep)s"
 
-#: gui/modmod/modmod.js:291
+#: gui/modmod/modmod.js:292
 msgid "All dependencies met"
 msgstr "Bhuail gach spleáchríocha"
 
-#: gui/modmod/modmod.js:311
-msgid ""
-"You are about to connect to the mod.io online service. This provides easy access to community-made mods, but is not under the control of Wildfire Games.\n"
-"\n"
-"While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
-"\n"
-"Do you really want to connect?"
-msgstr "Tá tú ar tí ceangal a dhéanamh anois leis an tséirbhis ar líne do mod.io. Soláthraíonn sé seo rochtain éasca ar modhnuithe pobal-dhéanta, ach níl sé faoi smácht de chuid Wildfire Games.\n\nCé go bhfuil muid a thabraímid aire don cheangal seo a dhaingniú, ní féidir linn a ráthaíocht go bhfuil an ceangal seo sábháilte.\n\nAn bhfuil tú an-chinnte go mian leat ceangal a dhéanamh?"
-
-#: gui/modmod/modmod.js:312
-msgid "Connect to mod.io?"
-msgstr "Déan ceangal le mod.io?"
-
-#: gui/modmod/modmod.js:313
-msgctxt "mod.io connection message box"
-msgid "Connect"
-msgstr "Ceangal"
-
-#: gui/modmod/modmod.js:396
+#: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "Níl aon mhodhnú roghnaithe."
+
+#: gui/modmod/modmodio.js:5
+msgid "Disclaimer"
+msgstr "Séanadh"
+
+#: gui/modmod/modmodio.js:12
+msgid "mod.io Terms"
+msgstr "Tearmaí mod.io"
+
+#: gui/modmod/modmodio.js:16
+msgid "mod.io Privacy Policy"
+msgstr "Polasaí Príobháideachais mod.io"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
 msgstr "Ceart go leor"
 
+#: gui/termsdialog/termsdialog.js:23
+#, javascript-format
+msgid "Open %(url)s in the browser."
+msgstr "Oscail %(url)s sa bhrabhsálaí."
+
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "Modhnuithe do mod.io"
+msgstr "Modhnuithe mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -262,7 +271,7 @@ msgstr "Modhnuithe Fáil"
 
 #: gui/modio/modio.xml:(caption):73
 msgid "Back"
-msgstr "Tar Ais"
+msgstr "Tar ais"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
@@ -285,7 +294,7 @@ msgstr "Leagan"
 #: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
 #: gui/modmod/modmod.xml:(heading):125
 msgid "Mod Label"
-msgstr "Lipéad Modhnú"
+msgstr "Lipéad Modhnaithe"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
@@ -298,7 +307,7 @@ msgstr "Spleáchais"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
-msgstr "Athrúithe"
+msgstr "Athruithe"
 
 #: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
@@ -369,6 +378,55 @@ msgstr "Treoir Modhnuithe"
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
 msgstr "Cuairt go dtí mod.io"
+
+#: gui/termsdialog/termsdialog.xml:(caption):15
+msgid "Language"
+msgstr "Teanga"
+
+#: gui/termsdialog/termsdialog.xml:(caption):33
+msgid "Decline"
+msgstr "Diúltaigh"
+
+#: gui/termsdialog/termsdialog.xml:(caption):38
+msgid "Accept"
+msgstr "Glac le"
+
+#: gui/modio/Disclaimer.txt:1
+msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
+msgstr "Séanadh mod.io de 0 A.D Impireachtaí in Uachtar"
+
+#: gui/modio/Disclaimer.txt:3
+msgid "Document Date: 2018-10-12"
+msgstr "Dáta Doiciméid: 2018-10-12"
+
+#: gui/modio/Disclaimer.txt:5
+msgid "You are about to connect to the mod.io online service."
+msgstr "Tá tú in ann le ceangal a dhéanamh go seirbhis ar-líne mod.io."
+
+#: gui/modio/Disclaimer.txt:6
+msgid ""
+"This service provides an easy way to download and install community-made "
+"mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
+"ModDB."
+msgstr "Soláthraíonn an tseirbhís seo bealach éasca le modhnuithe pobal-chruthaithe a íoslódáil agus a shuiteáil, agus tá sí soláthraithe í féin ag DBolical Pty Ltd, an comhlacht taobh thiar de IndieDB agus ModDB."
+
+#: gui/modio/Disclaimer.txt:7
+msgid "The service is for users age 13 and over."
+msgstr "Tá an tseirbhís seo beartaithe ag úsáideoirí 13 bhlian agus os a chionn."
+
+#: gui/modio/Disclaimer.txt:9
+msgid ""
+"Wildfire Games has taken care to make this connection secure and reviewed "
+"the mods for security flaws, but cannot guarantee that this does not pose "
+"any risks."
+msgstr "Tá Wildfire Games tar éis aire a thabhairt chun an cheangail seo a dhéanamh sábháilte agus chun na modhnuithe a athbhreithniú ar fabhtanna slándála, ach ní féidir linn rathaíocht a dhéanamh go bhfuil an ceangal seo gan baol."
+
+#: gui/modio/Disclaimer.txt:11
+msgid ""
+"By using the service, you understand that mod.io's Terms of Use and Privacy "
+"Policy apply and that Wildfire Games is not liable for any damages resulting"
+" from this service."
+msgstr "Trí úsáid na seirbhíse, tá a fhios agat go bhfuil na Tearmaí Úsáide agus Polasaí Príobháideachais de chuid mod.io atá curtha i bhfeidhm, agus nach bhfuil Wildfire Games freagrach ar aon damáiste mar thoradh ar an seribhís seo."
 
 #: gui/modmod/help/help.txt:1
 msgid ""

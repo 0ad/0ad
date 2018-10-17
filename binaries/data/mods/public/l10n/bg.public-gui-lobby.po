@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-10-11 12:46+0000\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-17 20:27+0000\n"
 "Last-Translator: Nerwitz Panzerfizt\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -173,17 +173,18 @@ msgstr "Връщане към главното меню."
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "Връзката с лобито се разпадна. Искате ли да опитате да се свържете отново?"
 
-#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1200 gui/prelobby/prelobby.js:299
+#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1210
+#: gui/prelobby/common/credentials/credentials.js:50
 msgid "Confirmation"
 msgstr "Потвърждение"
 
-#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1184 gui/lobby/lobby.js:1201
-#: gui/prelobby/prelobby.js:300
+#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/lobby/lobby.js:1211
+#: gui/prelobby/common/credentials/credentials.js:51
 msgid "No"
 msgstr "Не"
 
-#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1184 gui/lobby/lobby.js:1201
-#: gui/prelobby/prelobby.js:300
+#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/lobby/lobby.js:1211
+#: gui/prelobby/common/credentials/credentials.js:51
 msgid "Yes"
 msgstr "Да"
 
@@ -275,196 +276,193 @@ msgid "Player \"%(nick)s\" not found."
 msgstr "Играчът „%(nick)s“ не е намерен."
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:1134
+#: gui/lobby/lobby.js:1143
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "Играта е започнала в %(time)s"
 
-#: gui/lobby/lobby.js:1135 gui/lobby/lobby.js:1514
+#: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1524
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/lobby.js:1139
+#: gui/lobby/lobby.js:1148
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Играчи: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1180
+#: gui/lobby/lobby.js:1189
 msgid "Your active mods do not match the mods of this game."
 msgstr "Включените модификации не съвпадат с модификациите на тази игра."
 
-#: gui/lobby/lobby.js:1182
+#: gui/lobby/lobby.js:1191
 msgid "Do you want to switch to the mod selection page?"
 msgstr "Искате ли да преминете към страницата за избор на модификации?"
 
-#: gui/lobby/lobby.js:1183
+#: gui/lobby/lobby.js:1192
 msgid "Incompatible mods"
 msgstr "Несъвместими модификации"
 
-#: gui/lobby/lobby.js:1199
+#: gui/lobby/lobby.js:1209
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "Тази игра вече е започнала. Искате ли да се присъедините като наблюдател?"
 
-#: gui/lobby/lobby.js:1233
+#: gui/lobby/lobby.js:1243
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Адресът на играта „%(ip)s“ изглежда грешен."
 
-#: gui/lobby/lobby.js:1349
+#: gui/lobby/lobby.js:1359
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
 msgstr "Командата „%(cmd)s“ не се поддържа."
 
-#: gui/lobby/lobby.js:1361
+#: gui/lobby/lobby.js:1371
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
 msgstr "Командата „%(cmd)s“ е достъпна само за модератори."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1434
+#: gui/lobby/lobby.js:1444
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1439
+#: gui/lobby/lobby.js:1449
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1448 gui/lobby/lobby.js:1469 gui/lobby/lobby.js:1496
+#: gui/lobby/lobby.js:1458 gui/lobby/lobby.js:1479 gui/lobby/lobby.js:1506
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:1453 gui/lobby/lobby.js:1474 gui/lobby/lobby.js:1501
+#: gui/lobby/lobby.js:1463 gui/lobby/lobby.js:1484 gui/lobby/lobby.js:1511
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:1463
+#: gui/lobby/lobby.js:1473
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/lobby/lobby.js:1491
+#: gui/lobby/lobby.js:1501
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr "(%(private)s) <%(sender)s>"
 
-#: gui/lobby/lobby.js:1492
+#: gui/lobby/lobby.js:1502
 msgid "Private"
 msgstr "Лично"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:1517
+#: gui/lobby/lobby.js:1527
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1522
+#: gui/lobby/lobby.js:1532
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1561
+#: gui/lobby/lobby.js:1571
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1577
+#: gui/lobby/lobby.js:1587
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "—"
 
-#: gui/lobby/lobby.js:1579
+#: gui/lobby/lobby.js:1589
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/prelobby/prelobby.js:43
-msgid "Connecting…"
-msgstr "Свързване…"
-
-#: gui/prelobby/prelobby.js:66
-msgid "Registering…"
-msgstr "Регистриране…"
-
-#: gui/prelobby/prelobby.js:96
+#: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
 msgstr "Моля, въведете потребителското си име"
 
-#: gui/prelobby/prelobby.js:102
+#: gui/prelobby/common/credentials/credentials.js:8
 msgid "Invalid username"
 msgstr "Неправилно потребителско име"
 
-#: gui/prelobby/prelobby.js:109
-msgctxt "login"
-msgid "Please enter your password"
-msgstr "Моля, въведете паролата си"
-
-#: gui/prelobby/prelobby.js:110
+#: gui/prelobby/common/credentials/credentials.js:17
 msgctxt "register"
 msgid "Please enter your password"
 msgstr "Моля, въведете паролата си"
 
-#: gui/prelobby/prelobby.js:123
+#: gui/prelobby/common/credentials/credentials.js:18
+msgctxt "login"
+msgid "Please enter your password"
+msgstr "Моля, въведете паролата си"
+
+#: gui/prelobby/common/credentials/credentials.js:27
 msgid "Please enter your password again"
 msgstr "Моля, въведете паролата отново"
 
-#: gui/prelobby/prelobby.js:129
+#: gui/prelobby/common/credentials/credentials.js:31
 msgid "Passwords do not match"
 msgstr "Паролите не съвпадат"
 
-#: gui/prelobby/prelobby.js:135
-msgid "Please read the Terms of Service"
-msgstr "Моля, прочетете условията на услугата"
+#: gui/prelobby/common/credentials/credentials.js:49
+msgid "Are you sure you want to delete the password after connecting?"
+msgstr "Наистина ли искате да изтриете паролата след свързване?"
 
-#: gui/prelobby/prelobby.js:141
-msgid "Please read the Terms of Use"
-msgstr "Моля, прочетете условията за ползване"
-
-#: gui/prelobby/prelobby.js:147
-msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr "Моля, съгласете се с условията на услугата и условията за ползване"
-
-#: gui/prelobby/prelobby.js:179
+#: gui/prelobby/common/feedback/feedback.js:4
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
 msgstr "Неизвестна грешка. Това обикновено става, ако един и същ IP адрес се използва за създаване на повече от една регистрация в рамките на един час."
 
-#: gui/prelobby/prelobby.js:185
-msgid "Registered"
-msgstr "Регистриран"
-
-#: gui/prelobby/prelobby.js:249
-msgid "Register"
-msgstr "Регистриране"
-
-#: gui/prelobby/prelobby.js:255 gui/prelobby/prelobby.xml:(caption):116
-msgid "Connect"
-msgstr "Свързване"
-
-#: gui/prelobby/prelobby.js:265 gui/prelobby/prelobby.xml:(caption):93
+#: gui/prelobby/common/terms/termslobby.js:7
 msgid "Terms of Service"
 msgstr "Условия на услугата"
 
-#: gui/prelobby/prelobby.js:274 gui/prelobby/prelobby.xml:(caption):98
+#: gui/prelobby/common/terms/termslobby.js:8
+msgid "Please read and accept the Terms of Service."
+msgstr "Моля прочетете и приемете Условията на услугата."
+
+#: gui/prelobby/common/terms/termslobby.js:16
 msgid "Terms of Use"
 msgstr " Условия за ползване"
 
-#: gui/prelobby/prelobby.js:298
-msgid "Are you sure you want to delete the password after connecting?"
-msgstr "Наистина ли искате да изтриете паролата след свързване?"
+#: gui/prelobby/common/terms/termslobby.js:17
+msgid "Please read and accept the Terms of Use."
+msgstr "Моля прочетете и приемете Условията за използване."
 
-#: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
+#: gui/prelobby/login/login.js:5
+msgid "Connect"
+msgstr "Свързване"
+
+#: gui/prelobby/login/login.js:32
+msgid "Connecting…"
+msgstr "Свързване…"
+
+#: gui/prelobby/register/register.js:5
+msgid "Register"
+msgstr "Регистриране"
+
+#: gui/prelobby/register/register.js:26
+msgid "Registering…"
+msgstr "Регистриране…"
+
+#: gui/prelobby/register/register.js:39
+msgid "Registered"
+msgstr "Регистриран"
+
+#: gui/lobby/lobby.xml:(caption):13
+#: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
 msgstr "Чакалня"
 
@@ -592,206 +590,182 @@ msgstr "Преглед профил"
 msgid "Please enter a player name."
 msgstr "Моля, въведете име на играч."
 
-#: gui/prelobby/prelobby.xml:(caption):30
-msgid "Create a new account"
-msgstr "Създаване на нов акаунт"
-
-#: gui/prelobby/prelobby.xml:(caption):34
-msgid "Login to an existing account"
-msgstr "Влизане в съществуващ акаунт"
-
-#: gui/prelobby/prelobby.xml:(caption):40
-msgid "Connect to the game lobby"
-msgstr "Свързване с чакалнята за игри"
-
-#: gui/prelobby/prelobby.xml:(caption):43
-#: gui/prelobby/prelobby.xml:(caption):78
-msgid "Login:"
-msgstr "Потребителско име:"
-
-#: gui/prelobby/prelobby.xml:(caption):51
-#: gui/prelobby/prelobby.xml:(caption):83
-msgid "Password:"
-msgstr "Парола:"
-
-#: gui/prelobby/prelobby.xml:(caption):68
-msgid "Remember Password"
-msgstr "Запомни паролата"
-
-#: gui/prelobby/prelobby.xml:(caption):74
-msgid "Registration"
-msgstr "Регистриране"
-
-#: gui/prelobby/prelobby.xml:(caption):88
+#: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
 msgid "Password again:"
 msgstr "Повторете паролата:"
 
-#: gui/prelobby/prelobby.xml:(caption):103
-msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr "Прочетох и се съгласявам с условията на услугата и условията за ползване:"
+#: gui/prelobby/common/credentials/credentials.xml:(caption):6
+msgid "Login:"
+msgstr "Потребителско име:"
 
-#: gui/prelobby/prelobby.xml:(caption):112
+#: gui/prelobby/common/credentials/credentials.xml:(caption):15
+msgid "Password:"
+msgstr "Парола:"
+
+#: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
+msgid "Remember Password"
+msgstr "Запомни паролата"
+
+#: gui/prelobby/common/feedback/feedback.xml:(caption):10
+#: gui/prelobby/entrance/entrance.xml:(caption):30
 msgid "Cancel"
 msgstr "Отказ"
 
-#: gui/prelobby/Terms_of_Service.txt:1
-msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr "Условия на услугата на чакалнята на 0 A.D. Empires Ascendant"
+#: gui/prelobby/entrance/entrance.xml:(caption):20
+msgid "Create a new account"
+msgstr "Създаване на нов акаунт"
 
-#: gui/prelobby/Terms_of_Service.txt:2 gui/prelobby/Terms_of_Use.txt:2
-msgid "Definitions:"
-msgstr "Определения:"
+#: gui/prelobby/entrance/entrance.xml:(caption):25
+msgid "Login to an existing account"
+msgstr "Влизане в съществуващ акаунт"
 
-#: gui/prelobby/Terms_of_Service.txt:3 gui/prelobby/Terms_of_Use.txt:3
+#: gui/prelobby/login/login.xml:(caption):13
+msgid "Connect to the game lobby"
+msgstr "Свързване с чакалнята за игри"
+
+#: gui/prelobby/register/register.xml:(caption):13
+msgid "Registration"
+msgstr "Регистриране"
+
+#: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
-" * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
-"provided by Wildfire Games (WFG)."
-msgstr " * „Услугата“ е чакалнята на 0 A.D. Empires Ascendant, осигурена от Wildfire Games (WFG);"
+"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
+"Service[/font]"
+msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant - Условия на услугата Интернет лоби[/font]"
 
-#: gui/prelobby/Terms_of_Service.txt:4 gui/prelobby/Terms_of_Use.txt:4
-msgid " * \"You\" are the user of the service."
-msgstr " * „Вие“ сте потребителят на услугата;"
+#: gui/prelobby/common/terms/Terms_of_Service.txt:3
+#: gui/prelobby/common/terms/Terms_of_Use.txt:3
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
+msgstr "[font=\"sans-bold-14\"]Последна редакция:[/font] 2018-10-13"
 
-#: gui/prelobby/Terms_of_Service.txt:5
-msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr " * „Ние“ сме съвкупността от всички членове на екипа на Wildfire Games (WFG);"
-
-#: gui/prelobby/Terms_of_Service.txt:6
+#: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
-" * \"Rating\" refers to the process of analyzing various user statistics for"
-" the purpose of generating a single comprehensive score."
-msgstr " * „Оценяването“ е процесът на анализиране на различните статистики на потребителя с цел създаване на цяллостна оценка на уменията;"
+"The 0 A.D. Empires Ascendant Multiplayer Lobby is an online service provided"
+" by Wildfire Games that allows players to setup online multiplayer matches, "
+"discuss the game in a public chat room and gain a rating that reflects their"
+" skill."
+msgstr "Интернет лобито на 0 A.D. Empires Ascendant е дигитална услуга, предоставена от Wildfire Games, която позволява играчите да създават игри в интернет, както и да обсъждат играта в публичната чат стая и придобиват репутация, отразяваща се върху техните умения."
 
-#: gui/prelobby/Terms_of_Service.txt:7
-msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr "* „Модериране“ е процесът на прилагането на правилата за ползване."
+#: gui/prelobby/common/terms/Terms_of_Service.txt:7
+#: gui/prelobby/common/terms/Terms_of_Use.txt:5
+msgid ""
+"[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
+"to:[/font]"
+msgstr "[font=\"sans-bold-14\"]Използвайки Интернет лобито на 0 A.D., Вие се съгласявате да:[/font]"
 
-#: gui/prelobby/Terms_of_Service.txt:8
-msgid "By using the service you agree to:"
-msgstr "Използвайки услугата, Вие се съгласявате да:"
-
-#: gui/prelobby/Terms_of_Service.txt:9
+#: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid " 1. Follow all usage policies."
 msgstr " 1. Спазвате всички правила на ползване;"
 
-#: gui/prelobby/Terms_of_Service.txt:10
+#: gui/prelobby/common/terms/Terms_of_Service.txt:9
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
 msgstr "2. Позволите събирането на статистики, с които може да бъде установена самоличността на потребителя, за целите на оценяването, потребителските профили и обществените статистики."
 
-#: gui/prelobby/Terms_of_Service.txt:11 gui/prelobby/Terms_of_Use.txt:18
-msgid "We also reserve the right to:"
-msgstr "Ние също запазваме правото си да:"
+#: gui/prelobby/common/terms/Terms_of_Service.txt:10
+msgid ""
+" 3. Use the service at your own risk. Wildfire Games does not take "
+"responsibility for the content posted by users or damages resulting from "
+"this service."
+msgstr " 3. Използвате услугата на собствена отговорност. Wildfire Games не носи отговорност за публикувано от потребителите съдържане или нанесени щети в резултат на услугата."
 
-#: gui/prelobby/Terms_of_Service.txt:12
-msgid " 1. Moderate the service."
-msgstr "1. Модерираме услугата;"
+#: gui/prelobby/common/terms/Terms_of_Service.txt:11
+msgid ""
+" 4. Not use the service with third-party software or mods that prevents the "
+"user from being informed of updated Terms and Conditions, unless authorized "
+"by a Wildfire Games team member."
+msgstr " 4. Не използвате услугата със софтуер на трети страни или модификации, попречващи на потребителя да бъде уведомен за обновяване на Правата и условията, освен ако не е одобрен/а от член на екипа на Wildfire Games."
 
-#: gui/prelobby/Terms_of_Service.txt:13
+#: gui/prelobby/common/terms/Terms_of_Service.txt:13
+msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
+msgstr "[font=\"sans-bold-14\"]Wildfire Games запазва правото си да:[/font]"
+
+#: gui/prelobby/common/terms/Terms_of_Service.txt:14
+msgid ""
+" 1. Moderate the service, i.e. to enforce the Terms of Use by restricting, "
+"suspending or terminating user accounts."
+msgstr " 1. Не упражнявате ръководствен контрол над услугата, т.е. да не налагате Условия на използване чрез ограничаване, временно отстраняване или преустановяване на потребителски акаунти."
+
+#: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid " 2. Appoint others to moderate the service."
 msgstr " 2. Назначаваме други да модерират услугата;"
 
-#: gui/prelobby/Terms_of_Service.txt:14
+#: gui/prelobby/common/terms/Terms_of_Service.txt:16
+msgid " 3. Discontinue or interrupt any part of the service at any time."
+msgstr " 3. Прекъсвате или нарушавате функционалността на части от услугата по всяко време."
+
+#: gui/prelobby/common/terms/Terms_of_Service.txt:17
 msgid ""
-" 3. Discontinue or interrupt service at any time with or without prior "
-"announcement."
-msgstr "3. Прекъснем или прекратим услугата по всяко време с или без предварително уведомяване;"
+" 4. Change the service or its terms. The document date of the terms indicate"
+" its version, and the user is informed of the new terms before being able to"
+" use the service again."
+msgstr " 4. Не изменяте услугата или нейните прилежащи условия. Датата на документа на условията посочва неговата версия и потребителят е съответно уведомен веднъж преди да може да използва услугата отново."
 
-#: gui/prelobby/Terms_of_Service.txt:15
-msgid " 4. Change the service at any time with or without announcement."
-msgstr "4. Променяме услугата по всяко време с или без уведомяване;"
-
-#: gui/prelobby/Terms_of_Service.txt:16
+#: gui/prelobby/common/terms/Terms_of_Service.txt:18
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
 msgstr "5. Изтриваме всякакви и всички свързани с услугата данни, по всяко време, с или без уведомяване;"
 
-#: gui/prelobby/Terms_of_Service.txt:17
+#: gui/prelobby/common/terms/Terms_of_Service.txt:19
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
 msgstr "6. Събираме всякаква идентифицираща потребителя статистика по всяко време без нуждата от съгласие с цел:"
 
-#: gui/prelobby/Terms_of_Service.txt:18
+#: gui/prelobby/common/terms/Terms_of_Service.txt:20
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
 msgstr "а) Вътрешен анализ от екипа на Wildfire Games (WFG) и техните съдружници;"
 
-#: gui/prelobby/Terms_of_Service.txt:19
+#: gui/prelobby/common/terms/Terms_of_Service.txt:21
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
 msgstr "б) Анонимно публично публикуване от членовете на екипа на Wildfire Games (WFG);"
 
-#: gui/prelobby/Terms_of_Service.txt:20
+#: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""
-" 7. Change this document in any way; at any time; on the condition that the "
-"user of the service is given adequate notice of the change (the definition "
-"of adequate notice will be determined at the time by a panel of Wildfire "
-"Games (WFG) team members)."
-msgstr "7. Променяме този документ по всякакъв начин; по всяко време; при условие, че потребителят на услугата бъде уведомен по подходящ начин за промяната (определението на „подходящия начин“ ще бъде определено в същото време от експертна група от членовете на екипа на Wildfire Games (WFG))."
+"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
+"Use[/font]"
+msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant - Условия за използване на Интернет лоби[/font]"
 
-#: gui/prelobby/Terms_of_Use.txt:1
-msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr "Условия за ползване на чакалнята на 0 A.D. Empires Ascendant"
-
-#: gui/prelobby/Terms_of_Use.txt:5
+#: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
-" * \"Impersonate\" refers to the action in which you attempt to exploit "
-"another's identity for your own purposes."
-msgstr " * „Представяне за някого другиго“ се отнася за опита да се използва идентичността на другиго за свои собствени цели;"
+" 1. Only create one account per person on the service unless authorized by "
+"Wildfire Games."
+msgstr " 1. Можете да регистрирате до един акаунт на човек в услугата, освен ако нямате изрично разрешение за направата на това от Wildfire Games."
 
-#: gui/prelobby/Terms_of_Use.txt:6
+#: gui/prelobby/common/terms/Terms_of_Use.txt:7
 msgid ""
-" * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
-"number of recipients."
-msgstr " * „Спам“ представлява неподходящи или неуместни съобщения, изпратени на голям брой получатели;"
+" 2. Not impersonate other users of the service and only use your registered "
+"username in multiplayer matches."
+msgstr " 2. Не можете да злоупотребявате със самоличността на други потребители на услугата, като трябва да използате единствено своето регистрирано име в интернет игрите."
 
-#: gui/prelobby/Terms_of_Use.txt:7
-msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr " * „Рейтинг“ обозначава цялостен резултат в точки за всеки отделен потребител;"
+#: gui/prelobby/common/terms/Terms_of_Use.txt:8
+msgid " 3. Not post profanity, pejorative terms or pornographic content."
+msgstr " 3. Не можете да използвате нецензурен език и публикувате съдържание с порнографски характер."
 
-#: gui/prelobby/Terms_of_Use.txt:8
+#: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid ""
-" * \"Ranked games\" refers to games in which rating changing statistics are "
-"tracked."
-msgstr " * „Игри за класация“ са игрите, в които се следят статистиките, влияещи на рейтинга."
+" 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause "
+"damage to others or purposefully demean the worth of others using this "
+"service."
+msgstr " 4. Не можете да унижавате, вредите, заплашвате, дискриминирате, клеветите или нанасяте щети на други или умишлено накарнявате името и авторитета на другите чрез тази услуга."
 
-#: gui/prelobby/Terms_of_Use.txt:9
-msgid "You agree to:"
-msgstr "Вие се съгласявате да:"
-
-#: gui/prelobby/Terms_of_Use.txt:10
+#: gui/prelobby/common/terms/Terms_of_Use.txt:10
 msgid ""
-" 1. Only create one account per unique user on the service unless authorized"
-" by a Wildfire Games (WFG) team member."
-msgstr " 1. Създавате само една регистрация за всеки отделен потребител на услугата, освен при съответното позволение от член на екипа на Wildfire Games (WFG);"
+" 5. Not violate the privacy of others by disclosing personally identifiable "
+"information (for example real name, location, ID) or private details (for "
+"example social media or messenger account names) of others without their "
+"consent."
+msgstr " 5. Не нарушавате поверителността на другите като изнасяте лична информация (напр., имена, местонахождение) или лични данни (напр., потребителски имена в социални мрежи) на други това да е съгласувано с тях."
 
-#: gui/prelobby/Terms_of_Use.txt:11
-msgid ""
-" 2. Not post profane statements, rude humor, pornographic content, or "
-"discriminatory comments on the service."
-msgstr " 2. Не публикувате оскърбяващи съобщения, груб хумор, порнографско съдържание или дискриминиращи коментари в услугата;"
+#: gui/prelobby/common/terms/Terms_of_Use.txt:11
+msgid " 6. Not incite violence or promote illegal acts."
+msgstr " 6. Не насърчавате към насилие или други незаконни действия."
 
-#: gui/prelobby/Terms_of_Use.txt:12
-msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr " 3. Не унижавате останалите, които използват услугата;"
-
-#: gui/prelobby/Terms_of_Use.txt:13
-msgid ""
-" 4. Not use the service to promote specific goods, services, or products."
-msgstr " 4. Не използвате услугата, за да рекламирате стоки, продукти или услуги;"
-
-#: gui/prelobby/Terms_of_Use.txt:14
-msgid " 5. Not impersonate other users of the service."
-msgstr " 5. Не се представяте за други потребители на услугата;"
-
-#: gui/prelobby/Terms_of_Use.txt:15
-msgid " 6. Not spam the service."
-msgstr " 6. Не изпращате спам в рамките на услугата;"
-
-#: gui/prelobby/Terms_of_Use.txt:16
+#: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid ""
 " 7. Not attempt to artificially adjust any user of the service's rating or "
 "any of the statistics which impact it. (Examples of this are, but are not "
@@ -799,16 +773,27 @@ msgid ""
 "taking advantage of other users of the service.)"
 msgstr "7. Не се опитвате изкуствено да променяте рейтинга на когото и да било или някоя от статистиките, които го определят. (Примери за това, наред с други, са: мамене в игри за класация, обратно инженерство на услугата и възползване от други потребители на услугата.)"
 
-#: gui/prelobby/Terms_of_Use.txt:17
+#: gui/prelobby/common/terms/Terms_of_Use.txt:13
 msgid ""
-" 8. Allow yourself to be removed from the service if at any time a moderator"
-" determines your behavior is not consistent with these rules."
-msgstr "8. Позволите да бъдете премахнат(а) от услугата, в случай че модератор отсъди, че поведението Ви не съответства на тези правила."
+" 8. Not undermine the intended gameplay or purposefully gain unfair "
+"advantages in multiplayer matches (for example cheating, using exploits or "
+"bugs)."
+msgstr " 8. Не подкопавате основните аспекти на играта и използвате нечестно преимущества в интернет игри, т.е. чрез измама (напр., използване на кодове, уязвимости или проблеми)."
 
-#: gui/prelobby/Terms_of_Use.txt:19
+#: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""
-" 1. Change this document in any way; at any time; on the condition that the "
-"user of the service is given adequate notice of the change (the definition "
-"of adequate notice will be determined at the time by a panel of Wildfire "
-"Games (WFG) team members)."
-msgstr "1. Променяме този документ по всякакъв начин; по всяко време; при условие, че потребителят на услугата бъде уведомен по подходящ начин за промяната (определението на „подходящия начин“ ще бъде определено в същото време от експертна група от членовете на екипа на Wildfire Games (WFG))."
+" 9. Not spam the service and not post large amounts of repetitive or "
+"unwanted messages."
+msgstr " 9. Не злоупотребявате с услугата като често изпращате огромно количество от повтарящи се и нежелани съобщения, водещи до пренатоварване на услугата.."
+
+#: gui/prelobby/common/terms/Terms_of_Use.txt:15
+msgid ""
+"10. Not use the service to promote specific goods, services, or products "
+"unless authorized by Wildfire Games."
+msgstr "10. Не използвате услугата за рекламни цели на търговски стоки, услуги или артикули без разрешение за това от Wildfire Games."
+
+#: gui/prelobby/common/terms/Terms_of_Use.txt:17
+msgid ""
+"If a moderator deems your behavior to be inconsistent with these terms, your"
+" account may be restricted, suspended or terminated."
+msgstr "Ако модератор счете вашето поведение за неправомерно спрямо тези условия може да последва ограничаване, временно отстраняване или преустановяване на достъп до вашия акаунт."

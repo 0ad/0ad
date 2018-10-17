@@ -1,18 +1,18 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
-# jabalv <janis@sunservice.lv>, 2014
+# jabalv <jabalv@protonmail.com>, 2014
 # Jānis Ločmelis <minimenlatvia@gmail.com>, 2017
 # Lafriks <lauris@nix.lv>, 2014
 # Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-04-04 14:29+0000\n"
+"POT-Creation-Date: 2018-10-13 18:16+0200\n"
+"PO-Revision-Date: 2018-10-14 02:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -422,119 +422,119 @@ msgstr "Atgriezties uz galveno izvēli."
 msgid "Start Game!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1019
+#: gui/gamesetup/gamesetup.js:1029
 msgid "Start a new game with the current settings."
 msgstr "Sākt jaunu spēli ar pašreizējiem iestatījumiem."
 
-#: gui/gamesetup/gamesetup.js:1020
+#: gui/gamesetup/gamesetup.js:1030
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1083
-#, javascript-format
-msgid "Configure AI: %(description)s."
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1132
+#: gui/gamesetup/gamesetup.js:1042
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1187
+#: gui/gamesetup/gamesetup.js:1107
+#, javascript-format
+msgid "Configure AI: %(description)s."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1398
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1188
+#: gui/gamesetup/gamesetup.js:1399
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1189
+#: gui/gamesetup/gamesetup.js:1400
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1708
+#: gui/gamesetup/gamesetup.js:1745
 msgctxt "map selection"
 msgid "Random"
 msgstr "Nejauša"
 
-#: gui/gamesetup/gamesetup.js:1710
+#: gui/gamesetup/gamesetup.js:1747
 msgid "Pick any of the given maps at random."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1742
+#: gui/gamesetup/gamesetup.js:1779
 msgctxt "biome"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1780
 msgid "Pick a biome at random."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2068
+#: gui/gamesetup/gamesetup.js:2118
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2073
+#: gui/gamesetup/gamesetup.js:2123
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Nezināms"
 
-#: gui/gamesetup/gamesetup.js:2103
+#: gui/gamesetup/gamesetup.js:2153
 msgid "Yes"
 msgstr "Jā"
 
-#: gui/gamesetup/gamesetup.js:2103
+#: gui/gamesetup/gamesetup.js:2153
 msgid "No"
 msgstr "Nē"
 
-#: gui/gamesetup/gamesetup.js:2110
+#: gui/gamesetup/gamesetup.js:2160
 #, javascript-format
 msgid "%(setting)s:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2196
+#: gui/gamesetup/gamesetup.js:2248
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2401
+#: gui/gamesetup/gamesetup.js:2453
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "Mākslīgais intelekts: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2409
+#: gui/gamesetup/gamesetup.js:2461
 msgid "Unassigned"
 msgstr "Nepiešķirts"
 
-#: gui/gamesetup/gamesetup.js:2485
+#: gui/gamesetup/gamesetup.js:2537
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2492
+#: gui/gamesetup/gamesetup.js:2544
 msgid "Unknown Player"
 msgstr "Nezināms Spēlētājs"
 
-#: gui/gamesetup/gamesetup.js:2531
+#: gui/gamesetup/gamesetup.js:2583
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2532
+#: gui/gamesetup/gamesetup.js:2584
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2533
+#: gui/gamesetup/gamesetup.js:2585
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -572,84 +572,76 @@ msgstr "Atcelt"
 msgid "OK"
 msgstr "Labi"
 
-#: gui/gamesetup/gamesetup.xml:(caption):24
+#: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Match Setup"
 msgstr "Mača uzstādījumi"
 
-#: gui/gamesetup/gamesetup.xml:(caption):30
+#: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading"
 msgstr "Ielādējas"
 
-#: gui/gamesetup/gamesetup.xml:(caption):34
+#: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Loading map data. Please wait…"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Player Name"
 msgstr "Spēlētāja Vārds"
 
-#: gui/gamesetup/gamesetup.xml:(caption):58
+#: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Color"
 msgstr "Krāsa"
 
-#: gui/gamesetup/gamesetup.xml:(caption):62
+#: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Player Placement"
 msgstr "Spēlētāja novietojums"
 
-#: gui/gamesetup/gamesetup.xml:(caption):66
+#: gui/gamesetup/gamesetup.xml:(caption):70
 msgid "Civilization"
 msgstr "Civilizācija"
 
-#: gui/gamesetup/gamesetup.xml:(caption):93
+#: gui/gamesetup/gamesetup.xml:(caption):87
 msgid "Team"
 msgstr "Komanda"
 
-#: gui/gamesetup/gamesetup.xml:(caption):147
+#: gui/gamesetup/gamesetup.xml:(caption):131
 msgid "Show this message in the future"
 msgstr "Rādīt šo paziņojumu nākotnē."
 
-#: gui/gamesetup/gamesetup.xml:(caption):236
+#: gui/gamesetup/gamesetup.xml:(caption):220
 msgid "Send"
 msgstr "Sūtīt"
 
-#: gui/gamesetup/gamesetup.xml:(caption):253
+#: gui/gamesetup/gamesetup.xml:(caption):237
 msgid "Cheats enabled."
 msgstr "Iespējota šmaukšanās."
 
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.xml:(caption):260
 msgid "Back"
 msgstr "Atpakaļ"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):88
+#: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Atiestatīt jebkuru izvēlētu civilizāciju uz noklusējumu (nejaušu)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):103
+#: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
 msgstr "Atiestatīt visas komandas uz noklusējumu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):114
+#: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
 msgstr "Izvēlies krāsu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):117
+#: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
 msgstr "Izvēlēties spēlētāju."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):127
-msgid "Configure AI settings."
-msgstr "Konfigurēt mākslīgā intelekta iestatījumus."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):130
-msgid "Select player's civilization."
-msgstr "Izvēlēties spēlētāja civilizāciju."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):134
+#: gui/gamesetup/gamesetup.xml:(tooltip):118
 msgid "Select player's team."
 msgstr "Izvēlēties spēlētāja komandu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):218
+#: gui/gamesetup/gamesetup.xml:(tooltip):202
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr ""
 

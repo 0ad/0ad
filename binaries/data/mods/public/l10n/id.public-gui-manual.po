@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-11 09:02+0200\n"
-"PO-Revision-Date: 2018-05-18 15:24+0000\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-14 03:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -688,56 +688,3 @@ msgstr "[font=\"sans-14\"]Delete: menghapus permainan tersimpan yang dipilih set
 #: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: Jangan tanyakan konfirmasi saat menghapus permainan tersimpan"
-
-#: gui/manual/userreport.txt:1
-msgid ""
-"As a free, open source game, we don't have the resources to test on a wide "
-"range of systems, but we want to provide the best quality experience to as "
-"many players as possible. When you enable automatic feedback, we'll receive "
-"data to help us understand the hardware we should focus on supporting, and "
-"to identify performance problems we should fix."
-msgstr "Sebagai permainan yang bebas dan bersumber terbuka, kami tidak memiliki sumberdadya untuk menguji pada aneka sistem, namun kami ingin menyediakan pengalaman berkualitas pada sebanyak mungkin pemain. Ketika anda mengaktifkan Timbal Balik Otomatis, kami akan menerima data untuk membantu memahami perangkat keras yang harus kami dukung, dan untuk mengidentifikasi masalah kinerja yang harus kami perbaiki."
-
-#: gui/manual/userreport.txt:3
-msgid "The following data will be sent to our server:"
-msgstr "Data berikut akan dikirim ke server kami:"
-
-#: gui/manual/userreport.txt:5
-msgid ""
-"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
-"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
-"reports from the same user."
-msgstr ""
-
-#: gui/manual/userreport.txt:6
-msgid ""
-"• Game version number and basic build settings (optimisation mode, CPU "
-"architecture, timestamp, compiler version)."
-msgstr "• Nomor versi permainan dan pengaturan dasar (mode optimisasi, arsitektur CPU, waktu, versi kompiler)."
-
-#: gui/manual/userreport.txt:7
-msgid ""
-"• Hardware details: OS version, graphics driver version, OpenGL "
-"capabilities, screen size, CPU details, RAM size."
-msgstr "• Rincian perangkat keras: Versi OS, versi driver grafis, kemampuan OpenGL, ukuran layar, rincian CPU, ukuran RAM."
-
-#: gui/manual/userreport.txt:8
-msgid ""
-"• Performance details: a snapshot of timing data a few seconds after you "
-"start a match or change graphics settings."
-msgstr "• Rincian kinerja: cuplikan data waktu beberapa detik setelah anda memulai peperangan atau mengubah pengaturan grafis"
-
-#: gui/manual/userreport.txt:10
-msgid ""
-"The data will only be a few kilobytes each time you run the game, so "
-"bandwidth usage is minimal."
-msgstr "Data hanya beberapa kilobyte setiap kali anda menjalankan permainan, jadi penggunaan bandwith sedikit."
-
-#: gui/manual/userreport.txt:12
-msgid ""
-"We will store the submitted data on our server, and may publish statistics "
-"or non-user-identifiable details to help other game developers with similar "
-"questions. We will store the IP address that submitted the data, to help "
-"detect abuse of the service, but will not publish it. The published data can"
-" be seen at http://feedback.wildfiregames.com/"
-msgstr "Kami akan menyimpan data terkumpul pada server kami, dan akan mempublikasikan statistika atau rincian tanpa mengenali pengguna untuk membantu pengembang permainan lain dengan pertanyaan serupa. Kami akan menyimpan alamat IP pengumpul data untuk membantu mendeteksi penyalahgunaan layanan namun tidak akan mempublikasikannya. Data terpublikasi dapat dilihat di http://feedback.wildfiregames.com/"

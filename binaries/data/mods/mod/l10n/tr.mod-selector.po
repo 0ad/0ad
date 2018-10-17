@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
@@ -10,15 +10,26 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-23 20:25+0000\n"
-"Last-Translator: Ferhat Olçum <ferhatolcum@gmail.com>\n"
+"POT-Creation-Date: 2018-10-13 18:19+0200\n"
+"PO-Revision-Date: 2018-10-14 02:40+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: gui/common/functions_msgbox.js:57
+#, javascript-format
+msgid ""
+"Opening %(url)s\n"
+" in default web browser. Please wait…"
+msgstr "Varsayılan tarayıcıda %(url)s açılıyor. Lütfen bekleyin... "
+
+#: gui/common/functions_msgbox.js:60
+msgid "Opening page"
+msgstr "Sayfa açılıyor"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
@@ -156,8 +167,7 @@ msgstr "mod.io arayüzü açılıyor."
 msgid "Initializing"
 msgstr "Açılıyor"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.js:313
-#: gui/modmod/modmod.xml:(caption):184
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
 msgid "Cancel"
 msgstr "İptal"
 
@@ -213,44 +223,43 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/s"
 
-#: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
+#: gui/modmod/modmod.js:102 gui/modmod/modmod.js:233
 msgid "Filter"
 msgstr "Süzgeç"
 
-#: gui/modmod/modmod.js:285
+#: gui/modmod/modmod.js:286
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "Bağımlılık karşılanmadı: %(dep)s"
 
-#: gui/modmod/modmod.js:291
+#: gui/modmod/modmod.js:292
 msgid "All dependencies met"
 msgstr "Tüm bağımlılıkları bir araya geldi"
 
-#: gui/modmod/modmod.js:311
-msgid ""
-"You are about to connect to the mod.io online service. This provides easy access to community-made mods, but is not under the control of Wildfire Games.\n"
-"\n"
-"While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
-"\n"
-"Do you really want to connect?"
-msgstr "mod.io online servisine bağlanmak üzeresiniz. Bu uygulama sizi topluluğun yaptığı mod'lara kolayca ulaşmanızı sağlar fakat Wildfire Games'in kontrolü altında değildir.\n\nUygulamayı güvenli kılmak için çaba gösteriyor olmamıza rağmen size buranın tam olarak güvenli olduğunu garanti edemeyiz, fakat herhangi bir güvenlik riski de olmadığını da belirtmek isteriz. \n\nBağlanmak istediğinize emin misiniz?"
-
-#: gui/modmod/modmod.js:312
-msgid "Connect to mod.io?"
-msgstr "mod.io'ya bağlan?"
-
-#: gui/modmod/modmod.js:313
-msgctxt "mod.io connection message box"
-msgid "Connect"
-msgstr "Bağlan"
-
-#: gui/modmod/modmod.js:396
+#: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "Hiçbir mod seçilmemiştir."
+
+#: gui/modmod/modmodio.js:5
+msgid "Disclaimer"
+msgstr ""
+
+#: gui/modmod/modmodio.js:12
+msgid "mod.io Terms"
+msgstr ""
+
+#: gui/modmod/modmodio.js:16
+msgid "mod.io Privacy Policy"
+msgstr ""
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
 msgstr "Tamam"
+
+#: gui/termsdialog/termsdialog.js:23
+#, javascript-format
+msgid "Open %(url)s in the browser."
+msgstr ""
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -369,6 +378,55 @@ msgstr "Mod Yaratma Rehberi"
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
 msgstr "mod.io'yu ziyaret et."
+
+#: gui/termsdialog/termsdialog.xml:(caption):15
+msgid "Language"
+msgstr "Dil"
+
+#: gui/termsdialog/termsdialog.xml:(caption):33
+msgid "Decline"
+msgstr ""
+
+#: gui/termsdialog/termsdialog.xml:(caption):38
+msgid "Accept"
+msgstr "Kabul et"
+
+#: gui/modio/Disclaimer.txt:1
+msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:3
+msgid "Document Date: 2018-10-12"
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:5
+msgid "You are about to connect to the mod.io online service."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:6
+msgid ""
+"This service provides an easy way to download and install community-made "
+"mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
+"ModDB."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:7
+msgid "The service is for users age 13 and over."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:9
+msgid ""
+"Wildfire Games has taken care to make this connection secure and reviewed "
+"the mods for security flaws, but cannot guarantee that this does not pose "
+"any risks."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:11
+msgid ""
+"By using the service, you understand that mod.io's Terms of Use and Privacy "
+"Policy apply and that Wildfire Games is not liable for any damages resulting"
+" from this service."
+msgstr ""
 
 #: gui/modmod/help/help.txt:1
 msgid ""

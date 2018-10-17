@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -7,13 +7,18 @@
 # Boya Yang <yangboya.bfsu@hotmail.com>, 2017
 # Charles Yang <mryang@minelandcn.com>, 2018
 # Christian Xia <wood_elf@126.com>, 2016
+# Feng Chang <chang_196700@hotmail.com>, 2018
+# hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # hyln9 <hyln9@live.cn>, 2014
 # REN.Haowei <jean.clcf@gmail.com>, 2014
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2015-2016
+# Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 # loms126 <loms126@126.com>, 2014
 # Mysterelee <8161525@qq.com>, 2014
 # relaxbsd <relaxbsd@gmail.com>, 2014
+# REN.Haowei <jean.clcf@gmail.com>, 2014
+# rentt777 <35974380@qq.com>, 2017
 # samrmrf, 2013
 # simsilver <yihuanlingjian@gmail.com>, 2014
 # Vince Luo <vinceluo11@gmail.com>, 2017
@@ -26,6 +31,7 @@
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 # 子航 叶 <jerryzihye@gmail.com>, 2017
 # 星臣 <yuronglong1996@gmail.com>, 2017
+# 星臣 <yuronglong1996@gmail.com>, 2017
 # 武军 李 <lwj7863439@gmail.com>, 2016-2017
 # Feng Chang <chang_196700@hotmail.com>, 2018
 # 玉堂白鹤 <yjwork@qq.com>, 2015
@@ -33,9 +39,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-10-13 13:16+0000\n"
-"Last-Translator: xiaolong dai <1091198228@qq.com>\n"
+"POT-Creation-Date: 2018-10-13 18:16+0200\n"
+"PO-Revision-Date: 2018-10-14 16:40+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +56,7 @@ msgstr "无"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
-msgstr "这个玩家将被禁使用电脑玩家。"
+msgstr "这个玩家禁用AI。"
 
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
@@ -73,11 +79,11 @@ msgstr "* %(username)s 未准备完成."
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
-msgstr "我已经准备好了"
+msgstr "准备好了"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr "表明您准备就绪。"
+msgstr "表明你准备就绪。"
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
@@ -98,7 +104,7 @@ msgstr "我还没准备好 ！"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
-msgstr "表明您未准备就绪。"
+msgstr "表明你未准备就绪。"
 
 #: gui/gamesetup/gamesetup.js:157
 msgid "Game settings have been changed"
@@ -117,12 +123,12 @@ msgstr "%(username)s 已离开"
 #: gui/gamesetup/gamesetup.js:160
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s 已被踢出"
+msgstr "%(username)s 被踢"
 
 #: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s  已被禁用"
+msgstr "%(username)s  被禁"
 
 #: gui/gamesetup/gamesetup.js:162
 #, javascript-format
@@ -278,7 +284,7 @@ msgstr "初始资源数%(resources)s"
 
 #: gui/gamesetup/gamesetup.js:616
 msgid "Select the game's starting resources."
-msgstr "选择游戏初始资源."
+msgstr "选择游戏初始资源。"
 
 #: gui/gamesetup/gamesetup.js:631
 msgid "Ceasefire"
@@ -363,7 +369,7 @@ msgstr "显示的地图"
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:869
 msgid "Toggle revealed map (see everything)."
-msgstr "-- 切换显示全地图 （显示所有）。"
+msgstr "切换显示全地图 （显示所有）。"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -425,7 +431,7 @@ msgstr "排位赛"
 
 #: gui/gamesetup/gamesetup.js:967
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "-- 切换本比赛是否算入排位。"
+msgstr "切换本比赛是否算入排位。"
 
 #: gui/gamesetup/gamesetup.js:1000
 #, javascript-format
@@ -444,119 +450,119 @@ msgstr "返回到主菜单."
 msgid "Start Game!"
 msgstr "开始游戏!"
 
-#: gui/gamesetup/gamesetup.js:1019
+#: gui/gamesetup/gamesetup.js:1029
 msgid "Start a new game with the current settings."
 msgstr "使用当前的设置开始一局新游戏."
 
-#: gui/gamesetup/gamesetup.js:1020
+#: gui/gamesetup/gamesetup.js:1030
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "使用当前的设置开始一局新游戏。(禁用直到所有玩家准备好)"
 
-#: gui/gamesetup/gamesetup.js:1083
-#, javascript-format
-msgid "Configure AI: %(description)s."
-msgstr "配置AI：%(description)s。"
-
-#: gui/gamesetup/gamesetup.js:1132
+#: gui/gamesetup/gamesetup.js:1042
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: 查看历史/结构树\n单击重新打开上次打开的。"
 
-#: gui/gamesetup/gamesetup.js:1187
+#: gui/gamesetup/gamesetup.js:1107
+#, javascript-format
+msgid "Configure AI: %(description)s."
+msgstr "配置AI：%(description)s。"
+
+#: gui/gamesetup/gamesetup.js:1398
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "切换%(name)s设置选项卡。"
 
-#: gui/gamesetup/gamesetup.js:1188
+#: gui/gamesetup/gamesetup.js:1399
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "使用%(hotkey)s向下移动设置选项卡。"
 
-#: gui/gamesetup/gamesetup.js:1189
+#: gui/gamesetup/gamesetup.js:1400
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "使用%(hotkey)s向上移动设置选项卡。"
 
-#: gui/gamesetup/gamesetup.js:1708
+#: gui/gamesetup/gamesetup.js:1745
 msgctxt "map selection"
 msgid "Random"
 msgstr "随机"
 
-#: gui/gamesetup/gamesetup.js:1710
+#: gui/gamesetup/gamesetup.js:1747
 msgid "Pick any of the given maps at random."
 msgstr "随机选择地图"
 
-#: gui/gamesetup/gamesetup.js:1742
+#: gui/gamesetup/gamesetup.js:1779
 msgctxt "biome"
 msgid "Random"
 msgstr "随机"
 
-#: gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1780
 msgid "Pick a biome at random."
 msgstr "随机选择生物群落。"
 
-#: gui/gamesetup/gamesetup.js:2068
+#: gui/gamesetup/gamesetup.js:2118
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s："
 
-#: gui/gamesetup/gamesetup.js:2073
+#: gui/gamesetup/gamesetup.js:2123
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/gamesetup/gamesetup.js:2103
+#: gui/gamesetup/gamesetup.js:2153
 msgid "Yes"
 msgstr "是"
 
-#: gui/gamesetup/gamesetup.js:2103
+#: gui/gamesetup/gamesetup.js:2153
 msgid "No"
 msgstr "否"
 
-#: gui/gamesetup/gamesetup.js:2110
+#: gui/gamesetup/gamesetup.js:2160
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s："
 
-#: gui/gamesetup/gamesetup.js:2196
+#: gui/gamesetup/gamesetup.js:2248
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2401
+#: gui/gamesetup/gamesetup.js:2453
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "电脑: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2409
+#: gui/gamesetup/gamesetup.js:2461
 msgid "Unassigned"
 msgstr "未指定"
 
-#: gui/gamesetup/gamesetup.js:2485
+#: gui/gamesetup/gamesetup.js:2537
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2492
+#: gui/gamesetup/gamesetup.js:2544
 msgid "Unknown Player"
 msgstr "未知玩家"
 
-#: gui/gamesetup/gamesetup.js:2531
+#: gui/gamesetup/gamesetup.js:2583
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2532
+#: gui/gamesetup/gamesetup.js:2584
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2533
+#: gui/gamesetup/gamesetup.js:2585
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -580,7 +586,7 @@ msgstr "电脑玩家："
 
 #: gui/aiconfig/aiconfig.xml:(caption):28
 msgid "AI Difficulty:"
-msgstr "AI 難度："
+msgstr "AI难度："
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
@@ -594,84 +600,76 @@ msgstr "取消"
 msgid "OK"
 msgstr "确定"
 
-#: gui/gamesetup/gamesetup.xml:(caption):24
+#: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Match Setup"
 msgstr "竞赛设置"
 
-#: gui/gamesetup/gamesetup.xml:(caption):30
+#: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading"
 msgstr "加载中"
 
-#: gui/gamesetup/gamesetup.xml:(caption):34
+#: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Loading map data. Please wait…"
 msgstr "正在加载地图。请稍等..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Player Name"
 msgstr "玩家名字"
 
-#: gui/gamesetup/gamesetup.xml:(caption):58
+#: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Color"
 msgstr "色彩"
 
-#: gui/gamesetup/gamesetup.xml:(caption):62
+#: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Player Placement"
 msgstr "玩家位置"
 
-#: gui/gamesetup/gamesetup.xml:(caption):66
+#: gui/gamesetup/gamesetup.xml:(caption):70
 msgid "Civilization"
 msgstr "文明"
 
-#: gui/gamesetup/gamesetup.xml:(caption):93
+#: gui/gamesetup/gamesetup.xml:(caption):87
 msgid "Team"
 msgstr "组队"
 
-#: gui/gamesetup/gamesetup.xml:(caption):147
+#: gui/gamesetup/gamesetup.xml:(caption):131
 msgid "Show this message in the future"
 msgstr "暂缓显示信息"
 
-#: gui/gamesetup/gamesetup.xml:(caption):236
+#: gui/gamesetup/gamesetup.xml:(caption):220
 msgid "Send"
 msgstr "发送"
 
-#: gui/gamesetup/gamesetup.xml:(caption):253
+#: gui/gamesetup/gamesetup.xml:(caption):237
 msgid "Cheats enabled."
 msgstr "启用秘籍。"
 
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.xml:(caption):260
 msgid "Back"
 msgstr "后退"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):88
+#: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "将已选定的任何文明重置为默认值 ( 随机 ) "
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):103
+#: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
 msgstr "将所有团队重置为默认值。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):114
+#: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
 msgstr "选择一种颜色。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):117
+#: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
 msgstr "选择玩家"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):127
-msgid "Configure AI settings."
-msgstr "配置 AI 设置。"
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):130
-msgid "Select player's civilization."
-msgstr "选择玩家的文明"
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):134
+#: gui/gamesetup/gamesetup.xml:(tooltip):118
 msgid "Select player's team."
 msgstr "选择玩家的组队"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):218
+#: gui/gamesetup/gamesetup.xml:(tooltip):202
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "在对话框窗口中显示多人游戏大厅"
 
@@ -832,7 +830,7 @@ msgstr "“敬最强者！”-亚历山大大帝在临终时，当被问到谁�
 msgid ""
 "\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr "“我不偷胜利。”-亚历山大大帝，当被建议在夜间袭击波斯人时(冥王星，“平行生命”，“亚历山大”,sec.31)"
+msgstr "“我不偷胜利。”-亚历山大大帝，当被建议在夜间袭击波斯人时(普鲁塔克，“平行生命”，“亚历山大”,sec.31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
