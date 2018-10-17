@@ -2,9 +2,9 @@
 <object>
 	<action on="Tick">onTick();</action>
 
-	<object name="feedback" type="text" size="50 0 100%-50 60" style="ModernLabelText" textcolor="red"/>
+	<object name="feedback" type="text" size="50 0 100%-50 75" style="ModernLabelText" textcolor="red"/>
 
-	<object size="18 65 100%-18 93">
+	<object size="18 80 100%-18 108">
 
 		<object name="cancel" type="button" size="0 0 50%-5 100%" style="ModernButtonRed" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>

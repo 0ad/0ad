@@ -20,6 +20,15 @@ function initLobbyTerms()
 			"salt": () => Engine.GetGUIObjectByName("username").caption,
 			"accepted": false,
 			"callback": updateFeedback
+		},
+		"Privacy": {
+			"title": translate("Privacy Policy"),
+			"instruction": translate("Please read and accept the Privacy Policy."),
+			"file": "gui/prelobby/common/terms/Privacy_Policy.txt",
+			"config": "lobby.privacy_policy",
+			"salt": () => Engine.GetGUIObjectByName("username").caption,
+			"accepted": false,
+			"callback": updateFeedback
 		}
 	};
 
