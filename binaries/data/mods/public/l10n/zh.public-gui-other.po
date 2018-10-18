@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-10-13 09:27+0000\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-14 13:28+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -108,24 +108,13 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
 
-#: gui/common/functions_global_object.js:8
-#, javascript-format
-msgid ""
-"Opening %(url)s\n"
-" in default web browser. Please wait…"
-msgstr "正在使用默认浏览器打开%(url)s\n请稍候… "
-
-#: gui/common/functions_global_object.js:11
-msgid "Opening page"
-msgstr "-- 正在打开"
-
 #. dennis-ignore: *
-#: gui/common/functions_global_object.js:21
+#: gui/common/functions_global_object.js:7
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "帧率：%(fps)4s"
 
-#: gui/common/functions_global_object.js:90
+#: gui/common/functions_global_object.js:79
 msgid "Loading Aborted"
 msgstr "中断载入"
 
@@ -133,7 +122,7 @@ msgstr "中断载入"
 msgid "Gaia"
 msgstr "盖亚"
 
-#: gui/common/functions_utility.js:105
+#: gui/common/functions_utility.js:102
 msgctxt "map selection"
 msgid "Random"
 msgstr "随机"
@@ -167,15 +156,15 @@ msgstr "删除"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:261
-#: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
+#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "否"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:261
-#: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
+#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "是"
 
@@ -189,319 +178,319 @@ msgstr "使用 %(hotkey)s 删除选取单位。"
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "按 %(hotkey)s 直接删除。"
 
-#: gui/common/gamedescription.js:44
+#: gui/common/gamedescription.js:59
 msgid "A randomly selected map."
 msgstr "随机选取的地图"
 
-#: gui/common/gamedescription.js:53 gui/common/gamedescription.js:337
+#: gui/common/gamedescription.js:68 gui/common/gamedescription.js:352
 msgid "Sorry, no description available."
 msgstr "无可用的描述。"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:104
+#: gui/common/gamedescription.js:119
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
 msgstr "%(playerName)s（%(civ)s，%(AIdescription)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:107
+#: gui/common/gamedescription.js:122
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 msgstr "%(playerName)s（%(civ)s，%(AIdescription)s，%(state)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:113
+#: gui/common/gamedescription.js:128
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
 msgstr "%(playerName)s（%(AIdescription)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:116
+#: gui/common/gamedescription.js:131
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
 msgstr "%(playerName)s（%(AIdescription)s，%(state)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:126
+#: gui/common/gamedescription.js:141
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr "%(playerName)s ( 离线 )"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:129
+#: gui/common/gamedescription.js:144
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr "%(playerName)s (离线, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:136
+#: gui/common/gamedescription.js:151
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:139
+#: gui/common/gamedescription.js:154
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:143
+#: gui/common/gamedescription.js:158
 #, javascript-format
 msgid "%(playerName)s"
 msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:146
+#: gui/common/gamedescription.js:161
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s (%(state)s)"
 
-#: gui/common/gamedescription.js:166
+#: gui/common/gamedescription.js:181
 msgid "Unknown Civilization"
 msgstr "未知文明"
 
-#: gui/common/gamedescription.js:173
+#: gui/common/gamedescription.js:188
 msgctxt "playerstate"
 msgid "defeated"
 msgstr "失败"
 
-#: gui/common/gamedescription.js:174
+#: gui/common/gamedescription.js:189
 msgctxt "playerstate"
 msgid "won"
 msgstr "胜利"
 
-#: gui/common/gamedescription.js:195
+#: gui/common/gamedescription.js:210
 msgid "No Team"
 msgstr "未组队"
 
-#: gui/common/gamedescription.js:196
+#: gui/common/gamedescription.js:211
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "%(team)s 队"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:199 gui/common/gamedescription.js:206
+#: gui/common/gamedescription.js:214 gui/common/gamedescription.js:221
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s:\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:207
+#: gui/common/gamedescription.js:222
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "观察者"
 
-#: gui/common/gamedescription.js:224
+#: gui/common/gamedescription.js:239
 msgctxt "victory condition"
 msgid "Endless Game"
 msgstr "无尽的游戏"
 
-#: gui/common/gamedescription.js:225
+#: gui/common/gamedescription.js:240
 msgid "No winner will be determined, even if everyone is defeated."
 msgstr "没有胜利者"
 
-#: gui/common/gamedescription.js:236
+#: gui/common/gamedescription.js:251
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "奇观分钟数 %(min)s"
 
-#: gui/common/gamedescription.js:248
+#: gui/common/gamedescription.js:263
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "获取遗迹 (%(min)s 分钟)"
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:279
 msgid "Relic Count"
 msgstr "遗迹数量"
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:286
 msgid "Hero Garrison"
 msgstr "英雄驻军"
 
-#: gui/common/gamedescription.js:272
+#: gui/common/gamedescription.js:287
 msgid "Heroes can be garrisoned."
 msgstr "英雄可以驻守。"
 
-#: gui/common/gamedescription.js:276
+#: gui/common/gamedescription.js:291
 msgid "Exposed Heroes"
 msgstr "显示英雄位置"
 
-#: gui/common/gamedescription.js:277
+#: gui/common/gamedescription.js:292
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "英雄不能驻守，很容易对手攻击。"
 
-#: gui/common/gamedescription.js:284
+#: gui/common/gamedescription.js:299
 msgid "Rated game"
 msgstr "排位赛"
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:300
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "当这场比赛的获胜者确定后，大厅的分数将被调整。"
 
-#: gui/common/gamedescription.js:290
+#: gui/common/gamedescription.js:305
 msgid "Locked Teams"
 msgstr "锁定组队"
 
-#: gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:306
 msgid "Players can't change the initial teams."
 msgstr "玩家不能更改初始团队。"
 
-#: gui/common/gamedescription.js:295
+#: gui/common/gamedescription.js:310
 msgid "Diplomacy"
 msgstr "政策"
 
-#: gui/common/gamedescription.js:296
+#: gui/common/gamedescription.js:311
 msgid "Players can make alliances and declare war on allies."
 msgstr "玩家可结盟，也可对盟友宣战。"
 
-#: gui/common/gamedescription.js:301
+#: gui/common/gamedescription.js:316
 msgid "Last Man Standing"
 msgstr "笑到最后"
 
-#: gui/common/gamedescription.js:302
+#: gui/common/gamedescription.js:317
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "胜者只有一人。如果有同盟存活，游戏继续，直到只剩一家时结束。"
 
-#: gui/common/gamedescription.js:306
+#: gui/common/gamedescription.js:321
 msgid "Allied Victory"
 msgstr "同盟胜利"
 
-#: gui/common/gamedescription.js:307
+#: gui/common/gamedescription.js:322
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "某人获胜时，盟友一起获胜。"
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:326
 msgid "Ceasefire"
 msgstr "停火"
 
-#: gui/common/gamedescription.js:314 gui/pregame/mainmenu.js:95
+#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
 msgid "disabled"
 msgstr "关闭"
 
-#: gui/common/gamedescription.js:315
+#: gui/common/gamedescription.js:330
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "在前 %(min)s 分钟, 其他玩家保持中立。"
 
-#: gui/common/gamedescription.js:324
+#: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "随机地图"
 
-#: gui/common/gamedescription.js:325
+#: gui/common/gamedescription.js:340
 msgid "Randomly select a map from the list."
 msgstr "从列表里随机选取地图"
 
-#: gui/common/gamedescription.js:330
+#: gui/common/gamedescription.js:345
 msgid "Map Name"
 msgstr "地图名称"
 
-#: gui/common/gamedescription.js:334
+#: gui/common/gamedescription.js:349
 msgid "Map Description"
 msgstr "地图描述"
 
-#: gui/common/gamedescription.js:342
+#: gui/common/gamedescription.js:357
 msgid "Map Type"
 msgstr "地图类型"
 
-#: gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:363
 msgid "Map Filter"
 msgstr "地图筛选器"
 
-#: gui/common/gamedescription.js:357
+#: gui/common/gamedescription.js:372
 msgid "Map Size"
 msgstr "地图大小"
 
-#: gui/common/gamedescription.js:366
+#: gui/common/gamedescription.js:381
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "随机生物群"
 
-#: gui/common/gamedescription.js:367
+#: gui/common/gamedescription.js:382
 msgid "Randomly select a biome from the list."
 msgstr "从列表里随机挑选生物群"
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
 msgstr "诺曼底模式"
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:396
 msgid "Civic Centers"
 msgstr "城镇中心"
 
-#: gui/common/gamedescription.js:384
+#: gui/common/gamedescription.js:399
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "玩家从少数单位开局并需要找到一个合适的地方来建造他们的城市。"
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
 msgstr "玩家以一个城镇中心开始游戏。"
 
-#: gui/common/gamedescription.js:389
+#: gui/common/gamedescription.js:404
 msgid "Starting Resources"
 msgstr "初始资源"
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:405
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:400
+#: gui/common/gamedescription.js:415
 msgid "Population Limit"
 msgstr "人口限制"
 
-#: gui/common/gamedescription.js:408
+#: gui/common/gamedescription.js:423
 msgid "Treasures"
 msgstr "宝藏"
 
-#: gui/common/gamedescription.js:410
+#: gui/common/gamedescription.js:425
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "禁用"
 
-#: gui/common/gamedescription.js:411
+#: gui/common/gamedescription.js:426
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "由地图定义。"
 
-#: gui/common/gamedescription.js:415
+#: gui/common/gamedescription.js:430
 msgid "Revealed Map"
 msgstr "显示地图"
 
-#: gui/common/gamedescription.js:420
+#: gui/common/gamedescription.js:435
 msgid "Explored Map"
 msgstr "探索地图"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:440
 msgid "Cheats"
 msgstr "作弊"
 
-#: gui/common/gamedescription.js:429 gui/common/tooltips.js:164
+#: gui/common/gamedescription.js:444 gui/common/tooltips.js:164
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:260
 #: gui/common/tooltips.js:395 gui/common/tooltips.js:417
 #: gui/common/tooltips.js:501 gui/common/tooltips.js:522
@@ -510,25 +499,25 @@ msgstr "作弊"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:447
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "加载"
 
-#: gui/common/gamedescription.js:433
+#: gui/common/gamedescription.js:448
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "取消"
 
-#: gui/common/gamedescription.js:449
+#: gui/common/gamedescription.js:464
 msgid "Victorious"
 msgstr "胜利"
 
-#: gui/common/gamedescription.js:454
+#: gui/common/gamedescription.js:469
 msgid "Defeated"
 msgstr "失败"
 
-#: gui/common/gamedescription.js:463
+#: gui/common/gamedescription.js:478
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -1239,7 +1228,7 @@ msgstr "有无效设定值！你真的要保存设置吗？"
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "您有未保存的更改，是否要关闭窗口?"
 
-#: gui/pregame/mainmenu.js:42
+#: gui/pregame/mainmenu.js:41
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
@@ -1250,54 +1239,14 @@ msgstr "%(hotkey)s:观察文明结构树"
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
 msgstr "%(hotkey)s:了解各个文明特性"
 
-#: gui/pregame/mainmenu.js:48
+#: gui/pregame/mainmenu.js:49
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s:启动多人游戏大厅，加入或开启公开的游戏,并与其他玩家聊天。"
 
-#: gui/pregame/mainmenu.js:98
-msgid "connecting to server"
-msgstr "连接到服务器"
-
-#: gui/pregame/mainmenu.js:101
-#, javascript-format
-msgid "uploading (%f%%)"
-msgstr "上传 (%f%%)"
-
-#: gui/pregame/mainmenu.js:107
-msgid "upload succeeded"
-msgstr "上传成功"
-
-#: gui/pregame/mainmenu.js:108
-#, javascript-format
-msgid "upload failed (%(errorCode)s)"
-msgstr "上传失败 (%(errorCode)s)"
-
-#: gui/pregame/mainmenu.js:112
-#, javascript-format
-msgid "upload failed (%(errorMessage)s)"
-msgstr "上传失败 (%(errorMessage)s)"
-
-#: gui/pregame/mainmenu.js:114
-msgid "unknown"
-msgstr "未知"
-
-#: gui/pregame/mainmenu.js:129
-msgid "Thank you for helping improve 0 A.D.!"
-msgstr "感谢您对改善 0 A.D. 的帮助！"
-
-#: gui/pregame/mainmenu.js:130
-msgid "Anonymous feedback is currently enabled."
-msgstr "匿名反馈已启用"
-
-#: gui/pregame/mainmenu.js:131
-#, javascript-format
-msgid "Status: %(status)s."
-msgstr "状态: %(status)s。"
-
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:113
 #, javascript-format
 msgid ""
 "%(warning)s You appear to be using non-shader (fixed function) graphics. "
@@ -1310,63 +1259,131 @@ msgstr "%(warning)s你似乎在使用不支持着色器（固定功能）的图�
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:121
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "点击“获取更多信息”或者点击\"确定\"继续游戏"
 
-#: gui/pregame/mainmenu.js:164
+#: gui/pregame/mainmenu.js:122
 msgid "WARNING!"
 msgstr "警告！"
 
-#: gui/pregame/mainmenu.js:165 gui/splashscreen/splashscreen.xml:(caption):29
+#: gui/pregame/mainmenu.js:123 gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
 msgstr "确定"
 
-#: gui/pregame/mainmenu.js:165
+#: gui/pregame/mainmenu.js:123
 msgid "Read More"
 msgstr "获取更多"
 
-#: gui/pregame/mainmenu.js:247
+#: gui/pregame/mainmenu.js:198
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "创建: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:259
+#: gui/pregame/mainmenu.js:210
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "确定要退出 0 A.D. 吗?"
 
-#: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
+#: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
 msgid "Confirmation"
 msgstr "确认"
 
-#: gui/pregame/mainmenu.js:273
+#: gui/pregame/mainmenu.js:224
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "确定要退出 0 A.D. ，并打开剧情编辑器吗？"
 
-#: gui/pregame/mainmenu.js:281
+#: gui/pregame/mainmenu.js:232
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "脚本编辑器不可用或加载失败。请查看日志了解详情。"
 
-#: gui/pregame/mainmenu.js:282 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/mainmenu.js:233 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "错误"
 
-#: gui/pregame/mainmenu.js:288
+#: gui/pregame/mainmenu.js:239
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr "启动多人游戏大厅，加入或开启公开的游戏,并与其他玩家聊天。\\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
-#: gui/pregame/mainmenu.xml:(caption):95
-msgid "Technical Details"
-msgstr "技术详情"
-
-#: gui/pregame/mainmenu.js:298 gui/pregame/mainmenu.xml:(caption):146
+#: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
 msgstr "手册"
+
+#: gui/pregame/userreport/userreport.js:3
+msgctxt "UserReporter Terms and Conditions"
+msgid "Terms"
+msgstr "条款"
+
+#: gui/pregame/userreport/userreport.js:4
+msgid "Please read and accept the UserReporter Terms and Conditions."
+msgstr "请阅读并接受用户报告的条款和条件。"
+
+#: gui/pregame/userreport/userreport.js:17
+msgid "Publications"
+msgstr "出版"
+
+#: gui/pregame/userreport/userreport.js:26
+#: gui/pregame/userreport/userreport.js:27
+#: gui/pregame/userreport/userreport.js:28
+msgid "connecting to server"
+msgstr "连接到服务器"
+
+#: gui/pregame/userreport/userreport.js:29
+#, javascript-format
+msgid "uploading (%f%%)"
+msgstr "上传 (%f%%)"
+
+#: gui/pregame/userreport/userreport.js:32
+msgid "upload succeeded"
+msgstr "上传成功"
+
+#: gui/pregame/userreport/userreport.js:33
+#, javascript-format
+msgid "upload failed (%(errorCode)s)"
+msgstr "上传失败 (%(errorCode)s)"
+
+#: gui/pregame/userreport/userreport.js:36
+#, javascript-format
+msgid "upload failed (%(errorMessage)s)"
+msgstr "上传失败 (%(errorMessage)s)"
+
+#: gui/pregame/userreport/userreport.js:60
+msgid "Disable Feedback"
+msgstr "取消反馈"
+
+#: gui/pregame/userreport/userreport.js:60
+msgid "Enable Feedback"
+msgstr "激活反馈"
+
+#: gui/pregame/userreport/userreport.js:80
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr "感谢您对改善 0 A.D. 的帮助！"
+
+#: gui/pregame/userreport/userreport.js:81
+msgid "Feedback is currently enabled."
+msgstr "反馈机制已启用。"
+
+#: gui/pregame/userreport/userreport.js:82
+#, javascript-format
+msgid "Status: %(status)s."
+msgstr "状态: %(status)s。"
+
+#: gui/pregame/userreport/userreport.js:83
+msgid "unknown"
+msgstr "未知"
+
+#: gui/pregame/userreport/userreport.js:85
+msgid "Help improve 0 A.D.!"
+msgstr "帮助改进 0 A.D.!"
+
+#: gui/pregame/userreport/userreport.js:86
+msgid ""
+"You can automatically send us feedback that can help us fix bugs, and "
+"improve performance and compatibility."
+msgstr "你可自动向我们发送反馈，以帮助我们修复错误，提高性能和兼容性。"
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1534,11 +1551,11 @@ msgstr "%(min)s - %(max)s 分钟"
 msgid "Single- and multiplayer"
 msgstr "单人和多人游戏"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):481
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):424
 msgid "Single Player"
 msgstr "单人游戏"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):496
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):439
 msgid "Multiplayer"
 msgstr "多人对战"
 
@@ -1895,7 +1912,7 @@ msgid "Civilization Selection"
 msgstr "选择文明"
 
 #: gui/civinfo/civinfo.xml:(caption):125
-#: gui/pregame/mainmenu.xml:(caption):181
+#: gui/pregame/mainmenu.xml:(caption):124
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
 msgstr "结构树"
@@ -1911,7 +1928,7 @@ msgstr "关闭"
 msgid "0 A.D. Credits"
 msgstr "0 A.D. 职员名单"
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):382
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
 msgstr "语言"
 
@@ -1971,233 +1988,215 @@ msgstr "保存更改"
 msgid "Unsaved changes affect this session only"
 msgstr "未保存的更改将只影响此会话"
 
-#: gui/pregame/mainmenu.xml:58
-msgid "Help improve 0 A.D.!"
-msgstr "帮助改进 0 A.D.!"
-
-#: gui/pregame/mainmenu.xml:60
-msgid ""
-"You can automatically send us anonymous feedback that will help us fix bugs,"
-" and improve performance and compatibility."
-msgstr "您能自动发送匿名反馈给我们，以便修复错误以及改善性能和兼容性。"
-
-#: gui/pregame/mainmenu.xml:562
+#: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIII: Ken Wood"
 msgstr "内测版 23：代号Ken Wood"
 
-#: gui/pregame/mainmenu.xml:564
+#: gui/pregame/mainmenu.xml:507
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "警告：这是一个早期开发的游戏版本。许多功能没有被加进去。"
 
-#: gui/pregame/mainmenu.xml:(caption):64
-msgid "Enable Feedback"
-msgstr "激活反馈"
-
-#: gui/pregame/mainmenu.xml:(caption):91
-msgid "Disable Feedback"
-msgstr "取消反馈"
-
-#: gui/pregame/mainmenu.xml:(caption):165
-msgid "Tutorial"
-msgstr "教程"
-
-#: gui/pregame/mainmenu.xml:(caption):197
-#: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
-msgstr "历史"
-
-#: gui/pregame/mainmenu.xml:(caption):219
-msgid "Matches"
-msgstr "对战"
-
-#: gui/pregame/mainmenu.xml:(caption):233
-msgid "Campaigns"
-msgstr "战役"
-
-#: gui/pregame/mainmenu.xml:(caption):246
-msgid "Load Game"
-msgstr "载入游戏"
-
-#: gui/pregame/mainmenu.xml:(caption):260
-#: gui/pregame/mainmenu.xml:(caption):340
-msgid "Replays"
-msgstr "重玩"
-
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):288
-msgid "Join Game"
-msgstr "加入游戏"
-
-#: gui/pregame/mainmenu.xml:(caption):302
-msgid "Host Game"
-msgstr "创建游戏"
-
-#: gui/pregame/mainmenu.xml:(caption):318
-msgid "Game Lobby"
-msgstr "游戏大厅"
-
-#: gui/pregame/mainmenu.xml:(caption):368
-msgid "Options"
-msgstr "选项"
-
-#: gui/pregame/mainmenu.xml:(caption):396
-msgid "Mod Selection"
-msgstr "Mod 选择"
-
-#: gui/pregame/mainmenu.xml:(caption):408
-msgid "Welcome Screen"
-msgstr "欢迎屏幕"
-
-#: gui/pregame/mainmenu.xml:(caption):466
-msgid "Learn to Play"
-msgstr "学习如何游戏"
-
-#: gui/pregame/mainmenu.xml:(caption):511
-msgid "Settings"
-msgstr "设置"
-
-#: gui/pregame/mainmenu.xml:(caption):526
-msgid "Scenario Editor"
-msgstr "场景编辑器"
-
-#: gui/pregame/mainmenu.xml:(caption):540
-msgid "Exit"
-msgstr "退出"
-
-#: gui/pregame/mainmenu.xml:(caption):574
-msgid "Website"
-msgstr "官网"
-
-#: gui/pregame/mainmenu.xml:(caption):586
-msgid "Chat"
-msgstr "聊天"
-
-#: gui/pregame/mainmenu.xml:(caption):598
-msgid "Report a Bug"
-msgstr "报告游戏错误"
-
-#: gui/pregame/mainmenu.xml:(caption):610
-msgid "Translate the Game"
-msgstr "翻译游戏"
-
-#: gui/pregame/mainmenu.xml:(caption):622
-msgid "Donate"
-msgstr "捐赠"
-
-#: gui/pregame/mainmenu.xml:(caption):634
-msgid "Credits"
-msgstr "职员名单"
-
-#: gui/pregame/mainmenu.xml:(caption):663
-msgid "WILDFIRE GAMES"
-msgstr "WILDFIRE GAMES"
-
-#: gui/pregame/mainmenu.xml:(tooltip):147
+#: gui/pregame/mainmenu.xml:(tooltip):90
 msgid "Open the 0 A.D. Game Manual."
 msgstr "打开 0 A.D. 游戏手册。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):166
+#: gui/pregame/mainmenu.xml:(tooltip):109
 msgid "Start the economic tutorial."
 msgstr "开始经济类教学"
 
-#: gui/pregame/mainmenu.xml:(tooltip):220
+#: gui/pregame/mainmenu.xml:(tooltip):163
 msgid "Click here to start a new single player game."
 msgstr "点击这里以开始单人游戏。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):234
+#: gui/pregame/mainmenu.xml:(tooltip):177
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "通过史诗般的战役来重现历史。\\[尚未实现]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):247
+#: gui/pregame/mainmenu.xml:(tooltip):190
 msgid "Click here to load a saved game."
 msgstr "加载已保存的游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):261
-#: gui/pregame/mainmenu.xml:(tooltip):341
+#: gui/pregame/mainmenu.xml:(tooltip):204
+#: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Playback previous games."
 msgstr "回放以前的游戏。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):289
+#: gui/pregame/mainmenu.xml:(tooltip):232
 msgid "Joining an existing multiplayer game."
 msgstr "加入一个已创建的多人游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):303
+#: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "创建多人游戏.\\n\\n需要打开UDP 端口 20595."
 
-#: gui/pregame/mainmenu.xml:(tooltip):369
+#: gui/pregame/mainmenu.xml:(tooltip):312
 msgid "Adjust game settings."
 msgstr "调整游戏设置."
 
-#: gui/pregame/mainmenu.xml:(tooltip):383
+#: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Choose the language of the game."
 msgstr "选择游戏语言。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):397
+#: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Select and download mods for the game."
 msgstr "选择并下载mods"
 
-#: gui/pregame/mainmenu.xml:(tooltip):409
+#: gui/pregame/mainmenu.xml:(tooltip):352
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "显示欢迎屏幕（如果被您隐藏）。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):467
+#: gui/pregame/mainmenu.xml:(tooltip):410
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "学习如何游戏，开始教程，探索科技树以及文明背后的历史"
 
-#: gui/pregame/mainmenu.xml:(tooltip):482
+#: gui/pregame/mainmenu.xml:(tooltip):425
 msgid "Challenge the computer player to a single player match."
 msgstr "人机对战"
 
-#: gui/pregame/mainmenu.xml:(tooltip):497
+#: gui/pregame/mainmenu.xml:(tooltip):440
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "在多人游戏中和其他的人类玩家作战"
 
-#: gui/pregame/mainmenu.xml:(tooltip):512
+#: gui/pregame/mainmenu.xml:(tooltip):455
 msgid "Game options and mod selection."
 msgstr "游戏选项和模组选择。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):527
+#: gui/pregame/mainmenu.xml:(tooltip):470
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "在新窗口打开场景编辑器。您可以在命令行以参数\"-editor\"启动游戏使此功能更稳定。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):541
+#: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Exits the game."
 msgstr "退出游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):575
+#: gui/pregame/mainmenu.xml:(tooltip):518
 msgid "Click to open play0ad.com in your web browser."
 msgstr "点击进入游戏官网play0ad.com"
 
-#: gui/pregame/mainmenu.xml:(tooltip):587
+#: gui/pregame/mainmenu.xml:(tooltip):530
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "点击在浏览器里打开0 A.D. IRC(网络即时聊天) - 频道#0ad 在webchat.quakenet.org"
 
-#: gui/pregame/mainmenu.xml:(tooltip):599
+#: gui/pregame/mainmenu.xml:(tooltip):542
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "单击访问 0 A.D. Trac 报告bug，崩溃或错误。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):611
+#: gui/pregame/mainmenu.xml:(tooltip):554
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "单击在浏览器里打开0 A.D. 翻译页面。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):623
+#: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
 msgstr "给个一丝半毫吧～"
 
-#: gui/pregame/mainmenu.xml:(tooltip):635
+#: gui/pregame/mainmenu.xml:(tooltip):578
 msgid "Click to see the 0 A.D. credits."
 msgstr "单击查看 0 A.D. 职员名单。"
+
+#: gui/pregame/mainmenu.xml:(caption):108
+msgid "Tutorial"
+msgstr "教程"
+
+#: gui/pregame/mainmenu.xml:(caption):140
+#: gui/reference/structree/structree.xml:(caption):126
+msgid "History"
+msgstr "历史"
+
+#: gui/pregame/mainmenu.xml:(caption):162
+msgid "Matches"
+msgstr "对战"
+
+#: gui/pregame/mainmenu.xml:(caption):176
+msgid "Campaigns"
+msgstr "战役"
+
+#: gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "载入游戏"
+
+#: gui/pregame/mainmenu.xml:(caption):203
+#: gui/pregame/mainmenu.xml:(caption):283
+msgid "Replays"
+msgstr "重玩"
+
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):231
+msgid "Join Game"
+msgstr "加入游戏"
+
+#: gui/pregame/mainmenu.xml:(caption):245
+msgid "Host Game"
+msgstr "创建游戏"
+
+#: gui/pregame/mainmenu.xml:(caption):261
+msgid "Game Lobby"
+msgstr "游戏大厅"
+
+#: gui/pregame/mainmenu.xml:(caption):311
+msgid "Options"
+msgstr "选项"
+
+#: gui/pregame/mainmenu.xml:(caption):339
+msgid "Mod Selection"
+msgstr "Mod 选择"
+
+#: gui/pregame/mainmenu.xml:(caption):351
+msgid "Welcome Screen"
+msgstr "欢迎屏幕"
+
+#: gui/pregame/mainmenu.xml:(caption):409
+msgid "Learn to Play"
+msgstr "学习如何游戏"
+
+#: gui/pregame/mainmenu.xml:(caption):454
+msgid "Settings"
+msgstr "设置"
+
+#: gui/pregame/mainmenu.xml:(caption):469
+msgid "Scenario Editor"
+msgstr "场景编辑器"
+
+#: gui/pregame/mainmenu.xml:(caption):483
+msgid "Exit"
+msgstr "退出"
+
+#: gui/pregame/mainmenu.xml:(caption):517
+msgid "Website"
+msgstr "官网"
+
+#: gui/pregame/mainmenu.xml:(caption):529
+msgid "Chat"
+msgstr "聊天"
+
+#: gui/pregame/mainmenu.xml:(caption):541
+msgid "Report a Bug"
+msgstr "报告游戏错误"
+
+#: gui/pregame/mainmenu.xml:(caption):553
+msgid "Translate the Game"
+msgstr "翻译游戏"
+
+#: gui/pregame/mainmenu.xml:(caption):565
+msgid "Donate"
+msgstr "捐赠"
+
+#: gui/pregame/mainmenu.xml:(caption):577
+msgid "Credits"
+msgstr "职员名单"
+
+#: gui/pregame/mainmenu.xml:(caption):606
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
 
 #: gui/reference/structree/structree.xml:(caption):31
 msgid "Civilization:"
@@ -3201,7 +3200,7 @@ msgstr "从动物、浆果灌木、鱼或田地中获取。"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr "从矿山或采石场开采。"
+msgstr "采矿获取。"
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."

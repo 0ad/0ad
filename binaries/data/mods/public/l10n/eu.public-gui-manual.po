@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-11 09:02+0200\n"
-"PO-Revision-Date: 2018-05-20 19:17+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-14 03:58+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -683,56 +683,3 @@ msgstr "[font=\"sans-14\"]Ezabatu: gordetako partida ezabatzen da onarpena eskat
 #: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Maius: onarpenik ez eskatzea gordetako partida bat ezabatzean"
-
-#: gui/manual/userreport.txt:1
-msgid ""
-"As a free, open source game, we don't have the resources to test on a wide "
-"range of systems, but we want to provide the best quality experience to as "
-"many players as possible. When you enable automatic feedback, we'll receive "
-"data to help us understand the hardware we should focus on supporting, and "
-"to identify performance problems we should fix."
-msgstr "Dohaineko eta kode zabaleko jokoa legez, ez dugu konputazio arsenalen froga baliabide handirik, baina hala ere ahalik eta jokalari gehienei esperientzi ezin hobea eskaini nahi diegu. Txosten automatikoak aktibatzean zure ekipoko datuak jasoko ditugu eta hauek bideratuko gaituzte hardwarerik baliagarrienean zentratzea eta errendimendu arazoak atzematea azkar konpontzeko."
-
-#: gui/manual/userreport.txt:3
-msgid "The following data will be sent to our server:"
-msgstr "Hurrengo datuak gure zerbitzarira bidaliko dira:"
-
-#: gui/manual/userreport.txt:5
-msgid ""
-"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
-"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
-"reports from the same user."
-msgstr "• Erabiltzaile ID ausazkoa (hemen gordea %APPDATA%\\\\0ad\\\\config\\\\user.cfg on Windows, ~/.config/0ad/config/user.cfg on Unix), erabiltzaile berdinaren errepikatutako txostenak atzematen uzten diguna."
-
-#: gui/manual/userreport.txt:6
-msgid ""
-"• Game version number and basic build settings (optimisation mode, CPU "
-"architecture, timestamp, compiler version)."
-msgstr "• Jokoaren bertsio zenbakia eta konpilatze aukerak (optimizatze metodoak, CPU arkitektura, eguna eta ordua, konpilatze bertsioa)."
-
-#: gui/manual/userreport.txt:7
-msgid ""
-"• Hardware details: OS version, graphics driver version, OpenGL "
-"capabilities, screen size, CPU details, RAM size."
-msgstr "• Hardware detaileak: S.O.ren bertsioa, kontrolatzaile grafikoen bertsioa, OpenGL funtzionalitatea, pantailaren tamaina, prozesatzailearen detaileak, RAMaren tamaina."
-
-#: gui/manual/userreport.txt:8
-msgid ""
-"• Performance details: a snapshot of timing data a few seconds after you "
-"start a match or change graphics settings."
-msgstr "• Errendimendu detaileak: errendimendu zenbat zenbaki guri igorri partida bat hastean edo ezarpen grafikoak aldatzen dituzunean."
-
-#: gui/manual/userreport.txt:10
-msgid ""
-"The data will only be a few kilobytes each time you run the game, so "
-"bandwidth usage is minimal."
-msgstr "Bidalitako datuak Kb gutxi batzuen kostua baino ez da jokoa hasten den bakoitzean. zure banda zabaleko erabilera eskasa da."
-
-#: gui/manual/userreport.txt:12
-msgid ""
-"We will store the submitted data on our server, and may publish statistics "
-"or non-user-identifiable details to help other game developers with similar "
-"questions. We will store the IP address that submitted the data, to help "
-"detect abuse of the service, but will not publish it. The published data can"
-" be seen at http://feedback.wildfiregames.com/"
-msgstr "Gure zerbitzarian jasotako datuak gordetzen ditugu, eta posible da zenbat estatistika edo inoren detaileak publikatzea beste joko garatzaile batzuk antzeko dudekin laguntzeko. Datuak bidali zituen IP helbidea gordeko dugu zerbitzuaren gehiegikeriei aurre egiteko, baina ez dugu publikatuko. Bidalitako datuak http://feedback.wildfiregames.com/ en ikus daitezke."

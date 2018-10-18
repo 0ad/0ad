@@ -1,10 +1,11 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Envel PICHON <envel_ras@hotmail.fr>, 2017
 # ernest olory <ernestolory@hotmail.fr>, 2018
+# Goulven <goulvenbreizh@hotmail.fr>, 2018
 # Gwenn M <tornoz@laposte.net>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
@@ -13,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-11 09:02+0200\n"
-"PO-Revision-Date: 2018-09-19 15:37+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-15 10:43+0000\n"
+"Last-Translator: Goulven <goulvenbreizh@hotmail.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -209,7 +210,7 @@ msgstr "~ pe F9: Diskouez/kuzhat al letrin"
 
 #: gui/manual/intro.txt:47
 msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr "Alt + F: Diskouez/kuzhat framm ar c'honter (FPS)"
+msgstr "Alt + F: Diskouez/kuzhat ar c'honter frammoù (FPS)"
 
 #: gui/manual/intro.txt:48
 msgid ""
@@ -369,7 +370,7 @@ msgstr "U: Diskargañ unanennoù gwarnizonet ar savadurioù diuzet"
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr "Ctrl + 1 (hag evel-se betek Ctrl + 0): Krouiñ strollad 1 kontroll (evit 0) eus an unanennoù/savadurioù diuzet"
+msgstr "Ctrl + 1 (ha mod-se betek Ctrl + 0): Krouiñ ar strollad kontroll 1 (betek 0) gant an unanennoù/savadurioù diuzet"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -391,7 +392,7 @@ msgstr "Ktrl + F5 (hag evel-se betek F8): Merkañ lec'hiadur ar c'hamera a zo er
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr "F5, F6, F7, ha F8: Dilec'hiañ ar c'hamera d'ul lec'hiadur merket. Lammat war-gil d'al lec'hiadur diwezhañ ma ne vo ket ar c'hamera c'hoazh war al lec'hiadur merket."
+msgstr ""
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -532,7 +533,7 @@ msgstr "    - Mod-all: Fiñvadenn tagañ (dre ziouer an holl unanennoù enebour 
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr "[font=\"sans-bold-14\"]Goloiñ a ra"
+msgstr ""
 
 #: gui/manual/intro.txt:120
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
@@ -540,7 +541,7 @@ msgstr "[font=\"sans-14\"]Alt + G: Kuzhat/Diskouez ar GUI"
 
 #: gui/manual/intro.txt:121
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr "Alt + D: Diskouez/Kuzhat diorroer golo (gant diorroer dibaboù)"
+msgstr ""
 
 #: gui/manual/intro.txt:122
 msgid ""
@@ -579,7 +580,7 @@ msgstr "Alt + B: Gwintañ heweladurioù skeuliad pareañ an unanennoù diuzet"
 
 #: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr "[font=\"sans-bold-14\"]Dornata ar c'hamera"
+msgstr "[font=\"sans-bold-14\"]Merañ ar c'hamera"
 
 #: gui/manual/intro.txt:131
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
@@ -619,7 +620,7 @@ msgstr "K: Treiñ ar c'hamera e tu biz an eurioù war-dro an dachenn"
 
 #: gui/manual/intro.txt:140
 msgid "E: Rotate camera anticlockwise around terrain"
-msgstr "E: Treiñ ar c'hamera e tu-enep da viz an eurioù war-dro an dachenn"
+msgstr ""
 
 #: gui/manual/intro.txt:141
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
@@ -672,7 +673,7 @@ msgstr "]: Treiñ ar savadur 15 derez e tu biz an eurioù"
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr "Stlejañ a-gleiz: Treiñ ar savadur en ur implijout al logodenn ( an diazez a vo staliet war laosk al logodenn)"
+msgstr ""
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
@@ -686,56 +687,3 @@ msgstr "[font=\"sans-14\"]Dilemel: dilemel ar c'hoariadenn diuzet en ur c'houlen
 #: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Lkd: Chom hep goulenn kadarnadur pa vo skarzhet ur c'hoari enrollet"
-
-#: gui/manual/userreport.txt:1
-msgid ""
-"As a free, open source game, we don't have the resources to test on a wide "
-"range of systems, but we want to provide the best quality experience to as "
-"many players as possible. When you enable automatic feedback, we'll receive "
-"data to help us understand the hardware we should focus on supporting, and "
-"to identify performance problems we should fix."
-msgstr "Evel ur c'hoari frank, hag en open source, n'hon eus ket ar mammennoù evit testiñ kalzig a sistemoù, fellout a ra deomp pourvezañ, memestra, ar skiant-prenet gwellañ d'ar muiañ a c'hoarierien a c'haller tizhout. Pa vo enaouet an em-evezhiadennoù ganeoc'h, resevet e vo ganeomp roadennoù evit sikour ac'hanomp da gompren gwelloc'h ar periant a rankfemp labourat warnañ, hag evit anavezout ar c'hudennoù perzh a rankfe bezañ reizhet ganeomp."
-
-#: gui/manual/userreport.txt:3
-msgid "The following data will be sent to our server:"
-msgstr "Kaset e vo ar roadenn da heul d'hor servijer:"
-
-#: gui/manual/userreport.txt:5
-msgid ""
-"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
-"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
-"reports from the same user."
-msgstr ". Un implijer dre-zegouezh ID (dalc'het e %APPDATA%\\\\0ad\\\\config\\\\user.cfg war Windows, ~/.config/0ad/config/user.cfg war Unix), evit lakaat ac'hanomp da ziskoachañ danevellskridoù adsavet eus an hevelep implijer."
-
-#: gui/manual/userreport.txt:6
-msgid ""
-"• Game version number and basic build settings (optimisation mode, CPU "
-"architecture, timestamp, compiler version)."
-msgstr ". Niverenn stumm c'hoari hag arventennoù sevel diaz ( gwellekaat mod, frammadur CPU, merker amzer, stumm kempuner)."
-
-#: gui/manual/userreport.txt:7
-msgid ""
-"• Hardware details: OS version, graphics driver version, OpenGL "
-"capabilities, screen size, CPU details, RAM size."
-msgstr "Munudoù periant: stumm OS, stumm sturier grafikoù, barregezhioù OpenGL, ment ar skramm, munudoù CPU, ment an tourz."
-
-#: gui/manual/userreport.txt:8
-msgid ""
-"• Performance details: a snapshot of timing data a few seconds after you "
-"start a match or change graphics settings."
-msgstr ". Munudoù a berzh: harz war skeudenn ur roadenn euriet a bad un nebeud a eilennoù goude ma vo loc'het ur gejadenn pe ur c'hemm a arventennoù grafikoù."
-
-#: gui/manual/userreport.txt:10
-msgid ""
-"The data will only be a few kilobytes each time you run the game, so "
-"bandwidth usage is minimal."
-msgstr "Ar roadenn a vo un nebeud a gilobitoù bewech ma vo lakaet ar c'hoari da vont en-dro ganeoc'h, implij ar c'has eo ar bihanañ neuze. "
-
-#: gui/manual/userreport.txt:12
-msgid ""
-"We will store the submitted data on our server, and may publish statistics "
-"or non-user-identifiable details to help other game developers with similar "
-"questions. We will store the IP address that submitted the data, to help "
-"detect abuse of the service, but will not publish it. The published data can"
-" be seen at http://feedback.wildfiregames.com/"
-msgstr "Derc'hel a raimp ar roadenn ginniget war hor servijer, ha gallout a rafemp embann stadegoù pe munudoù nann-implijer-anavezabl evit sikour diorroerien c'hoari all gant hevelep goulennoù. Derc'hel a raimp ar chomlec'h IP en doa kinniget ar roadenn, evit sikour d'anavezout ur bleustradenn fall eus ar servij, met ne vo ket embannet. Ar roadenn embannet a c'hell bezañ gwelet e http://feedback.wildfiregames.com/"

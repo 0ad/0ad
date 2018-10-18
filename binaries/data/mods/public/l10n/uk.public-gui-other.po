@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-09-29 17:45+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-14 04:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,24 +109,13 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Таб"
 
-#: gui/common/functions_global_object.js:8
-#, javascript-format
-msgid ""
-"Opening %(url)s\n"
-" in default web browser. Please wait…"
-msgstr "Відкриття %(url)s\nу стандартному веб браузері. Будь ласка, зачекайте..."
-
-#: gui/common/functions_global_object.js:11
-msgid "Opening page"
-msgstr "Початкова сторінка"
-
 #. dennis-ignore: *
-#: gui/common/functions_global_object.js:21
+#: gui/common/functions_global_object.js:7
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/functions_global_object.js:90
+#: gui/common/functions_global_object.js:79
 msgid "Loading Aborted"
 msgstr "Завантаження відмінено"
 
@@ -134,7 +123,7 @@ msgstr "Завантаження відмінено"
 msgid "Gaia"
 msgstr "Гея"
 
-#: gui/common/functions_utility.js:105
+#: gui/common/functions_utility.js:102
 msgctxt "map selection"
 msgid "Random"
 msgstr "Випадково"
@@ -168,15 +157,15 @@ msgstr "Видалити"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:261
-#: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
+#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Ні"
 
 #: gui/common/functions_utility_loadsave.js:57 gui/common/tooltips.js:325
 #: gui/options/options.js:301 gui/options/options.js:351
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:261
-#: gui/pregame/mainmenu.js:275 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:377 gui/pregame/mainmenu.js:212
+#: gui/pregame/mainmenu.js:226 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Так"
 
@@ -190,117 +179,117 @@ msgstr "Видаліть обраний запис використовуючи 
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "Утримуйте клавішу %(hotkey)s для видалення без підтвердження"
 
-#: gui/common/gamedescription.js:44
+#: gui/common/gamedescription.js:59
 msgid "A randomly selected map."
 msgstr "Випадково обрана мапа."
 
-#: gui/common/gamedescription.js:53 gui/common/gamedescription.js:337
+#: gui/common/gamedescription.js:68 gui/common/gamedescription.js:352
 msgid "Sorry, no description available."
 msgstr "Вибачте, опису не існує."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:104
+#: gui/common/gamedescription.js:119
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:107
+#: gui/common/gamedescription.js:122
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:113
+#: gui/common/gamedescription.js:128
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
 msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:116
+#: gui/common/gamedescription.js:131
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
 msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:126
+#: gui/common/gamedescription.js:141
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr "%(playerName)s (Поза мережею)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:129
+#: gui/common/gamedescription.js:144
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr "%(playerName)s (Поза мережею, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:136
+#: gui/common/gamedescription.js:151
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:139
+#: gui/common/gamedescription.js:154
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:143
+#: gui/common/gamedescription.js:158
 #, javascript-format
 msgid "%(playerName)s"
 msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:146
+#: gui/common/gamedescription.js:161
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s (%(state)s)"
 
-#: gui/common/gamedescription.js:166
+#: gui/common/gamedescription.js:181
 msgid "Unknown Civilization"
 msgstr "Невідома цивілізація"
 
-#: gui/common/gamedescription.js:173
+#: gui/common/gamedescription.js:188
 msgctxt "playerstate"
 msgid "defeated"
 msgstr "переможений"
 
-#: gui/common/gamedescription.js:174
+#: gui/common/gamedescription.js:189
 msgctxt "playerstate"
 msgid "won"
 msgstr "переможець"
 
-#: gui/common/gamedescription.js:195
+#: gui/common/gamedescription.js:210
 msgid "No Team"
 msgstr "Немає команди"
 
-#: gui/common/gamedescription.js:196
+#: gui/common/gamedescription.js:211
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Команда %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:199 gui/common/gamedescription.js:206
+#: gui/common/gamedescription.js:214 gui/common/gamedescription.js:221
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s:\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:207
+#: gui/common/gamedescription.js:222
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Спостерігач"
@@ -308,16 +297,16 @@ msgstr[1] "Спостерігачі"
 msgstr[2] "Спостерігачів"
 msgstr[3] "Спостерігачів"
 
-#: gui/common/gamedescription.js:224
+#: gui/common/gamedescription.js:239
 msgctxt "victory condition"
 msgid "Endless Game"
 msgstr "Безкінечна Гра"
 
-#: gui/common/gamedescription.js:225
+#: gui/common/gamedescription.js:240
 msgid "No winner will be determined, even if everyone is defeated."
 msgstr "Жодного переможця не буде визначено, навіть якщо кожен зазнає поразки."
 
-#: gui/common/gamedescription.js:236
+#: gui/common/gamedescription.js:251
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -327,7 +316,7 @@ msgstr[1] "Чудо (%(min)s хвилини)"
 msgstr[2] "Чудо (%(min)s хвилин)"
 msgstr[3] "Чудо (%(min)s хвилин)"
 
-#: gui/common/gamedescription.js:248
+#: gui/common/gamedescription.js:263
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -337,81 +326,81 @@ msgstr[1] "Захопіть реліквію (за %(min)s хвилини)"
 msgstr[2] "Захопіть реліквію (за %(min)s хвилин)"
 msgstr[3] "Захопіть реліквію (за %(min)s хвилин)"
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:279
 msgid "Relic Count"
 msgstr "Кількість реліквій"
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:286
 msgid "Hero Garrison"
 msgstr "Герой у гарнізоні"
 
-#: gui/common/gamedescription.js:272
+#: gui/common/gamedescription.js:287
 msgid "Heroes can be garrisoned."
 msgstr "Герої можуть бути розміщені у гарнізоні."
 
-#: gui/common/gamedescription.js:276
+#: gui/common/gamedescription.js:291
 msgid "Exposed Heroes"
 msgstr "Представлені герої"
 
-#: gui/common/gamedescription.js:277
+#: gui/common/gamedescription.js:292
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "Героїв не можна розміщувати в будівлях і вони залишаються уразливими до набігів."
 
-#: gui/common/gamedescription.js:284
+#: gui/common/gamedescription.js:299
 msgid "Rated game"
 msgstr "Оцінена гра:"
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:300
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Коли переможець цього матчу визначиться, оцінку лобі буде адаптовано."
 
-#: gui/common/gamedescription.js:290
+#: gui/common/gamedescription.js:305
 msgid "Locked Teams"
 msgstr "Закриті гурти"
 
-#: gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:306
 msgid "Players can't change the initial teams."
 msgstr "Гравці не можуть змінювати початкові гурти"
 
-#: gui/common/gamedescription.js:295
+#: gui/common/gamedescription.js:310
 msgid "Diplomacy"
 msgstr "Дипломатичність"
 
-#: gui/common/gamedescription.js:296
+#: gui/common/gamedescription.js:311
 msgid "Players can make alliances and declare war on allies."
 msgstr "Гравці можуть укладати союзи та оголошувати війну у союзі"
 
-#: gui/common/gamedescription.js:301
+#: gui/common/gamedescription.js:316
 msgid "Last Man Standing"
 msgstr "До останнього гравця"
 
-#: gui/common/gamedescription.js:302
+#: gui/common/gamedescription.js:317
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Лише один гравець може перемогти у грі. Якщо решта гравців є союзниками, гра продовжиться доки не залишиться лише один."
 
-#: gui/common/gamedescription.js:306
+#: gui/common/gamedescription.js:321
 msgid "Allied Victory"
 msgstr "Перемога союзників"
 
-#: gui/common/gamedescription.js:307
+#: gui/common/gamedescription.js:322
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Якщо один гравець перемагає, його чи її союзники перемагають також. Якщо одна група союзників залишається, вони перемагають."
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:326
 msgid "Ceasefire"
 msgstr "Припинити бій"
 
-#: gui/common/gamedescription.js:314 gui/pregame/mainmenu.js:95
+#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
 msgid "disabled"
 msgstr "відключено"
 
-#: gui/common/gamedescription.js:315
+#: gui/common/gamedescription.js:330
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Першу хвилину, інші гравці залишаються нейтральними."
@@ -419,102 +408,102 @@ msgstr[1] "У перші  %(min)s хвилину, інші гравці зали
 msgstr[2] "Перші %(min)s хвилин, інші гравці залишаються нейтральними."
 msgstr[3] "Перші %(min)s хвилин, інші гравці залишаються нейтральними."
 
-#: gui/common/gamedescription.js:324
+#: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "Випадкова Карта"
 
-#: gui/common/gamedescription.js:325
+#: gui/common/gamedescription.js:340
 msgid "Randomly select a map from the list."
 msgstr "Випадково вибрана карта зі списку."
 
-#: gui/common/gamedescription.js:330
+#: gui/common/gamedescription.js:345
 msgid "Map Name"
 msgstr "Назва мапи"
 
-#: gui/common/gamedescription.js:334
+#: gui/common/gamedescription.js:349
 msgid "Map Description"
 msgstr "Опис мапи"
 
-#: gui/common/gamedescription.js:342
+#: gui/common/gamedescription.js:357
 msgid "Map Type"
 msgstr "Тип Мапи"
 
-#: gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:363
 msgid "Map Filter"
 msgstr "Фільтр карти"
 
-#: gui/common/gamedescription.js:357
+#: gui/common/gamedescription.js:372
 msgid "Map Size"
 msgstr "Розмір мапи"
 
-#: gui/common/gamedescription.js:366
+#: gui/common/gamedescription.js:381
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "Випадковий біом"
 
-#: gui/common/gamedescription.js:367
+#: gui/common/gamedescription.js:382
 msgid "Randomly select a biome from the list."
 msgstr "Вибрати біом зі списку випадковим чином."
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
 msgstr ""
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:396
 msgid "Civic Centers"
 msgstr "Громадські Центри"
 
-#: gui/common/gamedescription.js:384
+#: gui/common/gamedescription.js:399
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "Гравці починають лише з кількох юнітів і їм потрібно знайти відповідне місце для побудови свого міста."
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
 msgstr "Гравці починають з Громадського Центру."
 
-#: gui/common/gamedescription.js:389
+#: gui/common/gamedescription.js:404
 msgid "Starting Resources"
 msgstr "Початкові ресурси"
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:405
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:400
+#: gui/common/gamedescription.js:415
 msgid "Population Limit"
 msgstr "Ліміт населення"
 
-#: gui/common/gamedescription.js:408
+#: gui/common/gamedescription.js:423
 msgid "Treasures"
 msgstr "Скарби"
 
-#: gui/common/gamedescription.js:410
+#: gui/common/gamedescription.js:425
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Відключений"
 
-#: gui/common/gamedescription.js:411
+#: gui/common/gamedescription.js:426
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Як визначено картою."
 
-#: gui/common/gamedescription.js:415
+#: gui/common/gamedescription.js:430
 msgid "Revealed Map"
 msgstr "Розвідана карта"
 
-#: gui/common/gamedescription.js:420
+#: gui/common/gamedescription.js:435
 msgid "Explored Map"
 msgstr "Досліджена мапа"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:440
 msgid "Cheats"
 msgstr "Чіти"
 
-#: gui/common/gamedescription.js:429 gui/common/tooltips.js:164
+#: gui/common/gamedescription.js:444 gui/common/tooltips.js:164
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:260
 #: gui/common/tooltips.js:395 gui/common/tooltips.js:417
 #: gui/common/tooltips.js:501 gui/common/tooltips.js:522
@@ -523,25 +512,25 @@ msgstr "Чіти"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:447
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "увімкнено"
 
-#: gui/common/gamedescription.js:433
+#: gui/common/gamedescription.js:448
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "вимкнено"
 
-#: gui/common/gamedescription.js:449
+#: gui/common/gamedescription.js:464
 msgid "Victorious"
 msgstr "Переможець"
 
-#: gui/common/gamedescription.js:454
+#: gui/common/gamedescription.js:469
 msgid "Defeated"
 msgstr "Переможений"
 
-#: gui/common/gamedescription.js:463
+#: gui/common/gamedescription.js:478
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -1291,7 +1280,7 @@ msgstr "Деякі значення параметрів недійсні! Ви 
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "У вас є незбережені зміни, ви дійсно хочете закрити це вікно?"
 
-#: gui/pregame/mainmenu.js:42
+#: gui/pregame/mainmenu.js:41
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
@@ -1302,54 +1291,14 @@ msgstr "%(hotkey)s: Перегляд структурного дерева ци�
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Дізнатися більше про цивілізації, представлені у 0 A.D."
 
-#: gui/pregame/mainmenu.js:48
+#: gui/pregame/mainmenu.js:49
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr ""
 
-#: gui/pregame/mainmenu.js:98
-msgid "connecting to server"
-msgstr "підключення до серверу"
-
-#: gui/pregame/mainmenu.js:101
-#, javascript-format
-msgid "uploading (%f%%)"
-msgstr "завантаження (%f%%)"
-
-#: gui/pregame/mainmenu.js:107
-msgid "upload succeeded"
-msgstr "завантаження завершене"
-
-#: gui/pregame/mainmenu.js:108
-#, javascript-format
-msgid "upload failed (%(errorCode)s)"
-msgstr "Збій при завантаженні (%(errorCode)s)"
-
-#: gui/pregame/mainmenu.js:112
-#, javascript-format
-msgid "upload failed (%(errorMessage)s)"
-msgstr "Збій при завантаженні (%(errorMessage)s)"
-
-#: gui/pregame/mainmenu.js:114
-msgid "unknown"
-msgstr "невідомий"
-
-#: gui/pregame/mainmenu.js:129
-msgid "Thank you for helping improve 0 A.D.!"
-msgstr "Дякуюємо за допомогу у покращенні 0 A.D.!"
-
-#: gui/pregame/mainmenu.js:130
-msgid "Anonymous feedback is currently enabled."
-msgstr "Анонімні відгуки включені."
-
-#: gui/pregame/mainmenu.js:131
-#, javascript-format
-msgid "Status: %(status)s."
-msgstr "Статус: %(status)s."
-
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:113
 #, javascript-format
 msgid ""
 "%(warning)s You appear to be using non-shader (fixed function) graphics. "
@@ -1362,63 +1311,131 @@ msgstr ""
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:121
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Тицьніть \"Більше\" для додаткової інформації або \"ОК\", щоб продовжити."
 
-#: gui/pregame/mainmenu.js:164
+#: gui/pregame/mainmenu.js:122
 msgid "WARNING!"
 msgstr "УВАГА!"
 
-#: gui/pregame/mainmenu.js:165 gui/splashscreen/splashscreen.xml:(caption):29
+#: gui/pregame/mainmenu.js:123 gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
 msgstr "ОК"
 
-#: gui/pregame/mainmenu.js:165
+#: gui/pregame/mainmenu.js:123
 msgid "Read More"
 msgstr "Детальніше"
 
-#: gui/pregame/mainmenu.js:247
+#: gui/pregame/mainmenu.js:198
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Версія: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:259
+#: gui/pregame/mainmenu.js:210
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Ви дійсно бажаєте вийти з 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:260 gui/pregame/mainmenu.js:274
+#: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
 msgid "Confirmation"
 msgstr "Підтвердження"
 
-#: gui/pregame/mainmenu.js:273
+#: gui/pregame/mainmenu.js:224
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Ви впевнені, що хочете залишити 0 A.D. і відкрийте Редактор Сценаріїв?"
 
-#: gui/pregame/mainmenu.js:281
+#: gui/pregame/mainmenu.js:232
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Редактор сценаріїв недоступний або не вдалося завантажити. Дивіться журнали гри для отримання додаткової інформації."
 
-#: gui/pregame/mainmenu.js:282 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/mainmenu.js:233 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Помилка"
 
-#: gui/pregame/mainmenu.js:288
+#: gui/pregame/mainmenu.js:239
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):68
-#: gui/pregame/mainmenu.xml:(caption):95
-msgid "Technical Details"
-msgstr "Технічні деталі"
-
-#: gui/pregame/mainmenu.js:298 gui/pregame/mainmenu.xml:(caption):146
+#: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
 msgstr "Посібник"
+
+#: gui/pregame/userreport/userreport.js:3
+msgctxt "UserReporter Terms and Conditions"
+msgid "Terms"
+msgstr ""
+
+#: gui/pregame/userreport/userreport.js:4
+msgid "Please read and accept the UserReporter Terms and Conditions."
+msgstr ""
+
+#: gui/pregame/userreport/userreport.js:17
+msgid "Publications"
+msgstr ""
+
+#: gui/pregame/userreport/userreport.js:26
+#: gui/pregame/userreport/userreport.js:27
+#: gui/pregame/userreport/userreport.js:28
+msgid "connecting to server"
+msgstr "підключення до серверу"
+
+#: gui/pregame/userreport/userreport.js:29
+#, javascript-format
+msgid "uploading (%f%%)"
+msgstr "завантаження (%f%%)"
+
+#: gui/pregame/userreport/userreport.js:32
+msgid "upload succeeded"
+msgstr "завантаження завершене"
+
+#: gui/pregame/userreport/userreport.js:33
+#, javascript-format
+msgid "upload failed (%(errorCode)s)"
+msgstr "Збій при завантаженні (%(errorCode)s)"
+
+#: gui/pregame/userreport/userreport.js:36
+#, javascript-format
+msgid "upload failed (%(errorMessage)s)"
+msgstr "Збій при завантаженні (%(errorMessage)s)"
+
+#: gui/pregame/userreport/userreport.js:60
+msgid "Disable Feedback"
+msgstr "Відключити відгуки"
+
+#: gui/pregame/userreport/userreport.js:60
+msgid "Enable Feedback"
+msgstr "Включити відгуки"
+
+#: gui/pregame/userreport/userreport.js:80
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr "Дякуюємо за допомогу у покращенні 0 A.D.!"
+
+#: gui/pregame/userreport/userreport.js:81
+msgid "Feedback is currently enabled."
+msgstr ""
+
+#: gui/pregame/userreport/userreport.js:82
+#, javascript-format
+msgid "Status: %(status)s."
+msgstr "Статус: %(status)s."
+
+#: gui/pregame/userreport/userreport.js:83
+msgid "unknown"
+msgstr "невідомий"
+
+#: gui/pregame/userreport/userreport.js:85
+msgid "Help improve 0 A.D.!"
+msgstr "Допоможіть покращити 0 A.D.!"
+
+#: gui/pregame/userreport/userreport.js:86
+msgid ""
+"You can automatically send us feedback that can help us fix bugs, and "
+"improve performance and compatibility."
+msgstr ""
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1592,11 +1609,11 @@ msgstr "%(min)s - %(max)s хв"
 msgid "Single- and multiplayer"
 msgstr "Одно- та багатокористувацький режим"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):481
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):424
 msgid "Single Player"
 msgstr "Один гравець"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):496
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):439
 msgid "Multiplayer"
 msgstr "Багато гравців"
 
@@ -1953,7 +1970,7 @@ msgid "Civilization Selection"
 msgstr "Вибір цивілізацій"
 
 #: gui/civinfo/civinfo.xml:(caption):125
-#: gui/pregame/mainmenu.xml:(caption):181
+#: gui/pregame/mainmenu.xml:(caption):124
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
 msgstr "Дерево Структури"
@@ -1969,7 +1986,7 @@ msgstr "Закрити"
 msgid "0 A.D. Credits"
 msgstr "0 A.D. Подяка"
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):382
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
 msgstr "Мова"
 
@@ -2029,233 +2046,215 @@ msgstr "Зберегти зміни"
 msgid "Unsaved changes affect this session only"
 msgstr "Незбережені зміни дійсні лише під час поточної сесії"
 
-#: gui/pregame/mainmenu.xml:58
-msgid "Help improve 0 A.D.!"
-msgstr "Допоможіть покращити 0 A.D.!"
-
-#: gui/pregame/mainmenu.xml:60
-msgid ""
-"You can automatically send us anonymous feedback that will help us fix bugs,"
-" and improve performance and compatibility."
-msgstr "Ви можете автоматично відправляти нам анонімні відгуки, які допоможуть нам виправити помилки і покращити продуктивність і сумісність."
-
-#: gui/pregame/mainmenu.xml:562
+#: gui/pregame/mainmenu.xml:505
 msgid "Alpha XXIII: Ken Wood"
 msgstr "Alpha XXIII: Ken Wood"
 
-#: gui/pregame/mainmenu.xml:564
+#: gui/pregame/mainmenu.xml:507
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "УВАГА: Гра ще не завершена. Більшість функцій ще не додано."
 
-#: gui/pregame/mainmenu.xml:(caption):64
-msgid "Enable Feedback"
-msgstr "Включити відгуки"
-
-#: gui/pregame/mainmenu.xml:(caption):91
-msgid "Disable Feedback"
-msgstr "Відключити відгуки"
-
-#: gui/pregame/mainmenu.xml:(caption):165
-msgid "Tutorial"
-msgstr "Навчальна Кампанія"
-
-#: gui/pregame/mainmenu.xml:(caption):197
-#: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
-msgstr "Історія"
-
-#: gui/pregame/mainmenu.xml:(caption):219
-msgid "Matches"
-msgstr "Бій"
-
-#: gui/pregame/mainmenu.xml:(caption):233
-msgid "Campaigns"
-msgstr "Кампанії"
-
-#: gui/pregame/mainmenu.xml:(caption):246
-msgid "Load Game"
-msgstr "Завантажити гру"
-
-#: gui/pregame/mainmenu.xml:(caption):260
-#: gui/pregame/mainmenu.xml:(caption):340
-msgid "Replays"
-msgstr "Повтори"
-
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):288
-msgid "Join Game"
-msgstr "Приєднатися до гри"
-
-#: gui/pregame/mainmenu.xml:(caption):302
-msgid "Host Game"
-msgstr "Сервер"
-
-#: gui/pregame/mainmenu.xml:(caption):318
-msgid "Game Lobby"
-msgstr "Ігровий чат"
-
-#: gui/pregame/mainmenu.xml:(caption):368
-msgid "Options"
-msgstr "Опції"
-
-#: gui/pregame/mainmenu.xml:(caption):396
-msgid "Mod Selection"
-msgstr "Вибір режиму гри"
-
-#: gui/pregame/mainmenu.xml:(caption):408
-msgid "Welcome Screen"
-msgstr "Екран Привітання"
-
-#: gui/pregame/mainmenu.xml:(caption):466
-msgid "Learn to Play"
-msgstr "Навчіться грати"
-
-#: gui/pregame/mainmenu.xml:(caption):511
-msgid "Settings"
-msgstr "Опції"
-
-#: gui/pregame/mainmenu.xml:(caption):526
-msgid "Scenario Editor"
-msgstr "Редактор Сценаріїв"
-
-#: gui/pregame/mainmenu.xml:(caption):540
-msgid "Exit"
-msgstr "Вихід"
-
-#: gui/pregame/mainmenu.xml:(caption):574
-msgid "Website"
-msgstr "Web-сайт"
-
-#: gui/pregame/mainmenu.xml:(caption):586
-msgid "Chat"
-msgstr "Чат"
-
-#: gui/pregame/mainmenu.xml:(caption):598
-msgid "Report a Bug"
-msgstr "Повідомити про помилку"
-
-#: gui/pregame/mainmenu.xml:(caption):610
-msgid "Translate the Game"
-msgstr "Перекласти Гру"
-
-#: gui/pregame/mainmenu.xml:(caption):622
-msgid "Donate"
-msgstr "Пожертвувати"
-
-#: gui/pregame/mainmenu.xml:(caption):634
-msgid "Credits"
-msgstr "Подяки"
-
-#: gui/pregame/mainmenu.xml:(caption):663
-msgid "WILDFIRE GAMES"
-msgstr "WILDFIRE GAMES"
-
-#: gui/pregame/mainmenu.xml:(tooltip):147
+#: gui/pregame/mainmenu.xml:(tooltip):90
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Відкрити ігровий посібник 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):166
+#: gui/pregame/mainmenu.xml:(tooltip):109
 msgid "Start the economic tutorial."
 msgstr "Розпочніть економічну навчальну кампанію."
 
-#: gui/pregame/mainmenu.xml:(tooltip):220
+#: gui/pregame/mainmenu.xml:(tooltip):163
 msgid "Click here to start a new single player game."
 msgstr "Натисніть тут для початку нової гри"
 
-#: gui/pregame/mainmenu.xml:(tooltip):234
+#: gui/pregame/mainmenu.xml:(tooltip):177
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Відродіть історію за допомогою історичних військових кампаній. \\[ЩЕ НЕ РЕАЛІЗОВАНО]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):247
+#: gui/pregame/mainmenu.xml:(tooltip):190
 msgid "Click here to load a saved game."
 msgstr "Клацніть тут, щоб завантажити збережену гру"
 
-#: gui/pregame/mainmenu.xml:(tooltip):261
-#: gui/pregame/mainmenu.xml:(tooltip):341
+#: gui/pregame/mainmenu.xml:(tooltip):204
+#: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Playback previous games."
 msgstr "Відтворення попередніх ігор."
 
-#: gui/pregame/mainmenu.xml:(tooltip):289
+#: gui/pregame/mainmenu.xml:(tooltip):232
 msgid "Joining an existing multiplayer game."
 msgstr "Приєднатися до існуючої гри"
 
-#: gui/pregame/mainmenu.xml:(tooltip):303
+#: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Сервер мультиплеєра.\\n\\nПотребує відкритого 20595 порту."
 
-#: gui/pregame/mainmenu.xml:(tooltip):369
+#: gui/pregame/mainmenu.xml:(tooltip):312
 msgid "Adjust game settings."
 msgstr "Налаштування параметрів гри."
 
-#: gui/pregame/mainmenu.xml:(tooltip):383
+#: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Choose the language of the game."
 msgstr "Вибрати мову гри"
 
-#: gui/pregame/mainmenu.xml:(tooltip):397
+#: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Select and download mods for the game."
 msgstr "Виберіть та завантажте моди для гри."
 
-#: gui/pregame/mainmenu.xml:(tooltip):409
+#: gui/pregame/mainmenu.xml:(tooltip):352
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Показати екран вітання. Скористайтесь, якщо Ви сховали його помилково."
 
-#: gui/pregame/mainmenu.xml:(tooltip):467
+#: gui/pregame/mainmenu.xml:(tooltip):410
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Дізнайтеся, як грати, почніть із посібника, відкривайте дерева технологій, та історію колишніх цивілізацій"
 
-#: gui/pregame/mainmenu.xml:(tooltip):482
+#: gui/pregame/mainmenu.xml:(tooltip):425
 msgid "Challenge the computer player to a single player match."
 msgstr "Виклик комп'ютеру в одиночному поєдинку."
 
-#: gui/pregame/mainmenu.xml:(tooltip):497
+#: gui/pregame/mainmenu.xml:(tooltip):440
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Бій проти одного і більше реальних гравців в мультиплеєрі"
 
-#: gui/pregame/mainmenu.xml:(tooltip):512
+#: gui/pregame/mainmenu.xml:(tooltip):455
 msgid "Game options and mod selection."
 msgstr "Ігрові опції та вибір модів."
 
-#: gui/pregame/mainmenu.xml:(tooltip):527
+#: gui/pregame/mainmenu.xml:(tooltip):470
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Відкрити Редактор Сценаріїв у новому вікні. Ви можете запустити його більш надійно, запустивши гру в командному рядку з аргументом \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:(tooltip):541
+#: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Exits the game."
 msgstr "Вихід з гри."
 
-#: gui/pregame/mainmenu.xml:(tooltip):575
+#: gui/pregame/mainmenu.xml:(tooltip):518
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Тицніть, щоб відкрити play0ad.com у вашому браузері."
 
-#: gui/pregame/mainmenu.xml:(tooltip):587
+#: gui/pregame/mainmenu.xml:(tooltip):530
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Тицьніть, щоб відкрити IRC чат у вашому браузері. (#0ad на webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):599
+#: gui/pregame/mainmenu.xml:(tooltip):542
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Натисніть, щоб відвідати 0 A.D. Простежити баг, падіння сервісу чи помилку."
 
-#: gui/pregame/mainmenu.xml:(tooltip):611
+#: gui/pregame/mainmenu.xml:(tooltip):554
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Клацніть щоб відкрити сайт 0 A.D. для перекладу сторінки у вашому браузері."
 
-#: gui/pregame/mainmenu.xml:(tooltip):623
+#: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
 msgstr "Допомогти з витратами на проект пожертвуванням."
 
-#: gui/pregame/mainmenu.xml:(tooltip):635
+#: gui/pregame/mainmenu.xml:(tooltip):578
 msgid "Click to see the 0 A.D. credits."
 msgstr "Клацніть щоб переглянути подяки 0 A.D."
+
+#: gui/pregame/mainmenu.xml:(caption):108
+msgid "Tutorial"
+msgstr "Навчальна Кампанія"
+
+#: gui/pregame/mainmenu.xml:(caption):140
+#: gui/reference/structree/structree.xml:(caption):126
+msgid "History"
+msgstr "Історія"
+
+#: gui/pregame/mainmenu.xml:(caption):162
+msgid "Matches"
+msgstr "Бій"
+
+#: gui/pregame/mainmenu.xml:(caption):176
+msgid "Campaigns"
+msgstr "Кампанії"
+
+#: gui/pregame/mainmenu.xml:(caption):189
+msgid "Load Game"
+msgstr "Завантажити гру"
+
+#: gui/pregame/mainmenu.xml:(caption):203
+#: gui/pregame/mainmenu.xml:(caption):283
+msgid "Replays"
+msgstr "Повтори"
+
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):231
+msgid "Join Game"
+msgstr "Приєднатися до гри"
+
+#: gui/pregame/mainmenu.xml:(caption):245
+msgid "Host Game"
+msgstr "Сервер"
+
+#: gui/pregame/mainmenu.xml:(caption):261
+msgid "Game Lobby"
+msgstr "Ігровий чат"
+
+#: gui/pregame/mainmenu.xml:(caption):311
+msgid "Options"
+msgstr "Опції"
+
+#: gui/pregame/mainmenu.xml:(caption):339
+msgid "Mod Selection"
+msgstr "Вибір режиму гри"
+
+#: gui/pregame/mainmenu.xml:(caption):351
+msgid "Welcome Screen"
+msgstr "Екран Привітання"
+
+#: gui/pregame/mainmenu.xml:(caption):409
+msgid "Learn to Play"
+msgstr "Навчіться грати"
+
+#: gui/pregame/mainmenu.xml:(caption):454
+msgid "Settings"
+msgstr "Опції"
+
+#: gui/pregame/mainmenu.xml:(caption):469
+msgid "Scenario Editor"
+msgstr "Редактор Сценаріїв"
+
+#: gui/pregame/mainmenu.xml:(caption):483
+msgid "Exit"
+msgstr "Вихід"
+
+#: gui/pregame/mainmenu.xml:(caption):517
+msgid "Website"
+msgstr "Web-сайт"
+
+#: gui/pregame/mainmenu.xml:(caption):529
+msgid "Chat"
+msgstr "Чат"
+
+#: gui/pregame/mainmenu.xml:(caption):541
+msgid "Report a Bug"
+msgstr "Повідомити про помилку"
+
+#: gui/pregame/mainmenu.xml:(caption):553
+msgid "Translate the Game"
+msgstr "Перекласти Гру"
+
+#: gui/pregame/mainmenu.xml:(caption):565
+msgid "Donate"
+msgstr "Пожертвувати"
+
+#: gui/pregame/mainmenu.xml:(caption):577
+msgid "Credits"
+msgstr "Подяки"
+
+#: gui/pregame/mainmenu.xml:(caption):606
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
 
 #: gui/reference/structree/structree.xml:(caption):31
 msgid "Civilization:"

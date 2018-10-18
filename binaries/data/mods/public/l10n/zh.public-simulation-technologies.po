@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-10-13 15:16+0000\n"
+"PO-Revision-Date: 2018-10-17 18:07+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -474,7 +474,7 @@ msgstr "加固船体"
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "于村庄阶段解锁。"
+msgstr "于乡村阶段解锁。"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
@@ -738,7 +738,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr "晋升为精英阶层的单位获得了很多提高：20％的额外生命值，每种类型1个额外护甲等级，20％额外战利品，近战单位额外攻击20％，额外射程4米，远程单位精度更高，移动速度更快，治疗师的速度和额外的治疗速度和范围也有提高。"
+msgstr "晋升为精英阶层的单位获得了很多提高：20％的额外生命值，每种类型1个额外护甲等级，20％额外战利品，近战单位额外攻击20％，额外射程4米，远程单位精度更高，移动速度更快，医师的速度和额外的治疗速度和范围也有提高。"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -878,7 +878,7 @@ msgstr "坚固斧头"
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 #: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid "Increases stone gathering rates."
-msgstr "加快石头采集速度"
+msgstr "加快石头采集速度。"
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
@@ -893,7 +893,7 @@ msgstr "农奴"
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
 msgid "Heílōtes"
-msgstr "黑劳士"
+msgstr "希洛人"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Hire servants to help mine stone. +15% stone gathering rate."
@@ -913,7 +913,7 @@ msgstr "奴隶制"
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid "Increases metal gathering rates."
-msgstr "加快金属采集速度"
+msgstr "加快金属采集速度。"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
@@ -929,7 +929,7 @@ msgstr "深入挖掘珍贵的银矿矿脉。金属采集速度 +50%。"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
-msgstr "银之挖掘"
+msgstr "银矿开采"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.mace
 msgid "Mines of Krenides"
@@ -972,7 +972,7 @@ msgstr "让你的采集粮食者使用柳条制篮子。果树采集速率 +50%�
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
-msgstr "柳条制篮子"
+msgstr "柳条篮筐"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in barracks heal over time."
@@ -989,7 +989,7 @@ msgstr "生活条件"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr "提升所有治疗师的治疗范围和视野范围。"
+msgstr "提升所有医师的治疗范围和视野范围。"
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
@@ -1008,7 +1008,7 @@ msgstr "奥林匹克万神殿"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr "治疗范围 2"
+msgstr "二级治疗范围"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
@@ -1019,16 +1019,16 @@ msgstr "学园"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the Healing Rate of all healers."
-msgstr "提升所有治疗师的治疗速率。"
+msgstr "提升所有医师的治疗速度。"
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers +25% healing rate."
-msgstr "+25% 治疗速率。"
+msgstr "+25% 治疗速度。"
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
-msgstr "治疗速率"
+msgstr "治疗速度"
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
@@ -1038,17 +1038,17 @@ msgstr "斯法克蒂利亚"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr "治疗速度 2"
+msgstr "二级治疗速度"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
 msgid "Hippocratic Oath"
-msgstr "希波克拉底誓言-医师从业宣言"
+msgstr "希波克拉底誓言（医师从业宣言）"
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr "在神庙驻守的单位治疗速率更快。"
+msgstr "在神庙驻守的单位，更快被治愈。"
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
@@ -1080,7 +1080,7 @@ msgstr "女性居民+50%生命值。"
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr "织布技术"
+msgstr "织布机"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
@@ -1148,7 +1148,7 @@ msgstr "农奴 vs. 竖井挖掘"
 
 #: simulation/data/technologies/pair_gather_03.jsongenericName
 msgid "Slaves vs. Silver Mining"
-msgstr "奴隶 vs. 银之挖掘"
+msgstr "奴隶 vs. 银矿开采"
 
 #: simulation/data/technologies/pair_gather_wood_01.jsongenericName
 msgid "Iron Axes vs. Wheelbarrow"
@@ -1156,11 +1156,11 @@ msgstr "铁斧 vs. 独轮车"
 
 #: simulation/data/technologies/pair_heal_01.jsongenericName
 msgid "Heal Range and Rate"
-msgstr "治疗范围和速率"
+msgstr "治疗范围和速度"
 
 #: simulation/data/technologies/pair_heal_02.jsongenericName
 msgid "Heal Range and Rate #2"
-msgstr "治疗范围和速率 #2"
+msgstr "二级治疗范围和速度"
 
 #: simulation/data/technologies/pair_heal_03.jsongenericName
 msgid "Garrison Healing vs. Self-Healing"
@@ -1172,7 +1172,7 @@ msgstr "女性 vs. 人口"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr "女性市民 vs. 人口"
+msgstr "女性公民 vs. 人口"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1191,7 +1191,7 @@ msgstr "步兵劈砍盔甲 vs. 长矛兵穿刺盔甲"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
-msgstr "徵召步兵 vs. 徵召骑兵"
+msgstr "征召步兵 vs. 征召骑兵"
 
 #: simulation/data/technologies/pair_siege_attack_cost.jsongenericName
 msgid "Attack vs. Cost"
@@ -1238,7 +1238,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "进展到城市阶段，解锁了更多建筑物及单位。城镇中心的领土范围也再度增加了 +50%。银鸮的文明奖励让所有的工人都有额外 +10% 的金属采集速度。民兵的最大生命增加了 +10%。所有组织的驻军恢复率 +9。"
+msgstr "升级到城市阶段，解锁了更多建筑物及单位。城镇中心的领土范围也再度增加了 +50%。银鸮的文明奖励让所有的工人都有额外 +10% 的金属采集速度。民兵的最大生命增加了 +10%。所有组织的驻军恢复率 +9。"
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1255,33 +1255,33 @@ msgstr "梅格洛玻利斯"
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr "从繁华的大城市进展为一个名副其实的大都市,充满著奇迹与现代科技。"
+msgstr "从繁华的城镇进展为一个名副其实的大都市,充满奇迹与现代科技。"
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "进展到城市阶段，解锁了更多建筑物及单位。城镇中心的领土范围也再度增加了 +50%。民兵的最大生命增加了 +10%。所有组织的驻军恢复率 +9。"
+msgstr "升级到城市阶段，解锁了更多建筑物及单位。城镇中心的领土范围也再度增加了 +50%。民兵的最大生命增加了 +10%。所有组织的驻军恢复率 +9。"
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
-msgstr "城镇时期"
+msgstr "城镇阶段"
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr "用于模板要求的虚拟技术，被 phase_town_generic or phase_town_{civ} 替代"
+msgstr "用于模板要求的虚拟技术，被 phase_town_generic or phase_town_{civ} 替代。"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "从小村庄发展为繁华城镇，准备快速扩张。这就是雅典人的城镇阶段，其中金属采集速度因为“银枭”的奖励而提升。"
+msgstr "从小村庄发展为繁华城镇，准备快速扩张。这就是雅典人的城镇时期，其中金属采集速度因为“银枭”的奖励而提升。"
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1289,13 +1289,13 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "进展到城市阶段，解锁了更多建筑物及单位。城镇中心的领土范围增加了 +30%。”银鸮“的文明奖励让所有的工人都有额外 +10% 的金属采集速度。民兵的最大生命增加了 +20%。所有组织的驻军恢复率 +7。"
+msgstr "升级到城市阶段，解锁了更多建筑物及单位。城镇中心的领土范围增加了 +30%。“银鸮”的文明奖励让所有的工人都有 +10% 的金属采集速度。民兵的最大生命增加了 +20%。所有组织的驻军恢复率 +7。"
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "需要5个村庄阶段的建筑(不包括栅栏和农田)。"
+msgstr "需要5个乡村阶段的建筑(不包括栅栏和农田)。"
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1306,18 +1306,18 @@ msgstr "亚述定居点"
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "从小村庄进展到繁华的城镇,准备好迅速扩张。"
+msgstr "从小乡村进展到繁华的城镇,准备好迅速扩张。"
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "进展到县镇阶段，解锁了更多建筑物及单位。城镇中心的领土范围增加了 +30%。民兵的最大生命增加了 +20%。所有组织的驻军恢复率 +7。"
+msgstr "进展到城镇阶段，解锁了更多建筑物及单位。城镇中心的领土范围增加了 +30%。民兵的最大生命增加了 +20%。所有组织的驻军恢复率 +7。"
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr "村庄阶段"
+msgstr "乡村阶段"
 
 #: simulation/data/technologies/pop_civic_01.jsondescription
 msgid ""
@@ -1346,7 +1346,7 @@ msgid ""
 "open-aired assembly place in the great Forum Romanum called the Comitium. "
 "Here citizens could air grievances and present petitions to the patrician "
 "politicians who ruled their city in the Senate."
-msgstr "公众集会的地方往往是古代社会的生活中心。雅典人有雅典公民大会，在可以看到雅典卫城的普尼克斯山附近集会。罗马人有一个称为 Comitium 的古罗马广场集会处。在这里，市民们可以抱怨并向在元老院等地的贵族政治家请愿。"
+msgstr "公众集会的地方往往是古代社会的生活中心。雅典人有雅典公民大会，在可以看到雅典卫城的普尼克斯山附近集会。罗马人有一个称为 Comitium 的古罗马广场集会处。在这里，公民们可以抱怨并向在元老院等地的贵族政治家请愿。"
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
@@ -1416,11 +1416,11 @@ msgstr "奇观会吸引更多的人加入你的文明。"
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr "使辉煌扩张。每拥有一奇迹，便进一步增加人口限制40。"
+msgstr "光荣扩张。每拥有一奇迹，便进一步增加人口限制40。"
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
-msgstr "光荣扩展"
+msgstr "光荣扩张"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1491,11 +1491,11 @@ msgstr "攻城武器需要较少的金属资源"
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege weapons cost 20% less metal"
-msgstr "攻城武器的金属耗费减少 20%"
+msgstr "攻城武器的金属耗费 -20%"
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
-msgstr "金属工"
+msgstr "金属矿工"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege weapons cost less wood"
@@ -1503,11 +1503,11 @@ msgstr "攻城武器消耗更少的木材"
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege weapons cost 20% less wood"
-msgstr "攻城武器消耗的木材 -20%"
+msgstr "攻城武器木材消耗 -20%"
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
-msgstr "炮兵教头"
+msgstr "砲兵教练"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
@@ -1584,11 +1584,11 @@ msgstr "垛口"
 
 #: simulation/data/technologies/tower_decay.jsondescription
 msgid "Outposts survive twice as long in neutral territory."
-msgstr "在中立领土上可以存活比正常的哨所站多一倍的时间。"
+msgstr "比起正常的哨所，在中立领土上存活时间加倍。"
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr "哨所-50%领土衰退率。"
+msgstr "哨所 -50%领土衰减率。"
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1620,11 +1620,11 @@ msgstr "急速射手"
 
 #: simulation/data/technologies/tower_vision.jsondescription
 msgid "Outposts gain longer vision for scouting."
-msgstr "哨塔获得更远的视野。"
+msgstr "哨所视野增大。"
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr "哨所+50%视野范围。"
+msgstr "哨所 +50%视野范围。"
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1801,7 +1801,7 @@ msgstr "一个只让女性参加的庆典,庆祝女性的繁衍能力。"
 
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
-msgstr "解锁从房舍训练女性市民的能力。"
+msgstr "解锁从房舍训练女性公民的能力。"
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
@@ -1811,7 +1811,7 @@ msgstr "丰育庆典"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
 msgid "Thesmophória"
-msgstr "Thesmophória"
+msgstr "宗教庆典"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
@@ -1826,7 +1826,7 @@ msgstr "扩大贸易引向商店主和其家人在国外的常设机构，允许
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr "允许使用盟友的dropsites。"
+msgstr "允许使用盟友的码头。"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -1851,7 +1851,7 @@ msgstr "查看你的同盟所看到的，在顶部的面板浏览他们的概要
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
-msgstr "制图学"
+msgstr "绘图学"
 
 #: simulation/data/technologies/unlock_spies.jsondescription
 msgid ""
@@ -1866,7 +1866,7 @@ msgstr "允许使用间谍，获取其他玩家的单位的视野。"
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
-msgstr "间谍活动"
+msgstr "间谍"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -1903,7 +1903,7 @@ msgstr "进阶步兵民兵"
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
 msgid "Zeugítai"
-msgstr "Zeugítai"
+msgstr "重型步兵"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
@@ -2293,7 +2293,7 @@ msgstr "长枪兵劈砍攻击 +2 。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
-msgstr "步兵长矛战斗"
+msgstr "长矛步兵战斗"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
@@ -2325,7 +2325,7 @@ msgstr "斯巴达人并不具有世界上最大型的军队,但他们在当时�
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population."
-msgstr "斯巴达最大人口 -10%"
+msgstr "斯巴达最大人口 -10% 。"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2339,7 +2339,7 @@ msgstr "斯巴达从小就被编入团队并进行军事训练，以成为最高
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "长毛步兵+25% 的生命值，同时训练时间+10%."
+msgstr "长矛步兵+25% 的生命值，同时训练时间+10% 。"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2365,7 +2365,7 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "雅典长城（The Long Walls of Athens）是在老谋深算的米斯托克利（Themistocles ）的主持下修建的，它长达6公里连接着城市比雷埃夫斯港口。它确保了城市海上补给线的安全，防止敌人的围城使市民陷入饥荒。"
+msgstr "雅典长墙（The Long Walls of Athens）是在老谋深算的米斯托克利（Themistocles ）的主持下修建的，它长达6公里连接着城市比雷埃夫斯港口。它确保了城市海上补给线的安全，防止敌人的围城使公民陷入饥荒。"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build stone walls in neutral territory."
@@ -2373,7 +2373,7 @@ msgstr "在中立领地修建石墙。"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
-msgstr "雅典长城"
+msgstr "雅典长墙"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
@@ -2393,7 +2393,7 @@ msgstr "大祭司亲自指导你的祭司——愿阿蒙赐福于他。"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr "训练精英治疗师。"
+msgstr "训练精英医师。"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
@@ -2411,7 +2411,7 @@ msgstr "孔雀王朝涵盖了数十个原先独立的王国,其领土面积约�
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
 msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "孔雀王朝人口上限增加10%。"
+msgstr "孔雀王朝人口上限 +10%。"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2479,7 +2479,7 @@ msgstr "精英盾步兵的训练速度是正常的两倍快,但会减少些许�
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr " 精英盾步兵训练时间 -50%，生命值 -10%。 "
+msgstr "精英盾步兵训练时间 -50%，生命值 -10%。"
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

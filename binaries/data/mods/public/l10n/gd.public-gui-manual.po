@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-11 09:02+0200\n"
-"PO-Revision-Date: 2018-09-04 08:57+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-14 03:58+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -683,56 +683,3 @@ msgstr "[font=\"sans-14\"]Delete: sguab às an geama air a shàbhaladh a thagh t
 #: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: na iarr dearbhadh nuair a thèid geama air a shàbhaladh a sguabadh às."
-
-#: gui/manual/userreport.txt:1
-msgid ""
-"As a free, open source game, we don't have the resources to test on a wide "
-"range of systems, but we want to provide the best quality experience to as "
-"many players as possible. When you enable automatic feedback, we'll receive "
-"data to help us understand the hardware we should focus on supporting, and "
-"to identify performance problems we should fix."
-msgstr "Air sgàth ’s gur e geama open source saor a th’ ann, chan eil na goireasan againn gus a h‑uile siostam fon ghrèin a chur fo dheuchainn ach bu mhiann leinn a’ chàileachd as fhearr a ghabhas a thoirt dhan uiread as motha a chluicheadairean. Ma chuireas tu fiosrachadh thugainn gu fèin-obrachail, gheibh sinn dàta a bheir taic dhuinn ach an tuig sinn dè am bathar-cruaidh a bu chòir dhuinn taic a thoirt dha agus gus duilgheadasan leis an dèanadas a mhothachadh a bu chòir dhuinn càradh."
-
-#: gui/manual/userreport.txt:3
-msgid "The following data will be sent to our server:"
-msgstr "Seo an dàta a thèid a chur dhan fhrithealaiche againn:"
-
-#: gui/manual/userreport.txt:5
-msgid ""
-"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
-"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
-"reports from the same user."
-msgstr "• ID cleachdaiche air thuaiream (ga ghlèidheadh ann an %APPDATA%\\\\0ad\\\\config\\\\user.cfg air Windows, ~/.config/0ad/config/user.cfg air Unix) ach am mothaich sinn nuair a thèid iomadh aithris a chur thugainn on aon chleachdaiche."
-
-#: gui/manual/userreport.txt:6
-msgid ""
-"• Game version number and basic build settings (optimisation mode, CPU "
-"architecture, timestamp, compiler version)."
-msgstr "• Àireamh tionndaidh dhen gheama ’s roghainnean togail bunasach (modh piseachaidh, ailtireachd a’ CPU, stampa-tìde, tionndadh dhen trusaiche)."
-
-#: gui/manual/userreport.txt:7
-msgid ""
-"• Hardware details: OS version, graphics driver version, OpenGL "
-"capabilities, screen size, CPU details, RAM size."
-msgstr "• Fiosrachadh mun bhathar-chruaidh: tionndadh dhen t‑siostam-obrachaidh, tionndadh de dhraibhear a’ ghrafaigeachd, comasan OpenGL, meud na sgrìn, fiosrachadh a’ CPU, meud a’ RAM."
-
-#: gui/manual/userreport.txt:8
-msgid ""
-"• Performance details: a snapshot of timing data a few seconds after you "
-"start a match or change graphics settings."
-msgstr "• Fiosrachadh mun dèanadas: glacadh dhen dàta tìmeachaidh beagan dhiogan às dèidh tòiseachadh maidse no nuair a bhios tu air roghainnean a’ ghrafaigeachd atharrachadh."
-
-#: gui/manual/userreport.txt:10
-msgid ""
-"The data will only be a few kilobytes each time you run the game, so "
-"bandwidth usage is minimal."
-msgstr "Cha chuir sinn ach beagan cileabaidht gach turas a ruitheas tu an geama, mas sin cha tèid ach glè bheag de leud-banna a chleachdadh."
-
-#: gui/manual/userreport.txt:12
-msgid ""
-"We will store the submitted data on our server, and may publish statistics "
-"or non-user-identifiable details to help other game developers with similar "
-"questions. We will store the IP address that submitted the data, to help "
-"detect abuse of the service, but will not publish it. The published data can"
-" be seen at http://feedback.wildfiregames.com/"
-msgstr "Glèidhidh sinn an dàta a chuireas tu thugainn air an fhrithealaiche againn agus dh’fhaoidte gum foillsich sinn stadastaireachd no fiosrachadh on nach gabh d’ aithneachadh gus taic a thoirt dhan luchd-leasachaidh aig geamannan eile aig a bheil ceistean coltach ris. Glèidhidh sinn an t‑seòladh IP a chuir an dàta thugainn gus bacadh a chur air ana-chleachdadh an t‑seirbheis ach chan fhoillsich sinn e. Chì thu an dàta a chaidh fhoillseachadh air http://feedback.wildfiregames.com/"

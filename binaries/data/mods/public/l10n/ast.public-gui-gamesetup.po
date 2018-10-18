@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-10-12 22:42+0000\n"
+"POT-Creation-Date: 2018-10-13 18:16+0200\n"
+"PO-Revision-Date: 2018-10-17 20:40+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -419,119 +419,119 @@ msgstr "Tornar al menú principal."
 msgid "Start Game!"
 msgstr "¡Aniciar partida!"
 
-#: gui/gamesetup/gamesetup.js:1019
+#: gui/gamesetup/gamesetup.js:1029
 msgid "Start a new game with the current settings."
 msgstr "Entamar una partida nueva colos axustes actuales."
 
-#: gui/gamesetup/gamesetup.js:1020
+#: gui/gamesetup/gamesetup.js:1030
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "Entamar una partida nueva colos axustes actuales (nun s'activa fasta que tolos xugadores tean preparaos)"
 
-#: gui/gamesetup/gamesetup.js:1083
-#, javascript-format
-msgid "Configure AI: %(description)s."
-msgstr "Configurar la IA: %(description)s."
-
-#: gui/gamesetup/gamesetup.js:1132
+#: gui/gamesetup/gamesetup.js:1042
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ver hestoria / Árbole d'estructures\nL'últimu abiertu va reabrise al calcar."
 
-#: gui/gamesetup/gamesetup.js:1187
+#: gui/gamesetup/gamesetup.js:1107
+#, javascript-format
+msgid "Configure AI: %(description)s."
+msgstr "Configurar la IA: %(description)s."
+
+#: gui/gamesetup/gamesetup.js:1398
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "Activar/desactivar la llingüeta d'axustes de %(name)s."
 
-#: gui/gamesetup/gamesetup.js:1188
+#: gui/gamesetup/gamesetup.js:1399
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "Emplega %(hotkey)s pa mover una llingüeta d'axustes p'abaxo."
 
-#: gui/gamesetup/gamesetup.js:1189
+#: gui/gamesetup/gamesetup.js:1400
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Emplega %(hotkey)s pa mover una llingüeta d'axustes p'arriba."
 
-#: gui/gamesetup/gamesetup.js:1708
+#: gui/gamesetup/gamesetup.js:1745
 msgctxt "map selection"
 msgid "Random"
 msgstr "Al debalu"
 
-#: gui/gamesetup/gamesetup.js:1710
+#: gui/gamesetup/gamesetup.js:1747
 msgid "Pick any of the given maps at random."
 msgstr "Escoyer al debalu cualesquier mapa dau."
 
-#: gui/gamesetup/gamesetup.js:1742
+#: gui/gamesetup/gamesetup.js:1779
 msgctxt "biome"
 msgid "Random"
 msgstr "Al debalu"
 
-#: gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1780
 msgid "Pick a biome at random."
 msgstr "Escoyer un bioma al debalu."
 
-#: gui/gamesetup/gamesetup.js:2068
+#: gui/gamesetup/gamesetup.js:2118
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2073
+#: gui/gamesetup/gamesetup.js:2123
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Desconozse"
 
-#: gui/gamesetup/gamesetup.js:2103
+#: gui/gamesetup/gamesetup.js:2153
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/gamesetup/gamesetup.js:2103
+#: gui/gamesetup/gamesetup.js:2153
 msgid "No"
 msgstr "Non"
 
-#: gui/gamesetup/gamesetup.js:2110
+#: gui/gamesetup/gamesetup.js:2160
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2196
+#: gui/gamesetup/gamesetup.js:2248
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2401
+#: gui/gamesetup/gamesetup.js:2453
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2409
+#: gui/gamesetup/gamesetup.js:2461
 msgid "Unassigned"
 msgstr "Non asignáu"
 
-#: gui/gamesetup/gamesetup.js:2485
+#: gui/gamesetup/gamesetup.js:2537
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2492
+#: gui/gamesetup/gamesetup.js:2544
 msgid "Unknown Player"
 msgstr "Xugador desconocíu"
 
-#: gui/gamesetup/gamesetup.js:2531
+#: gui/gamesetup/gamesetup.js:2583
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2532
+#: gui/gamesetup/gamesetup.js:2584
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2533
+#: gui/gamesetup/gamesetup.js:2585
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -569,84 +569,76 @@ msgstr "Encaboxar"
 msgid "OK"
 msgstr "Aceutar"
 
-#: gui/gamesetup/gamesetup.xml:(caption):24
+#: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Match Setup"
 msgstr "Configuración de la partida"
 
-#: gui/gamesetup/gamesetup.xml:(caption):30
+#: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading"
 msgstr "Cargando"
 
-#: gui/gamesetup/gamesetup.xml:(caption):34
+#: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Loading map data. Please wait…"
 msgstr "Cargando los datos del mapa. Espera por favor..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Player Name"
 msgstr "Nome del xugador"
 
-#: gui/gamesetup/gamesetup.xml:(caption):58
+#: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Color"
 msgstr "Color"
 
-#: gui/gamesetup/gamesetup.xml:(caption):62
+#: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Player Placement"
 msgstr "Allugamientu del xugador"
 
-#: gui/gamesetup/gamesetup.xml:(caption):66
+#: gui/gamesetup/gamesetup.xml:(caption):70
 msgid "Civilization"
 msgstr "Civilización"
 
-#: gui/gamesetup/gamesetup.xml:(caption):93
+#: gui/gamesetup/gamesetup.xml:(caption):87
 msgid "Team"
 msgstr "Equipu"
 
-#: gui/gamesetup/gamesetup.xml:(caption):147
+#: gui/gamesetup/gamesetup.xml:(caption):131
 msgid "Show this message in the future"
 msgstr "Amosar esti mensax en futuru"
 
-#: gui/gamesetup/gamesetup.xml:(caption):236
+#: gui/gamesetup/gamesetup.xml:(caption):220
 msgid "Send"
 msgstr "Unviar"
 
-#: gui/gamesetup/gamesetup.xml:(caption):253
+#: gui/gamesetup/gamesetup.xml:(caption):237
 msgid "Cheats enabled."
 msgstr "Activáronse les trampes."
 
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.xml:(caption):260
 msgid "Back"
 msgstr "Atrás"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):88
+#: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Reafitar cualesquier civilización que s'esbillare a la predeterminada (al debalu)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):103
+#: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
 msgstr "Reafitar tolos equipos al predetermináu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):114
+#: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
 msgstr "Escoyer una color."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):117
+#: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
 msgstr "Esbillar un xugador."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):127
-msgid "Configure AI settings."
-msgstr "Configurar los axustes de la IA."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):130
-msgid "Select player's civilization."
-msgstr "Esbillar la civilización del xugador."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):134
+#: gui/gamesetup/gamesetup.xml:(tooltip):118
 msgid "Select player's team."
 msgstr "Esbillar l'equipu del xugador."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):218
+#: gui/gamesetup/gamesetup.xml:(tooltip):202
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Amosar la sala multixugador nun ventanu de diálogu."
 
@@ -2055,7 +2047,7 @@ msgid ""
 "plunder, fame, freedom, power - all these are prizes for the winners; the "
 "cowardly, of course, suffer the reverse.\" - Xenophon (\"The Education of "
 "Cyrus\", 7.1.13)"
-msgstr ""
+msgstr "«Albidro que yá vos decatáis, homes, que persiguir, cutir, matar, llevar botín, ascuchar allabancies, ser llibres ya gobernar son premios que s'apurren a los vencedores. Rescampla, al aviesu, que ye tolo contrario pa los cobardes.» - Xenofonte («La Ciropedia», 7.1.13)"
 
 #: gui/text/quotes.txt:198
 msgid ""
@@ -2063,7 +2055,7 @@ msgid ""
 " thief and a robber, overreaching the enemy at every point.\" - Xenophon on "
 "how best to gain advantage over the enemy (\"The Education of Cyrus\", "
 "1.6.26)"
-msgstr ""
+msgstr "«L'home que lo deseye tien que ser lladín ya xagaz, cuciu ya mañosu, lladrón ya rapiñeru, superior al enemigu en tolos senes.» - Xenofonte sobro la meyor manera d'aventayar al enemigu («La Ciropedia», 1.6.26)"
 
 #: gui/text/quotes.txt:199
 msgid ""
@@ -2071,10 +2063,10 @@ msgid ""
 " Artemisia ram a ship while most of his fleet suffered the reverse, not "
 "knowing that the sunk vessel was his own (Herodotus, \"The Histories\", "
 "VIII. 88)"
-msgstr ""
+msgstr "«¡Los homes tiénense convertío en muyeres ya les muyeres n'homes!» - Xerxes, mirando a Artemisia truñar contra una nave de la que la mayoría de la flota sufría lo contrario, inorando que'l barcu fundíu yera'l so (Herodotus, «Les Hestories», VIII. 88)"
 
 #: gui/text/quotes.txt:200
 msgid ""
 "\"For a thinking man is where Wisdom is at home.\" - Zoroaster, founder of "
 "the Zoroastrian religion (\"Ahunuvaiti Gatha\", yasna 30.9)"
-msgstr ""
+msgstr "«Porque l'home cuidatible ye u s'afaya la sabencia.» - Zoroastru, fundador de la relixón mazdeísta («Ahunuvaiti Gatha», yasna 30.9)"

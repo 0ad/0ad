@@ -1,8 +1,11 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
+# Lawrence Maxwell <maxwell4432@gmail.com>, 2018
+# liulitchi <xingzuo88@qq.com>, 2018
+# lxx4380 <lxx4380@gmail.com>, 2018
 # lxx4380 <lxx4380@gmail.com>, 2018
 # Mysterelee <8161525@qq.com>, 2014
 # Sugar Tang <sam990620@gmail.com>, 2018
@@ -13,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-10-10 09:36+0000\n"
+"POT-Creation-Date: 2018-10-13 18:19+0200\n"
+"PO-Revision-Date: 2018-10-14 13:05+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +25,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gui/common/functions_msgbox.js:57
+#, javascript-format
+msgid ""
+"Opening %(url)s\n"
+" in default web browser. Please wait…"
+msgstr "正在使用默认浏览器打开%(url)s\n请稍候… "
+
+#: gui/common/functions_msgbox.js:60
+msgid "Opening page"
+msgstr "-- 正在打开"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
@@ -159,8 +173,7 @@ msgstr "正在初始化mod.io接口"
 msgid "Initializing"
 msgstr "正在初始化"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.js:313
-#: gui/modmod/modmod.xml:(caption):184
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
 msgid "Cancel"
 msgstr "取消"
 
@@ -216,44 +229,43 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/s"
 
-#: gui/modmod/modmod.js:101 gui/modmod/modmod.js:232
+#: gui/modmod/modmod.js:102 gui/modmod/modmod.js:233
 msgid "Filter"
 msgstr "过滤器"
 
-#: gui/modmod/modmod.js:285
+#: gui/modmod/modmod.js:286
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "不符合依赖关系：%(dep)s"
 
-#: gui/modmod/modmod.js:291
+#: gui/modmod/modmod.js:292
 msgid "All dependencies met"
 msgstr "所有依赖性已经满足"
 
-#: gui/modmod/modmod.js:311
-msgid ""
-"You are about to connect to the mod.io online service. This provides easy access to community-made mods, but is not under the control of Wildfire Games.\n"
-"\n"
-"While we have taken care to make this secure, we cannot guarantee with absolute certainty that this is not a security risk.\n"
-"\n"
-"Do you really want to connect?"
-msgstr "您即将连接到mod.io在线服务。本服务可使您轻松访问社区所制作的模组，但这不受Wildfire Game的控制。\n虽然我们已尽可能注意其安全性，但我们仍无法保证它是完全安全的。\n您真的想要继续连接吗？"
-
-#: gui/modmod/modmod.js:312
-msgid "Connect to mod.io?"
-msgstr "是否连接至mod.io？"
-
-#: gui/modmod/modmod.js:313
-msgctxt "mod.io connection message box"
-msgid "Connect"
-msgstr "连接"
-
-#: gui/modmod/modmod.js:396
+#: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
 msgstr "没有已被选取的 mod。"
+
+#: gui/modmod/modmodio.js:5
+msgid "Disclaimer"
+msgstr "放弃"
+
+#: gui/modmod/modmodio.js:12
+msgid "mod.io Terms"
+msgstr "mod.io 条款"
+
+#: gui/modmod/modmodio.js:16
+msgid "mod.io Privacy Policy"
+msgstr "mod.io 隐私政策"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
 msgstr "好的"
+
+#: gui/termsdialog/termsdialog.js:23
+#, javascript-format
+msgid "Open %(url)s in the browser."
+msgstr "在浏览器打开 %(url)s"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -372,6 +384,55 @@ msgstr "模组指南"
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
 msgstr "访问mod.io"
+
+#: gui/termsdialog/termsdialog.xml:(caption):15
+msgid "Language"
+msgstr "语言"
+
+#: gui/termsdialog/termsdialog.xml:(caption):33
+msgid "Decline"
+msgstr "拒绝"
+
+#: gui/termsdialog/termsdialog.xml:(caption):38
+msgid "Accept"
+msgstr "同意"
+
+#: gui/modio/Disclaimer.txt:1
+msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
+msgstr "免责声明"
+
+#: gui/modio/Disclaimer.txt:3
+msgid "Document Date: 2018-10-12"
+msgstr "我"
+
+#: gui/modio/Disclaimer.txt:5
+msgid "You are about to connect to the mod.io online service."
+msgstr "即将连接到mod.io在线服务。"
+
+#: gui/modio/Disclaimer.txt:6
+msgid ""
+"This service provides an easy way to download and install community-made "
+"mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
+"ModDB."
+msgstr "这项服务提供了一种简单的方式来下载和安装社区制作的mod，由IndolDB和ModDB背后的公司DBolical Pty Ltd提供。"
+
+#: gui/modio/Disclaimer.txt:7
+msgid "The service is for users age 13 and over."
+msgstr "豆蔻年华十三四，大家一起玩游戏。"
+
+#: gui/modio/Disclaimer.txt:9
+msgid ""
+"Wildfire Games has taken care to make this connection secure and reviewed "
+"the mods for security flaws, but cannot guarantee that this does not pose "
+"any risks."
+msgstr "Wildfire Games已经注意使这种连接安全，并审查了安全漏洞，但不能保证零风险。"
+
+#: gui/modio/Disclaimer.txt:11
+msgid ""
+"By using the service, you understand that mod.io's Terms of Use and Privacy "
+"Policy apply and that Wildfire Games is not liable for any damages resulting"
+" from this service."
+msgstr "通过使用该服务，你了解mod.io的使用条款和隐私政策，并且Wildfire Games不对此服务造成的任何损害承担责任。"
 
 #: gui/modmod/help/help.txt:1
 msgid ""

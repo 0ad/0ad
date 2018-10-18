@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -73,9 +73,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-04 14:45+0200\n"
-"PO-Revision-Date: 2018-06-28 05:38+0000\n"
-"Last-Translator: Alt Ober <altober333@gmail.com>\n"
+"POT-Creation-Date: 2018-10-13 18:16+0200\n"
+"PO-Revision-Date: 2018-10-14 02:51+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -484,119 +484,119 @@ msgstr "Revenir au menu principal."
 msgid "Start Game!"
 msgstr "Démarrer !"
 
-#: gui/gamesetup/gamesetup.js:1019
+#: gui/gamesetup/gamesetup.js:1029
 msgid "Start a new game with the current settings."
 msgstr "Démarrer une partie avec les paramètres actuels."
 
-#: gui/gamesetup/gamesetup.js:1020
+#: gui/gamesetup/gamesetup.js:1030
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr "Commencer une nouvelle partie avec les paramètres actuels (désactivé jusqu'à ce que tous les joueurs soient prêts)"
 
-#: gui/gamesetup/gamesetup.js:1083
-#, javascript-format
-msgid "Configure AI: %(description)s."
-msgstr "Configurer l'IA: %(description)s."
-
-#: gui/gamesetup/gamesetup.js:1132
+#: gui/gamesetup/gamesetup.js:1042
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr "%(hotkey_civinfo)s/%(hotkey_structree)s: affiche l'historique / l'arbre technologique\nla dernière civilisation ouverte sera ouverte par défault "
 
-#: gui/gamesetup/gamesetup.js:1187
+#: gui/gamesetup/gamesetup.js:1107
+#, javascript-format
+msgid "Configure AI: %(description)s."
+msgstr "Configurer l'IA: %(description)s."
+
+#: gui/gamesetup/gamesetup.js:1398
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
 msgstr "Bascule l'onglet de paramètres %(name)s."
 
-#: gui/gamesetup/gamesetup.js:1188
+#: gui/gamesetup/gamesetup.js:1399
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
 msgstr "Utilisez %(hotkey)s pour déplacer vers le bas un onglet de paramètres."
 
-#: gui/gamesetup/gamesetup.js:1189
+#: gui/gamesetup/gamesetup.js:1400
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
 msgstr "Utilisez %(hotkey)s pour déplacer vers le haut un onglet de paramètres."
 
-#: gui/gamesetup/gamesetup.js:1708
+#: gui/gamesetup/gamesetup.js:1745
 msgctxt "map selection"
 msgid "Random"
 msgstr "Aléatoire"
 
-#: gui/gamesetup/gamesetup.js:1710
+#: gui/gamesetup/gamesetup.js:1747
 msgid "Pick any of the given maps at random."
 msgstr "Sélectionner une carte au hasard."
 
-#: gui/gamesetup/gamesetup.js:1742
+#: gui/gamesetup/gamesetup.js:1779
 msgctxt "biome"
 msgid "Random"
 msgstr "Aléatoire"
 
-#: gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1780
 msgid "Pick a biome at random."
 msgstr "Sélectionner un biome aléatoirement."
 
-#: gui/gamesetup/gamesetup.js:2068
+#: gui/gamesetup/gamesetup.js:2118
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2073
+#: gui/gamesetup/gamesetup.js:2123
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: gui/gamesetup/gamesetup.js:2103
+#: gui/gamesetup/gamesetup.js:2153
 msgid "Yes"
 msgstr "Oui"
 
-#: gui/gamesetup/gamesetup.js:2103
+#: gui/gamesetup/gamesetup.js:2153
 msgid "No"
 msgstr "Non"
 
-#: gui/gamesetup/gamesetup.js:2110
+#: gui/gamesetup/gamesetup.js:2160
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2196
+#: gui/gamesetup/gamesetup.js:2248
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2401
+#: gui/gamesetup/gamesetup.js:2453
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA : %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2409
+#: gui/gamesetup/gamesetup.js:2461
 msgid "Unassigned"
 msgstr "Non attribué"
 
-#: gui/gamesetup/gamesetup.js:2485
+#: gui/gamesetup/gamesetup.js:2537
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2492
+#: gui/gamesetup/gamesetup.js:2544
 msgid "Unknown Player"
 msgstr "Joueur inconnu"
 
-#: gui/gamesetup/gamesetup.js:2531
+#: gui/gamesetup/gamesetup.js:2583
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2532
+#: gui/gamesetup/gamesetup.js:2584
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2533
+#: gui/gamesetup/gamesetup.js:2585
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -634,84 +634,76 @@ msgstr "Annuler"
 msgid "OK"
 msgstr "OK"
 
-#: gui/gamesetup/gamesetup.xml:(caption):24
+#: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Match Setup"
 msgstr "Configuration"
 
-#: gui/gamesetup/gamesetup.xml:(caption):30
+#: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading"
 msgstr "Chargement"
 
-#: gui/gamesetup/gamesetup.xml:(caption):34
+#: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Loading map data. Please wait…"
 msgstr "Chargement de la carte. Veuillez patienter..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Player Name"
 msgstr "Nom du joueur"
 
-#: gui/gamesetup/gamesetup.xml:(caption):58
+#: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Color"
 msgstr "Couleur"
 
-#: gui/gamesetup/gamesetup.xml:(caption):62
+#: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Player Placement"
 msgstr "Position du joueur"
 
-#: gui/gamesetup/gamesetup.xml:(caption):66
+#: gui/gamesetup/gamesetup.xml:(caption):70
 msgid "Civilization"
 msgstr "Civilisation"
 
-#: gui/gamesetup/gamesetup.xml:(caption):93
+#: gui/gamesetup/gamesetup.xml:(caption):87
 msgid "Team"
 msgstr "Équipe"
 
-#: gui/gamesetup/gamesetup.xml:(caption):147
+#: gui/gamesetup/gamesetup.xml:(caption):131
 msgid "Show this message in the future"
 msgstr "Afficher ce message ultérieurement"
 
-#: gui/gamesetup/gamesetup.xml:(caption):236
+#: gui/gamesetup/gamesetup.xml:(caption):220
 msgid "Send"
 msgstr "Envoyer"
 
-#: gui/gamesetup/gamesetup.xml:(caption):253
+#: gui/gamesetup/gamesetup.xml:(caption):237
 msgid "Cheats enabled."
 msgstr "Codes triche activés."
 
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.xml:(caption):260
 msgid "Back"
 msgstr "Retour"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):88
+#: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Réinitialiser toutes les civilisations sélectionnées à leur valeur par défaut (aléatoire)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):103
+#: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
 msgstr "Réinitialiser toutes les équipes à leur valeur par défaut."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):114
+#: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
 msgstr "Choisissez une couleur."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):117
+#: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
 msgstr "Sélectionner un joueur."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):127
-msgid "Configure AI settings."
-msgstr "Configurer les paramètres de l'IA."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):130
-msgid "Select player's civilization."
-msgstr "Sélectionner la civilisation du joueur."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):134
+#: gui/gamesetup/gamesetup.xml:(tooltip):118
 msgid "Select player's team."
 msgstr "Sélectionner l'équipe du joueur."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):218
+#: gui/gamesetup/gamesetup.xml:(tooltip):202
 msgid "Show the multiplayer lobby in a dialog window."
 msgstr "Montrer le salon multijoueurs dans une fenêtre de dialogue."
 

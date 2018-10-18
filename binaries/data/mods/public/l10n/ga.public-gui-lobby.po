@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:03+0200\n"
-"PO-Revision-Date: 2018-07-31 17:11+0000\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-16 21:14+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -168,17 +168,18 @@ msgstr "Fill go dtí an príomhroghchlár."
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "Bhí tú dícheangailte as an forhalla. Ar mhaith leat athcheangail a dhéanamh?"
 
-#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1200 gui/prelobby/prelobby.js:299
+#: gui/lobby/lobby.js:444 gui/lobby/lobby.js:1210
+#: gui/prelobby/common/credentials/credentials.js:50
 msgid "Confirmation"
 msgstr "Deimhniú"
 
-#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1184 gui/lobby/lobby.js:1201
-#: gui/prelobby/prelobby.js:300
+#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/lobby/lobby.js:1211
+#: gui/prelobby/common/credentials/credentials.js:51
 msgid "No"
 msgstr "Ní hea"
 
-#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1184 gui/lobby/lobby.js:1201
-#: gui/prelobby/prelobby.js:300
+#: gui/lobby/lobby.js:445 gui/lobby/lobby.js:1193 gui/lobby/lobby.js:1211
+#: gui/prelobby/common/credentials/credentials.js:51
 msgid "Yes"
 msgstr "Sea"
 
@@ -270,196 +271,193 @@ msgid "Player \"%(nick)s\" not found."
 msgstr "Tá an t-imreoir \"%(nick)s\" neamh-aimsithe."
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:1134
+#: gui/lobby/lobby.js:1143
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "Tá an cluiche tosaithe ag %(time)s"
 
-#: gui/lobby/lobby.js:1135 gui/lobby/lobby.js:1514
+#: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1524
 msgid "HH:mm"
 msgstr "UU:nn"
 
-#: gui/lobby/lobby.js:1139
+#: gui/lobby/lobby.js:1148
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Imreoirí: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1180
+#: gui/lobby/lobby.js:1189
 msgid "Your active mods do not match the mods of this game."
 msgstr "Níl do mhodhnuithe ag teacht le modhnuithe an chluiche seo."
 
-#: gui/lobby/lobby.js:1182
+#: gui/lobby/lobby.js:1191
 msgid "Do you want to switch to the mod selection page?"
 msgstr "An theastaíonn uait a athrú go roghchlár na modhnuithe?"
 
-#: gui/lobby/lobby.js:1183
+#: gui/lobby/lobby.js:1192
 msgid "Incompatible mods"
 msgstr "Tá na modhnuithe neamhréireacha"
 
-#: gui/lobby/lobby.js:1199
+#: gui/lobby/lobby.js:1209
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "Tá an cluiche ag imirt cheana féin. Ar mhaith leat a theacht le chéile mar breathnóir?"
 
-#: gui/lobby/lobby.js:1233
+#: gui/lobby/lobby.js:1243
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Níl seoladh an chluiche seo '%(ip)s' bailí."
 
-#: gui/lobby/lobby.js:1349
+#: gui/lobby/lobby.js:1359
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
 msgstr "Níl an t-ordú '%(cmd)s' faoi thacaíocht."
 
-#: gui/lobby/lobby.js:1361
+#: gui/lobby/lobby.js:1371
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
 msgstr "Tá an t-ordú '%(cmd)s' srianta le modhnóirí amháin."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1434
+#: gui/lobby/lobby.js:1444
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1439
+#: gui/lobby/lobby.js:1449
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1448 gui/lobby/lobby.js:1469 gui/lobby/lobby.js:1496
+#: gui/lobby/lobby.js:1458 gui/lobby/lobby.js:1479 gui/lobby/lobby.js:1506
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:1453 gui/lobby/lobby.js:1474 gui/lobby/lobby.js:1501
+#: gui/lobby/lobby.js:1463 gui/lobby/lobby.js:1484 gui/lobby/lobby.js:1511
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:1463
+#: gui/lobby/lobby.js:1473
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/lobby/lobby.js:1491
+#: gui/lobby/lobby.js:1501
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr "(%(private)s) <%(sender)s>"
 
-#: gui/lobby/lobby.js:1492
+#: gui/lobby/lobby.js:1502
 msgid "Private"
 msgstr "Príobháideach"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:1517
+#: gui/lobby/lobby.js:1527
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1522
+#: gui/lobby/lobby.js:1532
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1561
+#: gui/lobby/lobby.js:1571
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1577
+#: gui/lobby/lobby.js:1587
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1579
+#: gui/lobby/lobby.js:1589
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/prelobby/prelobby.js:43
-msgid "Connecting…"
-msgstr "Ag ceangail..."
-
-#: gui/prelobby/prelobby.js:66
-msgid "Registering…"
-msgstr "Ag clárú..."
-
-#: gui/prelobby/prelobby.js:96
+#: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
 msgstr "Cuir isteach d'ainm úsáideora le do thoil"
 
-#: gui/prelobby/prelobby.js:102
+#: gui/prelobby/common/credentials/credentials.js:8
 msgid "Invalid username"
 msgstr "Ainm úsáideora neamhbhailí"
 
-#: gui/prelobby/prelobby.js:109
-msgctxt "login"
-msgid "Please enter your password"
-msgstr "Cuir isteach do phasfhocal le do thoil"
-
-#: gui/prelobby/prelobby.js:110
+#: gui/prelobby/common/credentials/credentials.js:17
 msgctxt "register"
 msgid "Please enter your password"
 msgstr "Cuir isteach do phasfhocal le do thoil"
 
-#: gui/prelobby/prelobby.js:123
+#: gui/prelobby/common/credentials/credentials.js:18
+msgctxt "login"
+msgid "Please enter your password"
+msgstr "Cuir isteach do phasfhocal le do thoil"
+
+#: gui/prelobby/common/credentials/credentials.js:27
 msgid "Please enter your password again"
 msgstr "Cuir isteach do phasfhocal arís le do thoil"
 
-#: gui/prelobby/prelobby.js:129
+#: gui/prelobby/common/credentials/credentials.js:31
 msgid "Passwords do not match"
 msgstr "Níl na pasfhocail chomhoiriúnacha"
 
-#: gui/prelobby/prelobby.js:135
-msgid "Please read the Terms of Service"
-msgstr "Léigh Termaí Seirbhíse le do thoil"
+#: gui/prelobby/common/credentials/credentials.js:49
+msgid "Are you sure you want to delete the password after connecting?"
+msgstr "An bhfuil tú cinnte gur mhaith leat an pasfhocal a scriosadh tar éis nascadh?"
 
-#: gui/prelobby/prelobby.js:141
-msgid "Please read the Terms of Use"
-msgstr "Léigh Termaí Úsáide le do thoil"
-
-#: gui/prelobby/prelobby.js:147
-msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr "Aontaigh le Termaí Seirbhíse agus Termaí Úsáide le do thoil"
-
-#: gui/prelobby/prelobby.js:179
+#: gui/prelobby/common/feedback/feedback.js:4
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
 msgstr "Earraid inaithnid. De ghnáth, tarlaíonn sé seo mar ní féidir le seoladh IP cheana ceadaithe níos mó ná aon chuntas le uair amháin anuas."
 
-#: gui/prelobby/prelobby.js:185
-msgid "Registered"
-msgstr "Cláraithe"
-
-#: gui/prelobby/prelobby.js:249
-msgid "Register"
-msgstr "Cláraigh"
-
-#: gui/prelobby/prelobby.js:255 gui/prelobby/prelobby.xml:(caption):116
-msgid "Connect"
-msgstr "Ceangail"
-
-#: gui/prelobby/prelobby.js:265 gui/prelobby/prelobby.xml:(caption):93
+#: gui/prelobby/common/terms/termslobby.js:7
 msgid "Terms of Service"
 msgstr "Tearmaí Seirbhíse"
 
-#: gui/prelobby/prelobby.js:274 gui/prelobby/prelobby.xml:(caption):98
+#: gui/prelobby/common/terms/termslobby.js:8
+msgid "Please read and accept the Terms of Service."
+msgstr "Léigh agus glac leis na Tearmaí Seirbhíse le do thoil."
+
+#: gui/prelobby/common/terms/termslobby.js:16
 msgid "Terms of Use"
 msgstr "Téarmaí Úsáide"
 
-#: gui/prelobby/prelobby.js:298
-msgid "Are you sure you want to delete the password after connecting?"
-msgstr "An bhfuil tú cinnte gur mhaith leat an pasfhocal a scriosadh tar éis nascadh?"
+#: gui/prelobby/common/terms/termslobby.js:17
+msgid "Please read and accept the Terms of Use."
+msgstr "Léigh agus glac leis na Tearmaí Úsáide le do thoil."
 
-#: gui/lobby/lobby.xml:(caption):13 gui/prelobby/prelobby.xml:(caption):25
+#: gui/prelobby/login/login.js:5
+msgid "Connect"
+msgstr "Ceangail"
+
+#: gui/prelobby/login/login.js:32
+msgid "Connecting…"
+msgstr "Ag ceangail..."
+
+#: gui/prelobby/register/register.js:5
+msgid "Register"
+msgstr "Cláraigh"
+
+#: gui/prelobby/register/register.js:26
+msgid "Registering…"
+msgstr "Ag clárú..."
+
+#: gui/prelobby/register/register.js:39
+msgid "Registered"
+msgstr "Cláraithe"
+
+#: gui/lobby/lobby.xml:(caption):13
+#: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
 msgstr "Ilfhorhalla"
 
@@ -587,206 +585,182 @@ msgstr "Féach ar próifíl"
 msgid "Please enter a player name."
 msgstr "Cuir isteach ainm imreora le do thoil."
 
-#: gui/prelobby/prelobby.xml:(caption):30
-msgid "Create a new account"
-msgstr "Cruthaigh Cuntas Nua"
-
-#: gui/prelobby/prelobby.xml:(caption):34
-msgid "Login to an existing account"
-msgstr "Logáil isteach le cuntas atá ann cheana féin"
-
-#: gui/prelobby/prelobby.xml:(caption):40
-msgid "Connect to the game lobby"
-msgstr "Nasc leis an bhforhalla cluiche"
-
-#: gui/prelobby/prelobby.xml:(caption):43
-#: gui/prelobby/prelobby.xml:(caption):78
-msgid "Login:"
-msgstr "Logáil Isteach"
-
-#: gui/prelobby/prelobby.xml:(caption):51
-#: gui/prelobby/prelobby.xml:(caption):83
-msgid "Password:"
-msgstr "Pasfhocal:"
-
-#: gui/prelobby/prelobby.xml:(caption):68
-msgid "Remember Password"
-msgstr "Cuimhnigh Pasfhocal"
-
-#: gui/prelobby/prelobby.xml:(caption):74
-msgid "Registration"
-msgstr "Clárú"
-
-#: gui/prelobby/prelobby.xml:(caption):88
+#: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
 msgid "Password again:"
 msgstr "Pasfhocal arís:"
 
-#: gui/prelobby/prelobby.xml:(caption):103
-msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr "Léigh mé agus aontaím le Termaí Seirbhíse agus Termaí Úsáide:"
+#: gui/prelobby/common/credentials/credentials.xml:(caption):6
+msgid "Login:"
+msgstr "Logáil Isteach"
 
-#: gui/prelobby/prelobby.xml:(caption):112
+#: gui/prelobby/common/credentials/credentials.xml:(caption):15
+msgid "Password:"
+msgstr "Pasfhocal:"
+
+#: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
+msgid "Remember Password"
+msgstr "Cuimhnigh Pasfhocal"
+
+#: gui/prelobby/common/feedback/feedback.xml:(caption):10
+#: gui/prelobby/entrance/entrance.xml:(caption):30
 msgid "Cancel"
 msgstr "Cealaigh"
 
-#: gui/prelobby/Terms_of_Service.txt:1
-msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr "0 A.D. Impireachtaí in Uachtar, Termaí Seirbhíse an Ilfhorhalla"
+#: gui/prelobby/entrance/entrance.xml:(caption):20
+msgid "Create a new account"
+msgstr "Cruthaigh Cuntas Nua"
 
-#: gui/prelobby/Terms_of_Service.txt:2 gui/prelobby/Terms_of_Use.txt:2
-msgid "Definitions:"
-msgstr "Sainmhínithe:"
+#: gui/prelobby/entrance/entrance.xml:(caption):25
+msgid "Login to an existing account"
+msgstr "Logáil isteach le cuntas atá ann cheana féin"
 
-#: gui/prelobby/Terms_of_Service.txt:3 gui/prelobby/Terms_of_Use.txt:3
+#: gui/prelobby/login/login.xml:(caption):13
+msgid "Connect to the game lobby"
+msgstr "Nasc leis an bhforhalla cluiche"
+
+#: gui/prelobby/register/register.xml:(caption):13
+msgid "Registration"
+msgstr "Clárú"
+
+#: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
-" * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
-"provided by Wildfire Games (WFG)."
-msgstr "* Tagraíonn an \"seirbhís\" don Ilfhorhalla de chuid 0 A.D. Impireacht in Uachtar, ar choinníoll de Wildfire Games (WFG)."
+"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
+"Service[/font]"
+msgstr "[font=\"sans-bold-18\"]0 A.D. Impireachtaí in Uachtar, Termaí Seirbhíse an Ilfhorhalla [/font]"
 
-#: gui/prelobby/Terms_of_Service.txt:4 gui/prelobby/Terms_of_Use.txt:4
-msgid " * \"You\" are the user of the service."
-msgstr "* Is úsáideoir \"tú\" den sheirbhís."
+#: gui/prelobby/common/terms/Terms_of_Service.txt:3
+#: gui/prelobby/common/terms/Terms_of_Use.txt:3
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
+msgstr "[font=\"sans-bold-14\"]Dáta an Doiciméid:[/font] 2018-10-13"
 
-#: gui/prelobby/Terms_of_Service.txt:5
-msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr "* Tá \"muid\" comharghnó na mball uile den fhoireann Wildfire Games (WFG)."
-
-#: gui/prelobby/Terms_of_Service.txt:6
+#: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
-" * \"Rating\" refers to the process of analyzing various user statistics for"
-" the purpose of generating a single comprehensive score."
-msgstr "* Tagraíonn \"rátáil\" don próiseas anailísithe ar thaobh staitisticí úsáideoirí éagsúla de, chun críche ar scór cuimsitheach amháin a dhéanamh."
+"The 0 A.D. Empires Ascendant Multiplayer Lobby is an online service provided"
+" by Wildfire Games that allows players to setup online multiplayer matches, "
+"discuss the game in a public chat room and gain a rating that reflects their"
+" skill."
+msgstr "Is seirbhís ar-líne é Ilfhorhalla 0 A.D. Impireachtaí in Uachtar soláthartha ag Wildfire Games, agus a ligeann ar imreoirí cluichí ar-líne a chur ar bhun, comhrá a dhéanamh sa tseomra comhrá poiblí agus rátáil a fháil dá gcuid scileanna a léiriú."
 
-#: gui/prelobby/Terms_of_Service.txt:7
-msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr "* Tagraíonn \"modhnaigh\" don próiseas polasaithe úsáide a fheidhmiú."
+#: gui/prelobby/common/terms/Terms_of_Service.txt:7
+#: gui/prelobby/common/terms/Terms_of_Use.txt:5
+msgid ""
+"[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
+"to:[/font]"
+msgstr "[font=\"sans-bold-14\"]Trí úsáid an Ilfhorhalla 0 A.D., aontaíonn tú le:[/font]"
 
-#: gui/prelobby/Terms_of_Service.txt:8
-msgid "By using the service you agree to:"
-msgstr "Mar atá tú i d'úsáideoir seirbhíse, aontaíonn tú leis na rialacha seo:"
-
-#: gui/prelobby/Terms_of_Service.txt:9
+#: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid " 1. Follow all usage policies."
 msgstr "1. Cloígh le polasaithe úsáide ar fad."
 
-#: gui/prelobby/Terms_of_Service.txt:10
+#: gui/prelobby/common/terms/Terms_of_Service.txt:9
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
 msgstr "2. Lig staitisticí so-aitheanta ag gach úsáideoir le bailiú chun críche an rátála, na mpróifíl úsáideora, agus na staitisticí pobail."
 
-#: gui/prelobby/Terms_of_Service.txt:11 gui/prelobby/Terms_of_Use.txt:18
-msgid "We also reserve the right to:"
-msgstr "Cúlchiste againn an ceart fosta leis na rialacha seo:"
+#: gui/prelobby/common/terms/Terms_of_Service.txt:10
+msgid ""
+" 3. Use the service at your own risk. Wildfire Games does not take "
+"responsibility for the content posted by users or damages resulting from "
+"this service."
+msgstr "3. Úsáid an tseirbhís ar do phriacal féin. Ní ghlacann Wildfire Games freagracht don inneachar postáilte ag na húsáideoirí nó aon damáiste mar thoradh ar an seirbhís seo."
 
-#: gui/prelobby/Terms_of_Service.txt:12
-msgid " 1. Moderate the service."
-msgstr "1. Modhnaigh an seirbhís."
+#: gui/prelobby/common/terms/Terms_of_Service.txt:11
+msgid ""
+" 4. Not use the service with third-party software or mods that prevents the "
+"user from being informed of updated Terms and Conditions, unless authorized "
+"by a Wildfire Games team member."
+msgstr "4. Ná húsáid an tseirbhís le bogearraí tríú páirtí nó modhnuithe cé a chur cosc ar eolas Tearmaí agus Coinníolacha nua, ach amháin má tá sé ceadaithe ag ball foirne Wildfire Games."
 
-#: gui/prelobby/Terms_of_Service.txt:13
+#: gui/prelobby/common/terms/Terms_of_Service.txt:13
+msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
+msgstr "[font=\"sans-bold-14\"]Cúlchiste ag Wildfire Games leis na rialacha seo:[/font]"
+
+#: gui/prelobby/common/terms/Terms_of_Service.txt:14
+msgid ""
+" 1. Moderate the service, i.e. to enforce the Terms of Use by restricting, "
+"suspending or terminating user accounts."
+msgstr " 1. Don seirbhis a mhaolú, .i. do na Tearmaí Úsáide a chur i bhfeidhm trí srian a choimeád ar, fionraí a chur ar, nó scaoil a dhéanamh ar chuntais úsáideoirí."
+
+#: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid " 2. Appoint others to moderate the service."
 msgstr "2. Ceap duine eile ag modhnú na seirbhíse."
 
-#: gui/prelobby/Terms_of_Service.txt:14
+#: gui/prelobby/common/terms/Terms_of_Service.txt:16
+msgid " 3. Discontinue or interrupt any part of the service at any time."
+msgstr "3. Scoir de nó cuir isteach ar aon chuid don seirbhís ag aon am."
+
+#: gui/prelobby/common/terms/Terms_of_Service.txt:17
 msgid ""
-" 3. Discontinue or interrupt service at any time with or without prior "
-"announcement."
-msgstr "3. Stad nó idirbhris an seirbhís ag aon am, le nó gan réamhfhógra."
+" 4. Change the service or its terms. The document date of the terms indicate"
+" its version, and the user is informed of the new terms before being able to"
+" use the service again."
+msgstr "4. Athraigh an tseirbhís nó a tearmaí. Léiríonn dáta doiciméid na dtearmaí a leagan, agus tá eolas curtha ar an úsáideoir ar tearmaí nua roimh is féidir leis an tseirbhís a úsáid arís."
 
-#: gui/prelobby/Terms_of_Service.txt:15
-msgid " 4. Change the service at any time with or without announcement."
-msgstr "4. Athraigh an seirbhís ag aon am, le nó gan réamhfhógra."
-
-#: gui/prelobby/Terms_of_Service.txt:16
+#: gui/prelobby/common/terms/Terms_of_Service.txt:18
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
 msgstr "5. Scrios aon shonraí seirbhíse, agus an sonraí seirbhíse ar fad ag aon am, le nó gan réamhfhógra."
 
-#: gui/prelobby/Terms_of_Service.txt:17
+#: gui/prelobby/common/terms/Terms_of_Service.txt:19
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
 msgstr "6. Bailigh aon staitisticí so-aitheanta ag gach úsáideoir, agus na n-úsáideoirí uile ag aon am gan chead, chun críche ar:"
 
-#: gui/prelobby/Terms_of_Service.txt:18
+#: gui/prelobby/common/terms/Terms_of_Service.txt:20
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
 msgstr "a. Anailís príobháideach leis na mbaill den fhoireann Wildfire Games (WFG) agus lena gcleamhnaithe."
 
-#: gui/prelobby/Terms_of_Service.txt:19
+#: gui/prelobby/common/terms/Terms_of_Service.txt:21
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
 msgstr "b. Eisiúint phoiblí gan ainm úsáideora leis na mbaill den fhoireann Wildfire Games (WFG)."
 
-#: gui/prelobby/Terms_of_Service.txt:20
+#: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""
-" 7. Change this document in any way; at any time; on the condition that the "
-"user of the service is given adequate notice of the change (the definition "
-"of adequate notice will be determined at the time by a panel of Wildfire "
-"Games (WFG) team members)."
-msgstr "7. Athraigh an doiciméad seo ar bhealach ar bith, ag aon am; ar an gcoinníoll go bhfuil an t-úsádeoir seirbhíse tugtha le fógra sásúil den athrú (tá an sainmhíniú le 'fógra sásúil' socrófar ag an am de chuid painéal bhall den fhoireann Wildfire Games (WFG))."
+"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
+"Use[/font]"
+msgstr "[font=\"sans-bold-18\"]0 A.D. Impireachtaí in Uachtar, Termaí Úsáide an Ilfhorhalla[/font]"
 
-#: gui/prelobby/Terms_of_Use.txt:1
-msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr "0 A.D. Impireachtaí in Uachtar, Termaí Úsáide an Ilfhorhalla"
-
-#: gui/prelobby/Terms_of_Use.txt:5
+#: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
-" * \"Impersonate\" refers to the action in which you attempt to exploit "
-"another's identity for your own purposes."
-msgstr "Tagraíonn \"dúl i mbréagriocht\" don ghníomh nuair atá tú i d'iarracht agus leas tú a bhaint as aitheantas duine eile ar son d'aidhmeanna féin."
+" 1. Only create one account per person on the service unless authorized by "
+"Wildfire Games."
+msgstr "1. Cruthaigh ach aon chuntas amháin in aghaidh an duine, ach má tá siad ceadaithe ag Wildfire Games."
 
-#: gui/prelobby/Terms_of_Use.txt:6
+#: gui/prelobby/common/terms/Terms_of_Use.txt:7
 msgid ""
-" * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
-"number of recipients."
-msgstr "* Tagraíonn \"turscar\" do theachtaireachtaí míchuí nó gan tábhacht, seolta go dtí faighteoirí go leor."
+" 2. Not impersonate other users of the service and only use your registered "
+"username in multiplayer matches."
+msgstr "2. Ná pearsanaigh aon úsáideoir eile agus úsáid ach amháin d'ainm úsáideora féin sa chluichí ilimreortha."
 
-#: gui/prelobby/Terms_of_Use.txt:7
-msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr "* Tagraíonn \"rátáil\" don scór cuimsitheach in aghaidh an úsáideora."
+#: gui/prelobby/common/terms/Terms_of_Use.txt:8
+msgid " 3. Not post profanity, pejorative terms or pornographic content."
+msgstr "3. Ná postáil eascannaí, tearmaí díspeagúla nó inneachar pornagrafach ar bith."
 
-#: gui/prelobby/Terms_of_Use.txt:8
+#: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid ""
-" * \"Ranked games\" refers to games in which rating changing statistics are "
-"tracked."
-msgstr "* Tagraíonn \"cluiche rangaithe\" do chluiche atá faoi rianú staitistiúil."
+" 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause "
+"damage to others or purposefully demean the worth of others using this "
+"service."
+msgstr "4. Ná ciap, déan dochar do, déan leatrom, bagair, aithisigh, déan damáiste ar daoine eile nó aon drochmheas a dhéanamh ar a bhféiniúlacht go teann nuair a bhí siad ag úsáid na seirbhíse."
 
-#: gui/prelobby/Terms_of_Use.txt:9
-msgid "You agree to:"
-msgstr "Aontaíonn tú leis na rialacha seo:"
-
-#: gui/prelobby/Terms_of_Use.txt:10
+#: gui/prelobby/common/terms/Terms_of_Use.txt:10
 msgid ""
-" 1. Only create one account per unique user on the service unless authorized"
-" by a Wildfire Games (WFG) team member."
-msgstr "1. Cruthaigh aon chuntas amháin in aghaidh an úsádeoir ar leith sa tseirbhís, ach amháin más faofa ag ball den foireann Wildfire Games (WFG)."
+" 5. Not violate the privacy of others by disclosing personally identifiable "
+"information (for example real name, location, ID) or private details (for "
+"example social media or messenger account names) of others without their "
+"consent."
+msgstr "5. Ná sáraigh príobháideachas daoine eile trína bhfaisnéis aitheanta pearsanta (m.sh. fíor-ainm, láthair, ID) nó sonraí príobháideacha (m.sh. ainmneacha meán sóisialta nó cuntas teachtairí eile) a nochtadh gan a cheadúnas féin."
 
-#: gui/prelobby/Terms_of_Use.txt:11
-msgid ""
-" 2. Not post profane statements, rude humor, pornographic content, or "
-"discriminatory comments on the service."
-msgstr "2. Ná húsáid ráitis dhiamhaslacha, grinn mímhúinte, inneachar pornagrafach, nó ráitis leithchealacha ar an tseirbhís."
+#: gui/prelobby/common/terms/Terms_of_Use.txt:11
+msgid " 6. Not incite violence or promote illegal acts."
+msgstr "6. Ná gríosaigh foréigean nó ná cuir gníomhartha mídhleathacha."
 
-#: gui/prelobby/Terms_of_Use.txt:12
-msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr "3. Ná díspeag go fiúntach an luach atá ag duine eile nuair atá tú ag úsáid na seirbhíse."
-
-#: gui/prelobby/Terms_of_Use.txt:13
-msgid ""
-" 4. Not use the service to promote specific goods, services, or products."
-msgstr "4. Ná húsáid an seirbhí ar son sainearraithe, seirbhísí, nó táirgí a chur chun cinn."
-
-#: gui/prelobby/Terms_of_Use.txt:14
-msgid " 5. Not impersonate other users of the service."
-msgstr "5. Ná dúl i mbréagriocht úsáideora eile ar an tseirbhís."
-
-#: gui/prelobby/Terms_of_Use.txt:15
-msgid " 6. Not spam the service."
-msgstr "6. Ná spamáil an seirbhís."
-
-#: gui/prelobby/Terms_of_Use.txt:16
+#: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid ""
 " 7. Not attempt to artificially adjust any user of the service's rating or "
 "any of the statistics which impact it. (Examples of this are, but are not "
@@ -794,16 +768,27 @@ msgid ""
 "taking advantage of other users of the service.)"
 msgstr "7. Ná déan iarracht a choigeartú faoi rátáil ar aon úsáideoir na seirbhíse, nó aon staitisticí a théann i bhfeidhm air. (Mar shampla, ach níl ina theoranta: séitéireacht sa chluiche rangaithe, cúlinnealtóireacht den tseirbhís, nó leas a bhaint as úsáideoirí eile den tseirbhís.)"
 
-#: gui/prelobby/Terms_of_Use.txt:17
+#: gui/prelobby/common/terms/Terms_of_Use.txt:13
 msgid ""
-" 8. Allow yourself to be removed from the service if at any time a moderator"
-" determines your behavior is not consistent with these rules."
-msgstr "8. Ceadaigh tú féin a bhaint as an tseirbhís má chinneann aon tráth modhnóir nach bhfuil d'iompar i gcomhréir leis na rialacha seo."
+" 8. Not undermine the intended gameplay or purposefully gain unfair "
+"advantages in multiplayer matches (for example cheating, using exploits or "
+"bugs)."
+msgstr "8. Ná bain ón imreoracht bheartaithe agus ná fáil buntáistí éagóracha i gcluichí ilimreortha (m.sh. caimiléireacht, leas a bhaint as fabhtanna)."
 
-#: gui/prelobby/Terms_of_Use.txt:19
+#: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""
-" 1. Change this document in any way; at any time; on the condition that the "
-"user of the service is given adequate notice of the change (the definition "
-"of adequate notice will be determined at the time by a panel of Wildfire "
-"Games (WFG) team members)."
-msgstr "1. Athraigh an doiciméad seo ar bhealach ar bith, ag aon am; ar an gcoinníoll go bhfuil an t-úsádeoir seirbhíse tugtha le fógra sásúil den athrú (tá an sainmhíniú le 'fógra sásúil' socrófar ag an am de chuid painéal bhall den fhoireann Wildfire Games (WFG))."
+" 9. Not spam the service and not post large amounts of repetitive or "
+"unwanted messages."
+msgstr "9. Ná spamáil an tseirbhís agus ná postáil méideanna móra teachtaireachtaí athráiteacha nó gan teastáil."
+
+#: gui/prelobby/common/terms/Terms_of_Use.txt:15
+msgid ""
+"10. Not use the service to promote specific goods, services, or products "
+"unless authorized by Wildfire Games."
+msgstr "10. Ná húsáid an tseirbhís d'earraí ar leith, seirbhísí eile, nó táirgí a chur chun cinn ach amháin má tá siad ceadaithe ag Wildfire Games."
+
+#: gui/prelobby/common/terms/Terms_of_Use.txt:17
+msgid ""
+"If a moderator deems your behavior to be inconsistent with these terms, your"
+" account may be restricted, suspended or terminated."
+msgstr "Má mheasann modhnóir go bhfuil d'iompar neamhréireach leis na tearmaí seo, d'fhéadfadh srian, fianraí nó scaoileadh curtha ar do chuntas."

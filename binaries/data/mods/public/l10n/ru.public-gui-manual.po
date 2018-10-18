@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-11 09:02+0200\n"
-"PO-Revision-Date: 2018-06-01 14:42+0000\n"
-"Last-Translator: Check Tester <registruser@yandex.com>\n"
+"POT-Creation-Date: 2018-10-13 18:17+0200\n"
+"PO-Revision-Date: 2018-10-14 03:58+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -703,56 +703,3 @@ msgstr "[font=\"sans-14\"]Delete: удалить выбранную сохран
 #: gui/manual/intro.txt:157
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: не спрашивать подтверждение при удалении сохраненной игры"
-
-#: gui/manual/userreport.txt:1
-msgid ""
-"As a free, open source game, we don't have the resources to test on a wide "
-"range of systems, but we want to provide the best quality experience to as "
-"many players as possible. When you enable automatic feedback, we'll receive "
-"data to help us understand the hardware we should focus on supporting, and "
-"to identify performance problems we should fix."
-msgstr "Как свободная игра с открытыми исходниками, мы не имеем возможности протестировать на широком круге систем, но мы хотим обеспечить наилучшее качество максимальному количеству игроков. Когда Вы включите автоматическую обратную связь, мы сможем принимать данные, которые помогут нам понять, на каком аппаратном обеспечении необходимо сфокусировать поддержку, а также выявить проблемы производительности и исправить их."
-
-#: gui/manual/userreport.txt:3
-msgid "The following data will be sent to our server:"
-msgstr "Следующие данные будут отправлены на сервер:"
-
-#: gui/manual/userreport.txt:5
-msgid ""
-"• A random user ID (stored in %APPDATA%\\\\0ad\\\\config\\\\user.cfg on "
-"Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
-"reports from the same user."
-msgstr "Случайный идентификатор пользователя (сохраненный по пути %APPDATA%\\\\0ad\\\\config\\\\user.cfg в Windows, или ~/.config/0ad/config/user.cfg в Unix), позволяющий нам отслеживать повторяющиеся отчеты от одного и того-же самого пользователя."
-
-#: gui/manual/userreport.txt:6
-msgid ""
-"• Game version number and basic build settings (optimisation mode, CPU "
-"architecture, timestamp, compiler version)."
-msgstr "• Версия игры и базовые настройки сборки (метод оптимизации, архитектура ЦПУ, временная метка, версия компилятора)."
-
-#: gui/manual/userreport.txt:7
-msgid ""
-"• Hardware details: OS version, graphics driver version, OpenGL "
-"capabilities, screen size, CPU details, RAM size."
-msgstr "• Аппаратные средства: версия ОС, версия графического драйвера, возможности OpenGL, размер экрана, особенности ЦПУ, объем ОЗУ."
-
-#: gui/manual/userreport.txt:8
-msgid ""
-"• Performance details: a snapshot of timing data a few seconds after you "
-"start a match or change graphics settings."
-msgstr "• Детали производительности: снимок временных данных через несколько секунд после старта матча или изменения настроек графики."
-
-#: gui/manual/userreport.txt:10
-msgid ""
-"The data will only be a few kilobytes each time you run the game, so "
-"bandwidth usage is minimal."
-msgstr "Данные, размером несколько килобайт, будут передаваться каждый раз при запуске игры, таким образом использование интеренет канала будет минимальным. "
-
-#: gui/manual/userreport.txt:12
-msgid ""
-"We will store the submitted data on our server, and may publish statistics "
-"or non-user-identifiable details to help other game developers with similar "
-"questions. We will store the IP address that submitted the data, to help "
-"detect abuse of the service, but will not publish it. The published data can"
-" be seen at http://feedback.wildfiregames.com/"
-msgstr "Мы сохраним переданные данные на нашем сервере, и можем публиковать статистику или анонимные детали в помощь другим разработчикам игр с подобными вопросами. Мы сохраним Ваш IP адрес для выявления оскорблений, но не будем публиковать его. Публикуемую информацию можно увидеть по адресу http://feedback.wildfiregames.com/"
