@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-17 16:54+0000\n"
+"PO-Revision-Date: 2018-10-17 21:59+0000\n"
 "Last-Translator: Nerwitz Panzerfizt\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -141,7 +141,7 @@ msgstr "„%(label)s“"
 
 #: gui/common/functions_utility_loadsave.js:55
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "Запазената игра ще бъде изтрита завинаги, сигурен/на ли сте?"
+msgstr "Запазената игра ще бъде изтрита завинаги, сигурни ли сте?"
 
 #: gui/common/functions_utility_loadsave.js:56
 msgid "DELETE"
@@ -340,7 +340,7 @@ msgstr "Игра за класация"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "След като победителят от този мач бъде определен, резултатът в чакалнята ще бъде променен."
+msgstr "След като победителят от този мач бъде определен, резултатът в лобито ще бъде променен."
 
 #: gui/common/gamedescription.js:305
 msgid "Locked Teams"
@@ -366,7 +366,7 @@ msgstr "Последният оцелял:"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Само един играч може да спечели играта. Ако в играта са останали само съюзници, тя продължава докато остане само един."
+msgstr "Победителят може да бъде само един. Ако останалите в играта участници са само съюзници, тя продължава докато остане само един от тях."
 
 #: gui/common/gamedescription.js:321
 msgid "Allied Victory"
@@ -376,7 +376,7 @@ msgstr "Съюзническа победа"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "Ако един играч победи, съюзниците му също печелят. Ако остане една група от съюзници, всички печелят."
+msgstr "Ако един играч победи, неговите съюзниците също печелят. Ако остане една група от съюзници, всички те ечелят."
 
 #: gui/common/gamedescription.js:326
 msgid "Ceasefire"
@@ -442,7 +442,7 @@ msgstr "Селищни центрове"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Играчите започват само с няколко единици и трябва да намерят подходящо място, на което да построят града си."
+msgstr "Играчите започват само с няколко единици и трябва да намерят подходящо място, на което да изградят основите на града си."
 
 #: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
@@ -477,7 +477,7 @@ msgstr "Според картата."
 
 #: gui/common/gamedescription.js:430
 msgid "Revealed Map"
-msgstr "Открита карта"
+msgstr "Разкрита карта"
 
 #: gui/common/gamedescription.js:435
 msgid "Explored Map"
@@ -485,7 +485,7 @@ msgstr "Проучена карта"
 
 #: gui/common/gamedescription.js:440
 msgid "Cheats"
-msgstr "Измами"
+msgstr "Кодове"
 
 #: gui/common/gamedescription.js:444 gui/common/tooltips.js:164
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:260
@@ -522,7 +522,7 @@ msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr "Губене на връзка към сървъра (%(seconds)s сек)"
+msgstr "Разпадане на връзката към сървъра (%(seconds)s сек)"
 
 #: gui/common/network.js:22
 #, javascript-format
@@ -532,12 +532,12 @@ msgstr "%(player)s губи връзка (%(seconds)s сек)"
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr "Лоша връзка към сървъра (%(milliseconds)sмс)"
+msgstr "Лоша връзка със сървъра (%(milliseconds)sмс)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr "Лоша връзка към %(player)s (%(milliseconds)sмс)"
+msgstr "Лоша връзка с%(player)s (%(milliseconds)sм/с)"
 
 #: gui/common/network.js:66
 msgctxt "network disconnect"
@@ -548,11 +548,11 @@ msgstr "Неизвестна причина"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr "Най-честата причина за това е, че портът за UDP с номер 20595 при сървъра не се препраща. Но може да бъде проблем със защитна стена или антивирусна програма"
+msgstr "Най-честата причина за това е, че портът за UDP с номер 20595 при сървъра не се препраща. Но може да бъде проблем с защитна стена или антивирусна програма"
 
 #: gui/common/network.js:68
 msgid "The host has ended the game"
-msgstr "Сървърът сложи край на играта"
+msgstr "Домакинът на сървъра сложи край на играта"
 
 #: gui/common/network.js:69
 msgid "Incorrect network protocol version"
@@ -611,7 +611,7 @@ msgstr "Разкачен"
 
 #: gui/common/network.js:107
 msgid "Only the host can kick clients!"
-msgstr "Само сървърът може да изритва клиентите!"
+msgstr "Единствено домакинът на сървъра може да изгонва клиентите!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -1177,13 +1177,13 @@ msgstr "Плячка:"
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:829
 msgid "Right-click to view more information."
-msgstr "Натиснете с десен бутон, за да видите повече информация."
+msgstr "Натиснете с десен бутон за повече информация."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr "Натиснете, за да видите повече информация."
+msgstr "Натиснете, за да разкриете повече информация."
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1223,7 +1223,7 @@ msgstr "Стойност: %(val)s (мин.: %(min)s, макс.: %(max)s)"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr "Възстановяването ще заличи запазените Ви настройки. Искате ли да продължите?"
+msgstr "Възстановяването ще заличи запазените предишни настройки. Искате ли да продължите?"
 
 #: gui/options/options.js:300 gui/options/options.js:350
 #: gui/options/options.js:376
@@ -1232,11 +1232,11 @@ msgstr "Внимание"
 
 #: gui/options/options.js:349
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr "Някои стойности на настройките са неправилни? Наистина ли искате да ги запазите?"
+msgstr "Някои стойности на настройките са неправилни! Наистина ли искате да ги запазите?"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "Има незапазени промени. Искате ли да затворите този прозорец?"
+msgstr "Засечени незапазени промени. Искате ли да затворите този прозорец?"
 
 #: gui/pregame/mainmenu.js:41
 #, javascript-format
@@ -1247,14 +1247,14 @@ msgstr "%(hotkey)s: показване на структурното дърво 
 #: gui/pregame/mainmenu.js:45
 #, javascript-format
 msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: научете за многото цивилизации срещащи се в 0 A.D."
+msgstr "%(hotkey)s: научете за многото цивилизации, срещащи се в 0 A.D."
 
 #: gui/pregame/mainmenu.js:49
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr "%(hotkey)s: пускане на чакалнята за игра в мрежа, където можете да създавате и да се присъединявате към публично видимите игри, както и да си пишете с другите играчи."
+msgstr "%(hotkey)s: отваряне на прозореца на лобито за игра в мрежа, където можете да създавате и да се присъединявате към публично видимите игри, както и да общувате с другите играчи."
 
 #: gui/pregame/mainmenu.js:113
 #, javascript-format
@@ -1263,7 +1263,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr "%(warning)s Изглежда използвате графична карта без поддръжка на шейдъри (с фиксирана функция). Тази възможност ще бъде премахната от 0 A.D. в някоя бъдеща версия, за да се даде възможност за използване на по-съвременни графични функционалности. Съветът ни е да се сдобиете с по-съвременна графична карта, поддържаща шейдъри."
+msgstr "%(warning)s Изглежда използвате графична карта без поддръжка на шейдъри (с фиксирана функция). Тази възможност ще бъде премахната от 0 A.D. в някоя бъдеща версия, за да се даде възможност за използване на по-съвременни графични функционалности. Ние съветваме да се сдобиете с по-съвременна графична карта, поддържаща шейдъри."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1271,7 +1271,7 @@ msgstr "%(warning)s Изглежда използвате графична ка�
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:121
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "Моля, натиснете „Вижте повече“ за повече информация или „Добре“, за да продължите."
+msgstr "Моля, натиснете „Прочети повече“ за повече информация или „Добре“, за да продължите."
 
 #: gui/pregame/mainmenu.js:122
 msgid "WARNING!"
@@ -1292,7 +1292,7 @@ msgstr "Версия: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:210
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Наистина ли искате да излезете от 0 A.D.?"
+msgstr "Наистина ли искате да затворите 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:211 gui/pregame/mainmenu.js:225
 msgid "Confirmation"
@@ -1316,7 +1316,7 @@ msgstr "Грешка"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr "Пускане на чакалнята за игра в мрежа, където можете да създавате и да се присъединявате към публично видимите игри, както и да си пишете с другите играчи. \\[ИЗКЛЮЧЕНО ПРИ КОМПИЛИРАНЕТО]"
+msgstr "Отваряне на прозореца на чакалнята за игра в мрежа, където можете да създавате и да се присъединявате към публично видимите игри, както и да общувате с другите играчи. \\[ИЗКЛЮЧЕНО ПРИ КОМПИЛИРАНЕТО]"
 
 #: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
@@ -1353,12 +1353,12 @@ msgstr "качването завърши успешно"
 #: gui/pregame/userreport/userreport.js:33
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr "качването не беше успешно (%(errorCode)s)"
+msgstr "качването провалено (%(errorCode)s)"
 
 #: gui/pregame/userreport/userreport.js:36
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr "качването не беше успешно (%(errorMessage)s)"
+msgstr "качването провалено (%(errorMessage)s)"
 
 #: gui/pregame/userreport/userreport.js:60
 msgid "Disable Feedback"
@@ -1393,7 +1393,7 @@ msgstr "Помогнете ни да подобрим 0 A.D.!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr "Можете автоматично да ни изпращате обратна връзка; това ще ни помогне да разрешаваме проблеми и подобряваме производителността и съвместимостта."
+msgstr "Можете автоматично да ни изпращате обратна връзка; това ще ни помогне да отстраняваме проблеми и подобряваме производителността и съвместимостта."
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1426,7 +1426,7 @@ msgstr "%(health_min)s до %(health_max)s"
 #: gui/reference/structree/structree.js:49
 #, javascript-format
 msgid "%(hotkey)s: Switch to History."
-msgstr "%(hotkey)s: превключване към историята."
+msgstr "%(hotkey)s: превключване към история."
 
 #: gui/reference/structree/structree.js:50
 #, javascript-format
@@ -1486,7 +1486,7 @@ msgstr "Това повторение не е съвместимо с тази �
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr "Вашата версия: %(version)s"
+msgstr "Текуща версия: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
@@ -1550,7 +1550,7 @@ msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
 msgstr[0] "> %(min)s мин"
-msgstr[1] "> %(min)s мин"
+msgstr[1] "> %(min)s мин."
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:128
@@ -1589,7 +1589,7 @@ msgstr "Игри без класация"
 
 #: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr "Филтрирайте повторенията като напишете едно или повече, частични или пълни имена на играчи."
+msgstr "Подреждайте повторенията като напишете едно или повече, частични или пълни имена на играчи."
 
 #: gui/replaymenu/replay_menu.js:273
 #, javascript-format
@@ -1913,7 +1913,7 @@ msgstr "%(mapName)s — %(mapType)s"
 #: gui/summary/summary.js:525
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr "%(hotkey)s: Превключване на чакалнята в прозорец."
+msgstr "%(hotkey)s: Показване на лобито в самостоятелен прозорец."
 
 #: gui/civinfo/civinfo.xml:(caption):20
 msgid "Civilizations"
@@ -1938,7 +1938,7 @@ msgstr "Затваряне"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr "0 A.D. — заслуги"
+msgstr "0 A.D. — Автори и заслуги"
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):325
 msgid "Language"
@@ -2008,7 +2008,7 @@ msgstr "Алфа XXIII: Кен Ууд"
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr "ВНИМАНИЕ: Това е версия на играта, която е в състояние на разработка. Много от функционалностите липсват."
+msgstr "ВНИМАНИЕ: Това е версия на играта, която е в състояние на активна разработка. Много от функционалностите липсват."
 
 #: gui/pregame/mainmenu.xml:(tooltip):90
 msgid "Open the 0 A.D. Game Manual."
@@ -2035,7 +2035,7 @@ msgstr "Натиснете тук, за да заредите запазена �
 #: gui/pregame/mainmenu.xml:(tooltip):204
 #: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Playback previous games."
-msgstr "Гледане на записи от изиграните игри."
+msgstr "Преглед на повторения от изиграните игри."
 
 #: gui/pregame/mainmenu.xml:(tooltip):232
 msgid "Joining an existing multiplayer game."
@@ -2051,7 +2051,7 @@ msgstr "Промяна на настройките на играта."
 
 #: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Choose the language of the game."
-msgstr "Избор на езика за играта."
+msgstr "Избор на езика на играта."
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Select and download mods for the game."
@@ -2083,7 +2083,7 @@ msgstr "Игрални настройки и избор на модификац�
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Отваряне на редактора за сценарии Atlas в нов прозорец. Можете да го пуснете по-надеждно, като стартирате играта с командния параметър „-editor“."
+msgstr "Отваряне на редактора на сценарии Atlas в нов прозорец. Можете да го пуснете и като стартирате играта с командния параметър „-editor“."
 
 #: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Exits the game."
@@ -2091,13 +2091,13 @@ msgstr "Изход от играта."
 
 #: gui/pregame/mainmenu.xml:(tooltip):518
 msgid "Click to open play0ad.com in your web browser."
-msgstr "Натиснете, за да отворите play0ad.com в браузъра си."
+msgstr "Натиснете, за да отворите play0ad.com в интернет браузъра."
 
 #: gui/pregame/mainmenu.xml:(tooltip):530
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
-msgstr "Натиснете, за да отворите IRC чата на 0 A.D. в браузъра си. (#0ad в webchat.quakenet.org)"
+msgstr "Натиснете, за да отворите IRC чата на 0 A.D. в интернет браузъра. (канал #0ad в webchat.quakenet.org)"
 
 #: gui/pregame/mainmenu.xml:(tooltip):542
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
@@ -2105,15 +2105,15 @@ msgstr "Натиснете, за да посетите страницата Trac
 
 #: gui/pregame/mainmenu.xml:(tooltip):554
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Натиснете, за да отворите страницата за превод на 0 A.D. в браузъра си."
+msgstr "Натиснете, за да отворите страницата за превод на 0 A.D. в интернет браузъра."
 
 #: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
-msgstr "Помогнете на проекта като дарите малко пари."
+msgstr "Помогнете на проекта чрез дарение на желана от вас сума."
 
 #: gui/pregame/mainmenu.xml:(tooltip):578
 msgid "Click to see the 0 A.D. credits."
-msgstr "Щракнете, за да видите кой има заслуга за 0 A.D."
+msgstr "Натиснете, за да отворите прозореца с информация за авторите и заслугите за 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(caption):108
 msgid "Tutorial"
@@ -2152,7 +2152,7 @@ msgstr "Създаване на игра"
 
 #: gui/pregame/mainmenu.xml:(caption):261
 msgid "Game Lobby"
-msgstr "Чакалня"
+msgstr "Лоби"
 
 #: gui/pregame/mainmenu.xml:(caption):311
 msgid "Options"
@@ -2184,11 +2184,11 @@ msgstr "Изход"
 
 #: gui/pregame/mainmenu.xml:(caption):517
 msgid "Website"
-msgstr "Уеб сайт"
+msgstr "Интернет страница"
 
 #: gui/pregame/mainmenu.xml:(caption):529
 msgid "Chat"
-msgstr "Разговор"
+msgstr "Чат"
 
 #: gui/pregame/mainmenu.xml:(caption):541
 msgid "Report a Bug"
@@ -2224,11 +2224,11 @@ msgstr "Информация"
 
 #: gui/replaymenu/replay_menu.xml:(caption):13
 msgid "Replay Games"
-msgstr "Гледане на записи"
+msgstr "Преглед на записи"
 
 #: gui/replaymenu/replay_menu.xml:(caption):109
 msgid "Filter compatible replays"
-msgstr "Само съвместими повторения"
+msgstr "Показване само съвместими повторения"
 
 #: gui/replaymenu/replay_menu.xml:(caption):150
 msgid "Map Type:"
@@ -2299,7 +2299,7 @@ msgstr "Времетраене"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "Повторно изграждане на кеша на повторенията от нулата. Може да отнеме много време!"
+msgstr "Повторно изграждане на кеша на повторенията. Може да отнеме известно време!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
@@ -2381,15 +2381,15 @@ msgstr "Скриптове за случайните карти"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr "2-измерна графика"
+msgstr "двуизмерна графика"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr "3-измерна графика"
+msgstr "триизмерна графика"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr "Допълнителна музика, ударни, джемби, смесване"
+msgstr "Допълнителна музика, перкусии, джемби, смесване"
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
@@ -2472,7 +2472,7 @@ msgstr "Дарители"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr "Главен"
+msgstr "Ръководител"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
@@ -2504,7 +2504,7 @@ msgstr "Основател на 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr "Управители на проекта"
+msgstr "Ръководители на проекта"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
