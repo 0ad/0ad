@@ -644,7 +644,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=${INSTALL_DIR} && make clean && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS} && make check && INSTALLPREFIX="$INSTALL_DIR" make install) || die "libsodium build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=${INSTALL_DIR} --enable-shared=no && make clean && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS} && make check && INSTALLPREFIX="$INSTALL_DIR" make install) || die "libsodium build failed"
   popd
   touch .already-built
 else
