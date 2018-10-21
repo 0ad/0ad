@@ -1433,7 +1433,7 @@ function ircFormat(msg)
 	let coloredFrom = msg.from && colorPlayerName(msg.from);
 
 	// Handle commands allowed past handleChatCommand.
-	if (msg.text[0] == '/')
+	if (msg.text && msg.text[0] == '/')
 	{
 		let [command, message] = ircSplit(msg.text);
 		switch (command)
