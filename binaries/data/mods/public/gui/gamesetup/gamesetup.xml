@@ -137,7 +137,7 @@
 
 			<!-- Map Preview -->
 			<object type="image" sprite="ModernDarkBoxGold" name="gamePreviewBox" size="100%-426 40 100%-24 336">
-				<object type="image" sprite="snMapPreview" size="1 1 401 294" name="mapPreview"/>
+				<object type="image" size="1 1 401 294" name="mapPreview"/>
 				<object name="mapInfoName" type="text" style="ModernLeftLabelText" size="5 100%-20 100% 100%-1"/>
 			</object>
 
