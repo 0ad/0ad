@@ -804,7 +804,7 @@ void CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
 	{
 		// Remember name
 		if (std::find(m_BannedPlayers.begin(), m_BannedPlayers.end(), playerName) == m_BannedPlayers.end())
-			m_BannedPlayers.push_back(playerName);
+			m_BannedPlayers.push_back(m_LobbyAuth ? CStrW(playerName.substr(0, playerName.find(L" ("))) : playerName);
 
 		// Remember IP address
 		u32 ipAddress = (*it)->GetIPAddress();
@@ -988,7 +988,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	}
 
 	// Disconnect banned usernames
-	if (std::find(server.m_BannedPlayers.begin(), server.m_BannedPlayers.end(), username) != server.m_BannedPlayers.end())
+	if (std::find(server.m_BannedPlayers.begin(), server.m_BannedPlayers.end(), server.m_LobbyAuth ? usernameWithoutRating : username) != server.m_BannedPlayers.end())
 	{
 		session->Disconnect(NDR_BANNED);
 		return true;

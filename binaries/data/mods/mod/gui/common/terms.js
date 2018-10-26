@@ -12,6 +12,7 @@ function openTerms(page)
 		"title": g_Terms[page].title,
 		"sprintf": g_Terms[page].sprintf,
 		"urlButtons": g_Terms[page].urlButtons || [],
+		"termsURL": g_Terms[page].termsURL || undefined,
 		"page": page,
 		"callback": "acceptTerms"
 	});
