@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Albert F. <alb.fontquerni@gmail.com>, 2018
 # Arnau Barrabeig <arnaubrossa@hotmail.com>, 2017
 # Catalanoic <catalanoic@gmail.com>, 2016
 # Francesc Famadas <kiski97@gmail.com>, 2015
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 04:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-18 15:25+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,12 +47,12 @@ msgstr "Aixafar"
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Canvia a l'arbre d'estructures."
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr ""
+msgstr "%(hotkey)s: Tancar història."
 
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
@@ -92,7 +93,7 @@ msgstr "%(civilization)s: la seva història"
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Tecla d'accés ràpid no assignada: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -187,28 +188,28 @@ msgstr "No hi ha cap descripció disponible."
 #: gui/common/gamedescription.js:119
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:122
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s(%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:128
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:131
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -333,7 +334,7 @@ msgstr "Herois exposats"
 
 #: gui/common/gamedescription.js:292
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Els herois no es poden refugiar i són vulnerables a les incursions."
 
 #: gui/common/gamedescription.js:299
 msgid "Rated game"
@@ -398,11 +399,11 @@ msgstr[1] "Durant els primers %(min)s minuts, els altres jugadors es mantindran 
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Mapa aleatori"
 
 #: gui/common/gamedescription.js:340
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Selecciona aleatòriament un mapa de la llista."
 
 #: gui/common/gamedescription.js:345
 msgid "Map Name"
@@ -435,21 +436,21 @@ msgstr ""
 
 #: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Mode nòmada"
 
 #: gui/common/gamedescription.js:396
 msgid "Civic Centers"
-msgstr ""
+msgstr "Centres Cívics"
 
 #: gui/common/gamedescription.js:399
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Els jugadors comencen amb poques unitats i han de torbar un lloc adequat per a construir la seva ciutat."
 
 #: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "Els jugadors comencen amb un Centre Cívic."
 
 #: gui/common/gamedescription.js:404
 msgid "Starting Resources"
@@ -520,7 +521,7 @@ msgstr "Derrotat"
 #: gui/common/gamedescription.js:478
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -670,7 +671,7 @@ msgstr "Aleatori"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Equilibrat"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -770,7 +771,7 @@ msgstr "Desconegut"
 
 #: gui/common/settings.js:429
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "Condició de victòria desconeguda"
 
 #: gui/common/tooltips.js:12
 msgid "Melee Attack:"
@@ -991,41 +992,41 @@ msgstr "Per unitat"
 
 #: gui/common/tooltips.js:396
 msgid "Number of repairers:"
-msgstr ""
+msgstr "Nombre de reparadors:"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Afegiu un altre treballador per augmentar la velocitat de reparació en %(second)s segon."
+msgstr[1] "Afegiu un altre treballador per augmentar la velocitat de reparació en %(second)s segons."
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Afegiu un altre treballador per finalitzar la reparació en %(second)s segon."
+msgstr[1] "Afegiu un altre treballador per finalitzar la reparació en %(second)s segons."
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
-msgstr ""
+msgstr "Nombre de constructors:"
 
 #: gui/common/tooltips.js:424
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Afegiu un altre treballador per augmentar la velocitat de construcció en %(second)s segon."
+msgstr[1] "Afegiu un altre treballador per augmentar la velocitat de construcció en %(second)s segons."
 
 #: gui/common/tooltips.js:431
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Afegiu un altre treballador per finalitzar la construcció en %(second)s segon."
+msgstr[1] "Afegiu un altre treballador per finalitzar la construcció en %(second)s segons."
 
 #: gui/common/tooltips.js:466 gui/common/tooltips.js:657
 #, javascript-format
@@ -1072,11 +1073,11 @@ msgstr "Torres: %(costs)s"
 #: gui/common/tooltips.js:614
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr ""
+msgstr "Cost:"
 
 #: gui/common/tooltips.js:628
 #, javascript-format
@@ -1186,7 +1187,7 @@ msgstr ""
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "Cliqueu per veure més informació."
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1196,7 +1197,7 @@ msgstr "%(nick)s - %(name)s"
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "Per defecte: %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
@@ -1328,7 +1329,7 @@ msgstr "Manual"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Termes"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -1336,7 +1337,7 @@ msgstr ""
 
 #: gui/pregame/userreport/userreport.js:17
 msgid "Publications"
-msgstr ""
+msgstr "Publicacions"
 
 #: gui/pregame/userreport/userreport.js:26
 #: gui/pregame/userreport/userreport.js:27
@@ -1402,7 +1403,7 @@ msgstr ""
 #: gui/reference/common/draw.js:48
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource supply.
@@ -1476,7 +1477,7 @@ msgstr ""
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:223
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Millora a:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -2655,7 +2656,7 @@ msgstr "General"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Inicia el 0 A.D. en una finestra."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed Mode"
@@ -2663,7 +2664,7 @@ msgstr "Mode de finestra"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr ""
+msgstr "Utilitza ombrejadors OpenGL 2.0 (recomanat)."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -2671,15 +2672,15 @@ msgstr "Prefereix GLSL"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
-msgstr ""
+msgstr "Activa la boira."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
-msgstr ""
+msgstr "Boira"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Utilitza filtres de postprocessament d'imatge (HDR, Bloom, DOF, etc)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
@@ -2695,7 +2696,7 @@ msgstr "Efectes d'ombra"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "Activa les ombres."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
@@ -2734,7 +2735,7 @@ msgstr "Qualitat de les ombres"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "Suavitza les ombres."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
@@ -2742,7 +2743,7 @@ msgstr "Filtrat d'ombres"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind buildings."
-msgstr ""
+msgstr "Mostra les siluetes de les unitats darrere els edificis."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit Silhouettes"
@@ -2750,7 +2751,7 @@ msgstr "Siluetes de les unitats"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "Activa les partícules."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
@@ -2778,7 +2779,7 @@ msgstr "Aigua d'alta qualitat"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr ""
+msgstr "Utilitza la profunditat real de l'aigua en els càlculs de la renderització."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
@@ -2786,7 +2787,7 @@ msgstr "Aigua amb profunditat real"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr ""
+msgstr "Permet que l'aigua reflecteixi l'entorn."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water Reflections"
@@ -2794,7 +2795,7 @@ msgstr "Reflexos de l'aigua"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr ""
+msgstr "Mostra un mapa de refracció real de l'aigua i no transparència."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
@@ -2802,7 +2803,7 @@ msgstr "Refracció de l'aigua"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
-msgstr ""
+msgstr "Mostra ombres a l'aigua."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on Water"
@@ -2810,7 +2811,7 @@ msgstr "Ombres a l'aigua"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
-msgstr ""
+msgstr "Suavitzeu el revelat de la foscor i la boira de guerra."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth LOS"
@@ -2818,7 +2819,7 @@ msgstr "Suavitza la línia de visió"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr ""
+msgstr "Renderitza el cel."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
@@ -2862,7 +2863,7 @@ msgstr "Gràfics"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr ""
+msgstr "Volum general."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
@@ -2870,7 +2871,7 @@ msgstr "Volum general"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr ""
+msgstr "Volum de la música del joc."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
@@ -2878,7 +2879,7 @@ msgstr "Volum de la música"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr ""
+msgstr "Volum del so ambient."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
@@ -2886,7 +2887,7 @@ msgstr "Volum de l'ambient"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr ""
+msgstr "Volum del so de les unitats."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
@@ -2894,7 +2895,7 @@ msgstr "Volum de les accions"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr ""
+msgstr "Volum dels sons de la interfície d'usuari."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
@@ -2902,7 +2903,7 @@ msgstr "Volum de l'interfície"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "Rebeu una notificació de so quan algú escrigui el vostre nom."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
@@ -2955,11 +2956,11 @@ msgstr "Molt difícil"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "Dificultat per defecte de la IA."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI Difficulty"
-msgstr ""
+msgstr "Dificultat per defecte de la IA"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -2967,7 +2968,7 @@ msgstr "Aleatori"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Equilibrat"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -2979,11 +2980,11 @@ msgstr "Defensiu"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "Comportament per defecte de la IA."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI Behavior"
-msgstr ""
+msgstr "Comportament per defecte de la IA"
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -2997,7 +2998,7 @@ msgstr "Assigneu jugadors"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr ""
+msgstr "Configuració del joc"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."

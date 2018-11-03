@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-17 22:43+0200\n"
-"PO-Revision-Date: 2018-10-18 03:19+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-22 17:36+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -276,7 +276,7 @@ msgstr "Σημείωσε ως φίλο."
 #: gui/lobby/lobby.js:880 gui/lobby/lobby.js:881 gui/lobby/lobby.js:882
 #: gui/lobby/lobby.js:883 gui/lobby/lobby.js:884 gui/lobby/lobby.js:885
 msgid "N/A"
-msgstr "N / A"
+msgstr "Μη διαθέσιμο"
 
 #: gui/lobby/lobby.js:913
 #, javascript-format
@@ -417,7 +417,7 @@ msgstr "Παρακαλώ, πληκτρολόγησε το συνθηματικό
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr ""
+msgstr "Παρακαλώ επέλεξε έναν μεγαλύτερο κωδικό πρόσβασης"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
@@ -443,7 +443,7 @@ msgstr "Όροι Παροχής Υπηρεσιών"
 
 #: gui/prelobby/common/terms/termslobby.js:8
 msgid "Please read and accept the Terms of Service."
-msgstr ""
+msgstr "Παρακαλώ διάβασε και αποδέξου τους Όρους της Υπηρεσίας."
 
 #: gui/prelobby/common/terms/termslobby.js:16
 msgid "Terms of Use"
@@ -451,15 +451,15 @@ msgstr "Όροι Χρήσης "
 
 #: gui/prelobby/common/terms/termslobby.js:17
 msgid "Please read and accept the Terms of Use."
-msgstr ""
+msgstr "Παρακαλώ διάβασε και αποδέξου τους Όρους Χρήσης"
 
 #: gui/prelobby/common/terms/termslobby.js:25
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Πολιτική Απορρήτου"
 
 #: gui/prelobby/common/terms/termslobby.js:26
 msgid "Please read and accept the Privacy Policy."
-msgstr ""
+msgstr "Παρακαλώ διάβασε και αποδέξου την Πολιτική Απορρήτου."
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
@@ -651,28 +651,28 @@ msgstr "Εγγραφή"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Πολιτική Απορρήτου του Λόμπι Πολλών Παιχτών του 0 A.D. η Άνοδος των Αυτοκρατοριών[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ημερομηνία Εγγράφου:[/font] 16-10-2018"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Προσωπικά δεδομένα που επεξεργάζεται η Wildfire Games και ο σκοπός επεξεργασίας:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Playername[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Όνομα Παίχτη[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr ""
+msgstr "Ο παίκτης αναγνωρίζεται από ένα όνομα που επιλέγει ο παίκτης τη στιγμή της εγγραφής."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -680,7 +680,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "Έχοντας ένα μοναδικό όνομα παίχτη είναι ένα προαπαιτούμενο για να κερδίζεις βαθμολογία, να επιτρέπετε στους παίκτες, στους συντονιστές και στους προγραμματιστές να αναγνωρίζουν τους παίκτες που έχουν συναντήσει πριν, να επικοινωνούν για το παιχνίδι, να συντονίζουν τους αγώνες και να δίνουν τη δυνατότητα στους επόπτες να επιβάλλουν τους Όρους Χρήσης."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -689,61 +689,61 @@ msgid ""
 " information (such as the realname) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr ""
+msgstr "Το όνομα παίχτη χρησιμεύει ως ψευδώνυμο. Η ταυτότητα (φυσικό πρόσωπο) των παικτών δεν είναι γνωστή στη Wildfire Games, εκτός από τις περιπτώσεις όπου τα προσωπικά αναγνωρίσιμα στοιχεία (όπως το πραγματικό όνομα) αποκαλυφθούν στη Συνομιλία του Λόμπι, σε άλλες υπηρεσίες της Wildfire Games ή αλλού δημοσίως ή όταν η διεύθυνση IP χρησιμοποιείτε για ποινικές πρακτικές."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. Κωδικός Πρόσβασης[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr ""
+msgstr "Ο παίκτης επικυρώνεται χρησιμοποιώντας έναν κωδικό πρόσβασης τον οποίο ο παίκτης επιλέγει κατά τη στιγμή της εγγραφής."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
 "Wildfire Games only receives an encrypted version of the password, so that "
 "the password chosen by the user is not revealed to Wildfire Games or others "
 "in case of a breach."
-msgstr ""
+msgstr "Η Wildfire Games λαμβάνει μόνο μια κρυπτογραφημένη έκδοση του κωδικού πρόσβασης, έτσι ώστε ο κωδικός πρόσβασης που επιλέγει ο χρήστης να μην αποκαλυφθεί στην Wildfire Games ή σε άλλους σε περίπτωση παραβίασης."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. Διεύθυνση IP[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr ""
+msgstr "Όταν ένας παίκτης φιλοξενεί έναν αγώνα στο Λόμπι για Πολλούς Παίκτες, η διεύθυνση IP αυτού του παίκτη αποστέλλεται σε κάθε παίκτη που είναι συνδεδεμένος, έτσι ώστε οι άλλοι παίκτες να μπορούν να συμμετάσχουν σε αυτό το παιχνίδι."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr ""
+msgstr "Η Wildfire Games αποθηκεύει τις διευθύνσεις IP των παικτών και μπορεί να συμπεράνει τα διαθέσιμα στο κοινό στοιχεία γεωγραφικής κατανομής και παροχέα υπηρεσιών διαδικτύου (για παράδειγμα \"geolite2\") από τη διεύθυνση IP προκειμένου:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
 " 1. Enforce the Terms of Use where persons create multiple accounts without "
 "Wildfire Games permission, in particular after having been banned from the "
 "service for violating the Terms of Use."
-msgstr ""
+msgstr " 1. Να εφαρμόσει τους Όρους Χρήσης, όταν τα άτομα δημιουργούν πολλούς λογαριασμούς χωρίς την άδεια της Wildfire Games, ιδίως αφού έχει απαγορευτεί από την υπηρεσία για παραβίαση των Όρων Χρήσης."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:19
 msgid ""
 "    IP addresses will not be saved for longer than two years for this "
 "purpose."
-msgstr ""
+msgstr "    Οι διευθύνσεις IP δεν θα αποθηκεύονται για περισσότερο από δύο χρόνια για αυτό το σκοπό."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:20
 msgid ""
 " 2. Make it possible to bring criminal proceedings in case of a cyberattack "
 "(EU Court of Justice Press Release No 112/16)."
-msgstr ""
+msgstr " 2. Να επιτραπεί η άσκηση ποινικής δίωξης σε περίπτωση κυβερνοεπίθεσης (Δελτίο Τύπου Δικαστηρίου Ευρωπαϊκής Ένωσης με αριθμό 112/16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:21
 msgid ""
@@ -751,66 +751,66 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr ""
+msgstr "Η Wildfire Games δεν θα χρησιμοποιήσει τα αρχεία καταγραφής των διευθύνσεων IP για οποιονδήποτε άλλο σκοπό, ιδίως δε για το μάρκετινγκ, δεν θα αποκαλύψει με άλλον τρόπο τις διευθύνσεις IP στο κοινό ή σε τρίτους και θα διαγράψει τις διευθύνσεις IP αν δεν έχουν πια σημασία για τους αναφερόμενους σκοπούς."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]4. Διαδικτυακή παρουσία[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:24
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr ""
+msgstr "Οι παίκτες που είναι ήδη συνδεδεμένοι στο Λόμπι για Πολλούς Παίχτες και σε ποιον αγώνα έχουν συνδεθεί εμφανίζονται σε όλους τους συνδεδεμένους παίκτες."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]5. Μηνύματα συνομιλίας[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr ""
+msgstr "Το Λόμπι Πολλών Παιχτών διαθέτει ένα δημόσιο χώρο συζήτησης που επιτρέπει στους παίκτες να συζητούν για το παιχνίδι και να οργανώνουν αγώνες για πολλούς παίκτες."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
 "Wildfire Games stores a log of the public chat messages and online presence "
 "to meet the following purposes:"
-msgstr ""
+msgstr "Η Wildfire Games αποθηκεύει σε ένα αρχείο καταγραφής τα δημόσια μηνύματα συνομιλίας και την παρουσία στο Λόμπι για να ικανοποιήσει τους ακόλουθους σκοπούς:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:29
 msgid " 1. Moderators may screen chat messages to enforce the Terms of Use."
-msgstr ""
+msgstr "  1. Οι συντονιστές μπορούν να προβάλλουν μηνύματα συνομιλίας για την επιβολή των Όρων Χρήσης."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:30
 msgid ""
 " 2. Wildfire Games may address or resolve bug reports, balancing issues or "
 "feature proposals indicated by players in the chat room."
-msgstr ""
+msgstr "  2. Η Wildfire Games μπορεί να απευθύνει ή να επιλύσει αναφορές σε σφάλματα, σε ζητήματα εξισορρόπησης ή σε προτάσεις για χαρακτηριστικά που υποδεικνύονται από τους παίκτες στην αίθουσα συνομιλίας."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:31
 msgid ""
 " 3. Wildfire Games may assess trends amongst discussed topics, the growth of"
 " the active community and use these indicators as feedback to assess, "
 "improve and direct development of the game and the service."
-msgstr ""
+msgstr "  3. Η Wildfire Games μπορεί να αξιολογήσει τις τάσεις μεταξύ των συζητούμενων θεμάτων, την ανάπτυξη της ενεργού κοινότητας και να χρησιμοποιήσει αυτούς τους δείκτες ως ανατροφοδότηση για να αξιολογήσει, να βελτιώσει και να αναπτύξει άμεσα το παιχνίδι και την υπηρεσία."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]6. Στατιστικά αγώνα[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:34
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr ""
+msgstr "Οι παίκτες μπορούν να κερδίσουν μια βαθμολογία στο Λόμπι Πολλών Παιχτών που αντικατοπτρίζει την ικανότητά τους στο παιχνίδι."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
 "The rating of all players is published by Wildfire Games and allows players "
 "to focus on competitive or balanced matchmaking if they wish to."
-msgstr ""
+msgstr "Η βαθμολογία όλων των παικτών δημοσιεύεται από την Wildfire Games και επιτρέπει στους παίκτες να επικεντρωθούν σε ανταγωνιστικές ή ισορροπημένες αναμετρήσεις αν το επιθυμούν."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:36
 msgid ""
@@ -818,60 +818,60 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr ""
+msgstr "Κατά τη διάρκεια ενός βαθμολογικού αγώνα, οι παίκτες στέλνουν στην Wildfire Games δεδομένα σχετικά με το παιχνίδι (όπως τον αριθμό των εκπαιδευμένων μονάδων, τους πόρους που έχουν συγκεντρώσει και το νικητή του αγώνα), έτσι ώστε η Wildfire Games να μπορεί να προσαρμόσει τις βαθμολογίες των παικτών με βάση αυτά τα στατιστικά στοιχεία."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
-msgstr ""
+msgstr "Η Wildfire Games αποθηκεύει τα στατιστικά του αγώνα για να:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:38
 msgid ""
 " 1. Verify the accuracy of the rating score and identify and enforce Terms "
 "of Use violations relating to that."
-msgstr ""
+msgstr "  1. Επιβεβαιώσει την ακρίβεια της βαθμολογικής κατάταξης και για να προσδιορίσει και να επιβάλλει τους Όρους Χρήσης στις παραβιάσεις που σχετίζονται με αυτό."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:39
 msgid ""
 " 2. Compute and publish community statistics to improve the game and the "
 "service, for example to improve the balancing of the game or to make certain"
 " aspects of the game more appealing."
-msgstr ""
+msgstr "  2. Υπολογίσει και δημοσιεύσει στατιστικά της κοινότητας για να βελτιώσει το παιχνίδι και την υπηρεσία, για παράδειγμα για να βελτιώσει την εξισορρόπηση του παιχνιδιού ή για να κάνει συγκεκριμένες πτυχές του παιχνιδιού πιο ελκυστικές."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:41
 msgid "[font=\"sans-bold-14\"]Security of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ασφάλεια επεξεργασίας:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:42
 msgid ""
 "The transmission of personal data is secured using TLS encryption (GDPR 32)."
-msgstr ""
+msgstr "Η μετάδοση προσωπικών δεδομένων εξασφαλίζεται με κρυπτογράφηση TLS (Στρώμα Ασφαλών Υποδοχών) (Γενικός Κανονισμός για την Προστασία Δεδομένων 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:43
 msgid ""
 "Personal data is protected against unintentional loss in encrypted backups "
 "for additional time (GDPR 30.1.g, GDPR 32)."
-msgstr ""
+msgstr "Τα προσωπικά δεδομένα προστατεύονται από την ακούσια απώλεια κρυπτογραφημένων αντιγράφων ασφαλείας για επιπλέον χρόνο (Γενικός Κανονισμός για την Προστασία Δεδομένων 30.1.g, ΓΚΠΔ 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:45
 msgid "Wildfire Games obtains all personal data from the user (GDPR 14)."
-msgstr ""
+msgstr "Η Wildfire Games εξασφαλίζει όλα τα προσωπικά δεδομένα από τον χρήστη (Γενικός Κανονισμός για την Προστασία Δεδομένων 14)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:46
 msgid ""
 "Wildfire Games reserves the right to delete any service data (including "
 "personal data) at any time, except where a user has objected to the erasure "
 "of his or her personal data for performance of a legal claim."
-msgstr ""
+msgstr "Η Wildfire Games διατηρεί το δικαίωμα να διαγράψει οποιαδήποτε δεδομένα της υπηρεσίας (συμπεριλαμβανομένων των προσωπικών δεδομένων) ανά πάσα στιγμή, εκτός εάν ο χρήστης έχει διαμαρτυρηθεί για τη διαγραφή των προσωπικών του δεδομένων για την άσκηση νομικής αξίωσης."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:48
 msgid "[font=\"sans-bold-16\"]Legal basis for the processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Νομική βάση για την επεξεργασία:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:49
 msgid ""
 "1. The processing is necessary for the performance of the service defined in"
 " the terms (GDPR 6.1.b)."
-msgstr ""
+msgstr "  1. Η επεξεργασία είναι απαραίτητη για την εκτέλεση της υπηρεσίας όπως ορίζεται στους όρους (Γενικός Κανονισμός για την Προστασία Δεδομένων 6.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:50
 msgid ""
@@ -879,92 +879,92 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr ""
+msgstr "  2. Η Wildfire Games έχει νόμιμα συμφέροντα για την παροχή του Λόμπι Πολλών Παικτών, στην ανάπτυξη και βελτίωση του 0 A.D και του Λόμπι Πολλών Παικτών, στην επιβολή των Όρων Χρήσης και στην προστασία από τις κυβερνοεπιθέσεις (Γενικός Κανονισμός για την Προστασία Δεδομένων 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr ""
+msgstr "  3. Η Wildfire Games δεν επεξεργάζεται περαιτέρω δεδομένα για το Λόμπι Πολλών Παιχτών και δεν ζητά τη συγκατάθεση για την επεξεργασία δεδομένων (Γενικός Κανονισμός για την Προστασία Δεδομένων 6.1.a, ΓΚΠΔ 7, ΓΚΠΔ 8, ΓΚΠΔ 13.2.c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Δικαιώματα χρήστη:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:54
 msgid ""
 "1. Contact Wildfire Games, by sending an email to webmaster at wildfiregames"
 " dot com (GDPR 13.1.a, GDPR 13.1.b)."
-msgstr ""
+msgstr "1. Επικοινώνησε με τη Wildfire Games, στέλνοντας ένα μήνυμα ηλεκτρονικού ταχυδρομείου στο webmaster παπάκι wildfiregames τελεία com (Γενικός Κανονισμός για την Προστασία Δεδομένων 13.1.a, ΓΚΠΔ 13.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:55
 msgid "2. Right of access to personal data concerning him or her (GDPR 15)."
-msgstr ""
+msgstr "2. Δικαίωμα πρόσβασης στα προσωπικά δεδομένα που αφορούν αυτόν ή αυτή (Γενικός Κανονισμός για την Προστασία Δεδομένων 15)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:56
 msgid ""
 "3. Right to obtain personal data in a machine-readable format (GDPR 20)."
-msgstr ""
+msgstr "3. Δικαίωμα απόκτησης των προσωπικών δεδομένων σε μορφή αναγνώσιμη από μηχανή (Γενικός Κανονισμός για την Προστασία Δεδομένων 20)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:57
 msgid "4. Right to rectification of inaccurate personal data (GDPR 16)."
-msgstr ""
+msgstr "4. Δικαίωμα διόρθωσης ανακριβών προσωπικών δεδομένων (Γενικός Κανονισμός για την Προστασία Δεδομένων 16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:58
 msgid ""
 "5. Right to erasure of personal data where it is not relevant to the stated "
 "purposes, if the data was processed unlawfully or if the user objects to the"
 " processing and has overriding legitimate grounds (GDPR 17)."
-msgstr ""
+msgstr "5. Δικαίωμα διαγραφής των προσωπικών δεδομένων, εφόσον δεν έχει σχέση με τους αναφερόμενους σκοπούς, εάν τα δεδομένα έχουν υποστεί επεξεργασία παράνομα ή αν ο χρήστης αντιτίθεται στη μεταποίηση και έχει νόμιμους λόγους υπεράσπισης (Γενικός Κανονισμός για την Προστασία Δεδομένων 17)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:59
 msgid ""
 "6. Right to restriction of personal data processing where the accuracy of "
 "the data is contested by the user, if the data was processed unlawfully or "
 "if the user requires the data for a legal claim (GDPR 18)."
-msgstr ""
+msgstr "6. Δικαίωμα περιορισμού της επεξεργασίας των προσωπικών δεδομένων, όταν η ακρίβεια των δεδομένων αμφισβητείται από τον χρήστη, εάν τα δεδομένα υποβλήθηκαν σε παράνομη επεξεργασία ή εάν ο χρήστης απαιτεί τα δεδομένα για μια νομική αξίωση (Γενικός Κανονισμός για την Προστασία Δεδομένων 18)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:60
 msgid ""
 "7. Right to object to the processing of personal data concerning him or her "
 "on grounds relating to their particular situation (GDPR 21)."
-msgstr ""
+msgstr "7. Δικαίωμα διατύπωσης αντιρρήσεων για την επεξεργασία προσωπικών δεδομένων που αφορούν αυτόν ή αυτή για λόγους που σχετίζονται με την ιδιαίτερη κατάστασή τους (Γενικός Κανονισμός για την Προστασία Δεδομένων 21)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:61
 msgid ""
 "8. Right to lodge a complaint with a supervisory authority (GDPR 13.2.d, "
 "GDPR 77)."
-msgstr ""
+msgstr "8. Δικαίωμα υποβολής καταγγελίας σε εποπτική αρχή (Γενικός Κανονισμός για την Προστασία Δεδομένων 13.2.d, ΓΚΠΔ 77)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:62
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
-msgstr ""
+msgstr "Αιτήματα που είναι προδήλως αβάσιμα ή υπερβολικά δεν απαντώνται ή ενδέχεται να χρεωθούν (Γενικός Κανονισμός για την Προστασία Δεδομένων 12.4, ΓΚΠΔ 12.5)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:64
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Υποχρεώσεις της Wildfire Games:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid ""
 " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 "
 "'accountability')."
-msgstr ""
+msgstr "1. Η Wildfire Games επιδεικνύει συμμόρφωση με το Γενικό Κανονισμό για την Προστασία Δεδομένων (ΓΚΠΔ 5.2 \"ευθύνη\")."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""
 " 2. Wildfire Games documents their processing activities appropriately, in "
 "particular the categories of processed personal data and security measures "
 "to protect it (GDPR 30)."
-msgstr ""
+msgstr "  2. Η Wildfire Games καταγράφει κατάλληλα τις δραστηριότητές επεξεργασίας, ιδίως στις κατηγορίες των επεξεργασμένων προσωπικών δεδομένων και στα μέτρα ασφαλείας για την προστασία τους (Γενικός Κανονισμός για την Προστασία Δεδομένων 30)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:67
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
-msgstr ""
+msgstr "3. Η Wildfire Games επεξεργάζεται νόμιμα, δίκαια και με διαφάνεια τα προσωπικά δεδομένα (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.a, ΓΚΠΔ 12.1)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:68
 msgid ""
@@ -973,33 +973,33 @@ msgid ""
 "is processed, recipients of personal data and where applicable, transfer of "
 "personal data to third countries and automated decision-making (GDPR "
 "13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
-msgstr ""
+msgstr "4. Η Wildfire Games ενημερώνει τους χρήστες για τους σκοπούς, τους νομικούς λόγους, τα νόμιμα συμφέροντα και τις περιόδους διατήρησης της επεξεργασίας των προσωπικών δεδομένων κατά τη στιγμή της επεξεργασίας τους, της αποδοχής των προσωπικών δεδομένων και, κατά περίπτωση, της μεταφοράς προσωπικών δεδομένων σε τρίτες χώρες και της αυτοματοποιημένης λήψης αποφάσεων (Γενικός Κανονισμός για την Προστασία Δεδομένων 13.1.c-f, ΓΚΠΔ 13.2.a, ΓΚΠΔ 13.2.e-f, ΓΚΠΔ 15.1, ΓΚΠΔ 15.4)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:69
 msgid ""
 " 5. Wildfire Games does not processes personal data for purposes other than "
 "the specified ones (GDPR 5.1.b, 'purpose limitation', GDPR 13.3)."
-msgstr ""
+msgstr "  5. Η Wildfire Games δεν επεξεργάζεται προσωπικά δεδομένα για σκοπούς διαφορετικούς από τους καθορισμένους (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.b, \"περιορισμός του σκοπού\", ΓΚΠΔ 13.3)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:70
 msgid ""
 " 6. Wildfire Games does not process personal data that is not needed for the"
 " specified purposes (GDPR 5.1.c, 'data minimization')."
-msgstr ""
+msgstr "  6. Η Wildfire Games δεν επεξεργάζεται προσωπικά δεδομένα που δεν χρειάζονται για τους καθορισμένους σκοπούς (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.c, 'ελαχιστοποίηση δεδομένων')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:71
 msgid ""
 " 7. Wildfire Games uses a storage form that does not allow identification of"
 " natural persons for longer than necessary (GDPR 5.1.e 'storage "
 "limitation')."
-msgstr ""
+msgstr "  7. Η Wildfire Games χρησιμοποιεί ένα τρόπο αποθήκευσης που δεν επιτρέπει την ταυτοποίηση φυσικών προσώπων για μεγαλύτερο χρονικό διάστημα από ό, τι είναι απαραίτητο (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.e 'περιορισμός αποθήκευσης')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:72
 msgid ""
 " 8. Wildfire Games secures personal data processing to prevent unauthorised "
 "or unlawful processing and accidental loss (GDPR 5.1.f. 'integrity and "
 "confidentiality')."
-msgstr ""
+msgstr "  8. Η Wildfire Games διασφαλίζει την επεξεργασία των προσωπικών δεδομένων για την αποτροπή μη εξουσιοδοτημένης ή παράνομης επεξεργασίας και τυχαίας απώλειας (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.f. 'ακεραιότητα και εμπιστευτικότητα')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:73
 msgid ""
@@ -1007,20 +1007,20 @@ msgid ""
 "erase personal data and the right to restrict, to withdraw consent to, to "
 "object to personal data processing and to complain at a supervisory "
 "authority (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
-msgstr ""
+msgstr "9. Η Wildfire Games ενημερώνει τους χρήστες για τα δικαίωμά τους, να έχουν πρόσβαση, να διορθώσουν, να διαγράψουν προσωπικά δεδομένα και να τα περιορίσουν, να αποσύρουν τη συγκατάθεσή τους, να αντιταχθούν στην επεξεργασία προσωπικών δεδομένων και να υποβάλλουν καταγγελίες σε μια εποπτική αρχή (Γενικός Κανονισμός για την Προστασία Δεδομένων 13.2.b, ΓΚΠΔ 13.2.c, ΓΚΠΔ 13.2.d)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:74
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
-msgstr ""
+msgstr "10. Η Wildfire Games διευκολύνει την άσκηση των δικαιωμάτων του χρήστη όπου είναι δυνατόν (Γενικός Κανονισμός για την Προστασία Δεδομένων 12.2), χωρίς αδικαιολόγητη καθυστέρηση (ΓΚΠΔ 12.3)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:75
 msgid ""
 "12. Wildfire Games informs the users that to exercise their rights, users "
 "might need to provide additional information to identify the natural person "
 "or the data (GDPR 12.6, GDPR 13.2.e)."
-msgstr ""
+msgstr "12. Η Wildfire Games ενημερώνει τους χρήστες ότι για να ασκήσουν τα δικαιώματά τους, οι χρήστες ενδέχεται να χρειαστεί να παράσχουν πρόσθετες πληροφορίες για τον προσδιορισμό του φυσικού προσώπου ή των δεδομένων (Γενικός Κανονισμός για την Προστασία Δεδομένων 12.6, ΓΚΠΔ 13.2.e)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:76
 msgid ""
@@ -1028,7 +1028,7 @@ msgid ""
 "under the age of 13 (Children's Online Privacy Protection Act). If you "
 "believe Wildfire Games received any personal data from or about a child "
 "under 13, please contact Wildfire Games."
-msgstr ""
+msgstr "13. Η Wildfire Games δεν θα συλλέγει συνειδητά δεδομένα προσωπικού χαρακτήρα από παιδιά ηλικίας κάτω των 13 ετών (Νόμος για την προστασία της ιδιωτικής ζωής των παιδιών στο διαδίκτυο). Εάν πιστεύετε ότι η Wildfire Games έλαβε προσωπικά δεδομένα από ή για ένα παιδί κάτω των 13 ετών, παρακαλούμε επικοινωνήστε με τη Wildfire Games."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:77
 msgid ""
@@ -1039,19 +1039,19 @@ msgid ""
 "interests do not override Wildfire Games legitimate interests, and that "
 "Wildfire Games is not using personal data in intrusive ways unless there is "
 "a very good reason to."
-msgstr ""
+msgstr "14. Όταν η Wildfire Games επεξεργάζεται ευαίσθητα προσωπικά δεδομένα βασισμένα σε νόμιμα συμφέροντα, η Wildfire Games εξετάζει, καταγράφει και περιοδικά αναθεωρεί τα Νόμιμα Συμφέροντα και την Αξιολόγηση των Επιπτώσεων στην Προστασία Δεδομένων (Γενικός Κανονισμός για την Προστασία Δεδομένων 35) για να βεβαιωθεί ότι τα συμφέροντα του ατόμου δεν υπερισχύουν των νόμιμων συμφερόντων της Wildfire Games και ότι η Wildfire Games δεν χρησιμοποιεί τα προσωπικά δεδομένα με παρεμβατικούς τρόπους εκτός αν υπάρχει ένας πολύ καλός λόγος."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:79
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
-msgstr ""
+msgstr "Για περισσότερες πληροφορίες σχετικά με τις Πολιτικές Απορρήτου της Wildfire Games, επισκεφτείτε τη https://trac.wildfiregames.com/wiki/UserDataProtection"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Όροι της Υπηρεσίας για το Λόμπι του 0 A.D. η Άνοδος των Αυτοκρατοριών[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
@@ -1059,53 +1059,53 @@ msgid ""
 " by Wildfire Games that allows players to setup online multiplayer matches, "
 "discuss the game in a public chat room and gain a rating that reflects their"
 " skill."
-msgstr ""
+msgstr "Το Λόμπι Πολλών Παιχτών του 0 A.D. η Άνοδος των Αυτοκρατοριών είναι μια διαδικτυακή υπηρεσία που παρέχεται από την Wildfire Games που επιτρέπει στους παίκτες να δημιουργήσουν διαδικτυακούς αγώνες για πολλούς παίκτες, να συζητήσουν για το παιχνίδι σε μια δημόσια αίθουσα συνομιλίας και να αποκτήσουν μια βαθμολογία που αντανακλά τις δεξιότητές τους."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depcition of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr ""
+msgstr "Λόγω του περιεχομένου του ιστορικού πολέμου, της περιγραφής και της απομάκρυνσης της βίας και της γλώσσας στο Λόμπι Πολλών Παικτών, το 0 A.D. και το Λόμπι για Πολλούς Παίκτες δεν απευθύνεται σε μικρά παιδιά (Νόμος για την προστασία της ιδιωτικής ζωής των παιδιών στο διαδίκτυο §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr ""
+msgstr "Η ελάχιστη ηλικία για την χρήση του Λόμπι Πολλών Παιχτών είναι 13."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Χρησιμοποιώντας το Λόμπι Πολλών Παιχτών του 0 A.D. συμφωνείς να:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
-msgstr "1. Ακολουθέιτε όλες τις πολιτικές χρήσης."
+msgstr "1. Ακολουθείς όλες τις πολιτικές χρήσης."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:12
 msgid ""
 " 2. Not use the service with third-party software or mods that prevents the "
 "user from being informed of updated Terms and Conditions, unless authorized "
 "by a Wildfire Games team member."
-msgstr ""
+msgstr " 2. Μην χρησιμοποιείς την υπηρεσία με λογισμικό άλλου κατασκευαστή ή τροποποιήσεις (mods) που εμποδίζει τον χρήστη να ενημερώνεται για τους ενημερωμένους Όρους και Προϋποθέσεις, εκτός αν εξουσιοδοτηθείς από μέλος της ομάδας της Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:13
 msgid ""
 " 3. Use the service at your own risk. Wildfire Games does not take "
 "responsibility for the content posted by users or damages resulting from "
 "this service."
-msgstr ""
+msgstr "3. Χρησιμοποιήσεις την υπηρεσία με δική σου ευθύνη. Η Wildfire Games δεν αναλαμβάνει την ευθύνη για το περιεχόμενο που δημοσιεύουν οι χρήστες ή για ζημιές που προκύπτουν από αυτήν την υπηρεσία."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Η Wildfire Games διατηρεί το δικαίωμα να:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:16
 msgid ""
 " 1. Moderate the service, i.e. to enforce the Terms of Use by restricting, "
 "suspending or terminating user accounts."
-msgstr ""
+msgstr "1. Συντονισμός της υπηρεσία, δηλαδή να επιβληθούν οι Όροι Χρήσης περιορίζοντας, αναστέλλοντας ή τερματίζοντας τους λογαριασμούς χρηστών."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:17
 msgid " 2. Appoint others to moderate the service."
@@ -1113,60 +1113,60 @@ msgstr "2. Διορισμός άλλων για επίβλεψη της υπηρ
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:18
 msgid " 3. Discontinue or interrupt any part of the service at any time."
-msgstr ""
+msgstr " 3. Διακοπή ή διακοπή οποιουδήποτε τμήματος της υπηρεσίας ανά πάσα στιγμή."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:19
 msgid ""
 " 4. Change the service or the terms. The document date of the terms indicate"
 " its version, and the user is informed of the new terms before being able to"
 " use the service again."
-msgstr ""
+msgstr " 4. Αλλάξει την υπηρεσία ή τους όρους. Η ημερομηνία του εγγράφου των όρων υποδεικνύει την έκδοσή του και ο χρήστης ενημερώνεται για τους νέους όρους πριν μπορέσει να χρησιμοποιήσει ξανά την υπηρεσία."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:20
 msgid ""
 " 5. Process personal data in accordance with the Lobby Privacy Policy, the "
 "General Data Protection Regulation (GDPR) and the Children's Online Privacy "
 "Protection Act (COPPA) where applicable."
-msgstr ""
+msgstr "5. Επεξεργαστεί τα προσωπικά σας δεδομένα σύμφωνα με την Πολιτική Προστασίας Προσωπικών Δεδομένων του Λόμπι, τον Γενικό Κανονισμό Προστασίας Δεδομένων (GDPR) και τον Νόμο περί Προστασίας Προσωπικών Δεδομένων για Παιδιά στο διαδίκτυο (COPPA) όπου ισχύει."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:22
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
-msgstr ""
+msgstr "Εάν μέρη των όρων θεωρούνται παράνομα ή αλλιώς ανεφάρμοστα, οι υπόλοιποι όροι εξακολουθούν να ισχύουν («διαχωρισμός»)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Όροι της Χρήσης του Λόμπι Πολλών Παιχτών του 0 A.D. η Άνοδος των Αυτοκρατοριών[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ημερομηνία Εγγράφου:[/font] 13-10-2018"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
 " 1. Only create one account per person on the service unless authorized by "
 "Wildfire Games."
-msgstr ""
+msgstr "1. Δημιούργησε μόνο ένα λογαριασμό ανά άτομο στην υπηρεσία, εκτός εάν το επιτρέπει η Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
-msgstr ""
+msgstr "2. Μην υποδύεσαι άλλους χρήστες της υπηρεσίας και χρησιμοποιείσαι μόνο το εγγεγραμμένο σου όνομα χρήστη σε αγώνες για πολλούς παίκτες."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
-msgstr ""
+msgstr " 3. Μην αναγράφεις βωμολοχίες, υποτιμητικούς όρους ή σεξουαλικά υπονοούμενα."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid ""
 " 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause "
 "damage to others or purposefully demean the worth of others using this "
 "service."
-msgstr ""
+msgstr " 4. Μην παρενοχλείς, μην βλάπτεις, μην εκφοβίζεις, μην κάνεις διάκριση, μην απειλείς, μην δυσφημίζεις, μην προκαλεί βλάβη σε άλλους ή μην καταστρέφεις σκόπιμα την αξία άλλων χρηστών χρησιμοποιώντας αυτή την υπηρεσία."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:10
 msgid ""
@@ -1174,11 +1174,11 @@ msgid ""
 "information (for example real name, location, ID) or private details (for "
 "example social media or messenger account names) of others without their "
 "consent."
-msgstr ""
+msgstr " 5. Να μην παραβιάζεις το απόρρητο των άλλων, αποκαλύπτοντας προσωπικές πληροφορίες (π.χ. το πραγματικό όνομα, την τοποθεσία, την ταυτότητα) ή ιδιωτικά στοιχεία (για παράδειγμα το ονόματα σε κοινωνικά δίκτυα ή σε λογαριασμούς υπηρεσίας μηνυμάτων) άλλων, χωρίς τη συγκατάθεσή τους."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:11
 msgid " 6. Not incite violence or promote illegal acts."
-msgstr ""
+msgstr "6. Δεν ενθαρρύνεται η βία ούτε προωθούνται παράνομες πράξεις."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid ""
@@ -1193,22 +1193,22 @@ msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
-msgstr ""
+msgstr " 8. Μην υπονομεύεις σκόπιμα τον τρόπο παιξίματος ή να κερδίζεις αντικειμενικά πλεονεκτήματα σε αγώνες για πολλούς παίκτες (για παράδειγμα εξαπάτηση, χρήση εκμετάλλευσης ευπάθειας του προγράμματος ή σφαλμάτων)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""
 " 9. Not spam the service and not post large amounts of repetitive or "
 "unwanted messages."
-msgstr ""
+msgstr " 9. Μην στέλνεις ανεπιθύμητα μηνύματα μέσω της υπηρεσία και μην δημοσιεύεις μεγάλο αριθμός επαναλαμβανόμενων ή περιττών μηνυμάτων."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:15
 msgid ""
 "10. Not use the service to promote specific goods, services, or products "
 "unless authorized by Wildfire Games."
-msgstr ""
+msgstr "10. Δεν χρησιμοποιείς την υπηρεσία για την προώθηση συγκεκριμένων αγαθών, υπηρεσιών ή προϊόντων εκτός εάν το επιτρέπει η Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:17
 msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."
-msgstr ""
+msgstr "Εάν ένας συντονιστής θεωρεί ότι η συμπεριφορά σου είναι ασυμβίβαστη με αυτούς τους όρους, ο λογαριασμός σου ενδέχεται να περιοριστεί, να ανασταλεί ή να τερματιστεί."

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-14 02:40+0000\n"
-"Last-Translator: fri\n"
+"PO-Revision-Date: 2018-10-18 21:48+0000\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,15 +241,15 @@ msgstr "Nebyla vybrána žádná pozměněná verze"
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr ""
+msgstr "Odmítnutí odpovědnosti"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "Smluvní podmínky mod.io"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "Zásady ochrany osobních údajů mod.io"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
@@ -258,7 +258,7 @@ msgstr "OK"
 #: gui/termsdialog/termsdialog.js:23
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "Otevřete %(url)s v prohlížeči."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -384,7 +384,7 @@ msgstr "Jazyk"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "Odmítnout"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
@@ -392,46 +392,46 @@ msgstr "Přijmout"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant mod.io Odmítnutí odpovědnosti"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "Datum dokumentu: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "Chystáte se připojit k online službě mod.io."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "Tato služba poskytuje snadný způsob stahování a instalace komunitních pozměněných verzí a je poskytována DBolical Pty Ltd, společností jež vlastní IndieDB a ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "Služba je určena pro uživatele starší 13 let."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games se postaraly o to, aby bylo toto spojení bezpečné a přezkoumaly pozměněné verze pro bezpečnostní nedostatky, ale nemohou zaručit, že to nepředstavuje žádná rizika."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "Používáním této služby se rozumí, že se vztahují Podmínky používání a Zásady ochrany osobních údajů mod.io a že Wildfire Games nenese odpovědnost za jakékoli škody vyplývající z této služby."
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr ""
+msgstr "0 A.D. je navržena tak, aby byla snadno modifikovatelná. Pozměněné verze jsou distribuovány ve formě souborů typu .pyromod, které lze otevřít jako soubory ZIP."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -441,7 +441,7 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
+msgstr "Chcete-li nainstalovat pozměněnou verzi, stačí otevřít soubor s 0 A.D. (buď dvakrát kliknete na soubor a zvolíte jeho otevření pomocí hry, nebo spustíte \"pyrogenesis file.pyromod\" v terminálu). Pozměněná verze bude potom k dispozici v přepínači pozměněných verzí. Můžete jej povolit a deaktivovat libovolně. Pokud je to nutné, můžete pozměněnou verzi smazat ručně pomocí prohlížeče souborů (viz https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
@@ -456,4 +456,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr ""
+msgstr "Služba mod.io byla vyvinuta firmou DBolical, společnost jež vlastní IndieDB a ModDB. Tyto webové stránky šíří slovo o 0 A.D. a dalších nezávislých projektech na dlouhou dobu! Dnes mod.io nám umožňuje zobrazit a stáhnout všechny pozměněné verze, které tým ověřil. Klikněte na \"Stáhnout pozměněné verze\" a vyzkoušejte to a nainstalujte některé!"

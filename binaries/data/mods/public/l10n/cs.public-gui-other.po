@@ -15,13 +15,14 @@
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Radek Mašek <warrriog@gmail.com>, 2018
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016
+# Tomáš Matýs <thommathys@gmail.com>, 2018
 # Vojtěch Valigura <Encounter@seznam.cz>, 2015,2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 04:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-18 19:15+0000\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -602,7 +603,7 @@ msgstr "Plný server"
 
 #: gui/common/network.js:76
 msgid "Secure lobby authentication failed. Join via lobby"
-msgstr ""
+msgstr "Bezpečné přihlášení selhalo. Připoj se přes herní skupinu."
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -731,7 +732,7 @@ msgstr "Potyčka"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "Mapa s dopředu stanovenou krajinou a počtem hráčů. Svobodně si vyberte jiné herní nastavení."
 
 #: gui/common/settings.js:226
 msgctxt "map"
@@ -742,7 +743,7 @@ msgstr "Náhodná"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Vytvoř jedinečnou mapu s pokaždé různorodým roztříděním surovin. Svobodně si vyberte počet hráčů a týmů. "
 
 #: gui/common/settings.js:231
 msgctxt "map"
@@ -1307,7 +1308,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr ""
+msgstr "%(warning)sVypadá to, že používáte grafickou kartu bez podpory shaderů (fixed function). Tato možnost bude v budoucích vydáních 0 A.D. odstraněna, aby bylo možné využívat pokročilé grafické možnosti. Doporučujeme upgradování vaší grafické karty na novější s podporou shaderů."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1360,7 +1361,7 @@ msgstr "Chyba"
 msgid ""
 "Launch the multiplayer lobby to join and host publicly visible games and "
 "chat with other players. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "Spusťte herní skupinu pro více hráčů po připojení se, hostování veřejně viditelných her a pro hovory s ostatními hráči. \\[DISABLED BY BUILD]"
 
 #: gui/pregame/mainmenu.js:244 gui/pregame/mainmenu.xml:(caption):89
 msgid "Manual"
@@ -1369,15 +1370,15 @@ msgstr "Příručka"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Smluvní podmínky"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "Prosím přečtěte si a souhlaste s UserReporter smluvní licencí a podmínkami."
 
 #: gui/pregame/userreport/userreport.js:17
 msgid "Publications"
-msgstr ""
+msgstr "Zveřejnění"
 
 #: gui/pregame/userreport/userreport.js:26
 #: gui/pregame/userreport/userreport.js:27
@@ -1418,7 +1419,7 @@ msgstr "Děkujeme za pomoc při vylepšování 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "Zpětná vazba je nyní povolena."
 
 #: gui/pregame/userreport/userreport.js:82
 #, javascript-format
@@ -1437,7 +1438,7 @@ msgstr "Pomozte zlepšit 0 A.D.!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "Můžete nám automaticky poslat zpětnou vazbu, která nám pomůže při opravě chyb, zlepšování výkonu a kompatibility."
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -3046,7 +3047,7 @@ msgstr "Nastavení hry"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr ""
+msgstr "Počet posledních hlášení načtených při vstupu do zájmové skupiny."
 
 #: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
@@ -3056,7 +3057,7 @@ msgstr "Načtení zpráv rozhovoru"
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "Ukaž průměrné ohodnocení zúčastněných hráčů ve sloupci seznamu her."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Game Rating Column"
@@ -3074,7 +3075,7 @@ msgstr "Herní skupina"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "Klávesová zkratka zraněné jednotky považuje vybrané jednotky za poraněné pokud jejich procento zdraví spadne pod toto číslo."
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
@@ -3150,17 +3151,17 @@ msgstr "Upozornění na fázi zprávou"
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Zobrazit dosah útoku vybraných obranných budov (lze rovněž pomocí klávesové zkratky přepnout ve hře)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "Znázornění dosahu útoku"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Zobrazit dosah aur vybraných jednotek a budov (lze rovněž pomocí klávesové zkratky přepnout ve hře)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura Range Visualization"
@@ -3699,17 +3700,17 @@ msgstr "PŘIBLIŽNÁ POLOHA"
 msgid ""
 "- Gain an advantage on the battleground by tactically positioning your "
 "units!"
-msgstr ""
+msgstr "- Získejte výhodu na bojišti pomocí taktického umístění vašich jednotek!"
 
 #: gui/text/tips/freehand_position.txt:4
 msgid ""
 "- Therefore select some units, press and hold the right mouse button, draw "
 "any line, then release the button."
-msgstr ""
+msgstr "- Proto vyberte nějaké jednotky, podržte stisknuté pravé tlačítko myši, nakreslete jakoukoliv linii poté pusťte tlačítko myši."
 
 #: gui/text/tips/freehand_position.txt:6
 msgid "- Your units will now spread out on this line."
-msgstr ""
+msgstr "- Vaše jednotky se nyní rozmístí na této linii."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3717,25 +3718,25 @@ msgstr "SBÍRÁNÍ ZDROJŮ"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use citizen soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "- Využijte občany ve zbrani a občanky pro získávání surovin."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female citizens are faster gathering vegetable resources."
-msgstr ""
+msgstr "- Občanky jsou rychlejší při sběru zeleniny."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr ""
+msgstr "- Občanští vojáci pěchoty jsou rychlejšími při sběru kovů."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry citizen soldiers are faster gathering meat."
-msgstr ""
+msgstr "- Občanští vojáci jízdy jsou rychlejšími při sběru masa."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
 "- The higher the level of a citizen soldier (advanced, elite), the better he"
 " fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "- Čím vyšší je úroveň občanského vojáka (zkušený, elitní), tím lépe bojuje, ale zároveň tím menší pracovní výkon podává při získávání surovin."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"

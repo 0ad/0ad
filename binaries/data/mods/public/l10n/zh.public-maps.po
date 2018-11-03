@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-10-14 13:30+0000\n"
+"PO-Revision-Date: 2018-10-20 15:32+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -309,7 +309,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
-msgstr "[color=\"red\"]重要提示：本图里AI有bug，不建设[/color]\n\n这个曾经肥沃的山谷，被该地区中心的长期休眠火山喷发所摧毁。 经过多年空虚，烧焦的死亡，生命的迹象开始重新出现和蔓延。 现在这片土地已经到了昔日时代的茂盛之中。 唉，不是这样的：经过长时间的干旱，北方较高的地区已经开始出现无休止的降雨。 水位在急剧上升，缓慢迫使玩家寻找较小的，已灭绝的火山或现在再次休眠的大圆锥的高地。"
+msgstr "[color=\"red\"]重要提示：本图AI有bug，不发展[/color]\n\n这个曾经肥沃的山谷，被该地区中心的长期休眠火山喷发所摧毁。 经过多年空虚，烧焦的死亡，生命的迹象开始重新出现和蔓延。 现在这片土地已经到了昔日时代的茂盛之中。 唉，不是这样的：经过长时间的干旱，北方较高的地区已经开始出现无休止的降雨。 水位在急剧上升，缓慢迫使玩家寻找较小的，已灭绝的火山或现在再次休眠的大圆锥的高地。"
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
@@ -340,7 +340,7 @@ msgstr "洪水"
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
-msgstr "玩家在一座现成的堡垒中以大量的资源开始游戏。"
+msgstr "玩家在一座现成的城堡中以大量的资源开始游戏。"
 
 #: maps/random/fortress.jsonsettings.Name
 msgid "Fortress"
@@ -577,7 +577,7 @@ msgid ""
 "Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
 "name Mediterranean is derived from Latin, but the Romans themselves "
 "preferred the term 'Mare Internum' or even 'Mare Nostrum'."
-msgstr "地中海，是腓尼基人、希腊人、埃及人以及罗马人的家园。 他们从美索不达米亚吸收了初步知识，并将其转化为更多的东西，从而将学识的中心转移到地中海沿岸，奠定了我们今天所知的文明的基础。 地中海几乎完全被土地包围：北部是加利亚(高卢)，意大利，希腊和安纳托利亚(小亚细亚)，东部是叙利亚，南部是利比亚和毛里塔尼亚，西部是伊比利亚 。"
+msgstr "地中海，是腓尼基人、希腊人、埃及人以及罗马人的家园。 他们从美索布达米亚吸收了初步知识，并将其转化为更多的东西，从而将学识的中心转移到地中海沿岸，奠定了我们今天所知的文明的基础。 地中海几乎完全被土地包围：北部是加利亚(高卢)，意大利，希腊和安纳托利亚(小亚细亚)，东部是叙利亚，南部是利比亚和毛里塔尼亚，西部是伊比利亚 。"
 
 #: maps/random/mediterranean.jsonsettings.Name
 #: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
@@ -624,13 +624,13 @@ msgstr "恩戈罗恩戈罗火山口是世界上最完美的火山口，也是非
 
 #: maps/random/ngorongoro.jsonsettings.Name
 msgid "Ngorongoro"
-msgstr "恩戈罗恩戈罗火山口"
+msgstr "恩戈罗恩戈罗火山"
 
 #: maps/random/northern_lights.jsonsettings.Description
 msgid ""
 "Players start in a tough map to play with scarce wood and dangerous polar "
 "animals."
-msgstr "玩家在一个缺乏木头并有危险极地动物的严峻地图中开始游戏。"
+msgstr "玩家开局在一个缺乏木材，并有危险极地动物的危险地图中。"
 
 #: maps/random/northern_lights.jsonsettings.Name
 msgid "Northern Lights"
@@ -739,7 +739,7 @@ msgstr "水浅，可通过的的湿地，但没有太多的空间可以容纳建
 
 #: maps/random/rhine_marshlands.jsonsettings.Name
 msgid "Rhine Marshlands"
-msgstr "莱茵沼泽地"
+msgstr "莱茵沼泽"
 
 #: maps/random/river_archipelago.jsonsettings.Description
 msgid ""
@@ -836,7 +836,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to collect the treasures at the center of the map before others do, and try to build your base up. The last player remaining will be the winner!"
-msgstr "[color=\"red\"]重要备注：AI 玩家不会玩这张地图/color]\n\n 保护您的基地抵挡一波又一波的敌人。抢在其他人之前先用您的女市民收集地图中央的宝藏，并尝试完成基地的建立。最后还没被打败的玩家就是赢家！"
+msgstr "[color=\"red\"]重要备注：本图AI不发展/color]\n\n 保护您的基地抵挡一波又一波的敌人。抢在其他人之前先用您的女市民收集地图中央的宝藏，并尝试完成基地的建立。最后还没被打败的玩家就是赢家！"
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -854,7 +854,7 @@ msgstr "叙利亚"
 msgid ""
 "A calm wide river, representing the Nile River in Egypt, divides the map "
 "into western and eastern parts."
-msgstr "平静宽广的河流，代表著非洲的尼罗河，将地图分隔为东西两部份。"
+msgstr "平静宽广，代表着非洲的尼罗河，将地图分隔东西两方。"
 
 #: maps/random/the_nile.jsonsettings.Name
 msgid "The Nile"
@@ -896,7 +896,7 @@ msgstr "城墙演示"
 
 #: maps/random/wild_lake.jsonsettings.Description
 msgid "A lake surrounded by hills."
-msgstr "一个被丘陵环绕的湖泊"
+msgstr "被丘陵环绕的湖泊"
 
 #: maps/random/wild_lake.jsonsettings.Name
 msgid "Wild Lake"
@@ -1251,7 +1251,7 @@ msgstr "夏季"
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
-msgstr "天一直在下雨，我们不得不尽快撤退。"
+msgstr "一直在下雨，我们不得不尽快撤退。"
 
 #: maps/random/extinct_volcano_triggers.js:66
 msgid "The rivers are standing high, we need to find a safe place!"
@@ -1314,7 +1314,7 @@ msgstr "表示不是"
 
 #: maps/scenarios/treasure_islands.js:10
 msgid "Collect the treasures before your enemy does! May the better win!"
-msgstr "赶在您的敌人前收集宝藏！可以让您更轻鬆的获胜！"
+msgstr "赶在敌人前收集宝藏！更易获胜！"
 
 #: maps/scenarios/treasure_islands.js:29
 msgid "No winner yet, prepare for battle!"
@@ -1322,11 +1322,11 @@ msgstr "革命尚未成功，同志仍须努力！"
 
 #: maps/scenarios/treasure_islands.js:44
 msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr "您敌人的金库被填的满满的，您输了！"
+msgstr "敌人的金库满满当当，而你的空空如也！"
 
 #: maps/scenarios/treasure_islands.js:49
 msgid "Your treasury is filled to the brim, you are victorious!"
-msgstr "您的金库被填的满满的，您获胜了！"
+msgstr "遍身罗绮的大王哟，你已获胜！"
 
 #: maps/scenarios/treasure_islands.js:61
 msgid "Hurry up! Your enemy is close to victory!"
@@ -1335,35 +1335,35 @@ msgstr "不给力啊，快一点！您的敌人就要获胜了！"
 #: maps/scenarios/treasure_islands.js:72
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
-msgstr "要取得胜利所要收集的剩余宝藏：  %(remainingTreasures)s!"
+msgstr "获取胜利所需的剩余宝藏：  %(remainingTreasures)s!"
 
 #: maps/scenarios/treasure_islands.js:80
 msgid "You have collected a treasure!"
-msgstr "您收集了一份宝藏！"
+msgstr "你收集了一份宝藏！"
 
 #: maps/scenarios/treasure_islands.js:92
 msgid "Defeat your enemy to win!"
-msgstr "打败您的敌人以获得胜利！"
+msgstr "打败敌人，赢得荣誉！"
 
 #: maps/scenarios/treasure_islands.js:101
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] "%(players)s和%(lastPlayer)s取得胜利(已收集财宝)。"
+msgstr[0] "%(players)s 和 %(lastPlayer)s 已获胜 (已收集财宝)。"
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] "%(players)s和%(lastPlayer)s已战败(已收集财宝)。"
+msgstr[0] "%(players)s 和 %(lastPlayer)s 已战败(已收集财宝)。"
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
-msgstr "在希腊阿卡迪亚的春日时分。若春雨下的不够，一年之中其馀的时间就只能见到干枯的河床，分隔两个敌对部落的土地。\n\n玩家于资源丰富的山区的任一侧开始游戏。额外的起始建筑物协助玩家快速开始建造他们新的殖民地。"
+msgstr "在希腊阿卡迪亚的春日时分。若雨下得不够，其余时间就只能见到干枯的河床，分隔两个敌对部落的土地。\n\n于资源丰富的山区的一侧开局。额外的起始建筑物协助玩家快速建造新的殖民地。"
 
 #: maps/scenarios/Arcadia.xml:PlayerData[0].Name:39
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:39
@@ -1506,7 +1506,7 @@ msgstr "阿卡狄亚"
 #: maps/scenarios/Azure Coast(2).xml:Description:27 maps/scenarios/Azure
 #: Coast(4).xml:Description:27 maps/scenarios/Azure Coast.xml:Description:39
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
-msgstr "帮助年轻的马西利亚让高卢人定居或者把希腊人从高卢驱赶走。"
+msgstr "帮助年轻的马西利亚，让高卢人定居或者把希腊人赶走。"
 
 #: maps/scenarios/Azure Coast(2).xml:PlayerData[0].Name:27
 msgid "Greeks"
@@ -1558,15 +1558,15 @@ msgstr "奥尔比亚"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[4].Name:39
 msgid "Deciates"
-msgstr "德西亚特人"
+msgstr "德西亚特"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[5].Name:39
 msgid "Salluvii"
-msgstr "萨鲁维伊人"
+msgstr "萨鲁维伊"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[6].Name:39
 msgid "Cavares"
-msgstr "卡瓦利人"
+msgstr "卡瓦利"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[7].Name:39
 msgid "Verguni"
@@ -1580,7 +1580,7 @@ msgstr "蔚蓝海岸1"
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
-msgstr "罗马为争夺台伯河流域的控制权同伊特拉斯坎的战斗。"
+msgstr "为争夺台伯河流域的控制权，罗马同伊特拉斯坎战斗。"
 
 #: maps/scenarios/Battle for the Tiber.xml:PlayerData[0].Name:27
 msgid "Rome"
@@ -1609,7 +1609,7 @@ msgstr "夜幕中的比利时沼泽"
 
 #: maps/scenarios/Bridge_demo.xml:PlayerData[0].Name:27
 msgid "Bridge Demo"
-msgstr "桥演示"
+msgstr "桥-演示"
 
 #: maps/scenarios/Bridge_demo.xml:PlayerData[1].Name:27
 msgid "Other"
@@ -1621,7 +1621,7 @@ msgstr "一个演示如何在地图编辑器中模拟桥的地图。"
 
 #: maps/scenarios/Bridge_demo.xml:Name:27
 msgid "Bridge demo"
-msgstr "桥演示"
+msgstr "桥-演示"
 
 #: maps/scenarios/Campaign Test Map 2 - heightmap.xml:Name:39
 msgid "Campaign Map - Test"
@@ -1633,7 +1633,7 @@ msgstr "一个测试战略性战役的地图。"
 
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[0].Name:39
 msgid "Delian League"
-msgstr "德洛斯联盟"
+msgstr "提洛联盟"
 
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[1].Name:39
 #: maps/scenarios/Peloponnese.xml:PlayerData[3].Name:39
@@ -1643,11 +1643,11 @@ msgstr "底比斯"
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[2].Name:39
 #: maps/scenarios/Peloponnese.xml:PlayerData[5].Name:39
 msgid "Thessaly"
-msgstr "塞萨利"
+msgstr "色萨利"
 
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[3].Name:39
 msgid "Megara"
-msgstr "迈加拉"
+msgstr "墨伽拉"
 
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[4].Name:39
 msgid "Eretria"
@@ -1831,7 +1831,7 @@ msgid ""
 "A wide-open map with a central rocky region rich in Minerals (Metal "
 "Resource). This map may be played if the other more detailed maps cause "
 "uncomfortable lag."
-msgstr "一个中央有著丰富矿物(金属资源)的岩石区的开阔地图。如果您觉得其他细节更多的地图造成了不舒服的迟顿感，那么这张地图是可以游玩的。"
+msgstr "一个中央有丰富金属资源的岩石区的开阔地图。"
 
 #: maps/scenarios/Gold_Rush.xml:Name:27
 msgid "Gold Rush"
@@ -1918,7 +1918,7 @@ msgstr "有大量资源和水域的小型地图，可在非竞技性多人比赛
 
 #: maps/scenarios/Napata Reconstruction.xml:Name:40
 msgid "Napata Reconstruction"
-msgstr "纳帕塔重建计划"
+msgstr "那帕塔重建计划"
 
 #: maps/scenarios/Napata Reconstruction.xml:Description:40
 msgid ""
@@ -1977,7 +1977,7 @@ msgstr "科林斯"
 
 #: maps/scenarios/Peloponnese.xml:Name:39
 msgid "Peloponnesian Wars"
-msgstr "罗奔尼撒之战"
+msgstr "伯罗奔尼撒之战"
 
 #: maps/scenarios/Polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
@@ -1993,15 +1993,15 @@ msgstr "瓦努阿图"
 
 #: maps/scenarios/Polynesia.xml:Name:39
 msgid "Polynesia"
-msgstr "玻里尼西亚"
+msgstr "波利尼西亚"
 
 #: maps/scenarios/Resource_demo.xml:Name:27
 msgid "Resource demo"
-msgstr "资源演示"
+msgstr "资源-演示"
 
 #: maps/scenarios/Resource_demo.xml:Description:27
 msgid "Demo map for resource gathering."
-msgstr "一个演示如何收集资源的地图。"
+msgstr "演示如何收集资源的地图。"
 
 #: maps/scenarios/Saharan Oases.xml:Description:27
 msgid ""
@@ -2035,18 +2035,18 @@ msgstr "坦塔罗斯"
 #: maps/scenarios/Sandbox - Athenians.xml:Description:39
 msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
-msgstr "和雅典人在没有威胁的测试环境中游戏。"
+msgstr "和雅典在没有威胁的测试环境中游戏。"
 
 #: maps/scenarios/Sandbox - Athenians.xml:PlayerData[0].Name:39
 msgid "The Athenians"
-msgstr "雅典人"
+msgstr "雅典"
 
 #: maps/scenarios/Sandbox - Athenians.xml:PlayerData[1].Name:39
 #: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[1].Name:39
 #: maps/scenarios/Sandbox - Spartans.xml:PlayerData[0].Name:39
 #: maps/scenarios/Sandbox - Spartans.xml:PlayerData[1].Name:39
 msgid "The Spartans"
-msgstr "斯巴达人"
+msgstr "斯巴达"
 
 #: maps/scenarios/Sandbox - Athenians.xml:PlayerData[2].Name:39
 #: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[2].Name:39
@@ -2058,16 +2058,16 @@ msgstr "波斯"
 #: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[3].Name:39
 #: maps/scenarios/Sandbox - Spartans.xml:PlayerData[3].Name:39
 msgid "The Gauls"
-msgstr "高卢人"
+msgstr "高卢"
 
 #: maps/scenarios/Sandbox - Athenians.xml:Name:39
 msgid "Sandbox - The Athenians"
-msgstr "测试区-雅典人"
+msgstr "测试区-雅典"
 
 #: maps/scenarios/Sandbox - Britons.xml:Description:39 maps/scenarios/Sandbox
 #: - Gauls.xml:Description:39
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
-msgstr "在快乐祥和的测试环境中玩耍高卢文明。"
+msgstr "在悠闲的测试环境中试玩高卢文明。"
 
 #: maps/scenarios/Sandbox - Britons.xml:PlayerData[3].Name:39
 #: maps/scenarios/Sandbox - Gauls.xml:PlayerData[3].Name:39
@@ -2076,11 +2076,11 @@ msgstr "罗马入侵"
 
 #: maps/scenarios/Sandbox - Britons.xml:Name:39
 msgid "Sandbox - The Britons"
-msgstr "测试区-不列颠人"
+msgstr "测试区-布立吞"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:Description:39
 msgid "Explore the Carthaginian Buildings and Units."
-msgstr "探索迦太基建筑和单位。"
+msgstr "探索迦太基的建筑和单位。"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:PlayerData[0].Name:39
 #: maps/scenarios/Serengeti.xml:PlayerData[0].Name:27
@@ -2094,11 +2094,11 @@ msgstr "Creeps"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:Name:39
 msgid "Sandbox - The Carthaginians"
-msgstr "测试区-迦太基人"
+msgstr "测试区-迦太基"
 
 #: maps/scenarios/Sandbox - Gauls.xml:Name:39
 msgid "Sandbox - The Gauls"
-msgstr "测试区- 高卢人"
+msgstr "测试区- 高卢"
 
 #: maps/scenarios/Sandbox - Iberians.xml:Description:39
 msgid "A demo map for the Iberians."
@@ -2122,7 +2122,7 @@ msgstr "埃及"
 
 #: maps/scenarios/Sandbox - Kushites.xml:Name:40
 msgid "Sandbox - The Kushites"
-msgstr "沙盒——库什"
+msgstr "沙盒-库什"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:Description:39
 msgid ""
@@ -2159,7 +2159,7 @@ msgstr "演示地图。在测试环境的波斯文明。"
 
 #: maps/scenarios/Sandbox - Persians.xml:PlayerData[0].Name:39
 msgid "Achaemenids"
-msgstr "尼德王朝"
+msgstr "阿契美尼德"
 
 #: maps/scenarios/Sandbox - Persians.xml:Name:39
 msgid "Sandbox - The Persians"
@@ -2168,11 +2168,11 @@ msgstr "测试区-波斯"
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:Description:39
 msgid ""
 "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
-msgstr "和托勒密埃及人在没有威胁的测试环境中进行游戏。"
+msgstr "和埃及托勒密在没有威胁的测试环境中进行游戏。"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[0].Name:39
 msgid "Ptolemy \"Savior\""
-msgstr "托勒密一世「救主」"
+msgstr "托勒密一世“救主”"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[2].Name:39
 msgid "Seleucids"
@@ -2193,7 +2193,7 @@ msgstr "一个布满岛屿的地图，适合激烈海战。"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:PlayerData[0].Name:39
 msgid "Ptolemaios A' Soter"
-msgstr "托勒密一世·索塔尔一世"
+msgstr "托勒密一世"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:PlayerData[1].Name:39
 msgid "Kautilya"
@@ -2230,7 +2230,7 @@ msgstr "测试区 - 塞琉古"
 #: maps/scenarios/Sandbox - Spartans.xml:Description:39
 msgid ""
 "Play with the Spartans faction in a non-threatening sandbox environment."
-msgstr "和斯巴达人在没有威胁的测试环境中游戏。"
+msgstr "和斯巴达在没有威胁的测试环境中游戏。"
 
 #: maps/scenarios/Sandbox - Spartans.xml:Name:39
 msgid "Sandbox - The Spartans"
@@ -2284,7 +2284,7 @@ msgstr "船只阵型"
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
 " mountainous spokes that divide the home territories of each player."
-msgstr "迦太基 vs. 马其顿 vs. 波斯 vs. 伊比利！有一个大型的绿洲在中心，且有许多山地障碍将每个玩家的领土隔开。"
+msgstr "迦太基 vs. 马其顿 vs. 波斯 vs. 伊比利亚！有一个大型的绿洲在中心，且有许多山地障碍将每个玩家的领土隔开。"
 
 #: maps/scenarios/Siwa Oasis.xml:Name:27
 msgid "Siwa Oasis"
@@ -2296,17 +2296,17 @@ msgstr "一张演示地图显示每种结构类型的领土效果。"
 
 #: maps/scenarios/Territory Demo.xml:Name:27
 msgid "Territory Demo"
-msgstr "领域演示"
+msgstr "领土演示"
 
 #: maps/scenarios/The Massacre of Delphi.xml:Description:39
 msgid ""
 "The Celts invade Greece. Fight through the central valley or cut through the"
 " rich highlands in order to secure the lands around Delphi!"
-msgstr "凯尔特人入侵希腊。争取通过中央山谷或通过切断丰富资源的高原之路，以确保德尔福周围的土地安全！"
+msgstr "凯尔特入侵希腊。争取通过中央山谷或通过切断丰富资源的高原之路，以确保德尔斐周围的土地安全！"
 
 #: maps/scenarios/The Massacre of Delphi.xml:Name:39
 msgid "Massacre of Delphi"
-msgstr "特尔斐大屠杀"
+msgstr "德尔斐大屠杀"
 
 #: maps/scenarios/The Persian Gates.xml:Description:27
 msgid ""
@@ -2341,7 +2341,7 @@ msgstr "波斯大门"
 msgid ""
 "The Romans encroach upon Macedonian lands for the third and final time. Can "
 "the once-proud Macedonians prevail against the Roman juggernaut?"
-msgstr "这是罗马人三次中的最后一次入侵马其顿，曾经引以为傲的马其顿人能否战胜罗马人呢？"
+msgstr "这是罗马最后一次入侵马其顿，曾经引以为傲的马其顿能否战胜罗马呢？"
 
 #: maps/scenarios/Third Macedonian War.xml:PlayerData[0].Name:27
 msgid "Lucius Aemilius Paullus"
@@ -2399,7 +2399,7 @@ msgstr "游戏中的所有单位。"
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
 #: map.xml:Description:27
 msgid "Give an interesting description of your map."
-msgstr "给您的地图来一个有趣的说明。"
+msgstr "给地图一个有趣的说明。"
 
 #: maps/scenarios/WallTest.xml:Name:27
 msgid "WallTest"
@@ -2431,7 +2431,7 @@ msgstr "一个显示水面效果的演示地图"
 
 #: maps/scenarios/reservoir.xml:Name:27
 msgid "Reservoir"
-msgstr "水库"
+msgstr "水池"
 
 #: maps/scenarios/road demo.xml:Description:27
 msgid "Demo map showcasing Temperate Road decals."
@@ -2565,7 +2565,7 @@ msgstr "玩家在两块相对的岛屿开始游戏，两块皆为有著茂密的
 
 #: maps/skirmishes/Corsica and Sardinia (4).xml:Name:39
 msgid "Corsica and Sardinia (4)"
-msgstr "科西嘉岛与撒丁岛 (4)"
+msgstr "科西嘉岛和撒丁岛 (4)"
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
@@ -2643,7 +2643,7 @@ msgstr "亚历山大"
 
 #: maps/skirmishes/Egypt (3v3).xml:PlayerData[2].Name:40
 msgid "Theben"
-msgstr "布拉迪斯拉发"
+msgstr "底比斯"
 
 #: maps/skirmishes/Egypt (3v3).xml:PlayerData[3].Name:40
 msgid "Siwa"
@@ -2676,7 +2676,7 @@ msgid ""
 "- Fayyum: crocodile shrine, nile dam\n"
 "- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr "为古埃及的而战！\n\n玩家以成熟的城市和小型军队开局，每个都有明显的优点和缺点。小心，有7个强大的堡垒和劫匪！\n\n这是公元前一世纪的前一世纪。埃及在内部分为希腊化（亚历山大，以塞琉古为代表）和传统影响（孟菲斯，以托勒密为代表）。尼罗河南部的底比斯已被库什接管。在地中海城市昔兰尼所在的Al-Dschabal al-Achdar西北部，罗马人正准备入侵。来自东部沙漠的Tih和西奈山的敌人（以波斯人为代表）正在向前推进和锡瓦绿洲。西南沙漠的查加（以迦太基为代表）也试图分一杯羹。\n位置：\n- 亚历山大港：图书馆，港口\n- 孟菲斯：大墓地，金字塔，阿匹斯神庙\n- 底比斯：神庙区，帝王谷\n- 昔兰尼：地中海城市，橄榄树林\n- 法耶姆：鳄鱼神殿，尼罗河大坝\n- 东部沙漠：西奈山，深谷，红海珊瑚礁\n- 西部沙漠：查加和锡瓦绿洲，卡塔拉低地"
+msgstr "为古埃及的而战！\n\n玩家以成熟的城市和小型军队开局，每个都有明显的优点和缺点。小心，有7个强大的堡垒和劫匪！\n\n公元前一世纪。埃及在内部分为希腊化（亚历山大，以塞琉古为代表）和传统影响（孟菲斯，以托勒密为代表）。尼罗河南部的底比斯已被库什接管。在地中海城市昔兰尼所在的Al-Dschabal al-Achdar西北部，罗马人正准备入侵。来自东部沙漠的Tih和西奈山的敌人（以波斯人为代表）正在向前推进和锡瓦绿洲。西南沙漠的查加（以迦太基为代表）也试图分一杯羹。\n位置：\n- 亚历山大港：图书馆，港口\n- 孟菲斯：大墓地，金字塔，阿匹斯神庙\n- 底比斯：神庙区，帝王谷\n- 昔兰尼：地中海城市，橄榄树林\n- 法耶姆：鳄鱼神殿，尼罗河大坝\n- 东部沙漠：西奈山，深谷，红海珊瑚礁\n- 西部沙漠：查加和锡瓦绿洲，卡塔拉低地\n"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""
@@ -2695,7 +2695,7 @@ msgid ""
 "Each player begins the match with a wooden palisade and some guard towers atop a low embankment.\n"
 "\n"
 "Watch out for Romans passing by!"
-msgstr "保护您的高卢前哨不被您险恶的邻居所攻击！\n\n每个玩家皆以在一个低矮的路堤上的一组木栅栏及一些防御塔开始游戏。\n\n当心罗马人的攻击！"
+msgstr "保护你的高卢哨所不被险恶的邻居攻击！\n\n每个玩家皆以在一个低矮的路堤上的一组木栅栏及一些防御塔开始游戏。\n\n当心罗马人的攻击！"
 
 #: maps/skirmishes/Gallic Fields (3).xml:Name:39
 msgid "Gallic Fields (3)"
@@ -2706,7 +2706,7 @@ msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
-msgstr "所有玩家开局位于河岸，有少量金属资源。整个冈比亚流域是富含金属矿床的热带稀树草原。\n\n(警告：大型地图，要求较高电脑配置。)"
+msgstr "所有玩家开局位于河岸，有少量金属。整个冈比亚流域是富含金属矿床的热带稀树草原。\n\n(警告：大型地图，要求较高电脑配置。)"
 
 #: maps/skirmishes/Gambia River (3).xml:Name:39
 msgid "Gambia River (3)"
@@ -2830,7 +2830,7 @@ msgid ""
 "All players start on the Western end of the map, with a vast unclaimed wilderness lying open before them ripe for conquest and depredation.\n"
 "\n"
 "Stone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce."
-msgstr "位于安纳托利亚东南部的「卡帕达奇亚」。\n\n所有玩家都在地图的最西边开始游戏，有著在他们有足够的能力进行征服或掠夺前就已经在此处的无主荒野。\n\n石头及金属相当丰富，特别是石头，但木头则较为缺乏。"
+msgstr "位于安纳托利亚东南部的“卡帕达奇亚”。\n\n所有玩家都在地图的最西边开始游戏，有著在他们有足够的能力进行征服或掠夺前就已经在此处的无主荒野。\n\n石头及金属相当丰富，特别是石头，但木头则较为缺乏。"
 
 #: maps/skirmishes/Neareastern Badlands (2).xml:Name:39
 msgid "Neareastern Badlands (2)"
@@ -2838,7 +2838,7 @@ msgstr "近东荒地 (2)"
 
 #: maps/skirmishes/Neareastern Badlands (4).xml:Name:39
 msgid "Neareastern Badlands (4)"
-msgstr "近东荒地(4)"
+msgstr "近东荒地 (4)"
 
 #: maps/skirmishes/Nile River (4).xml:Description:39
 msgid ""
@@ -3022,7 +3022,7 @@ msgid ""
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.\n"
 "\n"
 "Note: This is a very small \"fast and furious\" map. Iberians do not start with their custom circuit walls."
-msgstr "在非洲大草原上有著满满的动物可供狩猎，而附近的矿藏也相当丰富。此时乾季即将到来，水坑即将乾涸。\n\n注意：这是一个非常小的「快速且激烈」的地图。伊比利人在这裡不会有环绕著的城牆。"
+msgstr "非洲大草原上有大量动物可供狩猎，而附近的矿藏也相当丰富。此时旱季即将到来，水洼即将干涸。\n\n注意：这是一个非常小的“快速激烈”的地图。这里不会有伊比利亚的环绕型城墙。"
 
 #: maps/skirmishes/Watering Holes (4).xml:Name:39
 msgid "Watering Holes (4)"

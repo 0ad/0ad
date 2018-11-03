@@ -15,12 +15,14 @@
 # jiegec <jiegec@qq.com>, 2015
 # jiegec <jiegec@qq.com>, 2015
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
+# Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 # liulitchi <xingzuo88@qq.com>, 2014,2017
 # loms126 <loms126@126.com>, 2014
 # loms126 <loms126@126.com>, 2014
 # relaxbsd <relaxbsd@gmail.com>, 2014
 # rentt777 <35974380@qq.com>, 2014
 # samrmrf, 2013
+# scinart <akubeej@gmail.com>, 2018
 # simsilver <yihuanlingjian@gmail.com>, 2014
 # Vince Luo <vinceluo11@gmail.com>, 2017
 # volcano song <1677559@qq.com>, 2018
@@ -34,6 +36,7 @@
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
 # 星臣 <yuronglong1996@gmail.com>, 2017
+# 星臣 <yuronglong1996@gmail.com>, 2017
 # 武军 李 <lwj7863439@gmail.com>, 2016-2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
@@ -41,7 +44,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-10-13 09:24+0000\n"
+"PO-Revision-Date: 2018-10-20 15:41+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +90,7 @@ msgstr "是"
 #: gui/session/menu.js:179
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "您确定要退出吗?离开将会和其他玩家断开连接"
+msgstr "你确定要退出吗?离开将会和其他玩家断开连接"
 
 #: gui/session/menu.js:183 gui/session/menu.js:187
 msgid "Are you sure you want to quit?"
@@ -279,7 +282,7 @@ msgstr "暂停"
 #: gui/session/menu.js:1210
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr "由 %(players)s暂停"
+msgstr "由 %(players)s 暂停"
 
 #: gui/session/menu.js:1211 gui/session/messages.js:700
 msgctxt "Separator for a list of players"
@@ -337,7 +340,7 @@ msgstr "%(player)s 已加入游戏。"
 #: gui/session/messages.js:127
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s  已被封禁"
+msgstr "%(username)s 已被封禁"
 
 #: gui/session/messages.js:128
 #, javascript-format
@@ -360,7 +363,7 @@ msgstr "与服务器失去连接。"
 #: gui/session/messages.js:154
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr "原因: %(reason)s."
+msgstr "原因: %(reason)s 。"
 
 #: gui/session/messages.js:157
 msgid "Waiting for players to connect:"
@@ -439,11 +442,11 @@ msgstr "私人聊天"
 
 #: gui/session/messages.js:261
 msgid "You have won!"
-msgstr "您已胜出!"
+msgstr "你已获胜!"
 
 #: gui/session/messages.js:262
 msgid "You have been defeated!"
-msgstr "您已战败！"
+msgstr "你已战败！"
 
 #: gui/session/messages.js:270
 #, javascript-format
@@ -463,7 +466,7 @@ msgstr "你已与 %(player)s 和解。"
 #: gui/session/messages.js:275
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s 已与你结盟。"
+msgstr "%(player)s 已和你结盟。"
 
 #: gui/session/messages.js:276
 #, javascript-format
@@ -625,7 +628,7 @@ msgstr "%(player)s 给你 %(amounts)s。"
 #: gui/session/messages.js:1033
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr "您已给予 %(player2)s %(amounts)s。"
+msgstr "你已给予 %(player2)s %(amounts)s。"
 
 #: gui/session/messages.js:1038
 #, javascript-format
@@ -640,12 +643,12 @@ msgstr "%(player)s 以 %(amountsSold)s  交换 %(amountsBought)s 。"
 #: gui/session/messages.js:1071
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "您的家畜正被 %(attacker)s 攻击!"
+msgstr "你的家畜正被 %(attacker)s 攻击!"
 
 #: gui/session/messages.js:1072
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr "您正被 %(attacker)s 攻击!"
+msgstr "你正被 %(attacker)s 攻击!"
 
 #: gui/session/messages.js:1089
 #, javascript-format
@@ -1002,7 +1005,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "单击选择修改项，然后使用其他类型的箭头共享修改。 您也可以某项份额达到100%%时，点击%(hotkey)s 。"
+msgstr "单击选择修改项，然后使用其他类型的箭头共享修改。 你也可以某项份额达到100%%时，点击%(hotkey)s 。"
 
 #: gui/session/session.js:468
 #, javascript-format
@@ -1011,7 +1014,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "从上排选择您要出售的资源。 每次按下下方按钮时，上方资源数%(quantity)s将按下限的显示数量出售。 按住%(hotkey)s，可临时将交易金额乘以%(multiplier)s。"
+msgstr "从上排选择你要出售的资源。 每次按下下方按钮时，上方资源数%(quantity)s将按下限的显示数量出售。 按住%(hotkey)s，可临时将交易金额乘以%(multiplier)s。"
 
 #: gui/session/session.js:659
 #, javascript-format
@@ -1019,7 +1022,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "\n%(civ)s%(hotkey_civinfo)s / %(hotkey_structree)s: 查看历史/ 结构树\n将重新打开上次记录。"
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: 查看历史/ 结构树\n将重新打开上次记录。"
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1040,7 +1043,7 @@ msgstr "好的"
 #: gui/session/session.js:998
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "重播已结束。您想要退出吗?"
+msgstr "重播已结束。你想要退出吗?"
 
 #: gui/session/session.js:999
 msgctxt "replayFinished"
@@ -1223,7 +1226,7 @@ msgstr "按下以防止盟友使用此资源回收点"
 
 #: gui/session/unit_actions.js:1369
 msgid "You are allowed to use this dropsite"
-msgstr "已允许您使用此资源回收点"
+msgstr "已允许你使用此资源回收点"
 
 #: gui/session/unit_actions.js:1374
 msgid "The use of this dropsite is prohibited"
@@ -1236,7 +1239,7 @@ msgstr "该独立存在的实体必须在其可以被搜集之前杀死"
 #: gui/session/unit_actions.js:1450
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "您无法破坏此实体，因为您的捕获点不到一半"
+msgstr "你无法破坏此实体，因为你的捕获点不到一半"
 
 #: gui/session/unit_actions.js:1453
 msgid "This entity is undeletable"
@@ -1518,4 +1521,4 @@ msgstr "菜单"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIII : Ken Wood"
-msgstr "内测版 23：代号Ken Wood"
+msgstr "内测版本 23：代号 Ken Wood"

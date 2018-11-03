@@ -23,7 +23,7 @@
 # Savoritias <inactive+Savoritias@transifex.com>, 2014
 # Sotiris K <sotok42@gmail.com>, 2015
 # Steven Gikas <stevengk123@gmail.com>, 2017
-# Vasilis Drosos <basilisd@gmail.com>, 2016-2017
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2018
 # XTos <christos.kyratzis@gmail.com>, 2014
 # Yiannis Fistikis <jfistikis@mailinator.com>, 2013
 # ZedRyder <zedryder@gmail.com>, 2014
@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-06-17 14:27+0000\n"
-"Last-Translator: Michael Chatz <chatziasemidismichael@gmail.com>\n"
+"PO-Revision-Date: 2018-10-20 14:13+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -441,7 +441,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech…"
-msgstr ""
+msgstr "Ο Καρακτάκους, στα Ρωμαϊκά, είναι μια απλή αλλαγή από το Καράτακος, το πραγματικό του όνομα, το οποίο τυπώθηκε σε πολλά, πολλά νομίσματα του. Κάτω από αυτό το όνομα υπάρχει η θύμηση ενός άγριου υπερασπιστή της Βρετανίας ενάντια στους Ρωμαίους μετά την εισβολή τους το 43 μ.Χ. Υιός του βασιλιά Κυνοβελλίνουτης φυλετικής συνομοσπονδίας των Κατουβελάνιων, ο Καράτακος πολέμησε για εννέα χρόνια εναντίον των Ρωμαίων με λίγη επιτυχία, τελικά κατέφυγε στις φυλές της Ουαλίας, όπου νικήθηκε οριστικά. Τέλος μπήκε στη Βόρεια Βρετανία, όπου παραδόθηκε στους Ρωμαίους. Μεταφέρθηκε στη Ρώμη. Του Καράτακου του επιτράπηκε να ζήσει από τον αυτοκράτορα Κλαύδιο και πέθανε στην Ιταλία. Η παράδοση αναφέρει ότι ασπάστηκε το χριστιανισμό όταν το έκανε η σύζυγός του, αλλά δεν υπάρχει κάτι γνωστό πάνω σε αυτό που να το οριστικοποιεί. Πιθανώς πιο αξιοσημείωτο είναι το θέμα όπου του επιτράπηκε να ζήσει μόλις αιχμαλωτίστηκε. Η ρωμαϊκή πολιτική ήταν συνήθως, αυτούς τους άνδρες να τους σκοτωθούν σε δημόσιες εκθέσεις για να γιορτάσουν. Ο Καράτακος ήρθε ενώπιον του Αυτοκράτορα και της Γερουσίας κατόπιν αιτήσεώς του για να υπερασπιστεί τον εαυτό του. Αυτά που είπε δεν είναι γνωστά με βεβαιότητα, αλλά ο Τάκιτος κάνει αναφορά για μια διάσημη ομιλία..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1159,17 +1159,17 @@ msgstr "Οι Πυραμίδες του Μερόε"
 msgid ""
 "Building a Kushite pyramid increases Civic Center territory influence by "
 "+10% for each one built."
-msgstr ""
+msgstr "Η οικοδόμηση μιας Κουσιτικής πυραμίδας αυξάνει την εδαφική επέκταση του Αστικού Κέντρου κατά +10% για κάθε μία από τις κατασκευές."
 
 #: simulation/data/civs/kush.jsonCivBonuses[1].Name
 msgid "Mineral Deposits"
-msgstr ""
+msgstr "Μεταλλικά Κοιτάσματα"
 
 #: simulation/data/civs/kush.jsonCivBonuses[1].Description
 msgid ""
 "Kushite players receive a free extra Metal Mine somewhere in their home "
 "territory."
-msgstr ""
+msgstr "Οι Κουσίτες παίκτες λαμβάνουν επιπλέον ένα δωρεάν ορυχείο μετάλλου κάπου στην επικράτειά τους."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1180,7 +1180,7 @@ msgstr "Μάνδρισμα Ελέφαντα"
 msgid ""
 "Can capture Gaia elephants and garrison them into a corral to reduce "
 "training costs for War Elephants."
-msgstr ""
+msgstr "Μπορεί να αιχμαλωτίσει τους ελέφαντες της Γαίας και να τους βάλει σε ένα μαντρί για να μειώσει το κόστος εκπαίδευσης για τους Πολεμικούς Ελέφαντες."
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
@@ -1256,11 +1256,11 @@ msgstr "Μνημειώδη Αρχιτεκτονική"
 msgid ""
 "+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "+50% ζωή και -50% στο χρόνο κατασκευής για τα Αστικά Κέντρα, του Ναούς, τις Πυραμίδες και τα Θαύματα."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
-msgstr ""
+msgstr "Επιτρέπει την εκπαίδευση θεραπευτών της τάξης των εκλεκτών"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "High Priest of Amun"
@@ -1302,7 +1302,7 @@ msgstr "Ναός του Άμμωνος"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
-msgstr ""
+msgstr "Οι Κουσίτες μπορούν να αναβαθμίσουν μεμονωμένους Ναούς σε Ναούς του Άμων, οι οποίοι μπορούν να εκπαιδεύσουν τους πρωταθλητές Ναπατιανούς Φύλακες του Ναού και να θεραπεύσουν τις μονάδες γρηγορότερα."
 
 #: simulation/data/civs/kush.jsonStructures[0].History
 #: simulation/data/civs/kush.jsonStructures[1].History
@@ -1317,7 +1317,7 @@ msgstr "Ναός του Απεδεμάκ"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Apedemak, which "
 "can train Meroe Temple Guard champions and heal units faster."
-msgstr ""
+msgstr "Οι Κουσίτες μπορούν να αναβαθμίσουν μεμονωμένους Ναούς σε Ναούς του Απεδεμάκ, οι οποίοι μπορούν να εκπαιδεύσουν τους πρωταθλητές Μεροΐτες Φύλακες του Ναού και να θεραπεύσουν τις μονάδες γρηγορότερα."
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
@@ -1328,11 +1328,11 @@ msgid ""
 "Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
 "Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
 "territory effect to Civic Centers."
-msgstr ""
+msgstr "Η οικοδόμηση μιας Μικρής Κουσίτικης Πυραμίδας ξεκλειδώνει τη Φάση της Κωμόπολης. Η οικοδόμηση μιας Μεγάλης Κουσίτικης Πυραμίδας ξεκλειδώνει την Φάση της Πόλη. Για κάθε πυραμίδα που κατασκευάζεται προστίθεται +10% εδαφικό πλεονέκτημα στα Αστικά Κέντρα."
 
 #: simulation/data/civs/kush.jsonStructures[2].History
 msgid "The Kushites built over 200 pyramids in Nubia."
-msgstr ""
+msgstr "Οι Κουσίτες κατασκεύασαν πάνω από 200 πυραμίδες στη Νουβία."
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -1350,7 +1350,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr ""
+msgstr "Το Βασίλειο του Κους ήταν ένα αρχαίο αφρικανικό βασίλειο που βρισκόταν στις συμβαλλόμενες περιοχές του Μπλε Νείλου, του Λευκού Νείλου και του ποταμού Αμπαρά σε αυτό που είναι τώρα η Δημοκρατία του Σουδάν. Η Κουσίτηκη περίοδος της κυριαρχίας στην περιοχή δημιουργήθηκε μετά την κατάρρευση του Νέου Βασιλείου της Αιγύπτου την Εποχής του Χαλκού  και επικεντρώθηκε στην Νάπατα στην πρώιμη φάση της. Εισέβαλαν στην Αίγυπτο τον 8ο αιώνα π.Χ. και οι Κουσίτες αυτοκράτορες κυριάρχησαν ως Φαραώ της Εικοστής πέμπτης δυναστείας της Αιγύπτου για έναν αιώνα, μέχρι να αποβληθούν από τους Ασσύριους. Ο πολιτισμός των Κουσιτών επηρεάστηκε έντονα από τους Αιγυπτίους, με την κατασκευή της Κουσίτικης πυραμίδας και την μνημειακή αρχιτεκτονική των ναών. Οι Κουσίτες λάτρευαν ακόμη και πολλούς Αιγύπτιους θεούς, συμπεριλαμβανομένου του Άμων. Κατά τη διάρκεια της κλασικής αρχαιότητας, η βασιλική αυτοκρατορική πρωτεύουσα ήταν στη Μερόη. Στην πρώιμη ελληνική γεωγραφία, το Μεροΐτικό βασίλειο ήταν γνωστό ως Αιθιοπεία. Το βασίλειο των Κουσίτων διατηρήθηκε μέχρι τον 4ο αιώνα μ.Χ., όταν αποδυναμώθηκε και αποδιοργανώθηκε λόγω εσωτερικής εξέγερσης, υποχωρώντας τελικά στην αυξανόμενη δύναμη του Αξούμ."
 
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name

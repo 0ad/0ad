@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Ferhat Olçum <ferhatolcum@gmail.com>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2018-10-17 22:44+0200\n"
-"PO-Revision-Date: 2018-10-17 22:44+0200\n"
+"PO-Revision-Date: 2018-10-14 18:34+0000\n"
 "Last-Translator: Ferhat Olçum <ferhatolcum@gmail.com>, 2018\n"
 "Language-Team: Turkish (https://www.transifex.com/wildfire-games/teams/17418/tr/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -22,10 +23,12 @@ msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant UserReporter Terms and "
 "Conditions[/font]"
 msgstr ""
+"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant UserReporter Kullanım "
+"Koşulları ve Şartları[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Döküman Tarihi:[/font] 2018-10-16"
 
 #: gui/userreport/Terms_and_Conditions.txt:5
 msgid ""
@@ -34,10 +37,13 @@ msgid ""
 "Wildfire Games and community developers to improve the performance and "
 "compatibility of 0 A.D."
 msgstr ""
+"0 A.D. UserReporter otomatik olarak donanım ve yazılım bilgilerini oyunun "
+"geliştiricilerine ileten, performans ve yazılım uygunluğunu geliştirmeyi "
+"sağlayan bir araçtır."
 
 #: gui/userreport/Terms_and_Conditions.txt:7
 msgid "[font=\"sans-bold-14\"]Purpose of the UserReport:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kullanıcı Raporunun Amacı:[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:8
 msgid ""
@@ -45,12 +51,17 @@ msgid ""
 "sets and OpenGL capabilities) are widely supported by the computer systems "
 "of 0 A.D. players."
 msgstr ""
+"Kullanıcı Raporları (UserReports), 0 A.D. oyuncularının çoğunlukla hangi "
+"sistem ayarlarını kullanıldığını gösterir. Örneğin, OpenGL performansını "
+"arttırmak için CPU ayarlarının nasıl yapıldığı."
 
 #: gui/userreport/Terms_and_Conditions.txt:9
 msgid ""
 "This allows developers to decide which 0 A.D. program code is safe to use "
 "and which optimizations are most feasible to implement next."
 msgstr ""
+"Geliştiricilerin hangi 0 A.D. kodunun güvenli ve kullanıma hazır olduğunu ve"
+" gelecekte hangilerinin iyileştirilmesi gerektiğini anlamalarını sağlar."
 
 #: gui/userreport/Terms_and_Conditions.txt:10
 msgid ""
@@ -61,7 +72,7 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:12
 msgid "[font=\"sans-bold-14\"]UserReport data:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kullanıcı Raporu bilgisi:[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:13
 msgid ""
@@ -119,6 +130,8 @@ msgstr ""
 #: gui/userreport/Terms_and_Conditions.txt:23
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
 msgstr ""
+"[font=\"sans-bold-14\"]Wildfire Games haklarını saklı tuttuğu "
+"konular:[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:24
 msgid ""
@@ -199,7 +212,7 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:39
 msgid "    The current configuration folder is %(configPath)s."
-msgstr ""
+msgstr " Mevcut ayarların bulunduğu dosya %(configPath)s."
 
 #: gui/userreport/Terms_and_Conditions.txt:40
 msgid ""
@@ -209,11 +222,11 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:41
 msgid "    The data can be reviewed before the UserReporter is enabled."
-msgstr ""
+msgstr "Veri, UserReporter aktif hale getirilmeden önce değerlendirilebilir."
 
 #: gui/userreport/Terms_and_Conditions.txt:42
 msgid "    The current logfolder is %(logPath)s."
-msgstr ""
+msgstr "    Mevcut kayıt dosyası %(logPath)s."
 
 #: gui/userreport/Terms_and_Conditions.txt:43
 msgid ""
@@ -368,7 +381,7 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:70
 msgid "The minimum age to use the service is 13."
-msgstr ""
+msgstr "Bu hizmeti kullanmanın minimum yaşı 13'tür."
 
 #: gui/userreport/Terms_and_Conditions.txt:71
 msgid ""
