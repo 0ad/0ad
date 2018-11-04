@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-17 22:43+0200\n"
-"PO-Revision-Date: 2018-10-18 03:19+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-27 20:57+0000\n"
+"Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,7 +110,7 @@ msgstr "Ní hé %(nick)s ina mhodhnóir níos mó."
 #: gui/lobby/lobby.js:247
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr "%(oldnick)s atá aitheanta anois mar %(newnick)s."
+msgstr "Tá %(oldnick)s aitheanta anois mar %(newnick)s."
 
 #: gui/lobby/lobby.js:279
 msgid "Notice"
@@ -404,7 +404,7 @@ msgstr "Cuir isteach do phasfhocal le do thoil"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr ""
+msgstr "Roghnaigh pasfhocal níos fada le do thoil"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
@@ -442,11 +442,11 @@ msgstr "Léigh agus glac leis na Tearmaí Úsáide le do thoil."
 
 #: gui/prelobby/common/terms/termslobby.js:25
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Polasaí Príobháideachais"
 
 #: gui/prelobby/common/terms/termslobby.js:26
 msgid "Please read and accept the Privacy Policy."
-msgstr ""
+msgstr "Léigh agus glac leis an mPolasaí Príobháideachais le do thoil."
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
@@ -587,7 +587,7 @@ msgstr "Nuashonraigh"
 
 #: gui/lobby/lobby_panels.xml:(caption):317
 msgid "Enter username:"
-msgstr "Iontráil ainm úsáideora:"
+msgstr "Scríobh ainm úsáideora:"
 
 #: gui/lobby/lobby_panels.xml:(caption):323
 msgid "View Profile"
@@ -638,28 +638,28 @@ msgstr "Clárú"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. Impireachtaí in Uachtar, Polasaí Príobháideachais an Ilfhorhalla [/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Dáta an Doiciméid:[/font] 2018-10-16"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Sonraí pearsanta faoi phróiseáil ag Wildfire Games agus a n-aidhmeanna:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Playername[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Ainm imreora[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr ""
+msgstr "Aithníodh an t-imreoir tríd an ainm imreora a roghnaigh siad ag am an chlárúcháin."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -667,7 +667,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "Teastaíodh ainm imreora ar leith do rátáil a fháil, ligeann an t-ainm imreora ar imreoirí, modhnóirí agus forbróirí imreoirí eile a aithin, comhrá a dhéanamh faoin gcluiche, cluichí ilimreortha a chomhordú agus ligeann sé freisin ar modhnóirí na Tearmaí Úsáide a chur i bhfeidhm."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -676,61 +676,61 @@ msgid ""
 " information (such as the realname) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr ""
+msgstr "Féidhmíonn an t-ainm imreora mar ainm cleite. Níl aon fhios ag Wildfire Games ar aitheantas (duine nádúrtha) na himreoirí, ach amháin i gcás nochtadh eolas aitheanta pearsanata (fíor-ainmneacha, m.sh.) sa Chomhrá Forhalla, seirbhísí eile Wildfire Fames, nó áiteanna eile poiblí, nó i gcás úsáide an seolta IP d'imeachtaí coiriúla a thabhairt."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. Pasfhocal[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr ""
+msgstr "Fíordheimhníodh an t-imreoir trí phasfhocal a roghnaigh siad ag am an chlárúcháin."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
 "Wildfire Games only receives an encrypted version of the password, so that "
 "the password chosen by the user is not revealed to Wildfire Games or others "
 "in case of a breach."
-msgstr ""
+msgstr "Faigheann Wildfire Games ach leagan criptithe den phasfhocal, ionas go níl an pasfhocal seo léirithe ag Wildfire Games nó ag daoine eile i gcás sárú."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. Seolta IP[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr ""
+msgstr "Nuair a hóstálann imreoir cluiche san Ilfhorhalla, seoltar seolta IP den imreoir seo ag gach aon imreoir eile a bheith ar líne, ionas go mbeidh imreoirí eile abálta buail leis an gcluiche seo."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr ""
+msgstr "Stórálann Wildfire Games seoltaí IP na himreoirí agus féadfaidh siad a chur in iúl geo-láthair a fháil go poiblí agus sonraí de chuid an sholathraí seirbhíse idirlín (\"geolite2\" m.sh.) den seolta IP d'fhonn:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
 " 1. Enforce the Terms of Use where persons create multiple accounts without "
 "Wildfire Games permission, in particular after having been banned from the "
 "service for violating the Terms of Use."
-msgstr ""
+msgstr "1. Cuir i bhfeidhm na Tearmaí Úsáide i gcás a chruthaíonn daoine cúntais líonmhara gan chead ag Wildfire Games, go háirithe tar éis coisc a bhí curtha orthu den seirbhís agus na Tearmaí Úsáide á sárú acu."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:19
 msgid ""
 "    IP addresses will not be saved for longer than two years for this "
 "purpose."
-msgstr ""
+msgstr "    Ní bheidh seoltaí IP sábháilte níos faide ná dhá bhliain don aidhm seo."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:20
 msgid ""
 " 2. Make it possible to bring criminal proceedings in case of a cyberattack "
 "(EU Court of Justice Press Release No 112/16)."
-msgstr ""
+msgstr "2. Cuirfidh sé indéanta d'imeachtaí coriúla a thabhairt i gcás cibirionsaí (EU Court of Justice Press Release No 112/16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:21
 msgid ""
@@ -738,66 +738,66 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr ""
+msgstr "Ní úsáideann Wildfire Games logaí na seoltaí IP ar son aon aidhme eile, go háirithe ná húsáid siad iad le haghaidh marcaíochta, ná nocht na seoltaí IP ag an mpobal nó tríú páirtí agus scrios ar seoltaí IP mura bhfuil siad ábhartha chun na n-aidhmeanna sonraithe a thuilleadh."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]4. Láithreacht ar líne[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:24
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr ""
+msgstr "Cé acu na himreoirí atá ceangailte faoi láthair ag an Ilfhorhalla agus cén chluiche a bhualann siad leis atá léirithe ag na himreoirí ar líne ar fad."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]5. Teachtaireachtaí comhrá[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr ""
+msgstr "Tá seomra comhrá poiblí ag an Ilforhalla a chuireann na himreoirí ar chumas an cluiche a phlé agus cluichí ilimreortha a eagrú."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
 "Wildfire Games stores a log of the public chat messages and online presence "
 "to meet the following purposes:"
-msgstr ""
+msgstr "Stórálann Wildfire Games log de na teachtaireachtaí poiblí comhrá agus láithreacht ar líne na himreoirí chun na n-aidhmeanna seo a leanas:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:29
 msgid " 1. Moderators may screen chat messages to enforce the Terms of Use."
-msgstr ""
+msgstr "1. Is féidir le modhnóirí teachtaireachtaí comhrá a chriathú ar son na dTearmaí Úsáide a cur i bhfeidhm."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:30
 msgid ""
 " 2. Wildfire Games may address or resolve bug reports, balancing issues or "
 "feature proposals indicated by players in the chat room."
-msgstr ""
+msgstr "2. Féadfaidh Wildfire Games aghaidh a thabhairt ar tuairisc fabhtanna nó iad a shocrú, ceisteanna cothromaithe nó moltaí gnéithe léirithe ag imreoirí sa tseomra comhrá."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:31
 msgid ""
 " 3. Wildfire Games may assess trends amongst discussed topics, the growth of"
 " the active community and use these indicators as feedback to assess, "
 "improve and direct development of the game and the service."
-msgstr ""
+msgstr "3. Féadfaidh Wildfire Games nósanna a mheasú i measc na n-ábhar pléite, méadú sa phobal beoga agus na táscairí seo á n-úsáid mar aiseolas chun fhorbartha an chluiche agus na seirbhíse a mheasú, a ardú agus a dhíriú."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]6. Staitisticí cluiche[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:34
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr ""
+msgstr "Is féidir le himreoirí rátáil a fhail san Ilfhorhalla á léirú a gcumas sa chluiche."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
 "The rating of all players is published by Wildfire Games and allows players "
 "to focus on competitive or balanced matchmaking if they wish to."
-msgstr ""
+msgstr "Tá an rátáil ag gach imreoir foilsithe ag Wildfire Games agus ligeann sé imreoirí a bhfócas a dhíriú ar chluichí iomaíocha nó cothroma más mian leo."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:36
 msgid ""
@@ -805,60 +805,60 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr ""
+msgstr "I rith cluiche rátáilte, seolann na himreoirí sonraí a bhaineann leis an gcluiche (uimhir aonad traenáilte, acmhainní bailithe agus buaiteoir an chluiche, m.sh.) go Wildfire Games, ionas go mbeidh Wildfire Games ábalta rátálaí na n-imreoirí á n-athrú ar son na staitisticí seo."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
-msgstr ""
+msgstr "Stórálann Wildfire Games staitisticí cluiche chun:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:38
 msgid ""
 " 1. Verify the accuracy of the rating score and identify and enforce Terms "
 "of Use violations relating to that."
-msgstr ""
+msgstr "1. Deimhnigh cruinneas den scór rátála agus, i ndáil leis, sáruithe de na Tearmaí Úsáide a aithint agus a iad chur i bhfeidmh."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:39
 msgid ""
 " 2. Compute and publish community statistics to improve the game and the "
 "service, for example to improve the balancing of the game or to make certain"
 " aspects of the game more appealing."
-msgstr ""
+msgstr "2. Ríomh agus foilsigh staitisticí poiblí don chluiche agus seirbhís a chur chun cinn, m.sh. an chothromaíocht a fheabhsú nó gnéithe áirithe a dhéanamh níos fearr."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:41
 msgid "[font=\"sans-bold-14\"]Security of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Slandáil na próiseála:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:42
 msgid ""
 "The transmission of personal data is secured using TLS encryption (GDPR 32)."
-msgstr ""
+msgstr "Tá tarchur na sonraí pearsanta sábháilte trí húsáid criptiú TLS (GDPR 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:43
 msgid ""
 "Personal data is protected against unintentional loss in encrypted backups "
 "for additional time (GDPR 30.1.g, GDPR 32)."
-msgstr ""
+msgstr "Tá sonraí pearsanta sábháilte in aghaidh caillteanas neamhbheartaithe trí chúltacuithe criptithe le haghaidh am breise (GDPR 30.1.g, GDPR 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:45
 msgid "Wildfire Games obtains all personal data from the user (GDPR 14)."
-msgstr ""
+msgstr "Faigheann Wildfire Games sonraí pearsanta uile den úsáideoir (GDPR 14)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:46
 msgid ""
 "Wildfire Games reserves the right to delete any service data (including "
 "personal data) at any time, except where a user has objected to the erasure "
 "of his or her personal data for performance of a legal claim."
-msgstr ""
+msgstr "Tá an ceart cúlchiste ag Wildfire Games do aon sonraí seirbhíse (sonraí pearsanta san áireamh) ag aon am, ach amháin i gcás a chuireann úsáideoir i gcoinne le scrios a s(h)onraí pearsanta chun éilimh dlithiúil."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:48
 msgid "[font=\"sans-bold-16\"]Legal basis for the processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Bunús dlithiúil le haghaidh na próiseála:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:49
 msgid ""
 "1. The processing is necessary for the performance of the service defined in"
 " the terms (GDPR 6.1.b)."
-msgstr ""
+msgstr "1. Tá an phróiseáil riachtanach le haghaidh feidhmíochta na seirbhíse, mar atá sonraithe sa tearmaí (GDPR 6.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:50
 msgid ""
@@ -866,92 +866,92 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr ""
+msgstr "2. Tá suimeanna dlisteanacha ag Wildfire Games sa tsoláthar an Ilfhorhalla, san fhorbairt agus cur chun cinn de 0 A.D. agus a Ilfhorhalla, agus sa chur i bhfeidhm de na Tearmaí Úsáide agus sa chosaint i gcoinne cibirionsaithe (GDPR 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr ""
+msgstr "3. Ní phróiseálann Wildfire Games aon sonraí sa bhreis mar gheall ag an Ilfhorhalla agus ní fhifraíonn siad cead don sonraí a phróiseáil sa chaoi seo (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c).."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Cearta úsáideora:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:54
 msgid ""
 "1. Contact Wildfire Games, by sending an email to webmaster at wildfiregames"
 " dot com (GDPR 13.1.a, GDPR 13.1.b)."
-msgstr ""
+msgstr "1. Buail le Wildfire Games trí ríomhphost a sheol go webmaster at wildfiregames dot com (GDPR 13.1.a, GDPR 13.1.b)"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:55
 msgid "2. Right of access to personal data concerning him or her (GDPR 15)."
-msgstr ""
+msgstr "2. Ceart rochtana go sonraí na hÚsáidTuairisce mar gheall ar a s(h)onraí féin (GDPR 15)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:56
 msgid ""
 "3. Right to obtain personal data in a machine-readable format (GDPR 20)."
-msgstr ""
+msgstr "3. Ceart chun sonraí a fháil i bhfoirm ríomh-soléite (GDPR 20)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:57
 msgid "4. Right to rectification of inaccurate personal data (GDPR 16)."
-msgstr ""
+msgstr " 4. Ceart chun coigeartuithe le sonraí pearsanta míchruinne (GDPR 16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:58
 msgid ""
 "5. Right to erasure of personal data where it is not relevant to the stated "
 "purposes, if the data was processed unlawfully or if the user objects to the"
 " processing and has overriding legitimate grounds (GDPR 17)."
-msgstr ""
+msgstr " 5. Ceart chun léirscrios sonraí pearsanta má tá siad neamhábhartha chun an fhorbartha 0 A.D., má bhí an sonraí próiseáilte go neamhdhleathach nó má chuireann an t-úsáideoir i gcoinne leis an mpróiseáil agus tá príomhfhorais dhlíthiúla aige nó aici (GDPR 17)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:59
 msgid ""
 "6. Right to restriction of personal data processing where the accuracy of "
 "the data is contested by the user, if the data was processed unlawfully or "
 "if the user requires the data for a legal claim (GDPR 18)."
-msgstr ""
+msgstr "6. Ceart chun sriain próiseála de sonraí pearsanta má chuireann an t-úsáideoir i gcoinne lena gcruinneas, má bhí na sonraí próiseáilte go neamhdhleathach nó má theastaíonn na sonraí ón úsáideoir chun éilimh dlíthiúil (GDPR 18)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:60
 msgid ""
 "7. Right to object to the processing of personal data concerning him or her "
 "on grounds relating to their particular situation (GDPR 21)."
-msgstr ""
+msgstr " 7. Ceart chun coinne a dhéanamh le próiseáil sonraí pearsanta faoi nó fúithi ar forais a bhaineann lena sceál ar leith (GDPR 21)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:61
 msgid ""
 "8. Right to lodge a complaint with a supervisory authority (GDPR 13.2.d, "
 "GDPR 77)."
-msgstr ""
+msgstr " 8. Ceart chun gearáin a thaisceadh le húdáras maoirseachta (GDPR 13.2.d, GDPR 77)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:62
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
-msgstr ""
+msgstr "Féadfar iarratais gan bhunús soiléir nó iomarcach a ghearradh agus ní bheidh siad freagartha (GDPR 12.4, GDPR 12.5)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:64
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Oibleagáidí Wildfire Games:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid ""
 " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 "
 "'accountability')."
-msgstr ""
+msgstr "1. Léiríonn Wildfire Games géilleadh le GDPR (GDPR 5.2 'freagracht')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""
 " 2. Wildfire Games documents their processing activities appropriately, in "
 "particular the categories of processed personal data and security measures "
 "to protect it (GDPR 30)."
-msgstr ""
+msgstr "2. Cláraíonn Wildfire Games a ghníomhaíochtaí próiseála mar is ceart, go háirithe sna catagóirí sonraí pearsanta próiseáilte agus na tomhais slandála iad a chosaint (GDPR 30)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:67
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
-msgstr ""
+msgstr "3. Próiseálann Wildfire Games sonraí pearsanta go dleathach, go measartha, agus go trédhearcach (GDPR 5.1.a, GDPR 12.1)"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:68
 msgid ""
@@ -960,33 +960,33 @@ msgid ""
 "is processed, recipients of personal data and where applicable, transfer of "
 "personal data to third countries and automated decision-making (GDPR "
 "13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
-msgstr ""
+msgstr "4. Cuireann Wildfire Games a n-úsáideoirí in iúl don chuspóirí, forais dhlíthiúla, suimeanna dlisteanacha agus tréimhsí coinneála don phróiseáil sonraí pearsanta ag am na próiseála, faighteoirí den sonraí pearsanta agus nuair is infheidhme, aistriú sonraí pearsanta go tríú tíortha agus cinnteoireacht uathoibríoch (GDPR 13.1.c-f, GDPR 13.2.a, GDPR 13.2.e, GDPR 13.2.f, GDPR 15.1, GDPR 15.4)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:69
 msgid ""
 " 5. Wildfire Games does not processes personal data for purposes other than "
 "the specified ones (GDPR 5.1.b, 'purpose limitation', GDPR 13.3)."
-msgstr ""
+msgstr "5. Ní phróiseálann Wildfire Games sonraí pearsanta ar son aidhmeanna seachas na cinn atá ceadaithe (GDPR 5.1.b, \"srian aidhme\", GDPR 13.3)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:70
 msgid ""
 " 6. Wildfire Games does not process personal data that is not needed for the"
 " specified purposes (GDPR 5.1.c, 'data minimization')."
-msgstr ""
+msgstr "6. Ní phróiseálann Wildfire Games aon sonraí eile nach bhfuil gá leis na haidhmeanna sonraithe (GDPR 5.1.c, \"laghdú sonraí\")."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:71
 msgid ""
 " 7. Wildfire Games uses a storage form that does not allow identification of"
 " natural persons for longer than necessary (GDPR 5.1.e 'storage "
 "limitation')."
-msgstr ""
+msgstr "7. Úsáideann Wildfire Games sórt stórais nach gceadaítear aitheantas daoine nádúrtha níos faide ná mar is gá (GDPR 5.1.e \"srian stórais\")."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:72
 msgid ""
 " 8. Wildfire Games secures personal data processing to prevent unauthorised "
 "or unlawful processing and accidental loss (GDPR 5.1.f. 'integrity and "
 "confidentiality')."
-msgstr ""
+msgstr "8. Cosnaíonn Wildfire Games próiseáil sonraí pearsanta chun coisc a chur ar phróiseáil neamhúdaraithe nó neamhdhleathach agus caillteanas timpisteach (GDPR 5.1.f.  \"ionracas agus rúndacht\")."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:73
 msgid ""
@@ -994,20 +994,20 @@ msgid ""
 "erase personal data and the right to restrict, to withdraw consent to, to "
 "object to personal data processing and to complain at a supervisory "
 "authority (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
-msgstr ""
+msgstr "9. Cuireann Wildfire Games a n-úsáideoirí in iúl dá gceart chun rochtana, ceartaithe, scriosta ar a sonraí pearsanta agus a gceart chun teorainn a chur le, cead a bhaint as, próiseáil sonraí a chur i gcoinne agus chun gearáin a thaisceadh le húdáras maoirseachta (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:74
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
-msgstr ""
+msgstr "10. Éascaíonn Wildfire Games úsáid ceirt na n-úsáideoirí nuair is féidir (GDPR 12.2), gan mhoill mhíchuí (GDPR 12.3)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:75
 msgid ""
 "12. Wildfire Games informs the users that to exercise their rights, users "
 "might need to provide additional information to identify the natural person "
 "or the data (GDPR 12.6, GDPR 13.2.e)."
-msgstr ""
+msgstr "12. Cuireann Wildfire Games a n-úsáideoirí in iúl dá gcearta á n-úsáid, b'fhéidir go mbeadh gá le heolas sa bhreis a sholáthar don daoine nádúrtha nó sonraí a aithint (GDPR 12.6, GDPR 13.2.e)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:76
 msgid ""
@@ -1015,7 +1015,7 @@ msgid ""
 "under the age of 13 (Children's Online Privacy Protection Act). If you "
 "believe Wildfire Games received any personal data from or about a child "
 "under 13, please contact Wildfire Games."
-msgstr ""
+msgstr "13. Ní bailíonn Wildfire Games sonraí pearsanta go feasach ó pháiste faoin aois seo (Children's Online Privacy Protection Act). Má chreideann tú go bhféadfhadh aon sonraí pearsanta ó nó faoi pháiste faoi 13 ag Wildfire Games, déan teagmháil le Wildfire Games le do thoil."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:77
 msgid ""
@@ -1026,13 +1026,13 @@ msgid ""
 "interests do not override Wildfire Games legitimate interests, and that "
 "Wildfire Games is not using personal data in intrusive ways unless there is "
 "a very good reason to."
-msgstr ""
+msgstr "14. Nuair a phróiseálann Wildfire Games sonraí pearsanta bunaithe ar suimeanna dlisteanacha, cuimhníonn Wildfire Games ag déanamh, ag taifeadadh agus ag athbhreithniú ó am go chéile Measúnachtaí Suimeanna Dlisteanacha agus Measúnachtaí Tionchair Slándála Sonrai (GDPR 35) chun a bheith muiníneach nach bhfuil leas an duine in sárú ar na suimeanna dlisteanacha Wildfire Games, agus nach bhfuil Wildfire Games ag úsáid sonraí pearsanta i mbealaí neamhbheartaithe, ach amháin má tá cúis an-mhaith acu é a dhéanamh. "
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:79
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
-msgstr ""
+msgstr "Le haghaidh tuilleadh faisnéise ar an mPolasaí Príobháideachais Wildifre Games, téigh chuig https://trac.wildfiregames.com/wiki/UserDataProtection"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
@@ -1053,11 +1053,11 @@ msgid ""
 "Due to the subject matter of historic warfare, description and depcition of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr ""
+msgstr "Mar gheall ar an ábhar stairiúil, cogaíochta agus an foréagan léirithe agus tarraingthe anseo, agus cad atá ag rá san Ilfhorhalla; níl 0 A.D agus an Ilfhorhalla dírithe ag páistí óga (COPPA §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr ""
+msgstr "Tá an aois íosta 13 don Ilfhorhalla á úsáid."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
@@ -1075,7 +1075,7 @@ msgid ""
 " 2. Not use the service with third-party software or mods that prevents the "
 "user from being informed of updated Terms and Conditions, unless authorized "
 "by a Wildfire Games team member."
-msgstr ""
+msgstr "2. Ná húsáid an tseirbhís le bogearraí tríú páirtí nó modhnuithe cé a chur cosc ar eolas Tearmaí agus Coinníolacha nua, ach amháin má tá sé ceadaithe ag ball foirne Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:13
 msgid ""
@@ -1107,20 +1107,20 @@ msgid ""
 " 4. Change the service or the terms. The document date of the terms indicate"
 " its version, and the user is informed of the new terms before being able to"
 " use the service again."
-msgstr ""
+msgstr "4. Athraigh an tseirbhís nó a tearmaí. Léiríonn dáta doiciméid na dtearmaí a leagan, agus tá eolas curtha ar an úsáideoir ar tearmaí nua roimh is féidir leis an tseirbhís a úsáid arís."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:20
 msgid ""
 " 5. Process personal data in accordance with the Lobby Privacy Policy, the "
 "General Data Protection Regulation (GDPR) and the Children's Online Privacy "
 "Protection Act (COPPA) where applicable."
-msgstr ""
+msgstr "5. Próiseáil sonraí pearsanta de réir an Pholasaí Príobháideachais de chuid an Fhorhalla, General Data Protection Regulation (GDPR) agus Children's Online Privacy Protection Act (COPPA) nuair is infheidhme. "
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:22
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
-msgstr ""
+msgstr "Má dhearbhaítear aon chuid de na tearmaí mar neamhdhleathach nó do-infheidhmithe ar aon shlí eile, beidh feidhm ag an bhfuílleach fós ('inscarthacht')."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""

@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-10-17 12:52+0000\n"
+"PO-Revision-Date: 2018-11-03 11:41+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -163,7 +163,7 @@ msgstr "狄摩西尼"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "雅典战船可以训练陆战队员(Epibastes Athenaikos)."
+msgstr "雅典战船可生产陆战队员."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
@@ -177,7 +177,7 @@ msgstr "城墙可以建造在中立领土。建造时间减少50%"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
-msgstr "雅典长城"
+msgstr "雅典长墙"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -185,7 +185,7 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "雅典长城（The Long Walls of Athens）是在老谋深算的米斯托克利（Themistocles ）的主持下修建的，它长达6公里连接着城市比雷埃夫斯港口。它确保了城市海上补给线的安全，防止敌人的围城使市民陷入饥荒。"
+msgstr "雅典长墙，是在老谋深算的米斯托克利的主持下修建的，长约6公里，连接着比雷埃夫斯港口。它确保了城市海上补给线的安全，防止因敌人的围城而使市民陷入饥荒。"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
@@ -196,7 +196,7 @@ msgstr "玩家获得命令装备矛的单位进入方阵以提供更强的攻击
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
-msgstr "肉搏"
+msgstr "冲锋陷阵"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -204,7 +204,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr "经典的方阵阵型是在公元前8世纪被研发出来的。由纵向8个人，横向800人组成。阵型紧密，够成了令人生畏的盾牌墙，以及充盈着8英尺常的矛。"
+msgstr "经典的方阵阵型，在公元前8世纪研发。由纵向8个人，横向800人组成。阵型紧密，够成了令人生畏的盾牌墙，以及充盈着8英尺长的矛。"
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -219,7 +219,7 @@ msgstr "地米斯托克利是古希腊杰出的政治家、军事家。他在雅
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr "伯里克利是西元前 5 世纪时，雅典最重要的政治家。"
+msgstr "伯里克利是公元前 5 世纪时，雅典最重要的政治家。"
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
@@ -310,7 +310,7 @@ msgstr "来通过放牧和农耕来加强粮食的获得。"
 #: simulation/data/civs/brit.jsonCivBonuses[0].Name
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
-msgstr "Ardiosmanae"
+msgstr "凯尔特农业"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].History
 #: simulation/data/civs/gaul.jsonCivBonuses[0].History
@@ -338,7 +338,7 @@ msgstr "为盟军治疗-20％的资源成本"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
-msgstr "德鲁伊人 "
+msgstr "德鲁伊"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
 msgid ""
@@ -354,16 +354,16 @@ msgstr "卡拉塔库士"
 #: simulation/data/civs/brit.jsonAINames[1]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr "Kunobelinos"
+msgstr "柯诺布林"
 
 #: simulation/data/civs/brit.jsonAINames[2]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].Name
 msgid "Boudicca"
-msgstr "后布狄卡-艾西尼王"
+msgstr "后布狄卡"
 
 #: simulation/data/civs/brit.jsonAINames[3]
 msgid "Prasutagus"
-msgstr "普拉苏塔古斯-艾西尼国王"
+msgstr "普拉苏塔古斯"
 
 #: simulation/data/civs/brit.jsonAINames[4]
 msgid "Venutius"
@@ -399,7 +399,7 @@ msgstr "增加近战士兵的攻击力和移动速度"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
-msgstr "Sevili Dusios"
+msgstr "纹身"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -414,7 +414,7 @@ msgstr "增加驻塔单位的奖金。"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr "Turos Maros"
+msgstr "高塔"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -475,7 +475,7 @@ msgid ""
 "their British allies, and Kunobelinos was held up by the post-Roman Britons "
 "as one of their great heroes; a conqueror and uniter of petty kingdoms, "
 "something the post-Roman Britons or Romano-British sorely needed."
-msgstr "Kunobelinos（由拉丁化形式的Cunobelin转化而成）是卡图维劳尼族一位强大的统治者。"
+msgstr "柯诺布林（由拉丁化形式的Cunobelin转化而成）是卡图维劳尼族一位强大的统治者。"
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -563,12 +563,12 @@ msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr "每圈养一只大象或马匹，所对应的战象或战马（骑兵）单位资源消耗减少5%。"
+msgstr "每圈养一只大象或马匹，对应骑兵单位（战象或战马）资源耗费 -5%。"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
-msgstr "集拢"
+msgstr "围拢"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].History
 msgid ""
@@ -579,11 +579,11 @@ msgstr "与伊比利亚半岛不同，北非以盛产马匹而知名，能够每
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "10% bonus of trade profit for allies' international routes."
-msgstr "所有盟友间的贸易路线利润+10%。"
+msgstr "己方所有盟友间的贸易路线利润+10%。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
-msgstr "贸易大师"
+msgstr "贸易家"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].History
 msgid ""
@@ -624,7 +624,7 @@ msgstr "马戈·巴卡"
 
 #: simulation/data/civs/cart.jsonAINames[7]
 msgid "Hasdrubal the Fair"
-msgstr "公正者 哈斯德鲁巴 "
+msgstr "公正者哈斯德鲁巴 "
 
 #: simulation/data/civs/cart.jsonAINames[8]
 msgid "Hanno the Great"
@@ -675,7 +675,7 @@ msgstr "古代，没有人知道比迦太基人去过哪里，以及要去哪里
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr "市镇中心、寺庙和房屋 -25% 建造时间 。"
+msgstr "市政中心、神庙和房屋 -25% 建造时间 。"
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
@@ -731,7 +731,7 @@ msgstr "该建筑是基于中心岛修建的，用来建造迦太基海军舰队
 
 #: simulation/data/civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
-msgstr "凯尔特使团"
+msgstr "凯尔特使馆"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
@@ -739,11 +739,11 @@ msgstr "雇佣凯尔特佣兵"
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr "凯尔特人为迦太基军队提供凶猛的的战士佣兵。"
+msgstr "凯尔特人为迦太基军队提供凶猛的佣兵。"
 
 #: simulation/data/civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
-msgstr "南意大利希腊使团"
+msgstr "意大利使馆"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
@@ -754,11 +754,11 @@ msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the Italian peoples subject to Rome, including the Italian Greeks "
 "and powerful Samnites, revolted and joined the Carthaginian cause."
-msgstr "当汉尼拔入侵意大利，并在一系列的战斗击败了罗马人。许多臣服于罗马的意大利的人民，意大利的希腊人和强大的萨莫奈人，起义并加入了迦太基。"
+msgstr "汉尼拔入侵意大利，并在一系列的战斗击败了罗马人。许多臣服于罗马的意大利的人民，意大利的希腊人和强大的萨莫奈人，起义并加入了迦太基。"
 
 #: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Iberian Embassy"
-msgstr "伊比利亚使团"
+msgstr "伊比利亚使馆"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Hire Iberian mercenaries."
@@ -767,7 +767,7 @@ msgstr "雇佣伊比利亚佣兵"
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
 "The Iberians were known as fierce mercenaries, loyal to their paymasters."
-msgstr "伊比利亚佣兵以勇猛忠诚著称，非常忠于他们的雇主。"
+msgstr "伊比利亚佣兵以忠诚勇猛著称，非常忠于雇主。"
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -786,7 +786,7 @@ msgstr "高卢"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "-10% research time for technologies of allies."
-msgstr "-10%的盟友技术研究时间。"
+msgstr "同盟的科技研究时间-10%。"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -857,7 +857,7 @@ msgid ""
 " a relief force from Veii, he negotiated his surrender for 1000 pounds of "
 "gold, and adding the weight of his sword on the scale when the Romans "
 "complained that he used false weights he uttered those famous words."
-msgstr "祸事来了！ 高卢酋长布伦努斯夺取了罗马（除了卡比托利欧山上的一个驻军）。 当被卡米卢斯围住时，他谈判投降，支付了黄金1000磅。"
+msgstr "祸事来了！ 我们的酋长布伦努斯占领了罗马城。 当其被围时，被迫与罗马人谈判投降，并支付了1000磅黄金。"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
@@ -934,7 +934,7 @@ msgstr "欧洲大陆的凯尔特人"
 
 #: simulation/data/civs/gaul.jsonStructures[0].Name
 msgid "Melonas"
-msgstr "Melonas"
+msgstr "磨坊"
 
 #: simulation/data/civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
@@ -972,7 +972,7 @@ msgstr "与一般的冲积平原和河谷不同的是，在伊比利亚半岛有
 msgid ""
 "The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
 " per animal corralled."
-msgstr "每圈养一只动物，当训练马式单位(骑兵)时，将会减少5% p的资源消耗。"
+msgstr "每圈养一只动物，生产骑兵时，会-5%的资源耗费。"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
@@ -988,7 +988,7 @@ msgstr "同北非的努米底亚不同，伊比利亚半岛被称为“马国”
 msgid ""
 "Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
 "allies."
-msgstr "盟友的步兵斥候及骑兵斥候 -20% 花费。"
+msgstr "盟友的公民步骑兵花费 -20%"
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1000,7 +1000,7 @@ msgid ""
 "to serve as auxiliaries to their armies in foreign wars. Carthage is the "
 "most well known example, and we have evidence of them serving in such a "
 "capacity in Aquitania."
-msgstr "伊比利亚人以提供雇佣兵给其他国家而闻名，作为他们在对外战争中军队的附属人员。迦太基是最有名的例子，有大量的事实证明他们为阿基塔尼亚提供佣兵服务。"
+msgstr "伊比利亚人以其佣兵而闻名，例如为迦太基提供士兵，大量事实表明曾被阿基塔尼亚雇佣。"
 
 #: simulation/data/civs/iber.jsonAINames[0]
 #: simulation/data/civs/iber.jsonAINames[1]
@@ -1016,7 +1016,7 @@ msgstr "卡洛斯"
 #: simulation/data/civs/iber.jsonAINames[3]
 #: simulation/data/civs/iber.jsonFactions[0].Heroes[2].Name
 msgid "Indibil"
-msgstr "Indibil"
+msgstr "因蒂比奥"
 
 #: simulation/data/civs/iber.jsonAINames[4]
 msgid "Audax"
@@ -1042,7 +1042,7 @@ msgstr "导致目标发炎，以恒定的速度消耗体力直到治愈或修复
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
-msgstr "Suzko Txabalina"
+msgstr "火矛"
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1057,7 +1057,7 @@ msgstr "单位建造和科技升级所花费的金属将减少50%。"
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Name
 msgid "Maisu Burdina Langileak"
-msgstr "Maisu Burdina Langileak(铁器制造技术)"
+msgstr "铁器制造"
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -1096,7 +1096,7 @@ msgid ""
 " a battle on the 23rd of August. Karos was wounded in an after battle small "
 "cavalry action the same evening and soon died thereafter, but he had carried"
 " off one of the most humiliating defeats that Rome ever suffered."
-msgstr "考罗什是一个位于东塞尔特伊比利（以努曼西亚为中心）的贝利部落的酋长，领导着在梅赛塔高地（中央高地平原）的部落联盟的20,000 名步兵及5,000 名骑兵沿着一条有着茂密树木的道路隐匿踪迹。 Q. Fulvius Nobilior 忽视了适当的侦查，带领着他的军队进入了一个长长的死亡陷阱。 15,000 名的罗马军团中，大约有10,000 名在这有如雨后春笋一般涌出的突袭中倒下。这天是西元前153年的8月23日，当天，罗马人正在庆祝火神节。后来，元老院颁布了法令，称这天为死亡亚特，「厄运之日」，此后罗马人再也没有打过8月23日的仗。考罗什在战斗后的一场晚间的小型骑兵行动中受伤，并在不久后去世，但他带来了罗马史上最屈辱的失败之一"
+msgstr "考罗什是一个位于东塞尔特伊比利（以努曼西亚为中心）的贝利部落的酋长，领导着在梅赛塔高地（中央高地平原）的部落联盟的20,000 名步兵及5,000 名骑兵沿着一条有着茂密树木的道路隐匿踪迹。 Q. Fulvius Nobilior 忽视了适当的侦查，带领着他的军队进入了一个长长的死亡陷阱。 15,000 名的罗马军团中，大约有10,000 名在这有如雨后春笋一般涌出的突袭中倒下。这天是公元前153年的8月23日，当天，罗马人正在庆祝火神节。后来，元老院颁布了法令，称这天为死亡亚特，「厄运之日」，此后罗马人再也没有打过8月23日的仗。考罗什在战斗后的一场晚间的小型骑兵行动中受伤，并在不久后去世，但他带来了罗马史上最屈辱的失败之一"
 
 #: simulation/data/civs/iber.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1116,7 +1116,7 @@ msgid ""
 "were again defeated, Indibil losing his life in the final battle and "
 "Mandonio being captured then later put to death. From that date onward the "
 "Ilergetes remained a pacified tribe under Roman rule."
-msgstr "Indibil 是Ilergetes 的国王，这是一个主要分布在伊比利半岛西北部，厄波罗河附近的大型联盟。在巴卡家族扩张之时，于西元前212 年，他被说服与控制着南部与西部许多领土的迦太基人结盟，然而他在一场他认为相当重大的战役中打输了，并且被俘虏，有些人认为被骗了，于是就投靠到罗马的大西庇阿那一方。但联盟并没有持续多久，因为罗马人的承诺并不是真心的，且他们当时的行事风格更像是征服者而非盟友。所以，当罗马人与他们的盟友于西元前206 年在「西斯班尼亚」了结了迦太基人，Indibil 及另一个可能是他的兄弟的部落的王子，名为Mandonio，他们起身对抗罗马人。他们在战场上被击败，但于西元前205 年再次统合了Ilegetes 发起第二次的反抗。因为人数及武装差距过大，他们再次被击败，Indibil 在最后一战中失去了他的生命，Mandonio 则被俘虏并在稍后被处死。自当时起，Ilegetes 就成为了一个被罗马所统治的被平定的部落。"
+msgstr "因蒂比奥是Ilergetes的国王，这是一个主要分布在伊比利半岛西北部，厄波罗河附近的大型联盟。在巴卡家族扩张之时，于公元前212 年，他被说服与控制着南部与西部许多领土的迦太基人结盟，然而他在一场他认为相当重大的战役中打输了，并且被俘虏，有些人认为被骗了，于是就投靠到罗马的大西庇阿那一方。但联盟并没有持续多久，因为罗马人的承诺并不是真心的，且他们当时的行事风格更像是征服者而非盟友。所以，当罗马人与他们的盟友于公元前206 年在“西斯班尼亚”了结了迦太基人，因蒂比奥及另一个可能是他的兄弟的部落的王子，名为Mandonio，他们起身对抗罗马人。他们在战场上被击败，但于公元前205 年再次统合了Ilegetes 发起第二次的反抗。因为人数及武装差距过大，他们再次被击败，因蒂比奥在最后一战中去世，Mandonio 则被俘虏并在稍后被处死。自当时起，Ilegetes 就成为了一个被罗马所统治的被平定的部落。"
 
 #: simulation/data/civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"
@@ -1134,7 +1134,7 @@ msgid ""
 "'Revered Monument' The Iberians were a religious people who built small "
 "monuments to their various gods. These monuments could also serve as family "
 "tombs."
-msgstr "“崇敬碑”伊比利亚人有虔诚的宗教信仰，他们为各种各样的神灵建造纪念碑。这些纪念碑也可作为家族的陵园。"
+msgstr "“崇敬碑”，伊比利亚人有虔诚的宗教信仰，他们为各种各样的神灵建造纪念碑。这些纪念碑也可作为家族的陵园。"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -1168,12 +1168,12 @@ msgstr "矿床"
 msgid ""
 "Kushite players receive a free extra Metal Mine somewhere in their home "
 "territory."
-msgstr "库什多一处金矿。"
+msgstr "库什多一处金属矿。"
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
-msgstr "大象围捕"
+msgstr "围捕大象"
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Description
 msgid ""
@@ -1255,7 +1255,7 @@ msgstr "纪念建筑"
 msgid ""
 "+50% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr "城镇中心、寺庙、金字塔和奇观： +50 HP，-50%建造时间。"
+msgstr "城镇中心、神庙、金字塔和奇观： +50 HP，-50%建造时间。"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1273,7 +1273,7 @@ msgstr "大祭司亲自指导你的祭司——愿阿蒙赐福于他。"
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
 msgid "Nastasen"
-msgstr "Nastasen王"
+msgstr "纳斯塔森王"
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
 msgid "Arakamani"
@@ -1285,7 +1285,7 @@ msgstr "Amanirenas女王"
 
 #: simulation/data/civs/kush.jsonFactions[0].Name
 msgid "Kushite Africans"
-msgstr "非洲库什人"
+msgstr "非洲库什"
 
 #: simulation/data/civs/kush.jsonFactions[0].Description
 msgid ""
@@ -1301,7 +1301,7 @@ msgstr "阿蒙神庙"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
-msgstr "库什可以将个别寺庙升级为阿蒙神庙，可以更快地训练纳帕塔神庙荣誉冠军和治疗单位。"
+msgstr "库什可将某间神庙升级为阿蒙神庙，以快速生产那帕塔神庙荣誉守卫，及治疗单位。"
 
 #: simulation/data/civs/kush.jsonStructures[0].History
 #: simulation/data/civs/kush.jsonStructures[1].History
@@ -1316,7 +1316,7 @@ msgstr "狮头战神神庙"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Apedemak, which "
 "can train Meroe Temple Guard champions and heal units faster."
-msgstr "库什可以将寺庙升级为狮头战神神庙，可以更快地训练埃罗埃神庙荣誉冠军和治疗单位。"
+msgstr "库什可将某间神庙升级为狮头战神神庙，以快速生产麦罗埃神庙荣誉守卫，及治疗单位。"
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
@@ -1327,7 +1327,7 @@ msgid ""
 "Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
 "Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
 "territory effect to Civic Centers."
-msgstr "建造一个小型库什金字塔解锁城镇阶段。 建造一座大型库什金字塔解锁城市阶段。 每个建造的金字塔都会为市镇中心+10％的领土效应。"
+msgstr "建造一个小型库什金字塔解锁城镇阶段。 建造一座大型库什金字塔解锁城市阶段。 每个金字塔都会为市政中心+10％的领土效应。"
 
 #: simulation/data/civs/kush.jsonStructures[2].History
 msgid "The Kushites built over 200 pyramids in Nubia."
@@ -1349,7 +1349,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr "库什王国是一个古老的非洲王国，位于现在的苏丹共和国的青尼罗河、白尼罗河和阿特巴拉河的交汇处。库什是在埃及新王国的青铜时代崩溃之后建立的，早期阶段以那帕塔为中心。他们在公元前8世纪入侵埃及，并且库什君主统治了埃及第25王朝约一个世纪，直至被亚述人驱逐。 库施文化受到埃及的极大影响，库施金字塔建筑和巨大的寺庙建筑现在仍然存在。 库施也崇拜许多埃及神，包括阿蒙神。古典时期，库什的首都位于麦罗埃。在希腊早期的地理学中，麦罗埃地区被称之为埃塞俄比亚。 库什王国一直延续到4世纪，当时它由于内部的反叛而削弱和解体，最后臣服于崛起的阿克苏姆。"
+msgstr "库什王国是一个古老的非洲王国，位于现在的苏丹共和国的青尼罗河、白尼罗河和阿特巴拉河的交汇处。库什是在埃及新王国的青铜时代崩溃之后建立的，早期阶段以那帕塔为中心。他们在公元前8世纪入侵埃及，并且库什君主统治了埃及第25王朝约一个世纪，直至被亚述人驱逐。 库施文化受到埃及的极大影响，库施金字塔建筑和巨大的神庙建筑现在仍然存在。 库施也崇拜许多埃及神，包括阿蒙神。古典时期，库什的首都位于麦罗埃。在希腊早期的地理学中，麦罗埃地区被称之为埃塞俄比亚。 库什王国一直延续到4世纪，当时它由于内部的反叛而削弱和解体，最后臣服于崛起的阿克苏姆。"
 
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
@@ -1360,7 +1360,7 @@ msgstr "马其顿"
 msgid ""
 "Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, "
 "but -5% attack debonus vs. Romans."
-msgstr "马其顿人在攻击波斯人和希腊人时会获得额外的+10%攻击力，但攻击罗马人时攻击力会降低-5%。"
+msgstr "马其顿在攻击波斯和希腊时，会+10%的攻击力，但攻击罗马时攻击力-5%。"
 
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
 msgid "Hellenic League"
@@ -1403,7 +1403,7 @@ msgstr "市场里+20%货物售价"
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
-msgstr "统一货币"
+msgstr "货币标准化"
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].History
 msgid ""
@@ -1411,7 +1411,7 @@ msgid ""
 " currency the Diadochi in particular frequently depicted themselves as the "
 "rightful successor to Alexander the Great, attempting to legitimize their "
 "rule."
-msgstr "马其顿人及继业者（专指亚历山大大帝死后他的继业者及其后嗣）拥有高超的铸钱技术。在继业者的货币中，极其频繁地描述自己才是亚历山大大帝合法的继承者，以使他们的统治合法化。"
+msgstr "马其顿人及其继业者（专指亚历山大大帝死后他的继业者及其后嗣）拥有高超的铸币技术。在继业者的货币中，极其频繁地描述自己才是亚历山大大帝合法的继承者，以使他们的统治合法化。"
 
 #: simulation/data/civs/mace.jsonAINames[0]
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[1].Name
@@ -1486,7 +1486,7 @@ msgid ""
 " of the Macedonian army. His reforms created a powerful cavalry arm to his "
 "army that would prove useful to both himself and his son Alexander's "
 "conquests."
-msgstr "当腓力二世登基之后，他开始对马其顿军事进行大刀阔斧的整顿和改革。一只强大的装甲骑兵军队被创建出来，为他和他儿子的征服事业提供了可靠地保证。"
+msgstr "腓力二世登基之后，开始对马其顿军事进行大刀阔斧的整顿和改革。一只强大的装甲骑兵军队被创建出来，为他和他儿子的征服事业提供了可靠的保证。"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -1503,13 +1503,13 @@ msgid ""
 "In India near the end of his long anabasis, Alexander gifted to the Royal "
 "Hypaspist corps shields of silver for their long and valiant service in his "
 "army."
-msgstr "于印度接近了他长征的末了时，亚历山大大帝赐予皇家持盾卫队银盾，以慰劳他们在他的军队长久以来的英勇作战。"
+msgstr "在印度他的远征末期，亚历山大大帝赐予皇家持盾卫队银盾，以慰劳他们在他的军队长久以来的英勇作战。"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Description
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers have double Health and double default arrows."
-msgstr "城镇中心里生命值 +100% ，双倍箭矢攻击。"
+msgstr "城镇中心生命值 +100% ，箭矢攻击加倍。"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1533,7 +1533,7 @@ msgid ""
 " Greek world. Greatly enlarged the size of Macedonia by conquering much of "
 "Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign "
 "against Persia."
-msgstr "马其顿王国(公元前359-336)的国王，他进行了庞大的货币和军事改革，铸造了希腊最强的的帝国。通过征服色雷斯和希腊，他大大扩大马其顿的疆土。公元前336年，正当他酝酿对波斯开战时，被刺杀于马其顿古都埃格。"
+msgstr "马其顿王国(公元前359-前336)的国王，他进行了庞大的货币和军事改革，铸造了希腊最强的的帝国。通过征服色雷斯和希腊，他大大扩大马其顿的疆土。公元前336年，正当他酝酿对波斯开战时，被刺杀于马其顿古都埃格。"
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[0].Name
 msgid "Philip II of Macedon"
@@ -1564,11 +1564,11 @@ msgstr "在继业者中，马其顿国王(公元前294-288)，德米特里被认
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
-msgstr "围城者-德米特里一世"
+msgstr "围城者德米特里一世"
 
 #: simulation/data/civs/mace.jsonFactions[0].Description
 msgid "A Hellenistic kingdom bordering the Greek city-states."
-msgstr "一个与希腊城邦接壤的希腊化王国。"
+msgstr "与希腊城邦接壤的希腊化王国。"
 
 #: simulation/data/civs/mace.jsonStructures[0].Special
 msgid ""
@@ -1626,7 +1626,7 @@ msgstr "印度孔雀王朝"
 msgid ""
 "Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
 "usual 300)."
-msgstr "孔雀王朝 有 人口数量 +10% 的效果。"
+msgstr "孔雀王朝人口数量 +10%（即，通常人数上限300时，可生产330人口）。"
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1640,7 +1640,7 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "孔雀王朝涵盖了数十个原先独立的王国,其领土面积约有5百万平方公里，人口总数约6千万人。孔雀王朝的统治者有著万王之王的称号，并指挥著60万名步兵、9000头大象、8000辆双轮战车、以及3万名骑兵，使其可以说是当时最大型的军队。"
+msgstr "孔雀王朝涵盖了数十个原先独立的王国,面积约有五百万平方公里，人口总数约六千万人。统治者有“万王之王”的称号，并指挥60万名步兵、9000头大象、8000辆双轮战车、以及3万名骑兵，可以说是当时军队之最。"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "The Mauryans enjoy access to 4 champions."
@@ -1660,7 +1660,7 @@ msgstr "刹帝利或 Kashtriya,意思是战士,是四个印度教种姓(社会�
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "同盟的寺庙和它的科技 -50%资源和建造时间。"
+msgstr "同盟的神庙和神庙科技-50%资源花费和建造时间。"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1669,21 +1669,21 @@ msgstr "阿育王的宗教支持"
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
 "Ashoka the Great sent embassies West to spread knowledge of the Buddha."
-msgstr "伟大的阿育王送大使们到西方，传播佛主的智慧。"
+msgstr "阿育王遣送大使到西方，传播的智佛家智慧。"
 
 #: simulation/data/civs/maur.jsonAINames[0]
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].Name
 msgid "Chandragupta Maurya"
-msgstr "旃陀罗笈多（月护王）"
+msgstr "月护王旃陀罗笈多"
 
 #: simulation/data/civs/maur.jsonAINames[1]
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[1].Name
 msgid "Ashoka the Great"
-msgstr "阿输迦（阿育王/无忧王）"
+msgstr "阿育王"
 
 #: simulation/data/civs/maur.jsonAINames[2]
 msgid "Ashokavardhan Maurya"
-msgstr "孔雀王朝 舍利输迦"
+msgstr "阿育王（无忧王）"
 
 #: simulation/data/civs/maur.jsonAINames[3]
 msgid "Acharya Bhadrabahu"
@@ -1721,7 +1721,7 @@ msgstr "巨车王"
 msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "捕获5头大象，并让他们驻守在象兵营内，则大象单位花费-25%，并缩短训练时间。"
+msgstr "捕获5头大象，并让他们驻守在象厩内，则大象单位花费-25%，并缩短训练时间。"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
@@ -1729,7 +1729,7 @@ msgstr "给孔雀王朝印度步兵弓箭手更大的范围与更短的培训时
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Name
 msgid "Archery Tradition"
-msgstr "传统射箭"
+msgstr "箭术传统"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -1759,7 +1759,7 @@ msgstr "印度孔雀王朝"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stables"
-msgstr "象兵营"
+msgstr "象厩"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid ""
@@ -1769,14 +1769,14 @@ msgstr "在乡镇阶段训练战象射手级大象工人,然后在城市阶段�
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
-msgstr "阿育王法敕(刻上敕令和教谕的石柱)"
+msgstr "阿育王石柱"
 
 #: simulation/data/civs/maur.jsonStructures[1].Special
 msgid ""
 "Contentment: +10% Health and +10% resource gathering rates for all citizens "
 "and allied citizens within its range. Can be built anywhere except in enemy "
 "territory. Max Built: 10."
-msgstr "知足常乐：所有在它特定范围内的市民及盟军市民+10% 生命值及+10% 资源采集速率。可以建造在除了敌人领土以外的任何地方。最大建造数：10。"
+msgstr "知足常乐：所有在它特定范围内的本国和盟军单位+10%生命值，+10%资源采集率。可以建在除了敌人领土以外的任何地方。数量上限：10。"
 
 #: simulation/data/civs/maur.jsonHistory
 msgid ""
@@ -1788,7 +1788,7 @@ msgid ""
 "Acharya Chanakya, contributed to such varied fields such as economics, "
 "religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "由旃陀罗笈多于西元前322年所建立，孔雀王朝是第一个统治大部份的印度次大陆的王朝，并且是古代规模最大且人数最多的帝国之一。其军队主要由持竹制长弓的弓箭手、勇猛的女性战士、双轮战车、以及数以千计的武装战象所组成。它的哲学家，特别是有名的考底利耶，在许多方面，例如经济、宗教、外交、军事、以及良好的治理都有贡献。在阿育王的统治之下，这个帝国有了40年的和平、和谐、与繁荣。"
+msgstr "由旃陀罗笈多于公元前322年所建立，孔雀王朝是第一个统治大部份的印度次大陆的王朝，并且是古代规模最大且人数最多的帝国之一。其军队主要由持竹制长弓的弓箭手、勇猛的女性战士、双轮战车、以及数以千计的武装战象所组成。它的哲学家，特别是有名的考底利耶，在许多方面，例如经济、宗教、外交、军事、以及良好的治理都有贡献。在阿育王的统治之下，这个帝国有了40年的和平、和谐、与繁荣。"
 
 #: simulation/data/civs/pers.jsonName
 msgid "Persians"
@@ -1798,11 +1798,11 @@ msgstr "波斯"
 msgid ""
 "The resource cost of training camel-mounted (trader) or horse-mounted units "
 "(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr "每圈养一只动物，当训练载货骆驼(贸易)或马式单位(骑兵)时，将会减少5% p的资源消耗(视情况而定)。"
+msgstr "每圈养一只动物，当生产贸易骆驼或骑兵时，视情况将会 -5% 的资源耗费。"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
-msgstr "圈养骆驼和马"
+msgstr "圈养马和骆驼"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].History
 msgid ""
@@ -1846,16 +1846,16 @@ msgid ""
 " common until the Persian period. Darius the Great standardized coined money"
 " and his golden coins (known as 'darics') became commonplace not only "
 "throughout his empire, but as far to the west as Central Europe."
-msgstr "硬币是由利底亚人于西元前7 世纪发明的，但它在当时并不是很普遍，直到波斯时期才渐渐流行起来。大流士大帝标准化铸币方式且他的金币 (称为'大流克'  ) 变得较常见，不只是在他的帝国中，甚至是在西边的中欧也是。"
+msgstr "公元前7世纪，吕底亚发明了硬币，但在当时并不太普遍，直到波斯时期才逐渐流行起来。大流士大帝将铸币方式标准化，并使之 (大流克) 变得常见，不只流通在他的帝国中，甚至是在西边的中欧也有。"
 
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
-msgstr "Kurush二世"
+msgstr "居鲁士二世"
 
 #: simulation/data/civs/pers.jsonAINames[1]
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[1].Name
 msgid "Darayavahush I"
-msgstr "Darayavahush一世"
+msgstr "大流士一世"
 
 #: simulation/data/civs/pers.jsonAINames[2]
 msgid "Cambyses II"
@@ -1868,7 +1868,7 @@ msgstr "巴迪亚"
 #: simulation/data/civs/pers.jsonAINames[4]
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[2].Name
 msgid "Xsayarsa I"
-msgstr "Xsayarsa一世"
+msgstr "薛西斯一世"
 
 #: simulation/data/civs/pers.jsonAINames[5]
 msgid "Artaxshacha I"
@@ -1876,35 +1876,35 @@ msgstr "阿尔塔薛西斯一世"
 
 #: simulation/data/civs/pers.jsonAINames[6]
 msgid "Darayavahush II"
-msgstr "Darayavahush二世"
+msgstr "大流士二世"
 
 #: simulation/data/civs/pers.jsonAINames[7]
 msgid "Darayavahush III"
-msgstr "Darayavahush三世"
+msgstr "大流士三世"
 
 #: simulation/data/civs/pers.jsonAINames[8]
 msgid "Artaxshacha II"
-msgstr "Artaxshacha二世"
+msgstr "阿尔塔薛西斯二世"
 
 #: simulation/data/civs/pers.jsonAINames[9]
 msgid "Artaxshacha III"
-msgstr "Artaxshacha三世"
+msgstr "阿尔塔薛西斯三世"
 
 #: simulation/data/civs/pers.jsonAINames[10]
 msgid "Haxamanish"
-msgstr "Haxamanish"
+msgstr "万王之王"
 
 #: simulation/data/civs/pers.jsonAINames[11]
 msgid "Xsayarsa II"
-msgstr "Xsayarsa二世"
+msgstr "薛西斯二世"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry units."
-msgstr "腓尼基人的战船有一项独一无二的功能就是能训练骑兵。"
+msgstr "腓尼基战船独有的功能：生产骑兵。"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
-msgstr "海军工业技术"
+msgstr "海事工业"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1921,7 +1921,7 @@ msgstr "早期的阿契美尼德统治者致力于使波斯成为亚洲第一个
 msgid ""
 "Increases hitpoints of all structures, but build time increased "
 "appropriately."
-msgstr "增加所有建筑的耐久值，但建造时间也会相应地增加。"
+msgstr "增加所有建筑的耐久度，但建造时间也会相应地增加。"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
 msgid "Persian Architecture"
@@ -1933,7 +1933,7 @@ msgid ""
 "Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
 "Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
 "'rebuilt' the old Elamite capital of Susa."
-msgstr "波斯建造了从萨迪斯到苏萨长达2700千米长的皇家大道;大流士大帝和薛西斯建造了波斯波利斯;居鲁士二世大大改善了埃克巴坦那，并几乎“重建”了老的埃兰都城苏萨。"
+msgstr "波斯建造了从萨迪斯到苏萨长达2700千米长的皇家大道;大流士大帝和薛西斯建造了波斯波利斯;居鲁士二世大大改善了埃克巴坦那，并几乎“重建”了埃兰旧都苏萨。"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -1941,23 +1941,23 @@ msgstr "盾矛步兵勇士的训练时间减半"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
 msgid "Immortals"
-msgstr "不死族"
+msgstr "长生军"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Description
 msgid "+25% health for cavalry, but +10% train time."
-msgstr "骑兵+25% 的生命值，且 +10%的训练时间。"
+msgstr "骑兵+25% 的生命值， +10%的训练时间。"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Name
 msgid "Nisean War Horses"
-msgstr "Nisean战马"
+msgstr "尼森战马"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Persian cavalry."
-msgstr "美丽且强大的Nisean 马增加波斯骑兵的生命值。"
+msgstr "尼森马匹漂亮又强大，可增加波斯骑兵的生命值。"
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -1967,7 +1967,7 @@ msgid ""
 "Empire. He was also renown as a benevolent conqueror. (OP - Kurush). "
 "Technically the second ruler of the Persians by that name, and so appears as"
 " Kurush II on his documents and coins. Kurush I was his grandfather."
-msgstr "居鲁士二世(西元前559-530 年) 米底亚公主及安善国王之子；其被尊称为 ‘万王之王’，居鲁士大帝征服了米底亚、利底亚、巴比伦及巴克特里亚，建立了波斯帝国。他也以一个仁慈的征服者的形象为人所知。 (OP - Kurush).技术上来说是波斯人的第二个统治者，所以在文件及硬币上会被写为居鲁士二世。居鲁士一世则是他的爷爷。"
+msgstr "居鲁士二世(公元前559-前530年) 米底公主及安善国王之子；被尊称为“万王之王”。居鲁士大帝征服了米底（米底亚）、吕底亚、巴比伦及巴克特里亚（大夏），建立了波斯帝国。他也以一个仁慈的征服者的形象为人所知。阿契美尼德王朝的开创者，一般看作是波斯的第二位统治者，所以在文书及硬币上会被写为居鲁士二世。居鲁士一世是他的祖父。"
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
@@ -1979,7 +1979,7 @@ msgid ""
 "Parthia and Hyrcania; a great administrator as well as a decent general, "
 "Darius introduced the division of the empire into satrapies and conquered NW"
 " India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
-msgstr "大流士一世（西元前521-486 年）是波斯帕提亚省长希斯塔斯帕之子；一个伟大的管理者及还不错的将军，他将帝国分为各个由不同总督统治的区域，且征服了印度西北部、色雷斯及马其顿。他被称为 '帝国商人' 。"
+msgstr "大流士一世（公元前521-486 年）是波斯帕提亚省长希斯塔斯帕之子；一个伟大的管理者及还不错的将军，他将帝国分为各个由不同总督统治的区域，且征服了印度西北部、色雷斯及马其顿。他被称为 '帝国商人' 。"
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1988,12 +1988,12 @@ msgid ""
 "extended Imperial rule into Chorasmia. Apart from his failed invasion of "
 "Greece, he was famous for his extensive building programme, especially at "
 "Persepolis."
-msgstr "薛西斯一世（西元前485-465 年）是大流士一世与居鲁士大帝之女阿托莎的儿子，薛西斯一世是一个有能力的管理者，他也把帝国的统治范围延伸到花剌子模。除了他入侵希腊失败，他在他的建设项目方面相当有名，特别是波斯波利斯。"
+msgstr "薛西斯一世（公元前485-465 年）是大流士一世与居鲁士大帝之女阿托莎的儿子，薛西斯一世是一个有能力的管理者，他也把帝国的统治范围延伸到花剌子模。除了他入侵希腊失败，他在他的建设项目方面相当有名，特别是波斯波利斯。"
 
 #: simulation/data/civs/pers.jsonStructures[0].Name
 #: simulation/data/civs/sele.jsonStructures[1].Name
 msgid "Cavalry Stables"
-msgstr "骑兵马厩"
+msgstr "马厩"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
@@ -2001,7 +2001,7 @@ msgstr "训练骑兵公民战士"
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
-msgstr "东部骑兵是波斯帝国最厉害的部队。"
+msgstr "波斯帝国的精锐部队为东方骑兵。"
 
 #: simulation/data/civs/pers.jsonStructures[1].Name
 msgid "Apadana"
@@ -2057,11 +2057,11 @@ msgid ""
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr "希腊——马其顿的托勒密王朝依靠大量的希腊和外国雇佣兵来支持其大部分军事力量，主因是埃及本土部队的忠诚度常常令人怀疑。 事实上，在一次本土起义中，上埃及几十年来一直失去了托勒密。 雇佣兵忠诚度可以买到，时贵时贱。 在托勒密统治下的埃及日渐繁荣，是亚历山大三个继业国中最富有的。"
+msgstr "希腊—马其顿的托勒密王朝依靠大量的希腊和外国雇佣兵来支持其大部分军事力量，主因是埃及本土部队的忠诚度常常令人怀疑。 事实上，在一次本土起义中，上埃及几十年来一直失去了托勒密。 雇佣兵忠诚度可以买到，时贵时贱。 在托勒密统治下的埃及日渐繁荣，是亚历山大三个继业国中最富有的。"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
-msgstr "埃及托勒密王朝额外获得3项养殖技术。"
+msgstr "埃及托勒密王朝有额外3项养殖技术。"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Name
@@ -2075,15 +2075,15 @@ msgstr "未知。"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[2].Description
 msgid "Can capture gaia elephants and camels to reduce their training cost."
-msgstr "可以捕捉盖亚大象和骆驼来降低它们的的生产成本。"
+msgstr "可以捕捉大象和骆驼，来降低骑兵的生产成本。"
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr "所有盟友缓慢增加食物收益。"
+msgstr "缓慢增加盟友的食物收益。"
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
-msgstr "地中海粮仓"
+msgstr "地中海的粮仓"
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].History
 msgid ""
@@ -2094,7 +2094,7 @@ msgstr "埃及是粮食出口国，许多大城市如雅典、安提阿和罗马
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
-msgstr "托勒密一世·索塔尔一世"
+msgstr "托勒密一世（救主）"
 
 #: simulation/data/civs/ptol.jsonAINames[1]
 msgid "Ptolemy Philadelphus"
@@ -2102,7 +2102,7 @@ msgstr "托勒密二世·费拉德尔甫斯"
 
 #: simulation/data/civs/ptol.jsonAINames[2]
 msgid "Ptolemy Epigone"
-msgstr "托勒密追随者"
+msgstr "托勒密（追随者）"
 
 #: simulation/data/civs/ptol.jsonAINames[3]
 msgid "Ptolemy Eurgetes"
@@ -2181,14 +2181,14 @@ msgid ""
 "The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient "
 "Egyptian traditions in order to satiate the local populace and ingratiate "
 "themselves to the powerful priestly class in the country."
-msgstr "托勒密王朝的马其顿-希腊统治者奉行着许多古埃及的传统以满足当地民众并讨好散布在整个国家中有力的祭司阶层。"
+msgstr "托勒密王朝的马其顿-希腊统治者奉行着许多古埃及的传统，以满足当地民众，并讨好散布在整个国家中有力的祭司阶层。"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The Ptolemaic Egyptians receive 3 additional farming technologies above and "
 "beyond the maximum number of farming technologies usually available to a "
 "faction."
-msgstr "托勒密埃及有额外的3 个农耕技术，比其他单个文明所包含的农耕技术还多。"
+msgstr "埃及托勒密有额外的3个农耕技术，比其他单个文明所包含的农耕技术还多。"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2226,7 +2226,7 @@ msgstr "最多建造一个。所有特殊科技及部分城市阶段的一般科
 
 #: simulation/data/civs/ptol.jsonStructures[1].Name
 msgid "Stratópedo Misthophóron"
-msgstr "Stratópedo Misthophóron"
+msgstr "雇佣兵营"
 
 #: simulation/data/civs/ptol.jsonStructures[1].Special
 msgid ""
@@ -2270,7 +2270,7 @@ msgid ""
 "Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
 "for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
 "Egypt."
-msgstr "托勒密王朝曾是在希腊化时期，统治在埃及的托勒密帝国的马其顿希腊贵族家族。他们的统治持续了275 年，从西元前305 年到西元前35 年。他们是古埃及的最后一个王朝。"
+msgstr "托勒密王朝曾是在希腊化时期，统治在埃及的托勒密帝国的马其顿希腊贵族家族。他们的统治持续了275 年，从公元前305 年到公元前35 年。他们是古埃及的最后一个王朝。"
 
 #: simulation/data/civs/rome.jsonName
 msgid "Romans"
@@ -2312,7 +2312,7 @@ msgstr "在古时的世界罗马国籍很受尊重。罗马公民被赋予了其
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "-20% training time for allied infantry."
-msgstr "-20％的盟军步兵训练时间。"
+msgstr "-20％的同盟步兵训练时间。"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2371,7 +2371,7 @@ msgstr "征服非洲的普布利乌斯·科尔内利乌斯·西庇阿"
 
 #: simulation/data/civs/rome.jsonAINames[10]
 msgid "Publius Sempronius Tuditanus"
-msgstr "Publius Sempronius Tuditanus"
+msgstr "普布利乌斯·科尔内利乌斯·西庇阿"
 
 #: simulation/data/civs/rome.jsonAINames[11]
 msgid "Marcus Cornelius Cethegus"
@@ -2399,7 +2399,7 @@ msgid ""
 "throughout its long history. The Romans lured enemies or neutral factions to"
 " their side by offering them certain privileges. In due period of time, "
 "friends as well as foes were subjugated."
-msgstr "在罗马悠久的历史，长期奉行“分而治之”的外交政治。罗马人通过给敌人或中性派一定的特权来拉拢他们。慢慢的，所谓的朋友和敌人都被征服了。"
+msgstr "在罗马悠久的历史，长期奉行“分而治之”的外交政策。罗马人通过给敌人或中性派一定的特权来拉拢他们。慢慢的，所谓的朋友和敌人都被征服了。"
 
 #: simulation/data/civs/rome.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2484,7 +2484,7 @@ msgid ""
 "nations on earth for almost 800 years. The Romans were the supreme builders "
 "of the ancient world, excelled at siege warfare and had an exquisite "
 "infantry and navy."
-msgstr "罗马帝国是古代最大的国家之一，北起苏格兰南部绵延高峰，南至撒哈拉大沙漠。当时大约有6000~8000万居民，占世界总人口的四分之一。古代罗马延续了将近800年的历史，罗马建筑达到世界顶级水准，也擅长攻城战，拥有强大的步兵和海军。"
+msgstr "罗马是古代最大的国家之一，北起苏格兰南部绵延高峰，南至撒哈拉大沙漠。当时大约有6000~8000万居民，占世界总人口的四分之一。古代罗马延续了将近800年的历史，罗马建筑达到世界顶级水准，也擅长攻城战，拥有强大的步兵和海军。"
 
 #: simulation/data/civs/sele.jsonName
 #: simulation/data/civs/sele.jsonFactions[0].Name
@@ -2500,7 +2500,7 @@ msgstr "这样可以解锁塞琉古的扩张建筑物，Klēroukhia 或称军事
 
 #: simulation/data/civs/sele.jsonCivBonuses[0].Name
 msgid "Cleruchy"
-msgstr "Cleruchy"
+msgstr "殖民"
 
 #: simulation/data/civs/sele.jsonCivBonuses[1].Description
 msgid ""
@@ -2526,7 +2526,7 @@ msgstr "盟国市民中心便宜20%"
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
-msgstr "叙利亚的 Tetrapolis"
+msgstr "叙利亚四城区"
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].History
 msgid ""
@@ -2560,7 +2560,7 @@ msgstr "安条克三世"
 
 #: simulation/data/civs/sele.jsonAINames[6]
 msgid "Seleucus IV Philopator"
-msgstr "笃爱父亲者 塞琉古四世"
+msgstr "塞琉古四世"
 
 #: simulation/data/civs/sele.jsonAINames[7]
 msgid "Antiochus IV Epiphanes"
@@ -2585,7 +2585,7 @@ msgstr "德米特里二世"
 
 #: simulation/data/civs/sele.jsonAINames[12]
 msgid "Antiochus VI Dionysus"
-msgstr "神显者 安条克六世"
+msgstr "安条克六世"
 
 #: simulation/data/civs/sele.jsonAINames[13]
 msgid "Diodotus Tryphon"
@@ -2605,7 +2605,7 @@ msgstr "克丽奥佩脱拉·特亚"
 
 #: simulation/data/civs/sele.jsonAINames[18]
 msgid "Seleucus V Philometor"
-msgstr "托勒密王朝 塞琉古五世（笃爱母亲者）"
+msgstr "塞琉古五世"
 
 #: simulation/data/civs/sele.jsonAINames[19]
 msgid "Antiochus VIII Grypus"
@@ -2613,7 +2613,7 @@ msgstr "安条克八世"
 
 #: simulation/data/civs/sele.jsonAINames[20]
 msgid "Antiochus IX Cyzicenus"
-msgstr "塞琉古王朝 安条克九世（敬神者）"
+msgstr "安条克九世（敬神者）"
 
 #: simulation/data/civs/sele.jsonAINames[21]
 msgid "Seleucus VI Epiphanes"
@@ -2621,15 +2621,15 @@ msgstr "塞琉古王朝 塞琉古六世（神选的·胜利者） "
 
 #: simulation/data/civs/sele.jsonAINames[22]
 msgid "Antiochus X Eusebes"
-msgstr "塞琉古王朝 安条克十世（敬神的·笃爱父亲者）"
+msgstr "安条克十世"
 
 #: simulation/data/civs/sele.jsonAINames[23]
 msgid "Demetrius III Eucaerus"
-msgstr "Demetrius三世"
+msgstr "德米特里三世"
 
 #: simulation/data/civs/sele.jsonAINames[24]
 msgid "Antiochus XI Epiphanes"
-msgstr "塞琉古王朝 安条克十一世（神选的·笃爱父亲者）"
+msgstr "安条克十一世"
 
 #: simulation/data/civs/sele.jsonAINames[25]
 msgid "Philip I Philadelphus"
@@ -2641,7 +2641,7 @@ msgstr "安条克十二世"
 
 #: simulation/data/civs/sele.jsonAINames[27]
 msgid "Seleucus VII Kybiosaktes"
-msgstr "Seleucus七世"
+msgstr "塞琉古七世"
 
 #: simulation/data/civs/sele.jsonAINames[28]
 msgid "Antiochus XIII Asiaticus"
@@ -2680,13 +2680,13 @@ msgid ""
 "alliance, he married his daughter to Chandragupta. In return, Chandragupta "
 "gifted Seleucus a corps of 500 war elephants, which would prove a decisive "
 "military asset for Seleucus as he fought the rest of Alexander's successors."
-msgstr "塞琉古一世（胜利者）在西元前305 年入侵印度的旁遮普地区，对抗孔雀王朝的建立者，旃陀罗笈多(Sandrokottos)。据说旃陀罗笈多派出600,000 人及9,000 头战象（老普林尼，《自然史》第六卷，22.4）的军队。塞琉古眼见无法成功，并在两个大国之间建立和平，及确立正式的联盟，最后把自己的女儿嫁给了旃陀罗笈多。作为回报，旃陀罗笈多送给塞琉古500 头战象，这在他打败亚历山大大帝的其余继业者时被证实是非常重要的军事资产。"
+msgstr "塞琉古一世（胜利者）在公元前305 年入侵印度的旁遮普地区，对抗孔雀王朝的建立者旃陀罗笈多。据说旃陀罗笈多派出600,000 人及9,000 头战象（老普林尼，《自然史》第六卷，22.4）的军队。塞琉古眼见无法成功，并在两个大国之间建立和平，及确立正式的联盟，最后把自己的女儿嫁给了旃陀罗笈多。作为回报，旃陀罗笈多送给塞琉古500 头战象，这在他打败亚历山大大帝的其余继业者时被证实是非常重要的军事资产。"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[3].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Seleucid cavalry."
-msgstr "美丽且强大的Nisean 马增加塞琉古骑兵的生命值。"
+msgstr "美丽且强大的尼森马匹，可增加塞琉古骑兵的生命值。"
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2702,7 +2702,7 @@ msgstr "一直潜伏着等待邻近国家，有着强大火力并有具说服力
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[0].Name
 msgid "Seleukos A' Nikator"
-msgstr "胜利者 塞琉古一世"
+msgstr "胜利者塞琉古一世"
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -2734,7 +2734,7 @@ msgstr "安条克四世（神显者）是安条克三世（大帝）的儿子，
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[2].Name
 msgid "Antiokhos D' Epiphanes"
-msgstr "神显者 安条克四世"
+msgstr "神显者安条克四世"
 
 #: simulation/data/civs/sele.jsonFactions[0].Description
 msgid ""
@@ -2855,7 +2855,7 @@ msgstr "帕萨尼亚斯"
 
 #: simulation/data/civs/spart.jsonAINames[7]
 msgid "Agesilaus"
-msgstr "阿格西拉于斯传"
+msgstr "阿格西莱"
 
 #: simulation/data/civs/spart.jsonAINames[8]
 msgid "Echestratus"
@@ -2901,14 +2901,14 @@ msgstr "方阵里面的个体移动得更快"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"
-msgstr "Tyrtean Paeans"
+msgstr "军歌"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].History
 msgid ""
 "Paeans were battle hymns that were sung by the hoplites when they charged "
 "the enemy lines. One of the first known Paeans were composed by Tirteus, a "
 "warrior poet of Sparta, during the First Messenian War."
-msgstr "Paean 是重装步兵向敌人的战线进攻时唱的战歌。其中最著名的一首由一名叫Tirteus的斯巴达军旅诗人在塞尼亚战争时谱写。"
+msgstr "重装步兵向敌人的战线进攻时唱的战歌。其中最著名的一首是名为Tirteus 的斯巴达军旅诗人在塞尼亚战争时谱写。"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "+25% health for spear infantry, but also +10% train time."
@@ -2932,7 +2932,7 @@ msgid ""
 "unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
 " his troops, choosing to stay behind with 300 hand-picked hoplites and win "
 "time for the others to withdraw."
-msgstr "公元前480年，斯巴达国王莱昂尼达斯在温泉关之役战死。他带领7000名士兵在一处狭窄通道成功地阻击了波斯大军。后来波斯国王薛西斯一世通过一条密道绕到斯巴达人后方。莱昂尼达斯留下300名重装步兵坚守，为希腊人撤退赢得了宝贵时间。"
+msgstr "公元前480年，斯巴达国王列奥尼达斯在温泉关战死，当时他带领7000名士兵在一处狭窄通道成功地阻击了波斯大军。后来波斯国王薛西斯一世通过一条密道绕到斯巴达人后方。列奥尼达斯留下300名重装步兵坚守，为希腊人撤退赢得了宝贵时间。"
 
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[0].Name
 msgid "Leonidas I"
@@ -2956,7 +2956,7 @@ msgid ""
 " the Battle of Megalopolis, the Macedonians prevailed in a long and bloody "
 "battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis "
 "made a heroic final stand in order to buy time for his troops to retreat."
-msgstr "阿吉斯三世为第20 位欧里庞提德世系斯巴达国王。他试着组成南方希腊城邦的联盟，以便对抗马其顿的霸权，当时亚历山大大帝正在亚洲进行他的征途。他确保了克里特岛的支援后，便转而围攻马其顿的盟友在伯罗奔尼撒半岛上的大都市带。马其顿摄政安提帕特便带领了一支军队来阻止此种新的起义。在大都市带的战役中，马其顿流于一个漫长而血腥的战争。就像列奥尼达于150 年前所作的一样，亚基斯三世选择战斗到底而非投降，以确保他的部队能够撤退成功。"
+msgstr "阿吉斯三世为第20位欧里庞提德世系斯巴达国王。他试着组成南方希腊城邦的联盟，以便对抗马其顿的霸权，当时亚历山大大帝正在亚洲进行他的征途。他确保了克里特岛的支援后，便转而围攻马其顿的盟友在伯罗奔尼撒半岛上的大都市带。马其顿摄政安提帕特便带领了一支军队来阻止此种新的起义。在大都市带的战役中，马其顿流于一个漫长而血腥的战争。就像列奥尼达于150 年前所作的一样，亚基斯三世选择战斗到底而非投降，以确保他的部队能够撤退成功。"
 
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[2].Name
 msgid "Agis III"
@@ -2964,7 +2964,7 @@ msgstr "阿吉斯三世"
 
 #: simulation/data/civs/spart.jsonStructures[1].Name
 msgid "Syssition"
-msgstr "可供密谈的餐厅"
+msgstr "公共食堂"
 
 #: simulation/data/civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
@@ -2974,7 +2974,7 @@ msgstr "训练英雄和斯巴达战士，并能研究与其相关的科技。"
 msgid ""
 "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
 "peer, even kings, belonged to one."
-msgstr "Syssition是一个供纯斯巴达血统居民密谈的餐厅。每个斯巴达贵族甚至国王都属于一个类似的会所。"
+msgstr "公共食堂是一个供纯斯巴达血统居民密谈的餐厅。每个斯巴达贵族甚至国王都属于一个类似的会所。"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

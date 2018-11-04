@@ -15,18 +15,19 @@
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
+# Tomáš Matýs <thommathys@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-04-04 16:02+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-18 21:13+0000\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: simulation/data/technologies/advanced_unit_bonus.jsontooltip
 msgid ""
@@ -34,7 +35,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Jednotky vylepšené na pokročilou třídu získají mnoho kvalit: 20% zdraví navíc, 1 úroveň zbroje pro každý typ navíc, 20% kořisti navíc, 20% na síle útoku jednotek bojujících zblízka navíc, 4 m dosahu navíc a  lepší přesnosti pro jednotky bojující na dálku, rychlejší pohyb a větší rychlost léčení a větší dosah pro léčitele."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -705,7 +706,7 @@ msgstr "Tajné techniky zpracování kovu dávají ostřím mečů osobitou a kr
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "+20% na útoku seknutím pro všechny jednotky s mečem a kyjobijce."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -737,7 +738,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Jednotky vylepšené na elitní třídu získají mnoho kvalit: 20% zdraví navíc, 1 úroveň zbroje pro každý typ navíc, 20% kořisti navíc, 20% na síle útoku jednotek bojujících zblízka navíc, 4 m dosahu navíc a lepší přesnosti pro jednotky bojující na dálku, rychlejší pohyb a větší rychlost léčení a větší dosah pro léčitele."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1171,7 +1172,7 @@ msgstr "Ženy proti lidnatosti"
 
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Female Citizens vs Population"
-msgstr ""
+msgstr "Občanky proti obyvatelstvu"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1222,7 +1223,7 @@ msgstr "Velkoměstská fáze"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "Napodobující technologie pro použití v požadavcích šablon, nahrazená phase_city_generic nebo phase_city_{civ}."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1273,7 +1274,7 @@ msgstr "Vesnická fáze"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "Napodobující technologie pro použití v požadavcích šablon, nahrazená phase_town_generic nebo phase_town_{civ}."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1478,7 +1479,7 @@ msgstr "Zlepšení přesnosti cílení"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
-msgstr ""
+msgstr "Jistota zásahu palby balisty byla zvýšena."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1587,7 +1588,7 @@ msgstr "Předsunuté základny přežijí v neutrálním území dvakrát tak dl
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "Rozhledny -50% rychlosti rozkladu."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1911,7 +1912,7 @@ msgstr "Najmout do armády profesionální žoldnéře."
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
 "Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr ""
+msgstr "Žoldnéři jsou povýšeni do pokročilé pozice, ale vyžadují o + 20% tréninku navíc."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -2378,25 +2379,25 @@ msgstr "Athénské dlouhé hradby"
 msgid ""
 "+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "Správní střediska, chrámy, pyramidy a divy světa mají +25% HP a jsou stavěny -50% pomaleji."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Monumentální architektura"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "Vaše kněží byli školeni vyšším knězem osobně - nechť Amun ho požehná."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "Cvičte léčitele elitní úrovně."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
-msgstr ""
+msgstr "Boží instrukce"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
@@ -2431,7 +2432,7 @@ msgstr "U Indů byla přesná střelba z luku tradicí a v bitvách dávali pře
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "Dosah +10 metrů pro jednotky vyzbrojené lukem. Jednotky lučištníků jsou o cvičeny o -20 procent rychleji a mají lepší přesnost, mají ale -20 procent  životních bodů."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName

@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2018
+# Albert F. <alb.fontquerni@gmail.com>, 2018
 # Catalanoic <catalanoic@gmail.com>, 2016-2017
 # I M <ibrarm9@gmail.com>, 2016
 # José Verdú Díaz <pepv@hotmail.es>, 2016
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 03:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-10-18 15:04+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -236,11 +237,11 @@ msgstr "Maj + F2: Feu una captura de pantalla d'alta qualitat (6400px*4800px, en
 
 #: gui/manual/intro.txt:52
 msgid "Tab, Alt + S: Switch to the next tab."
-msgstr ""
+msgstr "Tab, Alt + S: Canvieu a la següent pestanya."
 
 #: gui/manual/intro.txt:53
 msgid "Shift + Tab, Alt + W: Switch to the previous tab."
-msgstr ""
+msgstr "Maj + Tab, Alt + W: Canvieu a la pestanya anterior."
 
 #: gui/manual/intro.txt:55
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -322,7 +323,7 @@ msgstr "/ (Barra): Seleccioneu un lluitador inactiu"
 
 #: gui/manual/intro.txt:72
 msgid "Shift + /: Add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /: Afegiu un lluitador inactiu a la selecció"
 
 #: gui/manual/intro.txt:73
 msgid "Alt + /: Select all idle fighters"
@@ -334,7 +335,7 @@ msgstr ".  (Punt): Seleccioneu treballador desocupats (inclosos els soldats ciut
 
 #: gui/manual/intro.txt:75
 msgid "Shift + .: Add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Maj +.: Afegiu un treballador inactiu a la selecció (inclosos els soldats ciutadà)"
 
 #: gui/manual/intro.txt:76
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
@@ -342,15 +343,15 @@ msgstr "Alt + .: Seleccioneu tots els treballadors desocupats (inclosos soldats 
 
 #: gui/manual/intro.txt:77
 msgid "\\ (BackSlash): Select idle unit"
-msgstr ""
+msgstr "\\ (Barra invertida): Seleccionar unitat inactiva"
 
 #: gui/manual/intro.txt:78
 msgid "Shift + \\: Add idle unit to selection"
-msgstr ""
+msgstr "Maj + \\: Afegiu una unitat inactiva a la selecció"
 
 #: gui/manual/intro.txt:79
 msgid "Alt + \\: Select all idle units"
-msgstr ""
+msgstr "Alt + \\: Seleccioneu totes les unitats inactives"
 
 #: gui/manual/intro.txt:80
 msgid "H: Stop (halt) the currently selected units."
@@ -396,7 +397,7 @@ msgstr "F5, F6, F7, and F8: mouen la càmera a la posició marcada. Torna a l'ú
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd… "
 "unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: Amb edificis de reclutament seleccionats. Afegiu la 1a, 2a... unitat mostrada a la cua de reclutament per a tots els edificis seleccionats."
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -416,27 +417,27 @@ msgstr "Tab: Vegeu totes les barres d'estat (que també mostrarà el progrés de
 
 #: gui/manual/intro.txt:92
 msgid "Ctrl + Tab: Toggle summary window."
-msgstr ""
+msgstr "Ctrl + Tab: Canvia la finestra de resum."
 
 #: gui/manual/intro.txt:93
 msgid "Alt + L: Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Alt + L: Mostra la sala multijugador a la finestra de diàleg."
 
 #: gui/manual/intro.txt:94
 msgid "Ctrl + B: Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Ctrl + B: Alterna la pàgina de bescanvi/intercanvi dins el joc."
 
 #: gui/manual/intro.txt:95
 msgid "Ctrl + P: Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Ctrl + P: Canvia el tauler de tutorial del joc."
 
 #: gui/manual/intro.txt:96
 msgid "Alt + Shift + T: Toggle structure tree."
-msgstr ""
+msgstr "Alt + Maj + T: Alterna l'arbre d'estructures."
 
 #: gui/manual/intro.txt:97
 msgid "Alt + Shift + H: Toggle civilization info."
-msgstr ""
+msgstr "Alt + Maj + H: Canvia la informació de la civilització."
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -487,7 +488,7 @@ msgstr "Alt + esquerre Arrossegueu amb el botó esquerre unitats pel mapa: Selec
 
 #: gui/manual/intro.txt:109
 msgid "Alt + Y + Left Drag over units on map: Only select non-military units"
-msgstr ""
+msgstr "Alt + I + Esquerra Arrossegueu sobre les unitats al mapa: Seleccioneu només unitats no militars"
 
 #: gui/manual/intro.txt:110
 msgid "I + Left Drag over units on map: Only select idle units"
@@ -495,7 +496,7 @@ msgstr "I + esquerre Arrossegueu amb el botó esquerre unitats pel mapa: Selecci
 
 #: gui/manual/intro.txt:111
 msgid "O + Left Drag over units on map: Only select wounded units"
-msgstr ""
+msgstr "O + Esquerra Arrossegueu sobre les unitats al mapa: seleccioneu només unitats ferides"
 
 #: gui/manual/intro.txt:112
 msgid ""
@@ -546,13 +547,13 @@ msgid ""
 "Alt + Shift + W: Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + Maj + W: Alterna entre els dissenys de pantalla (premeu un cop per sobreposar els elements sobre els models amb textura, dos cops veure només els elements colorejats amb les textures, tres cops per tornar al mode normal de textura)"
 
 #: gui/manual/intro.txt:123
 msgid ""
 "Alt + Shift + S: Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr "Alt + Maj + S: Mostra/amaga les siluetes de les unitats (pot augmentar lleugerament rendiment)"
 
 #: gui/manual/intro.txt:124
 msgid "Alt + Z: Toggle sky"
@@ -560,12 +561,12 @@ msgstr "Alt + Z: Mostra/amaga el cel"
 
 #: gui/manual/intro.txt:125
 msgid "Alt + X: Toggle diplomacy colors"
-msgstr ""
+msgstr "Alt + X: Alterna colors de la diplomàcia"
 
 #: gui/manual/intro.txt:126
 msgid ""
 "Alt + C: Toggle attack range visualizations of selected defensive structures"
-msgstr ""
+msgstr "Alt + C: Alterna la visualització del rang de les estructures defensives seleccionades"
 
 #: gui/manual/intro.txt:127
 msgid ""

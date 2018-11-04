@@ -29,7 +29,7 @@
 # Steven Gikas <stevengk123@gmail.com>, 2016
 # Thanasis Mousiolis <thanasism@yahoo.com>, 2014
 # Traumflut <sophiareg95@gmail.com>, 2014
-# Vasilis Drosos <basilisd@gmail.com>, 2016-2017
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2018
 # Y Steriot <ysteriot@gmail.com>, 2018
 # Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
 # Μιχάλης <mikem132@protonmail.com>, 2017
@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-06-17 14:36+0000\n"
-"Last-Translator: Michael Chatz <chatziasemidismichael@gmail.com>\n"
+"PO-Revision-Date: 2018-10-20 14:41+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -171,7 +171,7 @@ msgstr "Αμυντικός Πύργος"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr ""
+msgstr "Εκτοξεύει βέλη. Οχύρωσε για επιπλέον άμυνα. Απαιτείται η τεχνολογία φονικών τρυπών για την προστασία των ποδιών. Αναβαθμίσιμος σε πέτρινο πύργο."
 
 #: simulation/templates/template_structure_defense_tower_sentry.xml:58
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -294,11 +294,11 @@ msgstr "Στρατώνες"
 
 #: simulation/templates/template_structure_military_barracks_range.xml:7
 msgid "Archery Range"
-msgstr ""
+msgstr "Βεληνεκές Τοξοβολίας"
 
 #: simulation/templates/template_structure_military_barracks_range.xml:8
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr ""
+msgstr "Εκπαίδευσε πολίτες-οπλίτες πεζικού εξ αποστάσεως. Ερεύνησε βελτιώσεις εκπαίδευσης."
 
 #: simulation/templates/template_structure_military_barracks_stables.xml:7
 #: simulation/templates/structures/pers_stables.xml:20
@@ -307,7 +307,7 @@ msgstr "Στάβλος"
 
 #: simulation/templates/template_structure_military_barracks_stables.xml:8
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr ""
+msgstr "Εκπαίδευσε πολίτες-οπλίτες ιππικό. Ερεύνησε βελτιώσεις εκπαίδευσης."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:33
 msgid "Research weapons and armor improvements."
@@ -385,7 +385,7 @@ msgstr "Πολιορκητικό Εργαστήρι"
 msgid ""
 "Build siege engines to destroy your opponents buildings. Research siege "
 "technologies to improve the effectiveness of these weapons."
-msgstr ""
+msgstr "Κατασκεύασε πολιορκητικές μηχανές για να καταστρέψεις τα κτίρια των αντίπαλων σου. Ερεύνησε τεχνολογίες πολιορκίας για τη βελτίωση της αποτελεσματικότητας αυτών των όπλων."
 
 #: simulation/templates/template_structure_military_workshop.xml:36
 msgid "Workshop"
@@ -1037,11 +1037,11 @@ msgstr "Κάνσο Ροάνο"
 
 #: simulation/templates/structures/kush_barracks.xml:15
 msgid "pr-ms’yw"
-msgstr ""
+msgstr "Πρ-μς'γο"
 
 #: simulation/templates/structures/kush_blacksmith.xml:5
 msgid "hmw h’y n r3-‘"
-msgstr ""
+msgstr "χμο χινρε"
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:21
 #: simulation/templates/structures/kush_blemmye_camp.xml:22
@@ -1058,11 +1058,11 @@ msgstr "Πρ-νσβ"
 
 #: simulation/templates/structures/kush_corral.xml:9
 msgid "ihy"
-msgstr ""
+msgstr "ιχγι"
 
 #: simulation/templates/structures/kush_defense_tower.xml:5
 msgid "tsmt ‘3"
-msgstr ""
+msgstr "τσμτ' ε"
 
 #: simulation/templates/structures/kush_dock.xml:9
 msgid "Mryt"
@@ -1074,23 +1074,23 @@ msgstr "Κουσίτικοι Στάβλοι Ελεφάντων"
 
 #: simulation/templates/structures/kush_farmstead.xml:9
 msgid "snwt"
-msgstr ""
+msgstr "σνοτ"
 
 #: simulation/templates/structures/kush_field.xml:5
 msgid "sht"
-msgstr ""
+msgstr "Σχτ"
 
 #: simulation/templates/structures/kush_fortress.xml:9
 msgid "Htm"
-msgstr ""
+msgstr "Χτμ"
 
 #: simulation/templates/structures/kush_house.xml:5
 msgid "Pr"
-msgstr ""
+msgstr "Πρ"
 
 #: simulation/templates/structures/kush_market.xml:9
 msgid "Pr-sbt"
-msgstr ""
+msgstr "Πρ-σμπτ"
 
 #: simulation/templates/structures/kush_nuba_village.xml:21
 #: simulation/templates/structures/kush_nuba_village.xml:22
@@ -1099,11 +1099,11 @@ msgstr "Χωριό Νούμπα"
 
 #: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr ""
+msgstr "Εκπαίδευσε Ροπαλοφόρο Νούμπα και Νούμπα Κυνηγό."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
-msgstr ""
+msgstr "τρτρ"
 
 #: simulation/templates/structures/kush_pyramid.xml:26
 msgid "Kushite Pyramid"
@@ -1112,7 +1112,7 @@ msgstr "Κουσίτικη Πυραμίδα"
 #: simulation/templates/structures/kush_pyramid.xml:27
 #: simulation/templates/structures/kush_pyramid_large.xml:30
 msgid "mr ‘3"
-msgstr ""
+msgstr "μρε"
 
 #: simulation/templates/structures/kush_pyramid.xml:28
 #: simulation/templates/structures/kush_pyramid_large.xml:31
@@ -1130,15 +1130,15 @@ msgstr "Μικρή Πυραμίδα"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:28
 msgid "mr"
-msgstr ""
+msgstr "μρ"
 
 #: simulation/templates/structures/kush_range.xml:9
 msgid "Kushite Archery Range"
-msgstr ""
+msgstr "Βεληνεκές Κουσίτικης Τοξοβολίας"
 
 #: simulation/templates/structures/kush_sentry_tower.xml:5
 msgid "tsmt"
-msgstr ""
+msgstr "τσμτ"
 
 #: simulation/templates/structures/kush_shrine.xml:12
 msgid "Shrine"
@@ -1146,7 +1146,7 @@ msgstr "Βωμός"
 
 #: simulation/templates/structures/kush_shrine.xml:13
 msgid "ḥwt-nṯr"
-msgstr ""
+msgstr "Χοτ-ντρ"
 
 #: simulation/templates/structures/kush_stable.xml:9
 msgid "Kushite Cavalry Stable"
@@ -1154,7 +1154,7 @@ msgstr "Κουσίτικος Στάβλος Ιππικού"
 
 #: simulation/templates/structures/kush_storehouse.xml:5
 msgid "wd3t"
-msgstr ""
+msgstr "οντετ"
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
@@ -1162,13 +1162,13 @@ msgstr "Ναός του Απεδεμάκ"
 
 #: simulation/templates/structures/kush_temple.xml:9
 msgid "Pr-‘Iprmk"
-msgstr ""
+msgstr "Πρ-‘λπρμκ"
 
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
 "Train priests to heal your troops. Train Meroitic Temple Guards. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Εκπαίδευσε ιερείς για να θεραπεύουν τους στρατιώτες σου. Εκπαίδευσε Φύλακες Μεροϊτικών Ναών. Οχύρωσε τις μονάδες για να θεραπεύονται με γρήγορο ρυθμό."
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
@@ -1176,32 +1176,32 @@ msgstr "Μεγάλος Ναός του Άμων"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
 msgid "Pr-‘Imn"
-msgstr ""
+msgstr "Πρ-‘λμν"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid ""
 "Train priests to heal your troops. Train Napatan Temple Guards and research "
 "unique technologies. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Εκπαίδευσε ιερείς για να θεραπεύεις τους στρατιώτες σου. Εκπαίδευσε Ναπατιανούς Φρουρούς του Ναού και ερεύνησε μοναδικές τεχνολογίες. Οχύρωσε τις μονάδες για να θεραπεύονται με γρήγορο ρυθμό."
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "’ryt"
-msgstr ""
+msgstr "ργιτ"
 
 #: simulation/templates/structures/kush_wall_long.xml:39
 #: simulation/templates/structures/kush_wall_medium.xml:29
 #: simulation/templates/structures/kush_wall_short.xml:10
 #: simulation/templates/structures/kush_wallset_stone.xml:5
 msgid "sbty"
-msgstr ""
+msgstr "σμπτγι"
 
 #: simulation/templates/structures/kush_wall_tower.xml:9
 msgid "s3wt"
-msgstr ""
+msgstr "σεοτ"
 
 #: simulation/templates/structures/kush_wonder.xml:15
 msgid "Mnw nht"
-msgstr ""
+msgstr "Μνο νχτ"
 
 #: simulation/templates/structures/kush_workshop.xml:5
 msgid "Kushite Siege Workshop"
