@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-11-03 12:47+0000\n"
+"PO-Revision-Date: 2018-11-06 11:25+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,7 @@ msgstr "于城镇阶段解锁。"
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
 msgid "Prometōpídion"
-msgstr "Prometōpídion"
+msgstr "马头盔甲"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
@@ -201,7 +201,7 @@ msgstr "金属盔甲(马身)。"
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "于城市阶段时解锁。"
+msgstr "于城市阶段解锁。"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
@@ -233,7 +233,7 @@ msgstr "铁质英雄盔甲"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
-msgstr "Lorica Ferrea"
+msgstr "铁质盔甲"
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
@@ -566,7 +566,7 @@ msgstr "+20% 远程骑兵攻击力。"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr "远距离骑兵战斗训练"
+msgstr "远程骑兵战斗训练"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
@@ -627,7 +627,7 @@ msgstr "随身武器"
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
 msgid "Xíphos"
-msgstr "宽刃剑"
+msgstr "双刃铁刀"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.rome
@@ -675,7 +675,7 @@ msgstr "远程步兵"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr "远程步兵班"
+msgstr "远程步兵团"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -696,7 +696,7 @@ msgstr "士气"
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 msgid "Dýnamis"
-msgstr "Dýnamis"
+msgstr "士气"
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -710,7 +710,7 @@ msgstr "所有的剑士和钉锤兵+20%劈砍攻击力"
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
-msgstr "钢铁加工"
+msgstr "铁器加工"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
 msgid "Wootz Steel"
@@ -1048,7 +1048,7 @@ msgstr "希波克拉底誓言（医师从业宣言）"
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr "在神庙驻守的单位，更快被治愈。"
+msgstr "在神庙驻守的单位，治愈速度加快。"
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
@@ -1364,7 +1364,7 @@ msgstr "雅典集会"
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
 "colonnaded enclosures."
-msgstr "庭院的大小从仅仅用围栏围住的区域到大型修剪过的草皮并有廊柱的围墙的区域都有。"
+msgstr "庭院，小到仅仅用围栏围住，大到修剪过的大型草皮区域，并有廊柱的围墙的地方。"
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
@@ -1475,7 +1475,7 @@ msgstr "进阶攻城武器"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy"
-msgstr "改善炮弹的准确度"
+msgstr "改善砲弹的准度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
@@ -1507,7 +1507,7 @@ msgstr "攻城武器木材消耗 -20%"
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
-msgstr "砲兵教练"
+msgstr "砲兵专家"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
@@ -1532,7 +1532,7 @@ msgstr "骑兵移动速度 +10%。"
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr "培育骑兵"
+msgstr "培育马匹"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
@@ -1668,7 +1668,7 @@ msgstr "贸易协定"
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
-msgstr "增加商人的防御。"
+msgstr "增加商人的防御值。"
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
@@ -1769,7 +1769,7 @@ msgstr "码头获得整组建造速度奖励。"
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
-msgstr "造船工程师"
+msgstr "海军工程师"
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1783,7 +1783,7 @@ msgstr "解锁在军营训练精英的能力。"
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
-msgstr "解锁精英单位"
+msgstr "解锁精锐单位"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
@@ -1826,7 +1826,7 @@ msgstr "扩大贸易引向商店主和其家人在国外的常设机构，允许
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr "允许使用盟友的码头。"
+msgstr "可以使用盟友的码头。"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -2365,7 +2365,7 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "雅典长墙（The Long Walls of Athens）是在老谋深算的米斯托克利（Themistocles ）的主持下修建的，它长达6公里连接着城市比雷埃夫斯港口。它确保了城市海上补给线的安全，防止敌人的围城使公民陷入饥荒。"
+msgstr "雅典长墙，是在老谋深算的地米斯托克利的主持下修建的，它长达6公里连接着城市比雷埃夫斯港口。它确保了城市海上补给线的安全，防止敌人的围城使公民陷入饥荒。"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build stone walls in neutral territory."
@@ -2393,7 +2393,7 @@ msgstr "大祭司亲自指导你的祭司——愿阿蒙赐福于他。"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr "训练精英医师。"
+msgstr "训练精锐医师。"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
@@ -2584,7 +2584,7 @@ msgstr "所有单位视野 +25% 。"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
-msgstr "预知未来的书籍"
+msgstr "预言书"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"

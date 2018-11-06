@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-20 17:05+0000\n"
+"POT-Creation-Date: 2018-11-03 15:05+0100\n"
+"PO-Revision-Date: 2018-11-05 18:03+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -256,7 +256,13 @@ msgstr "mod.io Pribatutasun politika"
 msgid "OK"
 msgstr "Ados"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "Ikusi sarean"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
 msgstr "Ireki %(url)s nabigatzailean."

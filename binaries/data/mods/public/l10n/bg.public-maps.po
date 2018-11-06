@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-24 06:32+0000\n"
-"Last-Translator: Любомир Василев\n"
+"POT-Creation-Date: 2018-11-03 15:04+0100\n"
+"PO-Revision-Date: 2018-11-03 15:02+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1262,11 +1262,11 @@ msgstr "Трябва да намерим сухо място, земите ни 
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "Езерата поглъщат земята. Трябва да намерим убежище!"
 
-#: maps/random/jebel_barkal_triggers.js:578
+#: maps/random/jebel_barkal_triggers.js:592
 msgid "Napata is attacking!"
 msgstr "Напата напада!"
 
-#: maps/random/jebel_barkal_triggers.js:590
+#: maps/random/jebel_barkal_triggers.js:602
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr "Напата ще нападне след %(time)s!"
@@ -1309,47 +1309,47 @@ msgstr "По-добре не"
 msgid "Say rather not"
 msgstr "Отговаряне с „по-добре не“"
 
-#: maps/scenarios/treasure_islands.js:10
+#: maps/scenarios/treasure_islands.js:9
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Събирайте съкровищата преди врага! Нека най-добрият победи!"
 
-#: maps/scenarios/treasure_islands.js:29
+#: maps/scenarios/treasure_islands.js:28
 msgid "No winner yet, prepare for battle!"
 msgstr "Все още няма победител. Гответе се за битка!"
 
-#: maps/scenarios/treasure_islands.js:44
+#: maps/scenarios/treasure_islands.js:43
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "Вражеската съкровищница е пълна догоре. Вие загубихте!"
 
-#: maps/scenarios/treasure_islands.js:49
+#: maps/scenarios/treasure_islands.js:48
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "Вашата съкровищница е пълна догоре. Вие победихте!"
 
-#: maps/scenarios/treasure_islands.js:61
+#: maps/scenarios/treasure_islands.js:60
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "Побързайте! Врагът е близо до победата!"
 
-#: maps/scenarios/treasure_islands.js:72
+#: maps/scenarios/treasure_islands.js:71
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "Оставащи съкровища до победата: %(remainingTreasures)s!"
 
-#: maps/scenarios/treasure_islands.js:80
+#: maps/scenarios/treasure_islands.js:79
 msgid "You have collected a treasure!"
 msgstr "Вие събрахте съкровище!"
 
-#: maps/scenarios/treasure_islands.js:92
+#: maps/scenarios/treasure_islands.js:91
 msgid "Defeat your enemy to win!"
 msgstr "Победете врага, за да победите!"
 
-#: maps/scenarios/treasure_islands.js:101
+#: maps/scenarios/treasure_islands.js:100
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
 msgstr[0] "%(lastPlayer)s спечели (събра съкровището)."
 msgstr[1] "%(players)s и %(lastPlayer)s спечелиха (събраха съкровището)."
 
-#: maps/scenarios/treasure_islands.js:105
+#: maps/scenarios/treasure_islands.js:104
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
@@ -1421,7 +1421,6 @@ msgstr "Пролет в Аркадия, Гърция. Пролетните дъ�
 #: River.xml:PlayerData[0].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[0].Name:39 maps/skirmishes/Thessalian Plains
@@ -1487,7 +1486,6 @@ msgstr "Играч 1"
 #: River.xml:PlayerData[1].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[2].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[1].Name:39 maps/skirmishes/Thessalian Plains
@@ -2929,17 +2927,6 @@ msgstr "Огромният средиземноморски остров Сиц�
 #: maps/skirmishes/Sicilia_Nomad.xml:Name:35
 msgid "Sicilia Nomad (2)"
 msgstr "Номадска Сицилия (2)"
-
-#: maps/skirmishes/Siwa Oasis (2).xml:Description:40
-msgid ""
-"A dual oasis map with nearly all of the wood and animal resources concentrated in the middle of the map. Farmlands ring the oases sucking up what little moisture can be had.\n"
-"\n"
-"Stone and Metal can only be found in the rocky hinterlands. Treasures, if enabled, can be found scattered in the nearby deserts."
-msgstr "Карта с два оазиса, в средата на която са съсредоточени почти всички дървета и диви животни. Подходящите за ниви земи са разположени около оазисите, изсмуквайки и последната налична влага.\n\nВ каменистите околности могат да бъдат намерени камъни и метал. Ако съкровищата са включени, те могат да бъдат открити в близките пустини."
-
-#: maps/skirmishes/Siwa Oasis (2).xml:Name:40
-msgid "Siwa Oasis (2)"
-msgstr "Оазисът Сиуа (2)"
 
 #: maps/skirmishes/Skirmish Demo.xml:Description:39
 msgid "A demo Skirmish map."

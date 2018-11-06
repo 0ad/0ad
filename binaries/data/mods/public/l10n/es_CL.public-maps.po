@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-08-07 02:40+0000\n"
-"Last-Translator: Sergio González <serxio119@gmail.com>\n"
+"POT-Creation-Date: 2018-11-03 15:04+0100\n"
+"PO-Revision-Date: 2018-11-03 15:02+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/wildfire-games/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1256,11 +1256,11 @@ msgstr ""
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr ""
 
-#: maps/random/jebel_barkal_triggers.js:578
+#: maps/random/jebel_barkal_triggers.js:592
 msgid "Napata is attacking!"
 msgstr ""
 
-#: maps/random/jebel_barkal_triggers.js:590
+#: maps/random/jebel_barkal_triggers.js:602
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr ""
@@ -1303,47 +1303,47 @@ msgstr ""
 msgid "Say rather not"
 msgstr ""
 
-#: maps/scenarios/treasure_islands.js:10
+#: maps/scenarios/treasure_islands.js:9
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr ""
 
-#: maps/scenarios/treasure_islands.js:29
+#: maps/scenarios/treasure_islands.js:28
 msgid "No winner yet, prepare for battle!"
 msgstr ""
 
-#: maps/scenarios/treasure_islands.js:44
+#: maps/scenarios/treasure_islands.js:43
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr ""
 
-#: maps/scenarios/treasure_islands.js:49
+#: maps/scenarios/treasure_islands.js:48
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr ""
 
-#: maps/scenarios/treasure_islands.js:61
+#: maps/scenarios/treasure_islands.js:60
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr ""
 
-#: maps/scenarios/treasure_islands.js:72
+#: maps/scenarios/treasure_islands.js:71
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr ""
 
-#: maps/scenarios/treasure_islands.js:80
+#: maps/scenarios/treasure_islands.js:79
 msgid "You have collected a treasure!"
 msgstr ""
 
-#: maps/scenarios/treasure_islands.js:92
+#: maps/scenarios/treasure_islands.js:91
 msgid "Defeat your enemy to win!"
 msgstr ""
 
-#: maps/scenarios/treasure_islands.js:101
+#: maps/scenarios/treasure_islands.js:100
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: maps/scenarios/treasure_islands.js:105
+#: maps/scenarios/treasure_islands.js:104
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
@@ -1415,7 +1415,6 @@ msgstr ""
 #: River.xml:PlayerData[0].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[0].Name:39 maps/skirmishes/Thessalian Plains
@@ -1481,7 +1480,6 @@ msgstr "Jugador 1"
 #: River.xml:PlayerData[1].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[2].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[1].Name:39 maps/skirmishes/Thessalian Plains
@@ -2922,17 +2920,6 @@ msgstr ""
 
 #: maps/skirmishes/Sicilia_Nomad.xml:Name:35
 msgid "Sicilia Nomad (2)"
-msgstr ""
-
-#: maps/skirmishes/Siwa Oasis (2).xml:Description:40
-msgid ""
-"A dual oasis map with nearly all of the wood and animal resources concentrated in the middle of the map. Farmlands ring the oases sucking up what little moisture can be had.\n"
-"\n"
-"Stone and Metal can only be found in the rocky hinterlands. Treasures, if enabled, can be found scattered in the nearby deserts."
-msgstr ""
-
-#: maps/skirmishes/Siwa Oasis (2).xml:Name:40
-msgid "Siwa Oasis (2)"
 msgstr ""
 
 #: maps/skirmishes/Skirmish Demo.xml:Description:39

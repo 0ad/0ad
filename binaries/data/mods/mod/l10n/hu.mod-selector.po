@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-14 02:40+0000\n"
+"POT-Creation-Date: 2018-11-03 15:05+0100\n"
+"PO-Revision-Date: 2018-11-04 10:59+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -244,32 +244,38 @@ msgstr "Nincs kijelölt módosítás."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr ""
+msgstr "Nyilatkozat"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "mod.io Feltételek"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "mod.io Adatvédelmi nyilatkozat"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
 msgstr "OK"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "Megtekintés online"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "%(url)s megnyitása böngészőben."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "mod.io módosítások"
+msgstr "mod.io modok"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
-msgstr "Elérhető módosítások"
+msgstr "Elérhető modok"
 
 #: gui/modio/modio.xml:(caption):73
 msgid "Back"
@@ -387,7 +393,7 @@ msgstr "Nyelv"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "Elutasítás"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
@@ -395,40 +401,40 @@ msgstr "Elfogadás"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "0 A.D. Felemelkedő birodalmak mod.io nyilatkozat"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "Dokumentum dátuma: 2018. október 12."
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "A mod.io online szolgáltatáshoz kapcsolódáshoz készül."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "Ez a szolgáltatás könnyű módot biztosít a közösség által készített modok letöltéséhez és telepítéséhez. A szolgáltatást a DBolical Pty Ltd., az IndieDB és a ModDB mögött álló cég nyújtja."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "A szolgáltatás 13 éves vagy ennél idősebbek számára érhető el."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "A Wildfire Games figyelt arra hogy a kapcsolat biztonságos legyen, és a modok is biztonsági hibaellenőrzésen esnek át, de nem garantálhatjuk, hogy nem jelentenek kockázatot."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "A szolgáltatás használatával jelzed, hogy megértetted a mod.io felhasználási feltételeit, az adatvédelmi nyilatkozatot, és hogy a Wildfire Games semmilyen a szolgáltatás használatából eredő kárért nem felelős."
 
 #: gui/modmod/help/help.txt:1
 msgid ""

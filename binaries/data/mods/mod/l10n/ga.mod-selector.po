@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-27 21:10+0000\n"
+"POT-Creation-Date: 2018-11-03 15:05+0100\n"
+"PO-Revision-Date: 2018-11-05 11:50+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -256,7 +256,13 @@ msgstr "Polasaí Príobháideachais mod.io"
 msgid "OK"
 msgstr "Ceart go leor"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "Amharc ar líne"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
 msgstr "Oscail %(url)s sa bhrabhsálaí."

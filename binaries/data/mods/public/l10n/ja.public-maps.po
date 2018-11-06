@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-07-29 09:56+0000\n"
-"Last-Translator: karu babu <karubabu@protonmail.com>\n"
+"POT-Creation-Date: 2018-11-03 15:04+0100\n"
+"PO-Revision-Date: 2018-11-03 15:02+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1258,11 +1258,11 @@ msgstr "我々は乾いた地面を見つける必要がある。我々の土地
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "湖は土地を飲み込み始めた。避難所を見つけなければならない！"
 
-#: maps/random/jebel_barkal_triggers.js:578
+#: maps/random/jebel_barkal_triggers.js:592
 msgid "Napata is attacking!"
 msgstr ""
 
-#: maps/random/jebel_barkal_triggers.js:590
+#: maps/random/jebel_barkal_triggers.js:602
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr ""
@@ -1305,46 +1305,46 @@ msgstr "遠慮します"
 msgid "Say rather not"
 msgstr "遠慮しますと言う"
 
-#: maps/scenarios/treasure_islands.js:10
+#: maps/scenarios/treasure_islands.js:9
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "敵よりも先に財宝を集めてください。ご健闘を！"
 
-#: maps/scenarios/treasure_islands.js:29
+#: maps/scenarios/treasure_islands.js:28
 msgid "No winner yet, prepare for battle!"
 msgstr "まだ勝者はいません。気を引き締めて！"
 
-#: maps/scenarios/treasure_islands.js:44
+#: maps/scenarios/treasure_islands.js:43
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "敵の宝物庫が満杯になりました。敗北です…"
 
-#: maps/scenarios/treasure_islands.js:49
+#: maps/scenarios/treasure_islands.js:48
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "宝物庫が満杯になりました。勝利です！"
 
-#: maps/scenarios/treasure_islands.js:61
+#: maps/scenarios/treasure_islands.js:60
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "急ぎましょう！　敵が勝利に近づいています。"
 
-#: maps/scenarios/treasure_islands.js:72
+#: maps/scenarios/treasure_islands.js:71
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "勝利までに集める財宝の残り：　%(remainingTreasures)s"
 
-#: maps/scenarios/treasure_islands.js:80
+#: maps/scenarios/treasure_islands.js:79
 msgid "You have collected a treasure!"
 msgstr "財宝を獲得しました！"
 
-#: maps/scenarios/treasure_islands.js:92
+#: maps/scenarios/treasure_islands.js:91
 msgid "Defeat your enemy to win!"
 msgstr "敵を倒して勝利せよ！"
 
-#: maps/scenarios/treasure_islands.js:101
+#: maps/scenarios/treasure_islands.js:100
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
 msgstr[0] ""
 
-#: maps/scenarios/treasure_islands.js:105
+#: maps/scenarios/treasure_islands.js:104
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
@@ -1415,7 +1415,6 @@ msgstr "春のギリシアのアルカディアです。春の雨が、今を除
 #: River.xml:PlayerData[0].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[0].Name:39 maps/skirmishes/Thessalian Plains
@@ -1481,7 +1480,6 @@ msgstr "プレイヤー 1"
 #: River.xml:PlayerData[1].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[2].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[1].Name:39 maps/skirmishes/Thessalian Plains
@@ -2923,17 +2921,6 @@ msgstr "大きな地中海の島であるシチリアが開かれ、征服の時
 #: maps/skirmishes/Sicilia_Nomad.xml:Name:35
 msgid "Sicilia Nomad (2)"
 msgstr "シチリアの流民 (2)"
-
-#: maps/skirmishes/Siwa Oasis (2).xml:Description:40
-msgid ""
-"A dual oasis map with nearly all of the wood and animal resources concentrated in the middle of the map. Farmlands ring the oases sucking up what little moisture can be had.\n"
-"\n"
-"Stone and Metal can only be found in the rocky hinterlands. Treasures, if enabled, can be found scattered in the nearby deserts."
-msgstr "2つのオアシスのあるマップでほぼすべての木材と動物資源がマップの中央に集中しています。農地がなけなしの湿気をかき集めるオアシスを取り囲んでいます。\n\n石材と金属は岩がちな奥地でのみ見つけることができます。財宝は、もし可能ならば、砂漠の近くで散発的に見つけることができます。"
-
-#: maps/skirmishes/Siwa Oasis (2).xml:Name:40
-msgid "Siwa Oasis (2)"
-msgstr "シワ・オアシス (2)"
 
 #: maps/skirmishes/Skirmish Demo.xml:Description:39
 msgid "A demo Skirmish map."

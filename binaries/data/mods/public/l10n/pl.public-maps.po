@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright © 2014 Wildfire Games
+# Copyright (C) 2018 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -13,7 +13,7 @@
 # Filip Binkiewicz <filip.binkiewicz@gmail.com>, 2018
 # Filip Juszczak <fifon.pl@gmail.com>, 2015
 # Gregory <pixelpeon@gmail.com>, 2015
-# Hubert Ślósarski <schlussarz@u-kreskowane.com>, 2018
+# Aya Punx <inactive+hubert.slosarski@transifex.com>, 2018
 # Krzysztof Balawejder <krzybalaw@outlook.com>, 2018
 # Leszek Szary, 2014-2015
 # Lukasz B <boberstarosta@gmail.com>, 2016
@@ -33,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-04-23 09:05+0200\n"
-"PO-Revision-Date: 2018-04-24 13:04+0000\n"
-"Last-Translator: Bartosz Bobin <bartosz@bobin.eu>\n"
+"POT-Creation-Date: 2018-11-03 15:04+0100\n"
+"PO-Revision-Date: 2018-11-03 15:02+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1280,11 +1280,11 @@ msgstr "Musimy znaleźć suchą ziemię, nasz teren niedługo zatopi powódź!"
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "Jeziora zaczynają pochłaniać ziemie, musimy znaleźć schronienie!"
 
-#: maps/random/jebel_barkal_triggers.js:578
+#: maps/random/jebel_barkal_triggers.js:592
 msgid "Napata is attacking!"
 msgstr "Napata atakuje!"
 
-#: maps/random/jebel_barkal_triggers.js:590
+#: maps/random/jebel_barkal_triggers.js:602
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr "Napata zaatakuje za %(time)s!"
@@ -1327,40 +1327,40 @@ msgstr "Raczej nie"
 msgid "Say rather not"
 msgstr "Powiedz raczej nie"
 
-#: maps/scenarios/treasure_islands.js:10
+#: maps/scenarios/treasure_islands.js:9
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Zbierz łupy zanim zrobi to Twój przeciwnik! Niech wygra lepszy!"
 
-#: maps/scenarios/treasure_islands.js:29
+#: maps/scenarios/treasure_islands.js:28
 msgid "No winner yet, prepare for battle!"
 msgstr "Brak zwycięzcy, przygotuj się do walki!"
 
-#: maps/scenarios/treasure_islands.js:44
+#: maps/scenarios/treasure_islands.js:43
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "Skarbiec Twojego wroga jest zapełniony po dach, przegrałeś!"
 
-#: maps/scenarios/treasure_islands.js:49
+#: maps/scenarios/treasure_islands.js:48
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "Twój skarbiec jest zapełniony po dach, jesteś zwycięzcą!"
 
-#: maps/scenarios/treasure_islands.js:61
+#: maps/scenarios/treasure_islands.js:60
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "Pospiesz się! Twój wróg jest bliski zwycięstwa!"
 
-#: maps/scenarios/treasure_islands.js:72
+#: maps/scenarios/treasure_islands.js:71
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "Łupy pozostałe do zebrania dla zwycięstwa:  %(remainingTreasures)s!"
 
-#: maps/scenarios/treasure_islands.js:80
+#: maps/scenarios/treasure_islands.js:79
 msgid "You have collected a treasure!"
 msgstr "Zebrałeś łupy!"
 
-#: maps/scenarios/treasure_islands.js:92
+#: maps/scenarios/treasure_islands.js:91
 msgid "Defeat your enemy to win!"
 msgstr "Pokonaj swojego wroga by wygrać!"
 
-#: maps/scenarios/treasure_islands.js:101
+#: maps/scenarios/treasure_islands.js:100
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
@@ -1369,7 +1369,7 @@ msgstr[1] "%(lastPlayer)s wygrał (zebrano skarb)"
 msgstr[2] "%(lastPlayer)s wygrał (zebrano skarb)"
 msgstr[3] "%(players)s i %(lastPlayer)s wygrali (zebrano skarb)"
 
-#: maps/scenarios/treasure_islands.js:105
+#: maps/scenarios/treasure_islands.js:104
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
@@ -1443,7 +1443,6 @@ msgstr "Nastała wiosna w greckiej Arcadii. Wiosenne deszcze użyżniły to co n
 #: River.xml:PlayerData[0].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[0].Name:39 maps/skirmishes/Thessalian Plains
@@ -1509,7 +1508,6 @@ msgstr "Gracz 1 "
 #: River.xml:PlayerData[1].Name:39 maps/skirmishes/Sicilia
 #: (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
-#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[2].Name:39
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:39 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[1].Name:39 maps/skirmishes/Thessalian Plains
@@ -2951,17 +2949,6 @@ msgstr "Duża wyspa na Morzu Śródziemnym - Sycylia, jest otwarta na podbój.\n
 #: maps/skirmishes/Sicilia_Nomad.xml:Name:35
 msgid "Sicilia Nomad (2)"
 msgstr "Sycylia - koczownicy (2)"
-
-#: maps/skirmishes/Siwa Oasis (2).xml:Description:40
-msgid ""
-"A dual oasis map with nearly all of the wood and animal resources concentrated in the middle of the map. Farmlands ring the oases sucking up what little moisture can be had.\n"
-"\n"
-"Stone and Metal can only be found in the rocky hinterlands. Treasures, if enabled, can be found scattered in the nearby deserts."
-msgstr "Mapa z podwójną oazą, posiadająca jedyne drzewa i zwierzęta umiejscowione na jej środku.Farmy, pastwiska i oazy skupiają wszelką dostępną wilgoć.\n\nKamień i złoża metalu można odnaleść tylko na kamienistych ostępach. Skarby, jeżeli włączone, można odnaleść na pobliskich pustyniach."
-
-#: maps/skirmishes/Siwa Oasis (2).xml:Name:40
-msgid "Siwa Oasis (2)"
-msgstr "Oaza Siwa (2)"
 
 #: maps/skirmishes/Skirmish Demo.xml:Description:39
 msgid "A demo Skirmish map."
