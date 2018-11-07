@@ -1567,6 +1567,7 @@ function sendLobbyPlayerlistUpdate()
 
 /**
  * Send a report on the gamestatus to the lobby.
+ * Keep in sync with source/tools/XpartaMuPP/LobbyRanking.py
  */
 function reportGame()
 {
