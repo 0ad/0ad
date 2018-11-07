@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:19+0200\n"
-"PO-Revision-Date: 2018-10-14 13:05+0000\n"
+"POT-Creation-Date: 2018-11-03 15:05+0100\n"
+"PO-Revision-Date: 2018-11-05 05:44+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "正在使用默认浏览器打开%(url)s\n请稍候… "
 
 #: gui/common/functions_msgbox.js:60
 msgid "Opening page"
-msgstr "-- 正在打开"
+msgstr "正在打开"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
@@ -240,7 +240,7 @@ msgstr "不符合依赖关系：%(dep)s"
 
 #: gui/modmod/modmod.js:292
 msgid "All dependencies met"
-msgstr "所有依赖性已经满足"
+msgstr "所有依赖已满足"
 
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
@@ -262,7 +262,13 @@ msgstr "mod.io 隐私政策"
 msgid "OK"
 msgstr "好的"
 
-#: gui/termsdialog/termsdialog.js:23
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "在线浏览"
+
+#: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
 msgstr "在浏览器打开 %(url)s"
@@ -313,11 +319,11 @@ msgstr "依赖"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
-msgstr "修改"
+msgstr "模组"
 
 #: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
-msgstr "取消"
+msgstr "否定"
 
 #: gui/modmod/modmod.xml:(caption):49
 msgid "Description"
@@ -337,7 +343,7 @@ msgstr "访问官网"
 
 #: gui/modmod/modmod.xml:(caption):179
 msgid "Quit"
-msgstr "离开"
+msgstr "退出"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
@@ -403,7 +409,7 @@ msgstr "免责声明"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr "我"
+msgstr "文档日期: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
@@ -438,7 +444,7 @@ msgstr "通过使用该服务，你了解mod.io的使用条款和隐私政策，
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D以轻松修改为其设计目标，其模组以.pyromod文件的形式进行分发，这种文件可以像.zip文件一样通过压缩包管理器打开。"
+msgstr "0 A.D可轻松修改，其模组以.pyromod文件的形式发布，此格式像.zip文件一样通过压缩包管理器打开。"
 
 #: gui/modmod/help/help.txt:3
 msgid ""
