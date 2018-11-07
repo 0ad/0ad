@@ -789,6 +789,8 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 
 			if (g_NetServer)
 				g_NetServer->OnLobbyAuth(iq.from().username(), lobbyAuth->m_Token.to_string());
+			else
+				LOGERROR("Received lobby authentication request, but not hosting currently!");
 		}
 	}
 	else if (iq.subtype() == gloox::IQ::Error)
@@ -1221,6 +1223,12 @@ void XmppClient::handleSessionInitiation(const glooxwrapper::Jingle::Session::Ji
 	if (candidate.ip.empty())
 	{
 		LOGERROR("Failed to retrieve Jingle candidate");
+		return;
+	}
+
+	if (!g_NetServer)
+	{
+		LOGERROR("Received STUN connection request, but not hosting currently!");
 		return;
 	}
 
