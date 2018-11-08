@@ -771,6 +771,9 @@ if __name__ == '__main__':
   optp.add_option('-s', '--server', help='address of the ejabberd server',
                   action='store', dest='xserver',
                   default="localhost")
+  optp.add_option('-t', '--disable-tls', help='Pass this argument to connect without TLS encryption',
+                  action='store_true', dest='xdisabletls',
+                  default=False)
 
   opts, args = optp.parse_args()
 
@@ -786,7 +789,7 @@ if __name__ == '__main__':
   xmpp.register_plugin('xep_0060') # PubSub
   xmpp.register_plugin('xep_0199') # XMPP Ping
 
-  if xmpp.connect((opts.xserver, 5222)):
+  if xmpp.connect((opts.xserver, 5222), True, not opts.xdisabletls):
     xmpp.process(threaded=False)
   else:
     logging.error("Unable to connect")
