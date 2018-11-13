@@ -6,15 +6,16 @@
 # Jorno Jornade <jfcarrer@hotmail.com>, 2018
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2018
 # borg 2k <estevanborg@gmail.com>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-10-17 22:44+0200\n"
-"PO-Revision-Date: 2018-10-17 22:44+0200\n"
+"POT-Creation-Date: 2018-11-06 16:32+0100\n"
+"PO-Revision-Date: 2018-10-14 18:34+0000\n"
 "Last-Translator: borg 2k <estevanborg@gmail.com>, 2018\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/wildfire-games/teams/17418/pt_BR/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -240,12 +241,16 @@ msgstr ""
 " em wildfiregames.com (GDPR 13.1.a, GDPR 13.1.b)."
 
 #: gui/userreport/Terms_and_Conditions.txt:37
+msgid "    To exercise any user right, please refer to this contact."
+msgstr ""
+
+#: gui/userreport/Terms_and_Conditions.txt:38
 msgid ""
 " 2. Right of access to UserReport data concerning him or her (GDPR 15)."
 msgstr ""
 "2. Direito de acesso aos dados UserReport relativos a ele ou ela (GDPR 15)."
 
-#: gui/userreport/Terms_and_Conditions.txt:38
+#: gui/userreport/Terms_and_Conditions.txt:39
 msgid ""
 "    The UserID pseudonym can be found in the user.cfg file of the "
 "configuration folder of 0 A.D."
@@ -253,11 +258,11 @@ msgstr ""
 "O pseudônimo UserID pode ser encontrado no arquivo user.cfg da pasta de "
 "configuração de 0 A.D."
 
-#: gui/userreport/Terms_and_Conditions.txt:39
+#: gui/userreport/Terms_and_Conditions.txt:40
 msgid "    The current configuration folder is %(configPath)s."
 msgstr "A pasta de configuração atual é %(configPath)s."
 
-#: gui/userreport/Terms_and_Conditions.txt:40
+#: gui/userreport/Terms_and_Conditions.txt:41
 msgid ""
 "    The user obtains a machine-readable and human-readable copy of the "
 "UserReport data in the logs folder of 0 A.D. (GDPR 20)."
@@ -265,16 +270,16 @@ msgstr ""
 "O usuário obtém uma cópia legível por máquina e legível por humanos dos "
 "dados do UserReport na pasta de logs de 0 A.D. (GDPR 20)."
 
-#: gui/userreport/Terms_and_Conditions.txt:41
+#: gui/userreport/Terms_and_Conditions.txt:42
 msgid "    The data can be reviewed before the UserReporter is enabled."
 msgstr ""
 "Os dados podem ser revisados antes que o UserReporter esteja habilitado."
 
-#: gui/userreport/Terms_and_Conditions.txt:42
+#: gui/userreport/Terms_and_Conditions.txt:43
 msgid "    The current logfolder is %(logPath)s."
 msgstr "A logfolder atual é %(logPath)s."
 
-#: gui/userreport/Terms_and_Conditions.txt:43
+#: gui/userreport/Terms_and_Conditions.txt:44
 msgid ""
 "    If you wish to access further UserReport data, contact Wildfire Games "
 "and provide your UserID pseudonym (GDPR 11). Only with that we may identify "
@@ -284,18 +289,18 @@ msgstr ""
 "Wildfire Games e forneça seu pseudônimo do UserID (GDPR 11). Somente com "
 "isso podemos identificar seus dados e processar solicitações (GDPR 13.2.e)."
 
-#: gui/userreport/Terms_and_Conditions.txt:44
+#: gui/userreport/Terms_and_Conditions.txt:45
 msgid ""
 "    Data may be obtained in a portable, machine-readable format (GDPR 20)."
 msgstr ""
 "Os dados podem ser obtidos em um formato portátil legível por máquina (GDPR "
 "20)."
 
-#: gui/userreport/Terms_and_Conditions.txt:45
+#: gui/userreport/Terms_and_Conditions.txt:46
 msgid " 3. Right to rectification of inaccurate UserReport data (GDPR 16)."
 msgstr "3. Direito à retificação de dados imprecisos do UserReport (GDPR 16)."
 
-#: gui/userreport/Terms_and_Conditions.txt:46
+#: gui/userreport/Terms_and_Conditions.txt:47
 msgid ""
 " 4. Right to erasure of your UserReports if they are not relevant to the "
 "development of 0 A.D., if the data was processed unlawfully or if the user "
@@ -305,7 +310,7 @@ msgstr ""
 "desenvolvimento de 0 A.D., se os dados forem processados ilegalmente ou se o"
 " usuário fizer objeções ao processamento e tiver razões legítimas (GDPR 17)."
 
-#: gui/userreport/Terms_and_Conditions.txt:47
+#: gui/userreport/Terms_and_Conditions.txt:48
 msgid ""
 " 5. Right to restriction of processing of UserReports if the accuracy of the"
 " data is contested by the user, if the data was processed unlawfully or if "
@@ -315,7 +320,7 @@ msgstr ""
 "dados for contestada pelo usuário, se os dados forem processados ilegalmente"
 " ou se o usuário solicitar os dados para uma reivindicação legal (GDPR 18)."
 
-#: gui/userreport/Terms_and_Conditions.txt:48
+#: gui/userreport/Terms_and_Conditions.txt:49
 msgid ""
 " 6. Right to object to the processing of UserReports concerning him or her "
 "on grounds relating to their particular situation (GDPR 21)."
@@ -323,7 +328,7 @@ msgstr ""
 "6. Direito de se opor ao processamento do UserReports referentes a ele ou "
 "por motivos relacionados à sua situação particular (GDPR 21)."
 
-#: gui/userreport/Terms_and_Conditions.txt:49
+#: gui/userreport/Terms_and_Conditions.txt:50
 msgid ""
 " 7. Right to lodge a complaint with a supervisory authority (GDPR 13.2.d, "
 "GDPR 77)."
@@ -331,7 +336,7 @@ msgstr ""
 "7. Direito de apresentar uma queixa a uma autoridade supervisora (GDPR "
 "13.2.d, GDPR 77)."
 
-#: gui/userreport/Terms_and_Conditions.txt:50
+#: gui/userreport/Terms_and_Conditions.txt:51
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
@@ -339,13 +344,13 @@ msgstr ""
 "Solicitações que são manifestamente infundadas ou excessivas não são "
 "respondidas ou podem ser cobradas (GDPR 12.4, GDPR 12.5)."
 
-#: gui/userreport/Terms_and_Conditions.txt:52
+#: gui/userreport/Terms_and_Conditions.txt:53
 msgid "[font=\"sans-bold-14\"]Legal grounds of processing (GDPR 13.1.c):[/font]"
 msgstr ""
 "[font=\"sans-bold-14\"]Fundamentos legais do processamento (GDPR "
 "13.1.c):[/font]"
 
-#: gui/userreport/Terms_and_Conditions.txt:53
+#: gui/userreport/Terms_and_Conditions.txt:54
 msgid ""
 " 1. The processing is necessary for the performance of the service defined "
 "in this document (GDPR 6.1.b)."
@@ -353,7 +358,7 @@ msgstr ""
 "1. O processamento é necessário para a execução do serviço definido neste "
 "documento (GDPR 6.1.b)."
 
-#: gui/userreport/Terms_and_Conditions.txt:54
+#: gui/userreport/Terms_and_Conditions.txt:55
 msgid ""
 " 2. Wildfire Games has legitimate interests in the development of 0 A.D and "
 "protection against cyberattacks (GDPR 6.1.f)."
@@ -361,7 +366,7 @@ msgstr ""
 "2. Wildfire Games tem interesses legítimos no desenvolvimento de 0 A.D e "
 "proteção contra ciberataques (GDPR 6.1.f)."
 
-#: gui/userreport/Terms_and_Conditions.txt:55
+#: gui/userreport/Terms_and_Conditions.txt:56
 msgid ""
 " 3. Wildfire Games does not process any further data for the UserReporter "
 "and does not ask for consent to further data processing (GDPR 6.1.a, GDPR 7,"
@@ -371,14 +376,14 @@ msgstr ""
 "não solicita o consentimento para processamento adicional de dados (GDPR "
 "6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
 
-#: gui/userreport/Terms_and_Conditions.txt:57
+#: gui/userreport/Terms_and_Conditions.txt:58
 msgid ""
 "[font=\"sans-bold-14\"]Wildfire Games obligations (GDPR 5, GDPR 13):[/font]"
 msgstr ""
 "[font=\"sans-bold-14\"]Obrigações da Wildfire Games (GDPR 5, GDPR "
 "13):[/font]"
 
-#: gui/userreport/Terms_and_Conditions.txt:58
+#: gui/userreport/Terms_and_Conditions.txt:59
 msgid ""
 " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 "
 "\"accountability\")."
@@ -386,7 +391,7 @@ msgstr ""
 "1. Wildfire Games demonstra conformidade com o GDPR (GDPR 5.2 \"prestação de"
 " contas\")."
 
-#: gui/userreport/Terms_and_Conditions.txt:59
+#: gui/userreport/Terms_and_Conditions.txt:60
 msgid ""
 " 2. Wildfire Games documents their processing activities appropriately, in "
 "particular the categories of processed personal data and security measures "
@@ -396,7 +401,7 @@ msgstr ""
 "em particular as categorias de dados pessoais processados e medidas de "
 "segurança para protegê-las (GDPR 30)."
 
-#: gui/userreport/Terms_and_Conditions.txt:60
+#: gui/userreport/Terms_and_Conditions.txt:61
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
@@ -404,7 +409,7 @@ msgstr ""
 "3. Wildfire Games processa dados pessoais de forma legal, justa e "
 "transparente (GDPR 5.1.a, GDPR 12.1)."
 
-#: gui/userreport/Terms_and_Conditions.txt:61
+#: gui/userreport/Terms_and_Conditions.txt:62
 msgid ""
 " 4. Wildfire Games informs users of the purposes, legal grounds, legitimate "
 "interests and retention periods of personal data processing at the time it "
@@ -419,7 +424,7 @@ msgstr ""
 " decisões automatizada ( GDPR 13.1.cf, GDPR 13.2.a, GDPR 13.2.e, GDPR "
 "13.2.f, GDPR 15.1, GDPR 15.4)."
 
-#: gui/userreport/Terms_and_Conditions.txt:62
+#: gui/userreport/Terms_and_Conditions.txt:63
 msgid ""
 " 5. Wildfire Games does not processes personal data for purposes other than "
 "the specified ones (GDPR 5.1.b, \"purpose limitation\", GDPR 13.3)."
@@ -427,7 +432,7 @@ msgstr ""
 "5. Wildfire Games não processa dados pessoais para finalidades diferentes "
 "das especificadas (GDPR 5.1.b, \"limitação de finalidade\", GDPR 13.3)."
 
-#: gui/userreport/Terms_and_Conditions.txt:63
+#: gui/userreport/Terms_and_Conditions.txt:64
 msgid ""
 " 6. Wildfire Games does not process personal data that is not neeeded for "
 "the specified purposes (GDPR 5.1.c, \"data minimisation\")."
@@ -435,7 +440,7 @@ msgstr ""
 "6. Wildfire Games não processa dados pessoais que não são necessários para "
 "os propósitos especificados (GDPR 5.1.c, \"minimização de dados\")."
 
-#: gui/userreport/Terms_and_Conditions.txt:64
+#: gui/userreport/Terms_and_Conditions.txt:65
 msgid ""
 " 7. Wildfire Games uses a storage form that does not allow identification of"
 " natural persons for longer than necessary (GDPR 5.1.e \"storage "
@@ -445,7 +450,7 @@ msgstr ""
 "identificação de pessoas singulares por mais tempo do que o necessário (GDPR"
 " 5.1.e \"limitação de armazenamento\")."
 
-#: gui/userreport/Terms_and_Conditions.txt:65
+#: gui/userreport/Terms_and_Conditions.txt:66
 msgid ""
 " 8. Wildfire Games secures personal data processing to prevent unauthorised "
 "or unlawful processing and accidental loss (GDPR 5.1.f. \"integrity and "
@@ -455,7 +460,7 @@ msgstr ""
 "processamento não autorizado ou ilegal e a perda acidental (GDPR 5.1.f. "
 "\"integridade e confidencialidade\")."
 
-#: gui/userreport/Terms_and_Conditions.txt:66
+#: gui/userreport/Terms_and_Conditions.txt:67
 msgid ""
 " 9. Wildfire Games informs users of their right to access, to rectify, to "
 "erase personal data and the right to restrict, to withdraw consent to, to "
@@ -467,7 +472,7 @@ msgstr ""
 "processamento de dados pessoais e de reclamar perante uma autoridade "
 "supervisora (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
 
-#: gui/userreport/Terms_and_Conditions.txt:67
+#: gui/userreport/Terms_and_Conditions.txt:68
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
@@ -475,7 +480,7 @@ msgstr ""
 "10. Wildfire Games facilita o exercício dos direitos do usuário sempre que "
 "possível (GDPR 12.2), sem atrasos indevidos (GDPR 12.3)."
 
-#: gui/userreport/Terms_and_Conditions.txt:68
+#: gui/userreport/Terms_and_Conditions.txt:69
 msgid ""
 "12. Wildfire Games informs the users that to exercise their rights, users "
 "might need to provide additional information to identify the natural person "
@@ -485,11 +490,11 @@ msgstr ""
 "os usuários podem precisar fornecer informações adicionais para identificar "
 "a pessoa física ou os dados (GDPR 12.6, GDPR 13.2.e)."
 
-#: gui/userreport/Terms_and_Conditions.txt:70
+#: gui/userreport/Terms_and_Conditions.txt:71
 msgid "The minimum age to use the service is 13."
 msgstr "A idade mínima para utilizar o serviço é 13."
 
-#: gui/userreport/Terms_and_Conditions.txt:71
+#: gui/userreport/Terms_and_Conditions.txt:72
 msgid ""
 "Wildfire Games will not knowingly collect personal data from children under "
 "this age (Children's Online Privacy Protection Act)."
@@ -497,7 +502,7 @@ msgstr ""
 " Wildfire Games não coletará intencionalmente dados pessoais de crianças "
 "abaixo dessa idade (Ato de Proteção à Privacidade Online das Crianças)."
 
-#: gui/userreport/Terms_and_Conditions.txt:72
+#: gui/userreport/Terms_and_Conditions.txt:73
 msgid ""
 "If you believe Wildfire Games might have any personal data from or about a "
 "child under 13, please contact Wildfire Games."
@@ -505,7 +510,7 @@ msgstr ""
 "Se você acredita que a Wildfire Games pode ter dados pessoais de ou sobre "
 "uma criança menor de 13 anos, entre em contato com a Wildfire Games."
 
-#: gui/userreport/Terms_and_Conditions.txt:74
+#: gui/userreport/Terms_and_Conditions.txt:75
 msgid ""
 "Wildfire Games obtains all UserReport data exclusively from the user (GDPR "
 "14)."
@@ -513,7 +518,7 @@ msgstr ""
 "Wildfire Games obtém todos os dados do UserReport exclusivamente do usuário "
 "(GDPR 14)."
 
-#: gui/userreport/Terms_and_Conditions.txt:75
+#: gui/userreport/Terms_and_Conditions.txt:76
 msgid ""
 "Wildfire Games does not perform any automated decision making affecting "
 "natural persons (GDPR 22)."
@@ -521,7 +526,7 @@ msgstr ""
 "Wildfire Games não realiza nenhuma decisão automatizada que afete pessoas "
 "físicas (GDPR 22)."
 
-#: gui/userreport/Terms_and_Conditions.txt:77
+#: gui/userreport/Terms_and_Conditions.txt:78
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
@@ -529,7 +534,7 @@ msgstr ""
 "Se partes dos termos forem consideradas ilegais ou inexequíveis, o restante "
 "dos termos ainda se aplicará ('separabilidade')."
 
-#: gui/userreport/Terms_and_Conditions.txt:79
+#: gui/userreport/Terms_and_Conditions.txt:80
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"

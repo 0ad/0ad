@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-10-21 13:27+0000\n"
+"PO-Revision-Date: 2018-11-08 10:46+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -44,11 +44,11 @@ msgstr "进驻的船只每秒恢复10点生命值。"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
-msgstr "神的祝福"
+msgstr "神的赐福"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
-msgstr "每秒恢复周围单位3点生命值。"
+msgstr "周围单位生命值恢复3点/秒。"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -182,7 +182,7 @@ msgstr "提洛同盟"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Ships construct 25% faster."
-msgstr "+25%船只建造速率。"
+msgstr "+25% 船只建造速度。"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -210,7 +210,7 @@ msgstr "-20％的盟友技术研究时间。"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
-msgstr "Saripeko"
+msgstr "雇佣兵"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid ""
@@ -220,7 +220,7 @@ msgstr "对伊比利亚玩家的盟友，游击公民兵的训练费用减少 -2
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr "战象供应商"
+msgstr "战象供应"
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
 msgid ""
@@ -263,7 +263,7 @@ msgstr "所有盟友自动获得缓慢增加粮食收入的加成。"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
-msgstr "征兵"
+msgstr "募兵"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied citizen-soldier infantry."
@@ -379,7 +379,7 @@ msgstr "Mandonius与他的兄弟因蒂比奥一起指挥参加过“泛尼战争
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
-msgstr "人们的救星"
+msgstr "救星"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
@@ -465,7 +465,7 @@ msgstr "圣洁的复仇者"
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
 "Female citizens cost 20% less and work 10% faster."
-msgstr "卢克尼西亚在遭遇傲慢王塔坤之子强奸了之后，自杀了。布鲁图发誓要为她报仇并推翻君主制。\n女性公民的成本降低了 -20%，工作效率提高了 +10%。"
+msgstr "卢克尼西亚在遭遇傲慢王塔坤之子强奸了之后，自杀了。布鲁图发誓要为她报仇并推翻君主制。\n妇女的成本降低了 -20%，工作效率提高了 +10%。"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -489,7 +489,7 @@ msgstr "安条克一世为博西帕的艾兹达寺奠定了基础。\n-10% 寺�
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
-msgstr "移居"
+msgstr "迁徙"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraDescription
 msgid ""
@@ -588,7 +588,7 @@ msgstr "精英军队"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +10% speed for champion units."
-msgstr "精英单位+20%攻击，+2 捕获 ，+10% 的速度"
+msgstr "精英单位 攻击+20%，打猎+2 ，速度+10% 。"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
@@ -638,7 +638,7 @@ msgstr "长矛兵指挥官"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "+30% attack for cavalry melee soldiers."
-msgstr "+ 30% 骑兵近战攻击力。"
+msgstr "+30% 骑兵近战攻击力。"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
@@ -698,7 +698,7 @@ msgstr "动员"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "-20% training time and -15% resources cost for soldiers."
-msgstr "减少士兵训练 -20% 的训练时间和 -15% 的资源消耗"
+msgstr "士兵单位 -20% 的训练时间和 -15% 的资源消耗"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "+20% movement speed for soldiers."
@@ -729,7 +729,7 @@ msgstr "反抗传统者"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraDescription
 msgid "Temple of Amun and its Napatan Temple Guards +20% cost and build time."
-msgstr "阿蒙神庙及其纳帕塔神庙单位+ 20％的费用和建造时间。"
+msgstr "阿蒙神庙及那帕塔神庙单位 +20％的费用和建造时间。"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
 msgid "Follower of Apedemak"
@@ -745,7 +745,7 @@ msgstr "信仰死神"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy healrate reduced by 50%."
-msgstr "敌军生命恢复速率减少50%"
+msgstr "敌军生命恢复速度 -50% 。"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -755,11 +755,11 @@ msgstr "库什救星"
 msgid ""
 "Own units +10% attack.\n"
 "Nastasen acquired lots of bounty from the defeated invaders. Gain +50% loot from killing enemy units."
-msgstr "我方单位+ 10%攻击。\n纳斯塔森从战败的入侵者那里获得了很多赏金。获得50%点掠夺敌人单位的战利品。"
+msgstr "我方单位+ 10%攻击。\n纳斯塔斯从战败的入侵者那里获得了很多赏金。获得50%点掠夺敌人单位的战利品。"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
-msgstr "战舰礼物"
+msgstr "战船礼物"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
 msgid ""
@@ -844,7 +844,7 @@ msgstr "骑兵 +20%攻击，+1 捕获。"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
-msgstr "领导力"
+msgstr "领袖气质"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers, siege engines and traders."
@@ -877,7 +877,7 @@ msgstr "增加盟军英雄 +10％生命值"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "-10% health for enemy heroes."
-msgstr "减少敌军英雄 -10％生命值"
+msgstr "敌军英雄 -10％生命值"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"
@@ -914,7 +914,7 @@ msgstr "骑兵 +15%攻击"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "-10% attack for enemy infantry."
-msgstr "减少敌军步兵 -10％ 攻击"
+msgstr "敌军步兵 -10％ 攻击"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -958,7 +958,7 @@ msgstr "战象 +20% 攻击和移动速度"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
-msgstr "农奴改革"
+msgstr "希洛改革"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry citizen-soldiers."

@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-17 22:43+0200\n"
-"PO-Revision-Date: 2018-10-22 17:36+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2018-11-06 16:32+0100\n"
+"PO-Revision-Date: 2018-11-07 03:10+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -437,27 +437,27 @@ msgid ""
 "allowed to register more than one account within one hour."
 msgstr "Άγνωστο σφάλμα. Αυτό συνήθως συμβαίνει επειδή η ίδια διεύθυνση IP δεν επιτρέπει να εγγράψετε περισσότερους από έναν λογαριασμό μέσα σε μία ώρα."
 
-#: gui/prelobby/common/terms/termslobby.js:7
+#: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"
 msgstr "Όροι Παροχής Υπηρεσιών"
 
-#: gui/prelobby/common/terms/termslobby.js:8
+#: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
 msgstr "Παρακαλώ διάβασε και αποδέξου τους Όρους της Υπηρεσίας."
 
-#: gui/prelobby/common/terms/termslobby.js:16
+#: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
 msgstr "Όροι Χρήσης "
 
-#: gui/prelobby/common/terms/termslobby.js:17
+#: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
 msgstr "Παρακαλώ διάβασε και αποδέξου τους Όρους Χρήσης"
 
-#: gui/prelobby/common/terms/termslobby.js:25
+#: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
 msgstr "Πολιτική Απορρήτου"
 
-#: gui/prelobby/common/terms/termslobby.js:26
+#: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
 msgstr "Παρακαλώ διάβασε και αποδέξου την Πολιτική Απορρήτου."
 
@@ -735,9 +735,9 @@ msgstr " 1. Να εφαρμόσει τους Όρους Χρήσης, όταν �
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:19
 msgid ""
-"    IP addresses will not be saved for longer than two years for this "
+"    IP addresses will not be saved for longer than three years for this "
 "purpose."
-msgstr "    Οι διευθύνσεις IP δεν θα αποθηκεύονται για περισσότερο από δύο χρόνια για αυτό το σκοπό."
+msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:20
 msgid ""
@@ -853,8 +853,10 @@ msgid ""
 msgstr "Τα προσωπικά δεδομένα προστατεύονται από την ακούσια απώλεια κρυπτογραφημένων αντιγράφων ασφαλείας για επιπλέον χρόνο (Γενικός Κανονισμός για την Προστασία Δεδομένων 30.1.g, ΓΚΠΔ 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:45
-msgid "Wildfire Games obtains all personal data from the user (GDPR 14)."
-msgstr "Η Wildfire Games εξασφαλίζει όλα τα προσωπικά δεδομένα από τον χρήστη (Γενικός Κανονισμός για την Προστασία Δεδομένων 14)."
+msgid ""
+"All personal data that Wildfire Games processes is obtained from the user "
+"(GDPR 14)."
+msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:46
 msgid ""
@@ -899,74 +901,78 @@ msgid ""
 msgstr "1. Επικοινώνησε με τη Wildfire Games, στέλνοντας ένα μήνυμα ηλεκτρονικού ταχυδρομείου στο webmaster παπάκι wildfiregames τελεία com (Γενικός Κανονισμός για την Προστασία Δεδομένων 13.1.a, ΓΚΠΔ 13.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:55
+msgid "   To exercise any user right, please refer to this contact."
+msgstr ""
+
+#: gui/prelobby/common/terms/Privacy_Policy.txt:56
 msgid "2. Right of access to personal data concerning him or her (GDPR 15)."
 msgstr "2. Δικαίωμα πρόσβασης στα προσωπικά δεδομένα που αφορούν αυτόν ή αυτή (Γενικός Κανονισμός για την Προστασία Δεδομένων 15)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:56
+#: gui/prelobby/common/terms/Privacy_Policy.txt:57
 msgid ""
 "3. Right to obtain personal data in a machine-readable format (GDPR 20)."
 msgstr "3. Δικαίωμα απόκτησης των προσωπικών δεδομένων σε μορφή αναγνώσιμη από μηχανή (Γενικός Κανονισμός για την Προστασία Δεδομένων 20)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:57
+#: gui/prelobby/common/terms/Privacy_Policy.txt:58
 msgid "4. Right to rectification of inaccurate personal data (GDPR 16)."
 msgstr "4. Δικαίωμα διόρθωσης ανακριβών προσωπικών δεδομένων (Γενικός Κανονισμός για την Προστασία Δεδομένων 16)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:58
+#: gui/prelobby/common/terms/Privacy_Policy.txt:59
 msgid ""
 "5. Right to erasure of personal data where it is not relevant to the stated "
 "purposes, if the data was processed unlawfully or if the user objects to the"
 " processing and has overriding legitimate grounds (GDPR 17)."
 msgstr "5. Δικαίωμα διαγραφής των προσωπικών δεδομένων, εφόσον δεν έχει σχέση με τους αναφερόμενους σκοπούς, εάν τα δεδομένα έχουν υποστεί επεξεργασία παράνομα ή αν ο χρήστης αντιτίθεται στη μεταποίηση και έχει νόμιμους λόγους υπεράσπισης (Γενικός Κανονισμός για την Προστασία Δεδομένων 17)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:59
+#: gui/prelobby/common/terms/Privacy_Policy.txt:60
 msgid ""
 "6. Right to restriction of personal data processing where the accuracy of "
 "the data is contested by the user, if the data was processed unlawfully or "
 "if the user requires the data for a legal claim (GDPR 18)."
 msgstr "6. Δικαίωμα περιορισμού της επεξεργασίας των προσωπικών δεδομένων, όταν η ακρίβεια των δεδομένων αμφισβητείται από τον χρήστη, εάν τα δεδομένα υποβλήθηκαν σε παράνομη επεξεργασία ή εάν ο χρήστης απαιτεί τα δεδομένα για μια νομική αξίωση (Γενικός Κανονισμός για την Προστασία Δεδομένων 18)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:60
+#: gui/prelobby/common/terms/Privacy_Policy.txt:61
 msgid ""
 "7. Right to object to the processing of personal data concerning him or her "
 "on grounds relating to their particular situation (GDPR 21)."
 msgstr "7. Δικαίωμα διατύπωσης αντιρρήσεων για την επεξεργασία προσωπικών δεδομένων που αφορούν αυτόν ή αυτή για λόγους που σχετίζονται με την ιδιαίτερη κατάστασή τους (Γενικός Κανονισμός για την Προστασία Δεδομένων 21)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:61
+#: gui/prelobby/common/terms/Privacy_Policy.txt:62
 msgid ""
 "8. Right to lodge a complaint with a supervisory authority (GDPR 13.2.d, "
 "GDPR 77)."
 msgstr "8. Δικαίωμα υποβολής καταγγελίας σε εποπτική αρχή (Γενικός Κανονισμός για την Προστασία Δεδομένων 13.2.d, ΓΚΠΔ 77)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:62
+#: gui/prelobby/common/terms/Privacy_Policy.txt:63
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
 msgstr "Αιτήματα που είναι προδήλως αβάσιμα ή υπερβολικά δεν απαντώνται ή ενδέχεται να χρεωθούν (Γενικός Κανονισμός για την Προστασία Δεδομένων 12.4, ΓΚΠΔ 12.5)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:64
+#: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
 msgstr "[font=\"sans-bold-16\"]Υποχρεώσεις της Wildfire Games:[/font]"
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:65
+#: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""
 " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 "
 "'accountability')."
 msgstr "1. Η Wildfire Games επιδεικνύει συμμόρφωση με το Γενικό Κανονισμό για την Προστασία Δεδομένων (ΓΚΠΔ 5.2 \"ευθύνη\")."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:66
+#: gui/prelobby/common/terms/Privacy_Policy.txt:67
 msgid ""
 " 2. Wildfire Games documents their processing activities appropriately, in "
 "particular the categories of processed personal data and security measures "
 "to protect it (GDPR 30)."
 msgstr "  2. Η Wildfire Games καταγράφει κατάλληλα τις δραστηριότητές επεξεργασίας, ιδίως στις κατηγορίες των επεξεργασμένων προσωπικών δεδομένων και στα μέτρα ασφαλείας για την προστασία τους (Γενικός Κανονισμός για την Προστασία Δεδομένων 30)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:67
+#: gui/prelobby/common/terms/Privacy_Policy.txt:68
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
 msgstr "3. Η Wildfire Games επεξεργάζεται νόμιμα, δίκαια και με διαφάνεια τα προσωπικά δεδομένα (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.a, ΓΚΠΔ 12.1)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:68
+#: gui/prelobby/common/terms/Privacy_Policy.txt:69
 msgid ""
 " 4. Wildfire Games informs users of the purposes, legal grounds, legitimate "
 "interests and retention periods of personal data processing at the time it "
@@ -975,33 +981,33 @@ msgid ""
 "13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
 msgstr "4. Η Wildfire Games ενημερώνει τους χρήστες για τους σκοπούς, τους νομικούς λόγους, τα νόμιμα συμφέροντα και τις περιόδους διατήρησης της επεξεργασίας των προσωπικών δεδομένων κατά τη στιγμή της επεξεργασίας τους, της αποδοχής των προσωπικών δεδομένων και, κατά περίπτωση, της μεταφοράς προσωπικών δεδομένων σε τρίτες χώρες και της αυτοματοποιημένης λήψης αποφάσεων (Γενικός Κανονισμός για την Προστασία Δεδομένων 13.1.c-f, ΓΚΠΔ 13.2.a, ΓΚΠΔ 13.2.e-f, ΓΚΠΔ 15.1, ΓΚΠΔ 15.4)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:69
+#: gui/prelobby/common/terms/Privacy_Policy.txt:70
 msgid ""
 " 5. Wildfire Games does not processes personal data for purposes other than "
 "the specified ones (GDPR 5.1.b, 'purpose limitation', GDPR 13.3)."
 msgstr "  5. Η Wildfire Games δεν επεξεργάζεται προσωπικά δεδομένα για σκοπούς διαφορετικούς από τους καθορισμένους (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.b, \"περιορισμός του σκοπού\", ΓΚΠΔ 13.3)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:70
+#: gui/prelobby/common/terms/Privacy_Policy.txt:71
 msgid ""
 " 6. Wildfire Games does not process personal data that is not needed for the"
 " specified purposes (GDPR 5.1.c, 'data minimization')."
 msgstr "  6. Η Wildfire Games δεν επεξεργάζεται προσωπικά δεδομένα που δεν χρειάζονται για τους καθορισμένους σκοπούς (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.c, 'ελαχιστοποίηση δεδομένων')."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:71
+#: gui/prelobby/common/terms/Privacy_Policy.txt:72
 msgid ""
 " 7. Wildfire Games uses a storage form that does not allow identification of"
 " natural persons for longer than necessary (GDPR 5.1.e 'storage "
 "limitation')."
 msgstr "  7. Η Wildfire Games χρησιμοποιεί ένα τρόπο αποθήκευσης που δεν επιτρέπει την ταυτοποίηση φυσικών προσώπων για μεγαλύτερο χρονικό διάστημα από ό, τι είναι απαραίτητο (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.e 'περιορισμός αποθήκευσης')."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:72
+#: gui/prelobby/common/terms/Privacy_Policy.txt:73
 msgid ""
 " 8. Wildfire Games secures personal data processing to prevent unauthorised "
 "or unlawful processing and accidental loss (GDPR 5.1.f. 'integrity and "
 "confidentiality')."
 msgstr "  8. Η Wildfire Games διασφαλίζει την επεξεργασία των προσωπικών δεδομένων για την αποτροπή μη εξουσιοδοτημένης ή παράνομης επεξεργασίας και τυχαίας απώλειας (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.f. 'ακεραιότητα και εμπιστευτικότητα')."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:73
+#: gui/prelobby/common/terms/Privacy_Policy.txt:74
 msgid ""
 " 9. Wildfire Games informs users of their right to access, to rectify, to "
 "erase personal data and the right to restrict, to withdraw consent to, to "
@@ -1009,39 +1015,39 @@ msgid ""
 "authority (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
 msgstr "9. Η Wildfire Games ενημερώνει τους χρήστες για τα δικαίωμά τους, να έχουν πρόσβαση, να διορθώσουν, να διαγράψουν προσωπικά δεδομένα και να τα περιορίσουν, να αποσύρουν τη συγκατάθεσή τους, να αντιταχθούν στην επεξεργασία προσωπικών δεδομένων και να υποβάλλουν καταγγελίες σε μια εποπτική αρχή (Γενικός Κανονισμός για την Προστασία Δεδομένων 13.2.b, ΓΚΠΔ 13.2.c, ΓΚΠΔ 13.2.d)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:74
+#: gui/prelobby/common/terms/Privacy_Policy.txt:75
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
 msgstr "10. Η Wildfire Games διευκολύνει την άσκηση των δικαιωμάτων του χρήστη όπου είναι δυνατόν (Γενικός Κανονισμός για την Προστασία Δεδομένων 12.2), χωρίς αδικαιολόγητη καθυστέρηση (ΓΚΠΔ 12.3)."
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:75
-msgid ""
-"12. Wildfire Games informs the users that to exercise their rights, users "
-"might need to provide additional information to identify the natural person "
-"or the data (GDPR 12.6, GDPR 13.2.e)."
-msgstr "12. Η Wildfire Games ενημερώνει τους χρήστες ότι για να ασκήσουν τα δικαιώματά τους, οι χρήστες ενδέχεται να χρειαστεί να παράσχουν πρόσθετες πληροφορίες για τον προσδιορισμό του φυσικού προσώπου ή των δεδομένων (Γενικός Κανονισμός για την Προστασία Δεδομένων 12.6, ΓΚΠΔ 13.2.e)."
-
 #: gui/prelobby/common/terms/Privacy_Policy.txt:76
 msgid ""
-"13. Wildfire Games will not knowingly collect personal data from children "
-"under the age of 13 (Children's Online Privacy Protection Act). If you "
-"believe Wildfire Games received any personal data from or about a child "
-"under 13, please contact Wildfire Games."
-msgstr "13. Η Wildfire Games δεν θα συλλέγει συνειδητά δεδομένα προσωπικού χαρακτήρα από παιδιά ηλικίας κάτω των 13 ετών (Νόμος για την προστασία της ιδιωτικής ζωής των παιδιών στο διαδίκτυο). Εάν πιστεύετε ότι η Wildfire Games έλαβε προσωπικά δεδομένα από ή για ένα παιδί κάτω των 13 ετών, παρακαλούμε επικοινωνήστε με τη Wildfire Games."
+"11. Wildfire Games informs the users that to exercise their rights, users "
+"might need to provide additional information to identify the natural person "
+"or the data (GDPR 12.6, GDPR 13.2.e)."
+msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:77
 msgid ""
-"14. Where Wildfire Games processes sensitive personal data based on "
+"12. Wildfire Games will not knowingly collect personal data from children "
+"under the age of 13 (Children's Online Privacy Protection Act). If you "
+"believe Wildfire Games received any personal data from or about a child "
+"under 13, please contact Wildfire Games."
+msgstr ""
+
+#: gui/prelobby/common/terms/Privacy_Policy.txt:78
+msgid ""
+"13. Where Wildfire Games processes sensitive personal data based on "
 "legitimate interests, Wildfire Games considers performing, recording and "
 "periodically reviewing Legitimate Interests Assessments and Data Protection "
 "Impact Assessments (GDPR 35) to become confident that the individual's "
 "interests do not override Wildfire Games legitimate interests, and that "
 "Wildfire Games is not using personal data in intrusive ways unless there is "
 "a very good reason to."
-msgstr "14. Όταν η Wildfire Games επεξεργάζεται ευαίσθητα προσωπικά δεδομένα βασισμένα σε νόμιμα συμφέροντα, η Wildfire Games εξετάζει, καταγράφει και περιοδικά αναθεωρεί τα Νόμιμα Συμφέροντα και την Αξιολόγηση των Επιπτώσεων στην Προστασία Δεδομένων (Γενικός Κανονισμός για την Προστασία Δεδομένων 35) για να βεβαιωθεί ότι τα συμφέροντα του ατόμου δεν υπερισχύουν των νόμιμων συμφερόντων της Wildfire Games και ότι η Wildfire Games δεν χρησιμοποιεί τα προσωπικά δεδομένα με παρεμβατικούς τρόπους εκτός αν υπάρχει ένας πολύ καλός λόγος."
+msgstr ""
 
-#: gui/prelobby/common/terms/Privacy_Policy.txt:79
+#: gui/prelobby/common/terms/Privacy_Policy.txt:80
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
@@ -1063,10 +1069,10 @@ msgstr "Το Λόμπι Πολλών Παιχτών του 0 A.D. η Άνοδο�
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
-"Due to the subject matter of historic warfare, description and depcition of "
+"Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr "Λόγω του περιεχομένου του ιστορικού πολέμου, της περιγραφής και της απομάκρυνσης της βίας και της γλώσσας στο Λόμπι Πολλών Παικτών, το 0 A.D. και το Λόμπι για Πολλούς Παίκτες δεν απευθύνεται σε μικρά παιδιά (Νόμος για την προστασία της ιδιωτικής ζωής των παιδιών στο διαδίκτυο §312.2)."
+msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
