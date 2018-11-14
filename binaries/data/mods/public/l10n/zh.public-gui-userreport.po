@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2018-10-17 22:44+0200\n"
+"POT-Creation-Date: 2018-11-06 16:32+0100\n"
 "PO-Revision-Date: 2018-10-14 18:34+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>, 2018\n"
 "Language-Team: Chinese (https://www.transifex.com/wildfire-games/teams/17418/zh/)\n"
@@ -188,35 +188,39 @@ msgstr ""
 "Games。"
 
 #: gui/userreport/Terms_and_Conditions.txt:37
+msgid "    To exercise any user right, please refer to this contact."
+msgstr "    行使权利的依据，参阅此文档。"
+
+#: gui/userreport/Terms_and_Conditions.txt:38
 msgid ""
 " 2. Right of access to UserReport data concerning him or her (GDPR 15)."
 msgstr " 2.访问与TA有关的“用户报告”数据的权利（GDPR 15）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:38
+#: gui/userreport/Terms_and_Conditions.txt:39
 msgid ""
 "    The UserID pseudonym can be found in the user.cfg file of the "
 "configuration folder of 0 A.D."
 msgstr "    用户ID的替代昵称可以在0 A.D的配置文件夹里的user.cfg中找到。"
 
-#: gui/userreport/Terms_and_Conditions.txt:39
+#: gui/userreport/Terms_and_Conditions.txt:40
 msgid "    The current configuration folder is %(configPath)s."
 msgstr "    当前配置文件夹是 %(configPath)s 。"
 
-#: gui/userreport/Terms_and_Conditions.txt:40
+#: gui/userreport/Terms_and_Conditions.txt:41
 msgid ""
 "    The user obtains a machine-readable and human-readable copy of the "
 "UserReport data in the logs folder of 0 A.D. (GDPR 20)."
 msgstr "    用户可在0 A.D.（GDPR 20）的logs文件夹中获取“用户报告”数据的副本。"
 
-#: gui/userreport/Terms_and_Conditions.txt:41
+#: gui/userreport/Terms_and_Conditions.txt:42
 msgid "    The data can be reviewed before the UserReporter is enabled."
 msgstr "    在启用“用户报告”之前，可以查看数据。"
 
-#: gui/userreport/Terms_and_Conditions.txt:42
+#: gui/userreport/Terms_and_Conditions.txt:43
 msgid "    The current logfolder is %(logPath)s."
 msgstr "    当前的日志文件夹是 ％（logPath）s。"
 
-#: gui/userreport/Terms_and_Conditions.txt:43
+#: gui/userreport/Terms_and_Conditions.txt:44
 msgid ""
 "    If you wish to access further UserReport data, contact Wildfire Games "
 "and provide your UserID pseudonym (GDPR 11). Only with that we may identify "
@@ -225,16 +229,16 @@ msgstr ""
 "    如果您想进一步访问“用户报告”数据，请联系Wildfire Games并提供您的用户ID（GDPR 11）。 "
 "这样我们才能识别你的数据和处理请求（GDPR 13.2.e）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:44
+#: gui/userreport/Terms_and_Conditions.txt:45
 msgid ""
 "    Data may be obtained in a portable, machine-readable format (GDPR 20)."
 msgstr "    可以以便携式机器可读格式（GDPR 20）获得数据。"
 
-#: gui/userreport/Terms_and_Conditions.txt:45
+#: gui/userreport/Terms_and_Conditions.txt:46
 msgid " 3. Right to rectification of inaccurate UserReport data (GDPR 16)."
 msgstr " 3.有权对错误的“用户报告”数据纠错（GDPR 16）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:46
+#: gui/userreport/Terms_and_Conditions.txt:47
 msgid ""
 " 4. Right to erasure of your UserReports if they are not relevant to the "
 "development of 0 A.D., if the data was processed unlawfully or if the user "
@@ -242,48 +246,48 @@ msgid ""
 msgstr ""
 " 4.如果“用户报告”与0 A.D.的开发无关，或者数据是非法处理的，及用户反对处理并具有压倒一切的合法理由（GDPR 17），则有权擦除。"
 
-#: gui/userreport/Terms_and_Conditions.txt:47
+#: gui/userreport/Terms_and_Conditions.txt:48
 msgid ""
 " 5. Right to restriction of processing of UserReports if the accuracy of the"
 " data is contested by the user, if the data was processed unlawfully or if "
 "the user requires the data for a legal claim (GDPR 18)."
 msgstr " 5.如果用户质疑数据的准确性，数据是非法处理的，或者用户是否需要合法索赔的数据（GDPR 18），则限制“用户报告”处理的权利。"
 
-#: gui/userreport/Terms_and_Conditions.txt:48
+#: gui/userreport/Terms_and_Conditions.txt:49
 msgid ""
 " 6. Right to object to the processing of UserReports concerning him or her "
 "on grounds relating to their particular situation (GDPR 21)."
 msgstr "6.有权以特定理由来反对处理与TA有关的“用户报告”（GDPR 21）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:49
+#: gui/userreport/Terms_and_Conditions.txt:50
 msgid ""
 " 7. Right to lodge a complaint with a supervisory authority (GDPR 13.2.d, "
 "GDPR 77)."
 msgstr " 7.向监管机构提出申诉的权利（GDPR 13.2.d，GDPR 77）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:50
+#: gui/userreport/Terms_and_Conditions.txt:51
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
 msgstr "未收到请求，或请求未被回应"
 
-#: gui/userreport/Terms_and_Conditions.txt:52
+#: gui/userreport/Terms_and_Conditions.txt:53
 msgid "[font=\"sans-bold-14\"]Legal grounds of processing (GDPR 13.1.c):[/font]"
 msgstr "[font=\"sans-bold-14\"]处理的法律依据(GDPR 13.1.c):[font=\"sans-bold-14\"]"
 
-#: gui/userreport/Terms_and_Conditions.txt:53
+#: gui/userreport/Terms_and_Conditions.txt:54
 msgid ""
 " 1. The processing is necessary for the performance of the service defined "
 "in this document (GDPR 6.1.b)."
 msgstr " 1.对于本文档定义的服务，必要时将处理执行（GDPR 6.1.b）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:54
+#: gui/userreport/Terms_and_Conditions.txt:55
 msgid ""
 " 2. Wildfire Games has legitimate interests in the development of 0 A.D and "
 "protection against cyberattacks (GDPR 6.1.f)."
 msgstr " 2. Wildfire Games在开发0 A.D和防范网络攻击方面，拥有合法权益（GDPR 6.1.f）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:55
+#: gui/userreport/Terms_and_Conditions.txt:56
 msgid ""
 " 3. Wildfire Games does not process any further data for the UserReporter "
 "and does not ask for consent to further data processing (GDPR 6.1.a, GDPR 7,"
@@ -292,31 +296,31 @@ msgstr ""
 " 3. Wildfire Games不会为“用户报告”处理任何进一步的数据，也不会要求同意进行进一步的数据处理（GDPR 6.1.a，GDPR "
 "7，GDPR 8，GDPR 13.2.c）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:57
+#: gui/userreport/Terms_and_Conditions.txt:58
 msgid ""
 "[font=\"sans-bold-14\"]Wildfire Games obligations (GDPR 5, GDPR 13):[/font]"
 msgstr "[font=\"sans-bold-14\"]Wildfire Games 的义务 (GDPR 5, GDPR 13):[/font]"
 
-#: gui/userreport/Terms_and_Conditions.txt:58
+#: gui/userreport/Terms_and_Conditions.txt:59
 msgid ""
 " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 "
 "\"accountability\")."
 msgstr " 1. Wildfire Games行为符合GDPR（GDPR 5.2“问责机制”）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:59
+#: gui/userreport/Terms_and_Conditions.txt:60
 msgid ""
 " 2. Wildfire Games documents their processing activities appropriately, in "
 "particular the categories of processed personal data and security measures "
 "to protect it (GDPR 30)."
 msgstr " 2. 适当情况下，Wildfire Games会记录处理活动，特别是个人数据类别和安全措施保护（GDPR 30）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:60
+#: gui/userreport/Terms_and_Conditions.txt:61
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
 msgstr " 3.Wildfire Games在合法、公平、透明的原则下，处理个人数据（GDPR 5.1.a，GDPR 12.1）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:61
+#: gui/userreport/Terms_and_Conditions.txt:62
 msgid ""
 " 4. Wildfire Games informs users of the purposes, legal grounds, legitimate "
 "interests and retention periods of personal data processing at the time it "
@@ -328,33 +332,33 @@ msgstr ""
 "Games向“用户通知”处理个人数据时，目的、法律依据、合法利益和保留期、个人数据的接收者以及适用的个人数据，会传输到第三房和自动决策（GDPR "
 "13.1） .cf，GDPR 13.2.a，GDPR 13.2.e，GDPR 13.2.f，GDPR 15.1，GDPR 15.4）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:62
+#: gui/userreport/Terms_and_Conditions.txt:63
 msgid ""
 " 5. Wildfire Games does not processes personal data for purposes other than "
 "the specified ones (GDPR 5.1.b, \"purpose limitation\", GDPR 13.3)."
 msgstr " 5. Wildfire Games不会为目的以外处理个人数据（GDPR 5.1.b，“目的限制”，GDPR 13.3）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:63
+#: gui/userreport/Terms_and_Conditions.txt:64
 msgid ""
 " 6. Wildfire Games does not process personal data that is not neeeded for "
 "the specified purposes (GDPR 5.1.c, \"data minimisation\")."
 msgstr " 6. Wildfire Games 不会为特殊目的获取个人信息。（GDPR 5.1.c，“数据最小化”）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:64
+#: gui/userreport/Terms_and_Conditions.txt:65
 msgid ""
 " 7. Wildfire Games uses a storage form that does not allow identification of"
 " natural persons for longer than necessary (GDPR 5.1.e \"storage "
 "limitation\")."
 msgstr " 7.Wildfire Games使用的存储形式不允许超时识别(GDPR 5.1.e “储存限制”)."
 
-#: gui/userreport/Terms_and_Conditions.txt:65
+#: gui/userreport/Terms_and_Conditions.txt:66
 msgid ""
 " 8. Wildfire Games secures personal data processing to prevent unauthorised "
 "or unlawful processing and accidental loss (GDPR 5.1.f. \"integrity and "
 "confidentiality\")."
 msgstr " 8. Wildfire Games保护个人数据处理，以防止未经授权或非法处理和意外丢失（GDPR 5.1.f.“完整性和机密性”）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:66
+#: gui/userreport/Terms_and_Conditions.txt:67
 msgid ""
 " 9. Wildfire Games informs users of their right to access, to rectify, to "
 "erase personal data and the right to restrict, to withdraw consent to, to "
@@ -364,13 +368,13 @@ msgstr ""
 " 9. Wildfire Games告知用户他们有权访问，纠正，删除个人数据以及限制，撤销同意，反对个人数据处理和向监管机构投诉的权利（GDPR "
 "13.2.b，GDPR 13.2。 c，GDPR 13.2.d）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:67
+#: gui/userreport/Terms_and_Conditions.txt:68
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
 msgstr "10. Wildfire Games应有助于尽可能行使用户权利（GDPR 12.2），不得无故拖延（GDPR 12.3）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:68
+#: gui/userreport/Terms_and_Conditions.txt:69
 msgid ""
 "12. Wildfire Games informs the users that to exercise their rights, users "
 "might need to provide additional information to identify the natural person "
@@ -379,41 +383,41 @@ msgstr ""
 " 12. Wildfire Games告知用户，为了行使其权利，用户可能需要提供额外信息以识别自然人或数据（GDPR 12.6，GDPR "
 "13.2.e）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:70
+#: gui/userreport/Terms_and_Conditions.txt:71
 msgid "The minimum age to use the service is 13."
 msgstr "需年满13周岁。"
 
-#: gui/userreport/Terms_and_Conditions.txt:71
+#: gui/userreport/Terms_and_Conditions.txt:72
 msgid ""
 "Wildfire Games will not knowingly collect personal data from children under "
 "this age (Children's Online Privacy Protection Act)."
 msgstr "Wildfire Games不会故意收集这个年龄段儿童的个人数据（儿童在线隐私保护法）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:72
+#: gui/userreport/Terms_and_Conditions.txt:73
 msgid ""
 "If you believe Wildfire Games might have any personal data from or about a "
 "child under 13, please contact Wildfire Games."
 msgstr "如果您认为 Wildfire Games 可能涉及13岁以下儿童的个人资料，请联系Wildfire Games。"
 
-#: gui/userreport/Terms_and_Conditions.txt:74
+#: gui/userreport/Terms_and_Conditions.txt:75
 msgid ""
 "Wildfire Games obtains all UserReport data exclusively from the user (GDPR "
 "14)."
 msgstr "Wildfire Games专门从用户（GDPR 14）获取所有“用户报告”数据。"
 
-#: gui/userreport/Terms_and_Conditions.txt:75
+#: gui/userreport/Terms_and_Conditions.txt:76
 msgid ""
 "Wildfire Games does not perform any automated decision making affecting "
 "natural persons (GDPR 22)."
 msgstr "Wildfire Games不会影响自然人的任何自动决策（GDPR 22）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:77
+#: gui/userreport/Terms_and_Conditions.txt:78
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
 msgstr "若部分条款被认定为非法或不可执行，其余条款仍然适用（“可分割性”）。"
 
-#: gui/userreport/Terms_and_Conditions.txt:79
+#: gui/userreport/Terms_and_Conditions.txt:80
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"

@@ -196,7 +196,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-ipv6 --with-darwinssl --without-gssapi --without-libmetalink --without-librtmp --without-libssh2 --without-nss --without-polarssl --without-spnego --disable-ares --disable-ldap --disable-ldaps --without-libidn2 --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libcurl build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-ipv6 --with-darwinssl --without-gssapi --without-libmetalink --without-libpsl --without-librtmp --without-libssh2 --without-nss --without-polarssl --without-spnego --disable-ares --disable-ldap --disable-ldaps --without-libidn2 --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libcurl build failed"
   popd
   touch .already-built
 else
@@ -516,7 +516,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY/nspr
 
-  (CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" ./configure --prefix="$NSPR_DIR" && make ${JOBS} && make install) || die "NSPR build failed"
+  (CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" ./configure --prefix="$NSPR_DIR" --enable-64bit && make ${JOBS} && make install) || die "NSPR build failed"
   popd
   # TODO: how can we not build the dylibs?
   rm -f lib/*.dylib

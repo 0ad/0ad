@@ -211,7 +211,7 @@ PlistBuddy -c "Add :CFBundleDevelopmentRegion string English" ${INFO_PLIST}
 PlistBuddy -c "Add :CFBundleInfoDictionaryVersion string 6.0" ${INFO_PLIST}
 PlistBuddy -c "Add :CFBundleIconFile string 0ad" ${INFO_PLIST}
 PlistBuddy -c "Add :LSMinimumSystemVersion string ${BUNDLE_MIN_OSX_VERSION}" ${INFO_PLIST}
-PlistBuddy -c "Add :NSHumanReadableCopyright string Copyright © 2015 Wildfire Games" ${INFO_PLIST}
+PlistBuddy -c "Add :NSHumanReadableCopyright string Copyright © $(date +%Y) Wildfire Games" ${INFO_PLIST}
 
 # TODO: Automatically create compressed DMG with hdiutil?
 # (this is a bit complicated so I do it manually for now)

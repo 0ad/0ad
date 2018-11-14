@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-07 09:02+0100\n"
-"PO-Revision-Date: 2018-11-06 11:29+0000\n"
+"PO-Revision-Date: 2018-11-08 10:53+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -164,7 +164,7 @@ msgstr "狄摩西尼"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "雅典战船可生产陆战队员."
+msgstr "雅典战船可生产海军陆战队。"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
@@ -250,7 +250,7 @@ msgstr "剧院"
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr "希腊化的文明奖励。建造剧院以使所有建筑物的领土影响范围增加 25%。"
+msgstr "希腊化的文明奖励。建造剧院，则所有建筑物的领土影响范围 +25%。"
 
 #: simulation/data/civs/athen.jsonStructures[0].History
 #: simulation/data/civs/mace.jsonStructures[0].History
@@ -263,7 +263,7 @@ msgstr "古希腊戏剧院是众多戏剧家为大众上演精彩戏剧的地方
 
 #: simulation/data/civs/athen.jsonStructures[1].Name
 msgid "Gymnasion"
-msgstr "体育馆 "
+msgstr "运动场"
 
 #: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
@@ -278,7 +278,7 @@ msgstr "在古希腊的城邦中，体育馆是个重要的设施。在那里可
 
 #: simulation/data/civs/athen.jsonStructures[2].Name
 msgid "Prytaneion"
-msgstr "市政厅"
+msgstr "会议室"
 
 #: simulation/data/civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
@@ -288,7 +288,7 @@ msgstr "训练英雄和研究英雄的技能"
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
-msgstr "市政厅是长老们进餐和决策的地方"
+msgstr "会议室是长老们进餐和决策的地方"
 
 #: simulation/data/civs/athen.jsonHistory
 msgid ""
@@ -977,7 +977,7 @@ msgstr "每圈养一只动物，生产骑兵时，会-5%的资源耗费。"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
-msgstr "萨卡迪 索尔达多？"
+msgstr "萨卡迪 索尔达多"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].History
 msgid ""
@@ -1039,7 +1039,7 @@ msgstr "Tautalus"
 msgid ""
 "Causes targets struck to become inflamed and lose hitpoints at a constant "
 "rate until and if either healed or repaired, as appropriate."
-msgstr "导致目标发炎，以恒定的速度消耗体力直到治愈或修复，酌情而定。"
+msgstr "目标起火，以恒定的速度消耗体力直到治愈或修复，酌情而定。"
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
@@ -1260,7 +1260,7 @@ msgstr "城镇中心、神庙、金字塔和奇观： +50 HP，-50%建造时间�
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
-msgstr "允许训练精英治疗师"
+msgstr "允许训练精锐治疗师"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "High Priest of Amun"
@@ -1274,7 +1274,7 @@ msgstr "大祭司亲自指导你的祭司——愿阿蒙赐福于他。"
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
 msgid "Nastasen"
-msgstr "纳斯塔森王"
+msgstr "纳斯塔森"
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
 msgid "Arakamani"
@@ -1516,7 +1516,7 @@ msgstr "城镇中心生命值 +100% ，箭矢攻击加倍。"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Name
 msgid "Hellenistic Metropolises"
-msgstr "希腊化的大都市"
+msgstr "希腊化都市"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[2].History
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].History
@@ -1538,7 +1538,7 @@ msgstr "马其顿王国(公元前359-前336)的国王，他进行了庞大的货
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[0].Name
 msgid "Philip II of Macedon"
-msgstr "马其顿国王腓力二世"
+msgstr "腓力二世"
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1645,11 +1645,11 @@ msgstr "孔雀王朝涵盖了数十个原先独立的王国,面积约有五百�
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "The Mauryans enjoy access to 4 champions."
-msgstr "孔雀王朝人可以进入的4个胜利"
+msgstr "印度孔雀王朝可以获得四个冠军单位。"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
-msgstr "刹帝利武士种姓"
+msgstr "刹帝利武士"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1657,7 +1657,7 @@ msgid ""
 "orders) in Hinduism. Traditionally Kshatriya constitute the military and "
 "ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
 "Laws of Manu."
-msgstr "刹帝利或 Kashtriya,意思是战士,是四个印度教种姓(社会阶级)其中之一。传统上来说,刹帝利在印度教社会系统中构成了军队及统治阶级的精英,在吠陀经及摩奴法典中所描述。"
+msgstr "刹帝利或 Kashtriya,意思是战士,是四个印度教种姓(社会阶级)其中之一。传统上来说,刹帝利在印度教社会系统中构成了军队及统治阶级的精锐,在吠陀经及摩奴法典中所描述。"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied temples and temple technologies -50% cost and research time."
@@ -1740,7 +1740,7 @@ msgstr "印度是弓箭之地。绝大多数的印度军队是由技术高超的
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
-msgstr "孔雀帝国创建者"
+msgstr "孔雀帝国创建者。"
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
@@ -1766,7 +1766,7 @@ msgstr "象厩"
 msgid ""
 "Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
 "champion War Elephant at the City phase."
-msgstr "在乡镇阶段训练战象射手级大象工人,然后在城市阶段时加入精英战象。"
+msgstr "在乡镇阶段训练战象射手级大象工人,然后在城市阶段时加入精锐战象。"
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1831,11 +1831,11 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "由于阿契美尼德帝国的庞大规模及其组织结构，波斯人在战争期间内能在短时间里征召大量的步兵，而他们的确也这么做了。尽管波斯步兵总体来讲训练有素而且意志坚定，但是他们缺乏肉搏战的经验。而且，除少数精英部队以外，波斯步兵不是职业的常备军。"
+msgstr "由于阿契美尼德帝国的庞大规模及其组织结构，波斯人在战争期间内能在短时间里征召大量的步兵，而他们的确也这么做了。尽管波斯步兵总体来讲训练有素而且意志坚定，但是他们缺乏肉搏战的经验。而且，除少数精锐部队以外，波斯步兵不是职业的常备军。"
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "所有盟友的陆路商人收入 +15%。"
+msgstr "所有盟友的陆路商人收入 +15% 。"
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1952,13 +1952,13 @@ msgstr "骑兵+25% 的生命值， +10%的训练时间。"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Name
 msgid "Nisean War Horses"
-msgstr "尼森战马"
+msgstr "尼西亚战马"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Persian cavalry."
-msgstr "尼森马匹漂亮又强大，可增加波斯骑兵的生命值。"
+msgstr "尼西亚马匹漂亮又强大，可增加波斯骑兵的生命值。"
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2006,7 +2006,7 @@ msgstr "波斯帝国的精锐部队为东方骑兵。"
 
 #: simulation/data/civs/pers.jsonStructures[1].Name
 msgid "Apadana"
-msgstr "阿波陀那"
+msgstr "王宫"
 
 #: simulation/data/civs/pers.jsonStructures[1].Special
 msgid ""
@@ -2095,7 +2095,7 @@ msgstr "埃及是粮食出口国，许多大城市如雅典、安提阿和罗马
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
-msgstr "托勒密一世（救主）"
+msgstr "托勒密一世-救主"
 
 #: simulation/data/civs/ptol.jsonAINames[1]
 msgid "Ptolemy Philadelphus"
@@ -2317,7 +2317,7 @@ msgstr "-20％的同盟步兵训练时间。"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
-msgstr "征兵"
+msgstr "募兵"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
@@ -2507,7 +2507,7 @@ msgstr "殖民"
 msgid ""
 "Choose between Traditional Army and Reform Army technologies that unlock "
 "different Champions."
-msgstr "在传统军队及革新军队科技中选择，这将会解锁不同的精英单位。"
+msgstr "在传统军队及革新军队科技中选择，这将会解锁不同的精锐单位。"
 
 #: simulation/data/civs/sele.jsonCivBonuses[1].History
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].History
@@ -2519,11 +2519,11 @@ msgid ""
 " the cavalry arm. War with the Romans from the West and invasions from the "
 "Galatians also forced the Seleucids to reform their infantry regiments to be"
 " more flexible."
-msgstr "塞琉古及更确切的说是继业者战争在第3 世纪及第2 世纪中逐渐的推展。与东方的新起之秀，像是帕提亚，及经常发生反抗的总督辖地，像是巴克特里亚，接触，导致了塞琉古改革其军队并改变战术，特别是骑兵所使用的武器。与其西方的罗马人的战争，及加拉太人的入侵，也迫使塞琉古改革其步兵军团，使其更灵活。"
+msgstr "在继业者战争中，塞琉古逐步向东发展。并与东方的新起之秀如如帕提亚接壤。就像在巴克特里亚，经常发生叛乱，促使塞琉古改变战术，特别是改进骑兵武器。其后与西方的罗马人的战争，及加反抗拉太人的入侵，都迫使塞琉古改革步兵军团，以适应灵活作战。"
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civic Centers are 20% cheaper."
-msgstr "盟国市民中心便宜20%"
+msgstr "同盟市政中心花费 -20% 。"
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2618,7 +2618,7 @@ msgstr "安条克九世（敬神者）"
 
 #: simulation/data/civs/sele.jsonAINames[21]
 msgid "Seleucus VI Epiphanes"
-msgstr "塞琉古王朝 塞琉古六世（神选的·胜利者） "
+msgstr "塞琉古六世-神选的·胜利者"
 
 #: simulation/data/civs/sele.jsonAINames[22]
 msgid "Antiochus X Eusebes"
@@ -2660,12 +2660,12 @@ msgstr "传统军队解锁银盾兵及长柄刀双轮战车，革新军队解锁
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
 msgid "Traditional Army vs. Reform Army"
-msgstr "传统军队 vs. 革新军队"
+msgstr "军队传统化 vs. 革新军队"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr "一次性从孔雀王朝帝国购买的 20 只大象"
+msgstr "一次性从孔雀王朝购买的 20 只大象"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Marriage Alliance"
@@ -2745,7 +2745,7 @@ msgstr "马其顿-希腊王朝统治着先前亚历山大的帝国的东部。"
 
 #: simulation/data/civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry units except Citizen-Militia Cavalry."
-msgstr "训练所有除了骑兵民兵以外的单位。"
+msgstr "训练除骑兵民兵以外的所有单位。"
 
 #: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
@@ -2840,7 +2840,7 @@ msgstr "狄耶涅科斯"
 #: simulation/data/civs/spart.jsonAINames[2]
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[1].Name
 msgid "Brasidas"
-msgstr "伯拉西达"
+msgstr "布拉西达斯"
 
 #: simulation/data/civs/spart.jsonAINames[3]
 msgid "Agis"

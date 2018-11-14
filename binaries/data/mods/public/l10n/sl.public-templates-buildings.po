@@ -5,6 +5,7 @@
 # Translators:
 # Miha <miha.kosi@amis.net>, 2014
 # 1ead4807b8106c37108958c0e46029f8, 2018
+# Pier Paolo Pasolini <pppasolini.boa@gmail.com>, 2018
 # Rok Kepa <rokkepa@gmail.com>, 2014
 # sda das <mazprodaja@gmail.com>, 2017
 # Tilen Nosan <tilenn@gmail.com>, 2015,2017
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-09-26 17:05+0000\n"
-"Last-Translator: 1ead4807b8106c37108958c0e46029f8\n"
+"PO-Revision-Date: 2018-11-07 17:42+0000\n"
+"Last-Translator: Pier Paolo Pasolini <pppasolini.boa@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -146,7 +147,7 @@ msgstr "Stražni stolp"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr ""
+msgstr "Strelja puščice. Naseliti za dodatno obrambo. Potrebuje razvoj strelnih lin za zaščito temeljev. Mogoče nadgraditi v kamniti stolp."
 
 #: simulation/templates/template_structure_defense_tower_sentry.xml:58
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -160,7 +161,7 @@ msgstr "Obrambni stolp"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr ""
+msgstr "Strelja puščice. Naseliti za dodatno obrambo. Potrebuje razvoj strelnih lin za zaščito temeljev. "
 
 #: simulation/templates/template_structure_defense_tower_stone.xml:32
 msgid "StoneTower"
@@ -269,7 +270,7 @@ msgstr "Vojašnica"
 
 #: simulation/templates/template_structure_military_barracks_range.xml:7
 msgid "Archery Range"
-msgstr ""
+msgstr "Lokostrelski doseg"
 
 #: simulation/templates/template_structure_military_barracks_range.xml:8
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
@@ -323,7 +324,7 @@ msgstr "Mesto"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:36
 msgid "ElephantStables"
-msgstr ""
+msgstr "Slonji hlev"
 
 #: simulation/templates/template_structure_military_embassy.xml:41
 #: simulation/templates/template_structure_military_embassy.xml:42
@@ -350,7 +351,7 @@ msgstr "Pesjak"
 
 #: simulation/templates/template_structure_military_kennel.xml:44
 msgid "Train war dogs."
-msgstr ""
+msgstr "Pasja vzgoja"
 
 #: simulation/templates/template_structure_military_workshop.xml:32
 msgid "Siege Workshop"
@@ -360,7 +361,7 @@ msgstr "Oblegovalna delavnica."
 msgid ""
 "Build siege engines to destroy your opponents buildings. Research siege "
 "technologies to improve the effectiveness of these weapons."
-msgstr ""
+msgstr "Gradi stroje za obleganje in uniči zgradbe nasprotnikov. Razišči tehnologije obleganja in izboljšaj učinkovitost  tega orožja."
 
 #: simulation/templates/template_structure_military_workshop.xml:36
 msgid "Workshop"
@@ -766,7 +767,7 @@ msgstr "Sestavi ribiške ladje za pridobivanje mesa in trgovske ladje za trgovan
 
 #: simulation/templates/structures/cart_elephant_stables.xml:5
 msgid "Carthaginian Elephant Stables"
-msgstr ""
+msgstr "Kartažanski slonji hlev"
 
 #: simulation/templates/structures/cart_embassy.xml:21
 msgid "Hire mercenaries."
@@ -864,7 +865,7 @@ msgstr "Izuri svečenice za zdravljenje svojih čet. Izuri svete čete kopjaniko
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
-msgstr ""
+msgstr "Žrtveni tempelj"
 
 #: simulation/templates/structures/cart_tophet.xml:23
 msgid "Tophet"
@@ -872,7 +873,7 @@ msgstr "Tofet"
 
 #: simulation/templates/structures/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr ""
+msgstr "Izuči zdravnike in konjenike Svete horde."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1012,7 +1013,7 @@ msgstr "Cancho Roano"
 
 #: simulation/templates/structures/kush_barracks.xml:15
 msgid "pr-ms’yw"
-msgstr ""
+msgstr "pr-ms'yw"
 
 #: simulation/templates/structures/kush_blacksmith.xml:5
 msgid "hmw h’y n r3-‘"
@@ -1021,19 +1022,19 @@ msgstr ""
 #: simulation/templates/structures/kush_blemmye_camp.xml:21
 #: simulation/templates/structures/kush_blemmye_camp.xml:22
 msgid "Blemmye Camp"
-msgstr ""
+msgstr "Blemmyevski tabor"
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:23
 msgid "Train Blemmye Desert Raiders."
-msgstr ""
+msgstr "Izuči blemjevske puščavne jezdece."
 
 #: simulation/templates/structures/kush_civil_centre.xml:9
 msgid "Pr-nsw"
-msgstr ""
+msgstr "Pr-nsw"
 
 #: simulation/templates/structures/kush_corral.xml:9
 msgid "ihy"
-msgstr ""
+msgstr "ihy"
 
 #: simulation/templates/structures/kush_defense_tower.xml:5
 msgid "tsmt ‘3"
@@ -1045,7 +1046,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_elephant_stables.xml:5
 msgid "Kushite Elephant Stables"
-msgstr ""
+msgstr "Kušitski slonji hlevi"
 
 #: simulation/templates/structures/kush_farmstead.xml:9
 msgid "snwt"
@@ -1070,11 +1071,11 @@ msgstr ""
 #: simulation/templates/structures/kush_nuba_village.xml:21
 #: simulation/templates/structures/kush_nuba_village.xml:22
 msgid "Nuba Village"
-msgstr ""
+msgstr "Nubja vas"
 
 #: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr ""
+msgstr "Izuči Nuba paličarje in Nuba lovce."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
@@ -1082,7 +1083,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_pyramid.xml:26
 msgid "Kushite Pyramid"
-msgstr ""
+msgstr "Kušidska piramida"
 
 #: simulation/templates/structures/kush_pyramid.xml:27
 #: simulation/templates/structures/kush_pyramid_large.xml:30
@@ -1097,11 +1098,11 @@ msgstr "Piramida"
 
 #: simulation/templates/structures/kush_pyramid_large.xml:29
 msgid "Large Pyramid"
-msgstr ""
+msgstr "Velika piramida"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:27
 msgid "Small Pyramid"
-msgstr ""
+msgstr "Mala piramida"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:28
 msgid "mr"
@@ -1109,7 +1110,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_range.xml:9
 msgid "Kushite Archery Range"
-msgstr ""
+msgstr "Doseg kušitskih lokostrelcev"
 
 #: simulation/templates/structures/kush_sentry_tower.xml:5
 msgid "tsmt"
@@ -1117,7 +1118,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_shrine.xml:12
 msgid "Shrine"
-msgstr ""
+msgstr "Svetišče"
 
 #: simulation/templates/structures/kush_shrine.xml:13
 msgid "ḥwt-nṯr"
@@ -1125,7 +1126,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_stable.xml:9
 msgid "Kushite Cavalry Stable"
-msgstr ""
+msgstr "Kušitski konjeniški hlev"
 
 #: simulation/templates/structures/kush_storehouse.xml:5
 msgid "wd3t"
@@ -1133,7 +1134,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
-msgstr ""
+msgstr "Apedemakov Tempelj"
 
 #: simulation/templates/structures/kush_temple.xml:9
 msgid "Pr-‘Iprmk"
@@ -1143,11 +1144,11 @@ msgstr ""
 msgid ""
 "Train priests to heal your troops. Train Meroitic Temple Guards. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Izuči duhovnike za zdravljenje tvojih enot. Izuči stražarje meroitiškega templja. Namesti enote, da jih ozdraviš hitreje."
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
-msgstr ""
+msgstr "Amunov Veliki tempelj"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
 msgid "Pr-‘Imn"
@@ -1157,7 +1158,7 @@ msgstr ""
 msgid ""
 "Train priests to heal your troops. Train Napatan Temple Guards and research "
 "unique technologies. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Izuči duhovnike in zdravi svoje enote. Izuči stražarje Napatanovega Templja in razišči posebne tehnologije. Namesti enote, da jih ozdraviš hitreje."
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "’ryt"
@@ -1180,7 +1181,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_workshop.xml:5
 msgid "Kushite Siege Workshop"
-msgstr ""
+msgstr "Kušitska delavnica za obleganje"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"
@@ -1380,7 +1381,7 @@ msgstr "Nāvašta"
 
 #: simulation/templates/structures/pers_elephant_stables.xml:5
 msgid "Persian Elephant Stables"
-msgstr ""
+msgstr "Perzijski slonji hlev"
 
 #: simulation/templates/structures/pers_farmstead.xml:8
 msgid "Kaštašta"
@@ -1512,7 +1513,7 @@ msgstr "ḥwt-n-dpt.w"
 
 #: simulation/templates/structures/ptol_elephant_stables.xml:5
 msgid "Ptolemaic Elephant Stables"
-msgstr ""
+msgstr "Ptolomejski slonji hlev"
 
 #: simulation/templates/structures/ptol_farmstead.xml:17
 msgid "pr-n-t"
@@ -1626,7 +1627,7 @@ msgstr "Castrum Vallum"
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "Gradi na nevtralnem ozemlju. Sestavi orožje za obleganje in izuči državljane-vojake. Počasi zdravi nameščene enote."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1789,7 +1790,7 @@ msgstr "Liménas"
 
 #: simulation/templates/structures/sele_elephant_stables.xml:5
 msgid "Seleucid Elephant Stables"
-msgstr ""
+msgstr "Selevcidski slonji hlev"
 
 #: simulation/templates/structures/sele_farmstead.xml:8
 msgid "Sītobólion"
