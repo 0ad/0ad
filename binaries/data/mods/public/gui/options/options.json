@@ -378,6 +378,12 @@
 		"options":
 		[
 			{
+				"type": "boolean",
+				"label": "TLS Encryption",
+				"tooltip": "Protect login and data exchanged with the lobby server using TLS encryption.",
+				"config": "lobby.tls"
+			},
+			{
 				"type": "number",
 				"label": "Chat Backlog",
 				"tooltip": "Number of backlogged messages to load when joining the lobby.",
