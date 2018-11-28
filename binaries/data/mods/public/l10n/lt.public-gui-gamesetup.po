@@ -5,12 +5,13 @@
 # Translators:
 # Adomas Jackevičius, 2014,2016
 # banginis <asesuarbanesu@gmail.com>, 2014
+# Vytautas, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:16+0200\n"
-"PO-Revision-Date: 2018-10-14 02:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-11-25 13:27+0000\n"
+"Last-Translator: Vytautas\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,37 +40,37 @@ msgstr "Atsitiktinis"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Žaidimui prasidėjus parenka atsitiktinę civilizaciją."
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s nepasiruošęs."
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
-msgstr ""
+msgstr "Aš pasiruošęs"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Pranešti, kad esate pasiruošęs žaisti."
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s pasiruošęs!"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
-msgstr ""
+msgstr "Būkite pasiruošę"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Būkite pasiruošęs, net jeigu pasikeistų žaidimo nustatymai."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
-msgstr ""
+msgstr "Aš nepasiruošęs!"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
@@ -112,12 +113,12 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:173
 msgctxt "map filter"
 msgid "Default"
-msgstr ""
+msgstr "Numatytas"
 
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Visi žemėlapiai išskyrus jūrinius ir demonstracinius."
 
 #: gui/gamesetup/gamesetup.js:180
 msgid "Naval Maps"
@@ -126,7 +127,7 @@ msgstr "Jūriniai žemėlapiai"
 #: gui/gamesetup/gamesetup.js:181
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Žemėlapiai, kuriuose laivai yra būtini norint pasiekti priešininką."
 
 #: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
@@ -135,25 +136,25 @@ msgstr "Demonstraciniai žemėlapiai"
 #: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Šie žemėlapiai skirti ne žaidimui, o demonstracijai."
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
-msgstr ""
+msgstr "Nauji žemėlapiai."
 
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Nauji šios žaidimo laidos žemėlapiai."
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
-msgstr ""
+msgstr "Žemėlapiai su trigeriais"
 
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Žemėlapiai su įvykių scenarijais ir galimai papildomai atsirandančiais priešų vienetais."
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
@@ -162,94 +163,94 @@ msgstr "Visi žemėlapiai"
 #: gui/gamesetup/gamesetup.js:205
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Visi pasirinkto tipo žemėlapiai."
 
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Žemėlapis"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
 msgid "Player"
-msgstr ""
+msgstr "Žaidėjas"
 
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Žaidimo tipas"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
-msgstr ""
+msgstr "Žemėlapio tipas"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
-msgstr ""
+msgstr "Pasirinkite žemėlapio tipą"
 
 #: gui/gamesetup/gamesetup.js:499
 msgid "Map Filter"
-msgstr ""
+msgstr "Žemėlapio filtras"
 
 #: gui/gamesetup/gamesetup.js:500
 msgid "Select a map filter."
-msgstr ""
+msgstr "Pasirinkite žemėlapio filtrą"
 
 #: gui/gamesetup/gamesetup.js:515
 msgid "Select Map"
-msgstr ""
+msgstr "Pasirinkite žemėlapį"
 
 #: gui/gamesetup/gamesetup.js:516
 msgid "Select a map to play on."
-msgstr ""
+msgstr "Pasirinkite, kokiame žemėlapyje norite žaisti."
 
 #: gui/gamesetup/gamesetup.js:530
 msgid "Map Size"
-msgstr ""
+msgstr "Žemėlapio dydis"
 
 #: gui/gamesetup/gamesetup.js:531
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Pasirinkite žemėlapio dydį. (Didesni žemėlapiai gali įtakoti kompiuterio darbo našumą)"
 
 #: gui/gamesetup/gamesetup.js:545
 msgid "Biome"
-msgstr ""
+msgstr "Biomas"
 
 #: gui/gamesetup/gamesetup.js:546
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Pasirinkite augaliją ir gyvūniją."
 
 #: gui/gamesetup/gamesetup.js:561
 msgid "Number of Players"
-msgstr ""
+msgstr "Žaidėjų skaičius"
 
 #: gui/gamesetup/gamesetup.js:562
 msgid "Select number of players."
-msgstr ""
+msgstr "Pasirinkite žaidėjų skaičių."
 
 #: gui/gamesetup/gamesetup.js:582
 msgid "Population Cap"
-msgstr ""
+msgstr "Populiacijos limitas"
 
 #: gui/gamesetup/gamesetup.js:589
 msgid "Select population limit."
-msgstr ""
+msgstr "Pasirinkite populiacijos limitą."
 
 #: gui/gamesetup/gamesetup.js:592
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Įspėjimas: Gali suprastėti kompiuterio darbo našumas, jei visi %(players)s žaidėjai pasieks %(popCap)s populiacijos limitą."
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Starting Resources"
-msgstr ""
+msgstr "Pradiniai ištekliai"
 
 #: gui/gamesetup/gamesetup.js:613
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Pradinių išteklių kiekis: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:616
 msgid "Select the game's starting resources."
@@ -257,42 +258,42 @@ msgstr "Nustatykite resursų kiekius žaidimo pradžioje."
 
 #: gui/gamesetup/gamesetup.js:631
 msgid "Ceasefire"
-msgstr ""
+msgstr "Paliaubos"
 
 #: gui/gamesetup/gamesetup.js:632
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Nustatyti, kiek laiko negalima pulti."
 
 #: gui/gamesetup/gamesetup.js:645
 msgid "Relic Count"
-msgstr ""
+msgstr "Relikvijų skaičius"
 
 #: gui/gamesetup/gamesetup.js:646
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "Bendras žemėlapyje atsirandančių relikvijų kiekis. Pergalė renkant relikvijas labiausiai tikėtina esant vos kelioms relikvijoms. Esant didesniam skaičiui, relikvijų užgrobimas svarbus siekiant gauti naudingą aurą."
 
 #: gui/gamesetup/gamesetup.js:660
 msgid "Relic Duration"
-msgstr ""
+msgstr "Relikvijų trukmė"
 
 #: gui/gamesetup/gamesetup.js:661
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Per kiek minučių žaidėjas pasieks relikvijų pergalę."
 
 #: gui/gamesetup/gamesetup.js:675
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Stebuklų trukmė"
 
 #: gui/gamesetup/gamesetup.js:676
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Per kiek minučių žaidėjas pasieks stebuklų pergalę."
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
-msgstr ""
+msgstr "Žaidimo greitis"
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Select game speed."
@@ -300,116 +301,116 @@ msgstr "Pasirinkite žaidimo greitį."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
-msgstr ""
+msgstr "Sunkumas"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Pasirinkite šio scenarijaus sunkumą."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "Pasirinkite šio žaidėjo civilizaciją"
 
 #: gui/gamesetup/gamesetup.js:839
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Herojų įgula"
 
 #: gui/gamesetup/gamesetup.js:840
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "Pasirinkite ar leisti herojams būti įgula."
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Nomad"
-msgstr ""
+msgstr "Klajoklis"
 
 #: gui/gamesetup/gamesetup.js:853
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "Klajoklio režimą žaidėjai pradeda su vos keliais vienetais ir turi surasti miesto statybai tinkamą vietą. Rekomenduojamos paliaubos."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:866
 msgid "Revealed Map"
-msgstr ""
+msgstr "Atidengtas žemėlapis"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:869
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Pasirinkite žemėlapio atidengimą (matyti viską)."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:885
 msgid "Explored Map"
-msgstr ""
+msgstr "Išžvalgytas žemėlapis"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:888
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Pasirinkti žemėlapio išžvalgymą (matyti pradinį žemėlapį)."
 
 #: gui/gamesetup/gamesetup.js:899
 msgid "Disable Treasures"
-msgstr ""
+msgstr "Panaikinti lobius."
 
 #: gui/gamesetup/gamesetup.js:900
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Panaikinti visus žemėlapyje esančius lobius."
 
 #: gui/gamesetup/gamesetup.js:911
 msgid "Disable Spies"
-msgstr ""
+msgstr "Panaikinti šnipus"
 
 #: gui/gamesetup/gamesetup.js:912
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Neleisti žaidimo metu naudoti šnipų."
 
 #: gui/gamesetup/gamesetup.js:923
 msgid "Teams Locked"
-msgstr ""
+msgstr "Komandos užrakintos"
 
 #: gui/gamesetup/gamesetup.js:924
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "Pasirinkti komandų užrakinimą."
 
 #: gui/gamesetup/gamesetup.js:938
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Iki gyvos galvos"
 
 #: gui/gamesetup/gamesetup.js:939
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Pasirinkti žaisti tol, kol liks tik vienas žaidėjas arba viena sąjungininkų grupė."
 
 #: gui/gamesetup/gamesetup.js:952
 msgid "Cheats"
-msgstr ""
+msgstr "Žaidimo kodai"
 
 #: gui/gamesetup/gamesetup.js:953
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "Pasirinkti žaidimo kodų naudojimą."
 
 #: gui/gamesetup/gamesetup.js:966
 msgid "Rated Game"
-msgstr ""
+msgstr "Reitinguojamas žaidimas"
 
 #: gui/gamesetup/gamesetup.js:967
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Pasirinkti, ar žaidimas bus reitinguojamas ."
 
 #: gui/gamesetup/gamesetup.js:1000
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr ""
+msgstr "Spauskite %(hotkey)s norėdami automatiškai parinkti žaidėjų vardus ar nustatymus."
 
 #: gui/gamesetup/gamesetup.js:1008
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Grįžti į žaidimo kambarį."
 
 #: gui/gamesetup/gamesetup.js:1009
 msgid "Return to the main menu."
@@ -417,44 +418,44 @@ msgstr "Grįžti į pagrindinį meniu."
 
 #: gui/gamesetup/gamesetup.js:1013
 msgid "Start Game!"
-msgstr ""
+msgstr "Pradėti žaidimą!"
 
 #: gui/gamesetup/gamesetup.js:1029
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "Pradėti žaidimą su dabartiniais nustatymais."
 
 #: gui/gamesetup/gamesetup.js:1030
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "Pradėti žaidimą su dabartiniais nustatymais (išjungtas kol visi žaidėjai nebus pasiruošę)"
 
 #: gui/gamesetup/gamesetup.js:1042
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Rodyti istoriją / statinių medį\nPaspaudus bus atvertas paskiausias."
 
 #: gui/gamesetup/gamesetup.js:1107
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Konfigūruoti DI: %(description)s."
 
 #: gui/gamesetup/gamesetup.js:1398
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Perjungti %(name)s nustatymų kortelę."
 
 #: gui/gamesetup/gamesetup.js:1399
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Spauskite %(hotkey)s norėdami nustatymų kortelę paslinkti žemyn."
 
 #: gui/gamesetup/gamesetup.js:1400
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Spauskite %(hotkey)s norėdami nustatymų kortelę paslinkti į viršų."
 
 #: gui/gamesetup/gamesetup.js:1745
 msgctxt "map selection"
@@ -463,22 +464,22 @@ msgstr "Atsitiktinis"
 
 #: gui/gamesetup/gamesetup.js:1747
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Atsitiktiniu būdu pasirinkti vieną iš pateiktų žemėlapių."
 
 #: gui/gamesetup/gamesetup.js:1779
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Atsitiktinis"
 
 #: gui/gamesetup/gamesetup.js:1780
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Atsitiktiniu būdu pasirinkti biomą."
 
 #: gui/gamesetup/gamesetup.js:2118
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2123
 msgctxt "settings value"
@@ -496,17 +497,17 @@ msgstr "Ne"
 #: gui/gamesetup/gamesetup.js:2160
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2248
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:2453
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr ""
+msgstr "DI: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:2461
 msgid "Unassigned"
@@ -515,25 +516,25 @@ msgstr "Nepriskirtas"
 #: gui/gamesetup/gamesetup.js:2537
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:2544
 msgid "Unknown Player"
-msgstr ""
+msgstr "Nežinomas žaidėjas"
 
 #: gui/gamesetup/gamesetup.js:2583
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:2584
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:2585
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -559,7 +560,7 @@ msgstr "DI Stiprumas:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "DI elgsena:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 msgid "Cancel"
@@ -571,7 +572,7 @@ msgstr "Gerai"
 
 #: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Match Setup"
-msgstr ""
+msgstr "Mačo konfigūracija"
 
 #: gui/gamesetup/gamesetup.xml:(caption):34
 msgid "Loading"
@@ -579,7 +580,7 @@ msgstr "Kraunasi"
 
 #: gui/gamesetup/gamesetup.xml:(caption):38
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Įkeliami žemėlapio duomenys. Prašome palaukti..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Player Name"
@@ -587,7 +588,7 @@ msgstr "Žaidėjo Vardas"
 
 #: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Color"
-msgstr ""
+msgstr "Spalva"
 
 #: gui/gamesetup/gamesetup.xml:(caption):66
 msgid "Player Placement"
@@ -603,7 +604,7 @@ msgstr "Komanda"
 
 #: gui/gamesetup/gamesetup.xml:(caption):131
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Ateityje rodyti šią žinutę"
 
 #: gui/gamesetup/gamesetup.xml:(caption):220
 msgid "Send"
@@ -611,7 +612,7 @@ msgstr "Siųsti"
 
 #: gui/gamesetup/gamesetup.xml:(caption):237
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Žaidimų kodai įjungti"
 
 #: gui/gamesetup/gamesetup.xml:(caption):260
 msgid "Back"
@@ -620,15 +621,15 @@ msgstr "Grįžti"
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "Pakeisti pasirinktas civilizacijas numatytomis (atsitiktinai)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Pakeisti visas komandas numatytomis."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
-msgstr ""
+msgstr "Pasirinkite spalvą."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
@@ -636,11 +637,11 @@ msgstr "Pažymėti žaidėją."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):118
 msgid "Select player's team."
-msgstr ""
+msgstr "Pasirinkite žaidėjo komandą."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):202
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Rodyti žaidimo prieangį dialogo lange."
 
 #: gui/text/quotes.txt:1
 msgid ""

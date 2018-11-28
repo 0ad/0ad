@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Donatas Kičas <donatas.kicas@outlook.com>, 2015
+# Vytautas, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 04:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-11-27 14:28+0000\n"
+"Last-Translator: Vytautas\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,32 +21,32 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr ""
+msgstr "Kapojimas"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr ""
+msgstr "Dūrimas"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr ""
+msgstr "Traiškymas"
 
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: perjungti statinių medį"
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr ""
+msgstr "%(hotkey)s: uždaryti istoriją"
 
 #: gui/civinfo/civinfo.js:124
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "%(civilization)s Žaidimo stilius"
 
 #: gui/civinfo/civinfo.js:127
 msgid "Civilization Bonus"
@@ -70,10 +71,10 @@ msgstr "Specialiosios technologijos"
 #: gui/civinfo/civinfo.js:145
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Išskirtinis statynys"
+msgstr[1] "Išskirtiniai statiniai"
+msgstr[2] "Išskirtiniai statiniai"
+msgstr[3] "Išskirtiniai statiniai"
 
 #: gui/civinfo/civinfo.js:152 gui/summary/layout.js:67
 msgid "Heroes"
@@ -82,17 +83,17 @@ msgstr "Herojai"
 #: gui/civinfo/civinfo.js:162
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "%(civilization)s istorija"
 
 #: gui/common/color.js:164
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Nepriskirti greitieji klavišai: %(hotkeyName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "Spauskite %(hotkey)s norėdami automatiškai parinkti žaidėjų vardus."
 
 #: gui/common/color.js:181
 msgctxt "hotkey"
@@ -111,12 +112,12 @@ msgstr ""
 
 #: gui/common/functions_utility.js:29
 msgid "Gaia"
-msgstr ""
+msgstr "Gaja"
 
 #: gui/common/functions_utility.js:102
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Atsitiktinis"
 
 #: gui/common/functions_utility_loadsave.js:14
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -318,11 +319,11 @@ msgstr[3] ""
 
 #: gui/common/gamedescription.js:279
 msgid "Relic Count"
-msgstr ""
+msgstr "Relikvijų skaičius"
 
 #: gui/common/gamedescription.js:286
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Herojų įgula"
 
 #: gui/common/gamedescription.js:287
 msgid "Heroes can be garrisoned."
@@ -364,7 +365,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:316
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Iki gyvos galvos"
 
 #: gui/common/gamedescription.js:317
 msgid ""
@@ -384,7 +385,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:326
 msgid "Ceasefire"
-msgstr ""
+msgstr "Paliaubos"
 
 #: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
 msgid "disabled"
@@ -409,7 +410,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:345
 msgid "Map Name"
-msgstr ""
+msgstr "Žemėlapio pavadinimas"
 
 #: gui/common/gamedescription.js:349
 msgid "Map Description"
@@ -417,15 +418,15 @@ msgstr ""
 
 #: gui/common/gamedescription.js:357
 msgid "Map Type"
-msgstr ""
+msgstr "Žemėlapio tipas"
 
 #: gui/common/gamedescription.js:363
 msgid "Map Filter"
-msgstr ""
+msgstr "Žemėlapių filtras"
 
 #: gui/common/gamedescription.js:372
 msgid "Map Size"
-msgstr ""
+msgstr "Žemėlapio dydis"
 
 #: gui/common/gamedescription.js:381
 msgctxt "biome"
@@ -456,7 +457,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:404
 msgid "Starting Resources"
-msgstr ""
+msgstr "Pradiniai ištekliai"
 
 #: gui/common/gamedescription.js:405
 #, javascript-format
@@ -483,15 +484,15 @@ msgstr ""
 
 #: gui/common/gamedescription.js:430
 msgid "Revealed Map"
-msgstr ""
+msgstr "Atidengtas žemėlapis"
 
 #: gui/common/gamedescription.js:435
 msgid "Explored Map"
-msgstr ""
+msgstr "Išžvalgytas žemėlapis"
 
 #: gui/common/gamedescription.js:440
 msgid "Cheats"
-msgstr ""
+msgstr "Žaidimo kodai"
 
 #: gui/common/gamedescription.js:444 gui/common/tooltips.js:164
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:260
@@ -500,7 +501,7 @@ msgstr ""
 #: gui/common/tooltips.js:820
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/common/gamedescription.js:447
 msgctxt "gamesetup option"
@@ -601,7 +602,7 @@ msgstr ""
 #: gui/common/network.js:91
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Priežastis: %(reason)s."
 
 #: gui/common/network.js:96
 msgid "Lost connection to the server."
@@ -768,7 +769,7 @@ msgstr "Nežinomas"
 #: gui/common/settings.js:405
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Numatytas"
 
 #: gui/common/settings.js:417
 msgctxt "population capacity"
@@ -897,7 +898,7 @@ msgstr ""
 #: gui/common/tooltips.js:209
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:220
 msgid "Armor:"
@@ -999,7 +1000,7 @@ msgstr ""
 #: gui/common/tooltips.js:382
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Numatytas"
 
 #: gui/common/tooltips.js:387
 msgctxt "projectiles"
@@ -1203,7 +1204,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:821
 msgid "Loot:"
-msgstr ""
+msgstr "Grobis:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
@@ -1715,7 +1716,7 @@ msgstr "Vienetai"
 
 #: gui/summary/layout.js:63
 msgid "Infantry"
-msgstr ""
+msgstr "Pėstininkai"
 
 #: gui/summary/layout.js:64
 msgid "Worker"
@@ -1731,7 +1732,7 @@ msgstr "Čempionas"
 
 #: gui/summary/layout.js:68
 msgid "Siege"
-msgstr ""
+msgstr "Apgultis"
 
 #: gui/summary/layout.js:69
 msgid "Navy"
@@ -1998,7 +1999,7 @@ msgstr "Atšaukti"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr ""
+msgstr "Pažangus"
 
 #: gui/locale/locale.xml:(caption):46
 msgid "Accept"
@@ -2184,7 +2185,7 @@ msgstr "Jungtis į žaidimą"
 
 #: gui/pregame/mainmenu.xml:(caption):245
 msgid "Host Game"
-msgstr ""
+msgstr "Kurti žaidimą"
 
 #: gui/pregame/mainmenu.xml:(caption):261
 msgid "Game Lobby"
@@ -2297,7 +2298,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34
 msgid "Summary"
-msgstr ""
+msgstr "Suvestinė"
 
 #: gui/replaymenu/replay_menu.xml:(caption):250
 msgid "Start Replay"
@@ -2311,12 +2312,12 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Žaidėjai"
 
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Žemėlapio pavadinimas"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
@@ -2343,7 +2344,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):18
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Ateityje rodyti šią žinutę"
 
 #: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
@@ -2643,7 +2644,7 @@ msgstr ""
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
 msgid "Everyone"
-msgstr ""
+msgstr "Visi"
 
 #: gui/options/options.json[0].options[9].list[1].label
 #: gui/options/options.json[3].options[5].list[1].label
@@ -3056,7 +3057,7 @@ msgstr ""
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
-msgstr ""
+msgstr "Fojė"
 
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""
@@ -3183,15 +3184,15 @@ msgstr ""
 
 #: gui/options/options.json[5].options[12].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "Nerūšiuotas"
 
 #: gui/options/options.json[5].options[12].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "Didėjantis"
 
 #: gui/options/options.json[5].options[12].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "Mažėjantis"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""

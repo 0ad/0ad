@@ -3,83 +3,84 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Vytautas, 2018
 # Kristupas Kristupas <karthus.kart@gmail.com>, 2017
 # Nerijus Rastikis <nerijus.rastikis@hotmail.lt>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-04-16 18:38+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-11-20 18:21+0000\n"
+"Last-Translator: Vytautas\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lt\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
-msgstr ""
+msgstr "Remontas laivų prieplaukoje"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "Laivas su įgula remontuojamas 10 HP per sekundę"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
-msgstr ""
+msgstr "Dievų palaiminimas"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
-msgstr ""
+msgstr "Gydo aplinkinius 3 HP per sekundę"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
-msgstr ""
+msgstr "Religinė aistra"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
-msgstr ""
+msgstr "Karių daroma žala +20%"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
-msgstr ""
+msgstr "Patriotizmas"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 msgid "Workers +15% gather rates near pyramids."
-msgstr ""
+msgstr "Darbininkų rinkimo greitis šalia piramidžių +15%"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr ""
+msgstr "Įkvėpimas"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers near Large Pyramids +10% attack."
-msgstr ""
+msgstr "Karių daroma žala prie didelių piramidžių +10%"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
-msgstr ""
+msgstr "Merojės piramidės"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid ""
 "Civic Centers +10% territory influence as long as a Pyramid stands built."
-msgstr ""
+msgstr "Kol piramidė pastatyta, tol miesto centro teritorinė įtaka +10%"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
-msgstr ""
+msgstr "Stipri dvasininkija"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid ""
 "Strengthen the Priesthood of Amun and undermine your monarch's influence.\n"
 "-5% health for heroes per temple built."
-msgstr ""
+msgstr "Sustiprinti Amuno dvasininkiją taip pakertant jūsų monarcho įtaką.\n-5% didvyrių HP už kiekvieną pastatytą šventyklą."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
-msgstr ""
+msgstr "Pažinimo galia"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
@@ -88,109 +89,109 @@ msgstr "Mažina technologijų išradimo kainą ir laiką 10% per kiekvieną turi
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
-msgstr ""
+msgstr "Lojalumas"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr ""
+msgstr "+50% lojalumo regeneracijos greitis pastatams su įgula."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
-msgstr "Ashokos įsakymas."
+msgstr "Ašokos ediktas"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "+20% movement speed for traders."
-msgstr ""
+msgstr "Pirklių judėjimo greitis +20%"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
-msgstr "Ūkininkystės bonusas"
+msgstr "Žemdirbystės priedas"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "+25% gather rate for workers in the grainfields."
-msgstr ""
+msgstr "Darbininkų rinkimo greitis javų laukuose +25%"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
-msgstr ""
+msgstr "Medicininis gydymas"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Gydo netoliese esančius karius po 1 HP į sekundę."
+msgstr "Gydo aplinkinius 1 HP per sekundę"
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
-msgstr ""
+msgstr "Helenizmo sklaida"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr ""
+msgstr "20% padidinti teritorinę įtaką už kiekvieną turimą teatrą"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr "Sienos Apsauga"
+msgstr "Sienos apsauga"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr ""
+msgstr "Kariai ant sienų įgyja +3 šarvų ir didesnį matymo nuotolį"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
-msgstr ""
+msgstr "Didybės simbolis"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
-msgstr ""
+msgstr "10-čia padidinti populiacijos limitą už kiekvieną turimą stebuklą"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
-msgstr ""
+msgstr "Šlovinga plėtra"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr ""
+msgstr "Dar 40-čia padidinti populiacijos limitą už kiekvieną turimą stebuklą (reikalinga technologija \"Šlovinga plėtra\")"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
-msgstr ""
+msgstr "Remontas dirbtuvėse"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr ""
+msgstr "Pastatuose dislokuoti apsiausties ginklai remontuojami 3 HP per sekundę"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
-msgstr "Delianų Sąjunga"
+msgstr "Delo lyga"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "Laivai statomi 25% greičiau."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
-msgstr ""
+msgstr "Druidai"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allies get -20% resource cost to train healers."
-msgstr ""
+msgstr "Atpiginti sąjungininkų gydytojų rengimą -20%"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr "Prekybos Meistrai"
+msgstr "Prekybininkai"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
-msgstr ""
+msgstr "10% pelno priedas sąjungininkų tarptautinei prekybai"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
-msgstr ""
+msgstr "Druidų išmintis"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "-20% research time for technologies of allies."
-msgstr ""
+msgstr "-20% trumpesnis sąjungininkų technologijų tyrimų laikas"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -200,140 +201,140 @@ msgstr ""
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
-msgstr ""
+msgstr "20% atpigina Iberų sąjungininkų miestiečius-karius skirmišerius."
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr ""
+msgstr "Dramblių tiekėjas"
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraDescription
 msgid ""
 "Reduces the cost and train time for elephants with 20% for allies of Kushite"
 " players."
-msgstr ""
+msgstr "20% atpiginti ir sutrumpinti kušitų sąjungininkų dramblių rengimą"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
-msgstr ""
+msgstr "Standartizuota valiuta"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "+20% sell prices at market."
-msgstr ""
+msgstr "+20% didesnės pardavimo kainos turguje"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr "Ashoko Religinė Parama"
+msgstr "Ašokos religinė parama"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "Sąjungininkų šventyklos ir šventyklų technologijos kainuoja -50% išteklių ir laiko."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr "Karališkasis Kelias"
+msgstr "Karališkasis kelias"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "+15% didesnis sąjungininkų sausumos prekybos pelnas"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
-msgstr ""
+msgstr "Viduržemio jūros maitintoja"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr ""
+msgstr "Visi sąjungininkai automatiškai ir iš lėto gauna šiek tiek maisto"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
-msgstr ""
+msgstr "Karo prievolė"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied citizen-soldier infantry."
-msgstr ""
+msgstr "-20% trumpesnis sąjungininkų miestiečių-karių pėstininkų rengimas"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr ""
+msgstr "Sirijos tetrapolis"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
 "Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr ""
+msgstr "20% atpigina Seleukidų sąjungininkų miesto centrą"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
-msgstr ""
+msgstr "Peloponeso lyga"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr ""
+msgstr "10% padidina spartiečių sąjungininkų miestiečių-karių pėstininkų-ietininkų sveikatą"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
-msgstr ""
+msgstr "Įkvėpimas"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "+10% build rate and gather rate for citizen soldiers."
-msgstr ""
+msgstr "Miestiečiai-kariai +10% greičiau stato ir renka resursus"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
-msgstr "Ekonominės Reformos"
+msgstr "Ekonomikos reformos"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "+15% gather rate for workers."
-msgstr ""
+msgstr "Solonas pradėjo keletą ekonomikos reformų, skatinančių prekybą ir žemdirbystę.\n+15% greitesnis darbininkų resursų rinkimas"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
-msgstr "Ekonominė Laimė"
+msgstr "Ekonominė sėkmė"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraDescription
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "-10% cost for economic technologies."
-msgstr ""
+msgstr "Solonas įvedė naują svorio ir matavimo sistemą. Tėvus skatino vaikus mokyti amatų.\n-10% pigesnės ekonomikos technologijos."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
 msgid "Guerrilla Tactics"
-msgstr ""
+msgstr "Partizaninė taktika"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraDescription
 msgid ""
 "Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
 "+15% movement speed and vision range for all soldiers."
-msgstr ""
+msgstr "Matydamas, kad gynybiniai įtvirtinimai prieš romėnų armiją yra beverčiai, Cassivellaunus griebėsi partizaninės taktikos. Vėliau šią taktiką taikė ir kiti vadai.\n+15% didesnis visų karių judėjimo greitis ir matymo nuotolis"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
-msgstr ""
+msgstr "Skirmišerių antpuolis"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "+20% attack range for skirmisher javelins."
-msgstr ""
+msgstr "Cassivellaunus naudojo greitai judančius skirmišerius romėnų karių ir rankiotojų puldinėjimui.\n+20% didesnis skirmišerių iečių atakos nuotolis."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
-msgstr "Sunkiosios Kavalerijos Vadas"
+msgstr "Sunkiosios kavalerijos vadas"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "+1 armor, +10% health for melee cavalry."
-msgstr ""
+msgstr "Kartaginos sunkiosios kavalerijos vadas Trebijos ir Kanajos mūšiuose, kuriuose jo naudojama trigubo puolimo taktika padarė didelę žalą priešams.\n+1 šarvų, +10% gyvybės taškų kavalerijai."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
-msgstr ""
+msgstr "Skerdynės iš pasalų"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""

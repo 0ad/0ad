@@ -14,6 +14,7 @@
 # hyln9 <hyln9@live.cn>, 2014
 # REN.Haowei <jean.clcf@gmail.com>, 2014
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
+# Jiang Chen <cyanjiang@163.com>, 2018
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2015-2016
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 # loms126 <loms126@126.com>, 2014
@@ -36,14 +37,15 @@
 # 星臣 <yuronglong1996@gmail.com>, 2017
 # 武军 李 <lwj7863439@gmail.com>, 2016-2017
 # Feng Chang <chang_196700@hotmail.com>, 2018
+# 潘 恩民 <568014904@qq.com>, 2018
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:16+0200\n"
-"PO-Revision-Date: 2018-11-09 01:08+0000\n"
-"Last-Translator: Bun Eang VINH <buneang.v@gmail.com>\n"
+"PO-Revision-Date: 2018-11-23 05:07+0000\n"
+"Last-Translator: Jiang Chen <cyanjiang@163.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -305,7 +307,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "地图上的遗迹总数。若地图上仅有一两个遗迹，遗迹胜利模式下的游戏体验会更加逼真。若地图上存在大量遗迹，玩家要通过捕获遗迹获得遗迹光环奖励。"
+msgstr "地图上的遗迹总数。若地图上仅有一两个遗迹，遗迹胜利模式下的游戏体验会更加逼真。若地图上存在大量遗迹，玩家要通过占领遗迹获得遗迹光环奖励。"
 
 #: gui/gamesetup/gamesetup.js:660
 msgid "Relic Duration"
@@ -467,7 +469,7 @@ msgstr "使用当前的设置开始一局新游戏。(禁用直到所有玩家�
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: 查看历史/结构树\n单击重新打开上次打开的。"
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: 查看历史/建造树\n单击重新打开上次打开的。"
 
 #: gui/gamesetup/gamesetup.js:1107
 #, javascript-format
@@ -769,7 +771,7 @@ msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaos"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr ""
+msgstr "“如果我有做过任何高尚的事情，那充分值得纪念;如果我没有做过啥高尚的事情，世界上所有的雕像都不会记住我所做过的事情”-斯巴达二世(普鲁塔克，《莫拉利亚》，第十六章)。《斯巴达人的语录》，215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
@@ -782,13 +784,13 @@ msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr ""
+msgstr "“不要以为我遭受不公的对待就为我流泪，我比我的侵略者们处在一个更加幸福的境遇里”-斯巴达的阿吉斯四世看到一个刽子手哭了(普鲁塔克，“平行生命”，“阿吉斯”，第20节)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr ""
+msgstr "“性和睡眠让我意识到自己是凡人。”——亚历山大大帝(普鲁塔克，《平行生命》，《亚历山大》，第22卷)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -796,7 +798,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?\" - Alexander the Great (Plutarch, \"Parallel "
 "Lives\", \"Alexander\", sec. 40)"
-msgstr ""
+msgstr "“奢侈的生活是卑躬屈膝的，但辛苦的工作却是高贵的。”\\[……]难道你不知道征服的结束和目的是为了避免被征服者的恶习和弱点吗?”——亚历山大大帝(普鲁塔克，《平行生命》，《亚历山大》，第40卷)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -847,21 +849,21 @@ msgid ""
 " covetously.\" - Anacharsis, a Scythian philosopher who travelled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr ""
+msgstr "“集市是男人互相欺骗、贪得无厌的地方。”——斯基提亚哲学家阿纳查西斯，希腊之行(第欧根尼·拉尔修，《杰出哲学家的生活与意见》，《无政府主义》，第5卷)"
 
 #: gui/text/quotes.txt:29
 msgid ""
 "\"It was not by taking care of the fields, but of ourselves, that we "
 "acquired those fields.\" - Anaxandridas II of Sparta (Plutarch, \"Moralia\","
 " XVI. \"Sayings of Spartans\", 217a)"
-msgstr ""
+msgstr "“我们得到这些田地，不是靠照顾田地，而是靠我们自己。”——斯巴达的阿纳克桑丹斯二世(普鲁塔克，《莫拉利亚》，第十六章)《斯巴达人的语录》，217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes (Diogenes Laertius, \"The Lives and Opinions of Eminent "
 "Philosophers\", Antisthenes, sec. 5)"
-msgstr ""
+msgstr "“当政府不能够从坏人中区分出好人来，那么政府注定失败”——安提斯提尼(第欧根尼·拉尔修斯，《杰出哲学家的生活和观点》，安提斯提尼斯，第5卷)"
 
 #: gui/text/quotes.txt:31
 msgid ""
@@ -874,52 +876,52 @@ msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever (Diodorus Siculus, \"The Library of History\", "
 "fragments of book XXVI, sec. 18)"
-msgstr ""
+msgstr "“给我一个支点，我就撬动整个地球。”-阿基米德如何使用杠杆(狄奥多罗斯·西库罗斯，《历史图书馆》，第二十六卷，第18卷)"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes (\"Birds\")"
-msgstr ""
+msgstr "“城市人从他们的敌人中学习到建造高墙和船只来应对战争，而不是他们的朋友”-阿里斯托芬(“鸟”)"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.\" - Aristotle (\"Nicomachean "
 "Ethics\", I. 1096a.11)"
-msgstr ""
+msgstr "“为了捍卫真理而牺牲自己最亲密的私人关系，这是义不容辞的，尤其是对哲学家而言。”-亚里士多德(《尼各马可伦理学》，I. 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Happiness depends on leisure; for we are busy to have leisure, and make "
 "war to live in peace.\" - Aristotle (\"Nicomachean Ethics\", X. 1177b.4)"
-msgstr ""
+msgstr "“幸福取决于闲暇;因为我们忙乱，要有暇，又要争战，好得平安。-亚里士多德(《尼各马可伦理学》，x1177b .4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
 "\"Man is by nature a political animal.\" - Aristotle (\"Politics\", I. "
 "1253a.2)"
-msgstr ""
+msgstr "人天生就是政治动物。”-亚里士多德(“政治”，I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle (\"Politics, V. 1311a.11)"
-msgstr ""
+msgstr "“寡头和暴君都不信任人民，因此剥夺了他们的武器。”——亚里士多德(《政治学》，第1311a.11节)"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle (Diogenes Laertius, \"The"
 " Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
-msgstr ""
+msgstr "“我从哲学中获得了这个道理:别人做的事，我不受命令，只因为害怕法律。”-亚里士多德(第欧根尼·拉尔修斯，《杰出哲学家的生活和观点》，亚里士多德，第20卷)"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.\" - Aristotle (Stobaeus, "
 "\"Florilegium\", 223)"
-msgstr ""
+msgstr "“我认为战胜欲望的人比战胜敌人的人更勇敢，因为最艰难的胜利是战胜自我。”-亚里士多德(Stobaeus，“Florilegium”，223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -930,7 +932,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.\" - Arrian about "
 "Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "亚历山大本人饱受干渴之苦，痛苦而艰难，但他还是带领军队徒步前进。这时，几个轻装上阵的士兵发现了一些水，他们把水倒进一个头盔，把头盔拿给他。耶稣接过来，称赞那些拿他来的人，就在众人眼前把他倒在地上。——关于亚历山大穿过格德罗斯沙漠的旅程(《亚历山大的安纳巴西斯》，6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -941,21 +943,21 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.\" - Arrian about the Battle of the Granicus (\"The "
 "Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "\n471/5000\n\n他把矛刺进密司里达斯的脸上，把他摔在地上。然后，Rhoesaces(一个波斯人)用他的剑打了他的头。亚历山大也把他摔在地上，用长矛刺穿他的胸甲，刺进他的胸膛。当Clitus[…]砍断他的手臂时，一个波斯人已经从背后举起剑来攻击亚历山大。-阿里安关于格拉纳克斯战役(《亚历山大的阿那巴西斯》，1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or retreat out of cowardice.\""
 " - Aspasia (Plato, \"Menexenus\", 246b)"
-msgstr ""
+msgstr "“让每个人都提醒他们的后代，他们也是军人，不应抛弃祖先的队伍，也不应因怯懦而退却。”- Aspasia(柏拉图，《Menexenus》，246b)"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"Quintilius Varus, give me back my legions!\" - Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "\"Divus Augustus\", sec. 23)"
-msgstr ""
+msgstr "“昆提利乌斯·瓦鲁斯，把我的军团还给我!”——奥古斯都，三支军团在图托堡森林之战中被歼灭后(苏埃托尼乌斯，“奥古斯都之帝”，第23节)"
 
 #: gui/text/quotes.txt:44
 msgid ""
@@ -963,7 +965,7 @@ msgid ""
 "raised an army with which I liberated the state, which was oppressed by the "
 "tyranny of a faction.\" - Augustus, in his autobiography (\"Res Gestae Divi "
 "Augusti\", sec. 1)"
-msgstr ""
+msgstr "“在我十九岁的时候，我主动地、自费地组建了一支军队，用它解放了那个受到派系暴政压迫的国家。”-奥古斯都，在他的自传(\"Res Gestae Divi Augusti\"，第1节)"
 
 #: gui/text/quotes.txt:45
 msgid ""
@@ -972,21 +974,21 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.\" - Augustus, in his autobiography (\"Res Gestae "
 "Divi Augusti\", sec. 3)"
-msgstr ""
+msgstr "“国内外的战争，我在世界各地进行，在海上和陆地上，当胜利时，我赦免了所有请求赦免的公民。那些能得到安全赦免的外国国家，我宁愿拯救而不愿毁灭。-奥古斯都，在他的自传(\"Res Gestae Divi Augusti\"，第3节)"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene (Diogenes"
 " Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
-msgstr ""
+msgstr "你们应当慎重选择所选择的道路。但你们既行了，就要恒心忍耐。——《普里尼的偏见》(第欧根尼·拉尔修，《杰出哲学家的生活和观点》，第5卷)"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes (Cicero, \"Tusculan"
 " Disputations\", III. 26)"
-msgstr ""
+msgstr "“国王悲伤时扯下自己的头发，就好像秃顶可以治愈悲伤一样，这是多么愚蠢啊!”-《伯利斯提尼的比昂》(西塞罗，《塔斯库兰之争》第三卷)。26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
