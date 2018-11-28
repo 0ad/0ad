@@ -100,9 +100,9 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 
 	// Optionally join without a TLS certificate, so a local server can be tested  quickly.
 	// Security risks from malicious JS mods can be mitigated if this option and also the hostname and login are shielded from JS access.
-	bool require_tls = true;
-	CFG_GET_VAL("lobby.require_tls", require_tls);
-	m_client->setTls(require_tls ? gloox::TLSRequired : gloox::TLSOptional);
+	bool tls = true;
+	CFG_GET_VAL("lobby.tls", tls);
+	m_client->setTls(tls ? gloox::TLSRequired : gloox::TLSDisabled);
 
 	// Disable use of the SASL PLAIN mechanism, to prevent leaking credentials
 	// if the server doesn't list any supported SASL mechanism or the response
