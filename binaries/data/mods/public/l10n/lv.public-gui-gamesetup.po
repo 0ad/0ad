@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
+# ValihrAnt <go.3@inbox.lv>, 2018
 # jabalv <jabalv@protonmail.com>, 2014
 # Jānis Ločmelis <minimenlatvia@gmail.com>, 2017
 # Lafriks <lauris@nix.lv>, 2014
@@ -12,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:16+0200\n"
-"PO-Revision-Date: 2018-11-08 17:06+0000\n"
+"PO-Revision-Date: 2018-11-19 12:37+0000\n"
 "Last-Translator: ValihrAnt <go.3@inbox.lv>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +43,7 @@ msgstr "Nejauša"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Sākoties spēlei nejauši izvēlas vienu civilizāciju."
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
@@ -55,7 +56,7 @@ msgstr "Esmu gatavs"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Norādi, ka esi gatavs spēlēt."
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
@@ -64,11 +65,11 @@ msgstr "* %(username)s is gatavs!"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
-msgstr ""
+msgstr "Palikt gatavs"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Palikt gatavs pat tad, ja mainās spēles iestatījumi."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
@@ -170,7 +171,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Karte"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
@@ -180,11 +181,11 @@ msgstr "Spēlētājs"
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Spēles tips"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
-msgstr ""
+msgstr "Kartes veids"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
@@ -192,7 +193,7 @@ msgstr "Izvēlēties kartes tipu."
 
 #: gui/gamesetup/gamesetup.js:499
 msgid "Map Filter"
-msgstr ""
+msgstr "Kartes filtrs"
 
 #: gui/gamesetup/gamesetup.js:500
 msgid "Select a map filter."
@@ -200,7 +201,7 @@ msgstr "Izvēlēties karšu filtru."
 
 #: gui/gamesetup/gamesetup.js:515
 msgid "Select Map"
-msgstr ""
+msgstr "Izvēlies karti"
 
 #: gui/gamesetup/gamesetup.js:516
 msgid "Select a map to play on."
@@ -208,7 +209,7 @@ msgstr "Izvēlieties, karti kuru spēlēsiet."
 
 #: gui/gamesetup/gamesetup.js:530
 msgid "Map Size"
-msgstr ""
+msgstr "Kartes lielums"
 
 #: gui/gamesetup/gamesetup.js:531
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -220,11 +221,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:546
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Izvēlies floru un faunu."
 
 #: gui/gamesetup/gamesetup.js:561
 msgid "Number of Players"
-msgstr ""
+msgstr "Spēlētāju skaits"
 
 #: gui/gamesetup/gamesetup.js:562
 msgid "Select number of players."
@@ -232,7 +233,7 @@ msgstr "Izvēlēties spēlētāju skaitu."
 
 #: gui/gamesetup/gamesetup.js:582
 msgid "Population Cap"
-msgstr ""
+msgstr "Populācijas griesti"
 
 #: gui/gamesetup/gamesetup.js:589
 msgid "Select population limit."
@@ -260,7 +261,7 @@ msgstr "Izvēlēties spēles sākuma resursu līmeni."
 
 #: gui/gamesetup/gamesetup.js:631
 msgid "Ceasefire"
-msgstr ""
+msgstr "Pamiers"
 
 #: gui/gamesetup/gamesetup.js:632
 msgid "Set time where no attacks are possible."
@@ -295,7 +296,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:690
 msgid "Game Speed"
-msgstr ""
+msgstr "Spēles ātrums"
 
 #: gui/gamesetup/gamesetup.js:691
 msgid "Select game speed."
@@ -303,7 +304,7 @@ msgstr "Izvēlieties spēles ātrumu."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Difficulty"
-msgstr ""
+msgstr "Grūtība"
 
 #: gui/gamesetup/gamesetup.js:707
 msgid "Select the difficulty of this scenario."
@@ -420,7 +421,7 @@ msgstr "Atgriezties uz galveno izvēli."
 
 #: gui/gamesetup/gamesetup.js:1013
 msgid "Start Game!"
-msgstr ""
+msgstr "Sākt Spēli!"
 
 #: gui/gamesetup/gamesetup.js:1029
 msgid "Start a new game with the current settings."
@@ -481,7 +482,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2123
 msgctxt "settings value"
@@ -499,7 +500,7 @@ msgstr "Nē"
 #: gui/gamesetup/gamesetup.js:2160
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/gamesetup.js:2248
 #, javascript-format
@@ -650,57 +651,57 @@ msgid ""
 "\"Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zevs [...] noteica savu likumu: gudrība nāk caur ciešanām. \\ [...] Tātad vīrieši pret viņu gribu mācīsies ievērot mērenību. \\ [...] Šāda grācija ir skarba un vardarbīga.\" - Aeschylus (\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr ""
+msgstr "\"Viņa [Helēna] atveda uz Iliumu savu pūru, iznīcību.\" - Aeschylus (\"Oresteia\", I. 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr ""
+msgstr "\"Katra tirāna sirdī ieplūst šī inde, ka viņš nevar uzticēties draugam.\" - Ašeiluss (\"Prometheus Bound\", 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr ""
+msgstr "\"Ilgtermiņā laiks iemāca visas lietas.\" - Aeschylus (\"Prometheus Bound\", 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr ""
+msgstr "\"Viņa apņēmība ir nevis šķist, bet būt labākajam.\" - Aeschylus (\"Seven Against Thebes\", 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr ""
+msgstr "\"Pārticis muļķis ir smaga nasta.\" - Aeschylus (383. fragments)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "\"Dievi palīdz tiem, kas palīdz sev.\" - Aesop (\"Hercules and the Wagoner\")"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr ""
+msgstr "\"Ir izdevīgi sagatavoties rītdienas vēlmēm šodien.\" - Aesop (\"The Ant and the Grasshopper\")"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr ""
+msgstr "''Vienība dod spēku'' - Aesop (\"The Bundle of Sticks\")"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr ""
+msgstr "\"Nekad neuzticies padomam no cilvēka, kas ir viņa paša grūtību priekšā.\" - Aesops (\"The Fox and the Goat\")"
 
 #: gui/text/quotes.txt:11
 msgid ""

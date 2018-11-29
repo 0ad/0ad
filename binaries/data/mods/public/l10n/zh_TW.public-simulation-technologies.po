@@ -11,12 +11,13 @@
 # Mysterelee <8161525@qq.com>, 2014
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
+# 又齊 劉 <bill19981002@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-09-15 07:11+0000\n"
-"Last-Translator: Hsu Karinsu <m80126colin@gmail.com>\n"
+"PO-Revision-Date: 2018-11-15 12:59+0000\n"
+"Last-Translator: 又齊 劉 <bill19981002@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1107,7 +1108,7 @@ msgstr "近戰步兵 +1 劈砍攻擊力。"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr "使用鐵代替青銅讓長矛有了額外的穿刺力量。"
+msgstr "使用鐵代替青銅使矛有了額外的穿刺力量。"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
@@ -1175,14 +1176,14 @@ msgstr "隨身武器 vs. 非正規軍"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
-msgstr "長矛打鬥 vs. 小規模戰鬥"
+msgstr "長矛戰鬥 vs. 散兵戰鬥"
 
 #: simulation/data/technologies/pair_inf_armor_01.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_02.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "步兵劈砍盔甲 vs. 長矛兵穿刺盔甲"
+msgstr "步兵劈砍盔甲 vs. 矛兵穿刺盔甲"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -2280,11 +2281,11 @@ msgstr "木造建築"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "長矛戰鬥訓練增加了持矛步兵單位的傷害力。"
+msgstr "長矛戰鬥訓練增加了矛步兵單位的傷害力。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
-msgstr "長槍兵 +2 劈砍攻擊。"
+msgstr "矛兵 +2 劈砍攻擊。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
@@ -2304,7 +2305,7 @@ msgstr "希臘人使用來自於早期邁錫尼時代的石造建築物。"
 msgid ""
 "All structures have 10% more health and capture points, but also take 10% "
 "longer to build."
-msgstr "所有建築物會有額外的 10% 的生命值與捕獲點數，不過同時也要花費多 10% 的時間來建造。"
+msgstr "所有建築物會有額外的 10% 的生命值與捕獲／占領值，不過同時也要花費多 10% 的時間來建造。"
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -2492,7 +2493,7 @@ msgstr "波斯人從薩第斯到蘇薩建造了驚人的1677英哩長的皇家�
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr "所有波斯建築物 +25% 生命值及捕獲點數，但也 +20% 建造時間。"
+msgstr "所有波斯建築物 +25% 生命值及捕獲／占領值，但也 +20% 建造時間。"
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2598,7 +2599,7 @@ msgstr "自亞歷山大大帝開始，希臘的文化逐漸變為整個帝國的
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "城鎮中心 +100% 血量及捕獲點數和雙倍的箭矢。"
+msgstr "城鎮中心 +100% 血量及捕獲／占領值，並具有雙倍箭矢。"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2655,7 +2656,7 @@ msgstr "塞琉古的傳統軍隊。"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr "解鎖銀盾兵及長柄刀雙輪戰車。"
+msgstr "解鎖銀盾長槍兵及長柄刀雙輪戰車。"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -2671,7 +2672,7 @@ msgstr "銀盾兵，或稱 Argyraspidai，是馬其頓軍隊中的精銳重裝�
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr "升級精英盾兵為有更多的生命值、以及更好盔甲的銀盾兵。"
+msgstr "將精英盾兵升級成銀盾兵，有著更強攻擊力及盔甲。"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

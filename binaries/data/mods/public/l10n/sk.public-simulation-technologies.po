@@ -12,13 +12,13 @@
 # SuroX <peter.surovcik@gmail.com>, 2014,2016
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2017
+# Angen <slavomir.slovenkai@gmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-07-24 22:57+0000\n"
-"Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
+"PO-Revision-Date: 2018-11-27 11:47+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -703,7 +703,7 @@ msgstr "Tajné techniky opracovávania ocele dodávajú čepeliam meča krásne 
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "+20% sečný útok per všetkých bojovníkov s mečom a palcátom."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -1585,7 +1585,7 @@ msgstr "Rozhľadne vydržia na neutrálnom území dvojnásobne dlhú dobu."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "Rozhľadne: -50% rýchlosti úpadku teritória."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1621,7 +1621,7 @@ msgstr "Vyhliadky nadobudnú dlhší dohľad pre výskum terénu."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Rozhľadne: +50% dohľad."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1633,7 +1633,7 @@ msgstr "Zvýši sa ostražitosť nočných hliadok."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Stanov hliadky, aby si pridal každej obrannej veži jeden šíp."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1859,7 +1859,7 @@ msgstr "Primárne zameranie obchodníkov bol obchod, okrem toho však tiež zbie
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr ""
+msgstr "Povoľ podplácanie jednotiek druhých hráčov pre zdieľanie toho, čo vidia."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
@@ -1904,7 +1904,7 @@ msgstr "Zeugítai"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr ""
+msgstr "Najmi profesionálnych žolnierov aby bojovali v tvojej armáde."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
@@ -2268,7 +2268,7 @@ msgstr "Elitní italickí žoldnieri"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr ""
+msgstr "Keltské budovy boli väčšinou postavené z dreva so suťovými základmi."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
@@ -2306,7 +2306,7 @@ msgstr "Gréci využívali kamenné stavby už od skorých mykénskych čias."
 msgid ""
 "All structures have 10% more health and capture points, but also take 10% "
 "longer to build."
-msgstr ""
+msgstr "Všetky budovy majú o 10% viac zdravia a obsadzovacích bodov, ale tiež o 10% dlhšiu výstavbu."
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -2376,17 +2376,17 @@ msgstr "Aténske Dlhé múry"
 msgid ""
 "+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "+25% HP a -50% času výstavby pre Civilné centrá, Chrámy, Pyramídy a Divy sveta."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Monumentálna architektúra"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "Samotný Veľkňaz bude viesť tvojich kňazov - nech mú Amun žehná,"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
@@ -2429,7 +2429,7 @@ msgstr "Indovia mali tradíciu skvelej lukostreľby a sklon k používaniu lukos
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "Dosah +10 metrov pre jednotky s lukom. Lukostrelci lepšia prestnosť a -20% doba tréningu, ale zato aj -20% zdravia."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
@@ -2476,7 +2476,7 @@ msgstr "Anusijská šampiónska pechota sa bude trénovať dvakrát tak rýchlo,
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Anusijská šampiónska pechota -50% doba tréningu, ale zato aj -10% zdravia."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

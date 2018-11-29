@@ -9,6 +9,7 @@
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2016
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # George Lungu <lungugeorge88@gmail.com>, 2018
+# Lorenzo Fiaccadori <l.fiaccadori@campus.unimib.it>, 2018
 # Luca Errani <luca.errani1@gmail.com>, 2018
 # Luca Scala <dodecafrigio@hotmail.com>, 2018
 # Matteo Sechi <inactive+tomateschie.transifex@transifex.com>, 2016
@@ -16,14 +17,15 @@
 # Me Lazzi, 2014-2017
 # Michele Lasala <michi.android1012@gmail.com>, 2016
 # Nicola Jelmorini, 2014
+# Nicolas Auvray <na.itms76@gmail.com>, 2018
 # slave Gjorgjievski <ringmar54@gmail.com>, 2018
 # andreac <supercarrer1989@hotmail.it>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2018-11-07 03:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-11-28 07:41+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -454,11 +456,11 @@ msgstr "Ti preghiamo di leggere e accettare i Termini di Utilizzo"
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politica sulla Privacy"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr ""
+msgstr "Per favore, leggere e accettare la Politica sulla Privacy"
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
@@ -650,7 +652,7 @@ msgstr "Registrazione"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Atrio Multiplayer, Politica sulla Privacy[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
@@ -661,17 +663,17 @@ msgstr "[font=\"sans-bold-14\"]Data Documento:[/font] 2018-10-16"
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Dati personali trattati da Wildfire Games e finalità di elaborazione:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Playername[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Nome Giocatore[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr ""
+msgstr "Il giocatore è identificato da un nickname che il giocatore sceglie al momento della registrazione"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -679,7 +681,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "È necessario avere un proprio nickname diverso da quelli già esistenti per guadagnare una valutazione e per permettere ai giocatori, moderatori e sviluppatori di: identificare i giocatori che hanno incontrato in precedenza, comunicare riguardo al gioco, coordinare le partite e applicare i Termini di Utilizzo"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -688,61 +690,61 @@ msgid ""
 " information (such as the realname) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr ""
+msgstr "Il nome utente funge da pseudonimo. L'identità (persona fisica) dei giocatori non è nota a Wildfire Games, ad eccezione dei casi in cui informazioni personali (come ad esempio il vero nome) sono state divulgate nella chat dell'atrio, in altri servizi di Wildfire Games o altrove nel pubblico o quando l'indirizzo IP è usato per portare un procedimento penale."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. Password[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr ""
+msgstr "Un giocatore è autenticato dall'utilizzo di una password che il giocatore sceglie nel momento della registrazione"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
 "Wildfire Games only receives an encrypted version of the password, so that "
 "the password chosen by the user is not revealed to Wildfire Games or others "
 "in case of a breach."
-msgstr ""
+msgstr "Wildfire Games riceve soltanto una versione criptata della password, in modo che la password scelta dall'utente non venga rivelata a Wildfire Games o altri in caso di violazione."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. IP address[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr ""
+msgstr "Quando un giocatore ospita una partita nell'Atrio Multiplayer, l'indirizzo IP di quel giocatore viene inviato a tutti i giocatori online, in modo che questi si possano unire a quella partita."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr ""
+msgstr "Wildfire Games memorizza gli indirizzi IP dei giocatori e può inferire dati di geolocalizzazione e provider di servizi Internet disponibili pubblicamente (ad esempio \"geolite2\") dall'indirizzo IP per:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
 " 1. Enforce the Terms of Use where persons create multiple accounts without "
 "Wildfire Games permission, in particular after having been banned from the "
 "service for violating the Terms of Use."
-msgstr ""
+msgstr "1. Applicare i Termini d'uso laddove le persone creano più account senza il permesso di Wildfire Games, in particolare dopo essere stati bannati dal servizio per aver violato le Condizioni d'uso."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:19
 msgid ""
 "    IP addresses will not be saved for longer than three years for this "
 "purpose."
-msgstr ""
+msgstr "Gli indirizzi IP non verranno salvati per più di tre anni per questo scopo."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:20
 msgid ""
 " 2. Make it possible to bring criminal proceedings in case of a cyberattack "
 "(EU Court of Justice Press Release No 112/16)."
-msgstr ""
+msgstr "2. Consentire l'avvio di procedimenti penali in caso di attacco informatico (comunicato stampa n. 112/16 della Corte di giustizia dell'Unione europea)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:21
 msgid ""
@@ -750,66 +752,66 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr ""
+msgstr "Wildfire Games non utilizzerà i log degli indirizzi IP per nessun altro scopo, in particolare non per il marketing, non divulgare altrimenti indirizzi IP al pubblico o a terzi e cancellare gli indirizzi IP se non sono più pertinenti per gli scopi indicati."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]4. Presenza Online[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:24
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr ""
+msgstr "I giocatori che sono attualmente connessi alla Lobby multigiocatore e a quale partita hanno partecipato vengono mostrati a tutti i giocatori online."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]5. Messaggi in chat[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr ""
+msgstr "La lobby multiplayer presenta una chat room pubblica che consente ai giocatori di discutere del gioco e organizzare partite multiplayer."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
 "Wildfire Games stores a log of the public chat messages and online presence "
 "to meet the following purposes:"
-msgstr ""
+msgstr "Wildfire Games memorizza un registro dei messaggi di chat pubblici e della presenza online per soddisfare i seguenti scopi:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:29
 msgid " 1. Moderators may screen chat messages to enforce the Terms of Use."
-msgstr ""
+msgstr "1. I moderatori possono visualizzare i messaggi di chat per far rispettare i Termini d'uso."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:30
 msgid ""
 " 2. Wildfire Games may address or resolve bug reports, balancing issues or "
 "feature proposals indicated by players in the chat room."
-msgstr ""
+msgstr "2. Wildfire Games può indirizzare o risolvere segnalazioni di bug, problemi di bilanciamento o proposte di funzionalità indicate dai giocatori nella chat room."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:31
 msgid ""
 " 3. Wildfire Games may assess trends amongst discussed topics, the growth of"
 " the active community and use these indicators as feedback to assess, "
 "improve and direct development of the game and the service."
-msgstr ""
+msgstr "3. Wildfire Games può valutare le tendenze tra gli argomenti discussi, la crescita della comunità attiva e utilizzare questi indicatori come feedback per valutare, migliorare e dirigere lo sviluppo del gioco e del servizio."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]6. Statistiche della partita[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:34
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr ""
+msgstr "I giocatori possono ottenere una valutazione sulla Lobby multigiocatore che riflette la loro abilità nel gioco."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
 "The rating of all players is published by Wildfire Games and allows players "
 "to focus on competitive or balanced matchmaking if they wish to."
-msgstr ""
+msgstr "Il punteggio di tutti i giocatori è pubblicato da Wildfire Games e consente ai giocatori di concentrarsi su un matchmaking competitivo o bilanciato, se lo desiderano."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:36
 msgid ""
@@ -817,7 +819,7 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr ""
+msgstr "Durante una partita classificata, i giocatori inviano i dati relativi al gioco (come il numero di unità addestrate, le risorse raccolte e il vincitore della partita) a Wildfire Games, in modo che Wildfire Games possa adattare le classifiche dei giocatori in base a queste statistiche."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
@@ -1082,7 +1084,7 @@ msgstr "L'età minima per usare la Lobby Multiplayer è 13 anni."
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr "[font=\"sans-bold-14]Usando 0ad\nLobby multigiocatore, concordi che:[/font]"
+msgstr "[font=\"sans-bold-14\"]Usando 0ad\nLobby multigiocatore, concordi che:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."

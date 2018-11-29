@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-11-10 20:12+0000\n"
+"PO-Revision-Date: 2018-11-24 20:35+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -448,7 +448,7 @@ msgstr "Вибрати біом зі списку випадковим чино�
 
 #: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Режим Кочівник"
 
 #: gui/common/gamedescription.js:396
 msgid "Civic Centers"
@@ -683,7 +683,7 @@ msgstr "Випадково"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Збалансований"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -1452,7 +1452,7 @@ msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/reference/common/draw.js:68
 msgid "Resource Supply:"
-msgstr ""
+msgstr "Запас ресурсів:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its resource.
@@ -1485,13 +1485,13 @@ msgstr "Побудовано:"
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:152
 msgid "Trained by:"
-msgstr ""
+msgstr "Навчається за допомогою:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:165
 msgid "Researched at:"
-msgstr ""
+msgstr "Досліджується за допомогою:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
@@ -1503,7 +1503,7 @@ msgstr "Для побудови:"
 #. unit or structure can research.
 #: gui/reference/viewer/viewer.js:198
 msgid "Researches:"
-msgstr ""
+msgstr "Дослідження:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
@@ -1519,7 +1519,7 @@ msgstr "Для покращення:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr ""
+msgstr "Цьому повтору необхідний інший набір модів:"
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
@@ -1619,7 +1619,7 @@ msgstr "Багато гравців"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
-msgstr ""
+msgstr "Будь-яка умова перемоги"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -1762,7 +1762,7 @@ msgstr "Ресурси"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr ""
+msgstr "Данина"
 
 #: gui/summary/layout.js:112
 #, javascript-format
@@ -1781,7 +1781,7 @@ msgstr "Награбовано"
 
 #: gui/summary/layout.js:122
 msgid "Livestock bred"
-msgstr ""
+msgstr "Тваринництво"
 
 #: gui/summary/layout.js:126
 #, javascript-format
@@ -1837,14 +1837,14 @@ msgstr "Фемінізація"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr ""
+msgstr "Хабарі"
 
 #: gui/summary/layout.js:194
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "Хабарі\n(%(succeeded)s/%(failed)s)"
 
 #: gui/summary/layout.js:357
 msgid "Team total"
@@ -2594,7 +2594,7 @@ msgstr "Ім'я гравця (Багатокористувацька гра)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
-msgstr ""
+msgstr "Призупиняти одиночну гру, коли вікно неактивне."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
@@ -2669,7 +2669,7 @@ msgstr "Відключено"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr ""
+msgstr "Дозволити всім або тільки друзям приєднуватися до гри як спостерігач після її початку."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
@@ -2677,7 +2677,7 @@ msgstr "Спостерігач приєднується"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr ""
+msgstr "Запобігти подальше підключення спостерігачів при досягненні межі."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer Limit"
@@ -2722,7 +2722,7 @@ msgstr "Туман"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Використовувати екранні фільтри постобробки (HDR, Bloom, DOF, і ін.)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post Processing"
@@ -2837,7 +2837,7 @@ msgstr "Водяні віддзеркалювання"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr ""
+msgstr "Використовувати натуральну карту заломлень, а не прозору воду."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
@@ -2853,7 +2853,7 @@ msgstr "Тіні на воді"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
-msgstr ""
+msgstr "Змінювати темряву і туман війни плавно."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth LOS"
@@ -2905,7 +2905,7 @@ msgstr "Графіка"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr ""
+msgstr "Загальна гучність."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
@@ -2913,7 +2913,7 @@ msgstr "Загальна гучність"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr ""
+msgstr "Рівень гучності музики в грі."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
@@ -2921,7 +2921,7 @@ msgstr "Гучність музики"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr ""
+msgstr "Рівень гучності фонових звуків в грі."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
@@ -2929,7 +2929,7 @@ msgstr "Гучність оточення"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr ""
+msgstr "Рівень гучності вироблених юнітами звуків."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
@@ -2961,16 +2961,16 @@ msgstr "Увімкнути підказки ігрових налаштуван�
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr ""
+msgstr "Зрушувати панель налаштувань при відкритті, закритті або зміні розміру."
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable Settings Panel Slide"
-msgstr ""
+msgstr "Включити приховування Панелі Налаштувань."
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr ""
+msgstr "Зберігати і відновлювати налаштування матчу для швидкого повторного використання при створенні іншої гри."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
@@ -3010,7 +3010,7 @@ msgstr "Випадково"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Збалансований"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -3040,11 +3040,11 @@ msgstr "Призначити гравців"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr ""
+msgstr "Налаштування Гри"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr ""
+msgstr "Кількість повідомлень, які будуть завантажуватися при підключенні до багатокористувацької кімнати."
 
 #: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
@@ -3072,7 +3072,7 @@ msgstr "Лоббі"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "Юніт вважається пораненим і буде обраний при натисканні гарячої клавіші вибору поранених юнітів, якщо відсоток здоров'я, що залишився у нього, буде нижче цього рівня."
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
@@ -3089,19 +3089,19 @@ msgstr "Розмір групи для тренування"
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "Кількість кроків коліщатка миші для зміни розміру партії на 1."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
-msgstr ""
+msgstr "Темп збільшення партії прокруткою"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr ""
+msgstr "Показувати сповіщення в чаті, якщо атаковані іншим гравцем."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat Notification Attack"
-msgstr ""
+msgstr "Повідомлення про атаку в чаті"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -3111,16 +3111,16 @@ msgstr ""
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr ""
+msgstr "Повідомлення в чаті про передачу данини."
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "Показувати сповіщення в чаті для спостерігачів, коли гравці обмінюються ресурсами."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr ""
+msgstr "Повідомлення в чаті про обмін ресурсами"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3138,17 +3138,17 @@ msgstr "Відобразити усе"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "Показати сповіщення у чаті, якщо Ви чи союзник починає, скасовує чи завершує новий етап та етапи усіх гравців у режимі спостерігача."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr ""
+msgstr "Повідомлення в чаті про перехід на нову Фазу"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Відображати радіус атаки обраних захисних споруд (можна перемкнути в грі за допомогою гарячої клавіші)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
@@ -3176,11 +3176,11 @@ msgstr "Візуалізація радіусу зцілення"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr ""
+msgstr "Відображати значки рангів над рядками стану."
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "Значок рангу над рядком стану"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid ""
@@ -3206,19 +3206,19 @@ msgstr "По спаданню"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
+msgstr "Динамічне сортування гравців в підказці ресурсів і населення за значенням."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "Підказка сортування ресурсів і населення"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr ""
+msgstr "Колір ваших юнітів при включених кольорах дипломатії."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Diplomacy Colors: Self"
-msgstr ""
+msgstr "Колір дипломатії: Свій"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -3246,7 +3246,7 @@ msgstr "Колір Дипломатії: Ворог"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr ""
+msgstr "Зміна параметрів в налаштуваннях гри."
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
@@ -3629,7 +3629,7 @@ msgstr "- Може бути побудований на дружній або н
 msgid ""
 "- Train citizens: female citizens, infantry citizen soldiers and cavalry "
 "citizen soldiers."
-msgstr ""
+msgstr "- Тренує громадян: городянок, солдатів піхоти та солдатів кавалерії."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3691,23 +3691,23 @@ msgstr "- Підсильте гарнізон солдатами для підв
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "ДОВІЛЬНА ПОЗИЦІЯ"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "- Gain an advantage on the battleground by tactically positioning your "
 "units!"
-msgstr ""
+msgstr "- Зміцніть свою перевагу на полі бою вигідно розміщуючи війська!"
 
 #: gui/text/tips/freehand_position.txt:4
 msgid ""
 "- Therefore select some units, press and hold the right mouse button, draw "
 "any line, then release the button."
-msgstr ""
+msgstr "- Тому виберіть кількох юнітів, натисніть і утримуйте праву кнопку миші, накресліть лінію і відпустіть кнопку."
 
 #: gui/text/tips/freehand_position.txt:6
 msgid "- Your units will now spread out on this line."
-msgstr ""
+msgstr "- Тепер виші юніти вишикуються по цій лінії."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3723,7 +3723,7 @@ msgstr "- Жінки-городянки швидші в збиранні ово�
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Infantry citizen soldiers are faster gathering minerals."
-msgstr ""
+msgstr "-Солдати піхоти швидше добувають мінеральні ресурси."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry citizen soldiers are faster gathering meat."
@@ -3733,7 +3733,7 @@ msgstr "- Кавалерія швидша в зборі м'яса."
 msgid ""
 "- The higher the level of a citizen soldier (advanced, elite), the better he"
 " fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "- Чим вище рівень городян-солдат (Розвинений, Елітний), тим краще вони борються, але менш ефективні в зборі ресурсів."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"

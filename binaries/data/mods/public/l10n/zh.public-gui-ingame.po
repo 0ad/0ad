@@ -12,6 +12,7 @@
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # hyln9 <hyln9@live.cn>, 2014
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
+# Jiang Chen <cyanjiang@163.com>, 2018
 # jiegec <jiegec@qq.com>, 2015
 # jiegec <jiegec@qq.com>, 2015
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
@@ -44,8 +45,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-10-20 15:41+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"PO-Revision-Date: 2018-11-23 05:00+0000\n"
+"Last-Translator: Jiang Chen <cyanjiang@163.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -517,7 +518,7 @@ msgstr "，"
 #: gui/session/messages.js:695
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "未同步"
+msgstr "在转换 %(turn)s 时出现同步错误。"
 
 #: gui/session/messages.js:699
 #, javascript-format
@@ -554,7 +555,7 @@ msgstr "在主菜单中点击“报告错误”来帮助解决它。"
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr "回放保存到了%(filepath)s"
+msgstr "回放保存到为 %(filepath)s"
 
 #: gui/session/messages.js:719
 #, javascript-format
@@ -1005,7 +1006,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "单击选择修改项，然后使用其他类型的箭头共享修改。 你也可以某项份额达到100%%时，点击%(hotkey)s 。"
+msgstr "通过单击选择要修改的商品类型，然后使用其他类型的箭头修改它们的份额。您也可以按%(hotkey)s，同时选择一种商品，使其份额达到100%%。"
 
 #: gui/session/session.js:468
 #, javascript-format
@@ -1038,7 +1039,7 @@ msgstr "战败!"
 
 #: gui/session/session.js:930
 msgid "OK"
-msgstr "好的"
+msgstr "确定"
 
 #: gui/session/session.js:998
 msgctxt "replayFinished"
@@ -1081,7 +1082,7 @@ msgstr "未排序"
 
 #: gui/session/session.js:1260
 msgid "Descending"
-msgstr "降序。"
+msgstr "降序"
 
 #: gui/session/session.js:1260
 msgid "Ascending"

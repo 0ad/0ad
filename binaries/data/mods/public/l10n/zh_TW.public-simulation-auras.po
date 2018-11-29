@@ -12,13 +12,14 @@
 # Money <abc12207@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # Zou Yi <zouyi100@outlook.com>, 2017
+# 又齊 劉 <bill19981002@gmail.com>, 2018
 # 張峻瑜 <a728728728@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-16 09:04+0200\n"
-"PO-Revision-Date: 2018-10-14 21:18+0000\n"
-"Last-Translator: 張峻瑜 <a728728728@gmail.com>\n"
+"PO-Revision-Date: 2018-11-15 12:54+0000\n"
+"Last-Translator: 又齊 劉 <bill19981002@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -208,7 +209,7 @@ msgstr "Saripeko"
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
-msgstr "伊比利玩家的盟友之公民兵花費減少 20% 。"
+msgstr "伊比利玩家的盟友之公民散兵花費減少 20% 。"
 
 #: simulation/data/auras/teambonuses/kush_player_team_bonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -263,7 +264,7 @@ msgstr "同盟的公民步兵單位訓練時間 -20%。"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr "敘利亞的 Tetrapolis"
+msgstr "敘利亞四城"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
@@ -278,7 +279,7 @@ msgstr "伯羅奔尼撒聯盟"
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr "斯巴達玩家盟友公民兵之長矛兵的生命值多 10%。"
+msgstr "斯巴達玩家盟友的公民矛步兵的生命值多 10%。"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -286,7 +287,7 @@ msgstr "鼓舞"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "+10% build rate and gather rate for citizen soldiers."
-msgstr "公民兵增加 +10% 的建造與收穫速率。"
+msgstr "公民兵 +10% 的建造與收穫速率。"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -327,7 +328,7 @@ msgstr "輕裝偷襲戰術"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "+20% attack range for skirmisher javelins."
-msgstr "卡西維拉努斯部署了快速移動的輕裝部隊來偷襲羅馬人的軍隊與糧隊。\n長矛散兵 +20% 攻擊範圍。"
+msgstr "Cassivellaunus部署了快速移動的散兵部隊來偷襲羅馬軍隊與輜重。\n標槍散兵 +20% 攻擊範圍。"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -508,11 +509,11 @@ msgstr "來古格士軍事改革"
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
 "-10% resource cost for citizen spear infantry."
-msgstr "來古格士推行了許多次軍事改革，從而讓斯巴達公民完全且唯一地效忠政府。\n長矛民兵單位 -10% 資源花費。"
+msgstr "來古格士推行了許多次軍事改革，從而讓斯巴達公民完全且唯一地效忠政府。\n公民矛步兵 -10% 資源花費。"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "-5% resource cost for spear infantry champions."
-msgstr "長矛步兵精英 -5% 資源花費。"
+msgstr "矛步兵精英 -5% 資源花費。"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
@@ -580,7 +581,7 @@ msgstr "精英部隊"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +10% speed for champion units."
-msgstr "精英單位 +20% 攻擊力、+2 捕獲及 +10% 速度。"
+msgstr "精英單位 +20% 攻擊力，+2 捕獲／占領力並 +10% 速度。"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
@@ -622,7 +623,7 @@ msgstr "戰術家"
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid ""
 "+20% attack and +1 capture for nearby allied soldiers and siege engines."
-msgstr "鄰近的士兵和攻城武器 +20% 攻擊和 +1 捕獲。"
+msgstr "鄰近的同盟士兵和攻城武器 +20% 攻擊並 +1 捕獲／占領力。"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -646,7 +647,7 @@ msgstr "塞爾特軍閥"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
-msgstr "士兵與攻城武器 +20% 攻擊力及 +1 捕獲。"
+msgstr "士兵與攻城武器 +20% 攻擊力並 +1 捕獲／占領力。"
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
@@ -664,7 +665,7 @@ msgstr "機巧防禦"
 msgid ""
 "When garrisoned in a structure or a siege engine, the hero gives it a bonus "
 "of +2 capture points recovery rate."
-msgstr "當駐守在建築物或攻城武器內時，英雄會給予其 +2 的捕獲點數恢復速度的獎勵。"
+msgstr "當駐守在建築物或攻城武器內時，英雄會給予其 +2 的捕獲／占領值恢復速度的獎勵。"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
@@ -713,7 +714,7 @@ msgstr "戰士女王"
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
-msgstr "精英單位 +20% 攻擊力和 +2 捕獲。"
+msgstr "精英單位 +20% 攻擊力並 +2 捕獲／占領力。"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
@@ -781,7 +782,7 @@ msgstr "Taxiarchès"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid "+20% attack and +20% capture for pikemen."
-msgstr "矛兵 +20% 攻擊力和 +20% 捕獲。"
+msgstr "長槍兵 +20% 攻擊力並 +20% 捕獲／占領力。"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
@@ -832,7 +833,7 @@ msgstr "前線領導者"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for cavalry soldiers."
-msgstr "騎兵 +20% 攻擊力及 +1 捕獲。"
+msgstr "騎兵 +20% 攻擊力並 +1 捕獲／占領力。"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
@@ -922,7 +923,7 @@ msgstr "凱旋"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
 msgid "+20% attack and +2 capture for soldiers and siege engines."
-msgstr "士兵與攻城武器 +20% 攻擊力及 +2 捕獲。"
+msgstr "士兵與攻城武器 +20% 攻擊力並 +2 捕獲／占領力。"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
@@ -962,4 +963,4 @@ msgstr "背水一戰"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "+25% attack and +1 capture for spear soldiers."
-msgstr "長槍兵 +25% 攻擊力及 +1 捕獲。"
+msgstr "矛兵 +25% 攻擊力並 +1 捕獲／占領力。"
