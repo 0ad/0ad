@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -159,23 +159,6 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 		LOGERROR("Failed to call the callback function %s in the page %s", callback, utf8_from_wstring(m_PageStack.back().name));
 		return;
 	}
-}
-
-void CGUIManager::DisplayMessageBox(int width, int height, const CStrW& title, const CStrW& message)
-{
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	// Set up scripted init data for the standard message box window
-	JS::RootedValue data(cx);
-	m_ScriptInterface->Eval("({})", &data);
-	m_ScriptInterface->SetProperty(data, "width", width, false);
-	m_ScriptInterface->SetProperty(data, "height", height, false);
-	m_ScriptInterface->SetProperty(data, "mode", 2, false);
-	m_ScriptInterface->SetProperty(data, "title", std::wstring(title), false);
-	m_ScriptInterface->SetProperty(data, "message", std::wstring(message), false);
-
-	// Display the message box
-	PushPage(L"page_msgbox.xml", m_ScriptInterface->WriteStructuredClone(data));
 }
 
 void CGUIManager::LoadPage(SGUIPage& page)
