@@ -33,7 +33,10 @@ WXWIDGETS_VERSION="wxWidgets-3.0.3.1"
 PNG_VERSION="libpng-1.6.34"
 OGG_VERSION="libogg-1.3.3"
 VORBIS_VERSION="libvorbis-1.3.6"
-# gloox is necessary for multiplayer lobby
+# gloox requires GnuTLS, GnuTLS requires Nettle and GMP
+GMP_VERSION="gmp-6.1.2"
+NETTLE_VERSION="nettle-3.4"
+GNUTLS_VERSION="gnutls-3.5.19"
 GLOOX_VERSION="gloox-1.0.20"
 # NSPR is necessary for threadsafe Spidermonkey
 NSPR_VERSION="4.15"
@@ -463,6 +466,102 @@ fi
 popd > /dev/null
 
 # --------------------------------------------------------------
+echo -e "Building GMP..."
+
+LIB_VERSION="${GMP_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="https://gmplib.org/download/gmp/"
+
+mkdir -p gmp
+pushd gmp > /dev/null
+
+GMP_DIR="$(pwd)"
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  rm -f .already-built
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY bin include lib
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  (./configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --disable-shared && make ${JOBS} && make install) || die "GMP build failed"
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building Nettle..."
+
+LIB_VERSION="${NETTLE_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.gz"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="https://ftp.gnu.org/gnu/nettle/"
+
+mkdir -p nettle
+pushd nettle > /dev/null
+
+NETTLE_DIR="$(pwd)"
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  rm -f .already-built
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY bin include lib
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+(./configure CFLAGS="$CFLAGS -m64" CXXFLAGS="$CXXFLAGS -m64" LDFLAGS="$LDFLAGS -m64" --with-include-path="${GMP_DIR}/include" --with-lib-path="${GMP_DIR}/lib" --prefix="$INSTALL_DIR" --disable-shared --disable-documentation --disable-openssl --disable-assembler && make ${JOBS} && make install) || die "Nettle build failed"
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building GnuTLS..."
+
+LIB_VERSION="${GNUTLS_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.xz"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="https://www.gnupg.org/ftp/gcrypt/gnutls/v3.5/"
+
+mkdir -p gnutls
+pushd gnutls > /dev/null
+
+GNUTLS_DIR="$(pwd)"
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  rm -f .already-built
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY bin include lib
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+(./configure CFLAGS="$CFLAGS -m64" CXXFLAGS="$CXXFLAGS -m64" LDFLAGS="$LDFLAGS -m64" NETTLE_CFLAGS="-I${NETTLE_DIR}/include" NETTLE_LIBS="-L${NETTLE_DIR}/lib -lnettle" HOGWEED_CFLAGS="-I${NETTLE_DIR}/include" HOGWEED_LIBS="-L${NETTLE_DIR}/lib -lhogweed" GMP_CFLAGS="-I${GMP_DIR}/include" GMP_LIBS="-L${GMP_DIR}/lib -lgmp" --prefix="$INSTALL_DIR" --enable-shared=no --without-idn --with-included-unistring --with-included-libtasn1 --without-p11-kit --disable-tests && make ${JOBS} && make install) || die "GnuTLS build failed"
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
 echo -e "Building gloox..."
 
 LIB_VERSION="${GLOOX_VERSION}"
@@ -485,8 +584,7 @@ then
   pushd $LIB_DIRECTORY
 
   # TODO: pulls in libresolv dependency from /usr/lib
-  # TODO: if we ever use SSL/TLS, that will add yet another dependency...
-  (./configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-zlib="${ZLIB_DIR}" --without-libidn --without-gnutls --without-openssl --without-tests --without-examples && make ${JOBS} && make install) || die "gloox build failed"
+  (./configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" GNUTLS_CFLAGS="-I${GNUTLS_DIR}/include" GNUTLS_LIBS="-L${GNUTLS_DIR}/lib -lgnutls" --enable-shared=no --with-zlib="${ZLIB_DIR}" --without-libidn --with-gnutls="yes" --without-openssl --without-tests --without-examples && make ${JOBS} && make install) || die "gloox build failed"
   popd
   touch .already-built
 else

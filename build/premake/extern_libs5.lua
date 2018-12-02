@@ -281,6 +281,13 @@ extern_lib_defs = {
 					gloox_config_path = "gloox-config"
 				end
 				pkgconfig.add_links(nil, gloox_config_path.." --libs")
+
+				-- Manually add gnutls dependencies, those are not present in gloox's pkg-config
+				add_default_lib_paths("nettle")
+				add_default_lib_paths("gmp")
+				add_default_links({
+					osx_names = { "nettle", "hogweed", "gmp" },
+				})
 			else
 				-- TODO: consider using pkg-config on non-Windows (for compile_settings too)
 				add_default_links({
