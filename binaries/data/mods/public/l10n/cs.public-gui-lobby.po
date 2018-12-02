@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2018-11-07 03:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-11-28 16:26+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -409,7 +409,7 @@ msgstr "Zadejte, prosím, své heslo"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr "Zvolte prosím delší heslo"
+msgstr "Zvolte, prosím, delší heslo"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
@@ -435,7 +435,7 @@ msgstr "Podmínky služby"
 
 #: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
-msgstr "Přečtěte si a souhlaste prosím s Podmínkami služby."
+msgstr "Přečtěte si a souhlaste, prosím, s Podmínkami služby."
 
 #: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
@@ -443,7 +443,7 @@ msgstr "Podmínky užití"
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
-msgstr "Přečtěte si a souhlaste prosím s Podmínkami užití."
+msgstr "Přečtěte si a souhlaste, prosím, s Podmínkami užití."
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
@@ -451,7 +451,7 @@ msgstr "Zásady ochrany osobních údajů"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr "Přečtěte si a souhlaste prosím se Zásadami ochrany osobních údajů."
+msgstr "Přečtěte si a souhlaste, prosím, se Zásadami ochrany osobních údajů."
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
@@ -664,7 +664,7 @@ msgstr "[font=\"sans-bold-14\"]1. Jméno hráče[/font]"
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr "Hráč je označen jménem, který hráč zvolí při registraci."
+msgstr "Hráč je označen jménem, které hráč zvolí při registraci."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -672,7 +672,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr "Mít jedinečné hráčské jméno je požadavek na získání hodnocení, aby hráči, moderátoři a vývojáři mohli identifikovat hráče, s nimiž se setkali dříve, komunikovat o hře, koordinovat zápasy a umožňují moderátorům prosazovat Podmínky užití."
+msgstr "Mít jedinečné hráčské jméno je požadavek na získání hodnocení, aby hráči, moderátoři a vývojáři mohli rozpoznat hráče, s nimiž se setkali dříve, mluvit o hře, koordinovat zápasy, a umožňuje moderátorům prosazovat Podmínky užití."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -681,7 +681,7 @@ msgid ""
 " information (such as the realname) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr " Jméno hráče slouží jako pseudonym. Identita (fyzická osoba) hráčů není známá Wildfire Games, kromě případů, kdy byly informace o osobě identifikovatelné (například skutečné jméno) zveřejněny v Lobby Chatu, v jiných službách Wildfire Games nebo jinde na veřejnosti, nebo když je adresa IP použita k trestnímu řízení."
+msgstr " Jméno hráče slouží jako pseudonym. Totožnost (fyzická osoba) hráčů není známá Wildfire Games, kromě případů, kdy byly informace o osobě identifikovatelné (například skutečné jméno) zveřejněny v Lobby Chatu, v jiných službách Wildfire Games nebo jinde na veřejnosti, nebo když je adresa IP použita k trestnímu řízení."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -709,7 +709,7 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "Když hráč hostí zápas v hře pro více hráčů, IP adresa tohoto hráče je odeslána každému hráči, který je online, aby se k této hře mohli připojit i jiní hráči."
+msgstr "Když hráč hostí zápas v hře pro více hráčů, IP adresa tohoto hráče je odeslána každému hráči, který je připojen k internetu (online), aby se k této hře mohli připojit i jiní hráči."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
@@ -743,50 +743,50 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr "Wildfire Games nepoužijí záznamy IP adres pro žádný jiný účel, zejména pro marketing, neposkytnou IP adresy veřejnosti ani třetím stranám a nevymažou IP adresy, pokud již nejsou pro výše uvedené účely relevantní."
+msgstr "Wildfire Games nepoužijí záznamy IP adres pro žádný jiný účel, zejména ne pro tržní prodej, neposkytnou IP adresy veřejnosti ani třetím stranám a nevymažou IP adresy, pokud již nejsou pro výše uvedené účely podstatné."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
-msgstr "[font=\"sans-bold-14\"]4. Online přítomnost[/font]"
+msgstr "[font=\"sans-bold-14\"]4. Přítomnost hráčů[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:24
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr "Kteří hráči jsou v současné době připojeni k hře zájmové herní skupiny pro více hráčů a ke kterému zápasu se připojili, se zobrazí všem hráčům online."
+msgstr "Kteří hráči jsou v současné době připojeni ke hře zájmové herní skupiny pro více hráčů a ke kterému zápasu se připojili, se zobrazí všem hráčům, kteří jsou přímo připojeni."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr "[font=\"sans-bold-14\"]5. Chatové zprávy[/font]"
+msgstr "[font=\"sans-bold-14\"]5. Zprávy od hráčů[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr "Zájmová herní skupina pro více hráčů obsahuje veřejnou diskusní místnost, která umožňuje hráči diskutovat o hře a organizovat zápasy pro více hráčů."
+msgstr "Zájmová herní skupina pro více hráčů obsahuje veřejnou diskusní místnost, která umožňuje hráči mluvit o hře a pořádat zápasy pro více hráčů."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
 "Wildfire Games stores a log of the public chat messages and online presence "
 "to meet the following purposes:"
-msgstr "Wildfire Games ukládají záznam o veřejných chatových zprávách a online přítomnosti tak, aby splňovaly následující účely:"
+msgstr "Wildfire Games ukládají záznam o veřejných zprávách a přítomnosti hráčů tak, aby splňovaly následující účely:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:29
 msgid " 1. Moderators may screen chat messages to enforce the Terms of Use."
-msgstr "1. Moderátoři mohou zobrazovat zprávy chatu, aby vynucovali Podmínky užití."
+msgstr "1. Moderátoři mohou zobrazovat zprávy od hráčů, aby vynucovali Podmínky užití."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:30
 msgid ""
 " 2. Wildfire Games may address or resolve bug reports, balancing issues or "
 "feature proposals indicated by players in the chat room."
-msgstr "2. Wildfire Games mohou řešit nebo vyřešit zprávy o chybách, vyvažování problémů nebo návrhy funkcí označené hráči v chatovací místnosti."
+msgstr "2. Wildfire Games mohou řešit nebo vyřešit zprávy o chybách, vyvažování problémů nebo návrhy funkcí označené hráči v místnosti určené pro rozhovory."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:31
 msgid ""
 " 3. Wildfire Games may assess trends amongst discussed topics, the growth of"
 " the active community and use these indicators as feedback to assess, "
 "improve and direct development of the game and the service."
-msgstr "3. Wildfire Games mohou hodnotit trendy mezi diskutovanými tématy, růst aktivního společenství a využívat tyto ukazatele jako zpětnou vazbu k posuzování, zdokonalení a přímému rozvoji hry a služby."
+msgstr "3. Wildfire Games mohou hodnotit směry mezi diskutovanými tématy, růst činorodého společenství a využívat tyto ukazatele jako zpětnou vazbu k posuzování, zdokonalení a přímému rozvoji hry a služby."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
@@ -802,7 +802,7 @@ msgstr "Hráči mohou získat hodnocení v zájmové herní skupině pro více h
 msgid ""
 "The rating of all players is published by Wildfire Games and allows players "
 "to focus on competitive or balanced matchmaking if they wish to."
-msgstr "Hodnocení všech hráčů vydává Wildfire Games a umožňuje hráčům soustředit se na konkurenční nebo vyvážené matchmaking, pokud si přejí."
+msgstr "Hodnocení všech hráčů vydává Wildfire Games a umožňuje hráčům soustředit se na soupeřivé nebo vyvážené provádění zápasů, pokud si to tak přejí."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:36
 msgid ""
@@ -820,14 +820,14 @@ msgstr "Wildfire Games uchovávají statistiky zápasů na:"
 msgid ""
 " 1. Verify the accuracy of the rating score and identify and enforce Terms "
 "of Use violations relating to that."
-msgstr "1. Ověření přesnosti hodnocení a identifikování a prosazení porušení Podmínek užití týkajících se přesnosti hodnocení."
+msgstr "1. Ověření přesnosti hodnocení a rozpoznávání porušení Podmínek užití a vynucení dodržení těchto podmínek užití týkajících se přesnosti hodnocení."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:39
 msgid ""
 " 2. Compute and publish community statistics to improve the game and the "
 "service, for example to improve the balancing of the game or to make certain"
 " aspects of the game more appealing."
-msgstr "2. Vypočítává a publikuje statistiky komunity, aby zlepšila hru a službu, například ke zlepšení vyvažování hry nebo ke zvýšení atraktivity některých aspektů hry."
+msgstr "2. Vypočítává a publikuje statistiky komunity, aby zlepšila hru a službu, například ke zlepšení vyvažování hry nebo ke zvýšení přitažlivosti některých stránek hry."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:41
 msgid "[font=\"sans-bold-14\"]Security of processing:[/font]"
@@ -1068,14 +1068,14 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr "Minimální věk pro používání zájmové herní skupiny pro více hráčů je 13."
+msgstr "Nejnižší věk pro používání zájmové herní skupiny pro více hráčů je 13."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr "[font=\"sans-bold-14\"]Užíváním zájmové herní skupiny pro více hráčů, souhlasíte s tím, že:[/font]"
+msgstr "[font=\"sans-bold-14\"]Užíváním zájmové herní skupiny pro více hráčů souhlasíte s tím, že:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1086,14 +1086,14 @@ msgid ""
 " 2. Not use the service with third-party software or mods that prevents the "
 "user from being informed of updated Terms and Conditions, unless authorized "
 "by a Wildfire Games team member."
-msgstr "2. Službu nepoužívejte s pomocí softwaru nebo pozměněných verzí třetích stran, které brání tomu, aby byl uživatel informován o aktualizovaných smluvních podmínkách, pokud není oprávněn členem týmu Wildfire Games."
+msgstr "2. Službu nepoužijete s pomocí softwaru nebo pozměněných verzí třetích stran, které brání tomu, aby byl uživatel informován o aktualizovaných smluvních podmínkách, pokud není oprávněn členem týmu Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:13
 msgid ""
 " 3. Use the service at your own risk. Wildfire Games does not take "
 "responsibility for the content posted by users or damages resulting from "
 "this service."
-msgstr "3. Použijte službu na vlastní nebezpečí. Wildfire Games nenese zodpovědnost za obsah zaslaný uživateli nebo za škody způsobené touto službou."
+msgstr "3. Službu použijete na vlastní nebezpečí. Wildfire Games nenese zodpovědnost za obsah zaslaný uživateli nebo za škody způsobené touto službou."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
@@ -1103,7 +1103,7 @@ msgstr "[font=\"sans-bold-14\"]Wildfire Games si vyhrazuje právo:[/font]"
 msgid ""
 " 1. Moderate the service, i.e. to enforce the Terms of Use by restricting, "
 "suspending or terminating user accounts."
-msgstr "1. Usměrňování služby, tj. Prosazování Podmínek užití omezením, pozastavením nebo ukončením uživatelských účtů."
+msgstr "1. Usměrňování služby, tj. prosazování Podmínek užití omezením, pozastavením nebo ukončením uživatelských účtů."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:17
 msgid " 2. Appoint others to moderate the service."
@@ -1147,7 +1147,7 @@ msgstr "[font=\"sans-bold-14\"]Datum dokumentu:[/font] 2018-10-13"
 msgid ""
 " 1. Only create one account per person on the service unless authorized by "
 "Wildfire Games."
-msgstr "1. Při použití této služby vytvořte pouze jeden účet na osobu, pokud není to povoleno Wildfire Games."
+msgstr "1. Při použití této služby vytvořte pouze jeden účet na osobu, pokud to není povoleno Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
 msgid ""
@@ -1157,7 +1157,7 @@ msgstr "2. Nevydávejte se za někoho jiného z ostatních uživatelů služby a
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
-msgstr "3. Nevkládat neuctivé/rouhavé, pejorativní/vulgární pojmy nebo pornografický obsah."
+msgstr "3. Nevkládejte neuctivé/svatokrádežné, hanlivé/sprosté výrazy nebo pornografický obsah."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid ""
@@ -1176,7 +1176,7 @@ msgstr "5. Neporušujte soukromí ostatních osob tím, že bez jejich souhlasu 
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:11
 msgid " 6. Not incite violence or promote illegal acts."
-msgstr "6. Nevyvolávejte násilí nebo nelegální jednání."
+msgstr "6. Nevyvolávejte násilí nebo nezákonné jednání."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid ""
@@ -1197,13 +1197,13 @@ msgstr "8. Nepodkopávejte zamýšlenou hratelnost nebo cílevědomě nezískáv
 msgid ""
 " 9. Not spam the service and not post large amounts of repetitive or "
 "unwanted messages."
-msgstr "9. Nespamujte/nezahlcujte službu a nevydávejte velké množství opakovaných nebo nežádoucích zpráv."
+msgstr "9. Neposílejte nevyžádanou poštu/nezahlcujte službu a nevydávejte velké množství opakovaných nebo nežádoucích zpráv."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:15
 msgid ""
 "10. Not use the service to promote specific goods, services, or products "
 "unless authorized by Wildfire Games."
-msgstr "10. Nepoužívejte službu k propagaci konkrétních výrobků, služeb nebo produktů, pokud to nepovolí Wildfire Games."
+msgstr "10. Nepoužívejte službu k podpoře konkrétních výrobků, služeb nebo výrobků, pokud to nepovolí Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:17
 msgid ""

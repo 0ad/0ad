@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-11-15 12:59+0000\n"
-"Last-Translator: 又齊 劉 <bill19981002@gmail.com>\n"
+"PO-Revision-Date: 2018-11-30 16:54+0000\n"
+"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,19 +31,19 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "升級到進階等級的單位得到了很多的強化：20％的生命值加權，升一級追加1 個盔甲等級，可以多得到20％的戰利品。另外近戰單位還有20％ 的攻擊加權；遠程單位得到更高準確度，射程也追加4公尺；治療師則有更快的移動速度、治療速度和治療範圍。"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "用於馬匹臉部的金屬盔甲。"
+msgstr "馬臉的金屬護盔"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "將您騎兵的座騎裝上盔甲。所有騎兵 +1 劈砍及穿刺盔甲等級。"
+msgstr "將您騎兵的座騎批上盔甲。所有騎兵 +1 劈砍及穿刺盔甲等級。"
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -234,7 +234,7 @@ msgstr "鐵甲"
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "步兵的有襯墊的亞麻布衣或皮革衣。"
+msgstr "步兵的有襯墊亞麻布衣或皮革衣。"
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
@@ -702,7 +702,7 @@ msgstr "秘密的鋼鐵加工技術讓劍鋒有著獨特而美麗的紋路。不
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "所有的劍士單位、戰錘單位劈砍攻擊+20% 。"
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -734,7 +734,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "升級為精銳等級的單位獲得以下加權：額外生命值 20％，每類型+1額外盔甲等級，20％額外戰利品。近戰單位額外攻擊力 20％；遠程單位射程增加4 公尺，精準度也更高；治療師有更快的移動速度與、更高的治療速度與治療範圍。"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1219,7 +1219,7 @@ msgstr "城市階段"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "用於模板需要的假技術，由phase_city_generic 或 phase_city_{civ} 取而代之。"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1270,7 +1270,7 @@ msgstr "鄉鎮階段"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "用於模板需要的假技術，由phase_town_generic or phase_town_{civ} 取而代之。"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1475,7 +1475,7 @@ msgstr "改善砲彈的準確度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter increased accuracy."
-msgstr ""
+msgstr "弩炮增加了精準度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1596,7 +1596,7 @@ msgstr "城垛射孔可以攻擊塔底的敵人。"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "移除防禦塔的最短射程限制"
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1608,7 +1608,7 @@ msgstr "急速射手增加射出弓箭的最大射程。"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "增加防禦塔的最遠射程到8單位"
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1632,7 +1632,7 @@ msgstr "夜間瞭望增強了警覺性。"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "後哨，增加一隻箭來防禦箭塔"
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -2375,7 +2375,7 @@ msgstr "雅典長城"
 msgid ""
 "+25% HP and -50% build time for Civic Centres, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "城鎮中心、神廟、金字塔、世紀奇觀生命值 +25% 、建造時間 -50% 。"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2385,7 +2385,7 @@ msgstr "紀念性建築"
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "大祭司已經親自指導了你的祭司 - 願他得到阿蒙神的祝福。"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
@@ -2428,7 +2428,7 @@ msgstr "印度人有良好的箭術傳統並愛好在戰爭中運用大量弓箭
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "執弓單位射程+10 單位，弓箭手單位有更好的準確度且訓練時間 -20% 但生命值也 -20% "
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName

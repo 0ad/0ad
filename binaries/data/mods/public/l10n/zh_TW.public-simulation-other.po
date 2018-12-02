@@ -5,14 +5,14 @@
 # Translators:
 # ethan lin <ethan@tscc.tp.edu.tw>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
-# Jeff Huang <s8321414@gmail.com>, 2014-2017
+# Jeff Huang <s8321414@gmail.com>, 2014-2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-09-19 00:09+0000\n"
-"Last-Translator: ethan lin <ethan@tscc.tp.edu.tw>\n"
+"PO-Revision-Date: 2018-11-29 02:52+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -697,7 +697,7 @@ msgstr "取得遺蹟"
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr ""
+msgstr "殺死對方所有的單位與摧毀所有的建築物來擊敗對手"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -705,7 +705,7 @@ msgstr "征服"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr ""
+msgstr "摧毀對方所有的建築物來擊敗對手"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -732,7 +732,7 @@ msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured or in allied victory when the owners alliances change."
-msgstr ""
+msgstr "成為第一個建造或佔領一個世界奇觀並保持一段時間直到贏得遊戲的人。 當世界奇觀被摧毀或被佔領時，或者當所有者聯盟改變時，計時器將被重設。"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -770,7 +770,7 @@ msgstr "死鬥"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "如果你只是要探索0 A.D，就選擇這個難度"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
@@ -778,7 +778,7 @@ msgstr "非常簡單"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "如果你不喜歡輸的感覺，就選擇這個難度"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -787,7 +787,7 @@ msgstr "簡易"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "如果你已經對 0 A.D.很有經驗，就選擇這個難度"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
 #: simulation/data/settings/map_sizes.jsonData[2].Name
@@ -796,7 +796,7 @@ msgstr "中等"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
+msgstr "如果你想被好好的挑戰，就選擇這個難度"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -804,7 +804,7 @@ msgstr "困難"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
+msgstr "如果你不擔心被橫掃，就選擇這個難度"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -878,4 +878,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -60% for Sandbox to +60% for Very Hard (Medium 0%) and the easiest levels have a slower production and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra 是預設的 0 A.D. AI 機器人。請回報問題給 Wildfire Games （請見在主選單中的連結）。\n\nAI 在資源儲備上有加值／減值（不論是採集速率或是貿易收入），從測試區用的 -60% 到非常難的 +60%（中等 = 0%），而且最簡單的等級的生產與建造速度都較慢。另外，測試區等級不會拓展也不會攻擊。"

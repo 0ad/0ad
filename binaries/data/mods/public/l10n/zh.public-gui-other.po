@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 13:28+0000\n"
+"POT-Creation-Date: 2018-11-28 09:48+0100\n"
+"PO-Revision-Date: 2018-11-28 20:04+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgstr "中断载入"
 
 #: gui/common/functions_utility.js:29
 msgid "Gaia"
-msgstr "盖亚"
+msgstr "大自然"
 
 #: gui/common/functions_utility.js:102
 msgctxt "map selection"
@@ -386,7 +386,7 @@ msgstr "某人获胜时，盟友一起获胜。"
 msgid "Ceasefire"
 msgstr "停火"
 
-#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
+#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "关闭"
 
@@ -439,7 +439,7 @@ msgstr "诺曼底模式"
 
 #: gui/common/gamedescription.js:396
 msgid "Civic Centers"
-msgstr "城镇中心"
+msgstr "市政中心"
 
 #: gui/common/gamedescription.js:399
 msgid ""
@@ -449,7 +449,7 @@ msgstr "玩家从少数单位开局并需要找到一个合适的地方来建造
 
 #: gui/common/gamedescription.js:400
 msgid "Players start with a Civic Center."
-msgstr "玩家以一个城镇中心开始游戏。"
+msgstr "玩家以一个市政中心开始游戏。"
 
 #: gui/common/gamedescription.js:404
 msgid "Starting Resources"
@@ -749,7 +749,7 @@ msgstr "未知"
 #: gui/common/settings.js:381
 msgctxt "AI behavior"
 msgid "Default"
-msgstr "缺省"
+msgstr "默认"
 
 #: gui/common/settings.js:393
 msgctxt "map type"
@@ -1321,65 +1321,65 @@ msgstr "条款"
 msgid "Please read and accept the UserReporter Terms and Conditions."
 msgstr "请阅读并接受用户报告的条款和条件。"
 
-#: gui/pregame/userreport/userreport.js:17
+#: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
 msgstr "出版"
 
-#: gui/pregame/userreport/userreport.js:26
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
+#: gui/pregame/userreport/userreport.js:29
 msgid "connecting to server"
 msgstr "连接到服务器"
 
-#: gui/pregame/userreport/userreport.js:29
+#: gui/pregame/userreport/userreport.js:30
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "上传 (%f%%)"
 
-#: gui/pregame/userreport/userreport.js:32
+#: gui/pregame/userreport/userreport.js:33
 msgid "upload succeeded"
 msgstr "上传成功"
 
-#: gui/pregame/userreport/userreport.js:33
+#: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "上传失败 (%(errorCode)s)"
 
-#: gui/pregame/userreport/userreport.js:36
+#: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "上传失败 (%(errorMessage)s)"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
 msgstr "取消反馈"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
 msgstr "激活反馈"
 
-#: gui/pregame/userreport/userreport.js:80
+#: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "感谢您对改善 0 A.D. 的帮助！"
 
-#: gui/pregame/userreport/userreport.js:81
+#: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
 msgstr "反馈机制已启用。"
 
-#: gui/pregame/userreport/userreport.js:82
+#: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "状态: %(status)s。"
 
-#: gui/pregame/userreport/userreport.js:83
+#: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
 msgstr "未知"
 
-#: gui/pregame/userreport/userreport.js:85
+#: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
 msgstr "帮助改进 0 A.D.!"
 
-#: gui/pregame/userreport/userreport.js:86
+#: gui/pregame/userreport/userreport.js:87
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
@@ -1497,7 +1497,7 @@ msgstr "确定要永久删除?"
 
 #: gui/replaymenu/replay_actions.js:168
 msgid "Delete replay"
-msgstr "删除重播。"
+msgstr "删除回放。"
 
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
@@ -1636,7 +1636,7 @@ msgstr "经济"
 
 #: gui/summary/layout.js:27
 msgid "Outposts"
-msgstr "哨岗"
+msgstr "哨所"
 
 #: gui/summary/layout.js:28
 msgid "Military"
@@ -1648,11 +1648,11 @@ msgstr "要塞"
 
 #: gui/summary/layout.js:30
 msgid "Civ centers"
-msgstr "城镇中心"
+msgstr "市政中心"
 
 #: gui/summary/layout.js:31
 msgid "Wonders"
-msgstr "奇迹"
+msgstr "奇观"
 
 #: gui/summary/layout.js:35
 #, javascript-format
@@ -1767,7 +1767,7 @@ msgstr "地图控制(完成)"
 
 #: gui/summary/layout.js:188
 msgid "Map exploration"
-msgstr "地图探测"
+msgstr "地图勘测"
 
 #: gui/summary/layout.js:189
 msgid "Vegetarian ratio"
@@ -1882,7 +1882,7 @@ msgstr "获得胜利！"
 
 #: gui/summary/summary.js:501
 msgid "You have been defeated…"
-msgstr "您已战败。"
+msgstr "已被击败。"
 
 #: gui/summary/summary.js:502
 msgid "You have abandoned the game."
@@ -2043,7 +2043,7 @@ msgstr "选择游戏语言。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Select and download mods for the game."
-msgstr "选择并下载mods"
+msgstr "选择并下载模组"
 
 #: gui/pregame/mainmenu.xml:(tooltip):352
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -2097,7 +2097,7 @@ msgstr "单击在浏览器里打开0 A.D. 翻译页面。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):566
 msgid "Help with the project expenses by donating."
-msgstr "给个一丝半毫吧～"
+msgstr "捐赠，帮助我们改善游戏"
 
 #: gui/pregame/mainmenu.xml:(tooltip):578
 msgid "Click to see the 0 A.D. credits."
@@ -2152,7 +2152,7 @@ msgstr "Mod 选择"
 
 #: gui/pregame/mainmenu.xml:(caption):351
 msgid "Welcome Screen"
-msgstr "欢迎屏幕"
+msgstr "欢迎界面"
 
 #: gui/pregame/mainmenu.xml:(caption):409
 msgid "Learn to Play"
@@ -2516,7 +2516,7 @@ msgstr "特殊职员名单"
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
-msgstr "翻译"
+msgstr "译者"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
@@ -2719,7 +2719,7 @@ msgstr "阴影质量"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
-msgstr "阴影平滑"
+msgstr "阴影平滑化"
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow Filtering"
@@ -2985,22 +2985,31 @@ msgid "Game Setup"
 msgstr "游戏设置"
 
 #: gui/options/options.json[4].options[0].tooltip
+msgid ""
+"Protect login and data exchanged with the lobby server using TLS encryption."
+msgstr "游戏服务器交换的登录和数据使用TLS加密保护。"
+
+#: gui/options/options.json[4].options[0].label
+msgid "TLS Encryption"
+msgstr "TLS加密保护。"
+
+#: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
 msgstr "加入大厅时，加载未读消息。"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[4].options[1].label
 msgid "Chat Backlog"
 msgstr "聊天记录"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "在游戏列表中显示玩家的平均得分。"
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[4].options[2].label
 msgid "Game Rating Column"
-msgstr "评分栏"
+msgstr "得分栏"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3392,7 +3401,7 @@ msgstr "默认AI级别虽然对于老玩家来说相对容易，但是对还没�
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"]  感谢您安装 0 A.D. Empires Ascendant!"
+msgstr "[font=\"sans-bold-20\"]  感谢你安装 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -3519,7 +3528,7 @@ msgstr "-升级火焰弹，可以增加对建筑和单位的额外伤害"
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
-msgstr "- 昂贵并且慢"
+msgstr "- 昂贵又慢速"
 
 #: gui/text/tips/catapults.txt:8
 msgid ""
@@ -3537,7 +3546,7 @@ msgstr "- 一个中型的三列桨座战船."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "- Available to the Celtic Factions (Britons, Gauls)."
-msgstr "- 凯尔特派 ( 不列颠人、高卢人 ) 可用。"
+msgstr "- 凯尔特派系 ( 布里吞人、高卢人 ) 可用。"
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
@@ -3549,7 +3558,7 @@ msgstr "- 增加驻防步兵的火力。"
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr " - 不能像其他人一样撞击，但有更高的血量和护甲。"
+msgstr "- 不能像其他人一样撞击，但有更高的血量和护甲。"
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3557,7 +3566,7 @@ msgstr "市政中心"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The foundation of your new colony."
-msgstr "- 你的新殖民地的基础。"
+msgstr "- 你的新殖民地的地基。"
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -3621,7 +3630,7 @@ msgstr "-通常城堡是最坚固的建筑。"
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr "- 训练强力单位(如精英单位、英雄单位和攻城武器)。"
+msgstr "- 训练强力单位(如精锐单位、英雄单位和攻城武器)。"
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -3756,7 +3765,7 @@ msgstr "波斯建筑"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr "- 波斯人特殊的技术"
+msgstr "- 波斯特有科技"
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
@@ -3899,7 +3908,7 @@ msgstr "拱廊"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special structure for Greek factions."
-msgstr "- 希腊派别的一种特殊结构。"
+msgstr "- 希腊派别的一种特殊建筑。"
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
@@ -4041,7 +4050,7 @@ msgstr "- 可实施的毁灭性舰队对撞攻击必须在每次使用间隔中�
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
-msgstr "维里亚多"
+msgstr "维里亚托 "
 
 #: gui/text/tips/viriato.txt:2
 msgid "- Iberian hero of the Lusitani tribe."
