@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-03 15:05+0100\n"
-"PO-Revision-Date: 2018-11-05 05:44+0000\n"
+"PO-Revision-Date: 2018-11-28 20:35+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -244,7 +244,7 @@ msgstr "所有依赖已满足"
 
 #: gui/modmod/modmod.js:380
 msgid "No mod has been selected."
-msgstr "没有已被选取的 mod。"
+msgstr "模组未选取。"
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
@@ -279,7 +279,7 @@ msgstr "mod.io模组"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
-msgstr "可用的 Mods"
+msgstr "可用的模组"
 
 #: gui/modio/modio.xml:(caption):73
 msgid "Back"
@@ -306,7 +306,7 @@ msgstr "版本"
 #: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
 #: gui/modmod/modmod.xml:(heading):125
 msgid "Mod Label"
-msgstr "Mod 标签"
+msgstr "模组标签"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
@@ -331,7 +331,7 @@ msgstr "描述"
 
 #: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
-msgstr "已启用的 Mods"
+msgstr "已启用的模组"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
@@ -359,7 +359,7 @@ msgstr "储存设定"
 
 #: gui/modmod/modmod.xml:(caption):204
 msgid "Start Mods"
-msgstr "启动 Mods"
+msgstr "启动模组"
 
 #: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
@@ -377,7 +377,7 @@ msgstr "更改模组的启动顺序。请注意模组之间的依赖关系是否
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr "Mod选项"
+msgstr "模组选项"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -389,7 +389,7 @@ msgstr "模组指南"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr "访问mod.io"
+msgstr "访问模组网站mod.io"
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"

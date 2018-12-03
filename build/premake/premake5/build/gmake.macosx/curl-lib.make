@@ -27,12 +27,12 @@ ifeq ($(config),release)
   INCLUDES += -I../../contrib/curl/include -I../../contrib/curl/lib -I../../contrib/mbedtls/include -I../../contrib/zlib
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O3 -w -mmacosx-version-min=10.4
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O3 -w -fno-stack-protector -mmacosx-version-min=10.4
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O3 -w
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O3 -w -fno-stack-protector
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS +=
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -mmacosx-version-min=10.4
+  ALL_LDFLAGS += $(LDFLAGS)
   LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
   define PREBUILDCMDS
   endef
@@ -62,12 +62,12 @@ ifeq ($(config),debug)
   INCLUDES += -I../../contrib/curl/include -I../../contrib/curl/lib -I../../contrib/mbedtls/include -I../../contrib/zlib
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -w -mmacosx-version-min=10.4
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -w -mmacosx-version-min=10.4
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -w
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -w
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS +=
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -mmacosx-version-min=10.4
+  ALL_LDFLAGS += $(LDFLAGS)
   LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
   define PREBUILDCMDS
   endef

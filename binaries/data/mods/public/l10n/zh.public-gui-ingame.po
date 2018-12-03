@@ -45,8 +45,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-11-23 05:00+0000\n"
-"Last-Translator: Jiang Chen <cyanjiang@163.com>\n"
+"PO-Revision-Date: 2018-11-28 20:42+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +111,7 @@ msgstr "我放弃"
 
 #: gui/session/menu.js:230
 msgid "Destroy everything currently selected?"
-msgstr "是否摧毁所选项目?"
+msgstr "是否摧毁所选项?"
 
 #: gui/session/menu.js:231
 msgid "Delete"
@@ -565,7 +565,7 @@ msgstr "正在将当前状态保存到%(filepath)s"
 
 #: gui/session/messages.js:727 gui/session/messages.js:738
 msgid "Out of Sync"
-msgstr "失去同步"
+msgstr "同步错误"
 
 #: gui/session/messages.js:735
 msgid "Out-Of-Sync error!"
@@ -1044,7 +1044,7 @@ msgstr "确定"
 #: gui/session/session.js:998
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "重播已结束。你想要退出吗?"
+msgstr "回放已结束。你想要退出吗?"
 
 #: gui/session/session.js:999
 msgctxt "replayFinished"
@@ -1100,7 +1100,7 @@ msgstr "人口(当前/上限)"
 #: gui/session/session.js:1288
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr "最大人口数量： %(popCap)s"
+msgstr "最大人口数： %(popCap)s"
 
 #: gui/session/session.js:1475
 #, javascript-format
@@ -1207,7 +1207,7 @@ msgstr "移除守卫"
 #: gui/session/unit_actions.js:1255
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr "以物易物 & 贸易"
+msgstr "贸易"
 
 #: gui/session/unit_actions.js:1273
 msgid "Patrol"
@@ -1436,7 +1436,7 @@ msgstr "观察者模式"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr "以物易物 & 贸易商品"
+msgstr "商品和贸易"
 
 #: gui/session/trade_window.xml:(caption):16
 msgid "Barter"

@@ -8,9 +8,11 @@
 # Berke Güvenç <ybguvenc@yandex.com>, 2016
 # Cem Aktas <cemwstone@gmail.com>, 2015
 # Doğu Kan, 2014
+# Emre JILTA <jilta.e@gmail.com>, 2018
 # Ferhat Olçum <ferhatolcum@gmail.com>, 2018
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2017
+# Mehmet Ali Çavdar <mmtali95@gmail.com>, 2018
 # Muha Aliss <muhaaliss@gmail.com>, 2017
 # Onur Kılıç <onur.ce.ytu@gmail.com>, 2017
 # seckin Yılmaz <seckyn@windowslive.com>, 2017
@@ -22,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2018-11-07 03:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-11-28 18:23+0000\n"
+"Last-Translator: Mehmet Ali Çavdar <mmtali95@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +39,7 @@ msgstr "Çevirimiçi"
 
 #: gui/lobby/lobby.js:51
 msgid "Away"
-msgstr "Uzak"
+msgstr "Dışarda"
 
 #: gui/lobby/lobby.js:52
 msgid "Busy"
@@ -54,7 +56,7 @@ msgstr "Bilinmeyen"
 
 #: gui/lobby/lobby.js:58
 msgid "Moderator"
-msgstr "Moderatör"
+msgstr "Yönetici"
 
 #: gui/lobby/lobby.js:59
 msgid "Player"
@@ -62,11 +64,11 @@ msgstr "Oyuncu"
 
 #: gui/lobby/lobby.js:60
 msgid "Muted Player"
-msgstr "Sessiz Oynatıcı"
+msgstr "Oyuncu Susturuldu"
 
 #: gui/lobby/lobby.js:156
 msgid "Disconnected."
-msgstr "Bağlatı kesildi."
+msgstr "Bağlantı kesildi."
 
 #: gui/lobby/lobby.js:178
 #, javascript-format
@@ -85,7 +87,7 @@ msgstr "%(nick)s ayrıldı."
 
 #: gui/lobby/lobby.js:220
 msgid "You have been muted."
-msgstr "Sessize aldınız."
+msgstr "Sessize alındınız."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
@@ -94,12 +96,12 @@ msgstr "%(nick)s sessize alındı."
 
 #: gui/lobby/lobby.js:224
 msgid "You are now a moderator."
-msgstr "Sen şimdi bir yöneticisin."
+msgstr "Şimdi yöneticisin."
 
 #: gui/lobby/lobby.js:225
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr "%(nick)s şimdi bir yönetici."
+msgstr "%(nick)s şimdi yönetici."
 
 #: gui/lobby/lobby.js:228
 msgid "You have been unmuted."
@@ -174,7 +176,7 @@ msgstr "Tüm sohbet geçmişini sil."
 
 #: gui/lobby/lobby.js:385
 msgid "Return to the main menu."
-msgstr "Ana menüye dönün."
+msgstr "Ana menüye dön."
 
 #: gui/lobby/lobby.js:443
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
@@ -416,7 +418,7 @@ msgstr "Lütfen şifrenizi girin"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr ""
+msgstr "Lütfen uzun bir parola seçiniz"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
@@ -442,7 +444,7 @@ msgstr "Hizmet koşulları"
 
 #: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
-msgstr ""
+msgstr "Lütfen Hizmet Şartlarını okuyunuz ve kabul ediniz"
 
 #: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
@@ -450,15 +452,15 @@ msgstr "Kullanım koşulları"
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
-msgstr ""
+msgstr "Lütfen Kullanım Şartlarını okuyunuz ve kabul ediniz"
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Gizlilik İlkesi"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr ""
+msgstr "Lütfen Gizlilik İlkesini okuyunuz ve kabul ediniz"
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
@@ -483,7 +485,7 @@ msgstr "Kayıt olundu."
 #: gui/lobby/lobby.xml:(caption):13
 #: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
-msgstr "Çok oyunculu bekleme salonu"
+msgstr "Çok Oyunculu Lobi"
 
 #: gui/lobby/lobby_panels.xml:(heading):24
 msgid "Status"
@@ -661,17 +663,17 @@ msgstr "[font=\"sans-bold-14\"]Döküman Tarihi:[/font] 2018-10-16"
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Kişisel verileri Wildfire Games tarafından şu amaçlar için işlenmektedir:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Playername[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Kullanıcı adı[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr ""
+msgstr "Oyuncu kayıt sırasında seçtiği bir adla tanımlanır."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -692,13 +694,13 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. Parola[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr ""
+msgstr "Oyuncu kayıt sırasında seçtiği bir şifre kullanarak doğrulanır."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
@@ -709,7 +711,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. IP adresi[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
@@ -760,11 +762,11 @@ msgstr ""
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr ""
+msgstr "Hangi oyuncuların Çok Oyunculu Lobi'ye bağlı olduğu ve hangi oyuna katıldıkları tüm çevrimiçi oyunculara görünür."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]5. Sohbet iletileri[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
@@ -891,7 +893,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Kullanıcı hakları:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:54
 msgid ""
@@ -950,7 +952,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Wildfire Games sorumlulukları:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""

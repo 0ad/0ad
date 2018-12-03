@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:46+0200\n"
-"PO-Revision-Date: 2018-11-15 13:01+0000\n"
-"Last-Translator: 又齊 劉 <bill19981002@gmail.com>\n"
+"PO-Revision-Date: 2018-11-30 16:48+0000\n"
+"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -247,7 +247,7 @@ msgstr "精英弓箭手"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:29
 msgid "Champion Skirmisher"
-msgstr "精英散兵"
+msgstr "精英輕裝步兵"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:28
 msgid "Maceman"
@@ -310,7 +310,7 @@ msgstr "鯨魚"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:12
 msgid "Kill, then gather food from this bountiful oceanic resource."
-msgstr "殺死，然後從這豐富的海洋資源收集食物。"
+msgstr "殺死，然後從這豐富的海上資源收集食物。"
 
 #: simulation/templates/template_unit_hero.xml:33
 #: simulation/templates/template_unit_hero.xml:31
@@ -356,7 +356,7 @@ msgstr "英雄弓箭手"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:21
 msgid "Hero Skirmisher"
-msgstr "英雄輕裝士兵"
+msgstr "英雄輕裝步兵"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 msgid "Hero Pikeman"
@@ -394,7 +394,7 @@ msgstr "劍士"
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:27
 msgid "Skirmisher"
-msgstr "輕裝士兵"
+msgstr "輕裝步兵"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:27
 msgid "Sling"
@@ -430,7 +430,7 @@ msgstr "軍艦"
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:53
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:56
 msgid "Garrison units for transport and to increase firepower."
-msgstr "駐守單位來運輸並增強火力。"
+msgstr "進駐單位來運輸並增強火力。"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:41
 msgid "Fire Ship"
@@ -794,7 +794,7 @@ msgstr "Toxótēs Skythikós"
 
 #: simulation/templates/units/athen_champion_ranged_gastraphetes.xml:20
 msgid "Greek Gastraphetes"
-msgstr "希臘十字弓"
+msgstr "希臘的十字弓"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:10
 #: simulation/templates/units/athen_hero_xenophon.xml:6
@@ -812,7 +812,7 @@ msgstr "伯里克里斯"
 
 #: simulation/templates/units/athen_hero_pericles.xml:11
 msgid "Periklēs"
-msgstr "Periklēs"
+msgstr "伯里克里斯"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:10
 msgid "Themistocles"
@@ -1112,7 +1112,7 @@ msgstr "Coun"
 
 #: simulation/templates/units/cart_catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
-msgstr ""
+msgstr "哈斯德魯巴（後勤官）"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
@@ -1316,7 +1316,7 @@ msgstr "Mekir"
 
 #: simulation/templates/units/gaul_catafalque.xml:9
 msgid "Ambiorix"
-msgstr ""
+msgstr "安碧歐利克斯"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
@@ -1336,7 +1336,7 @@ msgstr "Gaesata"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:5
 msgid "Heavy Swordsman"
-msgstr "重劍士"
+msgstr "重裝劍士"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:6
 msgid "Solduros"
@@ -1466,7 +1466,7 @@ msgstr "那帕塔輕騎兵"
 
 #: simulation/templates/units/kush_cavalry_javelinist_merc_b.xml:12
 msgid "Blemmye Desert Raider"
-msgstr ""
+msgstr "Blemmyes沙漠特攻隊"
 
 #: simulation/templates/units/kush_cavalry_javelinist_merc_b.xml:13
 msgid "nhw Bulahau gml"
@@ -2057,7 +2057,7 @@ msgstr "Varkaniya Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:5
 msgid "Bactrian Heavy Lancer"
-msgstr "大夏重裝槍騎兵"
+msgstr "巴克特里亞重裝槍騎兵"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:6
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:6
@@ -2066,7 +2066,7 @@ msgstr "Bakhtrish Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:5
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr "大夏重裝弓騎兵"
+msgstr "巴克特里亞重裝弓騎兵"
 
 #: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Hinduya Pila"
@@ -2383,7 +2383,7 @@ msgstr "Hiereús Aigýptios"
 
 #: simulation/templates/units/rome_catafalque.xml:9
 msgid "Lucius Junius Brutus"
-msgstr ""
+msgstr "盧基烏斯·尤尼烏斯·布魯圖斯（Lucius Junius Brutus ）"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
@@ -2611,7 +2611,7 @@ msgstr "Phalangitès Argyraspis"
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:6
 msgid "Romanized Heavy Swordsman"
-msgstr "羅馬重劍兵"
+msgstr "羅馬重裝劍兵"
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:7
 msgid "Thorakitès Rhomaïkós"

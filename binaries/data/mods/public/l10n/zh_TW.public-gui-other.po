@@ -8,7 +8,7 @@
 # Hiunn-hué <hiunnhue108@ymail.com>, 2018
 # Hsu Karinsu <m80126colin@gmail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
-# Jeff Huang <s8321414@gmail.com>, 2014-2017
+# Jeff Huang <s8321414@gmail.com>, 2014-2018
 # Money <abc12207@gmail.com>, 2018
 # ryat <mj0011@yopmail.com>, 2015
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-11-15 13:00+0000\n"
-"Last-Translator: 又齊 劉 <bill19981002@gmail.com>\n"
+"POT-Creation-Date: 2018-11-28 09:48+0100\n"
+"PO-Revision-Date: 2018-11-29 04:05+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -378,7 +378,7 @@ msgstr "玩家獲勝時，其同盟國也會一同獲勝；如果存活的隊伍
 msgid "Ceasefire"
 msgstr "停火"
 
-#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
+#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "已停用"
 
@@ -1307,71 +1307,71 @@ msgstr "手冊"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "條款"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "請閱讀並接受使用者回報程式條款與條件。"
 
-#: gui/pregame/userreport/userreport.js:17
+#: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "發佈"
 
-#: gui/pregame/userreport/userreport.js:26
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
+#: gui/pregame/userreport/userreport.js:29
 msgid "connecting to server"
 msgstr "正在連線到伺服器"
 
-#: gui/pregame/userreport/userreport.js:29
+#: gui/pregame/userreport/userreport.js:30
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "正在上傳 (%f%%)"
 
-#: gui/pregame/userreport/userreport.js:32
+#: gui/pregame/userreport/userreport.js:33
 msgid "upload succeeded"
 msgstr "上傳成功"
 
-#: gui/pregame/userreport/userreport.js:33
+#: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "上傳失敗 (%(errorCode)s)"
 
-#: gui/pregame/userreport/userreport.js:36
+#: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "上傳失敗 (%(errorMessage)s)"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
 msgstr "停用回饋"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
 msgstr "啟用回饋"
 
-#: gui/pregame/userreport/userreport.js:80
+#: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "感謝您幫助我們改善 0 A.D.！"
 
-#: gui/pregame/userreport/userreport.js:81
-msgid "Feedback is currently enabled."
-msgstr ""
-
 #: gui/pregame/userreport/userreport.js:82
+msgid "Feedback is currently enabled."
+msgstr "回饋目前啟用中。"
+
+#: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "狀態：%(status)s。"
 
-#: gui/pregame/userreport/userreport.js:83
+#: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
 msgstr "未知"
 
-#: gui/pregame/userreport/userreport.js:85
+#: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
 msgstr "幫忙改善 0 A.D.！"
 
-#: gui/pregame/userreport/userreport.js:86
+#: gui/pregame/userreport/userreport.js:87
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
@@ -2895,11 +2895,11 @@ msgstr "啟用遊戲設定提示"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr ""
+msgstr "打開、關閉或調整大小時會滑動設定面板。"
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable Settings Panel Slide"
-msgstr ""
+msgstr "\nTLS 加密"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
@@ -2977,20 +2977,29 @@ msgid "Game Setup"
 msgstr "遊戲設定"
 
 #: gui/options/options.json[4].options[0].tooltip
-msgid "Number of backlogged messages to load when joining the lobby."
-msgstr ""
+msgid ""
+"Protect login and data exchanged with the lobby server using TLS encryption."
+msgstr "使用 TLS 加密的大廳伺服器保護登入與資料交換。"
 
 #: gui/options/options.json[4].options[0].label
+msgid "TLS Encryption"
+msgstr "TLS 加密"
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid "Number of backlogged messages to load when joining the lobby."
+msgstr "加入大廳時要載入的積壓訊息數量。"
+
+#: gui/options/options.json[4].options[1].label
 msgid "Chat Backlog"
 msgstr "聊天記錄"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "在遊戲清單中的一欄顯示參與玩家的平均評價。"
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[4].options[2].label
 msgid "Game Rating Column"
 msgstr "遊戲評價欄"
 
@@ -3006,7 +3015,7 @@ msgstr "大廳"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "如果單位的血量百分比低於此數字，將會被受傷單位快捷鍵認定為受傷。"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded Unit Health"
@@ -3023,7 +3032,7 @@ msgstr "批次訓練數量"
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "您必須捲動以將批次生產大小增加／減少 1 的次數。"
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll Batch Increment Ratio"
@@ -3031,30 +3040,30 @@ msgstr "遊戲內"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr ""
+msgstr "如果您被其他玩家攻擊時顯示聊天通知。"
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat Notification Attack"
-msgstr ""
+msgstr "聊天通知攻擊"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "如果有盟友在團隊鎖定的情況下進貢資源給另一個團隊成員時顯示聊天通知，且所有進貢都可以在觀察者模式中看到。"
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
-msgstr ""
+msgstr "聊天通知進貢"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "當玩家交換資源時向觀察者顯示聊天通知。"
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
-msgstr ""
+msgstr "聊天通知交易"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3072,11 +3081,11 @@ msgstr "所有已顯示"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "如果您或盟友開始、中止或完成新的時代時顯示聊天通知，且所有玩家的時代都會在觀察者模式中顯示。"
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
-msgstr ""
+msgstr "聊天通知時代"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3086,7 +3095,7 @@ msgstr "顯示被選的防禦建築之攻擊範圍（也可以在遊戲中用快
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack Range Visualization"
-msgstr ""
+msgstr "攻擊範圍可見度"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3110,11 +3119,11 @@ msgstr "醫療範圍可見度"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr ""
+msgstr "在狀態列上顯示階級圖示。"
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "在狀態列上的階級圖示"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid ""
@@ -3140,11 +3149,11 @@ msgstr "降冪"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
+msgstr "按照值來動態排序資源與人口工具提示中的玩家。"
 
 #: gui/options/options.json[5].options[12].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "排序資源與人口工具提示"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
@@ -3180,7 +3189,7 @@ msgstr "敵人的外交顏色"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr ""
+msgstr "改變關於 in-game的設定"
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
@@ -3549,7 +3558,7 @@ msgstr "城鎮中心"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The foundation of your new colony."
-msgstr ""
+msgstr "你新的殖民地的基礎"
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -3625,19 +3634,19 @@ msgstr "- 在裡面駐守士兵可以增加其在防禦時的開火速率。"
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "手繪位置"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "- Gain an advantage on the battleground by tactically positioning your "
 "units!"
-msgstr ""
+msgstr "- 藉著部屬單位到戰術位置以取得戰場優勢"
 
 #: gui/text/tips/freehand_position.txt:4
 msgid ""
 "- Therefore select some units, press and hold the right mouse button, draw "
 "any line, then release the button."
-msgstr ""
+msgstr "- 因此選擇一些單位，押著滑鼠右鍵不放來畫一些線，再鬆開按鍵"
 
 #: gui/text/tips/freehand_position.txt:6
 msgid "- Your units will now spread out on this line."

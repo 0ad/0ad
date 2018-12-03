@@ -3,8 +3,9 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
-# Jeff Huang <s8321414@gmail.com>, 2014
+# Jeff Huang <s8321414@gmail.com>, 2014,2018
 # Po-Chun Huang <aphroteus@gmail.com>, 2014
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # 林建霖 <johhycain@gmail.com>, 2018
 # 張峻瑜 <a728728728@gmail.com>, 2018
 # 林建霖 <johhycain@gmail.com>, 2018
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-03 15:05+0100\n"
-"PO-Revision-Date: 2018-11-03 15:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-11-29 02:52+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -261,12 +262,12 @@ msgstr "確定"
 #. Conditions in the default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr ""
+msgstr "線上檢視"
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "在瀏覽器開啟 %(url)s 。"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -392,7 +393,7 @@ msgstr "語言"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "拒絕"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
@@ -415,7 +416,7 @@ msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "這項服務提供了一種簡單的方式來下載和安裝社群所製作的mod，技術提供者是IndolDB 和ModDB 背後的公司：DBolical Pty Ltd。"
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
@@ -426,14 +427,14 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games已經留意連線的安全性也審查了這個mod 有無安全漏洞，但不保證這沒有任何風險。"
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "使用本服務時，您了解mod.io 的使用條款和隱私政策聲明，且Wildfire Games 不對此服務造成的任何損害承擔責任。"
 
 #: gui/modmod/help/help.txt:1
 msgid ""

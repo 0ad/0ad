@@ -16,7 +16,8 @@
 # ... ... <jon12@gmx.de>, 2016-2017
 # Leonard König <leonard.r.koenig@gmail.com>, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
-# Lukas Kruse <luksoft999@gmail.com>, 2017
+# Luksoft <luksoft999@gmail.com>, 2017
+# Lukas N <luki.niesen@gmail.com>, 2018
 # Marco tom Suden, 2015
 # Marco tom Suden, 2015
 # pilino1234 <pilino1234@zoho.eu>, 2016
@@ -44,9 +45,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 09:48+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2018-11-28 09:48+0100\n"
+"PO-Revision-Date: 2018-11-28 11:35+0000\n"
+"Last-Translator: Lukas N <luki.niesen@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -411,7 +412,7 @@ msgstr "Wenn ein Spieler gewinnt, gewinnen seine Verbündeten ebenfalls. Wenn ei
 msgid "Ceasefire"
 msgstr "Waffenstillstand"
 
-#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
+#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "deaktiviert"
 
@@ -1360,65 +1361,65 @@ msgstr "Bedingungen"
 msgid "Please read and accept the UserReporter Terms and Conditions."
 msgstr "Bitte lies und akzeptiere die Nutzungsbedingungen der UserReporters"
 
-#: gui/pregame/userreport/userreport.js:17
+#: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
 msgstr "Veröffentlichungen"
 
-#: gui/pregame/userreport/userreport.js:26
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
+#: gui/pregame/userreport/userreport.js:29
 msgid "connecting to server"
 msgstr "Verbinde zu Server"
 
-#: gui/pregame/userreport/userreport.js:29
+#: gui/pregame/userreport/userreport.js:30
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "Hochladen (%f%%)"
 
-#: gui/pregame/userreport/userreport.js:32
+#: gui/pregame/userreport/userreport.js:33
 msgid "upload succeeded"
 msgstr "Hochladen erfolgreich"
 
-#: gui/pregame/userreport/userreport.js:33
+#: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "Hochladen fehlgeschlagen (%(errorCode)s)"
 
-#: gui/pregame/userreport/userreport.js:36
+#: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "Hochladen fehlgeschlagen (%(errorMessage)s)"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
 msgstr "Feedback aus"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
 msgstr "Feedback an"
 
-#: gui/pregame/userreport/userreport.js:80
+#: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Vielen Dank für die Hilfe bei der Verbesserung von 0 A.D.!"
 
-#: gui/pregame/userreport/userreport.js:81
+#: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
 msgstr "Feedback ist zurzeit aktiviert."
 
-#: gui/pregame/userreport/userreport.js:82
+#: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Status: %(status)s."
 
-#: gui/pregame/userreport/userreport.js:83
+#: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
 msgstr "unbekannt"
 
-#: gui/pregame/userreport/userreport.js:85
+#: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
 msgstr "Hilf mit, 0 A.D. zu verbessern!"
 
-#: gui/pregame/userreport/userreport.js:86
+#: gui/pregame/userreport/userreport.js:87
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
@@ -3026,20 +3027,29 @@ msgid "Game Setup"
 msgstr "Spieleinstellungen"
 
 #: gui/options/options.json[4].options[0].tooltip
+msgid ""
+"Protect login and data exchanged with the lobby server using TLS encryption."
+msgstr "Beschützt Login und Daten, die mit dem Server getauscht werden, mittels TLS Verschlüsselung"
+
+#: gui/options/options.json[4].options[0].label
+msgid "TLS Encryption"
+msgstr "TLS Verschlüsselung"
+
+#: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
 msgstr "Anzahl der letzten Meldungen beim Eintritt in die Lobby."
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[4].options[1].label
 msgid "Chat Backlog"
 msgstr "Chat-Backlog"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Die Durchschnittsbewertung von teilnehmenden Spielern in einer Spalte der Spielliste anzeigen."
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[4].options[2].label
 msgid "Game Rating Column"
 msgstr "Spielbewertungsspalte"
 

@@ -3,26 +3,27 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Jeff Huang <s8321414@gmail.com>, 2017
-# Hiunn-hué <hiunnhue108@ymail.com>, 2017
 # Yuan <daan0014119@gmail.com>, 2017
-# Hank Liao, 2017
+# Jeff Huang <s8321414@gmail.com>, 2017
 # Hsu Karinsu <m80126colin@gmail.com>, 2017
-# Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# Hank Liao, 2017
 # Chi-Feng Tsai <ktpss95112@gmail.com>, 2018
 # sea bluegreen <wfzhang0511@gmail.com>, 2018
+# Hiunn-hué <hiunnhue108@ymail.com>, 2018
 # Jerry Shen <jerry82422@gmail.com>, 2018
 # ethan lin <ethan@tscc.tp.edu.tw>, 2018
 # xaing kai <accbb1122@gmail.com>, 2018
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2018-01-29 09:05+0100\n"
-"PO-Revision-Date: 2018-01-29 09:05+0100\n"
-"Last-Translator: xaing kai <accbb1122@gmail.com>, 2018\n"
+"PO-Revision-Date: 2017-06-04 12:59+0000\n"
+"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>, 2018\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/wildfire-games/teams/17418/zh_TW/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -629,6 +630,8 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"騎兵單位應該已經宰光所有的雞了。 點擊來探索西南地區：有一個湖泊，周圍有一些駱駝。 "
+"通過右鍵點擊要移動的點來移動您的騎兵，當您看到一群駱駝時，右鍵點擊其中一個來獵取食物。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -648,11 +651,11 @@ msgstr "選擇城鎮中心並在空地上點擊滑鼠右鍵。"
 msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
-msgstr ""
+msgstr "現在點擊右下方面板上的女性公民圖標三次，來訓練出另三名農民。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "不要押Shift 而單擊，來訓練一個單位。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
@@ -662,7 +665,7 @@ msgstr "點選女性市民圖示"
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
-msgstr ""
+msgstr "您可以透過研究某些建築物中的可用新科技來提高工人的蒐集效率。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -672,20 +675,21 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"例如，耕種效率可以透過農場中的可研究技術得到改善。選擇農場並查看右下方的生產面板，您將看到幾種可研究的技術。將游標停在它們上方以查看其成本和效果，然後單點想研究的那個。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
 "We should start preparing to phase up into 'Town Phase', which will unlock "
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the 'Town Phase' icon to see what is still needed.\n"
-msgstr ""
+msgstr "我們應該開始準備進入「鄉鎮階段」，這將解鎖更多的單位和建築物。選擇城鎮中心，將游標停在「鄉鎮階段」圖標上，查看需要什麼資源。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
 "We now have enough resources, but one structure is missing. Although this is"
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build barracks.\n"
-msgstr ""
+msgstr "我們現在有足夠的資源，但缺少一個建築物。 雖然這只是一個經濟教程，但是預防敵人的攻擊先做好防禦是有需要的，所以讓我們來蓋一座軍營吧。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -694,6 +698,7 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"選擇你的四名士兵然後要他們建造營房：像之前一樣，圈選士兵，然後點擊生產面板中的兵營圖標，然後在離你的城鎮中心附近不遠的地方，打下兵營的地基。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -724,6 +729,8 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather Stone and the other half to gather Metal.\n"
 msgstr ""
+"在後期階段，你通常需要石頭和金屬來建造更大的建築並訓練更好的士兵。 "
+"因此，在等待研究完成的同時，你將派遣一半空閒的公民兵（軍營已經竣工）收集石頭，另一半收集金屬。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -733,6 +740,8 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"為此，我們可以選擇三名公民兵並右鍵點擊城鎮中心西側的石礦（當你的士兵被選中時，游標會移動到石礦上會有變化）。 "
+"然而，這些士兵之前在砍柴，所以他們有可能攜帶一些木頭去新工作，這些已收集的木頭在開始收集另一種資源時會丟失。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -742,12 +751,14 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"因此，我們應該命令他們先帶著木頭存放到城鎮中心。為此，我們將按住Shift不放來安排工作順序：選擇你的士兵，按Shift "
+"+滑鼠右鍵單擊城鎮中心來存放木頭，再按住Shift +滑鼠右鍵單擊石礦以收集它。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
-msgstr ""
+msgstr "用一樣安排工作順序的方式，讓剩下的士兵去挖西邊的金屬礦。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""

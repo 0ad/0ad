@@ -7,7 +7,7 @@
 # CS Ferng, 2018
 # Hiunn-hué <hiunnhue108@ymail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
-# Jeff Huang <s8321414@gmail.com>, 2014-2017
+# Jeff Huang <s8321414@gmail.com>, 2014-2018
 # Jerry Shen <jerry82422@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # 張峻瑜 <a728728728@gmail.com>, 2018
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-06 16:32+0100\n"
-"PO-Revision-Date: 2018-11-27 03:15+0000\n"
-"Last-Translator: Shen-Ta Hsieh(BestSteve) <ibmibmibm.tw@gmail.com>\n"
+"PO-Revision-Date: 2018-11-30 16:04+0000\n"
+"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -451,7 +451,7 @@ msgstr "隱私政策"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr ""
+msgstr "請閱讀並接受隱私權政策。"
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
@@ -643,7 +643,7 @@ msgstr "註冊"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant 多人大廳隱私權政策[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
@@ -654,17 +654,17 @@ msgstr "[font=\"sans-bold-14\"]文件日期：[/font] 2018-10-16"
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Wildfire Games 處理的個人資料與處理目的：[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Playername[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. 玩家名稱[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr ""
+msgstr "玩家透過其在註冊時所選擇的名稱來識別。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -672,7 +672,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "擁有獨特的玩家名稱是取得評價的要求，讓玩家、管理員與開發者可以識別他們以前遇到過的玩家、在遊戲中溝痛、協調比賽並讓管理員能夠執行使用條款。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -681,61 +681,61 @@ msgid ""
 " information (such as the realname) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr ""
+msgstr "玩家名稱是假名。玩家的身份（自然人）並不會讓 Wildfire Games 知道，除非有人在大廳的聊天室、其他 Wildfire Games 的服務或是其他公開場合中揭露個人資訊（如真實姓名），或是 IP 位置被用於刑事起訴時。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. 密碼[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr ""
+msgstr "玩家必需使用在註冊時所填入的密碼來進行身份驗證。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
 "Wildfire Games only receives an encrypted version of the password, so that "
 "the password chosen by the user is not revealed to Wildfire Games or others "
 "in case of a breach."
-msgstr ""
+msgstr "Wildfire Games 僅會收到加密版本的密碼，因此，即便發生違法情事，密碼也不會被 Wildfire Games 或其他人所揭露。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. IP 位置[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr ""
+msgstr "當玩家主持一場在多人大廳的比賽時，玩家的 IP 位置將會傳送給每個在線上的玩家，這樣其他玩家才能加入遊戲。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr ""
+msgstr "Wildfire Games 會儲存玩家的 IP 位置並推斷公開可用的地理定位與網路服務提供者資料（例子：\"geolite2\"），以便："
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
 " 1. Enforce the Terms of Use where persons create multiple accounts without "
 "Wildfire Games permission, in particular after having been banned from the "
 "service for violating the Terms of Use."
-msgstr ""
+msgstr " 1. 防止在未經 Wildfire Games 的同意下建立多個使用者帳號，特別是在違反使用條款而被禁止服務之後。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:19
 msgid ""
 "    IP addresses will not be saved for longer than three years for this "
 "purpose."
-msgstr ""
+msgstr "    IP 位置在這種用途下將不會儲存超過三年。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:20
 msgid ""
 " 2. Make it possible to bring criminal proceedings in case of a cyberattack "
 "(EU Court of Justice Press Release No 112/16)."
-msgstr ""
+msgstr " 2. 如果發生網路攻擊，可以提出刑事訴訟（歐盟法院新聞稿第 112/16 號）。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:21
 msgid ""
@@ -743,7 +743,7 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr ""
+msgstr "Wildfire Games 不會將 IP 紀錄用於其他用途，特別是不會用於行銷，如果紀錄的 IP 位置不再與上述目的相關，則不會向公眾或第三方揭露這些資訊並會立刻刪除。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
@@ -865,7 +865,7 @@ msgstr ""
 msgid ""
 "1. The processing is necessary for the performance of the service defined in"
 " the terms (GDPR 6.1.b)."
-msgstr ""
+msgstr "1.這項處理對於定義在術語（GDPR 6.1.b）的服務之表現是必要的。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:50
 msgid ""
@@ -943,13 +943,13 @@ msgstr "明顯沒有根據或是過多的請求將不會回覆或是可能會被
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Wildfire Games 義務：[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""
 " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 "
 "'accountability')."
-msgstr ""
+msgstr " 1. Wildfire Games 證明會遵照 GDPR (GDPR 5.2 'accountability')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:67
 msgid ""
@@ -1057,7 +1057,7 @@ msgid ""
 " by Wildfire Games that allows players to setup online multiplayer matches, "
 "discuss the game in a public chat room and gain a rating that reflects their"
 " skill."
-msgstr ""
+msgstr "0 A.D. Empires Ascendant Multiplayer Lobby是Wildfire Games 提供的線上服務，允許玩家設定線上多人對局，在公共聊天室討論遊戲並獲得反映其技能的平價。"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
@@ -1068,7 +1068,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr ""
+msgstr "使用 這個 Multiplayer Lobby的最低年齡是13 歲。"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
@@ -1131,7 +1131,7 @@ msgstr ""
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
-msgstr ""
+msgstr "若有一部份的條款違法或因其他原因無法執行，則其餘條款仍然有效（「可分割性」）。"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""

@@ -5,7 +5,8 @@
 # Translators:
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Jonatan Nyberg, 2016
-# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015-2016,2018
+# Kristoffer Grundström <hamnisdude@gmail.com>, 2018
+# Kristoffer Grundström <hamnisdude@gmail.com>, 2015-2016,2018
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2015-2016
 # pilino1234 <pilino1234@zoho.eu>, 2016-2017
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-10-13 18:17+0200\n"
-"PO-Revision-Date: 2018-10-14 04:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2018-11-28 09:48+0100\n"
+"PO-Revision-Date: 2018-11-29 01:32+0000\n"
+"Last-Translator: Kristoffer Grundström <hamnisdude@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +45,7 @@ msgstr "Krossa"
 #: gui/civinfo/civinfo.js:28
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Byt till strukturträd."
 
 #: gui/civinfo/civinfo.js:29
 #, javascript-format
@@ -383,7 +384,7 @@ msgstr "Om en spelare vinner, vinner även deras allierade. Om en grupp allierad
 msgid "Ceasefire"
 msgstr "Vapenvila"
 
-#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:25
+#: gui/common/gamedescription.js:329 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "inaktiverad"
 
@@ -396,11 +397,11 @@ msgstr[1] "Under de första %(min)s minuterna kommer andra spelare vara neutrala
 #: gui/common/gamedescription.js:339
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Slumpmässig karta"
 
 #: gui/common/gamedescription.js:340
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Välj en karta slumpmässigt från listan."
 
 #: gui/common/gamedescription.js:345
 msgid "Map Name"
@@ -433,7 +434,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:396
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Nomad-läge"
 
 #: gui/common/gamedescription.js:396
 msgid "Civic Centers"
@@ -518,7 +519,7 @@ msgstr "Besegrad"
 #: gui/common/gamedescription.js:478
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -668,7 +669,7 @@ msgstr "Slumpmässig"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Balanserad"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -989,7 +990,7 @@ msgstr "Per Enhet"
 
 #: gui/common/tooltips.js:396
 msgid "Number of repairers:"
-msgstr ""
+msgstr "Antal reparatörer:"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
@@ -1008,7 +1009,7 @@ msgstr[1] ""
 
 #: gui/common/tooltips.js:418
 msgid "Number of builders:"
-msgstr ""
+msgstr "Antalet byggare:"
 
 #: gui/common/tooltips.js:424
 #, javascript-format
@@ -1070,11 +1071,11 @@ msgstr "Torn: %(costs)s"
 #: gui/common/tooltips.js:614
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:615
 msgid "Cost:"
-msgstr ""
+msgstr "Kostnad:"
 
 #: gui/common/tooltips.js:628
 #, javascript-format
@@ -1178,13 +1179,13 @@ msgstr "Byte:"
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:829
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "Högerklicka för att visa mer information."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:835
 msgid "Click to view more information."
-msgstr ""
+msgstr "Klicka för att visa mer information."
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1194,7 +1195,7 @@ msgstr "%(nick)s - %(name)s"
 #: gui/options/options.js:100
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "Standard: %(value)s"
 
 #: gui/options/options.js:126
 #, javascript-format
@@ -1326,71 +1327,71 @@ msgstr "Manual"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Villkor"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
 msgstr ""
 
-#: gui/pregame/userreport/userreport.js:17
+#: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "Publiceringar"
 
-#: gui/pregame/userreport/userreport.js:26
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
+#: gui/pregame/userreport/userreport.js:29
 msgid "connecting to server"
 msgstr "ansluter till server"
 
-#: gui/pregame/userreport/userreport.js:29
+#: gui/pregame/userreport/userreport.js:30
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "uppladdning (%f%%)"
 
-#: gui/pregame/userreport/userreport.js:32
+#: gui/pregame/userreport/userreport.js:33
 msgid "upload succeeded"
 msgstr "uppladdning lyckades"
 
-#: gui/pregame/userreport/userreport.js:33
+#: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "uppladdning misslyckades (%(errorCode)s)"
 
-#: gui/pregame/userreport/userreport.js:36
+#: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr " uppladdning misslyckades (%(errorMessage)s)"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
 msgstr "Inaktivera Feedback"
 
-#: gui/pregame/userreport/userreport.js:60
+#: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
 msgstr "Aktivera Feedback"
 
-#: gui/pregame/userreport/userreport.js:80
+#: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Tack för att du hjälper till att förbättra 0 A.D.!"
 
-#: gui/pregame/userreport/userreport.js:81
+#: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
 msgstr ""
 
-#: gui/pregame/userreport/userreport.js:82
+#: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Status: %(status)s."
 
-#: gui/pregame/userreport/userreport.js:83
+#: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
 msgstr "okänt"
 
-#: gui/pregame/userreport/userreport.js:85
+#: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
 msgstr "Hjälp oss förbättra 0 A.D.!"
 
-#: gui/pregame/userreport/userreport.js:86
+#: gui/pregame/userreport/userreport.js:87
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
@@ -1438,13 +1439,13 @@ msgstr ""
 #. structure selected.
 #: gui/reference/viewer/viewer.js:139
 msgid "Built by:"
-msgstr ""
+msgstr "Byggdes av:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:152
 msgid "Trained by:"
-msgstr ""
+msgstr "Tränades av:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
@@ -1468,13 +1469,13 @@ msgstr ""
 #. structure can train.
 #: gui/reference/viewer/viewer.js:210
 msgid "Trains:"
-msgstr ""
+msgstr "Tränar:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:223
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Uppgraderbar till:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1792,7 +1793,7 @@ msgstr "Feminisering"
 
 #: gui/summary/layout.js:193
 msgid "Bribes"
-msgstr ""
+msgstr "Mutor"
 
 #: gui/summary/layout.js:194
 #, javascript-format
@@ -1895,7 +1896,7 @@ msgstr "Du har vunnit striden!"
 
 #: gui/summary/summary.js:501
 msgid "You have been defeated…"
-msgstr ""
+msgstr "Du har blivit besegrad..."
 
 #: gui/summary/summary.js:502
 msgid "You have abandoned the game."
@@ -2201,7 +2202,7 @@ msgstr "Översätt Spelet"
 
 #: gui/pregame/mainmenu.xml:(caption):565
 msgid "Donate"
-msgstr ""
+msgstr "Donera"
 
 #: gui/pregame/mainmenu.xml:(caption):577
 msgid "Credits"
@@ -2653,7 +2654,7 @@ msgstr "Allmänt"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Starta 0 A.D i ett fönster."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed Mode"
@@ -2669,7 +2670,7 @@ msgstr "Föredra GLSL"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
-msgstr ""
+msgstr "Aktivera dimma."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
@@ -2693,7 +2694,7 @@ msgstr "Shader Effekter"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "Aktivera skuggor."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadows"
@@ -2748,7 +2749,7 @@ msgstr "Enhetssiluetter"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "Aktivera partiklar."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Particles"
@@ -2816,7 +2817,7 @@ msgstr "Mjukt LOS"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr ""
+msgstr "Rendera himmel."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
@@ -2900,7 +2901,7 @@ msgstr "UI volym"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "Ta emot ljud för avisering när någon skriver ditt smeknamn."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
@@ -2965,7 +2966,7 @@ msgstr "Slumpmässig"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Balanserad"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -2998,20 +2999,29 @@ msgid "Game Setup"
 msgstr "Spelinställningar"
 
 #: gui/options/options.json[4].options[0].tooltip
-msgid "Number of backlogged messages to load when joining the lobby."
+msgid ""
+"Protect login and data exchanged with the lobby server using TLS encryption."
 msgstr ""
 
 #: gui/options/options.json[4].options[0].label
+msgid "TLS Encryption"
+msgstr "TLS-kryptering"
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid "Number of backlogged messages to load when joining the lobby."
+msgstr ""
+
+#: gui/options/options.json[4].options[1].label
 msgid "Chat Backlog"
 msgstr "Chatt baklogg"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Visa genomsnittliga värderingen av deltagande spelare i en kolumn i listan med spel."
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[4].options[2].label
 msgid "Game Rating Column"
 msgstr "Spelvärderingskolumn"
 
@@ -3181,7 +3191,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Ally"
-msgstr ""
+msgstr "Diplomatfärger: Gränd"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3189,7 +3199,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy Colors: Neutral"
-msgstr ""
+msgstr "Diplomatfärger: Neutral"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -3197,7 +3207,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy Colors: Enemy"
-msgstr ""
+msgstr "Diplomatfärger: Fiende"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."

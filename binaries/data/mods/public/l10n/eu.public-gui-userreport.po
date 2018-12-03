@@ -23,6 +23,8 @@ msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant UserReporter Terms and "
 "Conditions[/font]"
 msgstr ""
+"[font=\"sans-bold-18\"]«0 A.D. Empires Ascendant»en UserReporter-ren "
+"erabilera baldintzak[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
@@ -35,10 +37,14 @@ msgid ""
 "Wildfire Games and community developers to improve the performance and "
 "compatibility of 0 A.D."
 msgstr ""
+"0 A.D. UserReporter lanabesak  Wildfire Games eta komunitateko garatzaileei "
+"0 A.D. -ren errendimendua eta bateragarritasuna hobetzen laguntzeko hardware"
+" eta softwarearen sistemaren xehetasunak automatikoki kargatzeko aukera "
+"ematen dizu."
 
 #: gui/userreport/Terms_and_Conditions.txt:7
 msgid "[font=\"sans-bold-14\"]Purpose of the UserReport:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]UserReport-en txostenaren xedea:[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:8
 msgid ""
@@ -46,6 +52,9 @@ msgid ""
 "sets and OpenGL capabilities) are widely supported by the computer systems "
 "of 0 A.D. players."
 msgstr ""
+"UserReport-ak adierazten du zein sistema baliabide (CPU ren instrukzio "
+"multzoak eta OpenGL baliabideak, adibidez) jasan ditzaken aise 0 A.D "
+"konputagailuak."
 
 #: gui/userreport/Terms_and_Conditions.txt:9
 msgid ""
@@ -80,6 +89,8 @@ msgstr ""
 msgid ""
 " 3. Application Details, for example the 0 A.D. version and build number."
 msgstr ""
+"3. Aplikazioaren xehetasunak,  0 A.D. bertsio eta konpilazio zenbakia "
+"adibidez."
 
 #: gui/userreport/Terms_and_Conditions.txt:16
 msgid ""
@@ -200,21 +211,23 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:40
 msgid "    The current configuration folder is %(configPath)s."
-msgstr ""
+msgstr "    Erabiltzen ari den konfigurazio karpeta %(configPath)sda."
 
 #: gui/userreport/Terms_and_Conditions.txt:41
 msgid ""
 "    The user obtains a machine-readable and human-readable copy of the "
 "UserReport data in the logs folder of 0 A.D. (GDPR 20)."
 msgstr ""
+"    Erabiltzaileak bai makinak, bai gizakiak irakur dezakeen UserReporte-en "
+"datuen kopia jasotzen du 0 A.D. (GDPR 20)-ren log karpetan."
 
 #: gui/userreport/Terms_and_Conditions.txt:42
 msgid "    The data can be reviewed before the UserReporter is enabled."
-msgstr ""
+msgstr "    Datuak UserReporter gaitua egon aurretik berrikusi ahal dira."
 
 #: gui/userreport/Terms_and_Conditions.txt:43
 msgid "    The current logfolder is %(logPath)s."
-msgstr ""
+msgstr "    Erabiltzen ari den log karpeta %(logPath)sda."
 
 #: gui/userreport/Terms_and_Conditions.txt:44
 msgid ""
@@ -263,6 +276,8 @@ msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
 msgstr ""
+"Eskaerak oinarri gabeak edo gehiegizkoak direnean ez dira erantzungo edo "
+"kobratu ahal dira (GDPR 12.4, GDPR 12.5)."
 
 #: gui/userreport/Terms_and_Conditions.txt:53
 msgid "[font=\"sans-bold-14\"]Legal grounds of processing (GDPR 13.1.c):[/font]"
@@ -304,12 +319,17 @@ msgid ""
 "particular the categories of processed personal data and security measures "
 "to protect it (GDPR 30)."
 msgstr ""
+" 2. Wildfire Gamesek behar bezala azaltzen ditu prozesatze lanak, norberaren"
+" datuen prozesatze sailkapenak eta haiek babesteko hartu beharrekoak zehazki"
+" (GDPR 30)."
 
 #: gui/userreport/Terms_and_Conditions.txt:61
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
 msgstr ""
+" 3. Wildfire Gamesek norberaren datuak legez, justu eta era gardenean "
+"prozesatzen ditu (GDPR 5.1.a, GDPR 12.1)."
 
 #: gui/userreport/Terms_and_Conditions.txt:62
 msgid ""
@@ -353,12 +373,19 @@ msgid ""
 "object to personal data processing and to complain at a supervisory "
 "authority (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
 msgstr ""
+" 9. Wildfire Gamesek erabiltzaileei jakin arazten die norberaren datuen "
+"atzemate, aldatze eta ezabatzeko duten eskubidez, hala nola horien mugatze "
+"baimena kendu edota prozesatzea zalantzan jarri eta ikuskatzaile "
+"agintaritzaren aurrean kexa azaltzeko eskubideaz (GDPR 13.2.b, GDPR 13.2.c, "
+"GDPR 13.2.d)."
 
 #: gui/userreport/Terms_and_Conditions.txt:68
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
 msgstr ""
+"10. Wildfire Gamesek ahal duen bitartean erabiltzaileen eskubideak babestuko"
+" ditu  (GDPR 12.2), behargabeko atzerapenik gabe (GDPR 12.3)."
 
 #: gui/userreport/Terms_and_Conditions.txt:69
 msgid ""
@@ -406,3 +433,5 @@ msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
 msgstr ""
+"Wildfire Gamesen pribatutasun politikari buruz gehiago jakiteko, ikusi "
+"https://trac.wildfiregames.com/wiki/UserDataProtection"

@@ -17,12 +17,13 @@
 # Sven Witte <sveno36nl@gmail.com>, 2015
 # tanguy lesseliers <tanguylesseliers+trsfex@gmail.com>, 2014
 # Wessel Fokkema <wesselfrankfokkema@gmail.com>, 2018
+# 魔大农, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-04 14:47+0200\n"
-"PO-Revision-Date: 2018-05-18 16:09+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"PO-Revision-Date: 2018-11-28 20:25+0000\n"
+"Last-Translator: 魔大农\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +91,7 @@ msgstr "Stad"
 
 #: simulation/templates/template_structure_civic_house.xml:35
 msgid "Increase the population limit."
-msgstr "Vergroot de bevolkingslimiet."
+msgstr "Verhoog de bevolkingslimiet."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_tower_outpost.xml:51
@@ -122,13 +123,13 @@ msgstr "Tempel"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr "Defensieve structuur"
+msgstr "Verdedigingswerk"
 
 #: simulation/templates/template_structure_defense_tower.xml:30
 #: simulation/templates/template_structure_defense_tower_sentry.xml:36
 #: simulation/templates/template_structure_defense_tower_stone.xml:32
 msgid "DefenseTower"
-msgstr "Defensietoren"
+msgstr "Verdedigingstoren"
 
 #: simulation/templates/template_structure_defense_tower_outpost.xml:50
 msgid ""
@@ -140,7 +141,7 @@ msgstr "Bouw op neutrale of eigen territorium om delen van de kaart te  herkenne
 #: simulation/templates/template_structure_defense_tower_outpost.xml:27
 #: simulation/templates/template_structure_defense_tower_outpost.xml:49
 msgid "Outpost"
-msgstr "Voorpost"
+msgstr "Uitkijkpost"
 
 #: simulation/templates/template_structure_defense_tower_sentry.xml:33
 msgid "Sentry Tower"
@@ -154,7 +155,7 @@ msgstr "Wachttoren"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr ""
+msgstr "Schiet pijlen. Beman voor extra verdediging. Benodigt moordgaten voor verdediging aan de voet."
 
 #: simulation/templates/template_structure_defense_tower_sentry.xml:58
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -168,11 +169,11 @@ msgstr "Verdedigingstoren"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr ""
+msgstr "Schiet pijlen. Beman voor extra verdediging. Benodigt moordgaten voor verdeding aan de voet."
 
 #: simulation/templates/template_structure_defense_tower_stone.xml:32
 msgid "StoneTower"
-msgstr ""
+msgstr "Stenen toren"
 
 #: simulation/templates/template_structure_defense_wall.xml:26
 #: simulation/templates/structures/cart_s_wall_long.xml:7
@@ -277,7 +278,7 @@ msgstr "Kazerne"
 
 #: simulation/templates/template_structure_military_barracks_range.xml:7
 msgid "Archery Range"
-msgstr ""
+msgstr "Boogschietbaan"
 
 #: simulation/templates/template_structure_military_barracks_range.xml:8
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
@@ -310,7 +311,7 @@ msgstr "Bouw langs een kustlijn om schepen te bouwen en zeehandel te starten. On
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
 msgid "Dock"
-msgstr "Dok"
+msgstr "Scheepswerf"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:32
 msgid "Elephant Stables"
@@ -331,7 +332,7 @@ msgstr "Grootstad"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:36
 msgid "ElephantStables"
-msgstr ""
+msgstr "Olifantenstal"
 
 #: simulation/templates/template_structure_military_embassy.xml:41
 #: simulation/templates/template_structure_military_embassy.xml:42
@@ -358,7 +359,7 @@ msgstr "Kennel"
 
 #: simulation/templates/template_structure_military_kennel.xml:44
 msgid "Train war dogs."
-msgstr ""
+msgstr "Train oorlogshonden"
 
 #: simulation/templates/template_structure_military_workshop.xml:32
 msgid "Siege Workshop"
@@ -368,11 +369,11 @@ msgstr "Assemblage voor belegeringswapens"
 msgid ""
 "Build siege engines to destroy your opponents buildings. Research siege "
 "technologies to improve the effectiveness of these weapons."
-msgstr ""
+msgstr "Vervaardig belegeringswapens ter vernietiging van vijandige gebouwen. Onderzoek belegeringstechnologiën om de effectifiteit van deze wapens te vergroten."
 
 #: simulation/templates/template_structure_military_workshop.xml:36
 msgid "Workshop"
-msgstr ""
+msgstr "Werkplaats"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -396,7 +397,7 @@ msgstr "Veekraal"
 #: simulation/templates/template_structure_resource_field.xml:27
 #: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
-msgstr "Veld"
+msgstr "Akker"
 
 #: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
@@ -774,7 +775,7 @@ msgstr "Construeer vissersboten om te vissen, en handelsschepen om grondstoffen 
 
 #: simulation/templates/structures/cart_elephant_stables.xml:5
 msgid "Carthaginian Elephant Stables"
-msgstr ""
+msgstr "Cartaagse olifantenstal"
 
 #: simulation/templates/structures/cart_embassy.xml:21
 msgid "Hire mercenaries."
@@ -1053,7 +1054,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_elephant_stables.xml:5
 msgid "Kushite Elephant Stables"
-msgstr ""
+msgstr "Koesjitische olifantenstal"
 
 #: simulation/templates/structures/kush_farmstead.xml:9
 msgid "snwt"
@@ -1078,11 +1079,11 @@ msgstr ""
 #: simulation/templates/structures/kush_nuba_village.xml:21
 #: simulation/templates/structures/kush_nuba_village.xml:22
 msgid "Nuba Village"
-msgstr ""
+msgstr "Noeba Dorp"
 
 #: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr ""
+msgstr "Rekruteer de Noeba Knotsman en Noeba Jager."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
@@ -1090,7 +1091,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_pyramid.xml:26
 msgid "Kushite Pyramid"
-msgstr ""
+msgstr "Koesjitische piramide"
 
 #: simulation/templates/structures/kush_pyramid.xml:27
 #: simulation/templates/structures/kush_pyramid_large.xml:30
@@ -1105,11 +1106,11 @@ msgstr "Pyramide"
 
 #: simulation/templates/structures/kush_pyramid_large.xml:29
 msgid "Large Pyramid"
-msgstr ""
+msgstr "Grote piramide"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:27
 msgid "Small Pyramid"
-msgstr ""
+msgstr "Kleine piramide"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:28
 msgid "mr"
@@ -1117,7 +1118,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_range.xml:9
 msgid "Kushite Archery Range"
-msgstr ""
+msgstr "Koesjitische boogschietbaan"
 
 #: simulation/templates/structures/kush_sentry_tower.xml:5
 msgid "tsmt"
@@ -1125,7 +1126,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_shrine.xml:12
 msgid "Shrine"
-msgstr ""
+msgstr "Schrijn"
 
 #: simulation/templates/structures/kush_shrine.xml:13
 msgid "ḥwt-nṯr"
@@ -1133,7 +1134,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_stable.xml:9
 msgid "Kushite Cavalry Stable"
-msgstr ""
+msgstr "Koesjitische Cavaleriestal"
 
 #: simulation/templates/structures/kush_storehouse.xml:5
 msgid "wd3t"
@@ -1141,7 +1142,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
-msgstr ""
+msgstr "Tempel van Apedemak"
 
 #: simulation/templates/structures/kush_temple.xml:9
 msgid "Pr-‘Iprmk"
@@ -1155,7 +1156,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
-msgstr ""
+msgstr "Grote Tempel van Amun"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
 msgid "Pr-‘Imn"
@@ -1188,7 +1189,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_workshop.xml:5
 msgid "Kushite Siege Workshop"
-msgstr ""
+msgstr "Koesjitische Belegeringswerkplaats"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"
@@ -1388,7 +1389,7 @@ msgstr "Nāvašta"
 
 #: simulation/templates/structures/pers_elephant_stables.xml:5
 msgid "Persian Elephant Stables"
-msgstr ""
+msgstr "Perzische olifantenstal"
 
 #: simulation/templates/structures/pers_farmstead.xml:8
 msgid "Kaštašta"
@@ -1520,7 +1521,7 @@ msgstr "ḥwt-n-dpt.w"
 
 #: simulation/templates/structures/ptol_elephant_stables.xml:5
 msgid "Ptolemaic Elephant Stables"
-msgstr ""
+msgstr "Ptolemeïsche Olifantenstal"
 
 #: simulation/templates/structures/ptol_farmstead.xml:17
 msgid "pr-n-t"
@@ -1797,7 +1798,7 @@ msgstr "Liménas"
 
 #: simulation/templates/structures/sele_elephant_stables.xml:5
 msgid "Seleucid Elephant Stables"
-msgstr ""
+msgstr "Seleucidische Olifantenstal"
 
 #: simulation/templates/structures/sele_farmstead.xml:8
 msgid "Sītobólion"
