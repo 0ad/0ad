@@ -25,7 +25,7 @@ export ARCH=${ARCH:="x86_64"}
 OSX_VERSION=`sw_vers -productVersion | grep -Eo "^\d+.\d+"`
 # Set SDK and mimimum required OS X version
 export SYSROOT=${SYSROOT:="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX$OSX_VERSION.sdk"}
-export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.7"}
+export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.9"}
 
 # 0 A.D. release version, e.g. Alpha 21 is 0.0.21
 BUNDLE_VERSION=${BUNDLE_VERSION:="0.0.X"}
