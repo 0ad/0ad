@@ -6,6 +6,7 @@
 # Alexander Olkhovskiy, 2016,2018
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Boris Karalnik <eyesucker@gmail.com>, 2015,2018
+# Dmitriy Kulikov <kulikov@dima.perm.ru>, 2018
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Максим Дронь <dronmax@gmail.com>, 2014
@@ -44,8 +45,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-28 09:48+0100\n"
-"PO-Revision-Date: 2018-11-28 11:24+0000\n"
-"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
+"PO-Revision-Date: 2018-12-08 13:54+0000\n"
+"Last-Translator: Dmitriy Kulikov <kulikov@dima.perm.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1397,7 +1398,7 @@ msgstr "Условия"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "Пожалуйста, прочтите и примите Условия использования UserReporter."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
@@ -1442,7 +1443,7 @@ msgstr "Благодарим вас за помощь в улучшении 0 A.
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "Обратная связь сейчас включена."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -1461,7 +1462,7 @@ msgstr "Помогите улучшить 0 A.D.!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "Вы можете автоматически посылать нам анонимную информацию, которая поможет исправить ошибки, улучшить производительность и совместимость."
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -3071,11 +3072,11 @@ msgstr "Настройки игры"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Защита входа и обмена данными с сервером комнаты с использованием шифрования TLS."
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS Encryption"
-msgstr ""
+msgstr "Шифрование TLS"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
