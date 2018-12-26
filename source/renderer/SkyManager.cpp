@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,61 +23,41 @@
 
 #include <algorithm>
 
+#include "graphics/LightEnv.h"
+#include "graphics/ShaderManager.h"
+#include "graphics/Terrain.h"
+#include "graphics/TextureManager.h"
 #include "lib/timer.h"
 #include "lib/tex/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
-
 #include "maths/MathUtil.h"
-
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Loader.h"
 #include "ps/Filesystem.h"
 #include "ps/World.h"
-
 #include "renderer/SkyManager.h"
 #include "renderer/Renderer.h"
 
-#include "graphics/LightEnv.h"
-#include "graphics/ShaderManager.h"
-#include "graphics/Terrain.h"
-#include "graphics/TextureManager.h"
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-// SkyManager implementation
-
-
-///////////////////////////////////////////////////////////////////
-// String names for each image, in order of the IMG_ constants
-const wchar_t* SkyManager::s_imageNames[numTextures] = {
-	L"front",
-	L"back",
-	L"right",
-	L"left",
-	L"top"
-};
-
-
-///////////////////////////////////////////////////////////////////
-// Construction/Destruction
 SkyManager::SkyManager()
+	: m_RenderSky(true), m_HorizonHeight(-150.0f), m_SkyCubeMap(0)
 {
-	m_RenderSky = true;
-
-	m_SkySet = L"";
-
-	m_HorizonHeight = -150.0f;
-
-	m_SkyCubeMap = 0;
 }
-
 
 ///////////////////////////////////////////////////////////////////
 // Load all sky textures
 void SkyManager::LoadSkyTextures()
 {
+	static const CStrW images[NUMBER_OF_TEXTURES + 1] = {
+		L"front",
+		L"back",
+		L"right",
+		L"left",
+		L"top",
+		L"top"
+	};
 	/*for (size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); ++i)
 	{
 		VfsPath path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(s_imageNames[i])+L".dds");
@@ -96,7 +76,7 @@ void SkyManager::LoadSkyTextures()
 	glGenTextures(1, &m_SkyCubeMap);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap);
 
-	int types[] = {
+	static const int types[] = {
 		GL_TEXTURE_CUBE_MAP_POSITIVE_X,
 		GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
 		GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
@@ -105,25 +85,16 @@ void SkyManager::LoadSkyTextures()
 		GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
 	};
 
-	const wchar_t* images[numTextures+1] = {
-		L"front",
-		L"back",
-		L"right",
-		L"left",
-		L"top",
-		L"top"
-	};
-
-	for (size_t i = 0; i < numTextures+1; ++i)
+	for (size_t i = 0; i < NUMBER_OF_TEXTURES + 1; ++i)
 	{
 		VfsPath path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i])+L".dds");
 
 		shared_ptr<u8> file;
 		size_t fileSize;
-		if (g_VFS->LoadFile(path, file, fileSize) < 0)
+		if (g_VFS->LoadFile(path, file, fileSize) != INFO::OK)
 		{
-			VfsPath path2 = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i])+L".dds.cached.dds");
-			if (g_VFS->LoadFile(path2, file, fileSize) < 0)
+			path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i])+L".dds.cached.dds");
+			if (g_VFS->LoadFile(path, file, fileSize) != INFO::OK)
 			{
 				glDeleteTextures(1, &m_SkyCubeMap);
 				LOGERROR("Error creating sky cubemap.");
@@ -179,9 +150,9 @@ void SkyManager::LoadSkyTextures()
 
 ///////////////////////////////////////////////////////////////////
 // Switch to a different sky set (while the game is running)
-void SkyManager::SetSkySet( const CStrW& newSet )
+void SkyManager::SetSkySet(const CStrW& newSet)
 {
-	if(newSet == m_SkySet)
+	if (newSet == m_SkySet)
 		return;
 
 	if (m_SkyCubeMap)
@@ -205,7 +176,7 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 
 	const VfsPath path(L"art/textures/skies/");
 	DirectoryNames subdirectories;
-	if(g_VFS->GetDirectoryEntries(path, 0, &subdirectories) < 0)
+	if (g_VFS->GetDirectoryEntries(path, 0, &subdirectories) != INFO::OK)
 	{
 		LOGERROR("Error opening directory '%s'", path.string8());
 		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
