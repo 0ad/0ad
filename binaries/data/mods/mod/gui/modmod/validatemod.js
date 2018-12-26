@@ -5,7 +5,7 @@ const g_ModProperties = {
 		"type": "string",
 		"validate": validateName
 	},
-	// example: "0.0.23"
+	// example: "0.0.24"
 	"version": {
 		"required": true,
 		"type": "string",
