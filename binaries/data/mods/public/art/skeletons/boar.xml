@@ -1,94 +1,127 @@
+<?xml version='1.0' encoding='utf-8'?>
 <skeletons>
-	<standard_skeleton title="Boar" id="Boar">
-		<bone name="BoarArmature">
-			<bone name="Body">
-				<bone name="Body2">
-					<bone name="Rear">
-						<bone name="Tail" />
-						<bone name="Hip_Left">
-							<bone name="Back_Leg_Left">
-								<bone name="Shin_Left">
-									<bone name="Back_Foot_Left" />
-								</bone>
-							</bone>
-						</bone>
-						<bone name="Hip_Right">
-							<bone name="Back_Leg_Right">
-								<bone name="Shin_Right">
-									<bone name="Back_Foot_Right" />
-								</bone>
-							</bone>
-						</bone>
-					</bone>
-				</bone>
-			</bone>
-			<bone name="Neck">
-				<bone name="Head">
-					<bone name="Ear_Left" />
-					<bone name="Ear_Right" />
-				</bone>
-			</bone>
-			<bone name="Shoulder_Left">
-				<bone name="Front_Leg_Left">
-					<bone name="Forearm_Left">
-						<bone name="Front_Foot_Left" />
-					</bone>
-				</bone>
-			</bone>
-			<bone name="Shoulder_Right">
-				<bone name="Front_Leg_Right">
-					<bone name="Forearm_Right">
-						<bone name="Front_Foot_Right" />
-					</bone>
-				</bone>
-			</bone>
-		</bone>
-	</standard_skeleton>
-
-	<skeleton title="Boar" target="Boar">
-		<identifier><root>BoarArmature_</root></identifier>
-		<bone name="BoarArmature"><target>BoarArmature</target>
-			<bone name="Body"><target>Body</target>
-				<bone name="Body2"><target>Body2</target>
-					<bone name="Rear"><target>Rear</target>
-						<bone name="Tail"><target>Tail</target></bone>
-						<bone name="Hip_Left"><target>Hip_Left</target>
-							<bone name="Back_Leg_Left"><target>Back_Leg_Left</target>
-								<bone name="Shin_Left"><target>Shin_Left</target>
-									<bone name="Back_Foot_Left"><target>Back_Foot_Left</target></bone>
-								</bone>
-							</bone>
-						</bone>
-						<bone name="Hip_Right"><target>Hip_Right</target>
-							<bone name="Back_Leg_Right"><target>Back_Leg_Right</target>
-								<bone name="Shin_Right"><target>Shin_Right</target>
-									<bone name="Back_Foot_Right"><target>Back_Foot_Right</target></bone>
-								</bone>
-							</bone>
-						</bone>
-					</bone>
-				</bone>
-			</bone>
-			<bone name="Neck"><target>Neck</target>
-				<bone name="Head"><target>Head</target>
-					<bone name="Ear_Left"><target>Ear_Left</target></bone>
-					<bone name="Ear_Right"><target>Ear_Right</target></bone>
-				</bone>
-			</bone>
-			<bone name="Shoulder_Left"><target>Shoulder_Left</target>
-				<bone name="Front_Leg_Left"><target>Front_Leg_Left</target>
-					<bone name="Forearm_Left"><target>Forearm_Left</target>
-						<bone name="Front_Foot_Left"><target>Front_Foot_Left</target></bone>
-					</bone>
-				</bone>
-			</bone>
-			<bone name="Shoulder_Right"><target>Shoulder_Right</target>
-				<bone name="Front_Leg_Right"><target>Front_Leg_Right</target>
-					<bone name="Forearm_Right"><target>Forearm_Right</target>
-						<bone name="Front_Foot_Right"><target>Front_Foot_Right</target></bone>
-					</bone>
-				</bone>
-			</bone>
-		</bone>
-	</skeleton>
+  <standard_skeleton id="Boar_Armature" title="Boar Armature">
+    <bone name="Boar_Base">
+      <bone name="Body">
+        <bone name="Rear">
+          <bone name="Tail" />
+          <bone name="Hip_Left">
+            <bone name="Back_Leg_Left">
+              <bone name="Shin_Left">
+                <bone name="Back_Foot_Left" />
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Hip_Right">
+            <bone name="Back_Leg_Right">
+              <bone name="Shin_Right">
+                <bone name="Back_Foot_Right" />
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Neck">
+        <bone name="Head">
+          <bone name="Ear_Left" />
+          <bone name="Ear_Right" />
+          <bone name="Jaw" />
+        </bone>
+      </bone>
+      <bone name="Shoulder_Left">
+        <bone name="Front_Leg_Left">
+          <bone name="Forearm_Left">
+            <bone name="Front_Foot_Left" />
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Shoulder_Right">
+        <bone name="Front_Leg_Right">
+          <bone name="Forearm_Right">
+            <bone name="Front_Foot_Right" />
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton target="Boar_Armature" title="Boar Armature">
+    <identifier>
+      <root>Boar_Base</root>
+    </identifier>
+    <bone name="Boar_Base">
+      <target>Boar_Base</target>
+      <bone name="Body">
+        <target>Body</target>
+        <bone name="Rear">
+          <target>Rear</target>
+          <bone name="Tail">
+            <target>Tail</target>
+          </bone>
+          <bone name="Hip_Left">
+            <target>Hip_Left</target>
+            <bone name="Back_Leg_Left">
+              <target>Back_Leg_Left</target>
+              <bone name="Shin_Left">
+                <target>Shin_Left</target>
+                <bone name="Back_Foot_Left">
+                  <target>Back_Foot_Left</target>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Hip_Right">
+            <target>Hip_Right</target>
+            <bone name="Back_Leg_Right">
+              <target>Back_Leg_Right</target>
+              <bone name="Shin_Right">
+                <target>Shin_Right</target>
+                <bone name="Back_Foot_Right">
+                  <target>Back_Foot_Right</target>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Neck">
+        <target>Neck</target>
+        <bone name="Head">
+          <target>Head</target>
+          <bone name="Ear_Left">
+            <target>Ear_Left</target>
+          </bone>
+          <bone name="Ear_Right">
+            <target>Ear_Right</target>
+          </bone>
+          <bone name="Jaw">
+            <target>Jaw</target>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Shoulder_Left">
+        <target>Shoulder_Left</target>
+        <bone name="Front_Leg_Left">
+          <target>Front_Leg_Left</target>
+          <bone name="Forearm_Left">
+            <target>Forearm_Left</target>
+            <bone name="Front_Foot_Left">
+              <target>Front_Foot_Left</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Shoulder_Right">
+        <target>Shoulder_Right</target>
+        <bone name="Front_Leg_Right">
+          <target>Front_Leg_Right</target>
+          <bone name="Forearm_Right">
+            <target>Forearm_Right</target>
+            <bone name="Front_Foot_Right">
+              <target>Front_Foot_Right</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
 </skeletons>
