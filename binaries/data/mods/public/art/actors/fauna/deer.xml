@@ -12,7 +12,23 @@
         <animation file="quadraped/deer_attack_01.dae" name="attack_melee" speed="20"/>
       </animations>
       <mesh>skeletal/deer_mesh.dae</mesh>
-      <textures><texture file="skeletal/animal_deer.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Base-Grey">
+      <textures>
+        <texture file="skeletal/animal_deer_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Base-Brown">
+      <textures>
+        <texture file="skeletal/animal_deer_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Base-Brown-Freckles">
+      <textures>
+        <texture file="skeletal/animal_deer_03.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -47,4 +63,5 @@
       </props>
     </variant>
   </group>
+  <material>basic_trans.xml</material>
 </actor>
