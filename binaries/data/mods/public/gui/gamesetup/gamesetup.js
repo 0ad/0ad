@@ -1246,6 +1246,9 @@ function slideSettingsPanel(dt)
  */
 function updateSettingsPanelPosition(offset)
 {
+	if (!offset)
+		return;
+
 	let settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
 	let settingsPanelSize = settingsPanel.size;
 	settingsPanelSize.left += offset;

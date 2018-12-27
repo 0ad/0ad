@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,30 +30,28 @@
 class SkyManager
 {
 public:
-	bool m_RenderSky;
-	float m_HorizonHeight;
-
-public:
 	SkyManager();
 
 	/**
-	 * RenderSky: Render the sky.
+	 * Render the sky.
 	 */
 	void RenderSky();
 
 	/**
-	 * GetSkySet(): Return the currently selected sky set name.
+	 * Return the currently selected sky set name.
 	 */
-	inline const CStrW& GetSkySet() const {
+	inline const CStrW& GetSkySet() const
+	{
 		return m_SkySet;
 	}
 
-	GLuint GetSkyCube() {
+	GLuint GetSkyCube()
+	{
 		return m_SkyCubeMap;
 	}
 
 	/**
-	 * GetSkySet(): Set the sky set name, potentially loading the textures.
+	 * Set the sky set name, potentially loading the textures.
 	 */
 	void SetSkySet(const CStrW& name);
 
@@ -63,8 +61,21 @@ public:
 	 */
 	std::vector<CStrW> GetSkySets() const;
 
+	bool GetRenderSky() const
+	{
+		return m_RenderSky;
+	}
+
+	void SetRenderSky(bool value)
+	{
+		m_RenderSky = value;
+	}
+
 private:
 	void LoadSkyTextures();
+
+	bool m_RenderSky;
+	float m_HorizonHeight;
 
 	/// Name of current skyset (a directory within art/textures/skies)
 	CStrW m_SkySet;
@@ -77,16 +88,13 @@ private:
 		RIGHT,
 		LEFT,
 		TOP,
-		numTextures
+		NUMBER_OF_TEXTURES
 	};
 
 	// Sky textures
-	CTexturePtr m_SkyTexture[numTextures];
+	CTexturePtr m_SkyTexture[NUMBER_OF_TEXTURES];
 
 	GLuint m_SkyCubeMap;
-
-	// Array of image names (defined in SkyManager.cpp), in the order of the IMG_ id's
-	static const wchar_t* s_imageNames[numTextures];
 };
 
 

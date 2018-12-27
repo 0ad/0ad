@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <mesh>gaia/temp_deer_2.dae</mesh>
-      <textures><texture file="skeletal/animal_deer.dds" name="baseTex"/></textures>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="100" name="Base-Grey">
+      <textures>
+        <texture file="skeletal/animal_deer_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Base-Brown">
+      <textures>
+        <texture file="skeletal/animal_deer_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="Base-Brown-Freckles">
+      <textures>
+        <texture file="skeletal/animal_deer_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
 </actor>

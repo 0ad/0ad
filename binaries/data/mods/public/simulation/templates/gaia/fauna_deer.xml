@@ -12,12 +12,6 @@
   <Position>
     <Anchor>pitch</Anchor>
   </Position>
-  <UnitMotion>
-    <WalkSpeed op="mul">0.3</WalkSpeed>
-    <Run>
-      <Speed op="mul">0.3</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>fauna/deer.xml</Actor>
   </VisualActor>

@@ -41,9 +41,6 @@ fi
 (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs31)
 (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs24)
 
-(cd ../premake/premake4/build/gmake.bsd && ${MAKE} clean)
-(cd ../premake/premake4/build/gmake.macosx && ${MAKE} clean)
-(cd ../premake/premake4/build/gmake.unix && ${MAKE} clean)
 (cd ../premake/premake5/build/gmake.bsd && ${MAKE} clean)
 (cd ../premake/premake5/build/gmake.macosx && ${MAKE} clean)
 (cd ../premake/premake5/build/gmake.unix && ${MAKE} clean)
