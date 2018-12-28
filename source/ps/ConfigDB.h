@@ -31,6 +31,8 @@
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 
+#include <map>
+
 // Namespace priorities: User supersedes mod supersedes system.
 //						 Command-line arguments override everything.
 
