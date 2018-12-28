@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Iron">
+      <mesh>props/helmet/props/celt_helmet_raven.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_raven_iron.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_raven_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_raven_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Brass">
+      <mesh>props/helmet/props/celt_helmet_raven.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_raven_brass.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_raven_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_raven_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze">
+      <mesh>props/helmet/props/celt_helmet_raven.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_raven_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_raven_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_raven_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
