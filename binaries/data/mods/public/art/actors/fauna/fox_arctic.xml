@@ -2,9 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Fox (Arctic)">
+    <variant file="quadraped/base_fox.xml" frequency="1" name="Fox">
       <mesh>skeletal/fox.dae</mesh>
-      <textures><texture file="skeletal/animal_fox_arctic.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Arctic">
+      <textures><texture file="skeletal/animal_fox_arctic.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

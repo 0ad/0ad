@@ -1,0 +1,9 @@
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="quadraped/fox_idle.dae" name="Idle" id="idle1" speed="70"/>
+    <animation file="quadraped/fox_walk.dae" name="Walk" speed="20"/>
+    <animation file="quadraped/fox_run.dae" name="Run" speed="8"/>
+    <animation file="quadraped/fox_feeding.dae" name="feeding" speed="70"/>
+    <animation file="quadraped/fox_death.dae" name="Death" speed="120"/>
+  </animations>
+</variant>
