@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2018-09-08 15:05+0000\n"
+"PO-Revision-Date: 2018-12-25 07:29+0000\n"
 "Last-Translator: Dito Kurnia Pratama <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -984,7 +984,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Pilih satu tipe barang yang ingin dimodifikasi dengan mengkliknya, lalu gunakan panah dari tipe yang lain untuk memodifikasi bagian-bagiannya. Kamu juga bisa menekan tombol %(hotkey)s ketika menyeleksi satu tipe barang untuk membuat bagiannya menjadi 100 %%."
 
 #: gui/session/session.js:468
 #, javascript-format
@@ -993,7 +993,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Dimulai dengan menyeleksi sumber daya yang ingin kamu jual dari baris atas. Untuk setiap kali tombol yang lebih rendah ditekan, %(quantity)s dari sumber daya atas akan dijual untuk jumlah yang ditampilkan lebih rendah. Tekan dan tahan %(hotkey)s untuk sementara mengalikan jumlah yang diperdagangkan dengan %(multiplier)s."
 
 #: gui/session/session.js:659
 #, javascript-format
@@ -1001,7 +1001,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Perlihatkan Riwayat / Pohon Struktur\nTerakhir dibuka akan dibuka kembali pada klik."
 
 #: gui/session/session.js:922
 msgid "Do you want to quit?"
@@ -1052,19 +1052,19 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/session.js:1258
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s untuk merubah susunan."
 
 #: gui/session/session.js:1260
 msgid "Unordered"
-msgstr ""
+msgstr "Tidak urut"
 
 #: gui/session/session.js:1260
 msgid "Descending"
-msgstr ""
+msgstr "Meningkat"
 
 #: gui/session/session.js:1260
 msgid "Ascending"
-msgstr ""
+msgstr "Menurun"
 
 #: gui/session/session.js:1286
 #, javascript-format
@@ -1213,7 +1213,7 @@ msgstr "Penggunaan tempat penyimpanan ini dilarang"
 
 #: gui/session/unit_actions.js:1447
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "Entitas ini harus dibunuh dahulu sebelum bisa dikumpulkan"
 
 #: gui/session/unit_actions.js:1450
 msgid ""
@@ -1222,7 +1222,7 @@ msgstr "Anda tidak dapat menghancurkan ini karena anda hanya memiliki kurang dar
 
 #: gui/session/unit_actions.js:1453
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "Entitas ini tidak dapat dihapus"
 
 #: gui/session/chat_window.xml:(caption):19
 msgctxt "chat input"
@@ -1260,7 +1260,7 @@ msgstr "Filter riwayat percakapan."
 #: gui/session/chat_window.xml:(tooltip):56
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Pilih penerima obrolan."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1312,7 +1312,7 @@ msgstr "Naikkan pangkat unit yang terpilih"
 
 #: gui/session/developer_overlay.xml:(caption):148
 msgid "Hierarchical pathfinder overlay"
-msgstr ""
+msgstr "Overlay hierarki pathfinder"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -1367,7 +1367,7 @@ msgstr "Ringkasan"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Lobby"
-msgstr ""
+msgstr "Lobi"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Options"
@@ -1383,7 +1383,7 @@ msgstr "Tutup"
 
 #: gui/session/menu.xml:(tooltip):65
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Tampilkan lobi multiplayer di jendela dialog"
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
@@ -1414,7 +1414,7 @@ msgstr "Mode Pengamat"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "Barter & Barang Dagangan"
 
 #: gui/session/trade_window.xml:(caption):16
 msgid "Barter"
@@ -1500,4 +1500,4 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIII : Ken Wood"
-msgstr ""
+msgstr "ALPHA XXIII : Ken Wood"

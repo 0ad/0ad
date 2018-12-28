@@ -3,11 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# shreyash kore, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-02-26 09:04+0100\n"
-"PO-Revision-Date: 2014-06-19 17:49+0000\n"
+"PO-Revision-Date: 2018-12-09 22:15+0000\n"
+"Last-Translator: shreyash kore\n"
 "Language-Team: Marathi (http://www.transifex.com/wildfire-games/0ad/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,54 +33,54 @@ msgstr[1] ""
 
 #: gui/session/input.js:689
 msgid "Cannot build wall here!"
-msgstr ""
+msgstr "इथे भिंत बांधू शकत नाही!"
 
 #: gui/session/menu.js:165
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "आपल्याला राजीनामा द्यायचा आहे का?"
 
 #: gui/session/menu.js:166 gui/session/menu.js:198 gui/session/menu.js:209
 msgid "Confirmation"
-msgstr ""
+msgstr "पुष्टीकरण"
 
 #: gui/session/menu.js:167 gui/session/menu.js:199 gui/session/menu.js:232
 #: gui/session/session.js:930 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
-msgstr ""
+msgstr "नाही"
 
 #: gui/session/menu.js:167 gui/session/menu.js:199 gui/session/menu.js:232
 #: gui/session/session.js:930 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
-msgstr ""
+msgstr "होय"
 
 #: gui/session/menu.js:179
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "तुम्हाला बाहेर पडायचे आहे का? सोडल्याने इतर सर्व खेळाडू डिस्कनेक्ट होतील."
 
 #: gui/session/menu.js:183 gui/session/menu.js:187
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "तुम्हाला बाहेर पडायचे आहे का?"
 
 #: gui/session/menu.js:208
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "आपणांस राजीनामा द्यायचा आहॆ की आपण लवकरच परत याल?"
 
 #: gui/session/menu.js:210
 msgid "I will return"
-msgstr ""
+msgstr "मी परत येईन"
 
 #: gui/session/menu.js:210
 msgid "I resign"
-msgstr ""
+msgstr "मी राजीनामा देतोय"
 
 #: gui/session/menu.js:230
 msgid "Destroy everything currently selected?"
-msgstr ""
+msgstr "सध्या निवडलेल्या सर्व गोष्टी नष्ट करा?"
 
 #: gui/session/menu.js:231
 msgid "Delete"
-msgstr ""
+msgstr "हटवा"
 
 #: gui/session/menu.js:351
 #, javascript-format
@@ -94,21 +96,21 @@ msgstr ""
 #: gui/session/menu.js:455
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "काहीही नाही"
 
 #: gui/session/menu.js:460 gui/session/messages.js:178
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
-msgstr ""
+msgstr "मित्र"
 
 #: gui/session/menu.js:461 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
-msgstr ""
+msgstr "तटस्थ"
 
 #: gui/session/menu.js:461 gui/session/messages.js:179
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
-msgstr ""
+msgstr "शत्रू"
 
 #: gui/session/menu.js:474
 msgid "x"
@@ -116,7 +118,7 @@ msgstr ""
 
 #: gui/session/menu.js:551
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "या शत्रूवर हल्ला करण्यासाठी आपल्या मित्रांना विनंती करा"
 
 #: gui/session/menu.js:568
 msgid ""
@@ -126,7 +128,7 @@ msgstr ""
 
 #: gui/session/menu.js:600
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "अयशस्वी लाच आपल्याला खर्च करेलः"
 
 #: gui/session/menu.js:776
 #, javascript-format
@@ -178,7 +180,7 @@ msgstr[1] ""
 
 #: gui/session/menu.js:897
 msgid "There are no land traders."
-msgstr ""
+msgstr "जमीन व्यापारी नाहीत."
 
 #: gui/session/menu.js:905
 #, javascript-format
@@ -221,7 +223,7 @@ msgstr[1] ""
 
 #: gui/session/menu.js:963
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "व्यापारी जहाज नाहीत."
 
 #: gui/session/menu.js:970
 #, javascript-format
@@ -246,11 +248,11 @@ msgstr[1] ""
 
 #: gui/session/menu.js:1206
 msgid "Resume"
-msgstr ""
+msgstr "सुरू ठेवा"
 
 #: gui/session/menu.js:1206 gui/session/menu.xml:(caption):87
 msgid "Pause"
-msgstr ""
+msgstr "विराम द्या"
 
 #: gui/session/menu.js:1210
 #, javascript-format
@@ -264,7 +266,7 @@ msgstr ""
 
 #: gui/session/menu.js:1224 gui/session/menu.xml:(caption):17
 msgid "Manual"
-msgstr ""
+msgstr "हस्तपुस्तिका"
 
 #: gui/session/menu.js:1239
 msgid "The Developer Overlay was closed."
@@ -308,17 +310,17 @@ msgstr ""
 #: gui/session/messages.js:121
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s खेळामध्ये सामील झाले आहे."
 
 #: gui/session/messages.js:127
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s प्रतिबंधित केले गेले आहे"
 
 #: gui/session/messages.js:128
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)sकाढले गेले आहे"
 
 #: gui/session/messages.js:150
 msgid "Connection to the server has been authenticated."
@@ -326,17 +328,17 @@ msgstr ""
 
 #: gui/session/messages.js:151
 msgid "Connected to the server."
-msgstr ""
+msgstr "सर्व्हरशी कनेक्ट केले."
 
 #: gui/session/messages.js:152
 msgid "Connection to the server has been lost."
-msgstr ""
+msgstr "सर्व्हरवरील कनेक्शन गमावले गेले आहे."
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/session/messages.js:154
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "कारण: %(reason)s."
 
 #: gui/session/messages.js:157
 msgid "Waiting for players to connect:"
@@ -552,22 +554,22 @@ msgstr ""
 #: gui/session/messages.js:801
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "प्रत्येकजण"
 
 #: gui/session/messages.js:809
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "सहयोगी"
 
 #: gui/session/messages.js:813
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "शत्रू"
 
 #: gui/session/messages.js:819
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "निरीक्षक"
 
 #: gui/session/messages.js:848 gui/session/selection_details.js:79
 #, javascript-format
@@ -585,7 +587,7 @@ msgstr ""
 
 #: gui/session/messages.js:974
 msgid "Unknown Player"
-msgstr ""
+msgstr "अज्ञात खेळाडू"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -621,7 +623,7 @@ msgstr ""
 #: gui/session/messages.js:1072
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "आपणावर हल्ला केला आहे %(attacker)s!"
 
 #: gui/session/messages.js:1089
 #, javascript-format
@@ -739,7 +741,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:426
 msgid "Loot:"
-msgstr ""
+msgstr "लूटः"
 
 #. Translation: Used in the trading gain tooltip
 #: gui/session/selection_details.js:487
@@ -1022,17 +1024,17 @@ msgstr ""
 #: gui/session/session.js:999
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "पुष्टीकरण"
 
 #: gui/session/session.js:1000
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "नाही"
 
 #: gui/session/session.js:1000
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "होय"
 
 #: gui/session/session.js:1228
 #, javascript-format
