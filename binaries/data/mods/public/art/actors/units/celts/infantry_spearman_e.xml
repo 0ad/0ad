@@ -5,10 +5,36 @@
     <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/celt_helmet_b.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_scutum_e.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic Ciumesti Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Berru Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_berru.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Marne Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_marne.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Coolus Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_coolus.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Montefortino Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_montefortino.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

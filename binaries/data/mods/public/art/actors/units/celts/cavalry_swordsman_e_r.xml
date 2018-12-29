@@ -8,7 +8,23 @@
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/celt_round_e.xml" attachpoint="shield_arm"/>
-        <prop actor="props/units/heads/celt_helmet_a.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic Agen Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Classic Coolus Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_classic_coolus.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Montefortino Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_montefortino.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

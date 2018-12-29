@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,13 +18,13 @@
 #ifndef INCLUDED_SCRIPTINTERFACE
 #define INCLUDED_SCRIPTINTERFACE
 
-#include <boost/random/linear_congruential.hpp>
-
 #include "lib/file/vfs/vfs_path.h"
-
 #include "maths/Fixed.h"
 #include "ScriptTypes.h"
 #include "ps/Errors.h"
+
+#include <boost/random/linear_congruential.hpp>
+#include <map>
 
 ERROR_GROUP(Scripting);
 ERROR_TYPE(Scripting, SetupFailed);

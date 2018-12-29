@@ -3,11 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# shreyash kore, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-10-13 18:16+0200\n"
-"PO-Revision-Date: 2014-06-19 17:48+0000\n"
+"PO-Revision-Date: 2018-12-10 16:57+0000\n"
+"Last-Translator: shreyash kore\n"
 "Language-Team: Marathi (http://www.transifex.com/wildfire-games/0ad/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,63 +20,63 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:11
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "काहीही नाही"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "या खेळाडूसाठी एआय अक्षम केले जाईल."
 
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "काहीही नाही"
 
 #: gui/gamesetup/gamesetup.js:81
 msgctxt "civilization"
 msgid "Random"
-msgstr ""
+msgstr "यादृच्छिक"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "जेव्हा गेम प्रारंभ होतो तेव्हा यादृच्छिकपणे एक सभ्यता निवडा."
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "%(username)s तयार नाही"
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
-msgstr ""
+msgstr "मी तयार आहे"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "आपण खेळण्यासाठी तयार आहात ते सांगा."
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "%(username)s तयार आहे!"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
-msgstr ""
+msgstr "तयार राहा"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "गेम सेटिंग्ज बदलत असताना देखील तयार रहा."
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
-msgstr ""
+msgstr "मी तयार नाही!"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "आपण खेळण्यासाठी तयार नाही असे सांगा."
 
 #: gui/gamesetup/gamesetup.js:157
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "गेम सेटिंग्ज बदलली गेली आहेत"
 
 #: gui/gamesetup/gamesetup.js:158
 #, javascript-format
@@ -89,12 +91,12 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:160
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s "
 
 #: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s प्रतिबंधित केले गेले आहे"
 
 #: gui/gamesetup/gamesetup.js:162
 #, javascript-format
@@ -114,11 +116,11 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "नौदल आणि डेमो नकाशे वगळता सर्व नकाशे."
 
 #: gui/gamesetup/gamesetup.js:180
 msgid "Naval Maps"
-msgstr ""
+msgstr "नौदल नकाशे"
 
 #: gui/gamesetup/gamesetup.js:181
 msgctxt "map filter"
@@ -127,7 +129,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
-msgstr ""
+msgstr "डेमो नकाशे"
 
 #: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
@@ -136,7 +138,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
-msgstr ""
+msgstr "नवीन नकाशे "
 
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
@@ -154,7 +156,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
-msgstr ""
+msgstr "सर्व नकाशे"
 
 #: gui/gamesetup/gamesetup.js:205
 msgctxt "map filter"
@@ -164,21 +166,21 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:410
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "नकाशा"
 
 #: gui/gamesetup/gamesetup.js:425
 msgctxt "Match settings tab name"
 msgid "Player"
-msgstr ""
+msgstr "खेळाडू"
 
 #: gui/gamesetup/gamesetup.js:435
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "गेम प्रकार"
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Map Type"
-msgstr ""
+msgstr "नकाशा प्रकार"
 
 #: gui/gamesetup/gamesetup.js:476
 msgid "Select a map type."
@@ -456,7 +458,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1745
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "यादृच्छिक"
 
 #: gui/gamesetup/gamesetup.js:1747
 msgid "Pick any of the given maps at random."
@@ -465,7 +467,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1779
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "यादृच्छिक"
 
 #: gui/gamesetup/gamesetup.js:1780
 msgid "Pick a biome at random."
@@ -484,11 +486,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:2153
 msgid "Yes"
-msgstr ""
+msgstr "होय"
 
 #: gui/gamesetup/gamesetup.js:2153
 msgid "No"
-msgstr ""
+msgstr "नाही"
 
 #: gui/gamesetup/gamesetup.js:2160
 #, javascript-format
@@ -516,7 +518,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:2544
 msgid "Unknown Player"
-msgstr ""
+msgstr "अज्ञात खेळाडू"
 
 #: gui/gamesetup/gamesetup.js:2583
 #, javascript-format

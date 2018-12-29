@@ -5,9 +5,9 @@
     <variant file="biped/base_spearman_ready.xml">
       <mesh>skeletal/new/m_hero_tunic.dae</mesh>
       <props>
-        <prop actor="props/units/heads/celt_helmet_raven.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti_raven.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_viridomarus.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/celt_viridomarus.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/brit_battersea.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_gold.xml" attachpoint="weapon_R"/>
         <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
       </props>

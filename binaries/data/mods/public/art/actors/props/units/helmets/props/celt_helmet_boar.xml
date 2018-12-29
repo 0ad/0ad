@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Iron Boar">
+      <mesh>props/helmet/props/celt_helmet_boar.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_boar_iron.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_boar_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_boar_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Brass Boar">
+      <mesh>props/helmet/props/celt_helmet_boar.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_boar_brass.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_boar_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_boar_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze Boar">
+      <mesh>props/helmet/props/celt_helmet_boar.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_boar_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_boar_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_boar_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

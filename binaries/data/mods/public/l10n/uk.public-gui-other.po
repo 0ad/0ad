@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-11-28 09:48+0100\n"
-"PO-Revision-Date: 2018-11-28 13:32+0000\n"
+"PO-Revision-Date: 2018-12-16 21:39+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -1367,7 +1367,7 @@ msgstr "Посібник"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Умови Використання"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -1375,7 +1375,7 @@ msgstr "Будь ласка, прочитайте та прийміть Зага
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "Публікації"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
@@ -2012,7 +2012,7 @@ msgstr "Розширені"
 
 #: gui/locale/locale.xml:(caption):46
 msgid "Accept"
-msgstr "Приймати"
+msgstr "Прийняти"
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -2206,7 +2206,7 @@ msgstr "Опції"
 
 #: gui/pregame/mainmenu.xml:(caption):339
 msgid "Mod Selection"
-msgstr "Вибір режиму гри"
+msgstr "Вибір доступних модів"
 
 #: gui/pregame/mainmenu.xml:(caption):351
 msgid "Welcome Screen"
@@ -2514,7 +2514,7 @@ msgstr "Кампанія Indiegogo 2013\nБільше 1000 жертводавц�
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
-msgstr "Пожертви"
+msgstr "Пожертвували кошти"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
@@ -3045,7 +3045,7 @@ msgstr "Налаштування Гри"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Захист входу і обміну даними з лобі-сервером із використанням шифрування TLS."
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS Encryption"
@@ -3116,7 +3116,7 @@ msgstr "Повідомлення про атаку в чаті"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "Показувати сповіщення в чаті, якщо союзник віддає ресурси іншому учаснику команди, якщо команди заблоковані і всі, хто давав ресурси в режимі спостерігача."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat Notification Tribute"
@@ -3259,7 +3259,7 @@ msgstr "Зміна параметрів в налаштуваннях гри."
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
-msgstr "Внутрішньоігровий"
+msgstr "Внутрішньоігрові"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

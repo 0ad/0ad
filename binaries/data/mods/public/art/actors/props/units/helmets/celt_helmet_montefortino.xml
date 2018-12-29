@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Iron A">
+      <mesh>props/helmet/celt_helmet_a_1.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_a1_iron.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_a1_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_a1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Brass A">
+      <mesh>props/helmet/celt_helmet_a_1.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_a1_brass.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_a1_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_a1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze A">
+      <mesh>props/helmet/celt_helmet_a_1.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_a1_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_a1_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_a1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Silver A">
+      <mesh>props/helmet/celt_helmet_a_1.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_a1_silver.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_a1_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_a1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iron D">
+      <mesh>props/helmet/celt_helmet_a_4.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_a4_iron.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_a4_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_a4_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Brass D">
+      <mesh>props/helmet/celt_helmet_a_4.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_a4_brass.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_a4_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_a4_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze D">
+      <mesh>props/helmet/celt_helmet_a_4.dae</mesh>
+      <textures>
+        <texture file="props/helmet/celt_helmet_a4_bronze.png" name="baseTex"/>
+        <texture file="props/helmet/celt_helmet_a4_norm.png" name="normTex"/>
+        <texture file="props/helmet/celt_helmet_a4_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

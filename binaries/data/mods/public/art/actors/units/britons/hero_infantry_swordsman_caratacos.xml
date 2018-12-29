@@ -14,6 +14,13 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Celtic Agen Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>

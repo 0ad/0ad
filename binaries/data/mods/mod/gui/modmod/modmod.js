@@ -367,7 +367,7 @@ function selectedMod(listObjectName)
 		otherListObject.selected = -1;
 		Engine.GetGUIObjectByName("visitWebButton").enabled = true;
 		let toggleModButton = Engine.GetGUIObjectByName("toggleModButton");
-		toggleModButton.caption = listObjectName == "modsDisabledList" ? "Enable" : "Disable";
+		toggleModButton.caption = listObjectName == "modsDisabledList" ? translate("Enable") : translate("Disable");
 		toggleModButton.enabled = true;
 		toggleModButton.onPress = listObjectName == "modsDisabledList" ? enableMod : disableMod;
 		Engine.GetGUIObjectByName("enabledModUp").enabled = listObjectName == "modsEnabledList";

@@ -8,12 +8,13 @@
 # ramoer <ramoerram@live.com>, 2014
 # Ravi Kumar, 2014
 # Ravi Kumar, 2014
+# shreyash kore, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-04-23 09:02+0200\n"
-"PO-Revision-Date: 2018-04-23 13:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2018-12-11 18:13+0000\n"
+"Last-Translator: shreyash kore\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +89,7 @@ msgstr "स्ट्रीम सर्वर द्वारा बंद क�
 
 #: lobby/XmppClient.cpp:1112
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "एक I / O त्रुटि हुई"
 
 #: lobby/XmppClient.cpp:1114
 msgid "The connection was refused by the server"
@@ -126,7 +127,7 @@ msgstr "कोई सक्रिय कनेक्शन नहीं है"
 
 #: lobby/XmppClient.cpp:1144
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "आपका खाता सफलतापूर्वक पंजीकृत कर दिया गया है"
 
 #: lobby/XmppClient.cpp:1145
 msgid "Not all necessary information provided"
@@ -139,54 +140,54 @@ msgstr "उपयोगकर्ता का नाम पहले से म�
 #: ps/ModIo.cpp:244
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "गेम आईडी के लिए पूछताछ शुरू करते समय विफलता। त्रुटि: %s; %s।"
 
 #: ps/ModIo.cpp:274
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "मॉड आईडी के लिए पूछताछ शुरू करते समय विफलता। त्रुटि: %s; %s।"
 
 #: ps/ModIo.cpp:300
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "मॉड निर्देशिका नहीं बना सका: %s"
 
 #: ps/ModIo.cpp:325
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "मॉड डाउनलोड के लिए अस्थायी फ़ाइल नहीं खोल सका: %s"
 
 #: ps/ModIo.cpp:335
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "डाउनलोड शुरू करने में विफल। त्रुटि: %s; %s"
 
 #: ps/ModIo.cpp:380
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "असीमित डाउनलोड विफलता: %s;%s"
 
 #: ps/ModIo.cpp:408
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "विफलता डाउनलोड करें। सर्वर प्रतिक्रिया: %s;%s"
 
 #: ps/ModIo.cpp:511
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "बेमेल फ़ाइल आकार।"
 
 #: ps/ModIo.cpp:531
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "अवैध फाइल। अपेक्षित एमडी 5 %s, मिला %s"
 
 #: ps/ModIo.cpp:545
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "अंतिम हैश की गणना करने में विफल।"
 
 #: ps/ModIo.cpp:551
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "हस्ताक्षर सत्यापित करने में विफल।"
 
 #: ps/SavedGame.cpp:128
 #, c-format
