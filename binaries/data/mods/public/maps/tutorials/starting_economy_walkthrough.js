@@ -381,7 +381,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("Let's wait for the Barracks to be built. As this construction is lengthy, you can add two soldiers to build it faster. To do so, select your Civic Center and set up a rally-point on the Barracks foundation by right-clicking on it (you should see a hammer icon), and then produce two more builders by clicking on the hoplite icon twice.")
+			markForTranslation("Let's wait for the Barracks to be built. As this construction is lengthy, you can add two soldiers to build it faster. To do so, select your Civic Center and set up a rally-point on the Barracks foundation by right-clicking on it (you should see a hammer icon). Then produce two more builders by clicking on the hoplite icon twice.")
 		],
 		"OnStructureBuilt": function(msg)
 		{
