@@ -369,8 +369,8 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("We should start preparing to phase up into 'Town Phase', which will unlock many more units and buildings. Select the Civic Center and hover the cursor over the 'Town Phase' icon to see what is still needed.\n"),
-			markForTranslation("We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build barracks.\n"),
-			markForTranslation("Select four of your soldiers and ask them to build a barracks: as before, start selecting the soldiers, click on the barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build.")
+			markForTranslation("We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build Barracks.\n"),
+			markForTranslation("Select four of your soldiers and ask them to build a Barracks: as before, start selecting the soldiers, click on the Barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build.")
 		],
 		"OnPlayerCommand": function(msg)
 		{
@@ -381,7 +381,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("Let's wait for the barracks to be built. As this construction is lengthy, you can add two soldiers to build it faster. To do so, select your Civic Center and set up a rally-point on the barracks foundation by right-clicking on it (you should see a hammer icon), and then produce two more builders by clicking on the hoplite icon twice.")
+			markForTranslation("Let's wait for the Barracks to be built. As this construction is lengthy, you can add two soldiers to build it faster. To do so, select your Civic Center and set up a rally-point on the Barracks foundation by right-clicking on it (you should see a hammer icon), and then produce two more builders by clicking on the hoplite icon twice.")
 		],
 		"OnStructureBuilt": function(msg)
 		{

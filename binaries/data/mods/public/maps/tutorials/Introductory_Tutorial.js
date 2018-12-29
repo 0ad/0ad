@@ -326,7 +326,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("While waiting for the phase change, you may train more soldiers at the barracks."),
+		"instructions": markForTranslation("While waiting for the phase change, you may train more soldiers at the Barracks."),
 		"OnResearchFinished": function(msg)
 		{
 			if (msg.tech == "phase_city_generic")
