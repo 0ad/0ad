@@ -299,7 +299,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("When the field is constructed, the builders will automatically start gathering it.\n"),
+			markForTranslation("When the field is ready, the builders will automatically start gathering it.\n"),
 			markForTranslation("The cavalry unit should have slaughtered all chickens by now. Select it and explore the south-west area: there is a lake with some camels around. Move your cavalry by right-clicking on the point you want to go, and when you see a herd of camels, right-click on one of them to start hunting for food.")
 		],
 		"OnPlayerCommand": function(msg)
