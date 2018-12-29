@@ -1143,7 +1143,7 @@ function updateGroups()
 		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); }; })(i);
 		button.onpressright = (function(i) { return function() { performGroup("breakUp", i); }; })(i);
 
-		// Chose icon of the most common template (or the most costly if it's not unique)
+		// Choose the icon of the most common template (or the most costly if it's not unique)
 		if (g_Groups.groups[i].getTotalCount() > 0)
 		{
 			let icon = GetTemplateData(GetEntityState(g_Groups.groups[i].getEntsGrouped().reduce((pre, cur) => {
