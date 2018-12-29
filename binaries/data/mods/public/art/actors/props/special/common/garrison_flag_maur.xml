@@ -7,7 +7,9 @@
         <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="30"/>
       </animations>
       <mesh>props/garrison_flag.dae</mesh>
-      <textures><texture file="props/garrison_maur_1.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/garrison_maur_1.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>
