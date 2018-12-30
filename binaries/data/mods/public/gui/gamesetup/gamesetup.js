@@ -769,7 +769,7 @@ var g_PlayerDropdowns = {
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 	},
 	"playerCiv": {
-		"tooltip": (hoverIdx, playerIdx) => g_PlayerCivList.tooltip[hoverIdx] || translate("Chose the civilization for this player"),
+		"tooltip": (hoverIdx, playerIdx) => g_PlayerCivList.tooltip[hoverIdx] || translate("Choose the civilization for this player"),
 		"labels": (playerIdx) => g_PlayerCivList.name,
 		"colors": (playerIdx) => g_PlayerCivList.color,
 		"ids": (playerIdx) => g_PlayerCivList.code,

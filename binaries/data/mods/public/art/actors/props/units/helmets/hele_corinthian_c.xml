@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Corinthian_c">
+      <mesh>props/helmet/hele_corinthian_b.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="High Crest">
+      <props>
+        <prop actor="props/units/helmets/props/chalcidean_high_crest.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="no crest">
+      <props>
+        <prop actor="" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Patterned">
+      <textures>
+        <texture file="props/helmet/hele_corinthian_c.png" name="baseTex"/>
+        <texture file="props/helmet/hele_corinthian_b_norm.png" name="normTex"/>
+        <texture file="props/helmet/hele_corinthian_b_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

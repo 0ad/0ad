@@ -16,6 +16,14 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Helmets-Iron-Agis">
+      <props>
+        <prop actor="props/units/helmets/hele_corinthian_agis.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
