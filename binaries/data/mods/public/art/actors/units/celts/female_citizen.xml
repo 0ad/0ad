@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -7,13 +7,46 @@
       <props>
         <prop actor="props/units/heads/new/head_female_celt.xml" attachpoint="head"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="0" name="celt-female-base">
       <textures>
         <texture file="skeletal/celt_fem.dds" name="baseTex"/>
       </textures>
     </variant>
+    <variant frequency="1" name="celt-female-1a">
+      <textures>
+        <texture file="skeletal/celt_female_1a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="celt-female-1b">
+      <textures>
+        <texture file="skeletal/celt_female_1b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="celt-female-1c">
+      <textures>
+        <texture file="skeletal/celt_female_1c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="celt-female-2a">
+      <textures>
+        <texture file="skeletal/celt_female_2a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="celt-female-2b">
+      <textures>
+        <texture file="skeletal/celt_female_2b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="celt-female-2c">
+      <textures>
+        <texture file="skeletal/celt_female_2c.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
   <group>
-    <!-- In this group, defined overloads for "Idle", "Walk" and "Run" -->
     <variant file="biped/female_base_walk.xml"/>
     <variant file="biped/female_carry_food.xml"/>
     <variant file="biped/female_carry_meat.xml"/>
@@ -22,8 +55,7 @@
     <variant file="biped/female_carry_metal.xml"/>
   </group>
   <group>
-    <!-- In this group, define overloads for other animation types, since they presumably do not collide with each other -->
-    <variant name="Idle" frequency="1"/>
+    <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_melee_female.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/female_death.xml"/>

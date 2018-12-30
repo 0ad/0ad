@@ -7,6 +7,11 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Normal cape">
+      <textures>
+        <texture file="props/cape_hd.dds" name="baseTex"/>
+      </textures>
+    </variant>
     <variant frequency="1" name="Celtic cape 01">
       <textures>
         <texture file="props/cape_celt_01.png" name="baseTex"/>
@@ -15,6 +20,31 @@
     <variant frequency="1" name="Celtic cape 02">
       <textures>
         <texture file="props/cape_celt_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 03">
+      <textures>
+        <texture file="props/cape_celt_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 04">
+      <textures>
+        <texture file="props/cape_celt_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 05">
+      <textures>
+        <texture file="props/cape_celt_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 06">
+      <textures>
+        <texture file="props/cape_celt_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 07">
+      <textures>
+        <texture file="props/cape_celt_07.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
