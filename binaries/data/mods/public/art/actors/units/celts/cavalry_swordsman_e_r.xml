@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_pants.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/celt_round_e.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/celt_hex.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
@@ -29,14 +29,18 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="chainmail-01">
+    <variant frequency="1" name="leather-1">
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/celt_isw_e_01.dds" name="baseTex"/>
+        <texture file="skeletal/celt_leather_01.png" name="baseTex"/>
+        <texture file="skeletal/celt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="chainmail-02">
+    <variant frequency="1" name="leather-2">
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/celt_isw_e_02.dds" name="baseTex"/>
+        <texture file="skeletal/celt_leather_02.png" name="baseTex"/>
+        <texture file="skeletal/celt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -51,5 +55,5 @@
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_shield_a.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

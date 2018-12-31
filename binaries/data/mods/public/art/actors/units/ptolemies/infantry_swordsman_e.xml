@@ -33,12 +33,99 @@
         <prop actor="props/units/helmets/celt_helmet_peaked.xml" attachpoint="helmet"/>
       </props>
     </variant>
+    <variant frequency="1" name="Lime Head">
+      <props>
+        <prop actor="props/units/heads/new/head_lime.xml" attachpoint="head"/>
+        <prop actor="" attachpoint="helmet"/>
+      </props>
+    </variant>
   </group>
   <group>
     <variant frequency="1" name="chainmail-1">
       <textures>
         <texture file="skeletal/celt_chain_01.png" name="baseTex"/>
         <texture file="skeletal/celt_chain_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-1a">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_1_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-1b">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_1_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-1c">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_1_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-2a">
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_2_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-2b">
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_2_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-2c">
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_2_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-3a">
+      <textures>
+        <texture file="skeletal/celt_chainmail_3_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-3b">
+      <textures>
+        <texture file="skeletal/celt_chainmail_3_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-3c">
+      <textures>
+        <texture file="skeletal/celt_chainmail_3_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-4a">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_4_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_4_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-4b">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_4_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_4_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-4c">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_4_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_4_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="leather-1">
@@ -53,9 +140,27 @@
         <texture file="skeletal/celt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="linothorax-3">
+    <variant frequency="1" name="linothorax-3a">
       <textures>
         <texture file="skeletal/celt_linothorax_03.png" name="baseTex"/>
+        <texture file="skeletal/celt_linothorax_03_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="linothorax-3b">
+      <textures>
+        <texture file="skeletal/celt_linothorax_03_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_linothorax_03_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="linothorax-3c">
+      <textures>
+        <texture file="skeletal/celt_linothorax_03_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_linothorax_03_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="linothorax-3d">
+      <textures>
+        <texture file="skeletal/celt_linothorax_03_d.png" name="baseTex"/>
         <texture file="skeletal/celt_linothorax_03_spec.png" name="specTex"/>
       </textures>
     </variant>
