@@ -68,7 +68,7 @@ L: Chat with the previously selected private chat partner
 Pause: Pause/resume the game
 Delete: Delete currently selected units/buildings
 Shift + Delete: Delete currently selected units/buildings without confirmation
-/ (ForwardSlash): Select idle fighter
+/ (Slash): Select idle fighter
 Shift + /: Add idle fighter to selection
 Alt + /: Select all idle fighters
 . (Period): Select idle worker (including citizen soldiers)
@@ -112,9 +112,9 @@ O + Left Drag over units on map: Only select wounded units
 Ctrl + Left Click on unit/group icon with multiple units selected: Deselect
 Right Click with a building/buildings selected: sets a rally point for units created/ungarrisoned from that building.
 Ctrl + Right Click with units selected:
-    - If the cursor is over an allied structure: Garrison
-    - If the cursor is over a non-allied unit or building: Attack (instead of capture or gather)
-    - Otherwise: Attack move (by default all enemy units and structures along the way are targeted, use Ctrl + Q + Right Click to target only units). 
+    • If the cursor is over an allied structure: Garrison
+    • If the cursor is over a non-allied unit or building: Attack (instead of capture or gather)
+    • Otherwise: Attack move (by default all enemy units and structures along the way are targeted, use Ctrl + Q + Right Click to target only units).
 
 [font="sans-bold-14"]Overlays
 [font="sans-14"]Alt + G: Hide/show the GUI
@@ -142,7 +142,7 @@ Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain
 Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain
 F: Follow the selected unit (move the camera to stop it from following the unit)
 R: Reset camera zoom/orientation
-+: Zoom in (keep pressed for continuous zoom)
+= or +: Zoom in (keep pressed for continuous zoom)
 -: Zoom out (keep pressed for continuous zoom)
 Alt + W: Toggle through wireframe modes
 Middle Mouse Button: Keep pressed and move the mouse to pan

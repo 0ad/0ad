@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_armor_pants_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/celt_helmet_b.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/shields/ptol_thureos_galatian_e.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
@@ -14,29 +13,50 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Celtic Classic Coolus Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_classic_coolus.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Coolus Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_coolus.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Montefortino Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_montefortino.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Peaked Helmet">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_peaked.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="chainmail-1">
       <textures>
-        <texture file="skeletal/celt_isw_e_01.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="chainmail-2">
-      <textures>
-        <texture file="skeletal/celt_isw_e_02.dds" name="baseTex"/>
+        <texture file="skeletal/celt_chain_01.png" name="baseTex"/>
+        <texture file="skeletal/celt_chain_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="leather-1">
       <textures>
         <texture file="skeletal/celt_leather_01.png" name="baseTex"/>
+        <texture file="skeletal/celt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="leather-2">
       <textures>
         <texture file="skeletal/celt_leather_02.png" name="baseTex"/>
+        <texture file="skeletal/celt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="linothorax-1">
+    <variant frequency="1" name="linothorax-3">
       <textures>
-        <texture file="skeletal/celt_linothorax_01.png" name="baseTex"/>
+        <texture file="skeletal/celt_linothorax_03.png" name="baseTex"/>
+        <texture file="skeletal/celt_linothorax_03_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -68,5 +88,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
