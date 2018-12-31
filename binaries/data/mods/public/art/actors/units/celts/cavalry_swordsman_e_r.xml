@@ -9,6 +9,9 @@
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/celt_hex.xml" attachpoint="shield"/>
       </props>
+      <textures>
+        <texture file="skeletal/celt_leather_01_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -30,17 +33,13 @@
   </group>
   <group>
     <variant frequency="1" name="leather-1">
-      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <textures>
         <texture file="skeletal/celt_leather_01.png" name="baseTex"/>
-        <texture file="skeletal/celt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="leather-2">
-      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <textures>
         <texture file="skeletal/celt_leather_02.png" name="baseTex"/>
-        <texture file="skeletal/celt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
