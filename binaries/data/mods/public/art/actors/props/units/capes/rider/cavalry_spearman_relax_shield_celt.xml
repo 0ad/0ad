@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_cavalry_spearman_relax_shield.xml">
+      <mesh>props/new/capes/cape_hd_medium.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic cape 01">
+      <textures>
+        <texture file="props/cape_celt_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 02">
+      <textures>
+        <texture file="props/cape_celt_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 03">
+      <textures>
+        <texture file="props/cape_celt_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 04">
+      <textures>
+        <texture file="props/cape_celt_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 05">
+      <textures>
+        <texture file="props/cape_celt_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 06">
+      <textures>
+        <texture file="props/cape_celt_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic cape 07">
+      <textures>
+        <texture file="props/cape_celt_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
