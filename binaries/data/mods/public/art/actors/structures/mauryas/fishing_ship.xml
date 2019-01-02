@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>structural/maur_fishing_boat.dae</mesh>
+      <textures>
+        <texture file="structural/maur_fishing_boat.png" name="baseTex"/>
+        <texture file="structural/maur_fishing_boat_spec.png" name="specTex"/>
+        <texture file="structural/maur_fishing_boat_norm.png" name="normTex"/>
+      </textures>
+      <props>
+        <prop actor="units/mauryas/fisherman.xml" attachpoint="fisherman"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant frequency="1" name="walk"/>
+    <variant frequency="1" name="run"/>
+    <variant frequency="1" name="gather_fish">
+      <props>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_c"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="carry_fish">
+      <props>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_c"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="carry_idle">
+      <props>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_a"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_b"/>
+        <prop actor="props/fauna/fish_captured.xml" attachpoint="fish_c"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
