@@ -413,6 +413,51 @@ void WaterManager::UnloadWaterTextures()
 	pglDeleteFramebuffersEXT(1, &m_ReflectionFbo);
 }
 
+template<bool Transpose>
+static inline void ComputeDirection(float* distanceMap, const u16* heightmap, float waterHeight, size_t SideSize, size_t maxLevel)
+{
+#define ABOVEWATER(x, z) (HEIGHT_SCALE * heightmap[z*SideSize + x] >= waterHeight)
+#define UPDATELOOKAHEAD \
+	for (; lookahead <= id2+maxLevel && lookahead < SideSize && \
+	       ((!Transpose && ABOVEWATER(lookahead, id1)) || (Transpose && ABOVEWATER(id1, lookahead))); ++lookahead)
+	// Algorithm:
+	// We want to know the distance to the closest shore point. Go through each line/column,
+	// keep track of when we encountered the last shore point and how far ahead the next one is.
+	for (size_t id1 = 0; id1 < SideSize; ++id1)
+	{
+		size_t id2 = 0;
+		const size_t& x = Transpose ? id1 : id2;
+		const size_t& z = Transpose ? id2 : id1;
+
+		size_t level = ABOVEWATER(x, z) ? 0 : maxLevel;
+		size_t lookahead = (size_t)(level > 0);
+
+		UPDATELOOKAHEAD;
+
+		// start moving
+		for (; id2 < SideSize; ++id2)
+		{
+			// update current level
+			if (ABOVEWATER(x, z))
+				level = 0;
+			else
+				level = std::min(level+1, maxLevel);
+
+			// move lookahead
+			if (lookahead == id2)
+				++lookahead;
+			UPDATELOOKAHEAD;
+
+			// This is the important bit: set the distance to either:
+			// - the distance to the previous shore point (level)
+			// - the distance to the next shore point (lookahead-id2)
+			distanceMap[z*SideSize + x] = std::min(distanceMap[z*SideSize + x], (float)std::min(lookahead-id2, level));
+		}
+	}
+#undef ABOVEWATER
+#undef UPDATELOOKAHEAD
+}
+
 ///////////////////////////////////////////////////////////////////
 // Calculate our binary heightmap from the terrain heightmap.
 void WaterManager::RecomputeDistanceHeightmap()
@@ -421,69 +466,32 @@ void WaterManager::RecomputeDistanceHeightmap()
 	if (!terrain || !terrain->GetHeightMap())
 		return;
 
-	size_t SideSize = m_MapSize*2;
+	size_t SideSize = m_MapSize;
+
+	// we want to look ahead some distance, but not too much (less efficient and not interesting). This is our lookahead.
+	const size_t maxLevel = 5;
+
 	if (m_DistanceHeightmap == NULL)
+	{
 		m_DistanceHeightmap = new float[SideSize*SideSize];
+		std::fill(m_DistanceHeightmap, m_DistanceHeightmap + SideSize*SideSize, (float)maxLevel);
+	}
 
 	// Create a manhattan-distance heightmap.
-	// This is currently upsampled by a factor of 2 to get more precision
 	// This could be refined to only be done near the coast itself, but it's probably not necessary.
 
-	for (size_t z = 0; z < SideSize; ++z)
-	{
-		float level = SideSize;
-		for (size_t x = 0; x < SideSize; ++x)
-			m_DistanceHeightmap[z*SideSize + x] = terrain->GetExactGroundLevel(x*2, z*2) >= m_WaterHeight ? level = 0.f : ++level;
-		level = SideSize;
-		for (size_t x = SideSize-1; x != (size_t)-1; --x)
-		{
-			if (terrain->GetExactGroundLevel(x*2, z*2) >= m_WaterHeight)
-				level = 0.f;
-			else
-			{
-				++level;
-				if (level < m_DistanceHeightmap[z*SideSize + x])
-					m_DistanceHeightmap[z*SideSize + x] = level;
-			}
-		}
-	}
-	for (size_t x = 0; x < SideSize; ++x)
-	{
-		float level = SideSize;
-		for (size_t z = 0; z < SideSize; ++z)
-		{
-			if (terrain->GetExactGroundLevel(x*2, z*2) >= m_WaterHeight)
-				level = 0.f;
-			else if (level > m_DistanceHeightmap[z*SideSize + x])
-				level = m_DistanceHeightmap[z*SideSize + x];
-			else
-			{
-				++level;
-				if (level < m_DistanceHeightmap[z*SideSize + x])
-					m_DistanceHeightmap[z*SideSize + x] = level;
-			}
-		}
-		level = SideSize;
-		for (size_t z = SideSize-1; z != (size_t)-1; --z)
-		{
-			if (terrain->GetExactGroundLevel(x*2, z*2) >= m_WaterHeight)
-				level = 0.f;
-			else if (level > m_DistanceHeightmap[z*SideSize + x])
-				level = m_DistanceHeightmap[z*SideSize + x];
-			else
-			{
-				++level;
-				if (level < m_DistanceHeightmap[z*SideSize + x])
-					m_DistanceHeightmap[z*SideSize + x] = level;
-			}
-		}
-	}
+	u16* heightmap = terrain->GetHeightMap();
+
+	ComputeDirection<false>(m_DistanceHeightmap, heightmap, m_WaterHeight, SideSize, maxLevel);
+	ComputeDirection<true>(m_DistanceHeightmap, heightmap, m_WaterHeight, SideSize, maxLevel);
 }
 
 // This requires m_DistanceHeightmap to be defined properly.
 void WaterManager::CreateWaveMeshes()
 {
-	size_t SideSize = m_MapSize*2;
+	if (m_MapSize == 0)
+		return;
+
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	if (!terrain || !terrain->GetHeightMap())
 		return;
@@ -505,12 +513,15 @@ void WaterManager::CreateWaveMeshes()
 	if (m_Waviness < 5.0f && m_WaterType != L"ocean")
 		return;
 
+	size_t SideSize = m_MapSize;
+
 	// First step: get the points near the coast.
 	std::set<int> CoastalPointsSet;
 	for (size_t z = 1; z < SideSize-1; ++z)
 		for (size_t x = 1; x < SideSize-1; ++x)
-			if (fabs(m_DistanceHeightmap[z*SideSize + x]-1.0f) < 0.2f)
-				CoastalPointsSet.insert(z*SideSize + x);
+			// get the points not on the shore but near it, ocean-side
+			if (m_DistanceHeightmap[z*m_MapSize + x] > 0.5f && m_DistanceHeightmap[z*m_MapSize + x] < 1.5f)
+				CoastalPointsSet.insert((z)*SideSize + x);
 
 	// Second step: create chains out of those coastal points.
 	static const int around[8][2] = { { -1,-1 }, { -1,0 }, { -1,1 }, { 0,1 }, { 1,1 }, { 1,0 }, { 1,-1 }, { 0,-1 } };
@@ -524,7 +535,7 @@ void WaterManager::CreateWaveMeshes()
 
 		std::deque<CoastalPoint> Chain;
 
-		Chain.push_front(CoastalPoint(index,CVector2D(x*2,y*2)));
+		Chain.push_front(CoastalPoint(index,CVector2D(x*4,y*4)));
 
 		// Erase us.
 		CoastalPointsSet.erase(CoastalPointsSet.begin());
@@ -558,9 +569,9 @@ void WaterManager::CreateWaveMeshes()
 			int endedChain = false;
 
 			if (i == 0)
-				Chain.push_back(CoastalPoint(indexx,CVector2D(xx*2,yy*2)));
+				Chain.push_back(CoastalPoint(indexx,CVector2D(xx*4,yy*4)));
 			else
-				Chain.push_front(CoastalPoint(indexx,CVector2D(xx*2,yy*2)));
+				Chain.push_front(CoastalPoint(indexx,CVector2D(xx*4,yy*4)));
 
 			// If there's a loop we'll be the "other" neighboring point already so check for that.
 			// We'll readd at the end/front the other one to have full squares.
@@ -590,9 +601,9 @@ void WaterManager::CreateWaveMeshes()
 						yy = yy + around[p][1];
 						indexx = xx + yy*SideSize;
 						if (i == 0)
-							Chain.push_back(CoastalPoint(indexx,CVector2D(xx*2,yy*2)));
+							Chain.push_back(CoastalPoint(indexx,CVector2D(xx*4,yy*4)));
 						else
-							Chain.push_front(CoastalPoint(indexx,CVector2D(xx*2,yy*2)));
+							Chain.push_front(CoastalPoint(indexx,CVector2D(xx*4,yy*4)));
 						CoastalPointsSet.erase(xx + yy*SideSize);
 						found = true;
 						break;
@@ -691,12 +702,6 @@ void WaterManager::CreateWaveMeshes()
 					break;
 				}
 
-				if (m_BlurredNormalMap[ (int)(pos.X/4) + (int)(pos.Y/4)*m_MapSize].Y < 0.9)
-				{
-					width = a-1;
-					break;
-				}
-
 				if (terrain->GetExactGroundLevel(pos.X+perp.X*1.5f, pos.Y+perp.Y*1.5f) > m_WaterHeight)
 					sign = -1;
 
@@ -727,7 +732,7 @@ void WaterManager::CreateWaveMeshes()
 				j += 3;
 				continue;
 			}
-			outmost = -0.5f + outmost * m_Waviness/10.0f;
+			outmost = -2.5f + outmost * m_Waviness/10.0f;
 
 			avgDepth /= width;
 
@@ -740,7 +745,8 @@ void WaterManager::CreateWaveMeshes()
 
 			WaveObject* shoreWave = new WaveObject;
 			std::vector<SWavesVertex> vertices;
-
+			vertices.reserve(9*width);
+			
 			shoreWave->m_Width = width;
 			shoreWave->m_TimeDiff = diff;
 			diff += (rand() % 100) / 25.0f + 4.0f;
@@ -852,6 +858,7 @@ void WaterManager::CreateWaveMeshes()
 			{
 				// Let's do some fancy reversing.
 				std::vector<SWavesVertex> reversed;
+				reversed.reserve(vertices.size());
 				for (int a = width-1; a >= 0; --a)
 				{
 					for (size_t t = 0; t < 9; ++t)
@@ -1008,7 +1015,6 @@ void WaterManager::RecomputeWaterData()
 	if (!m_MapSize)
 		return;
 
-	RecomputeBlurredNormalMap();
 	RecomputeDistanceHeightmap();
 	RecomputeWindStrength();
 	CreateWaveMeshes();
