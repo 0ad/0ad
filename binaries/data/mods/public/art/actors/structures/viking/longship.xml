@@ -3,13 +3,13 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="Longboat">
-      <mesh>structural/viking_longboat.dae</mesh>
+    <variant frequency="1" name="Longship">
+      <mesh>structural/viking_longship.dae</mesh>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/structures/viking/longboat_sail.xml" attachpoint="root"/>
+        <prop actor="props/structures/viking/longship_sail.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/viking_longboat.png" name="baseTex"/></textures>
+      <textures><texture file="structural/viking_longship.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

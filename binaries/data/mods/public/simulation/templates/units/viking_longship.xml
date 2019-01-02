@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship_bireme">
   <Identity>
-    <SpecificName>Longboat</SpecificName>
-    <Icon>units/viking_longboat.png</Icon>
+    <SpecificName>Longship</SpecificName>
+    <Icon>units/viking_longship.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>structures/viking/longboat.xml</Actor>
+    <Actor>structures/viking/longship.xml</Actor>
   </VisualActor>
 </Entity>
