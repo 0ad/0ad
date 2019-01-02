@@ -1227,6 +1227,8 @@ void CPatchRData::RenderSides(CShaderProgramPtr& shader)
 	if (!m_VBSides)
 		return;
 
+	glDisable(GL_CULL_FACE);
+
 	SSideVertex *base = (SSideVertex *)m_VBSides->m_Owner->Bind();
 
 	// setup data pointers
@@ -1243,6 +1245,8 @@ void CPatchRData::RenderSides(CShaderProgramPtr& shader)
 	g_Renderer.m_Stats.m_TerrainTris += m_VBSides->m_Count - 2;
 
 	CVertexBuffer::Unbind();
+
+	glEnable(GL_CULL_FACE);
 }
 
 void CPatchRData::RenderPriorities(CTextRenderer& textRenderer)
