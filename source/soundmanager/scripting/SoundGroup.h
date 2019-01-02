@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,37 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
-* =========================================================================
-* File		: SoundGroup.h
-* Project	 : 0 A.D.
-* Description : Loads up a group of sound files with shared properties,
-*				and provides a simple interface for playing them.
-* =========================================================================
-*/
-
-/*
-Example SoundGroup.xml
-	<?xml version="1.0" encoding="utf-8"?>
-	<SoundGroup>
-		<Gain>1.0</Gain>
-		<Looping>0</Looping>
-		<Pitch>1.0</Pitch>
-		<Priority>100</Priority>
-		<RandOrder>0</RandOrder>
-		<RandGain>0</RandGain>
-		<RandPitch>0</RandPitch>
-		<ConeGain>1.0</ConeGain>
-		<ConeInner>360</ConeInner>
-		<ConeOuter>360</ConeOuter>
-		<Path>audio/resource/hellenes/soldier/</Path>
-		<Sound>Attack_Attackx.ogg</Sound>
-		<Sound>Attack_Chargex.ogg</Sound>
-		<Sound>Attack_Engagex.ogg</Sound>
-		<Sound>Attack_ForMyFamily.ogg</Sound>
-	</SoundGroup>
-*/
-
 #ifndef INCLUDED_SOUNDGROUP_H
 #define INCLUDED_SOUNDGROUP_H
 
@@ -61,16 +30,17 @@ class ISoundItem;
 
 enum eSndGrpFlags
 {
-	eRandOrder		= 0x01,
-	eRandGain		= 0x02,
-	eRandPitch		= 0x04,
-	eLoop			= 0x08,
-	eOmnipresent	= 0x10,
-	eDistanceless	= 0x20,
+	eRandOrder = 0x01,
+	eRandGain = 0x02,
+	eRandPitch = 0x04,
+	eLoop = 0x08,
+	eOmnipresent = 0x10,
+	eDistanceless = 0x20,
 	eOwnerOnly = 0x40
 };
 
-
+// Loads up a group of sound files with shared properties,
+// and provides a simple interface for playing them.
 class CSoundGroup
 {
 	NONCOPYABLE(CSoundGroup);
@@ -109,34 +79,32 @@ private:
 	void UploadPropertiesAndPlay(size_t theIndex, const CVector3D& position, entity_id_t source);
 
 	void SetDefaultValues();
-
-	size_t m_index;  // index of the next sound to play
-
 #if CONFIG2_AUDIO
-	std::vector<CSoundData*> snd_group;  // we store the handles so we can load now and play later
+	// We store the handles so we can load now and play later
+	std::vector<CSoundData*> m_SoundGroups;
 #endif
-	std::vector<std::wstring> filenames; // we need the filenames so we can reload when necessary.
-
-	VfsPath m_filepath; // the file path for the list of sound file resources
-
-	float m_CurTime; // Time elapsed since soundgroup was created
-	float m_TimeWindow; // The Intensity Threshold Window
-	size_t m_IntensityThreshold; // the allowable intensity before a sound switch
-	size_t m_Intensity;  // our current intensity (number of sounds played since m_CurTime - m_TimeWindow)
-	float m_Decay;
-	unsigned char m_Flags; // up to eight individual parameters, use with eSndGrpFlags.
-
-	float m_Gain;
-	float m_Pitch;
-	float m_Priority;
-	float m_ConeOuterGain;
-	float m_PitchUpper;
-	float m_PitchLower;
-	float m_GainUpper;
-	float m_GainLower;
+	// We need the filenames so we can reload when necessary.
+	std::vector<std::wstring> m_Filenames;
+	// The file path for the list of sound file resources
+	VfsPath m_Filepath;
+	size_t m_CurrentSoundIndex;
 	float m_ConeInnerAngle;
 	float m_ConeOuterAngle;
+	float m_ConeOuterGain;
+	// Time elapsed since soundgroup was created
+	float m_CurTime;
+	float m_Decay;
+	float m_Gain;
+	float m_GainUpper;
+	float m_GainLower;
+	// The allowable intensity before a sound switch
+	float m_IntensityThreshold;
+	float m_Pitch;
+	float m_PitchLower;
+	float m_PitchUpper;
+	float m_Priority;
+	// Up to eight individual parameters, use with eSndGrpFlags.
+	uint8_t m_Flags;
 };
 
 #endif //#ifndef INCLUDED_SOUNDGROUP_H
-
