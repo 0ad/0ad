@@ -224,7 +224,7 @@
 		</object>
 
 		<object type="button" name="replayButton" style="ModernButtonRed" size="100%-310 100%-48 100%-170 100%-20">
-			<translatableAttribute id="caption">Replay</translatableAttribute>
+			<translatableAttribute id="caption">Watch Replay</translatableAttribute>
 			<action on="Press">startReplay();</action>
 		</object>
 
